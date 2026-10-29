@@ -244,17 +244,69 @@ What this settles:
 
 **Established** (`kpm`, 6.5.30m `/usr/gfx/KONA/bin/kpm`: the dump tool's DMA helpers `set_transfer_address` 0x1001f534, `setup_dma` 0x1001f76c, `wait_for_dma_completion` 0x1001f7c0, `cleanup_dma` 0x1001f898; the register order and widths from kpm's own host-interface table in [diags/kpm/hip_registers.tsv](../diags/kpm/hip_registers.tsv); the select-feedback pairing from [above](#pipe-to-host-select-feedback-kona_dmaread)). The host-interface chip has two output-DMA channels that carry data from the pipe to the host. The primary channel is the set the select-feedback and pixel-read commands use; the secondary channel is the one `kpm` drives directly through the host registers to pull pipe state into a host buffer. A channel is a page number and an offset into that page, a length counter, a total counter and an overflow field, plus (primary only) a line length and a stride:
 
-| Register | Offset | Mask on HIP1, HIP2 | What it holds |
-|---|---|---|---|
-| `HH_ODMA_PNUM`, `HH_ODMA2_PNUM` | 0x260, 0x2a0 | 29 bits | page number of the destination; `kpm` loads the high word the diagnostic map returns ([kernel.md](kernel.md#diagnostic-map-kona_diag_map): the I/O address shifted right by 12) |
-| `HIP1_HH_ODMA_POFF`, `HIP1_HH_ODMA2_POFF` | 0x268, 0x2a8 | 12 bits | offset within the page; `kpm` loads the low word the diagnostic map returns, which is the byte offset ORed with 0x9000 |
-| `HIP2_HH_ODMA_POFF`, `HIP2_HH_ODMA2_POFF` | 0x268, 0x2a8 | 17 bits | the same registers on the second host-interface generation, wide enough to hold the 0x9000 attribute bits that the diagnostic map's low word carries: page-size code and coherent bit, with the field layout kpm gives the input-DMA offset register ([DMA pools](#dma-pools); **inferred** that the output registers share it, from the equal masks and the equal words written) |
-| `HH_ODMA_LEN`, `HH_ODMA2_LEN` | 0x270, 0x2b0 | 32 bits | length counter; `kpm` writes the whole transfer length here and again in `TOTAL`, and the firmware writes the line length to the primary one (**inferred**: it counts the bytes left in the current line) |
-| `HH_ODMA_TOTAL`, `HH_ODMA2_TOTAL` | 0x278, 0x2b8 | 32 bits | bytes left in the whole transfer (**inferred** from the polling); it counts down to 0, and both `kpm` (`wait_for_dma_completion`, which sleeps and re-reads it up to a caller-supplied number of times) and `irsaudit` (`wait_for_odma`) poll it for 0 as the completion test |
-| `HH_ODMA_OVER`, `HH_ODMA2_OVER` | 0x280, 0x2c0 | 12 bits | overflow status; `kpm` clears the secondary one before programming it and the firmware clears the primary one when it starts a feed. **Inferred:** bit 11 is the overflow bit (0x800) that the select-feedback completion record's status word carries, since the 12-bit field has exactly that top bit |
-| `HH_ODMA_LLEN` | 0x288 | 32 bits | primary channel only: the line length the counter reloads at each line (**inferred**: the firmware writes the same line-length word to the length register and to this one) |
-| `HH_ODMA_STRIDE` | 0x290 | 32 bits | primary channel only: distance between the starts of successive lines |
-| `HH_ODMA_FLUSH` | 0x298 | none (write-only trigger) | `wait_for_odma` writes 0 and `kpm` writes 1 after `TOTAL` reaches 0, to push out the last partial word (**inferred** from the name and the position after completion) |
+- `HH_ODMA_PNUM`, host offset 0x260, 29 bits wide.
+  **Inferred**: the primary output-DMA channel's destination page number.
+  `arm_start_selectfeed` (`arm1.u`, 6.5.30m) writes the high word of a select-feedback
+  address to raster-bus index 0x450, which pairs with this register.
+- `HH_ODMA2_PNUM`, host offset 0x2a0, 29 bits wide.
+  **Established**: the secondary channel's destination page number.
+  `setup_dma` in `kpm` (6.5.30m, address 0x1001f76c) stores the high word
+  of the diagnostic map's address pair in it.
+- `HIP1_HH_ODMA_POFF`, host offset 0x268, 12 bits wide.
+  **Inferred**: the primary channel's byte offset within its destination page.
+  `arm_start_selectfeed` (`arm1.u`, 6.5.30m) writes the low address word
+  to raster-bus index 0x451, which pairs with this register.
+- `HIP2_HH_ODMA_POFF`, host offset 0x268, 17 bits wide.
+  **Inferred**: the second host-interface generation's wider primary-channel page offset.
+  The extra bits fit the 0x9000 flag bits that the diagnostic map returns
+  with an offset (`kpm`, 6.5.30m), which a 12-bit field cannot hold.
+- `HIP1_HH_ODMA2_POFF`, host offset 0x2a8, 12 bits wide.
+  **Established**: the secondary channel's page offset on the first generation.
+  `setup_dma` in `kpm` (6.5.30m) stores the low word of the
+  diagnostic map's address pair in it.
+- `HIP2_HH_ODMA2_POFF`, host offset 0x2a8, 17 bits wide.
+  **Inferred**: the same secondary-channel offset widened to 17 bits on the second generation,
+  so it can carry the 0x9000 flag bits that `kpm` (6.5.30m) writes with the offset.
+- `HH_ODMA_LEN`, host offset 0x270, 32 bits wide.
+  **Established**: the primary channel's length counter.
+  `TEST_ge_hip` in `irsaudit` (6.5.30m) writes a pattern to raster-bus index 0x452
+  and reads it back from this register.
+- `HH_ODMA2_LEN`, host offset 0x2b0, 32 bits wide.
+  **Established**: the secondary channel's length counter.
+  `setup_dma` in `kpm` (6.5.30m, address 0x1001f76c) writes the whole transfer length
+  to it, and the same value to the total counter.
+- `HH_ODMA_TOTAL`, host offset 0x278, 32 bits wide.
+  **Established**: bytes left in a primary-channel transfer.
+  `TEST_odma` in `irsaudit` (6.5.30m) polls it until it reads zero,
+  which is the completion test.
+- `HH_ODMA2_TOTAL`, host offset 0x2b8, 32 bits wide.
+  **Established**: bytes left in a secondary-channel transfer.
+  `wait_for_dma_completion` in `kpm` (6.5.30m, address 0x1001f7c0)
+  re-reads it until it is zero, sleeping between reads.
+- `HH_ODMA_OVER`, host offset 0x280, 12 bits wide.
+  **Inferred**: the primary channel's overflow field.
+  `arm_start_selectfeed` (`arm1.u`, 6.5.30m) clears it through raster-bus index 0x454,
+  and the completion record's overflow bit 0x800 is the top bit of this 12-bit field.
+- `HH_ODMA2_OVER`, host offset 0x2c0, 12 bits wide.
+  **Established**: the secondary channel's overflow field.
+  `setup_dma` in `kpm` (6.5.30m, address 0x1001f76c) clears it
+  before it programs the channel.
+- `HH_ODMA_LLEN`, host offset 0x288, 32 bits wide.
+  **Inferred**: the primary channel's line length, reloaded at each line.
+  `arm_start_selectfeed` (`arm1.u`, 6.5.30m) writes the same line-length word
+  to raster-bus indexes 0x452 and 0x455.
+- `HH_ODMA_STRIDE`, host offset 0x290, 32 bits wide.
+  **Established**: the primary channel's distance between line starts.
+  `TEST_ge_hip` in `irsaudit` (6.5.30m) writes a pattern to raster-bus index 0x456
+  and reads it back from this register.
+- `HH_ODMA_CHANNEL`, host offset 0x250, 1 bit wide.
+  **Inferred**: selects which channel the next raster-bus output-DMA write targets.
+  `TEST_odma` in `irsaudit` (6.5.30m) writes raster-bus index 0x440 as 0
+  for the primary channel and 1 for the secondary channel.
+- `HH_PACK_MODE`, host offset 0x258, 7 bits wide.
+  **Inferred**: the pixel packing mode of read-back data.
+  `TEST_odma` in `irsaudit` (6.5.30m) writes raster-bus index 0x441 with 0x43
+  before it draws the pixels it reads back.
 
 The order a host program uses, as `kpm` does it for the secondary channel: clear `HH_ODMA2_OVER`; write `HH_ODMA2_PNUM`, `HH_ODMA2_POFF`, `HH_ODMA2_LEN` and `HH_ODMA2_TOTAL`; write 1 to `HH_TBUS_STATUS` (0x3a8; the write sits at the end of `setup_dma`, and what it clears or starts is the open question of that register, [kernel.md](kernel.md#hh_tbus_status)); start the pipe-side transfer through the raster-bus path ([above](#output-dma-from-the-pipe-side)); poll `HH_ODMA2_TOTAL` for 0; write `HH_ODMA_FLUSH`. The buffer comes from the diagnostic-map ioctl 10100 with a 2 MB request and kind 8 (through the map RAM), so the page and offset are pipe-space values, not host physical addresses ([kernel.md](kernel.md#diagnostic-map-kona_diag_map)). **Unknown: no shipped software or published source depends on it:** the units of `LEN`, `TOTAL` and `STRIDE` beyond "bytes" (`kpm` uses byte counts, the firmware passes the pixel-read line length unchanged), the width of the counters inside the chip, and whether `OVER` is a count or a flag set; routes tried: `kpm`, `irsaudit`, the firmware's select-feedback and read-back code, the kernel's overflow handler (which only prints) and kpm's register table (masks only).
 
@@ -262,24 +314,64 @@ The order a host program uses, as `kpm` does it for the secondary channel: clear
 
 `ResetKona` in irsaudit is only the pipe-initialise ioctl and nothing checks the state afterwards. kpm's `hipReset` (`usr/gfx/KONA/bin/kpm`, 0x10017204) either resets the chip through boundary scan (`jt_isolate_chip` "hip" "RESET", then "IDCODE"), or sets the overlap-disable bit (bit 0 of 0x380 on HIP1, 0x3a0 on HIP2) and writes 5 to `HH_TFIFO_HI`; it does not write `HH_RESET`. The FIFO_LO test passes straight after a reset, so whatever the reset leaves in the low-water mark, an empty FIFO is at or below it.
 
+### Stalling and unstalling the ARM
+
+- `HH_ARM_STALL`, host offset 0x320, a write-only trigger.
+  **Established**: halts the ARM so the host can read its memory.
+  `armAccessEnable` in `kpm` (6.5.30m, address 0x10012340) writes 0 to it
+  before setting the host-access bit of `HH_ARM_CTRL`, and `StallArm` in `irsaudit` writes 1.
+- `HH_ARM_UNSTALL`, host offset 0x328, a write-only trigger.
+  **Established**: lets a stalled ARM run again.
+  `UnStallArm` in `irsaudit` (6.5.30m, address 0x10038594) writes 1 to it
+  after the host has finished its memory access.
+- `HH_ARM_ADDRESS`, host offset 0x3e8, 28 bits wide.
+  **Established**: the ARM memory address the host wants to read or write.
+  `PioReadArm32` in `irsaudit` (6.5.30m, address 0x100384ac) writes the address here
+  and reads the data back from `HH_ARM_DATA` at 0x3f0.
+
 ### The host's boundary-scan controller and the ARM debug window
 
 **Established** (`kpm` 6.5.30m, the host-side routines the `jt_*` library calls through `jt_set_procs`, in the code at 0x10010284-0x10010aa0 that the symbol table attributes to `kona_jt_set_custom_error_report`; `irsaudit`'s messages "HH_JTAG_DATA write" and "HH_JTAG_DATA read" and its `jt_*` copy of the same library). The host reaches the pipe's boundary-scan chains through five registers of the host interface: `HH_JTAG_DATA` (0x350), `HH_JTAG_TMS` (0x358), `HH_JTAG_CTRL` (0x360), `HH_JTAG_STATUS` (0x368) and `HH_JTAG_ACCESS` (0x370, bit 0 `JTAG_ACCESS_HOST`); `HH_JTAG_RESET` (0x378) is a write-only trigger with no field. The ARM firmware drives the same controller through its own bit-bang port at 0x2000c0-0x2000cc ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md)), and the bit in `HH_JTAG_ACCESS` hands the controller to one side or the other (**inferred** from the name `JTAG_ACCESS_HOST` and from `kpm` setting it before every access). The sequence `kpm` follows:
 
-| Step | Register access | Meaning |
-|---|---|---|
-| take the controller | write 1 to `HH_JTAG_ACCESS` | host owns the scan controller (done once, before the first select or reset) |
-| select a chain | write `HH_JTAG_CTRL` = chain number << 5 (bits 5-10, the `JTAG_CTRL_JSEL` field `kpm` names) | choose which board's scan chain the next shift goes to; the mask is 0x7ff |
-| shift | write `HH_JTAG_TMS`, then write `HH_JTAG_DATA` | the TMS word carries the test-mode-select bits for the shift (`kpm` writes 31 before a reset shift, 18 before a data shift and 3 between tests; **inferred** to be a reset sequence, a shift-data sequence and a return to idle, from the standard scan protocol); writing `HH_JTAG_DATA` starts the shift |
-| shift length | `HH_JTAG_CTRL` bits 0-4 | `kpm`'s controller self-test writes 0x501, 0x505 and 0x500 for its 1-bit, 5-bit and 32-bit shifts, so a field value of 0 means 32 bits (**inferred**) |
-| wait | read `HH_JTAG_STATUS` bit 0 until it is clear | busy flag; `kpm` calls a delay with argument 0 between polls and gives up after 1000 iterations with "JTAG stall timeout, exceeded 1000 iterations!" |
-| result | read `HH_JTAG_DATA` | the bits shifted out; the self-test checks the top bit of the word for the 1-bit and 5-bit cases and compares the whole word for 32 bits |
+The sequence `kpm` follows, register by register:
+
+- `HH_JTAG_ACCESS`, host offset 0x370, bit 0 is `JTAG_ACCESS_HOST`.
+  **Established**: takes the scan controller for the host.
+  `kpm` (6.5.30m) writes 1 to it before its first scan access.
+- `HH_JTAG_CTRL`, host offset 0x360, 11 bits wide.
+  **Established**: `kpm` (6.5.30m) writes the chain number shifted left by 5
+  (its field `JTAG_CTRL_JSEL`, bits 5 to 10) to choose a board's scan chain.
+  Bits 0 to 4 are **inferred** to be the shift length, since the self-test writes
+  0x501 for 1 bit and 0x500 for 32 bits.
+- `HH_JTAG_TMS`, host offset 0x358, 6 bits wide.
+  **Established**: `kpm` (6.5.30m) writes it before the data word,
+  31 before a reset shift, 18 before a data shift and 3 between tests;
+  these are **inferred** to be the standard reset, shift and return-to-idle sequences.
+- `HH_JTAG_DATA`, host offset 0x350, 32 bits wide.
+  **Established**: writing it starts a shift in `kpm` (6.5.30m) and `irsaudit`,
+  and reading it after the busy flag clears returns the bits shifted out.
+- `HH_JTAG_STATUS`, host offset 0x368, bit 0 is the busy flag.
+  **Established**: `kpm` (6.5.30m) polls it up to 1000 times,
+  with a delay call between polls, before it reports "JTAG stall timeout".
+- `HH_JTAG_RESET`, host offset 0x378, a write-only trigger.
+  **Inferred** from the name: resets the scan controller.
+  `kpm` (6.5.30m) has `jt_hard_reset` as the only candidate writer,
+  and it was not traced to this offset.
 
 The self-test (`jt_test_thyself`'s host procedure, messages "JTAG controller test 1-bit shift failed", "5-bit", "32-bit") writes 0x99799999 as the 32-bit pattern and expects 0x66866666, its bitwise complement, back. **Unknown: no shipped software or published source depends on it:** what the chain select does to a field value of 0 (no chain), the exact clocking of TMS against the data bits for lengths other than the three the self-test uses, and what `HH_JTAG_RESET` does beyond its name (kpm's `jt_hard_reset` is the only candidate and was not traced to a write of 0x378); routes tried: `kpm` and `irsaudit` code and strings, the firmware's bit-bang routines, the kernel (which never touches these registers).
 
 **Established** (kpm 6.5.30m: `hipInspectionPreJtag` 0x10012834 reads 0x338, 0x340 and 0x348 into its dump; `analyze_hip` 0x100173a0 interprets the first). `HH_ARM_CURR_ADDR` (0x338), `HH_CURR_DATA_FM_ARM` (0x340) and `HH_CURR_DATA_TO_ARM` (0x348) are 32-bit registers next to `HH_ARM_STALL`, `HH_ARM_UNSTALL` and `HH_ARM_STEP`. `analyze_hip` reads `HH_ARM_CURR_ADDR` as the ARM address of the bus cycle the processor is stalled on: it compares it with `HA_CMD` (0x200400, "reading address ... (HA_CMD)", the processor waiting for the next command), `HA_DATA`, `HA_DATA_LAST` and `HA_DATA_NOPIPE` (0x200200, 0x20023c, 0x200240, waiting for payload), the `HA_GED_CTRL` range 0x200600-0x2009ff and the `HA_GED_DATA` range 0x200a00-0x200bfc ("writing to ... ", waiting for the distributor), and reports anything else as an access at that address, adding "(Opcode fetch)" when bit 10 of `HH_ARM_STATUS` (`ARM_STATUS_NOPC`) is set. **Inferred:** the two data registers hold the word on the bus in each direction for that cycle. kpm prints them raw and nothing else reads them. Their behaviour while the processor runs is **unknown: no shipped software or published source depends on it** (routes tried: kpm, irsaudit, `ireeprom`, the 6.5.30m kernel, the firmware, which cannot see its own debug window). An emulator that stalls the ARM can report the stalled address here; otherwise 0.
 
-**Unknown: no shipped software or published source depends on it:** `HIP1_HH_FCI_LOOPBACK` (0x388, 16 bits) and `HIP2_HH_PIO_HI` (0x2c8, 5 bits, field `HIP2_PIO_HI`). The names suggest a loopback control for the first generation's crosstalk interface and the high address bits of programmed I/O on the second generation (**inferred** from the names; the neighbouring registers on HIP1 are the `FCI` overlap and error registers, and `HH_IDMA_HI` at 0x3b8 on HIP2 is the matching high-address register for input DMA). Routes tried: kpm's table (name and mask only), `irsaudit`, the 6.5.30m kernel's `kona_edtinit_hip2.o`, `kona_mapram_hip2.o` and `kona_intr_hip2.o` (no store to either offset), the firmware, and the 6.5.5 headers.
+- `HIP1_HH_FCI_LOOPBACK`, host offset 0x388, 16 bits wide.
+  **Inferred** from the name: a loopback control of the first generation's crosstalk interface.
+  **Unknown: no shipped software or published source depends on it.**
+  Routes tried: the kpm table (name and mask only), `irsaudit`, the 6.5.30m kernel
+  (no store to the offset), the firmware and the 6.5.5 headers.
+- `HIP2_HH_PIO_HI`, host offset 0x2c8, 5 bits wide.
+  **Inferred** from the name: the high address bits of programmed I/O on the second generation.
+  **Unknown: no shipped software or published source depends on it.**
+  Routes tried: the kpm table (name and mask only), `irsaudit`, `kona_edtinit_hip2.o`
+  and `kona_mapram_hip2.o` of the 6.5.30m kernel (no store to the offset), the firmware and the 6.5.5 headers.
 
 ## The command stream as the ARM firmware reads it
 

@@ -1462,17 +1462,17 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037984	228	ge11_bypass_read	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037a68	104	switch_ged_ge	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037ad0	408	ge_bypass_read_nomap	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037c68	480	wait_for_odma	dynsym	named-only	docs/hip.md#output-dma-from-the-pipe-side	Output DMA from the pipe side
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037e48	396	setup_dma	dynsym	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037fd4	184	wait_for_dma_completion	dynsym	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037e48	396	setup_dma	dynsym	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037fd4	184	wait_for_dma_completion	dynsym	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003808c	384	init_ge_num	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003820c	124	diag_arm_reg_write	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038288	140	arm_ged_write	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038314	304	arm_init_ge	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038444	104	PioWriteArm32	dynsym	named-only	docs/ge.md#registers-the-arms-path-to-them	Registers: the ARM's path to them
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100384ac	84	PioReadArm32	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100384ac	84	PioReadArm32	dynsym	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038500	84	PioReadArmIncr32	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038554	64	StallArm	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038594	64	UnStallArm	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038554	64	StallArm	dynsym	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038594	64	UnStallArm	dynsym	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100385d4	444	initialize_icu	dynsym	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038790	104	enable_hip_intr	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100387f8	108	init_hip_interrupt_regs	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
@@ -1645,7 +1645,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006dd58	1312	TEST_ge_ext_stre
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006e278	976	ge_mul_test	dynsym	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006e648	1368	TEST_ge_cram	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006eba0	1364	TEST_ge_wram	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f0f4	876	TEST_ge_hip	dynsym	named-only	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread	Pipe to host: select feedback, `kona_dmaread`
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f0f4	876	TEST_ge_hip	dynsym	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f460	1856	TEST_ge_instTest	dynsym	named-only	ucode/ge_ops.md#the-diagnostic-programs-instruction-test	The diagnostic program's instruction test
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fba0	220	hist_ecd_check	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fc7c	292	hist_base_check	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -1701,7 +1701,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c234	148	nic_info_get	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c2c8	104	klcfg_get_nic_info	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c330	280	diag_sleep	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c448	1404	TEST_miniodma	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c9c4	4844	TEST_odma	dynsym	named-only	docs/hip.md#output-dma-from-the-pipe-side	Output DMA from the pipe side
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c9c4	4844	TEST_odma	dynsym	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007e8dc	768	TEST_pab2voccpbuf	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007f270	848	Pab2_TestDblBuffRegs	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007f79c	1020	TEST_pab2vocdblbuf	dynsym	named-only	docs/irsaudit.md#tests	Tests
@@ -2465,7 +2465,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168270	104	jt_set_procs	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168530	60	jt_init	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168570	68	jt_select_chain	dynsym	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101685c0	60	jt_soft_reset	dynsym	named-only	docs/rm.md#reset-of-the-raster-boards	Reset of the raster boards
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168600	60	jt_hard_reset	dynsym	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168600	60	jt_hard_reset	dynsym	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168640	60	jt_test_thyself	dynsym	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168680	84	jt_send_instruction	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101686e0	84	jt_send_data	dynsym	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
@@ -2601,7 +2601,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012028	64	get_field_length	dynsym	named
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012068	396	locate_register	dynsym	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100121f4	160	assign_register	dynsym	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012294	172	extract_register	dynsym	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012340	56	armAccessEnable	dynsym	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012340	56	armAccessEnable	dynsym	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012378	1212	adapterInspection	dynsym	understood	HIP.h:105	
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012834	5288	hipInspectionPreJtag	dynsym	no-software-dependency	HIP.h:176	
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10013cdc	5072	hipInspectionPostJtag	dynsym	named-only	docs/kpm.md#capture	Capture
@@ -2651,8 +2651,8 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f044	444	dgInspection	dynsym	named-on
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f200	424	show_fm_section	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f3a8	396	show_xmap_section	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f534	568	set_transfer_address	dynsym	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f76c	84	setup_dma	dynsym	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f7c0	216	wait_for_dma_completion	dynsym	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f76c	84	setup_dma	dynsym	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f7c0	216	wait_for_dma_completion	dynsym	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f898	352	cleanup_dma	dynsym	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100216dc	2464	read_chains	dynsym	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002207c	568	jtagInspection	dynsym	named-only	docs/kpm.md#capture	Capture
@@ -2694,7 +2694,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033780	104	jt_set_procs	dynsym	named-on
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a40	60	jt_init	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a80	68	jt_select_chain	dynsym	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033ad0	60	jt_soft_reset	dynsym	named-only	docs/rm.md#reset-of-the-raster-boards	Reset of the raster boards
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b10	60	jt_hard_reset	dynsym	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b10	60	jt_hard_reset	dynsym	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b50	60	jt_test_thyself	dynsym	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b90	84	jt_send_instruction	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033bf0	84	jt_send_data	dynsym	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
