@@ -148,1292 +148,3238 @@
  * carry, read at the cited address of arm1.u, ge.u or ged1b.u and in the
  * sender. Then the routing facts from the tables beside the firmware: the
  * arm1.u handler the token map runs and its address, or for a routed token
- * its map entry, command number (bits 15-23), count field and type, and
- * the engine handler the handler table binds to that number or its entry
- * in the distributor program (ucode/icu_map.tsv, ucode/hw_route.tsv,
- * ucode/ged_route.tsv, ucode/arm1.md). "libGLcore.so f stores n words" is
- * the fixed payload from libglcore/payloads.tsv. A separate unlabelled
- * paragraph above lists the engine handlers the ARM handler's code loads,
- * or those in the distributor entry's span; it names them and does not
- * explain them. What each engine handler computes is in
- * ucode/ge_handlers.md by module.
+ * its map entry, command number (bits 15-23), count field (bits 6-8 in the
+ * geometry form, bits 6-10 otherwise) and type, and the engine handler the
+ * handler table binds to that number where one is bound (ucode/icu_map.tsv,
+ * ucode/hw_route.tsv, ucode/arm1.md, ucode/ged.md). "libGLcore.so f stores
+ * n words" is the fixed payload from libglcore/payloads.tsv. A separate
+ * unlabelled paragraph above lists the engine handlers whose slots the ARM
+ * handler's code loads; it names them and does not explain them. What each
+ * engine handler computes is in ucode/ge_handlers.md by module. Tokens
+ * that still lack a hand-read role show the routing facts under "Route:".
  */
 enum kona_hp_token {
-    /* `HP_DATA` (0x000). Route: the token map runs `arm_data` at arm1.u
-     * 0x0c026590, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_data 0x0c026590 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_DATA` (0x000). Inferred: The token map runs a one-instruction stub
+     * at 0x0c026590 that branches to arm_badcmd; that prints the current and
+     * previous token numbers, reads and prints 100 payload words, then spins
+     * reading words, so the pipe would hang. A zero word stored at window
+     * offset 0 is payload, so the token is reached only by a host error
+     * (inferred). Payload none read by the stub (arm_badcmd drains 100):
+     * nothing: the token is refused and no payload is defined. Established:
+     * the token map runs `arm_data` at arm1.u 0x0c026590, a stub that ends in
+     * `arm_badcmd`. No sender found as a command token in libGLcore, the X
+     * module or the kernel commands table. tokens.tsv counts 20 kernel sites
+     * for 0x000 (functions whose first stored constant is 0); not traced,
+     * probably a leading zero payload word. */
     KONA_HP_DATA                         = 0x000,
 
     /* Engine handlers whose slots the code of `arm_buffer_config` loads, in
-     * order: `mgesi_TbusRegWrite`, `mgeb_CI_Mode`, `mgeb_RGBA_Mode`. */
+     * order: `mgesi_TbusRegWrite`, `mgeb_CI_Mode`, `mgeb_RGBA_Mode`. Read at
+     * arm1.u arm_buffer_config 0x0c0131a0 (calls XferMask, XferMaskRpos,
+     * init_multisample, late_state_init, resolve_banks,
+     * SetFbState; engine handlers mgesi_TbusRegWrite, mgeb_CI_Mode slot 334,
+     * mgeb_RGBA_Mode slot 333). */
 
-    /* `HP_BUFFER_CONFIG` (0x001). Route: the token map runs
-     * `arm_buffer_config` at arm1.u 0x0c0131a0. */
+    /* `HP_BUFFER_CONFIG` (0x001). Inferred: Stores the ten words as bytes in
+     * the state shadow (depth size rounded up to a multiple of 8), recomputes
+     * the distributor transfer masks, derives bank counts, writes the colour,
+     * depth, stencil and address raster registers and multisample setup,
+     * selects CI or RGBA engine mode, then rebuilds banks and framebuffer
+     * state. Payload 10: Framebuffer layout: level, RGB component size,
+     * colour-index size, double-buffer, stereo, multisample count, depth
+     * size, stencil size, accumulation size, auxiliary buffer count (field
+     * meanings from the emitter debug strings). Established: the token map
+     * runs `arm_buffer_config` at arm1.u 0x0c0131a0. Sent by libGLcore.so
+     * kona_writeconfig (kon_context.s); first example in
+     * docs/inventory/tokens.tsv is __glKonCreateContext. */
     KONA_HP_BUFFER_CONFIG                = 0x001,
 
-    /* `HP_PACK` (0x002). Route: the token map runs `arm_pack` at arm1.u
-     * 0x0c03949c. */
+    /* Read at arm1.u arm_pack 0x0c03949c, table pack_cmd 0x0c039538 (16 pairs
+     * of token number and bits, zero token ends). */
+
+    /* `HP_PACK` (0x002). Established: Rewrites 16 hardware token-map entries
+     * (the byte and short forms of colour, normal, texture coordinate and
+     * vertex tokens) from a pair table: it clears bits 5-8 and 27-28 of each
+     * current entry and ORs in the table value, with bit 0 of the register at
+     * 0x200050 set during the edit. It then sends 0 through descriptor
+     * 0x06400020 and sets bit 0x40 of r8+0xcf0. Payload 1 (always 0): One
+     * zero word (kona_writeconfig sends token 2 with payload 0). Established:
+     * the token map runs `arm_pack` at arm1.u 0x0c03949c. Sent by
+     * libGLcore.so kona_writeconfig (kon_context.s), directly after
+     * HP_BUFFER_CONFIG. */
     KONA_HP_PACK                         = 0x002,
 
-    /* Engine handlers relocated into the span of distributor entry 0x363:
-     * `mgesi_Triangles`. */
+    /* Read at icu_map.tsv 0x003 (kind 1, command 394, 1 word); ged_banks.tsv
+     * k=10; ged_listing.txt quad.s:6-18; kon_rect.s
+     * __glkonim_Rectf/Rectd/Rects. */
 
-    /* `HP_BEGIN_RECT` (0x003). Route: routed by the host interface with no
-     * ARM code, map entry 0xd8c50053: command 394, count field 1, single
-     * floats; distributor entry 0x363 at ged1b.u tri.s:45. */
+    /* `HP_BEGIN_RECT` (0x003). Inferred: Starts a rectangle. It carries
+     * command 394, the same as BEGIN_QUADS, so the distributor runs the quad
+     * stub at 0x1e5 (quad.s:6): class register r48 = 7, handler register r62
+     * = mgesi_Quads, vertex state in r49. The four vertices and END follow as
+     * ordinary tokens. Payload 1: the number of command words that follow
+     * (the four VERTEX2 commands and the END): 14 for float and int, 22 for
+     * double, 10 for short. Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0xd8c50053: command 394, geometry
+     * form, count field 1 (bits 6-8), single floats. Sent by libGLcore.so
+     * __glkonim_Rectd, Rectdv, Rectf, Rectfv, Recti, Rectiv, Rects, Rectsv
+     * (kon_rect.s). */
     KONA_HP_BEGIN_RECT                   = 0x003,
 
-    /* `HP_READBUFFER_CONFIG` (0x004). Route: the token map runs
-     * `arm_readbuffer_config` at arm1.u 0x0c013650. */
+    /* Read at arm1.u arm_readbuffer_config 0x0c013650 (stores to
+     * r8+0x1e0..0x1e9; calls resolve_banks and SetFbReadState). */
+
+    /* `HP_READBUFFER_CONFIG` (0x004). Inferred: Stores the ten words as bytes
+     * in the read-side state shadow, derives the read colour, depth and
+     * stencil bank bytes from them, then rebuilds the read bank selection and
+     * the read framebuffer state. Payload 10: Read-framebuffer layout in the
+     * same order as HP_BUFFER_CONFIG: level, RGB size, colour-index size,
+     * double-buffer, stereo, multisample, depth, stencil, accumulation,
+     * auxiliary count. Established: the token map runs
+     * `arm_readbuffer_config` at arm1.u 0x0c013650. Sent by libGLcore.so
+     * kona_readconfig (kon_context.s); docs/opengl.md names it. */
     KONA_HP_READBUFFER_CONFIG            = 0x004,
 
     /* Engine handlers whose slots the code of `arm_bitmap_dlist` loads, in
      * order: `mgeb_TransparentBitmapSetup`, `mgesi_FeedbackPixel`,
      * `mgesi_PixRasterPosSetup`, `mgesi_TransparentBitmap`,
-     * `mgebi_PixEndTransparentBitmap`. */
+     * `mgebi_PixEndTransparentBitmap`. Read at arm1.u arm_bitmap_dlist
+     * 0x0c02b590 (reads r9+0 six times, r9+0x40 once; engine slots
+     * mgeb_TransparentBitmapSetup, mgesi_PixRasterPosSetup,
+     * mgesi_FeedbackPixel, mgesi_TransparentBitmap,
+     * mgebi_PixEndTransparentBitmap). */
 
-    /* `HP_BITMAP_DLIST` (0x005). Route: the token map runs `arm_bitmap_dlist`
-     * at arm1.u 0x0c02b590. */
+    /* `HP_BITMAP_DLIST` (0x005). Established: Keeps width and height in the
+     * pixel descriptor, sends the origin to the transparent-bitmap setup
+     * handler, then (in render mode) sets up the raster position or (in
+     * feedback mode) the feedback pixel handler, moves the image words to the
+     * engines with the pass-through counter, and ends with the move values
+     * sent to the end-of-bitmap handler. Payload variable: 7 header words,
+     * then the count in word 7 of further words: width rounded up to a
+     * multiple of 8, height, x and y origin, x origin plus x move, y origin
+     * plus y move, then the number of words that follow (image words plus
+     * one), the image size in bytes and the packed bitmap. Established: the
+     * token map runs `arm_bitmap_dlist` at arm1.u 0x0c02b590. Sent by
+     * libGLcore.so __glkonim_Bitmap (display-list compile path, kon_pixel.s). */
     KONA_HP_BITMAP_DLIST                 = 0x005,
 
     /* Engine handlers whose slots the code of `arm_bitmap` loads, in order:
-     * `mgeb_BitmapApplyMove`. */
+     * `mgeb_BitmapApplyMove`. Read at arm1.u arm_bitmap 0x0c02b4c0 (8 plain
+     * reads plus r9+0x3c or r9+0x40), do_bitmap 0x0c02b39c,
+     * mgeb_BitmapApplyMove (slot 2 via r8+0x4c). */
 
-    /* `HP_BITMAP` (0x006). Route: the token map runs `arm_bitmap` at arm1.u
-     * 0x0c02b4c0. */
+    /* `HP_BITMAP` (0x006). Established: Stores the header in the pixel
+     * descriptor and the four floats at ARM 0xc4c-0xc58. For an empty bitmap
+     * it only sends the four floats to the raster-position move handler;
+     * otherwise it runs the bitmap path (parse the host image, set up the
+     * engine bitmap stage, send the image rows) and ends with
+     * BitmapEndStream. Payload 9 (5 integers, 4 floats): width, height, byte
+     * offset of the image in its first word, data-by-DMA flag, row mode, then
+     * four floats (x origin, y origin, x move, y move). Established: the
+     * token map runs `arm_bitmap` at arm1.u 0x0c02b4c0. Sent by libGLcore.so
+     * __glkonim_Bitmap (kon_pixel.s). */
     KONA_HP_BITMAP                       = 0x006,
 
-    /* `HP_LIGHTF` (0x007). Route: the token map runs `arm_lightf` at arm1.u
-     * 0x0c016e94. Route: libGLcore.so `__glkonim_Lightfv` stores 6 words
-     * after the token. */
+    /* Read at arm1.u arm_lightf 0x0c016e94; light_amb 0x0c016f38 .. light_k2
+     * 0x0c01747c; table lightfi 0x04041bdc. */
+
+    /* `HP_LIGHTF` (0x007). Inferred: Checks light number and parameter name,
+     * else drains the payload and raises invalid-enum. It jumps through a
+     * ten-entry table by parameter: ambient, diffuse, specular, position,
+     * spot direction, spot exponent, spot cutoff, and constant, linear,
+     * quadratic attenuation. Each keeps the floats in a per-light shadow and
+     * sends them to the engines. Payload 6: Light number (GL_LIGHT0 + n,
+     * 0x4000-0x4007), parameter name (0x1200-0x1209), then four float values
+     * (unused ones are read and dropped). Established: the token map runs
+     * `arm_lightf` at arm1.u 0x0c016e94. Established: libGLcore.so
+     * `__glkonim_Lightfv` stores 6 words after the token. Sent by
+     * libGLcore.so __glkonim_Lightfv (kon_cfuncs.s). */
     KONA_HP_LIGHTF                       = 0x007,
 
-    /* `HP_LIGHTI` (0x008). Route: the token map runs `arm_lighti` at arm1.u
-     * 0x0c016ee8. Route: libGLcore.so `__glkonim_Lightiv` stores 6 words
-     * after the token. */
+    /* Read at arm1.u arm_lighti 0x0c016ee8; light_* routines read with r1=1
+     * (convFixToFloat 0x0c017bf4). */
+
+    /* `HP_LIGHTI` (0x008). Inferred: Same dispatch as the float form with a
+     * flag set: the integer values are converted to floats first (colour
+     * parameters scaled to the colour range, position, direction, exponent,
+     * cutoff and attenuation converted without scaling), then kept and sent
+     * exactly like HP_LIGHTF. Payload 6: Light number (0x4000-0x4007),
+     * parameter name (0x1200-0x1209), then four integer values. Established:
+     * the token map runs `arm_lighti` at arm1.u 0x0c016ee8. Established:
+     * libGLcore.so `__glkonim_Lightiv` stores 6 words after the token. Sent
+     * by libGLcore.so __glkonim_Lightiv (kon_cfuncs.s). */
     KONA_HP_LIGHTI                       = 0x008,
 
-    /* `HP_LIGHTMODELF` (0x009). Route: the token map runs `arm_lightmodelf`
-     * at arm1.u 0x0c016ae4. Route: libGLcore.so `__glkonim_LightModelfv`
-     * stores 5 words after the token. */
+    /* Read at arm1.u arm_lightmodelf 0x0c016ae4; lightmodel_locv 0x0c016b5c,
+     * lightmodel_2side 0x0c016b90, lightmodel_gamb 0x0c016bc4,
+     * lightmodelf_gamb 0x0c016bf0. */
+
+    /* `HP_LIGHTMODELF` (0x009). Inferred: Rejects other names with
+     * invalid-enum after draining. Local-viewer and two-sided keep a boolean
+     * byte in the shadow and send the raw value to the engines
+     * (mgeb_LightModelLocV or LightModel2Side). Ambient keeps all four floats
+     * and sends red, green and blue (alpha is shadowed, not sent) to
+     * mgeb_LightModelGAmb. Payload 5: Parameter name (0xb51 local viewer,
+     * 0xb52 two-sided, 0xb53 ambient) and four values. Established: the token
+     * map runs `arm_lightmodelf` at arm1.u 0x0c016ae4. Established:
+     * libGLcore.so `__glkonim_LightModelfv` stores 5 words after the token.
+     * Sent by libGLcore.so __glkonim_LightModelfv (kon_cfuncs.s). */
     KONA_HP_LIGHTMODELF                  = 0x009,
 
-    /* `HP_LIGHTMODELI` (0x00a). Route: the token map runs `arm_lightmodeli`
-     * at arm1.u 0x0c016b20. Route: libGLcore.so `__glkonim_LightModeliv`
-     * stores 5 words after the token. */
+    /* Read at arm1.u arm_lightmodeli 0x0c016b20; lightmodeli_gamb 0x0c016c04. */
+
+    /* `HP_LIGHTMODELI` (0x00a). Inferred: Same dispatch as HP_LIGHTMODELF;
+     * for the ambient case the four integers are first converted to floats
+     * with the colour scaling. Payload 5: Parameter name (0xb51, 0xb52,
+     * 0xb53) and four integer values. Established: the token map runs
+     * `arm_lightmodeli` at arm1.u 0x0c016b20. Established: libGLcore.so
+     * `__glkonim_LightModeliv` stores 5 words after the token. Sent by
+     * libGLcore.so __glkonim_LightModeliv (kon_cfuncs.s). */
     KONA_HP_LIGHTMODELI                  = 0x00a,
 
-    /* `HP_POLYGONSTIPPLE` (0x00b). Route: the token map runs
-     * `arm_polygonstipple` at arm1.u 0x0c02c7bc. */
+    /* Read at arm1.u arm_polygonstipple 0x0c02c7bc (two plain reads, then
+     * r9+0x40 or r9+0x3c by the DMA word; ParseHostImage,
+     * SetupGE_PolygonStipple, SendPixelsToPipe, PixEndPolygonStipple). */
+
+    /* `HP_POLYGONSTIPPLE` (0x00b). Established: Builds a fixed 32 by 32
+     * one-bit image descriptor (format code 11, type code 7), then parses the
+     * image, composes the index stream, sets up the engine polygon-stipple
+     * stage and sends the pixels to the pipe, finishing with
+     * PixEndPolygonStipple to load the pattern into the engines. Payload 3,
+     * then the 32 x 32 stipple as an image: byte offset of the stipple data
+     * in its first word, data-by-DMA flag, row mode. Established: the token
+     * map runs `arm_polygonstipple` at arm1.u 0x0c02c7bc. Sent by
+     * libGLcore.so __glkonim_PolygonStipple (kon_pixel.s, token 11, then
+     * __glKonSendData). */
     KONA_HP_POLYGONSTIPPLE               = 0x00b,
 
-    /* `HP_SCISSOR` (0x00c). Route: the token map runs `arm_scissor` at arm1.u
-     * 0x0c018c90. */
+    /* Read at arm1.u arm_scissor 0x0c018c90; resolve_scissor 0x0c018a00
+     * (WriteEram 0xc04, registers 0x3fc2 and 0x3fc3,
+     * resolve_viewport). */
+
+    /* `HP_SCISSOR` (0x00c). Established: Raises invalid-value for a negative
+     * width or height. Otherwise stores the box in the shadow and runs
+     * resolve_scissor, which intersects it with the window clip and screen
+     * limits (only when the scissor test is enabled), keeps the result,
+     * writes an engine memory word and two scissor registers, then recomputes
+     * the viewport. Payload 4: Scissor box: x, y, width, height as integers.
+     * Established: the token map runs `arm_scissor` at arm1.u 0x0c018c90.
+     * Sent by libGLcore.so __glkonim_Scissor (kon_cfuncs.s, IP27KONA32
+     * variant per tokens.tsv). */
     KONA_HP_SCISSOR                      = 0x00c,
 
-    /* `HP_TEXPARAMETERF` (0x00d). Route: the token map runs
-     * `arm_texparameterf` at arm1.u 0x0c026594, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_texparameterf 0x0c026594 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_TEXPARAMETERF` (0x00d). Established: The token map runs a
+     * one-instruction stub at 0x0c026594 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_texparameterf` at arm1.u 0x0c026594, a stub that ends in
+     * `arm_badcmd`. No sender found. glTexParameterf/i enter
+     * __glkonim_TexParameterf/i then __glKonTexParameter (kon_texture_api.s),
+     * which updates host texture-object state; its only FIFO token is
+     * HP_CHANGE_POST_TEX_SCALE_BIAS 0x1d7. Texture state reaches the pipe
+     * through the bind tokens (TEXBIND_ID 0x178, BIND_2D_MIPMAP_TEXTURE 0x179
+     * and siblings) and TEXLOAD_ID 0x176. */
     KONA_HP_TEXPARAMETERF                = 0x00d,
 
-    /* `HP_TEXPARAMETERI` (0x00e). Route: the token map runs
-     * `arm_texparameteri` at arm1.u 0x0c026598, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_texparameteri 0x0c026598 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_TEXPARAMETERI` (0x00e). Established: The token map runs a
+     * one-instruction stub at 0x0c026598 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_texparameteri` at arm1.u 0x0c026598, a stub that ends in
+     * `arm_badcmd`. No sender found. glTexParameterf/i enter
+     * __glkonim_TexParameterf/i then __glKonTexParameter (kon_texture_api.s),
+     * which updates host texture-object state; its only FIFO token is
+     * HP_CHANGE_POST_TEX_SCALE_BIAS 0x1d7. Texture state reaches the pipe
+     * through the bind tokens (TEXBIND_ID 0x178, BIND_2D_MIPMAP_TEXTURE 0x179
+     * and siblings) and TEXLOAD_ID 0x176. */
     KONA_HP_TEXPARAMETERI                = 0x00e,
 
-    /* `HP_TEXIMAGE1D` (0x00f). Route: the token map runs `arm_teximage1d` at
-     * arm1.u 0x0c02659c, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_teximage1d 0x0c02659c (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_TEXIMAGE1D` (0x00f). Established: The token map runs a
+     * one-instruction stub at 0x0c02659c that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_teximage1d` at arm1.u 0x0c02659c, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_TexImage1D/2D enter
+     * __glkonim_TexImage (kon_texture_api.s), which stores no token itself;
+     * the only TEXLOAD_ID 0x176 sender is subloadLevel, and image data go
+     * down the DRAWTEXELS 0x174 path (docs/opengl.md). Chain is from call
+     * lists, not traced end to end. */
     KONA_HP_TEXIMAGE1D                   = 0x00f,
 
-    /* `HP_TEXIMAGE2D` (0x010). Route: the token map runs `arm_teximage2d` at
-     * arm1.u 0x0c0265a0, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_teximage2d 0x0c0265a0 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_TEXIMAGE2D` (0x010). Established: The token map runs a
+     * one-instruction stub at 0x0c0265a0 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_teximage2d` at arm1.u 0x0c0265a0, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_TexImage1D/2D enter
+     * __glkonim_TexImage (kon_texture_api.s), which stores no token itself;
+     * the only TEXLOAD_ID 0x176 sender is subloadLevel, and image data go
+     * down the DRAWTEXELS 0x174 path (docs/opengl.md). Chain is from call
+     * lists, not traced end to end. */
     KONA_HP_TEXIMAGE2D                   = 0x010,
 
     /* Engine handlers whose slots the code of `arm_texenvf` loads, in order:
-     * `mgebi_TexEnv`. */
+     * `mgebi_TexEnv`. Read at arm1.u arm_texenvf 0x0c024ff4 (4 plain reads,
+     * final r9+0x3c; slot 109 mgebi_TexEnv via r8+0x120);
+     * ge_listing/texenv.S.lst mgebi_TexEnv. */
 
-    /* `HP_TEXENVF` (0x011). Route: the token map runs `arm_texenvf` at arm1.u
-     * 0x0c024ff4. */
+    /* `HP_TEXENVF` (0x011). Established: Forwards the parameter name to
+     * engine port 0x47c and the four value words to port 0x840, then starts
+     * the texture-environment handler, which validates the mode (modulate,
+     * decal, blend, replace and one extension value) and updates the engines'
+     * texture-environment state. Payload 5 (pname, float, three zero words):
+     * texture-environment parameter name (only 0x2200, the environment mode,
+     * is sent by libGLcore through this token), a float value, three zeros.
+     * Established: the token map runs `arm_texenvf` at arm1.u 0x0c024ff4.
+     * Sent by libGLcore.so __glkonim_TexEnvf (kon_cfuncs.s, token 17). */
     KONA_HP_TEXENVF                      = 0x011,
 
     /* Engine handlers whose slots the code of `arm_texenvi` loads, in order:
-     * `mgebi_TexEnv`. */
+     * `mgebi_TexEnv`. Read at arm1.u arm_texenvi 0x0c025030 (4 plain reads,
+     * final r9+0x3c; teq r0,#0x2200; slot 109 mgebi_TexEnv via
+     * r8+0x120 to 0x4fc). */
 
-    /* `HP_TEXENVI` (0x012). Route: the token map runs `arm_texenvi` at arm1.u
-     * 0x0c025030. */
+    /* `HP_TEXENVI` (0x012). Inferred: For pname 0x2200 it sends the mode
+     * through a register-write descriptor (0x58001000); for the other names
+     * it sends four colour words through descriptor 0x59001000, then names
+     * the texture-environment engine handler on port 0x4fc. It selects all
+     * engines first. Payload 5 (pname, value, three words):
+     * texture-environment parameter name, an integer value (mode or one
+     * colour word), two or three further words (zeros from TexEnvi, colour
+     * words from TexEnviv). Established: the token map runs `arm_texenvi` at
+     * arm1.u 0x0c025030. Sent by libGLcore.so __glkonim_TexEnvi,
+     * __glkonim_TexEnviv (kon_cfuncs.s, token 18). */
     KONA_HP_TEXENVI                      = 0x012,
 
-    /* `HP_TEXGEND` (0x013). Route: the token map runs `arm_texgend` at arm1.u
-     * 0x0c024d50. */
+    /* Read at arm1.u arm_texgend 0x0c024d50 (add r0,pc; b _printf: string
+     * 'arm: error. arm_texgend NYI -- use arm_texgenf instead.'). */
+
+    /* `HP_TEXGEND` (0x013). Established: Prints the message that
+     * texture-generation with doubles is not implemented and tells the host
+     * to use the float form, then returns without reading its payload or
+     * touching the engines. Payload 0 (payload not read): nothing is read;
+     * libGLcore never sends this token, TexGend and TexGendv send token 20
+     * instead. Established: the token map runs `arm_texgend` at arm1.u
+     * 0x0c024d50. No sender found (searched libglcore/asm for a store of 19
+     * to the FIFO window; the only hit is an unrelated evaluator function). */
     KONA_HP_TEXGEND                      = 0x013,
 
     /* Engine handlers whose slots the code of `arm_texgenf` loads, in order:
-     * `mgeb_TexGen`. */
+     * `mgeb_TexGen`. Read at arm1.u arm_texgenf 0x0c024d9c (8 plain reads +
+     * r9+0x3c; slot 82 mgeb_TexGen via r8+0xec). */
 
-    /* `HP_TEXGENF` (0x014). Route: the token map runs `arm_texgenf` at arm1.u
-     * 0x0c024d9c. Route: libGLcore.so `__glkonim_TexGend` stores 9 words
-     * after the token. */
+    /* `HP_TEXGENF` (0x014). Established: Checks the coordinate and parameter
+     * name (raising an invalid-enum error otherwise), keeps a mode value in a
+     * per-coordinate table at ARM 0x804, then sends the coordinate to port
+     * 0x478 and the eight remaining words to port 0x840 and starts the
+     * engines' texture-generation handler. Payload 9 (coord, pname, then 7
+     * words): texture coordinate (0x2000-0x2003 for S, T, R, Q), parameter
+     * name (mode 0x2500, object plane 0x2501, eye plane 0x2502, or the
+     * point/line distance names 0x81f4-0x81f7), then either a mode value and
+     * six zeros, four plane floats and three zeros, or seven floats.
+     * Established: the token map runs `arm_texgenf` at arm1.u 0x0c024d9c.
+     * Established: libGLcore.so `__glkonim_TexGend` stores 9 words after the
+     * token. Sent by libGLcore.so __glkonim_TexGend, __glkonim_TexGenf,
+     * __glkonim_TexGeni (kon_cfuncs.s), __glkonim_TexGenfv/dv/iv
+     * (kon_modes.s), all token 20. */
     KONA_HP_TEXGENF                      = 0x014,
 
-    /* `HP_TEXGENI` (0x015). Route: the token map runs `arm_texgeni` at arm1.u
-     * 0x0c024d94. */
+    /* Read at arm1.u arm_texgeni 0x0c024d94 (sub r0,pc; b _printf, same
+     * string as arm_texgend). */
+
+    /* `HP_TEXGENI` (0x015). Established: Prints the same not-implemented
+     * message as the double form (branching into the shared printf) and
+     * returns without reading its payload or touching the engines. Payload 0
+     * (payload not read): nothing is read; libGLcore never sends this token,
+     * TexGeni sends token 20 with an integer mode. Established: the token map
+     * runs `arm_texgeni` at arm1.u 0x0c024d94. No sender found (searched
+     * libglcore/asm for a store of 21 to the FIFO window). */
     KONA_HP_TEXGENI                      = 0x015,
 
-    /* `HP_TEXBIND` (0x016). Route: the token map runs `arm_texbind` at arm1.u
-     * 0x0c036ae4. */
+    /* Read at arm1.u arm_texbind 0x0c036ae4, GetTexManageBindParam 0x0c036a10
+     * (35 plain reads + r9+0x3c, 15 in a loop),
+     * SetupRM_TextureBind 0x0c0367c8, tbus_write_word. */
+
+    /* `HP_TEXBIND` (0x016). Inferred: Stores the incoming words into the
+     * ARM's texture state, then writes six texture-bind raster registers
+     * through the register-write descriptor 0x58404800 and a final
+     * texture-address word; texState+0x98 is set while it runs. Payload 36:
+     * texture width and height, a format code, then texture-object fields
+     * (size, border and filter state, a table of addresses) and 15 further
+     * words. Established: the token map runs `arm_texbind` at arm1.u
+     * 0x0c036ae4. No sender found (searched libglcore/asm for a store of 22;
+     * the only hits are Rect; also did not search the X modules or the
+     * kernel). */
     KONA_HP_TEXBIND                      = 0x016,
 
-    /* `HP_FEEDBACK_TYPE` (0x017). Route: the token map runs
-     * `arm_feedback_type` at arm1.u 0x0c038a6c. */
+    /* Read at arm1.u arm_feedback_type 0x0c038a6c; arm_rendermode 0x0c038a2c. */
+
+    /* `HP_FEEDBACK_TYPE` (0x017). Established: Stores the word in ARM RAM
+     * (r8+0x854) and does nothing else; no engine traffic. A later RENDERMODE
+     * into feedback mode sends this stored word to the engines. Payload 1:
+     * feedback type word from glFeedbackBuffer (the GL_2D/3D/4D style
+     * constant). Established: the token map runs `arm_feedback_type` at
+     * arm1.u 0x0c038a6c. Sent by libGLcore.so __glkonim_FeedbackBuffer
+     * (kon_select.s) stores token 23 then the type word. */
     KONA_HP_FEEDBACK_TYPE                = 0x017,
 
-    /* `HP_SELECTBUFFER` (0x018). Route: the token map runs `arm_selectbuffer`
-     * at arm1.u 0x0c0265a4, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_selectbuffer 0x0c0265a4 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_SELECTBUFFER` (0x018). Established: The token map runs a
+     * one-instruction stub at 0x0c0265a4 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_selectbuffer` at arm1.u 0x0c0265a4, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_SelectBuffer (kon_select.s)
+     * stores no FIFO constant (host-side buffer pointer only); selection mode
+     * is switched by HP_RENDERMODE 0x19 from __glkonim_RenderMode. */
     KONA_HP_SELECTBUFFER                 = 0x018,
 
     /* Engine handlers whose slots the code of `arm_rendermode` loads, in
      * order: `mgeb_EndFeedbackMode`, `mgeb_BgnSelectMode`,
-     * `mgeb_EndSelectMode`, `mgeb_BgnFeedbackMode`. */
+     * `mgeb_EndSelectMode`, `mgeb_BgnFeedbackMode`. Read at arm1.u
+     * arm_rendermode 0x0c038964-0x0c038a68; ge.u
+     * mgeb_BgnSelectMode/EndSelectMode/BgnFeedbackMode/EndFeedbackMode
+     * (slots per ge_xref.tsv). */
 
-    /* `HP_RENDERMODE` (0x019). Route: the token map runs `arm_rendermode` at
-     * arm1.u 0x0c038964. */
+    /* `HP_RENDERMODE` (0x019). Established: Compares the new mode with the
+     * kept mode (r8+0x862). Leaving select or feedback sends EndSelectMode
+     * (slot 139) or EndFeedbackMode (slot 138) to all engines (port 0x438);
+     * entering select sends BgnSelectMode (126); entering feedback first
+     * sends the stored feedback type then BgnFeedbackMode (125). Then stores
+     * the mode and recomputes transfer mask, viewport, polygon, line and
+     * point state. Payload 1: new render mode: 0x1c00 render, 0x1c01
+     * feedback, 0x1c02 select. Established: the token map runs
+     * `arm_rendermode` at arm1.u 0x0c038964. Sent by libGLcore.so
+     * __glkonim_RenderMode (kon_select.s) stores token 25 then the mode. */
     KONA_HP_RENDERMODE                   = 0x019,
 
     /* Engine handlers whose slots the code of `arm_clear` loads, in order:
      * `mgesi_TbusRegWrite`, `mgesi_ClearIndex`, `mgesi_ClearLA16`,
-     * `mgesi_ClearColor`. */
+     * `mgesi_ClearColor`. Read at arm1.u arm_clear 0x0c03bb60; masked_clear
+     * 0x0c03b188, accum_clear 0x0c03b6a0, accum_clear32 0x0c03b82c,
+     * overlay_clear 0x0c03b9e0, imp_clear 0x0c03aefc. */
 
-    /* `HP_CLEAR` (0x01a). Route: the token map runs `arm_clear` at arm1.u
-     * 0x0c03bb60. Route: libGLcore.so `__glkonim_Clear` stores 1 word after
-     * the token. */
+    /* `HP_CLEAR` (0x01a). Inferred: Rejects other bits with invalid-value and
+     * does nothing unless the stored render mode equals 0x1c00. Drops buffers
+     * that are absent or masked, runs the masked clear when write masks are
+     * partial, clears accumulation and overlay, sends the colour or index
+     * clear through mgesi_ClearColor, ClearIndex or ClearLA16, writes the
+     * clear controls and runs the fill. Payload 1: Clear mask: 0x4000 colour,
+     * 0x100 depth, 0x400 stencil, 0x200 accumulation. Established: the token
+     * map runs `arm_clear` at arm1.u 0x0c03bb60. Established: libGLcore.so
+     * `__glkonim_Clear` stores 1 word after the token. Sent by libGLcore.so
+     * __glkonim_Clear (kon_modes.s). */
     KONA_HP_CLEAR                        = 0x01a,
 
-    /* `HP_CLEARACCUM` (0x01b). Route: the token map runs `arm_clearaccum` at
-     * arm1.u 0x0c037d94. */
+    /* Read at arm1.u arm_clearaccum 0x0c037d94 (stores r8+0x6ec..0x6fc). */
+
+    /* `HP_CLEARACCUM` (0x01b). Established: Reads the four words and stores
+     * them in the state shadow for the next clear; sends nothing to the
+     * engines or boards now. Payload 4: Accumulation clear colour: red,
+     * green, blue, alpha as floats. Established: the token map runs
+     * `arm_clearaccum` at arm1.u 0x0c037d94. Sent by libGLcore.so
+     * __glkonim_ClearAccum (kon_attrib.s). */
     KONA_HP_CLEARACCUM                   = 0x01b,
 
-    /* `HP_CLEARINDEX` (0x01c). Route: the token map runs `arm_clearindex` at
-     * arm1.u 0x0c012bf4. Route: libGLcore.so `__glkonim_ClearIndex` stores 1
-     * word after the token. */
+    /* Read at arm1.u arm_clearindex 0x0c012bf4 (r8+0x7d4). */
+
+    /* `HP_CLEARINDEX` (0x01c). Established: Stores the word in the state
+     * shadow; no hardware access until a clear command runs. Payload 1:
+     * Colour-index clear value (one word; the emitter sends a float).
+     * Established: the token map runs `arm_clearindex` at arm1.u 0x0c012bf4.
+     * Established: libGLcore.so `__glkonim_ClearIndex` stores 1 word after
+     * the token. Sent by libGLcore.so __glkonim_ClearIndex (kon_cfuncs.s). */
     KONA_HP_CLEARINDEX                   = 0x01c,
 
-    /* `HP_CLEARCOLOR` (0x01d). Route: the token map runs `arm_clearcolor` at
-     * arm1.u 0x0c012c00. */
+    /* Read at arm1.u arm_clearcolor 0x0c012c00 (r8+0x7c4..0x7d0). */
+
+    /* `HP_CLEARCOLOR` (0x01d). Established: Reads the four words and stores
+     * them in the state shadow for the next clear; nothing is sent to the
+     * engines now. Payload 4: Colour clear value: red, green, blue, alpha as
+     * floats. Established: the token map runs `arm_clearcolor` at arm1.u
+     * 0x0c012c00. Sent by libGLcore.so __glkonim_ClearColor (kon_attrib.s). */
     KONA_HP_CLEARCOLOR                   = 0x01d,
 
-    /* `HP_CLEARSTENCIL` (0x01e). Route: the token map runs `arm_clearstencil`
-     * at arm1.u 0x0c0148b8. Route: libGLcore.so `__glkonim_ClearStencil`
-     * stores 1 word after the token. */
+    /* Read at arm1.u arm_clearstencil 0x0c0148b8 (descriptor 0x584fc800,
+     * address word 0x013a1c09 = IMP_DEPTH_CLEAR). */
+
+    /* `HP_CLEARSTENCIL` (0x01e). Inferred: Keeps the value in the shadow. If
+     * a stencil buffer exists it also writes the depth-clear register with
+     * the value shifted by 0 (32-bit depth) or 16 so that it sits in the
+     * stencil part of the clear word. Payload 1: Stencil clear value
+     * (integer). Established: the token map runs `arm_clearstencil` at arm1.u
+     * 0x0c0148b8. Established: libGLcore.so `__glkonim_ClearStencil` stores 1
+     * word after the token. Sent by libGLcore.so __glkonim_ClearStencil
+     * (kon_cfuncs.s). */
     KONA_HP_CLEARSTENCIL                 = 0x01e,
 
     /* Engine handlers whose slots the code of `arm_cleardepth` loads, in
-     * order: `mgesi_ClearDepth32`. */
+     * order: `mgesi_ClearDepth32`. Read at arm1.u arm_cleardepth 0x0c01465c
+     * (slot 345 mgesi_ClearDepth32; register address word 0x013a1c09 =
+     * IMP_DEPTH_CLEAR). */
 
-    /* `HP_CLEARDEPTH` (0x01f). Route: the token map runs `arm_cleardepth` at
-     * arm1.u 0x0c01465c. */
+    /* `HP_CLEARDEPTH` (0x01f). Inferred: Stores the double in the shadow.
+     * With no depth buffer it stops. With 32-bit depth it sends both words
+     * and a mask to mgesi_ClearDepth32. Otherwise it converts the double to
+     * the board compressed depth format (exponent and mantissa) and writes
+     * the depth-clear register. Payload 2 (one double): Depth clear value as
+     * a double (high word first), clamped to 0..1 by the emitter.
+     * Established: the token map runs `arm_cleardepth` at arm1.u 0x0c01465c.
+     * Sent by libGLcore.so __glkonim_ClearDepth (kon_attrib.s): token 31, one
+     * double. */
     KONA_HP_CLEARDEPTH                   = 0x01f,
 
-    /* `HP_STENCILMASK` (0x020). Route: the token map runs `arm_stencilmask`
-     * at arm1.u 0x0c014904. Route: libGLcore.so `__glkonim_StencilMask`
-     * stores 1 word after the token. */
+    /* Read at arm1.u arm_stencilmask 0x0c014904 (descriptor 0x584fc800,
+     * address word 0x01381c07 = IMP_SZ0, select 0x1fe00000). */
+
+    /* `HP_STENCILMASK` (0x020). Established: Keeps the mask, writes it into
+     * the stencil write-mask field (bits 21-28) of the stencil register, and
+     * sets or clears bit 0x4 of the state flags according to whether the mask
+     * covers every stencil bit, which arm_clear uses to choose the masked
+     * clear path. Payload 1: Stencil write mask (integer). Established: the
+     * token map runs `arm_stencilmask` at arm1.u 0x0c014904. Established:
+     * libGLcore.so `__glkonim_StencilMask` stores 1 word after the token.
+     * Sent by libGLcore.so __glkonim_StencilMask (kon_cfuncs.s). */
     KONA_HP_STENCILMASK                  = 0x020,
 
     /* Engine handlers whose slots the code of `arm_colormask` loads, in
-     * order: `mgesi_TbusRegWrite`. */
+     * order: `mgesi_TbusRegWrite`. Read at arm1.u arm_colormask 0x0c012c3c
+     * (IMP_CONFIG bits 6-9 via select 0x3c0, address 0x01341c00; IMP_BL
+     * 0x013c1c0d; IMP_MS 0x01361c03; register 0x1408 via mgesi_TbusRegWrite). */
 
-    /* `HP_COLORMASK` (0x021). Route: the token map runs `arm_colormask` at
-     * arm1.u 0x0c012c3c. Route: libGLcore.so `__glkonim_ColorMask` stores 4
-     * words after the token. */
+    /* `HP_COLORMASK` (0x021). Inferred: Stores the four low bytes as shadow
+     * flags, builds per-channel enable bits, updates the distributor mask
+     * word in the context record, then writes the four channel write-enable
+     * bits of the colour configuration register and rewrites the blend and
+     * logic-op register according to the current blend and logic state.
+     * Payload 4: Red, green, blue, alpha write enables (nonzero means
+     * enabled). Established: the token map runs `arm_colormask` at arm1.u
+     * 0x0c012c3c. Established: libGLcore.so `__glkonim_ColorMask` stores 4
+     * words after the token. Sent by libGLcore.so __glkonim_ColorMask
+     * (kon_cfuncs.s). */
     KONA_HP_COLORMASK                    = 0x021,
 
-    /* `HP_DEPTHMASK` (0x022). Route: the token map runs `arm_depthmask` at
-     * arm1.u 0x0c0147d0. Route: libGLcore.so `__glkonim_DepthMask` stores 1
-     * word after the token. */
+    /* Read at arm1.u arm_depthmask 0x0c0147d0 (descriptor 0x584fc800, address
+     * word 0x01391c08 = IMP_SZ1, select 0x10000). */
+
+    /* `HP_DEPTHMASK` (0x022). Established: Keeps the low byte in the shadow
+     * and writes it to the depth write-mask bit (bit 16) of the depth
+     * configuration register. Payload 1: Depth write enable (nonzero means
+     * writes enabled). Established: the token map runs `arm_depthmask` at
+     * arm1.u 0x0c0147d0. Established: libGLcore.so `__glkonim_DepthMask`
+     * stores 1 word after the token. Sent by libGLcore.so __glkonim_DepthMask
+     * (kon_cfuncs.s). */
     KONA_HP_DEPTHMASK                    = 0x022,
 
-    /* `HP_INDEXMASK` (0x023). Route: the token map runs `arm_indexmask` at
-     * arm1.u 0x0c012e1c. Route: libGLcore.so `__glkonim_IndexMask` stores 1
-     * word after the token. */
+    /* Read at arm1.u arm_indexmask 0x0c012e1c (descriptor 0x584fc800, address
+     * word 0x013d1c14 = IMP_WMASK_BIT). */
+
+    /* `HP_INDEXMASK` (0x023). Inferred: Ands the mask with the colour-index
+     * bit mask, stores it, flags whether it is partial in bit 0x2 of
+     * r8+0xcf0, and in colour-index mode writes it shifted to the bit-plane
+     * write mask register as two 12-bit copies. Does nothing more outside
+     * index mode. Payload 1: Colour-index write mask. Established: the token
+     * map runs `arm_indexmask` at arm1.u 0x0c012e1c. Established:
+     * libGLcore.so `__glkonim_IndexMask` stores 1 word after the token. Sent
+     * by libGLcore.so __glkonim_IndexMask (kon_cfuncs.s). */
     KONA_HP_INDEXMASK                    = 0x023,
 
-    /* `HP_ENABLE` (0x024). Route: the token map runs `arm_enable` at arm1.u
-     * 0x0c023380. */
+    /* Read at arm1.u arm_enable 0x0c023380; tables e0 0x04046fe8, e0a
+     * 0x04047b30, e1 0x04047b38, e2 0x04047b50, e3 0x04047b70,
+     * e4 0x04048254; routines listed in ucode/arm1_functions.md. */
+
+    /* `HP_ENABLE` (0x024). Established: Checks the number against six ranges
+     * (0x0b10-0x0de1, 0x2a01-0x2a02,
+     * 0x3000-0x3005, 0x4000-0x4007,
+     * 0x8010-0x81c7, 0x6000) and jumps through one table per range to a
+     * per-capability routine that stores 1 in its enable byte and applies the
+     * change. Other numbers, or empty slots, raise invalid-enum. Payload 1:
+     * GL capability number. Established: the token map runs `arm_enable` at
+     * arm1.u 0x0c023380. Sent by libGLcore.so __glkonim_xEnable and
+     * __glkonim_Enable (kon_modes.s). */
     KONA_HP_ENABLE                       = 0x024,
 
-    /* `HP_DISABLE` (0x025). Route: the token map runs `arm_disable` at arm1.u
-     * 0x0c023448. */
+    /* Read at arm1.u arm_disable 0x0c023448; tables d0 0x04048258, d0a
+     * 0x04048da0, d1 0x04048da8, d2 0x04048dc0, d3 0x04048de0,
+     * d4 0x040494c4. */
+
+    /* `HP_DISABLE` (0x025). Established: Same six-range dispatch as enable
+     * through the d-tables; each routine stores 0 in the capability byte and
+     * applies the matching disable action. Other numbers raise invalid-enum.
+     * Payload 1: GL capability number. Established: the token map runs
+     * `arm_disable` at arm1.u 0x0c023448. Sent by libGLcore.so
+     * __glkonim_Disable (kon_modes.s, token 37). */
     KONA_HP_DISABLE                      = 0x025,
 
     /* Engine handlers whose slots the code of `arm_evalstrip1d` loads, in
-     * order: `mgesi_EvalStrip1D`. */
+     * order: `mgesi_EvalStrip1D`. Read at arm1.u arm_evalstrip1d
+     * 0x0c03dd58-0x0c03ddb0; ge_handlers.md slot 103. */
 
-    /* `HP_EVALSTRIP1D` (0x026). Route: the token map runs `arm_evalstrip1d`
-     * at arm1.u 0x0c03dd58. */
+    /* `HP_EVALSTRIP1D` (0x026). Established: Pops three words (last through
+     * r9+0x3c) and sends them to the engines behind descriptor 0x58400000
+     * (command number 128, pass form), then sends six filler zero words each
+     * under descriptor 0xd80a4000 (command 20, geometry form), and writes the
+     * slot of mgesi_EvalStrip1D (r8+0x114 low half = slot 103) to port 0x4f4.
+     * Payload 3: glEvalMesh1D strip: mode minus GL_POINT (0 points, 1 lines),
+     * first grid index, number of points in this strip (6 for a full strip,
+     * the remainder for the last one). Established: the token map runs
+     * `arm_evalstrip1d` at arm1.u 0x0c03dd58. Sent by libGLcore.so
+     * __glKonEvalMesh1DGe11 (kon_eval.s, token store at line 6358). */
     KONA_HP_EVALSTRIP1D                  = 0x026,
 
     /* Engine handlers whose slots the code of `arm_evalstrip2d` loads, in
-     * order: `mgesi_EvalStrip2D`. */
+     * order: `mgesi_EvalStrip2D`. Read at arm1.u arm_evalstrip2d
+     * 0x0c03dcd4-0x0c03dd54; ge_handlers.md slot 104. */
 
-    /* `HP_EVALSTRIP2D` (0x027). Route: the token map runs `arm_evalstrip2d`
-     * at arm1.u 0x0c03dcd4. */
+    /* `HP_EVALSTRIP2D` (0x027). Established: Pops six words (last through
+     * r9+0x3c) and sends them behind descriptor 0x58400000 (command 128),
+     * preceded by two constants 1 and 0, then twelve filler zero words each
+     * under descriptor 0xd80a4000 (command 20), and writes the slot of
+     * mgesi_EvalStrip2D (r8+0x118 high half = slot 104) to port 0x4f4.
+     * Payload 6: glEvalMesh2D strip: mode minus GL_POINT, a strip-kind word
+     * (16 to 19), first grid index in u, count in u (6), first grid index in
+     * v, count in v (50 for a full strip, the remainder otherwise).
+     * Established: the token map runs `arm_evalstrip2d` at arm1.u 0x0c03dcd4.
+     * Sent by libGLcore.so __glKonEvalMesh2DGe11 (kon_eval.s, li 39 near line
+     * 6440). */
     KONA_HP_EVALSTRIP2D                  = 0x027,
 
-    /* `HP_MAPGRID1D` (0x028). Route: routed by the host interface with no ARM
-     * code, map entry 0x584cd101: command 153, count field 4, single floats;
-     * engine handler `mgeb_EvalGrid1D` (index 25 of the handler table). */
+    /* Read at icu_map.tsv 0x028; ged_bound_table.tsv index 25; ge_handlers.md
+     * ueval1D.s; ge_listing/ueval1D.s.lst mgeb_EvalGrid1D; kon_eval.s
+     * __glKonUpdateEvalAttributes .L0d9801cc. */
+
+    /* `HP_MAPGRID1D` (0x028). Inferred: Sets the 1D evaluator grid. Routed
+     * pass token (command 153, 4 words, float). Command 153 selects handler
+     * table index 25, mgeb_EvalGrid1D (ueval1D.s, 16 words), the grid handler
+     * of the 1D evaluator module; its body was not traced beyond that.
+     * Payload 4: grid divisions (integer) then three floats (domain start,
+     * end and step, named from the GL call: the emitter reads them from the
+     * context at +1932..+1944). Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0x584cd101: command 153, count
+     * field 4 (bits 6-10, 0 read as 32), single floats; engine handler
+     * `mgeb_EvalGrid1D` (index 25 of the handler table). Sent by libGLcore.so
+     * __glKonUpdateEvalAttributes (kon_eval.s, token 40 then four words). */
     KONA_HP_MAPGRID1D                    = 0x028,
 
-    /* `HP_MAPGRID2D` (0x029). Route: routed by the host interface with no ARM
-     * code, map entry 0x584d5201: command 154, count field 8, single floats;
-     * engine handler `mgeb_EvalGrid2D` (index 26 of the handler table). */
+    /* Read at icu_map.tsv 0x029; ged_bound_table.tsv index 26; ge_handlers.md
+     * ueval2D.s; ge_listing/ueval2D.s.lst mgeb_EvalGrid2D; kon_eval.s
+     * __glKonUpdateEvalAttributes. */
+
+    /* `HP_MAPGRID2D` (0x029). Inferred: Sets the 2D evaluator grid. Routed
+     * pass token (command 154, 8 words, float). Command 154 selects handler
+     * table index 26, mgeb_EvalGrid2D (ueval2D.s, 26 words), the grid handler
+     * of the 2D evaluator module; its body was not traced beyond that.
+     * Payload 8: two groups of four: grid divisions (integer) and three
+     * floats for the u axis, then the same four for the v axis. Established:
+     * routed by the host interface with no ARM code, arm1.u token-map entry
+     * 0x584d5201: command 154, count field 8 (bits 6-10, 0 read as 32),
+     * single floats; engine handler `mgeb_EvalGrid2D` (index 26 of the
+     * handler table). Sent by libGLcore.so __glKonUpdateEvalAttributes
+     * (kon_eval.s, token 41 then eight words). */
     KONA_HP_MAPGRID2D                    = 0x029,
 
     /* Engine handlers whose slots the code of `arm_mapdata1d` loads, in
-     * order: `mgeb_EvalMapData1D`. */
+     * order: `mgeb_EvalMapData1D`. Read at arm1.u arm_mapdata1d
+     * 0x0c03dc68-0x0c03dc9c; waitForDH 0x0c022354. */
 
-    /* `HP_MAPDATA1D` (0x02a). Route: the token map runs `arm_mapdata1d` at
-     * arm1.u 0x0c03dc68. */
+    /* `HP_MAPDATA1D` (0x02a). Established: Pops the count word, selects all
+     * engines (0x438), loads the pass-through counter with the count (n |
+     * 0x4000000), waits for the host-interface drain, then writes the slot of
+     * mgeb_EvalMapData1D (r8+0x60 low half = slot 13) to port 0x8c0; the ARM
+     * parses nothing else. Payload variable: first word gives the count n+5
+     * of the words after it: glMap1 control data: n+5 (count word); map index
+     * times 4; three floats (the map domain and order fields); n; then n
+     * float control values. Established: the token map runs `arm_mapdata1d`
+     * at arm1.u 0x0c03dc68. Sent by libGLcore.so __glKonSendMapData1D
+     * (kon_eval.s 0x0d97dc10, li 42). */
     KONA_HP_MAPDATA1D                    = 0x02a,
 
     /* Engine handlers whose slots the code of `arm_mapdata2d` loads, in
-     * order: `mgeb_EvalMapData2D`. */
+     * order: `mgeb_EvalMapData2D`. Read at arm1.u arm_mapdata2d
+     * 0x0c03dca0-0x0c03dcd0. */
 
-    /* `HP_MAPDATA2D` (0x02b). Route: the token map runs `arm_mapdata2d` at
-     * arm1.u 0x0c03dca0. */
+    /* `HP_MAPDATA2D` (0x02b). Established: Same as the 1D form: pops the
+     * count word, selects all engines, sets the pass-through counter, waits
+     * for the drain, then writes the slot of mgeb_EvalMapData2D (r8+0x64 high
+     * half = slot 14) to port 0x8c0. Payload variable: first word gives the
+     * count n+8 of the words after it: glMap2 control data: n+8 (count word);
+     * map index times 4; six floats (u and v domain and order fields); n;
+     * then n float control values. Established: the token map runs
+     * `arm_mapdata2d` at arm1.u 0x0c03dca0. Sent by libGLcore.so
+     * __glKonSendMapData2D (kon_eval.s 0x0d97dcc0, li 43). */
     KONA_HP_MAPDATA2D                    = 0x02b,
 
-    /* `HP_MAPSPEC1D` (0x02c). Route: routed by the host interface with no ARM
-     * code, map entry 0x584dd301: command 155, count field 12, single floats;
-     * engine handler `mgeb_EvalMapSpec1D` (index 27 of the handler table). */
+    /* Read at icu_map.tsv 0x02c; ged_bound_table.tsv index 27;
+     * ge_listing/ueval1D.s.lst mgeb_EvalMapSpec1D; kon_eval.s
+     * __glKonCleanUp1D .L0d97e2dc, __glKonSendMapSpec1D. */
+
+    /* `HP_MAPSPEC1D` (0x02c). Inferred: Describes the active 1D evaluator
+     * maps. Routed pass token (command 155, count 12). Command 155 selects
+     * handler table index 27, mgeb_EvalMapSpec1D (ueval1D.s, 73 words), which
+     * swaps evaluator state (a call to uEvalSaveState2D is visible) and takes
+     * the map descriptions; the rest was not traced. Payload 12 by the map
+     * entry; libGLcore sends 9: one leading word (the first map record word
+     * at +8, or 0 when no vertex map), then for each of four 1D maps two
+     * words: order-like value from the record (+4 or +8) and stride-like
+     * value (+44 x 4), zeros when the map is absent. Established: routed by
+     * the host interface with no ARM code, arm1.u token-map entry 0x584dd301:
+     * command 155, count field 12 (bits 6-10, 0 read as 32), single floats;
+     * engine handler `mgeb_EvalMapSpec1D` (index 27 of the handler table).
+     * Sent by libGLcore.so __glKonCleanUp1D (kon_eval.s, token 44) via
+     * __glKonSendMapSpec1D. */
     KONA_HP_MAPSPEC1D                    = 0x02c,
 
-    /* `HP_MAPSPEC2D` (0x02d). Route: routed by the host interface with no ARM
-     * code, map entry 0x584e5441: command 156, count field 17, single floats;
-     * engine handler `mgeb_EvalMapSpec2D` (index 28 of the handler table). */
+    /* Read at icu_map.tsv 0x02d; ged_bound_table.tsv index 28;
+     * ge_listing/ueval2D.s.lst mgeb_EvalMapSpec2D; kon_eval.s
+     * __glKonCleanUp2D .L0d97e6a0, __glKonSendMapSpec2D. */
+
+    /* `HP_MAPSPEC2D` (0x02d). Inferred: Describes the active 2D evaluator
+     * maps. Routed pass token (command 156, 17 words). Command 156 selects
+     * handler table index 28, mgeb_EvalMapSpec2D (ueval2D.s, 122 words), the
+     * 2D map-spec handler of the evaluator module (122 words); its body was
+     * not traced. Payload 17: one leading word (a flag byte from the context
+     * at -28500), then for each of four 2D maps four words: record words +8,
+     * +12, +4 and +44 x 4, zeros when the map is absent. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x584e5441: command 156, count field 17 (bits 6-10, 0 read as 32),
+     * single floats; engine handler `mgeb_EvalMapSpec2D` (index 28 of the
+     * handler table). Sent by libGLcore.so __glKonCleanUp2D (kon_eval.s,
+     * token 45) via __glKonSendMapSpec2D. */
     KONA_HP_MAPSPEC2D                    = 0x02d,
 
-    /* `HP_LOGICOP` (0x02e). Route: the token map runs `arm_logicop` at arm1.u
-     * 0x0c015c18. */
+    /* Read at arm1.u arm_logicop 0x0c015c18 (descriptor 0x584fc800, address
+     * word 0x013c1c0d = IMP_BL, select 0x1e). */
+
+    /* `HP_LOGICOP` (0x02e). Established: Keeps the value in the shadow and
+     * writes its low four bits into the logic-op field (bits 1-4) of the
+     * blend and logic register. The enable bit is left to the enable and
+     * disable routines. Payload 1: GL logic operation (0x1500-0x150f).
+     * Established: the token map runs `arm_logicop` at arm1.u 0x0c015c18.
+     * Sent by libGLcore.so __glkonim_LogicOp (kon_cfuncs.s): range check
+     * 0x1500-0x150f. */
     KONA_HP_LOGICOP                      = 0x02e,
 
-    /* `HP_PIXELZOOM` (0x02f). Route: the token map runs `arm_pixelzoom` at
-     * arm1.u 0x0c02ad74. */
+    /* Read at arm1.u arm_pixelzoom 0x0c02ad74 (r9+0, r9+0x3c; WriteEram with
+     * r0=0xc01, r2=2). */
+
+    /* `HP_PIXELZOOM` (0x02f). Established: Stores both factors in the ARM's
+     * pixel state at ARM 0x2a8, marks the pixel state dirty and writes the
+     * two words to engine memory (WriteEram) at address 0xc01 so the pixel
+     * stages see the new zoom. Payload 2 floats: x zoom and y zoom.
+     * Established: the token map runs `arm_pixelzoom` at arm1.u 0x0c02ad74.
+     * Sent by libGLcore.so __glkonim_PixelZoom (kon_pixel.s, token 47; host
+     * rejects zoom magnitude above 127 with GL_INVALID_VALUE). */
     KONA_HP_PIXELZOOM                    = 0x02f,
 
-    /* `HP_PIXELTRANSFERF` (0x030). Route: the token map runs
-     * `arm_pixeltransferf` at arm1.u 0x0c02b068. */
+    /* Read at arm1.u arm_pixeltransferf 0x0c02b068 (r9+0, r9+0x3c; stores to
+     * ARM 0x260 area and flag word at 0x900+0x388). */
+
+    /* `HP_PIXELTRANSFERF` (0x030). Established: Keeps the value in the ARM's
+     * transfer state and recomputes the pixel-mode flag word (any scale not
+     * 1, any bias not 0, map-colour flag and so on) at pixel descriptor
+     * +0x388; sends nothing to the engines now, the pixel pipeline is rebuilt
+     * at the next pixel command. Payload 2 (parameter name, float):
+     * pixel-transfer parameter name (map flags, index shift and offset,
+     * red/green/blue/alpha/depth scale and bias, and the extension
+     * colour-matrix, convolution and post-scale/bias names) and its float
+     * value. Established: the token map runs `arm_pixeltransferf` at arm1.u
+     * 0x0c02b068. Sent by libGLcore.so __glkonim_PixelTransferf (kon_pixel.s,
+     * token 48; map flags are converted to 0 or 1). */
     KONA_HP_PIXELTRANSFERF               = 0x030,
 
-    /* `HP_PIXELTRANSFERI` (0x031). Route: the token map runs
-     * `arm_pixeltransferi` at arm1.u 0x0c0265a8, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_pixeltransferi 0x0c0265a8 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_PIXELTRANSFERI` (0x031). Established: The token map runs a
+     * one-instruction stub at 0x0c0265a8 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_pixeltransferi` at arm1.u 0x0c0265a8, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_PixelTransferi (kon_pixel.s)
+     * calls __glkonim_PixelTransferf, which sends HP_PIXELTRANSFERF 0x30 with
+     * the converted value. */
     KONA_HP_PIXELTRANSFERI               = 0x031,
 
-    /* `HP_PIXELSTOREF` (0x032). Route: the token map runs `arm_pixelstoref`
-     * at arm1.u 0x0c0265ac, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_pixelstoref 0x0c0265ac (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_PIXELSTOREF` (0x032). Established: The token map runs a
+     * one-instruction stub at 0x0c0265ac that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_pixelstoref` at arm1.u 0x0c0265ac, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_PixelStoref (kon_pixel.s)
+     * calls __glkonim_PixelStorei, which sends HP_PIXELSTOREI 0x33. */
     KONA_HP_PIXELSTOREF                  = 0x032,
 
-    /* `HP_PIXELSTOREI` (0x033). Route: the token map runs `arm_pixelstorei`
-     * at arm1.u 0x0c02adb0. */
+    /* Read at arm1.u arm_pixelstorei 0x0c02adb0 (r9+0, r9+0x3c; jump table
+     * over pnames 0x0cf0-0x0d03, extension names 0x8130-0x8133 and
+     * 0x806b-0x806e). */
+
+    /* `HP_PIXELSTOREI` (0x033). Established: Stores the value in the matching
+     * slot of the ARM's pack or unpack state (alignment accepts only 1, 2, 4,
+     * 8 on the host side), marks the pixel state dirty and sends nothing to
+     * the engines; later image commands use these slots to size their data.
+     * Payload 2 (parameter name, integer): pixel-store parameter name (swap
+     * bytes, lsb first, row length, skip rows, skip pixels, alignment for
+     * pack and unpack, plus image height and skip images) and its value.
+     * Established: the token map runs `arm_pixelstorei` at arm1.u 0x0c02adb0.
+     * Sent by libGLcore.so __glkonim_PixelStorei (kon_pixel.s, token 51). */
     KONA_HP_PIXELSTOREI                  = 0x033,
 
-    /* `HP_PIXELMAPFV` (0x034). Route: the token map runs `arm_pixelmapfv` at
-     * arm1.u 0x0c03e7ec. */
+    /* Read at arm1.u arm_pixelmapfv 0x0c03e7ec -> do_pixelmap 0x0c03e420,
+     * pixelmap_index 0x0c03df58, snarf_pixelmap 0x0c03e3f4 (descriptors
+     * 0x58601000 here). */
+
+    /* `HP_PIXELMAPFV` (0x034). Established: Looks up which of the four map
+     * groups the map belongs to, records its size, sends header words to the
+     * engines and moves the n values (in chunks of up to 1024) into the
+     * engine pixel-map tables with a pass-through transfer; a map with no
+     * valid index just swallows its values. Payload variable: 4 header words,
+     * then n values: map enumerant (0x0c70-0x0c79), size n, n minus 1 as a
+     * float, a fourth word from the caller's state, then n float values.
+     * Established: the token map runs `arm_pixelmapfv` at arm1.u 0x0c03e7ec.
+     * Sent by libGLcore.so do_pixelmap and __glkonle_ColorTableSGI
+     * (kon_colortable.s, token 52). */
     KONA_HP_PIXELMAPFV                   = 0x034,
 
-    /* `HP_PIXELMAPUIV` (0x035). Route: the token map runs `arm_pixelmapuiv`
-     * at arm1.u 0x0c03e7fc. */
+    /* Read at arm1.u arm_pixelmapuiv 0x0c03e7fc -> do_pixelmap 0x0c03e420
+     * (constants 0x58801000 and 0x59801000). */
+
+    /* `HP_PIXELMAPUIV` (0x035). Established: Runs the shared pixel-map loader
+     * with the unsigned-integer descriptor constants: records the map's size
+     * and moves the n words into the engine pixel-map tables in chunks.
+     * Payload variable: 4 header words, then n values: map enumerant, size n,
+     * n minus 1 as a float, a fourth word, then n unsigned 32-bit values.
+     * Established: the token map runs `arm_pixelmapuiv` at arm1.u 0x0c03e7fc.
+     * Sent by libGLcore.so do_pixelmap (kon_colortable.s, token 53). */
     KONA_HP_PIXELMAPUIV                  = 0x035,
 
-    /* `HP_PIXELMAPUSV` (0x036). Route: the token map runs `arm_pixelmapusv`
-     * at arm1.u 0x0c03e810. */
+    /* Read at arm1.u arm_pixelmapusv 0x0c03e810 -> do_pixelmap 0x0c03e420. */
+
+    /* `HP_PIXELMAPUSV` (0x036). Established: Runs the shared pixel-map loader
+     * with the unsigned-short constants (0x28801000, 0x29801000) and moves
+     * the n words into the engine pixel-map tables in chunks. Payload
+     * variable: 4 header words, then n values: map enumerant, size n, n minus
+     * 1 as a float, a fourth word, then n values each a 16-bit value
+     * zero-extended to a word. Established: the token map runs
+     * `arm_pixelmapusv` at arm1.u 0x0c03e810. Sent by libGLcore.so
+     * do_pixelmap (kon_colortable.s, token 54). */
     KONA_HP_PIXELMAPUSV                  = 0x036,
 
-    /* `HP_READBUFFER` (0x037). Route: the token map runs `arm_readbuffer` at
-     * arm1.u 0x0c013bfc. Route: libGLcore.so `__glkonim_ReadBuffer` stores 1
-     * word after the token. */
+    /* Read at arm1.u arm_readbuffer 0x0c013bfc (stores r8+0x1f4 and r8+0x7e8;
+     * calls resolve_banks 0x0c01392c). */
+
+    /* `HP_READBUFFER` (0x037). Inferred: Rejects buffers the current
+     * framebuffer lacks with invalid-operation (back needs double buffer,
+     * right needs stereo, auxiliary needs enough aux buffers) and
+     * unrecognised enums with invalid-enum. Otherwise it picks the read bank,
+     * stores it in the shadow and re-resolves the banks. Payload 1: GL read
+     * buffer enum (0x400-0x409 range: front, back, left, right, auxiliary).
+     * Established: the token map runs `arm_readbuffer` at arm1.u 0x0c013bfc.
+     * Established: libGLcore.so `__glkonim_ReadBuffer` stores 1 word after
+     * the token. Sent by libGLcore.so __glkonim_ReadBuffer (kon_cfuncs.s). */
     KONA_HP_READBUFFER                   = 0x037,
 
-    /* `HP_COPYPIXELS` (0x038). Route: the token map runs `arm_copypixels` at
-     * arm1.u 0x0c02bb34. */
+    /* Read at arm1.u arm_copypixels 0x0c02bb34 (6 plain reads + r9+0x3c;
+     * QueryOverlap, SetDB, ResolveCopyPath,
+     * WaitOverlap, SetupReadback, SetupReadbackTF,
+     * StartRbus, videoCopyPixels). */
+
+    /* `HP_COPYPIXELS` (0x038). Established: Stores the rectangle and type in
+     * the pixel descriptor, queries and waits for source/destination overlap
+     * when asked, resolves the copy path, and sets up the raster-board
+     * read-back (SetupReadback and its texture-format variant) and starts the
+     * copy with StartRbus; a video-mapped display takes videoCopyPixels
+     * instead. Payload 7: source x, source y, width, height, first column of
+     * this piece (destination column offset), buffer type (0x1800 is colour,
+     * others depth and so on), flags (bit 31 asks for an overlap query).
+     * Established: the token map runs `arm_copypixels` at arm1.u 0x0c02bb34.
+     * Sent by libGLcore.so __glkonim_CopyPixels (kon_pixel.s, token 56; large
+     * copies are split into several commands). */
     KONA_HP_COPYPIXELS                   = 0x038,
 
     /* Engine handlers whose slots the code of `arm_readpixels` loads, in
-     * order: `mgebi_Texture`. */
+     * order: `mgebi_Texture`. Read at arm1.u arm_readpixels 0x0c02c3ec (6
+     * plain reads + r9+0x3c; ParseHostImage, ResolveReadPath,
+     * SetupReadback, __glkonSetupPacker, __glkonSendPixelsToHost,
+     * tbus_regwrite, mgebi_Texture). */
 
-    /* `HP_READPIXELS` (0x039). Route: the token map runs `arm_readpixels` at
-     * arm1.u 0x0c02c3ec. */
+    /* `HP_READPIXELS` (0x039). Established: Stores the rectangle and format
+     * in the pixel descriptor, resolves the read path, sets up the raster
+     * read-back and a packer, and sends the pixels back to the host; a
+     * video-mapped display uses videoReadPixels, and the single-component
+     * path writes tbus registers directly. Payload 7: x, y, width, height,
+     * two words of the read state (format and type codes, inferred), the byte
+     * alignment of the host buffer (low two bits). Established: the token map
+     * runs `arm_readpixels` at arm1.u 0x0c02c3ec. Sent by libGLcore.so
+     * ReadPixels (kon_pixel.s, token 57), then waits for read-back with
+     * __glkona_wait_rdata. */
     KONA_HP_READPIXELS                   = 0x039,
 
-    /* `HP_DRAWPIXELS` (0x03a). Route: the token map runs `arm_drawpixels` at
-     * arm1.u 0x0c02b9ec. */
+    /* Read at arm1.u arm_drawpixels 0x0c02b9ec (7 plain reads, then r9+0x40
+     * or r9+0x3c; SetDB, ResolveDrawPath,
+     * ParseHostImage, SendPixelsToPipe). */
+
+    /* `HP_DRAWPIXELS` (0x03a). Established: Stores the header in the pixel
+     * descriptor, resolves the draw buffer and path, parses the host image to
+     * compute its length and sends it (inline or after a later DMA) to the
+     * engines through the pixel stages with SendPixelsToPipe. Payload 8:
+     * width, height, format code, type code, byte offset of the image in its
+     * first word, data-by-DMA flag, row mode, first column of this piece; the
+     * image follows when the DMA word is 0. Established: the token map runs
+     * `arm_drawpixels` at arm1.u 0x0c02b9ec. Sent by libGLcore.so
+     * DoDrawPixelsOrTexels (kon_pixel.s, token 58). */
     KONA_HP_DRAWPIXELS                   = 0x03a,
 
     /* Engine handlers whose slots the code of `arm_getcurrent` loads, in
-     * order: `mgesi_StartRdata`, `mgesi_FinishRdata`. */
+     * order: `mgesi_StartRdata`, `mgesi_FinishRdata`. Read at arm1.u
+     * arm_getcurrent 0x0c038460; getcurrent 0x0c0383dc; ge.u
+     * mgesi_StartRdata/mgesi_FinishRdata
+     * (hostio.S:346,409); kon_get.s __glkona_wait_rdata. */
 
-    /* `HP_GETCURRENT` (0x03b). Route: the token map runs `arm_getcurrent` at
-     * arm1.u 0x0c038460. */
+    /* `HP_GETCURRENT` (0x03b). Inferred: Query: programs the read-back from
+     * the address pair and length kept by RDATA_SETUP (engine StartRdata,
+     * slot 413), writes reply count 13 to raster register 0x476, runs the
+     * getcurrent helper (sets transfer mask, then engine GetCurrent, slot
+     * 222) to push current colour, index, texture coordinate and normal
+     * values, then FinishRdata (414). Payload 1 (zero, read and dropped):
+     * dummy zero; libGLcore sends 0. Established: the token map runs
+     * `arm_getcurrent` at arm1.u 0x0c038460. Sent by libGLcore.so
+     * kona_get_current -> __glkon_get_special(59,
+     * 0) (kon_get.s). */
     KONA_HP_GETCURRENT                   = 0x03b,
 
     /* Engine handlers whose slots the code of `arm_getclipplane` loads, in
-     * order: `mgesi_StartRdata`, `mgesi_Eram2ODMA`, `mgesi_FinishRdata`. */
+     * order: `mgesi_StartRdata`, `mgesi_Eram2ODMA`, `mgesi_FinishRdata`. Read
+     * at arm1.u arm_getclipplane 0x0c0385c8. */
 
-    /* `HP_GETCLIPPLANE` (0x03c). Route: the token map runs `arm_getclipplane`
-     * at arm1.u 0x0c0385c8. */
+    /* `HP_GETCLIPPLANE` (0x03c). Inferred: Query: StartRdata, reply count 4
+     * to 0x476, then engine Eram2ODMA (slot 197) reads 4 words from engine
+     * ERAM address 0x90a + 4*i, then FinishRdata. The ARM keeps no clip-plane
+     * copy. Payload 1: clip plane enum GL_CLIP_PLANE0 + i (0x3000 + i).
+     * Established: the token map runs `arm_getclipplane` at arm1.u
+     * 0x0c0385c8. Sent by libGLcore.so __glkonim_GetClipPlane ->
+     * __glkon_get_special(60, plane) (kon_get.s). */
     KONA_HP_GETCLIPPLANE                 = 0x03c,
 
     /* Engine handlers whose slots the code of `arm_getraster` loads, in
-     * order: `mgesi_StartRdata`, `mgesi_GetRaster`, `mgesi_FinishRdata`. */
+     * order: `mgesi_StartRdata`, `mgesi_GetRaster`, `mgesi_FinishRdata`. Read
+     * at arm1.u arm_getraster 0x0c0384c4; ge.u mgesi_GetRaster (get.S). */
 
-    /* `HP_GETRASTER` (0x03d). Route: the token map runs `arm_getraster` at
-     * arm1.u 0x0c0384c4. */
+    /* `HP_GETRASTER` (0x03d). Inferred: Query: StartRdata, reply count 15 to
+     * 0x476, deposits the GetRaster handler address (slot 200) in operand
+     * port 0x4f4, FinishRdata. The engine handler delivers the current raster
+     * position data. Payload 1 (zero, read and dropped): dummy zero.
+     * Established: the token map runs `arm_getraster` at arm1.u 0x0c0384c4.
+     * Sent by libGLcore.so kona_get_raster -> __glkon_get_special(61,
+     * 0) (kon_get.s). */
     KONA_HP_GETRASTER                    = 0x03d,
 
     /* Engine handlers whose slots the code of `arm_geterror` loads, in order:
-     * `mgesi_StartRdata`, `mgebi_ErrQuery`, `mgesi_FinishRdata`. */
+     * `mgesi_StartRdata`, `mgebi_ErrQuery`, `mgesi_FinishRdata`. Read at
+     * arm1.u arm_geterror 0x0c03852c; ge.u mgebi_ErrQuery. */
 
-    /* `HP_GETERROR` (0x03e). Route: the token map runs `arm_geterror` at
-     * arm1.u 0x0c03852c. */
+    /* `HP_GETERROR` (0x03e). Inferred: Query: StartRdata, reply count 1 to
+     * 0x476. If the ARM holds a pending error code (r8+0x860) it sends that
+     * to 0x476 and clears it; otherwise it deposits ErrQuery (slot 339) in
+     * port 0x4fc so the engine's own error is reported. Then FinishRdata.
+     * Payload 1 (zero, read and dropped): dummy zero. Established: the token
+     * map runs `arm_geterror` at arm1.u 0x0c03852c. Sent by libGLcore.so
+     * __glkonim_GetError -> __glkon_get_special(62,
+     * 0) (kon_get.s). */
     KONA_HP_GETERROR                     = 0x03e,
 
-    /* `HP_GETFLOATV` (0x03f). Route: the token map runs `arm_getfloatv` at
-     * arm1.u 0x0c0265b0, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_getfloatv 0x0c0265b0 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETFLOATV` (0x03f). Established: The token map runs a
+     * one-instruction stub at 0x0c0265b0 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_getfloatv` at arm1.u 0x0c0265b0, a stub that ends in
+     * `arm_badcmd`. No sender found.
+     * __glkonim_Get{Float,Integer,Double,Boolean}v (kon_get.s) call
+     * __glkona_wait_rdata (the ioctl read-back wait); kona_get in the same
+     * file sends HP_GETV 0x4c with one word (the parameter name). The GL call
+     * answers from host state or through HP_GETV, never
+     * HP_GETFLOATV/HP_GETINTEGERV. */
     KONA_HP_GETFLOATV                    = 0x03f,
 
-    /* `HP_GETINTEGERV` (0x040). Route: the token map runs `arm_getintegerv`
-     * at arm1.u 0x0c0265b4, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_getintegerv 0x0c0265b4 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETINTEGERV` (0x040). Established: The token map runs a
+     * one-instruction stub at 0x0c0265b4 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_getintegerv` at arm1.u 0x0c0265b4, a stub that ends in
+     * `arm_badcmd`. No sender found.
+     * __glkonim_Get{Float,Integer,Double,Boolean}v (kon_get.s) call
+     * __glkona_wait_rdata (the ioctl read-back wait); kona_get in the same
+     * file sends HP_GETV 0x4c with one word (the parameter name). The GL call
+     * answers from host state or through HP_GETV, never
+     * HP_GETFLOATV/HP_GETINTEGERV. */
     KONA_HP_GETINTEGERV                  = 0x040,
 
     /* Engine handlers whose slots the code of `arm_getlightfv` loads, in
-     * order: `mgesi_LiGetLight`. */
+     * order: `mgesi_LiGetLight`. Read at arm1.u arm_getlightfv 0x0c017874;
+     * ge.u mgesi_LiGetLight. */
 
-    /* `HP_GETLIGHTFV` (0x041). Route: the token map runs `arm_getlightfv` at
-     * arm1.u 0x0c017874. */
+    /* `HP_GETLIGHTFV` (0x041). Inferred: Query: start_rdata, reply count 4
+     * (pname below 0x1204), 3 (0x1204) or 1 (above), then sends the light's
+     * ERAM address from table ADDR_LIGHT[light] and pname to engine
+     * LiGetLight (slot 198), then finish_rdata. Payload 2: light number,
+     * pname (GL_AMBIENT etc). Established: the token map runs
+     * `arm_getlightfv` at arm1.u 0x0c017874. Sent by libGLcore.so
+     * __glkonim_GetLightfv / GetLightiv -> __glkon_get_special2(65, light,
+     * pname) (kon_get.s). */
     KONA_HP_GETLIGHTFV                   = 0x041,
 
-    /* `HP_GETLIGHTIV` (0x042). Route: the token map runs `arm_getlightiv` at
-     * arm1.u 0x0c0265b8, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_getlightiv 0x0c0265b8 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETLIGHTIV` (0x042). Established: The token map runs a
+     * one-instruction stub at 0x0c0265b8 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_getlightiv` at arm1.u 0x0c0265b8, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetLightiv (kon_get.s) calls
+     * __glkon_get_special2, which calls __glkona_wait_rdata; the function
+     * stores no token constant. */
     KONA_HP_GETLIGHTIV                   = 0x042,
 
-    /* `HP_GETMAPDV` (0x043). Route: the token map runs `arm_getmapdv` at
-     * arm1.u 0x0c0265bc, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_getmapdv 0x0c0265bc (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETMAPDV` (0x043). Established: The token map runs a
+     * one-instruction stub at 0x0c0265bc that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_getmapdv` at arm1.u 0x0c0265bc, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetMapdv (kon_eval.s) calls
+     * __glkon_GetDeformationd and stores no FIFO token. */
     KONA_HP_GETMAPDV                     = 0x043,
 
-    /* `HP_GETMAPFV` (0x044). Route: the token map runs `arm_getmapfv` at
-     * arm1.u 0x0c0265c0, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_getmapfv 0x0c0265c0 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETMAPFV` (0x044). Established: The token map runs a
+     * one-instruction stub at 0x0c0265c0 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_getmapfv` at arm1.u 0x0c0265c0, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetMapfv (kon_eval.s) calls
+     * __glkon_GetDeformationf and stores no FIFO token. */
     KONA_HP_GETMAPFV                     = 0x044,
 
-    /* `HP_GETMAPIV` (0x045). Route: the token map runs `arm_getmapiv` at
-     * arm1.u 0x0c0265c4, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_getmapiv 0x0c0265c4 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETMAPIV` (0x045). Established: The token map runs a
+     * one-instruction stub at 0x0c0265c4 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_getmapiv` at arm1.u 0x0c0265c4, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetMapiv (kon_eval.s) calls
+     * __glkon_GetDeformationi and stores no FIFO token. */
     KONA_HP_GETMAPIV                     = 0x045,
 
     /* Engine handlers whose slots the code of `arm_getmaterialfv` loads, in
-     * order: `mgesi_LiGetMaterial`. */
+     * order: `mgesi_LiGetMaterial`. Read at arm1.u arm_getmaterialfv
+     * 0x0c0178e4; ge.u mgesi_LiGetMaterial. */
 
-    /* `HP_GETMATERIALFV` (0x046). Route: the token map runs
-     * `arm_getmaterialfv` at arm1.u 0x0c0178e4. */
+    /* `HP_GETMATERIALFV` (0x046). Inferred: Query: sets the transfer mask,
+     * start_rdata, reply count 4 (0x1200-0x1202 and 0x1600), 1 (0x1601
+     * shininess) or 3 (colour indexes), then sends face and pname to engine
+     * LiGetMaterial (slot 199), restores the transfer mask, finish_rdata.
+     * Payload 2: face selector, pname. Established: the token map runs
+     * `arm_getmaterialfv` at arm1.u 0x0c0178e4. Sent by libGLcore.so
+     * __glkonim_GetMaterialfv / GetMaterialiv -> __glkon_get_special2(70,
+     * face, pname) (kon_get.s). */
     KONA_HP_GETMATERIALFV                = 0x046,
 
-    /* `HP_GETMATERIALIV` (0x047). Route: the token map runs
-     * `arm_getmaterialiv` at arm1.u 0x0c0265c8, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_getmaterialiv 0x0c0265c8 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETMATERIALIV` (0x047). Established: The token map runs a
+     * one-instruction stub at 0x0c0265c8 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_getmaterialiv` at arm1.u 0x0c0265c8, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetMaterialiv (kon_get.s)
+     * calls __glkon_get_special2, which calls __glkona_wait_rdata; the
+     * function stores no token constant. */
     KONA_HP_GETMATERIALIV                = 0x047,
 
-    /* `HP_GETPIXELMAPFV` (0x048). Route: the token map runs
-     * `arm_getpixelmapfv` at arm1.u 0x0c03f2a4. */
+    /* Read at arm1.u arm_getpixelmapfv 0x0c03f2a4; do_getcolortable
+     * 0x0c03f00c; ge.u mgesi_LutUpload (colortable.S:1213). */
+
+    /* `HP_GETPIXELMAPFV` (0x048). Inferred: Query: pixelmap_index maps the
+     * enum to a table slot, then do_getcolortable (kind 5) bounds-checks,
+     * rounds the count up to a multiple of 32, start_rdata, sends count*4 to
+     * 0x476 and runs engine LutUpload (slot 210) to push the table words;
+     * finish_rdata. Payload 3: pixel map enum, first element, element count
+     * (host asks at most 512). Established: the token map runs
+     * `arm_getpixelmapfv` at arm1.u 0x0c03f2a4. Sent by libGLcore.so
+     * __glkonim_GetPixelMapfv/uiv/usv -> __glkon_get_special3(72, map, start,
+     * count) (kon_colortable.s). */
     KONA_HP_GETPIXELMAPFV                = 0x048,
 
-    /* `HP_GETPIXELMAPUIV` (0x049). Route: the token map runs
-     * `arm_getpixelmapuiv` at arm1.u 0x0c0265cc, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_getpixelmapuiv 0x0c0265cc (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETPIXELMAPUIV` (0x049). Established: The token map runs a
+     * one-instruction stub at 0x0c0265cc that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_getpixelmapuiv` at arm1.u 0x0c0265cc, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetPixelMapuiv
+     * (kon_colortable.s) calls __glkonim_GetColorTableSGI and
+     * __glkon_get_special3 (which calls __glkona_wait_rdata); it stores no
+     * token constant. */
     KONA_HP_GETPIXELMAPUIV               = 0x049,
 
-    /* `HP_GETPIXELMAPUSV` (0x04a). Route: the token map runs
-     * `arm_getpixelmapusv` at arm1.u 0x0c0265d0, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_getpixelmapusv 0x0c0265d0 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETPIXELMAPUSV` (0x04a). Established: The token map runs a
+     * one-instruction stub at 0x0c0265d0 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_getpixelmapusv` at arm1.u 0x0c0265d0, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetPixelMapusv
+     * (kon_colortable.s) calls __glkonim_GetColorTableSGI and
+     * __glkon_get_special3 (which calls __glkona_wait_rdata); it stores no
+     * token constant. */
     KONA_HP_GETPIXELMAPUSV               = 0x04a,
 
     /* Engine handlers whose slots the code of `arm_getpolygonstipple` loads,
      * in order: `mgeb_PolygonStippleRotate`, `mgesi_Eram2ODMA`,
-     * `mgeb_LoadMatrix_Modelview`, `mgeb_LoadMatrix_Projection`. */
+     * `mgeb_LoadMatrix_Modelview`, `mgeb_LoadMatrix_Projection`. Read at
+     * arm1.u arm_getpolygonstipple 0x0c02c890. */
 
-    /* `HP_GETPOLYGONSTIPPLE` (0x04b). Route: the token map runs
-     * `arm_getpolygonstipple` at arm1.u 0x0c02c890. */
+    /* `HP_GETPOLYGONSTIPPLE` (0x04b). Inferred: Query: rotates the engine's
+     * stipple pattern back to origin using the unpack row and skip offsets
+     * (engine PolygonStippleRotate, ports 0x478/0x840), start_rdata, reply
+     * count 32 to 0x476, Eram2ODMA reads 32 words from ERAM 0x26b,
+     * finish_rdata, then rotates the pattern back by the complementary
+     * offsets. Payload 1 (zero, read and dropped): dummy zero. Established:
+     * the token map runs `arm_getpolygonstipple` at arm1.u 0x0c02c890. Sent
+     * by libGLcore.so __glkonim_GetPolygonStipple -> __glkon_get_special(75,
+     * 0) (kon_pixel.s). */
     KONA_HP_GETPOLYGONSTIPPLE            = 0x04b,
 
     /* Engine handlers whose slots the code of `arm_getv` loads, in order:
      * `mgesi_StartRdata`, `mgesi_Cram2ODMA`, `mgesi_Eram2ODMA`,
-     * `mgesi_FinishRdata`. */
+     * `mgesi_FinishRdata`. Read at arm1.u arm_getv 0x0c038058-0x0c0382c0;
+     * table get_table 0x0404ebe4. */
 
-    /* `HP_GETV` (0x04c). Route: the token map runs `arm_getv` at arm1.u
-     * 0x0c038058. */
+    /* `HP_GETV` (0x04c). Inferred: Query: a lookup table (get_table at
+     * 0x0404ebe4, 8-byte entries, indexed by pname) gives kind and value
+     * count. Kinds: shadow words from ARM RAM (two bases), ERAM or CRAM dump
+     * through Eram2ODMA/Cram2ODMA (slots 197/196), a function call, or
+     * invalid (count 0 and invalid-enum error). Reply count is sent to 0x476
+     * first. Payload 1: pname (GL state enum). Established: the token map
+     * runs `arm_getv` at arm1.u 0x0c038058. Sent by libGLcore.so
+     * kona_get(pname) -> token 76 (kon_get.s); __glkona_wait_rdata. */
     KONA_HP_GETV                         = 0x04c,
 
     /* Engine handlers whose slots the code of `arm_gettexenvfv` loads, in
-     * order: `mgesi_Eram2ODMA`. */
+     * order: `mgesi_Eram2ODMA`. Read at arm1.u arm_gettexenvfv 0x0c025098. */
 
-    /* `HP_GETTEXENVFV` (0x04d). Route: the token map runs `arm_gettexenvfv`
-     * at arm1.u 0x0c025098. */
+    /* `HP_GETTEXENVFV` (0x04d). Inferred: Query: start_rdata, then Eram2ODMA
+     * (slot 197): pname 0x2200 returns 1 word from ERAM 0x293, 0x2201 returns
+     * 4 from 0x28b, any other returns 4 from 0x28f; count to 0x476 first;
+     * finish_rdata. Payload 1: pname (0x2200 mode, 0x2201 colour, other).
+     * Established: the token map runs `arm_gettexenvfv` at arm1.u 0x0c025098.
+     * Sent by libGLcore.so do_gettexenv -> __glkon_get_special(77, pname)
+     * (kon_get.s). */
     KONA_HP_GETTEXENVFV                  = 0x04d,
 
-    /* `HP_GETTEXENVIV` (0x04e). Route: the token map runs `arm_gettexenviv`
-     * at arm1.u 0x0c0265d4, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_gettexenviv 0x0c0265d4 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETTEXENVIV` (0x04e). Established: The token map runs a
+     * one-instruction stub at 0x0c0265d4 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_gettexenviv` at arm1.u 0x0c0265d4, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetTexEnviv (kon_get.s) calls
+     * __glkonim_GetMaterialiv, which goes through __glkon_get_special2 and
+     * __glkona_wait_rdata; no token constant stored. */
     KONA_HP_GETTEXENVIV                  = 0x04e,
 
-    /* `HP_GETTEXGENDV` (0x04f). Route: the token map runs `arm_gettexgendv`
-     * at arm1.u 0x0c0265d8, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_gettexgendv 0x0c0265d8 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETTEXGENDV` (0x04f). Established: The token map runs a
+     * one-instruction stub at 0x0c0265d8 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_gettexgendv` at arm1.u 0x0c0265d8, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetTexGendv (kon_get.s) calls
+     * __glkon_get_special2, which calls __glkona_wait_rdata; the function
+     * stores no token constant. */
     KONA_HP_GETTEXGENDV                  = 0x04f,
 
     /* Engine handlers whose slots the code of `arm_gettexgenfv` loads, in
-     * order: `mgesi_StartRdata`, `mgesi_Eram2ODMA`, `mgesi_FinishRdata`. */
+     * order: `mgesi_StartRdata`, `mgesi_Eram2ODMA`, `mgesi_FinishRdata`. Read
+     * at arm1.u arm_gettexgenfv 0x0c03864c. */
 
-    /* `HP_GETTEXGENFV` (0x050). Route: the token map runs `arm_gettexgenfv`
-     * at arm1.u 0x0c03864c. */
+    /* `HP_GETTEXGENFV` (0x050). Inferred: Query: StartRdata. pname 0x2500
+     * (mode) is answered from an ARM shadow (r8+0x804+4*coord) with count 1;
+     * plane pnames (0x2501, 0x2502 and extension names 0x81f4-0x81f7) send
+     * count 16 or 24 then Eram2ODMA from fixed ERAM addresses; any other
+     * pname replies with nothing; FinishRdata. Payload 2: coord (0x2000 + i),
+     * pname. Established: the token map runs `arm_gettexgenfv` at arm1.u
+     * 0x0c03864c. Sent by libGLcore.so __glkonim_GetTexGeniv/dv/fv ->
+     * __glkon_get_special2(80, coord, pname) (kon_get.s). */
     KONA_HP_GETTEXGENFV                  = 0x050,
 
-    /* `HP_GETTEXGENIV` (0x051). Route: the token map runs `arm_gettexgeniv`
-     * at arm1.u 0x0c0265dc, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_gettexgeniv 0x0c0265dc (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETTEXGENIV` (0x051). Established: The token map runs a
+     * one-instruction stub at 0x0c0265dc that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_gettexgeniv` at arm1.u 0x0c0265dc, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetTexGeniv (kon_get.s) calls
+     * __glkon_get_special2, which calls __glkona_wait_rdata; the function
+     * stores no token constant. */
     KONA_HP_GETTEXGENIV                  = 0x051,
 
-    /* `HP_GETTEXIMAGE` (0x052). Route: the token map runs `arm_getteximage`
-     * at arm1.u 0x0c02c298. */
+    /* Read at arm1.u arm_getteximage 0x0c02c298; getteximage 0x0c02c358. */
+
+    /* `HP_GETTEXIMAGE` (0x052). Inferred: Stores the 18 words into the image
+     * descriptor block (r8+0x900), parses it, picks a read path, sets up the
+     * texture read, packer and sends the image to the host with
+     * __glkonSendPixelsToHost: the image returns as a pixel read-back, not as
+     * a counted reply. Payload 18: target (1D 0x0de0, 2D 0x0de1) then the
+     * host-image description words (format, type, pack state, sizes)
+     * libGLcore copies from its context. Established: the token map runs
+     * `arm_getteximage` at arm1.u 0x0c02c298. Sent by libGLcore.so ReadTexels
+     * (kon_pixel.s) builds the 18-word block inside a KONA_DMAREAD (ioctl
+     * 10000) command list, not via the FIFO store directly. */
     KONA_HP_GETTEXIMAGE                  = 0x052,
 
-    /* `HP_GETTEXPARAMETERFV` (0x053). Route: the token map runs
-     * `arm_gettexparameterfv` at arm1.u 0x0c0265e0, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_gettexparameterfv 0x0c0265e0 (b 0x0c0017f4);
+     * arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETTEXPARAMETERFV` (0x053). Established: The token map runs a
+     * one-instruction stub at 0x0c0265e0 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_gettexparameterfv` at arm1.u 0x0c0265e0, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetTexParameterfv
+     * (kon_texture_api.s) answers from host texture state through
+     * __glKonGetTexParameter and stores no FIFO token. */
     KONA_HP_GETTEXPARAMETERFV            = 0x053,
 
-    /* `HP_GETTEXPARAMETERIV` (0x054). Route: the token map runs
-     * `arm_gettexparameteriv` at arm1.u 0x0c0265e4, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_gettexparameteriv 0x0c0265e4 (b 0x0c0017f4);
+     * arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETTEXPARAMETERIV` (0x054). Established: The token map runs a
+     * one-instruction stub at 0x0c0265e4 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_gettexparameteriv` at arm1.u 0x0c0265e4, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GetTexParameteriv
+     * (kon_texture_api.s) answers from host texture state through
+     * __glKonGetTexParameter and stores no FIFO token. */
     KONA_HP_GETTEXPARAMETERIV            = 0x054,
 
-    /* `HP_GETTEXLEVELPARAMETERFV` (0x055). Route: the token map runs
-     * `arm_gettexlevelparameterfv` at arm1.u 0x0c0265e8, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_gettexlevelparameterfv 0x0c0265e8 (b 0x0c0017f4);
+     * arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETTEXLEVELPARAMETERFV` (0x055). Established: The token map runs a
+     * one-instruction stub at 0x0c0265e8 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_gettexlevelparameterfv` at arm1.u 0x0c0265e8, a stub that
+     * ends in `arm_badcmd`. No sender found. __glkonim_GetTexLevelParameterfv
+     * (kon_texture_api.s) calls the iv form, which answers from host texture
+     * state via __glKonGetTexParameter; no FIFO token. */
     KONA_HP_GETTEXLEVELPARAMETERFV       = 0x055,
 
-    /* `HP_GETTEXLEVELPARAMETERIV` (0x056). Route: the token map runs
-     * `arm_gettexlevelparameteriv` at arm1.u 0x0c0265ec, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_gettexlevelparameteriv 0x0c0265ec (b 0x0c0017f4);
+     * arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GETTEXLEVELPARAMETERIV` (0x056). Established: The token map runs a
+     * one-instruction stub at 0x0c0265ec that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_gettexlevelparameteriv` at arm1.u 0x0c0265ec, a stub that
+     * ends in `arm_badcmd`. No sender found. __glkonim_GetTexLevelParameteriv
+     * (kon_texture_api.s) answers from host texture state through
+     * __glKonGetTexParameter and stores no FIFO token. */
     KONA_HP_GETTEXLEVELPARAMETERIV       = 0x056,
 
-    /* `HP_BEGIN_POINTS` (0x057). Route: routed by the host interface with no
-     * ARM code, map entry 0xd8c20053: command 388, count field 1, single
-     * floats; distributor entry 0x357 at ged1b.u tri.s:23. */
+    /* Read at icu_map.tsv 0x057 (kind 1, command 388); ged_banks.tsv k=4;
+     * ged_listing.txt points.s:6; ged.md How an entry is chosen; kon_modes.s
+     * __glkonim_Begin. */
+
+    /* `HP_BEGIN_POINTS` (0x057). Inferred: Starts the points primitive.
+     * Routed begin token (kind 1, command 388, one payload word): the
+     * distributor runs the entry-4 stub at 0x10e (points.s:6), setting class
+     * register r48 = 1, handler register r62 = mgesi_Points , and the first
+     * vertex state in r49. Payload 1 (libGLcore sends one zero word): a zero
+     * placeholder word; the primitive is chosen by the token (libGLcore sends
+     * token 87 + mode). Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0xd8c20053: command 388, geometry form,
+     * count field 1 (bits 6-8), single floats. Sent by libGLcore.so
+     * __glkonim_Begin (kon_modes.s), mode + 87, then sets the in-begin flag
+     * at 4120($zero). */
     KONA_HP_BEGIN_POINTS                 = 0x057,
 
-    /* `HP_BEGIN_LINES` (0x058). Route: routed by the host interface with no
-     * ARM code, map entry 0xd8c68053: command 397, count field 1, single
-     * floats; distributor entry 0x375 at ged1b.u tri.s:77. */
+    /* Read at icu_map.tsv 0x058 (kind 1, command 397); ged_banks.tsv k=13;
+     * ged_listing.txt lines.s:6; ged.md How an entry is chosen; kon_modes.s
+     * __glkonim_Begin. */
+
+    /* `HP_BEGIN_LINES` (0x058). Inferred: Starts the lines primitive. Routed
+     * begin token (kind 1, command 397, one payload word): the distributor
+     * runs the entry-13 stub at 0x379 (lines.s:6), setting class register r48
+     * = 2, handler register r62 = mgesi_LineStrip , and the first vertex
+     * state in r49. Payload 1 (libGLcore sends one zero word): a zero
+     * placeholder word; the primitive is chosen by the token (libGLcore sends
+     * token 87 + mode). Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0xd8c68053: command 397, geometry form,
+     * count field 1 (bits 6-8), single floats. Sent by libGLcore.so
+     * __glkonim_Begin (kon_modes.s), mode + 87, then sets the in-begin flag
+     * at 4120($zero). */
     KONA_HP_BEGIN_LINES                  = 0x058,
 
-    /* `HP_BEGIN_LINELOOP` (0x059). Route: routed by the host interface with
-     * no ARM code, map entry 0xd8c30053: command 390, count field 1, single
-     * floats; distributor entry 0x361 at ged1b.u tri.s:39. */
+    /* Read at icu_map.tsv 0x059 (kind 1, command 390); ged_banks.tsv k=6;
+     * ged_listing.txt lineloop.s:6; ged.md How an entry is chosen;
+     * kon_modes.s __glkonim_Begin. */
+
+    /* `HP_BEGIN_LINELOOP` (0x059). Inferred: Starts the lineloop primitive.
+     * Routed begin token (kind 1, command 390, one payload word): the
+     * distributor runs the entry-6 stub at 0x130 (lineloop.s:6), setting
+     * class register r48 = 6, handler register r62 = mgesi_LineStrip , and
+     * the first vertex state in r49. Payload 1 (libGLcore sends one zero
+     * word): a zero placeholder word; the primitive is chosen by the token
+     * (libGLcore sends token 87 + mode). Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xd8c30053: command
+     * 390, geometry form, count field 1 (bits 6-8), single floats. Sent by
+     * libGLcore.so __glkonim_Begin (kon_modes.s), mode + 87, then sets the
+     * in-begin flag at 4120($zero). */
     KONA_HP_BEGIN_LINELOOP               = 0x059,
 
-    /* `HP_BEGIN_LINESTRIP` (0x05a). Route: routed by the host interface with
-     * no ARM code, map entry 0xd8c28053: command 389, count field 1, single
-     * floats; distributor entry 0x371 at ged1b.u tri.s:69. */
+    /* Read at icu_map.tsv 0x05a (kind 1, command 389); ged_banks.tsv k=5;
+     * ged_listing.txt linestrip.s:6; ged.md How an entry is chosen;
+     * kon_modes.s __glkonim_Begin. */
+
+    /* `HP_BEGIN_LINESTRIP` (0x05a). Inferred: Starts the linestrip primitive.
+     * Routed begin token (kind 1, command 389, one payload word): the
+     * distributor runs the entry-5 stub at 0x1a2 (linestrip.s:6), setting
+     * class register r48 = 5, handler register r62 = mgesi_LineStrip , and
+     * the first vertex state in r49. Payload 1 (libGLcore sends one zero
+     * word): a zero placeholder word; the primitive is chosen by the token
+     * (libGLcore sends token 87 + mode). Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xd8c28053: command
+     * 389, geometry form, count field 1 (bits 6-8), single floats. Sent by
+     * libGLcore.so __glkonim_Begin (kon_modes.s), mode + 87, then sets the
+     * in-begin flag at 4120($zero). */
     KONA_HP_BEGIN_LINESTRIP              = 0x05a,
 
-    /* `HP_BEGIN_TRIANGLES` (0x05b). Route: routed by the host interface with
-     * no ARM code, map entry 0xd8c38053: command 391, count field 1, single
-     * floats; distributor entry 0x377 at ged1b.u tri.s:84. */
+    /* Read at icu_map.tsv 0x05b (kind 1, command 391); ged_banks.tsv k=7;
+     * ged_listing.txt tri.s:6; ged.md How an entry is chosen; kon_modes.s
+     * __glkonim_Begin. */
+
+    /* `HP_BEGIN_TRIANGLES` (0x05b). Inferred: Starts the triangles primitive.
+     * Routed begin token (kind 1, command 391, one payload word): the
+     * distributor runs the entry-7 stub at 0x34b (tri.s:6), setting class
+     * register r48 = 4, handler register r62 = mgesi_Triangles , and the
+     * first vertex state in r49. Payload 1 (libGLcore sends one zero word): a
+     * zero placeholder word; the primitive is chosen by the token (libGLcore
+     * sends token 87 + mode). Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0xd8c38053: command 391, geometry
+     * form, count field 1 (bits 6-8), single floats. Sent by libGLcore.so
+     * __glkonim_Begin (kon_modes.s), mode + 87, then sets the in-begin flag
+     * at 4120($zero). */
     KONA_HP_BEGIN_TRIANGLES              = 0x05b,
 
-    /* `HP_BEGIN_TSTRIP` (0x05c). Route: routed by the host interface with no
-     * ARM code, map entry 0xd8c40053: command 392, count field 1, single
-     * floats; distributor entry 0x35a at ged1b.u tri.s:28. */
+    /* Read at icu_map.tsv 0x05c (kind 1, command 392); ged_banks.tsv k=8;
+     * ged_listing.txt tstrip.s:6; ged.md How an entry is chosen; kon_modes.s
+     * __glkonim_Begin. */
+
+    /* `HP_BEGIN_TSTRIP` (0x05c). Inferred: Starts the tstrip primitive.
+     * Routed begin token (kind 1, command 392, one payload word): the
+     * distributor runs the entry-8 stub at 0x040 (tstrip.s:6), setting class
+     * register r48 = 9, handler register r62 = mgesi_TriangleStrip , and the
+     * first vertex state in r49. Payload 1 (libGLcore sends one zero word): a
+     * zero placeholder word; the primitive is chosen by the token (libGLcore
+     * sends token 87 + mode). Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0xd8c40053: command 392, geometry
+     * form, count field 1 (bits 6-8), single floats. Sent by libGLcore.so
+     * __glkonim_Begin (kon_modes.s), mode + 87, then sets the in-begin flag
+     * at 4120($zero). */
     KONA_HP_BEGIN_TSTRIP                 = 0x05c,
 
-    /* `HP_BEGIN_TFAN` (0x05d). Route: routed by the host interface with no
-     * ARM code, map entry 0xd8c48053: command 393, count field 1, single
-     * floats; distributor entry 0x373 at ged1b.u tri.s:73. */
+    /* Read at icu_map.tsv 0x05d (kind 1, command 393); ged_banks.tsv k=9;
+     * ged_listing.txt tfanpoly.s:11; ged.md How an entry is chosen;
+     * kon_modes.s __glkonim_Begin. */
+
+    /* `HP_BEGIN_TFAN` (0x05d). Inferred: Starts the tfan primitive. Routed
+     * begin token (kind 1, command 393, one payload word): the distributor
+     * runs the entry-9 stub at 0x2a3 (tfanpoly.s:11), setting class register
+     * r48 = 10, handler register r62 = mgesi_TfanPolyEnd and
+     * mgeb_SetTfanPolyMode with r67=1 (tfanpoly.s:17-20), and the first
+     * vertex state in r49. Payload 1 (libGLcore sends one zero word): a zero
+     * placeholder word; the primitive is chosen by the token (libGLcore sends
+     * token 87 + mode). Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0xd8c48053: command 393, geometry form,
+     * count field 1 (bits 6-8), single floats. Sent by libGLcore.so
+     * __glkonim_Begin (kon_modes.s), mode + 87, then sets the in-begin flag
+     * at 4120($zero). */
     KONA_HP_BEGIN_TFAN                   = 0x05d,
 
-    /* Engine handlers relocated into the span of distributor entry 0x363:
-     * `mgesi_Triangles`. */
+    /* Read at icu_map.tsv 0x05e (kind 1, command 394); ged_banks.tsv k=10;
+     * ged_listing.txt quad.s:6; ged.md How an entry is chosen; kon_modes.s
+     * __glkonim_Begin. */
 
-    /* `HP_BEGIN_QUADS` (0x05e). Route: routed by the host interface with no
-     * ARM code, map entry 0xd8c50053: command 394, count field 1, single
-     * floats; distributor entry 0x363 at ged1b.u tri.s:45. */
+    /* `HP_BEGIN_QUADS` (0x05e). Inferred: Starts the quads primitive. Routed
+     * begin token (kind 1, command 394, one payload word): the distributor
+     * runs the entry-10 stub at 0x1e5 (quad.s:6), setting class register r48
+     * = 7, handler register r62 = mgesi_Quads , and the first vertex state in
+     * r49. Payload 1 (libGLcore sends one zero word): a zero placeholder
+     * word; the primitive is chosen by the token (libGLcore sends token 87 +
+     * mode). Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xd8c50053: command 394, geometry form, count
+     * field 1 (bits 6-8), single floats. Sent by libGLcore.so __glkonim_Begin
+     * (kon_modes.s), mode + 87, then sets the in-begin flag at 4120($zero). */
     KONA_HP_BEGIN_QUADS                  = 0x05e,
 
-    /* `HP_BEGIN_QSTRIP` (0x05f). Route: routed by the host interface with no
-     * ARM code, map entry 0xd8c58053: command 395, count field 1, single
-     * floats; distributor entry 0x377 at ged1b.u tri.s:84. */
+    /* Read at icu_map.tsv 0x05f (kind 1, command 395); ged_banks.tsv k=11;
+     * ged_listing.txt qstrip.s:6; ged.md How an entry is chosen; kon_modes.s
+     * __glkonim_Begin. */
+
+    /* `HP_BEGIN_QSTRIP` (0x05f). Inferred: Starts the qstrip primitive.
+     * Routed begin token (kind 1, command 395, one payload word): the
+     * distributor runs the entry-11 stub at 0x21a (qstrip.s:6), setting class
+     * register r48 = 8, handler register r62 = mgesi_QuadStrip , and the
+     * first vertex state in r49. Payload 1 (libGLcore sends one zero word): a
+     * zero placeholder word; the primitive is chosen by the token (libGLcore
+     * sends token 87 + mode). Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0xd8c58053: command 395, geometry
+     * form, count field 1 (bits 6-8), single floats. Sent by libGLcore.so
+     * __glkonim_Begin (kon_modes.s), mode + 87, then sets the in-begin flag
+     * at 4120($zero). */
     KONA_HP_BEGIN_QSTRIP                 = 0x05f,
 
-    /* `HP_BEGIN_POLYGON` (0x060). Route: routed by the host interface with no
-     * ARM code, map entry 0xd8c60053: command 396, count field 1, single
-     * floats; distributor entry 0x35d at ged1b.u tri.s:33. */
+    /* Read at icu_map.tsv 0x060 (kind 1, command 396); ged_banks.tsv k=12;
+     * ged_listing.txt tfanpoly.s:32; ged.md How an entry is chosen;
+     * kon_modes.s __glkonim_Begin. */
+
+    /* `HP_BEGIN_POLYGON` (0x060). Inferred: Starts the polygon primitive.
+     * Routed begin token (kind 1, command 396, one payload word): the
+     * distributor runs the entry-12 stub at 0x2b3 (tfanpoly.s:32), setting
+     * class register r48 = 10, handler register r62 = mgesi_TfanPolyEnd and
+     * mgeb_SetTfanPolyMode with r67=0 (tfanpoly.s:38-41), and the first
+     * vertex state in r49. Payload 1 (libGLcore sends one zero word): a zero
+     * placeholder word; the primitive is chosen by the token (libGLcore sends
+     * token 87 + mode). Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0xd8c60053: command 396, geometry form,
+     * count field 1 (bits 6-8), single floats. Sent by libGLcore.so
+     * __glkonim_Begin (kon_modes.s), mode + 87, then sets the in-begin flag
+     * at 4120($zero). */
     KONA_HP_BEGIN_POLYGON                = 0x060,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x061; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3b. */
 
-    /* `HP_COLOR3B` (0x061). Route: routed by the host interface with no ARM
-     * code, map entry 0x930850c7: command 16, count field 3, untyped words;
-     * distributor entry 0x003 at ged1b.u dist.s:13. */
+    /* `HP_COLOR3B` (0x061). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 16, 3 data components, byte
+     * normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 1: red,
+     * green, blue as byte normalised values; the first two components packed
+     * into the upper bits of the token word itself, the rest in the following
+     * word. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0x930850c7: command 16, geometry form, count
+     * field 3 (bits 6-8), untyped words. Sent by libGLcore.so
+     * __glkonim_Color3b and Color3bv (kon_cfuncs.s; packs the token with the
+     * data). */
     KONA_HP_COLOR3B                      = 0x061,
 
-    /* `HP_COLOR3D` (0x062). Route: routed by the host interface with no ARM
-     * code, map entry 0xfa485187: command 144, count field 6, doubles;
-     * distributor entry 0x242 at ged1b.u qstrip.s:68. Route: libGLcore.so
-     * `__glkonim_Color3d` stores 6 words after the token. */
+    /* Read at icu_map.tsv 0x062; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3d. */
+
+    /* `HP_COLOR3D` (0x062). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 144, 6 data words, double). In the
+     * idle class the program entry is the null loop (dist.s:13); the hardware
+     * is inferred to convert the data and store it at vertex-record word 8,
+     * filling missing components. Payload 6: 3 colour components (red, green,
+     * blue) as double values. Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0xfa485187: command 144, geometry
+     * form, count field 6 (bits 6-8), doubles. Established: libGLcore.so
+     * `__glkonim_Color3d` stores 6 words after the token. Sent by
+     * libGLcore.so __glkonim_Color3d and Color3dv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_COLOR3D                      = 0x062,
 
-    /* `HP_COLOR3F` (0x063). Route: routed by the host interface with no ARM
-     * code, map entry 0xda4850c7: command 144, count field 3, single floats;
-     * distributor entry 0x242 at ged1b.u qstrip.s:68. Route: libGLcore.so
-     * `__glkonim_Color3f` stores 3 words after the token. */
+    /* Read at icu_map.tsv 0x063; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3f. */
+
+    /* `HP_COLOR3F` (0x063). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 144, 3 data words, float). In the
+     * idle class the program entry is the null loop (dist.s:13); the hardware
+     * is inferred to convert the data and store it at vertex-record word 8,
+     * filling missing components. Payload 3: 3 colour components (red, green,
+     * blue) as float values. Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0xda4850c7: command 144, geometry
+     * form, count field 3 (bits 6-8), single floats. Established:
+     * libGLcore.so `__glkonim_Color3f` stores 3 words after the token. Sent
+     * by libGLcore.so __glkonim_Color3f and Color3fv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_COLOR3F                      = 0x063,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x064; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3i. */
 
-    /* `HP_COLOR3I` (0x064). Route: routed by the host interface with no ARM
-     * code, map entry 0xdb0850c7: command 16, count field 3, single floats;
-     * distributor entry 0x003 at ged1b.u dist.s:13. Route: libGLcore.so
-     * `__glkonim_Color3i` stores 3 words after the token. */
+    /* `HP_COLOR3I` (0x064). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 16, 3 data words, integer
+     * normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 3: 3
+     * colour components (red, green, blue) as integer normalised values.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xdb0850c7: command 16, geometry form, count field 3
+     * (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_Color3i` stores 3 words after the token. Sent by
+     * libGLcore.so __glkonim_Color3i and Color3iv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_COLOR3I                      = 0x064,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x065; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3s. */
 
-    /* `HP_COLOR3S` (0x065). Route: routed by the host interface with no ARM
-     * code, map entry 0xab0850c7: command 16, count field 3, type 1;
-     * distributor entry 0x003 at ged1b.u dist.s:13. */
+    /* `HP_COLOR3S` (0x065). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 16, 3 data components, short
+     * normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 1: red,
+     * green, blue as short normalised values; the first component packed into
+     * the upper bits of the token word itself, the rest in the following
+     * word. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xab0850c7: command 16, geometry form, count
+     * field 3 (bits 6-8), type 1. Sent by libGLcore.so __glkonim_Color3s and
+     * Color3sv (kon_cfuncs.s; packs the token with the data). */
     KONA_HP_COLOR3S                      = 0x065,
 
-    /* `HP_COLOR3UB` (0x066). Route: routed by the host interface with no ARM
-     * code, map entry 0x938850c7: command 272, count field 3, untyped words;
-     * distributor entry 0x2dd at ged1b.u tfanpoly.s:94. */
+    /* Read at icu_map.tsv 0x066; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3ub. */
+
+    /* `HP_COLOR3UB` (0x066). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 272, 3 data components, unsigned
+     * byte normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 1: red,
+     * green, blue as unsigned byte normalised values; the first two
+     * components packed into the upper bits of the token word itself, the
+     * rest in the following word. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0x938850c7: command 272,
+     * geometry form, count field 3 (bits 6-8), untyped words. Sent by
+     * libGLcore.so __glkonim_Color3ub and Color3ubv (kon_cfuncs.s; packs the
+     * token with the data). */
     KONA_HP_COLOR3UB                     = 0x066,
 
-    /* `HP_COLOR3UI` (0x067). Route: routed by the host interface with no ARM
-     * code, map entry 0xdb8850c7: command 272, count field 3, single floats;
-     * distributor entry 0x2dd at ged1b.u tfanpoly.s:94. Route: libGLcore.so
-     * `__glkonim_Color3ui` stores 3 words after the token. */
+    /* Read at icu_map.tsv 0x067; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3ui. */
+
+    /* `HP_COLOR3UI` (0x067). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 272, 3 data words, unsigned integer
+     * normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 3: 3
+     * colour components (red, green, blue) as unsigned integer normalised
+     * values. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xdb8850c7: command 272, geometry form, count
+     * field 3 (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_Color3ui` stores 3 words after the token. Sent by
+     * libGLcore.so __glkonim_Color3ui and Color3uiv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_COLOR3UI                     = 0x067,
 
-    /* `HP_COLOR3US` (0x068). Route: routed by the host interface with no ARM
-     * code, map entry 0xab8850c7: command 272, count field 3, type 1;
-     * distributor entry 0x2dd at ged1b.u tfanpoly.s:94. */
+    /* Read at icu_map.tsv 0x068; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3us. */
+
+    /* `HP_COLOR3US` (0x068). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 272, 3 data components, unsigned
+     * short normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 1: red,
+     * green, blue as unsigned short normalised values; the first component
+     * packed into the upper bits of the token word itself, the rest in the
+     * following word. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0xab8850c7: command 272, geometry form,
+     * count field 3 (bits 6-8), type 1. Sent by libGLcore.so
+     * __glkonim_Color3us and Color3usv (kon_cfuncs.s; packs the token with
+     * the data). */
     KONA_HP_COLOR3US                     = 0x068,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x069; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4b. */
 
-    /* `HP_COLOR4B` (0x069). Route: routed by the host interface with no ARM
-     * code, map entry 0x99085107: command 16, count field 4, untyped words;
-     * distributor entry 0x003 at ged1b.u dist.s:13. */
+    /* `HP_COLOR4B` (0x069). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 16, 4 data components, byte
+     * normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 1: red,
+     * green, blue, alpha as byte normalised values; the first two components
+     * packed into the upper bits of the token word itself, the rest in the
+     * following word. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x99085107: command 16, geometry form,
+     * count field 4 (bits 6-8), untyped words. Sent by libGLcore.so
+     * __glkonim_Color4b and Color4bv (kon_cfuncs.s; packs the token with the
+     * data). */
     KONA_HP_COLOR4B                      = 0x069,
 
-    /* `HP_COLOR4D` (0x06a). Route: routed by the host interface with no ARM
-     * code, map entry 0xf8485007: command 144, count field 32, doubles;
-     * distributor entry 0x242 at ged1b.u qstrip.s:68. Route: libGLcore.so
-     * `__glkonim_Color4d` stores 8 words after the token. */
+    /* Read at icu_map.tsv 0x06a; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4d. */
+
+    /* `HP_COLOR4D` (0x06a). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 144, 8 data words, double). In the
+     * idle class the program entry is the null loop (dist.s:13); the hardware
+     * is inferred to convert the data and store it at vertex-record word 8,
+     * filling missing components. Payload 8: 4 colour components (red, green,
+     * blue, alpha) as double values. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xf8485007: command
+     * 144, geometry form, count field 0 (bits 6-8), doubles. Established:
+     * libGLcore.so `__glkonim_Color4d` stores 8 words after the token. Sent
+     * by libGLcore.so __glkonim_Color4d and Color4dv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_COLOR4D                      = 0x06a,
 
-    /* `HP_COLOR4F` (0x06b). Route: routed by the host interface with no ARM
-     * code, map entry 0xd8485107: command 144, count field 4, single floats;
-     * distributor entry 0x242 at ged1b.u qstrip.s:68. Route: libGLcore.so
-     * `__glkonim_Color4f` stores 4 words after the token. */
+    /* Read at icu_map.tsv 0x06b; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4f. */
+
+    /* `HP_COLOR4F` (0x06b). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 144, 4 data words, float). In the
+     * idle class the program entry is the null loop (dist.s:13); the hardware
+     * is inferred to convert the data and store it at vertex-record word 8,
+     * filling missing components. Payload 4: 4 colour components (red, green,
+     * blue, alpha) as float values. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0xd8485107: command 144,
+     * geometry form, count field 4 (bits 6-8), single floats. Established:
+     * libGLcore.so `__glkonim_Color4f` stores 4 words after the token. Sent
+     * by libGLcore.so __glkonim_Color4f and Color4fv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_COLOR4F                      = 0x06b,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x06c; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4i. */
 
-    /* `HP_COLOR4I` (0x06c). Route: routed by the host interface with no ARM
-     * code, map entry 0xd9085107: command 16, count field 4, single floats;
-     * distributor entry 0x003 at ged1b.u dist.s:13. Route: libGLcore.so
-     * `__glkonim_Color4i` stores 4 words after the token. */
+    /* `HP_COLOR4I` (0x06c). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 16, 4 data words, integer
+     * normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 4: 4
+     * colour components (red, green, blue, alpha) as integer normalised
+     * values. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xd9085107: command 16, geometry form, count
+     * field 4 (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_Color4i` stores 4 words after the token. Sent by
+     * libGLcore.so __glkonim_Color4i and Color4iv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_COLOR4I                      = 0x06c,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x06d; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4s. */
 
-    /* `HP_COLOR4S` (0x06d). Route: routed by the host interface with no ARM
-     * code, map entry 0xb9085107: command 16, count field 4, type 1;
-     * distributor entry 0x003 at ged1b.u dist.s:13. */
+    /* `HP_COLOR4S` (0x06d). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 16, 4 data components, short
+     * normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 2: red,
+     * green, blue, alpha as short normalised values; the first component
+     * packed into the upper bits of the token word itself, the rest in the
+     * following words. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0xb9085107: command 16, geometry form,
+     * count field 4 (bits 6-8), type 1. Sent by libGLcore.so
+     * __glkonim_Color4s and Color4sv (kon_cfuncs.s; packs the token with the
+     * data). */
     KONA_HP_COLOR4S                      = 0x06d,
 
-    /* `HP_COLOR4UB` (0x06e). Route: routed by the host interface with no ARM
-     * code, map entry 0x99885107: command 272, count field 4, untyped words;
-     * distributor entry 0x2dd at ged1b.u tfanpoly.s:94. */
+    /* Read at icu_map.tsv 0x06e; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4ub. */
+
+    /* `HP_COLOR4UB` (0x06e). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 272, 4 data components, unsigned
+     * byte normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 1: red,
+     * green, blue, alpha as unsigned byte normalised values; the first two
+     * components packed into the upper bits of the token word itself, the
+     * rest in the following word. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0x99885107: command 272,
+     * geometry form, count field 4 (bits 6-8), untyped words. Sent by
+     * libGLcore.so __glkonim_Color4ub and Color4ubv (kon_cfuncs.s; packs the
+     * token with the data). */
     KONA_HP_COLOR4UB                     = 0x06e,
 
-    /* `HP_COLOR4UI` (0x06f). Route: routed by the host interface with no ARM
-     * code, map entry 0xd9885107: command 272, count field 4, single floats;
-     * distributor entry 0x2dd at ged1b.u tfanpoly.s:94. Route: libGLcore.so
-     * `__glkonim_Color4ui` stores 4 words after the token. */
+    /* Read at icu_map.tsv 0x06f; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4ui. */
+
+    /* `HP_COLOR4UI` (0x06f). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 272, 4 data words, unsigned integer
+     * normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 4: 4
+     * colour components (red, green, blue, alpha) as unsigned integer
+     * normalised values. Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0xd9885107: command 272, geometry
+     * form, count field 4 (bits 6-8), single floats. Established:
+     * libGLcore.so `__glkonim_Color4ui` stores 4 words after the token. Sent
+     * by libGLcore.so __glkonim_Color4ui and Color4uiv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_COLOR4UI                     = 0x06f,
 
-    /* `HP_COLOR4US` (0x070). Route: routed by the host interface with no ARM
-     * code, map entry 0xb9885107: command 272, count field 4, type 1;
-     * distributor entry 0x2dd at ged1b.u tfanpoly.s:94. */
+    /* Read at icu_map.tsv 0x070; ged.md geometry control fields (offset 8,
+     * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4us. */
+
+    /* `HP_COLOR4US` (0x070). Inferred: Sets the current colour. Routed
+     * geometry attribute (kind 3, command 272, 4 data components, unsigned
+     * short normalised). In the idle class the program entry is the null loop
+     * (dist.s:13); the hardware is inferred to convert the data and store it
+     * at vertex-record word 8, filling missing components. Payload 2: red,
+     * green, blue, alpha as unsigned short normalised values; the first
+     * component packed into the upper bits of the token word itself, the rest
+     * in the following words. Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0xb9885107: command 272, geometry
+     * form, count field 4 (bits 6-8), type 1. Sent by libGLcore.so
+     * __glkonim_Color4us and Color4usv (kon_cfuncs.s; packs the token with
+     * the data). */
     KONA_HP_COLOR4US                     = 0x070,
 
-    /* Engine handlers relocated into the span of distributor entry 0x366:
-     * `mgesi_Triangles`. */
+    /* Read at icu_map.tsv 0x071 (kind 2, command 386); ged_banks.tsv k=2;
+     * ged_listing.txt dist.s:13, tri.s:52-54, qstrip.s:202-204; ged.md How an
+     * entry is chosen. */
 
-    /* `HP_END` (0x071). Route: routed by the host interface with no ARM code,
-     * map entry 0xd8c10055: command 386, count field 1, single floats;
-     * distributor entry 0x366 at ged1b.u tri.s:52. Route: libGLcore.so
-     * `__glkonim_End` stores 1 word after the token. */
+    /* `HP_END` (0x071). Inferred: Ends the primitive. Routed end token (kind
+     * 2, command 386, one payload word, entry 2): idle it hits the null loop
+     * at 0x003 (dist.s:13); inside a primitive it runs the class end code
+     * that resets r48 to 0, r49 to the idle state 0x1d and releases the
+     * pending handler. Payload 1 (libGLcore sends one zero word): a zero
+     * placeholder word. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0xd8c10055: command 386, geometry form,
+     * count field 1 (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_End` stores 1 word after the token. Sent by libGLcore.so
+     * __glkonim_End (kon_modes.s) clears the in-begin flag at 4120($zero)
+     * then sends token 113; also sent after the four vertices by
+     * __glkonim_Rect* (kon_rect.s). */
     KONA_HP_END                          = 0x071,
 
-    /* `HP_INDEXD` (0x072). Route: routed by the host interface with no ARM
-     * code, map entry 0xf848d887: command 145, count field 2, doubles;
-     * distributor entry 0x25e at ged1b.u qstrip.s:118. Route: libGLcore.so
-     * `__glkonim_Indexd` stores 2 words after the token. */
+    /* Read at icu_map.tsv 0x072; ged.md geometry control fields (offset 12);
+     * ged_banks.tsv k=17; kon_cfuncs.s __glkonim_Indexd. */
+
+    /* `HP_INDEXD` (0x072). Inferred: Sets the current colour index. Routed
+     * geometry attribute (kind 3, command 145, 2 data words, double). The
+     * idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert and store it at vertex-record word 12. Payload 2:
+     * colour index as one double. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0xf848d887: command 145,
+     * geometry form, count field 2 (bits 6-8), doubles. Established:
+     * libGLcore.so `__glkonim_Indexd` stores 2 words after the token. Sent by
+     * libGLcore.so __glkonim_Indexd, __glkonim_Indexdv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_INDEXD                       = 0x072,
 
-    /* `HP_INDEXF` (0x073). Route: routed by the host interface with no ARM
-     * code, map entry 0xd848d847: command 145, count field 1, single floats;
-     * distributor entry 0x25e at ged1b.u qstrip.s:118. Route: libGLcore.so
-     * `__glkonim_Indexf` stores 1 word after the token. */
+    /* Read at icu_map.tsv 0x073; ged.md geometry control fields (offset 12);
+     * ged_banks.tsv k=17; kon_cfuncs.s __glkonim_Indexf. */
+
+    /* `HP_INDEXF` (0x073). Inferred: Sets the current colour index. Routed
+     * geometry attribute (kind 3, command 145, 1 data words, float). The idle
+     * program entry is the null loop (dist.s:13); the hardware is inferred to
+     * convert and store it at vertex-record word 12. Payload 1: colour index
+     * as one float. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0xd848d847: command 145, geometry form,
+     * count field 1 (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_Indexf` stores 1 word after the token. Sent by libGLcore.so
+     * __glkonim_Indexf, __glkonim_Indexfv (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_INDEXF                       = 0x073,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x074; ged.md geometry control fields (offset 12);
+     * ged_banks.tsv k=17; kon_cfuncs.s __glkonim_Indexi. */
 
-    /* `HP_INDEXI` (0x074). Route: routed by the host interface with no ARM
-     * code, map entry 0xd808d847: command 17, count field 1, single floats;
-     * distributor entry 0x003 at ged1b.u dist.s:13. Route: libGLcore.so
-     * `__glkonim_Indexi` stores 1 word after the token. */
+    /* `HP_INDEXI` (0x074). Inferred: Sets the current colour index. Routed
+     * geometry attribute (kind 3, command 17, 1 data words, integer). The
+     * idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert and store it at vertex-record word 12. Payload 1:
+     * colour index as one integer. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0xd808d847: command 17,
+     * geometry form, count field 1 (bits 6-8), single floats. Established:
+     * libGLcore.so `__glkonim_Indexi` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_Indexi, __glkonim_Indexiv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_INDEXI                       = 0x074,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x075; ged.md geometry control fields (offset 12);
+     * ged_banks.tsv k=17; kon_cfuncs.s __glkonim_Indexs. */
 
-    /* `HP_INDEXS` (0x075). Route: routed by the host interface with no ARM
-     * code, map entry 0xa808d847: command 17, count field 1, type 1;
-     * distributor entry 0x003 at ged1b.u dist.s:13. Route: libGLcore.so
-     * `__glkonim_Indexs` stores 1 word after the token. */
+    /* `HP_INDEXS` (0x075). Inferred: Sets the current colour index. Routed
+     * geometry attribute (kind 3, command 17, 1 data words, short). The idle
+     * program entry is the null loop (dist.s:13); the hardware is inferred to
+     * convert and store it at vertex-record word 12. Payload 1: colour index
+     * as a short in the upper 16 bits of the data word (Indexub: unsigned
+     * byte in the upper 8 bits). Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0xa808d847: command 17,
+     * geometry form, count field 1 (bits 6-8), type 1. Established:
+     * libGLcore.so `__glkonim_Indexs` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_Indexs, __glkonim_Indexsv, __glkonim_Indexub,
+     * __glkonim_Indexubv (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_INDEXS                       = 0x075,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x076; ged.md geometry control fields (offset 13);
+     * ged_banks.tsv k=15; kon_cfuncs.s __glkonim_Normal3b. */
 
-    /* `HP_NORMAL3B` (0x076). Route: routed by the host interface with no ARM
-     * code, map entry 0x9107dac7: command 15, count field 11, untyped words;
-     * distributor entry 0x003 at ged1b.u dist.s:13. */
+    /* `HP_NORMAL3B` (0x076). Inferred: Sets the current normal. Routed
+     * geometry attribute (kind 3, command 15, 3 components, byte normalised).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, normalise integer data and store it at
+     * vertex-record word 13. Payload 1: x, y, z of the normal as byte
+     * normalised values; x and y packed into the upper bits of the token
+     * word, z in the following word. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0x9107dac7: command
+     * 15, geometry form, count field 3 (bits 6-8), untyped words. Sent by
+     * libGLcore.so __glkonim_Normal3b and Normal3bv (kon_cfuncs.s). */
     KONA_HP_NORMAL3B                     = 0x076,
 
-    /* `HP_NORMAL3D` (0x077). Route: routed by the host interface with no ARM
-     * code, map entry 0xf847db87: command 143, count field 14, doubles;
-     * distributor entry 0x2a1 at ged1b.u qstrip.s:256. Route: libGLcore.so
-     * `__glkonim_Normal3d` stores 6 words after the token. */
+    /* Read at icu_map.tsv 0x077; ged.md geometry control fields (offset 13);
+     * ged_banks.tsv k=15; kon_cfuncs.s __glkonim_Normal3d. */
+
+    /* `HP_NORMAL3D` (0x077). Inferred: Sets the current normal. Routed
+     * geometry attribute (kind 3, command 143, 3 components, double). The
+     * idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, normalise integer data and store it at
+     * vertex-record word 13. Payload 6: x, y, z of the normal as double
+     * values. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xf847db87: command 143, geometry form, count
+     * field 6 (bits 6-8), doubles. Established: libGLcore.so
+     * `__glkonim_Normal3d` stores 6 words after the token. Sent by
+     * libGLcore.so __glkonim_Normal3d and Normal3dv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_NORMAL3D                     = 0x077,
 
-    /* `HP_NORMAL3F` (0x078). Route: routed by the host interface with no ARM
-     * code, map entry 0xd847dac7: command 143, count field 11, single floats;
-     * distributor entry 0x2a1 at ged1b.u qstrip.s:256. Route: libGLcore.so
-     * `__glkonim_Normal3f` stores 3 words after the token. */
+    /* Read at icu_map.tsv 0x078; ged.md geometry control fields (offset 13);
+     * ged_banks.tsv k=15; kon_cfuncs.s __glkonim_Normal3f. */
+
+    /* `HP_NORMAL3F` (0x078). Inferred: Sets the current normal. Routed
+     * geometry attribute (kind 3, command 143, 3 components, float). The idle
+     * program entry is the null loop (dist.s:13); the hardware is inferred to
+     * convert, normalise integer data and store it at vertex-record word 13.
+     * Payload 3: x, y, z of the normal as float values. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0xd847dac7: command 143, geometry form, count field 3 (bits 6-8),
+     * single floats. Established: libGLcore.so `__glkonim_Normal3f` stores 3
+     * words after the token. Sent by libGLcore.so __glkonim_Normal3f and
+     * Normal3fv (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_NORMAL3F                     = 0x078,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x079; ged.md geometry control fields (offset 13);
+     * ged_banks.tsv k=15; kon_cfuncs.s __glkonim_Normal3i. */
 
-    /* `HP_NORMAL3I` (0x079). Route: routed by the host interface with no ARM
-     * code, map entry 0xd907dac7: command 15, count field 11, single floats;
-     * distributor entry 0x003 at ged1b.u dist.s:13. Route: libGLcore.so
-     * `__glkonim_Normal3i` stores 3 words after the token. */
+    /* `HP_NORMAL3I` (0x079). Inferred: Sets the current normal. Routed
+     * geometry attribute (kind 3, command 15, 3 components, integer
+     * normalised). The idle program entry is the null loop (dist.s:13); the
+     * hardware is inferred to convert, normalise integer data and store it at
+     * vertex-record word 13. Payload 3: x, y, z of the normal as integer
+     * normalised values. Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0xd907dac7: command 15, geometry form,
+     * count field 3 (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_Normal3i` stores 3 words after the token. Sent by
+     * libGLcore.so __glkonim_Normal3i and Normal3iv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_NORMAL3I                     = 0x079,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x07a; ged.md geometry control fields (offset 13);
+     * ged_banks.tsv k=15; kon_cfuncs.s __glkonim_Normal3s. */
 
-    /* `HP_NORMAL3S` (0x07a). Route: routed by the host interface with no ARM
-     * code, map entry 0xa907dac7: command 15, count field 11, type 1;
-     * distributor entry 0x003 at ged1b.u dist.s:13. */
+    /* `HP_NORMAL3S` (0x07a). Inferred: Sets the current normal. Routed
+     * geometry attribute (kind 3, command 15, 3 components, short
+     * normalised). The idle program entry is the null loop (dist.s:13); the
+     * hardware is inferred to convert, normalise integer data and store it at
+     * vertex-record word 13. Payload 1: x, y, z of the normal as short
+     * normalised values; x packed into the upper 16 bits of the token word, y
+     * and z in the following word. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0xa907dac7: command 15,
+     * geometry form, count field 3 (bits 6-8), type 1. Sent by libGLcore.so
+     * __glkonim_Normal3s and Normal3sv (kon_cfuncs.s). */
     KONA_HP_NORMAL3S                     = 0x07a,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27a:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x07b; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord1d. */
 
-    /* `HP_TEXCOORD1D` (0x07b). Route: routed by the host interface with no
-     * ARM code, map entry 0xfe496087: command 146, count field 2, doubles;
-     * distributor entry 0x27a at ged1b.u qstrip.s:174. Route: libGLcore.so
-     * `__glkonim_TexCoord1d` stores 2 words after the token. */
+    /* `HP_TEXCOORD1D` (0x07b). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 146, 1 component, double).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 2: 1 component (s) as double values.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xfe496087: command 146, geometry form, count field 2
+     * (bits 6-8), doubles. Established: libGLcore.so `__glkonim_TexCoord1d`
+     * stores 2 words after the token. Sent by libGLcore.so
+     * __glkonim_TexCoord1d and TexCoord1dv (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_TEXCOORD1D                   = 0x07b,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27a:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x07c; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord1f. */
 
-    /* `HP_TEXCOORD1F` (0x07c). Route: routed by the host interface with no
-     * ARM code, map entry 0xde496047: command 146, count field 1, single
-     * floats; distributor entry 0x27a at ged1b.u qstrip.s:174. Route:
-     * libGLcore.so `__glkonim_TexCoord1f` stores 1 word after the token. */
+    /* `HP_TEXCOORD1F` (0x07c). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 146, 1 component, float).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 1: 1 component (s) as float values.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xde496047: command 146, geometry form, count field 1
+     * (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_TexCoord1f` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_TexCoord1f and TexCoord1fv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_TEXCOORD1F                   = 0x07c,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x07d; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord1i. */
 
-    /* `HP_TEXCOORD1I` (0x07d). Route: routed by the host interface with no
-     * ARM code, map entry 0xde096047: command 18, count field 1, single
-     * floats; distributor entry 0x003 at ged1b.u dist.s:13. Route:
-     * libGLcore.so `__glkonim_TexCoord1i` stores 1 word after the token. */
+    /* `HP_TEXCOORD1I` (0x07d). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 18, 1 component, integer).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 1: 1 component (s) as integer values.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xde096047: command 18, geometry form, count field 1
+     * (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_TexCoord1i` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_TexCoord1i and TexCoord1iv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_TEXCOORD1I                   = 0x07d,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x07e; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord1s. */
 
-    /* `HP_TEXCOORD1S` (0x07e). Route: routed by the host interface with no
-     * ARM code, map entry 0xae096047: command 18, count field 1, type 1;
-     * distributor entry 0x003 at ged1b.u dist.s:13. Route: libGLcore.so
-     * `__glkonim_TexCoord1s` stores 1 word after the token. */
+    /* `HP_TEXCOORD1S` (0x07e). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 18, 1 component, short). The
+     * idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 1: 1 component (s) as short values; the
+     * first component packed into the upper 16 bits of the token word, the
+     * rest in the following word. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0xae096047: command 18,
+     * geometry form, count field 1 (bits 6-8), type 1. Established:
+     * libGLcore.so `__glkonim_TexCoord1s` stores 1 word after the token. Sent
+     * by libGLcore.so __glkonim_TexCoord1s and TexCoord1sv (kon_cfuncs.s). */
     KONA_HP_TEXCOORD1S                   = 0x07e,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27a:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x07f; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord2d. */
 
-    /* `HP_TEXCOORD2D` (0x07f). Route: routed by the host interface with no
-     * ARM code, map entry 0xfc496107: command 146, count field 4, doubles;
-     * distributor entry 0x27a at ged1b.u qstrip.s:174. Route: libGLcore.so
-     * `__glkonim_TexCoord2d` stores 4 words after the token. */
+    /* `HP_TEXCOORD2D` (0x07f). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 146, 2 components, double).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 4: 2 components (s, t) as double values.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xfc496107: command 146, geometry form, count field 4
+     * (bits 6-8), doubles. Established: libGLcore.so `__glkonim_TexCoord2d`
+     * stores 4 words after the token. Sent by libGLcore.so
+     * __glkonim_TexCoord2d and TexCoord2dv (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_TEXCOORD2D                   = 0x07f,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27a:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x080; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord2f. */
 
-    /* `HP_TEXCOORD2F` (0x080). Route: routed by the host interface with no
-     * ARM code, map entry 0xdc496087: command 146, count field 2, single
-     * floats; distributor entry 0x27a at ged1b.u qstrip.s:174. Route:
-     * libGLcore.so `__glkonim_TexCoord2f` stores 2 words after the token. */
+    /* `HP_TEXCOORD2F` (0x080). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 146, 2 components, float).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 2: 2 components (s, t) as float values.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xdc496087: command 146, geometry form, count field 2
+     * (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_TexCoord2f` stores 2 words after the token. Sent by
+     * libGLcore.so __glkonim_TexCoord2f and TexCoord2fv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_TEXCOORD2F                   = 0x080,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x081; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord2i. */
 
-    /* `HP_TEXCOORD2I` (0x081). Route: routed by the host interface with no
-     * ARM code, map entry 0xdc096087: command 18, count field 2, single
-     * floats; distributor entry 0x003 at ged1b.u dist.s:13. Route:
-     * libGLcore.so `__glkonim_TexCoord2i` stores 2 words after the token. */
+    /* `HP_TEXCOORD2I` (0x081). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 18, 2 components, integer).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 2: 2 components (s, t) as integer
+     * values. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xdc096087: command 18, geometry form, count
+     * field 2 (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_TexCoord2i` stores 2 words after the token. Sent by
+     * libGLcore.so __glkonim_TexCoord2i and TexCoord2iv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_TEXCOORD2I                   = 0x081,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x082; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord2s. */
 
-    /* `HP_TEXCOORD2S` (0x082). Route: routed by the host interface with no
-     * ARM code, map entry 0xbc096087: command 18, count field 2, type 1;
-     * distributor entry 0x003 at ged1b.u dist.s:13. */
+    /* `HP_TEXCOORD2S` (0x082). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 18, 2 components, short).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 1: 2 components (s, t) as short values;
+     * the first component packed into the upper 16 bits of the token word,
+     * the rest in the following word. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xbc096087: command
+     * 18, geometry form, count field 2 (bits 6-8), type 1. Sent by
+     * libGLcore.so __glkonim_TexCoord2s and TexCoord2sv (kon_cfuncs.s). */
     KONA_HP_TEXCOORD2S                   = 0x082,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27a:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x083; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord3d. */
 
-    /* `HP_TEXCOORD3D` (0x083). Route: routed by the host interface with no
-     * ARM code, map entry 0xfa496187: command 146, count field 6, doubles;
-     * distributor entry 0x27a at ged1b.u qstrip.s:174. Route: libGLcore.so
-     * `__glkonim_TexCoord3d` stores 6 words after the token. */
+    /* `HP_TEXCOORD3D` (0x083). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 146, 3 components, double).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 6: 3 components (s, t, r) as double
+     * values. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xfa496187: command 146, geometry form, count
+     * field 6 (bits 6-8), doubles. Established: libGLcore.so
+     * `__glkonim_TexCoord3d` stores 6 words after the token. Sent by
+     * libGLcore.so __glkonim_TexCoord3d and TexCoord3dv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_TEXCOORD3D                   = 0x083,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27a:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x084; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord3f. */
 
-    /* `HP_TEXCOORD3F` (0x084). Route: routed by the host interface with no
-     * ARM code, map entry 0xda4960c7: command 146, count field 3, single
-     * floats; distributor entry 0x27a at ged1b.u qstrip.s:174. Route:
-     * libGLcore.so `__glkonim_TexCoord3f` stores 3 words after the token. */
+    /* `HP_TEXCOORD3F` (0x084). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 146, 3 components, float).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 3: 3 components (s, t, r) as float
+     * values. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xda4960c7: command 146, geometry form, count
+     * field 3 (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_TexCoord3f` stores 3 words after the token. Sent by
+     * libGLcore.so __glkonim_TexCoord3f and TexCoord3fv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_TEXCOORD3F                   = 0x084,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x085; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord3i. */
 
-    /* `HP_TEXCOORD3I` (0x085). Route: routed by the host interface with no
-     * ARM code, map entry 0xda0960c7: command 18, count field 3, single
-     * floats; distributor entry 0x003 at ged1b.u dist.s:13. Route:
-     * libGLcore.so `__glkonim_TexCoord3i` stores 3 words after the token. */
+    /* `HP_TEXCOORD3I` (0x085). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 18, 3 components, integer).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 3: 3 components (s, t, r) as integer
+     * values. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xda0960c7: command 18, geometry form, count
+     * field 3 (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_TexCoord3i` stores 3 words after the token. Sent by
+     * libGLcore.so __glkonim_TexCoord3i and TexCoord3iv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_TEXCOORD3I                   = 0x085,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x086; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord3s. */
 
-    /* `HP_TEXCOORD3S` (0x086). Route: routed by the host interface with no
-     * ARM code, map entry 0xaa0960c7: command 18, count field 3, type 1;
-     * distributor entry 0x003 at ged1b.u dist.s:13. */
+    /* `HP_TEXCOORD3S` (0x086). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 18, 3 components, short).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 1: 3 components (s, t, r) as short
+     * values; the first component packed into the upper 16 bits of the token
+     * word, the rest in the following word. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xaa0960c7: command
+     * 18, geometry form, count field 3 (bits 6-8), type 1. Sent by
+     * libGLcore.so __glkonim_TexCoord3s and TexCoord3sv (kon_cfuncs.s). */
     KONA_HP_TEXCOORD3S                   = 0x086,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27a:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x087; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord4d. */
 
-    /* `HP_TEXCOORD4D` (0x087). Route: routed by the host interface with no
-     * ARM code, map entry 0xf8496007: command 146, count field 32, doubles;
-     * distributor entry 0x27a at ged1b.u qstrip.s:174. Route: libGLcore.so
-     * `__glkonim_TexCoord4d` stores 8 words after the token. */
+    /* `HP_TEXCOORD4D` (0x087). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 146, 4 components, double).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 8: 4 components (s, t, r, q) as double
+     * values. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xf8496007: command 146, geometry form, count
+     * field 0 (bits 6-8), doubles. Established: libGLcore.so
+     * `__glkonim_TexCoord4d` stores 8 words after the token. Sent by
+     * libGLcore.so __glkonim_TexCoord4d and TexCoord4dv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_TEXCOORD4D                   = 0x087,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27a:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x088; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord4f. */
 
-    /* `HP_TEXCOORD4F` (0x088). Route: routed by the host interface with no
-     * ARM code, map entry 0xd8496107: command 146, count field 4, single
-     * floats; distributor entry 0x27a at ged1b.u qstrip.s:174. Route:
-     * libGLcore.so `__glkonim_TexCoord4f` stores 4 words after the token. */
+    /* `HP_TEXCOORD4F` (0x088). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 146, 4 components, float).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 4: 4 components (s, t, r, q) as float
+     * values. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xd8496107: command 146, geometry form, count
+     * field 4 (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_TexCoord4f` stores 4 words after the token. Sent by
+     * libGLcore.so __glkonim_TexCoord4f and TexCoord4fv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_TEXCOORD4F                   = 0x088,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x089; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord4i. */
 
-    /* `HP_TEXCOORD4I` (0x089). Route: routed by the host interface with no
-     * ARM code, map entry 0xd8096107: command 18, count field 4, single
-     * floats; distributor entry 0x003 at ged1b.u dist.s:13. Route:
-     * libGLcore.so `__glkonim_TexCoord4i` stores 4 words after the token. */
+    /* `HP_TEXCOORD4I` (0x089). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 18, 4 components, integer).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 4: 4 components (s, t, r, q) as integer
+     * values. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xd8096107: command 18, geometry form, count
+     * field 4 (bits 6-8), single floats. Established: libGLcore.so
+     * `__glkonim_TexCoord4i` stores 4 words after the token. Sent by
+     * libGLcore.so __glkonim_TexCoord4i and TexCoord4iv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_TEXCOORD4I                   = 0x089,
 
-    /* Engine handlers relocated into the span of distributor entry 0x003:
-     * `mgebi_NullCommand`. */
+    /* Read at icu_map.tsv 0x08a; ged.md geometry control fields (offset 16);
+     * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord4s. */
 
-    /* `HP_TEXCOORD4S` (0x08a). Route: routed by the host interface with no
-     * ARM code, map entry 0xb8096107: command 18, count field 4, type 1;
-     * distributor entry 0x003 at ged1b.u dist.s:13. */
+    /* `HP_TEXCOORD4S` (0x08a). Inferred: Sets the current texture coordinate.
+     * Routed geometry attribute (kind 3, command 18, 4 components, short).
+     * The idle program entry is the null loop (dist.s:13); the hardware is
+     * inferred to convert, fill missing components and store it at
+     * vertex-record word 16. Payload 2: 4 components (s, t, r, q) as short
+     * values; the first component packed into the upper 16 bits of the token
+     * word, the rest in the following words. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xb8096107: command
+     * 18, geometry form, count field 4 (bits 6-8), type 1. Sent by
+     * libGLcore.so __glkonim_TexCoord4s and TexCoord4sv (kon_cfuncs.s). */
     KONA_HP_TEXCOORD4S                   = 0x08a,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x08b; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex2d. */
 
-    /* `HP_VERTEX2D` (0x08b). Route: routed by the host interface with no ARM
-     * code, map entry 0xfc674107: command 206, count field 4, doubles;
-     * distributor entry 0x0e3 at ged1b.u tstrip.s:304. Route: libGLcore.so
-     * `__glkonim_Vertex2d` stores 4 words after the token. */
+    /* `HP_VERTEX2D` (0x08b). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 206, 2 components, double, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 4: 2
+     * components (x, y) as double values. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xfc674107: command
+     * 206, geometry form, count field 4 (bits 6-8), doubles. Established:
+     * libGLcore.so `__glkonim_Vertex2d` stores 4 words after the token. Sent
+     * by libGLcore.so __glkonim_Vertex2d and Vertex2dv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_VERTEX2D                     = 0x08b,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x08c; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex2f. */
 
-    /* `HP_VERTEX2F` (0x08c). Route: routed by the host interface with no ARM
-     * code, map entry 0xdc674087: command 206, count field 2, single floats;
-     * distributor entry 0x0e3 at ged1b.u tstrip.s:304. Route: libGLcore.so
-     * `__glkonim_Vertex2f` stores 2 words after the token. */
+    /* `HP_VERTEX2F` (0x08c). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 206, 2 components, float, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 2: 2
+     * components (x, y) as float values. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xdc674087: command
+     * 206, geometry form, count field 2 (bits 6-8), single floats.
+     * Established: libGLcore.so `__glkonim_Vertex2f` stores 2 words after the
+     * token. Sent by libGLcore.so __glkonim_Vertex2f and Vertex2fv
+     * (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_VERTEX2F                     = 0x08c,
 
-    /* Engine handlers relocated into the span of distributor entry 0x193:
-     * `mgesi_LineStrip`. */
+    /* Read at icu_map.tsv 0x08d; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex2i. */
 
-    /* `HP_VERTEX2I` (0x08d). Route: routed by the host interface with no ARM
-     * code, map entry 0xdc274087: command 78, count field 2, single floats;
-     * distributor entry 0x193 at ged1b.u lineloop.s:193. Route: libGLcore.so
-     * `__glkonim_Vertex2i` stores 2 words after the token. */
+    /* `HP_VERTEX2I` (0x08d). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 78, 2 components, integer, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 2: 2
+     * components (x, y) as integer values. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xdc274087: command
+     * 78, geometry form, count field 2 (bits 6-8), single floats.
+     * Established: libGLcore.so `__glkonim_Vertex2i` stores 2 words after the
+     * token. Sent by libGLcore.so __glkonim_Vertex2i and Vertex2iv
+     * (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_VERTEX2I                     = 0x08d,
 
-    /* Engine handlers relocated into the span of distributor entry 0x193:
-     * `mgesi_LineStrip`. */
+    /* Read at icu_map.tsv 0x08e; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex2s. */
 
-    /* `HP_VERTEX2S` (0x08e). Route: routed by the host interface with no ARM
-     * code, map entry 0xbc274087: command 78, count field 2, type 1;
-     * distributor entry 0x193 at ged1b.u lineloop.s:193. */
+    /* `HP_VERTEX2S` (0x08e). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 78, 2 components, short, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 1: 2
+     * components (x, y) as short values; the first component packed into the
+     * upper 16 bits of the token word, the rest in the following word.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xbc274087: command 78, geometry form, count field 2
+     * (bits 6-8), type 1. Sent by libGLcore.so __glkonim_Vertex2s and
+     * Vertex2sv (kon_cfuncs.s). */
     KONA_HP_VERTEX2S                     = 0x08e,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x08f; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex3d. */
 
-    /* `HP_VERTEX3D` (0x08f). Route: routed by the host interface with no ARM
-     * code, map entry 0xfa674187: command 206, count field 6, doubles;
-     * distributor entry 0x0e3 at ged1b.u tstrip.s:304. Route: libGLcore.so
-     * `__glkonim_Vertex3d` stores 6 words after the token. */
+    /* `HP_VERTEX3D` (0x08f). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 206, 3 components, double, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 6: 3
+     * components (x, y, z) as double values. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xfa674187: command
+     * 206, geometry form, count field 6 (bits 6-8), doubles. Established:
+     * libGLcore.so `__glkonim_Vertex3d` stores 6 words after the token. Sent
+     * by libGLcore.so __glkonim_Vertex3d and Vertex3dv (kon_cfuncs.s,
+     * kon_sfuncs.s). */
     KONA_HP_VERTEX3D                     = 0x08f,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x090; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex3f. */
 
-    /* `HP_VERTEX3F` (0x090). Route: routed by the host interface with no ARM
-     * code, map entry 0xda6740c7: command 206, count field 3, single floats;
-     * distributor entry 0x0e3 at ged1b.u tstrip.s:304. Route: libGLcore.so
-     * `__glkonim_Vertex3f` stores 3 words after the token. */
+    /* `HP_VERTEX3F` (0x090). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 206, 3 components, float, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 3: 3
+     * components (x, y, z) as float values. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xda6740c7: command
+     * 206, geometry form, count field 3 (bits 6-8), single floats.
+     * Established: libGLcore.so `__glkonim_Vertex3f` stores 3 words after the
+     * token. Sent by libGLcore.so __glkonim_Vertex3f and Vertex3fv
+     * (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_VERTEX3F                     = 0x090,
 
-    /* Engine handlers relocated into the span of distributor entry 0x193:
-     * `mgesi_LineStrip`. */
+    /* Read at icu_map.tsv 0x091; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex3i. */
 
-    /* `HP_VERTEX3I` (0x091). Route: routed by the host interface with no ARM
-     * code, map entry 0xda2740c7: command 78, count field 3, single floats;
-     * distributor entry 0x193 at ged1b.u lineloop.s:193. Route: libGLcore.so
-     * `__glkonim_Vertex3i` stores 3 words after the token. */
+    /* `HP_VERTEX3I` (0x091). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 78, 3 components, integer, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 3: 3
+     * components (x, y, z) as integer values. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0xda2740c7: command
+     * 78, geometry form, count field 3 (bits 6-8), single floats.
+     * Established: libGLcore.so `__glkonim_Vertex3i` stores 3 words after the
+     * token. Sent by libGLcore.so __glkonim_Vertex3i and Vertex3iv
+     * (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_VERTEX3I                     = 0x091,
 
-    /* Engine handlers relocated into the span of distributor entry 0x193:
-     * `mgesi_LineStrip`. */
+    /* Read at icu_map.tsv 0x092; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex3s. */
 
-    /* `HP_VERTEX3S` (0x092). Route: routed by the host interface with no ARM
-     * code, map entry 0xaa2740c7: command 78, count field 3, type 1;
-     * distributor entry 0x193 at ged1b.u lineloop.s:193. */
+    /* `HP_VERTEX3S` (0x092). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 78, 3 components, short, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 1: 3
+     * components (x, y, z) as short values; the first component packed into
+     * the upper 16 bits of the token word, the rest in the following word.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xaa2740c7: command 78, geometry form, count field 3
+     * (bits 6-8), type 1. Sent by libGLcore.so __glkonim_Vertex3s and
+     * Vertex3sv (kon_cfuncs.s). */
     KONA_HP_VERTEX3S                     = 0x092,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x093; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex4d. */
 
-    /* `HP_VERTEX4D` (0x093). Route: routed by the host interface with no ARM
-     * code, map entry 0xf8674007: command 206, count field 32, doubles;
-     * distributor entry 0x0e3 at ged1b.u tstrip.s:304. Route: libGLcore.so
-     * `__glkonim_Vertex4d` stores 8 words after the token. */
+    /* `HP_VERTEX4D` (0x093). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 206, 4 components, double, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 8: 4
+     * components (x, y, z, w) as double values. Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0xf8674007:
+     * command 206, geometry form, count field 0 (bits 6-8), doubles.
+     * Established: libGLcore.so `__glkonim_Vertex4d` stores 8 words after the
+     * token. Sent by libGLcore.so __glkonim_Vertex4d and Vertex4dv
+     * (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_VERTEX4D                     = 0x093,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x094; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex4f. */
 
-    /* `HP_VERTEX4F` (0x094). Route: routed by the host interface with no ARM
-     * code, map entry 0xd8674107: command 206, count field 4, single floats;
-     * distributor entry 0x0e3 at ged1b.u tstrip.s:304. Route: libGLcore.so
-     * `__glkonim_Vertex4f` stores 4 words after the token. */
+    /* `HP_VERTEX4F` (0x094). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 206, 4 components, float, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 4: 4
+     * components (x, y, z, w) as float values. Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0xd8674107:
+     * command 206, geometry form, count field 4 (bits 6-8), single floats.
+     * Established: libGLcore.so `__glkonim_Vertex4f` stores 4 words after the
+     * token. Sent by libGLcore.so __glkonim_Vertex4f and Vertex4fv
+     * (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_VERTEX4F                     = 0x094,
 
-    /* Engine handlers relocated into the span of distributor entry 0x193:
-     * `mgesi_LineStrip`. */
+    /* Read at icu_map.tsv 0x095; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex4i. */
 
-    /* `HP_VERTEX4I` (0x095). Route: routed by the host interface with no ARM
-     * code, map entry 0xd8274107: command 78, count field 4, single floats;
-     * distributor entry 0x193 at ged1b.u lineloop.s:193. Route: libGLcore.so
-     * `__glkonim_Vertex4i` stores 4 words after the token. */
+    /* `HP_VERTEX4I` (0x095). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 78, 4 components, integer, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 4: 4
+     * components (x, y, z, w) as integer values. Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0xd8274107:
+     * command 78, geometry form, count field 4 (bits 6-8), single floats.
+     * Established: libGLcore.so `__glkonim_Vertex4i` stores 4 words after the
+     * token. Sent by libGLcore.so __glkonim_Vertex4i and Vertex4iv
+     * (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_VERTEX4I                     = 0x095,
 
-    /* Engine handlers relocated into the span of distributor entry 0x193:
-     * `mgesi_LineStrip`. */
+    /* Read at icu_map.tsv 0x096; ged.md How an entry is chosen (k=14, vertex
+     * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
+     * __glkonim_Vertex4s. */
 
-    /* `HP_VERTEX4S` (0x096). Route: routed by the host interface with no ARM
-     * code, map entry 0xb8274107: command 78, count field 4, type 1;
-     * distributor entry 0x193 at ged1b.u lineloop.s:193. */
+    /* `HP_VERTEX4S` (0x096). Inferred: Submits a vertex. Routed vertex token
+     * (kind 3, command 78, 4 components, short, vertex flag set): outside
+     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
+     * inside, it runs the active class's vertex code at the state in r49,
+     * which queues the class handler (mgesi_*) for the engines. Payload 2: 4
+     * components (x, y, z, w) as short values; the first component packed
+     * into the upper 16 bits of the token word, the rest in the following
+     * words. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xb8274107: command 78, geometry form, count
+     * field 4 (bits 6-8), type 1. Sent by libGLcore.so __glkonim_Vertex4s and
+     * Vertex4sv (kon_cfuncs.s). */
     KONA_HP_VERTEX4S                     = 0x096,
 
-    /* `HP_MATERIALF` (0x097). Route: routed by the host interface with no ARM
-     * code, map entry 0xd8408187: command 129, count field 6, single floats;
-     * distributor entry 0x254 at ged1b.u qstrip.s:98. Route: libGLcore.so
-     * `__glkonim_Materialfv` stores 6 words after the token. */
+    /* Read at icu_map.tsv 0x097; ged_listing.txt material.s:6-8, 11-18 (r71 =
+     * slot 158); ge_listing/material.S.lst mgeb_Material; kon_cfuncs.s
+     * __glkonim_Materialfv. */
+
+    /* `HP_MATERIALF` (0x097). Inferred: Sets a material parameter from
+     * floats. Routed geometry token (kind 3, command 129, 6 words, entry 1):
+     * the distributor loads slot mgeb_Material into r71 and releases, so that
+     * engine handler (material.S) branches on face and parameter to update
+     * ambient, diffuse, shininess or the pushed material, or flags an invalid
+     * enum. Payload 6: face enum, parameter name enum, then four floats (the
+     * parameter values). Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0xd8408187: command 129, geometry
+     * form, count field 6 (bits 6-8), single floats. Established:
+     * libGLcore.so `__glkonim_Materialfv` stores 6 words after the token.
+     * Sent by libGLcore.so __glkonim_Materialfv (kon_cfuncs.s);
+     * __glkonim_Materialiv and kon_materiali.s convert integer data to floats
+     * and send this token too. */
     KONA_HP_MATERIALF                    = 0x097,
 
-    /* `HP_MATERIALF_cont` (0x098). Route: routed by the host interface with
-     * no ARM code, map entry 0xd84f8507: command 159, count field 20, single
-     * floats; distributor entry 0x2a1 at ged1b.u qstrip.s:256. */
+    /* Read at icu_map.tsv 0x098 (entry 0xd84f8507, bit 31 set, bits 6-8 = 4);
+     * ged_route.tsv 0x2a1 qstrip.s:256; ged.md count rule. */
+
+    /* `HP_MATERIALF_cont` (0x098). Inferred: Continuation of a material
+     * command. Routed geometry token (command 159, entry 31, 4 words, float,
+     * chain bit clear). Command 159 is shared with MATERIALI, the first half
+     * of the split form; the program entry is the shared fetch stub
+     * (qstrip.s:256) and the data words are taken in order. Payload 4: four
+     * values (the parameter values of a split material command); the map
+     * count reads as 4 (geometry entry, bits 6-8), not the 20 in icu_map.tsv.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xd84f8507: command 159, geometry form, count field 4
+     * (bits 6-8), single floats. No sender found: tokens.tsv lists 0 sites;
+     * searched libGLcore, ddx and kernel listings for token 152 (0x98) stores
+     * and found none. */
     KONA_HP_MATERIALF_cont               = 0x098,
 
-    /* `HP_MATERIALI` (0x099). Route: routed by the host interface with no ARM
-     * code, map entry 0xd84f808f: command 159, count field 2, single floats;
-     * distributor entry 0x2a1 at ged1b.u qstrip.s:256. */
+    /* Read at icu_map.tsv 0x099 (entry 0xd84f808f, chain bit 3 set, bits 6-8
+     * = 2) and 0x09a; ged.md count rule. */
+
+    /* `HP_MATERIALI` (0x099). Inferred: First half of an integer-material
+     * command. Routed geometry token (command 159, entry 31, 2 words, chain
+     * bit set): after these two words the chain bit moves to the next map
+     * entry, MATERIALI_cont, which takes four more words and runs the
+     * material code. Payload 2 (then 4 more from the chained entry): face
+     * enum and parameter name enum; the four values follow in the chained
+     * entry HP_MATERIALI_cont. Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0xd84f808f: command 159, geometry
+     * form, count field 2 (bits 6-8), single floats. No sender found:
+     * libGLcore __glkonim_Materialiv (kon_materiali.s) sends token 151
+     * (MATERIALF) with six words instead. */
     KONA_HP_MATERIALI                    = 0x099,
 
-    /* Engine handlers relocated into the span of distributor entry 0x016:
-     * `mgeb_Material`. */
+    /* Read at icu_map.tsv 0x09a (entry 0xd8008507); ged_banks.tsv k=1;
+     * ged_listing.txt material.s:11-18; ge_listing/material.S.lst
+     * mgeb_Material. */
 
-    /* `HP_MATERIALI_cont` (0x09a). Route: routed by the host interface with
-     * no ARM code, map entry 0xd8008507: command 1, count field 20, single
-     * floats; distributor entry 0x016 at ged1b.u material.s:11. */
+    /* `HP_MATERIALI_cont` (0x09a). Inferred: Second half of the
+     * integer-material command. Routed geometry token (command 1, entry 1, 4
+     * words): command 1 enters the shared material code (material.s:11) which
+     * loads slot mgeb_Material into r71, so the engine handler applies the
+     * two earlier words and these four values. Payload 4: the four parameter
+     * values following face and parameter name; the map count is 4 (geometry
+     * entry, bits 6-8), not the 20 in icu_map.tsv. Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0xd8008507:
+     * command 1, geometry form, count field 4 (bits 6-8), single floats. No
+     * sender found: no listing stores token 154 (0x9a); Materialiv sends
+     * token 151 instead. */
     KONA_HP_MATERIALI_cont               = 0x09a,
 
-    /* `HP_EVAL_COORD1D` (0x09b). Route: routed by the host interface with no
-     * ARM code, map entry 0x51e0006f: command 448, count field 1, single
-     * floats; distributor entry 0x1f1 at ged1b.u quad.s:22. */
+    /* Read at icu_map.tsv 0x09b (entry 0x51e0006f); ged.md register/pixel
+     * entries (register 0x28f); ged_listing.txt dist.s:23-26 (r69 =
+     * mges_EvalCoord); ge_handlers.md uevalcoord.s. */
+
+    /* `HP_EVAL_COORD1D` (0x09b). Inferred: Starts an evaluator coordinate or
+     * point command. Routed register-type token (command 448, count 1, chain
+     * bit set): the word goes to distributor register 0x28f and the chained
+     * _cont entry delivers the coordinates. Later vertex code is inferred to
+     * call mges_EvalCoord (uevalcoord.s). Payload 1: a dimension or count
+     * word (libGLcore sends 1 for a 1D call); the coordinates come in the
+     * chained entry. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x51e0006f: command 448, count field 1
+     * (bits 6-10, 0 read as 32), single floats. No sender found: tokens.tsv
+     * lists 0 sites; libGLcore sends only the float forms (tokens 157 and
+     * 161) and the EvalPoint host routines call the EvalCoord function
+     * pointer. */
     KONA_HP_EVAL_COORD1D                 = 0x09b,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27f:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x09c; ged_bound_table.tsv index 14
+     * (mges_NullCommand); ged_listing.txt dist.s:23-26; ge_handlers.md
+     * uevalcoord.s. */
 
-    /* `HP_EVAL_COORD1D_cont` (0x09c). Route: routed by the host interface
-     * with no ARM code, map entry 0xf8474087: command 142, count field 2,
-     * doubles; distributor entry 0x27f at ged1b.u qstrip.s:185. */
+    /* `HP_EVAL_COORD1D_cont` (0x09c). Inferred: Carries the evaluator
+     * coordinate. Routed geometry token (kind 3, command 142, entry 14, 2
+     * words, double): the data sits where the vertex path expects a vertex,
+     * and mges_EvalCoord, entered from the preceding register entry,
+     * evaluates the map at this coordinate. Payload 2: the coordinate value
+     * as double (2 words). Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0xf8474087: command 142, geometry
+     * form, count field 2 (bits 6-8), doubles. No sender found: tokens.tsv
+     * lists 0 sites; no libGLcore listing sends the double or point forms. */
     KONA_HP_EVAL_COORD1D_cont            = 0x09c,
 
-    /* `HP_EVAL_COORD1F` (0x09d). Route: routed by the host interface with no
-     * ARM code, map entry 0x51e0006f: command 448, count field 1, single
-     * floats; distributor entry 0x1f1 at ged1b.u quad.s:22. Route:
-     * libGLcore.so `__glKonEvalCoord1DGe11` stores 2 words after the token. */
+    /* Read at icu_map.tsv 0x09d (entry 0x51e0006f); ged.md register/pixel
+     * entries (register 0x28f); ged_listing.txt dist.s:23-26 (r69 =
+     * mges_EvalCoord); ge_handlers.md uevalcoord.s. */
+
+    /* `HP_EVAL_COORD1F` (0x09d). Inferred: Starts an evaluator coordinate or
+     * point command. Routed register-type token (command 448, count 1, chain
+     * bit set): the word goes to distributor register 0x28f and the chained
+     * _cont entry delivers the coordinates. Later vertex code is inferred to
+     * call mges_EvalCoord (uevalcoord.s). Payload 1: a dimension or count
+     * word (libGLcore sends 1 for a 1D call); the coordinates come in the
+     * chained entry. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x51e0006f: command 448, count field 1
+     * (bits 6-10, 0 read as 32), single floats. Established: libGLcore.so
+     * `__glKonEvalCoord1DGe11` stores 2 words after the token. Sent by
+     * libGLcore.so __glKonEvalCoord1DGe11 (kon_eval.s, token 157, then the
+     * count then one float). */
     KONA_HP_EVAL_COORD1F                 = 0x09d,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27f:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x09e; ged_bound_table.tsv index 14
+     * (mges_NullCommand); ged_listing.txt dist.s:23-26; ge_handlers.md
+     * uevalcoord.s. */
 
-    /* `HP_EVAL_COORD1F_cont` (0x09e). Route: routed by the host interface
-     * with no ARM code, map entry 0xd8474047: command 142, count field 1,
-     * single floats; distributor entry 0x27f at ged1b.u qstrip.s:185. */
+    /* `HP_EVAL_COORD1F_cont` (0x09e). Inferred: Carries the evaluator
+     * coordinate. Routed geometry token (kind 3, command 142, entry 14, 1
+     * word, float): the data sits where the vertex path expects a vertex, and
+     * mges_EvalCoord, entered from the preceding register entry, evaluates
+     * the map at this coordinate. Payload 1: the coordinate value as float (1
+     * word). Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xd8474047: command 142, geometry form, count
+     * field 1 (bits 6-8), single floats. Sent by libGLcore.so
+     * __glKonEvalCoord1DGe11 (kon_eval.s, the float stores after the count
+     * word). */
     KONA_HP_EVAL_COORD1F_cont            = 0x09e,
 
-    /* `HP_EVAL_COORD2D` (0x09f). Route: routed by the host interface with no
-     * ARM code, map entry 0x51e0006f: command 448, count field 1, single
-     * floats; distributor entry 0x1f1 at ged1b.u quad.s:22. */
+    /* Read at icu_map.tsv 0x09f (entry 0x51e0006f); ged.md register/pixel
+     * entries (register 0x28f); ged_listing.txt dist.s:23-26 (r69 =
+     * mges_EvalCoord); ge_handlers.md uevalcoord.s. */
+
+    /* `HP_EVAL_COORD2D` (0x09f). Inferred: Starts an evaluator coordinate or
+     * point command. Routed register-type token (command 448, count 1, chain
+     * bit set): the word goes to distributor register 0x28f and the chained
+     * _cont entry delivers the coordinates. Later vertex code is inferred to
+     * call mges_EvalCoord (uevalcoord.s). Payload 1: a dimension or count
+     * word (libGLcore sends 2 for a 2D call); the coordinates come in the
+     * chained entry. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x51e0006f: command 448, count field 1
+     * (bits 6-10, 0 read as 32), single floats. No sender found: tokens.tsv
+     * lists 0 sites; libGLcore sends only the float forms (tokens 157 and
+     * 161) and the EvalPoint host routines call the EvalCoord function
+     * pointer. */
     KONA_HP_EVAL_COORD2D                 = 0x09f,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27f:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x0a0; ged_bound_table.tsv index 14
+     * (mges_NullCommand); ged_listing.txt dist.s:23-26; ge_handlers.md
+     * uevalcoord.s. */
 
-    /* `HP_EVAL_COORD2D_cont` (0x0a0). Route: routed by the host interface
-     * with no ARM code, map entry 0xf8474107: command 142, count field 4,
-     * doubles; distributor entry 0x27f at ged1b.u qstrip.s:185. */
+    /* `HP_EVAL_COORD2D_cont` (0x0a0). Inferred: Carries the evaluator
+     * coordinate. Routed geometry token (kind 3, command 142, entry 14, 4
+     * words, double): the data sits where the vertex path expects a vertex,
+     * and mges_EvalCoord, entered from the preceding register entry,
+     * evaluates the map at this coordinate. Payload 4: the coordinate values
+     * as double (4 words). Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0xf8474107: command 142, geometry
+     * form, count field 4 (bits 6-8), doubles. No sender found: tokens.tsv
+     * lists 0 sites; no libGLcore listing sends the double or point forms. */
     KONA_HP_EVAL_COORD2D_cont            = 0x0a0,
 
-    /* `HP_EVAL_COORD2F` (0x0a1). Route: routed by the host interface with no
-     * ARM code, map entry 0x51e0006f: command 448, count field 1, single
-     * floats; distributor entry 0x1f1 at ged1b.u quad.s:22. Route:
-     * libGLcore.so `__glKonEvalCoord2DGe11` stores 3 words after the token. */
+    /* Read at icu_map.tsv 0x0a1 (entry 0x51e0006f); ged.md register/pixel
+     * entries (register 0x28f); ged_listing.txt dist.s:23-26 (r69 =
+     * mges_EvalCoord); ge_handlers.md uevalcoord.s. */
+
+    /* `HP_EVAL_COORD2F` (0x0a1). Inferred: Starts an evaluator coordinate or
+     * point command. Routed register-type token (command 448, count 1, chain
+     * bit set): the word goes to distributor register 0x28f and the chained
+     * _cont entry delivers the coordinates. Later vertex code is inferred to
+     * call mges_EvalCoord (uevalcoord.s). Payload 1: a dimension or count
+     * word (libGLcore sends 2 for a 2D call); the coordinates come in the
+     * chained entry. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x51e0006f: command 448, count field 1
+     * (bits 6-10, 0 read as 32), single floats. Established: libGLcore.so
+     * `__glKonEvalCoord2DGe11` stores 3 words after the token. Sent by
+     * libGLcore.so __glKonEvalCoord2DGe11 (kon_eval.s, token 161, then the
+     * count then two floats). */
     KONA_HP_EVAL_COORD2F                 = 0x0a1,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27f:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x0a2; ged_bound_table.tsv index 14
+     * (mges_NullCommand); ged_listing.txt dist.s:23-26; ge_handlers.md
+     * uevalcoord.s. */
 
-    /* `HP_EVAL_COORD2F_cont` (0x0a2). Route: routed by the host interface
-     * with no ARM code, map entry 0xd8474087: command 142, count field 2,
-     * single floats; distributor entry 0x27f at ged1b.u qstrip.s:185. */
+    /* `HP_EVAL_COORD2F_cont` (0x0a2). Inferred: Carries the evaluator
+     * coordinate. Routed geometry token (kind 3, command 142, entry 14, 2
+     * words, float): the data sits where the vertex path expects a vertex,
+     * and mges_EvalCoord, entered from the preceding register entry,
+     * evaluates the map at this coordinate. Payload 2: the coordinate values
+     * as float (2 words). Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0xd8474087: command 142, geometry
+     * form, count field 2 (bits 6-8), single floats. Sent by libGLcore.so
+     * __glKonEvalCoord2DGe11 (kon_eval.s, the float stores after the count
+     * word). */
     KONA_HP_EVAL_COORD2F_cont            = 0x0a2,
 
-    /* `HP_EVAL_POINT1` (0x0a3). Route: routed by the host interface with no
-     * ARM code, map entry 0x51e0006f: command 448, count field 1, single
-     * floats; distributor entry 0x1f1 at ged1b.u quad.s:22. */
+    /* Read at icu_map.tsv 0x0a3 (entry 0x51e0006f); ged.md register/pixel
+     * entries (register 0x28f); ged_listing.txt dist.s:23-26 (r69 =
+     * mges_EvalCoord); ge_handlers.md uevalcoord.s. */
+
+    /* `HP_EVAL_POINT1` (0x0a3). Inferred: Starts an evaluator coordinate or
+     * point command. Routed register-type token (command 448, count 1, chain
+     * bit set): the word goes to distributor register 0x28f and the chained
+     * _cont entry delivers the coordinates. Later vertex code is inferred to
+     * call mges_EvalCoord (uevalcoord.s). Payload 1: a dimension or count
+     * word (libGLcore sends 1 for a 1D call); the coordinates come in the
+     * chained entry. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x51e0006f: command 448, count field 1
+     * (bits 6-10, 0 read as 32), single floats. No sender found: tokens.tsv
+     * lists 0 sites; libGLcore sends only the float forms (tokens 157 and
+     * 161) and the EvalPoint host routines call the EvalCoord function
+     * pointer. */
     KONA_HP_EVAL_POINT1                  = 0x0a3,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27f:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x0a4; ged_bound_table.tsv index 14
+     * (mges_NullCommand); ged_listing.txt dist.s:23-26; ge_handlers.md
+     * uevalcoord.s. */
 
-    /* `HP_EVAL_POINT1_cont` (0x0a4). Route: routed by the host interface with
-     * no ARM code, map entry 0xd8474047: command 142, count field 1, single
-     * floats; distributor entry 0x27f at ged1b.u qstrip.s:185. */
+    /* `HP_EVAL_POINT1_cont` (0x0a4). Inferred: Carries the evaluator
+     * coordinate. Routed geometry token (kind 3, command 142, entry 14, 1
+     * word, float): the data sits where the vertex path expects a vertex, and
+     * mges_EvalCoord, entered from the preceding register entry, evaluates
+     * the map at this coordinate. Payload 1: the coordinate value as float (1
+     * word). Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xd8474047: command 142, geometry form, count
+     * field 1 (bits 6-8), single floats. No sender found: tokens.tsv lists 0
+     * sites; no libGLcore listing sends the double or point forms. */
     KONA_HP_EVAL_POINT1_cont             = 0x0a4,
 
-    /* `HP_EVAL_POINT2` (0x0a5). Route: routed by the host interface with no
-     * ARM code, map entry 0x51e0006f: command 448, count field 1, single
-     * floats; distributor entry 0x1f1 at ged1b.u quad.s:22. */
+    /* Read at icu_map.tsv 0x0a5 (entry 0x51e0006f); ged.md register/pixel
+     * entries (register 0x28f); ged_listing.txt dist.s:23-26 (r69 =
+     * mges_EvalCoord); ge_handlers.md uevalcoord.s. */
+
+    /* `HP_EVAL_POINT2` (0x0a5). Inferred: Starts an evaluator coordinate or
+     * point command. Routed register-type token (command 448, count 1, chain
+     * bit set): the word goes to distributor register 0x28f and the chained
+     * _cont entry delivers the coordinates. Later vertex code is inferred to
+     * call mges_EvalCoord (uevalcoord.s). Payload 1: a dimension or count
+     * word (libGLcore sends 2 for a 2D call); the coordinates come in the
+     * chained entry. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x51e0006f: command 448, count field 1
+     * (bits 6-10, 0 read as 32), single floats. No sender found: tokens.tsv
+     * lists 0 sites; libGLcore sends only the float forms (tokens 157 and
+     * 161) and the EvalPoint host routines call the EvalCoord function
+     * pointer. */
     KONA_HP_EVAL_POINT2                  = 0x0a5,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27f:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x0a6; ged_bound_table.tsv index 14
+     * (mges_NullCommand); ged_listing.txt dist.s:23-26; ge_handlers.md
+     * uevalcoord.s. */
 
-    /* `HP_EVAL_POINT2_cont` (0x0a6). Route: routed by the host interface with
-     * no ARM code, map entry 0xd8474087: command 142, count field 2, single
-     * floats; distributor entry 0x27f at ged1b.u qstrip.s:185. */
+    /* `HP_EVAL_POINT2_cont` (0x0a6). Inferred: Carries the evaluator
+     * coordinate. Routed geometry token (kind 3, command 142, entry 14, 2
+     * words, float): the data sits where the vertex path expects a vertex,
+     * and mges_EvalCoord, entered from the preceding register entry,
+     * evaluates the map at this coordinate. Payload 2: the coordinate values
+     * as float (2 words). Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0xd8474087: command 142, geometry
+     * form, count field 2 (bits 6-8), single floats. No sender found:
+     * tokens.tsv lists 0 sites; no libGLcore listing sends the double or
+     * point forms. */
     KONA_HP_EVAL_POINT2_cont             = 0x0a6,
 
-    /* `HP_EDGEFLAG` (0x0a7). Route: the token map runs `arm_edgeflag` at
-     * arm1.u 0x0c015c7c. Route: libGLcore.so `__glkonim_EdgeFlag` stores 1
-     * word after the token. */
+    /* Read at arm1.u arm_edgeflag 0x0c015c7c. */
+
+    /* `HP_EDGEFLAG` (0x0a7). Inferred: Sends all ones for a nonzero flag and
+     * zero otherwise through a routed-command descriptor (0x52000020),
+     * setting the current edge flag. Payload 1: Edge flag (nonzero true).
+     * Established: the token map runs `arm_edgeflag` at arm1.u 0x0c015c7c.
+     * Established: libGLcore.so `__glkonim_EdgeFlag` stores 1 word after the
+     * token. Sent by libGLcore.so __glkonim_EdgeFlag and __glkonim_EdgeFlagv
+     * (kon_cfuncs.s, kon_sfuncs.s). */
     KONA_HP_EDGEFLAG                     = 0x0a7,
 
-    /* `HP_RASTERPOS2D` (0x0a8). Route: the token map runs `arm_rasterpos2d`
-     * at arm1.u 0x0c035cf4. Route: libGLcore.so `__glkonim_RasterPos2d`
-     * stores 4 words after the token. */
+    /* Read at arm1.u arm_rasterpos2d 0x0c035cf4; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS2D` (0x0a8). Inferred: Pops 4 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 211 (geometry form, double), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90).
+     * Payload 4: glRasterPos2d coordinates: 2 doubles (each double is two
+     * words, high word first). Established: the token map runs
+     * `arm_rasterpos2d` at arm1.u 0x0c035cf4. Established: libGLcore.so
+     * `__glkonim_RasterPos2d` stores 4 words after the token. Sent by
+     * libGLcore.so __glkonim_RasterPos2d (kon_cfuncs.s), 2dv form in
+     * kon_sfuncs.s, list compiler __glkonlc_RasterPos2d(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS2D                  = 0x0a8,
 
-    /* `HP_RASTERPOS2F` (0x0a9). Route: the token map runs `arm_rasterpos2f`
-     * at arm1.u 0x0c035d74. Route: libGLcore.so `__glkonim_RasterPos2f`
-     * stores 2 words after the token. */
+    /* Read at arm1.u arm_rasterpos2f 0x0c035d74; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS2F` (0x0a9). Inferred: Pops 2 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 211 (geometry form, float), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90).
+     * Payload 2: glRasterPos2f coordinates: 2 floats. Established: the token
+     * map runs `arm_rasterpos2f` at arm1.u 0x0c035d74. Established:
+     * libGLcore.so `__glkonim_RasterPos2f` stores 2 words after the token.
+     * Sent by libGLcore.so __glkonim_RasterPos2f (kon_cfuncs.s), 2fv form in
+     * kon_sfuncs.s, list compiler __glkonlc_RasterPos2f(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS2F                  = 0x0a9,
 
-    /* `HP_RASTERPOS2I` (0x0aa). Route: the token map runs `arm_rasterpos2i`
-     * at arm1.u 0x0c035de0. Route: libGLcore.so `__glkonim_RasterPos2i`
-     * stores 2 words after the token. */
+    /* Read at arm1.u arm_rasterpos2i 0x0c035de0; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS2I` (0x0aa). Inferred: Pops 2 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 83 (geometry form, int), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90).
+     * Payload 2: glRasterPos2i coordinates: 2 ints. Established: the token
+     * map runs `arm_rasterpos2i` at arm1.u 0x0c035de0. Established:
+     * libGLcore.so `__glkonim_RasterPos2i` stores 2 words after the token.
+     * Sent by libGLcore.so __glkonim_RasterPos2i (kon_cfuncs.s), 2iv form in
+     * kon_sfuncs.s, list compiler __glkonlc_RasterPos2i(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS2I                  = 0x0aa,
 
-    /* `HP_RASTERPOS2S` (0x0ab). Route: the token map runs `arm_rasterpos2s`
-     * at arm1.u 0x0c035e4c. Route: libGLcore.so `__glkonim_RasterPos2s`
-     * stores 2 words after the token. */
+    /* Read at arm1.u arm_rasterpos2s 0x0c035e4c; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS2S` (0x0ab). Inferred: Pops 2 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 83 (geometry form, short), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90). For
+     * shorts it also writes 1 through descriptor 0x06400020 first, and 0
+     * afterwards when bit 6 of the byte at r8+0xcf0 is set. Payload 2:
+     * glRasterPos2s coordinates: 2 shorts as full words (shorts arrive
+     * sign-extended). Established: the token map runs `arm_rasterpos2s` at
+     * arm1.u 0x0c035e4c. Established: libGLcore.so `__glkonim_RasterPos2s`
+     * stores 2 words after the token. Sent by libGLcore.so
+     * __glkonim_RasterPos2s (kon_cfuncs.s), 2sv form in kon_sfuncs.s, list
+     * compiler __glkonlc_RasterPos2s(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS2S                  = 0x0ab,
 
-    /* `HP_RASTERPOS3D` (0x0ac). Route: the token map runs `arm_rasterpos3d`
-     * at arm1.u 0x0c035ee0. Route: libGLcore.so `__glkonim_RasterPos3d`
-     * stores 6 words after the token. */
+    /* Read at arm1.u arm_rasterpos3d 0x0c035ee0; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS3D` (0x0ac). Inferred: Pops 6 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 211 (geometry form, double), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90).
+     * Payload 6: glRasterPos3d coordinates: 3 doubles (each double is two
+     * words, high word first). Established: the token map runs
+     * `arm_rasterpos3d` at arm1.u 0x0c035ee0. Established: libGLcore.so
+     * `__glkonim_RasterPos3d` stores 6 words after the token. Sent by
+     * libGLcore.so __glkonim_RasterPos3d (kon_cfuncs.s), 3dv form in
+     * kon_sfuncs.s, list compiler __glkonlc_RasterPos3d(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS3D                  = 0x0ac,
 
-    /* `HP_RASTERPOS3F` (0x0ad). Route: the token map runs `arm_rasterpos3f`
-     * at arm1.u 0x0c035f78. Route: libGLcore.so `__glkonim_RasterPos3f`
-     * stores 3 words after the token. */
+    /* Read at arm1.u arm_rasterpos3f 0x0c035f78; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS3F` (0x0ad). Inferred: Pops 3 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 211 (geometry form, float), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90).
+     * Payload 3: glRasterPos3f coordinates: 3 floats. Established: the token
+     * map runs `arm_rasterpos3f` at arm1.u 0x0c035f78. Established:
+     * libGLcore.so `__glkonim_RasterPos3f` stores 3 words after the token.
+     * Sent by libGLcore.so __glkonim_RasterPos3f (kon_cfuncs.s), 3fv form in
+     * kon_sfuncs.s, list compiler __glkonlc_RasterPos3f(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS3F                  = 0x0ad,
 
-    /* `HP_RASTERPOS3I` (0x0ae). Route: the token map runs `arm_rasterpos3i`
-     * at arm1.u 0x0c035fec. Route: libGLcore.so `__glkonim_RasterPos3i`
-     * stores 3 words after the token. */
+    /* Read at arm1.u arm_rasterpos3i 0x0c035fec; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS3I` (0x0ae). Inferred: Pops 3 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 83 (geometry form, int), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90).
+     * Payload 3: glRasterPos3i coordinates: 3 ints. Established: the token
+     * map runs `arm_rasterpos3i` at arm1.u 0x0c035fec. Established:
+     * libGLcore.so `__glkonim_RasterPos3i` stores 3 words after the token.
+     * Sent by libGLcore.so __glkonim_RasterPos3i (kon_cfuncs.s), 3iv form in
+     * kon_sfuncs.s, list compiler __glkonlc_RasterPos3i(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS3I                  = 0x0ae,
 
-    /* `HP_RASTERPOS3S` (0x0af). Route: the token map runs `arm_rasterpos3s`
-     * at arm1.u 0x0c036060. Route: libGLcore.so `__glkonim_RasterPos3s`
-     * stores 3 words after the token. */
+    /* Read at arm1.u arm_rasterpos3s 0x0c036060; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS3S` (0x0af). Inferred: Pops 3 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 83 (geometry form, short), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90). For
+     * shorts it also writes 1 through descriptor 0x06400020 first, and 0
+     * afterwards when bit 6 of the byte at r8+0xcf0 is set. Payload 3:
+     * glRasterPos3s coordinates: 3 shorts as full words (shorts arrive
+     * sign-extended). Established: the token map runs `arm_rasterpos3s` at
+     * arm1.u 0x0c036060. Established: libGLcore.so `__glkonim_RasterPos3s`
+     * stores 3 words after the token. Sent by libGLcore.so
+     * __glkonim_RasterPos3s (kon_cfuncs.s), 3sv form in kon_sfuncs.s, list
+     * compiler __glkonlc_RasterPos3s(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS3S                  = 0x0af,
 
-    /* `HP_RASTERPOS4D` (0x0b0). Route: the token map runs `arm_rasterpos4d`
-     * at arm1.u 0x0c0360fc. Route: libGLcore.so `__glkonim_RasterPos4d`
-     * stores 8 words after the token. */
+    /* Read at arm1.u arm_rasterpos4d 0x0c0360fc; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS4D` (0x0b0). Inferred: Pops 8 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 211 (geometry form, double), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90).
+     * Payload 8: glRasterPos4d coordinates: 4 doubles (each double is two
+     * words, high word first). Established: the token map runs
+     * `arm_rasterpos4d` at arm1.u 0x0c0360fc. Established: libGLcore.so
+     * `__glkonim_RasterPos4d` stores 8 words after the token. Sent by
+     * libGLcore.so __glkonim_RasterPos4d (kon_cfuncs.s), 4dv form in
+     * kon_sfuncs.s, list compiler __glkonlc_RasterPos4d(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS4D                  = 0x0b0,
 
-    /* `HP_RASTERPOS4F` (0x0b1). Route: the token map runs `arm_rasterpos4f`
-     * at arm1.u 0x0c0361b4. Route: libGLcore.so `__glkonim_RasterPos4f`
-     * stores 4 words after the token. */
+    /* Read at arm1.u arm_rasterpos4f 0x0c0361b4; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS4F` (0x0b1). Inferred: Pops 4 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 211 (geometry form, float), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90).
+     * Payload 4: glRasterPos4f coordinates: 4 floats. Established: the token
+     * map runs `arm_rasterpos4f` at arm1.u 0x0c0361b4. Established:
+     * libGLcore.so `__glkonim_RasterPos4f` stores 4 words after the token.
+     * Sent by libGLcore.so __glkonim_RasterPos4f (kon_cfuncs.s), 4fv form in
+     * kon_sfuncs.s, list compiler __glkonlc_RasterPos4f(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS4F                  = 0x0b1,
 
-    /* `HP_RASTERPOS4I` (0x0b2). Route: the token map runs `arm_rasterpos4i`
-     * at arm1.u 0x0c036230. Route: libGLcore.so `__glkonim_RasterPos4i`
-     * stores 4 words after the token. */
+    /* Read at arm1.u arm_rasterpos4i 0x0c036230; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS4I` (0x0b2). Inferred: Pops 4 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 83 (geometry form, int), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90).
+     * Payload 4: glRasterPos4i coordinates: 4 ints. Established: the token
+     * map runs `arm_rasterpos4i` at arm1.u 0x0c036230. Established:
+     * libGLcore.so `__glkonim_RasterPos4i` stores 4 words after the token.
+     * Sent by libGLcore.so __glkonim_RasterPos4i (kon_cfuncs.s), 4iv form in
+     * kon_sfuncs.s, list compiler __glkonlc_RasterPos4i(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS4I                  = 0x0b2,
 
-    /* `HP_RASTERPOS4S` (0x0b3). Route: the token map runs `arm_rasterpos4s`
-     * at arm1.u 0x0c0362ac. Route: libGLcore.so `__glkonim_RasterPos4s`
-     * stores 4 words after the token. */
+    /* Read at arm1.u arm_rasterpos4s 0x0c0362ac; set_ged_xfer_mask
+     * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
+
+    /* `HP_RASTERPOS4S` (0x0b3). Inferred: Pops 4 words, sends a filler word
+     * 0x12121212 in pass form, sets the distributor transfer mask to the
+     * raster-position mask (r8+0xc94), injects the coordinates as hardware
+     * command 83 (geometry form, short), brackets it with writes through
+     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90). For
+     * shorts it also writes 1 through descriptor 0x06400020 first, and 0
+     * afterwards when bit 6 of the byte at r8+0xcf0 is set. Payload 4:
+     * glRasterPos4s coordinates: 4 shorts as full words (shorts arrive
+     * sign-extended). Established: the token map runs `arm_rasterpos4s` at
+     * arm1.u 0x0c0362ac. Established: libGLcore.so `__glkonim_RasterPos4s`
+     * stores 4 words after the token. Sent by libGLcore.so
+     * __glkonim_RasterPos4s (kon_cfuncs.s), 4sv form in kon_sfuncs.s, list
+     * compiler __glkonlc_RasterPos4s(v) (kon_cdlfuncs.s). */
     KONA_HP_RASTERPOS4S                  = 0x0b3,
 
     /* Engine handlers whose slots the code of `arm_clipplane` loads, in
-     * order: `mgeb_UserClipPlane`. */
+     * order: `mgeb_UserClipPlane`. Read at arm1.u arm_clipplane 0x0c018cc0
+     * (slot 89 mgeb_UserClipPlane). */
 
-    /* `HP_CLIPPLANE` (0x0b4). Route: the token map runs `arm_clipplane` at
-     * arm1.u 0x0c018cc0. */
+    /* `HP_CLIPPLANE` (0x0b4). Established: Sends the plane number to the data
+     * port on engine select 10, then the eight equation words through routed
+     * descriptor 0x78601000, and finally starts mgeb_UserClipPlane on all
+     * engines through port 0x4f8. Does no validation of its own. Payload 9:
+     * Clip plane number (0x3000-0x3005) followed by the plane equation as
+     * four doubles (eight words). Established: the token map runs
+     * `arm_clipplane` at arm1.u 0x0c018cc0. Sent by libGLcore.so
+     * __glkonim_ClipPlane (kon_cfuncs.s): token 180, plane enum, four
+     * doubles; emitter range-checks 0x3000-0x3005. */
     KONA_HP_CLIPPLANE                    = 0x0b4,
 
-    /* `HP_COLORMATERIAL` (0x0b5). Route: the token map runs
-     * `arm_colormaterial` at arm1.u 0x0c016c70. Route: libGLcore.so
-     * `__glkonim_ColorMaterial` stores 2 words after the token. */
+    /* Read at arm1.u arm_colormaterial 0x0c016c70; colormaterial_front
+     * 0x0c016ce4, colormaterial_back 0x0c016d7c, colormaterial_frontback
+     * 0x0c016e08; set_ged_xfer_mask 0x0c012ba8. */
+
+    /* `HP_COLORMATERIAL` (0x0b5). Inferred: Validates face and mode
+     * (invalid-enum otherwise), stores both in the shadow, changes the
+     * distributor transfer masks and writes two descriptor words, then starts
+     * mgeb_LiClrMtrlFront, Back or FrontBack with the mode as operand.
+     * Payload 2: Face (0x404 front, 0x405 back, 0x408 front and back) and
+     * material mode (0x1200 ambient, 0x1201 diffuse, 0x1202 specular, 0x1600
+     * emission, 0x1602 ambient and diffuse). Established: the token map runs
+     * `arm_colormaterial` at arm1.u 0x0c016c70. Established: libGLcore.so
+     * `__glkonim_ColorMaterial` stores 2 words after the token. Sent by
+     * libGLcore.so __glkonim_ColorMaterial (kon_cfuncs.s). */
     KONA_HP_COLORMATERIAL                = 0x0b5,
 
     /* Engine handlers whose slots the code of `arm_cullface` loads, in order:
-     * `mgeb_CullFace`. */
+     * `mgeb_CullFace`. Read at arm1.u arm_cullface 0x0c015544 (slot 3
+     * mgeb_CullFace, operand on port 0x478). */
 
-    /* `HP_CULLFACE` (0x0b6). Route: the token map runs `arm_cullface` at
-     * arm1.u 0x0c015544. */
+    /* `HP_CULLFACE` (0x0b6). Established: Keeps the value at r8+0x258 and
+     * starts mgeb_CullFace with the value as operand. The ARM does no
+     * validation; whether culling is on is controlled by the enable routine.
+     * Payload 1: Face to cull (GL enum). Established: the token map runs
+     * `arm_cullface` at arm1.u 0x0c015544. Sent by libGLcore.so
+     * __glkonim_CullFace (kon_cfuncs.s, token 182). */
     KONA_HP_CULLFACE                     = 0x0b6,
 
-    /* `HP_FOGF` (0x0b7). Route: routed by the host interface with no ARM
-     * code, map entry 0x5840d141: command 129, count field 5, single floats;
-     * engine handler `mgeb_Fogf` (index 1 of the handler table). */
+    /* Read at icu_map.tsv 0x0b7; ged_bound_table.tsv index 1;
+     * ge_listing/fog.S.lst mgeb_Fogf (imm values 0xb61-0xb66,
+     * 0x8199); kon_cfuncs.s __glkonim_Fogf .L0da65e88. */
+
+    /* `HP_FOGF` (0x0b7). Inferred: Sets one fog parameter from a float.
+     * Routed pass token (command 129, 5 words, float). Command 129 selects
+     * handler table index 1, mgeb_Fogf (fog.S, 211 words), which checks the
+     * name (index, density, start, end, mode, colour or offset), updates the
+     * fog state and rebuilds the fog table. Payload 5: fog parameter name
+     * (enum), one float value, then three zero words. Established: routed by
+     * the host interface with no ARM code, arm1.u token-map entry 0x5840d141:
+     * command 129, count field 5 (bits 6-10, 0 read as 32), single floats;
+     * engine handler `mgeb_Fogf` (index 1 of the handler table). Sent by
+     * libGLcore.so __glkonim_Fogf and __glkonim_Fogfv (kon_cfuncs.s, token
+     * 183; Fogfv sends the parameter name then four floats). */
     KONA_HP_FOGF                         = 0x0b7,
 
-    /* `HP_FOGI` (0x0b8). Route: routed by the host interface with no ARM
-     * code, map entry 0x58401049: command 128, count field 1, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x0b8 (entry 0x58401049, chain bit set) and 0x0b9;
+     * ged_bound_table.tsv index 0; kon_cfuncs.s __glkonim_Fogi. */
+
+    /* `HP_FOGI` (0x0b8). Inferred: First part of an integer fog command.
+     * Routed pass token (command 128, 1 word, chain bit set): the parameter
+     * name enters through handler table index 0 (mgesi_BshRegisterWrite) and
+     * the chained FOGI_cont entry then runs mgeb_Fogi with the value. Payload
+     * 1 (plus 4 in the chained entry): fog parameter name (enum); the value
+     * and padding follow in HP_FOGI_cont. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0x58401049: command
+     * 128, count field 1 (bits 6-10, 0 read as 32), single floats. Sent by
+     * libGLcore.so __glkonim_Fogi and __glkonim_Fogiv (kon_cfuncs.s, token
+     * 184). */
     KONA_HP_FOGI                         = 0x0b8,
 
-    /* `HP_FOGI_cont` (0x0b9). Route: routed by the host interface with no ARM
-     * code, map entry 0x58015101: command 2, count field 4, single floats;
-     * engine handler `mgeb_Fogi` (index 2 of the handler table). */
+    /* Read at icu_map.tsv 0x0b9; ged_bound_table.tsv index 2;
+     * ge_listing/fog.S.lst mgeb_Fogi (transfer to mgeb_Fogf at 0x6fa9);
+     * ge_isa.md Transfers. */
+
+    /* `HP_FOGI_cont` (0x0b9). Inferred: Second part of the integer fog
+     * command. Routed pass token (command 2, 4 words): handler table index 2
+     * holds mgeb_Fogi, which converts the integer value and jumps to the
+     * float handler mgeb_Fogf with the same state update and fog-table
+     * rebuild. Payload 4: the integer value then three zero words (Fogiv:
+     * four integer values). Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0x58015101: command 2, count field 4
+     * (bits 6-10, 0 read as 32), single floats; engine handler `mgeb_Fogi`
+     * (index 2 of the handler table). Sent by libGLcore.so __glkonim_Fogi,
+     * __glkonim_Fogiv (kon_cfuncs.s: the words after the parameter name). */
     KONA_HP_FOGI_cont                    = 0x0b9,
 
     /* Engine handlers whose slots the code of `arm_frontface` loads, in
-     * order: `mgeb_FrontFace`. */
+     * order: `mgeb_FrontFace`. Read at arm1.u arm_frontface 0x0c015524 (slot
+     * 15 mgeb_FrontFace, port 0x478). */
 
-    /* `HP_FRONTFACE` (0x0ba). Route: the token map runs `arm_frontface` at
-     * arm1.u 0x0c015524. */
+    /* `HP_FRONTFACE` (0x0ba). Established: Keeps the value at r8+0x25c and
+     * starts mgeb_FrontFace with it as operand; no validation in the ARM.
+     * Payload 1: Winding order enum (clockwise or counter-clockwise).
+     * Established: the token map runs `arm_frontface` at arm1.u 0x0c015524.
+     * Sent by libGLcore.so __glkonim_FrontFace (kon_cfuncs.s, token 186). */
     KONA_HP_FRONTFACE                    = 0x0ba,
 
-    /* `HP_HINT` (0x0bb). Route: the token map runs `arm_hint` at arm1.u
-     * 0x0c016468. */
+    /* Read at arm1.u arm_hint 0x0c016468 (r8+0x7ec,
+     * 0x7f0 with ResolvePoint, 0x7f4 with ResolveLine, 0x7f8,
+     * 0x7fc). */
+
+    /* `HP_HINT` (0x0bb). Established: Stores the mode in one of five shadow
+     * words by target. Line and point smoothing hints also re-derive the line
+     * or point drawing setup; other targets send nothing. Other targets raise
+     * invalid-enum. Payload 2: Hint target (0xc50 perspective correction,
+     * 0xc51 point smooth, 0xc52 line smooth, 0xc53 polygon smooth, 0xc54 fog)
+     * and mode. Established: the token map runs `arm_hint` at arm1.u
+     * 0x0c016468. Sent by libGLcore.so __glkonim_Hint (kon_cfuncs.s, token
+     * 187). */
     KONA_HP_HINT                         = 0x0bb,
 
     /* Engine handlers whose slots the code of `arm_linestipple` loads, in
-     * order: `mgeb_LineStipple`. */
+     * order: `mgeb_LineStipple`. Read at arm1.u arm_linestipple 0x0c015ca0
+     * (slot 40 mgeb_LineStipple, select 0x438; ResolveLine 0x0c016024). */
 
-    /* `HP_LINESTIPPLE` (0x0bc). Route: the token map runs `arm_linestipple`
-     * at arm1.u 0x0c015ca0. Route: libGLcore.so `__glkonim_LineStipple`
-     * stores 2 words after the token. */
+    /* `HP_LINESTIPPLE` (0x0bc). Established: Keeps both, turns the pattern
+     * into a run list of on and off lengths (up to eight pairs), sends factor
+     * and runs to all engines and starts mgeb_LineStipple; a solid 0xffff
+     * pattern skips the engine send. Always re-derives the line setup.
+     * Payload 2: Repeat factor and 16-bit pattern. Established: the token map
+     * runs `arm_linestipple` at arm1.u 0x0c015ca0. Established: libGLcore.so
+     * `__glkonim_LineStipple` stores 2 words after the token. Sent by
+     * libGLcore.so __glkonim_LineStipple (kon_cfuncs.s). */
     KONA_HP_LINESTIPPLE                  = 0x0bc,
 
-    /* `HP_LINEWIDTH` (0x0bd). Route: the token map runs `arm_linewidth` at
-     * arm1.u 0x0c015a14. */
+    /* Read at arm1.u arm_linewidth 0x0c015a14 (r8+0x240 width, r8+0x244
+     * second word; ResolveLine). */
+
+    /* `HP_LINEWIDTH` (0x0bd). Established: Stores both words in the shadow
+     * and re-derives line drawing with ResolveLine. Nothing is sent from the
+     * handler itself. Payload 2: Line width as a float, then a constant 32.0
+     * appended by the emitter. Established: the token map runs
+     * `arm_linewidth` at arm1.u 0x0c015a14. Sent by libGLcore.so
+     * __glkonim_LineWidth (kon_modes.s): token 189 then width then literal
+     * 0x42000000. */
     KONA_HP_LINEWIDTH                    = 0x0bd,
 
-    /* `HP_POINTSIZE` (0x0be). Route: the token map runs `arm_pointsize` at
-     * arm1.u 0x0c015a00. */
+    /* Read at arm1.u arm_pointsize 0x0c015a00 (r8+0x220, r8+0x224;
+     * ResolvePoint 0x0c016240). */
+
+    /* `HP_POINTSIZE` (0x0be). Established: Stores both words in the shadow
+     * and re-derives point drawing with ResolvePoint. Nothing is sent by the
+     * handler directly. Payload 2: Point size as a float, then a constant
+     * 22.0 appended by the emitter. Established: the token map runs
+     * `arm_pointsize` at arm1.u 0x0c015a00. Sent by libGLcore.so
+     * __glkonim_PointSize (kon_modes.s): token 190, size, literal 0x41b00000. */
     KONA_HP_POINTSIZE                    = 0x0be,
 
-    /* `HP_POLYGONMODE` (0x0bf). Route: the token map runs `arm_polygonmode`
-     * at arm1.u 0x0c015598. */
+    /* Read at arm1.u arm_polygonmode 0x0c015598 (r8+0x250 front, r8+0x254
+     * back; descriptor 0x49a00020; ResolvePolygon 0x0c015e8c). */
+
+    /* `HP_POLYGONMODE` (0x0bf). Inferred: Stores the mode in the front or
+     * back shadow word, writes a flag to a routed descriptor (1 when the mode
+     * is line, else 0), clears a second data word and re-derives polygon
+     * drawing with ResolvePolygon. Payload 2: Face (0x404 front, 0x405 back,
+     * 0x408 both) and mode (0x1b00 point, 0x1b01 line, 0x1b02 fill).
+     * Established: the token map runs `arm_polygonmode` at arm1.u 0x0c015598.
+     * Sent by libGLcore.so __glkonim_PolygonMode (kon_cfuncs.s, token 191). */
     KONA_HP_POLYGONMODE                  = 0x0bf,
 
     /* Engine handlers whose slots the code of `arm_shademodel` loads, in
-     * order: `mgebi_ShadeModel`. */
+     * order: `mgebi_ShadeModel`. Read at arm1.u arm_shademodel 0x0c016ab8
+     * (slot 99, port 0x47c). */
 
-    /* `HP_SHADEMODEL` (0x0c0). Route: the token map runs `arm_shademodel` at
-     * arm1.u 0x0c016ab8. Route: libGLcore.so `__glkonim_ShadeModel` stores 1
-     * word after the token. */
+    /* `HP_SHADEMODEL` (0x0c0). Established: Raises invalid-enum for other
+     * values; otherwise keeps it at r8+0x378 and starts mgebi_ShadeModel with
+     * the value as operand. Payload 1: Shading model (0x1d00 flat, 0x1d01
+     * smooth). Established: the token map runs `arm_shademodel` at arm1.u
+     * 0x0c016ab8. Established: libGLcore.so `__glkonim_ShadeModel` stores 1
+     * word after the token. Sent by libGLcore.so __glkonim_ShadeModel
+     * (kon_cfuncs.s). */
     KONA_HP_SHADEMODEL                   = 0x0c0,
 
     /* Engine handlers whose slots the code of `arm_passthrough` loads, in
-     * order: `mgesi_PassThrough`. */
+     * order: `mgesi_PassThrough`. Read at arm1.u arm_passthrough 0x0c038930;
+     * ge.u mgesi_PassThrough. */
 
-    /* `HP_PASSTHROUGH` (0x0c1). Route: the token map runs `arm_passthrough`
-     * at arm1.u 0x0c038930. Route: libGLcore.so `__glkonim_PassThrough`
-     * stores 1 word after the token. */
+    /* `HP_PASSTHROUGH` (0x0c1). Established: Only in feedback mode (0x1c01):
+     * sends the word to the next engine (port 0x434) then engine PassThrough
+     * (slot 211), which puts a pass-through token into the feedback stream.
+     * In other modes the word is read and dropped. Payload 1: float marker
+     * value from glPassThrough. Established: the token map runs
+     * `arm_passthrough` at arm1.u 0x0c038930. Established: libGLcore.so
+     * `__glkonim_PassThrough` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_PassThrough (kon_cfuncs.s) stores token 193 then
+     * the float. */
     KONA_HP_PASSTHROUGH                  = 0x0c1,
 
     /* Engine handlers whose slots the code of `arm_popname` loads, in order:
-     * `mgeb_PopName`. */
+     * `mgeb_PopName`. Read at arm1.u arm_popname 0x0c038900; ge.u
+     * mgeb_PopName. */
 
-    /* `HP_POPNAME` (0x0c2). Route: the token map runs `arm_popname` at arm1.u
-     * 0x0c038900. Route: libGLcore.so `__glkonim_PopName` stores 1 word after
-     * the token. */
+    /* `HP_POPNAME` (0x0c2). Established: Only in select mode (0x1c02): sends
+     * PopName (slot 167) to all engines (port 0x438). Otherwise nothing is
+     * sent. Payload 1 (zero, read and dropped): dummy zero. Established: the
+     * token map runs `arm_popname` at arm1.u 0x0c038900. Established:
+     * libGLcore.so `__glkonim_PopName` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_PopName (kon_cfuncs.s) stores token 194 then a
+     * word. */
     KONA_HP_POPNAME                      = 0x0c2,
 
     /* Engine handlers whose slots the code of `arm_pushname` loads, in order:
-     * `mgeb_PushName`. */
+     * `mgeb_PushName`. Read at arm1.u arm_pushname 0x0c0388cc; ge.u
+     * mgeb_PushName. */
 
-    /* `HP_PUSHNAME` (0x0c3). Route: the token map runs `arm_pushname` at
-     * arm1.u 0x0c0388cc. Route: libGLcore.so `__glkonim_PushName` stores 1
-     * word after the token. */
+    /* `HP_PUSHNAME` (0x0c3). Established: Only in select mode: sends the name
+     * to all engines (port 0x438, data 0x840) and runs PushName (slot 168).
+     * Otherwise it is dropped. Payload 1: name integer from glPushName.
+     * Established: the token map runs `arm_pushname` at arm1.u 0x0c0388cc.
+     * Established: libGLcore.so `__glkonim_PushName` stores 1 word after the
+     * token. Sent by libGLcore.so __glkonim_PushName (kon_cfuncs.s). */
     KONA_HP_PUSHNAME                     = 0x0c3,
 
-    /* `HP_DRAWBUFFER` (0x0c4). Route: the token map runs `arm_drawbuffer` at
-     * arm1.u 0x0c013a60. Route: libGLcore.so `__glkonim_DrawBuffer` stores 1
-     * word after the token. */
+    /* Read at arm1.u arm_drawbuffer 0x0c013a60 (r8+0x7e4, r8+0x1f5; address
+     * word 0x013b1c0b = IMP_ADDR, select 0x3f; resolve_banks). */
+
+    /* `HP_DRAWBUFFER` (0x0c4). Inferred: Rejects buffers the framebuffer
+     * lacks with invalid-operation (back needs double buffer, right needs
+     * stereo, auxiliary needs enough aux buffers) and unrecognised values
+     * with invalid-enum. Otherwise builds a bank bit mask, stores the enum
+     * and mask, writes the colour base of the address register and
+     * re-resolves banks. Payload 1: GL draw buffer enum (none, front/back
+     * left/right, front, back, left, right, front and back, auxiliary).
+     * Established: the token map runs `arm_drawbuffer` at arm1.u 0x0c013a60.
+     * Established: libGLcore.so `__glkonim_DrawBuffer` stores 1 word after
+     * the token. Sent by libGLcore.so __glkonim_DrawBuffer (kon_cfuncs.s). */
     KONA_HP_DRAWBUFFER                   = 0x0c4,
 
-    /* `HP_ACCUM` (0x0c5). Route: the token map runs `arm_accum` at arm1.u
-     * 0x0c037dd0. Route: libGLcore.so `__glkonim_Accum` stores 2 words after
-     * the token. */
+    /* Read at arm1.u arm_accum 0x0c037dd0 (slots 337 mgesi_Accum and 434
+     * mgesi_Accum32 by accumulation size byte r8+0x1d4 == 0x20; generate_rect
+     * 0x0c037fb8). */
+
+    /* `HP_ACCUM` (0x0c5). Established: Raises invalid-operation without an
+     * accumulation buffer and invalid-enum for other operations; skipped
+     * unless render mode is 0x1c00. Sets up the raster registers and sends
+     * mgesi_Accum (or the 32-bit variant) with operation and value, then
+     * generates the covering rectangle. Payload 2: Operation (0x100
+     * accumulate, 0x101 load, 0x102 return, 0x103 multiply, 0x104 add) and a
+     * float value. Established: the token map runs `arm_accum` at arm1.u
+     * 0x0c037dd0. Established: libGLcore.so `__glkonim_Accum` stores 2 words
+     * after the token. Sent by libGLcore.so __glkonim_Accum (kon_cfuncs.s,
+     * token 197). */
     KONA_HP_ACCUM                        = 0x0c5,
 
     /* Engine handlers whose slots the code of `arm_finish` loads, in order:
-     * `mgesi_FlushRM`. */
+     * `mgesi_FlushRM`. Read at arm1.u arm_finish 0x0c014040 (slot 399
+     * mgesi_FlushRM via port 0x4f4; start_rdata 0x0c0224d4, finish_rdata
+     * 0x0c02255c). */
 
-    /* `HP_FINISH` (0x0c6). Route: the token map runs `arm_finish` at arm1.u
-     * 0x0c014040. */
+    /* `HP_FINISH` (0x0c6). Inferred: Starts mgesi_FlushRM on all engines. If
+     * the flag is nonzero it then runs start_rdata and finish_rdata back to
+     * back, which sets up and tears down the read-back path the emitter waits
+     * on. Payload 1 (emitter sends 1): Wait flag, nonzero to request a
+     * completion read-back. Established: the token map runs `arm_finish` at
+     * arm1.u 0x0c014040. Sent by libGLcore.so __glkonim_Finish (kon_modes.s):
+     * token 198, one word 1, then __glkona_wait_rdata. */
     KONA_HP_FINISH                       = 0x0c6,
 
-    /* Engine handlers relocated into the span of distributor entry 0x289:
-     * `mgesi_QuadStrip`, `mgesi_QuadStripSave`, `mgesi_QuadStripRestore`,
-     * `mgesi_QuadStripRestoreSave`. */
+    /* Read at icu_map.tsv 0x0c7; ged_banks.tsv k=2; ged_listing.txt
+     * dist.s:13; kon_modes.s __glkonim_Flush. */
 
-    /* `HP_FLUSH` (0x0c7). Route: routed by the host interface with no ARM
-     * code, map entry 0x58410051: command 130, count field 1, single floats;
-     * distributor entry 0x289 at ged1b.u qstrip.s:202. Route: libGLcore.so
-     * `__glkonim_Flush` stores 1 word after the token. */
+    /* `HP_FLUSH` (0x0c7). Inferred: Asks the pipe to flush. Routed pass token
+     * (command 130, 1 word, entry 2): in the idle class entry 2 is the null
+     * loop (dist.s:13), so no engine handler is named; the visible flush
+     * effect is the host read libGLcore does immediately after sending it.
+     * Payload 1 (libGLcore sends one zero word): a zero placeholder word.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x58410051: command 130, count field 1 (bits 6-10, 0
+     * read as 32), single floats. Established: libGLcore.so `__glkonim_Flush`
+     * stores 1 word after the token. Sent by libGLcore.so __glkonim_Flush
+     * (kon_modes.s): token 199, a zero word, then a load from process address
+     * 0x10100. */
     KONA_HP_FLUSH                        = 0x0c7,
 
-    /* `HP_POPATTRIB` (0x0c8). Route: the token map runs `arm_popattrib` at
-     * arm1.u 0x0c03a8dc. */
+    /* Read at arm1.u arm_popattrib 0x0c03a8dc-0x0c03ad00. */
+
+    /* `HP_POPATTRIB` (0x0c8). Inferred: Pops the top attribute record of the
+     * ARM-side stack (underflow sets a GL stack-underflow error), copies
+     * shadow words back for every group bit saved in the mask, and calls the
+     * per-group pop helpers (color, depth, enable, fog, light, line,
+     * multisample, polygon, scissor, stencil, texture, transform, sprite)
+     * which re-establish engine state. Payload 1 (zero): dummy zero;
+     * libGLcore sends 0. Established: the token map runs `arm_popattrib` at
+     * arm1.u 0x0c03a8dc. Sent by libGLcore.so __glkonim_PopAttrib
+     * (kon_attrib.s) stores token 200 then 0. */
     KONA_HP_POPATTRIB                    = 0x0c8,
 
     /* Engine handlers whose slots the code of `arm_pushattrib` loads, in
      * order: `mgesi_StartRdata`, `mgesi_GetRaster`, `mgesi_Eram2ODMA`,
-     * `mgesi_GetSpecial`, `mgesi_FinishRdata`. */
+     * `mgesi_GetSpecial`, `mgesi_FinishRdata`. Read at arm1.u arm_pushattrib
+     * 0x0c039c80-0x0c03a8d8. */
 
-    /* `HP_PUSHATTRIB` (0x0c9). Route: the token map runs `arm_pushattrib` at
-     * arm1.u 0x0c039c80. */
+    /* `HP_PUSHATTRIB` (0x0c9). Inferred: Programs the read-back (StartRdata),
+     * errors with stack overflow at depth 16, otherwise saves ARM shadows for
+     * each group in the mask into a per-level record (1688 bytes a level) and
+     * reads engine-held state back to the host through the output DMA:
+     * current values, raster position, ERAM blocks, texture and transform
+     * attributes and the deformation mask; then FinishRdata. Payload 1:
+     * attribute mask (GL_*_BIT bits). Established: the token map runs
+     * `arm_pushattrib` at arm1.u 0x0c039c80. Sent by libGLcore.so
+     * __glkonim_PushAttrib (kon_attrib.s) stores token 201 and the mask, then
+     * __glkona_wait_rdata and copies floats from buf+4 on. */
     KONA_HP_PUSHATTRIB                   = 0x0c9,
 
     /* Engine handlers whose slots the code of `arm_alphafunc` loads, in
-     * order: `mgesi_AlphaFunc`. */
+     * order: `mgesi_AlphaFunc`. Read at arm1.u arm_alphafunc 0x0c012bbc (slot
+     * 91; r8+0x798, 0x79c). */
 
-    /* `HP_ALPHAFUNC` (0x0ca). Route: the token map runs `arm_alphafunc` at
-     * arm1.u 0x0c012bbc. */
+    /* `HP_ALPHAFUNC` (0x0ca). Established: Raises invalid-enum for a function
+     * outside 0x200-0x207. Otherwise keeps function and reference in the
+     * shadow and starts mgesi_AlphaFunc with the function on port 0x474 and
+     * the reference on 0x840. Payload 2: Comparison function (0x200-0x207)
+     * and reference value as a float. Established: the token map runs
+     * `arm_alphafunc` at arm1.u 0x0c012bbc. Sent by libGLcore.so
+     * __glkonim_AlphaFunc (kon_modes.s, token 202). */
     KONA_HP_ALPHAFUNC                    = 0x0ca,
 
-    /* `HP_BLENDFUNC` (0x0cb). Route: the token map runs `arm_blendfunc` at
-     * arm1.u 0x0c015768. */
+    /* Read at arm1.u arm_blendfunc 0x0c015768 (descriptor 0x584fc800, address
+     * word 0x013c1c0d = IMP_BL, select 0x0ffff000; r8+0x7b0..0x7b9, equation
+     * word r8+0x7bc). */
+
+    /* `HP_BLENDFUNC` (0x0cb). Inferred: Converts each factor enum to a 4-bit
+     * code (alpha source maps one special code to 1), keeps the enums and
+     * codes in the shadow and, unless the blend equation is min or max,
+     * writes the four factor fields of the blend register. Payload 2: Source
+     * and destination blend factor enums. Established: the token map runs
+     * `arm_blendfunc` at arm1.u 0x0c015768. Sent by libGLcore.so
+     * __glkonim_BlendFunc (kon_cfuncs.s). */
     KONA_HP_BLENDFUNC                    = 0x0cb,
 
-    /* `HP_STENCILFUNC` (0x0cc). Route: the token map runs `arm_stencilfunc`
-     * at arm1.u 0x0c014960. */
+    /* Read at arm1.u arm_stencilfunc 0x0c014960 (descriptor 0x584fc800,
+     * address word 0x01381c07 = IMP_SZ0, select 0x1ffffc). */
+
+    /* `HP_STENCILFUNC` (0x0cc). Established: Keeps the three words in the
+     * shadow and writes function, reference and mask into the function,
+     * reference and read-mask fields (bits 2-20) of the stencil register.
+     * Payload 3: Function (0x200-0x207), reference value, mask. Established:
+     * the token map runs `arm_stencilfunc` at arm1.u 0x0c014960. Sent by
+     * libGLcore.so __glkonim_StencilFunc (kon_cfuncs.s, token 204). */
     KONA_HP_STENCILFUNC                  = 0x0cc,
 
-    /* `HP_STENCILOP` (0x0cd). Route: the token map runs `arm_stencilop` at
-     * arm1.u 0x0c0149b8. */
+    /* Read at arm1.u arm_stencilop 0x0c0149b8 (descriptor 0x584fc800, address
+     * word 0x01391c08 = IMP_SZ1, select 0x1ff). */
+
+    /* `HP_STENCILOP` (0x0cd). Established: Keeps the three enums and writes a
+     * 3-bit code for each into the stencil operation fields (bits 0-8) of the
+     * depth register, mapping zero to 4 and invert (0x150a) to 5 and using
+     * the low bits for the others. Payload 3: Stencil fail, depth fail and
+     * depth pass operations (enums 0x1e00-0x1e03, 0x1e0a invert, 0 zero).
+     * Established: the token map runs `arm_stencilop` at arm1.u 0x0c0149b8.
+     * Sent by libGLcore.so __glkonim_StencilOp (kon_cfuncs.s, token 205). */
     KONA_HP_STENCILOP                    = 0x0cd,
 
-    /* `HP_DEPTHFUNC` (0x0ce). Route: the token map runs `arm_depthfunc` at
-     * arm1.u 0x0c0147a0. */
+    /* Read at arm1.u arm_depthfunc 0x0c0147a0 (descriptor 0x584fc800, address
+     * word 0x01391c08 = IMP_SZ1, select 0xe000). */
+
+    /* `HP_DEPTHFUNC` (0x0ce). Established: Keeps it in the shadow and writes
+     * the low three bits into the depth function field (bits 13-15) of the
+     * depth register. Payload 1: Depth comparison function (0x200-0x207).
+     * Established: the token map runs `arm_depthfunc` at arm1.u 0x0c0147a0.
+     * Sent by libGLcore.so __glkonim_DepthFunc (kon_cfuncs.s, token 206). */
     KONA_HP_DEPTHFUNC                    = 0x0ce,
 
     /* Engine handlers whose slots the code of `arm_depthrange` loads, in
-     * order: `mgeb_DepthRange`. */
+     * order: `mgeb_DepthRange`. Read at arm1.u arm_depthrange 0x0c014800
+     * (slot 335 mgeb_DepthRange; shadow r8+0x72c..0x738). */
 
-    /* `HP_DEPTHRANGE` (0x0cf). Route: the token map runs `arm_depthrange` at
-     * arm1.u 0x0c014800. Route: libGLcore.so `__glkonim_DepthRange` stores 4
-     * words after the token. */
+    /* `HP_DEPTHRANGE` (0x0cf). Established: Sends the four words through
+     * routed descriptor 0x78601000, starts mgeb_DepthRange on all engines
+     * through port 0x4f8, and keeps the words in the shadow. Payload 4 (two
+     * doubles): Near and far depth limits, each as a double (high word
+     * first). Established: the token map runs `arm_depthrange` at arm1.u
+     * 0x0c014800. Established: libGLcore.so `__glkonim_DepthRange` stores 4
+     * words after the token. Sent by libGLcore.so __glkonim_DepthRange
+     * (kon_cfuncs.s). */
     KONA_HP_DEPTHRANGE                   = 0x0cf,
 
     /* Engine handlers whose slots the code of `arm_matrixmode` loads, in
@@ -1451,956 +3397,2814 @@ enum kona_hp_token {
      * `mgeb_Frustum_Texture`, `mgeb_MultMatrix_Texture`,
      * `mgeb_Ortho_Texture`, `mgeb_PopMatrix_Texture`,
      * `mgeb_PushMatrix_Texture`, `mgeb_Rotate_Texture`, `mgeb_Scale_Texture`,
-     * `mgeb_Translate_Texture`. */
+     * `mgeb_Translate_Texture`. Read at arm1.u arm_matrixmode 0x0c01904c
+     * (slot 51; r8+0x73c; matrix_vector 0x0c018f44 and matrix_passthru
+     * 0x0c018ef0). */
 
-    /* `HP_MATRIXMODE` (0x0d0). Route: the token map runs `arm_matrixmode` at
-     * arm1.u 0x0c01904c. */
+    /* `HP_MATRIXMODE` (0x0d0). Established: Does nothing when the mode is
+     * unchanged. Otherwise stores it, starts mgeb_MatrixMode, and for
+     * modelview, projection and texture rewrites the engine handler table so
+     * the matrix tokens (load identity, load, frustum, multiply, ortho, pop,
+     * push, rotate, scale, translate) run that mode handlers. For colour it
+     * switches the matrix tokens to ARM handlers. Payload 1: Matrix mode
+     * (0x1700 modelview, 0x1701 projection, 0x1702 texture, 0x1800 colour).
+     * Established: the token map runs `arm_matrixmode` at arm1.u 0x0c01904c.
+     * Sent by libGLcore.so __glkonim_MatrixMode (kon_cfuncs.s, token 208);
+     * emitter accepts 0x1700-0x1702 only. */
     KONA_HP_MATRIXMODE                   = 0x0d0,
 
-    /* `HP_FRUSTUM` (0x0d1). Route: routed by the host interface with no ARM
-     * code, map entry 0x7842d301: command 133, count field 12, doubles;
-     * engine handler `mgeb_Frustum_Modelview` (index 5 of the handler table).
-     * Route: libGLcore.so `__glkonim_Frustum` stores 12 words after the
-     * token. */
+    /* Read at icu_map.tsv 0x0d1; ged_bound_table.tsv index 5; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_Frustum_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_FRUSTUM` (0x0d1). Inferred: Matrix command. Routed pass token
+     * (command 133, 12 words, double). Command 133 selects handler table
+     * index 5, mgeb_Frustum_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine mFrustum
+     * (matrix.S, 67 words) builds the perspective matrix and multiplies it
+     * into the current one. Payload 12 (6 doubles): six doubles: left, right,
+     * bottom, top, near, far. Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0x7842d301: command 133, count
+     * field 12 (bits 6-10, 0 read as 32), doubles; engine handler
+     * `mgeb_Frustum_Modelview` (index 5 of the handler table). Established:
+     * libGLcore.so `__glkonim_Frustum` stores 12 words after the token. Sent
+     * by libGLcore.so __glkonim_Frustum (kon_cfuncs.s, token 209). */
     KONA_HP_FRUSTUM                      = 0x0d1,
 
-    /* `HP_LOADIDENTITY` (0x0d2). Route: routed by the host interface with no
-     * ARM code, map entry 0x5841d041: command 131, count field 1, single
-     * floats; engine handler `mgeb_LoadIdentity_Modelview` (index 3 of the
-     * handler table). Route: libGLcore.so `__glkonim_LoadIdentity` stores 1
-     * word after the token. */
+    /* Read at icu_map.tsv 0x0d2; ged_bound_table.tsv index 3; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_LoadIdentity_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_LOADIDENTITY` (0x0d2). Inferred: Matrix command. Routed pass token
+     * (command 131, 1 words, float). Command 131 selects handler table index
+     * 3, mgeb_LoadIdentity_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine resets the current
+     * matrix to the identity. Payload 1 (libGLcore sends one zero word):
+     * none. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0x5841d041: command 131, count field 1 (bits
+     * 6-10, 0 read as 32), single floats; engine handler
+     * `mgeb_LoadIdentity_Modelview` (index 3 of the handler table).
+     * Established: libGLcore.so `__glkonim_LoadIdentity` stores 1 word after
+     * the token. Sent by libGLcore.so __glkonim_LoadIdentity (kon_cfuncs.s,
+     * token 210). */
     KONA_HP_LOADIDENTITY                 = 0x0d2,
 
-    /* `HP_LOADMATRIXF` (0x0d3). Route: routed by the host interface with no
-     * ARM code, map entry 0x58625401: command 196, count field 16, single
-     * floats; engine handler `mgeb_LoadMatrix_Modelview` (index 4 of the
-     * handler table). Route: libGLcore.so `__glkonim_LoadMatrixf` stores 16
-     * words after the token. */
+    /* Read at icu_map.tsv 0x0d3; ged_bound_table.tsv index 4; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_LoadMatrix_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_LOADMATRIXF` (0x0d3). Inferred: Matrix command. Routed pass token
+     * (command 196, 16 words, float). Command 196 selects handler table index
+     * 4, mgeb_LoadMatrix_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine copies the 16
+     * floats over the current matrix. Payload 16: sixteen floats (the matrix,
+     * column-major as in GL). Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0x58625401: command 196, count
+     * field 16 (bits 6-10, 0 read as 32), single floats; engine handler
+     * `mgeb_LoadMatrix_Modelview` (index 4 of the handler table).
+     * Established: libGLcore.so `__glkonim_LoadMatrixf` stores 16 words after
+     * the token. Sent by libGLcore.so __glkonim_LoadMatrixf (kon_cfuncs.s,
+     * token 211). */
     KONA_HP_LOADMATRIXF                  = 0x0d3,
 
-    /* `HP_LOADMATRIXD` (0x0d4). Route: routed by the host interface with no
-     * ARM code, map entry 0x78625001: command 196, count field 32, doubles;
-     * engine handler `mgeb_LoadMatrix_Modelview` (index 4 of the handler
-     * table). Route: libGLcore.so `__glkonim_LoadMatrixd` stores 32 words
-     * after the token. */
+    /* Read at icu_map.tsv 0x0d4; ged_bound_table.tsv index 4; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_LoadMatrix_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_LOADMATRIXD` (0x0d4). Inferred: Matrix command. Routed pass token
+     * (command 196, 32 words, double). Command 196 selects handler table
+     * index 4, mgeb_LoadMatrix_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine copies the 16
+     * values over the current matrix after conversion. Payload 32 (count
+     * field 0 means 32): sixteen doubles (32 words). Established: routed by
+     * the host interface with no ARM code, arm1.u token-map entry 0x78625001:
+     * command 196, count field 0 (bits 6-10, 0 read as 32), doubles; engine
+     * handler `mgeb_LoadMatrix_Modelview` (index 4 of the handler table).
+     * Established: libGLcore.so `__glkonim_LoadMatrixd` stores 32 words after
+     * the token. Sent by libGLcore.so __glkonim_LoadMatrixd (kon_cfuncs.s,
+     * token 212). */
     KONA_HP_LOADMATRIXD                  = 0x0d4,
 
-    /* `HP_MULTMATRIXF` (0x0d5). Route: routed by the host interface with no
-     * ARM code, map entry 0x58635401: command 198, count field 16, single
-     * floats; engine handler `mgeb_MultMatrix_Modelview` (index 6 of the
-     * handler table). Route: libGLcore.so `__glkonim_MultMatrixf` stores 16
-     * words after the token. */
+    /* Read at icu_map.tsv 0x0d5; ged_bound_table.tsv index 6; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_MultMatrix_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_MULTMATRIXF` (0x0d5). Inferred: Matrix command. Routed pass token
+     * (command 198, 16 words, float). Command 198 selects handler table index
+     * 6, mgeb_MultMatrix_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine multiplies the
+     * current matrix by the 16 floats through mMatrixMultCCW. Payload 16:
+     * sixteen floats. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x58635401: command 198, count field 16
+     * (bits 6-10, 0 read as 32), single floats; engine handler
+     * `mgeb_MultMatrix_Modelview` (index 6 of the handler table).
+     * Established: libGLcore.so `__glkonim_MultMatrixf` stores 16 words after
+     * the token. Sent by libGLcore.so __glkonim_MultMatrixf (kon_cfuncs.s,
+     * token 213). */
     KONA_HP_MULTMATRIXF                  = 0x0d5,
 
-    /* `HP_MULTMATRIXD` (0x0d6). Route: routed by the host interface with no
-     * ARM code, map entry 0x78635001: command 198, count field 32, doubles;
-     * engine handler `mgeb_MultMatrix_Modelview` (index 6 of the handler
-     * table). Route: libGLcore.so `__glkonim_MultMatrixd` stores 32 words
-     * after the token. */
+    /* Read at icu_map.tsv 0x0d6; ged_bound_table.tsv index 6; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_MultMatrix_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_MULTMATRIXD` (0x0d6). Inferred: Matrix command. Routed pass token
+     * (command 198, 32 words, double). Command 198 selects handler table
+     * index 6, mgeb_MultMatrix_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine multiplies the
+     * current matrix by the 16 values through mMatrixMultCCW. Payload 32
+     * (count field 0 means 32): sixteen doubles (32 words). Established:
+     * routed by the host interface with no ARM code, arm1.u token-map entry
+     * 0x78635001: command 198, count field 0 (bits 6-10, 0 read as 32),
+     * doubles; engine handler `mgeb_MultMatrix_Modelview` (index 6 of the
+     * handler table). Established: libGLcore.so `__glkonim_MultMatrixd`
+     * stores 32 words after the token. Sent by libGLcore.so
+     * __glkonim_MultMatrixd (kon_cfuncs.s, token 214). */
     KONA_HP_MULTMATRIXD                  = 0x0d6,
 
-    /* `HP_ORTHO` (0x0d7). Route: routed by the host interface with no ARM
-     * code, map entry 0x7843d301: command 135, count field 12, doubles;
-     * engine handler `mgeb_Ortho_Modelview` (index 7 of the handler table).
-     * Route: libGLcore.so `__glkonim_Ortho` stores 12 words after the token. */
+    /* Read at icu_map.tsv 0x0d7; ged_bound_table.tsv index 7; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_Ortho_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_ORTHO` (0x0d7). Inferred: Matrix command. Routed pass token
+     * (command 135, 12 words, double). Command 135 selects handler table
+     * index 7, mgeb_Ortho_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine mOrtho (matrix.S,
+     * 64 words) builds the orthographic matrix and multiplies it into the
+     * current one. Payload 12 (6 doubles): six doubles: left, right, bottom,
+     * top, near, far. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x7843d301: command 135, count field 12
+     * (bits 6-10, 0 read as 32), doubles; engine handler
+     * `mgeb_Ortho_Modelview` (index 7 of the handler table). Established:
+     * libGLcore.so `__glkonim_Ortho` stores 12 words after the token. Sent by
+     * libGLcore.so __glkonim_Ortho (kon_cfuncs.s, token 215). */
     KONA_HP_ORTHO                        = 0x0d7,
 
-    /* `HP_POPMATRIX` (0x0d8). Route: routed by the host interface with no ARM
-     * code, map entry 0x58045041: command 8, count field 1, single floats;
-     * engine handler `mgeb_PopMatrix_Modelview` (index 8 of the handler
-     * table). Route: libGLcore.so `__glkonim_PopMatrix` stores 1 word after
-     * the token. */
+    /* Read at icu_map.tsv 0x0d8; ged_bound_table.tsv index 8; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_PopMatrix_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_POPMATRIX` (0x0d8). Inferred: Matrix command. Routed pass token
+     * (command 8, 1 words, integer). Command 8 selects handler table index 8,
+     * mgeb_PopMatrix_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine pops the matrix
+     * stack, restoring the saved matrix. Payload 1 (libGLcore sends one zero
+     * word): none. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x58045041: command 8, count field 1 (bits
+     * 6-10, 0 read as 32), single floats; engine handler
+     * `mgeb_PopMatrix_Modelview` (index 8 of the handler table). Established:
+     * libGLcore.so `__glkonim_PopMatrix` stores 1 word after the token. Sent
+     * by libGLcore.so __glkonim_PopMatrix (kon_cfuncs.s, token 216). */
     KONA_HP_POPMATRIX                    = 0x0d8,
 
-    /* `HP_PUSHMATRIX` (0x0d9). Route: routed by the host interface with no
-     * ARM code, map entry 0x5804d041: command 9, count field 1, single
-     * floats; engine handler `mgeb_PushMatrix_Modelview` (index 9 of the
-     * handler table). Route: libGLcore.so `__glkonim_PushMatrix` stores 1
-     * word after the token. */
+    /* Read at icu_map.tsv 0x0d9; ged_bound_table.tsv index 9; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_PushMatrix_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_PUSHMATRIX` (0x0d9). Inferred: Matrix command. Routed pass token
+     * (command 9, 1 words, integer). Command 9 selects handler table index 9,
+     * mgeb_PushMatrix_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine pushes a copy of
+     * the current matrix onto the stack. Payload 1 (libGLcore sends one zero
+     * word): none. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x5804d041: command 9, count field 1 (bits
+     * 6-10, 0 read as 32), single floats; engine handler
+     * `mgeb_PushMatrix_Modelview` (index 9 of the handler table).
+     * Established: libGLcore.so `__glkonim_PushMatrix` stores 1 word after
+     * the token. Sent by libGLcore.so __glkonim_PushMatrix (kon_cfuncs.s,
+     * token 217). */
     KONA_HP_PUSHMATRIX                   = 0x0d9,
 
-    /* `HP_ROTATED` (0x0da). Route: routed by the host interface with no ARM
-     * code, map entry 0x78655201: command 202, count field 8, doubles; engine
-     * handler `mgeb_Rotate_Modelview` (index 10 of the handler table). Route:
-     * libGLcore.so `__glkonim_Rotated` stores 8 words after the token. */
+    /* Read at icu_map.tsv 0x0da; ged_bound_table.tsv index 10; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_Rotate_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_ROTATED` (0x0da). Inferred: Matrix command. Routed pass token
+     * (command 202, 8 words, double). Command 202 selects handler table index
+     * 10, mgeb_Rotate_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine calls mRotate to
+     * build the rotation and multiply it into the current matrix. Payload 8
+     * (4 doubles): four doubles: angle, axis x, y, z. Established: routed by
+     * the host interface with no ARM code, arm1.u token-map entry 0x78655201:
+     * command 202, count field 8 (bits 6-10, 0 read as 32), doubles; engine
+     * handler `mgeb_Rotate_Modelview` (index 10 of the handler table).
+     * Established: libGLcore.so `__glkonim_Rotated` stores 8 words after the
+     * token. Sent by libGLcore.so __glkonim_Rotated (kon_cfuncs.s, token
+     * 218). */
     KONA_HP_ROTATED                      = 0x0da,
 
-    /* `HP_ROTATEF` (0x0db). Route: routed by the host interface with no ARM
-     * code, map entry 0x58655101: command 202, count field 4, single floats;
-     * engine handler `mgeb_Rotate_Modelview` (index 10 of the handler table).
-     * Route: libGLcore.so `__glkonim_Rotatef` stores 4 words after the token. */
+    /* Read at icu_map.tsv 0x0db; ged_bound_table.tsv index 10; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_Rotate_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_ROTATEF` (0x0db). Inferred: Matrix command. Routed pass token
+     * (command 202, 4 words, float). Command 202 selects handler table index
+     * 10, mgeb_Rotate_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine calls mRotate to
+     * build the rotation and multiply it into the current matrix. Payload 4:
+     * four floats: angle, axis x, y, z. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0x58655101: command
+     * 202, count field 4 (bits 6-10, 0 read as 32), single floats; engine
+     * handler `mgeb_Rotate_Modelview` (index 10 of the handler table).
+     * Established: libGLcore.so `__glkonim_Rotatef` stores 4 words after the
+     * token. Sent by libGLcore.so __glkonim_Rotatef (kon_cfuncs.s, token
+     * 219). */
     KONA_HP_ROTATEF                      = 0x0db,
 
-    /* `HP_SCALED` (0x0dc). Route: routed by the host interface with no ARM
-     * code, map entry 0x7865d181: command 203, count field 6, doubles; engine
-     * handler `mgeb_Scale_Modelview` (index 11 of the handler table). Route:
-     * libGLcore.so `__glkonim_Scaled` stores 6 words after the token. */
+    /* Read at icu_map.tsv 0x0dc; ged_bound_table.tsv index 11; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_Scale_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_SCALED` (0x0dc). Inferred: Matrix command. Routed pass token
+     * (command 203, 6 words, double). Command 203 selects handler table index
+     * 11, mgeb_Scale_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine multiplies the
+     * matrix rows by the three factors. Payload 6 (3 doubles): three doubles:
+     * x, y, z factors. Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x7865d181: command 203, count field 6
+     * (bits 6-10, 0 read as 32), doubles; engine handler
+     * `mgeb_Scale_Modelview` (index 11 of the handler table). Established:
+     * libGLcore.so `__glkonim_Scaled` stores 6 words after the token. Sent by
+     * libGLcore.so __glkonim_Scaled (kon_cfuncs.s, token 220). */
     KONA_HP_SCALED                       = 0x0dc,
 
-    /* `HP_SCALEF` (0x0dd). Route: routed by the host interface with no ARM
-     * code, map entry 0x5865d0c1: command 203, count field 3, single floats;
-     * engine handler `mgeb_Scale_Modelview` (index 11 of the handler table).
-     * Route: libGLcore.so `__glkonim_Scalef` stores 3 words after the token. */
+    /* Read at icu_map.tsv 0x0dd; ged_bound_table.tsv index 11; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_Scale_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_SCALEF` (0x0dd). Inferred: Matrix command. Routed pass token
+     * (command 203, 3 words, float). Command 203 selects handler table index
+     * 11, mgeb_Scale_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine multiplies the
+     * matrix rows by the three factors. Payload 3: three floats: x, y, z
+     * factors. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0x5865d0c1: command 203, count field 3 (bits
+     * 6-10, 0 read as 32), single floats; engine handler
+     * `mgeb_Scale_Modelview` (index 11 of the handler table). Established:
+     * libGLcore.so `__glkonim_Scalef` stores 3 words after the token. Sent by
+     * libGLcore.so __glkonim_Scalef (kon_cfuncs.s, token 221). */
     KONA_HP_SCALEF                       = 0x0dd,
 
-    /* `HP_TRANSLATED` (0x0de). Route: routed by the host interface with no
-     * ARM code, map entry 0x78665181: command 204, count field 6, doubles;
-     * engine handler `mgeb_Translate_Modelview` (index 12 of the handler
-     * table). Route: libGLcore.so `__glkonim_Translated` stores 6 words after
-     * the token. */
+    /* Read at icu_map.tsv 0x0de; ged_bound_table.tsv index 12; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_Translate_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_TRANSLATED` (0x0de). Inferred: Matrix command. Routed pass token
+     * (command 204, 6 words, double). Command 204 selects handler table index
+     * 12, mgeb_Translate_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine adds the
+     * translation into the current matrix. Payload 6 (3 doubles): three
+     * doubles: x, y, z offsets. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0x78665181: command 204, count
+     * field 6 (bits 6-10, 0 read as 32), doubles; engine handler
+     * `mgeb_Translate_Modelview` (index 12 of the handler table).
+     * Established: libGLcore.so `__glkonim_Translated` stores 6 words after
+     * the token. Sent by libGLcore.so __glkonim_Translated (kon_cfuncs.s,
+     * token 222). */
     KONA_HP_TRANSLATED                   = 0x0de,
 
-    /* `HP_TRANSLATEF` (0x0df). Route: routed by the host interface with no
-     * ARM code, map entry 0x586650c1: command 204, count field 3, single
-     * floats; engine handler `mgeb_Translate_Modelview` (index 12 of the
-     * handler table). Route: libGLcore.so `__glkonim_Translatef` stores 3
-     * words after the token. */
+    /* Read at icu_map.tsv 0x0df; ged_bound_table.tsv index 12; ge_handlers.md
+     * matrixfunc.S; ge_listing/matrixfunc.S.lst mgeb_Translate_Modelview;
+     * arm1_firmware.md line 144 (matrix_vector, arm_matrixmode). */
+
+    /* `HP_TRANSLATEF` (0x0df). Inferred: Matrix command. Routed pass token
+     * (command 204, 3 words, float). Command 204 selects handler table index
+     * 12, mgeb_Translate_Modelview while the matrix mode is modelview;
+     * arm_matrixmode rebinds indexes 3-12 for projection and texture, and in
+     * colour mode the ARM runs its own handler. The engine adds the
+     * translation into the current matrix. Payload 3: three floats: x, y, z
+     * offsets. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0x586650c1: command 204, count field 3 (bits
+     * 6-10, 0 read as 32), single floats; engine handler
+     * `mgeb_Translate_Modelview` (index 12 of the handler table).
+     * Established: libGLcore.so `__glkonim_Translatef` stores 3 words after
+     * the token. Sent by libGLcore.so __glkonim_Translatef (kon_cfuncs.s,
+     * token 223). */
     KONA_HP_TRANSLATEF                   = 0x0df,
 
-    /* `HP_WRAM2CRAM` (0x0e0). Route: routed by the host interface with no ARM
-     * code, map entry 0x5846d441: command 141, count field 17, single floats;
-     * distributor entry 0x25c at ged1b.u qstrip.s:114. */
+    /* Read at icu_map.tsv 0x0e0 (entry 0x5846d441); ged_bound_table.tsv (no
+     * index 13); tokens.tsv sites 0. */
+
+    /* `HP_WRAM2CRAM` (0x0e0). Inferred: Routed pass token (command 141, 17
+     * words) whose handler table index 13 is not written by the firmware at
+     * start-up, so no engine handler is bound to it; the name suggests a copy
+     * from work memory to colour memory in the engines. Payload 17 by the map
+     * entry: not determined; no sender found. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0x5846d441: command
+     * 141, count field 17 (bits 6-10, 0 read as 32), single floats. No sender
+     * found: tokens.tsv lists 0 sites; searched libGLcore asm, ddx asm and
+     * kernel disasm for token 224 stores (hits for 224 are unrelated
+     * constants). */
     KONA_HP_WRAM2CRAM                    = 0x0e0,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27f:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x0e1 (entry 0x58474041); ged_bound_table.tsv index
+     * 14; ge_handlers.md raster.S mges_NullCommand. */
 
-    /* `HP_GEPASSCMD` (0x0e1). Route: routed by the host interface with no ARM
-     * code, map entry 0x58474041: command 142, count field 1, single floats;
-     * distributor entry 0x27f at ged1b.u qstrip.s:185. */
+    /* `HP_GEPASSCMD` (0x0e1). Inferred: Passes one word through. Routed pass
+     * token (command 142, 1 word): handler table index 14 holds
+     * mges_NullCommand, so the engine handler itself does nothing with it;
+     * any effect would come from the pass-control bits of the map entry.
+     * Payload 1 by the map entry: one command word to hand to the geometry
+     * engines (inferred from the name); no sender found. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58474041: command 142, count field 1 (bits 6-10, 0 read as 32),
+     * single floats. No sender found: tokens.tsv lists 0 sites; no listing
+     * stores token 225 as a command. */
     KONA_HP_GEPASSCMD                    = 0x0e1,
 
-    /* `HP_TBUS_1` (0x0e2). Route: routed by the host interface with no ARM
-     * code, map entry 0x5847c8c1: command 143, count field 3, single floats;
-     * engine handler `mgesi_TBUS_1` (index 15 of the handler table). */
+    /* Read at icu_map.tsv 0x0e2; ged_bound_table.tsv index 15;
+     * ge_listing/raster.S.lst mgesi_TBUS_1; docs/rm.md Bus modes 2 and
+     * 3; kona_video.text.s KONAschedswapbuf. */
+
+    /* `HP_TBUS_1` (0x0e2). Inferred: Writes a word to the raster bus with an
+     * explicit mode. Routed pass token (command 143, 3 words): handler table
+     * index 15 holds mgesi_TBUS_1 (raster.S), which sends the first operand
+     * to the engine's bus-output address 0x1f8 and the data after it. Payload
+     * 3: a mode word, then the data word split as high and low halves.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x5847c8c1: command 143, count field 3 (bits 6-10, 0
+     * read as 32), single floats; engine handler `mgesi_TBUS_1` (index 15 of
+     * the handler table). Sent by kona.a kona_video KONAschedswapbuf
+     * (kona_video.text.s, token 226 then 0x478478 twice, buffer swap mode 2);
+     * irsaudit fcTbusWrite (diagnostic, per docs/rm.md). */
     KONA_HP_TBUS_1                       = 0x0e2,
 
-    /* `HP_VIEWPORT` (0x0e3). Route: the token map runs `arm_viewport` at
-     * arm1.u 0x0c0186ec. */
+    /* Read at arm1.u arm_viewport 0x0c0186ec (r8+0x71c..0x728;
+     * resolve_viewport 0x0c01872c; slots 90 mgeb_ViewPort and 117
+     * mgebi_ReferencePlane_Enable). */
+
+    /* `HP_VIEWPORT` (0x0e3). Established: Raises invalid-value for a negative
+     * width or height, clamps both to 3840, stores the four values, then runs
+     * resolve_viewport, which combines them with the window offset and clip
+     * to compute the on-screen viewport and starts mgeb_ViewPort on all
+     * engines (then enables the reference plane). Payload 4: Viewport x, y,
+     * width, height as integers. Established: the token map runs
+     * `arm_viewport` at arm1.u 0x0c0186ec. Sent by libGLcore.so
+     * __glkonim_Viewport (kon_cfuncs.s, token 227). */
     KONA_HP_VIEWPORT                     = 0x0e3,
 
-    /* `HP_SETERROR` (0x0e4). Route: the token map runs `arm_seterror` at
-     * arm1.u 0x0c015500. Route: libGLcore.so `Error` stores 1 word after the
-     * token. */
+    /* Read at arm1.u arm_seterror 0x0c015500; arm1.u arm_geterror 0x0c038570
+     * (reads and clears the pair). */
+
+    /* `HP_SETERROR` (0x0e4). Established: Keeps only the first error: if the
+     * two-byte sticky error at ARM RAM 0x860/0x861 is zero it stores the code
+     * there, otherwise it drops the new code. glGetError later reads and
+     * clears that pair. Payload 1: a GL error code (0x500 invalid enum, 0x501
+     * invalid value). Established: the token map runs `arm_seterror` at
+     * arm1.u 0x0c015500. Established: libGLcore.so `Error` stores 1 word
+     * after the token. Sent by libGLcore.so Error (kon_context.s, error code
+     * in the second store); libGLcore.so __invalid_enum (kon_sfuncs.s,
+     * kon_sdlfuncs.s: stores 1280 and 1281 after the token). */
     KONA_HP_SETERROR                     = 0x0e4,
 
-    /* `HP_END_OF_SIMULATION` (0x0e5). Route: the token map runs
-     * `arm_end_of_simulation` at arm1.u 0x0c0152cc. */
+    /* Read at arm1.u arm_end_of_simulation 0x0c0152cc. */
+
+    /* `HP_END_OF_SIMULATION` (0x0e5). Established: Prints 'end of ARM
+     * simulation', scans ARM RAM from 0xd04 upward for the 0xdeadbeef
+     * stack-fill marker to report the first unused stack entry, stops the
+     * simulator trace helper, and writes 1 to raster-bus register 0x1c0f
+     * twice. Payload 1: one value that is only handed to the
+     * instruction-cache statistics report. Established: the token map runs
+     * `arm_end_of_simulation` at arm1.u 0x0c0152cc. No sender found (searched
+     * libGLcore asm for li 229 near a 16384($zero) store, the kernel command
+     * table, X module stores at token x 32). */
     KONA_HP_END_OF_SIMULATION            = 0x0e5,
 
     /* Engine handlers whose slots the code of `arm_blendcolor` loads, in
-     * order: `mgesi_TbusRegWrite`, `mgesi_UserColor`. */
+     * order: `mgesi_TbusRegWrite`, `mgesi_UserColor`. Read at arm1.u
+     * arm_blendcolor 0x0c012ee4 (slot 342 mgesi_UserColor; shadow r8+0x7a0;
+     * skipped when colour-index size r8+0x1ce is nonzero). */
 
-    /* `HP_BLENDCOLOR` (0x0e6). Route: the token map runs `arm_blendcolor` at
-     * arm1.u 0x0c012ee4. Route: libGLcore.so `__glkonim_BlendColorEXT` stores
-     * 4 words after the token. */
+    /* `HP_BLENDCOLOR` (0x0e6). Established: Keeps the four floats in the
+     * shadow. In RGBA mode it also sends them to the engines with
+     * mgesi_UserColor, after writing register 0x1408. Payload 4: Constant
+     * blend colour: red, green, blue, alpha as floats. Established: the token
+     * map runs `arm_blendcolor` at arm1.u 0x0c012ee4. Established:
+     * libGLcore.so `__glkonim_BlendColorEXT` stores 4 words after the token.
+     * Sent by libGLcore.so __glkonim_BlendColorEXT (kon_cfuncs.s). */
     KONA_HP_BLENDCOLOR                   = 0x0e6,
 
-    /* `HP_BLENDEQUATION` (0x0e7). Route: the token map runs
-     * `arm_blendequation` at arm1.u 0x0c012f9c. Route: libGLcore.so
-     * `__glkonim_BlendEquationEXT` stores 1 word after the token. */
+    /* Read at arm1.u arm_blendequation 0x0c012f9c (descriptor 0x584fc800,
+     * address word 0x013c1c0d = IMP_BL, select 0x0fffffe1). */
+
+    /* `HP_BLENDEQUATION` (0x0e7). Established: Rejects other values with
+     * invalid-enum. Maps the enum to an operation code (0, 3, 7,
+     * 1, 2, 0), keeps the enum at
+     * r8+0x7bc and rewrites the operation, factor and enable fields of the
+     * blend register from the saved factors; min and max force all factors to
+     * one. Payload 1: Blend equation enum (0x8006 add, 0x8007 min, 0x8008
+     * max, 0x800a subtract, 0x800b reverse subtract, 0xbf1 logic op).
+     * Established: the token map runs `arm_blendequation` at arm1.u
+     * 0x0c012f9c. Established: libGLcore.so `__glkonim_BlendEquationEXT`
+     * stores 1 word after the token. Sent by libGLcore.so
+     * __glkonim_BlendEquationEXT (kon_cfuncs.s). */
     KONA_HP_BLENDEQUATION                = 0x0e7,
 
-    /* `HP_COLORTABLE` (0x0e8). Route: the token map runs `arm_colortable` at
-     * arm1.u 0x0c03e128. */
+    /* Read at arm1.u arm_colortable 0x0c03e128 (8 plain reads, then r9+0x40
+     * or r9+0x3c; lut_index, ParseHostImage,
+     * CompCommonColorStream, SetupGE_ColorTable, SetupGED). */
+
+    /* `HP_COLORTABLE` (0x0e8). Established: Maps the target to one of the ARM
+     * colour tables, stores width and format, parses the host image, composes
+     * the colour stream and the engine colour-table stage, and sends the
+     * table entries to the pipe, filling that colour table in engine memory.
+     * Payload 9, then the table as an image: GL target, internal format,
+     * width, width minus 1 as a float, format code, type code, byte offset,
+     * data-by-DMA flag, row mode. Established: the token map runs
+     * `arm_colortable` at arm1.u 0x0c03e128. Sent by libGLcore.so
+     * __glkonim_ColorTableSGI (kon_colortable.s, token 232). */
     KONA_HP_COLORTABLE                   = 0x0e8,
 
-    /* `HP_COPYCOLORTABLE` (0x0e9). Route: the token map runs
-     * `arm_copycolortable` at arm1.u 0x0c0265f0, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_copycolortable 0x0c0265f0 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_COPYCOLORTABLE` (0x0e9). Established: The token map runs a
+     * one-instruction stub at 0x0c0265f0 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_copycolortable` at arm1.u 0x0c0265f0, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_CopyColorTableSGI
+     * (kon_colortable.s) reads the pixels with __glkonim_ReadPixels and
+     * re-sends them through __glkonim_ColorTableSGI (HP_COLORTABLE 0xe8), so
+     * the copy reaches the pipe as a table load. */
     KONA_HP_COPYCOLORTABLE               = 0x0e9,
 
-    /* `HP_GETCOLORTABLE` (0x0ea). Route: the token map runs
-     * `arm_getcolortable` at arm1.u 0x0c03f24c. */
+    /* Read at arm1.u arm_getcolortable 0x0c03f24c; do_getcolortable
+     * 0x0c03f00c. */
+
+    /* `HP_GETCOLORTABLE` (0x0ea). Inferred: Query: converts target and format
+     * to table and format indices (1 for format 0x1900-0x1905) and calls
+     * do_getcolortable: bounds check, count rounded up to 32, start_rdata,
+     * count*4 to 0x476, engine LutUpload (slot 210), finish_rdata. Payload 4:
+     * table target, format, first entry, entry count (host asks at most 512).
+     * Established: the token map runs `arm_getcolortable` at arm1.u
+     * 0x0c03f24c. Sent by libGLcore.so __glkonim_GetColorTableSGI ->
+     * __glkon_get_special4(234, ...) (kon_colortable.s). */
     KONA_HP_GETCOLORTABLE                = 0x0ea,
 
-    /* `HP_COLORTABLEPARAMETERFV` (0x0eb). Route: the token map runs
-     * `arm_colortableparameterfv` at arm1.u 0x0c03edac. Route: libGLcore.so
-     * `__glkonim_ColorTableParameterfvSGI` stores 6 words after the token. */
+    /* Read at arm1.u arm_colortableparameterfv 0x0c03edac (5 plain reads +
+     * r9+0x3c; lut_index, set_invalid_enum). */
+
+    /* `HP_COLORTABLEPARAMETERFV` (0x0eb). Established: Finds the colour table
+     * for the target, stores the four floats as that table's scale (0x80d6)
+     * or bias (0x80d7) in ARM memory, and raises an invalid-enum error for a
+     * missing table or an unrecognised name; it sends nothing to the engines
+     * at this time. Payload 6 (2 words, 4 floats): colour-table target,
+     * parameter name (0x80d6 scale, 0x80d7 bias), four floats. Established:
+     * the token map runs `arm_colortableparameterfv` at arm1.u 0x0c03edac.
+     * Established: libGLcore.so `__glkonim_ColorTableParameterfvSGI` stores 6
+     * words after the token. Sent by libGLcore.so
+     * __glkonim_ColorTableParameterfvSGI, __glkonim_ColorTableParameterivSGI
+     * (kon_cfuncs.s, token 235). */
     KONA_HP_COLORTABLEPARAMETERFV        = 0x0eb,
 
-    /* `HP_GETCOLORTABLEPARAMETERFV` (0x0ec). Route: the token map runs
-     * `arm_getcolortableparameterfv` at arm1.u 0x0c03ee70. */
+    /* Read at arm1.u arm_getcolortableparameterfv 0x0c03ee70. */
+
+    /* `HP_GETCOLORTABLEPARAMETERFV` (0x0ec). Inferred: Query: start_rdata,
+     * then answers from the ARM table record: 0x80d6 (scale) and 0x80d7
+     * (bias) four words each; 0x80d8 (format) and 0x80d9 (width) one word;
+     * 0x80da-0x80df (component sizes) one word, 0 for an empty table else 16
+     * (12 for table 7); invalid target or pname replies count 0 and raises
+     * invalid enum; finish_rdata. Payload 2: table target, pname (0x80d6 and
+     * following). Established: the token map runs
+     * `arm_getcolortableparameterfv` at arm1.u 0x0c03ee70. Sent by
+     * libGLcore.so __glkonim_GetColorTableParameterfvSGI/ivSGI ->
+     * __glkon_get_special2(236, target, pname) (kon_colortable.s). */
     KONA_HP_GETCOLORTABLEPARAMETERFV     = 0x0ec,
 
-    /* `HP_LOAD_POST_TEX_SCALE_BIAS` (0x0ed). Route: routed by the host
-     * interface with no ARM code, map entry 0x5850d901: command 161, count
-     * field 4, single floats; engine handler `mgebi_TextureScaleBias` (index
-     * 33 of the handler table). Route: libGLcore.so
-     * `loadPostTextureScaleBias` stores 4 words after the token. */
+    /* Read at icu_map.tsv 0x0ed; ged_bound_table.tsv index 33;
+     * ge_listing/texture.S.lst mgebi_TextureScaleBias; kon_texture_api.s
+     * loadPostTextureScaleBias. */
+
+    /* `HP_LOAD_POST_TEX_SCALE_BIAS` (0x0ed). Inferred: Loads the post-texture
+     * scale and bias. Routed pass token (command 161, 4 words). Command 161
+     * selects handler table index 33, mgebi_TextureScaleBias (texture.S,
+     * 'texture binding, scale and bias'), which installs the scale and bias;
+     * its body was not traced. Payload 4: a zero word, then three words read
+     * from the texture object at offsets 496, 500 and 504 (post-texture scale
+     * and bias values). Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x5850d901: command 161, count field 4
+     * (bits 6-10, 0 read as 32), single floats; engine handler
+     * `mgebi_TextureScaleBias` (index 33 of the handler table). Established:
+     * libGLcore.so `loadPostTextureScaleBias` stores 4 words after the token.
+     * Sent by libGLcore.so loadPostTextureScaleBias (kon_texture_api.s, token
+     * 237). */
     KONA_HP_LOAD_POST_TEX_SCALE_BIAS     = 0x0ed,
 
-    /* `HP_GETLINEMODEDIST` (0x0ee). Route: the token map runs
-     * `arm_getlinemodedist` at arm1.u 0x0c02a7cc. */
+    /* Read at arm1.u arm_getlinemodedist 0x0c02a7cc. */
+
+    /* `HP_GETLINEMODEDIST` (0x0ee). Inferred: Query: start_rdata, count 32 to
+     * 0x476, then eight groups of four words from the firmware tables
+     * LMLimit48 and LMLimit (two words each): the line-mode distance limits;
+     * finish_rdata. No engine involved. Payload 1 (zero, read and dropped):
+     * dummy zero. Established: the token map runs `arm_getlinemodedist` at
+     * arm1.u 0x0c02a7cc. Sent by libGLcore.so GetLineModeDist (kon_pixel.s)
+     * -> __glkon_get_special(238, 0). */
     KONA_HP_GETLINEMODEDIST              = 0x0ee,
 
-    /* `HP_CONVOLUTIONFILTER1D` (0x0ef). Route: the token map runs
-     * `arm_convolutionfilter1d` at arm1.u 0x0c036c44. */
+    /* Read at arm1.u arm_convolutionfilter1d 0x0c036c44 (6 plain reads then
+     * r9+0x40 or r9+0x3c; ParseHostImage, CompCommonColorStream,
+     * SetupGE_Convolution, SetupGED, SendPixelsToPipe). */
+
+    /* `HP_CONVOLUTIONFILTER1D` (0x0ef). Established: Records the kernel's
+     * size and format in the 1D convolution record (height forced to 1),
+     * parses the host image, sets up the engine convolution stage and sends
+     * the kernel values to the pipe (a default kernel is substituted by
+     * __glkonSetDefaultKernel when needed). Payload 7, then the kernel as an
+     * image: internal format, width, format code, type code, byte offset,
+     * data-by-DMA flag, row mode. Established: the token map runs
+     * `arm_convolutionfilter1d` at arm1.u 0x0c036c44. Sent by libGLcore.so
+     * __glkonim_ConvolutionFilter1DEXT (kon_convolve.s, token 239; wrapped in
+     * PIXEL_NOMODE commands). */
     KONA_HP_CONVOLUTIONFILTER1D          = 0x0ef,
 
-    /* `HP_CONVOLUTIONFILTER2D` (0x0f0). Route: the token map runs
-     * `arm_convolutionfilter2d` at arm1.u 0x0c036d78. */
+    /* Read at arm1.u arm_convolutionfilter2d 0x0c036d78 (7 plain reads then
+     * r9+0x40 or r9+0x3c; SetupGE_Convolution, SendPixelsToPipe). */
+
+    /* `HP_CONVOLUTIONFILTER2D` (0x0f0). Established: Same as the 1D form for
+     * a two-dimensional kernel: records width and height, parses the host
+     * image and sends the kernel through the engine convolution stage.
+     * Payload 8, then the kernel as an image: internal format, width, height,
+     * format code, type code, byte offset, data-by-DMA flag, row mode.
+     * Established: the token map runs `arm_convolutionfilter2d` at arm1.u
+     * 0x0c036d78. Sent by libGLcore.so __glkonim_ConvolutionFilter2DEXT
+     * (kon_convolve.s, token 240). */
     KONA_HP_CONVOLUTIONFILTER2D          = 0x0f0,
 
-    /* `HP_CONVOLUTIONFILTER3D` (0x0f1). Route: the token map runs
-     * `arm_convolutionfilter3d` at arm1.u 0x0c026648, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_convolutionfilter3d 0x0c026648 (b 0x0c0017f4);
+     * arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_CONVOLUTIONFILTER3D` (0x0f1). Established: The token map runs a
+     * one-instruction stub at 0x0c026648 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_convolutionfilter3d` at arm1.u 0x0c026648, a stub that ends
+     * in `arm_badcmd`. No sender found. libGLcore has no 3D convolution
+     * filter entry point (only the 1D/2D convolution and SeparableFilter2D
+     * emitters in kon_convolve.s), so nothing can send it. */
     KONA_HP_CONVOLUTIONFILTER3D          = 0x0f1,
 
-    /* `HP_COPYCONVOLUTIONFILTER1D` (0x0f2). Route: the token map runs
-     * `arm_copyconvolutionfilter1d` at arm1.u 0x0c036ee8. */
+    /* Read at arm1.u arm_copyconvolutionfilter1d 0x0c036ee8 (3 plain reads +
+     * r9+0x3c; SetupCopyConvolve, SetupReadback,
+     * SetupGE_Convolution, StartRbus). */
+
+    /* `HP_COPYCONVOLUTIONFILTER1D` (0x0f2). Established: Records the kernel
+     * size and format in the 1D convolution record, resolves the copy, and
+     * reads the kernel from the framebuffer through the raster read-back path
+     * (SetupCopyConvolve, SetupReadback, StartRbus) into the engine
+     * convolution stage. Payload 4: internal format, source x, source y,
+     * width. Established: the token map runs `arm_copyconvolutionfilter1d` at
+     * arm1.u 0x0c036ee8. Sent by libGLcore.so
+     * __glkonim_CopyConvolutionFilter1DEXT (kon_convolve.s, token 242;
+     * sandwiched between two PIXEL_NOMODE commands). */
     KONA_HP_COPYCONVOLUTIONFILTER1D      = 0x0f2,
 
-    /* `HP_COPYCONVOLUTIONFILTER2D` (0x0f3). Route: the token map runs
-     * `arm_copyconvolutionfilter2d` at arm1.u 0x0c037018. */
+    /* Read at arm1.u arm_copyconvolutionfilter2d 0x0c037018 (4 plain reads +
+     * r9+0x3c; SetupCopyConvolve, SetupReadback,
+     * StartRbus). */
+
+    /* `HP_COPYCONVOLUTIONFILTER2D` (0x0f3). Established: Same as the 1D copy
+     * for a two-dimensional kernel: records size and format and reads the
+     * kernel from the framebuffer through the raster read-back path into the
+     * engine convolution stage. Payload 5: internal format, source x, source
+     * y, width, height. Established: the token map runs
+     * `arm_copyconvolutionfilter2d` at arm1.u 0x0c037018. Sent by
+     * libGLcore.so __glkonim_CopyConvolutionFilter2DEXT (kon_convolve.s,
+     * token 243). */
     KONA_HP_COPYCONVOLUTIONFILTER2D      = 0x0f3,
 
     /* Engine handlers whose slots the code of `arm_getconvolutionfilter`
-     * loads, in order: `mgebi_Texture`. */
+     * loads, in order: `mgebi_Texture`. Read at arm1.u
+     * arm_getconvolutionfilter 0x0c0372d4. */
 
-    /* `HP_GETCONVOLUTIONFILTER` (0x0f4). Route: the token map runs
-     * `arm_getconvolutionfilter` at arm1.u 0x0c0372d4. */
+    /* `HP_GETCONVOLUTIONFILTER` (0x0f4). Inferred: Stores format and type,
+     * selects the 1D or 2D filter record from context, parses a host-image
+     * description, sets up the packer and the convolution stage in the
+     * engines, writes descriptor 0x58404800 with data 0xffffffff, 0x011d3fcc
+     * and 0x08000000 (meaning not determined) and calls
+     * __glkonSendConvKernToHost: the filter kernel returns as a pixel
+     * read-back. When r8+0x890 is nonzero it brackets this with a
+     * mgebi_Texture handler send (port 0x47c). Payload 3: target (0x8010 1D,
+     * else 2D), pixel format, pixel type. Established: the token map runs
+     * `arm_getconvolutionfilter` at arm1.u 0x0c0372d4. Sent by libGLcore.so
+     * __glkonim_GetConvolutionFilterEXT (kon_convolve.s) stores token 244,
+     * target, format, type, then runs __glKonParseHostImage and
+     * __glkona_wait_rdata. */
     KONA_HP_GETCONVOLUTIONFILTER         = 0x0f4,
 
-    /* `HP_SEPARABLEFILTER2D` (0x0f5). Route: the token map runs
-     * `arm_separablefilter2d` at arm1.u 0x0c037150. */
+    /* Read at arm1.u arm_separablefilter2d 0x0c037150 (8 plain reads then
+     * r9+0x40 or r9+0x3c; SetupGE_Convolution, SendPixelsToPipe,
+     * PixEndConvolve). */
+
+    /* `HP_SEPARABLEFILTER2D` (0x0f5). Established: Records both separable
+     * kernel sizes, parses the host image and sends the row or column kernel
+     * through the engine convolution stage; PixEndConvolve closes the stage.
+     * Payload 9, then row and column kernels as an image: internal format,
+     * width, height, format code, type code, byte offset, which filter (1 is
+     * the row filter, otherwise the column), data-by-DMA flag, row mode.
+     * Established: the token map runs `arm_separablefilter2d` at arm1.u
+     * 0x0c037150. Sent by libGLcore.so __glkonim_SeparableFilter2DEXT
+     * (kon_convolve.s, token 245). */
     KONA_HP_SEPARABLEFILTER2D            = 0x0f5,
 
-    /* `HP_SEPARABLEFILTER3D` (0x0f6). Route: the token map runs
-     * `arm_separablefilter3d` at arm1.u 0x0c02664c, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_separablefilter3d 0x0c02664c (b 0x0c0017f4);
+     * arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_SEPARABLEFILTER3D` (0x0f6). Established: The token map runs a
+     * one-instruction stub at 0x0c02664c that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_separablefilter3d` at arm1.u 0x0c02664c, a stub that ends in
+     * `arm_badcmd`. No sender found. libGLcore has no 3D separable filter
+     * entry point (only the 1D/2D convolution and SeparableFilter2D emitters
+     * in kon_convolve.s), so nothing can send it. */
     KONA_HP_SEPARABLEFILTER3D            = 0x0f6,
 
     /* Engine handlers whose slots the code of `arm_getseparablefilter` loads,
-     * in order: `mgebi_Texture`. */
+     * in order: `mgebi_Texture`. Read at arm1.u arm_getseparablefilter
+     * 0x0c037410. */
 
-    /* `HP_GETSEPARABLEFILTER` (0x0f7). Route: the token map runs
-     * `arm_getseparablefilter` at arm1.u 0x0c037410. */
+    /* `HP_GETSEPARABLEFILTER` (0x0f7). Inferred: Same as GETCONVOLUTIONFILTER
+     * but selects the separable-filter record (two kernels) and flags it as
+     * separable; sends it to the host with __glkonSendConvKernToHost after
+     * the same engine set-up. Payload 3: target (0x8012 separable), format,
+     * type. Established: the token map runs `arm_getseparablefilter` at
+     * arm1.u 0x0c037410. Sent by libGLcore.so __glkonim_GetSeparableFilterEXT
+     * (kon_convolve.s) stores token 247. */
     KONA_HP_GETSEPARABLEFILTER           = 0x0f7,
 
-    /* `HP_PIXEL_TRANSFORM_PARAMETERIV` (0x0f8). Route: the token map runs
-     * `arm_pixel_transform_parameteriv` at arm1.u 0x0c03784c. */
+    /* Read at arm1.u arm_pixel_transform_parameteriv 0x0c03784c (r9+0, r9+0,
+     * then r9+0x3c in each branch). */
+
+    /* `HP_PIXEL_TRANSFORM_PARAMETERIV` (0x0f8). Established: Selects the
+     * record from the target, and for name 0x8013 (border mode) stores the
+     * value there; for the pixel-transform target it stores the value for
+     * names 0x81c9 and 0x81ca. It sends nothing to the engines. Payload 3:
+     * target (0x8010, 0x8011, 0x8012 select the 1D, 2D or separable
+     * convolution record; 0x81c6 selects a pixel-transform record), parameter
+     * name, one integer value. Established: the token map runs
+     * `arm_pixel_transform_parameteriv` at arm1.u 0x0c03784c. Sent by
+     * libGLcore.so __glkonim_PixelTransformParameterfvSGI and the integer
+     * variants (kon_pixel_transform.s, token 248). */
     KONA_HP_PIXEL_TRANSFORM_PARAMETERIV  = 0x0f8,
 
-    /* `HP_PIXEL_TRANSFORM_PARAMETERFV` (0x0f9). Route: the token map runs
-     * `arm_pixel_transform_parameterfv` at arm1.u 0x0c03776c. */
+    /* Read at arm1.u arm_pixel_transform_parameterfv 0x0c03776c (2 plain
+     * reads, then 3 plain + r9+0x3c in each branch; compare with 0x3f800000
+     * for scale). */
+
+    /* `HP_PIXEL_TRANSFORM_PARAMETERFV` (0x0f9). Established: Stores the four
+     * floats as the record's filter scale (0x8014) or bias (0x8015) and sets
+     * or clears the record's flag bit for 'scale is not one' or 'bias is not
+     * zero'; it sends nothing to the engines. Payload 6 (2 words, 4 floats):
+     * target (as for the integer form), parameter name (0x8014 or 0x8015),
+     * four floats. Established: the token map runs
+     * `arm_pixel_transform_parameterfv` at arm1.u 0x0c03776c. Sent by
+     * libGLcore.so __glkonim_PixelTransformParameterfvSGI
+     * (kon_pixel_transform.s, token 249). */
     KONA_HP_PIXEL_TRANSFORM_PARAMETERFV  = 0x0f9,
 
-    /* `HP_GET_PIXEL_TRANSFORM_PARAMETERIV` (0x0fa). Route: the token map runs
-     * `arm_get_pixel_transform_parameteriv` at arm1.u 0x0c0378d8. */
+    /* Read at arm1.u arm_get_pixel_transform_parameteriv 0x0c0378d8. */
+
+    /* `HP_GET_PIXEL_TRANSFORM_PARAMETERIV` (0x0fa). Inferred: Query:
+     * start_rdata, then for the one supported target sends count 1 and the
+     * shadow value (record+0x55c for 0x81c9, +0x560 for 0x81ca),
+     * finish_rdata. Any other target or pname sends no count and no value.
+     * Payload 2: transform target (0x81c6), pname (0x81c9 or 0x81ca).
+     * Established: the token map runs `arm_get_pixel_transform_parameteriv`
+     * at arm1.u 0x0c0378d8. Sent by libGLcore.so
+     * GetPixelTransformParameterfvSGI (kon_pixel_transform.s) ->
+     * __glkon_get_special2(250, target, pname). */
     KONA_HP_GET_PIXEL_TRANSFORM_PARAMETERIV = 0x0fa,
 
-    /* `HP_GET_PIXEL_TRANSFORM_PARAMETERFV` (0x0fb). Route: the token map runs
-     * `arm_get_pixel_transform_parameterfv` at arm1.u 0x0c026650, a stub that
-     * ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_get_pixel_transform_parameterfv 0x0c026650 (b
+     * 0x0c0017f4); arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GET_PIXEL_TRANSFORM_PARAMETERFV` (0x0fb). Established: The token
+     * map runs a one-instruction stub at 0x0c026650 that branches to
+     * arm_badcmd; that prints the current and previous token numbers, reads
+     * and prints 100 payload words, then spins reading words, so the pipe
+     * would hang. Payload none read by the stub (arm_badcmd drains 100):
+     * nothing: the token is refused and no payload is defined. Established:
+     * the token map runs `arm_get_pixel_transform_parameterfv` at arm1.u
+     * 0x0c026650, a stub that ends in `arm_badcmd`. No sender found.
+     * __glkonim_GetPixelTransformParameterfvSGI (kon_pixel_transform.s) is a
+     * 24-line wrapper that calls one sibling and stores no token. */
     KONA_HP_GET_PIXEL_TRANSFORM_PARAMETERFV = 0x0fb,
 
-    /* `HP_COPYTEXIMAGE1D` (0x0fc). Route: the token map runs
-     * `arm_copyteximage1d` at arm1.u 0x0c0265f4, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_copyteximage1d 0x0c0265f4 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_COPYTEXIMAGE1D` (0x0fc). Established: The token map runs a
+     * one-instruction stub at 0x0c0265f4 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_copyteximage1d` at arm1.u 0x0c0265f4, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_CopyTexImage1DEXT enter
+     * __glkonim_CopyTexImage, which reach __glKonCopyTexImage (kon_pixel.s)
+     * and send HP_COPYTEXIMAGE 0xfd. */
     KONA_HP_COPYTEXIMAGE1D               = 0x0fc,
 
-    /* `HP_COPYTEXIMAGE` (0x0fd). Route: the token map runs `arm_copyteximage`
-     * at arm1.u 0x0c02bf60. */
+    /* Read at arm1.u arm_copyteximage 0x0c02bf60 (16 plain reads + r9+0x3c,
+     * stored at descriptor +0x34, +0x38, +0, +4, +0x78..+0xa4, +0x3c). */
+
+    /* `HP_COPYTEXIMAGE` (0x0fd). Established: Copies a framebuffer rectangle
+     * into texture memory: resolves the copy path, sets up the raster
+     * read-back and the sub-texture load registers (SetupReadback,
+     * SetupSubtexload, SetupSubtexloadPos) and starts the transfer with
+     * StartRbus; a video-mapped display takes videoCopyTexImage. Payload 17:
+     * source x, source y, width, height, first column (0), eleven texel-load
+     * words as in the texel draw header (format id, load id, placement), and
+     * the source buffer type. Established: the token map runs
+     * `arm_copyteximage` at arm1.u 0x0c02bf60. Sent by libGLcore.so
+     * __glKonCopyTexImage (kon_pixel.s, token 253). */
     KONA_HP_COPYTEXIMAGE                 = 0x0fd,
 
-    /* `HP_COPYTEXSUBIMAGE1D` (0x0fe). Route: the token map runs
-     * `arm_copytexsubimage1d` at arm1.u 0x0c0265f8, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_copytexsubimage1d 0x0c0265f8 (b 0x0c0017f4);
+     * arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_COPYTEXSUBIMAGE1D` (0x0fe). Established: The token map runs a
+     * one-instruction stub at 0x0c0265f8 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_copytexsubimage1d` at arm1.u 0x0c0265f8, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_CopyTexSubImage1DEXT enter
+     * __glkonim_CopyTexSubImage (via __glkonim_CopyTexImage2DEXT), which
+     * reach __glKonCopyTexImage (kon_pixel.s) and send HP_COPYTEXIMAGE 0xfd. */
     KONA_HP_COPYTEXSUBIMAGE1D            = 0x0fe,
 
-    /* `HP_WG_FLUSH_0` (0x0ff). Route: the token map runs `arm_wg_flush_0` at
-     * arm1.u 0x0c0265fc, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_wg_flush_0 0x0c0265fc (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_WG_FLUSH_0` (0x0ff). Inferred: The token map runs a one-instruction
+     * stub at 0x0c0265fc that branches to arm_badcmd; that prints the current
+     * and previous token numbers, reads and prints 100 payload words, then
+     * spins reading words, so the pipe would hang. By analogy with
+     * HP_WG_FLUSH_1 it is inferred to be a write-gather flush slot that the
+     * host interface drops before the map; no sender exists to confirm.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_wg_flush_0` at arm1.u 0x0c0265fc, a stub that ends in
+     * `arm_badcmd`. No sender found in libGLcore, kernel or X module (no
+     * store at window offset 0x1fe0 = 0xff x 32). */
     KONA_HP_WG_FLUSH_0                   = 0x0ff,
 
-    /* `HP_DATA_1` (0x100). Route: the token map runs `arm_data_1` at arm1.u
-     * 0x0c026600, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_data_1 0x0c026600 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_DATA_1` (0x100). Inferred: The token map runs a one-instruction
+     * stub at 0x0c026600 that branches to arm_badcmd; that prints the current
+     * and previous token numbers, reads and prints 100 payload words, then
+     * spins reading words, so the pipe would hang. The slot is a placeholder
+     * for the base of the window half, where a store is payload, so it is
+     * never a command (inferred). Payload none read by the stub (arm_badcmd
+     * drains 100): nothing: the token is refused and no payload is defined.
+     * Established: the token map runs `arm_data_1` at arm1.u 0x0c026600, a
+     * stub that ends in `arm_badcmd`. No sender found. Only li 256 near a
+     * store is a context-struct field in __glKonCreateContext (not the FIFO).
+     * The X module passes 8192 (= 0x100 x 32) to a helper in the konStereo*
+     * functions as an argument; it looks like a buffer size and was not
+     * traced. */
     KONA_HP_DATA_1                       = 0x100,
 
-    /* `HP_COPYTEXSUBIMAGE2D` (0x101). Route: the token map runs
-     * `arm_copytexsubimage2d` at arm1.u 0x0c026604, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_copytexsubimage2d 0x0c026604 (b 0x0c0017f4);
+     * arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_COPYTEXSUBIMAGE2D` (0x101). Established: The token map runs a
+     * one-instruction stub at 0x0c026604 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_copytexsubimage2d` at arm1.u 0x0c026604, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_CopyTexSubImage2DEXT enter
+     * __glkonim_CopyTexSubImage (via __glkonim_CopyTexImage2DEXT), which
+     * reach __glKonCopyTexImage (kon_pixel.s) and send HP_COPYTEXIMAGE 0xfd. */
     KONA_HP_COPYTEXSUBIMAGE2D            = 0x101,
 
-    /* `HP_HISTOGRAM` (0x102). Route: the token map runs `arm_histogram` at
-     * arm1.u 0x0c03f8c4. */
+    /* Read at arm1.u arm_histogram 0x0c03f8c4 (4 plain reads + r9+0x3c;
+     * real_format, reset_histogram 0x0c03f818). */
+
+    /* `HP_HISTOGRAM` (0x102). Established: Stores the histogram's width,
+     * format and sink flag in the histogram record (the proxy target only
+     * records the values), turns the histogram bit in the pixel mode word on
+     * or off, sizes the table (256, 1024 or 4096 entries) and clears it with
+     * reset_histogram. Payload 5: target (0x8025 is the proxy), width, width
+     * minus 1 as a float, internal format, sink flag. Established: the token
+     * map runs `arm_histogram` at arm1.u 0x0c03f8c4. Sent by libGLcore.so
+     * __glkonim_HistogramEXT (kon_histogram.s, token 258). */
     KONA_HP_HISTOGRAM                    = 0x102,
 
-    /* `HP_RESETHISTOGRAM` (0x103). Route: the token map runs
-     * `arm_resethistogram` at arm1.u 0x0c03fab0. Route: libGLcore.so
-     * `__glkonim_ResetHistogramEXT` stores 1 word after the token. */
+    /* Read at arm1.u arm_resethistogram 0x0c03fab0 (r9+0x3c; reset_histogram
+     * 0x0c03f818, set_invalid_enum). */
+
+    /* `HP_RESETHISTOGRAM` (0x103). Established: Clears the histogram table
+     * through reset_histogram when the target is the histogram, otherwise
+     * raises an invalid-enum error. Payload 1: target (must be 0x8024, the
+     * histogram target). Established: the token map runs `arm_resethistogram`
+     * at arm1.u 0x0c03fab0. Established: libGLcore.so
+     * `__glkonim_ResetHistogramEXT` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_ResetHistogramEXT (kon_cfuncs.s, token 259),
+     * also __glkonim_GetHistogramEXT. */
     KONA_HP_RESETHISTOGRAM               = 0x103,
 
-    /* `HP_GETHISTOGRAM` (0x104). Route: the token map runs `arm_gethistogram`
-     * at arm1.u 0x0c03f9a4. */
+    /* Read at arm1.u arm_gethistogram 0x0c03f9a4; ge.u mgesi_HistogramUpload
+     * (histogram.S:175). */
+
+    /* `HP_GETHISTOGRAM` (0x104). Inferred: Starts read-back if none is
+     * active, then for each engine sends the histogram width, reset flag,
+     * format words and runs HistogramUpload (slot 201) to push the histogram
+     * bins, finally a trailing descriptor write, finish_rdata. If the
+     * histogram is not enabled it just ends the read-back. Payload 1: reset
+     * flag (passed through to the engine). Established: the token map runs
+     * `arm_gethistogram` at arm1.u 0x0c03f9a4. Sent by libGLcore.so
+     * __glkonim_GetHistogramEXT (kon_histogram.s) puts token 260 inside a
+     * KONA_DMAREAD (ioctl 10000) command list. */
     KONA_HP_GETHISTOGRAM                 = 0x104,
 
-    /* `HP_GETHISTOGRAMPARAMETERIV` (0x105). Route: the token map runs
-     * `arm_gethistogramparameteriv` at arm1.u 0x0c03fac4. */
+    /* Read at arm1.u arm_gethistogramparameteriv 0x0c03fac4. */
+
+    /* `HP_GETHISTOGRAMPARAMETERIV` (0x105). Inferred: Query: start_rdata,
+     * then count 1 and one value from the ARM histogram record (width, format
+     * or sink) or the constant 32 for the five component-size names; bad
+     * target or pname raises invalid enum and replies count 0; finish_rdata.
+     * Payload 2: target (0x8024 histogram, 0x8025 proxy), pname
+     * (0x8026-0x802d). Established: the token map runs
+     * `arm_gethistogramparameteriv` at arm1.u 0x0c03fac4. Sent by
+     * libGLcore.so __glkonim_GetHistogramParameterivEXT/fvEXT
+     * (kon_histogram.s, token constant 261). */
     KONA_HP_GETHISTOGRAMPARAMETERIV      = 0x105,
 
     /* Engine handlers whose slots the code of `arm_bind_linear_texture`
      * loads, in order: `mgesi_TbusRegWrite`, `mgesi_FillTMLoadFifo`,
      * `mgeb_SkipNextTextureAddr`, `mgebi_Texture`, `mgebi_TexEnvComps`,
-     * `mgebi_UpdateTexturing`. */
+     * `mgebi_UpdateTexturing`. Read at arm1.u arm_bind_linear_texture
+     * 0x0c0259ac (4 plain reads + r9+0x3c; tbus_regwrite 0x1002/0x5003;
+     * mgebi_Texture, mgebi_TexEnvComps, mgebi_UpdateTexturing,
+     * mgesi_FillTMLoadFifo, mgeb_SkipNextTextureAddr). */
 
-    /* `HP_BIND_LINEAR_TEXTURE` (0x106). Route: the token map runs
-     * `arm_bind_linear_texture` at arm1.u 0x0c0259ac. */
+    /* `HP_BIND_LINEAR_TEXTURE` (0x106). Established: Retires and clears any
+     * pending load id of that cache entry, switches the active dimension if
+     * allowed, sends the component count and bind-start marker, records table
+     * kind 3 (no table sent) and sends the dimension plus three words to the
+     * engines' texture handler. Payload 5: texture-cache index (negative for
+     * none), packed bind word (bits 28-31 texture dimension, bits 24-27 table
+     * kind, forced to 3 by this token, bits 12-23 component-format index,
+     * bits 0-11 index of the ARM texture table entry), three texture-object
+     * words. Established: the token map runs `arm_bind_linear_texture` at
+     * arm1.u 0x0c0259ac. Sent by libGLcore.so bind2DMipmapTexture
+     * (texture/kon_texture_api.s: sends token 262 when the selector in bits
+     * 24-27 is 3, else token 469). */
     KONA_HP_BIND_LINEAR_TEXTURE          = 0x106,
 
-    /* `HP_MINMAX` (0x107). Route: the token map runs `arm_minmax` at arm1.u
-     * 0x0c03fc74. */
+    /* Read at arm1.u arm_minmax 0x0c03fc74 (r9+0, r9+0x3c; real_format,
+     * reset_minmax 0x0c03fbe8). */
+
+    /* `HP_MINMAX` (0x107). Established: Stores the format and sink flag in
+     * the min-max record, sets or clears the min-max bit in the pixel mode
+     * word and resets the stored min and max with reset_minmax. Payload 2:
+     * internal format, sink flag. Established: the token map runs
+     * `arm_minmax` at arm1.u 0x0c03fc74. Sent by libGLcore.so
+     * __glkonim_MinmaxEXT (kon_histogram.s, token 263; host accepts only
+     * target 0x802e). */
     KONA_HP_MINMAX                       = 0x107,
 
-    /* `HP_RESETMINMAX` (0x108). Route: the token map runs `arm_resetminmax`
-     * at arm1.u 0x0c03fce8. Route: libGLcore.so `__glkonim_ResetMinmaxEXT`
-     * stores 1 word after the token. */
+    /* Read at arm1.u arm_resetminmax 0x0c03fce8 (r9+0x3c; reset_minmax,
+     * set_invalid_enum). */
+
+    /* `HP_RESETMINMAX` (0x108). Established: Resets the stored minimum and
+     * maximum when the target is the min-max target, otherwise raises an
+     * invalid-enum error. Payload 1: target (must be 0x802e). Established:
+     * the token map runs `arm_resetminmax` at arm1.u 0x0c03fce8. Established:
+     * libGLcore.so `__glkonim_ResetMinmaxEXT` stores 1 word after the token.
+     * Sent by libGLcore.so __glkonim_ResetMinmaxEXT (kon_cfuncs.s, token
+     * 264). */
     KONA_HP_RESETMINMAX                  = 0x108,
 
-    /* `HP_GETMINMAX` (0x109). Route: the token map runs `arm_getminmax` at
-     * arm1.u 0x0c03fcfc. */
+    /* Read at arm1.u arm_getminmax 0x0c03fcfc; ge.u mgesi_Cram2ODMA. */
+
+    /* `HP_GETMINMAX` (0x109). Inferred: Query: start_rdata, sends the count
+     * held in the min-max record, then for each engine runs Cram2ODMA (slot
+     * 196) of 8 words from CRAM address 0x183, finish_rdata; if the flag is
+     * nonzero it then calls reset_minmax. Payload 1: reset flag. Established:
+     * the token map runs `arm_getminmax` at arm1.u 0x0c03fcfc. Sent by
+     * libGLcore.so __glkonim_GetMinmaxEXT (kon_histogram.s) ->
+     * __glkon_get_special(265, flag). */
     KONA_HP_GETMINMAX                    = 0x109,
 
-    /* `HP_GETMINMAXPARAMETERIV` (0x10a). Route: the token map runs
-     * `arm_getminmaxparameteriv` at arm1.u 0x0c03fd98. */
+    /* Read at arm1.u arm_getminmaxparameteriv 0x0c03fd98. */
+
+    /* `HP_GETMINMAXPARAMETERIV` (0x10a). Inferred: Query: start_rdata, count
+     * 1 and the record word at +4 (pname 0x802f) or +0 (0x8030); any other
+     * pname raises invalid enum and replies count 0; finish_rdata. Payload 1:
+     * pname (0x802f format, 0x8030 sink). Established: the token map runs
+     * `arm_getminmaxparameteriv` at arm1.u 0x0c03fd98. Sent by libGLcore.so
+     * __glkonim_GetMinmaxParameterivEXT/fvEXT (kon_histogram.s, token
+     * constant 266). */
     KONA_HP_GETMINMAXPARAMETERIV         = 0x10a,
 
-    /* Engine handlers relocated into the span of distributor entry 0x27f:
-     * `mgesi_QuadStrip`. */
+    /* Read at icu_map.tsv 0x10b; ged_bound_table.tsv idx 34; arm1.u
+     * arm_pushattrib 0x0c039c80 (store of 0x58514800 at 0x0c03a150); ge.u
+     * getlight.S mgesi_PushAttrLights 0xc255. */
 
-    /* `HP_GET_LIGHT_ATTRIBS` (0x10b). Route: routed by the host interface
-     * with no ARM code, map entry 0x58514841: command 162, count field 1,
-     * single floats; distributor entry 0x27f at ged1b.u qstrip.s:185. */
+    /* `HP_GET_LIGHT_ATTRIBS` (0x10b). Inferred: Map entry 0x58514841: pass
+     * form, command 162, count 1, 32-bit words. Command 162 is handler-table
+     * index 34, mgesi_PushAttrLights; the ARM itself injects the same command
+     * (descriptor 0x58514800) in arm_pushattrib, so the engine handler saves
+     * the current light attributes onto the engine-side attribute stack.
+     * Payload 1: one word (value not shown by any emitter). Established:
+     * routed by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58514841: command 162, count field 1 (bits 6-10, 0 read as 32),
+     * single floats. No sender found: no store of token 267 to the command
+     * FIFO in libGLcore (267 appears there only as a display-list opcode and
+     * a glGet pname), the kernel, kona.so or irsaudit; the ARM uses the same
+     * command number from arm_pushattrib. */
     KONA_HP_GET_LIGHT_ATTRIBS            = 0x10b,
 
     /* Engine handlers whose slots the code of `arm_initnames` loads, in
-     * order: `mgeb_InitNames`. */
+     * order: `mgeb_InitNames`. Read at arm1.u arm_initnames 0x0c038864; ge.u
+     * mgeb_InitNames. */
 
-    /* `HP_INITNAMES` (0x10c). Route: the token map runs `arm_initnames` at
-     * arm1.u 0x0c038864. Route: libGLcore.so `__glkonim_InitNames` stores 1
-     * word after the token. */
+    /* `HP_INITNAMES` (0x10c). Established: Only in select mode: sends
+     * InitNames (slot 153) to all engines (port 0x438); otherwise nothing.
+     * Payload 1 (zero, read and dropped): dummy zero. Established: the token
+     * map runs `arm_initnames` at arm1.u 0x0c038864. Established:
+     * libGLcore.so `__glkonim_InitNames` stores 1 word after the token. Sent
+     * by libGLcore.so __glkonim_InitNames (kon_cfuncs.s). */
     KONA_HP_INITNAMES                    = 0x10c,
 
     /* Engine handlers whose slots the code of `arm_loadname` loads, in order:
-     * `mgeb_LoadName`. */
+     * `mgeb_LoadName`. Read at arm1.u arm_loadname 0x0c038898; ge.u
+     * mgeb_LoadName. */
 
-    /* `HP_LOADNAME` (0x10d). Route: the token map runs `arm_loadname` at
-     * arm1.u 0x0c038898. Route: libGLcore.so `__glkonim_LoadName` stores 1
-     * word after the token. */
+    /* `HP_LOADNAME` (0x10d). Established: Only in select mode: sends the name
+     * (0x840) to all engines and runs LoadName (slot 155); otherwise dropped.
+     * Payload 1: name integer. Established: the token map runs `arm_loadname`
+     * at arm1.u 0x0c038898. Established: libGLcore.so `__glkonim_LoadName`
+     * stores 1 word after the token. Sent by libGLcore.so __glkonim_LoadName
+     * (kon_cfuncs.s). */
     KONA_HP_LOADNAME                     = 0x10d,
 
     /* Engine handlers whose slots the code of `arm_set_current_raster` loads,
-     * in order: `mgeb_SetCurrentRaster`. */
+     * in order: `mgeb_SetCurrentRaster`. Read at arm1.u
+     * arm_set_current_raster 0x0c036350-0x0c036380; ge_handlers.md slot 366. */
 
-    /* `HP_SET_CURRENT_RASTER` (0x10e). Route: the token map runs
-     * `arm_set_current_raster` at arm1.u 0x0c036350. Route: libGLcore.so
-     * `setCurrentRaster` stores 15 words after the token. */
+    /* `HP_SET_CURRENT_RASTER` (0x10e). Established: Selects all engines
+     * (0x438), copies 14 words from the host port and then the last word
+     * (r9+0x3c) to engine port 0x840 unchanged, and starts slot 366 (gepc
+     * word 0x16e) mgeb_SetCurrentRaster through port 0x8c0. Payload 15
+     * floats: The raster-position record the driver keeps per context:
+     * fifteen floats, taken from context offsets
+     * +0x90,+0x94,+0x98,+0x9c,+0xa0, +0x30,+0x34,+0x38,+0x3c,
+     * +0x80,+0x84,+0x88,+0x8c, +0x68, and the word at +4 converted to float.
+     * Established: the token map runs `arm_set_current_raster` at arm1.u
+     * 0x0c036350. Established: libGLcore.so `setCurrentRaster` stores 15
+     * words after the token. Sent by libGLcore.so setCurrentRaster
+     * (kon_attrib.s 0x0d9637f0). */
     KONA_HP_SET_CURRENT_RASTER           = 0x10e,
 
     /* Engine handlers whose slots the code of `arm_fogfunc` loads, in order:
-     * `mgeb_FogFunc`. */
+     * `mgeb_FogFunc`. Read at arm1.u arm_fogfunc 0x0c03f628 (slot 114;
+     * counter register 0x200058 value 2n with continue flag; waitForDH
+     * 0x0c022354). */
 
-    /* `HP_FOGFUNC` (0x10f). Route: the token map runs `arm_fogfunc` at arm1.u
-     * 0x0c03f628. */
+    /* `HP_FOGFUNC` (0x10f). Inferred: Peeks the count without consuming it
+     * and sends the bad-command path if it is outside 1..32. Otherwise it
+     * sends the count to all engines, starts the pass-through counter for the
+     * remaining words, waits, and starts mgeb_FogFunc. Payload variable: 1 +
+     * 2n (n in 1..32): Count n of piecewise points, then n pairs of floats
+     * describing the fog function. Established: the token map runs
+     * `arm_fogfunc` at arm1.u 0x0c03f628. Sent by libGLcore.so
+     * __glkonim_FogFuncSGIS (kon_fog.s): token 271, n, then 2n floats via
+     * __glkon_datavn. */
     KONA_HP_FOGFUNC                      = 0x10f,
 
-    /* `HP_COPYISOVERLAPPED` (0x110). Route: the token map runs
-     * `arm_copyisoverlapped` at arm1.u 0x0c02c94c. */
+    /* Read at arm1.u arm_copyisoverlapped 0x0c02c94c (3 plain reads +
+     * r9+0x3c; QueryOverlap, WaitOverlap,
+     * start_rdata, tbus_regwrite 0x476, finish_rdata). */
+
+    /* `HP_COPYISOVERLAPPED` (0x110). Established: Queries and waits for
+     * source/destination overlap of a pending copy, then returns the answer
+     * to the host by read-back: it writes a marker 1 and the result to the
+     * read-back data register 0x476. Payload 4: source x, source y, width,
+     * height-or-flags word (bit 31 asks the overlap query to run).
+     * Established: the token map runs `arm_copyisoverlapped` at arm1.u
+     * 0x0c02c94c. Sent by libGLcore.so CopyIsOverlapped (kon_pixel.s, token
+     * 272), which then waits with __glkona_wait_rdata. */
     KONA_HP_COPYISOVERLAPPED             = 0x110,
 
-    /* `HP_PIXEL_NOMODE` (0x111). Route: the token map runs `arm_pixel_nomode`
-     * at arm1.u 0x0c02ca20. */
+    /* Read at arm1.u arm_pixel_nomode 0x0c02ca20 (r9+0, r9+0x3c; saved flag
+     * word at ARM 0xcf4+0x714, pointers at descriptor +0xb4 and +0xb8;
+     * DefUnpackState, DefPackState, DlistUnpackState). */
+
+    /* `HP_PIXEL_NOMODE` (0x111). Inferred: With bit 30 set it saves the
+     * pixel-mode flag word and a second state word and replaces them (mode
+     * word cleared, second word 0x8421), so the next pixel command runs with
+     * no transfer modes; otherwise it restores the saved words. It also
+     * points the descriptor at the chosen pack and unpack state. Payload 2: a
+     * pack/unpack state selector (2, 4, 0x20 or other), and a flag word whose
+     * bit 30 turns the mode suppression on and bit 29 picks the pack and
+     * unpack parameter sets. Established: the token map runs
+     * `arm_pixel_nomode` at arm1.u 0x0c02ca20. Sent by libGLcore.so
+     * __glKonSetNoModeState, __glkonim_ColorTableSGI,
+     * __glkonim_CopyColorTableSGI, the convolution functions and
+     * __glkon_OverlappedCopy (token 273). */
     KONA_HP_PIXEL_NOMODE                 = 0x111,
 
     /* Engine handlers whose slots the code of `arm_irisgl_mode` loads, in
-     * order: `mgeb_SetLMCFlag`, `mgeb_ClearLMCFlag`. */
+     * order: `mgeb_SetLMCFlag`, `mgeb_ClearLMCFlag`. Read at arm1.u
+     * arm_irisgl_mode 0x0c016770 (slots 405 and 406; context record at
+     * r8+0xcf4 words +0x1114, +0x111c, +0x1120; XferMask). */
 
-    /* `HP_IRISGL_MODE` (0x112). Route: the token map runs `arm_irisgl_mode`
-     * at arm1.u 0x0c016770. */
+    /* `HP_IRISGL_MODE` (0x112). Established: Sets or clears two flag words
+     * and a bit in the context record and starts mgeb_SetLMCFlag (nonzero) or
+     * mgeb_ClearLMCFlag (zero) on all engines. Also sends the flag word
+     * through descriptor 0x52800020 and re-derives the transfer masks.
+     * Payload 1: Mode flag (nonzero on). Established: the token map runs
+     * `arm_irisgl_mode` at arm1.u 0x0c016770. Sent by libGLcore.so
+     * __glkonim_IglooInterfaceSGIX (kon_igloo.s): parameter 0x81a2 sends
+     * token 274 plus the value. */
     KONA_HP_IRISGL_MODE                  = 0x112,
 
-    /* `HP_LMC_COLOR` (0x113). Route: the token map runs `arm_lmc_color` at
-     * arm1.u 0x0c016898. */
+    /* Read at arm1.u arm_lmc_color 0x0c016898 (r8+0xcf4 record word +0x1120). */
+
+    /* `HP_LMC_COLOR` (0x113). Established: Stores the word in the context
+     * record word at +0x1120 and re-derives the transfer masks. Payload 1:
+     * One word (value of the Igloo interface parameter 0x81a3). Established:
+     * the token map runs `arm_lmc_color` at arm1.u 0x0c016898. Sent by
+     * libGLcore.so __glkonim_IglooInterfaceSGIX (kon_igloo.s): token 275. */
     KONA_HP_LMC_COLOR                    = 0x113,
 
-    /* `HP_VIDEO_SOURCE` (0x114). Route: the token map runs `arm_video_source`
-     * at arm1.u 0x0c013924. */
+    /* Read at arm1.u arm_video_source 0x0c013924; SetVideoFormat 0x0c02bdfc;
+     * SetGedVideoBoard 0x0c032ccc. */
+
+    /* `HP_VIDEO_SOURCE` (0x114). Inferred: Hands the word to SetVideoFormat,
+     * which writes a source-format description (a set of constants chosen by
+     * 0/1, 2 or 3) into the firmware's video record and, if the record shows
+     * a video board active, first resets the distributor video-board set-up
+     * (SetGedVideoBoard). Payload 1: video source code 0-3 (libGLcore maps
+     * the drawable video type 0x1001 to 0, 0x1000 to 1,
+     * 0x1002 to 2, 0x1003 to 3, anything else to 0). Established: the token
+     * map runs `arm_video_source` at arm1.u 0x0c013924. Sent by libGLcore.so
+     * kona_readconfig (kon_context.s) stores token 276 then the code. */
     KONA_HP_VIDEO_SOURCE                 = 0x114,
 
     /* Engine handlers whose slots the code of `arm_copyconvisoverlapped`
-     * loads, in order: `mgesi_GetRaster`. */
+     * loads, in order: `mgesi_GetRaster`. Read at arm1.u
+     * arm_copyconvisoverlapped 0x0c02c9b0 (3 plain reads + r9+0x3c;
+     * QueryOverlap, WaitOverlap, start_rdata,
+     * tbus_regwrite 0x476 with 0x10, slot 200 mgesi_GetRaster via 0x4f4). */
 
-    /* `HP_COPYCONVISOVERLAPPED` (0x115). Route: the token map runs
-     * `arm_copyconvisoverlapped` at arm1.u 0x0c02c9b0. */
+    /* `HP_COPYCONVISOVERLAPPED` (0x115). Established: Same overlap query as
+     * the plain copy, but replies through the read-back register 0x476 with a
+     * marker of 16 instead of 1, then names the raster-read handler on port
+     * 0x4f4 before finishing the read-back. Payload 4: source x, source y,
+     * width, flags word (bit 31 asks the overlap query to run). Established:
+     * the token map runs `arm_copyconvisoverlapped` at arm1.u 0x0c02c9b0.
+     * Sent by libGLcore.so CopyConvIsOverlapped (kon_pixel.s, token 277). */
     KONA_HP_COPYCONVISOVERLAPPED         = 0x115,
 
-    /* `HP_RESOLVEISSINGLECOMP` (0x116). Route: the token map runs
-     * `arm_resolveissinglecomp` at arm1.u 0x0c027d68. */
+    /* Read at arm1.u arm_resolveissinglecomp 0x0c027d68 (3 plain reads +
+     * r9+0x3c; commonResolve 0x0c027714, start_rdata,
+     * tbus_regwrite 0x476, finish_rdata). */
+
+    /* `HP_RESOLVEISSINGLECOMP` (0x116). Inferred: Runs the path resolver on
+     * the given source format and returns by read-back (register 0x476) a
+     * one-component answer, telling the host whether the draw or copy path
+     * reduces to a single component. Payload 4: a path flag word (bit 0
+     * host-format, bit 1 framebuffer, bit 4 and others), and three format
+     * words from the draw or copy state. Established: the token map runs
+     * `arm_resolveissinglecomp` at arm1.u 0x0c027d68. Sent by libGLcore.so
+     * GetSingleCompFromPipe (kon_pixel.s, token 278), called from DrawPixels
+     * and CopyPixels; also __glKonUnsetLEModes. */
     KONA_HP_RESOLVEISSINGLECOMP          = 0x116,
 
     /* Engine handlers whose slots the code of `arm_samplepattern` loads, in
-     * order: `mgeb_SetMSPointTables`. */
+     * order: `mgeb_SetMSPointTables`. Read at arm1.u arm_samplepattern
+     * 0x0c03c2a8 (table patterns 0x0c03c734; descriptor 0x584fc800 address
+     * words 0x01253be0 and 0x01263be1; slot 423). */
 
-    /* `HP_SAMPLEPATTERN` (0x117). Route: the token map runs
-     * `arm_samplepattern` at arm1.u 0x0c03c2a8. Route: libGLcore.so
-     * `__glkonim_SamplePatternSGIS` stores 1 word after the token. */
+    /* `HP_SAMPLEPATTERN` (0x117). Established: Rejects values outside
+     * 0x80a1-0x80a7 with invalid-enum. Otherwise keeps it, picks two pattern
+     * words from the table for the current sample count, writes them to the
+     * two multisample location registers and starts mgeb_SetMSPointTables
+     * with the pattern index. Payload 1: Sample pattern enum (0x80a1 single
+     * pass, 0x80a2-0x80a3 two-pass, 0x80a4-0x80a7 four-pass). Established:
+     * the token map runs `arm_samplepattern` at arm1.u 0x0c03c2a8.
+     * Established: libGLcore.so `__glkonim_SamplePatternSGIS` stores 1 word
+     * after the token. Sent by libGLcore.so __glkonim_SamplePatternSGIS
+     * (kon_cfuncs.s). */
     KONA_HP_SAMPLEPATTERN                = 0x117,
 
-    /* `HP_SAMPLEMASK` (0x118). Route: the token map runs `arm_samplemask` at
-     * arm1.u 0x0c03c350. */
+    /* Read at arm1.u arm_samplemask 0x0c03c350 (tables masks4 0x0c03c7a4,
+     * masks8 0x0c03c828; descriptor 0x58404800, address word 0x0161140b). */
+
+    /* `HP_SAMPLEMASK` (0x118). Inferred: Keeps both, converts the float
+     * coverage value into a bit mask for 4 or 8 samples through the masks4 or
+     * masks8 table (inverting it when the flag is set) and writes it to a
+     * texture-pipe register. Payload 2: Mask value as a float, and an invert
+     * flag. Established: the token map runs `arm_samplemask` at arm1.u
+     * 0x0c03c350. Sent by libGLcore.so __glkonim_SampleMaskSGIS (kon_modes.s,
+     * token 280). */
     KONA_HP_SAMPLEMASK                   = 0x118,
 
     /* Engine handlers whose slots the code of `arm_poplights` loads, in
-     * order: `mgeb_PopAttrLights`. */
+     * order: `mgeb_PopAttrLights`. Read at arm1.u arm_poplights 0x0c018134
+     * (slot 166; count register r9-0x1a8; waitForDH). */
 
-    /* `HP_POPLIGHTS` (0x119). Route: the token map runs `arm_poplights` at
-     * arm1.u 0x0c018134. */
+    /* `HP_POPLIGHTS` (0x119). Inferred: Peeks the count, starts the
+     * pass-through of those words to all engines, waits for the transfer and
+     * starts mgeb_PopAttrLights, which loads the restored light state.
+     * Payload variable: 1 + count (12 floats per light): Restored light
+     * parameter block: a word count, then twelve floats for each saved light.
+     * Established: the token map runs `arm_poplights` at arm1.u 0x0c018134.
+     * Sent by libGLcore.so __glkonim_PopAttrib and __glkonResolveContext
+     * (kon_attrib.s): token 281, 12 x lights, then the floats. */
     KONA_HP_POPLIGHTS                    = 0x119,
 
-    /* `HP_PIXELTEXGEN` (0x11a). Route: the token map runs `arm_pixeltexgen`
-     * at arm1.u 0x0c026610, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_pixeltexgen 0x0c026610 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_PIXELTEXGEN` (0x11a). Established: The token map runs a
+     * one-instruction stub at 0x0c026610 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_pixeltexgen` at arm1.u 0x0c026610, a stub that ends in
+     * `arm_badcmd`. No sender found. libGLcore has only the dispatch stub
+     * glPixelTexGenSGIX (g_api.s) and the list compilers/executors; no
+     * __glkonim_ implementation exists, so nothing reaches the FIFO. */
     KONA_HP_PIXELTEXGEN                  = 0x11a,
 
     /* Engine handlers whose slots the code of `arm_polygonoffsetext` loads,
-     * in order: `mgeb_PolygonOffsetExt`. */
+     * in order: `mgeb_PolygonOffsetExt`. Read at arm1.u arm_polygonoffsetext
+     * 0x0c016408 (slot 64). */
 
-    /* `HP_POLYGONOFFSETEXT` (0x11b). Route: the token map runs
-     * `arm_polygonoffsetext` at arm1.u 0x0c016408. Route: libGLcore.so
-     * `__glkonim_PolygonOffsetEXT` stores 2 words after the token. */
+    /* `HP_POLYGONOFFSETEXT` (0x11b). Established: Sends the first word on
+     * port 0x478 and the second on 0x840, then starts mgeb_PolygonOffsetExt.
+     * No shadow is kept. Payload 2: Offset factor and bias as floats.
+     * Established: the token map runs `arm_polygonoffsetext` at arm1.u
+     * 0x0c016408. Established: libGLcore.so `__glkonim_PolygonOffsetEXT`
+     * stores 2 words after the token. Sent by libGLcore.so
+     * __glkonim_PolygonOffsetEXT (kon_cfuncs.s). */
     KONA_HP_POLYGONOFFSETEXT             = 0x11b,
 
-    /* `HP_TEXSUBIMAGE1D` (0x11c). Route: the token map runs
-     * `arm_texsubimage1d` at arm1.u 0x0c026614, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_texsubimage1d 0x0c026614 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_TEXSUBIMAGE1D` (0x11c). Established: The token map runs a
+     * one-instruction stub at 0x0c026614 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_texsubimage1d` at arm1.u 0x0c026614, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_TexSubImage1DEXT
+     * (kon_texture_api.s) forwards to __glkonim_TexSubImage, which stores no
+     * token; texels go down TEXLOAD_ID 0x176 (subloadLevel) and DRAWTEXELS
+     * 0x174. Chain from call lists. */
     KONA_HP_TEXSUBIMAGE1D                = 0x11c,
 
-    /* `HP_TEXSUBIMAGE2D` (0x11d). Route: the token map runs
-     * `arm_texsubimage2d` at arm1.u 0x0c026618, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_texsubimage2d 0x0c026618 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_TEXSUBIMAGE2D` (0x11d). Established: The token map runs a
+     * one-instruction stub at 0x0c026618 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_texsubimage2d` at arm1.u 0x0c026618, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_TexSubImage2DEXT
+     * (kon_texture_api.s) forwards to __glkonim_TexSubImage, which stores no
+     * token; texels go down TEXLOAD_ID 0x176 (subloadLevel) and DRAWTEXELS
+     * 0x174. Chain from call lists. */
     KONA_HP_TEXSUBIMAGE2D                = 0x11d,
 
-    /* `HP_TEXSUBIMAGE3D` (0x11e). Route: the token map runs
-     * `arm_texsubimage3d` at arm1.u 0x0c02661c, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_texsubimage3d 0x0c02661c (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_TEXSUBIMAGE3D` (0x11e). Established: The token map runs a
+     * one-instruction stub at 0x0c02661c that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_texsubimage3d` at arm1.u 0x0c02661c, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_TexSubImage3DEXT
+     * (kon_texture_api.s) forwards to __glkonim_TexSubImage, which stores no
+     * token; texels go down TEXLOAD_ID 0x176 (subloadLevel) and DRAWTEXELS
+     * 0x174. Chain from call lists. */
     KONA_HP_TEXSUBIMAGE3D                = 0x11e,
 
-    /* `HP_TEXIMAGE3D` (0x11f). Route: the token map runs `arm_teximage3d` at
-     * arm1.u 0x0c026620, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_teximage3d 0x0c026620 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_TEXIMAGE3D` (0x11f). Established: The token map runs a
+     * one-instruction stub at 0x0c026620 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_teximage3d` at arm1.u 0x0c026620, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_TexImage3DEXT
+     * (kon_texture_api.s) forwards to __glkonim_TexImage, which stores no
+     * token; texels go down TEXLOAD_ID 0x176 (subloadLevel) and DRAWTEXELS
+     * 0x174. Chain from call lists. */
     KONA_HP_TEXIMAGE3D                   = 0x11f,
 
-    /* `HP_TEXIMAGE4D` (0x120). Route: the token map runs `arm_teximage4d` at
-     * arm1.u 0x0c026624, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_teximage4d 0x0c026624 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_TEXIMAGE4D` (0x120). Established: The token map runs a
+     * one-instruction stub at 0x0c026624 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_teximage4d` at arm1.u 0x0c026624, a stub that ends in
+     * `arm_badcmd`. No sender found. libGLcore has only the dispatch stub
+     * glTexImage4DSGIS (g_api.s) and list compilers; no __glkonim_
+     * implementation exists, so 4D textures never reach the FIFO. */
     KONA_HP_TEXIMAGE4D                   = 0x120,
 
-    /* `HP_TEXSUBIMAGE4D` (0x121). Route: the token map runs
-     * `arm_texsubimage4d` at arm1.u 0x0c026628, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_texsubimage4d 0x0c026628 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_TEXSUBIMAGE4D` (0x121). Established: The token map runs a
+     * one-instruction stub at 0x0c026628 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_texsubimage4d` at arm1.u 0x0c026628, a stub that ends in
+     * `arm_badcmd`. No sender found. libGLcore has only the dispatch stub
+     * glTexSubImage4DSGIS (g_api.s) and list compilers; no __glkonim_
+     * implementation exists, so 4D textures never reach the FIFO. */
     KONA_HP_TEXSUBIMAGE4D                = 0x121,
 
-    /* `HP_GENTEXTURES1D` (0x122). Route: the token map runs
-     * `arm_gentextures1d` at arm1.u 0x0c02662c, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_gentextures1d 0x0c02662c (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GENTEXTURES1D` (0x122). Established: The token map runs a
+     * one-instruction stub at 0x0c02662c that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_gentextures1d` at arm1.u 0x0c02662c, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GenTexturesEXT
+     * (kon_texture_api.s) allocates texture names from a host table (bzero,
+     * __glkonim_GenTexturesEXT_Slow) and stores no FIFO token. */
     KONA_HP_GENTEXTURES1D                = 0x122,
 
-    /* `HP_GENTEXTURES2D` (0x123). Route: the token map runs
-     * `arm_gentextures2d` at arm1.u 0x0c026630, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_gentextures2d 0x0c026630 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GENTEXTURES2D` (0x123). Established: The token map runs a
+     * one-instruction stub at 0x0c026630 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_gentextures2d` at arm1.u 0x0c026630, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GenTexturesEXT
+     * (kon_texture_api.s) allocates texture names from a host table (bzero,
+     * __glkonim_GenTexturesEXT_Slow) and stores no FIFO token. */
     KONA_HP_GENTEXTURES2D                = 0x123,
 
-    /* `HP_GENTEXTURES3D` (0x124). Route: the token map runs
-     * `arm_gentextures3d` at arm1.u 0x0c026634, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_gentextures3d 0x0c026634 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_GENTEXTURES3D` (0x124). Established: The token map runs a
+     * one-instruction stub at 0x0c026634 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_gentextures3d` at arm1.u 0x0c026634, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_GenTexturesEXT
+     * (kon_texture_api.s) allocates texture names from a host table (bzero,
+     * __glkonim_GenTexturesEXT_Slow) and stores no FIFO token. */
     KONA_HP_GENTEXTURES3D                = 0x124,
 
-    /* `HP_ISTEXTURE` (0x125). Route: the token map runs `arm_istexture` at
-     * arm1.u 0x0c026638, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_istexture 0x0c026638 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_ISTEXTURE` (0x125). Established: The token map runs a
+     * one-instruction stub at 0x0c026638 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_istexture` at arm1.u 0x0c026638, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_IsTextureEXT
+     * (kon_texture_api.s) is a 59-line host-table lookup with no FIFO store. */
     KONA_HP_ISTEXTURE                    = 0x125,
 
-    /* `HP_DELETETEXTURES` (0x126). Route: the token map runs
-     * `arm_deletetextures` at arm1.u 0x0c02663c, a stub that ends in
-     * `arm_badcmd`. */
+    /* Read at arm1.u arm_deletetextures 0x0c02663c (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_DELETETEXTURES` (0x126). Established: The token map runs a
+     * one-instruction stub at 0x0c02663c that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_deletetextures` at arm1.u 0x0c02663c, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_DeleteTexturesEXT
+     * (kon_texture_api.s) frees host objects and calls subtractTexTableUsage,
+     * whose FIFO token is HP_TEX_ARM_CACHE_INDEX_INVALID 0x1e0. */
     KONA_HP_DELETETEXTURES               = 0x126,
 
-    /* `HP_BINDTEXTURE` (0x127). Route: the token map runs `arm_bindtexture`
-     * at arm1.u 0x0c026640, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_bindtexture 0x0c026640 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_BINDTEXTURE` (0x127). Established: The token map runs a
+     * one-instruction stub at 0x0c026640 that branches to arm_badcmd; that
+     * prints the current and previous token numbers, reads and prints 100
+     * payload words, then spins reading words, so the pipe would hang.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_bindtexture` at arm1.u 0x0c026640, a stub that ends in
+     * `arm_badcmd`. No sender found. __glkonim_BindTextureEXT
+     * (kon_texture_api.s) updates host binding state; the pipe sees the bind
+     * through TEXBIND_ID 0x178 (updateTexBindID), bind2DMipmapTexture 0x179,
+     * bind3DTexture 0x17c/0x1d5 and siblings. */
     KONA_HP_BINDTEXTURE                  = 0x127,
 
     /* Engine handlers whose slots the code of `arm_x_init` loads, in order:
-     * `mgeb_XContextInitialize`, `mgeb_ContextLoadEram`. */
+     * `mgeb_XContextInitialize`, `mgeb_ContextLoadEram`. Read at arm1.u
+     * arm_x_init 0x0c03d2c8; ge.u mgeb_XContextInitialize,
+     * mgeb_ContextLoadEram. */
 
-    /* `HP_X_INIT` (0x128). Route: the token map runs `arm_x_init` at arm1.u
-     * 0x0c03d2c8. */
+    /* `HP_X_INIT` (0x128). Inferred: On a real board the three words are read
+     * and ignored and the geometry kept in ARM RAM 0x40-0x45 is used; the
+     * handler resets the X state, clears the frame buffer once per depth step
+     * (8, 16, 32 or
+     * 64), sends mgeb_XContextInitialize with width-1 and height-1, replies
+     * through the read-back registers with a count of 3 then width, height
+     * and depth, and loads ERAM with a 12-word initial block. Payload 3:
+     * screen width, screen height, pixel-depth code 0-3 (a code outside that
+     * range makes the handler print a bad-depth message). Established: the
+     * token map runs `arm_x_init` at arm1.u 0x0c03d2c8. No sender found: no
+     * store at X module offset 0x2500, no li 296 near a FIFO store in
+     * libGLcore, not in kernel commands.tsv. */
     KONA_HP_X_INIT                       = 0x128,
 
-    /* `HP_X_LOADGC` (0x129). Route: routed by the host interface with no ARM
-     * code, map entry 0x5859db41: command 179, count field 13, single floats;
-     * engine handler `mgebi_XLoadGC` (index 51 of the handler table). */
+    /* Read at icu_map.tsv 0x129; ged_bound_table.tsv idx 51; ge.u xload.S
+     * mgebi_XLoadGC 0x4cf4 (operand reads D=0..12 in ge_listing/xload.S.lst);
+     * kona.so kon_loadGC; docs/opengl.md X module drawing commands. */
+
+    /* `HP_X_LOADGC` (0x129). Inferred: Map entry 0x5859db41: pass form,
+     * command 179, count 13, 32-bit words. Command 179 selects handler-table
+     * index 51, mgebi_XLoadGC; the handler reads 13 operand words (operands
+     * 0-12). It loads the X graphics-context state the later X drawing
+     * commands use; the detail is not decoded. Payload 13: foreground colour
+     * (high, low), background colour (high, low), two write-mask words,
+     * config, raster op, framebuffer address, buffer selector, three format
+     * words (names from the module debug print). Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0x5859db41:
+     * command 179, count field 13 (bits 6-10, 0 read as 32), single floats;
+     * engine handler `mgebi_XLoadGC` (index 51 of the handler table). Sent by
+     * kona.so (X module, ddx/asm/kona/kon/kon.s) kon_loadGC and 15 other
+     * functions (kon_loadAccelGC, kon_loadNfbBitmapGC, kon_loadImgRectGC,
+     * konPolyFillRectSolid, ...); the first payload word is stored at FIFO
+     * pointer + 0x2520 (32 x token), the rest at +0. */
     KONA_HP_X_LOADGC                     = 0x129,
 
-    /* `HP_X_LOADPOS` (0x12a). Route: routed by the host interface with no ARM
-     * code, map entry 0x585a5901: command 180, count field 4, single floats;
-     * engine handler `mgebi_XLoadPosition` (index 52 of the handler table). */
+    /* Read at icu_map.tsv 0x12a; ged_bound_table.tsv idx 52; ge.u xload.S
+     * mgebi_XLoadPosition 0x4d7c (operands 0-3); kona.so kon_loadGC. */
+
+    /* `HP_X_LOADPOS` (0x12a). Inferred: Map entry 0x585a5901: pass form,
+     * command 180, count 4, 32-bit words. Command 180 selects index 52,
+     * mgebi_XLoadPosition; the handler reads 4 operand words. It sets the
+     * drawable origin and size the following X drawing commands are relative
+     * to; the engine-side storage is not decoded. Payload 4: drawable x, y,
+     * width, height (from the DrawableRec halfwords +8,+10,+12,+14); 0, 0,
+     * screen width, height for screen-wide work. Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0x585a5901:
+     * command 180, count field 4 (bits 6-10, 0 read as 32), single floats;
+     * engine handler `mgebi_XLoadPosition` (index 52 of the handler table).
+     * Sent by kona.so (X module, ddx/asm/kona/kon/kon.s) kon_loadGC and 42
+     * drawing functions (konPolyFillRect*, konFillSpans*, glyph routines,
+     * kon_drawDid, konInit); the first payload word is stored at FIFO pointer
+     * + 0x2540 (32 x token), the rest at +0. */
     KONA_HP_X_LOADPOS                    = 0x12a,
 
-    /* `HP_X_LOADCLIP` (0x12b). Route: routed by the host interface with no
-     * ARM code, map entry 0x585ad141: command 181, count field 5, single
-     * floats; engine handler `mgeb_XLoadClip` (index 53 of the handler
-     * table). */
+    /* Read at icu_map.tsv 0x12b; ged_bound_table.tsv idx 53; ge.u xload.S
+     * mgeb_XLoadClip 0x4cc0; kona.so kon_loadClipRects, konValidateClip. */
+
+    /* `HP_X_LOADCLIP` (0x12b). Inferred: Map entry 0x585ad141: pass form,
+     * command 181, count 5, 32-bit words. Command 181 selects index 53,
+     * mgeb_XLoadClip; it reads the count operand and loops over the rectangle
+     * words. It installs the clip list that the clipped-draw routines
+     * (mmo_XclipDraw*) test against. Payload 5: clip rectangle count n, then
+     * the first rectangle x1, y1, x2,
+     * y2; rectangles 2..n follow as X_BDATA4 commands, four words each; a
+     * whole-screen clip is 1, 0, 0, width, height. Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0x585ad141:
+     * command 181, count field 5 (bits 6-10, 0 read as 32), single floats;
+     * engine handler `mgeb_XLoadClip` (index 53 of the handler table). Sent
+     * by kona.so (X module, ddx/asm/kona/kon/kon.s) kon_loadClipRects and
+     * about 39 drawing/glyph functions; the first payload word is stored at
+     * FIFO pointer + 0x2560 (32 x token), the rest at +0. */
     KONA_HP_X_LOADCLIP                   = 0x12b,
 
     /* Engine handlers whose slots the code of `arm_x_loadclip_arm` loads, in
-     * order: `mgeb_XLoadClip`. */
+     * order: `mgeb_XLoadClip`. Read at arm1.u arm_x_loadclip_arm 0x0c03d5b0;
+     * ucode/hw_route.tsv row 0x12b (command 181, index 53 = mgeb_XLoadClip). */
 
-    /* `HP_X_LOADCLIP_ARM` (0x12c). Route: the token map runs
-     * `arm_x_loadclip_arm` at arm1.u 0x0c03d5b0. */
+    /* `HP_X_LOADCLIP_ARM` (0x12c). Inferred: Reads the count n at the +0x40
+     * port, sends it to all engines as data, starts the pass-through counter
+     * with 4 x n (the rectangle coordinates), waits for the host interface to
+     * finish, then runs mgeb_XLoadClip, the same handler the hardware-routed
+     * HP_X_LOADCLIP (0x12b) reaches. Payload variable: first word n, then
+     * clip rectangle data: a rectangle count n followed by the rectangle
+     * words. Established: the token map runs `arm_x_loadclip_arm` at arm1.u
+     * 0x0c03d5b0. No sender found: the 9600 (0x2580) constants in other.s are
+     * a function address added to a pointer, not a store; no libGLcore or
+     * kernel sender. */
     KONA_HP_X_LOADCLIP_ARM               = 0x12c,
 
-    /* `HP_X_LOADSCISSOR` (0x12d). Route: routed by the host interface with no
-     * ARM code, map entry 0x585b4901: command 182, count field 4, single
-     * floats; engine handler `mgesi_XLoadScissor` (index 54 of the handler
-     * table). */
+    /* Read at icu_map.tsv 0x12d; ged_bound_table.tsv idx 54; ge.u xload.S
+     * mgesi_XLoadScissor 0x4d43 (operands 0-3); kona.so kon*GlyphBlt*. */
+
+    /* `HP_X_LOADSCISSOR` (0x12d). Inferred: Map entry 0x585b4901: pass form,
+     * command 182, count 4, 32-bit words. Command 182 selects index 54,
+     * mgesi_XLoadScissor; the handler reads 4 operand words. It sets the
+     * scissor box used while drawing a glyph bitmap; the engine storage is
+     * not decoded. Payload 4: glyph box x, y, then width and height (computed
+     * as differences). Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x585b4901: command 182, count field 4
+     * (bits 6-10, 0 read as 32), single floats; engine handler
+     * `mgesi_XLoadScissor` (index 54 of the handler table). Sent by kona.so
+     * (X module, ddx/asm/kona/kon/kon.s) the 14 glyph routines
+     * (konImageGlyphBlt*, konPolyGlyphBltSolid*); the first payload word is
+     * stored at FIFO pointer + 0x25a0 (32 x token), the rest at +0. */
     KONA_HP_X_LOADSCISSOR                = 0x12d,
 
     /* Engine handlers whose slots the code of `arm_x_loadcmap` loads, in
-     * order: `mgesi_VCbusWrite`, `mgesi_VCbusWriteMultiple`. */
+     * order: `mgesi_VCbusWrite`, `mgesi_VCbusWriteMultiple`. Read at arm1.u
+     * arm_x_loadcmap 0x0c03d5e8; ge.u mgesi_VCbusWrite,
+     * mgesi_VCbusWriteMultiple. */
 
-    /* `HP_X_LOADCMAP` (0x12e). Route: the token map runs `arm_x_loadcmap` at
-     * arm1.u 0x0c03d5e8. */
+    /* `HP_X_LOADCMAP` (0x12e). Established: Writes the address to display-bus
+     * register 0x118, then pushes the n colour words to register 0x119
+     * through the engines in pieces of at most 0x200 words, and ends with the
+     * seven-write 0x11f/0x11e flush that closes every XMAP load. Payload 2 +
+     * n: colour-map address, count n, then n colour words. Established: the
+     * token map runs `arm_x_loadcmap` at arm1.u 0x0c03d5e8. Sent by kona.so
+     * (X module) konStoreColors (4 stores), konInstallColormap; stores the
+     * first payload word at the FIFO pointer + 32 x token and the rest at
+     * offset 0. */
     KONA_HP_X_LOADCMAP                   = 0x12e,
 
     /* Engine handlers whose slots the code of `arm_x_loadgamma` loads, in
-     * order: `mgesi_VCbusWrite`, `mgesi_VCbusWriteMultiple`. */
+     * order: `mgesi_VCbusWrite`, `mgesi_VCbusWriteMultiple`. Read at arm1.u
+     * arm_x_loadgamma 0x0c03d6fc (compare with 0xdeadfeed at 0x0c03d70c; XMAP
+     * branch 0x0c03d8c0). */
 
-    /* `HP_X_LOADGAMMA` (0x12f). Route: the token map runs `arm_x_loadgamma`
-     * at arm1.u 0x0c03d6fc. */
+    /* `HP_X_LOADGAMMA` (0x12f). Established: XMAP form writes the address to
+     * display-bus register 0x118 and streams the values to 0x11b, then the
+     * 0x11f/0x11e flush; the 0xdeadfeed form clears bits 11-8 of bus word
+     * 0xc104, sets bits 8-7 of 0xc006, copies the table straight into bus
+     * window 0xf000 and restores the two registers. Payload XMAP form: 4
+     * (address, count 2, two values); external form: 2 + count (0xdeadfeed,
+     * count, count packed words): XMAP form: gamma RAM address, count, 12-bit
+     * values; external form: marker 0xdeadfeed, word count, 10:10:10 packed
+     * gamma entries. Established: the token map runs `arm_x_loadgamma` at
+     * arm1.u 0x0c03d6fc. Sent by kona.so (X module) konStore24DCColors,
+     * konInstall24DCColormap, unnamed function at 0x498ff0; setmon (per
+     * docs/dg.md); stores the first payload word at the FIFO pointer + 32 x
+     * token and the rest at offset 0. */
     KONA_HP_X_LOADGAMMA                  = 0x12f,
 
     /* Engine handlers whose slots the code of `arm_x_loadcursor` loads, in
-     * order: `mgesi_VCbusWrite`, `mgesi_VCbusWriteMultiple`. */
+     * order: `mgesi_VCbusWrite`, `mgesi_VCbusWriteMultiple`. Read at arm1.u
+     * arm_x_loadcursor 0x0c03d9c4; ge.u mgesi_VCbusWrite,
+     * mgesi_VCbusWriteMultiple. */
 
-    /* `HP_X_LOADCURSOR` (0x130). Route: the token map runs `arm_x_loadcursor`
-     * at arm1.u 0x0c03d9c4. */
+    /* `HP_X_LOADCURSOR` (0x130). Established: Peeks the address, writes it to
+     * display-bus register 0x118, then moves the image words to register
+     * 0x119 through the engines with a pass-through count of 260, waits for
+     * completion and ends with the 0x11f/0x11e flush. Payload 261 (address +
+     * 260 image words): cursor slot address (slot x 260), then 260 cursor
+     * image words. Established: the token map runs `arm_x_loadcursor` at
+     * arm1.u 0x0c03d9c4. Sent by kona.so (X module) konInit (the 9728 site)
+     * and the helper at 0x526140 named in docs/opengl.md:86-89; stores the
+     * first payload word at the FIFO pointer + 32 x token and the rest at
+     * offset 0. */
     KONA_HP_X_LOADCURSOR                 = 0x130,
 
     /* Engine handlers whose slots the code of `arm_x_loadcursorcolor` loads,
-     * in order: `mgesi_VCbusWrite`, `mgesi_VCbusWriteMultiple`. */
+     * in order: `mgesi_VCbusWrite`, `mgesi_VCbusWriteMultiple`. Read at
+     * arm1.u arm_x_loadcursorcolor 0x0c03daa0. */
 
-    /* `HP_X_LOADCURSORCOLOR` (0x131). Route: the token map runs
-     * `arm_x_loadcursorcolor` at arm1.u 0x0c03daa0. */
+    /* `HP_X_LOADCURSORCOLOR` (0x131). Established: Peeks the address, adds
+     * 0x100 and writes it to display-bus register 0x118, moves the four
+     * colour words to register 0x119 with a pass-through count of 4, then the
+     * 0x11f/0x11e flush. Payload 5: cursor address (slot x 260 or 9884 for
+     * the crosshair), then four colour words. Established: the token map runs
+     * `arm_x_loadcursorcolor` at arm1.u 0x0c03daa0. Sent by kona.so (X
+     * module) konRecolorCursor (2 stores); stores the first payload word at
+     * the FIFO pointer + 32 x token and the rest at offset 0. */
     KONA_HP_X_LOADCURSORCOLOR            = 0x131,
 
     /* Engine handlers whose slots the code of `arm_x_loadxmap_did` loads, in
-     * order: `mgesi_VCbusWrite`. */
+     * order: `mgesi_VCbusWrite`. Read at arm1.u arm_x_loadxmap_did
+     * 0x0c03db80; ge.u mgesi_VCbusWrite. */
 
-    /* `HP_X_LOADXMAP_DID` (0x132). Route: the token map runs
-     * `arm_x_loadxmap_did` at arm1.u 0x0c03db80. */
+    /* `HP_X_LOADXMAP_DID` (0x132). Established: Writes the display id to
+     * display-bus register 0x118 and the mode word to register 0x11c through
+     * mgesi_VCbusWrite, then the 0x11f/0x11e flush writes, setting up how
+     * that display id is shown. Payload 2: display id, then a mode word
+     * (colour-map number, plane count, luminance and grey flags).
+     * Established: the token map runs `arm_x_loadxmap_did` at arm1.u
+     * 0x0c03db80. Sent by kona.so (X module) konValidateMode,
+     * konChangeDIDCmap; stores the first payload word at the FIFO pointer +
+     * 32 x token and the rest at offset 0. */
     KONA_HP_X_LOADXMAP_DID               = 0x132,
 
     /* Engine handlers whose slots the code of `arm_x_loadxmap_config` loads,
-     * in order: `mgesi_VCbusWrite`. */
+     * in order: `mgesi_VCbusWrite`. Read at arm1.u arm_x_loadxmap_config
+     * 0x0c03dc44. */
 
-    /* `HP_X_LOADXMAP_CONFIG` (0x133). Route: the token map runs
-     * `arm_x_loadxmap_config` at arm1.u 0x0c03dc44. */
+    /* `HP_X_LOADXMAP_CONFIG` (0x133). Established: Writes the word to XMAP
+     * register 9 (display-bus address 0x109) through mgesi_VCbusWrite and
+     * does nothing else. Payload 1: a flag word (1 on window create, 0 on
+     * destroy). Established: the token map runs `arm_x_loadxmap_config` at
+     * arm1.u 0x0c03dc44. Sent by kona.so (X module) konCreateWindow,
+     * konDestroyWindow; stores the first payload word at the FIFO pointer +
+     * 32 x token and the rest at offset 0. */
     KONA_HP_X_LOADXMAP_CONFIG            = 0x133,
 
     /* Engine handlers whose slots the code of `arm_get_ge_texture_attrib`
-     * loads, in order: `mgesi_StartRdata`, `mgesi_FinishRdata`. */
+     * loads, in order: `mgesi_StartRdata`, `mgesi_FinishRdata`. Read at
+     * arm1.u arm_get_ge_texture_attrib 0x0c03aea8; ge_texture_attrib_to_host
+     * 0x0c03ae34. */
 
-    /* `HP_GET_GE_TEXTURE_ATTRIB` (0x134). Route: the token map runs
-     * `arm_get_ge_texture_attrib` at arm1.u 0x0c03aea8. */
+    /* `HP_GET_GE_TEXTURE_ATTRIB` (0x134). Inferred: Query: StartRdata,
+     * ge_texture_attrib_to_host sends four ERAM dumps through Eram2ODMA (1
+     * word at 0x293, 4 at 0x28b,
+     * 4 at 0x28f, 112 at 0x3e3: texture environment state and texgen planes),
+     * then FinishRdata. 121 words in all. Payload 1 (zero, read and dropped):
+     * dummy zero. Established: the token map runs `arm_get_ge_texture_attrib`
+     * at arm1.u 0x0c03aea8. Sent by libGLcore.so __glkonCopyContext
+     * (kon_attrib.s) -> __glkon_get_special(308, 0). */
     KONA_HP_GET_GE_TEXTURE_ATTRIB        = 0x134,
 
-    /* `HP_PIXEL_TRANSFORM` (0x135). Route: the token map runs
-     * `arm_pixel_transform` at arm1.u 0x0c0376c4. */
+    /* Read at arm1.u arm_pixel_transform 0x0c0376c4 (r9+0x3c; mode word at
+     * ARM 0xc88; enable bytes at ARM 0x784-0x786, master byte at 0x796). */
+
+    /* `HP_PIXEL_TRANSFORM` (0x135). Established: Keeps the target at ARM
+     * 0x36c and edits the pixel mode word at ARM 0xc88: 0x81c5 sets bits 5, 6
+     * and 7 for the enabled transform bytes at ARM 0x784-0x786 and clears bit
+     * 19, 0x81c6 clears bits 5-7 and sets bit 19; it sends nothing to the
+     * engines. Payload 1: pixel-transform target (0x81c5 or 0x81c6).
+     * Established: the token map runs `arm_pixel_transform` at arm1.u
+     * 0x0c0376c4. Sent by libGLcore.so __glkonim_PixelTransformSGI
+     * (kon_pixel_transform.s, token 309). */
     KONA_HP_PIXEL_TRANSFORM              = 0x135,
 
-    /* `HP_X_PIX_SETUP` (0x136). Route: the token map runs `arm_x_pix_setup`
-     * at arm1.u 0x0c034ac4. */
+    /* Read at arm1.u arm_x_pix_setup 0x0c034ac4; X_PixSetupGE 0x0c035244;
+     * CompGedReg 0x0c034bf0. */
+
+    /* `HP_X_PIX_SETUP` (0x136). Established: Remembers words 4 and 5 (width
+     * and height) and the bitmap flag in ARM RAM, programs the engines
+     * through X_PixSetupGE, sets the distributor registers with CompGedReg,
+     * sets up the texture-filter chip when the kind is nonzero (and the
+     * packer when it is 2), then writes a register-path descriptor and 0.
+     * Payload 7: word 0 transfer kind (bits 0-3) and bitmap-mode flag (bit
+     * 4); word 1 engine output module; word 2 conversion/packer code; word 3
+     * and 6 values passed to the distributor and engine setup; words 4 and 5
+     * transfer width and height. Established: the token map runs
+     * `arm_x_pix_setup` at arm1.u 0x0c034ac4. Sent by kona.so (X module)
+     * kon_loadNfbBitmapGC, kon_loadNfbOpaqueBitmapGC, kon_loadPixmapGC,
+     * konImageGlyphBlt*, konPolyGlyphBltSolid*, konWriteFBSubBlock,
+     * konReadFBBlock; stores the first payload word at the FIFO pointer + 32
+     * x token and the rest at offset 0. */
     KONA_HP_X_PIX_SETUP                  = 0x136,
 
     /* Engine handlers whose slots the code of `arm_x_pix_copy` loads, in
-     * order: `mgeb_PixEndRGBStream`. */
+     * order: `mgeb_PixEndRGBStream`. Read at arm1.u arm_x_pix_copy
+     * 0x0c034774; XSetupGedRead 0x0c035598, XPixSetupRM 0x0c035524, XSetTF
+     * 0x0c03573c, XStartRbus 0x0c0358e0. */
 
-    /* `HP_X_PIX_COPY` (0x137). Route: the token map runs `arm_x_pix_copy` at
-     * arm1.u 0x0c034774. */
+    /* `HP_X_PIX_COPY` (0x137). Inferred: Compares source and destination to
+     * pick the copy direction, using the width and height saved by
+     * X_PIX_SETUP, sets up the engine read, the raster-board write and the
+     * texture filter, starts the raster bus, then stores the pixel-end
+     * handler (mgeb_PixEndRGBStream) to engine port 0x4f8, marks the cached
+     * setup word invalid and writes a register-path descriptor and a status
+     * byte. Payload 4: source x, source y, destination x, destination y of a
+     * screen-to-screen copy. Established: the token map runs `arm_x_pix_copy`
+     * at arm1.u 0x0c034774. Sent by kona.so (X module) konCopyRect; stores
+     * the first payload word at the FIFO pointer + 32 x token and the rest at
+     * offset 0. */
     KONA_HP_X_PIX_COPY                   = 0x137,
 
     /* Engine handlers whose slots the code of `arm_x_pix_read` loads, in
-     * order: `mgeb_PixEndRGBStream`. */
+     * order: `mgeb_PixEndRGBStream`. Read at arm1.u arm_x_pix_read
+     * 0x0c0349e4; SendXToHost 0x0c035874. */
 
-    /* `HP_X_PIX_READ` (0x138). Route: the token map runs `arm_x_pix_read` at
-     * arm1.u 0x0c0349e4. */
+    /* `HP_X_PIX_READ` (0x138). Inferred: Converts y against the screen
+     * height, forms the block corners from the width and height saved by
+     * X_PIX_SETUP, programs the engine read, sends the pixels back to the
+     * host with SendXToHost, then stores the pixel-end handler
+     * mgeb_PixEndRGBStream to engine port 0x4f8 and invalidates the cached
+     * setup. Payload 2: x position and y position (measured from the bottom:
+     * the handler subtracts it from the screen height). Established: the
+     * token map runs `arm_x_pix_read` at arm1.u 0x0c0349e4. Sent by kona.so
+     * (X module) konReadImage, konReadFBBlock; stores the first payload word
+     * at the FIFO pointer + 32 x token and the rest at offset 0. */
     KONA_HP_X_PIX_READ                   = 0x138,
 
     /* Engine handlers whose slots the code of `arm_x_pix_write` loads, in
-     * order: `mgesi_XPixRmSetup`, `mgebi_PixCurGEIDSetup`. */
+     * order: `mgesi_XPixRmSetup`, `mgebi_PixCurGEIDSetup`. Read at arm1.u
+     * arm_x_pix_write 0x0c034914; ge.u mgesi_XPixRmSetup,
+     * mgebi_PixCurGEIDSetup. */
 
-    /* `HP_X_PIX_WRITE` (0x139). Route: the token map runs `arm_x_pix_write`
-     * at arm1.u 0x0c034914. */
+    /* `HP_X_PIX_WRITE` (0x139). Inferred: Stores the header and the next
+     * word, sends the saved size plus those words to the engines through
+     * mgesi_XPixRmSetup and mgebi_PixCurGEIDSetup, and in bitmap mode counts
+     * the data through with the pass-through counter and waits for it to
+     * finish. Payload 1 + data (header word, then the bitmap words): a header
+     * word, then pixel or bitmap data. Established: the token map runs
+     * `arm_x_pix_write` at arm1.u 0x0c034914. Sent by kona.so (X module)
+     * konDrawImage, konDrawMonoImage, konDrawOpaqueMonoImage, glyph routines,
+     * konWriteFBSubBlock; stores the first payload word at the FIFO pointer +
+     * 32 x token and the rest at offset 0. */
     KONA_HP_X_PIX_WRITE                  = 0x139,
 
     /* Engine handlers whose slots the code of `arm_x_pix_finish` loads, in
-     * order: `mgeb_PixEndRGBStream`. */
+     * order: `mgeb_PixEndRGBStream`. Read at arm1.u arm_x_pix_finish
+     * 0x0c034bb4. */
 
-    /* `HP_X_PIX_FINISH` (0x13a). Route: the token map runs `arm_x_pix_finish`
-     * at arm1.u 0x0c034bb4. */
+    /* `HP_X_PIX_FINISH` (0x13a). Established: Ends an X pixel operation:
+     * clears the bitmap-mode flag, invalidates the cached setup word, stores
+     * the pixel-end handler address (mgeb_PixEndRGBStream) to engine port
+     * 0x4f8 and writes the register-path descriptor and a data byte that
+     * return the pixel path to normal. Payload 1 (one word, not used): a zero
+     * word. Established: the token map runs `arm_x_pix_finish` at arm1.u
+     * 0x0c034bb4. Sent by kona.so (X module) konDrawImage, konDrawMonoImage,
+     * konDrawOpaqueMonoImage, glyph routines, konWriteFBSubBlock; stores the
+     * first payload word at the FIFO pointer + 32 x token and the rest at
+     * offset 0. */
     KONA_HP_X_PIX_FINISH                 = 0x13a,
 
-    /* `HP_X_UNUSED3` (0x13b). Route: the token map runs
+    /* Read at arm1.u token map entry for 0x13b = arm_badcmd 0x0c0017f4
+     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_X_UNUSED3` (0x13b). Established: The token-map entry points
+     * straight at arm_badcmd with no stub; it prints the current and previous
+     * token numbers, reads and prints 100 payload words, then spins reading
+     * words, so a pipe that got this token would hang. Payload none read by
+     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
+     * payload is defined. Established: the token map runs
      * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. */
+     * `arm_badcmd`. No sender found. The X module never stores this token (no
+     * store at pointer+32*token; the only address constants equal to 32*token
+     * in kon.s are rodata string addresses passed to a call) and libGLcore
+     * and the kernel do not either. */
     KONA_HP_X_UNUSED3                    = 0x13b,
 
     /* Engine handlers whose slots the code of `arm_x_loadstipple` loads, in
-     * order: `mgesi_XPolygonStippleDownload`. */
+     * order: `mgesi_XPolygonStippleDownload`. Read at arm1.u
+     * arm_x_loadstipple 0x0c035bec; ge.u mgesi_XPolygonStippleDownload. */
 
-    /* `HP_X_LOADSTIPPLE` (0x13c). Route: the token map runs
-     * `arm_x_loadstipple` at arm1.u 0x0c035bec. */
+    /* `HP_X_LOADSTIPPLE` (0x13c). Established: A slot of 32 or more prints
+     * 'bogus index'; a nonnegative slot sends the saved size and the slot's
+     * ERAM address (0x184 + 32 x slot) to mgesi_XPolygonStippleDownload and
+     * enables stippling; a negative value only disables it. Payload 1:
+     * stipple cache slot 0-31, or a negative number to turn stippling off.
+     * Established: the token map runs `arm_x_loadstipple` at arm1.u
+     * 0x0c035bec. Sent by kona.so (X module) kon_loadStipple,
+     * kon_loadTilePlane, kon_unloadStipple (sends -1),
+     * konPolyFillRectStippledC, konPolyFillRectTiledCAccel; stores the first
+     * payload word at the FIFO pointer + 32 x token and the rest at offset 0. */
     KONA_HP_X_LOADSTIPPLE                = 0x13c,
 
     /* Engine handlers whose slots the code of `arm_x_storestipple` loads, in
-     * order: `mgeb_LoadEram`. */
+     * order: `mgeb_LoadEram`. Read at arm1.u arm_x_storestipple 0x0c035adc;
+     * ge.u mgeb_LoadEram. */
 
-    /* `HP_X_STORESTIPPLE` (0x13d). Route: the token map runs
-     * `arm_x_storestipple` at arm1.u 0x0c035adc. */
+    /* `HP_X_STORESTIPPLE` (0x13d). Inferred: Rejects slots outside 0-31,
+     * records half the width and half the height minus one for the slot, then
+     * loads the 32 pattern words into ERAM at 0x184 + 32 x slot and a 12-word
+     * slot descriptor at 12 x slot + 4 through mgeb_LoadEram. Payload 3 +
+     * pattern words (slot, width, height-or-count, then that many pattern
+     * words): stipple slot, pattern width, pattern word count, then the
+     * pattern words. Established: the token map runs `arm_x_storestipple` at
+     * arm1.u 0x0c035adc. Sent by kona.so (X module) kon_loadCachedStipple;
+     * stores the first payload word at the FIFO pointer + 32 x token and the
+     * rest at offset 0. */
     KONA_HP_X_STORESTIPPLE               = 0x13d,
 
     /* Engine handlers whose slots the code of `arm_x_rotatestipple` loads, in
-     * order: `mgeb_XPolygonStippleRotate`. */
+     * order: `mgeb_XPolygonStippleRotate`. Read at arm1.u arm_x_rotatestipple
+     * 0x0c035cb0; ge.u mgeb_XPolygonStippleRotate. */
 
-    /* `HP_X_ROTATESTIPPLE` (0x13e). Route: the token map runs
-     * `arm_x_rotatestipple` at arm1.u 0x0c035cb0. */
+    /* `HP_X_ROTATESTIPPLE` (0x13e). Established: Sends the two origin values,
+     * the slot's 12-word descriptor address and its pattern address to
+     * mgeb_XPolygonStippleRotate, which rotates the stored pattern in engine
+     * memory. Payload 3: stipple slot, x origin, y origin. Established: the
+     * token map runs `arm_x_rotatestipple` at arm1.u 0x0c035cb0. Sent by
+     * kona.so (X module) kon_loadStipple, kon_loadTilePlane,
+     * konPolyFillRectStippledC, konPolyFillRectTiledCAccel; stores the first
+     * payload word at the FIFO pointer + 32 x token and the rest at offset 0. */
     KONA_HP_X_ROTATESTIPPLE              = 0x13e,
 
-    /* `HP_X_UNUSED4` (0x13f). Route: the token map runs
+    /* Read at arm1.u token map entry for 0x13f = arm_badcmd 0x0c0017f4
+     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_X_UNUSED4` (0x13f). Established: The token-map entry points
+     * straight at arm_badcmd with no stub; it prints the current and previous
+     * token numbers, reads and prints 100 payload words, then spins reading
+     * words, so a pipe that got this token would hang. Payload none read by
+     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
+     * payload is defined. Established: the token map runs
      * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. */
+     * `arm_badcmd`. No sender found. The X module never stores this token (no
+     * store at pointer+32*token; the only address constants equal to 32*token
+     * in kon.s are rodata string addresses passed to a call) and libGLcore
+     * and the kernel do not either. */
     KONA_HP_X_UNUSED4                    = 0x13f,
 
-    /* `HP_X_UNUSED5` (0x140). Route: the token map runs
+    /* Read at arm1.u token map entry for 0x140 = arm_badcmd 0x0c0017f4
+     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_X_UNUSED5` (0x140). Established: The token-map entry points
+     * straight at arm_badcmd with no stub; it prints the current and previous
+     * token numbers, reads and prints 100 payload words, then spins reading
+     * words, so a pipe that got this token would hang. Payload none read by
+     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
+     * payload is defined. Established: the token map runs
      * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. */
+     * `arm_badcmd`. No sender found. The X module never stores this token (no
+     * store at pointer+32*token; the only address constants equal to 32*token
+     * in kon.s are rodata string addresses passed to a call) and libGLcore
+     * and the kernel do not either. */
     KONA_HP_X_UNUSED5                    = 0x140,
 
-    /* `HP_X_DATA1` (0x141). Route: routed by the host interface with no ARM
-     * code, map entry 0x58400041: command 128, count field 1, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x141; hw_route.tsv; ged_route.tsv entry 0x226
+     * qstrip.s:22; ged1b.u ged_listing 0x226-0x228; docs/opengl.md remainder
+     * rule. */
+
+    /* `HP_X_DATA1` (0x141). Inferred: Map entry 0x58400041: pass form,
+     * command 128, count 1, 32-bit words. Command 128 is index 0 (qualifier
+     * 2); ged1b.u entry 0x226 loads vertex state 13 and fetches, no engine
+     * handler appears in its span. The words are held for the following X
+     * drawing command; the handler-table binding (mgesi_BshRegisterWrite,
+     * index 0) is by number only. Payload 1: 1 word(s) of the first items of
+     * a remainder list: points (one word each) or rectangle/box corners (two
+     * words each), preloading the next X drawing command. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58400041: command 128, count field 1 (bits 6-10, 0 read as 32),
+     * single floats. Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * konBresD, konLineSS, konPolyPoint,
+     * konBresS, konDrawPoints; the first payload word is stored at FIFO
+     * pointer + 0x2820 (32 x token), the rest at +0. */
     KONA_HP_X_DATA1                      = 0x141,
 
-    /* `HP_X_DATA2` (0x142). Route: routed by the host interface with no ARM
-     * code, map entry 0x58400081: command 128, count field 2, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x142; hw_route.tsv; ged_route.tsv entry 0x226
+     * qstrip.s:22; ged1b.u ged_listing 0x226-0x228; docs/opengl.md remainder
+     * rule. */
+
+    /* `HP_X_DATA2` (0x142). Inferred: Map entry 0x58400081: pass form,
+     * command 128, count 2, 32-bit words. Command 128 is index 0 (qualifier
+     * 2); ged1b.u entry 0x226 loads vertex state 13 and fetches, no engine
+     * handler appears in its span. The words are held for the following X
+     * drawing command; the handler-table binding (mgesi_BshRegisterWrite,
+     * index 0) is by number only. Payload 2: 2 word(s) of the first items of
+     * a remainder list: points (one word each) or rectangle/box corners (two
+     * words each), preloading the next X drawing command. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58400081: command 128, count field 2 (bits 6-10, 0 read as 32),
+     * single floats. Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * konBresD, konLineSS, konPolyPoint,
+     * konBresS, konDrawPoints, konValidateClip,
+     * konDrawSolidRects, konSolidFillRects, konTiledCAccelFillRects,
+     * konPolyFillRect* and others (14 functions); the first payload word is
+     * stored at FIFO pointer + 0x2840 (32 x token), the rest at +0. */
     KONA_HP_X_DATA2                      = 0x142,
 
-    /* `HP_X_DATA3` (0x143). Route: routed by the host interface with no ARM
-     * code, map entry 0x584000c1: command 128, count field 3, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x143; hw_route.tsv; ged_route.tsv entry 0x226
+     * qstrip.s:22; ged1b.u ged_listing 0x226-0x228; docs/opengl.md remainder
+     * rule. */
+
+    /* `HP_X_DATA3` (0x143). Inferred: Map entry 0x584000c1: pass form,
+     * command 128, count 3, 32-bit words. Command 128 is index 0 (qualifier
+     * 2); ged1b.u entry 0x226 loads vertex state 13 and fetches, no engine
+     * handler appears in its span. The words are held for the following X
+     * drawing command; the handler-table binding (mgesi_BshRegisterWrite,
+     * index 0) is by number only. Payload 3: 3 word(s) of the first items of
+     * a remainder list: points (one word each) or rectangle/box corners (two
+     * words each), preloading the next X drawing command. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x584000c1: command 128, count field 3 (bits 6-10, 0 read as 32),
+     * single floats. Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * konBresD, konLineSS, konPolyPoint,
+     * konBresS, konDrawPoints; the first payload word is stored at FIFO
+     * pointer + 0x2860 (32 x token), the rest at +0. */
     KONA_HP_X_DATA3                      = 0x143,
 
-    /* `HP_X_DATA4` (0x144). Route: routed by the host interface with no ARM
-     * code, map entry 0x58400101: command 128, count field 4, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x144; hw_route.tsv; ged_route.tsv entry 0x226
+     * qstrip.s:22; ged1b.u ged_listing 0x226-0x228; docs/opengl.md remainder
+     * rule. */
+
+    /* `HP_X_DATA4` (0x144). Inferred: Map entry 0x58400101: pass form,
+     * command 128, count 4, 32-bit words. Command 128 is index 0 (qualifier
+     * 2); ged1b.u entry 0x226 loads vertex state 13 and fetches, no engine
+     * handler appears in its span. The words are held for the following X
+     * drawing command; the handler-table binding (mgesi_BshRegisterWrite,
+     * index 0) is by number only. Payload 4: 4 word(s) of the first items of
+     * a remainder list: points (one word each) or rectangle/box corners (two
+     * words each), preloading the next X drawing command. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58400101: command 128, count field 4 (bits 6-10, 0 read as 32),
+     * single floats. Sent by kona.so (X module, ddx/asm/kona/kon/kon.s) the
+     * same 14 functions as X_DATA2; the first payload word is stored at FIFO
+     * pointer + 0x2880 (32 x token), the rest at +0. */
     KONA_HP_X_DATA4                      = 0x144,
 
-    /* `HP_X_BDATA4` (0x145). Route: routed by the host interface with no ARM
-     * code, map entry 0x58401101: command 128, count field 4, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x145 vs 0x144; ged_route.tsv entry 0x226;
+     * docs/opengl.md; kona.so kon_loadClipRects. */
+
+    /* `HP_X_BDATA4` (0x145). Inferred: Map entry 0x58401101: pass form,
+     * command 128, count 4, 32-bit words. Same command (128) and entry
+     * (0x226) as X_DATA4; the only difference in the map word is entry bit 12
+     * (0x58401101 vs 0x58400101). The words continue the clip list started by
+     * X_LOADCLIP. Payload 4: four words: one clip rectangle x1, y1,
+     * x2, y2 (rectangles 2..n of an X_LOADCLIP list). Established: routed by
+     * the host interface with no ARM code, arm1.u token-map entry 0x58401101:
+     * command 128, count field 4 (bits 6-10, 0 read as 32), single floats.
+     * Sent by kona.so (X module, ddx/asm/kona/kon/kon.s) kon_loadClipRects,
+     * konPolyFillRectSolid, konPolyFillRectStippledC,
+     * konPolyFillRectTiledCAccel; the first payload word is stored at FIFO
+     * pointer + 0x28a0 (32 x token), the rest at +0. */
     KONA_HP_X_BDATA4                     = 0x145,
 
-    /* `HP_X_DATA5` (0x146). Route: routed by the host interface with no ARM
-     * code, map entry 0x58400141: command 128, count field 5, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x146; hw_route.tsv; ged_route.tsv entry 0x226
+     * qstrip.s:22; ged1b.u ged_listing 0x226-0x228; docs/opengl.md remainder
+     * rule. */
+
+    /* `HP_X_DATA5` (0x146). Inferred: Map entry 0x58400141: pass form,
+     * command 128, count 5, 32-bit words. Command 128 is index 0 (qualifier
+     * 2); ged1b.u entry 0x226 loads vertex state 13 and fetches, no engine
+     * handler appears in its span. The words are held for the following X
+     * drawing command; the handler-table binding (mgesi_BshRegisterWrite,
+     * index 0) is by number only. Payload 5: 5 word(s) of the first items of
+     * a remainder list: points (one word each) or rectangle/box corners (two
+     * words each), preloading the next X drawing command. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58400141: command 128, count field 5 (bits 6-10, 0 read as 32),
+     * single floats. Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * konBresD, konLineSS, konPolyPoint,
+     * konBresS, konDrawPoints; the first payload word is stored at FIFO
+     * pointer + 0x28c0 (32 x token), the rest at +0. */
     KONA_HP_X_DATA5                      = 0x146,
 
-    /* `HP_X_DATA6` (0x147). Route: routed by the host interface with no ARM
-     * code, map entry 0x58400181: command 128, count field 6, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x147; hw_route.tsv; ged_route.tsv entry 0x226
+     * qstrip.s:22; ged1b.u ged_listing 0x226-0x228; docs/opengl.md remainder
+     * rule. */
+
+    /* `HP_X_DATA6` (0x147). Inferred: Map entry 0x58400181: pass form,
+     * command 128, count 6, 32-bit words. Command 128 is index 0 (qualifier
+     * 2); ged1b.u entry 0x226 loads vertex state 13 and fetches, no engine
+     * handler appears in its span. The words are held for the following X
+     * drawing command; the handler-table binding (mgesi_BshRegisterWrite,
+     * index 0) is by number only. Payload 6: 6 word(s) of the first items of
+     * a remainder list: points (one word each) or rectangle/box corners (two
+     * words each), preloading the next X drawing command. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58400181: command 128, count field 6 (bits 6-10, 0 read as 32),
+     * single floats. Sent by kona.so (X module, ddx/asm/kona/kon/kon.s) 13
+     * functions: the point and line routines plus the rectangle fill
+     * routines; the first payload word is stored at FIFO pointer + 0x28e0 (32
+     * x token), the rest at +0. */
     KONA_HP_X_DATA6                      = 0x147,
 
-    /* `HP_X_DATA7` (0x148). Route: routed by the host interface with no ARM
-     * code, map entry 0x584001c1: command 128, count field 7, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x148; hw_route.tsv; ged_route.tsv entry 0x226
+     * qstrip.s:22; ged1b.u ged_listing 0x226-0x228; docs/opengl.md remainder
+     * rule. */
+
+    /* `HP_X_DATA7` (0x148). Inferred: Map entry 0x584001c1: pass form,
+     * command 128, count 7, 32-bit words. Command 128 is index 0 (qualifier
+     * 2); ged1b.u entry 0x226 loads vertex state 13 and fetches, no engine
+     * handler appears in its span. The words are held for the following X
+     * drawing command; the handler-table binding (mgesi_BshRegisterWrite,
+     * index 0) is by number only. Payload 7: 7 word(s) of the first items of
+     * a remainder list: points (one word each) or rectangle/box corners (two
+     * words each), preloading the next X drawing command. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x584001c1: command 128, count field 7 (bits 6-10, 0 read as 32),
+     * single floats. No sender found: no store at pointer + 0x2900 in kona.so
+     * (ddx/asm/kona, all groups), libGLcore, kernel objects or irsaudit. */
     KONA_HP_X_DATA7                      = 0x148,
 
-    /* `HP_X_DATA8` (0x149). Route: routed by the host interface with no ARM
-     * code, map entry 0x58400201: command 128, count field 8, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x149; hw_route.tsv; ged_route.tsv entry 0x226
+     * qstrip.s:22; ged1b.u ged_listing 0x226-0x228; docs/opengl.md remainder
+     * rule. */
+
+    /* `HP_X_DATA8` (0x149). Inferred: Map entry 0x58400201: pass form,
+     * command 128, count 8, 32-bit words. Command 128 is index 0 (qualifier
+     * 2); ged1b.u entry 0x226 loads vertex state 13 and fetches, no engine
+     * handler appears in its span. The words are held for the following X
+     * drawing command; the handler-table binding (mgesi_BshRegisterWrite,
+     * index 0) is by number only. Payload 8: 8 word(s) of the first items of
+     * a remainder list: points (one word each) or rectangle/box corners (two
+     * words each), preloading the next X drawing command. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58400201: command 128, count field 8 (bits 6-10, 0 read as 32),
+     * single floats. Sent by kona.so (X module, ddx/asm/kona/kon/kon.s) the 8
+     * rectangle routines (konDrawSolidRects, konSolidFillRects,
+     * konTiledCAccelFillRects, konPolyFillRect*, konStippledCFillRects,
+     * konValidateClip); the first payload word is stored at FIFO pointer +
+     * 0x2920 (32 x token), the rest at +0. */
     KONA_HP_X_DATA8                      = 0x149,
 
-    /* `HP_X_DATA9` (0x14a). Route: routed by the host interface with no ARM
-     * code, map entry 0x58400241: command 128, count field 9, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x14a; hw_route.tsv; ged_route.tsv entry 0x226
+     * qstrip.s:22; ged1b.u ged_listing 0x226-0x228; docs/opengl.md remainder
+     * rule. */
+
+    /* `HP_X_DATA9` (0x14a). Inferred: Map entry 0x58400241: pass form,
+     * command 128, count 9, 32-bit words. Command 128 is index 0 (qualifier
+     * 2); ged1b.u entry 0x226 loads vertex state 13 and fetches, no engine
+     * handler appears in its span. The words are held for the following X
+     * drawing command; the handler-table binding (mgesi_BshRegisterWrite,
+     * index 0) is by number only. Payload 9: 9 word(s) of the first items of
+     * a remainder list: points (one word each) or rectangle/box corners (two
+     * words each), preloading the next X drawing command. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58400241: command 128, count field 9 (bits 6-10, 0 read as 32),
+     * single floats. No sender found: no store at pointer + 0x2940 in kona.so
+     * (ddx/asm/kona, all groups), libGLcore, kernel objects or irsaudit. */
     KONA_HP_X_DATA9                      = 0x14a,
 
-    /* `HP_X_DATA10` (0x14b). Route: routed by the host interface with no ARM
-     * code, map entry 0x58400281: command 128, count field 10, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x14b; hw_route.tsv; ged_route.tsv entry 0x226
+     * qstrip.s:22; ged1b.u ged_listing 0x226-0x228; docs/opengl.md remainder
+     * rule. */
+
+    /* `HP_X_DATA10` (0x14b). Inferred: Map entry 0x58400281: pass form,
+     * command 128, count 10, 32-bit words. Command 128 is index 0 (qualifier
+     * 2); ged1b.u entry 0x226 loads vertex state 13 and fetches, no engine
+     * handler appears in its span. The words are held for the following X
+     * drawing command; the handler-table binding (mgesi_BshRegisterWrite,
+     * index 0) is by number only. Payload 10: 10 word(s) of the first items
+     * of a remainder list: points (one word each) or rectangle/box corners
+     * (two words each), preloading the next X drawing command. Established:
+     * routed by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58400281: command 128, count field 10 (bits 6-10, 0 read as 32),
+     * single floats. Sent by kona.so (X module, ddx/asm/kona/kon/kon.s) the
+     * same 8 rectangle routines as X_DATA8; the first payload word is stored
+     * at FIFO pointer + 0x2960 (32 x token), the rest at +0. */
     KONA_HP_X_DATA10                     = 0x14b,
 
-    /* `HP_X_POINT` (0x14c). Route: routed by the host interface with no ARM
-     * code, map entry 0x58554841: command 170, count field 1, single floats;
-     * engine handler `mgesi_XPoint` (index 42 of the handler table). */
+    /* Read at icu_map.tsv 0x14c; ged_bound_table.tsv idx 42; ge.u xentry.S
+     * mgesi_XPoint (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x275 qstrip.s:164. */
+
+    /* `HP_X_POINT` (0x14c). Inferred: Map entry 0x58554841: pass form,
+     * command 170, count 1, 32-bit words. Command 170 selects index 42,
+     * mgesi_XPoint. Operands are absolute coordinates: the handler branches
+     * to mAbsX, which dispatches to the clipped draw routine for points,
+     * lines or rectangles (mmo_XclipDrawPoints/Lines/Rects) and draws inside
+     * the clip list. Draws point(s) in the foreground colour. Payload 1: one
+     * point: X DDXPointRec word, x in the high half, y in the low.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x58554841: command 170, count field 1 (bits 6-10, 0
+     * read as 32), single floats; engine handler `mgesi_XPoint` (index 42 of
+     * the handler table). Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * konPolyPoint, konDrawPoints, konBresS,
+     * konBresD, konSlowLineSS; the first payload word is stored at FIFO
+     * pointer + 0x2980 (32 x token), the rest at +0. */
     KONA_HP_X_POINT                      = 0x14c,
 
-    /* `HP_X_POINT6` (0x14d). Route: routed by the host interface with no ARM
-     * code, map entry 0x58554981: command 170, count field 6, single floats;
-     * engine handler `mgesi_XPoint` (index 42 of the handler table). */
+    /* Read at icu_map.tsv 0x14d; ged_bound_table.tsv idx 42; ge.u xentry.S
+     * mgesi_XPoint (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x275 qstrip.s:164. */
+
+    /* `HP_X_POINT6` (0x14d). Inferred: Map entry 0x58554981: pass form,
+     * command 170, count 6, 32-bit words. Command 170 selects index 42,
+     * mgesi_XPoint. Operands are absolute coordinates: the handler branches
+     * to mAbsX, which dispatches to the clipped draw routine for points,
+     * lines or rectangles (mmo_XclipDrawPoints/Lines/Rects) and draws inside
+     * the clip list. Payload 6: six point words. Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0x58554981:
+     * command 170, count field 6 (bits 6-10, 0 read as 32), single floats;
+     * engine handler `mgesi_XPoint` (index 42 of the handler table). Sent by
+     * kona.so (X module, ddx/asm/kona/kon/kon.s) konPolyPoint, konDrawPoints,
+     * konBresS, konBresD; the first payload word is stored at FIFO pointer +
+     * 0x29a0 (32 x token), the rest at +0. */
     KONA_HP_X_POINT6                     = 0x14d,
 
-    /* `HP_X_POINT24` (0x14e). Route: routed by the host interface with no ARM
-     * code, map entry 0x58554e01: command 170, count field 24, single floats;
-     * engine handler `mgesi_XPoint` (index 42 of the handler table). */
+    /* Read at icu_map.tsv 0x14e; ged_bound_table.tsv idx 42; ge.u xentry.S
+     * mgesi_XPoint (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x275 qstrip.s:164. */
+
+    /* `HP_X_POINT24` (0x14e). Inferred: Map entry 0x58554e01: pass form,
+     * command 170, count 24, 32-bit words. Command 170 selects index 42,
+     * mgesi_XPoint. Operands are absolute coordinates: the handler branches
+     * to mAbsX, which dispatches to the clipped draw routine for points,
+     * lines or rectangles (mmo_XclipDrawPoints/Lines/Rects) and draws inside
+     * the clip list. Payload 24: 24 point words. Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0x58554e01:
+     * command 170, count field 24 (bits 6-10, 0 read as 32), single floats;
+     * engine handler `mgesi_XPoint` (index 42 of the handler table). Sent by
+     * kona.so (X module, ddx/asm/kona/kon/kon.s) konPolyPoint, konDrawPoints,
+     * konBresS, konBresD; the first payload word is stored at FIFO pointer +
+     * 0x29c0 (32 x token), the rest at +0. */
     KONA_HP_X_POINT24                    = 0x14e,
 
-    /* `HP_X_POINT_R` (0x14f). Route: routed by the host interface with no ARM
-     * code, map entry 0x5855c841: command 171, count field 1, single floats;
-     * engine handler `mgesi_XPointRel` (index 43 of the handler table). */
+    /* Read at icu_map.tsv 0x14f; ged_bound_table.tsv idx 43; ge.u xentry.S
+     * mgesi_XPointRel (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x2a1 qstrip.s:256. */
+
+    /* `HP_X_POINT_R` (0x14f). Inferred: Map entry 0x5855c841: pass form,
+     * command 171, count 1, 32-bit words. Command 171 selects index 43,
+     * mgesi_XPointRel. Operands are relative to the previous point: the
+     * handler branches to mRelX, which accumulates the offsets and dispatches
+     * to the clipped points or lines routine. Payload 1: one point word,
+     * relative to the previous point. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0x5855c841: command
+     * 171, count field 1 (bits 6-10, 0 read as 32), single floats; engine
+     * handler `mgesi_XPointRel` (index 43 of the handler table). Sent by
+     * kona.so (X module, ddx/asm/kona/kon/kon.s) konPolyPoint
+     * (CoordModePrevious); the first payload word is stored at FIFO pointer +
+     * 0x29e0 (32 x token), the rest at +0. */
     KONA_HP_X_POINT_R                    = 0x14f,
 
-    /* `HP_X_POINT6_R` (0x150). Route: routed by the host interface with no
-     * ARM code, map entry 0x5855c981: command 171, count field 6, single
-     * floats; engine handler `mgesi_XPointRel` (index 43 of the handler
-     * table). */
+    /* Read at icu_map.tsv 0x150; ged_bound_table.tsv idx 43; ge.u xentry.S
+     * mgesi_XPointRel (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x2a1 qstrip.s:256. */
+
+    /* `HP_X_POINT6_R` (0x150). Inferred: Map entry 0x5855c981: pass form,
+     * command 171, count 6, 32-bit words. Command 171 selects index 43,
+     * mgesi_XPointRel. Operands are relative to the previous point: the
+     * handler branches to mRelX, which accumulates the offsets and dispatches
+     * to the clipped points or lines routine. Payload 6: six point words,
+     * each relative to the previous. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0x5855c981: command
+     * 171, count field 6 (bits 6-10, 0 read as 32), single floats; engine
+     * handler `mgesi_XPointRel` (index 43 of the handler table). Sent by
+     * kona.so (X module, ddx/asm/kona/kon/kon.s) konPolyPoint
+     * (CoordModePrevious); the first payload word is stored at FIFO pointer +
+     * 0x2a00 (32 x token), the rest at +0. */
     KONA_HP_X_POINT6_R                   = 0x150,
 
-    /* `HP_X_POINT24_R` (0x151). Route: routed by the host interface with no
-     * ARM code, map entry 0x5855ce01: command 171, count field 24, single
-     * floats; engine handler `mgesi_XPointRel` (index 43 of the handler
-     * table). */
+    /* Read at icu_map.tsv 0x151; ged_bound_table.tsv idx 43; ge.u xentry.S
+     * mgesi_XPointRel (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x2a1 qstrip.s:256. */
+
+    /* `HP_X_POINT24_R` (0x151). Inferred: Map entry 0x5855ce01: pass form,
+     * command 171, count 24, 32-bit words. Command 171 selects index 43,
+     * mgesi_XPointRel. Operands are relative to the previous point: the
+     * handler branches to mRelX, which accumulates the offsets and dispatches
+     * to the clipped points or lines routine. Payload 24: 24 point words,
+     * each relative to the previous. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0x5855ce01: command
+     * 171, count field 24 (bits 6-10, 0 read as 32), single floats; engine
+     * handler `mgesi_XPointRel` (index 43 of the handler table). No sender
+     * found: no store at pointer + 0x2a20 in kona.so, libGLcore, kernel,
+     * irsaudit. */
     KONA_HP_X_POINT24_R                  = 0x151,
 
-    /* `HP_X_RECT` (0x152). Route: routed by the host interface with no ARM
-     * code, map entry 0x58564881: command 172, count field 2, single floats;
-     * engine handler `mgesi_XRect` (index 44 of the handler table). */
+    /* Read at icu_map.tsv 0x152; ged_bound_table.tsv idx 44; ge.u xentry.S
+     * mgesi_XRect (transfers in ge_listing/xentry.S.lst); ged1b.u entry 0x24e
+     * qstrip.s:88. */
+
+    /* `HP_X_RECT` (0x152). Inferred: Map entry 0x58564881: pass form, command
+     * 172, count 2, 32-bit words. Command 172 selects index 44, mgesi_XRect.
+     * Operands are rectangles (x, y then width, height): the handler branches
+     * straight to mmo_XclipDrawRects, which fills them clipped to the clip
+     * list. Payload 2: one rectangle: (x, y) then (width, height).
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x58564881: command 172, count field 2 (bits 6-10, 0
+     * read as 32), single floats; engine handler `mgesi_XRect` (index 44 of
+     * the handler table). Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * konPolyFillRectSolid, konPolyFillRectStippledC,
+     * konPolyFillRectTiledCAccel; the first payload word is stored at FIFO
+     * pointer + 0x2a40 (32 x token), the rest at +0. */
     KONA_HP_X_RECT                       = 0x152,
 
-    /* `HP_X_RECT6` (0x153). Route: routed by the host interface with no ARM
-     * code, map entry 0x58564b01: command 172, count field 12, single floats;
-     * engine handler `mgesi_XRect` (index 44 of the handler table). */
+    /* Read at icu_map.tsv 0x153; ged_bound_table.tsv idx 44; ge.u xentry.S
+     * mgesi_XRect (transfers in ge_listing/xentry.S.lst); ged1b.u entry 0x24e
+     * qstrip.s:88. */
+
+    /* `HP_X_RECT6` (0x153). Inferred: Map entry 0x58564b01: pass form,
+     * command 172, count 12, 32-bit words. Command 172 selects index 44,
+     * mgesi_XRect. Operands are rectangles (x, y then width, height): the
+     * handler branches straight to mmo_XclipDrawRects, which fills them
+     * clipped to the clip list. Payload 12: six rectangles, two words each.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x58564b01: command 172, count field 12 (bits 6-10, 0
+     * read as 32), single floats; engine handler `mgesi_XRect` (index 44 of
+     * the handler table). Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * konPolyFillRectSolid, konPolyFillRectStippledC,
+     * konPolyFillRectTiledCAccel; the first payload word is stored at FIFO
+     * pointer + 0x2a60 (32 x token), the rest at +0. */
     KONA_HP_X_RECT6                      = 0x153,
 
-    /* `HP_X_BOX` (0x154). Route: routed by the host interface with no ARM
-     * code, map entry 0x5856c881: command 173, count field 2, single floats;
-     * engine handler `mgesi_XBox` (index 45 of the handler table). */
+    /* Read at icu_map.tsv 0x154; ged_bound_table.tsv idx 45; ge.u xentry.S
+     * mgesi_XBox (transfers in ge_listing/xentry.S.lst); ged1b.u entry 0x271
+     * qstrip.s:153. */
+
+    /* `HP_X_BOX` (0x154). Inferred: Map entry 0x5856c881: pass form, command
+     * 173, count 2, 32-bit words. Command 173 selects index 45, mgesi_XBox.
+     * Operands are boxes given by two corners (x1, y1) and (x2,
+     * y2); the handler branches to mAbsX, whose rectangle path draws the box
+     * clipped to the clip list. Payload 2: one box: (x1, y1) then (x2,
+     * y2) halfword pairs. Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0x5856c881: command 173, count field 2
+     * (bits 6-10, 0 read as 32), single floats; engine handler `mgesi_XBox`
+     * (index 45 of the handler table). Sent by kona.so (X module,
+     * ddx/asm/kona/kon/kon.s) konDrawSolidRects, konSolidFillRects,
+     * konTiledCAccelFillRects, konValidateClip, konStippledCFillRects, glyph
+     * routines, konSlowSegmentSS, konSlowLineSS; the first payload word is
+     * stored at FIFO pointer + 0x2a80 (32 x token), the rest at +0. */
     KONA_HP_X_BOX                        = 0x154,
 
-    /* `HP_X_BOX6` (0x155). Route: routed by the host interface with no ARM
-     * code, map entry 0x5856cb01: command 173, count field 12, single floats;
-     * engine handler `mgesi_XBox` (index 45 of the handler table). */
+    /* Read at icu_map.tsv 0x155; ged_bound_table.tsv idx 45; ge.u xentry.S
+     * mgesi_XBox (transfers in ge_listing/xentry.S.lst); ged1b.u entry 0x271
+     * qstrip.s:153. */
+
+    /* `HP_X_BOX6` (0x155). Inferred: Map entry 0x5856cb01: pass form, command
+     * 173, count 12, 32-bit words. Command 173 selects index 45, mgesi_XBox.
+     * Operands are boxes given by two corners (x1, y1) and (x2,
+     * y2); the handler branches to mAbsX, whose rectangle path draws the box
+     * clipped to the clip list. Payload 12: six boxes, two words each.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x5856cb01: command 173, count field 12 (bits 6-10, 0
+     * read as 32), single floats; engine handler `mgesi_XBox` (index 45 of
+     * the handler table). Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * konDrawSolidRects, konSolidFillRects, konTiledCAccelFillRects,
+     * konValidateClip, konStippledCFillRects; the first payload word is
+     * stored at FIFO pointer + 0x2aa0 (32 x token), the rest at +0. */
     KONA_HP_X_BOX6                       = 0x155,
 
-    /* `HP_X_SPANS` (0x156). Route: routed by the host interface with no ARM
-     * code, map entry 0x585748c1: command 174, count field 3, single floats;
-     * engine handler `mgesi_XSpans` (index 46 of the handler table). */
+    /* Read at icu_map.tsv 0x156; ged_bound_table.tsv idx 46; ge.u xentry.S
+     * mgesi_XSpans (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x275 qstrip.s:164. */
+
+    /* `HP_X_SPANS` (0x156). Inferred: Map entry 0x585748c1: pass form,
+     * command 174, count 3, 32-bit words. Command 174 selects index 46,
+     * mgesi_XSpans. Operands are a span count and then per span a start point
+     * word and a width word; mgesi_XSpans converts each span to a rectangle
+     * and calls mmo_XclipDrawRects. Payload 3: span count (1), then one start
+     * point word and one width word. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0x585748c1: command
+     * 174, count field 3 (bits 6-10, 0 read as 32), single floats; engine
+     * handler `mgesi_XSpans` (index 46 of the handler table). Sent by kona.so
+     * (X module, ddx/asm/kona/kon/kon.s) konFillSpansSolid,
+     * konFillSpansStippledC, konFillSpansTiledCAccel, konSolidFS,
+     * konPolyGlyphBltSolidTE16; the first payload word is stored at FIFO
+     * pointer + 0x2ac0 (32 x token), the rest at +0. */
     KONA_HP_X_SPANS                      = 0x156,
 
-    /* `HP_X_SPANS2` (0x157). Route: routed by the host interface with no ARM
-     * code, map entry 0x58574941: command 174, count field 5, single floats;
-     * engine handler `mgesi_XSpans` (index 46 of the handler table). */
+    /* Read at icu_map.tsv 0x157; ged_bound_table.tsv idx 46; ge.u xentry.S
+     * mgesi_XSpans (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x275 qstrip.s:164. */
+
+    /* `HP_X_SPANS2` (0x157). Inferred: Map entry 0x58574941: pass form,
+     * command 174, count 5, 32-bit words. Command 174 selects index 46,
+     * mgesi_XSpans. Operands are a span count and then per span a start point
+     * word and a width word; mgesi_XSpans converts each span to a rectangle
+     * and calls mmo_XclipDrawRects. Payload 5: span count (2), then two spans
+     * of start point and width. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0x58574941: command 174, count
+     * field 5 (bits 6-10, 0 read as 32), single floats; engine handler
+     * `mgesi_XSpans` (index 46 of the handler table). Sent by kona.so (X
+     * module, ddx/asm/kona/kon/kon.s) konFillSpansSolid,
+     * konFillSpansStippledC, konFillSpansTiledCAccel, konSolidFS; the first
+     * payload word is stored at FIFO pointer + 0x2ae0 (32 x token), the rest
+     * at +0. */
     KONA_HP_X_SPANS2                     = 0x157,
 
-    /* `HP_X_SPANS6` (0x158). Route: routed by the host interface with no ARM
-     * code, map entry 0x58574b41: command 174, count field 13, single floats;
-     * engine handler `mgesi_XSpans` (index 46 of the handler table). */
+    /* Read at icu_map.tsv 0x158; ged_bound_table.tsv idx 46; ge.u xentry.S
+     * mgesi_XSpans (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x275 qstrip.s:164. */
+
+    /* `HP_X_SPANS6` (0x158). Inferred: Map entry 0x58574b41: pass form,
+     * command 174, count 13, 32-bit words. Command 174 selects index 46,
+     * mgesi_XSpans. Operands are a span count and then per span a start point
+     * word and a width word; mgesi_XSpans converts each span to a rectangle
+     * and calls mmo_XclipDrawRects. Payload 13: span count (6), then six
+     * spans of start point and width. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0x58574b41: command
+     * 174, count field 13 (bits 6-10, 0 read as 32), single floats; engine
+     * handler `mgesi_XSpans` (index 46 of the handler table). Sent by kona.so
+     * (X module, ddx/asm/kona/kon/kon.s) konFillSpansSolid,
+     * konFillSpansStippledC, konFillSpansTiledCAccel, konSolidFS; the first
+     * payload word is stored at FIFO pointer + 0x2b00 (32 x token), the rest
+     * at +0. */
     KONA_HP_X_SPANS6                     = 0x158,
 
-    /* `HP_X_SEGMENT` (0x159). Route: routed by the host interface with no ARM
-     * code, map entry 0x5857c881: command 175, count field 2, single floats;
-     * engine handler `mgesi_XSegment` (index 47 of the handler table). */
+    /* Read at icu_map.tsv 0x159; ged_bound_table.tsv idx 47; ge.u xentry.S
+     * mgesi_XSegment (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x2a1 qstrip.s:256. */
+
+    /* `HP_X_SEGMENT` (0x159). Inferred: Map entry 0x5857c881: pass form,
+     * command 175, count 2, 32-bit words. Command 175 selects index 47,
+     * mgesi_XSegment. Operands are line segments, two point words each; the
+     * handler branches to mAbsX, whose line path (mmo_XclipDrawLines) draws
+     * them clipped. Payload 2: one segment: two point words (start, end).
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x5857c881: command 175, count field 2 (bits 6-10, 0
+     * read as 32), single floats; engine handler `mgesi_XSegment` (index 47
+     * of the handler table). Sent by kona.so (X module,
+     * ddx/asm/kona/kon/kon.s) konSegmentSS, konSolidZeroSeg (one X_SEGMENT
+     * per segment); the first payload word is stored at FIFO pointer + 0x2b20
+     * (32 x token), the rest at +0. */
     KONA_HP_X_SEGMENT                    = 0x159,
 
-    /* `HP_X_SEGMENT6` (0x15a). Route: routed by the host interface with no
-     * ARM code, map entry 0x5857cb01: command 175, count field 12, single
-     * floats; engine handler `mgesi_XSegment` (index 47 of the handler
-     * table). */
+    /* Read at icu_map.tsv 0x15a; ged_bound_table.tsv idx 47; ge.u xentry.S
+     * mgesi_XSegment (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x2a1 qstrip.s:256. */
+
+    /* `HP_X_SEGMENT6` (0x15a). Inferred: Map entry 0x5857cb01: pass form,
+     * command 175, count 12, 32-bit words. Command 175 selects index 47,
+     * mgesi_XSegment. Operands are line segments, two point words each; the
+     * handler branches to mAbsX, whose line path (mmo_XclipDrawLines) draws
+     * them clipped. Payload 12: six segments, two point words each.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x5857cb01: command 175, count field 12 (bits 6-10, 0
+     * read as 32), single floats; engine handler `mgesi_XSegment` (index 47
+     * of the handler table). No sender found: no store at pointer + 0x2b40 in
+     * kona.so, libGLcore, kernel, irsaudit. */
     KONA_HP_X_SEGMENT6                   = 0x15a,
 
-    /* `HP_X_LINE` (0x15b). Route: routed by the host interface with no ARM
-     * code, map entry 0x58584881: command 176, count field 2, single floats;
-     * engine handler `mgesi_XLine` (index 48 of the handler table). */
+    /* Read at icu_map.tsv 0x15b; ged_bound_table.tsv idx 48; ge.u xentry.S
+     * mgesi_XLine (transfers in ge_listing/xentry.S.lst); ged1b.u entry 0x251
+     * qstrip.s:93. */
+
+    /* `HP_X_LINE` (0x15b). Inferred: Map entry 0x58584881: pass form, command
+     * 176, count 2, 32-bit words. Command 176 selects index 48, mgesi_XLine.
+     * Operands are the points of a polyline; mgesi_XLine branches to mAbsX,
+     * whose line path draws the connected segments clipped. Consecutive
+     * commands share their end point. Payload 2: a two-point polyline: first
+     * point at the token address, one more point word. Established: routed by
+     * the host interface with no ARM code, arm1.u token-map entry 0x58584881:
+     * command 176, count field 2 (bits 6-10, 0 read as 32), single floats;
+     * engine handler `mgesi_XLine` (index 48 of the handler table). Sent by
+     * kona.so (X module, ddx/asm/kona/kon/kon.s) konLineSS; the first payload
+     * word is stored at FIFO pointer + 0x2b60 (32 x token), the rest at +0. */
     KONA_HP_X_LINE                       = 0x15b,
 
-    /* `HP_X_LINE6` (0x15c). Route: routed by the host interface with no ARM
-     * code, map entry 0x58584b01: command 176, count field 12, single floats;
-     * engine handler `mgesi_XLine` (index 48 of the handler table). */
+    /* Read at icu_map.tsv 0x15c; ged_bound_table.tsv idx 48; ge.u xentry.S
+     * mgesi_XLine (transfers in ge_listing/xentry.S.lst); ged1b.u entry 0x251
+     * qstrip.s:93. */
+
+    /* `HP_X_LINE6` (0x15c). Inferred: Map entry 0x58584b01: pass form,
+     * command 176, count 12, 32-bit words. Command 176 selects index 48,
+     * mgesi_XLine. Operands are the points of a polyline; mgesi_XLine
+     * branches to mAbsX, whose line path draws the connected segments
+     * clipped. Consecutive commands share their end point. Payload 7 sent
+     * (map count 12): six segments as seven points: the first at the token
+     * address, six more through the six-word copy helper. Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58584b01: command 176, count field 12 (bits 6-10, 0 read as 32),
+     * single floats; engine handler `mgesi_XLine` (index 48 of the handler
+     * table). Sent by kona.so (X module, ddx/asm/kona/kon/kon.s) konLineSS;
+     * the first payload word is stored at FIFO pointer + 0x2b80 (32 x token),
+     * the rest at +0. */
     KONA_HP_X_LINE6                      = 0x15c,
 
-    /* `HP_X_LINE_R` (0x15d). Route: routed by the host interface with no ARM
-     * code, map entry 0x5858c881: command 177, count field 2, single floats;
-     * engine handler `mgesi_XLineRel` (index 49 of the handler table). */
+    /* Read at icu_map.tsv 0x15d; ged_bound_table.tsv idx 49; ge.u xentry.S
+     * mgesi_XLineRel (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x273 qstrip.s:157. */
+
+    /* `HP_X_LINE_R` (0x15d). Inferred: Map entry 0x5858c881: pass form,
+     * command 177, count 2, 32-bit words. Command 177 selects index 49,
+     * mgesi_XLineRel. Like X_LINE but each point is relative to the previous
+     * one, so the handler branches to mRelX and draws via the lines routine.
+     * Payload 2: a two-point relative polyline. Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0x5858c881:
+     * command 177, count field 2 (bits 6-10, 0 read as 32), single floats;
+     * engine handler `mgesi_XLineRel` (index 49 of the handler table). Sent
+     * by kona.so (X module, ddx/asm/kona/kon/kon.s) konLineSS
+     * (CoordModePrevious); the first payload word is stored at FIFO pointer +
+     * 0x2ba0 (32 x token), the rest at +0. */
     KONA_HP_X_LINE_R                     = 0x15d,
 
-    /* `HP_X_LINE6_R` (0x15e). Route: routed by the host interface with no ARM
-     * code, map entry 0x5858cb01: command 177, count field 12, single floats;
-     * engine handler `mgesi_XLineRel` (index 49 of the handler table). */
+    /* Read at icu_map.tsv 0x15e; ged_bound_table.tsv idx 49; ge.u xentry.S
+     * mgesi_XLineRel (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x273 qstrip.s:157. */
+
+    /* `HP_X_LINE6_R` (0x15e). Inferred: Map entry 0x5858cb01: pass form,
+     * command 177, count 12, 32-bit words. Command 177 selects index 49,
+     * mgesi_XLineRel. Like X_LINE but each point is relative to the previous
+     * one, so the handler branches to mRelX and draws via the lines routine.
+     * Payload 7 sent (map count 12): six relative segments as seven points.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x5858cb01: command 177, count field 12 (bits 6-10, 0
+     * read as 32), single floats; engine handler `mgesi_XLineRel` (index 49
+     * of the handler table). Sent by kona.so (X module,
+     * ddx/asm/kona/kon/kon.s) konLineSS (CoordModePrevious); the first
+     * payload word is stored at FIFO pointer + 0x2bc0 (32 x token), the rest
+     * at +0. */
     KONA_HP_X_LINE6_R                    = 0x15e,
 
-    /* `HP_X_BGPOINT` (0x15f). Route: routed by the host interface with no ARM
-     * code, map entry 0x58594841: command 178, count field 1, single floats;
-     * engine handler `mgesi_XBgPoint` (index 50 of the handler table). */
+    /* Read at icu_map.tsv 0x15f; ged_bound_table.tsv idx 50; ge.u xentry.S
+     * mgesi_XBgPoint (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x275 qstrip.s:164. */
+
+    /* `HP_X_BGPOINT` (0x15f). Inferred: Map entry 0x58594841: pass form,
+     * command 178, count 1, 32-bit words. Command 178 selects index 50,
+     * mgesi_XBgPoint. Draws points in the background colour (the odd dashes
+     * of a double-dashed line); the handler branches to mAbsX like X_POINT.
+     * Payload 1: one point word. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0x58594841: command 178, count
+     * field 1 (bits 6-10, 0 read as 32), single floats; engine handler
+     * `mgesi_XBgPoint` (index 50 of the handler table). Sent by kona.so (X
+     * module, ddx/asm/kona/kon/kon.s) konBresD; the first payload word is
+     * stored at FIFO pointer + 0x2be0 (32 x token), the rest at +0. */
     KONA_HP_X_BGPOINT                    = 0x15f,
 
-    /* `HP_X_BGPOINT6` (0x160). Route: routed by the host interface with no
-     * ARM code, map entry 0x58594981: command 178, count field 6, single
-     * floats; engine handler `mgesi_XBgPoint` (index 50 of the handler
-     * table). */
+    /* Read at icu_map.tsv 0x160; ged_bound_table.tsv idx 50; ge.u xentry.S
+     * mgesi_XBgPoint (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x275 qstrip.s:164. */
+
+    /* `HP_X_BGPOINT6` (0x160). Inferred: Map entry 0x58594981: pass form,
+     * command 178, count 6, 32-bit words. Command 178 selects index 50,
+     * mgesi_XBgPoint. Draws points in the background colour (the odd dashes
+     * of a double-dashed line); the handler branches to mAbsX like X_POINT.
+     * Payload 6: six point words. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0x58594981: command 178, count
+     * field 6 (bits 6-10, 0 read as 32), single floats; engine handler
+     * `mgesi_XBgPoint` (index 50 of the handler table). Sent by kona.so (X
+     * module, ddx/asm/kona/kon/kon.s) konBresD; the first payload word is
+     * stored at FIFO pointer + 0x2c00 (32 x token), the rest at +0. */
     KONA_HP_X_BGPOINT6                   = 0x160,
 
-    /* `HP_X_BGPOINT24` (0x161). Route: routed by the host interface with no
-     * ARM code, map entry 0x58594e01: command 178, count field 24, single
-     * floats; engine handler `mgesi_XBgPoint` (index 50 of the handler
-     * table). */
+    /* Read at icu_map.tsv 0x161; ged_bound_table.tsv idx 50; ge.u xentry.S
+     * mgesi_XBgPoint (transfers in ge_listing/xentry.S.lst); ged1b.u entry
+     * 0x275 qstrip.s:164. */
+
+    /* `HP_X_BGPOINT24` (0x161). Inferred: Map entry 0x58594e01: pass form,
+     * command 178, count 24, 32-bit words. Command 178 selects index 50,
+     * mgesi_XBgPoint. Draws points in the background colour (the odd dashes
+     * of a double-dashed line); the handler branches to mAbsX like X_POINT.
+     * Payload 24: 24 point words. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0x58594e01: command 178, count
+     * field 24 (bits 6-10, 0 read as 32), single floats; engine handler
+     * `mgesi_XBgPoint` (index 50 of the handler table). Sent by kona.so (X
+     * module, ddx/asm/kona/kon/kon.s) konBresD; the first payload word is
+     * stored at FIFO pointer + 0x2c20 (32 x token), the rest at +0. */
     KONA_HP_X_BGPOINT24                  = 0x161,
 
-    /* `HP_X_UNUSED6` (0x162). Route: the token map runs
+    /* Read at arm1.u token map entry for 0x162 = arm_badcmd 0x0c0017f4
+     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_X_UNUSED6` (0x162). Established: The token-map entry points
+     * straight at arm_badcmd with no stub; it prints the current and previous
+     * token numbers, reads and prints 100 payload words, then spins reading
+     * words, so a pipe that got this token would hang. Payload none read by
+     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
+     * payload is defined. Established: the token map runs
      * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. */
+     * `arm_badcmd`. No sender found. The X module never stores this token (no
+     * store at pointer+32*token; the only address constants equal to 32*token
+     * in kon.s are rodata string addresses passed to a call) and libGLcore
+     * and the kernel do not either. */
     KONA_HP_X_UNUSED6                    = 0x162,
 
-    /* `HP_X_UNUSED7` (0x163). Route: the token map runs
+    /* Read at arm1.u token map entry for 0x163 = arm_badcmd 0x0c0017f4
+     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_X_UNUSED7` (0x163). Established: The token-map entry points
+     * straight at arm_badcmd with no stub; it prints the current and previous
+     * token numbers, reads and prints 100 payload words, then spins reading
+     * words, so a pipe that got this token would hang. Payload none read by
+     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
+     * payload is defined. Established: the token map runs
      * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. */
+     * `arm_badcmd`. No sender found. The X module never stores this token (no
+     * store at pointer+32*token; the only address constants equal to 32*token
+     * in kon.s are rodata string addresses passed to a call) and libGLcore
+     * and the kernel do not either. */
     KONA_HP_X_UNUSED7                    = 0x163,
 
-    /* `HP_X_UNUSED8` (0x164). Route: the token map runs
+    /* Read at arm1.u token map entry for 0x164 = arm_badcmd 0x0c0017f4
+     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_X_UNUSED8` (0x164). Established: The token-map entry points
+     * straight at arm_badcmd with no stub; it prints the current and previous
+     * token numbers, reads and prints 100 payload words, then spins reading
+     * words, so a pipe that got this token would hang. Payload none read by
+     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
+     * payload is defined. Established: the token map runs
      * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. */
+     * `arm_badcmd`. No sender found. The X module never stores this token (no
+     * store at pointer+32*token; the only address constants equal to 32*token
+     * in kon.s are rodata string addresses passed to a call) and libGLcore
+     * and the kernel do not either. */
     KONA_HP_X_UNUSED8                    = 0x164,
 
-    /* `HP_X_UNUSED9` (0x165). Route: the token map runs
+    /* Read at arm1.u token map entry for 0x165 = arm_badcmd 0x0c0017f4
+     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+
+    /* `HP_X_UNUSED9` (0x165). Established: The token-map entry points
+     * straight at arm_badcmd with no stub; it prints the current and previous
+     * token numbers, reads and prints 100 payload words, then spins reading
+     * words, so a pipe that got this token would hang. Payload none read by
+     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
+     * payload is defined. Established: the token map runs
      * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. */
+     * `arm_badcmd`. No sender found. The X module never stores this token (no
+     * store at pointer+32*token; the only address constants equal to 32*token
+     * in kon.s are rodata string addresses passed to a call) and libGLcore
+     * and the kernel do not either. */
     KONA_HP_X_UNUSED9                    = 0x165,
 
     /* Engine handlers whose slots the code of `arm_dplex_swap` loads, in
-     * order: `mgesi_VCbusWrite`. */
+     * order: `mgesi_VCbusWrite`. Read at arm1.u arm_dplex_swap 0x0c013ef4;
+     * ge.u mgesi_VCbusWrite. */
 
-    /* `HP_DPLEX_SWAP` (0x166). Route: the token map runs `arm_dplex_swap` at
-     * arm1.u 0x0c013ef4. */
+    /* `HP_DPLEX_SWAP` (0x166). Established: Requires the privileged stream
+     * (bit 2 of 0x200060) else prints a violation and runs arm_badcmd. Writes
+     * the word to display-bus address 0xe500 through engine VCbusWrite (slot
+     * 251). Payload 1: swap value for the multi-pipe (DPLEX) display option.
+     * Established: the token map runs `arm_dplex_swap` at arm1.u 0x0c013ef4.
+     * Sent by kona.a(kona_video.o) KONAschedswapbuf (payload 1). */
     KONA_HP_DPLEX_SWAP                   = 0x166,
 
-    /* `HP_USERCOPYLIST_LDMA` (0x167). Route: the token map runs
-     * `arm_usercopylist_ldma` at arm1.u 0x0c014ec4. Route: libGLcore.so
-     * `__glSdramPushIn` stores 4 words after the token. */
+    /* Read at arm1.u arm_usercopylist_ldma 0x0c014ec4-0x0c014f84. */
+
+    /* `HP_USERCOPYLIST_LDMA` (0x167). Established: Input DMA of the length
+     * from the host pool (0x200010/14/18, start 0x20001c=0xbeefface) into the
+     * FIFO while the list DMA (0x200030 = list base + address | 0x4000000,
+     * count length rounded to 8) copies it into list memory; pass-through
+     * counter 0x200058 = words | 0xc000000; sends a pad word 0xf001f001 to
+     * port 0x840 when the length is an odd word count; waits for completion.
+     * Payload 4: list address, pool offset (page<<12 | offset), byte length,
+     * a fourth word read and dropped (libGLcore sends 0). Established: the
+     * token map runs `arm_usercopylist_ldma` at arm1.u 0x0c014ec4.
+     * Established: libGLcore.so `__glSdramPushIn` stores 4 words after the
+     * token. Sent by libGLcore.so __glSdramPushIn (kon_dlist.s) stores token
+     * 359, address, offset, length (words*4), 0. */
     KONA_HP_USERCOPYLIST_LDMA            = 0x167,
 
     /* Engine handlers whose slots the code of `arm_polygonoffset` loads, in
-     * order: `mgeb_PolygonOffset`. */
+     * order: `mgeb_PolygonOffset`. Read at arm1.u arm_polygonoffset
+     * 0x0c016428 (slot 435). */
 
-    /* `HP_POLYGONOFFSET` (0x168). Route: the token map runs
-     * `arm_polygonoffset` at arm1.u 0x0c016428. Route: libGLcore.so
-     * `__glkonim_PolygonOffset` stores 2 words after the token. */
+    /* `HP_POLYGONOFFSET` (0x168). Established: Sends the first word on port
+     * 0x478 and the second on 0x840, then starts mgeb_PolygonOffset. Payload
+     * 2: Offset factor and units as floats. Established: the token map runs
+     * `arm_polygonoffset` at arm1.u 0x0c016428. Established: libGLcore.so
+     * `__glkonim_PolygonOffset` stores 2 words after the token. Sent by
+     * libGLcore.so __glkonim_PolygonOffset (kon_cfuncs.s). */
     KONA_HP_POLYGONOFFSET                = 0x168,
 
-    /* `HP_DIAG_DISPATCH` (0x169). Route: the token map runs
-     * `arm_diag_dispatch` at arm1.u 0x0c037958. */
+    /* Read at arm1.u arm_diag_dispatch 0x0c037958 and its targets
+     * diag_set_immediat .. diag_ged_deactivate_context
+     * (0x0c0379f0-0x0c037d64). */
+
+    /* `HP_DIAG_DISPATCH` (0x169). Inferred: Jumps by the first word to one of
+     * twelve diagnostic routines: write or copy an ARM word, load or transfer
+     * the distributor table, write a distributor register, set up distributor
+     * pixels, send a TBUS_1 command to an engine, select the next engine or
+     * deactivate a context; other values print 'Unrecognized diag command'.
+     * Payload variable: sub-command 0-11, then its own words: a sub-command
+     * number and its arguments. Established: the token map runs
+     * `arm_diag_dispatch` at arm1.u 0x0c037958. No sender found: the string
+     * table of irsaudit is the likely user (docs/arm1_functions.md) but no
+     * call was located; libGLcore, kernel and X module do not send it. */
     KONA_HP_DIAG_DISPATCH                = 0x169,
 
-    /* `HP_DIAG_RESERVED0` (0x16a). Route: routed by the host interface with
-     * no ARM code, map entry 0x00200061: command 64, count field 1, untyped
-     * words; distributor entry 0x13c at ged1b.u lineloop.s:22. */
+    /* Read at icu_map.tsv 0x16a; hw_route.tsv; ged_route.tsv entry 0x13c
+     * lineloop.s:22; ucode/ged.md pass/register forms. */
+
+    /* `HP_DIAG_RESERVED0` (0x16a). Inferred: Map entry 0x00200061:
+     * register/pixel form, command 64, count 1, untyped. Register/pixel form,
+     * command 64 (index 0, qualifier 1), no ARM code. ged.md reads its
+     * control word as distributor register 1. Entry 0x13c (lineloop.s:22)
+     * loads vertex state 1 and fetches, so the word is taken and nothing is
+     * drawn. Payload 1: one word; no sender found. Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0x00200061:
+     * command 64, count field 1 (bits 6-10, 0 read as 32), untyped words. No
+     * sender found: searched libGLcore asm, kona_kernel disasm, kona.so asm
+     * and irsaudit disassembly for token 362 stores; irsaudit hits for 362
+     * are JTAG field numbers. */
     KONA_HP_DIAG_RESERVED0               = 0x16a,
 
-    /* `HP_DIAG_RESERVED1` (0x16b). Route: routed by the host interface with
-     * no ARM code, map entry 0x00200061: command 64, count field 1, untyped
-     * words; distributor entry 0x13c at ged1b.u lineloop.s:22. */
+    /* Read at icu_map.tsv 0x16b; hw_route.tsv; ged_route.tsv entry 0x13c
+     * lineloop.s:22. */
+
+    /* `HP_DIAG_RESERVED1` (0x16b). Inferred: Map entry 0x00200061:
+     * register/pixel form, command 64, count 1, untyped. Identical map entry
+     * to HP_DIAG_RESERVED0: register/pixel form, command 64, entry 0x13c
+     * (lineloop.s:22), which loads vertex state 1 and fetches without
+     * drawing. Payload 1: one word; no sender found. Established: routed by
+     * the host interface with no ARM code, arm1.u token-map entry 0x00200061:
+     * command 64, count field 1 (bits 6-10, 0 read as 32), untyped words. No
+     * sender found: same search as HP_DIAG_RESERVED0 (token 363). */
     KONA_HP_DIAG_RESERVED1               = 0x16b,
 
-    /* `HP_COPYLIST_LDMA` (0x16c). Route: the token map runs
-     * `arm_copylist_ldma` at arm1.u 0x0c014dd8. */
+    /* Read at arm1.u arm_copylist_ldma 0x0c014dd8-0x0c014e50. */
+
+    /* `HP_COPYLIST_LDMA` (0x16c). Established: Reads the address, peeks L at
+     * r9+0x40, sets list-DMA address 0x200030 = list base (r8+0xce8) +
+     * address | 0x4000000, count 0x200034 (L, plus 4 if bit 2 set), source
+     * select 0x200048 = 1, pass-through counter 0x200058 = L>>2, waits
+     * (waitForDH), writes a zero pad word if bit 2 was set, starts via
+     * 0x20004c and polls 0x200040 bit 2, then clears the source select.
+     * Payload 2 + n: list address, byte length L, then L/4 words of list data
+     * in the stream. Established: the token map runs `arm_copylist_ldma` at
+     * arm1.u 0x0c014dd8. Sent by libGLcore.so: no stored constant 364 found
+     * in libglcore/asm (searched li 364 in KONA, PIXMAP, kon, dlist); kernel
+     * commands.tsv and ddx/asm not matched either. */
     KONA_HP_COPYLIST_LDMA                = 0x16c,
 
-    /* `HP_EXECLIST_LDMA` (0x16d). Route: the token map runs
-     * `arm_execlist_ldma` at arm1.u 0x0c014f90. Route: libGLcore.so
-     * `__glKonExecuteLDMA` stores 2 words after the token. */
+    /* Read at arm1.u arm_execlist_ldma 0x0c014f90. */
+
+    /* `HP_EXECLIST_LDMA` (0x16d). Established: Sets list-DMA address 0x200030
+     * = base + address with the top six bits cleared, count 0x200034 =
+     * words*4, mode 0x200064 = 2 and clears 0x200038; the list is then played
+     * from list memory into the command stream by the hardware, and the
+     * handler fetches the next token. Payload 2: list address, length in
+     * words. Established: the token map runs `arm_execlist_ldma` at arm1.u
+     * 0x0c014f90. Established: libGLcore.so `__glKonExecuteLDMA` stores 2
+     * words after the token. Sent by libGLcore.so __glKonExecuteLDMA
+     * (kon_dlist.s) stores token 365 and two words. */
     KONA_HP_EXECLIST_LDMA                = 0x16d,
 
-    /* `HP_EXECLIST_IDMA` (0x16e). Route: the token map runs
-     * `arm_execlist_idma` at arm1.u 0x0c015058. */
+    /* Read at arm1.u arm_execlist_idma 0x0c015058. */
+
+    /* `HP_EXECLIST_IDMA` (0x16e). Established: Prints an out-of-bounds
+     * warning if offset + 4*words exceeds the pool length (r8+0xce4) but
+     * continues; sets 0x200020 = 2, input-DMA page 0x200010 = pool page +
+     * offset>>12, offset 0x200014 = (offset&0xfff) + pool low word, length
+     * 0x200018 = bytes, mode 0x200064 = 1, start 0x20001c = 0. Payload 2:
+     * pool offset in bytes, length in words. Established: the token map runs
+     * `arm_execlist_idma` at arm1.u 0x0c015058. Sent by libGLcore.so
+     * __glKonExecuteIDMA (kon_dlist.s) stores token 366. */
     KONA_HP_EXECLIST_IDMA                = 0x16e,
 
-    /* `HP_MOVELIST_LDMA` (0x16f). Route: the token map runs
-     * `arm_movelist_ldma` at arm1.u 0x0c01503c. Route: libGLcore.so
-     * `__glSdramMemmove` stores 3 words after the token. */
+    /* Read at arm1.u arm_movelist_ldma 0x0c01503c; routine 0x0c0400e4. */
+
+    /* `HP_MOVELIST_LDMA` (0x16f). Inferred: Adds the list base (r8+0xce8) to
+     * both addresses and jumps to a block-copy routine at 0x0c0400e4 with the
+     * length: a copy inside list memory. Payload 3: two list addresses and a
+     * byte length. Established: the token map runs `arm_movelist_ldma` at
+     * arm1.u 0x0c01503c. Established: libGLcore.so `__glSdramMemmove` stores
+     * 3 words after the token. Sent by libGLcore.so __glSdramMemmove
+     * (kon_dlist.s) stores token 367, a0, a1, a2. */
     KONA_HP_MOVELIST_LDMA                = 0x16f,
 
-    /* `HP_EXECLIST_LDMA_N` (0x170). Route: the token map runs
-     * `arm_execlist_ldma_n` at arm1.u 0x0c014fc0. */
+    /* Read at arm1.u arm_execlist_ldma_n 0x0c014fc0. */
+
+    /* `HP_EXECLIST_LDMA_N` (0x170). Established: Reads the pairs into a stack
+     * buffer, then for each writes list-DMA address 0x200030 (base + address,
+     * top bits cleared) and count 0x200034 (words*4), finally sets mode
+     * 0x200064 = 2. Payload 1 + 2k: k, then k pairs (address, length in
+     * words); at most 8 pairs are buffered. Established: the token map runs
+     * `arm_execlist_ldma_n` at arm1.u 0x0c014fc0. Sent by libGLcore.so
+     * __glKonExecuteLDMAn (kon_dlist.s) stores token 368. */
     KONA_HP_EXECLIST_LDMA_N              = 0x170,
 
-    /* `HP_EXECLIST_IDMA_N` (0x171). Route: the token map runs
-     * `arm_execlist_idma_n` at arm1.u 0x0c015164. */
+    /* Read at arm1.u arm_execlist_idma_n 0x0c015164. */
+
+    /* `HP_EXECLIST_IDMA_N` (0x171). Established: Sets 0x200020 = 2, reads the
+     * pairs, and for each writes input-DMA page, offset and byte length
+     * (0x200010/14/18), then mode 0x200064 = 1 and start 0x20001c = 0. No
+     * pool bounds warning here. Payload 1 + 2k: k, then k pairs (pool offset,
+     * length in words); at most 4 buffered. Established: the token map runs
+     * `arm_execlist_idma_n` at arm1.u 0x0c015164. Sent by libGLcore.so
+     * __glKonExecuteIDMAn (kon_dlist.s) stores token 369. */
     KONA_HP_EXECLIST_IDMA_N              = 0x171,
 
-    /* `HP_GED_NOP` (0x172). Route: routed by the host interface with no ARM
-     * code, map entry 0x00300071: command 96, count field 1, untyped words;
-     * distributor entry 0x14c at ged1b.u lineloop.s:48. */
+    /* Read at icu_map.tsv 0x172; ged_route.tsv entry 0x14c lineloop.s:48;
+     * kona_kernel/commands.tsv; kona_kern.h comment on kona_act_pcx; kona.a
+     * kona_context.o KONAvalidateclip. */
+
+    /* `HP_GED_NOP` (0x172). Inferred: Map entry 0x00300071: register/pixel
+     * form, command 96, count 1, untyped. Register/pixel form with the
+     * data-invalid bit set, command 96, kind 0 (not legal inside begin/end).
+     * Entry 0x14c (lineloop.s:48) loads vertex state 4 and fetches; the
+     * kernel puts it at the end of its context, memory and display packets as
+     * padding that engines treat as a no-op. Payload 1 (always a zero word):
+     * one zero pad word. Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0x00300071: command 96, count field 1
+     * (bits 6-10, 0 read as 32), untyped words. Sent by kona.a (kernel):
+     * KONAvalidateclip, kona_dmapool, kona_mem_alloc, kona_mem_free,
+     * KONAschedswapbuf (kona_kernel/commands.tsv); libGLcore: none found. */
     KONA_HP_GED_NOP                      = 0x172,
 
-    /* `HP_TEXSETUP` (0x173). Route: the token map runs `arm_texsetup` at
-     * arm1.u 0x0c0364e0. */
+    /* Read at arm1.u arm_texsetup 0x0c0364e0 (10 plain reads + r9+0x3c;
+     * ResolveTextureInternalFormat 0x0c036424, PixRM_TextureLoadSetup
+     * 0x0c036570 with registers 0x7fc1-0x7fc5 and 0x5001). */
+
+    /* `HP_TEXSETUP` (0x173). Inferred: Saves the descriptor fields, resolves
+     * the texture internal format and writes the texture-load raster
+     * registers (size, position, raster-state and global-offset words)
+     * through the register-write descriptor 0x58404800. Payload 11: texture
+     * width, height, three words kept on the stack, texture format fields
+     * saved into the texture state (five words at texState+0, +8, +0xc,
+     * +0x10, +0x14), and the final word. Established: the token map runs
+     * `arm_texsetup` at arm1.u 0x0c0364e0. No sender found (searched
+     * libGLcore asm in all three ABIs for a store of 371; the neighbouring
+     * token 373 (TEXLOAD_SETUP) is likewise unsent). */
     KONA_HP_TEXSETUP                     = 0x173,
 
-    /* `HP_DRAWTEXELS` (0x174). Route: the token map runs `arm_drawtexels` at
-     * arm1.u 0x0c02b7a8. */
+    /* Read at arm1.u arm_drawtexels 0x0c02b7a8 (19 plain reads then r9+0x40
+     * or r9+0x3c; drawtexels 0x0c02b8cc, ResolveDrawPath, SetupSubtexload). */
+
+    /* `HP_DRAWTEXELS` (0x174). Established: Stores the header in the pixel
+     * descriptor and, when the texel format id changes, re-resolves the draw
+     * path; sets up the sub-texture load (SetupSubtexload,
+     * SetupSubtexloadPos) and sends the texel image to the engines with
+     * SendPixelsToPipe, writing it into texture memory. Payload 20: GL target
+     * (0xde0 1D, 0xde1 2D), width, height, format code, type code, byte
+     * offset, data-by-DMA flag, row mode, first column (0), texel format id,
+     * then ten words of load id and texture-memory placement; the image
+     * follows when the DMA word is 0. Established: the token map runs
+     * `arm_drawtexels` at arm1.u 0x0c02b7a8. Sent by libGLcore.so
+     * DoDrawPixelsOrTexels (kon_pixel.s, token 372). */
     KONA_HP_DRAWTEXELS                   = 0x174,
 
-    /* `HP_TEXLOAD_SETUP` (0x175). Route: the token map runs
-     * `arm_texload_setup` at arm1.u 0x0c025134. */
+    /* Read at arm1.u arm_texload_setup 0x0c025134. */
+
+    /* `HP_TEXLOAD_SETUP` (0x175). Established: The handler is a single return
+     * (mov pc, lr): it reads no payload word and sends nothing to the
+     * engines. Payload 0 (hipwc table says 10): nothing read. Established:
+     * the token map runs `arm_texload_setup` at arm1.u 0x0c025134. No sender
+     * found: no libGLcore, X module or kernel store of 0x175; the sibling
+     * TEXLOAD_ID 0x176 is sent by subloadLevel. */
     KONA_HP_TEXLOAD_SETUP                = 0x175,
 
-    /* `HP_TEXLOAD_ID` (0x176). Route: the token map runs `arm_texload_id` at
-     * arm1.u 0x0c0251fc. */
+    /* Read at arm1.u arm_texload_id 0x0c0251fc -> update_texload_id
+     * 0x0c025168 (tbus writes 0x5003, 0x1002; tex_cache at 0x0409086c). */
+
+    /* `HP_TEXLOAD_ID` (0x176). Established: Advances the 20-bit texture-load
+     * generation number kept at ARM 0x8b8, stores it as the load id of that
+     * cache entry and writes it to the raster load-id register 0x5003; on
+     * wrap it flushes the old ids and also writes register 0x1002. Payload 1:
+     * texture-cache index of the entry the preceding download filled.
+     * Established: the token map runs `arm_texload_id` at arm1.u 0x0c0251fc.
+     * Sent by libGLcore.so subloadLevel (texture/kon_texture_api.s, token
+     * 374), at every exit after the DRAWTEXELS commands. */
     KONA_HP_TEXLOAD_ID                   = 0x176,
 
     /* Engine handlers whose slots the code of `arm_active_texture` loads, in
-     * order: `mgebi_Texture`. */
+     * order: `mgebi_Texture`. Read at arm1.u arm_active_texture 0x0c025204
+     * (r9+0x3c; slot 100 mgebi_Texture via r8+0x110;
+     * XferMask 0x0c013098). */
 
-    /* `HP_ACTIVE_TEXTURE` (0x177). Route: the token map runs
-     * `arm_active_texture` at arm1.u 0x0c025204. */
+    /* `HP_ACTIVE_TEXTURE` (0x177). Established: Keeps the dimension at ARM
+     * 0x890, sends the engines a minus-one or zero enable word on port 0x47c,
+     * starts the texture handler and then runs XferMask to refresh the
+     * transfer mask; later bind commands compare their dimension with it.
+     * Payload 1: active texture dimension (0 none, 1, 2 or 3), the highest
+     * enabled dimension. Established: the token map runs `arm_active_texture`
+     * at arm1.u 0x0c025204. Sent by libGLcore.so computeActiveTarget
+     * (texture/kon_texture_api.s, token 375). */
     KONA_HP_ACTIVE_TEXTURE               = 0x177,
 
-    /* `HP_TEXBIND_ID` (0x178). Route: the token map runs `arm_texbind_id` at
-     * arm1.u 0x0c0252ec. Route: libGLcore.so `updateTexBindID` stores 1 word
-     * after the token. */
+    /* Read at arm1.u arm_texbind_id 0x0c0252ec -> update_texbind_id
+     * 0x0c025258 (tbus writes 0x1003, 0x5002). */
+
+    /* `HP_TEXBIND_ID` (0x178). Established: Advances the 20-bit texture-bind
+     * generation number at ARM 0x8bc, stores it as the draw id of that cache
+     * entry and writes it to the raster draw-id register 0x1003; on wrap it
+     * flushes the old ids and writes register 0x5002. Payload 1:
+     * texture-cache index. Established: the token map runs `arm_texbind_id`
+     * at arm1.u 0x0c0252ec. Established: libGLcore.so `updateTexBindID`
+     * stores 1 word after the token. Sent by libGLcore.so updateTexBindID
+     * (texture/kon_texture_api.s, token 376). */
     KONA_HP_TEXBIND_ID                   = 0x178,
 
-    /* `HP_BIND_2D_MIPMAP_TEXTURE` (0x179). Route: routed by the host
-     * interface with no ARM code, map entry 0x58505d81: command 160, count
-     * field 22, single floats; engine handler `mgebi_Bind2dMipmapTexture`
-     * (index 32 of the handler table). */
+    /* Read at icu_map.tsv 0x179; ged_bound_table.tsv idx 32; ge.u texture.S
+     * mgebi_Bind2dMipmapTexture 0x42d3; libGLcore texture/kon_texture_api.s
+     * bind2DMipmapTexture 0x0d96a268. */
+
+    /* `HP_BIND_2D_MIPMAP_TEXTURE` (0x179). Inferred: Map entry 0x58505d81:
+     * pass form, command 160, count 22, 32-bit words. Command 160 is index
+     * 32, mgebi_Bind2dMipmapTexture, which reads exactly 22 operand words
+     * (operands 0-21). It loads the 2D mip-map texture description (addresses
+     * and sizes) into the engine texture state; the register details are not
+     * decoded. Payload 22: a texture-binding record: six words from the
+     * texture object (offsets +72,+76,+80,+84,+516,+524) followed by sixteen
+     * words copied from the array the object points to at +252. Established:
+     * routed by the host interface with no ARM code, arm1.u token-map entry
+     * 0x58505d81: command 160, count field 22 (bits 6-10, 0 read as 32),
+     * single floats; engine handler `mgebi_Bind2dMipmapTexture` (index 32 of
+     * the handler table). Sent by libGLcore bind2DMipmapTexture
+     * (libglcore/asm/texture/kon_texture_api.s): sends HP_BIND_LINEAR_TEXTURE
+     * (262) or HP_BIND_TEXTURE (469 when the format nibble of the word at
+     * +116 is 3) with five words, then this token and 22 words. */
     KONA_HP_BIND_2D_MIPMAP_TEXTURE       = 0x179,
 
     /* Engine handlers whose slots the code of `arm_bind_bicubic_texture`
-     * loads, in order: `mgesi_BshRegisterWriteN`. */
+     * loads, in order: `mgesi_BshRegisterWriteN`. Read at arm1.u
+     * arm_bind_bicubic_texture 0x0c025da8 (3 plain reads, then get_addr
+     * 0x0c025438 reads the rest; set_bicubic_or_3d_addr 0x0c025490; slot 102
+     * mgesi_BshRegisterWriteN via r8+0x114). */
 
-    /* `HP_BIND_BICUBIC_TEXTURE` (0x17a). Route: the token map runs
-     * `arm_bind_bicubic_texture` at arm1.u 0x0c025da8. */
+    /* `HP_BIND_BICUBIC_TEXTURE` (0x17a). Established: If the dimension
+     * matches the active one it reads the address words and writes the
+     * bicubic table address pair to the raster registers
+     * (set_bicubic_or_3d_addr), then sends a mask and constants through port
+     * 0x840 and starts the bind handler; otherwise it just consumes the rest.
+     * Payload 5: texture dimension (compared with the active one), two words
+     * kept for the register write, then two address words from the texture's
+     * table pointer. Established: the token map runs
+     * `arm_bind_bicubic_texture` at arm1.u 0x0c025da8. Sent by libGLcore.so
+     * bindBicubicTexture (texture/kon_texture_api.s, token 378, always after
+     * a BIND_TEXTURE command). */
     KONA_HP_BIND_BICUBIC_TEXTURE         = 0x17a,
 
     /* Engine handlers whose slots the code of `arm_bind_3d_mipmap_texture`
-     * loads, in order: `mgesi_BshRegisterWriteN`. */
+     * loads, in order: `mgesi_BshRegisterWriteN`. Read at arm1.u
+     * arm_bind_3d_mipmap_texture 0x0c025ccc (4 plain reads, then get_addr
+     * with 10 words; set_3d_mipmap_addr 0x0c0254bc; slot 102
+     * mgesi_BshRegisterWriteN). */
 
-    /* `HP_BIND_3D_MIPMAP_TEXTURE` (0x17b). Route: the token map runs
-     * `arm_bind_3d_mipmap_texture` at arm1.u 0x0c025ccc. */
+    /* `HP_BIND_3D_MIPMAP_TEXTURE` (0x17b). Established: If the current
+     * dimension is 3 (or 3D is enabled) it reads the ten table words and
+     * writes them as a series of texture-address register pairs
+     * (set_3d_mipmap_addr), then sends the bind words through port 0x840 and
+     * starts the register-write handler; otherwise it discards the table.
+     * Payload 14: four words (the first is stored in the register-write word,
+     * the others are bind parameters), then ten words from the texture's
+     * address table. Established: the token map runs
+     * `arm_bind_3d_mipmap_texture` at arm1.u 0x0c025ccc. Sent by libGLcore.so
+     * bind3DMipmapTexture (texture/kon_texture_api.s, token 379, after a
+     * BIND_TEXTURE command). */
     KONA_HP_BIND_3D_MIPMAP_TEXTURE       = 0x17b,
 
     /* Engine handlers whose slots the code of `arm_bind_3d_texture` loads, in
-     * order: `mgesi_BshRegisterWriteN`. */
+     * order: `mgesi_BshRegisterWriteN`. Read at arm1.u arm_bind_3d_texture
+     * 0x0c025e6c (2 plain reads, then get_addr with 2 words;
+     * set_bicubic_or_3d_addr; slot 102 mgesi_BshRegisterWriteN). */
 
-    /* `HP_BIND_3D_TEXTURE` (0x17c). Route: the token map runs
-     * `arm_bind_3d_texture` at arm1.u 0x0c025e6c. */
+    /* `HP_BIND_3D_TEXTURE` (0x17c). Established: If the active dimension is 3
+     * (or 3D is enabled) it takes the two address words (get_addr), writes
+     * the 3D texture address pair (set_bicubic_or_3d_addr) and sends the bind
+     * words to the register-write handler; otherwise it discards them.
+     * Payload 4: texture-object word at +72, word at +84, and the two address
+     * words from the texture's table pointer. Established: the token map runs
+     * `arm_bind_3d_texture` at arm1.u 0x0c025e6c. Sent by libGLcore.so
+     * bind3DTexture (texture/kon_texture_api.s, token 380, after a
+     * BIND_TEXTURE command). */
     KONA_HP_BIND_3D_TEXTURE              = 0x17c,
 
     /* Engine handlers whose slots the code of `arm_bind_detail_texture`
-     * loads, in order: `mgesi_FillTMLoadFifo`. */
+     * loads, in order: `mgesi_FillTMLoadFifo`. Read at arm1.u
+     * arm_bind_detail_texture 0x0c025efc (5 plain reads + r9+0x3c;
+     * tbus_regwrite 0x1002 and 0x5003; descriptor 0x58404800 with register
+     * word 0x014d3fd6; FillTMLoadFifo via 0x4f4). */
 
-    /* `HP_BIND_DETAIL_TEXTURE` (0x17d). Route: the token map runs
-     * `arm_bind_detail_texture` at arm1.u 0x0c025efc. */
+    /* `HP_BIND_DETAIL_TEXTURE` (0x17d). Established: Retires a pending load
+     * id of that cache entry by writing the wait and id registers, writes a
+     * detail-texture register built from words 2 and 3 and keeps words 4-6 in
+     * ARM state, re-sending the detail table when it matches the current
+     * binding. Payload 6: texture-cache index (negative for none), two words
+     * combined (second shifted left 4) into a detail-texture register value,
+     * and three words kept in ARM state (+0x8a4, +0x8a8, +0x8ac).
+     * Established: the token map runs `arm_bind_detail_texture` at arm1.u
+     * 0x0c025efc. Sent by libGLcore.so bindDetailTexture
+     * (texture/kon_texture_api.s, token 381, six words: index, +332, +336,
+     * +28, +276, +280). */
     KONA_HP_BIND_DETAIL_TEXTURE          = 0x17d,
 
-    /* `HP_TEX_SEND_ARM_TABLE` (0x17e). Route: the token map runs
-     * `arm_tex_send_arm_table` at arm1.u 0x0c026010. */
+    /* Read at arm1.u arm_tex_send_arm_table 0x0c026010 (index, then 31 words
+     * in a loop, a store, and the final r9+0x3c word; sendTexTable
+     * 0x0c02539c). */
+
+    /* `HP_TEX_SEND_ARM_TABLE` (0x17e). Established: Stores the 33 table words
+     * in the ARM's table entry for that index (0x84 bytes per entry);
+     * sendTexTable later writes them to the raster registers when a bind
+     * needs them. It sends nothing to the engines itself. Payload 34:
+     * texture-table index, then the 33 words of that table entry.
+     * Established: the token map runs `arm_tex_send_arm_table` at arm1.u
+     * 0x0c026010. Sent by libGLcore.so bindTexTable
+     * (texture/kon_texture_api.s, token 382: the index word then 33 words via
+     * __glkon_datavn). */
     KONA_HP_TEX_SEND_ARM_TABLE           = 0x17e,
 
     /* Engine handlers whose slots the code of `arm_slop` loads, in order:
@@ -2410,821 +6214,2112 @@ enum kona_hp_token {
      * `mgeb_LoadCram`, `mgeb_XSetupColors`, `mgebi_XSetupWindow`,
      * `mgesi_XPoint`, `mgesi_XRect`, `mgesi_XBox`,
      * `mgesi_XSpans`, `mgesi_XSegment`, `mgesi_XSegmentRel`,
-     * `mgesi_XLineRel`. */
+     * `mgesi_XLineRel`. Read at arm1.u arm_slop 0x0c038a78 (dispatch
+     * 0x0c038aa8-0x0c038bb8, readback cases 0x0c038afc-0x0c038ba8). */
 
-    /* `HP_SLOP` (0x17f). Route: the token map runs `arm_slop` at arm1.u
-     * 0x0c038a78. */
+    /* `HP_SLOP` (0x17f). Inferred: A diagnostic multiplexer keyed by the
+     * first word: codes -1004 to -1000 start engine debug-drain and
+     * memory-to-output-DMA handlers and return the result through the
+     * read-back path, -1005 reads one word, and nonnegative codes (1 to 3,
+     * 0x0deadded and the 0x0deb00xx group) run other test actions such as
+     * video-format and X-engine setup. Payload 16: a command code followed by
+     * up to fourteen arguments and a last word. Established: the token map
+     * runs `arm_slop` at arm1.u 0x0c038a78. No sender found (not in
+     * libGLcore, kernel command table or X module stores). */
     KONA_HP_SLOP                         = 0x17f,
 
-    /* `HP_VARRAY_SET_CMDS` (0x180). Route: the token map runs
-     * `arm_varray_set_cmds` at arm1.u 0x0c039950. Route: libGLcore.so
-     * `update_cmpnd_cmd` stores 1 word after the token. */
+    /* Read at arm1.u arm_varray_set_cmds 0x0c039950, varray_set_cmd_table
+     * 0x0c039884, varray_build_command 0x0c0395fc, varray_lru 0x0c0395c0. */
+
+    /* `HP_VARRAY_SET_CMDS` (0x180). Established: Pops the key, looks it up in
+     * eight cached command sets (key at +0x74c, stride 36 bytes in the block
+     * at r8+0xcf4); on a miss takes the least recently used set and builds
+     * its token-map entries, then rewrites the hardware token-map entries
+     * from 0x183 on so vertex data go to the right handlers. Payload 1: A key
+     * word describing which client arrays are enabled: vertex, normal,
+     * colour, texture-coordinate, index and edge-flag types and component
+     * counts (docs/ge.md table). Established: the token map runs
+     * `arm_varray_set_cmds` at arm1.u 0x0c039950. Established: libGLcore.so
+     * `update_cmpnd_cmd` stores 1 word after the token. Sent by libGLcore.so
+     * update_cmpnd_cmd (kon_vertarray.s 0x0d95af20, li 384). */
     KONA_HP_VARRAY_SET_CMDS              = 0x180,
 
-    /* `HP_VARRAY_SETUP` (0x181). Route: the token map runs `arm_varray_setup`
-     * at arm1.u 0x0c039a78. */
+    /* Read at arm1.u arm_varray_setup 0x0c039a78. */
+
+    /* `HP_VARRAY_SETUP` (0x181). Established: Pops its single word and
+     * ignores it, then writes 0 through descriptor 0x06400020 (command 128,
+     * pass form, register write). Payload 1 (value ignored; libGLcore sends
+     * 0): one word that the handler discards. Established: the token map runs
+     * `arm_varray_setup` at arm1.u 0x0c039a78. Sent by libGLcore.so
+     * __glkonim_DrawArraysEXT (kon_vertarray.s, li 385). */
     KONA_HP_VARRAY_SETUP                 = 0x181,
 
-    /* `HP_VARRAY_BGN_LOOP` (0x182). Route: the token map runs
-     * `arm_varray_bgn_loop` at arm1.u 0x0c0399c4. */
+    /* Read at arm1.u arm_varray_bgn_loop 0x0c0399c4-0x0c039a74 (__rt_sdiv
+     * 0x0c040194). */
+
+    /* `HP_VARRAY_BGN_LOOP` (0x182). Established: Pops the count, increments
+     * the use counter of the current command set, writes 0 through descriptor
+     * 0x06400020, writes 0x183 (the first loop token) to 0x200070 and
+     * ceil(count / (32 / attributes)) to 0x200074, and discards the other two
+     * words. Payload 3: Vertex count, then two words libGLcore fills with
+     * 0xdeadbeef. Established: the token map runs `arm_varray_bgn_loop` at
+     * arm1.u 0x0c0399c4. Sent by libGLcore.so
+     * __glkonDrawArrays{V,NV,CV,NCV,TV,NTV,CTV,NCTV}... (kon_gvertarray.s, li
+     * 386, count, two 0xdeadbeef). */
     KONA_HP_VARRAY_BGN_LOOP              = 0x182,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP00` (0x183). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP00` (0x183). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP00                = 0x183,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP01` (0x184). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP01` (0x184). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP01                = 0x184,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP02` (0x185). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP02` (0x185). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP02                = 0x185,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP03` (0x186). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP03` (0x186). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP03                = 0x186,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP04` (0x187). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP04` (0x187). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP04                = 0x187,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP05` (0x188). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP05` (0x188). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP05                = 0x188,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP06` (0x189). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP06` (0x189). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP06                = 0x189,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP07` (0x18a). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP07` (0x18a). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP07                = 0x18a,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP08` (0x18b). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP08` (0x18b). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP08                = 0x18b,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP09` (0x18c). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP09` (0x18c). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP09                = 0x18c,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP0A` (0x18d). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP0A` (0x18d). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP0A                = 0x18d,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP0B` (0x18e). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP0B` (0x18e). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP0B                = 0x18e,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP0C` (0x18f). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP0C` (0x18f). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP0C                = 0x18f,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP0D` (0x190). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP0D` (0x190). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP0D                = 0x190,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP0E` (0x191). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP0E` (0x191). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP0E                = 0x191,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP0F` (0x192). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP0F` (0x192). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP0F                = 0x192,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP10` (0x193). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP10` (0x193). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP10                = 0x193,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP11` (0x194). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP11` (0x194). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP11                = 0x194,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP12` (0x195). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP12` (0x195). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP12                = 0x195,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP13` (0x196). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP13` (0x196). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP13                = 0x196,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP14` (0x197). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP14` (0x197). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP14                = 0x197,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP15` (0x198). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP15` (0x198). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP15                = 0x198,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP16` (0x199). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP16` (0x199). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP16                = 0x199,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP17` (0x19a). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP17` (0x19a). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP17                = 0x19a,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP18` (0x19b). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP18` (0x19b). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP18                = 0x19b,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP19` (0x19c). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP19` (0x19c). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP19                = 0x19c,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP1A` (0x19d). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP1A` (0x19d). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP1A                = 0x19d,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP1B` (0x19e). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP1B` (0x19e). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP1B                = 0x19e,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP1C` (0x19f). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP1C` (0x19f). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP1C                = 0x19f,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP1D` (0x1a0). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP1D` (0x1a0). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP1D                = 0x1a0,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP1E` (0x1a1). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP1E` (0x1a1). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP1E                = 0x1a1,
 
-    /* Engine handlers relocated into the span of distributor entry 0x01d:
-     * `mges_NullCommand`. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
+     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
+     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
+     * vertex arrays. */
 
-    /* `HP_VARRAY_LOOP1F` (0x1a2). Route: routed by the host interface with no
-     * ARM code, map entry 0x80000051: command 0, count field 1, untyped
-     * words; distributor entry 0x01d at ged1b.u trigger.s:7. */
+    /* `HP_VARRAY_LOOP1F` (0x1a2). Established: At start-up the map word is
+     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
+     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
+     * entries of the enabled attributes (normal, colour, texture coordinate,
+     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
+     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
+     * 0 (no token word is sent): no payload of its own: the slot is a
+     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x80000051: command 0, geometry form, count field 1
+     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
+     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
+     * none found storing 0x183-0x1a2 as tokens. */
     KONA_HP_VARRAY_LOOP1F                = 0x1a2,
 
-    /* `HP_VARRAY_UNSETUP` (0x1a3). Route: the token map runs
-     * `arm_varray_unsetup` at arm1.u 0x0c039a94. */
+    /* Read at arm1.u arm_varray_unsetup 0x0c039a94. */
+
+    /* `HP_VARRAY_UNSETUP` (0x1a3). Established: Pops its single word and
+     * ignores it; unless bit 6 of the byte at r8+0xcf0 is set it writes 1
+     * through descriptor 0x06400020, which undoes what HP_VARRAY_SETUP wrote.
+     * Payload 1 (libGLcore sends 0): one word that the handler discards.
+     * Established: the token map runs `arm_varray_unsetup` at arm1.u
+     * 0x0c039a94. Sent by libGLcore.so __glkonim_DrawArraysEXT and
+     * __glkonDrawArrays* (li 419, one zero word). */
     KONA_HP_VARRAY_UNSETUP               = 0x1a3,
 
-    /* `HP_SPRITEPARAMETERI` (0x1a4). Route: the token map runs
-     * `arm_spriteparameteri` at arm1.u 0x0c03cbf0. */
+    /* Read at arm1.u arm_spriteparameteri 0x0c03cbf0 (r8+0x820;
+     * resolveSpriteMode 0x0c03cb64). */
+
+    /* `HP_SPRITEPARAMETERI` (0x1a4). Established: Ignores the name word,
+     * stores the value as the sprite mode in the sprite shadow and calls
+     * resolveSpriteMode. Payload 2: Parameter name and integer value (sprite
+     * mode). Established: the token map runs `arm_spriteparameteri` at arm1.u
+     * 0x0c03cbf0. Sent by libGLcore.so __glkonim_SpriteParameteriSGIX
+     * (kon_cfuncs.s): token 420. */
     KONA_HP_SPRITEPARAMETERI             = 0x1a4,
 
     /* Engine handlers whose slots the code of `arm_spriteparameterfv` loads,
-     * in order: `mgeb_Sprite`. */
+     * in order: `mgeb_Sprite`. Read at arm1.u arm_spriteparameterfv
+     * 0x0c03cc08 (slot 81 mgeb_Sprite; shadow r8+0x820 block). */
 
-    /* `HP_SPRITEPARAMETERFV` (0x1a5). Route: the token map runs
-     * `arm_spriteparameterfv` at arm1.u 0x0c03cc08. */
+    /* `HP_SPRITEPARAMETERFV` (0x1a5). Inferred: For mode it stores the last
+     * word and calls resolveSpriteMode. For axis and translation it stores
+     * three floats (with 1.0 appended), sends them with a selector 0 or 4 to
+     * mgeb_Sprite. Other names return without sending. Payload 4: Parameter
+     * name (0x8149 mode, 0x814a axis, 0x814b translation) and three values.
+     * Established: the token map runs `arm_spriteparameterfv` at arm1.u
+     * 0x0c03cc08. Sent by libGLcore.so __glkonim_SpriteParameterfvSGIX
+     * (kon_sprite.s). */
     KONA_HP_SPRITEPARAMETERFV            = 0x1a5,
 
-    /* `HP_VIDEO_CMD` (0x1a6). Route: the token map runs `arm_video_cmd` at
-     * arm1.u 0x0c006398. Route: libGLcore.so `ChannelRect` stores 10 words
-     * after the token. */
+    /* Read at arm1.u arm_video_cmd 0x0c006398; DGDispatchTable 0x040412c0. */
+
+    /* `HP_VIDEO_CMD` (0x1a6). Established: Reads the command number, looks up
+     * its word count and handler in DGDispatchTable, reads that many words
+     * (stack buffer for up to 16, scratch SDRAM up to 0x8000), checks the sum
+     * against the last word and, if it matches, calls the DoDGRqst handler
+     * with the buffer. Bad number, overflow or bad checksum prints a message
+     * and drops it. Payload variable: command number, the count the dispatch
+     * table gives for it, then a checksum word: display-generator command
+     * number (0-0x5c), its payload words, checksum = sum of command number
+     * and payload. Established: the token map runs `arm_video_cmd` at arm1.u
+     * 0x0c006398. Established: libGLcore.so `ChannelRect` stores 10 words
+     * after the token. Sent by libGLcore.so ChannelRect (command 20, 8 words)
+     * and ChannelRectSync (command 78, 2 words) in kon_context.s; X server
+     * modules (dg.md). */
     KONA_HP_VIDEO_CMD                    = 0x1a6,
 
     /* Engine handlers whose slots the code of `arm_pointparameterf` loads, in
-     * order: `mgeb_PointParameter`. */
+     * order: `mgeb_PointParameter`. Read at arm1.u arm_pointparameterf
+     * 0x0c03cfc8 (slot 63; r8+0x234, 0x238,
+     * 0x23c; ResolvePoint). */
 
-    /* `HP_POINTPARAMETERF` (0x1a7). Route: the token map runs
-     * `arm_pointparameterf` at arm1.u 0x0c03cfc8. */
+    /* `HP_POINTPARAMETERF` (0x1a7). Inferred: Keeps the value in the point
+     * shadow, sends name and value to the engines, starts mgeb_PointParameter
+     * and re-derives point drawing. Other names raise invalid-enum. Payload
+     * 2: Parameter name (0x8126 minimum size, 0x8127 maximum size, 0x8128
+     * fade threshold) and a float value. Established: the token map runs
+     * `arm_pointparameterf` at arm1.u 0x0c03cfc8. Sent by libGLcore.so
+     * __glkonim_PointParameterfSGIS and __glkonim_PointParameterfvSGIS
+     * (kon_point_parameters.s): token 423. */
     KONA_HP_POINTPARAMETERF              = 0x1a7,
 
     /* Engine handlers whose slots the code of `arm_pointparameterfv` loads,
-     * in order: `mgeb_PointParameter`. */
+     * in order: `mgeb_PointParameter`. Read at arm1.u arm_pointparameterfv
+     * 0x0c03d020 (slot 63; r8+0x228..0x230). */
 
-    /* `HP_POINTPARAMETERFV` (0x1a8). Route: the token map runs
-     * `arm_pointparameterfv` at arm1.u 0x0c03d020. */
+    /* `HP_POINTPARAMETERFV` (0x1a8). Inferred: Stores the three coefficients
+     * in the point shadow, sends name and coefficients to the engines, starts
+     * mgeb_PointParameter and re-derives point drawing. Also accepts the
+     * three scalar names with one value. Payload 4: Parameter name (the
+     * emitter sends 0x8129 distance attenuation) and three floats.
+     * Established: the token map runs `arm_pointparameterfv` at arm1.u
+     * 0x0c03d020. Sent by libGLcore.so __glkonim_PointParameterfvSGIS
+     * (kon_point_parameters.s): token 424, name, three floats. */
     KONA_HP_POINTPARAMETERFV             = 0x1a8,
 
-    /* `HP_SWAPTMESH` (0x1a9). Route: routed by the host interface with no ARM
-     * code, map entry 0xd8c18057: command 387, count field 1, single floats;
-     * distributor entry 0x377 at ged1b.u tri.s:84. */
+    /* Read at icu_map.tsv 0x1a9; ged_route.tsv entry 0x377 tri.s:84; ged.md
+     * how an entry is chosen; ged1b.u tstrip.s relocation to
+     * mgesi_TriangleStripWithSwapOdd (slot 418); libGLcore kon_igloo.s
+     * __glkonim_IglooInterfaceSGIX. */
+
+    /* `HP_SWAPTMESH` (0x1a9). Inferred: Map entry 0xd8c18057: geometry form,
+     * command 387, count 1, 32-bit words. Geometry form, kind 3 (legal inside
+     * begin/end), data-invalid bit, command 387, distributor entry 0x377
+     * (tri.s:84, a plain fetch in the triangle module). It flips which
+     * previous vertex the next triangle-strip vertex replaces; only the
+     * triangle-strip module has swap code. Payload 1 (zero word): one zero
+     * word. Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xd8c18057: command 387, geometry form, count
+     * field 1 (bits 6-8), single floats. Sent by libGLcore
+     * __glkonim_IglooInterfaceSGIX (kon_igloo.s, parameter value 0x81a0):
+     * stores token 425 then a zero word. */
     KONA_HP_SWAPTMESH                    = 0x1a9,
 
     /* Engine handlers whose slots the code of `arm_bind_2d_clipmap_texture`
-     * loads, in order: `mgesi_BshRegisterWriteN`, `mgeb_ClipmapXform`. */
+     * loads, in order: `mgesi_BshRegisterWriteN`, `mgeb_ClipmapXform`. Read
+     * at arm1.u arm_bind_2d_clipmap_texture 0x0c025b8c (7 plain reads +
+     * r9+0x3c; tbus-register words 0x01501020, 0x01511021,
+     * 0x01523fd7, 0x01533fd8, 0x014d3fd6; slot 427
+     * mgeb_ClipmapXform via gepc+0x6ac). */
 
-    /* `HP_BIND_2D_CLIPMAP_TEXTURE` (0x1aa). Route: the token map runs
-     * `arm_bind_2d_clipmap_texture` at arm1.u 0x0c025b8c. Route: libGLcore.so
-     * `setClipmapRegisters` stores 8 words after the token. */
+    /* `HP_BIND_2D_CLIPMAP_TEXTURE` (0x1aa). Established: Writes five clipmap
+     * values to raster registers 0x1020, 0x1021 and 0x3fd6-0x3fd8 (the set
+     * depends on bit 22 of the fifth word), then always starts the engines'
+     * clipmap-transform handler, sending the three floats when the sixth word
+     * is nonzero and 1.0, 0, 0 otherwise. Payload 8 (5 integers, 3 floats):
+     * five clipmap integer words (the fifth carries a mode bit, 0x400000),
+     * then three floats (the clip scale and bounds); words 1-5 are sent to
+     * raster registers. Established: the token map runs
+     * `arm_bind_2d_clipmap_texture` at arm1.u 0x0c025b8c. Established:
+     * libGLcore.so `setClipmapRegisters` stores 8 words after the token. Sent
+     * by libGLcore.so setClipmapRegisters (texture/kon_texture_api.s, token
+     * 426). */
     KONA_HP_BIND_2D_CLIPMAP_TEXTURE      = 0x1aa,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1ab; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F (li 427); arm1.u
+     * arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F` (0x1ab). Route: routed by the host interface with no
-     * ARM code, map entry 0xd86740c7: command 206, count field 3, single
-     * floats; distributor entry 0x0e3 at ged1b.u tstrip.s:304. */
+    /* `HP_PVERTEX_V3F` (0x1ab). Inferred: Map entry 0xd86740c7: geometry
+     * form, command 206, count 3, 32-bit words. Geometry form, kind 3,
+     * command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 3: x, y, z floats (one
+     * packed vertex taken from the interleaved arrays; 64-bit stores pair two
+     * words, high word first). Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0xd86740c7: command 206, geometry
+     * form, count field 3 (bits 6-8), single floats. Sent by libGLcore
+     * __glkonSendPackedVertexV3F (libglcore/asm/KONA.IP27/kon_spvertarray.s),
+     * per vertex inside a glBegin set up by __glKonSendPackedVertex, which
+     * sends HP_PVERTEX_SETUP (439) first and HP_PVERTEX_CLEANUP (463) after;
+     * also used by __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F                  = 0x1ab,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1ac; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F_C4UB (li 428);
+     * arm1.u arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F_C4UB` (0x1ac). Route: routed by the host interface with
-     * no ARM code, map entry 0xd8674107: command 206, count field 4, single
-     * floats; distributor entry 0x0e3 at ged1b.u tstrip.s:304. */
+    /* `HP_PVERTEX_V3F_C4UB` (0x1ac). Inferred: Map entry 0xd8674107: geometry
+     * form, command 206, count 4, 32-bit words. Geometry form, kind 3,
+     * command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 4: x, y, z floats, then
+     * a word of four unsigned colour bytes (one packed vertex taken from the
+     * interleaved arrays; 64-bit stores pair two words, high word first).
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xd8674107: command 206, geometry form, count field 4
+     * (bits 6-8), single floats. Sent by libGLcore
+     * __glkonSendPackedVertexV3F_C4UB
+     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
+     * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
+     * __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F_C4UB             = 0x1ac,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1ad; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F_N3S (li 429);
+     * arm1.u arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F_N3S` (0x1ad). Route: routed by the host interface with
-     * no ARM code, map entry 0xd8674107: command 206, count field 4, single
-     * floats; distributor entry 0x0e3 at ged1b.u tstrip.s:304. */
+    /* `HP_PVERTEX_V3F_N3S` (0x1ad). Inferred: Map entry 0xd8674107: geometry
+     * form, command 206, count 4, 32-bit words. Geometry form, kind 3,
+     * command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 4: x, y, z floats, then
+     * one packed normal word (three signed shorts) (one packed vertex taken
+     * from the interleaved arrays; 64-bit stores pair two words, high word
+     * first). Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xd8674107: command 206, geometry form, count
+     * field 4 (bits 6-8), single floats. Sent by libGLcore
+     * __glkonSendPackedVertexV3F_N3S
+     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
+     * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
+     * __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F_N3S              = 0x1ad,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1ae; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F_C4UB_N3S (li
+     * 430); arm1.u arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F_C4UB_N3S` (0x1ae). Route: routed by the host interface
-     * with no ARM code, map entry 0xd8674147: command 206, count field 5,
-     * single floats; distributor entry 0x0e3 at ged1b.u tstrip.s:304. */
+    /* `HP_PVERTEX_V3F_C4UB_N3S` (0x1ae). Inferred: Map entry 0xd8674147:
+     * geometry form, command 206, count 5, 32-bit words. Geometry form, kind
+     * 3, command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 5: x, y, z, packed
+     * colour word, packed normal word (one packed vertex taken from the
+     * interleaved arrays; 64-bit stores pair two words, high word first).
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xd8674147: command 206, geometry form, count field 5
+     * (bits 6-8), single floats. Sent by libGLcore
+     * __glkonSendPackedVertexV3F_C4UB_N3S
+     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
+     * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
+     * __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F_C4UB_N3S         = 0x1ae,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1af; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F_T2F (li 431);
+     * arm1.u arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F_T2F` (0x1af). Route: routed by the host interface with
-     * no ARM code, map entry 0xd8674147: command 206, count field 5, single
-     * floats; distributor entry 0x0e3 at ged1b.u tstrip.s:304. */
+    /* `HP_PVERTEX_V3F_T2F` (0x1af). Inferred: Map entry 0xd8674147: geometry
+     * form, command 206, count 5, 32-bit words. Geometry form, kind 3,
+     * command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 5: x, y, z, then s and
+     * t floats (one packed vertex taken from the interleaved arrays; 64-bit
+     * stores pair two words, high word first). Established: routed by the
+     * host interface with no ARM code, arm1.u token-map entry 0xd8674147:
+     * command 206, geometry form, count field 5 (bits 6-8), single floats.
+     * Sent by libGLcore __glkonSendPackedVertexV3F_T2F
+     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
+     * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
+     * __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F_T2F              = 0x1af,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1b0; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F_C4UB_T2F (li
+     * 432); arm1.u arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F_C4UB_T2F` (0x1b0). Route: routed by the host interface
-     * with no ARM code, map entry 0xd8674187: command 206, count field 6,
-     * single floats; distributor entry 0x0e3 at ged1b.u tstrip.s:304. */
+    /* `HP_PVERTEX_V3F_C4UB_T2F` (0x1b0). Inferred: Map entry 0xd8674187:
+     * geometry form, command 206, count 6, 32-bit words. Geometry form, kind
+     * 3, command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 6: x, y, z, colour
+     * word, s, t floats (one packed vertex taken from the interleaved arrays;
+     * 64-bit stores pair two words, high word first). Established: routed by
+     * the host interface with no ARM code, arm1.u token-map entry 0xd8674187:
+     * command 206, geometry form, count field 6 (bits 6-8), single floats.
+     * Sent by libGLcore __glkonSendPackedVertexV3F_C4UB_T2F
+     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
+     * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
+     * __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F_C4UB_T2F         = 0x1b0,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1b1; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F_N3S_T2F (li
+     * 433); arm1.u arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F_N3S_T2F` (0x1b1). Route: routed by the host interface
-     * with no ARM code, map entry 0xd8674187: command 206, count field 6,
-     * single floats; distributor entry 0x0e3 at ged1b.u tstrip.s:304. */
+    /* `HP_PVERTEX_V3F_N3S_T2F` (0x1b1). Inferred: Map entry 0xd8674187:
+     * geometry form, command 206, count 6, 32-bit words. Geometry form, kind
+     * 3, command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 6: x, y, z, normal
+     * word, s, t floats (one packed vertex taken from the interleaved arrays;
+     * 64-bit stores pair two words, high word first). Established: routed by
+     * the host interface with no ARM code, arm1.u token-map entry 0xd8674187:
+     * command 206, geometry form, count field 6 (bits 6-8), single floats.
+     * Sent by libGLcore __glkonSendPackedVertexV3F_N3S_T2F
+     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
+     * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
+     * __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F_N3S_T2F          = 0x1b1,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1b2; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F_C4UB_N3S_T2F (li
+     * 434); arm1.u arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F_C4UB_N3S_T2F` (0x1b2). Route: routed by the host
-     * interface with no ARM code, map entry 0xd86741c7: command 206, count
-     * field 7, single floats; distributor entry 0x0e3 at ged1b.u
-     * tstrip.s:304. */
+    /* `HP_PVERTEX_V3F_C4UB_N3S_T2F` (0x1b2). Inferred: Map entry 0xd86741c7:
+     * geometry form, command 206, count 7, 32-bit words. Geometry form, kind
+     * 3, command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 7: x, y, z, colour
+     * word, normal word, s, t floats (one packed vertex taken from the
+     * interleaved arrays; 64-bit stores pair two words, high word first).
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xd86741c7: command 206, geometry form, count field 7
+     * (bits 6-8), single floats. Sent by libGLcore
+     * __glkonSendPackedVertexV3F_C4UB_N3S_T2F
+     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
+     * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
+     * __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F_C4UB_N3S_T2F     = 0x1b2,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1b3; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F_T2S (li 435);
+     * arm1.u arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F_T2S` (0x1b3). Route: routed by the host interface with
-     * no ARM code, map entry 0xd8674107: command 206, count field 4, single
-     * floats; distributor entry 0x0e3 at ged1b.u tstrip.s:304. */
+    /* `HP_PVERTEX_V3F_T2S` (0x1b3). Inferred: Map entry 0xd8674107: geometry
+     * form, command 206, count 4, 32-bit words. Geometry form, kind 3,
+     * command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 4: x, y, z, then one
+     * word of two signed-short texture coordinates (one packed vertex taken
+     * from the interleaved arrays; 64-bit stores pair two words, high word
+     * first). Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xd8674107: command 206, geometry form, count
+     * field 4 (bits 6-8), single floats. Sent by libGLcore
+     * __glkonSendPackedVertexV3F_T2S
+     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
+     * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
+     * __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F_T2S              = 0x1b3,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1b4; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F_C4UB_T2S (li
+     * 436); arm1.u arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F_C4UB_T2S` (0x1b4). Route: routed by the host interface
-     * with no ARM code, map entry 0xd8674147: command 206, count field 5,
-     * single floats; distributor entry 0x0e3 at ged1b.u tstrip.s:304. */
+    /* `HP_PVERTEX_V3F_C4UB_T2S` (0x1b4). Inferred: Map entry 0xd8674147:
+     * geometry form, command 206, count 5, 32-bit words. Geometry form, kind
+     * 3, command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 5: x, y, z, colour
+     * word, short-pair texture word (one packed vertex taken from the
+     * interleaved arrays; 64-bit stores pair two words, high word first).
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xd8674147: command 206, geometry form, count field 5
+     * (bits 6-8), single floats. Sent by libGLcore
+     * __glkonSendPackedVertexV3F_C4UB_T2S
+     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
+     * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
+     * __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F_C4UB_T2S         = 0x1b4,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1b5; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F_N3S_T2S (li
+     * 437); arm1.u arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F_N3S_T2S` (0x1b5). Route: routed by the host interface
-     * with no ARM code, map entry 0xd8674147: command 206, count field 5,
-     * single floats; distributor entry 0x0e3 at ged1b.u tstrip.s:304. */
+    /* `HP_PVERTEX_V3F_N3S_T2S` (0x1b5). Inferred: Map entry 0xd8674147:
+     * geometry form, command 206, count 5, 32-bit words. Geometry form, kind
+     * 3, command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 5: x, y, z, normal
+     * word, short-pair texture word (one packed vertex taken from the
+     * interleaved arrays; 64-bit stores pair two words, high word first).
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0xd8674147: command 206, geometry form, count field 5
+     * (bits 6-8), single floats. Sent by libGLcore
+     * __glkonSendPackedVertexV3F_N3S_T2S
+     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
+     * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
+     * __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F_N3S_T2S          = 0x1b5,
 
-    /* Engine handlers relocated into the span of distributor entry 0x0e3:
-     * `mgesi_TriangleStripWithSwapOdd`. */
+    /* Read at icu_map.tsv 0x1b6; ged_route.tsv entry 0x0e3 tstrip.s:304;
+     * libGLcore kon_spvertarray.s __glkonSendPackedVertexV3F_C4UB_N3S_T2S (li
+     * 438); arm1.u arm_pvertex_setup 0x0c039ac8. */
 
-    /* `HP_PVERTEX_V3F_C4UB_N3S_T2S` (0x1b6). Route: routed by the host
-     * interface with no ARM code, map entry 0xd8674187: command 206, count
-     * field 6, single floats; distributor entry 0x0e3 at ged1b.u
-     * tstrip.s:304. */
+    /* `HP_PVERTEX_V3F_C4UB_N3S_T2S` (0x1b6). Inferred: Map entry 0xd8674187:
+     * geometry form, command 206, count 6, 32-bit words. Geometry form, kind
+     * 3, command 206, ged entry 0x0e3 (tstrip.s:304). It is a complete vertex
+     * with the listed attributes: the distributor assembles it into the
+     * current primitive, so one token replaces separate vertex, colour,
+     * normal and texture-coordinate commands. Payload 6: x, y, z, colour
+     * word, normal word, short-pair texture word (one packed vertex taken
+     * from the interleaved arrays; 64-bit stores pair two words, high word
+     * first). Established: routed by the host interface with no ARM code,
+     * arm1.u token-map entry 0xd8674187: command 206, geometry form, count
+     * field 6 (bits 6-8), single floats. Sent by libGLcore
+     * __glkonSendPackedVertexV3F_C4UB_N3S_T2S
+     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
+     * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
+     * __glkonim_SubdivPatchSGIX for the T2F forms. */
     KONA_HP_PVERTEX_V3F_C4UB_N3S_T2S     = 0x1b6,
 
-    /* `HP_PVERTEX_SETUP` (0x1b7). Route: the token map runs
-     * `arm_pvertex_setup` at arm1.u 0x0c039ac8. */
+    /* Read at arm1.u arm_pvertex_setup 0x0c039ac8-0x0c039b98. */
+
+    /* `HP_PVERTEX_SETUP` (0x1b7). Established: Pops two words; injects the
+     * second as command 188 payload (descriptor 0x585e5000); sets the
+     * distributor transfer mask to the low 16 bits of the first (descriptor
+     * 0x55c00020); if bit 30 of the first is set it also writes 0xf00 to the
+     * mask descriptor and sends commands 84 and 190 with r8 as data, and if
+     * bit 20 is set 0x1000e000 and commands 84 and 191. Payload 2: A
+     * packed-vertex format word (bits 24-27 select the element function, bits
+     * 16-23 a size byte, low bits carry the transfer mask) and the size byte
+     * again. Established: the token map runs `arm_pvertex_setup` at arm1.u
+     * 0x0c039ac8. Sent by libGLcore.so __glKonSendPackedVertex
+     * (kon_pvertarray.s 0x0d95c960, li 439); list form
+     * __glKonlSendPackedVertex. */
     KONA_HP_PVERTEX_SETUP                = 0x1b7,
 
-    /* `HP_INSTRUMENTS_BUFFER` (0x1b8). Route: the token map runs
-     * `arm_instruments_buffer` at arm1.u 0x0c03ce84. */
+    /* Read at arm1.u arm_instruments_buffer 0x0c03ce84. */
+
+    /* `HP_INSTRUMENTS_BUFFER` (0x1b8). Established: Clears the
+     * instruments-running flag and the sequence counter (ARM RAM r8+0x858,
+     * +0x85c) and reads and discards the payload word. It does not keep any
+     * buffer address. Payload 1: buffer address word from
+     * glInstrumentsBufferSGIX; libGLcore sends a zero word. Established: the
+     * token map runs `arm_instruments_buffer` at arm1.u 0x0c03ce84. Sent by
+     * libGLcore.so __glkonim_InstrumentsBufferSGIX
+     * (kon_pipeline_instruments.s) stores token 440 then 0. */
     KONA_HP_INSTRUMENTS_BUFFER           = 0x1b8,
 
     /* Engine handlers whose slots the code of `arm_start_instruments` loads,
-     * in order: `mgesi_StartInstruments`. */
+     * in order: `mgesi_StartInstruments`. Read at arm1.u
+     * arm_start_instruments 0x0c03cea0; ge.u mgesi_StartInstruments
+     * (pi.S:37). */
 
-    /* `HP_START_INSTRUMENTS` (0x1b9). Route: the token map runs
-     * `arm_start_instruments` at arm1.u 0x0c03cea0. Route: libGLcore.so
-     * `__glkonim_StartInstrumentsSGIX` stores 1 word after the token. */
+    /* `HP_START_INSTRUMENTS` (0x1b9). Established: If instruments are enabled
+     * (byte r8+0x78c): a second start while running raises invalid operation;
+     * otherwise sets running, increments the sequence counter, sends the
+     * counter to 0x474 and runs engine StartInstruments (slot 420). If
+     * disabled it returns after reading the word. Payload 1 (zero): dummy
+     * zero from libGLcore. Established: the token map runs
+     * `arm_start_instruments` at arm1.u 0x0c03cea0. Established: libGLcore.so
+     * `__glkonim_StartInstrumentsSGIX` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_StartInstrumentsSGIX (kon_cfuncs.s) stores token
+     * 441 then 0. */
     KONA_HP_START_INSTRUMENTS            = 0x1b9,
 
     /* Engine handlers whose slots the code of `arm_stop_instruments` loads,
-     * in order: `mgesi_StopInstruments`. */
+     * in order: `mgesi_StopInstruments`. Read at arm1.u arm_stop_instruments
+     * 0x0c03cef4; ge.u mgesi_StopInstruments (pi.S:81). */
 
-    /* `HP_STOP_INSTRUMENTS` (0x1ba). Route: the token map runs
-     * `arm_stop_instruments` at arm1.u 0x0c03cef4. Route: libGLcore.so
-     * `__glkonim_StopInstrumentsSGIX` stores 1 word after the token. */
+    /* `HP_STOP_INSTRUMENTS` (0x1ba). Inferred: If enabled and running, clears
+     * running, sends the marker (0x474), the read-back address high word + 3
+     * and the page base + 0xff8 (0x840) and runs engine StopInstruments (slot
+     * 421), which writes the counters to host memory by output DMA; stopping
+     * when not running raises invalid operation. Payload 1: marker value from
+     * glStopInstrumentsSGIX. Established: the token map runs
+     * `arm_stop_instruments` at arm1.u 0x0c03cef4. Established: libGLcore.so
+     * `__glkonim_StopInstrumentsSGIX` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_StopInstrumentsSGIX (kon_cfuncs.s) stores token
+     * 442 then the marker. */
     KONA_HP_STOP_INSTRUMENTS             = 0x1ba,
 
-    /* `HP_TEXELSTOREI` (0x1bb). Route: the token map runs `arm_texelstorei`
-     * at arm1.u 0x0c02af20. */
+    /* Read at arm1.u arm_texelstorei 0x0c02af20 (r9+0, r9+0x3c; slots at
+     * 0x260+0xc4..0x100). */
+
+    /* `HP_TEXELSTOREI` (0x1bb). Established: Stores the value in the matching
+     * slot of the ARM's texel pack state and marks the pixel state dirty; it
+     * sends nothing to the engines. Payload 2 (parameter name, integer):
+     * texel-store parameter name (swap bytes, lsb first, row length, skip
+     * rows, skip pixels, alignment, image height, skip images and so on) and
+     * its value. Established: the token map runs `arm_texelstorei` at arm1.u
+     * 0x0c02af20. Sent by libGLcore.so __glkonim_TextureStorei (kon_pixel.s,
+     * token 443). */
     KONA_HP_TEXELSTOREI                  = 0x1bb,
 
-    /* `HP_RESTART_SELECTFEED` (0x1bc). Route: the token map runs
-     * `arm_restart_selectfeed` at arm1.u 0x0c022b8c. */
+    /* Read at arm1.u arm_restart_selectfeed 0x0c022b8c. */
+
+    /* `HP_RESTART_SELECTFEED` (0x1bc). Established: If a select-feedback
+     * transfer is active it reloads output-DMA channel 0 (raster registers
+     * 0x450-0x456) from the copy saved by START_SELECTFEED so the channel
+     * starts again from the saved base; otherwise it does nothing. Payload 1
+     * (libGLcore sends one zero word): a zero word, not used. Established:
+     * the token map runs `arm_restart_selectfeed` at arm1.u 0x0c022b8c. Sent
+     * by libGLcore.so __glkonim_InstrumentsBufferSGIX
+     * (kon_pipeline_instruments.s lines 103-110: li 444, sw to 16384, sw
+     * zero, then token 440 and zero). */
     KONA_HP_RESTART_SELECTFEED           = 0x1bc,
 
-    /* `HP_REFERENCE_PLANE` (0x1bd). Route: routed by the host interface with
-     * no ARM code, map entry 0x78485a01: command 144, count field 8, doubles;
-     * engine handler `mgebi_ReferencePlane` (index 16 of the handler table).
-     * Route: libGLcore.so `__glkonim_ReferencePlaneSGIX` stores 8 words after
-     * the token. */
+    /* Read at icu_map.tsv 0x1bd; ged_bound_table.tsv idx 16; ge.u refplane.S
+     * mgebi_ReferencePlane 0x59a2 (operands 0-3, stores to 0x94b-0x94d seen);
+     * libGLcore kon_cfuncs.s __glkonim_ReferencePlaneSGIX. */
+
+    /* `HP_REFERENCE_PLANE` (0x1bd). Inferred: Map entry 0x78485a01: pass
+     * form, command 144, count 8, doubles. Command 144 is index 16,
+     * mgebi_ReferencePlane, which reads four 64-bit operands and writes them
+     * into engine memory (0x94b upward) for the reference-plane feature; the
+     * ARM enables or disables the plane separately (0x817d handlers). Payload
+     * 8 (4 doubles): plane equation: four doubles, stored in the order
+     * equation[0], [1], [2], [3]. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0x78485a01: command 144, count
+     * field 8 (bits 6-10, 0 read as 32), doubles; engine handler
+     * `mgebi_ReferencePlane` (index 16 of the handler table). Established:
+     * libGLcore.so `__glkonim_ReferencePlaneSGIX` stores 8 words after the
+     * token. Sent by libGLcore __glkonim_ReferencePlaneSGIX
+     * (libglcore/asm/kon/kon_cfuncs.s): token 445, four sdc1 stores. */
     KONA_HP_REFERENCE_PLANE              = 0x1bd,
 
-    /* `HP_SETCOLORNORMAL` (0x1be). Route: routed by the host interface with
-     * no ARM code, map entry 0x52600067: command 192, count field 1, single
-     * floats; distributor entry 0x04c at ged1b.u tstrip.s:22. */
+    /* Read at icu_map.tsv 0x1be; ged_route.tsv entry 0x04c tstrip.s:22;
+     * ged.md pass/register forms; libGLcore kon_igloo.s
+     * __glkonim_IglooInterfaceSGIX. */
+
+    /* `HP_SETCOLORNORMAL` (0x1be). Inferred: Map entry 0x52600067:
+     * register/pixel form, command 192, count 1, 32-bit words. Register/pixel
+     * form, kind 3, command 192 (index 0, qualifier 3), distributor entry
+     * 0x04c (tstrip.s:22) which loads vertex state 1 and fetches. ged.md
+     * reads the control word as distributor register 0x293, so the word is a
+     * mode value written there; its meaning (colour/normal selection) comes
+     * from the name. Payload 1: one word taken from the parameter pointer of
+     * the igloo-interface call (selector value 0x81a1). Established: routed
+     * by the host interface with no ARM code, arm1.u token-map entry
+     * 0x52600067: command 192, count field 1 (bits 6-10, 0 read as 32),
+     * single floats. Sent by libGLcore __glkonim_IglooInterfaceSGIX
+     * (kon_igloo.s): selector 0x81a1 stores token 446 then *params. */
     KONA_HP_SETCOLORNORMAL               = 0x1be,
 
-    /* `HP_DEFORM` (0x1bf). Route: routed by the host interface with no ARM
-     * code, map entry 0x52400067: command 128, count field 1, single floats;
-     * distributor entry 0x226 at ged1b.u qstrip.s:22. */
+    /* Read at icu_map.tsv 0x1bf; ged_route.tsv entry 0x226 qstrip.s:22;
+     * ged.md; libGLcore kon_deform.s __glkonim_DeformSGIX. */
+
+    /* `HP_DEFORM` (0x1bf). Inferred: Map entry 0x52400067: register/pixel
+     * form, command 128, count 1, 32-bit words. Register/pixel form, kind 3,
+     * command 128 (index 0 qualifier 2), ged entry 0x226 (qstrip.s:22).
+     * ged.md reads its control word as distributor register 0x292. It sets
+     * which deformations (coordinate and texture) are applied. Payload 1:
+     * deformation enable mask (bits 0-1; larger values raise GL_INVALID_VALUE
+     * in the library). Established: routed by the host interface with no ARM
+     * code, arm1.u token-map entry 0x52400067: command 128, count field 1
+     * (bits 6-10, 0 read as 32), single floats. Sent by libGLcore
+     * __glkonim_DeformSGIX (kon_deform.s): token 447, then the mask; mask
+     * bits above 3 give error 1281. */
     KONA_HP_DEFORM                       = 0x1bf,
 
-    /* `HP_DEFORMATION_MAP3_1F` (0x1c0). Route: routed by the host interface
-     * with no ARM code, map entry 0x586ed7c1: command 221, count field 31,
-     * single floats; engine handler `mgeb_DeformationMap3_1` (index 29 of the
-     * handler table). */
+    /* Read at icu_map.tsv 0x1c0; ged_bound_table.tsv idx 29; ge.u deform.S
+     * mgeb_DeformationMap3_1 0x482e; libGLcore kon_deform.s deformMapProlog,
+     * __glkonim_DeformationMap3fSGIX. */
+
+    /* `HP_DEFORMATION_MAP3_1F` (0x1c0). Inferred: Map entry 0x586ed7c1: pass
+     * form, command 221, count 31, 32-bit words. Command 221 is index 29,
+     * mgeb_DeformationMap3_1, which loads the deformation map into engine
+     * memory and marks the deform modules dirty (mmo_DirtyDeformModule
+     * address loaded by it). Payload 31 floats: 7 header words (the map
+     * target 0x8194 geometry or 0x8195 texture, then six floats: the u, v and
+     * w range ends) followed by 24 floats: a 2 x 2 x 2 grid of control
+     * points, three floats each. Established: routed by the host interface
+     * with no ARM code, arm1.u token-map entry 0x586ed7c1: command 221, count
+     * field 31 (bits 6-10, 0 read as 32), single floats; engine handler
+     * `mgeb_DeformationMap3_1` (index 29 of the handler table). Sent by
+     * libGLcore __glkonim_DeformationMap3fSGIX (kon_deform.s, token 448):
+     * prolog sends the header, then a loop sends the control points. */
     KONA_HP_DEFORMATION_MAP3_1F          = 0x1c0,
 
-    /* `HP_DEFORMATION_MAP3_1D` (0x1c1). Route: routed by the host interface
-     * with no ARM code, map entry 0x586fd1c9: command 223, count field 7,
-     * single floats; distributor entry 0x0b1 at ged1b.u tstrip.s:193. */
+    /* Read at icu_map.tsv 0x1c1 (0x586fd1c9, bit 3 set) and 0x1c2;
+     * ged_bound_table.tsv idx 31; libGLcore kon_deform.s
+     * __glkonim_DeformationMap3dSGIX. */
+
+    /* `HP_DEFORMATION_MAP3_1D` (0x1c1). Inferred: Map entry 0x586fd1c9: pass
+     * form, command 223, count 7, 32-bit words. Entry bit 3 (chain) is set,
+     * so the hardware takes the next entry (0x1c2, 24 doubles) for the words
+     * that follow without another token. Command 223 is index 31,
+     * mgesi_IMPbshRegisterWrite, bound for the header; the control points go
+     * to the next slot. Payload 7 floats (header only): the same 7 header
+     * words as the float form (map target and range values); the control
+     * points follow as continuation data. Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0x586fd1c9: command
+     * 223, count field 7 (bits 6-10, 0 read as 32), single floats. Sent by
+     * libGLcore __glkonim_DeformationMap3dSGIX (kon_deform.s, token 449):
+     * header, then 24 sdc1 double stores. */
     KONA_HP_DEFORMATION_MAP3_1D          = 0x1c1,
 
-    /* `HP_DEFORMATION_MAP3_1D_cont` (0x1c2). Route: routed by the host
-     * interface with no ARM code, map entry 0x786ed601: command 221, count
-     * field 24, doubles; engine handler `mgeb_DeformationMap3_1` (index 29 of
-     * the handler table). */
+    /* Read at icu_map.tsv 0x1c2 (0x786ed601) and 0x1c1; ge.u deform.S
+     * mgeb_DeformationMap3_1; libGLcore kon_deform.s
+     * __glkonim_DeformationMap3dSGIX. */
+
+    /* `HP_DEFORMATION_MAP3_1D_cont` (0x1c2). Inferred: Map entry 0x786ed601:
+     * pass form, command 221, count 24, doubles. Command 221 as the float
+     * form: index 29, mgeb_DeformationMap3_1. The token word is never sent;
+     * the words follow HP_DEFORMATION_MAP3_1D through the chain bit set on
+     * that entry. Payload 24 doubles (48 words): the 24 coordinates of the 2
+     * x 2 x 2 control grid (8 points, three doubles each). Established:
+     * routed by the host interface with no ARM code, arm1.u token-map entry
+     * 0x786ed601: command 221, count field 24 (bits 6-10, 0 read as 32),
+     * doubles; engine handler `mgeb_DeformationMap3_1` (index 29 of the
+     * handler table). No sender found as a token (no store of 450 found in
+     * libGLcore, kernel, kona.so or irsaudit); the data are the 24 doubles
+     * __glkonim_DeformationMap3dSGIX sends after the header. */
     KONA_HP_DEFORMATION_MAP3_1D_cont     = 0x1c2,
 
-    /* `HP_LOAD_IDENTITY_DEFORMATION` (0x1c3). Route: routed by the host
-     * interface with no ARM code, map entry 0x386f5041: command 222, count
-     * field 1, type 1; engine handler `mgeb_LoadIdentityDeformation` (index
-     * 30 of the handler table). Route: libGLcore.so
-     * `__glkonim_LoadIdentityDeformationMapSGIX` stores 1 word after the
-     * token. */
+    /* Read at icu_map.tsv 0x1c3; ged_bound_table.tsv idx 30; ge.u deform.S
+     * mgeb_LoadIdentityDeformation 0x4806 (reads operand 0); libGLcore
+     * kon_deform.s __glkonim_LoadIdentityDeformationMapSGIX. */
+
+    /* `HP_LOAD_IDENTITY_DEFORMATION` (0x1c3). Inferred: Map entry 0x386f5041:
+     * pass form, command 222, count 1, type 1. Command 222 is index 30,
+     * mgeb_LoadIdentityDeformation (23 words), which resets the selected
+     * deformation map to the identity map. Payload 1: mask of deformation
+     * types to reset (low two bits). Established: routed by the host
+     * interface with no ARM code, arm1.u token-map entry 0x386f5041: command
+     * 222, count field 1 (bits 6-10, 0 read as 32), type 1; engine handler
+     * `mgeb_LoadIdentityDeformation` (index 30 of the handler table).
+     * Established: libGLcore.so `__glkonim_LoadIdentityDeformationMapSGIX`
+     * stores 1 word after the token. Sent by libGLcore
+     * __glkonim_LoadIdentityDeformationMapSGIX (kon_deform.s): token 451 then
+     * mask & 3. */
     KONA_HP_LOAD_IDENTITY_DEFORMATION    = 0x1c3,
 
-    /* `HP_BIND_ARM_TEX_CACHE` (0x1c4). Route: the token map runs
-     * `arm_bind_arm_tex_cache` at arm1.u 0x0c0252f4. */
+    /* Read at arm1.u arm_bind_arm_tex_cache 0x0c0252f4 (r9+0x3c; tex_cache
+     * 0x0409086c, 8 bytes per entry). */
+
+    /* `HP_BIND_ARM_TEX_CACHE` (0x1c4). Established: Marks that cache entry
+     * free by writing minus one into both its load id and draw id words, so
+     * later binds see no pending load or draw for it. Payload 1:
+     * texture-cache index. Established: the token map runs
+     * `arm_bind_arm_tex_cache` at arm1.u 0x0c0252f4. Sent by libGLcore.so
+     * bindARMTexCache (texture/kon_texture_api.s, token 452). */
     KONA_HP_BIND_ARM_TEX_CACHE           = 0x1c4,
 
     /* Engine handlers whose slots the code of `arm_free_arm_tex_cache` loads,
-     * in order: `mgesi_FillTMLoadFifo`. */
+     * in order: `mgesi_FillTMLoadFifo`. Read at arm1.u arm_free_arm_tex_cache
+     * 0x0c025310 (tex_cache 0x0409086c; tbus_regwrite 0x0c015298; slot 123;
+     * port 0x4f4). */
 
-    /* `HP_FREE_ARM_TEX_CACHE` (0x1c5). Route: the token map runs
-     * `arm_free_arm_tex_cache` at arm1.u 0x0c025310. */
+    /* `HP_FREE_ARM_TEX_CACHE` (0x1c5). Inferred: Looks up the two words of
+     * that entry in the ARM texture cache. For each non-negative word it
+     * writes two raster board registers and starts mgesi_FillTMLoadFifo,
+     * releasing that texture-memory table entry. Payload 1: Index of a
+     * texture-cache entry. Established: the token map runs
+     * `arm_free_arm_tex_cache` at arm1.u 0x0c025310. Sent by libGLcore.so
+     * freeARMTexCache (texture/kon_texture_api.s): token 453. */
     KONA_HP_FREE_ARM_TEX_CACHE           = 0x1c5,
 
     /* Engine handlers whose slots the code of `arm_get_deformation` loads, in
-     * order: `mgesi_StartRdata`, `mgesi_GetDeformation`, `mgesi_FinishRdata`. */
+     * order: `mgesi_StartRdata`, `mgesi_GetDeformation`, `mgesi_FinishRdata`.
+     * Read at arm1.u arm_get_deformation 0x0c0387dc; ge.u
+     * mgesi_GetDeformation (deform.S). */
 
-    /* `HP_GET_DEFORMATION` (0x1c6). Route: the token map runs
-     * `arm_get_deformation` at arm1.u 0x0c0387dc. */
+    /* `HP_GET_DEFORMATION` (0x1c6). Inferred: Query: StartRdata, sends the
+     * index (0x474) and runs engine GetDeformation (slot 409), then
+     * FinishRdata. Payload 1: deformation index. Established: the token map
+     * runs `arm_get_deformation` at arm1.u 0x0c0387dc. Sent by libGLcore.so
+     * getDeformationf (kon_deform.s) -> __glkon_get_special(454, index). */
     KONA_HP_GET_DEFORMATION              = 0x1c6,
 
     /* Engine handlers whose slots the code of `arm_shadow_texture` loads, in
-     * order: `mgesi_BshRegisterWriteN`. */
+     * order: `mgesi_BshRegisterWriteN`. Read at arm1.u arm_shadow_texture
+     * 0x0c026218 (r9+0, r9+0, r9+0x3c; tbus-register words 0x0159101f,
+     * 0x015a0c02, 0x0158101e; slot 102 mgesi_BshRegisterWriteN). */
 
-    /* `HP_SHADOW_TEXTURE` (0x1c7). Route: the token map runs
-     * `arm_shadow_texture` at arm1.u 0x0c026218. */
+    /* `HP_SHADOW_TEXTURE` (0x1c7). Inferred: Writes three shadow-texture
+     * raster registers (0x1f, 0x2, 0x1e words) through the register-write
+     * handler: the first word, a constant 2, the second word doubled with
+     * 0x3f, then the third word. Payload 3: a texture-compare word, a value
+     * doubled and sent as a count, and a third word. Established: the token
+     * map runs `arm_shadow_texture` at arm1.u 0x0c026218. No sender found
+     * (searched libglcore/asm for a store of 455; setShadowRegs in
+     * texture/kon_texture_api.s only keeps state). */
     KONA_HP_SHADOW_TEXTURE               = 0x1c7,
 
-    /* `HP_IDMACOPYLIST_LDMA` (0x1c8). Route: the token map runs
-     * `arm_idmacopylist_ldma` at arm1.u 0x0c014e54. */
+    /* Read at arm1.u arm_idmacopylist_ldma 0x0c014e54. */
+
+    /* `HP_IDMACOPYLIST_LDMA` (0x1c8). Established: Same list-DMA set-up as
+     * COPYLIST_LDMA, but the list data arrive from a separate input DMA: the
+     * handler jumps to the next token's handler (running that command while
+     * the DMA is armed) and afterwards starts the list DMA, waits for
+     * completion and clears the source select. Payload 2: list address, byte
+     * length. Established: the token map runs `arm_idmacopylist_ldma` at
+     * arm1.u 0x0c014e54. Sent by libGLcore.so __glSdramCopyIn (kon_dlist.s)
+     * builds a KONA_DMAWRITE (ioctl 10001) block whose command list holds
+     * token 456. */
     KONA_HP_IDMACOPYLIST_LDMA            = 0x1c8,
 
-    /* `HP_TMESHMODE` (0x1c9). Route: the token map runs `arm_tmeshmode` at
-     * arm1.u 0x0c016854. */
+    /* Read at arm1.u arm_tmeshmode 0x0c016854 (r8+0xcf4 record word +0x1114;
+     * descriptor 0x52800020). */
+
+    /* `HP_TMESHMODE` (0x1c9). Inferred: Sets or clears bit 0x20 of a flag
+     * word in the context record and sends the flag word through descriptor
+     * 0x52800020. Payload 1: Triangle-mesh mode flag (value of Igloo
+     * interface parameter 0x81a4). Established: the token map runs
+     * `arm_tmeshmode` at arm1.u 0x0c016854. Sent by libGLcore.so
+     * __glkonim_IglooInterfaceSGIX (kon_igloo.s): token 457. */
     KONA_HP_TMESHMODE                    = 0x1c9,
 
     /* Engine handlers whose slots the code of `arm_load_ge_xform_attrib`
-     * loads, in order: `mgeb_InitFFTFactors`. */
+     * loads, in order: `mgeb_InitFFTFactors`. Read at arm1.u
+     * arm_load_ge_xform_attrib 0x0c03ad3c (slot 431; counter value
+     * 0x0400003d; e_reference_plane 0x0c015a28, e_clip_plane0). */
 
-    /* `HP_LOAD_GE_XFORM_ATTRIB` (0x1ca). Route: the token map runs
-     * `arm_load_ge_xform_attrib` at arm1.u 0x0c03ad3c. */
+    /* `HP_LOAD_GE_XFORM_ATTRIB` (0x1ca). Inferred: Peeks the first word,
+     * passes the following 61 words through to all engines, waits, starts
+     * mgeb_InitFFTFactors, then re-applies the reference-plane and
+     * clip-plane-0 enable states from the enable bytes. Payload 62 (a zero
+     * word then 61 floats): Saved transform attribute block restored by a pop
+     * (leading zero word, then 61 values). Established: the token map runs
+     * `arm_load_ge_xform_attrib` at arm1.u 0x0c03ad3c. Sent by libGLcore.so
+     * __glkonim_PopAttrib and __glkonResolveContext (kon_attrib.s): token
+     * 458, a zero word, 61 floats via __glkon_datavn. */
     KONA_HP_LOAD_GE_XFORM_ATTRIB         = 0x1ca,
 
     /* Engine handlers whose slots the code of `arm_get_ge_xform_attrib`
-     * loads, in order: `mgesi_StartRdata`, `mgesi_FinishRdata`. */
+     * loads, in order: `mgesi_StartRdata`, `mgesi_FinishRdata`. Read at
+     * arm1.u arm_get_ge_xform_attrib 0x0c03ade0; ge_xform_attrib_to_host
+     * 0x0c03ada0. */
 
-    /* `HP_GET_GE_XFORM_ATTRIB` (0x1cb). Route: the token map runs
-     * `arm_get_ge_xform_attrib` at arm1.u 0x0c03ade0. */
+    /* `HP_GET_GE_XFORM_ATTRIB` (0x1cb). Inferred: Query: StartRdata,
+     * ge_xform_attrib_to_host sends two Eram2ODMA dumps (48 words at ERAM
+     * 0x90a, 13 words at 0x94b: transform state), FinishRdata. Payload 1
+     * (zero, read and dropped): dummy zero. Established: the token map runs
+     * `arm_get_ge_xform_attrib` at arm1.u 0x0c03ade0. Sent by libGLcore.so
+     * __glkonCopyContext (kon_attrib.s) -> __glkon_get_special(459,
+     * 0), then memcpy of the reply. */
     KONA_HP_GET_GE_XFORM_ATTRIB          = 0x1cb,
 
     /* Engine handlers whose slots the code of `arm_flush_raster` loads, in
-     * order: `mgesi_FlushRM`. */
+     * order: `mgesi_FlushRM`. Read at arm1.u arm_flush_raster 0x0c014070
+     * (slot 399; port 0x4f4). */
 
-    /* `HP_FLUSH_RASTER` (0x1cc). Route: the token map runs `arm_flush_raster`
-     * at arm1.u 0x0c014070. Route: libGLcore.so `__glkonim_FlushRasterSGIX`
-     * stores 1 word after the token. */
+    /* `HP_FLUSH_RASTER` (0x1cc). Established: Starts mgesi_FlushRM on all
+     * engines, asking the raster boards to flush; no reply is requested.
+     * Payload 1: One word, read and ignored. Established: the token map runs
+     * `arm_flush_raster` at arm1.u 0x0c014070. Established: libGLcore.so
+     * `__glkonim_FlushRasterSGIX` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_FlushRasterSGIX (kon_cfuncs.s). */
     KONA_HP_FLUSH_RASTER                 = 0x1cc,
 
     /* Engine handlers whose slots the code of `arm_read_instruments` loads,
-     * in order: `mgesi_StopInstruments`, `mgesi_StartInstruments`. */
+     * in order: `mgesi_StopInstruments`, `mgesi_StartInstruments`. Read at
+     * arm1.u arm_read_instruments 0x0c03cf54. */
 
-    /* `HP_READ_INSTRUMENTS` (0x1cd). Route: the token map runs
-     * `arm_read_instruments` at arm1.u 0x0c03cf54. Route: libGLcore.so
-     * `__glkonim_ReadInstrumentsSGIX` stores 1 word after the token. */
+    /* `HP_READ_INSTRUMENTS` (0x1cd). Established: If enabled and running:
+     * sends marker and read-back addresses as STOP does, runs StopInstruments
+     * (421), then increments the counter and runs StartInstruments (420) so
+     * counting resumes; not running raises invalid operation. Payload 1:
+     * marker value. Established: the token map runs `arm_read_instruments` at
+     * arm1.u 0x0c03cf54. Established: libGLcore.so
+     * `__glkonim_ReadInstrumentsSGIX` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_ReadInstrumentsSGIX (kon_cfuncs.s) stores token
+     * 461 then the marker. */
     KONA_HP_READ_INSTRUMENTS             = 0x1cd,
 
-    /* `HP_LAZYMODE` (0x1ce). Route: the token map runs `arm_lazymode` at
-     * arm1.u 0x0c027e14. */
+    /* Read at arm1.u arm_lazymode 0x0c027e14 (word at r8+0x90c). */
+
+    /* `HP_LAZYMODE` (0x1ce). Inferred: Sets bit 0x200 of a pixel-state word
+     * when the flag is zero and clears it when nonzero. Nothing is sent to
+     * the engines. Payload 1: Lazy-mode flag (zero or nonzero). Established:
+     * the token map runs `arm_lazymode` at arm1.u 0x0c027e14. Sent by
+     * libGLcore.so __glKonInitPixelState (kon_pixel.s): token 462. */
     KONA_HP_LAZYMODE                     = 0x1ce,
 
-    /* `HP_PVERTEX_CLEANUP` (0x1cf). Route: the token map runs
-     * `arm_pvertex_cleanup` at arm1.u 0x0c039bac. */
+    /* Read at arm1.u arm_pvertex_cleanup 0x0c039bac-0x0c039bd0. */
+
+    /* `HP_PVERTEX_CLEANUP` (0x1cf). Established: Pops its single word, sends
+     * command 189 (descriptor 0x585ed000) with r8 on the filler port 0x880,
+     * then restores the distributor transfer mask from r8+0xc90 and the
+     * matching descriptor. Payload 1 (libGLcore sends one zero word): one
+     * word that the handler discards. Established: the token map runs
+     * `arm_pvertex_cleanup` at arm1.u 0x0c039bac. Sent by libGLcore.so
+     * __glKonSendPackedVertex (kon_pvertarray.s, li 463, then a zero word). */
     KONA_HP_PVERTEX_CLEANUP              = 0x1cf,
 
     /* Engine handlers whose slots the code of `arm_subdiv_patch` loads, in
-     * order: `mges_SubdivTag`. */
+     * order: `mges_SubdivTag`. Read at arm1.u arm_subdiv_patch
+     * 0x0c03ffac-0x0c040004; ge_handlers.md slot 425. */
 
-    /* `HP_SUBDIV_PATCH` (0x1d0). Route: the token map runs `arm_subdiv_patch`
-     * at arm1.u 0x0c03ffac. */
+    /* `HP_SUBDIV_PATCH` (0x1d0). Established: Selects one engine (0x430),
+     * forwards words 1 and 2 to port 0x840, then in the short form the last
+     * word (r9+0x3c), in the long form a third word and 13 more words,
+     * followed by the constant 0x20023c, and starts slot 425 mges_SubdivTag
+     * through port 0x8c0. Payload variable: 3 words when bit 31 of the first
+     * word is set, otherwise 16: Patch descriptor: a flags word (bit 31 set =
+     * short form), then two words libGLcore fills with 0x00ffffff and
+     * 0x1fffffff; in the long form 13 further words of per-patch vertex data.
+     * Established: the token map runs `arm_subdiv_patch` at arm1.u
+     * 0x0c03ffac. Sent by libGLcore.so __glkonim_SubdivPatchSGIX
+     * (kon_subdiv.s, li 464). */
     KONA_HP_SUBDIV_PATCH                 = 0x1d0,
 
-    /* `HP_SUBDIV_PATCH_SETUP` (0x1d1). Route: the token map runs
-     * `arm_subdiv_patch_setup` at arm1.u 0x0c03ff14. */
+    /* Read at arm1.u arm_subdiv_patch_setup 0x0c03ff14-0x0c03ff74. */
+
+    /* `HP_SUBDIV_PATCH_SETUP` (0x1d1). Established: Pops the enumerant and
+     * maps it to a mask (0x2a21 gives 7, 0x2a23 and 0x2a27 give 0x1f,
+     * 0x2a29 gives 0x7f, anything else 0); sends a pass-form filler
+     * 0x12121212, then writes the mask as the distributor transfer mask
+     * through descriptor 0x55c00020. Payload 1: The patch type enumerant that
+     * glkonim_SubdivPatchSGIX keeps in the context (0x2a21, 0x2a23,
+     * 0x2a27, 0x2a29 are the values it tests). Established: the token map
+     * runs `arm_subdiv_patch_setup` at arm1.u 0x0c03ff14. Sent by
+     * libGLcore.so __glkonim_SubdivPatchSGIX (kon_subdiv.s, li 465 with the
+     * type word). */
     KONA_HP_SUBDIV_PATCH_SETUP           = 0x1d1,
 
-    /* `HP_SUBDIV_PATCH_CLEANUP` (0x1d2). Route: the token map runs
-     * `arm_subdiv_patch_cleanup` at arm1.u 0x0c03ff7c. */
+    /* Read at arm1.u arm_subdiv_patch_cleanup 0x0c03ff7c-0x0c03ffa8. */
+
+    /* `HP_SUBDIV_PATCH_CLEANUP` (0x1d2). Established: Pops its single word,
+     * sends a pass-form filler 0x12121212, then restores the distributor
+     * transfer mask from r8+0xc90 through descriptor 0x55c00020. Payload 1
+     * (libGLcore sends one zero word): one word that the handler discards.
+     * Established: the token map runs `arm_subdiv_patch_cleanup` at arm1.u
+     * 0x0c03ff7c. Sent by libGLcore.so __glkonim_SubdivPatchSGIX
+     * (kon_subdiv.s, li 466 after glEnd). */
     KONA_HP_SUBDIV_PATCH_CLEANUP         = 0x1d2,
 
     /* Engine handlers whose slots the code of `arm_subdiv_patch_parameter`
-     * loads, in order: `mgeb_Subdiv`. */
+     * loads, in order: `mgeb_Subdiv`. Read at arm1.u
+     * arm_subdiv_patch_parameter 0x0c03fef0-0x0c03ff0c; ge_handlers.md slot
+     * 424. */
 
-    /* `HP_SUBDIV_PATCH_PARAMETER` (0x1d3). Route: the token map runs
-     * `arm_subdiv_patch_parameter` at arm1.u 0x0c03fef0. */
+    /* `HP_SUBDIV_PATCH_PARAMETER` (0x1d3). Established: Pops two words: the
+     * first goes to engine port 0x478, the second to port 0x840, and the
+     * handler starts slot 424 mgeb_Subdiv through port 0x8c0. Payload 2:
+     * Parameter name (the GL enumerant) and its value (a float for most
+     * names, the float truncated to an integer for the others). Established:
+     * the token map runs `arm_subdiv_patch_parameter` at arm1.u 0x0c03fef0.
+     * Sent by libGLcore.so __glkonim_SubdivPatchParameterfSGIX (kon_subdiv.s,
+     * li 467); the i form converts first. */
     KONA_HP_SUBDIV_PATCH_PARAMETER       = 0x1d3,
 
-    /* `HP_BEGIN_SUBDIV_PATCH` (0x1d4). Route: routed by the host interface
-     * with no ARM code, map entry 0xd8ca8053: command 405, count field 1,
-     * single floats; distributor entry 0x39f at ged1b.u lines.s:81. */
+    /* Read at icu_map.tsv 0x1d4; ged_route.tsv entry 0x39f lines.s:81; ged.md
+     * class 12 (subdivision); libGLcore kon_subdiv.s
+     * __glkonim_SubdivPatchSGIX. */
+
+    /* `HP_BEGIN_SUBDIV_PATCH` (0x1d4). Inferred: Map entry 0xd8ca8053:
+     * geometry form, command 405, count 1, 32-bit words. Geometry form, kind
+     * 1 (begin), data-invalid bit, command 405, entry 0x39f (lines.s:81). It
+     * opens a subdivision patch primitive like the other begin tokens.
+     * Payload 1 (zero word): one zero word; the patch vertices follow as
+     * packed-vertex commands. Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0xd8ca8053: command 405, geometry
+     * form, count field 1 (bits 6-8), single floats. Sent by libGLcore
+     * __glkonim_SubdivPatchSGIX (kon_subdiv.s): token 468, zero word, then
+     * vertices (the listing loads 431, HP_PVERTEX_V3F_T2F, as one of its
+     * vertex tokens). */
     KONA_HP_BEGIN_SUBDIV_PATCH           = 0x1d4,
 
     /* Engine handlers whose slots the code of `arm_bind_texture` loads, in
      * order: `mgesi_TbusRegWrite`, `mgesi_FillTMLoadFifo`,
      * `mgeb_SkipNextTextureAddr`, `mgebi_Texture`, `mgebi_TexEnvComps`,
-     * `mgebi_UpdateTexturing`. */
+     * `mgebi_UpdateTexturing`. Read at arm1.u arm_bind_texture 0x0c0256c8 (4
+     * plain reads + r9+0x3c; sendTexTable 0x0c02539c; mgebi_Texture,
+     * mgebi_TexEnvComps, mgebi_UpdateTexturing, mgesi_FillTMLoadFifo,
+     * mgeb_SkipNextTextureAddr). */
 
-    /* `HP_BIND_TEXTURE` (0x1d5). Route: the token map runs `arm_bind_texture`
-     * at arm1.u 0x0c0256c8. */
+    /* `HP_BIND_TEXTURE` (0x1d5). Established: Retires any pending load id of
+     * that cache entry (registers 0x1002 and 0x5003), switches or skips the
+     * bind if the dimension is not the active one, sends the component count
+     * and bind-start marker 0x1022, sends the texture table when it changed,
+     * and sends the dimension plus three words to the engine texture handler.
+     * Payload 5: texture-cache index (negative for none), packed bind word
+     * (bits 28-31 texture dimension, bits 24-27 table kind 0-2, bits 12-23
+     * component-format index into a components table, bits 0-11 index of the
+     * ARM texture table entry), a third word kept in ARM state, then two more
+     * words. Established: the token map runs `arm_bind_texture` at arm1.u
+     * 0x0c0256c8. Sent by libGLcore.so bind2DMipmapTexture,
+     * bindBicubicTexture, bind3DMipmapTexture, bind3DTexture
+     * (texture/kon_texture_api.s, token 469). */
     KONA_HP_BIND_TEXTURE                 = 0x1d5,
 
     /* Engine handlers whose slots the code of `arm_texgen_pop` loads, in
-     * order: `mgeb_LoadEram`. */
+     * order: `mgeb_LoadEram`. Read at arm1.u arm_texgen_pop 0x0c026554
+     * (r9+0x40, counter 0x4000000+0x70, waitForDH; slot 42 mgeb_LoadEram via
+     * r8+0x9c). */
 
-    /* `HP_TEXGEN_POP` (0x1d6). Route: the token map runs `arm_texgen_pop` at
-     * arm1.u 0x0c026554. */
+    /* `HP_TEXGEN_POP` (0x1d6). Established: Peeks the first word, sets the
+     * engine memory address 995, moves all 112 words to the engines with the
+     * pass-through counter, waits for it to finish and starts the engines'
+     * memory-load handler; this restores texture-generation state after an
+     * attribute pop. Payload 112: a first word of zero, then 111 floats of
+     * saved texture-generation state (plane and point parameters).
+     * Established: the token map runs `arm_texgen_pop` at arm1.u 0x0c026554.
+     * Sent by libGLcore.so __glkonim_PopAttrib and __glkonResolveContext
+     * (kon_attrib.s, token 470). */
     KONA_HP_TEXGEN_POP                   = 0x1d6,
 
-    /* `HP_CHANGE_POST_TEX_SCALE_BIAS` (0x1d7). Route: the token map runs
-     * `arm_change_post_tex_scale_bias` at arm1.u 0x0c025688. */
+    /* Read at arm1.u arm_change_post_tex_scale_bias 0x0c025688 (3 plain reads
+     * + r9+0x3c; compare with ARM 0x890; descriptor 0x5850d800 = command
+     * number 161). */
+
+    /* `HP_CHANGE_POST_TEX_SCALE_BIAS` (0x1d7). Established: If the dimension
+     * equals the active one it writes the scale and bias to the engines
+     * through descriptor 0x5850d800 (the texture scale-bias command) with a
+     * constant 1; for any other dimension it only consumes the words. Payload
+     * 4: texture dimension, three floats of post-texture scale and bias.
+     * Established: the token map runs `arm_change_post_tex_scale_bias` at
+     * arm1.u 0x0c025688. Sent by libGLcore.so __glKonTexParameter
+     * (texture/kon_texture_api.s, token 471). */
     KONA_HP_CHANGE_POST_TEX_SCALE_BIAS   = 0x1d7,
 
-    /* `HP_SKIP2` (0x1d8). Route: routed by the host interface with no ARM
-     * code, map entry 0x00600077: command 192, count field 1, untyped words;
-     * distributor entry 0x04c at ged1b.u tstrip.s:22. */
+    /* Read at icu_map.tsv 0x1d8; ged_route.tsv entry 0x04c tstrip.s:22;
+     * arm1.md data-invalid bit; libGLcore kon_dlist.s __glkonPadBlocks. */
+
+    /* `HP_SKIP2` (0x1d8). Inferred: Map entry 0x00600077: register/pixel
+     * form, command 192, count 1, untyped. Register/pixel form with the
+     * data-invalid bit, kind 3, command 192; the host interface takes the
+     * counted words and no engine receives data. Payload 1 (to be skipped): 1
+     * filler word(s) to discard; 2 words in all counting the token.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x00600077: command 192, count field 1 (bits 6-10, 0
+     * read as 32), untyped words. Sent by libGLcore __glkonPadBlocks
+     * (libglcore/asm/KONA/kon_dlist.s): pads the unused tail of display-list
+     * blocks: stores of SKIP4 (473) in 4-word groups, with SKIP2 (472) and
+     * SKIP5 (474) stores in the remainder paths. */
     KONA_HP_SKIP2                        = 0x1d8,
 
-    /* `HP_SKIP4` (0x1d9). Route: routed by the host interface with no ARM
-     * code, map entry 0x006000f7: command 192, count field 3, untyped words;
-     * distributor entry 0x04c at ged1b.u tstrip.s:22. */
+    /* Read at icu_map.tsv 0x1d9; ged_route.tsv entry 0x04c tstrip.s:22;
+     * arm1.md data-invalid bit; libGLcore kon_dlist.s __glkonPadBlocks. */
+
+    /* `HP_SKIP4` (0x1d9). Inferred: Map entry 0x006000f7: register/pixel
+     * form, command 192, count 3, untyped. Register/pixel form with the
+     * data-invalid bit, kind 3, command 192; the host interface takes the
+     * counted words and no engine receives data. Payload 3 (to be skipped): 3
+     * filler word(s) to discard; 4 words in all counting the token.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x006000f7: command 192, count field 3 (bits 6-10, 0
+     * read as 32), untyped words. Sent by libGLcore __glkonPadBlocks
+     * (libglcore/asm/KONA/kon_dlist.s): pads the unused tail of display-list
+     * blocks: stores of SKIP4 (473) in 4-word groups, with SKIP2 (472) and
+     * SKIP5 (474) stores in the remainder paths. */
     KONA_HP_SKIP4                        = 0x1d9,
 
-    /* `HP_SKIP5` (0x1da). Route: routed by the host interface with no ARM
-     * code, map entry 0x00600137: command 192, count field 4, untyped words;
-     * distributor entry 0x04c at ged1b.u tstrip.s:22. */
+    /* Read at icu_map.tsv 0x1da; ged_route.tsv entry 0x04c tstrip.s:22;
+     * arm1.md data-invalid bit; libGLcore kon_dlist.s __glkonPadBlocks. */
+
+    /* `HP_SKIP5` (0x1da). Inferred: Map entry 0x00600137: register/pixel
+     * form, command 192, count 4, untyped. Register/pixel form with the
+     * data-invalid bit, kind 3, command 192; the host interface takes the
+     * counted words and no engine receives data. Payload 4 (to be skipped): 4
+     * filler word(s) to discard; 5 words in all counting the token.
+     * Established: routed by the host interface with no ARM code, arm1.u
+     * token-map entry 0x00600137: command 192, count field 4 (bits 6-10, 0
+     * read as 32), untyped words. Sent by libGLcore __glkonPadBlocks
+     * (libglcore/asm/KONA/kon_dlist.s): pads the unused tail of display-list
+     * blocks: stores of SKIP4 (473) in 4-word groups, with SKIP2 (472) and
+     * SKIP5 (474) stores in the remainder paths. */
     KONA_HP_SKIP5                        = 0x1da,
 
     /* Engine handlers whose slots the code of `arm_swap_cntrl` loads, in
-     * order: `mgesi_VCbusWrite`. */
+     * order: `mgesi_VCbusWrite`. Read at arm1.u arm_swap_cntrl 0x0c013e50;
+     * ge.u mgesi_VCbusWrite. */
 
-    /* `HP_SWAP_CNTRL` (0x1db). Route: the token map runs `arm_swap_cntrl` at
-     * arm1.u 0x0c013e50. */
+    /* `HP_SWAP_CNTRL` (0x1db). Established: Requires the privileged stream.
+     * Writes the word to display-bus address 0x80 via VCbusWrite (251); if
+     * bit 0 is set it also writes 1 to bus address 0x1920, or to 0x8001 when
+     * the first word of the board configuration block is nonzero (DPLEX
+     * board). Payload 1: swap control flags (bit 0 set for a swap).
+     * Established: the token map runs `arm_swap_cntrl` at arm1.u 0x0c013e50.
+     * Sent by kona.a(kona_video.o) KONAschedswapbuf (4 sites). */
     KONA_HP_SWAP_CNTRL                   = 0x1db,
 
-    /* `HP_F3_WAR` (0x1dc). Route: the token map runs `arm_f3_war` at arm1.u
-     * 0x0c022380. */
+    /* Read at arm1.u arm_f3_war 0x0c022380; arm_do_idma reads it at
+     * 0x0c0230f8; init_arm sets it to 1 (0x0c001c50). */
+
+    /* `HP_F3_WAR` (0x1dc). Established: Stores the word at the work-around
+     * flag next to the engine-to-host record (0x04046fe4); arm_do_idma tests
+     * that flag when chunking an input DMA and, per arm1_firmware.md:41,
+     * waits for the queue to drain between chunks when it is set. Payload 1:
+     * a flag word. Established: the token map runs `arm_f3_war` at arm1.u
+     * 0x0c022380. No sender found (not in libGLcore, kernel command table or
+     * X module stores). */
     KONA_HP_F3_WAR                       = 0x1dc,
 
-    /* `HP_GE_INTR` (0x1dd). Route: the token map runs `arm_ge_intr` at arm1.u
-     * 0x0c022cfc. */
+    /* Read at arm1.u arm_ge_intr 0x0c022cfc; start_kcomm 0x0c022800,
+     * finish_kcomm 0x0c022980. */
+
+    /* `HP_GE_INTR` (0x1dd). Established: Requires the privileged stream, then
+     * writes the event code into the engine-to-host event record through
+     * start_kcomm and finish_kcomm so the host interrupt handler sees it;
+     * used by the driver to prove the pipe still executes commands. Payload
+     * 1: an event code (the driver sends 0x105, the check-pipe event).
+     * Established: the token map runs `arm_ge_intr` at arm1.u 0x0c022cfc.
+     * Sent by kona.a kona_crash.o kona_checkpipe (payload 0x105,
+     * kona_kern.h). */
     KONA_HP_GE_INTR                      = 0x1dd,
 
-    /* `HP_MEM_RESUME` (0x1de). Route: the token map runs `arm_mem_resume` at
-     * arm1.u 0x0c024954. */
+    /* Read at arm1.u arm_mem_resume 0x0c024954; arm_mem_suspend 0x0c0248a0
+     * (the matching read-back of 0x473, 0x474, 0x472,
+     * 0x470, 0x471). */
+
+    /* `HP_MEM_RESUME` (0x1de). Inferred: Requires the privileged stream, then
+     * writes the five words back to output-DMA channel 0 so an interrupted
+     * swap-out or read-back continues. Payload 5: five output-DMA channel 0
+     * register values saved by an earlier suspend, in the order of raster
+     * registers 0x453, 0x454, 0x452,
+     * 0x450, 0x451. Established: the token map runs `arm_mem_resume` at
+     * arm1.u 0x0c024954. Sent by kona.a kona_mem.o kona_mem_resume
+     * (kona_mem_resume sends the words the suspend record held,
+     * kernel.md:262). */
     KONA_HP_MEM_RESUME                   = 0x1de,
 
-    /* `HP_MEM_SUSPEND` (0x1df). Route: the token map runs `arm_mem_suspend`
-     * at arm1.u 0x0c0248a0. */
+    /* Read at arm1.u arm_mem_suspend 0x0c0248a0. */
+
+    /* `HP_MEM_SUSPEND` (0x1df). Inferred: Requires the privileged stream,
+     * sends the event code to the host through the event record with a
+     * five-word body, taken as the current output-DMA channel 0 state, and
+     * ends the event. Payload 1: an event code (the driver sends 0x104).
+     * Established: the token map runs `arm_mem_suspend` at arm1.u 0x0c0248a0.
+     * Sent by kona.a kona_mem.o kona_mem_swapout_func (before MEM_SWAPOUT
+     * when +5112 is 1). */
     KONA_HP_MEM_SUSPEND                  = 0x1df,
 
-    /* `HP_TEX_ARM_CACHE_INDEX_INVALID` (0x1e0). Route: the token map runs
-     * `arm_tex_arm_cache_index_invalid` at arm1.u 0x0c02604c. */
+    /* Read at arm1.u arm_tex_arm_cache_index_invalid 0x0c02604c (r9+0,
+     * r9+0x3c). */
+
+    /* `HP_TEX_ARM_CACHE_INDEX_INVALID` (0x1e0). Established: Clears one of
+     * three remembered texture-table indexes (ARM 0x8b4, 0x8a0 or 0x8b0,
+     * chosen by the kind) to minus one when it equals the given index, so the
+     * ARM forgets a table entry that was taken away from a texture. Payload
+     * 2: slot kind (0, 1 or 2) and a texture-table index. Established: the
+     * token map runs `arm_tex_arm_cache_index_invalid` at arm1.u 0x0c02604c.
+     * Sent by libGLcore.so stealARMTableCacheCallback
+     * (texture/kon_texture_api.s, token 480; sends kinds 0, 2, 1 in turn). */
     KONA_HP_TEX_ARM_CACHE_INDEX_INVALID  = 0x1e0,
 
-    /* `HP_MEM_COPYDOWN` (0x1e1). Route: the token map runs `arm_mem_copydown`
-     * at arm1.u 0x0c02481c. */
+    /* Read at arm1.u arm_mem_copydown 0x0c02481c (dispatch through the table
+     * at 0x04049508). */
+
+    /* `HP_MEM_COPYDOWN` (0x1e1). Established: Requires the privileged stream,
+     * then calls the copy-down routine for that memory pool (ARM, second ARM
+     * area, engine or texture memory) to slide a block to a lower offset.
+     * Payload 4: pool number 0-3, old offset, new offset, size. Established:
+     * the token map runs `arm_mem_copydown` at arm1.u 0x0c02481c. Sent by
+     * kona.a kona_mem.o kona_mem_copydown_func (called from
+     * kona_mem_compress). */
     KONA_HP_MEM_COPYDOWN                 = 0x1e1,
 
-    /* `HP_MEM_SWAPIN` (0x1e2). Route: the token map runs `arm_mem_swapin` at
-     * arm1.u 0x0c024710. */
+    /* Read at arm1.u arm_mem_swapin 0x0c024710; arm_mem_swapin_toobig
+     * 0x0c024664; send_host_intr 0x0c022d50. */
+
+    /* `HP_MEM_SWAPIN` (0x1e2). Established: Requires the privileged stream,
+     * programs input DMA for the host buffer (in pieces above about 64 MB) or
+     * accepts the data inline, restores the block into the chosen memory
+     * pool, then raises the completion event to the host. Payload 8: pool,
+     * offset, size, unit size, copy count, host address high word, host
+     * address low word (-1 means the data follow in the command stream),
+     * completion event code. Established: the token map runs `arm_mem_swapin`
+     * at arm1.u 0x0c024710. Sent by kona.a kona_mem.o kona_mem_swapin_func
+     * (called from kona_mem_swapin). */
     KONA_HP_MEM_SWAPIN                   = 0x1e2,
 
-    /* `HP_MEM_SWAPOUT` (0x1e3). Route: the token map runs `arm_mem_swapout`
-     * at arm1.u 0x0c024504. */
+    /* Read at arm1.u arm_mem_swapout 0x0c024504; arm_mem_swapout_toobig
+     * 0x0c024430. */
+
+    /* `HP_MEM_SWAPOUT` (0x1e3). Established: Requires the privileged stream,
+     * programs output DMA for the host buffer, copies the block out of the
+     * chosen pool, then calls arm_mem_suspend with the event code to tell the
+     * host it is done; a texture-pool block over 0x10000000 bytes takes the
+     * chunking path. Payload 8: pool, offset, size, unit size, copy count,
+     * host buffer address high and low words, completion event code.
+     * Established: the token map runs `arm_mem_swapout` at arm1.u 0x0c024504.
+     * Sent by kona.a kona_mem.o kona_mem_swapout_func (called from
+     * kona_mem_swapout). */
     KONA_HP_MEM_SWAPOUT                  = 0x1e3,
 
-    /* `HP_MEM_RESERVE` (0x1e4). Route: the token map runs `arm_mem_reserve`
-     * at arm1.u 0x0c024378. */
+    /* Read at arm1.u arm_mem_reserve 0x0c024378 (table at 0x040494d8;
+     * routines mem_reserve_arm/sarm/ge/tex 0x0c023b3c-0x0c0241e0). */
+
+    /* `HP_MEM_RESERVE` (0x1e4). Established: Requires the privileged stream,
+     * then calls the reserve routine for the pool, which checks the key,
+     * offset and size and records the reservation (an offset and size of 0
+     * release it). Payload 4: pool, key byte, offset, size (page units).
+     * Established: the token map runs `arm_mem_reserve` at arm1.u 0x0c024378.
+     * Sent by kona.a kona_mem.o kona_mem_reserve_func (called from
+     * kona_mem_update_driver, kona_mem_free). */
     KONA_HP_MEM_RESERVE                  = 0x1e4,
 
     /* Engine handlers whose slots the code of `arm_gerollcall` loads, in
-     * order: `mgesi_PrintNum`. */
+     * order: `mgesi_PrintNum`. Read at arm1.u arm_gerollcall 0x0c0042e0; ge.u
+     * mgesi_PrintNum; check_pipe_sync 0x0c002f7c. */
 
-    /* `HP_GEROLLCALL` (0x1e5). Route: the token map runs `arm_gerollcall` at
-     * arm1.u 0x0c0042e0. */
+    /* `HP_GEROLLCALL` (0x1e5). Established: Prints 'issuing GE Rollcall' with
+     * the number and the engine count, then sends mgesi_PrintNum to each
+     * engine in turn with the number as operand, and waits for the engine
+     * mailbox handshake. Payload 2: a number to print, then an unused last
+     * word. Established: the token map runs `arm_gerollcall` at arm1.u
+     * 0x0c0042e0. No sender found (not in libGLcore, kernel command table or
+     * X module stores). */
     KONA_HP_GEROLLCALL                   = 0x1e5,
 
     /* Engine handlers whose slots the code of `arm_dispmode` loads, in order:
-     * `mgesi_VCbusWrite`. */
+     * `mgesi_VCbusWrite`. Read at arm1.u arm_dispmode 0x0c013dd4;
+     * dgUpdateFMDidSwapTable 0x0c0101b4. */
 
-    /* `HP_DISPMODE` (0x1e6). Route: the token map runs `arm_dispmode` at
-     * arm1.u 0x0c013dd4. */
+    /* `HP_DISPMODE` (0x1e6). Established: Requires the privileged stream. If
+     * the drawable word is nonzero records the display id in the swap-group
+     * table (dgUpdateFMDidSwapTable), then writes the mode byte to
+     * display-bus address = display id via VCbusWrite (251). Payload 3:
+     * drawable word (buffer+20), display id, mode byte (hwd_mode).
+     * Established: the token map runs `arm_dispmode` at arm1.u 0x0c013dd4.
+     * Sent by kona.a(kona_video.o) KONAschedswapbuf, KONAschedmgrswapbuf,
+     * KONAsetdisplaymode. */
     KONA_HP_DISPMODE                     = 0x1e6,
 
     /* Engine handlers whose slots the code of `arm_retrace_seqid` loads, in
-     * order: `mgesi_VCbusWrite`. */
+     * order: `mgesi_VCbusWrite`. Read at arm1.u arm_retrace_seqid 0x0c013f5c;
+     * tbus_regwrite 0x0c015298. */
 
-    /* `HP_RETRACE_SEQID` (0x1e7). Route: the token map runs
-     * `arm_retrace_seqid` at arm1.u 0x0c013f5c. */
+    /* `HP_RETRACE_SEQID` (0x1e7). Established: Requires the privileged
+     * stream. Sends six display-bus writes of values 1 to 6 to address 0x7f,
+     * then writes the sequence number to raster register 0x420, so it passes
+     * through behind earlier drawing; the kernel reads it back from the video
+     * sequence register at the next retrace. Payload 1: retrace sequence
+     * number. Established: the token map runs `arm_retrace_seqid` at arm1.u
+     * 0x0c013f5c. Sent by kona.a(kona_video.o) kona_retrace_activate and
+     * KONAschedmgrswapbuf. */
     KONA_HP_RETRACE_SEQID                = 0x1e7,
 
-    /* `HP_ARM_NOP` (0x1e8). Route: the token map runs `arm_arm_nop` at arm1.u
-     * 0x0c022d70. */
+    /* Read at arm1.u arm_arm_nop 0x0c022d70. */
+
+    /* `HP_ARM_NOP` (0x1e8). Established: Reads the count and checks each
+     * following word against its index, printing 'got bogus data' with
+     * received and expected values on a mismatch; it exists to test that the
+     * command path delivers words in order. Payload 1 + N (count N, then N
+     * words counting 0 to N-1): a word count N followed by the sequence 0, 1,
+     * ... N-1. Established: the token map runs `arm_arm_nop` at arm1.u
+     * 0x0c022d70. No sender found (not in libGLcore, kernel command table or
+     * X module stores). */
     KONA_HP_ARM_NOP                      = 0x1e8,
 
-    /* `HP_GETCONFIG` (0x1e9). Route: the token map runs `arm_getconfig` at
-     * arm1.u 0x0c022474. */
+    /* Read at arm1.u arm_getconfig 0x0c022474. */
+
+    /* `HP_GETCONFIG` (0x1e9). Inferred: Query: start_rdata, sends count 478
+     * (0x1de) then 478 words of the board-configuration block at 0x04067edc
+     * to register 0x476, finish_rdata. Pure firmware data, no engine
+     * involved. Payload 1 (read and dropped): none used. Established: the
+     * token map runs `arm_getconfig` at arm1.u 0x0c022474. No sender found
+     * (searched libglcore/asm for 489/0x1e9, ddx/asm, kona_kernel/disasm and
+     * diags/kpm; only kpm's name table lists it). */
     KONA_HP_GETCONFIG                    = 0x1e9,
 
-    /* `HP_PIPE_SYNC` (0x1ea). Route: the token map runs `arm_pipe_sync` at
-     * arm1.u 0x0c0042c0. */
+    /* Read at arm1.u arm_pipe_sync 0x0c0042c0; check_pipe_sync 0x0c002f7c. */
+
+    /* `HP_PIPE_SYNC` (0x1ea). Established: Loops on check_pipe_sync until it
+     * returns 0, which means an engine echoed a random time-stamp nonce
+     * through the engine mailbox, so the command only completes after the
+     * engines have caught up. Payload 1: a value passed to the sync check (0
+     * prints the result messages). Established: the token map runs
+     * `arm_pipe_sync` at arm1.u 0x0c0042c0. No sender found (not in
+     * libGLcore, kernel command table or X module stores). */
     KONA_HP_PIPE_SYNC                    = 0x1ea,
 
-    /* `HP_DO_IDMA` (0x1eb). Route: the token map runs `arm_do_idma` at arm1.u
-     * 0x0c022df4. */
+    /* Read at arm1.u arm_do_idma 0x0c022df4-0x0c023294. */
+
+    /* `HP_DO_IDMA` (0x1eb). Established: Requires the privileged stream.
+     * Programs the input DMA (0x200010 page, 0x200014 offset, 0x200018
+     * length) in pieces of up to 0x3fffff8 bytes, adjusting for line length
+     * and stride when they differ from length, sets the pass-through counter
+     * 0x200058 with bit 27, starts it (0x20001c = 1) and waits for the FIFO
+     * status; a nonzero flags word is sent to the host as an interrupt event;
+     * afterwards calls the pending end-of-image routine at context word
+     * +0x73c. Payload 6: pool page number, offset, length, line length,
+     * stride, flags. Established: the token map runs `arm_do_idma` at arm1.u
+     * 0x0c022df4. Sent by kona.a(kona_dma.o) kona_idma; libGLcore
+     * SendPixelsToPipe path (docs/ge.md). */
     KONA_HP_DO_IDMA                      = 0x1eb,
 
-    /* `HP_EEPROM_OP` (0x1ec). Route: the token map runs `arm_eeprom_op` at
-     * arm1.u 0x0c01a0ec. */
+    /* Read at arm1.u arm_eeprom_op 0x0c01a0ec; eeprom_load 0x0c01a230. */
+
+    /* `HP_EEPROM_OP` (0x1ec). Inferred: Dispatches on the first word to the
+     * board EEPROM routines (load, read, setup, check, identify) and returns
+     * the result or the data to the host through the read-back registers;
+     * operation 6 zeroes four words in scratch and writes them to EEPROM
+     * offset 0x20000. Payload variable: operation 1-6, then operation
+     * arguments: operation number (1 load, 2 read, 3 setup, 4 check, 5
+     * identify, 6 invalidate) and address and length. Established: the token
+     * map runs `arm_eeprom_op` at arm1.u 0x0c01a0ec. No sender found; the
+     * ireeprom tool (diags/KONA_bin/ireeprom) is the probable sender but it
+     * was not read. */
     KONA_HP_EEPROM_OP                    = 0x1ec,
 
-    /* `HP_DMAPOOL_SETUP` (0x1ed). Route: the token map runs
-     * `arm_dmapool_setup` at arm1.u 0x0c022398. */
+    /* Read at arm1.u arm_dmapool_setup 0x0c022398. */
+
+    /* `HP_DMAPOOL_SETUP` (0x1ed). Established: Requires the privileged
+     * stream, then keeps the high word, the low word with its page offset
+     * cleared, and the length in the ARM data block that arm_execlist_idma
+     * and the list-copy handlers read when they fetch display lists from the
+     * host pool. Payload 3: pool address high word, pool address low word,
+     * pool length in bytes. Established: the token map runs
+     * `arm_dmapool_setup` at arm1.u 0x0c022398. Sent by kona.a kona_dma.o
+     * kona_dmapool_update_pipe (followed by GED_NOP and a zero word). */
     KONA_HP_DMAPOOL_SETUP                = 0x1ed,
 
-    /* `HP_VALIDATE_READCLIP` (0x1ee). Route: the token map runs
-     * `arm_validate_readclip` at arm1.u 0x0c018574. */
+    /* Read at arm1.u arm_validate_readclip 0x0c018574 (stores
+     * r8+0x886..0x889, 0x88a,
+     * 0x88b, 0x1ea..0x1ef; _printf,
+     * arm_badcmd). */
+
+    /* `HP_VALIDATE_READCLIP` (0x1ee). Established: Refuses with the
+     * bad-command path and a privilege message when the privileged-host bit
+     * is clear. Otherwise stores the words as 16-bit shadow values for the
+     * read clip and recomputes the read bank assignment bytes. Payload 3:
+     * Read-drawable clip words: two clip words from the read drawable and its
+     * resource word (R+8, R+12, R+60). Established: the token map runs
+     * `arm_validate_readclip` at arm1.u 0x0c018574. Sent by
+     * kona.a(kona_context.o) KONAvalidateclip and kona_act_pcx; payload
+     * layout in kona_kernel/include/kona_kern.h. */
     KONA_HP_VALIDATE_READCLIP            = 0x1ee,
 
-    /* `HP_GED_VERIF_LOAD` (0x1ef). Route: the token map runs
-     * `arm_ged_verif_load` at arm1.u 0x0c012ae4. */
+    /* Read at arm1.u arm_ged_verif_load 0x0c012ae4; compute_gedxfermask
+     * 0x0c012a98. */
+
+    /* `HP_GED_VERIF_LOAD` (0x1ef). Inferred: Calls load_ged, sets the
+     * command-source register to the host FIFO, stores the three words into
+     * the host-interface word-count, pass-through count and begin/end state
+     * registers, then computes the distributor transfer masks with every
+     * attribute enabled for the verification run. Payload 4: values for the
+     * word-count register (0x20005c), the pass-through counter (0x200058) and
+     * the begin/end state (0x200068), then an unused last word. Established:
+     * the token map runs `arm_ged_verif_load` at arm1.u 0x0c012ae4. No sender
+     * found (not in libGLcore, kernel command table or X module stores). */
     KONA_HP_GED_VERIF_LOAD               = 0x1ef,
 
     /* Engine handlers whose slots the code of `arm_ged_verif_dump` loads, in
-     * order: `mges_DiagDeactivate`. */
+     * order: `mges_DiagDeactivate`. Read at arm1.u arm_ged_verif_dump
+     * 0x0c012b2c; ge.u mges_DiagDeactivate; deactivate_ged 0x0c021864. */
 
-    /* `HP_GED_VERIF_DUMP` (0x1f0). Route: the token map runs
-     * `arm_ged_verif_dump` at arm1.u 0x0c012b2c. */
+    /* `HP_GED_VERIF_DUMP` (0x1f0). Inferred: Sets the pass-through counter to
+     * the no-transfer value, clears the word count and begin/end state, sends
+     * the word and mges_DiagDeactivate to one engine, then deactivates the
+     * distributor so its state can be read out for a verification run.
+     * Payload 2: one data word sent to an engine, then an unused last word.
+     * Established: the token map runs `arm_ged_verif_dump` at arm1.u
+     * 0x0c012b2c. No sender found (not in libGLcore, kernel command table or
+     * X module stores). */
     KONA_HP_GED_VERIF_DUMP               = 0x1f0,
 
     /* Engine handlers whose slots the code of `arm_pipe_setup` loads, in
-     * order: `mgesi_PipeSetup`. */
+     * order: `mgesi_PipeSetup`. Read at arm1.u arm_pipe_setup 0x0c023298;
+     * ge.u mgesi_PipeSetup. */
 
-    /* `HP_PIPE_SETUP` (0x1f1). Route: the token map runs `arm_pipe_setup` at
-     * arm1.u 0x0c023298. */
+    /* `HP_PIPE_SETUP` (0x1f1). Established: Stores the three words as the
+     * event record location and then sends mgesi_PipeSetup, bracketed by a
+     * register write of 1 then 0, to each engine, so the engines can post
+     * events and text into host memory. Payload 3: page number, page offset
+     * and length (16 KB) of the engine-to-host event record. Established: the
+     * token map runs `arm_pipe_setup` at arm1.u 0x0c023298. Sent by kona.a
+     * kona_setup.o KONAstart (pipe state +2592, +2596, 0x4000). */
     KONA_HP_PIPE_SETUP                   = 0x1f1,
 
-    /* `HP_RDATA_SETUP` (0x1f2). Route: the token map runs `arm_rdata_setup`
-     * at arm1.u 0x0c022448. */
+    /* Read at arm1.u arm_rdata_setup 0x0c022448; start_rdata 0x0c0224d4. */
+
+    /* `HP_RDATA_SETUP` (0x1f2). Established: Keeps the words at ARM RAM
+     * 0xc98, 0xc9c (low word page-masked) and 0xca0 and clears the
+     * select-feedback active flag; start_rdata later programs the output-DMA
+     * registers from them for every reply to the host. Payload 3: read-back
+     * buffer address high word, address low word, length (0x4000).
+     * Established: the token map runs `arm_rdata_setup` at arm1.u 0x0c022448.
+     * Sent by kona.a kona_context.o KONApcxswap (record +8, +12 and 0x4000). */
     KONA_HP_RDATA_SETUP                  = 0x1f2,
 
     /* Engine handlers whose slots the code of `arm_validate_clip` loads, in
-     * order: `mgesi_TbusRegWrite`. */
+     * order: `mgesi_TbusRegWrite`. Read at arm1.u arm_validate_clip
+     * 0x0c018168 (registers IMP_ADDR 0x1c0b, PG_WIN_OFFSET_X 0x0807,
+     * PG_WIN_OFFSET_Y 0x0808, IMP_CLIP 0x1c06, plus one mgesi_TbusRegWrite;
+     * resolve_scissor). */
 
-    /* `HP_VALIDATE_CLIP` (0x1f3). Route: the token map runs
-     * `arm_validate_clip` at arm1.u 0x0c018168. */
+    /* `HP_VALIDATE_CLIP` (0x1f3). Inferred: Privilege-checked. Stores window
+     * and clip size words into the shadow, adjusts the six bank bytes by the
+     * change in the clip origin, writes the address, window offset x and y
+     * and clip registers, then reruns resolve_scissor. Payload 11:
+     * Draw-drawable clip description: four words from the drawable, four
+     * words from the clip list, and three further words (R+8..R+20, list
+     * +0..+12, R+60, R+40, R+44). Established: the token map runs
+     * `arm_validate_clip` at arm1.u 0x0c018168. Sent by
+     * kona.a(kona_context.o) KONAvalidateclip and kona_act_pcx;
+     * kona_kernel/include/kona_kern.h lines 136-138. */
     KONA_HP_VALIDATE_CLIP                = 0x1f3,
 
-    /* `HP_VALIDATE_BANK` (0x1f4). Route: the token map runs
-     * `arm_validate_bank` at arm1.u 0x0c013d30. */
+    /* Read at arm1.u arm_validate_bank 0x0c013d30 (resolve_banks 0x0c01392c). */
+
+    /* `HP_VALIDATE_BANK` (0x1f4). Established: Refuses with a privilege
+     * message and the bad-command path when the privilege bit is clear.
+     * Otherwise stores the first word at r8+0x1dc and the second at r8+0x1f0
+     * and re-resolves the banks. Payload 2: Display bank numbers of the draw
+     * and read drawables (halfwords at offset 18 of each, sign-extended).
+     * Established: the token map runs `arm_validate_bank` at arm1.u
+     * 0x0c013d30. Sent by kona.a(kona_context.o) kona_act_pcx and
+     * KONAvalidateclip (kona_context.s lines near token 500); docs/dg.md line
+     * 48; kona_kern.h lines 142-145. */
     KONA_HP_VALIDATE_BANK                = 0x1f4,
 
-    /* `HP_START_SELECTFEED` (0x1f5). Route: the token map runs
-     * `arm_start_selectfeed` at arm1.u 0x0c022a50. */
+    /* Read at arm1.u arm_start_selectfeed 0x0c022a50. */
+
+    /* `HP_START_SELECTFEED` (0x1f5). Established: Requires the privileged
+     * stream, marks a feed active, programs output-DMA channel 0 through
+     * raster registers 0x450-0x456, and with snapshot 1 keeps a copy for
+     * HP_RESTART_SELECTFEED. Payload 6: buffer address high word, address low
+     * word, length, line length, stride, snapshot flag. Established: the
+     * token map runs `arm_start_selectfeed` at arm1.u 0x0c022a50. Sent by
+     * kona.a kona_dma.o kona_start_selectfeed. */
     KONA_HP_START_SELECTFEED             = 0x1f5,
 
-    /* `HP_FINISH_SELECTFEED` (0x1f6). Route: the token map runs
-     * `arm_finish_selectfeed` at arm1.u 0x0c022c40. */
+    /* Read at arm1.u arm_finish_selectfeed 0x0c022c40. */
+
+    /* `HP_FINISH_SELECTFEED` (0x1f6). Established: Requires the privileged
+     * stream, clears the feed flag, posts an event record with the code, the
+     * slot index and two zero-valued status words through start_kcomm and
+     * finish_kcomm, and restores channel 0 to its idle values. Payload 2:
+     * event code (256) and the context slot index. Established: the token map
+     * runs `arm_finish_selectfeed` at arm1.u 0x0c022c40. Sent by kona.a
+     * kona_dma.o kona_finish_selectfeed. */
     KONA_HP_FINISH_SELECTFEED            = 0x1f6,
 
     /* Engine handlers whose slots the code of `arm_context_destroy` loads, in
-     * order: `mgeb_ContextDestroy`. */
+     * order: `mgeb_ContextDestroy`. Read at arm1.u arm_context_destroy
+     * 0x0c021650; ge.u mgeb_ContextDestroy. */
 
-    /* `HP_CONTEXT_DESTROY` (0x1f7). Route: the token map runs
-     * `arm_context_destroy` at arm1.u 0x0c021650. */
+    /* `HP_CONTEXT_DESTROY` (0x1f7). Established: Requires the privileged
+     * stream, overwrites the saved register areas, the ARM state block and
+     * the texture record block with the fill value, then sends
+     * mgeb_ContextDestroy to the engines with the same value. Payload 1: a
+     * fill value (poison pattern). Established: the token map runs
+     * `arm_context_destroy` at arm1.u 0x0c021650. No sender found (kernel
+     * command table does not list it). */
     KONA_HP_CONTEXT_DESTROY              = 0x1f7,
 
     /* Engine handlers whose slots the code of `arm_context_mopup` loads, in
-     * order: `mgebi_NullCommand`, `mgeb_ContextDeactReconfigureFifo`. */
+     * order: `mgebi_NullCommand`, `mgeb_ContextDeactReconfigureFifo`. Read at
+     * arm1.u arm_context_mopup 0x0c02226c; ge.u mgebi_NullCommand,
+     * mgeb_ContextDeactReconfigureFifo. */
 
-    /* `HP_CONTEXT_MOPUP` (0x1f8). Route: the token map runs
-     * `arm_context_mopup` at arm1.u 0x0c02226c. */
+    /* `HP_CONTEXT_MOPUP` (0x1f8). Established: Requires the privileged
+     * stream, resets the host-interface registers and ARM context bookkeeping
+     * to idle, loads the NullCommand and ReconfigureFifo handler addresses
+     * into engine ports 0x4fc and 0x4f8, writes the numbers 1 to 9 to all
+     * engines, then posts the event code with start_kcomm and finish_kcomm.
+     * Payload 1: completion event code (the driver relies on 0x103).
+     * Established: the token map runs `arm_context_mopup` at arm1.u
+     * 0x0c02226c. Sent by kona.a kona_ddrn.o KONAdestroyddrn. */
     KONA_HP_CONTEXT_MOPUP                = 0x1f8,
 
     /* Engine handlers whose slots the code of `arm_context_load` loads, in
      * order: `mges_ContextLoadODMA`, `mges_ContextLoadBEF`,
-     * `mgeb_ContextLoadCram`, `mgeb_ContextLoadWram`. */
+     * `mgeb_ContextLoadCram`, `mgeb_ContextLoadWram`. Read at arm1.u
+     * arm_context_load 0x0c02112c; ge.u mges_ContextLoadODMA,
+     * mges_ContextLoadBEF, mgeb_ContextLoadCram, mgeb_ContextLoadWram. */
 
-    /* `HP_CONTEXT_LOAD` (0x1f9). Route: the token map runs `arm_context_load`
-     * at arm1.u 0x0c02112c. */
+    /* `HP_CONTEXT_LOAD` (0x1f9). Established: Requires the privileged stream,
+     * fetches the saved context image by input DMA or from the stream,
+     * verifies its header, then dispatches each record to its engine or ARM
+     * region, including the distributor registers and engine memories.
+     * Payload 4: image length in bytes, host address high word, host address
+     * low word (-1 means data follow in the stream), end marker 0xedededed.
+     * Established: the token map runs `arm_context_load` at arm1.u
+     * 0x0c02112c. Sent by kona.a kona_context.o KONApcxswap. */
     KONA_HP_CONTEXT_LOAD                 = 0x1f9,
 
     /* Engine handlers whose slots the code of `arm_context_activate` loads,
      * in order: `mgeb_ContextLoadFlagRegs`, `mgeb_DisableUserClipPlane`,
-     * `mges_TBUS_1`, `mgeb_CullFace`. */
+     * `mges_TBUS_1`, `mgeb_CullFace`. Read at arm1.u arm_context_activate
+     * 0x0c0209dc; ge.u mgeb_ContextLoadFlagRegs. */
 
-    /* `HP_CONTEXT_ACTIVATE` (0x1fa). Route: the token map runs
-     * `arm_context_activate` at arm1.u 0x0c0209dc. */
+    /* `HP_CONTEXT_ACTIVATE` (0x1fa). Inferred: Requires the privileged
+     * stream, restores engine registers, the X or GL pixel state, private ARM
+     * state, the engine FIFO and the distributor from the loaded image, sends
+     * the event to the host and re-enables the host interface. Payload 1 (the
+     * event word); one more word is read in some saved states: a completion
+     * event code (sent to the host interrupt when above 0x100). Established:
+     * the token map runs `arm_context_activate` at arm1.u 0x0c0209dc. No
+     * sender found in the driver: kona_kern.h says the activate token is a
+     * word the pipe writes into the saved image header, not a constant in any
+     * member. */
     KONA_HP_CONTEXT_ACTIVATE             = 0x1fa,
 
-    /* `HP_CONTEXT_FIFO_SYNC` (0x1fb). Route: the token map runs
-     * `arm_context_fifo_sync` at arm1.u 0x0c021770. */
+    /* Read at arm1.u arm_context_fifo_sync 0x0c021770. */
+
+    /* `HP_CONTEXT_FIFO_SYNC` (0x1fb). Established: Checks the
+     * privileged-stream flag and returns with no further effect; with the
+     * flag clear it prints a privilege violation and treats the command as
+     * bad. Payload 0: nothing. Established: the token map runs
+     * `arm_context_fifo_sync` at arm1.u 0x0c021770. No sender found (kernel
+     * command table does not list it). */
     KONA_HP_CONTEXT_FIFO_SYNC            = 0x1fb,
 
     /* Engine handlers whose slots the code of `arm_context_deactivate` loads,
      * in order: `mges_ContextDeactGED`, `mgeb_ContextDeactReconfigureFifo`,
-     * `mges_ContextDeactFinish`. */
+     * `mges_ContextDeactFinish`. Read at arm1.u arm_context_deactivate
+     * 0x0c022188; ge.u mges_ContextDeactGED,
+     * mgeb_ContextDeactReconfigureFifo, mges_ContextDeactFinish. */
 
-    /* `HP_CONTEXT_DEACTIVATE` (0x1fc). Route: the token map runs
-     * `arm_context_deactivate` at arm1.u 0x0c022188. */
+    /* `HP_CONTEXT_DEACTIVATE` (0x1fc). Established: Requires the privileged
+     * stream, stops the host interface, distributor and engines, saves ARM
+     * state, sends the slot index and mges_ContextDeactFinish to the engines
+     * so the context image is written out, then clears a status register.
+     * Payload 1: context slot index. Established: the token map runs
+     * `arm_context_deactivate` at arm1.u 0x0c022188. Sent by kona.a
+     * kona_context.o KONApcxswap. */
     KONA_HP_CONTEXT_DEACTIVATE           = 0x1fc,
 
     /* Engine handlers whose slots the code of `arm_context_init` loads, in
-     * order: `mgeb_ContextLoadEram`. */
+     * order: `mgeb_ContextLoadEram`. Read at arm1.u arm_context_init
+     * 0x0c01fe04; context_init 0x0c01fd50; ge.u mgeb_ContextLoadEram. */
 
-    /* `HP_CONTEXT_INIT` (0x1fd). Route: the token map runs `arm_context_init`
-     * at arm1.u 0x0c01fe04. */
+    /* `HP_CONTEXT_INIT` (0x1fd). Established: Requires the privileged stream,
+     * builds the default GL state (first call only), keeps the three words in
+     * ARM RAM, and sends them to the engines with mgeb_ContextLoadEram so the
+     * engine memory knows where the context image lives. Payload 3: save-area
+     * address high word, address low word, size (0x10000). Established: the
+     * token map runs `arm_context_init` at arm1.u 0x0c01fe04. Sent by kona.a
+     * kona_context.o KONApcxswap (KONA_ADDR_HI, KONA_ADDR_LO, 0x10000). */
     KONA_HP_CONTEXT_INIT                 = 0x1fd,
 
-    /* `HP_KERNEL_PRIVATE` (0x1fe). Route: the token map runs
-     * `arm_kernel_private` at arm1.u 0x0c022394. */
+    /* Read at arm1.u arm_kernel_private 0x0c022394. */
+
+    /* `HP_KERNEL_PRIVATE` (0x1fe). Established: The handler is a single
+     * return (mov pc, lr): it reads no payload and sends nothing. Payload 0:
+     * nothing read. Established: the token map runs `arm_kernel_private` at
+     * arm1.u 0x0c022394. No sender found: no libGLcore, X module or kernel
+     * constant store of 0x1fe (the kernel commands table has no 0x1fe; its
+     * highest constants are 0x1fc and 0x1fd). */
     KONA_HP_KERNEL_PRIVATE               = 0x1fe,
 
-    /* `HP_WG_FLUSH_1` (0x1ff). Route: the token map runs `arm_wg_flush_1` at
-     * arm1.u 0x0c026644, a stub that ends in `arm_badcmd`. */
+    /* Read at arm1.u arm_wg_flush_1 0x0c026644 (b 0x0c0017f4); arm_badcmd
+     * 0x0c0017f4-0x0c001854. */
+
+    /* `HP_WG_FLUSH_1` (0x1ff). Inferred: The token map runs a one-instruction
+     * stub at 0x0c026644 that branches to arm_badcmd; that prints the current
+     * and previous token numbers, reads and prints 100 payload words, then
+     * spins reading words, so the pipe would hang. The X server stores
+     * 0xdeadbeef at its address after cursor and read-back work, so the host
+     * interface is inferred to discard it before the map; if it reached the
+     * ARM the pipe would hang. Payload none read by the stub (arm_badcmd
+     * drains 100): nothing: the token is refused and no payload is defined.
+     * Established: the token map runs `arm_wg_flush_1` at arm1.u 0x0c026644,
+     * a stub that ends in `arm_badcmd`. Sent by libGLcore: none. X module
+     * kona.so stores 0xdeadbeef at window offset 0x3fe0 in konCreateWindow,
+     * konDestroyWindow, konReadImage and konReadFBBlock (kon.s: addiu 16352
+     * then sw), and after cursor loads per docs/opengl.md. */
     KONA_HP_WG_FLUSH_1                   = 0x1ff,
 };
 

@@ -69,3 +69,30 @@ Where this reader stopped (2026-10-29): every function of `kona.a`, `gfx.o`, `rr
 ## Where work stopped
 
 2026-10-29, backfill reader (functions, ioctls, host-interface registers): every ioctl row is understood (one labelled, cited row per number in [kernel.md](kernel.md#ioctl-reference)); the host-interface output-DMA, scan-controller and ARM-stall registers each have their own entry ([hip.md](hip.md#output-dma-registers-as-the-host-programs-them)). The function rows are grouped by role and source file ([kpm.md](kpm.md), [irsaudit.md](irsaudit.md), [libglcore.md](libglcore.md), [libgl.md](libgl.md), [x-server-glx.md](x-server-glx.md), [kona-ddx.md](kona-ddx.md), [setup-tools.md](setup-tools.md), [irisgl.md](irisgl.md), [xserver.md](xserver.md), [libfm.md](libfm.md)), which the inventory grades `named-only` because each entry names many functions. Next, in order: one entry per function for the hardware-facing groups (the `__glkonim_*` and `__glkonlc_*` senders and the `kon_*` texture and display-list memory code in libGLcore, the `kon*` functions of `kona.so`, the `Kon*` command helpers of `setmon`), then the remaining host-interface registers that are `named-only` (`HH_SWITCH`, `HH_NOP`, `HH_INTR_ACK`, the `INTR_ENABLE` and `INTR_STATUS` pairs, `HH_ARM_STATUS`, `HH_ARM_STEP`, the FCI and GV error and overlap registers, `HH_TFIFO_HI`, `HIP2_HH_IDMA_HI`, `HH_GFIFO_WAIT`), then the raster registers. The nine combination files whose names contain `@` (for example `2@1280x1024_60.cmb`) and the extensionless tools cannot be matched by the file-name pattern of the shared inventory script, so their `binaries` rows stay undocumented until the script accepts them.
+
+## Tokens
+
+Every row of [inventory/tokens.tsv](inventory/tokens.tsv) has its own labelled entry in [GE.h](../GE.h), written by `scripts/ge_token_comments.py` from the hand-read roles it holds. These are the questions and conflicts that reading left open, with the owner who should settle each.
+
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| `HP_MAPSPEC1D`: the map entry counts 12 words but `__glKonSendMapSpec1D` and `__glKonCleanUp1D` store 9 | `GE.h` | the map entry, both libGLcore senders | read `mgeb_EvalMapSpec1D` in `ge.u` for how many operands it takes |
+| `HP_TBUS_1`: the kernel's `KONAschedswapbuf` sends two words after the token, the map count and `irsaudit` say three | `GE.h`, `docs/kernel.md` | the kernel disassembly, `fcTbusWrite` | read `mgesi_TBUS_1` for the operand count and look for the third word in the swap path |
+| `HP_EVALSTRIP1D`: the last line-mode strip in `__glKonEvalMesh1DGe11` (0x0d97d7d0) stores four words, `arm_evalstrip1d` reads three | `GE.h` | both functions | read the other evaluator senders for the same pattern |
+| `HP_INDEXS` serves both `glIndexs` (value << 16) and `glIndexub` (value << 24); how the pipe tells them apart | `GE.h` | the two emitters, the map entry | read the distributor's index attribute conversion in `ged1b.u` |
+| `HP_MOVELIST_LDMA`: copy direction of the routine at 0x0c0400e4 against libGLcore's (destination, source, length) | `docs/ge.md` | `arm_movelist_ldma` and its copy routine | trace the 16-byte loop's store side |
+| `HP_FLUSH`: what libGLcore's load from process address 0x10100 after the token does | `docs/opengl.md` | `__glkonim_Flush` | find the mapping of 0x10100 in the kernel's per-process setup |
+| `HP_DEFORMATION_MAP3_1D` is bound to a three-operand register write yet carries a whole map; `X_DATA*` likewise carry more words than the bound register write reads | `GE.h` | `hw_route.tsv`, the handler listings | read the distributor entry for these commands in `ged_listing.txt` |
+| Query count unit: `do_getcolortable` sends count x 4 to 0x476 where the other query handlers send a word count | `GE.h` | the query handlers | read the host side, `__glkona_wait_rdata` and its callers |
+
+Corrections found while reading, for the owners of those files (the GE.h entries already state the corrected reading):
+
+- `docs/opengl.md`: `HP_X_PIX_READ`'s second word is a y coordinate (`arm_x_pix_read` subtracts it from the screen height), not a size; `HP_X_SEGMENT6` is not sent by `konSegmentSS`, which sends one `X_SEGMENT` per segment.
+- `docs/kernel.md`: `HP_PIPE_SETUP`'s 0x4000 is a length (the firmware stores the three words at 0x04046fd8-0x04046fe0 and `start_rdata` uses the third as one), not the doorbell offset.
+- `ucode/arm1_functions.md`: `arm_enable` and `arm_disable` sit at 0x0c023380 and 0x0c023448; `pack_cmd` is a 16-pair table that `arm_pack` walks to rewrite token-map entries of the byte and short attribute forms; `f3_war` is written by `arm_f3_war` and read by `arm_do_idma`.
+- `ucode/arm1_firmware.md`: the `rasterpos*` handlers do no arithmetic; they switch the distributor transfer mask and inject command 211 or 83.
+- `docs/rm.md`: `arm_buffer_config`, `arm_colormask` and `arm_validate_clip` write IMP registers through descriptor 0x58404800, not only 0x584fc800.
+- `ucode/icu_map.tsv` and `ucode/hw_route.tsv`: `bits6_10` over-reads the count of geometry-form entries (bit 31 set), and the `bound` column is a name match with no meaning for geometry tokens. `ucode/ged_route.tsv` gives the table entry indexed by command number, which `ucode/ged.md` supersedes.
+- `docs/inventory/tokens.tsv` misses the senders that pack data into the token word or call `__glkon_get_special*`, and names wrong example emitters for several tokens (`HP_BIND_2D_MIPMAP_TEXTURE`, 0x180, 0x182); a sender scan of `scripts/inventory-config.json` would need those patterns.
+
+**Where this slice stopped** (2026-10-29). All 617 token rows are understood. Of the 512 host-token roles, 270 are labelled inferred, mostly because the step from a routed command number to its engine handler, and the per-attribute work of the distributor, are themselves inferred in [ucode/arm1.md](../ucode/arm1.md) and [ucode/ged.md](../ucode/ged.md); settling those would let many routed entries move to established. Next: the table above, then the senders not yet found (`ireeprom` for `EEPROM_OP`, `irsaudit` for `DIAG_DISPATCH`).
