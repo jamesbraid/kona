@@ -43,7 +43,8 @@
  * and 0x20000 its FORCE bit (HIP.h).
  *
  * DETACH_FLUSH, ESTABLISHED (KONApcxswap 0x8a8): before leaving the
- * flow-control group the driver writes 1 to REGBASE + 0x7c and reads it back.
+ * flow-control group the driver writes 1 to REGBASE + 0x7c and reads it back;
+ * joining writes the group number there (see kona_act_pcx below).
  */
 #define KONA_REG_KICK             0xc00108
 #define KONA_REG_DETACH_FLUSH     0x7c
@@ -91,9 +92,34 @@
  *   INFERRED: RDATA_SETUP names where the pipe returns data to the client;
  *   0x4000 is likely a size, not the user FIFO address. UNKNOWN which.
  *
- * Then, either way, kona_act_pcx (0x124-0x680) sends HP_VALIDATE_BANK 0x1f4,
- * HP_VALIDATE_CLIP 0x1f3 and HP_VALIDATE_READCLIP 0x1ee with clip and bank
- * state from the context record. Their word-by-word layout is UNKNOWN here.
+ * Then, either way, kona_act_pcx(sc, gfxp, activate_token) (0x124-0x680)
+ * runs; KONApcxswap passes the word at context record +8 as the third
+ * argument. ESTABLISHED sequence, all in one kernel stream (kick 0x30000
+ * before the first token only, 0x10000 before every payload and every
+ * later token):
+ *   1. If gfxp halfword +4 has bit 1 set (INFERRED: clip changed):
+ *      HP_VALIDATE_CLIP 0x1f3, 11 words. With D = the drawable at gfxp+120
+ *      and R = D+96: R+8, R+12, R+16, R+20; then four words from the list
+ *      D+128 points to (+0, +4, +8, +12); then R+60, R+40, R+44.
+ *   2. If gfxp+140 differs from (gfxp+128)->+8 (INFERRED: the read drawable
+ *      changed; the new value is stored back): HP_VALIDATE_READCLIP 0x1ee,
+ *      3 words: with R' = (gfxp+128)+96, R'+8, R'+12, R'+60.
+ *   3. If gfxp+64 is not its own grand-parent's +8 link (INFERRED: the
+ *      bank assignment moved): HP_VALIDATE_BANK 0x1f4, 2 words: the signed
+ *      halfwords at +18 of the draw drawable (gfxp+120) and of the read
+ *      drawable (gfxp+128), sign-extended.
+ *   4. activate_token, then one 0 word (the no-argument form, GE.h).
+ * INFERRED: R+8..R+20 and R'+8/+12 are window origin and size, and the
+ * four list words a clip rectangle; R+60/R'+60 match in both packets and
+ * may be a drawable id. Field meanings are UNKNOWN beyond these offsets;
+ * activate_token is INFERRED to be HP_CONTEXT_ACTIVATE 0x1fa, since no other
+ * token in KONApcxswap or kona_act_pcx activates the context.
+ *
+ * Attaching to the flow-control group, ESTABLISHED (kona_act_pcx 0x478 and
+ * three copies): the driver writes ((sc+0x8c8) << 1) & 0x3e to register-
+ * window offset 0x7c, then waits for returned credits. Leaving the group
+ * writes 1 to the same offset (KONApcxswap). INFERRED: offset 0x7c takes a
+ * write-gather group number in bits 1-5 with bit 0 as "detach".
  *
  * Nothing in the switch saves pipe state through the host: the kernel only
  * names the save area. INFERRED: the pipe saves and restores its own state

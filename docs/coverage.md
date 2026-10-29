@@ -94,7 +94,7 @@ The kernel graphics driver and its resource manager: attach, ioctls, context and
 | DMA | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
 | Interrupts | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
 | Reset | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | pipe check and kona_die register writes named, 16 death reasons by caller with 6.5.5 names; attach-time HH_RESET sequence not read |
-| Context save and restore | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | KONApcxswap packet order and payloads for deactivate, load and init; validate packets named, layouts not read |
+| Context save and restore | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | KONApcxswap and kona_act_pcx packet order and payload word sources, flow-group attach/detach at offset 0x7c. Remaining: drawable structure field meanings, the activate token's identity, the 0x9000 address flag |
 
 ### OpenGL core and X modules
 
