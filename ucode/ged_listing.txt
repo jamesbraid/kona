@@ -1,0 +1,935 @@
+# Distributor program ged1b.u (IRIX 6.5.30m), disassembled by scripts/ged_disasm.py.
+# Field layout from irsaudit Compact_GED_Ucode; see ucode/ged.md. Mnemonics are labels.
+# table A (16 words, x8 = base in table B): 0x0 0x35 0x32 0x0 0x30 0x28 0x8 0x2c 0x10 0x18 0x20 0x0 0x34 0x0 0x0 0x0
+# word  value     source:line        instruction    <= table B indexes that start here
+000  804500b0  dist.s:8           load0 r69, 0xb0  (slot 176: mgebi_NullCommand)
+001  40000000  dist.s:9           xfer0 r0 -> 000
+002  00000000  dist.s:10          nop
+003  804500b0  dist.s:13          load0 r69, 0xb0  (slot 176: mgebi_NullCommand)  <= B[002,00f-012,016-03d]
+004  40000003  dist.s:14          xfer0 r0 -> 003
+005  00000000  dist.s:15          nop
+006  804500b0  dist.s:18          load0 r69, 0xb0  (slot 176: mgebi_NullCommand)  <= B[064-07f,0b8-0bf,0f0-0f3,12c-13f,154-15f,174-17f,1a0-1a3,1a7,1b0-1bf,1d4-1ff]
+007  40000006  dist.s:19          xfer0 r0 -> 006
+008  00000000  dist.s:20          nop
+009  804500c0  dist.s:23          load0 r69, 0xc0  (slot 192: mges_EvalCoord)
+00a  90410036  dist.s:24          move r65 <- r54
+00b  60000000  dist.s:25          xfer4 r0 -> 000
+00c  80360000  dist.s:26          load0 r54, 0x0
+00d  4c320011  flush.s:6          xfer1 +fetch r50 v=0 -> 011  <= B[03f]
+00e  7a020009  flush.s:7          xfer7 p=1 r54 -> 009
+00f  80320000  flush.s:8          load0 r50, 0x0
+010  9046003e  flush.s:9          move r70 <- r62
+011  04001000  flush.s:14         ctl +fetch release  <= B[03e]
+012  00000000  flush.s:15         nop
+013  8047009e  material.s:6       load0 r71, 0x9e  (slot 158: mgeb_Material)
+014  04018000  material.s:7       ctl +fetch a=0x1 b=0x1
+015  00000000  material.s:8       nop
+016  4c32001a  material.s:11      xfer1 +fetch r50 v=0 -> 01a  <= B[001]
+017  7a020009  material.s:12      xfer7 p=1 r54 -> 009
+018  80320000  material.s:13      load0 r50, 0x0
+019  9046003e  material.s:14      move r70 <- r62
+01a  8047009e  material.s:16      load0 r71, 0x9e  (slot 158: mgeb_Material)
+01b  04018000  material.s:17      ctl +fetch a=0x1 b=0x1
+01c  00001000  material.s:18      ctl release
+01d  4c320021  trigger.s:7        xfer1 +fetch r50 v=0 -> 021  <= B[000,00e]
+01e  7a020009  trigger.s:8        xfer7 p=1 r54 -> 009
+01f  00000000  trigger.s:9        nop
+020  9046003e  trigger.s:10       move r70 <- r62
+021  02000000  trigger.s:12       ctl x=0x2
+022  804500c1  trigger.s:13       load0 r69, 0xc1  (slot 193: mges_NullCommand)
+023  04000000  trigger.s:17       ctl +fetch  <= B[003]
+024  00001000  trigger.s:18       ctl release
+025  02000000  trigger.s:21       ctl x=0x2  <= B[013]
+026  844700a9  trigger.s:22       load0 +fetch r71, 0xa9  (slot 169: mgeb_RasterPos)
+027  00001000  trigger.s:23       ctl release
+028  06000000  trigger.s:26       ctl +fetch x=0x2  <= B[014]
+029  00001000  trigger.s:27       ctl release
+02a  4c32002e  trigger.s:30       xfer1 +fetch r50 v=0 -> 02e  <= B[015]
+02b  7a020009  trigger.s:31       xfer7 p=1 r54 -> 009
+02c  80320000  trigger.s:32       load0 r50, 0x0
+02d  9046003e  trigger.s:33       move r70 <- r62
+02e  803e01aa  trigger.s:35       load0 r62, 0x1aa  (slot 426: mgesi_SubdivEntry)
+02f  8030000c  trigger.s:36       load0 r48, 0xc
+030  80310434  trigger.s:37       load0 r49, 0x434  (state 1, word 034)
+031  800d000f  trigger.s:38       load0 r13, 0xf
+032  840e0000  trigger.s:39       load0 +fetch r14, 0x0
+033  80370000  trigger.s:40       load0 r55, 0x0
+034  82310434  trigger.s:43       load0 x=2 r49, 0x434  (state 1, word 034)  <= B[1a4]
+035  04000000  trigger.s:44       ctl +fetch
+036  00000000  trigger.s:45       nop
+037  40000013  trigger.s:48       xfer0 r0 -> 013  <= B[1a5]
+038  00000000  trigger.s:49       nop
+039  7a020009  trigger.s:52       xfer7 p=1 r54 -> 009  <= B[1a6]
+03a  80320000  trigger.s:53       load0 r50, 0x0
+03b  9045003e  trigger.s:54       move r69 <- r62
+03c  80300000  trigger.s:55       load0 r48, 0x0
+03d  8031001d  trigger.s:56       load0 r49, 0x1d  (state 0, word 01d)
+03e  04001000  trigger.s:57       ctl +fetch release
+03f  00000000  trigger.s:58       nop
+040  4c320045  tstrip.s:6         xfer1 +fetch r50 v=0 -> 045  <= B[008]
+041  4c322447  tstrip.s:7         xfer1 +fetch r50 v=9 -> 047
+042  7a020009  tstrip.s:8         xfer7 p=1 r54 -> 009
+043  80320000  tstrip.s:9         load0 r50, 0x0
+044  9046003e  tstrip.s:10        move r70 <- r62
+045  803e00ea  tstrip.s:12        load0 r62, 0xea  (slot 234: mgesi_TriangleStrip)
+046  8033000c  tstrip.s:13        load0 r51, 0xc
+047  80300009  tstrip.s:15        load0 r48, 0x9
+048  8031004c  tstrip.s:16        load0 r49, 0x4c  (state 0, word 04c)
+049  800d000f  tstrip.s:17        load0 r13, 0xf
+04a  840e0000  tstrip.s:18        load0 +fetch r14, 0x0
+04b  80370000  tstrip.s:19        load0 r55, 0x0
+04c  82b1044f  tstrip.s:22        load0 x=2 y r49, 0x44f  (state 1, word 04f)  <= B[0c0]
+04d  04000000  tstrip.s:23        ctl +fetch
+04e  80370000  tstrip.s:24        load0 r55, 0x0
+04f  83b11c52  tstrip.s:27        load0 x=3 y r49, 0x1c52  (state 7, word 052)  <= B[0c4]
+050  04000000  tstrip.s:28        ctl +fetch
+051  80370000  tstrip.s:29        load0 r55, 0x0
+052  83b11855  tstrip.s:32        load0 x=3 y r49, 0x1855  (state 6, word 055)  <= B[0dc]
+053  70330080  tstrip.s:33        xfer6 r51 -> 080
+054  80370000  tstrip.s:34        load0 r55, 0x0
+055  83b11c52  tstrip.s:37        load0 x=3 y r49, 0x1c52  (state 7, word 052)  <= B[0d8]
+056  70330083  tstrip.s:38        xfer6 r51 -> 083
+057  80370000  tstrip.s:39        load0 r55, 0x0
+058  400000f6  tstrip.s:42        xfer0 r0 -> 0f6  <= B[0d4]
+059  8031085c  tstrip.s:43        load0 r49, 0x85c  (state 2, word 05c)
+05a  400000f6  tstrip.s:46        xfer0 r0 -> 0f6  <= B[0d0]
+05b  80311855  tstrip.s:47        load0 r49, 0x1855  (state 6, word 055)
+05c  83b10c5f  tstrip.s:50        load0 x=3 y r49, 0xc5f  (state 3, word 05f)  <= B[0c8]
+05d  7033007d  tstrip.s:51        xfer6 r51 -> 07d
+05e  80370000  tstrip.s:52        load0 r55, 0x0
+05f  83b1085c  tstrip.s:55        load0 x=3 y r49, 0x85c  (state 2, word 05c)  <= B[0cc]
+060  7033007a  tstrip.s:56        xfer6 r51 -> 07a
+061  80370000  tstrip.s:57        load0 r55, 0x0
+062  83b11855  tstrip.s:60        load0 x=3 y r49, 0x1855  (state 6, word 055)  <= B[0e0]
+063  70330086  tstrip.s:61        xfer6 r51 -> 086
+064  80370000  tstrip.s:62        load0 r55, 0x0
+065  83b12062  tstrip.s:65        load0 x=3 y r49, 0x2062  (state 8, word 062)  <= B[0e4]
+066  70330086  tstrip.s:66        xfer6 r51 -> 086
+067  80370000  tstrip.s:67        load0 r55, 0x0
+068  83b12c6b  tstrip.s:70        load0 x=3 y r49, 0x2c6b  (state 11, word 06b)  <= B[0e8]
+069  7033008c  tstrip.s:71        xfer6 r51 -> 08c
+06a  80370000  tstrip.s:72        load0 r55, 0x0
+06b  83b12868  tstrip.s:75        load0 x=3 y r49, 0x2868  (state 10, word 068)  <= B[0ec]
+06c  7033008f  tstrip.s:76        xfer6 r51 -> 08f
+06d  80370000  tstrip.s:77        load0 r55, 0x0
+06e  83b13471  tstrip.s:80        load0 x=3 y r49, 0x3471  (state 13, word 071)
+06f  70330092  tstrip.s:81        xfer6 r51 -> 092
+070  80370000  tstrip.s:82        load0 r55, 0x0
+071  83b13471  tstrip.s:85        load0 x=3 y r49, 0x3471  (state 13, word 071)  <= B[0f4]
+072  70330095  tstrip.s:86        xfer6 r51 -> 095
+073  80370000  tstrip.s:87        load0 r55, 0x0
+074  83b10c5f  tstrip.s:90        load0 x=3 y r49, 0xc5f  (state 3, word 05f)  <= B[0f8]
+075  70330098  tstrip.s:91        xfer6 r51 -> 098
+076  80370000  tstrip.s:92        load0 r55, 0x0
+077  83b13c77  tstrip.s:95        load0 x=3 y r49, 0x3c77  (state 15, word 077)  <= B[0fc]
+078  7033009b  tstrip.s:96        xfer6 r51 -> 09b
+079  80370000  tstrip.s:97        load0 r55, 0x0
+07a  803e01a2  tstrip.s:102       load0 r62, 0x1a2  (slot 418: mgesi_TriangleStripWithSwapOdd)
+07b  4000009e  tstrip.s:103       xfer0 r0 -> 09e
+07c  8031105a  tstrip.s:104       load0 r49, 0x105a  (state 4, word 05a)
+07d  803e01a2  tstrip.s:107       load0 r62, 0x1a2  (slot 418: mgesi_TriangleStripWithSwapOdd)
+07e  4000009e  tstrip.s:108       xfer0 r0 -> 09e
+07f  80311458  tstrip.s:109       load0 r49, 0x1458  (state 5, word 058)
+080  803e00ea  tstrip.s:112       load0 r62, 0xea  (slot 234: mgesi_TriangleStrip)
+081  4000009e  tstrip.s:113       xfer0 r0 -> 09e
+082  80311458  tstrip.s:114       load0 r49, 0x1458  (state 5, word 058)
+083  803e00ea  tstrip.s:117       load0 r62, 0xea  (slot 234: mgesi_TriangleStrip)
+084  4000009e  tstrip.s:118       xfer0 r0 -> 09e
+085  8031105a  tstrip.s:119       load0 r49, 0x105a  (state 4, word 05a)
+086  803e00ed  tstrip.s:122       load0 r62, 0xed  (slot 237: mgesi_TriangleStripSave)
+087  400000a7  tstrip.s:123       xfer0 r0 -> 0a7
+088  80313471  tstrip.s:124       load0 r49, 0x3471  (state 13, word 071)
+089  803e00ed  tstrip.s:127       load0 r62, 0xed  (slot 237: mgesi_TriangleStripSave)
+08a  400000a7  tstrip.s:128       xfer0 r0 -> 0a7
+08b  80312868  tstrip.s:129       load0 r49, 0x2868  (state 10, word 068)
+08c  803e00ec  tstrip.s:132       load0 r62, 0xec  (slot 236: mgesi_TriangleStripRestoreSave)
+08d  400000a7  tstrip.s:133       xfer0 r0 -> 0a7
+08e  80313471  tstrip.s:134       load0 r49, 0x3471  (state 13, word 071)
+08f  803e00ec  tstrip.s:137       load0 r62, 0xec  (slot 236: mgesi_TriangleStripRestoreSave)
+090  400000a7  tstrip.s:138       xfer0 r0 -> 0a7
+091  80312868  tstrip.s:139       load0 r49, 0x2868  (state 10, word 068)
+092  803e01a1  tstrip.s:142       load0 r62, 0x1a1  (slot 417: mgesi_TriangleStripRestoreSaveWithSwapOdd)
+093  400000a7  tstrip.s:143       xfer0 r0 -> 0a7
+094  80313471  tstrip.s:144       load0 r49, 0x3471  (state 13, word 071)
+095  803e01a1  tstrip.s:147       load0 r62, 0x1a1  (slot 417: mgesi_TriangleStripRestoreSaveWithSwapOdd)
+096  400000a7  tstrip.s:148       xfer0 r0 -> 0a7
+097  80312868  tstrip.s:149       load0 r49, 0x2868  (state 10, word 068)
+098  803e019f  tstrip.s:152       load0 r62, 0x19f  (slot 415: mgesi_TriangleStripSaveWithSwapOdd)
+099  400000a7  tstrip.s:153       xfer0 r0 -> 0a7
+09a  80313471  tstrip.s:154       load0 r49, 0x3471  (state 13, word 071)
+09b  803e019f  tstrip.s:157       load0 r62, 0x19f  (slot 415: mgesi_TriangleStripSaveWithSwapOdd)
+09c  400000a7  tstrip.s:158       xfer0 r0 -> 0a7
+09d  80312868  tstrip.s:159       load0 r49, 0x2868  (state 10, word 068)
+09e  7a020009  tstrip.s:162       xfer7 p=1 r54 -> 009
+09f  00000000  tstrip.s:163       nop
+0a0  9046003e  tstrip.s:164       move r70 <- r62
+0a1  8433000a  tstrip.s:165       load0 +fetch r51, 0xa
+0a2  80320000  tstrip.s:166       load0 r50, 0x0
+0a3  7a020009  tstrip.s:169       xfer7 p=1 r54 -> 009
+0a4  00000000  tstrip.s:170       nop
+0a5  400000aa  tstrip.s:171       xfer0 r0 -> 0aa
+0a6  9046003e  tstrip.s:172       move r70 <- r62
+0a7  7a020009  tstrip.s:175       xfer7 p=1 r54 -> 009
+0a8  00000000  tstrip.s:176       nop
+0a9  9045003e  tstrip.s:177       move r69 <- r62
+0aa  80270000  tstrip.s:181       load0 r39, 0x0
+0ab  00000c00  tstrip.s:182       ctl z=0x3
+0ac  801f0000  tstrip.s:183       load0 r31, 0x0
+0ad  04000800  tstrip.s:184       ctl +fetch z=0x2
+0ae  8033000a  tstrip.s:185       load0 r51, 0xa
+0af  04000000  tstrip.s:189       ctl +fetch  <= B[0c3,0c7]
+0b0  00000000  tstrip.s:190       nop
+0b1  40000102  tstrip.s:193       xfer0 r0 -> 102  <= B[0df]
+0b2  81311855  tstrip.s:194       load0 x=1 r49, 0x1855  (state 6, word 055)
+0b3  40000102  tstrip.s:197       xfer0 r0 -> 102  <= B[0db]
+0b4  81311c52  tstrip.s:198       load0 x=1 r49, 0x1c52  (state 7, word 052)
+0b5  400000fd  tstrip.s:201       xfer0 r0 -> 0fd  <= B[0d3]
+0b6  80311855  tstrip.s:202       load0 r49, 0x1855  (state 6, word 055)
+0b7  400000fd  tstrip.s:205       xfer0 r0 -> 0fd  <= B[0d7]
+0b8  8031085c  tstrip.s:206       load0 r49, 0x85c  (state 2, word 05c)
+0b9  40000102  tstrip.s:209       xfer0 r0 -> 102  <= B[0cb]
+0ba  81310c5f  tstrip.s:210       load0 x=1 r49, 0xc5f  (state 3, word 05f)
+0bb  40000102  tstrip.s:213       xfer0 r0 -> 102  <= B[0cf]
+0bc  8131085c  tstrip.s:214       load0 x=1 r49, 0x85c  (state 2, word 05c)
+0bd  40000102  tstrip.s:217       xfer0 r0 -> 102  <= B[0e3]
+0be  81312465  tstrip.s:218       load0 x=1 r49, 0x2465  (state 9, word 065)
+0bf  40000102  tstrip.s:221       xfer0 r0 -> 102  <= B[0e7]
+0c0  81312062  tstrip.s:222       load0 x=1 r49, 0x2062  (state 8, word 062)
+0c1  40000102  tstrip.s:225       xfer0 r0 -> 102  <= B[0eb]
+0c2  81312c6b  tstrip.s:226       load0 x=1 r49, 0x2c6b  (state 11, word 06b)
+0c3  40000102  tstrip.s:229       xfer0 r0 -> 102  <= B[0ef]
+0c4  81312868  tstrip.s:230       load0 x=1 r49, 0x2868  (state 10, word 068)
+0c5  40000102  tstrip.s:233       xfer0 r0 -> 102
+0c6  81313471  tstrip.s:234       load0 x=1 r49, 0x3471  (state 13, word 071)
+0c7  40000102  tstrip.s:237       xfer0 r0 -> 102  <= B[0f7]
+0c8  81313471  tstrip.s:238       load0 x=1 r49, 0x3471  (state 13, word 071)
+0c9  40000102  tstrip.s:241       xfer0 r0 -> 102  <= B[0fb]
+0ca  81313c77  tstrip.s:242       load0 x=1 r49, 0x3c77  (state 15, word 077)
+0cb  40000102  tstrip.s:245       xfer0 r0 -> 102  <= B[0ff]
+0cc  81313874  tstrip.s:246       load0 x=1 r49, 0x3874  (state 14, word 074)
+0cd  40000109  tstrip.s:249       xfer0 r0 -> 109  <= B[0d1]
+0ce  80311855  tstrip.s:250       load0 r49, 0x1855  (state 6, word 055)
+0cf  40000109  tstrip.s:253       xfer0 r0 -> 109  <= B[0d5]
+0d0  8031085c  tstrip.s:254       load0 r49, 0x85c  (state 2, word 05c)
+0d1  40000013  tstrip.s:257       xfer0 r0 -> 013  <= B[0c9]
+0d2  80313874  tstrip.s:258       load0 r49, 0x3874  (state 14, word 074)
+0d3  40000013  tstrip.s:261       xfer0 r0 -> 013  <= B[0cd]
+0d4  80313c77  tstrip.s:262       load0 r49, 0x3c77  (state 15, word 077)
+0d5  40000013  tstrip.s:265       xfer0 r0 -> 013  <= B[0d9]
+0d6  80312465  tstrip.s:266       load0 r49, 0x2465  (state 9, word 065)
+0d7  40000013  tstrip.s:269       xfer0 r0 -> 013  <= B[0dd]
+0d8  80312062  tstrip.s:270       load0 r49, 0x2062  (state 8, word 062)
+0d9  40000013  tstrip.s:282       xfer0 r0 -> 013  <= B[0c1,0c5,0e1,0e5,0e9,0ed,0f5,0f9,0fd]
+0da  00000000  tstrip.s:283       nop
+0db  00800000  tstrip.s:287       ctl y=0x1  <= B[0c6,0da]
+0dc  583310e1  tstrip.s:291       xfer3 r51 v=4 -> 0e1  <= B[0de,0e2,0e6]
+0dd  80320009  tstrip.s:292       load0 r50, 0x9
+0de  7a020009  tstrip.s:293       xfer7 p=1 r54 -> 009
+0df  80320000  tstrip.s:294       load0 r50, 0x0
+0e0  804600ea  tstrip.s:295       load0 r70, 0xea  (slot 234: mgesi_TriangleStrip)
+0e1  400000e8  tstrip.s:297       xfer0 r0 -> 0e8
+0e2  00000000  tstrip.s:298       nop
+0e3  7a020009  tstrip.s:304       xfer7 p=1 r54 -> 009  <= B[0ca,0ce,0fa,0fe]
+0e4  80320000  tstrip.s:305       load0 r50, 0x0
+0e5  804601a2  tstrip.s:306       load0 r70, 0x1a2  (slot 418: mgesi_TriangleStripWithSwapOdd)
+0e6  400000e8  tstrip.s:307       xfer0 r0 -> 0e8
+0e7  00000000  tstrip.s:308       nop
+0e8  80300000  tstrip.s:314       load0 r48, 0x0  <= B[0c2,0d2,0d6]
+0e9  8031001d  tstrip.s:315       load0 r49, 0x1d  (state 0, word 01d)
+0ea  04001000  tstrip.s:316       ctl +fetch release
+0eb  00000000  tstrip.s:317       nop
+0ec  7a020009  tstrip.s:321       xfer7 p=1 r54 -> 009  <= B[0ea,0ee]
+0ed  80320000  tstrip.s:322       load0 r50, 0x0
+0ee  804600eb  tstrip.s:323       load0 r70, 0xeb  (slot 235: mgesi_TriangleStripRestore)
+0ef  400000e8  tstrip.s:324       xfer0 r0 -> 0e8
+0f0  00000000  tstrip.s:325       nop
+0f1  7a020009  tstrip.s:329       xfer7 p=1 r54 -> 009  <= B[0f6]
+0f2  80320000  tstrip.s:330       load0 r50, 0x0
+0f3  804601a0  tstrip.s:331       load0 r70, 0x1a0  (slot 416: mgesi_TriangleStripRestoreWithSwapOdd)
+0f4  400000e8  tstrip.s:332       xfer0 r0 -> 0e8
+0f5  00000000  tstrip.s:333       nop
+0f6  80270000  tstrip.s:336       load0 r39, 0x0
+0f7  00000c00  tstrip.s:337       ctl z=0x3
+0f8  801f0000  tstrip.s:338       load0 r31, 0x0
+0f9  00800000  tstrip.s:339       ctl y=0x1
+0fa  00000800  tstrip.s:340       ctl z=0x2
+0fb  06000000  tstrip.s:341       ctl +fetch x=0x2
+0fc  80370000  tstrip.s:342       load0 r55, 0x0
+0fd  80270000  tstrip.s:346       load0 r39, 0x0
+0fe  00000c00  tstrip.s:347       ctl z=0x3
+0ff  801f0000  tstrip.s:348       load0 r31, 0x0
+100  00000800  tstrip.s:349       ctl z=0x2
+101  01000000  tstrip.s:350       ctl x=0x1
+102  78040107  tstrip.s:352       xfer7 r55 -> 107
+103  80370000  tstrip.s:353       load0 r55, 0x0
+104  80370001  tstrip.s:354       load0 r55, 0x1
+105  04000000  tstrip.s:355       ctl +fetch
+106  800e0001  tstrip.s:356       load0 r14, 0x1
+107  04000000  tstrip.s:358       ctl +fetch
+108  800e0000  tstrip.s:359       load0 r14, 0x0
+109  80270000  tstrip.s:362       load0 r39, 0x0
+10a  00000c00  tstrip.s:363       ctl z=0x3
+10b  801f0000  tstrip.s:364       load0 r31, 0x0
+10c  40000013  tstrip.s:365       xfer0 r0 -> 013
+10d  00000800  tstrip.s:366       ctl z=0x2
+10e  4c320113  points.s:6         xfer1 +fetch r50 v=0 -> 113  <= B[004]
+10f  4c320515  points.s:7         xfer1 +fetch r50 v=1 -> 115
+110  7a020009  points.s:8         xfer7 p=1 r54 -> 009
+111  80320000  points.s:9         load0 r50, 0x0
+112  9046003e  points.s:10        move r70 <- r62
+113  803e00d6  points.s:12        load0 r62, 0xd6  (slot 214: mgesi_Points)
+114  8033000c  points.s:13        load0 r51, 0xc
+115  80300001  points.s:15        load0 r48, 0x1
+116  80310519  points.s:16        load0 r49, 0x519  (state 1, word 119)
+117  840e0000  points.s:17        load0 +fetch r14, 0x0
+118  00000000  points.s:18        nop
+119  82b10519  points.s:22        load0 x=2 y r49, 0x519  (state 1, word 119)  <= B[1a8,1ac]
+11a  74330127  points.s:23        xfer6 +fetch r51 -> 127
+11b  00000000  points.s:24        nop
+11c  58330521  points.s:27        xfer3 r51 v=1 -> 121  <= B[1ae]
+11d  80320001  points.s:28        load0 r50, 0x1
+11e  7a020009  points.s:29        xfer7 p=1 r54 -> 009
+11f  80320000  points.s:30        load0 r50, 0x0
+120  804600d6  points.s:31        load0 r70, 0xd6  (slot 214: mgesi_Points)
+121  80300000  points.s:36        load0 r48, 0x0  <= B[1aa]
+122  8031001d  points.s:37        load0 r49, 0x1d  (state 0, word 01d)
+123  04001000  points.s:38        ctl +fetch release
+124  00000000  points.s:39        nop
+125  04000000  points.s:43        ctl +fetch  <= B[1ab,1af]
+126  00000000  points.s:44        nop
+127  7a020009  points.s:47        xfer7 p=1 r54 -> 009
+128  80310119  points.s:48        load0 r49, 0x119  (state 0, word 119)
+129  804600d6  points.s:49        load0 r70, 0xd6  (slot 214: mgesi_Points)
+12a  8433000c  points.s:50        load0 +fetch r51, 0xc
+12b  80320000  points.s:51        load0 r50, 0x0
+12c  40000013  points.s:54        xfer0 r0 -> 013  <= B[1a9]
+12d  80310119  points.s:55        load0 r49, 0x119  (state 0, word 119)
+12e  40000013  points.s:58        xfer0 r0 -> 013  <= B[1ad]
+12f  80310519  points.s:59        load0 r49, 0x519  (state 1, word 119)
+130  4c320135  lineloop.s:6       xfer1 +fetch r50 v=0 -> 135  <= B[006]
+131  4c321937  lineloop.s:7       xfer1 +fetch r50 v=6 -> 137
+132  7a020009  lineloop.s:8       xfer7 p=1 r54 -> 009
+133  80320000  lineloop.s:9       load0 r50, 0x0
+134  9046003e  lineloop.s:10      move r70 <- r62
+135  803e00cb  lineloop.s:12      load0 r62, 0xcb  (slot 203: mgesi_LineStrip)
+136  8033000c  lineloop.s:13      load0 r51, 0xc
+137  80300006  lineloop.s:15      load0 r48, 0x6
+138  8031013c  lineloop.s:16      load0 r49, 0x13c  (state 0, word 13c)
+139  800e0000  lineloop.s:17      load0 r14, 0x0
+13a  840d000f  lineloop.s:18      load0 +fetch r13, 0xf
+13b  00000000  lineloop.s:19      nop
+13c  82b1053f  lineloop.s:22      load0 x=2 y r49, 0x53f  (state 1, word 13f)  <= B[040]
+13d  841e0000  lineloop.s:23      load0 +fetch r30, 0x0
+13e  00000000  lineloop.s:24      nop
+13f  83b10942  lineloop.s:27      load0 x=3 y r49, 0x942  (state 2, word 142)  <= B[044]
+140  04000000  lineloop.s:28      ctl +fetch
+141  00000000  lineloop.s:29      nop
+142  82b10942  lineloop.s:32      load0 x=2 y r49, 0x942  (state 2, word 142)  <= B[048]
+143  74330158  lineloop.s:33      xfer6 +fetch r51 -> 158
+144  00000000  lineloop.s:34      nop
+145  00000800  lineloop.s:37      ctl z=0x2  <= B[04c]
+146  82b11549  lineloop.s:38      load0 x=2 y r49, 0x1549  (state 5, word 149)
+147  04000000  lineloop.s:39      ctl +fetch
+148  00000000  lineloop.s:40      nop
+149  82b11549  lineloop.s:43      load0 x=2 y r49, 0x1549  (state 5, word 149)  <= B[054]
+14a  74330158  lineloop.s:44      xfer6 +fetch r51 -> 158
+14b  00000000  lineloop.s:45      nop
+14c  83b1114f  lineloop.s:48      load0 x=3 y r49, 0x114f  (state 4, word 14f)  <= B[060]
+14d  04000000  lineloop.s:49      ctl +fetch
+14e  00000000  lineloop.s:50      nop
+14f  82b1114f  lineloop.s:53      load0 x=2 y r49, 0x114f  (state 4, word 14f)  <= B[050]
+150  74330160  lineloop.s:54      xfer6 +fetch r51 -> 160
+151  00000000  lineloop.s:55      nop
+152  82b11952  lineloop.s:58      load0 x=2 y r49, 0x1952  (state 6, word 152)  <= B[058]
+153  74330162  lineloop.s:59      xfer6 +fetch r51 -> 162
+154  00000000  lineloop.s:60      nop
+155  82b11d55  lineloop.s:63      load0 x=2 y r49, 0x1d55  (state 7, word 155)  <= B[05c,19c]
+156  74330164  lineloop.s:64      xfer6 +fetch r51 -> 164
+157  00000000  lineloop.s:65      nop
+158  7a020009  lineloop.s:69      xfer7 p=1 r54 -> 009
+159  80310d45  lineloop.s:70      load0 r49, 0xd45  (state 3, word 145)
+15a  6c01015d  lineloop.s:71      xfer5 +fetch r53 -> 15d
+15b  4000015e  lineloop.s:72      xfer0 r0 -> 15e
+15c  804500cb  lineloop.s:73      load0 r69, 0xcb  (slot 203: mgesi_LineStrip)
+15d  804600cb  lineloop.s:75      load0 r70, 0xcb  (slot 203: mgesi_LineStrip)
+15e  8433000b  lineloop.s:77      load0 +fetch r51, 0xb
+15f  80320000  lineloop.s:78      load0 r50, 0x0
+160  40000166  lineloop.s:81      xfer0 r0 -> 166
+161  803e00d0  lineloop.s:82      load0 r62, 0xd0  (slot 208: mgesi_LineStripSaveV0)
+162  40000166  lineloop.s:85      xfer0 r0 -> 166
+163  803e00cf  lineloop.s:86      load0 r62, 0xcf  (slot 207: mgesi_LineStripSaveAndIgnoreV0)
+164  40000166  lineloop.s:89      xfer0 r0 -> 166
+165  803e00cb  lineloop.s:90      load0 r62, 0xcb  (slot 203: mgesi_LineStrip)
+166  7a020009  lineloop.s:93      xfer7 p=1 r54 -> 009
+167  80311d55  lineloop.s:94      load0 r49, 0x1d55  (state 7, word 155)
+168  9045003e  lineloop.s:95      move r69 <- r62
+169  00000800  lineloop.s:96      ctl z=0x2
+16a  8433000a  lineloop.s:97      load0 +fetch r51, 0xa
+16b  80320000  lineloop.s:98      load0 r50, 0x0
+16c  40000013  lineloop.s:101     xfer0 r0 -> 013  <= B[041]
+16d  8031013c  lineloop.s:102     load0 r49, 0x13c  (state 0, word 13c)
+16e  40000013  lineloop.s:106     xfer0 r0 -> 013  <= B[045,061]
+16f  8031214c  lineloop.s:107     load0 r49, 0x214c  (state 8, word 14c)
+170  40000013  lineloop.s:111     xfer0 r0 -> 013  <= B[049,051]
+171  8031114f  lineloop.s:112     load0 r49, 0x114f  (state 4, word 14f)
+172  6c010175  lineloop.s:116     xfer5 +fetch r53 -> 175  <= B[055]
+173  40000176  lineloop.s:117     xfer0 r0 -> 176
+174  804500cb  lineloop.s:118     load0 r69, 0xcb  (slot 203: mgesi_LineStrip)
+175  804600cb  lineloop.s:120     load0 r70, 0xcb  (slot 203: mgesi_LineStrip)
+176  8033000a  lineloop.s:122     load0 r51, 0xa
+177  00000c00  lineloop.s:126     ctl z=0x3  <= B[04d]
+178  801e000f  lineloop.s:127     load0 r30, 0xf
+179  00000800  lineloop.s:128     ctl z=0x2
+17a  40000013  lineloop.s:129     xfer0 r0 -> 013
+17b  80311952  lineloop.s:130     load0 r49, 0x1952  (state 6, word 152)
+17c  40000013  lineloop.s:133     xfer0 r0 -> 013  <= B[059]
+17d  80311952  lineloop.s:134     load0 r49, 0x1952  (state 6, word 152)
+17e  40000013  lineloop.s:137     xfer0 r0 -> 013  <= B[05d,19d]
+17f  80311d55  lineloop.s:138     load0 r49, 0x1d55  (state 7, word 155)
+180  04000000  lineloop.s:150     ctl +fetch  <= B[043,047,04b,04f,053,057,05b,05f,063,19f]
+181  00000000  lineloop.s:151     nop
+182  00000800  lineloop.s:160     ctl z=0x2  <= B[062]
+183  40000197  lineloop.s:161     xfer0 r0 -> 197
+184  803e00cd  lineloop.s:162     load0 r62, 0xcd  (slot 205: mgesi_LineStripCopyV0)
+185  40000196  lineloop.s:165     xfer0 r0 -> 196  <= B[052]
+186  803e00cd  lineloop.s:166     load0 r62, 0xcd  (slot 205: mgesi_LineStripCopyV0)
+187  40000196  lineloop.s:169     xfer0 r0 -> 196  <= B[056]
+188  803e00cb  lineloop.s:170     load0 r62, 0xcb  (slot 203: mgesi_LineStrip)
+189  40000196  lineloop.s:173     xfer0 r0 -> 196  <= B[05a]
+18a  803e00cc  lineloop.s:174     load0 r62, 0xcc  (slot 204: mgesi_LineStripCopyAndIgnoreV0)
+18b  40000196  lineloop.s:177     xfer0 r0 -> 196  <= B[05e,19e]
+18c  803e00ce  lineloop.s:178     load0 r62, 0xce  (slot 206: mgesi_LineStripRestoreV0)
+18d  00800c00  lineloop.s:182     ctl y=0x1 z=0x3  <= B[04a]
+18e  58330d9e  lineloop.s:186     xfer3 r51 v=3 -> 19e  <= B[046]
+18f  80320006  lineloop.s:187     load0 r50, 0x6
+190  80320000  lineloop.s:188     load0 r50, 0x0
+191  40000198  lineloop.s:189     xfer0 r0 -> 198
+192  803e00cb  lineloop.s:190     load0 r62, 0xcb  (slot 203: mgesi_LineStrip)
+193  00000800  lineloop.s:193     ctl z=0x2  <= B[04e]
+194  40000196  lineloop.s:194     xfer0 r0 -> 196
+195  803e00cb  lineloop.s:195     load0 r62, 0xcb  (slot 203: mgesi_LineStrip)
+196  00000c00  lineloop.s:199     ctl z=0x3
+197  80320000  lineloop.s:201     load0 r50, 0x0
+198  7a020009  lineloop.s:203     xfer7 p=1 r54 -> 009
+199  00000000  lineloop.s:204     nop
+19a  6c01019d  lineloop.s:205     xfer5 +fetch r53 -> 19d
+19b  4000019e  lineloop.s:206     xfer0 r0 -> 19e
+19c  9045003e  lineloop.s:207     move r69 <- r62
+19d  9046003e  lineloop.s:209     move r70 <- r62
+19e  80300000  lineloop.s:214     load0 r48, 0x0  <= B[042]
+19f  8031001d  lineloop.s:215     load0 r49, 0x1d  (state 0, word 01d)
+1a0  04001000  lineloop.s:216     ctl +fetch release
+1a1  00000000  lineloop.s:217     nop
+1a2  4c3201a7  linestrip.s:6      xfer1 +fetch r50 v=0 -> 1a7  <= B[005]
+1a3  4c3215a9  linestrip.s:7      xfer1 +fetch r50 v=5 -> 1a9
+1a4  7a020009  linestrip.s:8      xfer7 p=1 r54 -> 009
+1a5  80320000  linestrip.s:9      load0 r50, 0x0
+1a6  9046003e  linestrip.s:10     move r70 <- r62
+1a7  803e00cb  linestrip.s:12     load0 r62, 0xcb  (slot 203: mgesi_LineStrip)
+1a8  8033000c  linestrip.s:13     load0 r51, 0xc
+1a9  80300005  linestrip.s:15     load0 r48, 0x5
+1aa  803101b7  linestrip.s:16     load0 r49, 0x1b7  (state 0, word 1b7)
+1ab  800e0000  linestrip.s:17     load0 r14, 0x0
+1ac  840d000f  linestrip.s:18     load0 +fetch r13, 0xf
+1ad  00000000  linestrip.s:19     nop
+1ae  583311b3  linestrip.s:23     xfer3 r51 v=4 -> 1b3  <= B[146]
+1af  80320005  linestrip.s:24     load0 r50, 0x5
+1b0  7a020009  linestrip.s:26     xfer7 p=1 r54 -> 009  <= B[14a]
+1b1  80320000  linestrip.s:27     load0 r50, 0x0
+1b2  804600cb  linestrip.s:28     load0 r70, 0xcb  (slot 203: mgesi_LineStrip)
+1b3  8031001d  linestrip.s:35     load0 r49, 0x1d  (state 0, word 01d)  <= B[142,14e,152]
+1b4  80300000  linestrip.s:36     load0 r48, 0x0
+1b5  840d0000  linestrip.s:37     load0 +fetch r13, 0x0
+1b6  00001000  linestrip.s:38     ctl release
+1b7  780101bc  linestrip.s:41     xfer7 r53 -> 1bc  <= B[140]
+1b8  02800000  linestrip.s:42     ctl x=0x2 y=0x1
+1b9  803105bf  linestrip.s:43     load0 r49, 0x5bf  (state 1, word 1bf)
+1ba  743301cd  linestrip.s:44     xfer6 +fetch r51 -> 1cd
+1bb  00000000  linestrip.s:45     nop
+1bc  803109c2  linestrip.s:47     load0 r49, 0x9c2  (state 2, word 1c2)
+1bd  743301d2  linestrip.s:48     xfer6 +fetch r51 -> 1d2
+1be  00000000  linestrip.s:49     nop
+1bf  82b105bf  linestrip.s:52     load0 x=2 y r49, 0x5bf  (state 1, word 1bf)  <= B[144]
+1c0  743301cd  linestrip.s:53     xfer6 +fetch r51 -> 1cd
+1c1  00000000  linestrip.s:54     nop
+1c2  82b109c2  linestrip.s:57     load0 x=2 y r49, 0x9c2  (state 2, word 1c2)  <= B[148]
+1c3  743301d2  linestrip.s:58     xfer6 +fetch r51 -> 1d2
+1c4  00000000  linestrip.s:59     nop
+1c5  00000800  linestrip.s:62     ctl z=0x2  <= B[14c]
+1c6  82b105bf  linestrip.s:63     load0 x=2 y r49, 0x5bf  (state 1, word 1bf)
+1c7  04000000  linestrip.s:64     ctl +fetch
+1c8  00000000  linestrip.s:65     nop
+1c9  00000800  linestrip.s:68     ctl z=0x2  <= B[150]
+1ca  82b109c2  linestrip.s:69     load0 x=2 y r49, 0x9c2  (state 2, word 1c2)
+1cb  04000000  linestrip.s:70     ctl +fetch
+1cc  00000000  linestrip.s:71     nop
+1cd  7a020009  linestrip.s:74     xfer7 p=1 r54 -> 009
+1ce  80310dc5  linestrip.s:75     load0 r49, 0xdc5  (state 3, word 1c5)
+1cf  804600cb  linestrip.s:76     load0 r70, 0xcb  (slot 203: mgesi_LineStrip)
+1d0  8433000b  linestrip.s:77     load0 +fetch r51, 0xb
+1d1  80320000  linestrip.s:78     load0 r50, 0x0
+1d2  7a020009  linestrip.s:81     xfer7 p=1 r54 -> 009
+1d3  803111c9  linestrip.s:82     load0 r49, 0x11c9  (state 4, word 1c9)
+1d4  804500cb  linestrip.s:83     load0 r69, 0xcb  (slot 203: mgesi_LineStrip)
+1d5  8433000b  linestrip.s:84     load0 +fetch r51, 0xb
+1d6  80320000  linestrip.s:85     load0 r50, 0x0
+1d7  40000013  linestrip.s:88     xfer0 r0 -> 013  <= B[141]
+1d8  803101b7  linestrip.s:89     load0 r49, 0x1b7  (state 0, word 1b7)
+1d9  40000013  linestrip.s:92     xfer0 r0 -> 013  <= B[145]
+1da  803105bf  linestrip.s:93     load0 r49, 0x5bf  (state 1, word 1bf)
+1db  00000800  linestrip.s:96     ctl z=0x2  <= B[14d]
+1dc  40000013  linestrip.s:97     xfer0 r0 -> 013
+1dd  803105bf  linestrip.s:98     load0 r49, 0x5bf  (state 1, word 1bf)
+1de  40000013  linestrip.s:101    xfer0 r0 -> 013  <= B[149]
+1df  803109c2  linestrip.s:102    load0 r49, 0x9c2  (state 2, word 1c2)
+1e0  00000800  linestrip.s:105    ctl z=0x2  <= B[151]
+1e1  40000013  linestrip.s:106    xfer0 r0 -> 013
+1e2  803109c2  linestrip.s:107    load0 r49, 0x9c2  (state 2, word 1c2)
+1e3  04000000  linestrip.s:114    ctl +fetch  <= B[143,147,14b,14f,153]
+1e4  00000000  linestrip.s:115    nop
+1e5  4c3201ea  quad.s:6           xfer1 +fetch r50 v=0 -> 1ea  <= B[00a]
+1e6  4c321dec  quad.s:7           xfer1 +fetch r50 v=7 -> 1ec
+1e7  7a020009  quad.s:8           xfer7 p=1 r54 -> 009
+1e8  80320000  quad.s:9           load0 r50, 0x0
+1e9  9046003e  quad.s:10          move r70 <- r62
+1ea  803e00dd  quad.s:12          load0 r62, 0xdd  (slot 221: mgesi_Quads)
+1eb  8033000c  quad.s:13          load0 r51, 0xc
+1ec  80300007  quad.s:15          load0 r48, 0x7
+1ed  803105f4  quad.s:16          load0 r49, 0x5f4  (state 1, word 1f4)
+1ee  800e0000  quad.s:17          load0 r14, 0x0
+1ef  840d000f  quad.s:18          load0 +fetch r13, 0xf
+1f0  00000000  quad.s:19          nop
+1f1  82b109f7  quad.s:22          load0 x=2 y r49, 0x9f7  (state 2, word 1f7)  <= B[160,1c0]
+1f2  04000000  quad.s:23          ctl +fetch
+1f3  00000000  quad.s:24          nop
+1f4  82b109f7  quad.s:27          load0 x=2 y r49, 0x9f7  (state 2, word 1f7)  <= B[164,1c4]
+1f5  04000000  quad.s:28          ctl +fetch
+1f6  00000000  quad.s:29          nop
+1f7  82b10dfa  quad.s:32          load0 x=2 y r49, 0xdfa  (state 3, word 1fa)  <= B[168,1c8]
+1f8  04000000  quad.s:33          ctl +fetch
+1f9  00000000  quad.s:34          nop
+1fa  82b111fd  quad.s:37          load0 x=2 y r49, 0x11fd  (state 4, word 1fd)  <= B[16c,1cc]
+1fb  04000000  quad.s:38          ctl +fetch
+1fc  00000000  quad.s:39          nop
+1fd  82b105f4  quad.s:42          load0 x=2 y r49, 0x5f4  (state 1, word 1f4)  <= B[170,1d0]
+1fe  70330209  quad.s:43          xfer6 r51 -> 209
+1ff  00000000  quad.s:44          nop
+200  58331205  quad.s:47          xfer3 r51 v=4 -> 205  <= B[166,1c6]
+201  80320007  quad.s:48          load0 r50, 0x7
+202  7a020009  quad.s:54          xfer7 p=1 r54 -> 009  <= B[16a,16e,172,1ca,1ce,1d2]
+203  80320000  quad.s:55          load0 r50, 0x0
+204  804600dd  quad.s:56          load0 r70, 0xdd  (slot 221: mgesi_Quads)
+205  80300000  quad.s:61          load0 r48, 0x0  <= B[162,1c2]
+206  8031001d  quad.s:62          load0 r49, 0x1d  (state 0, word 01d)
+207  04001000  quad.s:63          ctl +fetch release
+208  00000000  quad.s:64          nop
+209  7a020009  quad.s:67          xfer7 p=1 r54 -> 009
+20a  803101f1  quad.s:68          load0 r49, 0x1f1  (state 0, word 1f1)
+20b  804600dd  quad.s:69          load0 r70, 0xdd  (slot 221: mgesi_Quads)
+20c  8433000c  quad.s:70          load0 +fetch r51, 0xc
+20d  80320000  quad.s:71          load0 r50, 0x0
+20e  40000013  quad.s:80          xfer0 r0 -> 013  <= B[161,1c1]
+20f  803101f1  quad.s:81          load0 r49, 0x1f1  (state 0, word 1f1)
+210  40000013  quad.s:84          xfer0 r0 -> 013  <= B[165,1c5]
+211  803105f4  quad.s:85          load0 r49, 0x5f4  (state 1, word 1f4)
+212  40000013  quad.s:88          xfer0 r0 -> 013  <= B[169,1c9]
+213  803109f7  quad.s:89          load0 r49, 0x9f7  (state 2, word 1f7)
+214  40000013  quad.s:92          xfer0 r0 -> 013  <= B[16d,1cd]
+215  80310dfa  quad.s:93          load0 r49, 0xdfa  (state 3, word 1fa)
+216  40000013  quad.s:96          xfer0 r0 -> 013  <= B[171,1d1]
+217  803111fd  quad.s:97          load0 r49, 0x11fd  (state 4, word 1fd)
+218  04000000  quad.s:104         ctl +fetch  <= B[163,167,16b,16f,173,1c3,1c7,1cb,1cf,1d3]
+219  00000000  quad.s:105         nop
+21a  4c32021f  qstrip.s:6         xfer1 +fetch r50 v=0 -> 21f  <= B[00b]
+21b  4c322221  qstrip.s:7         xfer1 +fetch r50 v=8 -> 221
+21c  7a020009  qstrip.s:8         xfer7 p=1 r54 -> 009
+21d  80320000  qstrip.s:9         load0 r50, 0x0
+21e  9046003e  qstrip.s:10        move r70 <- r62
+21f  803e00d9  qstrip.s:12        load0 r62, 0xd9  (slot 217: mgesi_QuadStrip)
+220  8033000c  qstrip.s:13        load0 r51, 0xc
+221  80300008  qstrip.s:15        load0 r48, 0x8
+222  80310226  qstrip.s:16        load0 r49, 0x226  (state 0, word 226)
+223  800d000f  qstrip.s:17        load0 r13, 0xf
+224  840e0000  qstrip.s:18        load0 +fetch r14, 0x0
+225  00000000  qstrip.s:19        nop
+226  82b13629  qstrip.s:22        load0 x=2 y r49, 0x3629  (state 13, word 229)  <= B[080]
+227  04000000  qstrip.s:23        ctl +fetch
+228  00000000  qstrip.s:24        nop
+229  83b10a2f  qstrip.s:27        load0 x=3 y r49, 0xa2f  (state 2, word 22f)  <= B[0b4]
+22a  04000000  qstrip.s:28        ctl +fetch
+22b  00000000  qstrip.s:29        nop
+22c  83b10a2f  qstrip.s:32        load0 x=3 y r49, 0xa2f  (state 2, word 22f)  <= B[084]
+22d  7433028d  qstrip.s:33        xfer6 +fetch r51 -> 28d
+22e  00000000  qstrip.s:34        nop
+22f  83b1062c  qstrip.s:37        load0 x=3 y r49, 0x62c  (state 1, word 22c)  <= B[088]
+230  04000000  qstrip.s:38        ctl +fetch
+231  00000000  qstrip.s:39        nop
+232  40000236  qstrip.s:42        xfer0 r0 -> 236  <= B[094]
+233  8031062c  qstrip.s:43        load0 r49, 0x62c  (state 1, word 22c)
+234  40000236  qstrip.s:46        xfer0 r0 -> 236  <= B[09c]
+235  80312648  qstrip.s:47        load0 r49, 0x2648  (state 9, word 248)
+236  80270000  qstrip.s:50        load0 r39, 0x0
+237  801f0000  qstrip.s:51        load0 r31, 0x0
+238  00000c00  qstrip.s:52        ctl z=0x3
+239  00000800  qstrip.s:53        ctl z=0x2
+23a  07000000  qstrip.s:54        ctl +fetch x=0x3
+23b  00800000  qstrip.s:55        ctl y=0x1
+23c  83b1062c  qstrip.s:58        load0 x=3 y r49, 0x62c  (state 1, word 22c)  <= B[098]
+23d  04000000  qstrip.s:59        ctl +fetch
+23e  00000000  qstrip.s:60        nop
+23f  83b1062c  qstrip.s:63        load0 x=3 y r49, 0x62c  (state 1, word 22c)  <= B[08c]
+240  04000000  qstrip.s:64        ctl +fetch
+241  00000000  qstrip.s:65        nop
+242  83b10e3f  qstrip.s:68        load0 x=3 y r49, 0xe3f  (state 3, word 23f)  <= B[090]
+243  74330292  qstrip.s:69        xfer6 +fetch r51 -> 292
+244  00000000  qstrip.s:70        nop
+245  83b12648  qstrip.s:73        load0 x=3 y r49, 0x2648  (state 9, word 248)  <= B[0a0]
+246  04000000  qstrip.s:74        ctl +fetch
+247  00000000  qstrip.s:75        nop
+248  83b12a4b  qstrip.s:78        load0 x=3 y r49, 0x2a4b  (state 10, word 24b)  <= B[0a4]
+249  74330297  qstrip.s:79        xfer6 +fetch r51 -> 297
+24a  00000000  qstrip.s:80        nop
+24b  83b12648  qstrip.s:83        load0 x=3 y r49, 0x2648  (state 9, word 248)  <= B[0a8]
+24c  04000000  qstrip.s:84        ctl +fetch
+24d  00000000  qstrip.s:85        nop
+24e  83b13251  qstrip.s:88        load0 x=3 y r49, 0x3251  (state 12, word 251)  <= B[0ac]
+24f  7433029c  qstrip.s:89        xfer6 +fetch r51 -> 29c
+250  00000000  qstrip.s:90        nop
+251  83b12648  qstrip.s:93        load0 x=3 y r49, 0x2648  (state 9, word 248)  <= B[0b0]
+252  04000000  qstrip.s:94        ctl +fetch
+253  00000000  qstrip.s:95        nop
+254  40000013  qstrip.s:98        xfer0 r0 -> 013  <= B[081]
+255  80310226  qstrip.s:99        load0 r49, 0x226  (state 0, word 226)
+256  40000013  qstrip.s:102       xfer0 r0 -> 013  <= B[0b5]
+257  80313629  qstrip.s:103       load0 r49, 0x3629  (state 13, word 229)
+258  40000013  qstrip.s:106       xfer0 r0 -> 013  <= B[085]
+259  80311242  qstrip.s:107       load0 r49, 0x1242  (state 4, word 242)
+25a  40000013  qstrip.s:110       xfer0 r0 -> 013  <= B[089]
+25b  80310a2f  qstrip.s:111       load0 r49, 0xa2f  (state 2, word 22f)
+25c  40000013  qstrip.s:114       xfer0 r0 -> 013  <= B[08d]
+25d  80310e3f  qstrip.s:115       load0 r49, 0xe3f  (state 3, word 23f)
+25e  40000013  qstrip.s:118       xfer0 r0 -> 013  <= B[091]
+25f  80311242  qstrip.s:119       load0 r49, 0x1242  (state 4, word 242)
+260  40000264  qstrip.s:122       xfer0 r0 -> 264  <= B[095]
+261  80311a3c  qstrip.s:123       load0 r49, 0x1a3c  (state 6, word 23c)
+262  40000264  qstrip.s:126       xfer0 r0 -> 264  <= B[09d]
+263  80312245  qstrip.s:127       load0 r49, 0x2245  (state 8, word 245)
+264  80270000  qstrip.s:130       load0 r39, 0x0
+265  801f0000  qstrip.s:131       load0 r31, 0x0
+266  00000c00  qstrip.s:132       ctl z=0x3
+267  40000013  qstrip.s:133       xfer0 r0 -> 013
+268  00000800  qstrip.s:134       ctl z=0x2
+269  40000013  qstrip.s:137       xfer0 r0 -> 013  <= B[099]
+26a  80311a3c  qstrip.s:138       load0 r49, 0x1a3c  (state 6, word 23c)
+26b  40000013  qstrip.s:141       xfer0 r0 -> 013  <= B[0a1]
+26c  80312245  qstrip.s:142       load0 r49, 0x2245  (state 8, word 245)
+26d  40000013  qstrip.s:145       xfer0 r0 -> 013  <= B[0a5]
+26e  80312e4e  qstrip.s:146       load0 r49, 0x2e4e  (state 11, word 24e)
+26f  40000013  qstrip.s:149       xfer0 r0 -> 013  <= B[0a9]
+270  80312a4b  qstrip.s:150       load0 r49, 0x2a4b  (state 10, word 24b)
+271  40000013  qstrip.s:153       xfer0 r0 -> 013  <= B[0ad]
+272  80312e4e  qstrip.s:154       load0 r49, 0x2e4e  (state 11, word 24e)
+273  40000013  qstrip.s:157       xfer0 r0 -> 013  <= B[0b1]
+274  80313251  qstrip.s:158       load0 r49, 0x3251  (state 12, word 251)
+275  7a020009  qstrip.s:164       xfer7 p=1 r54 -> 009  <= B[0a6,0aa,0ae,0b2]
+276  80320000  qstrip.s:165       load0 r50, 0x0
+277  804600da  qstrip.s:166       load0 r70, 0xda  (slot 218: mgesi_QuadStripRestore)
+278  40000289  qstrip.s:168       xfer0 r0 -> 289
+279  00000000  qstrip.s:169       nop
+27a  7a020009  qstrip.s:174       xfer7 p=1 r54 -> 009  <= B[086,092,0b6]
+27b  80320000  qstrip.s:175       load0 r50, 0x0
+27c  804600d9  qstrip.s:176       load0 r70, 0xd9  (slot 217: mgesi_QuadStrip)
+27d  40000289  qstrip.s:178       xfer0 r0 -> 289
+27e  00000000  qstrip.s:179       nop
+27f  58331284  qstrip.s:185       xfer3 r51 v=4 -> 284  <= B[08a,08e,09a,0a2]
+280  80320008  qstrip.s:186       load0 r50, 0x8
+281  7a020009  qstrip.s:187       xfer7 p=1 r54 -> 009
+282  80320000  qstrip.s:188       load0 r50, 0x0
+283  804600d9  qstrip.s:189       load0 r70, 0xd9  (slot 217: mgesi_QuadStrip)
+284  40000289  qstrip.s:191       xfer0 r0 -> 289
+285  00000000  qstrip.s:192       nop
+286  804600b0  qstrip.s:195       load0 r70, 0xb0  (slot 176: mgebi_NullCommand)  <= B[09e]
+287  40000289  qstrip.s:196       xfer0 r0 -> 289
+288  00000000  qstrip.s:197       nop
+289  80300000  qstrip.s:202       load0 r48, 0x0  <= B[082,096]
+28a  8031001d  qstrip.s:203       load0 r49, 0x1d  (state 0, word 01d)
+28b  04001000  qstrip.s:204       ctl +fetch release
+28c  00000000  qstrip.s:205       nop
+28d  7a020009  qstrip.s:213       xfer7 p=1 r54 -> 009
+28e  80311632  qstrip.s:214       load0 r49, 0x1632  (state 5, word 232)
+28f  804600d9  qstrip.s:215       load0 r70, 0xd9  (slot 217: mgesi_QuadStrip)
+290  8433000a  qstrip.s:217       load0 +fetch r51, 0xa
+291  80320000  qstrip.s:218       load0 r50, 0x0
+292  7a020009  qstrip.s:221       xfer7 p=1 r54 -> 009
+293  80311e34  qstrip.s:222       load0 r49, 0x1e34  (state 7, word 234)
+294  804500dc  qstrip.s:223       load0 r69, 0xdc  (slot 220: mgesi_QuadStripSave)
+295  8433000a  qstrip.s:224       load0 +fetch r51, 0xa
+296  80320000  qstrip.s:225       load0 r50, 0x0
+297  7a020009  qstrip.s:228       xfer7 p=1 r54 -> 009
+298  80311632  qstrip.s:229       load0 r49, 0x1632  (state 5, word 232)
+299  804600da  qstrip.s:230       load0 r70, 0xda  (slot 218: mgesi_QuadStripRestore)
+29a  8433000a  qstrip.s:232       load0 +fetch r51, 0xa
+29b  80320000  qstrip.s:233       load0 r50, 0x0
+29c  7a020009  qstrip.s:236       xfer7 p=1 r54 -> 009
+29d  80311e34  qstrip.s:237       load0 r49, 0x1e34  (state 7, word 234)
+29e  804500db  qstrip.s:238       load0 r69, 0xdb  (slot 219: mgesi_QuadStripRestoreSave)
+29f  8433000a  qstrip.s:239       load0 +fetch r51, 0xa
+2a0  80320000  qstrip.s:240       load0 r50, 0x0
+2a1  04000000  qstrip.s:256       ctl +fetch  <= B[083,087,08b,08f,093,097,09b,09f,0a3,0a7,0ab,0af,0b3,0b7]
+2a2  00000000  qstrip.s:257       nop
+2a3  4c3202a8  tfanpoly.s:11      xfer1 +fetch r50 v=0 -> 2a8  <= B[009]
+2a4  4c322aae  tfanpoly.s:12      xfer1 +fetch r50 v=10 -> 2ae
+2a5  7a020009  tfanpoly.s:13      xfer7 p=1 r54 -> 009
+2a6  80320000  tfanpoly.s:14      load0 r50, 0x0
+2a7  9046003e  tfanpoly.s:15      move r70 <- r62
+2a8  7c0802ac  tfanpoly.s:17      xfer7 +fetch r56 -> 2ac
+2a9  804700ab  tfanpoly.s:18      load0 r71, 0xab  (slot 171: mgeb_SetTfanPolyMode)
+2aa  80430001  tfanpoly.s:19      load0 r67, 0x1
+2ab  80380001  tfanpoly.s:20      load0 r56, 0x1
+2ac  803e00e5  tfanpoly.s:22      load0 r62, 0xe5  (slot 229: mgesi_TfanPolyEnd)
+2ad  8033000c  tfanpoly.s:23      load0 r51, 0xc
+2ae  8030000a  tfanpoly.s:25      load0 r48, 0xa
+2af  803102c3  tfanpoly.s:26      load0 r49, 0x2c3  (state 0, word 2c3)
+2b0  800e0000  tfanpoly.s:27      load0 r14, 0x0
+2b1  840d0007  tfanpoly.s:28      load0 +fetch r13, 0x7
+2b2  00000000  tfanpoly.s:29      nop
+2b3  4c3202b8  tfanpoly.s:32      xfer1 +fetch r50 v=0 -> 2b8  <= B[00c]
+2b4  4c320ebe  tfanpoly.s:33      xfer1 +fetch r50 v=3 -> 2be
+2b5  7a020009  tfanpoly.s:34      xfer7 p=1 r54 -> 009
+2b6  80320000  tfanpoly.s:35      load0 r50, 0x0
+2b7  9046003e  tfanpoly.s:36      move r70 <- r62
+2b8  6c0802bc  tfanpoly.s:38      xfer5 +fetch r56 -> 2bc
+2b9  804700ab  tfanpoly.s:39      load0 r71, 0xab  (slot 171: mgeb_SetTfanPolyMode)
+2ba  80430000  tfanpoly.s:40      load0 r67, 0x0
+2bb  80380000  tfanpoly.s:41      load0 r56, 0x0
+2bc  803e00e5  tfanpoly.s:43      load0 r62, 0xe5  (slot 229: mgesi_TfanPolyEnd)
+2bd  8033000c  tfanpoly.s:44      load0 r51, 0xc
+2be  8030000a  tfanpoly.s:46      load0 r48, 0xa
+2bf  803102c3  tfanpoly.s:47      load0 r49, 0x2c3  (state 0, word 2c3)
+2c0  800e0000  tfanpoly.s:48      load0 r14, 0x0
+2c1  840d0007  tfanpoly.s:49      load0 +fetch r13, 0x7
+2c2  00000000  tfanpoly.s:50      nop
+2c3  82b106c6  tfanpoly.s:53      load0 x=2 y r49, 0x6c6  (state 1, word 2c6)  <= B[100]
+2c4  84210000  tfanpoly.s:54      load0 +fetch r33, 0x0
+2c5  00000000  tfanpoly.s:55      nop
+2c6  83b10acc  tfanpoly.s:58      load0 x=3 y r49, 0xacc  (state 2, word 2cc)  <= B[104]
+2c7  840e0007  tfanpoly.s:59      load0 +fetch r14, 0x7
+2c8  80270000  tfanpoly.s:60      load0 r39, 0x0
+2c9  83b11ae0  tfanpoly.s:64      load0 x=3 y r49, 0x1ae0  (state 6, word 2e0)  <= B[114]
+2ca  840e0007  tfanpoly.s:65      load0 +fetch r14, 0x7
+2cb  80270000  tfanpoly.s:66      load0 r39, 0x0
+2cc  82b10acc  tfanpoly.s:69      load0 x=2 y r49, 0xacc  (state 2, word 2cc)  <= B[108]
+2cd  743302cf  tfanpoly.s:70      xfer6 +fetch r51 -> 2cf
+2ce  00000000  tfanpoly.s:71      nop
+2cf  80310ed2  tfanpoly.s:74      load0 r49, 0xed2  (state 3, word 2d2)
+2d0  04000000  tfanpoly.s:75      ctl +fetch
+2d1  00000000  tfanpoly.s:76      nop
+2d2  7a020009  tfanpoly.s:79      xfer7 p=1 r54 -> 009  <= B[10c]
+2d3  00000000  tfanpoly.s:80      nop
+2d4  6c0102d7  tfanpoly.s:81      xfer5 +fetch r53 -> 2d7
+2d5  400002d8  tfanpoly.s:82      xfer0 r0 -> 2d8
+2d6  804500e4  tfanpoly.s:83      load0 r69, 0xe4  (slot 228: mgesi_TfanPoly)
+2d7  804600e4  tfanpoly.s:85      load0 r70, 0xe4  (slot 228: mgesi_TfanPoly)
+2d8  00000c00  tfanpoly.s:87      ctl z=0x3
+2d9  801f0000  tfanpoly.s:88      load0 r31, 0x0
+2da  00000800  tfanpoly.s:89      ctl z=0x2
+2db  8433000a  tfanpoly.s:90      load0 +fetch r51, 0xa
+2dc  82b10acc  tfanpoly.s:91      load0 x=2 y r49, 0xacc  (state 2, word 2cc)
+2dd  82b122ef  tfanpoly.s:94      load0 x=2 y r49, 0x22ef  (state 8, word 2ef)  <= B[110]
+2de  04000000  tfanpoly.s:95      ctl +fetch
+2df  00000000  tfanpoly.s:96      nop
+2e0  82b11ae0  tfanpoly.s:99      load0 x=2 y r49, 0x1ae0  (state 6, word 2e0)  <= B[118]
+2e1  743302e3  tfanpoly.s:100     xfer6 +fetch r51 -> 2e3
+2e2  00000000  tfanpoly.s:101     nop
+2e3  80311ee6  tfanpoly.s:104     load0 r49, 0x1ee6  (state 7, word 2e6)
+2e4  8433000a  tfanpoly.s:105     load0 +fetch r51, 0xa
+2e5  00000000  tfanpoly.s:106     nop
+2e6  7a020009  tfanpoly.s:109     xfer7 p=1 r54 -> 009  <= B[11c]
+2e7  00000000  tfanpoly.s:110     nop
+2e8  804500e9  tfanpoly.s:111     load0 r69, 0xe9  (slot 233: mgesi_TfanPolySave)
+2e9  00000c00  tfanpoly.s:112     ctl z=0x3
+2ea  801f0000  tfanpoly.s:113     load0 r31, 0x0
+2eb  00000800  tfanpoly.s:114     ctl z=0x2
+2ec  82b122ef  tfanpoly.s:115     load0 x=2 y r49, 0x22ef  (state 8, word 2ef)
+2ed  04000000  tfanpoly.s:116     ctl +fetch
+2ee  00000000  tfanpoly.s:117     nop
+2ef  82b122ef  tfanpoly.s:120     load0 x=2 y r49, 0x22ef  (state 8, word 2ef)  <= B[120]
+2f0  743302f2  tfanpoly.s:121     xfer6 +fetch r51 -> 2f2
+2f1  00000000  tfanpoly.s:122     nop
+2f2  803126f5  tfanpoly.s:126     load0 r49, 0x26f5  (state 9, word 2f5)
+2f3  8433000a  tfanpoly.s:127     load0 +fetch r51, 0xa
+2f4  00000000  tfanpoly.s:128     nop
+2f5  7a020009  tfanpoly.s:131     xfer7 p=1 r54 -> 009  <= B[124]
+2f6  00000000  tfanpoly.s:132     nop
+2f7  804500e6  tfanpoly.s:133     load0 r69, 0xe6  (slot 230: mgesi_TfanPolyRestore)
+2f8  00000c00  tfanpoly.s:134     ctl z=0x3
+2f9  801f0000  tfanpoly.s:135     load0 r31, 0x0
+2fa  00000800  tfanpoly.s:136     ctl z=0x2
+2fb  82b122ef  tfanpoly.s:137     load0 x=2 y r49, 0x22ef  (state 8, word 2ef)
+2fc  04000000  tfanpoly.s:138     ctl +fetch
+2fd  00000000  tfanpoly.s:139     nop
+2fe  82b122ef  tfanpoly.s:142     load0 x=2 y r49, 0x22ef  (state 8, word 2ef)  <= B[128]
+2ff  04000000  tfanpoly.s:143     ctl +fetch
+300  00000000  tfanpoly.s:144     nop
+301  40000013  tfanpoly.s:147     xfer0 r0 -> 013  <= B[101]
+302  803102c3  tfanpoly.s:148     load0 r49, 0x2c3  (state 0, word 2c3)
+303  40000013  tfanpoly.s:151     xfer0 r0 -> 013  <= B[109]
+304  80311ae0  tfanpoly.s:152     load0 r49, 0x1ae0  (state 6, word 2e0)
+305  40000013  tfanpoly.s:156     xfer0 r0 -> 013  <= B[105,115]
+306  803116c9  tfanpoly.s:157     load0 r49, 0x16c9  (state 5, word 2c9)
+307  7a020009  tfanpoly.s:160     xfer7 p=1 r54 -> 009  <= B[10d]
+308  00000000  tfanpoly.s:161     nop
+309  6c20030d  tfanpoly.s:162     xfer5 +fetch r58 -> 30d
+30a  804500e9  tfanpoly.s:163     load0 r69, 0xe9  (slot 233: mgesi_TfanPolySave)
+30b  4000030f  tfanpoly.s:164     xfer0 r0 -> 30f
+30c  803112dd  tfanpoly.s:165     load0 r49, 0x12dd  (state 4, word 2dd)
+30d  804600e4  tfanpoly.s:167     load0 r70, 0xe4  (slot 228: mgesi_TfanPoly)
+30e  80311ae0  tfanpoly.s:168     load0 r49, 0x1ae0  (state 6, word 2e0)
+30f  00000c00  tfanpoly.s:170     ctl z=0x3
+310  8033000a  tfanpoly.s:171     load0 r51, 0xa
+311  801f0000  tfanpoly.s:172     load0 r31, 0x0
+312  40000013  tfanpoly.s:173     xfer0 r0 -> 013
+313  00000800  tfanpoly.s:174     ctl z=0x2
+314  40000013  tfanpoly.s:177     xfer0 r0 -> 013  <= B[111]
+315  803112dd  tfanpoly.s:178     load0 r49, 0x12dd  (state 4, word 2dd)
+316  40000013  tfanpoly.s:181     xfer0 r0 -> 013  <= B[119]
+317  80311ae0  tfanpoly.s:182     load0 r49, 0x1ae0  (state 6, word 2e0)
+318  7a020009  tfanpoly.s:185     xfer7 p=1 r54 -> 009  <= B[11d]
+319  00000000  tfanpoly.s:186     nop
+31a  804500e9  tfanpoly.s:187     load0 r69, 0xe9  (slot 233: mgesi_TfanPolySave)
+31b  00000c00  tfanpoly.s:188     ctl z=0x3
+31c  801f0000  tfanpoly.s:189     load0 r31, 0x0
+31d  00000800  tfanpoly.s:190     ctl z=0x2
+31e  40000013  tfanpoly.s:191     xfer0 r0 -> 013
+31f  803122ef  tfanpoly.s:192     load0 r49, 0x22ef  (state 8, word 2ef)
+320  40000013  tfanpoly.s:195     xfer0 r0 -> 013  <= B[121]
+321  803122ef  tfanpoly.s:196     load0 r49, 0x22ef  (state 8, word 2ef)
+322  7a020009  tfanpoly.s:199     xfer7 p=1 r54 -> 009  <= B[125]
+323  00000000  tfanpoly.s:200     nop
+324  6c200328  tfanpoly.s:201     xfer5 +fetch r58 -> 328
+325  804500e8  tfanpoly.s:202     load0 r69, 0xe8  (slot 232: mgesi_TfanPolyRestoreSave)
+326  4000032a  tfanpoly.s:203     xfer0 r0 -> 32a
+327  80312afe  tfanpoly.s:204     load0 r49, 0x2afe  (state 10, word 2fe)
+328  804500e6  tfanpoly.s:206     load0 r69, 0xe6  (slot 230: mgesi_TfanPolyRestore)
+329  803122ef  tfanpoly.s:207     load0 r49, 0x22ef  (state 8, word 2ef)
+32a  00000c00  tfanpoly.s:209     ctl z=0x3
+32b  801f0000  tfanpoly.s:210     load0 r31, 0x0
+32c  40000013  tfanpoly.s:211     xfer0 r0 -> 013
+32d  00000800  tfanpoly.s:212     ctl z=0x2
+32e  40000013  tfanpoly.s:215     xfer0 r0 -> 013  <= B[129]
+32f  80312afe  tfanpoly.s:216     load0 r49, 0x2afe  (state 10, word 2fe)
+330  04000000  tfanpoly.s:229     ctl +fetch  <= B[103,107,10b,10f,113,117,11b,11f,123,127,12b]
+331  00000000  tfanpoly.s:230     nop
+332  78080335  tfanpoly.s:235     xfer7 r56 -> 335  <= B[106,10a,10e]
+333  8032000a  tfanpoly.s:236     load0 r50, 0xa
+334  80320003  tfanpoly.s:237     load0 r50, 0x3
+335  5c331339  tfanpoly.s:239     xfer3 +fetch r51 v=4 -> 339
+336  7a020009  tfanpoly.s:240     xfer7 p=1 r54 -> 009
+337  80320000  tfanpoly.s:241     load0 r50, 0x0
+338  804600e5  tfanpoly.s:242     load0 r70, 0xe5  (slot 229: mgesi_TfanPolyEnd)
+339  80300000  tfanpoly.s:247     load0 r48, 0x0  <= B[102]
+33a  8031001d  tfanpoly.s:248     load0 r49, 0x1d  (state 0, word 01d)
+33b  04001000  tfanpoly.s:249     ctl +fetch release
+33c  00000000  tfanpoly.s:250     nop
+33d  40000344  tfanpoly.s:255     xfer0 r0 -> 344  <= B[116,11a,11e]
+33e  803e00e5  tfanpoly.s:256     load0 r62, 0xe5  (slot 229: mgesi_TfanPolyEnd)
+33f  40000344  tfanpoly.s:260     xfer0 r0 -> 344  <= B[122,126]
+340  803e00e7  tfanpoly.s:261     load0 r62, 0xe7  (slot 231: mgesi_TfanPolyRestoreEnd)
+341  00000800  tfanpoly.s:266     ctl z=0x2  <= B[112,12a]
+342  40000344  tfanpoly.s:267     xfer0 r0 -> 344
+343  803e0152  tfanpoly.s:268     load0 r62, 0x152  (slot 338: mgesi_TfanPolyRestoreEdge)
+344  7a020009  tfanpoly.s:272     xfer7 p=1 r54 -> 009
+345  00000000  tfanpoly.s:273     nop
+346  9046003e  tfanpoly.s:274     move r70 <- r62
+347  80300000  tfanpoly.s:275     load0 r48, 0x0
+348  8031001d  tfanpoly.s:276     load0 r49, 0x1d  (state 0, word 01d)
+349  04001000  tfanpoly.s:277     ctl +fetch release
+34a  80320000  tfanpoly.s:278     load0 r50, 0x0
+34b  4c320350  tri.s:6            xfer1 +fetch r50 v=0 -> 350  <= B[007]
+34c  4c321352  tri.s:7            xfer1 +fetch r50 v=4 -> 352
+34d  7a020009  tri.s:8            xfer7 p=1 r54 -> 009
+34e  80320000  tri.s:9            load0 r50, 0x0
+34f  9046003e  tri.s:10           move r70 <- r62
+350  803e00ee  tri.s:12           load0 r62, 0xee  (slot 238: mgesi_Triangles)
+351  8033000c  tri.s:13           load0 r51, 0xc
+352  80300004  tri.s:15           load0 r48, 0x4
+353  80310757  tri.s:16           load0 r49, 0x757  (state 1, word 357)
+354  800e0000  tri.s:17           load0 r14, 0x0
+355  840d000f  tri.s:18           load0 +fetch r13, 0xf
+356  00000000  tri.s:19           nop
+357  82b10b5a  tri.s:23           load0 x=2 y r49, 0xb5a  (state 2, word 35a)  <= B[180,184]
+358  04000000  tri.s:24           ctl +fetch
+359  00000000  tri.s:25           nop
+35a  82b10f5d  tri.s:28           load0 x=2 y r49, 0xf5d  (state 3, word 35d)  <= B[188]
+35b  04000000  tri.s:29           ctl +fetch
+35c  00000000  tri.s:30           nop
+35d  82b10757  tri.s:33           load0 x=2 y r49, 0x757  (state 1, word 357)  <= B[18c]
+35e  800d000f  tri.s:34           load0 r13, 0xf
+35f  7433036a  tri.s:35           xfer6 +fetch r51 -> 36a
+360  00000000  tri.s:36           nop
+361  58330f66  tri.s:39           xfer3 r51 v=3 -> 366  <= B[186]
+362  80320004  tri.s:40           load0 r50, 0x4
+363  7a020009  tri.s:45           xfer7 p=1 r54 -> 009  <= B[18a,18e]
+364  80320000  tri.s:46           load0 r50, 0x0
+365  804600ee  tri.s:47           load0 r70, 0xee  (slot 238: mgesi_Triangles)
+366  80300000  tri.s:52           load0 r48, 0x0  <= B[182]
+367  8031001d  tri.s:53           load0 r49, 0x1d  (state 0, word 01d)
+368  04001000  tri.s:54           ctl +fetch release
+369  00000000  tri.s:55           nop
+36a  7a020009  tri.s:58           xfer7 p=1 r54 -> 009
+36b  80310357  tri.s:59           load0 r49, 0x357  (state 0, word 357)
+36c  804600ee  tri.s:60           load0 r70, 0xee  (slot 238: mgesi_Triangles)
+36d  8433000c  tri.s:61           load0 +fetch r51, 0xc
+36e  80320000  tri.s:62           load0 r50, 0x0
+36f  40000013  tri.s:65           xfer0 r0 -> 013  <= B[181]
+370  80310357  tri.s:66           load0 r49, 0x357  (state 0, word 357)
+371  40000013  tri.s:69           xfer0 r0 -> 013  <= B[185]
+372  80310757  tri.s:70           load0 r49, 0x757  (state 1, word 357)
+373  40000013  tri.s:73           xfer0 r0 -> 013  <= B[189]
+374  80310b5a  tri.s:74           load0 r49, 0xb5a  (state 2, word 35a)
+375  40000013  tri.s:77           xfer0 r0 -> 013  <= B[18d]
+376  80310f5d  tri.s:78           load0 r49, 0xf5d  (state 3, word 35d)
+377  04000000  tri.s:84           ctl +fetch  <= B[183,187,18b,18f]
+378  00000000  tri.s:85           nop
+379  4c32037e  lines.s:6          xfer1 +fetch r50 v=0 -> 37e  <= B[00d]
+37a  4c320b80  lines.s:7          xfer1 +fetch r50 v=2 -> 380
+37b  7a020009  lines.s:8          xfer7 p=1 r54 -> 009
+37c  80320000  lines.s:9          load0 r50, 0x0
+37d  9046003e  lines.s:10         move r70 <- r62
+37e  803e00cb  lines.s:12         load0 r62, 0xcb  (slot 203: mgesi_LineStrip)
+37f  8033000c  lines.s:13         load0 r51, 0xc
+380  80300002  lines.s:15         load0 r48, 0x2
+381  80310385  lines.s:16         load0 r49, 0x385  (state 0, word 385)
+382  800e0000  lines.s:17         load0 r14, 0x0
+383  840d000f  lines.s:18         load0 +fetch r13, 0xf
+384  00000000  lines.s:19         nop
+385  82b10788  lines.s:27         load0 x=2 y r49, 0x788  (state 1, word 388)  <= B[190,198]
+386  04000000  lines.s:28         ctl +fetch
+387  00000000  lines.s:29         nop
+388  82b10b85  lines.s:36         load0 x=2 y r49, 0xb85  (state 2, word 385)  <= B[194]
+389  800d000f  lines.s:37         load0 r13, 0xf
+38a  74330398  lines.s:38         xfer6 +fetch r51 -> 398
+38b  00000000  lines.s:39         nop
+38c  00800000  lines.s:47         ctl y=0x1  <= B[196]
+38d  58330b92  lines.s:49         xfer3 r51 v=2 -> 392  <= B[19a]
+38e  80320002  lines.s:50         load0 r50, 0x2
+38f  7a020009  lines.s:51         xfer7 p=1 r54 -> 009
+390  80320000  lines.s:52         load0 r50, 0x0
+391  804600cb  lines.s:53         load0 r70, 0xcb  (slot 203: mgesi_LineStrip)
+392  80300000  lines.s:58         load0 r48, 0x0  <= B[192]
+393  8031001d  lines.s:59         load0 r49, 0x1d  (state 0, word 01d)
+394  04001000  lines.s:60         ctl +fetch release
+395  00000000  lines.s:61         nop
+396  04000000  lines.s:66         ctl +fetch  <= B[193,197,19b]
+397  00000000  lines.s:67         nop
+398  7a020009  lines.s:70         xfer7 p=1 r54 -> 009
+399  80310385  lines.s:71         load0 r49, 0x385  (state 0, word 385)
+39a  804600cb  lines.s:72         load0 r70, 0xcb  (slot 203: mgesi_LineStrip)
+39b  8433000c  lines.s:73         load0 +fetch r51, 0xc
+39c  80320000  lines.s:74         load0 r50, 0x0
+39d  40000013  lines.s:77         xfer0 r0 -> 013  <= B[191]
+39e  80310385  lines.s:78         load0 r49, 0x385  (state 0, word 385)
+39f  40000013  lines.s:81         xfer0 r0 -> 013  <= B[195]
+3a0  80310788  lines.s:82         load0 r49, 0x788  (state 1, word 388)
+3a1  40000013  lines.s:85         xfer0 r0 -> 013  <= B[199]
+3a2  80310b85  lines.s:86         load0 r49, 0xb85  (state 2, word 385)

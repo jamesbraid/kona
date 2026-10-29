@@ -843,4 +843,32 @@ enum kona_hp_token {
 #define KONA_GE11_SR_SORT_THRD_B          0x45
 
 
+/*
+ * Routed token-map entries are distributor control words (ucode/ged.md).
+ *
+ * ESTABLISHED (irsaudit Compact_HIP_*_Control / Compact_GED_*_Control,
+ * 6.5.30m; checked against all 206 routed entries of arm1.u's map):
+ * bit 0 = routed, bit 31 = geometry form; otherwise bit 5 = register/pixel
+ * form, clear = pass form. Geometry: entry bits 9-30 = control bits 1-22,
+ * count in bits 6-8. Pass and register/pixel: entry bits 11-30 = control
+ * bits 3-22, count in bits 6-10. Register/pixel control: bit 0 = 1,
+ * bits 13-22 = distributor register (entry bits 21-30).
+ *
+ * Geometry control fields, positions ESTABLISHED, meanings INFERRED from
+ * which tokens carry them (shown as token-map entry bits):
+ */
+#define KONA_ENTRY_GEOM                 0x80000000u
+#define KONA_ENTRY_REGPIX               0x00000020u
+#define KONA_GEOM_OFFSET(e)             (((e) >> 9) & 0x1f)   /* word in vertex record */
+#define KONA_GEOM_VDATA(e)              (((e) >> 14) & 1)     /* payload is vertex data */
+#define KONA_GEOM_K(e)                  (((e) >> 15) & 0x3f)  /* entry number */
+#define KONA_GEOM_VERTEX(e)             (((e) >> 21) & 1)     /* completes a vertex */
+#define KONA_GEOM_FLOAT(e)              (((e) >> 22) & 1)
+#define KONA_GEOM_UNSIGNED(e)           (((e) >> 23) & 1)
+#define KONA_GEOM_NORMALIZE(e)          (((e) >> 24) & 1)
+#define KONA_GEOM_MISSING(e)            (((e) >> 25) & 3)     /* 4 - components */
+#define KONA_GEOM_LASTBYTES(e)          (((e) >> 27) & 3)     /* valid bytes - 1 */
+#define KONA_GEOM_SIZE(e)               (((e) >> 29) & 3)     /* 0 B, 1 S, 2 32-bit, 3 D */
+#define KONA_REGPIX_REG(e)              (((e) >> 21) & 0x3ff)
+
 #endif /* KONA_GE_H */
