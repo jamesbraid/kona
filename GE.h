@@ -3894,14 +3894,14 @@ enum kona_hp_token {
      * to table and format indices (format 0x1903-0x1905, the single-component
      * red, green and blue, gives index 1; every other format goes through
      * internalformat_index) and calls do_getcolortable: bounds check, count
-     * rounded up to 32, start_rdata, count x 4 to 0x476 (the reply length in words: each table or map entry
-     * comes back as four words), engine LutUpload (slot 210), finish_rdata.
-     * Payload 4: table target, format, first entry, entry count (host asks at
-     * most 512). Established: the token map runs `arm_getcolortable` at
-     * arm1.u 0x0c03f24c. Sent by libGLcore.so __glkonim_GetColorTableSGI ->
-     * __glkon_get_special4(234, ...) (kon_colortable.s);
-     * __glkonim_GetColorTableSGI unpacks the reply at rdata + 8 as count RGBA
-     * entries (__glInitMemGet, format 0x1908). */
+     * rounded up to 32, start_rdata, count x 4 to 0x476 (the reply length in
+     * words: each table or map entry comes back as four words), engine
+     * LutUpload (slot 210), finish_rdata. Payload 4: table target, format,
+     * first entry, entry count (host asks at most 512). Established: the
+     * token map runs `arm_getcolortable` at arm1.u 0x0c03f24c. Sent by
+     * libGLcore.so __glkonim_GetColorTableSGI -> __glkon_get_special4(234,
+     * ...) (kon_colortable.s); __glkonim_GetColorTableSGI unpacks the reply
+     * at rdata + 8 as count RGBA entries (__glInitMemGet, format 0x1908). */
     KONA_HP_GETCOLORTABLE                = 0x0ea,
 
     /* Read at arm1.u arm_colortableparameterfv 0x0c03edac (5 plain reads +
@@ -4208,14 +4208,15 @@ enum kona_hp_token {
     /* `HP_WG_FLUSH_0` (0x0ff). Inferred: The token map runs a one-instruction
      * stub at 0x0c0265fc that branches to arm_badcmd; that prints the current
      * and previous token numbers, reads and prints 100 payload words, then
-     * spins reading words, so the pipe would hang. By analogy with
-     * HP_WG_FLUSH_1 it is inferred to be a write-gather flush slot that the
-     * host interface drops before the map; no sender exists to confirm.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_wg_flush_0` at arm1.u 0x0c0265fc, a stub that ends in
-     * `arm_badcmd`. No sender found in libGLcore, kernel or X module (no
-     * store at window offset 0x1fe0 = 0xff x 32). */
+     * spins reading words, so the pipe would hang if the token arrived. Only
+     * IP19-host paths ever address it: gfxinfo wg_flush (0x1000ec4c) stores
+     * at window offset 0x1fe0 only when get_ven_iptype returns 19, so on IP27
+     * and IP35 the pipe never receives it. Payload none read by the stub
+     * (arm_badcmd drains 100): nothing: the token is refused and no payload
+     * is defined. Established: the token map runs `arm_wg_flush_0` at arm1.u
+     * 0x0c0265fc, a stub that ends in `arm_badcmd`. No sender found on IP27
+     * or IP35: gfxinfo wg_flush 0x1000ec4c stores at 0x1fe0 only on IP type
+     * 19; no store in libGLcore, the kernel or the four X modules. */
     KONA_HP_WG_FLUSH_0                   = 0x0ff,
 
     /* Read at arm1.u arm_data_1 0x0c026600 (b 0x0c0017f4); arm_badcmd
@@ -8079,16 +8080,21 @@ enum kona_hp_token {
     /* `HP_WG_FLUSH_1` (0x1ff). Inferred: The token map runs a one-instruction
      * stub at 0x0c026644 that branches to arm_badcmd; that prints the current
      * and previous token numbers, reads and prints 100 payload words, then
-     * spins reading words, so the pipe would hang. The X server stores
-     * 0xdeadbeef at its address after cursor and read-back work, so the host
-     * interface is inferred to discard it before the map; if it reached the
-     * ARM the pipe would hang. Payload none read by the stub (arm_badcmd
-     * drains 100): nothing: the token is refused and no payload is defined.
-     * Established: the token map runs `arm_wg_flush_1` at arm1.u 0x0c026644,
-     * a stub that ends in `arm_badcmd`. Sent by libGLcore: none. X module
-     * kona.so stores 0xdeadbeef at window offset 0x3fe0 in konCreateWindow,
-     * konDestroyWindow, konReadImage and konReadFBBlock (kon.s: addiu 16352
-     * then sw), and after cursor loads per docs/opengl.md. */
+     * spins reading words, so the pipe would hang if the token arrived. Every
+     * store of it is on an IP19-host path: setmon KonFlush (0x10032ef0) sends
+     * it with 0xdeadbeef only on board type 19 and reads window offset 0x4200
+     * instead on types 25 and 27; kona.so stores it, but the IP27 kernel
+     * names the pipe KONAL and IP35 KONAD, so Xsgi loads konal.so or konad.so
+     * (inferred), which read a word through screen private +16 at the same
+     * eleven places. The pipe therefore never receives it on IP27 or IP35.
+     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
+     * token is refused and no payload is defined. Established: the token map
+     * runs `arm_wg_flush_1` at arm1.u 0x0c026644, a stub that ends in
+     * `arm_badcmd`. No sender found on IP27 or IP35. setmon
+     * KonFlush 0x10032ef0 (board type 19 only); kona.so konCreateWindow,
+     * konDestroyWindow, konReadImage and konReadFBBlock store 0xdeadbeef at
+     * window offset 0x3fe0 (kon.s: addiu 16352 then sw), a module the IP27
+     * and IP35 kernels do not name. */
     KONA_HP_WG_FLUSH_1                   = 0x1ff,
 };
 

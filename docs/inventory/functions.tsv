@@ -14240,7 +14240,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9481b4	404	__glSdr
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948348	28	__glSdramInit	mdebug	f4808d1f88fb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948364	32	__glSdramMemmove	mdebug	e0fe149dc7a0	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948384	168	__glSdramCopyIn	mdebug	d8f85b033c5f	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94842c	36	__glSdramPushIn	mdebug	9ef28dd35165	named-only	GE.h:5912	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94842c	36	__glSdramPushIn	mdebug	9ef28dd35165	named-only	GE.h:5913	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948450	356	__glKonSdramInvalidate	mdebug	43d059f43cf6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9485b4	568	__glKonSdramSwapIn	mdebug	acf7c90a0c29	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9487ec	384	__glKonSdramForceSwapIn	mdebug	0b54e7fd778b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14248,7 +14248,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94896c	376	__glLoc
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948ae4	92	__glLockedMemoryFree	mdebug	b923f587e75d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948b40	692	__glLockedMemorySbrk	mdebug	9428330223be	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948df4	56	__glLockedMemoryMemmove	mdebug	125f9269b0c0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948e2c	36	__glKonExecuteLDMA	mdebug	ecc5cd82016e	named-only	GE.h:5993	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948e2c	36	__glKonExecuteLDMA	mdebug	ecc5cd82016e	named-only	GE.h:5994	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948e50	200	__glKonExecuteLDMAn	mdebug	8af2df5c16bc	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948f18	172	__glKonExecuteIDMA	mdebug	c1bbcc1a2672	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948fc4	200	__glKonExecuteIDMAn	mdebug	7e88640923b0	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -14488,7 +14488,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95e4d0	444	__glkonim_Pu
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95e68c	360	__glkonim_PopClientAttrib	dynsym+mdebug	e879e84f7735	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95e7f4	8584	__glkonCopyContext	dynsym+mdebug	0e754a1e6829	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd96097c	11156	__glkonResolveContext	dynsym+mdebug	d0187600d73b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78	named-only	GE.h:4430	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78	named-only	GE.h:4431	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9635bc	5892	ResolvePixelContext	mdebug	32276f803aa5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd963cd0	304	__glkonim_SpriteParameterfvSGIX	dynsym+mdebug	9fdd0299eaf1	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd963e00	168	__glkonim_SpriteParameterivSGIX	dynsym+mdebug	640055d43c10	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14812,7 +14812,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98c9e0	160	__glkonlc_De
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98ca80	188	__glkonlc_DeformationMap3dSGIX	dynsym+mdebug	4ced2b308a87	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98cb3c	84	__glkonim_DeformSGIX	dynsym+mdebug	e7770a249626	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98cb90	172	__glkonlc_DeformSGIX	dynsym+mdebug	80d328db613d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98cc3c	20	__glkonim_LoadIdentityDeformationMapSGIX	dynsym+mdebug	ee34ed90e9a7	named-only	GE.h:7256	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98cc3c	20	__glkonim_LoadIdentityDeformationMapSGIX	dynsym+mdebug	ee34ed90e9a7	named-only	GE.h:7257	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98cc50	144	__glkonlc_LoadIdentityDeformationMapSGIX	dynsym+mdebug	e866a34c7057	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98cce0	1364	getDeformationf	mdebug	971383b0e5a9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98ce24	56	__glkon_GetDeformationf	dynsym+mdebug	b504d67e1bd9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -19782,7 +19782,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a460	376	__glS
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a5e0	28	__glSdramInit	dwarf+funcnames	53bef9f08b45	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a600	28	__glSdramMemmove	dwarf+funcnames	30bac91e9d92	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a620	144	__glSdramCopyIn	dwarf+funcnames	16c2653544e8	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a6b0	36	__glSdramPushIn	dwarf+funcnames	3e7a5f108787	named-only	GE.h:5912	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a6b0	36	__glSdramPushIn	dwarf+funcnames	3e7a5f108787	named-only	GE.h:5913	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a6e0	304	__glKonSdramInvalidate	dwarf+funcnames	aed27b83eb15	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a810	620	__glKonSdramSwapIn	dwarf+funcnames	77716f87c60e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94aa80	324	__glKonSdramForceSwapIn	dwarf+funcnames	8a0084bd4674	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -19790,7 +19790,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94abd0	328	__glL
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94ad20	64	__glLockedMemoryFree	dwarf+funcnames	9f55de969eda	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94ad60	700	__glLockedMemorySbrk	dwarf+funcnames	c2d40c93979b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b020	52	__glLockedMemoryMemmove	dwarf+funcnames	e997111f6eb5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b060	32	__glKonExecuteLDMA	dwarf+funcnames	af27675004be	named-only	GE.h:5993	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b060	32	__glKonExecuteLDMA	dwarf+funcnames	af27675004be	named-only	GE.h:5994	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b080	108	__glKonExecuteLDMAn	dwarf+funcnames	730e5a757689	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b0f0	56	__glKonExecuteIDMA	dwarf+funcnames	39e7411f5f51	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b130	108	__glKonExecuteIDMAn	dwarf+funcnames	265842084beb	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -20030,7 +20030,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95f5f0	692	__glkonim_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95f8b0	684	__glkonim_PopClientAttrib	dwarf+dynsym	28b117792f59	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95fb60	6876	__glkonCopyContext	dwarf+dynsym	bce0b72cea1a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd961640	8616	__glkonResolveContext	dwarf+dynsym	6ecfcb11d59f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426	named-only	GE.h:4430	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426	named-only	GE.h:4431	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd963890	1172	ResolvePixelContext	dwarf+funcnames	7dfc5374159f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd963d30	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	62c06a682e5b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd963e20	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	9255a625b5cb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -20348,7 +20348,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9888a0	108	__glkonlc_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988910	128	__glkonlc_DeformationMap3dSGIX	dwarf+dynsym	2178522c9d7b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988990	92	__glkonim_DeformSGIX	dwarf+dynsym	ea7a8c80e4e8	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9889f0	164	__glkonlc_DeformSGIX	dwarf+dynsym	8620b395a5eb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988aa0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7256	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988aa0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7257	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988ac0	188	__glkonlc_LoadIdentityDeformationMapSGIX	dwarf+dynsym	f14d87af6c28	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd988b80	284	getDeformationf	dwarf+funcnames	11d6267b0e94	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988ca0	56	__glkon_GetDeformationf	dwarf+dynsym	a65568e86b37	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25362,7 +25362,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac360	348	__glS
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac4c0	28	__glSdramInit	dwarf	34a74c5dc659	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac4e0	28	__glSdramMemmove	dwarf	30bac91e9d92	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac500	144	__glSdramCopyIn	dwarf	9b361b5ca161	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac590	36	__glSdramPushIn	dwarf	df54c5533d19	named-only	GE.h:5912	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac590	36	__glSdramPushIn	dwarf	df54c5533d19	named-only	GE.h:5913	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac5c0	312	__glKonSdramInvalidate	dwarf	9de2351c4b99	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac700	640	__glKonSdramSwapIn	dwarf	b122b4aec843	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac980	332	__glKonSdramForceSwapIn	dwarf	1105ad295e2c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25370,7 +25370,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacad0	344	__glL
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacc30	64	__glLockedMemoryFree	dwarf	247235cf702a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacc70	712	__glLockedMemorySbrk	dwarf	c2cda330a0a0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacf40	52	__glLockedMemoryMemmove	dwarf	726124434ef9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacf80	32	__glKonExecuteLDMA	dwarf	379f716d1b7c	named-only	GE.h:5993	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacf80	32	__glKonExecuteLDMA	dwarf	379f716d1b7c	named-only	GE.h:5994	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacfa0	236	__glKonExecuteLDMAn	dwarf	2badfb33d995	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dad090	180	__glKonExecuteIDMA	dwarf	165d2ccf3ebc	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dad150	236	__glKonExecuteIDMAn	dwarf	8e7c86127868	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -25610,7 +25610,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc1a70	636	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc1cf0	572	__glkonim_PopClientAttrib	dwarf+dynsym	c2fdb519a83e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc1f30	6852	__glkonCopyContext	dwarf+dynsym	a34ac8bb2878	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc3a00	8636	__glkonResolveContext	dwarf+dynsym	7131c610c187	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc5bc0	148	setCurrentRaster	dwarf	873ef05636d0	named-only	GE.h:4430	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc5bc0	148	setCurrentRaster	dwarf	873ef05636d0	named-only	GE.h:4431	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc5c60	1172	ResolvePixelContext	dwarf	702e298be9b7	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc6100	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	c1c97d1dcc53	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc61f0	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	6d4015b848a9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25928,7 +25928,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb3c0	108	__glkonlc_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb430	128	__glkonlc_DeformationMap3dSGIX	dwarf+dynsym	bf917c0fed39	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb4b0	92	__glkonim_DeformSGIX	dwarf+dynsym	8581462927f0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb510	164	__glkonlc_DeformSGIX	dwarf+dynsym	dd62dd3000bb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb5c0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7256	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb5c0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7257	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb5e0	188	__glkonlc_LoadIdentityDeformationMapSGIX	dwarf+dynsym	329a005c42ad	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2deb6a0	284	getDeformationf	dwarf	76ec35c48d62	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb7c0	56	__glkon_GetDeformationf	dwarf+dynsym	a47ba7ec6153	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -30939,7 +30939,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9481b4	404	__glSdr
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948348	28	__glSdramInit	mdebug	f4808d1f88fb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948364	32	__glSdramMemmove	mdebug	e0fe149dc7a0	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948384	168	__glSdramCopyIn	mdebug	d8f85b033c5f	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94842c	36	__glSdramPushIn	mdebug	9ef28dd35165	named-only	GE.h:5912	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94842c	36	__glSdramPushIn	mdebug	9ef28dd35165	named-only	GE.h:5913	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948450	356	__glKonSdramInvalidate	mdebug	43d059f43cf6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9485b4	568	__glKonSdramSwapIn	mdebug	acf7c90a0c29	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9487ec	384	__glKonSdramForceSwapIn	mdebug	0b54e7fd778b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -30947,7 +30947,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94896c	376	__glLoc
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948ae4	92	__glLockedMemoryFree	mdebug	b923f587e75d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948b40	692	__glLockedMemorySbrk	mdebug	9428330223be	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948df4	56	__glLockedMemoryMemmove	mdebug	125f9269b0c0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948e2c	36	__glKonExecuteLDMA	mdebug	ecc5cd82016e	named-only	GE.h:5993	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948e2c	36	__glKonExecuteLDMA	mdebug	ecc5cd82016e	named-only	GE.h:5994	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948e50	200	__glKonExecuteLDMAn	mdebug	8af2df5c16bc	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948f18	172	__glKonExecuteIDMA	mdebug	c1bbcc1a2672	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948fc4	200	__glKonExecuteIDMAn	mdebug	7e88640923b0	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -31187,7 +31187,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95e4d0	444	__glkonim_Pu
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95e68c	360	__glkonim_PopClientAttrib	dynsym+mdebug	e879e84f7735	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95e7f4	8584	__glkonCopyContext	dynsym+mdebug	0e754a1e6829	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd96097c	11156	__glkonResolveContext	dynsym+mdebug	d0187600d73b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78	named-only	GE.h:4430	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78	named-only	GE.h:4431	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9635bc	5892	ResolvePixelContext	mdebug	32276f803aa5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd963cd0	304	__glkonim_SpriteParameterfvSGIX	dynsym+mdebug	9fdd0299eaf1	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd963e00	168	__glkonim_SpriteParameterivSGIX	dynsym+mdebug	640055d43c10	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31511,7 +31511,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98c9e0	160	__glkonlc_De
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98ca80	188	__glkonlc_DeformationMap3dSGIX	dynsym+mdebug	4ced2b308a87	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98cb3c	84	__glkonim_DeformSGIX	dynsym+mdebug	e7770a249626	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98cb90	172	__glkonlc_DeformSGIX	dynsym+mdebug	80d328db613d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98cc3c	20	__glkonim_LoadIdentityDeformationMapSGIX	dynsym+mdebug	ee34ed90e9a7	named-only	GE.h:7256	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98cc3c	20	__glkonim_LoadIdentityDeformationMapSGIX	dynsym+mdebug	ee34ed90e9a7	named-only	GE.h:7257	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98cc50	144	__glkonlc_LoadIdentityDeformationMapSGIX	dynsym+mdebug	e866a34c7057	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98cce0	1364	getDeformationf	mdebug	971383b0e5a9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98ce24	56	__glkon_GetDeformationf	dynsym+mdebug	b504d67e1bd9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36481,7 +36481,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a460	376	__glS
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a5e0	28	__glSdramInit	dwarf+funcnames	53bef9f08b45	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a600	28	__glSdramMemmove	dwarf+funcnames	30bac91e9d92	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a620	144	__glSdramCopyIn	dwarf+funcnames	16c2653544e8	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a6b0	36	__glSdramPushIn	dwarf+funcnames	3e7a5f108787	named-only	GE.h:5912	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a6b0	36	__glSdramPushIn	dwarf+funcnames	3e7a5f108787	named-only	GE.h:5913	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a6e0	304	__glKonSdramInvalidate	dwarf+funcnames	aed27b83eb15	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a810	620	__glKonSdramSwapIn	dwarf+funcnames	77716f87c60e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94aa80	324	__glKonSdramForceSwapIn	dwarf+funcnames	8a0084bd4674	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36489,7 +36489,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94abd0	328	__glL
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94ad20	64	__glLockedMemoryFree	dwarf+funcnames	9f55de969eda	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94ad60	700	__glLockedMemorySbrk	dwarf+funcnames	c2d40c93979b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b020	52	__glLockedMemoryMemmove	dwarf+funcnames	e997111f6eb5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b060	32	__glKonExecuteLDMA	dwarf+funcnames	af27675004be	named-only	GE.h:5993	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b060	32	__glKonExecuteLDMA	dwarf+funcnames	af27675004be	named-only	GE.h:5994	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b080	108	__glKonExecuteLDMAn	dwarf+funcnames	730e5a757689	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b0f0	56	__glKonExecuteIDMA	dwarf+funcnames	39e7411f5f51	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b130	108	__glKonExecuteIDMAn	dwarf+funcnames	265842084beb	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -36729,7 +36729,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95f5f0	692	__glkonim_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95f8b0	684	__glkonim_PopClientAttrib	dwarf+dynsym	28b117792f59	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95fb60	6876	__glkonCopyContext	dwarf+dynsym	bce0b72cea1a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd961640	8616	__glkonResolveContext	dwarf+dynsym	6ecfcb11d59f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426	named-only	GE.h:4430	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426	named-only	GE.h:4431	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd963890	1172	ResolvePixelContext	dwarf+funcnames	7dfc5374159f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd963d30	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	62c06a682e5b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd963e20	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	9255a625b5cb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -37047,7 +37047,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9888a0	108	__glkonlc_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988910	128	__glkonlc_DeformationMap3dSGIX	dwarf+dynsym	2178522c9d7b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988990	92	__glkonim_DeformSGIX	dwarf+dynsym	ea7a8c80e4e8	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9889f0	164	__glkonlc_DeformSGIX	dwarf+dynsym	8620b395a5eb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988aa0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7256	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988aa0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7257	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988ac0	188	__glkonlc_LoadIdentityDeformationMapSGIX	dwarf+dynsym	f14d87af6c28	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd988b80	284	getDeformationf	dwarf+funcnames	11d6267b0e94	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988ca0	56	__glkon_GetDeformationf	dwarf+dynsym	a65568e86b37	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42061,7 +42061,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c360	348	__glS
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c4c0	28	__glSdramInit	dwarf	34a74c5dc659	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c4e0	28	__glSdramMemmove	dwarf	30bac91e9d92	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c500	144	__glSdramCopyIn	dwarf	9b361b5ca161	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c590	36	__glSdramPushIn	dwarf	df54c5533d19	named-only	GE.h:5912	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c590	36	__glSdramPushIn	dwarf	df54c5533d19	named-only	GE.h:5913	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c5c0	312	__glKonSdramInvalidate	dwarf	9de2351c4b99	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c700	640	__glKonSdramSwapIn	dwarf	b122b4aec843	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c980	332	__glKonSdramForceSwapIn	dwarf	1105ad295e2c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42069,7 +42069,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cad0	344	__glL
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cc30	64	__glLockedMemoryFree	dwarf	247235cf702a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cc70	712	__glLockedMemorySbrk	dwarf	c2cda330a0a0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cf40	52	__glLockedMemoryMemmove	dwarf	726124434ef9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cf80	32	__glKonExecuteLDMA	dwarf	379f716d1b7c	named-only	GE.h:5993	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cf80	32	__glKonExecuteLDMA	dwarf	379f716d1b7c	named-only	GE.h:5994	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cfa0	236	__glKonExecuteLDMAn	dwarf	2badfb33d995	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218d090	180	__glKonExecuteIDMA	dwarf	165d2ccf3ebc	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218d150	236	__glKonExecuteIDMAn	dwarf	8e7c86127868	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -42309,7 +42309,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a1a70	636	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a1cf0	572	__glkonim_PopClientAttrib	dwarf+dynsym	c2fdb519a83e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a1f30	6852	__glkonCopyContext	dwarf+dynsym	a34ac8bb2878	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a3a00	8636	__glkonResolveContext	dwarf+dynsym	7131c610c187	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a5bc0	148	setCurrentRaster	dwarf	873ef05636d0	named-only	GE.h:4430	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a5bc0	148	setCurrentRaster	dwarf	873ef05636d0	named-only	GE.h:4431	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a5c60	1172	ResolvePixelContext	dwarf	702e298be9b7	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a6100	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	c1c97d1dcc53	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a61f0	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	6d4015b848a9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42627,7 +42627,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb3c0	108	__glkonlc_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb430	128	__glkonlc_DeformationMap3dSGIX	dwarf+dynsym	bf917c0fed39	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb4b0	92	__glkonim_DeformSGIX	dwarf+dynsym	8581462927f0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb510	164	__glkonlc_DeformSGIX	dwarf+dynsym	dd62dd3000bb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb5c0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7256	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb5c0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7257	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb5e0	188	__glkonlc_LoadIdentityDeformationMapSGIX	dwarf+dynsym	329a005c42ad	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21cb6a0	284	getDeformationf	dwarf	76ec35c48d62	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb7c0	56	__glkon_GetDeformationf	dwarf+dynsym	a47ba7ec6153	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
