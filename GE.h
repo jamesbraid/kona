@@ -5122,20 +5122,19 @@ enum kona_hp_token {
      * offset 0. */
     KONA_HP_X_PIX_FINISH                 = 0x13a,
 
-    /* Read at arm1.u token map entry for 0x13b = arm_badcmd 0x0c0017f4
-     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+    /* Read at arm1.u static map record 0x0c000b3c, handler word 0x0c000b40;
+     * arm_badcmd 0x0c0017f4-0x0c001854; kon.s addiu 10080 on _rodata before a
+     * call; kpm name record 0x100bad24. */
 
-    /* `HP_X_UNUSED3` (0x13b). Established: The token-map entry points
-     * straight at arm_badcmd with no stub; it prints the current and previous
-     * token numbers, reads and prints 100 payload words, then spins reading
-     * words, so a pipe that got this token would hang. Payload none read by
-     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
-     * payload is defined. Established: the token map runs
-     * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. No sender found. The X module never stores this token (no
-     * store at pointer+32*token; the only address constants equal to 32*token
-     * in kon.s are rodata string addresses passed to a call) and libGLcore
-     * and the kernel do not either. */
+    /* `HP_X_UNUSED3` (0x13b). Established: Refused by the firmware. The
+     * static map record at 0x0c000b3c names `arm_badcmd` (0x0c0017f4) as its
+     * handler, so init_hip stores 0xc0017f40 in hardware map word 0x4004ec;
+     * that routine prints this token and the one before it, prints the next
+     * 100 FIFO words as data and then reads the FIFO forever, so the pipe
+     * stops. It lies between HP_X_PIX_FINISH and HP_X_LOADSTIPPLE. Nothing
+     * sends it: the one constant in the X module equal to 32 x 0x13b (10080)
+     * is an offset into its read-only strings handed to a call, not a FIFO
+     * store, and libGLcore and the kernel have no store of the value. */
     KONA_HP_X_UNUSED3                    = 0x13b,
 
     /* Engine handlers whose slots the code of `arm_x_loadstipple` loads, in
@@ -5184,36 +5183,32 @@ enum kona_hp_token {
      * payload word at the FIFO pointer + 32 x token and the rest at offset 0. */
     KONA_HP_X_ROTATESTIPPLE              = 0x13e,
 
-    /* Read at arm1.u token map entry for 0x13f = arm_badcmd 0x0c0017f4
-     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+    /* Read at arm1.u static map record 0x0c000b5c; arm_badcmd 0x0c0017f4; kpm
+     * name record 0x100bad34. */
 
-    /* `HP_X_UNUSED4` (0x13f). Established: The token-map entry points
-     * straight at arm_badcmd with no stub; it prints the current and previous
-     * token numbers, reads and prints 100 payload words, then spins reading
-     * words, so a pipe that got this token would hang. Payload none read by
-     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
-     * payload is defined. Established: the token map runs
-     * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. No sender found. The X module never stores this token (no
-     * store at pointer+32*token; the only address constants equal to 32*token
-     * in kon.s are rodata string addresses passed to a call) and libGLcore
-     * and the kernel do not either. */
+    /* `HP_X_UNUSED4` (0x13f). Established: A hole after the stipple tokens.
+     * Its two-word record in the arm1.u static map (0x0c000b5c, handler word
+     * 0x0c000b60) points at `arm_badcmd`, so a pipe that receives it prints
+     * the token pair and 100 following words and then hangs reading the FIFO;
+     * init_hip writes the same 0xc0017f40 to hardware map word 0x4004fc. The
+     * X module would store it at FIFO offset 0x27e0 (32 x token), and that
+     * value appears nowhere in kon.s; libGLcore and the kernel never send it
+     * either. */
     KONA_HP_X_UNUSED4                    = 0x13f,
 
-    /* Read at arm1.u token map entry for 0x140 = arm_badcmd 0x0c0017f4
-     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+    /* Read at arm1.u static map record 0x0c000b64; arm_badcmd 0x0c0017f4;
+     * kon.s ori 0x2800 sites (three, each after and -14337); kpm name record
+     * 0x100bad38. */
 
-    /* `HP_X_UNUSED5` (0x140). Established: The token-map entry points
-     * straight at arm_badcmd with no stub; it prints the current and previous
-     * token numbers, reads and prints 100 payload words, then spins reading
-     * words, so a pipe that got this token would hang. Payload none read by
-     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
-     * payload is defined. Established: the token map runs
-     * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. No sender found. The X module never stores this token (no
-     * store at pointer+32*token; the only address constants equal to 32*token
-     * in kon.s are rodata string addresses passed to a call) and libGLcore
-     * and the kernel do not either. */
+    /* `HP_X_UNUSED5` (0x140). Established: Unassigned, the last slot before
+     * HP_X_DATA1. The static record at 0x0c000b64 (handler word 0x0c000b68)
+     * routes it to `arm_badcmd`, whose error print and endless FIFO read
+     * leave the pipe hung; hardware map word 0x400500 holds 0xc0017f40 after
+     * init_hip. Its FIFO offset in the X module would be 0x2800; kon.s does
+     * use 0x2800 three times, but each is an ori that sets bits 11 and 13
+     * after an and with -14337 has cleared bits 11-13, a three-bit field
+     * value stored back through the stack or a structure pointer, never
+     * through the FIFO pointer. No sender exists in libGLcore or the kernel. */
     KONA_HP_X_UNUSED5                    = 0x140,
 
     /* Read at icu_map.tsv 0x141; hw_route.tsv; ged.md how an entry is chosen;
@@ -5844,68 +5839,50 @@ enum kona_hp_token {
      * stored at FIFO pointer + 0x2c20 (32 x token), the rest at +0. */
     KONA_HP_X_BGPOINT24                  = 0x161,
 
-    /* Read at arm1.u token map entry for 0x162 = arm_badcmd 0x0c0017f4
-     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+    /* Read at arm1.u static map record 0x0c000bf0; arm_badcmd 0x0c0017f4; kpm
+     * name record 0x100badc0. */
 
-    /* `HP_X_UNUSED6` (0x162). Established: The token-map entry points
-     * straight at arm_badcmd with no stub; it prints the current and previous
-     * token numbers, reads and prints 100 payload words, then spins reading
-     * words, so a pipe that got this token would hang. Payload none read by
-     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
-     * payload is defined. Established: the token map runs
-     * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. No sender found. The X module never stores this token (no
-     * store at pointer+32*token; the only address constants equal to 32*token
-     * in kon.s are rodata string addresses passed to a call) and libGLcore
-     * and the kernel do not either. */
+    /* `HP_X_UNUSED6` (0x162). Established: First of four unused numbers after
+     * HP_X_BGPOINT24. The firmware's static record at 0x0c000bf0 gives
+     * `arm_badcmd` as handler (word 0x0c000bf4), and init_hip copies
+     * 0xc0017f40 into hardware map word 0x400588, so the pipe would report
+     * the token and freeze in the error loop. No program stores 0x162: the X
+     * module offset 0x2c40 that would carry it does not occur in kon.s, and
+     * the libGLcore and kernel scans find no such store. */
     KONA_HP_X_UNUSED6                    = 0x162,
 
-    /* Read at arm1.u token map entry for 0x163 = arm_badcmd 0x0c0017f4
-     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+    /* Read at arm1.u static map record 0x0c000bf8, handler word 0x0c000bfc;
+     * arm_badcmd 0x0c0017f4; kpm name record 0x100badc4. */
 
-    /* `HP_X_UNUSED7` (0x163). Established: The token-map entry points
-     * straight at arm_badcmd with no stub; it prints the current and previous
-     * token numbers, reads and prints 100 payload words, then spins reading
-     * words, so a pipe that got this token would hang. Payload none read by
-     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
-     * payload is defined. Established: the token map runs
-     * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. No sender found. The X module never stores this token (no
-     * store at pointer+32*token; the only address constants equal to 32*token
-     * in kon.s are rodata string addresses passed to a call) and libGLcore
-     * and the kernel do not either. */
+    /* `HP_X_UNUSED7` (0x163). Established: Second of the four unused numbers;
+     * hardware map word 0x40058c gets 0xc0017f40 from the static record at
+     * 0x0c000bf8, so `arm_badcmd` runs if it ever arrives: two lines of
+     * diagnostics, a hundred data words, then a read loop that never returns.
+     * The would-be X module FIFO offset 0x2c60 is absent from kon.s, and
+     * neither the GL library nor the kernel issues it. */
     KONA_HP_X_UNUSED7                    = 0x163,
 
-    /* Read at arm1.u token map entry for 0x164 = arm_badcmd 0x0c0017f4
-     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+    /* Read at arm1.u static map record 0x0c000c00; arm_badcmd 0x0c0017f4;
+     * kon.s addiu 11392 on _rodata before a call; kpm name record 0x100badc8. */
 
-    /* `HP_X_UNUSED8` (0x164). Established: The token-map entry points
-     * straight at arm_badcmd with no stub; it prints the current and previous
-     * token numbers, reads and prints 100 payload words, then spins reading
-     * words, so a pipe that got this token would hang. Payload none read by
-     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
-     * payload is defined. Established: the token map runs
-     * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. No sender found. The X module never stores this token (no
-     * store at pointer+32*token; the only address constants equal to 32*token
-     * in kon.s are rodata string addresses passed to a call) and libGLcore
-     * and the kernel do not either. */
+    /* `HP_X_UNUSED8` (0x164). Established: Third of the four, map word
+     * 0x400590 and static record 0x0c000c00, whose handler word 0x0c000c04 is
+     * `arm_badcmd`: the pipe would print an error and stall. The X module has
+     * one constant equal to its FIFO offset, 11392 (0x2c80), but that is an
+     * offset into read-only strings passed as the first argument of a call;
+     * no store goes through the FIFO pointer at that offset, and libGLcore
+     * and the kernel contain none. */
     KONA_HP_X_UNUSED8                    = 0x164,
 
-    /* Read at arm1.u token map entry for 0x165 = arm_badcmd 0x0c0017f4
-     * (icu_map.tsv); arm_badcmd 0x0c0017f4-0x0c001854. */
+    /* Read at arm1.u static map record 0x0c000c08; arm_badcmd 0x0c0017f4; kpm
+     * name record 0x100badcc. */
 
-    /* `HP_X_UNUSED9` (0x165). Established: The token-map entry points
-     * straight at arm_badcmd with no stub; it prints the current and previous
-     * token numbers, reads and prints 100 payload words, then spins reading
-     * words, so a pipe that got this token would hang. Payload none read by
-     * the stub (arm_badcmd drains 100): nothing: the token is refused and no
-     * payload is defined. Established: the token map runs
-     * `C$$code$$Base,arm_badcmd` at arm1.u 0x0c0017f4, a stub that ends in
-     * `arm_badcmd`. No sender found. The X module never stores this token (no
-     * store at pointer+32*token; the only address constants equal to 32*token
-     * in kon.s are rodata string addresses passed to a call) and libGLcore
-     * and the kernel do not either. */
+    /* `HP_X_UNUSED9` (0x165). Established: Last unused X number, just below
+     * HP_DPLEX_SWAP. Static record 0x0c000c08 binds it to `arm_badcmd`
+     * through handler word 0x0c000c0c, so hardware map word 0x400594 holds
+     * 0xc0017f40; the ARM would log the token and spin reading the FIFO.
+     * kon.s never forms 0x2ca0, its FIFO offset, and the GL library and
+     * kernel have no sender. */
     KONA_HP_X_UNUSED9                    = 0x165,
 
     /* Engine handlers whose slots the code of `arm_dplex_swap` loads, in
@@ -6344,644 +6321,339 @@ enum kona_hp_token {
      * 386, count, two 0xdeadbeef). */
     KONA_HP_VARRAY_BGN_LOOP              = 0x182,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u arm_varray_bgn_loop 0x0c0399c4 (0x183 to r9-0x190 at
+     * 0x0c039a58); varray_set_cmd_table 0x0c039884 (store loop
+     * 0x0c039900-0x0c039918 from 0x40060c); static map record 0x0c000ce8. */
 
-    /* `HP_VARRAY_LOOP00` (0x183). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP00` (0x183). Established: Where every pass of the
+     * vertex-array walk starts. `arm_varray_bgn_loop` stores 0x183 to
+     * host-interface register 0x200070 (the store at 0x0c039a58), so after
+     * the last chained slot the hardware returns here for the next element
+     * group (inferred). `varray_set_cmd_table` writes the first enabled
+     * attribute's built map entry into this slot's hardware map word
+     * 0x40060c, so whatever the attribute count, slot 0 carries element 0's
+     * leading attribute, and with a single array it is the whole of vertex 0.
+     * The start-up value from static record 0x0c000ce8, 0x80000051, is
+     * overwritten before any loop runs. The host never sends 0x183 as a token
+     * word; the data words that follow HP_VARRAY_BGN_LOOP are consumed
+     * through it. */
     KONA_HP_VARRAY_LOOP00                = 0x183,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store loop 0x0c039900-0x0c039918;
+     * varray_build_command 0x0c0395fc (chain bit 3); static map record
+     * 0x0c000cec. */
 
-    /* `HP_VARRAY_LOOP01` (0x184). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP01` (0x184). Established: Second loop slot, hardware map
+     * word 0x400610 (static record 0x0c000cec, start-up 0x80000051). With one
+     * array enabled it holds vertex 1; with two it carries element 0's second
+     * attribute, which closes that element because the vertex comes last in
+     * the attribute order; with three to six arrays it is still inside
+     * element 0. No token word 0x184 is ever stored by the host: the slot is
+     * entered by chaining from slot 0x183. */
     KONA_HP_VARRAY_LOOP01                = 0x184,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes from 0x40060c);
+     * static map record 0x0c000cf0. */
 
-    /* `HP_VARRAY_LOOP02` (0x185). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP02` (0x185). Established: Map word 0x400614, static
+     * record 0x0c000cf0. Slot 2 of the walk: it opens element 1 when two
+     * arrays are enabled, ends element 0 when three are, and is vertex 2 of a
+     * single-array walk. For four or more arrays it is the third attribute of
+     * element 0. Reached only by the chain bit from the slot before; the host
+     * sends its data, never its number. */
     KONA_HP_VARRAY_LOOP02                = 0x185,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store at 0x0c039908; static map
+     * record 0x0c000cf4. */
 
-    /* `HP_VARRAY_LOOP03` (0x186). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP03` (0x186). Established: Hardware map word 0x400618
+     * (record 0x0c000cf4). The fourth chained slot ends an element for two
+     * arrays (element 1) and for four (element 0), and begins element 1 of a
+     * three-array walk. Like the other loop slots it begins as 0x80000051 and
+     * is filled by `varray_set_cmd_table` before use; nothing writes 0x186
+     * into the FIFO as a token. */
     KONA_HP_VARRAY_LOOP03                = 0x186,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u arm_varray_set_cmds 0x0c039950; varray_set_cmd_table
+     * store at 0x0c039908; static map record 0x0c000cf8. */
 
-    /* `HP_VARRAY_LOOP04` (0x187). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP04` (0x187). Established: Slot 4, map word 0x40061c,
+     * static record 0x0c000cf8. A five-array element ends here; with two or
+     * four arrays it starts element 2 or element 1. Its start-up entry, a
+     * one-word geometry entry with the data-invalid bit, never governs real
+     * data because `arm_varray_set_cmds` rebuilds the slots whenever the key
+     * changes. Not sent as a token. */
     KONA_HP_VARRAY_LOOP04                = 0x187,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884; varray_build_command
+     * attribute order 0x0c039618-0x0c039850; static map record 0x0c000cfc. */
 
-    /* `HP_VARRAY_LOOP05` (0x188). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP05` (0x188). Established: Map word 0x400620 (record
+     * 0x0c000cfc). This is the earliest slot at which a six-attribute element
+     * (normal, colour, texture coordinate, index, edge flag and vertex)
+     * completes; it also ends element 1 of a three-array walk and element 2
+     * of a two-array walk, and begins element 1 when five arrays are on.
+     * Filled by `varray_set_cmd_table`, never sent by number. */
     KONA_HP_VARRAY_LOOP05                = 0x188,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store loop; static map record
+     * 0x0c000d00. */
 
-    /* `HP_VARRAY_LOOP06` (0x189). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP06` (0x189). Established: Slot 6 of 32, hardware map
+     * word 0x400624. Element boundaries line up here for two, three and six
+     * arrays, all of which begin a new element (3, 2 and 1) in this slot;
+     * with one array it is vertex 6. Start-up 0x80000051 from static record
+     * 0x0c000d00; the host never writes 0x189 as a token. */
     KONA_HP_VARRAY_LOOP06                = 0x189,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store at 0x0c039908; static map
+     * record 0x0c000d04. */
 
-    /* `HP_VARRAY_LOOP07` (0x18a). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP07` (0x18a). Established: Map word 0x400628, record
+     * 0x0c000d04. Two- and four-array walks finish an element in this slot
+     * (elements 3 and 1); for three, five or six arrays it falls inside an
+     * element. Its entry is copied by the store at 0x0c039908 with the chain
+     * bit set, so the host interface moves straight on to slot 0x18b. No
+     * sender stores 0x18a. */
     KONA_HP_VARRAY_LOOP07                = 0x18a,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884; static map record
+     * 0x0c000d08. */
 
-    /* `HP_VARRAY_LOOP08` (0x18b). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP08` (0x18b). Established: Eighth slot, hardware map word
+     * 0x40062c (static record 0x0c000d08, start-up 0x80000051). It begins
+     * vertex 8 of a one-array walk and elements 4 and 2 of two- and
+     * four-array walks, and closes element 2 of a three-array walk. Present
+     * in the map only as a chained step; the token value itself is not used
+     * by any shipped program. */
     KONA_HP_VARRAY_LOOP08                = 0x18b,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store loop 0x0c039900-0x0c039918;
+     * static map record 0x0c000d0c. */
 
-    /* `HP_VARRAY_LOOP09` (0x18c). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP09` (0x18c). Established: Map word 0x400630, static
+     * record 0x0c000d0c. Slot 9 closes element 4 for two arrays and element 1
+     * for five, and opens element 3 for three. Like its neighbours it is
+     * rewritten each time the enabled-array key changes and is never a token
+     * on the FIFO. */
     KONA_HP_VARRAY_LOOP09                = 0x18c,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884; static map record
+     * 0x0c000d10. */
 
-    /* `HP_VARRAY_LOOP0A` (0x18d). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP0A` (0x18d). Established: Hardware map word 0x400634
+     * (record 0x0c000d10). Slot 10 begins element 5 of a two-array walk and
+     * element 2 of a five-array walk; with one array it is vertex 10, and for
+     * three, four or six arrays it is a middle attribute. Entered by the
+     * chain bit, not by a token word. */
     KONA_HP_VARRAY_LOOP0A                = 0x18d,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store at 0x0c039908; static map
+     * record 0x0c000d14. */
 
-    /* `HP_VARRAY_LOOP0B` (0x18e). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP0B` (0x18e). Established: Map word 0x400638, static
+     * record 0x0c000d14. Eleven slots in, five array counts finish an element
+     * at once: two (element 5), three (3), four (2), six (1) and one (vertex
+     * 11); only a five-array walk is mid-element here. Start-up 0x80000051,
+     * replaced by `varray_set_cmd_table`; no host stores 0x18e. */
     KONA_HP_VARRAY_LOOP0B                = 0x18e,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884; static map record
+     * 0x0c000d18. */
 
-    /* `HP_VARRAY_LOOP0C` (0x18f). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP0C` (0x18f). Established: Slot 12, map word 0x40063c
+     * (record 0x0c000d18). The mirror of the previous slot: a new element
+     * starts here for one, two, three, four and six arrays, so this is the
+     * first slot of element 12, 6, 4,
+     * 3 or 2. It is reached by chaining and is not a host token. */
     KONA_HP_VARRAY_LOOP0C                = 0x18f,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store at 0x0c039908; static map
+     * record 0x0c000d1c. */
 
-    /* `HP_VARRAY_LOOP0D` (0x190). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP0D` (0x190). Established: Hardware map word 0x400640
+     * (static record 0x0c000d1c). Slot 13 completes element 6 of a two-array
+     * walk; for three to six arrays it is an inner attribute, for one array
+     * vertex 13. Filled at 0x0c039908 and never sent by number. */
     KONA_HP_VARRAY_LOOP0D                = 0x190,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884; static map record
+     * 0x0c000d20. */
 
-    /* `HP_VARRAY_LOOP0E` (0x191). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP0E` (0x191). Established: Map word 0x400644, record
+     * 0x0c000d20. Here three- and five-array walks close elements 4 and 2,
+     * while a two-array walk opens element 7. Start-up entry 0x80000051;
+     * rewritten before use; no FIFO store of 0x191 exists. */
     KONA_HP_VARRAY_LOOP0E                = 0x191,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store loop; static map record
+     * 0x0c000d24. */
 
-    /* `HP_VARRAY_LOOP0F` (0x192). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP0F` (0x192). Established: Slot 15, hardware map word
+     * 0x400648 (static record 0x0c000d24). It starts element 5 of a
+     * three-array walk and element 3 of a five-array walk, and ends element 7
+     * (two arrays) and element 3 (four arrays). A chained step of the loop,
+     * not a token any program sends. */
     KONA_HP_VARRAY_LOOP0F                = 0x192,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884; static map record
+     * 0x0c000d28. */
 
-    /* `HP_VARRAY_LOOP10` (0x193). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP10` (0x193). Established: The half-way slot: map word
+     * 0x40064c, record 0x0c000d28. For one, two and four arrays it begins the
+     * second half of the walk (vertex 16, element 8, element 4). Its entry is
+     * copied in by `varray_set_cmd_table` with the chain bit set; the host
+     * never names it. */
     KONA_HP_VARRAY_LOOP10                = 0x193,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store at 0x0c039908; static map
+     * record 0x0c000d2c. */
 
-    /* `HP_VARRAY_LOOP11` (0x194). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP11` (0x194). Established: Map word 0x400650, static
+     * record 0x0c000d2c. Slot 17 closes an element for two arrays (8), three
+     * (5) and six (2), and is inside an element for four and five. Start-up
+     * value 0x80000051; no sender. */
     KONA_HP_VARRAY_LOOP11                = 0x194,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884; static map record
+     * 0x0c000d30. */
 
-    /* `HP_VARRAY_LOOP12` (0x195). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP12` (0x195). Established: Hardware map word 0x400654
+     * (record 0x0c000d30). Slot 18 begins element 9, 6 and 3 for two, three
+     * and six arrays; a four- or five-array element is in progress here.
+     * Reached through the chain from slot 0x194, never written as a FIFO
+     * token. */
     KONA_HP_VARRAY_LOOP12                = 0x195,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store loop 0x0c039900-0x0c039918;
+     * static map record 0x0c000d34. */
 
-    /* `HP_VARRAY_LOOP13` (0x196). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP13` (0x196). Established: Map word 0x400658, static
+     * record 0x0c000d34. In slot 19 a two-array walk ends element 9, a
+     * four-array walk element 4 and a five-array walk element 3; with three
+     * or six arrays it is an inner attribute. The static start-up entry
+     * 0x80000051 is replaced before any walk; no host program stores 0x196. */
     KONA_HP_VARRAY_LOOP13                = 0x196,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884; static map record
+     * 0x0c000d38. */
 
-    /* `HP_VARRAY_LOOP14` (0x197). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP14` (0x197). Established: Slot 20, map word 0x40065c
+     * (record 0x0c000d38). It opens element 10 (two arrays), 5 (four) and 4
+     * (five), and closes element 6 of a three-array walk. Entered by
+     * chaining, not by token. */
     KONA_HP_VARRAY_LOOP14                = 0x197,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store at 0x0c039908; static map
+     * record 0x0c000d3c. */
 
-    /* `HP_VARRAY_LOOP15` (0x198). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP15` (0x198). Established: Hardware map word 0x400660,
+     * static record 0x0c000d3c. Slot 21 is the first attribute of element 7
+     * for three arrays and the last of element 10 for two; for four to six
+     * arrays it falls mid-element. Start-up 0x80000051; never sent. */
     KONA_HP_VARRAY_LOOP15                = 0x198,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884; static map record
+     * 0x0c000d40. */
 
-    /* `HP_VARRAY_LOOP16` (0x199). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP16` (0x199). Established: Map word 0x400664 (static
+     * record 0x0c000d40). With one array this slot is vertex 22 and with two
+     * it starts element 11; every larger count is inside an element here.
+     * Rewritten by `varray_set_cmd_table` when the key changes; the host does
+     * not send 0x199. */
     KONA_HP_VARRAY_LOOP16                = 0x199,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store loop; static map record
+     * 0x0c000d44. */
 
-    /* `HP_VARRAY_LOOP17` (0x19a). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP17` (0x19a). Established: Slot 23, hardware map word
+     * 0x400668, record 0x0c000d44. Like slot 11 it ends an element for one,
+     * two, three, four and six arrays (vertex 23, elements 11, 7, 5 and
+     * 3); only the five-array walk continues past it mid-element. A chained
+     * step; no sender. */
     KONA_HP_VARRAY_LOOP17                = 0x19a,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store at 0x0c039908; static map
+     * record 0x0c000d48. */
 
-    /* `HP_VARRAY_LOOP18` (0x19b). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP18` (0x19b). Established: Map word 0x40066c (static
+     * record 0x0c000d48). Slot 24 begins element 12, 8, 6 or
+     * 4 for two, three, four or six arrays, and finishes element 4 of a
+     * five-array walk. Its entry is set at 0x0c039908 from the cached
+     * attribute list; no program stores the number. */
     KONA_HP_VARRAY_LOOP18                = 0x19b,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884; static map record
+     * 0x0c000d4c. */
 
-    /* `HP_VARRAY_LOOP19` (0x19c). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP19` (0x19c). Established: Hardware map word 0x400670,
+     * record 0x0c000d4c. Slot 25 is the last attribute of element 12 when two
+     * arrays are on and the first of element 5 when five are. Start-up
+     * 0x80000051 from the static map; never a token. */
     KONA_HP_VARRAY_LOOP19                = 0x19c,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store loop 0x0c039900-0x0c039918;
+     * static map record 0x0c000d50. */
 
-    /* `HP_VARRAY_LOOP1A` (0x19d). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP1A` (0x19d). Established: Map word 0x400674 (static
+     * record 0x0c000d50). At slot 26 a three-array walk closes element 8 and
+     * a two-array walk opens element 13. Filled by the store loop of
+     * `varray_set_cmd_table`; no host sends 0x19d. */
     KONA_HP_VARRAY_LOOP1A                = 0x19d,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884; static map record
+     * 0x0c000d54. */
 
-    /* `HP_VARRAY_LOOP1B` (0x19e). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP1B` (0x19e). Established: Slot 27, hardware map word
+     * 0x400678, static record 0x0c000d54. It opens element 9 of a three-array
+     * walk and closes element 13 (two arrays) and element 6 (four arrays).
+     * Reached by chaining only. */
     KONA_HP_VARRAY_LOOP1B                = 0x19e,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store at 0x0c039908; static map
+     * record 0x0c000d58. */
 
-    /* `HP_VARRAY_LOOP1C` (0x19f). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP1C` (0x19f). Established: Map word 0x40067c (record
+     * 0x0c000d58). Slot 28 starts element 14 for two arrays and element 7 for
+     * four, and is vertex 28 of a one-array walk. Start-up 0x80000051,
+     * replaced before use; never sent by number. */
     KONA_HP_VARRAY_LOOP1C                = 0x19f,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (bic of bit 3 and store
+     * at 0x0c039930-0x0c039934); static map record 0x0c000d5c. */
 
-    /* `HP_VARRAY_LOOP1D` (0x1a0). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP1D` (0x1a0). Established: Hardware map word 0x400680,
+     * static record 0x0c000d5c. For three, five and six arrays this is the
+     * walk's final slot: 32 / k elements fill 30 slots, so the closing store
+     * at 0x0c039934 writes the last attribute's entry here with the chain bit
+     * cleared, and the hardware goes back to slot 0x183 (inferred). For one,
+     * two and four arrays it is an ordinary chained slot (it ends element 14
+     * of a two-array walk). No host sends 0x1a0. */
     KONA_HP_VARRAY_LOOP1D                = 0x1a0,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table store loop 0x0c039900-0x0c039918 (k
+     * x floor(32/k) slots); static map record 0x0c000d60. */
 
-    /* `HP_VARRAY_LOOP1E` (0x1a1). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP1E` (0x1a1). Established: Map word 0x400684 (record
+     * 0x0c000d60). Only walks with one, two or four arrays reach slot 30: for
+     * three, five or six the walk ends at slot 0x1a0, so this word keeps
+     * whatever an earlier key or start-up (0x80000051) left there and is not
+     * read (inferred from the chain bit being clear at slot 0x1a0). With two
+     * arrays it opens element 15. Never a token. */
     KONA_HP_VARRAY_LOOP1E                = 0x1a1,
 
-    /* Read at arm1.u varray_set_cmd_table 0x0c039884 (writes 0x40060c onward
-     * = map base + 4 x 0x183), arm_varray_bgn_loop 0x0c0399c4 (0x183 to
-     * 0x200070, count to 0x200074), icu_map.tsv entry 0x80000051; docs/ge.md
-     * vertex arrays. */
+    /* Read at arm1.u varray_set_cmd_table 0x0c039930-0x0c039934;
+     * arm_varray_bgn_loop 0x0c0399c4 (count to r9-0x18c at 0x0c039a68);
+     * static map record 0x0c000d64. */
 
-    /* `HP_VARRAY_LOOP1F` (0x1a2). Established: At start-up the map word is
-     * 0x80000051 (geometry form, data-invalid bit, count 1, command 0).
-     * arm_varray_set_cmds rewrites the slots from 0x183 onward with the
-     * entries of the enabled attributes (normal, colour, texture coordinate,
-     * index, edge flag, vertex), and arm_varray_bgn_loop writes 0x183 to the
-     * loop-start register 0x200070 and the repeat count to 0x200074. Payload
-     * 0 (no token word is sent): no payload of its own: the slot is a
-     * placeholder for the array element data that follow HP_VARRAY_BGN_LOOP.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0x80000051: command 0, geometry form, count field 1
-     * (bits 6-8), untyped words. Sent by never sent as a token: libGLcore
-     * sends HP_VARRAY_SET_CMDS, HP_VARRAY_BGN_LOOP and then raw element data;
-     * none found storing 0x183-0x1a2 as tokens. */
+    /* `HP_VARRAY_LOOP1F` (0x1a2). Established: The last loop slot, hardware
+     * map word 0x400688, static record 0x0c000d64. For one, two and four
+     * arrays the walk fills all 32 slots, so the closing store at 0x0c039934
+     * puts the final attribute here with the chain bit cleared and the
+     * hardware returns to slot 0x183 for the next group (inferred);
+     * `arm_varray_bgn_loop` sets the number of groups at 0x200074. For three,
+     * five or six arrays it is left unused. No program sends 0x1a2 as a
+     * token. */
     KONA_HP_VARRAY_LOOP1F                = 0x1a2,
 
     /* Read at arm1.u arm_varray_unsetup 0x0c039a94. */
@@ -8428,79 +8100,112 @@ enum kona_hp_token {
  * kpm's printing table. The names below are this header's, not kpm's.
  */
 enum kona_kpm_spare_token {
-    /* kpm row 0x200, printed as "**** 0x0". Inferred: the row names shadow
-     * slot 0x100 and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x200, name record at 0x100bb038, printed "**** 0x0" because
+     * kpm has no name for it. Inferred: it stands for raster-bus index 0x100,
+     * slot 0 of the geometry board's register shadow RAM, not a host token:
+     * kpm's rows past 0x1ff follow the address-word high half plus 0x100, and
+     * the firmware token map built by init_hip (arm1.u 0x0c001c60) stops at
+     * 0x1ff. Established: no production code writes index 0x100. Only the
+     * debug loop in `arm_slop` (0x0c038ef0-0x0c038f14) does, on its first
+     * pass, pairing it with raster register 0x441 from the befsh_addrs entry
+     * at 0x04067c0c, the pack-mode register that normal writes reach through
+     * slot 0x110. */
     KONA_HP_KPM_SPARE_0                  = 0x200,
 
-    /* kpm row 0x201, printed as "**** 0x1". Inferred: the row names shadow
-     * slot 0x101 and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x201 (name record 0x100bb03c, printed "**** 0x1"). Inferred:
+     * bus index 0x101, shadow RAM slot 1, by the same row-to-index rule as
+     * row 0x200. Established: the `arm_slop` debug loop is its sole writer in
+     * arm1.u; its second pass loads register 0x455, the output-DMA line
+     * length, from befsh_addrs entry 0x04067c10 and sends it with high half
+     * 0x101 (built by the add at 0x0c038efc). The shadow's own copy of 0x455
+     * is word 1, index 0x111. */
     KONA_HP_KPM_SPARE_1                  = 0x201,
 
-    /* kpm row 0x202, printed as "**** 0x2". Inferred: the row names shadow
-     * slot 0x102 and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* Third unnamed kpm row, 0x202 at name record 0x100bb040. Inferred: it
+     * labels bus index 0x102, shadow RAM slot 2. Established: in arm1.u only
+     * the `arm_slop` debug loop reaches that index, carrying the output-DMA
+     * stride register 0x456 read from befsh_addrs entry 0x04067c14; nothing
+     * restores from slot 2, and the IR diagnostic's shadow test treats it as
+     * plain RAM. */
     KONA_HP_KPM_SPARE_2                  = 0x202,
 
-    /* kpm row 0x203, printed as "**** 0x3". Inferred: the row names shadow
-     * slot 0x103 and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x203 (name record 0x100bb044). Inferred: the label for bus
+     * index 0x103, shadow RAM slot 3. Established: written only on the fourth
+     * pass of the `arm_slop` debug loop, which pairs it with the first
+     * scissor register 0x3fc2 (befsh_addrs entry 0x04067c18); ordinary
+     * scissor writes from `resolve_scissor` go through high half 0x113. */
     KONA_HP_KPM_SPARE_3                  = 0x203,
 
-    /* kpm row 0x204, printed as "**** 0x4". Inferred: the row names shadow
-     * slot 0x104 and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x204, printed "**** 0x4" from name record 0x100bb048.
+     * Inferred: bus index 0x104, shadow slot 4. Established: its one writer
+     * is the `arm_slop` debug loop (pass 5), with the y scissor register
+     * 0x3fc3 taken from befsh_addrs entry 0x04067c1c. No production address
+     * word has high half 0x104. */
     KONA_HP_KPM_SPARE_4                  = 0x204,
 
-    /* kpm row 0x205, printed as "**** 0x5". Inferred: the row names shadow
-     * slot 0x105 and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x205 (record 0x100bb04c). Inferred: names bus index 0x105,
+     * shadow RAM slot 5. Established: the sixth pass of the `arm_slop` loop
+     * writes the first rectangle start register 0x3fc4 (befsh_addrs entry
+     * 0x04067c20) through this index; the shadow keeps that register as word
+     * 5 at index 0x115, and no production constant forms 0x105. */
     KONA_HP_KPM_SPARE_5                  = 0x205,
 
-    /* kpm row 0x206, printed as "**** 0x6". Inferred: the row names shadow
-     * slot 0x106 and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* Unnamed kpm row 0x206 (record 0x100bb050). Inferred: shadow slot 6, bus
+     * index 0x106. Established: reached only by the `arm_slop` debug loop,
+     * whose seventh pass sends register 0x3fc5 (befsh_addrs entry 0x04067c24)
+     * with this high half. */
     KONA_HP_KPM_SPARE_6                  = 0x206,
 
-    /* kpm row 0x207, printed as "**** 0x7". Inferred: the row names shadow
-     * slot 0x107 and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x207 at name record 0x100bb054, printed with a bare number.
+     * Inferred: bus index 0x107, slot 7 of the shadow RAM. Established: no
+     * arm1.u or ge.u constant carries high half 0x107; only the `arm_slop`
+     * loop's eighth pass does, with rectangle register 0x3fc6 from
+     * befsh_addrs entry 0x04067c28. */
     KONA_HP_KPM_SPARE_7                  = 0x207,
 
-    /* kpm row 0x208, printed as "**** 0x8". Inferred: the row names shadow
-     * slot 0x108 and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x208 (name record 0x100bb058). Inferred: shadow slot 8, index
+     * 0x108. Established: the ninth `arm_slop` pass writes register 0x3fc7
+     * (befsh_addrs entry 0x04067c2c) through it, and no other code in the
+     * firmware or the engine program names it. */
     KONA_HP_KPM_SPARE_8                  = 0x208,
 
-    /* kpm row 0x209, printed as "**** 0x9". Inferred: the row names shadow
-     * slot 0x109 and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x209, record 0x100bb05c. Inferred: it is the name slot for bus
+     * index 0x109, shadow RAM slot 9. Established: the tenth pass of the
+     * debug loop in `arm_slop` is its only use, carrying register 0x3fc8
+     * (befsh_addrs entry 0x04067c30). */
     KONA_HP_KPM_SPARE_9                  = 0x209,
 
-    /* kpm row 0x20a, printed as "**** 0xa". Inferred: the row names shadow
-     * slot 0x10a and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x20a (record 0x100bb060, printed "**** 0xa"). Inferred: index
+     * 0x10a, slot 10. Established: written by pass 11 of the `arm_slop` loop
+     * with register 0x3fc9 from befsh_addrs entry 0x04067c34; the shadow test
+     * in irsaudit writes and reads it like every other slot, but no
+     * production restore reads it. */
     KONA_HP_KPM_SPARE_A                  = 0x20a,
 
-    /* kpm row 0x20b, printed as "**** 0xb". Inferred: the row names shadow
-     * slot 0x10b and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x20b (record 0x100bb064). Inferred: index 0x10b, shadow slot
+     * 11. Established: the `arm_slop` debug pass 12 sends register 0x3fca
+     * (befsh_addrs entry 0x04067c38, start-up value 0x100000) with this high
+     * half; the production copy of that register lives at slot 0x11b. */
     KONA_HP_KPM_SPARE_B                  = 0x20b,
 
-    /* kpm row 0x20c, printed as "**** 0xc". Inferred: the row names shadow
-     * slot 0x10c and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x20c, name record 0x100bb068. Inferred: shadow RAM slot 12 at
+     * bus index 0x10c. Established: only pass 13 of the `arm_slop` debug loop
+     * uses the index, with the last rectangle register 0x3fcb from
+     * befsh_addrs entry 0x04067c3c. */
     KONA_HP_KPM_SPARE_C                  = 0x20c,
 
-    /* kpm row 0x20d, printed as "**** 0xd". Inferred: the row names shadow
-     * slot 0x10d and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* kpm row 0x20d (record 0x100bb06c). Inferred: bus index 0x10d, slot 13.
+     * Established: written once per run of the `arm_slop` debug case, on its
+     * 14th pass, together with the draw-rectangle register 0x3fcc
+     * (befsh_addrs entry 0x04067c40); production writes of 0x3fcc use slot
+     * 0x11d. */
     KONA_HP_KPM_SPARE_D                  = 0x20d,
 
-    /* kpm row 0x20e, printed as "**** 0xe". Inferred: the row names shadow
-     * slot 0x10e and no host token, because the firmware token map (built by
-     * arm1.u at 0x0c001c60) has 512 entries and ends at 0x1ff. */
+    /* The last of kpm's numbered spare rows, 0x20e at name record 0x100bb070.
+     * Inferred: index 0x10e, shadow slot 14; the next row, 0x20f, is the one
+     * spare row kpm names. Established: the `arm_slop` debug loop's 15th pass
+     * sends register 0x3fcd from befsh_addrs entry 0x04067c44 with this high
+     * half, and nothing else in arm1.u or ge.u forms it. */
     KONA_HP_KPM_SPARE_E                  = 0x20e,
 
     /* The two loads of 0x010f087f sit in `PixelRestore` and `XPixelRestore`. */
