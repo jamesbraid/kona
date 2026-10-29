@@ -9450,14 +9450,13 @@ enum kona_kpm_spare_token {
  */
 
 /*
- * Execution Control Register (0x40000), established, 6.5.30m.
- * `init_ge` (0x0c0032e4, arm1.u) writes 1 (GO) to it at 0x0c003594, after the microcode load.
- * Bits 0-5 are the fields GO, SSTEP, BPSET, BPSTALL, UCLAT and INVAL (kpm table).
- * Inferred from the names only: GO lets the microcode run, SSTEP makes it
- * single-step, and BPSET with BPSTALL arm the stall at the breakpoint address.
- * kpm 6.5.30m reads it: `ge11ReadDiagRegisters` (0x1001e748) calls
- * `ge_register_read` for the 16 words from 0x40000 and takes them by DMA.
- */
+ * Execution Control Register (0x40000), established from two writers. The ARM firmware's `init_ge`
+ * in arm1.u stores the address at 0x0c00358c and the value 1 (GO) at 0x0c00359c, after the
+ * microcode load, and kpm's `ge11LoadUcode` writes 0 at 0x1001bcc4 before a reload and 1 at
+ * 0x1001be68 after it. So GO starts and stops the engine's microcode. The other bits (SSTEP, BPSET,
+ * BPSTALL, UCLAT, INVAL, kpm table) are set by no program; inferred from their names, SSTEP
+ * single-steps and BPSET with BPSTALL arm a stall at the breakpoint address. kpm reads the register
+ * twice, at 0x1001e7f8 and 0x1001e804, as the first words of its register dump. */
 #define KONA_GE11_REG_EXECUTION_CONTROL              0x40000  /* "Execution Control Register" */
 #define KONA_GE11_EXEC_GO                       0x00000001  /* bits from 0 */
 #define KONA_GE11_EXEC_SSTEP                    0x00000002  /* bits from 1 */
@@ -9467,70 +9466,59 @@ enum kona_kpm_spare_token {
 #define KONA_GE11_EXEC_INVAL                    0x00000020  /* bits from 5 */
 
 /*
- * Breakpoint Address Register (0x40004), established as a kpm table entry
- * (kpm 6.5.30m, vaddr 0x100bb2a8). Inferred from its name and from the
- * BPSET and BPSTALL bits of the control register: it holds the microcode
- * address at which the engine stalls. kpm 6.5.30m reads it with the other 15 words in
- * `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it.
- */
+ * Breakpoint Address Register (0x40004): inferred from its name and from the BPSET and BPSTALL
+ * control bits, the microcode address at which the engine stalls. Established reads in kpm:
+ * `ge11ReadDiagRegisters` takes it at 0x1001e814 for the register dump, and the scan helper inside
+ * `analyze_ge` reads it at 0x1001e638 as the first word of every RAM-scan transfer. No program
+ * writes it, so no shipped tool sets a breakpoint. */
 #define KONA_GE11_REG_BREAKPOINT_ADDRESS             0x40004  /* "Breakpoint Address Register" */
 
 /*
- * RAMscan Control Register, "trashed" (0x40008), established as a kpm table entry.
- * The kpm name says the value is destroyed by a RAM scan, so a dump taken after
- * `ge11RamScan` (kpm 6.5.30m) does not hold the earlier state. Inferred: the
- * register selects the memory a scan reads. kpm 6.5.30m reads it in
- * `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it.
- */
+ * RAMscan Control Register (0x40008), "trashed" in kpm's name because a scan destroys it.
+ * Established in kpm: `ge11StateDrain` writes 0x60000 at 0x1001ba58 before it dumps an engine and 0
+ * at 0x1001bacc afterwards, and `ge11RamScan` pulses 0x60001 then 0x60000 at 0x1001eb64 and
+ * 0x1001eb74 between scan blocks. Inferred: bits 17-18 put the engine's internal RAMs on the scan
+ * path and bit 0 advances the scan by one step. The firmware never writes it. */
 #define KONA_GE11_REG_RAMSCAN_CONTROL                0x40008  /* "RAMscan Control Register (trashed)" */
 
 /*
- * Write/Sync FIFO Register (0x4000c), established as a kpm table entry with two
- * fields: DISABLE (bit 0) and WM (bits 1-5). Inferred from the names: DISABLE
- * turns the write-sync FIFO off and WM is its water mark, a five-bit level.
- * kpm 6.5.30m reads it in `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it,
- * so the engines run with its reset value. What the FIFO synchronises and the unit of WM are
- * unknown: no shipped software or published source depends on them. Routes tried: arm1.u
- * (its engine-register writes reach only 0x40000, 0x40010, 0x40018 and 0x40038), kpm's dump and
- */
+ * Write/Sync FIFO Register (0x4000c), fields DISABLE (bit 0) and WM (bits 1-5). Established:
+ * kpm's `ge11StateDrain` writes 13 at 0x1001ba6c, that is DISABLE set and WM 6, just before it
+ * reads the diagnostic registers of a stopped engine, and `ge11ReadDiagRegisters` reads it back
+ * at 0x1001e834. Inferred from the names: DISABLE turns the write-sync FIFO off so a drain is not
+ * held up by it, and WM is the FIFO's water mark. The ARM firmware leaves it at its reset value. */
 #define KONA_GE11_REG_WRITE_SYNC_FIFO                0x4000c  /* "Write/Sync FIFO Register" */
 #define KONA_GE11_SYNCFIFO_DISABLE              0x00000001  /* bits from 0 */
 #define KONA_GE11_SYNCFIFO_WM                   0x0000003e  /* bits from 1 */
 
 /*
- * Diag Sel Register (0x40010), established, 6.5.30m: `init_ge` (0x0c0032e4, arm1.u)
- * writes 0x100, which is the OUTPUT field (bit 8), at 0x0c003574 before it sets GO.
- * Inferred from the name: the register selects which internal signals the
- * engine presents on its diagnostic output, and OUTPUT enables that output.
- * kpm 6.5.30m reads it in `ge11ReadDiagRegisters` (0x1001e748).
- */
+ * Diag Sel Register (0x40010), established: `init_ge` in arm1.u writes the address at 0x0c003568
+ * and 0x100 at 0x0c003584 just before setting GO, and kpm's `ge11LoadUcode` repeats the same
+ * 0x100 at 0x1001be4c. 0x100 is the register's only named field, OUTPUT (bit 8). Inferred from
+ * the names: the register picks which internal signals the engine drives on its diagnostic
+ * pins and OUTPUT turns that output on. kpm dumps it at 0x1001e844. */
 #define KONA_GE11_REG_DIAG_SEL                       0x40010  /* "Diag Sel Register" */
 #define KONA_GE11_DIAGSEL_OUTPUT                0x00000100  /* bits from 8 */
 
 /*
- * Enable Mask Register (0x40014), established as a kpm table entry with two
- * three-bit fields, ENABMSK_A (bits 0-2) and ENABMSK_B (bits 4-6). Inferred from
- * the name: each field masks one group of engine units on or off. kpm 6.5.30m reads it
- * in `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it. Which units the six
- * bits name is unknown: no shipped software or published source depends on them. Routes tried
- * as for the Write/Sync FIFO Register.
- */
+ * Enable Mask Register (0x40014), two three-bit fields ENABMSK_A (bits 0-2) and ENABMSK_B
+ * (bits 4-6). kpm's `ge11ReadDiagRegisters` only reads it, at 0x1001e854, and nothing writes it,
+ * so the engines run with the reset mask. Which units the bits enable is unknown: no shipped
+ * software or published source depends on it. Routes tried: every engine-register address the
+ * arm1.u firmware stores (only 0x40000, 0x40010, 0x40018 and 0x40038), every `ge_register_write`
+ * */
 #define KONA_GE11_REG_ENABLE_MASK                    0x40014  /* "Enable Mask Register" */
 #define KONA_GE11_ENABMSK_A                     0x00000007  /* bits from 0 */
 #define KONA_GE11_ENABMSK_B                     0x00000070  /* bits from 4 */
 
 /*
- * CM/Ofifo TAG Register (0x40018), established, 6.5.30m: `init_ge` (0x0c0032e4,
- * arm1.u) writes 0x4930 when the Gray-decoded board id is 8 or more and 0x9b60 below that (0x0c00340c-0x0c003444). The fields are CFG
- * (bit 0), WTRIM_WD, WTRIM_DLY, CTRIM_WD, CTRIM_DLY (bits 4-15) and PULSE_EN
- * (bit 16). Decoded, the two values are CFG 0 and PULSE_EN 0 with trims (WTRIM_WD,
- * WTRIM_DLY, CTRIM_WD, CTRIM_DLY) = (3, 2, 2, 2) for 0x4930 and (6, 6, 6, 4) for 0x9b60,
- * so boards with id 8 or more get shorter settings. Inferred from the names: the trim fields
- * set the width and delay of the write and clock strobes of the command-memory and
- * output-FIFO tag RAM. The time unit of a trim step is unknown: no shipped software or
- * published source depends on it beyond these two values; routes tried as for the
- * Write/Sync FIFO Register. kpm 6.5.30m reads it in `ge11ReadDiagRegisters` (0x1001e748).
- */
+ * CM/Ofifo TAG Register (0x40018), established: `init_ge` (arm1.u) sets the address at 0x0c003418
+ * and writes 0x4930 for a Gray-decoded board id of 8 or more and 0x9b60 below that at 0x0c003444;
+ * kpm's `ge11LoadUcode` clears it at 0x1001bcdc and writes the same two values at 0x1001bec4 and
+ * 0x1001bed8. Fields CFG (bit 0), WTRIM_WD, WTRIM_DLY, CTRIM_WD, CTRIM_DLY (bits 4-15) and PULSE_EN
+ * (bit 16): decoded, CFG and PULSE_EN are 0 and the trims are (3, 2, 2, 2) for 0x4930 and
+ * (6, 6, 6, 4) for 0x9b60, so newer boards get shorter strobes. Inferred from the names: the trims
+ * set width and delay of the write and clock strobes of the command-memory and output-FIFO tag RAM. */
 #define KONA_GE11_REG_CM_OFIFO_TAG                   0x40018  /* "CM/Ofifo TAG Register" */
 #define KONA_GE11_CMTAG_CFG                     0x00000001  /* bits from 0 */
 #define KONA_GE11_CMTAG_WTRIM_WD                0x00000070  /* bits from 4 */
@@ -9540,12 +9528,10 @@ enum kona_kpm_spare_token {
 #define KONA_GE11_CMTAG_PULSE_EN                0x00010000  /* bits from 16 */
 
 /*
- * Ucode Error register (0x4001c), established as a kpm table entry with 20
- * one-bit fields (bits 0-19), each named for a microcode fault: for example
- * FPU_OP, INVAL_ADR, MSK_OVFL and AALU_WR. Inferred: the engine sets a bit when
- * the microcode performs the named illegal action, and kpm shows the set bits.
- * kpm 6.5.30m reads it in `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it.
- */
+ * Ucode Error register (0x4001c): twenty one-bit flags (bits 0-19), each named in kpm's table for
+ * a microcode fault such as FPU_OP, INVAL_ADR, MSK_OVFL or AALU_WR. Inferred: the engine latches a
+ * bit when its program commits that fault, which is why kpm's dump of a hung engine includes it.
+ * Established: kpm reads it at 0x1001e874 in `ge11ReadDiagRegisters`, and no program writes it. */
 #define KONA_GE11_REG_UCODE_ERROR_REGISTER           0x4001c  /* "Ucode Error register" */
 #define KONA_GE11_UERROR_ECDATA_CNFL            0x00000001  /* bits from 0 */
 #define KONA_GE11_UERROR_WSC_CNFL               0x00000002  /* bits from 1 */
@@ -9569,84 +9555,83 @@ enum kona_kpm_spare_token {
 #define KONA_GE11_UERROR_AALU_WR                0x00080000  /* bits from 19 */
 
 /*
- * OFIFO0 A Status Register (0x40020), established as a kpm table entry: write
- * pointer in bits 0-6 and read pointer in bits 7-13 of output FIFO 0, half A.
- * Inferred: the seven-bit pointers show the FIFO holds 128 entries and the
- * difference is its fill level. kpm 6.5.30m reads it in `ge11ReadDiagRegisters`
- * (0x1001e748); no shipped program writes it.
- */
+ * OFIFO0 A Status Register (0x40020): established as a kpm table entry with a seven-bit write
+ * pointer (bits 0-6) and read pointer (bits 7-13) for half A of the engine's first output FIFO;
+ * kpm reads it at 0x1001e884. Inferred: seven-bit pointers mean 128 entries, and the pointer
+ * difference is how many words wait to leave the engine on that path. */
 #define KONA_GE11_REG_OFIFO0_A_STATUS                0x40020  /* "OFIFO0 A Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
 /*
- * OFIFO0 B Status Register (0x40024), established as a kpm table entry: the same
- * write and read pointer fields as the half A register, for half B of output
- * FIFO 0. Inferred: it tells how full that half is. kpm 6.5.30m reads it in
- * `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it.
- */
+ * OFIFO0 B Status Register (0x40024) is the companion of the half A register for half B of output
+ * FIFO 0, with the same pointer fields. Established: read by kpm's register dump at 0x1001e894 and
+ * written by nothing. Inferred: comparing it with half A shows whether one half of the FIFO stalled. */
 #define KONA_GE11_REG_OFIFO0_B_STATUS                0x40024  /* "OFIFO0 B Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
 /*
- * OFIFO1 A Status Register (0x40028), established as a kpm table entry: write
- * pointer in bits 0-6 and read pointer in bits 7-13 of output FIFO 1, half A.
- * Inferred: the difference of the pointers is the fill level. kpm 6.5.30m reads it in
- * `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it.
- */
+ * OFIFO1 A Status Register (0x40028) reports output FIFO 1, half A: write pointer low, read pointer
+ * above it, seven bits each. Established as a kpm table entry, dumped at 0x1001e8a4. Inferred: a
+ * gap between the pointers in a hung pipe means the next stage stopped taking words from FIFO 1. */
 #define KONA_GE11_REG_OFIFO1_A_STATUS                0x40028  /* "OFIFO1 A Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
 /*
- * OFIFO1 B Status Register (0x4002c), established as a kpm table entry: the same
- * pointer fields for half B of output FIFO 1. Inferred: it tells how full that
- * half is. kpm 6.5.30m reads it in `ge11ReadDiagRegisters` (0x1001e748); no shipped
- * program writes it.
- */
+ * OFIFO1 B Status Register (0x4002c): the read and write pointers of the second half of output
+ * FIFO 1, laid out like the other status words. kpm reads it at 0x1001e8b4 and nothing else in the
+ * shipped software touches it (established); inferred, it is a read-only view of FIFO occupancy. */
 #define KONA_GE11_REG_OFIFO1_B_STATUS                0x4002c  /* "OFIFO1 B Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
 /*
- * OFIFO2 A Status Register (0x40030), established as a kpm table entry: write
- * pointer in bits 0-6 and read pointer in bits 7-13 of output FIFO 2, half A.
- * Inferred: the difference of the pointers is the fill level. kpm 6.5.30m reads it in
- * `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it.
- */
+ * OFIFO2 A Status Register (0x40030) belongs to the third output FIFO, half A. Established: kpm's
+ * table gives it the two seven-bit pointer fields and `ge11ReadDiagRegisters` reads it at
+ * 0x1001e8c4. Inferred from the three FIFOs and two halves: each engine has six such queues
+ * toward the rest of the pipe, and this word shows how full one of them is. */
 #define KONA_GE11_REG_OFIFO2_A_STATUS                0x40030  /* "OFIFO2 A Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
 /*
- * OFIFO2 B Status Register (0x40034), established as a kpm table entry: the same
- * pointer fields for half B of output FIFO 2. Inferred: it tells how full that
- * half is. kpm 6.5.30m reads it in `ge11ReadDiagRegisters` (0x1001e748); no shipped
- * program writes it.
- */
+ * OFIFO2 B Status Register (0x40034), the last of the six pointer words: half B of output FIFO 2.
+ * Established: dumped by kpm at 0x1001e8d4, never written. Inferred: equal pointers mean that half
+ * is empty, and a dump taken after a hang shows from the six words which queue backed up. */
 #define KONA_GE11_REG_OFIFO2_B_STATUS                0x40034  /* "OFIFO2 B Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
 /*
- * OFIFO Control Register, "trashed" (0x40038), established, 6.5.30m: `init_ge`
- * (0x0c0032e4, arm1.u) writes 0x8e0 at 0x0c0033f4, or 0xce0 the first time a configuration flag allows it. The kpm name says
- * a RAM scan destroys the value. Inferred: it configures the output FIFOs
- * (thresholds and enables); no field is named. kpm 6.5.30m reads it in
- * `ge11ReadDiagRegisters` (0x1001e748).
- */
+ * OFIFO Control Register (0x40038), "trashed" by a RAM scan in kpm's name. Established writers:
+ * `init_ge` (arm1.u) sets the address at 0x0c00339c and writes 0xce0 at 0x0c0033d8 when a
+ * configuration flag allows it, otherwise 0x8e0 at 0x0c0033f4; kpm's `ge11LoadUcode` writes the same
+ * pair (0xce0 at 0x1001bd08, 0x8e0 at 0x1001bfd0), and `ge11BypassEnable` writes 0x801 or 0xc01
+ * to all eight engines at 0x1001b8bc. Inferred: bits 10-11 follow the board configuration, bits
+ * 5-7 are set in normal running, and bit 0 alone puts the output FIFOs in bypass for a diagnostic. */
 #define KONA_GE11_REG_OFIFO_CONTROL                  0x40038  /* "OFIFO Control Register (trashed)" */
 
 /*
  * Geometry-engine special registers, ESTABLISHED: kpm's {number, name}
- * list at vaddr 0x100bb1e0 (diags/kpm/ge_special_registers.tsv). INFERRED:
- * these are microcode-visible special registers (identity, the input word
- * FIFO pointers, FPU and lookup modes, flags, cull and clip state, sort
- * state), numbered as the microcode addresses them.
+ * list at vaddr 0x100bb1e0 (diags/kpm/ge_special_registers.tsv), ended by
+ * a -1 number. INFERRED: these are microcode-visible special registers
+ * (identity, the input word FIFO pointers, FPU and lookup modes, flags,
+ * cull and clip state, sort state), numbered as the microcode addresses them.
+ * ESTABLISHED: the table's only reader is kpm's `show_ge_core` (0x1001c44c),
+ * which skips every number below 0x40 (test at 0x1001c62c) and prints the
+ * rest under the heading "Special (private) registers" from the per-core
+ * state record kpm saves (word +10888 + 4 x number, record stride 796 bytes).
+ * INFERRED from that heading: numbers 0x40 and up are per-core copies and the
+ * lower numbers are shared by the cores of one engine. The lower numbers are
+ * not printed or read by any shipped program found so far (see the open
+ * question in docs/open-questions.md).
  */
 #define KONA_GE11_SR_CHIP_ID              0x04
 #define KONA_GE11_SR_CHIP_REV             0x06
+/* CORE_ID (special register 0x40): inferred, the number of the core within the engine, the first
+ * private register; established, kpm's `show_ge_core` prints it from the saved core record at 0x1001c650. */
 #define KONA_GE11_SR_CORE_ID              0x40
 #define KONA_GE11_SR_WRAM_WRPTR           0x00
 #define KONA_GE11_SR_WRAM_FIFO_HI         0x01
@@ -9657,17 +9642,35 @@ enum kona_kpm_spare_token {
 #define KONA_GE11_SR_COMP_FORMAT          0x08
 #define KONA_GE11_SR_FPU_MODE             0x09
 #define KONA_GE11_SR_LUT_MODE             0x0a
+/* FPU_COND_A (special register 0x41): inferred from the name, the floating-point condition bits
+ * of thread A that branches test; established as one of the private words `show_ge_core` lists
+ * (printf call at 0x1001c654) from the core's saved state. */
 #define KONA_GE11_SR_FPU_COND_A           0x41
+/* FPU_COND_B (special register 0x4c), the thread-B partner of FPU_COND_A, inferred from the name;
+ * established as the last entry of kpm's table (record 0x100bb248) and the highest private number,
+ * printed by `show_ge_core` from record word +10888 + 0x130. */
 #define KONA_GE11_SR_FPU_COND_B           0x4c
 #define KONA_GE11_SR_FLAG_GLOB_LO         0x0b
 #define KONA_GE11_SR_FLAG_GLOB_HI         0x0f
+/* FLAG_THRD_A (special register 0x42): inferred, the per-thread flag word of thread A, beside
+ * the shared FLAG_GLOB words; established, kpm's dump of a stopped core shows it among the private
+ * registers (`show_ge_core` at 0x1001c64c loads it by number). */
 #define KONA_GE11_SR_FLAG_THRD_A          0x42
+/* FLAG_THRD_B (special register 0x43): the thread-B flag word, inferred to hold that thread's
+ * condition results; established in kpm's table at 0x100bb268 and read by `show_ge_core` as
+ * saved-record word +10888 + 0x10c. */
 #define KONA_GE11_SR_FLAG_THRD_B          0x43
 #define KONA_GE11_SR_CULL                 0x0c
 #define KONA_GE11_SR_CULL_ACCUM           0x1c
 #define KONA_GE11_SR_CLIP_HOMO            0x0d
 #define KONA_GE11_SR_CLIP_USER            0x0e
+/* SORT_THRD_A (special register 0x44): inferred, primitive-sorting state of thread A, such as
+ * the vertex order a triangle setup keeps; established only as a private register kpm names (table
+ * entry at 0x100bb290) and prints in `show_ge_core`. */
 #define KONA_GE11_SR_SORT_THRD_A          0x44
+/* SORT_THRD_B (special register 0x45): the second thread's sorting state, by its name (inferred);
+ * established as kpm's table entry at 0x100bb298, which `show_ge_core` prints from the saved
+ * record word +10888 + 0x114 when a GE core is dumped. */
 #define KONA_GE11_SR_SORT_THRD_B          0x45
 
 

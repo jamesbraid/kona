@@ -6,7 +6,7 @@ mmio	53	10	8	0	0	43	0	0	18.9	18.9	100.0	18.9	10
 tokens	617	463	432	54	54	89	0	11	75.0	85.6	100.0	76.8	
 ioctls	55	55	55	0	0	0	0	0	100.0	100.0	100.0	100.0	
 ucode	3387	3204	2464	183	183	0	0	0	94.6	100.0	100.0	94.6	
-spec-registers	242	39	39	0	0	198	0	5	16.1	18.2	100.0	18.2	
+spec-registers	242	53	53	0	0	183	0	6	21.9	24.4	100.0	24.4	
 functions in usr/bin/X11/xsetmon	501	0	0	0	0	501	0	0	0.0	0.0	100.0	0.0	
 functions in usr/cpu/sysgen/IP27boot/gfx.o	62	30	30	0	5	27	0	0	48.4	56.5	100.0	48.4	
 functions in usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	19	6	6	0	7	6	0	0	31.6	68.4	100.0	31.6	
