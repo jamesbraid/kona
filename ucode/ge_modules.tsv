@@ -1,0 +1,129 @@
+# Role of each geometry-engine source module (ge.u line table, IRIX 6.5.30m), one line each, written by hand
+# from the module's labels and from what reaches them (ucode/ge_xref.tsv). All INFERRED unless ge_handlers.md says otherwise.
+source	role
+bootstrap.s	program entry at address 0 (`HereWeGo`): every even geif.u entry and the 60 unused odd entries point here, and 31 handlers end by jumping to it (ucode/ge_ops.md)
+bootinit.s	start-up initialisation of engine memories and registers (`MemRegInit`), reached from the entry code
+CRAMBlockLoad.s	block load of coefficient memory (CRAM) from the input stream
+ERAMBlockClear.s	block clear of external memory (ERAM)
+LUT.s	pixel-path lookup-table stage (16-bit and RGBA alpha-only forms), added by the ARM's AddLuminanceLut
+aa.S	antialiased-line response tables (maximum, step, response), used by the line-width and AA table code
+bitmaptofloat.s	pixel-path stage expanding bitmap bits to floats, LSB-first and MSB-first loops
+bitmaptoint.s	pixel-path stage expanding bitmap bits to integers, LSB-first and MSB-first loops
+clamp.s	pixel-path clamp stage, added by AddClamp
+clear.S	clear commands: colour, index, depth, accumulation and overlay clears, sent by arm_clear and its helpers
+clip.S	triangle and polygon clipping against the user planes and the view frustum
+colortable.S	colour-table and pixel-map lookup stages and their upload and download
+conv3x3.s	general 3x3 convolution pixel stage
+conv5x5.s	general 5x5 convolution pixel stage
+conv7x7.s	general 7x7 convolution pixel stage
+ctx_deact.S	context save (deactivate and mop-up): engine state written out section by section for the ARM's deactivate code
+ctx_load.S	context load and destroy: registers, flag registers, WRAM, ERAM, CRAM and the input FIFO restored, and reload from the BEF shadow
+debug.S	debug monitor: number printing, drain, roll call and the slop command
+deform.S	deformation map loading and the deformation query
+drawlin.S	line primitive output: plain, stippled, multisample and line-list forms
+drawmstpnt.S	multisample point output with distance attenuation and the sample tables
+drawpnt.S	point primitive output: plain, antialiased, multisample and distance-attenuated
+drawtri.S	triangle output with polygon offset
+entry.S	vertex-entry points the distributor jumps to: raster position, points and the line-strip vertex save and copy forms
+err.S	GL error codes recorded on the engine (invalid enum, value, operation, stack overflow and underflow)
+eval.s	evaluator polynomial inner loops of general order in U and V, with derivatives
+eval1.s	evaluator polynomial loops of order 1
+eval2.s	evaluator polynomial loops of order 2
+eval4.s	evaluator polynomial loops of order 4
+evalbasis.s	evaluator change of basis for orders 1-8
+evalmisc.s	evaluator state save, load and swap for 1D and 2D maps
+expand.s	pixel-path component expansion (RGB, LA, CI, single component), added by AddExpand2RGBA
+feedback.S	feedback mode: begin and end, and the point, line, triangle and pixel feedback records
+fft.S	FFT pixel path (sizes 2 to 256), transpose and complex output, set up by SetupGE_FFT
+floattoint.s	pixel-path float-to-integer stage, added by AddF2I
+fluff.S	geometry pipeline control: module dirty flags, multipass, punt and the vertex save and copy helpers
+fog.S	fog: global table set-up, fog function, mode, enable and offset
+ge.S	start-up and context initialisation of GL and X state, pipe set-up
+generallight.S	general (multi-light, local viewer) lighting loop
+generallight2.S	local and infinite light-source terms of the general lighting
+get.S	query replies: current values, raster position and special registers
+getlight.S	light and material queries, and the push and pop of light attributes
+glExt.S	polygon-offset commands (core and extension)
+glmodes.S	raster and pipeline modes: viewport, depth range, cull face, front face, matrix mode, point parameters, sprites, multipass, the IrisGL lighting flag
+histogram.S	histogram and min-max state moved between ERAM and CRAM, and the ERAM fill
+histogram.s	pixel-path histogram stage, added by AddHistogram
+hostio.S	engine-to-host returns: read-data framing, ERAM, CRAM, special-register and last-vertex output DMA
+indxirislight.S	colour-index and IrisGL lighting final stages
+inttofloat.s	pixel-path integer-to-float stage, added by AddInt2Float
+lightenables.S	lighting, light-source and colour-material enables and disables, spot power table recompute
+lightmodel.S	light-model parameters (ambient, local viewer, two-sided) and colour-material face selection
+lightsource.S	per-light parameters: position, spot direction, exponent and cutoff, attenuation, colours
+lightsubroutines.S	lighting initialisation and the dirty-state refresh of the lighting tables
+linclip.S	line clipping against the user planes and the view frustum
+line.S	line width, stipple and antialiased-line tables
+m_pipecontrol.S	GL context swap in and out on the engines, end of a pixel stream
+mask.s	pixel-path mask stage
+material.S	material parameters and their updates
+math.S	scalar math subroutines: reciprocal, square root, reciprocal square root
+matrix.S	matrix copy, transpose, identity, ortho and frustum helpers
+matrixfunc.S	matrix stack commands per matrix mode: push, pop, load, multiply, rotate, scale, translate, frustum, ortho
+mcolormatrix.S	pixel-path colour-matrix stage, added by AddColorMatrix
+mcomporder.S	pixel-path component-order reversal, added by AddCompOrder
+mdecompose2.S	primitive decomposition: triangle strips, quads, quad strips, polygons, simple triangles
+mdecompress.S	pixel-path 16-bit depth decompression, added by AddDecompressZ
+memove.S	memory moves between ERAM, WRAM and CRAM
+mexpand.S	32-bit expansion stages for 1- and 2-component pixels
+mextract.S	pixel-path L12A4 extraction, added by AddExtract
+minmax.s	pixel-path min-max stage, added by AddMinMax (ucode/ge_ops.md, "Settling the ties")
+mmath.S	sine and cosine of two angles
+mmatrix.S	4x4 matrix multiply, CRAM by CRAM into CRAM
+mmemove.S	memory moves from WRAM to CRAM and to the output FIFO
+mpixelSetup.S	pixel-path set-up: stream distribution to the next engine, CRAM/ERAM copies, integer-to-float and shift skips
+mpixout.S	pixel output stages for GL and X: component packing, polygon stipple, transparent and opaque bitmaps
+msepconv.S	separable convolution stages 3x3, 5x5 and 7x7
+mshortcircuit.S	short-circuit pixel conversions between packed formats
+msum.S	pixel-path RGB-to-luminance sum, added by AddSumRGB2L
+munpack.S	vertex-array unpack for lit vertex formats (V3F with colour, normal and texture coordinates)
+phong.S	Phong-shaded triangle output with per-pixel normalise and light
+pi.S	performance instruments start and stop
+pntclip.S	point clipping against the user planes and the view frustum
+point.S	multisample point tables and point size
+polygon.S	polygon set-up for render, select and feedback modes, and polygon mode
+polymode.S	triangle output in line or point polygon mode
+primmtrllight.S	lighting with per-primitive material changes
+push_attrib.S	restore of transform attributes, FFT factor initialisation
+raster.S	raster-board commands: register writes, flush, accumulation, current raster, colour-index and RGBA modes, texture address set-up, clipmap transform
+refplane.S	reference-plane commands
+scalebias.s	pixel-path scale-and-bias stage and the depth final stage
+select.S	selection mode: begin and end, name stack
+selectmods.S	selection hit recording per primitive type
+shiftadd.s	pixel-path shift-and-add stage
+sprite.S	sprite (SGIX_sprite) rotation modes
+subdiv.S	patch subdivision entry and tags
+texenv.S	texture environment
+texgen.S	texture-coordinate generation modes and planes
+texture.S	texture binding, scale and bias, the texture-memory load FIFO and the texture address
+ucolormatrix.s	colour-matrix inner loop
+ucull.s	face culling
+udecompose.s	primitive decomposition of strips, lines and triangles
+udecompose2.s	simple triangle-strip decomposition
+udeform.s	deformation of coordinates and texture coordinates
+udrawtri.s	triangle and quad output
+ueval1D.s	1D evaluator commands: map spec, map data, grid, strip
+ueval2D.s	2D evaluator commands: map spec, map data, grid, strip
+uevalbasis.s	evaluator change of basis for geometry, colour, normal and texture maps
+uevalcoord.s	evaluator coordinate entry (EvalCoord) for 1D and 2D
+ulight.s	simple lighting and colour clamp
+umath.s	sine and cosine
+umatrix.s	matrix multiply, inverse, adjoint, rotate and scale
+umemove.s	memory moves WRAM, CRAM and ERAM in each direction
+unpack.S	vertex-array unpack enable and disable, colour and normal restore
+upixelSetup.s	pixel colour-stream entry into the engine
+upixout.s	packed pixel output loops
+uscreen2.s	transformation to screen space with the second-chance (clipped) path
+usepconv3x3.s	separable 3x3 convolution row and column loops
+usepconv5x5.s	separable 5x5 convolution row and column loops, with a fast form
+usepconv7x7.s	separable 7x7 convolution row and column loops
+utexgen.s	texture-coordinate generation loops: sphere, eye-linear, object-linear
+uunpack.s	vertex-array unpack loops for unlit vertex formats
+uxform.s	object-to-clip transformation with optional normal-to-eye transformation
+video.S	video-controller bus writes for the display board (cursor, colour map, gamma, mode, swap)
+xclipdraw.S	X server clipped drawing of points, lines and rectangles
+xentry.S	X server drawing commands: points, lines, segments, rectangles, boxes, spans
+xload.S	X server state loads: graphics context, position, clip, scissor, pixel set-up
+xsetup.S	X server set-up of clip, colours and window

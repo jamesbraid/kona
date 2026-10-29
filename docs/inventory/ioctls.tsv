@@ -59,7 +59,7 @@ user	setmon	110		saXSGIvcQueryChannelGammaMap;vensetmon;vs2setmon	graphics init	
 user	Xsgi	111		irixKernInit	graphics init	undocumented	
 user	gfxinit;setmon	113		gr2ev_info;saXSGIvcQueryChannelGammaMap;vs2setmon	graphics init	undocumented	
 user	Xsgi	1000		irixKernInit	graphics manager	documented	docs/opengl.md#which-functions-call-the-kernel
-user	Xsgi	1002		irixKernInit	graphics manager	undocumented	
+user	Xsgi	1002		irixKernInit	graphics manager	documented	ucode/ge_handlers.md#fluffs
 user	kona.so;konad.so;konal.so;konas.so	1004		rrmDisposeClip	graphics manager	undocumented	
 user	libGL.so;libGL.so;libGL.so;libGL.so;+2 more	1006		glXSwapIntervalSGI	graphics manager	undocumented	
 user	Xsgi;kona.so;konad.so;konal.so;+1 more	1010		SGICapGLCapture..HAE;rrmInvalidate	graphics manager	undocumented	
@@ -67,10 +67,10 @@ user	kona.so;konad.so;konal.so;konas.so	1011		konValidateClip	graphics manager	d
 user	kona.so;konad.so;konal.so;konas.so	1012		konValidateSwapbuf	graphics manager	documented	docs/opengl.md#ioctls
 user	glx.so	1013		glxBindSwapBarrierSGIX;glxJoinSwapGroupSGIX	graphics manager	undocumented	
 user	kona.so;konad.so;konal.so;konas.so	1017		konLoadDisplayMode	graphics manager	documented	docs/dg.md#buffer-swap-and-retrace-wait
-user	glx.so	1019		glxBindSwapBarrierSGIX	graphics manager	undocumented	
+user	glx.so	1019		glxBindSwapBarrierSGIX	graphics manager	documented	ucode/ge_handlers.md#entrys
 user	kona.so;konad.so;konal.so;konas.so	1020		rrmMGRSwapBuf	graphics manager	documented	docs/opengl.md#ioctls
 user	libGL.so;libGL.so;libGL.so;libGL.so;+2 more	1022		glXGetVideoSyncSGI	graphics manager	undocumented	
-user	libGL.so;libGL.so;libGL.so;libGL.so;+2 more	1023		glXWaitVideoSyncSGI	graphics manager	documented	docs/ge.md#registers-the-arms-path-to-them
+user	libGL.so;libGL.so;libGL.so;libGL.so;+2 more	1023		glXWaitVideoSyncSGI	graphics manager	documented	ucode/ge_handlers.md#ges
 user	kona.so;konad.so;konal.so;konas.so	10000		konReadFBBlock;konReadImage;kon_loadGC	kona private	documented	docs/kernel.md#dma-ioctls
 user	kona.so;konad.so;konal.so;konas.so	10001		konDrawImage;konWriteFBSubBlock	kona private	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 user	libGLcore.so;libGLcore.so;libGLcore.so;libGLcore.so	10002		__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	kona private	documented	docs/kernel.md#private-ioctls

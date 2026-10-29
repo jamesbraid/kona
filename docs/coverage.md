@@ -12,9 +12,9 @@ Counts come from `scripts/inventory.py` run over 544 files in scope; each row of
 | Functions (every binary) | 51510 | 843 (1.6%) | 968 (1.9%) | 49699 (96.5%) |
 | Functions (distinct names) | 18857 | 318 (1.7%) | 165 (0.9%) | 18374 (97.4%) |
 | MMIO offsets | 264 | 196 (74.2%) | 68 (25.8%) | 0 (0.0%) |
-| Command tokens | 617 | 154 (25.0%) | 447 (72.4%) | 16 (2.6%) |
-| Ioctls | 113 | 73 (64.6%) | 0 (0.0%) | 40 (35.4%) |
-| Microcode routines and entry points | 3387 | 986 (29.1%) | 390 (11.5%) | 2011 (59.4%) |
+| Command tokens | 617 | 245 (39.7%) | 356 (57.7%) | 16 (2.6%) |
+| Ioctls | 113 | 75 (66.4%) | 0 (0.0%) | 38 (33.6%) |
+| Microcode routines and entry points | 3387 | 2438 (72.0%) | 167 (4.9%) | 782 (23.1%) |
 
 The rows below are the areas view: one row per area of each block, written by hand.
 <!-- inventory:end -->
@@ -130,7 +130,7 @@ Rows for each microcoded engine. They rank below the Priority items: take them w
 
 | Program | Behaviour to cover | Status | Owner | Datasheet topic |
 |---|---|---|---|---|
-| ge.u, ge11.u, ged1b.u, geif.u, ge_kpm.hex | Geometry engine programs and their interface stub: instruction format, schedule, local memory, entry points, command dispatch | partial | `ucode/ge.md`, `ucode/ge_isa.md`, `ucode/ged.md`, `ucode/ged_listing.txt`, `ucode/ge_ops.md`, `ucode/ge_listing/`, `GE.h` | host and geometry |
+| ge.u, ge11.u, ged1b.u, geif.u, ge_kpm.hex | Geometry engine programs and their interface stub: instruction format, schedule, local memory, entry points, command dispatch; every `ge_symbols` label and `geif.u` slot placed by module with what reaches it (ucode/ge_handlers.md) | partial | `ucode/ge.md`, `ucode/ge_handlers.md`, `ucode/ge_isa.md`, `ucode/ged.md`, `ucode/ged_listing.txt`, `ucode/ge_ops.md`, `ucode/ge_listing/`, `GE.h` | host and geometry |
 | arm1.u, arm1_kpm.u | The ARM-named program: role, instruction format and what it controls | partial | `ucode/arm1.md`, `ucode/arm1_firmware.md`, `ucode/arm1.s`, `ucode/icu_map.tsv`, `ucode/arm1_handlers.tsv`, `ucode/dg_dispatch.tsv` | host and geometry |
 | tport.bin | Textport program: command set and display behaviour | done | `ucode/tport.md`, `ucode/tport.s` | command grammar |
 | dg4/vfo, dg4/cmb, vof, dgo1 | Display tables: video format and combiner table layouts | done | `ucode/dg.md`, `DG.h`, `scripts/sdb_dump.py` | display |
