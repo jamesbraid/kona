@@ -220,7 +220,6 @@
  * Routes tried: the 6.5.30m kernel (it only carries the bits over), kpm's
  * XG table (masks, no defaults), the strings of kpm, irsaudit, postmortem
  * and ireeprom (no water-mark name beyond kpm's table), the 6.5.5 headers and Linux
-
  * xwidget.h. An emulator picks values and says so.
  */
 /*
@@ -294,22 +293,9 @@
 #define   KONA_XG_MAP_RAM_ODD_PARITY      0x80000000
 
 /*
- * XG +0xc014 in the user mapping is the generic widget error upper-address
- * register at XG +0x14, established: kpm 6.5.30m `adapterInspection`
- * (0x10012378) reads it through the I/O window that a privileged process
- * maps from 0xc000 and stores it in its dump. Inferred from the layout in
- * Linux xwidget.h: it holds address bits of the last failed request.
- */
-/*
- * XG +0xc034 in the user mapping is the interrupt destination upper-address
- * register at XG +0x34, established: kpm 6.5.30m `adapterInspection`
- * (0x10012378) reads back through the privileged I/O window what
- * `kona_reset_adaptor` wrote, so the dump records where interrupts are sent.
- */
-/*
- * XG +0xc074 in the user mapping is the water-mark register at XG +0x74,
- * established: kpm 6.5.30m `adapterInspection` (0x10012378) reads it through
- * the privileged I/O window to record the output-DMA and command marks.
+ * The kpm reads of the widget page through the user I/O window (0xc00c-0xc094) have their
+ * entries with the KONA_USER_ defines in HIP.h. kpm's XG table has no record at widget offsets
+ * 0x14, 0x1c, 0x2c, 0x34 or 0x3c, so its dump cannot label those words.
  */
 
 #endif /* KONA_XG_H */
