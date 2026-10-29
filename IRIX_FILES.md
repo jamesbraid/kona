@@ -32,7 +32,26 @@ from that install with `cp -rp`.
 /usr/cpu/sysgen/IP27boot/gfxs.a
 /usr/cpu/sysgen/IP27boot/gfxstubs.a
 /usr/cpu/sysgen/IP27boot/rrm.o
+/usr/cpu/sysgen/IP27boot/tport.a
+/usr/cpu/sysgen/IP35boot/kona.a
+/usr/cpu/sysgen/IP35boot/gfx.o
+/usr/cpu/sysgen/IP35boot/gfxs.a
+/usr/cpu/sysgen/IP35boot/gfxstubs.a
+/usr/cpu/sysgen/IP35boot/rrm.o
+/usr/cpu/sysgen/IP35boot/tport.a
+/var/sysgen/system/gfx.sm
+/var/sysgen/mtune/gfx
+/var/sysgen/master.d/gfxs
 /usr/gfx/gfxinit
+/usr/gfx/gfxinfo
+/usr/gfx/gfxtopology
+/usr/gfx/hyperpipeinfo
+/usr/gfx/ircombine
+/usr/gfx/sgcombine
+/usr/gfx/setmon
+/usr/gfx/dmconf
+/usr/gfx/startgfx
+/usr/gfx/stopgfx
 /usr/gfx/arch/GENERIC/Xsgi
 /usr/gfx/arch/IP27KONA
 /usr/gfx/arch/IP27KONA32
@@ -40,9 +59,15 @@ from that install with `cp -rp`.
 /usr/gfx/arch/IP35KONA
 /usr/gfx/arch/IP35KONA32
 /usr/gfx/arch/IP35KONA64
+/usr/gfx/arch/IGLOO/libgl.so
 /usr/gfx/arch/IGLOO32/libgl.so
 /usr/gfx/KONA
 /usr/gfx/ucode/KONA
+/usr/gfx/ucode/vfc/sdbutil
+/usr/gfx/ucode/vfc/rules/dg4.def
+/usr/gfx/ucode/vfc/rules/dg4_ddo_gvo.def
+/usr/gfx/ucode/vfc/rules/dplex.def
+/usr/gfx/ucode/vfc/rules/voc1.def
 /usr/diags/IR
 /usr/lib32/libfm.so
 /usr/lib/X11/dyDDX/kona.so
@@ -51,8 +76,20 @@ from that install with `cp -rp`.
 /usr/lib/X11/dyDDX/konas.so
 /usr/lib/X11/dyDDX/konavis.so
 /usr/lib/X11/dyDDX/glx.so
+/usr/bin/X11/xsetmon
+/usr/lib/X11/app-defaults/Ircombine
+/usr/lib/X11/app-defaults/Dmconf
+/usr/lib/X11/app-defaults/XSetmon
 ```
 (The block above is the machine-readable list; the tables below describe it.)
+
+`scripts/inventory.py` walks every path above except these, which are too broad
+to inventory (each line is a path and the reason):
+
+```exclude
+/unix the whole IP27 kernel; its KONA code is the same as kona.a, gfx.o and rrm.o hold
+/usr/cpu/sysgen/IP27boot/kernel.o the generic kernel object, which holds no KONA driver code
+```
 
 ### Where each group goes
 
@@ -64,6 +101,19 @@ from that install with `cp -rp`.
 | X server modules (`ddx/`) | `kona.so`, `konad.so`, `konal.so`, `konas.so`, `konavis.so`, `glx.so` | `usr/lib/X11/dyDDX/` |
 | Microcode and tables (`ucode/`) | `ge.u`, `ge.hex`, `ge11.u`, `ged1b.u`, `geif.u`, `ge_kpm.hex`, `ge_symbols`, `arm1.u`, `arm1_kpm.u`, `tport.bin`, `dg4/`, `vof/` | `usr/gfx/ucode/KONA/` |
 | Diagnostics and tools (`diags/`) | `irsaudit`, `ge_diag_init.*`, `arm1_nic.u`, `dgo.mcs`, `ireeprom`, `kpm`, `postmortem` | `usr/diags/IR/`, `usr/gfx/KONA/bin/` |
+| Origin 350 kernel (`IP35boot`) | `kona.a`, `gfx.o`, `gfxs.a`, `gfxstubs.a`, `rrm.o`, `tport.a` | `usr/cpu/sysgen/IP35boot/` |
+| Textport driver | `tport.a` (IP27 and IP35) | `usr/cpu/sysgen/IP27boot/`, `usr/cpu/sysgen/IP35boot/` |
+| Graphics tools | `gfxinfo` (a link to `gfxinit`), `gfxtopology`, `hyperpipeinfo`, `ircombine`, `sgcombine`, `setmon`, `dmconf`, `startgfx`, `stopgfx`, `xsetmon` and the `Ircombine`, `Dmconf`, `XSetmon` resource files | `usr/gfx/`, `usr/bin/X11/`, `usr/lib/X11/app-defaults/` |
+| Video-format compiler | `sdbutil` and the `dg4.def`, `dg4_ddo_gvo.def`, `dplex.def`, `voc1.def` rule files | `usr/gfx/ucode/vfc/` |
+| IrisGL, o32 | `libgl.so` | `usr/gfx/arch/IGLOO/` |
+| Driver configuration | `gfx.sm`, `gfx` (tunables), `gfxs` | `var/sysgen/system/`, `var/sysgen/mtune/`, `var/sysgen/master.d/` |
+
+The rows from the Origin 350 kernel down were added from a listing of the 6.5.30 installation media
+(`instigator extract` of the three 6.5.30 discs) and extracted from it; they were not checked on an
+installed system, unlike the rest of section 1. The diagnostic directory `usr/diags/IR` also holds
+`bin/hyper`, `ucode/arm1_nic.u`, `ucode/diag_arm_init.u` and the netlist and BIST data files.
+Searched and left out because they name no InfiniteReality symbol: `usr/stand/ide`,
+`stand/ideloader`, `usr/etc/videod` and the `libvl.so.1` builds. The 6.5.30 media carries no PROM image.
 
 `usr/gfx/ucode/KONA/` also holds `dgo1`. `kona.so`, `konad.so`, `konal.so`,
 `konas.so` and `konavis.so` are all present on 6.5.30; the earlier checklist
