@@ -62,13 +62,13 @@ Raster manager and texture memory: rasterisation, pixel ownership, framebuffer a
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | partial | `RM.h`, `docs/rm.md` | raster, texture and display | full index, field and value table from kpm; block-to-ASIC mapping and bus transport unknown |
+| Registers and fields | partial | `RM.h`, `docs/rm.md` | raster, texture and display | full index, field and value table from kpm; chips per RM revision (pg, tg, four tf, eight tm, imp) and their buses from the diagnostic netlists (docs/rm.md); block-to-ASIC mapping of registers unknown |
 | Command and FIFO formats | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | DMA | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | Interrupts | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | Reset | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | Context save and restore | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
-| Texture formats and filtering (incl. precision) | partial | `RM.h`, `docs/rm.md` | raster, texture and display | texel formats, filter modes, filter4 S1.7 weights, sharpen/detail 8+2-bit codes, LOD-bias 4.4 scale; per-pixel LOD and sub-texel precision unknown |
+| Texture formats and filtering (incl. precision) | partial | `RM.h`, `docs/rm.md` | raster, texture and display | texel formats, filter modes, filter4 S1.7 weights, sharpen/detail 8+2-bit codes, LOD-bias 4.4 scale; no raster microcode exists, so per-pixel LOD, sub-texel and weight widths are inside fixed-function chips; inter-chip bus widths from the diagnostic netlists bound them (11-bit screen x/y, 16-bit texel lanes, 31-bit texture-generator word, 80-bit fragment bus; docs/rm.md); the geometry program's 2^20 depth-range and polygon-offset scale is inferred |
 | Display and scanout | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 
 ### DG
@@ -117,7 +117,8 @@ Rows for each microcoded engine. They rank below the Priority items: take them w
 | arm1.u, arm1_kpm.u | The ARM-named program: role, instruction format and what it controls | partial | `ucode/arm1.md`, `ucode/arm1.s`, `ucode/icu_map.tsv` | host and geometry |
 | tport.bin | Textport program: command set and display behaviour | none | `ucode/tport.md` | command grammar |
 | dg4/vfo, dg4/cmb, vof, dgo1 | Display tables: video format and combiner table layouts | none | `ucode/dg.md, DG.h` | display |
+| (none) | Raster and texture programs: no RM or TM microcode ships and no RM or TM chip has a microcode bus; the boards are fixed-function | done | `docs/rm.md` | raster, texture and display |
 
 Microcode detail: container formats, the one-program-three-encodings equivalence and the geif.u slot table are established in ucode/ge.md. The ge.u record is the decoded control word: every record bit is wired from one W bit or decoded, per form (ucode/ge_wiring.tsv), so the field layout of all 15 forms is established and the program is listed per source file with its fields (ucode/ge_isa.md, ucode/ge_listing/). Immediates (32-, 18- and 10-bit) are established; register-like fields, an immediate-address data-memory read and the jump, conditional-jump, loop and relative-target encodings are inferred; the arithmetic operation codes are open. arm1.u is disassembled (AIF image, 1682 symbols; ucode/arm1.md). Token routing: the firmware's 512-entry token map is extracted (icu_map.tsv); 306 tokens run ARM handlers that send a geif.u slot's handler address to the engine, and 83 distributor words carry slots the firmware relocates (ged_relocs.tsv). Open, in order: the arithmetic and FIFO operation codes behind the decoded record bits, how a hardware-routed token's 9-bit command number selects an engine address, and the distributor's instruction set.
 
-Rows: 43.
+Rows: 44.
