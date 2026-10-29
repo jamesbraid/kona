@@ -1,6 +1,6 @@
 table	rows	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes
 binaries	599	143	0	37	0	1	118	337	0	23.9	24.0	43.7	23.9						
-functions	54309	4253	0	1746	1332	2245	47797	6	8	7.8	12.0	100.0	7.8						
+functions	54309	4390	0	1881	1332	2108	47797	6	8	8.1	12.0	100.0	8.1						
 functions (distinct names)	19170	1329	0	1329	222	232	17603	3	3	6.9	8.2	100.0	6.9						
 mmio	53	49	0	47	0	0	0	0	4	92.5	100.0	100.0	100.0	10					
 tokens	617	325	0	321	276	291	0	0	1	52.7	100.0	100.0	52.8			95.0	20	2026-10-29	
@@ -103,7 +103,7 @@ functions in usr/gfx/sgcombine	402	1	0	1	0	32	369	0	0	0.2	8.2	100.0	0.2
 functions in usr/gfx/ucode/vfc/sdbutil	93	1	0	1	0	24	68	0	0	1.1	26.9	100.0	1.1						
 functions in usr/lib/X11/dyDDX/glx.so	981	0	0	0	0	0	981	0	0	0.0	0.0	100.0	0.0						
 functions in usr/lib/X11/dyDDX/kona.so	809	807	0	807	0	1	0	0	1	99.8	100.0	100.0	99.9						
-functions in usr/lib/X11/dyDDX/konad.so	795	657	0	655	0	137	0	0	1	82.6	100.0	100.0	82.8						
+functions in usr/lib/X11/dyDDX/konad.so	795	794	0	790	0	0	0	0	1	99.9	100.0	100.0	100.0						
 functions in usr/lib/X11/dyDDX/konal.so	795	794	0	790	0	0	0	0	1	99.9	100.0	100.0	100.0						
 functions in usr/lib/X11/dyDDX/konas.so	795	794	0	790	0	0	0	0	1	99.9	100.0	100.0	100.0						
 functions in usr/lib32/libfm.so	791	0	0	0	0	0	791	0	0	0.0	0.0	100.0	0.0						
