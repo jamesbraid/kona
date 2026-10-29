@@ -1822,7 +1822,7 @@ ge.u	label	0x00000547	eval_colorchangebasisv		documented	ucode/ge_handlers.md#ue
 ge.u	label	0x00000557	eval_normalchangebasisu		documented	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
 ge.u	label	0x00000567	eval_normalchangebasisv		documented	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
 ge.u	label	0x00000577	eval_changebasis2ddone		documented	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x00000586	umo_EvalPolyV		documented	ucode/ge_handlers.md#evals	eval.s
+ge.u	label	0x00000586	umo_EvalPolyV		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x00000599	lPOLYVUORDERLOOP		documented	ucode/ge_handlers.md#evals	eval.s
 ge.u	label	0x000005ad	lPOLYVVORDERLOOP		documented	ucode/ge_handlers.md#evals	eval.s
 ge.u	label	0x000005ca	umo_EvalPolyU		documented	ucode/ge_handlers.md#evals	eval.s
@@ -1910,13 +1910,13 @@ ge.u	label	0x00000d05	lDE3		documented	ucode/ge_handlers.md#udecomposes	udecompo
 ge.u	label	0x00000d10	mmo_DecomposePoints		documented	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x00000d10	umo_DecomposePoints		documented	ucode/ge_handlers.md#udecomposes	udecompose.s
 ge.u	label	0x00000d19	lDE6		documented	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000d25	mmo_DecomposeTriangleFan		documented	ucode/ge_handlers.md#udecomposes	udecompose.s
+ge.u	label	0x00000d25	mmo_DecomposeTriangleFan		documented	ucode/ge_handlers.md#clips	clip.S
 ge.u	label	0x00000d25	umo_DecomposeTriangleFan		documented	ucode/ge_handlers.md#udecomposes	udecompose.s
 ge.u	label	0x00000d30	lDE7		documented	ucode/ge_handlers.md#udecomposes	udecompose.s
 ge.u	label	0x00000d3b	umo_DummyDecompose		documented	ucode/ge_handlers.md#udecompose2s	udecompose2.s
 ge.u	label	0x00000d4a	umo_DecomposeSimpleTriangleStrip		documented	ucode/ge_handlers.md#udecompose2s	udecompose2.s
 ge.u	label	0x00000d57	lDE4		documented	ucode/ge_handlers.md#udecompose2s	udecompose2.s
-ge.u	label	0x00000d69	mmo_LiColorClamp		documented	ucode/ge_handlers.md#ulights	ulight.s
+ge.u	label	0x00000d69	mmo_LiColorClamp		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x00000d69	umo_LiColorClamp		documented	ucode/ge_handlers.md#ulights	ulight.s
 ge.u	label	0x00000d72	lLI2		documented	ucode/ge_handlers.md#ulights	ulight.s
 ge.u	label	0x00000d7c	mmo_LighterSimple		documented	ucode/ge_handlers.md#ulights	ulight.s
@@ -1974,7 +1974,7 @@ ge.u	label	0x000011b6	mmo_ToScreenSpaceInvQ2DI		documented	ucode/ge_handlers.md#
 ge.u	label	0x000011b6	umo_ToScreenSpaceInvQ2DI		documented	ucode/ge_handlers.md#uscreen2s	uscreen2.s
 ge.u	label	0x000011b8	uBackInvQ2DI		documented	ucode/ge_handlers.md#uscreen2s	uscreen2.s
 ge.u	label	0x000011c1	lSC5		documented	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x00001218	mmo_ObjToClipSpace		documented	ucode/ge_handlers.md#umatrixs	umatrix.s
+ge.u	label	0x00001218	mmo_ObjToClipSpace		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x00001218	umo_ObjToClipSpace		documented	ucode/ge_handlers.md#uxforms	uxform.s
 ge.u	label	0x0000121f	lXF1		documented	ucode/ge_handlers.md#uxforms	uxform.s
 ge.u	label	0x0000124c	mmo_ObjToClipSpaceN2E		documented	ucode/ge_handlers.md#umatrixs	umatrix.s
@@ -2131,7 +2131,7 @@ ge.u	label	0x0000284a	uPO_8_16C		documented	ucode/ge_handlers.md#upixouts	upixou
 ge.u	label	0x0000284e	uPO_8_16C_loop		documented	ucode/ge_handlers.md#upixouts	upixout.s
 ge.u	label	0x00002876	uPostLoop		documented	ucode/ge_handlers.md#upixouts	upixout.s
 ge.u	label	0x00002883	uPO_8_16C_LastBlck		documented	ucode/ge_handlers.md#upixouts	upixout.s
-ge.u	label	0x0000288c	mmo_DrawTri		documented	ucode/ge_handlers.md#udrawtris	udrawtri.s
+ge.u	label	0x0000288c	mmo_DrawTri		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x0000288c	umo_DrawTri		documented	ucode/ge_handlers.md#udrawtris	udrawtri.s
 ge.u	label	0x00002898	uDTList		documented	ucode/ge_handlers.md#udrawtris	udrawtri.s
 ge.u	label	0x0000289d	lDI3		documented	ucode/ge_handlers.md#udrawtris	udrawtri.s
@@ -2213,7 +2213,7 @@ ge.u	label	0x000037aa	mmo_FFT_4		documented	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x000037cb	mmo_FFT_2		documented	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x000037de	mgeb_InitFFTFactors		documented	ucode/ge_handlers.md#push_attribs	push_attrib.S
 ge.u	label	0x000037de	mgeb_RestoreXformAttribs		documented	ucode/ge_handlers.md#push_attribs	push_attrib.S
-ge.u	label	0x000037f9	mgeb_ClipmapXform		documented	ucode/ge_handlers.md#rasters	raster.S
+ge.u	label	0x000037f9	mgeb_ClipmapXform		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000380b	mgesi_FlushRM		documented	docs/opengl.md#display-and-scanout	Display and scanout
 ge.u	label	0x0000384b	mgeb_SetCurrentRaster		documented	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x0000387d	mgebi_ErrQuery		documented	ucode/arm1_firmware.md#how-the-arm-answers-the-host	How the ARM answers the host
@@ -2239,7 +2239,7 @@ ge.u	label	0x00003a25	mges_DiagDeactivate		documented	ucode/ge_handlers.md#raste
 ge.u	label	0x00003a32	mgebi_NullCommand		documented	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler	How a command reaches a geometry-engine handler
 ge.u	label	0x00003a45	mges_NullCommand		documented	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
 ge.u	label	0x00003a52	mgeb_DeathCommand		documented	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003a5b	mgesi_PassThrough		documented	ucode/ge_handlers.md#rasters	raster.S
+ge.u	label	0x00003a5b	mgesi_PassThrough		documented	ucode/ge_handlers.md#evals	eval.s
 ge.u	label	0x00003a6d	mgesi_LutUpload		documented	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00003aae	mmo_LUT_I2I_16		documented	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00003b81	mmo_LUT_I2C_16		documented	ucode/ge_handlers.md#colortables	colortable.S
@@ -2293,7 +2293,7 @@ ge.u	label	0x00004d43	mgesi_XLoadScissor		documented	ucode/ge_handlers.md#xloads
 ge.u	label	0x00004d7c	mgebi_XLoadPosition		documented	ucode/ge_handlers.md#xloads	xload.S
 ge.u	label	0x00004deb	mgeb_XSetupClip		documented	ucode/ge_handlers.md#xsetups	xsetup.S
 ge.u	label	0x00004e22	mgeb_XSetupColors		documented	ucode/ge_handlers.md#xsetups	xsetup.S
-ge.u	label	0x00004e30	mgebi_XSetupWindow		documented	ucode/ge_handlers.md#xsetups	xsetup.S
+ge.u	label	0x00004e30	mgebi_XSetupWindow		documented	ucode/ge_handlers.md#eval2s	eval2.s
 ge.u	label	0x00004ead	mmo_XclipDrawLines		documented	ucode/ge_handlers.md#xclipdraws	xclipdraw.S
 ge.u	label	0x0000508b	mmo_XclipDrawRects		documented	ucode/ge_handlers.md#xclipdraws	xclipdraw.S
 ge.u	label	0x00005130	mmo_XclipDrawPoints		documented	ucode/ge_handlers.md#xclipdraws	xclipdraw.S
@@ -2331,7 +2331,7 @@ ge.u	label	0x0000583e	mgeb_EnableUnpack		documented	ucode/ge_handlers.md#unpacks
 ge.u	label	0x00005857	mgebi_TexEnvComps		documented	ucode/ge_handlers.md#texenvs	texenv.S
 ge.u	label	0x00005879	mgebi_TexEnv		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 ge.u	label	0x00005942	mTexEnvDone		documented	ucode/ge_handlers.md#texenvs	texenv.S
-ge.u	label	0x0000594d	mValidateTexenvMode		documented	ucode/ge_handlers.md#texenvs	texenv.S
+ge.u	label	0x0000594d	mValidateTexenvMode		documented	ucode/ge_handlers.md#conv3x3s	conv3x3.s
 ge.u	label	0x000059a2	mgebi_ReferencePlane		documented	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
 ge.u	label	0x00005b15	mgebi_ReferencePlane_Disable		documented	ucode/ge_handlers.md#refplanes	refplane.S
 ge.u	label	0x00005b2f	mgebi_ReferencePlane_Enable		documented	ucode/arm1_functions.md#enable-and-disable	Enable and disable
@@ -2343,23 +2343,23 @@ ge.u	label	0x00005ccc	MSPoint_Sort		documented	ucode/ge_handlers.md#points	point
 ge.u	label	0x00005d94	MSPoint_Init		documented	ucode/ge_handlers.md#points	point.S
 ge.u	label	0x00005e9e	MSPoint_Init_Samples		documented	ucode/ge_handlers.md#points	point.S
 ge.u	label	0x00005fbe	MSPoint_Print_Scratch_Tables		documented	ucode/ge_handlers.md#debugs	debug.S
-ge.u	label	0x00006094	mgebi_PointSize_MS		documented	ucode/ge_handlers.md#points	point.S
-ge.u	label	0x0000612c	mgebi_PointSize_AlphaAA		documented	ucode/ge_handlers.md#points	point.S
-ge.u	label	0x00006163	mgebi_PointSize_Aliased		documented	ucode/ge_handlers.md#points	point.S
-ge.u	label	0x000061c6	mgebi_PointSize_Feedback		documented	ucode/ge_handlers.md#points	point.S
+ge.u	label	0x00006094	mgebi_PointSize_MS		documented	ucode/ge_handlers.md#drawmstpnts	drawmstpnt.S
+ge.u	label	0x0000612c	mgebi_PointSize_AlphaAA		documented	ucode/ge_handlers.md#drawpnts	drawpnt.S
+ge.u	label	0x00006163	mgebi_PointSize_Aliased		documented	ucode/ge_handlers.md#drawpnts	drawpnt.S
+ge.u	label	0x000061c6	mgebi_PointSize_Feedback		documented	ucode/ge_handlers.md#feedbacks	feedback.S
 ge.u	label	0x000061e0	mgebi_PointSize_Select		documented	ucode/ge_handlers.md#points	point.S
-ge.u	label	0x000061fa	mgeb_PolygonSetup_Feedback		documented	ucode/ge_handlers.md#polygons	polygon.S
+ge.u	label	0x000061fa	mgeb_PolygonSetup_Feedback		documented	ucode/ge_handlers.md#feedbacks	feedback.S
 ge.u	label	0x00006208	mgeb_PolygonSetup_Select		documented	ucode/ge_handlers.md#polygons	polygon.S
-ge.u	label	0x00006216	mgeb_PolygonSetup_Render		documented	ucode/ge_handlers.md#polygons	polygon.S
-ge.u	label	0x00006237	mPolymodeSetup		documented	ucode/ge_handlers.md#polygons	polygon.S
-ge.u	label	0x00006257	mgeb_LineWidth_Aliased		documented	ucode/ge_handlers.md#lines	line.S
-ge.u	label	0x00006289	mgeb_LineWidth_Feedback		documented	ucode/ge_handlers.md#lines	line.S
+ge.u	label	0x00006216	mgeb_PolygonSetup_Render		documented	ucode/ge_handlers.md#drawtris	drawtri.S
+ge.u	label	0x00006237	mPolymodeSetup		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
+ge.u	label	0x00006257	mgeb_LineWidth_Aliased		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
+ge.u	label	0x00006289	mgeb_LineWidth_Feedback		documented	ucode/ge_handlers.md#feedbacks	feedback.S
 ge.u	label	0x00006298	mgeb_LineWidth_Select		documented	ucode/ge_handlers.md#lines	line.S
 ge.u	label	0x000062a7	mgeb_LineStipple		documented	ucode/ge_handlers.md#lines	line.S
-ge.u	label	0x000062dc	mgeb_LineWidth_MS		documented	ucode/ge_handlers.md#lines	line.S
+ge.u	label	0x000062dc	mgeb_LineWidth_MS		documented	ucode/ge_handlers.md#drawlins	drawlin.S
 ge.u	label	0x00006300	mgeb_InitAALineTables		documented	ucode/ge_handlers.md#lines	line.S
 ge.u	label	0x00006319	mgeb_DownLoadAALineTable		documented	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-ge.u	label	0x00006379	mgeb_LineWidth_AlphaAA		documented	ucode/ge_handlers.md#lines	line.S
+ge.u	label	0x00006379	mgeb_LineWidth_AlphaAA		documented	ucode/ge_handlers.md#drawlins	drawlin.S
 ge.u	label	0x000063d4	mGenerateAALineTable8		documented	ucode/ge_handlers.md#aas	aa.S
 ge.u	label	0x00006432	mGenerateAALineTable4		documented	ucode/ge_handlers.md#aas	aa.S
 ge.u	label	0x000064af	mGenerateAALineTable		documented	ucode/ge_handlers.md#aas	aa.S
@@ -2450,7 +2450,7 @@ ge.u	label	0x00008123	SaveClipState		documented	ucode/ge_handlers.md#drawmstpnts
 ge.u	label	0x0000813b	mmo_DrawMSDistAttPntPrim		documented	ucode/ge_handlers.md#drawpnts	drawpnt.S
 ge.u	label	0x000082a7	mmo_DrawMSPntPrim		documented	ucode/ge_handlers.md#drawpnts	drawpnt.S
 ge.u	label	0x00008357	mmo_DrawDistAttPntPrim		documented	ucode/ge_handlers.md#drawpnts	drawpnt.S
-ge.u	label	0x00008465	mmo_DrawPntPrim		documented	ucode/ge_handlers.md#drawpnts	drawpnt.S
+ge.u	label	0x00008465	mmo_DrawPntPrim		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x000084be	mmo_DrawAAPntPrim		documented	ucode/ge_handlers.md#aas	aa.S
 ge.u	label	0x00008669	mmo_DirtySpriteModule		documented	ucode/ge_handlers.md#sprites	sprite.S
 ge.u	label	0x00008676	mSpriteRotateMatrix		documented	ucode/ge_handlers.md#sprites	sprite.S
@@ -2463,7 +2463,7 @@ ge.u	label	0x0000892b	mDrawLinPrim		documented	ucode/ge_handlers.md#drawlins	dra
 ge.u	label	0x000089bc	mDrawLinList		documented	ucode/ge_handlers.md#drawlins	drawlin.S
 ge.u	label	0x00008a2d	mmo_DrawMSLinPrim		documented	ucode/ge_handlers.md#drawlins	drawlin.S
 ge.u	label	0x00008b08	mmo_DrawLinStipplePrim		documented	ucode/ge_handlers.md#drawlins	drawlin.S
-ge.u	label	0x00008db0	mmo_DrawLinPrim		documented	ucode/ge_handlers.md#drawlins	drawlin.S
+ge.u	label	0x00008db0	mmo_DrawLinPrim		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x00008dc0	mmo_DrawTriPrimOffset		documented	ucode/ge.md#precision	Precision
 ge.u	label	0x0000903c	AA_Response_Max		documented	ucode/ge_handlers.md#aas	aa.S
 ge.u	label	0x00009045	AA_Response_Step		documented	ucode/ge_handlers.md#aas	aa.S
@@ -2585,7 +2585,7 @@ ge.u	label	0x0000ad90	mDebugInitialize		documented	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000adaf	mX_CM_Initialize		documented	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000ade8	mX_REGS_Initialize		documented	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000ae09	mGL_EX_Initialize		documented	docs/rm.md#the-register-write-word	The register-write word
-ge.u	label	0x0000b0f4	mGL_EM_Initialize		documented	ucode/ge_handlers.md#ges	ge.S
+ge.u	label	0x0000b0f4	mGL_EM_Initialize		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x0000b1ac	mGL_CM_Initialize		documented	ucode/ge.md#precision	Precision
 ge.u	label	0x0000b25a	mGL_REGS_Initialize		documented	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000b27b	mgeb_Disable_EnablePolyOffsetExt		documented	ucode/arm1_functions.md#enable-and-disable	Enable and disable
@@ -2641,7 +2641,7 @@ ge.u	label	0x0000bbc3	mgeb_Ortho_Texture		documented	ucode/ge_handlers.md#matrix
 ge.u	label	0x0000bbd1	mgeb_Ortho_Projection		documented	ucode/ge_handlers.md#matrixs	matrix.S
 ge.u	label	0x0000bbe0	mgeb_Ortho_Modelview		documented	ucode/ge_handlers.md#matrixs	matrix.S
 ge.u	label	0x0000bbf0	mgeb_Frustum_Color		documented	ucode/ge_handlers.md#matrixs	matrix.S
-ge.u	label	0x0000bbfe	mgeb_Frustum_Texture		documented	ucode/ge_handlers.md#matrixs	matrix.S
+ge.u	label	0x0000bbfe	mgeb_Frustum_Texture		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000bc0c	mgeb_Frustum_Projection		documented	ucode/ge_handlers.md#matrixs	matrix.S
 ge.u	label	0x0000bc1b	mgeb_Frustum_Modelview		documented	ucode/ge_handlers.md#matrixs	matrix.S
 ge.u	label	0x0000bc2b	mgeb_Translate_Color		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
@@ -2657,19 +2657,19 @@ ge.u	label	0x0000bd31	mgeb_Rotate_Texture		documented	ucode/ge_handlers.md#matri
 ge.u	label	0x0000bd3f	mgeb_Rotate_Projection		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000bd4e	mgeb_Rotate_Modelview		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000bd5e	mgeb_MultMatrix_Color		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bd6c	mgeb_MultMatrix_Texture		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
+ge.u	label	0x0000bd6c	mgeb_MultMatrix_Texture		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000bd7a	mgeb_MultMatrix_Projection		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000bd89	mgeb_MultMatrix_Modelview		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000bd99	mgeb_LoadMatrix_Color		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bdb5	mgeb_LoadMatrix_Texture		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
+ge.u	label	0x0000bdb5	mgeb_LoadMatrix_Texture		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000bdd0	mgeb_LoadMatrix_Projection		documented	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x0000bdec	mgeb_LoadMatrix_Modelview		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000be08	mgeb_LoadIdentity_Color		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000be22	mgeb_LoadIdentity_Texture		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
+ge.u	label	0x0000be22	mgeb_LoadIdentity_Texture		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000be3c	mgeb_LoadIdentity_Projection		documented	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x0000be57	mgeb_LoadIdentity_Modelview		documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000be80	mgeb_MatrixMode		documented	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler	How a command reaches a geometry-engine handler
-ge.u	label	0x0000be8f	mRecordHit		documented	ucode/ge_handlers.md#selectmodss	selectmods.S
+ge.u	label	0x0000be8f	mRecordHit		documented	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000becc	mmo_SelectTriangle		documented	ucode/ge_handlers.md#selectmodss	selectmods.S
 ge.u	label	0x0000bf2f	mmo_SelectRasterPos		documented	ucode/ge_handlers.md#selectmodss	selectmods.S
 ge.u	label	0x0000bf6d	mmo_SelectPoint		documented	ucode/ge_handlers.md#selectmodss	selectmods.S
@@ -2681,14 +2681,14 @@ ge.u	label	0x0000c086	mgeb_PushName		documented	ucode/ge_handlers.md#errs	err.S
 ge.u	label	0x0000c0e0	mgeb_PopName		documented	ucode/ge_handlers.md#errs	err.S
 ge.u	label	0x0000c12e	mgeb_InitNames		documented	ucode/ge_handlers.md#selects	select.S
 ge.u	label	0x0000c159	mSelectFlush		documented	ucode/ge_handlers.md#selects	select.S
-ge.u	label	0x0000c20a	mgeb_PopAttrLights		documented	ucode/ge_handlers.md#getlights	getlight.S
+ge.u	label	0x0000c20a	mgeb_PopAttrLights		documented	ucode/ge_handlers.md#generallights	generallight.S
 ge.u	label	0x0000c255	mgesi_PushAttrLights		documented	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
 ge.u	label	0x0000c284	mgesi_LiGetMaterial		documented	ucode/ge_handlers.md#getlights	getlight.S
 ge.u	label	0x0000c2d2	mgesi_LiGetLight		documented	ucode/ge_handlers.md#getlights	getlight.S
 ge.u	label	0x0000c321	mLiLocalLight		documented	ucode/ge_handlers.md#generallight2s	generallight2.S
 ge.u	label	0x0000c3db	mLiInfVInfLi		documented	ucode/ge_handlers.md#generallight2s	generallight2.S
 ge.u	label	0x0000c426	mLiLocVInfLi		documented	ucode/ge_handlers.md#generallight2s	generallight2.S
-ge.u	label	0x0000c493	mLiLocVInfLiInit		documented	ucode/ge_handlers.md#generallight2s	generallight2.S
+ge.u	label	0x0000c493	mLiLocVInfLiInit		documented	ucode/ge_handlers.md#generallights	generallight.S
 ge.u	label	0x0000c500	mgeb_LightPos		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 ge.u	label	0x0000c5cd	mgeb_LightSpotDir		documented	ucode/ge_handlers.md#lightsources	lightsource.S
 ge.u	label	0x0000c626	mgeb_LightSpotExp		documented	ucode/ge_handlers.md#errs	err.S
@@ -2699,21 +2699,21 @@ ge.u	label	0x0000c6e5	mgeb_LightK0		documented	ucode/ge_handlers.md#lightsources
 ge.u	label	0x0000c6f2	mgeb_LightSpec		documented	ucode/ge_handlers.md#lightsources	lightsource.S
 ge.u	label	0x0000c6fb	mgeb_LightDiff		documented	ucode/ge_handlers.md#lightsources	lightsource.S
 ge.u	label	0x0000c704	mgeb_LightAmb		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
-ge.u	label	0x0000c70d	mLightColor		documented	ucode/ge_handlers.md#lightsources	lightsource.S
+ge.u	label	0x0000c70d	mLightColor		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000c721	mgeb_LiClrMtrlFrontBack		documented	ucode/ge_handlers.md#lightmodels	lightmodel.S
 ge.u	label	0x0000c75b	mgeb_LiClrMtrlBack		documented	ucode/ge_handlers.md#lightmodels	lightmodel.S
 ge.u	label	0x0000c795	mgeb_LiClrMtrlFront		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 ge.u	label	0x0000c7cf	mgeb_LightModelGAmb		documented	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c7e1	mgeb_LightModelLocV		documented	ucode/ge_handlers.md#lightmodels	lightmodel.S
+ge.u	label	0x0000c7e1	mgeb_LightModelLocV		documented	ucode/ge_handlers.md#generallights	generallight.S
 ge.u	label	0x0000c7fb	mgeb_LightModel2Side		documented	ucode/ge_handlers.md#lightmodels	lightmodel.S
 ge.u	label	0x0000c989	mmo_DecomposeTriangleStripWithSwapOdd		documented	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
 ge.u	label	0x0000c9b2	mmo_DecomposeTriangleStripWithSwapEven		documented	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
 ge.u	label	0x0000c9e1	mmo_DummyDecomposeQuadStrip		documented	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
 ge.u	label	0x0000ca01	mmo_DummyDecompose		documented	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
-ge.u	label	0x0000ca10	mmo_DecomposeSimpleTriangles		documented	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
-ge.u	label	0x0000ca3a	mmo_DecomposeQuads		documented	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000ca60	mmo_DecomposeQuadStrip		documented	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000ca86	mmo_DecomposePolygon		documented	ucode/ge_handlers.md#fluffs	fluff.S
+ge.u	label	0x0000ca10	mmo_DecomposeSimpleTriangles		documented	ucode/ge_handlers.md#clips	clip.S
+ge.u	label	0x0000ca3a	mmo_DecomposeQuads		documented	ucode/ge_handlers.md#clips	clip.S
+ge.u	label	0x0000ca60	mmo_DecomposeQuadStrip		documented	ucode/ge_handlers.md#clips	clip.S
+ge.u	label	0x0000ca86	mmo_DecomposePolygon		documented	ucode/ge_handlers.md#clips	clip.S
 ge.u	label	0x0000cabe	mgeb_TexGen		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 ge.u	label	0x0000cb19	mgeb_TexGen_Disable		documented	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 ge.u	label	0x0000cb39	mgeb_TexGen_Enable		documented	ucode/arm1_functions.md#enable-and-disable	Enable and disable
@@ -2738,7 +2738,7 @@ ge.u	label	0x0000cf4e	mmo_TexGenEyeLine_ST		documented	ucode/ge_handlers.md#texg
 ge.u	label	0x0000cfdb	mmo_TexGenEyeLine_RQ		documented	ucode/ge_handlers.md#texgens	texgen.S
 ge.u	label	0x0000d068	mmo_TexGenEyePoint_ST		documented	ucode/ge_handlers.md#texgens	texgen.S
 ge.u	label	0x0000d0c3	mmo_TexGenEyePoint_RQ		documented	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000d11e	mTexGenResolve		documented	ucode/ge_handlers.md#texgens	texgen.S
+ge.u	label	0x0000d11e	mTexGenResolve		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000d191	mWramToCram		documented	ucode/ge_handlers.md#mmemoves	mmemove.S
 ge.u	label	0x0000d1a9	mWramToFifo		documented	ucode/ge_handlers.md#mmemoves	mmemove.S
 ge.u	label	0x0000d23f	mSinCosAB		documented	ucode/ge_handlers.md#mmaths	mmath.S
@@ -2764,10 +2764,10 @@ ge.u	label	0x0000d536	mLiPrimMtrlIndxFinalLi		documented	ucode/ge_handlers.md#in
 ge.u	label	0x0000d54e	mLiIrisColoring		documented	ucode/ge_handlers.md#indxirislights	indxirislight.S
 ge.u	label	0x0000d5a6	mLiIndexFinalLi		documented	ucode/ge_handlers.md#indxirislights	indxirislight.S
 ge.u	label	0x0000d5c4	mLiFinalLiEquIndx		documented	ucode/ge_handlers.md#indxirislights	indxirislight.S
-ge.u	label	0x0000d60e	mLiPrimShinLoop		documented	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d667	mLiPrmMtrlBackClrAccmEnd		documented	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d676	mLiPrmMtrlBackClrInitAccm		documented	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d690	mLiPrmMtrlFrntClrAccmEnd		documented	ucode/ge_handlers.md#generallight2s	generallight2.S
+ge.u	label	0x0000d60e	mLiPrimShinLoop		documented	ucode/ge_handlers.md#generallights	generallight.S
+ge.u	label	0x0000d667	mLiPrmMtrlBackClrAccmEnd		documented	ucode/ge_handlers.md#generallights	generallight.S
+ge.u	label	0x0000d676	mLiPrmMtrlBackClrInitAccm		documented	ucode/ge_handlers.md#generallights	generallight.S
+ge.u	label	0x0000d690	mLiPrmMtrlFrntClrAccmEnd		documented	ucode/ge_handlers.md#generallights	generallight.S
 ge.u	label	0x0000d6a7	mLiPrimMtrlCpFrntEnd		documented	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
 ge.u	label	0x0000d6c4	mLiPrimMtrlCopyEnd		documented	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
 ge.u	label	0x0000d6ef	mLiPrimMtrlInit		documented	ucode/ge_handlers.md#generallights	generallight.S
@@ -2802,18 +2802,18 @@ ge.u	label	0x0000ddc5	mLiSwichSpotPrwTable2		documented	ucode/ge_handlers.md#lig
 ge.u	label	0x0000de2a	mLiSwichSpotPrwTableSub		documented	ucode/ge_handlers.md#lightenabless	lightenables.S
 ge.u	label	0x0000de3f	mLiSwichSpotPrwTable		documented	ucode/ge_handlers.md#lightenabless	lightenables.S
 ge.u	label	0x0000de94	mgeb_Material		documented	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler	How a command reaches a geometry-engine handler
-ge.u	label	0x0000def0	mLiUpdateMtrlColor		documented	ucode/ge_handlers.md#materials	material.S
+ge.u	label	0x0000def0	mLiUpdateMtrlColor		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000df27	mLiSetMShininess		documented	ucode/ge_handlers.md#errs	err.S
 ge.u	label	0x0000df4c	mLiSetMAmbDiff		documented	ucode/ge_handlers.md#materials	material.S
 ge.u	label	0x0000df72	mLiPushMtrlShin		documented	ucode/ge_handlers.md#errs	err.S
 ge.u	label	0x0000df9c	mLiPushMtrlInit2		documented	ucode/ge_handlers.md#materials	material.S
-ge.u	label	0x0000dfb1	mLiPushMtrlInit		documented	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
+ge.u	label	0x0000dfb1	mLiPushMtrlInit		documented	ucode/ge_handlers.md#generallights	generallight.S
 ge.u	label	0x0000dfe4	mLiPushMtrlDiff		documented	ucode/ge_handlers.md#materials	material.S
 ge.u	label	0x0000e009	mLiPushMtrlASEI		documented	ucode/ge_handlers.md#materials	material.S
 ge.u	label	0x0000e036	mLiPushMaterial		documented	ucode/ge_handlers.md#materials	material.S
 ge.u	label	0x0000e05a	mGL_LightInitialize		documented	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
-ge.u	label	0x0000e184	mGL_CtxLightInitialize		documented	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
-ge.u	label	0x0000e27a	mLiUpdateShin		documented	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
+ge.u	label	0x0000e184	mGL_CtxLightInitialize		documented	ucode/ge_handlers.md#generallights	generallight.S
+ge.u	label	0x0000e27a	mLiUpdateShin		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000e334	mLiDirtySimLiCRAM		documented	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
 ge.u	label	0x0000e391	mLiDirtyGenLiCRAM		documented	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
 ge.u	label	0x0000e3d2	mmo_Punt		documented	ucode/ge_handlers.md#fluffs	fluff.S
@@ -2837,7 +2837,7 @@ ge.u	label	0x0000e6a5	mmo_DirtyMultipassModule		documented	ucode/ge_handlers.md#
 ge.u	label	0x0000e6c0	mmo_CopyV0ToVn1AndIgnore		documented	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000e6d4	mmo_CopyV0ToVn1		documented	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000e6e8	mmo_AbortGeometry		documented	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e741	mDispatchCentral		documented	ucode/ge_handlers.md#fluffs	fluff.S
+ge.u	label	0x0000e741	mDispatchCentral		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x0000e75e	mClipPntUserAndFrustum		documented	ucode/ge_handlers.md#pntclips	pntclip.S
 ge.u	label	0x0000e8a6	mMatrixMultCCC		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x0000ea1c	mClipLinUserAndFrustum		documented	ucode/ge_handlers.md#clips	clip.S
@@ -2870,9 +2870,9 @@ ge.u	label	0x0000f404	mgeb_ViewPort		documented	ucode/ge_handlers.md#glmodess	gl
 ge.u	label	0x0000f435	mgesi_SetGeId		documented	docs/ge.md#reset-and-start-up	Reset and start-up
 ge.u	label	0x0000f449	mmo_DirtyXformAndObjToClipModule		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000f494	mmo_DirtyTextureAndScreenModule		documented	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f4e4	mmo_DirtyPrePathModule		documented	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f50d	mmo_DirtyLightModule		documented	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f547	mmo_DirtyCullAndLightModule		documented	ucode/ge_handlers.md#glmodess	glmodes.S
+ge.u	label	0x0000f4e4	mmo_DirtyPrePathModule		documented	ucode/ge_handlers.md#deforms	deform.S
+ge.u	label	0x0000f50d	mmo_DirtyLightModule		documented	ucode/ge_handlers.md#generallights	generallight.S
+ge.u	label	0x0000f547	mmo_DirtyCullAndLightModule		documented	ucode/ge_handlers.md#generallights	generallight.S
 ge.u	label	0x0000f583	mUserClipResolve		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 geif.u	dispatch slot	0	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	1	mges_TBUS_1	handler 0x399e	documented	ucode/arm1_functions.md#output-module-records-and-conversion-lists	Output-module records and conversion lists
@@ -2909,7 +2909,7 @@ geif.u	dispatch slot	31	mgeb_FrontFace	handler 0xf3db	documented	ucode/arm1_firm
 geif.u	dispatch slot	32	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	33	mgeb_Frustum_Projection	handler 0xbc0c	documented	ucode/ge_handlers.md#matrixs	matrix.S
 geif.u	dispatch slot	34	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	35	mgeb_Frustum_Texture	handler 0xbbfe	documented	ucode/ge_handlers.md#matrixs	matrix.S
+geif.u	dispatch slot	35	mgeb_Frustum_Texture	handler 0xbbfe	documented	ucode/ge_handlers.md#glmodess	glmodes.S
 geif.u	dispatch slot	36	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	37	mgeb_LiClrMtrlBack	handler 0xc75b	documented	ucode/ge_handlers.md#lightmodels	lightmodel.S
 geif.u	dispatch slot	38	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -2943,7 +2943,7 @@ geif.u	dispatch slot	65	mgeb_LightModel2Side	handler 0xc7fb	documented	ucode/ge_
 geif.u	dispatch slot	66	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	67	mgeb_LightModelGAmb	handler 0xc7cf	documented	ucode/ge_handlers.md#lightmodels	lightmodel.S
 geif.u	dispatch slot	68	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	69	mgeb_LightModelLocV	handler 0xc7e1	documented	ucode/ge_handlers.md#lightmodels	lightmodel.S
+geif.u	dispatch slot	69	mgeb_LightModelLocV	handler 0xc7e1	documented	ucode/ge_handlers.md#generallights	generallight.S
 geif.u	dispatch slot	70	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	71	mgeb_LightPos	handler 0xc500	documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 geif.u	dispatch slot	72	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -2967,7 +2967,7 @@ geif.u	dispatch slot	89	mgeb_LoadIdentity_Modelview	handler 0xbe57	documented	uc
 geif.u	dispatch slot	90	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	91	mgeb_LoadIdentity_Projection	handler 0xbe3c	documented	ucode/ge_handlers.md#fogs	fog.S
 geif.u	dispatch slot	92	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	93	mgeb_LoadIdentity_Texture	handler 0xbe22	documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
+geif.u	dispatch slot	93	mgeb_LoadIdentity_Texture	handler 0xbe22	documented	ucode/ge_handlers.md#glmodess	glmodes.S
 geif.u	dispatch slot	94	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	95	mgeb_LoadMatrix_Color	handler 0xbd99	documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 geif.u	dispatch slot	96	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -2975,7 +2975,7 @@ geif.u	dispatch slot	97	mgeb_LoadMatrix_Modelview	handler 0xbdec	documented	ucod
 geif.u	dispatch slot	98	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	99	mgeb_LoadMatrix_Projection	handler 0xbdd0	documented	ucode/ge_handlers.md#fogs	fog.S
 geif.u	dispatch slot	100	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	101	mgeb_LoadMatrix_Texture	handler 0xbdb5	documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
+geif.u	dispatch slot	101	mgeb_LoadMatrix_Texture	handler 0xbdb5	documented	ucode/ge_handlers.md#glmodess	glmodes.S
 geif.u	dispatch slot	102	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	103	mgeb_MatrixMode	handler 0xbe80	documented	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler	How a command reaches a geometry-engine handler
 geif.u	dispatch slot	104	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -2985,7 +2985,7 @@ geif.u	dispatch slot	107	mgeb_MultMatrix_Modelview	handler 0xbd89	documented	uco
 geif.u	dispatch slot	108	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	109	mgeb_MultMatrix_Projection	handler 0xbd7a	documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 geif.u	dispatch slot	110	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	111	mgeb_MultMatrix_Texture	handler 0xbd6c	documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
+geif.u	dispatch slot	111	mgeb_MultMatrix_Texture	handler 0xbd6c	documented	ucode/ge_handlers.md#glmodess	glmodes.S
 geif.u	dispatch slot	112	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	113	mgeb_Ortho_Modelview	handler 0xbbe0	documented	ucode/ge_handlers.md#matrixs	matrix.S
 geif.u	dispatch slot	114	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3061,17 +3061,17 @@ geif.u	dispatch slot	183	mgesi_AlphaFunc	handler 0x39c8	documented	ucode/arm1_fi
 geif.u	dispatch slot	184	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	185	mgesi_AlphaTest	handler 0x39b8	documented	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	186	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	187	mgeb_LineWidth_Aliased	handler 0x6257	documented	ucode/ge_handlers.md#lines	line.S
+geif.u	dispatch slot	187	mgeb_LineWidth_Aliased	handler 0x6257	documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 geif.u	dispatch slot	188	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	189	mgeb_LineWidth_AlphaAA	handler 0x6379	documented	ucode/ge_handlers.md#lines	line.S
+geif.u	dispatch slot	189	mgeb_LineWidth_AlphaAA	handler 0x6379	documented	ucode/ge_handlers.md#drawlins	drawlin.S
 geif.u	dispatch slot	190	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	191	mgeb_LineWidth_MS	handler 0x62dc	documented	ucode/ge_handlers.md#lines	line.S
+geif.u	dispatch slot	191	mgeb_LineWidth_MS	handler 0x62dc	documented	ucode/ge_handlers.md#drawlins	drawlin.S
 geif.u	dispatch slot	192	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	193	mgebi_PixEndTransparentBitmap	handler 0xa6ff	documented	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 geif.u	dispatch slot	194	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	195	mgebi_PointSize_AlphaAA	handler 0x612c	documented	ucode/ge_handlers.md#points	point.S
+geif.u	dispatch slot	195	mgebi_PointSize_AlphaAA	handler 0x612c	documented	ucode/ge_handlers.md#drawpnts	drawpnt.S
 geif.u	dispatch slot	196	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	197	mgebi_PointSize_MS	handler 0x6094	documented	ucode/ge_handlers.md#points	point.S
+geif.u	dispatch slot	197	mgebi_PointSize_MS	handler 0x6094	documented	ucode/ge_handlers.md#drawmstpnts	drawmstpnt.S
 geif.u	dispatch slot	198	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	199	mgebi_ShadeModel	handler 0x3a0a	documented	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	200	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3199,15 +3199,15 @@ geif.u	dispatch slot	321	mgeb_PixMapOutputI	handler 0x3fd8	documented	ucode/ge_h
 geif.u	dispatch slot	322	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	323	mgeb_PixMapOutputRGBA	handler 0x3f87	documented	ucode/ge.md#precision	Precision
 geif.u	dispatch slot	324	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	325	mgeb_PolygonSetup_Feedback	handler 0x61fa	documented	ucode/ge_handlers.md#polygons	polygon.S
+geif.u	dispatch slot	325	mgeb_PolygonSetup_Feedback	handler 0x61fa	documented	ucode/ge_handlers.md#feedbacks	feedback.S
 geif.u	dispatch slot	326	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	327	mgeb_PolygonSetup_Render	handler 0x6216	documented	ucode/ge_handlers.md#polygons	polygon.S
+geif.u	dispatch slot	327	mgeb_PolygonSetup_Render	handler 0x6216	documented	ucode/ge_handlers.md#drawtris	drawtri.S
 geif.u	dispatch slot	328	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	329	mgeb_PolygonSetup_Select	handler 0x6208	documented	ucode/ge_handlers.md#polygons	polygon.S
 geif.u	dispatch slot	330	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	331	mgeb_XPolygonStippleRotate	handler 0x9a98	documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 geif.u	dispatch slot	332	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	333	mgeb_PopAttrLights	handler 0xc20a	documented	ucode/ge_handlers.md#getlights	getlight.S
+geif.u	dispatch slot	333	mgeb_PopAttrLights	handler 0xc20a	documented	ucode/ge_handlers.md#generallights	generallight.S
 geif.u	dispatch slot	334	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	335	mgeb_PopName	handler 0xc0e0	documented	ucode/ge_handlers.md#errs	err.S
 geif.u	dispatch slot	336	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3223,15 +3223,15 @@ geif.u	dispatch slot	345	mgeb_StrideEramToCram	handler 0xa8bb	documented	ucode/g
 geif.u	dispatch slot	346	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	347	mgeb_Translate_Color	handler 0xbc2b	documented	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 geif.u	dispatch slot	348	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	349	mgeb_LineWidth_Feedback	handler 0x6289	documented	ucode/ge_handlers.md#lines	line.S
+geif.u	dispatch slot	349	mgeb_LineWidth_Feedback	handler 0x6289	documented	ucode/ge_handlers.md#feedbacks	feedback.S
 geif.u	dispatch slot	350	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	351	mgeb_LineWidth_Select	handler 0x6298	documented	ucode/ge_handlers.md#lines	line.S
 geif.u	dispatch slot	352	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	353	mgebi_NullCommand	handler 0x3a32	documented	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler	How a command reaches a geometry-engine handler
 geif.u	dispatch slot	354	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	355	mgebi_PointSize_Aliased	handler 0x6163	documented	ucode/ge_handlers.md#points	point.S
+geif.u	dispatch slot	355	mgebi_PointSize_Aliased	handler 0x6163	documented	ucode/ge_handlers.md#drawpnts	drawpnt.S
 geif.u	dispatch slot	356	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	357	mgebi_PointSize_Feedback	handler 0x61c6	documented	ucode/ge_handlers.md#points	point.S
+geif.u	dispatch slot	357	mgebi_PointSize_Feedback	handler 0x61c6	documented	ucode/ge_handlers.md#feedbacks	feedback.S
 geif.u	dispatch slot	358	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	359	mgebi_PointSize_Select	handler 0x61e0	documented	ucode/ge_handlers.md#points	point.S
 geif.u	dispatch slot	360	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3297,7 +3297,7 @@ geif.u	dispatch slot	419	mgesi_LoadEram	handler 0x6ab0	documented	ucode/ge_handl
 geif.u	dispatch slot	420	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	421	mgesi_LutUpload	handler 0x3a6d	documented	ucode/ge_handlers.md#colortables	colortable.S
 geif.u	dispatch slot	422	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	423	mgesi_PassThrough	handler 0x3a5b	documented	ucode/ge_handlers.md#rasters	raster.S
+geif.u	dispatch slot	423	mgesi_PassThrough	handler 0x3a5b	documented	ucode/ge_handlers.md#evals	eval.s
 geif.u	dispatch slot	424	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	425	mgesi_PixDrawColorEntry	handler 0x27d5	documented	ucode/ge_handlers.md#upixelsetups	upixelSetup.s
 geif.u	dispatch slot	426	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up

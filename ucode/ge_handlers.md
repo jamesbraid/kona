@@ -13,7 +13,9 @@ Every label `ge_symbols` gives for the geometry-engine program (IRIX 6.5.30m, 11
 - **Distributor** gives the index of the 64-entry handler table `init_ged` fills ([ged_bound_table.tsv](ged_bound_table.tsv)) or says the slot is in a word of the distributor program that the ARM relocates at load ([ged_relocs.tsv](ged_relocs.tsv)).
 - **Transfers in** lists the labels whose code holds a decoded transfer to this address in the listings. Transfers to `HereWeGo` (address 0) are left out: they are how 31 handlers end. **Inferred:** the relative-target reading of [ge_isa.md](ge_isa.md) is right for these; a wrong decode would add a false entry or miss a true one.
 - **Inside** names the nearest preceding handler or module label in the same source when nothing else reaches a label. **Inferred:** such a label is a loop head, a branch target or a second entry of that routine; its role follows from the routine's.
-- **Unknown entry** marks a label at the head of its module that no slot, ARM load or decoded transfer reaches (40 labels). How it is entered is **unknown**: an address another routine stores in engine memory and jumps through would not show in this scan.
+- **Address loaded as a constant** lists the labels whose code loads this label's address as an immediate in a constant-load word (`r215=3` in the listing). 242 labels are reached this way, among them 26 module heads the other columns miss: `mGL_EM_Initialize` and `mGL_CM_Initialize` load the evaluator, transform, colour-clamp, point, line, triangle and dispatch modules (`umo_EvalPolyV`, `mmo_ObjToClipSpace`, `mmo_LiColorClamp`, `mmo_DrawPntPrim`, `mmo_DrawLinPrim`, `mmo_DrawTri`, `mDispatchCentral`); the `Dirty*` modules load the deform, sprite, cull and colour-mask modules; `mgeb_PolygonSetup_*`, `mPolymodeSetup`, `mgebi_PointSize_*` and `mgeb_LineWidth_Aliased` load the primitive modules they select. **Inferred:** the loading code stores the address in engine memory and a later indirect transfer goes through it, which is how the program chains modules; the indirect transfer itself is not decoded.
+- `HereWeGo` is the program's first word (address 0), and 31 handlers end by a transfer to it. **Inferred:** it is where the engines start after the ARM sets `EXEC_GO` ([ge.md](ge.md)), since no slot or constant names it and it runs before any command arrives.
+- **Unknown entry** marks a label at the head of its module that no slot, ARM load, decoded transfer or address constant reaches. 13 remain: `AA_Response_Max`, `umo_BitmapToFloat`, `umo_BitmapToInt`, `umo_DummyDecompose`, `uWramToCram`, `mDummy`, `mmo_DrawTriPrimPhong`, `minv`, `msqrt`, `misqrt`, `mMatrixTransposeWW`, `mCramToWram` and `mge_ErrNoError`. Routes tried: the `geif.u` slots, every `arm1.u` load of `gepc` and the packed copy, the distributor table and relocations, every decoded transfer target within three words of each address, every immediate of any form in the 129 listings, and a search for the label's first three instructions elsewhere in `ge.u` (only `umo_DummyDecompose` matches another routine, `mmo_DummyDecompose`, and `msqrt`/`misqrt` match each other). **Inferred:** these are unused copies or library routines assembled into the image; unknown: no shipped software or published source depends on how they would be entered.
 - **Alias** marks a second name at the same address. 75 addresses carry two names: 49 `mmo_`/`umo_` pairs, 13 `m`/`u` pairs (`mWramToEram` and `uWramToEram`), 12 command-handler pairs (`mgeb_`/`ugeb_`, `mgesi_`/`ugesi_`, `mges_`/`uges_`), and one address with two `mgeb_` names.
 
 **Inferred** from the prefixes and from what reaches each class:
@@ -82,7 +84,7 @@ Program entry at address 0 (`HereWeGo`): every even geif.u entry and the 60 unus
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `HereWeGo` | 0x0000 | 20 | 83 | unknown entry |
+| `HereWeGo` | 0x0000 | 20 | 83 | the program's first word (address 0); 31 handlers end by a transfer to it |
 
 ### clamp.s
 
@@ -123,7 +125,7 @@ Triangle and polygon clipping against the user planes and the view frustum. **In
 | `mEyeToClipAfterUserClip` | 0xf182 | 712 | 77 | transfers in `mClipLinUserAndFrustum`, `mClipTriUserAndFrustum` |
 | `mSetClipVertsFree` | 0xf20a | 860 | 16 | transfers in `mClipTriUserAndFrustum` |
 | `mPerTriClipFlagsFrustum` | 0xef7e | 924 | 29 | transfers in `mClipTriUserAndFrustum` |
-| `mClipTriUserAndFrustum` | 0xed52 | 1080 | 218 | inside `mPerTriClipFlagsFrustum` |
+| `mClipTriUserAndFrustum` | 0xed52 | 1080 | 218 | address loaded as a constant in `mGL_EM_Initialize`, `mmo_DecomposePolygon`, `mmo_DecomposeQuadStrip`, `mmo_DecomposeQuads`, `mmo_DecomposeSimpleTriangles`, `mmo_DecomposeTriangleFan` and 8 more |
 | `mClipTriFlushSR` | 0xf14f | 1603 | 42 | transfers in `mClipTriUserAndFrustum` |
 | `mClipTriFlush` | 0xf1dc | 1700 | 36 | transfers in `mClipTriUserAndFrustum` |
 
@@ -161,7 +163,7 @@ General 3x3 convolution pixel stage. **Inferred** from its labels and callers.
 |---|---|---|---|---|
 | `mmo_GeneralConvolve3x3_124` | 0x20a3 | 127 | 93 | geif slot 283 |
 | `umo_GeneralConvolve3x3_124` | 0x20a3 | 127 | 93 | alias of `mmo_GeneralConvolve3x3_124` |
-| `normal_path_conv3` | 0x2100 | 246 | 74 | transfers in `mmo_GeneralConvolve3x3_124` |
+| `normal_path_conv3` | 0x2100 | 246 | 74 | transfers in `mmo_GeneralConvolve3x3_124`; address loaded as a constant in `mValidateTexenvMode`, `mgebi_TexEnv` |
 | `mainloop_conv3` | 0x214a | 345 | 37 | inside `mmo_GeneralConvolve3x3_124` |
 | `epilogue_conv3` | 0x216f | 393 | 26 | transfers in `normal_path_conv3` |
 
@@ -249,7 +251,7 @@ Deformation map loading and the deformation query. **Inferred** from its labels 
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_DirtyDeformModule` | 0x48d8 | 50 | 22 | unknown entry |
+| `mmo_DirtyDeformModule` | 0x48d8 | 50 | 22 | address loaded as a constant in `mgeb_DeformationMap3_1`, `mmo_DirtyPrePathModule` |
 | `mgeb_DeformationMap3_1` | 0x482e | 129 | 119 | geif slot 407; ARM `init_ged`; distributor table 29 |
 | `mgeb_LoadIdentityDeformation` | 0x4806 | 344 | 23 | geif slot 408; ARM `init_ged`; distributor table 30 |
 | `mgesi_GetDeformation` | 0x479b | 447 | 74 | geif slot 409; tokens `HP_GET_DEFORMATION`; ARM `arm_get_deformation` |
@@ -261,11 +263,11 @@ Line primitive output: plain, stippled, multisample and line-list forms. **Infer
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_DrawLinPrim` | 0x8db0 | 111 | 14 | unknown entry |
+| `mmo_DrawLinPrim` | 0x8db0 | 111 | 14 | address loaded as a constant in `mGL_CM_Initialize`, `mgeb_LineWidth_Aliased`, `mgeb_LineWidth_AlphaAA` |
 | `mDrawLinPrim` | 0x892b | 165 | 136 | transfers in `mmo_DrawLinPrim` |
 | `mDrawLinList` | 0x89bc | 318 | 105 | transfers in `mmo_DrawLinPrim` |
-| `mmo_DrawMSLinPrim` | 0x8a2d | 482 | 211 | inside `mDrawLinList` |
-| `mmo_DrawLinStipplePrim` | 0x8b08 | 806 | 516 | inside `mmo_DrawMSLinPrim` |
+| `mmo_DrawMSLinPrim` | 0x8a2d | 482 | 211 | address loaded as a constant in `mgeb_LineWidth_MS` |
+| `mmo_DrawLinStipplePrim` | 0x8b08 | 806 | 516 | address loaded as a constant in `mgeb_LineWidth_Aliased`, `mgeb_LineWidth_AlphaAA`, `mgeb_LineWidth_MS` |
 
 ### drawmstpnt.S
 
@@ -275,11 +277,11 @@ Multisample point output with distance attenuation and the sample tables. **Infe
 |---|---|---|---|---|
 | `SaveClipState` | 0x8123 | 269 | 9 | transfers in `mmo_DrawMSDistAttTablePntPrim`, `mmo_DrawMSTablePntPrim`, `mmo_DrawMSTablePntPrim1` |
 | `RestoreClipState` | 0x810b | 285 | 9 | transfers in `mmo_DrawMSDistAttTablePntPrim`, `mmo_DrawMSTablePntPrim`, `mmo_DrawMSTablePntPrim1` |
-| `mmo_DrawMSTablePntPrim` | 0x7e6f | 662 | 450 | unknown entry |
-| `mmo_DrawMSTablePntPrim1` | 0x7c28 | 1382 | 384 | inside `mmo_DrawMSTablePntPrim` |
+| `mmo_DrawMSTablePntPrim` | 0x7e6f | 662 | 450 | address loaded as a constant in `mgebi_PointSize_MS` |
+| `mmo_DrawMSTablePntPrim1` | 0x7c28 | 1382 | 384 | address loaded as a constant in `mgebi_PointSize_MS` |
 | `DrawMSTablePnt` | 0x7a54 | 3079 | 268 | transfers in `mmo_DrawMSDistAttTablePntPrim` |
 | `DrawMSTFanPnt` | 0x79a3 | 4019 | 144 | transfers in `mmo_DrawMSDistAttTablePntPrim` |
-| `mmo_DrawMSDistAttTablePntPrim` | 0x7855 | 4198 | 138 | inside `mmo_DrawMSTablePntPrim1` |
+| `mmo_DrawMSDistAttTablePntPrim` | 0x7855 | 4198 | 138 | address loaded as a constant in `mgebi_PointSize_MS` |
 
 ### drawpnt.S
 
@@ -287,11 +289,11 @@ Point primitive output: plain, antialiased, multisample and distance-attenuated.
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_DrawPntPrim` | 0x8465 | 199 | 79 | unknown entry |
-| `mmo_DrawDistAttPntPrim` | 0x8357 | 362 | 214 | inside `mmo_DrawPntPrim` |
-| `mmo_DrawAAPntPrim` | 0x84be | 768 | 219 | inside `mmo_DrawDistAttPntPrim` |
-| `mmo_DrawMSPntPrim` | 0x82a7 | 1264 | 154 | inside `mmo_DrawAAPntPrim` |
-| `mmo_DrawMSDistAttPntPrim` | 0x813b | 1474 | 283 | inside `mmo_DrawMSPntPrim` |
+| `mmo_DrawPntPrim` | 0x8465 | 199 | 79 | address loaded as a constant in `mGL_CM_Initialize`, `mgebi_PointSize_Aliased` |
+| `mmo_DrawDistAttPntPrim` | 0x8357 | 362 | 214 | address loaded as a constant in `mgebi_PointSize_Aliased` |
+| `mmo_DrawAAPntPrim` | 0x84be | 768 | 219 | address loaded as a constant in `mgebi_PointSize_AlphaAA` |
+| `mmo_DrawMSPntPrim` | 0x82a7 | 1264 | 154 | address loaded as a constant in `mgebi_PointSize_MS` |
+| `mmo_DrawMSDistAttPntPrim` | 0x813b | 1474 | 283 | address loaded as a constant in `mgebi_PointSize_MS` |
 
 ### drawtri.S
 
@@ -299,7 +301,7 @@ Triangle output with polygon offset. **Inferred** from its labels and callers.
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_DrawTriPrimOffset` | 0x8dc0 | 127 | 224 | unknown entry |
+| `mmo_DrawTriPrimOffset` | 0x8dc0 | 127 | 224 | address loaded as a constant in `mgeb_PolygonSetup_Render` |
 
 ### entry.S
 
@@ -368,19 +370,19 @@ Evaluator polynomial inner loops of general order in U and V, with derivatives. 
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `umo_EvalPolyV` | 0x0586 | 186 | 19 | unknown entry |
+| `umo_EvalPolyV` | 0x0586 | 186 | 19 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lPOLYVUORDERLOOP` | 0x0599 | 206 | 20 | transfers in `lPOLYVVORDERLOOP` |
 | `lPOLYVVORDERLOOP` | 0x05ad | 227 | 29 | inside `umo_EvalPolyV` |
-| `umo_EvalPolyU` | 0x05ca | 290 | 37 | inside `umo_EvalPolyV` |
+| `umo_EvalPolyU` | 0x05ca | 290 | 37 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lPOLYUUORDERLOOP` | 0x05ef | 328 | 26 | inside `umo_EvalPolyU` |
-| `umo_EvalPolyVdV` | 0x0609 | 394 | 28 | inside `umo_EvalPolyU` |
+| `umo_EvalPolyVdV` | 0x0609 | 394 | 28 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lPOLYVDVUORDERLOOP` | 0x0625 | 423 | 16 | transfers in `lPOLYVDVVORDERLOOP` |
 | `lPOLYVDVVORDERLOOP` | 0x0635 | 440 | 41 | inside `umo_EvalPolyVdV` |
-| `umo_EvalPolyUdU` | 0x065e | 520 | 22 | inside `umo_EvalPolyVdV` |
+| `umo_EvalPolyUdU` | 0x065e | 520 | 22 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lPOLYUDUUSIZELOOP` | 0x0674 | 543 | 16 | transfers in `lPOLYUDUUORDERLOOP` |
 | `lPOLYUDUUORDERLOOP` | 0x0684 | 560 | 41 | inside `umo_EvalPolyUdU` |
-| `umo_EvalComputeNormals3D` | 0x06ad | 628 | 83 | inside `umo_EvalPolyUdU` |
-| `umo_EvalComputeNormals4D` | 0x0700 | 748 | 111 | inside `umo_EvalComputeNormals3D` |
+| `umo_EvalComputeNormals3D` | 0x06ad | 628 | 83 | address loaded as a constant in `mGL_EM_Initialize` |
+| `umo_EvalComputeNormals4D` | 0x0700 | 748 | 111 | address loaded as a constant in `mGL_EM_Initialize`, `mgesi_PassThrough` |
 
 ### eval1.s
 
@@ -388,12 +390,12 @@ Evaluator polynomial loops of order 1. **Inferred** from its labels and callers.
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `umo_EvalPoly1V` | 0x076f | 84 | 20 | unknown entry |
+| `umo_EvalPoly1V` | 0x076f | 84 | 20 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lPOLY1VLOOP` | 0x0783 | 104 | 11 | inside `umo_EvalPoly1V` |
-| `umo_EvalPoly1U` | 0x078e | 144 | 22 | inside `umo_EvalPoly1V` |
-| `umo_EvalPoly1VdV` | 0x07a4 | 192 | 13 | inside `umo_EvalPoly1U` |
+| `umo_EvalPoly1U` | 0x078e | 144 | 22 | address loaded as a constant in `mGL_EM_Initialize` |
+| `umo_EvalPoly1VdV` | 0x07a4 | 192 | 13 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lPOLY1VDVLOOP` | 0x07b1 | 205 | 18 | inside `umo_EvalPoly1VdV` |
-| `umo_EvalPoly1UdU` | 0x07c3 | 250 | 34 | inside `umo_EvalPoly1VdV` |
+| `umo_EvalPoly1UdU` | 0x07c3 | 250 | 34 | address loaded as a constant in `mGL_EM_Initialize` |
 
 ### eval2.s
 
@@ -401,12 +403,12 @@ Evaluator polynomial loops of order 2. **Inferred** from its labels and callers.
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `umo_EvalPoly2V` | 0x07e5 | 117 | 21 | unknown entry |
+| `umo_EvalPoly2V` | 0x07e5 | 117 | 21 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lPOLY2VLOOP` | 0x07fa | 139 | 22 | inside `umo_EvalPoly2V` |
-| `umo_EvalPoly2U` | 0x0810 | 189 | 35 | inside `umo_EvalPoly2V` |
-| `umo_EvalPoly2VdV` | 0x0833 | 253 | 24 | inside `umo_EvalPoly2U` |
+| `umo_EvalPoly2U` | 0x0810 | 189 | 35 | address loaded as a constant in `mGL_EM_Initialize`, `mgebi_XSetupWindow` |
+| `umo_EvalPoly2VdV` | 0x0833 | 253 | 24 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lPOLY2VDVLOOP` | 0x084b | 278 | 26 | inside `umo_EvalPoly2VdV` |
-| `umo_EvalPoly2UdU` | 0x0865 | 333 | 13 | inside `umo_EvalPoly2VdV` |
+| `umo_EvalPoly2UdU` | 0x0865 | 333 | 13 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lPOLY2UDULOOP` | 0x0872 | 347 | 17 | inside `umo_EvalPoly2UdU` |
 
 ### eval4.s
@@ -415,12 +417,12 @@ Evaluator polynomial loops of order 4. **Inferred** from its labels and callers.
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `umo_EvalPoly4V` | 0x0883 | 134 | 17 | unknown entry |
+| `umo_EvalPoly4V` | 0x0883 | 134 | 17 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lPOLY4VLOOP` | 0x0894 | 152 | 41 | inside `umo_EvalPoly4V` |
-| `umo_EvalPoly4U` | 0x08bd | 220 | 53 | inside `umo_EvalPoly4V` |
-| `umo_EvalPoly4VdV` | 0x08f2 | 307 | 18 | inside `umo_EvalPoly4U` |
+| `umo_EvalPoly4U` | 0x08bd | 220 | 53 | address loaded as a constant in `mGL_EM_Initialize` |
+| `umo_EvalPoly4VdV` | 0x08f2 | 307 | 18 | address loaded as a constant in `mGL_EM_Initialize`, `mgeb_PushMatrix_Color` |
 | `lPOLY4VDVLOOP` | 0x0904 | 326 | 41 | inside `umo_EvalPoly4VdV` |
-| `umo_EvalPoly4UdU` | 0x092d | 400 | 13 | inside `umo_EvalPoly4VdV` |
+| `umo_EvalPoly4UdU` | 0x092d | 400 | 13 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lPOLY4UDULOOP` | 0x093a | 414 | 40 | inside `umo_EvalPoly4UdU` |
 
 ### evalbasis.s
@@ -429,19 +431,19 @@ Evaluator change of basis for orders 1-8. **Inferred** from its labels and calle
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `uEvalChangeBasis1and2` | 0x09f5 | 92 | 15 | unknown entry |
-| `uEvalChangeBasis3` | 0x0a04 | 128 | 8 | inside `uEvalChangeBasis1and2` |
+| `uEvalChangeBasis1and2` | 0x09f5 | 92 | 15 | address loaded as a constant in `mGL_EM_Initialize` |
+| `uEvalChangeBasis3` | 0x0a04 | 128 | 8 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lCB3LOOP` | 0x0a0c | 137 | 22 | inside `uEvalChangeBasis3` |
-| `uEvalChangeBasis4` | 0x0a22 | 181 | 16 | inside `uEvalChangeBasis3` |
+| `uEvalChangeBasis4` | 0x0a22 | 181 | 16 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lCB4POLYLOOP` | 0x0a32 | 198 | 22 | inside `uEvalChangeBasis4` |
-| `uEvalChangeBasis5` | 0x0a48 | 243 | 26 | inside `uEvalChangeBasis4` |
+| `uEvalChangeBasis5` | 0x0a48 | 243 | 26 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lCB5LOOP` | 0x0a62 | 270 | 24 | inside `uEvalChangeBasis5` |
-| `uEvalChangeBasis6` | 0x0a7a | 318 | 31 | inside `uEvalChangeBasis5` |
+| `uEvalChangeBasis6` | 0x0a7a | 318 | 31 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lCB6MATRIXLOOP` | 0x0a99 | 350 | 1 | transfers in `lCB6LOOP` |
 | `lCB6LOOP` | 0x0a9a | 352 | 28 | inside `uEvalChangeBasis6` |
-| `uEvalChangeBasis7` | 0x0ab6 | 405 | 40 | inside `uEvalChangeBasis6` |
+| `uEvalChangeBasis7` | 0x0ab6 | 405 | 40 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lCB7LOOP` | 0x0ade | 446 | 30 | inside `uEvalChangeBasis7` |
-| `uEvalChangeBasis8` | 0x0afc | 502 | 51 | inside `uEvalChangeBasis7` |
+| `uEvalChangeBasis8` | 0x0afc | 502 | 51 | address loaded as a constant in `mGL_EM_Initialize` |
 | `lCB8MATRIXLOOP` | 0x0b2f | 554 | 2 | transfers in `lCB8LOOP` |
 | `lCB8LOOP` | 0x0b31 | 557 | 31 | inside `uEvalChangeBasis8` |
 | `uEvalChangeBasis4x4` | 0x0b50 | 613 | 10 | inside `uEvalChangeBasis8` |
@@ -496,9 +498,9 @@ Feedback mode: begin and end, and the point, line, triangle and pixel feedback r
 |---|---|---|---|---|
 | `mgeb_BgnFeedbackMode` | 0xb72f | 59 | 32 | geif slot 125; tokens `HP_RENDERMODE`; ARM `arm_rendermode` |
 | `mgeb_EndFeedbackMode` | 0xb720 | 131 | 9 | geif slot 138; tokens `HP_RENDERMODE`; ARM `arm_rendermode` |
-| `mmo_FeedbackTriangle` | 0xb76e | 166 | 80 | inside `mgeb_EndFeedbackMode` |
-| `mmo_FeedbackLine` | 0xb89a | 320 | 85 | inside `mmo_FeedbackTriangle` |
-| `mmo_FeedbackPoint` | 0xb80f | 479 | 72 | inside `mmo_FeedbackLine` |
+| `mmo_FeedbackTriangle` | 0xb76e | 166 | 80 | address loaded as a constant in `mgeb_PolygonSetup_Feedback` |
+| `mmo_FeedbackLine` | 0xb89a | 320 | 85 | address loaded as a constant in `mgeb_LineWidth_Feedback` |
+| `mmo_FeedbackPoint` | 0xb80f | 479 | 72 | address loaded as a constant in `mgebi_PointSize_Feedback` |
 | `mFeedbackVertex` | 0xb93f | 612 | 85 | transfers in `mmo_FeedbackLine`, `mmo_FeedbackPoint`, `mmo_FeedbackTriangle` |
 | `mgesi_FeedbackPixel` | 0xb6bc | 737 | 65 | geif slot 419; tokens `HP_BITMAP_DLIST`; ARM `PixelRestore`, `SetupRM`, `arm_bitmap_dlist`, `do_bitmap` |
 
@@ -539,28 +541,28 @@ Geometry pipeline control: module dirty flags, multipass, punt and the vertex sa
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mDispatchCentral` | 0xe741 | 53 | 11 | unknown entry |
+| `mDispatchCentral` | 0xe741 | 53 | 11 | address loaded as a constant in `mGL_CM_Initialize` |
 | `mdc_finish` | 0xe450 | 83 | 14 | transfers in `mDispatchCentral`, `mdc_multipass`, `mdc_sprite` |
 | `mdc_polymode_or_clip` | 0xe4d0 | 121 | 3 | transfers in `mDispatchCentral` |
 | `mdc_sprite` | 0xe4b6 | 140 | 9 | transfers in `mDispatchCentral` |
 | `mdc_multipass` | 0xe471 | 169 | 29 | transfers in `mDispatchCentral`, `mdc_sprite` |
 | `mdc_evaluator` | 0xe462 | 239 | 4 | transfers in `mDispatchCentral`, `mdc_multipass`, `mdc_sprite` |
 | `mmo_AbortGeometry` | 0xe6e8 | 264 | 38 | transfers in `lCU2`, `mmo_DecomposeLineStrip`, `mmo_DecomposePoints`, `mmo_DecomposePolygon`, `mmo_DecomposeQuadStrip`, `mmo_DecomposeQuads` and 12 more |
-| `mmo_SaveRasterPos` | 0xe623 | 459 | 65 | inside `mmo_AbortGeometry` |
-| `mmo_Vn2ToSave` | 0xe4de | 625 | 20 | inside `mmo_SaveRasterPos` |
-| `mmo_SaveToV0` | 0xe605 | 656 | 19 | inside `mmo_Vn2ToSave` |
-| `mmo_SaveToV0AndVn2ToSave` | 0xe57e | 687 | 34 | inside `mmo_SaveToV0` |
-| `mmo_V0ToSave` | 0xe544 | 731 | 19 | inside `mmo_SaveToV0AndVn2ToSave` |
-| `mmo_SaveToVn1` | 0xe560 | 766 | 20 | inside `mmo_V0ToSave` |
-| `mmo_CopyV0ToVn1` | 0xe6d4 | 796 | 12 | inside `mmo_SaveToVn1` |
-| `mmo_V0ToSaveAndIgnore` | 0xe4fd | 825 | 21 | inside `mmo_CopyV0ToVn1` |
-| `mmo_CopyV0ToVn1AndIgnore` | 0xe6c0 | 863 | 15 | inside `mmo_V0ToSaveAndIgnore` |
-| `mmo_V0ToSave_SaveExtra` | 0xe519 | 895 | 24 | inside `mmo_CopyV0ToVn1AndIgnore` |
-| `mmo_SaveToV0_SaveExtra` | 0xe5a9 | 932 | 24 | inside `mmo_V0ToSave_SaveExtra` |
-| `mmo_SaveToV0_RestoreExtra` | 0xe5d7 | 965 | 35 | inside `mmo_SaveToV0_SaveExtra` |
-| `mmo_Punt` | 0xe3d2 | 1002 | 5 | inside `mmo_SaveToV0_RestoreExtra` |
-| `mmo_DirtyMultipassModule` | 0xe6a5 | 1016 | 8 | inside `mmo_Punt` |
-| `mmo_MultipassModule` | 0xe3e1 | 1038 | 31 | inside `mmo_DirtyMultipassModule` |
+| `mmo_SaveRasterPos` | 0xe623 | 459 | 65 | address loaded as a constant in `mRecordHit`, `mdc_finish`, `mgeb_RasterPos`, `mmo_AbortGeometry` |
+| `mmo_Vn2ToSave` | 0xe4de | 625 | 20 | address loaded as a constant in `mgesi_QuadStripSave`, `mgesi_TriangleStripSave`, `mgesi_TriangleStripSaveWithSwapOdd` |
+| `mmo_SaveToV0` | 0xe605 | 656 | 19 | address loaded as a constant in `mgesi_QuadStripRestore`, `mgesi_TfanPolyRestore`, `mgesi_TfanPolyRestoreEnd`, `mgesi_TfanPolyRestoreSave`, `mgesi_TriangleStripRestore`, `mgesi_TriangleStripRestoreWithSwapOdd` |
+| `mmo_SaveToV0AndVn2ToSave` | 0xe57e | 687 | 34 | address loaded as a constant in `mgesi_QuadStripRestoreSave`, `mgesi_TriangleStripRestoreSave`, `mgesi_TriangleStripRestoreSaveWithSwapOdd` |
+| `mmo_V0ToSave` | 0xe544 | 731 | 19 | address loaded as a constant in `mgesi_LineStripSaveV0`, `mgesi_TfanPolySave` |
+| `mmo_SaveToVn1` | 0xe560 | 766 | 20 | address loaded as a constant in `mgesi_LineStripRestoreV0` |
+| `mmo_CopyV0ToVn1` | 0xe6d4 | 796 | 12 | address loaded as a constant in `mgesi_LineStripCopyV0` |
+| `mmo_V0ToSaveAndIgnore` | 0xe4fd | 825 | 21 | address loaded as a constant in `mgesi_LineStripSaveAndIgnoreV0` |
+| `mmo_CopyV0ToVn1AndIgnore` | 0xe6c0 | 863 | 15 | address loaded as a constant in `mgesi_LineStripCopyAndIgnoreV0` |
+| `mmo_V0ToSave_SaveExtra` | 0xe519 | 895 | 24 | address loaded as a constant in `mgesi_TfanPolySave` |
+| `mmo_SaveToV0_SaveExtra` | 0xe5a9 | 932 | 24 | address loaded as a constant in `mgesi_TfanPolyRestoreSave` |
+| `mmo_SaveToV0_RestoreExtra` | 0xe5d7 | 965 | 35 | address loaded as a constant in `mgesi_TfanPolyRestoreEdge` |
+| `mmo_Punt` | 0xe3d2 | 1002 | 5 | address loaded as a constant in `mmo_AbortGeometry` |
+| `mmo_DirtyMultipassModule` | 0xe6a5 | 1016 | 8 | address loaded as a constant in `mmo_DirtyPrePathModule` |
+| `mmo_MultipassModule` | 0xe3e1 | 1038 | 31 | address loaded as a constant in `mmo_DirtyMultipassModule` |
 
 ### fog.S
 
@@ -569,33 +571,33 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
 | `mDummy` | 0x7631 | 180 | 1 | unknown entry |
-| `mZclipToEye` | 0x7604 | 202 | 29 | transfers in `mCoarseTblSpecialEntry`, `mFineTblSpecialEntry`, `mGetInternalPointsGSS`, `mInitExpFog`, `mInitLinearFog`, `mOneBigTblSpecialEntry` and 1 more |
-| `mSendFog` | 0x75d2 | 247 | 22 | inside `mZclipToEye` |
-| `mFinishFogDownload` | 0x75c3 | 316 | 7 | transfers in `mLoadFogTable`, `mSendFineTblSpecialEntry`, `mSendOneBigTblSpecialEntry` |
-| `mSendFineTblSpecialEntry` | 0x75ba | 344 | 3 | inside `mFinishFogDownload` |
-| `mFineTblSpecialEntry` | 0x75ab | 358 | 7 | inside `mSendFineTblSpecialEntry` |
-| `mSendCoarseTblSpecialEntry` | 0x7595 | 389 | 14 | inside `mFineTblSpecialEntry` |
-| `mCoarseTblSpecialEntry` | 0x74ff | 448 | 23 | inside `mSendCoarseTblSpecialEntry` |
-| `mSendOneBigTblSpecialEntry` | 0x74f3 | 484 | 12 | inside `mCoarseTblSpecialEntry` |
-| `mOneBigTblSpecialEntry` | 0x74e4 | 522 | 8 | inside `mSendOneBigTblSpecialEntry` |
-| `mInitLinearFog` | 0x74be | 556 | 15 | inside `mOneBigTblSpecialEntry` |
-| `mLinearFog` | 0x74a8 | 580 | 9 | inside `mInitLinearFog` |
-| `mInitExpFog` | 0x748a | 644 | 14 | inside `mLinearFog` |
-| `mExpFog` | 0x7431 | 686 | 49 | inside `mInitExpFog` |
+| `mZclipToEye` | 0x7604 | 202 | 29 | transfers in `mCoarseTblSpecialEntry`, `mFineTblSpecialEntry`, `mGetInternalPointsGSS`, `mInitExpFog`, `mInitLinearFog`, `mOneBigTblSpecialEntry` and 1 more; address loaded as a constant in `mLoadFogTable` |
+| `mSendFog` | 0x75d2 | 247 | 22 | address loaded as a constant in `mStartFogDownload` |
+| `mFinishFogDownload` | 0x75c3 | 316 | 7 | transfers in `mLoadFogTable`, `mSendFineTblSpecialEntry`, `mSendOneBigTblSpecialEntry`; address loaded as a constant in `mgeb_InitFogGlobal` |
+| `mSendFineTblSpecialEntry` | 0x75ba | 344 | 3 | address loaded as a constant in `mFineTblSpecialEntry` |
+| `mFineTblSpecialEntry` | 0x75ab | 358 | 7 | address loaded as a constant in `mLoadFineTable`, `mgeb_InitFogGlobal` |
+| `mSendCoarseTblSpecialEntry` | 0x7595 | 389 | 14 | address loaded as a constant in `mCoarseTblSpecialEntry` |
+| `mCoarseTblSpecialEntry` | 0x74ff | 448 | 23 | address loaded as a constant in `mgeb_InitFogGlobal` |
+| `mSendOneBigTblSpecialEntry` | 0x74f3 | 484 | 12 | address loaded as a constant in `mOneBigTblSpecialEntry` |
+| `mOneBigTblSpecialEntry` | 0x74e4 | 522 | 8 | address loaded as a constant in `mgeb_InitFogGlobal` |
+| `mInitLinearFog` | 0x74be | 556 | 15 | address loaded as a constant in `mgeb_Fogf` |
+| `mLinearFog` | 0x74a8 | 580 | 9 | address loaded as a constant in `mgeb_Fogf` |
+| `mInitExpFog` | 0x748a | 644 | 14 | address loaded as a constant in `mgeb_Fogf` |
+| `mExpFog` | 0x7431 | 686 | 49 | address loaded as a constant in `mgeb_Fogf` |
 | `mSplineSlopeAndOffset` | 0x7404 | 777 | 28 | transfers in `mInitSplineFog`, `mUpdateSplineIntervals` |
-| `mInitSplineFog` | 0x73ec | 826 | 15 | inside `mSplineSlopeAndOffset` |
+| `mInitSplineFog` | 0x73ec | 826 | 15 | address loaded as a constant in `mgeb_Fogf` |
 | `mUpdateSplineIntervals` | 0x7390 | 856 | 34 | transfers in `mSplineFog`, `mSplineFogGSS` |
-| `mSplineFog` | 0x7372 | 932 | 10 | transfers in `mSplineFogGSS` |
-| `mSplineFogGSS` | 0x7534 | 972 | 31 | inside `mSplineFog` |
+| `mSplineFog` | 0x7372 | 932 | 10 | transfers in `mSplineFogGSS`; address loaded as a constant in `mLoadFogTable`, `mgeb_Fogf` |
+| `mSplineFogGSS` | 0x7534 | 972 | 31 | address loaded as a constant in `mCoarseTblSpecialEntry`, `mLoadFogTable` |
 | `mGetInternalPointsGSS` | 0x7360 | 1065 | 7 | transfers in `mLinearApproxErrorGSS`, `mLinearApproxParamsGSS` |
-| `mLinearApproxErrorGSS` | 0x7332 | 1089 | 18 | inside `mGetInternalPointsGSS` |
-| `mLinearApproxParamsGSS` | 0x730b | 1138 | 17 | inside `mLinearApproxErrorGSS` |
+| `mLinearApproxErrorGSS` | 0x7332 | 1089 | 18 | address loaded as a constant in `mLinearApproxParamsGSS` |
+| `mLinearApproxParamsGSS` | 0x730b | 1138 | 17 | address loaded as a constant in `mStartGSS` |
 | `mStartGSS` | 0x783f | 1167 | 10 | transfers in `mDefineCoarseMode`, `mDefineFineMode` |
 | `mDefineFineMode` | 0x71c8 | 1222 | 129 | transfers in `mDefineCoarseMode` |
 | `mDefineCoarseMode` | 0x7771 | 1490 | 85 | transfers in `mLoadFogTable` |
 | `mStartFogDownload` | 0x7187 | 1660 | 41 | transfers in `mLoadFineTable`, `mLoadFogTable`, `mLoadOneBigTable` |
 | `mLoadOneBigTable` | 0x715c | 1736 | 27 | transfers in `mLoadFogTable` |
-| `mLoadFineTable` | 0x7146 | 1799 | 11 | inside `mLoadOneBigTable` |
+| `mLoadFineTable` | 0x7146 | 1799 | 11 | address loaded as a constant in `mgeb_InitFogGlobal` |
 | `mLoadFogTable` | 0x76a2 | 1835 | 90 | transfers in `mResolveFogTable`, `mgeb_FogEnable`, `mgeb_FogFunc`, `mgeb_FogRestore`, `mgeb_Fogf` |
 | `mSetFogOffset` | 0x765c | 1992 | 38 | transfers in `mResolveFogTable`, `mgeb_FogEnable`, `mgeb_Fogf` |
 | `mgeb_Fogf` | 0x6fb2 | 2079 | 211 | geif slot 352; ARM `init_ged`; distributor table 1; transfers in `mgeb_Fogi` |
@@ -633,18 +635,18 @@ General (multi-light, local viewer) lighting loop. **Inferred** from its labels 
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_LiColorMask` | 0xd87e | 41 | 26 | unknown entry |
-| `mmo_LighterGeneral` | 0xd85e | 147 | 30 | transfers in `mLiUpdateMtrlState` |
-| `mLiVtxLoop` | 0xd8a0 | 295 | 27 | transfers in `mLiPrimMtrlInit`, `mmo_LighterGeneral` |
-| `mLiDirtyLocLiVwrLiSrcInit` | 0xd9a2 | 373 | 27 | inside `mLiVtxLoop` |
-| `mLiNoLightSrc` | 0xd901 | 492 | 23 | transfers in `mLiDirtyLocLiVwrLiSrcInit` |
-| `mLiInfVInfLiInit` | 0xd9f7 | 566 | 68 | transfers in `mLiDirtyLocLiVwrLiSrcInit` |
-| `mLiLocalViewer` | 0xd8bc | 820 | 61 | transfers in `mLiDirtyLocLiVwrLiSrcInit` |
-| `mLiLocLiFrnClrAccum` | 0xd9c1 | 947 | 54 | inside `mLiLocalViewer` |
-| `mLiLocLiFrnClrInit` | 0xd943 | 1146 | 48 | inside `mLiLocLiFrnClrAccum` |
-| `mLiBackClrAccum` | 0xd973 | 1326 | 41 | inside `mLiLocLiFrnClrInit` |
-| `mLiBackClrInit` | 0xd91a | 1479 | 33 | inside `mLiBackClrAccum` |
-| `mLiFinalLi` | 0xda3c | 1585 | 43 | inside `mLiBackClrInit` |
+| `mmo_LiColorMask` | 0xd87e | 41 | 26 | address loaded as a constant in `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule` |
+| `mmo_LighterGeneral` | 0xd85e | 147 | 30 | transfers in `mLiUpdateMtrlState`; address loaded as a constant in `mLiPushMtrlInit`, `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule` |
+| `mLiVtxLoop` | 0xd8a0 | 295 | 27 | transfers in `mLiPrimMtrlInit`, `mmo_LighterGeneral`; address loaded as a constant in `mmo_LighterGeneral` |
+| `mLiDirtyLocLiVwrLiSrcInit` | 0xd9a2 | 373 | 27 | address loaded as a constant in `mgeb_LiDisableLightS`, `mgeb_LiEnableLightS`, `mgeb_LightModelLocV`, `mgeb_LightPos`, `mgeb_PopAttrLights` |
+| `mLiNoLightSrc` | 0xd901 | 492 | 23 | transfers in `mLiDirtyLocLiVwrLiSrcInit`; address loaded as a constant in `mGL_CtxLightInitialize`, `mLiDirtyLocLiVwrLiSrcInit` |
+| `mLiInfVInfLiInit` | 0xd9f7 | 566 | 68 | transfers in `mLiDirtyLocLiVwrLiSrcInit`; address loaded as a constant in `mLiDirtyLocLiVwrLiSrcInit` |
+| `mLiLocalViewer` | 0xd8bc | 820 | 61 | transfers in `mLiDirtyLocLiVwrLiSrcInit`; address loaded as a constant in `mLiDirtyLocLiVwrLiSrcInit` |
+| `mLiLocLiFrnClrAccum` | 0xd9c1 | 947 | 54 | address loaded as a constant in `mLiInfVInfLiInit`, `mLiLocLiFrnClrInit`, `mLiLocVInfLiInit`, `mLiPrmMtrlBackClrInitAccm`, `mLiPrmMtrlFrntClrAccmEnd` |
+| `mLiLocLiFrnClrInit` | 0xd943 | 1146 | 48 | address loaded as a constant in `mLiVtxLoop` |
+| `mLiBackClrAccum` | 0xd973 | 1326 | 41 | address loaded as a constant in `mLiBackClrInit`, `mLiPrmMtrlBackClrAccmEnd` |
+| `mLiBackClrInit` | 0xd91a | 1479 | 33 | address loaded as a constant in `mLiPrimShinLoop`, `mLiVtxLoop` |
+| `mLiFinalLi` | 0xda3c | 1585 | 43 | address loaded as a constant in `mGL_CtxLightInitialize`, `mgeb_LiDisableClrMtrl`, `mgeb_RGBA_Mode` |
 
 ### generallight2.S
 
@@ -652,10 +654,10 @@ Local and infinite light-source terms of the general lighting. **Inferred** from
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mLiInfVInfLi` | 0xc3db | 91 | 72 | unknown entry |
-| `mLiLocVInfLi` | 0xc426 | 403 | 104 | inside `mLiInfVInfLi` |
-| `mLiLocVInfLiInit` | 0xc493 | 761 | 104 | inside `mLiLocVInfLi` |
-| `mLiLocalLight` | 0xc321 | 1097 | 175 | transfers in `mLiPrmMtrlFrntClrAccmEnd` |
+| `mLiInfVInfLi` | 0xc3db | 91 | 72 | address loaded as a constant in `mGL_CtxLightInitialize`, `mLiDirtyLocLiVwrLiSrcInit` |
+| `mLiLocVInfLi` | 0xc426 | 403 | 104 | address loaded as a constant in `mLiDirtyLocLiVwrLiSrcInit` |
+| `mLiLocVInfLiInit` | 0xc493 | 761 | 104 | address loaded as a constant in `mLiDirtyLocLiVwrLiSrcInit` |
+| `mLiLocalLight` | 0xc321 | 1097 | 175 | transfers in `mLiPrmMtrlFrntClrAccmEnd`; address loaded as a constant in `mLiDirtyLocLiVwrLiSrcInit`, `mmo_LighterGeneral` |
 
 ### get.S
 
@@ -707,17 +709,17 @@ Raster and pipeline modes: viewport, depth range, cull face, front face, matrix 
 | `mgeb_Disable_Cull_Face` | 0xf33e | 643 | 16 | geif slot 5; ARM `d_cull_face` |
 | `mgeb_SetLMCFlag` | 0xf32f | 687 | 9 | geif slot 405; tokens `HP_IRISGL_MODE`; ARM `arm_irisgl_mode` |
 | `mgeb_ClearLMCFlag` | 0xf320 | 714 | 9 | geif slot 406; tokens `HP_IRISGL_MODE`; ARM `arm_irisgl_mode` |
-| `mmo_DirtyCullAndLightModule` | 0xf547 | 754 | 52 | inside `mgeb_ClearLMCFlag` |
-| `mmo_DirtyLightModule` | 0xf50d | 899 | 52 | inside `mmo_DirtyCullAndLightModule` |
-| `mmo_DirtyXformAndObjToClipModule` | 0xf449 | 1032 | 38 | inside `mmo_DirtyLightModule` |
-| `mmo_DirtyTextureAndScreenModule` | 0xf494 | 1136 | 54 | inside `mmo_DirtyXformAndObjToClipModule` |
+| `mmo_DirtyCullAndLightModule` | 0xf547 | 754 | 52 | address loaded as a constant in `mGL_CtxLightInitialize`, `mLiPrimMtrlInit`, `mLiUpdateMtrlColor`, `mLiUpdateShin`, `mLightColor`, `mPolymodeSetup` and 17 more |
+| `mmo_DirtyLightModule` | 0xf50d | 899 | 52 | address loaded as a constant in `mGL_CtxLightInitialize`, `mLiPrimMtrlInit`, `mLiUpdateMtrlColor`, `mLiUpdateShin`, `mLightColor`, `mgeb_CI_Mode` and 14 more |
+| `mmo_DirtyXformAndObjToClipModule` | 0xf449 | 1032 | 38 | address loaded as a constant in `mTexGenResolve`, `mUserClipResolve`, `mgeb_Disable_Normalize`, `mgeb_Enable_Normalize`, `mgeb_LiDisableLightS`, `mgeb_LiDisableLighting` and 6 more |
+| `mmo_DirtyTextureAndScreenModule` | 0xf494 | 1136 | 54 | address loaded as a constant in `mTexGenResolve`, `mgeb_ClipmapXform`, `mgeb_Frustum_Texture`, `mgeb_LoadIdentity_Texture`, `mgeb_LoadMatrix_Texture`, `mgeb_MultMatrix_Texture` and 7 more |
 | `mgeb_Sprite` | 0xf2cc | 1263 | 35 | geif slot 81; tokens `HP_SPRITEPARAMETERFV`; ARM `arm_spriteparameterfv`, `initSpriteState`, `resolveSpriteMode`, `sprite_pop` |
 | `mgeb_EnableSprite` | 0xf2b9 | 1318 | 15 | geif slot 12; ARM `e_sprite` |
 | `mgeb_DisableSprite` | 0xf2a6 | 1364 | 15 | geif slot 8; ARM `d_sprite` |
 | `mgeb_Enable_Multipass` | 0xf293 | 1403 | 15 | geif slot 137; ARM `e_multipass` |
 | `mgeb_Disable_Multipass` | 0xf280 | 1447 | 15 | geif slot 135; ARM `d_multipass` |
 | `mgeb_PointParameter` | 0xf21b | 1524 | 50 | geif slot 63; tokens `HP_POINTPARAMETERF`, `HP_POINTPARAMETERFV`; ARM `arm_pointparameterf`, `arm_pointparameterfv` |
-| `mmo_DirtyPrePathModule` | 0xf4e4 | 1637 | 25 | inside `mgeb_PointParameter` |
+| `mmo_DirtyPrePathModule` | 0xf4e4 | 1637 | 25 | address loaded as a constant in `mGL_CM_Initialize`, `mgeb_DeformationMap3_1`, `mgeb_DisableSprite`, `mgeb_Disable_Multipass`, `mgeb_EnableSprite`, `mgeb_Enable_Multipass` and 4 more |
 
 ### histogram.S
 
@@ -767,10 +769,10 @@ Colour-index and IrisGL lighting final stages. **Inferred** from its labels and 
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mLiPrimMtrlIndxFinalLi` | 0xd536 | 65 | 23 | unknown entry |
-| `mLiIndexFinalLi` | 0xd5a6 | 134 | 22 | inside `mLiPrimMtrlIndxFinalLi` |
-| `mLiFinalLiEquIndx` | 0xd5c4 | 192 | 62 | transfers in `mLiIndexFinalLi` |
-| `mLiIrisColoring` | 0xd54e | 393 | 66 | transfers in `lLI1` |
+| `mLiPrimMtrlIndxFinalLi` | 0xd536 | 65 | 23 | address loaded as a constant in `mLiPrimMtrlInit` |
+| `mLiIndexFinalLi` | 0xd5a6 | 134 | 22 | address loaded as a constant in `mgeb_CI_Mode` |
+| `mLiFinalLiEquIndx` | 0xd5c4 | 192 | 62 | transfers in `mLiIndexFinalLi`; address loaded as a constant in `mLiPrimMtrlIndxFinalLi` |
+| `mLiIrisColoring` | 0xd54e | 393 | 66 | transfers in `lLI1`; address loaded as a constant in `mmo_LighterGeneral` |
 
 ### inttofloat.s
 
@@ -837,8 +839,8 @@ Lighting initialisation and the dirty-state refresh of the lighting tables. **In
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mLiDirtySimLiCRAM` | 0xe334 | 108 | 78 | transfers in `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule` |
-| `mLiDirtyGenLiCRAM` | 0xe391 | 320 | 52 | transfers in `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule` |
+| `mLiDirtySimLiCRAM` | 0xe334 | 108 | 78 | transfers in `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule`; address loaded as a constant in `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule` |
+| `mLiDirtyGenLiCRAM` | 0xe391 | 320 | 52 | transfers in `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule`; address loaded as a constant in `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule` |
 | `mLiUpdateShin` | 0xe27a | 674 | 143 | transfers in `mLiEndPrimShinLp`, `mLiPushMtrlInit`, `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule` |
 | `mGL_CtxLightInitialize` | 0xe184 | 896 | 236 | transfers in `mgeb_GLContextInitialize` |
 | `mGL_LightInitialize` | 0xe05a | 1087 | 292 | transfers in `mgeb_GlobalInitialize` |
@@ -850,7 +852,7 @@ Line clipping against the user planes and the view frustum. **Inferred** from it
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
 | `mClipLineToPlane` | 0xebbf | 89 | 338 | transfers in `mClipLinUserAndFrustum` |
-| `mClipLinUserAndFrustum` | 0xea1c | 695 | 230 | inside `mClipLineToPlane` |
+| `mClipLinUserAndFrustum` | 0xea1c | 695 | 230 | address loaded as a constant in `mGL_EM_Initialize`, `mmo_DecomposeLineStrip` |
 | `mClipLinFlush` | 0xed2c | 1028 | 30 | transfers in `mClipLinUserAndFrustum` |
 
 ### line.S
@@ -930,7 +932,7 @@ Material parameters and their updates. **Inferred** from its labels and callers.
 | `mLiPushMtrlDiff` | 0xdfe4 | 689 | 31 | transfers in `mLiPushMaterial` |
 | `mLiPushMtrlShin` | 0xdf72 | 742 | 33 | transfers in `mLiPushMaterial` |
 | `mLiPushMtrlInit` | 0xdfb1 | 822 | 46 | transfers in `mgeb_Material` |
-| `mLiPushMtrlInit2` | 0xdf9c | 946 | 11 | inside `mLiPushMtrlInit` |
+| `mLiPushMtrlInit2` | 0xdf9c | 946 | 11 | address loaded as a constant in `mLiPushMtrlInit` |
 
 ### math.S
 
@@ -1025,14 +1027,14 @@ Primitive decomposition: triangle strips, quads, quad strips, polygons, simple t
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_DummyDecompose` | 0xca01 | 37 | 7 | unknown entry |
-| `mmo_DecomposePolygon` | 0xca86 | 53 | 37 | inside `mmo_DummyDecompose` |
-| `mmo_DecomposeQuads` | 0xca3a | 132 | 37 | inside `mmo_DecomposePolygon` |
-| `mmo_DummyDecomposeQuadStrip` | 0xc9e1 | 222 | 31 | inside `mmo_DecomposeQuads` |
-| `mmo_DecomposeQuadStrip` | 0xca60 | 281 | 34 | inside `mmo_DummyDecomposeQuadStrip` |
-| `mmo_DecomposeSimpleTriangles` | 0xca10 | 350 | 38 | inside `mmo_DecomposeQuadStrip` |
-| `mmo_DecomposeTriangleStripWithSwapEven` | 0xc9b2 | 410 | 34 | inside `mmo_DecomposeSimpleTriangles` |
-| `mmo_DecomposeTriangleStripWithSwapOdd` | 0xc989 | 501 | 26 | inside `mmo_DecomposeTriangleStripWithSwapEven` |
+| `mmo_DummyDecompose` | 0xca01 | 37 | 7 | address loaded as a constant in `mdc_multipass`, `mgesi_TfanPoly`, `mgesi_TfanPolyEnd`, `mgesi_TfanPolyRestore`, `mgesi_TfanPolyRestoreEdge`, `mgesi_TfanPolyRestoreEnd` and 8 more |
+| `mmo_DecomposePolygon` | 0xca86 | 53 | 37 | address loaded as a constant in `mgesi_TfanPoly`, `mgesi_TfanPolyEnd`, `mgesi_TfanPolyRestore`, `mgesi_TfanPolyRestoreEdge`, `mgesi_TfanPolyRestoreEnd`, `mgesi_TfanPolyRestoreSave` and 1 more |
+| `mmo_DecomposeQuads` | 0xca3a | 132 | 37 | address loaded as a constant in `mgesi_Quads` |
+| `mmo_DummyDecomposeQuadStrip` | 0xc9e1 | 222 | 31 | address loaded as a constant in `mgesi_QuadStrip`, `mgesi_QuadStripRestore`, `mgesi_QuadStripRestoreSave`, `mgesi_QuadStripSave` |
+| `mmo_DecomposeQuadStrip` | 0xca60 | 281 | 34 | address loaded as a constant in `mgesi_QuadStrip`, `mgesi_QuadStripRestore`, `mgesi_QuadStripRestoreSave`, `mgesi_QuadStripSave` |
+| `mmo_DecomposeSimpleTriangles` | 0xca10 | 350 | 38 | address loaded as a constant in `mgesi_Triangles` |
+| `mmo_DecomposeTriangleStripWithSwapEven` | 0xc9b2 | 410 | 34 | address loaded as a constant in `mgesi_TriangleStrip`, `mgesi_TriangleStripRestore`, `mgesi_TriangleStripRestoreSave`, `mgesi_TriangleStripSave` |
+| `mmo_DecomposeTriangleStripWithSwapOdd` | 0xc989 | 501 | 26 | address loaded as a constant in `mgesi_TriangleStripRestoreSaveWithSwapOdd`, `mgesi_TriangleStripRestoreWithSwapOdd`, `mgesi_TriangleStripSaveWithSwapOdd`, `mgesi_TriangleStripWithSwapOdd` |
 
 ### mdecompress.S
 
@@ -1242,18 +1244,18 @@ Vertex-array unpack for lit vertex formats (V3F with colour, normal and texture 
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_UnpackVertexV3F_N3S` | 0x5757 | 291 | 141 | geif slot 381 |
-| `mmo_UnpackVertexV3F_C4UB_N3S` | 0x56ff | 323 | 82 | geif slot 382 |
-| `mmo_UnpackVertexV3F_N3S_T2F` | 0x563d | 407 | 159 | geif slot 385 |
-| `mmo_UnpackVertexV3F_C4UB_N3S_T2F` | 0x55da | 440 | 91 | geif slot 386 |
-| `mmo_UnpackVertexV3F_N3S_T2S` | 0x5504 | 533 | 189 | geif slot 389 |
-| `mmo_UnpackVertexV3F_C4UB_N3S_T2S` | 0x549e | 573 | 96 | geif slot 390 |
-| `mmo_UnpackVertexV3F_LGT` | 0x5470 | 605 | 36 | geif slot 391 |
-| `mmo_UnpackVertexV3F_C4UB_LGT` | 0x542c | 632 | 59 | geif slot 392 |
-| `mmo_UnpackVertexV3F_T2F_LGT` | 0x53f6 | 659 | 44 | geif slot 393 |
-| `mmo_UnpackVertexV3F_C4UB_T2F_LGT` | 0x53a8 | 689 | 67 | geif slot 394 |
-| `mmo_UnpackVertexV3F_T2S_LGT` | 0x5368 | 720 | 53 | geif slot 395 |
-| `mmo_UnpackVertexV3F_C4UB_T2S_LGT` | 0x5312 | 752 | 75 | geif slot 396 |
+| `mmo_UnpackVertexV3F_N3S` | 0x5757 | 291 | 141 | geif slot 381; address loaded as a constant in `mGL_EM_Initialize` |
+| `mmo_UnpackVertexV3F_C4UB_N3S` | 0x56ff | 323 | 82 | geif slot 382; address loaded as a constant in `mGL_EM_Initialize` |
+| `mmo_UnpackVertexV3F_N3S_T2F` | 0x563d | 407 | 159 | geif slot 385; address loaded as a constant in `mGL_EM_Initialize` |
+| `mmo_UnpackVertexV3F_C4UB_N3S_T2F` | 0x55da | 440 | 91 | geif slot 386; address loaded as a constant in `mGL_EM_Initialize` |
+| `mmo_UnpackVertexV3F_N3S_T2S` | 0x5504 | 533 | 189 | geif slot 389; address loaded as a constant in `mGL_EM_Initialize` |
+| `mmo_UnpackVertexV3F_C4UB_N3S_T2S` | 0x549e | 573 | 96 | geif slot 390; address loaded as a constant in `mGL_EM_Initialize` |
+| `mmo_UnpackVertexV3F_LGT` | 0x5470 | 605 | 36 | geif slot 391; address loaded as a constant in `mGL_EM_Initialize` |
+| `mmo_UnpackVertexV3F_C4UB_LGT` | 0x542c | 632 | 59 | geif slot 392; address loaded as a constant in `mGL_EM_Initialize` |
+| `mmo_UnpackVertexV3F_T2F_LGT` | 0x53f6 | 659 | 44 | geif slot 393; address loaded as a constant in `mGL_EM_Initialize` |
+| `mmo_UnpackVertexV3F_C4UB_T2F_LGT` | 0x53a8 | 689 | 67 | geif slot 394; address loaded as a constant in `mGL_EM_Initialize` |
+| `mmo_UnpackVertexV3F_T2S_LGT` | 0x5368 | 720 | 53 | geif slot 395; address loaded as a constant in `mGL_EM_Initialize` |
+| `mmo_UnpackVertexV3F_C4UB_T2S_LGT` | 0x5312 | 752 | 75 | geif slot 396; address loaded as a constant in `mGL_EM_Initialize` |
 
 ### phong.S
 
@@ -1279,7 +1281,7 @@ Point clipping against the user planes and the view frustum. **Inferred** from i
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mClipPntUserAndFrustum` | 0xe75e | 54 | 82 | unknown entry |
+| `mClipPntUserAndFrustum` | 0xe75e | 54 | 82 | address loaded as a constant in `mGL_EM_Initialize`, `mmo_DecomposePoints` |
 
 ### point.S
 
@@ -1317,7 +1319,7 @@ Triangle output in line or point polygon mode. **Inferred** from its labels and 
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_DrawTriPolymodePrim` | 0xda68 | 80 | 306 | unknown entry |
+| `mmo_DrawTriPolymodePrim` | 0xda68 | 80 | 306 | address loaded as a constant in `mPolymodeSetup` |
 
 ### primmtrllight.S
 
@@ -1326,19 +1328,19 @@ Lighting with per-primitive material changes. **Inferred** from its labels and c
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
 | `mLiPrimMtrlInit` | 0xd6ef | 57 | 51 | transfers in `mmo_LighterGeneral` |
-| `mLiPrimShinLoop` | 0xd60e | 218 | 74 | transfers in `mLiEndPrimShinLp` |
-| `mLiPrmMtrlFrntClrAccmEnd` | 0xd690 | 432 | 13 | inside `mLiPrimShinLoop` |
-| `mLiPrmMtrlBackClrInitAccm` | 0xd676 | 487 | 20 | inside `mLiPrmMtrlFrntClrAccmEnd` |
-| `mLiPrmMtrlBackClrAccmEnd` | 0xd667 | 561 | 8 | inside `mLiPrmMtrlBackClrInitAccm` |
-| `mLiEndPrimShinLp` | 0xd7d9 | 604 | 33 | transfers in `mLiPrmMtrlFrntClrAccmEnd` |
-| `mLiPrimMtrlFinalLi` | 0xd726 | 737 | 30 | inside `mLiEndPrimShinLp` |
-| `mLiPrimMtrlCopyStckCmpn` | 0xd745 | 831 | 62 | transfers in `mLiPrimMtrlIndxFinalLi` |
-| `mLiPrimMtrlCopyCmpn` | 0xd786 | 1052 | 16 | transfers in `mLiPrimMtrlIndxFinalLi` |
-| `mLiPrimMtrlCpFrntEnd` | 0xd6a7 | 1111 | 29 | inside `mLiPrimMtrlCopyCmpn` |
-| `mLiPrimMtrlCopyEnd` | 0xd6c4 | 1174 | 40 | inside `mLiPrimMtrlCpFrntEnd` |
-| `mLiClrMtrlFinalLi` | 0xd831 | 1304 | 43 | inside `mLiPrimMtrlCopyEnd` |
-| `mLiColorMtrlCopy` | 0xd808 | 1403 | 36 | transfers in `mLiClrMtrlFinalLi` |
-| `mLiFinalLiEqu` | 0xd796 | 1511 | 63 | transfers in `mLiColorMtrlCopy` |
+| `mLiPrimShinLoop` | 0xd60e | 218 | 74 | transfers in `mLiEndPrimShinLp`; address loaded as a constant in `mLiPrimMtrlCopyEnd`, `mLiPrimMtrlInit` |
+| `mLiPrmMtrlFrntClrAccmEnd` | 0xd690 | 432 | 13 | address loaded as a constant in `mLiPrimShinLoop` |
+| `mLiPrmMtrlBackClrInitAccm` | 0xd676 | 487 | 20 | address loaded as a constant in `mLiPrimShinLoop`, `mLiPrmMtrlBackClrAccmEnd` |
+| `mLiPrmMtrlBackClrAccmEnd` | 0xd667 | 561 | 8 | address loaded as a constant in `mLiPrmMtrlBackClrInitAccm` |
+| `mLiEndPrimShinLp` | 0xd7d9 | 604 | 33 | transfers in `mLiPrmMtrlFrntClrAccmEnd`; address loaded as a constant in `mLiPrmMtrlBackClrInitAccm` |
+| `mLiPrimMtrlFinalLi` | 0xd726 | 737 | 30 | address loaded as a constant in `mLiPrimMtrlInit` |
+| `mLiPrimMtrlCopyStckCmpn` | 0xd745 | 831 | 62 | transfers in `mLiPrimMtrlIndxFinalLi`; address loaded as a constant in `mLiPrimMtrlFinalLi`, `mLiPrimMtrlIndxFinalLi` |
+| `mLiPrimMtrlCopyCmpn` | 0xd786 | 1052 | 16 | transfers in `mLiPrimMtrlIndxFinalLi`; address loaded as a constant in `mLiPrimMtrlFinalLi`, `mLiPrimMtrlIndxFinalLi` |
+| `mLiPrimMtrlCpFrntEnd` | 0xd6a7 | 1111 | 29 | address loaded as a constant in `mLiPrimMtrlInit` |
+| `mLiPrimMtrlCopyEnd` | 0xd6c4 | 1174 | 40 | address loaded as a constant in `mLiPrimMtrlInit` |
+| `mLiClrMtrlFinalLi` | 0xd831 | 1304 | 43 | address loaded as a constant in `mgeb_LiEnableClrMtrl`, `mgeb_RGBA_Mode` |
+| `mLiColorMtrlCopy` | 0xd808 | 1403 | 36 | transfers in `mLiClrMtrlFinalLi`; address loaded as a constant in `mLiPrimMtrlInit` |
+| `mLiFinalLiEqu` | 0xd796 | 1511 | 63 | transfers in `mLiColorMtrlCopy`; address loaded as a constant in `mLiPrimMtrlInit` |
 
 ### push_attrib.S
 
@@ -1427,9 +1429,9 @@ Selection hit recording per primitive type. **Inferred** from its labels and cal
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_SelectTriangle` | 0xbecc | 70 | 42 | unknown entry |
-| `mmo_SelectLine` | 0xbfaf | 138 | 34 | inside `mmo_SelectTriangle` |
-| `mmo_SelectPoint` | 0xbf6d | 203 | 26 | inside `mmo_SelectLine` |
+| `mmo_SelectTriangle` | 0xbecc | 70 | 42 | address loaded as a constant in `mgeb_PolygonSetup_Select` |
+| `mmo_SelectLine` | 0xbfaf | 138 | 34 | address loaded as a constant in `mgeb_LineWidth_Select` |
+| `mmo_SelectPoint` | 0xbf6d | 203 | 26 | address loaded as a constant in `mgebi_PointSize_Select` |
 | `mmo_SelectRasterPos` | 0xbf2f | 261 | 24 | transfers in `mmo_SaveRasterPos` |
 | `mRecordHit` | 0xbe8f | 316 | 34 | transfers in `mmo_SelectLine`, `mmo_SelectPoint`, `mmo_SelectRasterPos`, `mmo_SelectTriangle` |
 
@@ -1468,7 +1470,7 @@ Sprite (SGIX_sprite) rotation modes. **Inferred** from its labels and callers.
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_DirtySpriteModule` | 0x8669 | 109 | 6 | unknown entry |
+| `mmo_DirtySpriteModule` | 0x8669 | 109 | 6 | address loaded as a constant in `mmo_DirtyPrePathModule` |
 | `mSpriteAxial` | 0x8800 | 167 | 86 | geif slot 371; ARM `initSpriteState` |
 | `mSpriteObject` | 0x86d3 | 235 | 170 | geif slot 372; transfers in `mSpriteEye` |
 | `mSpriteEye` | 0x87f7 | 365 | 1 | geif slot 373 |
@@ -1520,14 +1522,14 @@ Texture-coordinate generation modes and planes. **Inferred** from its labels and
 | `mgeb_TexGen_Enable` | 0xcb39 | 623 | 12 | geif slot 84; ARM `e_texgen_q`, `e_texgen_r`, `e_texgen_s`, `e_texgen_t` |
 | `mgeb_TexGen_Disable` | 0xcb19 | 654 | 12 | geif slot 83; ARM `d_texgen_q`, `d_texgen_r`, `d_texgen_s`, `d_texgen_t` |
 | `mgeb_TexGen` | 0xcabe | 688 | 59 | geif slot 82; tokens `HP_TEXGENF`; ARM `arm_texgenf`, `texture_pop` |
-| `mmo_TexGenObjPoint_ST` | 0xce98 | 870 | 77 | inside `mgeb_TexGen` |
-| `mmo_TexGenObjPoint_RQ` | 0xcef3 | 961 | 77 | inside `mmo_TexGenObjPoint_ST` |
-| `mmo_TexGenObjLine_ST` | 0xcd7e | 1057 | 121 | inside `mmo_TexGenObjPoint_RQ` |
-| `mmo_TexGenObjLine_RQ` | 0xce0b | 1216 | 121 | inside `mmo_TexGenObjLine_ST` |
-| `mmo_TexGenEyePoint_ST` | 0xd068 | 1372 | 77 | inside `mmo_TexGenObjLine_RQ` |
-| `mmo_TexGenEyePoint_RQ` | 0xd0c3 | 1463 | 77 | inside `mmo_TexGenEyePoint_ST` |
-| `mmo_TexGenEyeLine_ST` | 0xcf4e | 1559 | 121 | inside `mmo_TexGenEyePoint_RQ` |
-| `mmo_TexGenEyeLine_RQ` | 0xcfdb | 1718 | 121 | inside `mmo_TexGenEyeLine_ST` |
+| `mmo_TexGenObjPoint_ST` | 0xce98 | 870 | 77 | address loaded as a constant in `mTexGenObjPointDist` |
+| `mmo_TexGenObjPoint_RQ` | 0xcef3 | 961 | 77 | address loaded as a constant in `mTexGenObjPointDist` |
+| `mmo_TexGenObjLine_ST` | 0xcd7e | 1057 | 121 | address loaded as a constant in `mTexGenObjLineDist` |
+| `mmo_TexGenObjLine_RQ` | 0xce0b | 1216 | 121 | address loaded as a constant in `mTexGenObjLineDist` |
+| `mmo_TexGenEyePoint_ST` | 0xd068 | 1372 | 77 | address loaded as a constant in `mTexGenEyePointDist` |
+| `mmo_TexGenEyePoint_RQ` | 0xd0c3 | 1463 | 77 | address loaded as a constant in `mTexGenEyePointDist` |
+| `mmo_TexGenEyeLine_ST` | 0xcf4e | 1559 | 121 | address loaded as a constant in `mTexGenEyeLineDist` |
+| `mmo_TexGenEyeLine_RQ` | 0xcfdb | 1718 | 121 | address loaded as a constant in `mTexGenEyeLineDist` |
 
 ### texture.S
 
@@ -1558,7 +1560,7 @@ Face culling. **Inferred** from its labels and callers.
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_FaceCull` | 0x0c76 | 29 | 17 | unknown entry |
+| `mmo_FaceCull` | 0x0c76 | 29 | 17 | address loaded as a constant in `mLiPushMtrlInit`, `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule` |
 | `umo_FaceCull` | 0x0c76 | 29 | 17 | alias of `mmo_FaceCull` |
 | `lCU1` | 0x0c87 | 47 | 54 | inside `mmo_FaceCull` |
 | `lCU2` | 0x0cbd | 104 | 9 | transfers in `lCU1` |
@@ -1569,19 +1571,19 @@ Primitive decomposition of strips, lines and triangles. **Inferred** from its la
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_DecomposeTriangleStrip` | 0x0cc6 | 20 | 11 | unknown entry |
+| `mmo_DecomposeTriangleStrip` | 0x0cc6 | 20 | 11 | address loaded as a constant in `mgesi_TriangleStrip`, `mgesi_TriangleStripRestore`, `mgesi_TriangleStripRestoreSave`, `mgesi_TriangleStripSave`, `mgesi_TriangleStripWithSwapOdd` |
 | `umo_DecomposeTriangleStrip` | 0x0cc6 | 20 | 11 | alias of `mmo_DecomposeTriangleStrip` |
 | `lDE2` | 0x0cd1 | 32 | 10 | inside `mmo_DecomposeTriangleStrip` |
 | `mmo_DecomposeTriangles` | 0x0cdb | 49 | 10 | inside `mmo_DecomposeTriangleStrip` |
 | `umo_DecomposeTriangles` | 0x0cdb | 49 | 10 | alias of `mmo_DecomposeTriangles` |
 | `lDE9` | 0x0ce5 | 60 | 21 | inside `mmo_DecomposeTriangles` |
-| `mmo_DecomposeLineStrip` | 0x0cfa | 90 | 11 | inside `mmo_DecomposeTriangles` |
+| `mmo_DecomposeLineStrip` | 0x0cfa | 90 | 11 | address loaded as a constant in `mgesi_LineStrip`, `mgesi_LineStripCopyAndIgnoreV0`, `mgesi_LineStripCopyV0`, `mgesi_LineStripRestoreV0`, `mgesi_LineStripSaveAndIgnoreV0`, `mgesi_LineStripSaveV0` |
 | `umo_DecomposeLineStrip` | 0x0cfa | 90 | 11 | alias of `mmo_DecomposeLineStrip` |
 | `lDE3` | 0x0d05 | 102 | 11 | inside `mmo_DecomposeLineStrip` |
-| `mmo_DecomposePoints` | 0x0d10 | 120 | 9 | inside `mmo_DecomposeLineStrip` |
+| `mmo_DecomposePoints` | 0x0d10 | 120 | 9 | address loaded as a constant in `mgeb_RasterPos`, `mgesi_Points` |
 | `umo_DecomposePoints` | 0x0d10 | 120 | 9 | alias of `mmo_DecomposePoints` |
 | `lDE6` | 0x0d19 | 131 | 12 | inside `mmo_DecomposePoints` |
-| `mmo_DecomposeTriangleFan` | 0x0d25 | 150 | 11 | inside `mmo_DecomposePoints` |
+| `mmo_DecomposeTriangleFan` | 0x0d25 | 150 | 11 | address loaded as a constant in `mgesi_TfanPoly`, `mgesi_TfanPolyEnd`, `mgesi_TfanPolyRestore`, `mgesi_TfanPolyRestoreEdge`, `mgesi_TfanPolyRestoreEnd`, `mgesi_TfanPolyRestoreSave` and 1 more |
 | `umo_DecomposeTriangleFan` | 0x0d25 | 150 | 11 | alias of `mmo_DecomposeTriangleFan` |
 | `lDE7` | 0x0d30 | 162 | 11 | inside `mmo_DecomposeTriangleFan` |
 
@@ -1601,19 +1603,19 @@ Deformation of coordinates and texture coordinates. **Inferred** from its labels
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_DeformCoord` | 0x2ab8 | 51 | 19 | unknown entry |
+| `mmo_DeformCoord` | 0x2ab8 | 51 | 19 | address loaded as a constant in `mmo_DirtyDeformModule` |
 | `umo_DeformCoord` | 0x2ab8 | 51 | 19 | alias of `mmo_DeformCoord` |
 | `loopDC` | 0x2acb | 71 | 28 | inside `mmo_DeformCoord` |
-| `mmo_DeformCoordTexture` | 0x2ae7 | 107 | 26 | inside `mmo_DeformCoord` |
+| `mmo_DeformCoordTexture` | 0x2ae7 | 107 | 26 | address loaded as a constant in `mmo_DirtyDeformModule` |
 | `umo_DeformCoordTexture` | 0x2ae7 | 107 | 26 | alias of `mmo_DeformCoordTexture` |
 | `loopDCT` | 0x2b01 | 134 | 49 | inside `mmo_DeformCoordTexture` |
-| `mmo_DeformTexture` | 0x2b32 | 193 | 19 | inside `mmo_DeformCoordTexture` |
+| `mmo_DeformTexture` | 0x2b32 | 193 | 19 | address loaded as a constant in `mmo_DirtyDeformModule` |
 | `umo_DeformTexture` | 0x2b32 | 193 | 19 | alias of `mmo_DeformTexture` |
 | `loopDT` | 0x2b45 | 213 | 28 | inside `mmo_DeformTexture` |
-| `mmo_DeformCoordNormal` | 0x2b61 | 252 | 24 | inside `mmo_DeformTexture` |
+| `mmo_DeformCoordNormal` | 0x2b61 | 252 | 24 | address loaded as a constant in `mmo_DirtyDeformModule` |
 | `umo_DeformCoordNormal` | 0x2b61 | 252 | 24 | alias of `mmo_DeformCoordNormal` |
 | `loopDCN` | 0x2b79 | 277 | 46 | inside `mmo_DeformCoordNormal` |
-| `mmo_DeformCoordNormalTexture` | 0x2ba7 | 334 | 30 | inside `mmo_DeformCoordNormal` |
+| `mmo_DeformCoordNormalTexture` | 0x2ba7 | 334 | 30 | address loaded as a constant in `mmo_DirtyDeformModule` |
 | `umo_DeformCoordNormalTexture` | 0x2ba7 | 334 | 30 | alias of `mmo_DeformCoordNormalTexture` |
 | `loopDCNT` | 0x2bc5 | 365 | 67 | inside `mmo_DeformCoordNormalTexture` |
 | `mDeformation3_1Inverse` | 0x2c08 | 453 | 99 | transfers in `mmo_DeformCoordNormal`, `mmo_DeformCoordNormalTexture` |
@@ -1625,11 +1627,11 @@ Triangle and quad output. **Inferred** from its labels and callers.
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_DrawTri` | 0x288c | 42 | 12 | unknown entry |
+| `mmo_DrawTri` | 0x288c | 42 | 12 | address loaded as a constant in `mGL_CM_Initialize`, `mgeb_PolygonSetup_Render` |
 | `umo_DrawTri` | 0x288c | 42 | 12 | alias of `mmo_DrawTri` |
 | `uDTList` | 0x2898 | 55 | 5 | transfers in `mmo_DrawTri` |
 | `lDI3` | 0x289d | 63 | 45 | inside `uDTList` |
-| `mmo_DrawQuad` | 0x28ca | 115 | 12 | inside `uDTList` |
+| `mmo_DrawQuad` | 0x28ca | 115 | 12 | address loaded as a constant in `mGL_CM_Initialize`, `mgeb_PolygonSetup_Render` |
 | `umo_DrawQuad` | 0x28ca | 115 | 12 | alias of `mmo_DrawQuad` |
 | `uDQList` | 0x28d6 | 128 | 5 | transfers in `mmo_DrawQuad` |
 | `lDI4` | 0x28db | 136 | 46 | inside `uDQList` |
@@ -1652,9 +1654,9 @@ Triangle and quad output. **Inferred** from its labels and callers.
 | `ugeb_EvalGrid1D` | 0x00d1 | 292 | 16 | alias of `mgeb_EvalGrid1D` |
 | `mgesi_EvalStrip1D` | 0x00e1 | 324 | 118 | geif slot 103; tokens `HP_EVALSTRIP1D`; ARM `arm_evalstrip1d` |
 | `ugesi_EvalStrip1D` | 0x00e1 | 324 | 118 | alias of `mgesi_EvalStrip1D` |
-| `lstrip1dreturn` | 0x0157 | 443 | 15 | inside `mgesi_EvalStrip1D` |
-| `umo_EvalEntry1D` | 0x0166 | 470 | 22 | transfers in `mmo_Lutout` |
-| `umo_EvalDecomposeLines1D` | 0x017c | 504 | 15 | inside `umo_EvalEntry1D` |
+| `lstrip1dreturn` | 0x0157 | 443 | 15 | address loaded as a constant in `mgesi_EvalStrip1D` |
+| `umo_EvalEntry1D` | 0x0166 | 470 | 22 | transfers in `mmo_Lutout`; address loaded as a constant in `mgeb_EvalMapSpec1D` |
+| `umo_EvalDecomposeLines1D` | 0x017c | 504 | 15 | address loaded as a constant in `mGL_EM_Initialize` |
 
 ### ueval2D.s
 
@@ -1672,11 +1674,11 @@ Triangle and quad output. **Inferred** from its labels and callers.
 | `mgesi_EvalStrip2D` | 0x0254 | 461 | 111 | geif slot 104; tokens `HP_EVALSTRIP2D`; ARM `arm_evalstrip2d` |
 | `ugesi_EvalStrip2D` | 0x0254 | 461 | 111 | alias of `mgesi_EvalStrip2D` |
 | `lstrip2dloop` | 0x02c3 | 573 | 46 | transfers in `lstrip2dreturn` |
-| `lstrip2dreturn` | 0x02f1 | 620 | 38 | inside `mgesi_EvalStrip2D` |
-| `umo_EvalEntry2D` | 0x0317 | 697 | 30 | inside `mgesi_EvalStrip2D` |
-| `umo_EvalDecomposePoints` | 0x0335 | 750 | 15 | inside `umo_EvalEntry2D` |
-| `umo_EvalDecomposeLines2D` | 0x0344 | 777 | 55 | inside `umo_EvalDecomposePoints` |
-| `umo_EvalDecomposeFill` | 0x037b | 844 | 37 | inside `umo_EvalDecomposeLines2D` |
+| `lstrip2dreturn` | 0x02f1 | 620 | 38 | address loaded as a constant in `lstrip2dloop` |
+| `umo_EvalEntry2D` | 0x0317 | 697 | 30 | address loaded as a constant in `mgeb_EvalMapSpec2D` |
+| `umo_EvalDecomposePoints` | 0x0335 | 750 | 15 | address loaded as a constant in `mGL_EM_Initialize` |
+| `umo_EvalDecomposeLines2D` | 0x0344 | 777 | 55 | address loaded as a constant in `mGL_EM_Initialize` |
+| `umo_EvalDecomposeFill` | 0x037b | 844 | 37 | address loaded as a constant in `mGL_EM_Initialize` |
 
 ### uevalbasis.s
 
@@ -1685,19 +1687,19 @@ Evaluator change of basis for geometry, colour, normal and texture maps. **Infer
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
 | `uEvalChangeBasis1D` | 0x0484 | 102 | 34 | transfers in `mgesi_EvalStrip1D`, `uEvalCoord1D` |
-| `eval_texturechangebasis` | 0x04a6 | 137 | 16 | inside `uEvalChangeBasis1D` |
-| `eval_colorchangebasis` | 0x04b6 | 154 | 16 | inside `uEvalChangeBasis1D` |
-| `eval_normalchangebasis` | 0x04c6 | 171 | 16 | inside `uEvalChangeBasis1D` |
-| `eval_changebasis1ddone` | 0x04d6 | 188 | 15 | inside `uEvalChangeBasis1D` |
+| `eval_texturechangebasis` | 0x04a6 | 137 | 16 | address loaded as a constant in `uEvalChangeBasis1D` |
+| `eval_colorchangebasis` | 0x04b6 | 154 | 16 | address loaded as a constant in `uEvalChangeBasis1D` |
+| `eval_normalchangebasis` | 0x04c6 | 171 | 16 | address loaded as a constant in `uEvalChangeBasis1D` |
+| `eval_changebasis1ddone` | 0x04d6 | 188 | 15 | address loaded as a constant in `uEvalChangeBasis1D` |
 | `uEvalChangeBasis2D` | 0x04e5 | 239 | 34 | transfers in `mgesi_EvalStrip2D`, `uEvalCoord2D` |
-| `eval_geomchangebasisv` | 0x0507 | 274 | 16 | inside `uEvalChangeBasis2D` |
-| `eval_texturechangebasisu` | 0x0517 | 291 | 16 | inside `uEvalChangeBasis2D` |
-| `eval_texturechangebasisv` | 0x0527 | 308 | 16 | inside `uEvalChangeBasis2D` |
-| `eval_colorchangebasisu` | 0x0537 | 325 | 16 | inside `uEvalChangeBasis2D` |
-| `eval_colorchangebasisv` | 0x0547 | 342 | 16 | inside `uEvalChangeBasis2D` |
-| `eval_normalchangebasisu` | 0x0557 | 359 | 16 | inside `uEvalChangeBasis2D` |
-| `eval_normalchangebasisv` | 0x0567 | 376 | 16 | inside `uEvalChangeBasis2D` |
-| `eval_changebasis2ddone` | 0x0577 | 393 | 15 | inside `uEvalChangeBasis2D` |
+| `eval_geomchangebasisv` | 0x0507 | 274 | 16 | address loaded as a constant in `uEvalChangeBasis2D` |
+| `eval_texturechangebasisu` | 0x0517 | 291 | 16 | address loaded as a constant in `uEvalChangeBasis2D` |
+| `eval_texturechangebasisv` | 0x0527 | 308 | 16 | address loaded as a constant in `uEvalChangeBasis2D` |
+| `eval_colorchangebasisu` | 0x0537 | 325 | 16 | address loaded as a constant in `uEvalChangeBasis2D` |
+| `eval_colorchangebasisv` | 0x0547 | 342 | 16 | address loaded as a constant in `uEvalChangeBasis2D` |
+| `eval_normalchangebasisu` | 0x0557 | 359 | 16 | address loaded as a constant in `uEvalChangeBasis2D` |
+| `eval_normalchangebasisv` | 0x0567 | 376 | 16 | address loaded as a constant in `uEvalChangeBasis2D` |
+| `eval_changebasis2ddone` | 0x0577 | 393 | 15 | address loaded as a constant in `uEvalChangeBasis2D` |
 
 ### uevalcoord.s
 
@@ -1718,10 +1720,10 @@ Simple lighting and colour clamp. **Inferred** from its labels and callers.
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_LiColorClamp` | 0x0d69 | 35 | 9 | unknown entry |
+| `mmo_LiColorClamp` | 0x0d69 | 35 | 9 | address loaded as a constant in `mGL_CM_Initialize`, `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule` |
 | `umo_LiColorClamp` | 0x0d69 | 35 | 9 | alias of `mmo_LiColorClamp` |
 | `lLI2` | 0x0d72 | 46 | 10 | inside `mmo_LiColorClamp` |
-| `mmo_LighterSimple` | 0x0d7c | 67 | 13 | inside `mmo_LiColorClamp` |
+| `mmo_LighterSimple` | 0x0d7c | 67 | 13 | address loaded as a constant in `mmo_DirtyCullAndLightModule`, `mmo_DirtyLightModule` |
 | `umo_LighterSimple` | 0x0d7c | 67 | 13 | alias of `mmo_LighterSimple` |
 | `lLI1` | 0x0d89 | 81 | 64 | inside `mmo_LighterSimple` |
 | `mLiPwrTable` | 0x0dc9 | 192 | 44 | transfers in `mLiSwichSpotPrwTableSub`, `mLiUpdateShin`, `mgeb_LightSpotExp` |
@@ -1824,19 +1826,19 @@ Transformation to screen space with the second-chance (clipped) path. **Inferred
 |---|---|---|---|---|
 | `uSecondChance` | 0x10b8 | 66 | 1 | transfers in `mmo_ToScreenSpace` |
 | `lSC2` | 0x10b9 | 69 | 16 | inside `uSecondChance` |
-| `mmo_ToScreenSpace` | 0x10c9 | 91 | 2 | inside `uSecondChance` |
+| `mmo_ToScreenSpace` | 0x10c9 | 91 | 2 | address loaded as a constant in `mGL_CM_Initialize`, `mmo_DirtyTextureAndScreenModule` |
 | `umo_ToScreenSpace` | 0x10c9 | 91 | 2 | alias of `mmo_ToScreenSpace` |
 | `uBack` | 0x10cb | 94 | 9 | transfers in `lSC2` |
 | `lSC1` | 0x10d4 | 104 | 44 | inside `uBack` |
 | `uSecondChanceInvQ` | 0x1100 | 156 | 3 | transfers in `mmo_ToScreenSpaceInvQ` |
 | `lSC4` | 0x1103 | 161 | 16 | inside `uSecondChanceInvQ` |
-| `mmo_ToScreenSpaceInvQ` | 0x1113 | 183 | 2 | transfers in `mmo_SaveRasterPos` |
+| `mmo_ToScreenSpaceInvQ` | 0x1113 | 183 | 2 | transfers in `mmo_SaveRasterPos`; address loaded as a constant in `mTexGenResolve`, `mmo_DirtyTextureAndScreenModule` |
 | `umo_ToScreenSpaceInvQ` | 0x1113 | 183 | 2 | alias of `mmo_ToScreenSpaceInvQ` |
 | `uBackInvQ` | 0x1115 | 186 | 12 | transfers in `lSC4` |
 | `lSC3` | 0x1121 | 199 | 130 | inside `uBackInvQ` |
 | `uSecondChanceInvQ2DI` | 0x11a3 | 338 | 3 | transfers in `mmo_ToScreenSpaceInvQ2DI` |
 | `lSC6` | 0x11a6 | 343 | 16 | inside `uSecondChanceInvQ2DI` |
-| `mmo_ToScreenSpaceInvQ2DI` | 0x11b6 | 365 | 2 | inside `uSecondChanceInvQ2DI` |
+| `mmo_ToScreenSpaceInvQ2DI` | 0x11b6 | 365 | 2 | address loaded as a constant in `mmo_DirtyTextureAndScreenModule` |
 | `umo_ToScreenSpaceInvQ2DI` | 0x11b6 | 365 | 2 | alias of `mmo_ToScreenSpaceInvQ2DI` |
 | `uBackInvQ2DI` | 0x11b8 | 368 | 9 | transfers in `lSC6` |
 | `lSC5` | 0x11c1 | 378 | 87 | inside `uBackInvQ2DI` |
@@ -1881,19 +1883,19 @@ Texture-coordinate generation loops: sphere, eye-linear, object-linear. **Inferr
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_TexGenSphere_ST` | 0x0b85 | 45 | 9 | unknown entry |
+| `mmo_TexGenSphere_ST` | 0x0b85 | 45 | 9 | address loaded as a constant in `mTexGenSph` |
 | `umo_TexGenSphere_ST` | 0x0b85 | 45 | 9 | alias of `mmo_TexGenSphere_ST` |
 | `lTGLOOP2` | 0x0b8e | 55 | 92 | inside `mmo_TexGenSphere_ST` |
-| `mmo_TexGenEyeLinear_ST` | 0x0bea | 154 | 14 | inside `mmo_TexGenSphere_ST` |
+| `mmo_TexGenEyeLinear_ST` | 0x0bea | 154 | 14 | address loaded as a constant in `mGL_EX_Initialize`, `mTexGenEyeLin` |
 | `umo_TexGenEyeLinear_ST` | 0x0bea | 154 | 14 | alias of `mmo_TexGenEyeLinear_ST` |
 | `lXF8` | 0x0bf8 | 169 | 21 | inside `mmo_TexGenEyeLinear_ST` |
-| `mmo_TexGenEyeLinear_RQ` | 0x0c0d | 197 | 14 | inside `mmo_TexGenEyeLinear_ST` |
+| `mmo_TexGenEyeLinear_RQ` | 0x0c0d | 197 | 14 | address loaded as a constant in `mGL_EX_Initialize`, `mTexGenEyeLin` |
 | `umo_TexGenEyeLinear_RQ` | 0x0c0d | 197 | 14 | alias of `mmo_TexGenEyeLinear_RQ` |
 | `lXF9` | 0x0c1b | 212 | 21 | inside `mmo_TexGenEyeLinear_RQ` |
-| `mmo_TexGenObjLinear_ST` | 0x0c30 | 240 | 14 | inside `mmo_TexGenEyeLinear_RQ` |
+| `mmo_TexGenObjLinear_ST` | 0x0c30 | 240 | 14 | address loaded as a constant in `mTexGenObjLin` |
 | `umo_TexGenObjLinear_ST` | 0x0c30 | 240 | 14 | alias of `mmo_TexGenObjLinear_ST` |
 | `lXF10` | 0x0c3e | 255 | 21 | inside `mmo_TexGenObjLinear_ST` |
-| `mmo_TexGenObjLinear_RQ` | 0x0c53 | 283 | 14 | inside `mmo_TexGenObjLinear_ST` |
+| `mmo_TexGenObjLinear_RQ` | 0x0c53 | 283 | 14 | address loaded as a constant in `mTexGenObjLin` |
 | `umo_TexGenObjLinear_RQ` | 0x0c53 | 283 | 14 | alias of `mmo_TexGenObjLinear_RQ` |
 | `lXF11` | 0x0c61 | 298 | 21 | inside `mmo_TexGenObjLinear_RQ` |
 
@@ -1903,26 +1905,26 @@ Vertex-array unpack loops for unlit vertex formats. **Inferred** from its labels
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_UnpackVertexV3F` | 0x2c6b | 44 | 13 | geif slot 379 |
+| `mmo_UnpackVertexV3F` | 0x2c6b | 44 | 13 | geif slot 379; address loaded as a constant in `mGL_EM_Initialize` |
 | `umo_UnpackVertexV3F` | 0x2c6b | 44 | 13 | alias of `mmo_UnpackVertexV3F` |
 | `V3Floop` | 0x2c78 | 60 | 11 | inside `mmo_UnpackVertexV3F` |
-| `mmo_UnpackVertexV3F_C4UB` | 0x2c83 | 78 | 17 | geif slot 380 |
+| `mmo_UnpackVertexV3F_C4UB` | 0x2c83 | 78 | 17 | geif slot 380; address loaded as a constant in `mGL_EM_Initialize` |
 | `umo_UnpackVertexV3F_C4UB` | 0x2c83 | 78 | 17 | alias of `mmo_UnpackVertexV3F_C4UB` |
 | `V3F_C4UBloop` | 0x2c94 | 97 | 25 | inside `mmo_UnpackVertexV3F_C4UB` |
 | `umo_UnpackVertexV3F_N3S` | 0x2cad | 129 | 18 | inside `mmo_UnpackVertexV3F_C4UB` |
 | `V3F_N3Sloop` | 0x2cbf | 150 | 52 | inside `umo_UnpackVertexV3F_N3S` |
-| `mmo_UnpackVertexV3F_T2F` | 0x2cf3 | 209 | 12 | geif slot 383 |
+| `mmo_UnpackVertexV3F_T2F` | 0x2cf3 | 209 | 12 | geif slot 383; address loaded as a constant in `mGL_EM_Initialize` |
 | `umo_UnpackVertexV3F_T2F` | 0x2cf3 | 209 | 12 | alias of `mmo_UnpackVertexV3F_T2F` |
 | `V3F_T2Floop` | 0x2cff | 223 | 19 | inside `mmo_UnpackVertexV3F_T2F` |
-| `mmo_UnpackVertexV3F_C4UB_T2F` | 0x2d12 | 249 | 10 | geif slot 384 |
+| `mmo_UnpackVertexV3F_C4UB_T2F` | 0x2d12 | 249 | 10 | geif slot 384; address loaded as a constant in `mGL_EM_Initialize` |
 | `umo_UnpackVertexV3F_C4UB_T2F` | 0x2d12 | 249 | 10 | alias of `mmo_UnpackVertexV3F_C4UB_T2F` |
 | `V3F_C4UB_T2Floop` | 0x2d1c | 261 | 38 | inside `mmo_UnpackVertexV3F_C4UB_T2F` |
 | `umo_UnpackVertexV3F_N3S_T2F` | 0x2d42 | 306 | 18 | inside `mmo_UnpackVertexV3F_C4UB_T2F` |
 | `V3F_N3S_T2Floop` | 0x2d54 | 327 | 58 | inside `umo_UnpackVertexV3F_N3S_T2F` |
-| `mmo_UnpackVertexV3F_T2S` | 0x2d8e | 392 | 14 | geif slot 387 |
+| `mmo_UnpackVertexV3F_T2S` | 0x2d8e | 392 | 14 | geif slot 387; address loaded as a constant in `mGL_EM_Initialize` |
 | `umo_UnpackVertexV3F_T2S` | 0x2d8e | 392 | 14 | alias of `mmo_UnpackVertexV3F_T2S` |
 | `V3F_T2Sloop` | 0x2d9c | 408 | 25 | inside `mmo_UnpackVertexV3F_T2S` |
-| `mmo_UnpackVertexV3F_C4UB_T2S` | 0x2db5 | 440 | 10 | geif slot 388 |
+| `mmo_UnpackVertexV3F_C4UB_T2S` | 0x2db5 | 440 | 10 | geif slot 388; address loaded as a constant in `mGL_EM_Initialize` |
 | `umo_UnpackVertexV3F_C4UB_T2S` | 0x2db5 | 440 | 10 | alias of `mmo_UnpackVertexV3F_C4UB_T2S` |
 | `V3F_C4UB_T2Sloop` | 0x2dbf | 452 | 43 | inside `mmo_UnpackVertexV3F_C4UB_T2S` |
 | `umo_UnpackVertexV3F_N3S_T2S` | 0x2dea | 502 | 18 | inside `mmo_UnpackVertexV3F_C4UB_T2S` |
@@ -1934,22 +1936,22 @@ Object-to-clip transformation with optional normal-to-eye transformation. **Infe
 
 | Label | Address | Line | Words | Reached from |
 |---|---|---|---|---|
-| `mmo_ObjToClipSpace` | 0x1218 | 44 | 7 | unknown entry |
+| `mmo_ObjToClipSpace` | 0x1218 | 44 | 7 | address loaded as a constant in `mGL_CM_Initialize`, `mmo_DirtyXformAndObjToClipModule` |
 | `umo_ObjToClipSpace` | 0x1218 | 44 | 7 | alias of `mmo_ObjToClipSpace` |
 | `lXF1` | 0x121f | 52 | 45 | inside `mmo_ObjToClipSpace` |
-| `mmo_ObjToClipSpaceN2E` | 0x124c | 104 | 8 | inside `mmo_ObjToClipSpace` |
+| `mmo_ObjToClipSpaceN2E` | 0x124c | 104 | 8 | address loaded as a constant in `mmo_DirtyXformAndObjToClipModule` |
 | `umo_ObjToClipSpaceN2E` | 0x124c | 104 | 8 | alias of `mmo_ObjToClipSpaceN2E` |
 | `lXF2` | 0x1254 | 113 | 63 | inside `mmo_ObjToClipSpaceN2E` |
-| `mmo_ObjToClipSpaceN2EN` | 0x1293 | 183 | 8 | inside `mmo_ObjToClipSpaceN2E` |
+| `mmo_ObjToClipSpaceN2EN` | 0x1293 | 183 | 8 | address loaded as a constant in `mmo_DirtyXformAndObjToClipModule` |
 | `umo_ObjToClipSpaceN2EN` | 0x1293 | 183 | 8 | alias of `mmo_ObjToClipSpaceN2EN` |
 | `lXF3` | 0x129b | 192 | 99 | inside `mmo_ObjToClipSpaceN2EN` |
-| `mmo_ObjToEyeSpace` | 0x12fe | 558 | 6 | inside `mmo_ObjToClipSpaceN2EN` |
+| `mmo_ObjToEyeSpace` | 0x12fe | 558 | 6 | address loaded as a constant in `mmo_DirtyXformAndObjToClipModule` |
 | `umo_ObjToEyeSpace` | 0x12fe | 558 | 6 | alias of `mmo_ObjToEyeSpace` |
 | `lXF5` | 0x1304 | 565 | 33 | inside `mmo_ObjToEyeSpace` |
-| `mmo_ObjToEyeSpaceAndTwoUserTR` | 0x1325 | 605 | 6 | inside `mmo_ObjToEyeSpace` |
+| `mmo_ObjToEyeSpaceAndTwoUserTR` | 0x1325 | 605 | 6 | address loaded as a constant in `mmo_DirtyXformAndObjToClipModule` |
 | `umo_ObjToEyeSpaceAndTwoUserTR` | 0x1325 | 605 | 6 | alias of `mmo_ObjToEyeSpaceAndTwoUserTR` |
 | `lXF12` | 0x132b | 612 | 49 | inside `mmo_ObjToEyeSpaceAndTwoUserTR` |
-| `mmo_ObjToEyeSpaceAndSixUserTR` | 0x135c | 668 | 6 | inside `mmo_ObjToEyeSpaceAndTwoUserTR` |
+| `mmo_ObjToEyeSpaceAndSixUserTR` | 0x135c | 668 | 6 | address loaded as a constant in `mmo_DirtyXformAndObjToClipModule` |
 | `umo_ObjToEyeSpaceAndSixUserTR` | 0x135c | 668 | 6 | alias of `mmo_ObjToEyeSpaceAndSixUserTR` |
 | `lXF7` | 0x1362 | 675 | 82 | inside `mmo_ObjToEyeSpaceAndSixUserTR` |
 

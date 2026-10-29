@@ -21,6 +21,8 @@ ged_relocs.tsv). For each label it records:
   ged         distributor table index (ged_bound_table.tsv) or relocated
               distributor words (ged_relocs.tsv) that name the slot
   from        engine labels holding a transfer whose target is the label
+  consts      engine labels that load the label's address as a constant
+              (an immediate in a constant-load word, r215=3 in the listing)
 
 The table is evidence for ucode/ge_handlers.md, which explains it.
 """
@@ -55,6 +57,10 @@ def main():
 
     # listings: label -> (file, first line, span); transfers -> referring label
     where, span, refs = {}, {}, collections.defaultdict(set)
+    consts = collections.defaultdict(set)
+    addr_names = collections.defaultdict(list)
+    for a, n in labels:
+        addr_names[a].append(n)
     insn = re.compile(r'^([0-9a-f]{4}): ')
     for f in sorted(os.listdir(lst)):
         if not f.endswith('.lst'):
@@ -82,6 +88,10 @@ def main():
             t = re.search(r'-> [0-9a-f]{4} <([^>]+)>', line)
             if t and cur and t.group(1) != "HereWeGo":
                 refs[t.group(1)].add(cur[0])
+            k = re.search(r' imm=([0-9a-f]+) r215=3 ', line)
+            if k and cur and int(k.group(1), 16) in addr_names and int(k.group(1), 16) >= 0x100:
+                for nm in addr_names[int(k.group(1), 16)]:
+                    consts[nm].add(cur[0])
 
     # ARM: which functions load each gepc slot
     mem, syms, base, ro, dbase, rw = A.load(os.path.join(src, 'arm1.u'))
@@ -145,7 +155,7 @@ def main():
     with open(out, 'w') as fh:
         fh.write('# Every ge_symbols label of ge.u (IRIX 6.5.30m) with what reaches it. Produced by\n')
         fh.write('# scripts/ge_catalogue.py; explained in ucode/ge_handlers.md.\n')
-        fh.write('address\tlabel\tsource\tline\tspan\tslots\tarm\ttokens\tged\tfrom\n')
+        fh.write('address\tlabel\tsource\tline\tspan\tslots\tarm\ttokens\tged\tfrom\tconsts\n')
         for a, n in labels:
             s, ln = where.get(n, ('', 0))
             sl = slots_of.get(a, [])
@@ -153,9 +163,10 @@ def main():
             tk = sorted(set().union(*[tok[x] for x in af])) if af else []
             gd = sorted(set().union(*[ged[x] for x, b in [(m, 0) for aa, m in labels if aa == a]])) if sl else []
             fr = sorted(refs.get(n, set()) - {n})
-            fh.write('0x%04x\t%s\t%s\t%d\t%d\t%s\t%s\t%s\t%s\t%s\n' % (
+            cs = sorted(consts.get(n, set()) - {n})
+            fh.write('0x%04x\t%s\t%s\t%d\t%d\t%s\t%s\t%s\t%s\t%s\t%s\n' % (
                 a, n, s, ln, span.get(n, 0), ','.join(map(str, sl)), ','.join(af),
-                ','.join(tk), ','.join(gd), ','.join(fr)))
+                ','.join(tk), ','.join(gd), ','.join(fr), ','.join(cs)))
 
     write_md(out)
 
@@ -190,7 +201,7 @@ def write_md(xref, md='ucode/ge_handlers.md', roles='ucode/ge_modules.tsv'):
         for r in by[f]:
             alias.setdefault(r[0], r[1])
         for r in by[f]:
-            a, n, s, ln, sp, sl, arm, tk, ged, fr = r
+            a, n, s, ln, sp, sl, arm, tk, ged, fr, cs = r
             how = []
             if alias[a] != n:
                 how.append('alias of `%s`' % alias[a])
@@ -209,7 +220,13 @@ def write_md(xref, md='ucode/ge_handlers.md', roles='ucode/ge_modules.tsv'):
                     f2 = fr.split(',')
                     how.append('transfers in %s%s' % (', '.join('`%s`' % x for x in f2[:6]),
                                                      ' and %d more' % (len(f2) - 6) if len(f2) > 6 else ''))
-                if not (sl or arm or fr) and owner and owner != n:
+                if cs:
+                    c2 = cs.split(',')
+                    how.append('address loaded as a constant in %s%s' % (
+                        ', '.join('`%s`' % x for x in c2[:6]), ' and %d more' % (len(c2) - 6) if len(c2) > 6 else ''))
+                if n == 'HereWeGo':
+                    how.append("the program's first word (address 0); 31 handlers end by a transfer to it")
+                if not (sl or arm or fr or cs) and owner and owner != n:
                     how.append('inside `%s`' % owner)
             if sl or n.startswith(('mmo_', 'umo_', 'mge', 'uge')) or (n[0] in 'mu' and n[1:2].isupper()):
                 owner = alias[a]
