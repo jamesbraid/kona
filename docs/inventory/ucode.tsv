@@ -1916,15 +1916,15 @@ ge.u	label	0x00000d30	lDE7		located	ucode/ge_handlers.md#udecomposes	udecompose.
 ge.u	label	0x00000d3b	umo_DummyDecompose		located	ucode/ge_handlers.md#udecompose2s	udecompose2.s
 ge.u	label	0x00000d4a	umo_DecomposeSimpleTriangleStrip		located	ucode/ge_handlers.md#udecompose2s	udecompose2.s
 ge.u	label	0x00000d57	lDE4		located	ucode/ge_handlers.md#udecompose2s	udecompose2.s
-ge.u	label	0x00000d69	mmo_LiColorClamp		located	ucode/ge_handlers.md#ulights	ulight.s
-ge.u	label	0x00000d69	umo_LiColorClamp		located	ucode/ge_handlers.md#ulights	ulight.s
-ge.u	label	0x00000d72	lLI2		located	ucode/ge_handlers.md#ulights	ulight.s
-ge.u	label	0x00000d7c	mmo_LighterSimple		located	ucode/ge_handlers.md#ulights	ulight.s
-ge.u	label	0x00000d7c	umo_LighterSimple		located	ucode/ge_handlers.md#ulights	ulight.s
-ge.u	label	0x00000d89	lLI1		located	ucode/ge_handlers.md#ulights	ulight.s
-ge.u	label	0x00000dc9	mLiPwrTable		located	ucode/ge_handlers.md#ulights	ulight.s
-ge.u	label	0x00000dc9	uLiPwrTable		located	ucode/ge_handlers.md#ulights	ulight.s
-ge.u	label	0x00000df5	lPT1		located	ucode/ge_handlers.md#ulights	ulight.s
+ge.u	label	0x00000d69	mmo_LiColorClamp		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
+ge.u	label	0x00000d69	umo_LiColorClamp		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
+ge.u	label	0x00000d72	lLI2		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
+ge.u	label	0x00000d7c	mmo_LighterSimple		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
+ge.u	label	0x00000d7c	umo_LighterSimple		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
+ge.u	label	0x00000d89	lLI1		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
+ge.u	label	0x00000dc9	mLiPwrTable		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
+ge.u	label	0x00000dc9	uLiPwrTable		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
+ge.u	label	0x00000df5	lPT1		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
 ge.u	label	0x00000e13	mSinCos		located	ucode/ge_handlers.md#umaths	umath.s
 ge.u	label	0x00000e13	uSinCos		located	ucode/ge_handlers.md#umaths	umath.s
 ge.u	label	0x00000e62	uMatrixMultCCC		understood	ucode/ge_compute.md#matrix-maintenance-umatrixs	Matrix maintenance (umatrix.s)
