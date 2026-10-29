@@ -116,6 +116,149 @@
 #define KONA_MAP_XG_OFFSET            0xc000
 
 /*
+ * XG_XT_STAT register at user offset 0xc00c (window offset 0xc), the Xtalk link status word,
+ * established: kpm `adapterInspection` (0x10012378) loads the word at fixed user address 0x1000c
+ * (at 0x10012430) and files it by offset under kpm's name XG_XT_STAT, whose fields are the pending
+ * count, LLP retry flags and 8-bit transmit and receive counters. Inferred: that address is this
+ * register when the pipe is mapped at user address 0x4000, as libGL does (`__glXGetPipeAddress`
+ * returns 16384). No kernel code reads it. */
+#define KONA_USER_XG_XT_STAT              0xc00c
+
+/*
+ * Register at user offset 0xc014 (window offset 0x14), established as read: `adapterInspection` in
+ * kpm loads it at 0x10012464, but kpm's XG table has no record at offset 0x14, so
+ * `assign_register` (0x100121f4) fails and the dump logs an error instead of storing the word.
+ * Inferred from the generic Xtalk widget layout (Linux xwidget.h, docs/xg.md): the upper half of
+ * the error address of the last failed request. */
+#define KONA_USER_XG_ERR_UPPER_ADDR       0xc014
+
+/*
+ * Register at user offset 0xc01c (window offset 0x1c), established as read by kpm at 0x10012484
+ * inside `adapterInspection`; as for the entry at 0xc014, kpm's XG table lacks a record for it and
+ * the dump drops the word with an error message. Inferred from the generic Xtalk widget layout
+ * (Linux xwidget.h): the lower half of the error address that pairs with the upper half. */
+#define KONA_USER_XG_ERR_LOWER_ADDR       0xc01c
+
+/*
+ * XG_XT_CTRL register at user offset 0xc024 (window offset 0x24), the Xtalk control word,
+ * established: kpm `adapterInspection` reads it at 0x100124a4 and files it under that name. The
+ * kernel's `kona_reset_adaptor` (kona_edtinit_hip2.o, writes at +0x145c and +0x1574) programs it
+ * with the widget number, the target number, the crossbar credit count, 0x00240200 and finally bit
+ * 17 (interrupt enable), so the diagnostic dump shows what the driver set. */
+#define KONA_USER_XG_XT_CTRL              0xc024
+
+/*
+ * Register at user offset 0xc02c (window offset 0x2c), established as read by kpm at 0x100124c4 in
+ * `adapterInspection`; the table lookup fails there too, so only the load happens. The kernel's
+ * `kona_reset_adaptor` (kona_edtinit_hip2.o, at +0x1538) writes 0 to this window offset after
+ * reading the error status; inferred from the generic widget layout (Linux xwidget.h) that this is
+ * the request timeout register, cleared so no timeout is armed. */
+#define KONA_USER_XG_REQ_TIMEOUT          0xc02c
+
+/*
+ * Register at user offset 0xc034 (window offset 0x34), established as read by kpm at 0x100124e4 in
+ * `adapterInspection` with no matching record in kpm's table. The kernel writes it from
+ * `kona_reset_adaptor` (at +0x14b0) with the interrupt target number in bits 16-19 and address
+ * bits 32-47; inferred from the generic widget layout (Linux xwidget.h) that this is the upper
+ * word of the interrupt destination, so a dump of it shows where the pipe sends interrupts. */
+#define KONA_USER_XG_INTDEST_UPPER        0xc034
+
+/*
+ * Register at user offset 0xc03c (window offset 0x3c), established as read by kpm at 0x10012504 in
+ * `adapterInspection` (its table has no record, so the value is not stored). The kernel's
+ * `kona_reset_adaptor` writes the low 32 bits of the interrupt target address here at +0x1484;
+ * inferred from the generic widget layout (Linux xwidget.h): the lower interrupt destination word
+ * that completes the 48-bit address begun at 0xc034. */
+#define KONA_USER_XG_INTDEST_LOWER        0xc03c
+
+/*
+ * XG_CONFIG register at user offset 0xc064 (window offset 0x64), established: kpm
+ * `adapterInspection` reads it at 0x10012524, and the kernel's `kona_attach` (kona_edtinit_hip2.o,
+ * at +0x1150 and +0x1174) reads the same offset and takes bits 3-5, kpm's MAPRAM_SIZE field, as
+ * the number of map RAM blocks (zero meaning 8), storing the result at pipe state +2312. Bits 0-2
+ * are kpm's SUBSYSTEM field and bits 6-7 MAPRAM_TYPE. */
+#define KONA_USER_XG_CONFIG               0xc064
+
+/*
+ * XG_ERR_STAT register at user offset 0xc06c (window offset 0x6c), the pipe's error status,
+ * established: kpm `adapterInspection` reads it at 0x10012544, `kona_report_errs` reads it for the
+ * kernel's error report, and `kona_reset_adaptor` (kona_edtinit_hip2.o, +0x1528 to +0x1554) reads
+ * it, zeroes REQ_TIMEOUT, reads it again and writes the value read back to it. Inferred from that
+ * pattern: bits are cleared by writing them back; kpm's table names 31 error bits. */
+#define KONA_USER_XG_ERR_STAT             0xc06c
+
+/*
+ * XG_HI_LO_WATER register at user offset 0xc074 (window offset 0x74), the water marks,
+ * established: kpm `adapterInspection` reads it at 0x10012564 and `kona_reset_adaptor`
+ * (kona_edtinit_hip2.o, read at +0x1580, write at +0x15bc) rewrites it keeping the command-FIFO
+ * low and high marks (bits 16-27) and setting the output-DMA marks to low 0x40 and high 0x3f
+ * through the constant 0x3f40. Inferred from kpm's field names that the marks drive the command-
+ * FIFO and output-DMA flow. */
+#define KONA_USER_XG_HI_LO_WATER          0xc074
+
+/*
+ * XG_GFX_DET register at user offset 0xc07c (window offset 0x7c), the flow-control attach word,
+ * established: kpm `adapterInspection` reads it at 0x10012584, while the kernel writes it on every
+ * packet sender: `kona_act_pcx` (kona_context.o, offset formed at +0x48c) and
+ * `kona_flow_await_returned_credits` (kona_flow.o, formed at +0x8a8) store (tnum << 1) & 0x3e to
+ * attach or 1 to detach, with tnum the constant 17. Inferred: bit 0 detaches the pipe from flow
+ * control and bits 1-5 name the transaction number on which credits return. */
+#define KONA_USER_XG_GFX_DET              0xc07c
+
+/*
+ * XG_GFX_AVCC register at user offset 0xc084 (window offset 0x84), a 12-bit counter, established
+ * as read only by kpm: `adapterInspection` loads it at 0x100125a4 and files it under that name; no
+ * kernel object, irsaudit routine or library touches it. Inferred from the name that it counts the
+ * cache-line credits still available for the pipe to return to the hub. */
+#define KONA_USER_XG_GFX_AVCC             0xc084
+
+/*
+ * XG_GFX_AVDWC register at user offset 0xc08c (window offset 0x8c), a 12-bit counter, established
+ * as read only by kpm: `adapterInspection` loads it at 0x100125c4, and nothing else in the shipped
+ * software reads or writes it. Inferred from the name, and from its sibling at 0xc084, that it
+ * counts available doubleword credits, the second unit of the flow-control scheme. */
+#define KONA_USER_XG_GFX_AVDWC            0xc08c
+
+/*
+ * XG_MAP_ADDR register at user offset 0xc094 (window offset 0x94), an 18-bit field, established as
+ * read only by kpm: `adapterInspection` loads it at 0x100125e4, which is also the last of its XG
+ * reads. Inferred from the name that it holds the map RAM entry number last selected; the kernel
+ * writes map RAM entries through the 0x100000 array directly and never uses this register. */
+#define KONA_USER_XG_MAP_ADDR             0xc094
+
+/*
+ * Dummy read at user offset 0xc100 (window offset 0x100), established: libGLcore.so
+ * `__glkonim_Flush` (0x0d94beb0) stores token 199 and then 0 to the FIFO at 0x4000 and ends with a
+ * load at address 0x10100 whose destination is the zero register, and `__glkona_wait_rdata`
+ * (0x0d956c68) issues the same load at 0x0d956cb0 before it polls the return-data valid word.
+ * Inferred: the value is discarded, so the read exists to force the posted FIFO stores out ahead
+ * of what follows. */
+#define KONA_USER_FLUSH_READ              0xc100
+
+/*
+ * Not a pipe register, established: user offset 0x1fce00 is process address 0x200e00, the start of
+ * the system area of the per-process data area that IRIX maps at 0x200000 (struct prda in
+ * sys/prctl.h, release 6.5.5). libGL.so `__glXInitThread` (0x0d80ff60, load at 0x0d80ff80) reads
+ * that word in passing a thread value to its helper; the scan of the user window counts it only
+ * because the window runs to 0x20c000. */
+#define KONA_USER_PRDA_SYS_AREA           0x1fce00
+
+/*
+ * Not a pipe register, established: user offset 0x1fce90 is process address 0x200e90, inside the
+ * library part of the per-process data area (struct prda in sys/prctl.h, release 6.5.5, whose
+ * library area starts at 0xe80). libGLcore.so `__glSoftResetContext` (lui 0x20 at 0x0d9d0bf8 in
+ * the IP27KONA build) loads the word and passes it to a diagnostic log call at level 5, so it is
+ * per-thread library state read by software. */
+#define KONA_USER_PRDA_LIB_SLOT           0x1fce90
+
+/*
+ * Not a pipe register, established: user offset 0x1fce98 is process address 0x200e98, the next
+ * doubleword of the per-process library area after the slot at 0x1fce90. The 64-bit libGLcore.so
+ * (IP27KONA64) `__glSoftResetContext` loads it with `ld` at 0x02e31048 after lui 0x20 at
+ * 0x02e31044 and hands it to the same level 5 log call, so it too is per-thread library state. */
+#define KONA_USER_PRDA_LIB_SLOT64         0x1fce98
+
+/*
  * Event codes the pipe reports to the kernel, ESTABLISHED for 6.5.5
  * (kona_if.h). The geometry engine writes them to a communication area
  * (the page HP_PIPE_SETUP names, kona_kern.h); the ARM-named processor

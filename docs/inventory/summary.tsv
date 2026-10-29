@@ -2,7 +2,7 @@ table	rows	understood	understood_distinct	templated	located	named_only	undocumen
 binaries	599	83	23	0	0	177	339	0	13.9	13.9	43.4	13.9	
 functions	54309	1260	626	1371	2330	50706	5	8	2.3	6.6	100.0	2.3	
 functions (distinct names)	19170	599	599	219	249	18317	2	3	3.1	4.4	100.0	3.1	
-mmio	53	43	34	0	0	9	0	1	81.1	83.0	100.0	83.0	10
+mmio	53	52	50	0	0	0	0	1	98.1	100.0	100.0	100.0	10
 tokens	617	606	575	0	0	0	0	11	98.2	100.0	100.0	100.0	
 ioctls	55	55	54	0	0	0	0	0	100.0	100.0	100.0	100.0	
 ucode	3899	3707	2458	183	192	0	0	0	95.1	100.0	100.0	95.1	
