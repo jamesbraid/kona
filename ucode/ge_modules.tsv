@@ -1,5 +1,6 @@
-# Role of each geometry-engine source module (ge.u line table, IRIX 6.5.30m), one line each, written by hand
-# from the module's labels and from what reaches them (ucode/ge_xref.tsv). All INFERRED unless ge_handlers.md says otherwise.
+# Role of each geometry-engine source module (ge.u line table, IRIX 6.5.30m), one line each, then the role of each
+# handler, module and subroutine label, written by hand from its name and from what its words do (ucode/ge_handlers.md
+# and the listings in ucode/ge_listing/). All INFERRED. Keys with a dot are source files, the others are labels.
 source	role
 bootstrap.s	program entry at address 0 (`HereWeGo`): every even geif.u entry and the 60 unused odd entries point here, and 31 handlers end by jumping to it (ucode/ge_ops.md)
 bootinit.s	start-up initialisation of engine memories and registers (`MemRegInit`), reached from the entry code
@@ -127,3 +128,847 @@ xclipdraw.S	X server clipped drawing of points, lines and rectangles
 xentry.S	X server drawing commands: points, lines, segments, rectangles, boxes, spans
 xload.S	X server state loads: graphics context, position, clip, scissor, pixel set-up
 xsetup.S	X server set-up of clip, colours and window
+AA_Response	subroutine that computes the antialiased-line response with float subtracts, adds and multiplies, called by the AA table generators and returning to them
+AA_Response_Step	subroutine for one step of the antialiased response: four float compares that set the flags, then a return
+AA_Response_Max	two-word subroutine, one move in each unit and a return, giving the response maximum by its name; nothing in the program calls it
+umo_BitmapToFloat	pixel-path stage that expands bitmap bits to float pixels: single-bit masks (4 to 0x80) choose the bits, then the LSB-first or MSB-first loop runs; no slot or ARM function adds it to a path
+umo_BitmapToInt	pixel-path stage that expands bitmap bits to integer pixels with masks and integer adds, through an LSB-first or MSB-first loop; no slot or ARM function adds it to a path
+MemRegInit	start-up subroutine that the entry code calls before the first command; its nine words carry no operation the field readings name, so what it sets is held in fields not yet read
+HereWeGo	program entry where the engines start: it loads four start-up values (among them 0x43 and 0x435, which the FIFO reconfiguration after a context save loads again), calls the start-up initialisation and waits for the first command
+mmo_Clamp	pixel-path clamp stage: set-up moves and two clamps, then it runs into its main loop
+mgesi_ClearColor	colour clear: reads the four colour words, scales them with float multiplies and writes three words to the raster bus (constants 0x1c12 and 0x1c13 among them)
+mgesi_ClearLA16	clear of a 16-bit luminance-alpha buffer: scales the one clear value (constants 4096.0 and 16.0 among nine) and writes three raster bus words
+mgesi_ClearIndex	colour-index clear: converts the index operand to float, scales it and writes three raster bus words
+mgesi_OverlayClearColor	overlay-plane colour clear: moves and scales the four colour words and writes two raster bus words
+mgesi_OverlayClearIndex	overlay-plane index clear: compares one operand, scales by 1/256 and 1/16 and writes four raster bus words
+mgesi_ClearDepth32	32-bit depth clear: double-precision multiplies on the three operand words, then nine raster bus words
+mgesi_ClearAccum	accumulation-buffer clear: combines the operand with the masks 0xfff to 0x1f00000 (AND and OR) and writes six raster bus words
+mgesi_ClearAccum32	32-bit accumulation-buffer clear: the same masking as the 16-bit clear plus double-precision scaling, six raster bus words
+mgesi_ClearAccumWord	writes one accumulation-buffer clear word: scales the operand and writes three raster bus words
+mgesi_ClearAccumWord32	writes one 32-bit accumulation-buffer clear word: double-precision scaling of two operand words, then three raster bus words
+mgesi_ClearVertex	masked-clear set-up: reads nine operand words, converts and scales them and stores seven values to engine memory 0xc9-0xd5 before one raster bus word
+mClipPolyToPlane	clips a polygon against one plane: by its name and its float multiplies, adds and reciprocal steps it interpolates the crossing vertices, then returns to the triangle clipper
+mEyeToClipAfterUserClip	takes the vertices a user-plane clip produced from eye to clip space with multiply-add chains, then returns
+mSetClipVertsFree	marks the clipper's vertex slots free: loads six constants, five of them multiples of 0x9c (a vertex-record stride, inferred), and returns
+mPerTriClipFlagsFrustum	computes a triangle's frustum flags by float subtracts and multiplies against the bounds, then ends the command
+mClipTriUserAndFrustum	triangle clipper: tests the outcode flags, calls the vertex-slot, per-plane clip and clip-space routines and ends the command
+mClipTriFlushSR	ends a clipped triangle in the save-and-restore strip mode: 15 moves and a constant holding an address inside itself, then it returns or ends the command
+mClipTriFlush	ends a clipped triangle: 15 moves and a constant holding an address inside itself, then it returns or ends the command
+mgeb_ColorTableSetup	colour-table set-up: tests its one operand and branches to the matching colour-table path
+mmo_Lutout	pixel-path lookup output stage: eight moves, then it continues into the one-dimensional evaluator entry
+mLutoutDone	common exit of the three lookup output stages: two moves and a return
+mmo_LutoutRGBA	RGBA lookup output: clamps and scales four components and joins the common exit
+mmo_LutoutLA	luminance-alpha lookup output: clamps and scales two components and joins the common exit
+mmo_LutoutI	intensity lookup output: clamps and scales one component and joins the common exit
+mgeb_LutRamp3	fills a three-component lookup ramp: integer adds and 16-bit field packing (mask 0xffff0000) over the table
+mgeb_LutRamp1	fills a one-component lookup ramp with integer adds and packing
+mgeb_PixMapOutputI	index pixel-map output stage: masks the value to 16 bits (0xffff)
+mgeb_PixMapOutputRGBA	RGBA pixel-map output stage: clamps, scales by 65535.0 and masks the components to 16 bits
+mgesi_TLutDownload	texture-lookup-table download: reads six set-up words from engine memory and writes one raster bus word
+mTLutDownloadDone	common end of the texture lookup downloads: two complemented words to the raster bus and the end-of-command wait
+mmo_TLutDownloadRGBA	sends RGBA texture lookup entries: engine-memory reads and moves with the constants 0x2181800 and 0x2180000, then the common end
+mmo_TLutDownloadLA	sends luminance-alpha texture lookup entries: engine-memory reads and moves, then the common end
+mmo_TLutDownloadI	sends intensity texture lookup entries: moves with four constants, then the common end
+mmo_LUT16_big	large 16-bit lookup stage: float adds, 16-bit masks and 15 conditional transfers
+mmo_LUT_I2C_16	index-to-colour 16-bit lookup stage: 15 engine-memory reads and 45 moves
+mmo_LUT_I2I_16	index-to-index 16-bit lookup stage: ten engine-memory reads and 49 moves
+mgesi_LutUpload	lookup-table upload: converts table entries to float, scales them and masks them to 16 bits
+mmo_GeneralConvolve3x3_124	general 3x3 convolution stage for one, two or four components: set-up moves, then its normal path
+mmo_GeneralConvolve5x5_124	general 5x5 convolution stage for one, two or four components: set-up moves, then its normal path
+mmo_GeneralConvolve7x7_124	general 7x7 convolution stage for one, two or four components: set-up moves, then its normal path
+mgeb_CRAMBlockLoad	coefficient-memory block load: five set-up moves, then the copy loop that follows it
+mges_ContextDeactivate	context save: 96 moves and calls to the memory-clear and copy routines, ending with the end-of-command wait
+mges_ContextDeactGED	saves the distributor-facing state: one raster bus word, then a call to the WRAM-to-FIFO copy
+mgeb_ContextDeactReconfigureFifo	reconfigures the input FIFO after a save: two complemented words, one raster bus word and the constants 0x43 and 0x435 that the entry code also loads
+mges_ContextDeactSection	saves one section named by its operand word through the WRAM-to-FIFO copy
+mges_ContextDeactStoreValue	stores the one operand word of the command into the saved context
+mges_ContextDeactFinish	finishes a context save: reads saved engine memory and writes 58 words to the raster bus
+mges_ContextLoadODMA	restores the output DMA state: five operand words with the constants 0x450 to 0x454, eight raster bus words
+mges_ContextLoadBEF	restores the back-end shadow: packs fields and writes four raster bus words
+mges_ContextReloadFromBEF	reloads raster state from the 89-word back-end shadow, writing seven raster bus words
+mgeb_ContextLoadCram	restores coefficient memory by calling the WRAM-to-CRAM copy
+mgeb_ContextLoadEram	restores external memory by calling the WRAM-to-ERAM copy
+mgeb_ContextLoadWram	restores working memory; its six words carry no operation the field readings name
+mgeb_ContextLoadFlagRegs	restores the flag registers from four operand words
+mgeb_ContextLoadRegs	restores engine registers from nine operand words, with two conditional transfers to the material-state update
+mges_ContextLoadFifo	restores the input FIFO; its five words carry no operation the field readings name
+mgeb_ContextDestroy	tears down a context: 38 moves, two conditional transfers and the constants 0x2102000 to 0x2202000
+mLiUpdateMtrlState	updates the lighting material state after a register restore: one bit test (0x80), a conditional path, then a return
+mgeb_DebugDrain	debug drain command with no operation the field readings name, ending with the end-of-command wait
+mmo_DebugGE	four-word debug module that ends the command
+mPrintf	formatted print routine (by its name): moves, bit tests and an engine-memory read, then a return
+mgesi_PrintNum	debug print of one number: calls the print routine with ASCII format words (0x526f6c6c, "Roll") and writes one raster bus word
+mmo_DirtyDeformModule	selects the deformation module after state changes: tests flag bits 0x80000 and 0x100000 and loads deformation module addresses
+mgeb_DeformationMap3_1	loads a three-input deformation map: tests the flag bits and enumerant 0x8194 and handles the map coefficients
+mgeb_LoadIdentityDeformation	resets the deformation to identity by clearing its flag bits
+mgesi_GetDeformation	writes the deformation state to the raster bus output addresses
+mgesi_GetDeformationsMask	writes the mask of enabled deformations to the raster bus output addresses
+mmo_DrawLinPrim	line-drawing module entry: tests one flag (0x100) and enters the single-line or line-list code
+mDrawLinPrim	draws one line: endpoint deltas and slopes with float subtracts and multiplies
+mDrawLinList	draws a list of lines with the same set-up as the single-line code
+mmo_DrawMSLinPrim	multisample line drawing: the single-line set-up plus multisample constants
+mmo_DrawLinStipplePrim	stippled line drawing: splits the line into stipple segments with multiply-add chains
+SaveClipState	saves the clip state by calling the WRAM-to-ERAM copy, then returns
+RestoreClipState	restores the clip state by calling the ERAM-to-WRAM copy, then returns
+mmo_DrawMSTablePntPrim	multisample point drawing from the sample table: integer compares and masks pick the covered samples
+mmo_DrawMSTablePntPrim1	second multisample table point drawer, with float distance terms
+DrawMSTablePnt	draws one multisample point from the sample table, then returns
+DrawMSTFanPnt	draws a large multisample point as a fan, calling the sine and cosine routines for its corners
+mmo_DrawMSDistAttTablePntPrim	multisample point drawing with distance attenuation: size from a reciprocal square root, then the table or fan code
+mmo_DrawPntPrim	point-drawing module: the point's screen square from its size
+mmo_DrawDistAttPntPrim	point drawing with distance attenuation: size from a reciprocal square root of the eye distance
+mmo_DrawAAPntPrim	antialiased point drawing: size and coverage terms with constants 0.5 and 3.0
+mmo_DrawMSPntPrim	multisample point drawing with float set-up of the point square
+mmo_DrawMSDistAttPntPrim	multisample point drawing with distance attenuation, calling the sine and cosine routine for its corners
+mmo_DrawTriPrimOffset	triangle drawing with polygon offset: edge set-up with float subtracts, multiplies and reciprocal steps
+mgesi_TriangleStrip	triangle-strip vertex entry: loads code addresses inside the strip decomposition modules and ends the command
+mgesi_TriangleStripSave	triangle-strip vertex entry that also saves the vertex (an extra code address in the save path)
+mgesi_TriangleStripRestore	triangle-strip vertex entry that restores a saved vertex first
+mgesi_TriangleStripRestoreSave	triangle-strip vertex entry that restores a saved vertex and saves the new one
+mgesi_TriangleStripWithSwapOdd	triangle-strip vertex entry that swaps the vertex order on odd triangles
+mgesi_TriangleStripSaveWithSwapOdd	odd-swapping strip entry that also saves the vertex
+mgesi_TriangleStripRestoreWithSwapOdd	odd-swapping strip entry that restores a saved vertex first
+mgesi_TriangleStripRestoreSaveWithSwapOdd	odd-swapping strip entry that restores and saves
+mgesi_Triangles	independent-triangles vertex entry: loads code addresses of the triangle decomposition and ends the command
+mgesi_QuadStrip	quad-strip vertex entry: loads code addresses of the quad-strip decomposition and ends the command
+mgesi_QuadStripSave	quad-strip vertex entry that also saves the vertex
+mgesi_QuadStripRestore	quad-strip vertex entry that restores a saved vertex first
+mgesi_QuadStripRestoreSave	quad-strip vertex entry that restores a saved vertex and saves the new one
+mgesi_Quads	independent-quads vertex entry: loads one code address of the quad decomposition and ends the command
+mgeb_SetTfanPolyMode	sets the triangle-fan polygon mode with four moves
+mgesi_TfanPoly	triangle-fan and polygon vertex entry: clears field bits 22-24 (mask 0xfe3fffff) and loads code addresses of the fan decomposition
+mgesi_TfanPolySave	triangle-fan and polygon vertex entry that also saves the vertex
+mgesi_TfanPolyRestore	triangle-fan and polygon vertex entry that restores a saved vertex first (a code address in the restore module)
+mgesi_TfanPolyRestoreEdge	fan and polygon vertex entry that restores a saved vertex and its edge state, calling the ERAM-to-WRAM copy
+mgesi_TfanPolyRestoreSave	fan and polygon vertex entry that restores a saved vertex and saves the new one
+mgesi_TfanPolyEnd	fan and polygon vertex entry for the last vertex: loads the fan decomposition's code addresses and ends the command
+mgesi_TfanPolyRestoreEnd	last-vertex fan entry that restores a saved vertex first
+mgesi_LineStrip	line-strip vertex entry: loads one code address of the line decomposition and ends the command
+mgesi_LineStripSaveV0	line-strip vertex entry that also saves the first vertex (a code address in the save module)
+mgesi_LineStripSaveAndIgnoreV0	line-strip vertex entry that saves the first vertex and draws nothing for it
+mgesi_LineStripCopyV0	line-strip vertex entry that copies the first vertex to the closing position (line loop)
+mgesi_LineStripCopyAndIgnoreV0	line-strip vertex entry that copies the first vertex and draws nothing for it
+mgesi_LineStripRestoreV0	line-strip vertex entry that restores the saved first vertex
+mgesi_Points	point vertex entry: loads one code address of the point decomposition and ends the command
+mgeb_RasterPos	raster position: transforms the four position words with float multiplies and adds and loads the address of the module that saves the raster position
+mgeb_ERAMBlockClear	external-memory block clear: one compare and one move, then the clear loop that follows it
+mge_ErrNoError	error entry for "no error": loads 0 and waits; nothing in the program enters it
+mErrInvalidEnum	records the GL error GL_INVALID_ENUM (constant 0x500) and ends the command
+mErrInvalidValue	records the GL error GL_INVALID_VALUE (constant 0x501) and ends the command
+mErrInvalidOperation	records the GL error GL_INVALID_OPERATION (constant 0x502) and ends the command
+mErrStackOverflow	records the GL error GL_STACK_OVERFLOW (constant 0x503) and ends the command
+mErrStackUnderflow	records the GL error GL_STACK_UNDERFLOW (constant 0x504) and ends the command
+umo_EvalPolyV	evaluator stage for the v direction of a polynomial: converts the order to float and runs into its order loop
+umo_EvalPolyU	evaluator stage for the u direction: multiply-add chains over the coefficients
+umo_EvalPolyVdV	evaluator stage for v with its derivative: set-up, then its order loop
+umo_EvalPolyUdU	evaluator stage for u with its derivative: set-up, then its size loop
+umo_EvalComputeNormals3D	computes evaluated-surface normals for 3D control points: cross products by float multiplies and a reciprocal square root to normalise
+umo_EvalComputeNormals4D	computes evaluated-surface normals for 4D (rational) control points: more multiplies than the 3D form and a reciprocal square root
+umo_EvalPoly1V	first-order evaluator stage for v: no named operation in its set-up, then its loop
+umo_EvalPoly1U	first-order evaluator stage for u: nine moves and two words to the output port
+umo_EvalPoly1VdV	first-order evaluator stage for v with derivative: set-up, then its loop
+umo_EvalPoly1UdU	first-order evaluator stage for u with derivative: 17 moves and five words to the output port
+umo_EvalPoly2V	second-order evaluator stage for v: set-up, then its loop
+umo_EvalPoly2U	second-order evaluator stage for u: float multiplies and adds over the coefficients
+umo_EvalPoly2VdV	second-order evaluator stage for v with derivative: set-up, then its loop
+umo_EvalPoly2UdU	second-order evaluator stage for u with derivative: set-up, then its loop
+umo_EvalPoly4V	fourth-order evaluator stage for v: set-up, then its loop
+umo_EvalPoly4U	fourth-order evaluator stage for u: 22 multiply-adds over the coefficients
+umo_EvalPoly4VdV	fourth-order evaluator stage for v with derivative: set-up, then its loop
+umo_EvalPoly4UdU	fourth-order evaluator stage for u with derivative: set-up, then its loop
+uEvalChangeBasis1and2	evaluator basis change for orders one and two, which needs no arithmetic: it ends the command
+uEvalChangeBasis3	evaluator basis change for order three: set-up, then its loop
+uEvalChangeBasis4	evaluator basis change for order four: multiplies and subtracts, then its polynomial loop
+uEvalChangeBasis5	evaluator basis change for order five: multiplies, subtracts and adds, then its loop
+uEvalChangeBasis6	evaluator basis change for order six: multiplies and subtracts, then its matrix loop
+uEvalChangeBasis7	evaluator basis change for order seven: multiplies and subtracts, then its loop
+uEvalChangeBasis8	evaluator basis change for order eight: multiplies and subtracts, then its matrix loop
+uEvalChangeBasis4x4	second entry inside the order-eight basis change for a 4x4 case: four moves and two subtracts, then its loop
+uEvalSaveState	saves the evaluator state by jumping to the WRAM-to-ERAM copy
+uEvalSaveState1D	saves the one-dimensional evaluator state through the WRAM-to-ERAM copy
+uEvalSaveState2D	saves the two-dimensional evaluator state through the WRAM-to-ERAM copy
+uEvalLoadState1D	loads the one-dimensional evaluator state through the ERAM-to-WRAM copy
+uEvalLoadState2D	loads the two-dimensional evaluator state through the ERAM-to-WRAM copy
+uEvalSwapState1D	swaps in the one-dimensional evaluator state: one copy out to ERAM and one back
+uEvalSwapState2D	swaps in the two-dimensional evaluator state: one copy out to ERAM and one back
+mmo_Expand	pixel-path expand stage: set-up moves, four loops, then its RGB path
+mgeb_BgnFeedbackMode	enters feedback mode: compares the type operand with the GL feedback types (0x601 to 0x604 among 11 constants) and sets mode bits
+mgeb_EndFeedbackMode	leaves feedback mode by clearing bit 28 (mask 0xefffffff)
+mmo_FeedbackTriangle	feedback output for a triangle: writes the polygon token (0x703) and calls the vertex feedback routine
+mmo_FeedbackLine	feedback output for a line: writes the line token (0x702, or 0x707 for a reset line) and calls the vertex feedback routine
+mmo_FeedbackPoint	feedback output for a point: writes the point token (0x701) and calls the vertex feedback routine
+mFeedbackVertex	writes one feedback vertex: multiply-adds to window coordinates, scaling by 1/16 and 2^-20, two raster bus words, then a return
+mgesi_FeedbackPixel	feedback output for a pixel operation, with the same 1/16 and 2^-20 scaling
+mmo_FFT_2	two-point FFT stage: float adds and subtracts, then it ends the command
+mmo_FFT_4	four-point FFT stage: eight butterfly adds and subtracts
+mmo_FFT_8	eight-point FFT stage: butterflies with four twiddle multiplies
+mmo_FFT_16	16-point FFT stage: butterflies and twiddle multiplies
+mmo_FFT_32	32-point FFT stage: butterflies and twiddle multiplies
+mmo_FFT_64	64-point FFT stage: butterflies and twiddle multiplies
+mmo_FFT_128	128-point FFT stage: butterflies and twiddle multiplies
+mmo_FFT_256	256-point FFT stage: butterflies and twiddle multiplies
+mmo_Complex_Out	FFT output stage for complex results: moves and one conditional transfer
+mmo_Complex_Sort_Out	FFT output stage that reorders the complex results: 27 moves and one conditional transfer
+mgesi_PixRasterPosSetup_FFT	raster-position set-up for an FFT pixel operation: three operand words, minimum and maximum bounds and raster constants
+mmo_Transpose	transpose stage of the FFT pixel path
+mgeb_PixDrawColorSetup_FFT	draw-colour set-up for an FFT pixel operation: tests two operand words and branches
+mmo_FloatToInt	pixel-path float-to-integer stage: scaling multiplies, then its loop
+mDispatchCentral	primitive dispatch: five conditional transfers on different conditions to the polygon-mode, clip and draw paths, then its finish code
+mmo_AbortGeometry	abandons the current primitive: tests the abort flags, writes one raster bus word and ends the command
+mmo_SaveRasterPos	saves the raster position: reads 15 vertex-record words (offsets 11 to 38), transforms them and copies them out with the WRAM-to-ERAM copy
+mmo_Vn2ToSave	vertex-cache step that moves the vertex two back into the save slot (nine moves)
+mmo_SaveToV0	vertex-cache step that moves the saved vertex into slot 0 (nine moves)
+mmo_SaveToV0AndVn2ToSave	vertex-cache step doing both moves above (17 moves)
+mmo_V0ToSave	vertex-cache step that moves the current vertex (record words 27 to 34) into the save slot
+mmo_SaveToVn1	vertex-cache step that moves the saved vertex into the previous-vertex slot
+mmo_CopyV0ToVn1	vertex-cache step that copies the current vertex into the previous-vertex slot
+mmo_V0ToSaveAndIgnore	saves the current vertex and draws nothing for it
+mmo_CopyV0ToVn1AndIgnore	copies the current vertex into the previous slot and draws nothing for it
+mmo_V0ToSave_SaveExtra	saves the current vertex and its extra state through the WRAM-to-ERAM copy
+mmo_SaveToV0_SaveExtra	moves the saved vertex into slot 0 and saves the extra state
+mmo_SaveToV0_RestoreExtra	moves the saved vertex into slot 0 and restores the extra state
+mmo_Punt	five-word module that gives up on the current primitive and ends the command
+mmo_DirtyMultipassModule	selects the multipass module after a state change by loading its address
+mmo_MultipassModule	multipass drawing: tests flags 0x80 and 0x10 and copies state between coefficient and external memory for each pass
+mDummy	one-word return routine; nothing in the program calls it
+mZclipToEye	converts a clip-space depth to eye space: reciprocal steps, multiplies and a minimum, then a return
+mSendFog	sends one fog value: float adds and multiplies and one raster bus word, then a return
+mFinishFogDownload	finishes a fog table download: one engine-memory read and a return
+mSendFineTblSpecialEntry	sends the special entry of the fine fog table: one multiply, then the download finish
+mFineTblSpecialEntry	computes the special entry of the fine fog table through the eye-depth conversion
+mSendCoarseTblSpecialEntry	sends the special entry of the coarse fog table: multiplies and moves, then a return
+mCoarseTblSpecialEntry	computes the special entry of the coarse fog table through the eye-depth conversion
+mSendOneBigTblSpecialEntry	sends the special entry of the single large fog table: three raster bus words, then the download finish
+mOneBigTblSpecialEntry	computes the special entry of the single large fog table through the eye-depth conversion
+mInitLinearFog	set-up for linear fog: reciprocal of (end - start) by seed and Newton steps, then the eye-depth conversion
+mLinearFog	linear fog value: subtract, multiply and clamp, then a return
+mInitExpFog	set-up for exponential fog: loads 256.0 and 127.9984 and reads the density from engine memory
+mExpFog	exponential fog value: table-based exponent with multiplies, clamps and a minimum, then a return
+mSplineSlopeAndOffset	slope and offset of one fog-spline interval: differences divided by reciprocal Newton steps, then a return
+mInitSplineFog	set-up for spline fog: reads the spline from engine memory and computes the first slope
+mUpdateSplineIntervals	steps through the fog-spline intervals in a loop and recomputes the slope
+mSplineFog	spline fog value for one depth, updating the interval when the depth leaves it
+mSplineFogGSS	spline fog search: six compares in a loop to find the interval
+mGetInternalPointsGSS	inner points of a golden-section search (constant 0.382)
+mLinearApproxErrorGSS	error of a linear approximation of the fog curve, compared during the golden-section search
+mLinearApproxParamsGSS	parameters of the linear fog approximation: reciprocal of the interval, then the inner points
+mStartGSS	starts a golden-section search: loads the address of the parameter routine and returns
+mDefineFineMode	builds the fine fog table: runs the search and scales into 4096 and 251-step ranges
+mDefineCoarseMode	builds the coarse fog table: runs the search with large float constants, then the fine table
+mStartFogDownload	starts sending a fog table to the raster system: 13 constants and one raster bus word
+mLoadOneBigTable	builds the single large fog table, then starts its download
+mLoadFineTable	loads the fine fog table from engine memory and starts its download
+mLoadFogTable	builds the fog table for the current mode and starts its download
+mSetFogOffset	computes the fog offset with reciprocal steps and a maximum, then returns
+mgeb_Fogf	GL fog call with a float parameter: compares the parameter name (XOR against GL fog enumerants), stores the value and rebuilds the table
+mgeb_Fogi	GL fog call with an integer parameter: one move, then the float handler
+mgeb_FogEnable	enables fog: sets the fog flag bits and rebuilds the offset and table
+mgebi_FogDisable	disables fog by writing the fog-off raster words
+mgebi_FogOffsetEnableDisable	switches the fog offset from its operand word
+mgeb_FogRestore	restores fog after a context load by rebuilding the table
+mgeb_FogFunc	GL fog func (SGIS) call: reads the point count and table words and rebuilds the table
+mgesi_GetFogFunc	reads the fog function back through the raster bus output addresses
+mResolveFogTable	common fog update after a matrix or fog change: calls the offset and table routines, then the end-of-command wait
+mgeb_InitFogGlobal	fog state initialisation: combines operand words with small constants by XOR and OR and branches on the result
+mgeb_GlobalInitialize	global engine initialisation at board start: loads five constants (142.0, 40.0 among them) and calls the register, light and evaluator initialisers
+mgeb_GLContextInitialize	GL context initialisation: calls the register, colour-module, light-context and extension initialisers
+mgeb_XContextInitialize	X server context initialisation: two operand words, then the X register and colour-module initialisers
+mX_REGS_Initialize	initialises the engine registers for an X context: loads 0, 1.0 and the sign bit, then returns
+mGL_REGS_Initialize	initialises the engine registers for a GL context: loads 0, 0x14, 1.0 and the sign bit, then returns
+mX_CM_Initialize	initialises the X context's state words in engine memory: 18 mask and value constants
+mGL_CM_Initialize	initialises the GL context's state words, among them the addresses of the transform, clip and draw modules (63 constants)
+mGL_EM_Initialize	initialises the evaluator and math constants in engine memory: 86 constants, among them pi (0x40490fdb), -pi and pi/2
+mGL_EX_Initialize	initialises the GL extension state: 246 constants, among them GL enumerants and module addresses, then returns
+mDebugInitialize	debug initialisation inside the extension initialiser: calls the ERAM clear and loads the marker 0xdeadbeef
+mgesi_PipeSetup	pipe set-up from the ARM: four operand words, one raster bus word and a call to the print routine with a greeting string ("Welcome to GE...")
+mmo_LiColorMask	lighting colour-mask stage: converts integer colour components to float and masks them by the colour mask
+mmo_LighterGeneral	general lighting module entry: tests material flags and loads the per-vertex loop and colour code addresses before the primitive material set-up
+mLiVtxLoop	per-vertex lighting loop head: loads the back-colour and accumulation code addresses and returns
+mLiDirtyLocLiVwrLiSrcInit	lighting set-up after a change to local lights, local viewer or light sources: picks the infinite or local path by three conditional transfers
+mLiNoLightSrc	lighting with no enabled light: copies the emission and ambient terms (22 moves) and returns
+mLiInfVInfLiInit	lighting set-up for an infinite viewer and infinite lights: half-vector and colour products by float multiplies and adds
+mLiLocalViewer	lighting set-up for a local viewer: view vectors normalised by reciprocal and reciprocal-square-root steps
+mLiLocLiFrnClrAccum	front-colour accumulation for a local light: diffuse and specular terms with clamps
+mLiLocLiFrnClrInit	front-colour set-up for a local light: clamps and a maximum before the accumulation
+mLiBackClrAccum	back-colour accumulation for two-sided lighting
+mLiBackClrInit	back-colour set-up for two-sided lighting, loading the address of the back accumulation
+mLiFinalLi	final lighting step: multiply-adds of the colour terms and clamps to the vertex colour
+mLiInfVInfLi	per-vertex lighting for an infinite viewer and infinite lights: dot products and colour sums
+mLiLocVInfLi	per-vertex lighting for a local viewer and infinite lights
+mLiLocVInfLiInit	set-up for a local viewer with infinite lights
+mLiLocalLight	per-vertex lighting for one local light: distance by a reciprocal square root, attenuation and spot terms (constant 1e-05 as a floor)
+mgesi_GetCurrent	reads current vertex state back: 13 vertex-record words (offsets 4 to 38) and three raster bus words
+mgesi_GetRaster	reads the raster position back: scales by 1/16 and 2^-20 and writes to the raster bus output addresses
+mgesi_GetSpecial	reads special state back: compares the parameter name and writes the matching values
+mgesi_LiGetLight	reads light parameters back: compares the parameter name with the GL light enumerants (0x1201 and up) and scales the values
+mgesi_LiGetMaterial	reads material parameters back: compares the parameter name with the GL material enumerants (0x1200 and up)
+mgesi_PushAttrLights	pushes the lighting attributes: copies state words out through two raster bus words
+mgeb_PopAttrLights	pops the lighting attributes: restores state words and clears flag bits, then marks the lighting modules for re-selection
+mgeb_PolygonOffsetExt	GL polygon offset (EXT) call: stores the factor and bias operand words
+mgeb_PolygonOffset	GL polygon offset call: stores the factor and the bias scaled by one multiply
+mgeb_Disable_EnablePolyOffsetExt	enables or disables polygon offset: sets or clears flag bits and reads two state words from engine memory
+mgesi_SetGeId	sets the engine's identity from its operand (masked to four bits, 0xf) and loads two scale constants
+mgeb_ViewPort	GL viewport call: converts the 11 operand words to float and computes half-widths and centres (constant 0.5) with a reciprocal for the scale
+mgeb_DepthRange	GL depth range call: clamps the near and far values to [0, 1] with maximum and minimum and scales them to the 2^20 depth range
+mgeb_FrontFace	GL front face call: compares the enumerant with GL_CW (0x900) and sets the face orientation
+mgeb_UserClipPlane	GL clip plane call: transforms the plane by the inverse modelview with multiply-adds, inverting the matrix first when needed, then resolves the clip state
+mgeb_EnableUserClipPlane	enables one user clip plane and resolves the clip state
+mgeb_DisableUserClipPlane	disables one user clip plane and resolves the clip state
+mUserClipResolve	resolves the user clip state: counts enabled planes and selects the transform module whose address it loads
+mgeb_CullFace	GL cull face call: compares the enumerant with GL_BACK (0x405) and stores 0x70 or 3 as the cull mode
+mgeb_Enable_Cull_Face	enables face culling: sets the cull bits and marks the cull and light module for re-selection
+mgeb_Disable_Cull_Face	disables face culling: clears the cull bits and marks the cull and light module for re-selection
+mgeb_SetLMCFlag	sets the IRIS GL lighting-mode flag (two words with operations 0x6ec and 0x6f1)
+mgeb_ClearLMCFlag	clears the IRIS GL lighting-mode flag
+mmo_DirtyCullAndLightModule	re-selects the cull and lighting modules after a state change: tests flag bits and loads module addresses
+mmo_DirtyLightModule	re-selects the lighting module after a state change: the same tests as the cull-and-light form
+mmo_DirtyXformAndObjToClipModule	re-selects the transform and object-to-clip modules: tests flag bits and loads one of nine module addresses
+mmo_DirtyTextureAndScreenModule	re-selects the texture and screen-space modules: bit tests and module addresses
+mgeb_Sprite	GL sprite parameter (SGIX) call: compares the parameter name and stores the sprite mode or axis
+mgeb_EnableSprite	enables sprites: sets bits 0x4 and 0x10 and marks the pre-path module for re-selection
+mgeb_DisableSprite	disables sprites: clears the same bits and marks the pre-path module for re-selection
+mgeb_Enable_Multipass	enables multipass: sets bit 0x8 and marks the pre-path module for re-selection
+mgeb_Disable_Multipass	disables multipass: clears bit 0x8 and marks the pre-path module for re-selection
+mgeb_PointParameter	GL point parameter call: compares the parameter name with the point-parameter enumerants (0x8126 to 0x8129) and stores the value
+mmo_DirtyPrePathModule	re-selects the modules that run before the geometry path: tests sprite, deform and multipass bits and loads their addresses
+DoEramFill	external-memory fill loop shared by the two fill commands, returning to them
+mgeb_EramFill	fills external memory with one operand word
+mgeb_EramIndirectFill	fills external memory with a value named by its operand
+mgesi_HistogramUpload	reads the histogram back through the raster bus output addresses
+mmo_CramMinmaxToEramMinmax	copies the minmax result from coefficient memory to external memory
+mgeb_EramMinmaxToCramMinmax	copies the minmax result from external memory to coefficient memory
+mmo_Histogram	pixel-path histogram stage: set-up, then its main loop
+uge_HistogramFill	second entry inside the histogram stage that fills histogram counts from three operand words
+mgesi_Cram2ODMA	sends coefficient memory out through the output DMA path: complemented control words and raster bus words
+mgesi_Eram2ODMA	sends external memory out through the output DMA path
+mgesi_WramFifo2ODMA	sends working memory through the output DMA path
+mgeb_LoadEram	loads external memory by calling the WRAM-to-ERAM copy
+mgesi_LoadEram	loads external memory with three raster bus words, then the WRAM-to-ERAM copy
+mgesi_SR2ODMA	sends the saved raster state through the output DMA path
+mgesi_LastVertex2ODMA	sends the last vertex through the output DMA path
+mgesi_SlopReadWord	reads one word back for the host: one operand word and three raster bus words
+mgesi_StartRdata	starts a read-back: three operand words, nine raster bus words to the output DMA registers (constants 0x460 to 0x477)
+mgesi_FinishRdata	finishes a read-back: two operand words and ten raster bus words to the output DMA registers
+mLiPrimMtrlIndxFinalLi	final lighting step for colour-index mode with per-primitive materials
+mLiIndexFinalLi	final lighting step for colour-index mode
+mLiFinalLiEquIndx	colour-index lighting result: luminance weights 0.3 and 0.59 on the colour terms, then a range scale
+mLiIrisColoring	IRIS GL colour mode lighting: clamps and packs the colour
+mmo_IntToFloat	pixel-path integer-to-float stage: two conversions in its set-up, then its loop
+mgeb_LiEnableLighting	enables lighting: sets the lighting bit and marks the lighting module for re-selection
+mLiSwichSpotPrwTable	rebuilds the spot-power table after a lighting change: conversions and multiplies over the table
+mLiSwichSpotPrwTable2	second part of the spot-power table switch: nine conditional transfers on the enabled lights
+mLiSwichSpotPrwTableSub	subroutine for one spot-power table entry
+mgeb_LiReCmpPwrTable	recomputes the lighting power table when the shininess changes
+mgeb_LiEnableLightS	enables one light: sets its bit and marks the lighting set-up for re-selection
+mgeb_LiEnableClrMtrl	enables colour material: sets bit 0x10 and points the final lighting step at the colour-material form
+mgeb_LiDisableLighting	disables lighting: clears the lighting bits and marks the transform module for re-selection
+mgeb_LiDisableLightS	disables one light: clears its bit and marks the lighting set-up for re-selection
+mgeb_LiDisableClrMtrl	disables colour material: restores the material terms from four operand words
+mgeb_LightModel2Side	GL light model call two-sided: sets or clears the two-sided bit and marks the cull and light module for re-selection
+mgeb_LightModelLocV	GL light model call local viewer: sets or clears the local-viewer bit and marks the transform module for re-selection
+mgeb_LightModelGAmb	GL light model call global ambient: stores three operand words and marks the lighting module for re-selection
+mgeb_LiClrMtrlFront	GL color material call for the front face: compares the mode with the material enumerants and updates the colour terms
+mgeb_LiClrMtrlBack	GL color material call for the back face
+mgeb_LiClrMtrlFrontBack	GL color material call for both faces
+mLightColor	stores one light colour (four operand words) and marks the lighting module for re-selection
+mgeb_LightAmb	light ambient colour: selects slot 1 and the common light-colour code
+mgeb_LightDiff	light diffuse colour: the common light-colour code
+mgeb_LightSpec	light specular colour: the common light-colour code
+mgeb_LightK0	stores the constant attenuation factor from its operand
+mgeb_LightK1	stores the linear attenuation factor from its operand
+mgeb_LightK2	stores the quadratic attenuation factor from its operand
+mgeb_LightSpotCutAng	spot cutoff angle: checks the range 0 to 90 or 180 degrees and calls the sine and cosine routine for the cutoff
+mgeb_LightSpotExp	spot exponent: range check against 128.0 (otherwise the invalid-value error) and the power-table scale
+mgeb_LightSpotDir	spot direction: transforms the direction by the modelview and normalises it with a reciprocal square root
+mgeb_LightPos	light position: transforms the position by the modelview and stores it, with local or infinite light set-up
+mLiDirtySimLiCRAM	writes the simple lighting state to coefficient memory after a change
+mLiDirtyGenLiCRAM	writes the general lighting state to coefficient memory after a change
+mLiUpdateShin	updates the shininess terms: reciprocal steps and multiplies, then a return
+mGL_CtxLightInitialize	initialises the lighting state of a GL context: 106 constants (default material and light values such as 0.2 and 0.8)
+mGL_LightInitialize	initialises the global lighting tables: 141 constants
+mClipLineToPlane	clips a line against one plane: interpolation by multiplies and reciprocal steps, then a return
+mClipLinUserAndFrustum	line clipper: tests the outcode bits (0x1 to 0x20), calls the clip-space transform and the flush
+mClipLinFlush	ends a clipped line: nine moves and a constant holding an address inside itself, then it returns or ends the command
+mDownLoadAALineTable	sends the antialiased-line table to the raster system: scales by 255.0 and compares in a loop
+mDownLoadAALineTable4	sends the four-entry form of the antialiased-line table
+mDownLoadAALineTable8	sends the eight-entry form of the antialiased-line table
+mGenerateAALineTable	builds the antialiased-line table with the response routine (constant 3.0 among them)
+mGenerateAALineTable4	builds the four-entry antialiased-line table
+mGenerateAALineTable8	builds the eight-entry antialiased-line table
+mgeb_LineWidth_AlphaAA	line width for alpha-antialiased lines: three operand words scaled by 2.0, 0.5 and 8.0
+mgeb_DownLoadAALineTable	command that builds and sends the antialiased-line table from two operand words
+mgeb_InitAALineTables	initialises the antialiased-line tables from two operand words
+mgeb_LineWidth_MS	line width for multisample lines: clears and sets mode bits (0x400) and selects the stippled line module
+mgeb_LineStipple	GL line stipple call: converts the factor and pattern to float and computes a reciprocal of the factor
+mgeb_LineWidth_Select	line handling in selection mode: loads the address of the selection line module
+mgeb_LineWidth_Feedback	line handling in feedback mode: loads the address of the feedback line module
+mgeb_LineWidth_Aliased	line width for aliased lines: masks the mode bits and selects the line module from the width
+mmo_LUT16	pixel-path 16-bit lookup stage: set-up, then its main loop
+umo_LUT16RGBA_AlphaOnly	second entry of the 16-bit lookup stage for RGBA pixels where only alpha is looked up
+umo_LUT16LA_AlphaOnly	third entry of the 16-bit lookup stage for luminance-alpha pixels where only alpha is looked up
+mmo_PixEndStream	ends a pixel stream: one XOR, two raster bus words and a short loop
+mgeb_SwapOutGL	swaps the GL state out by calling the CRAM-to-ERAM copy
+mgeb_SwapInGL	swaps the GL state in by calling the ERAM-to-CRAM copy
+mmo_Mask	pixel-path mask stage: set-up, then its main loop
+mgeb_Material	GL material call: compares the face (0x404, 0x405, 0x408) and the parameter name with the material enumerants and stores the values
+mLiSetMAmbDiff	stores the ambient and diffuse material colour together
+mLiSetMShininess	stores the material shininess after a range check against 128.0
+mLiUpdateMtrlColor	updates the material colour terms for the colour-material mode and marks the lighting modules for re-selection
+mLiPushMaterial	material update inside a primitive: compares the parameter name and branches to the per-term code
+mLiPushMtrlASEI	per-primitive update of the ambient, specular, emission or index material term
+mLiPushMtrlDiff	per-primitive update of the diffuse material term
+mLiPushMtrlShin	per-primitive update of the shininess, range-checked against 128.0
+mLiPushMtrlInit	set-up of a per-primitive material update, then the shininess update
+mLiPushMtrlInit2	second set-up of a per-primitive material update: compares the face with GL_BACK (0x405)
+misqrt	reciprocal square root: seed and two Newton steps, then a return; nothing in the program calls it
+msqrt	square root: a reciprocal square root multiplied back by the argument, then a return; nothing in the program calls it
+minv	reciprocal: seed and two Newton steps, then a return; nothing in the program calls it
+mMatrixTransposeWW	transposes a matrix in working memory: twelve moves and a return; nothing in the program calls it
+mMatrixLoadIdentityC	loads an identity matrix in coefficient memory (second entry after the transpose)
+mMatrixCopyCW	copies a 16-word matrix from coefficient to working memory
+mMatrixCopyCC	copies a 16-word matrix within coefficient memory
+mFrustum	builds a perspective matrix from the six operand words: double-precision products and differences, an invalid-value check, then the matrix multiply
+mOrtho	builds an orthographic matrix from the six operand words, then the matrix multiply
+mgeb_MatrixMode	GL matrix mode call: compares the enumerant with GL_PROJECTION (0x1701)
+mgeb_LoadIdentity_Modelview	GL load identity call for the modelview matrix
+mgeb_LoadIdentity_Projection	GL load identity call for the projection matrix, with the fog table update
+mgeb_LoadIdentity_Texture	GL load identity call for the texture matrix, marking the texture module for re-selection
+mgeb_LoadIdentity_Color	GL load identity call for the colour matrix, setting its flag bit 0x10000
+mgeb_LoadMatrix_Modelview	GL load matrix call for the modelview matrix: reads the 16 operand words
+mgeb_LoadMatrix_Projection	GL load matrix call for the projection matrix: reads the 16 operand words, with the fog table update
+mgeb_LoadMatrix_Texture	GL load matrix call for the texture matrix: reads the 16 operand words and marks the texture module for re-selection
+mgeb_LoadMatrix_Color	GL load matrix call for the colour matrix: reads the 16 operand words and sets its flag bit
+mgeb_MultMatrix_Modelview	GL mult matrix call for the modelview matrix: selects it and enters the matrix multiply
+mgeb_MultMatrix_Projection	GL mult matrix call for the projection matrix
+mgeb_MultMatrix_Texture	GL mult matrix call for the texture matrix
+mgeb_MultMatrix_Color	GL mult matrix call for the colour matrix
+mgeb_Rotate_Modelview	GL rotate call for the modelview matrix: selects it and enters the rotate routine
+mgeb_Rotate_Projection	GL rotate call for the projection matrix
+mgeb_Rotate_Texture	GL rotate call for the texture matrix
+mgeb_Rotate_Color	GL rotate call for the colour matrix
+mgeb_Scale_Modelview	GL scale call for the modelview matrix: twelve multiplies by the three operand words
+mgeb_Scale_Projection	GL scale call for the projection matrix, with the fog table update
+mgeb_Scale_Texture	GL scale call for the texture matrix
+mgeb_Scale_Color	GL scale call for the colour matrix
+mgeb_Translate_Modelview	GL translate call for the modelview matrix: multiply-adds of the three operand words into the last column
+mgeb_Translate_Projection	GL translate call for the projection matrix, with the fog table update
+mgeb_Translate_Texture	GL translate call for the texture matrix
+mgeb_Translate_Color	GL translate call for the colour matrix
+mgeb_Frustum_Modelview	GL frustum call applied to the modelview matrix
+mgeb_Frustum_Projection	GL frustum call applied to the projection matrix
+mgeb_Frustum_Texture	GL frustum call applied to the texture matrix
+mgeb_Frustum_Color	GL frustum call applied to the colour matrix
+mgeb_Ortho_Modelview	GL ortho call applied to the modelview matrix
+mgeb_Ortho_Projection	GL ortho call applied to the projection matrix
+mgeb_Ortho_Texture	GL ortho call applied to the texture matrix
+mgeb_Ortho_Color	GL ortho call applied to the colour matrix
+mgeb_PushMatrix_Modelview	GL push matrix call for the modelview stack: checks the depth (stack-overflow error) and copies 16 words to the stack in engine memory
+mgeb_PushMatrix_Projection	GL push matrix call for the projection stack
+mgeb_PushMatrix_Texture	GL push matrix call for the texture stack
+mgeb_PushMatrix_Color	GL push matrix call for the colour stack
+mgeb_PopMatrix_Modelview	GL pop matrix call for the modelview stack: checks the depth (stack-underflow error) and copies 16 words back
+mgeb_PopMatrix_Projection	GL pop matrix call for the projection stack
+mgeb_PopMatrix_Texture	GL pop matrix call for the texture stack
+mgeb_PopMatrix_Color	GL pop matrix call for the colour stack
+mmo_ColorMatrix	pixel-path colour-matrix stage: reads the matrix from engine memory 0xbda-0xbe1 and multiplies, then the inner routine
+mmo_ReverseComp4Order	pixel-path stage that reverses the order of four components (ABGR to RGBA): moves in three loops
+mmo_DummyDecompose	decomposition that draws nothing: loads the triangle clipper's address and ends the command
+mmo_DecomposePolygon	polygon decomposition into triangles for the clipper
+mmo_DecomposeQuads	independent-quad decomposition into triangles
+mmo_DummyDecomposeQuadStrip	quad-strip decomposition step that only advances the vertex count
+mmo_DecomposeQuadStrip	quad-strip decomposition into triangles
+mmo_DecomposeSimpleTriangles	independent-triangle decomposition
+mmo_DecomposeTriangleStripWithSwapEven	triangle-strip decomposition with the vertex swap on even triangles
+mmo_DecomposeTriangleStripWithSwapOdd	triangle-strip decomposition with the vertex swap on odd triangles
+mmo_DecompressZ16	pixel-path stage that expands compressed 16-bit depth: masks and compares on 12- and 13-bit fields
+mCramToWram	copy from coefficient to working memory; nothing in the program calls it
+mEramToWram	copy from external to working memory, returning to the caller
+mEramToEram	copy within external memory, returning to the caller
+mmo_Expand32_1_4	expands 32-bit pixels from one to four components
+mmo_Expand32_2_4	expands 32-bit pixels from two to four components
+mmo_ExtractL12A4	extracts 12-bit luminance and 4-bit alpha from packed pixels with masks
+mmo_Minmax	pixel-path minmax stage: set-up, then its loop of minimum and maximum
+uge_MinmaxFill	second entry inside the minmax stage that seeds the minimum and maximum from six operand words
+mSinCosAB	sine and cosine of an angle range: series terms by multiplies and subtracts
+mMatrixMultCCC	matrix multiply in coefficient memory: 101 multiplies and 63 adds, then a return
+mWramToCram	copy from working to coefficient memory, returning to the caller
+mWramToFifo	copy from working memory out through the FIFO: complemented control words and raster bus words
+mgesi_PixRasterPosSetup	pixel raster-position set-up: nine operand words turned into the pixel rectangle and zoom terms
+mgesi_PixQueryCopyOverlap	checks whether a pixel copy's source and destination overlap
+mgeb_StrideEramToCram	copies a strided block from external to coefficient memory
+mgeb_FlipXConvKern	flips a convolution kernel in x
+mgeb_FlipYConvKern	flips a convolution kernel in y
+mgeb_BitmapApplyOrig	GL bitmap call origin: subtracts the origin operands from the raster position
+mgeb_BitmapApplyMove	GL bitmap call move: adds the move operands to the raster position
+mgeb_PixDrawColorSetup	draw-colour set-up for a pixel operation: tests the operand and branches
+mgeb_PixLastGECounterSetup	sets the last-engine counter of a pixel stream from its operand (converted to float, minus 0.5)
+mgebi_PixCurGEIDSetup	sets the current-engine identity of a pixel stream: raster constants
+mgeb_PixPolygonStippleSetup	polygon-stipple pixel set-up: tests one flag
+mgeb_TransparentBitmapSetup	transparent-bitmap set-up: subtracts two operand words from the raster position
+DoFlushPGPCache	flushes the pixel-path cache: eight raster bus words
+mgesi_FlushPGPCache	command that flushes the pixel-path cache through the common flush code
+mgebi_PixEndTransparentBitmap	ends a transparent bitmap: advances the raster position, then the cache flush
+mgeb_PixEndRGBStream	ends an RGB pixel stream: one raster bus word
+mgeb_PixEndPolygonStipple	ends a polygon-stipple pixel operation
+mgesi_PixConv5GVEntry	entry for the 5x5 convolution general-vertex path: counts and compares
+mmo_PixLineNextGE	hands a pixel line to the next engine: one raster bus word
+mmo_SetupHip	sets up the host-interface side of a pixel operation: masks addresses to 4 KB pages (0xfffff000) and computes counts
+mmo_PixStreamNextGE_BEFWAR	hands a pixel stream to the next engine with the back-end workaround: three raster bus words
+mmo_PixStreamNextGE	hands a pixel stream to the next engine: two raster bus words
+mmo_PixStreamBrdcastCore0ANextGE	hands a broadcast pixel stream to the next engine: one raster bus word
+mgeb_LoadCram	loads coefficient memory by calling the WRAM-to-CRAM copy
+mgeb_CramToEram	command that copies coefficient memory to external memory
+mgeb_EramToCram	command that copies external memory to coefficient memory
+mgeb_EramToEram	command that copies within external memory
+mmo_CopyFifoLine	copies one FIFO line: reads the five words the ARM wrote at 0xbfc-0xc00 and moves the data
+mmo_Shift_Skip	shift-and-skip pixel stage using the same five control words at 0xbfc-0xc00
+mmo_I2F_Scale_Skip	integer-to-float scale-and-skip pixel stage using the five control words at 0xbfc-0xc00
+mmo_Pixout_8_16NC	pixel output for 8- and 16-bit formats without the colour path: 48 multiplies and output words
+mmo_Pixout_8_16	pixel output for 8- and 16-bit formats: tests the last block and engine, then the last-block code
+mmo_Pixout_2_4NC	pixel output for 2- and 4-component formats without the colour path
+mmo_Pixout_2_4	pixel output for 2- and 4-component formats
+mmo_Pixout_RGB_in_RGBA	pixel output of RGB data in RGBA layout: clamps and scales in three loops
+mmo_Pixout_RGB_in_RGBANC	pixel output of RGB data in RGBA layout without clamping: scaling multiplies in three loops
+mmo_Pixout_32	32-bit pixel output: clamps and scales every component (64 of each) in its loop
+mmo_Pixout_32NC	32-bit pixel output without clamping: 64 scaling multiplies in its loop
+mmo_PixoutCI_4_8	colour-index pixel output for 4- and 8-bit indices: moves in three loops
+mmo_PixoutMerge2_4C	merges two-component pixels into four-component words for output, with two raster bus words
+mmo_ArbClamp	pixel-path clamp to arbitrary bounds: 32 minimums and 32 maximums against four bounds read from engine memory 0xbbc-0xbbf
+mmo_ConvEramToWram	loads a convolution kernel from external memory: five control words at 0xbb6-0xbba
+mmo_unloadConvA	unloads alpha from the convolution buffer
+mmo_unloadConvL	unloads luminance from the convolution buffer
+mmo_unloadConvLA	unloads luminance-alpha from the convolution buffer
+mmo_unloadConvI	unloads intensity from the convolution buffer
+mmo_unloadConvRGBA	unloads RGBA from the convolution buffer
+mmo_unloadConvRGB	unloads RGB from the convolution buffer
+mmo_ConvolveOut	convolution output stage: four moves
+mmo_loadConvA	loads alpha into the convolution buffer
+mmo_loadConvL	loads luminance into the convolution buffer
+mmo_loadConvLA	loads luminance-alpha into the convolution buffer
+mmo_loadConvI	loads intensity into the convolution buffer
+mmo_loadConvRGBA	loads RGBA into the convolution buffer
+mmo_loadConvRGB	loads RGB into the convolution buffer
+mmo_PolygonStippleOut	polygon-stipple pixel output: tests the pattern bit and ends the command
+mDoPolygonStippleRotate	rotates the 32-bit polygon-stipple rows by bit shifts (masks 0x1 and 0x20) and returns
+mgeb_PolygonStippleRotate	rotates the polygon stipple by the two operand offsets through the rotate routine
+mDoPolygonStippleDownloadInner	inner loop of the stipple download: one raster bus word per row
+mDoPolygonStippleDownload	downloads the polygon stipple to the raster system: 13 constants (0x880 to 0x8e0 among them) and the inner loop
+mgesi_PolygonStippleDownload	command that downloads the polygon stipple
+mmo_X_pixout_8_16	X server pixel output for 8- and 16-bit formats: 32 packing ORs and two raster bus words
+mmo_X_pixout_4	X server pixel output for 4-bit formats
+mmo_X_pixout_4Comp	X server pixel output for four-component formats
+mmo_X_DrawBitmapOpaque	X server opaque bitmap drawing: 32 bit compares that set the flags and two raster bus words
+mLASTGE	end of a pixel operation on the last engine: reads six control words at 0xbf6-0xbfb and clears bit 16
+mgesi_TransparentBitmap	transparent bitmap drawing: raster constants and two raster bus words in a loop
+mod	integer remainder by repeated subtract and compare, returning to the stipple rotation
+mgeb_XPolygonStippleRotate	X server polygon-stipple rotation: three operand words, the remainder routine and the rotate routine
+mgesi_XPolygonStippleDownload	X server polygon-stipple download through the common download routine
+mmo_SepConvolve3x3_124	separable 3x3 convolution stage set-up, then its inner routine
+mmo_SepConvolve5x5_124	separable 5x5 convolution stage set-up, then its inner routine
+mmo_FastSepConvolve5x5_124	fast separable 5x5 convolution stage set-up, then its inner routine
+mmo_SepConvolve7x7_124	separable 7x7 convolution stage set-up, then its inner routine
+mmo_shortpass8W	short-circuit pixel path that passes 8-bit words straight through
+mmo_short8to16	short-circuit conversion of 8-bit to 16-bit pixels, then the merge code
+mmo_shortLA8toL12A4	short-circuit conversion of 8-bit luminance-alpha to 12-bit luminance and 4-bit alpha
+mMerge4_8C	merges 4- and 8-component short-circuit pixels: 32 packing words
+mMerge4_8C_LastBlk	last-block form of the 4-to-8 merge: 16 packing words
+mmo_short8to4	short-circuit conversion of 8-bit to 4-bit pixels
+mmo_short16to4	short-circuit conversion of 16-bit to 4-bit pixels
+mmo_short16to8	short-circuit conversion of 16-bit to 8-bit pixels
+mmo_shortLA16toL12A4	short-circuit conversion of 16-bit luminance-alpha to 12-bit luminance and 4-bit alpha
+mmo_short8toRGB5A1	short-circuit conversion of 8-bit to RGB5A1 pixels
+mmo_short16toRGB5A1	short-circuit conversion of 16-bit to RGB5A1 pixels
+mmo_shortBGRApass	short-circuit path that passes BGRA pixels
+mMerge8_16C	merges 8- and 16-component short-circuit pixels: 32 packing words
+mMerge8_16C_LastBlk	last-block form of the 8-to-16 merge: 16 packing words
+mmo_Short_Complex_To_8	short-circuit conversion of complex (FFT) values to 8-bit pixels
+mmo_Short_Complex_To_16	short-circuit conversion of complex (FFT) values to 16-bit pixels
+mmo_SumRGB2L	pixel-path stage that sums RGB to luminance, clamped at 1.0 by a minimum
+mmo_UnpackVertexV3F_N3S	vertex-array unpack for float position and short normal: scales the normal by 1/32767 (3.05185e-05)
+mmo_UnpackVertexV3F_C4UB_N3S	vertex-array unpack for float position, byte colour (scaled by 1/255, 0x3b808080) and short normal
+mmo_UnpackVertexV3F_N3S_T2F	vertex-array unpack for float position, short normal and float texture coordinates
+mmo_UnpackVertexV3F_C4UB_N3S_T2F	vertex-array unpack for float position, byte colour, short normal and float texture coordinates
+mmo_UnpackVertexV3F_N3S_T2S	vertex-array unpack for float position, short normal and short texture coordinates
+mmo_UnpackVertexV3F_C4UB_N3S_T2S	vertex-array unpack for float position, byte colour, short normal and short texture coordinates
+mmo_UnpackVertexV3F_LGT	vertex-array unpack for float position with lighting: reads seven state words at 0x13a7-0x13ad
+mmo_UnpackVertexV3F_C4UB_LGT	vertex-array unpack for float position and byte colour with lighting
+mmo_UnpackVertexV3F_T2F_LGT	vertex-array unpack for float position and float texture coordinates with lighting
+mmo_UnpackVertexV3F_C4UB_T2F_LGT	vertex-array unpack for float position, byte colour and float texture coordinates with lighting
+mmo_UnpackVertexV3F_T2S_LGT	vertex-array unpack for float position and short texture coordinates with lighting
+mmo_UnpackVertexV3F_C4UB_T2S_LGT	vertex-array unpack for float position, byte colour and short texture coordinates with lighting
+mmo_DrawTriPrimPhong	Phong-shaded triangle drawing: 523 words with per-pixel normal interpolation and lighting; nothing in the program enters it
+mgesi_StartInstruments	starts the performance instruments: eight raster bus words to the counter registers (constants 0x30476 to 0x60476)
+mgesi_StopInstruments	stops the performance instruments and reads them out: 44 raster bus words
+mClipPntUserAndFrustum	point clipper: tests the point against the user planes and the frustum and ends the command
+mgebi_PointSize_Select	point handling in selection mode: loads the address of the selection point module
+mgebi_PointSize_Feedback	point handling in feedback mode: loads the address of the feedback point module
+mgebi_PointSize_Aliased	point size for aliased points: rounds the size (0.5) and selects the point module
+mgebi_PointSize_AlphaAA	point size for alpha-antialiased points: one operand word, mode bits and raster constants
+mgebi_PointSize_MS	point size for multisample points: reciprocal steps on the size and the sine and cosine routine for the large-point fan
+MSPoint_Print_Scratch_Tables	debug dump of the multisample point tables inside the multisample point-size handler, through the print routine
+MSPoint_Init_Samples	initialises the multisample sample offsets: 16 constants in steps of 3
+MSPoint_Init	builds the multisample point tables: integer adds and packing over the samples
+MSPoint_Sort	sorts the multisample point table entries by compare and move
+MSPoint_Pack	packs the multisample point tables into fields of 5, 8, 16 and 24 bits
+mgeb_ComputeMSPointTables	computes the multisample point tables from three operand words through the init, sort and pack routines
+mgeb_SetMSPointTables	selects the multisample point tables from its operand
+mgeb_PolygonSetup_Render	polygon set-up in render mode: two operand words, mode bits and the triangle module's address, then the polygon-mode set-up
+mgeb_PolygonSetup_Select	polygon set-up in selection mode: loads the selection triangle module's address
+mgeb_PolygonSetup_Feedback	polygon set-up in feedback mode: loads the feedback triangle module's address
+mPolymodeSetup	common polygon-mode set-up: three operand words and the cull and light module re-selection
+mmo_DrawTriPolymodePrim	triangle drawing for line and point polygon modes: compares the mode with GL_LINE (0x1b01) and draws the edges or vertices
+mLiPrimMtrlInit	set-up of per-primitive material lighting: clears bit 4 and loads the per-vertex loop and final step addresses
+mLiPrimShinLoop	per-primitive shininess loop of material lighting
+mLiPrmMtrlFrntClrAccmEnd	end of the front-colour accumulation for per-primitive materials
+mLiPrmMtrlBackClrInitAccm	set-up of the back-colour accumulation for per-primitive materials
+mLiPrmMtrlBackClrAccmEnd	end of the back-colour accumulation for per-primitive materials
+mLiEndPrimShinLp	end of the per-primitive shininess loop: three conditional transfers
+mLiPrimMtrlFinalLi	final lighting step for per-primitive materials
+mLiPrimMtrlCopyStckCmpn	copies material components from the material stack
+mLiPrimMtrlCopyCmpn	copies material components for a per-primitive material
+mLiPrimMtrlCpFrntEnd	end of the front material copy
+mLiPrimMtrlCopyEnd	end of the per-primitive material copy
+mLiClrMtrlFinalLi	final lighting step for colour material: copies the vertex colour into the material term
+mLiColorMtrlCopy	copies the vertex colour into the material terms the colour-material mode names
+mLiFinalLiEqu	lighting equation result: multiplies, adds and clamps of the colour terms
+mgeb_InitFFTFactors	initialises the FFT twiddle factors by calling the WRAM-to-ERAM copy
+mgesi_PassThrough	passes one operand word through to the raster system: seven raster bus words with output DMA constants (0x452, 0x476, 0x477)
+mgeb_DeathCommand	one-word handler that waits on its own address under condition group 4; by its name, the command that stops the engine
+mges_NullCommand	command that does nothing: the framing words of every handler and the end-of-command wait
+mgebi_NullCommand	null command for the raster path: one raster bus word with 0x70000
+mges_DiagDeactivate	diagnostic deactivate: framing words only, then the end-of-command wait
+mgebi_ShadeModel	GL shade model call: tests the mode bit and writes two raster bus words
+mgesi_TbusRegWrite	raster register write: the register (operand word 0) to bus address 0x1f7 and the value (word 1) to 0x1f5
+mgesi_IMPtbusRegWrite	raster register write for the IMP path: two operand words and eleven raster bus words
+mges_TbusRegWriteNoIncr	raster register write without address increment: three raster bus words
+mgesi_AlphaFunc	GL alpha func call: the function and reference value (scaled by a multiply) to the raster system
+mgesi_AlphaTest	enables or disables the alpha test: five raster bus words
+mgesi_TBUS_1	raster bus write in a given bus mode: operand words 1 and 2 to two raster bus words
+mges_TBUS_1	raster bus write in a given bus mode: operand words 1 and 2 to one raster bus word
+mgesi_BshRegisterWrite	back-end register write: 0x70000 to bus address 0x1f8, then the three operand words to 0x1f5 and 0x1f8
+mgesi_BshRegisterWriteN	back-end register write of several words: nine raster bus words in a loop
+mgesi_IMPbshRegisterWrite	back-end register write for the IMP path: three operand words and eight raster bus words
+mgeb_Enable_Normalize	enables normal normalisation and marks the transform module for re-selection
+mgeb_Disable_Normalize	disables normal normalisation and marks the transform module for re-selection
+mgeb_RGBA_Mode	switches the context to RGBA mode: mode bits and lighting module re-selection
+mgeb_CI_Mode	switches the context to colour-index mode: two operand words scaled by 16.0 and 1/16
+mgesi_UserColor	user colour: four operand words scaled and written as five raster bus words
+mgesi_Accum	GL accum call: compares the operation and scales the value for the accumulation buffer
+mgesi_Accum32	GL accum call for the 32-bit accumulation buffer
+mgebi_ErrQuery	reads back the recorded GL error, loading the output-DMA constant 0x476 that the other read-back handlers also use
+mgeb_SetCurrentRaster	sets the current raster state from 15 operand words
+mgesi_FlushRM	flushes the raster managers: six raster bus words in a counted loop of eight
+mgeb_ClipmapXform	clipmap transform: four operand words and texture module re-selection
+mgebi_ReferencePlane_Enable	enables the reference plane (bit 0x4000000) and computes it
+mgebi_ReferencePlane_Disable	disables the reference plane: clears the bit and writes two raster bus words
+mgebi_ReferencePlane	defines the reference plane from four operand words: inverse through the adjoint and multiplies
+mRefPlane	computes the reference-plane raster terms and writes eight raster bus words
+mmo_ScaleBias	pixel-path scale-and-bias stage: set-up, then the depth form and its loop
+umo_DepthFinalCont	continuation of the depth scale-and-bias stage: two multiplies, then the main loop
+umo_DepthFinal	final depth scale-and-bias step inside the stage: multiplies and moves
+mgeb_InitNames	GL init names call: clears the name stack after flushing a pending hit
+mgeb_PopName	GL pop name call: flushes a pending hit and pops the name stack, checking for underflow
+mgeb_PushName	GL push name call: flushes a pending hit and pushes the operand onto the name stack, checking its depth (0x40)
+mgeb_LoadName	GL load name call: flushes a pending hit and replaces the top name, with the invalid-operation error on an empty stack
+mgeb_BgnSelectMode	enters selection mode: sets bit 29 and flushes
+mgeb_EndSelectMode	leaves selection mode: clears bit 29 and flushes
+mSelectFlush	writes a pending selection hit record (names, minimum and maximum depth) through seven raster bus words
+mmo_SelectTriangle	selection for a triangle: updates the hit's minimum and maximum depth and records the hit
+mmo_SelectLine	selection for a line: updates the hit depth range and records the hit
+mmo_SelectPoint	selection for a point: updates the hit depth range and records the hit
+mmo_SelectRasterPos	selection for a raster position: updates the hit depth range and records the hit
+mRecordHit	records a selection hit: depth range update and one raster bus word
+mmo_ShiftAdd	pixel-path shift-and-add stage: set-up, then the shift loop
+umo_ShiftAdd_RGB	RGB entry of the shift-and-add stage
+umo_ShiftAdd_Luminance	luminance entry of the shift-and-add stage
+mmo_DirtySpriteModule	re-selects the sprite module after a state change, through the CRAM-to-ERAM copy
+mSpriteAxial	sprite in axial mode: rotates the sprite about its axis toward the eye with normalised vectors and the adjoint
+mSpriteObject	sprite in object mode: rotation toward the eye from normalised vectors and the adjoint
+mSpriteEye	one-word entry for eye-aligned sprites that continues into the object-mode code
+mSpriteRotateV0OntoV1	builds the rotation that takes one vector onto another, then the matrix multiply
+mSpriteRotateMatrix	applies the sprite rotation to the matrix, then ends the command
+mMatrixMultCCWNoFetch	matrix multiply with the operands already loaded: 16 multiply-adds, then a return
+mgeb_Subdiv	subdivision command: framing words only, then the end-of-command wait
+mges_SubdivTag	subdivision tag command: framing words only, then the end-of-command wait
+mgesi_SubdivEntry	subdivision vertex entry: one raster bus word
+mValidateTexenvMode	checks the texture environment mode against the texture format: compares with GL_MODULATE (0x2100), GL_DECAL (0x2101) and the format enumerants, and writes three raster bus words
+mTexEnvDone	common end of GL tex env call: one move and the end-of-command wait
+mgebi_TexEnv	GL tex env call: compares the target and parameter names (0x2200, 0x2201) and the mode, scales the colour and validates the mode, or raises the invalid-enum error
+mgebi_TexEnvComps	sets the texture component count and revalidates the environment mode
+mTexGenResolve	resolves the texture-coordinate generation state: combines the per-coordinate mode bits and selects the transform module
+mTexGenSph	sets sphere-map generation for one coordinate
+mTexGenObjLin	sets object-linear generation for one coordinate
+mTexGenEyeLin	sets eye-linear generation for one coordinate
+mTexGenEyePointDist	sets eye point-distance generation and loads its module address
+mTexGenObjPointDist	sets object point-distance generation and loads its module address
+mTexGenEyeLineDist	sets eye line-distance generation and loads its module address
+mTexGenObjLineDist	sets object line-distance generation and loads its module address
+mTexGenObjPlane	stores an object plane from four operand words
+mTexGenEyePlane	stores an eye plane from four operand words, transformed by the inverse modelview
+mTexGenObjPoint	stores an object reference point, divided by its w with a reciprocal
+mTexGenEyePoint	stores an eye reference point, transformed and divided by its w
+mTexGenObjLine	stores an object reference line from seven operand words, normalised
+mTexGenEyeLine	stores an eye reference line from seven operand words, transformed and normalised
+mgeb_TexGen_Enable	enables texture-coordinate generation (bits 0x60000000) and resolves the state
+mgeb_TexGen_Disable	disables texture-coordinate generation and resolves the state
+mgeb_TexGen	GL tex gen call: compares the parameter and mode with 16 enumerants (0x2400 to 0x2502 and the SGIX distance modes 0x81f2, 0x81f3) and branches to the per-mode code
+mmo_TexGenObjPoint_ST	object point-distance generation for s and t: distances by reciprocal square roots
+mmo_TexGenObjPoint_RQ	object point-distance generation for r and q
+mmo_TexGenObjLine_ST	object line-distance generation for s and t
+mmo_TexGenObjLine_RQ	object line-distance generation for r and q
+mmo_TexGenEyePoint_ST	eye point-distance generation for s and t
+mmo_TexGenEyePoint_RQ	eye point-distance generation for r and q
+mmo_TexGenEyeLine_ST	eye line-distance generation for s and t
+mmo_TexGenEyeLine_RQ	eye line-distance generation for r and q
+mgebi_Texture	enables or disables texturing: three raster bus words and texture module re-selection
+mgebi_UpdateTexturing	updates the texturing state from four operand words: 13 constants of raster register values and module addresses
+mgeb_SkipNextTextureAddr	sets the flag (bit 24) that skips the next texture address
+mgebi_Bind2dMipmapTexture	binds a 2D mipmapped texture: 16 operand words packed into texture-manager register words (0x1471000 and others)
+mgesi_RestoreTextureAddress	restores the texture address from engine memory 0x9cd and writes two raster bus words
+mgesi_FillTMLoadFifo	fills the texture-manager load FIFO: four raster bus words with mask 0x7fc0
+mgebi_TextureScaleBias	texture scale and bias: four operand words to texture-manager register words
+uColorMatrix	inner loop of the colour-matrix stage: four multiplies, then its loop
+mmo_FaceCull	face-culling module: the sign of the triangle area by float multiplies, then its cull code
+mmo_DecomposeTriangleStrip	triangle-strip decomposition: reads two vertex-record words and alternates the winding (XOR)
+mmo_DecomposeTriangles	second entry inside the strip decomposition for independent triangles
+mmo_DecomposeLineStrip	line-strip decomposition, loading the line clipper's address
+mmo_DecomposePoints	point decomposition, loading the point clipper's address
+mmo_DecomposeTriangleFan	triangle-fan decomposition, loading the triangle clipper's address
+umo_DummyDecompose	decomposition that draws nothing (the same code as the other dummy decomposer); nothing in the program enters it
+umo_DecomposeSimpleTriangleStrip	simple triangle-strip decomposition inside the dummy decomposer's source
+mmo_DeformCoord	deforms vertex coordinates with the deformation map read from engine memory 0x95e-0x963
+mmo_DeformCoordTexture	deforms vertex coordinates and texture coordinates
+mmo_DeformTexture	deforms texture coordinates with the map read from engine memory 0x99d-0x9a2
+mmo_DeformCoordNormal	deforms coordinates and normals, calling the inverse deformation for the normals
+mmo_DeformCoordNormalTexture	deforms coordinates, normals and texture coordinates
+mDeformation3_1Inverse	inverse of the three-input deformation for normals: reciprocal steps and multiplies, then a return
+mmo_DrawTri	triangle-drawing module entry: tests the list and quad bits and enters the triangle code
+uDTList	triangle-list entry of the triangle drawer
+mmo_DrawQuad	quad-drawing module entry: the same tests as the triangle entry
+uDQList	quad-list entry of the triangle drawer (constant 0x800)
+mmo_DrawTriPrim	triangle drawer proper, entered from the triangle and quad entries
+mgeb_EvalMapSpec1D	GL one-dimensional map call specification: eight operand words of the map (order, range, stride) stored, with a save of the 1D state
+mgeb_EvalMapData1D	GL one-dimensional map call control points: three operand words and the loop that stores them
+mgeb_EvalGrid1D	GL one-dimensional map grid call: four operand words, the count converted to float
+mgesi_EvalStrip1D	evaluates a 1D strip of points: parameter steps by float subtracts, multiplies and adds
+umo_EvalEntry1D	entry of the 1D evaluator stage: one test and a branch
+umo_EvalDecomposeLines1D	line decomposition of 1D evaluator output: six constants
+mgeb_EvalMapSpec2D	GL two-dimensional map call specification: 15 operand words of the map stored, with a save of the 2D state
+mgeb_EvalMapData2D	GL two-dimensional map call control points: six operand words and the loop that stores them
+mgeb_EvalGrid2D	GL two-dimensional map grid call: eight operand words, the counts converted to float
+mgesi_EvalStrip2D	evaluates a 2D strip of points: parameter steps by float subtracts, multiplies and adds
+umo_EvalEntry2D	entry of the 2D evaluator stage: one test and a branch
+umo_EvalDecomposePoints	point decomposition of 2D evaluator output
+umo_EvalDecomposeLines2D	line decomposition of 2D evaluator output
+umo_EvalDecomposeFill	fill decomposition of 2D evaluator output into triangles: 20 constants
+uEvalChangeBasis1D	changes the basis of the 1D evaluator's texture and geometry maps
+uEvalChangeBasis2D	changes the basis of the 2D evaluator's maps
+mges_EvalCoord	GL eval coord call: one test, then the 2D coordinate loop
+uEvalCoord1D	evaluates one 1D coordinate: parameter scaling and the polynomial stages
+uEvalCoord2D	evaluates one 2D coordinate: parameter scaling and the polynomial stages
+mmo_LiColorClamp	lighting colour-clamp module: tests bit 4 and clamps the colour
+mmo_LighterSimple	simple lighting module: multiplies with a 1e-05 floor
+mLiPwrTable	builds the lighting power table: conversions, masks and multiply-adds
+mSinCos	sine and cosine of one angle by series multiplies and subtracts, then a return
+uMatrixMultCCC	inner matrix multiply: 28 multiply-adds
+mMatrixMultCCW	multiplies the current matrix by the operand matrix: 31 multiply-adds, then the fog update or the end-of-command wait
+mMatrixInverse	inverts a 4x4 matrix: cofactors by multiplies and subtracts and a reciprocal of the determinant
+mMatrixAdjoint	adjoint of a 4x4 matrix: cofactors by multiplies and subtracts
+mRotate	builds a rotation from the angle and axis (four operand words) with sine and cosine terms, then the matrix multiply
+uWramToCram	copy from working to coefficient memory (inner loop form); nothing in the program enters it
+mWramToEram	copy from working to external memory: four set-up moves, then its loop
+mCramToEram	copy from coefficient to external memory: set-up, then its loop
+mEramToCram	copy from external to coefficient memory: set-up, then its loop
+mClearEram	clears external memory: set-up, then its loop
+mCramToFifo	copy from coefficient memory out through the FIFO: set-up, then its loop
+mEramToFifo	copy from external memory out through the FIFO: set-up, then its loop
+mgeb_EnableUnpack	enables vertex-array unpacking
+mgeb_DisableUnpack	disables vertex-array unpacking
+mgeb_RestoreColor	restores the current colour from vertex-record words 4 to 7
+mgeb_RestoreNormal	restores the current normal from vertex-record words 8 to 10
+mgesi_PixDrawColorEntry	pixel draw-colour entry: one add and one subtract, then the end of the command
+umo_Pixout32_8_16	pixel output from 32-bit to 8- and 16-bit formats: clamps, then its loop
+uPO_2_4C	clamp step at the head of the 2- and 4-component pixel output, then its loop
+uPO_2_4C_loop	loop of the 2- and 4-component pixel output: clamps and scales each component
+uPO_2_4C_LastBlck	last block of the 2- and 4-component pixel output: clamps and scales, then ends the command
+uPO_8_16C	clamp step at the head of the 8- and 16-component pixel output, then its loop
+uPO_8_16C_loop	loop of the 8- and 16-component pixel output: 36 clamps and scales
+uPostLoop	tail of the 8- and 16-component pixel output after its loop, then the end of the command
+uPO_8_16C_LastBlck	last block of the 8- and 16-component pixel output, then the tail
+uSecondChance	second test of the screen-space transform for vertices the first test rejected
+mmo_ToScreenSpace	screen-space transform module: tests w and runs into the divide
+uBack	perspective divide of the screen-space transform: reciprocal Newton steps
+uSecondChanceInvQ	second test of the screen-space transform that also keeps 1/q
+mmo_ToScreenSpaceInvQ	screen-space transform module that also keeps 1/q for texture coordinates
+uBackInvQ	perspective divide that also scales the texture coordinates by 1/q
+uSecondChanceInvQ2DI	second test of the screen-space transform with 1/q for two-dimensional interpolation
+mmo_ToScreenSpaceInvQ2DI	screen-space transform with 1/q for two-dimensional texture interpolation
+uBackInvQ2DI	divide step of the two-dimensional 1/q transform
+uSepConv3_124	inner routine of the separable 3x3 convolution: kernel set-up multiplies, then the row loop
+RowConv3Loop	row pass of the separable 3x3 convolution: multiply-adds per pixel
+ColumnConv3Loop	column pass of the separable 3x3 convolution: multiply-adds, then a return
+uSepConv5_124	inner routine of the separable 5x5 convolution
+RowConv5Loop	row pass of the separable 5x5 convolution
+ColumnConv5Loop	column pass of the separable 5x5 convolution
+uFastSepConv5_124	inner routine of the fast separable 5x5 convolution: integer conversions and multiplies
+FastRowConv5Loop	row pass of the fast separable 5x5 convolution
+FastRowConv5Epilog	end of the fast 5x5 row pass
+FastColumnConv5Loop	column pass of the fast separable 5x5 convolution
+uSepConv7_124	inner routine of the separable 7x7 convolution
+RowConv7Loop	row pass of the separable 7x7 convolution
+ColumnConv7Loop	column pass of the separable 7x7 convolution
+mmo_TexGenSphere_ST	sphere-map texture-coordinate generation for s and t
+mmo_TexGenEyeLinear_ST	eye-linear texture-coordinate generation for s and t: plane dot products
+mmo_TexGenEyeLinear_RQ	eye-linear texture-coordinate generation for r and q
+mmo_TexGenObjLinear_ST	object-linear texture-coordinate generation for s and t
+mmo_TexGenObjLinear_RQ	object-linear texture-coordinate generation for r and q
+mmo_UnpackVertexV3F	vertex-array unpack of float positions: reads the array state at 0x13a7-0x13aa, then its loop
+V3Floop	loop of the float-position unpack: ten moves per vertex
+mmo_UnpackVertexV3F_C4UB	vertex-array unpack of float positions and byte colours (scaled by 1/255)
+V3F_C4UBloop	loop of the position and byte-colour unpack: masks, conversions and scales
+umo_UnpackVertexV3F_N3S	vertex-array unpack of float positions and short normals (scaled by 1/32767)
+V3F_N3Sloop	loop of the position and short-normal unpack
+mmo_UnpackVertexV3F_T2F	vertex-array unpack of float positions and float texture coordinates
+V3F_T2Floop	loop of the position and float texture-coordinate unpack
+mmo_UnpackVertexV3F_C4UB_T2F	vertex-array unpack of positions, byte colours and float texture coordinates
+V3F_C4UB_T2Floop	loop of the position, byte-colour and float texture-coordinate unpack
+umo_UnpackVertexV3F_N3S_T2F	vertex-array unpack of positions, short normals and float texture coordinates
+V3F_N3S_T2Floop	loop of the position, short-normal and float texture-coordinate unpack
+mmo_UnpackVertexV3F_T2S	vertex-array unpack of positions and short texture coordinates
+V3F_T2Sloop	loop of the position and short texture-coordinate unpack
+mmo_UnpackVertexV3F_C4UB_T2S	vertex-array unpack of positions, byte colours and short texture coordinates
+V3F_C4UB_T2Sloop	loop of the position, byte-colour and short texture-coordinate unpack
+umo_UnpackVertexV3F_N3S_T2S	vertex-array unpack of positions, short normals and short texture coordinates
+V3F_N3S_T2Sloop	loop of the position, short-normal and short texture-coordinate unpack
+mmo_ObjToClipSpace	object-to-clip transform module: matrix rows by multiplies and multiply-adds
+mmo_ObjToClipSpaceN2E	object-to-clip transform that also takes the normal to eye space
+mmo_ObjToClipSpaceN2EN	object-to-clip transform that also takes the normal to eye space and normalises it
+mmo_ObjToEyeSpace	object-to-eye transform module
+mmo_ObjToEyeSpaceAndTwoUserTR	object-to-eye transform for two user clip planes
+mmo_ObjToEyeSpaceAndSixUserTR	object-to-eye transform for six user clip planes
+mgesi_VCbusWrite	video-bus write: two operand words to four raster bus words (constant 0x411)
+mgesi_VCbusWriteMultiple	video-bus write of several words in a loop
+mmo_XclipDrawPoints	X server point drawing with clip: five raster bus words per point
+mmo_XclipDrawRects	X server rectangle drawing with clip: minimum and maximum against the clip rectangle
+mmo_XclipDrawLines	X server line drawing with clip: 386 words of clipping and slope set-up
+mgesi_XPoint	X server point with absolute coordinates
+mgesi_XPointRel	X server point with relative coordinates
+mgesi_XBgPoint	X server background point with absolute coordinates
+mgesi_XBgPointRel	X server background point with relative coordinates
+mgesi_XRect	X server rectangle: converts the coordinates to float and draws through the clipped rectangle code
+mgesi_XBox	X server box outline through the absolute-coordinate path
+mgesi_XSpans	X server spans: converts the coordinates and draws them as rectangles
+mgesi_XSegment	X server line segment with absolute coordinates
+mgesi_XSegmentRel	X server line segment with relative coordinates
+mgesi_XLine	X server polyline with absolute coordinates
+mgesi_XLineRel	X server polyline with relative coordinates
+mAbsX	X server absolute-coordinate path: converts the coordinates and enters the clipped point or line code
+mRelX	X server relative-coordinate path: adds the offsets and enters the clipped point or line code
+mgebi_XLoadPosition	loads the X window position: four operand words masked and compared against the window bounds
+mgesi_XLoadScissor	loads the X scissor rectangle: four operand words and raster register words
+mgebi_XLoadGC	loads an X graphics context: 13 operand words to 40 raster bus words
+mgeb_XLoadClip	loads the X clip rectangle: eight conversions to float
+mgesi_XPixRmSetup	X server pixel set-up for the raster managers: seven operand words
+mgebi_XSetupWindow	X window set-up: two operand words and the window bounds
+mgeb_XSetupColors	X colour set-up: four operand words
+mgeb_XSetupClip	X clip set-up: conversions to float and 16-bit masks

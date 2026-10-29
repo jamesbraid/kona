@@ -202,7 +202,23 @@ def parse(line):
     return a, form, fl, x
 
 
+CODE = {}    # instruction address -> label whose words hold it
+LABELS = set()
+
+
+def enum_like(v):
+    """A value more often an enumerant or a mask than code: a low byte of zero, the pages
+    0x0b00-0x2aff with a low byte below 0x40 (0x1200, 0x1b02), or 0x8000-0x86ff, where
+    the extension enumerants sit."""
+    return ((0x0b <= v >> 8 <= 0x2a and (v & 0xff) < 0x40) or 0x80 <= v >> 8 <= 0x86
+            or not v & 0xff)
+
+
 def flt(v):
+    # small values and single-bit or low-mask patterns are more often masks than addresses
+    if 0x1000 <= v < 0x10000 and v in CODE and v & (v - 1) and (v + 1) & v and (
+            not enum_like(v) or (v in LABELS and 0x80 <= v >> 8 <= 0x86)):
+        return '0x%x (code in `%s`)' % (v, CODE[v])
     f = struct.unpack('>f', struct.pack('>I', v))[0]
     e = (v >> 23) & 0xff
     if v == 0:
@@ -309,7 +325,7 @@ def facts(name, addr, lines, nxt):
         parts.append('reads engine memory at %s' % (
             '0x%x' % mr[0] if len(mr) == 1 else '%d addresses from 0x%x to 0x%x' % (len(mr), mr[0], mr[-1])))
     if outs:
-        parts.append('sends %s to the output port' % plural(outs, 'result word'))
+        parts.append('%s in the output-instruction form of the diagnostic test' % plural(outs, 'word'))
     if consts:
         parts.append('loads %s' % plural(len(consts), 'constant'))
     if cond:
@@ -329,7 +345,7 @@ def facts(name, addr, lines, nxt):
     if 'home' in ends:
         out.append('ends the command by jumping to `HereWeGo`')
     if 'ret' in ends:
-        out.append('returns to its caller (a transfer to address 0 outside condition group 31)')
+        out.append('returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31)')
     if 'wait' in ends:
         out.append('ends with the end-of-command wait')
     if any(e.startswith('wait') and e != 'wait' for e in ends):
@@ -356,6 +372,12 @@ def facts(name, addr, lines, nxt):
 
 
 def write_md(xref, body=None, nextlab=None, md='ucode/ge_handlers.md', roles='ucode/ge_modules.tsv'):
+    if body:
+        LABELS.update(int(l.split('\t')[0], 16) for l in open(xref)
+                      if l[0] != '#' and not l.startswith('address\t'))
+        for nm, ls in body.items():
+            for ln in ls:
+                CODE.setdefault(int(ln[:4], 16), nm)
     role = {}
     for line in open(roles):
         if line[0] == '#' or line.startswith('source\t'):
@@ -414,8 +436,9 @@ def write_md(xref, body=None, nextlab=None, md='ucode/ge_handlers.md', roles='uc
                 owner = first
             o.append('- `%s`: address 0x%s, `%s` line %s (%s). Reached: %s.' % (
                 n, a[2:], s, ln, plural(int(sp), 'word'), '; '.join(how)))
-            if n in role:
-                o.append('  **Inferred** role: %s.' % role[n].rstrip('.'))
+            rl = role.get(n) or role.get(first)
+            if rl:
+                o.append('  **Inferred** role: %s.' % rl.rstrip('.'))
             if body is not None:
                 b, e, cl = facts(n, int(a, 16), body.get(first, body.get(n, [])), nextlab.get(n))
                 o.append('  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): %s.' % b)
