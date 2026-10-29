@@ -19,7 +19,7 @@ kpm register tables	host interface		hip	0x800100	HH_SWITCH	1	0	32		0	documented	
 kpm register tables	host interface		hip	0x800108	HIP1_HH_GINTR_INFO	1	0	32		0	documented	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
 kpm register tables	host interface		hip	0x800108	HIP2_HH_GINTR_INFO	1	0	32		0	documented	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
 kpm register tables	host interface		hip	0x8001f8	HH_NOP	1	0	32		0	documented	docs/kernel.md#what-a-process-maps	What a process maps
-kpm register tables	host interface		hip	0x800200	HH_RTC	1	0	32		0	documented	HIP.h:127	
+kpm register tables	host interface		hip	0x800200	HH_RTC	1	0	32		0	documented	HIP.h:147	
 kpm register tables	host interface		hip	0x800208	HIP1_HH_GFIFO_LEVEL	1	0	32		1	documented	docs/hip.md#interrupt-conditions	Interrupt conditions
 kpm register tables	host interface		hip	0x800208	HIP2_HH_GFIFO_LEVEL	1	0	32		1	documented	docs/hip.md#interrupt-conditions	Interrupt conditions
 kpm register tables	host interface		hip	0x800210	HH_GFIFO_HI	1	0	32		1	documented	docs/hip.md#flow-control-the-fifo-interrupts	Flow control: the FIFO interrupts

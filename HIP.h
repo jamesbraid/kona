@@ -54,11 +54,31 @@
  *   0x10000 = PRIV           written before payload words, and before the
  *                            token when the caller's own context is current;
  *   0                        written when the packet is done.
- * INFERRED: PRIV marks the FIFO words that follow as privileged kernel
- * commands, and FORCE makes the host interface accept them ahead of the
- * user stream's own state. Why the kernel uses offset 0xc00000 rather
- * than 0x800000 for this register is UNKNOWN; the address bits above bit
- * 9 select something the table does not name.
+ * ESTABLISHED (kpm 6.5.30m, its ARM-side table, ucode/arm1_registers.tsv):
+ * the ARM sees the two bits as ICU_STATUS_PRIV and ICU_STATUS_FORCE, bits 2
+ * and 3 of its register 0x200060. The firmware refuses the privileged
+ * tokens when PRIV is clear and never reads FORCE. INFERRED: PRIV marks the
+ * FIFO words that follow as privileged kernel commands; FORCE, from its name
+ * and from the kernel setting it only when it interrupts another context's
+ * stream, lets the kernel's words in ahead of that stream's state. What
+ * FORCE does inside the host interface is UNKNOWN: no shipped software or
+ * published source depends on it beyond the kernel's use. Routes tried: the
+ * kernel kick sites, the firmware (bit 3 is never read), irsaudit (writes
+ * PRIV | FORCE once while setting up the video interrupts and never tests
+ * it), kpm's tables and dump code and the 6.5.5 kona*.h headers. An emulator may treat
+
+ * FORCE like PRIV.
+ *
+
+
+ * client registers, XG_FC_CLIENT_REGS, beside the plain view at 0x800000 and
+ * the graphics FIFO view at 0xc10000 (XG.h, docs/xg.md). INFERRED: the kernel writes the kick
+
+ * through the flow-controlled view so that it reaches the host interface in
+ * order with the command words it writes through 0xc10000; every other
+ * kernel access uses 0x800000. Bits 3-9 of a 0xc00000 address still select
+ * the register, so an emulator can decode 0xc00000 + offset as the register
+ * at 0x800000 + offset.
  */
 #define KONA_HIP_KICK_OFFSET          0xc00108
 #define KONA_HIP_GINTR_PRIV           0x10000
@@ -136,6 +156,25 @@
  */
 
 #define KONA_HIP1_HH_GFIFO_LEVEL            0x208  /* register mask 0xfff */
+/*
+ * GFIFO_LEVEL: ESTABLISHED (kpm 6.5.30m hipInspectionPreJtag 0x10012834 and
+ * show_overview_section 0x1000dc90): kpm takes the level, HH_GFIFO_HI and
+ * HH_GFIFO_LO as (raw >> 1) & 0x3ff on HIP2 and (raw >> 1) & 0x7ff on HIP1
+ * and prints them as "GFX fifo level", HWM and LWM; analyze_hip reports a
+ * nonzero level as "Gfx FIFO not empty" or "backed up".
+ * textport waits for the masked level to read 0 before each request.
+ * INFERRED: one level unit is one 32-bit word (irsaudit: two words reach a
+ * HI field of 2), so HIP1 holds 2048 words (it overflows on the 2051st) and
+ * HIP2's 10-bit field counts at most 1023. The kernel's HI of 0x700 raw
+ * (field 896) and its software wait level of 0x300 raw (field 384) fit
+ * under that. HIP2's exact depth, and whether the HIP2 log's "#requests" is
+ * a second unit, are UNKNOWN: no shipped software or published source
+ * depends on them; every user keeps the level far below the field's top.
+ * Routes tried: the kernel's flow control, irsaudit TEST_intr (its overflow
+ * test is skipped on HIP2 boards), kpm's dump and overview, the 6.5.5
+ * kona_diag.h flow-control notes (they describe the XG credit FIFO, not
+ * An emulator may give HIP2 1024 words.
+ */
 #define KONA_HIP1_GFIFO_LEVEL_ZERO_MASK     0x00000001  /* shift 0 */
 #define KONA_HIP1_GFIFO_LEVEL_MASK          0x00000ffe  /* shift 1 */
 
@@ -189,6 +228,22 @@
 #define KONA_HIP1_INTR_BIT_UNUSED_MASK      0x00000080  /* shift 7 */
 #define KONA_HIP1_INTR_BIT_PARITY_MASK      0x00000100  /* shift 8 */
 #define KONA_HIP1_INTR_BIT_VOC_MASK         0x00000200  /* shift 9 */
+/*
+ * The causes behind ODMA (6), UNUSED (7), PARITY (8), PIO_OV (10, HIP2) and
+ * IDMA_OV (11, HIP2) beyond their names and the kernel's actions
+ * (docs/hip.md) are UNKNOWN: no shipped software or published source
+ * depends on them. No program raises them on purpose: irsaudit raises only
+ * ARM, FIFO_HI, FIFO_LO, FIFO_OV, GE, VIDEO and VOC; the kernel only reports
+ * the others and kills the pipe (or prints, for ODMA). INFERRED from the
+ * HIP2 error-capture register HH_GV_ERR_STAT2 (0x398), whose fields include
+ * FIFO_OV, PIO_OV and IDMA_OV beside the failed command and word: PIO_OV and
+ * IDMA_OV are overflows of the programmed-I/O and input-DMA paths into the
+ * command FIFO, latched there with the offending command; kpm reads
+ * HH_GV_ERR_STAT1/2 into its dump but decodes nothing from them. Routes
+ * tried: the kernel's three handlers, irsaudit TEST_intr and its register
+ * tests, kpm's dump and analysis code, the firmware (which cannot see these
+ * bits) and the 6.5.5 kona*.h headers.
+ */
 
 #define KONA_HH_ARM_MBOX                    0x240  /* register mask 0xffffffff */
 
@@ -201,6 +256,7 @@
 #define KONA_HH_ODMA_PNUM                   0x260  /* register mask 0x1fffffff */
 
 #define KONA_HIP1_HH_ODMA_POFF              0x268  /* register mask 0xfff */
+/* HIP1 output-DMA page offset: 12 bits, the byte offset only; the attribute bits above it exist on HIP2 (below). */
 
 #define KONA_HH_ODMA_LEN                    0x270  /* register mask 0xffffffff */
 
@@ -217,6 +273,7 @@
 #define KONA_HH_ODMA2_PNUM                  0x2a0  /* register mask 0x1fffffff */
 
 #define KONA_HIP1_HH_ODMA2_POFF             0x2a8  /* register mask 0xfff */
+/* HIP1 second-channel page offset: 12 bits, as HIP1_HH_ODMA_POFF. */
 
 #define KONA_HH_ODMA2_LEN                   0x2b0  /* register mask 0xffffffff */
 
@@ -225,6 +282,23 @@
 #define KONA_HH_ODMA2_OVER                  0x2c0  /* register mask 0xfff */
 
 #define KONA_HH_RESET                       0x300  /* register mask 0x3 */
+/*
+ * bit 1 lets the ARM run. The PROM starts a pipe that does not answer by
+ * writing HH_INTR_INFO = 0, then HH_RESET = 3, reading HH_RESET back, then
+ * HH_RESET = 2 and waiting: the ARM leaves reset with the EEPROM remapped
+ * and boots from it. To read the EEPROM's boot header it writes 1, reads
+ * back, writes 0 and waits (the ARM stays stopped), sets HH_ARM_CTRL bit 0,
+ * clears the ARM's HA_REMAP_EPROM (0x2000bc) and reads the header at ARM
+ * address 0x800000 through HH_ARM_ADDRESS/HH_ARM_DATA. The kernel's pulse
+ * is in docs/xg.md. What the reset does to the token map, the FIFOs and the
+ * counters is UNKNOWN: no shipped software or published source depends on
+ * it: the firmware rebuilds the map and every table on each start, the
+ * kernel rewrites the registers it needs after the pulse, and irsaudit and
+ * kpm check nothing afterwards. Routes tried: the kernel pulse sites,
+ * irsaudit's reset ioctl, kpm's hipReset (boundary-scan RESET or the
+ * overlap-disable bit, never HH_RESET), the firmware start-up, the 6.5.5
+ * headers; none has one. */ PROM above.
+ */
 #define KONA_HIP_RESET_MASK                 0x00000001  /* shift 0 */
 #define KONA_ARM_START_MASK                 0x00000002  /* shift 1 */
 
@@ -370,8 +444,20 @@
 #define KONA_HIP2_INTR_BIT_IDMA_OV_MASK     0x00000800  /* shift 11 */
 
 #define KONA_HIP2_HH_ODMA_POFF              0x268  /* register mask 0x1ffff */
+/*
+ * HIP2 output-DMA page offset: the byte offset in bits 0-11 and, above it,
+ * the 0x9000 the kernel and the diagnostic map put in every low address
+ * word. kpm names the matching input-DMA register's upper fields
+ * (HIP2_HA_IDMA_POFF at ARM 0x200014): bits 12-13 PSIZE, bit 14 IOMEM, bit
+ * 15 COHERENT, bit 16 GBR, so 0x9000 is COHERENT with page-size code 1, the
+ * code every map-RAM entry carries for the 16 KB page. INFERRED: the output
+ * register has the same layout, since it has the same 17-bit mask and
+ * receives the same word (START_SELECTFEED's A_lo, docs/hip.md). kpm and the
+ * kernel read it only in error dumps (kona_ge_intr).
+ */
 
 #define KONA_HIP2_HH_ODMA2_POFF             0x2a8  /* register mask 0x1ffff */
+/* Second output-DMA channel's page offset: the same layout as HIP2_HH_ODMA_POFF above. */
 
 #define KONA_HIP2_HH_PIO_HI                 0x2c8  /* register mask 0x1f */
 #define KONA_HIP2_PIO_HI_MASK               0x0000001f  /* shift 0 */

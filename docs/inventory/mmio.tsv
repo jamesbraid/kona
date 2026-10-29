@@ -25,7 +25,7 @@ hip-alias	0xc00108		w4	138	18	KONAdestroyddrn;KONAmapgfx;KONApcxswap;KONAschedmg
 user-fifo	0x0		w4,w8	17348	6	GetSingleCompFromPipe;__glKonCopyTexImage;__glKonCreateContext;__glKonCreateContext-0x15e8;__glKonCreateContext-0x1a60;__glKonCreateContext-0x1b80;+335 more	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:GetSingleCompFromPipe	documented	docs/hip.md#what-the-ir-diagnostic-shows-of-the-host-interface	What the IR diagnostic shows of the host interface
 user-io	0xc00c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/hip.md#arm-side-register-names	ARM-side register names
 user-io	0xc014		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/kernel.md#textport-drawing-kona_setcolor-kona_mapcolor-kona_point-kona_box-kona_unblank-kona_movechar-kona_bitmap-kona_tportinit	Textport drawing: `kona_setcolor`, `kona_mapcolor`, `kona_point`, `kona_box`, `kona_unblank`, `kona_movechar`, `kona_bitmap`, `kona_tportinit`
-user-io	0xc01c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	HIP.h:238	
+user-io	0xc01c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	HIP.h:314	
 user-io	0xc024		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/hip.md#unknown	Unknown
 user-io	0xc02c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
 user-io	0xc034		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches

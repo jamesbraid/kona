@@ -71,7 +71,9 @@
  * ((pa >> 12) | 0x10000000, (pa & 0xfff) | 0x9000) in the driver or context
  * record. KONApcxswap sends the context-record pair (+8, +12) as the first
  * two words of HP_RDATA_SETUP, so that pair names the return-data buffer.
- * The high word carries bit 28 here.
+ * The high word carries bit 28 here: IDMA_PNUM_ABS in kpm's table of the
+ * pipe's DMA page register (ucode/arm1_registers.tsv, ARM 0x200010), which
+ * marks a host frame number instead of a map-RAM page.
  *
  * Pipe-space addresses, ESTABLISHED for kona_start_selectfeed and
  * kona_diag_map: they send the value alloc_gfx_io_space returns
@@ -86,14 +88,13 @@
  * INFERRED: the old name "physical address" is wrong at least for the
  * selectfeed and diag-map pairs.
  *
- * 0x9000, ESTABLISHED as a constant; meaning UNKNOWN. It is set in every
- * low word, in both kinds of address, so it is not the physical-versus-
- * mapped distinction. INFERRED from HIP.h: on HIP2 the output-DMA page-offset
- * register is 17 bits wide (HIP1: 12), so a field wider than a 12-bit page
- * offset exists on this board, and 0x9000 would sit in its bits 12 and 15.
- * Nothing read says what bits 12 and 15 select. No sender uses another
- * value in those bits (kona_ddrn.o also or-s 0x8000 into a kvpalloc size,
- * which is unrelated).
+ * 0x9000, ESTABLISHED as a constant, set in every low word of both kinds.
+ * ESTABLISHED meaning (kpm 6.5.30m, its field names for the HIP2 DMA page
+ * offset at ARM 0x200014, HIP.h): bits 12-13 are PSIZE, bit 14 IOMEM, bit
+ * 15 COHERENT and bit 16 GBR, so 0x9000 asks for a coherent transfer with
+ * page-size code 1, the code of the 16 KB map-RAM page. HIP1's offset field
+ * is 12 bits and drops it. No sender uses another value in those bits
+ * (kona_ddrn.o also or-s 0x8000 into a kvpalloc size, which is unrelated).
  */
 #define KONA_ADDR_HI(a)           ((unsigned)((a) >> 12))
 #define KONA_ADDR_HI_PHYS(pa)     ((unsigned)(((pa) >> 12) | 0x10000000))
