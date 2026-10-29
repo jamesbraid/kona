@@ -296,3 +296,118 @@ The pipe has four memory pools, each with a 24-byte pool record at state +4976 +
   `kona_mem_validate_driver` for each of the four pools until neither the node's nor its share group's list has a non-resident block. `KONApcxswap` calls it before it loads a context.
 - `kona_mem_destroy` (`kona_mem.o` +0x1f54, 488 bytes): **Established.** Releases every block of a node (or of its share group, when asked): subtracts each from its pool's resident list and size, waits for a transfer in flight, runs
   `kona_mem_cleanup`, and frees the host save buffer and the block.
+
+## Pipe-space allocator: `gfx_io_space.o`
+
+Each board has an 88-byte record in a table of such records (board number x 88). It holds a copy of the caller's 56-byte descriptor (+0 size in pages, +8 map operation, +16 unmap operation, +24 operation to call when nothing fits, +32 address base operation, +40 in-page offset mask, +48 cookie), then +56 the chunk page, +64 the free-chunk list, +72 the free-extent list and +80 the allocated-extent list. None of these functions touches a register: they hand out the addresses that `kona_mapram_map` later writes into the map RAM.
+
+- `grow_chunk_pool` (`gfx_io_space.o` +0x0, 164 bytes): **Established.** Takes one 16 KB page
+  (`kvpalloc`) and cuts it into 409 chunk records of 40 bytes, each with start, count, key and handle set to 0xffffffff and a link to the next, ending the chain with 0. The new page replaces the previous one as the free-chunk list.
+- `get_chunk` (`gfx_io_space.o` +0xa4, 68 bytes): **Established.** Pops one chunk record from the free-chunk list (+64), calling
+  `grow_chunk_pool` first when the list is empty, and clears its link.
+- `free_chunk` (`gfx_io_space.o` +0xe8, 36 bytes): **Established.** Resets a chunk's start, count and key to 0xffffffff and pushes it back on the free-chunk list.
+- `init_chunks` (`gfx_io_space.o` +0x10c, 28 bytes): **Established.** Calls
+  `grow_chunk_pool` once to give a new board its first chunk page.
+- `init_gfx_io_space` (`gfx_io_space.o` +0x128, 292 bytes): **Established.** Sets up one board's allocator: on the first call it allocates and zeroes the table of 88-byte records for every board, then copies the caller's descriptor into the board's record, runs
+  `init_chunks`, and makes the whole space one free extent (start 0, length from descriptor word 0).
+- `free_gfx_io_space` (`gfx_io_space.o` +0x424, 628 bytes): **Established.** Releases a range: finds the allocated extent whose key matches the address (with the in-page bits removed), calls the descriptor's unmap operation with its handle, and returns the extent to the free list, which is sorted by start page, merging it with an adjacent free neighbour on either side.
+
+## Multi-pipe network: `kona_nclops.o`
+
+The multi-pipe ("hyperpipe") code drives the display port of each pipe through `HH_VC_ADDRESS` (0x8003c0) and `HH_VC_DATA` (0x8003d0): every access is the address written to the first register and the value read or written through the second. The topology record (3336 bytes, pointer at pipe state +5480) holds 64 network records of 48 bytes: state at +0, current master pipe at +8, lock at +16, swap countdown at +20, member count at +40 and bound count at +44. Per pipe: next pipe in the ring +5488, network id +5496, configured network +5500 (-1 for none), swap counters +5504 and +5508, bind count +5516. Only pipes whose display board reports option type 5 and that the X server manages take part.
+
+- `alloc_new_network_id` (`kona_nclops.o` +0x0, 136 bytes): **Established.** Gives a pipe a network id by walking the ring of next-pipe links: if the pipe has no id yet (+4 equals -1) it either takes the next id from the counter (when the next pipe has none or is the origin) or recurses into the next pipe and copies its id, so every pipe in a ring ends with the same id.
+- `alloc_network_id` (`kona_nclops.o` +0x88, 120 bytes): **Established.** Entry point for the same assignment: when the pipe has a successor and no id yet it calls
+  `alloc_new_network_id` on the successor, then copies that pipe's id to its own.
+- `is_ddo3` (`kona_nclops.o` +0x100, 40 bytes): **Established.** Returns 1 when the pipe's configuration record shows display option type 5 (the multi-pipe option board), else 0: the test is the word at pipe state +320.
+- `is_managed` (`kona_nclops.o` +0x128, 28 bytes): **Established.** Returns 1 when the X server manages the pipe, that is when the manager word at +8 of the board's table entry is nonzero.
+- `kona_nclops_discover` (`kona_nclops.o` +0x144, 4244 bytes): **Established.** Finds which pipes are cabled in a ring and records the topology. It allocates the topology record and a pair table, then for every option-type-5 managed pipe writes display-port address 0x8001 = 0 and
+  0x8400 = 0x7000, then 0xe500 = 1 and 0xe300 = 1, and polls 0xe200 until bit 1 is set on all of them (10000 passes, then logs a timeout). It sends 0xe300 = 0xa1 on all pipes and after 1 us reads bit 7 of 0xe200 on each, repeats with 0x21 to find pipes that see a signal, then tests each unmarked pipe alone with 0xa1 and
+  0x21 to find which other pipe sees its transmit (two seeing it is logged). Finally it writes 0xe300 = 1 and 0xe500 = 1 on all and polls bit 1 again. It builds the ring, numbers it with `alloc_network_id` and stores the {pipe, network} pairs (+3076, count +3072).
+- `kona_nclops_configure` (`kona_nclops.o` +0x11d8, 1108 bytes): **Established.** The configure ioctl: validates the network id and pipe list, builds a network record (state 1, member count, lock), and for each member sets its ring link, network id, configured network (+5500) and three caller words (+5520 to +5528), then writes display-port 0x8400 = 0xf000,
+  0x80 = 0 and 0xe500 = 0. Members dropped from a network get 0xe300 = 0 and +5500 = -1. Returns 0 or
+  1.
+- `kona_nclops_query_config` (`kona_nclops.o` +0x162c, 204 bytes): **Established.** The query ioctl: for a network id from 0 to 63 whose record state is 1, it walks the ring from the master pipe and returns the member count at +0 and, for each member i, the pipe number at +24 + 16i and the three configuration words at +12, +16 and +20 + 16i; any other id returns 1. No register is touched.
+- `kona_nclops_bind` (`kona_nclops.o` +0x16f8, 372 bytes): **Established.** Binds a pipe's rendering to its network: for a configured network id it sets +5500, counts the bind (+5516), copies the swap counter to +5504 and +5508, and increments the network's bound count (+44). When the bound count reaches the member count it writes display-port 0xe300 = 1 on the network's master pipe; the node's bind marker (+248) is set. Returns 0 or
+  1.
+- `kona_nclops_unbind` (`kona_nclops.o` +0x186c, 252 bytes): **Established.** Undoes
+  `kona_nclops_bind` for a pipe whose configured network matches: it decrements the pipe's bind count (+5516) and the network's bound count (+44) when positive, and sets the node's bind marker (+248) to -1. Returns 0. No register is touched.
+- `kona_nclops_swapped` (`kona_nclops.o` +0x1968, 496 bytes): **Established.** Called from
+  `kona_video_intr` after each swap: counts the pipe's swap, and when every member of the network has swapped it writes 0xe300 = 0 and 0xe500 = 0 on the master pipe and 0xe300 = 1 on the next pipe in the ring, which becomes the master (record +8). It does nothing for a pipe outside a network.
+- `kona_nclops_destroy` (`kona_nclops.o` +0x1b58, 496 bytes): **Established.** Dissolves a network that nothing is bound to: waits for bit 1 of 0xe200 on the master (10000 passes), then for each member writes display-port 0x80 = 1,
+  0x8400 = 0x7000, 0xe300 = 1 and
+  0xe500 = 1, clears its ring link and sets +5500 to -1.
+- `kona_nclops_cleanup` (`kona_nclops.o` +0x1d48, 188 bytes): **Established.** Unbinds a node that is being destroyed: when its bind marker (+248) is not negative it sets it to -1, decrements the pipe's bind count (+5516) and the network's bound count (+44) under their locks. No register is touched.
+- `kona_nclops_init` (`kona_nclops.o` +0x1e04, 48 bytes): **Established.** Called when the topology record exists: clears the 64 bytes of per-pipe network fields at pipe state +5480.
+
+## Kernel textport: `kona_tport.o`
+
+The textport drawing functions form a nine-entry operation table handed to the console layer by `kona_earlyinit`. Each drawing function does the same framing, read from `kona_tport.o` +0x0 to +0xccc. It sets the in-use flag, returns without sending anything when the mute flag is set, takes the textport lock, and waits up to 100000 times 2 us for `HH_GFIFO_LEVEL` (0x800208, masked with 0x7fe) to read zero. It brackets the stores with `kona_fc_attach` and `kona_fc_detach`, and writes 32-bit words to the flow-controlled FIFO page at window offset 0xc10000. Every sequence starts with the word 1, then a sub-command number, then a fixed payload.
+
+- `kona_setcolor` (`kona_tport.o` +0x0, 340 bytes): **Established.** Sets the textport drawing colour: sends 1,
+  2, then the colour word.
+- `kona_mapcolor` (`kona_tport.o` +0x154, 388 bytes): **Established.** Loads one colour-map entry: sends 1,
+  3, the index, and the red, green and blue components each shifted left by 2 (an 8-bit value widened to 10 bits without replicating the top bits).
+- `kona_point` (`kona_tport.o` +0x2d8, 352 bytes): **Established.** Draws a single pixel at the given position: sends 1,
+  6, then the x and y words.
+- `kona_box` (`kona_tport.o` +0x438, 400 bytes): **Established.** Fills a rectangle: sends 1,
+  5, then x1 - 1 and y1 - 1 (each clamped at 0, so values below 1 become 0), then x2 and
+  y2 unchanged.
+- `kona_unblank` (`kona_tport.o` +0x5c8, 328 bytes): **Established.** Turns the screen on: sends 1,
+  1, 0. **Inferred:** sub-command 1 is the blank control; no function in this object sends payload 1.
+- `kona_movechar` (`kona_tport.o` +0x710, 352 bytes): **Established.** Sets the character position the next glyph is drawn from: sends 1,
+  4, then the x and y words.
+- `kona_bitmap` (`kona_tport.o` +0x870, 776 bytes): **Established.** Draws a glyph: sends 1,
+  10, then six sign-extended halfwords from the glyph record (width at +8, height +10, x origin +12, y origin +14, x advance +16, y advance +18), then the packed bits. N words are sent, N = ((width x height + 7) / 8 + 3) / 4; rows are packed back to back (MSB first, 16-bit source units) into a 100-word local array, without padding between rows.
+- `kona_tportinit` (`kona_tport.o` +0xb78, 344 bytes): **Established.** Initialises the textport on the pipe: sends 1,
+  8, then the screen width and height words from the module's data (1280 and 1024 until `get_graphics_info` replaces them).
+- `kona_getdesc` (`kona_tport.o` +0xcd0, 24 bytes): **Established.** The table's last entry: returns 1 when its second argument is 1 and
+  0 otherwise, touching nothing.
+- `receive_armdata` (`kona_tport.o` +0xce8, 236 bytes): **Established.** Reads reply words from the ARM during early boot. For each of n words it polls bit 4 of
+  `HH_INTR_STATUS` (0x800238) up to a poll count (50000 when 0), waiting 100 us between polls, then reads `HH_ARM_MBOX` (0x800240), writes 0 to the mailbox and 0x10 to the status register. Returns the words received, 0 for n not positive, or -1 on timeout.
+- `kona_alive` (`kona_tport.o` +0xdd4, 372 bytes): **Established.** Asks the pipe whether its firmware is running. It takes the textport lock, waits for the FIFO to drain, writes 0 to
+  `HH_ARM_MBOX`, sends 1, 9,
+  0 with the flow-control bracket, waits 10 ms and reads one reply word with `receive_armdata`. Returns 0 when the word is 0x1234abcd, otherwise -1.
+- `kona_tport_reset_adaptor` (`kona_tport.o` +0xf48, 380 bytes): **Established.** Brings a pipe's crossbar link up before the textport uses it: it waits up to 1000 times for the link-alive bit of the crossbar word, sets the pipe widget's flags
+  (`hub_widget_flags_set`) and programs the crossbar port selection so the pipe's DMA goes to port 9 when that link is up and to port 10 otherwise. Returns -1 when the link does not come up.
+- `kona_earlyinit` (`kona_tport.o` +0x10c4, 652 bytes): **Established.** Registers the kernel textport early in boot. It reads the console option
+  (`kopt_find`) to choose a pipe number (a leading d or D disables it), finds the pipe with `find_konapipe`, computes the pipe's window base from its node and widget numbers, resets the adaptor on the first call, checks `kona_alive` (starting the firmware through
+  `init_graphics` if the EEPROM state is 2), reads the screen size with `get_graphics_info`, initialises with `kona_tportinit` and registers the operation table with
+  `htp_register_board`. Returns 1 when a board was registered.
+- `find_konapipe` (`kona_tport.o` +0x1350, 156 bytes): **Established.** Looks up pipe n with
+  `find_gfxpipe` and returns 1 only when the board type is the graphics board (0x51) and it has a graphics component; it stores the component's node (halfword +34) and widget (byte +32) through the output pointers.
+- `init_graphics` (`kona_tport.o` +0x13ec, 104 bytes): **Established.** Starts the pipe firmware if it does not answer: when
+  `kona_alive` fails it writes 0 to `HH_INTR_INFO` (0x800220) and 3 then 2 to `HH_RESET` (0x800300), then returns the result of a second, longer `kona_alive`.
+- `get_eeprom_state` (`kona_tport.o` +0x1454, 124 bytes): **Established.** Reads the firmware state word the pipe's EEPROM loader left: writes 1 to
+  `HH_ARM_CTRL` (0x800308), sets the ARM address 0x200bc through `HH_ARM_ADDRESS` (0x8003e8) and `HH_ARM_DATA` (0x8003f0), then reads eight words from ARM address 0x87ff00 and returns the eighth.
+- `get_graphics_info` (`kona_tport.o` +0x14d0, 408 bytes): **Established.** Reads the pipe's configuration over the textport channel: sends 1,
+  12, 0, waits 10 ms and reads five words with `receive_armdata`. Words 3 and
+  4 become the screen width and height (defaults 1280 and 1024 when negative or when no reply arrives, which also returns -1).
+- `kona_fc_attach` (`kona_tport.o` +0x1668, 308 bytes): **Established.** Puts the calling CPU in the hub's flow-controlled write path for the pipe. It blocks one hub error interrupt
+  (`err_int_block_mask`), sets the CPU slice's graphics page register to the FIFO page with bit 40, the credit counter to 168 and the bias to 36, registers the CPU in the pipe's hub (`IIO_IGFX_0`), and writes 34 to the widget register at 0x7c (credit-return transaction number 17).
+- `kona_fc_detach` (`kona_tport.o` +0x179c, 144 bytes): **Established.** Ends the textport bracket: sets the graphics page register to 0xdeadbabe, writes 1 to widget register 0x7c, resets the credit counter to 64 and releases the hub error mask
+  (`err_int_unblock_mask`).
+
+## Attach and Crosstalk set-up: `kona_edtinit_hip2.o`
+
+The Crosstalk widget registers named here are those of the pipe's XG chip ([xg.md](xg.md)): 0x24 control, 0x2c request timeout, 0x34 and 0x3c interrupt destination, 0x5c interrupt vectors, 0x6c error status, 0x74 FIFO water marks.
+
+- `kona_init` (`kona_edtinit_hip2.o` +0x0, 200 bytes): **Established.** The driver's start-up hook: it runs
+  `kona_debug_init`, then under the board semaphore walks every pipe index below the board count, finds each graphics pipe with `find_konapipe`, allocates its pipe state with `kona_alloc_bdata` (logging a failure) and stores the pipe's widget number (+2208) and node number (+2210) in it. It then registers the driver with the Crosstalk layer
+  (`xwidget_driver_register` with the part number 0xc102 and manufacturer 682), so `kona_attach` runs when the widget is found.
+- `kona_intr_set` (`kona_edtinit_hip2.o` +0xc8, 8 bytes): **Established.** Does nothing: it is the first slot of the handler table (the table of interrupt handlers the attach step walks), and returns immediately.
+- `kona_report_errs` (`kona_edtinit_hip2.o` +0xd0, 1308 bytes): **Established.** Prints the Crosstalk error causes. It reads the XG error status register at widget offset 0x6c and prints one message (level 4, with the pipe number) for each of the 31 bits that is set and has a name; it writes no register.
+- `nic_xg_vertex_info` (`kona_edtinit_hip2.o` +0x5ec, 32 bytes): **Established.** Registers the pipe's serial-number chip with the hardware graph: calls
+  `nic_vertex_info_set` with `nic_access_mcr32` so the numbers are read through the XG's one-wire register with 32-bit accesses.
+- `hexstrtol` (`kona_edtinit_hip2.o` +0x60c, 144 bytes): **Established.** Converts a string of lowercase hexadecimal digits to a number, stopping at the first other character.
+- `kona_extract_nic_info` (`kona_edtinit_hip2.o` +0x69c, 2104 bytes): **Established.** Parses the pipe's serial-number string (colon-separated fields such as part, revision and serial, matched with
+  `strncmp` against the known field names) and stores the parsed numbers in the information record at state +204 onward, using `hexstrtol` for hexadecimal fields.
+- `kona_attach` (`kona_edtinit_hip2.o` +0xed4, 1268 bytes): **Established.** Attaches the driver to a pipe's Crosstalk widget, in the order xg.md lists. It finds the widget and its master node, claims a pipe record, maps the widget window
+  (`xtalk_piomap_alloc`), runs `kona_init_flow_control`, adds a hardware-graph edge and allocates three Crosstalk interrupts with their handlers (`kona_xg_intr_handler`,
+  `kona_intr_handler`, `kona_ge_intr_handler`). It writes 0x8800 to `HH_VC_ADDRESS` (0x8003c0) and reads
+  `HH_VC_DATA` (0x8003d0), resets the adaptor and reports errors, reads the widget registers 0x04 and 0x64 (the map RAM size, stored at +2312), reads the board identity through the display port (address 0x0b00), extracts the serial numbers, initialises the pipe-space allocator
+  (`kona_init_board_mapping`) and adds the pipe to the inventory (`kona_inventory_board`). Failures log tag 2108 and free what was taken.
+- `kona_reset_adaptor` (`kona_edtinit_hip2.o` +0x13c8, 620 bytes): **Established.** Brings the XG chip and host interface to their working state after attach or recovery. It resets the widget link
+  (`xwidget_gfx_reset`), then writes the widget control register (0x24) with the interrupt target number, widget number and crossbar credit count, the interrupt destination (0x34, 0x3c) and the three interrupt vectors (0x5c), reports errors, clears the error status (0x6c) and request timeout (0x2c), sets the interrupt-enable bit in 0x24 last, sets the FIFO water marks in 0x74 (output-DMA low 0x40 and high 0x3f), and writes 0xfff to
+  `HH_INTR_STATUS` (0x800238) and 0 to the two error-status registers at 0x800390 and 0x800398.
+- `kona_detach` (`kona_edtinit_hip2.o` +0x1634, 8 bytes): **Established.** The widget detach hook: it does nothing and returns, so a detached pipe's state stays allocated.
