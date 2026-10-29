@@ -1717,9 +1717,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100835c8	224	ge12_external_mem
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100836a8	940	rm6_external_memory_config	dynsym	documented	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10083a54	1200	TEST_ge_extbist	dynsym	documented	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10083f04	1688	TEST_rm_extbist	dynsym	documented	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008459c	912	TEST_rbstress	dynsym	documented	RM.h:885	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008459c	912	TEST_rbstress	dynsym	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10085904	1712	TEST_readback_comp	dynsym	documented	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10085fb4	884	TEST_readback	dynsym	documented	RM.h:884	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10085fb4	884	TEST_readback	dynsym	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087bd8	352	rm6_init	dynsym	documented	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087d38	616	rm6_test	dynsym	documented	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087fa0	192	rm6_stop	dynsym	documented	docs/irsaudit.md#hardware-access-layers	Hardware access layers
@@ -1839,7 +1839,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0634	148	init_ms_loc	dynsy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c06c8	380	init_tf	dynsym	documented	docs/rm.md#chips-on-each-board	Chips on each board
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0ea4	820	TEST_rmvis	dynsym	documented	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c4320	1748	TEST_miniread	dynsym	documented	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c5d20	1512	TEST_texread	dynsym	documented	RM.h:668	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c5d20	1512	TEST_texread	dynsym	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c6d2c	820	TEST_fbread	dynsym	documented	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c7e0c	1216	TEST_fbread_video	dynsym	documented	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c8f64	656	TEST_pixelcopy	dynsym	documented	docs/irsaudit.md#tests	Tests
