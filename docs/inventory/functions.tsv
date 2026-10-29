@@ -2628,17 +2628,17 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019210	444	show_bef_shadow_section	dyns
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100193cc	1500	show_bef_fifo_section	dynsym	da2af7c807eb	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100199a8	680	analyze_bef	dynsym	5d3433388cc1	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019c50	456	gedReset	dynsym	4fb25c34327b	named-only	docs/kpm.md#capture	Capture
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019e3c	164	ged_register_write	dynsym	f76f6b99efd2	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019e3c	164	ged_register_write	dynsym	f76f6b99efd2	named-only	docs/ge.md#reset-and-start-up	Reset and start-up
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019ee0	228	ged_set_current_ge	dynsym	e26ba1002d25	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019fc4	2680	gedStateDrain	dynsym	a4fe576f7b0f	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001aa3c	2016	show_ged_section	dynsym	6e95688f385d	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b21c	824	analyze_ged	dynsym	c91feaa3a1ef	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b554	476	read_ge_symbols	dynsym	f496bb7479c8	named-only	docs/kpm.md#capture	Capture
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b730	108	ge_register_write	dynsym	86adc513f3ed	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b730	108	ge_register_write	dynsym	86adc513f3ed	named-only	docs/ge.md#reset-and-start-up	Reset and start-up
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b79c	100	ge_register_read	dynsym	56e614b8365e	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b800	304	ge11BypassEnable	dynsym	2bb224408ed7	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b930	704	ge11StateDrain	dynsym	ddc8841b1118	named-only	docs/kpm.md#capture	Capture
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001bbf0	1332	ge11LoadUcode	dynsym	4c7cf81e47c6	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001bbf0	1332	ge11LoadUcode	dynsym	4c7cf81e47c6	named-only	docs/ge.md#reset-and-start-up	Reset and start-up
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001c124	200	tbRegisterWrite	dynsym	ab24a699b4bb	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001c44c	772	show_ge_core	dynsym	e3cb68ed5035	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001cb0c	1296	show_ge_section	dynsym	1fb9a0296ac1	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
