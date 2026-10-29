@@ -2369,7 +2369,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014a5fc	1200	tbuBindCubeMap	d
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014aaac	7164	tbuBindTextureCCT	dynsym	documented	RM.h:455	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014c6a8	7504	tbuBindTexture	dynsym	documented	RM.h:455	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e548	16	tbuAttachDetailMap	dynsym	documented	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e558	52	log2	dynsym	documented	ucode/arm1_functions.md#texture-management	Texture management
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e558	52	log2	dynsym	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e58c	260	tbuClipBorder	dynsym	documented	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e690	772	tbuOffsetClip	dynsym	documented	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e994	1332	tbuMipToClipAndCenter	dynsym	documented	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -14552,7 +14552,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96c170	2228	subloa
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96ca24	204	subgetSimple	mdebug	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d038	192	validDimension	mdebug	documented	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	documented	ucode/arm1_functions.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d118	164	areLodsConsistent	mdebug	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d1bc	484	copyBackLods	mdebug	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d3a0	172	repPixels	mdebug	documented	docs/libglcore.md#texture-management	Texture management
@@ -14736,7 +14736,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9839f4	996	__glkonim_Ge
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd983dd8	1480	__glkonim_GetMapiv	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9843a0	44	__glKonInitColortableState	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9843cc	2120	EramAlloc	mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd984490	1788	__glkonim_ColorTableSGI	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd984490	1788	__glkonim_ColorTableSGI	dynsym+mdebug	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd984b8c	136	__glkonle_ColorTableSGI	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd984c14	176	PixelMapHostReadback	mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd984cc4	200	PixelMapHostDownload	mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -18562,7 +18562,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e600	20	glVertex3iv	d
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e614	12	glVertex3s	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e620	20	glVertex3sv	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e634	12	glVertex4d	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e640	20	glVertex4dv	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e640	20	glVertex4dv	dynsym+mdebug	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e654	12	glVertex4f	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e660	20	glVertex4fv	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e674	12	glVertex4i	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -20094,7 +20094,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96bc80	2124	subl
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c4d0	160	subgetSimple	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c570	1140	getLevel	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c9f0	168	validDimension	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96caa0	56	log2	dwarf+funcnames	documented	ucode/arm1_functions.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96caa0	56	log2	dwarf+funcnames	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96cae0	204	areLodsConsistent	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96cbb0	660	copyBackLods	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96ce50	132	repPixels	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
@@ -20278,7 +20278,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9807c0	1336	__glkonim
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd980d00	1572	__glkonim_GetMapiv	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd981330	44	__glKonInitColortableState	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd981360	180	EramAlloc	dwarf+funcnames	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd981420	2200	__glkonim_ColorTableSGI	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd981420	2200	__glkonim_ColorTableSGI	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd981cc0	128	__glkonle_ColorTableSGI	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd981d40	176	PixelMapHostReadback	dwarf+funcnames	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd981df0	200	PixelMapHostDownload	dwarf+funcnames	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -24096,7 +24096,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda784c0	20	glVertex3iv
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda784d4	12	glVertex3s	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda784e0	20	glVertex3sv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda784f4	12	glVertex4d	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78500	20	glVertex4dv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78500	20	glVertex4dv	dwarf+dynsym	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78514	12	glVertex4f	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78520	20	glVertex4fv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78534	12	glVertex4i	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -25674,7 +25674,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce0f0	2124	subl
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce940	160	subgetSimple	dwarf	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce9e0	1144	getLevel	dwarf	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcee60	168	validDimension	dwarf	documented	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcef10	56	log2	dwarf	documented	ucode/arm1_functions.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcef10	56	log2	dwarf	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcef50	208	areLodsConsistent	dwarf	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf020	668	copyBackLods	dwarf	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf2c0	132	repPixels	dwarf	documented	docs/libglcore.md#texture-management	Texture management
@@ -25858,7 +25858,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de3120	1340	__glkonim
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de3660	1584	__glkonim_GetMapiv	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de3c90	44	__glKonInitColortableState	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2de3cc0	180	EramAlloc	dwarf	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de3d80	2208	__glkonim_ColorTableSGI	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de3d80	2208	__glkonim_ColorTableSGI	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de4620	128	__glkonle_ColorTableSGI	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2de46a0	176	PixelMapHostReadback	dwarf	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2de4750	200	PixelMapHostDownload	dwarf	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -29676,7 +29676,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddaa0	20	glVertex3iv
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddab4	12	glVertex3s	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddac0	20	glVertex3sv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddad4	12	glVertex4d	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddae0	20	glVertex4dv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddae0	20	glVertex4dv	dwarf+dynsym	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddaf4	12	glVertex4f	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddb00	20	glVertex4fv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddb14	12	glVertex4i	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -31251,7 +31251,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96c170	2228	subloa
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96ca24	204	subgetSimple	mdebug	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d038	192	validDimension	mdebug	documented	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	documented	ucode/arm1_functions.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d118	164	areLodsConsistent	mdebug	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d1bc	484	copyBackLods	mdebug	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d3a0	172	repPixels	mdebug	documented	docs/libglcore.md#texture-management	Texture management
@@ -31435,7 +31435,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9839f4	996	__glkonim_Ge
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd983dd8	1480	__glkonim_GetMapiv	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9843a0	44	__glKonInitColortableState	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9843cc	2120	EramAlloc	mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd984490	1788	__glkonim_ColorTableSGI	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd984490	1788	__glkonim_ColorTableSGI	dynsym+mdebug	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd984b8c	136	__glkonle_ColorTableSGI	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd984c14	176	PixelMapHostReadback	mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd984cc4	200	PixelMapHostDownload	mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -35261,7 +35261,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e600	20	glVertex3iv	d
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e614	12	glVertex3s	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e620	20	glVertex3sv	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e634	12	glVertex4d	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e640	20	glVertex4dv	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e640	20	glVertex4dv	dynsym+mdebug	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e654	12	glVertex4f	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e660	20	glVertex4fv	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e674	12	glVertex4i	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -36793,7 +36793,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96bc80	2124	subl
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c4d0	160	subgetSimple	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c570	1140	getLevel	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c9f0	168	validDimension	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96caa0	56	log2	dwarf+funcnames	documented	ucode/arm1_functions.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96caa0	56	log2	dwarf+funcnames	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96cae0	204	areLodsConsistent	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96cbb0	660	copyBackLods	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96ce50	132	repPixels	dwarf+funcnames	documented	docs/libglcore.md#texture-management	Texture management
@@ -36977,7 +36977,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9807c0	1336	__glkonim
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd980d00	1572	__glkonim_GetMapiv	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd981330	44	__glKonInitColortableState	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd981360	180	EramAlloc	dwarf+funcnames	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd981420	2200	__glkonim_ColorTableSGI	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd981420	2200	__glkonim_ColorTableSGI	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd981cc0	128	__glkonle_ColorTableSGI	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd981d40	176	PixelMapHostReadback	dwarf+funcnames	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd981df0	200	PixelMapHostDownload	dwarf+funcnames	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -40795,7 +40795,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda784c0	20	glVertex3iv
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda784d4	12	glVertex3s	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda784e0	20	glVertex3sv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda784f4	12	glVertex4d	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78500	20	glVertex4dv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78500	20	glVertex4dv	dwarf+dynsym	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78514	12	glVertex4f	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78520	20	glVertex4fv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78534	12	glVertex4i	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -42373,7 +42373,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae0f0	2124	subl
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae940	160	subgetSimple	dwarf	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae9e0	1144	getLevel	dwarf	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aee60	168	validDimension	dwarf	documented	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aef10	56	log2	dwarf	documented	ucode/arm1_functions.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aef10	56	log2	dwarf	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aef50	208	areLodsConsistent	dwarf	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af020	668	copyBackLods	dwarf	documented	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af2c0	132	repPixels	dwarf	documented	docs/libglcore.md#texture-management	Texture management
@@ -42557,7 +42557,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c3120	1340	__glkonim
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c3660	1584	__glkonim_GetMapiv	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c3c90	44	__glKonInitColortableState	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21c3cc0	180	EramAlloc	dwarf	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c3d80	2208	__glkonim_ColorTableSGI	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c3d80	2208	__glkonim_ColorTableSGI	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c4620	128	__glkonle_ColorTableSGI	dwarf+dynsym	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21c46a0	176	PixelMapHostReadback	dwarf	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21c4750	200	PixelMapHostDownload	dwarf	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -46375,7 +46375,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdaa0	20	glVertex3iv
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdab4	12	glVertex3s	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdac0	20	glVertex3sv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdad4	12	glVertex4d	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdae0	20	glVertex4dv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdae0	20	glVertex4dv	dwarf+dynsym	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdaf4	12	glVertex4f	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdb00	20	glVertex4fv	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdb14	12	glVertex4i	dwarf+dynsym	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer

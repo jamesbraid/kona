@@ -148,7 +148,21 @@ Row mode 0: the image is `ceil((S + T) / 4) - floor(S / 4)` words. Row mode 1: e
 
 **Established: the DMA form** (`SendPixelsToPipe`; `arm_do_idma` 0x0c022df4, lines 0x0c023264-0x0c023290). With the DMA word set, the pixel handler starts no transfer; it stores its end routine (`BitmapEndStream`, or entry 4 of the draw-path record) in context word +0x73c and returns. The next `HP_DO_IDMA` fetches the image from host memory into the FIFO and, when it completes, calls the routine at +0x73c and clears it. libGLcore's `__glKonSendData` (0x0d950970) is the other side: when the descriptor's +180 word (header word 6 or 7) is 0 it stores the image through `__glkon_datavn`; otherwise it passes it to the kernel with ioctl 10001 (`KONA_DMAWRITE`), whose argument block names the DMA command.
 
-The other image commands share this tail through `ParseHostImage` and `SendPixelsToPipe`, each with its own header: `HP_COLORTABLE` (9 header words, `arm_colortable` 0x0c03e128), `HP_CONVOLUTIONFILTER1D` (7, 0x0c036c44), `HP_CONVOLUTIONFILTER2D` (8, 0x0c036d78), `HP_SEPARABLEFILTER2D` (9, 0x0c037150) and `HP_POLYGONSTIPPLE` (3, 0x0c02c7bc; the 32 x 32 stipple then follows as an image). In each the last header word is read through `r9 + 0x3c` or `r9 + 0x40` according to a flag word, as for the pixel commands. Each emitter in `kon_colortable.s` and `kon_convolve.s` ends its header with a call to `__glKonSendData`. What each of their header words means beyond the shared image fields is **unknown**: the handlers copy them into the descriptor and no route traced here names them.
+The other image commands share this tail through `ParseHostImage` and `SendPixelsToPipe`, each with its own header: `HP_COLORTABLE` (9 header words, `arm_colortable` 0x0c03e128), `HP_CONVOLUTIONFILTER1D` (7, 0x0c036c44), `HP_CONVOLUTIONFILTER2D` (8, 0x0c036d78), `HP_SEPARABLEFILTER2D` (9, 0x0c037150) and `HP_POLYGONSTIPPLE` (3, 0x0c02c7bc; the 32 x 32 stipple then follows as an image). In each the last header word is read through `r9 + 0x3c` or `r9 + 0x40` according to a flag word, as for the pixel commands. Each emitter in `kon_colortable.s` and `kon_convolve.s` ends its header with a call to `__glKonSendData`. **Established** (the handlers' stores into the pixel descriptor at 0x900, whose slots are named in the table above, and into a per-command record in the block at r8 + 0xcf4; the colour-table emitter `__glkonim_ColorTableSGI` in `kon_colortable.s`, which stores token 0xe8 and then the words in this order):
+
+| Word | `HP_COLORTABLE` | `HP_CONVOLUTIONFILTER1D` | `HP_CONVOLUTIONFILTER2D` | `HP_SEPARABLEFILTER2D` |
+|---|---|---|---|---|
+| 1 | GL target (mapped by `lut_index` to one of the colour tables) | internal format | internal format | internal format |
+| 2 | internal format (`internalformat_index`) | width (+0x00; height is forced to 1) | width | width |
+| 3 | width (+0x00; height forced to 1) | format code (+0x1c) | height (+0x04) | height |
+| 4 | width - 1 as a float (libGLcore adds -1.0 to the converted width) | type code (+0x14) | format code | format code |
+| 5 | format code (+0x1c) | byte offset (+0x4c) | type code | type code |
+| 6 | type code (+0x14) | data by DMA (+0x50) | byte offset | byte offset |
+| 7 | byte offset (+0x4c) | row mode (+0x54) | data by DMA | which filter: 1 = the row filter (its length is the width), otherwise the column filter (the height); stored at +0x58 as 0 or 1 |
+| 8 | data by DMA (+0x50) | | row mode | data by DMA |
+| 9 | row mode (+0x54) | | | row mode |
+
+Word 1 of the three filter commands is **inferred** to be the internal format: the token implies the target, the other GL arguments land in the named descriptor slots, and the internal format is the one left. The filter records sit at r8 + 0xcf4 + 0x564 (1D), + 0x5b0 (2D) and + 0x5fc (separable); each keeps the internal format at +0x10, the sizes at +0x4 and +0x8, format and type at +0x18 and +0x14. For a colour table the record is entry `lut_index` x 27 words + 1 of the same block: the GL internal format, its index, the width (+0x2c), and four component scales at +0x40-+0x4c. **Established** (`arm_colortable` 0x0c03e2a0-0x0c03e3a0): the firmware first rounds the width up to a hardware table of 256, 1024 or 4096 entries (size code 0xc, 0xd, 0xe at +0x68) with default scales 255.0, 1023.0 and 4095.0; it then overwrites the scale of every component the internal format has with word 4, so a colour component in [0, 1] times (width - 1) gives the table index. Internal-format index 5 takes only the fourth (alpha) scale, and indexes 0 and 2 leave the fourth at its default. **Inferred:** index 5 is alpha-only and 0 and 2 have no alpha, from which scales each one sets.
 
 ### Bitmaps in display lists: `HP_BITMAP_DLIST`
 
@@ -201,7 +215,21 @@ The executed list itself is ordinary command stream: tokens and payloads as ever
 
 For each present attribute it takes the token-map entry of the matching immediate-mode token (from `normal_table`, `color_table`, `tex_coord_table`, `index_table`, `vertex_table`, or `EDGEFLAG`), replaces its count and size bits from `wordCountTable`, `lastWrdTable` and `byteCmpTable`, and sets the chain bit (bit 3). The attribute order is normal, colour, texture coordinate, index, edge flag, vertex. Up to 8 built sets are cached by key (`varray_lru`). `varray_set_cmd_table` then sets the chain bit on `HP_VARRAY_BGN_LOOP`'s own map entry and writes the attribute entries, repeated 32 / k times for k attributes, into the hardware map slots of `HP_VARRAY_LOOP00` onward (0x183-0x1a2), clearing the chain bit on the last.
 
-`HP_VARRAY_BGN_LOOP` has three words, the vertex count first. The handler writes 0x183 to 0x200070 and ceil(count / (32 / k)) to 0x200074. **Inferred:** a chained map entry tells the hardware that the next payload words belong to the following map slot without a token word, so after `HP_VARRAY_BGN_LOOP` the vertex data arrive as bare attribute payloads in key order, and 0x200070 and 0x200074 make the hardware restart the walk at slot 0x183 that many times. The other two words are read and dropped. `HP_VARRAY_SETUP` and `HP_VARRAY_UNSETUP` are one word each. The meaning of the type codes in the key and the values in the three tables are **unknown**: the tables were not dumped for this page.
+`HP_VARRAY_BGN_LOOP` has three words, the vertex count first. The handler writes 0x183 to 0x200070 and ceil(count / (32 / k)) to 0x200074. **Inferred:** a chained map entry tells the hardware that the next payload words belong to the following map slot without a token word, so after `HP_VARRAY_BGN_LOOP` the vertex data arrive as bare attribute payloads in key order, and 0x200070 and 0x200074 make the hardware restart the walk at slot 0x183 that many times. The other two words are read and dropped. `HP_VARRAY_SETUP` and `HP_VARRAY_UNSETUP` are one word each. **Established** (the tables, dumped by [scripts/ge_varray_tables.py](../scripts/ge_varray_tables.py) from `arm1.u` 6.5.30m). Each table is indexed by [type][component count], five words per type. The token tables name, for each type, the immediate-mode token whose map entry the attribute borrows, which fixes the type codes:
+
+| Type code | Data type (from the tokens selected) | Words for 1, 2, 3, 4 components (`wordCountTable`) | Last-word code (`lastWrdTable`) | Size code (`byteCmpTable`) |
+|---|---|---|---|---|
+| 1 | signed byte (`COLOR3B`, `NORMAL3B`) | 1, 1, 1, 1 | 0, 1, 2, 3 | 0 |
+| 2 | unsigned byte (`COLOR3UB`) | 1, 1, 1, 1 | 0, 1, 2, 3 | 0 |
+| 3 | short (`VERTEX2S`, `TEXCOORD1S`, `INDEXS`) | 1, 1, 2, 2 | 1, 3, 1, 3 | 1 |
+| 4 | unsigned short (`COLOR3US`) | 1, 1, 2, 2 | 1, 3, 1, 3 | 1 |
+| 5 | int (`VERTEX2I`, `INDEXI`) | 1, 2, 3, 4 | 3, 3, 3, 3 | 2 |
+| 6 | unsigned int (`COLOR3UI`) | 1, 2, 3, 4 | 3, 3, 3, 3 | 2 |
+| 7 | float (`VERTEX2F`, `NORMAL3F`, `TEXCOORD1F`) | 1, 2, 3, 4 | 3, 3, 3, 3 | 2 |
+| 8-10 | no token in any table | 0 | 3 | 0 |
+| 11 | double (`VERTEX2D`, `COLOR3D`, `INDEXD`) | 2, 4, 6, 0 | 3, 3, 3, 3 | 3 |
+
+So the type code is the GL data type minus 0x13ff (`GL_BYTE` 0x1400 gives 1, `GL_FLOAT` 0x1406 gives 7, `GL_DOUBLE` 0x140a gives 11; 8-10 are the unused `GL_2_BYTES`, `GL_3_BYTES`, `GL_4_BYTES`). The word count is the payload words for that many packed components, the last-word code is the number of valid bytes in the last word minus one, and the size code is log2 of the component size in bytes. `varray_build_command` puts them into the borrowed map entry at bits 6-10 (word count), 27-28 (last-word code) and 29-30 (size code), after clearing those fields, and sets the chain bit 3; these are the distributor control fields of [ucode/ged.md](../ucode/ged.md). Which components each table offers is fixed by the non-zero token entries: vertex 2-4, normal 3, colour 3-4, index 1, texture coordinate 1-4; only colour takes the unsigned types and signed byte, and normal takes signed byte. A four-component double has word count 0 in the table, so a double `glVertex4dv` array has no hardware form; **inferred:** libGLcore never builds that key (not traced).
 
 ### Context, query and other long commands
 
