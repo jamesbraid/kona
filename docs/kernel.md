@@ -515,6 +515,8 @@ The identity words are 32-bit values, one per chip, whose test macros in the hea
 
 ## Function reference
 
+One entry per `kona.a` function, with its role, hardware effect and where it was read, is in [kernel-functions.md](kernel-functions.md). The sections below are the longer treatment.
+
 Every function of `kona.a`, `gfx.o`, `rrm.o` and `gfxs.a` in the 6.5.30m `IP27boot` kernel objects, grouped by object and family. Read from annotated disassembly: `scripts/kernel_annotate.py OBJECT` prints `objdump -dr` with call targets and the string literals each instruction addresses. `gfxs.a` holds a byte-identical copy of `gfx.o` plus `gfx_flow.o`, `gfx_debug.o` and `klconfig.o`. Functions documented in the sections above are not repeated.
 
 ### Generic graphics layer (`gfx.o`)

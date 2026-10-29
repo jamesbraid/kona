@@ -2,6 +2,8 @@
 
 Sources: `usr/lib/X11/dyDDX/kona.so` (6.5.30m; the same functions appear in `konad.so`, `konal.so` and `konas.so`, the other builds of the module the server loads for other configurations) and the per-module assembly in [ddx/asm/kona/](../ddx/asm/kona/). The X server loads the module as the device-dependent part of the Kona screen: it layers a Kona-specific drawing and window layer (`kon*`) over SGI's new frame-buffer layer (`nfb*`), the generic colour and mono frame-buffer code (`cfb*`, `mfb*`) and the machine-independent code (`mi*`). Roles are **inferred** from the function names and from the neighbouring documents ([opengl.md](opengl.md), [dg.md](dg.md)); the functions those documents already read in detail are not repeated. Where a function is the standard routine of the same name in the X11 sample server (the `mi`, `mfb` and `cfb` layers), the table says so and nothing more.
 
+One entry per function for the stereo wrappers, context hooks, caches, cursor and resource-manager hooks is in [kona-so-functions.md](kona-so-functions.md).
+
 ## Kona-specific layer (`kon*`, `kon_*`)
 
 | Group | Role | Functions |
