@@ -1568,7 +1568,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005b0a8	1072	TEST_arminit	dyn
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005b4d8	784	TEST_befsdram	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005bff4	1216	SetBefConfig	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005c4b4	804	TEST_befintram	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005da64	1376	TEST_befshadow	dynsym	named-only	docs/irsaudit.md#tests	Tests
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005da64	1376	TEST_befshadow	dynsym	understood	RM.h:436	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005f110	1272	shell_func	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005f608	744	shell_write_ram	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005f8f0	752	shell_read_ram	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -1626,7 +1626,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10068b6c	504	fpln_init	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10068d64	1320	fpln_test	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006928c	248	fpln_stop	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100693cc	1964	TEST_fpconn	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10069b78	1056	TEST_framebuf	dynsym	named-only	RM.h:887	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10069b78	1056	TEST_framebuf	dynsym	understood	RM.h:964	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006b14c	444	ge12_init	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006b308	764	ge12_splitge_test	dynsym	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006b604	740	ge12_multige_test	dynsym	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
@@ -1717,14 +1717,14 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100835c8	224	ge12_external_mem
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100836a8	940	rm6_external_memory_config	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10083a54	1200	TEST_ge_extbist	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10083f04	1688	TEST_rm_extbist	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008459c	912	TEST_rbstress	dynsym	named-only	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008459c	912	TEST_rbstress	dynsym	understood	RM.h:964	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10085904	1712	TEST_readback_comp	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10085fb4	884	TEST_readback	dynsym	named-only	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10085fb4	884	TEST_readback	dynsym	understood	RM.h:963	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087bd8	352	rm6_init	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087d38	616	rm6_test	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087fa0	192	rm6_stop	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10088060	2008	TEST_rmconn	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10088838	1684	TEST_rmstress	dynsym	named-only	RM.h:1455	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10088838	1684	TEST_rmstress	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008a820	1108	basicSanityReg	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008ac74	732	icuSanity	dynsym	named-only	docs/hip.md#the-token-map-seen-from-the-host	The token map seen from the host
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008af50	1024	TEST_arm_sdram	dynsym	named-only	docs/irsaudit.md#tests	Tests
@@ -1735,7 +1735,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008cbd8	856	unscramble_ge_boa
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008cf30	828	unscramble_dg_boardId	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008d26c	644	unscramble_rm_boardId	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008d4f0	804	TEST_tbstress	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008db24	1964	TEST_texmem	dynsym	understood	RM.h:663	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008db24	1964	TEST_texmem	dynsym	understood	RM.h:722	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008fddc	1992	TEST_texmem2	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10091fb0	2940	TEST_texmem3	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10094350	1460	TEST_ge_tbus_walk	dynsym	named-only	docs/irsaudit.md#tests	Tests
@@ -1753,7 +1753,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10096ea4	1944	run_video	dynsym
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009763c	172	TEST_video	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100976e8	3392	run_optvideo	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10098428	160	TEST_optvideo	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10098d2c	588	ReqVideo	dynsym	named-only	RM.h:1454	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10098d2c	588	ReqVideo	dynsym	understood	RM.h:1568	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009b6b8	580	vdrc_en	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009ba1c	2680	run_video2	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009c494	160	TEST_video2	dynsym	named-only	docs/irsaudit.md#tests	Tests
@@ -1833,13 +1833,13 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bf42c	1304	init_bl	dynsym	n
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bf944	788	init_addr	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bfc58	504	init_accum	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bfe50	676	init_user_color	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c00f4	676	init_clear_color	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c00f4	676	init_clear_color	dynsym	understood	RM.h:1297	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0398	668	init_mask_color	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0634	148	init_ms_loc	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c06c8	380	init_tf	dynsym	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0ea4	820	TEST_rmvis	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c4320	1748	TEST_miniread	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c5d20	1512	TEST_texread	dynsym	understood	RM.h:761	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c5d20	1512	TEST_texread	dynsym	understood	RM.h:780	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c6d2c	820	TEST_fbread	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c7e0c	1216	TEST_fbread_video	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c8f64	656	TEST_pixelcopy	dynsym	named-only	docs/irsaudit.md#tests	Tests
@@ -1867,10 +1867,10 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d0fe4	1112	TEST_rmcrctex	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d143c	1116	TEST_rmcrctex1	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d1bd0	4504	draw_random_thing	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d3f38	2204	crc_tex1_draw	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d47d4	7684	crc_pgtest	dynsym	understood	RM.h:1247	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d47d4	7684	crc_pgtest	dynsym	understood	RM.h:1355	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d65d8	3740	crc_pgtest1	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d8b78	7700	crc_imptest1	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100de250	280	crc_tex1_load	dynsym	named-only	RM.h:903	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100de250	280	crc_tex1_load	dynsym	named-only	RM.h:982	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100dffb8	10180	TEST_rm_chains	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100e277c	5412	TEST_rm_chainlen	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100e3ca0	460	TEST_rm_sysloop	dynsym	named-only	docs/irsaudit.md#tests	Tests
@@ -2054,7 +2054,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101000d4	5824	test_prims	dynsy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101022b8	1172	TEST_aaspoke	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1010274c	2956	aaspoke	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10103594	636	TEST_checktex	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10103810	1056	TestTex	dynsym	understood	RM.h:781	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10103810	1056	TestTex	dynsym	understood	RM.h:847	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10104794	884	TEST_callig	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10104b08	188	test_callig	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1010538c	448	TEST_swap	dynsym	named-only	docs/irsaudit.md#tests	Tests
@@ -2123,16 +2123,16 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011e958	2908	dgo_pixel_readba
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011f4b4	900	gvo_crc_test	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101200b0	776	gvo_low_latency_test	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1012042c	1428	TEST_clipmap	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10120ac8	1156	levelizeMipmap	dynsym	named-only	RM.h:903	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10120ac8	1156	levelizeMipmap	dynsym	named-only	RM.h:982	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10124060	1276	TEST_texfmt	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10125d54	1508	TEST_texdetail	dynsym	understood	RM.h:663	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10127bd8	1072	TEST_txlut	dynsym	understood	RM.h:988	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10125d54	1508	TEST_texdetail	dynsym	understood	RM.h:722	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10127bd8	1072	TEST_txlut	dynsym	understood	RM.h:1083	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10128954	1728	TEST_texrndm	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101296e8	700	my_glTexParameterf	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101299a4	184	my_glTexParameterfv	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10129a5c	708	my_glTexParameteri	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10129d20	184	my_glTexParameteriv	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10129dd8	3528	my_glKonTexParameter	dynsym	understood	RM.h:951	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10129dd8	3528	my_glKonTexParameter	dynsym	understood	RM.h:1046	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1012d828	1612	TEST_texobjdetail	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1012f7f8	32	ogLibGetSeed	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1012f818	32	ogLibSetSeed	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2266,7 +2266,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e934	284	read_hub_rtc	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ea50	68	tlForce	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ea94	72	tlRelease	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eadc	96	tlDelay	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eb3c	144	tbRegWrite	dynsym	located	RM.h:58	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eb3c	144	tbRegWrite	dynsym	understood	RM.h:437	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ebcc	292	tbVertex	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ecf0	176	tbTextureCoord	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eda0	176	tbTextureCoord1	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2346,10 +2346,10 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143138	188	tbuGetNComponents
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101431f4	108	tbuGetNTexelBytes	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143260	300	tbuPrintFormattedTexels	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014338c	192	tbuFormat3D	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014344c	712	tbuStartTMReadback	dynsym	named-only	RM.h:670	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143714	1476	tbuEnablePassR	dynsym	named-only	RM.h:767	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143cd8	1496	tbuEnablePassRCCT	dynsym	named-only	RM.h:768	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101442b0	1540	tbuEnableFog	dynsym	understood	RM.h:830	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014344c	712	tbuStartTMReadback	dynsym	named-only	RM.h:729	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143714	1476	tbuEnablePassR	dynsym	understood	RM.h:838	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143cd8	1496	tbuEnablePassRCCT	dynsym	understood	RM.h:839	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101442b0	1540	tbuEnableFog	dynsym	understood	RM.h:906	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101448b4	1932	tbuDoShadow	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10145040	2044	tbuLoadDetail	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014583c	248	tbuAssignSTBits	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2359,15 +2359,15 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10146714	188	tbuSendDrawID	dyn
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101467d0	188	tbuSendLoadID	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014688c	184	tbuDrawWaitOnLoadID	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10146944	8	tbuMapNextLoadID	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014694c	3260	tbuLoadMipmap	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10147608	2792	tbuLoadBicubic	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101480f0	2812	tbuLoadTexture	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014694c	3260	tbuLoadMipmap	dynsym	understood	RM.h:796	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10147608	2792	tbuLoadBicubic	dynsym	understood	RM.h:797	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101480f0	2812	tbuLoadTexture	dynsym	understood	RM.h:796	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10148bec	2792	tbuLoadMipmap3D	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101496d4	2468	tbuLoad3D	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014a528	212	tbuEnableCubeMap	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014a5fc	1200	tbuBindCubeMap	dynsym	understood	RM.h:634	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014aaac	7164	tbuBindTextureCCT	dynsym	understood	RM.h:457	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014c6a8	7504	tbuBindTexture	dynsym	understood	RM.h:457	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014a5fc	1200	tbuBindCubeMap	dynsym	understood	RM.h:693	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014aaac	7164	tbuBindTextureCCT	dynsym	understood	RM.h:489	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014c6a8	7504	tbuBindTexture	dynsym	understood	RM.h:489	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e548	16	tbuAttachDetailMap	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e558	52	log2	dynsym	located	RM.h:223	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e58c	260	tbuClipBorder	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2389,10 +2389,10 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154238	324	tbuLoadBicubicTab
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015437c	324	tbuLoadBicubicTable2	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101544c0	340	tbuLoadSharpenTable	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154614	340	tbuLoadDetailTable	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154768	728	tbuLoadTLut	dynsym	understood	RM.h:988	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154768	728	tbuLoadTLut	dynsym	understood	RM.h:1083	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154a40	296	tbuTexEnv	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154b68	332	tbuTexOnOff	dynsym	understood	RM.h:761	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154cb4	18096	tbuRegReset	dynsym	understood	RM.h:458	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154b68	332	tbuTexOnOff	dynsym	understood	RM.h:831	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154cb4	18096	tbuRegReset	dynsym	understood	RM.h:466	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10159364	3692	tbuInit	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015a1d0	84	tbuInitKonaJtag	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015a8cc	892	tbuWaitDone	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2618,14 +2618,14 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016c0c	408	show_arm_sram_section	dynsym
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016da4	1120	show_arm_sdram_section	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017204	368	hipReset	dynsym	understood	HIP.h:568	
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100173b0	1152	analyze_hip	dynsym	understood	HIP.h:461	
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017830	1872	befFIFOInspection	dynsym	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017830	1872	befFIFOInspection	dynsym	no-software-dependency	RM.h:392	
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100180cc	228	bef_reset	dynsym	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001890c	340	bef_set_current_ge	dynsym	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10018a60	720	befShadowDrain	dynsym	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10018d30	864	save_bef_configuration	dynsym	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019090	384	show_bef_perfregs_section	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019210	444	show_bef_shadow_section	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100193cc	1500	show_bef_fifo_section	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100193cc	1500	show_bef_fifo_section	dynsym	no-software-dependency	RM.h:392	
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100199a8	680	analyze_bef	dynsym	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019c50	456	gedReset	dynsym	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019e3c	164	ged_register_write	dynsym	named-only	docs/kpm.md#capture	Capture
@@ -14677,7 +14677,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a044	148	__glKonInval
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a0d8	224	__glKonFreeARMTexCache	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a1b8	76	__glKonTexChecksum	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a204	376	__glKonTexQuickSortPairs	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a37c	392	__glKonTexGetCubicSpline	dynsym+mdebug	named-only	RM.h:114	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a37c	392	__glKonTexGetCubicSpline	dynsym+mdebug	understood	RM.h:1014	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a504	432	__glKonTexEvaluateCubicSpline	dynsym+mdebug	named-only	RM.h:115	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a6b4	172	__glKonTexExp2NegX64	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a760	868	__glKonEvalEnable	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -20219,7 +20219,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd978df0	148	__glKonInv
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd978e90	200	__glKonFreeARMTexCache	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd978f60	192	__glKonTexChecksum	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd979020	432	__glKonTexQuickSortPairs	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9791d0	820	__glKonTexGetCubicSpline	dwarf+dynsym	named-only	RM.h:114	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9791d0	820	__glKonTexGetCubicSpline	dwarf+dynsym	understood	RM.h:1014	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd979510	436	__glKonTexEvaluateCubicSpline	dwarf+dynsym	named-only	RM.h:115	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9796d0	124	__glKonTexExp2NegX64	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd979750	812	__glKonEvalEnable	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25799,7 +25799,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddb660	148	__glKonInv
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddb700	200	__glKonFreeARMTexCache	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddb7d0	192	__glKonTexChecksum	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddb890	456	__glKonTexQuickSortPairs	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddba60	820	__glKonTexGetCubicSpline	dwarf+dynsym	named-only	RM.h:114	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddba60	820	__glKonTexGetCubicSpline	dwarf+dynsym	understood	RM.h:1014	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddbda0	436	__glKonTexEvaluateCubicSpline	dwarf+dynsym	named-only	RM.h:115	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddbf60	124	__glKonTexExp2NegX64	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddbfe0	804	__glKonEvalEnable	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31376,7 +31376,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a044	148	__glKonInval
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a0d8	224	__glKonFreeARMTexCache	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a1b8	76	__glKonTexChecksum	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a204	376	__glKonTexQuickSortPairs	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a37c	392	__glKonTexGetCubicSpline	dynsym+mdebug	named-only	RM.h:114	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a37c	392	__glKonTexGetCubicSpline	dynsym+mdebug	understood	RM.h:1014	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a504	432	__glKonTexEvaluateCubicSpline	dynsym+mdebug	named-only	RM.h:115	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a6b4	172	__glKonTexExp2NegX64	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a760	868	__glKonEvalEnable	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36918,7 +36918,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd978df0	148	__glKonInv
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd978e90	200	__glKonFreeARMTexCache	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd978f60	192	__glKonTexChecksum	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd979020	432	__glKonTexQuickSortPairs	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9791d0	820	__glKonTexGetCubicSpline	dwarf+dynsym	named-only	RM.h:114	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9791d0	820	__glKonTexGetCubicSpline	dwarf+dynsym	understood	RM.h:1014	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd979510	436	__glKonTexEvaluateCubicSpline	dwarf+dynsym	named-only	RM.h:115	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9796d0	124	__glKonTexExp2NegX64	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd979750	812	__glKonEvalEnable	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42498,7 +42498,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bb660	148	__glKonInv
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bb700	200	__glKonFreeARMTexCache	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bb7d0	192	__glKonTexChecksum	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bb890	456	__glKonTexQuickSortPairs	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bba60	820	__glKonTexGetCubicSpline	dwarf+dynsym	named-only	RM.h:114	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bba60	820	__glKonTexGetCubicSpline	dwarf+dynsym	understood	RM.h:1014	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bbda0	436	__glKonTexEvaluateCubicSpline	dwarf+dynsym	named-only	RM.h:115	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bbf60	124	__glKonTexExp2NegX64	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bbfe0	804	__glKonEvalEnable	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
