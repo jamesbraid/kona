@@ -957,11 +957,24 @@ enum kona_vfo_signal {
  * VOC register names of the vof/*.vof comment list matched by role
  * (INFERRED); that list gives no numbers.
  */
-#define KONA_VOC_STATUS               0x00    /* read by dgFlushStatus, dgMakeVocFetal */
-#define KONA_VOC_CONTROL              0x01    /* [VOC_CONTROL] read-modify-written by the requester
-                                               * start and stop and the genlock code; bits 11-9 =
-                                               * output pixel mux, from the pixels-per-clock word
-                                               * through the table at 0x040416c4 (LoadFormat) */
+/*
+ * KONA_VOC_STATUS: VOC register 0, status. Established: arm1.u
+ * `dgFlushStatus` (at 0x0c005f78) reads it and ORs it into an accumulating
+ * word, `dgMakeVocFetal` (at 0x0c00a0e0) reads it once at start-up, and
+ * `dgGetInterruptState` (at 0x0c005f98) reads the master VOC's copy at
+ * 0x300; no firmware path writes it. Inferred: it latches events such as the
+ * frame toggle in bit 7, and reading it is how the firmware collects them. */
+#define KONA_VOC_STATUS               0x00
+/*
+ * KONA_VOC_CONTROL: VOC register 1, control. Established: arm1.u
+ * `DoDGRqstEnableChannel` (at 0x0c00bad4), `dgStartupRequesters` (at
+ * 0x0c005b20), `dgShutdownChannelGenlockNicely` (at 0x0c005d44) and
+ * `dgLoadChannelGenlockParams` (at 0x0c005368) read-modify-write it, and
+ * `dgMakeVocFetal` (at 0x0c009cc0) writes 0; `DoDGRqstLoadFormat` (at
+ * 0x0c00b550) sets bits 11-9 from the pixels-per-clock word through the
+ * table at 0x040416c4. Inferred: bits 1-0 enable the channel and the upper
+ * bits carry interrupt enables and the output pixel mux. */
+#define KONA_VOC_CONTROL              0x01
 /*
  * VOC_CONTROL low bits. ESTABLISHED as written: bits 1-0 take 1 when a
  * channel is enabled (DoDGRqstEnableChannel, dgStartupRequesters), 2 in
@@ -983,8 +996,15 @@ enum kona_vfo_signal {
 #define KONA_VOC_CTL_EXT_FRAME_INT    (1u << 5)
 #define KONA_VOC_CTL_VDRC_INT         (1u << 6)
 #define KONA_VOC_CTL_HOST_INT         (1u << 7)
-#define KONA_VOC_02                   0x02    /* written 0 then 1 around enabling (dgStartupRequesters,
-                                               * DoDGRqstEnableChannel, dgResize) */
+/*
+ * KONA_VOC_02: VOC register 2, written 0 and then 1 around channel enable.
+ * Established: arm1.u `dgStartupRequesters` writes 0 (at 0x0c005ad4) and
+ * later 1 (at 0x0c005bb4); `DoDGRqstEnableChannel` (at 0x0c00ba80 and
+ * 0x0c00bdd8) and `dgResize` (at 0x0c00f5f0 and 0x0c00fcc8) write the same
+ * pair, and `dgShutdownChannelGenlockNicely` (at 0x0c005cf8) writes the 0.
+ * Inferred: it holds the channel in a reset or hold state while the
+ * registers around it change, then releases it. */
+#define KONA_VOC_02                   0x02
 /*
  * Input window, ESTABLISHED (dgLoadVocIwsc 0x0c00e104). A groupxel is four
  * pixels: the function divides x by 4 and rounds the width up to 4.
@@ -997,40 +1017,114 @@ enum kona_vfo_signal {
  * Bracketed names matched by content (INFERRED); the .vof list's order
  * (origin, size, screen) is not the register order.
  */
+/*
+ * KONA_VOC_IWSC_SCREEN: VOC register 3, input-window screen word.
+ * Established: `dgLoadVocIwsc` (arm1.u at 0x0c00e1a8) stores the channel
+ * record's first word masked to its low five bits, with the screen width in
+ * four-pixel groups minus one in bits 14-5, and warns when the width falls
+ * under 4 groups. Inferred: it tells the VOC how wide the framebuffer line
+ * is that the input window sits in. */
 #define KONA_VOC_IWSC_SCREEN          0x03
+/*
+ * KONA_VOC_IWSC_ORIGIN: VOC register 4, input-window origin. Established:
+ * `dgLoadVocIwsc` (arm1.u at 0x0c00e24c) stores the window's x divided by 4
+ * in bits 21-12 and y in bits 11-0, or 0 for both when the VOC is its own
+ * write VOC. Inferred: it positions the input window's top-left corner
+ * within the screen defined by register 3, in groups of four pixels
+ * horizontally. */
 #define KONA_VOC_IWSC_ORIGIN          0x04
+/*
+ * KONA_VOC_IWSC_SIZE: VOC register 5, input-window size. Established:
+ * `dgLoadVocIwsc` (arm1.u at 0x0c00e2c8) stores the width rounded up to
+ * four-pixel groups in bits 21-12 and the height in bits 11-0. Inferred:
+ * with registers 3 and 4 it bounds the rectangle the VOC lets through from
+ * the framebuffer stream. */
 #define KONA_VOC_IWSC_SIZE            0x05
 #define KONA_GROUPXEL_PIXELS          4
-#define KONA_VOC_VOF_CONTROL          0x06    /* [VOC_VOF_CONTROL] bit 3 set then cleared before the
-                                               * state table is streamed (clear state pointer); bits
-                                               * 8-4 select line type 0-31 before 0x0a/0x0b and
-                                               * signal 0-13 before its edge slots */
+/*
+ * KONA_VOC_VOF_CONTROL: VOC register 6, output-format control. Established:
+ * `DoDGRqstLoadFormat` (arm1.u at 0x0c00ac6c, 0x0c00acb4 and 0x0c00af24)
+ * sets and clears bit 3 around streaming the state table and puts a line-
+ * type or signal number in bits 8-4 before registers 0xa, 0xb and 0xc onward
+ * are written; `dgMakeVocFetal` (at 0x0c009da4 and 0x0c009d64) writes 0 and
+ * 0x10. Inferred: bit 3 clears the state pointer and bits 8-4 are a select
+ * index for the sequencer's tables. */
+#define KONA_VOC_VOF_CONTROL          0x06
 #define KONA_VOF_CLR_STATE_PTR        (1u << 3)
 #define KONA_VOF_SELECT_MASK          0x1f0
-#define KONA_VOC_VOF_INITIAL          0x07    /* bits 13-0 = initial level of the 14 sequencer
-                                               * signals, 1 = high, in kona_vfo_signal order; bits
-                                               * 17-18 or-ed in when the DG4 revision decodes below
-                                               * 1 ("rev %d DG4 disables H & V sync outputs") */
+/*
+ * KONA_VOC_VOF_INITIAL: VOC register 7, initial signal levels of the timing
+ * sequencer. Established: `DoDGRqstLoadFormat` (arm1.u at 0x0c00ac18,
+ * 0x0c00b108 and 0x0c00b2fc) writes bits 13-0 as the initial level of the 14
+ * signals and ORs 0x60000 in when the DG4 revision decodes below 1, with a
+ * message about disabled sync outputs; `dgMakeVocFetal` (at 0x0c009de8)
+ * writes 0. Inferred: a 1 starts that signal high. */
+#define KONA_VOC_VOF_INITIAL          0x07
 #define KONA_VOF_DISABLE_HV_SYNC      0x60000
-#define KONA_VOC_08                   0x08    /* LoadFormat words 297-300 into bits 12-0, 25-13,
-                                               * 28-26 and 29; read by dgAdjustVPhase */
-#define KONA_VOC_STATE_PORT           0x09    /* state table, LoadFormat words 33 onward written
-                                               * one after another to this one address
-                                               * (INFERRED: an auto-incrementing port) */
-#define KONA_VOC_LINE_A               0x0a    /* selected line type: edge mask, edges 0-31 */
-#define KONA_VOC_LINE_B               0x0b    /* selected line type: bits 30-18 length - 3,
-                                               * bits 17-0 edge mask, edges 32-49 */
-#define KONA_VOC_EDGE(n)              (0x0c + (n)) /* edge slot n (0-7) of the selected signal:
-                                               * bits 12-0 position, 0x1fff = slot unused */
-#define KONA_VOC_BLANK                0x14    /* [VOC_VOF_PIXEL_BLANK_FIRST/LAST] bits 7-0 and 15-8
-                                               * from LoadFormat words 29 and 30, bit 16 word 28 */
-#define KONA_VOC_PFD                  0x30    /* 0x30-0x32: genlock frame detection
-                                               * (dgLoadChannelGenlockParams) */
-#define KONA_VOC_VDRC                 0x43    /* 0x43-0x4a, 0x50, 0x58, 0x60: video requester
-                                               * (dgConfigureVideoRequester); 0x44 holds the enable
-                                               * the start and stop code tests [VOC_VDRC_CONTROL];
-                                               * 0x60 is also the field-sequential and stereo table
-                                               * (dgLoadFieldSequentialAndStereo) */
+/*
+ * KONA_VOC_08: VOC register 8, line-length limits. Established:
+ * `DoDGRqstLoadFormat` (arm1.u at 0x0c00b974) writes request words 297 to
+ * 300 into bits 12-0, 25-13, 28-26 and 29, and `dgAdjustVPhase` (at
+ * 0x0c01197c) reads it. Inferred: the 13-bit fields are the maximum line
+ * count and the genlock line position, which the vertical-phase adjustment
+ * reads back and edits. */
+#define KONA_VOC_08                   0x08
+/*
+ * KONA_VOC_STATE_PORT: VOC register 9, state-table port. Established:
+ * `DoDGRqstLoadFormat` (arm1.u at 0x0c00ad20) writes the state words from
+ * request word 33 onward one after another to this single address after
+ * clearing the state pointer in register 6. Inferred: the VOC advances its
+ * internal state pointer on every write, so the whole sequencer table loads
+ * through this one register. */
+#define KONA_VOC_STATE_PORT           0x09
+/*
+ * KONA_VOC_LINE_A: VOC register 0xa, line-type edge mask, low part.
+ * Established: `DoDGRqstLoadFormat` (arm1.u at 0x0c00ade8) writes one word
+ * per line type, 32 of them, after the line type is selected in register 6.
+ * Inferred: the word holds the mask of which of edge slots 0 to 31 fire on
+ * that line type. */
+#define KONA_VOC_LINE_A               0x0a
+/*
+ * KONA_VOC_LINE_B: VOC register 0xb, line-type length and edge mask, high
+ * part. Established: `DoDGRqstLoadFormat` (arm1.u at 0x0c00ae30) writes one
+ * word per line type with the length minus 3 in bits 30-18 and the mask for
+ * edges 32 to 49 in bits 17-0. Inferred: together with register 0xa it
+ * defines each line type's duration and which of the 50 edge slots it
+ * triggers. */
+#define KONA_VOC_LINE_B               0x0b
+/*
+ * KONA_VOC_EDGE: VOC registers 0xc to 0x13, edge slots 0 to 7 of the
+ * selected signal. Established: `DoDGRqstLoadFormat` (arm1.u at 0x0c00af78)
+ * writes the position in bits 12-0, with 0x1fff meaning unused, after a
+ * signal number goes into register 6; `DoDGRqstHPhase` (at 0x0c011894 and
+ * 0x0c0118dc) rewrites slots 0 and 1. Inferred: the horizontal phase
+ * adjustment moves the first two edges of a signal to shift the picture
+ * sideways. */
+#define KONA_VOC_EDGE(n)              (0x0c + (n))
+/*
+ * KONA_VOC_BLANK: VOC register 0x14, blanking pixel positions. Established:
+ * `DoDGRqstLoadFormat` (arm1.u at 0x0c00b4a0) sets bits 7-0 and 15-8 from
+ * request words 29 and 30 and bit 16 from word 28; `dgMakeVocFetal` (at
+ * 0x0c00a01c) writes 0x10000. Inferred: the two bytes are the first and last
+ * visible pixel of a line and bit 16 enables the blanking. */
+#define KONA_VOC_BLANK                0x14
+/*
+ * KONA_VOC_PFD: VOC registers 0x30 to 0x32, genlock phase-frequency
+ * detector. Established: `dgLoadChannelGenlockParams` (arm1.u at 0x0c00528c,
+ * 0x0c005198 and 0x0c0051e0) writes all three; `dgEnableChannelGenlock` (at
+ * 0x0c005724) writes register 0x30, and `dgIsVocPresent` (at 0x0c010fbc)
+ * probes register 0x31 by writing 1000 and 0 to 0x31 and 0x32 and reading
+ * 0x31 back. Inferred: they hold the detector's sequence and phase limits. */
+#define KONA_VOC_PFD                  0x30
+/*
+ * KONA_VOC_VDRC: VOC register 0x43, the genlock enable bit. Established:
+ * arm1.u `dgLoadChannelGenlockParams` (at 0x0c00531c, 0x0c0053b8 and
+ * 0x0c005418) and `dgEnableChannelGenlock` (at 0x0c0055b0 and 0x0c005788)
+ * clear bit 0, call `sleep` with 0x32 and set it again; `dgMakeVocFetal` (at
+ * 0x0c009e74) writes 0. It is not a video-requester register, as an earlier
+ * comment that grouped it with 0x44 to 0x4a said; the requester code writes
+ * 0x45 first. Inferred: bit 0 resets the genlock logic. */
+#define KONA_VOC_VDRC                 0x43
 /*
  * Video requester, ESTABLISHED as built by dgConfigureVideoRequester
  * (0x0c00e324). Bracketed names are the .vof list's VOC_VDRC_* names, matched
@@ -1063,14 +1157,74 @@ enum kona_vfo_signal {
  *   0x60 + f: the channel record's word at +0xe8 + 16f with bits 23-12 = the
  *        window height and bits 27-24 = a field line offset.
  */
+/*
+ * KONA_VDRC_CONTROL: VOC register 0x44, video-requester control.
+ * Established: arm1.u `dgConfigureVideoRequester` (at 0x0c00ef14) read-
+ * modify-writes bits 6-5, 7 and 10-8, `dgEnableRequester` (at 0x0c00a968)
+ * replaces bit 0 with its argument, and `dgStartupRequesters` (at
+ * 0x0c005b70) sets bit 0. Inferred: bit 0 starts and stops the requester;
+ * which of the remaining bits is pixel size, dither, transfer size or alpha
+ * transfer is not shown by any code. */
 #define KONA_VDRC_CONTROL             0x44
+/*
+ * KONA_VDRC_MAW: VOC register 0x45, memory-access width. Established:
+ * `dgConfigureVideoRequester` (arm1.u at 0x0c00e3ac) stores
+ * DGGlobalState+0x36b4, the number of tiles per framebuffer row; the .vof
+ * sample comments it as 640 by 480. Inferred: it tells the requester how
+ * many tiles make up one framebuffer row. */
 #define KONA_VDRC_MAW                 0x45
+/*
+ * KONA_VDRC_START_LINE: VOC register 0x47, first request of a window line.
+ * Established: `dgConfigureVideoRequester` (arm1.u at 0x0c00e7b4) stores the
+ * START request word; a window inside one request writes 0 here (at
+ * 0x0c00e9c4). Inferred: a window wider than one request begins with this
+ * word, whose tile and groupxel fields the requester uses for the first
+ * span. */
 #define KONA_VDRC_START_LINE          0x47
+/*
+ * KONA_VDRC_MIDDLE_LINE: VOC register 0x48, repeated middle request of a
+ * window line. Established: `dgConfigureVideoRequester` (arm1.u at
+ * 0x0c00e868) stores the MIDDLE request word with a repeat count in bits
+ * 22-15, and writes 0 (at 0x0c00e8d0) for a narrow window. Inferred: the
+ * requester repeats this word the stated number of times between the first
+ * and last spans. */
 #define KONA_VDRC_MIDDLE_LINE         0x48
+/*
+ * KONA_VDRC_END_LINE: VOC register 0x49, last request of a window line.
+ * Established: `dgConfigureVideoRequester` (arm1.u at 0x0c00e970 and
+ * 0x0c00ea9c) stores the END request word, never with the valid bit; a
+ * narrow window fills only this register. Inferred: it ends each line with
+ * the remaining tiles. */
 #define KONA_VDRC_END_LINE            0x49
+/*
+ * KONA_VDRC_PAN: VOC register 0x4a, horizontal pan. Established:
+ * `dgConfigureVideoRequester` (arm1.u at 0x0c00e4a4) stores (x mod 160)
+ * divided by 4 in bits 5-0 and a second value mod 4 in bits 7-6. Inferred:
+ * bits 5-0 start the first tile partway in, in groups of four pixels; what
+ * the bit 7-6 field adjusts is not shown by any code. */
 #define KONA_VDRC_PAN                 0x4a
+/*
+ * KONA_VDRC_FIELD_A: VOC registers 0x50 to 0x57, per-field start word A.
+ * Established: `dgConfigureVideoRequester` (arm1.u at 0x0c00ecb8) stores,
+ * for field f, the line within the 80-line period in bits 6-0, the first
+ * tile address in bits 19-7 and a layout code in bits 23-20. Inferred: it
+ * tells the requester where field f begins in the framebuffer; register 0x58
+ * + f receives the same word. */
 #define KONA_VDRC_FIELD_A(f)          (0x50 + (f))
+/*
+ * KONA_VDRC_FIELD_B: VOC registers 0x58 to 0x5f, per-field start word B.
+ * Established: `dgConfigureVideoRequester` (arm1.u at 0x0c00ed00) writes the
+ * same word it sent to register 0x50 + f. Inferred: a second copy, perhaps
+ * for another buffer or eye, which this firmware always sends the same word. */
 #define KONA_VDRC_FIELD_B(f)          (0x58 + (f))
+/*
+ * KONA_VDRC_REQ_PATTERN: VOC registers from 0x60, field window pattern.
+ * Established: `dgConfigureVideoRequester` (arm1.u at 0x0c00edc8) stores the
+ * channel record's word at +0xe8 plus 16 per field with bits 23-12 set to
+ * the window height and bits 27-24 to a field line offset;
+ * `dgLoadFieldSequentialAndStereo` (at 0x0c00a8b8) writes the same address
+ * range with colour and eye flag bits, and no code reconciles the two
+ * writers. */
 #define KONA_VDRC_REQ_PATTERN(f)      (0x60 + (f))
 #define KONA_TILE_WIDTH               160
 #define KONA_TILE_HEIGHT              8
@@ -1080,17 +1234,45 @@ enum kona_vfo_signal {
 #define KONA_VDRC_REQ_GROUPXELS_M1    0x00003ff8  /* bits 13-3: groupxels in the line - 1 */
 #define KONA_VDRC_REQ_VALID           0x00004000  /* set in START and MIDDLE, never in END */
 #define KONA_VDRC_REQ_REPEAT          0x007f8000  /* bits 22-15, MIDDLE only: repeat count */
-#define KONA_VOC_PLL_CONTROL          0x70    /* [VOC_PLL_CONTROL] polled by dgWaitForVocPllInterface,
-                                               * written by dgProgramClock; 0x71 and 0x73 written
-                                               * by dgLoadVocClockParams */
-#define KONA_VOC_GEN                  0x81    /* 0x81-0x84 [VOC_GEN_*]: clock source
-                                               * (dgSelectVocClockSrc) and genlock; LoadFormat puts
-                                               * word 295 in 0x81 bits 11-2 and word 296 in 0x82
-                                               * bits 21-14 */
-#define KONA_VOC_FIFO                 0x8a    /* [VOC_FIFO_CONTROL] dgResetVocFifo writes 0x2301;
-                                               * LoadFormat sets bit 12 = word 278, bit 13 = !word 278 */
-#define KONA_VOC_FIELD_DOMINANCE      0x8f    /* DoDGRqstChannelFieldDominance, dgResize */
-#define KONA_VOC_SIZ                  0x90    /* 0x90-0x9d [VOC_SIZ_*] scaler, written by dgResize */
+/*
+ * KONA_VOC_PLL_CONTROL: VOC register 0x70, clock PLL control and handshake.
+ * Established: `dgWaitForVocPllInterface` (arm1.u at 0x0c004840) polls bit 0
+ * up to 99 times and prints a timeout if it never rises; `dgProgramClock`
+ * (at 0x0c004ad4) then writes bit 1 from its third argument, bit 4 from its
+ * second and bit 3 when that second argument is 0. Inferred: bit 0 says the
+ * PLL interface is ready; the written bits select the programming mode. */
+#define KONA_VOC_PLL_CONTROL          0x70
+/*
+ * KONA_VOC_GEN: VOC registers 0x81 to 0x84, clock source and genlock
+ * settings. Established: `dgSelectVocClockSrc` (arm1.u at 0x0c004b94)
+ * rewrites register 0x81, `dgLoadChannelGenlockParams` (at 0x0c004fb0,
+ * 0x0c005078, 0x0c0050dc and 0x0c005150) writes 0x81 to 0x84, and
+ * `DoDGRqstLoadFormat` (at 0x0c00b864 and 0x0c00b7f8) puts request word 295
+ * in 0x81 bits 11-2 and word 296 in 0x82 bits 21-14. Inferred: they program
+ * the genlock multiplier and divider and pick the clock input. */
+#define KONA_VOC_GEN                  0x81
+/*
+ * KONA_VOC_FIFO: VOC register 0x8a, output FIFO control. Established:
+ * `dgResetVocFifo` (arm1.u at 0x0c0110c8) writes 0x2301,
+ * `DoDGRqstLoadFormat` (at 0x0c00b404) sets bit 12 from request word 278 and
+ * bit 13 from its inverse, and `DoDGRqstEnableChannel` writes register 0x8a
+ * of option-board ids (at 0x0c00bcd4). Inferred: 0x2301 puts the FIFO in its
+ * reset state and the two LoadFormat bits select the eye or buffer mode. */
+#define KONA_VOC_FIFO                 0x8a
+/*
+ * KONA_VOC_FIELD_DOMINANCE: VOC register 0x8f, field dominance. Established:
+ * `DoDGRqstChannelFieldDominance` (arm1.u at 0x0c0107c8 and 0x0c01083c)
+ * read-modify-writes it, `dgResize` (at 0x0c00f808) writes it, and
+ * `dgMakeVocFetal` (at 0x0c009fd0) clears it. Inferred: it chooses which
+ * field of an interlaced pair the VOC treats as first. */
+#define KONA_VOC_FIELD_DOMINANCE      0x8f
+/*
+ * KONA_VOC_SIZ: VOC registers 0x90 to 0x9d, output scaler. Established:
+ * `dgResize` (arm1.u at 0x0c00f864 through 0x0c00fc74) writes all fourteen
+ * in order, each from the channel's source and destination sizes. Inferred:
+ * they program the scale factors and offsets of the resize hardware that
+ * maps the framebuffer window to the output raster. */
+#define KONA_VOC_SIZ                  0x90
 
 /*
  * The LoadFormat request (display command 22, 383 payload words).
