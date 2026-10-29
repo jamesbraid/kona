@@ -104,7 +104,59 @@ The scripts descend from gr4's and carry its BSD-3 notice ([scripts/LICENSE-gr4]
 
 ---
 
-## 6. Working on this repository
+## 6. Evidence: software only, any source
+
+No hardware is available for this work. Do not plan, request or wait for
+measurements on a real machine. Every question is answered from software and
+published material, and a row is not finished while either still has
+something to read.
+
+Readers may open anything:
+
+- every shipped binary on every IRIX release, and any disassembly or
+  decompilation of it;
+- the IRIX source tree linked from this repository;
+- vendor specifications, including any embedded source code or HDL pages;
+- public drivers and emulators: Linux, NetBSD, OpenBSD, MAME and others;
+- manuals, release notes and man pages;
+- published output from real machines: `hinv`, `gfxinfo`, `irsaudit`, ide
+  diagnostic transcripts, X server logs and screenshots in newsgroup and
+  mailing-list posts, web pages, archives and forums.
+
+Running the shipped software under an emulator, to watch which registers it
+touches and what it expects back, is also software evidence. Label what it
+shows as the driver's expectation, not as proof of hardware behaviour.
+
+Write findings in your own words. Never paste vendor source, HDL or
+proprietary binaries into the repository.
+
+Some facts no software reveals, such as the reset value of a register no
+driver reads. When every route is exhausted, label the fact "unknown: no
+shipped software or published source depends on it" and list the routes you
+tried. An emulator author then chooses a value and documents the choice. Never
+write "needs capture".
+
+An open question is not a stopping point. Record it in
+`docs/open-questions.md` with every route already tried and the next one to
+try, then carry on with other work. When a question is answered, move it into
+the owning chip header or chapter and delete the entry.
+
+## 7. When work is finished
+
+A coverage row is done when every inventory entry in its area
+(`docs/inventory/`) is documented and every remaining unknown is labelled
+"unknown: no shipped software or published source depends on it", with the
+routes tried. Anything less is partial. The repository is finished when every
+inventory table reaches that state, not when the rows look full.
+
+When you finish a task, regenerate the inventory, then pick the next
+undocumented entries and carry on. Hand off only when your assigned area meets
+the definition above, or when the session ends. In that case, say in
+`docs/open-questions.md` where you stopped and what comes next.
+
+---
+
+## 8. Working on this repository
 
 Workflow: populate `root/` (IRIX_FILES.md), run `scripts/populate-root`, run the scripts above, then read, write headers and docs, and update `docs/coverage.md`.
 
