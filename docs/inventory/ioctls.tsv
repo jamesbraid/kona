@@ -1,30 +1,30 @@
 number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
-101	0x65	graphics init		sent	__glXOpenGraphicsDevice;__glx_GetString;__iglooGetGraphicsType;ddxFindAvailableBoards..CGC;+7 more	18	usr/gfx/KONA/bin/ireeprom:main	undocumented		
-102	0x66	graphics init		sent	__glx_GetString;__iglooGetGraphicsType;crm_setmon;ddxFindAvailableBoards..CGC;+13 more	15	usr/gfx/KONA/bin/ireeprom:main	undocumented		
-103	0x67	graphics init		sent	crm_setmon;gr2ev_info;irixKernInit;main;+4 more	4	usr/gfx/KONA/bin/ireeprom:main	undocumented		
-104	0x68	graphics init		sent	gr2ev_info;main;ng1_setmon;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	undocumented		
-105	0x69	graphics init		sent	main	1	usr/gfx/KONA/bin/ireeprom:main	undocumented		
-106	0x6a	graphics init		sent	main;mgras_init;setup_ucode	2	usr/gfx/KONA/bin/ireeprom:setup_ucode	undocumented		
-107	0x6b	graphics init		sent	main	1	usr/gfx/gfxinfo:main	undocumented		
+101	0x65	graphics init		sent	__glXOpenGraphicsDevice;__glx_GetString;__iglooGetGraphicsType;ddxFindAvailableBoards..CGC;+7 more	18	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+102	0x66	graphics init		sent	__glx_GetString;__iglooGetGraphicsType;crm_setmon;ddxFindAvailableBoards..CGC;+13 more	15	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+103	0x67	graphics init		sent	crm_setmon;gr2ev_info;irixKernInit;main;+4 more	4	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+104	0x68	graphics init		sent	gr2ev_info;main;ng1_setmon;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+105	0x69	graphics init		sent	main	1	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+106	0x6a	graphics init		sent	main;mgras_init;setup_ucode	2	usr/gfx/KONA/bin/ireeprom:setup_ucode	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+107	0x6b	graphics init		sent	main	1	usr/gfx/gfxinfo:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 108	0x6c	graphics init		sent	gr2_init;loadfile;mgras_init;odsy_init	1	usr/gfx/gfxinfo:gr2_init	documented	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
-110	0x6e	graphics init		sent	gr2ev_info;main;ng1_setmon;saXSGIvcQueryChannelGammaMap;+2 more	3	usr/gfx/KONA/bin/ireeprom:main	undocumented		
-111	0x6f	graphics init		sent	irixKernInit	1	usr/gfx/arch/GENERIC/Xsgi:irixKernInit	undocumented		
-112	0x70	graphics init		sent	ng1_setmon	1	usr/gfx/setmon:ng1_setmon	undocumented		
-113	0x71	graphics init		sent	gr2ev_info;main;saXSGIvcQueryChannelGammaMap;vs2setmon	3	usr/gfx/KONA/bin/ireeprom:main	undocumented		
-1000	0x3e8	graphics manager		sent	irixKernInit;main;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#character-entry-points-gfxopen-gfxclose-gfxioctl-gfxcleanup-gfxread-gfxwrite-gfxmap-gfxunmap	Character entry points: `gfxopen`, `gfxclose`, `gfxioctl`, `gfxcleanup`, `gfxread`, `gfxwrite`, `gfxmap`, `gfxunmap`
-1002	0x3ea	graphics manager		sent	irixKernInit;main;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	undocumented		
-1003	0x3eb	graphics manager		sent	xgsetmon	1	usr/gfx/setmon:xgsetmon	undocumented		
-1004	0x3ec	graphics manager		sent	rrmDisposeClip	4	usr/lib/X11/dyDDX/kona.so:rrmDisposeClip	undocumented		
-1006	0x3ee	graphics manager		sent	glXSwapIntervalSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXSwapIntervalSGI	undocumented		
-1010	0x3f2	graphics manager		sent	SGICapGLCapture..HAE;rrmInvalidate	5	usr/gfx/arch/GENERIC/Xsgi:SGICapGLCapture..HAE	undocumented		
-1011	0x3f3	graphics manager		sent	konValidateClip	4	usr/lib/X11/dyDDX/kona.so:konValidateClip	documented	docs/opengl.md#ioctls	Ioctls
-1012	0x3f4	graphics manager		sent	konValidateSwapbuf	4	usr/lib/X11/dyDDX/kona.so:konValidateSwapbuf	documented	docs/opengl.md#ioctls	Ioctls
-1013	0x3f5	graphics manager		sent	glxBindSwapBarrierSGIX;glxJoinSwapGroupSGIX	1	usr/lib/X11/dyDDX/glx.so:glxBindSwapBarrierSGIX	undocumented		
+110	0x6e	graphics init		sent	gr2ev_info;main;ng1_setmon;saXSGIvcQueryChannelGammaMap;+2 more	3	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+111	0x6f	graphics init		sent	irixKernInit	1	usr/gfx/arch/GENERIC/Xsgi:irixKernInit	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+112	0x70	graphics init		sent	ng1_setmon	1	usr/gfx/setmon:ng1_setmon	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+113	0x71	graphics init		sent	gr2ev_info;main;saXSGIvcQueryChannelGammaMap;vs2setmon	3	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1000	0x3e8	graphics manager		sent	irixKernInit;main;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1002	0x3ea	graphics manager		sent	irixKernInit;main;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1003	0x3eb	graphics manager		sent	xgsetmon	1	usr/gfx/setmon:xgsetmon	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1004	0x3ec	graphics manager		sent	rrmDisposeClip	4	usr/lib/X11/dyDDX/kona.so:rrmDisposeClip	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1006	0x3ee	graphics manager		sent	glXSwapIntervalSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXSwapIntervalSGI	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1010	0x3f2	graphics manager		sent	SGICapGLCapture..HAE;rrmInvalidate	5	usr/gfx/arch/GENERIC/Xsgi:SGICapGLCapture..HAE	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1011	0x3f3	graphics manager		sent	konValidateClip	4	usr/lib/X11/dyDDX/kona.so:konValidateClip	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1012	0x3f4	graphics manager		sent	konValidateSwapbuf	4	usr/lib/X11/dyDDX/kona.so:konValidateSwapbuf	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1013	0x3f5	graphics manager		sent	glxBindSwapBarrierSGIX;glxJoinSwapGroupSGIX	1	usr/lib/X11/dyDDX/glx.so:glxBindSwapBarrierSGIX	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 1017	0x3f9	graphics manager		sent	konLoadDisplayMode	4	usr/lib/X11/dyDDX/kona.so:konLoadDisplayMode	documented	docs/opengl.md#ioctls	Ioctls
-1019	0x3fb	graphics manager		sent	glxBindSwapBarrierSGIX	1	usr/lib/X11/dyDDX/glx.so:glxBindSwapBarrierSGIX	undocumented		
-1020	0x3fc	graphics manager		sent	rrmMGRSwapBuf	4	usr/lib/X11/dyDDX/kona.so:rrmMGRSwapBuf	documented	docs/opengl.md#ioctls	Ioctls
-1022	0x3fe	graphics manager		sent	glXGetVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXGetVideoSyncSGI	undocumented		
-1023	0x3ff	graphics manager		sent	glXWaitVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXWaitVideoSyncSGI	undocumented		
+1019	0x3fb	graphics manager		sent	glxBindSwapBarrierSGIX	1	usr/lib/X11/dyDDX/glx.so:glxBindSwapBarrierSGIX	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1020	0x3fc	graphics manager		sent	rrmMGRSwapBuf	4	usr/lib/X11/dyDDX/kona.so:rrmMGRSwapBuf	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1022	0x3fe	graphics manager		sent	glXGetVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXGetVideoSyncSGI	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1023	0x3ff	graphics manager		sent	glXWaitVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXWaitVideoSyncSGI	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 10000	0x2710	kona private	curproc_abi	sent,table	konReadFBBlock;konReadImage;kon_loadGC	6	usr/lib/X11/dyDDX/kona.so:konReadFBBlock	documented	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
 10001	0x2711	kona private	curproc_abi	sent,table	konDrawImage;konWriteFBSubBlock	6	usr/lib/X11/dyDDX/kona.so:konDrawImage	documented	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
 10002	0x2712	kona private	curproc_abi	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	documented	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`

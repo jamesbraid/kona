@@ -406,7 +406,7 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x1003bb20	1328	create__21GammaMapEditorCla
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003c050	88	__ct__21SetmonMasterFormClassGPCc	dynsym	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003c0b0	116	doOptionSyncSourceInternal__19ServerInfoFormClassGP10_WidgetRecPv	dynsym	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003ca00	108	__dt__21SetmonMasterFormClassGv	dynsym	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x1003ca70	296	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/bin/X11/xsetmon	shared-tool	n32		0x1003ca70	296	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003cba0	24	RegisterStatisticsFormClassInterface__19StatisticsFormClassSGv	dynsym	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003cbc0	8	doArmScalarDrag__21GammaMapEditorClassUIGP10_WidgetRecP7_XEvent	dynsym	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003cbd0	116	__ct__19SyncSelectorFrameUIGPCcP10_WidgetRec	dynsym	undocumented		
@@ -919,7 +919,7 @@ usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x4370	108	RRM_WaitVideoSy
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x43dc	220	rrmWaitVideoSync	dwarf+symtab	documented	docs/kernel.md#video-sync-and-retrace-rrm_waitforretrace-rrmvalidatemyretrace-rrm_setvideosync-rrm_getvideosync-rrm_waitvideosync-rrmwaitvideosync	Video sync and retrace: `RRM_WaitForRetrace`, `rrmValidateMyRetrace`, `RRM_SetVideoSync`, `RRM_GetVideoSync`, `RRM_WaitVideoSync`, `rrmWaitVideoSync`
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x44b8	320	rrmValidateVideoSync	dwarf+symtab	documented	docs/dg.md#retrace-sequence	Retrace sequence
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x45f8	120	RRM_MapClipToSwapbufID	dwarf+symtab	documented	docs/kernel.md#binding-a-node-to-a-window-rrm_bindrntoclip-rrm_bindrntoreadandclip-rrm_unbindrnfromclip-rrm_mapcliptoswapbufid	Binding a node to a window: `RRM_BindRNToClip`, `RRM_BindRNToReadAndClip`, `RRM_UnbindRNFromClip`, `RRM_MapClipToSwapbufID`
-usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x4670	1148	RRM_Dispatch	dwarf+symtab	documented	docs/kernel.md#character-entry-points-gfxopen-gfxclose-gfxioctl-gfxcleanup-gfxread-gfxwrite-gfxmap-gfxunmap	Character entry points: `gfxopen`, `gfxclose`, `gfxioctl`, `gfxcleanup`, `gfxread`, `gfxwrite`, `gfxmap`, `gfxunmap`
+usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x4670	1148	RRM_Dispatch	dwarf+symtab	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x4aec	208	irix5_to_RRM_ValidateClip	dwarf+symtab	documented	docs/kernel.md#dispatch-and-messages-rrm_dispatch-rrm_message-rrm_validatemessage	Dispatch and messages: `RRM_Dispatch`, `RRM_Message`, `RRM_ValidateMessage`
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x4bbc	120	irix5_to_RRM_GetDisplayModes	dwarf+symtab	documented	docs/kernel.md#dispatch-and-messages-rrm_dispatch-rrm_message-rrm_validatemessage	Dispatch and messages: `RRM_Dispatch`, `RRM_Message`, `RRM_ValidateMessage`
 usr/cpu/sysgen/IP27boot/tport.a(tport.o)	shared-kernel	n64	.text	0x0	416	tp_open	dwarf+symtab	undocumented		
@@ -1356,12 +1356,12 @@ usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4370	108	RRM_WaitVideoSy
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x43dc	220	rrmWaitVideoSync	dwarf+symtab	documented	docs/kernel.md#video-sync-and-retrace-rrm_waitforretrace-rrmvalidatemyretrace-rrm_setvideosync-rrm_getvideosync-rrm_waitvideosync-rrmwaitvideosync	Video sync and retrace: `RRM_WaitForRetrace`, `rrmValidateMyRetrace`, `RRM_SetVideoSync`, `RRM_GetVideoSync`, `RRM_WaitVideoSync`, `rrmWaitVideoSync`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x44b8	320	rrmValidateVideoSync	dwarf+symtab	documented	docs/dg.md#retrace-sequence	Retrace sequence
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x45f8	120	RRM_MapClipToSwapbufID	dwarf+symtab	documented	docs/kernel.md#binding-a-node-to-a-window-rrm_bindrntoclip-rrm_bindrntoreadandclip-rrm_unbindrnfromclip-rrm_mapcliptoswapbufid	Binding a node to a window: `RRM_BindRNToClip`, `RRM_BindRNToReadAndClip`, `RRM_UnbindRNFromClip`, `RRM_MapClipToSwapbufID`
-usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4670	1148	RRM_Dispatch	dwarf+symtab	documented	docs/kernel.md#character-entry-points-gfxopen-gfxclose-gfxioctl-gfxcleanup-gfxread-gfxwrite-gfxmap-gfxunmap	Character entry points: `gfxopen`, `gfxclose`, `gfxioctl`, `gfxcleanup`, `gfxread`, `gfxwrite`, `gfxmap`, `gfxunmap`
+usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4670	1148	RRM_Dispatch	dwarf+symtab	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4aec	208	irix5_to_RRM_ValidateClip	dwarf+symtab	documented	docs/kernel.md#dispatch-and-messages-rrm_dispatch-rrm_message-rrm_validatemessage	Dispatch and messages: `RRM_Dispatch`, `RRM_Message`, `RRM_ValidateMessage`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4bbc	120	irix5_to_RRM_GetDisplayModes	dwarf+symtab	documented	docs/kernel.md#dispatch-and-messages-rrm_dispatch-rrm_message-rrm_validatemessage	Dispatch and messages: `RRM_Dispatch`, `RRM_Message`, `RRM_ValidateMessage`
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10002680	268	__start	dynsym	undocumented		
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000278c	12	_mcount	dynsym	undocumented		
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100027b0	5968	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100027b0	5968	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10003f00	460	usage	dynsym	undocumented		
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100040d0	4644	perPipeMainProc	dynsym	undocumented		
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005300	228	getScreenFromDisplay	dynsym	undocumented		
@@ -1507,7 +1507,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e3e4	176	post_fatal_error	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e494	128	maybe_print_meta_results	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e514	1192	run_tests	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e9bc	436	output_command_line	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003eb70	2224	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003eb70	2224	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10041b24	68	cmp_nic_sn	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10042548	4684	TEST_nicprobe	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10044798	152	kt_init_time	dynsym	undocumented		
@@ -2542,8 +2542,8 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10170914	152	iflush	dynsym	und
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101709bc	4	__istart	dynsym	undocumented		
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10001540	268	__start	dynsym	undocumented		
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000164c	12	_mcount	dynsym	undocumented		
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000165c	964	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000228c	900	setup_ucode	dynsym	undocumented		
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000165c	964	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000228c	900	setup_ucode	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10002610	188	debug_enable	dynsym	undocumented		
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x100026cc	172	get_rdata	dynsym	undocumented		
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10002778	28	set_rdata	dynsym	undocumented		
@@ -2563,7 +2563,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a21c	152	V_mark	dynsym	undocumented
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a2b4	496	V_show	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a4a4	152	V_unmark	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a5c0	268	show_general_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a6cc	2172	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a6cc	2172	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000afdc	452	dfCreateDumpFile	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b1a0	296	dfNewSection	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b2c8	228	dfWriteSection	dynsym	undocumented		
@@ -4015,7 +4015,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10123dc0	228	SProcRecolorCursor
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10123eb0	356	CheckWindowOptionalNeed	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10124020	220	FontFileGetInfoBitmap..KN	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10124100	332	ProcUngrabKey	dynsym	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10124250	1008	irixKernInit	dynsym	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10124250	1008	irixKernInit	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10124640	152	SertafiedDelete..EEE	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101246e0	528	ProcSGIvcQueryVideoScreenInfo	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101248f0	3244	ProcXineramaSGICapRegisterInterest..GPD	dynsym	undocumented		
@@ -5301,7 +5301,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10217b10	444	XkbRF_ClearVarDesc
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10217cd0	376	AccessAllocColorCells	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10217e60	552	SProcXineramaSGICapDispatch..DAE	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10218090	468	SProcSGIDispatch..PBD	dynsym	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10218270	5600	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10218270	5600	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10219850	484	DbeResetProc..HJC	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10219a40	332	ProcSGIQueryStereoMode..NLD	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10219b90	332	ProcXkbUseExtension	dynsym	undocumented		
@@ -8212,7 +8212,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xec747d0	156	match_gfx	mde
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xec7486c	420	makeGversionString	mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec748f0	288	gl_g_gversion	dynsym+mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xec74a10	260	__iglooInitializeVersion	mdebug	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec74ad0	68	__iglooGetGraphicsType	dynsym+mdebug	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec74ad0	68	__iglooGetGraphicsType	dynsym+mdebug	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xec74b14	3196	gversionIoctl	mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec74d40	296	gl_free_objects	dynsym+mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec74e68	152	gl_addhash	dynsym+mdebug	undocumented		
@@ -12025,7 +12025,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32	.text	0xec787e0	156	match_gfx	d
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32	.text	0xec78880	100	makeGversionString	dwarf+funcnames	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec788f0	268	gl_g_gversion	dwarf+dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32	.text	0xec78a00	152	__iglooInitializeVersion	dwarf+funcnames	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec78aa0	72	__iglooGetGraphicsType	dwarf+dynsym	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec78aa0	72	__iglooGetGraphicsType	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32	.text	0xec78af0	424	gversionIoctl	dwarf+funcnames	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec78ca0	332	gl_free_objects	dwarf+dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec78df0	160	gl_addhash	dwarf+dynsym	undocumented		
@@ -13554,7 +13554,7 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd80ff60	448	__glXInitThread	
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd810120	192	__glXFindDisplay	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8101e0	676	__glXCreateDirectContext	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd810484	1616	SampleScore	mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8104b0	388	__glXOpenGraphicsDevice	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8104b0	388	__glXOpenGraphicsDevice	dynsym+mdebug	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd810634	748	__glXBindHWContextToWindow	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd810920	436	__glXQueryServerString	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd810ad4	496	__glXSendMakeCurrent	mdebug	undocumented		
@@ -13883,21 +13883,21 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd822f0c	1372	__glXFillImage3
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd823468	1104	__glXFillImage	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd8238b8	2112	FillBitmap	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd823b00	820	glXCreateGLXPbufferSGIX	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd823e34	152	glXGetVideoSyncSGI	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd823e34	152	glXGetVideoSyncSGI	dynsym+mdebug	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd823ecc	180	__glXEndDispatchOverride	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd823f80	176	__glXBeginDispatchOverride	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd824030	140	__glXDispatchExec	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8240bc	60	glXGetCurrentReadDrawableSGI	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd8240f8	668	__glXRestoreCurrent	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd824394	2460	__glXSendMakeCurrentRead	mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd824750	200	glXWaitVideoSyncSGI	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd824750	200	glXWaitVideoSyncSGI	dynsym+mdebug	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd824818	368	glXDestroyGLXVideoSourceSGIX	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd824988	936	glXCreateGLXVideoSourceSGIX	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd824d30	1332	videoPackingToInternalFormat	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd824df4	104	__glXCreateVideoSourcePrivate	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd824e5c	92	__glXDestroyVideoSourcePrivate	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd824eb8	160	__glXInitializeVideoLibrary	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd824f58	468	glXSwapIntervalSGI	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd824f58	468	glXSwapIntervalSGI	dynsym+mdebug	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd82512c	72	__glXBufFree	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd825174	240	glXQueryContextInfoEXT	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd825264	1896	__glXQueryContextInfo	mdebug	undocumented		
@@ -14088,7 +14088,7 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8338c0	652	__glx_ReadPixels
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd833b4c	268	__glx_GetPointervEXT	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd833c5c	508	__glx_IsEnabled	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd833e98	336	__glXInit	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd833fe8	756	__glx_GetString	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd833fe8	756	__glx_GetString	dynsym+mdebug	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd8342dc	500	isNotProxy	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd8344d0	200	__glXFindFBConfigFromVid	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd834598	1492	__glXFindFBConfig	mdebug	undocumented		
@@ -19088,7 +19088,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e2f8	460	__glXGetDrawab
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd80e360	316	isLocal	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd80e4a0	2184	CreateContext	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e4dc	8	__glXGetPipeAddress	dwarf+dynsym	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e4e4	396	__glXOpenGraphicsDevice	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e4e4	396	__glXOpenGraphicsDevice	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e670	264	__glXHWAttach	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e778	124	__glXOpenGraphics	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e7f4	204	__glXAllocHWContext	dwarf+dynsym	undocumented		
@@ -19514,10 +19514,10 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81f7b8	144	__glXDispatchE
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81f848	400	__glXBeginDispatchOverride	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81f9d8	416	__glXEndDispatchOverride	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd820fd0	3056	OverrideVisuals	dwarf+funcnames	undocumented		
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd821bc0	140	glXGetVideoSyncSGI	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd821c50	200	glXWaitVideoSyncSGI	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd821bc0	140	glXGetVideoSyncSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd821c50	200	glXWaitVideoSyncSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd821ca8	348	__glXImageSize	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd821d20	440	glXSwapIntervalSGI	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd821d20	440	glXSwapIntervalSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd821ee0	264	glXJoinSwapGroupSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd821ff0	264	glXBindSwapBarrierSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd822100	372	glXQueryMaxSwapBarriersSGIX	dwarf+dynsym	undocumented		
@@ -19679,7 +19679,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd82e390	304	__glx_Sel
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd82e4c0	436	__glx_RenderMode	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd82e594	720	__glx_TexCoordPointerEXT	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd82e680	284	__glx_Finish	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd82e7a0	740	__glx_GetString	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd82e7a0	740	__glx_GetString	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd82e864	356	__glx_IndexPointerEXT	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd82e9c8	692	__glx_ColorPointerEXT	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd82ea90	500	__glx_IsEnabled	dwarf+dynsym	undocumented		
@@ -24668,7 +24668,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2642e20	460	__glXGetDrawab
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2642e80	316	isLocal	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2642fc0	2172	CreateContext	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2643004	8	__glXGetPipeAddress	dwarf+dynsym	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x264300c	396	__glXOpenGraphicsDevice	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x264300c	396	__glXOpenGraphicsDevice	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2643198	264	__glXHWAttach	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26432a0	124	__glXOpenGraphics	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x264331c	204	__glXAllocHWContext	dwarf+dynsym	undocumented		
@@ -25094,10 +25094,10 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x26542f0	652	__glXRest
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x265434c	324	__glXBeginDispatchOverride	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2654490	340	__glXEndDispatchOverride	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x26559e0	3012	OverrideVisuals	dwarf	undocumented		
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x26565b0	140	glXGetVideoSyncSGI	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2656640	200	glXWaitVideoSyncSGI	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x26565b0	140	glXGetVideoSyncSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2656640	200	glXWaitVideoSyncSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2656684	348	__glXImageSize	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2656710	440	glXSwapIntervalSGI	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2656710	440	glXSwapIntervalSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x26568d0	264	glXJoinSwapGroupSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x26569e0	264	glXBindSwapBarrierSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2656af0	372	glXQueryMaxSwapBarriersSGIX	dwarf+dynsym	undocumented		
@@ -25259,7 +25259,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2662e9c	564	__glx_GetHisto
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2662f20	436	__glx_RenderMode	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26630d0	720	__glx_TexCoordPointerEXT	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x26630e0	284	__glx_Finish	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2663200	756	__glx_GetString	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2663200	756	__glx_GetString	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26633a0	356	__glx_IndexPointerEXT	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2663500	496	__glx_IsEnabled	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2663504	700	__glx_ColorPointerEXT	dwarf+dynsym	undocumented		
@@ -30253,7 +30253,7 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd80ff60	448	__glXInitThread	
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd810120	192	__glXFindDisplay	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8101e0	676	__glXCreateDirectContext	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd810484	1616	SampleScore	mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8104b0	388	__glXOpenGraphicsDevice	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8104b0	388	__glXOpenGraphicsDevice	dynsym+mdebug	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd810634	748	__glXBindHWContextToWindow	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd810920	436	__glXQueryServerString	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd810ad4	496	__glXSendMakeCurrent	mdebug	undocumented		
@@ -30582,21 +30582,21 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd822f0c	1372	__glXFillImage3
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd823468	1104	__glXFillImage	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd8238b8	2112	FillBitmap	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd823b00	820	glXCreateGLXPbufferSGIX	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd823e34	152	glXGetVideoSyncSGI	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd823e34	152	glXGetVideoSyncSGI	dynsym+mdebug	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd823ecc	180	__glXEndDispatchOverride	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd823f80	176	__glXBeginDispatchOverride	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd824030	140	__glXDispatchExec	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8240bc	60	glXGetCurrentReadDrawableSGI	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd8240f8	668	__glXRestoreCurrent	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd824394	2460	__glXSendMakeCurrentRead	mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd824750	200	glXWaitVideoSyncSGI	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd824750	200	glXWaitVideoSyncSGI	dynsym+mdebug	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd824818	368	glXDestroyGLXVideoSourceSGIX	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd824988	936	glXCreateGLXVideoSourceSGIX	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd824d30	1332	videoPackingToInternalFormat	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd824df4	104	__glXCreateVideoSourcePrivate	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd824e5c	92	__glXDestroyVideoSourcePrivate	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd824eb8	160	__glXInitializeVideoLibrary	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd824f58	468	glXSwapIntervalSGI	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd824f58	468	glXSwapIntervalSGI	dynsym+mdebug	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd82512c	72	__glXBufFree	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd825174	240	glXQueryContextInfoEXT	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd825264	1896	__glXQueryContextInfo	mdebug	undocumented		
@@ -30787,7 +30787,7 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8338c0	652	__glx_ReadPixels
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd833b4c	268	__glx_GetPointervEXT	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd833c5c	508	__glx_IsEnabled	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd833e98	336	__glXInit	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd833fe8	756	__glx_GetString	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd833fe8	756	__glx_GetString	dynsym+mdebug	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd8342dc	500	isNotProxy	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd8344d0	200	__glXFindFBConfigFromVid	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd834598	1492	__glXFindFBConfig	mdebug	undocumented		
@@ -35787,7 +35787,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e2f8	460	__glXGetDrawab
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd80e360	316	isLocal	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd80e4a0	2184	CreateContext	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e4dc	8	__glXGetPipeAddress	dwarf+dynsym	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e4e4	396	__glXOpenGraphicsDevice	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e4e4	396	__glXOpenGraphicsDevice	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e670	264	__glXHWAttach	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e778	124	__glXOpenGraphics	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e7f4	204	__glXAllocHWContext	dwarf+dynsym	undocumented		
@@ -36213,10 +36213,10 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81f7b8	144	__glXDispatchE
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81f848	400	__glXBeginDispatchOverride	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81f9d8	416	__glXEndDispatchOverride	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd820fd0	3056	OverrideVisuals	dwarf+funcnames	undocumented		
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd821bc0	140	glXGetVideoSyncSGI	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd821c50	200	glXWaitVideoSyncSGI	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd821bc0	140	glXGetVideoSyncSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd821c50	200	glXWaitVideoSyncSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd821ca8	348	__glXImageSize	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd821d20	440	glXSwapIntervalSGI	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd821d20	440	glXSwapIntervalSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd821ee0	264	glXJoinSwapGroupSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd821ff0	264	glXBindSwapBarrierSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd822100	372	glXQueryMaxSwapBarriersSGIX	dwarf+dynsym	undocumented		
@@ -36378,7 +36378,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd82e390	304	__glx_Sel
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd82e4c0	436	__glx_RenderMode	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd82e594	720	__glx_TexCoordPointerEXT	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd82e680	284	__glx_Finish	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd82e7a0	740	__glx_GetString	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd82e7a0	740	__glx_GetString	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd82e864	356	__glx_IndexPointerEXT	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd82e9c8	692	__glx_ColorPointerEXT	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd82ea90	500	__glx_IsEnabled	dwarf+dynsym	undocumented		
@@ -41367,7 +41367,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2142e20	460	__glXGetDrawab
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2142e80	316	isLocal	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2142fc0	2172	CreateContext	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2143004	8	__glXGetPipeAddress	dwarf+dynsym	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x214300c	396	__glXOpenGraphicsDevice	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x214300c	396	__glXOpenGraphicsDevice	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2143198	264	__glXHWAttach	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21432a0	124	__glXOpenGraphics	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x214331c	204	__glXAllocHWContext	dwarf+dynsym	undocumented		
@@ -41793,10 +41793,10 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x21542f0	652	__glXRest
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x215434c	324	__glXBeginDispatchOverride	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2154490	340	__glXEndDispatchOverride	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x21559e0	3012	OverrideVisuals	dwarf	undocumented		
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x21565b0	140	glXGetVideoSyncSGI	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2156640	200	glXWaitVideoSyncSGI	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x21565b0	140	glXGetVideoSyncSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2156640	200	glXWaitVideoSyncSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2156684	348	__glXImageSize	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2156710	440	glXSwapIntervalSGI	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2156710	440	glXSwapIntervalSGI	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x21568d0	264	glXJoinSwapGroupSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x21569e0	264	glXBindSwapBarrierSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2156af0	372	glXQueryMaxSwapBarriersSGIX	dwarf+dynsym	undocumented		
@@ -41958,7 +41958,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2162e9c	564	__glx_GetHisto
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2162f20	436	__glx_RenderMode	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21630d0	720	__glx_TexCoordPointerEXT	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x21630e0	284	__glx_Finish	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2163200	756	__glx_GetString	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2163200	756	__glx_GetString	dwarf+dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21633a0	356	__glx_IndexPointerEXT	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2163500	496	__glx_IsEnabled	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2163504	700	__glx_ColorPointerEXT	dwarf+dynsym	undocumented		
@@ -46944,7 +46944,7 @@ usr/gfx/dmconf	shared-tool	n32		0x10008700	84	_fini	dynsym	undocumented
 usr/gfx/dmconf	shared-tool	n32		0x10008760	128	__process_needed_destructions__Gv	dynsym	undocumented		
 usr/gfx/dmconf	shared-tool	n32		0x100087e0	40	__record_needed_destruction	dynsym	undocumented		
 usr/gfx/dmconf	shared-tool	n32		0x10008810	60	__std__needed_destruction_list	dynsym	undocumented		
-usr/gfx/dmconf	shared-tool	n32		0x10008850	484	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/gfx/dmconf	shared-tool	n32		0x10008850	484	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/dmconf	shared-tool	n32		0x10008a80	604	__ct__20DmconfMainFrameClassGPCcP10_WidgetRec	dynsym	undocumented		
 usr/gfx/dmconf	shared-tool	n32		0x10008ce0	108	__ct__20DmconfMainFrameClassGPCc	dynsym	undocumented		
 usr/gfx/dmconf	shared-tool	n32		0x10008d50	148	__dt__20DmconfMainFrameClassGv	dynsym	undocumented		
@@ -47131,19 +47131,19 @@ usr/gfx/dmconf	shared-tool	n32		0x1001ca84	100	GLwDrawingAreaSwapBuffers	dynsym	
 usr/gfx/dmconf	shared-tool	n32		0x1001cafc	4	__istart	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x10005770	268	__start	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x1000587c	12	_mcount	dynsym	undocumented		
-usr/gfx/gfxinfo	shared-tool	n32		0x10005888	2192	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/gfx/gfxinfo	shared-tool	n32		0x10005888	2192	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/gfxinfo	shared-tool	n32		0x1000693c	848	lg1_info	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x10006c8c	2628	loadfile	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x10007a18	8	ev1_init	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x10007a20	860	gr2_init	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x10007d7c	1152	gr2_info	dynsym	undocumented		
-usr/gfx/gfxinfo	shared-tool	n32		0x100081fc	868	gr2ev_info	dynsym	undocumented		
+usr/gfx/gfxinfo	shared-tool	n32		0x100081fc	868	gr2ev_info	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/gfxinfo	shared-tool	n32		0x10008970	1248	ven_info	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x10008e50	144	ven_init	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x10008ee0	644	ng1_info	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x10009164	8	ng1_init	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x1000916c	40	ng2_kludge_info	dynsym	undocumented		
-usr/gfx/gfxinfo	shared-tool	n32		0x10009290	2396	mgras_init	dynsym	undocumented		
+usr/gfx/gfxinfo	shared-tool	n32		0x10009290	2396	mgras_init	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/gfxinfo	shared-tool	n32		0x10009bec	1044	_mgras_info	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x1000acbc	468	kona_info	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x1000ae90	592	kona_getconfig	dynsym	undocumented		
@@ -47358,7 +47358,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1001e298	152	read_xilinx_file	dynsym	undocume
 usr/gfx/gfxinfo	shared-tool	n32		0x1001e33c	4	__istart	dynsym	undocumented		
 usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ed0	268	__start	dynsym	undocumented		
 usr/gfx/hyperpipeinfo	board-tool	n32		0x10000fdc	12	_mcount	dynsym	undocumented		
-usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ff0	956	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ff0	956	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/hyperpipeinfo	board-tool	n32		0x100013bc	4	__istart	dynsym	undocumented		
 usr/gfx/ircombine	board-tool	n32		0x1001fd10	268	__start	dynsym	undocumented		
 usr/gfx/ircombine	board-tool	n32		0x1001fe1c	12	_mcount	dynsym	undocumented		
@@ -47367,7 +47367,7 @@ usr/gfx/ircombine	board-tool	n32		0x1001fef0	84	_fini	dynsym	undocumented
 usr/gfx/ircombine	board-tool	n32		0x1001ff50	128	__process_needed_destructions__Gv	dynsym	undocumented		
 usr/gfx/ircombine	board-tool	n32		0x1001ffd0	40	__record_needed_destruction	dynsym	undocumented		
 usr/gfx/ircombine	board-tool	n32		0x10020000	60	__std__needed_destruction_list	dynsym	undocumented		
-usr/gfx/ircombine	board-tool	n32		0x10020040	940	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/gfx/ircombine	board-tool	n32		0x10020040	940	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/ircombine	board-tool	n32		0x100203f0	292	ErrorF	dynsym	undocumented		
 usr/gfx/ircombine	board-tool	n32		0x10020520	520	iGUIReadFormatFile__GPCcP11konFormat_t	dynsym	undocumented		
 usr/gfx/ircombine	board-tool	n32		0x10020b00	484	__ct__18ChannelWindowClassGPCcP3ArgUii	dynsym	undocumented		
@@ -48601,7 +48601,7 @@ usr/gfx/ircombine	board-tool	n32		0x100925ac	4	__istart	dynsym	undocumented
 usr/gfx/setmon	shared-tool	n32		0x10008d20	268	__start	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x10008e2c	12	_mcount	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x10008e38	64	Usage	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000a038	56	vTimeoutOpenDisplay	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	undocumented		
@@ -48610,17 +48610,17 @@ usr/gfx/setmon	shared-tool	n32		0x1000a278	280	fglrxDoFramelock	dynsym	undocumen
 usr/gfx/setmon	shared-tool	n32		0x1000a390	1588	fglrxsetmon	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000a9c4	1244	konasetmon	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000aea0	3112	vensetmon	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x1000bac8	748	vs2setmon	dynsym	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x1000bac8	748	vs2setmon	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/setmon	shared-tool	n32		0x1000bdb4	144	pipenumToString	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x1000bec0	704	xgsetmon	dynsym	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x1000bec0	704	xgsetmon	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/setmon	shared-tool	n32		0x1000ce90	252	mgGetVOFpath	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000cf8c	1360	mgsetmon	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000d4dc	164	odyGetVOFpath	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000d580	740	odyDoFramelock	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000d864	2252	odysetmon	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000e130	732	npsetmon	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x1000e40c	3160	crm_setmon	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x1000f064	1676	ng1_setmon	dynsym	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x1000e40c	3160	crm_setmon	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+usr/gfx/setmon	shared-tool	n32		0x1000f064	1676	ng1_setmon	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/setmon	shared-tool	n32		0x1000fa18	268	venice_get_dg2_eeprom	dynsym	documented	docs/kernel.md#private-ioctls	Private ioctls
 usr/gfx/setmon	shared-tool	n32		0x1000fb24	416	venice_set_dg2_eeprom	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000fcc4	236	venice_grok_dg2_eeprom_error	dynsym	undocumented		
@@ -48823,7 +48823,7 @@ usr/gfx/setmon	shared-tool	n32		0x1002a1b0	84	saXSGIvcDisableChannel	dynsym	undo
 usr/gfx/setmon	shared-tool	n32		0x1002a210	140	saXSGIvcStoreGammaColors16	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1002a800	96	saXSGIvcSetOutputPhaseH	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1002a860	96	saXSGIvcSetOutputPhaseV	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x1002b510	104	saXSGIvcQueryChannelGammaMap	dynsym	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x1002b510	104	saXSGIvcQueryChannelGammaMap	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/setmon	shared-tool	n32		0x1002f670	104	saXSGIvcQueryOutputPhaseV	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1002f6e0	104	saXSGIvcQueryOutputPhaseH	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1002fa40	388	XSGIvcInitTestJig	dynsym	undocumented		
@@ -48854,7 +48854,7 @@ usr/gfx/sgcombine	shared-tool	n32		0x1000fa50	84	_fini	dynsym	undocumented
 usr/gfx/sgcombine	shared-tool	n32		0x1000fab0	128	__process_needed_destructions__Gv	dynsym	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x1000fb30	40	__record_needed_destruction	dynsym	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x1000fb60	60	__std__needed_destruction_list	dynsym	undocumented		
-usr/gfx/sgcombine	shared-tool	n32		0x1000fba0	404	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/gfx/sgcombine	shared-tool	n32		0x1000fba0	404	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/sgcombine	shared-tool	n32		0x1000fd40	412	iGUIReadFormatFile__GPCcP11cmpFormat_t	dynsym	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x1000fee0	580	iGUIReadOdsyFormatFile__GPCcP11cmpFormat_t	dynsym	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x10010150	132	__ct__22SmallFormatFileBrowserGPCc	dynsym	undocumented		
@@ -49282,7 +49282,7 @@ usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100047a0	68	binToAsc_float__GPcT1	dy
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100047e4	92	binToAsc_double__GPcT1	dynsym	undocumented		
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004890	120	checkKeywords__GPc	dynsym	undocumented		
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004908	116	keywordFromToken__Gi	dynsym	undocumented		
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004b60	424	main	dynsym	named-only	AGENTS.md#8-working-on-this-repository	8. Working on this repository
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004b60	424	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004d08	8	bpt__Gv	dynsym	undocumented		
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004fbc	248	yyerror__GPc	dynsym	undocumented		
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100050b4	108	yymark__Gv	dynsym	undocumented		
@@ -49415,7 +49415,7 @@ usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeb0470	68	__glXDisp_PixelTexGenS
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeb04c0	92	__glXExtensionReset	dynsym	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeb0600	76	__glXDisp_LightModeliv	dynsym	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeb0670	448	__glXDispSwap_SharpenTexFuncSGIS	dynsym	undocumented		
-usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeb0830	780	glxBindSwapBarrierSGIX	dynsym	undocumented		
+usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeb0830	780	glxBindSwapBarrierSGIX	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeb0b40	120	glxSharpenTexFuncSGISReqSize_SGI	dynsym	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeb0bc0	112	glx_rt_CopyContext	dynsym	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeb0c30	224	glx_rt_DispSwapGetInstrumentsSGIX	dynsym	undocumented		
@@ -50004,7 +50004,7 @@ usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeed8f0	616	glx_rt_DispGetMateria
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeedb60	76	glx_rt_DispGetColorTable	dynsym	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeedbb0	64	__glXDispSwap_Color4ubv	dynsym	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeedbf0	456	glxSwapMakeCurrentRead	dynsym	undocumented		
-usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeeddc0	1176	glxJoinSwapGroupSGIX	dynsym	undocumented		
+usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeeddc0	1176	glxJoinSwapGroupSGIX	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeee260	632	printVariousChecks	dynsym	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeee4e0	324	__glXDispSwap_TexParameterf	dynsym	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeee630	324	__glXDispSwap_TexParameteri	dynsym	undocumented		
@@ -50741,7 +50741,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4cc310	1256	konStereoCopyPlane	d
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4cc800	2920	mfbSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4cd370	84	konBlankScreen	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4cd3d0	2348	cfb32LineSS1RectCopy	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4cdd00	116	rrmDisposeClip	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4cdd00	116	rrmDisposeClip	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4cdd80	3304	cfbFillPoly1RectGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4cea70	3496	cfbLineSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4cf990	184	mfbCreateGC	dynsym	undocumented		
@@ -50854,7 +50854,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4fdad0	404	mfbReduceRop	dynsym	u
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4fdc70	3036	cfbSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4fe860	168	konCopyGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4feac0	204	nfbUnrealizeCursor	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4ff730	560	rrmInvalidate	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4ff730	560	rrmInvalidate	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4ffaa0	556	miPolyText16	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4ffcd0	124	micomputeWAET	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x500070	2560	cfbSegmentSD	dynsym	undocumented		
@@ -51536,7 +51536,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4d4f10	1256	konStereoCopyPlane	
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4d5400	2920	mfbSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4d5f70	84	konBlankScreen	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4d5fd0	2348	cfb32LineSS1RectCopy	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4d6900	116	rrmDisposeClip	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4d6900	116	rrmDisposeClip	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4d6980	3304	cfbFillPoly1RectGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4d7670	3496	cfbLineSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4d8590	184	mfbCreateGC	dynsym	undocumented		
@@ -51649,7 +51649,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x507550	404	mfbReduceRop	dynsym	
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5076f0	3036	cfbSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5082e0	168	konCopyGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x508540	204	nfbUnrealizeCursor	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5091b0	560	rrmInvalidate	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5091b0	560	rrmInvalidate	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x509520	556	miPolyText16	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x509750	124	micomputeWAET	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x509af0	2560	cfbSegmentSD	dynsym	undocumented		
@@ -52331,7 +52331,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1454f10	1256	konStereoCopyPlane
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1455400	2920	mfbSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1455f70	84	konBlankScreen	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1455fd0	2348	cfb32LineSS1RectCopy	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1456900	116	rrmDisposeClip	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1456900	116	rrmDisposeClip	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1456980	3304	cfbFillPoly1RectGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1457670	3496	cfbLineSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1458590	184	mfbCreateGC	dynsym	undocumented		
@@ -52444,7 +52444,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1487530	404	mfbReduceRop	dynsym
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14876d0	3036	cfbSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14882c0	168	konCopyGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1488520	204	nfbUnrealizeCursor	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1489190	560	rrmInvalidate	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1489190	560	rrmInvalidate	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1489500	556	miPolyText16	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1489730	124	micomputeWAET	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1489ad0	2560	cfbSegmentSD	dynsym	undocumented		
@@ -53126,7 +53126,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4d4f10	1256	konStereoCopyPlane	
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4d5400	2920	mfbSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4d5f70	84	konBlankScreen	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4d5fd0	2348	cfb32LineSS1RectCopy	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4d6900	116	rrmDisposeClip	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4d6900	116	rrmDisposeClip	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4d6980	3304	cfbFillPoly1RectGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4d7670	3496	cfbLineSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4d8590	184	mfbCreateGC	dynsym	undocumented		
@@ -53239,7 +53239,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x507530	404	mfbReduceRop	dynsym	
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x5076d0	3036	cfbSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x5082c0	168	konCopyGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x508520	204	nfbUnrealizeCursor	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x509190	560	rrmInvalidate	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x509190	560	rrmInvalidate	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x509500	556	miPolyText16	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x509730	124	micomputeWAET	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x509ad0	2560	cfbSegmentSD	dynsym	undocumented		

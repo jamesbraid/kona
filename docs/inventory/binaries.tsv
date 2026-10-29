@@ -440,17 +440,17 @@ usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100	
 usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	45a61c37ce61cf80		2936	0	0	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	0	0	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
 usr/gfx/arch/IGLOO32/libgl.so	shared-libraries	shared-library	shared-object	n32	1833076	dff2b0d82deac998		3811	0	0	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
-usr/gfx/arch/IP27KONA/libGL.so	libraries	board-library	shared-object	o32	486700	214ae88b8179eaef		671	1	0	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
+usr/gfx/arch/IP27KONA/libGL.so	libraries	board-library	shared-object	o32	486700	214ae88b8179eaef		671	1	0	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	f9b9b85f96cbf830		4868	2893	0	named-only	AGENTS.md#1-board-overview	1. Board Overview
-usr/gfx/arch/IP27KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	fecccf6de7ef8a22		673	1	0	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
+usr/gfx/arch/IP27KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	fecccf6de7ef8a22		673	1	0	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	f22d2a199f6b8efb		4907	2881	0	named-only	AGENTS.md#1-board-overview	1. Board Overview
-usr/gfx/arch/IP27KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	425727f729a8a8aa		673	1	0	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
+usr/gfx/arch/IP27KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	425727f729a8a8aa		673	1	0	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP27KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d0e932db4fa8e93f		4907	2909	0	named-only	AGENTS.md#1-board-overview	1. Board Overview
-usr/gfx/arch/IP35KONA/libGL.so	libraries	board-library	shared-object	o32	486700	52f3e359d3ed9b44		671	1	0	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
+usr/gfx/arch/IP35KONA/libGL.so	libraries	board-library	shared-object	o32	486700	52f3e359d3ed9b44		671	1	0	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	d75291c990060f17		4868	2893	0	named-only	AGENTS.md#1-board-overview	1. Board Overview
-usr/gfx/arch/IP35KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	432edf22a00ea581		673	1	0	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
+usr/gfx/arch/IP35KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	432edf22a00ea581		673	1	0	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	89303b7f78578067		4907	2881	0	named-only	AGENTS.md#1-board-overview	1. Board Overview
-usr/gfx/arch/IP35KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	2f064d4d8de46085		673	1	0	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
+usr/gfx/arch/IP35KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	2f064d4d8de46085		673	1	0	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/arch/IP35KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d5889b8581d8de51		4907	2909	0	named-only	AGENTS.md#1-board-overview	1. Board Overview
 usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	0	0	undocumented		
 usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	2eec8716f6ad8a43	usr/gfx/gfxinit	227	0	0	undocumented		
@@ -588,7 +588,7 @@ usr/gfx/ucode/vfc/sdbutil	board-tools	board-tool	executable	n32	70452	3fa52d6c92
 usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d7eec8		0	0	0	undocumented		
 usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0	0	0	undocumented		
 usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0	0	0	undocumented		
-usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
+usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	0	0	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	0	0	documented	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
 usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	0	0	documented	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
 usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	0	0	documented	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)

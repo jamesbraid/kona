@@ -116,6 +116,35 @@ Slots 10004 and 10013 are empty in both the header and the driver, and slots 100
 
 `KONA_NCLOPS_*` is the multi-pipe (hyperpipe) path: `kona_nclops_bind` and `kona_nclops_swapped` write the display-generator indirect port (`HH_VC_ADDRESS` then `HH_VC_DATA`, [dg.md](dg.md)), so binding a pipe to a network changes display-port registers: the addresses, values and names are in [Multi-pipe (DPLEX) display-port writes](#multi-pipe-dplex-display-port-writes).
 
+## Generic and manager ioctls: who sends them
+
+**Established** (dispatch in `gfxioctl` and `RRM_Dispatch`, 6.5.30m, described under [Function reference](#function-reference); numbers and names from the 6.5.5 installed headers `sys/gfx.h` and `sys/rrm.h`; senders from the call sites in the user-space binaries of the inventory). Two ranges of ioctl numbers reach the driver besides the private 10000 range above: 100-113 are the generic graphics ioctls any board driver answers through `gfxioctl`, and 1000-1025 are the rendering resource manager's commands, which `gfxioctl` forwards to `RRM_Dispatch`. This table lists the ioctls the user-space tools and libraries actually send and what each is for; argument sizes and error paths are in the function reference.
+
+| Number | Name | Sent by | Purpose |
+|---|---|---|---|
+| 101 (0x65) | `GFX_GETNUM_BOARDS` | `__glXOpenGraphicsDevice`, `__glx_GetString`, `__iglooGetGraphicsType`, `ddxFindAvailableBoards` and seven more functions in 18 binaries | count the graphics boards the kernel registered; every client asks first |
+| 102 (0x66) | `GFX_GETBOARDINFO` | `__glx_GetString`, `__iglooGetGraphicsType`, `crm_setmon`, `ddxFindAvailableBoards` and 13 more functions in 15 binaries | read the board's name, label and size record (`gfx_info`) so the caller can match its own board type |
+| 103 (0x67) | `GFX_ATTACH_BOARD` | `crm_setmon`, `gr2ev_info`, `irixKernInit` (the X server), `main` (`ireeprom`) and four more, in four binaries | bind this open connection to a board and map it; a second attach on the same connection fails with 16 |
+| 104 (0x68) | `GFX_DETACH_BOARD` | `gr2ev_info`, `ng1_setmon`, `xgsetmon`, `main` (`ireeprom`) | release the board before the connection closes |
+| 105 (0x69) | `GFX_IS_MANAGED` | `main` of `ireeprom` | ask whether an X server already manages the board, so the tool does not initialise a live one |
+| 106 (0x6a) | `GFX_INITIALIZE` | `mgras_init`, `setup_ucode` (`ireeprom`), `main` | start the board's bring-up; only the board's owner connection may call it, and the kernel serialises it against the pipe semaphore |
+| 107 (0x6b) | `GFX_START` | `main` of `gfxinfo` | release the board to run after the microcode download; owner only |
+| 110 (0x6e) | `GFX_MAPALL` | `gr2ev_info`, `ng1_setmon`, `saXSGIvcQueryChannelGammaMap`, `main` and two more, in three binaries | the privileged "map everything" request the diagnostic and setup tools use instead of the normal per-process mapping |
+| 111 (0x6f) | `GFX_LABEL` | `irixKernInit` in the X server (`Xsgi`) | the X server names the board it manages; the driver stores the 16-byte label in the board record |
+| 112 (0x70) | `GFX_REATTACH_BOARD` | `ng1_setmon` in `setmon` | attach without the "already attached" check, for a tool that re-opens a board it already holds |
+| 113 (0x71) | `GFX_SET_DIAG_FLAG` | `gr2ev_info`, `saXSGIvcQueryChannelGammaMap`, `vs2setmon`, `main` | declare the caller a diagnostic (needs superuser); sets the privileged flag that selects the privileged mapping |
+| 1002 | `RRM_BINDPROCTORN` | `irixKernInit`, `xgsetmon`, `main` (`ireeprom`) | tie the calling process to a rendering node (slot 0 clears the binding; allowed for OpenGL connections) |
+| 1003 | `RRM_BINDRNTOCLIP` | `xgsetmon` in `setmon` | bind a rendering node to a clip region (window) |
+| 1004 | `RRM_UNBINDRNFROMCLIP` | `rrmDisposeClip` in `kona.so` | the window is going away: drop the pane's binding |
+| 1006 | `RRM_SETSWAPINTERVAL` | `glXSwapIntervalSGI` in `libGL.so` | frames between buffer swaps; the pane stores it and the board record gets the same count |
+| 1010 | `RRM_INVALIDATERN` | `rrmInvalidate`, `SGICapGLCapture` (`Xsgi`) | the X server tells the kernel that a window's clip, buffer or swap state changed so the next draw revalidates |
+| 1013 | `RRM_SWAPGROUP` | `glxJoinSwapGroupSGIX`, `glxBindSwapBarrierSGIX` in `glx.so` | join the window to a swap group, so the group's members swap together |
+| 1019 | `RRM_SWAPREADY` | `glxBindSwapBarrierSGIX` in `glx.so` | assert or deassert a swap-ready line for the group, the genlock barrier between pipes |
+| 1022 | `RRM_GETVSYNC` | `glXGetVideoSyncSGI` in `libGL.so` | read the retrace counter |
+| 1023 | `RRM_WAITVSYNC` | `glXWaitVideoSyncSGI` in `libGL.so` | sleep until the counter reaches a given remainder modulo an interval |
+
+Numbers 108 (`GFX_DOWNLOAD`), 109 (`GFX_BLANKSCREEN`: the board owner may send it and the kernel does nothing) and 1000-1001, 1005, 1007-1009, 1011, 1012, 1014-1018, 1020, 1021, 1024 and 1025 are in the function reference and in [opengl.md](opengl.md#ioctls).
+
 ## Registers the driver touches
 
 **Established** (`scripts/kernel_registers.py`, output in [kona_kernel/registers.tsv](../kona_kernel/registers.tsv): one row per function, offset and direction, with the number of call sites). The driver reaches the pipe with two helpers only, `gfx_pio_read_32` and `gfx_pio_write_32`; there is no 64-bit access in the driver. The address is the per-pipe register base (pipe state +0x948) plus a constant, or the command-port pointer at pipe state +0x900. The script follows register values through each function in text order, keeping the saved registers (`$s0`-`$s8`) across calls and branches because this compiler loads a function's fixed addresses into them once. Of the 494 call sites in the 6.5.30m `kona.a`, it resolves 307 to a register offset and 167 to the command port (`cmd` rows). The other 20 (`?` rows) take an address set on a branch the text-order walk does not follow; each was read by hand:
