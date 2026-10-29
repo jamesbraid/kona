@@ -2131,17 +2131,17 @@ ge.u	label	0x0000284a	uPO_8_16C		located	ucode/ge_handlers.md#upixouts	upixout.s
 ge.u	label	0x0000284e	uPO_8_16C_loop		located	ucode/ge_handlers.md#upixouts	upixout.s
 ge.u	label	0x00002876	uPostLoop		located	ucode/ge_handlers.md#upixouts	upixout.s
 ge.u	label	0x00002883	uPO_8_16C_LastBlck		located	ucode/ge_handlers.md#upixouts	upixout.s
-ge.u	label	0x0000288c	mmo_DrawTri		located	ucode/ge_handlers.md#udrawtris	udrawtri.s
-ge.u	label	0x0000288c	umo_DrawTri		located	ucode/ge_handlers.md#udrawtris	udrawtri.s
-ge.u	label	0x00002898	uDTList		located	ucode/ge_handlers.md#udrawtris	udrawtri.s
-ge.u	label	0x0000289d	lDI3		located	ucode/ge_handlers.md#udrawtris	udrawtri.s
-ge.u	label	0x000028ca	mmo_DrawQuad		located	ucode/ge_handlers.md#udrawtris	udrawtri.s
-ge.u	label	0x000028ca	umo_DrawQuad		located	ucode/ge_handlers.md#udrawtris	udrawtri.s
-ge.u	label	0x000028d6	uDQList		located	ucode/ge_handlers.md#udrawtris	udrawtri.s
-ge.u	label	0x000028db	lDI4		located	ucode/ge_handlers.md#udrawtris	udrawtri.s
-ge.u	label	0x00002909	mmo_DrawTriPrim		located	ucode/ge_handlers.md#udrawtris	udrawtri.s
-ge.u	label	0x00002909	umo_DrawTriPrim		located	ucode/ge_handlers.md#udrawtris	udrawtri.s
-ge.u	label	0x0000290e	lDI1		located	ucode/ge_handlers.md#udrawtris	udrawtri.s
+ge.u	label	0x0000288c	mmo_DrawTri		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
+ge.u	label	0x0000288c	umo_DrawTri		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
+ge.u	label	0x00002898	uDTList		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
+ge.u	label	0x0000289d	lDI3		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
+ge.u	label	0x000028ca	mmo_DrawQuad		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
+ge.u	label	0x000028ca	umo_DrawQuad		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
+ge.u	label	0x000028d6	uDQList		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
+ge.u	label	0x000028db	lDI4		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
+ge.u	label	0x00002909	mmo_DrawTriPrim		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
+ge.u	label	0x00002909	umo_DrawTriPrim		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
+ge.u	label	0x0000290e	lDI1		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
 ge.u	label	0x0000298a	uColorMatrix		located	ucode/ge_handlers.md#ucolormatrixs	ucolormatrix.s
 ge.u	label	0x0000298e	clrmtrixloop		located	ucode/ge_handlers.md#ucolormatrixs	ucolormatrix.s
 ge.u	label	0x000029a2	uSepConv3_124		located	ucode/ge_handlers.md#usepconv3x3s	usepconv3x3.s

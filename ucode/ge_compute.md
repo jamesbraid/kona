@@ -296,3 +296,56 @@ writes only the coordinates whose generation mode it implements and several modu
   computes each output as the dot product of the input object position words 0-3 with one plane behind word 0x3e5.
 - `lXF11` (`utexgen.s` lines 298-319): **inferred**, the object-linear r, q loop at 0x0c61; two vertices per pass, it takes
   object coordinates as operands of the plane multiply-adds and stores the r and q results to words 0xd and 0xe.
+
+## Triangle output (udrawtri.s)
+
+**Established** from the words of `udrawtri.s`: the triangle modules do no edge or slope arithmetic. They contain no
+reciprocal, no seed and no multiply of one vertex's coordinate by another's; every word that carries data reads one vertex
+record word and stores through address register 0x1e, the output window at 0xffff0000 that `HereWeGo` sets up, so the values
+leave the engine one vertex at a time and the raster stage forms the edges. Per vertex the stores carry, in this order: three
+subtracts on record words 0x10, 0xf and 0x11 and a move of 0x12 (the texture results of the divide, with 0xf and 0x12 stored
+predicated, `r213` = 2), a move of the edge-flag word 0x26, subtracts on window x and y (words 0x23 and 0x24), the unit-1
+operation 0x7e on window z (word 0x25), and multiplies of the colour words 0x1e, 0x1d, 0x1c and 0x1b. The subtracts take
+their second operand from an origin block reached through address register 0xd, which each module points at engine word 0xc9
+(`ge_ops.md` lists 0xc9-0xce among the words the drawing paths write once per primitive). What unit-1 code 0x7e computes is
+unknown: the diagnostic test does not exercise it, and it occurs only on the depth word of the drawing modules (`drawtri.S`,
+`mdrawtri.S`, `drawlin.S`, `drawpnt.S` and four more).
+
+- `mmo_DrawTri` (`udrawtri.s` lines 42-53): **inferred**, the entry of the triangle-strip output. It reads the cull and clip
+  state (special register 0x0c through register 0x1c, 0x288c), and branches on `cc` 0x66 to `mmo_DrawTriPrim`, the
+  independent-triangle path, or on `cc` 0x28 and 0x26 to the list loop `uDTList`. Its set-up XORs engine word 0x70 into a
+  register, takes the colour scale and offsets from words 0xc4-0xc6 as input operands, and writes special register 0x2c from
+  engine word 6 ANDed with a mask (0x2896). The output of the module is the vertex stream through register 0x1e that `lDI3`
+  produces.
+- `umo_DrawTri`: **inferred**, alias at 0x288c (`udrawtri.s` line 42) of the strip output entry: it selects between the
+  list loop and the independent-triangle module, with the clip state as input, and returns nothing to the vertex record; its results are
+  the per-vertex words the loop sends to the raster stage.
+- `uDTList` (`udrawtri.s` lines 55-59): **inferred**, the set-up of the strip loop at 0x2898: it loads the vertex count
+  from register 0x19, points register 0xd at the origin block from 0xc9 and register 0xc at engine address 0x11fc, and ORs the
+  edge-flag word 0x26 of the first vertex into itself (0x289a), so that `lDI3` takes the vertex inputs in pairs.
+- `lDI3` (`udrawtri.s` lines 63-108): **inferred**, the strip output loop at 0x289d, two vertices per pass: for each it
+  subtracts the origin words from the texture and window inputs, converts depth with operation 0x7e, and sends the results
+  to the output window through register 0x1e; after the loop it multiplies the colour words 0x1b-0x1e of the last pair by the
+  scale (0x28ba-0x28c1), writes the inverted command word to bus address 0x1f5 (0x28c4) and a staging word to 0x1f4 (0x28c9).
+- `mmo_DrawQuad` (`udrawtri.s` lines 115-126): **inferred**, the quad-strip entry, the same selection as `mmo_DrawTri`
+  (branches on `cc` 0x66, 0x28 and 0x26 to `mmo_DrawTriPrim` or `uDQList`) with the same reads of words 0x70 and 0xc4-0xc6 as
+  input; the output is the vertex stream `lDI4` produces.
+- `umo_DrawQuad`: **inferred**, second name at 0x28ca (`udrawtri.s` line 115) for the quad-strip entry; it takes the cull
+  state and selects the quad loop, whose results are raster words per vertex.
+- `uDQList` (`udrawtri.s` lines 128-132): **inferred**, the set-up of the quad loop at 0x28d6: it writes engine word 3 into
+  special register 0x2f, stages the constant 0x800, loads the count and points register 0xd at 0xc9, the origin operands of
+  the subtracts in `lDI4`.
+- `lDI4` (`udrawtri.s` lines 136-182): **inferred**, the quad output loop at 0x28db. Per pass it ANDs the edge-flag inputs
+  (word 0x26) of two vertices with the staged 0x800 and sets the flags, shifts them into the output (0x28e7-0x28e8), subtracts
+  the origin from the texture and window coordinates, converts depth with operation 0x7e and sends the results through
+  register 0x1e; the colour multiplies and the bus words to 0x1f5 and 0x1f4 follow the loop (0x28f9-0x2908).
+- `mmo_DrawTriPrim` (`udrawtri.s` lines 189-193): **inferred**, the independent-triangle output, three vertices per
+  triangle. It takes the triangle count from register 0x12, writes engine words 6 and 3 into special registers 0x2e and 0x2f,
+  and points register 0xd at 0xc9; `lDI1` then produces the raster words.
+- `umo_DrawTriPrim`: **inferred**, alias at 0x2909 (`udrawtri.s` line 189): the independent-triangle module; it consumes
+  three vertex records per triangle, subtracts the origin block from their window and texture words, and produces those
+  results with the converted depth and scaled colour.
+- `lDI1` (`udrawtri.s` lines 197-321): **inferred**, the independent-triangle loop at 0x290e. It reads the three vertex
+  pointers of a triangle from the list at register 0xf (words 0-3 and 0xf-0x13 into registers 2-9, 0x2910-0x2919), tests the
+  triangle's flag words 4 and 0x13 against 0x1c, and for each vertex subtracts the origin from the texture and window inputs,
+  converts depth with operation 0x7e, multiplies the colour words, and sends the results through register 0x1e.
