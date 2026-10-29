@@ -83,7 +83,7 @@ Each row is one operation word in `ge_inst.s`, its operands and the word `irsaud
 | 3792 | 1, 0x73 (0x6f3), one operand | 0x400 | 1024.0 (0x44800000, 148) | integer to single-precision float, **established** |
 | 3829-3830 | 1, 0x20 (0x6a0), two words | 0x400a5a5a5a5a5a5a (3.294...), 0x4005a5a5a5a5a5a5 (2.706...) as doubles | 0x40180000 00000000 = 6.0 (149-150) | double-precision add, **established**; the second word names the low halves |
 | 3858-3859 | 1, 0x22 (0x6a2), two words | same | 0x3fe2d2d2 d2d2d2d4 (151-152) | double-precision subtract, **established** (the exact IEEE difference) |
-| 3895, 3913, 3931 | 1, 0x7c (0x6fc), one operand | 0x0478002b, 0xce1ef209 (-6.7e8), 0x3eaa7efa (0.333) | the same, 0, the same (153-155) | clamp below at zero, **established** for these inputs; an upper clamp at 1.0 is not tested (both positive inputs are below 1) |
+| 3895, 3913, 3931 | 1, 0x7c (0x6fc), one operand | 0x0478002b, 0xce1ef209 (-6.7e8), 0x3eaa7efa (0.333) | the same, 0, the same (153-155) | clamp below at zero, **established** for these inputs; the test has no input above 1.0, and the upper clamp at 1.0 is **inferred** in [The clamp above 1.0](#the-clamp-above-10) |
 | 3996 | 2, 0x47 (0x47f) | 3577494.5 (0x4a5a5a5a), 5300.7056 (0x45a5a5a5) | 0x508d4985 (156) | single-precision multiply, **established** bit for bit against IEEE round-to-nearest |
 | 4010 | 2, 0x27 (0x27f), one operand | 0x4a5a5a5a | the same (157) | unit-2 move of the first operand, **established**; the output instructions use it |
 | 4025 | 2, 0x2f (0x2ff) | same pair | 0x45a5a5a5 = B (158) | returns the second operand, which is also the smaller; move of B or minimum not separated |
@@ -104,6 +104,28 @@ Each row is one operation word in `ge_inst.s`, its operands and the word `irsaud
 **How one M names two operations.** Every unit-2 code the test fixes ends in binary 111 (0x07, 0x27, 0x2f, 0x37, 0x3f, 0x47, 0x4f, 0x57), so it is k << 3 | 7 for a 4-bit k. **Established** (counted over every listed word of `ge.u` that carries M, 6.5.30m): split M into M[10:7] and M[6:0]. In the single-unit forms 12, 13 and 15 one half always holds its idle value: M[10:7] = 0xd with a unit-1 code in M[6:0] (the 0x680 | code pattern), or M[6:0] = 0x7f with a unit-2 k in M[10:7] (the code << 4 | 0x7f pattern). In form 11, 1428 of 1430 words carry a non-idle value in both halves. The most common pair, k = 8 with M[6:0] = 0x60 (M = 0x460, 855 words in form 11 and 2130 across all forms), is a single-precision multiply and add, the core of `mMatrixMultCCC` and the lighting modules. Forms 1-3 and 5-10 carry both halves in some words too (2003 words). **Inferred** from that split and the test's M = 0x440: M[10:7] is unit 2's k (unit-2 code = k << 3 | 7, k = 0xd meaning unit 2 idle), and M[6:0] is unit 1's code (0x7f meaning unit 1 idle). M = 0x440 is then k = 8 (single multiply) and unit-1 code 0x40 (integer add), which is what lines 3512-3528 return. The `code << 4 | 0x7f` and `0x680 | code` patterns above are the same layout with the other unit idle. The k values that occur in two-unit words are 0, 1, 4, 5, 8, 9 and 0xa (unit-2 codes 0x07, 0x0f, 0x27, 0x2f, 0x47, 0x4f, 0x57). Code 0x0f (k = 1, 72 words in `bitmaptofloat.s`, `colortable.S`, `drawpnt.S`, `getlight.S`, `primmtrllight.S`, `ulight.s` and `ueval2D.s`) is the only one the diagnostic test does not exercise; what it computes is **unknown: no shipped software or published source depends on it**.
 
 **Not identified.** 0x6c8 appears once, in the branch test (line 1570, operands 0x00005a5a and 0x5a5a5a5a), and only its effect on a branch is observed.
+
+## The clamp above 1.0
+
+The diagnostic test fixes unit-1 code 0x7c only for a negative input (0) and two inputs between 0 and 1 (unchanged). No
+`irsaudit` test sends it a value above one: `expected_token` has three 0x7c cases, `ge_mul_test` checks integer cubes and
+`ge_hist_stress_test` has no expected array. The production uses settle it by function.
+
+**Inferred: 0x7c clamps to [0, 1].** The pixel path's colour look-up stage is the clamp module followed directly by the
+table module. `AddRGBALut` (`arm1.u` +0x2f87c) and `AddLuminanceLut` (+0x2f9e4) call `AddClamp` with per-component
+scales taken from the context (four words at +0x40 of the per-component record, or one value repeated), and `U_uClamp`
+(+0x3124c) writes them three times into the module's 17-word block, 1.0 when no array is given. The loop of `mmo_Clamp`
+(`clamp.s` 0x1697-0x16b3) applies 0x7c to each component and multiplies the clamped values by that scale; its
+output feeds `mmo_LUT16` as a table index, and the look-up module does no bound check of its own (its words are float
+adds and unit-2 moves, `LUT.s`). GL defines the pixel-map index as the component clamped to [0, 1] times the map size
+minus one. With a clamp at zero only, a colour above 1.0 after scale and bias would index past the table, so the clamp
+must also limit at 1.0. The vertex colour pass agrees: `mmo_LiColorClamp` (`ulight.s` 0x0d73-0x0d7a) passes each
+unlit colour component through 0x7c and nothing else before the colour leaves the engine, and GL clamps vertex colours
+to [0, 1].
+
+What a NaN input gives is **unknown: no shipped software or published source depends on it**. Routes tried: the three
+`expected_token` cases, the other `irsaudit` engine tests, the diagnostic program's own sources (`mmath.S`, `mul.S`,
+`fib.S`, `eram.S`, `cram.S`, `debug.S`: no 0x6fc word), and the production uses listed above.
 
 ## Branch conditions and the flag register
 

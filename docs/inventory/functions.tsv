@@ -1642,7 +1642,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006d25c	892	Ge11ERamDataPathP
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006d5d8	1024	Ge11ERamAddrPathParallel	dynsym	addaad5a0059	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006d9d8	896	Ge11ERamCellParallel	dynsym	9ad6be5ec273	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006dd58	1312	TEST_ge_ext_stress	dynsym	b42b38a4d7df	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006e278	976	ge_mul_test	dynsym	edec18845a43	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006e278	976	ge_mul_test	dynsym	edec18845a43	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006e648	1368	TEST_ge_cram	dynsym	d99e441b6eb5	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006eba0	1364	TEST_ge_wram	dynsym	a15b44aae79e	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f0f4	876	TEST_ge_hip	dynsym	a9d601f1b6d3	named-only	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread	Pipe to host: select feedback, `kona_dmaread`
@@ -1650,7 +1650,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f460	1856	TEST_ge_instTest
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fba0	220	hist_ecd_check	dynsym	b8eba19c901a	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fc7c	292	hist_base_check	dynsym	5ebf269fa935	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fda0	312	hist_ecdbase_check	dynsym	c914f35b093f	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fed8	956	ge_hist_stress_test	dynsym	1dff645412e0	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fed8	956	ge_hist_stress_test	dynsym	1dff645412e0	named-only	ucode/ge_ops.md#the-clamp-above-10	The clamp above 1.0
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10070294	1236	TEST_geNext	dynsym	29ed107de943	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10070768	828	verif_update_ucode_struc	dynsym	af74552fae01	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10070aa4	2076	TEST_verify_ge11	dynsym	0ee0cb93f336	named-only	docs/irsaudit.md#tests	Tests

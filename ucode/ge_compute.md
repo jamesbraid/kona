@@ -114,6 +114,10 @@ Facts are labelled **established** (read from the words at the addresses given) 
   register 0x29 (store at 0xe7e) and returns through a group-5 indirect transfer at 0xea7. The operand order of the subtract
   is unknown, so whether the rewritten clip z runs from w at the near plane to 0 at the far plane, or from -w to 0, stays open;
   either way the clip transforms produce a z that the frustum test compares against w and 0 rather than against w and -w.
+  The four subtracts are operand-routing form `r110` = 0x7bd, a register-file operand (A = 0x18, D = 3, 7, 0xb, 0xf) with a
+  memory operand (C = 0x1b, immediate address); the diagnostic test's subtract (`ge_inst.s` line 3774, B - A) is form
+  `r110` = 0x43d, two arithmetic registers, so its order does not carry over; the routes tried are in
+  [open-questions.md](../docs/open-questions.md#engine-program-raster-bus-and-tportbin).
 - `mMatrixInverse` (`umatrix.s` lines 314-426): **inferred**, the inverse of the modelview's 3 x 3 block, for transforming
   normals. It copies the modelview words 0x2f-0x3e to a scratch block at engine address 0x8d2c (words 0xeeb-0xefa), computes
   the cofactors with paired multiplies and subtracts (0xefc-0xf28), sums a row of them times the matrix to get the
@@ -502,12 +506,12 @@ the `epilogue_*` code drains the last components. The parameter offsets below us
 - `epilogue_i2f` (`inttofloat.s` lines 159-213): **inferred**, the drain at 0x2070: it converts the last input components
   and multiplies them by the scale, and the group-31 transfer near its end closes the command after the final results are stored.
 - `mmo_Clamp` (`clamp.s` lines 43-163): **inferred**, the clamp stage of the pixel path. It loads the 17-word block
-  `U_uClamp` writes (`arm1.u` +0x3124c), whose bounds default to 1.0, into registers, and its loop clamps each input component
-  with the unit-1 clamp 0x7c and follows it with a unit-2 multiply by a parameter register before the store of the result. The diagnostic
-  test fixes 0x7c only below (a negative input returns 0); whether it also limits at 1.0 is unknown, since none of its test
-  inputs exceeds one.
-- `umo_Clamp`: **inferred**, the u-name at 0x1633 (`clamp.s` line 43); it takes pixel components as input, clamps each at
-  zero with code 0x7c and multiplies by the per-component parameter, producing the clamped results for the next stage.
+  `U_uClamp` writes (`arm1.u` +0x3124c), four per-component scales repeated three times (1.0 when none are given), into
+  registers, and its loop clamps each input component to [0, 1] with the unit-1 clamp 0x7c and multiplies it by its scale
+  in the same word before the store of the result. The scale is the pixel map's size minus one when the stage feeds a look-up
+  table, so the result is the table index GL defines ([ge_ops.md](ge_ops.md#the-clamp-above-10)).
+- `umo_Clamp`: **inferred**, the u-name at 0x1633 (`clamp.s` line 43); it takes pixel components as input, clamps each to
+  [0, 1] with code 0x7c and multiplies by the per-component parameter, producing the clamped results for the next stage.
 - `mainloop_clamp` (`clamp.s` lines 167-195): **inferred**, the clamp loop at 0x1697: 24 input components per pass; it
   clamps each with code 0x7c and multiplies it by parameter register 1-8 in turn (0x1698-0x16b3), results stored at E = 0 upward.
 - `epilogue_clamp` (`clamp.s` lines 199-253): **inferred**, the drain at 0x16b4 that clamps and multiplies the last
