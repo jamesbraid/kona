@@ -8,7 +8,11 @@ The "Next route" cells below were converted from requests for measurements on a 
 
 ## Geometry engine program
 
-No open entries. **Where this section stopped (2026-10-29, fourth pass).** Answered and moved to [ucode/ge_ops.md](../ucode/ge_ops.md) and [GE.h](../GE.h): how one operation field names two operations (M[10:7] unit 2, M[6:0] unit 1, both live in form 11), the branch conditions' false sides from production handlers that need them (the low flag nibble is unit 1's, not the integer one's), the conditions 0x10, 0x11, 0x14 and 0x15 by their targets, and the input operands (word k is source A = 0x1f, D = k, matched against the host word counts). Labelled unknown with routes: the fourth flag condition (no production use), unit-2 code 0x0f, the pixel-loop exit counter, and how the engine advances its input pointer. The 13 unreached module heads stay labelled unknown with routes in ucode/ge_handlers.md.
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| Which instruction field selects a special register (0x00-0x3f) in the engine program, and so whether production code reads `CHIP_ID`, `CHIP_REV` or the other fifteen. Their entries in `GE.h` rest on kpm's names, and fifteen are labelled as having no dependent software, but that label holds only once the selector is decoded | `GE.h`, `ucode/ge_isa.md` | kpm's `show_ge_core` (skips them, 0x1001c62c), the ARM listing, binary strings, the diagnostic `geversion.s` constants loaded into 0x1b | decode the special-register selector from `ucode/ge_wiring.tsv` and the forms in `ucode/ge_isa.md`, then search `ucode/ge_listing/` for each number |
+
+**Where this section stopped (2026-10-29, fourth pass).** Answered and moved to [ucode/ge_ops.md](../ucode/ge_ops.md) and [GE.h](../GE.h): how one operation field names two operations (M[10:7] unit 2, M[6:0] unit 1, both live in form 11), the branch conditions' false sides from production handlers that need them (the low flag nibble is unit 1's, not the integer one's), the conditions 0x10, 0x11, 0x14 and 0x15 by their targets, and the input operands (word k is source A = 0x1f, D = k, matched against the host word counts). Labelled unknown with routes: the fourth flag condition (no production use), unit-2 code 0x0f, the pixel-loop exit counter, and how the engine advances its input pointer. The 13 unreached module heads stay labelled unknown with routes in ucode/ge_handlers.md.
 
 ## Geometry engine routines
 
