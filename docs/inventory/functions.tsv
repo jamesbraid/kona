@@ -4324,7 +4324,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015c970	320	ProcDbeDeallocateB
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015cab0	228	DbeSetupBackgroundPainter..EJC	dynsym	a27c5b008f54	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015cba0	572	AccessInitClientSocketAttrs	dynsym	f0999838b70e	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015cde0	108	FreeAtom	dynsym	ec70d27ec441	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015ce50	84	rrmSetReservedDID	dynsym	4dadf872f3f8	named-only	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015ce50	84	rrmSetReservedDID	dynsym	4dadf872f3f8	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015ceb0	924	ProcESAStubStart	dynsym	61fc4d681232	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015d250	368	FontFileDirectoryChanged	dynsym	245abae5f4c5	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1015d3c0	440	AccessLookupColor	dynsym	48b4556d4b7f	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -5087,7 +5087,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ebf10	8	MITResetProc..PJE	dy
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ebf20	556	ProcPanoramiXDispatch..CAD	dynsym	94a97234c9a3	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec150	224	LbxProxyConnection	dynsym	739879018ca7	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec230	664	LbxGetModifierMapping	dynsym	ea5389506358	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec4d0	952	rrmInit	dynsym	1bfa8c0dfb43	named-only	docs/opengl.md#koninitdidstate	`konInitDIDState`
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec4d0	952	rrmInit	dynsym	1bfa8c0dfb43	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec890	176	XkbDDXFakePointerMotion	dynsym	09b744a6f227	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ec940	1060	XkbVModMaskText	dynsym	d42de9a0a7bf	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101ecd70	3912	ProcXineramaFillPoly	dynsym	aaca1141f81b	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -50932,7 +50932,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5225f0	1184	konStereoFillSpans	d
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522a90	384	konLoadDisplayMode	dynsym	42173077f360	understood	docs/opengl.md#konloaddisplaymode	`konLoadDisplayMode`
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522c10	708	cfb32GetSpans	dynsym	e127182cd881	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522ee0	3596	konTilePatterns	dynsym	274caaae60c1	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x523cf0	2468	konStoreColors	dynsym	e21fad4c2a4a	named-only	docs/opengl.md#konsetcolor	`konSetColor`
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x523cf0	2468	konStoreColors	dynsym	e21fad4c2a4a	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5246a0	3248	mfbImageGlyphBltBlack	dynsym	4bc5975f18cf	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x525350	144	nfbListInstalledHWColormaps	dynsym	d3e5d4d0b8a9	understood	docs/opengl.md#nfblistinstalledhwcolormaps	`nfbListInstalledHWColormaps`
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x525570	2344	miPolyFillRect	dynsym	c1fcb9038e69	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -51727,7 +51727,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c470	1184	konStereoFillSpans	
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c910	384	konLoadDisplayMode	dynsym	01e8cfd8262b	located	docs/opengl.md#konloaddisplaymode	`konLoadDisplayMode`
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52ca90	708	cfb32GetSpans	dynsym	d57965cf6a4a	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52cd60	3596	konTilePatterns	dynsym	4c33bf588421	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52db70	3156	konStoreColors	dynsym	1b9e91d09c02	named-only	docs/opengl.md#konsetcolor	`konSetColor`
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52db70	3156	konStoreColors	dynsym	1b9e91d09c02	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52e7d0	3248	mfbImageGlyphBltBlack	dynsym	aa8f64002967	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52f480	144	nfbListInstalledHWColormaps	dynsym	d3e5d4d0b8a9	understood	docs/opengl.md#nfblistinstalledhwcolormaps	`nfbListInstalledHWColormaps`
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52f6a0	2344	miPolyFillRect	dynsym	1516ff3ff217	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -52522,7 +52522,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ac470	1184	konStereoFillSpans
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ac910	384	konLoadDisplayMode	dynsym	01e8cfd8262b	located	docs/opengl.md#konloaddisplaymode	`konLoadDisplayMode`
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14aca90	708	cfb32GetSpans	dynsym	d57965cf6a4a	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14acd60	3596	konTilePatterns	dynsym	4c33bf588421	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14adb70	3156	konStoreColors	dynsym	1b9e91d09c02	named-only	docs/opengl.md#konsetcolor	`konSetColor`
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14adb70	3156	konStoreColors	dynsym	1b9e91d09c02	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ae7d0	3248	mfbImageGlyphBltBlack	dynsym	aa8f64002967	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14af480	144	nfbListInstalledHWColormaps	dynsym	d3e5d4d0b8a9	understood	docs/opengl.md#nfblistinstalledhwcolormaps	`nfbListInstalledHWColormaps`
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14af6a0	2344	miPolyFillRect	dynsym	1516ff3ff217	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -53317,7 +53317,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52c470	1184	konStereoFillSpans	
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52c910	384	konLoadDisplayMode	dynsym	01e8cfd8262b	located	docs/opengl.md#konloaddisplaymode	`konLoadDisplayMode`
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52ca90	708	cfb32GetSpans	dynsym	d57965cf6a4a	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52cd60	3596	konTilePatterns	dynsym	4c33bf588421	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52db70	3156	konStoreColors	dynsym	1b9e91d09c02	named-only	docs/opengl.md#konsetcolor	`konSetColor`
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52db70	3156	konStoreColors	dynsym	1b9e91d09c02	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52e7d0	3248	mfbImageGlyphBltBlack	dynsym	aa8f64002967	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52f480	144	nfbListInstalledHWColormaps	dynsym	d3e5d4d0b8a9	understood	docs/opengl.md#nfblistinstalledhwcolormaps	`nfbListInstalledHWColormaps`
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52f6a0	2344	miPolyFillRect	dynsym	1516ff3ff217	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
