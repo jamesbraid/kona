@@ -375,18 +375,111 @@ enum kona_vfo_signal {
  * registers above carry exactly the values these names describe.
  * The numbers the table leaves out are below (KONA_XMAP_COPY_BUFFER on).
  */
-#define KONA_XMAP_CURSOR_CHAN_ID      0x00    /* mask 0x1f */
-#define KONA_XMAP_CURSOR_GLYPH_BASE   0x01    /* mask 0x1ffff */
-#define KONA_XMAP_CURSOR_POS          0x02    /* mask 0x3ffffff */
-#define KONA_XMAP_CURSOR_ENABLES      0x03    /* mask 0x1ff */
-#define KONA_XMAP_SUBSTITUTE_LOW      0x06    /* mask 0xffffffff */
-#define KONA_XMAP_SUBSTITUTE_HIGH     0x07    /* mask 0x1fff */
-#define KONA_XMAP_RM_CONFIG           0x0b    /* mask 0x3 */
-#define KONA_XMAP_DI_COMPARE_ADDR     0x0c    /* mask 0x3f */
-#define KONA_XMAP_IMP_DELAY           0x0d    /* mask 0x1ff */
-#define KONA_XMAP_PIPE_DELAY          0x0e    /* mask 0x7 */
-#define KONA_XMAP_FASTLIST_CONFIG     0x0f    /* mask 0x3ff */
-#define KONA_XMAP_RD_ADDR             0x11    /* mask 0x7ffff */
+/*
+ * KONA_XMAP_CURSOR_CHAN_ID: XMAP register 0, cursor channel id (irsaudit
+ * table entry at 0x101ffdc0, mask 0x1f), the same register the kernel
+ * reaches as 0x100. Established: irsaudit `easy_xmap_cursor` (at 0x1013b68c)
+ * writes it as address 256 after the glyph address, and `TEST_xmapreg` (at
+ * 0x100b0094) writes and reads back bit patterns under the mask;
+ * `dgMakeXmapFetal` (arm1.u at 0x0c00983c) clears it. Inferred: five bits
+ * fit channel ids 0 to 31, so the kernel's 32 for no channel is a driver-
+ * only value never sent. */
+#define KONA_XMAP_CURSOR_CHAN_ID      0x00
+/*
+ * KONA_XMAP_CURSOR_GLYPH_BASE: XMAP register 1, cursor image base (irsaudit
+ * table entry at 0x101ffdcc, mask 0x1ffff), the kernel's 0x101. Established:
+ * irsaudit `easy_xmap_cursor` (at 0x1013b68c) writes it as address 257
+ * before registers 0 and 3, and `DoDGRqstLoadTextportGlyph` (arm1.u at
+ * 0x0c010b10) writes its glyph address; the start-up routine leaves it
+ * alone. Inferred: 17 bits address the external colour-map RAM that also
+ * holds the cursor block. */
+#define KONA_XMAP_CURSOR_GLYPH_BASE   0x01
+/*
+ * KONA_XMAP_CURSOR_POS: XMAP register 2, cursor position (irsaudit table
+ * entry at 0x101ffdd8, mask 0x3ffffff), the kernel's 0x102. Established:
+ * irsaudit `load_cursor_cntrs` (at 0x1013b5b8) writes it as address 258 and
+ * then calls `xmap_copybuffer`, and `load_cursor_pos` (at 0x1013b630) does
+ * the same; `DoDGRqstCursorPosition` (arm1.u at 0x0c0066e8) packs two 13-bit
+ * coordinates into it. Inferred: x sits in the low 13 bits and y above them,
+ * matching the kernel's packing. */
+#define KONA_XMAP_CURSOR_POS          0x02
+/*
+ * KONA_XMAP_CURSOR_ENABLES: XMAP register 3, cursor enables (irsaudit table
+ * entry at 0x101ffde4, mask 0x1ff), the kernel's 0x103. Established:
+ * irsaudit `easy_xmap_cursor` (at 0x1013b68c) writes address 259 last;
+ * `dgMakeXmapFetal` (arm1.u at 0x0c0097fc) writes 0; the firmware and kernel
+ * only ever send 0, 1 or 2. Inferred: bit 0 enables the crosshair and bit 1
+ * the glyph; the register has nine bits but no shipped code sets the rest. */
+#define KONA_XMAP_CURSOR_ENABLES      0x03
+/*
+ * KONA_XMAP_SUBSTITUTE_LOW: XMAP register 6, low word of the substitute
+ * colour (irsaudit table entry at 0x101ffdf0, mask 0xffffffff). Established:
+ * irsaudit `substitute_xmap_data` (at 0x1013afe4) writes it as address 262
+ * with the packed red, green and blue fields built from its first arguments;
+ * `dgMakeXmapFetal` (arm1.u at 0x0c0098fc) zeroes it. Inferred: it carries
+ * the colour that replaces the displayed pixel while the substitute enable
+ * in register 5 is set. */
+#define KONA_XMAP_SUBSTITUTE_LOW      0x06
+/*
+ * KONA_XMAP_SUBSTITUTE_HIGH: XMAP register 7, high bits of the substitute
+ * colour (irsaudit table entry at 0x101ffdfc, mask 0x1fff). Established:
+ * irsaudit `substitute_xmap_data` (at 0x1013afe4) writes address 263 with
+ * the top field plus a two-bit mode shifted left 10, ahead of a
+ * `xmap_copybuffer` call; `dgMakeXmapFetal` (arm1.u at 0x0c00993c) zeroes
+ * it. Inferred: 13 bits complete the 45-bit colour whose low 32 bits are in
+ * register 6. */
+#define KONA_XMAP_SUBSTITUTE_HIGH     0x07
+/*
+ * KONA_XMAP_RM_CONFIG: XMAP register 0xb, raster-board count code (irsaudit
+ * table entry at 0x101ffe08, mask 0x3). Established in both programs:
+ * irsaudit `set_num_rms` (at 0x1013b98c) writes 0, 1 or 2 for one, two or
+ * four raster-memory boards, and `dgSetNumRMs` (arm1.u at 0x0c010e6c) writes
+ * the same 0, 1 or 2 for one, two or four; `dgMakeXmapFetal` does not touch
+ * it. Inferred: the XMAP uses it to size the pixel stream it receives from
+ * the raster boards. */
+#define KONA_XMAP_RM_CONFIG           0x0b
+/*
+ * KONA_XMAP_DI_COMPARE_ADDR: XMAP register 0xc, display-id compare address
+ * (irsaudit table entry at 0x101ffe14, mask 0x3f). Established:
+ * `dgMakeXmapFetal` (arm1.u at 0x0c0099c0) writes 2, and irsaudit
+ * `base_xmap_init` (at 0x1013c3c8) writes address 268. Inferred: the name
+ * and the six-bit mask indicate a display-id table index the XMAP compares
+ * incoming ids against; no shipped code changes it from the start-up value. */
+#define KONA_XMAP_DI_COMPARE_ADDR     0x0c
+/*
+ * KONA_XMAP_IMP_DELAY: XMAP register 0xd, delay for the pixel stream from
+ * the image processors (irsaudit table entry at 0x101ffe20, mask 0x1ff).
+ * Established: `dgMakeXmapFetal` (arm1.u at 0x0c009a18 and 0x0c009aa4)
+ * writes 0xa5 when the board-type word at 0x04067edc is 2 and 0x64
+ * otherwise; irsaudit `base_xmap_init` (at 0x1013c3c8) writes 198 for type
+ * 2. Inferred: it is a clock-count delay matching the data path of that
+ * board type, set once at start-up. */
+#define KONA_XMAP_IMP_DELAY           0x0d
+/*
+ * KONA_XMAP_PIPE_DELAY: XMAP register 0xe, pipeline delay (irsaudit table
+ * entry at 0x101ffe2c, mask 0x7). Established: `dgMakeXmapFetal` (arm1.u at
+ * 0x0c009a5c and 0x0c009ae8) writes 6 for board type 2 and 3 otherwise, and
+ * irsaudit `base_xmap_init` (at 0x1013c3c8) writes address 270. Inferred: a
+ * three-bit count of pipeline stages the XMAP waits before using the data,
+ * chosen by board type at start-up only. */
+#define KONA_XMAP_PIPE_DELAY          0x0e
+/*
+ * KONA_XMAP_FASTLIST_CONFIG: XMAP register 0xf, fast-list configuration
+ * (irsaudit table entry at 0x101ffe38, mask 0x3ff). Established:
+ * `dgMakeXmapFetal` (arm1.u at 0x0c009b30) writes 0x339, and
+ * `DoDGRqstFastlistChunksize` (at 0x0c012168) writes the request word's low
+ * five bits ORed with 0x320. Inferred: the low five bits are the number of
+ * fast-list entries per chunk (start-up value 25) and the 0x320 above them
+ * stays fixed. */
+#define KONA_XMAP_FASTLIST_CONFIG     0x0f
+/*
+ * KONA_XMAP_RD_ADDR: XMAP register 0x11, read-back address (irsaudit table
+ * entry at 0x101ffe44, mask 0x7ffff). Established: irsaudit `TEST_xmapmem`
+ * (at 0x100adbfc) writes address 273 (at 0x100ad124) after selecting the
+ * chip in register 8 and setting register 4, then reads register 0x12; the
+ * firmware never writes it. Inferred: it holds the memory address whose
+ * contents the next read of register 0x12 returns. */
+#define KONA_XMAP_RD_ADDR             0x11
 
 /*
  * XMAP registers outside the diagnostic's list. Sources: irsaudit 6.5.30m
@@ -425,10 +518,48 @@ enum kona_vfo_signal {
  * else 0x64 and 3; 0x0f = 0x339. irsaudit's base_xmap_init differs in
  * 0x09 = 2 and 0x0d = 198 for board type 2.
  */
+/*
+ * KONA_XMAP_COPY_BUFFER: XMAP register 4, copy-buffer strobe. Established:
+ * irsaudit `xmap_copybuffer` (at 0x1013b94c) writes 1 to address 260 after
+ * each group of register writes, `dgForceXmapCopyBuffer` (arm1.u at
+ * 0x0c010d4c) does the same, and irsaudit `load_cursor_cntrs` (at
+ * 0x1013b610) writes 4 after a position change. Inferred: bit 0 copies the
+ * double-buffered registers into the live set and bit 2 forces the new
+ * cursor position, matching the pin names in the diagnostic. */
 #define KONA_XMAP_COPY_BUFFER         0x04
+/*
+ * KONA_XMAP_SUBSTITUTE_EN: XMAP register 5, substitute-colour enable.
+ * Established: `DoDGRqstDiagXmapColor` (arm1.u at 0x0c007f94) writes 1,
+ * `DoDGRqstDisableDiagXmapColor` (at 0x0c008148) and `dgMakeXmapFetal` (at
+ * 0x0c00987c) write 0, and irsaudit `turn_off_substitute_xmap_data` (at
+ * 0x1013b0f4) writes 0 to address 261. Inferred: 1 makes the XMAP output the
+ * colour held in registers 6 and 7 in place of the pixel; 0 returns to
+ * normal output. */
 #define KONA_XMAP_SUBSTITUTE_EN       0x05
+/*
+ * KONA_XMAP_RD_SELECT: XMAP register 8, selects which of the four XMAP chips
+ * answers a diagnostic read. Established: `dgMakeXmapFetal` (arm1.u at
+ * 0x0c0098bc) writes 0, and irsaudit writes the chip number 0 to 3 to
+ * address 264 (at 0x100ad0c0 in `TEST_xmapmem`) before setting the read
+ * address in register 0x11. Inferred: the number picks one chip, so the same
+ * read-data register serves all four. */
 #define KONA_XMAP_RD_SELECT           0x08
+/*
+ * KONA_XMAP_09: XMAP register 9, role not read from any code. Established
+ * values: `dgMakeXmapFetal` (arm1.u at 0x0c00997c) writes 0, irsaudit
+ * `base_xmap_init` (at 0x1013c3c8) writes 2, and `arm_x_loadxmap_config` (at
+ * 0x0c03dc44) writes the X module's X_LOADXMAP_CONFIG word, 1 when a window
+ * is created and 0 when one is destroyed. Inferred: a flag the X module
+ * raises while it has a window on the display; its bit meanings are not
+ * given by any shipped code or published source. */
 #define KONA_XMAP_09                  0x09
+/*
+ * KONA_XMAP_RD_DATA: XMAP register 0x12, read-back data. Established:
+ * irsaudit `TEST_xmapmem` (at 0x100adbfc) reads it after programming
+ * registers 8, 0x11 and 4; no code writes it. Inferred: it returns the word
+ * at the address in register 0x11 on the chip chosen in register 8; the read
+ * follows a copy-buffer write, so the address is latched before the value is
+ * returned. */
 #define KONA_XMAP_RD_DATA             0x12
 
 /*
@@ -455,14 +586,75 @@ enum kona_vfo_signal {
  *        pushes earlier list entries through; 0x1e ends a load. UNKNOWN
  *        beyond that: no shipped software or published source depends on it.
  */
+/*
+ * KONA_XMAP_FL_ADDR: XMAP indirect-memory address register 0x18, bus address
+ * 0x118. Established: `arm_x_loadxmap_did` (arm1.u at 0x0c03db8c) writes
+ * payload word 0 here and the data in word 1 to 0x11c,
+ * `DoDGRqstLoadTextportGlyph` (at 0x0c010bdc) and
+ * `DoDGRqstDiagCursorFromImage` (at 0x0c0081cc) write it before streaming
+ * cursor data, and irsaudit `vcWriteFastlist` (at 0x10140868) ORs 0x10000
+ * into its address. Inferred: it chooses the entry the next data-port write
+ * lands in. */
 #define KONA_XMAP_FL_ADDR             0x18
+/*
+ * KONA_XMAP_FL_CMAP_DATA: XMAP register 0x19, colour-map and cursor data
+ * port. Established: `DoDGRqstDiagCursorFromImage` (arm1.u at 0x0c008284 and
+ * four later stores) and `DoDGRqstLoadTextportGlyph` (at 0x0c010c2c) write
+ * consecutive words here after one address write, and irsaudit `load_cmap`
+ * (at 0x1013b1f8) streams n words after one address. Inferred: the address
+ * in register 0x18 advances after every write, which is why one address
+ * write suffices. */
 #define KONA_XMAP_FL_CMAP_DATA        0x19
+/*
+ * KONA_XMAP_FL_GAMMA_DATA: XMAP register 0x1b, gamma data port. Established:
+ * `arm_x_loadgamma` (arm1.u at 0x0c03d8dc) selects 0x1b for its stream of
+ * gamma entries, irsaudit `load_gamma_table` (at 0x1013bbd4) writes the
+ * table here after an address in register 0x18, and `DoDGRqstFetal` (at
+ * 0x0c008e90) writes 0. Inferred: each write stores one 12-bit entry at the
+ * address built from page, colour and entry index. */
 #define KONA_XMAP_FL_GAMMA_DATA       0x1b
+/*
+ * KONA_XMAP_FL_DID_DATA: XMAP register 0x1c, display-id table data.
+ * Established: `arm_x_loadxmap_did` (arm1.u at 0x0c03dba4) writes payload
+ * word 1 here after payload word 0 went to the address register 0x18, and
+ * `DoDGRqstInitTextport` (at 0x0c010ac0) writes 0x80050 for the textport id
+ * entry. Inferred: the word is the XMAP's per-id mode entry, so one write
+ * defines how pixels tagged with that display id are mapped. */
 #define KONA_XMAP_FL_DID_DATA         0x1c
+/*
+ * KONA_XMAP_FL_CHANNEL: XMAP register 0x1d, channel set-up word, with the
+ * channel number in register 0x18. Established: irsaudit
+ * `define_xmap_channel` (at 0x1013c2e4) writes it, and its debug line names
+ * the fields no_gam, ext, page and alp to blue. Inferred: bits 3-0 are the
+ * gamma page, bit 4 external gamma, bit 5 no gamma and bit 6 alpha to blue,
+ * each in the order that line prints them. */
 #define KONA_XMAP_FL_CHANNEL          0x1d
+/*
+ * KONA_XMAP_FL_END: XMAP register 0x1e, end-of-load marker. Established:
+ * `arm_x_loadxmap_did` (arm1.u at 0x0c03dc00) writes 0x11e once, after three
+ * writes to register 0x1f and before three more, with a data register the
+ * routine never sets; `DoDGRqstDiagCursorFromImage` (at 0x0c008504) writes
+ * 3. Inferred: it closes a table load; the data's meaning is not shown by
+ * any shipped code. */
 #define KONA_XMAP_FL_END              0x1e
+/*
+ * KONA_XMAP_FL_FLUSH: XMAP register 0x1f, flush writes. Established:
+ * `arm_x_loadxmap_did` (arm1.u at 0x0c03dbc0) writes it three times with an
+ * unset data register around the 0x1e write, `DoDGRqstDiagCursorFromImage`
+ * (at 0x0c008440, 0x0c008480, 0x0c0084c4) writes 0, 1 and 2, so an earlier
+ * comment that called these all zero was wrong; irsaudit writes 0 once.
+ * Inferred: the writes push earlier list entries through the XMAP's
+ * pipeline. */
 #define KONA_XMAP_FL_FLUSH            0x1f
-#define KONA_DG_VC_FASTLIST           0x10000 /* or-ed into HH_VC_ADDRESS by vcWriteFastlist */
+/*
+ * KONA_DG_VC_FASTLIST: Fast-list flag, bit 16 of the address written to the
+ * video-controller address port. Established: irsaudit `vcWriteFastlist` (at
+ * 0x10140868) writes address 960 with the register number ORed with 0x10000,
+ * then the data to 976, or alternatively sends a raster-bus word carrying
+ * 0x41 in its top bits through `bloTbusWrite`. Inferred: the flag marks the
+ * access as a fast-list entry for the XMAP rather than a direct register
+ * write. */
+#define KONA_DG_VC_FASTLIST           0x10000
 #define KONA_XMAP_CHAN_GAMMA_PAGE     0x0f
 #define KONA_XMAP_CHAN_EXT_GAMMA      0x10
 #define KONA_XMAP_CHAN_NO_GAMMA       0x20

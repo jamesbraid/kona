@@ -2210,7 +2210,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013aab8	284	xmap_dump_crc_to_
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013abd4	544	xmap_jtag_status	dynsym	62a06d9d2ff3	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013adf4	216	xmap_crc_start	dynsym	829afc5cf49a	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013aecc	280	xmap_crc_stop	dynsym	ba260d0882ce	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013afe4	272	substitute_xmap_data	dynsym	876e2761fd71	named-only	DG.h:394	check); the container layout is in ucode/dg.md. Roles marked INFERRED
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013afe4	272	substitute_xmap_data	dynsym	876e2761fd71	named-only	DG.h:417	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b0f4	84	turn_off_substitute_xmap_data	dynsym	8bec21f79572	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b1f8	556	load_cmap	dynsym	36732ba47da2	named-only	docs/dg.md#xmap-registers-memories-and-the-fast-list	XMAP registers, memories and the fast list
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b424	340	load_full_cmap	dynsym	a41c4833d8ad	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
