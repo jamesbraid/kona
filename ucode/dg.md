@@ -119,9 +119,25 @@ The directive counts, line lengths, porches and field layout of each file are on
 
 **Established** (IRIX 6.5.30m, four text files marked as generated). These are the inputs of the compiler that produced the `.vfo` files ("VideoFormatCompiler" in each `.vfo` header), and they state the target's limits in the same terms as the `.vfo` capacity fields:
 
-- `voc1.def` describes the VOC: `VofHardwareName` "VOC for DG4", `LineLengthMaximum` given as the field (0xffffffff & 0x7ffc0000) >> 18 and `StateRepetitionMaximum` as (0xffffffff & 0x7ff) >> 0, 256 vertical states, 32 line types, 50 edges, 16 fields, the three frame-detection clocks (50, 25 and 12.5 MHz with settings 0, 1, 2), a 32-entry frame-detection table, and the 14 signals with their edge slots: HSYNC 0-3, VSYNC 4-7, CSYNC 8-15, CBLANK 16-21, TRISYNC 22-27, FIELD_START 28-29, FIELD 30-31, FRAME_START 32-33, VIDEO_ACTIVE 34-39, LINE_START 40-41, STEREO_OUT 42-43, IMPREG_LD 44-45, XMAPREG_LD 46-47, VOF_VDRC_EN 48-49. The two masks are the bit positions the X module uses when it packs the line-type length (bits 30-18) and the state repeat count (bits 10-0) into the `LoadFormat` request ([docs/dg.md](../docs/dg.md#the-loadformat-request-383-words)), which settles the earlier inference that the limits are 13- and 11-bit fields.
-- `dg4.def` (revision 1.54) describes the DG4 board: the video-clock ratio rule (1 for two-field formats of at most 30 frames, below 800 x 600; 2 below 140 MHz of pixel rate; 4 above), the clock limits 12-35 MHz and DAC limits 13-36 MHz, composite sync on CSYNC active low, blanking on CBLANK active high, tri-level sync on TRISYNC active low, pixel requests on VIDEO_ACTIVE active high and set 13 clocks before the active edge, frame detection on CSYNC, and default edges for each signal a format leaves undefined.
-- `dg4_ddo_gvo.def` is the same board with the digital-output option: an exported `GlobalDelay` added to every default edge, a `FrameStartShift`, and tri-level sync active high.
-- `dplex.def` (revision 1.1) is the DPLEX variant, with a different ratio rule (1 below 70 MHz of pixel rate) and the back-porch clamp fields.
+- `voc1.def` (usr/gfx/ucode/vfc/rules/voc1.def, 1980 bytes): **established.** Describes the video-output chip rather than a board:
+  its hardware name text "VOC for DG4", then 256 vertical states, 32 line types, 50 edge slots and 16 fields as limits. The line
+  length limit is the bit field 0x7ffc0000 shifted by 18 and the repetition limit the field 0x7ff, which the `.vfo` capacity
+  fields record as 8191 and 2047. Frame detection has three clocks (50,
+  25 and 12.5 MHz with settings 0,
+  1 and 2, defined from +0x245), a 32-entry control size and a precision of 4e-8. The 14 signals start at +0x315, each with its
+  fixed edge slots: HSYNC and VSYNC 4 each, CSYNC 8, CBLANK and TRISYNC and VIDEO_ACTIVE 6 each, the other eight 2 each.
+- `dg4.def` (usr/gfx/ucode/vfc/rules/dg4.def, 10708 bytes): **established.** The board rules, revision 1.54 (the revision text is
+  at +0x70c, the rule block starts at +0x6f1). The clock ratio denominator is 1 for two-field formats of at most 30 frames below
+  800 x 600, 2 below 140 MHz of pixel rate and 4 above (from +0x141). Clock limits are 12 to 35 MHz and DAC limits 13 to 36 MHz
+  (+0x279). Composite sync is on the CSYNC signal active low (+0x605), tri-level sync on TRISYNC active low (+0x661), and the
+  rules refuse a format whose pixels per line are not divisible by the denominator (+0x776). It exports the horizontal back-porch
+  clamp pair from +0x27e2 in its tail, and a serrated-sync flag that the frame-detection source follows.
+- `dg4_ddo_gvo.def` (usr/gfx/ucode/vfc/rules/dg4_ddo_gvo.def, 12208 bytes): **established.** The same board as `dg4.def` with a global
+  delay added, revision 1.1 (text at +0x757, rules from +0x73c). It exports a global delay time (+0x7d) and a
+  frame-start shift of a quarter line (+0xc7), adds the delay to each edge it creates (37 mentions), and offsets the frame and
+  field start pulses by the shift. Tri-level sync is active high here (+0x6ab) where `dg4.def` has active low.
+- `dplex.def` (usr/gfx/ucode/vfc/rules/dplex.def, 10663 bytes): **established.** The DPLEX variant, revision 1.1 (text at +0x6e0). Its clock ratio rule is 1 below 70 MHz of pixel rate, 2 below 140 MHz and an error "format too fast for
+  dplex" above (from +0x112 and +0x1cc), it refuses an IMPREG_LD pulse shorter than one microsecond, and it exports the back-porch
+  clamp pair from +0x27b5 as half the horizontal back porch, centred in it.
 
 **Inferred:** the 54 `.vfo` files with `dg4_def_version` 1.54 were compiled against `dg4.def` and the 20 with 1.1 against `dplex.def`, from the matching revision strings.

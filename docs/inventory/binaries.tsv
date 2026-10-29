@@ -580,10 +580,10 @@ usr/gfx/ucode/KONA/vof/default.vof	microcode	board-microcode	data	-	7588	b694ac0
 usr/gfx/ucode/KONA/vof/ntsc.monitor	microcode	board-microcode	data	-	294	d36a59b944f39f21		0	0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
 usr/gfx/ucode/KONA/vof/vga.monitor	microcode	board-microcode	data	-	259	60d3cbbb46fd5f0d		0	0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
 usr/gfx/ucode/KONA/vof/vga.vof	microcode	board-microcode	data	-	7029	9b366dae30983d76		0	0	0	understood	docs/display-formats.md#output-format-sources	Output-format sources
-usr/gfx/ucode/vfc/rules/dg4.def	video-formats	board-data	data	-	10708	aac372e63b5f7a2a		0	0	0	named-only	ucode/dg.md#format-summary-fields	Format summary fields
-usr/gfx/ucode/vfc/rules/dg4_ddo_gvo.def	video-formats	board-data	data	-	12208	d73fb0145682bdbc		0	0	0	named-only	ucode/dg.md#format-summary-fields	Format summary fields
-usr/gfx/ucode/vfc/rules/dplex.def	video-formats	board-data	data	-	10663	dcd806610ebc3c41		0	0	0	named-only	docs/kernel.md#multi-pipe-dplex-display-port-writes	Multi-pipe (DPLEX) display-port writes
-usr/gfx/ucode/vfc/rules/voc1.def	video-formats	board-data	data	-	1980	125832d2727b529f		0	0	0	named-only	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
+usr/gfx/ucode/vfc/rules/dg4.def	video-formats	board-data	data	-	10708	aac372e63b5f7a2a		0	0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
+usr/gfx/ucode/vfc/rules/dg4_ddo_gvo.def	video-formats	board-data	data	-	12208	d73fb0145682bdbc		0	0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
+usr/gfx/ucode/vfc/rules/dplex.def	video-formats	board-data	data	-	10663	dcd806610ebc3c41		0	0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
+usr/gfx/ucode/vfc/rules/voc1.def	video-formats	board-data	data	-	1980	125832d2727b529f		0	0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
 usr/gfx/ucode/vfc/sdbutil	board-tools	board-tool	executable	n32	70452	3fa52d6c92f4026b		93	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d7eec8		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
