@@ -60,9 +60,54 @@ The ARM firmware ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md)) programs 
 
 **Established** (register indexes). The low 16 bits of the second word are register indexes in the kpm index space of [RM.h](../RM.h): `init_pg` writes 0x0800, 0x080f and 0x0806 (`PG_`), `init_tf` 0x140e and 0x1410 (`TFP_`), `init_imp` 0x1c00, 0x1c02, 0x1c03, 0x1c06-0x1c09, 0x1c0b, 0x1c0d, 0x1c14 and 0x1c15 (`IMP_`). `init_tg` writes 0x3fcf-0x3fd3, which are not in the `TG_` range of the table; **unknown** what they address. `init_pg` also writes 0x3be0 and 0x3be1 with descriptor 0x584fc800.
 
-**Unknown.** The high half of the second word (0x0120-0x0128 for the `init_tg` writes, 0x0125-0x012b for `init_pg`, 0x0134-0x013e for `init_imp`, 0x0160 and 0x0166 for `init_tf`): a different small number per write that rises through each routine, so it looks like a slot or target number, not a field of the register. The meaning of the first word is also unknown: all ones in `init_pg`, a per-call value in `init_tg` and `init_imp`; **inferred** to be a chip or lane select, from the value changing between chips and the all-ones case being the broadcast.
+**Established** (the high half; [below](#the-register-write-word)). The high half of the address word is 0x110 + i, where i is the word of the 89-word register shadow that mirrors the register in the low half: all 64 address-word constants in the image whose low half is a shadow register satisfy it (`0x01270800` is `PG_GENERAL`, shadow word 23). The first word is **unknown**: all ones in `init_pg`, a per-call value in `init_tg` and `init_imp`, 0x7 or 0x7f in the pixel paths; **inferred** to be a chip or lane select, from the value changing between chips and the all-ones case being the broadcast.
 
-A separate path writes the board-side registers numbered 0x400-0x477 (`tbus_regwrite`): `init_hip_tbus`, `start_rdata`, `finish_rdata`, `check_pipe_sync` and `init_tf`, `init_tm`. These are not in the `RM.h` index space. **Inferred:** they are registers of the host interface's own bus to the boards (`HH_TBUS_STATUS` and its neighbours in [HIP.h](../HIP.h)).
+A separate path writes the board-side registers numbered 0x400-0x477 (`tbus_regwrite`): `init_hip_tbus`, `start_rdata`, `finish_rdata`, `check_pipe_sync`, `init_tf`, `init_tm` and the select-feedback and pixel read-back handlers. They are not in the `RM.h` index space; [below](#host-interface-registers-on-the-raster-bus) identifies the ones the firmware's value flow names.
+
+## The register-write word
+
+Sources: `arm1.u` (IRIX 6.5.30m, [ucode/arm1.s](../ucode/arm1.s)), the IR diagnostic `usr/diags/IR/bin/irsaudit` (6.5.30m, N32, stripped, 1280 exported function names) and its raster-bus vector files `usr/diags/IR/data/aaspoke.tbus` and `tbusdata.Z` (260489 lines between them). Labels as above.
+
+**Established (the vector files).** Each line of the vector files is `0 m W`, with m one of 1, 2 or 3 and W a 64-bit word in hex. The raster chips' input is `tbus_data[64]` with `tbus_mode[2]` ([above](#data-path)), so **inferred:** m is the bus mode and W the bus word. In mode-1 words the top 16 bits are a register index from the [RM.h](../RM.h) space or the 0x400-0x477 board range. For an ordinary register write the next 16 bits repeat the index and the low 32 bits are the value: `1c0d1c0d00011006` writes 0x00011006 to `IMP_BL`. Two groups break the repeat: words whose top half is `PG_PRAM` + n (0x880-0x8ff) carry a different register in the second half (`08c1140600000004`: `PG_PRAM` entry 0x41, `TFP_FOG_OFFSET`, value 4), and words with top half 0x0440, 0x0460 or 0x0477 carry 0x1408 or 0x3fc3 there.
+
+**Inferred (the two halves).** The top half names where the word is delivered and the second half names the register the value is for. In a plain write they are the same. A word for the pixel generator's parameter RAM stores a register write for later, so its second half differs; the read-back registers 0x440, 0x460 and 0x477 take a raster register number as the thing to return.
+
+**Established (the geometry-engine side).** The ARM does not write bus words directly. It sends routed command 128 or 159 (`mgesi_BshRegisterWrite` or `mgesi_IMPbshRegisterWrite`, [ucode/arm1.md](../ucode/arm1.md)) with a select word, an address word and the value. The address word is (0x110 + i) << 16 | register. Here i is the word of the 89-word shadow whose `befsh_addrs` entry is that register. This holds for all 64 address-word constants in the image whose low half is in `befsh_addrs` (0x01100441 to 0x01681408). One constant, 0x010f087f (`PG_NOP`), uses 0x10f, the slot below the shadow.
+
+**Inferred.** The geometry board's back-end chip (`bef`, which carries `tbus_data[64]` in the `ge12`/`ge14` netlists) keeps the shadow at `BEF_REGSHADOW` (0x100) + slot. On a write it records the register and value in slot (high half - 0x100) and puts an ordinary register-write word (register, register, value) on the bus. A high half below 0x110 is a write that is not shadowed. The basis is the 64-for-64 match, the `BEF_REGSHADOW` index 0x100 in the kpm table, and the vector files, which hold bus-side words whose top half is the register itself. **Unknown: needs capture.** Whether the chip rewrites the top half or forwards it unchanged needs a capture of the bus words during `init_pg`, compared with the address words the ARM sends.
+
+### Host-interface registers on the raster bus
+
+**Established (value flow).** `arm_start_selectfeed` (0x0c022a50) reads the six `START_SELECTFEED` payload words (`A_hi`, `A_lo`, `len`, `llen`, `stride`, `snapshot`, [hip.md](hip.md)). It writes 0x450 = `A_hi`, 0x451 = `A_lo`, 0x453 = `len`, 0x454 = 0, 0x452 = `llen`, 0x455 = `llen` and 0x456 = `stride`. `__glkonSendPixelsToHost` writes 0x450 and 0x451 from `mem_mgr_pnum` and `mem_mgr_poff`, sets 0x452 and 0x453 to the same byte count, and zeroes 0x454, 0x455 and 0x456. `start_rdata` (0x0c0224d4) writes 0x477 = 0, 0x440 = 1, 0x463 = length, 0x464 = 0x400, 0x460 = address high, 0x461 = address low, 0x462 = length, then 0x476 = 0. `__glkonSetupPacker` (0x0c028d20) writes 0x441 through shadow slot 0x110 with a value assembled from four small fields: bits 0-1, bit 2, bits 3-5 and bit 6.
+
+**Inferred (the names).** These are the host interface's output-DMA registers ([HIP.h](../HIP.h), kpm `hip_registers.tsv`), reached by bus index rather than host offset:
+
+| Bus index | Register | Basis |
+|---|---|---|
+| 0x440 | `HH_ODMA_CHANNEL` (1 bit) | set to 1 before a read-back that uses the second channel, cleared otherwise |
+| 0x441 | `HH_PACK_MODE` (7 bits) | the packer setup routine writes a 7-bit value; the host register mask is 0x7f |
+| 0x450-0x456 | `HH_ODMA_PNUM`, `_POFF`, `_LEN`, `_TOTAL`, `_OVER`, `_LLEN`, `_STRIDE` | the select-feedback payload lands in the order the host registers have the same fields; `OVER` is cleared |
+| 0x460-0x464 | `HH_ODMA2_PNUM`, `_POFF`, `_LEN`, `_TOTAL`, `_OVER` | the read-back setup loads address, length and total, and the second channel has exactly these five registers |
+| 0x476, 0x477 | **unknown** (0x476 is the port the reply words are written to, 0x477 is cleared first) | `start_rdata`, `arm_getconfig` |
+
+The bus numbering is not the host offset divided by 8 (`HH_ODMA_PNUM` is at host offset 0x260). The order within each group follows the host order. So the first three shadow words are pack mode, output line length and output stride, which a context switch must keep for a pixel read in progress. **Unknown: needs capture.** Reading 0x441, 0x455 and 0x456 back on a live pipe after a `glReadPixels` with a non-default pack alignment and row length would confirm the three names.
+
+### Names for the unnamed indexes
+
+**Established.** `irsaudit` holds the raster register names as a string pool in index order (rodata around 0x101c3340). Next to each multi-word register it lists suffixed names that the kpm table lacks: `PGTFPIMP_MSLOC_1`, `PGTG_SCIS_1`, `PGTG_ZRECT_1` to `_7`, `PGTG_DRECT_1` and `_2`, `PGTG_SIZE_1` to `_3`, `PG_QCOLOR_1` and `_2`, `PG_STIPPLE_1` to `_3`, `IMP_USER_COLOR_1`, `IMP_CLEAR_COLOR_1` and `IMP_WMASK_BIT_1`. **Inferred:** suffix n is the base index + n. In seven of the ten cases the suffixed names exactly fill the gap between the base register and the next kpm-named register (`PGTG_ZRECT` 0x3fc4 plus seven reaches `PGTG_DRECT` 0x3fcc). In the other three (`PGTFPIMP_MSLOC`, `PG_STIPPLE`, `IMP_WMASK_BIT`) they stay inside the gap, which leaves 0x80e unnamed. That gives:
+
+| Index | Name |
+|---|---|
+| 0x3be1 | `PGTFPIMP_MSLOC_1` |
+| 0x3fc3 | `PGTG_SCIS_1` |
+| 0x3fc5-0x3fcb | `PGTG_ZRECT_1`-`_7` |
+| 0x3fcd, 0x3fce | `PGTG_DRECT_1`, `_2` |
+| 0x3fd0-0x3fd2 | `PGTG_SIZE_1`-`_3` |
+| 0x802, 0x803 | `PG_QCOLOR_1`, `_2` (0x803 is the most frequent register in the vector files, 4753 writes) |
+| 0x80b-0x80d | `PG_STIPPLE_1`-`_3` (start-up values 0x55, 0x55, 0xff) |
+| 0x1c11, 0x1c13, 0x1c15 | `IMP_USER_COLOR_1`, `IMP_CLEAR_COLOR_1`, `IMP_WMASK_BIT_1` |
+
+The string pool is not referenced through absolute pointers in the file, so the index binding rests on order and gap counts, not on a table entry. The field layouts of the suffixed registers are **unknown**.
 
 ## The 89-word register shadow
 
@@ -74,11 +119,11 @@ Facts are labelled **established** (read from `arm1.u`, IRIX 6.5.30m, by [script
 
 | Words | Registers mirrored |
 |---|---|
-| 0-2 | indexes 0x441, 0x455, 0x456, not in the kpm raster table |
-| 3-20 | 0x3fc2-0x3fd3, the combined pixel-generator and texture-generator range (`PGTG_SCIS`, `PGTG_ZRECT`, `PGTG_DRECT`, `PGTG_SIZE`, `PGTG_ENABLES`, the rest unnamed) |
-| 21-22 | 0x3be0, 0x3be1 (`PGTFPIMP_MSLOC` and its neighbour) |
-| 23-35 | `PG_GENERAL`, `PG_PSPEC`, `PG_BLOAT`, `PG_Z_OFF`, `PG_MSK`, `PG_WIN_OFFSET_X/Y`, `PG_SMASK`, `PG_STIPPLE`, three unnamed (0x80a-0x80d), `PG_PRU` |
-| 36-46 | `IMP_CONFIG`, `IMP_OP`, `IMP_MS`, `IMP_CLIP`, `IMP_SZ0`, `IMP_SZ1`, `IMP_DEPTH_CLEAR`, `IMP_ADDR`, `IMP_BL`, `IMP_WMASK_BIT`, 0x1c15 |
+| 0-2 | 0x441, 0x455, 0x456: host-interface pack mode, output-DMA line length and stride (**inferred**, [below](#host-interface-registers-on-the-raster-bus)) |
+| 3-20 | 0x3fc2-0x3fd3, the combined pixel-generator and texture-generator range (`PGTG_SCIS` and `_1`, `PGTG_ZRECT` and `_1`-`_7`, `PGTG_DRECT` and `_1`-`_2`, `PGTG_SIZE` and `_1`-`_3`, `PGTG_ENABLES`; suffix names from the diagnostic, [below](#names-for-the-unnamed-indexes)) |
+| 21-22 | 0x3be0, 0x3be1 (`PGTFPIMP_MSLOC`, `PGTFPIMP_MSLOC_1`) |
+| 23-35 | `PG_GENERAL`, `PG_PSPEC`, `PG_BLOAT`, `PG_Z_OFF`, `PG_MSK`, `PG_WIN_OFFSET_X/Y`, `PG_SMASK`, `PG_STIPPLE`, `PG_STIPPLE_1`-`_3` (0x80b-0x80d), `PG_PRU` |
+| 36-46 | `IMP_CONFIG`, `IMP_OP`, `IMP_MS`, `IMP_CLIP`, `IMP_SZ0`, `IMP_SZ1`, `IMP_DEPTH_CLEAR`, `IMP_ADDR`, `IMP_BL`, `IMP_WMASK_BIT`, `IMP_WMASK_BIT_1` (0x1c15) |
 | 47 | `COMMON_IFMT` (0x3ff8) |
 | 48-53 | `TGTML_TEXLD_*` and `TML_TEXLD_GLOBALOFFSET`, stored with bit 30 set (0x40007fc1-0x40007fc5, 0x40005001) |
 | 54-74 | texture-memory draw registers (`TM_*`), `TGTM_*`, `TG_*` and `TFT_*` |
@@ -90,7 +135,7 @@ Facts are labelled **established** (read from `arm1.u`, IRIX 6.5.30m, by [script
 
 **Inferred.** Bit 30 on words 48-53 marks registers reached by the texture-load path; the kpm table has them at the low 15 bits. The saved image's word order equals table order because the load handler checks the length 0x59 and nothing in the loader reorders words.
 
-**Unknown: needs capture.** (1) What the high half of the address word selects: in this loop it is (0x100 + i), but `init_pg` sends 0x0127 for `PG_GENERAL`, which is word 23 (0x117). A capture of the descriptor words at the raster-board register bus during pipe start-up would settle it. (2) The register behind an index with no kpm name (0x441, 0x455, 0x456, 0x3fc3 and the others marked `unknown`): a read-back of those indexes on a live raster board. (3) The engine handler's walk over the 89 words (`mges_ContextLoadBEF`): the engine program's arithmetic operation codes are open, so only table order is read.
+**Settled since.** The high half of the address word and the registers behind the unnamed indexes are read in [The register-write word](#the-register-write-word). **Unknown: needs capture.** (1) Why the `arm_slop` loop above uses 0x100 + i where every other writer uses 0x110 + i: a capture of the raster-bus words the geometry board emits while that case runs. (2) What the shadow keeps in its slots 0x100-0x10f, below the 89 words. (3) The engine handler's walk over the 89 words (`mges_ContextLoadBEF`): the engine program's arithmetic operation codes are open, so only table order is read.
 
 ## Reset of the raster boards
 

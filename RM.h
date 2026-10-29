@@ -1360,4 +1360,67 @@
 
 #define KONA_RM_PG_NOP                                   0x087f
 
+/*
+ * Register-write word on the raster bus and the extra indexes
+ * (docs/rm.md, "The register-write word").
+ *
+ * ESTABLISHED (irsaudit vector files aaspoke.tbus, tbusdata.Z, 6.5.30m):
+ * a mode-1 bus word is {index:16, register:16, value:32}; an ordinary
+ * write repeats the index in both halves. INFERRED: the top half is where
+ * the word is delivered, the second half the register the value is for
+ * (they differ for PG_PRAM entries and the read-back registers).
+ *
+ * ESTABLISHED (arm1.u, 64 of 64 constants): the address word the ARM
+ * hands to the engines' register-write handler is
+ * (KONA_RM_BEF_SHADOW_SLOT0 + i) << 16 | register, i = word of the
+ * 89-word shadow (ucode/befshadow.tsv). 0x10f marks a write not shadowed.
+ */
+#define KONA_RM_BUSWORD_INDEX(w)            (((w) >> 48) & 0xffff)
+#define KONA_RM_BUSWORD_REG(w)              (((w) >> 32) & 0xffff)
+#define KONA_RM_BUSWORD_VALUE(w)            ((w) & 0xffffffff)
+#define KONA_RM_BEF_SHADOW_SLOT0            0x0110
+
+/*
+ * Board-side indexes that reach host-interface output registers.
+ * INFERRED from value flow in arm_start_selectfeed, start_rdata,
+ * __glkonSendPixelsToHost and __glkonSetupPacker (arm1.u); the host
+ * names are HIP.h's.
+ */
+#define KONA_RM_HIP_ODMA_CHANNEL            0x0440
+#define KONA_RM_HIP_PACK_MODE               0x0441
+#define KONA_RM_HIP_ODMA_PNUM               0x0450
+#define KONA_RM_HIP_ODMA_POFF               0x0451
+#define KONA_RM_HIP_ODMA_LEN                0x0452
+#define KONA_RM_HIP_ODMA_TOTAL              0x0453
+#define KONA_RM_HIP_ODMA_OVER               0x0454
+#define KONA_RM_HIP_ODMA_LLEN               0x0455
+#define KONA_RM_HIP_ODMA_STRIDE             0x0456
+#define KONA_RM_HIP_ODMA2_PNUM              0x0460
+#define KONA_RM_HIP_ODMA2_POFF              0x0461
+#define KONA_RM_HIP_ODMA2_LEN               0x0462
+#define KONA_RM_HIP_ODMA2_TOTAL             0x0463
+#define KONA_RM_HIP_ODMA2_OVER              0x0464
+
+/*
+ * Second and later words of multi-word registers. Names ESTABLISHED in
+ * irsaudit's register-name pool; index = base + n INFERRED from pool order
+ * and gap counts. Field layouts UNKNOWN.
+ */
+#define KONA_RM_PG_QCOLOR_1                 0x0802
+#define KONA_RM_PG_QCOLOR_2                 0x0803
+#define KONA_RM_PG_STIPPLE_1                0x080b
+#define KONA_RM_PG_STIPPLE_2                0x080c
+#define KONA_RM_PG_STIPPLE_3                0x080d
+#define KONA_RM_IMP_USER_COLOR_1            0x1c11
+#define KONA_RM_IMP_CLEAR_COLOR_1           0x1c13
+#define KONA_RM_IMP_WMASK_BIT_1             0x1c15
+#define KONA_RM_PGTFPIMP_MSLOC_1            0x3be1
+#define KONA_RM_PGTG_SCIS_1                 0x3fc3
+#define KONA_RM_PGTG_ZRECT_1                0x3fc5  /* _2.._7 = 0x3fc6..0x3fcb */
+#define KONA_RM_PGTG_DRECT_1                0x3fcd
+#define KONA_RM_PGTG_DRECT_2                0x3fce
+#define KONA_RM_PGTG_SIZE_1                 0x3fd0
+#define KONA_RM_PGTG_SIZE_2                 0x3fd1
+#define KONA_RM_PGTG_SIZE_3                 0x3fd2
+
 #endif /* KONA_RM_H */
