@@ -1493,7 +1493,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a09c	176	TEST_verify_ge11u
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a14c	668	load_ged_seq_ucode	dynsym	named-only	ucode/ged.md#the-distributor-instruction-set-registers-and-dispatch	The distributor: instruction set, registers and dispatch
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a3e8	500	load_ged_pcl_table	dynsym	named-only	ucode/ged.md#the-distributor-instruction-set-registers-and-dispatch	The distributor: instruction set, registers and dispatch
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a5dc	1072	LoadUcodeFile	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003aa0c	5292	init_ged_regs	dynsym	named-only	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003aa0c	5292	init_ged_regs	dynsym	understood	ucode/arm1_functions.md#engine-and-distributor-set-up	Engine and distributor set-up
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003beb8	316	TEST_geducode	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003bff4	528	LoadArmBoot	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003c214	100	sort_test_list	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -1836,7 +1836,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bfe50	676	init_user_color	d
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c00f4	676	init_clear_color	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0398	668	init_mask_color	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0634	148	init_ms_loc	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c06c8	380	init_tf	dynsym	located	RM.h:40	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c06c8	380	init_tf	dynsym	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0ea4	820	TEST_rmvis	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c4320	1748	TEST_miniread	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c5d20	1512	TEST_texread	dynsym	understood	RM.h:761	
