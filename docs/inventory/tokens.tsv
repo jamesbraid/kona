@@ -381,7 +381,7 @@ token	0x17a	HP_BIND_BICUBIC_TEXTURE;KONA_HP_BIND_BICUBIC_TEXTURE		handler=arm_bi
 token	0x17b	HP_BIND_3D_MIPMAP_TEXTURE;KONA_HP_BIND_3D_MIPMAP_TEXTURE		handler=arm_bind_3d_mipmap_texture route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#rasters	raster.S
 token	0x17c	HP_BIND_3D_TEXTURE;KONA_HP_BIND_3D_TEXTURE		handler=arm_bind_3d_texture route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#rasters	raster.S
 token	0x17d	HP_BIND_DETAIL_TEXTURE;KONA_HP_BIND_DETAIL_TEXTURE		handler=arm_bind_detail_texture route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#textures	texture.S
-token	0x17e	HP_TEX_SEND_ARM_TABLE;KONA_HP_TEX_SEND_ARM_TABLE		handler=arm_tex_send_arm_table route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:bindTexTable	documented	RM.h:83	
+token	0x17e	HP_TEX_SEND_ARM_TABLE;KONA_HP_TEX_SEND_ARM_TABLE		handler=arm_tex_send_arm_table route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:bindTexTable	documented	RM.h:101	
 token	0x17f	HP_SLOP;KONA_HP_SLOP		handler=arm_slop route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#debugs	debug.S
 token	0x180	HP_VARRAY_SET_CMDS;KONA_HP_VARRAY_SET_CMDS		handler=arm_varray_set_cmds route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_GetTexGenfv	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 token	0x181	HP_VARRAY_SETUP;KONA_HP_VARRAY_SETUP		handler=arm_varray_setup route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_DrawArraysEXT	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
@@ -530,7 +530,7 @@ token	0x20f	**** PIXELS_STARTGEID;KONA_HP_KPM_PIXELS_STARTGEID			GE.h,kpm	0	0		d
 token	0x210	HT_PACK_MODE			kpm	0	0		documented	GE.h:708	
 token	0x211	HT_ODMA_LLEN			kpm	0	0		documented	GE.h:708	
 token	0x212	HT_ODMA_STRIDE			kpm	0	0		documented	GE.h:709	
-token	0x213	PGTG_SCIS			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+token	0x213	PGTG_SCIS			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x214	PGTG_SCIS_1			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
 token	0x215	PGTG_ZRECT			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
 token	0x216	PGTG_ZRECT_1			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
@@ -538,46 +538,46 @@ token	0x217	PGTG_ZRECT_2			kpm	0	0		named-only	GE.h:714
 token	0x218	PGTG_ZRECT_3			kpm	0	0		named-only	GE.h:715	
 token	0x219	PGTG_ZRECT_4			kpm	0	0		named-only	GE.h:715	
 token	0x21a	PGTG_ZRECT_5			kpm	0	0		named-only	GE.h:715	
-token	0x21b	PGTG_ZRECT_6			kpm	0	0		named-only	GE.h:716	
+token	0x21b	PGTG_ZRECT_6			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x21c	PGTG_ZRECT_7			kpm	0	0		named-only	GE.h:716	
-token	0x21d	PGTG_DRECT			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-token	0x21e	PGTG_DRECT_1			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
+token	0x21d	PGTG_DRECT			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
+token	0x21e	PGTG_DRECT_1			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x21f	PGTG_DRECT_2			kpm	0	0		named-only	GE.h:717	
-token	0x220	PGTG_SIZE			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+token	0x220	PGTG_SIZE			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x221	PGTG_SIZE_1			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
 token	0x222	PGTG_SIZE_2			kpm	0	0		named-only	GE.h:717	
 token	0x223	PGTG_SIZE_3			kpm	0	0		named-only	GE.h:718	
-token	0x224	PGTG_ENABLES			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x225	PGTFPIMP_MSLOC			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
+token	0x224	PGTG_ENABLES			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
+token	0x225	PGTFPIMP_MSLOC			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x226	PGTFPIMP_MSLOC_1			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
 token	0x227	PG_GENERAL			kpm	0	0		documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers	How the ARM firmware writes raster registers
-token	0x228	PG_PSPEC			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+token	0x228	PG_PSPEC			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x229	PG_BLOAT			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 token	0x22a	PG_Z_OFF			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x22b	PG_MSK			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+token	0x22b	PG_MSK			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x22c	PG_WIN_OFFSET_X			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 token	0x22d	PG_WIN_OFFSET_Y			kpm	0	0		named-only	GE.h:720	
-token	0x22e	PG_SMASK			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+token	0x22e	PG_SMASK			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x22f	PG_STIPPLE			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-token	0x230	PG_STIPPLE_1			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
+token	0x230	PG_STIPPLE_1			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x231	PG_STIPPLE_2			kpm	0	0		named-only	GE.h:721	
 token	0x232	PG_STIPPLE_3			kpm	0	0		named-only	GE.h:722	
 token	0x233	PG_PRU			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x234	IMP_CONFIG			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x235	IMP_OP			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x236	IMP_MS			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+token	0x234	IMP_CONFIG			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
+token	0x235	IMP_OP			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
+token	0x236	IMP_MS			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x237	IMP_CLIP			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 token	0x238	IMP_SZ0			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 token	0x239	IMP_SZ1			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 token	0x23a	IMP_DEPTH_CLEAR			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x23b	IMP_ADDR			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+token	0x23b	IMP_ADDR			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x23c	IMP_BL			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x23d	IMP_WMASK_BIT			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
 token	0x23e	IMP_WMASK_BIT_1			kpm	0	0		documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
 token	0x23f	COMMON_IFMT			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 token	0x240	TGTML_TEXLD_MISC			kpm	0	0		documented	docs/opengl.md#texel-download-header-word-7-and-the-load-scissor-bit	Texel download: header word 7 and the load-scissor bit
 token	0x241	TGTML_TEXLD_S1ST_RSTART			kpm	0	0		named-only	GE.h:725	
-token	0x242	TGTML_TEXLD_STSTART			kpm	0	0		documented	RM.h:135	
+token	0x242	TGTML_TEXLD_STSTART			kpm	0	0		documented	RM.h:153	
 token	0x243	TGTML_TEXLD_SIZE			kpm	0	0		documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 token	0x244	TGTML_TEXLD_STEND			kpm	0	0		named-only	GE.h:726	
 token	0x245	TML_TEXLD_GLOBALOFFSET			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
@@ -585,9 +585,9 @@ token	0x246	TM_DRAW_GLOBALOFFSET			kpm	0	0		named-only	GE.h:727
 token	0x247	TM_MEMCONF			kpm	0	0		named-only	GE.h:727	
 token	0x248	TGTM_TEX_SIZE			kpm	0	0		documented	RM.h:37	
 token	0x249	TGTMTFT			kpm	0	0		documented	docs/rm.md#chips-on-each-board	Chips on each board
-token	0x24a	TG_MAP_LEVEL			kpm	0	0		documented	RM.h:126	
-token	0x24b	TG_LOD_SCALEST			kpm	0	0		documented	RM.h:123	
-token	0x24c	TG_LOD_SCALER			kpm	0	0		documented	RM.h:123	
+token	0x24a	TG_MAP_LEVEL			kpm	0	0		documented	RM.h:144	
+token	0x24b	TG_LOD_SCALEST			kpm	0	0		documented	RM.h:141	
+token	0x24c	TG_LOD_SCALER			kpm	0	0		documented	RM.h:141	
 token	0x24d	TGTM_DCTEX_SIZE			kpm	0	0		named-only	GE.h:729	
 token	0x24e	TM_DRAW_DETAILMAP			kpm	0	0		named-only	GE.h:729	
 token	0x24f	TM_TEX_SIZE			kpm	0	0		documented	RM.h:38	
@@ -598,21 +598,21 @@ token	0x253	TGTM_TEX_TCENTER			kpm	0	0		named-only	GE.h:731
 token	0x254	TFT_SBIAS_EN			kpm	0	0		named-only	GE.h:731	
 token	0x255	TFT_SCALE			kpm	0	0		named-only	GE.h:732	
 token	0x256	TFT_BIAS			kpm	0	0		named-only	GE.h:732	
-token	0x257	TFT_TLUT			kpm	0	0		named-only	GE.h:732	
+token	0x257	TFT_TLUT			kpm	0	0		documented	RM.h:925	
 token	0x258	TM_DRAW_SHA_AMBIENT			kpm	0	0		named-only	GE.h:732	
-token	0x259	TM_DRAW_REDUNDANCY			kpm	0	0		named-only	GE.h:733	
-token	0x25a	TG_MISC			kpm	0	0		named-only	GE.h:733	
-token	0x25b	TFP_AFUNC			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+token	0x259	TM_DRAW_REDUNDANCY			kpm	0	0		documented	RM.h:721	
+token	0x25a	TG_MISC			kpm	0	0		documented	RM.h:722	
+token	0x25b	TFP_AFUNC			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x25c	TFP_TEX			kpm	0	0		named-only	GE.h:733	
-token	0x25d	TFP_TEV			kpm	0	0		named-only	GE.h:734	
+token	0x25d	TFP_TEV			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x25e	TFP_TEV_CC			kpm	0	0		named-only	GE.h:734	
 token	0x25f	TFP_TEV_CC1			kpm	0	0		named-only	GE.h:734	
-token	0x260	TFP_AC			kpm	0	0		named-only	GE.h:734	
+token	0x260	TFP_AC			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x261	TFP_FADE_MASK_LUT			kpm	0	0		named-only	GE.h:735	
-token	0x262	TFP_FOG			kpm	0	0		documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+token	0x262	TFP_FOG			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
 token	0x263	TFP_FOG_CC			kpm	0	0		named-only	GE.h:735	
 token	0x264	TFP_FOG_CC1			kpm	0	0		named-only	GE.h:735	
 token	0x265	TFP_FOG_OFFSET			kpm	0	0		documented	docs/rm.md#the-register-write-word	The register-write word
-token	0x266	TFP_PIX_FMT			kpm	0	0		named-only	GE.h:736	
+token	0x266	TFP_PIX_FMT			kpm	0	0		documented	RM.h:1357	
 token	0x267	TFP_COLOR_FMT			kpm	0	0		named-only	GE.h:736	
-token	0x268	TFP_AMASK			kpm	0	0		named-only	GE.h:736	
+token	0x268	TFP_AMASK			kpm	0	0		documented	RM.h:821	

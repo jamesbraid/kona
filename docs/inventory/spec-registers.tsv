@@ -86,11 +86,11 @@ kpm register tables	host interface		hip	0x8003e8	HH_ARM_ADDRESS	1	0	32		0	docume
 kpm register tables	host interface		hip	0x8003f0	HH_ARM_DATA	1	0	32		0	documented	docs/hip.md#reset-and-start-of-the-arm	Reset and start of the ARM
 kpm register tables	host interface		hip	0x8003f8	HH_ARM_DATA_INCR	1	0	32		0	documented	HIP.h:26	
 kpm register tables	raster		raster-index	0x1	BEF_DUMP	1	0	32		0	documented	docs/rm.md#interrupts	Interrupts
-kpm register tables	raster		raster-index	0x2	BEF_PERF_COUNTALL	1	0	32		0	documented	docs/rm.md#interrupts	Interrupts
-kpm register tables	raster		raster-index	0x3	BEF_PERF_COUNTDRAW	1	0	32		0	documented	docs/rm.md#interrupts	Interrupts
-kpm register tables	raster		raster-index	0x4	BEF_PERF_COUNTLOAD	1	0	32		0	documented	RM.h:164	
-kpm register tables	raster		raster-index	0x5	BEF_PERF_COUNTEMPTY	1	0	32		0	named-only	RM.h:377	
-kpm register tables	raster		raster-index	0x6	BEF_MAILBOX	1	0	32		0	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+kpm register tables	raster		raster-index	0x2	BEF_PERF_COUNTALL	1	0	32		0	documented	RM.h:395	
+kpm register tables	raster		raster-index	0x3	BEF_PERF_COUNTDRAW	1	0	32		0	documented	RM.h:395	
+kpm register tables	raster		raster-index	0x4	BEF_PERF_COUNTLOAD	1	0	32		0	documented	RM.h:182	
+kpm register tables	raster		raster-index	0x5	BEF_PERF_COUNTEMPTY	1	0	32		0	documented	RM.h:403	
+kpm register tables	raster		raster-index	0x6	BEF_MAILBOX	1	0	32		0	documented	RM.h:407	
 kpm register tables	raster		raster-index	0x7	BEF_REGSHADOW_BMASK	1	0	32		0	documented	docs/rm.md#context-save-and-restore	Context save and restore
 kpm register tables	raster		raster-index	0x100	BEF_REGSHADOW	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x200	BEF_REGSHADOW_READ	1	0	32		0	documented	docs/rm.md#context-save-and-restore	Context save and restore
@@ -99,145 +99,145 @@ kpm register tables	raster		raster-index	0x800	PG_GENERAL	1	0	32		0	documented	d
 kpm register tables	raster		raster-index	0x801	PG_QCOLOR	1	0	32		0	documented	RM.h:49	
 kpm register tables	raster		raster-index	0x804	PG_BLOAT	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 kpm register tables	raster		raster-index	0x805	PG_Z_OFF	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x806	PG_MSK	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+kpm register tables	raster		raster-index	0x806	PG_MSK	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x807	PG_WIN_OFFSET_X	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 kpm register tables	raster		raster-index	0x808	PG_WIN_OFFSET_Y	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x809	PG_SMASK	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+kpm register tables	raster		raster-index	0x809	PG_SMASK	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x80a	PG_STIPPLE	1	0	32		0	documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-kpm register tables	raster		raster-index	0x80f	PG_PSPEC	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+kpm register tables	raster		raster-index	0x80f	PG_PSPEC	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x810	PG_PRU	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 kpm register tables	raster		raster-index	0x87f	PG_NOP	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x880	PG_PRAM	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
-kpm register tables	raster		raster-index	0xc00	TG_DNOP	1	0	32		0	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
-kpm register tables	raster		raster-index	0xc01	TG_FIFOLAT	1	0	32		0	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
-kpm register tables	raster		raster-index	0xc02	TG_MISC	1	0	32		0	named-only	GE.h:733	
-kpm register tables	raster		raster-index	0xc04	TG_MAP_LEVEL	1	0	32		0	documented	RM.h:126	
-kpm register tables	raster		raster-index	0xc05	TG_LOD_SCALEST	1	0	32		0	documented	RM.h:123	
-kpm register tables	raster		raster-index	0xc06	TG_LOD_SCALER	1	0	32		0	documented	RM.h:123	
+kpm register tables	raster		raster-index	0xc00	TG_DNOP	1	0	32		0	documented	RM.h:422	
+kpm register tables	raster		raster-index	0xc01	TG_FIFOLAT	1	0	32		0	documented	RM.h:428	
+kpm register tables	raster		raster-index	0xc02	TG_MISC	1	0	32		0	documented	RM.h:722	
+kpm register tables	raster		raster-index	0xc04	TG_MAP_LEVEL	1	0	32		0	documented	RM.h:144	
+kpm register tables	raster		raster-index	0xc05	TG_LOD_SCALEST	1	0	32		0	documented	RM.h:141	
+kpm register tables	raster		raster-index	0xc06	TG_LOD_SCALER	1	0	32		0	documented	RM.h:141	
 kpm register tables	raster		raster-index	0x1000	TM_MEMCONF	1	0	32		0	named-only	GE.h:727	
-kpm register tables	raster		raster-index	0x1001	TM_REFCTR	1	0	32		0	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
-kpm register tables	raster		raster-index	0x1002	TM_SYNC_WAITLOAD	1	0	32		0	documented	RM.h:141	
-kpm register tables	raster		raster-index	0x1003	TM_SYNC_IDDRAW	1	0	32		0	documented	RM.h:141	
-kpm register tables	raster		raster-index	0x1004	TM_DRAW_TEXMAP_0_1	1	0	32		0	documented	RM.h:141	
-kpm register tables	raster		raster-index	0x1005	TM_DRAW_TEXMAP_2_3	1	0	32		0	documented	RM.h:141	
-kpm register tables	raster		raster-index	0x1006	TM_DRAW_TEXMAP_4_5	1	0	32		0	documented	RM.h:141	
-kpm register tables	raster		raster-index	0x1007	TM_DRAW_TEXMAP_6_7	1	0	32		0	named-only	RM.h:444	
-kpm register tables	raster		raster-index	0x1008	TM_DRAW_TEXMAP_8_9	1	0	32		0	named-only	RM.h:450	
-kpm register tables	raster		raster-index	0x1009	TM_DRAW_TEXMAP_10_11	1	0	32		0	named-only	RM.h:456	
-kpm register tables	raster		raster-index	0x100a	TM_DRAW_TEXMAP_12_13	1	0	32		0	named-only	RM.h:462	
-kpm register tables	raster		raster-index	0x100b	TM_DRAW_TEXMAP_14_15	1	0	32		0	named-only	RM.h:468	
-kpm register tables	raster		raster-index	0x100c	TM_DRAW_TEXMAP_3DM_0	1	0	32		0	named-only	RM.h:474	
-kpm register tables	raster		raster-index	0x100d	TM_DRAW_TEXMAP_3DM_1	1	0	32		0	named-only	RM.h:480	
-kpm register tables	raster		raster-index	0x100e	TM_DRAW_TEXMAP_3DM_2	1	0	32		0	named-only	RM.h:486	
-kpm register tables	raster		raster-index	0x100f	TM_DRAW_TEXMAP_3DM_3	1	0	32		0	named-only	RM.h:492	
-kpm register tables	raster		raster-index	0x1010	TM_DRAW_TEXMAP_3DM_4	1	0	32		0	named-only	RM.h:498	
-kpm register tables	raster		raster-index	0x1011	TM_DRAW_TEXMAP_3DM_5	1	0	32		0	named-only	RM.h:504	
-kpm register tables	raster		raster-index	0x1012	TM_DRAW_TEXMAP_3DM_6	1	0	32		0	named-only	RM.h:510	
-kpm register tables	raster		raster-index	0x1013	TM_DRAW_TEXMAP_3DM_7	1	0	32		0	named-only	RM.h:516	
-kpm register tables	raster		raster-index	0x1014	TM_DRAW_TEXMAP_3DM_8	1	0	32		0	named-only	RM.h:522	
-kpm register tables	raster		raster-index	0x1015	TM_DRAW_TEXMAP_3DM_9	1	0	32		0	named-only	RM.h:528	
-kpm register tables	raster		raster-index	0x1016	TM_DRAW_CUBEMAP_FAR	1	0	32		0	named-only	RM.h:534	
-kpm register tables	raster		raster-index	0x1017	TM_DRAW_CUBEMAP_LFTRGHT	1	0	32		0	named-only	RM.h:538	
-kpm register tables	raster		raster-index	0x1018	TM_DRAW_CUBEMAP_TOPBOT	1	0	32		0	named-only	RM.h:544	
-kpm register tables	raster		raster-index	0x1019	TM_DRAW_DETAILMAP	1	0	32		0	named-only	GE.h:729	
+kpm register tables	raster		raster-index	0x1001	TM_REFCTR	1	0	32		0	named-only	RM.h:454	
+kpm register tables	raster		raster-index	0x1002	TM_SYNC_WAITLOAD	1	0	32		0	documented	RM.h:159	
+kpm register tables	raster		raster-index	0x1003	TM_SYNC_IDDRAW	1	0	32		0	documented	RM.h:159	
+kpm register tables	raster		raster-index	0x1004	TM_DRAW_TEXMAP_0_1	1	0	32		0	documented	RM.h:478	
+kpm register tables	raster		raster-index	0x1005	TM_DRAW_TEXMAP_2_3	1	0	32		0	documented	RM.h:159	
+kpm register tables	raster		raster-index	0x1006	TM_DRAW_TEXMAP_4_5	1	0	32		0	documented	RM.h:159	
+kpm register tables	raster		raster-index	0x1007	TM_DRAW_TEXMAP_6_7	1	0	32		0	documented	RM.h:478	
+kpm register tables	raster		raster-index	0x1008	TM_DRAW_TEXMAP_8_9	1	0	32		0	named-only	RM.h:500	
+kpm register tables	raster		raster-index	0x1009	TM_DRAW_TEXMAP_10_11	1	0	32		0	named-only	RM.h:507	
+kpm register tables	raster		raster-index	0x100a	TM_DRAW_TEXMAP_12_13	1	0	32		0	named-only	RM.h:514	
+kpm register tables	raster		raster-index	0x100b	TM_DRAW_TEXMAP_14_15	1	0	32		0	documented	RM.h:469	
+kpm register tables	raster		raster-index	0x100c	TM_DRAW_TEXMAP_3DM_0	1	0	32		0	documented	RM.h:539	
+kpm register tables	raster		raster-index	0x100d	TM_DRAW_TEXMAP_3DM_1	1	0	32		0	documented	RM.h:539	
+kpm register tables	raster		raster-index	0x100e	TM_DRAW_TEXMAP_3DM_2	1	0	32		0	documented	RM.h:539	
+kpm register tables	raster		raster-index	0x100f	TM_DRAW_TEXMAP_3DM_3	1	0	32		0	documented	RM.h:539	
+kpm register tables	raster		raster-index	0x1010	TM_DRAW_TEXMAP_3DM_4	1	0	32		0	named-only	RM.h:559	
+kpm register tables	raster		raster-index	0x1011	TM_DRAW_TEXMAP_3DM_5	1	0	32		0	named-only	RM.h:566	
+kpm register tables	raster		raster-index	0x1012	TM_DRAW_TEXMAP_3DM_6	1	0	32		0	named-only	RM.h:573	
+kpm register tables	raster		raster-index	0x1013	TM_DRAW_TEXMAP_3DM_7	1	0	32		0	named-only	RM.h:580	
+kpm register tables	raster		raster-index	0x1014	TM_DRAW_TEXMAP_3DM_8	1	0	32		0	named-only	RM.h:587	
+kpm register tables	raster		raster-index	0x1015	TM_DRAW_TEXMAP_3DM_9	1	0	32		0	named-only	RM.h:594	
+kpm register tables	raster		raster-index	0x1016	TM_DRAW_CUBEMAP_FAR	1	0	32		0	documented	RM.h:609	
+kpm register tables	raster		raster-index	0x1017	TM_DRAW_CUBEMAP_LFTRGHT	1	0	32		0	documented	RM.h:603	
+kpm register tables	raster		raster-index	0x1018	TM_DRAW_CUBEMAP_TOPBOT	1	0	32		0	documented	RM.h:603	
+kpm register tables	raster		raster-index	0x1019	TM_DRAW_DETAILMAP	1	0	32		0	documented	RM.h:609	
 kpm register tables	raster		raster-index	0x101a	TM_DRAW_GLOBALOFFSET	1	0	32		0	named-only	GE.h:727	
-kpm register tables	raster		raster-index	0x101b	TM_RDBK_STRSTART	1	0	32		0	named-only	RM.h:558	
-kpm register tables	raster		raster-index	0x101c	TM_RDBK_STEND	1	0	32		0	named-only	RM.h:566	
-kpm register tables	raster		raster-index	0x101d	TM_RDBK_END	1	0	32		0	named-only	RM.h:572	
-kpm register tables	raster		raster-index	0x101e	TM_DRAW_SHA_AMBIENT	1	0	32		0	named-only	GE.h:732	
-kpm register tables	raster		raster-index	0x101f	TM_DRAW_REDUNDANCY	1	0	32		0	named-only	GE.h:733	
-kpm register tables	raster		raster-index	0x1020	TM_DRAW_CLIP_OFFSET	1	0	32		0	named-only	GE.h:730	
-kpm register tables	raster		raster-index	0x1021	TM_DRAW_CLIP_BKPT	1	0	32		0	named-only	GE.h:730	
-kpm register tables	raster		raster-index	0x1022	TM_TEXBIND_START	1	0	32		0	named-only	RM.h:587	
-kpm register tables	raster		raster-index	0x1023	TM_TM1A_COMPAT	1	0	32		0	named-only	RM.h:589	
-kpm register tables	raster		raster-index	0x102f	TM_DNOP	1	0	32		0	named-only	RM.h:593	
+kpm register tables	raster		raster-index	0x101b	TM_RDBK_STRSTART	1	0	32		0	documented	RM.h:643	
+kpm register tables	raster		raster-index	0x101c	TM_RDBK_STEND	1	0	32		0	documented	RM.h:641	
+kpm register tables	raster		raster-index	0x101d	TM_RDBK_END	1	0	32		0	documented	RM.h:632	
+kpm register tables	raster		raster-index	0x101e	TM_DRAW_SHA_AMBIENT	1	0	32		0	documented	RM.h:643	
+kpm register tables	raster		raster-index	0x101f	TM_DRAW_REDUNDANCY	1	0	32		0	documented	RM.h:721	
+kpm register tables	raster		raster-index	0x1020	TM_DRAW_CLIP_OFFSET	1	0	32		0	documented	RM.h:632	
+kpm register tables	raster		raster-index	0x1021	TM_DRAW_CLIP_BKPT	1	0	32		0	documented	RM.h:721	
+kpm register tables	raster		raster-index	0x1022	TM_TEXBIND_START	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x1023	TM_TM1A_COMPAT	1	0	32		0	documented	RM.h:707	
+kpm register tables	raster		raster-index	0x102f	TM_DNOP	1	0	32		0	documented	RM.h:679	
 kpm register tables	raster		raster-index	0x13d5	TM_TEX_SIZE	1	0	32		0	documented	RM.h:38	
-kpm register tables	raster		raster-index	0x1401	TFP_TEV	1	0	32		0	named-only	GE.h:734	
-kpm register tables	raster		raster-index	0x1402	TFP_TEV_CC	1	0	32		0	named-only	GE.h:734	
-kpm register tables	raster		raster-index	0x1403	TFP_FOG	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x1404	TFP_FOG_CC	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x1405	TFP_FOG_DATA	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+kpm register tables	raster		raster-index	0x1401	TFP_TEV	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x1402	TFP_TEV_CC	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x1403	TFP_FOG	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x1404	TFP_FOG_CC	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x1405	TFP_FOG_DATA	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x1406	TFP_FOG_OFFSET	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
-kpm register tables	raster		raster-index	0x1407	TFP_AFUNC	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x1408	TFP_AMASK	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
-kpm register tables	raster		raster-index	0x1409	TFP_A2M_LUT0	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
-kpm register tables	raster		raster-index	0x140a	TFP_A2M_LUT1	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x140b	TFP_FADE_MASK_LUT	1	0	32		0	named-only	GE.h:735	
-kpm register tables	raster		raster-index	0x140d	TFP_AE_RANGE	1	0	32		0	named-only	RM.h:740	
-kpm register tables	raster		raster-index	0x140e	TFP_AC	1	0	32		0	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers	How the ARM firmware writes raster registers
-kpm register tables	raster		raster-index	0x140f	TFP_COLOR_FMT	1	0	32		0	named-only	GE.h:736	
-kpm register tables	raster		raster-index	0x1410	TFP_PIX_FMT	1	0	32		0	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers	How the ARM firmware writes raster registers
-kpm register tables	raster		raster-index	0x1411	TFP_NOP	1	0	32		0	named-only	RM.h:756	
-kpm register tables	raster		raster-index	0x1412	TFP_FAKE	1	0	32		0	named-only	RM.h:758	
-kpm register tables	raster		raster-index	0x1413	TFP_TEV_CC1	1	0	32		0	named-only	GE.h:734	
-kpm register tables	raster		raster-index	0x1414	TFP_FOG_CC1	1	0	32		0	named-only	GE.h:735	
-kpm register tables	raster		raster-index	0x1415	TFP_TEXRB_CLR	1	0	32		0	named-only	RM.h:636	
+kpm register tables	raster		raster-index	0x1407	TFP_AFUNC	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x1408	TFP_AMASK	1	0	32		0	documented	RM.h:821	
+kpm register tables	raster		raster-index	0x1409	TFP_A2M_LUT0	1	0	32		0	documented	RM.h:810	
+kpm register tables	raster		raster-index	0x140a	TFP_A2M_LUT1	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x140b	TFP_FADE_MASK_LUT	1	0	32		0	documented	RM.h:821	
+kpm register tables	raster		raster-index	0x140d	TFP_AE_RANGE	1	0	32		0	documented	RM.h:835	
+kpm register tables	raster		raster-index	0x140e	TFP_AC	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x140f	TFP_COLOR_FMT	1	0	32		0	documented	RM.h:835	
+kpm register tables	raster		raster-index	0x1410	TFP_PIX_FMT	1	0	32		0	documented	RM.h:1357	
+kpm register tables	raster		raster-index	0x1411	TFP_NOP	1	0	32		0	documented	RM.h:869	
+kpm register tables	raster		raster-index	0x1412	TFP_FAKE	1	0	32		0	documented	RM.h:940	
+kpm register tables	raster		raster-index	0x1413	TFP_TEV_CC1	1	0	32		0	documented	RM.h:1357	
+kpm register tables	raster		raster-index	0x1414	TFP_FOG_CC1	1	0	32		0	documented	RM.h:940	
+kpm register tables	raster		raster-index	0x1415	TFP_TEXRB_CLR	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x1500	TFP_TEX	1	0	32		0	named-only	GE.h:733	
-kpm register tables	raster		raster-index	0x150c	TFP_AE	1	0	32		0	named-only	RM.h:727	
-kpm register tables	raster		raster-index	0x153e	TFP_PASSR	1	0	32		0	named-only	RM.h:627	
+kpm register tables	raster		raster-index	0x150c	TFP_AE	1	0	32		0	documented	RM.h:853	
+kpm register tables	raster		raster-index	0x153e	TFP_PASSR	1	0	32		0	documented	RM.h:719	
 kpm register tables	raster		raster-index	0x153f	TFP_TEXRB	1	0	32		0	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
-kpm register tables	raster		raster-index	0x1800	TFT_EXTRAP	1	0	32		0	documented	RM.h:106	
-kpm register tables	raster		raster-index	0x1810	TFT_DETAILTEX	1	0	32		0	documented	RM.h:107	
-kpm register tables	raster		raster-index	0x1820	TFT_BICUBIC	1	0	32		0	documented	RM.h:91	
+kpm register tables	raster		raster-index	0x1800	TFT_EXTRAP	1	0	32		0	documented	RM.h:124	
+kpm register tables	raster		raster-index	0x1810	TFT_DETAILTEX	1	0	32		0	documented	RM.h:125	
+kpm register tables	raster		raster-index	0x1820	TFT_BICUBIC	1	0	32		0	documented	RM.h:109	
 kpm register tables	raster		raster-index	0x1850	TFT_SBIAS_EN	1	0	32		0	named-only	GE.h:731	
 kpm register tables	raster		raster-index	0x1851	TFT_SCALE	1	0	32		0	named-only	GE.h:732	
 kpm register tables	raster		raster-index	0x1852	TFT_BIAS	1	0	32		0	named-only	GE.h:732	
-kpm register tables	raster		raster-index	0x1853	TFT_TLUT	1	0	32		0	named-only	GE.h:732	
-kpm register tables	raster		raster-index	0x1854	TFT_TLUT_DATA	1	0	32		0	named-only	RM.h:805	
-kpm register tables	raster		raster-index	0x1855	TFT_TEXRB	1	0	32		0	named-only	RM.h:811	
-kpm register tables	raster		raster-index	0x1856	TFT_NOP	1	0	32		0	named-only	RM.h:813	
-kpm register tables	raster		raster-index	0x1857	TFT_FAKE	1	0	32		0	named-only	RM.h:815	
-kpm register tables	raster		raster-index	0x1858	TFT_EOR	1	0	32		0	named-only	RM.h:818	
-kpm register tables	raster		raster-index	0x1c00	IMP_CONFIG	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x1c02	IMP_OP	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x1c03	IMP_MS	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+kpm register tables	raster		raster-index	0x1853	TFT_TLUT	1	0	32		0	documented	RM.h:925	
+kpm register tables	raster		raster-index	0x1854	TFT_TLUT_DATA	1	0	32		0	documented	RM.h:922	
+kpm register tables	raster		raster-index	0x1855	TFT_TEXRB	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x1856	TFT_NOP	1	0	32		0	documented	RM.h:935	
+kpm register tables	raster		raster-index	0x1857	TFT_FAKE	1	0	32		0	documented	RM.h:940	
+kpm register tables	raster		raster-index	0x1858	TFT_EOR	1	0	32		0	documented	RM.h:945	
+kpm register tables	raster		raster-index	0x1c00	IMP_CONFIG	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x1c02	IMP_OP	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x1c03	IMP_MS	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x1c06	IMP_CLIP	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 kpm register tables	raster		raster-index	0x1c07	IMP_SZ0	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 kpm register tables	raster		raster-index	0x1c08	IMP_SZ1	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 kpm register tables	raster		raster-index	0x1c09	IMP_DEPTH_CLEAR	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x1c0a	IMP_TAG_CLEAR	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x1c0b	IMP_ADDR	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+kpm register tables	raster		raster-index	0x1c0a	IMP_TAG_CLEAR	1	0	32		0	documented	RM.h:1081	
+kpm register tables	raster		raster-index	0x1c0b	IMP_ADDR	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x1c0d	IMP_BL	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
-kpm register tables	raster		raster-index	0x1c0e	IMP_ACCUM	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+kpm register tables	raster		raster-index	0x1c0e	IMP_ACCUM	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x1c0f	IMP_FLAG	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x1c10	IMP_USER_COLOR	1	0	32		0	documented	RM.h:51	
 kpm register tables	raster		raster-index	0x1c12	IMP_CLEAR_COLOR	1	0	32		0	documented	RM.h:51	
 kpm register tables	raster		raster-index	0x1c14	IMP_WMASK_BIT	1	0	32		0	documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-kpm register tables	raster		raster-index	0x1c3a	IMP_NOP	1	0	32		0	named-only	RM.h:1031	
-kpm register tables	raster		raster-index	0x1c3b	IMP_FAKE_SIMPLE_FB_SIZE	1	0	32		0	named-only	RM.h:1027	
-kpm register tables	raster		raster-index	0x1c3c	IMP_FAKE_SIMPLE_FB_ORIGIN	1	0	32		0	named-only	RM.h:1023	
-kpm register tables	raster		raster-index	0x1c3d	IMP_FAKE_DRAWMODE	1	0	32		0	named-only	RM.h:1016	
-kpm register tables	raster		raster-index	0x1c3e	IMP_FAKE_DRAW_OFFSET	1	0	32		0	named-only	RM.h:1012	
-kpm register tables	raster		raster-index	0x1c3f	IMP_RAMSYNC	1	0	32		0	named-only	RM.h:1010	
-kpm register tables	raster		raster-index	0x3be0	PGTFPIMP_MSLOC	1	0	32		0	documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-kpm register tables	raster		raster-index	0x3fc2	PGTG_SCIS	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+kpm register tables	raster		raster-index	0x1c3a	IMP_NOP	1	0	32		0	documented	RM.h:870	
+kpm register tables	raster		raster-index	0x1c3b	IMP_FAKE_SIMPLE_FB_SIZE	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x1c3c	IMP_FAKE_SIMPLE_FB_ORIGIN	1	0	32		0	documented	RM.h:1161	
+kpm register tables	raster		raster-index	0x1c3d	IMP_FAKE_DRAWMODE	1	0	32		0	documented	RM.h:1152	
+kpm register tables	raster		raster-index	0x1c3e	IMP_FAKE_DRAW_OFFSET	1	0	32		0	documented	RM.h:1146	
+kpm register tables	raster		raster-index	0x1c3f	IMP_RAMSYNC	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x3be0	PGTFPIMP_MSLOC	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x3fc2	PGTG_SCIS	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x3fc4	PGTG_ZRECT	1	0	32		0	documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-kpm register tables	raster		raster-index	0x3fcc	PGTG_DRECT	1	0	32		0	documented	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-kpm register tables	raster		raster-index	0x3fcf	PGTG_SIZE	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x3fd3	PGTG_ENABLES	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+kpm register tables	raster		raster-index	0x3fcc	PGTG_DRECT	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x3fcf	PGTG_SIZE	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x3fd3	PGTG_ENABLES	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x3fd4	TGTMTFT	1	0	32		0	documented	docs/rm.md#chips-on-each-board	Chips on each board
 kpm register tables	raster		raster-index	0x3fd5	TGTM_TEX_SIZE	1	0	32		0	documented	RM.h:37	
-kpm register tables	raster		raster-index	0x3fd6	TGTM_DCTEX_SIZE	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
+kpm register tables	raster		raster-index	0x3fd6	TGTM_DCTEX_SIZE	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x3fd7	TGTM_TEX_SCENTER	1	0	32		0	documented	docs/rm.md#chips-on-each-board	Chips on each board
 kpm register tables	raster		raster-index	0x3fd8	TGTM_TEX_TCENTER	1	0	32		0	documented	RM.h:37	
-kpm register tables	raster		raster-index	0x3ff0	COMMON_VERBOSE	1	0	32		0	named-only	RM.h:1207	
-kpm register tables	raster		raster-index	0x3ff1	COMMON_PFLUSH	1	0	32		0	named-only	RM.h:1209	
-kpm register tables	raster		raster-index	0x3ff3	COMMON_PSTART	1	0	32		0	named-only	RM.h:1211	
-kpm register tables	raster		raster-index	0x3ff4	COMMON_PSTOP	1	0	32		0	named-only	RM.h:1213	
-kpm register tables	raster		raster-index	0x3ff5	COMMON_FB	1	0	32		0	named-only	RM.h:1215	
-kpm register tables	raster		raster-index	0x3ff6	COMMON_PRIMID	1	0	32		0	named-only	RM.h:1219	
-kpm register tables	raster		raster-index	0x3ff7	COMMON_STALL	1	0	32		0	named-only	RM.h:1221	
+kpm register tables	raster		raster-index	0x3ff0	COMMON_VERBOSE	1	0	32		0	documented	RM.h:1352	
+kpm register tables	raster		raster-index	0x3ff1	COMMON_PFLUSH	1	0	32		0	documented	RM.h:1356	
+kpm register tables	raster		raster-index	0x3ff3	COMMON_PSTART	1	0	32		0	documented	RM.h:1361	
+kpm register tables	raster		raster-index	0x3ff4	COMMON_PSTOP	1	0	32		0	documented	RM.h:1365	
+kpm register tables	raster		raster-index	0x3ff5	COMMON_FB	1	0	32		0	documented	RM.h:1369	
+kpm register tables	raster		raster-index	0x3ff6	COMMON_PRIMID	1	0	32		0	documented	RM.h:1375	
+kpm register tables	raster		raster-index	0x3ff7	COMMON_STALL	1	0	32		0	documented	RM.h:1380	
 kpm register tables	raster		raster-index	0x3ff8	COMMON_IFMT	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
 kpm register tables	raster		raster-index	0x44a8	HTL_LOAD_STALL	1	0	32		0	documented	RM.h:33	
 kpm register tables	raster		raster-index	0x5000	TML_TEXLD_BASEADDR	1	0	32		0	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 kpm register tables	raster		raster-index	0x5001	TML_TEXLD_GLOBALOFFSET	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x5002	TML_SYNC_WAITDRAW	1	0	32		0	documented	RM.h:142	
-kpm register tables	raster		raster-index	0x5003	TML_SYNC_IDLOAD	1	0	32		0	documented	RM.h:141	
-kpm register tables	raster		raster-index	0x5004	TML_TM1A_COMPAT	1	0	32		0	documented	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-kpm register tables	raster		raster-index	0x53ff	TML_RAMSYNC	1	0	32		0	named-only	RM.h:622	
-kpm register tables	raster		raster-index	0x7fc0	TGTML_NOP	1	0	32		0	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+kpm register tables	raster		raster-index	0x5002	TML_SYNC_WAITDRAW	1	0	32		0	documented	RM.h:160	
+kpm register tables	raster		raster-index	0x5003	TML_SYNC_IDLOAD	1	0	32		0	documented	RM.h:159	
+kpm register tables	raster		raster-index	0x5004	TML_TM1A_COMPAT	1	0	32		0	documented	RM.h:707	
+kpm register tables	raster		raster-index	0x53ff	TML_RAMSYNC	1	0	32		0	documented	docs/rm.md#the-register-write-word	The register-write word
+kpm register tables	raster		raster-index	0x7fc0	TGTML_NOP	1	0	32		0	named-only	RM.h:1403	
 kpm register tables	raster		raster-index	0x7fc1	TGTML_TEXLD_SIZE	1	0	32		0	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
-kpm register tables	raster		raster-index	0x7fc2	TGTML_TEXLD_STSTART	1	0	32		0	documented	RM.h:135	
+kpm register tables	raster		raster-index	0x7fc2	TGTML_TEXLD_STSTART	1	0	32		0	documented	RM.h:153	
 kpm register tables	raster		raster-index	0x7fc3	TGTML_TEXLD_S1ST_RSTART	1	0	32		0	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 kpm register tables	raster		raster-index	0x7fc4	TGTML_TEXLD_STEND	1	0	32		0	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 kpm register tables	raster		raster-index	0x7fc5	TGTML_TEXLD_MISC	1	0	32		0	documented	docs/opengl.md#texel-download-header-word-7-and-the-load-scissor-bit	Texel download: header word 7 and the load-scissor bit
