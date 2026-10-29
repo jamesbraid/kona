@@ -86,7 +86,7 @@ The stored values of each `.vfo` file (raster, rate, clock, porches, mode, seque
 
 | File | What the file holds |
 |---|---|
-| `README` | **Established** (IRIX 6.5.30m): plain-text listing dated 20 July 2006, 1746 lines, with one block for each of 54 formats (those compiled with revision 1.54): total and active lines and pixels, frame rate, fields and swaps per frame, pixel clock, and line, sync and porch lengths with the line each starts on; the 20 formats of revision 1.1 have no block. |
+| `README` | **Established** (IRIX 6.5.30m): plain-text listing dated 20 July 2006, 1746 lines, with one block for each of 54 formats (those compiled with revision 1.54): total and active lines and pixels, frame rate, fields and swaps per frame, pixel clock, and line, sync and porch lengths with the line each starts on; the 20 formats of revision 1.1 have no block. The first block starts at +0x1e and the last at +0x14ed5 of its 86997 bytes. |
 
 ## VOF sources (`vof/`)
 
@@ -113,7 +113,7 @@ The directive counts, line lengths, porches and field layout of each file are on
 
 | File | What the file holds |
 |---|---|
-| `dgo.mcs` | **Established** (IRIX 6.5.30m): Intel HEX configuration image for the programmable logic of the display generator option board, 34138 bytes in 2134 data records at addresses 0 to 0x8559 with every record checksum correct, read and checksummed by the X module in `kona.so`, which finds it in the option board image directory. |
+| `dgo.mcs` | **Established** (IRIX 6.5.30m): Intel HEX configuration image for the programmable logic of the display generator option board, 34138 bytes in 2134 data records at addresses 0 to 0x8559 (the last record, of 10 bytes, at address 0x8550) with every record checksum correct, read and checksummed by the X module in `kona.so`, which finds it in the option board image directory. |
 
 ## Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
 
