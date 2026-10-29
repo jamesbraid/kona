@@ -2621,13 +2621,13 @@ ge.u	label	0x0000b627	mgesi_TriangleStripRestoreSave		located	ucode/ge_handlers.
 ge.u	label	0x0000b64d	mgesi_TriangleStripRestore		located	ucode/ge_handlers.md#entrys	entry.S
 ge.u	label	0x0000b673	mgesi_TriangleStripSave		located	ucode/ge_handlers.md#entrys	entry.S
 ge.u	label	0x0000b699	mgesi_TriangleStrip		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b6bc	mgesi_FeedbackPixel		located	ucode/ge_handlers.md#feedbacks	feedback.S
-ge.u	label	0x0000b720	mgeb_EndFeedbackMode		located	ucode/ge_handlers.md#feedbacks	feedback.S
-ge.u	label	0x0000b72f	mgeb_BgnFeedbackMode		located	ucode/ge_handlers.md#feedbacks	feedback.S
-ge.u	label	0x0000b76e	mmo_FeedbackTriangle		located	ucode/ge_handlers.md#feedbacks	feedback.S
-ge.u	label	0x0000b80f	mmo_FeedbackPoint		located	ucode/ge_handlers.md#feedbacks	feedback.S
-ge.u	label	0x0000b89a	mmo_FeedbackLine		located	ucode/ge_handlers.md#feedbacks	feedback.S
-ge.u	label	0x0000b93f	mFeedbackVertex		located	ucode/ge_handlers.md#feedbacks	feedback.S
+ge.u	label	0x0000b6bc	mgesi_FeedbackPixel		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000b720	mgeb_EndFeedbackMode		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000b72f	mgeb_BgnFeedbackMode		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000b76e	mmo_FeedbackTriangle		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000b80f	mmo_FeedbackPoint		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000b89a	mmo_FeedbackLine		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000b93f	mFeedbackVertex		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
 ge.u	label	0x0000b99d	mgeb_PopMatrix_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000b9ed	mgeb_PopMatrix_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000ba3a	mgeb_PopMatrix_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
@@ -2669,18 +2669,18 @@ ge.u	label	0x0000be22	mgeb_LoadIdentity_Texture		located	ucode/ge_handlers.md#ma
 ge.u	label	0x0000be3c	mgeb_LoadIdentity_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000be57	mgeb_LoadIdentity_Modelview		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000be80	mgeb_MatrixMode		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000be8f	mRecordHit		located	ucode/ge_handlers.md#selectmodss	selectmods.S
-ge.u	label	0x0000becc	mmo_SelectTriangle		located	ucode/ge_handlers.md#selectmodss	selectmods.S
-ge.u	label	0x0000bf2f	mmo_SelectRasterPos		located	ucode/ge_handlers.md#selectmodss	selectmods.S
-ge.u	label	0x0000bf6d	mmo_SelectPoint		located	ucode/ge_handlers.md#selectmodss	selectmods.S
-ge.u	label	0x0000bfaf	mmo_SelectLine		located	ucode/ge_handlers.md#selectmodss	selectmods.S
-ge.u	label	0x0000c002	mgeb_EndSelectMode		located	ucode/ge_handlers.md#selects	select.S
-ge.u	label	0x0000c016	mgeb_BgnSelectMode		located	ucode/ge_handlers.md#selects	select.S
-ge.u	label	0x0000c02c	mgeb_LoadName		located	ucode/ge_handlers.md#selects	select.S
-ge.u	label	0x0000c086	mgeb_PushName		located	ucode/ge_handlers.md#selects	select.S
-ge.u	label	0x0000c0e0	mgeb_PopName		located	ucode/ge_handlers.md#selects	select.S
-ge.u	label	0x0000c12e	mgeb_InitNames		located	ucode/ge_handlers.md#selects	select.S
-ge.u	label	0x0000c159	mSelectFlush		located	ucode/ge_handlers.md#selects	select.S
+ge.u	label	0x0000be8f	mRecordHit		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000becc	mmo_SelectTriangle		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000bf2f	mmo_SelectRasterPos		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000bf6d	mmo_SelectPoint		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000bfaf	mmo_SelectLine		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000c002	mgeb_EndSelectMode		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000c016	mgeb_BgnSelectMode		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000c02c	mgeb_LoadName		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000c086	mgeb_PushName		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000c0e0	mgeb_PopName		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000c12e	mgeb_InitNames		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
+ge.u	label	0x0000c159	mSelectFlush		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
 ge.u	label	0x0000c20a	mgeb_PopAttrLights		located	ucode/ge_handlers.md#getlights	getlight.S
 ge.u	label	0x0000c255	mgesi_PushAttrLights		located	ucode/ge_handlers.md#getlights	getlight.S
 ge.u	label	0x0000c284	mgesi_LiGetMaterial		located	ucode/ge_handlers.md#getlights	getlight.S

@@ -667,3 +667,69 @@ downloads the filter's fog table. The parameters live in engine memory from 0x9d
   takes the offset parameters at 0x9e9 and 0x9ea and the projection depth words 0x49, 0x4a, 0x4d and 0x4e as input,
   multiplies and adds them, takes a reciprocal and limits with maxima, and writes the results with the register word
   0x1651406 to bus addresses 0x1f8 and 0x1f5.
+
+## Feedback and selection (feedback.S, select.S, selectmods.S)
+
+**Inferred**, from the words of the three modules and the GL feedback and selection rules. Both modes replace drawing:
+the begin handlers set a bit in engine word 0x1b, and with the bit set the primitive output modules below run in place
+of the drawing modules and send their results to the host on the raster-bus return path, framed by the reply words
+0x476, 0x452 and 0x477 written to bus addresses 0x1f7 and 0x1f5.
+
+- `mgeb_BgnFeedbackMode` (`feedback.S` lines 59-117, at 0xb72f): **inferred**, enters feedback mode. It takes the
+  feedback type operand and compares it by integer subtract with the type enumerants 0x601-0x604 in turn (`GL_3D` to
+  `GL_4D_COLOR_TEXTURE`), ORs the matching set of record-content flags (the constants 1, 5, 0x15 and 0x17 loaded at
+  0xb738-0xb73b, the compares and ORs at 0xb73f-0xb759) into engine word 0x1b, and returns no value.
+- `mgeb_EndFeedbackMode` (`feedback.S` lines 129-143, at 0xb720): **inferred**, leaves feedback mode by ANDing engine word
+  0x1b with 0xefffffff, clearing the feedback bit 28; nothing is computed or returned.
+- `mFeedbackVertex` (`feedback.S` lines 611-706, at 0xb93f): **inferred**, formats one vertex of a feedback record. It
+  takes the vertex record as input, subtracts the window origin from window x and y (record words 0x23, 0x24), adds the
+  depth offset from engine word 0xc6 to z and multiplies it by 2^-20 (9.53674e-07) and the coordinate scale 0.0625,
+  clamps colour with 0x7c, and multiplies the texture coordinates by the texture matrix at engine words 0x5f-0x6e with
+  multiply-add chains (0xb96c onward); every result is stored to the output window for the host.
+- `mmo_FeedbackPoint` (`feedback.S` lines 475-595, at 0xb80f): **inferred**, the point form: it writes the point token
+  0x701 as its first output word, converts the vertex count with integer-to-float, calls `mFeedbackVertex` once and
+  sends the record with the reply header through bus addresses 0x1f7 and 0x1f5.
+- `mmo_FeedbackLine` (`feedback.S` lines 314-453, at 0xb89a): **inferred**, the line form: it chooses the token 0x702 or
+  the reset token 0x707 by testing bit 29 (mask 0x20000000, AND at 0xb8b5) of record word 4 of the vertex, then calls `mFeedbackVertex` for both
+  end points, so the result is one line record per segment.
+- `mmo_FeedbackTriangle` (`feedback.S` lines 161-296, at 0xb76e): **inferred**, the polygon form: it writes the polygon
+  token 0x703 and the count 3 as input-derived header words, then calls `mFeedbackVertex` three times, each output vertex
+  carrying the fields the feedback type flags select.
+- `mgesi_FeedbackPixel` (`feedback.S` lines 725-811, at 0xb6bc): **inferred**, the record for a pixel operation (the
+  bitmap, draw, copy-pixel tokens): it takes the current raster position as input, scales its depth by 2^-20 and its
+  coordinates by 0.0625, clamps the colour with 0x7c, and sends the result with the reply header 0x476 to bus addresses
+  0x1f7 and 0x1f5.
+- `mgeb_BgnSelectMode` (`select.S` lines 212-233, at 0xc016): **inferred**, enters selection mode: it calls
+  `mSelectFlush`, ORs 0x20000000 (bit 29) into engine word 0x1b and resets the name-stack depth at 0xa87, with no value
+  returned.
+- `mgeb_EndSelectMode` (`select.S` lines 245-262, at 0xc002): **inferred**, leaves selection mode: it calls
+  `mSelectFlush` for the last hit and ANDs word 0x1b with 0xdfffffff to clear bit 29.
+- `mgeb_InitNames` (`select.S` lines 36-58, at 0xc12e): **inferred**, `glInitNames`: when the selection bit of word 0x1b is
+  set it flushes any pending hit through `mSelectFlush` and stores zero to the stack depth at 0xa87.
+- `mgeb_PushName` (`select.S` lines 113-152, at 0xc086): **inferred**, `glPushName`: it flushes the pending hit, compares
+  the depth at 0xa87 with the limit 0x40 by subtraction and branches to `mErrStackOverflow` when the stack is full;
+  otherwise it stores the name operand at 0xa46 plus the depth and adds 1 to the depth.
+- `mgeb_PopName` (`select.S` lines 70-100, at 0xc0e0): **inferred**, `glPopName`: after the flush it subtracts 1 from the
+  depth at 0xa87, branching to `mErrStackUnderflow` when the depth was already zero.
+- `mgeb_LoadName` (`select.S` lines 165-197, at 0xc02c): **inferred**, `glLoadName`: after the flush it replaces the top
+  name of the stack at 0xa46 with its operand, or branches to `mErrInvalidOperation` when the stack is empty.
+- `mSelectFlush` (`select.S` lines 282-401, at 0xc159): **inferred**, writes one hit record to the host. When the hit flag
+  at 0x2a9 is set it adds 1 to the hit count at 0xa8b, takes the minimum and maximum depth of the hit as input (0xc1be,
+  0xc1bf), scales them to unsigned 32-bit integers with the constants 2^32 and 2^20 loaded at 0xc1b9-0xc1f0, and sends
+  the record (name count, minimum, maximum, the names from 0xa46 in a loop at 0xc1d5) behind the reply words 0x476 and
+  0x477; the hit state is then reset.
+- `mRecordHit` (`select.S` lines 316-399, at 0xbe8f): **inferred**, folds one primitive's depth range into the pending
+  hit: it takes the primitive's minimum and maximum depth as input, combines them with the stored range by minimum and
+  maximum operations, sets the hit flag at 0x2a9, and on an overflow condition (`cc` 0x4c) writes the register word to
+  bus addresses 0x1f8, 0x1f5 and 0x1f4; the result is the updated range.
+- `mmo_SelectPoint` (`selectmods.S` lines 203-241, at 0xbf6d): **inferred**, the point form of selection: for each input
+  vertex not rejected by the clip codes (AND with the flag word) it adds the depth offset 0xc6 to z and takes the
+  running minimum and maximum, then calls `mRecordHit` with the results.
+- `mmo_SelectLine` (`selectmods.S` lines 138-181, at 0xbfaf): **inferred**, the line form: it adds the depth offset to
+  both input end points' z, compares them by minimum and maximum, and passes the range to `mRecordHit`.
+- `mmo_SelectTriangle` (`selectmods.S` lines 70-116, at 0xbecc): **inferred**, the triangle form: it adds the depth
+  offset to each of the three input z values and reduces them with minimum and maximum operations to one range per
+  triangle, the result `mRecordHit` merges.
+- `mmo_SelectRasterPos` (`selectmods.S` lines 261-296, at 0xbf2f): **inferred**, selection for a raster position: when
+  the position is valid (AND with the flag word) it compares its z by minimum and maximum with the stored range and
+  calls `mRecordHit`, so a raster position inside the view volume counts as a hit.
