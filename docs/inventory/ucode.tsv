@@ -475,7 +475,7 @@ arm1.u	symbol	0x0c000000	_estext	flags=1	named-only	ucode/arm1_functions.md#star
 arm1.u	linker region	0x0c000000	ucode$$Base	flags=1	named-only	ucode/arm1_functions.md#start-up-exceptions-and-the-run-time-library	Start-up, exceptions and the run-time library
 arm1.u	symbol	0x0c000000	ucode	flags=2	understood	docs/dg.md#helper-functions	Helper functions
 arm1.u	symbol	0x0c00002c	start	flags=3	named-only	docs/kernel.md#initialisation-rrm_init-rrm_init-init_panes-rrm_init_panes	Initialisation: `RRM_init`, `RRM_Init`, `init_panes`, `RRM_init_panes`
-arm1.u	symbol	0x0c000124	restore	flags=3	named-only	ucode/arm1_functions.md#start-up-exceptions-and-the-run-time-library	Start-up, exceptions and the run-time library
+arm1.u	symbol	0x0c000124	restore	flags=3	named-only	docs/rm.md#reset-of-the-raster-boards	Reset of the raster boards
 arm1.u	symbol	0x0c0002e8	vector_start	flags=3	named-only	ucode/arm1_firmware.md#what-the-arm-sees	What the ARM sees
 arm1.u	symbol	0x0c000328	hipctl	flags=3	named-only	ucode/arm1_functions.md#start-up-exceptions-and-the-run-time-library	Start-up, exceptions and the run-time library
 arm1.u	symbol	0x0c000328	vector_end	flags=3	named-only	ucode/arm1.md#the-token-map-icu_map	The token map (`icu_map`)
@@ -943,7 +943,7 @@ arm1.u	symbol	0x0c01a420	jt_soft_reset	flags=2	named-only	docs/rm.md#reset-of-th
 arm1.u	symbol	0x0c01a4c8	jt_send_inst_or_data	flags=2	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
 arm1.u	symbol	0x0c01a6e4	insert_bits	flags=2	named-only	ucode/tport.md#what-the-image-contains	What the image contains
 arm1.u	symbol	0x0c01a738	extract_bits	flags=2	named-only	ucode/tport.md#what-the-image-contains	What the image contains
-arm1.u	symbol	0x0c01a78c	jt_reg_read	flags=3	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+arm1.u	symbol	0x0c01a78c	jt_reg_read	flags=3	named-only	docs/rm.md#chips-on-each-board	Chips on each board
 arm1.u	symbol	0x0c01a874	jt_reg_write	flags=3	named-only	docs/ge.md#reset-and-start-up	Reset and start-up
 arm1.u	symbol	0x0c01a954	jt_reg_init	flags=3	named-only	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 arm1.u	symbol	0x0c01a9d4	jt_select_chip	flags=3	named-only	ucode/arm1_firmware.md#control-and-status-registers	Control and status registers
@@ -1025,7 +1025,7 @@ arm1.u	symbol	0x0c022394	arm_kernel_private	flags=3	named-only	ucode/arm1_firmwa
 arm1.u	symbol	0x0c022398	arm_dmapool_setup	flags=3	named-only	docs/hip.md#dma-pools	DMA pools
 arm1.u	symbol	0x0c022448	arm_rdata_setup	flags=3	named-only	GE.h:658	
 arm1.u	symbol	0x0c022474	arm_getconfig	flags=3	named-only	docs/kernel.md#the-configuration-record-and-its-identity-words	The configuration record and its identity words
-arm1.u	symbol	0x0c0224d4	start_rdata	flags=3	understood	RM.h:1642	
+arm1.u	symbol	0x0c0224d4	start_rdata	flags=3	understood	RM.h:1644	
 arm1.u	symbol	0x0c02255c	finish_rdata	flags=3	named-only	docs/hip.md#output-dma-from-the-pipe-side	Output DMA from the pipe side
 arm1.u	symbol	0x0c022614	start_pixel_rdata	flags=3	named-only	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 arm1.u	symbol	0x0c0226b4	start_pixel_rdata_noincr	flags=3	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
@@ -1091,7 +1091,7 @@ arm1.u	symbol	0x0c024fcc	d_texgen_q	flags=3	named-only	ucode/arm1_functions.md#e
 arm1.u	symbol	0x0c024ff4	arm_texenvf	flags=3	named-only	ucode/ge_handlers.md#texenvs	texenv.S
 arm1.u	symbol	0x0c025030	arm_texenvi	flags=3	named-only	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines	How a handler reaches the engines
 arm1.u	symbol	0x0c025098	arm_gettexenvfv	flags=3	named-only	ucode/ge_handlers.md#hostios	hostio.S
-arm1.u	symbol	0x0c025134	arm_texload_setup	flags=3	understood	RM.h:371	
+arm1.u	symbol	0x0c025134	arm_texload_setup	flags=3	understood	RM.h:373	
 arm1.u	symbol	0x0c025138	flush_texload_ids	flags=2	named-only	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x0c025168	update_texload_id	flags=3	named-only	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x0c0251fc	arm_texload_id	flags=3	named-only	ucode/arm1_functions.md#texture-management	Texture management
@@ -1197,7 +1197,7 @@ arm1.u	symbol	0x0c0275a4	QueryOverlap	flags=2	named-only	ucode/arm1_functions.md
 arm1.u	symbol	0x0c027664	WaitOverlap	flags=2	named-only	ucode/arm1_firmware.md#control-and-status-registers	Control and status registers
 arm1.u	symbol	0x0c0276e0	__glkonFbToRbusFmt	flags=3	named-only	ucode/arm1_functions.md#set-up-and-state	Set-up and state
 arm1.u	symbol	0x0c0276f8	__glkonGetTbusFmt	flags=3	named-only	ucode/arm1_functions.md#set-up-and-state	Set-up and state
-arm1.u	symbol	0x0c027714	commonResolve	flags=2	understood	RM.h:291	
+arm1.u	symbol	0x0c027714	commonResolve	flags=2	understood	RM.h:293	
 arm1.u	symbol	0x0c027d68	arm_resolveissinglecomp	flags=3	named-only	GE.h:438	
 arm1.u	symbol	0x0c027e14	arm_lazymode	flags=3	named-only	GE.h:622	
 arm1.u	symbol	0x0c027e34	resolveColorPath	flags=2	named-only	ucode/arm1_functions.md#set-up-and-state	Set-up and state
@@ -1207,7 +1207,7 @@ arm1.u	symbol	0x0c0288f4	ResolveReadPath	flags=2	named-only	ucode/arm1_firmware.
 arm1.u	symbol	0x0c028a1c	resolveVideoPath	flags=2	named-only	ucode/arm1_functions.md#set-up-and-state	Set-up and state
 arm1.u	symbol	0x0c028ac8	setFromTM	flags=2	named-only	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x0c028b0c	__glkonSetFromFB	flags=3	named-only	ucode/arm1_functions.md#set-up-and-state	Set-up and state
-arm1.u	symbol	0x0c028d20	__glkonSetupPacker	flags=3	understood	RM.h:1643	
+arm1.u	symbol	0x0c028d20	__glkonSetupPacker	flags=3	understood	RM.h:1645	
 arm1.u	symbol	0x0c028dd8	SendPixelsToPipe	flags=3	named-only	docs/ge.md#variable-length-command-grammars	Variable-length command grammars
 arm1.u	symbol	0x0c028e7c	NumWordToPipe	flags=2	understood	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 arm1.u	symbol	0x0c0290a0	f2i	flags=2	named-only	ucode/arm1_functions.md#set-up-and-state	Set-up and state
@@ -1216,7 +1216,7 @@ arm1.u	symbol	0x0c029428	TexReadWar	flags=2	named-only	ucode/arm1_functions.md#t
 arm1.u	symbol	0x0c029638	HugeTexReadLM	flags=2	named-only	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x0c029770	HugeTexRead	flags=2	named-only	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x0c0299e8	__glkonSendConvKernToHost	flags=3	named-only	ucode/ge_handlers.md#upixelsetups	upixelSetup.s
-arm1.u	symbol	0x0c029a74	__glkonSendPixelsToHost	flags=3	understood	RM.h:1643	
+arm1.u	symbol	0x0c029a74	__glkonSendPixelsToHost	flags=3	understood	RM.h:1645	
 arm1.u	symbol	0x0c029d4c	CompCommonColor	flags=2	named-only	ucode/arm1_functions.md#splitting-the-data-across-engines	Splitting the data across engines
 arm1.u	symbol	0x0c029e3c	CompCommonLum	flags=2	named-only	ucode/arm1_functions.md#splitting-the-data-across-engines	Splitting the data across engines
 arm1.u	symbol	0x0c029f14	CompCommonIndexStream	flags=3	named-only	ucode/arm1_functions.md#pixel-path	Pixel path
@@ -1240,7 +1240,7 @@ arm1.u	symbol	0x0c02b068	arm_pixeltransferf	flags=3	named-only	GE.h:208
 arm1.u	symbol	0x0c02b39c	do_bitmap	flags=2	named-only	ucode/ge_handlers.md#feedbacks	feedback.S
 arm1.u	symbol	0x0c02b4c0	arm_bitmap	flags=3	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 arm1.u	symbol	0x0c02b590	arm_bitmap_dlist	flags=3	named-only	docs/ge.md#variable-length-command-grammars	Variable-length command grammars
-arm1.u	symbol	0x0c02b690	log2	flags=2	located	RM.h:221	
+arm1.u	symbol	0x0c02b690	log2	flags=2	located	RM.h:223	
 arm1.u	symbol	0x0c02b6b0	tex_swapin	flags=3	named-only	ucode/arm1_functions.md#memory-reservation-and-swap	Memory reservation and swap
 arm1.u	symbol	0x0c02b7a8	arm_drawtexels	flags=3	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 arm1.u	symbol	0x0c02b8cc	drawtexels	flags=3	named-only	docs/ge.md#the-texel-format-id	The texel format id
@@ -1415,7 +1415,7 @@ arm1.u	symbol	0x0c033bbc	SetupReadback	flags=3	named-only	ucode/arm1_functions.m
 arm1.u	symbol	0x0c033c80	SetupReadbackTF	flags=3	named-only	ucode/arm1_functions.md#handlers-and-helpers-named-only-in-the-token-table	Handlers and helpers named only in the token table
 arm1.u	symbol	0x0c033fac	SetupRM	flags=3	named-only	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
 arm1.u	symbol	0x0c034170	SetupRM_FFT	flags=3	named-only	ucode/arm1_functions.md#pixel-path	Pixel path
-arm1.u	symbol	0x0c0341cc	SetupPGTG	flags=3	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+arm1.u	symbol	0x0c0341cc	SetupPGTG	flags=3	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 arm1.u	symbol	0x0c034288	SetupSubtexload	flags=3	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 arm1.u	symbol	0x0c0343a0	SetupSubtexloadPos	flags=3	named-only	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x0c034464	SetupTexRead	flags=3	named-only	ucode/arm1_functions.md#texture-management	Texture management
@@ -1525,7 +1525,7 @@ arm1.u	symbol	0x0c038900	arm_popname	flags=3	named-only	ucode/ge_handlers.md#sel
 arm1.u	symbol	0x0c038930	arm_passthrough	flags=3	named-only	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines	How a handler reaches the engines
 arm1.u	symbol	0x0c038964	arm_rendermode	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 arm1.u	symbol	0x0c038a6c	arm_feedback_type	flags=3	named-only	GE.h:183	
-arm1.u	symbol	0x0c038a78	arm_slop	flags=3	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+arm1.u	symbol	0x0c038a78	arm_slop	flags=3	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
 arm1.u	symbol	0x0c039194	slop_readword	flags=2	named-only	ucode/ge_handlers.md#hostios	hostio.S
 arm1.u	symbol	0x0c03949c	arm_pack	flags=3	named-only	GE.h:162	
 arm1.u	symbol	0x0c039538	pack_cmd	flags=2	named-only	ucode/arm1_functions.md#start-up-exceptions-and-the-run-time-library	Start-up, exceptions and the run-time library
@@ -2214,7 +2214,7 @@ ge.u	label	0x000037cb	mmo_FFT_2		named-only	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x000037de	mgeb_InitFFTFactors		named-only	ucode/ge_handlers.md#push_attribs	push_attrib.S
 ge.u	label	0x000037de	mgeb_RestoreXformAttribs		named-only	ucode/ge_handlers.md#push_attribs	push_attrib.S
 ge.u	label	0x000037f9	mgeb_ClipmapXform		named-only	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000380b	mgesi_FlushRM		understood	RM.h:919	
+ge.u	label	0x0000380b	mgesi_FlushRM		understood	RM.h:921	
 ge.u	label	0x0000384b	mgeb_SetCurrentRaster		named-only	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x0000387d	mgebi_ErrQuery		named-only	ucode/arm1_firmware.md#how-the-arm-answers-the-host	How the ARM answers the host
 ge.u	label	0x00003894	mgesi_Accum32		named-only	ucode/ge.md#precision	Precision
@@ -2233,7 +2233,7 @@ ge.u	label	0x000039b8	mgesi_AlphaTest		named-only	ucode/arm1_functions.md#enable
 ge.u	label	0x000039c8	mgesi_AlphaFunc		named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 ge.u	label	0x000039da	mges_TbusRegWriteNoIncr		named-only	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x000039e7	mgesi_IMPtbusRegWrite		named-only	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x000039fd	mgesi_TbusRegWrite		named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+ge.u	label	0x000039fd	mgesi_TbusRegWrite		named-only	docs/rm.md#bus-modes-2-and-3	Bus modes 2 and 3
 ge.u	label	0x00003a0a	mgebi_ShadeModel		named-only	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003a25	mges_DiagDeactivate		named-only	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003a32	mgebi_NullCommand		named-only	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler	How a command reaches a geometry-engine handler
@@ -2248,7 +2248,7 @@ ge.u	label	0x00003ea8	mmo_TLutDownloadI		named-only	ucode/ge_handlers.md#colorta
 ge.u	label	0x00003edb	mmo_TLutDownloadLA		named-only	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00003f10	mmo_TLutDownloadRGBA		named-only	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00003f49	mTLutDownloadDone		named-only	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003f52	mgesi_TLutDownload		understood	RM.h:985	
+ge.u	label	0x00003f52	mgesi_TLutDownload		understood	RM.h:987	
 ge.u	label	0x00003f87	mgeb_PixMapOutputRGBA		named-only	ucode/ge.md#precision	Precision
 ge.u	label	0x00003fd8	mgeb_PixMapOutputI		named-only	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00004022	mgeb_LutRamp1		named-only	ucode/ge_handlers.md#colortables	colortable.S
@@ -2260,9 +2260,9 @@ ge.u	label	0x000041e0	mLutoutDone		named-only	ucode/ge_handlers.md#colortables	c
 ge.u	label	0x000041fb	mmo_Lutout		named-only	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x0000422e	mgeb_ColorTableSetup		named-only	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x0000424e	mgebi_TextureScaleBias		named-only	ucode/ge_handlers.md#textures	texture.S
-ge.u	label	0x00004278	mgesi_FillTMLoadFifo		understood	RM.h:1483	
+ge.u	label	0x00004278	mgesi_FillTMLoadFifo		understood	RM.h:1485	
 ge.u	label	0x00004293	mgesi_RestoreTextureAddress		named-only	ucode/ge_handlers.md#textures	texture.S
-ge.u	label	0x000042d3	mgebi_Bind2dMipmapTexture		understood	RM.h:481	
+ge.u	label	0x000042d3	mgebi_Bind2dMipmapTexture		understood	RM.h:483	
 ge.u	label	0x000043ae	mgeb_SkipNextTextureAddr		named-only	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x000043bd	mgebi_UpdateTexturing		named-only	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x000043f3	mgebi_Texture		named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
@@ -2337,7 +2337,7 @@ ge.u	label	0x00005b15	mgebi_ReferencePlane_Disable		named-only	ucode/ge_handlers
 ge.u	label	0x00005b2f	mgebi_ReferencePlane_Enable		named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 ge.u	label	0x00005b4c	mRefPlane		named-only	ucode/ge_handlers.md#refplanes	refplane.S
 ge.u	label	0x00005b96	mgeb_SetMSPointTables		named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
-ge.u	label	0x00005bab	mgeb_ComputeMSPointTables		understood	RM.h:1245	
+ge.u	label	0x00005bab	mgeb_ComputeMSPointTables		understood	RM.h:1247	
 ge.u	label	0x00005c5a	MSPoint_Pack		named-only	ucode/ge_handlers.md#points	point.S
 ge.u	label	0x00005ccc	MSPoint_Sort		named-only	ucode/ge_handlers.md#points	point.S
 ge.u	label	0x00005d94	MSPoint_Init		named-only	ucode/ge_handlers.md#points	point.S
@@ -2373,7 +2373,7 @@ ge.u	label	0x000066ed	mgeb_ContextLoadFlagRegs		named-only	ucode/ge_handlers.md#
 ge.u	label	0x000066ff	mgeb_ContextLoadWram		named-only	docs/ge.md#dma	DMA
 ge.u	label	0x0000670c	mgeb_ContextLoadEram		named-only	docs/ge.md#dma	DMA
 ge.u	label	0x0000671e	mgeb_ContextLoadCram		named-only	docs/ge.md#dma	DMA
-ge.u	label	0x00006730	mges_ContextReloadFromBEF		named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
+ge.u	label	0x00006730	mges_ContextReloadFromBEF		named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
 ge.u	label	0x00006760	mges_ContextLoadBEF		named-only	docs/ge.md#context-save-and-restore	Context save and restore
 ge.u	label	0x00006795	mges_ContextLoadODMA		named-only	docs/ge.md#context-save-and-restore	Context save and restore
 ge.u	label	0x000067a9	mLiUpdateMtrlState		named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
@@ -2382,7 +2382,7 @@ ge.u	label	0x00006859	mges_ContextDeactStoreValue		named-only	ucode/ge_handlers.
 ge.u	label	0x00006866	mges_ContextDeactSection		named-only	docs/ge.md#the-arm-side-sections	The ARM-side sections
 ge.u	label	0x00006886	mgeb_ContextDeactReconfigureFifo		named-only	docs/ge.md#context-save-and-restore	Context save and restore
 ge.u	label	0x000068ba	mges_ContextDeactGED		named-only	docs/ge.md#context-save-and-restore	Context save and restore
-ge.u	label	0x000068da	mges_ContextDeactivate		understood	RM.h:1431	
+ge.u	label	0x000068da	mges_ContextDeactivate		understood	RM.h:1433	
 ge.u	label	0x00006a32	mgesi_FinishRdata		named-only	ucode/ge_handlers.md#hostios	hostio.S
 ge.u	label	0x00006a57	mgesi_StartRdata		named-only	docs/ge.md#dma	DMA
 ge.u	label	0x00006a79	mgesi_SlopReadWord		named-only	ucode/ge_handlers.md#hostios	hostio.S
@@ -2411,7 +2411,7 @@ ge.u	label	0x00006fa5	mgeb_Fogi		named-only	ucode/arm1.md#hardware-routed-tokens
 ge.u	label	0x00006fb2	mgeb_Fogf		named-only	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
 ge.u	label	0x00007146	mLoadFineTable		named-only	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x0000715c	mLoadOneBigTable		named-only	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007187	mStartFogDownload		understood	RM.h:827	
+ge.u	label	0x00007187	mStartFogDownload		understood	RM.h:829	
 ge.u	label	0x000071c8	mDefineFineMode		named-only	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x0000730b	mLinearApproxParamsGSS		named-only	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x00007332	mLinearApproxErrorGSS		named-only	ucode/ge_handlers.md#fogs	fog.S
@@ -2563,7 +2563,7 @@ ge.u	label	0x0000a6db	mgeb_PixEndPolygonStipple		named-only	ucode/ge_handlers.md
 ge.u	label	0x0000a6e8	mgeb_PixEndRGBStream		named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a6ff	mgebi_PixEndTransparentBitmap		named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a715	mgesi_FlushPGPCache		named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a71e	DoFlushPGPCache		understood	RM.h:1430	
+ge.u	label	0x0000a71e	DoFlushPGPCache		understood	RM.h:1432	
 ge.u	label	0x0000a747	mgeb_TransparentBitmapSetup		named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a75f	mgeb_PixPolygonStippleSetup		named-only	ucode/ge_handlers.md#evalmiscs	evalmisc.s
 ge.u	label	0x0000a77f	mgebi_PixCurGEIDSetup		named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
@@ -2584,7 +2584,7 @@ ge.u	label	0x0000ad66	mgeb_GlobalInitialize		named-only	docs/ge.md#reset-and-sta
 ge.u	label	0x0000ad90	mDebugInitialize		named-only	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000adaf	mX_CM_Initialize		named-only	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000ade8	mX_REGS_Initialize		named-only	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000ae09	mGL_EX_Initialize		understood	RM.h:479	
+ge.u	label	0x0000ae09	mGL_EX_Initialize		understood	RM.h:481	
 ge.u	label	0x0000b0f4	mGL_EM_Initialize		named-only	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x0000b1ac	mGL_CM_Initialize		named-only	ucode/ge.md#precision	Precision
 ge.u	label	0x0000b25a	mGL_REGS_Initialize		named-only	ucode/ge_handlers.md#ges	ge.S
@@ -3089,7 +3089,7 @@ geif.u	dispatch slot	211	mgesi_PixConv5GVEntry	handler 0xa6be	named-only	ucode/g
 geif.u	dispatch slot	212	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	213	mgesi_PixRasterPosSetup	handler 0xa990	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 geif.u	dispatch slot	214	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	215	mgesi_TbusRegWrite	handler 0x39fd	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+geif.u	dispatch slot	215	mgesi_TbusRegWrite	handler 0x39fd	named-only	docs/rm.md#bus-modes-2-and-3	Bus modes 2 and 3
 geif.u	dispatch slot	216	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	217	mgesi_IMPtbusRegWrite	handler 0x39e7	named-only	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	218	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3121,7 +3121,7 @@ geif.u	dispatch slot	243	mgebi_PixCurGEIDSetup	handler 0xa77f	named-only	ucode/g
 geif.u	dispatch slot	244	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	245	mgeb_SkipNextTextureAddr	handler 0x43ae	named-only	ucode/ge_handlers.md#textures	texture.S
 geif.u	dispatch slot	246	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	247	mgesi_FillTMLoadFifo	handler 0x4278	understood	RM.h:1483	
+geif.u	dispatch slot	247	mgesi_FillTMLoadFifo	handler 0x4278	understood	RM.h:1485	
 geif.u	dispatch slot	248	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	249	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	250	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3247,11 +3247,11 @@ geif.u	dispatch slot	369	mges_ContextDeactSection	handler 0x6866	named-only	docs
 geif.u	dispatch slot	370	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	371	mgeb_ContextDeactReconfigureFifo	handler 0x6886	named-only	docs/ge.md#context-save-and-restore	Context save and restore
 geif.u	dispatch slot	372	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	373	mges_ContextDeactivate	handler 0x68da	understood	RM.h:1431	
+geif.u	dispatch slot	373	mges_ContextDeactivate	handler 0x68da	understood	RM.h:1433	
 geif.u	dispatch slot	374	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	375	mges_ContextLoadBEF	handler 0x6760	named-only	docs/ge.md#context-save-and-restore	Context save and restore
 geif.u	dispatch slot	376	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	377	mges_ContextReloadFromBEF	handler 0x6730	named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
+geif.u	dispatch slot	377	mges_ContextReloadFromBEF	handler 0x6730	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
 geif.u	dispatch slot	378	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	379	mges_ContextLoadFifo	handler 0x668a	named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
 geif.u	dispatch slot	380	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3327,7 +3327,7 @@ geif.u	dispatch slot	449	mgesi_SetGeId	handler 0xf435	named-only	docs/ge.md#rese
 geif.u	dispatch slot	450	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	451	mgesi_TBUS_1	handler 0x39ab	named-only	docs/rm.md#bus-modes-2-and-3	Bus modes 2 and 3
 geif.u	dispatch slot	452	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	453	mgesi_TLutDownload	handler 0x3f52	understood	RM.h:985	
+geif.u	dispatch slot	453	mgesi_TLutDownload	handler 0x3f52	understood	RM.h:987	
 geif.u	dispatch slot	454	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	455	mges_TbusRegWriteNoIncr	handler 0x39da	named-only	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	456	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up

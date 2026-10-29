@@ -38,9 +38,11 @@
  * layout as TM_TEX_SIZE). INFERRED: each prefix is the netlist chip type
  * of the same letters (pg, tg, tm, imp; TFP and TFT the four tf chips),
  * backed by the firmware's init_pg/init_tf/init_imp writing their own
- * prefixes (docs/rm.md, chips on each board). Which tf chip answers TFP
- * and TFT, and which chips answer a combined index, is UNKNOWN (open question in
- * docs/open-questions.md).
+ * prefixes (docs/rm.md, chips on each board). INFERRED (netlists, tf1.tcbist
+ * RAM list, irsaudit pxid_to_tfnum): all four tf chips answer TFP (the
+ * fog/environment half, fed by pg) and TFT (the lookup-table/filter half,
+ * fed by tg); the per-chip decode of combined indexes beyond their letters
+ * is UNKNOWN, no shipped software depends on it (docs/rm.md).
  *
  * INFERRED: registers are up to 48 bits wide. Fields reach bit 47
  * (TM_TEXMAP_1_HIGH at bits 45-47, TFP_FOG_DATA_N3 at 36-47,

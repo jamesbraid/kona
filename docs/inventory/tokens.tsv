@@ -57,7 +57,7 @@ token	0x036	HP_PIXELMAPUSV;KONA_HP_PIXELMAPUSV		handler=arm_pixelmapusv route=ar
 token	0x037	HP_READBUFFER;KONA_HP_READBUFFER		handler=arm_readbuffer route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_ReadBuffer	named-only	GE.h:215	
 token	0x038	HP_COPYPIXELS;KONA_HP_COPYPIXELS		handler=arm_copypixels route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_CopyPixels	named-only	GE.h:216	
 token	0x039	HP_READPIXELS;KONA_HP_READPIXELS		handler=arm_readpixels route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonHostCopy	named-only	ucode/ge_handlers.md#textures	texture.S
-token	0x03a	HP_DRAWPIXELS;KONA_HP_DRAWPIXELS		handler=arm_drawpixels route=arm	GE.h,firmware map,kpm	0	0		understood	RM.h:165	
+token	0x03a	HP_DRAWPIXELS;KONA_HP_DRAWPIXELS		handler=arm_drawpixels route=arm	GE.h,firmware map,kpm	0	0		understood	RM.h:167	
 token	0x03b	HP_GETCURRENT;KONA_HP_GETCURRENT		handler=arm_getcurrent route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ge_handlers.md#hostios	hostio.S
 token	0x03c	HP_GETCLIPPLANE;KONA_HP_GETCLIPPLANE		handler=arm_getclipplane route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ge_handlers.md#hostios	hostio.S
 token	0x03d	HP_GETRASTER;KONA_HP_GETRASTER		handler=arm_getraster route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ge_handlers.md#gets	get.S
@@ -371,7 +371,7 @@ token	0x170	HP_EXECLIST_LDMA_N;KONA_HP_EXECLIST_LDMA_N		handler=arm_execlist_ldm
 token	0x171	HP_EXECLIST_IDMA_N;KONA_HP_EXECLIST_IDMA_N		handler=arm_execlist_idma_n route=arm	GE.h,firmware map,kpm	0	0		named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 token	0x172	HP_GED_NOP;KONA_HP_GED_NOP		route=hw	GE.h,firmware map,kernel command port,kpm	6	4	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_dmapool	named-only	docs/dg.md#buffer-swap-and-retrace-wait	Buffer swap and retrace wait
 token	0x173	HP_TEXSETUP;KONA_HP_TEXSETUP		handler=arm_texsetup route=arm	GE.h,firmware map,kpm	0	0		named-only	GE.h:531	
-token	0x174	HP_DRAWTEXELS;KONA_HP_DRAWTEXELS		handler=arm_drawtexels route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonle_DrawPixels	understood	RM.h:164	
+token	0x174	HP_DRAWTEXELS;KONA_HP_DRAWTEXELS		handler=arm_drawtexels route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonle_DrawPixels	understood	RM.h:166	
 token	0x175	HP_TEXLOAD_SETUP;KONA_HP_TEXLOAD_SETUP		handler=arm_texload_setup route=arm	GE.h,firmware map,kpm	0	0		named-only	GE.h:533	
 token	0x176	HP_TEXLOAD_ID;KONA_HP_TEXLOAD_ID		handler=arm_texload_id route=arm	GE.h,firmware map,kpm	0	0		named-only	GE.h:534	
 token	0x177	HP_ACTIVE_TEXTURE;KONA_HP_ACTIVE_TEXTURE		handler=arm_active_texture route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ge_handlers.md#textures	texture.S
@@ -381,7 +381,7 @@ token	0x17a	HP_BIND_BICUBIC_TEXTURE;KONA_HP_BIND_BICUBIC_TEXTURE		handler=arm_bi
 token	0x17b	HP_BIND_3D_MIPMAP_TEXTURE;KONA_HP_BIND_3D_MIPMAP_TEXTURE		handler=arm_bind_3d_mipmap_texture route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ge_handlers.md#rasters	raster.S
 token	0x17c	HP_BIND_3D_TEXTURE;KONA_HP_BIND_3D_TEXTURE		handler=arm_bind_3d_texture route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ge_handlers.md#rasters	raster.S
 token	0x17d	HP_BIND_DETAIL_TEXTURE;KONA_HP_BIND_DETAIL_TEXTURE		handler=arm_bind_detail_texture route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ge_handlers.md#textures	texture.S
-token	0x17e	HP_TEX_SEND_ARM_TABLE;KONA_HP_TEX_SEND_ARM_TABLE		handler=arm_tex_send_arm_table route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:bindTexTable	understood	RM.h:101	
+token	0x17e	HP_TEX_SEND_ARM_TABLE;KONA_HP_TEX_SEND_ARM_TABLE		handler=arm_tex_send_arm_table route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:bindTexTable	understood	RM.h:103	
 token	0x17f	HP_SLOP;KONA_HP_SLOP		handler=arm_slop route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ge_handlers.md#debugs	debug.S
 token	0x180	HP_VARRAY_SET_CMDS;KONA_HP_VARRAY_SET_CMDS		handler=arm_varray_set_cmds route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_GetTexGenfv	named-only	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 token	0x181	HP_VARRAY_SETUP;KONA_HP_VARRAY_SETUP		handler=arm_varray_setup route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_DrawArraysEXT	named-only	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
@@ -547,7 +547,7 @@ token	0x220	PGTG_SIZE			kpm	0	0		named-only	docs/rm.md#the-register-write-word	T
 token	0x221	PGTG_SIZE_1			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
 token	0x222	PGTG_SIZE_2			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x223	PGTG_SIZE_3			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x224	PGTG_ENABLES			kpm	0	0		understood	RM.h:1430	
+token	0x224	PGTG_ENABLES			kpm	0	0		understood	RM.h:1432	
 token	0x225	PGTFPIMP_MSLOC			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
 token	0x226	PGTFPIMP_MSLOC_1			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
 token	0x227	PG_GENERAL			kpm	0	0		named-only	docs/rm.md#how-the-arm-firmware-writes-raster-registers	How the ARM firmware writes raster registers
@@ -575,16 +575,16 @@ token	0x23c	IMP_BL			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The 
 token	0x23d	IMP_WMASK_BIT			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
 token	0x23e	IMP_WMASK_BIT_1			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
 token	0x23f	COMMON_IFMT			kpm	0	0		named-only	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x240	TGTML_TEXLD_MISC			kpm	0	0		understood	RM.h:260	
+token	0x240	TGTML_TEXLD_MISC			kpm	0	0		understood	RM.h:262	
 token	0x241	TGTML_TEXLD_S1ST_RSTART			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x242	TGTML_TEXLD_STSTART			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x243	TGTML_TEXLD_SIZE			kpm	0	0		located	RM.h:222	
+token	0x243	TGTML_TEXLD_SIZE			kpm	0	0		located	RM.h:224	
 token	0x244	TGTML_TEXLD_STEND			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x245	TML_TEXLD_GLOBALOFFSET			kpm	0	0		named-only	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x246	TM_DRAW_GLOBALOFFSET			kpm	0	0		understood	RM.h:659	
-token	0x247	TM_MEMCONF			kpm	0	0		understood	RM.h:454	
+token	0x246	TM_DRAW_GLOBALOFFSET			kpm	0	0		understood	RM.h:661	
+token	0x247	TM_MEMCONF			kpm	0	0		understood	RM.h:456	
 token	0x248	TGTM_TEX_SIZE			kpm	0	0		located	RM.h:37	
-token	0x249	TGTMTFT			kpm	0	0		named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+token	0x249	TGTMTFT			kpm	0	0		named-only	docs/rm.md#chips-on-each-board	Chips on each board
 token	0x24a	TG_MAP_LEVEL			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x24b	TG_LOD_SCALEST			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x24c	TG_LOD_SCALER			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
@@ -595,24 +595,24 @@ token	0x250	TM_DRAW_CLIP_OFFSET			kpm	0	0		named-only	docs/rm.md#shadow-word-nam
 token	0x251	TM_DRAW_CLIP_BKPT			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x252	TGTM_TEX_SCENTER			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x253	TGTM_TEX_TCENTER			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x254	TFT_SBIAS_EN			kpm	0	0		understood	RM.h:948	
-token	0x255	TFT_SCALE			kpm	0	0		understood	RM.h:949	
-token	0x256	TFT_BIAS			kpm	0	0		understood	RM.h:950	
-token	0x257	TFT_TLUT			kpm	0	0		understood	RM.h:986	
+token	0x254	TFT_SBIAS_EN			kpm	0	0		understood	RM.h:950	
+token	0x255	TFT_SCALE			kpm	0	0		understood	RM.h:951	
+token	0x256	TFT_BIAS			kpm	0	0		understood	RM.h:952	
+token	0x257	TFT_TLUT			kpm	0	0		understood	RM.h:988	
 token	0x258	TM_DRAW_SHA_AMBIENT			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x259	TM_DRAW_REDUNDANCY			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x25a	TG_MISC			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x25b	TFP_AFUNC			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x25c	TFP_TEX			kpm	0	0		understood	RM.h:758	
-token	0x25d	TFP_TEV			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
+token	0x25b	TFP_AFUNC			kpm	0	0		named-only	docs/rm.md#chips-on-each-board	Chips on each board
+token	0x25c	TFP_TEX			kpm	0	0		understood	RM.h:760	
+token	0x25d	TFP_TEV			kpm	0	0		named-only	docs/rm.md#chips-on-each-board	Chips on each board
 token	0x25e	TFP_TEV_CC			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x25f	TFP_TEV_CC1			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x260	TFP_AC			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
 token	0x261	TFP_FADE_MASK_LUT			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x262	TFP_FOG			kpm	0	0		understood	RM.h:829	
+token	0x262	TFP_FOG			kpm	0	0		understood	RM.h:831	
 token	0x263	TFP_FOG_CC			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x264	TFP_FOG_CC1			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x265	TFP_FOG_OFFSET			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x266	TFP_PIX_FMT			kpm	0	0		understood	RM.h:1430	
+token	0x266	TFP_PIX_FMT			kpm	0	0		understood	RM.h:1432	
 token	0x267	TFP_COLOR_FMT			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
 token	0x268	TFP_AMASK			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
