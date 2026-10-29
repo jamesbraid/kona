@@ -702,9 +702,31 @@ enum kona_vfo_signal {
 #define KONA_CURSOR_COLOURS           0x100   /* offset of the colour words in a block */
 #define KONA_CURSOR_XHAIR_ADDR        9884
 
-#define KONA_VDAC_PIXEL_MASK          0x004   /* mask 0x3ff */
-#define KONA_VDAC_CURSOR_CTRL         0x204   /* mask 0xf */
-#define KONA_VDAC_CURSOR_CLR_2        0x304   /* mask 0x3ff */
+/*
+ * KONA_VDAC_PIXEL_MASK: Video DAC indexed register 0x004, pixel mask
+ * (irsaudit table entry at 0x101fffc0, mask 0x3ff). Established:
+ * `dgMakeVDacFetal` (arm1.u at 0x0c00a390) sets it to 0xff through
+ * `dgVDacControlWrite` with index 4. Inferred: the mask is ANDed with each
+ * pixel value before the colour-map lookup, so 0xff passes the low eight
+ * bits of the 10-bit field and nothing in the shipped software narrows it
+ * further. */
+#define KONA_VDAC_PIXEL_MASK          0x004
+/*
+ * KONA_VDAC_CURSOR_CTRL: Video DAC indexed register 0x204, cursor control
+ * (irsaudit table entry at 0x101fffcc, mask 0xf). Established:
+ * `dgMakeVDacFetal` (arm1.u at 0x0c00a3e0) clears it, and the kernel's
+ * `kona_enable_dac_cursor` (kona_video.o at 0x1738) selects it with the
+ * index pair 4, 2 and then writes 5 or 0. Inferred: the register turns the
+ * DAC's own cursor on and off per channel. */
+#define KONA_VDAC_CURSOR_CTRL         0x204
+/*
+ * KONA_VDAC_CURSOR_CLR_2: Video DAC indexed register 0x304, second cursor
+ * colour (irsaudit table entry at 0x101fffd8, mask 0x3ff). Established:
+ * `DoDGRqstLoadDacCursor` (arm1.u at 0x0c007bcc) writes payload word 2 as
+ * the second of six values streamed after an index of 0x303, so this
+ * register receives that word. Inferred: the index advances after each data
+ * write, and 10 bits fit one colour component. */
+#define KONA_VDAC_CURSOR_CLR_2        0x304
 
 /*
  * The display bus as the ARM firmware addresses it.
@@ -726,50 +748,179 @@ enum kona_vfo_signal {
  * sends an address and a data word in the same space (0x80, 0x118, 0x11c,
  * 0x11e, 0x11f, 0x1920, 0x8001, 0xe500 appear on both paths).
  */
-#define KONA_DG_ARM_WINDOW            0x00600000  /* ARM address of bus address 0 */
+/*
+ * KONA_DG_ARM_WINDOW: ARM-side window onto the display bus, bus address a at
+ * 0x00600000 + 4 a. Established: `DoDGRqstVCWrite` (arm1.u at 0x0c012228)
+ * stores payload word 1 at 0x600000 plus word 0 shifted left 2, and
+ * `DoDGRqstVCRead` (at 0x0c012264) loads from the same place. Inferred: it
+ * is the firmware's equivalent of the kernel's address and data ports, a
+ * memory-mapped alias of the same register space. */
+#define KONA_DG_ARM_WINDOW            0x00600000
 
 /*
  * Block map. ESTABLISHED: the addresses each function family uses. The
  * chip behind each block is INFERRED from the function names and from the
  * chip selects of the bridge chip fm0 (docs/dg.md, netlist dg4_2voc).
  */
-#define KONA_DG_DISPMODE_DID(i)       (i)     /* arm_dispmode sends the DISPMODE mode byte to
-                                               * address = its index word (display id); the
-                                               * kernel sets mode bit 0 for indexes below 64
-                                               * and bit 1 for the rest */
-#define KONA_DG_FM_SWAP_STROBE        0x0080  /* written by arm_swap_cntrl and the kernel */
-#define KONA_DG_FM_DID_SWAP(n)        (0x0081 + (n)) /* n = 0-9: dgUpdateFMDidSwapTable 0x0c0101b4
-                                               * writes the DISPMODE index to slot n when the
-                                               * slot's recorded drawable word matches; ten
-                                               * slots, as fm0 has ten do_swap pins */
-#define KONA_DG_FM_8B                 0x008b  /* input sync, board reset ratio (DoDGRqstInputSync,
-                                               * DoDGRqstBoardResetRatio), encoder letterbox */
-#define KONA_DG_FM_8E                 0x008e  /* master clock select (DoDGRqstMasterClockSelect) */
-#define KONA_DG_FM_8F                 0x008f  /* written 0 by DoDGRqstGetDGInterruptState */
-#define KONA_DG_FM_90                 0x0090  /* raster-board count (dgGetNumRMs, dgSetNumRMs) and
-                                               * interrupt state (dgGetInterruptState) */
-#define KONA_DG_XMAP_BASE             0x0100  /* XMAP register n at 0x100 + n (list above);
-                                               * 0x118, 0x119, 0x11b, 0x11c, 0x11e and 0x11f are
-                                               * written by the cursor-image, textport and
-                                               * X_LOADXMAP_DID paths and are not in the
-                                               * diagnostic's register list */
-#define KONA_DG_VOC_BASE              0x0200  /* VOC id v: block 0x200 + 0x100 * v */
+/*
+ * KONA_DG_DISPMODE_DID: Display-id mode table, one bus address per display
+ * id from 0x00 to 0x7f. Established: `arm_dispmode` (arm1.u at 0x0c013e28)
+ * writes the request's mode byte to the address given by its first word and
+ * calls `dgUpdateFMDidSwapTable` when an id is named; `DoDGRqstFetal` writes
+ * 0x20 to addresses 0x00-0x3f (at 0x0c008d8c) and 0 to 0x40-0x5f (at
+ * 0x0c008dec). Inferred: each entry steers pixels carrying that display id. */
+#define KONA_DG_DISPMODE_DID(i)       (i)
+/*
+ * KONA_DG_FM_SWAP_STROBE: Frame-manager register 0x80, the swap control
+ * word. Established: `arm_swap_cntrl` (arm1.u at 0x0c013e90) writes the
+ * request word here and, when its bit 0 is set, also writes 1 to 0x1920 on
+ * board type 0 or to 0x8001 otherwise (at 0x0c013ecc); `DoDGRqstFetal` (at
+ * 0x0c009458) leaves bit 0 clear and bit 1 set. Inferred: bit 1 is the pulse
+ * the kernel sends with its value 2; the request word the firmware passes
+ * through can carry other bits. */
+#define KONA_DG_FM_SWAP_STROBE        0x0080
+/*
+ * KONA_DG_FM_DID_SWAP: Frame-manager do-swap slots, ten consecutive bus
+ * addresses from 0x81. Established: `dgUpdateFMDidSwapTable` (arm1.u at
+ * 0x0c0101fc) stores the display-mode index into slot n when the n-th
+ * recorded drawable word equals its argument, looping over ten slots.
+ * Inferred: each slot holds the display-id mode that a pending swap applies
+ * to that drawable. */
+#define KONA_DG_FM_DID_SWAP(n)        (0x0081 + (n))
+/*
+ * KONA_DG_FM_8B: Frame-manager register 0x8b, input sync and encoder window.
+ * Established: `DoDGRqstInputSync` (arm1.u at 0x0c0114cc) replaces bits
+ * 21-20 with the request word, `DoDGRqstBoardResetRatio` (at 0x0c011564)
+ * replaces bit 22, and `dgEncoderOutputLetterbox` (at 0x0c010300) rewrites
+ * bits 9-0 and 19-10 from two size words at +0x80 and +0x84 of the channel
+ * record. Inferred: bits 21-20 pick the input sync source, bit 22 the board
+ * reset ratio, and the two ten-bit fields place the letterboxed picture for
+ * the encoder. */
+#define KONA_DG_FM_8B                 0x008b
+/*
+ * KONA_DG_FM_8E: Frame-manager register 0x8e, master clock select and a
+ * second encoder window. Established: `DoDGRqstMasterClockSelect` (arm1.u at
+ * 0x0c004d30) sets bit 23 when the request word is 1 and clears it
+ * otherwise, and `dgEncoderOutputLetterbox` (at 0x0c010384) rewrites bits
+ * 9-0 and 19-10 and sets bits 22-20 to 2. Inferred: bit 23 chooses between
+ * two master clocks, and the letterbox fields come from the second size
+ * word, as the window in register 0x8b comes from the first. */
+#define KONA_DG_FM_8E                 0x008e
+/*
+ * KONA_DG_FM_8F: Frame-manager register 0x8f, interrupt acknowledge.
+ * Established: `DoDGRqstGetDGInterruptState` (arm1.u at 0x0c006008) writes 0
+ * after it has sent its reply, which carries the words `dgGetInterruptState`
+ * read from register 0x90 and the VOC status registers; nothing reads it.
+ * Inferred: the zero write clears the interrupt state just reported. */
+#define KONA_DG_FM_8F                 0x008f
+/*
+ * KONA_DG_FM_90: Frame-manager register 0x90, raster-board and option
+ * status. Established: `dgGetNumRMs` (arm1.u at 0x0c010d78) reads bits 10-8
+ * and maps code 0 to four boards, 1 to two, 3 and 5 to one and 7 to none;
+ * `dgSetNumRMs` (at 0x0c010eb4) writes a code in bits 7-5; `DoDGRqstFetal`
+ * (at 0x0c00940c) replaces bits 4-0 with 0, 1 or 2 from the JTAG-detected
+ * DG4 option. Inferred: it mixes software-written configuration with read-
+ * only board-detect bits. */
+#define KONA_DG_FM_90                 0x0090
+/*
+ * KONA_DG_XMAP_BASE: Start of the XMAP register window, XMAP register n at
+ * bus address 0x100 + n. Established: the kernel writes cursor values at
+ * 0x100-0x103 and irsaudit's table walks registers 0 to 0x12 (entries at
+ * 0x101ffdc0 onward), and the firmware's `dgMakeXmapFetal` (arm1.u at
+ * 0x0c0097d4) initialises 0x100-0x110. Inferred: the window is the XMAP
+ * chips' register file; 0x118 and above are the indirect-memory ports. */
+#define KONA_DG_XMAP_BASE             0x0100
+/*
+ * KONA_DG_VOC_BASE: Start of the video-output-chip register blocks, VOC id v
+ * at 0x200 + 0x100 v. Established: `dgLoadVocIwsc` (arm1.u at 0x0c00e1a8)
+ * writes registers 3 to 5 of the block named by the id in its payload, and
+ * `dgSyncWithMasterVoc` (at 0x0c00b9c0) reads address 0x300, register 0 of
+ * id 1. Inferred: ids 0 to 7 are the base board's channels and larger ids
+ * are option-board VOCs. */
+#define KONA_DG_VOC_BASE              0x0200
+/*
+ * KONA_DG_VOC_STRIDE: Spacing of the VOC register blocks, 0x100 bus
+ * addresses per id. Established: every per-channel routine in arm1.u builds
+ * ARM address 0x600800 plus the id shifted left 10 (for example
+ * `dgFlushStatus` at 0x0c005f78), and a bus address is four ARM bytes.
+ * Inferred: each VOC decodes an 8-bit register number. */
 #define KONA_DG_VOC_STRIDE            0x0100
-#define KONA_DG_VDAC_BASE             0x0b00  /* video DAC of channel n: 0xb00 + 0x100 * n */
-#define KONA_DG_VDAC_INDEX            0       /* two writes: index low byte, then high byte */
-#define KONA_DG_VDAC_CLUT             1       /* colour-map data (dgVDacClutWrite/Read) */
-#define KONA_DG_VDAC_CONTROL          2       /* indexed register data (dgVDacControlWrite/Read);
-                                               * so the kernel's "4 then 2" on register 0 selects
-                                               * KONA_VDAC_CURSOR_CTRL (0x204) and its 5 or 0 on
-                                               * register 2 is that register's value */
-#define KONA_DG_VDAC_MODE             3       /* dgVDacModeWrite/Read */
-#define KONA_DG_GDAC_BASE             0x1300  /* channel n: 0x1300 + 0x100 * n; dgGDacChannelWrite
-                                               * writes registers 2-5, 0xf and 0x17 */
-#define KONA_DG_GAIN_1708             0x1708  /* DoDGRqstOutputGain, DoDGRqstEncoderOutputGain */
-#define KONA_DG_ENC_BASE              0x1800  /* video encoder: 0 and 2 control address and data,
-                                               * 1 and 3 colour-map address and data
-                                               * (dgEncoderControl*, dgEncoderClut*) */
-#define KONA_DG_XMAP_CLOCK            0x1900  /* DoDGRqstXMapClockSelect */
+/*
+ * KONA_DG_VDAC_BASE: Video DAC register file, channel n at 0xb00 + 0x100 n.
+ * Established: `dgVDacClutWrite` (arm1.u at 0x0c0068e4) and
+ * `dgVDacControlWrite` (at 0x0c00675c) use ARM address 0x602c00 plus the
+ * channel shifted left 10, which is the same space the kernel reaches with
+ * address writes of 0xb00 + 0x100 n. Inferred: it is one DAC per output
+ * channel; `dgMakeVDacFetal` (at 0x0c00a108) initialises all of them. */
+#define KONA_DG_VDAC_BASE             0x0b00
+/*
+ * KONA_DG_VDAC_INDEX: DAC block register 0, index. Established:
+ * `dgVDacClutWrite` (arm1.u at 0x0c0068e4 and 0x0c00692c) and
+ * `dgVDacClutRead` (at 0x0c0069c8) write the colour-map index low byte then
+ * high byte here, as `dgVDacControlWrite` does for an indexed register.
+ * Inferred: two writes form a 16-bit index into either the colour map or the
+ * indexed register space, depending on which data register follows. */
+#define KONA_DG_VDAC_INDEX            0
+/*
+ * KONA_DG_VDAC_CLUT: DAC block register 1, colour-map data. Established:
+ * `dgVDacClutWrite` (arm1.u at 0x0c006970) stores a value and
+ * `dgVDacClutRead` (at 0x0c006a38) loads one; `dgMakeVDacFetal` (at
+ * 0x0c00a2d0, 0x0c00a310 and 0x0c00a350) writes three values per entry for
+ * 256 entries, a ramp made of each byte shifted left 2 ORed with the byte
+ * shifted right 6. Inferred: each entry takes three consecutive writes, red,
+ * green and blue, with the index advancing after the third. */
+#define KONA_DG_VDAC_CLUT             1
+/*
+ * KONA_DG_VDAC_CONTROL: DAC block register 2, indexed-register data.
+ * Established: `dgVDacControlWrite` (arm1.u at 0x0c0067e8) and
+ * `dgVDacControlRead` (at 0x0c0068b0) pass data here after the index in
+ * register 0; `dgMakeVDacFetal` (at 0x0c00a1e4) writes 0x88 to index 5 and
+ * 0xe4 to index 6. Inferred: the index selects among registers such as
+ * 0x004, 0x204 and 0x304, and `DoDGRqstLoadDacCursor` streams many values
+ * after one index. */
+#define KONA_DG_VDAC_CONTROL          2
+/*
+ * KONA_DG_VDAC_MODE: DAC block register 3, mode. Established:
+ * `dgVDacModeWrite` (arm1.u at 0x0c006a64) and `dgVDacModeRead` (at
+ * 0x0c006a94) access it, and `dgMakeVDacFetal` (at 0x0c00a124 and
+ * 0x0c00a14c) writes 6, waits 1000 loop passes, and writes 7. Inferred: bit
+ * 0 is a reset or load strobe that start-up pulses; no other bit's role is
+ * shown by the code. */
+#define KONA_DG_VDAC_MODE             3
+/*
+ * KONA_DG_GDAC_BASE: Gain DAC register file, pair n of channels at 0x1300 +
+ * 0x100 n. Established: `dgGDacChannelWrite` (arm1.u at 0x0c006bf4) picks
+ * registers 0xf, 4 and 5 for colour index 0, 1 and 2 of an even channel and
+ * 0x17, 2 and 3 for an odd one (at 0x0c006cf0 and 0x0c006d40), with the pair
+ * number shifted left 10 into the ARM address. Inferred: one chip carries
+ * the gains of two channels. */
+#define KONA_DG_GDAC_BASE             0x1300
+/*
+ * KONA_DG_GAIN_1708: Output gain register at bus address 0x1708.
+ * Established: `DoDGRqstOutputGain` (arm1.u at 0x0c007224) writes 255 minus
+ * the gain byte when the request names channel 1 and the channel record's
+ * flag at +0x184 has bit 26 set, and `DoDGRqstEncoderOutputGain` (at
+ * 0x0c0087c0) writes 255 minus its gain byte; other channels use
+ * `dgGDacChannelWrite`. Inferred: it is the gain control of the encoder
+ * output path, inverted so that 255 means no gain. */
+#define KONA_DG_GAIN_1708             0x1708
+/*
+ * KONA_DG_ENC_BASE: Video encoder register window at 0x1800. Established:
+ * `dgEncoderControlWrite` (arm1.u at 0x0c008554 and 0x0c008594) writes
+ * 0x1800 as an address and 0x1802 as data, `dgEncoderClutWrite` (at
+ * 0x0c00863c and 0x0c00867c) uses 0x1801 and 0x1803, and
+ * `dgMakeEncoderFetal` (at 0x0c00a44c) zeroes the colour-map address and
+ * then data words in a 256-pass loop. Inferred: the encoder has a control
+ * register file and a colour map, each with an address and a data port. */
+#define KONA_DG_ENC_BASE              0x1800
+/*
+ * KONA_DG_XMAP_CLOCK: XMAP clock select. Established:
+ * `DoDGRqstXMapClockSelect` (arm1.u at 0x0c004dfc) writes the request word,
+ * 0 or 1, to 0x1900 when the board-type word at 0x04067edc is zero and to
+ * 0x8000 (at 0x0c004e64) otherwise; any other value prints an error message.
+ * Inferred: the value picks one of two XMAP clock sources, and the board
+ * type decides which bus address holds the control. */
+#define KONA_DG_XMAP_CLOCK            0x1900
 /*
  * 0x2000 and up: option boards and their VOCs. ESTABLISHED as users: PAB
  * 0x2300-0x2304 and its loader 0x2400-0x2600 (pgmclr, databit, chkdone);
@@ -791,6 +942,13 @@ enum kona_vfo_signal {
  * Address 0x300 (register 0 of id 1) is read by dgGetInterruptState and
  * dgSyncWithMasterVoc.
  */
+/*
+ * KONA_DG_VOC_REG: Address of VOC register r in the block of VOC id: 0x200 +
+ * 0x100 id + r. Established: `DoDGRqstEnableChannel` (arm1.u at 0x0c00bad4)
+ * writes register 1 of the VOC named by its payload, and writes register
+ * 0x8a of ids 0x1f, 0x2f, 0x30, 0x5f, 0xc7 and 0xca (0x0c00bcd4 and later);
+ * the kernel never forms these. Inferred: it is the one formula for every
+ * VOC register below. */
 #define KONA_DG_VOC_REG(id, r)        (0x200 + 0x100 * (id) + (r))
 
 /*
