@@ -231,8 +231,11 @@
  * `__glkonim_Flush` (0x0d94beb0) stores token 199 and then 0 to the FIFO at 0x4000 and ends with a
  * load at address 0x10100 whose destination is the zero register, and `__glkona_wait_rdata`
  * (0x0d956c68) issues the same load at 0x0d956cb0 before it polls the return-data valid word.
- * Inferred: the value is discarded, so the read exists to force the posted FIFO stores out ahead
- * of what follows. */
+ * Established from `map_rtc` in the same library (0x0d948750, called from `MakeCurrentRead`):
+ * process address 0x10000 is the hub real-time counter's page of /dev/mmem, mapped there and
+ * checked to put the counter at 0x10100, so this load reads the counter, not the pipe, and the
+ * inventory only places it in the user I/O window by its address. Inferred: the value is
+ * discarded, so the uncached read exists to push the posted FIFO stores out ahead of what follows. */
 #define KONA_USER_FLUSH_READ              0xc100
 
 /*
