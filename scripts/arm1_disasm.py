@@ -2,6 +2,8 @@
 
 Usage: arm1_disasm.py [ARM1_U] [OUTDIR]
        defaults: ucode/KONA/arm1.u ucode
+       arm1_disasm.py --tport [TPORT_BIN] [OUTDIR] [ARM1_U]
+       defaults: ucode/KONA/tport.bin ucode ucode/KONA/arm1.u
 
 arm1.u (IRIX 6.5.30m, /usr/gfx/ucode/KONA/arm1.u) is a big-endian ARM
 image in AIF layout: a 128-byte header (three no-ops or branches, a data
@@ -25,6 +27,14 @@ The disassembler covers the ARMv4 instructions the image uses (data
 processing, multiply, single and block transfers, halfword transfers,
 branches, SWI, MRS/MSR); anything else prints as cop or .word. Literal-pool
 loads and pc-relative adds are annotated with the value or symbol.
+
+With --tport the input is tport.bin (IRIX 6.5.30m, /usr/gfx/ucode/KONA/),
+which puts five words (0xbadc0ffe, a version, a stamp, 0, 0) in front of
+the same AIF header and has no debug table. It writes OUTDIR/tport.s only.
+Functions are labelled by matching against arm1.u: every arm1.u function
+whose instruction words, with branch offsets and pc-relative offsets
+masked, equal the words at a tport.bin branch-and-link target lends its
+name there; other call targets print as fn_<address>.
 """
 import os
 import struct
@@ -133,8 +143,9 @@ def dis(i, pc):
     return 'cop%s 0x%08x' % (c, i), None
 
 
-def load(path):
-    b = open(path, 'rb').read()
+def load(path, hoff=0):
+    b = open(path, 'rb')
+    b = b.read()[hoff:]
     hdr = struct.unpack('>14I', b[:56])
     ro, rw, dbg_size = hdr[5], hdr[6], hdr[7]
     base, dbase = hdr[10], hdr[13]
@@ -143,6 +154,8 @@ def load(path):
         mem[base + o] = struct.unpack('>I', b[0x80 + o:0x84 + o])[0]
     for o in range(0, rw, 4):
         mem[dbase + o] = struct.unpack('>I', b[0x80 + ro + o:0x84 + ro + o])[0]
+    if dbg_size == 0:
+        return mem, [], base, ro, dbase, rw
     dbg = len(b) - dbg_size
     n = struct.unpack('>I', b[dbg + 32:dbg + 36])[0]
     tab = dbg + 36
@@ -156,7 +169,131 @@ def load(path):
     return mem, syms, base, ro, dbase, rw
 
 
+def mask(i):
+    """An instruction word with its position-dependent offsets cleared."""
+    if (i >> 25) & 7 == 5:                       # b, bl
+        return i & 0xff000000
+    if (i >> 26) & 3 == 1 and (i >> 16) & 15 == 15:  # ldr/str pc-relative
+        return i & 0xfffff000
+    if (i >> 26) & 3 == 0 and (i >> 16) & 15 == 15 and (i >> 25) & 1:  # add/sub pc
+        return i & 0xfffff000
+    return i
+
+
+def tport(path, out, arm1):
+    mem, _, base, ro, dbase, rw = load(path, 0x14)
+    amem, asyms, abase, aro, _, _ = load(arm1)
+    funcs = [(v, n) for v, f, n in asyms if abase <= v < abase + aro]
+    funcs.sort()
+    sig = {}
+    for k, (v, n) in enumerate(funcs):
+        end = funcs[k + 1][0] if k + 1 < len(funcs) else abase + aro
+        if end - v < 16:
+            continue
+        words = tuple(mask(amem[a]) for a in range(v, end, 4))
+        sig.setdefault(words[:4], []).append((words, n))
+    targets = set()
+    for pc in range(base, base + ro, 4):
+        i = mem[pc]
+        if (i >> 24) & 15 == 11:
+            off = i & 0xffffff
+            if off & 0x800000:
+                off -= 0x1000000
+            t = pc + 8 + 4 * off
+            if base <= t < base + ro:
+                targets.add(t)
+    names = {}
+    for t in sorted(targets):
+        head = tuple(mask(mem.get(t + 4 * k, 0)) for k in range(4))
+        for words, n in sig.get(head, []):
+            if all(mask(mem.get(t + 4 * k, 0)) == w for k, w in enumerate(words)):
+                names[t] = n
+                break
+        names.setdefault(t, 'fn_%08x' % t)
+    # The display-request table: 93 entries of {name, word count, handler}
+    # in the read-write data, found by its first entry's name, "Test".
+    def cstr(a):
+        out = b''
+        while mem.get(a & ~3) is not None and len(out) < 64:
+            c = struct.pack('>I', mem[a & ~3])[a & 3]
+            if c == 0:
+                return out.decode('latin-1')
+            out += bytes([c])
+            a += 1
+        return None
+    table = None
+    for a in range(dbase, dbase + rw, 4):
+        if mem[a] >= dbase and cstr(mem[a]) == 'Test' and mem.get(a + 4) == 1 \
+                and base <= mem.get(a + 8, 0) < base + ro:
+            table = a
+            break
+    requests = []
+    if table is not None:
+        k = 0
+        while base <= mem.get(table + 12 * k + 8, 0) < base + ro:
+            nm, cnt, h = cstr(mem[table + 12 * k]), mem[table + 12 * k + 4], mem[table + 12 * k + 8]
+            if nm is None:
+                break
+            requests.append((k, nm, cnt, h))
+            if h not in names or names[h].startswith('fn_'):
+                names[h] = 'DoDGRqst' + nm
+            k += 1
+    pool = set()
+    strs = {}
+    for pc in range(base, base + ro, 4):
+        text, ref = dis(mem[pc], pc)
+        if ref is None or not (base <= ref < base + ro):
+            continue
+        if text.startswith('ldr') and ref % 4 == 0:
+            pool.add(ref)
+        elif text.startswith(('add', 'sub')):
+            raw = b''.join(struct.pack('>I', mem.get(ref + 4 * k, 0)) for k in range(64))
+            n = raw.find(b'\0')
+            if n >= 3 and all(c in (9, 10) or 32 <= c < 127 for c in raw[:n]):
+                strs[ref] = raw[:n]
+    inside = set()
+    for a, raw in strs.items():
+        inside.update(range(a + 4, a + len(raw) + 1, 4))
+    matched = sum(1 for n in names.values() if not n.startswith('fn_'))
+    with open(os.path.join(out, 'tport.s'), 'w') as fh:
+        fh.write('# tport.bin read-only image, base 0x%08x, %d bytes; read-write data base 0x%08x, %d bytes (IRIX 6.5.30m)\n' % (base, ro, dbase, rw))
+        fh.write('# No symbols ship with this image. %d of %d call targets carry the name of the\n' % (matched, len(names)))
+        fh.write('# arm1.u function whose masked words they equal; the rest are fn_<address>.\n')
+        if table is not None:
+            fh.write('# Display-request table at 0x%08x ({name, words, handler} x %d); handlers\n' % (table, len(requests)))
+            fh.write('# are named DoDGRqst<name>. request\twords\thandler\tname:\n')
+            for k, nm, cnt, h in requests:
+                fh.write('#   %d\t%d\t0x%08x\t%s\n' % (k, cnt, h, nm))
+        for pc in range(base, base + ro, 4):
+            if pc in inside and pc not in names and pc not in pool:
+                continue
+            if pc in names:
+                fh.write('%s:\n' % names[pc])
+            i = mem[pc]
+            if pc in strs:
+                t = strs[pc].decode().replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
+                fh.write('%08x: %08x  .asciz "%s"\n' % (pc, i, t))
+                continue
+            if pc in pool:
+                fh.write('%08x: %08x  .word 0x%08x%s\n' % (pc, i, i, (' <%s>' % names[i]) if i in names else ''))
+                continue
+            text, ref = dis(i, pc)
+            s = ''
+            if ref is not None:
+                if ref in names:
+                    s = ' <%s>' % names[ref]
+                if text.startswith('ldr') and ref in mem:
+                    v = mem[ref]
+                    s += ' =0x%08x%s' % (v, (' <%s>' % names[v]) if v in names else '')
+            fh.write('%08x: %08x  %s%s\n' % (pc, i, text, s))
+
+
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == '--tport':
+        a = sys.argv[2:]
+        tport(a[0] if a else 'ucode/KONA/tport.bin', a[1] if len(a) > 1 else 'ucode',
+              a[2] if len(a) > 2 else 'ucode/KONA/arm1.u')
+        return
     path = sys.argv[1] if len(sys.argv) > 1 else 'ucode/KONA/arm1.u'
     out = sys.argv[2] if len(sys.argv) > 2 else 'ucode'
     mem, syms, base, ro, dbase, rw = load(path)

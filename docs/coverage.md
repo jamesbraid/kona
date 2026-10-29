@@ -9,12 +9,12 @@ Counts come from `scripts/inventory.py` run over 544 files in scope; each row of
 
 | Inventory | Items | Documented | Named only | Undocumented |
 |---|---:|---:|---:|---:|
-| Functions (every binary) | 51510 | 647 (1.3%) | 968 (1.9%) | 49895 (96.9%) |
-| Functions (distinct names) | 18857 | 261 (1.4%) | 165 (0.9%) | 18431 (97.7%) |
+| Functions (every binary) | 51510 | 648 (1.3%) | 972 (1.9%) | 49890 (96.9%) |
+| Functions (distinct names) | 18857 | 262 (1.4%) | 169 (0.9%) | 18426 (97.7%) |
 | MMIO offsets | 264 | 196 (74.2%) | 68 (25.8%) | 0 (0.0%) |
 | Command tokens | 617 | 150 (24.3%) | 451 (73.1%) | 16 (2.6%) |
 | Ioctls | 113 | 73 (64.6%) | 0 (0.0%) | 40 (35.4%) |
-| Microcode routines and entry points | 3387 | 663 (19.6%) | 573 (16.9%) | 2151 (63.5%) |
+| Microcode routines and entry points | 3387 | 685 (20.2%) | 608 (18.0%) | 2094 (61.8%) |
 
 The rows below are the areas view: one row per area of each block, written by hand.
 <!-- inventory:end -->
@@ -132,7 +132,7 @@ Rows for each microcoded engine. They rank below the Priority items: take them w
 |---|---|---|---|---|
 | ge.u, ge11.u, ged1b.u, geif.u, ge_kpm.hex | Geometry engine programs and their interface stub: instruction format, schedule, local memory, entry points, command dispatch | partial | `ucode/ge.md`, `ucode/ge_isa.md`, `ucode/ged.md`, `ucode/ged_listing.txt`, `ucode/ge_ops.md`, `ucode/ge_listing/`, `GE.h` | host and geometry |
 | arm1.u, arm1_kpm.u | The ARM-named program: role, instruction format and what it controls | partial | `ucode/arm1.md`, `ucode/arm1_firmware.md`, `ucode/arm1.s`, `ucode/icu_map.tsv`, `ucode/arm1_handlers.tsv`, `ucode/dg_dispatch.tsv` | host and geometry |
-| tport.bin | Textport program: command set and display behaviour | partial | `ucode/tport.md` | command grammar |
+| tport.bin | Textport program: command set and display behaviour | done | `ucode/tport.md`, `ucode/tport.s` | command grammar |
 | dg4/vfo, dg4/cmb, vof, dgo1 | Display tables: video format and combiner table layouts | partial | `ucode/dg.md`, `DG.h`, `scripts/sdb_dump.py` | display |
 | (none) | Raster and texture programs: no RM or TM microcode ships and no RM or TM chip has a microcode bus; the boards are fixed-function | done | `docs/rm.md` | raster, texture and display |
 

@@ -1447,9 +1447,9 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x10036610	508	dg_clock_setup	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x1003680c	764	dgopt_clock_setup	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10036b08	492	dg_clock_restore	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10036cf4	536	dgopt_clock_restore	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x10036f0c	64	dgVDacModeWrite	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x10036f4c	152	dgVDacControlWrite	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x10036fe4	372	dgMakeVDacFetal	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x10036f0c	64	dgVDacModeWrite	named-only	ucode/dg_access.tsv
+usr/diags/IR/bin/irsaudit	n32	65281	0x10036f4c	152	dgVDacControlWrite	named-only	ucode/dg_access.tsv
+usr/diags/IR/bin/irsaudit	n32	65281	0x10036fe4	372	dgMakeVDacFetal	named-only	ucode/dg_access.tsv
 usr/diags/IR/bin/irsaudit	n32	65281	0x10037158	192	dg_make_dac_fetal	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10037218	188	destroy_map_diag	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100372d4	156	ged_host_reg_write	documented	ucode/ged.md#registers-the-host-writes
@@ -1589,7 +1589,7 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x10061a5c	1140	TEST_dgconn	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x10061ed0	128	DgVDacControlWrite	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10061f50	352	reset_dacs	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100620b0	676	DacReset	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x10062358	320	i2c_init	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x10062358	320	i2c_init	named-only	ucode/dg_access.tsv
 usr/diags/IR/bin/irsaudit	n32	65281	0x100624e4	364	i2c_arb	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10062650	748	i2c_master_xmit	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006293c	748	i2c_master_recv	undocumented	
@@ -2552,7 +2552,7 @@ usr/gfx/KONA/bin/ireeprom	n32	65281	0x10002bdc	1688	write_eeprom	undocumented
 usr/gfx/KONA/bin/ireeprom	n32	65281	0x10003274	444	erase_eeprom	undocumented	
 usr/gfx/KONA/bin/ireeprom	n32	65281	0x10003430	84	erase_combo	undocumented	
 usr/gfx/KONA/bin/ireeprom	n32	65281	0x10003484	296	info_eeprom	undocumented	
-usr/gfx/KONA/bin/ireeprom	n32	65281	0x100035ac	628	read_eeprom	undocumented	
+usr/gfx/KONA/bin/ireeprom	n32	65281	0x100035ac	628	read_eeprom	documented	ucode/tport.md#what-it-is
 usr/gfx/KONA/bin/ireeprom	n32	65281	0x10003820	804	verify_eeprom	undocumented	
 usr/gfx/KONA/bin/ireeprom	n32	65281	0x10003eec	4	__istart	undocumented	
 usr/gfx/KONA/bin/kpm	n32	65281	0x10009ef0	268	__start	undocumented	
