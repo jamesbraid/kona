@@ -12,7 +12,7 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	kernel	board-kernel	object	n64	19
 usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o)	kernel	board-kernel	object	n64	9844	4428f5c5598b9552		3	16	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP27boot/kona.a(kona_ddrn.o)	kernel	board-kernel	object	n64	10724	95ced6ae7fc81631		3	10	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP27boot/kona.a(kona_debug.o)	kernel	board-kernel	object	n64	5508	e4bbcdd5c75df378		1	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26372	b0ab66a0d3a156dc		23	51	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
+usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26372	b0ab66a0d3a156dc		23	51	0	named-only	docs/coverage.md#hip	HIP
 usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit.o)	kernel	board-kernel	object	n64	12468	4fc1b6ff52659563		6	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	kernel	board-kernel	object	n64	15412	0704a4d34a99aa6d		14	26	1	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP27boot/kona.a(kona_frs.o)	kernel	board-kernel	object	n64	5028	cd4ba938d0088211		2	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
@@ -32,7 +32,7 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12
 usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26916	9dba4b43c75421d3		21	98	1	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP27boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24756	18136860332faa57		19	0	0	understood	docs/kernel.md#textport-flow-control-and-pipe-discovery-kona_tporto-gfx_flowo-klconfigo	Textport, flow control and pipe discovery (`kona_tport.o`, `gfx_flow.o`, `klconfig.o`)
 usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22228	6601b45a863a2be9		9	24	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8148	3b5293ce5fd89f64		3	4	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
+usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8148	3b5293ce5fd89f64		3	4	0	named-only	docs/coverage.md#hip	HIP
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7492	a1c62957a81158d7		5	2	3	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP27boot/rrm.o	kernel-shared	shared-kernel	object	n64	63984	6da3783f920cc0ad		72	0	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
 usr/cpu/sysgen/IP27boot/tport.a(tport.o)	kernel-shared	shared-kernel	object	n64	23620	12e8b895c97f0544		22	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
@@ -46,7 +46,7 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	kernel	board-kernel	object	n64	19
 usr/cpu/sysgen/IP35boot/kona.a(kona_crash.o)	kernel	board-kernel	object	n64	9748	10c23be452454e34		3	16	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP35boot/kona.a(kona_ddrn.o)	kernel	board-kernel	object	n64	10628	7298d0d2ec69302e		3	10	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP35boot/kona.a(kona_debug.o)	kernel	board-kernel	object	n64	5428	ee62d6eb1a79a4a0		1	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26292	fcab4bccda4dc88a		23	51	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
+usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26292	fcab4bccda4dc88a		23	51	0	named-only	docs/coverage.md#hip	HIP
 usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit.o)	kernel	board-kernel	object	n64	12372	d61fec345d55d978		6	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	kernel	board-kernel	object	n64	15332	959b0fe1f7bd132c		14	26	1	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP35boot/kona.a(kona_frs.o)	kernel	board-kernel	object	n64	4948	476ce6628c34c6e1		2	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
@@ -65,7 +65,7 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12
 usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26836	31ebede97fc0663e		21	98	1	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP35boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24324	10b9a948c8087221		19	0	0	understood	docs/kernel.md#textport-flow-control-and-pipe-discovery-kona_tporto-gfx_flowo-klconfigo	Textport, flow control and pipe discovery (`kona_tport.o`, `gfx_flow.o`, `klconfig.o`)
 usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22036	387a5f25e1abc8f2		9	24	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8068	8af55035550b9e02		3	4	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
+usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8068	8af55035550b9e02		3	4	0	named-only	docs/coverage.md#hip	HIP
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7412	d3526393bde60851		5	2	3	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	0	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
 usr/diags/IR/bin/availmon	diagnostics	board-diagnostic	data	-	1140	0830da204c6694ce		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration

@@ -65,14 +65,11 @@
  * kernel kick sites, the firmware (bit 3 is never read), irsaudit (writes
  * PRIV | FORCE once while setting up the video interrupts and never tests
  * it), kpm's tables and dump code and the 6.5.5 kona*.h headers. An emulator may treat
-
  * FORCE like PRIV.
  *
-
-
+ * ESTABLISHED (kpm's window-base records): 0xc00000 is a second view of the
  * client registers, XG_FC_CLIENT_REGS, beside the plain view at 0x800000 and
  * the graphics FIFO view at 0xc10000 (XG.h, docs/xg.md). INFERRED: the kernel writes the kick
-
  * through the flow-controlled view so that it reaches the host interface in
  * order with the command words it writes through 0xc10000; every other
  * kernel access uses 0x800000. Bits 3-9 of a 0xc00000 address still select
@@ -208,22 +205,25 @@
 /*
  * XG_GFX_AVCC register at user offset 0xc084 (window offset 0x84), a 12-bit counter, established
  * as read only by kpm: `adapterInspection` loads it at 0x100125a4 and files it under that name; no
- * kernel object, irsaudit routine or library touches it. Inferred from the name that it counts the
- * cache-line credits still available for the pipe to return to the hub. */
+ * kernel object, irsaudit routine or library touches it. What it counts: unknown: no shipped
+ * software or published source depends on it beyond that one dump read; routes tried, the kernel's
+ * flow-control code, irsaudit and libGLcore. */
 #define KONA_USER_XG_GFX_AVCC             0xc084
 
 /*
  * XG_GFX_AVDWC register at user offset 0xc08c (window offset 0x8c), a 12-bit counter, established
  * as read only by kpm: `adapterInspection` loads it at 0x100125c4, and nothing else in the shipped
- * software reads or writes it. Inferred from the name, and from its sibling at 0xc084, that it
- * counts available doubleword credits, the second unit of the flow-control scheme. */
+ * software reads or writes it. Its count is unknown: no shipped software or published source
+ * depends on it. Routes tried: kpm's other XG reads, the kernel flow-control layer, irsaudit and
+ * the libraries, none of which uses the doubleword counter. */
 #define KONA_USER_XG_GFX_AVDWC            0xc08c
 
 /*
  * XG_MAP_ADDR register at user offset 0xc094 (window offset 0x94), an 18-bit field, established as
  * read only by kpm: `adapterInspection` loads it at 0x100125e4, which is also the last of its XG
- * reads. Inferred from the name that it holds the map RAM entry number last selected; the kernel
- * writes map RAM entries through the 0x100000 array directly and never uses this register. */
+ * reads. The kernel writes map RAM entries through the 0x100000 array directly and never uses
+ * this register, so what it latches is unknown: no shipped software or published source depends
+ * on it. Routes tried: `kona_mapram_hip2.o`, the rest of kpm and irsaudit. */
 #define KONA_USER_XG_MAP_ADDR             0xc094
 
 /*
@@ -289,9 +289,7 @@
 
 /*
  * HIP1_HH_GFIFO at 0x800000 (32-bit, write only), first-generation host interface only.
-
-
-
+ * Whether any software pushes command words here is unknown; the user FIFO page is mapped from
  * the flow-controlled window at 0xc10000 instead. No shipped binary touches offset 0: the
  * kernel access list (kona_kernel/registers.tsv) has no entry, and kpm's `hipInspectionPreJtag`
  * (0x10012834) does not read it. Inferred: each store appends one word to the graphics FIFO whose
@@ -299,13 +297,11 @@
 #define KONA_HIP1_HH_GFIFO                  0x000  /* register mask 0xffffffff */
 
 /*
- * HH_SWITCH at 0x800100 (mask 0x1ff), 6.5.30m. Unknown: no shipped software or published
- * source depends on it. The register is a kpm table entry with no field names, and nothing
- * else in the shipped software names or reaches it, so its effect cannot be read.
- * Routes tried: the kernel's register accesses (kona_kernel/registers.tsv), kpm's dump
- * list (`hipInspectionPreJtag`, 0x10012834), the strings of `irsaudit`
- * and of `ireeprom` and `gfxinfo`,
- * the 6.5.5 kona headers; none has one. */ PROM driver; none touches it. */
+ * HH_SWITCH at 0x800100 (mask 0x1ff), 6.5.30m. What its nine bits switch is unknown, since no
+ * shipped software or published source reads or writes the register. kpm's register table gives it a nine-bit mask and no field names, and
+ * no program loads or stores the offset. Routes tried for this switch register: the kernel's
+ * access list (kona_kernel/registers.tsv), the 0x10012834 dump routine of kpm, which skips it,
+ * irsaudit, ireeprom, gfxinfo and the 6.5.5 kona headers. */
 #define KONA_HH_SWITCH                      0x100  /* register mask 0x1ff */
 
 /*
@@ -325,13 +321,10 @@
 #define KONA_HIP1_GINTR_WGORDER_MASK        0x00040000  /* shift 18 */
 
 /*
- * HH_NOP at 0x8001f8 (mask 0), 6.5.30m. Unknown: no shipped software or published
- * source depends on it. It is a kpm table entry whose zero mask says it holds no data;
- * by its name only (inferred) an access to it does nothing.
- * Routes tried: the kernel's register accesses (kona_kernel/registers.tsv), kpm's dump
- * list (`hipInspectionPreJtag`, 0x10012834), the strings of `irsaudit`
- * and of `ireeprom` and `gfxinfo`,
- * the 6.5.5 kona headers; none has one. */ PROM driver; none touches it. */
+ * HH_NOP at 0x8001f8 (mask 0), 6.5.30m. An access to it has an unknown effect, and no shipped
+ * software or published source makes one. Its zero mask in kpm's table means no bit of it holds data.
+ * Routes tried for a reader or writer of offset 0x1f8: kpm, whose dump at 0x10012834 omits
+ * it, the kernel access list, irsaudit, ireeprom, gfxinfo and the 6.5.5 headers; none has one. */
 #define KONA_HH_NOP                         0x1f8  /* register mask 0x0 */
 
 /*
@@ -350,7 +343,6 @@
  * `kona_hiwater_intr` at +0x274, `kona_hiwater_timeout`, `kona_delay_monitor_gfifo` at +0x178 and
  * `kona_flow_await_returned_credits` at +0x8f0 (kona_flow.o) against its raw software level 0x300,
  * and `kona_die` reads it at +0x118 (kona_crash.o); kpm reads it into its dump at
-
  * 0x10012af4. Inferred: one level unit is one 32-bit FIFO word, from irsaudit `TEST_intr`
  * (0x10079858), whose high mark of 4 raw (0x10079c94) trips on two words as docs/hip.md reads it. */
 #define KONA_HIP1_HH_GFIFO_LEVEL            0x208  /* register mask 0xfff */
@@ -380,7 +372,7 @@
 #define KONA_GFIFO_LO_MASK                  0x000007fe  /* shift 1 */
 
 /*
- * HIP1_HH_INTR_INFO and HIP2_HH_INTR_INFO at 0x800220 (16 bits). Bit 15 is the global
+ * HIP1_HH_INTR_INFO and HIP2_HH_INTR_INFO at 0x800220 (16 bits), established: bit 15 is the global
  * interrupt enable (INTR_GLOBAL_EN). `KONAinitialize` (kona_setup.o, at +0xb4) writes 0x8000,
  * `kona_die` (kona_crash.o) reads the register at +0x6c, saves it for the KONA_HEALTH record and
  * writes it back with bit 15 cleared at +0xa8, irsaudit `vdEnableDgInterrupts` writes 0x8000 and
@@ -581,10 +573,12 @@
 
 /*
  * HH_RESET at 0x800300 (2 bits). Bit 0 holds the host interface in reset, established from the
+ * kernel pulse (write 1, read back, write 0). Bit 1 is named ARM_START in kpm's table
+ * (diags/kpm/hip_registers.tsv). Established: `init_graphics` (kona_tport.o) starts a pipe that
+ * does not answer by writing HH_INTR_INFO 0, then HH_RESET 3 and 2 (+0x13ec); that bit 1
+ * lets the ARM run, booting from the EEPROM, is inferred from that sequence and the name.
  * `KONAinitialize` (kona_setup.o) writes 1 at +0x58, reads back at
  * +0x64 and writes 0 at +0x74, and `kona_flow_await_returned_credits` (kona_flow.o, +0x824, +0x840) pulses
-
-
  * it the same way. What the pulse clears (token map, FIFOs, counters) is unknown: no shipped
  * software or published source depends on it, as the firmware rebuilds them on each start and the
  * kernel rewrites what it needs afterwards. Routes tried: kernel pulse sites, irsaudit's reset
@@ -595,14 +589,13 @@
 #define KONA_ARM_START_MASK                 0x00000002  /* shift 1 */
 
 /*
- * HH_ARM_CTRL at 0x800308 (2 bits). Bit 0 HOST_ACCESS opens the host's path to ARM
+ * HH_ARM_CTRL at 0x800308 (2 bits), established: bit 0 HOST_ACCESS opens the host's path to ARM
  * address space through HH_ARM_ADDRESS and HH_ARM_DATA. kpm `armAccessEnable` (0x10012340) sets it
  * at 0x1001236c right after writing HH_ARM_STALL, irsaudit raises it before every ARM-memory
  * access and drops it afterwards (`probe_hip_clock_speed` at 0x1004cd44, `TEST_hh_reg` at
  * 0x10079098 and 0x10079158), and irsaudit's register test round-trips
-
  * values under mask 0x3. Bit 1, kpm's HOST_ARM_CACHE_DISABLE, is never set by any shipped
- * software, so its effect is inferred from the name only. */
+ * software. */
 #define KONA_HH_ARM_CTRL                    0x308  /* register mask 0x3 */
 #define KONA_ARM_CTRL_HOST_ACCESS_MASK      0x00000001  /* shift 0 */
 #define KONA_HOST_ARM_CACHE_DISABLE_MASK    0x00000002  /* shift 1 */
@@ -640,12 +633,11 @@
 #define KONA_HH_ARM_UNSTALL                 0x328  /* register mask 0x0 */
 
 /*
- * HH_ARM_STEP at 0x800330 (write-only trigger, no data field), inferred from its name beside
- * HH_ARM_STALL and HH_ARM_UNSTALL: a write lets a halted ARM execute one bus cycle. Unknown: no
- * shipped software or published source depends on it. Routes tried: kpm's code (no load or store
- * at offset 816 anywhere in the binary), irsaudit's host accesses, the kernel access list
- * (kona_kernel/registers.tsv), the strings of ireeprom and gfxinfo, arm1.u (which cannot see its
- * */
+ * HH_ARM_STEP at 0x800330 (write-only trigger, no data field), beside HH_ARM_STALL and
+ * HH_ARM_UNSTALL. The effect of a write is unknown: no shipped software or published source
+ * ever writes it to single-step the processor. Routes tried for a single-step user: kpm's code (no load or store at offset 816 anywhere in the binary),
+ * irsaudit's host accesses, the kernel access list, ireeprom, gfxinfo, arm1.u (which cannot see
+ * its own debug window) and the 6.5.5 headers. */
 #define KONA_HH_ARM_STEP                    0x330  /* register mask 0x0 */
 
 /*
@@ -710,7 +702,9 @@
  * HH_JTAG_RESET at 0x800378 (mask 0, trigger). Unknown: no shipped software or published
  * source depends on it beyond its name. kpm 6.5.30m `hipInspectionPreJtag` (0x10012834) reads
  * it; inferred from the name that a write resets the scan controller. Routes tried: kpm's
- * `jt_hard_reset` (not traced to a write of the offset), irsaudit, the kernel and the firmware. */
+ * `jt_hard_reset` (0x10033b10) calls slot 3 of its procedure vector, a stub at 0x1001048c that
+ * returns -1 without a store; irsaudit's vector slot 3 is the same kind of stub (0x1002f720);
+ * the kernel and the firmware never touch the offset. */
 #define KONA_HH_JTAG_RESET                  0x378  /* register mask 0x0 */
 
 /*
@@ -792,8 +786,11 @@
 
 /*
  * HH_TFIFO_HI at 0x8003b0 (4 bits), established: kpm 6.5.30m `hipReset` (0x10017204) writes 5
- * to it in its non-scan reset and `hipInspectionPreJtag` (0x10012834) reads it. Inferred from
- * the name: it is the high-water mark of the raster-bus (T-bus) FIFO. */
+ * to it in its non-scan reset and `hipInspectionPreJtag` (0x10012834) reads it back for the dump.
+ * What the level 5 governs: unknown: no shipped software or published source depends on it
+ * beyond kpm restoring that value. Routes tried for the raster-bus FIFO level: the register
+ * scan, which finds no site at 0x8003b0 in the kernel, libGLcore or the X module, and the 6.5.5
+ * headers. */
 #define KONA_HH_TFIFO_HI                    0x3b0  /* register mask 0xf */
 
 /*
@@ -810,8 +807,8 @@
 /*
  * HH_VC_FREADY at 0x8003c8 (1 bit), a kpm table entry. Established: kpm `hipInspectionPreJtag`
  * (0x10012834) reads it into its dump at 0x10012fac and prints the word raw; the ARM-side twin in
- * kpm's ARM table is HA_VCBUS_FREADY at 0x2000f0. Inferred from the name: the ready flag of the
- * video-controller bus. Unknown: no shipped software or published source depends on it. Routes
+ * kpm's ARM table is HA_VCBUS_FREADY at 0x2000f0. When the bit is set is unknown, because no
+ * shipped software or published source polls it before a display-bus access. Routes
  * tried: the kernel access list (kona_kernel/registers.tsv; the display writes never poll it),
  * irsaudit's `vcWrite` and `vcRead` (no access to offset 968), arm1.s `DoDGRqstVCWrite` and
  * `DoDGRqstVCRead` (0x0c012200, 0x0c012250; they store and load through 0x600000 without polling a
@@ -836,10 +833,11 @@
 #define KONA_HH_VC_DATA_INCR                0x3d8  /* register mask 0xffffffff */
 
 /*
- * HH_GFIFO_WAIT at 0x8003e0 (mask 0, trigger), 6.5.30m. Unknown: no shipped software or published
- * source depends on it. It is a kpm table entry only; inferred from its name that a read waits
- * until the graphics FIFO has room. Routes tried: the kernel flow layer (it polls
- * HH_GFIFO_LEVEL instead), kpm's dump list, irsaudit, the firmware and the headers. */
+ * HH_GFIFO_WAIT at 0x8003e0 (mask 0, trigger), 6.5.30m. Whether an access to it stalls is
+ * unknown, as no shipped software or published source touches it; only kpm's register table
+ * lists it. Routes tried for a waiter: the
+ * kernel flow layer, which polls HH_GFIFO_LEVEL instead, kpm's dump list,
+ * irsaudit, the firmware and the headers. */
 #define KONA_HH_GFIFO_WAIT                  0x3e0  /* register mask 0x0 */
 
 /*
@@ -847,7 +845,6 @@
  * 0x0ffffffc), established: the ARM address that the next HH_ARM_DATA or HH_ARM_DATA_INCR access
  * touches. irsaudit `PioWriteArm32` (0x10038444, write at 0x1003847c) and `load_arm_mem`
  * (0x100389c0, write at 0x10038a38) load it first, and kpm reads it at 0x10012fd0. */
-
 #define KONA_HH_ARM_ADDRESS                 0x3e8  /* register mask 0xfffffff */
 #define KONA_ARM_ADDRESS_ZERO_MASK          0x00000003  /* shift 0 */
 #define KONA_ARM_ADDRESS_MASK               0x0ffffffc  /* shift 2 */
@@ -928,10 +925,10 @@
 #define KONA_HIP2_PIO_HI_MASK               0x0000001f  /* shift 0 */
 
 /*
- * HIP2_HH_IDMA_HI at 0x8003b8 (7 bits, field IDMA_HI), HIP2 only, 6.5.30m. Unknown: no shipped
- * software or published source depends on it. Inferred from the name and from the IDMA_OV
- * interrupt bit: a high-water mark of the input-DMA queue. Routes tried: kpm's table (name and
- * mask; its dump does not read it), irsaudit, the kernel's HIP2 objects, the firmware and the headers. */
+ * HIP2_HH_IDMA_HI at 0x8003b8 (7 bits, field IDMA_HI), HIP2 only, 6.5.30m. The level its seven
+ * bits set is unknown: no shipped software or published source programs or reads it. Routes tried for an input-DMA level: kpm's table
+ * (name and seven-bit mask; its dump does not read it), irsaudit, the kernel's HIP2 objects,
+ * the firmware and the headers. */
 #define KONA_HIP2_HH_IDMA_HI                0x3b8  /* register mask 0x7f */
 #define KONA_HIP2_IDMA_HI_ZERO_MASK         0x00000001  /* shift 0 */
 #define KONA_HIP2_IDMA_HI_MASK              0x0000007e  /* shift 1 */
