@@ -15,9 +15,8 @@ Two releases are listed:
   objects, the N32 and 64-bit `libGLcore.so` and the IrisGL libraries carry
   DWARF (checked with `scripts/map_binaries.py`); the X modules and the o32
   `libGLcore.so` are stripped.
-- **IRIX 6.5.0** ships unstripped binaries with full DWARF (reported by
-  Dominik Behr for the gr2 and gr4 work). Section 3 covers it. No path there
-  is verified against a 6.5.0 install yet.
+- **IRIX 6.5.0** ships unstripped binaries, but for this board they carry the
+  same names-and-lines DWARF as 6.5.30. Section 5 has the survey.
 
 ## 1. IRIX 6.5.30 (primary)
 
@@ -86,13 +85,11 @@ Reference image used for the 6.5.30 listing, for reproducibility:
 `kona-installed-20261023.qcow2`, SHA-256
 `d7b012a30d912b9f5474c185002063f7d3293f999e8ce78867a06e1acbffc8c7`.
 
-## 3. IRIX 6.5.0 (DWARF; paths unverified)
+## 3. IRIX 6.5.0
 
-Dominik Behr reports that 6.5.0 binaries are unstripped with full DWARF
-(gr2 and gr4 work from them), but 6.5.0 has no VPro. No 6.5.0 install has been
-checked for this board, so no path here is verified. Start from the layout in
-section 1, swap in whatever `ls /usr/gfx/arch` shows, and record what you find.
-Use 6.5.0 for names and types, 6.5.30 for shipping behaviour.
+The 6.5 Foundation 1 disc carries the same KONA files under the paths in section 1
+(IP27KONA, IP27KONA32, IP27KONA64 and the older IP19/IP25 variants). Section 5 gives the
+debug level. It has no VPro.
 
 ## 4. Symlinks
 
@@ -129,3 +126,23 @@ ucode/KONA root/usr/gfx/ucode/KONA
 diags/IR root/usr/diags/IR
 diags/KONA_bin root/usr/gfx/KONA/bin
 ```
+
+## 5. Debug information by release
+
+Checked on the retail discs: IRIX 6.2, 6.3, 6.4 for Origin200/Origin2000/Onyx2IR, 6.5
+Foundation 1 (6.5.0) and the overlay discs of every 6.5.x release from 6.5.2 to 6.5.30.
+No release ships DWARF with types or struct members for this board. Every unstripped file
+carries compile units, function and variable names and line tables only (`dwarfdump -i`
+shows no structure, member or typedef entries), and the o32 `.mdebug` tables hold
+procedures and line numbers with no member or typedef symbols. 6.5.0 is no richer than 6.5.30.
+
+| Files | Debug level | Best release |
+|---|---|---|
+| `kona.a` members, `gfx.o`, `rrm.o` | DWARF with names and lines | 6.5.30 (IP27 since 6.4, IP35 since 6.5.8) |
+| `libGLcore.so` N32 and 64-bit | DWARF with names and lines | 6.5.30 |
+| `libGLcore.so` o32 | `.mdebug` names and lines | 6.5.30 |
+| `kona.so`, `konad.so`, `konal.so`, `konas.so`, `konavis.so`, `glx.so`, `Xsgi` | stripped to `.dynsym` in every release | none |
+
+Types have to come from headers, the ucode and the RE notes, not from any release's debug
+sections. Pick 6.5.30 for the code that shipped last; older releases (6.4, 6.5.0) are
+earlier builds of the same driver with a smaller line table and are only useful for diffing.
