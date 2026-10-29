@@ -112,7 +112,16 @@ On success it writes the returned word back to record +8 and returns 0; on failu
 - **`ChannelRect(a0, a1, a2, a3, a4)`**: writes `HP_VIDEO_CMD` (token 422, 0x1a6) then the display-generator command number 20, then eight words: `a0`, `a1`, `a2 + a4 - 1`, `a3`, `a4`, 0, 0, 1, then a checksum word that is the sum of the command number and the eight words (the code accumulates it as it stores). Command 20 is `DoDGRqstResize` with 8 payload words ([dg_dispatch.tsv](../ucode/dg_dispatch.tsv)); its first payload word selects the channel's record in the firmware and `dgResize` clips an output size below 2, printing "Illegal x output size %d, clipping to 2" (and "y"). `a0` is the VOC id of the channel. The firmware's use of all eight words is in [dg.md](dg.md#the-resize-request-8-words): words 1-4 are the source rectangle that the channel's scaler maps onto its output size (x origin, top line, width, height; the caller's `a2 + a4 - 1` turns a bottom-left origin into a top line), words 5 and 6 set two channel flag bits that this caller always clears, and word 7 = 1 keeps the rectangle from becoming the channel's default.
 - **`ChannelRectSync(a0, a1)`**: writes `HP_VIDEO_CMD`, command 78 (`DoDGRqstResizeSyncType`, 2 payload words), the words `a0` and `(a1 == 1)`, and the checksum (command + both words).
 - **`Error`**: writes token 228 (`HP_SETERROR`) and the error code; the ARM keeps the first GL error ([arm1_firmware.md](../ucode/arm1_firmware.md)).
-- **`ChangeWindowSize`** and **`FindWindowSize`**: store the window width and height at ctx+3700 and +3704 and re-issue the viewport and scissor through `__glkonim_Viewport` and `__glkonim_Scissor`; `FindWindowSize` asks the drawable object (callback at +28) for its size and re-creates state on a mismatch.
+- **Window size**: two small functions keep the context's copy of the drawable size. The three builds (32-bit old ABI, new 32-bit ABI and 64-bit) differ in code, so the table below reads each one.
+
+| Function | Build | Reading |
+|---|---|---|
+| `ChangeWindowSize` | usr/gfx/arch/IP27KONA/libGLcore.so (the Origin 350 copy has the same code) | **Established** at 0xd9465bc: stores the new width at context +3700 and the new height at +3704, then calls `__glkonim_Viewport` and after it the scissor routine, each with a zero origin and the new size, so viewport and scissor follow the window. |
+| `ChangeWindowSize` | usr/gfx/arch/IP27KONA32/libGLcore.so | **Established** at 0xd948220: makes the same two stores before it builds its frame, calls the viewport routine and then jumps to `__glkonim_Scissor` with the same origin and size. |
+| `ChangeWindowSize` | usr/gfx/arch/IP27KONA64/libGLcore.so | **Established** at 0x2daa260: the 64-bit context keeps width and height at +4056 and +4060; the call pair is the same, viewport first (`__glkonim_Viewport`), scissor by a tail jump. |
+| `FindWindowSize` | usr/gfx/arch/IP27KONA/libGLcore.so | **Established** at 0xd94663c: asks the drawable for its geometry through the callback at context +28, which fills four words (x, y, width, height); when width or height differs from the stored pair it calls `ChangeWindowSize` with them, otherwise it returns without drawing state changes. |
+| `FindWindowSize` | usr/gfx/arch/IP27KONA32/libGLcore.so | **Established** at 0xd948280: the same comparison with four result pointers passed in registers; a changed size goes to `ChangeWindowSize` at 0xd948220. |
+| `FindWindowSize` | usr/gfx/arch/IP27KONA64/libGLcore.so | **Established** at 0x2daa2c0: loads the geometry callback from context +56 (a 64-bit pointer), compares against +4056 and +4060 and on a change calls `ChangeWindowSize` at 0x2daa260. |
 
 The display-generator command framing (token, command number, count-checked payload, checksum word) is the one the ARM reads in `arm_video_cmd` ([arm1_firmware.md](../ucode/arm1_firmware.md)); `ChannelRect` is the only emitter of it in `libGLcore`'s context file, and the combination and format files that choose channel layout ([ucode/dg.md](../ucode/dg.md)) are not read by this library.
 
@@ -140,6 +149,12 @@ What `kona.so` (the X server module, `usr/lib/X11/dyDDX/`, IRIX 6.5.30m, strippe
 The file descriptor is word +100 of the record at ScreenRec +116 in every caller. A failed call prints the module's message and `perror`; none retries.
 
 **Window private (`rrmWindowPrivateIndex`), established** from the fields these calls take: +12 rendering-node id, +20 display id (passed as `wid` to VALIDATECLIP and LOADDISPLAYMODE and as `swapbufid` to VALIDATESWAPBUF and MGR_SWAPBUF), +32 hardware-independent mode (`hwi_mode`), +36 hardware-dependent mode (`hwd_mode`, written by `konValidateMode`). The record is 76 bytes (`allocRRMpriv` allocates and clears 76).
+
+#### `allocRRMpriv`
+
+`allocRRMpriv` at 0x49af60 in `kona.so` (**established**) creates a window's rrm private: it allocates 76 bytes, clears them and stores the record in the window's private slot (`rrmWindowPrivateIndex`).
+It then calls the descriptor's hook +80, `konInitWindowType`, with the window, and returns the record, or 0 when the allocation fails.
+`rrmDoubleBufferWindow` and the two bind functions call it.
 
 ### Cursor: `KONA_SELECT_CURSOR` (10005), `X_LOADCURSOR`, `X_LOADCURSORCOLOR`
 
@@ -198,9 +213,48 @@ The margin c, **established** from the arithmetic: c = trunc(sqrt(s^2 - w*h/4 + 
 
 `konInitiateBufferSwap` calls `rrmMGRSwapBuf(window)` for each window in its list; that sends rnid, display id, XID, `hwd_mode` (+36) and `hwi_mode` (+32), then calls `UpdateDIDMode`. Kernel: `RRM_MGR_SwapBuf` stores `hwi_mode` in the per-id table, calls slot +0xa8, `KONAschedmgrswapbuf`, with (clipid, swapbufid, hwi_mode, hwd_mode), and sets pane +18 from `hwi_mode` bit 2. `KONAschedmgrswapbuf` sends `DISPMODE` with clipid, swapbufid and `hwd_mode`, then `RETRACE_SEQID` with a new sequence number, recording the clip id and the sequence number per swap buffer at pipe state +3976 and +3592 ([dg.md](dg.md)).
 
+#### `konInitiateBufferSwap`
+
+`konInitiateBufferSwap` at 0x4b0000 in `kona.so` (**established**) starts a buffer swap for a list of windows: it flips each window's mode words, finds it a display id and sends the manager swap.
+It takes (window list, count).
+For each window that holds a validated swap buffer (rrm private byte +4 bit 0x8) it first invalidates that resource through hook +32 with (window, 8, 1).
+For a main-plane window (visual flag bit 0) it sets hwi bit 0x4 and hwd bit 0x1 when the double-buffer private's byte +2 is not 1, and clears both when it is: the displayed buffer flips.
+For an overlay or underlay window (visual flags 0x6) it puts code 2, plus 1 when it sets hwi bit 0x4, into hwd bits 1-3; any other window prints "TRYing to swap bogus did".
+An unrealized window (word +124 bit 11 clear) has its swap reported done at once through `dbcDelayedSwapBufferDone`.
+Otherwise it tries `ShareSwappingID`; a window that joins a swapping id is also reported done at once and sends nothing.
+Else it takes an id from `FindFreeID`, or from `StealID` when none is free.
+It records the new hwd word in the module's screen private at +52 + 8 x id + 4, sets bit 0x10 (swap pending) on the id's entry and adds the window to a list.
+Last, walking that list backwards, it calls `rrmMGRSwapBuf` for each window; on a failure it reports the swap done and clears bit 0x10 again.
+It returns 0.
+
+#### `rrmMGRSwapBuf`
+
+`rrmMGRSwapBuf` at 0x540ac0 in `kona.so` (**established**) sends one window's swap to the kernel as `RRM_MGR_SWAPBUF` (1020).
+The five words are the rendering-node id (+12), the display id (+20), the window id, the hwd word (+36) and the hwi word (+32).
+On success it calls `UpdateDIDMode` with (window, 0) and returns 0; a failed ioctl prints through `perror` and returns 1.
+
+#### `UpdateDIDMode`
+
+`UpdateDIDMode` at 0x57a0e0 in `kona.so` (**established**) refreshes the mode an id's table entry records from the window that holds it, so a later `compareModes` sees the post-swap mode.
+It takes (window, flip) and does nothing for a window without a display id.
+It writes the window's hwi word (+32) to entry +8, with bit 0x4 inverted when flip is non-zero, and the window's hwd word (+36) to entry +12.
+`rrmMGRSwapBuf` calls it with 0 after every manager swap; `rrmInvalidate` calls it with 1 when the kernel reports the window showing the other buffer.
+
 ### Stereo: `KONA_SET_CHANNEL_RECT` (10009)
 
 **Established** (`konaSetStereoMode(screen, a, b, mode)`, `misc` group). When `mode` is 1 and a small-data flag of the module is set, it writes 531 to the halfword at +6 (`y1`) of an 18-byte block in `.bss` (0x591ba0) and passes the block to 10009; on failure it stores -7905 in a module error word and logs "Failed : update kernel with channel cursorinfo". It then calls `nfbSetStereoMode`. No other store to the block was found by offset in the module, so the call sends channel 0, valid 0, priority 0, x1 0, y1 531 and zeros: **inferred** to withdraw channel 0 from the cursor rectangles while stereo is on. Whether another path fills the block through a pointer is **unknown**. Kernel side: `kona_set_channel_rect` ([dg.md](dg.md#choosing-the-cursor-channel)).
+
+#### `nfbSetStereoMode`
+
+`nfbSetStereoMode` at 0x4529c0 in `kona.so` (**established**) switches a screen into or out of stereo by swapping screen procedures and rrm hooks for stereo versions.
+It takes (screen, a, b, mode); the current mode is word +220 of the pipe record.
+The same mode again returns 0; a change between two non-zero modes returns 8, the X match error.
+Entering stereo, it saves screen procedures +216, +220 and +224 and rrm hooks +28, +36 and +76 in the pipe record (+228 to +248).
+It installs replacements: 0x4d4b40 at screen +216, 0x4be980 at +220 and 0x568130 at +224.
+The hooks become 0x506130 for the clip validation (+28), 0x542740 for the swap-buffer validation (+36) and 0x4afce0 at +76.
+It stores b at pipe record halfword +226, the eye offset the stereo wrappers add ([wrappers](#stereo-drawing-wrappers-konstereo)), and a, clamped so that a + b fits the screen height, at +224.
+It then repaints through the screen procedure at +340 and, by the calls it makes, creates a server-owned colormap and window, maps it and confines the pointer (`ConfineCursorToWindow`), resizing the root window's extents (**inferred** from the call sequence; the arguments were not traced).
+The leave path frees those resources.
 
 ### Display functions: cursor records, display ids, colour maps, gamma
 
@@ -208,11 +262,23 @@ The margin c, **established** from the arithmetic: c = trunc(sqrt(s^2 - w*h/4 + 
 
 #### `konRealizeCursor`
 
-`konRealizeCursor` at 0x54ad40 takes (screen, cursor). If any screen's private word +92 already holds this cursor (the crosshair the module keeps), it returns true without allocating. Otherwise it allocates a 32-byte cursor record, stores it as the cursor's private word for this screen (CursorRec +20), clears its +0 and +4, allocates and clears a 260-word image buffer at +8, builds the image with the helper at 0x456fe0, and marks it not yet on the pipe (halfword +12 = 0) with no cache slot (+16 = 0). The image reaches the pipe later, through `konDisplayCursor` ([cursor](#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor)).
+`konRealizeCursor` at 0x54ad40 in `kona.so` (**established**) builds the host copy of a cursor image for the pipe's cursor memory and sends nothing yet.
+It takes (screen, cursor).
+If any screen's private word +92 already holds this cursor (the crosshair the module keeps), it returns true without allocating.
+Otherwise it allocates a 32-byte cursor record and stores it as the cursor's private word for this screen (cursor record +20).
+It clears the record's +0 and +4, allocates and clears a 260-word image buffer at +8 and builds the image with the helper at 0x456fe0.
+It marks the image as not yet on the pipe (halfword +12 = 0) with no cache slot (+16 = 0).
+The image reaches the pipe later, through `konDisplayCursor` ([cursor](#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor)).
 
 #### `konUnrealizeCursor`
 
-`konUnrealizeCursor` at 0x55f270 takes (screen, cursor). A private word of 1 (the crosshair) is just cleared. Otherwise it releases the record's cache slot through 0x4c20e0, which unlinks the slot from the cache list, clears the record's +12 and +16 and resets the screen's current slot (private +112) to -1 when it was this one, then frees the records at +4 and +8 and the record itself and clears the private word. Nothing is sent to the pipe.
+`konUnrealizeCursor` at 0x55f270 in `kona.so` (**established**) frees a cursor's host records and gives its pipe cursor slot back, without any pipe command.
+It takes (screen, cursor) and returns 1.
+A private word of 1 (the crosshair) is just cleared.
+Otherwise, when the record has a cache entry (record +16), it calls the slot release helper at 0x4c20e0 with that entry and the screen.
+The helper clears the owning record's +16 and halfword +12 and the entry's owner word (+12), and sets the screen's current slot (private +112) to -1 when it was this slot.
+It then moves the entry to the head of the circular slot list whose head pointer is screen private +124.
+Last, the function frees the records at +4 and +8 and the record itself, and clears the private word.
 
 #### `kon_freeCursorCaches`
 
@@ -224,27 +290,57 @@ The margin c, **established** from the arithmetic: c = trunc(sqrt(s^2 - w*h/4 + 
 
 #### `konInitDIDState`
 
-`konInitDIDState` at 0x457600 takes (screen). Fills the display-id table of the rrm screen private (`rrmScreenPrivateIndex`, 36-byte entries from +152): ids 0-62 are main-plane ids (halfword +18 = 0, +8 = 0, +12 = 8), id 63 is one of kind 3 (+8 = 0x3c00, +12 = 5), ids 64-95 are overlay ids (kind 1); no id gets kind 2. Main ids at or above `KON_X_LIMIT_MAIN_DID` (accepted 14-63, default 63) get kind 0xffff (unusable). `KON_X_LIMIT_OVERLAY_DID` (accepted 5-32, default 32) is added to running totals in a way that leaves ids 63-95 usable for every accepted value, so as coded it removes no overlay id. A rejected value prints "punting, bogus DID limit" and keeps the default. It checks that the total, 96, equals the count at rrm private +0 ("numids mismatch"). **Inferred:** kind 0 main, 1 overlay, 3 a reserved id, from the counts and the env-variable names; words +8 and +12 are the hardware-independent and hardware-dependent mode words of the windows that hold the id, **established** from the setter that records them, [below](#setdidmode).
+`konInitDIDState` at 0x457600 in `kona.so` (**established**) sets the kind of every display id in the rrm screen private's table.
+The server's `rrmInit` calls it through descriptor word +84, after clearing the table ([descriptor](#the-rrm-descriptor-and-its-hooks)).
+It takes (screen) and works on the 36-byte entries from rrm screen private +152.
+Ids 0-62 are main-plane ids (halfword +18 = 0, +8 = 0, +12 = 8); id 63 is one of kind 3 (+8 = 0x3c00, +12 = 5); ids 64-95 are overlay ids (kind 1); no id gets kind 2.
+Main ids at or above the limit in `KON_X_LIMIT_MAIN_DID` (accepted 14-63, default 63) get kind 0xffff (unusable).
+The overlay limit `KON_X_LIMIT_OVERLAY_DID` (accepted 5-32, default 32) is added to running totals in a way that leaves ids 63-95 usable for every accepted value, so as coded it removes no overlay id.
+A rejected value prints "punting, bogus DID limit" and keeps the default.
+It checks that the total, 96, equals the count at rrm private +0 ("numids mismatch"); the module's descriptor sets that count to 96.
+**Inferred:** kind 0 main, 1 overlay, 3 a reserved id, from the counts and the variable names.
+Words +8 and +12 are the hardware-independent and hardware-dependent mode words of the windows that hold the id, **established** from the setter that records them, [below](#setdidmode).
 
 #### `konChangeDIDCmap`
 
-`konChangeDIDCmap` at 0x44f1d0 takes (window, colormap). For a window with a display id (rrm private +20 not negative) and a colormap, it re-sends `X_LOADXMAP_DID` exactly as `konValidateMode` does ([display modes](#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017)): the display id, then the colormap's table entry << 7, the plane count - 1 (capped at 12 when screen private +32 is set) << 3, and the luminance and grey flags, which it takes only for colour-index visuals (visual flag bit 0 set, 0x2000 clear). It caches {entry, size, grey, lum} at screen private +48 + 16 x id first. Its debug print reads "did = %d cmap base = 0x%x, size = %d".
+`konChangeDIDCmap` at 0x44f1d0 in `kona.so` (**established**) reloads one display id's colour-map field in the XMAP when a window's colormap changes.
+It takes (window, colormap) and acts only for a window with a display id (rrm private +20 not negative) and a colormap.
+It re-sends `X_LOADXMAP_DID` exactly as `konValidateMode` does ([display modes](#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017)).
+The words are the display id, then the colormap's table entry << 7, the plane count - 1 (capped at 12 when screen private +32 is set) << 3, and the luminance and grey flags.
+It takes those two flags only for colour-index visuals (visual flag bit 0 set, 0x2000 clear), and caches {entry, size, grey, lum} at screen private +48 + 16 x id first.
+Its debug print reads "did = %d cmap base = 0x%x, size = %d".
 
 #### `kon_drawDid`
 
-`kon_drawDid` at 0x4715c0 takes (id, plane mask, screen, command pointer). Loads the drawing state for painting display-id planes, without drawing: `X_LOADCLIP` with 1, 0, 0, screen width, height; `X_LOADPOS` (0x12a) with 0, 0, width, height; and `X_LOADGC` with 13 words in the order of [the drawing grammar](#x-server-module-drawing-commands): foreground = the id placed in the display-id bit field, write mask from the plane mask, then fixed words (cfg low bits 0x8, op low nibble 1, addr low six bits 0, bl bits 1-4 = 3, ifmt 0, colfmt 1, pixfmt 1). Two placements exist, chosen by bit 2 of screen private +148: the id's low four bits at bit 3 and its next twelve at bit 8 of `fg_h`, with mask `wmask0`; or the same at bits 9 and 14 of `fg_l`, with mask `wmask1`. **Inferred:** the two layouts are the display-id field's position in two pixel depths; the callers then send the boxes.
+`kon_drawDid` at 0x4715c0 in `kona.so` (**established**) loads the clip, position and graphics-context state for painting display-id planes, and draws nothing itself.
+It takes (id, plane mask, screen, command pointer).
+It sends `X_LOADCLIP` with a full-screen clip (enable word 1, a zero origin, the screen width and height).
+Then `X_LOADPOS` (0x12a) with a zero origin and the screen size, and `X_LOADGC` with 13 words in the order of [the drawing grammar](#x-server-module-drawing-commands).
+Those words are: foreground = the id placed in the display-id bit field, write mask from the plane mask, then fixed words (cfg low bits 0x8, op low nibble 1, addr low six bits 0, bl bits 1-4 = 3, ifmt 0, colfmt 1, pixfmt 1).
+Two placements exist, chosen by bit 2 of screen private +148.
+In one the id's low four bits go to bit 3 and its next twelve to bit 8 of `fg_h`, with mask `wmask0`.
+In the other they go to bit 9 and to bit 14 of `fg_l`, with mask `wmask1`.
+**Inferred:** the two layouts are the display-id field's position in two pixel depths; the callers then send the boxes.
 
 #### `konTempBlankAllChannels`
 
-`konTempBlankAllChannels` at 0x4657a0 takes (screen, value). Sends display command 60 (`DoDGRqstTempBlankAllChannels`) with the one word `value`, through the sender at 0x5341a0. The firmware blanks or unblanks every channel ([dg.md](dg.md#display-requests)).
+`konTempBlankAllChannels` at 0x4657a0 in `kona.so` (**established**) blanks or unblanks every video channel with one display-generator request.
+It takes (screen, value) and sends display command 60 (`DoDGRqstTempBlankAllChannels`) with the one word `value`, through the sender at 0x5341a0.
+The firmware blanks or unblanks every channel ([dg.md](dg.md#display-requests)).
 
 #### `konInitializeColormap`
 
-`konInitializeColormap` at 0x535530 takes (colormap). Clears the colormap's private word (+68) and creates the hardware colormap (`nfbCreateHWColormap`). For a static visual class (even class number) it fills the entries with `rrmInitializeGLStaticColormap` on a 32-bit-deep screen or `cfbInitializeColormap` otherwise. For a PseudoColor colormap whose visual has flags 0x2020001 set, on a screen whose private +36 is set, it then fills all 256 entries from three 256-byte tables in the module's data (red 0x5869e0, green 0x586ae0, blue 0x586be0, each byte shifted to 16 bits) and marks them allocated; the first eight are black, red, green, yellow, blue, magenta, cyan, white. **Inferred:** the IRIS default colour map, from that order. For an overlay or underlay visual (flag 0x8, or 0x2 without 0x40000) it reserves entry 0, **inferred** as the transparent pixel, and fails when the colormap's flag word (+16) has bit 1 set, **inferred** fully allocated.
+`konInitializeColormap` at 0x535530 in `kona.so` (**established**) sets up a new colormap: its hardware private block and its first entries.
+It clears the colormap's private word (+68) and creates the hardware block (`nfbCreateHWColormap`).
+For a static visual class (even class number) it fills the entries with `rrmInitializeGLStaticColormap` on a 32-bit-deep screen.
+Otherwise it uses the sample server's routine, `cfbInitializeColormap`.
+For a pseudo-colour colormap whose visual has flags 0x2020001 set, on a screen whose private +36 is set, it then fills all 256 entries from three 256-byte tables in the module's data (red 0x5869e0, green 0x586ae0, blue 0x586be0, each byte shifted to 16 bits) and marks them allocated.
+The first eight are black, red, green, yellow, blue, magenta, cyan, white; **inferred** the IRIS default colour map, from that order.
+For an overlay or underlay visual (flag 0x8, or 0x2 without 0x40000) it reserves entry 0, **inferred** as the transparent pixel, and fails when the colormap's flag word (+16) has bit 1 set, **inferred** fully allocated.
 
 #### `konClearHWColormap`
 
-`konClearHWColormap` at 0x4a25a0 is an empty function that returns at once. The pipe's colour map is not cleared from here.
+`konClearHWColormap` at 0x4a25a0 in `kona.so` (**established**) is an empty function: it stores its one argument to the stack and returns, so the pipe's colour map is never cleared from here.
 
 #### `konSetColor`
 
@@ -252,19 +348,21 @@ The margin c, **established** from the arithmetic: c = trunc(sqrt(s^2 - w*h/4 + 
 
 #### `konUninstallColormap`
 
-`konUninstallColormap` at 0x508660 takes (colormap). Looks up the visual's flags in the module's visual table (ScreenRec +116 record: 20-byte entries at +88, indexed from the base id at +80). For an RGB visual (flag 0x2000) it does nothing; otherwise it calls `nfbUninstallColormap`.
+`konUninstallColormap` at 0x508660 in `kona.so` (**established**) leaves true-colour (RGB) colormaps installed and hands every other colormap to `nfbUninstallColormap`.
+It takes (colormap) and looks up the visual's flags in the visual table of the pipe's record (screen record +116: 20-byte entries at +88, indexed from the base id at +80).
+With flag 0x2000 (RGB) it returns at once.
 
 #### `konInstallFakeColormap`
 
-`konInstallFakeColormap` at 0x4c3620 is an empty function, like `konClearHWColormap`.
+`konInstallFakeColormap` at 0x4c3620 in `kona.so` (**established**) is the install hook of the software-only colour-map groups and does nothing: it saves its argument and returns.
 
 #### `konStoreFakeColors`
 
-`konStoreFakeColors` at 0x460c60 is an empty function that takes three arguments and returns.
+`konStoreFakeColors` at 0x460c60 in `kona.so` (**established**) is the matching store hook of those groups: it spills its three arguments to its frame and returns without touching the pipe.
 
 #### `konQueryMaxSwapBarrier`
 
-`konQueryMaxSwapBarrier` at 0x44f1b0 returns 1, so the module reports one swap barrier.
+`konQueryMaxSwapBarrier` at 0x44f1b0 in `kona.so` (**established**) answers the swap-barrier query with a constant 1, so the module reports one swap barrier.
 
 ### Frame-buffer layer: hardware colour maps, display-id state, cursor and blanking
 
@@ -283,43 +381,93 @@ The module's own tables, **established** from the data at 0x586088 (groups) and 
 
 #### `nfbCreateHWColormap`
 
-`nfbCreateHWColormap` at 0x4e75e0 takes (colormap). Allocates the colormap's private block and stores it at ColormapRec +68: for a TrueColor visual (class 5) 8 bytes plus 12 bytes per word of a bit map sized to the visual's entry count; for any other class 8 bytes plus (entries + 31) / 8. It sets block word 0 to -1 (no hardware slot) and clears the bytes from +4 (three entry-count bit maps for TrueColor, one otherwise) through the helper at 0x54b4f0, which returns 1. An allocation failure returns 0 with the private word left 0. **Inferred:** the bit maps record which entries have been allocated. Called from `konInitializeColormap`.
+`nfbCreateHWColormap` at 0x4e75e0 in `kona.so` (**established**) gives a new colormap the private block that records its hardware slot and its allocated entries.
+It takes (colormap) and stores the block at colormap +68.
+For a true-colour visual (class 5) the block is 8 bytes plus 12 bytes per word of a bit map sized to the visual's entry count; for any other class it is 8 bytes plus (entries + 31) / 8.
+It sets block word 0 to -1 (no hardware slot) and clears the bytes from +4 (three entry-count bit maps for class 5, one otherwise) through the helper at 0x54b4f0, which returns 1.
+An allocation failure returns 0 with the private word left 0.
+**Inferred:** the bit maps record which entries have been allocated.
+It is called from `konInitializeColormap`.
 
 #### `nfbDestroyHWColormap`
 
-`nfbDestroyHWColormap` at 0x56d9c0 takes (colormap), frees the private block at +68 and clears the pointer. It does not release a hardware slot; `nfbUninstallHWColormap` does that. Its address is in the module's function table at 0x5866d8, in the slot the order of the neighbouring entries (create, destroy, install, uninstall, list) suggests is destroy-colormap (**inferred**).
+`nfbDestroyHWColormap` at 0x56d9c0 in `kona.so` (**established**) frees a colormap's private block at +68 and clears the pointer.
+It does not release a hardware slot; `nfbUninstallHWColormap` does that.
+Its address is in the module's function table at 0x5866d8, in the slot the order of the neighbouring entries (create, destroy, install, uninstall, list) suggests is destroy-colormap (**inferred**).
 
 #### `nfbInstallHWColormap`
 
-`nfbInstallHWColormap` at 0x450d60 takes (colormap). It does not load colours; it gives the colormap a hardware slot and runs the group's install hook. Its address is the table word at 0x5866dc, between destroy and uninstall (**inferred** install-colormap slot).
+`nfbInstallHWColormap` at 0x450d60 in `kona.so` (**established**) gives a colormap a hardware slot of its visual's group and runs the group's install hook; it loads no colours itself.
+It takes (colormap). Its address is the table word at 0x5866dc, between destroy and uninstall (**inferred** install-colormap slot).
 
 1. The group is word +4 of the visual-table entry for the colormap's visual. The colormap's slot is block word 0.
 2. If the colormap already has a slot, it moves that slot's record to the head of the group's ring (the ring links are the second words of the records) and returns, sending nothing; when it is already the head it returns at once.
 3. Otherwise it takes the record after the head as the victim, makes it the head, and stores its slot number in the colormap. If another colormap holds that slot it is told it lost the map (`WalkTree` over the screen with `TellLostMap`) and its slot becomes -1. The same happens for every slot in the victim slot's shared list, which clears those slots' installed pointers and calls the group's lost-map hook if it has one (this module's table has no shared lists and no lost-map hooks, so only the first case happens).
-4. If the rrm screen record's word +48 is non-zero and the slot's reserved flag (+20) is clear, it reserves the slot's number with the display-id allocator ([reserve an id](#setreservedid)) and sets the flag, so the display-id allocator treats that colour-map number as taken.
-5. It calls the group's install hook with the colormap, stores the colormap as the slot's installed map and walks the screen with the callback at 0x478b10, **inferred** to be the gained-map notice.
+4. If the rrm screen record's word +48 is non-zero and the slot's reserved flag (+20) is clear, it reserves the slot's display id (slot +16) with the display-id allocator ([reserve an id](#setreservedid)) and sets the flag, so the display-id allocator treats that id as taken.
+   With `kona.so` this step never runs: the module's descriptor leaves the reserve hook (word +44) empty, and the server's `rrmInit` then forces word +48 to 0.
+5. It calls the group's install hook with the colormap, stores the colormap as the slot's installed map and walks the screen's windows with `nfbTellGainedMap` (at 0x478b10, named by its symbol).
 
 The ring makes this a least-recently-used cache over the slots of a group. **Inferred** from the code: the head is the most recent and the record after the head is the next victim. When a group has one slot, the victim is that slot.
 
 #### `nfbUninstallHWColormap`
 
-`nfbUninstallHWColormap` at 0x5673b0 takes (colormap) and returns nothing. For a colormap with a slot it moves that slot's record to the position just after the head, so it becomes the next victim. Unless the colormap is the screen's default (ScreenRec +28 compared with the colormap id), it then: when the rrm word +48 is non-zero, releases that reservation ([release a reservation](#setnostealid-unsetreservedid-freeid-freecid)) and clears the reserved flag; clears the slot's installed pointer; sets the colormap's slot to -1; tells the screen's windows the map was lost; calls the group's lost-map hook if any; and finally, when the default colormap's group contains the freed slot (or a slot that shares it), calls the screen's install function (ScreenRec +316, **inferred** `InstallColormap`) with the default colormap. **Inferred:** a freed slot returns to the default map when it could hold it. A colormap without a slot (private block null or word 0 negative) returns at once.
+`nfbUninstallHWColormap` at 0x5673b0 in `kona.so` (**established**) takes a colormap off its hardware slot and makes that slot the next one to be reused.
+It takes (colormap) and returns nothing; a colormap without a slot (private block null or word 0 negative) returns at once.
+For a colormap with a slot it moves that slot's record to the position just after the head of the ring, so it becomes the next victim.
+Unless the colormap is the screen's default (screen record +28 compared with the colormap id), it then does the following.
+When the rrm word +48 is non-zero it releases that reservation with `UnsetReservedID` and clears the reserved flag; in `kona.so` that word is 0.
+It clears the slot's installed pointer, sets the colormap's slot to -1, tells the screen's windows the map was lost and calls the group's lost-map hook if any.
+Finally, when the default colormap's group contains the freed slot (or a slot that shares it), it calls the screen's install function (screen record +316, **inferred** the install-colormap procedure) with the default colormap.
+**Inferred:** a freed slot returns to the default map when it could hold it.
 
 #### `nfbListInstalledHWColormaps`
 
-`nfbListInstalledHWColormaps` at 0x525350 takes (screen, id array). Walks the slot table (count at `R` +112), writes the id (ColormapRec +8) of every slot with an installed colormap to the array and returns the count. Its address is the table word at 0x5866e4 (**inferred** list-installed slot).
+`nfbListInstalledHWColormaps` at 0x525350 in `kona.so` (**established**) reports which colormaps currently hold hardware slots.
+It takes (screen, id array) and walks the slot table (count at pipe record +112, two 28-byte entries per loop pass).
+It writes the resource id (colormap +8) of every slot with an installed colormap to the array and returns the count.
+Its address is the table word at 0x5866e4 (**inferred** list-installed slot).
 
 #### `nfbHWColormapScreenInit`
 
-`nfbHWColormapScreenInit` at 0x4f3090 takes (screen, slot count, slot table, group count, group table). Allocates 28 x slot count and 24 x group count bytes, copies the caller's tables into them and stores the counts and pointers in `R` (+112, +116, +120, +124). Returns 1, or 0 when an allocation fails (after freeing the first). Only `konInit` calls it, with `konNumHWCmaps`, the table at 0x586198, `konNumCmapGroups` and the table at 0x586088. The record rings the groups point to are not copied.
+`nfbHWColormapScreenInit` at 0x4f3090 in `kona.so` (**established**) copies the module's slot and group tables into the pipe's record at screen start.
+It takes (screen, slot count, slot table, group count, group table), allocates 28 x slot count and 24 x group count bytes and copies the caller's tables into them with `bcopy`.
+It stores the counts and pointers in the pipe record (+112, +116, +120, +124) and returns 1, or 0 when an allocation fails (after freeing the first).
+Only `konInit` calls it, with `konNumHWCmaps`, the table at 0x586198, the group count and the table at 0x586088.
+The record rings the groups point to are not copied.
 
 #### `nfbHWColormapScreenClose`
 
-`nfbHWColormapScreenClose` at 0x4f22c0 takes (screen) and frees the slot table and the group table from `R`. `konCloseScreen` calls it.
+`nfbHWColormapScreenClose` at 0x4f22c0 in `kona.so` (**established**) releases those two tables: it takes (screen) and frees the slot table and then the group table held in the pipe record.
+`konCloseScreen` calls it.
+
+#### `nfbUninstallColormap`
+
+`nfbUninstallColormap` at 0x496580 in `kona.so` (**established**) puts the screen's default colormap back when the colormap being uninstalled is the one recorded as installed.
+It takes (colormap) and compares it with the word at pipe record +128.
+When they match and the colormap is not the screen's default (screen record +28), it looks the default up as a resource of type 6 and passes it to the screen's install function (screen record +316).
+Otherwise it returns; it does not touch hardware slots itself.
+
+#### `rrmInitializeGLStaticColormap`
+
+`rrmInitializeGLStaticColormap` at 0x491010 in `kona.so` (**established**) loads the fixed colours of a 256-entry static-colour colormap from a table in the module.
+For any other class or size it calls `cfbInitializeColormap` instead.
+The table at 0x587f60 holds 256 red bytes, then 256 green and 256 blue; each byte is shifted into the high half of a 16-bit component.
+The loop runs 257 times, so it also writes one entry past the 256th from the next table's first bytes (**established** from the loop bound, **inferred** a defect that the colormap's allocation absorbs).
+
+#### `cfbInitializeColormap`
+
+`cfbInitializeColormap` at 0x4f5260 in `kona.so` (**established**) is the X sample server's colour frame-buffer routine for static visuals, carried unchanged.
+For a true-colour visual (class 4) it fills separate red, green and blue ramps (colormap +56, +60 and +64) scaled to 16 bits from each mask's width.
+For a static-colour visual (class 2) it fills one table from the three masks; for static grey (class 0) it fills a grey ramp; it returns 1.
 
 #### `cmapDID`
 
-**Established** in `kona.so` 6.5.30m: `cmapDID` at 0x4b05f0 takes (window) and returns the display id for the window's colour map. It looks up the window's colormap (the optional record's colormap, or none for an InputOnly window) as a resource of type 6 (colormap). With a colormap whose block word 0 is not negative, it returns that slot's +16 field. Otherwise it returns word +0 of the visual-table entry for the window's visual. **Inferred:** the second form is the id a window gets when its colormap has no slot. Callers: the best-id search and the steal function of [the allocator](#the-display-id-allocator) and the two unbind-from-clip functions (`rrmUnbindRNFromClip`, `rrmOGLUnbindRNFromClip`).
+`cmapDID` at 0x4b05f0 in `kona.so` (**established**) returns the display id that goes with a window's colour map.
+It takes (window) and looks up the window's colormap (the optional record's colormap, or none for an input-only window) as a resource of type 6 (colormap).
+With a colormap whose block word 0 is not negative, it returns that slot's +16 field; otherwise it returns word +0 of the visual-table entry for the window's visual.
+**Inferred:** the second form is the id a window gets when its colormap has no slot.
+Callers: the best-id search and the steal function of [the allocator](#the-display-id-allocator).
+The two unbind functions call it too (`rrmUnbindRNFromClip`, `rrmOGLUnbindRNFromClip`).
 
 #### `nfbInitVisDIDs`
 
@@ -327,50 +475,212 @@ The ring makes this a least-recently-used cache over the slots of a group. **Inf
 
 #### `nfbSetDidFlags`
 
-`nfbSetDidFlags` at 0x4f3dd0 takes (window). It keeps two bits in the window's frame-buffer private word +32 (`nfbWindowPrivateIndex`): bit 0x4, set when the window needs a display id of its own, and bit 0x8, set when any descendant does or has bit 0x8 itself. Bit 0x4 comes from a static helper at 0x4ad610 (called with the window, its private record, `R` and the parent's private record): it clears bit 0x4 and returns 0 for a window whose state bit 10 (word +124, **unknown** which state) is clear or that has no parent; otherwise it sets bit 0x4 and returns 4 when the window or the parent lacks private bit 0x1, when the colormap differs from the parent's (private bit 0x2 set) or when the visual differs (bit 0x2 clear). `nfbSetDidFlags` runs it on the window itself, discarding the result, then on each child, sets bit 0x8 on the window if any child's result was non-zero or the child has bit 0x8, and clears it otherwise. When bit 0x8 or 0x4 is now set it marks bit 0x8 on every ancestor. When both just cleared but one of them was set before, it walks up the ancestors and clears bit 0x8 on each one that has no child with bit 0x4 or 0x8, stopping at the first ancestor that still has one; an ancestor that lacks bit 0x8 here prints "nfbSetDidFlags: should never get here". **Inferred:** the bits say which windows in a tree need a display id different from their parent's. **Unknown:** what sets private bits 0x1 and 0x2. Nine call sites, among them `nfbRealizeWindow`, `nfbChangeWindowAttributes`, `rrmUnbindRNFromClip` and `rrmDoubleBufferWindow`.
+`nfbSetDidFlags` at 0x4f3dd0 in `kona.so` (**established**) works out which windows of a tree need a display id other than their parent's.
+It takes (window) and keeps two bits in the window's frame-buffer private word +32 (`nfbWindowPrivateIndex`).
+Bit 0x4 is set when the window needs a display id of its own; bit 0x8 is set when any descendant does or has bit 0x8 itself.
+Bit 0x4 comes from a static helper at 0x4ad610, called with the window, its private record, the pipe record and the parent's private record.
+The helper clears bit 0x4 and returns 0 for a window that is not viewable or has no parent.
+Viewable is bit 10 of window word +124, **established** from the server's `RealizeTree` in Xsgi at 0x100a4ba0, which sets bit 11 (realized) on a mapped window (bit 12) and bit 10 when the window is also input-output.
+Otherwise the helper sets bit 0x4 and returns 4 when the window or the parent lacks private bit 0x1, or when the colour maps differ (private bit 0x2 set) or the visuals differ (bit 0x2 clear).
+Private bit 0x1 marks a window drawn in its visual's own mode with no OpenGL rendering node bound.
+`nfbCreateWindow` sets bit 0x1 for every new window; the two bind functions and `rrmDoubleBufferWindow` clear it, the two unbind functions set it again, and each then calls this function.
+Private bit 0x2 marks a window whose visual's colour-map group has two or more hardware slots, so its colour map can differ from the parent's; `nfbCreateWindow` sets it at 0x4d96d4 from the group's slot count, and a child that takes its parent's visual inherits it.
+The function runs the helper on the window itself, discarding the result, then on each child; it sets bit 0x8 on the window if any child's result was non-zero or the child has bit 0x8, and clears it otherwise.
+When bit 0x8 or bit 0x4 is now set it marks bit 0x8 on every ancestor.
+When both just cleared but one of them was set before, it walks up the ancestors and clears bit 0x8 on each one that has no child with either bit, stopping at the first ancestor that still has one.
+An ancestor that lacks bit 0x8 here prints "nfbSetDidFlags: should never get here".
+**Inferred:** the bits say which windows in a tree need a display id different from their parent's.
+It has nine call sites, among them `nfbRealizeWindow` and `nfbChangeWindowAttributes`.
+Other callers include `rrmUnbindRNFromClip` and `rrmDoubleBufferWindow`.
+
+#### `nfbRealizeWindow`
+
+`nfbRealizeWindow` at 0x44a0f0 in `kona.so` (**established**) is the frame-buffer layer's realize-window procedure; it settles the window's display-id bits and its layer counts.
+For a viewable window (word +124 bit 10) it first adds one to the per-layer count of the pipe record (table at +64, indexed by frame-buffer private +24, the layer).
+A window with a parent then goes through `nfbSetDidFlags`.
+When its layer differs from the parent's it adds one to frame-buffer private +28 of every ancestor (**inferred** a count of descendants in another layer).
+For the root window it sets bit (1 << layer) in private +36, passes a box of the whole screen to the screen procedure at +372 with that layer's region, and calls the root set-up at 0x5325d0 (`nfbInitRootWindow`).
+It returns 1.
+
+#### `nfbChangeWindowAttributes`
+
+`nfbChangeWindowAttributes` at 0x47adc0 in `kona.so` (**established**) follows a colormap change through to the display-id bits.
+When the change mask has the colormap bit (0x2000) it compares the window's new colormap with its parent's.
+It records the result in frame-buffer private +32 bit 0x10 (set when they differ) and re-runs `nfbSetDidFlags` on the window.
+
+#### `rrmUnbindRNFromClip`
+
+`rrmUnbindRNFromClip` at 0x44ee60 in `kona.so` (**established**) is descriptor hook +68: it detaches a rendering node from a window and returns the window to plain X drawing.
+It takes (window, node); a window with no rrm private returns at once.
+It first invalidates every resource the window holds through hook +32 (`rrmInvalidate` with a zero mask), and drops a queued request when the private flag halfword has bit 0x20.
+For a realized window (word +124 bit 11) it releases the display id with `FreeID`, or just sets it to -1 when it holds the no-id value (the id count, rrm screen private +0).
+It releases the clip id too (`FreeCID`), and lowers the parent's counters with `decrRRMFlags`.
+It sets the frame-buffer id (private +4) to the colour map's id from `cmapDID`, clears the bound-window list at rrm private +40, unbinding each listed window the same way, and frees it.
+It then sets frame-buffer private +32 bit 0x1 and runs `nfbSetDidFlags`; for a realized window it calls hook +72 (`nfbValidateWindowVisual`) with the old id.
+Finally it clears bit 0x1 of the rrm private flag halfword and returns 1.
+
+#### `rrmOGLUnbindRNFromClip`
+
+`rrmOGLUnbindRNFromClip` at 0x5664f0 in `kona.so` (**established**) is descriptor hook +60, the OpenGL form of the unbind above.
+It invalidates through hook +32 and drops a queued request, as `rrmUnbindRNFromClip` does, and also frees the buffer held in the window's GLX private.
+A bound-window list that is not empty prints "rrmOGLUnbindRNFromClip: pPriv->prrmBoundWins not empty".
+It sets the frame-buffer id from `cmapDID`, sets private +32 bit 0x1 and runs `nfbSetDidFlags`.
+For a realized window it calls hook +72, frees the display id (`FreeID`) and the clip id, lowers the parent's counters and clears the rrm private's bound bit.
+
+#### `rrmDoubleBufferWindow`
+
+`rrmDoubleBufferWindow` at 0x4965f0 in `kona.so` (**established**) makes the X server's double-buffer extension window double-buffered in the pipe.
+It allocates the rrm private with `allocRRMpriv` when there is none (status 11 on failure, the X allocation error).
+For a window not yet bound it sets holder count +8 to 1, flag halfword 5, clears +28 and +30, takes the rendering-node id (+12) from pipe record +104 and raises the parent's counters with `incrRRMpriv`.
+It builds the hardware-independent mode (+32) from the mode recorded for the window's current frame-buffer id, with bit 0x2 (double-buffered) set and bit 0x4 (back buffer shown) clear.
+The hardware-dependent mode (+36) is that id's recorded word +12, or its pending word +28 when reservations are on and the id is marked at +32.
+It clears frame-buffer private +32 bit 0x1, runs `nfbSetDidFlags` and sets the display id to -1.
+A realized window then gets a new id from `FindFreeID`, or from `StealID` when none is free.
+It loads the new mode through hook +40 (`konValidateMode`) and finally calls the screen procedure at +192 with (window, 0); it returns 0.
 
 #### `SetDIDMode`
 
-`SetDIDMode` at 0x501220 takes (window). With the window's display id (rrm window private +20, negative means none, then it returns) it looks at the 36-byte entry in the display-id table of the screen private (from +152). That entry's flag halfword (+16) has bit 0x8 for "mode recorded". If the bit is set and the helper `compareModes` at 0x5358c0 says the recorded mode equals the window's, it returns. `compareModes` returns 1 when the entry's kind halfword (+18) equals the window record's halfword +2 and the entry's words +8 and +12 equal the window's hardware-independent mode (+32) and hardware-dependent mode (+36) under two screen masks (private +16 and +20; +16 has bit 0x4 cleared when the caller asks). Otherwise `SetDIDMode` calls the screen private's hook at +40 with (window, window private, screen private), sets bit 0x8, and stores the window's two mode words in entry words +8 and +12. This settles `konInitDIDState`: entry words +8 and +12 are the hwi and hwd mode words of the windows holding the id (the hwd word is the one `konValidateMode` builds, see [hwd_mode bits](#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017)). **Unknown:** the hook at private +40; callers are two static functions at 0x462928 and 0x499784.
+`SetDIDMode` at 0x501220 in `kona.so` (**established**) loads a display id's mode into the hardware once, when the window holding it has a mode the id has not recorded.
+It takes (window); with no display id (rrm window private +20 negative) it returns.
+It looks at the id's 36-byte entry in the display-id table of the screen private (from +152), whose flag halfword (+16) has bit 0x8 for "mode recorded".
+If the bit is set and the comparison at 0x5358c0 says the recorded mode equals the window's, it returns.
+Otherwise it calls the screen private's hook at +40 with (window, window private, screen private), sets bit 0x8, and stores the window's two mode words in entry words +8 and +12.
+The hook at +40 is `konValidateMode`, from the module's descriptor, so this is where the XMAP mode load and `RRM_LOADDISPLAYMODE` go out for a newly used id ([display modes](#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017)).
+This settles `konInitDIDState`: entry words +8 and +12 are the hwi and hwd mode words of the windows holding the id.
+Callers include `rrmInvalidate` and the holder-add helper at 0x52a340.
 
-#### `SetNoStealID`, `UnsetReservedID`, `FreeID`, `FreeCID`
+`compareModes` at 0x5358c0 in `kona.so` (**established**) decides whether an id's recorded mode fits a window.
+It returns 1 when the entry's kind halfword (+18) equals the window record's halfword +2 and the entry's words +8 and +12 equal the window's hardware-independent mode (+32) and hardware-dependent mode (+36) under two screen masks.
+The masks are rrm screen private +16 and +20 (all ones and 0x7f7 in this module's descriptor); +16 has bit 0x4 cleared when the caller asks.
 
-Small members of the display-id allocator, which `kona-ddx.md` leaves unexplained. **Established**: `SetNoStealID` at 0x51d7a0 takes (screen, id) and sets bit 0x20 of the id's entry flags (+16). `UnsetReservedID` at 0x438a40 takes (screen, id) and clears bit 0x2. `FreeID` at 0x49ac60 takes (window): it unlinks the window from its display-id entry through the static helper at 0x4d9c60 and sets the window's id (rrm window private +20) to -1. `FreeCID` at 0x4c94f0 takes (window) and does the same for its colour-map id (private +24, entries of 28 bytes at screen private +148, helper 0x4d3cc0). Each helper runs only when the window's private flag halfword has bit 0x8 (ids) or 0x40 (colour-map ids), drops the entry's window count (+20 in the id table, +12 in the colour-map table), removes the window from a doubly linked list of holders (window privates +44 and +48 for ids, +60 and +64 for colour-map ids) and recomputes the entry's flag bits from the list's head and tail. The flag bits are settled in [the allocator](#the-display-id-allocator).
+#### `SetNoStealID`
+
+`SetNoStealID` at 0x51d7a0 in `kona.so` (**established**) protects a display id from the steal function: it takes (screen, id) and sets bit 0x20 of the id's entry flags (+16).
+
+#### `UnsetReservedID`
+
+`UnsetReservedID` at 0x438a40 in `kona.so` (**established**) clears the occupied bit 0x2 of an id's entry flags (+16); it takes (screen, id).
+`nfbUninstallHWColormap` calls it to release a colour map's reservation, a path this module never takes because its descriptor leaves reservations off.
+
+#### `FreeID`
+
+`FreeID` at 0x49ac60 in `kona.so` (**established**) takes a window off its display id.
+It takes (window), unlinks the window from its display-id entry through the static helper at 0x4d9c60 and sets the window's id (rrm window private +20) to -1.
+The helper runs only when the window's private flag halfword has bit 0x8.
+It drops the entry's window count (+20), removes the window from the doubly linked list of holders (window privates +44 and +48) and recomputes the entry's flag bits from the list's head and tail.
+The flag bits are settled in [the allocator](#the-display-id-allocator).
+
+#### `FreeCID`
+
+`FreeCID` at 0x4c94f0 in `kona.so` (**established**) takes a window off its clip id.
+It calls the leave helper at 0x4d3cc0 with the window and its entry (28-byte entries at screen private +148, index rrm window private +24), then sets the window's clip id to 0, an entry the allocator never hands out.
+The helper runs only when the window's private flag halfword has bit 0x40.
+It unlinks the window from the holders (window privates +60 and +64), drops the entry's count (+12) and recomputes the entry's flags (+8) from bit 0x1 and the holders that remain.
 
 #### `SetReservedID`
 
-`SetReservedID` at 0x572f10 takes (screen, id). **Established** (callers not traced): it copies the windows that hold the entry (count at +20, first at +0) into a stack list; for each it calls the screen private's hook at +32 with (window, 0, 0) when the window's private byte +6 has bit 0x8, and `FreeID`; then copies entry words +24 and +28 over +8 and +12, calls the hook at +44 with (screen, id), and sets entry flag 0x2 (occupied). It then runs the free-id search for each saved window, releasing the window with `FreeID` when none is found, and, when the reserved id's own flag bit 0x10 was set before the call, sets that bit on each window's new id and calls the hook at +32 with (window, 8, 1). **Inferred:** it takes an id for one fixed mode: the holders leave, the id switches to the pending mode held in words +24 and +28, and the holders are placed again. **Unknown:** the hooks at +32 and +44.
+`SetReservedID` at 0x572f10 in `kona.so` (**established**) takes a display id for one fixed mode, moving its current holders elsewhere.
+It takes (screen, id) and copies the windows that hold the entry (count at +20, first at +0) into a stack list.
+For each it calls the screen private's hook at +32 with (window, 0, 0) when the window's private byte +6 has bit 0x8, and then `FreeID`.
+It copies entry words +24 and +28 over +8 and +12, calls the hook at +44 with (screen, id), and sets entry flag 0x2 (occupied).
+It then runs the free-id search for each saved window, releasing the window with `FreeID` when none is found.
+When the reserved id's own flag bit 0x10 was set before the call, it sets that bit on each window's new id and calls the hook at +32 with (window, 8, 1).
+**Inferred:** the holders leave, the id switches to the pending mode held in words +24 and +28, and the holders are placed again.
+Its one caller is `nfbInstallHWColormap`, behind screen-private word +48.
+With `kona.so` that word is 0 and the hook at +44 is empty ([descriptor](#the-rrm-descriptor-and-its-hooks)), so the function is present but never runs.
+
+#### The rrm descriptor and its hooks
+
+The rrm screen private is not built by the module. **Established** from the server binary `Xsgi` (6.5.30m): its `rrmInit` at 0x101ec4d0 allocates 152 bytes plus 36 per display id, copies the caller's descriptor over the header and clears the id table.
+It then swaps six screen procedures for the descriptor's words +104 to +124, keeping the originals in the private, and calls the descriptor's hook +84 with the screen.
+When the descriptor's hook +44 is empty it forces word +48 to 0, and it builds the clip-id table (`rrmCIDInit`) only for a non-zero clip-id count at +4.
+`konInit` passes the descriptor at 0x5868f8, which nothing in the module writes. Its words, by offset in the private:
+
+| Offset | Value in `kona.so` | Role |
+|---|---|---|
+| +0 | 96 | display-id count, the size of the table `konInitDIDState` fills |
+| +4 | 0 | clip-id count: zero, so no clip-id table is built and the callers of `FindFreeCID` that test it never call it |
+| +8 | 0 | most clip rectangles a window may have without a clip id, read by `rrmNeedCID` |
+| +16 | all ones | first mode mask of `compareModes` |
+| +20 | 0x7f7 | second mode mask of `compareModes` |
+| +28 | `konValidateClip` | validates a window's clip with the kernel (1011) |
+| +32 | `rrmInvalidate` | at 0x4ff730: invalidates kernel resources of a window with `RRM_INVALIDATERN` (1010) |
+| +36 | `konValidateSwapbuf` | validates a window's swap buffer with the kernel (1012) |
+| +40 | `konValidateMode` | at 0x4601e0: loads a display id's mode, `X_LOADXMAP_DID` then 1017 |
+| +44 | empty | the reserve hook; empty, so the server turns reservations off |
+| +48 | 0 | reservations off |
+| +60 | `rrmOGLUnbindRNFromClip` | OpenGL unbind |
+| +68 | `rrmUnbindRNFromClip` | unbind |
+| +72 | `nfbValidateWindowVisual` | at 0x460c80: told the old id when a window's frame-buffer id changes |
+| +80 | `konInitWindowType` | called by `allocRRMpriv` for each new window private |
+| +84 | `konInitDIDState` | fills the id kinds at start |
+| +92 | `rrmNeedCID` | at 0x44d590: whether a window needs a clip id |
+
+`rrmInvalidate` at 0x4ff730 in `kona.so` (**established**) is hook +32; it takes (window, mask, flag).
+A zero mask means every resource the window holds: the valid-resource bits in rrm private byte +4, which follow `RRM_RMASK_*` of the 6.5.5 sys/rrm.h (0x2 clip, 0x8 swap buffer).
+It sends ioctl 1010 with the rendering-node id (+12), the window id and the bits, and clears them in byte +4.
+When the swap-buffer bit was among them, it copies bit 0x4 of the returned mode into the window's hwi word (+32) and calls `UpdateDIDMode`, with 1 when the kernel's returned flag word has bit 0 set and 0 otherwise.
+Only when that bit is set and the flag argument is non-zero does it then run `SetDIDMode`; a change of hwi bit 0x4 also bumps the global serial number and flushes client caches.
+With the clip bit it invalidates the window's clip id (`rrmInvalidateCID`) when the screen has clip ids.
+
+`rrmNeedCID` at 0x44d590 in `kona.so` (**established**) is hook +92: it returns 1 unless the window's clip list is empty or fits within the rectangle count at rrm private +8.
+With this module's 0 at +8 that is every window with a non-empty clip.
+
+`konValidateSwapbuf` and `konValidateClip` mark their resource valid through `rrmSetResourceMask` at 0x4daf70 in `kona.so` (**established**), which sets the given bits in rrm private byte +4 and clears them in byte +5; the swap-buffer validation passes 8 and the clip validation 2.
+
+**Reserved ids** (**established**, `Xsgi` and `kona.so`): `konInit` calls the static function at 0x4feb90 once, which calls the server's `rrmSetReservedDID` for seventeen ids.
+`rrmSetReservedDID` at 0x1015ce50 in `Xsgi` writes the id's flags as 0xd (reserved, shared, mode recorded), the given hwi word to entry +8 and +24, the hwd word to +12 and +28, and 1 to +32.
+The module reserves ids 0 to 9 with hwi 0 and hwd 8 (colour index), id 10 with hwi 1 and hwd 4, id 11 with hwi 1 and hwd 0x14, and id 12 with hwi 1 and hwd 0.
+It reserves the overlay ids 64 to 67 with hwi 0x3c00 (hwd 5, then 0x15) and hwi 0x3c01 (hwd 2, then 0x12).
+These are the shared ids that windows in the commonest modes join through the best-id search.
 
 #### The display-id allocator
 
-`FindFreeID`, `FindFreeCID`, `FindBestID`, `ShareSwappingID` and `StealID`, read in full in `kona.so`; the other allocator functions are above. **Established** unless marked. The id table is the one of [`SetDIDMode`](#setdidmode); `winpriv` means the window's rrm private (+20 id, +24 colour-map id, +2 kind halfword, +36 hardware-dependent mode, +4 and +6 flag bytes) and the screen-private words +32, +40, +44, +72 and +92 are function pointers the module fills in elsewhere (**unknown** what they point to: no code in this module's functions reads them as anything but calls).
+`FindFreeID`, `FindFreeCID`, `FindBestID`, `ShareSwappingID` and `StealID`, read in full in `kona.so`; the other allocator functions are above. **Established** unless marked. The id table is the one of [`SetDIDMode`](#setdidmode); `winpriv` means the window's rrm private (+20 id, +24 clip id, +2 kind halfword, +36 hardware-dependent mode, +4 and +6 flag bytes) and the screen-private words +32, +40, +44, +72 and +92 are the descriptor's hooks ([descriptor](#the-rrm-descriptor-and-its-hooks)).
 
 **Flag halfword of an id entry** (entry +16), from every test and store of it in the module:
 
 | Bit | Set by | Meaning |
 |---|---|---|
-| 0x1 | no store found in the module | tested by the free-id search (first pass skips it, second pass wants it), the steal function (skips it) and the share function (stops at it); preserved when the last holder leaves. **Unknown** what sets it: no shipped software or published source depends on it (routes: every halfword store to an entry's flags in `kona.so`; the other three modules carry the same code) |
+| 0x1 | the server's `rrmSetReservedDID` (in `Xsgi` at 0x1015ce50), for the ids `konInit` reserves | **Established**: reserved at start-up for one fixed mode ([reserved ids](#the-rrm-descriptor-and-its-hooks)). Tested by the free-id search (first pass skips it, second pass wants it), the steal function (skips it) and the share function (stops at it); preserved when the last holder leaves |
 | 0x2 | the helper that adds a holder, `SetReservedID` | occupied: the id has a holder or is reserved; cleared by `UnsetReservedID` and when the last holder leaves |
 | 0x4 | the helper that adds a second holder; the leave helper while more than one remains | shared: more than one window holds the id |
 | 0x8 | `SetDIDMode` | the mode words (+8, +12) are recorded |
 | 0x10 | the buffer-swap start function (`konInitiateBufferSwap`) | a swap is pending on the id; the swap-done callback clears it |
 | 0x20 | `SetNoStealID` | the id may not be stolen |
 
-**The shared helpers.** 0x5777c0 (window, id) frees the window's current id if it has one and then calls 0x489ba0 (window, id): it stores the id in winpriv +20 and in the frame-buffer private word +4, links the window at the tail of the entry's holder list through 0x52a340, and calls screen-private hook +72 with the window and the old frame-buffer id. 0x52a340 sets the window's flag halfword bit 0x8, raises the entry's holder count, sets entry bits 0x2 and, from two holders on, 0x4, and when the window is the first holder and bit 0x1 is clear it calls `SetDIDMode`. 0x5202c0 (screen private, entry) calls hook +32 with (window, 0, 1) for every holder.
+**The shared helpers.** 0x5777c0 (window, id) frees the window's current id if it has one and then calls 0x489ba0 (window, id): it stores the id in winpriv +20 and in the frame-buffer private word +4, links the window at the tail of the entry's holder list through 0x52a340, and calls screen-private hook +72 (`nfbValidateWindowVisual`) with the window and the old frame-buffer id. 0x52a340 sets the window's flag halfword bit 0x8, raises the entry's holder count, sets entry bits 0x2 and, from two holders on, 0x4, and when the window is the first holder and bit 0x1 is clear it calls `SetDIDMode`. 0x5202c0 (screen private, entry) calls hook +32 with (window, 0, 1) for every holder.
 
 **`FindFreeID`** at 0x5780a0 (**established**, `kona.so` 6.5.30m) takes (window) and returns 1 when the window has an id, 0 when none was found. A window of kind 1 on a screen whose private word +12 has bit 0 set gets the id equal to the table size (one past the last entry; **inferred** "no real id"). A window that already has an id whose entry is not shared keeps it. Otherwise the first pass takes the first entry of the same kind with bit 0x1 clear and no holders and gives it to the window through 0x5777c0. When screen-private word +48 is non-zero a second pass takes an entry of the same kind with bit 0x1 set, no 0x2 or 0x20 and no holders, clears its flags and gives it away. Neither found returns 0.
 
 **`FindBestID`** at 0x44a280 (**established**, `kona.so` 6.5.30m) takes (window). It scans the ids and, for each whose recorded modes match the window's (`compareModes`), remembers it as the best so far; if that id's kind equals the window's and it is shared (0x4) the window joins it at once through 0x5777c0 (nothing happens when it already holds it). If the scan ends with a remembered id, the function first calls 0x5202c0 on that id's entry, which sends hook +32 to its holders, and gives the window the id. With no match, or an empty table, it asks `cmapDID` and gives the window that id unless it already has it. **Inferred:** prefer joining a shared id that already carries the right mode, else take over a matching one, else use the colour map's own id.
 
-**`ShareSwappingID`** at 0x48c650 (**established**, `kona.so` 6.5.30m) takes (window) and returns 1 when the window was given an id, else 0. Pass 1 walks the ids from the highest down to 1 and considers entries with bit 0x10 (swap pending) other than the window's own, whose first holder has the same hardware-dependent mode (+36) as the window; for each it walks the holder list of id 0 (not of that entry) and notes whether any holder has bit 0x8 in its private byte +4. When none does, it gives the window the entry's id through 0x5777c0 and returns 1. The scan stops at an entry with bit 0x1. When some holder of id 0 does, pass 2 walks the same entries again: for each swap-pending entry other than the window's own it calls 0x5202c0 on the entry once per holder of id 0 with that bit, and gives the window the entry's id if `compareModes` accepts the window's modes against it. **Inferred:** a window that starts a swap may join an id that is mid-swap when the modes agree. **Unknown:** what bit 0x8 of private byte +4 stands for and why the holders of id 0 matter (routes: the stores to that byte were not traced).
+`ShareSwappingID` at 0x48c650 in `kona.so` (**established**) lets a window that starts a buffer swap join a display id already mid-swap in the same mode; it returns 1 when the window was given an id, else 0.
+Pass 1 walks the ids from the highest down to 1 and considers entries with bit 0x10 (swap pending) other than the window's own, whose first holder has the same hardware-dependent mode (+36) as the window.
+For each it walks the holder list of id 0 (entry +0 of the table, whatever entry it is considering) and notes whether any holder has bit 0x8 in its private byte +4.
+When none does, it gives the window the entry's id through 0x5777c0 and returns 1; the scan stops at an entry with bit 0x1.
+When some holder of id 0 does, pass 2 walks the same entries again.
+For each swap-pending entry other than the window's own it calls 0x5202c0 on the entry once per holder of id 0 with that bit, and gives the window the entry's id if `compareModes` accepts the window's modes against it.
+Bit 0x8 of private byte +4 is the swap-buffer resource: `konValidateSwapbuf` sets it after a successful validation (1012) and `rrmInvalidate` clears it ([hooks](#the-rrm-descriptor-and-its-hooks)).
+Id 0 is the first of the colour-index ids the server reserves at start-up.
+**Inferred:** a window that starts a swap may join an id that is mid-swap when the modes agree.
 
 **`StealID`** at 0x433b20 (**established**, `kona.so` 6.5.30m) takes (window) and has three passes, all over ids of the window's kind:
 
 1. an unshared id (bits 0x4 and 0x10 clear) whose first holder has private bit 0x8 clear in byte +4: look for another id whose recorded mode equals that holder's (`compareModes`); if that one is shared, move the holder there (hook +32 first when the holder's byte +6 has bit 0x8 and screen word +4 is set), and give the freed id to the window; if it is not shared and its first holder also has the bit clear, hook +32 on both holders, move the first holder there and give the window the freed id;
-2. otherwise, starting from the cursor at screen-private +132, try the helper at 0x462580 (not read) on the first holder of each unshared id of the kind and, when it returns an id, give that id to the window and store the position in the cursor;
-3. otherwise, again from the cursor, take any id of the kind without bit 0x1: it hands the old holders and the id to 0x4b3280 (not read) together with the `cmapDID` id of its first holder, and gives the id to the window.
+2. otherwise, starting from the cursor at screen-private +132, try the helper at 0x462580 on the first holder of each unshared id of the kind and, when it returns an id, give that id to the window and store the position in the cursor. The helper (**established** for its first pass) moves that holder onto another id whose recorded modes match its own, a shared one at once or else a matching unshared one, after invalidating it through hook +32 when its byte +6 has bit 0x8; it returns the id it vacated, or -1 when no id fits (later passes of the helper were not traced);
+3. otherwise, again from the cursor, take any id of the kind without bit 0x1: it hands the old holders and the id to 0x4b3280 together with the `cmapDID` id of its first holder, and gives the id to the window. The helper (**established**) invalidates the holders of both ids through 0x5202c0, gives every holder of the taken id the other id (rrm private +20 and frame-buffer private +4), calls hook +72 for each and appends them to the other id's holder list.
 
-**`FindFreeCID`** at 0x4609e0 (**established**, `kona.so` 6.5.30m) takes (window). It works on the colour-map id table (28-byte entries from screen-private +148, count at +4; entry +0 first holder, +8 flags, +10 kind, +12 holder count; cursor at +136). It first calls hook +92 with the window; on 0 it sets the window's colour-map id to the table count (**inferred** "none"). Otherwise a window whose current colour-map id is shared (bit 0x4 of entry +8) keeps it; else it looks for an entry of the same kind, without bit 0x1, that has no holder or whose first holder's private bytes +4 and +6 are equal, and sends hook +32 to that entry's first holder with (2, 0) before giving the window the entry; when none fits it takes the entry after the cursor (wrapping to 1, never 0), advances the cursor and does the same. Assignment is through 0x5607b0, called twice, once to release (id 0) and once to set. **Inferred:** a round-robin steal of colour-map ids. **Unknown:** the hook at +92 and the helper at 0x5607b0 (not read).
+`FindFreeCID` at 0x4609e0 in `kona.so` (**established**) gives a window a clip id, the hardware tag that lets a window with a complex clip be drawn without per-rectangle clipping (**inferred** from `rrmNeedCID`).
+It works on the clip-id table: 28-byte entries from screen-private +148, count at +4; entry +0 first holder, +8 flags, +10 kind, +12 holder count; cursor at +136.
+It first calls hook +92 (`rrmNeedCID`) with the window; on 0 it sets the window's clip id to the table count (**inferred** "none").
+A window whose current clip id is not shared (bit 0x4 of entry +8 clear) keeps it.
+Otherwise it scans for an entry of the window's kind without bit 0x1 (a kind-1 window also accepts other kinds when screen word +12 has bit 0x2).
+An entry with no holder is given to the window at once; of the others it remembers the last whose first holder's private bytes +4 and +6 differ.
+When none is remembered it takes the entry after the cursor (wrapping to 1, never 0) and advances the cursor.
+For the chosen entry it sends hook +32 (`rrmInvalidate`) to the first holder with (2, 0), invalidating its clip, moves that holder to clip id 0 and gives the window the entry.
+Both moves go through 0x5607b0 (window, id), which frees the window's current clip id with `FreeCID` and joins the new one through 0x4ca130, which stores the id at private +24 and adds the window as a holder.
+With `kona.so` the clip-id count is 0, so no clip-id table exists and the guarded callers never reach this function ([descriptor](#the-rrm-descriptor-and-its-hooks)).
 
 #### `nfbRealizeCursor`
 
@@ -386,159 +696,210 @@ Small members of the display-id allocator, which `kona-ddx.md` leaves unexplaine
 
 #### `konStereoFillSpans`
 
-`konStereoFillSpans` repeats GC op slot 0 (`FillSpans`) once per eye.
+`konStereoFillSpans` at 0x5225f0 in `kona.so` (**established**) fills a list of horizontal spans in each eye buffer in turn, through op slot 0 (`FillSpans`).
 
 #### `konStereoSetSpans`
 
-`konStereoSetSpans` repeats GC op slot 4 (`SetSpans`) once per eye.
+`konStereoSetSpans` at 0x513630 in `kona.so` (**established**) writes rows of given pixel values twice, once per eye, through op slot 4 (`SetSpans`).
 
 #### `konStereoPutImage`
 
-`konStereoPutImage` repeats GC op slot 8 (`PutImage`) once per eye.
+`konStereoPutImage` at 0x4c4f00 in `kona.so` (**established**) puts a client image into the left and then the right buffer (or the reverse, per screen word +220) through op slot 8 (`PutImage`).
 
 #### `konStereoCopyArea`
 
-`konStereoCopyArea` repeats GC op slot 12 (`CopyArea`) once per eye.
+`konStereoCopyArea` at 0x507a30 in `kona.so` (**established**) copies a rectangle per eye through op slot 12 (`CopyArea`); a pixmap source is copied once, a same-window source has its y moved too, and the first pass's exposure region is freed.
 
 #### `konStereoCopyPlane`
 
-`konStereoCopyPlane` repeats GC op slot 16 (`CopyPlane`) once per eye.
+`konStereoCopyPlane` at 0x4cc310 in `kona.so` (**established**) copies one bit plane per eye through op slot 16 (`CopyPlane`), with the same pixmap-source and same-window handling as the area copy.
 
 #### `konStereoPolyPoint`
 
-`konStereoPolyPoint` repeats GC op slot 20 (`PolyPoint`) once per eye.
+`konStereoPolyPoint` at 0x4dac80 in `kona.so` (**established**) plots a point list into both eye images, slot 4 x 5 (`PolyPoint`).
 
 #### `konStereoPolyline`
 
-`konStereoPolyline` repeats GC op slot 24 (`Polylines`) once per eye.
+`konStereoPolyline` at 0x44e1b0 in `kona.so` (**established**) draws connected lines for each eye in sequence by calling op slot 24 (`Polylines`) twice.
 
 #### `konStereoPolySegment`
 
-`konStereoPolySegment` repeats GC op slot 28 (`PolySegment`) once per eye.
+`konStereoPolySegment` at 0x441600 in `kona.so` (**established**) repeats op slot 28 (`PolySegment`), so separate line segments appear in both buffers.
 
 #### `konStereoPolyRectangle`
 
-`konStereoPolyRectangle` repeats GC op slot 32 (`PolyRectangle`) once per eye.
+`konStereoPolyRectangle` at 0x45bac0 in `kona.so` (**established**) outlines rectangles in each eye: two calls of op slot 32 (`PolyRectangle`) with the eye offset applied between them.
 
 #### `konStereoPolyArc`
 
-`konStereoPolyArc` repeats GC op slot 36 (`PolyArc`) once per eye.
+`konStereoPolyArc` at 0x4640c0 in `kona.so` (**established**) strokes arcs into the left-eye and right-eye buffers via op slot 36 (`PolyArc`).
 
 #### `konStereoFillPolygon`
 
-`konStereoFillPolygon` repeats GC op slot 40 (`FillPolygon`) once per eye.
+`konStereoFillPolygon` at 0x554820 in `kona.so` (**established**) fills one polygon per eye with op slot 40 (`FillPolygon`).
 
 #### `konStereoPolyFillRect`
 
-`konStereoPolyFillRect` repeats GC op slot 44 (`PolyFillRect`) once per eye.
+`konStereoPolyFillRect` at 0x4f14c0 in `kona.so` (**established**) paints filled rectangles twice, shifting the drawable down by the eye offset for one pass; the op is slot 44 (`PolyFillRect`).
 
 #### `konStereoPolyFillArc`
 
-`konStereoPolyFillArc` repeats GC op slot 48 (`PolyFillArc`) once per eye.
+`konStereoPolyFillArc` at 0x4eb180 in `kona.so` (**established**) fills pie or chord arcs per eye through slot 48 (`PolyFillArc`).
 
 #### `konStereoPolyText8`
 
-`konStereoPolyText8` repeats GC op slot 52 (`PolyText8`) once per eye.
+`konStereoPolyText8` at 0x44c6e0 in `kona.so` (**established**) renders 8-bit text strings in each eye image using op slot 52 (`PolyText8`).
 
 #### `konStereoPolyText16`
 
-`konStereoPolyText16` repeats GC op slot 56 (`PolyText16`) once per eye.
+`konStereoPolyText16` at 0x480b90 in `kona.so` (**established**) is the 16-bit string form: op slot 56 (`PolyText16`) runs for both buffers.
 
 #### `konStereoImageText8`
 
-`konStereoImageText8` repeats GC op slot 60 (`ImageText8`) once per eye.
+`konStereoImageText8` at 0x45b5b0 in `kona.so` (**established**) draws 8-bit image text, background boxes included, per eye with op slot 60 (`ImageText8`).
 
 #### `konStereoImageText16`
 
-`konStereoImageText16` repeats GC op slot 64 (`ImageText16`) once per eye.
+`konStereoImageText16` at 0x4d4d00 in `kona.so` (**established**) handles 16-bit image text the same two-pass way, op slot 64 (`ImageText16`).
 
 #### `konStereoImageGlyphBlt`
 
-`konStereoImageGlyphBlt` repeats GC op slot 68 (`ImageGlyphBlt`) once per eye.
+`konStereoImageGlyphBlt` at 0x56da10 in `kona.so` (**established**) blits glyphs with their background into both views through op slot 68 (`ImageGlyphBlt`).
 
 #### `konStereoPolyGlyphBlt`
 
-`konStereoPolyGlyphBlt` repeats GC op slot 72 (`PolyGlyphBlt`) once per eye.
+`konStereoPolyGlyphBlt` at 0x4aed20 in `kona.so` (**established**) blits foreground-only glyphs once for the left view and once for the right, op slot 72 (`PolyGlyphBlt`).
 
 #### `konStereoPushPixels`
 
-`konStereoPushPixels` repeats GC op slot 76 (`PushPixels`) once per eye.
+`konStereoPushPixels` at 0x4e9d80 in `kona.so` (**established**) pushes a bitmap stipple through op slot 76 (`PushPixels`) in each of the two buffers.
 
 ### Video formats and combinations (`vfmt*`)
 
-**Established** (`kona.so` 6.5.30m; `konad.so`, `konal.so`, `konas.so`, `setmon` and `ircombine` carry the same functions). The library behind the LoadFormat request and the combination loader ([dg.md](dg.md#loading-a-combination-channel)); the file format is in [ucode/dg.md](../ucode/dg.md). `GL_GRROOT`, when set, prefixes every path.
+**Established** (`kona.so` 6.5.30m; `konad.so`, `konal.so`, `konas.so`, `setmon` and `ircombine` carry functions of the same names, read here in `kona.so` only). The library behind the LoadFormat request and the combination loader ([dg.md](dg.md#loading-a-combination-channel)); the file format is in [ucode/dg.md](../ucode/dg.md). `GL_GRROOT`, when set, prefixes every path.
 
 #### `vfmtFindFormatFile`
 
-`vfmtFindFormatFile` at 0x42b7d0 takes (out, name, directory). Appends `.vfo` when missing. A bare name becomes root + directory + "/" + name; a name with a directory part is used as given when that part equals root + directory, and otherwise returns 3 without looking. It stats the result into a static buffer and returns 0 when found; else it tries `$VFOPATH/name` and returns 0 when that exists, 1 otherwise.
+`vfmtFindFormatFile` at 0x42b7d0 in `kona.so` (**established**) finds a video format (`.vfo`) file by name and returns 0 when it exists.
+It takes (out, name, directory) and appends `.vfo` when missing; the root is `GL_GRROOT` or empty.
+A bare name becomes root + directory + "/" + name; a name with a directory part is used as given when that part equals root + directory, and otherwise returns 3 without looking.
+It stats the result into a static buffer (0x59e4b0) and returns 0 when found; else it tries `$VFOPATH/name` and returns 0 when that exists, or puts the name back in out and returns 1.
 
 #### `vfmtFindKonaFormatFile`
 
-`vfmtFindKonaFormatFile` at 0x42ba20 calls `vfmtFindFormatFile` with the directory `/usr/gfx/ucode/KONA/dg4/vfo`.
+`vfmtFindKonaFormatFile` at 0x42ba20 in `kona.so` (**established**) looks for an InfiniteReality format through `vfmtFindFormatFile`.
+The directory it passes is `/usr/gfx/ucode/KONA/dg4/vfo`.
 
 #### `vfmtFindCmpFormatFile`
 
-`vfmtFindCmpFormatFile` at 0x42ba70 calls `vfmtFindFormatFile` with the directory `/usr/gfx/ucode/VOYAGER/vfo`, then `/usr/gfx/ucode/STINGRAY/vfo`.
+`vfmtFindCmpFormatFile` at 0x42ba70 in `kona.so` (**established**) searches the two compositor format directories, both through `vfmtFindFormatFile`.
+It tries `/usr/gfx/ucode/VOYAGER/vfo` first.
+Then, when the first search fails, `/usr/gfx/ucode/STINGRAY/vfo`.
 
 #### `vfmtFindOdyFormatFile`
 
-`vfmtFindOdyFormatFile` at 0x42bb10 calls `vfmtFindFormatFile` with the directory `/usr/gfx/ucode/ODSY/vof`.
+`vfmtFindOdyFormatFile` at 0x42bb10 in `kona.so` (**established**) serves the Odyssey board's formats through `vfmtFindFormatFile`.
+It passes the directory `/usr/gfx/ucode/ODSY/vof`, spelled so.
 
 #### `vfmtFindSG2FormatFile`
 
-`vfmtFindSG2FormatFile` at 0x42bb60 calls `vfmtFindFormatFile` with the directory `/var/X11/Xvc/SG2_formats`.
+`vfmtFindSG2FormatFile` at 0x42bb60 in `kona.so` (**established**) covers the SG2 video option through `vfmtFindFormatFile`.
+It seeks those formats in `/var/X11/Xvc/SG2_formats`.
 
 #### `vfmtFindKonaCombinationFile`
 
-`vfmtFindKonaCombinationFile` at 0x42bbb0 takes (out, name). Returns 1 with the name as given when it exists, else 1 with root + `/usr/gfx/ucode/KONA/dg4/cmb/` + name when that exists, else 0.
+`vfmtFindKonaCombinationFile` at 0x42bbb0 in `kona.so` (**established**) finds a combination file for this board.
+It takes (out, name) and returns 1 with the name as given when that file exists.
+Else it returns 1 with root + `/usr/gfx/ucode/KONA/dg4/cmb/` + name when that exists.
+Else it returns 0 with the name copied back to out.
 
 #### `vfmtFindCmpCombinationFile`
 
-`vfmtFindCmpCombinationFile` at 0x42bcf0 takes (out, name). Tries the name, then the `VOYAGER/cmb`, `STINGRAY/cmb` and `/usr/diags/compositor/data` directories, then the same with `.cmb` appended; returns 0 when found, otherwise 1 with the `STINGRAY/cmb` path (or the name itself when it has a directory part). The three directory attempts pass a length of 4 to `snprintf`, so they build a three-character path and cannot match (**established** from the argument; **inferred** to be a defect).
+`vfmtFindCmpCombinationFile` at 0x42bcf0 in `kona.so` (**established**) finds a compositor combination file and returns 0 when one exists.
+It takes (out, name) and tries the name first.
+Then the `VOYAGER/cmb` directory.
+Then the `STINGRAY/cmb` directory.
+Then `/usr/diags/compositor/data`.
+Then the whole list again with `.cmb` appended when the name lacks it.
+When nothing is found it returns 1 with the `STINGRAY/cmb` path, or the name itself when it has a directory part.
+The three directory attempts pass a length of 4 to `snprintf`, so they build a three-character path and cannot match (**established** from the argument; **inferred** to be a defect).
 
 #### `vfmtGetLastKonaFileStat`
 
-`vfmtGetLastKonaFileStat` at 0x42bf60 takes (buffer). Copies the 152-byte `stat` result the find functions left in their static buffer and returns 1.
+`vfmtGetLastKonaFileStat` at 0x42bf60 in `kona.so` (**established**) hands back the last file status the find functions took: it copies 19 doublewords (152 bytes, a `stat` result) from their static buffer to the caller's and returns 1.
 
 #### `vfmtReadKonaCombination`
 
-`vfmtReadKonaCombination` at 0x42d5f0 takes (name, record). Clears a 41636-byte combination record, finds and opens the file, checks `MajorVersion` and `MinorVersion`, reads the 20 global fields (0x42ced0; for example `textport` +256, `managedSize` +260, `pixelDepth` +268, `syncSource` +272, `usingEncoderOutput` +552, `allocatedSize` +588) and up to 15 channel records of 2736 bytes at +596 (0x42bff0, fields `ch%1d` + name, offsets in [dg.md](dg.md#loading-a-combination-channel)). `FieldLayout` and `VbobSyncSource` may be absent. Returns 0, 1 when the file cannot be opened, 2 on a bad field.
+`vfmtReadKonaCombination` at 0x42d5f0 in `kona.so` (**established**) loads a combination file into the 41636-byte record the display set-up uses.
+It takes (name, record), clears the record, finds the file with `vfmtFindKonaCombinationFile` and opens it as a symbol database.
+It reads `MajorVersion` and `MinorVersion`; the comparison it computes from them is never used, so any version loads.
+The 18 global fields come next, through 0x42ced0.
+Examples: `textport` at +256, `managedSize` at +260, `pixelDepth` at +268.
+More: `syncSource` at +272, `usingEncoderOutput` at +552, `allocatedSize` at +588.
+Then up to 15 channel records of 2736 bytes at +596, through 0x42bff0 (fields `ch%1d` + name, offsets in [dg.md](dg.md#loading-a-combination-channel)).
+`FieldLayout` and `VbobSyncSource` may be absent.
+It returns 0, 1 when the file cannot be opened, 2 on a missing field.
 
 #### `vfmtWriteKonaCombination`
 
-`vfmtWriteKonaCombination` at 0x42e840 takes (name, record). The inverse: opens a new file with the description "Kona video format combination file", writes the two version fields, the 20 globals and each existing channel through 0x42d7f0, and closes it.
+`vfmtWriteKonaCombination` at 0x42e840 in `kona.so` (**established**) is the inverse of the reader: it writes a combination record out as a symbol database.
+It takes (name, record), resolves the path with `vfmtFindKonaCombinationFile` and opens a new database described as "Kona video format combination file".
+It writes the two version fields, the same 18 globals and each existing channel through 0x42d7f0, and closes it.
 
 #### `vfmtUpdateFormatInfoInCombination`
 
-`vfmtUpdateFormatInfoInCombination` at 0x429320 takes (record). For each existing channel (+712 set) it reads the channel's `.vfo`, stores its file time at channel +256 and copies the 2020-byte format record into the channel at +716; a missing file prints "failed to load format %s!".
+`vfmtUpdateFormatInfoInCombination` at 0x429320 in `kona.so` (**established**) refreshes the format copies inside a combination from the `.vfo` files.
+It takes (record); for each existing channel (+712 set) it finds the format named at channel +340 with `vfmtFindKonaFormatFile` and loads it through 0x4319c0.
+It stores word +260 of the loaded format at channel +256 (**inferred** its date stamp) and copies the 2020-byte format record into the channel at +716.
+A missing file sets error code 953 and prints "failed to load format %s!", returning 0; otherwise it returns 1.
 
 #### `vfmtMinimalKonaTarget`
 
-`vfmtMinimalKonaTarget` at 0x428010 takes (target). Fills a 32-byte target description with the smallest system: board-set class 0, 1 raster board, pixel depth 0, 8 display-generator channels at revision 0, no option channel.
+`vfmtMinimalKonaTarget` at 0x428010 in `kona.so` (**established**) describes the smallest system as a 32-byte target.
+It writes board-set class 0, one raster board, pixel depth 0, eight display-generator channels at revision 0 and no option channel; word +12 is left as it was.
 
 #### `vfmtActualHWToKonaTarget`
 
-`vfmtActualHWToKonaTarget` at 0x428070 takes (pipe, target). Opens `/dev/opengl`, asks the board count (ioctl 101, "GFX_GETNUM_BOARDS") and the board information (ioctl 102, 1952 bytes), refuses a board whose name is not `KONA`, and copies from the configuration record at +40 of that information (the 6.5.5 `sys/kona_if.h` `kona_config`): `bdset` to the class (0 stays 0, 2 stays 2, 6 becomes 3, others 1), `numrms` (1, 2 or 4), `pixeldepth` (0-3), and the display generator's channel count, revision, option type and option revision.
+`vfmtActualHWToKonaTarget` at 0x428070 in `kona.so` (**established**) fills a target description from the installed pipe.
+It takes (pipe, target), starts from `vfmtMinimalKonaTarget` and opens the graphics device.
+It asks the board count (ioctl 101, "GFX_GETNUM_BOARDS") and the board information (ioctl 102, 1952 bytes), and refuses a board whose name is not `KONA`.
+It reads the configuration record at +40 of that information, the `kona_config` of the 6.5.5 sys/kona_if.h header.
+Its `bdset` becomes the class: 0 stays 0, 2 stays 2, 6 becomes 3, others 1.
+It copies `numrms`, which must be 1, 2 or 4 (any other value prints a message and becomes 1).
+It copies `pixeldepth` (0-3) and the display generator's channel count, revision, option type and option revision.
+It returns 1, or 0 after printing why the pipe could not be read.
 
 #### `vfmtIsKonaCombinationValidForTarget`
 
-`vfmtIsKonaCombinationValidForTarget` at 0x428590 takes (record, target, ...). Checks a combination against a target, reporting through the message catalogue `IR_VIDEO`: each channel's `PixelFormat` must be 0-4 ("Illegal Pixel Format"; 0 and 4 count 32 data bits, 1-3 count 42, 4 also marks the channel), `MaxTilesPerRequest` at least 1 (forced to 4 on a class-2 target), then the tile requests per line, the data bits and the fill cost per channel against the video bandwidth ("Video bandwidth exceeded"), and prints each channel's frame rate, swap rate and fields per swap.
+`vfmtIsKonaCombinationValidForTarget` at 0x428590 in `kona.so` (**established**) checks a combination against a target, reporting through the message catalogue `IR_VIDEO`.
+It takes (record, target, ...).
+Each channel's `PixelFormat` must be 0-4 ("Illegal Pixel Format").
+Formats 0 and 4 count 32 data bits, formats 1-3 count 42, and format 4 also marks the channel.
+`MaxTilesPerRequest` must be at least 1; a class-2 target forces it to 4.
+Then the tile requests per line, the data bits and the fill cost per channel go against the video bandwidth ("Video bandwidth exceeded"), and it prints each channel's frame rate, swap rate and fields per swap.
 
 #### `vfmtIsKonaCombinationValidForActualHW`
 
-`vfmtIsKonaCombinationValidForActualHW` at 0x428ff0: builds the target from the pipe with `vfmtActualHWToKonaTarget` (cached per pipe) and calls `vfmtIsKonaCombinationValidForTarget`.
+`vfmtIsKonaCombinationValidForActualHW` at 0x428ff0 in `kona.so` (**established**) builds the target from the pipe with `vfmtActualHWToKonaTarget` and calls `vfmtIsKonaCombinationValidForTarget`.
+It caches one target: it rebuilds it only when the pipe number differs from the last call's (the cached pipe starts at -1).
 
 #### `vfmtResolvePixelDepth`
 
-`vfmtResolvePixelDepth` at 0x4278c0 takes (record, target). Turns the combination's `pixelDepth` request into a depth the target can hold: it counts the allocated pixels (width rounded up to 160 times height), divides raster boards x 5 x 2^22 by that count (halved for class 2; class 3 uses 2^27), and maps the requested depth (a jump on values 0-7) and that quotient through thresholds at 64, 32, 16, 8 and 4 to a depth code, or 0 when nothing fits.
+`vfmtResolvePixelDepth` at 0x4278c0 in `kona.so` (**established**) turns the combination's `pixelDepth` request into a depth the target can hold.
+It takes (record, target) and counts the allocated pixels: the width rounded up to a multiple of 160, times the height.
+It divides raster boards x 5 x 2^22 by that count (halved for class 2; class 3 uses 2^27).
+It maps the requested depth (a jump on values 0-7) and that quotient through thresholds at 64, 32 and 16, then 8 and 4, to a depth code, or 0 when nothing fits.
 
 #### `vfmtSwapRateCloseEnough`
 
-`vfmtSwapRateCloseEnough` at 0x429090 takes (a, b). True when |a - b| / a is below 0.01. The Combiner user guide calls swap rates within about 2 percent equal; the code's bound is 1 percent.
+`vfmtSwapRateCloseEnough` at 0x429090 in `kona.so` (**established**) compares two swap rates: it is true when |a - b| / a is below 0.01.
+The Combiner user guide calls swap rates within about 2 percent equal; the code's bound is 1 percent.
 
 #### `vfmtSyncFormatFrameRatesCompatible`
 
-`vfmtSyncFormatFrameRatesCompatible` at 0x429120 takes (a, b). False when either rate is 0 or the larger is more than 16 times the smaller; otherwise true when the ratio is within 0.01 of a whole number.
+`vfmtSyncFormatFrameRatesCompatible` at 0x429120 in `kona.so` (**established**) decides whether a channel can lock to a sync format's frame rate.
+It is false when either rate is 0 or the larger is more than 16 times the smaller.
+Otherwise it is true when the ratio is within 0.01 of a whole number (its fractional part's distance from one half exceeds 0.49).
 
 ## X server module: drawing commands
 
