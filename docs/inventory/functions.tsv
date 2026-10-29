@@ -14360,7 +14360,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9518b8	208	__glkonim_Re
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd951988	876	BitmapReadModifyWrite	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd951c28	204	__glkonHostCopy	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd951cf4	1436	ReadPixels	mdebug	documented	ucode/arm1_functions.md#video-sources	Video sources
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9520f0	416	__glkonReadTexels3D	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9520f0	416	__glkonReadTexels3D	dynsym+mdebug	documented	GE.h:242	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd952290	2956	ReadTexels	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9525d4	764	__glkonim_Bitmap	dynsym+mdebug	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9528d0	568	__glkonlc_Bitmap	dynsym+mdebug	undocumented		
@@ -14370,14 +14370,14 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd952c98	104	__glkonConve
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd952d00	284	__glkonim_GetPolygonStipple	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd952e1c	10144	DrawSubTexels	mdebug	documented	RM.h:171	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9535b8	400	__glKonDrawTexels3D	dynsym+mdebug	documented	RM.h:219	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd953748	2488	__glKonCopyTexImage	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd953748	2488	__glKonCopyTexImage	dynsym+mdebug	documented	GE.h:413	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954100	220	__glkonInvalidBytes	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9541dc	36	__glkonNumCompInPix	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954200	36	__glkonNumByteInType	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954224	300	__glkonPixSize	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954350	260	__glkonim_PixelZoom	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954454	272	__glkonim_PixelStoref	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954564	1112	__glkonim_TextureStorei	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954564	1112	__glkonim_TextureStorei	dynsym+mdebug	documented	GE.h:603	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9549bc	1108	__glkonim_PixelStorei	dynsym+mdebug	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954e10	1592	__glkonim_PixelTransferf	dynsym+mdebug	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd955448	72	__glkonim_PixelTransferi	dynsym+mdebug	undocumented		
@@ -14512,7 +14512,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965230	3180	comput
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd965290	1184	bindTexTable	dynsym+mdebug	documented	RM.h:100	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd965730	220	getTexTableUsage	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd96580c	1340	addTexTableUsage	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd965d48	340	subtractTexTableUsage	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd965d48	340	subtractTexTableUsage	dynsym+mdebug	documented	GE.h:640	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965e9c	136	initTexTables	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965f24	252	freeTexTables	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966020	68	initARMTexCache	mdebug	undocumented		
@@ -14532,7 +14532,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967a48	208	setShad
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967b18	212	changeShadow	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967bec	208	lodBias2Scale	mdebug	documented	RM.h:133	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967cbc	9836	changeClipmapParams	mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9680c0	6932	__glKonTexParameter	dynsym+mdebug	documented	RM.h:139	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9680c0	6932	__glKonTexParameter	dynsym+mdebug	documented	GE.h:631	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd969bd4	1876	__glKonGetTexParameter	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a328	536	bind2DMipmapTexture	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a540	72	setClipmapRegisters	mdebug	documented	GE.h:586	
@@ -19902,7 +19902,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9531d0	184	__glkonim_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd953290	700	BitmapReadModifyWrite	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd953550	204	__glkonHostCopy	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd953620	1004	ReadPixels	dwarf+funcnames	documented	ucode/arm1_functions.md#video-sources	Video sources
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd953a10	376	__glkonReadTexels3D	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd953a10	376	__glkonReadTexels3D	dwarf+dynsym	documented	GE.h:242	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd953b90	792	ReadTexels	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd953eb0	692	__glkonim_Bitmap	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd954170	576	__glkonlc_Bitmap	dwarf+dynsym	undocumented		
@@ -19912,14 +19912,14 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd954520	88	__glkonConv
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd954580	216	__glkonim_GetPolygonStipple	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd954660	2884	DrawSubTexels	dwarf+funcnames	documented	RM.h:171	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9551b0	404	__glKonDrawTexels3D	dwarf+dynsym	documented	RM.h:219	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955350	2588	__glKonCopyTexImage	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955350	2588	__glKonCopyTexImage	dwarf+dynsym	documented	GE.h:413	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955d70	196	__glkonInvalidBytes	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955e40	36	__glkonNumCompInPix	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955e70	36	__glkonNumByteInType	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955ea0	240	__glkonPixSize	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955f90	220	__glkonim_PixelZoom	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd956070	204	__glkonim_PixelStoref	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd956140	1284	__glkonim_TextureStorei	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd956140	1284	__glkonim_TextureStorei	dwarf+dynsym	documented	GE.h:603	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd956650	1268	__glkonim_PixelStorei	dwarf+dynsym	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd956b50	1596	__glkonim_PixelTransferf	dwarf+dynsym	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd957190	56	__glkonim_PixelTransferi	dwarf+dynsym	undocumented		
@@ -20054,7 +20054,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965160	88	comput
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9651c0	944	bindTexTable	dwarf+dynsym	documented	RM.h:100	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd965570	184	getTexTableUsage	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd965630	1252	addTexTableUsage	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd965b20	332	subtractTexTableUsage	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd965b20	332	subtractTexTableUsage	dwarf+dynsym	documented	GE.h:640	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965c70	88	initTexTables	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965cd0	196	freeTexTables	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965da0	24	initARMTexCache	dwarf+funcnames	undocumented		
@@ -20074,7 +20074,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967e80	172	setSh
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967f30	164	changeShadow	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967fe0	140	lodBias2Scale	dwarf+funcnames	documented	RM.h:133	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd968070	792	changeClipmapParams	dwarf+funcnames	undocumented		
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd968390	6156	__glKonTexParameter	dwarf+dynsym	documented	RM.h:139	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd968390	6156	__glKonTexParameter	dwarf+dynsym	documented	GE.h:631	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd969ba0	1632	__glKonGetTexParameter	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96a200	444	bind2DMipmapTexture	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96a3c0	72	setClipmapRegisters	dwarf+funcnames	documented	GE.h:586	
@@ -25482,7 +25482,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db52d0	184	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db5390	700	BitmapReadModifyWrite	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db5650	204	__glkonHostCopy	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db5720	1032	ReadPixels	dwarf	documented	ucode/arm1_functions.md#video-sources	Video sources
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db5b30	388	__glkonReadTexels3D	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db5b30	388	__glkonReadTexels3D	dwarf+dynsym	documented	GE.h:242	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db5cc0	808	ReadTexels	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db5ff0	700	__glkonim_Bitmap	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db62b0	576	__glkonlc_Bitmap	dwarf+dynsym	undocumented		
@@ -25492,14 +25492,14 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db6660	88	__glkonConv
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db66c0	228	__glkonim_GetPolygonStipple	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db67b0	3012	DrawSubTexels	dwarf	documented	RM.h:171	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7380	416	__glKonDrawTexels3D	dwarf+dynsym	documented	RM.h:219	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7520	2588	__glKonCopyTexImage	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7520	2588	__glKonCopyTexImage	dwarf+dynsym	documented	GE.h:413	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7f40	164	__glkonInvalidBytes	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7ff0	36	__glkonNumCompInPix	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8020	36	__glkonNumByteInType	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8050	244	__glkonPixSize	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8150	220	__glkonim_PixelZoom	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8230	204	__glkonim_PixelStoref	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8300	1284	__glkonim_TextureStorei	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8300	1284	__glkonim_TextureStorei	dwarf+dynsym	documented	GE.h:603	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8810	1272	__glkonim_PixelStorei	dwarf+dynsym	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8d10	1596	__glkonim_PixelTransferf	dwarf+dynsym	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db9350	56	__glkonim_PixelTransferi	dwarf+dynsym	undocumented		
@@ -25634,7 +25634,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7560	88	comput
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc75c0	944	bindTexTable	dwarf+dynsym	documented	RM.h:100	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc7970	184	getTexTableUsage	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc7a30	1300	addTexTableUsage	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc7f50	332	subtractTexTableUsage	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc7f50	332	subtractTexTableUsage	dwarf+dynsym	documented	GE.h:640	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc80a0	88	initTexTables	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8100	196	freeTexTables	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc81d0	24	initARMTexCache	dwarf	undocumented		
@@ -25654,7 +25654,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca2c0	172	setSh
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca370	164	changeShadow	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca420	140	lodBias2Scale	dwarf	documented	RM.h:133	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca4b0	792	changeClipmapParams	dwarf	undocumented		
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dca7d0	6156	__glKonTexParameter	dwarf+dynsym	documented	RM.h:139	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dca7d0	6156	__glKonTexParameter	dwarf+dynsym	documented	GE.h:631	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dcbfe0	1632	__glKonGetTexParameter	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc640	448	bind2DMipmapTexture	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc800	72	setClipmapRegisters	dwarf	documented	GE.h:586	
@@ -31059,7 +31059,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9518b8	208	__glkonim_Re
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd951988	876	BitmapReadModifyWrite	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd951c28	204	__glkonHostCopy	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd951cf4	1436	ReadPixels	mdebug	documented	ucode/arm1_functions.md#video-sources	Video sources
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9520f0	416	__glkonReadTexels3D	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9520f0	416	__glkonReadTexels3D	dynsym+mdebug	documented	GE.h:242	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd952290	2956	ReadTexels	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9525d4	764	__glkonim_Bitmap	dynsym+mdebug	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9528d0	568	__glkonlc_Bitmap	dynsym+mdebug	undocumented		
@@ -31069,14 +31069,14 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd952c98	104	__glkonConve
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd952d00	284	__glkonim_GetPolygonStipple	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd952e1c	10144	DrawSubTexels	mdebug	documented	RM.h:171	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9535b8	400	__glKonDrawTexels3D	dynsym+mdebug	documented	RM.h:219	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd953748	2488	__glKonCopyTexImage	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd953748	2488	__glKonCopyTexImage	dynsym+mdebug	documented	GE.h:413	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954100	220	__glkonInvalidBytes	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9541dc	36	__glkonNumCompInPix	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954200	36	__glkonNumByteInType	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954224	300	__glkonPixSize	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954350	260	__glkonim_PixelZoom	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954454	272	__glkonim_PixelStoref	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954564	1112	__glkonim_TextureStorei	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954564	1112	__glkonim_TextureStorei	dynsym+mdebug	documented	GE.h:603	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9549bc	1108	__glkonim_PixelStorei	dynsym+mdebug	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954e10	1592	__glkonim_PixelTransferf	dynsym+mdebug	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd955448	72	__glkonim_PixelTransferi	dynsym+mdebug	undocumented		
@@ -31211,7 +31211,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965230	3180	comput
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd965290	1184	bindTexTable	dynsym+mdebug	documented	RM.h:100	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd965730	220	getTexTableUsage	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd96580c	1340	addTexTableUsage	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd965d48	340	subtractTexTableUsage	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd965d48	340	subtractTexTableUsage	dynsym+mdebug	documented	GE.h:640	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965e9c	136	initTexTables	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965f24	252	freeTexTables	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966020	68	initARMTexCache	mdebug	undocumented		
@@ -31231,7 +31231,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967a48	208	setShad
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967b18	212	changeShadow	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967bec	208	lodBias2Scale	mdebug	documented	RM.h:133	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967cbc	9836	changeClipmapParams	mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9680c0	6932	__glKonTexParameter	dynsym+mdebug	documented	RM.h:139	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9680c0	6932	__glKonTexParameter	dynsym+mdebug	documented	GE.h:631	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd969bd4	1876	__glKonGetTexParameter	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a328	536	bind2DMipmapTexture	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a540	72	setClipmapRegisters	mdebug	documented	GE.h:586	
@@ -36601,7 +36601,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9531d0	184	__glkonim_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd953290	700	BitmapReadModifyWrite	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd953550	204	__glkonHostCopy	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd953620	1004	ReadPixels	dwarf+funcnames	documented	ucode/arm1_functions.md#video-sources	Video sources
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd953a10	376	__glkonReadTexels3D	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd953a10	376	__glkonReadTexels3D	dwarf+dynsym	documented	GE.h:242	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd953b90	792	ReadTexels	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd953eb0	692	__glkonim_Bitmap	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd954170	576	__glkonlc_Bitmap	dwarf+dynsym	undocumented		
@@ -36611,14 +36611,14 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd954520	88	__glkonConv
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd954580	216	__glkonim_GetPolygonStipple	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd954660	2884	DrawSubTexels	dwarf+funcnames	documented	RM.h:171	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9551b0	404	__glKonDrawTexels3D	dwarf+dynsym	documented	RM.h:219	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955350	2588	__glKonCopyTexImage	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955350	2588	__glKonCopyTexImage	dwarf+dynsym	documented	GE.h:413	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955d70	196	__glkonInvalidBytes	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955e40	36	__glkonNumCompInPix	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955e70	36	__glkonNumByteInType	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955ea0	240	__glkonPixSize	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955f90	220	__glkonim_PixelZoom	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd956070	204	__glkonim_PixelStoref	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd956140	1284	__glkonim_TextureStorei	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd956140	1284	__glkonim_TextureStorei	dwarf+dynsym	documented	GE.h:603	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd956650	1268	__glkonim_PixelStorei	dwarf+dynsym	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd956b50	1596	__glkonim_PixelTransferf	dwarf+dynsym	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd957190	56	__glkonim_PixelTransferi	dwarf+dynsym	undocumented		
@@ -36753,7 +36753,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965160	88	comput
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9651c0	944	bindTexTable	dwarf+dynsym	documented	RM.h:100	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd965570	184	getTexTableUsage	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd965630	1252	addTexTableUsage	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd965b20	332	subtractTexTableUsage	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd965b20	332	subtractTexTableUsage	dwarf+dynsym	documented	GE.h:640	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965c70	88	initTexTables	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965cd0	196	freeTexTables	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965da0	24	initARMTexCache	dwarf+funcnames	undocumented		
@@ -36773,7 +36773,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967e80	172	setSh
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967f30	164	changeShadow	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967fe0	140	lodBias2Scale	dwarf+funcnames	documented	RM.h:133	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd968070	792	changeClipmapParams	dwarf+funcnames	undocumented		
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd968390	6156	__glKonTexParameter	dwarf+dynsym	documented	RM.h:139	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd968390	6156	__glKonTexParameter	dwarf+dynsym	documented	GE.h:631	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd969ba0	1632	__glKonGetTexParameter	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96a200	444	bind2DMipmapTexture	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96a3c0	72	setClipmapRegisters	dwarf+funcnames	documented	GE.h:586	
@@ -42181,7 +42181,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21952d0	184	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2195390	700	BitmapReadModifyWrite	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2195650	204	__glkonHostCopy	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2195720	1032	ReadPixels	dwarf	documented	ucode/arm1_functions.md#video-sources	Video sources
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2195b30	388	__glkonReadTexels3D	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2195b30	388	__glkonReadTexels3D	dwarf+dynsym	documented	GE.h:242	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2195cc0	808	ReadTexels	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2195ff0	700	__glkonim_Bitmap	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21962b0	576	__glkonlc_Bitmap	dwarf+dynsym	undocumented		
@@ -42191,14 +42191,14 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2196660	88	__glkonConv
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21966c0	228	__glkonim_GetPolygonStipple	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21967b0	3012	DrawSubTexels	dwarf	documented	RM.h:171	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197380	416	__glKonDrawTexels3D	dwarf+dynsym	documented	RM.h:219	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197520	2588	__glKonCopyTexImage	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197520	2588	__glKonCopyTexImage	dwarf+dynsym	documented	GE.h:413	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197f40	164	__glkonInvalidBytes	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197ff0	36	__glkonNumCompInPix	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198020	36	__glkonNumByteInType	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198050	244	__glkonPixSize	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198150	220	__glkonim_PixelZoom	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198230	204	__glkonim_PixelStoref	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198300	1284	__glkonim_TextureStorei	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198300	1284	__glkonim_TextureStorei	dwarf+dynsym	documented	GE.h:603	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198810	1272	__glkonim_PixelStorei	dwarf+dynsym	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198d10	1596	__glkonim_PixelTransferf	dwarf+dynsym	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2199350	56	__glkonim_PixelTransferi	dwarf+dynsym	undocumented		
@@ -42333,7 +42333,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7560	88	comput
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a75c0	944	bindTexTable	dwarf+dynsym	documented	RM.h:100	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a7970	184	getTexTableUsage	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a7a30	1300	addTexTableUsage	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a7f50	332	subtractTexTableUsage	dwarf+dynsym	undocumented		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a7f50	332	subtractTexTableUsage	dwarf+dynsym	documented	GE.h:640	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a80a0	88	initTexTables	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8100	196	freeTexTables	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a81d0	24	initARMTexCache	dwarf	undocumented		
@@ -42353,7 +42353,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa2c0	172	setSh
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa370	164	changeShadow	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa420	140	lodBias2Scale	dwarf	documented	RM.h:133	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa4b0	792	changeClipmapParams	dwarf	undocumented		
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21aa7d0	6156	__glKonTexParameter	dwarf+dynsym	documented	RM.h:139	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21aa7d0	6156	__glKonTexParameter	dwarf+dynsym	documented	GE.h:631	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21abfe0	1632	__glKonGetTexParameter	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac640	448	bind2DMipmapTexture	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac800	72	setClipmapRegisters	dwarf	documented	GE.h:586	
