@@ -1589,7 +1589,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10061a5c	1140	TEST_dgconn	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10061ed0	128	DgVDacControlWrite	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10061f50	352	reset_dacs	dynsym	named-only	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them	Start-up and reset as the ARM firmware performs them
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100620b0	676	DacReset	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10062358	320	i2c_init	dynsym	named-only	docs/dg.md#display-requests	Display requests
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10062358	320	i2c_init	dynsym	understood	ucode/arm1_functions.md#display-generator	Display generator
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100624e4	364	i2c_arb	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10062650	748	i2c_master_xmit	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006293c	748	i2c_master_recv	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
