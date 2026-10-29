@@ -343,7 +343,10 @@
  * the names and from BIND_ARM_TEX_CACHE sending the same word. DRAWTEXELS
  * header word 11 is the same word (desc+0x68 is loaded from ctx+0x110 +4).
  *
- * UNKNOWN: TEXLOAD_SETUP (0x175). No libGLcore emitter exists: no
+ * ESTABLISHED: the pipe ignores TEXLOAD_SETUP (0x175). Its token-map
+ * entry runs arm_texload_setup (arm1.u 0x0c025134), whose whole body is a
+ * return: it reads no payload word and touches no register.
+ * No libGLcore emitter exists either: no
  * instruction loads 373 or 0x175 as the first store to the FIFO window in
  * any of the three libGLcore ABIs, the kernel objects or the X modules (a
  * byte-pattern search of each binary for "li/ori rt,0x175" found none in
