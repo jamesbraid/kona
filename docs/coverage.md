@@ -63,7 +63,7 @@ Raster manager and texture memory: rasterisation, pixel ownership, framebuffer a
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
 | Registers and fields | partial | `RM.h`, `docs/rm.md` | raster, texture and display | full index, field and value table from kpm; chips per RM revision (pg, tg, four tf, eight tm, imp) and their buses from the diagnostic netlists (docs/rm.md); block-to-ASIC mapping of registers unknown |
-| Command and FIFO formats | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
+| Command and FIFO formats | partial | `RM.h`, `docs/rm.md` | raster, texture and display | the ARM firmware writes a raster register as descriptor 0x58404800 (or 0x584fc800 for the IMP chips), a select word, an address word whose low half is the RM.h register index, and the value; the high half of the address word and the select word are unknown; the texture and pixel data formats are not read |
 | DMA | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | Interrupts | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | Reset | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |

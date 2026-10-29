@@ -104,9 +104,9 @@ Three shapes **established** from code:
 | 0x46000020 + index | `init_ged`, `arm_matrixmode`, `xform_init`, `xform_restore` | set the index of the handler table |
 | 0x46200020 + handler address | same | write an entry; the index advances ([ged_bound_table.tsv](ged_bound_table.tsv)) |
 | 0x44000020, 0x44200020, 0x44400020 | `init_ged` | distributor register initial values (data from the context record); **unknown** which registers |
-| 0x58400800, then 0x2bad2dad at r9 + 0x880 | `IncrGEDPtr` | write filler words; the name says it advances a distributor pointer. **Inferred** |
+| 0x58400800, then 0x2bad2dad at r9 + 0x880 | `IncrGEDPtr` | command 128 (`BshRegisterWrite`) with a filler word; the name says it advances a distributor pointer. **Inferred** |
 
-The remaining descriptors (about 230 distinct values in the pixel, X-server and context code) are not decoded. Their field layout is the same family as the routed entries of the token map ([arm1.md](arm1.md)); **unknown** how the two are related.
+**Established:** every other descriptor is a routed token-map entry written by the ARM itself. Command number 128 (and 0, 64, 192 ... 448, differing in bits 6-8) runs `mgesi_BshRegisterWrite` and 159 runs `mgesi_IMPbshRegisterWrite`; that is how `init_pg`, `init_tg`, `init_tf`, `init_imp` and the pixel setup code write raster-board registers ([arm1.md](arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler)). The descriptors 0x42..., 0x44..., 0x46... and 0x48... of the table above are of the same family with command numbers 0, 64 and 128 and set bit 25-27 target codes; **unknown** how a command number of index 0 chooses the distributor table, program or handler table over a raster register file.
 
 ### Matrix tokens flip between hardware and ARM
 
@@ -156,6 +156,5 @@ The remaining descriptors (about 230 distinct values in the pixel, X-server and 
 - What the hardware does with the register accesses above beyond what the firmware's behaviour implies: the 0x200010-0x20004c registers, the pass-through counter, the status bits, and the difference between the three payload ports.
 - What triggers `arm_divert`, and whether any build installs a handler for it.
 - Whether the hardware discards the unread payload of an ARM handler that returns early.
-- The descriptor words outside the targets above, including the family starting 0x58....
 - The write targets 0x420-0x43c other than 0x430 and 0x438.
 - Why 54 tokens, including the whole of `TEXIMAGE*` and `GETINTEGERV`, are not handled by this firmware: the host side was not read for this page.

@@ -51,3 +51,15 @@ The source is the diagnostic netlists in `usr/diags/IR/data/*.netmap.Z` (IRIX 6.
 - Colour and depth iteration happen in `pg`, whose per-fragment output to each filter is 80 bits wide.
 
 **Unknown:** the bit widths of per-pixel LOD, sub-texel position, filter weights and colour and depth iterators. No microcode computes them, and the netlists bound only the buses between chips. The host-visible precisions already found (filter4 weights in S1.7, the 4.4 LOD bias, sharpen and detail codes) are in [RM.h](../RM.h). A textured-span capture or a chip specification would settle the rest.
+
+## How the ARM firmware writes raster registers
+
+The ARM firmware ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md)) programs the raster boards at start-up (`init_pg`, `init_tg`, `init_tf`, `init_tm`, `init_imp` in `arm1.u`, IRIX 6.5.30m) and again whenever it sets up a pixel path. Facts are labelled **established** (read from the firmware), **inferred** (with the reasoning) or **unknown**.
+
+**Established.** One register write is four stores to the host-interface window: the descriptor word 0x58404800 at r9 + 0x400, then three words at r9 + 0x840, r9 + 0x840 and r9 + 0x8c0. In `init_pg`: the first word is 0xffffffff, the second is 0x01270800, the third is the value 1. The descriptor decodes as routed command 128 ([ucode/arm1.md](../ucode/arm1.md)), whose engine handler is `mgesi_BshRegisterWrite`; the writes that go to the "IMP" chips ([RM.h](../RM.h) `IMP_` registers) use 0x584fc800, command 159, handler `mgesi_IMPbshRegisterWrite`.
+
+**Established** (register indexes). The low 16 bits of the second word are register indexes in the kpm index space of [RM.h](../RM.h): `init_pg` writes 0x0800, 0x080f and 0x0806 (`PG_`), `init_tf` 0x140e and 0x1410 (`TFP_`), `init_imp` 0x1c00, 0x1c02, 0x1c03, 0x1c06-0x1c09, 0x1c0b, 0x1c0d, 0x1c14 and 0x1c15 (`IMP_`). `init_tg` writes 0x3fcf-0x3fd3, which are not in the `TG_` range of the table; **unknown** what they address. `init_pg` also writes 0x3be0 and 0x3be1 with descriptor 0x584fc800.
+
+**Unknown.** The high half of the second word (0x0120-0x0128 for the `init_tg` writes, 0x0125-0x012b for `init_pg`, 0x0134-0x013e for `init_imp`, 0x0160 and 0x0166 for `init_tf`): a different small number per write that rises through each routine, so it looks like a slot or target number, not a field of the register. The meaning of the first word is also unknown: all ones in `init_pg`, a per-call value in `init_tg` and `init_imp`; **inferred** to be a chip or lane select, from the value changing between chips and the all-ones case being the broadcast.
+
+A separate path writes the board-side registers numbered 0x400-0x477 (`tbus_regwrite`): `init_hip_tbus`, `start_rdata`, `finish_rdata`, `check_pipe_sync` and `init_tf`, `init_tm`. These are not in the `RM.h` index space. **Inferred:** they are registers of the host interface's own bus to the boards (`HH_TBUS_STATUS` and its neighbours in [HIP.h](../HIP.h)).
