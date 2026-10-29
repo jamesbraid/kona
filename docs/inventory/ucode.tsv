@@ -13,9 +13,9 @@ arm1.u	symbol (flags 4)	0x04040280	trash		undocumented
 arm1.u	symbol (flags 4)	0x040402c4	bLateInit		undocumented	
 arm1.u	symbol (flags 4)	0x040402c8	pEmergencyBackupFormat		undocumented	
 arm1.u	symbol (flags 5)	0x040412c0	DGDispatchTable		documented	docs/ge.md#context-query-and-other-long-commands
-arm1.u	symbol (flags 5)	0x040415a8	nVideoCmdHistory		undocumented	
-arm1.u	symbol (flags 4)	0x040415b0	OptVocAddress		undocumented	
-arm1.u	symbol (flags 5)	0x040416ec	dgTextportGlyph		undocumented	
+arm1.u	symbol (flags 5)	0x040415a8	nVideoCmdHistory		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 4)	0x040415b0	OptVocAddress		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x040416ec	dgTextportGlyph		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 5)	0x04041afc	nGreyDecode		undocumented	
 arm1.u	symbol (flags 5)	0x04041b90	PramContentsType		undocumented	
 arm1.u	symbol (flags 5)	0x04041b94	PramContentsData		undocumented	
@@ -34,14 +34,14 @@ arm1.u	symbol (flags 5)	0x04041d98	pg2_chip_type		undocumented
 arm1.u	symbol (flags 5)	0x04041de8	KONA_RM6_element_list		undocumented	
 arm1.u	symbol (flags 5)	0x04042008	KONA_RM6_chain		undocumented	
 arm1.u	symbol (flags 5)	0x0404201c	fm2_chip_type		undocumented	
-arm1.u	symbol (flags 5)	0x0404206c	xmap8_chip_type		undocumented	
+arm1.u	symbol (flags 5)	0x0404206c	xmap8_chip_type		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 5)	0x040420bc	adv7160_chip_type		undocumented	
 arm1.u	symbol (flags 5)	0x0404210c	tmc22090_chip_type		undocumented	
-arm1.u	symbol (flags 5)	0x0404215c	voc1_chip_type		undocumented	
-arm1.u	symbol (flags 5)	0x040421ac	KONA_DG4_2VOC_element_list		undocumented	
-arm1.u	symbol (flags 5)	0x0404224c	KONA_DG4_2VOC_chain		undocumented	
-arm1.u	symbol (flags 5)	0x04042260	KONA_DG4_8VOC_element_list		undocumented	
-arm1.u	symbol (flags 5)	0x040423c0	KONA_DG4_8VOC_chain		undocumented	
+arm1.u	symbol (flags 5)	0x0404215c	voc1_chip_type		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x040421ac	KONA_DG4_2VOC_element_list		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x0404224c	KONA_DG4_2VOC_chain		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x04042260	KONA_DG4_8VOC_element_list		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x040423c0	KONA_DG4_8VOC_chain		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 5)	0x040423d4	hip1_chip_type		undocumented	
 arm1.u	symbol (flags 5)	0x04042424	bef1_chip_type		undocumented	
 arm1.u	symbol (flags 5)	0x04042474	ged1_chip_type		undocumented	
@@ -56,10 +56,10 @@ arm1.u	symbol (flags 5)	0x0404282c	tg2_chip_type		undocumented
 arm1.u	symbol (flags 5)	0x0404287c	tm1c_chip_type		undocumented	
 arm1.u	symbol (flags 5)	0x040428cc	HILO_RM11_element_list		undocumented	
 arm1.u	symbol (flags 5)	0x04042a4c	HILO_RM11_chain		undocumented	
-arm1.u	symbol (flags 5)	0x04042a60	HILO_DG5_2VOC_element_list		undocumented	
-arm1.u	symbol (flags 5)	0x04042b00	HILO_DG5_2VOC_chain		undocumented	
-arm1.u	symbol (flags 5)	0x04042b14	HILO_DG5_8VOC_element_list		undocumented	
-arm1.u	symbol (flags 5)	0x04042c74	HILO_DG5_8VOC_chain		undocumented	
+arm1.u	symbol (flags 5)	0x04042a60	HILO_DG5_2VOC_element_list		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x04042b00	HILO_DG5_2VOC_chain		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x04042b14	HILO_DG5_8VOC_element_list		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x04042c74	HILO_DG5_8VOC_chain		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 5)	0x04042c88	hip2_chip_type		undocumented	
 arm1.u	symbol (flags 5)	0x04042cd8	ged1b_chip_type		undocumented	
 arm1.u	symbol (flags 5)	0x04042d28	HILO_GE_element_list		undocumented	
@@ -77,7 +77,7 @@ arm1.u	symbol (flags 5)	0x040459f0	jtag_chain		undocumented
 arm1.u	symbol (flags 5)	0x04045a28	jtag_chain_hilo		undocumented	
 arm1.u	symbol (flags 5)	0x04045a60	jtag_chain_hilo_lite		undocumented	
 arm1.u	symbol (flags 5)	0x04045a98	jtag_chain_hilo_ir4		undocumented	
-arm1.u	symbol (flags 5)	0x04045ad0	dg_8voc_scan_chain		undocumented	
+arm1.u	symbol (flags 5)	0x04045ad0	dg_8voc_scan_chain		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 4)	0x04045ad4	current_chain		undocumented	
 arm1.u	symbol (flags 4)	0x04045b18	rmcode		undocumented	
 arm1.u	symbol (flags 4)	0x04045b2c	config_imp_jtag		undocumented	
@@ -86,13 +86,13 @@ arm1.u	symbol (flags 4)	0x04045c58	crc8		undocumented
 arm1.u	symbol (flags 4)	0x04045d58	oddparity		undocumented	
 arm1.u	symbol (flags 4)	0x04045dd8	cur_chain		undocumented	
 arm1.u	symbol (flags 4)	0x04045ddc	last_sampled_value		undocumented	
-arm1.u	symbol (flags 4)	0x04045de0	dg_shift		undocumented	
-arm1.u	symbol (flags 5)	0x04045de4	NIC_no_sleep_delay_threshold		undocumented	
-arm1.u	symbol (flags 5)	0x04045de8	NIC_channels		undocumented	
-arm1.u	symbol (flags 5)	0x04045dec	NIC_dgopt_type		documented	ucode/dg.md#option-board-image-dgo1dgomcs
-arm1.u	symbol (flags 5)	0x04045df0	NIC_clock_mhz		undocumented	
-arm1.u	symbol (flags 5)	0x04045df4	NIC_rm_nic		undocumented	
-arm1.u	symbol (flags 5)	0x04045df8	NIC_rm_config		undocumented	
+arm1.u	symbol (flags 4)	0x04045de0	dg_shift		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x04045de4	NIC_no_sleep_delay_threshold		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x04045de8	NIC_channels		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x04045dec	NIC_dgopt_type		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x04045df0	NIC_clock_mhz		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x04045df4	NIC_rm_nic		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 5)	0x04045df8	NIC_rm_config		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 5)	0x04045dfc	saved_regs_mem		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 5)	0x04045e4c	saved_hipState_mem		undocumented	
 arm1.u	symbol (flags 5)	0x04045e80	stored_gedstate		undocumented	
@@ -452,7 +452,7 @@ arm1.u	symbol (flags 1)	0x04067edc	_edata		undocumented
 arm1.u	symbol (flags 7)	0x04067edc	sysconf		undocumented	
 arm1.u	symbol (flags 7)	0x04068654	gepc		undocumented	
 arm1.u	symbol (flags 7)	0x04068e54	icu_map		documented	ucode/arm1.md#container
-arm1.u	symbol (flags 7)	0x04069654	DGGlobalState		undocumented	
+arm1.u	symbol (flags 7)	0x04069654	DGGlobalState		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 7)	0x0406ce34	sdram_scratch		undocumented	
 arm1.u	symbol (flags 6)	0x0408ce34	v0		undocumented	
 arm1.u	symbol (flags 7)	0x0408d234	stored_gedstate_mem		undocumented	
@@ -497,8 +497,8 @@ arm1.u	symbol (flags 2)	0x0c0032d4	ungray		undocumented
 arm1.u	symbol (flags 3)	0x0c0032e4	init_ge		documented	docs/ge.md#registers-the-arms-path-to-them
 arm1.u	symbol (flags 3)	0x0c00375c	init_bef		documented	docs/rm.md#the-89-word-register-shadow
 arm1.u	symbol (flags 3)	0x0c003760	init_hip_tbus		documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-arm1.u	symbol (flags 3)	0x0c0037a0	init_voc		undocumented	
-arm1.u	symbol (flags 3)	0x0c0037a4	init_dac		undocumented	
+arm1.u	symbol (flags 3)	0x0c0037a0	init_voc		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c0037a4	init_dac		documented	docs/dg.md#helper-functions
 arm1.u	symbol (flags 3)	0x0c0037a8	init_fm		undocumented	
 arm1.u	symbol (flags 3)	0x0c0037ac	init_pg		documented	docs/rm.md#chips-on-each-board
 arm1.u	symbol (flags 3)	0x0c00386c	init_tf		documented	docs/rm.md#chips-on-each-board
@@ -517,182 +517,182 @@ arm1.u	symbol (flags 3)	0x0c00437c	sleep		undocumented
 arm1.u	symbol (flags 2)	0x0c0043c4	dgLoadCombo		documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
 arm1.u	symbol (flags 3)	0x0c004674	DoDGRqstAutoInit		documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
 arm1.u	symbol (flags 3)	0x0c0047d4	dgAutoInit		documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
-arm1.u	symbol (flags 3)	0x0c004800	dgAutoInitLateChannels		undocumented	
-arm1.u	symbol (flags 2)	0x0c004834	dgWaitForVocPllInterface		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c004894	dgLoadVocClockParams		documented	ucode/tport.md#what-the-image-contains
-arm1.u	symbol (flags 2)	0x0c004a5c	dgProgramClock		documented	ucode/tport.md#what-the-image-contains
-arm1.u	symbol (flags 2)	0x0c004af8	dgSelectVocClockSrc		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c004bbc	dgStartVocClock		documented	ucode/tport.md#what-the-image-contains
-arm1.u	symbol (flags 3)	0x0c004c1c	DoDGRqstEnableVocReadback		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c004ce8	DoDGRqstMasterClockSelect		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c004d68	DoDGRqstGetMasterClockSelect		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c004d94	DoDGRqstXMapClockSelect		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c004e94	DoDGRqstGetXMapClockSelect		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 2)	0x0c004ec0	dgLoadChannelGenlockParams		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c005484	DoDGRqstLoadGenlockParams		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 2)	0x0c005494	dgIsChannelGenlockable		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 2)	0x0c0054d4	dgEnableChannelGenlockClocks		undocumented	
-arm1.u	symbol (flags 2)	0x0c005538	dgEnableChannelGenlock		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 2)	0x0c0059d0	dgShutdownRequesters		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 2)	0x0c005a90	dgStartupRequesters		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c005be0	DoDGRqstEnableGenlock		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 2)	0x0c005cb0	dgShutdownChannelGenlockNicely		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c005f28	dgShutdownGenlockNicely		undocumented	
-arm1.u	symbol (flags 2)	0x0c005f68	dgFlushStatus		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 2)	0x0c005f8c	dgGetInterruptState		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c005fb8	DoDGRqstGetDGInterruptState		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c006028	DoDGRqstChannelResetRatios		named-only	ucode/dg_dispatch.tsv
+arm1.u	symbol (flags 3)	0x0c004800	dgAutoInitLateChannels		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c004834	dgWaitForVocPllInterface		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c004894	dgLoadVocClockParams		documented	docs/dg.md#the-loadformat-request-383-words
+arm1.u	symbol (flags 2)	0x0c004a5c	dgProgramClock		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c004af8	dgSelectVocClockSrc		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c004bbc	dgStartVocClock		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c004c1c	DoDGRqstEnableVocReadback		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c004ce8	DoDGRqstMasterClockSelect		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c004d68	DoDGRqstGetMasterClockSelect		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c004d94	DoDGRqstXMapClockSelect		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c004e94	DoDGRqstGetXMapClockSelect		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 2)	0x0c004ec0	dgLoadChannelGenlockParams		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c005484	DoDGRqstLoadGenlockParams		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 2)	0x0c005494	dgIsChannelGenlockable		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c0054d4	dgEnableChannelGenlockClocks		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c005538	dgEnableChannelGenlock		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 2)	0x0c0059d0	dgShutdownRequesters		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c005a90	dgStartupRequesters		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c005be0	DoDGRqstEnableGenlock		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 2)	0x0c005cb0	dgShutdownChannelGenlockNicely		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c005f28	dgShutdownGenlockNicely		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c005f68	dgFlushStatus		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c005f8c	dgGetInterruptState		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c005fb8	DoDGRqstGetDGInterruptState		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c006028	DoDGRqstChannelResetRatios		documented	docs/dg.md#display-requests
 arm1.u	symbol (flags 3)	0x0c006064	DoDGRqstResetRMBoards		documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
-arm1.u	symbol (flags 3)	0x0c006250	DoDGRqstGenlockSwitching		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c006270	DoDGRqstGetGenlockSwitching		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c006344	DoDGRqstInternalGenlock		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c006364	DoDGRqstGetInternalGenlock		named-only	ucode/dg_dispatch.tsv
+arm1.u	symbol (flags 3)	0x0c006250	DoDGRqstGenlockSwitching		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c006270	DoDGRqstGetGenlockSwitching		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c006344	DoDGRqstInternalGenlock		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c006364	DoDGRqstGetInternalGenlock		documented	docs/dg.md#display-requests
 arm1.u	symbol (flags 3)	0x0c006398	arm_video_cmd		documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
-arm1.u	symbol (flags 3)	0x0c0064f8	SendDGRply		documented	ucode/arm1_firmware.md#how-the-arm-answers-the-host
-arm1.u	symbol (flags 3)	0x0c0065d4	DoDGRqstCursorChannel		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00663c	DoDGRqstCursorType		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c0066a4	DoDGRqstCursorPosition		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c006710	DoDGRqstCursorPriority		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c006730	dgVDacControlWrite		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c006814	dgVDacControlRead		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c0068b8	dgVDacClutWrite		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00699c	dgVDacClutRead		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c006a40	dgVDacModeWrite		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c006a90	dgVDacModeRead		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c006a9c	dgGDacChannelWrite		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c006db4	dgSetDacPixelMux		undocumented	
-arm1.u	symbol (flags 2)	0x0c006e40	dgBlankChannel		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c007088	DoDGRqstChannelBlanking		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c0070d0	DoDGRqstGetChannelBlanking		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c007124	DoDGRqstTempBlankAllChannels		named-only	ucode/dg_dispatch.tsv
+arm1.u	symbol (flags 3)	0x0c0064f8	SendDGRply		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c0065d4	DoDGRqstCursorChannel		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00663c	DoDGRqstCursorType		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0066a4	DoDGRqstCursorPosition		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c006710	DoDGRqstCursorPriority		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c006730	dgVDacControlWrite		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c006814	dgVDacControlRead		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c0068b8	dgVDacClutWrite		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c00699c	dgVDacClutRead		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c006a40	dgVDacModeWrite		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c006a90	dgVDacModeRead		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c006a9c	dgGDacChannelWrite		documented	docs/dg.md#the-firmwares-display-bus-window
+arm1.u	symbol (flags 3)	0x0c006db4	dgSetDacPixelMux		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c006e40	dgBlankChannel		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c007088	DoDGRqstChannelBlanking		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0070d0	DoDGRqstGetChannelBlanking		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c007124	DoDGRqstTempBlankAllChannels		documented	docs/dg.md#display-requests
 arm1.u	symbol (flags 3)	0x0c007188	dgTempBlankAllChannels		documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
-arm1.u	symbol (flags 3)	0x0c0071a4	DoDGRqstOutputGain		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c007270	DoDGRqstGetOutputGain		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c0072d8	dgResolveVDacGain		undocumented	
-arm1.u	symbol (flags 3)	0x0c007394	DoDGRqstSyncSelects		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c007808	DoDGRqstGetSyncSelects		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c0079ec	DoDGRqstOutputPedestal		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c007a54	DoDGRqstGetOutputPedestal		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c007aa8	DoDGRqstLoadDacCursor		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c007ef0	DoDGRqstDiagXmapColor		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c008120	DoDGRqstDisableDiagXmapColor		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00816c	DoDGRqstVCBusTrace		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c0081a0	DoDGRqstDiagCursorFromImage		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00852c	dgEncoderControlWrite		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c0085bc	dgEncoderControlRead		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c008614	dgEncoderClutWrite		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c0086a4	dgEncoderClutRead		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c0086fc	dgEncoderPedestal		undocumented	
-arm1.u	symbol (flags 3)	0x0c008784	DoDGRqstEncoderOutputGain		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c0087e8	DoDGRqstGetEncoderOutputGain		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c008814	DoDGRqstSCHPhase		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c008870	DoDGRqstGetSCHPhase		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c0088b4	DoDGRqstLoadEncoder		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c008c00	DoDGRqstEncoderTestPattern		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c008c44	DoDGRqstEnableEncoder		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c008cb0	DoDGRqstFetal		documented	docs/open-questions.md#arm-firmware
-arm1.u	symbol (flags 3)	0x0c009628	dgFetal		documented	docs/open-questions.md#arm-firmware
-arm1.u	symbol (flags 3)	0x0c009648	DoDGRqstXServerVideoInit		documented	ucode/tport.md#what-the-image-contains
-arm1.u	symbol (flags 3)	0x0c0097d4	dgMakeXmapFetal		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c009b98	dgMakeChannelFetal		undocumented	
-arm1.u	symbol (flags 3)	0x0c009c88	dgMakeVocFetal		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00a108	dgMakeVDacFetal		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00a3f0	dgMakeGDacFetal		undocumented	
-arm1.u	symbol (flags 3)	0x0c00a420	dgMakeEncoderFetal		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00a544	dgMakeGvoFetal		undocumented	
-arm1.u	symbol (flags 2)	0x0c00a548	dgMakeTvoFetal		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 2)	0x0c00a5b4	dgMakeDplexFetal		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00a7ac	dgLoadFieldSequentialAndStereo		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 2)	0x0c00a930	dgEnableRequester		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00a9b0	DoDGRqstLoadFormat		documented	ucode/dg.md#display-tables-video-formats-combinations-vof-sources-and-the-option-board-image
-arm1.u	symbol (flags 3)	0x0c00b9a0	dgSyncWithMasterVoc		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00ba20	DoDGRqstEnableChannel		documented	ucode/tport.md#the-display-request-table
-arm1.u	symbol (flags 3)	0x0c00bf50	DoDGRqstGetChannelEnables		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c00bfb4	DoDGRqstDisableChannel		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00c10c	DoDGRqstGetChannelFormatInfo		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 2)	0x0c00c1a4	dgWriteDgoTMC22071a		documented	ucode/dg.md#option-board-image-dgo1dgomcs
-arm1.u	symbol (flags 3)	0x0c00c280	DoDGRqstDataFormat		documented	ucode/tport.md#what-the-image-contains
-arm1.u	symbol (flags 3)	0x0c00ca44	DoDGRqstGetDataFormat		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 2)	0x0c00caa4	dgConfigureHDGVO		undocumented	
-arm1.u	symbol (flags 2)	0x0c00cea4	dgSendHDGVOFormatInfo		undocumented	
-arm1.u	symbol (flags 2)	0x0c00d140	EdgeDescArray		undocumented	
+arm1.u	symbol (flags 3)	0x0c0071a4	DoDGRqstOutputGain		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c007270	DoDGRqstGetOutputGain		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0072d8	dgResolveVDacGain		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c007394	DoDGRqstSyncSelects		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c007808	DoDGRqstGetSyncSelects		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0079ec	DoDGRqstOutputPedestal		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c007a54	DoDGRqstGetOutputPedestal		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c007aa8	DoDGRqstLoadDacCursor		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c007ef0	DoDGRqstDiagXmapColor		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c008120	DoDGRqstDisableDiagXmapColor		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00816c	DoDGRqstVCBusTrace		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0081a0	DoDGRqstDiagCursorFromImage		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00852c	dgEncoderControlWrite		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c0085bc	dgEncoderControlRead		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c008614	dgEncoderClutWrite		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c0086a4	dgEncoderClutRead		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c0086fc	dgEncoderPedestal		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c008784	DoDGRqstEncoderOutputGain		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0087e8	DoDGRqstGetEncoderOutputGain		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c008814	DoDGRqstSCHPhase		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c008870	DoDGRqstGetSCHPhase		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0088b4	DoDGRqstLoadEncoder		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c008c00	DoDGRqstEncoderTestPattern		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c008c44	DoDGRqstEnableEncoder		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c008cb0	DoDGRqstFetal		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c009628	dgFetal		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c009648	DoDGRqstXServerVideoInit		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0097d4	dgMakeXmapFetal		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c009b98	dgMakeChannelFetal		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c009c88	dgMakeVocFetal		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c00a108	dgMakeVDacFetal		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c00a3f0	dgMakeGDacFetal		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c00a420	dgMakeEncoderFetal		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c00a544	dgMakeGvoFetal		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c00a548	dgMakeTvoFetal		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c00a5b4	dgMakeDplexFetal		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c00a7ac	dgLoadFieldSequentialAndStereo		documented	docs/dg.md#the-loadformat-request-383-words
+arm1.u	symbol (flags 2)	0x0c00a930	dgEnableRequester		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c00a9b0	DoDGRqstLoadFormat		documented	docs/dg.md#voc-registers
+arm1.u	symbol (flags 3)	0x0c00b9a0	dgSyncWithMasterVoc		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c00ba20	DoDGRqstEnableChannel		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00bf50	DoDGRqstGetChannelEnables		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00bfb4	DoDGRqstDisableChannel		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00c10c	DoDGRqstGetChannelFormatInfo		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 2)	0x0c00c1a4	dgWriteDgoTMC22071a		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00c280	DoDGRqstDataFormat		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00ca44	DoDGRqstGetDataFormat		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 2)	0x0c00caa4	dgConfigureHDGVO		documented	docs/dg.md#voc-registers
+arm1.u	symbol (flags 2)	0x0c00cea4	dgSendHDGVOFormatInfo		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c00d140	EdgeDescArray		documented	docs/dg.md#voc-registers
 arm1.u	symbol (flags 2)	0x0c00d140	x$constdata		undocumented	
-arm1.u	symbol (flags 3)	0x0c00d200	dgGetBoardConfig		undocumented	
-arm1.u	symbol (flags 3)	0x0c00d328	DoDGRqstGetBoardConfig		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c00d354	DoDGRqstGetChannelConfig		named-only	ucode/dg_access.tsv
+arm1.u	symbol (flags 3)	0x0c00d200	dgGetBoardConfig		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c00d328	DoDGRqstGetBoardConfig		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00d354	DoDGRqstGetChannelConfig		documented	docs/dg.md#display-requests
 arm1.u	symbol (flags 3)	0x0c00d51c	dgUpdateConfigInfo		documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
-arm1.u	symbol (flags 3)	0x0c00d5cc	DoDGRqstQueryMonitorName		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00d6f8	DoDGRqstMonitorCommand		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c00d6fc	i2c_init		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 2)	0x0c00da20	read_edid		documented	ucode/arm1_firmware.md#display-generator-commands
-arm1.u	symbol (flags 3)	0x0c00de40	i2c_start		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00df58	i2c_stop		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00dfb4	i2c_sendbyte		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00e054	i2c_recvbyte		named-only	ucode/dg_access.tsv
+arm1.u	symbol (flags 3)	0x0c00d5cc	DoDGRqstQueryMonitorName		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00d6f8	DoDGRqstMonitorCommand		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00d6fc	i2c_init		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 2)	0x0c00da20	read_edid		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00de40	i2c_start		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00df58	i2c_stop		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00dfb4	i2c_sendbyte		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c00e054	i2c_recvbyte		documented	docs/dg.md#display-requests
 arm1.u	symbol (flags 2)	0x0c00e0fc	x$constdata		undocumented	
-arm1.u	symbol (flags 3)	0x0c00e104	dgLoadVocIwsc		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c00e324	dgConfigureVideoRequester		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 2)	0x0c00efc8	dgResize		documented	docs/opengl.md#display-and-scanout
-arm1.u	symbol (flags 2)	0x0c00fd1c	dgResizeVampire		undocumented	
-arm1.u	symbol (flags 3)	0x0c00fe84	DoDGRqstResize		documented	docs/opengl.md#display-and-scanout
-arm1.u	symbol (flags 3)	0x0c00fecc	DoDGRqstGetResize		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c01003c	DoDGRqstPlacementRes		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c010104	DoDGRqstBindChannelToXWid		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c0101b4	dgUpdateFMDidSwapTable		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c010230	dgEncoderOutputLetterbox		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c0103ac	dgDGOOutputLetterbox		documented	ucode/dg.md#option-board-image-dgo1dgomcs
-arm1.u	symbol (flags 3)	0x0c010570	DoDGRqstVampire		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c0106b8	DoDGRqstVampireAndFieldDominance		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c010708	DoDGRqstGetVampire		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c0107ac	DoDGRqstChannelFieldDominance		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c010864	DoDGRqstGetChannelFieldDominance		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c0108a8	DoDGRqstResizeSyncType		documented	docs/opengl.md#display-and-scanout
-arm1.u	symbol (flags 3)	0x0c0108e4	DoDGRqstBufferParams		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c010934	DoDGRqstGetBufferParams		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c010990	isvoc1b		undocumented	
-arm1.u	symbol (flags 3)	0x0c010a50	DoDGRqstInitTextport		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c010ae8	DoDGRqstLoadTextportGlyph		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c010c64	DoDGRqstLoadTextportColorIndex		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c010d24	dgForceXmapCopyBuffer		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c010d74	dgGetNumRMs		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c010dd0	dgSetNumRMs		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c010f6c	dgIsVocPresent		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c011048	dgEnumPresentVocs		undocumented	
-arm1.u	symbol (flags 3)	0x0c01109c	dgResetVocFifo		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c0110f4	DoDGRqstDebugMask		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c011128	DoDGRqstSetupFrameBuffer		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c011490	DoDGRqstInputSync		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c0114f4	DoDGRqstGetInputSync		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c011528	DoDGRqstBoardResetRatio		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c01158c	DoDGRqstGetBoardResetRatio		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c0115c0	DoDGRqstHPhase		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c011928	DoDGRqstGetHPhase		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 2)	0x0c011964	dgAdjustVPhase		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c011b44	DoDGRqstVPhase		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c011bc4	DoDGRqstGetVPhase		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c011c14	dgResolveXMapChannelFormat		undocumented	
-arm1.u	symbol (flags 3)	0x0c011cc0	DoDGRqstDVPMult2Freq		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c011d8c	DoDGRqstVBOBCommand		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c011e0c	DoDGRqstGetVBOBReply		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c011f30	DoDGRqstChannelGammaMap		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c011f98	DoDGRqstGetChannelGammaMap		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c011fd4	DoDGRqstChannelGammaMapState		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c01207c	DoDGRqstGetChannelGammaMapState		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c012138	DoDGRqstFastlistChunksize		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c012190	dgGetWriteVoc		undocumented	
-arm1.u	symbol (flags 3)	0x0c0121d4	DoDGRqstTest		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c012200	DoDGRqstVCWrite		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c012250	DoDGRqstVCRead		named-only	ucode/dg_access.tsv
-arm1.u	symbol (flags 3)	0x0c012280	DoDGRqstLoadXilinx		documented	ucode/arm1_firmware.md#display-generator-commands
-arm1.u	symbol (flags 3)	0x0c01249c	DoDGRqstLoadPabXilinx		documented	ucode/tport.md#what-the-image-contains
+arm1.u	symbol (flags 3)	0x0c00e104	dgLoadVocIwsc		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c00e324	dgConfigureVideoRequester		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c00efc8	dgResize		documented	docs/dg.md#the-resize-request-8-words
+arm1.u	symbol (flags 2)	0x0c00fd1c	dgResizeVampire		documented	docs/dg.md#the-resize-request-8-words
+arm1.u	symbol (flags 3)	0x0c00fe84	DoDGRqstResize		documented	docs/dg.md#the-resize-request-8-words
+arm1.u	symbol (flags 3)	0x0c00fecc	DoDGRqstGetResize		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c01003c	DoDGRqstPlacementRes		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c010104	DoDGRqstBindChannelToXWid		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0101b4	dgUpdateFMDidSwapTable		documented	docs/dg.md#the-firmwares-display-bus-window
+arm1.u	symbol (flags 3)	0x0c010230	dgEncoderOutputLetterbox		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c0103ac	dgDGOOutputLetterbox		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c010570	DoDGRqstVampire		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0106b8	DoDGRqstVampireAndFieldDominance		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c010708	DoDGRqstGetVampire		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0107ac	DoDGRqstChannelFieldDominance		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c010864	DoDGRqstGetChannelFieldDominance		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0108a8	DoDGRqstResizeSyncType		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0108e4	DoDGRqstBufferParams		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c010934	DoDGRqstGetBufferParams		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c010990	isvoc1b		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c010a50	DoDGRqstInitTextport		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c010ae8	DoDGRqstLoadTextportGlyph		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c010c64	DoDGRqstLoadTextportColorIndex		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c010d24	dgForceXmapCopyBuffer		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c010d74	dgGetNumRMs		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c010dd0	dgSetNumRMs		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c010f6c	dgIsVocPresent		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c011048	dgEnumPresentVocs		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c01109c	dgResetVocFifo		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c0110f4	DoDGRqstDebugMask		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011128	DoDGRqstSetupFrameBuffer		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011490	DoDGRqstInputSync		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0114f4	DoDGRqstGetInputSync		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011528	DoDGRqstBoardResetRatio		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c01158c	DoDGRqstGetBoardResetRatio		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0115c0	DoDGRqstHPhase		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011928	DoDGRqstGetHPhase		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 2)	0x0c011964	dgAdjustVPhase		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011b44	DoDGRqstVPhase		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011bc4	DoDGRqstGetVPhase		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011c14	dgResolveXMapChannelFormat		documented	docs/dg.md#the-loadformat-request-383-words
+arm1.u	symbol (flags 3)	0x0c011cc0	DoDGRqstDVPMult2Freq		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011d8c	DoDGRqstVBOBCommand		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011e0c	DoDGRqstGetVBOBReply		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011f30	DoDGRqstChannelGammaMap		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011f98	DoDGRqstGetChannelGammaMap		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c011fd4	DoDGRqstChannelGammaMapState		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c01207c	DoDGRqstGetChannelGammaMapState		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c012138	DoDGRqstFastlistChunksize		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c012190	dgGetWriteVoc		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c0121d4	DoDGRqstTest		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c012200	DoDGRqstVCWrite		documented	docs/dg.md#the-firmwares-display-bus-window
+arm1.u	symbol (flags 3)	0x0c012250	DoDGRqstVCRead		documented	docs/dg.md#the-firmwares-display-bus-window
+arm1.u	symbol (flags 3)	0x0c012280	DoDGRqstLoadXilinx		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c01249c	DoDGRqstLoadPabXilinx		documented	docs/dg.md#display-requests
 arm1.u	symbol (flags 2)	0x0c012644	pgmclr		undocumented	
 arm1.u	symbol (flags 2)	0x0c0126c8	databit		undocumented	
 arm1.u	symbol (flags 2)	0x0c01271c	waitclr		undocumented	
 arm1.u	symbol (flags 2)	0x0c012724	chkframe		undocumented	
 arm1.u	symbol (flags 2)	0x0c01272c	chkdone		undocumented	
-arm1.u	symbol (flags 3)	0x0c01274c	DoDGRqstLoadPabSizeRegs		documented	ucode/tport.md#what-the-image-contains
-arm1.u	symbol (flags 3)	0x0c01286c	DoDGRqstLoadPabCtrlRegs		documented	ucode/tport.md#what-the-image-contains
-arm1.u	symbol (flags 3)	0x0c0128c0	pabSetupRegisters		named-only	ucode/dg_access.tsv
+arm1.u	symbol (flags 3)	0x0c01274c	DoDGRqstLoadPabSizeRegs		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c01286c	DoDGRqstLoadPabCtrlRegs		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c0128c0	pabSetupRegisters		documented	docs/dg.md#helper-functions
 arm1.u	symbol (flags 2)	0x0c012a98	compute_gedxfermask		undocumented	
 arm1.u	symbol (flags 3)	0x0c012ae4	arm_ged_verif_load		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 3)	0x0c012b2c	arm_ged_verif_dump		documented	ucode/arm1_firmware.md#control-and-status-registers
@@ -717,10 +717,10 @@ arm1.u	symbol (flags 3)	0x0c01392c	resolve_banks		documented	docs/opengl.md#buff
 arm1.u	symbol (flags 3)	0x0c013a60	arm_drawbuffer		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 3)	0x0c013bfc	arm_readbuffer		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 3)	0x0c013d30	arm_validate_bank		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c013dd4	arm_dispmode		documented	ucode/arm1_firmware.md#control-and-status-registers
-arm1.u	symbol (flags 3)	0x0c013e50	arm_swap_cntrl		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
-arm1.u	symbol (flags 3)	0x0c013ef4	arm_dplex_swap		documented	ucode/arm1_firmware.md#control-and-status-registers
-arm1.u	symbol (flags 3)	0x0c013f5c	arm_retrace_seqid		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 3)	0x0c013dd4	arm_dispmode		documented	docs/dg.md#the-firmwares-display-bus-window
+arm1.u	symbol (flags 3)	0x0c013e50	arm_swap_cntrl		documented	docs/dg.md#the-firmwares-display-bus-window
+arm1.u	symbol (flags 3)	0x0c013ef4	arm_dplex_swap		documented	docs/dg.md#the-firmwares-display-bus-window
+arm1.u	symbol (flags 3)	0x0c013f5c	arm_retrace_seqid		documented	docs/open-questions.md#display-generator-dg
 arm1.u	symbol (flags 3)	0x0c014040	arm_finish		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c014070	arm_flush_raster		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c014084	color_init		undocumented	
@@ -751,8 +751,8 @@ arm1.u	symbol (flags 3)	0x0c015058	arm_execlist_idma		documented	docs/hip.md#dma
 arm1.u	symbol (flags 3)	0x0c015164	arm_execlist_idma_n		documented	docs/hip.md#dma-pools
 arm1.u	symbol (flags 3)	0x0c015200	downLoadAALineTable		undocumented	
 arm1.u	symbol (flags 3)	0x0c015278	downLoadPolygonStipple		undocumented	
-arm1.u	symbol (flags 3)	0x0c015298	tbus_regwrite		documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-arm1.u	symbol (flags 3)	0x0c0152b4	tbus_regwritenoincr		undocumented	
+arm1.u	symbol (flags 3)	0x0c015298	tbus_regwrite		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c0152b4	tbus_regwritenoincr		documented	docs/dg.md#helper-functions
 arm1.u	symbol (flags 3)	0x0c0152cc	arm_end_of_simulation		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c015418	set_error		documented	ucode/arm1_firmware.md#what-the-arm-sees
 arm1.u	symbol (flags 3)	0x0c015438	set_invalid_enum		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
@@ -929,18 +929,18 @@ arm1.u	symbol (flags 3)	0x0c019c78	report_icache_stats		undocumented
 arm1.u	symbol (flags 3)	0x0c019c98	putchar		undocumented	
 arm1.u	symbol (flags 2)	0x0c019cb8	printn		undocumented	
 arm1.u	symbol (flags 3)	0x0c019d64	_printf		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 2)	0x0c019f7c	eeprom_state		documented	ucode/tport.md#what-the-image-contains
-arm1.u	symbol (flags 3)	0x0c019fdc	eeprom_write		undocumented	
+arm1.u	symbol (flags 2)	0x0c019f7c	eeprom_state		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 3)	0x0c019fdc	eeprom_write		documented	docs/dg.md#helper-functions
 arm1.u	symbol (flags 3)	0x0c01a07c	eeprom_read		documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
-arm1.u	symbol (flags 2)	0x0c01a0a8	eeprom_id		documented	ucode/tport.md#what-the-image-contains
+arm1.u	symbol (flags 2)	0x0c01a0a8	eeprom_id		documented	docs/dg.md#helper-functions
 arm1.u	symbol (flags 3)	0x0c01a0ec	arm_eeprom_op		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 2)	0x0c01a230	eeprom_load		undocumented	
-arm1.u	symbol (flags 2)	0x0c01a31c	eeprom_setup		undocumented	
-arm1.u	symbol (flags 2)	0x0c01a340	eeprom_check		undocumented	
+arm1.u	symbol (flags 2)	0x0c01a230	eeprom_load		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c01a31c	eeprom_setup		documented	docs/dg.md#helper-functions
+arm1.u	symbol (flags 2)	0x0c01a340	eeprom_check		documented	docs/dg.md#helper-functions
 arm1.u	symbol (flags 2)	0x0c01a3e4	ungray		undocumented	
-arm1.u	symbol (flags 2)	0x0c01a3f4	jt_select_chain		undocumented	
+arm1.u	symbol (flags 2)	0x0c01a3f4	jt_select_chain		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 2)	0x0c01a420	jt_soft_reset		documented	docs/rm.md#reset-of-the-raster-boards
-arm1.u	symbol (flags 2)	0x0c01a4c8	jt_send_inst_or_data		undocumented	
+arm1.u	symbol (flags 2)	0x0c01a4c8	jt_send_inst_or_data		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 2)	0x0c01a6e4	insert_bits		documented	ucode/tport.md#what-the-image-contains
 arm1.u	symbol (flags 2)	0x0c01a738	extract_bits		documented	ucode/tport.md#what-the-image-contains
 arm1.u	symbol (flags 3)	0x0c01a78c	jt_reg_read		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
@@ -953,7 +953,7 @@ arm1.u	symbol (flags 3)	0x0c01ab98	ge_board_id		documented	docs/ge.md#registers-
 arm1.u	symbol (flags 3)	0x0c01aba0	rm_board_id		undocumented	
 arm1.u	symbol (flags 3)	0x0c01aba8	chip_id		documented	ucode/tport.md#what-the-image-contains
 arm1.u	symbol (flags 3)	0x0c01ac18	jt_vector_to_int		undocumented	
-arm1.u	symbol (flags 3)	0x0c01ac3c	init_kona_jtag_chain		documented	ucode/arm1_firmware.md#start-up
+arm1.u	symbol (flags 3)	0x0c01ac3c	init_kona_jtag_chain		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 3)	0x0c01aea4	init_jtag		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 3)	0x0c01afcc	init_dg_jtag		documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
 arm1.u	symbol (flags 2)	0x0c01afd8	config_imp8_jtag		undocumented	
@@ -965,31 +965,31 @@ arm1.u	symbol (flags 3)	0x0c01cd70	init_ge_jtag		documented	docs/ge.md#reset-and
 arm1.u	symbol (flags 3)	0x0c01d0c8	bef_tbus_redirect		undocumented	
 arm1.u	symbol (flags 3)	0x0c01d178	bef_set_ge		documented	ucode/arm1_firmware.md#start-up
 arm1.u	symbol (flags 3)	0x0c01d200	bef_set_numges		documented	ucode/arm1_firmware.md#start-up
-arm1.u	symbol (flags 3)	0x0c01d2d0	dg_board_id		undocumented	
-arm1.u	symbol (flags 3)	0x0c01d464	extract_nic_ser_nums		undocumented	
-arm1.u	symbol (flags 3)	0x0c01d8a0	init_config		documented	ucode/arm1_firmware.md#start-up
+arm1.u	symbol (flags 3)	0x0c01d2d0	dg_board_id		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 3)	0x0c01d464	extract_nic_ser_nums		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 3)	0x0c01d8a0	init_config		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 2)	0x0c01e098	x$constdata		undocumented	
 arm1.u	symbol (flags 3)	0x0c01e09c	null_printf		undocumented	
-arm1.u	symbol (flags 2)	0x0c01e0a0	nic_wait_done		undocumented	
-arm1.u	symbol (flags 2)	0x0c01e0c8	nic_presence		undocumented	
-arm1.u	symbol (flags 2)	0x0c01e128	nic_write		undocumented	
-arm1.u	symbol (flags 2)	0x0c01e190	nic_read		undocumented	
-arm1.u	symbol (flags 2)	0x0c01e1ec	nic_write_byte		undocumented	
-arm1.u	symbol (flags 2)	0x0c01e228	nic_read_byte		undocumented	
-arm1.u	symbol (flags 2)	0x0c01e268	nic_next_scan		undocumented	
-arm1.u	symbol (flags 3)	0x0c01e3b0	nic_setup		undocumented	
-arm1.u	symbol (flags 3)	0x0c01e3c4	nic_next		undocumented	
-arm1.u	symbol (flags 3)	0x0c01e4c4	nic_rom_skip		undocumented	
-arm1.u	symbol (flags 3)	0x0c01e518	nic_crc16		undocumented	
-arm1.u	symbol (flags 3)	0x0c01e574	nic_calc_crc		undocumented	
-arm1.u	symbol (flags 3)	0x0c01e5e4	nic_read_redirected_page		undocumented	
-arm1.u	symbol (flags 3)	0x0c01e938	knic_setup		undocumented	
-arm1.u	symbol (flags 2)	0x0c01f120	knic_pulldown		undocumented	
-arm1.u	symbol (flags 2)	0x0c01f2ac	knic_release		undocumented	
-arm1.u	symbol (flags 2)	0x0c01f5d0	knic_sample		undocumented	
-arm1.u	symbol (flags 2)	0x0c01fae0	knic_stall		undocumented	
-arm1.u	symbol (flags 3)	0x0c01fb04	knic_write		undocumented	
-arm1.u	symbol (flags 3)	0x0c01fb40	knic_read		undocumented	
+arm1.u	symbol (flags 2)	0x0c01e0a0	nic_wait_done		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 2)	0x0c01e0c8	nic_presence		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 2)	0x0c01e128	nic_write		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 2)	0x0c01e190	nic_read		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 2)	0x0c01e1ec	nic_write_byte		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 2)	0x0c01e228	nic_read_byte		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 2)	0x0c01e268	nic_next_scan		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 3)	0x0c01e3b0	nic_setup		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 3)	0x0c01e3c4	nic_next		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 3)	0x0c01e4c4	nic_rom_skip		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 3)	0x0c01e518	nic_crc16		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 3)	0x0c01e574	nic_calc_crc		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 3)	0x0c01e5e4	nic_read_redirected_page		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 3)	0x0c01e938	knic_setup		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 2)	0x0c01f120	knic_pulldown		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 2)	0x0c01f2ac	knic_release		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 2)	0x0c01f5d0	knic_sample		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 2)	0x0c01fae0	knic_stall		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 3)	0x0c01fb04	knic_write		documented	docs/dg.md#firmware-data-and-board-identification
+arm1.u	symbol (flags 3)	0x0c01fb40	knic_read		documented	docs/dg.md#firmware-data-and-board-identification
 arm1.u	symbol (flags 2)	0x0c01fb50	activate_private		documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
 arm1.u	symbol (flags 3)	0x0c01fc38	init_geBefAddrs		documented	docs/ge.md#reset-and-start-up
 arm1.u	symbol (flags 3)	0x0c01fc80	init_befshadow		documented	docs/rm.md#the-89-word-register-shadow
@@ -1025,7 +1025,7 @@ arm1.u	symbol (flags 3)	0x0c022394	arm_kernel_private		documented	ucode/arm1_fir
 arm1.u	symbol (flags 3)	0x0c022398	arm_dmapool_setup		documented	docs/hip.md#dma-pools
 arm1.u	symbol (flags 3)	0x0c022448	arm_rdata_setup		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c022474	arm_getconfig		documented	docs/rm.md#host-interface-registers-on-the-raster-bus
-arm1.u	symbol (flags 3)	0x0c0224d4	start_rdata		documented	docs/ge.md#dma
+arm1.u	symbol (flags 3)	0x0c0224d4	start_rdata		documented	docs/dg.md#helper-functions
 arm1.u	symbol (flags 3)	0x0c02255c	finish_rdata		documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
 arm1.u	symbol (flags 3)	0x0c022614	start_pixel_rdata		undocumented	
 arm1.u	symbol (flags 3)	0x0c0226b4	start_pixel_rdata_noincr		undocumented	
@@ -1601,10 +1601,10 @@ arm1.u	symbol (flags 3)	0x0c03d2c8	arm_x_init		documented	ucode/arm1_firmware.md
 arm1.u	symbol (flags 3)	0x0c03d55c	arm_x_loadpos		documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
 arm1.u	symbol (flags 3)	0x0c03d5b0	arm_x_loadclip_arm		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 3)	0x0c03d5e8	arm_x_loadcmap		documented	docs/opengl.md#x-server-module-drawing-commands
-arm1.u	symbol (flags 3)	0x0c03d6fc	arm_x_loadgamma		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
-arm1.u	symbol (flags 3)	0x0c03d9c4	arm_x_loadcursor		documented	docs/opengl.md#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor
+arm1.u	symbol (flags 3)	0x0c03d6fc	arm_x_loadgamma		documented	docs/dg.md#display-requests
+arm1.u	symbol (flags 3)	0x0c03d9c4	arm_x_loadcursor		documented	docs/open-questions.md#display-generator-dg
 arm1.u	symbol (flags 3)	0x0c03daa0	arm_x_loadcursorcolor		documented	docs/opengl.md#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor
-arm1.u	symbol (flags 3)	0x0c03db80	arm_x_loadxmap_did		documented	docs/opengl.md#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017
+arm1.u	symbol (flags 3)	0x0c03db80	arm_x_loadxmap_did		documented	docs/dg.md#the-firmwares-display-bus-window
 arm1.u	symbol (flags 3)	0x0c03dc44	arm_x_loadxmap_config		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c03dc68	arm_mapdata1d		documented	docs/ge.md#variable-length-command-grammars
 arm1.u	symbol (flags 3)	0x0c03dca0	arm_mapdata2d		documented	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d
@@ -1681,99 +1681,99 @@ arm1.u	symbol (flags 3)	0x0c0401f4	__rt_udiv10		undocumented
 arm1.u	symbol (flags 3)	0x0c040228	__rt_sdiv10		undocumented	
 arm1.u	linker region	0x0c040248	Image$$RO$$Limit		undocumented	
 arm1.u	symbol (flags 1)	0x0c040248	_etext		undocumented	
-arm1.u	display command	0	DoDGRqstTest	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	1	DoDGRqstVCWrite	words=2	named-only	ucode/dg_access.tsv
-arm1.u	display command	2	DoDGRqstVCRead	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	3	DoDGRqstDiagXmapColor	words=10	named-only	ucode/dg_access.tsv
-arm1.u	display command	4	DoDGRqstDisableDiagXmapColor	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	5	DoDGRqstVCBusTrace	words=4	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	6	DoDGRqstDiagCursorFromImage	words=4107	named-only	ucode/dg_access.tsv
-arm1.u	display command	7	DoDGRqstDebugMask	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	8	DoDGRqstSetupFrameBuffer	words=3	named-only	ucode/dg_access.tsv
-arm1.u	display command	9	DoDGRqstInputSync	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	10	DoDGRqstGetInputSync	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	11	DoDGRqstHPhase	words=2	named-only	ucode/dg_access.tsv
-arm1.u	display command	12	DoDGRqstGetHPhase	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	13	DoDGRqstVPhase	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	14	DoDGRqstGetVPhase	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	15	DoDGRqstChannelGammaMap	words=2	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	16	DoDGRqstGetChannelGammaMap	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	17	DoDGRqstFetal	words=1	documented	docs/open-questions.md#arm-firmware
-arm1.u	display command	18	DoDGRqstGetBoardConfig	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	19	DoDGRqstGetChannelConfig	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	20	DoDGRqstResize	words=8	documented	docs/opengl.md#display-and-scanout
-arm1.u	display command	21	DoDGRqstGetResize	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	22	DoDGRqstLoadFormat	words=383	documented	ucode/dg.md#display-tables-video-formats-combinations-vof-sources-and-the-option-board-image
-arm1.u	display command	23	DoDGRqstEnableChannel	words=3	documented	ucode/tport.md#the-display-request-table
-arm1.u	display command	24	DoDGRqstDisableChannel	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	25	DoDGRqstLoadGenlockParams	words=16	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	26	DoDGRqstEnableGenlock	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	27	DoDGRqstCursorPosition	words=2	named-only	ucode/dg_access.tsv
-arm1.u	display command	28	DoDGRqstCursorChannel	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	29	DoDGRqstCursorType	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	30	DoDGRqstCursorPriority	words=2	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	31	DoDGRqstChannelBlanking	words=2	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	32	DoDGRqstGetChannelBlanking	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	33	DoDGRqstOutputGain	words=2	named-only	ucode/dg_access.tsv
-arm1.u	display command	34	DoDGRqstGetOutputGain	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	35	DoDGRqstSyncSelects	words=4	named-only	ucode/dg_access.tsv
-arm1.u	display command	36	DoDGRqstGetSyncSelects	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	37	DoDGRqstOutputPedestal	words=2	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	38	DoDGRqstGetOutputPedestal	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	39	DoDGRqstInitTextport	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	40	DoDGRqstLoadTextportGlyph	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	41	DoDGRqstLoadTextportColorIndex	words=4	named-only	ucode/dg_access.tsv
-arm1.u	display command	42	DoDGRqstEnableVocReadback	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	43	DoDGRqstMasterClockSelect	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	44	DoDGRqstGetMasterClockSelect	words=1	named-only	ucode/dg_dispatch.tsv
+arm1.u	display command	0	DoDGRqstTest	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	1	DoDGRqstVCWrite	words=2	documented	docs/dg.md#the-firmwares-display-bus-window
+arm1.u	display command	2	DoDGRqstVCRead	words=1	documented	docs/dg.md#the-firmwares-display-bus-window
+arm1.u	display command	3	DoDGRqstDiagXmapColor	words=10	documented	docs/dg.md#display-requests
+arm1.u	display command	4	DoDGRqstDisableDiagXmapColor	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	5	DoDGRqstVCBusTrace	words=4	documented	docs/dg.md#display-requests
+arm1.u	display command	6	DoDGRqstDiagCursorFromImage	words=4107	documented	docs/dg.md#display-requests
+arm1.u	display command	7	DoDGRqstDebugMask	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	8	DoDGRqstSetupFrameBuffer	words=3	documented	docs/dg.md#display-requests
+arm1.u	display command	9	DoDGRqstInputSync	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	10	DoDGRqstGetInputSync	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	11	DoDGRqstHPhase	words=2	documented	docs/dg.md#display-requests
+arm1.u	display command	12	DoDGRqstGetHPhase	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	13	DoDGRqstVPhase	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	14	DoDGRqstGetVPhase	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	15	DoDGRqstChannelGammaMap	words=2	documented	docs/dg.md#display-requests
+arm1.u	display command	16	DoDGRqstGetChannelGammaMap	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	17	DoDGRqstFetal	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	18	DoDGRqstGetBoardConfig	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	19	DoDGRqstGetChannelConfig	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	20	DoDGRqstResize	words=8	documented	docs/dg.md#the-resize-request-8-words
+arm1.u	display command	21	DoDGRqstGetResize	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	22	DoDGRqstLoadFormat	words=383	documented	docs/dg.md#voc-registers
+arm1.u	display command	23	DoDGRqstEnableChannel	words=3	documented	docs/dg.md#display-requests
+arm1.u	display command	24	DoDGRqstDisableChannel	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	25	DoDGRqstLoadGenlockParams	words=16	documented	docs/dg.md#display-requests
+arm1.u	display command	26	DoDGRqstEnableGenlock	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	27	DoDGRqstCursorPosition	words=2	documented	docs/dg.md#display-requests
+arm1.u	display command	28	DoDGRqstCursorChannel	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	29	DoDGRqstCursorType	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	30	DoDGRqstCursorPriority	words=2	documented	docs/dg.md#display-requests
+arm1.u	display command	31	DoDGRqstChannelBlanking	words=2	documented	docs/dg.md#display-requests
+arm1.u	display command	32	DoDGRqstGetChannelBlanking	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	33	DoDGRqstOutputGain	words=2	documented	docs/dg.md#display-requests
+arm1.u	display command	34	DoDGRqstGetOutputGain	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	35	DoDGRqstSyncSelects	words=4	documented	docs/dg.md#display-requests
+arm1.u	display command	36	DoDGRqstGetSyncSelects	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	37	DoDGRqstOutputPedestal	words=2	documented	docs/dg.md#display-requests
+arm1.u	display command	38	DoDGRqstGetOutputPedestal	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	39	DoDGRqstInitTextport	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	40	DoDGRqstLoadTextportGlyph	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	41	DoDGRqstLoadTextportColorIndex	words=4	documented	docs/dg.md#display-requests
+arm1.u	display command	42	DoDGRqstEnableVocReadback	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	43	DoDGRqstMasterClockSelect	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	44	DoDGRqstGetMasterClockSelect	words=1	documented	docs/dg.md#display-requests
 arm1.u	display command	45	DoDGRqstAutoInit	words=1	documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
-arm1.u	display command	46	DoDGRqstLoadEncoder	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	47	DoDGRqstEncoderOutputGain	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	48	DoDGRqstGetEncoderOutputGain	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	49	DoDGRqstSCHPhase	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	50	DoDGRqstGetSCHPhase	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	51	DoDGRqstEncoderTestPattern	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	52	DoDGRqstBindChannelToXWid	words=2	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	53	DoDGRqstLoadPabXilinx	words=1328	documented	ucode/tport.md#what-the-image-contains
-arm1.u	display command	54	DoDGRqstLoadPabSizeRegs	words=4	documented	ucode/tport.md#what-the-image-contains
-arm1.u	display command	55	DoDGRqstLoadPabCtrlRegs	words=2	documented	ucode/tport.md#what-the-image-contains
-arm1.u	display command	56	DoDGRqstLoadDacCursor	words=263	named-only	ucode/dg_access.tsv
-arm1.u	display command	57	DoDGRqstVampireAndFieldDominance	words=7	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	58	DoDGRqstGetVampire	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	59	DoDGRqstFastlistChunksize	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	60	DoDGRqstTempBlankAllChannels	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	61	DoDGRqstGetDGInterruptState	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	62	DoDGRqstXMapClockSelect	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	63	DoDGRqstGetXMapClockSelect	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	64	DoDGRqstChannelResetRatios	words=3	named-only	ucode/dg_dispatch.tsv
+arm1.u	display command	46	DoDGRqstLoadEncoder	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	47	DoDGRqstEncoderOutputGain	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	48	DoDGRqstGetEncoderOutputGain	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	49	DoDGRqstSCHPhase	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	50	DoDGRqstGetSCHPhase	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	51	DoDGRqstEncoderTestPattern	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	52	DoDGRqstBindChannelToXWid	words=2	documented	docs/dg.md#display-requests
+arm1.u	display command	53	DoDGRqstLoadPabXilinx	words=1328	documented	docs/dg.md#display-requests
+arm1.u	display command	54	DoDGRqstLoadPabSizeRegs	words=4	documented	docs/dg.md#display-requests
+arm1.u	display command	55	DoDGRqstLoadPabCtrlRegs	words=2	documented	docs/dg.md#display-requests
+arm1.u	display command	56	DoDGRqstLoadDacCursor	words=263	documented	docs/dg.md#display-requests
+arm1.u	display command	57	DoDGRqstVampireAndFieldDominance	words=7	documented	docs/dg.md#display-requests
+arm1.u	display command	58	DoDGRqstGetVampire	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	59	DoDGRqstFastlistChunksize	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	60	DoDGRqstTempBlankAllChannels	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	61	DoDGRqstGetDGInterruptState	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	62	DoDGRqstXMapClockSelect	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	63	DoDGRqstGetXMapClockSelect	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	64	DoDGRqstChannelResetRatios	words=3	documented	docs/dg.md#display-requests
 arm1.u	display command	65	DoDGRqstResetRMBoards	words=1	documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
-arm1.u	display command	66	DoDGRqstGetChannelEnables	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	67	DoDGRqstPlacementRes	words=9	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	68	DoDGRqstGenlockSwitching	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	69	DoDGRqstGetGenlockSwitching	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	70	DoDGRqstChannelFieldDominance	words=2	named-only	ucode/dg_access.tsv
-arm1.u	display command	71	DoDGRqstGetChannelFieldDominance	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	72	DoDGRqstBoardResetRatio	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	73	DoDGRqstGetBoardResetRatio	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	74	DoDGRqstGetChannelFormatInfo	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	75	DoDGRqstChannelGammaMapState	words=5	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	76	DoDGRqstGetChannelGammaMapState	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	77	DoDGRqstEnableEncoder	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	78	DoDGRqstResizeSyncType	words=2	documented	docs/opengl.md#display-and-scanout
-arm1.u	display command	79	DoDGRqstVampire	words=7	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	80	DoDGRqstQueryMonitorName	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	81	DoDGRqstMonitorCommand	words=34	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	82	DoDGRqstLoadXilinx	words=6	documented	ucode/arm1_firmware.md#display-generator-commands
-arm1.u	display command	83	DoDGRqstXServerVideoInit	words=1	documented	ucode/tport.md#what-the-image-contains
-arm1.u	display command	84	DoDGRqstInternalGenlock	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	85	DoDGRqstGetInternalGenlock	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	86	DoDGRqstBufferParams	words=3	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	87	DoDGRqstGetBufferParams	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	88	DoDGRqstDataFormat	words=3	documented	ucode/tport.md#what-the-image-contains
-arm1.u	display command	89	DoDGRqstGetDataFormat	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	90	DoDGRqstDVPMult2Freq	words=1	named-only	ucode/dg_access.tsv
-arm1.u	display command	91	DoDGRqstVBOBCommand	words=42	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	92	DoDGRqstGetVBOBReply	words=1	named-only	ucode/dg_dispatch.tsv
+arm1.u	display command	66	DoDGRqstGetChannelEnables	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	67	DoDGRqstPlacementRes	words=9	documented	docs/dg.md#display-requests
+arm1.u	display command	68	DoDGRqstGenlockSwitching	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	69	DoDGRqstGetGenlockSwitching	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	70	DoDGRqstChannelFieldDominance	words=2	documented	docs/dg.md#display-requests
+arm1.u	display command	71	DoDGRqstGetChannelFieldDominance	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	72	DoDGRqstBoardResetRatio	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	73	DoDGRqstGetBoardResetRatio	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	74	DoDGRqstGetChannelFormatInfo	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	75	DoDGRqstChannelGammaMapState	words=5	documented	docs/dg.md#display-requests
+arm1.u	display command	76	DoDGRqstGetChannelGammaMapState	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	77	DoDGRqstEnableEncoder	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	78	DoDGRqstResizeSyncType	words=2	documented	docs/dg.md#display-requests
+arm1.u	display command	79	DoDGRqstVampire	words=7	documented	docs/dg.md#display-requests
+arm1.u	display command	80	DoDGRqstQueryMonitorName	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	81	DoDGRqstMonitorCommand	words=34	documented	docs/dg.md#display-requests
+arm1.u	display command	82	DoDGRqstLoadXilinx	words=6	documented	docs/dg.md#display-requests
+arm1.u	display command	83	DoDGRqstXServerVideoInit	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	84	DoDGRqstInternalGenlock	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	85	DoDGRqstGetInternalGenlock	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	86	DoDGRqstBufferParams	words=3	documented	docs/dg.md#display-requests
+arm1.u	display command	87	DoDGRqstGetBufferParams	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	88	DoDGRqstDataFormat	words=3	documented	docs/dg.md#display-requests
+arm1.u	display command	89	DoDGRqstGetDataFormat	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	90	DoDGRqstDVPMult2Freq	words=1	documented	docs/dg.md#display-requests
+arm1.u	display command	91	DoDGRqstVBOBCommand	words=42	documented	docs/dg.md#display-requests
+arm1.u	display command	92	DoDGRqstGetVBOBReply	words=1	documented	docs/dg.md#display-requests
 ge.u	label	0x00000000	HereWeGo		documented	docs/ge.md#reset-and-start-up
 ge.u	label	0x00000053	mgeb_EvalMapSpec1D		named-only	ucode/ged_bound_table.tsv
 ge.u	label	0x00000053	ugeb_EvalMapSpec1D		undocumented	
@@ -2311,7 +2311,7 @@ ge.u	label	0x00005293	mgesi_XPoint		named-only	ucode/ge_name_matches.tsv
 ge.u	label	0x000052a3	mRelX		undocumented	
 ge.u	label	0x000052c4	mAbsX		undocumented	
 ge.u	label	0x000052e8	mgesi_VCbusWriteMultiple		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
-ge.u	label	0x00005305	mgesi_VCbusWrite		documented	docs/opengl.md#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor
+ge.u	label	0x00005305	mgesi_VCbusWrite		documented	docs/dg.md#the-firmwares-display-bus-window
 ge.u	label	0x00005312	mmo_UnpackVertexV3F_C4UB_T2S_LGT		undocumented	
 ge.u	label	0x00005368	mmo_UnpackVertexV3F_T2S_LGT		undocumented	
 ge.u	label	0x000053a8	mmo_UnpackVertexV3F_C4UB_T2F_LGT		undocumented	
@@ -3377,7 +3377,7 @@ geif.u	dispatch slot	499	mgesi_XLine	handler 0x5196	named-only	ucode/ge_name_mat
 geif.u	dispatch slot	500	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up
 geif.u	dispatch slot	501	mgesi_XLineRel	handler 0x5187	named-only	ucode/ged_bound_table.tsv
 geif.u	dispatch slot	502	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up
-geif.u	dispatch slot	503	mgesi_VCbusWrite	handler 0x5305	documented	docs/opengl.md#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor
+geif.u	dispatch slot	503	mgesi_VCbusWrite	handler 0x5305	documented	docs/dg.md#the-firmwares-display-bus-window
 geif.u	dispatch slot	504	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up
 geif.u	dispatch slot	505	mgesi_VCbusWriteMultiple	handler 0x52e8	documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 geif.u	dispatch slot	506	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up

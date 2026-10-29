@@ -421,7 +421,7 @@ token	kpm_name	header_name	firmware_route	sources	status	doc
 0x1a3	HP_VARRAY_UNSETUP	KONA_HP_VARRAY_UNSETUP	HP_VARRAY_UNSETUP	GE.h,firmware map,kpm	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
 0x1a4	HP_SPRITEPARAMETERI	KONA_HP_SPRITEPARAMETERI	HP_SPRITEPARAMETERI	GE.h,firmware map,kpm	named-only	GE.h:566
 0x1a5	HP_SPRITEPARAMETERFV	KONA_HP_SPRITEPARAMETERFV	HP_SPRITEPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:567
-0x1a6	HP_VIDEO_CMD	KONA_HP_VIDEO_CMD	HP_VIDEO_CMD	GE.h,firmware map,kpm	documented	docs/ge.md#context-query-and-other-long-commands
+0x1a6	HP_VIDEO_CMD	KONA_HP_VIDEO_CMD	HP_VIDEO_CMD	GE.h,firmware map,kpm	documented	docs/dg.md#the-loadformat-request-383-words
 0x1a7	HP_POINTPARAMETERF	KONA_HP_POINTPARAMETERF	HP_POINTPARAMETERF	GE.h,firmware map,kpm	named-only	GE.h:569
 0x1a8	HP_POINTPARAMETERFV	KONA_HP_POINTPARAMETERFV	HP_POINTPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:570
 0x1a9	HP_SWAPTMESH	KONA_HP_SWAPTMESH	HP_SWAPTMESH	GE.h,firmware map,kpm	documented	ucode/arm1.md#the-512-entry-table-as-eight-banks-the-152-vertex-primitive-and-beginend-tokens

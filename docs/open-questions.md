@@ -80,11 +80,15 @@ Routes already tried: `arm1.u` (6.5.30m, the whole image disassembled with its 1
 
 ## Display generator (DG)
 
-| Question | Owner | Next route |
-|---|---|---|
-| The display-bus writes for the cursor crosshair address 9884 and colour word 259 of `X_LOADCURSOR` | `docs/opengl.md`, `DG.h` | Trace the video-controller port (`vc_data[8]` with its strobes) while the X server loads a cursor and switches it to crosshair mode. |
-| When the hardware raises the VIDEO interrupt (bit 3) and writes `HH_SEQID` relative to vertical retrace, and what raises VOC (bit 9) | `docs/dg.md`, `docs/hip.md` | Log `HH_INTR_STATUS` and `HH_SEQID` with timestamps against the vertical sync on the video connector while a program swaps every frame; unplug and replug genlock for VOC. |
-| The display generator's own reset register and whether a host request or interrupt reaches it | `docs/dg.md` | Read the display board's scan-chain registers before and after `ResetRMBoards` and after an `HH_RESET` pulse. |
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| Where cursor-memory address 9884 and colour word 259 of `X_LOADCURSOR` sit inside the XMAP's cursor memory | `docs/opengl.md`, `DG.h` | `arm_x_loadcursor` (0x0c03d9c4): it writes the slot address (slot x 260) to XMAP 0x118 and streams the 260 words to the data port 0x119 through the engine, then writes 0 to 0x11f three times and 0x11e four times; the kernel writes the glyph address to XMAP 0x101 | `irsaudit`'s XMAP and cursor tests (`TEST_xmapreg` and the cursor-image request 6), which write known patterns at known cursor addresses; if they name no layout, label it unknown with these routes |
+| When the pipe writes `HH_SEQID` and raises VIDEO (bit 3), and what raises VOC (bit 9) | `docs/dg.md`, `docs/hip.md` | kernel retrace queue; `arm_retrace_seqid` (0x0c013f5c) sends six engine display-bus writes of 1-6 to address 0x7f, then the sequence number as raster-bus register 0x420 (`tbus_regwrite`), so the number travels behind the drawing | the geometry program's handler for raster register 0x420 and the back-end chip's register list in the diagnostics (`irsaudit` names for 0x420); then the ARM's interrupt entry (`irq`) for a VOC or vertical-retrace source |
+| A display-generator reset register | `docs/dg.md` | `init_dg_board`, `DoDGRqstResetRMBoards` (it reads and writes 0x301 and 0x306, the control and VOF-control registers of VOC id 1, the "master VOC" it restarts), `DoDGRqstFetal`; no other write resembles a reset | `irsaudit`'s display-board tests for a reset step; if none, label it unknown with these routes |
+| What the display hardware does with `hwd_mode` bits 2-4, the clock-parameter units and LoadFormat words 1, 26, 27, 275-277 and 297-300 beyond the register bits they fill | `docs/dg.md`, `docs/opengl.md` | the X module's builder and `konValidateMode`, the kernel, the firmware consumers | labelled unknown in [dg.md](dg.md#the-loadformat-request-383-words); next: the `setmon` and `ircombine` tools, which print some of these fields by name |
+| The pixel format on the 160-wire video bus, the tile request format, and the XMAP registers the diagnostic's list leaves out (4, 5, 8-10, 0x10) | `docs/rm.md`, `DG.h` | netlists; the firmware's XMAP writes (0x100-0x110 in `dgMakeXmapFetal`, 0x118-0x11f) | `dgMakeXmapFetal`'s writes of 0x106-0x110 with their values, and the VOC requester set-up (`dgConfigureVideoRequester`, VOC 0x43-0x60), which programs the tile requests |
+
+**Where this section stopped (2026-10-29).** The firmware's display-bus map, the LoadFormat and Resize requests, the 93 display requests and their helpers, `tport.bin` and the format-compiler rules are read ([dg.md](dg.md), [DG.h](../DG.h), [ucode/tport.md](../ucode/tport.md), [ucode/dg.md](../ucode/dg.md)). Next: the five rows above in order, starting with `dgConfigureVideoRequester` and `dgMakeXmapFetal`, which also feed the RM display row.
 
 ## Geometry distributor
 

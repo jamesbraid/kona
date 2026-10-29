@@ -14,6 +14,13 @@ index register added to it (blank for a constant address), and the value
 stored when it is a known constant.
 
     scripts/dg_access.py ucode/arm1.s > ucode/dg_access.tsv
+
+With --functions LISTING ACCESS_TSV it prints instead one markdown table
+row per display-side function of the listing (dg*, i2c_*, eeprom_*, the
+PAB loader and the display-command entry): its address, the bus addresses
+it reads (r) and writes (w) from the access table (+0x100*n for a
+per-channel block, +i for an index register), the functions it calls and
+its first message string. docs/dg.md carries that table.
 """
 import re
 import sys
@@ -134,5 +141,46 @@ def main(path):
             known.pop(rd, None)
 
 
+def functions(listing, table):
+    import collections
+    acc = collections.defaultdict(lambda: collections.defaultdict(set))
+    for line in open(table).read().splitlines()[1:]:
+        f = line.split('\t')
+        k = f[4] + ('+0x100*n' if f[5] == '10' else ('+i' if f[5] else ''))
+        acc[f[0]][k].add('r' if f[2].startswith('ldr') else 'w')
+    calls = collections.defaultdict(list)
+    strs = collections.defaultdict(list)
+    addr = {}
+    cur = None
+    for line in open(listing):
+        m = LABEL.match(line.rstrip('\n'))
+        if m:
+            cur = m.group(1)
+            continue
+        if cur and cur not in addr:
+            m = re.match(r'^([0-9a-f]{8}):', line)
+            if m:
+                addr[cur] = m.group(1)
+        m = re.search(r'\bbl\w* 0x\w+ <(\w+)>', line)
+        if m and cur:
+            calls[cur].append(m.group(1))
+        m = re.search(r'\.asciz "(.*)"', line)
+        if m and cur:
+            strs[cur].append(m.group(1))
+    pat = re.compile(r'(dg[A-Z]|i2c_|read_edid|eeprom_|init_voc|init_dac|init_dg|pab[A-Z]|pgmclr|'
+                     r'waitclr|databit|chkframe|chkdone|isvoc1b|arm_video_cmd|SendDGRply)')
+    for n in sorted((n for n in addr if pat.match(n)), key=lambda x: addr[x]):
+        bus = ', '.join('%s %s' % (k, '/'.join(sorted(v))) for k, v in sorted(acc[n].items()))
+        cs = [c for c in dict.fromkeys(calls[n])
+              if c not in ('_printf', '__rt_sdiv', '__rt_udiv', 'sleep')]
+        msg = [x for x in strs[n] if len(x) > 8][:1]
+        text = ('"%s"' % msg[0][:60].replace('|', '/')) if msg else ''
+        print('| `%s` | 0x%s | %s | %s | %s |' % (
+            n, addr[n], bus or '-', ', '.join('`%s`' % c for c in cs[:6]) or '-', text))
+
+
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else 'ucode/arm1.s')
+    if len(sys.argv) > 1 and sys.argv[1] == '--functions':
+        functions(sys.argv[2], sys.argv[3])
+    else:
+        main(sys.argv[1] if len(sys.argv) > 1 else 'ucode/arm1.s')

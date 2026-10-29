@@ -1447,9 +1447,9 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x10036610	508	dg_clock_setup	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x1003680c	764	dgopt_clock_setup	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10036b08	492	dg_clock_restore	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10036cf4	536	dgopt_clock_restore	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x10036f0c	64	dgVDacModeWrite	named-only	ucode/dg_access.tsv
-usr/diags/IR/bin/irsaudit	n32	65281	0x10036f4c	152	dgVDacControlWrite	named-only	ucode/dg_access.tsv
-usr/diags/IR/bin/irsaudit	n32	65281	0x10036fe4	372	dgMakeVDacFetal	named-only	ucode/dg_access.tsv
+usr/diags/IR/bin/irsaudit	n32	65281	0x10036f0c	64	dgVDacModeWrite	documented	docs/dg.md#helper-functions
+usr/diags/IR/bin/irsaudit	n32	65281	0x10036f4c	152	dgVDacControlWrite	documented	docs/dg.md#helper-functions
+usr/diags/IR/bin/irsaudit	n32	65281	0x10036fe4	372	dgMakeVDacFetal	documented	docs/dg.md#helper-functions
 usr/diags/IR/bin/irsaudit	n32	65281	0x10037158	192	dg_make_dac_fetal	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10037218	188	destroy_map_diag	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100372d4	156	ged_host_reg_write	documented	ucode/ged.md#registers-the-host-writes
@@ -1589,7 +1589,7 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x10061a5c	1140	TEST_dgconn	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x10061ed0	128	DgVDacControlWrite	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10061f50	352	reset_dacs	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100620b0	676	DacReset	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x10062358	320	i2c_init	named-only	ucode/dg_access.tsv
+usr/diags/IR/bin/irsaudit	n32	65281	0x10062358	320	i2c_init	documented	docs/dg.md#display-requests
 usr/diags/IR/bin/irsaudit	n32	65281	0x100624e4	364	i2c_arb	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10062650	748	i2c_master_xmit	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006293c	748	i2c_master_recv	undocumented	
@@ -1692,8 +1692,8 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x10079858	572	TEST_intr	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x1007a71c	640	TEST_mbox	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1007a99c	64	TEST_dganalog	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1007a9dc	72	TEST_fail	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x1007af50	72	nic_setup	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x1007af98	388	nic_next	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x1007af50	72	nic_setup	documented	docs/dg.md#firmware-data-and-board-identification
+usr/diags/IR/bin/irsaudit	n32	65281	0x1007af98	388	nic_next	documented	docs/dg.md#firmware-data-and-board-identification
 usr/diags/IR/bin/irsaudit	n32	65281	0x1007b2b4	740	nic_read_one_page	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1007b598	932	nic_read_mfg	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1007bb74	100	nic_access_mcr32	undocumented	
@@ -1800,7 +1800,7 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x100acd50	420	TEST_xmapchid	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x100ad210	460	TEST_xmapdid	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100ad714	420	TEST_xmapovdid	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100adbfc	520	TEST_xmapmem	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x100b0094	364	TEST_xmapreg	documented	DG.h:205
+usr/diags/IR/bin/irsaudit	n32	65281	0x100b0094	364	TEST_xmapreg	documented	docs/open-questions.md#display-generator-dg
 usr/diags/IR/bin/irsaudit	n32	65281	0x100b04ec	1732	TEST_tbusdata	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100b0e70	820	TEST_idmabug	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100b11a4	548	black_hole_ged	undocumented	
@@ -1822,7 +1822,7 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x100b78bc	504	draw_triz	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x100b7b90	816	TEST_dquad	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100bc9f4	4616	update_registers	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100bdbfc	688	standard_init	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x100bdeac	1044	init_config	documented	ucode/arm1_firmware.md#start-up
+usr/diags/IR/bin/irsaudit	n32	65281	0x100bdeac	1044	init_config	documented	docs/dg.md#firmware-data-and-board-identification
 usr/diags/IR/bin/irsaudit	n32	65281	0x100be2c0	1284	init_op	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100be7c4	592	init_ms	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100bea14	484	init_clip	undocumented	
@@ -2463,7 +2463,7 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x10167c80	960	jt_isolate_chip	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x10168040	548	jt_powerup_chain	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10168270	104	jt_set_procs	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10168530	60	jt_init	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x10168570	68	jt_select_chain	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x10168570	68	jt_select_chain	documented	docs/dg.md#firmware-data-and-board-identification
 usr/diags/IR/bin/irsaudit	n32	65281	0x101685c0	60	jt_soft_reset	documented	docs/rm.md#reset-of-the-raster-boards
 usr/diags/IR/bin/irsaudit	n32	65281	0x10168600	60	jt_hard_reset	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10168640	60	jt_test_thyself	undocumented	
@@ -2692,7 +2692,7 @@ usr/gfx/KONA/bin/kpm	n32	65281	0x10033600	124	jt_int_to_vector	undocumented
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033680	252	jt_find_chip	undocumented	
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033780	104	jt_set_procs	undocumented	
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033a40	60	jt_init	undocumented	
-usr/gfx/KONA/bin/kpm	n32	65281	0x10033a80	68	jt_select_chain	undocumented	
+usr/gfx/KONA/bin/kpm	n32	65281	0x10033a80	68	jt_select_chain	documented	docs/dg.md#firmware-data-and-board-identification
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033ad0	60	jt_soft_reset	documented	docs/rm.md#reset-of-the-raster-boards
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033b10	60	jt_hard_reset	undocumented	
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033b50	60	jt_test_thyself	undocumented	
@@ -13843,7 +13843,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd94663c	140	FindWindowSize	docume
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9466c8	56	ApplyViewport	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd946700	8	ApplyScissor	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd946708	172	SwapBuffers	documented	docs/opengl.md#which-functions-call-the-kernel
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9467b4	120	ChannelRect	documented	docs/opengl.md#display-and-scanout
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9467b4	120	ChannelRect	documented	docs/dg.md#the-resize-request-8-words
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd94682c	100	ChannelRectSync	documented	docs/opengl.md#display-and-scanout
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd946890	20	Error	documented	docs/opengl.md#display-and-scanout
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9468a4	52	PickBufferProcs	undocumented	
@@ -29486,7 +29486,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd94663c	140	FindWindowSize	docume
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9466c8	56	ApplyViewport	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd946700	8	ApplyScissor	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd946708	172	SwapBuffers	documented	docs/opengl.md#which-functions-call-the-kernel
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9467b4	120	ChannelRect	documented	docs/opengl.md#display-and-scanout
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9467b4	120	ChannelRect	documented	docs/dg.md#the-resize-request-8-words
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd94682c	100	ChannelRectSync	documented	docs/opengl.md#display-and-scanout
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd946890	20	Error	documented	docs/opengl.md#display-and-scanout
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9468a4	52	PickBufferProcs	undocumented	
@@ -46053,7 +46053,7 @@ usr/gfx/ircombine	n32	65281	0x10086d20	616	vfmtFindCmpCombinationFile	undocument
 usr/gfx/ircombine	n32	65281	0x10086f90	132	vfmtGetLastKonaFileStat	undocumented	
 usr/gfx/ircombine	n32	65281	0x10088620	500	vfmtReadKonaCombination	undocumented	
 usr/gfx/ircombine	n32	65281	0x10089870	2304	vfmtWriteKonaCombination	undocumented	
-usr/gfx/ircombine	n32	65281	0x1008c9e0	772	vfmtReadKonaVideoFormat	undocumented	
+usr/gfx/ircombine	n32	65281	0x1008c9e0	772	vfmtReadKonaVideoFormat	documented	docs/dg.md#the-loadformat-request-383-words
 usr/gfx/ircombine	n32	65281	0x1008cfa4	56	SDBaddNewArraySymbol	undocumented	
 usr/gfx/ircombine	n32	65281	0x1008cfdc	64	SDBaddNewScalarSymbol	undocumented	
 usr/gfx/ircombine	n32	65281	0x1008d01c	404	SDBcloseNewDatabase	undocumented	
@@ -46287,7 +46287,7 @@ usr/gfx/setmon	n32	65281	0x1001d220	616	vfmtFindCmpCombinationFile	undocumented
 usr/gfx/setmon	n32	65281	0x1001d490	132	vfmtGetLastKonaFileStat	undocumented	
 usr/gfx/setmon	n32	65281	0x1001eb20	500	vfmtReadKonaCombination	undocumented	
 usr/gfx/setmon	n32	65281	0x1001fd70	2304	vfmtWriteKonaCombination	undocumented	
-usr/gfx/setmon	n32	65281	0x10022ef0	772	vfmtReadKonaVideoFormat	undocumented	
+usr/gfx/setmon	n32	65281	0x10022ef0	772	vfmtReadKonaVideoFormat	documented	docs/dg.md#the-loadformat-request-383-words
 usr/gfx/setmon	n32	65281	0x100234b4	56	SDBaddNewArraySymbol	undocumented	
 usr/gfx/setmon	n32	65281	0x100234ec	64	SDBaddNewScalarSymbol	undocumented	
 usr/gfx/setmon	n32	65281	0x1002352c	404	SDBcloseNewDatabase	undocumented	
@@ -47870,7 +47870,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x42bcf0	616	vfmtFindCmpCombinationFile	undo
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x42bf60	132	vfmtGetLastKonaFileStat	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x42d5f0	500	vfmtReadKonaCombination	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x42e840	2304	vfmtWriteKonaCombination	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4319c0	772	vfmtReadKonaVideoFormat	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4319c0	772	vfmtReadKonaVideoFormat	documented	docs/dg.md#the-loadformat-request-383-words
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x431f84	56	SDBaddNewArraySymbol	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x431fbc	64	SDBaddNewScalarSymbol	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x431ffc	404	SDBcloseNewDatabase	undocumented	
@@ -48665,7 +48665,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x42b470	616	vfmtFindCmpCombinationFile	und
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x42b6e0	132	vfmtGetLastKonaFileStat	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x42cd70	500	vfmtReadKonaCombination	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x42dfc0	2304	vfmtWriteKonaCombination	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x431140	772	vfmtReadKonaVideoFormat	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x431140	772	vfmtReadKonaVideoFormat	documented	docs/dg.md#the-loadformat-request-383-words
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x431704	56	SDBaddNewArraySymbol	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x43173c	64	SDBaddNewScalarSymbol	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x43177c	404	SDBcloseNewDatabase	undocumented	
@@ -49460,7 +49460,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x13ab470	616	vfmtFindCmpCombinationFile	un
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13ab6e0	132	vfmtGetLastKonaFileStat	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13acd70	500	vfmtReadKonaCombination	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13adfc0	2304	vfmtWriteKonaCombination	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b1140	772	vfmtReadKonaVideoFormat	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b1140	772	vfmtReadKonaVideoFormat	documented	docs/dg.md#the-loadformat-request-383-words
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b1704	56	SDBaddNewArraySymbol	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b173c	64	SDBaddNewScalarSymbol	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b177c	404	SDBcloseNewDatabase	undocumented	
@@ -50255,7 +50255,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x42b470	616	vfmtFindCmpCombinationFile	und
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x42b6e0	132	vfmtGetLastKonaFileStat	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x42cd70	500	vfmtReadKonaCombination	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x42dfc0	2304	vfmtWriteKonaCombination	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x431140	772	vfmtReadKonaVideoFormat	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x431140	772	vfmtReadKonaVideoFormat	documented	docs/dg.md#the-loadformat-request-383-words
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x431704	56	SDBaddNewArraySymbol	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x43173c	64	SDBaddNewScalarSymbol	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x43177c	404	SDBcloseNewDatabase	undocumented	
