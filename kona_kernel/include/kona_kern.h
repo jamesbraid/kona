@@ -144,9 +144,36 @@
  *   4. activate_token, then one 0 word (the no-argument form, GE.h).
  * INFERRED: R+8..R+20 and R'+8/+12 are window origin and size, and the
  * four list words a clip rectangle; R+60/R'+60 match in both packets and
- * may be a drawable id. Field meanings are UNKNOWN beyond these offsets;
- * activate_token is INFERRED to be HP_CONTEXT_ACTIVATE 0x1fa, since no other
- * token in KONApcxswap or kona_act_pcx activates the context.
+ * may be a drawable id. Field meanings are UNKNOWN beyond these offsets.
+ *
+ * Activate token, ESTABLISHED: it is not a constant. KONApcxswap loads
+ * X = the pointer at context record +16 (the same pointer CONTEXT_LOAD
+ * reads its first payload word from) and passes the word at X+8 to
+ * kona_act_pcx. The disassembly of every kona.a member, gfx.o and rrm.o has no 0x1fa or
+ * 506 immediate, and neither has the libGLcore assembly, so the value is data that some
+ * other code puts at X+8; which code was not found. INFERRED to be
+ * HP_CONTEXT_ACTIVATE 0x1fa, since no other token in KONApcxswap or
+ * kona_act_pcx activates the context; that reading rests on the name only.
+ *
+ * KONAvalidateclip (kona_context.o 0xf8c-0x1350), ESTABLISHED: sends the
+ * same three validate packets as steps 1-3 above, in the order VALIDATE_CLIP
+ * 0x1f3 (when D+8 differs from the cached gfxp+136), VALIDATE_READCLIP
+ * 0x1ee (when (gfxp+128)->+8 differs from gfxp+140), then always
+ * VALIDATE_BANK 0x1f4 (the two halfwords at +18), and ends with token 0x172
+ * (named GED_NOP in GE.h) and one 0 word. So the cached values at gfxp+136
+ * and gfxp+140 are copies of the +8 word of the draw and read drawable:
+ * INFERRED a change counter or generation number, since it alone decides
+ * whether the clip is resent. Step 1 of kona_act_pcx instead tests bit 1 of
+ * the halfword at gfxp+4. KONApcxswap ORs 2 into the word at +4 of the
+ * object that gfxp+64 points to just before it sends the context packets;
+ * whether that object is gfxp itself's relative is UNKNOWN, so the link
+ * between that write and the test in step 1 is not established.
+ *
+ * KONAsetnullclip(R) (kona_context.o 0x1350), ESTABLISHED: stores R+8,
+ * +12, +16, +20, +24, +48 and +60 as 0, R+40 as -1 and R+44, R+52 as 1.
+ * INFERRED: the null region is empty rectangle words, a -1 in R+40 that
+ * the VALIDATE_CLIP packet carries after R+60, and R+44 = 1. UNKNOWN which
+ * of these is a count and which a sentinel.
  *
  * Attaching to the flow-control group, ESTABLISHED (kona_act_pcx 0x478 and
  * three copies): the driver writes ((sc+0x8c8) << 1) & 0x3e to register-
