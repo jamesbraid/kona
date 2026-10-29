@@ -394,7 +394,7 @@ usr/diags/IR/data/rmtm7.short.Z	diagnostics	board-diagnostic	data	-	22972	293f29
 usr/diags/IR/data/rmtm7.stuck.Z	diagnostics	board-diagnostic	data	-	2374	5087baed7202287f		0	0	0	undocumented		
 usr/diags/IR/data/tbusdata.Z	diagnostics	board-diagnostic	data	-	1281374	b4b801dcc9310b9f		0	0	0	named-only	docs/rm.md#the-register-write-word	The register-write word
 usr/diags/IR/data/tf1.qtcbist	diagnostics	board-diagnostic	data	-	3905	93c33eeaee4af026		0	0	0	undocumented		
-usr/diags/IR/data/tf1.tcbist	diagnostics	board-diagnostic	data	-	14360	a6f3c8ae199e67c9		0	0	0	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+usr/diags/IR/data/tf1.tcbist	diagnostics	board-diagnostic	data	-	14360	a6f3c8ae199e67c9		0	0	0	named-only	docs/coverage.md#rm-and-tm	RM and TM
 usr/diags/IR/data/tf1c.qtcbist	diagnostics	board-diagnostic	data	-	3945	1cf764978a6c4615		0	0	0	undocumented		
 usr/diags/IR/data/tf1c.tcbist	diagnostics	board-diagnostic	data	-	14378	0d4d757c5ad6d71f		0	0	0	undocumented		
 usr/diags/IR/data/tg1.qtcbist	diagnostics	board-diagnostic	data	-	1505	007e327890b1bd1a		0	0	0	undocumented		

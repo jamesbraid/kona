@@ -1568,7 +1568,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005b0a8	1072	TEST_arminit	dyn
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005b4d8	784	TEST_befsdram	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005bff4	1216	SetBefConfig	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005c4b4	804	TEST_befintram	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005da64	1376	TEST_befshadow	dynsym	named-only	docs/irsaudit.md#tests	Tests
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005da64	1376	TEST_befshadow	dynsym	named-only	docs/coverage.md#rm-and-tm	RM and TM
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005f110	1272	shell_func	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005f608	744	shell_write_ram	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1005f8f0	752	shell_read_ram	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options

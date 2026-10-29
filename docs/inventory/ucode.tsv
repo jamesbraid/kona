@@ -1525,7 +1525,7 @@ arm1.u	symbol	0x0c038900	arm_popname	flags=3	named-only	ucode/ge_handlers.md#sel
 arm1.u	symbol	0x0c038930	arm_passthrough	flags=3	named-only	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines	How a handler reaches the engines
 arm1.u	symbol	0x0c038964	arm_rendermode	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 arm1.u	symbol	0x0c038a6c	arm_feedback_type	flags=3	named-only	GE.h:183	
-arm1.u	symbol	0x0c038a78	arm_slop	flags=3	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+arm1.u	symbol	0x0c038a78	arm_slop	flags=3	named-only	docs/coverage.md#rm-and-tm	RM and TM
 arm1.u	symbol	0x0c039194	slop_readword	flags=2	named-only	ucode/ge_handlers.md#hostios	hostio.S
 arm1.u	symbol	0x0c03949c	arm_pack	flags=3	named-only	GE.h:162	
 arm1.u	symbol	0x0c039538	pack_cmd	flags=2	named-only	ucode/arm1_functions.md#start-up-exceptions-and-the-run-time-library	Start-up, exceptions and the run-time library
@@ -2226,7 +2226,7 @@ ge.u	label	0x0000393e	mgeb_Disable_Normalize		named-only	ucode/arm1_functions.md
 ge.u	label	0x0000394e	mgeb_Enable_Normalize		named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 ge.u	label	0x0000395e	mgesi_IMPbshRegisterWrite		named-only	docs/rm.md#how-the-arm-firmware-writes-raster-registers	How the ARM firmware writes raster registers
 ge.u	label	0x00003972	mgesi_BshRegisterWriteN		named-only	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003991	mgesi_BshRegisterWrite		named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+ge.u	label	0x00003991	mgesi_BshRegisterWrite		named-only	docs/coverage.md#rm-and-tm	RM and TM
 ge.u	label	0x0000399e	mges_TBUS_1		named-only	ucode/arm1_functions.md#output-module-records-and-conversion-lists	Output-module records and conversion lists
 ge.u	label	0x000039ab	mgesi_TBUS_1		named-only	docs/rm.md#bus-modes-2-and-3	Bus modes 2 and 3
 ge.u	label	0x000039b8	mgesi_AlphaTest		named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
@@ -2373,7 +2373,7 @@ ge.u	label	0x000066ed	mgeb_ContextLoadFlagRegs		named-only	ucode/ge_handlers.md#
 ge.u	label	0x000066ff	mgeb_ContextLoadWram		named-only	docs/ge.md#dma	DMA
 ge.u	label	0x0000670c	mgeb_ContextLoadEram		named-only	docs/ge.md#dma	DMA
 ge.u	label	0x0000671e	mgeb_ContextLoadCram		named-only	docs/ge.md#dma	DMA
-ge.u	label	0x00006730	mges_ContextReloadFromBEF		named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+ge.u	label	0x00006730	mges_ContextReloadFromBEF		named-only	docs/coverage.md#rm-and-tm	RM and TM
 ge.u	label	0x00006760	mges_ContextLoadBEF		named-only	docs/ge.md#context-save-and-restore	Context save and restore
 ge.u	label	0x00006795	mges_ContextLoadODMA		named-only	docs/ge.md#context-save-and-restore	Context save and restore
 ge.u	label	0x000067a9	mLiUpdateMtrlState		named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
@@ -3251,7 +3251,7 @@ geif.u	dispatch slot	373	mges_ContextDeactivate	handler 0x68da	understood	RM.h:1
 geif.u	dispatch slot	374	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	375	mges_ContextLoadBEF	handler 0x6760	named-only	docs/ge.md#context-save-and-restore	Context save and restore
 geif.u	dispatch slot	376	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	377	mges_ContextReloadFromBEF	handler 0x6730	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+geif.u	dispatch slot	377	mges_ContextReloadFromBEF	handler 0x6730	named-only	docs/coverage.md#rm-and-tm	RM and TM
 geif.u	dispatch slot	378	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	379	mges_ContextLoadFifo	handler 0x668a	named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
 geif.u	dispatch slot	380	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3263,7 +3263,7 @@ geif.u	dispatch slot	385	mges_EvalCoord	handler 0x3a0	named-only	ucode/arm1.md#h
 geif.u	dispatch slot	386	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	387	mges_NullCommand	handler 0x3a45	named-only	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
 geif.u	dispatch slot	388	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	389	mgesi_BshRegisterWrite	handler 0x3991	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
+geif.u	dispatch slot	389	mgesi_BshRegisterWrite	handler 0x3991	named-only	docs/coverage.md#rm-and-tm	RM and TM
 geif.u	dispatch slot	390	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	391	mgesi_IMPbshRegisterWrite	handler 0x395e	named-only	docs/rm.md#how-the-arm-firmware-writes-raster-registers	How the ARM firmware writes raster registers
 geif.u	dispatch slot	392	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
