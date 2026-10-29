@@ -3159,7 +3159,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1007f230	368	pcfGetLSB32..PIB	d
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1007f3a0	2484	FreeCo..AF	dynsym	8052c244a93f	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1007fd60	616	CloseFont	dynsym	ddb52ba81d8a	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1007ffd0	172	sgiCapDestroyGC..HBE	dynsym	3f26c499871a	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10080080	124	ddxMakeDynamicModulePath	dynsym	f70c93216438	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10080080	124	ddxMakeDynamicModulePath	dynsym	f70c93216438	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10080100	168	ProcSyncSetPriority..LHE	dynsym	f21952a9ac24	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100801b0	640	t1_PathXform	dynsym	7a2526e9ab65	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10080430	172	AccessChangeCloseDownMode	dynsym	33a48694432b	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -4068,7 +4068,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1012c430	228	XkbExtensionInit	d
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1012c520	8	ProcBadRequest	dynsym	a7e7ca11a6b8	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1012c530	144	SProcSGIvcQueryOutputSync..NGG	dynsym	dd9946c222c1	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1012c5c0	1440	ReadXkmCompatMap..PKF	dynsym	d7b9be32b17b	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1012cb60	1612	ddxOpenScreens	dynsym	9b522a139670	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1012cb60	1612	ddxOpenScreens	dynsym	9b522a139670	named-only	docs/open-questions.md#arm-firmware	ARM firmware
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1012d1b0	68	XETSwGrabKey	dynsym	07647160506a	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1012d200	68	XETSwAllocNamedColor	dynsym	07647160506a	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1012d250	188	SetDefaultFont	dynsym	e835130e1fef	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -47163,7 +47163,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1000e6a8	268	venice_loadsection_fcg	dynsym	bc
 usr/gfx/gfxinfo	shared-tool	n32		0x1000e7b4	64	fcg_get_gfx_fifo_count	dynsym	fd509759a9b1	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000e7f4	340	fcg_init_cp	dynsym	8c281f805eec	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000e948	576	fcg_init_ge	dynsym	2259a22e3476	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1000ec4c	388	wg_flush	dynsym	c8b83e90d781	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1000ec4c	388	wg_flush	dynsym	c8b83e90d781	named-only	docs/open-questions.md#arm-firmware	ARM firmware
 usr/gfx/gfxinfo	shared-tool	n32		0x1000edd0	628	fcg_cp_loaducode	dynsym	55a83f091c4d	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000f044	712	fcg_cp_ge_load	dynsym	3b3593cb81b3	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000f30c	508	fcg_cp_ge_bootstrap	dynsym	30076c28649e	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48634,7 +48634,7 @@ usr/gfx/setmon	shared-tool	n32		0x10010050	268	venice_loadsection_fcg	dynsym	21e
 usr/gfx/setmon	shared-tool	n32		0x1001015c	64	fcg_get_gfx_fifo_count	dynsym	264ca0003f59	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x1001019c	340	fcg_init_cp	dynsym	46cf2f763dce	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x100102f0	576	fcg_init_ge	dynsym	b913fc447aef	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x100105f4	388	wg_flush	dynsym	ef9e7e2c139d	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x100105f4	388	wg_flush	dynsym	ef9e7e2c139d	named-only	docs/open-questions.md#arm-firmware	ARM firmware
 usr/gfx/setmon	shared-tool	n32		0x10010778	628	fcg_cp_loaducode	dynsym	2a9a39b8c594	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x100109ec	712	fcg_cp_ge_load	dynsym	8719761560a9	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10010cb4	508	fcg_cp_ge_bootstrap	dynsym	528c2a694ceb	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48805,7 +48805,7 @@ usr/gfx/setmon	shared-tool	n32		0x10024c10	68	saXSGIvcSelectInput	dynsym	1756781
 usr/gfx/setmon	shared-tool	n32		0x10024c60	136	saXSGIvcLoadVideoFormat	dynsym	3b42e5ad8dae	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10025090	104	saXSGIvcListVideoFormats	dynsym	ca923529630f	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10025290	96	saXSGIvcSetOutputPedestal	dynsym	ab52d7a4f021	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10026850	192	KonCmd	dynsym	8de63668c204	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10026850	192	KonCmd	dynsym	8de63668c204	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
 usr/gfx/setmon	shared-tool	n32		0x100269e0	92	saXSGIvcSetOutputSync	dynsym	2017d15693b9	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10026a40	80	konReloadAllGammas	dynsym	f25fe40f889c	located	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
 usr/gfx/setmon	shared-tool	n32		0x10026a90	124	konTempBlankAllChannels	dynsym	e977025999d9	located	docs/opengl.md#kontempblankallchannels	`konTempBlankAllChannels`
@@ -48832,7 +48832,7 @@ usr/gfx/setmon	shared-tool	n32		0x10032510	104	saXSGIvcQueryOutputPhaseSCH	dynsy
 usr/gfx/setmon	shared-tool	n32		0x10032580	140	saXSGIvcStoreGammaColors8	dynsym	e95dcb37ca27	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10032830	96	saXSGIvcSetOutputBlanking	dynsym	445b8f8ed4f1	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10032bb0	16	saXSGIvcQueryVersion	dynsym	812633f29edd	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10032ef0	176	KonFlush	dynsym	cdda7ee0a906	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10032ef0	176	KonFlush	dynsym	cdda7ee0a906	named-only	docs/open-questions.md#arm-firmware	ARM firmware
 usr/gfx/setmon	shared-tool	n32		0x10032fa0	56	vcVideoCmd	dynsym	58ebd2326951	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10033100	84	saXSGIvcSetScreenInputSyncSource	dynsym	f1fb1807f3bc	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10033bc0	108	saXSGIvcQueryVideoScreenInfo	dynsym	f283cc735bed	named-only	docs/setup-tools.md#setmon	`setmon`
@@ -50511,7 +50511,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4657a0	104	konTempBlankAllChanne
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x465810	2172	konLineSS	dynsym	6c257f993e40	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x466090	1284	cfb32Tile32FSGeneral	dynsym	e08f5d2c0dbd	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4665a0	2628	cfb16FillPoly1RectCopy	dynsym	f9c687f13a7f	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x467440	724	konDestroyWindow	dynsym	8706e87807cd	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x467440	724	konDestroyWindow	dynsym	8706e87807cd	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x467720	352	miRoundJoinFace	dynsym	0356967ace2a	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x467880	304	miRegionCreate	dynsym	7d5c311f0780	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4679b0	1412	cfb16Tile32FSCopy	dynsym	98aaa8550374	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -50825,7 +50825,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4f3090	244	nfbHWColormapScreenIn
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4f3190	2280	cfb16PolyFillRect	dynsym	a77527263c40	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4f3a80	288	kon_loadBitmapGC	dynsym	9bedd9643d5a	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4f3dd0	596	nfbSetDidFlags	dynsym	69816deb9461	understood	docs/opengl.md#nfbsetdidflags	`nfbSetDidFlags`
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4f4030	560	konCreateWindow	dynsym	8483b44cb638	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4f4030	560	konCreateWindow	dynsym	8483b44cb638	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4f4260	296	miChangeClip	dynsym	ea6db7ca8f6f	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4f4390	2360	nfbSolidPolyGlyphBlt	dynsym	f4f532388122	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4f4cd0	392	cfbImageGlyphBlt8	dynsym	e49879a51c30	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -51306,7 +51306,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x465430	104	konTempBlankAllChann
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4654a0	2764	konLineSS	dynsym	f1e952a94190	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x465f70	1284	cfb32Tile32FSGeneral	dynsym	d099b6ed3c0f	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x466480	2628	cfb16FillPoly1RectCopy	dynsym	06bb2fa5051b	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x467320	728	konDestroyWindow	dynsym	408651a3b828	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x467320	728	konDestroyWindow	dynsym	408651a3b828	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x467600	352	miRoundJoinFace	dynsym	a04c61a5faa1	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x467760	304	miRegionCreate	dynsym	985d6799de76	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x467890	1412	cfb16Tile32FSCopy	dynsym	02ac9266e5dd	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -51620,7 +51620,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4fc010	244	nfbHWColormapScreenI
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4fc110	2280	cfb16PolyFillRect	dynsym	0491ef0e87cf	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4fca00	296	kon_loadBitmapGC	dynsym	30da0e5de5a7	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4fcd60	596	nfbSetDidFlags	dynsym	991560e6e99f	located	docs/opengl.md#nfbsetdidflags	`nfbSetDidFlags`
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4fcfc0	564	konCreateWindow	dynsym	1428086dcecc	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4fcfc0	564	konCreateWindow	dynsym	1428086dcecc	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4fd200	296	miChangeClip	dynsym	754ec3fb0e0c	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4fd330	2360	nfbSolidPolyGlyphBlt	dynsym	305f56e9e2ec	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4fdc70	392	cfbImageGlyphBlt8	dynsym	828ef83aaa1c	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -52101,7 +52101,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e5430	104	konTempBlankAllChan
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e54a0	2764	konLineSS	dynsym	f1e952a94190	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e5f70	1284	cfb32Tile32FSGeneral	dynsym	d099b6ed3c0f	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e6480	2628	cfb16FillPoly1RectCopy	dynsym	06bb2fa5051b	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e7320	728	konDestroyWindow	dynsym	408651a3b828	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e7320	728	konDestroyWindow	dynsym	408651a3b828	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e7600	352	miRoundJoinFace	dynsym	a04c61a5faa1	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e7760	304	miRegionCreate	dynsym	985d6799de76	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e7890	1412	cfb16Tile32FSCopy	dynsym	02ac9266e5dd	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -52415,7 +52415,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x147c010	244	nfbHWColormapScreen
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x147c110	2280	cfb16PolyFillRect	dynsym	0491ef0e87cf	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x147ca00	296	kon_loadBitmapGC	dynsym	30da0e5de5a7	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x147cd60	596	nfbSetDidFlags	dynsym	991560e6e99f	located	docs/opengl.md#nfbsetdidflags	`nfbSetDidFlags`
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x147cfc0	564	konCreateWindow	dynsym	1428086dcecc	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x147cfc0	564	konCreateWindow	dynsym	1428086dcecc	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x147d200	296	miChangeClip	dynsym	754ec3fb0e0c	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x147d330	2360	nfbSolidPolyGlyphBlt	dynsym	305f56e9e2ec	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x147dc70	392	cfbImageGlyphBlt8	dynsym	828ef83aaa1c	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -52896,7 +52896,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x465430	104	konTempBlankAllChann
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4654a0	2764	konLineSS	dynsym	f1e952a94190	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x465f70	1284	cfb32Tile32FSGeneral	dynsym	d099b6ed3c0f	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x466480	2628	cfb16FillPoly1RectCopy	dynsym	06bb2fa5051b	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x467320	728	konDestroyWindow	dynsym	408651a3b828	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x467320	728	konDestroyWindow	dynsym	408651a3b828	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x467600	352	miRoundJoinFace	dynsym	a04c61a5faa1	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x467760	304	miRegionCreate	dynsym	985d6799de76	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x467890	1412	cfb16Tile32FSCopy	dynsym	02ac9266e5dd	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -53210,7 +53210,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4fc010	244	nfbHWColormapScreenI
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4fc110	2280	cfb16PolyFillRect	dynsym	0491ef0e87cf	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4fca00	296	kon_loadBitmapGC	dynsym	30da0e5de5a7	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4fcd60	596	nfbSetDidFlags	dynsym	991560e6e99f	located	docs/opengl.md#nfbsetdidflags	`nfbSetDidFlags`
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4fcfc0	564	konCreateWindow	dynsym	1428086dcecc	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4fcfc0	564	konCreateWindow	dynsym	1428086dcecc	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4fd200	296	miChangeClip	dynsym	754ec3fb0e0c	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4fd330	2360	nfbSolidPolyGlyphBlt	dynsym	305f56e9e2ec	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4fdc70	392	cfbImageGlyphBlt8	dynsym	828ef83aaa1c	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
