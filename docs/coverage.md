@@ -113,9 +113,11 @@ Rows for each microcoded engine. They rank below the Priority items: take them w
 
 | Program | Behaviour to cover | Status | Owner | Datasheet topic |
 |---|---|---|---|---|
-| ge.u, ge11.u, ged1b.u, geif.u, ge_kpm.hex | Geometry engine programs and their interface stub: instruction format, schedule, local memory, entry points, command dispatch | none | `ucode/ge.md, GE.h` | host and geometry |
-| arm1.u, arm1_kpm.u | The ARM-named program: role, instruction format and what it controls (role unknown) | none | `ucode/arm1.md` | host and geometry |
+| ge.u, ge11.u, ged1b.u, geif.u, ge_kpm.hex | Geometry engine programs and their interface stub: instruction format, schedule, local memory, entry points, command dispatch | partial | `ucode/ge.md, GE.h` | host and geometry |
+| arm1.u, arm1_kpm.u | The ARM-named program: role, instruction format and what it controls (role unknown) | partial | `ucode/ge.md` (ARM section), `ucode/arm1.md` | host and geometry |
 | tport.bin | Textport program: command set and display behaviour | none | `ucode/tport.md` | command grammar |
 | dg4/vfo, dg4/cmb, vof, dgo1 | Display tables: video format and combiner table layouts | none | `ucode/dg.md, DG.h` | display |
+
+Microcode detail: container formats, the one-program-three-encodings equivalence and the geif.u slot table are established in ucode/ge.md. Open, in order: the ge.u field layout (gefields.h is the named source), the token-to-slot translation, the distributor program ged1b.u, and a disassembly of arm1.u (plain ARM code, load address unknown).
 
 Rows: 43.

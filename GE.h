@@ -695,11 +695,11 @@ enum kona_hp_token {
 
 /*
  * Leads not yet read (UNKNOWN until they are):
- *  - ucode/KONA/ge_symbols lists 1100 geometry-engine microcode labels with
- *    addresses (e.g. mgeb_EvalMapSpec1D 0x53); the token -> handler dispatch
- *    in ge.u / ge.hex has not been located, so no label is tied to a token.
- *  - ge.hex lines are a 16-bit address and a 72-bit (18 hex digit) word, so
- *    the geometry-engine instruction is INFERRED to be 72 bits wide.
+ *  - Microcode: ucode/ge.md describes the program files (one 62521-word
+ *    program of 72-bit instructions in three encodings) and geif.u, a
+ *    1024-entry table whose odd entries are the handlers for 453 geometry-
+ *    engine command slots. How a host token selects a slot is UNKNOWN; 47
+ *    name matches are in ucode/ge_name_matches.tsv.
  */
 
 /*
