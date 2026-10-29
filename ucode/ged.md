@@ -31,8 +31,46 @@ Sources:
 
 - **Transfers jump to the 10-bit target, with one delay slot.** Entry 0x36f (`tri.s:65`) is a jump to 0x13 (`material.s`) followed by a load of r49, and the word after that load starts another table entry. Only if the load executes as the jump's delay slot does it ever run. Every unused table entry lands on a three-word loop of the same shape, for example 0x003-0x005: load r69 with the null handler, jump to itself, then a no-op. Op 0 has no register operand and is the unconditional form. Op 4 occurs once, to address 0. Ops 1 and 3 test r50 or r51 against the 6-bit value. Op 6 tests r51. Ops 5 and 7 test one of the one-hot registers 53-60. What each condition tests (equal, bit set, nonzero) is **unknown**.
 - **Load op 0 sets a register to the immediate. Load op 2 copies a register.** All 23 op-2 words carry 0x3e or 0x36 as the immediate, and 0x3e and 0x36 are themselves register numbers the program loads (r62, r54). The copies run `r70 <- r62`, `r69 <- r62` and `r65 <- r54`, and the ARM relocates only op-0 loads ([arm1.md](arm1.md)).
-- **Fetch (bit 26) takes the next word from the input. Release (bit 12) ends a command sequence.** The diagnostic names both words. Each primitive module has exactly one release, two in `tfanpoly.s`, and it sits on the path that runs after `END` and resets r48 and r49 (`tri.s:54`, `0x04001000`). The flush, material and idle stubs also end in one. Bit 26 also occurs in load and transfer words (19 of the 32 op-6 transfers, and the last load of every begin stub), so **inferred:** fetch is a side effect any word can carry. How a completed primitive (every third vertex of `tri.s`) is handed to an engine is **unknown**. The candidates are the x and y fields that every vertex-state load of r49 carries.
-- Control fields x, y, r, a, b, c, z and n, and load fields x and y. The vertex states load r49 with x = 2 or 3 and y = 1 (`tri.s:23`: `82b10b5a`). Their meaning is **unknown**.
+- **Fetch (bit 26) takes the next word from the input. Release (bit 12) ends a command sequence.** The diagnostic names both words. Each primitive module has exactly one release, two in `tfanpoly.s`, and it sits on the path that runs after `END` and resets r48 and r49 (`tri.s:54`, `0x04001000`). The flush, material and idle stubs also end in one. Bit 26 also occurs in load and transfer words (19 of the 32 op-6 transfers, and the last load of every begin stub), so **inferred:** fetch is a side effect any word can carry. How a completed primitive (every third vertex of `tri.s`) is handed to an engine is **unknown**. Field x of the vertex-state loads is read below as a vertex-history operation and the r51 count as the batch size ([Vertex history fields x and z](#vertex-history-fields-x-and-z)), which leaves field y and the hardware's own batch hand-over as the candidates.
+- Control fields x, y, r, a, b, c, z and n, and load fields x and y. The vertex states load r49 with x = 2 or 3 and y = 1 (`tri.s:23`: `82b10b5a`). Fields x and z are read in [Vertex history fields x and z](#vertex-history-fields-x-and-z); y, r, a, b, c and n are **unknown**.
+
+### Vertex history fields x and z
+
+**Established** (where the values occur, [ged_listing.txt](ged_listing.txt)). Field x (bits 25-24) is set only on the
+words that handle a vertex token or a `SWAPTMESH` token, plus the idle, raster-position and single-word paths of
+`trigger.s` (words 0x021, 0x025, 0x028 and the patch vertex 0x034, all x = 2), and field z (bits 11-10) only on the batch-switch and end paths of
+the modules that keep vertices across primitives:
+
+| Module | x on each vertex | z | Count reloaded into r51 at a batch switch |
+|---|---|---|---|
+| `points.s`, `lines.s`, `tri.s`, `quad.s` | 2 on every vertex | never | 0xc |
+| `linestrip.s` | 2 on every vertex | 2 before the first vertex of a new batch | 0xb |
+| `lineloop.s` | 2 on the first, 3 on the second, 2 after (3 again on a second vertex after a material change, word 0x14c) | 2 at a switch; 3 on every end path | 0xb, or 0xa on the split-loop path |
+| `tstrip.s`, `qstrip.s` | 2 on the first, 3 on every later vertex | 3 then 2 at every switch | 0xa |
+| `tfanpoly.s` | 2 on the first, 3 on the second, 2 after | 3 then 2 at every switch | 0xa |
+
+The `SWAPTMESH` entries of `tstrip.s` load r49 with x = 1 (words 0x0b2-0x0cc, and the control word 0x101); no other
+module uses x = 1. Every begin stub loads r51 with 0xc.
+
+**Inferred** (one reading fits every module above). The distributor keeps two vertex history slots per primitive and a
+count of room left in the current engine batch:
+
+- x = 2 writes the incoming vertex into the newer slot; x = 3 first moves the newer slot into the older one; x = 1
+  exchanges the two. A fan's or loop's second vertex is the only x = 3 write, so the centre or first vertex stays in the
+  older slot for the rest of the primitive; a strip shifts on every vertex, so the two slots hold the last two vertices.
+  The `SWAPTMESH` exchange gives the IRIS GL swap order: after it the next shift drops the newer vertex instead of the
+  older.
+- z = 2 sends the newer slot again and z = 3 the older one. The modules issue them exactly when a new batch starts or a
+  loop closes: one resend (z = 2) for a line strip, which shares one vertex across the boundary; two (z = 3, z = 2) for a
+  triangle strip, quad strip or fan, which share an edge; and z = 3 alone at the end of a line loop, the first vertex as
+  the closing endpoint.
+- r51 counts the vertices a batch can still take: twelve for a new primitive, eleven after one carried vertex, ten after
+  two. The op-6 transfer tests it on every vertex of the strip modules and on every finished primitive of the separate
+  ones (third corner of a triangle, second endpoint of a line, fourth corner of a quad, every point), so a batch holds
+  twelve primitives of those classes.
+
+What fields y, r, a, b, c and n do, and how a full batch is handed to an engine, stay open. Field y is set on almost every
+x-carrying load and on some end paths (`lines.s` 0x38c, `lineloop.s` 0x18d, `tstrip.s` 0x0db).
 
 ## Registers
 
@@ -229,6 +267,341 @@ null loop at 0x003: those tokens carry no program step, their data going to the 
 | 0x19a | `ged1b.u` `HP_END` after finished segments | **Inferred**: word 0x38d (`lines.s` line 49) tests r51 against 2 with pending class 2 in its delay slot, flushes a pending evaluator coordinate otherwise, loads `mgesi_LineStrip` and releases through the reset at 0x392. |
 | 0x19b | `ged1b.u` `HP_SWAPTMESH` after a finished segment | **Inferred**: fetch at 0x396, the third swap entry of class 2, with no effect on the lines. |
 
+### Line loops (class 6, entries 0x040-0x063)
+
+States: 0 takes the first vertex, 1 the second, 2 and 5 the later ones on the plain path, 3 the first vertex after a
+batch switch, 8 the second vertex after a material change, and 4, 6 and 7 the later vertices once a material change has
+split the loop. The loop's first vertex is the older history slot from the second vertex on (field x, [above](#vertex-history-fields-x-and-z)),
+which is what every end entry resends with z = 3 to close the loop.
+
+| Entry | Token and state | What the code at the target does |
+|---|---|---|
+| 0x040 | `ged1b.u` the first vertex of a line loop (state 0) | **Inferred**: word 0x13c (`lineloop.s` line 22) writes it with x = 2 into the newest history slot, moves to state 1 at word 0x13f and clears r30 on the fetch. |
+| 0x041 | `ged1b.u` material before the loop has a vertex | **Inferred**: word 0x16c (`lineloop.s` line 101) jumps to the material code at 0x013 and puts back state 0 at word 0x13c in the delay slot. |
+| 0x042 | `ged1b.u` `HP_END` of an empty line loop | **Inferred**: word 0x19e (`lineloop.s` line 214) clears r48, parks r49 on the idle code 0x1d and releases with the handler already loaded; no closing segment is sent. |
+| 0x043 | `ged1b.u` `HP_SWAPTMESH` before the first loop vertex | **Inferred**: word 0x180 (`lineloop.s` line 150) is a lone fetch, so a strip swap inside a loop changes no state. |
+| 0x044 | `ged1b.u` the second loop vertex (state 1) | **Inferred**: word 0x13f (`lineloop.s` line 27) loads r49 with x = 3, shifting the first vertex into the older slot where it stays, and moves to state 2 at 0x142. |
+| 0x045 | `ged1b.u` material after one loop vertex | **Inferred**: word 0x16e (`lineloop.s` line 106) reaches the material code with r49 set to state 8 (0x214c), so the next vertex takes the x = 3 shift through word 0x14c and then joins the split-loop states. |
+| 0x046 | `ged1b.u` `HP_END` with one loop vertex | **Inferred**: word 0x18e (`lineloop.s` line 186) tests the batch count against 3, setting the pending class to 6 in its delay slot; the branch leaves the batch open, while the other path clears the pending class, makes `mgesi_LineStrip` the current handler and goes through 0x198, where a one-hot test picks which of the two release-handler registers takes it, before the release. |
+| 0x047 | `ged1b.u` `HP_SWAPTMESH` with one loop vertex | **Inferred**: the fetch at 0x180 again; the single vertex stays in the newest slot. |
+| 0x048 | `ged1b.u` a later loop vertex on the plain path (state 2) | **Inferred**: word 0x142 (`lineloop.s` line 32) replaces the newest slot (x = 2) and stays in state 2, and the fetching op-6 transfer on the batch count goes to 0x158 when the batch is full: evaluator flush, state 3, `mgesi_LineStrip` into one of the release-handler registers as the one-hot test at 0x15a decides, and the count reset to 0xb, one vertex short of twelve. |
+| 0x049 | `ged1b.u` material in the middle of a loop (state 2) | **Inferred**: word 0x170 (`lineloop.s` line 111) enters the material code and resumes in state 4 (0x114f), whose batch switches load the vertex-0 save handlers. |
+| 0x04a | `ged1b.u` `HP_END` of a loop with two or more vertices on the plain path | **Inferred**: word 0x18d (`lineloop.s` line 182) first issues y = 1 with z = 3, resending the loop's first vertex as the closing endpoint, then shares the end test of entry 0x046. |
+| 0x04b | `ged1b.u` `HP_SWAPTMESH` in state 2 | **Inferred**: plain fetch at 0x180; a loop has no strip order for a swap to change. |
+| 0x04c | `ged1b.u` the first vertex after a batch switch (state 3) | **Inferred**: word 0x145 (`lineloop.s` line 37) issues z = 2, carrying the previous endpoint into the new batch, then writes the new vertex with x = 2 and moves to state 5 at 0x149. |
+| 0x04d | `ged1b.u` material right after a batch switch | **Inferred**: word 0x177 (`lineloop.s` line 126) resends both history slots (z = 3, then z = 2) with r30 set to 0xf between them, then enters material with state 6 (0x1952) restored. |
+| 0x04e | `ged1b.u` `HP_END` right after a batch switch | **Inferred**: word 0x193 (`lineloop.s` line 193) resends the last endpoint (z = 2), loads `mgesi_LineStrip` into r62, then at 0x196 resends the first vertex (z = 3), so the new batch holds just the closing segment, and releases through 0x198. |
+| 0x04f | `ged1b.u` `HP_SWAPTMESH` in state 3 | **Inferred**: the fetch-only word 0x180; the endpoint waiting to be carried is untouched. |
+| 0x050 | `ged1b.u` a later loop vertex after a material split (state 4) | **Inferred**: word 0x14f (`lineloop.s` line 53) writes the vertex with x = 2 and keeps state 4; a full batch goes to 0x160, which makes `mgesi_LineStripSaveV0` the current handler and, at 0x166, copies it to the second release-handler register, resends the last endpoint (z = 2), sets state 7 and resets the batch count to 0xa. |
+| 0x051 | `ged1b.u` material in state 4 | **Inferred**: word 0x170 (`lineloop.s` line 111) is shared with entry 0x049 and resumes in state 4 after `mgeb_Material`. |
+| 0x052 | `ged1b.u` `HP_END` in state 4 | **Inferred**: word 0x185 (`lineloop.s` line 165) loads `mgesi_LineStripCopyV0` into r62, then 0x196 resends the first vertex with z = 3 and the release sends the batch with that handler, which closes the loop from the engine's saved copy. |
+| 0x053 | `ged1b.u` `HP_SWAPTMESH` in state 4 | **Inferred**: lone fetch at 0x180 with state 4 kept. |
+| 0x054 | `ged1b.u` a later loop vertex after a switch (state 5) | **Inferred**: word 0x149 (`lineloop.s` line 43) replaces the newest slot and stays in state 5; when r51 runs out it takes the same switch path at 0x158 as state 2. |
+| 0x055 | `ged1b.u` material in state 5 | **Inferred**: word 0x172 (`lineloop.s` line 116) closes the current batch first: a one-hot test picks the release-handler register that gets `mgesi_LineStrip`, the batch count becomes 0xa, and the two history slots are resent (z = 3, z = 2) before the material code, resuming in state 6. |
+| 0x056 | `ged1b.u` `HP_END` in state 5 | **Inferred**: word 0x187 (`lineloop.s` line 169) keeps `mgesi_LineStrip` in r62 and joins 0x196: the first vertex goes out with z = 3 as the closing endpoint, the evaluator flush runs and the batch is released. |
+| 0x057 | `ged1b.u` `HP_SWAPTMESH` in state 5 | **Inferred**: word 0x180 fetches and nothing more. |
+| 0x058 | `ged1b.u` a later loop vertex in state 6 | **Inferred**: word 0x152 (`lineloop.s` line 58) keeps state 6 and writes the newest slot; a full batch goes to 0x162, loading `mgesi_LineStripSaveAndIgnoreV0` into r62 before the common switch at 0x166 (state 7, z = 2, r51 = 0xa). |
+| 0x059 | `ged1b.u` material in state 6 | **Inferred**: word 0x17c (`lineloop.s` line 133) reaches `mgeb_Material` with state 6 (0x1952) put back. |
+| 0x05a | `ged1b.u` `HP_END` in state 6 | **Inferred**: word 0x189 (`lineloop.s` line 173) selects `mgesi_LineStripCopyAndIgnoreV0` for the closing release, after the z = 3 resend of the first vertex at 0x196. |
+| 0x05b | `ged1b.u` `HP_SWAPTMESH` in state 6 | **Inferred**: the shared fetch at 0x180 drops it. |
+| 0x05c | `ged1b.u` a later loop vertex in state 7 | **Inferred**: word 0x155 (`lineloop.s` line 63) writes the newest slot and stays in state 7; a full batch goes to 0x164, where `mgesi_LineStrip` becomes the batch handler, then 0x166 switches as for states 4 and 6. |
+| 0x05d | `ged1b.u` material in state 7 | **Inferred**: word 0x17e (`lineloop.s` line 137) enters the material code and puts back state 7 at word 0x155. |
+| 0x05e | `ged1b.u` `HP_END` in state 7 | **Inferred**: word 0x18b (`lineloop.s` line 177) closes with `mgesi_LineStripRestoreV0`, the handler that brings back the saved first vertex on the engine, after the z = 3 resend. |
+| 0x05f | `ged1b.u` `HP_SWAPTMESH` in state 7 | **Inferred**: fetch-only word 0x180 (`lineloop.s` line 150). |
+| 0x060 | `ged1b.u` the second vertex after a material change (state 8) | **Inferred**: word 0x14c (`lineloop.s` line 48) loads r49 with x = 3, so the first vertex moves to the older slot as on the plain path, and enters state 4 at 0x14f. |
+| 0x061 | `ged1b.u` material in state 8 | **Inferred**: word 0x16e (`lineloop.s` line 106), shared with entry 0x045, keeps state 8 across the material change. |
+| 0x062 | `ged1b.u` `HP_END` in state 8 | **Inferred**: word 0x182 (`lineloop.s` line 160) resends the single vertex with z = 2, loads `mgesi_LineStripCopyV0` and jumps past the z = 3 word to 0x197, then releases. |
+| 0x063 | `ged1b.u` `HP_SWAPTMESH` in state 8 | **Inferred**: the fetch at 0x180 ends it with no effect. |
+
+Entries 0x064-0x07f hold the null loop at 0x006: line loops have no state above 8.
+
+### Line strips (class 5, entries 0x140-0x153)
+
+| Entry | Token and state | What the code at the target does |
+|---|---|---|
+| 0x140 | `ged1b.u` the first vertex of a line strip (state 0) | **Inferred**: word 0x1b7 (`linestrip.s` line 41) tests one-hot register r53 and, in the delay slot, marks the vertex with x = 2 and y = 1; with r53 clear it moves to state 1 (0x1bf), otherwise to state 2 (0x1c2). Either way the r51 count drops by one. |
+| 0x141 | `ged1b.u` material before the first strip vertex | **Inferred**: word 0x1d7 (`linestrip.s` line 88) jumps to the material code with state 0 (0x1b7) restored. |
+| 0x142 | `ged1b.u` `HP_END` of an empty line strip | **Inferred**: word 0x1b3 (`linestrip.s` line 35) parks the state register on 0x1d, clears the class and the small constant r13 and releases. |
+| 0x143 | `ged1b.u` `HP_SWAPTMESH` before any strip vertex | **Inferred**: word 0x1e3 (`linestrip.s` line 114) only fetches. |
+| 0x144 | `ged1b.u` a strip vertex in state 1 | **Inferred**: word 0x1bf (`linestrip.s` line 52) replaces the newest history slot (x = 2) and stays in state 1; a full batch goes to 0x1cd, which flushes the evaluator, loads `mgesi_LineStrip` into r70, sets r51 to 0xb and moves to state 3. |
+| 0x145 | `ged1b.u` material in state 1 | **Inferred**: word 0x1d9 (`linestrip.s` line 92) runs the material code and resumes in state 1 at 0x1bf. |
+| 0x146 | `ged1b.u` `HP_END` in state 1 | **Inferred**: word 0x1ae (`linestrip.s` line 23) tests the batch count against 4 with pending class 5 in the delay slot; the branch to 0x1b3 releases without changing the handler and leaves the strip pending, while the fall-through flushes the evaluator and makes `mgesi_LineStrip` the release handler first. |
+| 0x147 | `ged1b.u` `HP_SWAPTMESH` in state 1 | **Inferred**: the fetch at 0x1e3; a line strip has a single history slot, so there is nothing to swap. |
+| 0x148 | `ged1b.u` a strip vertex in state 2 (one-hot r53 set at the first vertex) | **Inferred**: word 0x1c2 (`linestrip.s` line 57) is the state-1 code with one difference at the batch switch: 0x1d2 loads `mgesi_LineStrip` into the second release-handler register instead of the first and moves to state 4. |
+| 0x149 | `ged1b.u` material in state 2 | **Inferred**: word 0x1de (`linestrip.s` line 101) queues the material and puts back state 2 at 0x1c2. |
+| 0x14a | `ged1b.u` `HP_END` in state 2 | **Inferred**: word 0x1b0 (`linestrip.s` line 26) always sends the batch: evaluator flush, pending class cleared, `mgesi_LineStrip` as release handler, then the reset and release at 0x1b3. |
+| 0x14b | `ged1b.u` swap token in line-strip state 2 | **Inferred**: word 0x1e3 (`linestrip.s` line 114) takes the next input word; a line strip shares one vertex per segment, so there is no order to swap. |
+| 0x14c | `ged1b.u` the first vertex after a batch switch (state 3) | **Inferred**: word 0x1c5 (`linestrip.s` line 62) resends the previous vertex with z = 2 so the segment that spans the batch boundary is drawn by the new batch, then writes the new vertex with x = 2 and returns to state 1. |
+| 0x14d | `ged1b.u` material right after a switch from state 1 | **Inferred**: word 0x1db (`linestrip.s` line 96) does the z = 2 resend first, then enters material with state 1 restored, so the carried vertex is already in place afterwards. |
+| 0x14e | `ged1b.u` `HP_END` right after a switch from state 1 | **Inferred**: word 0x1b3 (`linestrip.s` line 35); the new batch has only the carried vertex, which is never resent, and the release ends the strip. |
+| 0x14f | `ged1b.u` swap token just after a line-strip batch switch (state 3) | **Inferred**: dropped by the fetch at 0x1e3; the carried endpoint still waits for its z = 2 resend. |
+| 0x150 | `ged1b.u` the first vertex after a switch from state 2 (state 4) | **Inferred**: word 0x1c9 (`linestrip.s` line 68) mirrors entry 0x14c: z = 2 resend, x = 2 write, back to state 2 at 0x1c2. |
+| 0x151 | `ged1b.u` material right after a switch from state 2 | **Inferred**: word 0x1e0 (`linestrip.s` line 105) resends the carried vertex (z = 2) and resumes in state 2 after `mgeb_Material`. |
+| 0x152 | `ged1b.u` `HP_END` right after a switch from state 2 | **Inferred**: the reset at 0x1b3, shared with entries 0x142 and 0x14e: the new batch holds only the carried vertex, which is never resent, so the release draws nothing more. |
+| 0x153 | `ged1b.u` `HP_SWAPTMESH` in state 4 | **Inferred**: the last swap entry of class 5 is the fetch at 0x1e3 again. |
+
+Entries 0x154-0x15f hold the null loop at 0x006: line strips use states 0-4 only.
+
+### Separate quads (class 7, entries 0x160-0x173)
+
+The begin stub enters state 1; states 1 to 4 take the four corners, and the fourth corner returns to state 1. State 0 is
+the first corner after a batch switch. Every corner is written with x = 2: separate quads keep no vertex across quads.
+
+| Entry | Token and state | What the code at the target does |
+|---|---|---|
+| 0x160 | `ged1b.u` the first corner after a batch switch (state 0) | **Inferred**: word 0x1f1 (`quad.s` line 22) writes the corner with x = 2 and moves to state 2 at 0x1f7, the same step as a first corner in state 1. |
+| 0x161 | `ged1b.u` material in state 0 | **Inferred**: word 0x20e (`quad.s` line 80) jumps to the material code with r49 put back to 0x1f1. |
+| 0x162 | `ged1b.u` `HP_END` in state 0 | **Inferred**: word 0x205 (`quad.s` line 61) clears r48, sets r49 to the idle 0x1d and releases; the batch was already handed over at the switch, so nothing is added. |
+| 0x163 | `ged1b.u` `HP_SWAPTMESH` among quads (state 0) | **Inferred**: word 0x218 (`quad.s` line 104), a bare fetch. |
+| 0x164 | `ged1b.u` the first corner after the begin token (state 1) | **Inferred**: word 0x1f4 (`quad.s` line 27) records the corner and goes to state 2. |
+| 0x165 | `ged1b.u` material between quads | **Inferred**: word 0x210 (`quad.s` line 84) reaches `mgeb_Material` with state 1 kept, so the next corner starts a quad. |
+| 0x166 | `ged1b.u` `HP_END` after whole quads | **Inferred**: word 0x200 (`quad.s` line 47) tests the batch count against 4 with pending class 7 in the delay slot; the branch keeps the batch open for a following quads begin, the other path flushes the evaluator and makes `mgesi_Quads` the release handler. |
+| 0x167 | `ged1b.u` `HP_SWAPTMESH` at a quad boundary | **Inferred**: fetch at 0x218; there is no shared edge to swap. |
+| 0x168 | `ged1b.u` the second corner (state 2) | **Inferred**: word 0x1f7 (`quad.s` line 32) moves to state 3 at word 0x1fa. |
+| 0x169 | `ged1b.u` material after one corner | **Inferred**: word 0x212 (`quad.s` line 88) keeps state 2 across the material change. |
+| 0x16a | `ged1b.u` `HP_END` with one corner pending | **Inferred**: word 0x202 (`quad.s` line 54) drops the partial quad: evaluator flush, r50 cleared, `mgesi_Quads` as release handler, then the reset at 0x205. |
+| 0x16b | `ged1b.u` `HP_SWAPTMESH` after one corner | **Inferred**: plain fetch at 0x218. |
+| 0x16c | `ged1b.u` the third corner (state 3) | **Inferred**: word 0x1fa (`quad.s` line 37) moves to state 4 at 0x1fd. |
+| 0x16d | `ged1b.u` material after two corners | **Inferred**: word 0x214 (`quad.s` line 92) resumes in state 3 after the material code. |
+| 0x16e | `ged1b.u` `HP_END` with two corners pending | **Inferred**: the abandon path at 0x202, which sends the finished quads of the batch and forgets the two corners. |
+| 0x16f | `ged1b.u` `HP_SWAPTMESH` after two corners | **Inferred**: fetch-only word 0x218. |
+| 0x170 | `ged1b.u` the fourth corner (state 4) | **Inferred**: word 0x1fd (`quad.s` line 42) completes the quad and returns to state 1; the op-6 transfer on r51 (no fetch bit) goes to 0x209 when the batch holds twelve quads, which flushes the evaluator, sets state 0, loads `mgesi_Quads` into r70 and resets r51 to 0xc. |
+| 0x171 | `ged1b.u` material after three corners | **Inferred**: word 0x216 (`quad.s` line 96) puts back state 4 (0x11fd) so the fourth corner still closes the quad. |
+| 0x172 | `ged1b.u` `HP_END` with three corners pending | **Inferred**: 0x202 again: the three corners are discarded and the batch released with `mgesi_Quads`. |
+| 0x173 | `ged1b.u` `HP_SWAPTMESH` after three corners | **Inferred**: the last class-7 swap entry, the fetch at 0x218. |
+
+Entries 0x174-0x17f hold the null loop at 0x006.
+
+Entries 0x1c0-0x1d3 repeat entries 0x160-0x173 word for word (0x1c0 and 0x160 both point at 0x1f1, and so on to 0x1d3 and
+0x173). **Inferred:** no class reaches them, because no table A word is 0x38 (8 x 0x38 = 0x1c0) and the state field of r49
+never exceeds 15. The same holds for entries 0x19c-0x19f, which repeat the state-7 group of line loops (0x05c-0x05f) at an
+index no class forms (8 x A + 4n for class 2 stops at 0x19b). Each has its own row:
+
+| Entry | Copy of | What the code at the target does |
+|---|---|---|
+| 0x19c | 0x05c | **Inferred**: word 0x155 (`lineloop.s` line 63), the line-loop vertex code of state 7, out of reach of the separate-lines class whose index range ends at 0x19b. |
+| 0x19d | 0x05d | **Inferred**: word 0x17e (`lineloop.s` line 137), material with loop state 7 put back; unreachable for the same reason. |
+| 0x19e | 0x05e | **Inferred**: word 0x18b (`lineloop.s` line 177), the loop end that loads `mgesi_LineStripRestoreV0`; no r48 value indexes it. |
+| 0x19f | 0x05f | **Inferred**: word 0x180 (`lineloop.s` line 150), a fetch, the spare copy of the loop's state-7 swap entry. |
+| 0x1c0 | 0x160 | **Inferred**: word 0x1f1 (`quad.s` line 22), the quad corner after a switch; table A holds no 0x38, so this copy is never selected. |
+| 0x1c1 | 0x161 | **Inferred**: word 0x20e (`quad.s` line 80), material with quad state 0 put back, in the spare copy. |
+| 0x1c2 | 0x162 | **Inferred**: word 0x205 (`quad.s` line 61), the quad reset and release, duplicated here. |
+| 0x1c3 | 0x163 | **Inferred**: word 0x218 (`quad.s` line 104), the quad fetch, duplicated. |
+| 0x1c4 | 0x164 | **Inferred**: word 0x1f4 (`quad.s` line 27), first corner after begin, in the unreachable copy. |
+| 0x1c5 | 0x165 | **Inferred**: word 0x210 (`quad.s` line 84), material between quads, second copy. |
+| 0x1c6 | 0x166 | **Inferred**: word 0x200 (`quad.s` line 47), the end test on r51 against 4, second copy. |
+| 0x1c7 | 0x167 | **Inferred**: word 0x218 again, the swap at a quad boundary in the copy. |
+| 0x1c8 | 0x168 | **Inferred**: word 0x1f7 (`quad.s` line 32), second corner, copied. |
+| 0x1c9 | 0x169 | **Inferred**: word 0x212 (`quad.s` line 88), material after one corner, copied. |
+| 0x1ca | 0x16a | **Inferred**: word 0x202 (`quad.s` line 54), the abandon-and-release path, copied. |
+| 0x1cb | 0x16b | **Inferred**: word 0x218 for a swap after one corner, in the copy. |
+| 0x1cc | 0x16c | **Inferred**: word 0x1fa (`quad.s` line 37), third corner, copied. |
+| 0x1cd | 0x16d | **Inferred**: word 0x214 (`quad.s` line 92), material after two corners, copied. |
+| 0x1ce | 0x16e | **Inferred**: word 0x202 for an end with two corners, in the copy. |
+| 0x1cf | 0x16f | **Inferred**: word 0x218 for a swap after two corners, in the copy. |
+| 0x1d0 | 0x170 | **Inferred**: word 0x1fd (`quad.s` line 42), the fourth corner with the twelve-quad batch test, copied. |
+| 0x1d1 | 0x171 | **Inferred**: word 0x216 (`quad.s` line 96), material after three corners, copied. |
+| 0x1d2 | 0x172 | **Inferred**: word 0x202 for an end with three corners, in the copy. |
+| 0x1d3 | 0x173 | **Inferred**: word 0x218, the final swap entry of the copy. |
+
+### Quad strips (class 8, entries 0x080-0x0b7)
+
+States: 0 and 13 take the first two vertices, 2 and 1 alternate after that (a quad completes on each state-1 vertex),
+5 is the first vertex after a batch switch, and 3, 4, 6 to 12 are the same cycle after a material change, whose batch
+switches load the save and restore handlers. From the second vertex on every vertex is written with x = 3, keeping the
+previous one in the older slot: the two newest vertices are the edge the next quad shares.
+
+| Entry | Token and state | What the code at the target does |
+|---|---|---|
+| 0x080 | `ged1b.u` the first quad-strip vertex (state 0) | **Inferred**: word 0x226 (`qstrip.s` line 22) writes it with x = 2 and moves to state 13 at word 0x229. |
+| 0x081 | `ged1b.u` material before the first quad-strip vertex | **Inferred**: word 0x254 (`qstrip.s` line 98) reaches the material code with state 0 put back. |
+| 0x082 | `ged1b.u` `HP_END` of an empty quad strip | **Inferred**: word 0x289 (`qstrip.s` line 202) resets r48 and r49 and releases. |
+| 0x083 | `ged1b.u` `HP_SWAPTMESH` in a quad strip (state 0) | **Inferred**: word 0x2a1 (`qstrip.s` line 256) only fetches; the fourteen swap entries of class 8 all land there. |
+| 0x084 | `ged1b.u` a vertex that completes a quad (state 1) | **Inferred**: word 0x22c (`qstrip.s` line 32) shifts with x = 3, moves to state 2, and on a full batch goes to 0x28d: evaluator flush, state 5, `mgesi_QuadStrip` into r70, r51 = 0xa (two vertices carried). |
+| 0x085 | `ged1b.u` material just before a quad completes | **Inferred**: word 0x258 (`qstrip.s` line 106) resumes in state 4 (0x1242) after `mgeb_Material`, the split-strip form of state 1. |
+| 0x086 | `ged1b.u` `HP_END` with an odd vertex pending (state 1) | **Inferred**: word 0x27a (`qstrip.s` line 174) flushes the evaluator, clears r50 and releases with `mgesi_QuadStrip`. |
+| 0x087 | `ged1b.u` `HP_SWAPTMESH` in state 1 | **Inferred**: the fetch at 0x2a1 leaves both history slots alone. |
+| 0x088 | `ged1b.u` the vertex after a completed quad (state 2) | **Inferred**: word 0x22f (`qstrip.s` line 37) shifts it in with x = 3 and moves to state 1. |
+| 0x089 | `ged1b.u` material after a completed quad | **Inferred**: word 0x25a (`qstrip.s` line 110) keeps state 2 through the material code. |
+| 0x08a | `ged1b.u` `HP_END` after a completed quad | **Inferred**: word 0x27f (`qstrip.s` line 185) tests the batch count against 4 with pending class 8 in the delay slot; the branch leaves the batch open, the fall-through flushes and makes `mgesi_QuadStrip` the release handler before the reset at 0x289. |
+| 0x08b | `ged1b.u` `HP_SWAPTMESH` once a quad has just been completed (state 2) | **Inferred**: word 0x2a1 (`qstrip.s` line 256) takes the next input word and does nothing else, so the shared edge stays as it was and the next vertex shifts in normally. |
+| 0x08c | `ged1b.u` a vertex in state 3 (after a material split) | **Inferred**: word 0x23f (`qstrip.s` line 63) shifts with x = 3 and returns to the plain state 1. |
+| 0x08d | `ged1b.u` material in state 3 | **Inferred**: word 0x25c (`qstrip.s` line 114) restores state 3 at 0x23f after the material change. |
+| 0x08e | `ged1b.u` `HP_END` in state 3 | **Inferred**: the end test at 0x27f shared with entry 0x08a. |
+| 0x08f | `ged1b.u` a swap token while a split quad strip waits in state 3 | **Inferred**: the same single fetch at word 0x2a1; quad strips have no swap code, and state 3 still returns to the plain cycle on its next vertex. |
+| 0x090 | `ged1b.u` a quad-completing vertex in state 4 | **Inferred**: word 0x242 (`qstrip.s` line 68) shifts with x = 3 into state 3; on a full batch 0x292 loads `mgesi_QuadStripSave` into r69, moves to state 7 and resets r51 to 0xa. |
+| 0x091 | `ged1b.u` material in state 4 | **Inferred**: word 0x25e (`qstrip.s` line 118) puts back state 4 after `mgeb_Material`. |
+| 0x092 | `ged1b.u` `HP_END` in state 4 | **Inferred**: the flush-and-release with `mgesi_QuadStrip` at 0x27a, as in entry 0x086. |
+| 0x093 | `ged1b.u` swap in state 4, one vertex before a split quad completes | **Inferred**: word 0x2a1 consumes the token without touching r49, so the following vertex still completes the quad and may trigger the save switch at 0x292. |
+| 0x094 | `ged1b.u` the first vertex after a batch switch (state 5) | **Inferred**: word 0x232 (`qstrip.s` line 42) sets state 1 in its delay slot and jumps to 0x236, which clears r39 and r31, resends the older and then the newer history slot (z = 3, z = 2) into the new batch and writes the new vertex with x = 3, followed by y = 1. |
+| 0x095 | `ged1b.u` material right after a batch switch | **Inferred**: word 0x260 (`qstrip.s` line 122) sets state 6 and, at 0x264, resends both slots (z = 3, then z = 2 in the jump's delay slot) before the material code. |
+| 0x096 | `ged1b.u` `HP_END` right after a batch switch | **Inferred**: word 0x289; the carried edge has not been resent, so the new batch is empty and only the release goes out. |
+| 0x097 | `ged1b.u` swap arriving just after a batch switch (state 5) | **Inferred**: dropped at word 0x2a1; the two carried vertices are still waiting for the z = 3 and z = 2 resend that the next vertex performs. |
+| 0x098 | `ged1b.u` a vertex in state 6 (after material in state 5) | **Inferred**: word 0x23c (`qstrip.s` line 58) shifts with x = 3 into state 1, the carried edge having been resent before the material change. |
+| 0x099 | `ged1b.u` a second material change after the carried edge was resent (state 6) | **Inferred**: word 0x269 (`qstrip.s` line 137) jumps to `mgeb_Material` and reloads state 6 in its delay slot; the edge is already in the new batch, so nothing is resent again. |
+| 0x09a | `ged1b.u` `HP_END` in state 6 | **Inferred**: the end test at 0x27f with pending class 8. |
+| 0x09b | `ged1b.u` swap token in state 6 of a quad strip | **Inferred**: the fetch-only word 0x2a1 discards it, leaving the vertex that follows to complete the next quad from state 1. |
+| 0x09c | `ged1b.u` the first vertex after a save switch (state 7) | **Inferred**: word 0x234 (`qstrip.s` line 46) is the state-5 resend at 0x236 with state 9 set instead of state 1. |
+| 0x09d | `ged1b.u` material in state 7 | **Inferred**: word 0x262 (`qstrip.s` line 126) resends both slots like entry 0x095 and resumes in state 8. |
+| 0x09e | `ged1b.u` `HP_END` in state 7 | **Inferred**: word 0x286 (`qstrip.s` line 195) loads `mgebi_NullCommand` into r70, so the empty batch after a save switch is released with no drawing. |
+| 0x09f | `ged1b.u` swap token right after a save switch (state 7) | **Inferred**: word 0x2a1 reads past it; the save-handler batch begun at 0x292 is not affected. |
+| 0x0a0 | `ged1b.u` a vertex in state 8 | **Inferred**: word 0x245 (`qstrip.s` line 73) shifts with x = 3 and moves to state 9. |
+| 0x0a1 | `ged1b.u` material in state 8 | **Inferred**: word 0x26b (`qstrip.s` line 141) leaves the state at 8. |
+| 0x0a2 | `ged1b.u` `HP_END` in state 8 | **Inferred**: the end test at 0x27f; the quad-strip batch stays pending when the count test branches. |
+| 0x0a3 | `ged1b.u` swap token in state 8 of a split quad strip | **Inferred**: consumed by the fetch at 0x2a1, with the strip's alternation between states 9 and 10 left intact. |
+| 0x0a4 | `ged1b.u` a quad-completing vertex in state 9 | **Inferred**: word 0x248 (`qstrip.s` line 78) moves to state 10; a full batch goes to 0x297, which loads `mgesi_QuadStripRestore` into r70, returns to state 5 and resets r51 to 0xa. |
+| 0x0a5 | `ged1b.u` material arriving when a split quad strip is in state 9 | **Inferred**: word 0x26d (`qstrip.s` line 145) queues `mgeb_Material` and puts r49 at state 11 (0x2e4e), whose full-batch path loads the restore-and-save handler instead of the plain restore one. |
+| 0x0a6 | `ged1b.u` `HP_END` in state 9 | **Inferred**: word 0x275 (`qstrip.s` line 164) releases the batch with `mgesi_QuadStripRestore` after the evaluator flush. |
+| 0x0a7 | `ged1b.u` swap token in state 9 | **Inferred**: word 0x2a1 fetches past it; a quad strip has no use for the IRIS GL swap order. |
+| 0x0a8 | `ged1b.u` a vertex in state 10 | **Inferred**: word 0x24b (`qstrip.s` line 83) shifts with x = 3 back to state 9. |
+| 0x0a9 | `ged1b.u` material between the two vertices of a split-strip quad (state 10) | **Inferred**: word 0x26f (`qstrip.s` line 149) runs the material code and resumes with r49 still at state 10, so the next vertex returns to state 9 as before. |
+| 0x0aa | `ged1b.u` `HP_END` in state 10 | **Inferred**: 0x275 again, the restore-handler release. |
+| 0x0ab | `ged1b.u` swap token in state 10 | **Inferred**: no state change: the lone fetch at 0x2a1 ends the token. |
+| 0x0ac | `ged1b.u` a quad-completing vertex in state 11 | **Inferred**: word 0x24e (`qstrip.s` line 88) moves to state 12; a full batch goes to 0x29c, which loads `mgesi_QuadStripRestoreSave` into r69 and returns to state 7. |
+| 0x0ad | `ged1b.u` a repeated material change in state 11 | **Inferred**: word 0x271 (`qstrip.s` line 153) queues the material handler and restores state 11, keeping the restore-and-save switch for the next full batch. |
+| 0x0ae | `ged1b.u` `HP_END` reached in state 11 | **Inferred**: word 0x275 (`qstrip.s` line 164) flushes the evaluator, clears the pending class and releases the batch with `mgesi_QuadStripRestore`, the handler that brings back the edge saved by an earlier batch. |
+| 0x0af | `ged1b.u` swap token in state 11 | **Inferred**: discarded by word 0x2a1 like every other quad-strip swap. |
+| 0x0b0 | `ged1b.u` a vertex in state 12 | **Inferred**: word 0x251 (`qstrip.s` line 93) shifts with x = 3 into state 9. |
+| 0x0b1 | `ged1b.u` material in the twelfth quad-strip state | **Inferred**: word 0x273 (`qstrip.s` line 157) enters the material code with state 12 put back, so the next vertex rejoins state 9. |
+| 0x0b2 | `ged1b.u` `HP_END` from state 12 | **Inferred**: shares word 0x275 with states 9 to 11: evaluator flush, then a release that runs `mgesi_QuadStripRestore` over the last batch. |
+| 0x0b3 | `ged1b.u` swap token in state 12 | **Inferred**: word 0x2a1 takes the next word and leaves state 12 in place. |
+| 0x0b4 | `ged1b.u` the second quad-strip vertex (state 13) | **Inferred**: word 0x229 (`qstrip.s` line 27) is the first x = 3 write, moving the first vertex to the older slot, and enters state 2. |
+| 0x0b5 | `ged1b.u` material after one quad-strip vertex | **Inferred**: word 0x256 (`qstrip.s` line 102) keeps state 13. |
+| 0x0b6 | `ged1b.u` `HP_END` with one quad-strip vertex | **Inferred**: the unconditional flush and `mgesi_QuadStrip` release at 0x27a. |
+| 0x0b7 | `ged1b.u` swap token after only one quad-strip vertex (state 13) | **Inferred**: the fetch at 0x2a1 (`qstrip.s` line 256); with one vertex there is not yet an edge to reorder. |
+
+### Triangle strips (class 9, entries 0x0c0-0x0ff)
+
+States: 0 and 1 take the first two vertices; 7 and 6 alternate on the plain path, and 2 and 3 are the same pair when the
+strip's winding is odd (the `WithSwapOdd` handlers); 4 and 5 are the first vertex after a batch switch; 8 to 11 and 13 to
+15 are the cycle after a material change, whose switches load the save and restore handlers. Every vertex from the second
+on is written with x = 3, so the two newest vertices stay in the history slots. A `SWAPTMESH` token (entry offset 3) loads
+r49 with x = 1, which **inferred** exchanges the two slots, and toggles the parity in one-hot register r55 at word 0x102
+(r14 follows it). Every state except 0, 1 and 12 has its own swap code.
+
+| Entry | Token and state | What the code at the target does |
+|---|---|---|
+| 0x0c0 | `ged1b.u` the first triangle-strip vertex (state 0) | **Inferred**: word 0x04c (`tstrip.s` line 22) writes it with x = 2, moves to state 1 at 0x04f and clears r55 after the fetch. |
+| 0x0c1 | `ged1b.u` material before the first strip vertex | **Inferred**: word 0x0d9 (`tstrip.s` line 282) jumps to the material code with a no-op in the delay slot, so r49 keeps state 0. |
+| 0x0c2 | `ged1b.u` `HP_END` of an empty triangle strip | **Inferred**: word 0x0e8 (`tstrip.s` line 314) clears the class, idles r49 and releases. |
+| 0x0c3 | `ged1b.u` `HP_SWAPTMESH` before any strip vertex | **Inferred**: word 0x0af (`tstrip.s` line 189) only fetches; with no vertex there is no pair to exchange. |
+| 0x0c4 | `ged1b.u` the second strip vertex (state 1) | **Inferred**: word 0x04f (`tstrip.s` line 27) writes it with x = 3, so the first vertex becomes the older slot, and enters state 7. |
+| 0x0c5 | `ged1b.u` material after one strip vertex | **Inferred**: the material jump at 0x0d9 leaves r49 at state 1. |
+| 0x0c6 | `ged1b.u` `HP_END` with one strip vertex | **Inferred**: word 0x0db (`tstrip.s` line 287) issues y = 1, then tests the batch count against 4 with pending class 9 in the delay slot; the fall-through flushes the evaluator and makes `mgesi_TriangleStrip` the release handler before the release at 0x0e8. |
+| 0x0c7 | `ged1b.u` `HP_SWAPTMESH` with one strip vertex | **Inferred**: fetch at 0x0af; the swap needs two vertices. |
+| 0x0c8 | `ged1b.u` a vertex in state 2 (odd winding) | **Inferred**: word 0x05c (`tstrip.s` line 50) shifts with x = 3 into state 3 and clears the parity; when the batch is full the op-6 transfer goes to 0x07d, which makes `mgesi_TriangleStripWithSwapOdd` the current handler and sets state 5 before the switch code at 0x09e copies it to the release handler and resets the count to 0xa. |
+| 0x0c9 | `ged1b.u` material in state 2 | **Inferred**: word 0x0d1 (`tstrip.s` line 257) resumes in state 14 (0x3874), the odd-winding state of the split cycle. |
+| 0x0ca | `ged1b.u` `HP_END` in state 2 | **Inferred**: word 0x0e3 (`tstrip.s` line 304) flushes the evaluator and releases with `mgesi_TriangleStripWithSwapOdd`. |
+| 0x0cb | `ged1b.u` `HP_SWAPTMESH` in state 2 | **Inferred**: word 0x0b9 (`tstrip.s` line 209) loads the state register with x = 1 and state 3 in a jump's delay slot, then the parity code at 0x102 flips the one-hot parity bit and its copy in r14. |
+| 0x0cc | `ged1b.u` a vertex in state 3 (odd winding) | **Inferred**: word 0x05f (`tstrip.s` line 55) shifts into state 2; a full batch goes to 0x07a, `mgesi_TriangleStripWithSwapOdd` again, with state 4 next. |
+| 0x0cd | `ged1b.u` material in state 3 | **Inferred**: word 0x0d3 (`tstrip.s` line 261) resumes in state 15 at word 0x077. |
+| 0x0ce | `ged1b.u` `HP_END` in state 3 | **Inferred**: the odd-winding release at 0x0e3, as for state 2. |
+| 0x0cf | `ged1b.u` `HP_SWAPTMESH` in state 3 | **Inferred**: word 0x0bb (`tstrip.s` line 213) loads x = 1 with state 2 and runs the parity toggle at 0x102. |
+| 0x0d0 | `ged1b.u` the first vertex after a switch into state 4 | **Inferred**: word 0x05a (`tstrip.s` line 46) sets state 6 and jumps to 0x0f6, which clears r39 and r31, resends the older slot (z = 3), marks y = 1, resends the newer slot (z = 2) and writes the new vertex with x = 2, then clears r55. |
+| 0x0d1 | `ged1b.u` material in state 4 | **Inferred**: word 0x0cd (`tstrip.s` line 249) sets state 6 and goes to 0x109, which resends both slots (z = 3, then z = 2 in the delay slot of the jump to the material code). |
+| 0x0d2 | `ged1b.u` `HP_END` in state 4 | **Inferred**: word 0x0e8; the new batch has no vertex yet, so only the release goes out. |
+| 0x0d3 | `ged1b.u` `HP_SWAPTMESH` in state 4 | **Inferred**: word 0x0b5 (`tstrip.s` line 201) sets state 6 and goes to 0x0fd: both slots are resent (z = 3, z = 2), then x = 1 exchanges them and the parity toggle at 0x102 runs. |
+| 0x0d4 | `ged1b.u` the first vertex after a switch into state 5 | **Inferred**: word 0x058 (`tstrip.s` line 42) is the resend-and-write path at 0x0f6 with state 2 as the next state. |
+| 0x0d5 | `ged1b.u` material in state 5 | **Inferred**: word 0x0cf (`tstrip.s` line 253) resends both slots through 0x109 and resumes in state 2. |
+| 0x0d6 | `ged1b.u` `HP_END` in state 5 | **Inferred**: the plain release at 0x0e8, as for state 4. |
+| 0x0d7 | `ged1b.u` `HP_SWAPTMESH` in state 5 | **Inferred**: word 0x0b7 (`tstrip.s` line 205) resends both slots at 0x0fd, exchanges them with x = 1 and moves to state 2. |
+| 0x0d8 | `ged1b.u` a vertex in state 6 (even winding) | **Inferred**: word 0x055 (`tstrip.s` line 37) shifts with x = 3 into state 7; a full batch goes to 0x083, which keeps `mgesi_TriangleStrip` as the handler and sets state 4. |
+| 0x0d9 | `ged1b.u` material between triangles on the even-winding path (state 6) | **Inferred**: word 0x0d5 (`tstrip.s` line 265) moves the strip into the split cycle at state 9 (0x2465), so a later batch switch saves the shared edge on the engine. |
+| 0x0da | `ged1b.u` `HP_END` in state 6 | **Inferred**: word 0x0db: y = 1, then the r51 test against 4 and the `mgesi_TriangleStrip` release, shared with entry 0x0c6. |
+| 0x0db | `ged1b.u` `HP_SWAPTMESH` in state 6 | **Inferred**: word 0x0b3 (`tstrip.s` line 197) exchanges the slots (x = 1), moves to state 7 and toggles r55. |
+| 0x0dc | `ged1b.u` a vertex in state 7 (even winding) | **Inferred**: word 0x052 (`tstrip.s` line 32) shifts with x = 3 into state 6; a full batch goes to 0x080, `mgesi_TriangleStrip` as handler and state 5 next. |
+| 0x0dd | `ged1b.u` material on the even-winding path in state 7 | **Inferred**: word 0x0d7 (`tstrip.s` line 269) resumes the strip at state 8 (0x2062) of the split cycle after `mgeb_Material` is queued. |
+| 0x0de | `ged1b.u` `HP_END` in state 7 | **Inferred**: word 0x0dc (`tstrip.s` line 291): the r51 test with pending class 9, without the y mark of entry 0x0da. |
+| 0x0df | `ged1b.u` `HP_SWAPTMESH` in state 7 | **Inferred**: word 0x0b1 (`tstrip.s` line 193) exchanges the slots with x = 1 and moves to state 6. |
+| 0x0e0 | `ged1b.u` a vertex in state 8 | **Inferred**: word 0x062 (`tstrip.s` line 60) shifts with x = 3 and drops back to the plain state 6; when the count is spent, 0x086 makes `mgesi_TriangleStripSave` current and 0x0a7 copies it to the second release handler, resends both slots and sets state 13. |
+| 0x0e1 | `ged1b.u` material in state 8 | **Inferred**: the shared jump at 0x0d9 keeps state 8. |
+| 0x0e2 | `ged1b.u` `HP_END` with the strip in state 8 | **Inferred**: word 0x0dc (`tstrip.s` line 291) tests the batch count with pending class 9 set; without the branch it releases the batch as plain `mgesi_TriangleStrip`. |
+| 0x0e3 | `ged1b.u` swap in state 8 | **Inferred**: word 0x0bd (`tstrip.s` line 217) loads r49 with x = 1, exchanging the two history slots, and with state 9, then flips the parity at 0x102. |
+| 0x0e4 | `ged1b.u` a vertex in state 9 | **Inferred**: word 0x065 (`tstrip.s` line 65) writes it with x = 3 and moves to state 8; a spent count takes the same save switch at 0x086 as state 8. |
+| 0x0e5 | `ged1b.u` material once the strip is in state 9 | **Inferred**: the jump at word 0x0d9 queues `mgeb_Material` and leaves r49 untouched, so the strip continues in state 9. |
+| 0x0e6 | `ged1b.u` `HP_END` in state 9 | **Inferred**: the end test at 0x0dc with pending class 9. |
+| 0x0e7 | `ged1b.u` swap in state 9 | **Inferred**: word 0x0bf (`tstrip.s` line 221) exchanges the history slots (x = 1), returns to state 8 and toggles the parity bit. |
+| 0x0e8 | `ged1b.u` a vertex in state 10 | **Inferred**: word 0x068 (`tstrip.s` line 70) shifts it in and moves to state 11; when the batch is full, 0x08c loads `mgesi_TriangleStripRestoreSave` and the switch at 0x0a7 continues in state 13. |
+| 0x0e9 | `ged1b.u` material in state 10 of a triangle strip | **Inferred**: word 0x0d9 jumps straight to the material code; r49 keeps state 10 and the history slots are not resent. |
+| 0x0ea | `ged1b.u` `HP_END` in state 10 | **Inferred**: word 0x0ec (`tstrip.s` line 321) releases with `mgesi_TriangleStripRestore` after the evaluator flush. |
+| 0x0eb | `ged1b.u` swap in state 10 | **Inferred**: word 0x0c1 (`tstrip.s` line 225) exchanges the slots with x = 1, moves to state 11 and runs the parity toggle. |
+| 0x0ec | `ged1b.u` a vertex in state 11 | **Inferred**: word 0x06b (`tstrip.s` line 75) shifts it in and moves to state 10; a full batch goes to 0x08f, which loads the restore-and-save handler and continues in state 10 rather than 13. |
+| 0x0ed | `ged1b.u` material in state 11 of a triangle strip | **Inferred**: handled by the shared material jump at 0x0d9 with no change to the strip state or to either history slot. |
+| 0x0ee | `ged1b.u` `HP_END` from state 11 | **Inferred**: word 0x0ec (`tstrip.s` line 321) flushes the evaluator and releases with `mgesi_TriangleStripRestore`, as the end in state 10 does. |
+| 0x0ef | `ged1b.u` swap in state 11 | **Inferred**: word 0x0c3 (`tstrip.s` line 229) exchanges the two vertices, sets state 10 and toggles the one-hot parity. |
+| 0x0f4 | `ged1b.u` a vertex in state 13 | **Inferred**: word 0x071 (`tstrip.s` line 85) shifts and stays in state 13; a full batch goes to 0x095, `mgesi_TriangleStripRestoreSaveWithSwapOdd`, state 10 next. |
+| 0x0f5 | `ged1b.u` material while the strip sits in state 13 | **Inferred**: the shared word 0x0d9 queues the material handler; state 13 and its restore-and-save switch remain in force. |
+| 0x0f6 | `ged1b.u` `HP_END` in state 13 | **Inferred**: word 0x0f1 (`tstrip.s` line 329) releases with `mgesi_TriangleStripRestoreWithSwapOdd`. |
+| 0x0f7 | `ged1b.u` `HP_SWAPTMESH` in state 13 | **Inferred**: word 0x0c7 (`tstrip.s` line 237) loads x = 1 and keeps state 13 before the parity toggle. |
+| 0x0f8 | `ged1b.u` a vertex in state 14 | **Inferred**: word 0x074 (`tstrip.s` line 90) shifts it in and returns to the odd-winding state 3; a spent count goes to 0x098, which loads the odd-winding save handler and continues in state 13. |
+| 0x0f9 | `ged1b.u` material in odd-winding state 14 | **Inferred**: queued through word 0x0d9, which leaves r49 at state 14 so the next vertex still returns to state 3. |
+| 0x0fa | `ged1b.u` `HP_END` in state 14 | **Inferred**: the odd-winding release with `mgesi_TriangleStripWithSwapOdd` at 0x0e3. |
+| 0x0fb | `ged1b.u` swap in state 14 | **Inferred**: word 0x0c9 (`tstrip.s` line 241) swaps the slots with x = 1, sets state 15 and toggles parity at 0x102. |
+| 0x0fc | `ged1b.u` a vertex in state 15 | **Inferred**: word 0x077 (`tstrip.s` line 95) shifts and stays in state 15; a full batch goes to 0x09b, `mgesi_TriangleStripSaveWithSwapOdd`, state 10 next. |
+| 0x0fd | `ged1b.u` material in state 15 | **Inferred**: word 0x0d9 again; state 15 loops on itself, so the strip stays there after the material change. |
+| 0x0fe | `ged1b.u` `HP_END` in state 15 | **Inferred**: 0x0e3, the `mgesi_TriangleStripWithSwapOdd` release, which every odd-winding state shares. |
+| 0x0ff | `ged1b.u` swap in state 15 | **Inferred**: word 0x0cb (`tstrip.s` line 245) swaps the slots, moves to state 14 and flips the parity bit and its r14 copy. |
+
+Entries 0x0f0-0x0f3 (state 12) hold the null loop at 0x006: no code loads state 12.
+
+### Triangle fans and polygons (class 10, entries 0x100-0x12b)
+
+Fans and polygons share these entries; the begin stubs differ only in the mode they send (`mgeb_SetTfanPolyMode` 1 or 0)
+and the one-hot register r56 that remembers it. States: 0 takes the centre vertex, 1 the second, 2 the later ones, 3 the
+first vertex after a batch switch, 5 the second vertex after a material change, 6 and 8 the later vertices once a material
+change has split the fan, 7 and 9 their batch switches, 4 and 10 the states after a material change at a switch. The second
+vertex is written with x = 3 and every other with x = 2, so the centre stays in the older history slot, which each switch
+resends with z = 3 along with the newest vertex (z = 2).
+
+| Entry | Token and state | What the code at the target does |
+|---|---|---|
+| 0x100 | `ged1b.u` the centre vertex of a fan or polygon (state 0) | **Inferred**: word 0x2c3 (`tfanpoly.s` line 53) writes it with x = 2, moves to state 1 and clears r33 on the fetch. |
+| 0x101 | `ged1b.u` material before the centre vertex | **Inferred**: word 0x301 (`tfanpoly.s` line 147) runs the material code with state 0 put back. |
+| 0x102 | `ged1b.u` `HP_END` of an empty fan or polygon | **Inferred**: word 0x339 (`tfanpoly.s` line 247) resets the class and state and releases. |
+| 0x103 | `ged1b.u` `HP_SWAPTMESH` in a fan (state 0) | **Inferred**: word 0x330 (`tfanpoly.s` line 229) only fetches; all eleven swap entries of class 10 land there. |
+| 0x104 | `ged1b.u` the second fan vertex (state 1) | **Inferred**: word 0x2c6 (`tfanpoly.s` line 58) writes it with x = 3, which moves the centre into the older slot for the rest of the fan, sets r14 to 7, clears r39 and enters state 2. |
+| 0x105 | `ged1b.u` material after the centre vertex | **Inferred**: word 0x305 (`tfanpoly.s` line 156) resumes in state 5, so the second vertex takes the split-fan path. |
+| 0x106 | `ged1b.u` `HP_END` with only the centre vertex | **Inferred**: word 0x332 (`tfanpoly.s` line 235) tests the one-hot mode bit: the fan mode leaves pending class 10 and the polygon mode pending class 3 (the value the polygon begin stub compares with); then the batch count is tested against 4, and the fall-through flushes and makes `mgesi_TfanPolyEnd` the release handler. |
+| 0x107 | `ged1b.u` swap token after the fan's centre vertex (state 1) | **Inferred**: word 0x330 (`tfanpoly.s` line 229) fetches past it: a fan's centre is held by the x = 3 shift of the second vertex, not by swap order. |
+| 0x108 | `ged1b.u` a later fan vertex (state 2) | **Inferred**: word 0x2cc (`tfanpoly.s` line 69) replaces the newest slot (x = 2) and stays in state 2; when the batch is full it moves to state 3 at word 0x2d2 instead. |
+| 0x109 | `ged1b.u` material between fan triangles (state 2) | **Inferred**: word 0x303 (`tfanpoly.s` line 151) queues `mgeb_Material` and moves the fan to state 6, the split path whose switches load the save and restore handlers. |
+| 0x10a | `ged1b.u` `HP_END` in state 2 | **Inferred**: the mode test at 0x332 and the r51 test, shared with entry 0x106. |
+| 0x10b | `ged1b.u` swap token in fan state 2 | **Inferred**: the single fetch at 0x330; the centre stays in the older slot and the newest vertex is unchanged. |
+| 0x10c | `ged1b.u` the first vertex after a fan batch switch (state 3) | **Inferred**: word 0x2d2 (`tfanpoly.s` line 79) flushes the evaluator, puts `mgesi_TfanPoly` into the release handler a one-hot test picks, resends the centre (z = 3) and the last vertex (z = 2), resets the batch count to 0xa and writes the new vertex with x = 2, back in state 2. |
+| 0x10d | `ged1b.u` material at a fan batch switch | **Inferred**: word 0x307 (`tfanpoly.s` line 160) loads `mgesi_TfanPolySave` into the second release handler, then a one-hot test either adds the plain fan handler with state 6 or keeps state 4; it resends both slots, resets the batch count to 0xa and enters the material code. |
+| 0x10e | `ged1b.u` `HP_END` in state 3 | **Inferred**: the shared end at 0x332 with the fan or polygon pending class. |
+| 0x10f | `ged1b.u` swap token while a fan waits to start its next batch (state 3) | **Inferred**: dropped by the fetch at 0x330; the resend of centre and last vertex still happens on the next vertex. |
+| 0x110 | `ged1b.u` a vertex in state 4 | **Inferred**: word 0x2dd (`tfanpoly.s` line 94) writes it with x = 2 and moves to state 8. |
+| 0x111 | `ged1b.u` material in fan state 4 | **Inferred**: word 0x314 (`tfanpoly.s` line 177) re-enters the material code with state 4 put back, so the next vertex still goes to state 8. |
+| 0x112 | `ged1b.u` `HP_END` in state 4 | **Inferred**: word 0x341 (`tfanpoly.s` line 266) resends the newest vertex (z = 2), loads `mgesi_TfanPolyRestoreEdge` and releases it through 0x344 after the evaluator flush. |
+| 0x113 | `ged1b.u` swap token in fan state 4 | **Inferred**: word 0x330 consumes it; fans and polygons have no swap code at all. |
+| 0x114 | `ged1b.u` the second vertex after a material change (state 5) | **Inferred**: word 0x2c9 (`tfanpoly.s` line 64) writes it with x = 3, so the centre still moves to the older slot, sets r14 to 7 and enters state 6. |
+| 0x115 | `ged1b.u` material in state 5 | **Inferred**: word 0x305 (`tfanpoly.s` line 156) keeps state 5, as for entry 0x105. |
+| 0x116 | `ged1b.u` `HP_END` in state 5 | **Inferred**: word 0x33d (`tfanpoly.s` line 255) makes `mgesi_TfanPolyEnd` the current handler, copies it to the release handler at 0x346 and releases with the pending class cleared. |
+| 0x117 | `ged1b.u` swap token in fan state 5 | **Inferred**: discarded by the fetch at 0x330 before the second vertex arrives. |
+| 0x118 | `ged1b.u` a vertex in state 6 | **Inferred**: word 0x2e0 (`tfanpoly.s` line 99) writes the newest slot and stays in state 6; a full batch moves to state 7 and resets r51 to 0xa. |
+| 0x119 | `ged1b.u` a repeated material change in fan state 6 | **Inferred**: word 0x316 (`tfanpoly.s` line 181) runs the material code and leaves the fan in state 6. |
+| 0x11a | `ged1b.u` `HP_END` in state 6 | **Inferred**: the `mgesi_TfanPolyEnd` release at 0x33d, as for state 5. |
+| 0x11b | `ged1b.u` swap token in fan state 6 | **Inferred**: word 0x330 reads past it without any write to r49. |
+| 0x11c | `ged1b.u` the first vertex after a split-fan switch (state 7) | **Inferred**: word 0x2e6 (`tfanpoly.s` line 109) flushes the evaluator, loads `mgesi_TfanPolySave` into r69, resends the centre and the last vertex (z = 3, z = 2) and writes the new vertex with x = 2, moving to state 8. |
+| 0x11d | `ged1b.u` material in state 7 | **Inferred**: word 0x318 (`tfanpoly.s` line 185) does the same save-handler load and resend, then enters the material code with state 8 put back. |
+| 0x11e | `ged1b.u` `HP_END` in fan state 7 | **Inferred**: word 0x33d (`tfanpoly.s` line 255) makes `mgesi_TfanPolyEnd` the handler of the closing release, after the evaluator flush at 0x344. |
+| 0x11f | `ged1b.u` swap token in fan state 7 | **Inferred**: fetch-only word 0x330; the save-handler switch due on the next vertex is not disturbed. |
+| 0x120 | `ged1b.u` a vertex in state 8 | **Inferred**: word 0x2ef (`tfanpoly.s` line 120) writes the newest slot and stays in state 8; a full batch moves to state 9 with r51 reset to 0xa. |
+| 0x121 | `ged1b.u` material in fan state 8 | **Inferred**: word 0x320 (`tfanpoly.s` line 195) queues `mgeb_Material` and keeps the fan in state 8, its main split-path state. |
+| 0x122 | `ged1b.u` `HP_END` in state 8 | **Inferred**: word 0x33f (`tfanpoly.s` line 260) releases with `mgesi_TfanPolyRestoreEnd`. |
+| 0x123 | `ged1b.u` swap token in fan state 8 | **Inferred**: consumed by word 0x330, with the centre vertex still held in the older slot. |
+| 0x124 | `ged1b.u` the first vertex after a switch in state 9 | **Inferred**: word 0x2f5 (`tfanpoly.s` line 131) flushes, loads `mgesi_TfanPolyRestore` into r69, resends both slots and writes the vertex with x = 2, back to state 8. |
+| 0x125 | `ged1b.u` material in state 9 | **Inferred**: word 0x322 (`tfanpoly.s` line 199) uses a one-hot test to pick the second release handler, the restore-and-save fan handler with state 10 or the restore handler with state 8, resends both slots and enters the material code. |
+| 0x126 | `ged1b.u` `HP_END` in fan state 9 | **Inferred**: word 0x33f (`tfanpoly.s` line 260) loads `mgesi_TfanPolyRestoreEnd`, the handler that closes the fan with the centre restored on the engine, before the release. |
+| 0x127 | `ged1b.u` swap token in fan state 9 | **Inferred**: the fetch at 0x330 leaves the pending restore switch for the next vertex. |
+| 0x128 | `ged1b.u` a vertex in state 10 | **Inferred**: word 0x2fe (`tfanpoly.s` line 142) writes it with x = 2 and moves to state 8. |
+| 0x129 | `ged1b.u` material in fan state 10 | **Inferred**: word 0x32e (`tfanpoly.s` line 215) keeps state 10 across the material change, so the next vertex still lands in state 8. |
+| 0x12a | `ged1b.u` `HP_END` in state 10 | **Inferred**: word 0x341, the z = 2 resend and `mgesi_TfanPolyRestoreEdge` release shared with entry 0x112. |
+| 0x12b | `ged1b.u` `HP_SWAPTMESH` in state 10 | **Inferred**: the last class-10 entry, the fetch at 0x330. |
+
+Entries 0x12c-0x13f hold the null loop at 0x006.
+
 ### Subdivision patches (class 12, entries 0x1a0-0x1a7)
 
 | Entry | Token and state | What the code at the target does |
@@ -258,7 +631,7 @@ Sources: `irsaudit` 6.5.30m, `gedSequencer` (0x10075210), `gedStressTd` (0x10074
 
 - how the hardware chooses between the state-based table B index and the token's own entry number k for a given token (by k < 4, by control bit 6, or by a separate vertex path): **unknown: no shipped software or published source depends on it**, routes tried in the paragraph after this list;
 - what transfer ops 1, 3, 5, 6 and 7 test (equal, bit set, nonzero): **unknown: no shipped software or published source depends on it**, routes tried in the paragraph after this list;
-- what control fields x, y, r, a, b, c, z and n and load fields x and y do, beyond fetch (bit 26) and release (bit 12): **unknown: no shipped software or published source depends on it**, routes tried in the paragraph after this list;
+- what control fields y, r, a, b, c and n and load field y do, beyond fetch (bit 26) and release (bit 12), and the exact hardware action of x and z, which [Vertex history fields x and z](#vertex-history-fields-x-and-z) reads from the program's use of them: **unknown: no shipped software or published source depends on it**, routes tried in the paragraph after this list;
 - the roles of the small-constant registers r13, r14, r30, r31, r33, r39, r54-r56, r65 and r67: **unknown: no shipped software or published source depends on it**, routes tried in the paragraph after this list;
 - the roles of registers 0x280-0x2b0 beyond the pointer and data pairs read above: **unknown: no shipped software or published source depends on it**, routes tried in the paragraph after this list;
 

@@ -3962,42 +3962,42 @@ ged1b.u	table B entry	60		entry=0x003 source=dist.s line=13	undocumented
 ged1b.u	table B entry	61		entry=0x003 source=dist.s line=13	undocumented		
 ged1b.u	table B entry	62		entry=0x011 source=flush.s line=14	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
 ged1b.u	table B entry	63		entry=0x00d source=flush.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
-ged1b.u	table B entry	64		entry=0x13c source=lineloop.s line=22	undocumented		
-ged1b.u	table B entry	65		entry=0x16c source=lineloop.s line=101	undocumented		
-ged1b.u	table B entry	66		entry=0x19e source=lineloop.s line=214	undocumented		
-ged1b.u	table B entry	67		entry=0x180 source=lineloop.s line=150	undocumented		
-ged1b.u	table B entry	68		entry=0x13f source=lineloop.s line=27	undocumented		
-ged1b.u	table B entry	69		entry=0x16e source=lineloop.s line=106	undocumented		
-ged1b.u	table B entry	70		entry=0x18e source=lineloop.s line=186	undocumented		
-ged1b.u	table B entry	71		entry=0x180 source=lineloop.s line=150	undocumented		
-ged1b.u	table B entry	72		entry=0x142 source=lineloop.s line=32	undocumented		
-ged1b.u	table B entry	73		entry=0x170 source=lineloop.s line=111	undocumented		
-ged1b.u	table B entry	74		entry=0x18d source=lineloop.s line=182	undocumented		
-ged1b.u	table B entry	75		entry=0x180 source=lineloop.s line=150	undocumented		
-ged1b.u	table B entry	76		entry=0x145 source=lineloop.s line=37	undocumented		
-ged1b.u	table B entry	77		entry=0x177 source=lineloop.s line=126	undocumented		
-ged1b.u	table B entry	78		entry=0x193 source=lineloop.s line=193	undocumented		
-ged1b.u	table B entry	79		entry=0x180 source=lineloop.s line=150	undocumented		
-ged1b.u	table B entry	80		entry=0x14f source=lineloop.s line=53	undocumented		
-ged1b.u	table B entry	81		entry=0x170 source=lineloop.s line=111	undocumented		
-ged1b.u	table B entry	82		entry=0x185 source=lineloop.s line=165	undocumented		
-ged1b.u	table B entry	83		entry=0x180 source=lineloop.s line=150	undocumented		
-ged1b.u	table B entry	84		entry=0x149 source=lineloop.s line=43	undocumented		
-ged1b.u	table B entry	85		entry=0x172 source=lineloop.s line=116	undocumented		
-ged1b.u	table B entry	86		entry=0x187 source=lineloop.s line=169	undocumented		
-ged1b.u	table B entry	87		entry=0x180 source=lineloop.s line=150	undocumented		
-ged1b.u	table B entry	88		entry=0x152 source=lineloop.s line=58	undocumented		
-ged1b.u	table B entry	89		entry=0x17c source=lineloop.s line=133	undocumented		
-ged1b.u	table B entry	90		entry=0x189 source=lineloop.s line=173	undocumented		
-ged1b.u	table B entry	91		entry=0x180 source=lineloop.s line=150	undocumented		
-ged1b.u	table B entry	92		entry=0x155 source=lineloop.s line=63	undocumented		
-ged1b.u	table B entry	93		entry=0x17e source=lineloop.s line=137	undocumented		
-ged1b.u	table B entry	94		entry=0x18b source=lineloop.s line=177	undocumented		
-ged1b.u	table B entry	95		entry=0x180 source=lineloop.s line=150	undocumented		
-ged1b.u	table B entry	96		entry=0x14c source=lineloop.s line=48	undocumented		
-ged1b.u	table B entry	97		entry=0x16e source=lineloop.s line=106	undocumented		
-ged1b.u	table B entry	98		entry=0x182 source=lineloop.s line=160	undocumented		
-ged1b.u	table B entry	99		entry=0x180 source=lineloop.s line=150	undocumented		
+ged1b.u	table B entry	64		entry=0x13c source=lineloop.s line=22	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	65		entry=0x16c source=lineloop.s line=101	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	66		entry=0x19e source=lineloop.s line=214	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	67		entry=0x180 source=lineloop.s line=150	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	68		entry=0x13f source=lineloop.s line=27	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	69		entry=0x16e source=lineloop.s line=106	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	70		entry=0x18e source=lineloop.s line=186	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	71		entry=0x180 source=lineloop.s line=150	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	72		entry=0x142 source=lineloop.s line=32	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	73		entry=0x170 source=lineloop.s line=111	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	74		entry=0x18d source=lineloop.s line=182	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	75		entry=0x180 source=lineloop.s line=150	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	76		entry=0x145 source=lineloop.s line=37	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	77		entry=0x177 source=lineloop.s line=126	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	78		entry=0x193 source=lineloop.s line=193	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	79		entry=0x180 source=lineloop.s line=150	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	80		entry=0x14f source=lineloop.s line=53	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	81		entry=0x170 source=lineloop.s line=111	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	82		entry=0x185 source=lineloop.s line=165	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	83		entry=0x180 source=lineloop.s line=150	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	84		entry=0x149 source=lineloop.s line=43	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	85		entry=0x172 source=lineloop.s line=116	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	86		entry=0x187 source=lineloop.s line=169	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	87		entry=0x180 source=lineloop.s line=150	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	88		entry=0x152 source=lineloop.s line=58	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	89		entry=0x17c source=lineloop.s line=133	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	90		entry=0x189 source=lineloop.s line=173	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	91		entry=0x180 source=lineloop.s line=150	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	92		entry=0x155 source=lineloop.s line=63	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	93		entry=0x17e source=lineloop.s line=137	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	94		entry=0x18b source=lineloop.s line=177	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	95		entry=0x180 source=lineloop.s line=150	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	96		entry=0x14c source=lineloop.s line=48	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	97		entry=0x16e source=lineloop.s line=106	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	98		entry=0x182 source=lineloop.s line=160	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
+ged1b.u	table B entry	99		entry=0x180 source=lineloop.s line=150	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
 ged1b.u	table B entry	100		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	101		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	102		entry=0x006 source=dist.s line=18	undocumented		
@@ -4026,62 +4026,62 @@ ged1b.u	table B entry	124		entry=0x006 source=dist.s line=18	undocumented
 ged1b.u	table B entry	125		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	126		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	127		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	128		entry=0x226 source=qstrip.s line=22	undocumented		
-ged1b.u	table B entry	129		entry=0x254 source=qstrip.s line=98	undocumented		
-ged1b.u	table B entry	130		entry=0x289 source=qstrip.s line=202	undocumented		
-ged1b.u	table B entry	131		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	132		entry=0x22c source=qstrip.s line=32	undocumented		
-ged1b.u	table B entry	133		entry=0x258 source=qstrip.s line=106	undocumented		
-ged1b.u	table B entry	134		entry=0x27a source=qstrip.s line=174	undocumented		
-ged1b.u	table B entry	135		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	136		entry=0x22f source=qstrip.s line=37	undocumented		
-ged1b.u	table B entry	137		entry=0x25a source=qstrip.s line=110	undocumented		
-ged1b.u	table B entry	138		entry=0x27f source=qstrip.s line=185	undocumented		
-ged1b.u	table B entry	139		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	140		entry=0x23f source=qstrip.s line=63	undocumented		
-ged1b.u	table B entry	141		entry=0x25c source=qstrip.s line=114	undocumented		
-ged1b.u	table B entry	142		entry=0x27f source=qstrip.s line=185	undocumented		
-ged1b.u	table B entry	143		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	144		entry=0x242 source=qstrip.s line=68	undocumented		
-ged1b.u	table B entry	145		entry=0x25e source=qstrip.s line=118	undocumented		
-ged1b.u	table B entry	146		entry=0x27a source=qstrip.s line=174	undocumented		
-ged1b.u	table B entry	147		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	148		entry=0x232 source=qstrip.s line=42	undocumented		
-ged1b.u	table B entry	149		entry=0x260 source=qstrip.s line=122	undocumented		
-ged1b.u	table B entry	150		entry=0x289 source=qstrip.s line=202	undocumented		
-ged1b.u	table B entry	151		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	152		entry=0x23c source=qstrip.s line=58	undocumented		
-ged1b.u	table B entry	153		entry=0x269 source=qstrip.s line=137	undocumented		
-ged1b.u	table B entry	154		entry=0x27f source=qstrip.s line=185	undocumented		
-ged1b.u	table B entry	155		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	156		entry=0x234 source=qstrip.s line=46	undocumented		
-ged1b.u	table B entry	157		entry=0x262 source=qstrip.s line=126	undocumented		
-ged1b.u	table B entry	158		entry=0x286 source=qstrip.s line=195	undocumented		
-ged1b.u	table B entry	159		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	160		entry=0x245 source=qstrip.s line=73	undocumented		
-ged1b.u	table B entry	161		entry=0x26b source=qstrip.s line=141	undocumented		
-ged1b.u	table B entry	162		entry=0x27f source=qstrip.s line=185	undocumented		
-ged1b.u	table B entry	163		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	164		entry=0x248 source=qstrip.s line=78	undocumented		
-ged1b.u	table B entry	165		entry=0x26d source=qstrip.s line=145	undocumented		
-ged1b.u	table B entry	166		entry=0x275 source=qstrip.s line=164	undocumented		
-ged1b.u	table B entry	167		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	168		entry=0x24b source=qstrip.s line=83	undocumented		
-ged1b.u	table B entry	169		entry=0x26f source=qstrip.s line=149	undocumented		
-ged1b.u	table B entry	170		entry=0x275 source=qstrip.s line=164	undocumented		
-ged1b.u	table B entry	171		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	172		entry=0x24e source=qstrip.s line=88	undocumented		
-ged1b.u	table B entry	173		entry=0x271 source=qstrip.s line=153	undocumented		
-ged1b.u	table B entry	174		entry=0x275 source=qstrip.s line=164	undocumented		
-ged1b.u	table B entry	175		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	176		entry=0x251 source=qstrip.s line=93	undocumented		
-ged1b.u	table B entry	177		entry=0x273 source=qstrip.s line=157	undocumented		
-ged1b.u	table B entry	178		entry=0x275 source=qstrip.s line=164	undocumented		
-ged1b.u	table B entry	179		entry=0x2a1 source=qstrip.s line=256	undocumented		
-ged1b.u	table B entry	180		entry=0x229 source=qstrip.s line=27	undocumented		
-ged1b.u	table B entry	181		entry=0x256 source=qstrip.s line=102	undocumented		
-ged1b.u	table B entry	182		entry=0x27a source=qstrip.s line=174	undocumented		
-ged1b.u	table B entry	183		entry=0x2a1 source=qstrip.s line=256	undocumented		
+ged1b.u	table B entry	128		entry=0x226 source=qstrip.s line=22	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	129		entry=0x254 source=qstrip.s line=98	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	130		entry=0x289 source=qstrip.s line=202	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	131		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	132		entry=0x22c source=qstrip.s line=32	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	133		entry=0x258 source=qstrip.s line=106	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	134		entry=0x27a source=qstrip.s line=174	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	135		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	136		entry=0x22f source=qstrip.s line=37	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	137		entry=0x25a source=qstrip.s line=110	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	138		entry=0x27f source=qstrip.s line=185	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	139		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	140		entry=0x23f source=qstrip.s line=63	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	141		entry=0x25c source=qstrip.s line=114	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	142		entry=0x27f source=qstrip.s line=185	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	143		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	144		entry=0x242 source=qstrip.s line=68	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	145		entry=0x25e source=qstrip.s line=118	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	146		entry=0x27a source=qstrip.s line=174	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	147		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	148		entry=0x232 source=qstrip.s line=42	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	149		entry=0x260 source=qstrip.s line=122	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	150		entry=0x289 source=qstrip.s line=202	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	151		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	152		entry=0x23c source=qstrip.s line=58	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	153		entry=0x269 source=qstrip.s line=137	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	154		entry=0x27f source=qstrip.s line=185	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	155		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	156		entry=0x234 source=qstrip.s line=46	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	157		entry=0x262 source=qstrip.s line=126	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	158		entry=0x286 source=qstrip.s line=195	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	159		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	160		entry=0x245 source=qstrip.s line=73	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	161		entry=0x26b source=qstrip.s line=141	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	162		entry=0x27f source=qstrip.s line=185	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	163		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	164		entry=0x248 source=qstrip.s line=78	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	165		entry=0x26d source=qstrip.s line=145	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	166		entry=0x275 source=qstrip.s line=164	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	167		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	168		entry=0x24b source=qstrip.s line=83	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	169		entry=0x26f source=qstrip.s line=149	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	170		entry=0x275 source=qstrip.s line=164	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	171		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	172		entry=0x24e source=qstrip.s line=88	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	173		entry=0x271 source=qstrip.s line=153	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	174		entry=0x275 source=qstrip.s line=164	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	175		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	176		entry=0x251 source=qstrip.s line=93	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	177		entry=0x273 source=qstrip.s line=157	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	178		entry=0x275 source=qstrip.s line=164	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	179		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	180		entry=0x229 source=qstrip.s line=27	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	181		entry=0x256 source=qstrip.s line=102	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	182		entry=0x27a source=qstrip.s line=174	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
+ged1b.u	table B entry	183		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
 ged1b.u	table B entry	184		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	185		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	186		entry=0x006 source=dist.s line=18	undocumented		
@@ -4090,114 +4090,114 @@ ged1b.u	table B entry	188		entry=0x006 source=dist.s line=18	undocumented
 ged1b.u	table B entry	189		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	190		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	191		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	192		entry=0x04c source=tstrip.s line=22	undocumented		
-ged1b.u	table B entry	193		entry=0x0d9 source=tstrip.s line=282	undocumented		
-ged1b.u	table B entry	194		entry=0x0e8 source=tstrip.s line=314	undocumented		
-ged1b.u	table B entry	195		entry=0x0af source=tstrip.s line=189	undocumented		
-ged1b.u	table B entry	196		entry=0x04f source=tstrip.s line=27	undocumented		
-ged1b.u	table B entry	197		entry=0x0d9 source=tstrip.s line=282	undocumented		
-ged1b.u	table B entry	198		entry=0x0db source=tstrip.s line=287	undocumented		
-ged1b.u	table B entry	199		entry=0x0af source=tstrip.s line=189	undocumented		
-ged1b.u	table B entry	200		entry=0x05c source=tstrip.s line=50	undocumented		
-ged1b.u	table B entry	201		entry=0x0d1 source=tstrip.s line=257	undocumented		
-ged1b.u	table B entry	202		entry=0x0e3 source=tstrip.s line=304	undocumented		
-ged1b.u	table B entry	203		entry=0x0b9 source=tstrip.s line=209	undocumented		
-ged1b.u	table B entry	204		entry=0x05f source=tstrip.s line=55	undocumented		
-ged1b.u	table B entry	205		entry=0x0d3 source=tstrip.s line=261	undocumented		
-ged1b.u	table B entry	206		entry=0x0e3 source=tstrip.s line=304	undocumented		
-ged1b.u	table B entry	207		entry=0x0bb source=tstrip.s line=213	undocumented		
-ged1b.u	table B entry	208		entry=0x05a source=tstrip.s line=46	undocumented		
-ged1b.u	table B entry	209		entry=0x0cd source=tstrip.s line=249	undocumented		
-ged1b.u	table B entry	210		entry=0x0e8 source=tstrip.s line=314	undocumented		
-ged1b.u	table B entry	211		entry=0x0b5 source=tstrip.s line=201	undocumented		
-ged1b.u	table B entry	212		entry=0x058 source=tstrip.s line=42	undocumented		
-ged1b.u	table B entry	213		entry=0x0cf source=tstrip.s line=253	undocumented		
-ged1b.u	table B entry	214		entry=0x0e8 source=tstrip.s line=314	undocumented		
-ged1b.u	table B entry	215		entry=0x0b7 source=tstrip.s line=205	undocumented		
-ged1b.u	table B entry	216		entry=0x055 source=tstrip.s line=37	undocumented		
-ged1b.u	table B entry	217		entry=0x0d5 source=tstrip.s line=265	undocumented		
-ged1b.u	table B entry	218		entry=0x0db source=tstrip.s line=287	undocumented		
-ged1b.u	table B entry	219		entry=0x0b3 source=tstrip.s line=197	undocumented		
-ged1b.u	table B entry	220		entry=0x052 source=tstrip.s line=32	undocumented		
-ged1b.u	table B entry	221		entry=0x0d7 source=tstrip.s line=269	undocumented		
-ged1b.u	table B entry	222		entry=0x0dc source=tstrip.s line=291	undocumented		
-ged1b.u	table B entry	223		entry=0x0b1 source=tstrip.s line=193	undocumented		
-ged1b.u	table B entry	224		entry=0x062 source=tstrip.s line=60	undocumented		
-ged1b.u	table B entry	225		entry=0x0d9 source=tstrip.s line=282	undocumented		
-ged1b.u	table B entry	226		entry=0x0dc source=tstrip.s line=291	undocumented		
-ged1b.u	table B entry	227		entry=0x0bd source=tstrip.s line=217	undocumented		
-ged1b.u	table B entry	228		entry=0x065 source=tstrip.s line=65	undocumented		
-ged1b.u	table B entry	229		entry=0x0d9 source=tstrip.s line=282	undocumented		
-ged1b.u	table B entry	230		entry=0x0dc source=tstrip.s line=291	undocumented		
-ged1b.u	table B entry	231		entry=0x0bf source=tstrip.s line=221	undocumented		
-ged1b.u	table B entry	232		entry=0x068 source=tstrip.s line=70	undocumented		
-ged1b.u	table B entry	233		entry=0x0d9 source=tstrip.s line=282	undocumented		
-ged1b.u	table B entry	234		entry=0x0ec source=tstrip.s line=321	undocumented		
-ged1b.u	table B entry	235		entry=0x0c1 source=tstrip.s line=225	undocumented		
-ged1b.u	table B entry	236		entry=0x06b source=tstrip.s line=75	undocumented		
-ged1b.u	table B entry	237		entry=0x0d9 source=tstrip.s line=282	undocumented		
-ged1b.u	table B entry	238		entry=0x0ec source=tstrip.s line=321	undocumented		
-ged1b.u	table B entry	239		entry=0x0c3 source=tstrip.s line=229	undocumented		
+ged1b.u	table B entry	192		entry=0x04c source=tstrip.s line=22	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	193		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	194		entry=0x0e8 source=tstrip.s line=314	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	195		entry=0x0af source=tstrip.s line=189	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	196		entry=0x04f source=tstrip.s line=27	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	197		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	198		entry=0x0db source=tstrip.s line=287	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	199		entry=0x0af source=tstrip.s line=189	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	200		entry=0x05c source=tstrip.s line=50	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	201		entry=0x0d1 source=tstrip.s line=257	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	202		entry=0x0e3 source=tstrip.s line=304	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	203		entry=0x0b9 source=tstrip.s line=209	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	204		entry=0x05f source=tstrip.s line=55	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	205		entry=0x0d3 source=tstrip.s line=261	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	206		entry=0x0e3 source=tstrip.s line=304	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	207		entry=0x0bb source=tstrip.s line=213	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	208		entry=0x05a source=tstrip.s line=46	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	209		entry=0x0cd source=tstrip.s line=249	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	210		entry=0x0e8 source=tstrip.s line=314	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	211		entry=0x0b5 source=tstrip.s line=201	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	212		entry=0x058 source=tstrip.s line=42	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	213		entry=0x0cf source=tstrip.s line=253	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	214		entry=0x0e8 source=tstrip.s line=314	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	215		entry=0x0b7 source=tstrip.s line=205	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	216		entry=0x055 source=tstrip.s line=37	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	217		entry=0x0d5 source=tstrip.s line=265	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	218		entry=0x0db source=tstrip.s line=287	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	219		entry=0x0b3 source=tstrip.s line=197	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	220		entry=0x052 source=tstrip.s line=32	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	221		entry=0x0d7 source=tstrip.s line=269	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	222		entry=0x0dc source=tstrip.s line=291	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	223		entry=0x0b1 source=tstrip.s line=193	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	224		entry=0x062 source=tstrip.s line=60	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	225		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	226		entry=0x0dc source=tstrip.s line=291	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	227		entry=0x0bd source=tstrip.s line=217	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	228		entry=0x065 source=tstrip.s line=65	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	229		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	230		entry=0x0dc source=tstrip.s line=291	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	231		entry=0x0bf source=tstrip.s line=221	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	232		entry=0x068 source=tstrip.s line=70	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	233		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	234		entry=0x0ec source=tstrip.s line=321	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	235		entry=0x0c1 source=tstrip.s line=225	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	236		entry=0x06b source=tstrip.s line=75	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	237		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	238		entry=0x0ec source=tstrip.s line=321	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	239		entry=0x0c3 source=tstrip.s line=229	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
 ged1b.u	table B entry	240		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	241		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	242		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	243		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	244		entry=0x071 source=tstrip.s line=85	undocumented		
-ged1b.u	table B entry	245		entry=0x0d9 source=tstrip.s line=282	undocumented		
-ged1b.u	table B entry	246		entry=0x0f1 source=tstrip.s line=329	undocumented		
-ged1b.u	table B entry	247		entry=0x0c7 source=tstrip.s line=237	undocumented		
-ged1b.u	table B entry	248		entry=0x074 source=tstrip.s line=90	undocumented		
-ged1b.u	table B entry	249		entry=0x0d9 source=tstrip.s line=282	undocumented		
-ged1b.u	table B entry	250		entry=0x0e3 source=tstrip.s line=304	undocumented		
-ged1b.u	table B entry	251		entry=0x0c9 source=tstrip.s line=241	undocumented		
-ged1b.u	table B entry	252		entry=0x077 source=tstrip.s line=95	undocumented		
-ged1b.u	table B entry	253		entry=0x0d9 source=tstrip.s line=282	undocumented		
-ged1b.u	table B entry	254		entry=0x0e3 source=tstrip.s line=304	undocumented		
-ged1b.u	table B entry	255		entry=0x0cb source=tstrip.s line=245	undocumented		
-ged1b.u	table B entry	256		entry=0x2c3 source=tfanpoly.s line=53	undocumented		
-ged1b.u	table B entry	257		entry=0x301 source=tfanpoly.s line=147	undocumented		
-ged1b.u	table B entry	258		entry=0x339 source=tfanpoly.s line=247	undocumented		
-ged1b.u	table B entry	259		entry=0x330 source=tfanpoly.s line=229	undocumented		
-ged1b.u	table B entry	260		entry=0x2c6 source=tfanpoly.s line=58	undocumented		
-ged1b.u	table B entry	261		entry=0x305 source=tfanpoly.s line=156	undocumented		
-ged1b.u	table B entry	262		entry=0x332 source=tfanpoly.s line=235	undocumented		
-ged1b.u	table B entry	263		entry=0x330 source=tfanpoly.s line=229	undocumented		
-ged1b.u	table B entry	264		entry=0x2cc source=tfanpoly.s line=69	undocumented		
-ged1b.u	table B entry	265		entry=0x303 source=tfanpoly.s line=151	undocumented		
-ged1b.u	table B entry	266		entry=0x332 source=tfanpoly.s line=235	undocumented		
-ged1b.u	table B entry	267		entry=0x330 source=tfanpoly.s line=229	undocumented		
-ged1b.u	table B entry	268		entry=0x2d2 source=tfanpoly.s line=79	undocumented		
-ged1b.u	table B entry	269		entry=0x307 source=tfanpoly.s line=160	undocumented		
-ged1b.u	table B entry	270		entry=0x332 source=tfanpoly.s line=235	undocumented		
-ged1b.u	table B entry	271		entry=0x330 source=tfanpoly.s line=229	undocumented		
-ged1b.u	table B entry	272		entry=0x2dd source=tfanpoly.s line=94	undocumented		
-ged1b.u	table B entry	273		entry=0x314 source=tfanpoly.s line=177	undocumented		
-ged1b.u	table B entry	274		entry=0x341 source=tfanpoly.s line=266	undocumented		
-ged1b.u	table B entry	275		entry=0x330 source=tfanpoly.s line=229	undocumented		
-ged1b.u	table B entry	276		entry=0x2c9 source=tfanpoly.s line=64	undocumented		
-ged1b.u	table B entry	277		entry=0x305 source=tfanpoly.s line=156	undocumented		
-ged1b.u	table B entry	278		entry=0x33d source=tfanpoly.s line=255	undocumented		
-ged1b.u	table B entry	279		entry=0x330 source=tfanpoly.s line=229	undocumented		
-ged1b.u	table B entry	280		entry=0x2e0 source=tfanpoly.s line=99	undocumented		
-ged1b.u	table B entry	281		entry=0x316 source=tfanpoly.s line=181	undocumented		
-ged1b.u	table B entry	282		entry=0x33d source=tfanpoly.s line=255	undocumented		
-ged1b.u	table B entry	283		entry=0x330 source=tfanpoly.s line=229	undocumented		
-ged1b.u	table B entry	284		entry=0x2e6 source=tfanpoly.s line=109	undocumented		
-ged1b.u	table B entry	285		entry=0x318 source=tfanpoly.s line=185	undocumented		
-ged1b.u	table B entry	286		entry=0x33d source=tfanpoly.s line=255	undocumented		
-ged1b.u	table B entry	287		entry=0x330 source=tfanpoly.s line=229	undocumented		
-ged1b.u	table B entry	288		entry=0x2ef source=tfanpoly.s line=120	undocumented		
-ged1b.u	table B entry	289		entry=0x320 source=tfanpoly.s line=195	undocumented		
-ged1b.u	table B entry	290		entry=0x33f source=tfanpoly.s line=260	undocumented		
-ged1b.u	table B entry	291		entry=0x330 source=tfanpoly.s line=229	undocumented		
-ged1b.u	table B entry	292		entry=0x2f5 source=tfanpoly.s line=131	undocumented		
-ged1b.u	table B entry	293		entry=0x322 source=tfanpoly.s line=199	undocumented		
-ged1b.u	table B entry	294		entry=0x33f source=tfanpoly.s line=260	undocumented		
-ged1b.u	table B entry	295		entry=0x330 source=tfanpoly.s line=229	undocumented		
-ged1b.u	table B entry	296		entry=0x2fe source=tfanpoly.s line=142	undocumented		
-ged1b.u	table B entry	297		entry=0x32e source=tfanpoly.s line=215	undocumented		
-ged1b.u	table B entry	298		entry=0x341 source=tfanpoly.s line=266	undocumented		
-ged1b.u	table B entry	299		entry=0x330 source=tfanpoly.s line=229	undocumented		
+ged1b.u	table B entry	244		entry=0x071 source=tstrip.s line=85	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	245		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	246		entry=0x0f1 source=tstrip.s line=329	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	247		entry=0x0c7 source=tstrip.s line=237	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	248		entry=0x074 source=tstrip.s line=90	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	249		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	250		entry=0x0e3 source=tstrip.s line=304	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	251		entry=0x0c9 source=tstrip.s line=241	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	252		entry=0x077 source=tstrip.s line=95	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	253		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	254		entry=0x0e3 source=tstrip.s line=304	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	255		entry=0x0cb source=tstrip.s line=245	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
+ged1b.u	table B entry	256		entry=0x2c3 source=tfanpoly.s line=53	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	257		entry=0x301 source=tfanpoly.s line=147	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	258		entry=0x339 source=tfanpoly.s line=247	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	259		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	260		entry=0x2c6 source=tfanpoly.s line=58	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	261		entry=0x305 source=tfanpoly.s line=156	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	262		entry=0x332 source=tfanpoly.s line=235	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	263		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	264		entry=0x2cc source=tfanpoly.s line=69	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	265		entry=0x303 source=tfanpoly.s line=151	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	266		entry=0x332 source=tfanpoly.s line=235	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	267		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	268		entry=0x2d2 source=tfanpoly.s line=79	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	269		entry=0x307 source=tfanpoly.s line=160	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	270		entry=0x332 source=tfanpoly.s line=235	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	271		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	272		entry=0x2dd source=tfanpoly.s line=94	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	273		entry=0x314 source=tfanpoly.s line=177	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	274		entry=0x341 source=tfanpoly.s line=266	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	275		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	276		entry=0x2c9 source=tfanpoly.s line=64	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	277		entry=0x305 source=tfanpoly.s line=156	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	278		entry=0x33d source=tfanpoly.s line=255	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	279		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	280		entry=0x2e0 source=tfanpoly.s line=99	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	281		entry=0x316 source=tfanpoly.s line=181	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	282		entry=0x33d source=tfanpoly.s line=255	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	283		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	284		entry=0x2e6 source=tfanpoly.s line=109	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	285		entry=0x318 source=tfanpoly.s line=185	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	286		entry=0x33d source=tfanpoly.s line=255	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	287		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	288		entry=0x2ef source=tfanpoly.s line=120	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	289		entry=0x320 source=tfanpoly.s line=195	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	290		entry=0x33f source=tfanpoly.s line=260	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	291		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	292		entry=0x2f5 source=tfanpoly.s line=131	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	293		entry=0x322 source=tfanpoly.s line=199	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	294		entry=0x33f source=tfanpoly.s line=260	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	295		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	296		entry=0x2fe source=tfanpoly.s line=142	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	297		entry=0x32e source=tfanpoly.s line=215	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	298		entry=0x341 source=tfanpoly.s line=266	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
+ged1b.u	table B entry	299		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
 ged1b.u	table B entry	300		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	301		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	302		entry=0x006 source=dist.s line=18	undocumented		
@@ -4218,26 +4218,26 @@ ged1b.u	table B entry	316		entry=0x006 source=dist.s line=18	undocumented
 ged1b.u	table B entry	317		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	318		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	319		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	320		entry=0x1b7 source=linestrip.s line=41	undocumented		
-ged1b.u	table B entry	321		entry=0x1d7 source=linestrip.s line=88	undocumented		
-ged1b.u	table B entry	322		entry=0x1b3 source=linestrip.s line=35	undocumented		
-ged1b.u	table B entry	323		entry=0x1e3 source=linestrip.s line=114	undocumented		
-ged1b.u	table B entry	324		entry=0x1bf source=linestrip.s line=52	undocumented		
-ged1b.u	table B entry	325		entry=0x1d9 source=linestrip.s line=92	undocumented		
-ged1b.u	table B entry	326		entry=0x1ae source=linestrip.s line=23	undocumented		
-ged1b.u	table B entry	327		entry=0x1e3 source=linestrip.s line=114	undocumented		
-ged1b.u	table B entry	328		entry=0x1c2 source=linestrip.s line=57	undocumented		
-ged1b.u	table B entry	329		entry=0x1de source=linestrip.s line=101	undocumented		
-ged1b.u	table B entry	330		entry=0x1b0 source=linestrip.s line=26	undocumented		
-ged1b.u	table B entry	331		entry=0x1e3 source=linestrip.s line=114	undocumented		
-ged1b.u	table B entry	332		entry=0x1c5 source=linestrip.s line=62	undocumented		
-ged1b.u	table B entry	333		entry=0x1db source=linestrip.s line=96	undocumented		
-ged1b.u	table B entry	334		entry=0x1b3 source=linestrip.s line=35	undocumented		
-ged1b.u	table B entry	335		entry=0x1e3 source=linestrip.s line=114	undocumented		
-ged1b.u	table B entry	336		entry=0x1c9 source=linestrip.s line=68	undocumented		
-ged1b.u	table B entry	337		entry=0x1e0 source=linestrip.s line=105	undocumented		
-ged1b.u	table B entry	338		entry=0x1b3 source=linestrip.s line=35	undocumented		
-ged1b.u	table B entry	339		entry=0x1e3 source=linestrip.s line=114	undocumented		
+ged1b.u	table B entry	320		entry=0x1b7 source=linestrip.s line=41	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	321		entry=0x1d7 source=linestrip.s line=88	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	322		entry=0x1b3 source=linestrip.s line=35	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	323		entry=0x1e3 source=linestrip.s line=114	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	324		entry=0x1bf source=linestrip.s line=52	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	325		entry=0x1d9 source=linestrip.s line=92	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	326		entry=0x1ae source=linestrip.s line=23	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	327		entry=0x1e3 source=linestrip.s line=114	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	328		entry=0x1c2 source=linestrip.s line=57	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	329		entry=0x1de source=linestrip.s line=101	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	330		entry=0x1b0 source=linestrip.s line=26	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	331		entry=0x1e3 source=linestrip.s line=114	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	332		entry=0x1c5 source=linestrip.s line=62	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	333		entry=0x1db source=linestrip.s line=96	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	334		entry=0x1b3 source=linestrip.s line=35	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	335		entry=0x1e3 source=linestrip.s line=114	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	336		entry=0x1c9 source=linestrip.s line=68	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	337		entry=0x1e0 source=linestrip.s line=105	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	338		entry=0x1b3 source=linestrip.s line=35	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
+ged1b.u	table B entry	339		entry=0x1e3 source=linestrip.s line=114	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
 ged1b.u	table B entry	340		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	341		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	342		entry=0x006 source=dist.s line=18	undocumented		
@@ -4250,26 +4250,26 @@ ged1b.u	table B entry	348		entry=0x006 source=dist.s line=18	undocumented
 ged1b.u	table B entry	349		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	350		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	351		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	352		entry=0x1f1 source=quad.s line=22	undocumented		
-ged1b.u	table B entry	353		entry=0x20e source=quad.s line=80	undocumented		
-ged1b.u	table B entry	354		entry=0x205 source=quad.s line=61	undocumented		
-ged1b.u	table B entry	355		entry=0x218 source=quad.s line=104	undocumented		
-ged1b.u	table B entry	356		entry=0x1f4 source=quad.s line=27	undocumented		
-ged1b.u	table B entry	357		entry=0x210 source=quad.s line=84	undocumented		
-ged1b.u	table B entry	358		entry=0x200 source=quad.s line=47	undocumented		
-ged1b.u	table B entry	359		entry=0x218 source=quad.s line=104	undocumented		
-ged1b.u	table B entry	360		entry=0x1f7 source=quad.s line=32	undocumented		
-ged1b.u	table B entry	361		entry=0x212 source=quad.s line=88	undocumented		
-ged1b.u	table B entry	362		entry=0x202 source=quad.s line=54	undocumented		
-ged1b.u	table B entry	363		entry=0x218 source=quad.s line=104	undocumented		
-ged1b.u	table B entry	364		entry=0x1fa source=quad.s line=37	undocumented		
-ged1b.u	table B entry	365		entry=0x214 source=quad.s line=92	undocumented		
-ged1b.u	table B entry	366		entry=0x202 source=quad.s line=54	undocumented		
-ged1b.u	table B entry	367		entry=0x218 source=quad.s line=104	undocumented		
-ged1b.u	table B entry	368		entry=0x1fd source=quad.s line=42	undocumented		
-ged1b.u	table B entry	369		entry=0x216 source=quad.s line=96	undocumented		
-ged1b.u	table B entry	370		entry=0x202 source=quad.s line=54	undocumented		
-ged1b.u	table B entry	371		entry=0x218 source=quad.s line=104	undocumented		
+ged1b.u	table B entry	352		entry=0x1f1 source=quad.s line=22	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	353		entry=0x20e source=quad.s line=80	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	354		entry=0x205 source=quad.s line=61	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	355		entry=0x218 source=quad.s line=104	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	356		entry=0x1f4 source=quad.s line=27	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	357		entry=0x210 source=quad.s line=84	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	358		entry=0x200 source=quad.s line=47	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	359		entry=0x218 source=quad.s line=104	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	360		entry=0x1f7 source=quad.s line=32	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	361		entry=0x212 source=quad.s line=88	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	362		entry=0x202 source=quad.s line=54	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	363		entry=0x218 source=quad.s line=104	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	364		entry=0x1fa source=quad.s line=37	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	365		entry=0x214 source=quad.s line=92	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	366		entry=0x202 source=quad.s line=54	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	367		entry=0x218 source=quad.s line=104	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	368		entry=0x1fd source=quad.s line=42	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	369		entry=0x216 source=quad.s line=96	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	370		entry=0x202 source=quad.s line=54	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	371		entry=0x218 source=quad.s line=104	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
 ged1b.u	table B entry	372		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	373		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	374		entry=0x006 source=dist.s line=18	undocumented		
