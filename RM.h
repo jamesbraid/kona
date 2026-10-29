@@ -386,28 +386,32 @@
 
 #define KONA_RM_BEF_DUMP                                 0x0001
 
-#define KONA_RM_BEF_PERF_COUNTALL                        0x0002  /* geometry-board counter. ESTABLISHED: kpm's
- * BEF dump prints it as a 32-bit hex word (format string in kpm .rodata).
- * UNKNOWN what it counts and how kpm reads it; no tbus write in irsaudit,
- * the vector files, arm1.u or ge.u. unknown: no shipped software or
- * published source depends on its value beyond that dump */
-
-#define KONA_RM_BEF_PERF_COUNTDRAW                       0x0003  /* geometry-board counter, as BEF_PERF_COUNTALL:
- * printed by kpm's BEF dump, written by nothing; meaning UNKNOWN (same
- * routes) */
-
-#define KONA_RM_BEF_PERF_COUNTLOAD                       0x0004  /* geometry-board counter, as BEF_PERF_COUNTALL:
- * printed by kpm's BEF dump, written by nothing; meaning UNKNOWN (same
- * routes) */
-
-#define KONA_RM_BEF_PERF_COUNTEMPTY                      0x0005  /* geometry-board counter, as BEF_PERF_COUNTALL:
- * printed by kpm's BEF dump, written by nothing; meaning UNKNOWN (same
- * routes) */
-
-#define KONA_RM_BEF_MAILBOX                              0x0006  /* geometry-board word printed by
- * kpm's BEF dump next to the counters; no writer in irsaudit, the vector
+/* BEF_PERF_COUNTALL: geometry-board counter. ESTABLISHED: kpm's BEF dump
+ * prints it as a 32-bit hex word (format string in kpm .rodata). UNKNOWN
+ * what it counts and how kpm reads it; no tbus write in irsaudit, the vector
  * files, arm1.u or ge.u. unknown: no shipped software or published source
- * depends on it */
+ * depends on its value beyond that dump. */
+#define KONA_RM_BEF_PERF_COUNTALL                        0x0002
+
+/* BEF_PERF_COUNTDRAW: geometry-board counter, as BEF_PERF_COUNTALL: printed
+ * by kpm's BEF dump, written by nothing (same routes). unknown: no shipped
+ * software or published source depends on what it counts. */
+#define KONA_RM_BEF_PERF_COUNTDRAW                       0x0003
+
+/* BEF_PERF_COUNTLOAD: geometry-board counter, as BEF_PERF_COUNTALL: printed
+ * by kpm's BEF dump, written by nothing (same routes). unknown: no shipped
+ * software or published source depends on what it counts. */
+#define KONA_RM_BEF_PERF_COUNTLOAD                       0x0004
+
+/* BEF_PERF_COUNTEMPTY: geometry-board counter, as BEF_PERF_COUNTALL: printed
+ * by kpm's BEF dump, written by nothing (same routes). unknown: no shipped
+ * software or published source depends on what it counts. */
+#define KONA_RM_BEF_PERF_COUNTEMPTY                      0x0005
+
+/* BEF_MAILBOX: geometry-board word printed by kpm's BEF dump next to the
+ * counters; no writer in irsaudit, the vector files, arm1.u or ge.u.
+ * unknown: no shipped software or published source depends on it. */
+#define KONA_RM_BEF_MAILBOX                              0x0006
 
 #define KONA_RM_BEF_REGSHADOW_BMASK                      0x0007
 
@@ -419,17 +423,17 @@
 
 #define KONA_RM_HTL_LOAD_STALL                           0x44a8
 
-#define KONA_RM_TG_DNOP                                  0x0c00  /* no-op slot of the
- * tg block by name. No writer in irsaudit, kpm, arm1.u, ge.u or the vector
- * files; not in the diagnostic restore list (tbuRegReset (0x10154cb4)),
- * which skips every action register. unknown: no shipped software or
- * published source depends on it */
+/* TG_DNOP: no-op slot of the tg block by name. No writer in irsaudit, kpm,
+ * arm1.u, ge.u or the vector files; not in the diagnostic restore list
+ * (tbuRegReset (0x10154cb4)), which skips every action register. unknown: no
+ * shipped software or published source depends on it. */
+#define KONA_RM_TG_DNOP                                  0x0c00
 
-#define KONA_RM_TG_FIFOLAT                               0x0c01  /* tg FIFO latency (6-bit
- * LATENCY). ESTABLISHED: irsaudit tbuRegReset (0x10154cb4) restores it to 0;
- * no other writer in irsaudit, arm1.u, ge.u or the vectors. Effect of
- * non-zero values: unknown: no shipped software or published source depends
- * on it */
+/* TG_FIFOLAT: tg FIFO latency (6-bit LATENCY). ESTABLISHED: irsaudit
+ * tbuRegReset (0x10154cb4) restores it to 0; no other writer in irsaudit,
+ * arm1.u, ge.u or the vectors. Effect of non-zero values: unknown: no
+ * shipped software or published source depends on it. */
+#define KONA_RM_TG_FIFOLAT                               0x0c01
 #define KONA_RM_TG_LATENCY                                0,  6  /* shift, width */
 
 #define KONA_RM_TG_MISC                                  0x0c02
@@ -447,10 +451,19 @@
 #define KONA_RM_TG_LOD_SCALER                            0x0c06
 #define KONA_RM_TG_LOD_SCALER_LOD_SCALER                  0,  8  /* shift, width */
 
+/* TM_MEMCONF: texture-memory geometry (S_BITS, T_BITS). ESTABLISHED:
+ * irsaudit tbuBindTexture (0x1014c6a8) and tbuBindTextureCCT write it during
+ * a bind; tbuRegReset (0x10154cb4) restores 0. The firmware and engine reach
+ * it through engine memory slot 0x247 (GE.h). */
 #define KONA_RM_TM_MEMCONF                               0x1000
 #define KONA_RM_TM_S_BITS                                 0,  4  /* shift, width */
 #define KONA_RM_TM_T_BITS                                 4,  4  /* shift, width */
 
+/* TM_REFCTR: texture-memory DRAM refresh counter (10-bit value) with refresh
+ * and page-miss disables. ESTABLISHED: only tbuRegReset (0x10154cb4) writes
+ * it, value 0. Hardware refresh rate and the effect of the disables:
+ * unknown: no shipped software or published source depends on them beyond
+ * that write. */
 #define KONA_RM_TM_REFCTR                                0x1001
 #define KONA_RM_TM_REFCTRVALUE                            0, 10  /* shift, width */
 #define KONA_RM_TM_REFDIS                                10,  1  /* shift, width */
@@ -462,158 +475,178 @@
 #define KONA_RM_TM_SYNC_IDDRAW                           0x1003
 #define KONA_RM_TM_DRAW_ID                                0, 20  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_0_1                       0x1004  /* texture-memory base addresses of
- * mip levels 0 and 1, 21+3 bits each. ESTABLISHED writers: ge.u
- * mGL_EX_Initialize (0xb0cf) stores the bus high word 0x10040000 as a
- * template, mgebi_Bind2dMipmapTexture (0x430b) ORs level addresses into it;
- * irsaudit tbuBindTexture (0x1014c6a8) writes 0x1004-0x100b in a row;
- * tbuRegReset (0x10154cb4) restores 0; tbusdata.Z writes it 87 times.
- * INFERRED level pairing from the field names and the order */
+/* TM_DRAW_TEXMAP_0_1: texture-memory base addresses of mip levels 0 and 1,
+ * 21+3 bits each. ESTABLISHED writers: ge.u mGL_EX_Initialize (0xb0cf)
+ * stores the bus high word 0x10040000 as a template,
+ * mgebi_Bind2dMipmapTexture (0x430b) ORs level addresses into it; irsaudit
+ * tbuBindTexture (0x1014c6a8) writes 0x1004-0x100b in a row; tbuRegReset
+ * (0x10154cb4) restores 0; tbusdata.Z writes it 87 times. INFERRED level
+ * pairing from the field names and the order. */
+#define KONA_RM_TM_DRAW_TEXMAP_0_1                       0x1004
 #define KONA_RM_TM_TEXMAP_0                               0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_0_HIGH                         21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_1                              24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_1_HIGH                         45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_2_3                       0x1005  /* levels 2 and 3,
- * same layout and writers as TM_DRAW_TEXMAP_0_1 (ge.u template 0x10050000 at
- * 0xb0d2) */
+/* TM_DRAW_TEXMAP_2_3: levels 2 and 3, same layout and writers as
+ * TM_DRAW_TEXMAP_0_1 (ge.u template 0x10050000 at 0xb0d2). */
+#define KONA_RM_TM_DRAW_TEXMAP_2_3                       0x1005
 #define KONA_RM_TM_TEXMAP_2                               0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_2_HIGH                         21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3                              24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3_HIGH                         45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_4_5                       0x1006  /* levels 4 and 5,
- * same layout and writers as TM_DRAW_TEXMAP_0_1 (ge.u template 0x10060000) */
+/* TM_DRAW_TEXMAP_4_5: levels 4 and 5, same layout and writers as
+ * TM_DRAW_TEXMAP_0_1 (ge.u template 0x10060000). */
+#define KONA_RM_TM_DRAW_TEXMAP_4_5                       0x1006
 #define KONA_RM_TM_TEXMAP_4                               0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_4_HIGH                         21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_5                              24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_5_HIGH                         45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_6_7                       0x1007  /* levels 6 and 7,
- * same layout and writers as TM_DRAW_TEXMAP_0_1 (ge.u template 0x10070000);
- * tbusdata.Z writes 0xffffffff here 87 times */
+/* TM_DRAW_TEXMAP_6_7: levels 6 and 7, same layout and writers as
+ * TM_DRAW_TEXMAP_0_1 (ge.u template 0x10070000); tbusdata.Z writes
+ * 0xffffffff here 87 times. */
+#define KONA_RM_TM_DRAW_TEXMAP_6_7                       0x1007
 #define KONA_RM_TM_TEXMAP_6                               0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_6_HIGH                         21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_7                              24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_7_HIGH                         45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_8_9                       0x1008  /* levels 8 and 9,
- * same layout and writers as TM_DRAW_TEXMAP_0_1 (ge.u template 0x10080000) */
+/* TM_DRAW_TEXMAP_8_9: levels 8 and 9, same layout and writers as
+ * TM_DRAW_TEXMAP_0_1 (ge.u template 0x10080000). */
+#define KONA_RM_TM_DRAW_TEXMAP_8_9                       0x1008
 #define KONA_RM_TM_TEXMAP_8                               0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_8_HIGH                         21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_9                              24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_9_HIGH                         45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_10_11                     0x1009  /* levels 10 and 11,
- * same layout and writers as TM_DRAW_TEXMAP_0_1 (ge.u template 0x10090000) */
+/* TM_DRAW_TEXMAP_10_11: levels 10 and 11, same layout and writers as
+ * TM_DRAW_TEXMAP_0_1 (ge.u template 0x10090000). */
+#define KONA_RM_TM_DRAW_TEXMAP_10_11                     0x1009
 #define KONA_RM_TM_TEXMAP_10                              0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_10_HIGH                        21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_11                             24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_11_HIGH                        45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_12_13                     0x100a  /* levels 12 and 13,
- * same layout and writers as TM_DRAW_TEXMAP_0_1 (ge.u template 0x100a0000) */
+/* TM_DRAW_TEXMAP_12_13: levels 12 and 13, same layout and writers as
+ * TM_DRAW_TEXMAP_0_1 (ge.u template 0x100a0000). */
+#define KONA_RM_TM_DRAW_TEXMAP_12_13                     0x100a
 #define KONA_RM_TM_TEXMAP_12                              0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_12_HIGH                        21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_13                             24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_13_HIGH                        45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_14_15                     0x100b  /* levels 14 and 15,
- * same layout and writers as TM_DRAW_TEXMAP_0_1 (ge.u template 0x100b0000) */
+/* TM_DRAW_TEXMAP_14_15: levels 14 and 15, same layout and writers as
+ * TM_DRAW_TEXMAP_0_1 (ge.u template 0x100b0000). */
+#define KONA_RM_TM_DRAW_TEXMAP_14_15                     0x100b
 #define KONA_RM_TM_TEXMAP_14                              0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_14_HIGH                        21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_15                             24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_15_HIGH                        45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_3DM_0                     0x100c  /* 3D-texture level addresses, two
- * banks (B0, B1) per register. ESTABLISHED: irsaudit tbuBindTexture writes
- * 0x100c-0x1015 in a row on its 3D path instead of 0x1004-0x100b;
- * tbuRegReset (0x10154cb4) restores 0. No ge.u constant: the shipped engine
- * program builds no 3D bind. INFERRED: one register per 3D level */
+/* TM_DRAW_TEXMAP_3DM_0: 3D-texture level addresses, two banks (B0, B1) per
+ * register. ESTABLISHED: irsaudit tbuBindTexture writes 0x100c-0x1015 in a
+ * row on its 3D path instead of 0x1004-0x100b; tbuRegReset (0x10154cb4)
+ * restores 0. No ge.u constant: the shipped engine program builds no 3D
+ * bind. INFERRED: one register per 3D level. */
+#define KONA_RM_TM_DRAW_TEXMAP_3DM_0                     0x100c
 #define KONA_RM_TM_TEXMAP_3DM_0_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_0_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_0_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_0_B1_HIGH                  45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_3DM_1                     0x100d  /* 3D level 1, as
- * TM_DRAW_TEXMAP_3DM_0 (irsaudit tbuBindTexture, restore value 0) */
+/* TM_DRAW_TEXMAP_3DM_1: 3D level 1, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
+ * tbuBindTexture, restore value 0). */
+#define KONA_RM_TM_DRAW_TEXMAP_3DM_1                     0x100d
 #define KONA_RM_TM_TEXMAP_3DM_1_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_1_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_1_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_1_B1_HIGH                  45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_3DM_2                     0x100e  /* 3D level 2, as
- * TM_DRAW_TEXMAP_3DM_0 (irsaudit tbuBindTexture, restore value 0) */
+/* TM_DRAW_TEXMAP_3DM_2: 3D level 2, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
+ * tbuBindTexture, restore value 0). */
+#define KONA_RM_TM_DRAW_TEXMAP_3DM_2                     0x100e
 #define KONA_RM_TM_TEXMAP_3DM_2_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_2_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_2_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_2_B1_HIGH                  45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_3DM_3                     0x100f  /* 3D level 3, as
- * TM_DRAW_TEXMAP_3DM_0 (irsaudit tbuBindTexture, restore value 0) */
+/* TM_DRAW_TEXMAP_3DM_3: 3D level 3, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
+ * tbuBindTexture, restore value 0). */
+#define KONA_RM_TM_DRAW_TEXMAP_3DM_3                     0x100f
 #define KONA_RM_TM_TEXMAP_3DM_3_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_3_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_3_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_3_B1_HIGH                  45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_3DM_4                     0x1010  /* 3D level 4, as
- * TM_DRAW_TEXMAP_3DM_0 (irsaudit tbuBindTexture, restore value 0) */
+/* TM_DRAW_TEXMAP_3DM_4: 3D level 4, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
+ * tbuBindTexture, restore value 0). */
+#define KONA_RM_TM_DRAW_TEXMAP_3DM_4                     0x1010
 #define KONA_RM_TM_TEXMAP_3DM_4_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_4_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_4_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_4_B1_HIGH                  45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_3DM_5                     0x1011  /* 3D level 5, as
- * TM_DRAW_TEXMAP_3DM_0 (irsaudit tbuBindTexture, restore value 0) */
+/* TM_DRAW_TEXMAP_3DM_5: 3D level 5, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
+ * tbuBindTexture, restore value 0). */
+#define KONA_RM_TM_DRAW_TEXMAP_3DM_5                     0x1011
 #define KONA_RM_TM_TEXMAP_3DM_5_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_5_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_5_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_5_B1_HIGH                  45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_3DM_6                     0x1012  /* 3D level 6, as
- * TM_DRAW_TEXMAP_3DM_0 (irsaudit tbuBindTexture, restore value 0) */
+/* TM_DRAW_TEXMAP_3DM_6: 3D level 6, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
+ * tbuBindTexture, restore value 0). */
+#define KONA_RM_TM_DRAW_TEXMAP_3DM_6                     0x1012
 #define KONA_RM_TM_TEXMAP_3DM_6_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_6_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_6_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_6_B1_HIGH                  45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_3DM_7                     0x1013  /* 3D level 7, as
- * TM_DRAW_TEXMAP_3DM_0 (irsaudit tbuBindTexture, restore value 0) */
+/* TM_DRAW_TEXMAP_3DM_7: 3D level 7, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
+ * tbuBindTexture, restore value 0). */
+#define KONA_RM_TM_DRAW_TEXMAP_3DM_7                     0x1013
 #define KONA_RM_TM_TEXMAP_3DM_7_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_7_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_7_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_7_B1_HIGH                  45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_3DM_8                     0x1014  /* 3D level 8, as
- * TM_DRAW_TEXMAP_3DM_0 (irsaudit tbuBindTexture, restore value 0) */
+/* TM_DRAW_TEXMAP_3DM_8: 3D level 8, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
+ * tbuBindTexture, restore value 0). */
+#define KONA_RM_TM_DRAW_TEXMAP_3DM_8                     0x1014
 #define KONA_RM_TM_TEXMAP_3DM_8_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_8_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_8_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_8_B1_HIGH                  45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_TEXMAP_3DM_9                     0x1015  /* 3D level 9, as
- * TM_DRAW_TEXMAP_3DM_0 (irsaudit tbuBindTexture, restore value 0) */
+/* TM_DRAW_TEXMAP_3DM_9: 3D level 9, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
+ * tbuBindTexture, restore value 0). */
+#define KONA_RM_TM_DRAW_TEXMAP_3DM_9                     0x1015
 #define KONA_RM_TM_TEXMAP_3DM_9_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_9_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_9_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_9_B1_HIGH                  45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_CUBEMAP_FAR                      0x1016  /* cube-map face base address
- * (the far face). ESTABLISHED: irsaudit tbuBindCubeMap (0x1014a5fc) writes
- * 0x1016, then 0x1017 and 0x1018 twice each; tbuRegReset (0x10154cb4)
- * restores 0. No ge.u or arm1.u writer */
+/* TM_DRAW_CUBEMAP_FAR: cube-map face base address (the far face).
+ * ESTABLISHED: irsaudit tbuBindCubeMap (0x1014a5fc) writes 0x1016, then
+ * 0x1017 and 0x1018 twice each; tbuRegReset (0x10154cb4) restores 0. No ge.u
+ * or arm1.u writer. */
+#define KONA_RM_TM_DRAW_CUBEMAP_FAR                      0x1016
 #define KONA_RM_TM_CUBEMAP_FAR                            0, 21  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_FAR_HIGH                      21,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_CUBEMAP_LFTRGHT                  0x1017  /* left and right cube
- * faces, same writers as TM_DRAW_CUBEMAP_FAR */
+/* TM_DRAW_CUBEMAP_LFTRGHT: left and right cube faces, same writers as
+ * TM_DRAW_CUBEMAP_FAR. */
+#define KONA_RM_TM_DRAW_CUBEMAP_LFTRGHT                  0x1017
 #define KONA_RM_TM_CUBEMAP_LEFT                           0, 21  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_LEFT_HIGH                     21,  3  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_RIGHT                         24, 21  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_RIGHT_HIGH                    45,  3  /* shift, width */
 
-#define KONA_RM_TM_DRAW_CUBEMAP_TOPBOT                   0x1018  /* top and bottom cube
- * faces, same writers as TM_DRAW_CUBEMAP_FAR */
+/* TM_DRAW_CUBEMAP_TOPBOT: top and bottom cube faces, same writers as
+ * TM_DRAW_CUBEMAP_FAR. */
+#define KONA_RM_TM_DRAW_CUBEMAP_TOPBOT                   0x1018
 #define KONA_RM_TM_CUBEMAP_TOP                            0, 21  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_TOP_HIGH                      21,  3  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_BOT                           24, 21  /* shift, width */
@@ -623,14 +656,18 @@
 #define KONA_RM_TM_DETAILMAP                              0, 21  /* shift, width */
 #define KONA_RM_TM_DETAILMAP_HIGH                        21,  3  /* shift, width */
 
+/* TM_DRAW_GLOBALOFFSET: global texture-memory offset added to the level
+ * addresses (21+3 bits). ESTABLISHED: arm1.u address word 0x0146101a (shadow
+ * word 54); irsaudit tbuBindTexture, TEST_texmem*, TEST_texdetail write it;
+ * restore value 0. */
 #define KONA_RM_TM_DRAW_GLOBALOFFSET                     0x101a
 #define KONA_RM_TM_GLOBALOFFSET                           0, 21  /* shift, width */
 #define KONA_RM_TM_GLOBALOFFSET_HIGH                     21,  3  /* shift, width */
 
-#define KONA_RM_TM_RDBK_STRSTART                         0x101b  /* texture read-back start position
- * (s, t, r). ESTABLISHED: irsaudit tbuStartTMReadback (0x1014344c),
- * TEST_texread and TestTex write STEND, then STRSTART (0), then TM_RDBK_END;
- * never in the restore list */
+/* TM_RDBK_STRSTART: texture read-back start position (s, t, r). ESTABLISHED:
+ * irsaudit tbuStartTMReadback (0x1014344c), TEST_texread and TestTex write
+ * STEND, then STRSTART (0), then TM_RDBK_END; never in the restore list. */
+#define KONA_RM_TM_RDBK_STRSTART                         0x101b
 #define KONA_RM_TM_RDBK_S_START                           0, 12  /* shift, width */
 #define KONA_RM_TM_RDBK_S_START_HIGH                     12,  4  /* shift, width */
 #define KONA_RM_TM_RDBK_T_START                          16, 15  /* shift, width */
@@ -638,18 +675,19 @@
 #define KONA_RM_TM_RDBK_R_START                          32, 10  /* shift, width */
 #define KONA_RM_TM_RDBK_R_START_HIGH                     42,  6  /* shift, width */
 
-#define KONA_RM_TM_RDBK_STEND                            0x101c  /* texture read-back end position
- * (s, t). ESTABLISHED: TEST_texread writes 0x1f0003 (S_END 3, T_END 0x1f),
- * TestTex 0x70001; written before TM_RDBK_STRSTART */
+/* TM_RDBK_STEND: texture read-back end position (s, t). ESTABLISHED:
+ * TEST_texread writes 0x1f0003 (S_END 3, T_END 0x1f), TestTex 0x70001;
+ * written before TM_RDBK_STRSTART. */
+#define KONA_RM_TM_RDBK_STEND                            0x101c
 #define KONA_RM_TM_RDBK_S_END                             0, 12  /* shift, width */
 #define KONA_RM_TM_RDBK_S_END_HIGH                       12,  4  /* shift, width */
 #define KONA_RM_TM_RDBK_T_END                            16, 15  /* shift, width */
 #define KONA_RM_TM_RDBK_T_END_HIGH                       31,  1  /* shift, width */
 
-#define KONA_RM_TM_RDBK_END                              0x101d  /* starts the texture read-back.
- * ESTABLISHED: the last write of every read-back set-up (TEST_texread,
- * TestTex, tbuStartTMReadback), value 1; no fields. INFERRED from that order
- * to be the trigger */
+/* TM_RDBK_END: starts the texture read-back. ESTABLISHED: the last write of
+ * every read-back set-up (TEST_texread, TestTex, tbuStartTMReadback), value
+ * 1; no fields. INFERRED from that order to be the trigger. */
+#define KONA_RM_TM_RDBK_END                              0x101d
 
 #define KONA_RM_TM_DRAW_SHA_AMBIENT                      0x101e
 #define KONA_RM_TM_SHA_AMBIENT                            0,  6  /* shift, width */
@@ -664,21 +702,23 @@
 #define KONA_RM_TM_DRAW_CLIP_BKPT                        0x1021
 #define KONA_RM_TM_CLIP_BKPT                              0,  4  /* shift, width */
 
-#define KONA_RM_TM_TEXBIND_START                         0x1022  /* marks the start of
- * a texture bind. ESTABLISHED: the first register irsaudit tbuBindTexture
- * and tbuBindTextureCCT write; tbusdata.Z writes 0 here 87 times; never
- * restored. INFERRED (order and name) to delimit a bind; no fields */
+/* TM_TEXBIND_START: marks the start of a texture bind. ESTABLISHED: the
+ * first register irsaudit tbuBindTexture and tbuBindTextureCCT write;
+ * tbusdata.Z writes 0 here 87 times; never restored. INFERRED (order and
+ * name) to delimit a bind; no fields. */
+#define KONA_RM_TM_TEXBIND_START                         0x1022
 
-#define KONA_RM_TM_TM1A_COMPAT                           0x1023  /* tm1a compatibility bits (HWMK,
- * SFIFO). ESTABLISHED: only tbuRegReset (0x10154cb4) writes it, value 0.
- * Effect of the bits: unknown: no shipped software or published source
- * depends on it */
+/* TM_TM1A_COMPAT: tm1a compatibility bits (HWMK, SFIFO). ESTABLISHED: only
+ * tbuRegReset (0x10154cb4) writes it, value 0. Effect of the bits: unknown:
+ * no shipped software or published source depends on it. */
+#define KONA_RM_TM_TM1A_COMPAT                           0x1023
 #define KONA_RM_TM_TM1A_COMPAT_TM1A_COMPAT_HWMK           0,  1  /* shift, width */
 #define KONA_RM_TM_TM1A_COMPAT_TM1A_COMPAT_SFIFO          1,  1  /* shift, width */
 
-#define KONA_RM_TM_DNOP                                  0x102f  /* tm no-op. ESTABLISHED: TEST_texread
- * writes 1 twice between TM_RDBK_STRSTART and TM_RDBK_END. INFERRED: padding
- * to let the earlier writes land; no other writer */
+/* TM_DNOP: tm no-op. ESTABLISHED: TEST_texread writes 1 twice between
+ * TM_RDBK_STRSTART and TM_RDBK_END. INFERRED: padding to let the earlier
+ * writes land; no other writer. */
+#define KONA_RM_TM_DNOP                                  0x102f
 
 #define KONA_RM_TM_TEX_SIZE                              0x13d5
 #define KONA_RM_TM_SSIZE                                  0,  4  /* shift, width */
@@ -704,22 +744,28 @@
 #define KONA_RM_TML_SYNC_IDLOAD                          0x5003
 #define KONA_RM_TML_LOAD_ID                               0, 20  /* shift, width */
 
-#define KONA_RM_TML_TM1A_COMPAT                          0x5004  /* load-side twin of TM_TM1A_COMPAT.
- * ESTABLISHED: only tbuRegReset (0x10154cb4) writes it (0). unknown: no
- * shipped software or published source depends on it */
+/* TML_TM1A_COMPAT: load-side twin of TM_TM1A_COMPAT. ESTABLISHED: only
+ * tbuRegReset (0x10154cb4) writes it (0). unknown: no shipped software or
+ * published source depends on it. */
+#define KONA_RM_TML_TM1A_COMPAT                          0x5004
 #define KONA_RM_TML_COMPAT                                0,  1  /* shift, width */
 
-#define KONA_RM_TML_RAMSYNC                              0x53ff  /* load-side RAM synchronisation by
- * name. No writer in irsaudit, kpm, arm1.u, ge.u or the vectors. unknown: no
- * shipped software or published source depends on it */
+/* TML_RAMSYNC: load-side RAM synchronisation by name. No writer in irsaudit,
+ * kpm, arm1.u, ge.u or the vectors. unknown: no shipped software or
+ * published source depends on it. */
+#define KONA_RM_TML_RAMSYNC                              0x53ff
 
+/* TFP_TEX: texture enable in the filter (TEX_EN). ESTABLISHED: irsaudit
+ * tbuTexOnOff, TEST_texread (1, then 0 after the read-back) and TEST_texmem*
+ * write it; tbuRegReset (0x10154cb4) restores 0; in the BEF shadow (GE.h). */
 #define KONA_RM_TFP_TEX                                  0x1500
 #define KONA_RM_TFP_TEX_EN                                0,  1  /* shift, width */
 
-#define KONA_RM_TFP_PASSR                                0x153e  /* passes the r coordinate
- * through the filter (PASSR_EN). ESTABLISHED: only irsaudit tbuEnablePassR
- * (0x10143714) and tbuEnablePassRCCT write it, with TM_DRAW_REDUNDANCY,
- * TG_MISC and TGTM_ writes; restore value 0. INFERRED meaning from the name */
+/* TFP_PASSR: passes the r coordinate through the filter (PASSR_EN).
+ * ESTABLISHED: only irsaudit tbuEnablePassR (0x10143714) and
+ * tbuEnablePassRCCT write it, with TM_DRAW_REDUNDANCY, TG_MISC and TGTM_
+ * writes; restore value 0. INFERRED meaning from the name. */
+#define KONA_RM_TFP_PASSR                                0x153e
 #define KONA_RM_TFP_PASSR_EN                              0,  1  /* shift, width */
 
 #define KONA_RM_TFP_TEXRB                                0x153f
@@ -728,10 +774,11 @@
 #define KONA_RM_TFP_TEXRB_FMT_B32                        0x1
 #define KONA_RM_TFP_TEXRB_FMT_B48                        0x2
 
-#define KONA_RM_TFP_TEXRB_CLR                            0x1415  /* ends a texture read-back.
- * ESTABLISHED: irsaudit writes 1 here as the last action of its read-back
- * paths (0x100c6a4c after TEST_texread, 0x1010473c in TestTex), after
- * clearing 0x441; never restored. No ge.u or arm1.u writer */
+/* TFP_TEXRB_CLR: ends a texture read-back. ESTABLISHED: irsaudit writes 1
+ * here as the last action of its read-back paths (0x100c6a4c after
+ * TEST_texread, 0x1010473c in TestTex), after clearing 0x441; never
+ * restored. No ge.u or arm1.u writer. */
+#define KONA_RM_TFP_TEXRB_CLR                            0x1415
 
 #define KONA_RM_TFP_TEV                                  0x1401
 #define KONA_RM_TFP_TEV_AFUNC                             0,  4  /* shift, width */
@@ -776,11 +823,11 @@
 #define KONA_RM_TFP_FOG_CC1                              0x1414
 #define KONA_RM_TFP_FOG_CC1_B                             0, 12  /* shift, width */
 
-#define KONA_RM_TFP_FOG_DATA                             0x1405  /* fog table data, four
- * 12-bit entries per write (48-bit register). ESTABLISHED: ge.u
- * mStartFogDownload (0x71b3) loads 0x1405; irsaudit fog (0x1010c994) and
- * tbuEnableFog write it; tbusdata.Z writes it 128 times in a row after
- * TFP_FOG; restore value 0 */
+/* TFP_FOG_DATA: fog table data, four 12-bit entries per write (48-bit
+ * register). ESTABLISHED: ge.u mStartFogDownload (0x71b3) loads 0x1405;
+ * irsaudit fog (0x1010c994) and tbuEnableFog write it; tbusdata.Z writes it
+ * 128 times in a row after TFP_FOG; restore value 0. */
+#define KONA_RM_TFP_FOG_DATA                             0x1405
 #define KONA_RM_TFP_FOG_DATA_N0                           0, 12  /* shift, width */
 #define KONA_RM_TFP_FOG_DATA_N1                          12, 12  /* shift, width */
 #define KONA_RM_TFP_FOG_DATA_N2                          24, 12  /* shift, width */
@@ -807,18 +854,20 @@
 #define KONA_RM_TFP_AMASK_FADE_MASK_EN                    1,  1  /* shift, width */
 #define KONA_RM_TFP_AMASK_A2ONE_EN                        2,  1  /* shift, width */
 
-#define KONA_RM_TFP_A2M_LUT0                             0x1409  /* alpha-to-mask table, entries 0-3
- * (8-bit masks). ESTABLISHED: tbusdata.Z writes 0x13110100 after TFP_AC;
- * restore value 0 (tbuRegReset (0x10154cb4)) */
+/* TFP_A2M_LUT0: alpha-to-mask table, entries 0-3 (8-bit masks). ESTABLISHED:
+ * tbusdata.Z writes 0x13110100 after TFP_AC; restore value 0 (tbuRegReset
+ * (0x10154cb4)). */
+#define KONA_RM_TFP_A2M_LUT0                             0x1409
 #define KONA_RM_TFP_A2M_LUT0_N0                           0,  8  /* shift, width */
 #define KONA_RM_TFP_A2M_LUT0_N1                           8,  8  /* shift, width */
 #define KONA_RM_TFP_A2M_LUT0_N2                          16,  8  /* shift, width */
 #define KONA_RM_TFP_A2M_LUT0_N3                          24,  8  /* shift, width */
 
-#define KONA_RM_TFP_A2M_LUT1                             0x140a  /* alpha-to-mask table, entries 4-8.
- * ESTABLISHED: tbusdata.Z writes 0xff7f773733. INFERRED: with LUT0 the nine
- * bytes 00 01 11 13 33 37 77 7f ff set 0..8 of 8 sample bits, so alpha
- * selects a coverage mask (enabled by TFP_AMASK A2M_EN) */
+/* TFP_A2M_LUT1: alpha-to-mask table, entries 4-8. ESTABLISHED: tbusdata.Z
+ * writes 0xff7f773733. INFERRED: with LUT0 the nine bytes 00 01 11 13 33 37
+ * 77 7f ff set 0..8 of 8 sample bits, so alpha selects a coverage mask
+ * (enabled by TFP_AMASK A2M_EN). */
+#define KONA_RM_TFP_A2M_LUT1                             0x140a
 #define KONA_RM_TFP_A2M_LUT1_N0                           0,  8  /* shift, width */
 #define KONA_RM_TFP_A2M_LUT1_N1                           8,  8  /* shift, width */
 #define KONA_RM_TFP_A2M_LUT1_N2                          16,  8  /* shift, width */
@@ -831,10 +880,10 @@
 #define KONA_RM_TFP_FADE_MASK_LUT_N2                     16,  8  /* shift, width */
 #define KONA_RM_TFP_FADE_MASK_LUT_N3                     24,  8  /* shift, width */
 
-#define KONA_RM_TFP_AE                                   0x150c  /* pixel read-back mode for
- * the TFP_AE_RANGE rectangle. ESTABLISHED: TEST_readback writes 0x8, 0x28
- * and 0x18 (MODE 2 with FMT 0, 2, 1), TEST_rbstress and TEST_framebuf 0x18;
- * tbusdata.Z 4 (MODE 1) */
+/* TFP_AE: pixel read-back mode for the TFP_AE_RANGE rectangle. ESTABLISHED:
+ * TEST_readback writes 0x8, 0x28 and 0x18 (MODE 2 with FMT 0, 2, 1),
+ * TEST_rbstress and TEST_framebuf 0x18; tbusdata.Z 4 (MODE 1). */
+#define KONA_RM_TFP_AE                                   0x150c
 #define KONA_RM_TFP_AE_V                                  0,  1  /* shift, width */
 #define KONA_RM_TFP_AE_H                                  1,  1  /* shift, width */
 #define KONA_RM_TFP_AE_MODE                               2,  2  /* shift, width */
@@ -847,10 +896,11 @@
 #define KONA_RM_TFP_AE_FMT_B32                           0x1
 #define KONA_RM_TFP_AE_FMT_B48                           0x2
 
-#define KONA_RM_TFP_AE_RANGE                             0x140d  /* pixel read-back rectangle (x
- * and y start and end, 12 bits each). ESTABLISHED: irsaudit TEST_readback,
- * TEST_rbstress (0x1ff1ff: x and y 0-511), TEST_framebuf, crc_tex1_load and
- * levelizeMipmap write it just before TFP_AE; restore value 0 */
+/* TFP_AE_RANGE: pixel read-back rectangle (x and y start and end, 12 bits
+ * each). ESTABLISHED: irsaudit TEST_readback, TEST_rbstress (0x1ff1ff: x and
+ * y 0-511), TEST_framebuf, crc_tex1_load and levelizeMipmap write it just
+ * before TFP_AE; restore value 0. */
+#define KONA_RM_TFP_AE_RANGE                             0x140d
 #define KONA_RM_TFP_AE_RANGE_YEND                         0, 12  /* shift, width */
 #define KONA_RM_TFP_AE_RANGE_XEND                        12, 12  /* shift, width */
 #define KONA_RM_TFP_AE_RANGE_YSTART                      24, 12  /* shift, width */
@@ -866,13 +916,15 @@
 #define KONA_RM_TFP_PIX_FMT                              0x1410
 #define KONA_RM_TFP_PIX_FMT_LA                            0,  1  /* shift, width */
 
-#define KONA_RM_TFP_NOP                                  0x1411  /* tf no-op. ESTABLISHED: ge.u
- * mgesi_FlushRM (0x3824) loads 0x1411 after IMP_NOP. INFERRED: the flush
- * pushes no-ops through the filter; no field, never restored */
+/* TFP_NOP: tf no-op. ESTABLISHED: ge.u mgesi_FlushRM (0x3824) loads 0x1411
+ * after IMP_NOP. INFERRED: the flush pushes no-ops through the filter; no
+ * field, never restored. */
+#define KONA_RM_TFP_NOP                                  0x1411
 
-#define KONA_RM_TFP_FAKE                                 0x1412  /* test register with a
- * 12-bit TEST_ID. ESTABLISHED: only tbuRegReset (0x10154cb4) writes it (0).
- * unknown: no shipped software or published source depends on its effect */
+/* TFP_FAKE: test register with a 12-bit TEST_ID. ESTABLISHED: only
+ * tbuRegReset (0x10154cb4) writes it (0). unknown: no shipped software or
+ * published source depends on its effect. */
+#define KONA_RM_TFP_FAKE                                 0x1412
 #define KONA_RM_TFP_FAKE_TEST_ID                          0, 12  /* shift, width */
 
 #define KONA_RM_TFT_EXTRAP                               0x1800
@@ -893,18 +945,28 @@
 #define KONA_RM_TFT_BICUBIC_K2K6                         16,  8  /* shift, width */
 #define KONA_RM_TFT_BICUBIC_K3K7                         24,  8  /* shift, width */
 
+/* TFT_SBIAS_EN: per-component scale-and-bias enables (A, B, G, R).
+ * ESTABLISHED: irsaudit my_glKonTexParameter writes it with TFT_SCALE and
+ * TFT_BIAS; tbuRegReset (0x10154cb4) restores 0; in the BEF shadow (GE.h). */
 #define KONA_RM_TFT_SBIAS_EN                             0x1850
 #define KONA_RM_TFT_SBIAS_EN_A                            0,  1  /* shift, width */
 #define KONA_RM_TFT_SBIAS_EN_B                            1,  1  /* shift, width */
 #define KONA_RM_TFT_SBIAS_EN_G                            2,  1  /* shift, width */
 #define KONA_RM_TFT_SBIAS_EN_R                            3,  1  /* shift, width */
 
+/* TFT_SCALE: per-component 8-bit texel scale, enabled by TFT_SBIAS_EN.
+ * ESTABLISHED: irsaudit my_glKonTexParameter writes it; tbuRegReset
+ * (0x10154cb4) restores 0. */
 #define KONA_RM_TFT_SCALE                                0x1851
 #define KONA_RM_TFT_SCALE_A                               0,  8  /* shift, width */
 #define KONA_RM_TFT_SCALE_B                               8,  8  /* shift, width */
 #define KONA_RM_TFT_SCALE_G                              16,  8  /* shift, width */
 #define KONA_RM_TFT_SCALE_R                              24,  8  /* shift, width */
 
+/* TFT_BIAS: per-component 8-bit texel bias, enabled by TFT_SBIAS_EN.
+ * ESTABLISHED: irsaudit my_glKonTexParameter writes it; tbuRegReset
+ * (0x10154cb4) restores 0; tbusdata.Z writes it 50 times right before
+ * TM_TEXBIND_START. */
 #define KONA_RM_TFT_BIAS                                 0x1852
 #define KONA_RM_TFT_BIAS_A                                0,  8  /* shift, width */
 #define KONA_RM_TFT_BIAS_B                                8,  8  /* shift, width */
@@ -919,32 +981,36 @@
 #define KONA_RM_TFT_TLUT_NC_THREE                        0x2
 #define KONA_RM_TFT_TLUT_EN                              12,  1  /* shift, width */
 
-#define KONA_RM_TFT_TLUT_DATA                            0x1854  /* texture lookup table data,
- * A, B, G, R as 12 bits each. ESTABLISHED: ge.u mgesi_TLutDownload (0x3f84)
- * loads 0x1854; irsaudit tbuLoadTLut (0x10154768) and TEST_txlut write it
- * after TFT_TLUT; restore value 0 */
+/* TFT_TLUT_DATA: texture lookup table data, A, B, G, R as 12 bits each.
+ * ESTABLISHED: ge.u mgesi_TLutDownload (0x3f84) loads 0x1854; irsaudit
+ * tbuLoadTLut (0x10154768) and TEST_txlut write it after TFT_TLUT; restore
+ * value 0. */
+#define KONA_RM_TFT_TLUT_DATA                            0x1854
 #define KONA_RM_TFT_TLUT_DATA_A                           0, 12  /* shift, width */
 #define KONA_RM_TFT_TLUT_DATA_B                          12, 12  /* shift, width */
 #define KONA_RM_TFT_TLUT_DATA_G                          24, 12  /* shift, width */
 #define KONA_RM_TFT_TLUT_DATA_R                          36, 12  /* shift, width */
 
-#define KONA_RM_TFT_TEXRB                                0x1855  /* tft side of a
- * texture read-back. ESTABLISHED: TEST_texread and TestTex write 1 right
- * after TFP_TEXRB (0x153f), before the TM_RDBK_ set-up; never restored */
+/* TFT_TEXRB: tft side of a texture read-back. ESTABLISHED: TEST_texread and
+ * TestTex write 1 right after TFP_TEXRB (0x153f), before the TM_RDBK_ set-
+ * up; never restored. */
+#define KONA_RM_TFT_TEXRB                                0x1855
 
-#define KONA_RM_TFT_NOP                                  0x1856  /* tft no-op by name.
- * No writer in irsaudit, kpm, arm1.u, ge.u or the vectors (vector hits are
- * data words). unknown: no shipped software or published source depends on
- * it */
+/* TFT_NOP: tft no-op by name. No writer in irsaudit, kpm, arm1.u, ge.u or
+ * the vectors (vector hits are data words). unknown: no shipped software or
+ * published source depends on it. */
+#define KONA_RM_TFT_NOP                                  0x1856
 
-#define KONA_RM_TFT_FAKE                                 0x1857  /* test register, as TFP_FAKE.
- * ESTABLISHED: only tbuRegReset (0x10154cb4) writes it (0). unknown: no
- * shipped software or published source depends on it */
+/* TFT_FAKE: test register, as TFP_FAKE. ESTABLISHED: only tbuRegReset
+ * (0x10154cb4) writes it (0). unknown: no shipped software or published
+ * source depends on it. */
+#define KONA_RM_TFT_FAKE                                 0x1857
 #define KONA_RM_TFT_FAKE_TEST_ID                          0, 12  /* shift, width */
 
-#define KONA_RM_TFT_EOR                                  0x1858  /* tft end marker by
- * name. No writer anywhere searched (irsaudit, kpm, arm1.u, ge.u, vectors).
- * unknown: no shipped software or published source depends on it */
+/* TFT_EOR: tft end marker by name. No writer anywhere searched (irsaudit,
+ * kpm, arm1.u, ge.u, vectors). unknown: no shipped software or published
+ * source depends on it. */
+#define KONA_RM_TFT_EOR                                  0x1858
 
 #define KONA_RM_IMP_CONFIG                               0x1c00
 #define KONA_RM_IMP_CONFIG_PIXEL_SIZE                     0,  2  /* shift, width */
@@ -1078,9 +1144,10 @@
 
 #define KONA_RM_IMP_DEPTH_CLEAR                          0x1c09
 
-#define KONA_RM_IMP_TAG_CLEAR                            0x1c0a  /* imp tag-clear value. ESTABLISHED:
- * only tbuRegReset (0x10154cb4) writes it (0). unknown: no shipped software
- * or published source depends on the field layout */
+/* IMP_TAG_CLEAR: imp tag-clear value. ESTABLISHED: only tbuRegReset
+ * (0x10154cb4) writes it (0). unknown: no shipped software or published
+ * source depends on the field layout. */
+#define KONA_RM_IMP_TAG_CLEAR                            0x1c0a
 
 #define KONA_RM_IMP_ADDR                                 0x1c0b
 #define KONA_RM_IMP_ADDR_CBASE                            0,  6  /* shift, width */
@@ -1138,42 +1205,47 @@
 #define KONA_RM_IMP_WMASK_BIT_BLUE                        0, 12  /* shift, width */
 #define KONA_RM_IMP_WMASK_BIT_ALPHA                      12, 12  /* shift, width */
 
-#define KONA_RM_IMP_RAMSYNC                              0x1c3f  /* imp RAM synchronisation. ESTABLISHED:
- * aaspoke.tbus writes 1 twice; no writer in irsaudit code, arm1.u or ge.u;
- * never restored. unknown beyond that: no shipped software or published
- * source depends on it */
+/* IMP_RAMSYNC: imp RAM synchronisation. ESTABLISHED: aaspoke.tbus writes 1
+ * twice; no writer in irsaudit code, arm1.u or ge.u; never restored. unknown
+ * beyond that: no shipped software or published source depends on it. */
+#define KONA_RM_IMP_RAMSYNC                              0x1c3f
 
-#define KONA_RM_IMP_FAKE_DRAW_OFFSET                     0x1c3e  /* test-mode draw offset (12-bit
- * x, y). ESTABLISHED: only tbuRegReset (0x10154cb4) writes it (0). unknown:
- * no shipped software or published source depends on it */
+/* IMP_FAKE_DRAW_OFFSET: test-mode draw offset (12-bit x, y). ESTABLISHED:
+ * only tbuRegReset (0x10154cb4) writes it (0). unknown: no shipped software
+ * or published source depends on it. */
+#define KONA_RM_IMP_FAKE_DRAW_OFFSET                     0x1c3e
 #define KONA_RM_IMP_FAKE_DRAW_OFFSET_X                    0, 12  /* shift, width */
 #define KONA_RM_IMP_FAKE_DRAW_OFFSET_Y                   12, 12  /* shift, width */
 
-#define KONA_RM_IMP_FAKE_DRAWMODE                        0x1c3d  /* test-mode draw mode (SRGBA,
- * RGBA, MSK, Z). ESTABLISHED: only tbuRegReset (0x10154cb4) writes it (0).
- * unknown: no shipped software or published source depends on it */
+/* IMP_FAKE_DRAWMODE: test-mode draw mode (SRGBA, RGBA, MSK, Z). ESTABLISHED:
+ * only tbuRegReset (0x10154cb4) writes it (0). unknown: no shipped software
+ * or published source depends on it. */
+#define KONA_RM_IMP_FAKE_DRAWMODE                        0x1c3d
 #define KONA_RM_IMP_FAKE_DRAWMODE_DM                      0,  2  /* shift, width */
 #define KONA_RM_IMP_FAKE_DRAWMODE_DM_SRGBA               0x0
 #define KONA_RM_IMP_FAKE_DRAWMODE_DM_RGBA                0x1
 #define KONA_RM_IMP_FAKE_DRAWMODE_DM_MSK                 0x2
 #define KONA_RM_IMP_FAKE_DRAWMODE_DM_Z                   0x3
 
-#define KONA_RM_IMP_FAKE_SIMPLE_FB_ORIGIN                0x1c3c  /* test-mode framebuffer origin, x
- * high and y low. ESTABLISHED: restore value 0; aaspoke.tbus and tbusdata.Z
- * write 0x3ff (0, 1023) and 0x01400100 (320, 256) */
+/* IMP_FAKE_SIMPLE_FB_ORIGIN: test-mode framebuffer origin, x high and y low.
+ * ESTABLISHED: restore value 0; aaspoke.tbus and tbusdata.Z write 0x3ff (0,
+ * 1023) and 0x01400100 (320, 256). */
+#define KONA_RM_IMP_FAKE_SIMPLE_FB_ORIGIN                0x1c3c
 #define KONA_RM_IMP_FAKE_SIMPLE_FB_ORIGIN_YORG            0, 16  /* shift, width */
 #define KONA_RM_IMP_FAKE_SIMPLE_FB_ORIGIN_XORG           16, 16  /* shift, width */
 
-#define KONA_RM_IMP_FAKE_SIMPLE_FB_SIZE                  0x1c3b  /* test-mode framebuffer size, width
- * high and height low. ESTABLISHED: tbuRegReset (0x10154cb4) restores
- * 0x028001e0 (640 x 480); tbusdata.Z writes 0x05000400 (1280 x 1024) */
+/* IMP_FAKE_SIMPLE_FB_SIZE: test-mode framebuffer size, width high and height
+ * low. ESTABLISHED: tbuRegReset (0x10154cb4) restores 0x028001e0 (640 x
+ * 480); tbusdata.Z writes 0x05000400 (1280 x 1024). */
+#define KONA_RM_IMP_FAKE_SIMPLE_FB_SIZE                  0x1c3b
 #define KONA_RM_IMP_FAKE_SIMPLE_FB_SIZE_YSIZE             0, 16  /* shift, width */
 #define KONA_RM_IMP_FAKE_SIMPLE_FB_SIZE_XSIZE            16, 16  /* shift, width */
 
-#define KONA_RM_IMP_NOP                                  0x1c3a  /* imp no-op. ESTABLISHED: ge.u
- * mgesi_FlushRM (0x3810) and mgeb_ComputeMSPointTables (0x5c50) load 0x1c3a;
- * irsaudit crc_pgtest (0x100d47d4) writes it in runs of eight between runs
- * of PG_NOP. INFERRED: padding that drains the pipe; never restored */
+/* IMP_NOP: imp no-op. ESTABLISHED: ge.u mgesi_FlushRM (0x3810) and
+ * mgeb_ComputeMSPointTables (0x5c50) load 0x1c3a; irsaudit crc_pgtest
+ * (0x100d47d4) writes it in runs of eight between runs of PG_NOP. INFERRED:
+ * padding that drains the pipe; never restored. */
+#define KONA_RM_IMP_NOP                                  0x1c3a
 
 #define KONA_RM_PGTFPIMP_MSLOC                           0x3be0
 #define KONA_RM_PGTFPIMP_MSLOC_X0                         0,  3  /* shift, width */
@@ -1349,37 +1421,44 @@
 #define KONA_RM_TGTM_TEX_TCENTER                         0x3fd8
 #define KONA_RM_TGTM_TEX_TCENTER_TEX_TCENTER              0, 15  /* shift, width */
 
-#define KONA_RM_COMMON_VERBOSE                           0x3ff0  /* broadcast register named for
- * verbosity. ESTABLISHED: only tbuRegReset (0x10154cb4) writes it (0).
- * unknown: no shipped software or published source depends on it */
+/* COMMON_VERBOSE: broadcast register named for verbosity. ESTABLISHED: only
+ * tbuRegReset (0x10154cb4) writes it (0). unknown: no shipped software or
+ * published source depends on it. */
+#define KONA_RM_COMMON_VERBOSE                           0x3ff0
 
-#define KONA_RM_COMMON_PFLUSH                            0x3ff1  /* flushes the pixel-generator path.
- * ESTABLISHED: ge.u DoFlushPGPCache (0xa722) writes it between TFP_PIX_FMT
- * and PGTG_ENABLES with high half 0 (unshadowed); mges_ContextDeactivate
- * (0x690e) writes it; tbusdata.Z 6 times right after 0x1410; restore value 0 */
+/* COMMON_PFLUSH: flushes the pixel-generator path. ESTABLISHED: ge.u
+ * DoFlushPGPCache (0xa722) writes it between TFP_PIX_FMT and PGTG_ENABLES
+ * with high half 0 (unshadowed); mges_ContextDeactivate (0x690e) writes it;
+ * tbusdata.Z 6 times right after 0x1410; restore value 0. */
+#define KONA_RM_COMMON_PFLUSH                            0x3ff1
 
-#define KONA_RM_COMMON_PSTART                            0x3ff3  /* broadcast register by name
- * a start mark. ESTABLISHED: only tbuRegReset (0x10154cb4) writes it (0).
- * unknown: no shipped software or published source depends on it */
+/* COMMON_PSTART: broadcast register by name a start mark. ESTABLISHED: only
+ * tbuRegReset (0x10154cb4) writes it (0). unknown: no shipped software or
+ * published source depends on it. */
+#define KONA_RM_COMMON_PSTART                            0x3ff3
 
-#define KONA_RM_COMMON_PSTOP                             0x3ff4  /* broadcast register by name
- * a stop mark. ESTABLISHED: only tbuRegReset (0x10154cb4) writes it (0).
- * unknown: no shipped software or published source depends on it */
+/* COMMON_PSTOP: broadcast register by name a stop mark. ESTABLISHED: only
+ * tbuRegReset (0x10154cb4) writes it (0). unknown: no shipped software or
+ * published source depends on it. */
+#define KONA_RM_COMMON_PSTOP                             0x3ff4
 
-#define KONA_RM_COMMON_FB                                0x3ff5  /* broadcast depth and alpha
- * enables (ZE, AE). ESTABLISHED: only tbuRegReset (0x10154cb4) writes it
- * (0). unknown: no shipped software or published source depends on it */
+/* COMMON_FB: broadcast depth and alpha enables (ZE, AE). ESTABLISHED: only
+ * tbuRegReset (0x10154cb4) writes it (0). unknown: no shipped software or
+ * published source depends on it. */
+#define KONA_RM_COMMON_FB                                0x3ff5
 #define KONA_RM_COMMON_FB_ZE                              0,  1  /* shift, width */
 #define KONA_RM_COMMON_FB_AE                              1,  1  /* shift, width */
 
-#define KONA_RM_COMMON_PRIMID                            0x3ff6  /* broadcast primitive id. ESTABLISHED:
- * irsaudit ReqVideo (0x10098d2c), TEST_framebuf, TEST_readback,
- * TEST_rmstress and the video tests write a per-test value before drawing;
- * tbusdata.Z writes 1; restore value 0. Meaning beyond the name UNKNOWN */
+/* COMMON_PRIMID: broadcast primitive id. ESTABLISHED: irsaudit ReqVideo
+ * (0x10098d2c), TEST_framebuf, TEST_readback, TEST_rmstress and the video
+ * tests write a per-test value before drawing; tbusdata.Z writes 1; restore
+ * value 0. Meaning beyond the name UNKNOWN. */
+#define KONA_RM_COMMON_PRIMID                            0x3ff6
 
-#define KONA_RM_COMMON_STALL                             0x3ff7  /* broadcast stall count (4-bit
- * COUNT_P). ESTABLISHED: only tbuRegReset (0x10154cb4) writes it (0).
- * unknown: no shipped software or published source depends on it */
+/* COMMON_STALL: broadcast stall count (4-bit COUNT_P). ESTABLISHED: only
+ * tbuRegReset (0x10154cb4) writes it (0). unknown: no shipped software or
+ * published source depends on it. */
+#define KONA_RM_COMMON_STALL                             0x3ff7
 #define KONA_RM_COMMON_STALL_COUNT_P                      0,  4  /* shift, width */
 
 #define KONA_RM_COMMON_IFMT                              0x3ff8
@@ -1400,6 +1479,10 @@
 #define KONA_RM_COMMON_IFMT_PACK_RGBA16                  0x10
 #define KONA_RM_COMMON_IFMT_PACK_RGBA12                  0x11
 
+/* TGTML_NOP: no-op on the texture-load path (tg and tm load side).
+ * ESTABLISHED: ge.u mgesi_FillTMLoadFifo (0x427d) loads 0x7fc0; tbusdata.Z
+ * writes it 195 times, mostly back to back. INFERRED: filler words for the
+ * texture-load FIFO; never restored by tbuRegReset. */
 #define KONA_RM_TGTML_NOP                                0x7fc0
 
 #define KONA_RM_TGTML_TEXLD_SIZE                         0x7fc1
