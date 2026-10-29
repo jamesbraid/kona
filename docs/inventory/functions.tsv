@@ -1544,7 +1544,7 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x1004c06c	180	libjtag_error_handler	undocum
 usr/diags/IR/bin/irsaudit	n32	65281	0x1004c120	156	libjtag_debug_handler	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1004c1bc	400	ensure_jt_init	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1004c34c	288	TEST_jtaginit	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x1004cd0c	628	probe_hip_clock_speed	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x1004cd0c	628	probe_hip_clock_speed	documented	ucode/arm1_firmware.md#control-and-status-registers
 usr/diags/IR/bin/irsaudit	n32	65281	0x1004d0c0	412	locate_break	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1004d25c	3052	probe_ge12_chain	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1004de48	2684	probe_ge14_chain	undocumented	

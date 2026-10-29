@@ -123,6 +123,17 @@
 #define KONA_HH_NOP                         0x1f8  /* register mask 0x0 */
 
 #define KONA_HH_RTC                         0x200  /* register mask 0xffffffff */
+/*
+ * HH_RTC: the host's view of the free-running counter the ARM reads at
+ * 0x2000b0. Established (irsaudit 6.5.30m, probe_hip_clock_speed 0x1004cd0c):
+ * the diagnostic grants host access to ARM space (HH_ARM_CTRL = 1), writes 0
+ * to ARM address 0x2000b0 through HH_ARM_ADDRESS/HH_ARM_DATA, sleeps, reads
+ * HH_RTC and divides the count by the elapsed wall time in microseconds. It
+ * accepts 20-60 MHz and flags a rate under 45 MHz as "too slow, DO NOT SHIP".
+ * So the counter can be written from ARM space, reads the same value at both
+ * addresses, and counts at the host-interface clock, nominally 45-60 MHz.
+ * The exact nominal frequency is unknown: no shipped software states it.
+ */
 
 #define KONA_HIP1_HH_GFIFO_LEVEL            0x208  /* register mask 0xfff */
 #define KONA_HIP1_GFIFO_LEVEL_ZERO_MASK     0x00000001  /* shift 0 */

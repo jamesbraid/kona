@@ -9,8 +9,8 @@ Counts come from `scripts/inventory.py` run over 544 files in scope; each row of
 
 | Inventory | Items | Documented | Named only | Undocumented |
 |---|---:|---:|---:|---:|
-| Functions (every binary) | 51510 | 843 (1.6%) | 968 (1.9%) | 49699 (96.5%) |
-| Functions (distinct names) | 18857 | 318 (1.7%) | 165 (0.9%) | 18374 (97.4%) |
+| Functions (every binary) | 51510 | 844 (1.6%) | 968 (1.9%) | 49698 (96.5%) |
+| Functions (distinct names) | 18857 | 319 (1.7%) | 165 (0.9%) | 18373 (97.4%) |
 | MMIO offsets | 264 | 196 (74.2%) | 68 (25.8%) | 0 (0.0%) |
 | Command tokens | 617 | 245 (39.7%) | 356 (57.7%) | 16 (2.6%) |
 | Ioctls | 113 | 75 (66.4%) | 0 (0.0%) | 38 (33.6%) |
@@ -53,7 +53,7 @@ Host interface: PIO FIFO words, DMA streams, flow control and doorbells.
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | full HIP1/HIP2 register and field table from kpm; window base 0x800000 inferred from kernel accesses. Open (docs/open-questions.md): the 0xc00000 alias |
+| Registers and fields | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | full HIP1/HIP2 register and field table from kpm; window base 0x800000 inferred from kernel accesses. `HH_RTC` is the ARM's free-running counter at 0x2000b0, counting the host-interface clock (45-60 MHz accepted by irsaudit's `probe_hip_clock_speed`). Open (docs/open-questions.md): the 0xc00000 alias |
 | Command and FIFO formats | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | kernel push port, textport port, indirect pair and user doorbell; token map (306 ARM-run, 206 routed with count, command number and type), payload ports, kind bits, mailbox and read-back from the ARM firmware (docs/hip.md, ucode/arm1_firmware.md). Open (docs/open-questions.md): the split of the user's 64-bit stores into tokens, the credit scheme, what makes the hardware refuse a token |
 | DMA | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | DO_IDMA, START_SELECTFEED, FINISH_SELECTFEED and DMAPOOL_SETUP payloads, the 16 KB map RAM and pipe-space address path, completion events; the pool is the buffer the firmware's EXECLIST_IDMA, EXECLIST_IDMA_N and USERCOPYLIST_LDMA handlers fetch command lists from, and the 0x9000 of an address pair lands in bits 15-12 of the DMA page-offset register (firmware). Open (docs/open-questions.md): register-level DMA engine behaviour, what 0x9 in those bits, `flags` 256 and `snapshot` select |
 | Interrupts | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | HH_INTR_INFO/ENABLE/STATUS/ACK and GINTR_INFO fields; every STATUS bit with the kernel's action, the reset and running masks, write-back clear and ack, FIFO hi/lo-water flow control, ARM mailbox and GE event handling; where a failed host DMA is reported. Open (docs/open-questions.md): the hardware conditions behind each bit, the low-water level, whether the ack is required |
