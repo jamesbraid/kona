@@ -17,13 +17,13 @@ arm1.u	symbol	0x040415a8	nVideoCmdHistory	flags=5	named-only	docs/dg.md#firmware
 arm1.u	symbol	0x040415b0	OptVocAddress	flags=4	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
 arm1.u	symbol	0x040416ec	dgTextportGlyph	flags=5	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
 arm1.u	symbol	0x04041afc	nGreyDecode	flags=5	named-only	ucode/arm1_functions.md#other-data	Other data
-arm1.u	symbol	0x04041b90	PramContentsType	flags=5	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x04041b90	PramContentsType	flags=5	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 arm1.u	symbol	0x04041b94	PramContentsData	flags=5	named-only	ucode/arm1_functions.md#other-data	Other data
 arm1.u	symbol	0x04041b9c	ADDR_LIGHT	flags=5	named-only	ucode/arm1_functions.md#other-data	Other data
-arm1.u	symbol	0x04041bbc	lightmodelf	flags=4	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x04041bc8	lightmodeli	flags=4	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x04041bd4	colormaterial	flags=4	named-only	ucode/arm1_functions.md#other-data	Other data
-arm1.u	symbol	0x04041bdc	lightfi	flags=4	named-only	ucode/arm1_functions.md#other-data	Other data
+arm1.u	symbol	0x04041bbc	lightmodelf	flags=4	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x04041bc8	lightmodeli	flags=4	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x04041bd4	colormaterial	flags=4	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x04041bdc	lightfi	flags=4	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 arm1.u	symbol	0x04041c04	printc	flags=4	named-only	ucode/arm1_functions.md#start-up-exceptions-and-the-run-time-library	Start-up, exceptions and the run-time library
 arm1.u	symbol	0x04041c18	kona_jtag_ivalues	flags=5	named-only	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 arm1.u	symbol	0x04041c58	tg1_chip_type	flags=5	named-only	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
@@ -750,93 +750,93 @@ arm1.u	symbol	0x0c01503c	arm_movelist_ldma	flags=3	understood	ucode/arm1_functio
 arm1.u	symbol	0x0c015058	arm_execlist_idma	flags=3	understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
 arm1.u	symbol	0x0c015164	arm_execlist_idma_n	flags=3	understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
 arm1.u	symbol	0x0c015200	downLoadAALineTable	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
-arm1.u	symbol	0x0c015278	downLoadPolygonStipple	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+arm1.u	symbol	0x0c015278	downLoadPolygonStipple	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 arm1.u	symbol	0x0c015298	tbus_regwrite	flags=3	understood	ucode/arm1_functions.md#engine-and-distributor-set-up	Engine and distributor set-up
 arm1.u	symbol	0x0c0152b4	tbus_regwritenoincr	flags=3	understood	ucode/arm1_functions.md#engine-and-distributor-set-up	Engine and distributor set-up
 arm1.u	symbol	0x0c0152cc	arm_end_of_simulation	flags=3	understood	ucode/arm1_functions.md#diagnostic-commands	Diagnostic commands
 arm1.u	symbol	0x0c015418	set_error	flags=3	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
-arm1.u	symbol	0x0c015438	set_invalid_enum	flags=3	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
+arm1.u	symbol	0x0c015438	set_invalid_enum	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 arm1.u	symbol	0x0c015460	set_invalid_value	flags=3	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 arm1.u	symbol	0x0c015488	set_invalid_operation	flags=3	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 arm1.u	symbol	0x0c0154b0	set_stack_overflow	flags=3	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
-arm1.u	symbol	0x0c0154d8	set_stack_underflow	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c015500	arm_seterror	flags=3	named-only	GE.h:1582	
-arm1.u	symbol	0x0c015524	arm_frontface	flags=3	named-only	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler	How a command reaches a geometry-engine handler
-arm1.u	symbol	0x0c015544	arm_cullface	flags=3	named-only	ucode/arm1.md#container	Container
-arm1.u	symbol	0x0c015564	e_cull_face	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c01557c	d_cull_face	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015598	arm_polygonmode	flags=3	named-only	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines	How a handler reaches the engines
-arm1.u	symbol	0x0c0155f4	e_point_smooth	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015600	d_point_smooth	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c01560c	e_line_smooth	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c01562c	d_line_smooth	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c01565c	e_polygon_smooth	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015668	d_polygon_smooth	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015674	e_multisample	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015704	d_multisample	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015768	arm_blendfunc	flags=3	named-only	GE.h:1415	
-arm1.u	symbol	0x0c0158f8	e_blend	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015984	d_blend	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015a00	arm_pointsize	flags=3	named-only	GE.h:1329	
-arm1.u	symbol	0x0c015a14	arm_linewidth	flags=3	named-only	GE.h:1325	
-arm1.u	symbol	0x0c015a28	e_reference_plane	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015a48	d_reference_plane	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015a64	e_calligraphic_fragment	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015a90	d_calligraphic_fragment	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015ab8	e_color_logic_op	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015b2c	d_color_logic_op	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015bb4	e_logic_op	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015be4	d_logic_op	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015c18	arm_logicop	flags=3	named-only	GE.h:414	
-arm1.u	symbol	0x0c015c44	e_normalize	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015c60	d_normalize	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015c7c	arm_edgeflag	flags=3	named-only	GE.h:1207	
-arm1.u	symbol	0x0c015ca0	arm_linestipple	flags=3	named-only	ucode/ge_handlers.md#lines	line.S
-arm1.u	symbol	0x0c015de8	e_line_stipple	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015e04	d_line_stipple	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015e20	e_polygon_stipple	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015e50	d_polygon_stipple	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c015e8c	ResolvePolygon	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c016024	ResolveLine	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c016240	ResolvePoint	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c016308	e_polygonoffsetpoint	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c016334	d_polygonoffsetpoint	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c01635c	e_polygonoffsetline	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c016388	d_polygonoffsetline	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c0163b0	e_polygonoffset	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c0163dc	d_polygonoffset	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c016408	arm_polygonoffsetext	flags=3	named-only	ucode/ge_handlers.md#glexts	glExt.S
-arm1.u	symbol	0x0c016428	arm_polygonoffset	flags=3	named-only	ucode/ge_handlers.md#glexts	glExt.S
-arm1.u	symbol	0x0c016448	e_multipass	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c016458	d_multipass	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c016468	arm_hint	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c0164bc	hint_init	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c0164d8	color	flags=3	named-only	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
-arm1.u	symbol	0x0c0164f8	cindex	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c01650c	vertex	flags=3	named-only	docs/kernel.md#board-registration-and-hardware-graph-gfxregisterboard-gfxaddhwgraphedge-gfxinit	Board registration and hardware graph: `GfxRegisterBoard`, `GfxAddHwgraphEdge`, `gfxinit`
-arm1.u	symbol	0x0c01652c	normal	flags=3	named-only	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
-arm1.u	symbol	0x0c016548	texcoord	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c016568	edgeflag	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c016584	prim_init	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c016770	arm_irisgl_mode	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
-arm1.u	symbol	0x0c016854	arm_tmeshmode	flags=3	named-only	GE.h:2936	
-arm1.u	symbol	0x0c016898	arm_lmc_color	flags=3	named-only	GE.h:1822	
-arm1.u	symbol	0x0c0168ac	initAALineTablesGlobal	flags=3	named-only	docs/ge.md#reset-and-start-up	Reset and start-up
-arm1.u	symbol	0x0c016908	line_pop	flags=3	named-only	ucode/ge_handlers.md#lines	line.S
-arm1.u	symbol	0x0c016a24	polygon_pop	flags=3	named-only	ucode/ge_handlers.md#glexts	glExt.S
-arm1.u	symbol	0x0c016ab8	arm_shademodel	flags=3	named-only	ucode/ge_handlers.md#rasters	raster.S
-arm1.u	symbol	0x0c016ae4	arm_lightmodelf	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c016b20	arm_lightmodeli	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c016b5c	lightmodel_locv	flags=3	named-only	ucode/arm1_functions.md#other-data	Other data
-arm1.u	symbol	0x0c016b90	lightmodel_2side	flags=3	named-only	ucode/arm1_functions.md#other-data	Other data
-arm1.u	symbol	0x0c016bc4	lightmodel_gamb	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c016bf0	lightmodelf_gamb	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c016c04	lightmodeli_gamb	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c016c70	arm_colormaterial	flags=3	named-only	ucode/arm1_functions.md#other-data	Other data
-arm1.u	symbol	0x0c016ce4	colormaterial_front	flags=3	named-only	ucode/arm1_functions.md#other-data	Other data
-arm1.u	symbol	0x0c016d7c	colormaterial_back	flags=3	named-only	ucode/arm1_functions.md#other-data	Other data
-arm1.u	symbol	0x0c016e08	colormaterial_frontback	flags=3	named-only	ucode/ge_handlers.md#lightmodels	lightmodel.S
-arm1.u	symbol	0x0c016e94	arm_lightf	flags=3	named-only	ucode/arm1_functions.md#other-data	Other data
+arm1.u	symbol	0x0c0154d8	set_stack_underflow	flags=3	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
+arm1.u	symbol	0x0c015500	arm_seterror	flags=3	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
+arm1.u	symbol	0x0c015524	arm_frontface	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+arm1.u	symbol	0x0c015544	arm_cullface	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+arm1.u	symbol	0x0c015564	e_cull_face	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c01557c	d_cull_face	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015598	arm_polygonmode	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+arm1.u	symbol	0x0c0155f4	e_point_smooth	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015600	d_point_smooth	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c01560c	e_line_smooth	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c01562c	d_line_smooth	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c01565c	e_polygon_smooth	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015668	d_polygon_smooth	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015674	e_multisample	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015704	d_multisample	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015768	arm_blendfunc	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c0158f8	e_blend	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015984	d_blend	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015a00	arm_pointsize	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+arm1.u	symbol	0x0c015a14	arm_linewidth	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+arm1.u	symbol	0x0c015a28	e_reference_plane	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015a48	d_reference_plane	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015a64	e_calligraphic_fragment	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015a90	d_calligraphic_fragment	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015ab8	e_color_logic_op	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015b2c	d_color_logic_op	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015bb4	e_logic_op	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015be4	d_logic_op	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015c18	arm_logicop	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c015c44	e_normalize	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015c60	d_normalize	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015c7c	arm_edgeflag	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c015ca0	arm_linestipple	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+arm1.u	symbol	0x0c015de8	e_line_stipple	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015e04	d_line_stipple	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015e20	e_polygon_stipple	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015e50	d_polygon_stipple	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c015e8c	ResolvePolygon	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c016024	ResolveLine	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c016240	ResolvePoint	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c016308	e_polygonoffsetpoint	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c016334	d_polygonoffsetpoint	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c01635c	e_polygonoffsetline	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c016388	d_polygonoffsetline	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c0163b0	e_polygonoffset	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c0163dc	d_polygonoffset	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c016408	arm_polygonoffsetext	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+arm1.u	symbol	0x0c016428	arm_polygonoffset	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+arm1.u	symbol	0x0c016448	e_multipass	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c016458	d_multipass	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c016468	arm_hint	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c0164bc	hint_init	flags=3	understood	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
+arm1.u	symbol	0x0c0164d8	color	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c0164f8	cindex	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c01650c	vertex	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c01652c	normal	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016548	texcoord	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016568	edgeflag	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016584	prim_init	flags=3	understood	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
+arm1.u	symbol	0x0c016770	arm_irisgl_mode	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016854	arm_tmeshmode	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016898	arm_lmc_color	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c0168ac	initAALineTablesGlobal	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+arm1.u	symbol	0x0c016908	line_pop	flags=3	understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
+arm1.u	symbol	0x0c016a24	polygon_pop	flags=3	understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
+arm1.u	symbol	0x0c016ab8	arm_shademodel	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016ae4	arm_lightmodelf	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016b20	arm_lightmodeli	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016b5c	lightmodel_locv	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016b90	lightmodel_2side	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016bc4	lightmodel_gamb	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016bf0	lightmodelf_gamb	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016c04	lightmodeli_gamb	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016c70	arm_colormaterial	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016ce4	colormaterial_front	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016d7c	colormaterial_back	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016e08	colormaterial_frontback	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c016e94	arm_lightf	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 arm1.u	symbol	0x0c016ee8	arm_lighti	flags=3	named-only	ucode/arm1_functions.md#other-data	Other data
 arm1.u	symbol	0x0c016f38	light_amb	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 arm1.u	symbol	0x0c016ffc	light_diff	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
@@ -874,7 +874,7 @@ arm1.u	symbol	0x0c017990	material_push	flags=3	named-only	ucode/arm1.md#hardware
 arm1.u	symbol	0x0c017b3c	ReCompPwrTable	flags=3	named-only	ucode/ge_handlers.md#lightenabless	lightenables.S
 arm1.u	symbol	0x0c017b4c	doFixToFloat	flags=2	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
 arm1.u	symbol	0x0c017bb4	scaleFix	flags=2	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c017bf4	convFixToFloat	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
+arm1.u	symbol	0x0c017bf4	convFixToFloat	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 arm1.u	symbol	0x0c017c54	light_init	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
 arm1.u	symbol	0x0c017d48	light_pop	flags=3	named-only	ucode/ge_handlers.md#lightmodels	lightmodel.S
 arm1.u	symbol	0x0c018134	arm_poplights	flags=3	named-only	ucode/ge_handlers.md#getlights	getlight.S
@@ -994,7 +994,7 @@ arm1.u	symbol	0x0c01fb50	activate_private	flags=2	named-only	ucode/arm1_firmware
 arm1.u	symbol	0x0c01fc38	init_geBefAddrs	flags=3	understood	ucode/arm1_functions.md#engine-and-distributor-set-up	Engine and distributor set-up
 arm1.u	symbol	0x0c01fc80	init_befshadow	flags=3	understood	ucode/arm1_functions.md#engine-and-distributor-set-up	Engine and distributor set-up
 arm1.u	symbol	0x0c01fcb8	context_init_ged	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c01fd50	context_init	flags=3	named-only	ucode/arm1_functions.md#start-up-exceptions-and-the-run-time-library	Start-up, exceptions and the run-time library
+arm1.u	symbol	0x0c01fd50	context_init	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
 arm1.u	symbol	0x0c01fe04	arm_context_init	flags=3	named-only	docs/ge.md#reset-and-start-up	Reset and start-up
 arm1.u	symbol	0x0c01ff20	activate_setcurrentge	flags=2	named-only	ucode/arm1_firmware.md#descriptor-port-r9--0x400	Descriptor port (r9 + 0x400)
 arm1.u	symbol	0x0c020018	activate_ged	flags=2	named-only	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
@@ -2222,8 +2222,8 @@ ge.u	label	0x000038c0	mgesi_Accum		understood	ucode/ge_handlers.md#rasters	raste
 ge.u	label	0x000038e5	mgesi_UserColor		understood	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x000038fd	mgeb_CI_Mode		understood	ucode/ge_handlers.md#indxirislights	indxirislight.S
 ge.u	label	0x00003923	mgeb_RGBA_Mode		understood	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x0000393e	mgeb_Disable_Normalize		understood	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x0000394e	mgeb_Enable_Normalize		understood	ucode/ge_handlers.md#rasters	raster.S
+ge.u	label	0x0000393e	mgeb_Disable_Normalize		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+ge.u	label	0x0000394e	mgeb_Enable_Normalize		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 ge.u	label	0x0000395e	mgesi_IMPbshRegisterWrite		understood	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003972	mgesi_BshRegisterWriteN		understood	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003991	mgesi_BshRegisterWrite		understood	ucode/ge_handlers.md#rasters	raster.S
@@ -2234,7 +2234,7 @@ ge.u	label	0x000039c8	mgesi_AlphaFunc		understood	ucode/ge_handlers.md#rasters	r
 ge.u	label	0x000039da	mges_TbusRegWriteNoIncr		understood	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x000039e7	mgesi_IMPtbusRegWrite		understood	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x000039fd	mgesi_TbusRegWrite		understood	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003a0a	mgebi_ShadeModel		understood	ucode/ge_handlers.md#rasters	raster.S
+ge.u	label	0x00003a0a	mgebi_ShadeModel		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 ge.u	label	0x00003a25	mges_DiagDeactivate		understood	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003a32	mgebi_NullCommand		understood	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003a45	mges_NullCommand		understood	ucode/ge_handlers.md#rasters	raster.S
@@ -2333,8 +2333,8 @@ ge.u	label	0x00005879	mgebi_TexEnv		understood	ucode/ge_handlers.md#texenvs	texe
 ge.u	label	0x00005942	mTexEnvDone		understood	ucode/ge_handlers.md#texenvs	texenv.S
 ge.u	label	0x0000594d	mValidateTexenvMode		understood	ucode/ge_handlers.md#conv3x3s	conv3x3.s
 ge.u	label	0x000059a2	mgebi_ReferencePlane		understood	ucode/ge_handlers.md#mmatrixs	mmatrix.S
-ge.u	label	0x00005b15	mgebi_ReferencePlane_Disable		understood	ucode/ge_handlers.md#refplanes	refplane.S
-ge.u	label	0x00005b2f	mgebi_ReferencePlane_Enable		understood	ucode/ge_handlers.md#refplanes	refplane.S
+ge.u	label	0x00005b15	mgebi_ReferencePlane_Disable		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+ge.u	label	0x00005b2f	mgebi_ReferencePlane_Enable		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 ge.u	label	0x00005b4c	mRefPlane		understood	ucode/ge_handlers.md#refplanes	refplane.S
 ge.u	label	0x00005b96	mgeb_SetMSPointTables		understood	ucode/ge_handlers.md#points	point.S
 ge.u	label	0x00005bab	mgeb_ComputeMSPointTables		understood	ucode/ge_handlers.md#points	point.S
@@ -2357,7 +2357,7 @@ ge.u	label	0x00006289	mgeb_LineWidth_Feedback		understood	ucode/ge_handlers.md#f
 ge.u	label	0x00006298	mgeb_LineWidth_Select		understood	ucode/ge_handlers.md#lines	line.S
 ge.u	label	0x000062a7	mgeb_LineStipple		understood	ucode/ge_handlers.md#lines	line.S
 ge.u	label	0x000062dc	mgeb_LineWidth_MS		understood	ucode/ge_handlers.md#drawlins	drawlin.S
-ge.u	label	0x00006300	mgeb_InitAALineTables		understood	ucode/ge_handlers.md#lines	line.S
+ge.u	label	0x00006300	mgeb_InitAALineTables		understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 ge.u	label	0x00006319	mgeb_DownLoadAALineTable		understood	ucode/ge_handlers.md#lines	line.S
 ge.u	label	0x00006379	mgeb_LineWidth_AlphaAA		understood	ucode/ge_handlers.md#lines	line.S
 ge.u	label	0x000063d4	mGenerateAALineTable8		understood	ucode/ge_handlers.md#lines	line.S
@@ -2588,9 +2588,9 @@ ge.u	label	0x0000ae09	mGL_EX_Initialize		understood	ucode/ge_handlers.md#ges	ge.
 ge.u	label	0x0000b0f4	mGL_EM_Initialize		understood	ucode/ge_handlers.md#clips	clip.S
 ge.u	label	0x0000b1ac	mGL_CM_Initialize		understood	ucode/ge_handlers.md#drawlins	drawlin.S
 ge.u	label	0x0000b25a	mGL_REGS_Initialize		understood	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000b27b	mgeb_Disable_EnablePolyOffsetExt		understood	ucode/ge_handlers.md#glexts	glExt.S
-ge.u	label	0x0000b2ab	mgeb_PolygonOffset		understood	ucode/ge_handlers.md#glexts	glExt.S
-ge.u	label	0x0000b2c3	mgeb_PolygonOffsetExt		understood	ucode/ge_handlers.md#glexts	glExt.S
+ge.u	label	0x0000b27b	mgeb_Disable_EnablePolyOffsetExt		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+ge.u	label	0x0000b2ab	mgeb_PolygonOffset		understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+ge.u	label	0x0000b2c3	mgeb_PolygonOffsetExt		understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 ge.u	label	0x0000b2d2	mgeb_RasterPos		understood	ucode/ge_handlers.md#entrys	entry.S
 ge.u	label	0x0000b2fe	mgesi_Points		understood	ucode/ge_handlers.md#entrys	entry.S
 ge.u	label	0x0000b312	mgesi_LineStripRestoreV0		understood	ucode/ge_handlers.md#entrys	entry.S
@@ -2700,12 +2700,12 @@ ge.u	label	0x0000c6f2	mgeb_LightSpec		understood	ucode/ge_handlers.md#lightsourc
 ge.u	label	0x0000c6fb	mgeb_LightDiff		understood	ucode/ge_handlers.md#lightsources	lightsource.S
 ge.u	label	0x0000c704	mgeb_LightAmb		understood	ucode/ge_handlers.md#lightsources	lightsource.S
 ge.u	label	0x0000c70d	mLightColor		understood	ucode/ge_handlers.md#lightsources	lightsource.S
-ge.u	label	0x0000c721	mgeb_LiClrMtrlFrontBack		understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c75b	mgeb_LiClrMtrlBack		understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c795	mgeb_LiClrMtrlFront		understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c7cf	mgeb_LightModelGAmb		understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c7e1	mgeb_LightModelLocV		understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c7fb	mgeb_LightModel2Side		understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
+ge.u	label	0x0000c721	mgeb_LiClrMtrlFrontBack		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+ge.u	label	0x0000c75b	mgeb_LiClrMtrlBack		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+ge.u	label	0x0000c795	mgeb_LiClrMtrlFront		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+ge.u	label	0x0000c7cf	mgeb_LightModelGAmb		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+ge.u	label	0x0000c7e1	mgeb_LightModelLocV		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+ge.u	label	0x0000c7fb	mgeb_LightModel2Side		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 ge.u	label	0x0000c989	mmo_DecomposeTriangleStripWithSwapOdd		understood	ucode/ge_handlers.md#entrys	entry.S
 ge.u	label	0x0000c9b2	mmo_DecomposeTriangleStripWithSwapEven		understood	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
 ge.u	label	0x0000c9e1	mmo_DummyDecomposeQuadStrip		understood	ucode/ge_handlers.md#entrys	entry.S
@@ -2851,20 +2851,20 @@ ge.u	label	0x0000f182	mEyeToClipAfterUserClip		understood	ucode/ge_handlers.md#c
 ge.u	label	0x0000f1dc	mClipTriFlush		understood	ucode/ge_handlers.md#clips	clip.S
 ge.u	label	0x0000f20a	mSetClipVertsFree		understood	ucode/ge_handlers.md#clips	clip.S
 ge.u	label	0x0000f21b	mgeb_PointParameter		understood	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f280	mgeb_Disable_Multipass		understood	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f293	mgeb_Enable_Multipass		understood	ucode/ge_handlers.md#glmodess	glmodes.S
+ge.u	label	0x0000f280	mgeb_Disable_Multipass		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+ge.u	label	0x0000f293	mgeb_Enable_Multipass		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 ge.u	label	0x0000f2a6	mgeb_DisableSprite		understood	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000f2b9	mgeb_EnableSprite		understood	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000f2cc	mgeb_Sprite		understood	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f320	mgeb_ClearLMCFlag		understood	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f32f	mgeb_SetLMCFlag		understood	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f33e	mgeb_Disable_Cull_Face		understood	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f352	mgeb_Enable_Cull_Face		understood	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f366	mgeb_CullFace		understood	ucode/ge_handlers.md#glmodess	glmodes.S
+ge.u	label	0x0000f320	mgeb_ClearLMCFlag		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+ge.u	label	0x0000f32f	mgeb_SetLMCFlag		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+ge.u	label	0x0000f33e	mgeb_Disable_Cull_Face		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+ge.u	label	0x0000f352	mgeb_Enable_Cull_Face		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+ge.u	label	0x0000f366	mgeb_CullFace		understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 ge.u	label	0x0000f37c	mgeb_DisableUserClipPlane		understood	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000f390	mgeb_EnableUserClipPlane		understood	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000f3a4	mgeb_UserClipPlane		understood	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f3db	mgeb_FrontFace		understood	ucode/ge_handlers.md#glmodess	glmodes.S
+ge.u	label	0x0000f3db	mgeb_FrontFace		understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 ge.u	label	0x0000f3ea	mgeb_DepthRange		understood	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000f404	mgeb_ViewPort		understood	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000f435	mgesi_SetGeId		understood	ucode/ge_handlers.md#glmodess	glmodes.S
@@ -2881,23 +2881,23 @@ geif.u	dispatch slot	3	mgeb_BitmapApplyOrig	handler 0xa7e8	understood	ucode/ge_h
 geif.u	dispatch slot	4	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	5	mgeb_BitmapApplyMove	handler 0xa7cf	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 geif.u	dispatch slot	6	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	7	mgeb_CullFace	handler 0xf366	understood	ucode/ge_handlers.md#glmodess	glmodes.S
+geif.u	dispatch slot	7	mgeb_CullFace	handler 0xf366	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 geif.u	dispatch slot	8	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	9	mgeb_DisableUserClipPlane	handler 0xf37c	understood	ucode/ge_handlers.md#glmodess	glmodes.S
 geif.u	dispatch slot	10	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	11	mgeb_Disable_Cull_Face	handler 0xf33e	understood	ucode/ge_handlers.md#glmodess	glmodes.S
+geif.u	dispatch slot	11	mgeb_Disable_Cull_Face	handler 0xf33e	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	12	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	13	mgeb_Disable_EnablePolyOffsetExt	handler 0xb27b	understood	ucode/ge_handlers.md#glexts	glExt.S
+geif.u	dispatch slot	13	mgeb_Disable_EnablePolyOffsetExt	handler 0xb27b	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	14	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	15	mgeb_Disable_Normalize	handler 0x393e	understood	ucode/ge_handlers.md#rasters	raster.S
+geif.u	dispatch slot	15	mgeb_Disable_Normalize	handler 0x393e	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	16	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	17	mgeb_DisableSprite	handler 0xf2a6	understood	ucode/ge_handlers.md#glmodess	glmodes.S
 geif.u	dispatch slot	18	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	19	mgeb_EnableUserClipPlane	handler 0xf390	understood	ucode/ge_handlers.md#glmodess	glmodes.S
 geif.u	dispatch slot	20	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	21	mgeb_Enable_Cull_Face	handler 0xf352	understood	ucode/ge_handlers.md#glmodess	glmodes.S
+geif.u	dispatch slot	21	mgeb_Enable_Cull_Face	handler 0xf352	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	22	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	23	mgeb_Enable_Normalize	handler 0x394e	understood	ucode/ge_handlers.md#rasters	raster.S
+geif.u	dispatch slot	23	mgeb_Enable_Normalize	handler 0x394e	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	24	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	25	mgeb_EnableSprite	handler 0xf2b9	understood	ucode/ge_handlers.md#glmodess	glmodes.S
 geif.u	dispatch slot	26	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -2905,17 +2905,17 @@ geif.u	dispatch slot	27	mgeb_EvalMapData1D	handler 0x9c	understood	ucode/ge_hand
 geif.u	dispatch slot	28	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	29	mgeb_EvalMapData2D	handler 0x205	understood	ucode/ge_handlers.md#evalmiscs	evalmisc.s
 geif.u	dispatch slot	30	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	31	mgeb_FrontFace	handler 0xf3db	understood	ucode/ge_handlers.md#glmodess	glmodes.S
+geif.u	dispatch slot	31	mgeb_FrontFace	handler 0xf3db	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 geif.u	dispatch slot	32	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	33	mgeb_Frustum_Projection	handler 0xbc0c	understood	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 geif.u	dispatch slot	34	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	35	mgeb_Frustum_Texture	handler 0xbbfe	understood	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 geif.u	dispatch slot	36	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	37	mgeb_LiClrMtrlBack	handler 0xc75b	understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
+geif.u	dispatch slot	37	mgeb_LiClrMtrlBack	handler 0xc75b	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	38	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	39	mgeb_LiClrMtrlFront	handler 0xc795	understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
+geif.u	dispatch slot	39	mgeb_LiClrMtrlFront	handler 0xc795	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	40	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	41	mgeb_LiClrMtrlFrontBack	handler 0xc721	understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
+geif.u	dispatch slot	41	mgeb_LiClrMtrlFrontBack	handler 0xc721	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	42	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	43	mgeb_LiDisableClrMtrl	handler 0xdc9c	understood	ucode/ge_handlers.md#lightenabless	lightenables.S
 geif.u	dispatch slot	44	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -2939,11 +2939,11 @@ geif.u	dispatch slot	61	mgeb_LightK1	handler 0xc6d8	understood	ucode/ge_handlers
 geif.u	dispatch slot	62	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	63	mgeb_LightK2	handler 0xc6cb	understood	ucode/ge_handlers.md#lightsources	lightsource.S
 geif.u	dispatch slot	64	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	65	mgeb_LightModel2Side	handler 0xc7fb	understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
+geif.u	dispatch slot	65	mgeb_LightModel2Side	handler 0xc7fb	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	66	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	67	mgeb_LightModelGAmb	handler 0xc7cf	understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
+geif.u	dispatch slot	67	mgeb_LightModelGAmb	handler 0xc7cf	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	68	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	69	mgeb_LightModelLocV	handler 0xc7e1	understood	ucode/ge_handlers.md#lightmodels	lightmodel.S
+geif.u	dispatch slot	69	mgeb_LightModelLocV	handler 0xc7e1	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	70	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	71	mgeb_LightPos	handler 0xc500	understood	ucode/ge_handlers.md#lightsources	lightsource.S
 geif.u	dispatch slot	72	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3003,7 +3003,7 @@ geif.u	dispatch slot	125	mgeb_PixPolygonStippleSetup	handler 0xa75f	understood	u
 geif.u	dispatch slot	126	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	127	mgeb_PointParameter	handler 0xf21b	understood	ucode/ge_handlers.md#glmodess	glmodes.S
 geif.u	dispatch slot	128	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	129	mgeb_PolygonOffsetExt	handler 0xb2c3	understood	ucode/ge_handlers.md#glexts	glExt.S
+geif.u	dispatch slot	129	mgeb_PolygonOffsetExt	handler 0xb2c3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 geif.u	dispatch slot	130	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	131	mgeb_PolygonStippleRotate	handler 0x9ddc	understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 geif.u	dispatch slot	132	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3073,7 +3073,7 @@ geif.u	dispatch slot	195	mgebi_PointSize_AlphaAA	handler 0x612c	understood	ucode
 geif.u	dispatch slot	196	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	197	mgebi_PointSize_MS	handler 0x6094	understood	ucode/ge_handlers.md#drawmstpnts	drawmstpnt.S
 geif.u	dispatch slot	198	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	199	mgebi_ShadeModel	handler 0x3a0a	understood	ucode/ge_handlers.md#rasters	raster.S
+geif.u	dispatch slot	199	mgebi_ShadeModel	handler 0x3a0a	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	200	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	201	mgebi_Texture	handler 0x43f3	understood	ucode/ge_handlers.md#textures	texture.S
 geif.u	dispatch slot	202	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3109,9 +3109,9 @@ geif.u	dispatch slot	231	mgebi_FogOffsetEnableDisable	handler 0x6eea	understood	
 geif.u	dispatch slot	232	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	233	mgesi_XPixRmSetup	handler 0x4c70	understood	ucode/ge_handlers.md#xloads	xload.S
 geif.u	dispatch slot	234	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	235	mgebi_ReferencePlane_Enable	handler 0x5b2f	understood	ucode/ge_handlers.md#refplanes	refplane.S
+geif.u	dispatch slot	235	mgebi_ReferencePlane_Enable	handler 0x5b2f	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	236	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	237	mgebi_ReferencePlane_Disable	handler 0x5b15	understood	ucode/ge_handlers.md#refplanes	refplane.S
+geif.u	dispatch slot	237	mgebi_ReferencePlane_Disable	handler 0x5b15	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	238	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	239	mgeb_EnableUnpack	handler 0x583e	understood	ucode/ge_handlers.md#unpacks	unpack.S
 geif.u	dispatch slot	240	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3145,11 +3145,11 @@ geif.u	dispatch slot	267	mgeb_ContextLoadFlagRegs	handler 0x66ed	understood	ucod
 geif.u	dispatch slot	268	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	269	mgeb_ContextLoadWram	handler 0x66ff	understood	ucode/ge_handlers.md#ctx_loads	ctx_load.S
 geif.u	dispatch slot	270	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	271	mgeb_Disable_Multipass	handler 0xf280	understood	ucode/ge_handlers.md#glmodess	glmodes.S
+geif.u	dispatch slot	271	mgeb_Disable_Multipass	handler 0xf280	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	272	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	273	mgeb_ERAMBlockClear	handler 0x16e7	understood	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
 geif.u	dispatch slot	274	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	275	mgeb_Enable_Multipass	handler 0xf293	understood	ucode/ge_handlers.md#glmodess	glmodes.S
+geif.u	dispatch slot	275	mgeb_Enable_Multipass	handler 0xf293	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	276	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	277	mgeb_EndFeedbackMode	handler 0xb720	understood	ucode/ge_handlers.md#feedbacks	feedback.S
 geif.u	dispatch slot	278	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
