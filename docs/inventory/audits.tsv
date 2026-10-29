@@ -1,0 +1,8 @@
+# The latest independent audit of each table: an auditor who did not write the entries drew a random sample of rows graded understood
+# and re-derived each from the binaries or the cited specification. real = the entry held up, shallow = true but derived from a name or
+# credited without behaviour of its own, wrong = contradicted. sample is small: read it with the percentage. The last row of a table with
+# the latest date is the one summary.tsv and docs/coverage.md show.
+table	date	sample	real	shallow	wrong	note
+tokens	2026-10-29	20	19	0	1	sample of understood rows at 6bf8d9b under the v3 grader; the attribute-token effect sentence is shared across about a dozen tokens
+ucode	2026-10-29	25	15	9	1	arm1.u 9 of 9 real, ge.u 5 of 8, geif.u 1 of 8; the distributor ged1b.u was not a table then
+ioctls	2026-10-29	10	9	0	1	sample of understood rows at 6bf8d9b

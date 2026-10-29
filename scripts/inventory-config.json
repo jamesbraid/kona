@@ -497,6 +497,7 @@
       "program": "arm1.u",
       "kind": "display command",
       "file": "ucode/dg_dispatch.tsv",
+      "pointer": true,
       "columns": {
         "address": "command",
         "name": "handler",
@@ -516,8 +517,22 @@
       "program": "geif.u",
       "kind": "dispatch entry",
       "file": "root/usr/gfx/ucode/KONA/geif.u",
-      "limit": 1024,
       "labels": "ge.u"
+    },
+    {
+      "type": "table",
+      "program": "ged1b.u",
+      "kind": "table B entry",
+      "file": "ucode/ged_banks.tsv",
+      "pointer": true,
+      "columns": {
+        "address": "n",
+        "detail": [
+          "entry",
+          "source",
+          "line"
+        ]
+      }
     }
   ],
   "spec_registers": [
