@@ -390,18 +390,21 @@
 /* Register table (kpm vaddr 0x10145980). Field defines are "shift, width". */
 
 /*
- * BEF_DUMP (index 0x1), 6.5.30m. Unknown: no shipped software or published source
- * depends on it. The name sits in kpm's raster table beside the geometry-board counters that kpm
- * prints in its BEF dump. Routes tried: kpm's BEF dump functions (`befFIFOInspection`, `show_bef_fifo_section`),
- * irsaudit's raster-bus writes, the ARM firmware arm1.u and the engine program ge.u; none uses the index.
- */
+ * BEF_DUMP (index 0x1): back-end chip dump trigger, inferred from the engine program. The engine
+ * handler `mges_ContextDeactivate` loads the bus high word 0x10000 (index 1, no upper value bits)
+ * at address 0x6957 of ge.u, right after the word that reads a shadow slot back through port 0x476
+ * (0x6956), so the save sequence addresses index 1 to make the back end return state. kpm prints a
+ * BEF dump from its raster table, but no tbus write of index 1 exists in irsaudit, arm1.u or the
+ * vector files. What the dump contains stays at the level of kpm's counter names. */
 #define KONA_RM_BEF_DUMP                                 0x0001
 
-/* BEF_PERF_COUNTALL: geometry-board counter. ESTABLISHED: kpm's BEF dump
- * prints it as a 32-bit hex word (format string in kpm .rodata). UNKNOWN
- * what it counts and how kpm reads it; no tbus write in irsaudit, the vector
- * files, arm1.u or ge.u. unknown: no shipped software or published source
- * depends on its value beyond that dump. */
+/*
+ * BEF_PERF_COUNTALL (index 0x2): back-end event counter covering all primitives, inferred from its
+ * name and neighbours. Established that `mges_ContextDeactivate` loads the bus high word 0x20000
+ * at address 0x695b of ge.u as the last of five words of its save request (shadow read 0x6956,
+ * then indexes 1, 3, 6 and this one), and that no load handler in `mges_ContextLoadBEF` sends
+ * index 2, so the value is read at context switch and not restored. kpm's BEF dump prints it as
+ * one 32-bit hex word. irsaudit, arm1.u and the vector files never write it. */
 #define KONA_RM_BEF_PERF_COUNTALL                        0x0002
 
 /* BEF_PERF_COUNTDRAW: geometry-board counter, as BEF_PERF_COUNTALL: printed
@@ -419,35 +422,49 @@
  * software or published source depends on what it counts. */
 #define KONA_RM_BEF_PERF_COUNTEMPTY                      0x0005
 
-/* BEF_MAILBOX: geometry-board word printed by kpm's BEF dump next to the
- * counters; no writer in irsaudit, the vector files, arm1.u or ge.u.
- * unknown: no shipped software or published source depends on it. */
+/*
+ * BEF_MAILBOX (index 0x6): back-end mailbox word saved with the context, inferred. Established in
+ * ge.u: `mges_ContextDeactivate` sends the bus high word 0x60000 at address 0x695a and
+ * `mges_ContextLoadBEF` sends the same word at address 0x676b, so unlike the counters the mailbox
+ * goes out at a switch-out and comes back at a switch-in. kpm prints it next to the counters in
+ * its BEF dump. What software places in the mailbox is not visible in arm1.u, irsaudit or the
+ * vector files, none of which writes index 6. */
 #define KONA_RM_BEF_MAILBOX                              0x0006
 
+/*
+ * BEF_REGSHADOW_BMASK (index 0x7): bit mask applied when a raster register write also updates its
+ * shadow slot, inferred. Established: the engine handler `mgesi_BshRegisterWrite` sends the first
+ * of its two bus words as 0x00070000 followed by the caller's mask word (ge.u 0x3991-0x399d), and
+ * `mges_ContextReloadFromBEF` sends 0x00070000 at address 0x6736 before replaying the shadow.
+ * irsaudit `TEST_befintram` writes index 7 with a random pattern from a ten-entry table at address
+ * 0x1005ce68, mixed in with pixel and texel packets, as a back-end internal RAM stress. */
 #define KONA_RM_BEF_REGSHADOW_BMASK                      0x0007
 
 /*
- * BEF_REGSHADOW (index 0x100) is the base of the back-end chip's 89-word register shadow, inferred
- * from the table size. Established, 6.5.30m: `init_befshadow` (0x0c01fc80, arm1.u) streams the 89 words
- * of `befsh_init` to the engine data port, and the loop `arm_slop` writes all 89 registers through
- * index 0x100 plus the slot number. Inferred from docs/rm.md: a context switch keeps this shadow.
- */
+ * BEF_REGSHADOW (index 0x100): base of the 89 shadow slots, which address words reach as 0x110
+ * plus the word number, inferred. Established in arm1.u: `init_befshadow` (0x0c01fc80) streams the
+ * 89 start-up values to the engine and the `arm_slop` loop writes the whole shadow through this
+ * base. The engine side `mges_ContextReloadFromBEF` starts from the address word 0x01100000 at
+ * ge.u address 0x6735, so a write at this base records the register in the slot and places an
+ * ordinary register write on the bus. */
 #define KONA_RM_BEF_REGSHADOW                            0x0100
 
 /*
- * BEF_REGSHADOW_READ (index 0x200) reads shadow slot n at index 0x200 + n. Established, 6.5.30m:
- * irsaudit `TEST_befshadow` (0x1005da64) loads the read and write index bases at 0x1005e0dc-0x1005e0f4
- * and calls `tbRegWrite` with an index of 0x200 plus the slot and the word 0x476 in bits 32-47,
- * to read the slot back after writing a test pattern through the write index (below).
- */
+ * BEF_REGSHADOW_READ (index 0x200): read port for one shadow slot, index 0x200 plus the slot
+ * number, established. irsaudit `TEST_befshadow` (0x1005da64) loads the read base at 0x1005e0dc
+ * and sends each slot with 0x476 in bits 32-47, then compares the answer with the pattern it
+ * wrote. The engine handler `mges_ContextDeactivate` uses the same form: it loads 0x02100476 (slot
+ * 0x10, answer to port 0x476) at ge.u address 0x6956, which is how a context save collects the
+ * first shadow word. */
 #define KONA_RM_BEF_REGSHADOW_READ                       0x0200
 
 /*
- * BEF_REGSHADOW_WRITE (index 0x300) writes shadow slot n at index 0x300 + n. Established,
- * 6.5.30m: irsaudit `TEST_befshadow` (0x1005da64) loads the constant 768 at 0x1005e0dc and calls
- * `tbRegWrite` for each of 256 slots with 0x476 in bits 32-47 and a test pattern below, treating the
- * shadow as a 256-word RAM, then reads each slot back through the read index (0x200 + slot).
- */
+ * BEF_REGSHADOW_WRITE (index 0x300): write port for one shadow slot, index 0x300 plus the slot
+ * number, established. irsaudit `TEST_befshadow` (0x1005da64) writes each of 256 slots here with
+ * 0x476 in bits 32-47 and a test pattern below, treating the shadow as a plain RAM. The engine
+ * handler `mges_ContextLoadBEF` loads 0x03100000, 0x03110000 and 0x03120000 at ge.u addresses
+ * 0x676c, 0x676e and 0x6770 and then runs a loop from base 0x03100000, which suggests a context
+ * load refills the slots without rewriting the raster registers behind them. */
 #define KONA_RM_BEF_REGSHADOW_WRITE                      0x0300
 
 /*
@@ -458,33 +475,60 @@
 #define KONA_RM_HTL_LOAD_STALL                           0x44a8
 
 /*
- * TG_DNOP (index 0xc00), the no-op slot of the texture-generator block. Unknown: no shipped
- * software or published source depends on it. Routes tried: irsaudit (no write; the restore routine
- * `tbuRegReset`, 0x10154cb4, skips every action register), kpm, arm1.u, ge.u and the vector files.
- */
+ * TG_DNOP (index 0xc00): no-op slot of the texture generator block. Unknown: no shipped software
+ * or published source depends on it. Routes tried: irsaudit (no constant of this index reaches
+ * `tbRegWrite`; the restore routine `tbuRegReset` at 0x10154cb4 skips action registers), the
+ * vector files (no mode-1 word of this index), arm1.u (no address word 0x01xx0c00), ge.u (no
+ * immediate with it in the high half), kpm and libGLcore (the name appears only in kpm's raster
+ * table). */
 #define KONA_RM_TG_DNOP                                  0x0c00
 
 /*
- * TG_FIFOLAT (index 0xc01), texture-generator FIFO latency, a 6-bit LATENCY field. Established,
- * 6.5.30m: irsaudit `tbuRegReset` (0x10154cb4) writes 0 to it. Inferred from the name: the field sets how
- * many cycles the unit's FIFO delays its output. No other program writes it; what non-zero values do is
- * not stated by any shipped software. Routes tried: irsaudit, arm1.u, ge.u and the vector files.
- */
+ * TG_FIFOLAT (index 0xc01): texture generator output FIFO latency, a six-bit count, inferred from
+ * kpm's LATENCY field. Established that only irsaudit `tbuRegReset` (0x10154cb4) writes it, at
+ * address 0x10154d24 with zero, and that arm1.u, ge.u and the vector files never address it.
+ * Non-zero values are never sent by any shipped program, so what a longer latency does to the unit
+ * is read only from the field name. */
 #define KONA_RM_TG_FIFOLAT                               0x0c01
 #define KONA_RM_TG_LATENCY                                0,  6  /* shift, width */
 
+/*
+ * TG_MISC (index 0xc02): texture generator miscellaneous bits, a priority bit and a compress bit
+ * in kpm. Established in arm1.u: `arm_shadow_texture` writes the host's shadow flag shifted left
+ * one into bit 1 under mask 2 at address 0x0c026248 (address word 0x015a0c02), so bit 1 is driven
+ * together with the shadow ambient and redundancy registers. irsaudit `tbuEnablePassR`
+ * (0x101438c4) and `tbuDoShadow` (0x10144ae8) write it too. */
 #define KONA_RM_TG_MISC                                  0x0c02
 #define KONA_RM_TG_PRIORITY                               0,  1  /* shift, width */
 #define KONA_RM_TG_COMPRESS                               1,  1  /* shift, width */
 
+/*
+ * TG_MAP_LEVEL (index 0xc04): lowest and highest mipmap level the generator may select, two
+ * ten-bit fields. Established in arm1.u: `SetupRM_TextureBind` combines the texture object's level
+ * words at offsets 0x2c and 0x30, the second shifted left by ten, and writes the result at address
+ * 0x0c0369c4, and `CommonPixEnd` (0x0c026764) clears it after a pixel operation. irsaudit
+ * `tbuBindTexture` stores its saved copy at 0x1014ce5c, and `TEST_texdetail` writes 1024, which is
+ * a maximum level of one. */
 #define KONA_RM_TG_MAP_LEVEL                             0x0c04
 #define KONA_RM_TG_MAP_LEVEL_TEX_MINLEVEL                 0, 10  /* shift, width */
 #define KONA_RM_TG_MAP_LEVEL_TEX_MAXLEVEL                10, 10  /* shift, width */
 
+/*
+ * TG_LOD_SCALEST (index 0xc05): level-of-detail scale for s and t, two eight-bit fields.
+ * Established in arm1.u: `SetupRM_TextureBind` takes bytes 0 and 1 of the texture object word at
+ * offset 0x28 and writes them as a 16-bit pair under mask 0xffff at address 0x0c036970, and
+ * `arm_bind_3d_mipmap_texture` (0x0c025d40) writes a payload word it was sent. irsaudit
+ * `tbuBindTexture` writes its saved copy at 0x1014cf10, and `tbuRegReset` (0x10154cb4) clears it. */
 #define KONA_RM_TG_LOD_SCALEST                           0x0c05
 #define KONA_RM_TG_LOD_SCALEST_LOD_SCALES                 0,  8  /* shift, width */
 #define KONA_RM_TG_LOD_SCALEST_LOD_SCALET                 8,  8  /* shift, width */
 
+/*
+ * TG_LOD_SCALER (index 0xc06): level-of-detail scale for the r texture coordinate, one eight-bit
+ * field. Established in arm1.u: `SetupRM_TextureBind` shifts the same texture object word at
+ * offset 0x28 right by 16 and writes eight bits at address 0x0c03699c, only on one texture kind
+ * that it tests first, and `arm_bind_3d_mipmap_texture` (0x0c025d50) writes the payload word
+ * shifted right by 16. irsaudit `tbuBindTexture` stores its saved copy at 0x1014cf68. */
 #define KONA_RM_TG_LOD_SCALER                            0x0c06
 #define KONA_RM_TG_LOD_SCALER_LOD_SCALER                  0,  8  /* shift, width */
 
@@ -496,19 +540,33 @@
 #define KONA_RM_TM_S_BITS                                 0,  4  /* shift, width */
 #define KONA_RM_TM_T_BITS                                 4,  4  /* shift, width */
 
-/* TM_REFCTR: texture-memory DRAM refresh counter (10-bit value) with refresh
- * and page-miss disables. ESTABLISHED: only tbuRegReset (0x10154cb4) writes
- * it, value 0. Hardware refresh rate and the effect of the disables:
- * unknown: no shipped software or published source depends on them beyond
- * that write. */
+/*
+ * TM_REFCTR (index 0x1001): texture memory DRAM refresh interval, a ten-bit count with
+ * refresh-disable and page-miss-disable bits, inferred from the kpm fields. Established that the
+ * only writer in any shipped program is irsaudit `tbuRegReset` (0x10154cb4), which writes zero at
+ * address 0x10154f7c, and that arm1.u, ge.u and the vector files never address it. A non-zero
+ * count is not sent by any program, so the refresh rate that a given value gives stays unrecorded. */
 #define KONA_RM_TM_REFCTR                                0x1001
 #define KONA_RM_TM_REFCTRVALUE                            0, 10  /* shift, width */
 #define KONA_RM_TM_REFDIS                                10,  1  /* shift, width */
 #define KONA_RM_TM_PAGEMISSDIS                           11,  1  /* shift, width */
 
+/*
+ * TM_SYNC_WAITLOAD (index 0x1002): the texture load identifier that drawing must wait for, a
+ * 20-bit field. Established: irsaudit `tbuDrawWaitOnLoadID` (0x1014688c) merges its argument into
+ * the low 20 bits of the saved copy and writes it at 0x101468dc, and `tbuBindTexture` writes the
+ * saved copy at 0x1014d3dc. Inferred: the load side announces completion with `tbuSendLoadID`
+ * through the load-side id register, so a draw that names a load id is held until that load has
+ * finished. */
 #define KONA_RM_TM_SYNC_WAITLOAD                         0x1002
 #define KONA_RM_TM_WAIT_ON_LOAD_ID                        0, 20  /* shift, width */
 
+/*
+ * TM_SYNC_IDDRAW (index 0x1003): the identifier of the draw that has just been issued, a 20-bit
+ * field. Established: irsaudit `tbuSendDrawID` (0x10146714) merges its argument into the low 20
+ * bits of the saved copy and writes it at address 0x10146764, and `tbuRegReset` clears it.
+ * Inferred: the texture load side waits on this value through the load-side wait register, so a
+ * load that overwrites texture memory cannot start before the draw that reads it. */
 #define KONA_RM_TM_SYNC_IDDRAW                           0x1003
 #define KONA_RM_TM_DRAW_ID                                0, 20  /* shift, width */
 
@@ -525,25 +583,37 @@
 #define KONA_RM_TM_TEXMAP_1                              24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_1_HIGH                         45,  3  /* shift, width */
 
-/* TM_DRAW_TEXMAP_2_3: levels 2 and 3, same layout and writers as
- * TM_DRAW_TEXMAP_0_1 (ge.u template 0x10050000 at 0xb0d2). */
+/*
+ * TM_DRAW_TEXMAP_2_3 (index 0x1005): base addresses for mip levels 2 and 3, two 21-bit addresses
+ * with three high bits each. Established: engine template 0x10050000 is stored by
+ * `mGL_EX_Initialize` at address 0xb0d2 of ge.u and completed by `mgebi_Bind2dMipmapTexture` at
+ * 0x4328, and irsaudit `tbuBindTexture` writes it at 0x1014d580 from the texture descriptor words
+ * at offsets 212 and 252. Inferred: the texture unit takes the level 2 and level 3 base from this
+ * word. */
 #define KONA_RM_TM_DRAW_TEXMAP_2_3                       0x1005
 #define KONA_RM_TM_TEXMAP_2                               0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_2_HIGH                         21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3                              24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3_HIGH                         45,  3  /* shift, width */
 
-/* TM_DRAW_TEXMAP_4_5: levels 4 and 5, same layout and writers as
- * TM_DRAW_TEXMAP_0_1 (ge.u template 0x10060000). */
+/*
+ * TM_DRAW_TEXMAP_4_5 (index 0x1006): this register covers mip levels 4 and 5, laid out like the
+ * first pair. Established in ge.u: the template 0x10060000 is stored at address 0xb0d5 in
+ * `mGL_EX_Initialize` and filled at 0x4343 in `mgebi_Bind2dMipmapTexture`. irsaudit
+ * `tbuBindTexture` writes it at 0x1014d63c, reading the descriptor words at offsets 292 and 332,
+ * and `tbuBindTextureCCT` writes it at 0x1014b930 with the same layout. */
 #define KONA_RM_TM_DRAW_TEXMAP_4_5                       0x1006
 #define KONA_RM_TM_TEXMAP_4                               0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_4_HIGH                         21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_5                              24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_5_HIGH                         45,  3  /* shift, width */
 
-/* TM_DRAW_TEXMAP_6_7: levels 6 and 7, same layout and writers as
- * TM_DRAW_TEXMAP_0_1 (ge.u template 0x10070000); tbusdata.Z writes
- * 0xffffffff here 87 times. */
+/*
+ * TM_DRAW_TEXMAP_6_7 (index 0x1007): base addresses of levels 6 and 7 in one 48-bit word.
+ * Established: ge.u stores its template 0x10070000 at address 0xb0d8 and fills it at 0x434c,
+ * irsaudit `tbuBindTexture` writes it at 0x1014d6f8 from descriptor offsets 372 and 412, and the
+ * vector file tbusdata.Z writes 0xffffffff to it 86 times and 0 once. Inferred from the unchanged
+ * value that the replay never binds a texture using these levels. */
 #define KONA_RM_TM_DRAW_TEXMAP_6_7                       0x1007
 #define KONA_RM_TM_TEXMAP_6                               0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_6_HIGH                         21,  3  /* shift, width */
@@ -551,11 +621,11 @@
 #define KONA_RM_TM_TEXMAP_7_HIGH                         45,  3  /* shift, width */
 
 /*
- * TM_DRAW_TEXMAP_8_9 (index 0x1008): texture-memory base addresses of mip levels 8 and 9, one
- * 21-bit address and 3 high bits each. Established, 6.5.30m: irsaudit `tbuBindTexture` (0x1014c6a8)
- * writes it with the other level registers, and `tbuRegReset` (0x10154cb4) restores 0.
- * Inferred from the field names and the order: the texture unit reads the base of a level from here.
- */
+ * TM_DRAW_TEXMAP_8_9 (index 0x1008): levels 8 and 9 sit in this word, two 21-bit addresses plus
+ * three high bits each. Established in ge.u: template 0x10080000 is stored at address 0xb0db and
+ * the level addresses are added at 0x4367. irsaudit `tbuBindTexture` writes it at 0x1014d7b4 from
+ * descriptor offsets 452 and 492, and `tbuBindTextureCCT` writes it at 0x1014baa0. Inferred from
+ * the field names and order that the unit reads level bases here. */
 #define KONA_RM_TM_DRAW_TEXMAP_8_9                       0x1008
 #define KONA_RM_TM_TEXMAP_8                               0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_8_HIGH                         21,  3  /* shift, width */
@@ -563,11 +633,11 @@
 #define KONA_RM_TM_TEXMAP_9_HIGH                         45,  3  /* shift, width */
 
 /*
- * TM_DRAW_TEXMAP_10_11 (index 0x1009): texture-memory base addresses of mip levels 10 and 11, one
- * 21-bit address and 3 high bits each. Established, 6.5.30m: irsaudit `tbuBindTexture` (0x1014c6a8)
- * writes it with the other level registers, and `tbuRegReset` (0x10154cb4) restores 0.
- * Inferred from the field names and the order: the texture unit reads the base of a level from here.
- */
+ * TM_DRAW_TEXMAP_10_11 (index 0x1009): the pair for levels 10 and 11, filled by ge.u at address
+ * 0x4373 of `mgebi_Bind2dMipmapTexture`. Established: its template 0x10090000 is stored at 0xb0de,
+ * and irsaudit `tbuBindTexture` writes it at 0x1014d870 using descriptor offsets 532 and 572.
+ * `tbuRegReset` (0x10154cb4) writes zero at 0x1015526c. Inferred: it uses the same 21+3 bit layout
+ * as every level pair. */
 #define KONA_RM_TM_DRAW_TEXMAP_10_11                     0x1009
 #define KONA_RM_TM_TEXMAP_10                              0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_10_HIGH                        21,  3  /* shift, width */
@@ -575,19 +645,23 @@
 #define KONA_RM_TM_TEXMAP_11_HIGH                        45,  3  /* shift, width */
 
 /*
- * TM_DRAW_TEXMAP_12_13 (index 0x100a): texture-memory base addresses of mip levels 12 and 13, one
- * 21-bit address and 3 high bits each. Established, 6.5.30m: irsaudit `tbuBindTexture` (0x1014c6a8)
- * writes it with the other level registers, and `tbuRegReset` (0x10154cb4) restores 0.
- * Inferred from the field names and the order: the texture unit reads the base of a level from here.
- */
+ * TM_DRAW_TEXMAP_12_13 (index 0x100a): levels 12 and 13 in one word, laid out as the other pairs.
+ * Established: ge.u keeps its template 0x100a0000 at address 0xb0e1 and
+ * `mgebi_Bind2dMipmapTexture` completes it at 0x438c, while irsaudit `tbuBindTexture` writes it at
+ * 0x1014d92c from descriptor offsets 612 and 652. The CCT bind variant `tbuBindTextureCCT` has its
+ * own write at 0x1014bc10. */
 #define KONA_RM_TM_DRAW_TEXMAP_12_13                     0x100a
 #define KONA_RM_TM_TEXMAP_12                              0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_12_HIGH                        21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_13                             24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_13_HIGH                        45,  3  /* shift, width */
 
-/* TM_DRAW_TEXMAP_14_15: levels 14 and 15, same layout and writers as
- * TM_DRAW_TEXMAP_0_1 (ge.u template 0x100b0000). */
+/*
+ * TM_DRAW_TEXMAP_14_15 (index 0x100b): the last 2D level pair, levels 14 and 15. Established: ge.u
+ * stores the template 0x100b0000 at address 0xb0e4 and fills it at 0x4395, irsaudit
+ * `tbuBindTexture` writes it at 0x1014d9e8 from descriptor offsets 692 and 732, and
+ * `tbuBindTextureCCT` at 0x1014bcc8. Inferred: sixteen level slots spread over eight such words
+ * make this the last of them. */
 #define KONA_RM_TM_DRAW_TEXMAP_14_15                     0x100b
 #define KONA_RM_TM_TEXMAP_14                              0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_14_HIGH                        21,  3  /* shift, width */
@@ -605,24 +679,35 @@
 #define KONA_RM_TM_TEXMAP_3DM_0_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_0_B1_HIGH                  45,  3  /* shift, width */
 
-/* TM_DRAW_TEXMAP_3DM_1: 3D level 1, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
- * tbuBindTexture, restore value 0). */
+/*
+ * TM_DRAW_TEXMAP_3DM_1 (index 0x100d): 3D texture level 1, two banks of address. Established:
+ * irsaudit `tbuBindTexture` writes it at 0x1014dd50 on the 3D path, taking the descriptor word at
+ * offset 172 into both banks, the second shifted left by 24, and `tbuBindTextureCCT` writes it at
+ * 0x1014c024. Inferred: the two banks of a 3D level are loaded from one descriptor word. */
 #define KONA_RM_TM_DRAW_TEXMAP_3DM_1                     0x100d
 #define KONA_RM_TM_TEXMAP_3DM_1_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_1_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_1_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_1_B1_HIGH                  45,  3  /* shift, width */
 
-/* TM_DRAW_TEXMAP_3DM_2: 3D level 2, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
- * tbuBindTexture, restore value 0). */
+/*
+ * TM_DRAW_TEXMAP_3DM_2 (index 0x100e): level 2 of a 3D texture, written in the same pass as its
+ * neighbours. Established in irsaudit: `tbuBindTexture` fills it at address 0x1014de0c from the
+ * descriptor word at offset 212, and `tbuBindTextureCCT` has the matching write at 0x1014c0dc.
+ * `tbuRegReset` writes zero at 0x10155448. No ge.u constant builds a 3D bind. Inferred: this is
+ * the 3D counterpart of the 2D level 2 base. */
 #define KONA_RM_TM_DRAW_TEXMAP_3DM_2                     0x100e
 #define KONA_RM_TM_TEXMAP_3DM_2_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_2_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_2_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_2_B1_HIGH                  45,  3  /* shift, width */
 
-/* TM_DRAW_TEXMAP_3DM_3: 3D level 3, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
- * tbuBindTexture, restore value 0). */
+/*
+ * TM_DRAW_TEXMAP_3DM_3 (index 0x100f): third level above the base in a 3D texture bind.
+ * Established: irsaudit `tbuBindTexture` writes it at 0x1014dec0, with descriptor offset 252
+ * feeding both banks, and `tbuBindTextureCCT` writes it at 0x1014c18c. The register is restored to
+ * zero by `tbuRegReset` at 0x101554a8. Inferred from the field names that its banks mean the same
+ * as the first 3D register's. */
 #define KONA_RM_TM_DRAW_TEXMAP_3DM_3                     0x100f
 #define KONA_RM_TM_TEXMAP_3DM_3_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_3_B0_HIGH                  21,  3  /* shift, width */
@@ -630,10 +715,11 @@
 #define KONA_RM_TM_TEXMAP_3DM_3_B1_HIGH                  45,  3  /* shift, width */
 
 /*
- * TM_DRAW_TEXMAP_3DM_4 (index 0x1010): addresses of 3D-texture level 4, two banks of 21 bits plus
- * 3 high bits. Established, 6.5.30m: irsaudit `tbuBindTexture` (0x1014c6a8) writes it on its 3D path
- * and `tbuRegReset` (0x10154cb4) restores 0. Inferred: one register per 3D level, laid out as level 0.
- */
+ * TM_DRAW_TEXMAP_3DM_4 (index 0x1010): level 4 on the 3D path of the bind routines. Established:
+ * `tbuBindTexture` in irsaudit writes it at 0x1014df7c using the descriptor word at offset 292 and
+ * `tbuBindTextureCCT` writes it at 0x1014c244, and the shipped engine program has no 3D bind.
+ * Inferred: banks B0 and B1 are loaded from one word, as for the lower levels, and the diagnostic
+ * restores zero at 0x10155504. */
 #define KONA_RM_TM_DRAW_TEXMAP_3DM_4                     0x1010
 #define KONA_RM_TM_TEXMAP_3DM_4_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_4_B0_HIGH                  21,  3  /* shift, width */
@@ -641,10 +727,11 @@
 #define KONA_RM_TM_TEXMAP_3DM_4_B1_HIGH                  45,  3  /* shift, width */
 
 /*
- * TM_DRAW_TEXMAP_3DM_5 (index 0x1011): addresses of 3D-texture level 5, two banks of 21 bits plus
- * 3 high bits. Established, 6.5.30m: irsaudit `tbuBindTexture` (0x1014c6a8) writes it on its 3D path
- * and `tbuRegReset` (0x10154cb4) restores 0. Inferred: one register per 3D level, laid out as level 0.
- */
+ * TM_DRAW_TEXMAP_3DM_5 (index 0x1011): 3D level 5. Established: irsaudit `tbuBindTexture` stores
+ * it at address 0x1014e030 with descriptor offset 332 as the source and `tbuBindTextureCCT` stores
+ * it at 0x1014c2f4, while the restore at 0x10155564 puts back zero. Inferred, because only the
+ * diagnostic touches this register, that the texture unit takes the fifth 3D level base from it
+ * when a 3D mipmap is sampled. */
 #define KONA_RM_TM_DRAW_TEXMAP_3DM_5                     0x1011
 #define KONA_RM_TM_TEXMAP_3DM_5_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_5_B0_HIGH                  21,  3  /* shift, width */
@@ -652,10 +739,11 @@
 #define KONA_RM_TM_TEXMAP_3DM_5_B1_HIGH                  45,  3  /* shift, width */
 
 /*
- * TM_DRAW_TEXMAP_3DM_6 (index 0x1012): addresses of 3D-texture level 6, two banks of 21 bits plus
- * 3 high bits. Established, 6.5.30m: irsaudit `tbuBindTexture` (0x1014c6a8) writes it on its 3D path
- * and `tbuRegReset` (0x10154cb4) restores 0. Inferred: one register per 3D level, laid out as level 0.
- */
+ * TM_DRAW_TEXMAP_3DM_6 (index 0x1012): level 6 in the 3D set. Established in irsaudit: the bind
+ * routine `tbuBindTexture` writes it at 0x1014e0ec from descriptor offset 372, the
+ * compressed-texture variant `tbuBindTextureCCT` at 0x1014c3ac, and `tbuRegReset` zeroes it at
+ * 0x101555c4. Inferred: the descriptor offsets advance by 40 per level, as they do for the 2D
+ * registers. */
 #define KONA_RM_TM_DRAW_TEXMAP_3DM_6                     0x1012
 #define KONA_RM_TM_TEXMAP_3DM_6_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_6_B0_HIGH                  21,  3  /* shift, width */
@@ -663,10 +751,10 @@
 #define KONA_RM_TM_TEXMAP_3DM_6_B1_HIGH                  45,  3  /* shift, width */
 
 /*
- * TM_DRAW_TEXMAP_3DM_7 (index 0x1013): addresses of 3D-texture level 7, two banks of 21 bits plus
- * 3 high bits. Established, 6.5.30m: irsaudit `tbuBindTexture` (0x1014c6a8) writes it on its 3D path
- * and `tbuRegReset` (0x10154cb4) restores 0. Inferred: one register per 3D level, laid out as level 0.
- */
+ * TM_DRAW_TEXMAP_3DM_7 (index 0x1013): 3D level 7. Established: `tbuBindTexture` writes it at
+ * 0x1014e19c from descriptor word offset 412, `tbuBindTextureCCT` writes it at 0x1014c458, and the
+ * zero restore is at 0x10155620 in `tbuRegReset`. Inferred: the two banks carry the even and odd
+ * slice addresses of that level, and nothing in arm1.u or ge.u writes the register. */
 #define KONA_RM_TM_DRAW_TEXMAP_3DM_7                     0x1013
 #define KONA_RM_TM_TEXMAP_3DM_7_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_7_B0_HIGH                  21,  3  /* shift, width */
@@ -674,18 +762,23 @@
 #define KONA_RM_TM_TEXMAP_3DM_7_B1_HIGH                  45,  3  /* shift, width */
 
 /*
- * TM_DRAW_TEXMAP_3DM_8 (index 0x1014): addresses of 3D-texture level 8, two banks of 21 bits plus
- * 3 high bits. Established, 6.5.30m: irsaudit `tbuBindTexture` (0x1014c6a8) writes it on its 3D path
- * and `tbuRegReset` (0x10154cb4) restores 0. Inferred: one register per 3D level, laid out as level 0.
- */
+ * TM_DRAW_TEXMAP_3DM_8 (index 0x1014): 3D level 8, the register just before the last. Established
+ * in irsaudit: address 0x1014e258 in `tbuBindTexture` writes it from descriptor offset 452,
+ * address 0x1014c510 in `tbuBindTextureCCT` does the same, and `tbuRegReset` clears it at
+ * 0x1015567c. Inferred from the match between level number and offset that each register is one
+ * level. */
 #define KONA_RM_TM_DRAW_TEXMAP_3DM_8                     0x1014
 #define KONA_RM_TM_TEXMAP_3DM_8_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_8_B0_HIGH                  21,  3  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_8_B1                       24, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_8_B1_HIGH                  45,  3  /* shift, width */
 
-/* TM_DRAW_TEXMAP_3DM_9: 3D level 9, as TM_DRAW_TEXMAP_3DM_0 (irsaudit
- * tbuBindTexture, restore value 0). */
+/*
+ * TM_DRAW_TEXMAP_3DM_9 (index 0x1015): 3D level 9, the final register of the 3D bank. Established:
+ * irsaudit `tbuBindTexture` writes it at 0x1014e30c using descriptor offset 492 and
+ * `tbuBindTextureCCT` writes it at 0x1014c5c0, with the matching zero restore at 0x101556dc.
+ * Inferred: the bind loop for 3D textures ends here, so a 3D mipmap names at most ten levels,
+ * against sixteen for the 2D chain. */
 #define KONA_RM_TM_DRAW_TEXMAP_3DM_9                     0x1015
 #define KONA_RM_TM_TEXMAP_3DM_9_B0                        0, 21  /* shift, width */
 #define KONA_RM_TM_TEXMAP_3DM_9_B0_HIGH                  21,  3  /* shift, width */
@@ -700,22 +793,36 @@
 #define KONA_RM_TM_CUBEMAP_FAR                            0, 21  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_FAR_HIGH                      21,  3  /* shift, width */
 
-/* TM_DRAW_CUBEMAP_LFTRGHT: left and right cube faces, same writers as
- * TM_DRAW_CUBEMAP_FAR. */
+/*
+ * TM_DRAW_CUBEMAP_LFTRGHT (index 0x1017): base addresses of the left and right cube faces, one in
+ * each half of the word. Established: irsaudit `tbuBindCubeMap` (0x1014a5fc) writes it at
+ * 0x1014a748 and again at 0x1014a7b4, and `tbuRegReset` zeroes it at 0x10155794. Inferred: each
+ * write places one face, the left or the right. The far face has its own register, and no ge.u or
+ * arm1.u routine writes this one. */
 #define KONA_RM_TM_DRAW_CUBEMAP_LFTRGHT                  0x1017
 #define KONA_RM_TM_CUBEMAP_LEFT                           0, 21  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_LEFT_HIGH                     21,  3  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_RIGHT                         24, 21  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_RIGHT_HIGH                    45,  3  /* shift, width */
 
-/* TM_DRAW_CUBEMAP_TOPBOT: top and bottom cube faces, same writers as
- * TM_DRAW_CUBEMAP_FAR. */
+/*
+ * TM_DRAW_CUBEMAP_TOPBOT (index 0x1018): base addresses of the top and bottom cube faces, one in
+ * each half of the word. Established in irsaudit: `tbuBindCubeMap` writes it at 0x1014a834 and
+ * again at 0x1014a894, and `tbuRegReset` puts zero back at 0x101557f4. Inferred from the symmetry
+ * with the left and right register that each write places one face. Together with the far face
+ * register this completes the six faces of a cube map, and the near face is not named here. */
 #define KONA_RM_TM_DRAW_CUBEMAP_TOPBOT                   0x1018
 #define KONA_RM_TM_CUBEMAP_TOP                            0, 21  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_TOP_HIGH                      21,  3  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_BOT                           24, 21  /* shift, width */
 #define KONA_RM_TM_CUBEMAP_BOT_HIGH                      45,  3  /* shift, width */
 
+/*
+ * TM_DRAW_DETAILMAP (index 0x1019): base address of the detail texture, 21 bits plus three high
+ * bits. Established: irsaudit `tbuBindTexture` writes it at 0x1014c7bc just after the bind start
+ * marker, `tbuBindTextureCCT` at 0x1014abc0, and arm1.u `arm_bind_texture` (address word loaded at
+ * 0x0c025924) and `arm_bind_detail_texture` (0x0c025fc4) write it with one of two address words
+ * picked by bit 28 of a flag word. Shadow start-up value 0. */
 #define KONA_RM_TM_DRAW_DETAILMAP                        0x1019
 #define KONA_RM_TM_DETAILMAP                              0, 21  /* shift, width */
 #define KONA_RM_TM_DETAILMAP_HIGH                        21,  3  /* shift, width */
@@ -728,9 +835,12 @@
 #define KONA_RM_TM_GLOBALOFFSET                           0, 21  /* shift, width */
 #define KONA_RM_TM_GLOBALOFFSET_HIGH                     21,  3  /* shift, width */
 
-/* TM_RDBK_STRSTART: texture read-back start position (s, t, r). ESTABLISHED:
- * irsaudit tbuStartTMReadback (0x1014344c), TEST_texread and TestTex write
- * STEND, then STRSTART (0), then TM_RDBK_END; never in the restore list. */
+/*
+ * TM_RDBK_STRSTART (index 0x101b): start position of a texture read-back in s, t and r.
+ * Established: irsaudit `tbuStartTMReadback` (0x1014344c) writes it at 0x10143654 after the end
+ * register, `TEST_texread` writes 0 at 0x100c6874 and `TestTex` at 0x10104564. The routine
+ * `tbuRegReset` skips it as an action register. Inferred: the position is only taken when the
+ * end-of-read-back write that follows it arrives. */
 #define KONA_RM_TM_RDBK_STRSTART                         0x101b
 #define KONA_RM_TM_RDBK_S_START                           0, 12  /* shift, width */
 #define KONA_RM_TM_RDBK_S_START_HIGH                     12,  4  /* shift, width */
@@ -739,53 +849,96 @@
 #define KONA_RM_TM_RDBK_R_START                          32, 10  /* shift, width */
 #define KONA_RM_TM_RDBK_R_START_HIGH                     42,  6  /* shift, width */
 
-/* TM_RDBK_STEND: texture read-back end position (s, t). ESTABLISHED:
- * TEST_texread writes 0x1f0003 (S_END 3, T_END 0x1f), TestTex 0x70001;
- * written before TM_RDBK_STRSTART. */
+/*
+ * TM_RDBK_STEND (index 0x101c): end position of a texture read-back in s and t, each a low field
+ * with high bits above it. Established: irsaudit `tbuStartTMReadback` writes it at 0x10143550,
+ * before the start register, `TEST_texread` ORs in 3 at 0x100c6864 and `TestTex` ORs in 1 at
+ * 0x10104554. The restore routine leaves it alone. Inferred: its s end is the last texel column
+ * read back and the t end the last row. */
 #define KONA_RM_TM_RDBK_STEND                            0x101c
 #define KONA_RM_TM_RDBK_S_END                             0, 12  /* shift, width */
 #define KONA_RM_TM_RDBK_S_END_HIGH                       12,  4  /* shift, width */
 #define KONA_RM_TM_RDBK_T_END                            16, 15  /* shift, width */
 #define KONA_RM_TM_RDBK_T_END_HIGH                       31,  1  /* shift, width */
 
-/* TM_RDBK_END: starts the texture read-back. ESTABLISHED: the last write of
- * every read-back set-up (TEST_texread, TestTex, tbuStartTMReadback), value
- * 1; no fields. INFERRED from that order to be the trigger. */
+/*
+ * TM_RDBK_END (index 0x101d): triggers a texture read-back, no fields. Established: it is the last
+ * write of every read-back set-up, with value 1, by irsaudit `tbuStartTMReadback` at 0x101436b8,
+ * `TEST_texread` at 0x100c68a8 and `TestTex` at 0x10104578; `tbuRegReset` skips it. Inferred from
+ * that ordering and from the later `TFP_TEXRB_CLR` write that the write itself starts the read,
+ * since all position registers are loaded before it. */
 #define KONA_RM_TM_RDBK_END                              0x101d
 
+/*
+ * TM_DRAW_SHA_AMBIENT (index 0x101e): ambient level used by shadow texturing, a six-bit field.
+ * Established in arm1.u: `arm_shadow_texture` writes the last operand it is sent under mask 0x3f
+ * at address 0x0c026260, after setting the redundancy and compress bits. irsaudit `tbuDoShadow`
+ * (0x10144a8c) writes the saved copy and `tbuRegReset` clears it at 0x10155910. Inferred from the
+ * routine name and the kpm field name that it is the lit level inside a shadow. */
 #define KONA_RM_TM_DRAW_SHA_AMBIENT                      0x101e
 #define KONA_RM_TM_SHA_AMBIENT                            0,  6  /* shift, width */
 
+/*
+ * TM_DRAW_REDUNDANCY (index 0x101f): one-bit redundancy flag for the texture memory draw path,
+ * inferred from the field name. Established: arm1.u `arm_shadow_texture` writes the first operand
+ * it receives under mask 1 at address 0x0c026234, `CommonPixEnd` clears it at 0x0c026710 after a
+ * pixel operation, `TEST_texread` sets it to 1 at 0x100c6820, and irsaudit `tbuEnablePassR`
+ * (0x10143914) writes its saved copy. The shadow word start-up value is 0. */
 #define KONA_RM_TM_DRAW_REDUNDANCY                       0x101f
 #define KONA_RM_TM_REDUNDANCY                             0,  1  /* shift, width */
 
+/*
+ * TM_DRAW_CLIP_OFFSET (index 0x1020): clip-map centre offset in s and t, sixteen bits each.
+ * Established in arm1.u: `arm_bind_2d_clipmap_texture` writes the first operand it is sent, with a
+ * full mask, after loading address word 0x01501020 at 0x0c025bd0. irsaudit `tbuBindTexture` writes
+ * its saved copy at 0x1014cc68, and `levelizeMipmap` (0x10121a40) and `my_glKonTexParameter`
+ * (0x1012a8ec) write it from the texture object. Inferred from the routine name and kpm names that
+ * it positions a clip-mapped level. */
 #define KONA_RM_TM_DRAW_CLIP_OFFSET                      0x1020
 #define KONA_RM_TM_CLIP_S_OFFSET                          0, 16  /* shift, width */
 #define KONA_RM_TM_CLIP_T_OFFSET                         16, 16  /* shift, width */
 
+/*
+ * TM_DRAW_CLIP_BKPT (index 0x1021): clip-map break point, a four-bit level number, inferred from
+ * the field name. Established in arm1.u: `arm_bind_2d_clipmap_texture` writes the second operand
+ * it is sent (value store at 0x0c025be8), the address word 0x01511021 having been loaded at
+ * 0x0c025bb8. irsaudit writes it from `tbuBindTexture` (0x1014cfc0), `tbuBindCubeMap` (0x1014aa4c)
+ * and `tbuDoShadow` (0x10144cbc), and `tbuRegReset` restores 0. */
 #define KONA_RM_TM_DRAW_CLIP_BKPT                        0x1021
 #define KONA_RM_TM_CLIP_BKPT                              0,  4  /* shift, width */
 
-/* TM_TEXBIND_START: marks the start of a texture bind. ESTABLISHED: the
- * first register irsaudit tbuBindTexture and tbuBindTextureCCT write;
- * tbusdata.Z writes 0 here 87 times; never restored. INFERRED (order and
- * name) to delimit a bind; no fields. */
+/*
+ * TM_TEXBIND_START (index 0x1022): marks the start of a texture bind, no fields. Established: it
+ * is the first register written by irsaudit `tbuBindTexture` at 0x1014c6fc and by
+ * `tbuBindTextureCCT` at 0x1014ab00, with the value taken from the saved copy, and `tbuRegReset`
+ * never restores it. The vector file tbusdata.Z writes 0 to it 87 times, once before each bind
+ * block. Inferred from that position that it opens a group of texture memory register updates. */
 #define KONA_RM_TM_TEXBIND_START                         0x1022
 
-/* TM_TM1A_COMPAT: tm1a compatibility bits (HWMK, SFIFO). ESTABLISHED: only
- * tbuRegReset (0x10154cb4) writes it, value 0. Effect of the bits: unknown:
- * no shipped software or published source depends on it. */
+/*
+ * TM_TM1A_COMPAT (index 0x1023): compatibility bits for the older texture memory chip, hardware
+ * mask and shallow FIFO, one bit each in kpm. Established in arm1.u: `init_tm` (0x0c003980) writes
+ * 1 at address 0x0c003a24 on board types 1, 3, 4 and 5 when all eight chips of every board report
+ * the same type code in the top nibble of their descriptor words, and otherwise prints a warning
+ * about down-rev chips. irsaudit `tbuRegReset` writes 0 at 0x10155a80. */
 #define KONA_RM_TM_TM1A_COMPAT                           0x1023
 #define KONA_RM_TM_TM1A_COMPAT_TM1A_COMPAT_HWMK           0,  1  /* shift, width */
 #define KONA_RM_TM_TM1A_COMPAT_TM1A_COMPAT_SFIFO          1,  1  /* shift, width */
 
 /*
- * TM_DNOP (index 0x102f), the texture-memory no-op. Established, 6.5.30m: irsaudit `TEST_texread`
- * loads 4143 twice, between the read-back start and end registers, and writes 1 to it. Inferred: the
- * two writes pad the stream so the earlier register writes finish before the read-back ends.
- */
+ * TM_DNOP (index 0x102f): texture memory no-op, a padding write. Established: irsaudit
+ * `TEST_texread` loads 4143 twice, between the read-back start and end registers, and writes 1
+ * each time, at addresses 0x100c6884 and 0x100c6894, as spacing. `tbuRegReset` skips it. Inferred:
+ * the two writes pad the stream so the position writes settle before the read-back end arrives,
+ * and no other program writes it. */
 #define KONA_RM_TM_DNOP                                  0x102f
 
+/*
+ * TM_TEX_SIZE (index 0x13d5): texture size for texture memory alone, with a four-bit size for each
+ * of s, t and r and a one-bit flag for each, inferred from the kpm fields. Established: the
+ * combined register 0x3fd5 has the same layout, and arm1.u `arm_bind_bicubic_texture` (address
+ * word loaded at 0x0c025e50), `arm_bind_3d_texture` (0x0c025ed8) and `arm_bind_3d_mipmap_texture`
+ * (0x0c025d74) write this one. irsaudit `TestTex` writes 29747 at 0x10104540. */
 #define KONA_RM_TM_TEX_SIZE                              0x13d5
 #define KONA_RM_TM_SSIZE                                  0,  4  /* shift, width */
 #define KONA_RM_TM_TSIZE                                  4,  4  /* shift, width */
@@ -1367,6 +1520,13 @@
  * padding that drains the pipe; never restored. */
 #define KONA_RM_IMP_NOP                                  0x1c3a
 
+/*
+ * PGTFPIMP_MSLOC (index 0x3be0): multisample sample locations, 24 bits per word, with the next
+ * index holding a second word. Established in arm1.u: `arm_samplepattern` (0x0c03c30c) and
+ * `init_multisample` (0x0c03c468) write 24-bit words from the `patterns` table at 0x0c03c734
+ * chosen by sample count, `multisample_pop` (0x0c03c700) restores one, and `init_pg` stores
+ * 0x007f6280 (address word loaded at 0x0c003810). irsaudit `tbuInit` and `init_ms_loc` set it, and
+ * `tbuRegReset` writes 0xc8b640. */
 #define KONA_RM_PGTFPIMP_MSLOC                           0x3be0
 #define KONA_RM_PGTFPIMP_MSLOC_X0                         0,  3  /* shift, width */
 #define KONA_RM_PGTFPIMP_MSLOC_Y0                         3,  3  /* shift, width */
@@ -1385,12 +1545,26 @@
 #define KONA_RM_PGTFPIMP_MSLOC_X7                        18,  3  /* shift, width */
 #define KONA_RM_PGTFPIMP_MSLOC_Y7                        21,  3  /* shift, width */
 
+/*
+ * PGTG_SCIS (index 0x3fc2): scissor rectangle, x minimum and maximum, as fifteen-bit fields; the
+ * next index holds the y range. Established in arm1.u: `resolve_scissor` writes the minimum
+ * shifted left by 3 and the maximum shifted left by 18 under mask 0x3fffffff at address 0x0c018c14
+ * (address word 0x01133fc3 follows for y), so kpm's fields hold pixel numbers with three fraction
+ * bits. irsaudit has 68 call sites for it, the first in `TEST_framebuf` (0x1006a42c), and the
+ * start-up shadow value is 0x3fff8000. */
 #define KONA_RM_PGTG_SCIS                                0x3fc2
 #define KONA_RM_PGTG_XSMIN                                0, 15  /* shift, width */
 #define KONA_RM_PGTG_XSMAX                               15, 15  /* shift, width */
 #define KONA_RM_PGTG_YSMIN                                0, 15  /* shift, width */
 #define KONA_RM_PGTG_YSMAX                               15, 15  /* shift, width */
 
+/*
+ * PGTG_ZRECT (index 0x3fc4): first of eight words of rectangle step values, 32-bit x and y terms
+ * and 28-bit depth terms in kpm. Inferred from those field names, with start-up zero in the shadow
+ * and the last two words at 0x100000. Established that no arm1.u routine writes it. irsaudit
+ * `crc_pgtest1` (0x100d6d84) writes a saved copy and the texture tests such as `TEST_texmem`
+ * (0x1008fb6c) and `TEST_rmstress` (0x10088a1c) write zero, as `tbuRegReset` (0x10154cb4) does at
+ * 0x10157640. */
 #define KONA_RM_PGTG_ZRECT                               0x3fc4
 #define KONA_RM_PGTG_ZRECT_X0                             0, 32  /* shift, width */
 #define KONA_RM_PGTG_ZRECT_X                              0, 32  /* shift, width */
@@ -1401,6 +1575,13 @@
 #define KONA_RM_PGTG_ZRECT_ZX                             0, 28  /* shift, width */
 #define KONA_RM_PGTG_ZRECT_ZY                             0, 28  /* shift, width */
 
+/*
+ * PGTG_DRECT (index 0x3fcc): destination rectangle of a pixel operation, j and i start of twelve
+ * bits each, a corner direction, and zoom, pixel-cache and interlace bits. Established in arm1.u:
+ * `arm_readpixels` (0x0c02c63c) and `videoReadPixels` (0x0c02c784) write the rectangle for a read,
+ * `arm_copyconvolutionfilter1d` (0x0c036fe8) writes 0x8000000, the pixel-cache bit alone, and
+ * `CommonPixEnd` (0x0c0266c0) zeroes it. The shadow start-up value 0xc010010 has the zoom and
+ * cache bits on. */
 #define KONA_RM_PGTG_DRECT                               0x3fcc
 #define KONA_RM_PGTG_DRECT_J                              0, 12  /* shift, width */
 #define KONA_RM_PGTG_DRECT_I                             12, 12  /* shift, width */
@@ -1423,6 +1604,13 @@
 #define KONA_RM_PGTG_DRECT_Y                              0, 12  /* shift, width */
 #define KONA_RM_PGTG_DRECT_X                             12, 12  /* shift, width */
 
+/*
+ * PGTG_SIZE (index 0x3fcf): point buffer size, the first of four words that continue with line
+ * buffer size, triangle buffer size and image buffer width and height, twelve bits each.
+ * Established in arm1.u: `init_tg` stores 0x10 (address word 0x01203fcf, loaded at 0x0c003910),
+ * `prim_init` repeats it at 0x0c0166b4 and `x_initregs` at 0x0c03d0c8; the four start-up values
+ * are 0x10, 0x10, 0xf and 0xf00f. The irsaudit tests (`TEST_rmstress` at 0x10088ad4) write 16 as
+ * well and `tbuRegReset` restores 16, so 16 is the working size throughout. */
 #define KONA_RM_PGTG_SIZE                                0x3fcf
 #define KONA_RM_PGTG_PBSIZE                               0, 12  /* shift, width */
 #define KONA_RM_PGTG_LBSIZE                               0, 12  /* shift, width */
@@ -1430,6 +1618,12 @@
 #define KONA_RM_PGTG_IBWIDTH                              0, 12  /* shift, width */
 #define KONA_RM_PGTG_IBHEIGHT                            12, 12  /* shift, width */
 
+/*
+ * PGTG_ENABLES (index 0x3fd3): unit enable bits for the texture generator, scan converter, depth
+ * unit and pixel drawing, one bit each in kpm. Established in arm1.u: `init_tg` writes 14 at
+ * 0x0c0038f8, which leaves the first bit off, `prim_init` writes 14 at 0x0c01669c and
+ * `CommonPixEnd` writes 0 at 0x0c0266fc. irsaudit writes 8 in `TEST_framebuf` (0x1006a9f8) and 15
+ * in `TEST_rmstress` (0x10088b14), and the vector files send it 9586 times. */
 #define KONA_RM_PGTG_ENABLES                             0x3fd3
 #define KONA_RM_PGTG_TG_ENABLE                            0,  1  /* shift, width */
 #define KONA_RM_PGTG_TG_ENABLE_OFF                       0x0
@@ -1643,6 +1837,13 @@
 #define KONA_RM_TGTML_TEXLD_MISC_TEXLD_T_BITS            11,  4  /* shift, width */
 #define KONA_RM_TGTML_TEXLD_MISC_TGTM_INTERLACE_DWNLD    15,  1  /* shift, width */
 
+/*
+ * PG_GENERAL (index 0x800): general pixel-generator control, a flat-shading bit that kpm names
+ * with 0 as ON and 1 as OFF, and a direction-mask source bit, packet or reference. Established in
+ * arm1.u: `init_pg` stores 1 (address word 0x01270800, value store at 0x0c0037cc) as its first
+ * register write, so flat shading starts off with the packet's direction mask. irsaudit
+ * `TEST_texmem` writes 0 at 0x1008fc60 and 1 at 0x1008fcd4 around a texture memory pass, and
+ * `tbuRegReset` (0x10154cb4) puts 0 back. The shadow start-up value is 0. */
 #define KONA_RM_PG_GENERAL                               0x0800
 #define KONA_RM_PG_FLAT_ENABLE                            0,  1  /* shift, width */
 #define KONA_RM_PG_FLAT_ENABLE_ON                        0x0
@@ -1651,6 +1852,12 @@
 #define KONA_RM_PG_DIR_MASK_PKT                          0x0
 #define KONA_RM_PG_DIR_MASK_REF                          0x1
 
+/*
+ * PG_QCOLOR (index 0x801): first of three 48-bit words holding quad colours, four 12-bit
+ * components each, inferred from kpm's RED0..ALPHA0 field names. Established: irsaudit
+ * `TEST_dquad` writes it 22 times from its saved copy (first at 0x100b924c), `impvid` at
+ * 0x1007858c and `fog` at 0x1010eecc write it before drawing, and `tbuRegReset` (0x10154cb4)
+ * clears it. The vector files send the third word, index 0x803, 4753 times. */
 #define KONA_RM_PG_QCOLOR                                0x0801
 #define KONA_RM_PG_QCOLOR_RED0                            0, 12  /* shift, width */
 #define KONA_RM_PG_QCOLOR_GREEN0                         12, 12  /* shift, width */
@@ -1665,14 +1872,40 @@
 #define KONA_RM_PG_QCOLOR_BLUE2                          24, 12  /* shift, width */
 #define KONA_RM_PG_QCOLOR_ALPHA2                         36, 12  /* shift, width */
 
+/*
+ * PG_PSPEC (index 0x80f): pixel-generator primitive specification, a 12-bit width and 12-bit
+ * height, inferred from kpm's WIDTH and HEIGHT fields. Established in arm1.u: `init_pg` stores
+ * 0x8008, width 8 and height 8, at address 0x0c0037d8 (address word 0x0128080f). `tbuRegReset`
+ * (0x10154cb4) restores the shadow start-up value 0x100100 instead, which is 256 by 256, so the
+ * diagnostic and the firmware disagree about the quiet state. irsaudit `TEST_rmstress` ORs 0x100
+ * into it at 0x10088b60. */
 #define KONA_RM_PG_PSPEC                                 0x080f
 #define KONA_RM_PG_PSPEC_WIDTH                            0, 12  /* shift, width */
 #define KONA_RM_PG_PSPEC_HEIGHT                          12, 12  /* shift, width */
 
+/*
+ * PG_BLOAT (index 0x804): primitive growth amount for the pixel generator, inferred from the name
+ * alone because kpm lists no fields. Established in arm1.u: `prim_init` stores 0 at address
+ * 0x0c016714 with address word 0x01290804, and irsaudit `crc_pgtest` writes its saved copy at
+ * 0x100d53b0. Texture memory tests such as `TEST_texmem` (0x1008fc70) clear it to 0 before
+ * drawing, and the vector files write it 13 times. */
 #define KONA_RM_PG_BLOAT                                 0x0804
 
+/*
+ * PG_Z_OFF (index 0x805): depth offset added to generated fragments, inferred from the name since
+ * kpm gives no fields. Established in arm1.u: `prim_init` stores 0 at address 0x0c01672c (address
+ * word 0x012a0805) and irsaudit `crc_pgtest` writes its saved copy at 0x100d5560. `TEST_rmstress`
+ * (0x10088b80) and the texture tests clear it to 0, and the vector files write it 13 times, all
+ * with the same count as PG_BLOAT. */
 #define KONA_RM_PG_Z_OFF                                 0x0805
 
+/*
+ * PG_MSK (index 0x806): primitive mask and sample-mode word, nine two-bit selects and an eight-bit
+ * rule field in kpm. Established in arm1.u: `init_pg` stores 0x01380156 (address word loaded at
+ * 0x0c0037f4), `e_multisample` (address word at 0x0c0156b4) writes 0x10000 under mask 0x30000 to
+ * set the x-sample field to multisample, and `ResolvePolygon` (0x0c015ec8) writes 4 under mask 0xc
+ * to give the triangle mask its first edge. irsaudit sets 0x55 in `TEST_rmstress` and it is the
+ * second busiest index in the vector files, 9728 writes. */
 #define KONA_RM_PG_MSK                                   0x0806
 #define KONA_RM_PG_MSK_LMASK                              0,  2  /* shift, width */
 #define KONA_RM_PG_MSK_LMASK_NONE                        0x0
@@ -1717,12 +1950,38 @@
 #define KONA_RM_PG_MSK_XSAMPLE_ALPHA                     0x2
 #define KONA_RM_PG_MSK_LRULES                            18,  8  /* shift, width */
 
+/*
+ * PG_WIN_OFFSET_X (index 0x807): horizontal window offset applied by the pixel generator, inferred
+ * from the name. Established in arm1.u: `arm_validate_clip` stores the negated half of a value it
+ * derives from the clip origin, rounded to a 32-pixel boundary and kept in state bytes 0x882 and
+ * 0x883, under mask 0x7ff, at address 0x0c018390 (address word 0x012c0807). irsaudit writes 0 in
+ * `TEST_rmstress` (0x10088ba0) and its saved copy in `ReqVideo` (0x10099214), and the shadow
+ * start-up value is 0. */
 #define KONA_RM_PG_WIN_OFFSET_X                          0x0807
 
+/*
+ * PG_WIN_OFFSET_Y (index 0x808): vertical window offset applied by the pixel generator, inferred
+ * from the name. Established in arm1.u: right after the x offset, `arm_validate_clip` stores the
+ * negated half of the matching y value, rounded to an 8-line boundary and kept in state bytes
+ * 0x884 and 0x885, under the same 11-bit mask at address 0x0c0183bc (address word 0x012d0808).
+ * irsaudit writes it with the x offset in `ReqVideo` (0x1009923c) and `TEST_framebuf`
+ * (0x1006a4d0), and the vector files carry 19 writes, one per x write. */
 #define KONA_RM_PG_WIN_OFFSET_Y                          0x0808
 
+/*
+ * PG_SMASK (index 0x809): 32-bit sample mask for multisample coverage, inferred from the name and
+ * its all-ones start-up value. Established in arm1.u: `prim_init` stores 0xffffffff at address
+ * 0x0c016740 (address word 0x012e0809), and irsaudit writes the upper half of a saved 64-bit value
+ * in `TEST_framebuf` (0x1006a9c8) and `ReqVideo` (0x100998fc). befsh_init holds 0xffffffff for the
+ * slot, matching the diagnostic's restore value. */
 #define KONA_RM_PG_SMASK                                 0x0809
 
+/*
+ * PG_STIPPLE (index 0x80a): polygon stipple control, a two-bit enable (off, 2D, 1D, both), offset
+ * and invert bits in kpm, with three more words at the next indexes. Established in arm1.u:
+ * `ResolvePolygon` writes the enable under mask 3 at address 0x0c015f88, `arm_x_loadstipple`
+ * writes 0 for a negative index at 0x0c035c70, and `masked_clear` rewrites it at 0x0c03b604 in a
+ * run of state writes. irsaudit `crc_pgtest` (0x100d5ea0) writes four saved words in a row. */
 #define KONA_RM_PG_STIPPLE                               0x080a
 #define KONA_RM_PG_STIPPLE_ENABLE                         0,  2  /* shift, width */
 #define KONA_RM_PG_STIPPLE_ENABLE_OFF                    0x0
@@ -1736,13 +1995,33 @@
 #define KONA_RM_PG_STIPPLE_MODX                           0,  4  /* shift, width */
 #define KONA_RM_PG_STIPPLE_MODY                           4,  4  /* shift, width */
 
+/*
+ * PG_PRU (index 0x810): one-bit pixel-rule unit mode, none or line, from kpm's PRU values.
+ * Established in arm1.u: `ResolveLine` (0x0c01606c) loads address word 0x01330810 and writes it
+ * with value 1 when line state is on, with the same word as mask. irsaudit `tbuLineStyle`
+ * (0x1015ae94) stores to it three times, `crc_pgtest` (0x100d4f74) writes its saved copy, and the
+ * vector files write it 44 times. Inferred role: the pixel generator treats a primitive as a line
+ * while it is set. */
 #define KONA_RM_PG_PRU                                   0x0810
 #define KONA_RM_PG_PRU_PRU                                0,  1  /* shift, width */
 #define KONA_RM_PG_PRU_PRU_NONE                          0x0
 #define KONA_RM_PG_PRU_PRU_LINE                          0x1
 
+/*
+ * PG_PRAM (index 0x880): first of 128 parameter RAM entries at indexes 0x880 to 0x8ff, inferred
+ * from the vector files. Established: those files hold mode-1 words whose top half is an entry
+ * number and whose second half names another register, for example entry 0x41 holding a fog offset
+ * write, so an entry stores a register write for later replay. irsaudit `tbuRegReset` (0x10154cb4)
+ * writes 0 to index 0x880 at 0x101588f0, and arm1.u uses the `PramContentsType` record in
+ * `arm_x_loadstipple`. */
 #define KONA_RM_PG_PRAM                                  0x0880
 
+/*
+ * PG_NOP (index 0x87f): carrier slot that does no register update, inferred from its name and from
+ * the 0x10f shadow slot below the table. Established in arm1.u: `PixelRestore` (0x0c02926c) and
+ * `XPixelRestore` (0x0c035a90) send address word 0x010f087f with a value taken from r7 shifted
+ * left by 18. irsaudit `crc_pgtest` writes it 32 times from its saved array at 0x100d52d4, and the
+ * vector files carry 6 such words. */
 #define KONA_RM_PG_NOP                                   0x087f
 
 /*
