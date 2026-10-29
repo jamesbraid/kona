@@ -763,8 +763,12 @@ enum kona_kpm_spare_token {
  * mask, shift} from vaddr 0x100bb2a8 (64 records, 15 registers at
  * 0x40000-0x40038), extracted to diags/kpm/ge_registers.tsv. The defines
  * below give each register's address with kpm's description, and each
- * field's mask. The record's value column equals the mask for one-bit
- * fields and the shift for wider ones; its use is UNKNOWN.
+ * field's mask. The record's value column restates the field's position,
+ * not a reset or test value: of the 49 field records it equals the mask in
+ * 29 (one-bit fields) and the shift in 19 (wider fields, and the one-bit
+ * CMTAG_PULSE_EN); ENABMSK_B alone has 0 against shift 4. Register records
+ * carry 0. ESTABLISHED by comparing the columns. Whether kpm reads the
+ * column: unknown: no shipped software or published source depends on it.
  *
  * UNKNOWN: which bus the 0x40000 addresses are on (the geometry engine's
  * own register space as reached by a diagnostic, by INFERENCE from kpm
