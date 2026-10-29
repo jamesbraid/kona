@@ -147,6 +147,15 @@
 
 #define KONA_HIP1_HH_GFIFO                  0x000  /* register mask 0xffffffff */
 
+/*
+ * HH_SWITCH at 0x800100 (mask 0x1ff), 6.5.30m. Unknown: no shipped software or published
+ * source depends on it. The register is a kpm table entry with no field names, and nothing
+ * else in the shipped software names or reaches it, so its effect cannot be read.
+ * Routes tried: the kernel's register accesses (kona_kernel/registers.tsv), kpm's dump
+ * list (`hipInspectionPreJtag`, 0x10012834), the strings of `irsaudit`
+ * and of `ireeprom` and `gfxinfo`,
+ * the 6.5.5 kona headers; none has one. */ PROM driver; none touches it.
+ */
 #define KONA_HH_SWITCH                      0x100  /* register mask 0x1ff */
 
 #define KONA_HIP1_HH_GINTR_INFO             0x108  /* register mask 0x77fff */
@@ -156,8 +165,23 @@
 #define KONA_HIP1_GINTR_FORCE_MASK          0x00020000  /* shift 17 */
 #define KONA_HIP1_GINTR_WGORDER_MASK        0x00040000  /* shift 18 */
 
+/*
+ * HH_NOP at 0x8001f8 (mask 0), 6.5.30m. Unknown: no shipped software or published
+ * source depends on it. It is a kpm table entry whose zero mask says it holds no data;
+ * by its name only (inferred) an access to it does nothing.
+ * Routes tried: the kernel's register accesses (kona_kernel/registers.tsv), kpm's dump
+ * list (`hipInspectionPreJtag`, 0x10012834), the strings of `irsaudit`
+ * and of `ireeprom` and `gfxinfo`,
+ * the 6.5.5 kona headers; none has one. */ PROM driver; none touches it.
+ */
 #define KONA_HH_NOP                         0x1f8  /* register mask 0x0 */
 
+/*
+ * HH_RTC at 0x800200 (32 bits), established: irsaudit 6.5.30m `probe_hip_clock_speed` (0x1004cd0c)
+ * zeroes the counter by writing the ARM address 0x2000b0, sleeps a measured time and reads this
+ * register to compute the host-interface clock rate (accepted 20-60 MHz). The register is
+ * therefore a free-running counter that ticks at that clock and reads the same as the ARM's own copy.
+ */
 #define KONA_HH_RTC                         0x200  /* register mask 0xffffffff */
 /*
  * HH_RTC: the host's view of the free-running counter the ARM reads at
@@ -216,6 +240,12 @@
 #define KONA_HIP1_INTR_CPUID_MASK           0x00007f00  /* shift 8 */
 #define KONA_HIP1_INTR_GLOBAL_EN_MASK       0x00008000  /* shift 15 */
 
+/*
+ * HH_INTR_ACK at 0x800228 (mask 0, write-only), established in the 6.5.30m kernel:
+ * `kona_intr_handler` (kona_intr_hip2.o) writes 0xbadc0ffe to it after serving the status bits
+ * and `KONAstart` (kona_setup.o) writes the same value once; irsaudit writes 0. The register holds no
+ * data, so (inferred) any write is an end-of-interrupt strobe that re-arms the interrupt line.
+ */
 #define KONA_HH_INTR_ACK                    0x228  /* register mask 0x0 */
 /*
  * INTR_ACK: written only after a write-back to INTR_STATUS, with 0 by
@@ -224,8 +254,22 @@
  * TEST_intr clears the ARM bit without it).
  */
 
+/*
+ * HIP1_HH_INTR_ENABLE and HIP2_HH_INTR_ENABLE at 0x800230 (ten or twelve bits wide), established
+ * in the 6.5.30m kernel: the interrupt-source mask, one bit per HH_INTR_STATUS bit.
+ * `KONAinitialize` writes 0x100 and `KONAstart` writes 0xf7c (kona_setup.o).
+ * `kona_hiwater_intr` sets FIFO_LO (bit 1), `kona_lowater_intr` clears it (kona_flow.o); `kona_diag_flow` clears or sets bits 0-2 for a
+ * diagnostic. A source whose bit is clear is not delivered to the CPU. HIP2 adds bits 10-11.
+ */
 #define KONA_HIP1_HH_INTR_ENABLE            0x230  /* register mask 0x3ff */
 
+/*
+ * HIP1_HH_INTR_STATUS and HIP2_HH_INTR_STATUS at 0x800238 (ten or twelve bits wide), established in
+ * the 6.5.30m kernel: the pending-interrupt bits, set whether or not the enable mask has
+ * them. `kona_intr_handler` (kona_intr_hip2.o) reads it, masks it with the enable word and serves
+ * each bit, and the handlers, `kona_reset_adaptor` and `kona_hiwater_intr` write set bits back to
+ * clear them (write one to clear, inferred from the written values 0x20, 3 and 0xfff).
+ */
 #define KONA_HIP1_HH_INTR_STATUS            0x238  /* register mask 0x3ff */
 /*
  * INTR_STATUS: write one to clear (irsaudit TEST_intr, TEST_mbox). The bits
@@ -263,38 +307,126 @@
 
 #define KONA_HH_ARM_MBOX                    0x240  /* register mask 0xffffffff */
 
+/*
+ * HH_SEQID at 0x800248 (32 bits, read-only), established: `kona_video_intr` (kona_video.o)
+ * reads it on each video interrupt and completes every queued retrace record whose sequence
+ * number is not greater than it (docs/dg.md). Inferred: the pipe copies there the number
+ * the RETRACE_SEQID token wrote behind the drawing that came before it (DG.h).
+ */
 #define KONA_HH_SEQID                       0x248  /* register mask 0xffffffff */
 
+/*
+ * HH_ODMA_CHANNEL at 0x800250 (1 bits), established as a kpm table entry; read in the dump by
+ * kpm 6.5.30m `hipInspectionPreJtag` (0x10012834). Inferred: it selects the output-DMA channel
+ * (0 primary, 1 secondary); the firmware sets raster-bus index 0x440, which docs/rm.md pairs
+ * with it, to 1 before a read-back through the second channel (`start_rdata`, 0x0c0224d4).
+ */
 #define KONA_HH_ODMA_CHANNEL                0x250  /* register mask 0x1 */
 
+/*
+ * HH_PACK_MODE at 0x800258 (7 bits), established as a kpm table entry; read in the dump by
+ * kpm 6.5.30m `hipInspectionPreJtag` (0x10012834). Inferred: it holds the pixel packing mode
+ * of output DMA; the firmware's `__glkonSetupPacker` (0x0c028d20) writes a 7-bit value to
+ * the paired raster-bus index 0x441, built from four small fields (docs/rm.md).
+ */
 #define KONA_HH_PACK_MODE                   0x258  /* register mask 0x7f */
 
+/*
+ * HH_ODMA_PNUM at 0x800260 (29 bits), established in the 6.5.30m kernel:
+ * the page number of the primary output-DMA destination. `kona_ge_intr` (kona_intr.o) reads it
+ * only to print it in the dump for a spurious engine event; the firmware loads the paired
+ * raster-bus index 0x450 from the A_hi word of START_SELECTFEED (`arm_start_selectfeed`, 0x0c022a50).
+ */
 #define KONA_HH_ODMA_PNUM                   0x260  /* register mask 0x1fffffff */
 
+/*
+ * HIP1_HH_ODMA_POFF and HIP2_HH_ODMA_POFF at 0x800268 (twelve or seventeen bits wide), established
+ * in the 6.5.30m kernel: the offset in the destination page of primary
+ * output DMA, with the attribute bits above it on HIP2. `kona_ge_intr` (kona_intr.o) reads
+ * it for the spurious-event dump; the firmware loads the paired index 0x451 from the A_lo word.
+ */
 #define KONA_HIP1_HH_ODMA_POFF              0x268  /* register mask 0xfff */
 /* HIP1 output-DMA page offset: 12 bits, the byte offset only; the attribute bits above it exist on HIP2 (below). */
 
+/*
+ * HH_ODMA_LEN at 0x800270 (32 bits), established as a kpm table entry, read by kpm 6.5.30m
+ * `hipInspectionPreJtag` (0x10012834); irsaudit `TEST_ge_hip` (0x1006f0f4) writes patterns to the
+ * paired raster-bus index and reads them back from this offset. Inferred: it counts the bytes
+ * left in the current line of a primary output-DMA transfer.
+ */
 #define KONA_HH_ODMA_LEN                    0x270  /* register mask 0xffffffff */
 
+/*
+ * HH_ODMA_TOTAL at 0x800278 (32 bits), established: `kona_ge_intr` (kona_intr.o) reads it
+ * for its spurious-event dump, and kpm (`wait_for_dma_completion`, 0x1001f7c0) and irsaudit
+ * (`wait_for_odma`, 0x10037c68) poll it until it reads 0. Inferred: it counts the bytes
+ * of the whole transfer still to be written to host memory, so 0 means the transfer is done.
+ */
 #define KONA_HH_ODMA_TOTAL                  0x278  /* register mask 0xffffffff */
 
+/*
+ * HH_ODMA_OVER at 0x800280 (12 bits), established as a kpm 6.5.30m table entry; kpm clears the
+ * secondary copy before programming a transfer and the firmware clears this one when a
+ * select-feedback starts (docs/hip.md). Inferred: it records overflow of the output DMA, with
+ * bit 11 the overflow flag of the select-feedback status word.
+ */
 #define KONA_HH_ODMA_OVER                   0x280  /* register mask 0xfff */
 
+/*
+ * HH_ODMA_LLEN at 0x800288 (32 bits), primary channel only, established as a kpm 6.5.30m table entry;
+ * the firmware's `arm_start_selectfeed` (0x0c022a50) writes the line length to the paired
+ * raster-bus index 0x452 and 0x455. Inferred: it is the line length the length counter
+ * reloads at the start of each line.
+ */
 #define KONA_HH_ODMA_LLEN                   0x288  /* register mask 0xffffffff */
 
+/*
+ * HH_ODMA_STRIDE at 0x800290 (32 bits), primary channel only, established: irsaudit 6.5.30m
+ * `TEST_ge_hip` (0x1006f0f4) writes a pattern to the paired raster-bus index and reads it
+ * back here, and `arm_start_selectfeed` (0x0c022a50) writes the `stride` payload word to it.
+ * Inferred: it is the distance between the starts of successive lines of the destination.
+ */
 #define KONA_HH_ODMA_STRIDE                 0x290  /* register mask 0xffffffff */
 
 #define KONA_HH_ODMA_FLUSH                  0x298  /* register mask 0x0 */
 
+/*
+ * HH_ODMA2_PNUM at 0x8002a0 (29 bits), established: the page number of the destination
+ * of the secondary output-DMA channel, which kpm 6.5.30m drives through the host registers to
+ * pull pipe state into a host buffer (`setup_dma`, 0x1001f76c). `kona_ge_intr` reads it only
+ * for the spurious-event dump.
+ */
 #define KONA_HH_ODMA2_PNUM                  0x2a0  /* register mask 0x1fffffff */
 
+/*
+ * HIP1_HH_ODMA2_POFF and HIP2_HH_ODMA2_POFF at 0x8002a8 (twelve or seventeen bits wide), established
+ * in the 6.5.30m kernel: the in-page offset of the secondary output-DMA
+ * destination, with attribute bits above it on HIP2. `kona_ge_intr` reads it for the
+ * spurious-event dump (kona_intr.o); kpm's `setup_dma` (0x1001f76c) writes it.
+ */
 #define KONA_HIP1_HH_ODMA2_POFF             0x2a8  /* register mask 0xfff */
 /* HIP1 second-channel page offset: 12 bits, as HIP1_HH_ODMA_POFF. */
 
+/*
+ * HH_ODMA2_LEN at 0x8002b0 (32 bits), established: kpm 6.5.30m `setup_dma` (0x1001f76c)
+ * writes the whole transfer length to it and to HH_ODMA2_TOTAL before starting a pull of pipe
+ * state. Inferred: it is the secondary channel's length counter.
+ */
 #define KONA_HH_ODMA2_LEN                   0x2b0  /* register mask 0xffffffff */
 
+/*
+ * HH_ODMA2_TOTAL at 0x8002b8 (32 bits), established: kpm 6.5.30m `setup_dma` (0x1001f76c)
+ * loads the transfer length, `wait_for_dma_completion` (0x1001f7c0) polls it for 0, and
+ * irsaudit TEST_odma polls it the same way. `kona_ge_intr` reads it for its dump.
+ * Inferred: it counts down the bytes still to be written by the secondary channel.
+ */
 #define KONA_HH_ODMA2_TOTAL                 0x2b8  /* register mask 0xffffffff */
 
+/*
+ * HH_ODMA2_OVER at 0x8002c0 (12 bits), established: kpm 6.5.30m `setup_dma` (0x1001f76c)
+ * clears it before programming the secondary channel. Inferred: it records overflow of that
+ * channel's output DMA.
+ */
 #define KONA_HH_ODMA2_OVER                  0x2c0  /* register mask 0xfff */
 
 #define KONA_HH_RESET                       0x300  /* register mask 0x3 */
@@ -322,6 +454,12 @@
 #define KONA_ARM_CTRL_HOST_ACCESS_MASK      0x00000001  /* shift 0 */
 #define KONA_HOST_ARM_CACHE_DISABLE_MASK    0x00000002  /* shift 1 */
 
+/*
+ * HH_ARM_STATUS at 0x800310 (16 bits), established: kpm 6.5.30m `hipInspectionPreJtag`
+ * (0x10012834) reads it and `analyze_hip` (0x100173a0) tests its NOPC bit (bit 10), adding
+ * "(Opcode fetch)" to a stalled-address report. The fields STALL, REMAP, GE_CNT, MREQ, SEQ, NRW,
+ * NBW, ABORT, NOPC and MODE report the ARM processor's stall, boot remap and bus-cycle state.
+ */
 #define KONA_HH_ARM_STATUS                  0x310  /* register mask 0xffff */
 #define KONA_ARM_STATUS_STALL_MASK          0x00000001  /* shift 0 */
 #define KONA_ARM_STATUS_REMAP_MASK          0x00000002  /* shift 1 */
@@ -334,37 +472,122 @@
 #define KONA_ARM_STATUS_NOPC_MASK           0x00000400  /* shift 10 */
 #define KONA_ARM_STATUS_MODE_MASK           0x0000f800  /* shift 11 */
 
+/*
+ * HH_ARM_STALL at 0x800320 (mask 0, trigger). Unknown: no shipped software or published
+ * source depends on it. It is named in kpm's table beside HH_ARM_UNSTALL and HH_ARM_STEP, and
+ * the three are inferred from their names to halt, resume and single-step the ARM. Routes tried:
+ * the kernel, kpm's dump list (it reads status, not these), irsaudit, ireeprom, the firmware
+ * (which cannot see its own debug window), the 6.5.5 headers.
+ */
 #define KONA_HH_ARM_STALL                   0x320  /* register mask 0x0 */
 
+/*
+ * HH_ARM_UNSTALL at 0x800328 (mask 0, trigger), 6.5.30m. Unknown: no shipped software or published
+ * source depends on it. Inferred from its name only: a write lets a stalled ARM run again.
+ * Routes tried: the same as HH_ARM_STALL, none of which touches it.
+ */
 #define KONA_HH_ARM_UNSTALL                 0x328  /* register mask 0x0 */
 
+/*
+ * HH_ARM_STEP at 0x800330 (mask 0, trigger), 6.5.30m. Unknown: no shipped software or published
+ * source depends on it. Inferred from its name only: a write lets a stalled ARM execute one
+ * bus cycle. Routes tried: the same as HH_ARM_STALL, none of which touches it.
+ */
 #define KONA_HH_ARM_STEP                    0x330  /* register mask 0x0 */
 
+/*
+ * HH_ARM_CURR_ADDR at 0x800338 (32 bits), established: kpm 6.5.30m `hipInspectionPreJtag`
+ * (0x10012834) reads it and `analyze_hip` (0x100173a0) takes it as the ARM address of the bus
+ * cycle the stalled processor waits on, comparing it with the command, data and distributor
+ * port addresses to say what the ARM is waiting for.
+ */
 #define KONA_HH_ARM_CURR_ADDR               0x338  /* register mask 0xffffffff */
 
+/*
+ * HH_CURR_DATA_FM_ARM at 0x800340 (32 bits), established as read by kpm 6.5.30m
+ * `hipInspectionPreJtag` (0x10012834) into its dump, which prints it raw. Inferred from the name:
+ * it holds the data word the ARM drives on its bus in the current cycle.
+ */
 #define KONA_HH_CURR_DATA_FM_ARM            0x340  /* register mask 0xffffffff */
 
+/*
+ * HH_CURR_DATA_TO_ARM at 0x800348 (32 bits), established as read by kpm 6.5.30m
+ * `hipInspectionPreJtag` (0x10012834) into its dump, which prints it raw. Inferred from the
+ * name: it holds the data word presented to the ARM in the current cycle.
+ */
 #define KONA_HH_CURR_DATA_TO_ARM            0x348  /* register mask 0xffffffff */
 
+/*
+ * HH_JTAG_DATA at 0x800350 (32 bits), established: kpm 6.5.30m's host boundary-scan routines
+ * (code at 0x10010284-0x10010aa0) write it to start a shift and read it for the bits shifted out.
+ * Its self-test writes 0x99799999 and expects the complement 0x66866666 back for a 32-bit shift.
+ */
 #define KONA_HH_JTAG_DATA                   0x350  /* register mask 0xffffffff */
 
+/*
+ * HH_JTAG_TMS at 0x800358 (6 bits), established: kpm 6.5.30m's host boundary-scan routines
+ * (code at 0x10010284-0x10010aa0) write the test-mode-select bits here before writing
+ * HH_JTAG_DATA: 31 before a reset shift, 18 before a data shift and 3 between tests.
+ */
 #define KONA_HH_JTAG_TMS                    0x358  /* register mask 0x3f */
 
+/*
+ * HH_JTAG_CTRL at 0x800360 (11 bits), established: kpm 6.5.30m's host boundary-scan routines
+ * (code at 0x10010284-0x10010aa0) write the chain number shifted left by 5 (bits 5-10) to
+ * select a board's scan chain; bits 0-4 are the shift length, where its self-test writes
+ * 0x501, 0x505 and 0x500 for its three test shifts.
+ */
 #define KONA_HH_JTAG_CTRL                   0x360  /* register mask 0x7ff */
 
+/*
+ * HH_JTAG_STATUS at 0x800368 (1 bits), established: kpm 6.5.30m's host boundary-scan routines
+ * (code at 0x10010284-0x10010aa0) poll bit 0 until it clears after each shift and give up with
+ * "JTAG stall timeout" after 1000 polls, so (inferred) bit 0 is the controller busy flag.
+ */
 #define KONA_HH_JTAG_STATUS                 0x368  /* register mask 0x1 */
 
+/*
+ * HH_JTAG_ACCESS at 0x800370 (1 bits), established: kpm 6.5.30m's host boundary-scan routines
+ * (code at 0x10010284-0x10010aa0) write 1 to bit 0 (HOST) before the first chain select, which
+ * (inferred from the name) hands the scan controller from the ARM's bit-bang port to the host.
+ */
 #define KONA_HH_JTAG_ACCESS                 0x370  /* register mask 0x1 */
 #define KONA_JTAG_ACCESS_HOST_MASK          0x00000001  /* shift 0 */
 
+/*
+ * HH_JTAG_RESET at 0x800378 (mask 0, trigger). Unknown: no shipped software or published
+ * source depends on it beyond its name. kpm 6.5.30m `hipInspectionPreJtag` (0x10012834) reads
+ * it; inferred from the name that a write resets the scan controller. Routes tried: kpm's
+ * `jt_hard_reset` (not traced to a write of the offset), irsaudit, the kernel and the firmware.
+ */
 #define KONA_HH_JTAG_RESET                  0x378  /* register mask 0x0 */
 
+/*
+ * HIP1_HH_FCI_OVERLAP at 0x800380 (7 bits), HIP1 only, established: kpm 6.5.30m `hipReset`
+ * (0x10017204) sets the OVERLAP_DISABLE field (bit 0) to disable overlapped crosstalk transactions
+ * as an alternative to a boundary-scan reset (the HIP2 counterpart is HIP2_HH_GV_OVERLAP). Bits 1-6
+ * are the DMA_INTL field; no shipped software states what they select.
+ */
 #define KONA_HIP1_HH_FCI_OVERLAP            0x380  /* register mask 0x7f */
 #define KONA_HIP1_FCI_OVERLAP_DISABLE_MASK  0x00000001  /* shift 0 */
 #define KONA_HIP1_FCI_DMA_INTL_MASK         0x0000007e  /* shift 1 */
 
+/*
+ * HIP1_HH_FCI_LOOPBACK at 0x800388 (16 bits), HIP1 only. Unknown: no shipped software or
+ * published source depends on it. kpm 6.5.30m `hipInspectionPreJtag` (0x10012834) reads it into
+ * its dump; inferred from the name that it is a loopback control of the first-generation
+ * crosstalk interface. Routes tried: kpm's table (name and mask), irsaudit, the kernel, the
+ * firmware and the 6.5.5 headers.
+ */
 #define KONA_HIP1_HH_FCI_LOOPBACK           0x388  /* register mask 0xffff */
 
+/*
+ * HIP1_HH_FCI_ERR_STAT1 and HIP2_HH_GV_ERR_STAT1 at 0x800390 (32 bits), established:
+ * `kona_reset_adaptor` (kona_edtinit_hip2.o) writes it during a pipe reset, and kpm 6.5.30m
+ * `hipInspectionPreJtag` (0x10012834) reads it. Inferred from the table's single 32-bit DATA field:
+ * it latches the data word of the first failed command, with the register at 0x800398 holding the
+ * command and the counters.
+ */
 #define KONA_HIP1_HH_FCI_ERR_STAT1          0x390  /* register mask 0xffffffff */
 #define KONA_HIP1_FCI_ERR_DATA_MASK         0xffffffff  /* shift 0 */
 
@@ -383,6 +606,12 @@
 #define KONA_HIP1_FCI_ERR_CMD_CNT_MASK      0x78000000  /* shift 27 */
 #define KONA_HIP1_FCI_ERR_OVER_FLAG_MASK    0x80000000  /* shift 31 */
 
+/*
+ * HIP1_HH_FCI_PIO_STATUS at 0x8003a0 (23 bits), HIP1 only, established: kpm 6.5.30m
+ * `hipInspectionPreJtag` (0x10012834) reads it. The fields REGCNT, NOTF, USER, CPUV, CPUID and SIZE
+ * repeat the layout of an access address plus its size, so (inferred) it holds the address and
+ * size of the last programmed-I/O access, including its USER bit (bit 11).
+ */
 #define KONA_HIP1_HH_FCI_PIO_STATUS         0x3a0  /* register mask 0x7fffff */
 #define KONA_HIP1_PIO_REGCNT_ZERO_MASK      0x00000007  /* shift 0 */
 #define KONA_HIP1_PIO_REGCNT_MASK           0x000003f8  /* shift 3 */
@@ -398,6 +627,11 @@
 #define KONA_TBUS_ACTIVE_MASK               0x00000004  /* shift 2 */
 #define KONA_TBUS_STALL_MASK                0x00000008  /* shift 3 */
 
+/*
+ * HH_TFIFO_HI at 0x8003b0 (4 bits), established: kpm 6.5.30m `hipReset` (0x10017204) writes 5
+ * to it in its non-scan reset and `hipInspectionPreJtag` (0x10012834) reads it. Inferred from
+ * the name: it is the high-water mark of the raster-bus (T-bus) FIFO.
+ */
 #define KONA_HH_TFIFO_HI                    0x3b0  /* register mask 0xf */
 
 #define KONA_HH_VC_ADDRESS                  0x3c0  /* register mask 0xffff */
@@ -408,6 +642,12 @@
 
 #define KONA_HH_VC_DATA_INCR                0x3d8  /* register mask 0xffffffff */
 
+/*
+ * HH_GFIFO_WAIT at 0x8003e0 (mask 0, trigger), 6.5.30m. Unknown: no shipped software or published
+ * source depends on it. It is a kpm table entry only; inferred from its name that a read waits
+ * until the graphics FIFO has room. Routes tried: the kernel flow layer (it polls
+ * HH_GFIFO_LEVEL instead), kpm's dump list, irsaudit, the firmware and the headers.
+ */
 #define KONA_HH_GFIFO_WAIT                  0x3e0  /* register mask 0x0 */
 
 #define KONA_HH_ARM_ADDRESS                 0x3e8  /* register mask 0xfffffff */
@@ -475,9 +715,22 @@
 #define KONA_HIP2_HH_ODMA2_POFF             0x2a8  /* register mask 0x1ffff */
 /* Second output-DMA channel's page offset: the same layout as HIP2_HH_ODMA_POFF above. */
 
+/*
+ * HIP2_HH_PIO_HI at 0x8002c8 (5 bits, field PIO_HI), HIP2 only. Unknown: no shipped
+ * software or published source depends on it. By its name only (inferred) it is a high-water
+ * mark of programmed-I/O requests: HIP2 has a PIO overflow interrupt, HH_INTR_STATUS bit 10.
+ * Routes tried: kpm's table (name and mask), the kernel's `kona_edtinit_hip2.o`, `kona_mapram_hip2.o`
+ * and `kona_intr_hip2.o` (no store to the offset), irsaudit, the firmware and the 6.5.5 headers.
+ */
 #define KONA_HIP2_HH_PIO_HI                 0x2c8  /* register mask 0x1f */
 #define KONA_HIP2_PIO_HI_MASK               0x0000001f  /* shift 0 */
 
+/*
+ * HIP2_HH_IDMA_HI at 0x8003b8 (7 bits, field IDMA_HI), HIP2 only, 6.5.30m. Unknown: no shipped
+ * software or published source depends on it. Inferred from the name and from the IDMA_OV
+ * interrupt bit: a high-water mark of the input-DMA queue. Routes tried: kpm's table (name and
+ * mask; its dump does not read it), irsaudit, the kernel's HIP2 objects, the firmware and the headers.
+ */
 #define KONA_HIP2_HH_IDMA_HI                0x3b8  /* register mask 0x7f */
 #define KONA_HIP2_IDMA_HI_ZERO_MASK         0x00000001  /* shift 0 */
 #define KONA_HIP2_IDMA_HI_MASK              0x0000007e  /* shift 1 */

@@ -434,30 +434,30 @@ usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3
 usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/ucode/ge_diag_init.u	diagnostics	board-diagnostic	data	-	12082	7e407147118cf628		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0	0	0	understood	ucode/arm1_functions.md#other-data	Other data
-usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	0	0	understood	ucode/tport.md#what-it-is	What it is
+usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	0	0	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	14	0	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100		0	0	0	no-software-dependency	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
-usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	45a61c37ce61cf80		2936	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	45a61c37ce61cf80		2936	0	0	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-libraries	shared-library	shared-object	n32	1833076	dff2b0d82deac998		3811	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
-usr/gfx/arch/IP27KONA/libGL.so	libraries	board-library	shared-object	o32	486700	214ae88b8179eaef		671	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP27KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	f9b9b85f96cbf830		4868	2893	0	named-only	docs/libglcore.md#libglcore-function-reference-by-source-file	`libGLcore`: function reference by source file
-usr/gfx/arch/IP27KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	fecccf6de7ef8a22		673	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP27KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	f22d2a199f6b8efb		4907	2881	0	named-only	docs/libglcore.md#libglcore-function-reference-by-source-file	`libGLcore`: function reference by source file
-usr/gfx/arch/IP27KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	425727f729a8a8aa		673	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP27KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d0e932db4fa8e93f		4907	2909	0	named-only	docs/libglcore.md#libglcore-function-reference-by-source-file	`libGLcore`: function reference by source file
-usr/gfx/arch/IP35KONA/libGL.so	libraries	board-library	shared-object	o32	486700	52f3e359d3ed9b44		671	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP35KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	d75291c990060f17		4868	2893	0	named-only	docs/libglcore.md#libglcore-function-reference-by-source-file	`libGLcore`: function reference by source file
-usr/gfx/arch/IP35KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	432edf22a00ea581		673	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP35KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	89303b7f78578067		4907	2881	0	named-only	docs/libglcore.md#libglcore-function-reference-by-source-file	`libGLcore`: function reference by source file
-usr/gfx/arch/IP35KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	2f064d4d8de46085		673	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP35KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d5889b8581d8de51		4907	2909	0	named-only	docs/libglcore.md#libglcore-function-reference-by-source-file	`libGLcore`: function reference by source file
+usr/gfx/arch/IP27KONA/libGL.so	libraries	board-library	shared-object	o32	486700	214ae88b8179eaef		671	1	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/gfx/arch/IP27KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	f9b9b85f96cbf830		4868	2893	0	understood	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/gfx/arch/IP27KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	fecccf6de7ef8a22		673	1	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/gfx/arch/IP27KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	f22d2a199f6b8efb		4907	2881	0	understood	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/gfx/arch/IP27KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	425727f729a8a8aa		673	1	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/gfx/arch/IP27KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d0e932db4fa8e93f		4907	2909	0	understood	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/gfx/arch/IP35KONA/libGL.so	libraries	board-library	shared-object	o32	486700	52f3e359d3ed9b44		671	1	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/gfx/arch/IP35KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	d75291c990060f17		4868	2893	0	understood	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/gfx/arch/IP35KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	432edf22a00ea581		673	1	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/gfx/arch/IP35KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	89303b7f78578067		4907	2881	0	understood	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/gfx/arch/IP35KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	2f064d4d8de46085		673	1	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/gfx/arch/IP35KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d5889b8581d8de51		4907	2909	0	understood	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
 usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	2eec8716f6ad8a43	usr/gfx/gfxinit	227	0	0	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/hyperpipeinfo	board-tools	board-tool	executable	n32	18328	a43eeddde7bbbcbf		4	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/ircombine	board-tools	board-tool	executable	n32	766080	7016ad16f636dc67		1238	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	0	0	no-software-dependency	ucode/dg.md#the-container-vfo-and-cmb	The container (`.vfo` and `.cmb`)
+usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	0	0	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
@@ -588,8 +588,8 @@ usr/gfx/ucode/vfc/sdbutil	board-tools	board-tool	executable	n32	70452	3fa52d6c92
 usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d7eec8		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	0	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	0	0	understood	docs/opengl.md#display-functions-cursor-records-display-ids-colour-maps-gamma	Display functions: cursor records, display ids, colour maps, gamma
+usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	0	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	0	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
 usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	0	0	named-only	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
 usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	0	0	named-only	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
 usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	0	0	named-only	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)

@@ -192,6 +192,182 @@ Every ioctl number the user-space binaries send or the kernel dispatchers handle
 
 The senders below are read from the call sites of the 6.5.30m user-space binaries: 101 and 102 by the X server and OpenGL start-up code (`__glXOpenGraphicsDevice`, `__glx_GetString`, `__iglooGetGraphicsType`, `ddxFindAvailableBoards`) and by `setmon` and `gfxinfo`; 103 by `irixKernInit` in the X server, `crm_setmon` and `gr2ev_info`; 104 by `xgsetmon` and `ng1_setmon`; 105, 106 and 107 by `ireeprom` and `gfxinfo`; 110 and 113 by the diagnostic and setup tools (`gr2ev_info`, `ng1_setmon`, `vs2setmon`); 111 by `irixKernInit`; 112 by `ng1_setmon`. In the OpenGL client library `libGL.so`, `__glXHWAttach` sends 112 and then 103, `__glXAllocHWContext` 1000, `__glXFreeHWContext` 1001, `__glXBindHWContextToWindow` 1002 and 1003, and `glXSwapIntervalSGI`, `glXGetVideoSyncSGI` and `glXWaitVideoSyncSGI` 1006, 1022 and 1023. The X server sends 1002 (`irixKernInit`), 1004 (`rrmDisposeClip` in `kona.so`), 1010 (`rrmInvalidate`), and `glx.so` sends 1013 and 1019 (`glxJoinSwapGroupSGIX`, `glxBindSwapBarrierSGIX`). 1011, 1012, 1017 and 1020 come from the Kona X module ([opengl.md](opengl.md#ioctls)).
 
+## Ioctl entries
+
+One entry per ioctl number that the inventory finds in a sender or in the private jump table. Handlers and
+argument sizes are read from the 6.5.30m objects `gfx.o`, `rrm.o` and `kona_ioctl.o`; the sender is the first
+binary and function the inventory finds loading the number into the ioctl call.
+
+### Generic ioctls (`gfx.o`)
+
+- Ioctl 101 (0x65), `GFX_GETNUM_BOARDS`, established from `gfx.o`.
+  `gfxioctl` stores the registered board count in the caller's result word.
+  The graphics libraries send it first, for example from `main` of `ireeprom`.
+- Ioctl 102 (0x66), `GFX_GETBOARDINFO`, established from `gfx.o`.
+  `gfxioctl` copies in 24 bytes through `copyin_xlate`, then calls the board's info function.
+  That function fills the caller's buffer with the board's name and size record.
+  Sent by `main` of `ireeprom` and by `crm_setmon`.
+- Ioctl 103 (0x67), `GFX_ATTACH_BOARD`, established from `gfx.o`.
+  `gfxioctl` copies in 16 bytes, refuses a connection that already has a function table with error 16,
+  then calls the board's attach function and makes the caller the board's owner if it has none.
+  Sent by `main` of `ireeprom` and by `irixKernInit`.
+- Ioctl 104 (0x68), `GFX_DETACH_BOARD`, established from `gfx.o`.
+  `gfxioctl` calls `GfxDetach` on the connection; an IrisGL connection sharing a thread group is refused with 16.
+  Sent by `main` of `ireeprom` and by `xgsetmon`.
+- Ioctl 105 (0x69), `GFX_IS_MANAGED`, established from `gfx.o`.
+  `gfxioctl` copies in a 4-byte board number and returns 1 in the result word when the board has a managing connection.
+  Sent by `main` of `ireeprom`.
+- Ioctl 106 (0x6a), `GFX_INITIALIZE`, established from `gfx.o`.
+  The board's owner takes the pipe semaphore and `gfxioctl` calls the board's initialize function (table slot +24),
+  clears the board's counter and unmaps the connection.
+  Other callers get 1. Sent by `setup_ucode` in `ireeprom` and by `mgras_init`.
+- Ioctl 107 (0x6b), `GFX_START`, established from `gfx.o`.
+  The owner takes the pipe semaphore and `gfxioctl` calls the board's start function (slot +40) and returns its result.
+  Sent by `main` of `gfxinfo`.
+- Ioctl 110 (0x6e), `GFX_MAPALL`, established from `gfx.o`.
+  `gfxioctl` takes the pipe semaphore, locks the region with `ddv_lock`, calls the board's map function (slot +96)
+  for the whole pipe and sets the connection's map-all flag 0x20. Sent by `main` of `ireeprom`
+  and by `ng1_setmon`.
+- Ioctl 111 (0x6f), `GFX_LABEL`, established from `gfx.o`.
+  The owner's `gfxioctl` copies 16 bytes into the label field of the board's info record.
+  Sent by `irixKernInit` in `Xsgi`.
+- Ioctl 112 (0x70), `GFX_REATTACH_BOARD`, established from `gfx.o`.
+  `gfxioctl` repeats the attach steps without the test for an existing attachment. Sent by `ng1_setmon` in `setmon`.
+- Ioctl 113 (0x71), `GFX_SET_DIAG_FLAG`, established from `gfx.o`.
+  `gfxioctl` calls `drv_priv` and, if the caller is privileged, sets connection flag 4,
+  which selects the privileged mapping. Sent by `main` of `ireeprom` and by `vs2setmon`.
+
+### Rendering manager ioctls (`rrm.o`)
+
+`gfxioctl` forwards every number from 1000 to 9999 to `RRM_Dispatch`, which looks the handler up in a 26-entry table
+in `rrm.o` (each entry is the handler, the argument size and a manager-only flag).
+
+- Ioctl 1000 (0x3e8), `RRM_OPENRN`, established from `rrm.o`.
+  `RRM_Dispatch` runs `RRM_OpenRN` with no node and an 8-byte argument; the handler claims a free rendering-node slot,
+  stores the new id in the caller's result word and returns 12 when no slot is free.
+  Sent by `irixKernInit` and `xgsetmon`.
+- Ioctl 1002 (0x3ea), `RRM_BINDPROCTORN`, established from `rrm.o`.
+  `RRM_BindProcToRN` makes the calling connection the user of the named node, or unbinds it for node 0
+  (OpenGL connections only). Sent by `irixKernInit` and `xgsetmon`.
+- Ioctl 1003 (0x3eb), `RRM_BINDRNTOCLIP`, established.
+  `RRM_BindRNToClip` builds a read-and-clip bind request with the same clip id for both and calls
+  `RRM_BindRNToReadAndClip`; the bind id is returned for OpenGL connections. Sent by `xgsetmon` in `setmon`.
+- Ioctl 1004 (0x3ec), `RRM_UNBINDRNFROMCLIP`, established.
+  A manager-only command: `RRM_UnbindRNFromClip` calls `pane_cleanup` for the window's clip id and always returns 0.
+  Sent by `rrmDisposeClip` in `kona.so` when a window goes away.
+- Ioctl 1006 (0x3ee), `RRM_SETSWAPINTERVAL`, established.
+  `RRM_SetSwapInterval` rejects a negative interval with 22 and otherwise stores it in the node and its draw pane.
+  Sent by `glXSwapIntervalSGI` in `libGL.so`.
+- Ioctl 1010 (0x3f2), `RRM_INVALIDATERN`, established from `rrm.o`.
+  A manager-only command: `RRM_InvalidateRN` accepts only the mask bits 0x2, 0x8, 0x40 and 0x80, invalidates the pane,
+  and copies 20 bytes back. Sent by `rrmInvalidate` and by `SGICapGLCapture` in `Xsgi`.
+- Ioctl 1011 (0x3f3), `RRM_VALIDATECLIP`, established.
+  A manager-only command with a 64-byte argument, widened for 32-bit callers by `irix5_to_RRM_ValidateClip`;
+  `RRM_ValidateClip` calls `validate_pane_clip`, which marks the pane's clip valid and wakes the sleeper.
+  Sent by `konValidateClip` in `kona.so`.
+- Ioctl 1012 (0x3f4), `RRM_VALIDATESWAPBUF`, established.
+  A manager-only command: `RRM_ValidateSwapBuf` calls `validate_pane_swapbuf`, which records the swap-buffer id in the pane
+  and wakes a waiter; nothing is sent to the pipe. Sent by `konValidateSwapbuf` in `kona.so`.
+- Ioctl 1013 (0x3f5), `RRM_SWAPGROUP`, established.
+  A manager-only command: `RRM_SwapGroup` makes a new swap group for the window when the second id is 0, otherwise
+  joins the window to that member's group. Sent by `glxJoinSwapGroupSGIX` and `glxBindSwapBarrierSGIX` in `glx.so`.
+- Ioctl 1017 (0x3f9), `RRM_LOADDISPLAYMODE`, established.
+  A manager-only command: `RRM_LoadDisplayMode` rejects a display id past the board's count with 22,
+  calls the driver's set-display-mode slot (+160) and records the mode in the pane and the per-display table.
+  Sent by `konLoadDisplayMode` in `kona.so`.
+- Ioctl 1019 (0x3fb), `RRM_SWAPREADY`, established.
+  A manager-only command: `RRM_SwapReady` assigns or releases the window's swap group on a swap-ready line,
+  with error 37 for a line past the count. Sent by `glxBindSwapBarrierSGIX` in `glx.so`.
+- Ioctl 1020 (0x3fc), `RRM_MGR_SWAPBUF`, established.
+  A manager-only command: `RRM_MGR_SwapBuf` stores the independent mode in the per-display table and calls the driver's
+  scheduled-manager-swap slot (+168); a zero result also updates the pane's displayed bank. Sent by `rrmMGRSwapBuf`
+  in `kona.so`.
+- Ioctl 1022 (0x3fe), `RRM_GETVSYNC`, established.
+  `RRM_GetVideoSync` copies the video-sync counter at pipe state +128 out in an 8-byte block.
+  Sent by `glXGetVideoSyncSGI` in `libGL.so`.
+- Ioctl 1023 (0x3ff), `RRM_WAITVSYNC`, established.
+  `RRM_WaitVideoSync` sleeps in `rrmWaitVideoSync` until the counter matches the interval and remainder,
+  then copies the wake counter out. Sent by `glXWaitVideoSyncSGI` in `libGL.so`.
+
+### Private ioctls (`kona_ioctl.o`)
+
+`KONAprivate` subtracts 10000 and indexes a 103-slot jump table; a slot the table does not serve logs a message with
+`cmn_err_tag` and returns 22. In the cases below "copies N" is the byte count of the `copyin` or `copyout`.
+
+- Ioctl 10000 (0x2710), `KONA_DMAREAD`, established.
+  `KONAprivate` copies in 160 bytes through `copyin_xlate` and calls `kona_dmaread`, which moves pipe data into host memory.
+  Sent by `konReadFBBlock` and `konReadImage` in `kona.so`.
+- Ioctl 10001 (0x2711), `KONA_DMAWRITE`, established.
+  `KONAprivate` copies in 144 bytes, counts the operation in flight, copies the vector table and calls `kona_dmawrite`.
+  Sent by `konDrawImage` and `konWriteFBSubBlock` in `kona.so`.
+- Ioctl 10002 (0x2712), `KONA_START_SELECTFEED`, established.
+  `KONAprivate` copies in 32 bytes through `copyin_xlate` and calls `kona_start_selectfeed`, which starts
+  select or feedback return. Sent by `__glKonlSendPackedVertex` in `libGLcore.so`.
+- Ioctl 10003 (0x2713), `KONA_FINISH_SELECTFEED`, established.
+  `KONAprivate` calls `kona_finish_selectfeed` and copies 8 bytes out. Sent by `__glKonlSendPackedVertex` in `libGLcore.so`.
+- Ioctl 10005 (0x2715), `KONA_SELECT_CURSOR`, established.
+  `KONAprivate` copies in 16 bytes and calls `kona_select_cursor`, which picks the cursor mode, glyph and hot spot. Sent by `konDisplayCursor` and `konCursorOn` in `kona.so`.
+- Ioctl 10006 (0x2716), `KONA_SETCONFIGINFO`, established.
+  `KONAprivate` copies 1912 bytes of configuration record into the pipe state at +244, then calls `kona_mem_init`
+  and `kona_nclops_init`. Sent by `kona_getconfig` in `gfxinfo`.
+- Ioctl 10008 (0x2718), `KONA_DEBUG_IOCTL`, established from `kona_ioctl.o`.
+  The jump-table slot returns 22 at once, with no copy and no call; the number is reserved and does nothing.
+- Ioctl 10009 (0x2719), `KONA_SET_CHANNEL_RECT`, established.
+  `KONAprivate` copies in 18 bytes and calls `kona_set_channel_rect`, which fills one entry of the cursor-rectangle table. Sent by `konaSetStereoMode` in `kona.so`.
+- Ioctl 10010 (0x271a), `KONA_MEM_ALLOC`, established.
+  `KONAprivate` copies in 12 bytes and calls `kona_mem_alloc` with its grow flag clear, which reserves a block in one of the
+  pipe memory pools. No sender in the inventory loads the number as a constant.
+- Ioctl 10011 (0x271b), `KONA_MEM_FREE`, established.
+  `KONAprivate` copies in 12 bytes and calls `kona_mem_free` to release a block. No sender in the inventory loads the number.
+- Ioctl 10012 (0x271c), `KONA_GET_XY_CHANNEL`, established.
+  `KONAprivate` copies in 14 bytes, calls `kona_get_xy_channel`, which finds the video channel at a screen position,
+  and copies 14 bytes back. Sent by `saXSGIvcSetChannelGammaMap` in `setmon`.
+- Ioctl 10014 (0x271e), `KONA_MEM_REALLOC`, inferred.
+  `KONAprivate` copies in 12 bytes and calls `kona_mem_alloc` with its flag set; with the flag set the routine
+  looks for an existing block of the same id and grows it, returning 2 when none exists (`kona_mem.o`).
+  Sent by `venice_calcframebuffer` in `gfxinfo`, which addresses the older board family.
+- Ioctl 10015 (0x271f), `KONA_SHARE`, established.
+  `KONAprivate` copies in 8 bytes and calls `kona_share` (`kona_share.o`), which finds the share group the word names on the
+  pipe's list, or allocates a 112-byte group when it is 0 or absent, counts the node into it and copies the group handle back.
+  No sender in the inventory loads the number.
+- Ioctl 10016 (0x2720), `KONA_HEALTH`, established from `kona_ioctl.o`.
+  `KONAprivate` copies three words saved at pipe state +2172, +2176 and +2180 out: the reason the pipe was declared dead
+  and the interrupt and bus status registers saved then. Sent by `kona_diagnose` in `gfxinfo`.
+- Ioctl 10018 (0x2722), `KONA_DMAPOOL`, established.
+  `KONAprivate` copies in 24 bytes through `copyin_xlate` and calls `kona_dmapool`, which registers a user buffer
+  the pipe may DMA from (a zero length releases it). No sender in the inventory loads the number.
+- Ioctl 10019 (0x2723), `KONA_GET_NCLOPS_TOPOLOGY`, established.
+  `KONAprivate` calls `kona_nclops_discover` when the pipe state holds no topology record (+5480), then copies 260 bytes
+  of it out. Sent by `konQueryHyperpipeNetwork` in `kona.so`.
+- Ioctl 10020 (0x2724), `KONA_NCLOPS_CONFIGURE`, established.
+  `KONAprivate` copies in 524 bytes, calls `kona_nclops_configure` and copies the result back.
+  Sent by `konHyperpipeConfig` in `kona.so`; `gfxinfo` also sends it from older-family code.
+- Ioctl 10021 (0x2725), `KONA_NCLOPS_QUERY_CONFIG`, established.
+  `KONAprivate` copies in 524 bytes, calls `kona_nclops_query_config` and copies 524 bytes back.
+  Sent by `konQueryHyperpipeConfig` in `kona.so`.
+- Ioctl 10022 (0x2726), `KONA_NCLOPS_BIND`, established.
+  `KONAprivate` copies in 4 bytes and calls `kona_nclops_bind`, which writes the display-port registers of the pipe.
+  Sent by `__glkon_BindHyperpipe` in `libGLcore.so`.
+- Ioctl 10023 (0x2727), `KONA_NCLOPS_UNBIND`, established.
+  `KONAprivate` copies in 4 bytes and calls `kona_nclops_unbind`. Sent by `__glkon_UnbindHyperpipe` in `libGLcore.so`.
+- Ioctl 10024 (0x2728), `KONA_NCLOPS_DESTROY_CONFIG`, established.
+  `KONAprivate` copies in 4 bytes and calls `kona_nclops_destroy` unless the pipe state's network field (+5500) is -1.
+  Sent by `konDestroyHyperpipeConfig` in `kona.so`.
+- Ioctl 10025 (0x2729), established from `kona_ioctl.o`.
+  The jump-table slot is the default one, which logs a message and returns 22.
+  Only `read_encoder_reg` in `gfxinfo`, code for the older board family, sends it.
+- Ioctl 10026 (0x272a), established from `kona_ioctl.o`.
+  The jump-table slot is the default one, which returns 22. Only `venice_get_dg2_eeprom` in `gfxinfo` sends it.
+- Ioctl 10030 (0x272e), established from `kona_ioctl.o`.
+  The jump-table slot is the default one, which returns 22. Only `vs2SetShadow` and `venice_loadsection_vs2_top`
+  in `gfxinfo` send it.
+- Ioctl 10031 (0x272f), established from `kona_ioctl.o`.
+  The jump-table slot is the default one, which returns 22. Only `vs2GetShadow` and `vs2_set_MasterGenlock`
+  in `gfxinfo` send it.
+- Ioctl 10100 (0x2774), `KONA_DIAG_MAP`, established.
+  `KONAprivate` copies in 24 bytes through `copyin_xlate`, calls `kona_diag_map` to map a user buffer for DMA
+  and copies 24 bytes back. Sent by `kona_getconfig` in `gfxinfo` and by `main` of `ireeprom`.
+
 ## Registers the driver touches
 
 **Established** (`scripts/kernel_registers.py`, output in [kona_kernel/registers.tsv](../kona_kernel/registers.tsv): one row per function, offset and direction, with the number of call sites). The driver reaches the pipe with two helpers only, `gfx_pio_read_32` and `gfx_pio_write_32`; there is no 64-bit access in the driver. The address is the per-pipe register base (pipe state +0x948) plus a constant, or the command-port pointer at pipe state +0x900. The script follows register values through each function in text order, keeping the saved registers (`$s0`-`$s8`) across calls and branches because this compiler loads a function's fixed addresses into them once. Of the 494 call sites in the 6.5.30m `kona.a`, it resolves 307 to a register offset and 167 to the command port (`cmd` rows). The other 20 (`?` rows) take an address set on a branch the text-order walk does not follow; each was read by hand:
