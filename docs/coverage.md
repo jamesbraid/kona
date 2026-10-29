@@ -26,7 +26,7 @@ Xtalk widget and XIO attachment: the pipe's identity and apertures as the host s
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
 | Registers and fields | partial | `XG.h`, `docs/xg.md` | kernel attach and host interface | offsets 0x24, 0x2c, 0x34, 0x3c, 0x5c, 0x6c, 0x74 and the packing the driver writes are in docs/xg.md; names and meanings unknown; aperture windows and map RAM not read |
-| DMA | none | `XG.h`, `docs/xg.md` | kernel attach and host interface |  |
+| DMA | partial | `HIP.h`, `docs/hip.md` | kernel attach and host interface | map RAM at window offset 0x100000 (entry format, init pattern, size from XG+0x64); XG-side DMA behaviour and its response-error handling not read |
 | Interrupts | none | `XG.h`, `docs/xg.md` | kernel attach and host interface |  |
 | Reset | partial | `XG.h`, `docs/xg.md` | kernel attach and host interface | kona_reset_adaptor register sequence and the HH_RESET pulse sites written down; XG register names, meaning of the writes and `xwidget_gfx_reset` unknown |
 
@@ -38,7 +38,7 @@ Host interface: PIO FIFO words, DMA streams, flow control and doorbells.
 |---|---|---|---|---|
 | Registers and fields | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | full HIP1/HIP2 register and field table from kpm; window base 0x800000 inferred from kernel accesses; meaning of the 0xc00000 alias unknown |
 | Command and FIFO formats | none | `HIP.h`, `docs/hip.md` | host interface and command grammar | kernel push port, textport port, indirect pair and user doorbell reported by prior work |
-| DMA | none | `HIP.h`, `docs/hip.md` | host interface and command grammar | strided two-dimensional descriptor reported by prior work |
+| DMA | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | DO_IDMA, START_SELECTFEED, FINISH_SELECTFEED and DMAPOOL_SETUP payloads (strided descriptor: len, llen, stride), the 16 KB map RAM and pipe-space address path, completion events; register-level ODMA/IDMA behaviour, the 0x9000 bits and what a pool is used for unknown |
 | Interrupts | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | HH_INTR_INFO/ENABLE/STATUS/ACK and GINTR_INFO fields; GE and ARM event codes (6.5.5); INTR_ENABLE/STATUS bit names not in kpm |
 | Reset | none | `HIP.h`, `docs/hip.md` | host interface and command grammar |  |
 | Context save and restore | partial | `HIP.h`, `kona_kernel/include/kona_kern.h` | host interface and command grammar | kick = HH_GINTR_INFO PRIV/FORCE; physical-address word pair; the 0x9000 constant is read at every sender (low word of an address pair, hi word bit 28 on host-physical buffers only) but its meaning and FORCE's exact effect are unknown |
@@ -91,7 +91,7 @@ The kernel graphics driver and its resource manager: attach, ioctls, context and
 |---|---|---|---|---|
 | Registers and fields | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
 | Command and FIFO formats | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | private ioctl family and kernel command selectors reported by prior work |
-| DMA | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
+| DMA | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | read, write, select-feedback and pool ioctl structures, page locking, vector validation, wait and timeout handles; callers' use of multi-vector writes and the diagnostic map not read |
 | Interrupts | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
 | Reset | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | pipe check and kona_die register writes named, 16 death reasons by caller with 6.5.5 names; attach-time XG setup and the HH_RESET pulse in KONAinitialize and the credit-wait path read (docs/xg.md); what the reset clears unknown |
 | Context save and restore | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | KONApcxswap and kona_act_pcx packet order and payload word sources, flow-group attach/detach at offset 0x7c. Address pair shapes written down (0x9000 meaning unknown). KONAvalidateclip and KONAsetnullclip layouts written; the activate token is data read at X+8, not a constant. Remaining: drawable field meanings (origin, size, +8 generation word, +40/+44), who writes X+8 |

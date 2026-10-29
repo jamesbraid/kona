@@ -355,4 +355,57 @@
 #define KONA_HIP2_HH_GV_OVERLAP             0x3a0  /* register mask 0x1 */
 #define KONA_HIP2_GV_OVERLAP_DISABLE_MASK   0x00000001  /* shift 0 */
 
+/*
+ * DMA, ESTABLISHED from the 6.5.30m kernel driver (kona_dma.o, docs/hip.md).
+ *
+ * The kernel starts every DMA by sending a command in the privileged
+ * stream (kick sequence in kona_kern.h); the transfer itself is run by the
+ * pipe. Addresses are PIPE-SPACE addresses, not host physical ones: the
+ * kernel maps the host pages into a space the pipe sees through the map RAM
+ * (below) and sends the result as the address pair of kona_kern.h,
+ * (A >> 12, (A & 0xfff) | 0x9000). Page unit 16 KB (2^14), constant 14 from
+ * kona_mapram_pagesizeshiftof.
+ *
+ * DO_IDMA (0x1eb), host memory to pipe, six payload words:
+ *   A_hi, A_lo, len, llen, stride, flags
+ * len/llen/stride are bytes as in the 6.5.5 kona_dmavec (llen == len for a
+ * flat copy). flags is 256 when the caller waits for completion, else 0
+ * (INFERRED role: request a completion event). The completion arrives as
+ * the ARM event KONA_ARM_EV_IDMA through HH_ARM_MBOX.
+ *
+ * START_SELECTFEED (0x1f5), pipe to host memory, six payload words:
+ *   A_hi, A_lo, len, llen, stride, snapshot
+ * FINISH_SELECTFEED (0x1f6), two payload words: 256, rnid (the sending
+ * context's slot index; the driver's message calls it "rnid").
+ * The pipe answers with the GE event KONA_GE_EV_SELECTFEED carrying
+ * (rnid, remaining bytes, status word); status bit 11 (0x800) is the
+ * overflow flag the driver reports. INFERRED: the six words load the
+ * HH_ODMA_* output-DMA registers (PNUM, POFF, LEN, LLEN, STRIDE, ...) from
+ * the stream, since those names carry the same fields; the driver reads
+ * them only in an error dump.
+ *
+ * DMAPOOL_SETUP (0x1ed), three payload words: A_hi, A_lo, pool length in
+ * bytes. Base and length must both be multiples of 16 KB.
+ */
+#define KONA_DMA_PAGE_SHIFT           14
+#define KONA_DMA_IDMA_WAIT            256
+#define KONA_DMA_FINISH_FLAG          256
+#define KONA_DMA_SELECTFEED_OVERFLOW  0x00000800
+
+/*
+ * Map RAM, ESTABLISHED (kona_mapram_hip2.o): an array of 32-bit entries at
+ * XG-window offset 0x100000 + 4 * index, one per 16 KB page of pipe space.
+ * kona_mapram_map writes, for each 16 KB piece of a host buffer, the word
+ * 0x20000000 | ((phys >> 14) << 2). kona_mapram_init writes
+ * 0x10000000 | index to every entry and reads each back; a mismatch kills
+ * the pipe (reason 21). Number of entries: ((XG+0x64 bits 3-5) or 8) << 15
+ * (docs/xg.md attach step 6). The pipe-space address of byte b of a buffer
+ * starting at map index i is (i << 14) + (b & 0x3fff) for the first page.
+ * INFERRED: 0x20000000 is a valid bit; the low two bits of the entry are
+ * the low bits of the 4 KB frame number, which a 16 KB page leaves zero.
+ */
+#define KONA_MAPRAM_BASE              0x100000
+#define KONA_MAPRAM_ENTRY_VALID       0x20000000
+#define KONA_MAPRAM_INIT_PATTERN      0x10000000
+
 #endif /* KONA_HIP_H */
