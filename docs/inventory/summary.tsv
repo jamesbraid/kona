@@ -1,7 +1,7 @@
 table	rows	understood	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites
 binaries	599	79	0	41	479	0	13.2	13.2	20.0	13.2	
-functions	54309	308	56	53936	0	9	0.6	0.7	100.0	0.6	
-functions (distinct names)	19170	108	17	19036	0	9	0.6	0.7	100.0	0.6	
+functions	54309	334	56	53906	0	13	0.6	0.7	100.0	0.6	
+functions (distinct names)	19170	115	17	19028	0	10	0.6	0.7	100.0	0.7	
 mmio	53	24	2	21	3	3	45.3	54.7	94.3	50.9	10
 tokens	617	27	5	585	0	0	4.4	5.2	100.0	4.4	
 ioctls	55	4	0	32	19	0	7.3	7.3	65.5	7.3	

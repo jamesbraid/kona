@@ -84,4 +84,46 @@ struct kona_ddx_cursor_block {
 #define KONA_DDX_HWD_CI_LUMINANCE     0x08  /* "ColorIndex/Luminance"       */
 #define KONA_DDX_HWD_DC_RGB           0x10  /* "DC RGB"                     */
 
+/*
+ * Display-id table, ESTABLISHED (SetDIDMode, FreeID, SetReservedID,
+ * konInitDIDState): 36-byte entries from screen private (rrmScreenPrivateIndex)
+ * +152, indexed by display id; offsets below are inside an entry.
+ * docs/opengl.md ("Frame-buffer layer") has the derivation.
+ */
+#define KONA_DDX_DIDENT_SIZE          36
+#define KONA_DDX_DIDENT_FIRST_HOLDER  0   /* head of the window list    */
+#define KONA_DDX_DIDENT_LAST_HOLDER   4   /* tail of the window list    */
+#define KONA_DDX_DIDENT_HWI_MODE      8   /* mode words SetDIDMode records */
+#define KONA_DDX_DIDENT_HWD_MODE      12
+#define KONA_DDX_DIDENT_FLAGS         16  /* halfword                   */
+#define KONA_DDX_DIDENT_KIND          18  /* halfword; 0 main, 1 overlay, 3 reserved, 0xffff unusable */
+#define KONA_DDX_DIDENT_HOLDERS       20  /* number of windows holding the id */
+#define KONA_DDX_DIDENT_PEND_HWI      24  /* mode words SetReservedID copies to +8, +12 */
+#define KONA_DDX_DIDENT_PEND_HWD      28
+#define KONA_DDX_DIDF_RESERVED        0x02  /* set by SetReservedID, cleared by UnsetReservedID */
+#define KONA_DDX_DIDF_MODE_SET        0x08  /* SetDIDMode has recorded the mode words */
+#define KONA_DDX_DIDF_NO_STEAL        0x20  /* SetNoStealID */
+/* UNKNOWN: meaning of flag bits 0x01, 0x04 and 0x10. */
+
+/*
+ * Hardware colour-map tables behind nfbInstallHWColormap and relatives,
+ * ESTABLISHED (nfbHWColormapScreenInit, read by nfbInstallHWColormap,
+ * nfbUninstallHWColormap, nfbListInstalledHWColormaps, cmapDID): the pipe's
+ * record at ScreenRec +116 holds the slot table (+112 count, +116 pointer)
+ * and the group table (+120 count, +124 pointer). The module's own tables
+ * have 18 slots in 11 groups.
+ */
+#define KONA_DDX_HWCMAP_SLOT_SIZE     28
+#define KONA_DDX_HWCMAP_SLOT_INSTALLED 0  /* colormap now installed, 0 none */
+#define KONA_DDX_HWCMAP_SLOT_NSHARED  4   /* slots sharing storage (none in the module's table) */
+#define KONA_DDX_HWCMAP_SLOT_SHARED   8   /* pointer to that many slot numbers */
+#define KONA_DDX_HWCMAP_SLOT_NUMBER   16  /* what cmapDID returns */
+#define KONA_DDX_HWCMAP_SLOT_RESERVED 20  /* number reserved with SetReservedID */
+#define KONA_DDX_HWCMAP_GROUP_SIZE    24
+#define KONA_DDX_HWCMAP_GROUP_COUNT   0   /* slots in the group          */
+#define KONA_DDX_HWCMAP_GROUP_RING    4   /* {slot, next index} records  */
+#define KONA_DDX_HWCMAP_GROUP_HEAD    8   /* most recently installed record */
+#define KONA_DDX_HWCMAP_GROUP_INSTALL 12  /* hook(colormap)              */
+#define KONA_DDX_HWCMAP_GROUP_LOST    20  /* hook(colormap), null in the module's table */
+
 #endif /* KONA_DDX_H */

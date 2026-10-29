@@ -161,7 +161,7 @@ The margin c, **established** from the arithmetic: c = trunc(sqrt(s^2 - w*h/4 + 
 
 #### `konInitDIDState`
 
-`konInitDIDState` at 0x457600 takes (screen). Fills the display-id table of the rrm screen private (`rrmScreenPrivateIndex`, 36-byte entries from +152): ids 0-62 are main-plane ids (halfword +18 = 0, +8 = 0, +12 = 8), id 63 is one of kind 3 (+8 = 0x3c00, +12 = 5), ids 64-95 are overlay ids (kind 1); no id gets kind 2. Main ids at or above `KON_X_LIMIT_MAIN_DID` (accepted 14-63, default 63) get kind 0xffff (unusable). `KON_X_LIMIT_OVERLAY_DID` (accepted 5-32, default 32) is added to running totals in a way that leaves ids 63-95 usable for every accepted value, so as coded it removes no overlay id. A rejected value prints "punting, bogus DID limit" and keeps the default. It checks that the total, 96, equals the count at rrm private +0 ("numids mismatch"). **Inferred:** kind 0 main, 1 overlay, 3 a reserved id, from the counts and the env-variable names; the meaning of words +8 and +12 is **unknown: no shipped software or published source depends on it** beyond this initialisation (routes: the module's loads of those words, `kon_initDIDmodes`'s name among the section strings, the kernel's display-id code in [dg.md](dg.md)).
+`konInitDIDState` at 0x457600 takes (screen). Fills the display-id table of the rrm screen private (`rrmScreenPrivateIndex`, 36-byte entries from +152): ids 0-62 are main-plane ids (halfword +18 = 0, +8 = 0, +12 = 8), id 63 is one of kind 3 (+8 = 0x3c00, +12 = 5), ids 64-95 are overlay ids (kind 1); no id gets kind 2. Main ids at or above `KON_X_LIMIT_MAIN_DID` (accepted 14-63, default 63) get kind 0xffff (unusable). `KON_X_LIMIT_OVERLAY_DID` (accepted 5-32, default 32) is added to running totals in a way that leaves ids 63-95 usable for every accepted value, so as coded it removes no overlay id. A rejected value prints "punting, bogus DID limit" and keeps the default. It checks that the total, 96, equals the count at rrm private +0 ("numids mismatch"). **Inferred:** kind 0 main, 1 overlay, 3 a reserved id, from the counts and the env-variable names; words +8 and +12 are the hardware-independent and hardware-dependent mode words of the windows that hold the id, **established** from the setter that records them, [below](#setdidmode).
 
 #### `konChangeDIDCmap`
 
@@ -202,6 +202,89 @@ The margin c, **established** from the arithmetic: c = trunc(sqrt(s^2 - w*h/4 + 
 #### `konQueryMaxSwapBarrier`
 
 `konQueryMaxSwapBarrier` at 0x44f1b0 returns 1, so the module reports one swap barrier.
+
+### Frame-buffer layer: hardware colour maps, display-id state, cursor and blanking
+
+**Established** from `kona.so` 6.5.30m by address unless a line says otherwise. `konad.so`, `konal.so` and `konas.so` carry a function of the same name and the same size for each entry here; only `kona.so` was read instruction by instruction, so treat the other three as **inferred identical** (addresses in `docs/inventory/functions.tsv`). Pointers are 32-bit (n32). Screen private means the record at `rrmScreenPrivateIndex` unless stated; the "pipe's record" `R` is the word at ScreenRec +116.
+
+**The two tables behind the colour-map functions** (established from `nfbHWColormapScreenInit` and its readers). `R` holds, besides the visual table (base id at +80, 20-byte entries at +88, whose word +4 is a group number and whose word +0 is what `cmapDID` returns for a visual with no colour map of its own):
+
+| `R` offset | Content |
+|---|---|
+| +112, +116 | count and pointer of the **slot table**: 28-byte entries, one per hardware colour map |
+| +120, +124 | count and pointer of the **group table**: 24-byte entries, one per set of interchangeable slots |
+
+A slot entry holds: +0 the colour map now installed there (0 for none), +4 and +8 count and list of other slots that share its storage (**inferred** from how the install and uninstall functions use them), +16 the colour-map number `cmapDID` returns (**inferred** to be the value for the colour-map field of `X_LOADXMAP_DID`, [display modes](#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017), because the display-id allocator is its caller), +20 a flag that the slot's number is reserved with the display-id allocator, +24 a word no function here reads (**unknown**: no shipped software or published source depends on it, beyond its values 0x2810, 0x2a00, 0x2b00, 0, 0, 0x2c00-0x3100 in steps of 0x100, 0x3800, 0x4800, 0x5800, 0, 0, 0x20000, 0; routes: every reader of the table in this module). A group entry holds: +0 the number of slots, +4 a pointer to that many 8-byte records {slot number, index of the next record} forming a ring, +8 the index of the most recently installed record, +12 the install hook (called by `nfbInstallHWColormap`), +16 a hook that this module's colour-map functions never call (**inferred** the store hook, because the fake groups pair `konInstallFakeColormap` with `konStoreFakeColors`) and +20 a lost-map hook.
+
+The module's own tables, **established** from the data at 0x586088 (groups) and 0x586198 (slots), counts at 0x586190 (`konNumCmapGroups` = 11) and 0x586390 (`konNumHWCmaps` = 18): slots 0-4 are single-slot groups 0-4 with numbers 0x3f-0x43; slots 5-10 form group 5 (numbers 0-5, a ring of six); slots 11-13 form group 6 (numbers 6-8, a ring of three); slots 14-17 are single-slot groups 7-10 with numbers 9, 10, 0xb, 0xc. No slot lists a shared slot and no group sets the lost-map hook. Groups 3, 4, 7, 8 and 10 use the empty hooks `konInstallFakeColormap` and `konStoreFakeColors` ([above](#koninstallfakecolormap)); groups 0-2, 5 and 6 use the functions at 0x564710 and 0x523cf0; group 9 uses 0x476c40 and 0x4a45e0 (not read). **Inferred:** a group is a class of colour map the hardware loads in the same way, and a fake group is a visual the module keeps only in software.
+
+#### `nfbCreateHWColormap`
+
+`nfbCreateHWColormap` at 0x4e75e0 takes (colormap). Allocates the colormap's private block and stores it at ColormapRec +68: for a TrueColor visual (class 5) 8 bytes plus 12 bytes per word of a bit map sized to the visual's entry count; for any other class 8 bytes plus (entries + 31) / 8. It sets block word 0 to -1 (no hardware slot) and clears the bytes from +4 (three entry-count bit maps for TrueColor, one otherwise) through the helper at 0x54b4f0, which returns 1. An allocation failure returns 0 with the private word left 0. **Inferred:** the bit maps record which entries have been allocated. Called from `konInitializeColormap`.
+
+#### `nfbDestroyHWColormap`
+
+`nfbDestroyHWColormap` at 0x56d9c0 takes (colormap), frees the private block at +68 and clears the pointer. It does not release a hardware slot; `nfbUninstallHWColormap` does that. Its address is in the module's function table at 0x5866d8, in the slot the order of the neighbouring entries (create, destroy, install, uninstall, list) suggests is destroy-colormap (**inferred**).
+
+#### `nfbInstallHWColormap`
+
+`nfbInstallHWColormap` at 0x450d60 takes (colormap). It does not load colours; it gives the colormap a hardware slot and runs the group's install hook. Its address is the table word at 0x5866dc, between destroy and uninstall (**inferred** install-colormap slot).
+
+1. The group is word +4 of the visual-table entry for the colormap's visual. The colormap's slot is block word 0.
+2. If the colormap already has a slot, it moves that slot's record to the head of the group's ring (the ring links are the second words of the records) and returns, sending nothing; when it is already the head it returns at once.
+3. Otherwise it takes the record after the head as the victim, makes it the head, and stores its slot number in the colormap. If another colormap holds that slot it is told it lost the map (`WalkTree` over the screen with `TellLostMap`) and its slot becomes -1. The same happens for every slot in the victim slot's shared list, which clears those slots' installed pointers and calls the group's lost-map hook if it has one (this module's table has no shared lists and no lost-map hooks, so only the first case happens).
+4. If the rrm screen record's word +48 is non-zero and the slot's reserved flag (+20) is clear, it reserves the slot's number with the display-id allocator ([reserve an id](#setreservedid)) and sets the flag, so the display-id allocator treats that colour-map number as taken.
+5. It calls the group's install hook with the colormap, stores the colormap as the slot's installed map and walks the screen with the callback at 0x478b10, **inferred** to be the gained-map notice.
+
+The ring makes this a least-recently-used cache over the slots of a group. **Inferred** from the code: the head is the most recent and the record after the head is the next victim. When a group has one slot, the victim is that slot.
+
+#### `nfbUninstallHWColormap`
+
+`nfbUninstallHWColormap` at 0x5673b0 takes (colormap) and returns nothing. For a colormap with a slot it moves that slot's record to the position just after the head, so it becomes the next victim. Unless the colormap is the screen's default (ScreenRec +28 compared with the colormap id), it then: when the rrm word +48 is non-zero, releases that reservation ([release a reservation](#setnostealid-unsetreservedid-freeid-freecid)) and clears the reserved flag; clears the slot's installed pointer; sets the colormap's slot to -1; tells the screen's windows the map was lost; calls the group's lost-map hook if any; and finally, when the default colormap's group contains the freed slot (or a slot that shares it), calls the screen's install function (ScreenRec +316, **inferred** `InstallColormap`) with the default colormap. **Inferred:** a freed slot returns to the default map when it could hold it. A colormap without a slot (private block null or word 0 negative) returns at once.
+
+#### `nfbListInstalledHWColormaps`
+
+`nfbListInstalledHWColormaps` at 0x525350 takes (screen, id array). Walks the slot table (count at `R` +112), writes the id (ColormapRec +8) of every slot with an installed colormap to the array and returns the count. Its address is the table word at 0x5866e4 (**inferred** list-installed slot).
+
+#### `nfbHWColormapScreenInit`
+
+`nfbHWColormapScreenInit` at 0x4f3090 takes (screen, slot count, slot table, group count, group table). Allocates 28 x slot count and 24 x group count bytes, copies the caller's tables into them and stores the counts and pointers in `R` (+112, +116, +120, +124). Returns 1, or 0 when an allocation fails (after freeing the first). Only `konInit` calls it, with `konNumHWCmaps`, the table at 0x586198, `konNumCmapGroups` and the table at 0x586088. The record rings the groups point to are not copied.
+
+#### `nfbHWColormapScreenClose`
+
+`nfbHWColormapScreenClose` at 0x4f22c0 takes (screen) and frees the slot table and the group table from `R`. `konCloseScreen` calls it.
+
+#### `cmapDID`
+
+`cmapDID` at 0x4b05f0 takes (window) and returns the colour-map number the window's display id should name. It looks up the window's colormap (the optional record's colormap, or none for an InputOnly window) as a resource of type 6 (colormap). With a colormap whose block word 0 is not negative, it returns that slot's +16 field. Otherwise it returns word +0 of the visual-table entry for the window's visual. **Inferred:** the second form is the number a window gets when its colormap is not loaded. Callers: the id-stealing and best-id search functions of the allocator and the two unbind-from-clip functions (`rrmUnbindRNFromClip`, `rrmOGLUnbindRNFromClip`).
+
+#### `nfbInitVisDIDs`
+
+`nfbInitVisDIDs` at 0x52dcd0 takes (count, entries, table). For each 20-byte entry it copies word +4 of the 32-byte table record whose index is the entry's word +4 into the entry's word +0; the loop is unrolled by two. **Inferred:** it fills in each visual's display-id value from a per-depth table. **Established:** no code or data in `kona.so` refers to it, so it is exported but never run by this module; what the entries and the table are is **unknown: no shipped software or published source depends on it** (routes: every call site and data word in `kona.so`, including the function table at 0x586680-0x586750; the other three modules were not searched).
+
+#### `nfbSetDidFlags`
+
+`nfbSetDidFlags` at 0x4f3dd0 takes (window). It keeps two bits in the window's frame-buffer private word +32 (`nfbWindowPrivateIndex`): bit 0x4, set when the window needs a display id of its own, and bit 0x8, set when any descendant does or has bit 0x8 itself. Bit 0x4 comes from a static helper at 0x4ad610 (called with the window, its private record, `R` and the parent's private record): it clears bit 0x4 and returns 0 for a window whose state bit 10 (word +124, **unknown** which state) is clear or that has no parent; otherwise it sets bit 0x4 and returns 4 when the window or the parent lacks private bit 0x1, when the colormap differs from the parent's (private bit 0x2 set) or when the visual differs (bit 0x2 clear). `nfbSetDidFlags` runs it on the window itself, discarding the result, then on each child, sets bit 0x8 on the window if any child's result was non-zero or the child has bit 0x8, and clears it otherwise. When bit 0x8 or 0x4 is now set it marks bit 0x8 on every ancestor. When both just cleared but one of them was set before, it walks up the ancestors and clears bit 0x8 on each one that has no child with bit 0x4 or 0x8, stopping at the first ancestor that still has one; an ancestor that lacks bit 0x8 here prints "nfbSetDidFlags: should never get here". **Inferred:** the bits say which windows in a tree need a display id different from their parent's. **Unknown:** what sets private bits 0x1 and 0x2. Nine call sites, among them `nfbRealizeWindow`, `nfbChangeWindowAttributes`, `rrmUnbindRNFromClip` and `rrmDoubleBufferWindow`.
+
+#### `SetDIDMode`
+
+`SetDIDMode` at 0x501220 takes (window). With the window's display id (rrm window private +20, negative means none, then it returns) it looks at the 36-byte entry in the display-id table of the screen private (from +152). That entry's flag halfword (+16) has bit 0x8 for "mode recorded". If the bit is set and the helper `compareModes` at 0x5358c0 says the recorded mode equals the window's, it returns. `compareModes` returns 1 when the entry's kind halfword (+18) equals the window record's halfword +2 and the entry's words +8 and +12 equal the window's hardware-independent mode (+32) and hardware-dependent mode (+36) under two screen masks (private +16 and +20; +16 has bit 0x4 cleared when the caller asks). Otherwise `SetDIDMode` calls the screen private's hook at +40 with (window, window private, screen private), sets bit 0x8, and stores the window's two mode words in entry words +8 and +12. This settles `konInitDIDState`: entry words +8 and +12 are the hwi and hwd mode words of the windows holding the id (the hwd word is the one `konValidateMode` builds, see [hwd_mode bits](#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017)). **Unknown:** the hook at private +40; callers are two static functions at 0x462928 and 0x499784.
+
+#### `SetNoStealID`, `UnsetReservedID`, `FreeID`, `FreeCID`
+
+Small members of the display-id allocator, which `kona-ddx.md` leaves unexplained. **Established**: `SetNoStealID` at 0x51d7a0 takes (screen, id) and sets bit 0x20 of the id's entry flags (+16). `UnsetReservedID` at 0x438a40 takes (screen, id) and clears bit 0x2. `FreeID` at 0x49ac60 takes (window): it unlinks the window from its display-id entry through the static helper at 0x4d9c60 and sets the window's id (rrm window private +20) to -1. `FreeCID` at 0x4c94f0 takes (window) and does the same for its colour-map id (private +24, entries of 28 bytes at screen private +148, helper 0x4d3cc0). Each helper runs only when the window's private flag halfword has bit 0x8 (ids) or 0x40 (colour-map ids), drops the entry's window count (+20 in the id table, +12 in the colour-map table), removes the window from a doubly linked list of holders (window privates +44 and +48 for ids, +60 and +64 for colour-map ids) and recomputes the entry's flag bits from the list's head and tail. **Unknown:** the meaning of flag bits 0x1, 0x4 and 0x10 (routes: the free-id search, steal and share-swapping functions test them and have not been read in full).
+
+#### `SetReservedID`
+
+`SetReservedID` at 0x572f10 takes (screen, id). **Established** (callers not traced): it copies the windows that hold the entry (count at +20, first at +0) into a stack list; for each it calls the screen private's hook at +32 with (window, 0, 0) when the window's private byte +6 has bit 0x8, and `FreeID`; then copies entry words +24 and +28 over +8 and +12, calls the hook at +44 with (screen, id), and sets entry flag 0x2. It then runs the free-id search for each saved window, releasing the window with `FreeID` when none is found, and, when the reserved id's own flag bit 0x10 was set before the call, sets that bit on each window's new id and calls the hook at +32 with (window, 8, 1). **Inferred:** it takes an id for one fixed mode: the holders leave, the id switches to the pending mode held in words +24 and +28, and the holders are placed again. **Unknown:** the hooks at +32 and +44.
+
+#### `nfbRealizeCursor`
+
+`nfbRealizeCursor` at 0x4efd70 takes (screen, cursor). Allocates a 16-byte record (stored as the cursor's private word for this screen, CursorRec +20 + 4 x screen number) and a zeroed 256-byte buffer at record +8, sets halfword +12 to 1 and words +0 and +4 to 0. It clips the source bitmap to 32 x 32 (keeping the leftmost bits of a narrower cursor) and writes two 32-word planes: words 0-31 hold source AND mask (pixels in the foreground colour), words 32-63 hold mask AND NOT source (background). It returns 1; an allocation failure prints "nfbRealizeCursor: memory allocation failed" and returns 0. **Established:** the module's own table uses `konRealizeCursor`, not this function, and nothing in `kona.so` refers to `nfbRealizeCursor`, so a screen running this module never builds that record. Its output is two 32 x 32 planes and no pipe-side form: the pipe's cursor image is a different layout ([cursor](#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor)).
+
+#### `konBlankScreen`
+
+`konBlankScreen` at 0x4cd370 takes (value, screen), calls `konTempBlankAllChannels` with (screen, value) and returns 1 always. `konInit` calls it with 0 (it prints "konInit: konBlankScreen() failed" if the result is 0) and `konCloseScreen` calls it with 1. **Inferred:** 1 blanks every channel and 0 unblanks, from the two call sites; the argument order is not that of a server screen-saver hook, which takes the screen first, so the module does not install it as one.
 
 ### Stereo drawing wrappers (`konStereo*`)
 
