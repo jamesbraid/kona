@@ -77,11 +77,11 @@ Display generator: video timing, scanout, palettes, cursor and retrace.
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | none | `DG.h`, `docs/dg.md` | display |  |
-| Command and FIFO formats | none | `DG.h`, `docs/dg.md` | display | display-mode packet and cursor commands reported by prior work |
+| Registers and fields | partial | `DG.h`, `docs/dg.md` | display | indirect port HH_VC_ADDRESS/HH_VC_DATA and every address the kernel writes through it (cursor 0x100-0x103, DAC cursor 0x22, per-channel 0x0b00 blocks, swap strobe 0x80); register names and the timing, palette and mode registers are not reachable from the kernel |
+| Command and FIFO formats | partial | `DG.h`, `docs/dg.md` | display | DISPMODE (3 words) and RETRACE_SEQID (1 word) payloads from the kernel; X_LOADCURSOR and X_LOADCURSORCOLOR payloads (X module) not read |
 | Interrupts | none | `DG.h`, `docs/dg.md` | display |  |
 | Reset | none | `DG.h`, `docs/dg.md` | display |  |
-| Display and scanout | none | `DG.h`, `docs/dg.md` | display | mode set, colour format and retrace reported by prior work |
+| Display and scanout | partial | `DG.h`, `docs/dg.md` | display | cursor select, position and channel arbitration; swap and retrace-sequence protocol (HH_SEQID); video timing, formats, palettes, genlock state and option boards have no kernel code and are unread |
 
 ### Kernel driver
 
