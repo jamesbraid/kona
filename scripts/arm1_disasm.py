@@ -182,12 +182,43 @@ def main():
             s += ' =0x%08x%s' % (v, (' <%s>' % byaddr[v][0]) if v in byaddr else '')
         return s
 
+    # Data inside the code: a word an ldr names pc-relative is a literal-pool
+    # word; an address an add or sub forms from pc is the start of a string.
+    # Both print as data instead of as nonsense instructions.
+    pool = set()
+    strs = {}
+    for pc in range(base, base + ro, 4):
+        text, ref = dis(mem[pc], pc)
+        if ref is None or not (base <= ref < base + ro):
+            continue
+        if text.startswith('ldr') and ref % 4 == 0:
+            pool.add(ref)
+        elif text.startswith(('add', 'sub')):
+            raw = b''.join(struct.pack('>I', mem.get(ref + 4 * k, 0)) for k in range(64))
+            n = raw.find(b'\0')
+            if n >= 3 and all(c in (9, 10) or 32 <= c < 127 for c in raw[:n]):
+                strs[ref] = raw[:n]
+    inside = set()
+    for a, raw in strs.items():
+        inside.update(range(a + 4, a + len(raw) + 1, 4))
+
     with open(os.path.join(out, 'arm1.s'), 'w') as fh:
         fh.write('# arm1.u read-only image, base 0x%08x, %d bytes (IRIX 6.5.30m)\n' % (base, ro))
+        fh.write('# Words an ldr reads pc-relative print as .word; strings an add or sub\n')
+        fh.write('# forms from pc print as .asciz (the words they cover are not repeated).\n')
         for pc in range(base, base + ro, 4):
+            if pc in inside and pc not in byaddr and pc not in pool:
+                continue
             for n in byaddr.get(pc, []):
                 fh.write('%s:\n' % n)
             i = mem[pc]
+            if pc in strs:
+                t = strs[pc].decode().replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
+                fh.write('%08x: %08x  .asciz "%s"\n' % (pc, i, t))
+                continue
+            if pc in pool:
+                fh.write('%08x: %08x  .word 0x%08x%s\n' % (pc, i, i, (' <%s>' % byaddr[i][0]) if i in byaddr else ''))
+                continue
             text, ref = dis(i, pc)
             fh.write('%08x: %08x  %s%s\n' % (pc, i, text, note(text, ref)))
 
