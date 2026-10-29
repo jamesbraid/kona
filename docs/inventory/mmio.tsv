@@ -102,7 +102,7 @@ raster-index	0x2	-	1	kpm:BEF_PERF_COUNTALL	named-only	RM.h:371
 raster-index	0x3	-	1	kpm:BEF_PERF_COUNTDRAW	named-only	RM.h:373
 raster-index	0x4	-	1	kpm:BEF_PERF_COUNTLOAD	named-only	RM.h:375
 raster-index	0x5	-	1	kpm:BEF_PERF_COUNTEMPTY	named-only	RM.h:377
-raster-index	0x6	-	1	kpm:BEF_MAILBOX	named-only	RM.h:379
+raster-index	0x6	-	1	kpm:BEF_MAILBOX	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 raster-index	0x7	-	1	kpm:BEF_REGSHADOW_BMASK	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
 raster-index	0x100	-	1	kpm:BEF_REGSHADOW	documented	docs/rm.md#the-register-write-word
 raster-index	0x200	-	1	kpm:BEF_REGSHADOW_READ	documented	docs/rm.md#context-save-and-restore
@@ -120,14 +120,14 @@ raster-index	0x80f	-	1	kpm:PG_PSPEC	documented	docs/rm.md#how-the-arm-firmware-w
 raster-index	0x810	-	1	kpm:PG_PRU	documented	docs/rm.md#the-89-word-register-shadow
 raster-index	0x87f	-	1	kpm:PG_NOP	documented	docs/rm.md#the-register-write-word
 raster-index	0x880	-	1	kpm:PG_PRAM	documented	docs/rm.md#the-register-write-word
-raster-index	0xc00	-	1	kpm:TG_DNOP	named-only	RM.h:391
-raster-index	0xc01	-	1	kpm:TG_FIFOLAT	named-only	RM.h:393
+raster-index	0xc00	-	1	kpm:TG_DNOP	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+raster-index	0xc01	-	1	kpm:TG_FIFOLAT	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 raster-index	0xc02	-	1	kpm:TG_MISC	documented	GE.h:733
 raster-index	0xc04	-	1	kpm:TG_MAP_LEVEL	documented	GE.h:728
 raster-index	0xc05	-	1	kpm:TG_LOD_SCALEST	documented	GE.h:728
 raster-index	0xc06	-	1	kpm:TG_LOD_SCALER	documented	GE.h:729
 raster-index	0x1000	-	1	kpm:TM_MEMCONF	documented	GE.h:727
-raster-index	0x1001	-	1	kpm:TM_REFCTR	named-only	RM.h:415
+raster-index	0x1001	-	1	kpm:TM_REFCTR	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 raster-index	0x1002	-	1	kpm:TM_SYNC_WAITLOAD	documented	RM.h:141
 raster-index	0x1003	-	1	kpm:TM_SYNC_IDDRAW	documented	RM.h:141
 raster-index	0x1004	-	1	kpm:TM_DRAW_TEXMAP_0_1	named-only	RM.h:426
@@ -210,8 +210,8 @@ raster-index	0x1c09	-	1	kpm:IMP_DEPTH_CLEAR	documented	docs/rm.md#how-the-arm-fi
 raster-index	0x1c0a	-	1	kpm:IMP_TAG_CLEAR	named-only	RM.h:952
 raster-index	0x1c0b	-	1	kpm:IMP_ADDR	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
 raster-index	0x1c0d	-	1	kpm:IMP_BL	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x1c0e	-	1	kpm:IMP_ACCUM	named-only	RM.h:977
-raster-index	0x1c0f	-	1	kpm:IMP_FLAG	named-only	RM.h:990
+raster-index	0x1c0e	-	1	kpm:IMP_ACCUM	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+raster-index	0x1c0f	-	1	kpm:IMP_FLAG	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 raster-index	0x1c10	-	1	kpm:IMP_USER_COLOR	documented	RM.h:51
 raster-index	0x1c12	-	1	kpm:IMP_CLEAR_COLOR	documented	RM.h:51
 raster-index	0x1c14	-	1	kpm:IMP_WMASK_BIT	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
@@ -247,7 +247,7 @@ raster-index	0x5002	-	1	kpm:TML_SYNC_WAITDRAW	documented	RM.h:142
 raster-index	0x5003	-	1	kpm:TML_SYNC_IDLOAD	documented	RM.h:141
 raster-index	0x5004	-	1	kpm:TML_TM1A_COMPAT	named-only	RM.h:619
 raster-index	0x53ff	-	1	kpm:TML_RAMSYNC	named-only	RM.h:622
-raster-index	0x7fc0	-	1	kpm:TGTML_NOP	named-only	RM.h:1242
+raster-index	0x7fc0	-	1	kpm:TGTML_NOP	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 raster-index	0x7fc1	-	1	kpm:TGTML_TEXLD_SIZE	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards
 raster-index	0x7fc2	-	1	kpm:TGTML_TEXLD_STSTART	documented	GE.h:726
 raster-index	0x7fc3	-	1	kpm:TGTML_TEXLD_S1ST_RSTART	documented	GE.h:725

@@ -2262,7 +2262,7 @@ ge.u	label	0x0000422e	mgeb_ColorTableSetup		documented	ucode/ge_handlers.md#colo
 ge.u	label	0x0000424e	mgebi_TextureScaleBias		documented	ucode/ge_handlers.md#textures
 ge.u	label	0x00004278	mgesi_FillTMLoadFifo		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 ge.u	label	0x00004293	mgesi_RestoreTextureAddress		documented	ucode/ge_handlers.md#textures
-ge.u	label	0x000042d3	mgebi_Bind2dMipmapTexture		documented	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler
+ge.u	label	0x000042d3	mgebi_Bind2dMipmapTexture		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 ge.u	label	0x000043ae	mgeb_SkipNextTextureAddr		documented	ucode/ge_handlers.md#textures
 ge.u	label	0x000043bd	mgebi_UpdateTexturing		documented	ucode/ge_handlers.md#textures
 ge.u	label	0x000043f3	mgebi_Texture		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
@@ -2584,7 +2584,7 @@ ge.u	label	0x0000ad66	mgeb_GlobalInitialize		documented	docs/ge.md#reset-and-sta
 ge.u	label	0x0000ad90	mDebugInitialize		documented	ucode/ge_handlers.md#ges
 ge.u	label	0x0000adaf	mX_CM_Initialize		documented	ucode/ge_handlers.md#ges
 ge.u	label	0x0000ade8	mX_REGS_Initialize		documented	ucode/ge_handlers.md#ges
-ge.u	label	0x0000ae09	mGL_EX_Initialize		documented	ucode/ge_handlers.md#ges
+ge.u	label	0x0000ae09	mGL_EX_Initialize		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 ge.u	label	0x0000b0f4	mGL_EM_Initialize		documented	ucode/ge_handlers.md#ges
 ge.u	label	0x0000b1ac	mGL_CM_Initialize		documented	ucode/ge.md#precision
 ge.u	label	0x0000b25a	mGL_REGS_Initialize		documented	ucode/ge_handlers.md#ges

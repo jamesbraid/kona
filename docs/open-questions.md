@@ -19,7 +19,7 @@ The "Next route" cells below were converted from requests for measurements on a 
 | Whether any path resets only the engines, and the engines' state after it | `docs/ge.md` | firmware start-up and reset paths | `irsaudit` `ResetKona` and the engine tests' set-up |
 | Order and size of the engine-state records in a saved context image, the third word of each record, and which tag (0x200, 0x400-0x403) is which ARM region | `docs/ge.md` | the firmware loader `arm_context_load` | The engine save handlers `mges_ContextDeact*` in `ge.u` and the firmware save side (`deactivate_*`), which write the records in order |
 
-**Where this section stopped (2026-10-29).** The variable-length command grammars and the texel format id are done (docs/ge.md). The ties were tried from every diagnostic and production program in the 6.5.30m media without a constraining result; the next step is the source routes in the first row. The remaining rows have not been worked from software yet; take them in table order.
+**Where this section stopped (2026-10-29).** The operation ties are settled in ucode/ge_ops.md ("Settling the ties"): minimum, maximum, XOR and OR by the handlers that need them, AND by intent, unit 2's 0x2f/0x3f and 0x42's saturation unknown with routes. Every `ge_symbols` label and `geif.u` slot is placed by module with what reaches it (ucode/ge_handlers.md), and every token in GE.h carries its route. Not yet worked: the rows above, in table order; for the branch row, start from production handlers whose fall-through is reachable only on a false condition (the `cc` 0x111 conditional moves in fog.S and mdecompose2.S are candidates). The 40 "unknown entry" labels in ucode/ge_handlers.md are module heads no slot or decoded transfer reaches; find how they are entered (an address written to engine memory by the `Dirty*` modules is the first guess to test).
 
 ## XG (Xtalk widget)
 
@@ -74,7 +74,7 @@ Routes already tried: `arm1.u` (6.5.30m, the whole image disassembled with its 1
 | Register and pixel-memory contents of `pg`, `tg`, `tf` and `tm` after reset and after `ResetRMBoards` | `docs/rm.md` | firmware reset paths | The diagnostic BIST files (`*.tcbist`, `*.sdbist`) and the register tests' expected reset values in `irsaudit` |
 | Per-pixel LOD, sub-texel position, filter-weight and iterator widths inside the fixed-function chips | `docs/rm.md`, `RM.h` | bus widths from the netlists | Host reference models in `irsaudit`'s texture and shading tests, which must compute the expected pixels at the hardware's precision |
 
-**Where this section stopped (2026-10-29).** Not yet worked from software; the texel-format part of the third row is answered and the rest follows the next-route column.
+**Where this section stopped (2026-10-29).** The table rows are not yet worked. The 68 raster indexes the inventory lists as named only (RM.h defines without a comment: `BEF_PERF_*`, `BEF_MAILBOX`, `TG_DNOP`, `TG_FIFOLAT`, `TM_REFCTR`, `TM_DRAW_TEXMAP_*`, `TM_DRAW_CUBEMAP_*`, `TM_RDBK_*`, the `TFP_`/`TFT_` NOP, FAKE, LUT and read-back registers, `IMP_ACCUM`, `IMP_FLAG`, the `IMP_FAKE_*` set, `COMMON_*`, `TML_*`, `TGTML_NOP`) have no ARM address-word constant. Found so far: the diagnostic bus vectors (`aaspoke.tbus`, `tbusdata.Z`) write 0x1004-0x1007 and 0x1022 87 times each, 0x1405 129, 0x7fc0 195, and 0x1409, 0x140a, 0x140d, 0x150c, 0x1c0f, 0x1c3b, 0x1c3c, 0x1c3f, 0x3ff1, 0x3ff6 a few times; the engine program holds 0x1004xxxx-0x100bxxxx constants in `mGL_EX_Initialize` and `mgebi_Bind2dMipmapTexture`. Next: confirm the engine's raster-bus word format in `mgesi_TbusRegWrite` and those two handlers, then write one RM.h comment per register from its writers, and label the ones nothing writes as unknown with these routes.
 
 ## Display generator (DG)
 
@@ -96,9 +96,8 @@ The distributor questions are written in [ucode/ged.md](../ucode/ged.md); listed
 |---|---|---|---|
 | How the hardware chooses between the state-based index and the token's own entry number | `ucode/ged.md` | the distributor program and the firmware's tables | The `irsaudit` distributor tests (`TEST_gedcrc_*`, `TEST_geducode`) and their host models of the expected routing |
 | What transfer ops 1, 3, 5, 6 and 7 test; control fields x, y, r, a, b, c, z and n; the small-constant registers r13, r14, r30-r67 and the sequencer-test registers 0x280-0x2b0 | `ucode/ged.md` | the diagnostic's instruction packer | The `gedSequencer` test's host side and `Get_GED_*_Inst` builders |
-| How the distributor chooses among the engines in its occupancy mask (the mask and its register are read: ucode/ged.md, "Engine occupancy mask") | `ucode/ged.md` | `arm1.u` start-up (`init_ge_config`, `init_ge`); 6.5.5 `sys/kona_if.h` (a round-robin flag no 6.5.30m firmware path tests) | `irsaudit` `ge12_multige_test` and `ge12_splitge_test`; if they predict no assignment, label it unknown with these routes |
 
-**Where this section stopped (2026-10-29).** Not yet worked from software; take the rows in order.
+**Where this section stopped (2026-10-29).** The engine-choice row is closed as unknown with its routes (ucode/ged.md). Next: the `irsaudit` distributor tests for the first row (`TEST_gedcrc_*` compare CRCs against gold files, so look for a host model of the routing in `gedStress*`), then `gedSequencer` and the `Get_GED_*_Inst` builders for the second.
 
 ## Kernel driver
 

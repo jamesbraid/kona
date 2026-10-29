@@ -9,9 +9,9 @@ Counts come from `scripts/inventory.py` run over 544 files in scope; each row of
 
 | Inventory | Items | Documented | Named only | Undocumented |
 |---|---:|---:|---:|---:|
-| Functions (every binary) | 51510 | 1484 (2.9%) | 328 (0.6%) | 49698 (96.5%) |
-| Functions (distinct names) | 18857 | 429 (2.3%) | 55 (0.3%) | 18373 (97.4%) |
-| MMIO offsets | 264 | 196 (74.2%) | 68 (25.8%) | 0 (0.0%) |
+| Functions (every binary) | 51510 | 1489 (2.9%) | 328 (0.6%) | 49693 (96.5%) |
+| Functions (distinct names) | 18857 | 432 (2.3%) | 55 (0.3%) | 18370 (97.4%) |
+| MMIO offsets | 264 | 203 (76.9%) | 61 (23.1%) | 0 (0.0%) |
 | Command tokens | 617 | 617 (100.0%) | 0 (0.0%) | 0 (0.0%) |
 | Ioctls | 113 | 75 (66.4%) | 0 (0.0%) | 38 (33.6%) |
 | Microcode routines and entry points | 3387 | 2597 (76.7%) | 8 (0.2%) | 782 (23.1%) |

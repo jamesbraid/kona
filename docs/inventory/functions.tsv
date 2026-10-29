@@ -1628,9 +1628,9 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x1006928c	248	fpln_stop	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x100693cc	1964	TEST_fpconn	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10069b78	1056	TEST_framebuf	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006b14c	444	ge12_init	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x1006b308	764	ge12_splitge_test	documented	docs/open-questions.md#geometry-distributor
-usr/diags/IR/bin/irsaudit	n32	65281	0x1006b604	740	ge12_multige_test	documented	docs/open-questions.md#geometry-distributor
-usr/diags/IR/bin/irsaudit	n32	65281	0x1006b8e8	512	ge12_noge_test	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x1006b308	764	ge12_splitge_test	documented	ucode/ge_ops.md#settling-the-ties
+usr/diags/IR/bin/irsaudit	n32	65281	0x1006b604	740	ge12_multige_test	documented	ucode/ge_ops.md#settling-the-ties
+usr/diags/IR/bin/irsaudit	n32	65281	0x1006b8e8	512	ge12_noge_test	documented	ucode/ged.md#how-an-entry-is-chosen
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006bae8	252	ge12_stop	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006bbe4	648	geconn	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006be6c	652	split_geconn	undocumented	
@@ -2434,7 +2434,7 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x10164620	420	init_kona_access	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x101647c4	368	kt_read_chain	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10164934	140	kt_dispose_chain	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x101649c0	212	jt_reverse_unpacked_vector	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x10164aa0	388	jt_pack_vector	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x10164aa0	388	jt_pack_vector	documented	ucode/ged.md#how-an-entry-is-chosen
 usr/diags/IR/bin/irsaudit	n32	65281	0x10164c30	376	jt_unpack_vector	documented	ucode/ge_ops.md#settling-the-ties
 usr/diags/IR/bin/irsaudit	n32	65281	0x10164db0	68	jt_new_data_vector	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10164e00	76	jt_new_data_bvector	undocumented	
@@ -2456,7 +2456,7 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x101668d0	216	dispose_netmap	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x101669b0	188	print_netmap	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10166a70	592	jt_test_idcode	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10166cc0	408	jt_lookup_pin_from_bit_offset	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x10166e60	876	jt_set_global_instruction	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x10166e60	876	jt_set_global_instruction	documented	ucode/ged.md#how-an-entry-is-chosen
 usr/diags/IR/bin/irsaudit	n32	65281	0x101671d0	1816	jt_conditional_reset	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x101678f0	904	jt_set_individual_instructions	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10167c80	960	jt_isolate_chip	undocumented	
@@ -2680,7 +2680,7 @@ usr/gfx/KONA/bin/kpm	n32	65281	0x10032b90	188	asym_symbol	undocumented
 usr/gfx/KONA/bin/kpm	n32	65281	0x10032c4c	652	armInspection	undocumented	
 usr/gfx/KONA/bin/kpm	n32	65281	0x10032ed8	324	show_arm_symbols_section	undocumented	
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033020	212	jt_reverse_unpacked_vector	undocumented	
-usr/gfx/KONA/bin/kpm	n32	65281	0x10033100	388	jt_pack_vector	undocumented	
+usr/gfx/KONA/bin/kpm	n32	65281	0x10033100	388	jt_pack_vector	documented	ucode/ged.md#how-an-entry-is-chosen
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033290	376	jt_unpack_vector	documented	ucode/ge_ops.md#settling-the-ties
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033410	68	jt_new_data_vector	undocumented	
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033460	76	jt_new_data_bvector	undocumented	
@@ -2703,7 +2703,7 @@ usr/gfx/KONA/bin/kpm	n32	65281	0x10033c80	40	jt_set_debug_handler	undocumented
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033cb0	184	jt_error	undocumented	
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033d70	116	jt_debug	undocumented	
 usr/gfx/KONA/bin/kpm	n32	65281	0x10033df0	120	jt_perror	undocumented	
-usr/gfx/KONA/bin/kpm	n32	65281	0x10033e70	876	jt_set_global_instruction	undocumented	
+usr/gfx/KONA/bin/kpm	n32	65281	0x10033e70	876	jt_set_global_instruction	documented	ucode/ged.md#how-an-entry-is-chosen
 usr/gfx/KONA/bin/kpm	n32	65281	0x100341e0	1816	jt_conditional_reset	undocumented	
 usr/gfx/KONA/bin/kpm	n32	65281	0x10034900	904	jt_set_individual_instructions	undocumented	
 usr/gfx/KONA/bin/kpm	n32	65281	0x10034c90	960	jt_isolate_chip	undocumented	
