@@ -24,12 +24,9 @@ Routes already tried: `arm1.u` (6.5.30m, the whole image disassembled with its 1
 
 | Question | Owner | Routes tried | Next route |
 |---|---|---|---|
-| Whether the host interface drops `WG_FLUSH_0`/`WG_FLUSH_1` before the token map | `ucode/arm1_firmware.md`, `docs/opengl.md` | firmware: both handlers branch to `arm_badcmd`; the X module sends `WG_FLUSH_1` after cursor loads | `libGLcore` for `WG_FLUSH_0` stores; run the X server under an emulator and see whether a model that dispatches the token hangs |
-| Who writes handler-table indexes 19-21 (used by the raster-position, material and evaluator code) | `ucode/arm1.md` | `init_ged`, `arm_matrixmode`, `xform_init`, `xform_restore` | the remaining stores of descriptor 0x46000020 in `arm1.u` (search by value, not by function) |
-| Which distributor registers descriptors 0x44000020, 0x44200020, 0x44400020 load | `ucode/arm1_firmware.md` | `init_ged` | [ucode/ged.md](../ucode/ged.md)'s register list and the IR diagnostic's `ged*` builders |
-| `dgFetal`'s purpose | `ucode/arm1_firmware.md` | start-up call site | `DoDGRqstFetal` and its strings |
+| `libGLcore.so` (6.5.30m, IP27KONA32) has no store at displacement 0x1fe0, its three 8160-byte stores are into a work record in `__glim_SubdivPatchSGIX` | the kernel's and `libGLcore`'s token-as-data emitters for a constant 0xff word; run the X server under an emulator and see whether a model that dispatches the token hangs |
 
-**Where this pass stopped** (2026-10-29). kpm's ARM-side register table ([ucode/arm1_registers.tsv](../ucode/arm1_registers.tsv)) closed the engine-port, pass-through, 0x2000f4 and token-map-bit questions, and `X_INIT` and `X_LINE6` are labelled in [docs/opengl.md](opengl.md#x-server-module-drawing-commands). The inventory now counts every `arm1.u` symbol as documented, so the earlier gap (short lower-case data names credited only in the call form) no longer shows. Still open above: `WG_FLUSH`, handler-table indexes 19-21, descriptors 0x44000020-0x44400020 and `dgFetal`. Next: search `arm1.u` by value for stores of descriptor 0x46000020 with data 19-21, read `DoDGRqstFetal`, and run the X server under an emulator for the `WG_FLUSH_1` question.
+**Where this pass stopped** (2026-10-29). Answered and moved out: handler-table indexes 19-21 (nothing writes or reads them; the commands that land there are geometry entries, [ucode/arm1.md](../ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler)), descriptors 0x44000020-0x44400020 (distributor registers 0x220-0x222) and `dgFetal` ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md#start-up)). Still open: `WG_FLUSH`.
 
 ## Raster and texture boards (RM, TM)
 
