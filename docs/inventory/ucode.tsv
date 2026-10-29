@@ -176,7 +176,7 @@ arm1.u	symbol	0x0404a488	validRPacket	flags=5	named-only	ucode/arm1_functions.md
 arm1.u	symbol	0x0404a494	validConvType	flags=5	named-only	ucode/arm1_functions.md#splitting-the-data-across-engines	Splitting the data across engines
 arm1.u	symbol	0x0404a4a0	LMLimit	flags=4	named-only	ucode/arm1_functions.md#splitting-the-data-across-engines	Splitting the data across engines
 arm1.u	symbol	0x0404a4e0	LMLimit48	flags=4	understood	GE.h:3913	
-arm1.u	symbol	0x0404a520	int2FloatParams	flags=5	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
+arm1.u	symbol	0x0404a520	int2FloatParams	flags=5	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0404a534	clampParams	flags=5	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
 arm1.u	symbol	0x0404a548	lutParams	flags=5	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
 arm1.u	symbol	0x0404a55c	scaleBiasParams	flags=5	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
@@ -336,9 +336,9 @@ arm1.u	symbol	0x0404c28c	RGBAoutputModuleTable	flags=4	understood	ucode/arm1_fun
 arm1.u	symbol	0x0404c564	OneCmpntoutputModuleTable	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 arm1.u	symbol	0x0404c83c	BitmapOutput	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 arm1.u	symbol	0x0404cb14	ShortCircuitOutput	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
-arm1.u	symbol	0x0404ce5c	compFormatTable	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0404ce5c	compFormatTable	flags=4	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0404ceb0	convIntFmtFcn	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
-arm1.u	symbol	0x0404cec8	convIntFmtReadFcn	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0404cec8	convIntFmtReadFcn	flags=4	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0404cef0	I8_4_8	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 arm1.u	symbol	0x0404cf30	I16_4_8	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 arm1.u	symbol	0x0404cf70	CI16_4_8_ToFBOff8	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
@@ -360,8 +360,8 @@ arm1.u	symbol	0x0404d19c	CI16ToFBPup2	flags=4	understood	ucode/arm1_functions.md
 arm1.u	symbol	0x0404d1b8	S16ToFB	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 arm1.u	symbol	0x0404d1d4	FBToBitmap16	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 arm1.u	symbol	0x0404d1f0	FBToBitmap16Rev	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
-arm1.u	symbol	0x0404d20c	defaultKernel	flags=4	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0404d39c	ConvolveEramLoc	flags=4	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0404d20c	defaultKernel	flags=4	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0404d39c	ConvolveEramLoc	flags=4	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0404d3a8	UConvolveTable	flags=4	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0404d408	promotedTotalSize	flags=4	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 arm1.u	symbol	0x0404d438	saveRestoreCram	flags=4	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
@@ -405,7 +405,7 @@ arm1.u	symbol	0x0404da78	cvmg_rgb10_sr	flags=4	understood	ucode/arm1_functions.m
 arm1.u	symbol	0x0404da80	cvmg_tbm	flags=4	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
 arm1.u	symbol	0x0404da88	ptagBig	flags=4	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
 arm1.u	symbol	0x0404da98	ptagSmall	flags=4	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
-arm1.u	symbol	0x0404daa8	compFormatTable	flags=4	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0404daa8	compFormatTable	flags=4	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0404dacc	NumGedRegs	flags=4	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
 arm1.u	symbol	0x0404dad0	rByteSel_PASS	flags=4	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 arm1.u	symbol	0x0404dad4	rWordSel_PASS	flags=4	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
@@ -475,7 +475,7 @@ arm1.u	symbol	0x0c000000	_estext	flags=1	understood	ucode/arm1_functions.md#link
 arm1.u	linker region	0x0c000000	ucode$$Base	flags=1	understood	ucode/arm1_functions.md#linker-marks-and-other-data	Linker marks and other data
 arm1.u	symbol	0x0c000000	ucode	flags=2	understood	docs/dg.md#helper-functions	Helper functions
 arm1.u	symbol	0x0c00002c	start	flags=3	understood	ucode/arm1_functions.md#start-up-exceptions-and-the-run-time-library	Start-up, exceptions and the run-time library
-arm1.u	symbol	0x0c000124	restore	flags=3	understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
+arm1.u	symbol	0x0c000124	restore	flags=3	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0c0002e8	vector_start	flags=3	understood	ucode/arm1_functions.md#start-up-exceptions-and-the-run-time-library	Start-up, exceptions and the run-time library
 arm1.u	symbol	0x0c000328	hipctl	flags=3	understood	ucode/arm1_functions.md#host-interface-token-map-and-input-loop	Host interface, token map and input loop
 arm1.u	symbol	0x0c000328	vector_end	flags=3	understood	ucode/arm1_functions.md#start-up-exceptions-and-the-run-time-library	Start-up, exceptions and the run-time library
@@ -1299,83 +1299,83 @@ arm1.u	symbol	0x0c02e640	loadBitmapPath	flags=2	understood	ucode/arm1_functions.
 arm1.u	symbol	0x0c02e7b0	loadInputExpandRGBA	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0c02eb10	loadInput1Cmpnt	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0c02ecfc	loadComplexInput	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
-arm1.u	symbol	0x0c02ede0	__glkonSetDefaultKernel	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c02ee5c	LoadKernel	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c02efbc	RestoreKernel	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c02f018	AddHipSetter	flags=2	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-arm1.u	symbol	0x0c02f060	AddShiftAdd	flags=2	named-only	ucode/ge_handlers.md#shiftadds	shiftadd.s
-arm1.u	symbol	0x0c02f0c8	AddIndexLut	flags=2	named-only	ucode/ge_handlers.md#colortables	colortable.S
-arm1.u	symbol	0x0c02f24c	AddUnsignedIntShift	flags=2	named-only	ucode/ge_handlers.md#shiftadds	shiftadd.s
-arm1.u	symbol	0x0c02f2a8	AddExtract	flags=2	named-only	ucode/ge_handlers.md#mextracts	mextract.S
-arm1.u	symbol	0x0c02f2ec	AddDecompressZ	flags=2	named-only	ucode/ge_handlers.md#mdecompresss	mdecompress.S
-arm1.u	symbol	0x0c02f330	AddCopyFloat	flags=2	named-only	ucode/ge_handlers.md#shiftadds	shiftadd.s
-arm1.u	symbol	0x0c02f390	AddShiftRealFifo	flags=2	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-arm1.u	symbol	0x0c02f43c	AddI2FScaleRealFifo	flags=2	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-arm1.u	symbol	0x0c02f4f8	AddCopyFifoLine	flags=2	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-arm1.u	symbol	0x0c02f548	AddInt2Float	flags=2	named-only	ucode/ge_handlers.md#inttofloats	inttofloat.s
-arm1.u	symbol	0x0c02f5c0	AddSignedBias	flags=2	named-only	ucode/ge_handlers.md#scalebiass	scalebias.s
-arm1.u	symbol	0x0c02f624	AddF2I	flags=2	named-only	ucode/ge_handlers.md#floattoints	floattoint.s
-arm1.u	symbol	0x0c02f66c	AddF2ISignScaleBias	flags=2	named-only	ucode/ge_handlers.md#scalebiass	scalebias.s
-arm1.u	symbol	0x0c02f6d4	AddExpand2RGBA	flags=2	named-only	ucode/ge_handlers.md#expands	expand.s
-arm1.u	symbol	0x0c02f720	AddScaleBias	flags=2	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
-arm1.u	symbol	0x0c02f778	AddScaleBias1Cmpnt	flags=2	named-only	ucode/ge_handlers.md#scalebiass	scalebias.s
-arm1.u	symbol	0x0c02f7d0	AddClamp	flags=2	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
-arm1.u	symbol	0x0c02f82c	AddDispatch	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c02f87c	AddRGBALut	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c02f9e4	AddLuminanceLut	flags=2	named-only	ucode/ge_handlers.md#luts	LUT.s
-arm1.u	symbol	0x0c02fad8	__glkonFixConvKernDirection	flags=3	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+arm1.u	symbol	0x0c02ede0	__glkonSetDefaultKernel	flags=3	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02ee5c	LoadKernel	flags=3	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02efbc	RestoreKernel	flags=3	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f018	AddHipSetter	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f060	AddShiftAdd	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f0c8	AddIndexLut	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f24c	AddUnsignedIntShift	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f2a8	AddExtract	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f2ec	AddDecompressZ	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f330	AddCopyFloat	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f390	AddShiftRealFifo	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f43c	AddI2FScaleRealFifo	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f4f8	AddCopyFifoLine	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f548	AddInt2Float	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f5c0	AddSignedBias	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f624	AddF2I	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f66c	AddF2ISignScaleBias	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f6d4	AddExpand2RGBA	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f720	AddScaleBias	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f778	AddScaleBias1Cmpnt	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f7d0	AddClamp	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f82c	AddDispatch	flags=2	understood	ucode/arm1_functions.md#pixel-path-splitting-the-data-across-engines	Pixel path: splitting the data across engines
+arm1.u	symbol	0x0c02f87c	AddRGBALut	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02f9e4	AddLuminanceLut	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02fad8	__glkonFixConvKernDirection	flags=3	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0c02fc54	AddConvolution	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
-arm1.u	symbol	0x0c02fcf8	AddFastSep5Convolution	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c02fd44	AddColorMatrix	flags=2	named-only	ucode/ge_handlers.md#mcolormatrixs	mcolormatrix.S
-arm1.u	symbol	0x0c02fd8c	AddPostClrMtrxScaleBias	flags=2	named-only	ucode/ge_handlers.md#scalebiass	scalebias.s
-arm1.u	symbol	0x0c02fddc	AddPostClrMtrxScaleBias1Cmpnt	flags=2	named-only	ucode/ge_handlers.md#scalebiass	scalebias.s
-arm1.u	symbol	0x0c02fe2c	AddHistogram	flags=2	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
-arm1.u	symbol	0x0c02fe88	AddMinMax	flags=2	named-only	ucode/ge_handlers.md#histograms	histogram.S
-arm1.u	symbol	0x0c02fef8	AddCompOrder	flags=2	named-only	ucode/ge_handlers.md#mcomporders	mcomporder.S
-arm1.u	symbol	0x0c02ff40	AddSumRGB2L	flags=2	named-only	ucode/ge_handlers.md#msums	msum.S
-arm1.u	symbol	0x0c02ff88	AddArbClamp	flags=2	named-only	ucode/ge_handlers.md#mpixouts	mpixout.S
+arm1.u	symbol	0x0c02fcf8	AddFastSep5Convolution	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02fd44	AddColorMatrix	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02fd8c	AddPostClrMtrxScaleBias	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02fddc	AddPostClrMtrxScaleBias1Cmpnt	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02fe2c	AddHistogram	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02fe88	AddMinMax	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02fef8	AddCompOrder	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02ff40	AddSumRGB2L	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c02ff88	AddArbClamp	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0c02ffd4	AddOutput	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 arm1.u	symbol	0x0c0302dc	AddOutput1Cmpnt	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
-arm1.u	symbol	0x0c0303c8	AddLutOutput	flags=2	named-only	ucode/ge_handlers.md#colortables	colortable.S
+arm1.u	symbol	0x0c0303c8	AddLutOutput	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 arm1.u	symbol	0x0c030414	AddConvolutionOutput	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
-arm1.u	symbol	0x0c030540	AddCopyEramToWram	flags=2	named-only	ucode/ge_handlers.md#mpixouts	mpixout.S
-arm1.u	symbol	0x0c0305a4	AddPolygonStippleOutput	flags=2	named-only	ucode/ge_handlers.md#mpixouts	mpixout.S
-arm1.u	symbol	0x0c0305e8	loadConvolutionReadPath	flags=2	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-arm1.u	symbol	0x0c03073c	loadConvolutionPath	flags=2	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-arm1.u	symbol	0x0c0308cc	loadPolygonStipplePath	flags=2	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-arm1.u	symbol	0x0c03092c	U_uExtract	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c0309cc	U_uF2I	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c030a34	U_uDecompress	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c030a80	U_uHipSetter	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c030ae8	U_uShiftAdd	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c030b4c	U_mCopyFifoLine	flags=2	named-only	ucode/ge_isa.md#immediates	Immediates
-arm1.u	symbol	0x0c030bd0	U_uI2F	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c030c60	U_uCopyEramToWram	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
-arm1.u	symbol	0x0c030d10	U_uSignScaleBias	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c030d9c	U_uExpand	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c030fa4	U_uScaleBias	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c0310a4	U_uScaleBias1Cmpnt	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031178	U_uPostClrMtrxScaleBias1Cmpnt	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c03124c	U_uClamp	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c0312d4	U_uLut	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031360	U_mLutCI	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031424	U_uCompOrder	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031470	U_uSumRGB2L	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c0314bc	U_uArbClamp	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c03150c	U_uHistogram	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c03156c	U_uMinMax	flags=2	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
-arm1.u	symbol	0x0c0315c8	U_uLutOutput	flags=2	named-only	ucode/ge_handlers.md#colortables	colortable.S
-arm1.u	symbol	0x0c031690	U_mColorMatrix	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c03172c	U_uPostClrMtrxScaleBias	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031800	U_uConvolutionOutput	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031854	U_uPolygonStippleOutput	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c03188c	U_mPixout_8_16	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031990	U_mPixout_RGB_in_RGBA	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031a14	U_mPixout_2_4	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031b04	U_mPixout_32	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031b6c	U_mPixoutI_4_8	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031bc4	SetupGE_PerRect	flags=3	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
-arm1.u	symbol	0x0c031ca8	U_loadLastGEState	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
+arm1.u	symbol	0x0c030540	AddCopyEramToWram	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c0305a4	AddPolygonStippleOutput	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0c0305e8	loadConvolutionReadPath	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c03073c	loadConvolutionPath	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c0308cc	loadPolygonStipplePath	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c03092c	U_uExtract	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c0309cc	U_uF2I	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c030a34	U_uDecompress	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c030a80	U_uHipSetter	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c030ae8	U_uShiftAdd	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c030b4c	U_mCopyFifoLine	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c030bd0	U_uI2F	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c030c60	U_uCopyEramToWram	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c030d10	U_uSignScaleBias	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c030d9c	U_uExpand	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c030fa4	U_uScaleBias	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c0310a4	U_uScaleBias1Cmpnt	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c031178	U_uPostClrMtrxScaleBias1Cmpnt	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c03124c	U_uClamp	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c0312d4	U_uLut	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c031360	U_mLutCI	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c031424	U_uCompOrder	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c031470	U_uSumRGB2L	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c0314bc	U_uArbClamp	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c03150c	U_uHistogram	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c03156c	U_uMinMax	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c0315c8	U_uLutOutput	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0c031690	U_mColorMatrix	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c03172c	U_uPostClrMtrxScaleBias	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c031800	U_uConvolutionOutput	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0c031854	U_uPolygonStippleOutput	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0c03188c	U_mPixout_8_16	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0c031990	U_mPixout_RGB_in_RGBA	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0c031a14	U_mPixout_2_4	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0c031b04	U_mPixout_32	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0c031b6c	U_mPixoutI_4_8	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
+arm1.u	symbol	0x0c031bc4	SetupGE_PerRect	flags=3	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c031ca8	U_loadLastGEState	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 arm1.u	symbol	0x0c031d24	U_mShortWord	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
 arm1.u	symbol	0x0c031df0	U_mShort8_16	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
 arm1.u	symbol	0x0c031ed0	U_mShort4_8	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
@@ -1383,12 +1383,12 @@ arm1.u	symbol	0x0c031fb0	U_mShort_Complex_To_8	flags=2	named-only	ucode/arm1_fun
 arm1.u	symbol	0x0c032014	U_mShort_Complex_To_16	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
 arm1.u	symbol	0x0c032080	U_uConv3x3G	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
 arm1.u	symbol	0x0c032084	U_uConv5x5S	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c032228	U_uFastConv5x5S	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
+arm1.u	symbol	0x0c032228	U_uFastConv5x5S	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0c0323b8	U_uConv5x5G	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
 arm1.u	symbol	0x0c0325b0	U_uConv7x7G	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
 arm1.u	symbol	0x0c0327a8	Cache	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
 arm1.u	symbol	0x0c0327d4	WriteCram	flags=3	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
-arm1.u	symbol	0x0c03281c	WriteEram	flags=3	understood	GE.h:894	
+arm1.u	symbol	0x0c03281c	WriteEram	flags=3	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0c032860	CopyCramToEram	flags=3	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 arm1.u	symbol	0x0c032880	CopyEramToCram	flags=3	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 arm1.u	symbol	0x0c03289c	IncrGEDPtr	flags=2	named-only	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines	How a handler reaches the engines
@@ -1992,7 +1992,7 @@ ge.u	label	0x0000132b	lXF12		understood	ucode/ge_handlers.md#uxforms	uxform.s
 ge.u	label	0x0000135c	mmo_ObjToEyeSpaceAndSixUserTR		understood	ucode/ge_handlers.md#uxforms	uxform.s
 ge.u	label	0x0000135c	umo_ObjToEyeSpaceAndSixUserTR		understood	ucode/ge_handlers.md#uxforms	uxform.s
 ge.u	label	0x00001362	lXF7		understood	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x000013b4	mmo_Histogram		understood	ucode/ge_handlers.md#histograms	histogram.s
+ge.u	label	0x000013b4	mmo_Histogram		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x000013b4	umo_Histogram		understood	ucode/ge_handlers.md#histograms	histogram.s
 ge.u	label	0x000013ff	mainloop_hist		understood	ucode/ge_handlers.md#histograms	histogram.s
 ge.u	label	0x00001417	epilogue_hist		understood	ucode/ge_handlers.md#histograms	histogram.s
@@ -2011,7 +2011,7 @@ ge.u	label	0x000015f9	ugeb_CRAMBlockLoad		understood	ucode/ge_handlers.md#crambl
 ge.u	label	0x00001613	mainloop_cbl		understood	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
 ge.u	label	0x0000161c	post_loop_cbl		understood	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
 ge.u	label	0x00001623	epilogue_cbl		understood	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
-ge.u	label	0x00001633	mmo_Clamp		understood	ucode/ge_handlers.md#clamps	clamp.s
+ge.u	label	0x00001633	mmo_Clamp		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x00001633	umo_Clamp		understood	ucode/ge_handlers.md#clamps	clamp.s
 ge.u	label	0x00001697	mainloop_clamp		understood	ucode/ge_handlers.md#clamps	clamp.s
 ge.u	label	0x000016b4	epilogue_clamp		understood	ucode/ge_handlers.md#clamps	clamp.s
@@ -2019,7 +2019,7 @@ ge.u	label	0x000016e7	mgeb_ERAMBlockClear		understood	ucode/ge_handlers.md#eramb
 ge.u	label	0x000016e7	ugeb_ERAMBlockClear		understood	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
 ge.u	label	0x0000170b	mainloop_ebc		understood	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
 ge.u	label	0x00001714	epilogue_ebc		understood	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
-ge.u	label	0x0000171e	mmo_Expand		understood	ucode/ge_handlers.md#expands	expand.s
+ge.u	label	0x0000171e	mmo_Expand		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000171e	umo_Expand		understood	ucode/ge_handlers.md#expands	expand.s
 ge.u	label	0x00001760	expand_rgb		understood	ucode/ge_handlers.md#expands	expand.s
 ge.u	label	0x00001768	mainloop_exp_rgb		understood	ucode/ge_handlers.md#expands	expand.s
@@ -2039,7 +2039,7 @@ ge.u	label	0x0000189e	epilogue_exp_ci2		understood	ucode/ge_handlers.md#expands	
 ge.u	label	0x000018c7	expand_single		understood	ucode/ge_handlers.md#expands	expand.s
 ge.u	label	0x000018df	mainloop_exp_single		understood	ucode/ge_handlers.md#expands	expand.s
 ge.u	label	0x000018fc	epilogue_exp_single		understood	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x0000192e	mmo_ShiftAdd		understood	ucode/ge_handlers.md#shiftadds	shiftadd.s
+ge.u	label	0x0000192e	mmo_ShiftAdd		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000192e	umo_ShiftAdd		understood	ucode/ge_handlers.md#shiftadds	shiftadd.s
 ge.u	label	0x00001965	shift_left		understood	ucode/ge_handlers.md#shiftadds	shiftadd.s
 ge.u	label	0x0000196e	mainloop_sa_ls		understood	ucode/ge_handlers.md#shiftadds	shiftadd.s
@@ -2065,7 +2065,7 @@ ge.u	label	0x00001b07	mmo_Mask		understood	ucode/ge_handlers.md#masks	mask.s
 ge.u	label	0x00001b07	umo_Mask		understood	ucode/ge_handlers.md#masks	mask.s
 ge.u	label	0x00001b3e	mainloop_mask		understood	ucode/ge_handlers.md#masks	mask.s
 ge.u	label	0x00001b5b	epilogue_mask		understood	ucode/ge_handlers.md#masks	mask.s
-ge.u	label	0x00001b8d	mmo_LUT16		understood	ucode/ge_handlers.md#luts	LUT.s
+ge.u	label	0x00001b8d	mmo_LUT16		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x00001b8d	umo_LUT16		understood	ucode/ge_handlers.md#luts	LUT.s
 ge.u	label	0x00001c16	mainloop_lut		understood	ucode/ge_handlers.md#luts	LUT.s
 ge.u	label	0x00001c69	postmainloop_lut		understood	ucode/ge_handlers.md#luts	LUT.s
@@ -2078,13 +2078,13 @@ ge.u	label	0x00001e0e	umo_LUT16LA_AlphaOnly		understood	ucode/ge_handlers.md#lut
 ge.u	label	0x00001e97	mainloop_lut_la_alpha_only		understood	ucode/ge_handlers.md#luts	LUT.s
 ge.u	label	0x00001eba	postmainloop_lut_la_alpha_only		understood	ucode/ge_handlers.md#luts	LUT.s
 ge.u	label	0x00001ebe	epilogue_lut_la_alpha_only		understood	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001f07	mmo_ScaleBias		understood	ucode/ge_handlers.md#scalebiass	scalebias.s
+ge.u	label	0x00001f07	mmo_ScaleBias		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x00001f07	umo_ScaleBias		understood	ucode/ge_handlers.md#scalebiass	scalebias.s
 ge.u	label	0x00001f77	umo_DepthFinalCont		understood	ucode/ge_handlers.md#scalebiass	scalebias.s
 ge.u	label	0x00001f82	mainloop_sb		understood	ucode/ge_handlers.md#scalebiass	scalebias.s
 ge.u	label	0x00001f9f	epilogue_sb		understood	ucode/ge_handlers.md#scalebiass	scalebias.s
 ge.u	label	0x00001fd2	umo_DepthFinal		understood	ucode/ge_handlers.md#scalebiass	scalebias.s
-ge.u	label	0x0000200d	mmo_IntToFloat		understood	ucode/ge_handlers.md#inttofloats	inttofloat.s
+ge.u	label	0x0000200d	mmo_IntToFloat		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000200d	umo_IntToFloat		understood	ucode/ge_handlers.md#inttofloats	inttofloat.s
 ge.u	label	0x00002053	mainloop_i2f		understood	ucode/ge_handlers.md#inttofloats	inttofloat.s
 ge.u	label	0x00002070	epilogue_i2f		understood	ucode/ge_handlers.md#inttofloats	inttofloat.s
@@ -2115,7 +2115,7 @@ ge.u	label	0x000026c6	epilogue_b2i_lsb_first		understood	ucode/ge_handlers.md#bi
 ge.u	label	0x000026f7	b2i_msb_first		understood	ucode/ge_handlers.md#bitmaptoints	bitmaptoint.s
 ge.u	label	0x000026ff	mainloop_b2i_msb_first		understood	ucode/ge_handlers.md#bitmaptoints	bitmaptoint.s
 ge.u	label	0x00002722	epilogue_b2i_msb_first		understood	ucode/ge_handlers.md#bitmaptoints	bitmaptoint.s
-ge.u	label	0x00002753	mmo_FloatToInt		understood	ucode/ge_handlers.md#floattoints	floattoint.s
+ge.u	label	0x00002753	mmo_FloatToInt		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x00002753	umo_FloatToInt		understood	ucode/ge_handlers.md#floattoints	floattoint.s
 ge.u	label	0x0000277c	mainloop_f2i		understood	ucode/ge_handlers.md#floattoints	floattoint.s
 ge.u	label	0x00002799	epilogue_f2i		understood	ucode/ge_handlers.md#floattoints	floattoint.s
@@ -2257,7 +2257,7 @@ ge.u	label	0x0000416c	mmo_LutoutI		understood	ucode/ge_handlers.md#colortables	c
 ge.u	label	0x0000418e	mmo_LutoutLA		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x000041b5	mmo_LutoutRGBA		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x000041e0	mLutoutDone		understood	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x000041fb	mmo_Lutout		understood	ucode/ge_handlers.md#colortables	colortable.S
+ge.u	label	0x000041fb	mmo_Lutout		understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 ge.u	label	0x0000422e	mgeb_ColorTableSetup		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x0000424e	mgebi_TextureScaleBias		understood	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x00004278	mgesi_FillTMLoadFifo		understood	ucode/ge_handlers.md#textures	texture.S
@@ -2273,7 +2273,7 @@ ge.u	label	0x0000443b	mgeb_EramMinmaxToCramMinmax		understood	ucode/ge_handlers.
 ge.u	label	0x00004472	mmo_CramMinmaxToEramMinmax		understood	ucode/ge_handlers.md#histograms	histogram.S
 ge.u	label	0x0000449d	mgesi_HistogramUpload		understood	ucode/ge_handlers.md#histograms	histogram.S
 ge.u	label	0x00004503	mgeb_EramIndirectFill		understood	ucode/ge_handlers.md#histograms	histogram.S
-ge.u	label	0x00004530	mgeb_EramFill		understood	ucode/ge_handlers.md#histograms	histogram.S
+ge.u	label	0x00004530	mgeb_EramFill		understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 ge.u	label	0x00004544	DoEramFill		understood	ucode/ge_handlers.md#histograms	histogram.S
 ge.u	label	0x00004786	mgesi_GetDeformationsMask		understood	ucode/ge_handlers.md#deforms	deform.S
 ge.u	label	0x0000479b	mgesi_GetDeformation		understood	ucode/ge_handlers.md#deforms	deform.S
@@ -2394,7 +2394,7 @@ ge.u	label	0x00006ad4	mgesi_WramFifo2ODMA		understood	ucode/ge_handlers.md#hosti
 ge.u	label	0x00006af0	mgesi_Eram2ODMA		understood	ucode/ge_handlers.md#hostios	hostio.S
 ge.u	label	0x00006b13	mgesi_Cram2ODMA		understood	ucode/ge_handlers.md#hostios	hostio.S
 ge.u	label	0x00006b2f	mmo_ReverseComp4Order		understood	ucode/ge_handlers.md#mcomporders	mcomporder.S
-ge.u	label	0x00006b9a	mmo_SumRGB2L		understood	ucode/ge_handlers.md#msums	msum.S
+ge.u	label	0x00006b9a	mmo_SumRGB2L		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x00006c0b	mmo_Expand32_2_4		understood	ucode/ge_handlers.md#mexpands	mexpand.S
 ge.u	label	0x00006c55	mmo_Expand32_1_4		understood	ucode/ge_handlers.md#mexpands	mexpand.S
 ge.u	label	0x00006c9f	mgeb_SwapInGL		understood	ucode/ge_handlers.md#m_pipecontrols	m_pipecontrol.S
@@ -2479,18 +2479,18 @@ ge.u	label	0x0000918f	mgesi_OverlayClearColor		understood	ucode/ge_handlers.md#c
 ge.u	label	0x000091a9	mgesi_ClearIndex		understood	ucode/ge_handlers.md#clears	clear.S
 ge.u	label	0x000091b6	mgesi_ClearLA16		understood	ucode/ge_handlers.md#clears	clear.S
 ge.u	label	0x000091ce	mgesi_ClearColor		understood	ucode/ge_handlers.md#clears	clear.S
-ge.u	label	0x000091e3	mmo_ExtractL12A4		understood	ucode/ge_handlers.md#mextracts	mextract.S
+ge.u	label	0x000091e3	mmo_ExtractL12A4		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x00009296	mmo_DrawTriPrimPhong		understood	ucode/ge_handlers.md#phongs	phong.S
 ge.u	label	0x0000952c	normalize_and_light		understood	ucode/ge_handlers.md#phongs	phong.S
 ge.u	label	0x00009562	mgesi_GetSpecial		understood	ucode/ge_handlers.md#gets	get.S
 ge.u	label	0x0000959a	mgesi_GetRaster		understood	ucode/ge_handlers.md#gets	get.S
 ge.u	label	0x000095cd	mgesi_GetCurrent		understood	ucode/ge_handlers.md#gets	get.S
 ge.u	label	0x000095e5	mmo_SepConvolve7x7_124		understood	ucode/ge_handlers.md#msepconvs	msepconv.S
-ge.u	label	0x00009654	mmo_FastSepConvolve5x5_124		understood	ucode/ge_handlers.md#msepconvs	msepconv.S
+ge.u	label	0x00009654	mmo_FastSepConvolve5x5_124		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x000096ac	mmo_SepConvolve5x5_124		understood	ucode/ge_handlers.md#msepconvs	msepconv.S
 ge.u	label	0x00009710	mmo_SepConvolve3x3_124		understood	ucode/ge_handlers.md#msepconvs	msepconv.S
-ge.u	label	0x00009767	mmo_ColorMatrix		understood	ucode/ge_handlers.md#mcolormatrixs	mcolormatrix.S
-ge.u	label	0x00009793	mmo_DecompressZ16		understood	ucode/ge_handlers.md#mdecompresss	mdecompress.S
+ge.u	label	0x00009767	mmo_ColorMatrix		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+ge.u	label	0x00009793	mmo_DecompressZ16		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x00009805	mmo_Short_Complex_To_16		understood	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
 ge.u	label	0x00009833	mmo_Short_Complex_To_8		understood	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
 ge.u	label	0x00009868	mmo_shortBGRApass		understood	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
@@ -2520,21 +2520,21 @@ ge.u	label	0x00009d6b	mDoPolygonStippleDownload		understood	ucode/ge_handlers.md
 ge.u	label	0x00009dae	mDoPolygonStippleDownloadInner		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x00009ddc	mgeb_PolygonStippleRotate		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x00009df3	mDoPolygonStippleRotate		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009eb1	mmo_PolygonStippleOut		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
+ge.u	label	0x00009eb1	mmo_PolygonStippleOut		understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 ge.u	label	0x00009eeb	mmo_loadConvRGB		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x00009f19	mmo_loadConvRGBA		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x00009f49	mmo_loadConvI		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x00009f79	mmo_loadConvLA		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x00009fa9	mmo_loadConvL		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x00009fd7	mmo_loadConvA		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a002	mmo_ConvolveOut		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
+ge.u	label	0x0000a002	mmo_ConvolveOut		understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 ge.u	label	0x0000a018	mmo_unloadConvRGB		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x0000a049	mmo_unloadConvRGBA		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x0000a07c	mmo_unloadConvI		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x0000a0a9	mmo_unloadConvLA		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x0000a0d8	mmo_unloadConvL		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x0000a105	mmo_unloadConvA		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a132	mmo_ConvEramToWram		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
+ge.u	label	0x0000a132	mmo_ConvEramToWram		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a154	mmo_ArbClamp		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x0000a1c2	mmo_PixoutMerge2_4C		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x0000a214	mmo_PixoutCI_4_8		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
@@ -2547,16 +2547,16 @@ ge.u	label	0x0000a407	mmo_Pixout_2_4NC		understood	ucode/ge_handlers.md#mpixouts
 ge.u	label	0x0000a44e	mmo_Pixout_8_16NC		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x0000a4b5	mmo_Pixout_8_16		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x0000a4d4	mLASTGE		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a532	mmo_I2F_Scale_Skip		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a570	mmo_Shift_Skip		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+ge.u	label	0x0000a532	mmo_I2F_Scale_Skip		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+ge.u	label	0x0000a570	mmo_Shift_Skip		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a5ac	mgeb_EramToEram		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a5c0	mgeb_EramToCram		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a5d4	mgeb_CramToEram		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a5e8	mgeb_LoadCram		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a5fa	mmo_PixStreamBrdcastCore0ANextGE		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a60b	mmo_PixStreamNextGE		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+ge.u	label	0x0000a5fa	mmo_PixStreamBrdcastCore0ANextGE		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+ge.u	label	0x0000a60b	mmo_PixStreamNextGE		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a614	mmo_PixStreamNextGE_BEFWAR		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a62a	mmo_SetupHip		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+ge.u	label	0x0000a62a	mmo_SetupHip		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a6ad	mmo_PixLineNextGE		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a6be	mgesi_PixConv5GVEntry		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a6db	mgeb_PixEndPolygonStipple		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
@@ -2572,11 +2572,11 @@ ge.u	label	0x0000a7aa	mgeb_PixDrawColorSetup		understood	ucode/ge_handlers.md#mp
 ge.u	label	0x0000a7cf	mgeb_BitmapApplyMove		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a7e8	mgeb_BitmapApplyOrig		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a7fe	mgeb_FlipYConvKern		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a864	mgeb_FlipXConvKern		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a8bb	mgeb_StrideEramToCram		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+ge.u	label	0x0000a864	mgeb_FlipXConvKern		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+ge.u	label	0x0000a8bb	mgeb_StrideEramToCram		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a8f7	mgesi_PixQueryCopyOverlap		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a990	mgesi_PixRasterPosSetup		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000ab59	mmo_CopyFifoLine		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+ge.u	label	0x0000ab59	mmo_CopyFifoLine		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000ab9d	mgesi_PipeSetup		understood	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000ad1c	mgeb_XContextInitialize		understood	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000ad39	mgeb_GLContextInitialize		understood	ucode/ge_handlers.md#ges	ge.S
@@ -3155,7 +3155,7 @@ geif.u	dispatch slot	277	mgeb_EndFeedbackMode	handler 0xb720	understood	ucode/ge
 geif.u	dispatch slot	278	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	279	mgeb_EndSelectMode	handler 0xc002	understood	ucode/ge_handlers.md#selects	select.S
 geif.u	dispatch slot	280	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	281	mgeb_EramFill	handler 0x4530	understood	ucode/ge_handlers.md#histograms	histogram.S
+geif.u	dispatch slot	281	mgeb_EramFill	handler 0x4530	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 geif.u	dispatch slot	282	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	283	mgeb_EramIndirectFill	handler 0x4503	understood	ucode/ge_handlers.md#histograms	histogram.S
 geif.u	dispatch slot	284	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3171,7 +3171,7 @@ geif.u	dispatch slot	293	mgeb_EvalMapSpec1D	handler 0x53	understood	ucode/ge_han
 geif.u	dispatch slot	294	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	295	mgeb_EvalMapSpec2D	handler 0x18b	understood	ucode/ge_handlers.md#evalmiscs	evalmisc.s
 geif.u	dispatch slot	296	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	297	mgeb_FlipXConvKern	handler 0xa864	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+geif.u	dispatch slot	297	mgeb_FlipXConvKern	handler 0xa864	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 geif.u	dispatch slot	298	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	299	mgeb_FlipYConvKern	handler 0xa7fe	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 geif.u	dispatch slot	300	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3219,7 +3219,7 @@ geif.u	dispatch slot	341	mgeb_Scale_Color	handler 0xbca7	understood	ucode/ge_han
 geif.u	dispatch slot	342	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	343	mgeb_SetTfanPolyMode	handler 0xb51f	understood	ucode/ge_handlers.md#entrys	entry.S
 geif.u	dispatch slot	344	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	345	mgeb_StrideEramToCram	handler 0xa8bb	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+geif.u	dispatch slot	345	mgeb_StrideEramToCram	handler 0xa8bb	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 geif.u	dispatch slot	346	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	347	mgeb_Translate_Color	handler 0xbc2b	understood	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 geif.u	dispatch slot	348	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3381,8 +3381,8 @@ geif.u	dispatch slot	503	mgesi_VCbusWrite	handler 0x5305	understood	ucode/ge_han
 geif.u	dispatch slot	504	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	505	mgesi_VCbusWriteMultiple	handler 0x52e8	understood	ucode/ge_handlers.md#videos	video.S
 geif.u	dispatch slot	506	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	507	mmo_ColorMatrix	handler 0x9767	understood	ucode/ge_handlers.md#mcolormatrixs	mcolormatrix.S
+geif.u	dispatch slot	507	mmo_ColorMatrix	handler 0x9767	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 geif.u	dispatch slot	508	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	509	mmo_Clamp	handler 0x1633	understood	ucode/ge_handlers.md#clamps	clamp.s
+geif.u	dispatch slot	509	mmo_Clamp	handler 0x1633	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 geif.u	dispatch slot	510	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	511	mmo_DecompressZ16	handler 0x9793	understood	ucode/ge_handlers.md#mdecompresss	mdecompress.S
+geif.u	dispatch slot	511	mmo_DecompressZ16	handler 0x9793	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
