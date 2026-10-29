@@ -365,6 +365,52 @@ The bytes of a reply on the internal read-back bus (`rbus_data`, 16 bits per fil
 
 **Established, negative.** The saved context image the ARM loads ([ge.md](ge.md#context-save-and-restore)) has records for the output-DMA registers, the `BEF` shadow, the engine code, external and work RAMs, ARM-side regions and the distributor registers. It has no record for the raster board: no tag stands for pixel-generator, texture or image-processor state, and the context packets the driver sends ([kona_kern.h](../kona_kernel/include/kona_kern.h)) carry no raster register. The raster side has one shadow facility, the `BEF` registers `BEF_REGSHADOW` (0x100), `_READ` (0x200), `_WRITE` (0x300) and the byte mask `BEF_REGSHADOW_BMASK` (0x7), which live on the geometry board's back-end chip, not on a raster chip; the context image holds that shadow as 89 words (tag 0x20). **Inferred:** a raster board's registers are restored from that shadow by writing it back through the register-write path ([How the ARM firmware writes raster registers](#how-the-arm-firmware-writes-raster-registers)), and the framebuffer and texture memory contents are not saved by the context switch but moved by the memory commands (`MEM_SWAPOUT`/`MEM_SWAPIN`, [kernel.md](kernel.md#commands-the-driver-sends)); the header's memory types are ARM, shared ARM (display lists), geometry-engine and texture memory, with no framebuffer type. The layout of the 89 words is in [the next section](#the-89-word-register-shadow).
 
+## The diagnostic data files
+
+Each file this page draws on, with what it holds. All are IRIX 6.5.30m, in usr/diags/IR/data.
+
+`aaspoke.tbus` is a raster-bus vector file of 1108 lines in the form `0 m W`:
+500 mode-1 register writes and 304 words each in modes 3 and 2.
+**Established** from the file: its first word, 0x1c0d1c0d00011006, writes 0x00011006 to `IMP_BL`,
+and its other words come in runs that open with mode 3 and then alternate.
+This is the format `TEST_tbusfile` at 0x1010a75c parses, skipping comment lines.
+**Inferred** from the shared name: these are the bus words of the antialiased-spoke drawing,
+the test `TEST_aaspoke` at 0x101022b8 runs after looking up a data file.
+
+`tbusdata.Z` is a compressed vector file in the same format, six test files run together.
+**Established:** expanded, it holds 259364 vector lines,
+with 100403 register writes in mode 1, 105362 words in mode 3
+and 53599 in mode 2, and each test opens with a comment line naming its source file:
+tex2d_detail.tbus, samplemask.tbus, msalpha.tbus, linesRus.tbus, projtex.tbus and fog1.tbus.
+The player at 0x1010a75c skips those comment lines, so the bus sees only the words.
+
+`rm11.netmap` is the uncompressed copy of the `rm11` netlist, byte for byte the expanded `rm11.netmap.Z`.
+**Established:** 11591 lines, each a net number, a net name and one chip pin written as instance, chip type and pin bit.
+Of those pins, 6600 belong to the `imp8dc` chips and 2536 to the `tm1cc` texture memories,
+with the rest on the pixel generator, the texture generator and the four filters.
+**Inferred** from its caller: `irsaudit` loads netlists with `read_netmap` at 0x101665d0,
+called from `kt_report_pin_status`, to name the pins behind a failed test.
+
+`pg2.tcbist` is the pixel generator's internal self-test script, 595 lines of keyword commands.
+**Established:** it declares 8 RAMs by anonymous instance path with no widths,
+then drives the test with 258 control writes of 36-bit patterns, 251 polls,
+resets, sleeps and ten expected-result checks; its keywords are the strings `irsaudit` holds at 0x101740e0.
+**Inferred** from that vocabulary and the reader's calls: `TEST_rm_intbist` at 0x100830b0
+looks up a data file and parses it with `jt_read_internal_bist_info`, and this is one such file.
+
+`tg2.qtcbist` is a short self-test script for the texture generator, 44 lines in the same keywords.
+**Established:** it declares five RAMs, all in the generator's front end:
+two FIFOs of the S group, two of the A group and one register FIFO.
+**Inferred** from the q in its name and its size against the 8475-byte `tg2.tcbist`: the quick variant of the generator's test,
+parsed like the others by the routine at 0x100160ec.
+
+`tf1.tcbist` is the texture filter's self-test script, 387 lines.
+**Established:** its 32 RAM lines fall in two halves:
+17 under a `uib` block (fog tables, pixel-generator and image-processor FIFOs) and 15 under a `utd` block
+(the four lookup-table RAMs, two coordinate tables, the texture-generator FIFO and eight texture-memory FIFOs).
+**Inferred:** that split ties the fog registers to one half and the table registers to the other,
+as [chips on each board](#chips-on-each-board) reads, and the file is parsed by the routine at 0x100160ec.
+
 ## Display and scanout from the raster boards
 
 **Established** (`fpln_rm11_2voc_2rm_0` netmap; the other `fpln_*` netlists are the same wiring with different board counts). The framebuffer chips feed the display-generator board over a backplane bus of 160 wires: each `imp8dc` has two 8-bit video outputs `impadg_data[8]` and `impbdg_data[8]`, ten chips per `rm11` make 160 bits, and the 160 wires split into four sets of 40 that land on the four XMAP chips' `pixin[40]` (xmap0 gets wires 0-39, xmap1 40-79, xmap2 80-119, xmap3 120-159; for example `impp0_v[0]` is IMP 0's output A bit 0 and the first wire of xmap0). Display-to-framebuffer control goes back on two nets: a video request (`dgvreq`, from the display-generator board's XMAP and `fm0` to every IMP's `dgimp_data` pin, 10 chips) and a shift-enable (`dg.sact`, from `xmap0:sact` to every IMP's `dgimp_shift`). The IMP also has a video clock input `vclk`.
