@@ -3891,9 +3891,10 @@ enum kona_hp_token {
      * 0x0c03f00c. */
 
     /* `HP_GETCOLORTABLE` (0x0ea). Inferred: Query: converts target and format
-     * to table and format indices (1 for format 0x1900-0x1905) and calls
-     * do_getcolortable: bounds check, count rounded up to 32, start_rdata,
-     * count x 4 to 0x476 (the reply length in words: each table or map entry
+     * to table and format indices (format 0x1903-0x1905, the single-component
+     * red, green and blue, gives index 1; every other format goes through
+     * internalformat_index) and calls do_getcolortable: bounds check, count
+     * rounded up to 32, start_rdata, count x 4 to 0x476 (the reply length in words: each table or map entry
      * comes back as four words), engine LutUpload (slot 210), finish_rdata.
      * Payload 4: table target, format, first entry, entry count (host asks at
      * most 512). Established: the token map runs `arm_getcolortable` at
