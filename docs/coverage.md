@@ -66,7 +66,7 @@ Raster manager and texture memory: rasterisation, pixel ownership, framebuffer a
 | Command and FIFO formats | partial | `RM.h`, `docs/rm.md` | raster, texture and display | the ARM firmware writes a raster register as descriptor 0x58404800 (or 0x584fc800 for the IMP chips), a select word, an address word whose low half is the RM.h register index, and the value; the high half of the address word and the select word are unknown; the texture and pixel data formats are not read |
 | DMA | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | Interrupts | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
-| Reset | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
+| Reset | partial | `RM.h`, `docs/rm.md` | raster, texture and display | start-up configuration through the scan chain and the register writes per chip type; IMP reset (reset_imps) as a write of 7 then 0xf to chip register 0x34 per chip; no reset path for pg, tg, tf, tm found; the register contents after reset unknown |
 | Context save and restore | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | Texture formats and filtering (incl. precision) | partial | `RM.h`, `docs/rm.md` | raster, texture and display | texel formats, filter modes, filter4 S1.7 weights, sharpen/detail 8+2-bit codes, LOD-bias 4.4 scale; no raster microcode exists, so per-pixel LOD, sub-texel and weight widths are inside fixed-function chips; inter-chip bus widths from the diagnostic netlists bound them (11-bit screen x/y, 16-bit texel lanes, 31-bit texture-generator word, 80-bit fragment bus; docs/rm.md); the geometry program's 2^20 depth-range and polygon-offset scale is inferred |
 | Display and scanout | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
@@ -80,7 +80,7 @@ Display generator: video timing, scanout, palettes, cursor and retrace.
 | Registers and fields | partial | `DG.h`, `docs/dg.md` | display | indirect port HH_VC_ADDRESS/HH_VC_DATA and every address the kernel writes through it (cursor 0x100-0x103, DAC cursor 0x22, per-channel 0x0b00 blocks, swap strobe 0x80); register names and the timing, palette and mode registers are not reachable from the kernel |
 | Command and FIFO formats | partial | `DG.h`, `docs/dg.md` | display | DISPMODE (3 words) and RETRACE_SEQID (1 word) payloads from the kernel; X_LOADCURSOR and X_LOADCURSORCOLOR payloads (X module) not read |
 | Interrupts | partial | `DG.h`, `docs/hip.md` | display | VIDEO (bit 3) interrupt serviced by retrace-sequence completion, cursor update and swap; VOC (bit 9) calls the genlock notifier; when the hardware raises VIDEO unknown |
-| Reset | none | `DG.h`, `docs/dg.md` | display |  |
+| Reset | partial | `DG.h`, `docs/dg.md` | display | start-up order (`init_dg_board`: scan-chain config, blank all channels, `dgAutoInit` from the stored combination in EEPROM, config info) and the run-time ResetRMBoards request, from the ARM firmware (docs/dg.md); the display generator's own reset register unknown |
 | Display and scanout | partial | `DG.h`, `docs/dg.md` | display | cursor select, position and channel arbitration; swap and retrace-sequence protocol (HH_SEQID); video timing, formats, palettes, genlock state and option boards have no kernel code and are unread |
 
 ### Kernel driver

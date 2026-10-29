@@ -68,3 +68,11 @@ When the marker is reached, `kona_swap_complete` runs. `kona_mswap_complete` is 
 ## Not covered
 
 Everything about video timing, video format tables, the combiner, palettes, gamma, blanking, genlock lock state and the display-option boards. The driver has no code for them, so the kernel cannot show them. The microcode tables in `ucode/dg4/` and `ucode/vof/` and the X server modules are the next places to look (coverage.md, microcode section).
+
+## Start-up and reset as the ARM firmware performs them
+
+The video timing and combination handling the kernel never touches is in the ARM firmware ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md), IRIX 6.5.30m); [ucode/tport.md](../ucode/tport.md) covers a second image with the same code. Labels as above.
+
+**Established** (`init_dg_board` 0x0c003d3c, `DoDGRqstAutoInit` 0x0c004674). At start-up the ARM configures the display-generator board through the boundary-scan chain (`init_dg_jtag`), blanks every channel (`dgTempBlankAllChannels`), runs `dgAutoInit` and refreshes its configuration record (`dgUpdateConfigInfo`). `dgAutoInit` reads a stored combination from EEPROM (`eeprom_read`) and loads it (`dgLoadCombo`); a bad magic cookie, a combination too large for the scratch memory or a failed flash image falls back to the emergency backup format, as the messages in [ucode/tport.md](../ucode/tport.md) say. Not run when simulated. The 93 requests of `arm_video_cmd` that follow are in [ucode/dg_dispatch.tsv](../ucode/dg_dispatch.tsv).
+
+**Established.** The run-time reset is the request `DoDGRqstResetRMBoards`: blank all channels, shut down the requesters on each present video output chip, wait, reset the raster boards' pixel chips ([rm.md](rm.md#reset-of-the-raster-boards)), restart the master video output chip, with the log lines "ResetRMBoards starting..." and "ResetRMBoards complete!". **Unknown:** the display generator's own reset register and whether a request or an interrupt reaches it from the host.
