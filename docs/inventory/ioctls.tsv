@@ -28,7 +28,7 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 10000	0x2710	kona private	curproc_abi	sent,table	konReadFBBlock;konReadImage;kon_loadGC	6	usr/lib/X11/dyDDX/kona.so:konReadFBBlock	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10001	0x2711	kona private	curproc_abi	sent,table	konDrawImage;konWriteFBSubBlock	6	usr/lib/X11/dyDDX/kona.so:konDrawImage	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10002	0x2712	kona private	curproc_abi	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
-10003	0x2713	kona private	kona_finish_selectfeed	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
+10003	0x2713	kona private	kona_finish_selectfeed	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	understood	docs/kernel-functions.md#dma-support-kona_dmao	DMA support: `kona_dma.o`
 10005	0x2715	kona private	copyin	sent,table	cfb16DoBitbltXor;konCursorOn;konDisplayCursor	6	usr/lib/X11/dyDDX/kona.so:cfb16DoBitbltXor	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10006	0x2716	kona private	copyin	sent,table	kona_getconfig	3	usr/gfx/gfxinfo:kona_getconfig	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10008	0x2718	kona private		table		2		understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls

@@ -161,3 +161,138 @@ The map RAM is an array of 32-bit entries at window offset 0x100000 (stride 4), 
   `HH_TBUS_STATUS` (0x8003a8) and counts the pipe as active when bit 2 is set or the ARM interrupt handler has set the activity flag (+5464). A live pipe with no activity (and with the debugger flag clear) logs "pipe hung" (tag 2112) and forces every timeout to fire. It writes 4 to `HH_TBUS_STATUS` and clears the activity flag, then calls `kona_timein`.
 - `kona_timeout` (`kona_timeout.o` +0x3f0, 400 bytes): **Established.** Schedules a handler to run after a number of ticks: takes a record from
   `kona_timeout_alloc`, fills it (handler, the delay, the interrupt-level routine and three arguments), inserts it into the list (+5376) so remaining ticks stay delta-coded, and, if the list was empty, arms the tick with `kona_sched_tick` for 500000 us; when arming fails it frees the record and returns 0. Returns the record, used as the handle by `kona_untimeout`.
+
+## DMA support: `kona_dma.o`
+
+A DMA vector (`kona_dmavec`) is a 24-byte descriptor: base pointer at +0, total length at +8, line length at +12, stride (the gap between lines) at +16.
+
+- `lock_dmavec` (`kona_dma.o` +0x0, 200 bytes): **Established.** Pins the pages of one DMA vector in memory. A zero line length means one flat run. It computes the span covered (the total for a flat vector, otherwise one line plus (line + stride) for each further line), returns EINVAL (22) for a zero span and
+  E2BIG (7) when the span in 16 KB pages would not fit in 32 bits, then calls `userdma` on the base address. Returns the span, or a negative error. No register is touched.
+- `unlock_dmavec` (`kona_dma.o` +0xc8, 104 bytes): **Established.** Releases what
+  `lock_dmavec` pinned: it recomputes the same span from the vector and calls `undma` on the base address. No register is touched.
+- `kona_dmaread` (`kona_dma.o` +0x130, 312 bytes): **Established.** The pipe-to-host DMA ioctl: it starts select feedback with
+  `kona_start_selectfeed`, then writes the caller's command groups to the command port (+2304 of the state), each as its token word followed by the count of payload words that follows, so the pipe produces the data, and ends with `kona_finish_selectfeed`. It counts itself in the board's in-flight count (+80) while it runs and returns the finish result.
+- `kona_idma_timeout` (`kona_dma.o` +0x440, 140 bytes): **Established.** Timeout handler for an input DMA that the pipe never completed: under the state lock, if the DMA is still recorded (+5192) it logs the pipe-space address and length (tag 2122), kills the pipe with
+  `kona_die` reason 4, wakes the waiter on the semaphore at +5176 and clears the record.
+- `kona_dmapool` (`kona_dma.o` +0xa44, 488 bytes): **Established.** The ioctl that gives the pipe a host buffer it can fetch from during rendering (a DMA pool), for one rendering node or its share group. Only pool type 0 is accepted (other types return 2). After
+  `RRM_CheckValidFault` it picks the pool record (the node's at private record +208, or the share group's at +72 when the share argument is set; an existing pool of the other kind gives 34). It releases the previous buffer (`undma`, `free_gfx_io_space`), requires the new address to be 16 KB aligned (EINVAL, 22) or zero, pins it with
+  `userdma`, maps it with `alloc_gfx_io_space` (page shift from `kona_mapram_pagesizeshiftof`), stores address, length, mapping and shift in the record, calls
+  `kona_dmapool_update_pipe`, and sends a one-word GED_NOP (370) to the command port. Returns the pool record or an error.
+- `kona_dmapool_update` (`kona_dma.o` +0xc2c, 76 bytes): **Established.** Re-sends the DMA pool of a node to the pipe: it picks the shared pool (when the node has a share group with a pool) or the node's own pool record and calls
+  `kona_dmapool_update_pipe`.
+- `kona_dmapool_destroy` (`kona_dma.o` +0xc78, 124 bytes): **Established.** Drops a pool: if it is mapped, it unpins the buffer
+  (`undma`) and frees the pipe-space mapping (`free_gfx_io_space`), then clears the pool's length.
+- `kona_selectfeed_timeout` (`kona_dma.o` +0x10b4, 164 bytes): **Established.** Timeout handler for select feedback: under the state lock, if a feed is pending (record +64) it logs the context and length (tag 2123), kills the pipe with reason 5, sets the returned word count to -1 and wakes the sleeper on the context's semaphore (+48).
+- `abi32_to_kona_dmaread_args` (`kona_dma.o` +0x17d0, 204 bytes): **Established.** Widens the 32-bit caller's read-DMA argument (148 bytes) for the 64-bit kernel: the buffer pointer is zero-extended into +0, the total length, line length and stride go to +8, +12 and +16, the 32 caller command words to +24 and their count to +152. On the sizing call it only reports 148 bytes, allocating a buffer when the caller's is too small.
+- `abi32_to_kona_dmawrite_args` (`kona_dma.o` +0x189c, 188 bytes): **Established.** Same conversion for a write-DMA argument: the table pointer goes to +0, the entry count to +8, the 32 caller command words to +12 and the command count to +140.
+- `abi32_to_kona_dmapool_args` (`kona_dma.o` +0x1958, 128 bytes): **Established.** Widens the 16-byte 32-bit pool argument: address to +0 (zero-extended), length to +8, type to +12, share to +16.
+- `abi32_to_kona_dmavec` (`kona_dma.o` +0x19d8, 128 bytes): **Established.** Widens one 32-bit vector descriptor to the 24-byte kernel form: pointer, total length, line length and stride.
+- `abi32_to_kona_start_selectfeed_args` (`kona_dma.o` +0x1a58, 136 bytes): **Established.** Widens the 20-byte select-feedback start argument: the vector goes to +0, +8, +12, +16 and the snapshot word to +24.
+- `abi32_to_kona_diag_map` (`kona_dma.o` +0x1ae0, 120 bytes): **Established.** Widens the 20-byte diagnostic-map argument: address to +0, length to +8 and flags to +16.
+- `kona_diag_map_to_abi32` (`kona_dma.o` +0x1b58, 136 bytes): **Established.** Narrows the diagnostic-map result back for a 32-bit caller: the address, length, returned high word, flags and returned low word go out as five 32-bit words.
+
+## Video, swap and retrace: `kona_video.o`
+
+Swaps and retrace waits are not register writes: the driver puts a marker into the pipe's command stream (token 487, `RETRACE_SEQID`) and runs a callback when the video interrupt shows the pipe has reached it. The display-generator register pair used for the swap strobe and the cursor is `HH_VC_ADDRESS` (0x8003c0) and `HH_VC_DATA` (0x8003d0), an address and data pair.
+
+- `KONApositioncursor` (`kona_video.o` +0x74, 92 bytes): **Established.** Records a new cursor position: under the state lock (+3520) it stores the x halfword at +3564 and the y halfword at +3566 and sets the cursor-changed flag (+3553). It writes no register;
+  `kona_video_intr` sends the position to the display generator at the next video interrupt.
+- `kona_video_rundown` (`kona_video.o` +0xd0, 168 bytes): **Established.** Removes a rendering node from the retrace queue (head +3544, tail +3536, linked through the private record +136). If the node's retrace record (+120) was waiting it cancels its timeout with
+  `kona_untimeout`, unlinks the node and returns 1; otherwise 0.
+- `kona_video_cleanup` (`kona_video.o` +0x178, 84 bytes): **Established.** Calls
+  `kona_video_rundown` for a node under the video lock (+3520) so a node being destroyed leaves the retrace queue safely.
+- `KONAunschedswapbuf` (`kona_video.o` +0xd10, 28 bytes): **Established.** The board's operation to cancel a scheduled swap: it calls
+  `kona_video_cleanup` on the connection's pipe state.
+- `kona_swap_complete` (`kona_video.o` +0x1cc, 236 bytes): **Established.** Callback run when the pipe has passed a swap marker (second argument is the node, third nonzero for a timeout, which is logged with tag 2103). It looks for the buffer's pane pointer among the swap-table entries of the pipe (table +184, count +176), and for each match writes 128 to
+  `HH_VC_ADDRESS` (0x8003c0) and 2 to `HH_VC_DATA` (0x8003d0): the swap strobe of the display generator. It then calls `rrmValidateBuffer` for the node.
+- `kona_gsync_complete` (`kona_video.o` +0x2b8, 80 bytes): **Established.** Callback for a genlock-synchronised retrace: a timeout (third argument nonzero) is logged with tag 2104, and it calls
+  `rrmValidateRetrace` for the node. No register is touched.
+- `kona_retrace_timeout` (`kona_video.o` +0x308, 192 bytes): **Established.** Timeout handler for a queued retrace record: under the video lock, if the node's record is still waiting (+120), it clears the flag, removes the node with
+  `kona_video_rundown` and calls the record's callback (+16) with the timeout flag 1.
+- `kona_retrace_setup` (`kona_video.o` +0x3c8, 160 bytes): **Established.** Queues a retrace record: under the video lock it takes the next sequence number from the counter at +3528, stores the number (record +0) and the callback (record +16) in the node's record (private record +112) and appends the node to the retrace queue (tail +3536, head +3544). It returns the record.
+- `kona_retrace_activate` (`kona_video.o` +0x468, 640 bytes): **Established.** Starts the wait for a queued record: arms a software timeout
+  (`kona_timeout`, handle stored in the record at +8) and writes to the command port: kick `HH_GINTR_INFO` (0xc00108) with 0x30000, token 487 (`RETRACE_SEQID`), kick 0x10000, the record's sequence number as the one payload word, kick 0.
+- `KONAschedretraceevent` (`kona_video.o` +0xd2c, 64 bytes): **Established.** The board's operation for a bare retrace wait (no buffer swap): it queues the node with
+  `kona_retrace_setup` using the generic callback from its data and starts it with `kona_retrace_activate`. Returns 0.
+- `KONAsetdisplaymode` (`kona_video.o` +0xd6c, 664 bytes): **Established.** The display-mode operation: after
+  `RRM_CheckValidFault` it stores the caller's mode byte in the per-index table at +4360 and sends token 486 (`DISPMODE`) with three payload words: 0, the index and the byte, between kicks of `HH_GINTR_INFO` (0xc00108). Returns 0, or -14 for a failed caller check.
+- `kona_mswap_complete` (`kona_video.o` +0x1004, 308 bytes): **Established.** Completion for managed (multi-pipe) swaps: it walks the 96-entry table of pending swaps (clip ids at +3976, sequence numbers at +3592), and for each whose sequence number the pipe has reached (or all of them after a timeout) calls
+  `rrmValidateMGRSwapBuf`, decrements the pending count (+3576) and clears the entry. After a timeout it logs tag 2105; when nothing is pending it cancels the timeout (+3584).
+- `KONAschedmgrswapbuf` (`kona_video.o` +0x1138, 816 bytes): **Established.** Schedules a swap for the manager of a multi-pipe window: after
+  `RRM_CheckValidFault` it restarts the manager timeout, takes the next sequence number (+3528), records the clip id and number in the swap table at the entry for the swap-buffer id (+3976 and +3592), then writes to the command port: kick 0x30000, token 486 (`DISPMODE`), kick 0x10000, the clip id, the swap-buffer id and the display-mode word, token 487 (`RETRACE_SEQID`) with the sequence number, kick 0. Returns 0.
+- `kona_enable_dac_cursor` (`kona_video.o` +0x1694, 292 bytes): **Established.** Re-initialises the cursor generators of all eight display channels through the
+  `HH_VC_ADDRESS` / `HH_VC_DATA` pair. If the DAC cursor flag (+3554) is set it first writes address 0x103 with data 0. For channel n it writes address 0x0b00 + 0x100n with data 4 and then 2, and address 0x0b02 + 0x100n with 5 when n is the cursor channel (+3556) and the DAC flag is set, else 0.
+
+## Rendering nodes: `kona_ddrn.o`
+
+A rendering node's driver-private record is 256 bytes (the layout is in [kona_kern.h](../kona_kernel/include/kona_kern.h)). It holds the return-data page, the 64 KB context save area, the retrace record (+112), the lists of memory blocks, and a bind marker halfword (+248).
+
+- `KONAcreateddrn` (`kona_ddrn.o` +0x0, 224 bytes): **Established.** The board's operation for creating a rendering node. It allocates and zeroes the private record
+  (`kern_malloc` of 256 bytes), stores it in the node (+112), sets the bind marker (+248) to -1, and initialises the semaphore at +80. It takes one 16 KB page for return data (`kvpalloc`, address at +0) and stores its pipe-space address pair (frame number with 0x10000000 at +8, in-page offset with 0x9000 at +12). It takes a 64 KB context save area (`kvpalloc` of four pages, at +16) and maps it into pipe space with `alloc_gfx_io_space` (shift 14), storing the address at +24. Returns 0. No register is touched.
+- `kona_mopup_complete` (`kona_ddrn.o` +0xe0, 120 bytes): **Established.** Completion of the context mop-up request, run from GE event 0x103 or from its timeout. It wakes the waiter on the semaphore at +5320. On a timeout it logs tag 2121 and kills the pipe with
+  `kona_die` reason 17; otherwise it cancels the timeout (+5336). It then clears that handle.
+- `KONAdestroyddrn` (`kona_ddrn.o` +0x158, 1228 bytes): **Established.** The board's operation for destroying a rendering node. Unless the pipe is dead it asks the pipe to drop the node's context: it arms a timeout (+5336) and writes to the command port the token 504
+  (`CONTEXT_MOPUP`), kick 0x10000, the token 259 (the event it expects back) and kick 0, attaching to flow control as needed, then sleeps on the semaphore at +5320 until `kona_mopup_complete` runs. It then frees what the node owns: the return page (`kvpfree`), the semaphore, the DMA pools
+  (`kona_dmapool_destroy`), the retrace queue entry (`kona_video_cleanup`), the hyperpipe binding (`kona_nclops_cleanup`), the memory blocks
+  (`kona_mem_destroy`) and share group (`kona_unshare`), the save area's pipe-space mapping (`free_gfx_io_space`) and pages, any select-feedback lock
+  (`unlock_dmavec`) and its mapping, and finally the private record (`kern_free`). It also runs `clean_up_other_gfxp` for the node's connections.
+
+## Context switching and clip validation: `kona_context.o`
+
+- `kona_deact_timeout` (`kona_context.o` +0x9c, 136 bytes): **Established.** Timeout handler for a context deactivation the pipe never reported: under the state lock, if the deactivate timeout record (+5288) is still set, it logs tag 2125, kills the pipe with
+  `kona_die` reason 2, and signals the semaphore at +5272 the switch is sleeping on, clearing the record.
+- `KONApcxswap` (`kona_context.o` +0x680, 2068 bytes): **Established.** The context-switch operation: it makes a rendering node's context the one the pipe runs. It returns at once if the pipe is dead (+2172). It cleans up other connections of the thread
+  (`clean_up_other_gfxp`) and makes the incoming node's blocks resident (`kona_mem_validate`). For the outgoing context it arms the deactivate timeout, sends token 508 (`CONTEXT_DEACTIVATE`) with the context's slot number (a 176-byte slot index), and sleeps on the context semaphore until GE event 0x101. For an incoming context seen before it sends token 505
+  (`CONTEXT_LOAD`) with the image length word, the save area's pipe-space address pair and the marker 0xedededed. For a new one it sends token 509 (`CONTEXT_INIT`) with the address pair and 0x10000, then token 498 (`RDATA_SETUP`) with the return-data address pair and 0x4000, and sets the context's initialised flag. It marks the incoming connection used (word +4 gets bit 1) and calls
+  `kona_act_pcx`. Each packet is bracketed by kicks of `HH_GINTR_INFO` (0xc00108): 0x30000 before the token, 0x10000 before the payload and 0 at the end, with flow-control attach and detach (widget register 0x7c) around the waits.
+- `KONApcxswitch` (`kona_context.o` +0xe94, 52 bytes): **Established.** The board's alternative switch operation: it only logs that it should never be called.
+  `KONApcxswap` does the work.
+- `KONAvalidateclip` (`kona_context.o` +0xec8, 1288 bytes): **Established.** Sends the display-clip validation packets for a rendering node outside a context switch. Each is bracketed by the kicks of
+  `HH_GINTR_INFO` (0xc00108). It sends token 499 (`VALIDATE_CLIP`) with the draw drawable's clip words when the drawable's change counter differs from the node's cached copy (+136), token 494 (`VALIDATE_READCLIP`) with the read drawable's words when its counter differs from the cache at +140, and always token 500
+  (`VALIDATE_BANK`) with the two display-bank halfwords. It ends with token 370 (GED_NOP) and a zero word, and refreshes the cached counters.
+- `KONAsetnullclip` (`kona_context.o` +0x13d0, 56 bytes): **Established.** Resets a clip record to the empty clip: it stores 0 in words +8, +12, +16, +20, +24, +48 and +60, -1 in +40, and 1 in +44 and +52. No register is touched.
+
+## Pipe memory pools: `kona_mem.o`
+
+The pipe has four memory pools, each with a 24-byte pool record at state +4976 + 24 x pool number (capacity from the configuration record's memory-type record). A block is a 96-byte record of one allocation: +2 not resident, +3 transfer state, +16 host save buffer, +24 its pipe-space address, +32 saved size, +40 owner list head, +48 and +64 list links, +72 a semaphore held while a swap is in flight. Tokens named here are written to the command port between kicks of `HH_GINTR_INFO` (0xc00108): 0x30000 before the token, 0x10000 before the payload, 0 at the end.
+
+- `kona_mem_swapout_func` (`kona_mem.o` +0x40, 1012 bytes): **Established.** Sends the packet that makes the pipe copy a block out to host memory. It does nothing for a dead pipe. When the suspend flag (+5112) is 1 it first sends token 479
+  (`MEM_SUSPEND`) with the word 0x104, then token 483 (`MEM_SWAPOUT`) with eight words: pool, offset, size, unit size, copy count, the host buffer's address pair, and the completion event 0x102.
+- `kona_mem_swapin_func` (`kona_mem.o` +0x434, 932 bytes): **Established.** Sends the packet that makes the pipe load a block back from host memory: token 482
+  (`MEM_SWAPIN`) with pool, offset, size, unit size, copy count, the host buffer's address pair and the completion event 0x102. Without the driver-wide DMA flag it writes the saved data into the command stream after the token instead of an address.
+- `kona_mem_copydown_func` (`kona_mem.o` +0x7d8, 672 bytes): **Established.** Sends token 481
+  (`MEM_COPYDOWN`) with four words (pool, old offset, new offset, size), telling the pipe to slide a block down inside its memory.
+- `kona_mem_suspend` (`kona_mem.o` +0xa78, 16 bytes): **Established.** Sets the suspend flag (+5112) to 1 when the record's select-feedback flag (+104) is set, else 0, so the swap-out path knows to send
+  `MEM_SUSPEND` first.
+- `kona_mem_resume` (`kona_mem.o` +0xa88, 704 bytes): **Established.** Gives the pipe back the suspend record it returned. When the saved count (+5112) is 2 or more and the pipe is alive it waits for the suspend answer on the semaphore at +5152, then sends token 478
+  (`MEM_RESUME`) with the saved words from +5116, and clears the count.
+- `kona_mem_reserve_func` (`kona_mem.o` +0xd48, 672 bytes): **Established.** Sends token 484
+  (`MEM_RESERVE`) with four words (pool, id byte, offset, size) to tell the pipe a range of its memory belongs to a block.
+- `kona_mem_cleanup` (`kona_mem.o` +0xfe8, 332 bytes): **Established.** Retires finished transfers: under the state lock it takes the list of completed blocks (+5104, linked through block +56), frees each block's pipe-space mapping with
+  `free_gfx_io_space` and, for state 2, the host save buffer (`kvpfree`) and its mapping, and marks the block done (219).
+- `kona_mem_swapout` (`kona_mem.o` +0x1134, 428 bytes): **Established.** Moves one resident block out of the pipe: subtracts its size from the pool (+8), waits for any transfer in flight (its semaphore, 25), runs
+  `kona_mem_cleanup`, allocates a host save buffer for size x unit x copies (`kvpalloc`) and maps it (`alloc_gfx_io_space`), queues the block on the swap-out queue (+5072, head +5080), arms the swap timeout, calls
+  `kona_mem_swapout_func`, and marks the block not resident. When the DMA flag is set it waits for the transfer to finish.
+- `kona_mem_compress` (`kona_mem.o` +0x12e0, 200 bytes): **Established.** Compacts a pool: walks the sorted block list and, for each block that is not already at the lowest offset its alignment allows, sends a copy-down
+  (`kona_mem_copydown_func`) and records the new offset.
+- `kona_mem_grow` (`kona_mem.o` +0x13a8, 280 bytes): **Established.** Enlarges a block in place by swapping out the blocks after it until the gap is big enough
+  (`kona_mem_swapout`); if the pool's end is too close, it swaps the block itself out and only enlarges its recorded size.
+- `kona_mem_reserve` (`kona_mem.o` +0x14c0, 608 bytes): **Established.** Finds room for a block. While the pool has too few free units it swaps out resident blocks of other owners; then it places the block first-fit in an aligned gap, links it in and counts its size. If nothing fits and the type allows it, it compacts once
+  (`kona_mem_compress`) and retries; otherwise it swaps out every resident block and returns 1 so the caller retries on an empty pool. Returns 0 once placed.
+- `kona_mem_swapin_complete` (`kona_mem.o` +0x1720, 300 bytes): **Established.** Completion of a swap-in, from ARM event 0x102 or its timeout: under the state lock it takes the head of the swap-in queue (+5096, tail +5088; an empty queue logs a warning), cancels the timer unless the pipe is in recovery, marks the block state 2, moves it to the finished list (+5104) and wakes its waiter. On a timeout it logs the block and kills the pipe with
+  `kona_die` reason 15.
+- `kona_mem_swapout_complete` (`kona_mem.o` +0x184c, 308 bytes): **Established.** Same for a swap-out, from GE event 0x102 (queue +5080, tail +5072): the block gets state 1 (done) or 2 (timed out), and a timeout kills the pipe with reason 16.
+- `kona_mem_suspend_complete` (`kona_mem.o` +0x1980, 168 bytes): **Established.** Completion of
+  `MEM_SUSPEND`, from GE event 0x104 or its timeout. On a timeout it logs tag 2109 and kills the pipe (reason 16). Otherwise, when the first event word n is not negative, it clears +5168 and copies words 0 through n into the array at +5112. Either way it wakes the semaphore at +5152.
+- `kona_mem_swapin` (`kona_mem.o` +0x1a28, 376 bytes): **Established.** Moves one block back into the pipe: it waits for any transfer in flight, runs
+  `kona_mem_cleanup`, maps the block's save buffer into pipe space, queues it on the swap-in queue (+5088), arms the timer and calls `kona_mem_swapin_func`. When the DMA flag is set it waits for completion. It then decrements the owner's not-resident count and marks the block resident.
+- `kona_mem_update_driver` (`kona_mem.o` +0x1ba0, 224 bytes): **Established.** Re-announces every block of an owner list to the pipe after a context load: for each block in each of the owner's and the shared lists it calls
+  `kona_mem_reserve_func` with the block's pool, id, offset and size.
+- `kona_mem_update` (`kona_mem.o` +0x1c80, 152 bytes): **Established.** Runs
+  `kona_mem_update_driver` for the node's own block lists (private record +112) and for its share group's lists (+240). `kona_act_pcx` calls it before activating a context.
+- `kona_mem_validate_driver` (`kona_mem.o` +0x1d18, 296 bytes): **Established.** Makes all blocks of one owner list resident: it runs
+  `kona_mem_cleanup`, then for each non-resident block of the owner list and of the shared list calls `kona_mem_reserve` and, on success, `kona_mem_swapin`.
+- `kona_mem_validate` (`kona_mem.o` +0x1e40, 276 bytes): **Established.** Repeats
+  `kona_mem_validate_driver` for each of the four pools until neither the node's nor its share group's list has a non-resident block. `KONApcxswap` calls it before it loads a context.
+- `kona_mem_destroy` (`kona_mem.o` +0x1f54, 488 bytes): **Established.** Releases every block of a node (or of its share group, when asked): subtracts each from its pool's resident list and size, waits for a transfer in flight, runs
+  `kona_mem_cleanup`, and frees the host save buffer and the block.

@@ -77,9 +77,9 @@ kpm register tables	host interface		hip	0x8003a0	HIP2_HH_GV_OVERLAP	1	0	32		0	un
 kpm register tables	host interface		hip	0x8003a8	HH_TBUS_STATUS	1	0	32		1	understood	docs/kernel-functions.md#failure-handling-kona_crasho	Failure handling: `kona_crash.o`
 kpm register tables	host interface		hip	0x8003b0	HH_TFIFO_HI	1	0	32		0	understood	HIP.h:633	
 kpm register tables	host interface		hip	0x8003b8	HIP2_HH_IDMA_HI	1	0	32		0	no-software-dependency	HIP.h:731	
-kpm register tables	host interface		hip	0x8003c0	HH_VC_ADDRESS	1	0	32		1	understood	docs/xg.md#attach-kona_attach	Attach, `kona_attach`
+kpm register tables	host interface		hip	0x8003c0	HH_VC_ADDRESS	1	0	32		1	understood	docs/kernel-functions.md#video-swap-and-retrace-kona_videoo	Video, swap and retrace: `kona_video.o`
 kpm register tables	host interface		hip	0x8003c8	HH_VC_FREADY	1	0	32		0	understood	DG.h:31	
-kpm register tables	host interface		hip	0x8003d0	HH_VC_DATA	1	0	32		1	understood	docs/xg.md#attach-kona_attach	Attach, `kona_attach`
+kpm register tables	host interface		hip	0x8003d0	HH_VC_DATA	1	0	32		1	understood	docs/kernel-functions.md#video-swap-and-retrace-kona_videoo	Video, swap and retrace: `kona_video.o`
 kpm register tables	host interface		hip	0x8003d8	HH_VC_DATA_INCR	1	0	32		0	understood	DG.h:30	
 kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	no-software-dependency	HIP.h:648	
 kpm register tables	host interface		hip	0x8003e8	HH_ARM_ADDRESS	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
