@@ -961,7 +961,12 @@ enum kona_kpm_spare_token {
  * compares with its array expected_token; each code below is fixed by the
  * expected result for known constant operands. Unit 1 writes register Q
  * and takes its code in M[6:0] (M = 0x680 | code); unit 2 writes P and
- * takes its code in M[10:4] (M = code << 4 | 0x7f).
+ * takes its code in M[10:4] (M = code << 4 | 0x7f). INFERRED (counted
+ * over every ge.u word, ucode/ge_ops.md "How one M names two operations"):
+ * M[10:7] = k selects unit 2's code k << 3 | 7 (k = 0xd idle) and M[6:0]
+ * unit 1's (0x7f idle), so one word drives both units; form 11 nearly
+ * always does (M = 0x460: multiply and add). Unit-2 code 0x0f occurs only
+ * in production and is UNKNOWN.
  * INFERRED readings are marked; ge_ops.md, "Settling the ties", gives
  * the functional argument for each and the routes tried.
  */
@@ -994,11 +999,18 @@ enum kona_kpm_spare_token {
 
 /*
  * Flag register (source 0x1b) and branch conditions, ESTABLISHED values
- * 0xcc, 0xac, 0xaa observed; layout INFERRED: low nibble integer flags,
- * high nibble float flags, each bit 3 = result <= 0, bit 2 = zero,
- * bit 1 = negative, bit 0 = a fourth condition (signed overflow, weakly).
- * A transfer's cc 0-7 tests the integer nibble, 8-15 the float nibble;
+ * 0xcc, 0xac, 0xaa observed; layout INFERRED: low nibble set by a unit-1
+ * word (r220), high nibble by a unit-2 word (r221), each bit 3 = result
+ * <= 0, bit 2 = zero, bit 1 = negative, bit 0 = a fourth condition.
+ * A transfer's cc 0-7 tests the low nibble, 8-15 the high nibble;
  * cc bits 2-1 choose the condition (0..3 = bit 3..0), cc bit 0 inverts.
+ * Production branches test only the low nibble, after unit-1 integer and
+ * float results alike (161 of 161 transfers with a nearby flag setter).
+ * The fourth condition is UNKNOWN: no shipped software or published
+ * source depends on it (no production use of cc 6, 7, 0xe, 0xf; routes in
+ * ucode/ge_ops.md); signed overflow fits the two test cases.
+ * cc 0x14/0x15: pixel-path loop continue/exit; 0x10: abort or error test;
+ * 0x11: end-of-command wait (condition group 31) or loop counter (group 7).
  */
 #define KONA_GE_FLAG_LE0                0x8
 #define KONA_GE_FLAG_ZERO               0x4
