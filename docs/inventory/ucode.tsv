@@ -2843,13 +2843,13 @@ ge.u	label	0x0000e8a6	mMatrixMultCCC		located	ucode/ge_handlers.md#mmatrixs	mmat
 ge.u	label	0x0000ea1c	mClipLinUserAndFrustum		located	ucode/ge_handlers.md#linclips	linclip.S
 ge.u	label	0x0000ebbf	mClipLineToPlane		located	ucode/ge_handlers.md#linclips	linclip.S
 ge.u	label	0x0000ed2c	mClipLinFlush		located	ucode/ge_handlers.md#linclips	linclip.S
-ge.u	label	0x0000ed52	mClipTriUserAndFrustum		located	ucode/ge_handlers.md#clips	clip.S
-ge.u	label	0x0000ef7e	mPerTriClipFlagsFrustum		located	ucode/ge_handlers.md#clips	clip.S
-ge.u	label	0x0000efb5	mClipPolyToPlane		located	ucode/ge_handlers.md#clips	clip.S
+ge.u	label	0x0000ed52	mClipTriUserAndFrustum		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
+ge.u	label	0x0000ef7e	mPerTriClipFlagsFrustum		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
+ge.u	label	0x0000efb5	mClipPolyToPlane		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
 ge.u	label	0x0000f14f	mClipTriFlushSR		located	ucode/ge_handlers.md#clips	clip.S
-ge.u	label	0x0000f182	mEyeToClipAfterUserClip		located	ucode/ge_handlers.md#clips	clip.S
-ge.u	label	0x0000f1dc	mClipTriFlush		located	ucode/ge_handlers.md#clips	clip.S
-ge.u	label	0x0000f20a	mSetClipVertsFree		located	ucode/ge_handlers.md#clips	clip.S
+ge.u	label	0x0000f182	mEyeToClipAfterUserClip		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
+ge.u	label	0x0000f1dc	mClipTriFlush		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
+ge.u	label	0x0000f20a	mSetClipVertsFree		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
 ge.u	label	0x0000f21b	mgeb_PointParameter		located	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000f280	mgeb_Disable_Multipass		located	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000f293	mgeb_Enable_Multipass		located	ucode/ge_handlers.md#glmodess	glmodes.S

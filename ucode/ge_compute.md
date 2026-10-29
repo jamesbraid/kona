@@ -349,3 +349,45 @@ unknown: the diagnostic test does not exercise it, and it occurs only on the dep
   pointers of a triangle from the list at register 0xf (words 0-3 and 0xf-0x13 into registers 2-9, 0x2910-0x2919), tests the
   triangle's flag words 4 and 0x13 against 0x1c, and for each vertex subtracts the origin from the texture and window inputs,
   converts depth with operation 0x7e, multiplies the colour words, and sends the results through register 0x1e.
+
+## Polygon clipping (clip.S)
+
+- `mClipPolyToPlane` (`clip.S` lines 88-660): **inferred**, clips one polygon against one plane, the Sutherland-Hodgman
+  step. Its input is a vertex list reached through address register 0xb and a plane held in registers 0x12-0x15. For each
+  vertex it computes the signed distance as the four-term dot product of the vertex's words 0-3 with the plane (multiplies
+  at 0xefd6-0xefd9 and 0xf017-0xf01a, sums with the flag-enable bit at 0xefe1). Where two neighbours' distances differ in
+  sign it subtracts them (0xf04e-0xf052, 0xf06f-0xf073), takes the reciprocal of the difference with the seed and two
+  Newton-Raphson steps, and multiplies to get the crossing fraction t. A new vertex from the free list then gets each
+  attribute as v0 + t (v1 - v0): address registers 4, 5 and 7 are stepped through the attribute offsets 0x2c-0x88
+  (0xf09e-0xf0c5) and the multiplies and adds at 0xf0b4-0xf10b form the interpolated results. The output list is copied, 13
+  words, from register 0xd to register 0xf (0xf133-0xf13f), special register 0x0f is flipped by an XOR (0xf141), and it
+  returns through a group-4 indirect transfer at 0xf146.
+- `mClipTriUserAndFrustum` (`clip.S` lines 1080-1569): **inferred**, the clipper's driver for one triangle. It takes the
+  triangle's clip-code word (special register 0x0d, read six times through register 0x1c) as input, selects each plane the
+  codes name, and calls `mClipPolyToPlane` for it (seven conditional calls on `cc` 2). Vertices that a user plane creates
+  exist only in eye space, and it projects them with two calls to `mEyeToClipAfterUserClip`. The
+  result is a clipped polygon that it sends on with `mClipTriFlush`, and the clip-vertex pool is reset by
+  `mSetClipVertsFree`.
+- `mEyeToClipAfterUserClip` (`clip.S` lines 712-837): **inferred**, projects vertices created in eye space by user-plane
+  clipping. It rebuilds the projection's third row as `uMatrixMultCCC` does, the difference of the fourth and third
+  elements of each column (projection words 0x42 and 0x41, 0x46 and 0x45, 0x4a and 0x49, 0x4e and 0x4d) times the constant 0.5
+  loaded at 0xf183. It then multiplies each new vertex's eye-position input (record words 0x13-0x16, through registers 7 and
+  0xf) by the projection words 0x3f-0x4e and stores the clip-space result to words 0x17-0x1a (0xf1b0, 0xf1b5). It returns
+  through a group-5 indirect transfer.
+- `mPerTriClipFlagsFrustum` (`clip.S` lines 922-990): **inferred**, recomputes the frustum clip codes of a polygon's
+  vertices after clipping. For each vertex (pointer list through register 7) it takes w (record word 0x1a) as input,
+  multiplies it by the four guard-band factors at engine words 0x71-0x74, and computes the six side distances as results: x and y
+  subtracted from the scaled w for special registers 0x10-0x13, z added to and subtracted from w for 0x14 and 0x15
+  (0xef8f-0xef98). It ORs the resulting code from register 0x0d into the vertex's flag word 4 (0xefa1) and loops on `cc` 0x14
+  through the transfer at 0xefab.
+- `mClipTriFlush` (`clip.S` lines 1700-1771): **inferred**, saves and resets the clipper's state between triangles. It
+  copies the clip-code special registers 0x0d, 0x0e and 0x0f into the save area at register 0x1b offsets 0x3e and 0x3f
+  (0xf1e1-0xf1e3), writes the staged value 0x3f to 0x0d and 0x0e, records the vertex count and pointers at offsets 0x35-0x3d,
+  and on its second entry (0xf1f4-0xf1fc) moves the saved words back into 0x0d-0x0f.
+- `mClipTriFlushSR` (`clip.S` lines 1603-1674): **inferred**, the version of the clip flush used on the path that also
+  saves and restores the evaluator state: the same moves between special registers 0x0d-0x0f and the save area through
+  register 0x1b, and the same reset of the codes to 0x3f, ending in a group-31 transfer.
+- `mSetClipVertsFree` (`clip.S` lines 860-890): **inferred**, rebuilds the free list of clip vertices. It loads the list
+  heads 0x8178, 0x8484 and 0x8790 with the offsets 0x94, 0xa8 and 0xbc into registers 0xe and 0xf (0xf20b-0xf210) and stores
+  the slot offsets 0x9c, 0x138, 0x1d4 and 0x270, steps of 0x9c, into the list (0xf215-0xf218), so `mClipPolyToPlane` can take
+  new vertices from it.
