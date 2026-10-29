@@ -32,6 +32,22 @@ The file names give the program's structure:
 
 `ge_symbols` lists 1100 labels with instruction addresses in the `ge.hex` range. **Inferred:** label prefixes mark the handler class. Examples are `mgeb_`, `mges_`, `mgesi_` and `mgebi_` for command handlers and `mmo_`/`umo_` for internal modules; the `m`/`u` pairs often share an address.
 
+## ge.u record layout, what is established
+
+The method: pair each `ge.hex` word W with the record of the same address in `ge.u`, then look at W pairs that differ in exactly one bit and see which of the 32 record bytes change. [ge_u_bitmap.tsv](ge_u_bitmap.tsv) lists, per form and W bit, the record bytes that changed in the most pairs, how many pairs agreed, and how many pairs existed (421 rows; the data comes from `ucode/KONA/ge.u` and `ge.hex`, release 6.5.30m).
+
+**Established:**
+
+- Both files have 62521 instructions at the same 62521 addresses. A `ge.u` code segment is an 8-byte header (byte address = instruction address x 32, then byte length) followed by 32-byte records.
+- Record byte 31 is 0 in every record. Byte 23 has two values.
+- W bits 67-70, taken as a 4-bit value, split the program into forms: 0 (16888 words), 1 (143), 2 (618), 3 (1051), 5 (2854), 6 (79), 7 (1346), 8 (471), 9 (1135), 10 (825), 11 (1430), 12 (5242), 13 (10996), 14 (14833), 15 (4610). Form 4 does not occur. No two words in the program differ only in bits 67-70, so flipping those bits is not a field edit.
+- Which record bytes a W bit reaches depends on the form. In form 15, the first 32-bit word of the record equals W[31:0] in all 4610 words. In form 14, record bytes 3 and 2 equal W[7:0] and W[15:8] in all 14833 words. Across forms, W[66:62] mostly changes record byte 8, W[60:56] byte 10, W[42:38] byte 12 and W[50:44] byte 9 (see the table for counts and exceptions).
+- For most other bytes in most forms, no contiguous run of W bits up to 8 wide reproduces the byte value (for example record byte 12 versus W[42:38] matches 0 of 4610 form-15 words), although flipping a bit changes only that byte.
+
+**Inferred:** the `ge.u` record is a decoded form of the instruction, with one byte per control field, and the decoding is not an identity for most fields. It may be a lookup (for example a one-hot or encoded-to-index conversion by the assembler), which the single-bit method cannot invert. The record bytes' value ranges (byte 8 has up to 133 distinct values in form 7, byte 5 only 2) fit that reading.
+
+**Unknown:** the value mapping of each byte and the meaning of the forms. A decoder of `ge.hex` fields from the instruction-set text in the build string table, or the `gefields.h` field names referenced by the line table, would settle it; the line table names the file but not its contents.
+
 ## Command dispatch table (`geif.u`)
 
 **Established:** `geif.u` is 2048 bytes, 1024 big-endian 16-bit entries, and every entry is the address of a `ge_symbols` label.
@@ -63,6 +79,6 @@ The 47 name matches are written to [ge_name_matches.tsv](ge_name_matches.tsv) as
 
 ## Next steps for a reader
 
-1. Decode the `ge.u` 32-byte record against the `ge.hex` 72-bit word. Pair records whose `ge.hex` words differ in one field, to recover the field layout.
+1. Finish the `ge.u` record decode: the byte-to-W-bit map is in ge_u_bitmap.tsv, the value mapping of most bytes is open.
 2. With fields known, find the main loop (`mainloop*` labels) and the read of the token word, to recover the token-to-slot translation.
 3. Read the distributor program `ged1b.u` the same way.
