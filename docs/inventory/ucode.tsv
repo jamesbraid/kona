@@ -3898,28 +3898,28 @@ geif.u	dispatch entry	1020	HereWeGo	handler 0x0	located
 geif.u	dispatch entry	1021	HereWeGo	handler 0x0	located		
 geif.u	dispatch entry	1022	HereWeGo	handler 0x0	located		
 geif.u	dispatch entry	1023	HereWeGo	handler 0x0	located		
-ged1b.u	table B entry	0		entry=0x01d source=trigger.s line=7	undocumented		
-ged1b.u	table B entry	1		entry=0x016 source=material.s line=11	undocumented		
-ged1b.u	table B entry	2		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	3		entry=0x023 source=trigger.s line=17	undocumented		
-ged1b.u	table B entry	4		entry=0x10e source=points.s line=6	undocumented		
-ged1b.u	table B entry	5		entry=0x1a2 source=linestrip.s line=6	undocumented		
-ged1b.u	table B entry	6		entry=0x130 source=lineloop.s line=6	undocumented		
-ged1b.u	table B entry	7		entry=0x34b source=tri.s line=6	undocumented		
-ged1b.u	table B entry	8		entry=0x040 source=tstrip.s line=6	undocumented		
-ged1b.u	table B entry	9		entry=0x2a3 source=tfanpoly.s line=11	undocumented		
-ged1b.u	table B entry	10		entry=0x1e5 source=quad.s line=6	undocumented		
-ged1b.u	table B entry	11		entry=0x21a source=qstrip.s line=6	undocumented		
-ged1b.u	table B entry	12		entry=0x2b3 source=tfanpoly.s line=32	undocumented		
-ged1b.u	table B entry	13		entry=0x379 source=lines.s line=6	undocumented		
-ged1b.u	table B entry	14		entry=0x01d source=trigger.s line=7	undocumented		
+ged1b.u	table B entry	0		entry=0x01d source=trigger.s line=7	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	1		entry=0x016 source=material.s line=11	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	2		entry=0x003 source=dist.s line=13	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	3		entry=0x023 source=trigger.s line=17	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	4		entry=0x10e source=points.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	5		entry=0x1a2 source=linestrip.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	6		entry=0x130 source=lineloop.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	7		entry=0x34b source=tri.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	8		entry=0x040 source=tstrip.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	9		entry=0x2a3 source=tfanpoly.s line=11	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	10		entry=0x1e5 source=quad.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	11		entry=0x21a source=qstrip.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	12		entry=0x2b3 source=tfanpoly.s line=32	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	13		entry=0x379 source=lines.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	14		entry=0x01d source=trigger.s line=7	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
 ged1b.u	table B entry	15		entry=0x003 source=dist.s line=13	undocumented		
 ged1b.u	table B entry	16		entry=0x003 source=dist.s line=13	undocumented		
 ged1b.u	table B entry	17		entry=0x003 source=dist.s line=13	undocumented		
 ged1b.u	table B entry	18		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	19		entry=0x025 source=trigger.s line=21	undocumented		
-ged1b.u	table B entry	20		entry=0x028 source=trigger.s line=26	undocumented		
-ged1b.u	table B entry	21		entry=0x02a source=trigger.s line=30	undocumented		
+ged1b.u	table B entry	19		entry=0x025 source=trigger.s line=21	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	20		entry=0x028 source=trigger.s line=26	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	21		entry=0x02a source=trigger.s line=30	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
 ged1b.u	table B entry	22		entry=0x003 source=dist.s line=13	undocumented		
 ged1b.u	table B entry	23		entry=0x003 source=dist.s line=13	undocumented		
 ged1b.u	table B entry	24		entry=0x003 source=dist.s line=13	undocumented		
@@ -3960,8 +3960,8 @@ ged1b.u	table B entry	58		entry=0x003 source=dist.s line=13	undocumented
 ged1b.u	table B entry	59		entry=0x003 source=dist.s line=13	undocumented		
 ged1b.u	table B entry	60		entry=0x003 source=dist.s line=13	undocumented		
 ged1b.u	table B entry	61		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	62		entry=0x011 source=flush.s line=14	undocumented		
-ged1b.u	table B entry	63		entry=0x00d source=flush.s line=6	undocumented		
+ged1b.u	table B entry	62		entry=0x011 source=flush.s line=14	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+ged1b.u	table B entry	63		entry=0x00d source=flush.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
 ged1b.u	table B entry	64		entry=0x13c source=lineloop.s line=22	undocumented		
 ged1b.u	table B entry	65		entry=0x16c source=lineloop.s line=101	undocumented		
 ged1b.u	table B entry	66		entry=0x19e source=lineloop.s line=214	undocumented		
@@ -4282,34 +4282,34 @@ ged1b.u	table B entry	380		entry=0x006 source=dist.s line=18	undocumented
 ged1b.u	table B entry	381		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	382		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	383		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	384		entry=0x357 source=tri.s line=23	undocumented		
-ged1b.u	table B entry	385		entry=0x36f source=tri.s line=65	undocumented		
-ged1b.u	table B entry	386		entry=0x366 source=tri.s line=52	undocumented		
-ged1b.u	table B entry	387		entry=0x377 source=tri.s line=84	undocumented		
-ged1b.u	table B entry	388		entry=0x357 source=tri.s line=23	undocumented		
-ged1b.u	table B entry	389		entry=0x371 source=tri.s line=69	undocumented		
-ged1b.u	table B entry	390		entry=0x361 source=tri.s line=39	undocumented		
-ged1b.u	table B entry	391		entry=0x377 source=tri.s line=84	undocumented		
-ged1b.u	table B entry	392		entry=0x35a source=tri.s line=28	undocumented		
-ged1b.u	table B entry	393		entry=0x373 source=tri.s line=73	undocumented		
-ged1b.u	table B entry	394		entry=0x363 source=tri.s line=45	undocumented		
-ged1b.u	table B entry	395		entry=0x377 source=tri.s line=84	undocumented		
-ged1b.u	table B entry	396		entry=0x35d source=tri.s line=33	undocumented		
-ged1b.u	table B entry	397		entry=0x375 source=tri.s line=77	undocumented		
-ged1b.u	table B entry	398		entry=0x363 source=tri.s line=45	undocumented		
-ged1b.u	table B entry	399		entry=0x377 source=tri.s line=84	undocumented		
-ged1b.u	table B entry	400		entry=0x385 source=lines.s line=27	undocumented		
-ged1b.u	table B entry	401		entry=0x39d source=lines.s line=77	undocumented		
-ged1b.u	table B entry	402		entry=0x392 source=lines.s line=58	undocumented		
-ged1b.u	table B entry	403		entry=0x396 source=lines.s line=66	undocumented		
-ged1b.u	table B entry	404		entry=0x388 source=lines.s line=36	undocumented		
-ged1b.u	table B entry	405		entry=0x39f source=lines.s line=81	undocumented		
-ged1b.u	table B entry	406		entry=0x38c source=lines.s line=47	undocumented		
-ged1b.u	table B entry	407		entry=0x396 source=lines.s line=66	undocumented		
-ged1b.u	table B entry	408		entry=0x385 source=lines.s line=27	undocumented		
-ged1b.u	table B entry	409		entry=0x3a1 source=lines.s line=85	undocumented		
-ged1b.u	table B entry	410		entry=0x38d source=lines.s line=49	undocumented		
-ged1b.u	table B entry	411		entry=0x396 source=lines.s line=66	undocumented		
+ged1b.u	table B entry	384		entry=0x357 source=tri.s line=23	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	385		entry=0x36f source=tri.s line=65	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	386		entry=0x366 source=tri.s line=52	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	387		entry=0x377 source=tri.s line=84	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	388		entry=0x357 source=tri.s line=23	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	389		entry=0x371 source=tri.s line=69	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	390		entry=0x361 source=tri.s line=39	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	391		entry=0x377 source=tri.s line=84	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	392		entry=0x35a source=tri.s line=28	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	393		entry=0x373 source=tri.s line=73	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	394		entry=0x363 source=tri.s line=45	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	395		entry=0x377 source=tri.s line=84	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	396		entry=0x35d source=tri.s line=33	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	397		entry=0x375 source=tri.s line=77	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	398		entry=0x363 source=tri.s line=45	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	399		entry=0x377 source=tri.s line=84	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
+ged1b.u	table B entry	400		entry=0x385 source=lines.s line=27	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
+ged1b.u	table B entry	401		entry=0x39d source=lines.s line=77	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
+ged1b.u	table B entry	402		entry=0x392 source=lines.s line=58	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
+ged1b.u	table B entry	403		entry=0x396 source=lines.s line=66	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
+ged1b.u	table B entry	404		entry=0x388 source=lines.s line=36	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
+ged1b.u	table B entry	405		entry=0x39f source=lines.s line=81	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
+ged1b.u	table B entry	406		entry=0x38c source=lines.s line=47	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
+ged1b.u	table B entry	407		entry=0x396 source=lines.s line=66	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
+ged1b.u	table B entry	408		entry=0x385 source=lines.s line=27	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
+ged1b.u	table B entry	409		entry=0x3a1 source=lines.s line=85	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
+ged1b.u	table B entry	410		entry=0x38d source=lines.s line=49	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
+ged1b.u	table B entry	411		entry=0x396 source=lines.s line=66	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
 ged1b.u	table B entry	412		entry=0x155 source=lineloop.s line=63	undocumented		
 ged1b.u	table B entry	413		entry=0x17e source=lineloop.s line=137	undocumented		
 ged1b.u	table B entry	414		entry=0x18b source=lineloop.s line=177	undocumented		
@@ -4318,18 +4318,18 @@ ged1b.u	table B entry	416		entry=0x006 source=dist.s line=18	undocumented
 ged1b.u	table B entry	417		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	418		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	419		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	420		entry=0x034 source=trigger.s line=43	undocumented		
-ged1b.u	table B entry	421		entry=0x037 source=trigger.s line=48	undocumented		
-ged1b.u	table B entry	422		entry=0x039 source=trigger.s line=52	undocumented		
+ged1b.u	table B entry	420		entry=0x034 source=trigger.s line=43	understood	ucode/ged.md#subdivision-patches-class-12-entries-0x1a0-0x1a7	Subdivision patches (class 12, entries 0x1a0-0x1a7)
+ged1b.u	table B entry	421		entry=0x037 source=trigger.s line=48	understood	ucode/ged.md#subdivision-patches-class-12-entries-0x1a0-0x1a7	Subdivision patches (class 12, entries 0x1a0-0x1a7)
+ged1b.u	table B entry	422		entry=0x039 source=trigger.s line=52	understood	ucode/ged.md#subdivision-patches-class-12-entries-0x1a0-0x1a7	Subdivision patches (class 12, entries 0x1a0-0x1a7)
 ged1b.u	table B entry	423		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	424		entry=0x119 source=points.s line=22	undocumented		
-ged1b.u	table B entry	425		entry=0x12c source=points.s line=54	undocumented		
-ged1b.u	table B entry	426		entry=0x121 source=points.s line=36	undocumented		
-ged1b.u	table B entry	427		entry=0x125 source=points.s line=43	undocumented		
-ged1b.u	table B entry	428		entry=0x119 source=points.s line=22	undocumented		
-ged1b.u	table B entry	429		entry=0x12e source=points.s line=58	undocumented		
-ged1b.u	table B entry	430		entry=0x11c source=points.s line=27	undocumented		
-ged1b.u	table B entry	431		entry=0x125 source=points.s line=43	undocumented		
+ged1b.u	table B entry	424		entry=0x119 source=points.s line=22	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
+ged1b.u	table B entry	425		entry=0x12c source=points.s line=54	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
+ged1b.u	table B entry	426		entry=0x121 source=points.s line=36	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
+ged1b.u	table B entry	427		entry=0x125 source=points.s line=43	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
+ged1b.u	table B entry	428		entry=0x119 source=points.s line=22	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
+ged1b.u	table B entry	429		entry=0x12e source=points.s line=58	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
+ged1b.u	table B entry	430		entry=0x11c source=points.s line=27	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
+ged1b.u	table B entry	431		entry=0x125 source=points.s line=43	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
 ged1b.u	table B entry	432		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	433		entry=0x006 source=dist.s line=18	undocumented		
 ged1b.u	table B entry	434		entry=0x006 source=dist.s line=18	undocumented		

@@ -140,6 +140,106 @@ Attribute tokens (colour, normal, index, texture coordinate: control bit 6 set, 
 
 This also answers which unit picks the bank, the question [arm1.md](arm1.md) left open. The distributor does, from its own r48 through table A, and the token carries no bank. The eight-bank reading of table B was a coincidence of the 64-entry spacing: points, lines, triangles and the subdivision code all sit in what looked like bank 6.
 
+## Table B entries, one by one
+
+Each row below is one entry of the 512-entry table B of `ged1b.u` (IRIX 6.5.30m): the index, the token and primitive
+state that select it under the index rule of [How an entry is chosen](#how-an-entry-is-chosen), and what the program does
+from the word the entry holds, read from [ged_listing.txt](ged_listing.txt). Register roles used in the rows: the class
+register r48, the state register r49 (state n in its upper bits, the next vertex word below), the pending-class register
+r50, the current handler r62, and the handler r70 that the next release sends. The row label covers the reading of the
+target's words; the index rule itself is the inference of that section. Entries that hold the null loop (0x003 or 0x006)
+are listed after the table.
+
+### Idle state and the begin tokens (class 0, entries 0x000-0x03f)
+
+| Entry | Token, class 0 | What the code at the target does |
+|---|---|---|
+| 0x000 | `ged1b.u` the array-loop vertex tokens outside any primitive | **Inferred**: runs the idle vertex code at word 0x01d (`trigger.s` line 7). Unless nothing is pending it first flushes a pending evaluator coordinate through the subroutine at 0x009 and copies the current handler into the release handler; then it marks the control word with x = 2, loads the null command `mges_NullCommand` and releases, so a vertex given outside begin and end reaches no primitive. |
+| 0x001 | `ged1b.u` `HP_MATERIALF` and the other k = 1 material tokens while idle | **Inferred**: enters the material code at word 0x016 (`material.s` line 11). After the same pending-primitive flush as the idle vertex, it loads `mgeb_Material` as the third handler, issues a fetch with control fields a and b set, and ends with a release so the material change goes out on its own. |
+| 0x002 | `ged1b.u` `HP_END` with no primitive open | **Inferred**: lands on the null loop at word 0x003, which loads `mgebi_NullCommand` and spins on itself, so an unmatched end is swallowed; the ARM rejects such a stream before it reaches the distributor. |
+| 0x003 | `ged1b.u` `HP_SWAPTMESH` outside a primitive | **Inferred**: word 0x023 (`trigger.s` line 17) fetches the next word and then releases with whatever handler is loaded, without touching the class or state, so the swap has no effect when no strip is open. |
+| 0x004 | `ged1b.u` `HP_BEGIN_POINTS` | **Inferred**: the points begin stub at word 0x10e (`points.s` line 6). It tests the pending class against 0 and against 1, and when another class is still pending it flushes it; it then makes `mgesi_Points` the current handler, loads 0xc into r51, sets class 1 and points the state register at state 1, word 0x119. |
+| 0x005 | `ged1b.u` `HP_BEGIN_LINESTRIP` | **Inferred**: begin stub at word 0x1a2 (`linestrip.s` line 6): a pending-class test for 0, a second for 5, the flush of a different pending primitive, then `mgesi_LineStrip` as current handler, class 5 and state 0 at word 0x1b7. |
+| 0x006 | `ged1b.u` `HP_BEGIN_LINELOOP` | **Inferred**: begin stub at word 0x130 (`lineloop.s` line 6) with a pending-class test for 0, then one for 6. A line loop is sent with the same engine handler as a strip, `mgesi_LineStrip`, which the stub loads before setting class 6; the closing segment is the loop module's own work. |
+| 0x007 | `ged1b.u` `HP_BEGIN_TRIANGLES` | **Inferred**: begin stub at word 0x34b (`tri.s` line 6). The second test (value 4, its own class) skips the handler load, so a run of separate triangle primitives keeps one handler; otherwise it loads `mgesi_Triangles`, then sets class 4 and state 1 at word 0x357. |
+| 0x008 | `ged1b.u` `HP_BEGIN_TSTRIP` | **Inferred**: begin stub at word 0x040 (`tstrip.s` line 6), testing the pending class for 0, then for 9; it loads `mgesi_TriangleStrip` and sets class 9, the triangle-strip module whose 56 entries start at 0x0c0. |
+| 0x009 | `ged1b.u` `HP_BEGIN_TFAN` | **Inferred**: begin stub at word 0x2a3 (`tfanpoly.s` line 11). Besides the usual pending-class tests (0, then 10) it checks a one-hot mode register and, when the mode changes, loads `mgeb_SetTfanPolyMode` with the mode value 1, which tells the engines to draw a fan; the current handler becomes the fan and polygon end handler and the class 10. |
+| 0x00a | `ged1b.u` `HP_BEGIN_QUADS` and `HP_BEGIN_RECT` | **Inferred**: begin stub at word 0x1e5 (`quad.s` line 6), tests the pending class for 0, then 7; it loads `mgesi_Quads` as current handler and sets class 7, so rectangles and quads share one assembly path. |
+| 0x00b | `ged1b.u` `HP_BEGIN_QSTRIP` | **Inferred**: begin stub at word 0x21a (`qstrip.s` line 6) with pending-class tests for 0, then 8, loading `mgesi_QuadStrip` and class 8. |
+| 0x00c | `ged1b.u` `HP_BEGIN_POLYGON` | **Inferred**: enters the shared fan code at word 0x2b3 (`tfanpoly.s` line 32). It differs from the fan stub in the mode it sends: when the one-hot mode register is set it loads `mgeb_SetTfanPolyMode` with the mode value 0 and clears the register, then joins the fan path with class 10. |
+| 0x00d | `ged1b.u` `HP_BEGIN_LINES` | **Inferred**: begin stub at word 0x379 (`lines.s` line 6); tests the pending class for 0, then 2, loads `mgesi_LineStrip` as the current handler even for separate lines, and sets class 2 with state 0 at word 0x385. |
+| 0x00e | `ged1b.u` the plain vertex tokens (k = 14) while idle | **Inferred**: the same idle vertex code at word 0x01d as entry 0x000: an optional flush of the pending primitive, then a release with the null command, so vertex data outside begin and end produce no geometry. |
+| 0x013 | `ged1b.u` entry number 19 while idle | **Inferred**: word 0x025 (`trigger.s` line 21) marks the control word with x = 2, fetches with `mgeb_RasterPos` loaded as the third handler and releases: the raster-position command, which takes the current vertex. |
+| 0x014 | `ged1b.u` entry number 20 while idle | **Inferred**: word 0x028 (`trigger.s` line 26) is a single fetch with x = 2 followed by a release, passing one word to the engines with the handler already loaded. |
+| 0x015 | `ged1b.u` `HP_BEGIN_SUBDIV_PATCH` (k = 21) | **Inferred**: the subdivision begin at word 0x02a (`trigger.s` line 30): after the pending-primitive flush it loads `mgesi_SubdivEntry` as current handler, class 12 and state 1 at word 0x034, and clears two of the small-constant registers. |
+| 0x03e | `ged1b.u` the release half of the diagnostic flush | **Inferred**: word 0x011 (`flush.s` line 14) is a fetch with release: the second word of the two-word flush program the diagnostic writes with `Load_GED_Ucode_Flush`. |
+| 0x03f | `ged1b.u` the flush entry | **Inferred**: word 0x00d (`flush.s` line 6) tests the pending class; when a primitive is pending it flushes an evaluator coordinate, copies the current handler to the release handler and clears the pending class, then releases at 0x011 so the engines finish the open batch. |
+
+Entries 0x00f-0x012 (the normal, colour, index and texture-coordinate tokens while idle), 0x016-0x03d and 0x002 hold the
+null loop at 0x003: those tokens carry no program step, their data going to the vertex record by the hardware.
+
+### Independent triangles (class 4, entries 0x180-0x18f)
+
+| Entry | Token and state | What the code at the target does |
+|---|---|---|
+| 0x180 | `ged1b.u` a vertex after at least one finished triangle (state 0) | **Inferred**: word 0x357 (`tri.s` line 23) takes the vertex as the first corner of a new triangle: it loads state 2 with next word 0x35a, marking the load with x = 2 and y, and fetches. |
+| 0x181 | `ged1b.u` material in state 0 | **Inferred**: word 0x36f (`tri.s` line 65) jumps to the material code at 0x013, restoring state 0 at word 0x357 in the delay slot so assembly resumes after `mgeb_Material` is queued. |
+| 0x182 | `ged1b.u` `HP_END` in state 0 | **Inferred**: word 0x366 (`tri.s` line 52) closes the primitive: class 0, state back to the idle code 0x1d, and a fetch with release that sends the triangle handler loaded when the last triangle completed. |
+| 0x183 | `ged1b.u` `HP_SWAPTMESH` in state 0 | **Inferred**: word 0x377 (`tri.s` line 84) is a bare fetch, so a strip swap inside separate triangles is dropped. |
+| 0x184 | `ged1b.u` the first vertex after the begin token (state 1) | **Inferred**: the same first-corner code at 0x357 as entry 0x180; state 1 differs from state 0 only in what material and end do. |
+| 0x185 | `ged1b.u` material before the first triangle | **Inferred**: word 0x371 (`tri.s` line 69) goes to the material code with state 1 restored (0x757), keeping the begin state across the material change. |
+| 0x186 | `ged1b.u` `HP_END` before any triangle finished | **Inferred**: word 0x361 (`tri.s` line 39) first tests r51 against 3 with pending class 4 set in its delay slot; on the other path it flushes a pending evaluator coordinate at 0x009, clears the pending class and loads `mgesi_Triangles` for the release at 0x366. |
+| 0x187 | `ged1b.u` `HP_SWAPTMESH` in state 1 | **Inferred**: the bare fetch at 0x377 again; separate triangles have no strip order to swap at the begin state either. |
+| 0x188 | `ged1b.u` the second corner (state 2) | **Inferred**: word 0x35a (`tri.s` line 28) records the corner by moving the state register to state 3 with next word 0x35d, then fetches. |
+| 0x189 | `ged1b.u` material after one corner | **Inferred**: word 0x373 (`tri.s` line 73) enters the material code with state 2 at 0x35a restored in the delay slot. |
+| 0x18a | `ged1b.u` `HP_END` with one corner pending | **Inferred**: word 0x363 (`tri.s` line 45) abandons the incomplete triangle: evaluator flush on r54, pending class cleared, `mgesi_Triangles` loaded for release, then the shared reset at 0x366. |
+| 0x18b | `ged1b.u` `HP_SWAPTMESH` after one corner | **Inferred**: fetch-only word 0x377; the pending corner is kept. |
+| 0x18c | `ged1b.u` the third corner (state 3) | **Inferred**: word 0x35d (`tri.s` line 33) completes a triangle: state returns to 1, r13 is reloaded with 0xf, and a fetching transfer on r51 goes to 0x36a, which loads `mgesi_Triangles` into the release handler and sets state 0, the state in which the next corner starts the next triangle. |
+| 0x18d | `ged1b.u` material after two corners | **Inferred**: word 0x375 (`tri.s` line 77) queues the material handler with state 3 at 0x35d restored, so the third corner still completes the triangle. |
+| 0x18e | `ged1b.u` `HP_END` with two corners pending | **Inferred**: the abandon path at 0x363 shared with entry 0x18a: the two corners are dropped and the batch released. |
+| 0x18f | `ged1b.u` `HP_SWAPTMESH` after two corners | **Inferred**: plain fetch at 0x377, the last of the four swap entries of class 4. |
+
+### Points (class 1, entries 0x1a8-0x1af)
+
+| Entry | Token and state | What the code at the target does |
+|---|---|---|
+| 0x1a8 | `ged1b.u` a vertex after a point was sent (state 0) | **Inferred**: word 0x119 (`points.s` line 22) reloads state 1 with the x = 2 and y marks and takes a fetching transfer on r51 to 0x127, which loads `mgesi_Points` for the release and returns to state 0: every vertex is a whole point. |
+| 0x1a9 | `ged1b.u` material between points | **Inferred**: word 0x12c (`points.s` line 54) reaches the material code with state 0 restored at word 0x119. |
+| 0x1aa | `ged1b.u` `HP_END` after points were sent | **Inferred**: word 0x121 (`points.s` line 36) sets class 0 and the idle state 0x1d and releases the points batch. |
+| 0x1ab | `ged1b.u` `HP_SWAPTMESH` among points | **Inferred**: word 0x125 (`points.s` line 43), a fetch with no state change: a strip swap means nothing for points. |
+| 0x1ac | `ged1b.u` the first point after begin (state 1) | **Inferred**: the same per-point code at 0x119 as entry 0x1a8, so the first vertex is sent like every other. |
+| 0x1ad | `ged1b.u` material right after the points begin | **Inferred**: word 0x12e (`points.s` line 58) enters material with state 1 (0x519) restored. |
+| 0x1ae | `ged1b.u` `HP_END` with no point sent | **Inferred**: word 0x11c (`points.s` line 27) tests r51 against 1 with pending class 1 in its delay slot; otherwise it flushes the evaluator coordinate, clears the pending class and loads `mgesi_Points` before the reset at 0x121. |
+| 0x1af | `ged1b.u` `HP_SWAPTMESH` at the begin state of points | **Inferred**: fetch-only word 0x125, ignored like entry 0x1ab. |
+
+### Separate lines (class 2, entries 0x190-0x19b)
+
+| Entry | Token and state | What the code at the target does |
+|---|---|---|
+| 0x190 | `ged1b.u` the first endpoint after begin (state 0) | **Inferred**: word 0x385 (`lines.s` line 27) records the endpoint by moving to state 1 with next word 0x388, then fetches. |
+| 0x191 | `ged1b.u` material before a line's first endpoint | **Inferred**: word 0x39d (`lines.s` line 77) jumps to material with state 0 at 0x385 restored. |
+| 0x192 | `ged1b.u` `HP_END` between lines | **Inferred**: word 0x392 (`lines.s` line 58) resets class and state and releases the batch of finished lines. |
+| 0x193 | `ged1b.u` `HP_SWAPTMESH` between lines | **Inferred**: word 0x396 (`lines.s` line 66) only fetches. |
+| 0x194 | `ged1b.u` the second endpoint (state 1) | **Inferred**: word 0x388 (`lines.s` line 36) finishes a segment: state 2 with next word 0x385, r13 reloaded with 0xf, and a fetching transfer on r51 to 0x398, which loads `mgesi_LineStrip` for the release and returns to state 0. |
+| 0x195 | `ged1b.u` material between a line's two endpoints | **Inferred**: word 0x39f (`lines.s` line 81) enters material with state 1 at 0x388 restored, so the pending endpoint survives. |
+| 0x196 | `ged1b.u` `HP_END` with one endpoint pending | **Inferred**: word 0x38c (`lines.s` line 47) sets control field y before falling into the end code at 0x38d, which drops the lone endpoint and releases. |
+| 0x197 | `ged1b.u` `HP_SWAPTMESH` with one endpoint pending | **Inferred**: the fetch at 0x396; the endpoint stays pending. |
+| 0x198 | `ged1b.u` a first endpoint after a finished segment (state 2) | **Inferred**: the endpoint code at 0x385 shared with entry 0x190, starting the next segment. |
+| 0x199 | `ged1b.u` material after a finished segment | **Inferred**: word 0x3a1 (`lines.s` line 85) enters material with state 2 at 0x385 restored. |
+| 0x19a | `ged1b.u` `HP_END` after finished segments | **Inferred**: word 0x38d (`lines.s` line 49) tests r51 against 2 with pending class 2 in its delay slot, flushes a pending evaluator coordinate otherwise, loads `mgesi_LineStrip` and releases through the reset at 0x392. |
+| 0x19b | `ged1b.u` `HP_SWAPTMESH` after a finished segment | **Inferred**: fetch at 0x396, the third swap entry of class 2, with no effect on the lines. |
+
+### Subdivision patches (class 12, entries 0x1a0-0x1a7)
+
+| Entry | Token and state | What the code at the target does |
+|---|---|---|
+| 0x1a4 | `ged1b.u` a vertex inside a subdivision patch (state 1) | **Inferred**: word 0x034 (`trigger.s` line 43) reloads state 1 with the x = 2 mark and fetches: every vertex of the patch is collected with no per-vertex primitive step. |
+| 0x1a5 | `ged1b.u` material inside a subdivision patch | **Inferred**: word 0x037 (`trigger.s` line 48) jumps to the material code at 0x013 with the patch state untouched. |
+| 0x1a6 | `ged1b.u` `HP_END` of a subdivision patch | **Inferred**: word 0x039 (`trigger.s` line 52) flushes an evaluator coordinate when one is pending, copies the current handler `mgesi_SubdivEntry` into the null-handler register, resets class and state and releases, so the whole patch goes to the engines in one command. |
+
+Entries 0x1a0-0x1a3 and 0x1a7 hold the null loop at 0x006: the patch never uses state 0, and a strip swap inside a patch is
+dropped.
+
 ## The diagnostic's sequencer and stress tests
 
 Sources: `irsaudit` 6.5.30m, `gedSequencer` (0x10075210), `gedStressTd` (0x10074ba4), `gedStressReorder` (0x1007341c), `gedStressForm` (0x100735a8), `gedStressUnpack` (0x10073730), `gedStressPtu` (0x100738c4), `gedStressVtu` (0x10073b4c), the unnamed helpers that follow `gedSequencer` (0x10075710-0x10075b14), and the register/pixel builders `Load_GED_Reg` (0x1013f830), `Transfer_GED_Reg` (0x1013f940) and `Send_GED_CI_Token` (0x1013f728).
