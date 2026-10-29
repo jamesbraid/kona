@@ -150,14 +150,14 @@
  *   2. read 0x800220 and 0x8003a8 into KONA_SC_DEATH_HIP_220 / _3A8;
  *   3. write 0x800220 = KONA_SC_HIP_220_SHADOW & ~0x8000;
  *   4. write 0x8003a8 = 8;
- *   5. write 0x800298 = 0x0badcffe;
+ *   5. write 0x800298 = 0xbadc0ffe;
  *   6. print a message with 0x800208 and the reason;
  *   7. clear three driver words (+0x68, +0x6c, +0x78) and signal every
  *      graphics thread on the pipe (gthread_scan with action 9).
  * By the host-interface table (HIP.h): step 3 clears HIP2_INTR_GLOBAL_EN in
  * HH_INTR_INFO, step 4 writes TBUS_STALL (bit 3) of HH_TBUS_STATUS, step 5
  * writes HH_ODMA_FLUSH, and step 6 reads HH_GFIFO_LEVEL. INFERRED: the pipe
- * is silenced and its texture bus stalled, and 0x0badcffe is a marker
+ * is silenced and its texture bus stalled, and 0xbadc0ffe is a marker
  * for post-mortem tools. There is no reset or restart: a dead pipe stays
  * dead until the driver is reinitialised.
  *
