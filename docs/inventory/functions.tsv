@@ -47063,7 +47063,7 @@ usr/gfx/dmconf	shared-tool	n32		0x10013aa0	316	vfmtReadCmp1SG2Format	dynsym	fcf4
 usr/gfx/dmconf	shared-tool	n32		0x10013d10	6180	vfmtReadCmp1Combination	dynsym	4478dfcf87ed	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
 usr/gfx/dmconf	shared-tool	n32		0x10015540	5148	vfmtWriteCmp1Combination	dynsym	2933919d3ca6	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
 usr/gfx/dmconf	shared-tool	n32		0x10016a10	592	vfmtFindFormatFile	dynsym	155d4469b652	located	docs/kona-ddx.md#video-format-files	Video format files
-usr/gfx/dmconf	shared-tool	n32		0x10016c60	76	vfmtFindKonaFormatFile	dynsym	472ccdad2851	located	docs/kona-ddx.md#video-format-files	Video format files
+usr/gfx/dmconf	shared-tool	n32		0x10016c60	76	vfmtFindKonaFormatFile	dynsym	472ccdad2851	located	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/gfx/dmconf	shared-tool	n32		0x10016cb0	156	vfmtFindCmpFormatFile	dynsym	a943ad86ae04	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/dmconf	shared-tool	n32		0x10016d50	76	vfmtFindOdyFormatFile	dynsym	ab94d3fc8fb1	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/dmconf	shared-tool	n32		0x10016da0	76	vfmtFindSG2FormatFile	dynsym	51a8a2d2395b	located	docs/kona-ddx.md#video-format-files	Video format files
@@ -48529,14 +48529,14 @@ usr/gfx/ircombine	board-tool	n32		0x100840b0	144	vfmtSwapRateCloseEnough	dynsym	
 usr/gfx/ircombine	board-tool	n32		0x10084140	332	vfmtSyncFormatFrameRatesCompatible	dynsym	c1a358941fcb	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/ircombine	board-tool	n32		0x10084340	392	vfmtUpdateFormatInfoInCombination	dynsym	10b566267f9d	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/ircombine	board-tool	n32		0x10086800	592	vfmtFindFormatFile	dynsym	c07211004392	located	docs/kona-ddx.md#video-format-files	Video format files
-usr/gfx/ircombine	board-tool	n32		0x10086a50	76	vfmtFindKonaFormatFile	dynsym	98a1bba547b9	located	docs/kona-ddx.md#video-format-files	Video format files
+usr/gfx/ircombine	board-tool	n32		0x10086a50	76	vfmtFindKonaFormatFile	dynsym	98a1bba547b9	located	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/gfx/ircombine	board-tool	n32		0x10086aa0	156	vfmtFindCmpFormatFile	dynsym	b6426410c0bd	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/ircombine	board-tool	n32		0x10086b40	76	vfmtFindOdyFormatFile	dynsym	660e588450c1	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/ircombine	board-tool	n32		0x10086b90	76	vfmtFindSG2FormatFile	dynsym	e4e3718cb611	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/ircombine	board-tool	n32		0x10086be0	308	vfmtFindKonaCombinationFile	dynsym	b6e68259b921	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/ircombine	board-tool	n32		0x10086d20	616	vfmtFindCmpCombinationFile	dynsym	901468600152	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/ircombine	board-tool	n32		0x10086f90	132	vfmtGetLastKonaFileStat	dynsym	8b74e543caf9	located	docs/kona-ddx.md#video-format-files	Video format files
-usr/gfx/ircombine	board-tool	n32		0x10088620	500	vfmtReadKonaCombination	dynsym	cce916c540f4	located	docs/kona-ddx.md#video-format-files	Video format files
+usr/gfx/ircombine	board-tool	n32		0x10088620	500	vfmtReadKonaCombination	dynsym	cce916c540f4	located	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/gfx/ircombine	board-tool	n32		0x10089870	2304	vfmtWriteKonaCombination	dynsym	2cccab47c257	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/ircombine	board-tool	n32		0x1008c9e0	772	vfmtReadKonaVideoFormat	dynsym	cc42208a5708	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/ircombine	board-tool	n32		0x1008cfa4	56	SDBaddNewArraySymbol	dynsym	608553e5ec29	located	docs/kona-ddx.md#symbol-database-reader-and-writer	Symbol database reader and writer
@@ -48763,14 +48763,14 @@ usr/gfx/setmon	shared-tool	n32		0x1001a5c0	144	vfmtSwapRateCloseEnough	dynsym	2c
 usr/gfx/setmon	shared-tool	n32		0x1001a650	332	vfmtSyncFormatFrameRatesCompatible	dynsym	c74ac8395dd9	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/setmon	shared-tool	n32		0x1001a850	392	vfmtUpdateFormatInfoInCombination	dynsym	3848b8f519f6	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/setmon	shared-tool	n32		0x1001cd00	592	vfmtFindFormatFile	dynsym	2c98152fc9bb	located	docs/kona-ddx.md#video-format-files	Video format files
-usr/gfx/setmon	shared-tool	n32		0x1001cf50	76	vfmtFindKonaFormatFile	dynsym	572357e90cb4	located	docs/kona-ddx.md#video-format-files	Video format files
+usr/gfx/setmon	shared-tool	n32		0x1001cf50	76	vfmtFindKonaFormatFile	dynsym	572357e90cb4	located	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/gfx/setmon	shared-tool	n32		0x1001cfa0	156	vfmtFindCmpFormatFile	dynsym	6f2661a35091	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/setmon	shared-tool	n32		0x1001d040	76	vfmtFindOdyFormatFile	dynsym	27189b4d88cc	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/setmon	shared-tool	n32		0x1001d090	76	vfmtFindSG2FormatFile	dynsym	cbf593255f6c	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/setmon	shared-tool	n32		0x1001d0e0	308	vfmtFindKonaCombinationFile	dynsym	fa61df65fc76	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/setmon	shared-tool	n32		0x1001d220	616	vfmtFindCmpCombinationFile	dynsym	484725113ca8	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/setmon	shared-tool	n32		0x1001d490	132	vfmtGetLastKonaFileStat	dynsym	3c80a7c6b43c	located	docs/kona-ddx.md#video-format-files	Video format files
-usr/gfx/setmon	shared-tool	n32		0x1001eb20	500	vfmtReadKonaCombination	dynsym	5bcdc8291a85	located	docs/kona-ddx.md#video-format-files	Video format files
+usr/gfx/setmon	shared-tool	n32		0x1001eb20	500	vfmtReadKonaCombination	dynsym	5bcdc8291a85	located	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/gfx/setmon	shared-tool	n32		0x1001fd70	2304	vfmtWriteKonaCombination	dynsym	912d5e72f0f6	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/setmon	shared-tool	n32		0x10022ef0	772	vfmtReadKonaVideoFormat	dynsym	f309a8e3e010	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/setmon	shared-tool	n32		0x100234b4	56	SDBaddNewArraySymbol	dynsym	de90d54dd71d	located	docs/kona-ddx.md#symbol-database-reader-and-writer	Symbol database reader and writer
@@ -49183,7 +49183,7 @@ usr/gfx/sgcombine	shared-tool	n32		0x100219b0	316	vfmtReadCmp1SG2Format	dynsym	1
 usr/gfx/sgcombine	shared-tool	n32		0x10021c20	6180	vfmtReadCmp1Combination	dynsym	0cfc9fb49b34	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
 usr/gfx/sgcombine	shared-tool	n32		0x10023450	5148	vfmtWriteCmp1Combination	dynsym	35d2d2407e53	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
 usr/gfx/sgcombine	shared-tool	n32		0x10024930	592	vfmtFindFormatFile	dynsym	f7834fe8210a	located	docs/kona-ddx.md#video-format-files	Video format files
-usr/gfx/sgcombine	shared-tool	n32		0x10024b80	76	vfmtFindKonaFormatFile	dynsym	3dd1d695d4d3	located	docs/kona-ddx.md#video-format-files	Video format files
+usr/gfx/sgcombine	shared-tool	n32		0x10024b80	76	vfmtFindKonaFormatFile	dynsym	3dd1d695d4d3	located	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/gfx/sgcombine	shared-tool	n32		0x10024bd0	156	vfmtFindCmpFormatFile	dynsym	acb4a0eec76f	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/sgcombine	shared-tool	n32		0x10024c70	76	vfmtFindOdyFormatFile	dynsym	2b82398ff0ba	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/sgcombine	shared-tool	n32		0x10024cc0	76	vfmtFindSG2FormatFile	dynsym	d82fe2dc98fd	located	docs/kona-ddx.md#video-format-files	Video format files
@@ -51141,14 +51141,14 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x428810	144	vfmtSwapRateCloseEno
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4288a0	332	vfmtSyncFormatFrameRatesCompatible	dynsym	551dc21e0057	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x428aa0	392	vfmtUpdateFormatInfoInCombination	dynsym	5e10c6133c36	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42af50	592	vfmtFindFormatFile	dynsym	16128643e488	understood	docs/kona-ddx.md#video-format-files	Video format files
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42b1a0	76	vfmtFindKonaFormatFile	dynsym	1e949a7b6a5c	understood	docs/kona-ddx.md#video-format-files	Video format files
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42b1a0	76	vfmtFindKonaFormatFile	dynsym	1e949a7b6a5c	understood	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42b1f0	156	vfmtFindCmpFormatFile	dynsym	84ac615f5f03	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42b290	76	vfmtFindOdyFormatFile	dynsym	923e28ffe116	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42b2e0	76	vfmtFindSG2FormatFile	dynsym	a31c1a24dcf3	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42b330	308	vfmtFindKonaCombinationFile	dynsym	180a0f2f6583	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42b470	616	vfmtFindCmpCombinationFile	dynsym	40ab9f793788	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42b6e0	132	vfmtGetLastKonaFileStat	dynsym	dc3f529373bd	understood	docs/kona-ddx.md#video-format-files	Video format files
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42cd70	500	vfmtReadKonaCombination	dynsym	4995a79bd3f4	understood	docs/kona-ddx.md#video-format-files	Video format files
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42cd70	500	vfmtReadKonaCombination	dynsym	4995a79bd3f4	understood	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x42dfc0	2304	vfmtWriteKonaCombination	dynsym	6fb6b4bcea96	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x431140	772	vfmtReadKonaVideoFormat	dynsym	233e0c4df1af	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x431704	56	SDBaddNewArraySymbol	dynsym	e09bddaef839	understood	docs/kona-ddx.md#symbol-database-reader-and-writer	Symbol database reader and writer
@@ -51936,14 +51936,14 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13a8810	144	vfmtSwapRateCloseEn
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13a88a0	332	vfmtSyncFormatFrameRatesCompatible	dynsym	551dc21e0057	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13a8aa0	392	vfmtUpdateFormatInfoInCombination	dynsym	5e10c6133c36	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13aaf50	592	vfmtFindFormatFile	dynsym	16128643e488	understood	docs/kona-ddx.md#video-format-files	Video format files
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ab1a0	76	vfmtFindKonaFormatFile	dynsym	1e949a7b6a5c	understood	docs/kona-ddx.md#video-format-files	Video format files
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ab1a0	76	vfmtFindKonaFormatFile	dynsym	1e949a7b6a5c	understood	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ab1f0	156	vfmtFindCmpFormatFile	dynsym	84ac615f5f03	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ab290	76	vfmtFindOdyFormatFile	dynsym	923e28ffe116	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ab2e0	76	vfmtFindSG2FormatFile	dynsym	a31c1a24dcf3	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ab330	308	vfmtFindKonaCombinationFile	dynsym	180a0f2f6583	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ab470	616	vfmtFindCmpCombinationFile	dynsym	40ab9f793788	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ab6e0	132	vfmtGetLastKonaFileStat	dynsym	dc3f529373bd	understood	docs/kona-ddx.md#video-format-files	Video format files
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13acd70	500	vfmtReadKonaCombination	dynsym	4995a79bd3f4	understood	docs/kona-ddx.md#video-format-files	Video format files
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13acd70	500	vfmtReadKonaCombination	dynsym	4995a79bd3f4	understood	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13adfc0	2304	vfmtWriteKonaCombination	dynsym	6fb6b4bcea96	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13b1140	772	vfmtReadKonaVideoFormat	dynsym	233e0c4df1af	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13b1704	56	SDBaddNewArraySymbol	dynsym	e09bddaef839	understood	docs/kona-ddx.md#symbol-database-reader-and-writer	Symbol database reader and writer
@@ -52731,14 +52731,14 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x428810	144	vfmtSwapRateCloseEno
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4288a0	332	vfmtSyncFormatFrameRatesCompatible	dynsym	551dc21e0057	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x428aa0	392	vfmtUpdateFormatInfoInCombination	dynsym	5e10c6133c36	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42af50	592	vfmtFindFormatFile	dynsym	16128643e488	understood	docs/kona-ddx.md#video-format-files	Video format files
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42b1a0	76	vfmtFindKonaFormatFile	dynsym	1e949a7b6a5c	understood	docs/kona-ddx.md#video-format-files	Video format files
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42b1a0	76	vfmtFindKonaFormatFile	dynsym	1e949a7b6a5c	understood	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42b1f0	156	vfmtFindCmpFormatFile	dynsym	84ac615f5f03	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42b290	76	vfmtFindOdyFormatFile	dynsym	923e28ffe116	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42b2e0	76	vfmtFindSG2FormatFile	dynsym	a31c1a24dcf3	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42b330	308	vfmtFindKonaCombinationFile	dynsym	180a0f2f6583	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42b470	616	vfmtFindCmpCombinationFile	dynsym	40ab9f793788	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42b6e0	132	vfmtGetLastKonaFileStat	dynsym	dc3f529373bd	understood	docs/kona-ddx.md#video-format-files	Video format files
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42cd70	500	vfmtReadKonaCombination	dynsym	4995a79bd3f4	understood	docs/kona-ddx.md#video-format-files	Video format files
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42cd70	500	vfmtReadKonaCombination	dynsym	4995a79bd3f4	understood	docs/display-file-format.md#which-routines-read-the-files	Which routines read the files
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x42dfc0	2304	vfmtWriteKonaCombination	dynsym	6fb6b4bcea96	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x431140	772	vfmtReadKonaVideoFormat	dynsym	233e0c4df1af	understood	docs/kona-ddx.md#video-format-files	Video format files
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x431704	56	SDBaddNewArraySymbol	dynsym	e09bddaef839	understood	docs/kona-ddx.md#symbol-database-reader-and-writer	Symbol database reader and writer
