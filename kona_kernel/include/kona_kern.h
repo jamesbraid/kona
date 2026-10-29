@@ -142,9 +142,7 @@
  *      halfwords at +18 of the draw drawable (gfxp+120) and of the read
  *      drawable (gfxp+128), sign-extended.
  *   4. activate_token, then one 0 word (the no-argument form, GE.h).
- * INFERRED: R+8..R+20 and R'+8/+12 are window origin and size, and the
- * four list words a clip rectangle; R+60/R'+60 match in both packets and
- * may be a drawable id. Field meanings are UNKNOWN beyond these offsets.
+ * The field meanings are settled below ("Rendering node and drawable").
  *
  * Activate token, ESTABLISHED: it is not a constant. KONApcxswap loads
  * X = the pointer at context record +16 (the same pointer CONTEXT_LOAD
@@ -187,6 +185,107 @@
  *
  * If KONA_SC_DEATH_REASON is nonzero the switch returns without sending
  * anything.
+ */
+
+/*
+ * Rendering node and drawable ("pane"), ESTABLISHED by agreement between the
+ * kernel's accesses (kona_context.o, kona_video.o, kona_dma.o, kona_ddrn.o)
+ * and the 6.5.5 installed header sys/rrm.h (struct rrm_rnode, struct pane,
+ * struct RRM_ValidateClip, struct swapgroup). The header supplies names; each
+ * offset below is one the 6.5.30m driver uses, and the sizes agree: the
+ * rendering node is 176 bytes (the divisor in the FINISH_SELECTFEED and
+ * CONTEXT_DEACTIVATE payloads), and p_vclip at +96 plus its 64 bytes puts the
+ * swap-group pointer at +160, where the driver reads it. The driver's own
+ * name "rnid" (kona_dma.o, kona_intr.o messages) is the index of the
+ * rendering node in its table, the same slot number that
+ * CONTEXT_DEACTIVATE and FINISH_SELECTFEED carry.
+ *
+ * Throughout this file "gfxp" in the context code is the rendering node
+ * (argument 2 of kona_act_pcx, argument 3 of KONApcxswap), not the thread's
+ * graphics struct. Rendering node, with 6.5.5 names:
+ *   +4    gr_reqmask (halfword). Bit 1 is RRM_RMASK_CLIP (0x2): kona_act_pcx
+ *         step 1 sends VALIDATE_CLIP when it is set, and KONApcxswap ORs 2
+ *         into the word at +4 of the object at +64.
+ *   +16   header: gr_pcxsize. USAGE: KONApcxswap sets it to 1 after it sends
+ *         CONTEXT_INIT and picks CONTEXT_LOAD or CONTEXT_INIT by testing it,
+ *         so the driver uses it as an "initialised" flag. The header name
+ *         does not match the use; both are labelled and the use is what the
+ *         code does.
+ *   +64   the header calls this gr_gfxp. UNRESOLVED: the driver treats the
+ *         object as having a word at +4 and a link at +8 whose own +8 link
+ *         returns to it (kona_act_pcx step 3), which gfx_gfx does not.
+ *   +112  gr_private: the driver's 256-byte private record (below).
+ *   +120  gr_pane, the draw pane; +128 gr_readpane, the read pane.
+ *   +136  gr_serial, +140 gr_readserial: the pane serial numbers the node
+ *         last sent to the pipe. kona_act_pcx resends the clip when the
+ *         draw pane's serial differs from +136 and the read clip when the
+ *         read pane's differs from +140 (the "cached +8 word" above).
+ *
+ * Pane (the drawable the draw and read pointers name), with the 6.5.5 names
+ * and what the driver does with each:
+ *   +0    paneid (two 16-bit halves: incarnation, id)
+ *   +4    clipid, the opaque window id
+ *   +8    p_serial, "serial number for validate clip": the generation word.
+ *         It is the value compared with the node's cached copy to decide
+ *         whether to resend VALIDATE_CLIP / VALIDATE_READCLIP. Who
+ *         increments it is on the other side of the clip validation call
+ *         (rrm.o, RRM_ValidateClip, not read for this).
+ *   +12 p_validmask, +14 p_waitmask, +16 p_rncnt (halfwords; not touched by
+ *         the pipe code)
+ *   +18   p_displaybank, the currently displayed buffer: the two halfwords
+ *         VALIDATE_BANK carries are the draw pane's and the read pane's
+ *   +20   p_swapbufid, the "display id" (hardware DID): the first payload
+ *         word of DISPMODE (docs/dg.md)
+ *   +24 p_swapinterval, +28 p_nextswaptime, +32 p_hwi_mode (hardware-
+ *         independent display mode)
+ *   +96   p_vclip, a struct RRM_ValidateClip (R = pane + 96 above):
+ *           R+0 rnid, +4 clipid, +8 xorg, +12 yorg (window origin),
+ *           +16 xsize, +20 ysize (window size), +24 numpieces, +32 pointer
+ *           to the piece list (an array of {x, y, xsize, ysize}, four ints
+ *           each: the four list words VALIDATE_CLIP carries are piece 0),
+ *           +40 wid (window id for the hardware), +44 obscured,
+ *           +48 widcheck, +52 changed (1 moved, 2 shrunk), +56 hwi_mode,
+ *           +60 fboffset.
+ *         VALIDATE_CLIP therefore carries: xorg, yorg, xsize, ysize, piece
+ *         0 (x, y, xsize, ysize), fboffset, wid, obscured. KONAsetnullclip
+ *         makes the null region: origin, size, numpieces, widcheck and
+ *         fboffset 0, wid -1, obscured 1, changed 1.
+ *   +160  p_swapgroup: pointer to {refcnt, swapcnt, seqid}. KONAschedswapbuf
+ *         reloads swapcnt from refcnt when it is 0 and decrements it per
+ *         member, which is the countdown docs/dg.md calls a swap group.
+ *   +168  p_next, the next pane in the swap group; +176 p_swapped (byte).
+ * The pane's field types and names are the header's; the offsets are the
+ * driver's, so the two agree on every field the driver touches. Fields the
+ * driver never touches (+12..+16, +24..+32 and the pane's locks) keep the
+ * header's names unverified.
+ *
+ * Private record (gr_private), 256 bytes allocated and zeroed by
+ * KONAcreateddrn (kona_ddrn.o):
+ *   +0    pointer to a 16 KB return-data buffer (kvpalloc, size argument 1,
+ *         INFERRED to be in 16 KB pages)
+ *   +8, +12  that buffer's address pair, ((pa >> 12) | 0x10000000,
+ *         (pa & 0xfff) | 0x9000): RDATA_SETUP's first two words
+ *   +16   pointer to the context save area, 64 KB (kvpalloc, size argument
+ *         4; the 64 KB follows from the mapping size below)
+ *   +24   the save area's pipe-space address (alloc_gfx_io_space, 64 KB,
+ *         16 KB pages): CONTEXT_LOAD/INIT's address pair is built from it
+ *   +32..  the select-feedback record (kona.h notes, docs/kernel.md);
+ *         +80 is its semaphore, +96 its timeout, +104 its in-flight flag
+ *   +208  the per-context DMA pool record; +240 a pointer to the shared pool
+ *         object, whose +72 holds the shared pool record (docs/hip.md)
+ *   +112..+136  the retrace record: sequence number, timeout handle,
+ *         callback, and the next node in the queue at +136
+ *   +248  halfword, -1 at creation
+ *
+ * The context save area. KONApcxswap sends CONTEXT_LOAD with the word at
+ * the save area's +0 as its first payload word and passes the word at +8 as
+ * the activate token (above). KONAcreateddrn allocates the area and never
+ * initialises it (bzero covers only the 256-byte record), and no store to
+ * either word was found in any kona.a member; the area is named to the
+ * pipe in CONTEXT_INIT and CONTEXT_DEACTIVATE. INFERRED: the pipe writes
+ * both words when it saves a context (a header the host reads back and
+ * returns), which answers "who writes X+8" by exclusion; it was not
+ * observed.
  */
 
 /*

@@ -28,3 +28,7 @@ Per-pipe counters and handles the DMA code uses (offsets in the pipe state, name
 | `P+2184` | pipe identity passed to `alloc_gfx_io_space` and `free_gfx_io_space` |
 
 A context's select-feedback record is the 80-byte-or-so object at (context's pointer at +112) + 32: base at 0, length at 8, line length at 12, stride at 16, snapshot at 24, locked length at 28, outstanding word count at 32, status word at 36, pipe address at 40, semaphore at 48, timeout handle at 64, owning process at 72, in-flight flag at the object's +104 (`kona_start_selectfeed`, `kona_finish_selectfeed`, `kona_ge_intr`). **Established** as offsets; names ours.
+
+## Rendering node, drawable and private record
+
+The structures behind `kona_act_pcx`, `KONApcxswap`, the swap code (`docs/dg.md`) and the DMA code are laid out in the comment "Rendering node and drawable" in [kona_kern.h](../kona_kernel/include/kona_kern.h): the 176-byte rendering node, the pane (drawable) with its clip record, swap-group counters and display bank, and the driver's 256-byte private record with the return-data buffer, the 64 KB context save area and the retrace and select-feedback records. **Established** from the driver's accesses cross-checked against the 6.5.5 installed header `sys/rrm.h`. One rendering-node field (+64) and the writer of the save area's activate word (+8) stay open: the first does not match the header, the second is inferred to be the pipe.
