@@ -1688,7 +1688,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10078ff8	588	TEST_hh_reg	dynsy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079244	800	TEST_ha_reg	dynsym	eae08f78868b	named-only	docs/ge.md#dma	DMA
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079564	556	TEST_icu_mem	dynsym	e10b29795814	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079790	200	TEST_dg_reg	dynsym	0c8ea3c103e9	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079858	572	TEST_intr	dynsym	7c157d698b0a	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079858	572	TEST_intr	dynsym	7c157d698b0a	named-only	docs/hip.md#flow-control-the-fifo-interrupts	Flow control: the FIFO interrupts
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a71c	640	TEST_mbox	dynsym	b69a6e5d5057	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a99c	64	TEST_dganalog	dynsym	54a64c6f1252	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a9dc	72	TEST_fail	dynsym	6b156077eed6	named-only	docs/irsaudit.md#tests	Tests
@@ -51035,7 +51035,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5511a0	1964	miFillConvexPoly	dyn
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x551950	1200	konDrawPoints	dynsym	0e690c91e3a1	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x551e00	2676	mfbPolyFillRect	dynsym	4aa018c6ef0e	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x552880	1292	miValidateTree	dynsym	0bb2533e7879	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x552f40	2276	konDrawImage	dynsym	a5a3369a1de5	named-only	docs/kernel.md#multi-vector-writes-kona_dmawrite	Multi-vector writes (`KONA_DMAWRITE`)
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x552f40	2276	konDrawImage	dynsym	a5a3369a1de5	named-only	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma	Host to pipe: `kona_dmawrite`, `kona_idma`
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x553830	1284	mfbBlackStippleFS	dynsym	046f2d7f64c2	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x553d40	2320	konValidateWindowGC	dynsym	b2f6b9ad2dd0	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x554650	452	nfbStereoPolyline	dynsym	73eec799ea7d	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
@@ -51830,7 +51830,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x55c630	1964	miFillConvexPoly	dy
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x55cde0	1920	konDrawPoints	dynsym	d574055a0466	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x55d560	2676	mfbPolyFillRect	dynsym	193c528ca54d	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x55dfe0	1292	miValidateTree	dynsym	54df3d24dd1d	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x55e6a0	3944	konDrawImage	dynsym	1a08d57dc8ae	named-only	docs/kernel.md#multi-vector-writes-kona_dmawrite	Multi-vector writes (`KONA_DMAWRITE`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x55e6a0	3944	konDrawImage	dynsym	1a08d57dc8ae	named-only	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma	Host to pipe: `kona_dmawrite`, `kona_idma`
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x55f610	1284	mfbBlackStippleFS	dynsym	e3e666f14f13	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x55fb20	2320	konValidateWindowGC	dynsym	857dc8c52726	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x560430	452	nfbStereoPolyline	dynsym	b26e64fc27af	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
@@ -52625,7 +52625,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14dc630	1964	miFillConvexPoly	d
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14dcde0	1920	konDrawPoints	dynsym	d574055a0466	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14dd560	2676	mfbPolyFillRect	dynsym	193c528ca54d	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ddfe0	1292	miValidateTree	dynsym	54df3d24dd1d	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14de6c0	3932	konDrawImage	dynsym	9ca85237efcc	named-only	docs/kernel.md#multi-vector-writes-kona_dmawrite	Multi-vector writes (`KONA_DMAWRITE`)
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14de6c0	3932	konDrawImage	dynsym	9ca85237efcc	named-only	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma	Host to pipe: `kona_dmawrite`, `kona_idma`
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14df620	1284	mfbBlackStippleFS	dynsym	b81b00093d92	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14dfb30	2320	konValidateWindowGC	dynsym	d6be82d78cb8	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14e0440	452	nfbStereoPolyline	dynsym	0b30ed0026c5	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
@@ -53420,7 +53420,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x55c630	1964	miFillConvexPoly	dy
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x55cde0	1920	konDrawPoints	dynsym	d574055a0466	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x55d560	2676	mfbPolyFillRect	dynsym	193c528ca54d	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x55dfe0	1292	miValidateTree	dynsym	54df3d24dd1d	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x55e6c0	3932	konDrawImage	dynsym	9ca85237efcc	named-only	docs/kernel.md#multi-vector-writes-kona_dmawrite	Multi-vector writes (`KONA_DMAWRITE`)
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x55e6c0	3932	konDrawImage	dynsym	9ca85237efcc	named-only	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma	Host to pipe: `kona_dmawrite`, `kona_idma`
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x55f620	1284	mfbBlackStippleFS	dynsym	b81b00093d92	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x55fb30	2320	konValidateWindowGC	dynsym	d6be82d78cb8	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x560440	452	nfbStereoPolyline	dynsym	0b30ed0026c5	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)

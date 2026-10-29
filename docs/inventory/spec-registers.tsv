@@ -23,7 +23,7 @@ kpm register tables	host interface		hip	0x800200	HH_RTC	1	0	32		0	named-only	doc
 kpm register tables	host interface		hip	0x800208	HIP1_HH_GFIFO_LEVEL	1	0	32		1	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
 kpm register tables	host interface		hip	0x800208	HIP2_HH_GFIFO_LEVEL	1	0	32		1	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
 kpm register tables	host interface		hip	0x800210	HH_GFIFO_HI	1	0	32		1	named-only	docs/hip.md#flow-control-the-fifo-interrupts	Flow control: the FIFO interrupts
-kpm register tables	host interface		hip	0x800218	HH_GFIFO_LO	1	0	32		0	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
+kpm register tables	host interface		hip	0x800218	HH_GFIFO_LO	1	0	32		0	named-only	docs/hip.md#flow-control-the-fifo-interrupts	Flow control: the FIFO interrupts
 kpm register tables	host interface		hip	0x800220	HIP1_HH_INTR_INFO	1	0	32		1	named-only	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 kpm register tables	host interface		hip	0x800220	HIP2_HH_INTR_INFO	1	0	32		1	named-only	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 kpm register tables	host interface		hip	0x800228	HH_INTR_ACK	1	0	32		1	named-only	docs/dg.md#interrupts	Interrupts

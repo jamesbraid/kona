@@ -26,13 +26,13 @@ user-fifo	0x0		w4,w8	17348	6	GetSingleCompFromPipe;__glKonCopyTexImage;__glKonCr
 user-io	0xc00c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/hip.md#arm-side-register-names	ARM-side register names
 user-io	0xc014		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/kernel.md#textport-drawing-kona_setcolor-kona_mapcolor-kona_point-kona_box-kona_unblank-kona_movechar-kona_bitmap-kona_tportinit	Textport drawing: `kona_setcolor`, `kona_mapcolor`, `kona_point`, `kona_box`, `kona_unblank`, `kona_movechar`, `kona_bitmap`, `kona_tportinit`
 user-io	0xc01c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	HIP.h:107	
-user-io	0xc024		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/hip.md#unknown	Unknown
+user-io	0xc024		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/hip.md#interrupt-facts-no-software-settles	Interrupt facts no software settles
 user-io	0xc02c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
 user-io	0xc034		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 user-io	0xc03c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/hip.md#the-token-map-seen-from-the-host	The token map seen from the host
 user-io	0xc064		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/hip.md#address-path	Address path
 user-io	0xc06c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
-user-io	0xc074		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/hip.md#unknown	Unknown
+user-io	0xc074		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/hip.md#interrupt-facts-no-software-settles	Interrupt facts no software settles
 user-io	0xc07c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/kernel.md#diagnostic-ioctls	Diagnostic ioctls
 user-io	0xc084		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/kernel.md#binding-a-node-to-a-window-rrm_bindrntoclip-rrm_bindrntoreadandclip-rrm_unbindrnfromclip-rrm_mapcliptoswapbufid	Binding a node to a window: `RRM_BindRNToClip`, `RRM_BindRNToReadAndClip`, `RRM_UnbindRNFromClip`, `RRM_MapClipToSwapbufID`
 user-io	0xc08c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	docs/kernel.md#flow-control-layer	Flow-control layer
@@ -41,14 +41,14 @@ user-io	0xc100		r4	12	6	__glkona_wait_rdata;__glkonim_Flush	user pipe mapping	us
 user-io	0x1fce00		r4	6	6	__glXInitThread	user pipe mapping	usr/gfx/arch/IP27KONA/libGL.so:__glXInitThread	named-only	HIP.h:99	
 user-io	0x1fce90		r4	4	4	__glSoftResetContext	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:__glSoftResetContext	named-only	HIP.h:100	
 user-io	0x1fce98		r8	2	2	__glSoftResetContext	user pipe mapping	usr/gfx/arch/IP27KONA64/libGLcore.so:__glSoftResetContext	named-only	HIP.h:101	
-xg	0x4		r4	2	2	kona_attach	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	named-only	docs/hip.md#unknown	Unknown
-xg	0x24		r4,w4	8	2	kona_reset_adaptor	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	named-only	docs/hip.md#unknown	Unknown
+xg	0x4		r4	2	2	kona_attach	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	named-only	docs/hip.md#interrupt-facts-no-software-settles	Interrupt facts no software settles
+xg	0x24		r4,w4	8	2	kona_reset_adaptor	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	named-only	docs/hip.md#interrupt-facts-no-software-settles	Interrupt facts no software settles
 xg	0x2c		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	named-only	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
 xg	0x34		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	named-only	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 xg	0x3c		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	named-only	docs/hip.md#the-token-map-seen-from-the-host	The token map seen from the host
 xg	0x5c		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	named-only	docs/hip.md#delivery	Delivery
 xg	0x64		r4	4	2	kona_attach	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	named-only	docs/hip.md#address-path	Address path
 xg	0x6c		r4,w4	8	2	kona_report_errs;kona_reset_adaptor	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_report_errs	named-only	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
-xg	0x74		r4,w4	4	2	kona_reset_adaptor	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	named-only	docs/hip.md#unknown	Unknown
+xg	0x74		r4,w4	4	2	kona_reset_adaptor	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	named-only	docs/hip.md#interrupt-facts-no-software-settles	Interrupt facts no software settles
 xg	0x7c		r4,w4	166	20	KONAdestroyddrn;KONAmapgfx;KONApcxswap;KONAreleasegfxsema;KONAresume;KONAschedmgrswapbuf;+20 more	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	named-only	docs/kernel.md#diagnostic-ioctls	Diagnostic ioctls
 xg	0x100000		r4,w4	4	2	kona_mapram_init	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o):kona_mapram_init	named-only	docs/hip.md#address-path	Address path
