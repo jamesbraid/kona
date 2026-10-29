@@ -1,5 +1,5 @@
 binary	group	role	kind	abi	bytes	sha256	copies	functions	access_sites	unresolved_sites	status	doc	section
-usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	0	0	undocumented		
+usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/cpu/sysgen/IP27boot/gfx.o	kernel-shared	shared-kernel	object	n64	53816	28186f9362dcd19e		62	0	0	understood	docs/kernel.md#the-graphics-connection-gfx_gfx	The graphics connection (`gfx_gfx`)
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	17812	70f668a5a117d389		19	0	0	understood	docs/kernel.md#vga-pipe-discovery-ip35-klconfigo-prom_has_vga_support-find_vga_pipe-find_vga_noprom_pipe-klcheck_vga	VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
 usr/cpu/sysgen/IP27boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	5844	d56b66fd1e680c4a		1	0	0	understood	docs/kernel.md#vga-pipe-discovery-ip35-klconfigo-prom_has_vga_support-find_vga_pipe-find_vga_noprom_pipe-klcheck_vga	VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
@@ -68,9 +68,9 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n
 usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8068	8af55035550b9e02		3	4	0	understood	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr	Geometry-engine events: `kona_ge_intr_handler`, `kona_ge_intr`
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7412	d3526393bde60851		5	2	3	understood	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr	Geometry-engine events: `kona_ge_intr_handler`, `kona_ge_intr`
 usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	0	0	understood	docs/kernel.md#the-graphics-connection-gfx_gfx	The graphics connection (`gfx_gfx`)
-usr/diags/IR/bin/availmon	diagnostics	board-diagnostic	data	-	1140	0830da204c6694ce		0	0	0	undocumented		
-usr/diags/IR/bin/hyper	diagnostics	board-diagnostic	executable	n32	38544	c9c31f17ce8a9831		11	0	0	undocumented		
-usr/diags/IR/bin/irsaudit	diagnostics	board-diagnostic	executable	n32	2967860	57830d1caab0efac		1170	0	0	undocumented		
+usr/diags/IR/bin/availmon	diagnostics	board-diagnostic	data	-	1140	0830da204c6694ce		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/diags/IR/bin/hyper	diagnostics	board-diagnostic	executable	n32	38544	c9c31f17ce8a9831		11	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/diags/IR/bin/irsaudit	diagnostics	board-diagnostic	executable	n32	2967860	57830d1caab0efac		1170	0	0	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/diags/IR/data/1280x1024_60.vfo	diagnostics	board-diagnostic	data	-	17920	fbcaab1b00af730f		0	0	0	undocumented		
 usr/diags/IR/data/160x100_5000.vfo	diagnostics	board-diagnostic	data	-	17967	8b776633a7cf9df6		0	0	0	undocumented		
 usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	bba183206ff10567		0	0	0	undocumented		
@@ -434,10 +434,10 @@ usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3
 usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/ucode/ge_diag_init.u	diagnostics	board-diagnostic	data	-	12082	7e407147118cf628		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0	0	0	understood	ucode/arm1_functions.md#other-data	Other data
-usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	0	0	undocumented		
-usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	14	0	undocumented		
-usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100		0	0	0	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	45a61c37ce61cf80		2936	0	0	undocumented		
+usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	0	0	understood	ucode/tport.md#what-it-is	What it is
+usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	14	0	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100		0	0	0	no-software-dependency	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	45a61c37ce61cf80		2936	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-libraries	shared-library	shared-object	n32	1833076	dff2b0d82deac998		3811	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IP27KONA/libGL.so	libraries	board-library	shared-object	o32	486700	214ae88b8179eaef		671	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
@@ -452,26 +452,26 @@ usr/gfx/arch/IP35KONA32/libGL.so	libraries	board-library	shared-object	n32	51650
 usr/gfx/arch/IP35KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	89303b7f78578067		4907	2881	0	named-only	docs/libglcore.md#libglcore-function-reference-by-source-file	`libGLcore`: function reference by source file
 usr/gfx/arch/IP35KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	2f064d4d8de46085		673	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/gfx/arch/IP35KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d5889b8581d8de51		4907	2909	0	named-only	docs/libglcore.md#libglcore-function-reference-by-source-file	`libGLcore`: function reference by source file
-usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	0	0	undocumented		
-usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	2eec8716f6ad8a43	usr/gfx/gfxinit	227	0	0	undocumented		
-usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0	0	0	undocumented		
-usr/gfx/hyperpipeinfo	board-tools	board-tool	executable	n32	18328	a43eeddde7bbbcbf		4	0	0	undocumented		
-usr/gfx/ircombine	board-tools	board-tool	executable	n32	766080	7016ad16f636dc67		1238	0	0	undocumented		
-usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	0	0	undocumented		
-usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	0	0	undocumented		
-usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0	0	0	undocumented		
-usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0	0	0	undocumented		
+usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	2eec8716f6ad8a43	usr/gfx/gfxinit	227	0	0	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
+usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/hyperpipeinfo	board-tools	board-tool	executable	n32	18328	a43eeddde7bbbcbf		4	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/ircombine	board-tools	board-tool	executable	n32	766080	7016ad16f636dc67		1238	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	0	0	no-software-dependency	ucode/dg.md#the-container-vfo-and-cmb	The container (`.vfo` and `.cmb`)
+usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/ucode/KONA/arm1.u	microcode	board-microcode	data	-	465452	8431a8e3184c858f		0	0	0	understood	docs/dg.md#display-requests	Display requests
 usr/gfx/ucode/KONA/arm1_kpm.u	microcode	board-microcode	data	-	7176	0938c672c1bf6b5a		0	0	0	understood	ucode/ge.md#arm-program	ARM program
 usr/gfx/ucode/KONA/dg4/cmb/1024x768_60.cmb	microcode	board-microcode	data	-	2272	c15312d32bbb3f58		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/cmb/1200x900_72.cmb	microcode	board-microcode	data	-	2272	22191e1a0dbde580		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/cmb/1280x1024+1920x1080_72.cmb	microcode	board-microcode	data	-	3688	2d0509d19ff41789		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/cmb/1280x1024+4@640x480_60.cmb	microcode	board-microcode	data	-	7936	f8b0d56784397972		0	0	0	undocumented		
+usr/gfx/ucode/KONA/dg4/cmb/1280x1024+4@640x480_60.cmb	microcode	board-microcode	data	-	7936	f8b0d56784397972		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
 usr/gfx/ucode/KONA/dg4/cmb/1280x1024+NTSC_60.cmb	microcode	board-microcode	data	-	3688	ebbdf1423a000402		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
-usr/gfx/ucode/KONA/dg4/cmb/1280x1024_60.cmb	microcode	board-microcode	data	-	2272	24f54d25c6914a97		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
-usr/gfx/ucode/KONA/dg4/cmb/1280x1024_72.cmb	microcode	board-microcode	data	-	2272	09144cff263eef02		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
+usr/gfx/ucode/KONA/dg4/cmb/1280x1024_60.cmb	microcode	board-microcode	data	-	2272	24f54d25c6914a97		0	0	0	named-only	ucode/dg.md#combination-files-cmb	Combination files (`.cmb`)
+usr/gfx/ucode/KONA/dg4/cmb/1280x1024_72.cmb	microcode	board-microcode	data	-	2272	09144cff263eef02		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/cmb/1280x492_120s.cmb	microcode	board-microcode	data	-	2276	8af0b384f950b903		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/cmb/1280x907+5@640x453_60.cmb	microcode	board-microcode	data	-	10768	883178d51b5c9b07		0	0	0	undocumented		
+usr/gfx/ucode/KONA/dg4/cmb/1280x907+5@640x453_60.cmb	microcode	board-microcode	data	-	10768	883178d51b5c9b07		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
 usr/gfx/ucode/KONA/dg4/cmb/1600x1024_60.cmb	microcode	board-microcode	data	-	2312	65f72a1fd94f723a		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/cmb/1600x1024_60p.cmb	microcode	board-microcode	data	-	2316	945bf01bf95db751		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/cmb/1600x1200_60.cmb	microcode	board-microcode	data	-	2272	53f87c0195dfaa3c		0	0	0	undocumented		
@@ -479,15 +479,15 @@ usr/gfx/ucode/KONA/dg4/cmb/1920x1035_30i.cmb	microcode	board-microcode	data	-	22
 usr/gfx/ucode/KONA/dg4/cmb/1920x1080_72.cmb	microcode	board-microcode	data	-	2272	eb8f6dbde135f70c		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/cmb/1920x1200_66.cmb	microcode	board-microcode	data	-	2272	5e2d7fb8bdc1dd67		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/cmb/2048x1120_72.cmb	microcode	board-microcode	data	-	2272	5a293d8929fe3cfa		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/cmb/2@1280x1024_60.cmb	microcode	board-microcode	data	-	3688	cec70866b6b7bdc0		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/cmb/2@1280x1024_72.cmb	microcode	board-microcode	data	-	3688	de01b491d742321c		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/cmb/3@1024x768_60+1280x959_30i.cmb	microcode	board-microcode	data	-	6520	a8b67f9e3f71d49c		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/cmb/3@1280x1024_60.cmb	microcode	board-microcode	data	-	5104	f7a844aab44c3fb9		0	0	0	undocumented		
+usr/gfx/ucode/KONA/dg4/cmb/2@1280x1024_60.cmb	microcode	board-microcode	data	-	3688	cec70866b6b7bdc0		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
+usr/gfx/ucode/KONA/dg4/cmb/2@1280x1024_72.cmb	microcode	board-microcode	data	-	3688	de01b491d742321c		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
+usr/gfx/ucode/KONA/dg4/cmb/3@1024x768_60+1280x959_30i.cmb	microcode	board-microcode	data	-	6520	a8b67f9e3f71d49c		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
+usr/gfx/ucode/KONA/dg4/cmb/3@1280x1024_60.cmb	microcode	board-microcode	data	-	5104	f7a844aab44c3fb9		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
 usr/gfx/ucode/KONA/dg4/cmb/640x480_120s.cmb	microcode	board-microcode	data	-	2272	03d6b8e4f3e063e3		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/cmb/640x512_120s.cmb	microcode	board-microcode	data	-	2272	58ce9e0438110aa8		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/cmb/7@800x600_60+NTSC.cmb	microcode	board-microcode	data	-	12184	30e8cdb24207ac2f		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/cmb/8@640x480_60.cmb	microcode	board-microcode	data	-	12184	f09cc7e0565c6afe		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/cmb/8@800x600_60.cmb	microcode	board-microcode	data	-	12184	850856c09cbf8df6		0	0	0	undocumented		
+usr/gfx/ucode/KONA/dg4/cmb/7@800x600_60+NTSC.cmb	microcode	board-microcode	data	-	12184	30e8cdb24207ac2f		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
+usr/gfx/ucode/KONA/dg4/cmb/8@640x480_60.cmb	microcode	board-microcode	data	-	12184	f09cc7e0565c6afe		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
+usr/gfx/ucode/KONA/dg4/cmb/8@800x600_60.cmb	microcode	board-microcode	data	-	12184	850856c09cbf8df6		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
 usr/gfx/ucode/KONA/dg4/cmb/960x680_60.cmb	microcode	board-microcode	data	-	2272	7d206ad3dbf6329a		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/vfo/1024x768_120_20e21s.vfo	microcode	board-microcode	data	-	18304	3bcb586bd16d9c10		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/vfo/1024x768_120s.vfo	microcode	board-microcode	data	-	18304	35e5a2531aa15b6c		0	0	0	undocumented		
@@ -563,13 +563,13 @@ usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_5994i.vfo	microcode	board-microcode	d
 usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_60i.vfo	microcode	board-microcode	data	-	18304	720623f379920d0b		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x486_5994i.vfo	microcode	board-microcode	data	-	18384	6d2a822a29a5f4dc		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x576_50i.vfo	microcode	board-microcode	data	-	18384	72a05060016445dd		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/vfo/README	microcode	board-microcode	data	-	86997	bf7cb03493b3b264		0	0	0	undocumented		
+usr/gfx/ucode/KONA/dg4/vfo/README	microcode	board-microcode	data	-	86997	bf7cb03493b3b264		0	0	0	named-only	docs/data-files.md#video-format-combination-and-monitor-files	Video format, combination and monitor files
 usr/gfx/ucode/KONA/dgo1/dgo.mcs	microcode	board-microcode	data	-	93912	ec92153b2b6da903		0	0	0	named-only	ucode/dg.md#option-board-image-dgo1dgomcs	Option-board image (`dgo1/dgo.mcs`)
 usr/gfx/ucode/KONA/ge.hex	microcode	board-microcode	data	-	1563025	6258b8ae9e67dd32		0	0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
 usr/gfx/ucode/KONA/ge.u	microcode	board-microcode	data	-	2526129	89066cc1dc88d87f		0	0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
 usr/gfx/ucode/KONA/ge11.u	microcode	board-microcode	data	-	1275741	95724af2dc9dc5be		0	0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
 usr/gfx/ucode/KONA/ge_kpm.hex	microcode	board-microcode	data	-	4650	617b3f0afd02ae0e		0	0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
-usr/gfx/ucode/KONA/ge_symbols	microcode	board-microcode	data	-	67100	67126e0f66aea936		0	0	0	undocumented		
+usr/gfx/ucode/KONA/ge_symbols	microcode	board-microcode	data	-	67100	67126e0f66aea936		0	0	0	understood	ucode/ge.md#command-dispatch-table-geifu	Command dispatch table (`geif.u`)
 usr/gfx/ucode/KONA/ged1b.u	microcode	board-microcode	data	-	14411	41c4b5724774fe42		0	0	0	understood	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
 usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0	0	0	understood	ucode/arm1_functions.md#other-data	Other data
 usr/gfx/ucode/KONA/tport.bin	microcode	board-microcode	data	-	127889	ba8efd1cc0f83068		0	0	0	understood	ucode/tport.md#what-the-image-contains	What the image contains
@@ -584,10 +584,10 @@ usr/gfx/ucode/vfc/rules/dg4.def	video-formats	board-data	data	-	10708	aac372e63b
 usr/gfx/ucode/vfc/rules/dg4_ddo_gvo.def	video-formats	board-data	data	-	12208	d73fb0145682bdbc		0	0	0	named-only	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
 usr/gfx/ucode/vfc/rules/dplex.def	video-formats	board-data	data	-	10663	dcd806610ebc3c41		0	0	0	named-only	docs/kernel.md#multi-pipe-dplex-display-port-writes	Multi-pipe (DPLEX) display-port writes
 usr/gfx/ucode/vfc/rules/voc1.def	video-formats	board-data	data	-	1980	125832d2727b529f		0	0	0	named-only	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
-usr/gfx/ucode/vfc/sdbutil	board-tools	board-tool	executable	n32	70452	3fa52d6c92f4026b		93	0	0	undocumented		
-usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d7eec8		0	0	0	undocumented		
-usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0	0	0	undocumented		
-usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0	0	0	undocumented		
+usr/gfx/ucode/vfc/sdbutil	board-tools	board-tool	executable	n32	70452	3fa52d6c92f4026b		93	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d7eec8		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	0	0	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	0	0	understood	docs/opengl.md#display-functions-cursor-records-display-ids-colour-maps-gamma	Display functions: cursor records, display ids, colour maps, gamma
 usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	0	0	named-only	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
@@ -595,6 +595,6 @@ usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c
 usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	0	0	named-only	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
 usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	0	0	named-only	docs/libfm.md#the-font-manager-library-libfmso-function-reference	The font-manager library (`libfm.so`): function reference
-var/sysgen/master.d/gfxs	kernel-config	shared-data	data	-	399	ef56620faa1e0634		0	0	0	undocumented		
-var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0	0	0	undocumented		
+var/sysgen/master.d/gfxs	kernel-config	shared-data	data	-	399	ef56620faa1e0634		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0	0	0	named-only	docs/data-files.md#diagnostic-data-format-files-and-installed-tools	Diagnostic data, format files and installed tools
 var/sysgen/system/gfx.sm	kernel-config	shared-data	data	-	878	47fa105a54a80d26		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
