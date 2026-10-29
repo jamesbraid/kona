@@ -9586,23 +9586,67 @@ enum kona_kpm_shadow_row {
  * rest under the heading "Special (private) registers" from the per-core
  * state record kpm saves (word +10888 + 4 x number, record stride 796 bytes).
  * INFERRED from that heading: numbers 0x40 and up are per-core copies and the
- * lower numbers are shared by the cores of one engine. The lower numbers are
- * not printed or read by any shipped program found so far (see the open
- * question in docs/open-questions.md).
+ * lower numbers are shared by the cores of one engine. The record also holds 32
+ * address and 32 data registers (words +10632 and +10760), a separate numbering from these. No
+ * shipped program prints or reads a number below 0x40; each has its own entry below.
  */
+/* CHIP_ID (special register 0x04), kpm record 0x100bb1e0: inferred, the engine chip identity word.
+ * The diagnostic engine program's version routine (`geversion.s`) loads the number 4 into register
+ * 0x1b at 0x219e, then stores that register twice; the number matches this register, but the
+ * load is of the same form as its address-register loads, so the match is weak evidence. */
 #define KONA_GE11_SR_CHIP_ID              0x04
+/* CHIP_REV (special register 0x06), kpm record 0x100bb1e8: inferred, the engine chip revision word,
+ * the partner of CHIP_ID. The same diagnostic version routine (`geversion.s`) loads the number 6 into
+ * register 0x1b at 0x21bc and stores it twice, as it does for 4, which is weak evidence only.
+ * No production program names it. */
 #define KONA_GE11_SR_CHIP_REV             0x06
 /* CORE_ID (special register 0x40): inferred, the number of the core within the engine, the first
  * private register; established, kpm's `show_ge_core` prints it from the saved core record at 0x1001c650. */
 #define KONA_GE11_SR_CORE_ID              0x40
+/* WRAM_WRPTR (special register 0x00), kpm record 0x100bb1f8: inferred from the name, the write
+ * pointer of the engine's working RAM, where incoming command words land. No shipped software or
+ * published source depends on it. Routes tried: kpm's only reader (`show_ge_core`) skips it, and
+ * the diagnostic RAM test (`wram.S`, 0x3642) takes input words through port 0x1f, not by number. */
 #define KONA_GE11_SR_WRAM_WRPTR           0x00
+/* WRAM_FIFO_HI (special register 0x01), kpm record 0x100bb200: inferred from the name, the high side
+ * of the input FIFO bookkeeping next to the write pointer (a high word or a high mark). No shipped
+ * software or published source depends on it. Routes tried: the strings of every shipped binary
+ * (only kpm's table has the name), and the production listings, whose input reads use port 0x1f. */
 #define KONA_GE11_SR_WRAM_FIFO_HI         0x01
+/* WRAM_FIFO_LO (special register 0x02), kpm record 0x100bb208, inferred from the name to be the low
+ * counterpart of WRAM_FIFO_HI. No shipped software or published source depends on it. Routes tried:
+ * kpm's skip of numbers below 0x40 (test at 0x1001c62c), the text of `arm1.s`, which never names
+ * it, and the `wram.S` test, which never selects it. */
 #define KONA_GE11_SR_WRAM_FIFO_LO         0x02
+/* VERTEX_COUNTT (special register 0x03), kpm record 0x100bb210: inferred from the name (the double T
+ * is kpm's spelling), a count of vertices taken for the primitive in progress. No shipped software
+ * or published source depends on it. Routes tried: kpm skips it when it prints a core, and no
+ * binary string or ARM listing line repeats the name. */
 #define KONA_GE11_SR_VERTEX_COUNTT        0x03
+/* UST_ACCESS (special register 0x05), kpm record 0x100bb218: inferred from the name, a port that
+ * reads or latches the engine's time stamp (UST, the unadjusted system time of SGI's media API).
+ * No shipped software or published source depends on it. Routes tried: the strings of `ge.u`,
+ * `arm1.u`, `irsaudit` and `ireeprom` lack the name, and kpm's table is the only place it appears. */
 #define KONA_GE11_SR_UST_ACCESS           0x05
+/* DIAG_PIN (special register 0x07), kpm record 0x100bb220: inferred from the name, a word that
+ * drives or samples the engine chip's diagnostic output pins. No shipped software or published
+ * source depends on it. Routes tried: `init_ge` selects diagnostic output through the distributor
+ * register at 0x40010 instead, and no program or string names this register. */
 #define KONA_GE11_SR_DIAG_PIN             0x07
+/* COMP_FORMAT (special register 0x08), kpm record 0x100bb228: inferred from the name, the format
+ * code that the engine's compare or compress step uses on its input. No shipped software or
+ * published source depends on it. Routes tried: the text of every shipped binary holds the name
+ * only in kpm, and the instruction field that would select it by number is not decoded. */
 #define KONA_GE11_SR_COMP_FORMAT          0x08
+/* FPU_MODE (special register 0x09), kpm record 0x100bb230: inferred from the name, the rounding
+ * and precision control of the engine's floating-point units. No shipped software or published
+ * source depends on it. Routes tried: kpm's table is the only text that carries the name, and
+ * `ge_isa.md` has no field decoded as a mode write, so production code cannot be matched to it. */
 #define KONA_GE11_SR_FPU_MODE             0x09
+/* LUT_MODE (special register 0x0a), kpm record 0x100bb238: inferred from the name, the control
+ * word of the engine's lookup-table access (index and interpolation behaviour). No shipped
+ * software or published source depends on it. Routes tried: kpm lists the number and skips it
+ * when printing, and no string of the engine, ARM or diagnostic images mentions it. */
 #define KONA_GE11_SR_LUT_MODE             0x0a
 /* FPU_COND_A (special register 0x41): inferred from the name, the floating-point condition bits
  * of thread A that branches test; established as one of the private words `show_ge_core` lists
@@ -9612,7 +9656,15 @@ enum kona_kpm_shadow_row {
  * established as the last entry of kpm's table (record 0x100bb248) and the highest private number,
  * printed by `show_ge_core` from record word +10888 + 0x130. */
 #define KONA_GE11_SR_FPU_COND_B           0x4c
+/* FLAG_GLOB_LO (special register 0x0b), kpm record 0x100bb250: inferred from the name, the low
+ * half of the engine's global flag word, shared by both threads. No shipped software or
+ * published source depends on it. Routes tried: branch conditions test the condition nibbles of
+ * the arithmetic units (`ge_isa.md`), and no operand is decoded as this special register. */
 #define KONA_GE11_SR_FLAG_GLOB_LO         0x0b
+/* FLAG_GLOB_HI (special register 0x0f), kpm record 0x100bb258: inferred from the name, the high
+ * half of the global flag word that pairs with FLAG_GLOB_LO. No shipped software or published
+ * source depends on it. Routes tried: kpm's skip at 0x1001c62c, the text of `arm1.s`, and a
+ * string search of the engine image, none of which carries the name or a write of it. */
 #define KONA_GE11_SR_FLAG_GLOB_HI         0x0f
 /* FLAG_THRD_A (special register 0x42): inferred, the per-thread flag word of thread A, beside
  * the shared FLAG_GLOB words; established, kpm's dump of a stopped core shows it among the private
@@ -9622,9 +9674,25 @@ enum kona_kpm_shadow_row {
  * condition results; established in kpm's table at 0x100bb268 and read by `show_ge_core` as
  * saved-record word +10888 + 0x10c. */
 #define KONA_GE11_SR_FLAG_THRD_B          0x43
+/* CULL (special register 0x0c), kpm record 0x100bb270: inferred from the name, the face-cull
+ * decision state. No shipped software or published source depends on it. Routes tried: the
+ * production cull routine `mmo_FaceCull` in `ucull.s` has fields equal to 0xc
+ * and 0x1c at 0x0c78, but they are an address register and an offset, so they prove nothing. */
 #define KONA_GE11_SR_CULL                 0x0c
+/* CULL_ACCUM (special register 0x1c), kpm record 0x100bb278: inferred from the name, the running
+ * accumulation of cull results over a primitive's vertices. No shipped software or published
+ * source depends on it. Routes tried: the production cull routine `mmo_FaceCull` (`ucull.s`) at
+ * 0x0c78, whose field 0x1c is an address register, and the ARM handler `arm_cullface`. */
 #define KONA_GE11_SR_CULL_ACCUM           0x1c
+/* CLIP_HOMO (special register 0x0d), kpm record 0x100bb280: inferred from the name, the outcode
+ * bits of a vertex against the homogeneous view volume. No shipped software or published source
+ * depends on it. Routes tried: the clipper listing `clip.S.lst`, where 0xd is used as an address
+ * register at 0xf12b, and the engine, ARM and diagnostic strings, none of which names it. */
 #define KONA_GE11_SR_CLIP_HOMO            0x0d
+/* CLIP_USER (special register 0x0e), kpm record 0x100bb288: inferred from the name, the outcode
+ * bits against the user clip planes, beside CLIP_HOMO. No shipped software or published source
+ * depends on it. Routes tried: kpm's table, which prints nothing for it, and the string search
+ * of the engine, ARM and diagnostic images, which finds the name only in kpm. */
 #define KONA_GE11_SR_CLIP_USER            0x0e
 /* SORT_THRD_A (special register 0x44): inferred, primitive-sorting state of thread A, such as
  * the vertex order a triangle setup keeps; established only as a private register kpm names (table
