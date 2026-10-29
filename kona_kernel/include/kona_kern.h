@@ -18,7 +18,11 @@
  * Per-pipe driver state offsets (ESTABLISHED as used; names are ours).
  */
 #define KONA_SC_DEATH_LOCK        0x878   /* spinlock taken by kona_die */
-#define KONA_SC_DEATH_REASON      0x87c   /* 0 while alive; kona_die stores its reason once */
+#define KONA_SC_DEATH_REASON      0x87c   /* 0 while alive; kona_die stores its reason once.
+                                             kona_alloc_bdata starts it at 1 (never initialised)
+                                             and KONAinitialize clears it; KONAresume treats 0 and
+                                             1 alike (kona_sched.o 0x1b4-0x1c4), the context switch
+                                             and kona_die any nonzero value as dead */
 #define KONA_SC_DEATH_HIP_220     0x880   /* register 0x800220 read at death */
 #define KONA_SC_DEATH_HIP_3A8     0x884   /* register 0x8003a8 read at death */
 #define KONA_SC_PIPE_ID           0x888   /* printed by every death and timeout message (INFERRED role) */
@@ -37,7 +41,9 @@
  *
  * KICK, ESTABLISHED: before each phase of a kernel packet the driver writes
  * KONA_SC_KICK to REGBASE + 0xc00108: 0x30000 before the token word (0x10000
- * instead when the calling thread's own context is current, in kona_checkpipe), 0x10000 before the payload words, and 0 when the packet is
+ * instead in kona_checkpipe when the rendering node's connection is the
+ * board's manager, kona_crash.o 0x23c-0x258), 0x10000 before the payload
+ * words, and 0 when the packet is
  * done. It is written once per phase, not per word. The address selects
  * host-interface register 0x108, HH_GINTR_INFO, so 0x10000 is its PRIV bit
  * and 0x20000 its FORCE bit (HIP.h).
@@ -127,9 +133,10 @@
  *   INFERRED: RDATA_SETUP names where the pipe returns data to the client;
  *   0x4000 is likely a size, not the user FIFO address. UNKNOWN which.
  *
- * Then, either way, kona_act_pcx(sc, gfxp, activate_token) (0x124-0x680)
- * runs; KONApcxswap passes the word at context record +8 as the third
- * argument. ESTABLISHED sequence, all in one kernel stream (kick 0x30000
+ * Then, on the CONTEXT_LOAD path only, kona_act_pcx(sc, gfxp,
+ * activate_token) (0x124-0x680) runs (call at 0x820); the CONTEXT_INIT
+ * path branches from 0xa2c past that call to 0x828. KONApcxswap passes
+ * the word at save area +8 as the third argument. ESTABLISHED sequence, all in one kernel stream (kick 0x30000
  * before the first token only, 0x10000 before every payload and every
  * later token):
  *   1. If gfxp halfword +4 has bit 1 set (INFERRED: clip changed):
@@ -150,12 +157,16 @@
  * X = the pointer at context record +16 (the same pointer CONTEXT_LOAD
  * reads its first payload word from) and passes the word at X+8 to
  * kona_act_pcx. X is the 64 KB context save area and X+8 is word 2 of the
- * saved image's header (CONTEXT_LOAD sends word 0, the image length). The
- * disassembly of every kona.a member, gfx.o and rrm.o has no 0x1fa or 506
- * immediate, and neither has the libGLcore assembly, so the pipe writes the
- * word when it saves the context. INFERRED to be
- * HP_CONTEXT_ACTIVATE 0x1fa, since no other token in KONApcxswap or
- * kona_act_pcx activates the context; that reading rests on the name only.
+ * saved image's header (CONTEXT_LOAD sends word 0, the image length). No
+ * kona.a member, gfx.o, rrm.o or the libGLcore assembly holds 0x1fa or
+ * 506. The pipe writes the word when it saves the context: the ARM's
+ * deactivate_hip keeps the previous token number (low nine bits of
+ * 0x20007c), deactivate_arm stores it as header word 2 through engine
+ * slot 181, and on CONTEXT_LOAD load_arm points that token's map entry at
+ * arm_context_activate until activate_hip restores it. So the token is the
+ * last one the context ran, not HP_CONTEXT_ACTIVATE 0x1fa (the section
+ * "Rendering node, drawable and private record" of docs/kernel.md has the
+ * addresses; the engine half of the store is INFERRED).
  *
  * KONAvalidateclip (kona_context.o 0xf8c-0x1350), ESTABLISHED: sends the
  * same three validate packets as steps 1-3 above, in the order VALIDATE_CLIP
@@ -294,7 +305,9 @@
  *   +24   the save area's pipe-space address (alloc_gfx_io_space, 64 KB,
  *         16 KB pages): CONTEXT_LOAD/INIT's address pair is built from it
  *   +32..  the select-feedback record (kona.h notes, docs/kernel.md);
- *         +80 is its semaphore, +96 its timeout, +104 its in-flight flag
+ *         +80 is its semaphore, +96 its timeout, +104 its owning
+ *         process, nonzero while a feed is in flight (the flag that
+ *         kona_start_selectfeed and kona_mem_suspend test)
  *   +208  the per-context DMA pool record; +240 a pointer to the shared pool
  *         object, whose +72 holds the shared pool record (docs/hip.md)
  *   +112..+136  the retrace record: sequence number, timeout handle,
@@ -306,23 +319,21 @@
  * the activate token (above). KONAcreateddrn allocates the area and never
  * initialises it (bzero covers only the 256-byte record), and no store to
  * either word was found in any kona.a member; the area is named to the
- * pipe in CONTEXT_INIT and CONTEXT_DEACTIVATE. INFERRED: the pipe writes
- * both words when it saves a context (a header the host reads back and
- * returns), which answers "who writes X+8" by exclusion; it was not
- * observed.
+ * pipe in CONTEXT_INIT and CONTEXT_DEACTIVATE. The pipe writes both
+ * words when it saves a context (a header the host reads back and
+ * returns); the writer of X+8 is traced above.
  *
  * Pipe side, ESTABLISHED from the ARM firmware and the geometry program
  * (ucode/arm1.md, ucode/ge_isa.md): the firmware's token map sends 0x1fa
  * to arm_context_activate, 0x1f9 to arm_context_load, 0x1fc to
  * arm_context_deactivate and 0x1fd to arm_context_init, so 0x1fa is the
- * token the pipe treats as activate. arm_context_deactivate ends by
- * handing the geometry engine slot 182, mges_ContextDeactFinish. The only
- * geometry-engine instruction with the immediate 0x1fa is at 0x6641 in
- * mgeb_ContextDestroy (ctx_load.S line 602). INFERRED: the context code
- * in the geometry program is what puts the activate token into the save
- * area's +8 word; that strengthens the exclusion above but the store
- * itself is not decoded (the instruction's operation field is not yet
- * read).
+ * token the pipe treats as activate when the host names it, but the host
+ * never does: it sends the saved token number, whose map entry load_arm
+ * has pointed at arm_context_activate (load_arm 0x0c020f60-0x0c020f94).
+ * arm_context_deactivate ends by handing the geometry engine slot 182,
+ * mges_ContextDeactFinish, which writes the header from engine words
+ * 0x1333 onward (INFERRED). The immediate 0x1fa at 0x6641 in ctx_load.S
+ * is a copy-loop count, not the token.
  */
 
 /*

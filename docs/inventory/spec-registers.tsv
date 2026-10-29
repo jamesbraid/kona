@@ -56,7 +56,7 @@ kpm register tables	host interface		hip	0x800308	HH_ARM_CTRL	1	0	32		0	understoo
 kpm register tables	host interface		hip	0x800310	HH_ARM_STATUS	1	0	32		0	understood	HIP.h:460	
 kpm register tables	host interface		hip	0x800320	HH_ARM_STALL	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 kpm register tables	host interface		hip	0x800328	HH_ARM_UNSTALL	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
-kpm register tables	host interface		hip	0x800330	HH_ARM_STEP	1	0	32		0	no-software-dependency	HIP.h:479	
+kpm register tables	host interface		hip	0x800330	HH_ARM_STEP	1	0	32		0	understood	docs/kernel.md#vga-pipe-discovery-ip35-klconfigo-prom_has_vga_support-find_vga_pipe-find_vga_noprom_pipe-klcheck_vga	VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
 kpm register tables	host interface		hip	0x800338	HH_ARM_CURR_ADDR	1	0	32		0	understood	HIP.h:501	
 kpm register tables	host interface		hip	0x800340	HH_CURR_DATA_FM_ARM	1	0	32		0	understood	HIP.h:509	
 kpm register tables	host interface		hip	0x800348	HH_CURR_DATA_TO_ARM	1	0	32		0	understood	HIP.h:516	
