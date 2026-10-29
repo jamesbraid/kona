@@ -235,6 +235,6 @@ A load or store through a window base is a site. When its offset is a constant i
 - `user-pipe` is the per-thread mapping that libGLcore and the `kpm` tools reach at process address 0x4000, with the layout of [../kernel.md](../kernel.md): `user-fifo` (the 16 KB command FIFO), `user-hip`, `user-return` and `user-io` (from 0xc000).
 - Tokens come from kpm's command-name table, the `KONA_HP_*` names in `GE.h` and the ARM firmware's token map. Code adds sites for the first constant each function stores to the user FIFO or the kernel command port, for known tokens only, because the stream mixes tokens with payload words.
 - `spec-registers.tsv` holds kpm's register tables: host interface (at its `hip` offset), geometry engine and raster index.
-- `ucode.tsv` holds the `arm1.u` symbols and display-command table, the `ge.u` labels and the 512 dispatch slots of `geif.u`.
+- `ucode.tsv` holds the `arm1.u` symbols and display-command table, the `ge.u` labels and the 1024 entries of `geif.u` (entry 2k+1 is the handler of dispatch slot k; every even entry is 0).
 - Ioctls: the jump table of `KONAprivate`, and calls to `ioctl` and `__glKon_ioctl` with a constant command in 100-199, 1000-1999 or 10000-10199.
 - Not seen: the X modules' FIFO stores through the pointer at screen private +8, which carry the token in the store address ([../opengl.md](../opengl.md)). The driver state page at process address 0x1000 is shared memory, not a register window, and is not counted.

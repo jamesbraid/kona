@@ -514,9 +514,9 @@
     {
       "type": "u16-table",
       "program": "geif.u",
-      "kind": "dispatch slot",
+      "kind": "dispatch entry",
       "file": "root/usr/gfx/ucode/KONA/geif.u",
-      "limit": 512,
+      "limit": 1024,
       "labels": "ge.u"
     }
   ],
