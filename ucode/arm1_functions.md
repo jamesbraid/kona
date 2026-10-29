@@ -423,7 +423,7 @@ A conversion record is a list of {word count, pointer to a word list}: `cvmg_8_1
 | `get_table` | 0x0404ebe4 | **Established.** The table `arm_getv` indexes by query |
 | `printc` | 0x04041c04 | **Established.** The digit string "0123456789abcdef" of `printn()` |
 | `gepc` | 0x04068654 | **Established.** The engine handler table, a copy of `geif.u` ([arm1.md](arm1.md)) |
-| `sysconf` | 0x04067edc | **Established.** The board-configuration block at the start of zero-initialised data that `arm_getconfig` returns (222 words) |
+| `sysconf` | 0x04067edc | **Established.** The board-configuration block at the start of zero-initialised data that `arm_getconfig` returns (478 words, 0x1de, after a count word of the same value; `arm_getconfig` 0x0c022474) |
 | `divModLut` | 0x04091874 | **Established.** The quotient and remainder cache of `DivModFunc` |
 | `bLateInit`, `pEmergencyBackupFormat`, `nGreyDecode` | 0x040402c4, 0x040402c8, 0x04041afc | **Established.** Display-generator state: a flag for channels started after the rest (`dgAutoInit`, `dgAutoInitLateChannels`, `dgLoadCombo`), the format `DoDGRqstAutoInit` falls back to, and a Gray-code decode table used by the format and genlock code ([docs/dg.md](../docs/dg.md) covers the display side) |
 | `C$$data$$Base`, `Image$$RW$$Base`, `C$$data$$Limit`, `C$$zidata$$Base`, `Image$$ZI$$Base`, `_edata`, `C$$zidata$$Limit`, `Image$$RW$$Limit`, `Image$$ZI$$Limit`, `_end`, `Image$$RO$$Limit`, `_etext` | | **Established.** Linker marks: initialised data 0x04040260-0x04067edc, zero-initialised data 0x04067edc-0x040953d8, read-only image end 0x0c040248. Code addresses initialised data relative to `C$$data$$Base`, which is also `InSimulator` |
