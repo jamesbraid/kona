@@ -1,6 +1,6 @@
 binary	role	abi	elf_section	address	size	name	source	status	doc	section
-usr/bin/X11/xsetmon	shared-tool	n32		0x1001e5a0	268	__start	dynsym	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x1001e6ac	12	_mcount	dynsym	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x1001e5a0	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/bin/X11/xsetmon	shared-tool	n32		0x1001e6ac	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/bin/X11/xsetmon	shared-tool	n32		0x1001e6c0	180	_main	dynsym	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1001e780	84	_fini	dynsym	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x1001e7e0	128	__process_needed_destructions__Gv	dynsym	undocumented		
@@ -499,7 +499,7 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x10043040	180	populateSyncPortWithChannel_
 usr/bin/X11/xsetmon	shared-tool	n32		0x10043100	80	__ct__23SetmonMasterFormClassUIGPCc	dynsym	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10043150	36	fDistanceFunction__19GammaMapEditorClassGfN31	dynsym	undocumented		
 usr/bin/X11/xsetmon	shared-tool	n32		0x10043180	68	doDownloadFormatButtonCallback__29FormatCombinationListsClassUISGP10_WidgetRecPvT2	dynsym	undocumented		
-usr/bin/X11/xsetmon	shared-tool	n32		0x100431dc	4	__istart	dynsym	undocumented		
+usr/bin/X11/xsetmon	shared-tool	n32		0x100431dc	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0x0	68	gfxtable_readerlock	dwarf+symtab	documented	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0x44	68	gfxtable_readerunlock	dwarf+symtab	documented	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0x88	128	gfxtable_writerlock	dwarf+symtab	documented	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
@@ -1359,8 +1359,8 @@ usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x45f8	120	RRM_MapClipToSw
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4670	1148	RRM_Dispatch	dwarf+symtab	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4aec	208	irix5_to_RRM_ValidateClip	dwarf+symtab	documented	docs/kernel.md#dispatch-and-messages-rrm_dispatch-rrm_message-rrm_validatemessage	Dispatch and messages: `RRM_Dispatch`, `RRM_Message`, `RRM_ValidateMessage`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4bbc	120	irix5_to_RRM_GetDisplayModes	dwarf+symtab	documented	docs/kernel.md#dispatch-and-messages-rrm_dispatch-rrm_message-rrm_validatemessage	Dispatch and messages: `RRM_Dispatch`, `RRM_Message`, `RRM_ValidateMessage`
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10002680	268	__start	dynsym	undocumented		
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000278c	12	_mcount	dynsym	undocumented		
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10002680	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000278c	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100027b0	5968	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10003f00	460	usage	dynsym	undocumented		
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100040d0	4644	perPipeMainProc	dynsym	undocumented		
@@ -1369,9 +1369,9 @@ usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100053f0	104	waitForMapNotify	dyn
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005460	784	perPipeGfxInit	dynsym	undocumented		
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005770	3744	perPipeGfxDraw	dynsym	undocumented		
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10006610	280	perPipeGfxScribble	dynsym	undocumented		
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000673c	4	__istart	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015380	268	__start	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001548c	12	_mcount	dynsym	undocumented		
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000673c	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015380	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001548c	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015498	88	output_revision_info	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100154f0	2304	jt_load_internal_bist	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015df0	524	jt_dump_internal_bist	dynsym	undocumented		
@@ -1415,8 +1415,8 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d478	324	setSubField	dynsy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d5bc	548	determineHostType	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d7e0	6016	init_rm_jtag	dynsym	documented	docs/rm.md#reset-of-the-raster-boards	Reset of the raster boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002ef60	292	TEST_rmjtaginit	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f084	132	dump_indata_as_bits	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f108	156	dump_outdata_as_bits	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f084	132	dump_indata_as_bits	dynsym	documented	docs/kpm.md#capture	Capture
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f108	156	dump_outdata_as_bits	dynsym	documented	docs/kpm.md#capture	Capture
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f1a4	32	kona_jt_set_custom_error_report	dynsym	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f3dc	204	kt_current_chain	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10030dec	236	kt_setup_pin_status	dynsym	undocumented		
@@ -2433,66 +2433,66 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10163938	3304	init_kona_hw_acc
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164620	420	init_kona_access	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101647c4	368	kt_read_chain	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164934	140	kt_dispose_chain	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101649c0	212	jt_reverse_unpacked_vector	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101649c0	212	jt_reverse_unpacked_vector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164aa0	388	jt_pack_vector	dynsym	no-software-dependency	ucode/ged.md#how-an-entry-is-chosen	How an entry is chosen
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164c30	376	jt_unpack_vector	dynsym	documented	ucode/ge_ops.md#settling-the-ties	Settling the ties
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164db0	68	jt_new_data_vector	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164e00	76	jt_new_data_bvector	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164e50	68	jt_new_inst_vector	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164ea0	76	jt_new_inst_bvector	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164ef0	64	jt_dispose_vector	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164db0	68	jt_new_data_vector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164e00	76	jt_new_data_bvector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164e50	68	jt_new_inst_vector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164ea0	76	jt_new_inst_bvector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164ef0	64	jt_dispose_vector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164f30	100	jt_vector_to_int	dynsym	documented	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164fa0	124	jt_int_to_vector	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165020	252	jt_find_chip	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165130	348	jt_extract_chip_register	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165290	292	jt_insert_chip_register	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101653c0	796	jt_extract_bits	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101656e0	860	jt_insert_bits	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166080	68	jt_expand_portlist	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101660d0	672	jt_nullify	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166370	596	jt_copy_bits	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164fa0	124	jt_int_to_vector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165020	252	jt_find_chip	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165130	348	jt_extract_chip_register	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165290	292	jt_insert_chip_register	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101653c0	796	jt_extract_bits	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101656e0	860	jt_insert_bits	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166080	68	jt_expand_portlist	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101660d0	672	jt_nullify	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166370	596	jt_copy_bits	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101665d0	756	read_netmap	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101668d0	216	dispose_netmap	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101669b0	188	print_netmap	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166a70	592	jt_test_idcode	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166cc0	408	jt_lookup_pin_from_bit_offset	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166e60	876	jt_set_global_instruction	dynsym	no-software-dependency	ucode/ged.md#how-an-entry-is-chosen	How an entry is chosen
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101671d0	1816	jt_conditional_reset	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101678f0	904	jt_set_individual_instructions	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101671d0	1816	jt_conditional_reset	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101678f0	904	jt_set_individual_instructions	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10167c80	960	jt_isolate_chip	dynsym	documented	docs/hip.md#reset	Reset
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168040	548	jt_powerup_chain	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168040	548	jt_powerup_chain	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168270	104	jt_set_procs	dynsym	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168530	60	jt_init	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168530	60	jt_init	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168570	68	jt_select_chain	dynsym	documented	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101685c0	60	jt_soft_reset	dynsym	documented	docs/rm.md#reset-of-the-raster-boards	Reset of the raster boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168600	60	jt_hard_reset	dynsym	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168640	60	jt_test_thyself	dynsym	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168680	84	jt_send_instruction	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168680	84	jt_send_instruction	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101686e0	84	jt_send_data	dynsym	documented	ucode/ge_ops.md#settling-the-ties	Settling the ties
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168740	40	jt_set_error_handler	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168770	40	jt_set_debug_handler	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101687a0	184	jt_error	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168860	116	jt_debug	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101688e0	120	jt_perror	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168970	2388	jt_read_chain	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101692d0	6000	read_bsr	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016aa40	236	type_to_func	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016ab30	272	type_to_safe	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016ac40	88	premature_eof	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016aca0	300	read_bsdl	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016add0	1144	jt_print_chain	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016b250	1756	jt_print_bsr	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bae0	232	jt_lookup_port	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bbd0	260	porttopin	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bce0	260	pintoport	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bdf0	172	jt_canonize	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016c0c0	528	jt_free_bist	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016c5e0	268	jt_dispose_chain	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016c6f0	536	jt_findfile	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016ca70	156	jt_zclose	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016cb10	656	jt_zopen	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168740	40	jt_set_error_handler	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168770	40	jt_set_debug_handler	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101687a0	184	jt_error	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168860	116	jt_debug	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101688e0	120	jt_perror	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168970	2388	jt_read_chain	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101692d0	6000	read_bsr	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016aa40	236	type_to_func	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016ab30	272	type_to_safe	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016ac40	88	premature_eof	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016aca0	300	read_bsdl	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016add0	1144	jt_print_chain	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016b250	1756	jt_print_bsr	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bae0	232	jt_lookup_port	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bbd0	260	porttopin	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bce0	260	pintoport	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bdf0	172	jt_canonize	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016c0c0	528	jt_free_bist	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016c5e0	268	jt_dispose_chain	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016c6f0	536	jt_findfile	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016ca70	156	jt_zclose	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016cb10	656	jt_zopen	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016cda0	456	jt_lookup_bit_offset_from_pin	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016cf70	564	jt_find_chain_length	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016cf70	564	jt_find_chain_length	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016d1b0	1848	jt_test_chain	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016daa0	104	SDBgetSymbolDataAddress	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016db08	88	SDBgetSymbolDatatype	dynsym	undocumented		
@@ -2539,9 +2539,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101706a0	56	isetname	dynsym	un
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101706d8	8	isetcolormap	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101706e0	564	iclose	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10170914	152	iflush	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101709bc	4	__istart	dynsym	undocumented		
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10001540	268	__start	dynsym	undocumented		
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000164c	12	_mcount	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101709bc	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10001540	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000164c	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000165c	964	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000228c	900	setup_ucode	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10002610	188	debug_enable	dynsym	undocumented		
@@ -2554,435 +2554,435 @@ usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003430	84	erase_combo	dynsym	undoc
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003484	296	info_eeprom	dynsym	undocumented		
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x100035ac	628	read_eeprom	dynsym	documented	ucode/tport.md#what-it-is	What it is
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003820	804	verify_eeprom	dynsym	undocumented		
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003eec	4	__istart	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10009ef0	268	__start	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10009ffc	12	_mcount	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a008	88	V_inspect	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a060	444	V_list	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a21c	152	V_mark	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a2b4	496	V_show	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a4a4	152	V_unmark	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a5c0	268	show_general_section	dynsym	undocumented		
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003eec	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10009ef0	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10009ffc	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a008	88	V_inspect	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a060	444	V_list	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a21c	152	V_mark	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a2b4	496	V_show	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a4a4	152	V_unmark	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a5c0	268	show_general_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a6cc	2172	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000afdc	452	dfCreateDumpFile	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b1a0	296	dfNewSection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b2c8	228	dfWriteSection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b3ac	392	dfWriteNewSectionFromPipe	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b534	144	dfPrintf	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b5c4	880	dfOpenDumpFile	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b934	384	dfListSections	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bab4	216	dfSeekSection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bb8c	260	dfFindSection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bc90	180	dfReadSection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bd44	244	dfMarkSection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000be38	240	dfUnmarkSection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bf28	240	dfIsSectionMarked	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000c018	104	dfGetFilePointer	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000c080	656	dfCloseDumpFile	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000d510	1604	kpm_dump	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000dc90	780	show_overview_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e210	288	kpm_status	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e330	1300	kpm_view	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f538	8	kpm_interact	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f540	596	kerror	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f794	504	klog	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f98c	84	get_time	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f9e0	300	findfile	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000fb0c	644	create_file	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000fd90	692	open_file	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10010044	132	dump_indata_as_bits	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100100c8	156	dump_outdata_as_bits	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000afdc	452	dfCreateDumpFile	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b1a0	296	dfNewSection	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b2c8	228	dfWriteSection	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b3ac	392	dfWriteNewSectionFromPipe	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b534	144	dfPrintf	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b5c4	880	dfOpenDumpFile	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b934	384	dfListSections	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bab4	216	dfSeekSection	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bb8c	260	dfFindSection	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bc90	180	dfReadSection	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bd44	244	dfMarkSection	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000be38	240	dfUnmarkSection	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bf28	240	dfIsSectionMarked	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000c018	104	dfGetFilePointer	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000c080	656	dfCloseDumpFile	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000d510	1604	kpm_dump	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000dc90	780	show_overview_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e210	288	kpm_status	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e330	1300	kpm_view	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f538	8	kpm_interact	dynsym	documented	docs/kpm.md#what-kpm-is	What `kpm` is
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f540	596	kerror	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f794	504	klog	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f98c	84	get_time	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f9e0	300	findfile	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000fb0c	644	create_file	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000fd90	692	open_file	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10010044	132	dump_indata_as_bits	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100100c8	156	dump_outdata_as_bits	dynsym	documented	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10010164	32	kona_jt_set_custom_error_report	dynsym	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100116f0	548	kjiSetSubField	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011914	528	kjiGetSubField	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011b24	720	kjiGetSubFieldV	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011df4	564	kj_arrange_global_instruction	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012028	64	get_field_length	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012068	396	locate_register	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100121f4	160	assign_register	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012294	172	extract_register	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012340	56	armAccessEnable	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012378	1212	adapterInspection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012834	5288	hipInspectionPreJtag	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10013cdc	5072	hipInspectionPostJtag	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001529c	448	show_adap_registers_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001545c	1028	show_hip_host_registers_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10015860	972	show_arm_registers_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10015c2c	376	show_hip_clock_status_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10015da4	1892	show_arm_status_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016508	452	show_fifo_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100166cc	256	show_arm_ge_mbox_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100167cc	292	show_icu_map0_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100168f0	796	show_arm_eeprom_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016c0c	408	show_arm_sram_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016da4	1120	show_arm_sdram_section	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100116f0	548	kjiSetSubField	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011914	528	kjiGetSubField	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011b24	720	kjiGetSubFieldV	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011df4	564	kj_arrange_global_instruction	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012028	64	get_field_length	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012068	396	locate_register	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100121f4	160	assign_register	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012294	172	extract_register	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012340	56	armAccessEnable	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012378	1212	adapterInspection	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012834	5288	hipInspectionPreJtag	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10013cdc	5072	hipInspectionPostJtag	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001529c	448	show_adap_registers_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001545c	1028	show_hip_host_registers_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10015860	972	show_arm_registers_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10015c2c	376	show_hip_clock_status_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10015da4	1892	show_arm_status_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016508	452	show_fifo_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100166cc	256	show_arm_ge_mbox_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100167cc	292	show_icu_map0_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100168f0	796	show_arm_eeprom_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016c0c	408	show_arm_sram_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016da4	1120	show_arm_sdram_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017204	368	hipReset	dynsym	documented	docs/hip.md#reset	Reset
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100173b0	1152	analyze_hip	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017830	1872	befFIFOInspection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100180cc	228	bef_reset	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001890c	340	bef_set_current_ge	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10018a60	720	befShadowDrain	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10018d30	864	save_bef_configuration	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019090	384	show_bef_perfregs_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019210	444	show_bef_shadow_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100193cc	1500	show_bef_fifo_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100199a8	680	analyze_bef	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019c50	456	gedReset	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019e3c	164	ged_register_write	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019ee0	228	ged_set_current_ge	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019fc4	2680	gedStateDrain	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001aa3c	2016	show_ged_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b21c	824	analyze_ged	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b554	476	read_ge_symbols	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b730	108	ge_register_write	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b79c	100	ge_register_read	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b800	304	ge11BypassEnable	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b930	704	ge11StateDrain	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001bbf0	1332	ge11LoadUcode	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001c124	200	tbRegisterWrite	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001c44c	772	show_ge_core	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001cb0c	1296	show_ge_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001d218	364	analyze_ge	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001e748	620	ge11ReadDiagRegisters	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001e9b4	976	ge11RamScan	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001ed84	496	ge11EramScan	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001ef74	208	ge11WriteSection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f044	444	dgInspection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f200	424	show_fm_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f3a8	396	show_xmap_section	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100173b0	1152	analyze_hip	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017830	1872	befFIFOInspection	dynsym	no-software-dependency	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100180cc	228	bef_reset	dynsym	no-software-dependency	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001890c	340	bef_set_current_ge	dynsym	no-software-dependency	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10018a60	720	befShadowDrain	dynsym	no-software-dependency	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10018d30	864	save_bef_configuration	dynsym	no-software-dependency	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019090	384	show_bef_perfregs_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019210	444	show_bef_shadow_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100193cc	1500	show_bef_fifo_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100199a8	680	analyze_bef	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019c50	456	gedReset	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019e3c	164	ged_register_write	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019ee0	228	ged_set_current_ge	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019fc4	2680	gedStateDrain	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001aa3c	2016	show_ged_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b21c	824	analyze_ged	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b554	476	read_ge_symbols	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b730	108	ge_register_write	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b79c	100	ge_register_read	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b800	304	ge11BypassEnable	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b930	704	ge11StateDrain	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001bbf0	1332	ge11LoadUcode	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001c124	200	tbRegisterWrite	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001c44c	772	show_ge_core	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001cb0c	1296	show_ge_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001d218	364	analyze_ge	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001e748	620	ge11ReadDiagRegisters	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001e9b4	976	ge11RamScan	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001ed84	496	ge11EramScan	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001ef74	208	ge11WriteSection	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f044	444	dgInspection	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f200	424	show_fm_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f3a8	396	show_xmap_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f534	568	set_transfer_address	dynsym	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f76c	84	setup_dma	dynsym	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f7c0	216	wait_for_dma_completion	dynsym	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f898	352	cleanup_dma	dynsym	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100216dc	2464	read_chains	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002207c	568	jtagInspection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10022410	400	read_jtag_vector	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100225a0	612	show_jtag_register	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10022804	1164	show_ge12_jtag_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002cf5c	424	ge12_backward_analysis	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d104	424	ge12_forward_analysis	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d2ac	8	analyze_rbus	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d2b8	2248	show_rm6_jtag_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002e200	3836	get_rm_status	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002f0fc	1756	rm_backward_analysis	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002f7d8	344	analyze_rmstatus	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002f930	1772	rm_forward_analysis	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003001c	884	Vpseudo_jtag	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10030a48	900	nicInspection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10030dcc	372	show_nic_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003141c	1924	disassemble_tbus	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003206c	920	init_report	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032404	428	close_report	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100325b0	1256	read_arm_symbols	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032a98	116	free_arm_symbols	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032b0c	132	asym_address	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032b90	188	asym_symbol	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032c4c	652	armInspection	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032ed8	324	show_arm_symbols_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033020	212	jt_reverse_unpacked_vector	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100216dc	2464	read_chains	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002207c	568	jtagInspection	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10022410	400	read_jtag_vector	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100225a0	612	show_jtag_register	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10022804	1164	show_ge12_jtag_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002cf5c	424	ge12_backward_analysis	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d104	424	ge12_forward_analysis	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d2ac	8	analyze_rbus	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d2b8	2248	show_rm6_jtag_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002e200	3836	get_rm_status	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002f0fc	1756	rm_backward_analysis	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002f7d8	344	analyze_rmstatus	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002f930	1772	rm_forward_analysis	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003001c	884	Vpseudo_jtag	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10030a48	900	nicInspection	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10030dcc	372	show_nic_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003141c	1924	disassemble_tbus	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003206c	920	init_report	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032404	428	close_report	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100325b0	1256	read_arm_symbols	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032a98	116	free_arm_symbols	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032b0c	132	asym_address	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032b90	188	asym_symbol	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032c4c	652	armInspection	dynsym	documented	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032ed8	324	show_arm_symbols_section	dynsym	documented	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033020	212	jt_reverse_unpacked_vector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033100	388	jt_pack_vector	dynsym	no-software-dependency	ucode/ged.md#how-an-entry-is-chosen	How an entry is chosen
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033290	376	jt_unpack_vector	dynsym	documented	ucode/ge_ops.md#settling-the-ties	Settling the ties
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033410	68	jt_new_data_vector	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033460	76	jt_new_data_bvector	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100334b0	68	jt_new_inst_vector	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033500	76	jt_new_inst_bvector	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033550	64	jt_dispose_vector	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033410	68	jt_new_data_vector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033460	76	jt_new_data_bvector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100334b0	68	jt_new_inst_vector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033500	76	jt_new_inst_bvector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033550	64	jt_dispose_vector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033590	100	jt_vector_to_int	dynsym	documented	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033600	124	jt_int_to_vector	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033680	252	jt_find_chip	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033600	124	jt_int_to_vector	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033680	252	jt_find_chip	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033780	104	jt_set_procs	dynsym	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a40	60	jt_init	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a40	60	jt_init	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a80	68	jt_select_chain	dynsym	documented	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033ad0	60	jt_soft_reset	dynsym	documented	docs/rm.md#reset-of-the-raster-boards	Reset of the raster boards
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b10	60	jt_hard_reset	dynsym	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b50	60	jt_test_thyself	dynsym	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b90	84	jt_send_instruction	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b90	84	jt_send_instruction	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033bf0	84	jt_send_data	dynsym	documented	ucode/ge_ops.md#settling-the-ties	Settling the ties
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033c50	40	jt_set_error_handler	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033c80	40	jt_set_debug_handler	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033cb0	184	jt_error	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033d70	116	jt_debug	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033df0	120	jt_perror	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033c50	40	jt_set_error_handler	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033c80	40	jt_set_debug_handler	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033cb0	184	jt_error	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033d70	116	jt_debug	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033df0	120	jt_perror	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033e70	876	jt_set_global_instruction	dynsym	no-software-dependency	ucode/ged.md#how-an-entry-is-chosen	How an entry is chosen
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100341e0	1816	jt_conditional_reset	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10034900	904	jt_set_individual_instructions	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100341e0	1816	jt_conditional_reset	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10034900	904	jt_set_individual_instructions	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10034c90	960	jt_isolate_chip	dynsym	documented	docs/hip.md#reset	Reset
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10035050	548	jt_powerup_chain	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100352a0	2388	jt_read_chain	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10035c00	6000	read_bsr	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037370	236	type_to_func	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037460	272	type_to_safe	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037570	88	premature_eof	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100375d0	300	read_bsdl	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037700	1144	jt_print_chain	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037b80	1756	jt_print_bsr	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038410	232	jt_lookup_port	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038500	260	porttopin	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038610	260	pintoport	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038720	172	jt_canonize	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100389f0	528	jt_free_bist	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038f10	268	jt_dispose_chain	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039020	536	jt_findfile	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100393a0	156	jt_zclose	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039440	656	jt_zopen	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100396d0	348	jt_extract_chip_register	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039830	292	jt_insert_chip_register	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039960	796	jt_extract_bits	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039c80	860	jt_insert_bits	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003a620	68	jt_expand_portlist	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003a670	672	jt_nullify	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003a910	596	jt_copy_bits	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003ab70	564	jt_find_chain_length	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003add0	224	history_get_history_state	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003aeb0	176	history_set_history_state	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003af60	52	using_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003afa0	264	history_total_bytes	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003b0b0	996	add_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003b4a0	320	replace_history_entry	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003b5e0	36	where_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003ba60	84	history_search	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003bac0	84	history_search_prefix	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003bb20	336	remove_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003bc70	580	stifle_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003bec0	112	unstifle_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003bf30	36	history_is_stifled	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003c110	80	read_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003c160	980	read_history_range	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003c540	716	history_truncate_file	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cba0	84	append_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cc00	92	write_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cc60	176	current_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cd10	172	previous_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cdc0	188	next_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003ce80	36	history_list	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003ceb0	192	history_get	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cf70	260	history_search_pos	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003d080	156	history_set_pos	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003d120	1808	get_history_event	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003efb0	2348	history_expand	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003ffa0	948	history_arg_extract	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10040360	2132	history_tokenize	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10040bd0	276	rl_complete	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10040cf0	76	rl_possible_completions	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10040d40	76	rl_insert_completions	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10040d90	280	get_y_or_n	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10041320	6436	rl_complete_internal	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10042e00	976	username_completion_function	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100431d0	1272	completion_matches	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100436d0	2756	filename_completion_function	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100441a0	1072	rl_tilde_expand	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10044690	340	readline	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10044e20	244	rl_stuff_char	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10044f20	204	ibuffer_space	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10044ff0	256	rl_get_char	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100450f0	244	rl_unget_char	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100451f0	628	rl_gather_tyi	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10045470	444	rl_read_key	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10045630	1392	_rl_dispatch	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10046050	340	rl_start_kbd_macro	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100461b0	280	rl_end_kbd_macro	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100462d0	420	rl_call_last_kbd_macro	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10046480	260	_rl_kill_kbd_macro	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10046590	524	rl_initialize	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047030	92	rl_digit_argument	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047090	108	rl_discard_argument	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047100	76	rl_init_argument	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047150	100	rl_universal_argument	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100471c0	76	rl_reset_terminal	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047210	836	_rl_set_screen_size	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047e30	308	rl_get_termcap	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047f70	348	_rl_output_character_function	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100480d0	100	_rl_output_some_chars	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048140	540	backspace	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048360	340	crlf	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100484c0	76	rl_tty_status	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048510	212	alphabetic	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100485f0	340	ding	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048750	260	rl_abort	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048860	216	rl_copy_text	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048940	248	rl_extend_line_buffer	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048a40	836	rl_insert_text	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048d90	484	rl_delete_text	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048f80	276	rl_forward	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100490a0	232	rl_backward	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049190	40	rl_beg_of_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100491c0	56	rl_end_of_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049200	816	rl_forward_word	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049530	652	rl_backward_word	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100497c0	440	rl_refresh_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049980	264	rl_clear_screen	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049a90	412	rl_arrow_keys	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049c30	1124	rl_insert	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a0a0	112	rl_quoted_insert	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a110	80	rl_tab_insert	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a160	160	rl_newline	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a200	180	rl_clean_up_for_exit	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a2c0	28	rl_do_lowercase_version	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a2e0	624	rl_rubout	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a550	436	rl_delete	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a710	824	rl_delete_horizontal_space	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004aa50	784	rl_unix_word_rubout	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004ad60	164	rl_unix_line_discard	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004ae10	80	rl_upcase_word	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004ae60	80	rl_downcase_word	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004aeb0	80	rl_capitalize_word	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004b450	700	rl_transpose_words	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004b710	628	rl_transpose_chars	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004b990	180	rl_add_undo	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004ba50	232	free_undo_list	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004bb40	624	rl_do_undo	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004bdb0	84	rl_begin_undo_group	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004be10	84	rl_end_undo_group	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004be70	260	rl_modifying	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004bf80	176	rl_revert_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c030	188	rl_undo_command	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c170	136	_rl_free_history_entry	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c200	256	maybe_replace_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c300	424	maybe_unsave_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c4b0	276	maybe_save_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c5d0	96	rl_beginning_of_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c630	116	rl_end_of_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c6b0	564	rl_get_next_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c8f0	600	rl_get_previous_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004cb50	56	rl_execute_next	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004cb90	120	rl_set_mark	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004cc10	264	rl_exchange_mark_and_point	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004cd20	24	rl_set_retained_kills	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004cd40	1272	rl_kill_text	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d240	252	rl_kill_word	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d340	232	rl_backward_kill_word	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d430	244	rl_kill_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d530	248	rl_backward_kill_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d630	164	rl_kill_full_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d6e0	224	rl_yank	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d7c0	692	rl_yank_pop	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004da80	444	rl_yank_nth_arg	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004dc40	180	rl_yank_last_arg	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004dd00	92	rl_vi_editing_mode	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004dd60	88	rl_emacs_editing_mode	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004ddc0	412	rl_getc	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004df60	124	savestring	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004dfe0	72	uppercase_p	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e030	72	lowercase_p	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e080	160	pure_alphabetic	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e120	72	digit_p	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e170	148	to_lower	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e210	148	to_upper	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e2b0	120	digit_value	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e570	564	rl_expand_prompt	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e7b0	6208	rl_redisplay	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10050d10	156	rl_on_new_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10050db0	220	rl_forced_update_display	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10050e90	868	_rl_move_cursor_relative	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051200	772	_rl_move_vert	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051510	636	rl_show_char	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051790	284	rl_character_len	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100518b0	216	rl_message	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051990	100	rl_clear_message	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051a00	176	rl_reset_line_state	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051ab0	612	_rl_erase_at_end_of_line	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10052320	876	_rl_update_final	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10052eb0	560	rl_prep_terminal	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100530e0	316	rl_deprep_terminal	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053220	112	rl_restart_output	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053290	112	rl_stop_output	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053300	276	rltty_set_default_bindings	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053420	580	rl_add_funmap_entry	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053670	280	rl_initialize_funmap	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053790	440	rl_funmap_names	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100539e0	96	_rl_vi_reset_last	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053a40	100	_rl_vi_set_last	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053ab0	124	rl_vi_textmod_command	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053b30	232	rl_vi_redo	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053c20	148	rl_vi_yank_arg	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053cc0	248	rl_vi_fetch_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053dc0	172	rl_vi_search_again	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053e70	200	rl_vi_search	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053f40	648	rl_vi_complete	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100541d0	148	rl_vi_tilde_expand	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10054270	284	rl_vi_prev_word	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10054390	308	rl_vi_next_word	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100544d0	216	rl_vi_end_word	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100545b0	860	rl_vi_fWord	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10054910	1080	rl_vi_bWord	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10054d50	1472	rl_vi_eWord	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10055310	2008	rl_vi_fword	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10055af0	2896	rl_vi_bword	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10056640	2300	rl_vi_eword	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10056f40	96	rl_vi_insert_beg	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10056fa0	148	rl_vi_append_mode	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057040	96	rl_vi_append_eol	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100570a0	80	rl_vi_eof_maybe	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100570f0	52	rl_vi_insertion_mode	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057130	148	_rl_vi_done_inserting	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100571d0	152	rl_vi_movement_mode	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057270	216	rl_vi_arg_digit	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057350	1076	rl_vi_change_case	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057790	232	rl_vi_put	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057880	140	rl_vi_check	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057910	140	rl_vi_column	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100579a0	2288	rl_vi_domove	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100584c0	464	rl_vi_delete_to	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058690	756	rl_vi_change_to	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058990	496	rl_vi_yank_to	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058b80	332	rl_vi_delete	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058cd0	228	rl_vi_comment	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058dc0	72	rl_vi_first_print	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058e10	408	rl_back_to_indent	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058fb0	1320	rl_vi_char_search	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100594e0	1044	rl_vi_match	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10059900	252	rl_vi_bracktype	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10059a00	500	rl_vi_change_char	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10059c00	328	rl_vi_subst	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10059d50	388	rl_vi_overstrike	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10059ee0	400	rl_vi_overstrike_delete	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a070	500	rl_vi_replace	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a280	132	rl_add_defun	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a310	360	rl_bind_key	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a480	152	rl_bind_key_in_map	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a520	76	rl_unbind_key	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a570	84	rl_unbind_key_in_map	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a5d0	92	rl_set_key	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a630	248	rl_macro_bind	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a730	860	rl_generic_bind	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005aa90	1112	rl_translate_keyseq	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005aef0	292	rl_named_function	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005b020	588	rl_function_of_keyseq	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005b270	104	rl_re_read_init_file	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005b2e0	1200	rl_read_init_file	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005c250	3420	rl_parse_and_bind	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005cfb0	1936	rl_variable_bind	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005d840	264	rl_get_keymap_by_name	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005d950	72	rl_set_keymap	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005d9a0	36	rl_get_keymap	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005d9d0	152	rl_set_keymap_from_edit_mode	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005da70	264	rl_list_funmap_names	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005db80	2304	rl_invoking_keyseqs_in_map	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005e480	88	rl_invoking_keyseqs	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005e4e0	112	rl_dump_functions	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005e550	1228	rl_function_dumper	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005ea20	192	_rl_bind_if_unbound	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005f650	136	rl_noninc_forward_search	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005f6e0	136	rl_noninc_reverse_search	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005f770	164	rl_noninc_forward_search_again	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005f820	164	rl_noninc_reverse_search_again	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005fbe0	248	rl_history_search_forward	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005fce0	248	rl_history_search_backward	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005fde0	84	rl_reverse_search_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005fe40	80	rl_forward_search_history	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10060ce0	268	rl_make_bare_keymap	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10060df0	204	rl_copy_keymap	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10060ec0	396	rl_make_keymap	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10061050	292	rl_discard_keymap	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10061540	636	rl_set_signals	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100617c0	288	rl_clear_signals	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10061950	124	xmalloc	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100619d0	192	xrealloc	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10061ec0	752	tilde_expand	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100621b0	1380	tilde_expand_word	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1006272c	4	__istart	dynsym	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f6a0	268	__start	dynsym	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f7ac	12	_mcount	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10035050	548	jt_powerup_chain	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100352a0	2388	jt_read_chain	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10035c00	6000	read_bsr	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037370	236	type_to_func	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037460	272	type_to_safe	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037570	88	premature_eof	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100375d0	300	read_bsdl	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037700	1144	jt_print_chain	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037b80	1756	jt_print_bsr	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038410	232	jt_lookup_port	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038500	260	porttopin	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038610	260	pintoport	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038720	172	jt_canonize	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100389f0	528	jt_free_bist	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038f10	268	jt_dispose_chain	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039020	536	jt_findfile	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100393a0	156	jt_zclose	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039440	656	jt_zopen	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100396d0	348	jt_extract_chip_register	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039830	292	jt_insert_chip_register	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039960	796	jt_extract_bits	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039c80	860	jt_insert_bits	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003a620	68	jt_expand_portlist	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003a670	672	jt_nullify	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003a910	596	jt_copy_bits	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003ab70	564	jt_find_chain_length	dynsym	documented	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003add0	224	history_get_history_state	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003aeb0	176	history_set_history_state	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003af60	52	using_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003afa0	264	history_total_bytes	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003b0b0	996	add_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003b4a0	320	replace_history_entry	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003b5e0	36	where_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003ba60	84	history_search	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003bac0	84	history_search_prefix	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003bb20	336	remove_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003bc70	580	stifle_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003bec0	112	unstifle_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003bf30	36	history_is_stifled	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003c110	80	read_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003c160	980	read_history_range	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003c540	716	history_truncate_file	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cba0	84	append_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cc00	92	write_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cc60	176	current_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cd10	172	previous_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cdc0	188	next_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003ce80	36	history_list	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003ceb0	192	history_get	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003cf70	260	history_search_pos	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003d080	156	history_set_pos	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003d120	1808	get_history_event	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003efb0	2348	history_expand	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003ffa0	948	history_arg_extract	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10040360	2132	history_tokenize	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10040bd0	276	rl_complete	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10040cf0	76	rl_possible_completions	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10040d40	76	rl_insert_completions	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10040d90	280	get_y_or_n	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10041320	6436	rl_complete_internal	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10042e00	976	username_completion_function	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100431d0	1272	completion_matches	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100436d0	2756	filename_completion_function	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100441a0	1072	rl_tilde_expand	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10044690	340	readline	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10044e20	244	rl_stuff_char	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10044f20	204	ibuffer_space	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10044ff0	256	rl_get_char	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100450f0	244	rl_unget_char	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100451f0	628	rl_gather_tyi	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10045470	444	rl_read_key	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10045630	1392	_rl_dispatch	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10046050	340	rl_start_kbd_macro	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100461b0	280	rl_end_kbd_macro	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100462d0	420	rl_call_last_kbd_macro	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10046480	260	_rl_kill_kbd_macro	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10046590	524	rl_initialize	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047030	92	rl_digit_argument	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047090	108	rl_discard_argument	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047100	76	rl_init_argument	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047150	100	rl_universal_argument	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100471c0	76	rl_reset_terminal	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047210	836	_rl_set_screen_size	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047e30	308	rl_get_termcap	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10047f70	348	_rl_output_character_function	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100480d0	100	_rl_output_some_chars	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048140	540	backspace	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048360	340	crlf	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100484c0	76	rl_tty_status	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048510	212	alphabetic	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100485f0	340	ding	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048750	260	rl_abort	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048860	216	rl_copy_text	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048940	248	rl_extend_line_buffer	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048a40	836	rl_insert_text	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048d90	484	rl_delete_text	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10048f80	276	rl_forward	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100490a0	232	rl_backward	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049190	40	rl_beg_of_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100491c0	56	rl_end_of_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049200	816	rl_forward_word	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049530	652	rl_backward_word	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100497c0	440	rl_refresh_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049980	264	rl_clear_screen	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049a90	412	rl_arrow_keys	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10049c30	1124	rl_insert	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a0a0	112	rl_quoted_insert	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a110	80	rl_tab_insert	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a160	160	rl_newline	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a200	180	rl_clean_up_for_exit	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a2c0	28	rl_do_lowercase_version	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a2e0	624	rl_rubout	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a550	436	rl_delete	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004a710	824	rl_delete_horizontal_space	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004aa50	784	rl_unix_word_rubout	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004ad60	164	rl_unix_line_discard	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004ae10	80	rl_upcase_word	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004ae60	80	rl_downcase_word	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004aeb0	80	rl_capitalize_word	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004b450	700	rl_transpose_words	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004b710	628	rl_transpose_chars	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004b990	180	rl_add_undo	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004ba50	232	free_undo_list	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004bb40	624	rl_do_undo	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004bdb0	84	rl_begin_undo_group	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004be10	84	rl_end_undo_group	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004be70	260	rl_modifying	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004bf80	176	rl_revert_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c030	188	rl_undo_command	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c170	136	_rl_free_history_entry	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c200	256	maybe_replace_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c300	424	maybe_unsave_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c4b0	276	maybe_save_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c5d0	96	rl_beginning_of_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c630	116	rl_end_of_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c6b0	564	rl_get_next_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004c8f0	600	rl_get_previous_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004cb50	56	rl_execute_next	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004cb90	120	rl_set_mark	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004cc10	264	rl_exchange_mark_and_point	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004cd20	24	rl_set_retained_kills	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004cd40	1272	rl_kill_text	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d240	252	rl_kill_word	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d340	232	rl_backward_kill_word	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d430	244	rl_kill_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d530	248	rl_backward_kill_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d630	164	rl_kill_full_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d6e0	224	rl_yank	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004d7c0	692	rl_yank_pop	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004da80	444	rl_yank_nth_arg	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004dc40	180	rl_yank_last_arg	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004dd00	92	rl_vi_editing_mode	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004dd60	88	rl_emacs_editing_mode	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004ddc0	412	rl_getc	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004df60	124	savestring	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004dfe0	72	uppercase_p	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e030	72	lowercase_p	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e080	160	pure_alphabetic	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e120	72	digit_p	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e170	148	to_lower	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e210	148	to_upper	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e2b0	120	digit_value	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e570	564	rl_expand_prompt	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1004e7b0	6208	rl_redisplay	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10050d10	156	rl_on_new_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10050db0	220	rl_forced_update_display	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10050e90	868	_rl_move_cursor_relative	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051200	772	_rl_move_vert	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051510	636	rl_show_char	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051790	284	rl_character_len	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100518b0	216	rl_message	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051990	100	rl_clear_message	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051a00	176	rl_reset_line_state	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10051ab0	612	_rl_erase_at_end_of_line	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10052320	876	_rl_update_final	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10052eb0	560	rl_prep_terminal	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100530e0	316	rl_deprep_terminal	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053220	112	rl_restart_output	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053290	112	rl_stop_output	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053300	276	rltty_set_default_bindings	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053420	580	rl_add_funmap_entry	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053670	280	rl_initialize_funmap	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053790	440	rl_funmap_names	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100539e0	96	_rl_vi_reset_last	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053a40	100	_rl_vi_set_last	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053ab0	124	rl_vi_textmod_command	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053b30	232	rl_vi_redo	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053c20	148	rl_vi_yank_arg	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053cc0	248	rl_vi_fetch_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053dc0	172	rl_vi_search_again	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053e70	200	rl_vi_search	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10053f40	648	rl_vi_complete	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100541d0	148	rl_vi_tilde_expand	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10054270	284	rl_vi_prev_word	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10054390	308	rl_vi_next_word	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100544d0	216	rl_vi_end_word	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100545b0	860	rl_vi_fWord	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10054910	1080	rl_vi_bWord	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10054d50	1472	rl_vi_eWord	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10055310	2008	rl_vi_fword	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10055af0	2896	rl_vi_bword	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10056640	2300	rl_vi_eword	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10056f40	96	rl_vi_insert_beg	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10056fa0	148	rl_vi_append_mode	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057040	96	rl_vi_append_eol	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100570a0	80	rl_vi_eof_maybe	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100570f0	52	rl_vi_insertion_mode	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057130	148	_rl_vi_done_inserting	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100571d0	152	rl_vi_movement_mode	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057270	216	rl_vi_arg_digit	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057350	1076	rl_vi_change_case	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057790	232	rl_vi_put	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057880	140	rl_vi_check	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10057910	140	rl_vi_column	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100579a0	2288	rl_vi_domove	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100584c0	464	rl_vi_delete_to	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058690	756	rl_vi_change_to	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058990	496	rl_vi_yank_to	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058b80	332	rl_vi_delete	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058cd0	228	rl_vi_comment	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058dc0	72	rl_vi_first_print	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058e10	408	rl_back_to_indent	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10058fb0	1320	rl_vi_char_search	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100594e0	1044	rl_vi_match	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10059900	252	rl_vi_bracktype	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10059a00	500	rl_vi_change_char	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10059c00	328	rl_vi_subst	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10059d50	388	rl_vi_overstrike	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10059ee0	400	rl_vi_overstrike_delete	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a070	500	rl_vi_replace	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a280	132	rl_add_defun	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a310	360	rl_bind_key	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a480	152	rl_bind_key_in_map	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a520	76	rl_unbind_key	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a570	84	rl_unbind_key_in_map	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a5d0	92	rl_set_key	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a630	248	rl_macro_bind	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005a730	860	rl_generic_bind	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005aa90	1112	rl_translate_keyseq	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005aef0	292	rl_named_function	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005b020	588	rl_function_of_keyseq	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005b270	104	rl_re_read_init_file	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005b2e0	1200	rl_read_init_file	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005c250	3420	rl_parse_and_bind	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005cfb0	1936	rl_variable_bind	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005d840	264	rl_get_keymap_by_name	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005d950	72	rl_set_keymap	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005d9a0	36	rl_get_keymap	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005d9d0	152	rl_set_keymap_from_edit_mode	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005da70	264	rl_list_funmap_names	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005db80	2304	rl_invoking_keyseqs_in_map	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005e480	88	rl_invoking_keyseqs	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005e4e0	112	rl_dump_functions	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005e550	1228	rl_function_dumper	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005ea20	192	_rl_bind_if_unbound	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005f650	136	rl_noninc_forward_search	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005f6e0	136	rl_noninc_reverse_search	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005f770	164	rl_noninc_forward_search_again	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005f820	164	rl_noninc_reverse_search_again	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005fbe0	248	rl_history_search_forward	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005fce0	248	rl_history_search_backward	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005fde0	84	rl_reverse_search_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1005fe40	80	rl_forward_search_history	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10060ce0	268	rl_make_bare_keymap	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10060df0	204	rl_copy_keymap	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10060ec0	396	rl_make_keymap	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10061050	292	rl_discard_keymap	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10061540	636	rl_set_signals	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100617c0	288	rl_clear_signals	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10061950	124	xmalloc	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100619d0	192	xrealloc	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10061ec0	752	tilde_expand	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100621b0	1380	tilde_expand_word	dynsym	documented	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1006272c	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f6a0	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f7ac	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f7c0	640	XkbInitNames..FBF	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005fa40	364	ProcXineramaDestroyWindow	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005fbb0	1228	ProcXkbSetIndicatorMap	dynsym	undocumented		
@@ -5916,7 +5916,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102897c0	976	LbxReplyCallback..
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10289b90	400	sgiCapPolyText8..KCE	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10289d20	324	ddxFindFirstTypedBoard	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10289e70	608	ProcXGrabDevice	dynsym	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1028a0dc	4	__istart	dynsym	undocumented		
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1028a0dc	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec31170	116	gl_g_pushattributes	dynsym+mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec311e4	96	gl_n_pushattributes	dynsym+mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec31244	116	gl_g_popattributes	dynsym+mdebug	undocumented		
@@ -7504,7 +7504,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68c20	136	getdisplaymode	dyn
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68ca8	136	__GLarcfs	dynsym+mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68ca8	136	arcfs	dynsym	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68d30	136	__GLpatch	dynsym+mdebug	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68d30	136	patch	dynsym	undocumented		
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68d30	136	patch	dynsym	documented	docs/kpm.md#what-kpm-is	What `kpm` is
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68db8	64	__GLgl_glx_unlink	dynsym+mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68db8	64	gl_glx_unlink	dynsym	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec68df8	136	__GLnurbssurface	dynsym+mdebug	undocumented		
@@ -11316,7 +11316,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a2f8	180	getdisplaymode	d
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a3ac	180	__GLarcfs	dwarf+dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a3ac	180	arcfs	dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a460	180	__GLpatch	dwarf+dynsym	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a460	180	patch	dynsym	undocumented		
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a460	180	patch	dynsym	documented	docs/kpm.md#what-kpm-is	What `kpm` is
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a514	68	__GLgl_glx_unlink	dwarf+dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a514	68	gl_glx_unlink	dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6a558	180	__GLnurbssurface	dwarf+dynsym	undocumented		
@@ -46937,8 +46937,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c33dc	148	__glMipsXF
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c3470	192	__glMipsXForm4_W	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c3530	240	__glMipsXForm4	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c3620	204	__glMipsMultMatrix	dwarf+dynsym	undocumented		
-usr/gfx/dmconf	shared-tool	n32		0x10008520	268	__start	dynsym	undocumented		
-usr/gfx/dmconf	shared-tool	n32		0x1000862c	12	_mcount	dynsym	undocumented		
+usr/gfx/dmconf	shared-tool	n32		0x10008520	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/dmconf	shared-tool	n32		0x1000862c	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/dmconf	shared-tool	n32		0x10008640	180	_main	dynsym	undocumented		
 usr/gfx/dmconf	shared-tool	n32		0x10008700	84	_fini	dynsym	undocumented		
 usr/gfx/dmconf	shared-tool	n32		0x10008760	128	__process_needed_destructions__Gv	dynsym	undocumented		
@@ -47128,9 +47128,9 @@ usr/gfx/dmconf	shared-tool	n32		0x1001bb90	500	getstring__9EZWrapperGv	dynsym	un
 usr/gfx/dmconf	shared-tool	n32		0x1001c9cc	80	GLwCreateMDrawingArea	dynsym	undocumented		
 usr/gfx/dmconf	shared-tool	n32		0x1001ca1c	104	GLwDrawingAreaMakeCurrent	dynsym	undocumented		
 usr/gfx/dmconf	shared-tool	n32		0x1001ca84	100	GLwDrawingAreaSwapBuffers	dynsym	undocumented		
-usr/gfx/dmconf	shared-tool	n32		0x1001cafc	4	__istart	dynsym	undocumented		
-usr/gfx/gfxinfo	shared-tool	n32		0x10005770	268	__start	dynsym	undocumented		
-usr/gfx/gfxinfo	shared-tool	n32		0x1000587c	12	_mcount	dynsym	undocumented		
+usr/gfx/dmconf	shared-tool	n32		0x1001cafc	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/gfxinfo	shared-tool	n32		0x10005770	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/gfxinfo	shared-tool	n32		0x1000587c	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/gfxinfo	shared-tool	n32		0x10005888	2192	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/gfxinfo	shared-tool	n32		0x1000693c	848	lg1_info	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x10006c8c	2628	loadfile	dynsym	undocumented		
@@ -47355,13 +47355,13 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1001dc04	384	read_4000_serial	dynsym	undocume
 usr/gfx/gfxinfo	shared-tool	n32		0x1001dd84	212	dump_xilinx_config	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x1001de58	156	get_config_size	dynsym	undocumented		
 usr/gfx/gfxinfo	shared-tool	n32		0x1001e298	152	read_xilinx_file	dynsym	undocumented		
-usr/gfx/gfxinfo	shared-tool	n32		0x1001e33c	4	__istart	dynsym	undocumented		
-usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ed0	268	__start	dynsym	undocumented		
-usr/gfx/hyperpipeinfo	board-tool	n32		0x10000fdc	12	_mcount	dynsym	undocumented		
+usr/gfx/gfxinfo	shared-tool	n32		0x1001e33c	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ed0	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/hyperpipeinfo	board-tool	n32		0x10000fdc	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ff0	956	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-usr/gfx/hyperpipeinfo	board-tool	n32		0x100013bc	4	__istart	dynsym	undocumented		
-usr/gfx/ircombine	board-tool	n32		0x1001fd10	268	__start	dynsym	undocumented		
-usr/gfx/ircombine	board-tool	n32		0x1001fe1c	12	_mcount	dynsym	undocumented		
+usr/gfx/hyperpipeinfo	board-tool	n32		0x100013bc	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/ircombine	board-tool	n32		0x1001fd10	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/ircombine	board-tool	n32		0x1001fe1c	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/ircombine	board-tool	n32		0x1001fe30	180	_main	dynsym	undocumented		
 usr/gfx/ircombine	board-tool	n32		0x1001fef0	84	_fini	dynsym	undocumented		
 usr/gfx/ircombine	board-tool	n32		0x1001ff50	128	__process_needed_destructions__Gv	dynsym	undocumented		
@@ -48597,9 +48597,9 @@ usr/gfx/ircombine	board-tool	n32		0x10091640	500	getstring__9EZWrapperGv	dynsym	
 usr/gfx/ircombine	board-tool	n32		0x10092478	80	GLwCreateMDrawingArea	dynsym	undocumented		
 usr/gfx/ircombine	board-tool	n32		0x100924c8	104	GLwDrawingAreaMakeCurrent	dynsym	undocumented		
 usr/gfx/ircombine	board-tool	n32		0x10092530	100	GLwDrawingAreaSwapBuffers	dynsym	undocumented		
-usr/gfx/ircombine	board-tool	n32		0x100925ac	4	__istart	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x10008d20	268	__start	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x10008e2c	12	_mcount	dynsym	undocumented		
+usr/gfx/ircombine	board-tool	n32		0x100925ac	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/setmon	shared-tool	n32		0x10008d20	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/setmon	shared-tool	n32		0x10008e2c	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/setmon	shared-tool	n32		0x10008e38	64	Usage	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	undocumented		
@@ -48846,9 +48846,9 @@ usr/gfx/setmon	shared-tool	n32		0x10034f10	8	konUnbindDestroyedWindow	dynsym	und
 usr/gfx/setmon	shared-tool	n32		0x10034fe0	96	saXSGIvcSetChannelGammaMap	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x10035360	84	KonData2	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x100353c0	164	KonData5	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x100354fc	4	__istart	dynsym	undocumented		
-usr/gfx/sgcombine	shared-tool	n32		0x1000f870	268	__start	dynsym	undocumented		
-usr/gfx/sgcombine	shared-tool	n32		0x1000f97c	12	_mcount	dynsym	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x100354fc	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/sgcombine	shared-tool	n32		0x1000f870	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/sgcombine	shared-tool	n32		0x1000f97c	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/sgcombine	shared-tool	n32		0x1000f990	180	_main	dynsym	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x1000fa50	84	_fini	dynsym	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x1000fab0	128	__process_needed_destructions__Gv	dynsym	undocumented		
@@ -49248,9 +49248,9 @@ usr/gfx/sgcombine	shared-tool	n32		0x10029aa0	500	getstring__9EZWrapperGv	dynsym
 usr/gfx/sgcombine	shared-tool	n32		0x1002a8d8	80	GLwCreateMDrawingArea	dynsym	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x1002a928	104	GLwDrawingAreaMakeCurrent	dynsym	undocumented		
 usr/gfx/sgcombine	shared-tool	n32		0x1002a990	100	GLwDrawingAreaSwapBuffers	dynsym	undocumented		
-usr/gfx/sgcombine	shared-tool	n32		0x1002aa0c	4	__istart	dynsym	undocumented		
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003e10	268	__start	dynsym	undocumented		
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003f1c	12	_mcount	dynsym	undocumented		
+usr/gfx/sgcombine	shared-tool	n32		0x1002aa0c	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003e10	268	__start	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003f1c	12	_mcount	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003f30	180	_main	dynsym	undocumented		
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003ff0	84	_fini	dynsym	undocumented		
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004050	128	__process_needed_destructions__Gv	dynsym	undocumented		
@@ -49341,7 +49341,7 @@ usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b618	200	xdr_SDBsymbolTableEntry
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b6e0	104	xdr_SDBversionNumber	dynsym	undocumented		
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b748	36	SDBsetupMemoryInterface	dynsym	undocumented		
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b76c	8	yywrap	dynsym	undocumented		
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b78c	4	__istart	dynsym	undocumented		
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b78c	4	__istart	dynsym	documented	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeaa8a0	324	glx_rt_DispSwapIsTextureEXT	dynsym	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeaa9f0	76	glxGetMapivSize	dynsym	undocumented		
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeaaa40	844	glx_rt_DispGetSeparableFilterEXT	dynsym	undocumented		
