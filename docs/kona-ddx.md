@@ -6175,3 +6175,126 @@ The IP27 kernel names the pipe KONAL and the server loads `konal.so` (6.5.30m, `
   FillSpans for 8-bit pixels using xor: `miFindMaxBand` and `miClipSpans`, then masked word xors
   using the tables `cfbstarttab` and `cfbendtab`; the code is instruction for instruction the same
   as the kona.so build once relocated addresses are ignored.
+
+## konal.so builds of the hooks that have no konal.so entry above
+
+Twenty-two `konal.so` functions had only a `kona.so` entry. They are instruction for instruction the `kona.so` code, with the offsets of the global-pointer table moved (compared by script, then read from the `konal.so` disassembly one by one), so each entry below states what the `konal.so` function does from its own listing. In the stereo wrappers the screen record is reached through the drawable's screen pointer (+16) and its private word (+116); that record holds a stereo flag at +220 and the eye offset, a halfword, at +226.
+
+- `konSetColor` (konal.so, address 0x1463ac0, 100 bytes): **established.** An empty set-colour hook. It narrows the three colour
+  arguments to 16 bits into locals, keeps the fifth argument, and calls `ErrorF` once with the text "konSetColor *** should NOT be
+  called". No colour is loaded, so colour stores must reach the board through the store-colours entry points instead.
+- `konLocatorFilter` (konal.so, address 0x1493b60, 100 bytes): **established.** The pointer-locator filter hook. After saving its
+  four arguments it branches straight to the epilogue at +0x50, so the `ErrorF` call that follows (format "x = %d, y = %d" with
+  the first two arguments) is never reached; the function returns without effect.
+- `konTiledFS` (konal.so, address 0x1503db0, 96 bytes): **established.** Placeholder for the tiled fill-spans operation: it stores
+  its five arguments and calls `ErrorF` with the one-line text "konTiledFS", then returns. It draws nothing and sends no pipe
+  command.
+- `konCreateGC` (konal.so, address 0x1482b50, 528 bytes): **established.** Create-context wrapper. It reads the depth byte of the
+  drawable (+4 of the context argument) and indexes a 31-entry jump table in read-only data: depth 1 calls `mfbCreateGC` and
+  returns its result; depths 2, 4, 8,
+  12, 15, 16,
+  24 and 30 take the common path; the other 22 values print "unsupported depth: %d" through `ErrorF` and return 0. The common path
+  copies the hook at +128 of the screen private into screen word +304, calls that word, puts `konCreateGC` back in it, clears the
+  172-byte context private with `bzero`, saves the context's function table pointer at private +164 and installs this module's
+  table, then zeroes the halfwords at +92 and +108 and the words at +104, +144 and +148 to +160. A debug print of the function
+  name sits behind an unconditional branch and never runs.
+- `rrmSetResourceMask` (konal.so, address 0x1463e20, 88 bytes): **established.** Marks kernel resources valid for a window. The
+  window's rrm private comes from the window record's private array (+132) at `rrmWindowPrivateIndex`. When any bit of the mask
+  argument is already set in the byte at +4 the function returns that overlap, nonzero, at once; otherwise it sets the mask in +4,
+  clears the same bits in the byte at +5 and returns 0.
+- `rrmDelayValidateClipCancel` (konal.so, address 0x1487410, 136 bytes): **established.** Drops a queued clip validation. Only
+  when the window has an rrm private whose word at +68 is nonzero does it act: `Xfree` of the block at +72, `TimerFree` of the
+  timer at +68, then zero in both words. The other paths return without sending an ioctl.
+- `rrmInvalidate` (konal.so, address 0x1489190, 560 bytes): **established.** The hook that tells the kernel to drop a window's
+  resources. With a zero mask it uses every valid bit of the byte at +4 of the rrm private. If none is set it returns. Otherwise
+  it clears the bits and calls `ioctl` with request 1010 on the descriptor at +116 of the screen, passing a block with the
+  rendering-node id (+12 of the private), the window id (+4), the bits and two result words. For the swap-buffer bit (0x8) it
+  copies bit 0x4 of the returned mode into the window's word at +32, calls `UpdateDIDMode` with the result's bit 0, runs
+  `SetDIDMode` only when that bit is set and the flag argument is nonzero, and when bit 0x4 changed it stores the new value at +2
+  of the window's double-buffer private, advances `globalSerialNumber` (wrapping to 1 above 0x1000000) and calls
+  `FlushClientCaches`. For the clip bit (0x2) it calls `rrmInvalidateCID` when word +4 of the screen's rrm private is nonzero.
+- `SetNoStealID` (konal.so, address 0x14a75f0, 68 bytes): **established.** Protects a display id from stealing. It takes the
+  screen's rrm private through the screen's private array (+436) at `rrmScreenPrivateIndex`, steps to the id's 36-byte entry (the
+  table starts at +152) and ors 0x20 into the entry's flag halfword at +168 from the private.
+- `SetReservedID` (konal.so, address 0x14ff2f0, 536 bytes): **established.** Gives an id its reserved mode. It empties the id's
+  holder list one window at a time (first holder at +152 of the entry, count at +172), saving each window on the stack; for each
+  whose rrm private byte +6 has bit 0x8 it calls the screen private's hook at +32 with (window, 0, 0), and it then calls `FreeID`.
+  It copies entry words +176 and +180 over +160 and +164, calls the hook at +44, and sets flag bit 0x2. Each saved window is then
+  given a new id by `FindFreeID`, or by `StealID` when none is free, and when the id's flag had bit 0x10 the window's new id gets
+  that bit and the hook at +32 is called with (window, 8, 1).
+- `FindFreeID` (konal.so, address 0x15044a0, 464 bytes): **established.** Finds a free display id for a window and returns 1 or
+  0. A window of kind 1 on a screen whose private word +12 has bit 0 set gets the id one past the table, the table size read from
+  the screen private. A window that already holds an unshared id keeps it. Pass 1 takes the first entry of the window's kind with
+  flag bit 0x1 clear and no holder; pass 2, only when screen private word +48 is nonzero, takes an entry with bit 0x1 set and bits
+  0x2 and 0x20 clear and no holder. The winner goes to the window through the local routine at 0x1503bc0; with neither pass
+  successful the return is 0.
+- `rrmOGLUnbindRNFromClip` (konal.so, address 0x14f28c0, 624 bytes): **established.** The
+  OpenGL form of the unbind hook. It invalidates the window's resources through the hook at +32, calls `rrmUnqueueRequest` when
+  the flag halfword has bit 0x20, and frees the buffer in the window's GLX private with `Xfree`. A non-empty bound-window list
+  prints "prrmBoundWins non zero" through `ErrorF`. It asks `cmapDID` for the frame-buffer id, sets bit 0x1 in private word +32
+  with `nfbSetDidFlags`, and for a realized window releases the display id (`FreeID`) and clip id (`FreeCID`), lowers the
+  ancestors' counters with `decrRRMFlags` and clears the bound bit.
+- `konCloseScreen` (konal.so, address 0x14a2d90, 468 bytes): **established.** The screen close hook. It reads the screen private
+  at `konScreenPrivateIndex`, calls `konCursorOn` with 0, then `konBlankScreen` (printing "konBlankScreen() failed" through
+  `ErrorF` when it fails), then calls the screen hook at +352 with a pointer to each of the three 12-byte records of the block
+  whose pointer is at private +64. It detaches the video-control extension with `konDetachXvc`, frees the blocks at private +64,
+  +40, +44, +48 and +52 with `Xfree`, runs `kon_freeCursorCaches` and `kon_GCOpsCacheReset`, calls a local routine at 0x148e5d0
+  with the screen private, then closes the lower layers in the order `rrmCloseScreen`, `nfbHWColormapScreenClose` and
+  `nfbCloseScreen`, whose result it returns.
+- `konStereoImageText16` (konal.so, address 0x145dbb0, 768 bytes): **established.** Stereo form of the 16-bit image-text
+  operation, taking (drawable, context, x, y, count, string) and calling operation slot +64 of the saved table twice. The
+  context's private record comes from the context's private array (+76) at `nfbGCPrivateIndex`; the function saves the draw-buffer
+  word at private +8 and the context's operations pointer (+72), installs the table kept at private +92 and sets private +104 to
+  1. When the stereo flag is 1 the first pass uses the buffer word at +96 with the drawable's y position (+10) and the private y
+  (+90) lowered by the eye offset, the second the word at +100 with both restored; otherwise the first pass uses +100 raised by
+  the offset and the second +96 restored. Each pass revalidates with `konValidateWindowGC` (mask 8192). It restores the saved
+  buffer word and table, and clears +104.
+- `konStereoPolyPoint` (konal.so, address 0x1463b30, 748 bytes): **established.** Stereo form of the point-plotting operation
+  (five arguments: drawable, context, mode, count, points), calling slot +20 twice. It makes the same two-pass switch as the other
+  wrappers, with no copy of the points: the first pass at the lowered position in buffer word +96, the second in +100 at the
+  original position when the screen's stereo flag is 1, and the mirrored order, +100 raised then +96, when it is not. Each pass is
+  preceded by `konValidateWindowGC` with mask 8192, and the saved buffer word, operations table and flag at private +104 are put
+  back afterwards.
+- `konStereoPushPixels` (konal.so, address 0x1472d00, 804 bytes): **established.** Stereo form of the push-pixels operation, whose
+  context is its first argument and whose drawable is the third (seven arguments in all), so the screen record is reached through
+  the third argument and the private record through the first. It calls slot +76 of the saved table twice, in the stereo order
+  (+96 at the lowered position, then +100 restored) or in the other order (+100 raised, then +96 restored) as the flag at +220
+  decides, validating with mask 8192 before each call and putting back the buffer word, table and private flag after the second.
+- `konStereoImageGlyphBlt` (konal.so, address 0x14f9dc0, 788 bytes): **established.** Stereo form of the glyph-blit image
+  operation with seven arguments (drawable, context, x, y, glyph count, character-info list, glyph bitmaps), which it forwards
+  unchanged to slot +68 of the saved table in two passes. The first pass draws into buffer word +96 at the position lowered by the
+  eye offset and the second into +100 at the original position when the stereo flag is 1; with the flag clear the passes are +100
+  at the raised position and +96 at the original. `konValidateWindowGC` with mask 8192 runs before each pass.
+- `konStereoPolyFillRect` (konal.so, address 0x147a440, 888 bytes): **established.** Stereo form of the rectangle fill (drawable,
+  context, count, rectangles). It first allocates count x 8 bytes with `Xalloc` and copies each rectangle (four halfwords) into
+  the block, then calls slot +44 twice. In the stereo order the first pass hands the operation the copy, the second the caller's
+  list; the drawable and private y positions are lowered by the eye offset for the first pass and restored for the second, with
+  buffer words +96 then +100. The other order mirrors it. The block is released with `Xfree` before the buffer word, operations
+  table and private flag are restored.
+- `konStereoPolyFillArc` (konal.so, address 0x1474100, 912 bytes): **established.** Stereo form of the arc fill (drawable,
+  context, count, arcs): it allocates count x 12 bytes through `Xalloc` (the multiply is shifts and a subtract) and copies each
+  12-byte arc with unaligned doubleword and word moves, then calls slot +48 twice with the buffer words and y positions of the
+  other wrappers, once with the copy and once with the caller's list. `Xfree` returns the block before the original table and
+  buffer word come back.
+- `konStereoFillPolygon` (konal.so, address 0x14e0610, 912 bytes): **established.** Stereo form of the polygon fill (drawable,
+  context, shape, mode, count, points). It allocates count x 4 bytes with `Xalloc`, copies the x and y halfwords of each point
+  into it, and calls slot +40 twice: the copy goes to the first pass and the caller's points to the second. Positions and buffer
+  words follow the common two-pass rule (+96 lowered then +100 restored, or +100 raised then +96 restored), each pass after
+  `konValidateWindowGC` with mask 8192, and the block is freed at the end.
+- `konStereoCopyArea` (konal.so, address 0x1491490, 1220 bytes): **established.** Stereo form of the area copy with nine arguments
+  (source, destination, context, source x and y, width, height, destination x and y), calling slot +12 of the saved table. When
+  the destination is a pixmap (type byte +0 equal to 1) it calls the slot once and returns its region. Otherwise it makes the two
+  passes, shifting the destination y by the eye offset: in the argument itself (the ninth, on the stack) when source and
+  destination are the same drawable, and in the destination's y position (+10) when they differ, together with the private y
+  (+90). After the first pass the returned region, if any, is destroyed through the screen hook at +348, and the region of the
+  second pass is returned.
+- `konStereoSetSpans` (konal.so, address 0x149d470, 1204 bytes): **established.** Stereo form of the span write with seven
+  arguments: the points are the fourth, the widths the fifth and the count the sixth. Instead of copying, it adjusts the y
+  halfword (+2) of each of the count points of the caller's array in place before each pass: lowered by the eye offset for the
+  first pass, raised by it for the second in the stereo order, and the reverse for the other order, so the array is back to its
+  input values when the function returns. Slot +4 is called twice, after `konValidateWindowGC` with mask 8192.
+- `konStereoFillSpans` (konal.so, address 0x14ac470, 1184 bytes): **established.** Stereo form of the span fill with six arguments
+  (drawable, context, count, points, widths, sorted flag). Like the span write it moves the y halfword (+2) of every point of the
+  caller's array in place by the eye offset between the two calls of slot +0, then undoes it, along with the drawable and private
+  y positions and the buffer words +96 and +100. The pass order depends on the stereo flag at +220 in the same way as the other
+  wrappers.

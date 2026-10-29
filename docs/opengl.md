@@ -608,7 +608,7 @@ It unlinks the window from the holders (window privates +60 and +64), drops the 
 It takes (screen, id) and copies the windows that hold the entry (count at +20, first at +0) into a stack list.
 For each it calls the screen private's hook at +32 with (window, 0, 0) when the window's private byte +6 has bit 0x8, and then `FreeID`.
 It copies entry words +24 and +28 over +8 and +12, calls the hook at +44 with (screen, id), and sets entry flag 0x2 (occupied).
-It then runs the free-id search for each saved window, releasing the window with `FreeID` when none is found.
+It then runs the free-id search (`FindFreeID`) for each saved window, taking an id with `StealID` when none is free.
 When the reserved id's own flag bit 0x10 was set before the call, it sets that bit on each window's new id and calls the hook at +32 with (window, 8, 1).
 **Inferred:** the holders leave, the id switches to the pending mode held in words +24 and +28, and the holders are placed again.
 Its one caller is `nfbInstallHWColormap`, behind screen-private word +48.
