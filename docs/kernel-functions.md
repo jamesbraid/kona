@@ -411,3 +411,17 @@ The Crosstalk widget registers named here are those of the pipe's XG chip ([xg.m
   (`xwidget_gfx_reset`), then writes the widget control register (0x24) with the interrupt target number, widget number and crossbar credit count, the interrupt destination (0x34, 0x3c) and the three interrupt vectors (0x5c), reports errors, clears the error status (0x6c) and request timeout (0x2c), sets the interrupt-enable bit in 0x24 last, sets the FIFO water marks in 0x74 (output-DMA low 0x40 and high 0x3f), and writes 0xfff to
   `HH_INTR_STATUS` (0x800238) and 0 to the two error-status registers at 0x800390 and 0x800398.
 - `kona_detach` (`kona_edtinit_hip2.o` +0x1634, 8 bytes): **Established.** The widget detach hook: it does nothing and returns, so a detached pipe's state stays allocated.
+
+## Remaining small kernel entries
+
+- `kona_gfifo_spin` (`kona_timeout.o` +0x6ac, 344 bytes): **Established.** The kernel-side wait that holds a process while the graphics FIFO is full: it raises the FIFO-wait flag
+  (`gfx_waitf_on`), counts the wait (+5260, +5472), records the time in microseconds, cancels the pending watchdog timer (`untimeout_wait` on +5440), then loops while the pipe is alive, calling `kona_delay_monitor_gfifo` with the time left and, when that returns 0, running the watchdog step
+  `kona_callout` and waiting another 500000 us. It re-arms the timer with `kona_sched_tick`, killing the pipe with reason 9 if that fails, and always drops the lock and clears the flag.
+- `gfx_pio_write_64` (`kona_flow.o` +0xa00, 16 bytes): **Established.** A 64-bit store to its address argument followed by
+  `sync`. No function of `kona.a`, `gfx.o`, `rrm.o` or `gfxs.a` calls it.
+- `gfx_pio_read_64` (`kona_flow.o` +0xa18, 8 bytes): **Established.** A 64-bit load from its address argument with no barrier. Nothing in the kernel objects calls it.
+- `gfx_flow_init` (`gfx_flow.o` +0x90, 316 bytes): **Established.** One-time set-up of the hub flow-control layer. For every node it reads the hub revision (bits 4-7 of the status register at remote offset 0x600000), clears the transaction-credit flag when the revision is below 4, and writes 10000 to the two interrupt comparators at remote offsets 0x320 and
+  0x348. It installs the high-water prehandler on every enabled CPU and allocates the owners table (16 bytes per node) and the per-CPU attachment table (8 bytes per CPU).
+- `gfx_flow_interface_alloc` (`gfx_flow.o` +0xa1c, 56 bytes): **Established.** Allocates a zeroed 112-byte flow record with no hub registration: sets the attached CPU (+96) and owner (+104) to -1, and stores the caller's callback at +32 and its argument at +40. It touches no register.
+- `gfx_flow_set_cpu_attachment` (`gfx_flow.o` +0x9ec, 24 bytes): **Established.** Records a flow record as the current CPU's attachment, by storing it in the per-CPU attachment table slot. It touches no register and not the record itself.
+- `gfx_flow_detach_requires_credit_flow_disable` (`gfx_flow.o` +0x6b0, 8 bytes): **Established.** Returns the constant 1. No register is touched. **Inferred:** callers use it as a capability query that says credit flow must be disabled before a detach.
