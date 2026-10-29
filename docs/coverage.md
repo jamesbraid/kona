@@ -27,7 +27,7 @@ Xtalk widget and XIO attachment: the pipe's identity and apertures as the host s
 |---|---|---|---|---|
 | Registers and fields | partial | `XG.h`, `docs/xg.md` | kernel attach and host interface | offsets 0x24, 0x2c, 0x34, 0x3c, 0x5c, 0x6c, 0x74 and the packing the driver writes are in docs/xg.md; names and meanings unknown; aperture windows and map RAM not read |
 | DMA | partial | `HIP.h`, `docs/hip.md` | kernel attach and host interface | map RAM at window offset 0x100000 (entry format, init pattern, size from XG+0x64); XG-side DMA behaviour and its response-error handling not read |
-| Interrupts | none | `XG.h`, `docs/xg.md` | kernel attach and host interface |  |
+| Interrupts | partial | `XG.h`, `docs/hip.md` | kernel attach and host interface | vector register XG+0x5c packing and which handler serves which vector (inferred from table order); the 31 named error bits of XG+0x6c and the XG error handler; what the hardware does to raise them, and registers 0x04, 0x24, 0x2c, 0x74 unknown |
 | Reset | partial | `XG.h`, `docs/xg.md` | kernel attach and host interface | kona_reset_adaptor register sequence and the HH_RESET pulse sites written down; XG register names, meaning of the writes and `xwidget_gfx_reset` unknown |
 
 ### HIP
@@ -39,7 +39,7 @@ Host interface: PIO FIFO words, DMA streams, flow control and doorbells.
 | Registers and fields | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | full HIP1/HIP2 register and field table from kpm; window base 0x800000 inferred from kernel accesses; meaning of the 0xc00000 alias unknown |
 | Command and FIFO formats | none | `HIP.h`, `docs/hip.md` | host interface and command grammar | kernel push port, textport port, indirect pair and user doorbell reported by prior work |
 | DMA | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | DO_IDMA, START_SELECTFEED, FINISH_SELECTFEED and DMAPOOL_SETUP payloads (strided descriptor: len, llen, stride), the 16 KB map RAM and pipe-space address path, completion events; register-level ODMA/IDMA behaviour, the 0x9000 bits and what a pool is used for unknown |
-| Interrupts | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | HH_INTR_INFO/ENABLE/STATUS/ACK and GINTR_INFO fields; GE and ARM event codes (6.5.5); INTR_ENABLE/STATUS bit names not in kpm |
+| Interrupts | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | HH_INTR_INFO/ENABLE/STATUS/ACK and GINTR_INFO fields; every STATUS bit with what the kernel does on it, the reset (0x100) and running (0xf7c) masks, write-back clear and ack, FIFO hi/lo-water flow control, ARM mailbox and GE event handling; the hardware conditions behind each bit and the low-water level unknown |
 | Reset | none | `HIP.h`, `docs/hip.md` | host interface and command grammar |  |
 | Context save and restore | partial | `HIP.h`, `kona_kernel/include/kona_kern.h` | host interface and command grammar | kick = HH_GINTR_INFO PRIV/FORCE; physical-address word pair; the 0x9000 constant is read at every sender (low word of an address pair, hi word bit 28 on host-physical buffers only) but its meaning and FORCE's exact effect are unknown |
 
@@ -52,7 +52,7 @@ Geometry engines: transform, lighting, clipping and primitive assembly, fed by t
 | Registers and fields | partial | `GE.h`, `docs/ge.md` | host and geometry | 15 GE11 diagnostic registers (0x40000-0x40038) and 24 special-register numbers from kpm; the host path to them and the value column unknown |
 | Command and FIFO formats | partial | `GE.h`, `docs/ge.md` | host and geometry | 512 token names; framing, 64-bit store order, fixed payloads for 118 tokens (libglcore/payloads.tsv). Remaining: variable-length grammars (texture, pixel, display list, vertex array, eval) and the microcode dispatch |
 | DMA | none | `GE.h`, `docs/ge.md` | host and geometry |  |
-| Interrupts | none | `GE.h`, `docs/ge.md` | host and geometry |  |
+| Interrupts | partial | `HIP.h`, `docs/hip.md` | host and geometry | GE event record (code plus three arguments, word 0 poisoned after read) and the kernel action for codes 0 and 0x100-0x105; microcode side of the record unread |
 | Reset | none | `GE.h`, `docs/ge.md` | host and geometry |  |
 | Context save and restore | none | `GE.h`, `docs/ge.md` | host and geometry |  |
 
@@ -79,7 +79,7 @@ Display generator: video timing, scanout, palettes, cursor and retrace.
 |---|---|---|---|---|
 | Registers and fields | partial | `DG.h`, `docs/dg.md` | display | indirect port HH_VC_ADDRESS/HH_VC_DATA and every address the kernel writes through it (cursor 0x100-0x103, DAC cursor 0x22, per-channel 0x0b00 blocks, swap strobe 0x80); register names and the timing, palette and mode registers are not reachable from the kernel |
 | Command and FIFO formats | partial | `DG.h`, `docs/dg.md` | display | DISPMODE (3 words) and RETRACE_SEQID (1 word) payloads from the kernel; X_LOADCURSOR and X_LOADCURSORCOLOR payloads (X module) not read |
-| Interrupts | none | `DG.h`, `docs/dg.md` | display |  |
+| Interrupts | partial | `DG.h`, `docs/hip.md` | display | VIDEO (bit 3) interrupt serviced by retrace-sequence completion, cursor update and swap; VOC (bit 9) calls the genlock notifier; when the hardware raises VIDEO unknown |
 | Reset | none | `DG.h`, `docs/dg.md` | display |  |
 | Display and scanout | partial | `DG.h`, `docs/dg.md` | display | cursor select, position and channel arbitration; swap and retrace-sequence protocol (HH_SEQID); video timing, formats, palettes, genlock state and option boards have no kernel code and are unread |
 
@@ -92,7 +92,7 @@ The kernel graphics driver and its resource manager: attach, ioctls, context and
 | Registers and fields | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
 | Command and FIFO formats | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | private ioctl family and kernel command selectors reported by prior work |
 | DMA | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | read, write, select-feedback and pool ioctl structures, page locking, vector validation, wait and timeout handles; callers' use of multi-vector writes and the diagnostic map not read |
-| Interrupts | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
+| Interrupts | partial | `kona_kernel/include/kona_kern.h`, `docs/hip.md` | kernel attach and host interface | the three handlers, status read and write-back, per-source action, which sources kill the pipe (reasons 10, 12, 13, 14, 22), the FIFO flow-control wait; the memory-swap, mopup and suspend completion bodies not read |
 | Reset | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | pipe check and kona_die register writes named, 16 death reasons by caller with 6.5.5 names; attach-time XG setup and the HH_RESET pulse in KONAinitialize and the credit-wait path read (docs/xg.md); what the reset clears unknown |
 | Context save and restore | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | KONApcxswap and kona_act_pcx packet order and payload word sources, flow-group attach/detach at offset 0x7c. Address pair shapes written down (0x9000 meaning unknown). KONAvalidateclip and KONAsetnullclip layouts written; the activate token is data read at X+8, not a constant. Remaining: drawable field meanings (origin, size, +8 generation word, +40/+44), who writes X+8 |
 

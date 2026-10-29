@@ -57,3 +57,81 @@ The caller commands are a list of groups, each one a token word, a count word n 
 ## Not covered
 
 How the pipe's input DMA engine walks the descriptor, the XG-side response errors, the diagnostic mapping (`KONA_DIAG_MAP`, `kona_diag_map`) and the DMA paths used by multi-pipe configurations.
+
+## Interrupts
+
+What raises each interrupt, what the kernel does about it and how it acknowledges. Registers are in HIP.h (`HH_INTR_*`), the XG error bits in [XG.h](../XG.h).
+
+### Delivery
+
+**Established.** At attach the driver allocates three Xtalk interrupt handles, connects each to a handler (`kona_edtinit_hip2.o`, relocations at 0x20-0x38 of its data: `kona_intr_set`, `kona_xg_intr_handler`, `kona_intr_handler`, `kona_ge_intr_handler`) and `kona_reset_adaptor` packs their vector numbers into XG+0x5c (`docs/xg.md`, step 6).
+
+**Inferred.** The handler table is consecutive and the three connect calls use the three slots after `kona_intr_set` in that order, so: the handle at `P+2240` (V1, bits 18-25 of XG+0x5c) serves `kona_xg_intr_handler`; the handle at `P+2256` (V3, bits 0-7) serves `kona_intr_handler`; the handle at `P+2264` (V2, bits 9-16) serves `kona_ge_intr_handler`. This is a reading of table order, not of a register description.
+
+So there are three sources: XG errors (own vector), the geometry-engine bit of `HH_INTR_STATUS` (own vector, own handler), and the rest of `HH_INTR_STATUS` (one vector).
+
+### XG errors: `kona_xg_intr_handler`
+
+**Established.** Counts the interrupt, prints "XG error interrupt received", kills the pipe with reason 12 (`kona_die`, see `kona_kern.h`) and calls `kona_report_errs`, which reads XG+0x6c and prints one message per set bit (31 bits, listed in XG.h). It does not clear the register: `kona_reset_adaptor` does that (read, write 0 to XG+0x2c, read, write back). There is no recovery short of reinitialising the pipe.
+
+### Host-interface interrupts: `kona_intr_handler`
+
+**Established.** For each interrupt the handler adds one to a per-CPU counter and to `P+5268`. It returns at once when the software mask `P+2368` is still 0x100 (the value `KONAinitialize` sets and `KONAstart` replaces with 0xf7c, HIP.h). Otherwise it takes the lock at `P+2352`, reads `HH_INTR_STATUS`, ANDs it with the mask and with `~0x20` (GE is left to its own handler), and serves the set bits in this order. Bit numbers and names are the HIP2 ones in HIP.h:
+
+| Bit | Source | What the kernel does |
+|---|---|---|
+| 0 | FIFO_HI | prints "unexpected HIP2 graphics fifo hi-water interrupt. Ignored." (never enabled) |
+| 1 | FIFO_LO | `kona_lowater_intr`: wakes the thread waiting for the graphics FIFO to drain; below |
+| 2 | FIFO_OV | prints "graphics fifo overflow. Data lost. Resetting pipe." and `kona_die` reason 10 |
+| 3 | VIDEO | `kona_video_intr`: retrace sequence, cursor update, swap completion (`docs/dg.md`) |
+| 4 | ARM | `kona_arm_intr`: reads `HH_ARM_MBOX`; below |
+| 6 | ODMA | prints "odma overflow" (cmn_err tag 2120); no die |
+| 8 | PARITY | prints "parity error. Data lost. Resetting pipe." and `kona_die` reason 22 |
+| 9 | VOC | `kona_voc_intr`: `rrmGenlockNotify(-1)`, the video-option or genlock notification |
+| 10 | PIO_OV | "PIO overflow ..." and `kona_die` reason 13 |
+| 11 | IDMA_OV | "IDMA overflow ..." and `kona_die` reason 14 |
+| 5 | GE | not here, see below |
+| 7 | UNUSED | never enabled, not handled |
+
+After the table the handler writes the served bits back to `HH_INTR_STATUS` and writes 0xbadc0ffe to `HH_INTR_ACK`, then drops the lock. Despite the "Resetting pipe" text, reasons 10, 13, 14 and 22 only mark the pipe dead (`kona_die`); `docs/xg.md` has what a real reset does.
+
+`KONAstart` (the first command after the pipe is configured) reads `HH_INTR_STATUS`; with bit 8 set it prints a message and kills the pipe (reason 22). Otherwise it sets the running mask, sends `PIPE_SETUP` (0x1f1) with the three payload words `P+2592`, `P+2596` and 0x4000, and clears every pending bit except GE with a write-back, then writes the ack value. **Inferred:** the two words are the address pair of the page the geometry engine uses for its event record, the 0x4000 a size; `kona_ge_intr` reads that record through the pointer at `P+2584`.
+
+### ARM events: `kona_arm_intr`
+
+**Established.** The handler reads `HH_ARM_MBOX` (0x240), sets `P+5464` to 1, and acts on the value V:
+
+| V | Action |
+|---|---|
+| 0 | text print: loop (up to 5000 rounds) writes 0x10 to `HH_INTR_STATUS`, waits up to 5000 x 20 us for bit 4 to rise, reads the mailbox and keeps its low byte; stops at a zero byte or 511 characters; prints the string as "ARM: ..." (level 6). "ARM is spewing garbage" if it never ends |
+| 0x100 | input DMA done: wake the waiter at `P+5176`, cancel the timeout at `P+5192` |
+| 0x102 | `kona_mem_swapin_complete(P, 0, 0)` |
+| 0x103 | context-activate done: wake `P+5296`, cancel the timeout at `P+5312` |
+| other | message "unknown reason for ARM interrupt" (tag 2100) |
+
+The values are the 6.5.5 `KONA_ARM_*` events (HIP.h). The mailbox is read as a plain 32-bit register; the driver never writes it.
+
+### Geometry-engine events: `kona_ge_intr_handler`, `kona_ge_intr`
+
+**Established.** The GE handler calls `kona_ge_intr` and then writes 0x20 to `HH_INTR_STATUS`. `kona_ge_intr` reads an event record the microcode stores in the area at `P+2584`: word 0 the event code, words 1-3 its arguments. It overwrites word 0 with `code | 0xbad00000` as soon as it has read it. If the record shows an argument of 256 in word 1 and a code below the number of contexts, it swaps the two (message "fixing mangled selectfeed interrupt"): **inferred** a workaround for the microcode storing the two words in the wrong order. Then:
+
+| Code | Action |
+|---|---|
+| 0 | text print: the arguments are a print request that `kona_geprint` formats into a 512-byte buffer (truncated with a message if too long); printed at level 6 |
+| 0x100 | select feedback done (`hip.md` DMA): arguments are the context slot ("rnid"), remaining bytes and a status word; stored in the context's feed record, then wake it and cancel its timeout |
+| 0x101 | context deactivate done: wake `P+5272` (`KONApcxswap` waits on it), cancel the timeout at `P+5288` |
+| 0x102 | `kona_mem_swapout_complete(P, 0, 0)` |
+| 0x103 | `kona_mopup_complete(P, 0)` |
+| 0x104 | `kona_mem_suspend_complete(P, 0, &word1)` |
+| 0x105 | `kona_checkpipe_complete(P, 0)`: the answer to the check-pipe stream command |
+| other | "spurious GE interrupt reason" (tag 2101) plus a dump of `HH_ODMA2_PNUM/POFF/TOTAL` and `HH_ODMA_PNUM/POFF/TOTAL` |
+
+The codes are the 6.5.5 `KONA_GE_*` events (HIP.h).
+
+### Flow control: the FIFO interrupts
+
+**Established.** `HH_GFIFO_HI` is set to 0x700 at initialisation. When a sender finds the FIFO fuller than 0x300 entries it calls `kona_hiwater_intr` (from the flow layer, not from the interrupt handler): it first spins up to `P+2328` microseconds reading `HH_GFIFO_LEVEL`. If the level does not fall it writes 3 to `HH_INTR_STATUS`, sets the FIFO_LO bit in the mask (`P+2368 |= 2`, written to `HH_INTR_ENABLE`), re-reads the level and, if still high, arms a software timeout (`kona_hiwater_timeout`, message tag 2102 and `kona_die` reason 6 if the level is still above the threshold when it expires) and gives up the CPU. The FIFO_LO interrupt calls `kona_lowater_intr`, which cancels the timeout, removes the FIFO_LO bit from the mask and clears status bits 0-1. The low-water level itself is not written by the driver (**unknown** how it is set).
+
+### Unknown
+
+How the pipe decides when to raise each bit beyond what the names say; what the XG registers 0x04, 0x24, 0x2c, 0x74 do; whether `HH_INTR_ACK` is needed or only conventional; the units of the 2328 and 2332 thresholds beyond their use as microseconds and FIFO level. RM and kernel timeout interrupts are not separate sources: timeouts are software timers.

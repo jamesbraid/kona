@@ -408,4 +408,37 @@
 #define KONA_MAPRAM_ENTRY_VALID       0x20000000
 #define KONA_MAPRAM_INIT_PATTERN      0x10000000
 
+/*
+ * Interrupt masks and acknowledge, ESTABLISHED from the 6.5.30m kernel
+ * driver (kona_setup.o, kona_intr_hip2.o, kona_flow.o; docs/hip.md).
+ *
+ * HH_INTR_ENABLE (0x230) is written with the driver's software mask:
+ *   reset value     0x100 (PARITY only), written by KONAinitialize;
+ *                   the handler ignores every interrupt while the mask is
+ *                   exactly this value;
+ *   running value   0xf7c, written by KONAstart: bits 2-6 and 8-11, i.e.
+ *                   FIFO_OV, VIDEO, ARM, GE, ODMA, PARITY, VOC, PIO_OV,
+ *                   IDMA_OV. FIFO_HI (bit 0) and UNUSED (bit 7) are never
+ *                   enabled;
+ *   FIFO_LO (bit 1) is or-ed in while a thread waits for the graphics FIFO
+ *   to drain (kona_hiwater_intr) and cleared again by kona_lowater_intr.
+ * HH_INTR_STATUS (0x238) is read to find the causes. INFERRED
+ * write-one-to-clear: every handler writes the bits it served back to it
+ * (the GE handler writes 0x20; the FIFO paths write 3; the main handler
+ * writes its served set; reset writes 0xfff). HH_INTR_ACK (0x228, an
+ * address-only register in the table) is written with 0xbadc0ffe after the
+ * main handler and by KONAstart; INFERRED to re-arm the interrupt line.
+ * HH_INTR_INFO (0x220) holds only the global enable, bit 15, on HIP2: the
+ * driver writes 0x8000 at initialisation and clears it in kona_die.
+ *
+ * Flow control thresholds the driver writes: HH_GFIFO_HI (0x210) = 0x700
+ * (kona_flow_init); the software wait threshold is 0x300 (768) against
+ * HH_GFIFO_LEVEL (0x208). HH_GFIFO_LO is not written.
+ */
+#define KONA_INTR_ENABLE_RESET        0x100
+#define KONA_INTR_ENABLE_RUNNING      0xf7c
+#define KONA_INTR_ACK_VALUE           0xbadc0ffe
+#define KONA_GFIFO_HI_INIT            0x700
+#define KONA_GFIFO_WAIT_LEVEL         0x300
+
 #endif /* KONA_HIP_H */
