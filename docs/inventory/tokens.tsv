@@ -527,92 +527,92 @@ token	0x20c	**** 0xc;KONA_HP_KPM_SPARE_C			GE.h,kpm	0	0		understood	GE.h:8195
 token	0x20d	**** 0xd;KONA_HP_KPM_SPARE_D			GE.h,kpm	0	0		understood	GE.h:8202	
 token	0x20e	**** 0xe;KONA_HP_KPM_SPARE_E			GE.h,kpm	0	0		understood	GE.h:8209	
 token	0x20f	**** PIXELS_STARTGEID;KONA_HP_KPM_PIXELS_STARTGEID			GE.h,kpm	0	0		understood	GE.h:8219	
-token	0x210	HT_PACK_MODE			kpm	0	0		named-only	docs/coverage.md#rm-and-tm	RM and TM
-token	0x211	HT_ODMA_LLEN			kpm	0	0		named-only	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
-token	0x212	HT_ODMA_STRIDE			kpm	0	0		named-only	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
-token	0x213	PGTG_SCIS			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x214	PGTG_SCIS_1			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-token	0x215	PGTG_ZRECT			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-token	0x216	PGTG_ZRECT_1			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-token	0x217	PGTG_ZRECT_2			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x218	PGTG_ZRECT_3			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x219	PGTG_ZRECT_4			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x21a	PGTG_ZRECT_5			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x21b	PGTG_ZRECT_6			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x21c	PGTG_ZRECT_7			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x21d	PGTG_DRECT			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x21e	PGTG_DRECT_1			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x21f	PGTG_DRECT_2			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x220	PGTG_SIZE			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x221	PGTG_SIZE_1			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-token	0x222	PGTG_SIZE_2			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x223	PGTG_SIZE_3			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x224	PGTG_ENABLES			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x225	PGTFPIMP_MSLOC			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x226	PGTFPIMP_MSLOC_1			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-token	0x227	PG_GENERAL			kpm	0	0		named-only	docs/rm.md#how-the-arm-firmware-writes-raster-registers	How the ARM firmware writes raster registers
-token	0x228	PG_PSPEC			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x229	PG_BLOAT			kpm	0	0		named-only	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x22a	PG_Z_OFF			kpm	0	0		named-only	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x22b	PG_MSK			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x22c	PG_WIN_OFFSET_X			kpm	0	0		named-only	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x22d	PG_WIN_OFFSET_Y			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x22e	PG_SMASK			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x22f	PG_STIPPLE			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-token	0x230	PG_STIPPLE_1			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x231	PG_STIPPLE_2			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x232	PG_STIPPLE_3			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x233	PG_PRU			kpm	0	0		named-only	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x234	IMP_CONFIG			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x235	IMP_OP			kpm	0	0		named-only	docs/coverage.md#rm-and-tm	RM and TM
-token	0x236	IMP_MS			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x237	IMP_CLIP			kpm	0	0		named-only	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x238	IMP_SZ0			kpm	0	0		named-only	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x239	IMP_SZ1			kpm	0	0		named-only	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x23a	IMP_DEPTH_CLEAR			kpm	0	0		named-only	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x23b	IMP_ADDR			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x23c	IMP_BL			kpm	0	0		named-only	docs/rm.md#how-the-arm-firmware-writes-raster-registers	How the ARM firmware writes raster registers
-token	0x23d	IMP_WMASK_BIT			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-token	0x23e	IMP_WMASK_BIT_1			kpm	0	0		named-only	docs/rm.md#names-for-the-unnamed-indexes	Names for the unnamed indexes
-token	0x23f	COMMON_IFMT			kpm	0	0		named-only	docs/rm.md#pixel-and-texel-data-words	Pixel and texel data words
-token	0x240	TGTML_TEXLD_MISC			kpm	0	0		named-only	docs/opengl.md#texel-download-header-word-7-and-the-load-scissor-bit	Texel download: header word 7 and the load-scissor bit
-token	0x241	TGTML_TEXLD_S1ST_RSTART			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x242	TGTML_TEXLD_STSTART			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x243	TGTML_TEXLD_SIZE			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x244	TGTML_TEXLD_STEND			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x245	TML_TEXLD_GLOBALOFFSET			kpm	0	0		named-only	docs/rm.md#the-89-word-register-shadow	The 89-word register shadow
-token	0x246	TM_DRAW_GLOBALOFFSET			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x247	TM_MEMCONF			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x248	TGTM_TEX_SIZE			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x249	TGTMTFT			kpm	0	0		named-only	docs/rm.md#chips-on-each-board	Chips on each board
-token	0x24a	TG_MAP_LEVEL			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x24b	TG_LOD_SCALEST			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x24c	TG_LOD_SCALER			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x24d	TGTM_DCTEX_SIZE			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x24e	TM_DRAW_DETAILMAP			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x24f	TM_TEX_SIZE			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x250	TM_DRAW_CLIP_OFFSET			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x251	TM_DRAW_CLIP_BKPT			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x252	TGTM_TEX_SCENTER			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x253	TGTM_TEX_TCENTER			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x254	TFT_SBIAS_EN			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x255	TFT_SCALE			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x256	TFT_BIAS			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x257	TFT_TLUT			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x258	TM_DRAW_SHA_AMBIENT			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x259	TM_DRAW_REDUNDANCY			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x25a	TG_MISC			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x25b	TFP_AFUNC			kpm	0	0		named-only	docs/rm.md#chips-on-each-board	Chips on each board
-token	0x25c	TFP_TEX			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x25d	TFP_TEV			kpm	0	0		named-only	docs/rm.md#chips-on-each-board	Chips on each board
-token	0x25e	TFP_TEV_CC			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x25f	TFP_TEV_CC1			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x260	TFP_AC			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x261	TFP_FADE_MASK_LUT			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x262	TFP_FOG			kpm	0	0		named-only	docs/rm.md#chips-on-each-board	Chips on each board
-token	0x263	TFP_FOG_CC			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x264	TFP_FOG_CC1			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x265	TFP_FOG_OFFSET			kpm	0	0		named-only	docs/rm.md#the-register-write-word	The register-write word
-token	0x266	TFP_PIX_FMT			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x267	TFP_COLOR_FMT			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
-token	0x268	TFP_AMASK			kpm	0	0		named-only	docs/rm.md#shadow-word-names	Shadow word names
+token	0x210	HT_PACK_MODE			kpm	0	0		understood	GE.h:8260	
+token	0x211	HT_ODMA_LLEN			kpm	0	0		understood	GE.h:8272	
+token	0x212	HT_ODMA_STRIDE			kpm	0	0		understood	GE.h:8284	
+token	0x213	PGTG_SCIS			kpm	0	0		understood	GE.h:8299	
+token	0x214	PGTG_SCIS_1			kpm	0	0		understood	GE.h:8313	
+token	0x215	PGTG_ZRECT			kpm	0	0		understood	GE.h:8324	
+token	0x216	PGTG_ZRECT_1			kpm	0	0		understood	GE.h:8334	
+token	0x217	PGTG_ZRECT_2			kpm	0	0		understood	GE.h:8343	
+token	0x218	PGTG_ZRECT_3			kpm	0	0		understood	GE.h:8352	
+token	0x219	PGTG_ZRECT_4			kpm	0	0		understood	GE.h:8361	
+token	0x21a	PGTG_ZRECT_5			kpm	0	0		understood	GE.h:8370	
+token	0x21b	PGTG_ZRECT_6			kpm	0	0		understood	GE.h:8380	
+token	0x21c	PGTG_ZRECT_7			kpm	0	0		understood	GE.h:8389	
+token	0x21d	PGTG_DRECT			kpm	0	0		understood	GE.h:8407	
+token	0x21e	PGTG_DRECT_1			kpm	0	0		understood	GE.h:8419	
+token	0x21f	PGTG_DRECT_2			kpm	0	0		understood	GE.h:8430	
+token	0x220	PGTG_SIZE			kpm	0	0		understood	GE.h:8443	
+token	0x221	PGTG_SIZE_1			kpm	0	0		understood	GE.h:8454	
+token	0x222	PGTG_SIZE_2			kpm	0	0		understood	GE.h:8465	
+token	0x223	PGTG_SIZE_3			kpm	0	0		understood	GE.h:8477	
+token	0x224	PGTG_ENABLES			kpm	0	0		understood	GE.h:8491	
+token	0x225	PGTFPIMP_MSLOC			kpm	0	0		understood	GE.h:8505	
+token	0x226	PGTFPIMP_MSLOC_1			kpm	0	0		understood	GE.h:8518	
+token	0x227	PG_GENERAL			kpm	0	0		understood	GE.h:8529	
+token	0x228	PG_PSPEC			kpm	0	0		understood	GE.h:8541	
+token	0x229	PG_BLOAT			kpm	0	0		understood	GE.h:8553	
+token	0x22a	PG_Z_OFF			kpm	0	0		understood	GE.h:8565	
+token	0x22b	PG_MSK			kpm	0	0		understood	GE.h:8582	
+token	0x22c	PG_WIN_OFFSET_X			kpm	0	0		understood	GE.h:8594	
+token	0x22d	PG_WIN_OFFSET_Y			kpm	0	0		understood	GE.h:8605	
+token	0x22e	PG_SMASK			kpm	0	0		understood	GE.h:8617	
+token	0x22f	PG_STIPPLE			kpm	0	0		understood	GE.h:8630	
+token	0x230	PG_STIPPLE_1			kpm	0	0		understood	GE.h:8639	
+token	0x231	PG_STIPPLE_2			kpm	0	0		understood	GE.h:8648	
+token	0x232	PG_STIPPLE_3			kpm	0	0		understood	GE.h:8660	
+token	0x233	PG_PRU			kpm	0	0		understood	GE.h:8672	
+token	0x234	IMP_CONFIG			kpm	0	0		understood	GE.h:8685	
+token	0x235	IMP_OP			kpm	0	0		understood	GE.h:8706	
+token	0x236	IMP_MS			kpm	0	0		understood	GE.h:8723	
+token	0x237	IMP_CLIP			kpm	0	0		understood	GE.h:8736	
+token	0x238	IMP_SZ0			kpm	0	0		understood	GE.h:8754	
+token	0x239	IMP_SZ1			kpm	0	0		understood	GE.h:8774	
+token	0x23a	IMP_DEPTH_CLEAR			kpm	0	0		understood	GE.h:8789	
+token	0x23b	IMP_ADDR			kpm	0	0		understood	GE.h:8804	
+token	0x23c	IMP_BL			kpm	0	0		understood	GE.h:8824	
+token	0x23d	IMP_WMASK_BIT			kpm	0	0		understood	GE.h:8840	
+token	0x23e	IMP_WMASK_BIT_1			kpm	0	0		understood	GE.h:8854	
+token	0x23f	COMMON_IFMT			kpm	0	0		understood	GE.h:8870	
+token	0x240	TGTML_TEXLD_MISC			kpm	0	0		understood	GE.h:8885	
+token	0x241	TGTML_TEXLD_S1ST_RSTART			kpm	0	0		understood	GE.h:8897	
+token	0x242	TGTML_TEXLD_STSTART			kpm	0	0		understood	GE.h:8909	
+token	0x243	TGTML_TEXLD_SIZE			kpm	0	0		understood	GE.h:8921	
+token	0x244	TGTML_TEXLD_STEND			kpm	0	0		understood	GE.h:8933	
+token	0x245	TML_TEXLD_GLOBALOFFSET			kpm	0	0		understood	GE.h:8945	
+token	0x246	TM_DRAW_GLOBALOFFSET			kpm	0	0		understood	GE.h:8958	
+token	0x247	TM_MEMCONF			kpm	0	0		understood	GE.h:8968	
+token	0x248	TGTM_TEX_SIZE			kpm	0	0		understood	GE.h:8981	
+token	0x249	TGTMTFT			kpm	0	0		understood	GE.h:8997	
+token	0x24a	TG_MAP_LEVEL			kpm	0	0		understood	GE.h:9009	
+token	0x24b	TG_LOD_SCALEST			kpm	0	0		understood	GE.h:9022	
+token	0x24c	TG_LOD_SCALER			kpm	0	0		understood	GE.h:9034	
+token	0x24d	TGTM_DCTEX_SIZE			kpm	0	0		understood	GE.h:9048	
+token	0x24e	TM_DRAW_DETAILMAP			kpm	0	0		understood	GE.h:9060	
+token	0x24f	TM_TEX_SIZE			kpm	0	0		understood	GE.h:9073	
+token	0x250	TM_DRAW_CLIP_OFFSET			kpm	0	0		understood	GE.h:9085	
+token	0x251	TM_DRAW_CLIP_BKPT			kpm	0	0		understood	GE.h:9097	
+token	0x252	TGTM_TEX_SCENTER			kpm	0	0		understood	GE.h:9108	
+token	0x253	TGTM_TEX_TCENTER			kpm	0	0		understood	GE.h:9119	
+token	0x254	TFT_SBIAS_EN			kpm	0	0		understood	GE.h:9129	
+token	0x255	TFT_SCALE			kpm	0	0		understood	GE.h:9139	
+token	0x256	TFT_BIAS			kpm	0	0		understood	GE.h:9149	
+token	0x257	TFT_TLUT			kpm	0	0		understood	GE.h:9162	
+token	0x258	TM_DRAW_SHA_AMBIENT			kpm	0	0		understood	GE.h:9174	
+token	0x259	TM_DRAW_REDUNDANCY			kpm	0	0		understood	GE.h:9185	
+token	0x25a	TG_MISC			kpm	0	0		understood	GE.h:9197	
+token	0x25b	TFP_AFUNC			kpm	0	0		understood	GE.h:9210	
+token	0x25c	TFP_TEX			kpm	0	0		understood	GE.h:9219	
+token	0x25d	TFP_TEV			kpm	0	0		understood	GE.h:9230	
+token	0x25e	TFP_TEV_CC			kpm	0	0		understood	GE.h:9239	
+token	0x25f	TFP_TEV_CC1			kpm	0	0		understood	GE.h:9248	
+token	0x260	TFP_AC			kpm	0	0		understood	GE.h:9260	
+token	0x261	TFP_FADE_MASK_LUT			kpm	0	0		understood	GE.h:9273	
+token	0x262	TFP_FOG			kpm	0	0		understood	GE.h:9287	
+token	0x263	TFP_FOG_CC			kpm	0	0		understood	GE.h:9296	
+token	0x264	TFP_FOG_CC1			kpm	0	0		understood	GE.h:9305	
+token	0x265	TFP_FOG_OFFSET			kpm	0	0		understood	GE.h:9314	
+token	0x266	TFP_PIX_FMT			kpm	0	0		understood	GE.h:9326	
+token	0x267	TFP_COLOR_FMT			kpm	0	0		understood	GE.h:9339	
+token	0x268	TFP_AMASK			kpm	0	0		understood	GE.h:9360	

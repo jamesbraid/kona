@@ -561,95 +561,95 @@ ROLES_TSV = r"""
 # kpm rows 0x210-0x268: what the mirrored raster register holds, read from
 # the field names kpm's register table gives it (RM.h).
 SHADOW_TSV = r"""
-0x210	host-interface pack mode, the 7-bit byte-packing setting of a pixel read-back
-0x211	host output-DMA line length of a pixel read-back
-0x212	host output-DMA line stride of a pixel read-back
-0x213	first scissor word, the x minimum and maximum the pixel and texture generators clip to
-0x214	second scissor word, the y minimum and maximum
-0x215	first of eight words with start and step fields in x and y and two ZX and ZY fields
-0x216	second of the eight start-and-step words that begin at 0x3fc4
-0x217	third of the eight start-and-step words that begin at 0x3fc4
-0x218	fourth of the eight start-and-step words that begin at 0x3fc4
-0x219	fifth of the eight start-and-step words that begin at 0x3fc4
-0x21a	sixth of the eight start-and-step words that begin at 0x3fc4
-0x21b	seventh of the eight start-and-step words that begin at 0x3fc4
-0x21c	eighth of the eight start-and-step words that begin at 0x3fc4
-0x21d	first word of the pixel draw rectangle (origin, width, scan direction, zoom and cache enables)
-0x21e	second word of the pixel draw rectangle
-0x21f	third word of the pixel draw rectangle
-0x220	first word of the generator buffer sizes (point, line and triangle buffer sizes, image width and height)
-0x221	second word of the generator buffer sizes
-0x222	third word of the generator buffer sizes
-0x223	fourth word of the generator buffer sizes
-0x224	generator enables: texture generator, scan, ZPU and draw-pixels path
-0x225	first multisample location word, the x and y offsets of sample positions 0 to 7
-0x226	second multisample location word
-0x227	pixel generator general mode (flat shading enable, direction mask)
-0x228	pixel generator point specification (point width and height)
-0x229	pixel generator bloat value used for wide primitives
-0x22a	pixel generator depth offset
-0x22b	pixel generator sample-mask and rasterisation-rule controls for lines, triangles and points
-0x22c	window x offset added to screen coordinates
-0x22d	window y offset added to screen coordinates
-0x22e	pixel generator sample mask
-0x22f	first stipple word (enable, offset, invert, two pattern halves, x and y modulus)
-0x230	second stipple word
-0x231	third stipple word
-0x232	fourth stipple word
-0x233	pixel generator PRU field
-0x234	image-processor configuration: pixel size, colour format, per-channel write masks, read format
-0x235	image-processor operation: draw buffer, clear packet controls, read-back and depth options
-0x236	image-processor multisample control: enable, sample count and mask operation
-0x237	image-processor window clip: enable, reference and mask of the window-id test
-0x238	image-processor stencil set-up: enable, size, function, reference, mask and write mask
-0x239	image-processor stencil operations and depth test: fail and pass actions, depth enable, size, function and write mask
-0x23a	image-processor depth clear value
-0x23b	image-processor framebuffer layout: colour, multisample, stencil, depth and accumulation base addresses
-0x23c	image-processor blend and logic-op control: enables, equations and source and destination factors
-0x23d	first image-processor per-bit write mask word (red, green, blue, alpha)
-0x23e	second image-processor per-bit write mask word
-0x23f	common input pixel format (pack field) used by read and texture-read paths
-0x240	texture-load mode: texel size, scissor enable, target bank, tiling and s and t widths
-0x241	texture-load first s start and r start
-0x242	texture-load s and t start
-0x243	texture-load s, t and r sizes
-0x244	texture-load s and t end
-0x245	texture-load global offset in texture memory
-0x246	texture-draw global offset in texture memory
-0x247	texture-memory geometry (s and t address bits)
-0x248	texture-generator and texture-memory texture size and address-control (wrap) fields for s, t and r
-0x249	texture mode word: minify and magnify filters, environment, texel format and related enables
-0x24a	minimum and maximum mipmap level
-0x24b	level-of-detail scale in s and t
-0x24c	level-of-detail scale in r
-0x24d	detail and clip-map texture sizes, clip level offset and clip enable
-0x24e	texture-memory detail-map address
-0x24f	texture-memory texture size and address-control fields
-0x250	clip-map s and t offsets in texture memory
-0x251	clip-map break point
-0x252	clip-map s centre
-0x253	clip-map t centre
-0x254	texel scale-and-bias enables per component
-0x255	per-component texel scale
-0x256	per-component texel bias
-0x257	texture colour lookup table: address, component count and enable
-0x258	shadow-texture ambient value
-0x259	texture-memory redundancy setting
-0x25a	texture generator priority and compression
-0x25b	alpha test: reference value, comparison and enable
-0x25c	texture enable in the texture filter
-0x25d	texture environment: colour and alpha combine functions
-0x25e	texture environment constant colour, red and green
-0x25f	texture environment constant colour, blue and alpha
-0x260	texture filter base and template controls (DGBASE, DGTPL fields)
-0x261	alpha-to-mask fade lookup entries
-0x262	fog mode: colour and fog modes, table address, offset and enable bits
-0x263	fog colour, red and green
-0x264	fog colour, blue
-0x265	fog depth offset
-0x266	texture filter output pixel format
-0x267	texture filter colour format
-0x268	alpha mask controls: alpha-to-mask, fade mask and alpha-to-one enables
+0x210	Inferred (from the host interface's register of the same role, `HH_PACK_MODE`, 7 bits): the pack mode a pixel read-back uses to pack bytes for the host; `__glkonSetupPacker` assembles the value from four small fields (bits 0-1, 2, 3-5 and 6) and writes it with mask 0x7f.
+0x211	Inferred (from the select-feedback payload order and the host register `HH_ODMA_LLEN`): the output-DMA line length of a transfer to host memory; `arm_start_selectfeed` loads it with its line-length word, and the pixel read-back path `__glkonSendPixelsToHost` clears it.
+0x212	Inferred (same basis, `HH_ODMA_STRIDE`): the output-DMA stride from one line to the next in host memory, set from the select-feedback stride word and zeroed by the pixel read-back path; keeping it in the shadow lets a context switch preserve a read in progress.
+0x213	Inferred from the fields at kpm raster record 0x10147cb0: the x half of the scissor box shared by the pixel and texture generators, `PGTG_XSMIN` in bits 0-14 and `PGTG_XSMAX` in bits 15-29; the start-up value opens it to the whole 15-bit range, and `resolve_scissor` writes it through this slot (0x0c018c14).
+0x214	Inferred: the y half of that scissor box, the second field pair kpm lists under `PGTG_SCIS` (`PGTG_YSMIN` bits 0-14, `PGTG_YSMAX` bits 15-29); the suffix name comes from the irsaudit string pool, and the start-up value again spans the full range.
+0x215	Inferred from kpm raster record 0x10147d00, which lists eight 32-bit or 28-bit fields each starting at bit 0 (X0, X, Y, X0A, XA, YA, ZX, ZY), one per word: this first word is X0, the starting x of the rectangle the pixel generator walks.
+0x216	Inferred: the second field of the rectangle set-up, X, the current x position; base register 0x3fc4 plus one, named `_1` by irsaudit.
+0x217	Inferred: Y, the rectangle's y position, third of the eight words under kpm's `PGTG_ZRECT` record.
+0x218	Inferred: X0A, the step added to the starting x per row, the fourth rectangle word.
+0x219	Inferred: XA, the x step within a row, fifth of the eight rectangle words.
+0x21a	Inferred: YA, the y step, sixth rectangle word; zero at start-up like the position words.
+0x21b	Inferred: ZX, a 28-bit depth slope in x for rectangle fills; its start-up value 0x100000 is one of only two non-zero rectangle words.
+0x21c	Inferred: ZY, the 28-bit depth slope in y and the last rectangle word, also 0x100000 after start-up.
+0x21d	Inferred from kpm raster record 0x10147d90: the first draw-rectangle word for pixel operations, with J in bits 0-11, I in 12-23, the scan direction in 24-25 (bottom-left, bottom-right, upper-left, upper-right), and enables for pixel zoom (26), the pixel cache (27) and interlace (28); start-up turns zoom and the cache on.
+0x21e	Inferred: the second draw-rectangle word, width W in bits 0-11 and starting x X0 in 12-23 (the next fields of the `PGTG_DRECT` record, restarting at bit 0); start-up width 16.
+0x21f	Inferred: the third draw-rectangle word, the current Y in bits 0-11 and X in 12-23; cleared at start-up.
+0x220	Inferred from kpm raster record 0x10147ee0 (fields `PGTG_PBSIZE`, `LBSIZE`, `TBSIZE`, then the image buffer width and height): this word is the point buffer size, 12 bits, 16 after start-up.
+0x221	Inferred: the line buffer size of the generators, the second size word, 16 after start-up.
+0x222	Inferred: the triangle buffer size, third size word, start-up 15.
+0x223	Inferred: the image buffer's width (bits 0-11) and height (12-23); start-up 0xf00f makes it 15 by 15.
+0x224	Inferred from kpm raster record 0x10147f40: four one-bit switches, the texture generator (bit 0), scan conversion (1), the ZPU (2) and the draw-pixels path (3); all four are on after start-up.
+0x225	Inferred from kpm raster record 0x10147ba0, named for the pixel generator, texture filter and image processor together: the sub-pixel positions of multisamples 0-3, a 3-bit x and y offset each in bits 0-23.
+0x226	Inferred: positions of multisamples 4-7 in the same layout (the second half of the `PGTFPIMP_MSLOC` fields); init_pg writes both words with descriptor 0x584fc800.
+0x227	Inferred from kpm raster record 0x10148920: two mode bits, flat shading (bit 0, where kpm calls 0 on and 1 off) and the direction mask source (bit 1, packet or register); init_pg writes 1 here, turning flat shading off.
+0x228	Inferred from kpm raster record 0x10148a60: the point size, width in bits 0-11 and height in 12-23; start-up 0x100 in each.
+0x229	Inferred from the name alone (record 0x10148a90 lists no fields): how far the pixel generator widens a primitive, a whole-word value that is zero at start-up.
+0x22a	Inferred from the name alone (record 0x10148aa0, no fields): a depth offset the pixel generator adds, the polygon-offset value, zero at start-up.
+0x22b	Inferred from kpm raster record 0x10148ab0: five two-bit selectors (`LMASK` first) that pick which ends, edges or sides of a primitive class are drawn, then four two-bit sampling choices, ordinary, multisample or alpha, for points, lines, triangles and one more class (`PSAMPLE` first), and an 8-bit line rule field at bit 18; start-up 0x55.
+0x22c	Inferred from the name (record 0x10148d60, no fields): the x offset of the window, added to screen x so drawing lands at the window's place in the framebuffer.
+0x22d	Inferred from the name (record 0x10148d70): the window's y offset, the counterpart of the x word.
+0x22e	Inferred (record 0x10148d80, a whole-word register): the multisample coverage mask the pixel generator applies; all ones after start-up, so every sample is written.
+0x22f	Inferred from kpm raster record 0x10148d90: the first polygon-stipple word, an enable in bits 0-1 (off, 2D, 1D or both), a 4-bit offset in bits 2-5 and an invert bit 6.
+0x230	Inferred: the first 8-bit stipple pattern byte, `PAT0` of the `PG_STIPPLE` record; start-up 0x55.
+0x231	Inferred: the second pattern byte `PAT1`, also 0x55 at start-up.
+0x232	Inferred: the stipple repeat lengths, x modulus in bits 0-3 and y modulus in bits 4-7; start-up 0xff sets both to 15.
+0x233	Inferred from kpm raster record 0x10148e50: a single bit choosing the primitive rule unit's mode, none or line.
+0x234	Inferred from kpm raster record 0x10146fa0: the image processor's framebuffer configuration, with pixel size (bits 0-1), colour format (2-5: RGB10, RGBA12, LA16, CI16 and others), per-channel write enables for red, green, blue and alpha (6-9), a bit-mask enable (10), the read format (11-13) and a double CI8 bit (14); start-up 0x3c2 is large pixels, RGB10, all four channels writable.
+0x235	Inferred from kpm raster record 0x101471b0: the image processor's operation, with the draw buffer (bits 0-3), the address packet kind (clear, read, accumulate or copy), clear repeat and clear enables for tag, colour, depth, stencil and accumulation, the read-back format (14-17), the read base, and several mode enables; start-up selects draw buffer 1.
+0x236	Inferred from kpm raster record 0x101473e0: multisample control, an enable, 4 or 8 samples, whether the coverage mask is ANDed or replaced, an 8-bit mask (bits 3-10), a keep-two bit and an optimisation field; start-up sets the whole mask.
+0x237	Inferred from kpm raster record 0x101474c0: the window-id clip test, an enable bit with a 12-bit reference (bits 1-12) and mask (13-24); off at start-up.
+0x238	Inferred from kpm raster record 0x10147500: stencil set-up, enable, 1- or 8-bit size, comparison (never to always), and the 8-bit reference, mask and write mask (bits 5-12, 13-20, 21-28).
+0x239	Inferred from kpm raster record 0x10147610: the stencil fail, depth-fail and depth-pass actions (3 bits each), then the depth test enable, depth size (16, 20, 24 or 32 bits), compression, depth function and depth write enable.
+0x23a	Inferred from the name (record 0x10147760, a whole word): the value written into the depth buffer by a depth clear.
+0x23b	Inferred from kpm raster record 0x10147780: framebuffer base addresses in 6-bit fields, colour (bits 0-5), multisample (6-11, with a buffer tag at 12), stencil (13-18), depth (19-24) and accumulation (25-30); start-up 0x32212301.
+0x23c	Inferred from kpm raster record 0x10147810: blending and logic ops, a logic-op enable and 4-bit op, a blend enable, RGB and alpha equations, source and destination factors for RGB and alpha, and precision and speed-up bits; start-up 0x11012 gives source factor one and destination factor zero for both.
+0x23d	Inferred from kpm raster record 0x10147a40: the per-bit colour write mask for red (bits 0-11) and green (12-23).
+0x23e	Inferred: the per-bit write mask for blue (bits 0-11) and alpha (12-23), the second word of `IMP_WMASK_BIT`.
+0x23f	Inferred from kpm raster record 0x10148670: a 5-bit pack code naming the pixel layout on the bus (RGBA4, RGB5A1, R5G6B5, LA8, L16, RGBA8, RGB10A2, LA16, Z32, RGBA16, RGBA12 and others) for the read and texture-read paths.
+0x240	Inferred from kpm raster record 0x10148860: the texture-load mode, with texel size, a load scissor enable, the target bank, the tiling (2D, 3D, 3D mipmap or bicubic), s and t address widths and an interlaced-download bit; its befsh_addrs entry has bit 30 set, the mark of the texture-load registers.
+0x241	Inferred from kpm raster record 0x10148800: where a texture load begins, the first s start (bits 0-15) and the r start (16-26).
+0x242	Inferred from kpm raster record 0x101487d0: the s start (bits 0-15) and t start (16-31) of a texture load.
+0x243	Inferred from kpm raster record 0x10148790: the s, t and r sizes of a texture load, four bits each.
+0x244	Inferred from kpm raster record 0x10148830: the s end (bits 0-15) and t end (16-31) of a texture load.
+0x245	Inferred from kpm raster record 0x10146500: the texture-memory address a load starts at, a 21-bit offset plus 3 high bits at bit 21.
+0x246	Inferred from kpm raster record 0x10146260: the texture-memory offset used while drawing, the same 21-plus-3-bit layout as the load offset.
+0x247	Inferred from kpm raster record 0x10145b10: the texture memory's geometry, the number of s and t address bits (4 bits each).
+0x248	Inferred from kpm raster record 0x101484c0: the bound texture's s, t and r sizes (4 bits each) and one address-control bit per axis (bits 12-14) that the texture generator and texture memory share.
+0x249	Inferred from kpm raster record 0x10148010: the main texture mode, dimensionality (2D, 3D, 3D mipmap or bicubic), minify and magnify filters, shadow compare, clamp style, environment enable, texel format (7 bits at 14) and more; start-up 0x30 selects nearest-mipmap-linear minify and linear magnify, the GL defaults.
+0x24a	Inferred from kpm raster record 0x10145a90: the lowest and highest mipmap levels in use, 10 bits each.
+0x24b	Inferred from kpm raster record 0x10145ac0: level-of-detail scale factors for s (bits 0-7) and t (8-15).
+0x24c	Inferred from kpm raster record 0x10145af0: the level-of-detail scale for r, eight bits.
+0x24d	Inferred from kpm raster record 0x10148530: detail-texture s and t sizes, the clip-map size, the clip-map level offset (bits 12-21) and the clip-map enable (bit 22).
+0x24e	Inferred from kpm raster record 0x10146230: where the detail map sits in texture memory, 21 bits plus 3 high bits.
+0x24f	Inferred from kpm raster record 0x10146440: the texture-memory chip's own copy of the s, t, r sizes and address-control bits, at index 0x13d5 rather than the generator's 0x3fd5.
+0x250	Inferred from kpm raster record 0x101463a0: the clip-map s offset (bits 0-15) and t offset (16-31) in texture memory.
+0x251	Inferred from kpm raster record 0x101463d0: a 4-bit clip-map break point held by the texture memory chip.
+0x252	Inferred from kpm raster record 0x10148590: the clip map's centre in s, 15 bits.
+0x253	Inferred from kpm raster record 0x101485b0: the clip map's centre in t, 15 bits.
+0x254	Inferred from kpm raster record 0x10146da0: one enable bit each for alpha, blue, green and red texel scale-and-bias (bits 0-3).
+0x255	Inferred from kpm raster record 0x10146df0: an 8-bit texel scale per component, alpha in the low byte up to red in the high byte.
+0x256	Inferred from kpm raster record 0x10146e40: the matching 8-bit texel bias per component, in the same byte order as the scale.
+0x257	Inferred from kpm raster record 0x10146e90: the texture colour lookup table, its 10-bit address, its component count (one, two or three) and an enable bit.
+0x258	Inferred from kpm raster record 0x10146360: a 6-bit ambient level for shadow textures, kept in the texture memory chip.
+0x259	Inferred from kpm raster record 0x10146380: a single redundancy bit in the texture memory chip.
+0x25a	Inferred from kpm raster record 0x10145a60: two texture-generator bits, priority (bit 0) and compression (bit 1).
+0x25b	Inferred from kpm raster record 0x10146900: the alpha test, a 12-bit reference, a 3-bit comparison and an enable (bit 15); start-up 0x7000 is compare-always with the test off.
+0x25c	Inferred from kpm raster record 0x101465a0: the one-bit texturing enable of the texture filter.
+0x25d	Inferred from kpm raster record 0x10146640: the texture environment, separate 4-bit alpha and colour functions (replace fragment, replace texture, modulate, blend, decal, add, add minus a half); start-up 0x22 sets both to modulate.
+0x25e	Inferred from kpm raster record 0x10146750: the texture environment colour's green (bits 0-11) and red (12-23).
+0x25f	Inferred from kpm raster record 0x10146780: the environment colour's alpha (bits 0-11) and blue (12-23).
+0x260	Inferred from the field names alone at kpm raster record 0x10146c10: a 12-bit `DGBASE` and a 5-bit `DGTPL` field; start-up 0x8000 sets `DGTPL` to 8.
+0x261	Inferred from kpm raster record 0x10146ab0: four 8-bit entries (`N0` to `N3`) of the fade table used by alpha-to-mask.
+0x262	Inferred from kpm raster record 0x101467b0: fog control, colour and fog modes (4 bits each), an 8-bit table address, a one-table bit, a colour-index bit and enables for the offset, centring and fog itself; start-up sets only the centring enable.
+0x263	Inferred from kpm raster record 0x10146840: the fog colour's green (bits 0-11) and red (12-23).
+0x264	Inferred from kpm raster record 0x10146870: the fog colour's blue, 12 bits.
+0x265	Inferred from kpm raster record 0x101468e0: a 32-bit depth value added before fog is computed.
+0x266	Inferred from kpm raster record 0x10146c60: one bit marking the texture filter's output pixels as luminance-alpha.
+0x267	Inferred from kpm raster record 0x10146c40: one bit marking the incoming colour as luminance-alpha.
+0x268	Inferred from kpm raster record 0x101469c0: three enables, alpha-to-mask (bit 0), the fade mask (1) and alpha-to-one (2).
 """
 
 # kpm rows 0x200-0x20e: what each unnamed row stands for, read from arm1.u
@@ -813,15 +813,16 @@ def spare_text(tok, kpm, spare):
     return aside, s
 
 
-def shadow_text(tok, kpm, sh, gloss, writers):
+def shadow_text(tok, kpm, sh, gloss, writers, rec):
     i = int(tok, 16) - 0x210
     w = sh.get(str(i), {})
-    s = ('%s (kpm row %s). Established: names word %d of the geometry board register shadow, which '
-         'mirrors raster register %s (arm1.u table at 0x04067c0c, start-up value %s).' % (
-             code(kpm), tok, i, w.get('addr', '?'), w.get('init', '?')))
+    s = ('%s (kpm row %s, name record at %s). Established: shadow word %d; the befsh_addrs entry at '
+         '0x%08x names raster register %s and befsh_init gives it start-up value %s.' % (
+             code(kpm), tok, rec.get(tok, '?'), i, 0x04067c0c + 4 * i, w.get('addr', '?'),
+             w.get('init', '?')))
     g = gloss.get(tok)
     if g:
-        s += ' Inferred from its kpm field names: %s.' % g['what']
+        s += ' ' + sentence(g['what'])
     ws = writers.get(tok, [])
     aside = ''
     if ws:
@@ -863,11 +864,12 @@ def main():
     ged = rows('ucode/ged_route.tsv')
     hw = rows('ucode/hw_route.tsv')
     pay = rows('libglcore/payloads.tsv')
-    kpm = {}
+    kpm, rec = {}, {}
     for ln in open('diags/kpm/hp_commands.tsv'):
         f = ln.rstrip('\n').split('\t')
         if len(f) >= 3 and f[1].startswith('0x'):
             kpm[f[1]] = f[2]
+            rec[f[1]] = f[0]
     roles = table(ROLES_TSV, ['token', 'label', 'words', 'carries', 'action', 'cite', 'emitter'])
     gloss = table(SHADOW_TSV, ['token', 'what'])
     spare = table(SPARE_TSV, ['token', 'text'])
@@ -907,14 +909,22 @@ def main():
         if ln.startswith('/* ge_token_comments: shadow rows begin'):
             in_shadow = True
             out.append(ln)
+            # an enum, so that each entry is the comment on its own definition
+            out.append('')
+            out.append('enum kona_kpm_shadow_row {')
             for v in range(0x210, 0x269):
                 tok = '0x%03x' % v
-                text, aside = shadow_text(tok, kpm.get(tok, '?'), sh, gloss, writers)
-                out.append('')
-                out.extend(wrap(text))
-                if aside:
+                name = kpm.get(tok, '?')
+                text, aside = shadow_text(tok, name, sh, gloss, writers, rec)
+                if v != 0x210:
                     out.append('')
-                    out.extend(wrap(aside))
+                if aside:
+                    # a separate, unlabelled paragraph: it names code it does not explain
+                    out.extend(wrap(aside, '    '))
+                    out.append('')
+                out.extend(wrap(text, '    '))
+                out.append('    %-36s = %s,' % ('KONA_' + name, tok))
+            out.append('};')
             out.append('')
             continue
         if in_shadow:

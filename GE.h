@@ -8235,890 +8235,1130 @@ enum kona_kpm_spare_token {
  * indexed by that high half plus 0x100, which also makes the sixteen spare
  * rows above the names of shadow slots 0x100-0x10f; kpm names only slot 0x10f
  * (PIXELS_STARTGEID). The full table is in docs/rm.md ("Shadow word names").
- * One paragraph per row follows, with the arm1.u functions that write the
- * word in a separate paragraph after it.
+ * The enum below has one enumerator per row (KONA_ plus kpm's name), each
+ * with its own comment; the arm1.u functions that write the word sit in a
+ * separate paragraph before it.
  */
 
 /* ge_token_comments: shadow rows begin */
 
-/* `HT_PACK_MODE` (kpm row 0x210). Established: names word 0 of the geometry
- * board register shadow, which mirrors raster register 0x0441 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * host-interface pack mode, the 7-bit byte-packing setting of a pixel
- * read-back. Established: arm1.u code writes it through slot 0x110, loading
- * that address word at 3 places, first at 0x0c026824. */
-
-/* Functions that load the slot 0x110 address word: `CommonPixEnd`
- * (0x0c026824), `PixEndReadConvolve` (0x0c026bec), `__glkonSetupPacker`
- * (0x0c028d84). */
-
-/* `HT_ODMA_LLEN` (kpm row 0x211). Established: names word 1 of the geometry
- * board register shadow, which mirrors raster register 0x0455 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names: host
- * output-DMA line length of a pixel read-back. Established: no arm1.u code
- * loads its slot 0x111 address word; the ARM reaches it only in its loops
- * over all 89 words (start-up, context load and one diagnostic case). */
-
-/* `HT_ODMA_STRIDE` (kpm row 0x212). Established: names word 2 of the geometry
- * board register shadow, which mirrors raster register 0x0456 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names: host
- * output-DMA line stride of a pixel read-back. Established: no arm1.u code
- * loads its slot 0x112 address word; the ARM reaches it only in its loops
- * over all 89 words (start-up, context load and one diagnostic case). */
-
-/* `PGTG_SCIS` (kpm row 0x213). Established: names word 3 of the geometry
- * board register shadow, which mirrors raster register 0x3fc2 (arm1.u table
- * at 0x04067c0c, start-up value 0x3fff8000). Inferred from its kpm field
- * names: first scissor word, the x minimum and maximum the pixel and texture
- * generators clip to. Established: arm1.u code writes it through slot 0x113,
- * loading that address word at 1 place, first at 0x0c018c14. */
-
-/* Functions that load the slot 0x113 address word: `resolve_scissor`
- * (0x0c018c14). */
-
-/* `PGTG_SCIS_1` (kpm row 0x214). Established: names word 4 of the geometry
- * board register shadow, which mirrors raster register 0x3fc3 (arm1.u table
- * at 0x04067c0c, start-up value 0x3fff8000). Inferred from its kpm field
- * names: second scissor word, the y minimum and maximum. Established: arm1.u
- * code writes it through slot 0x114, loading that address word at 1 place,
- * first at 0x0c018c38. */
-
-/* Functions that load the slot 0x114 address word: `resolve_scissor`
- * (0x0c018c38). */
-
-/* `PGTG_ZRECT` (kpm row 0x215). Established: names word 5 of the geometry
- * board register shadow, which mirrors raster register 0x3fc4 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * first of eight words with start and step fields in x and y and two ZX and
- * ZY fields. Established: no arm1.u code loads its slot 0x115 address word;
- * the ARM reaches it only in its loops over all 89 words (start-up, context
- * load and one diagnostic case). */
-
-/* `PGTG_ZRECT_1` (kpm row 0x216). Established: names word 6 of the geometry
- * board register shadow, which mirrors raster register 0x3fc5 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * second of the eight start-and-step words that begin at 0x3fc4. Established:
- * no arm1.u code loads its slot 0x116 address word; the ARM reaches it only
- * in its loops over all 89 words (start-up, context load and one diagnostic
- * case). */
-
-/* `PGTG_ZRECT_2` (kpm row 0x217). Established: names word 7 of the geometry
- * board register shadow, which mirrors raster register 0x3fc6 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * third of the eight start-and-step words that begin at 0x3fc4. Established:
- * no arm1.u code loads its slot 0x117 address word; the ARM reaches it only
- * in its loops over all 89 words (start-up, context load and one diagnostic
- * case). */
-
-/* `PGTG_ZRECT_3` (kpm row 0x218). Established: names word 8 of the geometry
- * board register shadow, which mirrors raster register 0x3fc7 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * fourth of the eight start-and-step words that begin at 0x3fc4. Established:
- * no arm1.u code loads its slot 0x118 address word; the ARM reaches it only
- * in its loops over all 89 words (start-up, context load and one diagnostic
- * case). */
-
-/* `PGTG_ZRECT_4` (kpm row 0x219). Established: names word 9 of the geometry
- * board register shadow, which mirrors raster register 0x3fc8 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * fifth of the eight start-and-step words that begin at 0x3fc4. Established:
- * no arm1.u code loads its slot 0x119 address word; the ARM reaches it only
- * in its loops over all 89 words (start-up, context load and one diagnostic
- * case). */
-
-/* `PGTG_ZRECT_5` (kpm row 0x21a). Established: names word 10 of the geometry
- * board register shadow, which mirrors raster register 0x3fc9 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * sixth of the eight start-and-step words that begin at 0x3fc4. Established:
- * no arm1.u code loads its slot 0x11a address word; the ARM reaches it only
- * in its loops over all 89 words (start-up, context load and one diagnostic
- * case). */
-
-/* `PGTG_ZRECT_6` (kpm row 0x21b). Established: names word 11 of the geometry
- * board register shadow, which mirrors raster register 0x3fca (arm1.u table
- * at 0x04067c0c, start-up value 0x100000). Inferred from its kpm field names:
- * seventh of the eight start-and-step words that begin at 0x3fc4.
- * Established: no arm1.u code loads its slot 0x11b address word; the ARM
- * reaches it only in its loops over all 89 words (start-up, context load and
- * one diagnostic case). */
-
-/* `PGTG_ZRECT_7` (kpm row 0x21c). Established: names word 12 of the geometry
- * board register shadow, which mirrors raster register 0x3fcb (arm1.u table
- * at 0x04067c0c, start-up value 0x100000). Inferred from its kpm field names:
- * eighth of the eight start-and-step words that begin at 0x3fc4. Established:
- * no arm1.u code loads its slot 0x11c address word; the ARM reaches it only
- * in its loops over all 89 words (start-up, context load and one diagnostic
- * case). */
-
-/* `PGTG_DRECT` (kpm row 0x21d). Established: names word 13 of the geometry
- * board register shadow, which mirrors raster register 0x3fcc (arm1.u table
- * at 0x04067c0c, start-up value 0xc010010). Inferred from its kpm field
- * names: first word of the pixel draw rectangle (origin, width, scan
- * direction, zoom and cache enables). Established: arm1.u code writes it
- * through slot 0x11d, loading that address word at 7 places, first at
- * 0x0c0266c0. */
-
-/* Functions that load the slot 0x11d address word: `CommonPixEnd`
- * (0x0c0266c0), `arm_readpixels` (0x0c02c63c), `videoReadPixels`
- * (0x0c02c784), `arm_copyconvolutionfilter1d` (0x0c036fe8),
- * `arm_copyconvolutionfilter2d` (0x0c037128), `arm_getconvolutionfilter`
- * (0x0c0373d8), `arm_getseparablefilter` (0x0c037510). */
-
-/* `PGTG_DRECT_1` (kpm row 0x21e). Established: names word 14 of the geometry
- * board register shadow, which mirrors raster register 0x3fcd (arm1.u table
- * at 0x04067c0c, start-up value 0x10). Inferred from its kpm field names:
- * second word of the pixel draw rectangle. Established: arm1.u code writes it
- * through slot 0x11e, loading that address word at 1 place, first at
- * 0x0c0266d4. */
-
-/* Functions that load the slot 0x11e address word: `CommonPixEnd`
- * (0x0c0266d4). */
-
-/* `PGTG_DRECT_2` (kpm row 0x21f). Established: names word 15 of the geometry
- * board register shadow, which mirrors raster register 0x3fce (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * third word of the pixel draw rectangle. Established: arm1.u code writes it
- * through slot 0x11f, loading that address word at 1 place, first at
- * 0x0c0266e8. */
-
-/* Functions that load the slot 0x11f address word: `CommonPixEnd`
- * (0x0c0266e8). */
-
-/* `PGTG_SIZE` (kpm row 0x220). Established: names word 16 of the geometry
- * board register shadow, which mirrors raster register 0x3fcf (arm1.u table
- * at 0x04067c0c, start-up value 0x10). Inferred from its kpm field names:
- * first word of the generator buffer sizes (point, line and triangle buffer
- * sizes, image width and height). Established: arm1.u code writes it through
- * slot 0x120, loading that address word at 3 places, first at 0x0c003910. */
-
-/* Functions that load the slot 0x120 address word: `init_tg` (0x0c003910),
- * `prim_init` (0x0c0166b4), `x_initregs` (0x0c03d0c8). */
-
-/* `PGTG_SIZE_1` (kpm row 0x221). Established: names word 17 of the geometry
- * board register shadow, which mirrors raster register 0x3fd0 (arm1.u table
- * at 0x04067c0c, start-up value 0x10). Inferred from its kpm field names:
- * second word of the generator buffer sizes. Established: arm1.u code writes
- * it through slot 0x121, loading that address word at 3 places, first at
- * 0x0c003928. */
-
-/* Functions that load the slot 0x121 address word: `init_tg` (0x0c003928),
- * `prim_init` (0x0c0166cc), `x_initregs` (0x0c03d0e0). */
-
-/* `PGTG_SIZE_2` (kpm row 0x222). Established: names word 18 of the geometry
- * board register shadow, which mirrors raster register 0x3fd1 (arm1.u table
- * at 0x04067c0c, start-up value 0xf). Inferred from its kpm field names:
- * third word of the generator buffer sizes. Established: arm1.u code writes
- * it through slot 0x122, loading that address word at 3 places, first at
- * 0x0c00393c. */
-
-/* Functions that load the slot 0x122 address word: `init_tg` (0x0c00393c),
- * `prim_init` (0x0c0166e0), `x_initregs` (0x0c03d0f4). */
-
-/* `PGTG_SIZE_3` (kpm row 0x223). Established: names word 19 of the geometry
- * board register shadow, which mirrors raster register 0x3fd2 (arm1.u table
- * at 0x04067c0c, start-up value 0xf00f). Inferred from its kpm field names:
- * fourth word of the generator buffer sizes. Established: arm1.u code writes
- * it through slot 0x123, loading that address word at 3 places, first at
- * 0x0c003954. */
-
-/* Functions that load the slot 0x123 address word: `init_tg` (0x0c003954),
- * `prim_init` (0x0c0166f8), `x_initregs` (0x0c03d10c). */
-
-/* `PGTG_ENABLES` (kpm row 0x224). Established: names word 20 of the geometry
- * board register shadow, which mirrors raster register 0x3fd3 (arm1.u table
- * at 0x04067c0c, start-up value 0xf). Inferred from its kpm field names:
- * generator enables: texture generator, scan, ZPU and draw-pixels path.
- * Established: arm1.u code writes it through slot 0x124, loading that address
- * word at 5 places, first at 0x0c0038f8. */
-
-/* Functions that load the slot 0x124 address word: `init_tg` (0x0c0038f8),
- * `prim_init` (0x0c01669c), `CommonPixEnd` (0x0c0266fc), `masked_clear`
- * (0x0c03b618), `x_initregs` (0x0c03d128). */
-
-/* `PGTFPIMP_MSLOC` (kpm row 0x225). Established: names word 21 of the
- * geometry board register shadow, which mirrors raster register 0x3be0
- * (arm1.u table at 0x04067c0c, start-up value 0xc8b640). Inferred from its
- * kpm field names: first multisample location word, the x and y offsets of
- * sample positions 0 to 7. Established: arm1.u code writes it through slot
- * 0x125, loading that address word at 4 places, first at 0x0c003810. */
-
-/* Functions that load the slot 0x125 address word: `init_pg` (0x0c003810),
- * `arm_samplepattern` (0x0c03c30c), `init_multisample` (0x0c03c468),
- * `multisample_pop` (0x0c03c700). */
-
-/* `PGTFPIMP_MSLOC_1` (kpm row 0x226). Established: names word 22 of the
- * geometry board register shadow, which mirrors raster register 0x3be1
- * (arm1.u table at 0x04067c0c, start-up value 0x916f6f). Inferred from its
- * kpm field names: second multisample location word. Established: arm1.u code
- * writes it through slot 0x126, loading that address word at 4 places, first
- * at 0x0c003828. */
-
-/* Functions that load the slot 0x126 address word: `init_pg` (0x0c003828),
- * `arm_samplepattern` (0x0c03c320), `init_multisample` (0x0c03c488),
- * `multisample_pop` (0x0c03c714). */
-
-/* `PG_GENERAL` (kpm row 0x227). Established: names word 23 of the geometry
- * board register shadow, which mirrors raster register 0x0800 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * pixel generator general mode (flat shading enable, direction mask).
- * Established: no arm1.u code loads its slot 0x127 address word; the ARM
- * reaches it only in its loops over all 89 words (start-up, context load and
- * one diagnostic case). */
-
-/* `PG_PSPEC` (kpm row 0x228). Established: names word 24 of the geometry
- * board register shadow, which mirrors raster register 0x080f (arm1.u table
- * at 0x04067c0c, start-up value 0x100100). Inferred from its kpm field names:
- * pixel generator point specification (point width and height). Established:
- * arm1.u code writes it through slot 0x128, loading that address word at 1
- * place, first at 0x0c0037d8. */
-
-/* Functions that load the slot 0x128 address word: `init_pg` (0x0c0037d8). */
-
-/* `PG_BLOAT` (kpm row 0x229). Established: names word 25 of the geometry
- * board register shadow, which mirrors raster register 0x0804 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * pixel generator bloat value used for wide primitives. Established: arm1.u
- * code writes it through slot 0x129, loading that address word at 1 place,
- * first at 0x0c016714. */
-
-/* Functions that load the slot 0x129 address word: `prim_init` (0x0c016714). */
-
-/* `PG_Z_OFF` (kpm row 0x22a). Established: names word 26 of the geometry
- * board register shadow, which mirrors raster register 0x0805 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * pixel generator depth offset. Established: arm1.u code writes it through
- * slot 0x12a, loading that address word at 1 place, first at 0x0c01672c. */
-
-/* Functions that load the slot 0x12a address word: `prim_init` (0x0c01672c). */
-
-/* `PG_MSK` (kpm row 0x22b). Established: names word 27 of the geometry board
- * register shadow, which mirrors raster register 0x0806 (arm1.u table at
- * 0x04067c0c, start-up value 0x55). Inferred from its kpm field names: pixel
- * generator sample-mask and rasterisation-rule controls for lines, triangles
- * and points. Established: arm1.u code writes it through slot 0x12b, loading
- * that address word at 5 places, first at 0x0c0037f4. */
-
-/* Functions that load the slot 0x12b address word: `init_pg` (0x0c0037f4),
- * `e_multisample` (0x0c0156b4), `d_multisample` (0x0c015740),
- * `ResolvePolygon` (0x0c015ec8), `ResolveLine` (0x0c016094). */
-
-/* `PG_WIN_OFFSET_X` (kpm row 0x22c). Established: names word 28 of the
- * geometry board register shadow, which mirrors raster register 0x0807
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: window x offset added to screen coordinates. Established:
- * arm1.u code writes it through slot 0x12c, loading that address word at 1
- * place, first at 0x0c018390. */
-
-/* Functions that load the slot 0x12c address word: `arm_validate_clip`
- * (0x0c018390). */
-
-/* `PG_WIN_OFFSET_Y` (kpm row 0x22d). Established: names word 29 of the
- * geometry board register shadow, which mirrors raster register 0x0808
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: window y offset added to screen coordinates. Established:
- * arm1.u code writes it through slot 0x12d, loading that address word at 1
- * place, first at 0x0c0183bc. */
-
-/* Functions that load the slot 0x12d address word: `arm_validate_clip`
- * (0x0c0183bc). */
-
-/* `PG_SMASK` (kpm row 0x22e). Established: names word 30 of the geometry
- * board register shadow, which mirrors raster register 0x0809 (arm1.u table
- * at 0x04067c0c, start-up value 0xffffffff). Inferred from its kpm field
- * names: pixel generator sample mask. Established: arm1.u code writes it
- * through slot 0x12e, loading that address word at 1 place, first at
- * 0x0c016740. */
-
-/* Functions that load the slot 0x12e address word: `prim_init` (0x0c016740). */
-
-/* `PG_STIPPLE` (kpm row 0x22f). Established: names word 31 of the geometry
- * board register shadow, which mirrors raster register 0x080a (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * first stipple word (enable, offset, invert, two pattern halves, x and y
- * modulus). Established: arm1.u code writes it through slot 0x12f, loading
- * that address word at 3 places, first at 0x0c015f88. */
-
-/* Functions that load the slot 0x12f address word: `ResolvePolygon`
- * (0x0c015f88), `arm_x_loadstipple` (0x0c035c70), `masked_clear`
- * (0x0c03b604). */
-
-/* `PG_STIPPLE_1` (kpm row 0x230). Established: names word 32 of the geometry
- * board register shadow, which mirrors raster register 0x080b (arm1.u table
- * at 0x04067c0c, start-up value 0x55). Inferred from its kpm field names:
- * second stipple word. Established: no arm1.u code loads its slot 0x130
- * address word; the ARM reaches it only in its loops over all 89 words
- * (start-up, context load and one diagnostic case). */
-
-/* `PG_STIPPLE_2` (kpm row 0x231). Established: names word 33 of the geometry
- * board register shadow, which mirrors raster register 0x080c (arm1.u table
- * at 0x04067c0c, start-up value 0x55). Inferred from its kpm field names:
- * third stipple word. Established: no arm1.u code loads its slot 0x131
- * address word; the ARM reaches it only in its loops over all 89 words
- * (start-up, context load and one diagnostic case). */
-
-/* `PG_STIPPLE_3` (kpm row 0x232). Established: names word 34 of the geometry
- * board register shadow, which mirrors raster register 0x080d (arm1.u table
- * at 0x04067c0c, start-up value 0xff). Inferred from its kpm field names:
- * fourth stipple word. Established: arm1.u code writes it through slot 0x132,
- * loading that address word at 2 places, first at 0x0c0273f8. */
-
-/* Functions that load the slot 0x132 address word: `InitFbState`
- * (0x0c0273f8), `arm_x_loadstipple` (0x0c035c20). */
-
-/* `PG_PRU` (kpm row 0x233). Established: names word 35 of the geometry board
- * register shadow, which mirrors raster register 0x0810 (arm1.u table at
- * 0x04067c0c, start-up value 0x0). Inferred from its kpm field names: pixel
- * generator PRU field. Established: arm1.u code writes it through slot 0x133,
- * loading that address word at 1 place, first at 0x0c01606c. */
-
-/* Functions that load the slot 0x133 address word: `ResolveLine`
- * (0x0c01606c). */
-
-/* `IMP_CONFIG` (kpm row 0x234). Established: names word 36 of the geometry
- * board register shadow, which mirrors raster register 0x1c00 (arm1.u table
- * at 0x04067c0c, start-up value 0x3c2). Inferred from its kpm field names:
- * image-processor configuration: pixel size, colour format, per-channel write
- * masks, read format. Established: no arm1.u code loads its slot 0x134
- * address word; the ARM reaches it only in its loops over all 89 words
- * (start-up, context load and one diagnostic case). */
-
-/* `IMP_OP` (kpm row 0x235). Established: names word 37 of the geometry board
- * register shadow, which mirrors raster register 0x1c02 (arm1.u table at
- * 0x04067c0c, start-up value 0x1). Inferred from its kpm field names:
- * image-processor operation: draw buffer, clear packet controls, read-back
- * and depth options. Established: arm1.u code writes it through slot 0x135,
- * loading that address word at 16 places, first at 0x0c003b08. */
-
-/* Functions that load the slot 0x135 address word: `init_imp` (0x0c003b08),
- * `resolve_banks` (0x0c013a1c), `e_calligraphic_fragment` (0x0c015a7c),
- * `d_calligraphic_fragment` (0x0c015aa8), `SetupReadbackTF` (0x0c033cc8),
- * `arm_accum` (0x0c037f20), `arm_slop` (0x0c038f90), `slop_readword`
- * (0x0c0391fc), `imp_clear` (0x0c03afdc), `masked_clear` (0x0c03b2f8),
- * `accum_clear` (0x0c03b734), `accum_clear32` (0x0c03b8d0), `overlay_clear`
- * (0x0c03bb24), `arm_clear` (0x0c03be64), `word_clear` (0x0c03bf88),
- * `x_initregs` (0x0c03d1ac). */
-
-/* `IMP_MS` (kpm row 0x236). Established: names word 38 of the geometry board
- * register shadow, which mirrors raster register 0x1c03 (arm1.u table at
- * 0x04067c0c, start-up value 0x17f8). Inferred from its kpm field names:
- * image-processor multisample control: enable, sample count and mask
- * operation. Established: arm1.u code writes it through slot 0x136, loading
- * that address word at 10 places, first at 0x0c003b20. */
-
-/* Functions that load the slot 0x136 address word: `init_imp` (0x0c003b20),
- * `arm_colormask` (0x0c012d6c), `e_blend` (0x0c01596c), `d_blend`
- * (0x0c0159f0), `e_color_logic_op` (0x0c015b18), `d_color_logic_op`
- * (0x0c015b98), `masked_clear` (0x0c03b66c), `word_clear` (0x0c03bfd0),
- * `init_multisample` (0x0c03c534), `x_initregs` (0x0c03d1c4). */
-
-/* `IMP_CLIP` (kpm row 0x237). Established: names word 39 of the geometry
- * board register shadow, which mirrors raster register 0x1c06 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * image-processor window clip: enable, reference and mask of the window-id
- * test. Established: arm1.u code writes it through slot 0x137, loading that
- * address word at 3 places, first at 0x0c003b3c. */
-
-/* Functions that load the slot 0x137 address word: `init_imp` (0x0c003b3c),
- * `arm_validate_clip` (0x0c0184a8), `x_initregs` (0x0c03d1dc). */
-
-/* `IMP_SZ0` (kpm row 0x238). Established: names word 40 of the geometry board
- * register shadow, which mirrors raster register 0x1c07 (arm1.u table at
- * 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * image-processor stencil set-up: enable, size, function, reference, mask and
- * write mask. Established: arm1.u code writes it through slot 0x138, loading
- * that address word at 13 places, first at 0x0c003b54. */
-
-/* Functions that load the slot 0x138 address word: `init_imp` (0x0c003b54),
- * `arm_buffer_config` (0x0c01341c), `arm_stencilmask` (0x0c014930),
- * `arm_stencilfunc` (0x0c01499c), `e_stencil_test` (0x0c014a60),
- * `d_stencil_test` (0x0c014a88), `depth_init` (0x0c014b1c), `stencil_pop`
- * (0x0c014bb0), `CommonPixEnd` (0x0c0267bc), `SetupRM` (0x0c034130),
- * `masked_clear` (0x0c03b644), `arm_clear` (0x0c03bec0), `x_initregs`
- * (0x0c03d1f0). */
-
-/* `IMP_SZ1` (kpm row 0x239). Established: names word 41 of the geometry board
- * register shadow, which mirrors raster register 0x1c08 (arm1.u table at
- * 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * image-processor stencil operations and depth test: fail and pass actions,
- * depth enable, size, function and write mask. Established: arm1.u code
- * writes it through slot 0x139, loading that address word at 15 places, first
- * at 0x0c003b6c. */
-
-/* Functions that load the slot 0x139 address word: `init_imp` (0x0c003b6c),
- * `arm_buffer_config` (0x0c0133c0), `arm_depthfunc` (0x0c0147b8),
- * `arm_depthmask` (0x0c0147ec), `e_depth_test` (0x0c01487c), `d_depth_test`
- * (0x0c0148a4), `arm_stencilop` (0x0c014a28), `depth_init` (0x0c014ae8),
- * `stencil_pop` (0x0c014c30), `depth_pop` (0x0c014cd8), `CommonPixEnd`
- * (0x0c026800), `SetupRM` (0x0c03414c), `masked_clear` (0x0c03b658),
- * `word_clear` (0x0c03bfbc), `x_initregs` (0x0c03d204). */
-
-/* `IMP_DEPTH_CLEAR` (kpm row 0x23a). Established: names word 42 of the
- * geometry board register shadow, which mirrors raster register 0x1c09
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: image-processor depth clear value. Established: arm1.u code
- * writes it through slot 0x13a, loading that address word at 8 places, first
- * at 0x0c003b84. */
-
-/* Functions that load the slot 0x13a address word: `init_imp` (0x0c003b84),
- * `late_state_init` (0x0c0141ec), `arm_cleardepth` (0x0c014788),
- * `arm_clearstencil` (0x0c0148f0), `depth_pop` (0x0c014dc8), `accum_clear`
- * (0x0c03b818), `accum_clear32` (0x0c03b9d0), `word_clear` (0x0c03bfec). */
-
-/* `IMP_ADDR` (kpm row 0x23b). Established: names word 43 of the geometry
- * board register shadow, which mirrors raster register 0x1c0b (arm1.u table
- * at 0x04067c0c, start-up value 0x32212301). Inferred from its kpm field
- * names: image-processor framebuffer layout: colour, multisample, stencil,
- * depth and accumulation base addresses. Established: arm1.u code writes it
- * through slot 0x13b, loading that address word at 7 places, first at
- * 0x0c003b98. */
-
-/* Functions that load the slot 0x13b address word: `init_imp` (0x0c003b98),
- * `arm_buffer_config` (0x0c013470), `arm_drawbuffer` (0x0c013bd0),
- * `color_pop` (0x0c014614), `arm_validate_clip` (0x0c018318), `word_clear`
- * (0x0c03bfa4), `x_initregs` (0x0c03d218). */
-
-/* `IMP_BL` (kpm row 0x23c). Established: names word 44 of the geometry board
- * register shadow, which mirrors raster register 0x1c0d (arm1.u table at
- * 0x04067c0c, start-up value 0x11012). Inferred from its kpm field names:
- * image-processor blend and logic-op control: enables, equations and source
- * and destination factors. Established: arm1.u code writes it through slot
- * 0x13c, loading that address word at 15 places, first at 0x0c003bb4. */
-
-/* Functions that load the slot 0x13c address word: `init_imp` (0x0c003bb4),
- * `arm_colormask` (0x0c012d84), `arm_blendequation` (0x0c013064),
- * `color_init` (0x0c01410c), `color_pop` (0x0c0142c4), `arm_blendfunc`
- * (0x0c0158d0), `e_blend` (0x0c015948), `d_blend` (0x0c0159c0),
- * `e_color_logic_op` (0x0c015af4), `d_color_logic_op` (0x0c015b68),
- * `e_logic_op` (0x0c015bd4), `d_logic_op` (0x0c015c08), `arm_logicop`
- * (0x0c015c30), `masked_clear` (0x0c03b5dc), `x_initregs` (0x0c03d230). */
-
-/* `IMP_WMASK_BIT` (kpm row 0x23d). Established: names word 45 of the geometry
- * board register shadow, which mirrors raster register 0x1c14 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * first image-processor per-bit write mask word (red, green, blue, alpha).
- * Established: arm1.u code writes it through slot 0x13d, loading that address
- * word at 11 places, first at 0x0c003cc8. */
-
-/* Functions that load the slot 0x13d address word: `init_imp` (0x0c003cc8),
- * `arm_indexmask` (0x0c012e78), `arm_buffer_config` (0x0c013548),
- * `color_init` (0x0c014128), `color_pop` (0x0c014328), `accum_clear`
- * (0x0c03b750), `accum_clear32` (0x0c03b8ec), `overlay_clear` (0x0c03bb50),
- * `arm_clear` (0x0c03be84), `masked_word_clear` (0x0c03c0e4), `x_initregs`
- * (0x0c03d248). */
-
-/* `IMP_WMASK_BIT_1` (kpm row 0x23e). Established: names word 46 of the
- * geometry board register shadow, which mirrors raster register 0x1c15
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: second image-processor per-bit write mask word. Established:
- * arm1.u code writes it through slot 0x13e, loading that address word at 7
- * places, first at 0x0c003cdc. */
-
-/* Functions that load the slot 0x13e address word: `init_imp` (0x0c003cdc),
- * `color_init` (0x0c01413c), `accum_clear` (0x0c03b764), `accum_clear32`
- * (0x0c03b900), `arm_clear` (0x0c03be98), `masked_word_clear` (0x0c03c0f8),
- * `x_initregs` (0x0c03d260). */
-
-/* `COMMON_IFMT` (kpm row 0x23f). Established: names word 47 of the geometry
- * board register shadow, which mirrors raster register 0x3ff8 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * common input pixel format (pack field) used by read and texture-read paths.
- * Established: arm1.u code writes it through slot 0x13f, loading that address
- * word at 3 places, first at 0x0c02c654. */
-
-/* Functions that load the slot 0x13f address word: `arm_readpixels`
- * (0x0c02c654), `SetupSubtexload` (0x0c03435c), `SetupTexRead` (0x0c0345dc). */
-
-/* `TGTML_TEXLD_MISC` (kpm row 0x240). Established: names word 48 of the
- * geometry board register shadow, which mirrors raster register 0x7fc5
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: texture-load mode: texel size, scissor enable, target bank,
- * tiling and s and t widths. Established: arm1.u code writes it through slot
- * 0x140, loading that address word at 1 place, first at 0x0c0365c4. */
-
-/* Functions that load the slot 0x140 address word: `PixRM_TextureLoadSetup`
- * (0x0c0365c4). */
-
-/* `TGTML_TEXLD_S1ST_RSTART` (kpm row 0x241). Established: names word 49 of
- * the geometry board register shadow, which mirrors raster register 0x7fc3
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: texture-load first s start and r start. Established: arm1.u
- * code writes it through slot 0x141, loading that address word at 1 place,
- * first at 0x0c036618. */
-
-/* Functions that load the slot 0x141 address word: `PixRM_TextureLoadSetup`
- * (0x0c036618). */
-
-/* `TGTML_TEXLD_STSTART` (kpm row 0x242). Established: names word 50 of the
- * geometry board register shadow, which mirrors raster register 0x7fc2
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: texture-load s and t start. Established: arm1.u code writes it
- * through slot 0x142, loading that address word at 1 place, first at
- * 0x0c036668. */
-
-/* Functions that load the slot 0x142 address word: `PixRM_TextureLoadSetup`
- * (0x0c036668). */
-
-/* `TGTML_TEXLD_SIZE` (kpm row 0x243). Established: names word 51 of the
- * geometry board register shadow, which mirrors raster register 0x7fc1
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: texture-load s, t and r sizes. Established: arm1.u code writes
- * it through slot 0x143, loading that address word at 1 place, first at
- * 0x0c036708. */
-
-/* Functions that load the slot 0x143 address word: `PixRM_TextureLoadSetup`
- * (0x0c036708). */
-
-/* `TGTML_TEXLD_STEND` (kpm row 0x244). Established: names word 52 of the
- * geometry board register shadow, which mirrors raster register 0x7fc4
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: texture-load s and t end. Established: arm1.u code writes it
- * through slot 0x144, loading that address word at 1 place, first at
- * 0x0c03675c. */
-
-/* Functions that load the slot 0x144 address word: `PixRM_TextureLoadSetup`
- * (0x0c03675c). */
-
-/* `TML_TEXLD_GLOBALOFFSET` (kpm row 0x245). Established: names word 53 of the
- * geometry board register shadow, which mirrors raster register 0x5001
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: texture-load global offset in texture memory. Established:
- * arm1.u code writes it through slot 0x145, loading that address word at 1
- * place, first at 0x0c03677c. */
-
-/* Functions that load the slot 0x145 address word: `PixRM_TextureLoadSetup`
- * (0x0c03677c). */
-
-/* `TM_DRAW_GLOBALOFFSET` (kpm row 0x246). Established: names word 54 of the
- * geometry board register shadow, which mirrors raster register 0x101a
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: texture-draw global offset in texture memory. Established:
- * arm1.u code writes it through slot 0x146, loading that address word at 4
- * places, first at 0x0c024200. */
-
-/* Functions that load the slot 0x146 address word: `mem_reserve_tex`
- * (0x0c024200), `mem_swapout_tex` (0x0c0242d8), `mem_swapin_tex`
- * (0x0c024350), `SetupRM_TextureBind` (0x0c0368b4). */
-
-/* `TM_MEMCONF` (kpm row 0x247). Established: names word 55 of the geometry
- * board register shadow, which mirrors raster register 0x1000 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * texture-memory geometry (s and t address bits). Established: no arm1.u code
- * loads its slot 0x147 address word; the ARM reaches it only in its loops
- * over all 89 words (start-up, context load and one diagnostic case). */
-
-/* `TGTM_TEX_SIZE` (kpm row 0x248). Established: names word 56 of the geometry
- * board register shadow, which mirrors raster register 0x3fd5 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * texture-generator and texture-memory texture size and address-control
- * (wrap) fields for s, t and r. Established: arm1.u code writes it through
- * slot 0x148, loading that address word at 2 places, first at 0x0c026738. */
-
-/* Functions that load the slot 0x148 address word: `CommonPixEnd`
- * (0x0c026738), `SetupRM_TextureBind` (0x0c036894). */
-
-/* `TGTMTFT` (kpm row 0x249). Established: names word 57 of the geometry board
- * register shadow, which mirrors raster register 0x3fd4 (arm1.u table at
- * 0x04067c0c, start-up value 0x30). Inferred from its kpm field names:
- * texture mode word: minify and magnify filters, environment, texel format
- * and related enables. Established: arm1.u code writes it through slot 0x149,
- * loading that address word at 3 places, first at 0x0c025ffc. */
-
-/* Functions that load the slot 0x149 address word: `arm_bind_detail_texture`
- * (0x0c025ffc), `CommonPixEnd` (0x0c026724), `SetupRM_TextureBind`
- * (0x0c036940). */
-
-/* `TG_MAP_LEVEL` (kpm row 0x24a). Established: names word 58 of the geometry
- * board register shadow, which mirrors raster register 0x0c04 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * minimum and maximum mipmap level. Established: arm1.u code writes it
- * through slot 0x14a, loading that address word at 3 places, first at
- * 0x0c025d64. */
-
-/* Functions that load the slot 0x14a address word:
- * `arm_bind_3d_mipmap_texture` (0x0c025d64), `CommonPixEnd` (0x0c026764),
- * `SetupRM_TextureBind` (0x0c0369c4). */
-
-/* `TG_LOD_SCALEST` (kpm row 0x24b). Established: names word 59 of the
- * geometry board register shadow, which mirrors raster register 0x0c05
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: level-of-detail scale in s and t. Established: arm1.u code
- * writes it through slot 0x14b, loading that address word at 2 places, first
- * at 0x0c025d40. */
-
-/* Functions that load the slot 0x14b address word:
- * `arm_bind_3d_mipmap_texture` (0x0c025d40), `SetupRM_TextureBind`
- * (0x0c036970). */
-
-/* `TG_LOD_SCALER` (kpm row 0x24c). Established: names word 60 of the geometry
- * board register shadow, which mirrors raster register 0x0c06 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * level-of-detail scale in r. Established: arm1.u code writes it through slot
- * 0x14c, loading that address word at 2 places, first at 0x0c025d50. */
-
-/* Functions that load the slot 0x14c address word:
- * `arm_bind_3d_mipmap_texture` (0x0c025d50), `SetupRM_TextureBind`
- * (0x0c03699c). */
-
-/* `TGTM_DCTEX_SIZE` (kpm row 0x24d). Established: names word 61 of the
- * geometry board register shadow, which mirrors raster register 0x3fd6
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: detail and clip-map texture sizes, clip level offset and clip
- * enable. Established: arm1.u code writes it through slot 0x14d, loading that
- * address word at 2 places, first at 0x0c025c20. */
-
-/* Functions that load the slot 0x14d address word:
- * `arm_bind_2d_clipmap_texture` (0x0c025c20), `arm_bind_detail_texture`
- * (0x0c025f68). */
-
-/* `TM_DRAW_DETAILMAP` (kpm row 0x24e). Established: names word 62 of the
- * geometry board register shadow, which mirrors raster register 0x1019
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: texture-memory detail-map address. Established: arm1.u code
- * writes it through slot 0x14e, loading that address word at 2 places, first
- * at 0x0c025924. */
-
-/* Functions that load the slot 0x14e address word: `arm_bind_texture`
- * (0x0c025924), `arm_bind_detail_texture` (0x0c025fc4). */
-
-/* `TM_TEX_SIZE` (kpm row 0x24f). Established: names word 63 of the geometry
- * board register shadow, which mirrors raster register 0x13d5 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * texture-memory texture size and address-control fields. Established: arm1.u
- * code writes it through slot 0x14f, loading that address word at 3 places,
- * first at 0x0c025d74. */
-
-/* Functions that load the slot 0x14f address word:
- * `arm_bind_3d_mipmap_texture` (0x0c025d74), `arm_bind_bicubic_texture`
- * (0x0c025e50), `arm_bind_3d_texture` (0x0c025ed8). */
-
-/* `TM_DRAW_CLIP_OFFSET` (kpm row 0x250). Established: names word 64 of the
- * geometry board register shadow, which mirrors raster register 0x1020
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: clip-map s and t offsets in texture memory. Established:
- * arm1.u code writes it through slot 0x150, loading that address word at 1
- * place, first at 0x0c025bd0. */
-
-/* Functions that load the slot 0x150 address word:
- * `arm_bind_2d_clipmap_texture` (0x0c025bd0). */
-
-/* `TM_DRAW_CLIP_BKPT` (kpm row 0x251). Established: names word 65 of the
- * geometry board register shadow, which mirrors raster register 0x1021
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: clip-map break point. Established: arm1.u code writes it
- * through slot 0x151, loading that address word at 1 place, first at
- * 0x0c025bb8. */
-
-/* Functions that load the slot 0x151 address word:
- * `arm_bind_2d_clipmap_texture` (0x0c025bb8). */
-
-/* `TGTM_TEX_SCENTER` (kpm row 0x252). Established: names word 66 of the
- * geometry board register shadow, which mirrors raster register 0x3fd7
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: clip-map s centre. Established: arm1.u code writes it through
- * slot 0x152, loading that address word at 1 place, first at 0x0c025bf4. */
-
-/* Functions that load the slot 0x152 address word:
- * `arm_bind_2d_clipmap_texture` (0x0c025bf4). */
-
-/* `TGTM_TEX_TCENTER` (kpm row 0x253). Established: names word 67 of the
- * geometry board register shadow, which mirrors raster register 0x3fd8
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: clip-map t centre. Established: arm1.u code writes it through
- * slot 0x153, loading that address word at 1 place, first at 0x0c025c08. */
-
-/* Functions that load the slot 0x153 address word:
- * `arm_bind_2d_clipmap_texture` (0x0c025c08). */
-
-/* `TFT_SBIAS_EN` (kpm row 0x254). Established: names word 68 of the geometry
- * board register shadow, which mirrors raster register 0x1850 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * texel scale-and-bias enables per component. Established: no arm1.u code
- * loads its slot 0x154 address word; the ARM reaches it only in its loops
- * over all 89 words (start-up, context load and one diagnostic case). */
-
-/* `TFT_SCALE` (kpm row 0x255). Established: names word 69 of the geometry
- * board register shadow, which mirrors raster register 0x1851 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * per-component texel scale. Established: no arm1.u code loads its slot 0x155
- * address word; the ARM reaches it only in its loops over all 89 words
- * (start-up, context load and one diagnostic case). */
-
-/* `TFT_BIAS` (kpm row 0x256). Established: names word 70 of the geometry
- * board register shadow, which mirrors raster register 0x1852 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * per-component texel bias. Established: no arm1.u code loads its slot 0x156
- * address word; the ARM reaches it only in its loops over all 89 words
- * (start-up, context load and one diagnostic case). */
-
-/* `TFT_TLUT` (kpm row 0x257). Established: names word 71 of the geometry
- * board register shadow, which mirrors raster register 0x1853 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * texture colour lookup table: address, component count and enable.
- * Established: arm1.u code writes it through slot 0x157, loading that address
- * word at 3 places, first at 0x0c03e260. */
-
-/* Functions that load the slot 0x157 address word: `arm_colortable`
- * (0x0c03e260), `PixValidateTexColorTable` (0x0c03e980), `d_texcoltab`
- * (0x0c03f314). */
-
-/* `TM_DRAW_SHA_AMBIENT` (kpm row 0x258). Established: names word 72 of the
- * geometry board register shadow, which mirrors raster register 0x101e
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: shadow-texture ambient value. Established: arm1.u code writes
- * it through slot 0x158, loading that address word at 1 place, first at
- * 0x0c026260. */
-
-/* Functions that load the slot 0x158 address word: `arm_shadow_texture`
- * (0x0c026260). */
-
-/* `TM_DRAW_REDUNDANCY` (kpm row 0x259). Established: names word 73 of the
- * geometry board register shadow, which mirrors raster register 0x101f
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: texture-memory redundancy setting. Established: arm1.u code
- * writes it through slot 0x159, loading that address word at 2 places, first
- * at 0x0c026234. */
-
-/* Functions that load the slot 0x159 address word: `arm_shadow_texture`
- * (0x0c026234), `CommonPixEnd` (0x0c026710). */
-
-/* `TG_MISC` (kpm row 0x25a). Established: names word 74 of the geometry board
- * register shadow, which mirrors raster register 0x0c02 (arm1.u table at
- * 0x04067c0c, start-up value 0x0). Inferred from its kpm field names: texture
- * generator priority and compression. Established: arm1.u code writes it
- * through slot 0x15a, loading that address word at 1 place, first at
- * 0x0c026248. */
-
-/* Functions that load the slot 0x15a address word: `arm_shadow_texture`
- * (0x0c026248). */
-
-/* `TFP_AFUNC` (kpm row 0x25b). Established: names word 75 of the geometry
- * board register shadow, which mirrors raster register 0x1407 (arm1.u table
- * at 0x04067c0c, start-up value 0x7000). Inferred from its kpm field names:
- * alpha test: reference value, comparison and enable. Established: arm1.u
- * code writes it through slot 0x15b, loading that address word at 1 place,
- * first at 0x0c03b5c8. */
-
-/* Functions that load the slot 0x15b address word: `masked_clear`
- * (0x0c03b5c8). */
-
-/* `TFP_TEX` (kpm row 0x25c). Established: names word 76 of the geometry board
- * register shadow, which mirrors raster register 0x1500 (arm1.u table at
- * 0x04067c0c, start-up value 0x0). Inferred from its kpm field names: texture
- * enable in the texture filter. Established: no arm1.u code loads its slot
- * 0x15c address word; the ARM reaches it only in its loops over all 89 words
- * (start-up, context load and one diagnostic case). */
-
-/* `TFP_TEV` (kpm row 0x25d). Established: names word 77 of the geometry board
- * register shadow, which mirrors raster register 0x1401 (arm1.u table at
- * 0x04067c0c, start-up value 0x22). Inferred from its kpm field names:
- * texture environment: colour and alpha combine functions. Established: no
- * arm1.u code loads its slot 0x15d address word; the ARM reaches it only in
- * its loops over all 89 words (start-up, context load and one diagnostic
- * case). */
-
-/* `TFP_TEV_CC` (kpm row 0x25e). Established: names word 78 of the geometry
- * board register shadow, which mirrors raster register 0x1402 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * texture environment constant colour, red and green. Established: no arm1.u
- * code loads its slot 0x15e address word; the ARM reaches it only in its
- * loops over all 89 words (start-up, context load and one diagnostic case). */
-
-/* `TFP_TEV_CC1` (kpm row 0x25f). Established: names word 79 of the geometry
- * board register shadow, which mirrors raster register 0x1413 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * texture environment constant colour, blue and alpha. Established: no arm1.u
- * code loads its slot 0x15f address word; the ARM reaches it only in its
- * loops over all 89 words (start-up, context load and one diagnostic case). */
-
-/* `TFP_AC` (kpm row 0x260). Established: names word 80 of the geometry board
- * register shadow, which mirrors raster register 0x140e (arm1.u table at
- * 0x04067c0c, start-up value 0x8000). Inferred from its kpm field names:
- * texture filter base and template controls (DGBASE, DGTPL fields).
- * Established: arm1.u code writes it through slot 0x160, loading that address
- * word at 2 places, first at 0x0c0038a0. */
-
-/* Functions that load the slot 0x160 address word: `init_tf` (0x0c0038a0),
- * `init_simulator_hacks` (0x0c003f4c). */
-
-/* `TFP_FADE_MASK_LUT` (kpm row 0x261). Established: names word 81 of the
- * geometry board register shadow, which mirrors raster register 0x140b
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: alpha-to-mask fade lookup entries. Established: arm1.u code
- * writes it through slot 0x161, loading that address word at 3 places, first
- * at 0x0c03c3b8. */
-
-/* Functions that load the slot 0x161 address word: `arm_samplemask`
- * (0x0c03c3b8), `init_multisample` (0x0c03c424), `multisample_pop`
- * (0x0c03c6b8). */
-
-/* `TFP_FOG` (kpm row 0x262). Established: names word 82 of the geometry board
- * register shadow, which mirrors raster register 0x1403 (arm1.u table at
- * 0x04067c0c, start-up value 0x80000). Inferred from its kpm field names: fog
- * mode: colour and fog modes, table address, offset and enable bits.
- * Established: arm1.u code writes it through slot 0x162, loading that address
- * word at 2 places, first at 0x0c0134a8. */
-
-/* Functions that load the slot 0x162 address word: `arm_buffer_config`
- * (0x0c0134a8), `masked_clear` (0x0c03b5f0). */
-
-/* `TFP_FOG_CC` (kpm row 0x263). Established: names word 83 of the geometry
- * board register shadow, which mirrors raster register 0x1404 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names: fog
- * colour, red and green. Established: no arm1.u code loads its slot 0x163
- * address word; the ARM reaches it only in its loops over all 89 words
- * (start-up, context load and one diagnostic case). */
-
-/* `TFP_FOG_CC1` (kpm row 0x264). Established: names word 84 of the geometry
- * board register shadow, which mirrors raster register 0x1414 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names: fog
- * colour, blue. Established: no arm1.u code loads its slot 0x164 address
- * word; the ARM reaches it only in its loops over all 89 words (start-up,
- * context load and one diagnostic case). */
-
-/* `TFP_FOG_OFFSET` (kpm row 0x265). Established: names word 85 of the
- * geometry board register shadow, which mirrors raster register 0x1406
- * (arm1.u table at 0x04067c0c, start-up value 0x0). Inferred from its kpm
- * field names: fog depth offset. Established: no arm1.u code loads its slot
- * 0x165 address word; the ARM reaches it only in its loops over all 89 words
- * (start-up, context load and one diagnostic case). */
-
-/* `TFP_PIX_FMT` (kpm row 0x266). Established: names word 86 of the geometry
- * board register shadow, which mirrors raster register 0x1410 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * texture filter output pixel format. Established: arm1.u code writes it
- * through slot 0x166, loading that address word at 2 places, first at
- * 0x0c003888. */
-
-/* Functions that load the slot 0x166 address word: `init_tf` (0x0c003888),
- * `arm_buffer_config` (0x0c013590). */
-
-/* `TFP_COLOR_FMT` (kpm row 0x267). Established: names word 87 of the geometry
- * board register shadow, which mirrors raster register 0x140f (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * texture filter colour format. Established: arm1.u code writes it through
- * slot 0x167, loading that address word at 3 places, first at 0x0c0135a8. */
-
-/* Functions that load the slot 0x167 address word: `arm_buffer_config`
- * (0x0c0135a8), `PixEndRGBStream` (0x0c0269fc), `SetupGE_StencilStream`
- * (0x0c02d484). */
-
-/* `TFP_AMASK` (kpm row 0x268). Established: names word 88 of the geometry
- * board register shadow, which mirrors raster register 0x1408 (arm1.u table
- * at 0x04067c0c, start-up value 0x0). Inferred from its kpm field names:
- * alpha mask controls: alpha-to-mask, fade mask and alpha-to-one enables.
- * Established: arm1.u code writes it through slot 0x168, loading that address
- * word at 21 places, first at 0x0c003cf0. */
-
-/* Functions that load the slot 0x168 address word: `init_imp` (0x0c003cf0),
- * `arm_colormask` (0x0c012e08), `arm_blendcolor` (0x0c012f88),
- * `arm_buffer_config` (0x0c013640), `resolve_banks` (0x0c013a4c),
- * `color_init` (0x0c014150), `color_pop` (0x0c01462c), `stencil_pop`
- * (0x0c014c88), `e_multisample` (0x0c0156e8), `d_multisample` (0x0c015758),
- * `SetupReadbackTF` (0x0c033e98), `arm_clear` (0x0c03bd04),
- * `masked_word_clear` (0x0c03c138), `init_multisample` (0x0c03c43c),
- * `e_alpha2mask` (0x0c03c57c), `d_alpha2mask` (0x0c03c5a4), `e_alpha2one`
- * (0x0c03c5cc), `d_alpha2one` (0x0c03c5f4), `e_samplemask` (0x0c03c61c),
- * `d_samplemask` (0x0c03c644), `x_initregs` (0x0c03d274). */
+enum kona_kpm_shadow_row {
+    /* Functions that load the slot 0x110 address word: `CommonPixEnd`
+     * (0x0c026824), `PixEndReadConvolve` (0x0c026bec), `__glkonSetupPacker`
+     * (0x0c028d84). */
+
+    /* `HT_PACK_MODE` (kpm row 0x210, name record at 0x100bb078). Established:
+     * shadow word 0; the befsh_addrs entry at 0x04067c0c names raster
+     * register 0x0441 and befsh_init gives it start-up value 0x0. Inferred
+     * (from the host interface's register of the same role, `HH_PACK_MODE`, 7
+     * bits): the pack mode a pixel read-back uses to pack bytes for the host;
+     * `__glkonSetupPacker` assembles the value from four small fields (bits
+     * 0-1, 2, 3-5 and
+     * 6) and writes it with mask 0x7f. Established: arm1.u code writes it
+     * through slot 0x110, loading that address word at 3 places, first at
+     * 0x0c026824. */
+    KONA_HT_PACK_MODE                    = 0x210,
+
+    /* `HT_ODMA_LLEN` (kpm row 0x211, name record at 0x100bb07c). Established:
+     * shadow word 1; the befsh_addrs entry at 0x04067c10 names raster
+     * register 0x0455 and befsh_init gives it start-up value 0x0. Inferred
+     * (from the select-feedback payload order and the host register
+     * `HH_ODMA_LLEN`): the output-DMA line length of a transfer to host
+     * memory; `arm_start_selectfeed` loads it with its line-length word, and
+     * the pixel read-back path `__glkonSendPixelsToHost` clears it.
+     * Established: no arm1.u code loads its slot 0x111 address word; the ARM
+     * reaches it only in its loops over all 89 words (start-up, context load
+     * and one diagnostic case). */
+    KONA_HT_ODMA_LLEN                    = 0x211,
+
+    /* `HT_ODMA_STRIDE` (kpm row 0x212, name record at 0x100bb080).
+     * Established: shadow word 2; the befsh_addrs entry at 0x04067c14 names
+     * raster register 0x0456 and befsh_init gives it start-up value 0x0.
+     * Inferred (same basis, `HH_ODMA_STRIDE`): the output-DMA stride from one
+     * line to the next in host memory, set from the select-feedback stride
+     * word and zeroed by the pixel read-back path; keeping it in the shadow
+     * lets a context switch preserve a read in progress. Established: no
+     * arm1.u code loads its slot 0x112 address word; the ARM reaches it only
+     * in its loops over all 89 words (start-up, context load and one
+     * diagnostic case). */
+    KONA_HT_ODMA_STRIDE                  = 0x212,
+
+    /* Functions that load the slot 0x113 address word: `resolve_scissor`
+     * (0x0c018c14). */
+
+    /* `PGTG_SCIS` (kpm row 0x213, name record at 0x100bb084). Established:
+     * shadow word 3; the befsh_addrs entry at 0x04067c18 names raster
+     * register 0x3fc2 and befsh_init gives it start-up value 0x3fff8000.
+     * Inferred from the fields at kpm raster record 0x10147cb0: the x half of
+     * the scissor box shared by the pixel and texture generators,
+     * `PGTG_XSMIN` in bits 0-14 and `PGTG_XSMAX` in bits 15-29; the start-up
+     * value opens it to the whole 15-bit range, and `resolve_scissor` writes
+     * it through this slot (0x0c018c14). Established: arm1.u code writes it
+     * through slot 0x113, loading that address word at 1 place, first at
+     * 0x0c018c14. */
+    KONA_PGTG_SCIS                       = 0x213,
+
+    /* Functions that load the slot 0x114 address word: `resolve_scissor`
+     * (0x0c018c38). */
+
+    /* `PGTG_SCIS_1` (kpm row 0x214, name record at 0x100bb088). Established:
+     * shadow word 4; the befsh_addrs entry at 0x04067c1c names raster
+     * register 0x3fc3 and befsh_init gives it start-up value 0x3fff8000.
+     * Inferred: the y half of that scissor box, the second field pair kpm
+     * lists under `PGTG_SCIS` (`PGTG_YSMIN` bits 0-14, `PGTG_YSMAX` bits
+     * 15-29); the suffix name comes from the irsaudit string pool, and the
+     * start-up value again spans the full range. Established: arm1.u code
+     * writes it through slot 0x114, loading that address word at 1 place,
+     * first at 0x0c018c38. */
+    KONA_PGTG_SCIS_1                     = 0x214,
+
+    /* `PGTG_ZRECT` (kpm row 0x215, name record at 0x100bb08c). Established:
+     * shadow word 5; the befsh_addrs entry at 0x04067c20 names raster
+     * register 0x3fc4 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10147d00, which lists eight 32-bit or 28-bit
+     * fields each starting at bit 0 (X0, X, Y, X0A, XA, YA, ZX, ZY), one per
+     * word: this first word is X0, the starting x of the rectangle the pixel
+     * generator walks. Established: no arm1.u code loads its slot 0x115
+     * address word; the ARM reaches it only in its loops over all 89 words
+     * (start-up, context load and one diagnostic case). */
+    KONA_PGTG_ZRECT                      = 0x215,
+
+    /* `PGTG_ZRECT_1` (kpm row 0x216, name record at 0x100bb090). Established:
+     * shadow word 6; the befsh_addrs entry at 0x04067c24 names raster
+     * register 0x3fc5 and befsh_init gives it start-up value 0x0. Inferred:
+     * the second field of the rectangle set-up, X, the current x position;
+     * base register 0x3fc4 plus one, named `_1` by irsaudit. Established: no
+     * arm1.u code loads its slot 0x116 address word; the ARM reaches it only
+     * in its loops over all 89 words (start-up, context load and one
+     * diagnostic case). */
+    KONA_PGTG_ZRECT_1                    = 0x216,
+
+    /* `PGTG_ZRECT_2` (kpm row 0x217, name record at 0x100bb094). Established:
+     * shadow word 7; the befsh_addrs entry at 0x04067c28 names raster
+     * register 0x3fc6 and befsh_init gives it start-up value 0x0. Inferred:
+     * Y, the rectangle's y position, third of the eight words under kpm's
+     * `PGTG_ZRECT` record. Established: no arm1.u code loads its slot 0x117
+     * address word; the ARM reaches it only in its loops over all 89 words
+     * (start-up, context load and one diagnostic case). */
+    KONA_PGTG_ZRECT_2                    = 0x217,
+
+    /* `PGTG_ZRECT_3` (kpm row 0x218, name record at 0x100bb098). Established:
+     * shadow word 8; the befsh_addrs entry at 0x04067c2c names raster
+     * register 0x3fc7 and befsh_init gives it start-up value 0x0. Inferred:
+     * X0A, the step added to the starting x per row, the fourth rectangle
+     * word. Established: no arm1.u code loads its slot 0x118 address word;
+     * the ARM reaches it only in its loops over all 89 words (start-up,
+     * context load and one diagnostic case). */
+    KONA_PGTG_ZRECT_3                    = 0x218,
+
+    /* `PGTG_ZRECT_4` (kpm row 0x219, name record at 0x100bb09c). Established:
+     * shadow word 9; the befsh_addrs entry at 0x04067c30 names raster
+     * register 0x3fc8 and befsh_init gives it start-up value 0x0. Inferred:
+     * XA, the x step within a row, fifth of the eight rectangle words.
+     * Established: no arm1.u code loads its slot 0x119 address word; the ARM
+     * reaches it only in its loops over all 89 words (start-up, context load
+     * and one diagnostic case). */
+    KONA_PGTG_ZRECT_4                    = 0x219,
+
+    /* `PGTG_ZRECT_5` (kpm row 0x21a, name record at 0x100bb0a0). Established:
+     * shadow word 10; the befsh_addrs entry at 0x04067c34 names raster
+     * register 0x3fc9 and befsh_init gives it start-up value 0x0. Inferred:
+     * YA, the y step, sixth rectangle word; zero at start-up like the
+     * position words. Established: no arm1.u code loads its slot 0x11a
+     * address word; the ARM reaches it only in its loops over all 89 words
+     * (start-up, context load and one diagnostic case). */
+    KONA_PGTG_ZRECT_5                    = 0x21a,
+
+    /* `PGTG_ZRECT_6` (kpm row 0x21b, name record at 0x100bb0a4). Established:
+     * shadow word 11; the befsh_addrs entry at 0x04067c38 names raster
+     * register 0x3fca and befsh_init gives it start-up value 0x100000.
+     * Inferred: ZX, a 28-bit depth slope in x for rectangle fills; its
+     * start-up value 0x100000 is one of only two non-zero rectangle words.
+     * Established: no arm1.u code loads its slot 0x11b address word; the ARM
+     * reaches it only in its loops over all 89 words (start-up, context load
+     * and one diagnostic case). */
+    KONA_PGTG_ZRECT_6                    = 0x21b,
+
+    /* `PGTG_ZRECT_7` (kpm row 0x21c, name record at 0x100bb0a8). Established:
+     * shadow word 12; the befsh_addrs entry at 0x04067c3c names raster
+     * register 0x3fcb and befsh_init gives it start-up value 0x100000.
+     * Inferred: ZY, the 28-bit depth slope in y and the last rectangle word,
+     * also 0x100000 after start-up. Established: no arm1.u code loads its
+     * slot 0x11c address word; the ARM reaches it only in its loops over all
+     * 89 words (start-up, context load and one diagnostic case). */
+    KONA_PGTG_ZRECT_7                    = 0x21c,
+
+    /* Functions that load the slot 0x11d address word: `CommonPixEnd`
+     * (0x0c0266c0), `arm_readpixels` (0x0c02c63c), `videoReadPixels`
+     * (0x0c02c784), `arm_copyconvolutionfilter1d` (0x0c036fe8),
+     * `arm_copyconvolutionfilter2d` (0x0c037128), `arm_getconvolutionfilter`
+     * (0x0c0373d8), `arm_getseparablefilter` (0x0c037510). */
+
+    /* `PGTG_DRECT` (kpm row 0x21d, name record at 0x100bb0ac). Established:
+     * shadow word 13; the befsh_addrs entry at 0x04067c40 names raster
+     * register 0x3fcc and befsh_init gives it start-up value 0xc010010.
+     * Inferred from kpm raster record 0x10147d90: the first draw-rectangle
+     * word for pixel operations, with J in bits 0-11, I in 12-23, the scan
+     * direction in 24-25 (bottom-left, bottom-right, upper-left,
+     * upper-right), and enables for pixel zoom (26), the pixel cache (27) and
+     * interlace (28); start-up turns zoom and the cache on. Established:
+     * arm1.u code writes it through slot 0x11d, loading that address word at
+     * 7 places, first at 0x0c0266c0. */
+    KONA_PGTG_DRECT                      = 0x21d,
+
+    /* Functions that load the slot 0x11e address word: `CommonPixEnd`
+     * (0x0c0266d4). */
+
+    /* `PGTG_DRECT_1` (kpm row 0x21e, name record at 0x100bb0b0). Established:
+     * shadow word 14; the befsh_addrs entry at 0x04067c44 names raster
+     * register 0x3fcd and befsh_init gives it start-up value 0x10. Inferred:
+     * the second draw-rectangle word, width W in bits 0-11 and starting x X0
+     * in 12-23 (the next fields of the `PGTG_DRECT` record, restarting at bit
+     * 0); start-up width 16. Established: arm1.u code writes it through slot
+     * 0x11e, loading that address word at 1 place, first at 0x0c0266d4. */
+    KONA_PGTG_DRECT_1                    = 0x21e,
+
+    /* Functions that load the slot 0x11f address word: `CommonPixEnd`
+     * (0x0c0266e8). */
+
+    /* `PGTG_DRECT_2` (kpm row 0x21f, name record at 0x100bb0b4). Established:
+     * shadow word 15; the befsh_addrs entry at 0x04067c48 names raster
+     * register 0x3fce and befsh_init gives it start-up value 0x0. Inferred:
+     * the third draw-rectangle word, the current Y in bits 0-11 and X in
+     * 12-23; cleared at start-up. Established: arm1.u code writes it through
+     * slot 0x11f, loading that address word at 1 place, first at 0x0c0266e8. */
+    KONA_PGTG_DRECT_2                    = 0x21f,
+
+    /* Functions that load the slot 0x120 address word: `init_tg`
+     * (0x0c003910), `prim_init` (0x0c0166b4), `x_initregs` (0x0c03d0c8). */
+
+    /* `PGTG_SIZE` (kpm row 0x220, name record at 0x100bb0b8). Established:
+     * shadow word 16; the befsh_addrs entry at 0x04067c4c names raster
+     * register 0x3fcf and befsh_init gives it start-up value 0x10. Inferred
+     * from kpm raster record 0x10147ee0 (fields `PGTG_PBSIZE`, `LBSIZE`,
+     * `TBSIZE`, then the image buffer width and height): this word is the
+     * point buffer size, 12 bits, 16 after start-up. Established: arm1.u code
+     * writes it through slot 0x120, loading that address word at 3 places,
+     * first at 0x0c003910. */
+    KONA_PGTG_SIZE                       = 0x220,
+
+    /* Functions that load the slot 0x121 address word: `init_tg`
+     * (0x0c003928), `prim_init` (0x0c0166cc), `x_initregs` (0x0c03d0e0). */
+
+    /* `PGTG_SIZE_1` (kpm row 0x221, name record at 0x100bb0bc). Established:
+     * shadow word 17; the befsh_addrs entry at 0x04067c50 names raster
+     * register 0x3fd0 and befsh_init gives it start-up value 0x10. Inferred:
+     * the line buffer size of the generators, the second size word, 16 after
+     * start-up. Established: arm1.u code writes it through slot 0x121,
+     * loading that address word at 3 places, first at 0x0c003928. */
+    KONA_PGTG_SIZE_1                     = 0x221,
+
+    /* Functions that load the slot 0x122 address word: `init_tg`
+     * (0x0c00393c), `prim_init` (0x0c0166e0), `x_initregs` (0x0c03d0f4). */
+
+    /* `PGTG_SIZE_2` (kpm row 0x222, name record at 0x100bb0c0). Established:
+     * shadow word 18; the befsh_addrs entry at 0x04067c54 names raster
+     * register 0x3fd1 and befsh_init gives it start-up value 0xf. Inferred:
+     * the triangle buffer size, third size word, start-up 15. Established:
+     * arm1.u code writes it through slot 0x122, loading that address word at
+     * 3 places, first at 0x0c00393c. */
+    KONA_PGTG_SIZE_2                     = 0x222,
+
+    /* Functions that load the slot 0x123 address word: `init_tg`
+     * (0x0c003954), `prim_init` (0x0c0166f8), `x_initregs` (0x0c03d10c). */
+
+    /* `PGTG_SIZE_3` (kpm row 0x223, name record at 0x100bb0c4). Established:
+     * shadow word 19; the befsh_addrs entry at 0x04067c58 names raster
+     * register 0x3fd2 and befsh_init gives it start-up value 0xf00f.
+     * Inferred: the image buffer's width (bits 0-11) and height (12-23);
+     * start-up 0xf00f makes it 15 by 15. Established: arm1.u code writes it
+     * through slot 0x123, loading that address word at 3 places, first at
+     * 0x0c003954. */
+    KONA_PGTG_SIZE_3                     = 0x223,
+
+    /* Functions that load the slot 0x124 address word: `init_tg`
+     * (0x0c0038f8), `prim_init` (0x0c01669c), `CommonPixEnd` (0x0c0266fc),
+     * `masked_clear` (0x0c03b618), `x_initregs` (0x0c03d128). */
+
+    /* `PGTG_ENABLES` (kpm row 0x224, name record at 0x100bb0c8). Established:
+     * shadow word 20; the befsh_addrs entry at 0x04067c5c names raster
+     * register 0x3fd3 and befsh_init gives it start-up value 0xf. Inferred
+     * from kpm raster record 0x10147f40: four one-bit switches, the texture
+     * generator (bit 0), scan conversion (1), the ZPU (2) and the draw-pixels
+     * path (3); all four are on after start-up. Established: arm1.u code
+     * writes it through slot 0x124, loading that address word at 5 places,
+     * first at 0x0c0038f8. */
+    KONA_PGTG_ENABLES                    = 0x224,
+
+    /* Functions that load the slot 0x125 address word: `init_pg`
+     * (0x0c003810), `arm_samplepattern` (0x0c03c30c), `init_multisample`
+     * (0x0c03c468), `multisample_pop` (0x0c03c700). */
+
+    /* `PGTFPIMP_MSLOC` (kpm row 0x225, name record at 0x100bb0cc).
+     * Established: shadow word 21; the befsh_addrs entry at 0x04067c60 names
+     * raster register 0x3be0 and befsh_init gives it start-up value 0xc8b640.
+     * Inferred from kpm raster record 0x10147ba0, named for the pixel
+     * generator, texture filter and image processor together: the sub-pixel
+     * positions of multisamples 0-3, a 3-bit x and y offset each in bits
+     * 0-23. Established: arm1.u code writes it through slot 0x125, loading
+     * that address word at 4 places, first at 0x0c003810. */
+    KONA_PGTFPIMP_MSLOC                  = 0x225,
+
+    /* Functions that load the slot 0x126 address word: `init_pg`
+     * (0x0c003828), `arm_samplepattern` (0x0c03c320), `init_multisample`
+     * (0x0c03c488), `multisample_pop` (0x0c03c714). */
+
+    /* `PGTFPIMP_MSLOC_1` (kpm row 0x226, name record at 0x100bb0d0).
+     * Established: shadow word 22; the befsh_addrs entry at 0x04067c64 names
+     * raster register 0x3be1 and befsh_init gives it start-up value 0x916f6f.
+     * Inferred: positions of multisamples 4-7 in the same layout (the second
+     * half of the `PGTFPIMP_MSLOC` fields); init_pg writes both words with
+     * descriptor 0x584fc800. Established: arm1.u code writes it through slot
+     * 0x126, loading that address word at 4 places, first at 0x0c003828. */
+    KONA_PGTFPIMP_MSLOC_1                = 0x226,
+
+    /* `PG_GENERAL` (kpm row 0x227, name record at 0x100bb0d4). Established:
+     * shadow word 23; the befsh_addrs entry at 0x04067c68 names raster
+     * register 0x0800 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10148920: two mode bits, flat shading (bit 0,
+     * where kpm calls 0 on and 1 off) and the direction mask source (bit 1,
+     * packet or register); init_pg writes 1 here, turning flat shading off.
+     * Established: no arm1.u code loads its slot 0x127 address word; the ARM
+     * reaches it only in its loops over all 89 words (start-up, context load
+     * and one diagnostic case). */
+    KONA_PG_GENERAL                      = 0x227,
+
+    /* Functions that load the slot 0x128 address word: `init_pg`
+     * (0x0c0037d8). */
+
+    /* `PG_PSPEC` (kpm row 0x228, name record at 0x100bb0d8). Established:
+     * shadow word 24; the befsh_addrs entry at 0x04067c6c names raster
+     * register 0x080f and befsh_init gives it start-up value 0x100100.
+     * Inferred from kpm raster record 0x10148a60: the point size, width in
+     * bits 0-11 and height in 12-23; start-up 0x100 in each. Established:
+     * arm1.u code writes it through slot 0x128, loading that address word at
+     * 1 place, first at 0x0c0037d8. */
+    KONA_PG_PSPEC                        = 0x228,
+
+    /* Functions that load the slot 0x129 address word: `prim_init`
+     * (0x0c016714). */
+
+    /* `PG_BLOAT` (kpm row 0x229, name record at 0x100bb0dc). Established:
+     * shadow word 25; the befsh_addrs entry at 0x04067c70 names raster
+     * register 0x0804 and befsh_init gives it start-up value 0x0. Inferred
+     * from the name alone (record 0x10148a90 lists no fields): how far the
+     * pixel generator widens a primitive, a whole-word value that is zero at
+     * start-up. Established: arm1.u code writes it through slot 0x129,
+     * loading that address word at 1 place, first at 0x0c016714. */
+    KONA_PG_BLOAT                        = 0x229,
+
+    /* Functions that load the slot 0x12a address word: `prim_init`
+     * (0x0c01672c). */
+
+    /* `PG_Z_OFF` (kpm row 0x22a, name record at 0x100bb0e0). Established:
+     * shadow word 26; the befsh_addrs entry at 0x04067c74 names raster
+     * register 0x0805 and befsh_init gives it start-up value 0x0. Inferred
+     * from the name alone (record 0x10148aa0, no fields): a depth offset the
+     * pixel generator adds, the polygon-offset value, zero at start-up.
+     * Established: arm1.u code writes it through slot 0x12a, loading that
+     * address word at 1 place, first at 0x0c01672c. */
+    KONA_PG_Z_OFF                        = 0x22a,
+
+    /* Functions that load the slot 0x12b address word: `init_pg`
+     * (0x0c0037f4), `e_multisample` (0x0c0156b4), `d_multisample`
+     * (0x0c015740), `ResolvePolygon` (0x0c015ec8), `ResolveLine`
+     * (0x0c016094). */
+
+    /* `PG_MSK` (kpm row 0x22b, name record at 0x100bb0e4). Established:
+     * shadow word 27; the befsh_addrs entry at 0x04067c78 names raster
+     * register 0x0806 and befsh_init gives it start-up value 0x55. Inferred
+     * from kpm raster record 0x10148ab0: five two-bit selectors (`LMASK`
+     * first) that pick which ends, edges or sides of a primitive class are
+     * drawn, then four two-bit sampling choices, ordinary, multisample or
+     * alpha, for points, lines, triangles and one more class (`PSAMPLE`
+     * first), and an 8-bit line rule field at bit 18; start-up 0x55.
+     * Established: arm1.u code writes it through slot 0x12b, loading that
+     * address word at 5 places, first at 0x0c0037f4. */
+    KONA_PG_MSK                          = 0x22b,
+
+    /* Functions that load the slot 0x12c address word: `arm_validate_clip`
+     * (0x0c018390). */
+
+    /* `PG_WIN_OFFSET_X` (kpm row 0x22c, name record at 0x100bb0e8).
+     * Established: shadow word 28; the befsh_addrs entry at 0x04067c7c names
+     * raster register 0x0807 and befsh_init gives it start-up value 0x0.
+     * Inferred from the name (record 0x10148d60, no fields): the x offset of
+     * the window, added to screen x so drawing lands at the window's place in
+     * the framebuffer. Established: arm1.u code writes it through slot 0x12c,
+     * loading that address word at 1 place, first at 0x0c018390. */
+    KONA_PG_WIN_OFFSET_X                 = 0x22c,
+
+    /* Functions that load the slot 0x12d address word: `arm_validate_clip`
+     * (0x0c0183bc). */
+
+    /* `PG_WIN_OFFSET_Y` (kpm row 0x22d, name record at 0x100bb0ec).
+     * Established: shadow word 29; the befsh_addrs entry at 0x04067c80 names
+     * raster register 0x0808 and befsh_init gives it start-up value 0x0.
+     * Inferred from the name (record 0x10148d70): the window's y offset, the
+     * counterpart of the x word. Established: arm1.u code writes it through
+     * slot 0x12d, loading that address word at 1 place, first at 0x0c0183bc. */
+    KONA_PG_WIN_OFFSET_Y                 = 0x22d,
+
+    /* Functions that load the slot 0x12e address word: `prim_init`
+     * (0x0c016740). */
+
+    /* `PG_SMASK` (kpm row 0x22e, name record at 0x100bb0f0). Established:
+     * shadow word 30; the befsh_addrs entry at 0x04067c84 names raster
+     * register 0x0809 and befsh_init gives it start-up value 0xffffffff.
+     * Inferred (record 0x10148d80, a whole-word register): the multisample
+     * coverage mask the pixel generator applies; all ones after start-up, so
+     * every sample is written. Established: arm1.u code writes it through
+     * slot 0x12e, loading that address word at 1 place, first at 0x0c016740. */
+    KONA_PG_SMASK                        = 0x22e,
+
+    /* Functions that load the slot 0x12f address word: `ResolvePolygon`
+     * (0x0c015f88), `arm_x_loadstipple` (0x0c035c70), `masked_clear`
+     * (0x0c03b604). */
+
+    /* `PG_STIPPLE` (kpm row 0x22f, name record at 0x100bb0f4). Established:
+     * shadow word 31; the befsh_addrs entry at 0x04067c88 names raster
+     * register 0x080a and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10148d90: the first polygon-stipple word, an
+     * enable in bits 0-1 (off, 2D, 1D or both), a 4-bit offset in bits 2-5
+     * and an invert bit 6. Established: arm1.u code writes it through slot
+     * 0x12f, loading that address word at 3 places, first at 0x0c015f88. */
+    KONA_PG_STIPPLE                      = 0x22f,
+
+    /* `PG_STIPPLE_1` (kpm row 0x230, name record at 0x100bb0f8). Established:
+     * shadow word 32; the befsh_addrs entry at 0x04067c8c names raster
+     * register 0x080b and befsh_init gives it start-up value 0x55. Inferred:
+     * the first 8-bit stipple pattern byte, `PAT0` of the `PG_STIPPLE`
+     * record; start-up 0x55. Established: no arm1.u code loads its slot 0x130
+     * address word; the ARM reaches it only in its loops over all 89 words
+     * (start-up, context load and one diagnostic case). */
+    KONA_PG_STIPPLE_1                    = 0x230,
+
+    /* `PG_STIPPLE_2` (kpm row 0x231, name record at 0x100bb0fc). Established:
+     * shadow word 33; the befsh_addrs entry at 0x04067c90 names raster
+     * register 0x080c and befsh_init gives it start-up value 0x55. Inferred:
+     * the second pattern byte `PAT1`, also 0x55 at start-up. Established: no
+     * arm1.u code loads its slot 0x131 address word; the ARM reaches it only
+     * in its loops over all 89 words (start-up, context load and one
+     * diagnostic case). */
+    KONA_PG_STIPPLE_2                    = 0x231,
+
+    /* Functions that load the slot 0x132 address word: `InitFbState`
+     * (0x0c0273f8), `arm_x_loadstipple` (0x0c035c20). */
+
+    /* `PG_STIPPLE_3` (kpm row 0x232, name record at 0x100bb100). Established:
+     * shadow word 34; the befsh_addrs entry at 0x04067c94 names raster
+     * register 0x080d and befsh_init gives it start-up value 0xff. Inferred:
+     * the stipple repeat lengths, x modulus in bits 0-3 and y modulus in bits
+     * 4-7; start-up 0xff sets both to 15. Established: arm1.u code writes it
+     * through slot 0x132, loading that address word at 2 places, first at
+     * 0x0c0273f8. */
+    KONA_PG_STIPPLE_3                    = 0x232,
+
+    /* Functions that load the slot 0x133 address word: `ResolveLine`
+     * (0x0c01606c). */
+
+    /* `PG_PRU` (kpm row 0x233, name record at 0x100bb104). Established:
+     * shadow word 35; the befsh_addrs entry at 0x04067c98 names raster
+     * register 0x0810 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10148e50: a single bit choosing the primitive
+     * rule unit's mode, none or line. Established: arm1.u code writes it
+     * through slot 0x133, loading that address word at 1 place, first at
+     * 0x0c01606c. */
+    KONA_PG_PRU                          = 0x233,
+
+    /* `IMP_CONFIG` (kpm row 0x234, name record at 0x100bb108). Established:
+     * shadow word 36; the befsh_addrs entry at 0x04067c9c names raster
+     * register 0x1c00 and befsh_init gives it start-up value 0x3c2. Inferred
+     * from kpm raster record 0x10146fa0: the image processor's framebuffer
+     * configuration, with pixel size (bits 0-1), colour format (2-5: RGB10,
+     * RGBA12, LA16, CI16 and others), per-channel write enables for red,
+     * green, blue and alpha (6-9), a bit-mask enable (10), the read format
+     * (11-13) and a double CI8 bit (14); start-up 0x3c2 is large pixels,
+     * RGB10, all four channels writable. Established: no arm1.u code loads
+     * its slot 0x134 address word; the ARM reaches it only in its loops over
+     * all 89 words (start-up, context load and one diagnostic case). */
+    KONA_IMP_CONFIG                      = 0x234,
+
+    /* Functions that load the slot 0x135 address word: `init_imp`
+     * (0x0c003b08), `resolve_banks` (0x0c013a1c), `e_calligraphic_fragment`
+     * (0x0c015a7c), `d_calligraphic_fragment` (0x0c015aa8), `SetupReadbackTF`
+     * (0x0c033cc8), `arm_accum` (0x0c037f20), `arm_slop` (0x0c038f90),
+     * `slop_readword` (0x0c0391fc), `imp_clear` (0x0c03afdc), `masked_clear`
+     * (0x0c03b2f8), `accum_clear` (0x0c03b734), `accum_clear32` (0x0c03b8d0),
+     * `overlay_clear` (0x0c03bb24), `arm_clear` (0x0c03be64), `word_clear`
+     * (0x0c03bf88), `x_initregs` (0x0c03d1ac). */
+
+    /* `IMP_OP` (kpm row 0x235, name record at 0x100bb10c). Established:
+     * shadow word 37; the befsh_addrs entry at 0x04067ca0 names raster
+     * register 0x1c02 and befsh_init gives it start-up value 0x1. Inferred
+     * from kpm raster record 0x101471b0: the image processor's operation,
+     * with the draw buffer (bits 0-3), the address packet kind (clear, read,
+     * accumulate or copy), clear repeat and clear enables for tag, colour,
+     * depth, stencil and accumulation, the read-back format (14-17), the read
+     * base, and several mode enables; start-up selects draw buffer 1.
+     * Established: arm1.u code writes it through slot 0x135, loading that
+     * address word at 16 places, first at 0x0c003b08. */
+    KONA_IMP_OP                          = 0x235,
+
+    /* Functions that load the slot 0x136 address word: `init_imp`
+     * (0x0c003b20), `arm_colormask` (0x0c012d6c), `e_blend` (0x0c01596c),
+     * `d_blend` (0x0c0159f0), `e_color_logic_op` (0x0c015b18),
+     * `d_color_logic_op` (0x0c015b98), `masked_clear` (0x0c03b66c),
+     * `word_clear` (0x0c03bfd0), `init_multisample` (0x0c03c534),
+     * `x_initregs` (0x0c03d1c4). */
+
+    /* `IMP_MS` (kpm row 0x236, name record at 0x100bb110). Established:
+     * shadow word 38; the befsh_addrs entry at 0x04067ca4 names raster
+     * register 0x1c03 and befsh_init gives it start-up value 0x17f8. Inferred
+     * from kpm raster record 0x101473e0: multisample control, an enable, 4 or
+     * 8 samples, whether the coverage mask is ANDed or replaced, an 8-bit
+     * mask (bits 3-10), a keep-two bit and an optimisation field; start-up
+     * sets the whole mask. Established: arm1.u code writes it through slot
+     * 0x136, loading that address word at 10 places, first at 0x0c003b20. */
+    KONA_IMP_MS                          = 0x236,
+
+    /* Functions that load the slot 0x137 address word: `init_imp`
+     * (0x0c003b3c), `arm_validate_clip` (0x0c0184a8), `x_initregs`
+     * (0x0c03d1dc). */
+
+    /* `IMP_CLIP` (kpm row 0x237, name record at 0x100bb114). Established:
+     * shadow word 39; the befsh_addrs entry at 0x04067ca8 names raster
+     * register 0x1c06 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x101474c0: the window-id clip test, an enable
+     * bit with a 12-bit reference (bits 1-12) and mask (13-24); off at
+     * start-up. Established: arm1.u code writes it through slot 0x137,
+     * loading that address word at 3 places, first at 0x0c003b3c. */
+    KONA_IMP_CLIP                        = 0x237,
+
+    /* Functions that load the slot 0x138 address word: `init_imp`
+     * (0x0c003b54), `arm_buffer_config` (0x0c01341c), `arm_stencilmask`
+     * (0x0c014930), `arm_stencilfunc` (0x0c01499c), `e_stencil_test`
+     * (0x0c014a60), `d_stencil_test` (0x0c014a88), `depth_init` (0x0c014b1c),
+     * `stencil_pop` (0x0c014bb0), `CommonPixEnd` (0x0c0267bc), `SetupRM`
+     * (0x0c034130), `masked_clear` (0x0c03b644), `arm_clear` (0x0c03bec0),
+     * `x_initregs` (0x0c03d1f0). */
+
+    /* `IMP_SZ0` (kpm row 0x238, name record at 0x100bb118). Established:
+     * shadow word 40; the befsh_addrs entry at 0x04067cac names raster
+     * register 0x1c07 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10147500: stencil set-up, enable, 1- or 8-bit
+     * size, comparison (never to always), and the 8-bit reference, mask and
+     * write mask (bits 5-12, 13-20,
+     * 21-28). Established: arm1.u code writes it through slot 0x138, loading
+     * that address word at 13 places, first at 0x0c003b54. */
+    KONA_IMP_SZ0                         = 0x238,
+
+    /* Functions that load the slot 0x139 address word: `init_imp`
+     * (0x0c003b6c), `arm_buffer_config` (0x0c0133c0), `arm_depthfunc`
+     * (0x0c0147b8), `arm_depthmask` (0x0c0147ec), `e_depth_test`
+     * (0x0c01487c), `d_depth_test` (0x0c0148a4), `arm_stencilop`
+     * (0x0c014a28), `depth_init` (0x0c014ae8), `stencil_pop` (0x0c014c30),
+     * `depth_pop` (0x0c014cd8), `CommonPixEnd` (0x0c026800), `SetupRM`
+     * (0x0c03414c), `masked_clear` (0x0c03b658), `word_clear` (0x0c03bfbc),
+     * `x_initregs` (0x0c03d204). */
+
+    /* `IMP_SZ1` (kpm row 0x239, name record at 0x100bb11c). Established:
+     * shadow word 41; the befsh_addrs entry at 0x04067cb0 names raster
+     * register 0x1c08 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10147610: the stencil fail, depth-fail and
+     * depth-pass actions (3 bits each), then the depth test enable, depth
+     * size (16, 20, 24 or
+     * 32 bits), compression, depth function and depth write enable.
+     * Established: arm1.u code writes it through slot 0x139, loading that
+     * address word at 15 places, first at 0x0c003b6c. */
+    KONA_IMP_SZ1                         = 0x239,
+
+    /* Functions that load the slot 0x13a address word: `init_imp`
+     * (0x0c003b84), `late_state_init` (0x0c0141ec), `arm_cleardepth`
+     * (0x0c014788), `arm_clearstencil` (0x0c0148f0), `depth_pop`
+     * (0x0c014dc8), `accum_clear` (0x0c03b818), `accum_clear32` (0x0c03b9d0),
+     * `word_clear` (0x0c03bfec). */
+
+    /* `IMP_DEPTH_CLEAR` (kpm row 0x23a, name record at 0x100bb120).
+     * Established: shadow word 42; the befsh_addrs entry at 0x04067cb4 names
+     * raster register 0x1c09 and befsh_init gives it start-up value 0x0.
+     * Inferred from the name (record 0x10147760, a whole word): the value
+     * written into the depth buffer by a depth clear. Established: arm1.u
+     * code writes it through slot 0x13a, loading that address word at 8
+     * places, first at 0x0c003b84. */
+    KONA_IMP_DEPTH_CLEAR                 = 0x23a,
+
+    /* Functions that load the slot 0x13b address word: `init_imp`
+     * (0x0c003b98), `arm_buffer_config` (0x0c013470), `arm_drawbuffer`
+     * (0x0c013bd0), `color_pop` (0x0c014614), `arm_validate_clip`
+     * (0x0c018318), `word_clear` (0x0c03bfa4), `x_initregs` (0x0c03d218). */
+
+    /* `IMP_ADDR` (kpm row 0x23b, name record at 0x100bb124). Established:
+     * shadow word 43; the befsh_addrs entry at 0x04067cb8 names raster
+     * register 0x1c0b and befsh_init gives it start-up value 0x32212301.
+     * Inferred from kpm raster record 0x10147780: framebuffer base addresses
+     * in 6-bit fields, colour (bits 0-5), multisample (6-11, with a buffer
+     * tag at 12), stencil (13-18), depth (19-24) and accumulation (25-30);
+     * start-up 0x32212301. Established: arm1.u code writes it through slot
+     * 0x13b, loading that address word at 7 places, first at 0x0c003b98. */
+    KONA_IMP_ADDR                        = 0x23b,
+
+    /* Functions that load the slot 0x13c address word: `init_imp`
+     * (0x0c003bb4), `arm_colormask` (0x0c012d84), `arm_blendequation`
+     * (0x0c013064), `color_init` (0x0c01410c), `color_pop` (0x0c0142c4),
+     * `arm_blendfunc` (0x0c0158d0), `e_blend` (0x0c015948), `d_blend`
+     * (0x0c0159c0), `e_color_logic_op` (0x0c015af4), `d_color_logic_op`
+     * (0x0c015b68), `e_logic_op` (0x0c015bd4), `d_logic_op` (0x0c015c08),
+     * `arm_logicop` (0x0c015c30), `masked_clear` (0x0c03b5dc), `x_initregs`
+     * (0x0c03d230). */
+
+    /* `IMP_BL` (kpm row 0x23c, name record at 0x100bb128). Established:
+     * shadow word 44; the befsh_addrs entry at 0x04067cbc names raster
+     * register 0x1c0d and befsh_init gives it start-up value 0x11012.
+     * Inferred from kpm raster record 0x10147810: blending and logic ops, a
+     * logic-op enable and 4-bit op, a blend enable, RGB and alpha equations,
+     * source and destination factors for RGB and alpha, and precision and
+     * speed-up bits; start-up 0x11012 gives source factor one and destination
+     * factor zero for both. Established: arm1.u code writes it through slot
+     * 0x13c, loading that address word at 15 places, first at 0x0c003bb4. */
+    KONA_IMP_BL                          = 0x23c,
+
+    /* Functions that load the slot 0x13d address word: `init_imp`
+     * (0x0c003cc8), `arm_indexmask` (0x0c012e78), `arm_buffer_config`
+     * (0x0c013548), `color_init` (0x0c014128), `color_pop` (0x0c014328),
+     * `accum_clear` (0x0c03b750), `accum_clear32` (0x0c03b8ec),
+     * `overlay_clear` (0x0c03bb50), `arm_clear` (0x0c03be84),
+     * `masked_word_clear` (0x0c03c0e4), `x_initregs` (0x0c03d248). */
+
+    /* `IMP_WMASK_BIT` (kpm row 0x23d, name record at 0x100bb12c).
+     * Established: shadow word 45; the befsh_addrs entry at 0x04067cc0 names
+     * raster register 0x1c14 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10147a40: the per-bit colour write
+     * mask for red (bits 0-11) and green (12-23). Established: arm1.u code
+     * writes it through slot 0x13d, loading that address word at 11 places,
+     * first at 0x0c003cc8. */
+    KONA_IMP_WMASK_BIT                   = 0x23d,
+
+    /* Functions that load the slot 0x13e address word: `init_imp`
+     * (0x0c003cdc), `color_init` (0x0c01413c), `accum_clear` (0x0c03b764),
+     * `accum_clear32` (0x0c03b900), `arm_clear` (0x0c03be98),
+     * `masked_word_clear` (0x0c03c0f8), `x_initregs` (0x0c03d260). */
+
+    /* `IMP_WMASK_BIT_1` (kpm row 0x23e, name record at 0x100bb130).
+     * Established: shadow word 46; the befsh_addrs entry at 0x04067cc4 names
+     * raster register 0x1c15 and befsh_init gives it start-up value 0x0.
+     * Inferred: the per-bit write mask for blue (bits 0-11) and alpha
+     * (12-23), the second word of `IMP_WMASK_BIT`. Established: arm1.u code
+     * writes it through slot 0x13e, loading that address word at 7 places,
+     * first at 0x0c003cdc. */
+    KONA_IMP_WMASK_BIT_1                 = 0x23e,
+
+    /* Functions that load the slot 0x13f address word: `arm_readpixels`
+     * (0x0c02c654), `SetupSubtexload` (0x0c03435c), `SetupTexRead`
+     * (0x0c0345dc). */
+
+    /* `COMMON_IFMT` (kpm row 0x23f, name record at 0x100bb134). Established:
+     * shadow word 47; the befsh_addrs entry at 0x04067cc8 names raster
+     * register 0x3ff8 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10148670: a 5-bit pack code naming the pixel
+     * layout on the bus (RGBA4, RGB5A1, R5G6B5,
+     * LA8, L16, RGBA8,
+     * RGB10A2, LA16, Z32,
+     * RGBA16, RGBA12 and others) for the read and texture-read paths.
+     * Established: arm1.u code writes it through slot 0x13f, loading that
+     * address word at 3 places, first at 0x0c02c654. */
+    KONA_COMMON_IFMT                     = 0x23f,
+
+    /* Functions that load the slot 0x140 address word:
+     * `PixRM_TextureLoadSetup` (0x0c0365c4). */
+
+    /* `TGTML_TEXLD_MISC` (kpm row 0x240, name record at 0x100bb138).
+     * Established: shadow word 48; the befsh_addrs entry at 0x04067ccc names
+     * raster register 0x7fc5 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10148860: the texture-load mode, with
+     * texel size, a load scissor enable, the target bank, the tiling (2D, 3D,
+     * 3D mipmap or bicubic), s and t address widths and an
+     * interlaced-download bit; its befsh_addrs entry has bit 30 set, the mark
+     * of the texture-load registers. Established: arm1.u code writes it
+     * through slot 0x140, loading that address word at 1 place, first at
+     * 0x0c0365c4. */
+    KONA_TGTML_TEXLD_MISC                = 0x240,
+
+    /* Functions that load the slot 0x141 address word:
+     * `PixRM_TextureLoadSetup` (0x0c036618). */
+
+    /* `TGTML_TEXLD_S1ST_RSTART` (kpm row 0x241, name record at 0x100bb13c).
+     * Established: shadow word 49; the befsh_addrs entry at 0x04067cd0 names
+     * raster register 0x7fc3 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10148800: where a texture load
+     * begins, the first s start (bits 0-15) and the r start (16-26).
+     * Established: arm1.u code writes it through slot 0x141, loading that
+     * address word at 1 place, first at 0x0c036618. */
+    KONA_TGTML_TEXLD_S1ST_RSTART         = 0x241,
+
+    /* Functions that load the slot 0x142 address word:
+     * `PixRM_TextureLoadSetup` (0x0c036668). */
+
+    /* `TGTML_TEXLD_STSTART` (kpm row 0x242, name record at 0x100bb140).
+     * Established: shadow word 50; the befsh_addrs entry at 0x04067cd4 names
+     * raster register 0x7fc2 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x101487d0: the s start (bits 0-15) and
+     * t start (16-31) of a texture load. Established: arm1.u code writes it
+     * through slot 0x142, loading that address word at 1 place, first at
+     * 0x0c036668. */
+    KONA_TGTML_TEXLD_STSTART             = 0x242,
+
+    /* Functions that load the slot 0x143 address word:
+     * `PixRM_TextureLoadSetup` (0x0c036708). */
+
+    /* `TGTML_TEXLD_SIZE` (kpm row 0x243, name record at 0x100bb144).
+     * Established: shadow word 51; the befsh_addrs entry at 0x04067cd8 names
+     * raster register 0x7fc1 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10148790: the s, t and r sizes of a
+     * texture load, four bits each. Established: arm1.u code writes it
+     * through slot 0x143, loading that address word at 1 place, first at
+     * 0x0c036708. */
+    KONA_TGTML_TEXLD_SIZE                = 0x243,
+
+    /* Functions that load the slot 0x144 address word:
+     * `PixRM_TextureLoadSetup` (0x0c03675c). */
+
+    /* `TGTML_TEXLD_STEND` (kpm row 0x244, name record at 0x100bb148).
+     * Established: shadow word 52; the befsh_addrs entry at 0x04067cdc names
+     * raster register 0x7fc4 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10148830: the s end (bits 0-15) and t
+     * end (16-31) of a texture load. Established: arm1.u code writes it
+     * through slot 0x144, loading that address word at 1 place, first at
+     * 0x0c03675c. */
+    KONA_TGTML_TEXLD_STEND               = 0x244,
+
+    /* Functions that load the slot 0x145 address word:
+     * `PixRM_TextureLoadSetup` (0x0c03677c). */
+
+    /* `TML_TEXLD_GLOBALOFFSET` (kpm row 0x245, name record at 0x100bb14c).
+     * Established: shadow word 53; the befsh_addrs entry at 0x04067ce0 names
+     * raster register 0x5001 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10146500: the texture-memory address
+     * a load starts at, a 21-bit offset plus 3 high bits at bit 21.
+     * Established: arm1.u code writes it through slot 0x145, loading that
+     * address word at 1 place, first at 0x0c03677c. */
+    KONA_TML_TEXLD_GLOBALOFFSET          = 0x245,
+
+    /* Functions that load the slot 0x146 address word: `mem_reserve_tex`
+     * (0x0c024200), `mem_swapout_tex` (0x0c0242d8), `mem_swapin_tex`
+     * (0x0c024350), `SetupRM_TextureBind` (0x0c0368b4). */
+
+    /* `TM_DRAW_GLOBALOFFSET` (kpm row 0x246, name record at 0x100bb150).
+     * Established: shadow word 54; the befsh_addrs entry at 0x04067ce4 names
+     * raster register 0x101a and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10146260: the texture-memory offset
+     * used while drawing, the same 21-plus-3-bit layout as the load offset.
+     * Established: arm1.u code writes it through slot 0x146, loading that
+     * address word at 4 places, first at 0x0c024200. */
+    KONA_TM_DRAW_GLOBALOFFSET            = 0x246,
+
+    /* `TM_MEMCONF` (kpm row 0x247, name record at 0x100bb154). Established:
+     * shadow word 55; the befsh_addrs entry at 0x04067ce8 names raster
+     * register 0x1000 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10145b10: the texture memory's geometry, the
+     * number of s and t address bits (4 bits each). Established: no arm1.u
+     * code loads its slot 0x147 address word; the ARM reaches it only in its
+     * loops over all 89 words (start-up, context load and one diagnostic
+     * case). */
+    KONA_TM_MEMCONF                      = 0x247,
+
+    /* Functions that load the slot 0x148 address word: `CommonPixEnd`
+     * (0x0c026738), `SetupRM_TextureBind` (0x0c036894). */
+
+    /* `TGTM_TEX_SIZE` (kpm row 0x248, name record at 0x100bb158).
+     * Established: shadow word 56; the befsh_addrs entry at 0x04067cec names
+     * raster register 0x3fd5 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x101484c0: the bound texture's s, t
+     * and r sizes (4 bits each) and one address-control bit per axis (bits
+     * 12-14) that the texture generator and texture memory share.
+     * Established: arm1.u code writes it through slot 0x148, loading that
+     * address word at 2 places, first at 0x0c026738. */
+    KONA_TGTM_TEX_SIZE                   = 0x248,
+
+    /* Functions that load the slot 0x149 address word:
+     * `arm_bind_detail_texture` (0x0c025ffc), `CommonPixEnd` (0x0c026724),
+     * `SetupRM_TextureBind` (0x0c036940). */
+
+    /* `TGTMTFT` (kpm row 0x249, name record at 0x100bb15c). Established:
+     * shadow word 57; the befsh_addrs entry at 0x04067cf0 names raster
+     * register 0x3fd4 and befsh_init gives it start-up value 0x30. Inferred
+     * from kpm raster record 0x10148010: the main texture mode,
+     * dimensionality (2D, 3D, 3D mipmap or bicubic), minify and magnify
+     * filters, shadow compare, clamp style, environment enable, texel format
+     * (7 bits at 14) and more; start-up 0x30 selects nearest-mipmap-linear
+     * minify and linear magnify, the GL defaults. Established: arm1.u code
+     * writes it through slot 0x149, loading that address word at 3 places,
+     * first at 0x0c025ffc. */
+    KONA_TGTMTFT                         = 0x249,
+
+    /* Functions that load the slot 0x14a address word:
+     * `arm_bind_3d_mipmap_texture` (0x0c025d64), `CommonPixEnd` (0x0c026764),
+     * `SetupRM_TextureBind` (0x0c0369c4). */
+
+    /* `TG_MAP_LEVEL` (kpm row 0x24a, name record at 0x100bb160). Established:
+     * shadow word 58; the befsh_addrs entry at 0x04067cf4 names raster
+     * register 0x0c04 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10145a90: the lowest and highest mipmap levels
+     * in use, 10 bits each. Established: arm1.u code writes it through slot
+     * 0x14a, loading that address word at 3 places, first at 0x0c025d64. */
+    KONA_TG_MAP_LEVEL                    = 0x24a,
+
+    /* Functions that load the slot 0x14b address word:
+     * `arm_bind_3d_mipmap_texture` (0x0c025d40), `SetupRM_TextureBind`
+     * (0x0c036970). */
+
+    /* `TG_LOD_SCALEST` (kpm row 0x24b, name record at 0x100bb164).
+     * Established: shadow word 59; the befsh_addrs entry at 0x04067cf8 names
+     * raster register 0x0c05 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10145ac0: level-of-detail scale
+     * factors for s (bits 0-7) and t (8-15). Established: arm1.u code writes
+     * it through slot 0x14b, loading that address word at 2 places, first at
+     * 0x0c025d40. */
+    KONA_TG_LOD_SCALEST                  = 0x24b,
+
+    /* Functions that load the slot 0x14c address word:
+     * `arm_bind_3d_mipmap_texture` (0x0c025d50), `SetupRM_TextureBind`
+     * (0x0c03699c). */
+
+    /* `TG_LOD_SCALER` (kpm row 0x24c, name record at 0x100bb168).
+     * Established: shadow word 60; the befsh_addrs entry at 0x04067cfc names
+     * raster register 0x0c06 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10145af0: the level-of-detail scale
+     * for r, eight bits. Established: arm1.u code writes it through slot
+     * 0x14c, loading that address word at 2 places, first at 0x0c025d50. */
+    KONA_TG_LOD_SCALER                   = 0x24c,
+
+    /* Functions that load the slot 0x14d address word:
+     * `arm_bind_2d_clipmap_texture` (0x0c025c20), `arm_bind_detail_texture`
+     * (0x0c025f68). */
+
+    /* `TGTM_DCTEX_SIZE` (kpm row 0x24d, name record at 0x100bb16c).
+     * Established: shadow word 61; the befsh_addrs entry at 0x04067d00 names
+     * raster register 0x3fd6 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10148530: detail-texture s and t
+     * sizes, the clip-map size, the clip-map level offset (bits 12-21) and
+     * the clip-map enable (bit 22). Established: arm1.u code writes it
+     * through slot 0x14d, loading that address word at 2 places, first at
+     * 0x0c025c20. */
+    KONA_TGTM_DCTEX_SIZE                 = 0x24d,
+
+    /* Functions that load the slot 0x14e address word: `arm_bind_texture`
+     * (0x0c025924), `arm_bind_detail_texture` (0x0c025fc4). */
+
+    /* `TM_DRAW_DETAILMAP` (kpm row 0x24e, name record at 0x100bb170).
+     * Established: shadow word 62; the befsh_addrs entry at 0x04067d04 names
+     * raster register 0x1019 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10146230: where the detail map sits
+     * in texture memory, 21 bits plus 3 high bits. Established: arm1.u code
+     * writes it through slot 0x14e, loading that address word at 2 places,
+     * first at 0x0c025924. */
+    KONA_TM_DRAW_DETAILMAP               = 0x24e,
+
+    /* Functions that load the slot 0x14f address word:
+     * `arm_bind_3d_mipmap_texture` (0x0c025d74), `arm_bind_bicubic_texture`
+     * (0x0c025e50), `arm_bind_3d_texture` (0x0c025ed8). */
+
+    /* `TM_TEX_SIZE` (kpm row 0x24f, name record at 0x100bb174). Established:
+     * shadow word 63; the befsh_addrs entry at 0x04067d08 names raster
+     * register 0x13d5 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10146440: the texture-memory chip's own copy
+     * of the s, t, r sizes and address-control bits, at index 0x13d5 rather
+     * than the generator's 0x3fd5. Established: arm1.u code writes it through
+     * slot 0x14f, loading that address word at 3 places, first at 0x0c025d74. */
+    KONA_TM_TEX_SIZE                     = 0x24f,
+
+    /* Functions that load the slot 0x150 address word:
+     * `arm_bind_2d_clipmap_texture` (0x0c025bd0). */
+
+    /* `TM_DRAW_CLIP_OFFSET` (kpm row 0x250, name record at 0x100bb178).
+     * Established: shadow word 64; the befsh_addrs entry at 0x04067d0c names
+     * raster register 0x1020 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x101463a0: the clip-map s offset (bits
+     * 0-15) and t offset (16-31) in texture memory. Established: arm1.u code
+     * writes it through slot 0x150, loading that address word at 1 place,
+     * first at 0x0c025bd0. */
+    KONA_TM_DRAW_CLIP_OFFSET             = 0x250,
+
+    /* Functions that load the slot 0x151 address word:
+     * `arm_bind_2d_clipmap_texture` (0x0c025bb8). */
+
+    /* `TM_DRAW_CLIP_BKPT` (kpm row 0x251, name record at 0x100bb17c).
+     * Established: shadow word 65; the befsh_addrs entry at 0x04067d10 names
+     * raster register 0x1021 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x101463d0: a 4-bit clip-map break
+     * point held by the texture memory chip. Established: arm1.u code writes
+     * it through slot 0x151, loading that address word at 1 place, first at
+     * 0x0c025bb8. */
+    KONA_TM_DRAW_CLIP_BKPT               = 0x251,
+
+    /* Functions that load the slot 0x152 address word:
+     * `arm_bind_2d_clipmap_texture` (0x0c025bf4). */
+
+    /* `TGTM_TEX_SCENTER` (kpm row 0x252, name record at 0x100bb180).
+     * Established: shadow word 66; the befsh_addrs entry at 0x04067d14 names
+     * raster register 0x3fd7 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10148590: the clip map's centre in s,
+     * 15 bits. Established: arm1.u code writes it through slot 0x152, loading
+     * that address word at 1 place, first at 0x0c025bf4. */
+    KONA_TGTM_TEX_SCENTER                = 0x252,
+
+    /* Functions that load the slot 0x153 address word:
+     * `arm_bind_2d_clipmap_texture` (0x0c025c08). */
+
+    /* `TGTM_TEX_TCENTER` (kpm row 0x253, name record at 0x100bb184).
+     * Established: shadow word 67; the befsh_addrs entry at 0x04067d18 names
+     * raster register 0x3fd8 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x101485b0: the clip map's centre in t,
+     * 15 bits. Established: arm1.u code writes it through slot 0x153, loading
+     * that address word at 1 place, first at 0x0c025c08. */
+    KONA_TGTM_TEX_TCENTER                = 0x253,
+
+    /* `TFT_SBIAS_EN` (kpm row 0x254, name record at 0x100bb188). Established:
+     * shadow word 68; the befsh_addrs entry at 0x04067d1c names raster
+     * register 0x1850 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10146da0: one enable bit each for alpha, blue,
+     * green and red texel scale-and-bias (bits 0-3). Established: no arm1.u
+     * code loads its slot 0x154 address word; the ARM reaches it only in its
+     * loops over all 89 words (start-up, context load and one diagnostic
+     * case). */
+    KONA_TFT_SBIAS_EN                    = 0x254,
+
+    /* `TFT_SCALE` (kpm row 0x255, name record at 0x100bb18c). Established:
+     * shadow word 69; the befsh_addrs entry at 0x04067d20 names raster
+     * register 0x1851 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10146df0: an 8-bit texel scale per component,
+     * alpha in the low byte up to red in the high byte. Established: no
+     * arm1.u code loads its slot 0x155 address word; the ARM reaches it only
+     * in its loops over all 89 words (start-up, context load and one
+     * diagnostic case). */
+    KONA_TFT_SCALE                       = 0x255,
+
+    /* `TFT_BIAS` (kpm row 0x256, name record at 0x100bb190). Established:
+     * shadow word 70; the befsh_addrs entry at 0x04067d24 names raster
+     * register 0x1852 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10146e40: the matching 8-bit texel bias per
+     * component, in the same byte order as the scale. Established: no arm1.u
+     * code loads its slot 0x156 address word; the ARM reaches it only in its
+     * loops over all 89 words (start-up, context load and one diagnostic
+     * case). */
+    KONA_TFT_BIAS                        = 0x256,
+
+    /* Functions that load the slot 0x157 address word: `arm_colortable`
+     * (0x0c03e260), `PixValidateTexColorTable` (0x0c03e980), `d_texcoltab`
+     * (0x0c03f314). */
+
+    /* `TFT_TLUT` (kpm row 0x257, name record at 0x100bb194). Established:
+     * shadow word 71; the befsh_addrs entry at 0x04067d28 names raster
+     * register 0x1853 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10146e90: the texture colour lookup table, its
+     * 10-bit address, its component count (one, two or three) and an enable
+     * bit. Established: arm1.u code writes it through slot 0x157, loading
+     * that address word at 3 places, first at 0x0c03e260. */
+    KONA_TFT_TLUT                        = 0x257,
+
+    /* Functions that load the slot 0x158 address word: `arm_shadow_texture`
+     * (0x0c026260). */
+
+    /* `TM_DRAW_SHA_AMBIENT` (kpm row 0x258, name record at 0x100bb198).
+     * Established: shadow word 72; the befsh_addrs entry at 0x04067d2c names
+     * raster register 0x101e and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10146360: a 6-bit ambient level for
+     * shadow textures, kept in the texture memory chip. Established: arm1.u
+     * code writes it through slot 0x158, loading that address word at 1
+     * place, first at 0x0c026260. */
+    KONA_TM_DRAW_SHA_AMBIENT             = 0x258,
+
+    /* Functions that load the slot 0x159 address word: `arm_shadow_texture`
+     * (0x0c026234), `CommonPixEnd` (0x0c026710). */
+
+    /* `TM_DRAW_REDUNDANCY` (kpm row 0x259, name record at 0x100bb19c).
+     * Established: shadow word 73; the befsh_addrs entry at 0x04067d30 names
+     * raster register 0x101f and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10146380: a single redundancy bit in
+     * the texture memory chip. Established: arm1.u code writes it through
+     * slot 0x159, loading that address word at 2 places, first at 0x0c026234. */
+    KONA_TM_DRAW_REDUNDANCY              = 0x259,
+
+    /* Functions that load the slot 0x15a address word: `arm_shadow_texture`
+     * (0x0c026248). */
+
+    /* `TG_MISC` (kpm row 0x25a, name record at 0x100bb1a0). Established:
+     * shadow word 74; the befsh_addrs entry at 0x04067d34 names raster
+     * register 0x0c02 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10145a60: two texture-generator bits, priority
+     * (bit 0) and compression (bit 1). Established: arm1.u code writes it
+     * through slot 0x15a, loading that address word at 1 place, first at
+     * 0x0c026248. */
+    KONA_TG_MISC                         = 0x25a,
+
+    /* Functions that load the slot 0x15b address word: `masked_clear`
+     * (0x0c03b5c8). */
+
+    /* `TFP_AFUNC` (kpm row 0x25b, name record at 0x100bb1a4). Established:
+     * shadow word 75; the befsh_addrs entry at 0x04067d38 names raster
+     * register 0x1407 and befsh_init gives it start-up value 0x7000. Inferred
+     * from kpm raster record 0x10146900: the alpha test, a 12-bit reference,
+     * a 3-bit comparison and an enable (bit 15); start-up 0x7000 is
+     * compare-always with the test off. Established: arm1.u code writes it
+     * through slot 0x15b, loading that address word at 1 place, first at
+     * 0x0c03b5c8. */
+    KONA_TFP_AFUNC                       = 0x25b,
+
+    /* `TFP_TEX` (kpm row 0x25c, name record at 0x100bb1a8). Established:
+     * shadow word 76; the befsh_addrs entry at 0x04067d3c names raster
+     * register 0x1500 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x101465a0: the one-bit texturing enable of the
+     * texture filter. Established: no arm1.u code loads its slot 0x15c
+     * address word; the ARM reaches it only in its loops over all 89 words
+     * (start-up, context load and one diagnostic case). */
+    KONA_TFP_TEX                         = 0x25c,
+
+    /* `TFP_TEV` (kpm row 0x25d, name record at 0x100bb1ac). Established:
+     * shadow word 77; the befsh_addrs entry at 0x04067d40 names raster
+     * register 0x1401 and befsh_init gives it start-up value 0x22. Inferred
+     * from kpm raster record 0x10146640: the texture environment, separate
+     * 4-bit alpha and colour functions (replace fragment, replace texture,
+     * modulate, blend, decal, add, add minus a half); start-up 0x22 sets both
+     * to modulate. Established: no arm1.u code loads its slot 0x15d address
+     * word; the ARM reaches it only in its loops over all 89 words (start-up,
+     * context load and one diagnostic case). */
+    KONA_TFP_TEV                         = 0x25d,
+
+    /* `TFP_TEV_CC` (kpm row 0x25e, name record at 0x100bb1b0). Established:
+     * shadow word 78; the befsh_addrs entry at 0x04067d44 names raster
+     * register 0x1402 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10146750: the texture environment colour's
+     * green (bits 0-11) and red (12-23). Established: no arm1.u code loads
+     * its slot 0x15e address word; the ARM reaches it only in its loops over
+     * all 89 words (start-up, context load and one diagnostic case). */
+    KONA_TFP_TEV_CC                      = 0x25e,
+
+    /* `TFP_TEV_CC1` (kpm row 0x25f, name record at 0x100bb1b4). Established:
+     * shadow word 79; the befsh_addrs entry at 0x04067d48 names raster
+     * register 0x1413 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10146780: the environment colour's alpha (bits
+     * 0-11) and blue (12-23). Established: no arm1.u code loads its slot
+     * 0x15f address word; the ARM reaches it only in its loops over all 89
+     * words (start-up, context load and one diagnostic case). */
+    KONA_TFP_TEV_CC1                     = 0x25f,
+
+    /* Functions that load the slot 0x160 address word: `init_tf`
+     * (0x0c0038a0), `init_simulator_hacks` (0x0c003f4c). */
+
+    /* `TFP_AC` (kpm row 0x260, name record at 0x100bb1b8). Established:
+     * shadow word 80; the befsh_addrs entry at 0x04067d4c names raster
+     * register 0x140e and befsh_init gives it start-up value 0x8000. Inferred
+     * from the field names alone at kpm raster record 0x10146c10: a 12-bit
+     * `DGBASE` and a 5-bit `DGTPL` field; start-up 0x8000 sets `DGTPL` to 8.
+     * Established: arm1.u code writes it through slot 0x160, loading that
+     * address word at 2 places, first at 0x0c0038a0. */
+    KONA_TFP_AC                          = 0x260,
+
+    /* Functions that load the slot 0x161 address word: `arm_samplemask`
+     * (0x0c03c3b8), `init_multisample` (0x0c03c424), `multisample_pop`
+     * (0x0c03c6b8). */
+
+    /* `TFP_FADE_MASK_LUT` (kpm row 0x261, name record at 0x100bb1bc).
+     * Established: shadow word 81; the befsh_addrs entry at 0x04067d50 names
+     * raster register 0x140b and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10146ab0: four 8-bit entries (`N0` to
+     * `N3`) of the fade table used by alpha-to-mask. Established: arm1.u code
+     * writes it through slot 0x161, loading that address word at 3 places,
+     * first at 0x0c03c3b8. */
+    KONA_TFP_FADE_MASK_LUT               = 0x261,
+
+    /* Functions that load the slot 0x162 address word: `arm_buffer_config`
+     * (0x0c0134a8), `masked_clear` (0x0c03b5f0). */
+
+    /* `TFP_FOG` (kpm row 0x262, name record at 0x100bb1c0). Established:
+     * shadow word 82; the befsh_addrs entry at 0x04067d54 names raster
+     * register 0x1403 and befsh_init gives it start-up value 0x80000.
+     * Inferred from kpm raster record 0x101467b0: fog control, colour and fog
+     * modes (4 bits each), an 8-bit table address, a one-table bit, a
+     * colour-index bit and enables for the offset, centring and fog itself;
+     * start-up sets only the centring enable. Established: arm1.u code writes
+     * it through slot 0x162, loading that address word at 2 places, first at
+     * 0x0c0134a8. */
+    KONA_TFP_FOG                         = 0x262,
+
+    /* `TFP_FOG_CC` (kpm row 0x263, name record at 0x100bb1c4). Established:
+     * shadow word 83; the befsh_addrs entry at 0x04067d58 names raster
+     * register 0x1404 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10146840: the fog colour's green (bits 0-11)
+     * and red (12-23). Established: no arm1.u code loads its slot 0x163
+     * address word; the ARM reaches it only in its loops over all 89 words
+     * (start-up, context load and one diagnostic case). */
+    KONA_TFP_FOG_CC                      = 0x263,
+
+    /* `TFP_FOG_CC1` (kpm row 0x264, name record at 0x100bb1c8). Established:
+     * shadow word 84; the befsh_addrs entry at 0x04067d5c names raster
+     * register 0x1414 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10146870: the fog colour's blue, 12 bits.
+     * Established: no arm1.u code loads its slot 0x164 address word; the ARM
+     * reaches it only in its loops over all 89 words (start-up, context load
+     * and one diagnostic case). */
+    KONA_TFP_FOG_CC1                     = 0x264,
+
+    /* `TFP_FOG_OFFSET` (kpm row 0x265, name record at 0x100bb1cc).
+     * Established: shadow word 85; the befsh_addrs entry at 0x04067d60 names
+     * raster register 0x1406 and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x101468e0: a 32-bit depth value added
+     * before fog is computed. Established: no arm1.u code loads its slot
+     * 0x165 address word; the ARM reaches it only in its loops over all 89
+     * words (start-up, context load and one diagnostic case). */
+    KONA_TFP_FOG_OFFSET                  = 0x265,
+
+    /* Functions that load the slot 0x166 address word: `init_tf`
+     * (0x0c003888), `arm_buffer_config` (0x0c013590). */
+
+    /* `TFP_PIX_FMT` (kpm row 0x266, name record at 0x100bb1d0). Established:
+     * shadow word 86; the befsh_addrs entry at 0x04067d64 names raster
+     * register 0x1410 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x10146c60: one bit marking the texture filter's
+     * output pixels as luminance-alpha. Established: arm1.u code writes it
+     * through slot 0x166, loading that address word at 2 places, first at
+     * 0x0c003888. */
+    KONA_TFP_PIX_FMT                     = 0x266,
+
+    /* Functions that load the slot 0x167 address word: `arm_buffer_config`
+     * (0x0c0135a8), `PixEndRGBStream` (0x0c0269fc), `SetupGE_StencilStream`
+     * (0x0c02d484). */
+
+    /* `TFP_COLOR_FMT` (kpm row 0x267, name record at 0x100bb1d4).
+     * Established: shadow word 87; the befsh_addrs entry at 0x04067d68 names
+     * raster register 0x140f and befsh_init gives it start-up value 0x0.
+     * Inferred from kpm raster record 0x10146c40: one bit marking the
+     * incoming colour as luminance-alpha. Established: arm1.u code writes it
+     * through slot 0x167, loading that address word at 3 places, first at
+     * 0x0c0135a8. */
+    KONA_TFP_COLOR_FMT                   = 0x267,
+
+    /* Functions that load the slot 0x168 address word: `init_imp`
+     * (0x0c003cf0), `arm_colormask` (0x0c012e08), `arm_blendcolor`
+     * (0x0c012f88), `arm_buffer_config` (0x0c013640), `resolve_banks`
+     * (0x0c013a4c), `color_init` (0x0c014150), `color_pop` (0x0c01462c),
+     * `stencil_pop` (0x0c014c88), `e_multisample` (0x0c0156e8),
+     * `d_multisample` (0x0c015758), `SetupReadbackTF` (0x0c033e98),
+     * `arm_clear` (0x0c03bd04), `masked_word_clear` (0x0c03c138),
+     * `init_multisample` (0x0c03c43c), `e_alpha2mask` (0x0c03c57c),
+     * `d_alpha2mask` (0x0c03c5a4), `e_alpha2one` (0x0c03c5cc), `d_alpha2one`
+     * (0x0c03c5f4), `e_samplemask` (0x0c03c61c), `d_samplemask` (0x0c03c644),
+     * `x_initregs` (0x0c03d274). */
+
+    /* `TFP_AMASK` (kpm row 0x268, name record at 0x100bb1d8). Established:
+     * shadow word 88; the befsh_addrs entry at 0x04067d6c names raster
+     * register 0x1408 and befsh_init gives it start-up value 0x0. Inferred
+     * from kpm raster record 0x101469c0: three enables, alpha-to-mask (bit
+     * 0), the fade mask (1) and alpha-to-one (2). Established: arm1.u code
+     * writes it through slot 0x168, loading that address word at 21 places,
+     * first at 0x0c003cf0. */
+    KONA_TFP_AMASK                       = 0x268,
+};
 
 /* ge_token_comments: shadow rows end */
 
