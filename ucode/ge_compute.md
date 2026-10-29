@@ -890,3 +890,102 @@ and ends the command. The `mmo_*` names sit on the same words as the `umo_*` one
 - `uge_MinmaxFill` (`minmax.s` lines 544-578, at 0x15db): **inferred**, combines three operands with the stored range:
   three minima and three maxima (0x15ea-0x15ef) between the input words and the stored minimum and maximum, the results
   written back by predicated stores (0x15f3-0x15f8).
+
+## Pixel-path stages: histogram, convolution and bitmaps
+
+**Inferred**, from the words of `histogram.s`, `histogram.S`, `conv3x3.s`, `conv5x5.s`, `conv7x7.s`, `bitmaptofloat.s` and
+`bitmaptoint.s`, with the parameter writers `U_uHistogram`, `U_uConv5x5S`, `U_uConv5x5G`, `U_uConv7x7G` and
+`U_uConvolutionOutput` ([arm1_functions.md](arm1_functions.md)). The histogram counts and the convolution partial sums
+live in engine external memory, which `mgeb_EramFill` clears before a transfer.
+
+- `mmo_Histogram` (`histogram.s` line 46, at 0x13b4): **inferred**, slot name of the `GL_HISTOGRAM` stage on the first
+  word of `umo_Histogram`; its words turn each input component into a bin number and count it.
+- `umo_Histogram` (`histogram.s` lines 46-135, at 0x13b4): **inferred**, takes the eight `U_uHistogram` words at
+  0x174-0x17b as input (copied into staging and registers 0 and 1 at 0x13b6-0x13c0), then starts the pipeline: the first
+  component is multiplied by the bin scale, limited by a minimum against the last bin and converted to an integer
+  (0x13ee, 0x13f2, 0x13f6).
+- `mainloop_hist` (`histogram.s` lines 142-163, at 0x13ff): **inferred**, per input component: multiply by the bin
+  scale (0x1401), minimum with the top bin (0x1405), float-to-integer (0x1409), then the bin address is formed through
+  register 6 and the count there is updated in external memory; the relative transfer at 0x140e repeats it on `cc` 0x14.
+- `epilogue_hist` (`histogram.s` lines 176-183, at 0x1417): **inferred**, two words that complete the last count update
+  and end the command; the result is the histogram left in external memory.
+- `uge_HistogramFill` (`histogram.s` lines 195-229, at 0x1420): **inferred**, adds three operand counts to three stored
+  bins: it reads each stored word, adds the operand with an integer add (0x1430-0x1434) and writes the sums back with
+  predicated stores (0x1439-0x143d).
+- `mgesi_HistogramUpload` (`histogram.S` lines 155-255, at 0x449d): **inferred**, returns the histogram to the host: it
+  writes the reply header 0x476 (0x44a0), reads the counts from external memory, converts them with float-to-integer
+  (0x44c9, 0x44ce), ORs neighbouring fields into one word (0x44f7) and sends the results through bus addresses 0x1f5 and
+  0x1f4, with loops on `cc` 0x14 at 0x44d3 and 0x44f6.
+- `mgeb_EramFill` (`histogram.S` lines 71-85, at 0x4530): **inferred**, fills a block of external memory with one operand
+  value by calling `DoEramFill`; the convolution and histogram set-ups use it to clear their areas.
+- `mgeb_EramIndirectFill` (`histogram.S` lines 107-129, at 0x4503): **inferred**, the same fill with the block address
+  taken from an operand pointer rather than the command itself, calling `DoEramFill` with that address.
+- `DoEramFill` (`histogram.S` lines 38-53, at 0x4544): **inferred**, the fill loop: it stores the fill value to eight
+  consecutive words per pass (predicated stores at 0x4547-0x4552), stepping the address register by its stride, and
+  repeats through the relative transfer at 0x454d until the count is used up.
+- `mgeb_EramMinmaxToCramMinmax` (`histogram.S` lines 306-327, at 0x443b): **inferred**, copies the eight min-max result
+  words from external memory into control memory 0x183-0x18a, where `merge1_mm` to `merge4_mm` compare with them, using
+  nine moves (0x443b-0x4471).
+- `mmo_CramMinmaxToEramMinmax` (`histogram.S` lines 268-294, at 0x4472): **inferred**, the reverse copy, the module
+  `AddMinMax` adds after the min-max stage: it moves the merged range from control memory 0x183-0x18a back to external
+  memory, the result `HP_GETMINMAX` later reads.
+- `mmo_GeneralConvolve3x3_124` (`conv3x3.s` line 127, at 0x20a3): **inferred**, slot name of the general 3 x 3 convolution
+  for one, two or four components, on the same word as its set-up.
+- `umo_GeneralConvolve3x3_124` (`conv3x3.s` lines 127-242, at 0x20a3): **inferred**, loads the kernel and layout words
+  from control memory 0x112-0x11f as input (40 moves), points the external-memory partial-sum pointer at 0xfffef200, and
+  branches to `normal_path_conv3` (`cc` 0x14) unless the image is too short for it.
+- `normal_path_conv3` (`conv3x3.s` lines 246-339, at 0x2100): **inferred**, starts the convolution of a row: it sets the
+  row pointers in address registers 0xb, 0xc and 0x10, multiplies the first input pixels by the nine kernel weights and
+  begins the multiply-add chains that build each output as the sum of a 3 x 3 neighbourhood times the kernel.
+- `mainloop_conv3` (`conv3x3.s` lines 345-386, at 0x214a): **inferred**, the 3 x 3 loop: two-unit multiply-add words
+  combine each input pixel with three kernel weights and the partial sums read from external memory, so each pass adds
+  one input row's contribution to three output rows.
+- `epilogue_conv3` (`conv3x3.s` lines 393-421, at 0x216f): **inferred**, finishes the last pixels with nine multiply-adds
+  and eight adds (0x216f-0x2187), stores the results, and points register 0x12 at the converter list 0x1c4 for the output
+  stage before the command ends.
+- `mmo_GeneralConvolve5x5_124` (`conv5x5.s` line 110, at 0x2189): **inferred**, slot name of the general 5 x 5
+  convolution, sharing its first word with the set-up below.
+- `umo_GeneralConvolve5x5_124` (`conv5x5.s` lines 110-269, at 0x2189): **inferred**, the 5 x 5 set-up: it seeds five
+  words with 0x8000 and loads the 19-word block of `U_uConv5x5G` from 0x112 as input before branching to its normal path.
+- `normal_path_conv5` (`conv5x5.s` lines 275-390, at 0x220b): **inferred**, starts a 5 x 5 row with seven multiplies and
+  the first multiply-add chains, the 25-weight neighbourhood sum taking five input rows.
+- `mainloop_conv5` (`conv5x5.s` lines 399-542, at 0x2265): **inferred**, the 5 x 5 loop: 109 words per pass of mostly
+  two-unit multiply-adds that add each input pixel times five weights into five partial sums.
+- `epilogue_conv5` (`conv5x5.s` lines 550-662, at 0x22d2): **inferred**, the 5 x 5 drain: 80 words of multiply-adds and
+  adds that complete and store the last partial sums.
+- `mmo_GeneralConvolve7x7_124` (`conv7x7.s` line 116, at 0x232d): **inferred**, slot name of the 7 x 7 convolution, on the
+  first word of its set-up.
+- `umo_GeneralConvolve7x7_124` (`conv7x7.s` lines 116-289, at 0x232d): **inferred**, the 7 x 7 set-up: the same 0x8000
+  seeds and block loads as the 5 x 5 one, from the block `U_uConv7x7G` writes.
+- `normal_path_conv7` (`conv7x7.s` lines 295-447, at 0x23bc): **inferred**, starts a 7 x 7 row: row pointers, seven
+  multiplies and the opening multiply-add chains of the 49-weight sum.
+- `mainloop_conv7` (`conv7x7.s` lines 456-726, at 0x2437): **inferred**, the 7 x 7 loop, 217 words per pass, adding each
+  input pixel times seven weights into seven partial sums.
+- `epilogue_conv7` (`conv7x7.s` lines 734-905, at 0x2510): **inferred**, the 7 x 7 drain of 133 words that completes the
+  sums of the last pixels and stores them.
+- `umo_BitmapToFloat` (`bitmaptofloat.s` lines 56-146, at 0x25a0): **inferred**, set-up of the bitmap-to-colour stage: it
+  loads the seven layout words from 0x1ba-0x1c0 as input and builds the bit masks 4, 0x10, 0x20, 0x40 and 0x80, then
+  tests the first input word bit by bit with AND words paired with unit-2 code 0x0f, which the diagnostic test does not
+  fix; it falls into the least-significant-first loop or branches to `b2f_msb_first`.
+- `mainloop_b2f_lsb_first` (`bitmaptofloat.s` lines 150-169, at 0x25e5): **inferred**, per input bitmap word it isolates
+  each bit with an AND or shift (0x25e6 onward), least significant first, and stores one output per bit through
+  register 0x12, the value chosen by the paired code 0x0f; the loop repeats on `cc` 0x14.
+- `epilogue_b2f_lsb_first` (`bitmaptofloat.s` lines 173-215, at 0x25f9): **inferred**, the drain for the last bits of the
+  least-significant-first order, with the same AND and code-0x0f pairs.
+- `b2f_msb_first` (`bitmaptofloat.s` lines 219-236, at 0x2620): **inferred**, the entry for `GL_UNPACK_LSB_FIRST` false:
+  four ANDs prepare the masks for the most-significant-first order before its loop.
+- `mainloop_b2f_msb_first` (`bitmaptofloat.s` lines 240-260, at 0x262d): **inferred**, the most-significant-first loop:
+  bit by bit from the top, one output value per bit.
+- `epilogue_b2f_msb_first` (`bitmaptofloat.s` lines 264-306, at 0x2642): **inferred**, drains the most-significant-first
+  order for the last bits of the bitmap.
+- `mainloop_b2i_lsb_first` (`bitmaptoint.s` lines 126-160, at 0x26a3): **inferred**, the integer form: per input word it
+  shifts right by four counts (0x26a5-0x26a8) and ANDs each result with 1 (0x26a9-0x26ac), storing 0 or 1 per bit,
+  least significant first.
+- `epilogue_b2i_lsb_first` (`bitmaptoint.s` lines 164-214, at 0x26c6): **inferred**, the shift-and-mask drain of the
+  least-significant-first integer case, 47 words.
+- `b2i_msb_first` (`bitmaptoint.s` lines 218-228, at 0x26f7): **inferred**, the guard of the most-significant-first
+  integer loop, taking the drain on a short input.
+- `mainloop_b2i_msb_first` (`bitmaptoint.s` lines 232-266, at 0x26ff): **inferred**, the same shift-right and AND-with-1
+  conversion with the shift counts in the reverse order, so the top bit comes out first.
+- `epilogue_b2i_msb_first` (`bitmaptoint.s` lines 270-320, at 0x2722): **inferred**, drains the most-significant-first
+  integer case and ends the command after the last stored bit.

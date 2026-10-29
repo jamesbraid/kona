@@ -1992,11 +1992,11 @@ ge.u	label	0x0000132b	lXF12		understood	ucode/ge_compute.md#transform-modules-ux
 ge.u	label	0x0000135c	mmo_ObjToEyeSpaceAndSixUserTR		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
 ge.u	label	0x0000135c	umo_ObjToEyeSpaceAndSixUserTR		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
 ge.u	label	0x00001362	lXF7		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
-ge.u	label	0x000013b4	mmo_Histogram		located	ucode/ge_handlers.md#histograms	histogram.s
-ge.u	label	0x000013b4	umo_Histogram		located	ucode/ge_handlers.md#histograms	histogram.s
-ge.u	label	0x000013ff	mainloop_hist		located	ucode/ge_handlers.md#histograms	histogram.s
-ge.u	label	0x00001417	epilogue_hist		located	ucode/ge_handlers.md#histograms	histogram.s
-ge.u	label	0x00001420	uge_HistogramFill		located	ucode/ge_handlers.md#histograms	histogram.s
+ge.u	label	0x000013b4	mmo_Histogram		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x000013b4	umo_Histogram		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x000013ff	mainloop_hist		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00001417	epilogue_hist		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00001420	uge_HistogramFill		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
 ge.u	label	0x0000143e	mmo_Minmax		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x0000143e	umo_Minmax		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x00001472	mainloop_mm		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
@@ -2088,33 +2088,33 @@ ge.u	label	0x0000200d	mmo_IntToFloat		understood	ucode/ge_compute.md#pixel-path-
 ge.u	label	0x0000200d	umo_IntToFloat		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
 ge.u	label	0x00002053	mainloop_i2f		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
 ge.u	label	0x00002070	epilogue_i2f		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
-ge.u	label	0x000020a3	mmo_GeneralConvolve3x3_124		located	ucode/ge_handlers.md#conv3x3s	conv3x3.s
-ge.u	label	0x000020a3	umo_GeneralConvolve3x3_124		located	ucode/ge_handlers.md#conv3x3s	conv3x3.s
-ge.u	label	0x00002100	normal_path_conv3		located	ucode/ge_handlers.md#conv3x3s	conv3x3.s
-ge.u	label	0x0000214a	mainloop_conv3		located	ucode/ge_handlers.md#conv3x3s	conv3x3.s
-ge.u	label	0x0000216f	epilogue_conv3		located	ucode/ge_handlers.md#conv3x3s	conv3x3.s
-ge.u	label	0x00002189	mmo_GeneralConvolve5x5_124		located	ucode/ge_handlers.md#conv5x5s	conv5x5.s
-ge.u	label	0x00002189	umo_GeneralConvolve5x5_124		located	ucode/ge_handlers.md#conv5x5s	conv5x5.s
-ge.u	label	0x0000220b	normal_path_conv5		located	ucode/ge_handlers.md#conv5x5s	conv5x5.s
-ge.u	label	0x00002265	mainloop_conv5		located	ucode/ge_handlers.md#conv5x5s	conv5x5.s
-ge.u	label	0x000022d2	epilogue_conv5		located	ucode/ge_handlers.md#conv5x5s	conv5x5.s
-ge.u	label	0x0000232d	mmo_GeneralConvolve7x7_124		located	ucode/ge_handlers.md#conv7x7s	conv7x7.s
-ge.u	label	0x0000232d	umo_GeneralConvolve7x7_124		located	ucode/ge_handlers.md#conv7x7s	conv7x7.s
-ge.u	label	0x000023bc	normal_path_conv7		located	ucode/ge_handlers.md#conv7x7s	conv7x7.s
-ge.u	label	0x00002437	mainloop_conv7		located	ucode/ge_handlers.md#conv7x7s	conv7x7.s
-ge.u	label	0x00002510	epilogue_conv7		located	ucode/ge_handlers.md#conv7x7s	conv7x7.s
-ge.u	label	0x000025a0	umo_BitmapToFloat		located	ucode/ge_handlers.md#bitmaptofloats	bitmaptofloat.s
-ge.u	label	0x000025e5	mainloop_b2f_lsb_first		located	ucode/ge_handlers.md#bitmaptofloats	bitmaptofloat.s
-ge.u	label	0x000025f9	epilogue_b2f_lsb_first		located	ucode/ge_handlers.md#bitmaptofloats	bitmaptofloat.s
-ge.u	label	0x00002620	b2f_msb_first		located	ucode/ge_handlers.md#bitmaptofloats	bitmaptofloat.s
-ge.u	label	0x0000262d	mainloop_b2f_msb_first		located	ucode/ge_handlers.md#bitmaptofloats	bitmaptofloat.s
-ge.u	label	0x00002642	epilogue_b2f_msb_first		located	ucode/ge_handlers.md#bitmaptofloats	bitmaptofloat.s
+ge.u	label	0x000020a3	mmo_GeneralConvolve3x3_124		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x000020a3	umo_GeneralConvolve3x3_124		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00002100	normal_path_conv3		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x0000214a	mainloop_conv3		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x0000216f	epilogue_conv3		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00002189	mmo_GeneralConvolve5x5_124		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00002189	umo_GeneralConvolve5x5_124		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x0000220b	normal_path_conv5		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00002265	mainloop_conv5		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x000022d2	epilogue_conv5		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x0000232d	mmo_GeneralConvolve7x7_124		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x0000232d	umo_GeneralConvolve7x7_124		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x000023bc	normal_path_conv7		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00002437	mainloop_conv7		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00002510	epilogue_conv7		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x000025a0	umo_BitmapToFloat		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x000025e5	mainloop_b2f_lsb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x000025f9	epilogue_b2f_lsb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00002620	b2f_msb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x0000262d	mainloop_b2f_msb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00002642	epilogue_b2f_msb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
 ge.u	label	0x00002669	umo_BitmapToInt		understood	ucode/ge_handlers.md#bitmaptoints	bitmaptoint.s
-ge.u	label	0x000026a3	mainloop_b2i_lsb_first		located	ucode/ge_handlers.md#bitmaptoints	bitmaptoint.s
-ge.u	label	0x000026c6	epilogue_b2i_lsb_first		located	ucode/ge_handlers.md#bitmaptoints	bitmaptoint.s
-ge.u	label	0x000026f7	b2i_msb_first		located	ucode/ge_handlers.md#bitmaptoints	bitmaptoint.s
-ge.u	label	0x000026ff	mainloop_b2i_msb_first		located	ucode/ge_handlers.md#bitmaptoints	bitmaptoint.s
-ge.u	label	0x00002722	epilogue_b2i_msb_first		located	ucode/ge_handlers.md#bitmaptoints	bitmaptoint.s
+ge.u	label	0x000026a3	mainloop_b2i_lsb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x000026c6	epilogue_b2i_lsb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x000026f7	b2i_msb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x000026ff	mainloop_b2i_msb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00002722	epilogue_b2i_msb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
 ge.u	label	0x00002753	mmo_FloatToInt		located	ucode/ge_handlers.md#floattoints	floattoint.s
 ge.u	label	0x00002753	umo_FloatToInt		located	ucode/ge_handlers.md#floattoints	floattoint.s
 ge.u	label	0x0000277c	mainloop_f2i		located	ucode/ge_handlers.md#floattoints	floattoint.s
@@ -2269,12 +2269,12 @@ ge.u	label	0x000043f3	mgebi_Texture		located	ucode/ge_handlers.md#textures	textu
 ge.u	label	0x00004414	mgesi_SubdivEntry		located	ucode/ge_handlers.md#subdivs	subdiv.S
 ge.u	label	0x00004421	mges_SubdivTag		located	ucode/ge_handlers.md#subdivs	subdiv.S
 ge.u	label	0x0000442e	mgeb_Subdiv		located	ucode/ge_handlers.md#subdivs	subdiv.S
-ge.u	label	0x0000443b	mgeb_EramMinmaxToCramMinmax		located	ucode/ge_handlers.md#histograms	histogram.S
-ge.u	label	0x00004472	mmo_CramMinmaxToEramMinmax		located	ucode/ge_handlers.md#histograms	histogram.S
-ge.u	label	0x0000449d	mgesi_HistogramUpload		located	ucode/ge_handlers.md#histograms	histogram.S
-ge.u	label	0x00004503	mgeb_EramIndirectFill		located	ucode/ge_handlers.md#histograms	histogram.S
-ge.u	label	0x00004530	mgeb_EramFill		located	ucode/ge_handlers.md#histograms	histogram.S
-ge.u	label	0x00004544	DoEramFill		located	ucode/ge_handlers.md#histograms	histogram.S
+ge.u	label	0x0000443b	mgeb_EramMinmaxToCramMinmax		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00004472	mmo_CramMinmaxToEramMinmax		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x0000449d	mgesi_HistogramUpload		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00004503	mgeb_EramIndirectFill		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00004530	mgeb_EramFill		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
+ge.u	label	0x00004544	DoEramFill		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
 ge.u	label	0x00004786	mgesi_GetDeformationsMask		located	ucode/ge_handlers.md#deforms	deform.S
 ge.u	label	0x0000479b	mgesi_GetDeformation		located	ucode/ge_handlers.md#deforms	deform.S
 ge.u	label	0x00004806	mgeb_LoadIdentityDeformation		located	ucode/ge_handlers.md#deforms	deform.S
