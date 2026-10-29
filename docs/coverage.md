@@ -41,7 +41,7 @@ Host interface: PIO FIFO words, DMA streams, flow control and doorbells.
 | DMA | none | `HIP.h`, `docs/hip.md` | host interface and command grammar | strided two-dimensional descriptor reported by prior work |
 | Interrupts | none | `HIP.h`, `docs/hip.md` | host interface and command grammar | three vectors and a cause register reported by prior work |
 | Reset | none | `HIP.h`, `docs/hip.md` | host interface and command grammar |  |
-| Context save and restore | none | `HIP.h`, `docs/hip.md` | host interface and command grammar | activation, swap and deactivation packets reported by prior work |
+| Context save and restore | partial | `HIP.h`, `kona_kernel/include/kona_kern.h` | host interface and command grammar | kick register phases and the physical-address word pair; register meanings unknown |
 
 ### GE
 
@@ -93,8 +93,8 @@ The kernel graphics driver and its resource manager: attach, ioctls, context and
 | Command and FIFO formats | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | private ioctl family and kernel command selectors reported by prior work |
 | DMA | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
 | Interrupts | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
-| Reset | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
-| Context save and restore | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
+| Reset | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | pipe check and kona_die register writes, 16 death reasons by caller; no restart path found |
+| Context save and restore | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | KONApcxswap packet order and payloads for deactivate, load and init; validate packets named, layouts not read |
 
 ### OpenGL core and X modules
 
