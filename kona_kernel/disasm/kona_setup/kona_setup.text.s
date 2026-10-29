@@ -1,0 +1,288 @@
+.section .text
+.set noat
+.set noreorder
+
+
+glabel KONAinitialize
+    daddiu     $sp,$sp,-48
+    sd         $a0,0($sp)
+    move       $a1,$zero
+    sd         $s0,24($sp)
+    move       $a2,$zero
+    move       $a3,$zero
+    ld         $s0,40($a0)
+    sd         $ra,16($sp)
+    jal        htp_register_board
+    move       $a0,$zero
+    sw         $zero,0($gp)
+    sw         $zero,0($gp)
+    sw         $zero,0($gp)
+    li         $v0,256
+    sw         $v0,2368($s0)
+    move       $a0,$s0
+    jal        kona_reset_adaptor
+    sd         $s1,32($sp)
+    ld         $a0,2376($s0)
+    lui        $s1,0x80
+    li         $a1,1
+    ori        $s1,$s1,0x300
+    jal        gfx_pio_write_32
+    daddu      $a0,$s1,$a0
+    ld         $a0,2376($s0)
+    jal        gfx_pio_read_32
+    daddu      $a0,$s1,$a0
+    ld         $a0,2376($s0)
+    move       $a1,$zero
+    jal        gfx_pio_write_32
+    daddu      $a0,$s1,$a0
+    ld         $a0,2376($s0)
+    jal        gfx_pio_read_32
+    daddu      $a0,$s1,$a0
+    ld         $a0,2376($s0)
+    lui        $a2,0x80
+    ori        $a2,$a2,0x230
+    lw         $a1,2368($s0)
+    jal        gfx_pio_write_32
+    daddu      $a0,$a0,$a2
+    ld         $a0,2376($s0)
+    lui        $a2,0x80
+    li         $a1,0x8000
+    ori        $a2,$a2,0x220
+    sw         $a1,2364($s0)
+    jal        gfx_pio_write_32
+    daddu      $a0,$a0,$a2
+    jal        kona_mapram_init
+    move       $a0,$s0
+    jal        splhi
+    nop
+    move       $s1,$v0
+    ld         $a0,2272($s0)
+    jal        gfx_flow_flush_my_wg
+    li         $a1,1
+    ld         $a0,2272($s0)
+    jal        gfx_flow_am_i_attached
+    sd         $s1,8($sp)
+    beqz       $v0, .L00000100
+    ld         $s1,32($sp)
+    ld         $a0,2272($s0)
+    jal        gfx_flow_detach_me
+    ld         $a1,0($sp)
+    ld         $s1,32($sp)
+.L00000100:
+    jal        gfx_flow_reset
+    ld         $a0,2272($s0)
+    jal        splx
+    ld         $a0,8($sp)
+    jal        kona_flow_init
+    move       $a0,$s0
+    ld         $ra,16($sp)
+    move       $v0,$zero
+    sw         $zero,2172($s0)
+    ld         $s0,24($sp)
+    jr         $ra
+    daddiu     $sp,$sp,48
+
+glabel KONAstart
+    daddiu     $sp,$sp,-80
+    sd         $s0,40($sp)
+    ld         $s0,40($a0)
+    lui        $a0,0x80
+    ld         $a1,2376($s0)
+    ori        $a0,$a0,0x238
+    sd         $ra,48($sp)
+    jal        gfx_pio_read_32
+    daddu      $a0,$a0,$a1
+    andi       $a1,$v0,0x100
+    bnez       $a1, .L000003d4
+    sd         $v0,32($sp)
+    ld         $a0,2376($s0)
+    lui        $a2,0x80
+    li         $a1,3964
+    ori        $a2,$a2,0x230
+    sw         $a1,2368($s0)
+    jal        gfx_pio_write_32
+    daddu      $a0,$a0,$a2
+    li         $a1,1
+    jal        gfx_flow_flush_my_wg
+    ld         $a0,2272($s0)
+    jal        splhi
+    sd         $s1,64($sp)
+    move       $s1,$v0
+    jal        gfx_flow_am_i_attached
+    ld         $a0,2272($s0)
+    beqz       $v0, .L0000029c
+    lui        $a3,0x3
+.L000001a4:
+    sw         $a3,2360($s0)
+    jal        splx
+    move       $a0,$s1
+    lui        $s1,0xc0
+    ld         $a0,2376($s0)
+    ori        $s1,$s1,0x108
+    lw         $a1,2360($s0)
+    jal        gfx_pio_write_32
+    daddu      $a0,$s1,$a0
+    li         $a1,497
+    jal        gfx_pio_write_32
+    ld         $a0,2304($s0)
+    li         $a1,1
+    jal        gfx_flow_flush_my_wg
+    ld         $a0,2272($s0)
+    jal        splhi
+    sd         $s2,56($sp)
+    move       $s2,$v0
+    jal        gfx_flow_am_i_attached
+    ld         $a0,2272($s0)
+    beqz       $v0, .L00000304
+    lui        $t8,0x1
+.L000001fc:
+    sw         $t8,2360($s0)
+    jal        splx
+    move       $a0,$s2
+    ld         $a0,2376($s0)
+    lw         $a1,2360($s0)
+    jal        gfx_pio_write_32
+    daddu      $a0,$s1,$a0
+    lw         $a1,2592($s0)
+    jal        gfx_pio_write_32
+    ld         $a0,2304($s0)
+    lw         $a1,2596($s0)
+    jal        gfx_pio_write_32
+    ld         $a0,2304($s0)
+    li         $a1,16384
+    jal        gfx_pio_write_32
+    ld         $a0,2304($s0)
+    li         $a1,1
+    jal        gfx_flow_flush_my_wg
+    ld         $a0,2272($s0)
+    jal        splhi
+    nop
+    move       $s2,$v0
+    jal        gfx_flow_am_i_attached
+    ld         $a0,2272($s0)
+    beqz       $v0, .L0000036c
+    nop
+    sw         $zero,2360($s0)
+.L00000268:
+    jal        splx
+    move       $a0,$s2
+    ld         $a0,2376($s0)
+    ld         $s2,56($sp)
+    lw         $a1,2360($s0)
+    jal        gfx_pio_write_32
+    daddu      $a0,$s1,$a0
+    ld         $s1,64($sp)
+    move       $v0,$zero
+.L0000028c:
+    ld         $ra,48($sp)
+    ld         $s0,40($sp)
+    jr         $ra
+    daddiu     $sp,$sp,80
+.L0000029c:
+    ld         $a1,72($s0)
+    jal        gfx_flow_attach_me
+    ld         $a0,2272($s0)
+    ld         $a0,2376($s0)
+    lw         $a1,2248($s0)
+    daddiu     $a0,$a0,124
+    sll        $a1,$a1,0x1
+    jal        gfx_pio_write_32
+    andi       $a1,$a1,0x3e
+    jal        rt_pin_thread
+    nop
+    sd         $v0,24($sp)
+    jal        splx
+    move       $a0,$s1
+    jal        kona_flow_await_returned_credits
+    move       $a0,$s0
+    jal        splhi
+    nop
+    ld         $a0,2272($s0)
+    move       $s1,$v0
+    jal        gfx_flow_attach_me_finish
+    ld         $a1,72($s0)
+    jal        rt_unpin_thread
+    ld         $a0,24($sp)
+    b          .L000001a4
+    lui        $a3,0x3
+.L00000304:
+    ld         $a1,72($s0)
+    jal        gfx_flow_attach_me
+    ld         $a0,2272($s0)
+    ld         $a0,2376($s0)
+    lw         $a1,2248($s0)
+    daddiu     $a0,$a0,124
+    sll        $a1,$a1,0x1
+    jal        gfx_pio_write_32
+    andi       $a1,$a1,0x3e
+    jal        rt_pin_thread
+    nop
+    sd         $v0,8($sp)
+    jal        splx
+    move       $a0,$s2
+    jal        kona_flow_await_returned_credits
+    move       $a0,$s0
+    jal        splhi
+    nop
+    ld         $a0,2272($s0)
+    move       $s2,$v0
+    jal        gfx_flow_attach_me_finish
+    ld         $a1,72($s0)
+    jal        rt_unpin_thread
+    ld         $a0,8($sp)
+    b          .L000001fc
+    lui        $t8,0x1
+.L0000036c:
+    ld         $a1,72($s0)
+    jal        gfx_flow_attach_me
+    ld         $a0,2272($s0)
+    ld         $a0,2376($s0)
+    lw         $a1,2248($s0)
+    daddiu     $a0,$a0,124
+    sll        $a1,$a1,0x1
+    jal        gfx_pio_write_32
+    andi       $a1,$a1,0x3e
+    jal        rt_pin_thread
+    nop
+    sd         $v0,16($sp)
+    jal        splx
+    move       $a0,$s2
+    jal        kona_flow_await_returned_credits
+    move       $a0,$s0
+    jal        splhi
+    nop
+    ld         $a0,2272($s0)
+    move       $s2,$v0
+    jal        gfx_flow_attach_me_finish
+    ld         $a1,72($s0)
+    jal        rt_unpin_thread
+    ld         $a0,16($sp)
+    b          .L00000268
+    sw         $zero,2360($s0)
+.L000003d4:
+    ld         $a1,-30720($gp)
+    li         $a0,4
+    lw         $a3,2184($s0)
+    jal        cmn_err
+    daddiu     $a2,$a1,56
+    move       $a0,$s0
+    jal        kona_die
+    li         $a1,22
+    ld         $a1,32($sp)
+    li         $a3,-33
+    ld         $a2,2376($s0)
+    lui        $a0,0x80
+    ori        $a0,$a0,0x238
+    and        $a1,$a1,$a3
+    sd         $a1,0($sp)
+    jal        gfx_pio_write_32
+    daddu      $a0,$a0,$a2
+    lui        $a1,0xbadc
+    ld         $a0,2376($s0)
+    lui        $a2,0x80
+    ori        $a1,$a1,0xffe
+    ori        $a2,$a2,0x228
+    jal        gfx_pio_write_32
+    daddu      $a0,$a0,$a2
+    b          .L0000028c
+    ld         $v0,0($sp)

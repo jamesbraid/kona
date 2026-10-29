@@ -1,0 +1,45 @@
+.section .text
+.set noat
+.set noreorder
+
+
+glabel KONAfrsinstall
+    daddiu     $sp,$sp,-32
+    sd         $a1,24($sp)
+    sd         $ra,0($sp)
+    sd         $s8,8($sp)
+    move       $s8,$a0
+    daddiu     $a0,$a0,2576
+    jal        mutex_spinlock
+    sd         $a0,16($sp)
+    li         $at,1
+    sw         $at,144($s8)
+    ld         $a0,16($sp)
+    move       $a1,$v0
+    ld         $v0,24($sp)
+    jal        mutex_spinunlock
+    sd         $v0,152($s8)
+    ld         $ra,0($sp)
+    move       $v0,$zero
+    ld         $s8,8($sp)
+    jr         $ra
+    daddiu     $sp,$sp,32
+
+glabel KONAfrsuninstall
+    daddiu     $sp,$sp,-32
+    sd         $ra,0($sp)
+    sd         $s8,8($sp)
+    move       $s8,$a0
+    daddiu     $a0,$a0,2576
+    jal        mutex_spinlock
+    sd         $a0,16($sp)
+    sw         $zero,144($s8)
+    sd         $zero,152($s8)
+    move       $a1,$v0
+    jal        mutex_spinunlock
+    ld         $a0,16($sp)
+    ld         $ra,0($sp)
+    move       $v0,$zero
+    ld         $s8,8($sp)
+    jr         $ra
+    daddiu     $sp,$sp,32

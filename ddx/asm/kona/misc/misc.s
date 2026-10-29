@@ -1,0 +1,670 @@
+# DDX module kona: group misc
+# Functions: 14
+
+.text
+.set noat
+.set noreorder
+
+glabel compareSTEName
+    lui	$at,0x16
+    addiu	$sp,$sp,-16
+    addiu	$at,$at,4300
+    sd	$gp,8($sp)
+    addu	$gp,$t9,$at
+    lw	$t9,-28696($gp)
+    addiu	$a0,$a0,12
+    sd	$ra,0($sp)
+    jalr	$t9
+    addiu	$a1,$a1,12
+    ld	$ra,0($sp)
+    ld	$gp,8($sp)
+    jr	$ra
+    addiu	$sp,$sp,16
+
+glabel mapTypeToXDRPROC
+    addiu	$sp,$sp,-64
+    sd	$s0,32($sp)
+    lui	$a6,0x16
+    sd	$s1,40($sp)
+    addiu	$a6,$a6,4244
+    sd	$gp,16($sp)
+    addu	$gp,$t9,$a6
+    la	$a5,_rodata
+    sd	$s8,8($sp)
+    move	$s8,$a1
+    sltiu	$at,$a0,21
+    sd	$a2,24($sp)
+    sll	$a6,$a0,0x2
+    addiu	$a5,$a5,24032
+    sd	$ra,56($sp)
+    beqz	$at,432b98
+    addu	$a5,$a5,$a6
+    lw	$a7,0($a5)
+    la	$s0,xdr_u_short
+    jr	$a7
+    li	$s1,2
+    la	$a1,_rodata
+    lw	$t9,-28828($gp)
+    la	$a0,_rodata
+    li	$a2,170
+    addiu	$a1,$a1,24144
+    jalr	$t9
+    addiu	$a0,$a0,24176
+    lw	$s0,0($sp)
+    lw	$s1,4($sp)
+    beqz	$s0,432bf8
+    lw	$t9,-28828($gp)
+    ld	$gp,16($sp)
+    sw	$s0,0($s8)
+    ld	$s0,32($sp)
+    ld	$a2,24($sp)
+    ld	$ra,56($sp)
+    ld	$s8,8($sp)
+    sw	$s1,0($a2)
+    ld	$s1,40($sp)
+    jr	$ra
+    addiu	$sp,$sp,64
+    move	$s0,$zero
+    lw	$t9,-28828($gp)
+    li	$s1,4
+    la	$a1,_rodata
+    la	$a0,_rodata
+    li	$a2,174
+    addiu	$a1,$a1,24144
+    jalr	$t9
+    addiu	$a0,$a0,24200
+    b	432bc8
+    ld	$gp,16($sp)
+    beqz	$a0,432d30
+    la	$a1,_rodata
+    lw	$s0,0($sp)
+    b	432bbc
+    li	$s1,1
+    beqz	$a3,432d0c
+    sd	$a3,48($sp)
+    move	$s1,$zero
+    b	432bbc
+    move	$s0,$a3
+    li	$s1,4
+    b	432bbc
+    la	$s0,xdr_wrapstring
+    li	$s1,4
+    b	432bbc
+    la	$s0,xdr_pointer
+    li	$s1,8
+    b	432bbc
+    la	$s0,xdr_double
+    li	$s1,4
+    b	432bbc
+    la	$s0,xdr_float
+    li	$s1,4
+    b	432bbc
+    la	$s0,xdr_wrapstring
+    li	$s1,1
+    b	432bbc
+    la	$s0,xdr_wrapstring
+    li	$s1,1
+    b	432bbc
+    la	$s0,xdr_array
+    li	$s1,4
+    b	432bbc
+    la	$s0,xdr_enum
+    li	$s1,4
+    b	432bbc
+    la	$s0,xdr_bool
+    li	$s1,1
+    b	432bbc
+    la	$s0,xdr_u_char
+    li	$s1,1
+    b	432bbc
+    la	$s0,xdr_char
+    li	$s1,2
+    b	432bbc
+    la	$s0,xdr_short
+    li	$s1,4
+    b	432bbc
+    la	$s0,xdr_u_long
+    li	$s1,4
+    b	432bbc
+    la	$s0,xdr_long
+    li	$s1,4
+    b	432bbc
+    la	$s0,xdr_u_int
+    li	$s1,4
+    b	432bbc
+    la	$s0,xdr_int
+    li	$s1,4
+    b	432bbc
+    la	$s0,xdr_void
+    la	$a1,_rodata
+    lw	$t9,-28828($gp)
+    la	$a0,_rodata
+    li	$a2,163
+    addiu	$a1,$a1,24144
+    jalr	$t9
+    addiu	$a0,$a0,24160
+    b	432c34
+    ld	$a3,48($sp)
+    lw	$t9,-28828($gp)
+    la	$a0,_rodata
+    li	$a2,79
+    addiu	$a1,$a1,24144
+    jalr	$t9
+    addiu	$a0,$a0,24120
+    b	432c24
+    lw	$s0,0($sp)
+
+glabel decrRRMFlags
+    lui	$v0,0x15
+    move	$a3,$a0
+    addiu	$v0,$v0,-31448
+    beqz	$a0,44b6fc
+    addu	$at,$t9,$v0
+    nop
+    nop
+    la	$a1,rrmWindowPrivateIndex
+    lw	$a1,0($a1)
+    lw	$a0,132($a3)
+    sll	$a1,$a1,0x2
+    addu	$a0,$a0,$a1
+    lw	$a0,0($a0)
+    lw	$v1,16($a0)
+    addiu	$v1,$v1,-1
+    sw	$v1,16($a0)
+    lw	$a3,24($a3)
+    bnez	$a3,44b6d0
+    la	$a1,rrmWindowPrivateIndex
+    jr	$ra
+    nop
+
+glabel incrRRMpriv
+    addiu	$sp,$sp,-32
+    sd	$s0,8($sp)
+    lui	$at,0x12
+    move	$s0,$a0
+    sd	$ra,16($sp)
+    addiu	$at,$at,-4280
+    sd	$gp,0($sp)
+    beqz	$a0,474d2c
+    addu	$gp,$t9,$at
+    la	$a0,rrmWindowPrivateIndex
+    lw	$t9,-31452($gp)
+    lw	$a0,0($a0)
+    sll	$a0,$a0,0x2
+    nop
+    nop
+    nop
+    lw	$a1,132($s0)
+    addu	$a1,$a1,$a0
+    lw	$a1,0($a1)
+    beqz	$a1,474d04
+    nop
+    lw	$s0,24($s0)
+    bnez	$s0,474cd0
+    ld	$ra,16($sp)
+    move	$v0,$zero
+    ld	$gp,0($sp)
+    ld	$s0,8($sp)
+    jr	$ra
+    addiu	$sp,$sp,32
+    jalr	$t9
+    move	$a0,$s0
+    beqz	$v0,474d2c
+    nop
+    lw	$s0,24($s0)
+    lw	$t9,-31452($gp)
+    bnez	$s0,474cbc
+    la	$a0,rrmWindowPrivateIndex
+    b	474cf0
+    ld	$ra,16($sp)
+    beqz	$s0,474cf0
+    ld	$ra,16($sp)
+    ld	$ra,16($sp)
+    li	$v0,1
+    ld	$gp,0($sp)
+    ld	$s0,8($sp)
+    jr	$ra
+    addiu	$sp,$sp,32
+
+glabel incrRRMFlags
+    lui	$v0,0x10
+    move	$a3,$a0
+    addiu	$v0,$v0,-29480
+    beqz	$a0,49af4c
+    addu	$at,$t9,$v0
+    nop
+    nop
+    la	$a1,rrmWindowPrivateIndex
+    lw	$a1,0($a1)
+    lw	$a0,132($a3)
+    sll	$a1,$a1,0x2
+    addu	$a0,$a0,$a1
+    lw	$a0,0($a0)
+    lw	$v1,16($a0)
+    addiu	$v1,$v1,1
+    sw	$v1,16($a0)
+    lw	$a3,24($a3)
+    bnez	$a3,49af20
+    la	$a1,rrmWindowPrivateIndex
+    jr	$ra
+    nop
+
+glabel allocRRMpriv
+    lui	$at,0x10
+    addiu	$sp,$sp,-48
+    addiu	$at,$at,-29576
+    sd	$gp,24($sp)
+    addu	$gp,$t9,$at
+    lw	$t9,-28756($gp)
+    sd	$s0,32($sp)
+    sd	$s1,8($sp)
+    move	$s1,$a0
+    sd	$ra,16($sp)
+    jalr	$t9
+    li	$a0,76
+    la	$a0,rrmScreenPrivateIndex
+    lw	$v1,16($s1)
+    lw	$a0,0($a0)
+    lw	$v1,436($v1)
+    sll	$a0,$a0,0x2
+    addu	$v1,$v1,$a0
+    lw	$v1,0($v1)
+    move	$s0,$v0
+    beqz	$v0,49affc
+    sd	$v1,0($sp)
+    lw	$t9,-28468($gp)
+    move	$a0,$v0
+    jalr	$t9
+    li	$a1,76
+    la	$at,rrmWindowPrivateIndex
+    lw	$at,0($at)
+    lw	$ra,132($s1)
+    sll	$at,$at,0x2
+    ld	$t9,0($sp)
+    addu	$ra,$ra,$at
+    sw	$s0,0($ra)
+    lw	$t9,80($t9)
+    move	$v0,$s0
+    beqz	$t9,49b018
+    ld	$ra,16($sp)
+    jalr	$t9
+    move	$a0,$s1
+    ld	$ra,16($sp)
+    ld	$s1,8($sp)
+    ld	$gp,24($sp)
+    move	$v0,$s0
+    ld	$s0,32($sp)
+    jr	$ra
+    addiu	$sp,$sp,48
+    ld	$gp,24($sp)
+    sh	$zero,2($s0)
+    ld	$s0,32($sp)
+    ld	$s1,8($sp)
+    jr	$ra
+    addiu	$sp,$sp,48
+
+glabel konaSetStereoMode
+    addiu	$sp,$sp,-64
+    sd	$gp,8($sp)
+    sd	$ra,0($sp)
+    lui	$a4,0xf
+    addiu	$a4,$a4,4040
+    addu	$gp,$t9,$a4
+    sw	$a0,36($sp)
+    andi	$a0,$a1,0xffff
+    sh	$a0,46($sp)
+    andi	$v1,$a2,0xffff
+    sh	$v1,54($sp)
+    sw	$a3,60($sp)
+    lw	$at,60($sp)
+    li	$v0,1
+    bne	$at,$v0,4a2cc0
+    nop
+    lw	$a5,-28044($gp)
+    beqz	$a5,4a2cc0
+    nop
+    li	$a1,531
+    la	$a2,sub_00590000
+    sh	$a1,7078($a2)
+    lw	$a0,36($sp)
+    lw	$a0,116($a0)
+    lw	$a0,100($a0)
+    li	$a1,10009
+    la	$a2,sub_00590000
+    addiu	$a2,$a2,7072
+    lw	$t9,-28548($gp)
+    jalr	$t9
+    nop
+    sd	$v0,16($sp)
+    bgez	$v0,4a2cc0
+    nop
+    li	$a1,-7905
+    sw	$a1,-28040($gp)
+    la	$a0,_rodata
+    addiu	$a0,$a0,6512
+    lw	$t9,-32704($gp)
+    addiu	$t9,$t9,14800
+    jalr	$t9
+    nop
+    b	4a2cc0
+    nop
+    lw	$a0,36($sp)
+    lhu	$a1,46($sp)
+    lhu	$a2,54($sp)
+    lw	$a3,60($sp)
+    lw	$t9,-32064($gp)
+    jalr	$t9
+    nop
+    sd	$v0,16($sp)
+    ld	$gp,8($sp)
+    ld	$ra,0($sp)
+    addiu	$sp,$sp,64
+    jr	$ra
+    nop
+
+glabel cmapDID
+    addiu	$sp,$sp,-32
+    sd	$ra,24($sp)
+    sd	$gp,0($sp)
+    lbu	$at,1($a0)
+    li	$v0,2
+    lui	$a1,0xe
+    lw	$v1,16($a0)
+    sd	$s0,16($sp)
+    move	$s0,$a0
+    addiu	$a0,$a1,13800
+    addu	$gp,$t9,$a0
+    lw	$v1,116($v1)
+    move	$a0,$zero
+    beq	$at,$v0,4b063c
+    sd	$v1,8($sp)
+    lw	$v0,120($s0)
+    beqz	$v0,4b071c
+    lw	$t9,-28728($gp)
+    lw	$a0,8($v0)
+    lw	$t9,-28536($gp)
+    jalr	$t9
+    li	$a1,6
+    bnez	$v0,4b0698
+    nop
+    lw	$v0,120($s0)
+    beqz	$v0,4b0730
+    lw	$t9,-28728($gp)
+    lw	$a0,0($v0)
+    ld	$v0,8($sp)
+    lw	$v1,80($v0)
+    subu	$a0,$a0,$v1
+    ld	$ra,24($sp)
+    sll	$v1,$a0,0x2
+    lw	$v0,88($v0)
+    addu	$v1,$v1,$a0
+    ld	$gp,0($sp)
+    sll	$v1,$v1,0x2
+    ld	$s0,16($sp)
+    addu	$v0,$v0,$v1
+    lw	$v0,0($v0)
+    jr	$ra
+    addiu	$sp,$sp,32
+    lw	$a3,68($v0)
+    lw	$a3,0($a3)
+    ld	$v0,8($sp)
+    bltz	$a3,4b06d4
+    sll	$a0,$a3,0x3
+    ld	$ra,24($sp)
+    lw	$v0,116($v0)
+    subu	$v1,$a0,$a3
+    ld	$gp,0($sp)
+    sll	$v1,$v1,0x2
+    ld	$s0,16($sp)
+    addu	$v0,$v0,$v1
+    lw	$v0,16($v0)
+    jr	$ra
+    addiu	$sp,$sp,32
+    lw	$v0,120($s0)
+    beqz	$v0,4b0744
+    lw	$t9,-28728($gp)
+    lw	$a0,0($v0)
+    ld	$v0,8($sp)
+    lw	$v1,80($v0)
+    subu	$a0,$a0,$v1
+    ld	$ra,24($sp)
+    sll	$v1,$a0,0x2
+    lw	$v0,88($v0)
+    addu	$v1,$v1,$a0
+    ld	$gp,0($sp)
+    sll	$v1,$v1,0x2
+    ld	$s0,16($sp)
+    addu	$v0,$v0,$v1
+    lw	$v0,0($v0)
+    jr	$ra
+    addiu	$sp,$sp,32
+    jalr	$t9
+    move	$a0,$s0
+    lw	$a0,120($v0)
+    b	4b063c
+    lw	$a0,8($a0)
+    jalr	$t9
+    move	$a0,$s0
+    lw	$a0,120($v0)
+    b	4b0660
+    lw	$a0,0($a0)
+    jalr	$t9
+    move	$a0,$s0
+    lw	$a0,120($v0)
+    b	4b06e4
+    lw	$a0,0($a0)
+
+glabel sgiReleaseCapabilityUnsupported
+    lui	$v1,0xa
+    addiu	$v1,$v1,-7496
+    addu	$at,$t9,$v1
+    la	$v0,nmbxErrorBase
+    lw	$v0,0($v0)
+    jr	$ra
+    addiu	$v0,$v0,1
+
+glabel realAllocSpan
+    lui	$at,0xa
+    addiu	$sp,$sp,-16
+    addiu	$at,$at,-23096
+    sd	$gp,0($sp)
+    addu	$gp,$t9,$at
+    lw	$t9,-28756($gp)
+    sd	$ra,8($sp)
+    jalr	$t9
+    li	$a0,1540
+    lw	$v1,-27932($gp)
+    beqz	$v0,4f975c
+    move	$t3,$v0
+    addiu	$a0,$v0,12
+    sw	$a0,-27940($gp)
+    li	$a3,6
+    addiu	$v0,$v0,1536
+    sw	$t3,-27932($gp)
+    addiu	$a2,$t3,24
+    move	$a6,$t3
+    sw	$v1,1536($t3)
+    addiu	$a3,$a3,-1
+    sw	$a2,12($a6)
+    addiu	$a2,$a2,12
+    bnez	$a3,4f9660
+    addiu	$a6,$a6,12
+    addiu	$a4,$a2,72
+    addiu	$a3,$a2,84
+    addiu	$a0,$a2,48
+    addiu	$a1,$a2,60
+    sw	$a2,12($a6)
+    addiu	$a7,$v0,-96
+    addiu	$v0,$a2,24
+    ld	$ra,8($sp)
+    addiu	$v1,$a2,36
+    addiu	$at,$a2,12
+    ld	$gp,0($sp)
+    sw	$v1,48($a6)
+    sw	$a1,72($a6)
+    sw	$a4,84($a6)
+    sw	$a3,96($a6)
+    addiu	$a5,$a6,96
+    addiu	$a4,$a2,96
+    sw	$a4,108($a6)
+    addiu	$a3,$a2,168
+    addiu	$a2,$a2,180
+    sw	$a0,60($a6)
+    addiu	$a1,$a4,48
+    addiu	$a0,$a4,60
+    sw	$v0,36($a6)
+    addiu	$v1,$a4,24
+    addiu	$v0,$a4,36
+    sw	$at,24($a6)
+    addiu	$at,$a4,12
+    sw	$v0,144($a6)
+    sw	$a0,168($a6)
+    sw	$a3,180($a6)
+    sw	$a2,192($a6)
+    addiu	$a6,$a6,192
+    addiu	$a2,$a4,96
+    sw	$a2,12($a6)
+    addiu	$a4,$a4,168
+    addiu	$a3,$a2,84
+    sw	$a1,60($a5)
+    addiu	$a0,$a2,48
+    addiu	$a1,$a2,60
+    sw	$v1,36($a5)
+    addiu	$v0,$a2,24
+    addiu	$v1,$a2,36
+    sw	$at,24($a5)
+    bne	$a2,$a7,4f96a0
+    addiu	$at,$a2,12
+    sw	$v1,48($a6)
+    sw	$a1,72($a6)
+    sw	$a4,84($a6)
+    sw	$a3,96($a6)
+    sw	$a0,60($a6)
+    sw	$v0,36($a6)
+    sw	$at,24($a6)
+    sw	$zero,1524($t3)
+    move	$v0,$t3
+    sw	$zero,0($t3)
+    jr	$ra
+    addiu	$sp,$sp,16
+    ld	$ra,8($sp)
+    move	$v0,$zero
+    ld	$gp,0($sp)
+    jr	$ra
+    addiu	$sp,$sp,16
+
+glabel micomputeWAET
+    lw	$a2,28($a0)
+    move	$a4,$a0
+    sw	$zero,36($a0)
+    beqz	$a2,4ffd44
+    li	$a3,1
+    move	$a1,$zero
+    b	4ffd24
+    lw	$at,40($a2)
+    beqz	$a3,4ffd34
+    addiu	$a1,$a1,-1
+    nop
+    nop
+    beqz	$a1,4ffd14
+    nop
+    sltiu	$a3,$a3,1
+    sw	$a2,36($a4)
+    move	$a4,$a2
+    lw	$a2,28($a2)
+    beqz	$a2,4ffd44
+    nop
+    lw	$at,40($a2)
+    beqz	$at,4ffcf0
+    nop
+    bnez	$a3,4ffd00
+    addiu	$a1,$a1,1
+    bnez	$a1,4ffd14
+    nop
+    b	4ffd0c
+    sltiu	$a3,$a3,1
+    jr	$ra
+    sw	$zero,36($a4)
+
+glabel compareModes
+    lw	$t9,20($a3)
+    lw	$t3,32($a1)
+    lw	$t8,36($a1)
+    lhu	$a7,2($a1)
+    lhu	$a6,18($a0)
+    lw	$t0,8($a0)
+    li	$t1,-5
+    lw	$t2,12($a0)
+    move	$a0,$zero
+    beqz	$a2,5358f0
+    lw	$a5,16($a3)
+    and	$a5,$a5,$t1
+    bne	$a7,$a6,535920
+    and	$a3,$t0,$a5
+    and	$at,$t3,$a5
+    and	$a6,$t2,$t9
+    and	$a4,$t8,$t9
+    bne	$a3,$at,535918
+    nop
+    bne	$a6,$a4,535918
+    nop
+    li	$a0,1
+    jr	$ra
+    move	$v0,$a0
+    jr	$ra
+    move	$v0,$zero
+
+glabel miloadAET
+    move	$a4,$a0
+    bnez	$a1,549660
+    lw	$a3,28($a0)
+    b	5496c4
+    nop
+    nop
+    nop
+    nop
+    beqz	$a3,54964c
+    sw	$a3,28($a1)
+    sw	$a1,32($a3)
+    sw	$a4,32($a1)
+    sw	$a1,28($a4)
+    move	$a4,$a1
+    beqz	$a2,5496c4
+    move	$a1,$a2
+    beqz	$a3,549640
+    lw	$a2,28($a1)
+    lw	$a5,4($a1)
+    lw	$at,4($a3)
+    slt	$at,$at,$a5
+    beqz	$at,549640
+    nop
+    move	$a4,$a3
+    lw	$a3,28($a3)
+    beqz	$a3,549640
+    nop
+    lw	$v0,4($a3)
+    slt	$v0,$v0,$a5
+    beqz	$v0,549640
+    nop
+    move	$a4,$a3
+    lw	$a3,28($a3)
+    beqz	$a3,549640
+    nop
+    lw	$v1,4($a3)
+    slt	$v1,$v1,$a5
+    bnez	$v1,54967c
+    nop
+    b	549640
+    nop
+    jr	$ra
+    nop
+
+glabel sgiEnableCapabilityUnsupported
+    lui	$v1,0x3
+    addiu	$v1,$v1,23048
+    addu	$at,$t9,$v1
+    la	$v0,nmbxErrorBase
+    lw	$v0,0($v0)
+    jr	$ra
+    addiu	$v0,$v0,1
+

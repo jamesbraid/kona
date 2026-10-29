@@ -1,0 +1,246 @@
+.section .text
+.set noat
+.set noreorder
+
+
+glabel kona_alloc_bdata
+    ld         $at,0($gp)
+    daddiu     $sp,$sp,-16
+    sd         $s0,0($sp)
+    beqz       $at, .L0000020c
+    sd         $ra,8($sp)
+    lw         $v1,0($gp)
+.L00000018:
+    lw         $v0,0($gp)
+    bne        $v0, $v1, .L00000038
+    move       $s0,$zero
+.L00000024:
+    ld         $ra,8($sp)
+    move       $v0,$s0
+    ld         $s0,0($sp)
+    jr         $ra
+    daddiu     $sp,$sp,16
+.L00000038:
+    jal        kern_malloc
+    li         $a0,5544
+    move       $s0,$v0
+    move       $a0,$v0
+    jal        bzero
+    li         $a1,5544
+    ld         $a1,-30720($gp)
+    jal        spinlock_init
+    daddiu     $a0,$s0,2168
+    li         $a0,1
+    sw         $a0,2172($s0)
+    jal        kona_register_board
+    move       $a0,$s0
+    lw         $t2,0($gp)
+    sw         $t2,2184($s0)
+    lw         $t1,0($gp)
+    ld         $a2,-30720($gp)
+    addiu      $t1,$t1,1
+    sw         $t1,0($gp)
+    li         $a4,1
+    sw         $a4,160($s0)
+    daddiu     $t0,$s0,3512
+    sd         $t0,184($s0)
+    sw         $a4,176($s0)
+    li         $a3,-1
+    daddiu     $a7,$s0,3128
+    sd         $a7,96($s0)
+    move       $a1,$zero
+    li         $a6,96
+    sw         $a6,88($s0)
+    daddiu     $a0,$s0,5176
+    daddiu     $a5,$s0,2160
+    sd         $a5,24($s0)
+    daddiu     $a2,$a2,64
+    jal        init_sema
+    sw         $a4,20($s0)
+    li         $a3,-1
+    ld         $a2,-30720($gp)
+    li         $a1,1
+    daddiu     $a0,$s0,5272
+    jal        init_sema
+    daddiu     $a2,$a2,72
+    li         $a3,-1
+    ld         $a2,-30720($gp)
+    li         $a1,1
+    daddiu     $a0,$s0,5296
+    jal        init_sema
+    daddiu     $a2,$a2,80
+    li         $a3,-1
+    ld         $a2,-30720($gp)
+    move       $a1,$zero
+    daddiu     $a0,$s0,5320
+    jal        init_sema
+    daddiu     $a2,$a2,88
+    li         $a3,-1
+    ld         $a2,-30720($gp)
+    move       $a1,$zero
+    daddiu     $a0,$s0,5152
+    jal        init_sema
+    daddiu     $a2,$a2,16
+    li         $a3,-1
+    ld         $a2,-30720($gp)
+    move       $a1,$zero
+    daddiu     $a0,$s0,5344
+    jal        init_sema
+    daddiu     $a2,$a2,96
+    ld         $a1,-30720($gp)
+    daddiu     $a0,$s0,2352
+    jal        spinlock_init
+    daddiu     $a1,$a1,104
+    li         $a0,1
+    move       $a1,$zero
+    jal        kvpalloc
+    move       $a2,$zero
+    move       $a0,$v0
+    jal        kvtophys
+    sd         $v0,2584($s0)
+    dsrl       $a2,$v0,0xc
+    ld         $a0,2584($s0)
+    lui        $a3,0x1000
+    sll        $a2,$a2,0x0
+    or         $a2,$a2,$a3
+    jal        kvtophys
+    sw         $a2,2592($s0)
+    sw         $zero,5268($s0)
+    sw         $zero,5264($s0)
+    sw         $zero,5260($s0)
+    andi       $a3,$v0,0xfff
+    ld         $a1,-30720($gp)
+    daddiu     $a0,$s0,2576
+    sw         $zero,5256($s0)
+    ori        $a3,$a3,0x9000
+    sw         $a3,2596($s0)
+    jal        spinlock_init
+    daddiu     $a1,$a1,32
+    ld         $a1,-30720($gp)
+    daddiu     $a0,$s0,3520
+    jal        spinlock_init
+    daddiu     $a1,$a1,48
+    ld         $a0,-30720($gp)
+    li         $a2,6
+    daddiu     $a1,$s0,204
+    jal        bcopy
+    daddiu     $a0,$a0,112
+    li         $a1,1952
+    sw         $a1,240($s0)
+    sw         $zero,244($s0)
+    sh         $zero,236($s0)
+    sh         $zero,238($s0)
+    jal        kona_timeout_init
+    move       $a0,$s0
+    lwu        $a3,2184($s0)
+    ld         $a2,0($gp)
+    dsll       $a3,$a3,0x3
+    daddu      $a2,$a2,$a3
+    b          .L00000024
+    sd         $s0,0($a2)
+.L0000020c:
+    lw         $a0,0($gp)
+    jal        kern_malloc
+    dsll       $a0,$a0,0x3
+    lw         $a1,0($gp)
+    move       $a0,$v0
+    sd         $v0,0($gp)
+    jal        bzero
+    dsll       $a1,$a1,0x3
+    b          .L00000018
+    lw         $v1,0($gp)
+
+glabel kona_free_bdata
+    daddiu     $sp,$sp,-16
+    sd         $ra,0($sp)
+    jal        kern_free
+    nop
+    ld         $ra,0($sp)
+    jr         $ra
+    daddiu     $sp,$sp,16
+
+glabel kona_init_flow_control
+    daddiu     $sp,$sp,-16
+    lui        $a4,0x1
+    sd         $s0,0($sp)
+    move       $a7,$zero
+    ori        $a4,$a4,0x86a0
+    lw         $a3,0($gp)
+    lui        $a2,0xc1
+    move       $s0,$a0
+    ld         $a1,2216($a0)
+    ld         $a5,-30712($gp)
+    move       $a6,$s0
+    dsll       $a3,$a3,0x3
+    lw         $a0,200($a0)
+    daddu      $a1,$a1,$a2
+    sll        $a3,$a3,0x0
+    sd         $ra,8($sp)
+    jal        gfx_flow_alloc
+    move       $a2,$a1
+    bnez       $v0, .L000002b0
+    sd         $v0,2272($s0)
+    ld         $ra,8($sp)
+.L000002a4:
+    ld         $s0,0($sp)
+    jr         $ra
+    daddiu     $sp,$sp,16
+.L000002b0:
+    move       $a0,$v0
+    jal        gfx_flow_wg_info_get
+    daddiu     $a1,$s0,2280
+    b          .L000002a4
+    ld         $ra,8($sp)
+
+glabel kona_register_board
+    move       $a1,$a0
+    move       $a2,$a0
+    ld         $a0,-30704($gp)
+    daddiu     $sp,$sp,-16
+    sd         $ra,0($sp)
+    jal        GfxRegisterBoard
+    daddiu     $a2,$a2,204
+    ld         $ra,0($sp)
+    jr         $ra
+    daddiu     $sp,$sp,16
+
+glabel kona_inventory_board
+    lw         $a1,2188($a0)
+    lw         $a2,2192($a0)
+    lw         $a3,2184($a0)
+    daddiu     $sp,$sp,-16
+    move       $a4,$a0
+    sd         $ra,0($sp)
+    li         $a0,7
+    jal        add_to_inventory
+    lw         $a4,2196($a4)
+    ld         $ra,0($sp)
+    jr         $ra
+    daddiu     $sp,$sp,16
+
+glabel kona_init_board_mapping
+    ld         $a1,-30696($gp)
+    ld         $v1,-30688($gp)
+    ld         $v0,-30680($gp)
+    ld         $at,-30672($gp)
+    lw         $a2,2312($a0)
+    daddiu     $sp,$sp,-80
+    sd         $zero,40($sp)
+    sd         $at,32($sp)
+    sd         $v0,24($sp)
+    sd         $v1,16($sp)
+    sw         $a2,0($sp)
+    sd         $a0,48($sp)
+    sd         $ra,56($sp)
+    sd         $a1,8($sp)
+    daddiu     $a1,$sp,0
+    sd         $s8,64($sp)
+    move       $s8,$a0
+    jal        init_gfx_io_space
+    lw         $a0,2184($a0)
+    jal        kona_mapram_init
+    move       $a0,$s8
+    ld         $ra,56($sp)
+    ld         $s8,64($sp)
+    jr         $ra
+    daddiu     $sp,$sp,80
