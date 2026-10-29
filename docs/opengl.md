@@ -585,3 +585,329 @@ What `kona.so` (IRIX 6.5.30m) sends for X drawing, from a scan of every store wh
 So bit 2 of header word 18 is **forced on whenever word 7 is nonzero on a texel download**, and it is off when word 7 is zero. **Established** (`kon_texture_api.s`, `subloadLevel` 0x0d96be7c onward, 6.5.30m): `subloadLevel` builds the flags word from the size code (internal-format entry +8), the bank bit pair, the tiling bits and the S and T bits of `st_bits_per_page`, and none of its paths ORs in 4, so the bit comes only from `DoDrawPixelsOrTexels`. The note in `RM.h` that the single-image path sets bit 2 does not match this code. The context bit behind word 7 is bit 2 of ctx+31580, which `GetBoardInfo` (called from `MakeCurrentRead`) sets and no store in the library clears; the pixel and texel callers still store 0 in word 7 on their non-DMA paths (`kon_pixel.s` stores at lines 1307, 2983, 3004, 7735 and 8057 of the listing), so on those paths bit 2 of word 18 is clear too. Bit 2 of word 18 and word 7 are therefore equal on every path.
 
 **Established** since, from the firmware side ([ge.md](ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap)): `arm_drawtexels` reads word 7 as the "image arrives by DMA" flag. When it is nonzero the handler ends the command at word 20 and leaves the image to the next `HP_DO_IDMA`; libGLcore's `__glKonSendData` takes the same decision from the same descriptor word (+180), sending the image inline when it is 0 and through ioctl 10001 otherwise. So the context bit at +31580 selects DMA delivery, and the load-scissor enable in word 18 rides on it. Word 10, the texel format id, is a row number into the firmware's format tables ([ge.md](ge.md#the-texel-format-id)).
+
+## Texture functions
+
+The entries below read the texture routines of the N32 `libGLcore` (`usr/gfx/arch/IP27KONA32/libGLcore.so`, 6.5.30m; the IP35KONA32 build has the same code) from `libglcore/asm/texture/`. Every entry names its function's address and the listing it comes from. Offsets after a pointer name are byte offsets into the structure that pointer addresses.
+
+### Texture hash, texture-table cache and numeric helpers
+
+The texture hash is a record that starts 40 bytes into the shared texture state (`__glkon_InitSharedTextureState` passes state + 40 to `__glKonInitTextureHash`): a chain pointer at +0, a use counter at +4 and 4096 entries of three words (value, use stamp, key) from +8. Key 0 marks an empty entry. The function-pointer triple at +0xc008 (find), +0xc00c (delete) and +0xc010 (insert) holds the fast or the slow set. Overflow blocks of 0x8004 bytes (a next pointer, then 4096 value and key word pairs) hang off the chain pointer.
+
+#### `allocHashBlock`
+
+`allocHashBlock` at 0x0d978100 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it allocates one empty overflow block for the texture hash and returns it.
+It asks the allocator hook at offset 0 of the context whose pointer sits at process address 0x1010 for 0x8004 bytes.
+It then clears the block's next pointer and each of its 4096 key words, four per loop pass.
+It is called from `insertHashBlock`.
+
+#### `wrapHashCacheLRU`
+
+`wrapHashCacheLRU` at 0x0d978170 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it ages every use stamp in the texture hash table so the stamps cannot overflow.
+It walks the 4096 table entries two at a time from hash +8 and, for each entry whose key word is not 0, subtracts 0x20000000 from the stamp, setting it to 0 if the result is negative.
+It does not touch the use counter at hash +4.
+`__glKonHashFindTexSlow` calls it when that counter reaches 0x40000000.
+
+#### `insertHashBlock`
+
+`insertHashBlock` at 0x0d9781f0 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it stores a key and value pair in the chain of overflow blocks of the texture hash.
+Its arguments are the hash, the key and the value.
+For each block in the chain it probes up to eight slots, starting at slot (key & 0xfff) and stepping back by ((key >> n) << 6) | (key & 0x3f), where n is 6 for the first block and grows by one per block, and takes the first slot whose key word is 0.
+When no block has a free slot it calls `allocHashBlock`, links the new block at the end of the chain (or as the first block) and uses slot (key & 0xfff).
+It writes the value at slot offset 4 and the key at offset 8, each slot being eight bytes from the block start.
+
+#### `__glKonHashFindTexFast`
+
+`__glKonHashFindTexFast` at 0x0d978300 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it looks a texture name up in the texture hash table and returns its object, or 0.
+It tests the home entry (key & 0xfff) and then four more entries, each reached by subtracting ((key >> 12) << 6) | (key & 0x3f) from the previous index modulo 4096; the match is on the key word at entry +8.
+It never looks at overflow blocks, which is correct only while the table has not overflowed.
+
+#### `__glKonHashFindTexSlow`
+
+`__glKonHashFindTexSlow` at 0x0d978380 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it finds a texture object by name in the hash table or its overflow chain and stamps its use.
+It probes the table as the fast version does.
+A table hit gets the next value of the use counter at hash +4 as its stamp, and the counter is incremented; when the counter reaches 0x40000000 the function calls `wrapHashCacheLRU`.
+On a table miss it searches each overflow block with eight probes; a chain hit is promoted into the table slot among the four probed that holds the smallest stamp, the displaced entry is put back with `insertHashBlock` unless its key is negative, and the chain slot's key is cleared.
+It returns the object, or 0 when the key is nowhere.
+
+#### `__glKonHashDeleteTexFast`
+
+`__glKonHashDeleteTexFast` at 0x0d9785d0 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it removes a texture name from the table-only hash and returns the object that was stored.
+It probes five entries exactly as `__glKonHashFindTexFast` does and clears the key word of the match, leaving the value word in place.
+It returns 0 when the key is not found.
+
+#### `__glKonHashDeleteTexSlow`
+
+`__glKonHashDeleteTexSlow` at 0x0d978650 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it removes a texture name from the table or from the overflow chain and returns the stored object.
+It probes the table first, clearing the key word of a match at entry +8.
+Failing that it probes each chain block with eight probes and clears the key of the matching slot at slot offset 8.
+It returns 0 when the key is absent.
+
+#### `__glKonHashInsertTexSlow`
+
+`__glKonHashInsertTexSlow` at 0x0d978740 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it adds a texture object to the hash, spilling to the overflow chain when the table probes are full.
+The home entry is used if its key word is 0; otherwise four more entries are tried with the usual step.
+Each entry written gets the key, the value and the current use counter from hash +4 as its stamp.
+When all five probes are taken it calls `insertHashBlock` with the same key and value.
+
+#### `__glKonHashInsertTexFast`
+
+`__glKonHashInsertTexFast` at 0x0d978820 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it adds a texture object to the table-only hash and switches the hash to the slow functions when the table overflows.
+It tries five entries as the slow version does, writing the key and value (no stamp) into the first free one.
+When all five are taken it calls `insertHashBlock` and then stores the addresses of `__glKonHashFindTexSlow`, `__glKonHashDeleteTexSlow` and `__glKonHashInsertTexSlow` into the triple at hash +0xc008, +0xc00c and +0xc010.
+
+#### `__glKonInitTextureHash`
+
+`__glKonInitTextureHash` at 0x0d978920 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it selects the fast lookup functions for a new texture hash.
+It stores the addresses of `__glKonHashFindTexFast`, `__glKonHashDeleteTexFast` and `__glKonHashInsertTexFast` at hash +0xc008, +0xc00c and +0xc010, the hash being the argument.
+It does not clear the table.
+`__glkon_InitSharedTextureState` calls it with the shared state plus 40.
+
+#### `__glKonFreeTextures`
+
+`__glKonFreeTextures` at 0x0d978950 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it frees every texture object that the texture hash still holds.
+It takes the context and the hash.
+Every table entry whose key word is not 0 has its value passed to `__glKonFreeTextureObj`, and so does every used slot (key not 0) in each overflow block of the chain.
+It frees only the objects; the chain blocks go in `__glKonFreeTextureHash`.
+
+#### `__glKonFreeTextureHash`
+
+`__glKonFreeTextureHash` at 0x0d978a30 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it releases the overflow blocks of a texture hash.
+It follows the chain pointer at hash +0 and calls the context's free hook (offset 12) on each block in turn.
+It does not free the table itself or any texture object.
+
+### Texture-table cache
+
+The cache keeps a recency-ordered list of texture-table entries. Its record has a list head pointer at +0, a free-node pool at +4, the number of nodes made at +8, a node limit at +12, the nodes per allocation block at +16, hooks for insert (+20), delete (+24), recency update (+28) and eviction (+32), an embedded list head node at +36 and a table of allocated blocks at +52. A node is four words: payload, serial number, previous and next.
+
+#### `ARMTexCacheUnused2Used`
+
+`ARMTexCacheUnused2Used` at 0x0d978a90 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it takes a node from the free pool of the texture-table cache and puts it at the recent end of the list.
+It stores the payload argument in the node and relinks it just before the list head node, so the head's next pointer leads to the oldest entry.
+It never allocates; the caller checks the pool first.
+
+#### `__glKonUpdateARMTexCacheLRU`
+
+`__glKonUpdateARMTexCacheLRU` at 0x0d978ad0 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it marks a texture-table cache node as most recently used.
+It unlinks the node from its place in the list and relinks it directly before the head node.
+The cache installs it as its recency hook (+28) once the node limit is reached.
+
+#### `__glKonInsertARMTexCacheSlow`
+
+`__glKonInsertARMTexCacheSlow` at 0x0d978b20 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it adds an entry to a full texture-table cache by evicting the oldest one.
+With free nodes in the pool it only moves one to the list through `ARMTexCacheUnused2Used`.
+With none it takes the oldest node (the head's next), calls the eviction hook at +32 on that node's payload, moves the node to the recent end with `__glKonUpdateARMTexCacheLRU` and stores the new payload in it.
+
+#### `__glKonInsertARMTexCacheFast`
+
+`__glKonInsertARMTexCacheFast` at 0x0d978bc0 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it adds an entry to a texture-table cache that is still growing, one allocation block at a time.
+When the pool is empty and the node count at +8 is below the limit at +12 it grows the block table by one pointer, allocates a block of (count at +16) nodes of 16 bytes through the context hooks at +8 and +0, numbers the nodes with the running count and chains them into the pool.
+It then calls `ARMTexCacheUnused2Used` with the payload.
+When the pool is still empty it swaps the insert hook to `__glKonInsertARMTexCacheSlow` and the recency hook to `__glKonUpdateARMTexCacheLRU`, then calls the slow insert.
+
+#### `__glKonDeleteARMTexCache`
+
+`__glKonDeleteARMTexCache` at 0x0d978d70 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it removes one node from the texture-table cache list and returns it to the free pool.
+It unlinks the node from its neighbours and pushes it on the pool at +4.
+It does not call the eviction hook.
+
+#### `__glKonInitARMTexCache`
+
+`__glKonInitARMTexCache` at 0x0d978da0 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it sets up an empty texture-table cache with a node limit, a block size and an eviction hook.
+Arguments are the cache, the limit (stored at +12), the nodes per block (+16) and the eviction function (+32).
+It clears the pool, the node count and the block table pointer, links the embedded head node at +36 to itself, and installs `__glKonInsertARMTexCacheFast`, `__glKonDeleteARMTexCache` and `__glNop` as the insert, delete and recency hooks.
+
+#### `__glKonInvalidateARMTexCache`
+
+`__glKonInvalidateARMTexCache` at 0x0d978df0 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it empties the texture-table cache, telling the owner of each entry first.
+For every node on the list, oldest first, it calls the eviction hook at +32 with the node's payload.
+It then splices the whole list onto the free pool and links the head node to itself.
+
+#### `__glKonFreeARMTexCache`
+
+`__glKonFreeARMTexCache` at 0x0d978e90 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it releases the memory of a texture-table cache.
+It divides the node count at +8 by the block size at +16, frees that many blocks named in the block table at +52 and then the table, all through the context's free hook at offset 12.
+It does not call the eviction hook.
+
+### Numeric helpers
+
+#### `__glKonTexChecksum`
+
+`__glKonTexChecksum` at 0x0d978f60 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it folds an array of 32-bit words into one 32-bit key that `addTexTableUsage` compares before it compares contents.
+The arguments are the word count and the array.
+Counting back from the last word, the last word, the one two before it and so on are XORed together, the words between are added, and the result is the XOR of the sum and of that XOR.
+It returns 0 for a count of 0.
+
+#### `__glKonTexQuickSortPairs`
+
+`__glKonTexQuickSortPairs` at 0x0d979020 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it sorts an array of float pairs into increasing order of the first float, carrying the second along.
+Its arguments are the array, the first index and the last index; each pair is eight bytes.
+It takes the middle element's first float as the pivot, partitions with an inward scan from both ends, swaps the two words of out-of-place pairs, and recurses on both halves.
+`addTexTableUsage` uses it on the control points of the detail and sharpen functions.
+
+#### `__glKonTexEvaluateCubicSpline`
+
+`__glKonTexEvaluateCubicSpline` at 0x0d979510 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it evaluates a cubic spline, given its second derivatives, at an increasing list of x positions.
+The arguments are the query array and the result array, the query count, then the knot x values, the knot y values, the second derivatives and the knot count.
+Queries below the first knot get the first y value.
+Queries between knots k and k+1 use A = (x1 - x)/h and B = 1 - A with h the knot spacing, and return A*y0 + B*y1 + (h*h/6)*((A*A*A - A)*z0 + (B*B*B - B)*z1).
+Queries past the last knot get the last y value.
+
+#### `__glKonTexExp2NegX64`
+
+`__glKonTexExp2NegX64` at 0x0d9796d0 (`kon_texture_util.s`, `IP27KONA32/libGLcore.so`): **Established** it returns 64 times 2 to the power of a non-positive float, plus 0.5, from two small tables.
+It splits the argument x into the integer n (truncated toward zero) and the fraction f = n - x.
+The first table, at data address 0x0da85848, holds 64, 32, 16, 8, 4, 2, 1 for n = 0 down to -6, and the value is 0 for n below -6.
+The second table, `__glKonExp2From0ToM1` at 0x0da7f280, holds 2 to the power of -i/88 for i from 0 to 87 and is indexed with the truncation of f times 88.
+The result is the first table value times the second table value, plus 0.5.
+
+### Texture memory
+
+The allocator manages two memory units, numbered 0 and 1, held in the shared texture state. Each unit has a 192-byte record at state +0xc130 + 192 x unit: three cached run start nodes (+0x00), three cached maximum run sizes (+0x0c), a stale flag for those caches (+0x18), 30 free-list bucket heads (+0x1c), a bucket occupancy mask (+0x94), the largest free bank (+0x98), the total free size (+0x9c), a pointer to the unit's list sentinel (+0xa0) and the sentinel node itself (+0xa4). Banks are 28-byte nodes: previous (+0) and next (+4) in address order, priority (+8, -1 for a free bank, -2 for the sentinel), start offset (+12), size (+16), and, for a used bank, the owning texture object at +20; a free bank uses +20 and +24 as previous and next links in a single list ordered by increasing size, which the bucket heads index. A texture object keeps its banks at +264 (unit 0) and +268 (unit 1), their start offsets at +276 and +280, its unit order at +284 and its priority at +8. The state also holds the end offset of memory obtained so far (+0xc2b8) and the list of resident objects (+0xc2b0).
+
+#### `globalAlloc`
+
+`globalAlloc` at 0x0d975a80 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it obtains or grows the texture memory pool from the kernel and returns the result of that request.
+Its arguments are the shared state and a count, which it multiplies by 64 to get bytes.
+If bit 1 of the state's first word is clear it calls `__glkon_texture_mem_alloc` and sets the bit; otherwise it calls `__glkon_texture_mem_realloc` with the state word at +0xc2b8 plus the count, times 64.
+When an environment variable that it reads once is set, it also prints a size to stderr.
+`__glKonTexAlloc` calls it when the pool must grow.
+
+#### `whichBucket`
+
+`whichBucket` at 0x0d975b50 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it maps a bank size to one of 30 half-octave free-list buckets.
+It finds the position n of the highest set bit of the size and returns 2 x (n - 5) plus the next lower bit, capped at 29; sizes below 32 and the size 0 give bucket 0.
+`findFreeBank` and `insertFreeBank` use it to index the bucket heads of a unit record.
+
+#### `findFreeBank`
+
+`findFreeBank` at 0x0d975bf0 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it returns the smallest free bank of a memory unit that is at least a given size, or 0.
+Its arguments are the shared state, the unit and the size.
+It starts at the head of the bucket that `whichBucket` gives and follows the next links (+24) while the bank is too small.
+If the bucket has no such bank it uses the occupancy mask at unit-record +0x94 to take the head of the next higher non-empty bucket, whose banks all exceed the bucket's range.
+
+#### `deleteFreeBank`
+
+`deleteFreeBank` at 0x0d975d30 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it takes a free bank out of a unit's size-ordered free list.
+It calls `whichBucket` for the bank's size, joins the bank's neighbours, and if the bank headed its bucket it moves the head to the next bank when that is in the same bucket and otherwise empties the bucket and clears its mask bit.
+It also moves the largest-bank pointer (+0x98) back to the previous bank when the deleted one was the largest, and subtracts the bank's size from the unit's total free size at +0x9c.
+
+#### `sizeNoGreaterPriorityInterval`
+
+`sizeNoGreaterPriorityInterval` at 0x0d975e70 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it adds up the sizes of the unbroken stretch of banks around one bank whose priorities do not exceed a limit.
+Its arguments are the bank, the priority limit and the unit's sentinel.
+It sums the bank and each previous bank (+0) while their priority is at most the limit and the sentinel is not reached, and then each next bank (+4) the same way.
+It returns the total.
+
+#### `insertFreeBank`
+
+`insertFreeBank` at 0x0d975f30 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it puts a free bank into a unit's size-ordered free list and refreshes the cached run sizes.
+Its arguments are the state, the unit, the bank and a priority level.
+It calls `whichBucket`, links the bank in place by increasing size (starting its search at the bucket head, or from the last bank of the nearest lower non-empty bucket when its bucket was empty), sets the bucket's mask bit when needed, updates the largest-bank pointer and adds the size to the total at +0x9c.
+Unless the stale flag at +0x18 is already set it then calls `sizeNoGreaterPriorityInterval` for each priority from the given level down to 0 and sets the flag at the first level where the run reaches the cached maximum.
+
+#### `inInterval`
+
+`inInterval` at 0x0d9761a0 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it tells whether the banks from a start node to the end of a unit's list add up to less than a size.
+Its arguments are the start node, the size and the sentinel.
+It returns 1 if it reaches the sentinel before the running total of sizes reaches the argument, and 0 if the size is 0 or less or the total reaches it first.
+
+#### `maxSizeNoGreaterPriorityInterval`
+
+`maxSizeNoGreaterPriorityInterval` at 0x0d9761e0 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it returns the size of the longest unbroken stretch of banks in a unit whose priorities are at most a limit.
+Its arguments are the state, the unit and the limit.
+It walks the unit's list from the sentinel's next bank, adds sizes while the priority stays within the limit, and keeps the largest total, with a bank above the limit ending a stretch.
+
+#### `validateMaxIntervalBank`
+
+`validateMaxIntervalBank` at 0x0d976290 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it recomputes the three cached maximum run sizes of a unit and clears the stale flag.
+For the priority limits 0, 1 and 2 it walks the list once, finds the longest stretch of banks whose priority is at most the limit, and stores its first node at unit-record +0x00, +0x04 or +0x08 and its size at +0x0c, +0x10 or +0x14.
+It then writes 0 to the flag at +0x18.
+
+#### `validateBank`
+
+`validateBank` at 0x0d9764c0 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it is a consistency check of a unit's free-bank bookkeeping that prints a message when a rule fails.
+If the stale flag is set it first calls `validateMaxIntervalBank`.
+It then checks that the occupancy mask has the bit for the largest free bank's bucket, printing "bank %d: bogus free bucket mask 0x%x, max size = %d", and that the cached run sizes match `maxSizeNoGreaterPriorityInterval` for each of the priorities 0, 1 and 2, printing "bogus priority interval on bank %d".
+`__glKonTexAlloc` calls it for both units before it allocates.
+
+#### `stealNoGreaterPriorityBank`
+
+`stealNoGreaterPriorityBank` at 0x0d976650 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it picks the stretch of banks of a unit to evict so that a request of a given size fits, and returns the stretch's first bank.
+Its arguments are the state, the unit, the priority limit and the size.
+When the largest free bank is already big enough it just returns `findFreeBank` for the size.
+Otherwise it slides a window over the unit's banks, keeping at most the banks of priority within the limit in a ring of node and last-use pairs (512 bytes at first, doubled by copying when full), and among the windows whose sizes total at least the request it keeps the one with the lowest use stamp, read from the owner's word at +288 that `updateTexUsage` writes (**inferred** from the comparison against the best stamp so far, which starts at 0x40000000).
+When no window fits it prints "bogus stolen memory for %d in bank %d with priority %d" and calls `exit` with 1.
+
+#### `getMemNode`
+
+`getMemNode` at 0x0d976c40 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it returns a spare 28-byte bank node from the state's node pool, making more when the pool is empty.
+The pool head is at state +0xc2d0, the table of node blocks at +0xc2c8 and the block count at +0xc2cc.
+When the pool is empty it grows the table by one entry with the context's reallocation hook (+8), allocates 7168 bytes (256 nodes) with the allocation hook (+0), links the nodes through their next fields and ends the chain with 0.
+
+#### `putMemNode`
+
+`putMemNode` at 0x0d976d60 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it returns a bank node to the state's node pool.
+It stores the pool head (state +0xc2d0) in the node's next field and makes the node the new head.
+
+#### `releaseMemBank`
+
+`releaseMemBank` at 0x0d976d80 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it turns a used bank back into free space and merges it with free neighbours.
+Its arguments are the state, the unit and the bank.
+It sets the bank's priority to -1, and for the previous bank (+0) and the next bank (+4), when either is free (priority -1), it deletes that neighbour from the free list with `deleteFreeBank`, folds its size and start into the bank and returns the node with `putMemNode`.
+It ends by calling `insertFreeBank` with the old priority of the bank as the level.
+
+#### `addFreeBank`
+
+`addFreeBank` at 0x0d976ee0 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it adds newly obtained memory of a given size to the end of a unit's bank list.
+If the last bank (the sentinel's previous) is free it removes that bank from the free list with `deleteFreeBank` and grows it; otherwise it takes a node with `getMemNode`, links it at the end as a free bank of the size at the state's end offset (+0xc2b8).
+It then calls `insertFreeBank` for the bank with level 2 and returns the bank.
+
+#### `getFreeBank`
+
+`getFreeBank` at 0x0d976ff0 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it carves a used bank of a requested size for a texture object out of a stretch of banks chosen by the stealing search.
+Its arguments are the state, the unit, the first bank of the stretch, the size and the object.
+If the unit's cached run sizes are stale it checks the stretch with `inInterval` and marks them valid.
+It then visits banks of the stretch until their sizes total at least the request.
+A free bank is removed from the free list with `deleteFreeBank`.
+A used bank's owner is taken off the resident list at state +0xc2b0 (clearing bit 20 of the owner's word at +32), the owner's pointer for this unit is cleared, the owner is passed to `__glKonFreeAllocedTexObjBank`, and when that returns non-zero the owner's bank in the other unit goes through `releaseMemBank`.
+Each visited node goes back with `putMemNode`.
+It then takes a node from `getMemNode`, makes it a used bank of the size with the object's priority and the object as owner, stores it at object +264 or +268 with its start offset at +276 or +280, and turns any remainder into a free bank with `insertFreeBank`.
+
+#### `__glKonTexAlloc`
+
+`__glKonTexAlloc` at 0x0d9773e0 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it gives a texture object its banks in the two texture memory units, evicting lower-priority objects and growing the pool when needed.
+Its arguments are the shared state, the object and a mode word.
+The needed byte counts are object +0 and +4, one per unit, and the unit order is the stored one at +284 when bit 1 of the mode is set and otherwise follows from comparing the two sizes and the two units' total free sizes (+0x9c).
+It calls `validateBank` for both units.
+For each unit it takes a start bank from `findFreeBank` when the unit's largest free bank is big enough and from `stealNoGreaterPriorityBank` when it is not, and then calls `getFreeBank` to make the bank.
+When even evicting cannot supply the size it calls `globalAlloc` to enlarge the pool (checking that the pool size minus the end offset is a multiple of 1024 and printing a message if not), `addFreeBank` for both units and tries again.
+On success it stores the unit order at +284, sets bit 20 of the word at +32, links the object at the head of the resident list at state +0xc2b0 through its +292 and +296 fields, and returns 0; it returns -1 when memory cannot be found.
+
+#### `__glKonTexFree`
+
+`__glKonTexFree` at 0x0d977ce0 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it gives back a texture object's memory and takes it off the resident list.
+If bit 20 of the word at +32 is set it unlinks the object from the list at state +0xc2b0 (fields +292 and +296) and clears the bit.
+It then calls `releaseMemBank` for the bank at +264 (unit 0) and at +268 (unit 1) when they are not 0, and clears those fields.
+It returns 0.
+`__glKonFreeTextureObj` and `deallocTexture` call it.
+
+#### `__glKonTexUpdatePriority`
+
+`__glKonTexUpdatePriority` at 0x0d977dd0 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it changes a texture object's priority and the priority recorded in its banks.
+Its arguments are the state, the object and the new priority; it returns at once when the object already has it.
+For the banks at object +264 and +268 it writes the priority into the bank's word at +8 and, unless the unit's stale flag at record +0x18 is set, sets that flag when the change could alter a cached run: for a rise it tests the cached run start with `inInterval`, and for a fall it compares `sizeNoGreaterPriorityInterval` of the bank against the cached maximum.
+It finally writes the priority at object +8.
+`__glKonTexParameter` and `__glkonim_PrioritizeTexturesEXT` call it.
+
+#### `__glKonInitTextureMemory`
+
+`__glKonInitTextureMemory` at 0x0d977fc0 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it sets the texture memory state to empty with the given maximum size.
+The second argument is stored at state +0xc2b4 (the per-unit capacity, checked in `__glKonTexAlloc`), the counters at +0xc2ac to +0xc2b0 and the pool words are cleared, and for each unit the sentinel node (at record +0xa4) is linked to itself with priority -2, heads the first free-list bucket, is the largest bank, and the stale and mask fields are set up (mask 1).
+`__glkon_InitSharedTextureState` calls it.
+
+#### `__glKonFreeTextureMemory`
+
+`__glKonFreeTextureMemory` at 0x0d978050 (`kon_texture_mem.s`, `IP27KONA32/libGLcore.so`): **Established** it releases all bank-node memory of the texture state.
+It frees each of the node blocks named in the table at state +0xc2c8 (their count is at +0xc2cc) and then the table, using the context's free hook at offset 12.
+`__glkon_FreeTextureState` calls it.
