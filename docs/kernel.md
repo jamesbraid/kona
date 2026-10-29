@@ -202,7 +202,7 @@ The senders below are read from the call sites of the 6.5.30m user-space binarie
 | `kona_mem_swapin_func` (`kona_mem.o` 0x624) | 1 | the command port: the conditional branch to 0x624 loads +0x900 in its delay slot |
 | `kona_nclops_configure` (`kona_nclops.o` 0x15d0-0x15fc) | 2 | `HH_VC_ADDRESS` then `HH_VC_DATA` (`$s4`, `$s5` hold 0x8003c0 and 0x8003d0): VC 0xe300 = 0, [below](#multi-pipe-dplex-display-port-writes) |
 | `kona_video_intr` (`kona_video.o` 0x1a00-0x1c40) | 7 | `HH_VC_ADDRESS` and `HH_VC_DATA` (`$s2`/`$s1` set to 0x8003c0/0x8003d0 at three places in the function): the cursor writes of [dg.md](dg.md#cursor) |
-| `kona_mapram_init` (`kona_mapram_hip2.o` 0x3c-0x58) | 2 | map RAM entry k at window offset 0x100000 + 8k, written with 0x10000000 + k and read back as a presence test ([hip.md](hip.md)) |
+| `kona_mapram_init` (`kona_mapram_hip2.o` 0x3c-0x58) | 2 | map RAM entry k at window offset 0x100000 + 4k, written with 0x10000000 + k and read back as a presence test ([hip.md](hip.md)) |
 | `kona_mapram_map` (`kona_mapram_hip2.o`) | 1 | the map RAM entry of the page being mapped ([hip.md](hip.md)) |
 
 | Offset from base | HIP.h name | Read by | Written by |
