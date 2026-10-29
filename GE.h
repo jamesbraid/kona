@@ -698,8 +698,16 @@ enum kona_hp_token {
  *  - Microcode: ucode/ge.md describes the program files (one 62521-word
  *    program of 72-bit instructions in three encodings) and geif.u, a
  *    1024-entry table whose odd entries are the handlers for 452 geometry-
- *    engine command slots. How a host token selects a slot is UNKNOWN; 47
- *    name matches are in ucode/ge_name_matches.tsv.
+ *    engine command slots. The instruction fields are mapped in
+ *    ucode/ge_isa.md.
+ *  - Token routing, ESTABLISHED (ucode/arm1.md, ucode/icu_map.tsv): the ARM
+ *    firmware builds a 512-entry map indexed by token. 306 tokens run an
+ *    ARM handler, which sends a geif.u slot's handler address to the
+ *    engine (CULLFACE slot 3, FRONTFACE 15, MATRIXMODE 51); 206 are routed
+ *    by hardware with a 9-bit command number in bits 15-23 of the entry
+ *    and, INFERRED, a payload word count in bits 6-10 and a component
+ *    type in bits 29-30 (2 single, 3 double). How the 9-bit number selects
+ *    a handler is UNKNOWN; 47 name matches are in ucode/ge_name_matches.tsv.
  */
 
 /*

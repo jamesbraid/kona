@@ -50,7 +50,7 @@ Geometry engines: transform, lighting, clipping and primitive assembly, fed by t
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
 | Registers and fields | partial | `GE.h`, `docs/ge.md` | host and geometry | 15 GE11 diagnostic registers (0x40000-0x40038) and 24 special-register numbers from kpm; the host path to them and the value column unknown |
-| Command and FIFO formats | partial | `GE.h`, `docs/ge.md` | host and geometry | 512 token names; framing, 64-bit store order, fixed payloads for 118 tokens (libglcore/payloads.tsv). Remaining: variable-length grammars (texture, pixel, display list, vertex array, eval) and the microcode dispatch |
+| Command and FIFO formats | partial | `GE.h`, `docs/ge.md` | host and geometry | 512 token names; framing, 64-bit store order, fixed payloads for 118 tokens (libglcore/payloads.tsv). Per-token routing from the ARM firmware's 512-entry map (ucode/icu_map.tsv): ARM handler or hardware route, command number, word count and component type. Remaining: variable-length grammars (texture, pixel, display list, vertex array, eval) and how a hardware-routed command number selects its handler |
 | DMA | none | `GE.h`, `docs/ge.md` | host and geometry |  |
 | Interrupts | partial | `HIP.h`, `docs/hip.md` | host and geometry | GE event record (code plus three arguments, word 0 poisoned after read) and the kernel action for codes 0 and 0x100-0x105; microcode side of the record unread |
 | Reset | none | `GE.h`, `docs/ge.md` | host and geometry |  |
