@@ -135,3 +135,23 @@ The codes are the 6.5.5 `KONA_GE_*` events (HIP.h).
 ### Unknown
 
 How the pipe decides when to raise each bit beyond what the names say; what the XG registers 0x04, 0x24, 0x2c, 0x74 do; whether `HH_INTR_ACK` is needed or only conventional; the units of the 2328 and 2332 thresholds beyond their use as microseconds and FIFO level. RM and kernel timeout interrupts are not separate sources: timeouts are software timers.
+
+## The command stream as the ARM firmware reads it
+
+What the pipe's own firmware (`arm1.u`, IRIX 6.5.30m; [ucode/arm1_firmware.md](../ucode/arm1_firmware.md)) shows of the command format the host sends. Facts are labelled **established** (read from the firmware), **inferred** (with the reasoning) or **unknown**.
+
+**Established.** A host command is a token number from 0 to 0x1ff followed by its payload words (GE.h lists the 512 token names). The host-interface hardware looks the token up in a 512-entry table the ARM builds at start-up ([ucode/arm1.md](../ucode/arm1.md), [ucode/icu_map.tsv](../ucode/icu_map.tsv)). An entry tells the hardware one of two things: run this ARM routine (306 tokens, the routine's address is the entry shifted left four bits), or route the command (206 tokens), with a payload word count in bits 6-10 (0 meaning 32), a command number in bits 15-23 and a type in bits 29-30 (2 single precision, 3 double precision). Bits 1-2 mark whether the token may arrive between a begin and its end.
+
+**Established.** An ARM routine reads the payload itself: one word per read of a payload port, the last word of the command with a read at offset 0x3c of the register window. No length is stored for an ARM-run token; the routine knows it. A token whose routine is the firmware's bad-command handler (54 of the 306, including the `TEXIMAGE*` and `GETINTEGERV` tokens) is never sent by a working driver. The pipe answers a host query by sending words back through the output DMA, set up by RDATA_SETUP and the ARM's register writes ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md)), and events through one mailbox word per interrupt.
+
+**Established.** The ARM firmware also sends commands to itself and to the engines using the same entry format: it writes an entry-shaped word to a descriptor port and then the payload ([ucode/arm1.md](../ucode/arm1.md)). The host cannot see that path.
+
+**Unknown.** The framing of the 64-bit stores the user process makes at 0x4000 and how the hardware splits them into tokens and payload ([GE.h](../GE.h) records the stores); the FIFO depth and credit scheme beyond the high and low water marks above; what makes the hardware refuse a token (the begin/end and divert vectors).
+
+## Reset and start of the ARM
+
+**Established** ([HIP.h](../HIP.h) for the register). The reset register `HH_RESET` (0x300) has a host-interface reset bit and an ARM start bit; the register `HH_ARM_CTRL` (0x308) grants the host access to the ARM's memory and `HH_ARM_STATUS` (0x310) reports stall, remap, abort and processor mode, and the register names (`HH_ARM_STALL`, `HH_ARM_UNSTALL`, `HH_ARM_STEP`, `HH_ARM_ADDRESS`, `HH_ARM_DATA`) suggest the host can load, start, stall and single-step the firmware (**inferred** from the names).
+
+**Established** (the firmware side, `init` and `init_ge_board`). When the ARM starts it clears its RAM window, sets up its exception vectors, reads whether it runs inside a simulator from the first register of its window, scans the boards on the boundary-scan chain, builds the token map, loads the distributor program and tables, downloads the engine start-up stub, configures the raster and display boards and waits for the engines' mailbox handshake (`check_pipe_sync`) before it accepts the first host command. Until then it does not read the token fetch register, so host commands cannot be dispatched (**inferred**: the loop that reads it starts after `init` returns). The order and the register accesses are in [ucode/arm1_firmware.md](../ucode/arm1_firmware.md).
+
+**Inferred.** The host's reset of the host interface (`HH_RESET` bit 0) does not by itself restart the ARM's start-up: the ARM start bit is separate. **Unknown:** what the hardware does to the token map and FIFOs on that reset, and how the kernel's `HH_RESET` pulses in [xg.md](xg.md) relate to the ARM start bit.

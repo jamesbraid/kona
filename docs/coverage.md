@@ -37,10 +37,10 @@ Host interface: PIO FIFO words, DMA streams, flow control and doorbells.
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
 | Registers and fields | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | full HIP1/HIP2 register and field table from kpm; window base 0x800000 inferred from kernel accesses; meaning of the 0xc00000 alias unknown |
-| Command and FIFO formats | none | `HIP.h`, `docs/hip.md` | host interface and command grammar | kernel push port, textport port, indirect pair and user doorbell reported by prior work |
+| Command and FIFO formats | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | kernel push port, textport port, indirect pair and user doorbell reported by prior work; token map (306 ARM-run, 206 routed with count, command number and type), payload ports, kind bits, mailbox and read-back from the ARM firmware (docs/hip.md, ucode/arm1_firmware.md); the split of the user's 64-bit stores into tokens and the credit scheme are unknown |
 | DMA | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | DO_IDMA, START_SELECTFEED, FINISH_SELECTFEED and DMAPOOL_SETUP payloads (strided descriptor: len, llen, stride), the 16 KB map RAM and pipe-space address path, completion events; register-level ODMA/IDMA behaviour, the 0x9000 bits and what a pool is used for unknown |
 | Interrupts | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | HH_INTR_INFO/ENABLE/STATUS/ACK and GINTR_INFO fields; every STATUS bit with what the kernel does on it, the reset (0x100) and running (0xf7c) masks, write-back clear and ack, FIFO hi/lo-water flow control, ARM mailbox and GE event handling; the hardware conditions behind each bit and the low-water level unknown |
-| Reset | none | `HIP.h`, `docs/hip.md` | host interface and command grammar |  |
+| Reset | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | HH_RESET and ARM control and status bits; the firmware start-up order after the ARM starts (docs/hip.md); what the reset does to the token map and FIFOs unknown |
 | Context save and restore | partial | `HIP.h`, `kona_kernel/include/kona_kern.h` | host interface and command grammar | kick = HH_GINTR_INFO PRIV/FORCE; physical-address word pair; the 0x9000 constant is read at every sender (low word of an address pair, hi word bit 28 on host-physical buffers only) but its meaning and FORCE's exact effect are unknown |
 
 ### GE
@@ -49,12 +49,12 @@ Geometry engines: transform, lighting, clipping and primitive assembly, fed by t
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | partial | `GE.h`, `docs/ge.md` | host and geometry | 15 GE11 diagnostic registers (0x40000-0x40038) and 24 special-register numbers from kpm; the host path to them and the value column unknown |
+| Registers and fields | partial | `GE.h`, `docs/ge.md` | host and geometry | 15 GE11 diagnostic registers (0x40000-0x40038) and 24 special-register numbers from kpm; the ARM writes them through descriptor words 0x46a00020 (address) and 0x46600020 (value) in `init_ge` (docs/ge.md); the host path and the value column unknown |
 | Command and FIFO formats | partial | `GE.h`, `docs/ge.md` | host and geometry | 512 token names; framing, 64-bit store order, fixed payloads for 118 tokens (libglcore/payloads.tsv). Per-token routing from the ARM firmware's 512-entry map (ucode/icu_map.tsv): ARM handler or hardware route, command number, word count and component type. Hardware routing: 54 of the 206 routed tokens run the handler at index (command number & 63) of a 64-entry table the ARM loads (ucode/hw_route.tsv, ucode/ged_bound_table.tsv). Remaining: variable-length grammars (texture, pixel, display list, vertex array, eval) and how the other 152 routed tokens (vertex, primitive, begin/end) reach their handlers |
-| DMA | none | `GE.h`, `docs/ge.md` | host and geometry |  |
+| DMA | partial | `GE.h`, `docs/ge.md` | host and geometry | host-to-engine pass-through counter, input and list DMA registers and the engine-to-host handlers as the ARM uses them (docs/ge.md); register bit meanings and the engine's output FIFO operation unknown |
 | Interrupts | partial | `HIP.h`, `docs/hip.md` | host and geometry | GE event record (code plus three arguments, word 0 poisoned after read) and the kernel action for codes 0 and 0x100-0x105; microcode side of the record unread |
-| Reset | none | `GE.h`, `docs/ge.md` | host and geometry |  |
-| Context save and restore | none | `GE.h`, `docs/ge.md` | host and geometry |  |
+| Reset | partial | `GE.h`, `docs/ge.md` | host and geometry | engine start-up as the ARM performs it: board configuration, register writes to 0x40000-0x40038 through the distributor ports, start-up stub download, EXEC_GO, global initialisation (docs/ge.md); no engine reset pulse found |
+| Context save and restore | partial | `GE.h`, `docs/ge.md` | host and geometry | CONTEXT_LOAD image: 0x52-word header, 3-word records, tag table to the engine and ARM regions, 0xedededed terminator (docs/ge.md); the saved image's engine records and several tags unknown |
 
 ### RM and TM
 
