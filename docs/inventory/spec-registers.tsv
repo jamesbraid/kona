@@ -51,7 +51,7 @@ kpm register tables	host interface		hip	0x8002b0	HH_ODMA2_LEN	1	0	32		0	document
 kpm register tables	host interface		hip	0x8002b8	HH_ODMA2_TOTAL	1	0	32		1	documented	docs/hip.md#output-dma-from-the-pipe-side	Output DMA from the pipe side
 kpm register tables	host interface		hip	0x8002c0	HH_ODMA2_OVER	1	0	32		0	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 kpm register tables	host interface		hip	0x8002c8	HIP2_HH_PIO_HI	1	0	32		0	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-kpm register tables	host interface		hip	0x800300	HH_RESET	1	0	32		1	documented	docs/ge.md#reset-and-start-up	Reset and start-up
+kpm register tables	host interface		hip	0x800300	HH_RESET	1	0	32		1	documented	docs/hip.md#reset	Reset
 kpm register tables	host interface		hip	0x800308	HH_ARM_CTRL	1	0	32		0	documented	docs/hip.md#interrupt-conditions	Interrupt conditions
 kpm register tables	host interface		hip	0x800310	HH_ARM_STATUS	1	0	32		0	documented	docs/hip.md#reset-and-start-of-the-arm	Reset and start of the ARM
 kpm register tables	host interface		hip	0x800320	HH_ARM_STALL	1	0	32		0	documented	docs/hip.md#reset-and-start-of-the-arm	Reset and start of the ARM

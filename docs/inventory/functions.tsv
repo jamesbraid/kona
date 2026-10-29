@@ -1488,8 +1488,8 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10039110	652	LoadGeifFile	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003939c	900	TEST_armucode	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10039720	756	update_ucode_struc	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10039a14	156	ge_host_reg_write	dynsym	documented	docs/ge.md#registers-the-arms-path-to-them	Registers: the ARM's path to them
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10039ab0	1516	TEST_geucode	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a09c	176	TEST_verify_ge11ucode	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10039ab0	1516	TEST_geucode	dynsym	no-software-dependency	docs/ge.md#reset-and-start-up	Reset and start-up
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a09c	176	TEST_verify_ge11ucode	dynsym	no-software-dependency	docs/ge.md#reset-and-start-up	Reset and start-up
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a14c	668	load_ged_seq_ucode	dynsym	documented	ucode/ged.md#the-distributor-instruction-set-registers-and-dispatch	The distributor: instruction set, registers and dispatch
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a3e8	500	load_ged_pcl_table	dynsym	documented	ucode/ged.md#the-distributor-instruction-set-registers-and-dispatch	The distributor: instruction set, registers and dispatch
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a5dc	1072	LoadUcodeFile	dynsym	undocumented		
@@ -2046,7 +2046,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ff414	108	DLGetGenericDList
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ff480	252	DLGetNameIndex	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ff57c	160	DLGetNameData	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ff61c	436	DLNameData	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ff7d0	480	TEST_rm_reset	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ff7d0	480	TEST_rm_reset	dynsym	no-software-dependency	docs/ge.md#reset-and-start-up	Reset and start-up
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ff9b0	184	rm_hold	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ffa68	188	rm_release	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ffb2c	1052	TEST_perf	dynsym	undocumented		
