@@ -98,6 +98,8 @@ The 47 name matches are written to [ge_name_matches.tsv](ge_name_matches.tsv) as
 
 ## Next steps for a reader
 
+What individual routines compute (inputs, outputs and arithmetic) is collected in [ge_compute.md](ge_compute.md).
+
 1. The instruction fields are mapped bit for bit in [ge_isa.md](ge_isa.md); name the operations behind the decoded control bits.
 2. Find how the vertex, primitive and begin/end tokens (152 of the 206 routed tokens) reach their engine handlers; the other 54 are explained in [arm1.md](arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler).
 3. Decode the distributor's own instruction set; its relocated words are listed in [ged_relocs.tsv](ged_relocs.tsv).

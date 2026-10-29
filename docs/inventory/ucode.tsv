@@ -1927,10 +1927,10 @@ ge.u	label	0x00000dc9	uLiPwrTable		located	ucode/ge_handlers.md#ulights	ulight.s
 ge.u	label	0x00000df5	lPT1		located	ucode/ge_handlers.md#ulights	ulight.s
 ge.u	label	0x00000e13	mSinCos		located	ucode/ge_handlers.md#umaths	umath.s
 ge.u	label	0x00000e13	uSinCos		located	ucode/ge_handlers.md#umaths	umath.s
-ge.u	label	0x00000e62	uMatrixMultCCC		located	ucode/ge_handlers.md#umatrixs	umatrix.s
+ge.u	label	0x00000e62	uMatrixMultCCC		understood	ucode/ge_compute.md#matrix-maintenance-umatrixs	Matrix maintenance (umatrix.s)
 ge.u	label	0x00000eb0	mMatrixMultCCW		located	ucode/ge_handlers.md#umatrixs	umatrix.s
 ge.u	label	0x00000eb0	uMatrixMultCCW		located	ucode/ge_handlers.md#umatrixs	umatrix.s
-ge.u	label	0x00000ee7	mMatrixInverse		located	ucode/ge_handlers.md#umatrixs	umatrix.s
+ge.u	label	0x00000ee7	mMatrixInverse		understood	ucode/ge_compute.md#matrix-maintenance-umatrixs	Matrix maintenance (umatrix.s)
 ge.u	label	0x00000ee7	uMatrixInverse		located	ucode/ge_handlers.md#umatrixs	umatrix.s
 ge.u	label	0x00000f58	mMatrixAdjoint		located	ucode/ge_handlers.md#umatrixs	umatrix.s
 ge.u	label	0x00000f58	uMatrixAdjoint		located	ucode/ge_handlers.md#umatrixs	umatrix.s
@@ -1974,24 +1974,24 @@ ge.u	label	0x000011b6	mmo_ToScreenSpaceInvQ2DI		located	ucode/ge_handlers.md#usc
 ge.u	label	0x000011b6	umo_ToScreenSpaceInvQ2DI		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
 ge.u	label	0x000011b8	uBackInvQ2DI		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
 ge.u	label	0x000011c1	lSC5		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x00001218	mmo_ObjToClipSpace		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x00001218	umo_ObjToClipSpace		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x0000121f	lXF1		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x0000124c	mmo_ObjToClipSpaceN2E		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x0000124c	umo_ObjToClipSpaceN2E		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x00001254	lXF2		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x00001293	mmo_ObjToClipSpaceN2EN		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x00001293	umo_ObjToClipSpaceN2EN		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x0000129b	lXF3		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x000012fe	mmo_ObjToEyeSpace		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x000012fe	umo_ObjToEyeSpace		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x00001304	lXF5		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x00001325	mmo_ObjToEyeSpaceAndTwoUserTR		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x00001325	umo_ObjToEyeSpaceAndTwoUserTR		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x0000132b	lXF12		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x0000135c	mmo_ObjToEyeSpaceAndSixUserTR		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x0000135c	umo_ObjToEyeSpaceAndSixUserTR		located	ucode/ge_handlers.md#uxforms	uxform.s
-ge.u	label	0x00001362	lXF7		located	ucode/ge_handlers.md#uxforms	uxform.s
+ge.u	label	0x00001218	mmo_ObjToClipSpace		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x00001218	umo_ObjToClipSpace		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x0000121f	lXF1		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x0000124c	mmo_ObjToClipSpaceN2E		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x0000124c	umo_ObjToClipSpaceN2E		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x00001254	lXF2		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x00001293	mmo_ObjToClipSpaceN2EN		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x00001293	umo_ObjToClipSpaceN2EN		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x0000129b	lXF3		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x000012fe	mmo_ObjToEyeSpace		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x000012fe	umo_ObjToEyeSpace		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x00001304	lXF5		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x00001325	mmo_ObjToEyeSpaceAndTwoUserTR		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x00001325	umo_ObjToEyeSpaceAndTwoUserTR		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x0000132b	lXF12		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x0000135c	mmo_ObjToEyeSpaceAndSixUserTR		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x0000135c	umo_ObjToEyeSpaceAndSixUserTR		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
+ge.u	label	0x00001362	lXF7		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
 ge.u	label	0x000013b4	mmo_Histogram		located	ucode/ge_handlers.md#histograms	histogram.s
 ge.u	label	0x000013b4	umo_Histogram		located	ucode/ge_handlers.md#histograms	histogram.s
 ge.u	label	0x000013ff	mainloop_hist		located	ucode/ge_handlers.md#histograms	histogram.s
