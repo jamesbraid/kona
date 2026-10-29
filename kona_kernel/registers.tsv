@@ -1,0 +1,157 @@
+member	function	offset	direction	calls	window	name
+kona_context	KONApcxswap	0x7c	read	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_context	KONApcxswap	0x7c	write	7	pipe base offset (XG widget registers, docs/xg.md)	
+kona_context	KONApcxswap	0xc00108	write	2	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_context	KONApcxswap	?	write	21	computed address (command port, mapping or pipe-space address)	
+kona_context	KONAvalidateclip	0x7c	write	5	pipe base offset (XG widget registers, docs/xg.md)	
+kona_context	KONAvalidateclip	0xc00108	write	1	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_context	KONAvalidateclip	?	write	25	computed address (command port, mapping or pipe-space address)	
+kona_context	kona_act_pcx	0x7c	write	5	pipe base offset (XG widget registers, docs/xg.md)	
+kona_context	kona_act_pcx	0xc00108	write	1	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_context	kona_act_pcx	?	write	25	computed address (command port, mapping or pipe-space address)	
+kona_crash	kona_checkpipe	0x7c	write	4	pipe base offset (XG widget registers, docs/xg.md)	
+kona_crash	kona_checkpipe	?	write	6	computed address (command port, mapping or pipe-space address)	
+kona_crash	kona_die	0x800208	read	1	host-interface window	HH_GFIFO_LEVEL
+kona_crash	kona_die	0x800220	read	1	host-interface window	HH_INTR_INFO
+kona_crash	kona_die	0x800220	write	1	host-interface window	HH_INTR_INFO
+kona_crash	kona_die	0x800298	write	1	host-interface window	HH_ODMA_FLUSH
+kona_crash	kona_die	0x8003a8	read	1	host-interface window	HH_TBUS_STATUS
+kona_crash	kona_die	0x8003a8	write	1	host-interface window	HH_TBUS_STATUS
+kona_ddrn	KONAdestroyddrn	0x7c	read	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_ddrn	KONAdestroyddrn	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_ddrn	KONAdestroyddrn	0xc00108	write	5	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_ddrn	KONAdestroyddrn	?	write	1	computed address (command port, mapping or pipe-space address)	
+kona_dma	kona_dmapool	?	write	2	computed address (command port, mapping or pipe-space address)	
+kona_dma	kona_dmapool_update_pipe	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_dma	kona_dmapool_update_pipe	0xc00108	write	2	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_dma	kona_dmapool_update_pipe	?	write	5	computed address (command port, mapping or pipe-space address)	
+kona_dma	kona_dmaread	?	write	2	computed address (command port, mapping or pipe-space address)	
+kona_dma	kona_dmawrite	?	write	2	computed address (command port, mapping or pipe-space address)	
+kona_dma	kona_finish_selectfeed	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_dma	kona_finish_selectfeed	0xc00108	write	6	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_dma	kona_idma	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_dma	kona_idma	0xc00108	write	2	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_dma	kona_idma	?	write	8	computed address (command port, mapping or pipe-space address)	
+kona_dma	kona_start_selectfeed	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_dma	kona_start_selectfeed	0xc00108	write	2	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_dma	kona_start_selectfeed	?	write	8	computed address (command port, mapping or pipe-space address)	
+kona_edtinit_hip2	kona_attach	0x4	read	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_attach	0x64	read	2	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_attach	0x8003c0	write	1	host-interface window	HH_VC_ADDRESS
+kona_edtinit_hip2	kona_attach	0x8003d0	read	1	host-interface window	HH_VC_DATA
+kona_edtinit_hip2	kona_attach	?	read	1	computed address (command port, mapping or pipe-space address)	
+kona_edtinit_hip2	kona_attach	?	write	1	computed address (command port, mapping or pipe-space address)	
+kona_edtinit_hip2	kona_report_errs	0x6c	read	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_reset_adaptor	0x24	read	2	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_reset_adaptor	0x24	write	2	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_reset_adaptor	0x2c	write	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_reset_adaptor	0x34	write	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_reset_adaptor	0x3c	write	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_reset_adaptor	0x5c	write	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_reset_adaptor	0x6c	read	2	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_reset_adaptor	0x6c	write	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_reset_adaptor	0x74	read	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_reset_adaptor	0x74	write	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_edtinit_hip2	kona_reset_adaptor	0x800238	write	1	host-interface window	HH_INTR_STATUS
+kona_edtinit_hip2	kona_reset_adaptor	0x800390	write	1	host-interface window	HH_FCI_ERR_STAT1,HH_GV_ERR_STAT1
+kona_edtinit_hip2	kona_reset_adaptor	0x800398	write	1	host-interface window	HH_FCI_ERR_STAT2,HH_GV_ERR_STAT2
+kona_flow	KONAreleasegfxsema	0x7c	read	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_flow	KONAreleasegfxsema	?	write	1	computed address (command port, mapping or pipe-space address)	
+kona_flow	kona_delay_monitor_gfifo	0x800238	write	1	host-interface window	HH_INTR_STATUS
+kona_flow	kona_delay_monitor_gfifo	?	read	1	computed address (command port, mapping or pipe-space address)	
+kona_flow	kona_diag_flow	0x7c	write	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_flow	kona_diag_flow	0x800230	write	2	host-interface window	HH_INTR_ENABLE
+kona_flow	kona_diag_flow	0xc00108	write	1	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_flow	kona_flow_await_returned_credits	0x7c	write	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_flow	kona_flow_await_returned_credits	0x800208	read	1	host-interface window	HH_GFIFO_LEVEL
+kona_flow	kona_flow_await_returned_credits	0x800300	read	2	host-interface window	HH_RESET
+kona_flow	kona_flow_await_returned_credits	0x800300	write	2	host-interface window	HH_RESET
+kona_flow	kona_flow_init	0x800210	write	1	host-interface window	HH_GFIFO_HI
+kona_flow	kona_hiwater_intr	0x800230	write	2	host-interface window	HH_INTR_ENABLE
+kona_flow	kona_hiwater_intr	0x800238	write	3	host-interface window	HH_INTR_STATUS
+kona_flow	kona_hiwater_intr	?	read	2	computed address (command port, mapping or pipe-space address)	
+kona_flow	kona_hiwater_timeout	0x800208	read	2	host-interface window	HH_GFIFO_LEVEL
+kona_flow	kona_lowater_intr	0x800230	write	1	host-interface window	HH_INTR_ENABLE
+kona_flow	kona_lowater_intr	0x800238	write	1	host-interface window	HH_INTR_STATUS
+kona_intr	kona_arm_intr	0x800238	write	1	host-interface window	HH_INTR_STATUS
+kona_intr	kona_arm_intr	0x800240	read	2	host-interface window	HH_ARM_MBOX
+kona_intr	kona_arm_intr	?	read	1	computed address (command port, mapping or pipe-space address)	
+kona_intr	kona_ge_intr	0x800260	read	1	host-interface window	HH_ODMA_PNUM
+kona_intr	kona_ge_intr	0x800268	read	1	host-interface window	HH_ODMA_POFF
+kona_intr	kona_ge_intr	0x800278	read	1	host-interface window	HH_ODMA_TOTAL
+kona_intr	kona_ge_intr	0x8002a0	read	1	host-interface window	HH_ODMA2_PNUM
+kona_intr	kona_ge_intr	0x8002a8	read	1	host-interface window	HH_ODMA2_POFF
+kona_intr	kona_ge_intr	0x8002b8	read	1	host-interface window	HH_ODMA2_TOTAL
+kona_intr_hip2	kona_ge_intr_handler	0x800238	write	1	host-interface window	HH_INTR_STATUS
+kona_intr_hip2	kona_intr_handler	0x800228	write	1	host-interface window	HH_INTR_ACK
+kona_intr_hip2	kona_intr_handler	0x800238	read	1	host-interface window	HH_INTR_STATUS
+kona_intr_hip2	kona_intr_handler	0x800238	write	1	host-interface window	HH_INTR_STATUS
+kona_map	KONAmapgfx	0x7c	write	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_map	KONAmapgfx	0xc00108	write	1	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_map	KONAunmapgfx	0x7c	read	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_map	KONAunmapgfx	?	write	1	computed address (command port, mapping or pipe-space address)	
+kona_mapram_hip2	kona_mapram_init	?	read	1	computed address (command port, mapping or pipe-space address)	
+kona_mapram_hip2	kona_mapram_init	?	write	1	computed address (command port, mapping or pipe-space address)	
+kona_mapram_hip2	kona_mapram_map	?	write	1	computed address (command port, mapping or pipe-space address)	
+kona_mem	kona_mem_alloc	?	write	2	computed address (command port, mapping or pipe-space address)	
+kona_mem	kona_mem_copydown_func	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_mem	kona_mem_copydown_func	0xc00108	write	8	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_mem	kona_mem_free	?	write	2	computed address (command port, mapping or pipe-space address)	
+kona_mem	kona_mem_reserve_func	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_mem	kona_mem_reserve_func	0xc00108	write	8	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_mem	kona_mem_resume	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_mem	kona_mem_resume	0xc00108	write	4	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_mem	kona_mem_resume	?	write	1	computed address (command port, mapping or pipe-space address)	
+kona_mem	kona_mem_swapin_func	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_mem	kona_mem_swapin_func	0xc00108	write	3	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_mem	kona_mem_swapin_func	?	write	11	computed address (command port, mapping or pipe-space address)	
+kona_mem	kona_mem_swapout_func	0x7c	write	4	pipe base offset (XG widget registers, docs/xg.md)	
+kona_mem	kona_mem_swapout_func	0xc00108	write	9	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_mem	kona_mem_swapout_func	?	write	6	computed address (command port, mapping or pipe-space address)	
+kona_nclops	kona_nclops_bind	0x8003c0	write	1	host-interface window	HH_VC_ADDRESS
+kona_nclops	kona_nclops_bind	0x8003d0	write	1	host-interface window	HH_VC_DATA
+kona_nclops	kona_nclops_configure	?	write	8	computed address (command port, mapping or pipe-space address)	
+kona_nclops	kona_nclops_destroy	?	read	1	computed address (command port, mapping or pipe-space address)	
+kona_nclops	kona_nclops_destroy	?	write	9	computed address (command port, mapping or pipe-space address)	
+kona_nclops	kona_nclops_discover	?	read	5	computed address (command port, mapping or pipe-space address)	
+kona_nclops	kona_nclops_discover	?	write	27	computed address (command port, mapping or pipe-space address)	
+kona_nclops	kona_nclops_swapped	0x8003c0	write	3	host-interface window	HH_VC_ADDRESS
+kona_nclops	kona_nclops_swapped	0x8003d0	write	3	host-interface window	HH_VC_DATA
+kona_sched	KONAresume	0x7c	write	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_sched	KONAsuspend	0x7c	read	2	pipe base offset (XG widget registers, docs/xg.md)	
+kona_sched	KONAsuspend	0x7c	write	1	pipe base offset (XG widget registers, docs/xg.md)	
+kona_sched	KONAsuspend	?	write	1	computed address (command port, mapping or pipe-space address)	
+kona_setup	KONAinitialize	0x800220	write	1	host-interface window	HH_INTR_INFO
+kona_setup	KONAinitialize	0x800230	write	1	host-interface window	HH_INTR_ENABLE
+kona_setup	KONAinitialize	0x800300	read	2	host-interface window	HH_RESET
+kona_setup	KONAinitialize	0x800300	write	2	host-interface window	HH_RESET
+kona_setup	KONAstart	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_setup	KONAstart	0x800228	write	1	host-interface window	HH_INTR_ACK
+kona_setup	KONAstart	0x800230	write	1	host-interface window	HH_INTR_ENABLE
+kona_setup	KONAstart	0x800238	read	1	host-interface window	HH_INTR_STATUS
+kona_setup	KONAstart	0x800238	write	1	host-interface window	HH_INTR_STATUS
+kona_setup	KONAstart	0xc00108	write	2	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_setup	KONAstart	?	write	5	computed address (command port, mapping or pipe-space address)	
+kona_timeout	kona_callout	0x8003a8	read	1	host-interface window	HH_TBUS_STATUS
+kona_timeout	kona_callout	0x8003a8	write	1	host-interface window	HH_TBUS_STATUS
+kona_video	KONAschedmgrswapbuf	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_video	KONAschedmgrswapbuf	0xc00108	write	2	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_video	KONAschedmgrswapbuf	?	write	7	computed address (command port, mapping or pipe-space address)	
+kona_video	KONAschedswapbuf	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_video	KONAschedswapbuf	0xc00108	write	2	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_video	KONAschedswapbuf	?	write	27	computed address (command port, mapping or pipe-space address)	
+kona_video	KONAsetdisplaymode	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_video	KONAsetdisplaymode	0xc00108	write	2	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_video	KONAsetdisplaymode	?	write	5	computed address (command port, mapping or pipe-space address)	
+kona_video	kona_enable_dac_cursor	0x8003c0	write	1	host-interface window	HH_VC_ADDRESS
+kona_video	kona_enable_dac_cursor	0x8003d0	write	1	host-interface window	HH_VC_DATA
+kona_video	kona_enable_dac_cursor	?	write	5	computed address (command port, mapping or pipe-space address)	
+kona_video	kona_retrace_activate	0x7c	write	3	pipe base offset (XG widget registers, docs/xg.md)	
+kona_video	kona_retrace_activate	0xc00108	write	2	host-interface alias 0xc00000	HH_GINTR_INFO
+kona_video	kona_retrace_activate	?	write	3	computed address (command port, mapping or pipe-space address)	
+kona_video	kona_swap_complete	0x8003c0	write	1	host-interface window	HH_VC_ADDRESS
+kona_video	kona_swap_complete	0x8003d0	write	1	host-interface window	HH_VC_DATA
+kona_video	kona_video_intr	0x800248	read	1	host-interface window	HH_SEQID
+kona_video	kona_video_intr	0x8003c0	write	3	host-interface window	HH_VC_ADDRESS
+kona_video	kona_video_intr	0x8003d0	write	2	host-interface window	HH_VC_DATA
+kona_video	kona_video_intr	?	write	21	computed address (command port, mapping or pipe-space address)	
