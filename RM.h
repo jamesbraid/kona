@@ -255,7 +255,12 @@
  * Flags word (word 18), ESTABLISHED as to source and INFERRED as to
  * meaning. subloadLevel builds it and subloadSimple stores it to desc+0x84:
  *   bits 0-1   texel size code, table entry +8 of the internal format
- *   bit 2      set on the single-image path (the load scissor enable)
+ *   bit 2      the load scissor enable; subloadLevel never sets it (no OR
+ *              of 4 on any of its paths, kon_texture_api.s 0x0d96be7c on);
+ *              DoDrawPixelsOrTexels ORs it in for a texel download when
+ *              header word 7, the image-by-DMA flag, is nonzero, so it
+ *              equals word 7 on every path (docs/opengl.md, "Texel
+ *              download: header word 7 and the load-scissor bit")
  *   bits 3-4   target bank: 1 when the level's even/odd parity equals the
  *              context word at +284, else 0
  *   bits 5-6   tiling kind of the texture, (gc+12) & 3
