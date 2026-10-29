@@ -871,4 +871,55 @@ enum kona_hp_token {
 #define KONA_GEOM_SIZE(e)               (((e) >> 29) & 3)     /* 0 B, 1 S, 2 32-bit, 3 D */
 #define KONA_REGPIX_REG(e)              (((e) >> 21) & 0x3ff)
 
+/*
+ * Geometry-engine operation ids (ucode/ge_ops.md, ucode/ge_inst_results.tsv).
+ *
+ * ESTABLISHED: the IR diagnostic's engine test (ge_inst.s in
+ * usr/diags/IR/ucode/ge.u, 6.5.30m) produces 172 words that irsaudit
+ * compares with its array expected_token; each code below is fixed by the
+ * expected result for known constant operands. Unit 1 writes register Q
+ * and takes its code in M[6:0] (M = 0x680 | code); unit 2 writes P and
+ * takes its code in M[10:4] (M = code << 4 | 0x7f).
+ * INFERRED readings are marked; see ge_ops.md for the ties left open.
+ */
+#define KONA_GE_U1_DADD                 0x20  /* double add, two words */
+#define KONA_GE_U1_DSUB                 0x22  /* double subtract */
+#define KONA_GE_U1_IADD                 0x40
+#define KONA_GE_U1_ISUB                 0x42  /* signed, 0xaaaaaaaa - 0x55555555 = 0x80000000 */
+#define KONA_GE_U1_MOVA                 0x4a  /* first operand */
+#define KONA_GE_U1_MOVB                 0x4b  /* second operand */
+#define KONA_GE_U1_AND                  0x50  /* AND or NOR; AND INFERRED */
+#define KONA_GE_U1_OR                   0x54  /* OR, XOR or NAND; OR INFERRED */
+#define KONA_GE_U1_XOR                  0x56  /* as above; XOR INFERRED */
+#define KONA_GE_U1_NOT                  0x58  /* one operand */
+#define KONA_GE_U1_FADD                 0x60
+#define KONA_GE_U1_FSUB                 0x62
+#define KONA_GE_U1_FMIN                 0x66  /* returned the smaller; min INFERRED */
+#define KONA_GE_U1_FMAX                 0x68  /* returned the larger; max INFERRED */
+#define KONA_GE_U1_ITOF                 0x73  /* integer to single */
+#define KONA_GE_U1_CLAMP0               0x7c  /* negative to 0, positive unchanged */
+#define KONA_GE_U2_DMUL                 0x07  /* double multiply, two words */
+#define KONA_GE_U2_MOVA                 0x27  /* also the output move */
+#define KONA_GE_U2_MOVB                 0x2f  /* returned the second (smaller) operand */
+#define KONA_GE_U2_DMOVA                0x37
+#define KONA_GE_U2_DMOVB                0x3f  /* returned the second (smaller) pair */
+#define KONA_GE_U2_FMUL                 0x47  /* bit-exact IEEE single product */
+#define KONA_GE_U2_RCP_STEP             0x4f  /* 2 - a * b */
+#define KONA_GE_U2_RSQ_STEP             0x57  /* (3 - a * b) / 2 */
+#define KONA_GE_SEED_RCP_R110           0x6bf /* r110 code: 1/x, 7 fraction bits */
+#define KONA_GE_SEED_RSQ_R110           0x2bf /* r110 code: 1/sqrt(x), 7 fraction bits */
+
+/*
+ * Flag register (source 0x1b) and branch conditions, ESTABLISHED values
+ * 0xcc, 0xac, 0xaa observed; layout INFERRED: low nibble integer flags,
+ * high nibble float flags, each bit 3 = result <= 0, bit 2 = zero,
+ * bit 1 = negative, bit 0 = a fourth condition (signed overflow, weakly).
+ * A transfer's cc 0-7 tests the integer nibble, 8-15 the float nibble;
+ * cc bits 2-1 choose the condition (0..3 = bit 3..0), cc bit 0 inverts.
+ */
+#define KONA_GE_FLAG_LE0                0x8
+#define KONA_GE_FLAG_ZERO               0x4
+#define KONA_GE_FLAG_NEG                0x2
+#define KONA_GE_FLAG_FOURTH             0x1
+
 #endif /* KONA_GE_H */

@@ -1,8 +1,8 @@
-# Operation codes of the geometry-engine program: what the known handlers show
+# Operation codes of the geometry-engine program
 
-[ge_isa.md](ge_isa.md) maps every field of the 72-bit instruction word W and says the arithmetic operation codes are open. This page narrows them with three handlers whose job is known from the ARM side ([arm1_firmware.md](arm1_firmware.md)): `mgeb_CullFace` (slot 3), `mgeb_FrontFace` (15) and `mgeb_MatrixMode` (51), each sent exactly one GL enumerant, plus the shorter `mgesi_TbusRegWrite`, `mges_NullCommand` and `mgesi_FlushRM`. Facts are labelled **established** (counted from `ge.hex`, `ge.u` and `ge_symbols`, IRIX 6.5.30m), **inferred** (with the reasoning) or **unknown**. [scripts/ge_ops.py](../scripts/ge_ops.py) writes the tables cited: [ge_optuples.tsv](ge_optuples.tsv), [ge_opdeps.tsv](ge_opdeps.tsv) and [ge_idioms.tsv](ge_idioms.tsv).
+[ge_isa.md](ge_isa.md) maps every field of the 72-bit instruction word W. This page identifies the operations. It uses two kinds of evidence: handlers whose job is known from the ARM side ([arm1_firmware.md](arm1_firmware.md)), and the IR diagnostic's engine instruction test, whose expected results the diagnostic host program carries word for word. Facts are labelled **established** (read or counted from `ge.hex`, `ge.u`, `ge_symbols` and `irsaudit`, IRIX 6.5.30m), **inferred** (with the reasoning) or **unknown**. [scripts/ge_ops.py](../scripts/ge_ops.py) writes [ge_optuples.tsv](ge_optuples.tsv), [ge_opdeps.tsv](ge_opdeps.tsv) and [ge_idioms.tsv](ge_idioms.tsv); [scripts/ge_inst_results.py](../scripts/ge_inst_results.py) writes [ge_inst_results.tsv](ge_inst_results.tsv).
 
-**Result in short.** The 11-bit decoded group `M` (R121-111) is the engine's operation id; its low seven bits come from a seven-bit field of W that sits in a different place in each form. Two operations are identified with evidence (a move, and an equality compare against a GL enumerant). The floating-point operation codes and the input and output FIFO operations are not identified.
+**Result in short.** The 11-bit decoded group `M` (R121-111) is the operation id. The engine has two arithmetic units that one word can drive at once: unit 1 takes its 7-bit operation in M[6:0] (M = 0x680 | op) and writes register field Q; unit 2 takes its 7-bit operation in M[10:4] (M = (op << 4) | 0x7f) and writes register field P. A third group, r110, drives the reciprocal and reciprocal-square-root seeds. The diagnostic test fixes the result of every operation it exercises against the expected word: integer add, saturating subtract, the bitwise group, single-precision add and subtract, single- and double-precision multiply, double add and subtract, integer-to-float conversion, a clamp at zero, the two Newton-Raphson step operations and the two seeds ([table below](#operation-table)). It also fixes the output instruction (one register word to the host) and gives one taken case for each of 16 branch conditions.
 
 ## Reading a handler in source order
 
@@ -30,34 +30,96 @@ In form 13, **established** over all 10996 words: with W29 set (7934 words) M = 
 
 The other decoded groups depend on the low bits: `r148` (R148-139) on W[13:0] and W29, `r110` (R110-100) on a similar set, `r99` (R99-96) only on W55-54 and one more bit. [ge_optuples.tsv](ge_optuples.tsv) lists the 400 most common tuples (form, M, r110, r99, r148, r128) with counts, the most common first operand A and the handlers that use each most. `r128` is not fully explained by any W bit set this method found in form 13 (3511 words still disagree), which fits it being a function of wired operand fields as well.
 
-## Operations identified
 
-**Move: M = 0x6ca.** **Established:** the most common operation overall (2317 words in form 13, 1619 in form 5), and the only operation in `mgesi_TbusRegWrite`, a handler that does nothing but forward two operand words to the raster-board register bus ([arm1_firmware.md](arm1_firmware.md)); `mgesi_FlushRM` and `mgesi_PassThrough` use it with one other operation each. **Inferred:** M = 0x6ca copies a source to a destination, with the form-5 and form-14 memory accesses (`imm` 0x1f4-0x1f7, `r95` = 0x13) being its stores. Evidence: the handler built to forward words contains no other operation.
+## Operations identified from production handlers
 
-**Equality compare against an enumerant: M = 0x6c2 with r110 = 0x7bd.** **Established:** 34 instructions in the whole program, 32 with first operand A = 0x18; in 31 a form-15 load into C = 0x1e precedes it by up to three words, and the loaded constants are GL enumerants: 0x405 (GL_BACK, in `mgeb_CullFace`), 0x900 (GL_CW, in `mgeb_FrontFace`), 0x1701 (GL_PROJECTION, in `mgeb_MatrixMode`), 0x1b01 and 0x1b02 (GL_LINE and GL_FILL, twice each) and several 0x8xxx values ([ge_idioms.tsv](ge_idioms.tsv)). The ARM side sends each of those three handlers one operand, the GL enumerant, so **inferred:** register 0x18 holds the first operand word of a command and the instruction compares it with the constant in register 0x1e. The conditional stores around it carry predicate field `r211` = 3 or 2 (true or false), which is **inferred** to select on the compare's result.
+**Move: M = 0x6ca.** **Established:** the most common operation overall (2317 words in form 13, 1619 in form 5), and the only operation in `mgesi_TbusRegWrite`, a handler that does nothing but forward two operand words to the raster-board register bus ([arm1_firmware.md](arm1_firmware.md)); `mgesi_FlushRM` and `mgesi_PassThrough` use it with one other operation each. The diagnostic test below confirms it: 0x6ca returns its first operand unchanged.
 
-**Seen but not identified.** `mgeb_DepthRange` loads 0x49000000 (2^19) and 0x49800000 (2^20) as constants (matching the 2^20 depth scale in [docs/rm.md](../docs/rm.md)) and then runs operations 0x6e2 (twice), 0x6e0, 0x6e6 (twice) and 0x6e8 (twice). **Inferred:** these are floating-point operations (the constants are IEEE single-precision values), but no handler isolates one of them, so which is add, subtract or multiply is **unknown**.
+**Equality compare against an enumerant: M = 0x6c2 with r110 = 0x7bd.** **Established:** 34 instructions in the whole program, 32 with first operand A = 0x18; in 31 a form-15 load into C = 0x1e precedes it by up to three words, and the loaded constants are GL enumerants: 0x405 (GL_BACK, in `mgeb_CullFace`), 0x900 (GL_CW, in `mgeb_FrontFace`), 0x1701 (GL_PROJECTION, in `mgeb_MatrixMode`), 0x1b01 and 0x1b02 (GL_LINE and GL_FILL, twice each) and several 0x8xxx values ([ge_idioms.tsv](ge_idioms.tsv)). The ARM side sends each of those three handlers one operand, the GL enumerant, so **inferred:** register 0x18 holds the first operand word of a command. The diagnostic test shows 0x6c2 is the integer subtract, so the compare is a subtract whose zero result is tested. The conditional stores around it carry predicate field `r211` = 3 or 2 (true or false), which is **inferred** to select on that result.
 
-## Input and output FIFO operations
-
-**Unknown.** The special-register numbers for the input FIFO pointers (0x00-0x02, [GE.h](../GE.h)) appear as no operand field this analysis could single out: forms 5 and 14 carry small immediates, but their values do not separate FIFO accesses from other register accesses in the handlers above. Two leads: the operand ports the ARM writes (r9 + 0x470-0x47c, [arm1_firmware.md](arm1_firmware.md)) look like word offsets 28-31 of the engine's input port, and register numbers 0x1d, 0x1e and 0x1f occur as the staging registers in every handler (C = 0x1d in the start words, C = 0x1e for constants, 0x1f for "none"); the width match alone does not settle that the registers are the port. `mgesi_TbusRegWrite` writes only after reading two operands and uses `imm` 0x1f4-0x1f7 as destinations, which is the shortest place to look for the output side.
+**`mgeb_DepthRange`.** **Established:** it runs 0x6e8 and then 0x6e6 on each of its two inputs, then 0x6e2, 0x6e0 and unit-2 multiplies against the constants 0x49000000 (2^19) and 0x49800000 (2^20). **Inferred:** with the table below this reads as GL's clamp of zNear and zFar to [0, 1] (maximum, then minimum), then (far - near) and (far + near) scaled by powers of two for the 2^20 depth range of [docs/rm.md](../docs/rm.md).
 
 ## The diagnostic program's instruction test
 
-The IR diagnostics ship a second geometry-engine program, `usr/diags/IR/ucode/ge.hex` and `ge.u` (IRIX 6.5.30m, built from a 1998 diagnostic tree). Its line table names its sources, among them `ge_inst.s`, `fib.S`, `mul.S`, `mul_ge.S` and `mmath.S`. [scripts/ge_disasm.py](../scripts/ge_disasm.py) runs on it unchanged when given an empty symbol file, rederiving the wiring from that program's own two encodings. The listings are not committed. Labels as above.
+The IR diagnostics ship a second geometry-engine program, `usr/diags/IR/ucode/ge.hex` and `ge.u` (IRIX 6.5.30m, built from a 1998 diagnostic tree). Its line table names its sources, among them `ge_inst.s`, `fib.S`, `mul.S`, `mul_ge.S` and `mmath.S`. [scripts/ge_disasm.py](../scripts/ge_disasm.py) runs on it unchanged when given an empty symbol file, rederiving the wiring from that program's own two encodings. The listings are not committed.
 
-**Established** (`ge_inst.s`). The instruction test applies one operation at a time, in source order: 0x6c0 (line 3601), 0x6d0 (3617), 0x6d8 (3632), 0x6d4 (3648), 0x6c2 (3663), 0x6d6 (3678), 0x6e0 (3729), 0x6e6 (3744), 0x6e8 (3759), 0x6e2 (3774), 0x6f3 (3792), 0x6a0 (3829) and 0x6a2 (3858). Each is a form-13 word with destination field Q = 2. Twelve no-ops follow it, then a form-12 word with M = 0x27f, `r95` = 0x20 and B = 9, 0xa or 0xb. The pattern repeats 48 times. The operands are not loaded anywhere in the test's own code. The diagnostic host program (`irsaudit`) checks engine results against stored CRCs (`irsaudit.*.gold.Z`), so the inputs come from the host.
+**Established (the expected results).** `TEST_ge_instTest` in `irsaudit` (0x1006f460) loads the diagnostic program, starts it, waits for the engine's output DMA (`wait_for_odma`) and compares the first 172 returned words one by one with the array `expected_token` (dynamic symbol, 0x102001a8, 688 bytes), printing a debug line for each mismatch. `ge_inst.s` is straight-line code: it contains exactly 172 output instructions, none inside a loop, so the n-th output instruction in address order produces `expected_token[n]`. [ge_inst_results.tsv](ge_inst_results.tsv) pairs them. The output instruction is a form-12 (or form-10) word with `r213` = 3 and B = 9, 10 or 11, using either M = 0x6ca or the unit-2 move M = 0x27f with `r95` = 0x20; `r148`[9:5] is the register it sends. **Established** by every case below: the register it names is the one the preceding operation wrote.
 
-**Inferred.** These 13 codes are the engine's distinct arithmetic operations, grouped by M[6:5]: 0x40-0x5f (0x6c0, 0x6c2, 0x6d0, 0x6d4, 0x6d6, 0x6d8), 0x60-0x7f (0x6e0, 0x6e2, 0x6e6, 0x6e8, 0x6f3) and 0x20-0x3f (0x6a0, 0x6a2). The reasoning: a test written to exercise instructions issues each code once. The rest of `ge_inst.s` uses a few more codes (0x6c8, 0x6cb next to the move 0x6ca, 0x6fc and 0x440), all inside the same groups, so the list is a lower bound on the operation set. The production handlers that work on IEEE constants (`mgeb_DepthRange`: 0x6e0, 0x6e2, 0x6e6, 0x6e8) use only the 0x60 group, so that group is the floating-point unit. The 0x40 group holds the equality compare already identified (0x6c2). The twelve-word gap is **inferred** to be the result latency the test waits out before storing, which bounds the pipeline depth at twelve. The word after the gap (M = 0x27f, `r95` = 0x20) is **inferred** to be the result store and is the first candidate for the output operation. It occurs 48 times in this test and 14 times in the whole production program.
+The operands come from the test's own code: form-15 words load 32-bit constants into a staging file (B selects the entry), and M = 0x6ca words copy them into the arithmetic registers (A names the staging entry, Q the register). For a two-operand operation `r148`[9:5] names the first register and `r148`[4:0] the second. The tests below use registers 0 and 1 (A, B) or the pairs 0:1 and 2:3 (double precision), and send the result register.
 
-**Inferred, weakly** (counts in known routines):
+### Operation table
 
-- `fib.S` (a Fibonacci loop) uses only 0x6c0, 0x6c2 and the move. So 0x6c0 is the integer add and 0x6c2 the subtract or compare that ends the loop.
-- `mMatrixMultCCC` (production `mmatrix.S`, 0xe8a6 on) uses 0x6e0 63 times, 0x6e2 38 times, 0x460 25 times and 0x462 6 times. A 4 x 4 product needs 64 multiplies, which points at 0x6e0 as the multiply.
-- Against that, the diagnostic's `mmath.S` uses 0x6e2 32 times and 0x6e0 only 9 times, so the counts do not separate multiply from add on their own. The codes 0x460 and 0x462 share M[6:0] with 0x6e0 and 0x6e2 and differ only in M[10:7], which fits the same operation with another operand mode.
+Each row is one operation word in `ge_inst.s`, its operands and the word `irsaudit` expects back. "Established" means the expected word fixes the operation among the plain candidates (add, subtract, multiply, the bitwise operations, moves, conversions); where it does not, the row says so.
 
-**Unknown: needs capture.** The identity of each code. The smallest capture is the engines' output words for one run of the `ge_inst.s` test with known operands. That means feeding the diagnostic's input words, which are in `irsaudit`'s test setup, and recording the 48 stored results. Comparing each result with its two inputs fixes add, subtract, multiply, the compares and the conversions. An alternative is the read-back words of `GL_DEPTH_RANGE` state after `glDepthRange(0.25, 0.75)`, which pass through `mgeb_DepthRange`'s 0x6e0-0x6e8 sequence.
+| Line | Unit, code (M) | Operands | Expected | Reading |
+|---|---|---|---|---|
+| 1096, 1122, 1143 | 1, 0x40 (0x6c0) | 2 and 2, then +2, +2 | 4, 6, 8 (index 48-50) | integer add, **established** (2 | 2 and 2 ^ 2 would give 2 and 0) |
+| 3601 | 1, 0x40 (0x6c0) | A = 0xaaaaaaaa, B = 0x55555555 | 0xffffffff (136) | consistent with add |
+| 3617 | 1, 0x50 (0x6d0) | same | 0x00000000 (137) | AND or NOR; **inferred** AND: production code applies it with single-bit masks (0x2, 0x4, 0x8, 0x10) and field-clearing masks (0xfe3fffff) |
+| 3632 | 1, 0x58 (0x6d8), one operand | A = 0xaaaaaaaa | 0x55555555 (138) | bitwise NOT, **established** for one operand |
+| 3648 | 1, 0x54 (0x6d4) | A, B as above | 0xffffffff (139) | OR, XOR or NAND; **inferred** OR: production code applies it with single-bit constants (0x1, 0x4, 0x40000000) |
+| 3663 | 1, 0x42 (0x6c2) | A = 0xaaaaaaaa, B = 0x55555555 | 0x80000000 (140) | a subtract that does not wrap: **established** against wrapping A - B (0x55555555) and B - A (0xaaaaaaab); **inferred** signed A - B saturated at the 32-bit limit, which the production compare idiom also fits; the sign bit of a wider result would also give 0x80000000 |
+| 3678 | 1, 0x56 (0x6d6) | A, B | 0xffffffff (141) | OR, XOR or NAND; **inferred** XOR as the remaining one, production code applies it to GL enumerants (0x801, 0x8199), which fits an equality test |
+| 3694 | 1, 0x4a (0x6ca), one operand | A = 0xaaaaaaaa | 0xaaaaaaaa (142) | move of the first operand, **established** |
+| 3709 | 1, 0x4b (0x6cb) | A, B | 0x55555555 (143) | move of the second operand, **established** with the register walk at lines 3326-3448 (index 120-127), where 0x6cb with second operand 0, 1, 2, 4, 8, 0x10, 0x1f, 0x15 sends each register's loaded pattern |
+| 3729 | 1, 0x60 (0x6e0) | A = 1024.1024 (0x44800347), B = 2048.2048 (0x45000347) | 3072.307 (0x454004ea, 144) | single-precision add, **established** (the only candidate giving 3A) |
+| 3744 | 1, 0x66 (0x6e6) | same | 0x44800347 = A (145) | returns the smaller and the first operand; **inferred** minimum from `mgeb_DepthRange` |
+| 3759 | 1, 0x68 (0x6e8) | same | 0x45000347 = B (146) | returns the larger and the second operand; **inferred** maximum, as above |
+| 3774 | 1, 0x62 (0x6e2) | first = B, second = A (`r148` = 0x20) | 0x44800347 (147) | single-precision subtract B - A, **established** (B = 2A exactly) |
+| 3792 | 1, 0x73 (0x6f3), one operand | 0x400 | 1024.0 (0x44800000, 148) | integer to single-precision float, **established** |
+| 3829-3830 | 1, 0x20 (0x6a0), two words | 0x400a5a5a5a5a5a5a (3.294...), 0x4005a5a5a5a5a5a5 (2.706...) as doubles | 0x40180000 00000000 = 6.0 (149-150) | double-precision add, **established**; the second word names the low halves |
+| 3858-3859 | 1, 0x22 (0x6a2), two words | same | 0x3fe2d2d2 d2d2d2d4 (151-152) | double-precision subtract, **established** (the exact IEEE difference) |
+| 3895, 3913, 3931 | 1, 0x7c (0x6fc), one operand | 0x0478002b, 0xce1ef209 (-6.7e8), 0x3eaa7efa (0.333) | the same, 0, the same (153-155) | clamp below at zero, **established** for these inputs; an upper clamp at 1.0 is not tested (both positive inputs are below 1) |
+| 3996 | 2, 0x47 (0x47f) | 3577494.5 (0x4a5a5a5a), 5300.7056 (0x45a5a5a5) | 0x508d4985 (156) | single-precision multiply, **established** bit for bit against IEEE round-to-nearest |
+| 4010 | 2, 0x27 (0x27f), one operand | 0x4a5a5a5a | the same (157) | unit-2 move of the first operand, **established**; the output instructions use it |
+| 4025 | 2, 0x2f (0x2ff) | same pair | 0x45a5a5a5 = B (158) | returns the second operand, which is also the smaller; move of B or minimum not separated |
+| 4050 | 2, 0x4f (0x4ff) | A = 0.60294 (0x3f1a5a5a), B = 1.91912 (0x3ff5a5a5) | 0x3f57c750 (159) | 2 - A x B, **established** bit for bit: the Newton-Raphson reciprocal step |
+| 4068 | 2, 0x57 (0x57f) | same | 0x3f6be3a8 (160) | (3 - A x B) / 2, **established** bit for bit: the Newton-Raphson reciprocal-square-root step |
+| 4104-4105 | 2, 0x07 (0x7f), two words | the two doubles above | 0x4021d3b5 97795b3c (161-162) | double-precision multiply, **established** (the exact IEEE product 8.9135) |
+| 4128-4129 | 2, 0x37 (0x37f) | same | the first double (163-164) | double move of the first pair, **established** |
+| 4153-4154 | 2, 0x3f (0x3ff) | same | the second double (165-166) | double move of the second pair, or minimum (the second is the smaller); not separated |
+| 4182, 4232 | r110 = 0x6bf, one operand | 16777216.0, 49.4295 | 0x337f0000, 0x3ca60000 (167, 169) | reciprocal seed, **established**: within 0.4% of 1/x, with only fraction bits 22-16 set (7 bits) |
+| 4206, 4261 | r110 = 0x2bf, one operand | same | 0x397f0000, 0x3e120000 (168, 170) | reciprocal-square-root seed, **established**: within 0.4% of 1/sqrt(x), 7 fraction bits |
 
-## What would settle it
+**Established:** a seed result reaches a register through a following unit-2 move word with `r110` = 0x68d (lines 4184, 4208), so the seed unit has its own result register.
 
-A handler whose behaviour is known beyond the argument it takes. The firmware's callers give two more: `mgesi_StartRdata` and `mgesi_FinishRdata` (the raster-board register sequence of read-back is in [arm1_firmware.md](arm1_firmware.md)) and `mgeb_Fogf` (one float in, a table out). Their W words, read in source order next to the ARM's calls, would fix the output operation and the float multiply.
+**Inferred** from the table: unit 1 groups its codes by M[6:5]: 0x20-0x3f double precision, 0x40-0x5f integer and bitwise, 0x60-0x7f single precision and conversion. Bit 1 selects subtract in both add pairs (0x20/0x22, 0x60/0x62). Unit 2 is the multiplier: single multiply 0x47, the two Newton-Raphson steps 0x4f and 0x57, double multiply 0x07, moves 0x27/0x2f and 0x37/0x3f. This corrects the earlier weak reading that 0x6e0 was the multiply: `mMatrixMultCCC`'s 63 uses of 0x6e0 are the adds of a product whose multiplies run in unit 2.
+
+**Form 11 carries both units.** Lines 3512-3528 use M = 0x440 with two destinations (P = 3, Q = 2; then 5, 4; 7, 6; 0x12, 0x11). Starting from 10 and 10.0, the even registers end at 20, 30, 40, 50 and the odd ones at 100.0, 1000.0, 1e4, 1e5 (index 128-135). **Inferred:** one word does an integer add of 10 and a single-precision multiply by 10.0 together; how form 11 encodes the two operations in one 11-bit M is **unknown**.
+
+**Not identified.** 0x6c8 appears once, in the branch test (line 1570, operands 0x00005a5a and 0x5a5a5a5a), and only its effect on a branch is observed.
+
+## Branch conditions and the flag register
+
+Lines 1210-2195 test conditional transfers (sequencer code 3 with condition code `cc`, see [ge_isa.md](ge_isa.md)). Each case loads a marker into register 0, sets flags with one operation (`r220` = 1 for unit 1, `r221` = 1 for unit 2), branches with one `cc` to the output word, and on the fall-through path overwrites register 0 with 0xdeadbeef. **Established:** none of the 24 expected words (index 52-75) is 0xdeadbeef, so every branch is taken. Each case therefore shows one input for which its condition is true:
+
+| cc | Flags from | Result that made it true |
+|---|---|---|
+| 0 | integer add | 0 with carry out; and 0xa6000000 |
+| 1 | integer add | 0x5a64b4b4; and 0x5a000000 with carry out |
+| 2 | integer subtract | 0 |
+| 3 | integer add | 0xa64b4b4b |
+| 4 | integer add | 0xa6000000 |
+| 5 | integer add | 0 with carry out |
+| 6 | operation 0x6c8 | not known |
+| 7 | integer add | 0x5a64b4b4 |
+| 8 | float multiply | -1.0; and 0.0 |
+| 9 | float multiply | 1.0 |
+| 0xa | float multiply | 0.0 |
+| 0xb | float multiply | -1.0 (the flags here come from the last flag-setting word, as this multiply has no `r221`) |
+| 0xc | float multiply | -1.0 |
+| 0xd | float multiply | 0.0 |
+| 0xe | unit-2 operation 0x2f | not known |
+| 0xf | float multiply | 3.0 |
+
+**Established** (index 8-15, the flag register read as source A = 0x1b): after a float multiply of 2356.2 by the constant 0.0 the register reads 0xcc; after a float multiply of -2356.2 by 1.0, 0xac; after an integer add giving 0 with carry 0xac; after an integer add giving 0xfffff000 0xaa. A word without `r220` or `r221` leaves the value unchanged (index 9, 11, 13, 15). That each multiply's second operand is the constant stored just before it is **inferred** from the code order.
+
+**Inferred:** the low four bits are the integer flags and the high four the float flags, each with bit 3 = result <= 0, bit 2 = zero, bit 1 = negative, bit 0 = a fourth condition clear in every observed case. `cc` 0-7 test the integer nibble and 8-15 the float nibble; `cc` bits 2-1 pick the condition (0 <= 0, 1 zero, 2 negative, 3 the fourth) and bit 0 inverts it. All 14 cases with a known operation agree. The fourth condition (true after 0x6c8 and after 0x2f, false after an add or multiply that did not overflow) is **inferred** to be signed overflow, on that alone. The carry out is not a condition the test names.
+
+**Unknown: needs capture** ([docs/captures.md](../docs/captures.md)): each condition on its false side, the fourth condition, and the three ties in the table above (0x6d0 against NOR, 0x6d4 and 0x6d6 against each other and NAND, 0x6e6 and 0x6e8 against moves, 0x2f and 0x3f against minimum). One capture settles all of them: run the `ge_inst.s` test with the operand constants swapped (A > B, a negative, a zero) on a real pipe and record the engine's output DMA.
+
+## Input and output FIFO operations
+
+**Output: established** above. The output word is a move into port B = 9, 10 or 11 with `r213` = 3; it reaches host memory through the engine's output DMA in the order issued.
+
+**Input: unknown.** The special-register numbers for the input FIFO pointers (0x00-0x02, [GE.h](../GE.h)) appear as no operand field this analysis could single out. Two leads: the operand ports the ARM writes (r9 + 0x470-0x47c, [arm1_firmware.md](arm1_firmware.md)) look like word offsets 28-31 of the engine's input port, and register numbers 0x1d, 0x1e and 0x1f occur as the staging registers in every handler (C = 0x1d in the start words, C = 0x1e for constants, 0x1f for "none"). The diagnostic test reads no command input: its operands are constants. **Unknown: needs capture** (docs/captures.md): an engine trace of `mgesi_TbusRegWrite` with two known operand words, giving which staging register each word lands in.

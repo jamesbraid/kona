@@ -72,10 +72,10 @@ The record group R88-72 (`seq` in the listings) and R209-199 (`cc`) control the 
 
 **Inferred:** the engine starts each command in hardware. `HereWeGo` holds two no-ops, one word with code 6 and a jump to `MemRegInit` (0x27cc, `bootinit.s`), and no code that looks up a command's handler was found anywhere in the program. Most handlers end differently: 215 of the 320 handler labels end in a relative transfer with immediate 0 and condition code 0x11, and 31 jump to address 0 ([ge_ops.md](ge_ops.md)). Either way the hardware takes the next command's handler address (from the ARM, [arm1.md](arm1.md), or from the distributor) when the handler finishes; that part is **inferred** from the absence of any handler lookup code.
 
-## Not yet decoded
+## Operations, conditions and FIFOs
 
-- **ALU:** the operation id is the decoded group M, whose low seven bits come from a form-specific W field ([ge_ops.md](ge_ops.md)). Identified: a move (M = 0x6ca) and an equality compare against an enumerant (M = 0x6c2, r110 = 0x7bd). Add, multiply, compare and the conversions are **unknown**.
-- **FIFO input and output:** the special-register numbers in `GE.h` (FIFO pointers 0x00-0x02) have not been located in any field ([ge_ops.md](ge_ops.md) lists the leads). **Unknown.**
-- **Branch conditions:** the meaning of each `cc` value. **Unknown.**
+- **ALU:** the operation codes of both arithmetic units, the seed unit and the output move are fixed by the IR diagnostic's instruction test and its expected results ([ge_ops.md](ge_ops.md), [ge_inst_results.tsv](ge_inst_results.tsv)). Ties the test cannot break are listed there.
+- **Branch conditions:** `cc` 0-15 are read from the same test (ge_ops.md): integer and float flag nibbles, conditions "<= 0", zero, negative and a fourth one, with bit 0 inverting. Each was observed true for one input; the false sides are **inferred**. `cc` 0x11 (the end-of-command wait) and 0x10, 0x14, 0x15 test other state and are **unknown**.
+- **FIFO input:** the special-register numbers in `GE.h` (FIFO pointers 0x00-0x02) have not been located in any field. **Unknown: needs capture** ([docs/captures.md](../docs/captures.md)).
 
 A reader can extend the decode without the `ge.u` record: every field in the tables above is a plain slice of W.
