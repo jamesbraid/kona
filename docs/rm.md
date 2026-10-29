@@ -341,6 +341,55 @@ From the ARM firmware ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md), IRIX
 
 `DoDGRqstResetRMBoards` is the display-generator request (command number in [ucode/dg_dispatch.tsv](../ucode/dg_dispatch.tsv)) that does this at run time: it blanks all channels, shuts down the video requesters on each present VOC, clears two low bits of a display register, waits, calls `reset_imps`, and restarts the master VOC. What a reset does to the contents of pixel memory and to the registers of `pg`, `tg`, `tf` and `tm` is **unknown: no shipped software or published source depends on it**; no firmware path resets those four chip types, and every reader writes the registers it uses before relying on them. Routes tried: `arm1.u` 6.5.30m (`init_rm_board`, `reset_imps`, `DoDGRqstResetRMBoards`), `irsaudit` 6.5.30m `tbuRegReset` (the diagnostic's own restore values, listed above, not a power-on state), and the BIST files in `usr/diags/IR/data/` (`pg2*.tcbist`, `tg*.tcbist`, `tf1*.tcbist`, `tm1c*.tcbist`, `*.sdbist`). The BIST files are scan-chain programs: RAM and pin lists, control words, hardware and software reset steps (`tcbist_hw_rst`, `tcbist_sw_rst`), polls and pass masks. They hold no register contents.
 
+## Primitive set-up happens in the pixel generator
+
+The geometry engines send each primitive as per-vertex values: the triangle, line and point output modules subtract the
+window origin, convert depth and scale colour, then store one vertex at a time to the bus ([ucode/ge_compute.md](../ucode/ge_compute.md#triangle-output-udrawtris)),
+with no reciprocal, edge or slope arithmetic. The diagnostic draws on the raster boards with the engines bypassed, and it
+too sends only vertices. So edge and slope set-up is done by the chip that takes primitive words off the raster bus,
+the pixel generator `pg` ([Data path](#data-path)). Sources: `irsaudit` (IRIX 6.5.30m, N32) and the vector file
+`usr/diags/IR/data/tbusdata.Z` (same release).
+
+- `tbVertex` (`irsaudit` 0x1013ebcc): **established**, the diagnostic's raster-bus vertex writer. It sends the code word 8
+  and then four packed words through `fcGfxWrite32` (five calls at 0x1013ec54-0x1013eccc): word 1 holds a 4-bit command in bits 31-28 (its first argument,
+  plus 1 << 28 when the second argument is set), x in bits 27-8 and the top 8 bits of y in bits 7-0; word 2 the low 12
+  bits of y in bits 31-20 and the top 20 bits of z in bits 19-0; word 3 the low 12 bits of z, red (13 bits) in bits 19-7
+  and the top 7 bits of green; word 4 the low 6 bits of green, then blue and alpha as 13-bit fields. A vertex therefore
+  carries 20-bit x and y, 32-bit z and four 13-bit colour components.
+- `draw_tri` (`irsaudit` 0x100cead8): **established**, draws one flat-coloured triangle through `tbVertex` from integer
+  corners. Its three calls to `tbVertex` sit at 0x100cec28, 0x100cec5c and 0x100cec98. It multiplies each x and y by a global scale, adds a global x or y origin and shifts left by 8, so the 20-bit
+  x and y fields are unsigned 12.8 fixed point. Depth is sent as 0xffffffff. Each colour argument is doubled before the
+  call and alpha is 8191, so 8191 is full intensity in the 13-bit colour fields. The three calls carry commands 0, 0 and 6.
+- `tbTextureCoord` (`irsaudit` 0x1013ecf0): **established**, sends code word 10 (loaded at 0x1013ed3c) and then four words: its three integer
+  arguments in order and the bit pattern of its single-precision float argument, with no arithmetic on any of them.
+- `tbTextureCoord1` (`irsaudit` 0x1013eda0): **established**, the twin of `tbTextureCoord` for the second
+  texture-coordinate set (code 11 after 10): the code word it loads at 0x1013edec is 11, and the four argument words
+  follow in the same order and unchanged.
+
+**Established** (the command field, by caller): every frame-buffer write test (`myFrameBufferWriteTest2`,
+`myFrameBufferWriteWords`, `smallwrite`, `TEST_imp_ie` and others) sends one vertex with command 2; every triangle
+drawer (`draw_tri`, `my_draw_tri`, `draw_triz`, `TEST_tris`, `fog`, `init_tf`) sends three vertices with commands 0, 0
+and 6; `tbuRoundPoint` sends 2, then 0, 0 and two vertices with command 6 and the second argument set; `TEST_rmstress`,
+`draw_random_thing` and `test_prims` also use 14 and 4. In the vector file, reading each 64-bit word with its high half as
+`tbVertex`'s first word, the mode-3 words of the six tests open with these command values only: `linesRus.tbus` 0, 14
+and 4 (in the order 0, then 14 and 4 alternating), the triangle tests 0 and 6, `projtex.tbus` mostly 0 and 2. The fields
+decode to values in range, for example 0x4751747cddcfd30a 0x100fff8000001fff: command 4, x 1873.45, y 1997.86,
+red 8191, green and blue 0, alpha 8191. **Inferred:** command 2 is a one-vertex primitive, 0 a vertex that does not yet
+complete one, 6 the vertex that completes a triangle, and 14 and 4 the line forms.
+
+**Established** (the 14 packets): in `linesRus.tbus` each command-14 packet is two words that share their top byte
+(0xe70ccd7395200000 then 0xe700007395200000), between the vertices of a line; they are not vertex packets in the layout
+above, since their second word starts with the command nibble again.
+
+What the pixel generator computes from the vertices (edge equations, slopes of colour, depth and texture coordinates,
+their precision and the rounding of the start point) is **unknown: no shipped software or published source depends on
+it**. No program computes a slope for it to check: the engine output modules, the diagnostic drawers above and the vector
+files all carry vertices, and the tests judge the result by CRC signatures (`run_crc_testlist`, [Precision bounds](#precision-bounds)).
+Routes tried: `udrawtri.s`, `drawtri.S`, `drawlin.S` and `drawpnt.S` in `ge.u`; `tbVertex`, `tbTextureCoord`,
+`draw_tri` and the command values of every `tbVertex` caller in `irsaudit`; the six tests in `tbusdata.Z` and
+`aaspoke.tbus`; the `pg` pins and the BIST RAM list of `pg2.tcbist`. The next route is the `PG_` register comments of
+[RM.h](../RM.h), for a register that selects a set-up mode, and the meaning of the command-14 packets in `linesRus.tbus`.
+
 ## Moving data in and out of the raster boards
 
 Facts are labelled as above. The raster-board connections below are from the IR diagnostic netlists (`usr/diags/IR/data/*.netmap.Z`, IRIX 6.5.30m; the net names are SGI's), read with `gzip -dc`: each line names a net and the chip pin it reaches.

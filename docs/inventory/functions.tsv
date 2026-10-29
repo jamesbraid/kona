@@ -1724,7 +1724,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087bd8	352	rm6_init	dynsym	2
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087d38	616	rm6_test	dynsym	a469253c16a2	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087fa0	192	rm6_stop	dynsym	9de42c88345b	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10088060	2008	TEST_rmconn	dynsym	cd8724f572cb	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10088838	1684	TEST_rmstress	dynsym	5f21bf972eb4	named-only	RM.h:1812	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10088838	1684	TEST_rmstress	dynsym	5f21bf972eb4	named-only	docs/rm.md#primitive-set-up-happens-in-the-pixel-generator	Primitive set-up happens in the pixel generator
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008a820	1108	basicSanityReg	dynsym	6a7bc2edfb5a	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008ac74	732	icuSanity	dynsym	c590245696a6	named-only	docs/hip.md#the-token-map-seen-from-the-host	The token map seen from the host
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008af50	1024	TEST_arm_sdram	dynsym	e3f6b434bfef	named-only	docs/irsaudit.md#tests	Tests
@@ -1849,7 +1849,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100cb4c8	1696	mytbuInit	dynsym
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100cbb68	1156	mike_video_setup	dynsym	9678fb70ea6c	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100cbfec	10784	mytbuRegReset	dynsym	a9b9b55a71f1	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100cea0c	204	draw_rect	dynsym	1178eeea83b9	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100cead8	516	draw_tri	dynsym	88434f071f5d	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100cead8	516	draw_tri	dynsym	88434f071f5d	understood	docs/rm.md#primitive-set-up-happens-in-the-pixel-generator	Primitive set-up happens in the pixel generator
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100cecdc	568	screenxy_to_all	dynsym	27047b4c64f1	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100cef14	64	screenx_to_rmx	dynsym	2ff7ef1b37aa	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100cef54	252	pxid_permute	dynsym	dabadb4d27db	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
@@ -2267,9 +2267,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ea50	68	tlForce	dynsym	0e0
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ea94	72	tlRelease	dynsym	2e0433f2ad50	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eadc	96	tlDelay	dynsym	fdcedf31ca00	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eb3c	144	tbRegWrite	dynsym	565e9afcab4f	named-only	docs/coverage.md#rm-and-tm	RM and TM
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ebcc	292	tbVertex	dynsym	6df3650ffdff	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ecf0	176	tbTextureCoord	dynsym	3ac233b50ef1	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eda0	176	tbTextureCoord1	dynsym	c4991dd0ed0c	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ebcc	292	tbVertex	dynsym	6df3650ffdff	understood	docs/rm.md#primitive-set-up-happens-in-the-pixel-generator	Primitive set-up happens in the pixel generator
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ecf0	176	tbTextureCoord	dynsym	3ac233b50ef1	understood	docs/rm.md#primitive-set-up-happens-in-the-pixel-generator	Primitive set-up happens in the pixel generator
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eda0	176	tbTextureCoord1	dynsym	c4991dd0ed0c	understood	docs/rm.md#primitive-set-up-happens-in-the-pixel-generator	Primitive set-up happens in the pixel generator
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ee50	172	tbDirectQuad	dynsym	fb27331abe40	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eefc	152	tbPixel	dynsym	e300f4b252bb	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ef94	152	tbTexel	dynsym	8c308191f9d2	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
