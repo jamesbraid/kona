@@ -38,19 +38,19 @@
  * KICK, ESTABLISHED: before each phase of a kernel packet the driver writes
  * KONA_SC_KICK to REGBASE + 0xc00108: 0x30000 before the token word (0x10000
  * instead when the calling thread's own context is current, in kona_checkpipe), 0x10000 before the payload words, and 0 when the packet is
- * done. It is written once per phase, not per word. INFERRED: bit 16 marks a
- * kernel packet in progress and bit 17 marks its first word when it
- * interrupts another context's stream; the hardware meaning is UNKNOWN.
+ * done. It is written once per phase, not per word. The address selects
+ * host-interface register 0x108, HH_GINTR_INFO, so 0x10000 is its PRIV bit
+ * and 0x20000 its FORCE bit (HIP.h).
  *
  * DETACH_FLUSH, ESTABLISHED (KONApcxswap 0x8a8): before leaving the
  * flow-control group the driver writes 1 to REGBASE + 0x7c and reads it back.
  */
 #define KONA_REG_KICK             0xc00108
 #define KONA_REG_DETACH_FLUSH     0x7c
-#define KONA_REG_FIFO_LEVEL       0x800208  /* read for the death message */
-#define KONA_REG_HIP_220          0x800220
-#define KONA_REG_DEATH_MARK       0x800298
-#define KONA_REG_HIP_3A8          0x8003a8
+#define KONA_REG_FIFO_LEVEL       0x800208  /* HH_GFIFO_LEVEL, read for the death message */
+#define KONA_REG_HIP_220          0x800220  /* HH_INTR_INFO */
+#define KONA_REG_DEATH_MARK       0x800298  /* HH_ODMA_FLUSH */
+#define KONA_REG_HIP_3A8          0x8003a8  /* HH_TBUS_STATUS */
 
 #define KONA_KICK_START_FOREIGN   0x30000
 #define KONA_KICK_PAYLOAD         0x10000
@@ -112,8 +112,8 @@
  *   - sleeps on KONA_SC_CHECKPIPE_SEMA.
  * kona_checkpipe_complete(sc, timed_out) wakes it. On time-out it prints a
  * message and calls kona_die(sc, 18); otherwise it cancels the timeout.
- * INFERRED: 0x105 is the reason code the geometry engine echoes back
- * through its interrupt path, proving the pipe still executes commands.
+ * 0x105 is the geometry engine's check-pipe event code (6.5.5 kona_if.h,
+ * HIP.h), so the pipe proves it still executes commands by reporting it.
  */
 #define KONA_CHECKPIPE_REASON     0x105
 
@@ -128,29 +128,39 @@
  *   6. print a message with 0x800208 and the reason;
  *   7. clear three driver words (+0x68, +0x6c, +0x78) and signal every
  *      graphics thread on the pipe (gthread_scan with action 9).
- * INFERRED: step 3 disables an interrupt source (bit 15) and step 5 leaves
- * a recognisable marker for post-mortem tools. There is no reset or
- * restart: a dead pipe stays dead until the driver is reinitialised.
+ * By the host-interface table (HIP.h): step 3 clears HIP2_INTR_GLOBAL_EN in
+ * HH_INTR_INFO, step 4 writes TBUS_STALL (bit 3) of HH_TBUS_STATUS, step 5
+ * writes HH_ODMA_FLUSH, and step 6 reads HH_GFIFO_LEVEL. INFERRED: the pipe
+ * is silenced and its texture bus stalled, and 0x0badcffe is a marker
+ * for post-mortem tools. There is no reset or restart: a dead pipe stays
+ * dead until the driver is reinitialised.
  *
- * Reasons, ESTABLISHED as the argument each caller passes:
+ * Reasons, ESTABLISHED for 6.5.30 as the argument each caller passes. The
+ * 6.5.5 kona.h names the codes; where the 6.5.30 caller agrees with that
+ * name it is used below, otherwise the 6.5.5 name is given in the comment.
+ * 6.5.5 also defines 1 never initialised, 3 context verify failed,
+ * 7 and 8 FIFO clogged without and with texture-bus I/O, 11 output DMA
+ * overflowed, 19 debug request, 20 context activate timeout, 23 FIFO above
+ * high water and 24 credits stuck below bias; no 6.5.30 caller passes
+ * those. 25 has no 6.5.5 name.
  */
 enum kona_death_reason {
     KONA_DIE_DEACTIVATE_TIMEOUT = 2,   /* kona_deact_timeout */
     KONA_DIE_IDMA_TIMEOUT       = 4,   /* kona_idma_timeout */
     KONA_DIE_SELECTFEED_TIMEOUT = 5,   /* kona_selectfeed_timeout */
     KONA_DIE_HIWATER_TIMEOUT    = 6,   /* kona_hiwater_timeout */
-    KONA_DIE_FIFO_STUCK         = 9,   /* kona_hiwater_intr, kona_itimeout_func, kona_gfifo_spin */
-    KONA_DIE_INTR_10            = 10,  /* kona_intr_handler */
-    KONA_DIE_XG_INTR            = 12,  /* kona_xg_intr_handler */
-    KONA_DIE_INTR_13            = 13,  /* kona_intr_handler */
-    KONA_DIE_INTR_14            = 14,  /* kona_intr_handler */
-    KONA_DIE_SWAPIN             = 15,  /* kona_mem_swapin_complete */
-    KONA_DIE_SWAPOUT            = 16,  /* kona_mem_swapout_complete, kona_mem_suspend_complete */
-    KONA_DIE_MOPUP              = 17,  /* kona_mopup_complete */
+    KONA_DIE_SET_TIMEOUT_FAILED = 9,   /* kona_hiwater_intr, kona_itimeout_func, kona_gfifo_spin */
+    KONA_DIE_GFIFO_OVERFLOW     = 10,  /* kona_intr_handler */
+    KONA_DIE_XG_ERROR           = 12,  /* kona_xg_intr_handler */
+    KONA_DIE_PIO_OVERFLOW       = 13,  /* kona_intr_handler */
+    KONA_DIE_IDMA_OVERFLOW      = 14,  /* kona_intr_handler */
+    KONA_DIE_SWAPIN_TIMEOUT     = 15,  /* kona_mem_swapin_complete */
+    KONA_DIE_SWAPOUT_TIMEOUT    = 16,  /* kona_mem_swapout_complete, kona_mem_suspend_complete */
+    KONA_DIE_MOPUP_TIMEOUT      = 17,  /* kona_mopup_complete */
     KONA_DIE_CHECKPIPE_TIMEOUT  = 18,  /* kona_checkpipe_complete */
-    KONA_DIE_MAPRAM             = 21,  /* kona_mapram_init, kona_mapram_map */
-    KONA_DIE_22                 = 22,  /* kona_intr_handler, KONAstart */
-    KONA_DIE_CREDITS            = 25,  /* kona_flow_await_returned_credits */
+    KONA_DIE_MAPRAM_VERIFY      = 21,  /* kona_mapram_init, kona_mapram_map */
+    KONA_DIE_PARITY_ERROR       = 22,  /* kona_intr_handler, KONAstart */
+    KONA_DIE_CREDITS            = 25,  /* kona_flow_await_returned_credits; no 6.5.5 name */
 };
 
 #endif /* KONA_KERN_H */

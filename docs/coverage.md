@@ -36,12 +36,12 @@ Host interface: PIO FIFO words, DMA streams, flow control and doorbells.
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | none | `HIP.h`, `docs/hip.md` | host interface and command grammar |  |
+| Registers and fields | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | full HIP1/HIP2 register and field table from kpm; window base 0x800000 inferred from kernel accesses; meaning of the 0xc00000 alias unknown |
 | Command and FIFO formats | none | `HIP.h`, `docs/hip.md` | host interface and command grammar | kernel push port, textport port, indirect pair and user doorbell reported by prior work |
 | DMA | none | `HIP.h`, `docs/hip.md` | host interface and command grammar | strided two-dimensional descriptor reported by prior work |
-| Interrupts | none | `HIP.h`, `docs/hip.md` | host interface and command grammar | three vectors and a cause register reported by prior work |
+| Interrupts | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | HH_INTR_INFO/ENABLE/STATUS/ACK and GINTR_INFO fields; GE and ARM event codes (6.5.5); INTR_ENABLE/STATUS bit names not in kpm |
 | Reset | none | `HIP.h`, `docs/hip.md` | host interface and command grammar |  |
-| Context save and restore | partial | `HIP.h`, `kona_kernel/include/kona_kern.h` | host interface and command grammar | kick register phases and the physical-address word pair; register meanings unknown |
+| Context save and restore | partial | `HIP.h`, `kona_kernel/include/kona_kern.h` | host interface and command grammar | kick = HH_GINTR_INFO PRIV/FORCE; physical-address word pair; the 0x9000 flag and FORCE's exact effect unknown |
 
 ### GE
 
@@ -93,7 +93,7 @@ The kernel graphics driver and its resource manager: attach, ioctls, context and
 | Command and FIFO formats | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | private ioctl family and kernel command selectors reported by prior work |
 | DMA | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
 | Interrupts | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
-| Reset | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | pipe check and kona_die register writes, 16 death reasons by caller; no restart path found |
+| Reset | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | pipe check and kona_die register writes named, 16 death reasons by caller with 6.5.5 names; attach-time HH_RESET sequence not read |
 | Context save and restore | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | KONApcxswap packet order and payloads for deactivate, load and init; validate packets named, layouts not read |
 
 ### OpenGL core and X modules
