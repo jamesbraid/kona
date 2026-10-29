@@ -14333,7 +14333,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94e2a0	4756	ParseE
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e3e4	364	__glKonParseErrorRead	dynsym+mdebug	ecb3b050c2ec	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e550	176	__glKonGetFormatIndex	dynsym+mdebug	277dd6e9e6b9	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e600	192	__glKonGetTypeIndex	dynsym+mdebug	6b914405d8e0	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e6c0	392	__glKonParseInput	dynsym+mdebug	f0bfc6c6519c	named-only	RM.h:176	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e6c0	392	__glKonParseInput	dynsym+mdebug	f0bfc6c6519c	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e848	564	__glKonParseHostImage	dynsym+mdebug	7af232af5283	named-only	GE.h:4054	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94ea7c	80	GetConvolutionFilter	dynsym+mdebug	49ed8c67da50	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94eacc	1120	__glKonSendData	dynsym+mdebug	57c4d3801d4b	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -14368,8 +14368,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd952b08	144	__glkonle_Bi
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd952b98	256	__glkonim_PolygonStipple	dynsym+mdebug	dd21af7f4ba7	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd952c98	104	__glkonConvertPolygonStipple	dynsym+mdebug	9d528851f13b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd952d00	284	__glkonim_GetPolygonStipple	dynsym+mdebug	81df1cdac736	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd952e1c	10144	DrawSubTexels	mdebug	41c16e1649ed	named-only	RM.h:176	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9535b8	400	__glKonDrawTexels3D	dynsym+mdebug	8d8c73a00db6	named-only	RM.h:224	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd952e1c	10144	DrawSubTexels	mdebug	41c16e1649ed	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9535b8	400	__glKonDrawTexels3D	dynsym+mdebug	8d8c73a00db6	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd953748	2488	__glKonCopyTexImage	dynsym+mdebug	932b772d6f11	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954100	220	__glkonInvalidBytes	dynsym+mdebug	46c9fe7b5183	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9541dc	36	__glkonNumCompInPix	dynsym+mdebug	c7505417fc70	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14522,7 +14522,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96612c	140	isLodIn
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9661b8	572	unmatchObjLevel	mdebug	62b19e9fd95f	located	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9663f4	228	allocLevelImage	mdebug	5b0a282a25d0	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9664d8	236	setDetailFilter	mdebug	88225a4a2831	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9665c4	320	setSharpenFilter	mdebug	22260cca3eb9	named-only	RM.h:91	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9665c4	320	setSharpenFilter	mdebug	22260cca3eb9	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	changeMinMaxLod	mdebug	22d2b27bfcf1	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283	located	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966d88	2576	changeFilter	mdebug	00df2425e6bb	named-only	docs/libglcore.md#texture-management	Texture management
@@ -14677,7 +14677,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a044	148	__glKonInval
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a0d8	224	__glKonFreeARMTexCache	dynsym+mdebug	903b516f7cb2	located	docs/opengl.md#__glkonfreearmtexcache	`__glKonFreeARMTexCache`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a1b8	76	__glKonTexChecksum	dynsym+mdebug	c44c2c53b775	located	docs/opengl.md#__glkontexchecksum	`__glKonTexChecksum`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a204	376	__glKonTexQuickSortPairs	dynsym+mdebug	3d81a2eeb6ac	located	docs/opengl.md#__glkontexquicksortpairs	`__glKonTexQuickSortPairs`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a37c	392	__glKonTexGetCubicSpline	dynsym+mdebug	d0905719817d	named-only	RM.h:114	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a37c	392	__glKonTexGetCubicSpline	dynsym+mdebug	d0905719817d	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a504	432	__glKonTexEvaluateCubicSpline	dynsym+mdebug	4e3c71a48193	located	docs/opengl.md#__glkontexevaluatecubicspline	`__glKonTexEvaluateCubicSpline`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a6b4	172	__glKonTexExp2NegX64	dynsym+mdebug	88f0c1441523	located	docs/opengl.md#__glkontexexp2negx64	`__glKonTexExp2NegX64`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a760	868	__glKonEvalEnable	dynsym+mdebug	596b68d65109	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -19875,7 +19875,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd950130	292	Parse
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950260	356	__glKonParseErrorRead	dwarf+dynsym	5f342add6c16	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9503d0	168	__glKonGetFormatIndex	dwarf+dynsym	3d45b9c9e35b	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950480	212	__glKonGetTypeIndex	dwarf+dynsym	943926b8f696	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950560	404	__glKonParseInput	dwarf+dynsym	fb52bfb9c59c	named-only	RM.h:176	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950560	404	__glKonParseInput	dwarf+dynsym	fb52bfb9c59c	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950700	536	__glKonParseHostImage	dwarf+dynsym	77f2e5a85ee4	named-only	GE.h:4054	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950920	68	GetConvolutionFilter	dwarf+dynsym	8c8d632ffa16	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950970	1052	__glKonSendData	dwarf+dynsym	4be9eb6b7826	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -19910,8 +19910,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9543b0	116	__glkonle_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd954430	232	__glkonim_PolygonStipple	dwarf+dynsym	66252e7eeed5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd954520	88	__glkonConvertPolygonStipple	dwarf+dynsym	29cf1e8db173	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd954580	216	__glkonim_GetPolygonStipple	dwarf+dynsym	e7477d27ef21	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd954660	2884	DrawSubTexels	dwarf+funcnames	7f475c049af0	named-only	RM.h:176	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9551b0	404	__glKonDrawTexels3D	dwarf+dynsym	a7c1dd6dcdda	named-only	RM.h:224	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd954660	2884	DrawSubTexels	dwarf+funcnames	7f475c049af0	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9551b0	404	__glKonDrawTexels3D	dwarf+dynsym	a7c1dd6dcdda	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955350	2588	__glKonCopyTexImage	dwarf+dynsym	c28d6d7128d5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955d70	196	__glkonInvalidBytes	dwarf+dynsym	712c9a10ea03	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955e40	36	__glkonNumCompInPix	dwarf+dynsym	3420a0a599ec	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -20064,7 +20064,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965e50	120	isLod
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965ed0	504	unmatchObjLevel	dwarf+funcnames	23589c00be9e	understood	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9660d0	192	allocLevelImage	dwarf+funcnames	f4c2c6cc319c	understood	docs/opengl.md#alloclevelimage	`allocLevelImage`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd966190	244	setDetailFilter	dwarf+funcnames	bb239e36767f	understood	docs/opengl.md#setdetailfilter	`setDetailFilter`
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd966290	292	setSharpenFilter	dwarf+funcnames	7659b3be2475	named-only	RM.h:91	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd966290	292	setSharpenFilter	dwarf+funcnames	7659b3be2475	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9663c0	1148	changeMinMaxLod	dwarf+funcnames	c8960bacaa74	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd966840	116	guessBaseLevel	dwarf+funcnames	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9668c0	4900	changeFilter	dwarf+funcnames	41df356a3e3b	named-only	docs/libglcore.md#texture-management	Texture management
@@ -20219,7 +20219,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd978df0	148	__glKonInv
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd978e90	200	__glKonFreeARMTexCache	dwarf+dynsym	37cf2b0ae9d1	understood	docs/opengl.md#__glkonfreearmtexcache	`__glKonFreeARMTexCache`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd978f60	192	__glKonTexChecksum	dwarf+dynsym	61c2d2cfdb72	understood	docs/opengl.md#__glkontexchecksum	`__glKonTexChecksum`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd979020	432	__glKonTexQuickSortPairs	dwarf+dynsym	42fc6fcf42f5	understood	docs/opengl.md#__glkontexquicksortpairs	`__glKonTexQuickSortPairs`
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9791d0	820	__glKonTexGetCubicSpline	dwarf+dynsym	635900680608	named-only	RM.h:114	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9791d0	820	__glKonTexGetCubicSpline	dwarf+dynsym	635900680608	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd979510	436	__glKonTexEvaluateCubicSpline	dwarf+dynsym	ff2a039a2df3	understood	docs/opengl.md#__glkontexevaluatecubicspline	`__glKonTexEvaluateCubicSpline`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9796d0	124	__glKonTexExp2NegX64	dwarf+dynsym	d18159624108	understood	docs/opengl.md#__glkontexexp2negx64	`__glKonTexExp2NegX64`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd979750	812	__glKonEvalEnable	dwarf+dynsym	b15ca5783e44	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25455,7 +25455,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db2200	296	Parse
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2330	356	__glKonParseErrorRead	dwarf+dynsym	9c9e2ff57cfa	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db24a0	168	__glKonGetFormatIndex	dwarf+dynsym	f5ed78ecf8a2	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2550	212	__glKonGetTypeIndex	dwarf+dynsym	446019d52122	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2630	404	__glKonParseInput	dwarf+dynsym	dcc98d454077	named-only	RM.h:176	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2630	404	__glKonParseInput	dwarf+dynsym	dcc98d454077	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db27d0	544	__glKonParseHostImage	dwarf+dynsym	b0beb0800792	named-only	GE.h:4054	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db29f0	68	GetConvolutionFilter	dwarf+dynsym	84cfdebb4f0b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2a40	1068	__glKonSendData	dwarf+dynsym	545990b50402	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -25490,8 +25490,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db64f0	116	__glkonle_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db6570	232	__glkonim_PolygonStipple	dwarf+dynsym	644c2ca3a0b4	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db6660	88	__glkonConvertPolygonStipple	dwarf+dynsym	9fc596214863	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db66c0	228	__glkonim_GetPolygonStipple	dwarf+dynsym	6d226c0ce6c2	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db67b0	3012	DrawSubTexels	dwarf	d8d337130f6e	named-only	RM.h:176	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7380	416	__glKonDrawTexels3D	dwarf+dynsym	a26096809917	named-only	RM.h:224	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db67b0	3012	DrawSubTexels	dwarf	d8d337130f6e	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7380	416	__glKonDrawTexels3D	dwarf+dynsym	a26096809917	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7520	2588	__glKonCopyTexImage	dwarf+dynsym	85f833642fd9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7f40	164	__glkonInvalidBytes	dwarf+dynsym	eb8562d237d5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7ff0	36	__glkonNumCompInPix	dwarf+dynsym	9f96979dc5e1	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25644,7 +25644,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8280	120	isLod
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8300	504	unmatchObjLevel	dwarf	4f5e44ed6cf4	located	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8500	192	allocLevelImage	dwarf	e8e5bc978623	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc85c0	244	setDetailFilter	dwarf	336aeb2d6c55	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc86c0	288	setSharpenFilter	dwarf	8155d4fd1fa6	named-only	RM.h:91	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc86c0	288	setSharpenFilter	dwarf	8155d4fd1fa6	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc87e0	1148	changeMinMaxLod	dwarf	aa208316f62f	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8c60	116	guessBaseLevel	dwarf	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8ce0	4916	changeFilter	dwarf	1a1a6986a431	named-only	docs/libglcore.md#texture-management	Texture management
@@ -25799,7 +25799,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddb660	148	__glKonInv
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddb700	200	__glKonFreeARMTexCache	dwarf+dynsym	0bb3e1b4feef	located	docs/opengl.md#__glkonfreearmtexcache	`__glKonFreeARMTexCache`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddb7d0	192	__glKonTexChecksum	dwarf+dynsym	94bdcbcbbc33	located	docs/opengl.md#__glkontexchecksum	`__glKonTexChecksum`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddb890	456	__glKonTexQuickSortPairs	dwarf+dynsym	b3928cb9119d	located	docs/opengl.md#__glkontexquicksortpairs	`__glKonTexQuickSortPairs`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddba60	820	__glKonTexGetCubicSpline	dwarf+dynsym	2aca1f6240af	named-only	RM.h:114	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddba60	820	__glKonTexGetCubicSpline	dwarf+dynsym	2aca1f6240af	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddbda0	436	__glKonTexEvaluateCubicSpline	dwarf+dynsym	64f6622ee4aa	located	docs/opengl.md#__glkontexevaluatecubicspline	`__glKonTexEvaluateCubicSpline`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddbf60	124	__glKonTexExp2NegX64	dwarf+dynsym	977ae09563cf	located	docs/opengl.md#__glkontexexp2negx64	`__glKonTexExp2NegX64`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddbfe0	804	__glKonEvalEnable	dwarf+dynsym	c812d529eb57	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31032,7 +31032,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94e2a0	4756	ParseE
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e3e4	364	__glKonParseErrorRead	dynsym+mdebug	ecb3b050c2ec	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e550	176	__glKonGetFormatIndex	dynsym+mdebug	277dd6e9e6b9	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e600	192	__glKonGetTypeIndex	dynsym+mdebug	6b914405d8e0	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e6c0	392	__glKonParseInput	dynsym+mdebug	f0bfc6c6519c	named-only	RM.h:176	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e6c0	392	__glKonParseInput	dynsym+mdebug	f0bfc6c6519c	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e848	564	__glKonParseHostImage	dynsym+mdebug	7af232af5283	named-only	GE.h:4054	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94ea7c	80	GetConvolutionFilter	dynsym+mdebug	49ed8c67da50	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94eacc	1120	__glKonSendData	dynsym+mdebug	57c4d3801d4b	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -31067,8 +31067,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd952b08	144	__glkonle_Bi
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd952b98	256	__glkonim_PolygonStipple	dynsym+mdebug	dd21af7f4ba7	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd952c98	104	__glkonConvertPolygonStipple	dynsym+mdebug	9d528851f13b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd952d00	284	__glkonim_GetPolygonStipple	dynsym+mdebug	81df1cdac736	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd952e1c	10144	DrawSubTexels	mdebug	41c16e1649ed	named-only	RM.h:176	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9535b8	400	__glKonDrawTexels3D	dynsym+mdebug	8d8c73a00db6	named-only	RM.h:224	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd952e1c	10144	DrawSubTexels	mdebug	41c16e1649ed	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9535b8	400	__glKonDrawTexels3D	dynsym+mdebug	8d8c73a00db6	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd953748	2488	__glKonCopyTexImage	dynsym+mdebug	932b772d6f11	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954100	220	__glkonInvalidBytes	dynsym+mdebug	46c9fe7b5183	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9541dc	36	__glkonNumCompInPix	dynsym+mdebug	c7505417fc70	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31221,7 +31221,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96612c	140	isLodIn
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9661b8	572	unmatchObjLevel	mdebug	62b19e9fd95f	located	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9663f4	228	allocLevelImage	mdebug	5b0a282a25d0	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9664d8	236	setDetailFilter	mdebug	88225a4a2831	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9665c4	320	setSharpenFilter	mdebug	22260cca3eb9	named-only	RM.h:91	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9665c4	320	setSharpenFilter	mdebug	22260cca3eb9	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	changeMinMaxLod	mdebug	22d2b27bfcf1	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283	located	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966d88	2576	changeFilter	mdebug	00df2425e6bb	named-only	docs/libglcore.md#texture-management	Texture management
@@ -31376,7 +31376,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a044	148	__glKonInval
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a0d8	224	__glKonFreeARMTexCache	dynsym+mdebug	903b516f7cb2	located	docs/opengl.md#__glkonfreearmtexcache	`__glKonFreeARMTexCache`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a1b8	76	__glKonTexChecksum	dynsym+mdebug	c44c2c53b775	located	docs/opengl.md#__glkontexchecksum	`__glKonTexChecksum`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a204	376	__glKonTexQuickSortPairs	dynsym+mdebug	3d81a2eeb6ac	located	docs/opengl.md#__glkontexquicksortpairs	`__glKonTexQuickSortPairs`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a37c	392	__glKonTexGetCubicSpline	dynsym+mdebug	d0905719817d	named-only	RM.h:114	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a37c	392	__glKonTexGetCubicSpline	dynsym+mdebug	d0905719817d	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a504	432	__glKonTexEvaluateCubicSpline	dynsym+mdebug	4e3c71a48193	located	docs/opengl.md#__glkontexevaluatecubicspline	`__glKonTexEvaluateCubicSpline`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a6b4	172	__glKonTexExp2NegX64	dynsym+mdebug	88f0c1441523	located	docs/opengl.md#__glkontexexp2negx64	`__glKonTexExp2NegX64`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a760	868	__glKonEvalEnable	dynsym+mdebug	596b68d65109	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36574,7 +36574,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd950130	292	Parse
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950260	356	__glKonParseErrorRead	dwarf+dynsym	5f342add6c16	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9503d0	168	__glKonGetFormatIndex	dwarf+dynsym	3d45b9c9e35b	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950480	212	__glKonGetTypeIndex	dwarf+dynsym	943926b8f696	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950560	404	__glKonParseInput	dwarf+dynsym	fb52bfb9c59c	named-only	RM.h:176	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950560	404	__glKonParseInput	dwarf+dynsym	fb52bfb9c59c	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950700	536	__glKonParseHostImage	dwarf+dynsym	77f2e5a85ee4	named-only	GE.h:4054	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950920	68	GetConvolutionFilter	dwarf+dynsym	8c8d632ffa16	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950970	1052	__glKonSendData	dwarf+dynsym	4be9eb6b7826	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -36609,8 +36609,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9543b0	116	__glkonle_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd954430	232	__glkonim_PolygonStipple	dwarf+dynsym	66252e7eeed5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd954520	88	__glkonConvertPolygonStipple	dwarf+dynsym	29cf1e8db173	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd954580	216	__glkonim_GetPolygonStipple	dwarf+dynsym	e7477d27ef21	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd954660	2884	DrawSubTexels	dwarf+funcnames	7f475c049af0	named-only	RM.h:176	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9551b0	404	__glKonDrawTexels3D	dwarf+dynsym	a7c1dd6dcdda	named-only	RM.h:224	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd954660	2884	DrawSubTexels	dwarf+funcnames	7f475c049af0	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9551b0	404	__glKonDrawTexels3D	dwarf+dynsym	a7c1dd6dcdda	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955350	2588	__glKonCopyTexImage	dwarf+dynsym	c28d6d7128d5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955d70	196	__glkonInvalidBytes	dwarf+dynsym	712c9a10ea03	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955e40	36	__glkonNumCompInPix	dwarf+dynsym	3420a0a599ec	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36763,7 +36763,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965e50	120	isLod
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965ed0	504	unmatchObjLevel	dwarf+funcnames	23589c00be9e	understood	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9660d0	192	allocLevelImage	dwarf+funcnames	f4c2c6cc319c	understood	docs/opengl.md#alloclevelimage	`allocLevelImage`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd966190	244	setDetailFilter	dwarf+funcnames	bb239e36767f	understood	docs/opengl.md#setdetailfilter	`setDetailFilter`
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd966290	292	setSharpenFilter	dwarf+funcnames	7659b3be2475	named-only	RM.h:91	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd966290	292	setSharpenFilter	dwarf+funcnames	7659b3be2475	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9663c0	1148	changeMinMaxLod	dwarf+funcnames	c8960bacaa74	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd966840	116	guessBaseLevel	dwarf+funcnames	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9668c0	4900	changeFilter	dwarf+funcnames	41df356a3e3b	named-only	docs/libglcore.md#texture-management	Texture management
@@ -36918,7 +36918,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd978df0	148	__glKonInv
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd978e90	200	__glKonFreeARMTexCache	dwarf+dynsym	37cf2b0ae9d1	understood	docs/opengl.md#__glkonfreearmtexcache	`__glKonFreeARMTexCache`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd978f60	192	__glKonTexChecksum	dwarf+dynsym	61c2d2cfdb72	understood	docs/opengl.md#__glkontexchecksum	`__glKonTexChecksum`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd979020	432	__glKonTexQuickSortPairs	dwarf+dynsym	42fc6fcf42f5	understood	docs/opengl.md#__glkontexquicksortpairs	`__glKonTexQuickSortPairs`
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9791d0	820	__glKonTexGetCubicSpline	dwarf+dynsym	635900680608	named-only	RM.h:114	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9791d0	820	__glKonTexGetCubicSpline	dwarf+dynsym	635900680608	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd979510	436	__glKonTexEvaluateCubicSpline	dwarf+dynsym	ff2a039a2df3	understood	docs/opengl.md#__glkontexevaluatecubicspline	`__glKonTexEvaluateCubicSpline`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9796d0	124	__glKonTexExp2NegX64	dwarf+dynsym	d18159624108	understood	docs/opengl.md#__glkontexexp2negx64	`__glKonTexExp2NegX64`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd979750	812	__glKonEvalEnable	dwarf+dynsym	b15ca5783e44	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42154,7 +42154,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2192200	296	Parse
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192330	356	__glKonParseErrorRead	dwarf+dynsym	9c9e2ff57cfa	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21924a0	168	__glKonGetFormatIndex	dwarf+dynsym	f5ed78ecf8a2	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192550	212	__glKonGetTypeIndex	dwarf+dynsym	446019d52122	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192630	404	__glKonParseInput	dwarf+dynsym	dcc98d454077	named-only	RM.h:176	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192630	404	__glKonParseInput	dwarf+dynsym	dcc98d454077	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21927d0	544	__glKonParseHostImage	dwarf+dynsym	b0beb0800792	named-only	GE.h:4054	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21929f0	68	GetConvolutionFilter	dwarf+dynsym	84cfdebb4f0b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192a40	1068	__glKonSendData	dwarf+dynsym	545990b50402	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -42189,8 +42189,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21964f0	116	__glkonle_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2196570	232	__glkonim_PolygonStipple	dwarf+dynsym	644c2ca3a0b4	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2196660	88	__glkonConvertPolygonStipple	dwarf+dynsym	9fc596214863	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21966c0	228	__glkonim_GetPolygonStipple	dwarf+dynsym	6d226c0ce6c2	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21967b0	3012	DrawSubTexels	dwarf	d8d337130f6e	named-only	RM.h:176	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197380	416	__glKonDrawTexels3D	dwarf+dynsym	a26096809917	named-only	RM.h:224	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21967b0	3012	DrawSubTexels	dwarf	d8d337130f6e	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197380	416	__glKonDrawTexels3D	dwarf+dynsym	a26096809917	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197520	2588	__glKonCopyTexImage	dwarf+dynsym	85f833642fd9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197f40	164	__glkonInvalidBytes	dwarf+dynsym	eb8562d237d5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197ff0	36	__glkonNumCompInPix	dwarf+dynsym	9f96979dc5e1	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42343,7 +42343,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8280	120	isLod
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8300	504	unmatchObjLevel	dwarf	4f5e44ed6cf4	located	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8500	192	allocLevelImage	dwarf	e8e5bc978623	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a85c0	244	setDetailFilter	dwarf	336aeb2d6c55	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a86c0	288	setSharpenFilter	dwarf	8155d4fd1fa6	named-only	RM.h:91	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a86c0	288	setSharpenFilter	dwarf	8155d4fd1fa6	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a87e0	1148	changeMinMaxLod	dwarf	aa208316f62f	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8c60	116	guessBaseLevel	dwarf	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8ce0	4916	changeFilter	dwarf	1a1a6986a431	named-only	docs/libglcore.md#texture-management	Texture management
@@ -42498,7 +42498,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bb660	148	__glKonInv
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bb700	200	__glKonFreeARMTexCache	dwarf+dynsym	0bb3e1b4feef	located	docs/opengl.md#__glkonfreearmtexcache	`__glKonFreeARMTexCache`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bb7d0	192	__glKonTexChecksum	dwarf+dynsym	94bdcbcbbc33	located	docs/opengl.md#__glkontexchecksum	`__glKonTexChecksum`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bb890	456	__glKonTexQuickSortPairs	dwarf+dynsym	b3928cb9119d	located	docs/opengl.md#__glkontexquicksortpairs	`__glKonTexQuickSortPairs`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bba60	820	__glKonTexGetCubicSpline	dwarf+dynsym	2aca1f6240af	named-only	RM.h:114	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bba60	820	__glKonTexGetCubicSpline	dwarf+dynsym	2aca1f6240af	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bbda0	436	__glKonTexEvaluateCubicSpline	dwarf+dynsym	64f6622ee4aa	located	docs/opengl.md#__glkontexevaluatecubicspline	`__glKonTexEvaluateCubicSpline`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bbf60	124	__glKonTexExp2NegX64	dwarf+dynsym	977ae09563cf	located	docs/opengl.md#__glkontexexp2negx64	`__glKonTexExp2NegX64`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bbfe0	804	__glKonEvalEnable	dwarf+dynsym	c812d529eb57	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)

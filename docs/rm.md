@@ -420,6 +420,14 @@ the IP35 build of each ABI has the same code as the IP27 one).
   Read at address 0x0d967bec in IP27KONA/libGLcore.so,
   at address 0x0d967fe0 in IP27KONA32/libGLcore.so,
   and at address 0x02dca420 in IP27KONA64/libGLcore.so.
+- `setSharpenFilter` switches a texture's magnification filter to sharpen in the texture mode word it keeps at +0x40.
+  **Established** in every build: when the filter-table call it starts with fails, it clears bits 5-7 and writes 1 (linear);
+  otherwise it writes 5 (sharpen) there and clears bits 26-27 for the mode held at +0x168,
+  then sets 0x04000000 when that mode is 0x80af or 0x08000000 when it is 0x80ae,
+  the colour-only or alpha-only component select of [RM.h](../RM.h).
+  Read at address 0x0d9665c4 in IP27KONA/libGLcore.so,
+  at address 0x0d966290 in IP27KONA32/libGLcore.so,
+  and at address 0x02dc86c0 in IP27KONA64/libGLcore.so.
 - `__glKonGetFormatIndex` maps a GL pixel format to the format code the pipe's pixel headers carry.
   **Established** in every build: GL_COLOR_INDEX through GL_LUMINANCE_ALPHA give rows 0 to 10,
   GL_ABGR_EXT row 11 and the two CMYK formats rows 12 and 13 of a 14-word table it returns from
