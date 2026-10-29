@@ -109,7 +109,7 @@ The file descriptor is word +100 of the record at ScreenRec +116 in every caller
 
 It stores the result at rrm private +36 and sends `X_LOADXMAP_DID` with two words: the display id, then `(cmap << 7) & 0xffff80 | ((size - 1) & 0xf) << 3 | lum << 2 | grey << 1`. `cmap` is the colormap's entry in the module's colormap table, `size` the visual's plane count (VisualRec +10, capped at 12 when screen private +32 is set), `lum` and `grey` are visual flags 0x20000 and 0x10000; the debug string reads "did, cmap, size, lum, grey". The four values are cached at screen private +48 + 16 x did. `arm_x_loadxmap_did` writes the first word to display-bus register 0x118 and the second to 0x11c through `mgesi_VCbusWrite`; **inferred** an index and data pair into the XMAP's per-display-id table.
 
-It then calls `konLoadDisplayMode(screen, rnid, clipid, did, hwd_mode, hwi_mode)`, which issues 1017 with those five words and on success caches {hwi_mode, hwd_mode} at screen private +52 + 8 x did. **Established** (kernel, `RRM_LoadDisplayMode` in `rrm.o`): the display id must be below the board's count (gfx_data +88) or the call returns EINVAL; it calls the board's set-display-mode entry, which is slot +0xa0 of the driver's function table in `kona_edtinit.o`, `KONAsetdisplaymode`, with (did, hwd_mode); stores `hwi_mode` in the pane (+32) and in the board's per-id table (gfx_data +96); and sets pane +18 to 1 when `hwi_mode` bit 2 is set. `KONAsetdisplaymode` keeps the low byte at pipe state +4360 + did and sends `DISPMODE` (0x1e6) with 0, did, `hwd_mode`. So the third `DISPMODE` word is this X-built `hwd_mode`. **Established** (`arm_dispmode` 0x0c013dd4): the firmware passes the byte on unchanged, as a display-bus write of `hwd_mode` to address = display id through the engine's `mgesi_VCbusWrite`, after recording the display id in the swap-group slots that match the first word ([dg.md](dg.md#the-firmwares-display-bus-window)); at a swap the kernel rewrites bits 0 and 1 from the buffer's display bank ([dg.md](dg.md#buffer-swap-and-retrace-wait)), which fits bit 0 as "show the back buffer". **Unknown: no shipped software or published source depends on it:** what the display hardware does with bits 2-4 beyond the module's own names (RGB, colour index, DC RGB). Routes tried: the module, the kernel, the firmware (which forwards the byte untouched) and the diagnostic's XMAP register list, which has no per-display-id mode table.
+It then calls `konLoadDisplayMode(screen, rnid, clipid, did, hwd_mode, hwi_mode)`, which issues 1017 with those five words and on success caches {hwi_mode, hwd_mode} at screen private +52 + 8 x did. **Established** (kernel, `RRM_LoadDisplayMode` in `rrm.o`): the display id must be below the board's count (gfx_data +88) or the call returns EINVAL; it calls the board's set-display-mode entry, which is slot +0xa0 of the driver's function table in `kona_edtinit.o`, `KONAsetdisplaymode`, with (did, hwd_mode); stores `hwi_mode` in the pane (+32) and in the board's per-id table (gfx_data +96); and sets pane +18 to 1 when `hwi_mode` bit 2 is set. `KONAsetdisplaymode` keeps the low byte at pipe state +4360 + did and sends `DISPMODE` (0x1e6) with 0, did, `hwd_mode`. So the third `DISPMODE` word is this X-built `hwd_mode`. **Established** (`arm_dispmode` 0x0c013dd4): the firmware passes the byte on unchanged, as a display-bus write of `hwd_mode` to address = display id through the engine's `mgesi_VCbusWrite`, after recording the display id in the swap-group slots that match the first word ([dg.md](dg.md#the-firmwares-display-bus-window)); at a swap the kernel rewrites bits 0 and 1 from the buffer's display bank ([dg.md](dg.md#buffer-swap-and-retrace-wait)), which fits bit 0 as "show the back buffer". **Unknown: no shipped software or published source depends on it:** what the display hardware does with bits 2-4 beyond the module's own names (RGB, colour index, DC RGB). Routes tried: the module, the kernel, the firmware (which forwards the byte untouched), the diagnostic's XMAP register list, which has no per-display-id mode table, and `setmon` and `ircombine`, neither of which issues `RRM_LOADDISPLAYMODE`, `RRM_MGR_SWAPBUF` or `DISPMODE`.
 
 ### Clips: `RRM_VALIDATECLIP` (1011)
 
@@ -138,6 +138,230 @@ The margin c, **established** from the arithmetic: c = trunc(sqrt(s^2 - w*h/4 + 
 ### Stereo: `KONA_SET_CHANNEL_RECT` (10009)
 
 **Established** (`konaSetStereoMode(screen, a, b, mode)`, `misc` group). When `mode` is 1 and a small-data flag of the module is set, it writes 531 to the halfword at +6 (`y1`) of an 18-byte block in `.bss` (0x591ba0) and passes the block to 10009; on failure it stores -7905 in a module error word and logs "Failed : update kernel with channel cursorinfo". It then calls `nfbSetStereoMode`. No other store to the block was found by offset in the module, so the call sends channel 0, valid 0, priority 0, x1 0, y1 531 and zeros: **inferred** to withdraw channel 0 from the cursor rectangles while stereo is on. Whether another path fills the block through a pointer is **unknown**. Kernel side: `kona_set_channel_rect` ([dg.md](dg.md#choosing-the-cursor-channel)).
+
+### Display functions: cursor records, display ids, colour maps, gamma
+
+**Established** from `kona.so` 6.5.30m by address; screen private means the record at `konScreenPrivateIndex`, as above.
+
+#### `konRealizeCursor`
+
+`konRealizeCursor` at 0x54ad40 takes (screen, cursor). If any screen's private word +92 already holds this cursor (the crosshair the module keeps), it returns true without allocating. Otherwise it allocates a 32-byte cursor record, stores it as the cursor's private word for this screen (CursorRec +20), clears its +0 and +4, allocates and clears a 260-word image buffer at +8, builds the image with the helper at 0x456fe0, and marks it not yet on the pipe (halfword +12 = 0) with no cache slot (+16 = 0). The image reaches the pipe later, through `konDisplayCursor` ([cursor](#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor)).
+
+#### `konUnrealizeCursor`
+
+`konUnrealizeCursor` at 0x55f270 takes (screen, cursor). A private word of 1 (the crosshair) is just cleared. Otherwise it releases the record's cache slot through 0x4c20e0, which unlinks the slot from the cache list, clears the record's +12 and +16 and resets the screen's current slot (private +112) to -1 when it was this one, then frees the records at +4 and +8 and the record itself and clears the private word. Nothing is sent to the pipe.
+
+#### `kon_freeCursorCaches`
+
+`kon_freeCursorCaches` at 0x567700 takes (screen private). Frees the cursor-cache table at +116 when there is one. `kon_initCursorCaches` builds it with the 39 slots ([dg.md](dg.md#cursor-memory)).
+
+#### `konReloadAllGammas`
+
+`konReloadAllGammas` at 0x464060 takes (screen). Calls 0x4520a0 with the screen's video-control private record (`vcScreenPrivateIndex`), which walks every gamma map (count at +32, 16-byte entries at +36, the shadow pointer at entry +12; a missing shadow prints "NULL gamma shadow (%d)") and loads red, green and blue from the shadow through 0x477dc0: three 4096-entry tables at shadow +4, +8196 and +16388. 0x477dc0 picks the starting address from the shadow's kind word: kind 0 address 0, kind 1 (map << 14) + 0x40000, kind 2 0xf000 through the 0xdeadfeed form at 0x498ff0; it advances the address by 4096 per component. Both `X_LOADGAMMA` forms are in [dg.md](dg.md#colour-maps-and-gamma-tables). Afterwards, when all three components were loaded, it marks the shadow as an identity ramp (word +24580) if the blue table is 0 to 4095 in order, and when that mark changed it re-sends display command 15 (`DoDGRqstChannelGammaMap`) for every channel that uses this map, through the control sender at 0x548db0 with attribute 10.
+
+#### `konInitDIDState`
+
+`konInitDIDState` at 0x457600 takes (screen). Fills the display-id table of the rrm screen private (`rrmScreenPrivateIndex`, 36-byte entries from +152): ids 0-62 are main-plane ids (halfword +18 = 0, +8 = 0, +12 = 8), id 63 is one of kind 3 (+8 = 0x3c00, +12 = 5), ids 64-95 are overlay ids (kind 1); no id gets kind 2. Main ids at or above `KON_X_LIMIT_MAIN_DID` (accepted 14-63, default 63) get kind 0xffff (unusable). `KON_X_LIMIT_OVERLAY_DID` (accepted 5-32, default 32) is added to running totals in a way that leaves ids 63-95 usable for every accepted value, so as coded it removes no overlay id. A rejected value prints "punting, bogus DID limit" and keeps the default. It checks that the total, 96, equals the count at rrm private +0 ("numids mismatch"). **Inferred:** kind 0 main, 1 overlay, 3 a reserved id, from the counts and the env-variable names; the meaning of words +8 and +12 is **unknown: no shipped software or published source depends on it** beyond this initialisation (routes: the module's loads of those words, `kon_initDIDmodes`'s name among the section strings, the kernel's display-id code in [dg.md](dg.md)).
+
+#### `konChangeDIDCmap`
+
+`konChangeDIDCmap` at 0x44f1d0 takes (window, colormap). For a window with a display id (rrm private +20 not negative) and a colormap, it re-sends `X_LOADXMAP_DID` exactly as `konValidateMode` does ([display modes](#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017)): the display id, then the colormap's table entry << 7, the plane count - 1 (capped at 12 when screen private +32 is set) << 3, and the luminance and grey flags, which it takes only for colour-index visuals (visual flag bit 0 set, 0x2000 clear). It caches {entry, size, grey, lum} at screen private +48 + 16 x id first. Its debug print reads "did = %d cmap base = 0x%x, size = %d".
+
+#### `kon_drawDid`
+
+`kon_drawDid` at 0x4715c0 takes (id, plane mask, screen, command pointer). Loads the drawing state for painting display-id planes, without drawing: `X_LOADCLIP` with 1, 0, 0, screen width, height; `X_LOADPOS` (0x12a) with 0, 0, width, height; and `X_LOADGC` with 13 words in the order of [the drawing grammar](#x-server-module-drawing-commands): foreground = the id placed in the display-id bit field, write mask from the plane mask, then fixed words (cfg low bits 0x8, op low nibble 1, addr low six bits 0, bl bits 1-4 = 3, ifmt 0, colfmt 1, pixfmt 1). Two placements exist, chosen by bit 2 of screen private +148: the id's low four bits at bit 3 and its next twelve at bit 8 of `fg_h`, with mask `wmask0`; or the same at bits 9 and 14 of `fg_l`, with mask `wmask1`. **Inferred:** the two layouts are the display-id field's position in two pixel depths; the callers then send the boxes.
+
+#### `konTempBlankAllChannels`
+
+`konTempBlankAllChannels` at 0x4657a0 takes (screen, value). Sends display command 60 (`DoDGRqstTempBlankAllChannels`) with the one word `value`, through the sender at 0x5341a0. The firmware blanks or unblanks every channel ([dg.md](dg.md#display-requests)).
+
+#### `konInitializeColormap`
+
+`konInitializeColormap` at 0x535530 takes (colormap). Clears the colormap's private word (+68) and creates the hardware colormap (`nfbCreateHWColormap`). For a static visual class (even class number) it fills the entries with `rrmInitializeGLStaticColormap` on a 32-bit-deep screen or `cfbInitializeColormap` otherwise. For a PseudoColor colormap whose visual has flags 0x2020001 set, on a screen whose private +36 is set, it then fills all 256 entries from three 256-byte tables in the module's data (red 0x5869e0, green 0x586ae0, blue 0x586be0, each byte shifted to 16 bits) and marks them allocated; the first eight are black, red, green, yellow, blue, magenta, cyan, white. **Inferred:** the IRIS default colour map, from that order. For an overlay or underlay visual (flag 0x8, or 0x2 without 0x40000) it reserves entry 0, **inferred** as the transparent pixel, and fails when the colormap's flag word (+16) has bit 1 set, **inferred** fully allocated.
+
+#### `konClearHWColormap`
+
+`konClearHWColormap` at 0x4a25a0 is an empty function that returns at once. The pipe's colour map is not cleared from here.
+
+#### `konSetColor`
+
+`konSetColor` at 0x4dac10: prints "konSetColor *** should NOT be called" through `ErrorF` and returns; colour stores go through `konStoreColors` and its relatives.
+
+#### `konUninstallColormap`
+
+`konUninstallColormap` at 0x508660 takes (colormap). Looks up the visual's flags in the module's visual table (ScreenRec +116 record: 20-byte entries at +88, indexed from the base id at +80). For an RGB visual (flag 0x2000) it does nothing; otherwise it calls `nfbUninstallColormap`.
+
+#### `konInstallFakeColormap`
+
+`konInstallFakeColormap` at 0x4c3620 is an empty function, like `konClearHWColormap`.
+
+#### `konStoreFakeColors`
+
+`konStoreFakeColors` at 0x460c60 is an empty function that takes three arguments and returns.
+
+#### `konQueryMaxSwapBarrier`
+
+`konQueryMaxSwapBarrier` at 0x44f1b0 returns 1, so the module reports one swap barrier.
+
+### Stereo drawing wrappers (`konStereo*`)
+
+**Established** (all 20, same body). Each wrapper takes the arguments of one X GC operation, finds the GC's `nfbGCPrivateIndex` record, saves its word +8 and the GC's ops pointer (+72), installs the plain ops kept at private +92 and sets private +104 to 1. It then runs the operation twice, once per eye: word +8 set to private +96 with the drawable's y (halfword +10) and the GC's clip y (private halfword +90) moved up by the screen record's halfword +226, and word +8 set to private +100 with them moved back. Word +220 of the screen record picks the order (1: +96 first). Each pass revalidates the GC (0x553d40 with mask 0x2000) and calls the plain op. Finally it restores word +8, the ops pointer and private +104. **Inferred:** +96 and +100 are the left and right buffer selects of the stereo frame buffer and +226 the vertical distance between the two eye images, the same offset `konValidateClip` adds. `konStereoCopyArea` and `konStereoCopyPlane` call the op once when the source is a pixmap, move the source y as well when source and destination are the same window, and free the first pass's exposure region.
+
+#### `konStereoFillSpans`
+
+`konStereoFillSpans` repeats GC op slot 0 (`FillSpans`) once per eye.
+
+#### `konStereoSetSpans`
+
+`konStereoSetSpans` repeats GC op slot 4 (`SetSpans`) once per eye.
+
+#### `konStereoPutImage`
+
+`konStereoPutImage` repeats GC op slot 8 (`PutImage`) once per eye.
+
+#### `konStereoCopyArea`
+
+`konStereoCopyArea` repeats GC op slot 12 (`CopyArea`) once per eye.
+
+#### `konStereoCopyPlane`
+
+`konStereoCopyPlane` repeats GC op slot 16 (`CopyPlane`) once per eye.
+
+#### `konStereoPolyPoint`
+
+`konStereoPolyPoint` repeats GC op slot 20 (`PolyPoint`) once per eye.
+
+#### `konStereoPolyline`
+
+`konStereoPolyline` repeats GC op slot 24 (`Polylines`) once per eye.
+
+#### `konStereoPolySegment`
+
+`konStereoPolySegment` repeats GC op slot 28 (`PolySegment`) once per eye.
+
+#### `konStereoPolyRectangle`
+
+`konStereoPolyRectangle` repeats GC op slot 32 (`PolyRectangle`) once per eye.
+
+#### `konStereoPolyArc`
+
+`konStereoPolyArc` repeats GC op slot 36 (`PolyArc`) once per eye.
+
+#### `konStereoFillPolygon`
+
+`konStereoFillPolygon` repeats GC op slot 40 (`FillPolygon`) once per eye.
+
+#### `konStereoPolyFillRect`
+
+`konStereoPolyFillRect` repeats GC op slot 44 (`PolyFillRect`) once per eye.
+
+#### `konStereoPolyFillArc`
+
+`konStereoPolyFillArc` repeats GC op slot 48 (`PolyFillArc`) once per eye.
+
+#### `konStereoPolyText8`
+
+`konStereoPolyText8` repeats GC op slot 52 (`PolyText8`) once per eye.
+
+#### `konStereoPolyText16`
+
+`konStereoPolyText16` repeats GC op slot 56 (`PolyText16`) once per eye.
+
+#### `konStereoImageText8`
+
+`konStereoImageText8` repeats GC op slot 60 (`ImageText8`) once per eye.
+
+#### `konStereoImageText16`
+
+`konStereoImageText16` repeats GC op slot 64 (`ImageText16`) once per eye.
+
+#### `konStereoImageGlyphBlt`
+
+`konStereoImageGlyphBlt` repeats GC op slot 68 (`ImageGlyphBlt`) once per eye.
+
+#### `konStereoPolyGlyphBlt`
+
+`konStereoPolyGlyphBlt` repeats GC op slot 72 (`PolyGlyphBlt`) once per eye.
+
+#### `konStereoPushPixels`
+
+`konStereoPushPixels` repeats GC op slot 76 (`PushPixels`) once per eye.
+
+### Video formats and combinations (`vfmt*`)
+
+**Established** (`kona.so` 6.5.30m; `konad.so`, `konal.so`, `konas.so`, `setmon` and `ircombine` carry the same functions). The library behind the LoadFormat request and the combination loader ([dg.md](dg.md#loading-a-combination-channel)); the file format is in [ucode/dg.md](../ucode/dg.md). `GL_GRROOT`, when set, prefixes every path.
+
+#### `vfmtFindFormatFile`
+
+`vfmtFindFormatFile` at 0x42b7d0 takes (out, name, directory). Appends `.vfo` when missing. A bare name becomes root + directory + "/" + name; a name with a directory part is used as given when that part equals root + directory, and otherwise returns 3 without looking. It stats the result into a static buffer and returns 0 when found; else it tries `$VFOPATH/name` and returns 0 when that exists, 1 otherwise.
+
+#### `vfmtFindKonaFormatFile`
+
+`vfmtFindKonaFormatFile` at 0x42ba20 calls `vfmtFindFormatFile` with the directory `/usr/gfx/ucode/KONA/dg4/vfo`.
+
+#### `vfmtFindCmpFormatFile`
+
+`vfmtFindCmpFormatFile` at 0x42ba70 calls `vfmtFindFormatFile` with the directory `/usr/gfx/ucode/VOYAGER/vfo`, then `/usr/gfx/ucode/STINGRAY/vfo`.
+
+#### `vfmtFindOdyFormatFile`
+
+`vfmtFindOdyFormatFile` at 0x42bb10 calls `vfmtFindFormatFile` with the directory `/usr/gfx/ucode/ODSY/vof`.
+
+#### `vfmtFindSG2FormatFile`
+
+`vfmtFindSG2FormatFile` at 0x42bb60 calls `vfmtFindFormatFile` with the directory `/var/X11/Xvc/SG2_formats`.
+
+#### `vfmtFindKonaCombinationFile`
+
+`vfmtFindKonaCombinationFile` at 0x42bbb0 takes (out, name). Returns 1 with the name as given when it exists, else 1 with root + `/usr/gfx/ucode/KONA/dg4/cmb/` + name when that exists, else 0.
+
+#### `vfmtFindCmpCombinationFile`
+
+`vfmtFindCmpCombinationFile` at 0x42bcf0 takes (out, name). Tries the name, then the `VOYAGER/cmb`, `STINGRAY/cmb` and `/usr/diags/compositor/data` directories, then the same with `.cmb` appended; returns 0 when found, otherwise 1 with the `STINGRAY/cmb` path (or the name itself when it has a directory part). The three directory attempts pass a length of 4 to `snprintf`, so they build a three-character path and cannot match (**established** from the argument; **inferred** to be a defect).
+
+#### `vfmtGetLastKonaFileStat`
+
+`vfmtGetLastKonaFileStat` at 0x42bf60 takes (buffer). Copies the 152-byte `stat` result the find functions left in their static buffer and returns 1.
+
+#### `vfmtReadKonaCombination`
+
+`vfmtReadKonaCombination` at 0x42d5f0 takes (name, record). Clears a 41636-byte combination record, finds and opens the file, checks `MajorVersion` and `MinorVersion`, reads the 20 global fields (0x42ced0; for example `textport` +256, `managedSize` +260, `pixelDepth` +268, `syncSource` +272, `usingEncoderOutput` +552, `allocatedSize` +588) and up to 15 channel records of 2736 bytes at +596 (0x42bff0, fields `ch%1d` + name, offsets in [dg.md](dg.md#loading-a-combination-channel)). `FieldLayout` and `VbobSyncSource` may be absent. Returns 0, 1 when the file cannot be opened, 2 on a bad field.
+
+#### `vfmtWriteKonaCombination`
+
+`vfmtWriteKonaCombination` at 0x42e840 takes (name, record). The inverse: opens a new file with the description "Kona video format combination file", writes the two version fields, the 20 globals and each existing channel through 0x42d7f0, and closes it.
+
+#### `vfmtUpdateFormatInfoInCombination`
+
+`vfmtUpdateFormatInfoInCombination` at 0x429320 takes (record). For each existing channel (+712 set) it reads the channel's `.vfo`, stores its file time at channel +256 and copies the 2020-byte format record into the channel at +716; a missing file prints "failed to load format %s!".
+
+#### `vfmtMinimalKonaTarget`
+
+`vfmtMinimalKonaTarget` at 0x428010 takes (target). Fills a 32-byte target description with the smallest system: board-set class 0, 1 raster board, pixel depth 0, 8 display-generator channels at revision 0, no option channel.
+
+#### `vfmtActualHWToKonaTarget`
+
+`vfmtActualHWToKonaTarget` at 0x428070 takes (pipe, target). Opens `/dev/opengl`, asks the board count (ioctl 101, "GFX_GETNUM_BOARDS") and the board information (ioctl 102, 1952 bytes), refuses a board whose name is not `KONA`, and copies from the configuration record at +40 of that information (the 6.5.5 `sys/kona_if.h` `kona_config`): `bdset` to the class (0 stays 0, 2 stays 2, 6 becomes 3, others 1), `numrms` (1, 2 or 4), `pixeldepth` (0-3), and the display generator's channel count, revision, option type and option revision.
+
+#### `vfmtIsKonaCombinationValidForTarget`
+
+`vfmtIsKonaCombinationValidForTarget` at 0x428590 takes (record, target, ...). Checks a combination against a target, reporting through the message catalogue `IR_VIDEO`: each channel's `PixelFormat` must be 0-4 ("Illegal Pixel Format"; 0 and 4 count 32 data bits, 1-3 count 42, 4 also marks the channel), `MaxTilesPerRequest` at least 1 (forced to 4 on a class-2 target), then the tile requests per line, the data bits and the fill cost per channel against the video bandwidth ("Video bandwidth exceeded"), and prints each channel's frame rate, swap rate and fields per swap.
+
+#### `vfmtIsKonaCombinationValidForActualHW`
+
+`vfmtIsKonaCombinationValidForActualHW` at 0x428ff0: builds the target from the pipe with `vfmtActualHWToKonaTarget` (cached per pipe) and calls `vfmtIsKonaCombinationValidForTarget`.
+
+#### `vfmtResolvePixelDepth`
+
+`vfmtResolvePixelDepth` at 0x4278c0 takes (record, target). Turns the combination's `pixelDepth` request into a depth the target can hold: it counts the allocated pixels (width rounded up to 160 times height), divides raster boards x 5 x 2^22 by that count (halved for class 2; class 3 uses 2^27), and maps the requested depth (a jump on values 0-7) and that quotient through thresholds at 64, 32, 16, 8 and 4 to a depth code, or 0 when nothing fits.
+
+#### `vfmtSwapRateCloseEnough`
+
+`vfmtSwapRateCloseEnough` at 0x429090 takes (a, b). True when |a - b| / a is below 0.01. The Combiner user guide calls swap rates within about 2 percent equal; the code's bound is 1 percent.
+
+#### `vfmtSyncFormatFrameRatesCompatible`
+
+`vfmtSyncFormatFrameRatesCompatible` at 0x429120 takes (a, b). False when either rate is 0 or the larger is more than 16 times the smaller; otherwise true when the ratio is within 0.01 of a whole number.
 
 ## X server module: drawing commands
 

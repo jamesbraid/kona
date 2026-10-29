@@ -3293,7 +3293,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094860	352	AccessWarpPointer	
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100949c0	92	SProcDCStubDispatch	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094a20	600	AppendFakeRequest	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094c80	572	ProcSGIvcListVideoFormatCombinations	dynsym	undocumented		
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094ec0	88	ErrorF	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094ec0	88	ErrorF	dynsym	documented	docs/opengl.md#konsetcolor	`konSetColor`
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094f20	148	FatalError	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094fd0	68	SClobberNotifyEvent..IAF	dynsym	undocumented		
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10095020	212	LbxWriteGetpropReply..PCG	dynsym	undocumented		
@@ -7148,7 +7148,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec63534	152	winopen	dynsym	und
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec635cc	152	__GLgetvideo	dynsym+mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec635cc	152	getvideo	dynsym	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec63664	116	__GLtextport	dynsym+mdebug	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec63664	116	textport	dynsym	documented	ucode/dg.md#combination-files-cmb	Combination files (`.cmb`)
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec63664	116	textport	dynsym	documented	docs/opengl.md#vfmtreadkonacombination	`vfmtReadKonaCombination`
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec636d8	152	__GLfudge	dynsym+mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec636d8	152	fudge	dynsym	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec63770	152	__GLsetbell	dynsym+mdebug	undocumented		
@@ -10960,7 +10960,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6319c	200	winopen	dynsym	u
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec63264	200	__GLgetvideo	dwarf+dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec63264	200	getvideo	dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6332c	172	__GLtextport	dwarf+dynsym	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6332c	172	textport	dynsym	documented	ucode/dg.md#combination-files-cmb	Combination files (`.cmb`)
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6332c	172	textport	dynsym	documented	docs/opengl.md#vfmtreadkonacombination	`vfmtReadKonaCombination`
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec633d8	200	__GLfudge	dwarf+dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec633d8	200	fudge	dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec634a0	200	__GLsetbell	dwarf+dynsym	undocumented		
@@ -47368,7 +47368,7 @@ usr/gfx/ircombine	board-tool	n32		0x1001ff50	128	__process_needed_destructions__
 usr/gfx/ircombine	board-tool	n32		0x1001ffd0	40	__record_needed_destruction	dynsym	documented	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020000	60	__std__needed_destruction_list	dynsym	documented	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020040	940	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-usr/gfx/ircombine	board-tool	n32		0x100203f0	292	ErrorF	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/ircombine	board-tool	n32		0x100203f0	292	ErrorF	dynsym	documented	docs/opengl.md#konsetcolor	`konSetColor`
 usr/gfx/ircombine	board-tool	n32		0x10020520	520	iGUIReadFormatFile__GPCcP11konFormat_t	dynsym	documented	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020b00	484	__ct__18ChannelWindowClassGPCcP3ArgUii	dynsym	documented	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020cf0	220	__dt__18ChannelWindowClassGv	dynsym	documented	docs/setup-tools.md#ircombine	`ircombine`
@@ -48605,7 +48605,7 @@ usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	documented	docs/kern
 usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a038	56	vTimeoutOpenDisplay	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x1000a140	184	ErrorF	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000a140	184	ErrorF	dynsym	documented	docs/opengl.md#konsetcolor	`konSetColor`
 usr/gfx/setmon	shared-tool	n32		0x1000a278	280	fglrxDoFramelock	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a390	1588	fglrxsetmon	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a9c4	1244	konasetmon	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
@@ -50932,7 +50932,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5225f0	1184	konStereoFillSpans	d
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522a90	384	konLoadDisplayMode	dynsym	documented	docs/opengl.md#ioctls	Ioctls
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522c10	708	cfb32GetSpans	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522ee0	3596	konTilePatterns	dynsym	documented	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x523cf0	2468	konStoreColors	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x523cf0	2468	konStoreColors	dynsym	documented	docs/opengl.md#konsetcolor	`konSetColor`
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5246a0	3248	mfbImageGlyphBltBlack	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x525350	144	nfbListInstalledHWColormaps	dynsym	documented	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x525570	2344	miPolyFillRect	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -51727,7 +51727,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c470	1184	konStereoFillSpans	
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c910	384	konLoadDisplayMode	dynsym	documented	docs/opengl.md#ioctls	Ioctls
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52ca90	708	cfb32GetSpans	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52cd60	3596	konTilePatterns	dynsym	documented	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52db70	3156	konStoreColors	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52db70	3156	konStoreColors	dynsym	documented	docs/opengl.md#konsetcolor	`konSetColor`
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52e7d0	3248	mfbImageGlyphBltBlack	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52f480	144	nfbListInstalledHWColormaps	dynsym	documented	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52f6a0	2344	miPolyFillRect	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -52522,7 +52522,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ac470	1184	konStereoFillSpans
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ac910	384	konLoadDisplayMode	dynsym	documented	docs/opengl.md#ioctls	Ioctls
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14aca90	708	cfb32GetSpans	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14acd60	3596	konTilePatterns	dynsym	documented	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14adb70	3156	konStoreColors	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14adb70	3156	konStoreColors	dynsym	documented	docs/opengl.md#konsetcolor	`konSetColor`
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ae7d0	3248	mfbImageGlyphBltBlack	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14af480	144	nfbListInstalledHWColormaps	dynsym	documented	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14af6a0	2344	miPolyFillRect	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -53317,7 +53317,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52c470	1184	konStereoFillSpans	
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52c910	384	konLoadDisplayMode	dynsym	documented	docs/opengl.md#ioctls	Ioctls
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52ca90	708	cfb32GetSpans	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52cd60	3596	konTilePatterns	dynsym	documented	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52db70	3156	konStoreColors	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52db70	3156	konStoreColors	dynsym	documented	docs/opengl.md#konsetcolor	`konSetColor`
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52e7d0	3248	mfbImageGlyphBltBlack	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52f480	144	nfbListInstalledHWColormaps	dynsym	documented	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52f6a0	2344	miPolyFillRect	dynsym	documented	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
