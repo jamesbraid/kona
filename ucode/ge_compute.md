@@ -391,3 +391,68 @@ unknown: the diagnostic test does not exercise it, and it occurs only on the dep
   heads 0x8178, 0x8484 and 0x8790 with the offsets 0x94, 0xa8 and 0xbc into registers 0xe and 0xf (0xf20b-0xf210) and stores
   the slot offsets 0x9c, 0x138, 0x1d4 and 0x270, steps of 0x9c, into the list (0xf215-0xf218), so `mClipPolyToPlane` can take
   new vertices from it.
+
+## Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
+
+**Inferred** (an addressing form these routines settle): a form-13 or form-14 word with C naming an address register and
+`r95` = 0x13 (a read) or `r211` = 3 with `r95` = 4 (a store) reaches the word at that register plus 0x1f - F. `mMatrixCopyCC`
+moves 16 words with F running 0x1f (the field's idle value), 0x1e, ... 0x10 through registers 0xa and 0xc, which is offsets
+0-0xf, and the plain divide of `uscreen2.s` reads the viewport scales through register 9 = 0x7f with F = 0x20, 0x1e and 0x1c,
+which is 0x7e, 0x80 and 0x82, the three scale words `uBackInvQ2DI` reads by immediate address. The engine's work matrix W
+lives at 0x8d2c (address register 0xb), the target matrix C at the address the calling handler loads into register 0xa
+(0x2f modelview, 0x3f projection, 0x5f texture, 0x190 colour, in `matrixfunc.S`).
+
+- `mMatrixMultCCW` (`umatrix.s` lines 209-264): **inferred**, post-multiplies the current matrix by the work matrix,
+  C = C x W, GL's rule for glMultMatrix, glRotate, glOrtho and the rest. Its inputs are the 16 words of C through register
+  0xa and the 16 of W through register 0xb; 64 multiply-adds (0xeb3-0xedb) compute each result word as the dot product of a
+  row of C with a column of W, and the 16 results are stored back through register 0xa (0xece-0xee5). It writes special
+  register 0x2c (predicated, 0xeb4), branches on `cc` 0x78 to `mResolveFogTable` when the target is the modelview of a fogged
+  context, and ends with the end-of-command wait at 0xede.
+- `uMatrixMultCCW`: **inferred**, the u-name at 0x0eb0 (`umatrix.s` line 209) of the same product: input matrices C at
+  register 0xa and W at 0xb, output C x W written over C, computed with 64 multiply-adds.
+- `uMatrixInverse`: **inferred**, the u-name at 0x0ee7 (`umatrix.s` line 314) of the normal-matrix inverse: it takes the
+  modelview words 0x2f-0x3e as input, computes the cofactors and the reciprocal of the determinant, and its results, the
+  inverse block from engine word 0x1f, feed the normal transforms of `uxform.s`.
+- `mMatrixCopyCC` (`matrix.S` lines 117-132): **inferred**, copies one 16-word matrix to another, the copy the push and pop
+  handlers use: input through register 0xa, output through register 0xc, offsets 0-0xf by the F encoding above. It converts
+  nothing; it returns at 0xd377.
+- `mMatrixCopyCW` (`matrix.S` lines 87-102): **inferred**, writes the work matrix W (16 words read through register 0xb,
+  D = 0-0xf) as the result over the matrix at register 0xc, the load half of glLoadMatrix-style handlers that build W first;
+  it returns at 0xd390.
+- `mOrtho` (`matrix.S` lines 233-290): **inferred**, glOrtho. It takes the six operand words left, right, bottom, top,
+  near and far (A = 0x1f, D = 0-5), computes the differences r - l, t - b and f - n and their reciprocals (seed and
+  Newton-Raphson steps at 0xd3b7-0xd3bc), part of the products in double precision (unit-2 code 0x07 at 0xd3c5-0xd3d6), and
+  stores the result matrix to the work words: 2/(r - l), 2/(t - b) and -2/(f - n) on the diagonal and -(r + l)/(r - l),
+  -(t + b)/(t - b), -(f + n)/(f - n) in the last column (stores at E = 0, 5, 0xa and 0xc-0xe, 0xd3e0-0xd3e7), with the
+  constant 2.0 loaded at 0xd3af. A zero difference branches to `mErrInvalidValue` (0xd3e8-0xd3ea), the GL_INVALID_VALUE case;
+  otherwise it jumps to `mMatrixMultCCW` (0xd3ee) to multiply W into the current matrix.
+- `mFrustum` (`matrix.S` lines 151-216): **inferred**, glFrustum: the same six operand inputs, the differences and their
+  reciprocals, the constant 2.0 (0xd412) and the double-precision products, with two more error branches to
+  `mErrInvalidValue` on `cc` 8 and `cc` 0 for a near or far plane that is not positive, before the jump that multiplies the
+  perspective result matrix into the current one.
+- `mRotate` (`umatrix.s` lines 557-656): **inferred**, glRotate. It takes the axis from operand words 1-3, computes the
+  sum of their squares and normalises the axis with a reciprocal square root (seed at 0xfcc, steps at 0xfca and 0xfd9),
+  reduces the angle (operand 0, in degrees) and computes its sine and cosine with the same sequence as `mSinCos` inline
+  (unit-2 code 0x5f, double subtracts at 0xfc7-0xfc8, unit-1 code 0x35), then builds the result, the rotation matrix, from the products
+  of the axis components with each other and with the sine and one minus the cosine (0xfd5-0x1009) and jumps to
+  `mMatrixMultCCW` at 0x100a.
+- `uRotate`: **inferred**, alias at 0x0fb0 (`umatrix.s` line 557) of the rotate builder; its result is the work matrix of a
+  rotation by the operand angle about the normalised operand axis, which it then multiplies into the current matrix.
+- `mSinCos` (`umath.s` lines 24-102): **inferred**, sine and cosine of an angle in degrees, used by the spot cut-off
+  handler and the multisample point code. The constants it reads are the table `ge.S` stores at start-up (0xb0f4-0xb10f):
+  1/360 at 0x14cf, -pi at 0x14c9, 1.5 x 2^23 at 0x14cd (the add-and-subtract rounding constant) and 2 pi at 0x14ce, and
+  the polynomial coefficients 0.000184876, 0.00831191, 0.166656 and 1.0 at 0x14d0-0x14d3. It multiplies the angle input by
+  1/360, removes the whole turns by adding and subtracting the rounding constant, scales the remaining fraction back by
+  2 pi, and evaluates the odd polynomial x - 0.166656 x^3 + 0.00831191 x^5 - 0.000184876 x^7 for each result
+  (alternating multiplies and subtracts at 0xe3e-0xe57). The two outputs, sine and cosine, are left in registers 0 and 1
+  (0xe5a-0xe5b) and it returns through a group-5 transfer at 0xe59.
+- `uSinCos`: **inferred**, the u-name at 0x0e13 (`umath.s` line 24): input an angle in degrees, outputs its sine and
+  cosine, which it computes by turn reduction against the constants at 0x14c9-0x14cf and a seventh-order odd polynomial.
+- `minv` (`math.S` lines 56-62): **inferred**, the reciprocal subroutine, which computes 1/x: for each input it takes the reciprocal seed
+  (0xd308, 0xd30c) and refines it with two Newton-Raphson steps of code 0x4f (2 - a x b, 0xd30a and 0xd312), multiplying the
+  seed by each step's result, and returns 1/x at 0xd315.
+- `msqrt` (`math.S` lines 34-43): **inferred**, the square-root subroutine: it computes 1/sqrt(x) from the
+  reciprocal-square-root seed (0xd31e, 0xd326) and two steps of code 0x57 ((3 - a x b) / 2, 0xd324 and 0xd330), then
+  multiplies the result by the input x (0xd334), which yields sqrt(x); it returns at 0xd337.
+- `misqrt` (`math.S` lines 13-21): **inferred**, the reciprocal-square-root subroutine, which computes 1/sqrt(x) of its input: the same seed and two Newton steps
+  as `msqrt` (0xd340-0xd352) without the final multiply by the input, so it returns 1/sqrt(x) at 0xd355.

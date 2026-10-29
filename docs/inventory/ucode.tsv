@@ -1925,17 +1925,17 @@ ge.u	label	0x00000d89	lLI1		understood	ucode/ge_compute.md#lighting-inner-loops-
 ge.u	label	0x00000dc9	mLiPwrTable		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
 ge.u	label	0x00000dc9	uLiPwrTable		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
 ge.u	label	0x00000df5	lPT1		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
-ge.u	label	0x00000e13	mSinCos		located	ucode/ge_handlers.md#umaths	umath.s
-ge.u	label	0x00000e13	uSinCos		located	ucode/ge_handlers.md#umaths	umath.s
+ge.u	label	0x00000e13	mSinCos		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
+ge.u	label	0x00000e13	uSinCos		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x00000e62	uMatrixMultCCC		understood	ucode/ge_compute.md#matrix-maintenance-umatrixs	Matrix maintenance (umatrix.s)
-ge.u	label	0x00000eb0	mMatrixMultCCW		located	ucode/ge_handlers.md#umatrixs	umatrix.s
-ge.u	label	0x00000eb0	uMatrixMultCCW		located	ucode/ge_handlers.md#umatrixs	umatrix.s
+ge.u	label	0x00000eb0	mMatrixMultCCW		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
+ge.u	label	0x00000eb0	uMatrixMultCCW		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x00000ee7	mMatrixInverse		understood	ucode/ge_compute.md#matrix-maintenance-umatrixs	Matrix maintenance (umatrix.s)
-ge.u	label	0x00000ee7	uMatrixInverse		located	ucode/ge_handlers.md#umatrixs	umatrix.s
+ge.u	label	0x00000ee7	uMatrixInverse		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x00000f58	mMatrixAdjoint		located	ucode/ge_handlers.md#umatrixs	umatrix.s
 ge.u	label	0x00000f58	uMatrixAdjoint		located	ucode/ge_handlers.md#umatrixs	umatrix.s
-ge.u	label	0x00000fb0	mRotate		located	ucode/ge_handlers.md#umatrixs	umatrix.s
-ge.u	label	0x00000fb0	uRotate		located	ucode/ge_handlers.md#umatrixs	umatrix.s
+ge.u	label	0x00000fb0	mRotate		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
+ge.u	label	0x00000fb0	uRotate		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x00001013	uWramToCram		located	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x0000101b	lW2C		located	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x00001025	mWramToEram		located	ucode/ge_handlers.md#umemoves	umemove.s
@@ -2742,13 +2742,13 @@ ge.u	label	0x0000d11e	mTexGenResolve		located	ucode/ge_handlers.md#texgens	texge
 ge.u	label	0x0000d191	mWramToCram		located	ucode/ge_handlers.md#mmemoves	mmemove.S
 ge.u	label	0x0000d1a9	mWramToFifo		located	ucode/ge_handlers.md#mmemoves	mmemove.S
 ge.u	label	0x0000d23f	mSinCosAB		located	ucode/ge_handlers.md#mmaths	mmath.S
-ge.u	label	0x0000d308	minv		located	ucode/ge_handlers.md#maths	math.S
-ge.u	label	0x0000d31e	msqrt		located	ucode/ge_handlers.md#maths	math.S
-ge.u	label	0x0000d340	misqrt		located	ucode/ge_handlers.md#maths	math.S
-ge.u	label	0x0000d35e	mMatrixCopyCC		located	ucode/ge_handlers.md#matrixs	matrix.S
-ge.u	label	0x0000d380	mMatrixCopyCW		located	ucode/ge_handlers.md#matrixs	matrix.S
+ge.u	label	0x0000d308	minv		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
+ge.u	label	0x0000d31e	msqrt		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
+ge.u	label	0x0000d340	misqrt		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
+ge.u	label	0x0000d35e	mMatrixCopyCC		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
+ge.u	label	0x0000d380	mMatrixCopyCW		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x0000d399	mMatrixTransposeWW		located	ucode/ge_handlers.md#matrixs	matrix.S
-ge.u	label	0x0000d3ad	mOrtho		located	ucode/ge_handlers.md#matrixs	matrix.S
+ge.u	label	0x0000d3ad	mOrtho		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x0000d3f7	mMatrixLoadIdentityC		located	ucode/ge_handlers.md#matrixs	matrix.S
 ge.u	label	0x0000d410	mFrustum		located	ucode/ge_handlers.md#matrixs	matrix.S
 ge.u	label	0x0000d45d	mEramToWram		located	ucode/ge_handlers.md#memoves	memove.S
