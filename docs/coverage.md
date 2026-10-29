@@ -115,7 +115,7 @@ Rows for each microcoded engine. They rank below the Priority items: take them w
 |---|---|---|---|---|
 | ge.u, ge11.u, ged1b.u, geif.u, ge_kpm.hex | Geometry engine programs and their interface stub: instruction format, schedule, local memory, entry points, command dispatch | partial | `ucode/ge.md`, `ucode/ge_isa.md`, `ucode/ge_ops.md`, `ucode/ge_listing/`, `GE.h` | host and geometry |
 | arm1.u, arm1_kpm.u | The ARM-named program: role, instruction format and what it controls | partial | `ucode/arm1.md`, `ucode/arm1_firmware.md`, `ucode/arm1.s`, `ucode/icu_map.tsv`, `ucode/arm1_handlers.tsv`, `ucode/dg_dispatch.tsv` | host and geometry |
-| tport.bin | Textport program: command set and display behaviour | none | `ucode/tport.md` | command grammar |
+| tport.bin | Textport program: command set and display behaviour | partial | `ucode/tport.md` | command grammar |
 | dg4/vfo, dg4/cmb, vof, dgo1 | Display tables: video format and combiner table layouts | none | `ucode/dg.md, DG.h` | display |
 | (none) | Raster and texture programs: no RM or TM microcode ships and no RM or TM chip has a microcode bus; the boards are fixed-function | done | `docs/rm.md` | raster, texture and display |
 
