@@ -132,6 +132,26 @@ The codes are the 6.5.5 `KONA_GE_*` events (HIP.h).
 
 **Established.** `HH_GFIFO_HI` is set to 0x700 at initialisation. When a sender finds the FIFO fuller than 0x300 entries it calls `kona_hiwater_intr` (from the flow layer, not from the interrupt handler): it first spins up to `P+2328` microseconds reading `HH_GFIFO_LEVEL`. If the level does not fall it writes 3 to `HH_INTR_STATUS`, sets the FIFO_LO bit in the mask (`P+2368 |= 2`, written to `HH_INTR_ENABLE`), re-reads the level and, if still high, arms a software timeout (`kona_hiwater_timeout`, message tag 2102 and `kona_die` reason 6 if the level is still above the threshold when it expires) and gives up the CPU. The FIFO_LO interrupt calls `kona_lowater_intr`, which cancels the timeout, removes the FIFO_LO bit from the mask and clears status bits 0-1. The low-water level itself is not written by the driver (**unknown** how it is set).
 
+### Where a failed host DMA is reported
+
+**Established** (the driver's handlers above, `XG.h`, `HIP.h`; labels for what the driver treats as a failure, not for what the chip raises). There is no single "DMA failed" cause. A failure of a transfer between the pipe and host memory can surface in three places, with different numbers:
+
+| Where | Bit | Name | Driver action |
+|---|---|---|---|
+| Xtalk error register XG+0x6c, own interrupt vector (`kona_xg_intr_handler`) | 8, mask 0x100 | `XTALK_READ_REQ_TIMEOUT` | prints the line, `kona_die` reason 12 |
+| the same register | 9, 0x200 | `XTALK_RESPONSE` | same |
+| the same register | 27, 0x08000000; 28, 0x10000000 | `IDMA_RESPONSE_SIZE`, `IDMA_RESPONSE_BAD_TNUM` | same |
+| the same register | 26, 0x04000000 | `ODMA_FIFO_OVERFLOW` | same |
+| the same register | 12, 0x1000; 13, 0x2000 | `MAPRAM_PARITY`, `MAPRAM_INVALID` (the address-translation RAM of [xg.md](xg.md)) | same |
+| `HH_INTR_STATUS` | 11, 0x800 | `IDMA_OV` | "IDMA overflow", `kona_die` reason 14 |
+| `HH_INTR_STATUS` | 6, 0x40 | `ODMA` | prints "odma overflow" only |
+
+Software timers cover the rest: an input DMA that never completes is `kona_idma_timeout` (`kona_die` reason 4, [kernel.md](kernel.md)); a select-feedback that never completes is reason 5.
+
+**Established, and easy to confuse:** the value 0x100 means four unrelated things in the driver. It is bit 8 of `HH_INTR_STATUS`, `PARITY` (the "parity error. Data lost. Resetting pipe." path, `kona_die` reason 22); it is the software enable mask `KONAinitialize` writes to `HH_INTR_ENABLE` before the pipe starts (only the `PARITY` bit); it is bit 8 of the Xtalk error register, `XTALK_READ_REQ_TIMEOUT`; and it is the event value 0x100 in two code spaces that are not interrupt causes at all (the ARM mailbox value "input DMA done" and the geometry-engine event code "select feedback done", tables above).
+
+**Inferred.** A host-memory read by the pipe that gets no reply is the XG bit 8 case (0x100 of XG+0x6c); a bad reply to an input DMA is bits 9, 27 or 28. The host-interface chip's own bit for a failed DMA is **unknown**: no named `HH_INTR_STATUS` bit is a response error, and the driver never reads which cause set an XG error beyond printing it.
+
 ### Unknown
 
 How the pipe decides when to raise each bit beyond what the names say; what the XG registers 0x04, 0x24, 0x2c, 0x74 do; whether `HH_INTR_ACK` is needed or only conventional; the units of the 2328 and 2332 thresholds beyond their use as microseconds and FIFO level. RM and kernel timeout interrupts are not separate sources: timeouts are software timers.

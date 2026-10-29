@@ -44,3 +44,12 @@ Notation: `ctx` is the driver's per-context structure, offsets as the code uses 
 The display-generator command framing (token, command number, count-checked payload, checksum word) is the one the ARM reads in `arm_video_cmd` ([arm1_firmware.md](../ucode/arm1_firmware.md)); `ChannelRect` is the only emitter of it in `libGLcore`'s context file, and the combination and format files that choose channel layout ([ucode/dg.md](../ucode/dg.md)) are not read by this library.
 
 **Unknown:** the X-server module's emission (cursor load, colour load, video-mode set, `X_LOADCURSOR` and the like in `ddx/`) is not read here; the second source of display commands, and whatever loads the 383-word format request, is there.
+
+## Texel download: header word 7 and the load-scissor bit
+
+**Established** (`DoDrawPixelsOrTexels`, `libglcore/asm/KONA/kon_pixel.s`, the function at 0x0d951aa0; word numbers are those of the table in [RM.h](../RM.h), counted from 1 after the token, so the word the question calls "header word 6" counted from 0 is word 7, the flag copied from the descriptor at +0xb4). The function reads the descriptor's +0xb4 first.
+
+- **Word 7 is nonzero** (the callers store 1 there when bit 2 of the context word at +31580 is set, 0 otherwise: five sites in `kon_pixel.s` store it, at least four others store 0): for a texel download (bit 7 of the descriptor word at +24 set) the function ORs 4 into the descriptor's flags word at +0x84, which is header word 18, the image of `TGTML_TEXLD_MISC`; bit 2 of that register is the load-scissor enable (`LDSCISSOREN`, RM.h). When bit 5 of the global word at +1796 is also set it ORs 0x8000 (the interlaced-download bit). The header is then sent through `__glKonSendData` with its 20 words copied from the descriptor.
+- **Word 7 is zero**: the flags word is sent as `subloadLevel` built it, with only the interlaced bit added when that global bit is set. The function does not set bit 2 on this path.
+
+So bit 2 of header word 18 is **forced on whenever word 7 is nonzero on a texel download**. **Unknown:** whether bit 2 is also set when word 7 is zero (the earlier note in RM.h says the single-image path sets it; the OR of the value 4 was not found in `subloadLevel`, so that claim is **unconfirmed**), and what the hardware does with word 7 itself, which is sent as a separate header word. Because both derive from the same context bit, bit 2 of word 18 and word 7 are equal on every path read here.

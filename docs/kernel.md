@@ -127,3 +127,22 @@ Payloads read by hand for the tokens no other document covers (`kona_mem.o`, `ko
 The two constants 0x102 and 0x104 are also token numbers in GE.h (`HISTOGRAM`, `GETHISTOGRAM`), but they are written here as payload; whether the pipe reads them as a kind code or only happens to share the numbers is **unknown**. The 0x4000 in `PIPE_SETUP` equals the pipe's register-window offset in the user mapping above; whether that is the meaning is **unknown**. Which memory region the `MEM_*` arguments describe (the header's memory types are `arm`, `ge` and `tex`) is **unknown**: the five swap values were not traced to their callers.
 
 The payloads of the context, validate and DMA tokens are in `kona_kern.h` and [hip.md](hip.md), those of the display tokens in [dg.md](dg.md); this table and those are the index. **Unknown:** the callers' values for every `MEM_*` word.
+
+## The configuration record and its identity words
+
+**Established.** `KONA_SETCONFIGINFO` (10006) copies 1912 bytes from the caller into the pipe state at +244 (`KONAprivate`, [above](#private-ioctls)). The 6.5.5 installed header `sys/kona_if.h` declares `kona_config`; its size under the header's declarations is exactly 1912 bytes (the identity block of 924 bytes, plus thirteen 76-byte NIC records, one per board: the record is a flag word, a serial number, and two 32-byte pages), so the 6.5.30m record has that layout. Offsets from the start of the record (add 244 for the pipe state):
+
+| Offset | Field |
+|---|---|
+| 0-32 | `bdset` (board-set type), `gecnt`, `rmcnt`, `befram`, `gpi`, `channels`, `vidopt`, `colmap`, `extgamma` |
+| 36 | `rm[4]`: `present`, `texram` pairs |
+| 68 | `dg`: channel count and revision, option-channel type and revision |
+| 84 | software state: engines and raster managers in use, occupancy mask, narrow flag, logical-to-physical engine ids, screen width and height, pixel depth, four memory-type records of seven words |
+| 256 | `id.ge`: `board`, `ioadap`, `hip` (+264), `ged`, `bef` |
+| 276 | `id.rm[4]`, 140 bytes each: `board`, `pg`, `tg`, `tf[4]`, `tm[8]`, `imp[20]` |
+| 836 | `id.dg`: `board` (836), `fm` (840), `xmap[4]` (844-856), `voc[8]` (860-888), `dac[8]` (892-920) |
+| 924 | NIC records |
+
+The identity words are 32-bit values, one per chip, whose test macros in the header look at the top nibble (a revision) and, for the host-interface and image-processor chips, at bits 12-15 (a part number): `KONA_ID_XMAP8A` is `(id.dg.xmap[n] & 0xf0000000) == 0`. **Inferred** from that layout that they are boundary-scan identification codes read by the firmware; the ARM replies to the config request with 222 words of its own board-configuration block ([arm1_firmware.md](../ucode/arm1_firmware.md)), which covers the record through the xmap and voc words. How the host fills the rest is **unknown**.
+
+**Established.** The driver reads exactly one of these words: `kona_video_intr` loads the word at pipe state +1088 (`kona_video.text.s`, line 1784, the cursor-position code in [dg.md](dg.md#cursor)). 1088 - 244 = 844 is `id.dg.xmap[0]`, the identity word of the first display-generator XMAP chip. It is not a host-interface register and the kernel never reads one: the word comes from the configuration the caller supplied. A zero top nibble (XMAP8A) clears the two low bits of the cursor x field.

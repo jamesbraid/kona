@@ -47,4 +47,10 @@ Notation: `P` is the driver's pipe state (offset 2376 holds the base of a 16 MB 
 
 **Inferred:** the path through `kona_flow_await_returned_credits` is a recovery used when a pipe stops returning credits while an extra flag (`P+2172`, cleared by `KONAinitialize`) is set. What `P+2172` and bit 2 of the word at `P+72`+4 mean is **unknown**.
 
-**Unknown:** what the pulse width of `HH_RESET` is (the two reads between the writes are the only delay) and which state the reset clears. `HH_JTAG_RESET` (0x378) is not accessed by the driver.
+**What the pulse clears, from the driver and from the firmware loader.** *Established*: bit 0 of `HH_RESET` resets the host-interface chip ("Reset the HIP"). The loader starts the ARM with `HH_INTR_INFO` = 0, then `HH_RESET` = 3 (reset, with the ARM start bit), a read-back, then 2 (reset released, start bit (bit 1, `ARM_START` in kpm's table) and leaves the register at 0. What the kernel then rewrites tells which state it does not assume survives: the interrupt enable (`HH_INTR_ENABLE` = 0x100, `KONAinitialize`), the global interrupt enable (`HH_INTR_INFO` bit set, reset clear).
+
+*Inferred:* the pulse returns the host-interface registers the driver rewrites to their reset state (interrupt enable, global enable, credit threshold) and empties the map RAM's valid state, from the rewriting. A reset with the start bit set restarts the ARM: **inferred** from `init_graphics` in `kona_tport.o` (kernel-functions.md), which writes 3 then 2 to start a pipe that does not answer.
+
+
+
+**Unknown:** the pulse width (the two reads between the writes are the only delay), whether the 1-to-0 sequence with the start bit clear stops a running ARM, and what happens to the graphics FIFO contents, the DMA and event counters and the token map. `HH_JTAG_RESET` (0x378) is not accessed by the driver.
