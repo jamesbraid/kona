@@ -50,7 +50,7 @@ Geometry engines: transform, lighting, clipping and primitive assembly, fed by t
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
 | Registers and fields | none | `GE.h`, `docs/ge.md` | host and geometry |  |
-| Command and FIFO formats | none | `GE.h`, `docs/ge.md` | host and geometry |  |
+| Command and FIFO formats | partial | `GE.h`, `docs/ge.md` | host and geometry | all 512 token names and values (kpm table); token-word framing and a few payloads from libGLcore. Most payload grammars and the microcode dispatch remain |
 | DMA | none | `GE.h`, `docs/ge.md` | host and geometry |  |
 | Interrupts | none | `GE.h`, `docs/ge.md` | host and geometry |  |
 | Reset | none | `GE.h`, `docs/ge.md` | host and geometry |  |
@@ -102,7 +102,7 @@ Userspace drivers: libGLcore command emission and the X server modules (kona*.so
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Command and FIFO formats | none | `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar |  |
+| Command and FIFO formats | partial | `GE.h`, `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar | user doorbell 0x4000, token-only header word, Begin/End/Vertex/Color/LoadMatrix/Viewport payloads in GE.h; X module emission not read |
 | Context save and restore | none | `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar |  |
 | Texture formats and filtering (incl. precision) | none | `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar |  |
 | Display and scanout | none | `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar |  |
