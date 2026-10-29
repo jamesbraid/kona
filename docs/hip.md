@@ -105,7 +105,7 @@ So there are three sources: XG errors (own vector), the geometry-engine bit of `
 
 After the table the handler writes the served bits back to `HH_INTR_STATUS` and writes 0xbadc0ffe to `HH_INTR_ACK`, then drops the lock. Despite the "Resetting pipe" text, reasons 10, 13, 14 and 22 only mark the pipe dead (`kona_die`); `docs/xg.md` has what a real reset does.
 
-`KONAstart` (the first command after the pipe is configured) reads `HH_INTR_STATUS`; with bit 8 set it prints a message and kills the pipe (reason 22). Otherwise it sets the running mask, sends `PIPE_SETUP` (0x1f1) with the three payload words `P+2592`, `P+2596` and 0x4000, and clears every pending bit except GE with a write-back, then writes the ack value. **Inferred:** the two words are the address pair of the page the geometry engine uses for its event record, the 0x4000 a size; `kona_ge_intr` reads that record through the pointer at `P+2584`.
+`KONAstart` (`kona_setup.o`, the first command after the pipe is configured) reads `HH_INTR_STATUS`. With bit 8 set it prints a message, kills the pipe (reason 22), writes the status back with the GE bit cleared and writes 0xbadc0ffe to `HH_INTR_ACK`; that stray-parity path is its only write of either register. Otherwise it writes the running mask 0xf7c to `HH_INTR_ENABLE` and sends `PIPE_SETUP` (0x1f1) with the three payload words `P+2592`, `P+2596` and 0x4000 (**established** from the listing, `kona_setup.text.s`). **Inferred:** the two words are the address pair of the page the geometry engine uses for its event record, the 0x4000 a size; `kona_ge_intr` reads that record through the pointer at `P+2584`.
 
 ### ARM events: `kona_arm_intr`
 
