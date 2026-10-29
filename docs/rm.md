@@ -365,6 +365,49 @@ The bytes of a reply on the internal read-back bus (`rbus_data`, 16 bits per fil
 
 **Established, negative.** The saved context image the ARM loads ([ge.md](ge.md#context-save-and-restore)) has records for the output-DMA registers, the `BEF` shadow, the engine code, external and work RAMs, ARM-side regions and the distributor registers. It has no record for the raster board: no tag stands for pixel-generator, texture or image-processor state, and the context packets the driver sends ([kona_kern.h](../kona_kernel/include/kona_kern.h)) carry no raster register. The raster side has one shadow facility, the `BEF` registers `BEF_REGSHADOW` (0x100), `_READ` (0x200), `_WRITE` (0x300) and the byte mask `BEF_REGSHADOW_BMASK` (0x7), which live on the geometry board's back-end chip, not on a raster chip; the context image holds that shadow as 89 words (tag 0x20). **Inferred:** a raster board's registers are restored from that shadow by writing it back through the register-write path ([How the ARM firmware writes raster registers](#how-the-arm-firmware-writes-raster-registers)), and the framebuffer and texture memory contents are not saved by the context switch but moved by the memory commands (`MEM_SWAPOUT`/`MEM_SWAPIN`, [kernel.md](kernel.md#commands-the-driver-sends)); the header's memory types are ARM, shared ARM (display lists), geometry-engine and texture memory, with no framebuffer type. The layout of the 89 words is in [the next section](#the-89-word-register-shadow).
 
+## Host-side texture routines
+
+The libGLcore routines behind the texture precisions and format codes of [RM.h](../RM.h),
+each read in the three builds of IRIX 6.5.30m that differ in code (o32, N32 and 64-bit;
+the IP35 build of each ABI has the same code as the IP27 one).
+
+- `getS0p7` turns one bicubic filter weight into the signed byte the filter table carries.
+  **Established** in every build: it multiplies the float by 128, truncates toward zero,
+  clamps the result to the range from -128 up to 127 and returns its low byte, with no rounding step,
+  so a weight is a signed 1.7 fixed-point value.
+  Read at address 0x0d965134 in IP27KONA/libGLcore.so,
+  at address 0x0d9650a0 in IP27KONA32/libGLcore.so,
+  and at address 0x02dc74a0 in IP27KONA64/libGLcore.so.
+- `getS2p7` packs one sharpen or detail curve sample into a 10-bit mantissa and exponent code.
+  **Established** in every build: it scales the float by 512, adds 2.0 in double precision,
+  truncates and shifts right by two, clamps to plus or minus 1024 (1023 at the top),
+  then halves the value while it lies outside -128 to 127, counting the halvings,
+  and returns the low mantissa byte shifted left two with the count in the low two bits.
+  Read at address 0x0d96518c in IP27KONA/libGLcore.so,
+  at address 0x0d9650d0 in IP27KONA32/libGLcore.so,
+  and at address 0x02dc74d0 in IP27KONA64/libGLcore.so.
+- `lodBias2Scale` converts a GL level-of-detail bias into the 8-bit scale where 16 stands for one.
+  **Established** in every build: for a bias b of zero or more it takes i = trunc(b) and returns (16 << i) times (1 + b - i);
+  for a negative bias it takes i = trunc(1 - b) and returns (16 >> i) times (1 + b + i);
+  the product is truncated, a zero result becomes 1 and anything from 256 up becomes 255.
+  Read at address 0x0d967bec in IP27KONA/libGLcore.so,
+  at address 0x0d967fe0 in IP27KONA32/libGLcore.so,
+  and at address 0x02dca420 in IP27KONA64/libGLcore.so.
+- `__glKonGetFormatIndex` maps a GL pixel format to the format code the pipe's pixel headers carry.
+  **Established** in every build: GL_COLOR_INDEX through GL_LUMINANCE_ALPHA give rows 0 to 10,
+  GL_ABGR_EXT row 11 and the two CMYK formats rows 12 and 13 of a 14-word table it returns from
+  (page offset 0x29f8 in the N32 build); any other format raises GL_INVALID_ENUM (0x500) and returns -1.
+  Read at address 0x0d94e550 in IP27KONA/libGLcore.so,
+  at address 0x0d9503d0 in IP27KONA32/libGLcore.so,
+  and at address 0x02db24a0 in IP27KONA64/libGLcore.so.
+- `__glKonGetTypeIndex` maps a GL pixel type to the type code, which goes to the pipe unchanged.
+  **Established** in every build: GL_BYTE through GL_FLOAT give 0 to 6 by subtraction, GL_BITMAP gives 7,
+  the packed types from 0x8032 to 0x8036 give 8 to 12 and those from 0x81bd to 0x81c3 give 14 to 20;
+  every other type raises GL_INVALID_ENUM and returns -1, so code 13 is never produced.
+  Read at address 0x0d94e600 in IP27KONA/libGLcore.so,
+  at address 0x0d950480 in IP27KONA32/libGLcore.so,
+  and at address 0x02db2550 in IP27KONA64/libGLcore.so.
+
 ## The diagnostic data files
 
 Each file this page draws on, with what it holds. All are IRIX 6.5.30m, in usr/diags/IR/data.

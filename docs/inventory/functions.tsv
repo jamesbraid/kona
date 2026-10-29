@@ -14331,8 +14331,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94df60	320	__glKonSetNo
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e0a0	512	__glKonParseErrorDraw	dynsym+mdebug	70229d96b726	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94e2a0	4756	ParseErrorCopy	mdebug	d8fe5e0197dd	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e3e4	364	__glKonParseErrorRead	dynsym+mdebug	ecb3b050c2ec	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e550	176	__glKonGetFormatIndex	dynsym+mdebug	277dd6e9e6b9	named-only	RM.h:316	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e600	192	__glKonGetTypeIndex	dynsym+mdebug	6b914405d8e0	named-only	RM.h:335	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e550	176	__glKonGetFormatIndex	dynsym+mdebug	277dd6e9e6b9	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e600	192	__glKonGetTypeIndex	dynsym+mdebug	6b914405d8e0	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e6c0	392	__glKonParseInput	dynsym+mdebug	f0bfc6c6519c	named-only	RM.h:176	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e848	564	__glKonParseHostImage	dynsym+mdebug	7af232af5283	named-only	GE.h:4054	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94ea7c	80	GetConvolutionFilter	dynsym+mdebug	49ed8c67da50	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14506,8 +14506,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd964f10	28	updateTe
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd964f2c	204	stealARMTableCacheCallback	mdebug	a4200228cde0	named-only	docs/opengl.md#inittextables	`initTexTables`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd964ff8	208	freeARMTexCache	mdebug	4501abc2f486	named-only	docs/opengl.md#initarmtexcache	`initARMTexCache`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9650c8	108	bindARMTexCache	mdebug	7bce4ce33c9f	named-only	GE.h:7279	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965134	88	getS0p7	mdebug	fe7fe9d9c46b	located	docs/opengl.md#gets0p7	`getS0p7`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96518c	164	getS2p7	mdebug	240591f8206e	located	docs/opengl.md#gets2p7	`getS2p7`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965134	88	getS0p7	mdebug	fe7fe9d9c46b	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96518c	164	getS2p7	mdebug	240591f8206e	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965230	3180	computeActiveTarget	mdebug	afb5dc2bc21e	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd965290	1184	bindTexTable	dynsym+mdebug	c347d1324806	named-only	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd965730	220	getTexTableUsage	dynsym+mdebug	2e6458cb2f9d	located	docs/opengl.md#gettextableusage	`getTexTableUsage`
@@ -14530,7 +14530,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeC
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967a20	40	loadPostTextureScaleBias	mdebug	f2b05be99aa6	named-only	GE.h:3938	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967a48	208	setShadowRegs	mdebug	3596df9d6b2a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967b18	212	changeShadow	mdebug	9b183de19ee4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967bec	208	lodBias2Scale	mdebug	62c1647ea4ab	named-only	RM.h:138	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967bec	208	lodBias2Scale	mdebug	62c1647ea4ab	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967cbc	9836	changeClipmapParams	mdebug	dd84773d5cb9	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9680c0	6932	__glKonTexParameter	dynsym+mdebug	3aad6baa12c4	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd969bd4	1876	__glKonGetTexParameter	dynsym+mdebug	db22947090dc	named-only	docs/libglcore.md#texture-management	Texture management
@@ -19873,8 +19873,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94fdf0	344	__glKonSet
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94ff50	468	__glKonParseErrorDraw	dwarf+dynsym	120ff6322e22	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd950130	292	ParseErrorCopy	dwarf+funcnames	8e39d0cfae08	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950260	356	__glKonParseErrorRead	dwarf+dynsym	5f342add6c16	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9503d0	168	__glKonGetFormatIndex	dwarf+dynsym	3d45b9c9e35b	named-only	RM.h:316	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950480	212	__glKonGetTypeIndex	dwarf+dynsym	943926b8f696	named-only	RM.h:335	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9503d0	168	__glKonGetFormatIndex	dwarf+dynsym	3d45b9c9e35b	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950480	212	__glKonGetTypeIndex	dwarf+dynsym	943926b8f696	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950560	404	__glKonParseInput	dwarf+dynsym	fb52bfb9c59c	named-only	RM.h:176	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950700	536	__glKonParseHostImage	dwarf+dynsym	77f2e5a85ee4	named-only	GE.h:4054	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950920	68	GetConvolutionFilter	dwarf+dynsym	8c8d632ffa16	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -20072,7 +20072,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967bf0	604	chang
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967e50	40	loadPostTextureScaleBias	dwarf+funcnames	a8f4ef6370aa	named-only	GE.h:3938	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967e80	172	setShadowRegs	dwarf+funcnames	9b63d61356a8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967f30	164	changeShadow	dwarf+funcnames	13f362925ec5	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967fe0	140	lodBias2Scale	dwarf+funcnames	7636d54700d2	named-only	RM.h:138	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967fe0	140	lodBias2Scale	dwarf+funcnames	7636d54700d2	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd968070	792	changeClipmapParams	dwarf+funcnames	67de73204dfb	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd968390	6156	__glKonTexParameter	dwarf+dynsym	f0dc4f474915	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd969ba0	1632	__glKonGetTexParameter	dwarf+dynsym	130e9ff1a9f9	named-only	docs/libglcore.md#texture-management	Texture management
@@ -25453,8 +25453,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db1ec0	344	__glKonSet
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2020	468	__glKonParseErrorDraw	dwarf+dynsym	acf59f448ec9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db2200	296	ParseErrorCopy	dwarf	539e73d26bf0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2330	356	__glKonParseErrorRead	dwarf+dynsym	9c9e2ff57cfa	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db24a0	168	__glKonGetFormatIndex	dwarf+dynsym	f5ed78ecf8a2	named-only	RM.h:316	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2550	212	__glKonGetTypeIndex	dwarf+dynsym	446019d52122	named-only	RM.h:335	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db24a0	168	__glKonGetFormatIndex	dwarf+dynsym	f5ed78ecf8a2	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2550	212	__glKonGetTypeIndex	dwarf+dynsym	446019d52122	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2630	404	__glKonParseInput	dwarf+dynsym	dcc98d454077	named-only	RM.h:176	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db27d0	544	__glKonParseHostImage	dwarf+dynsym	b0beb0800792	named-only	GE.h:4054	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db29f0	68	GetConvolutionFilter	dwarf+dynsym	84cfdebb4f0b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25628,8 +25628,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7290	24	update
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc72b0	172	stealARMTableCacheCallback	dwarf	eccf5c1dd87a	named-only	docs/opengl.md#inittextables	`initTexTables`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7360	216	freeARMTexCache	dwarf	9b03821c6f7c	named-only	docs/opengl.md#initarmtexcache	`initARMTexCache`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7440	92	bindARMTexCache	dwarf	acb741a7ba49	named-only	GE.h:7279	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc74a0	48	getS0p7	dwarf	a910e82befef	located	docs/opengl.md#gets0p7	`getS0p7`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc74d0	136	getS2p7	dwarf	5227d64cd6aa	located	docs/opengl.md#gets2p7	`getS2p7`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc74a0	48	getS0p7	dwarf	a910e82befef	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc74d0	136	getS2p7	dwarf	5227d64cd6aa	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7560	88	computeActiveTarget	dwarf	28528c34b5fa	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc75c0	944	bindTexTable	dwarf+dynsym	7311a4652b47	named-only	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc7970	184	getTexTableUsage	dwarf+dynsym	d67143b0851a	located	docs/opengl.md#gettextableusage	`getTexTableUsage`
@@ -25652,7 +25652,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca020	612	chang
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca290	40	loadPostTextureScaleBias	dwarf	2593b30b6fcf	named-only	GE.h:3938	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca2c0	172	setShadowRegs	dwarf	e5d5ccabeca6	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca370	164	changeShadow	dwarf	74396169d2aa	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca420	140	lodBias2Scale	dwarf	d099770ddcd6	named-only	RM.h:138	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca420	140	lodBias2Scale	dwarf	d099770ddcd6	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca4b0	792	changeClipmapParams	dwarf	bc8e58755664	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dca7d0	6156	__glKonTexParameter	dwarf+dynsym	3103171a7231	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dcbfe0	1632	__glKonGetTexParameter	dwarf+dynsym	d6a0406341e3	named-only	docs/libglcore.md#texture-management	Texture management
@@ -31030,8 +31030,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94df60	320	__glKonSetNo
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e0a0	512	__glKonParseErrorDraw	dynsym+mdebug	70229d96b726	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94e2a0	4756	ParseErrorCopy	mdebug	d8fe5e0197dd	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e3e4	364	__glKonParseErrorRead	dynsym+mdebug	ecb3b050c2ec	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e550	176	__glKonGetFormatIndex	dynsym+mdebug	277dd6e9e6b9	named-only	RM.h:316	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e600	192	__glKonGetTypeIndex	dynsym+mdebug	6b914405d8e0	named-only	RM.h:335	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e550	176	__glKonGetFormatIndex	dynsym+mdebug	277dd6e9e6b9	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e600	192	__glKonGetTypeIndex	dynsym+mdebug	6b914405d8e0	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e6c0	392	__glKonParseInput	dynsym+mdebug	f0bfc6c6519c	named-only	RM.h:176	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e848	564	__glKonParseHostImage	dynsym+mdebug	7af232af5283	named-only	GE.h:4054	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94ea7c	80	GetConvolutionFilter	dynsym+mdebug	49ed8c67da50	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31205,8 +31205,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd964f10	28	updateTe
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd964f2c	204	stealARMTableCacheCallback	mdebug	a4200228cde0	named-only	docs/opengl.md#inittextables	`initTexTables`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd964ff8	208	freeARMTexCache	mdebug	4501abc2f486	named-only	docs/opengl.md#initarmtexcache	`initARMTexCache`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9650c8	108	bindARMTexCache	mdebug	7bce4ce33c9f	named-only	GE.h:7279	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965134	88	getS0p7	mdebug	fe7fe9d9c46b	located	docs/opengl.md#gets0p7	`getS0p7`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96518c	164	getS2p7	mdebug	240591f8206e	located	docs/opengl.md#gets2p7	`getS2p7`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965134	88	getS0p7	mdebug	fe7fe9d9c46b	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96518c	164	getS2p7	mdebug	240591f8206e	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965230	3180	computeActiveTarget	mdebug	afb5dc2bc21e	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd965290	1184	bindTexTable	dynsym+mdebug	c347d1324806	named-only	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd965730	220	getTexTableUsage	dynsym+mdebug	2e6458cb2f9d	located	docs/opengl.md#gettextableusage	`getTexTableUsage`
@@ -31229,7 +31229,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeC
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967a20	40	loadPostTextureScaleBias	mdebug	f2b05be99aa6	named-only	GE.h:3938	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967a48	208	setShadowRegs	mdebug	3596df9d6b2a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967b18	212	changeShadow	mdebug	9b183de19ee4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967bec	208	lodBias2Scale	mdebug	62c1647ea4ab	named-only	RM.h:138	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967bec	208	lodBias2Scale	mdebug	62c1647ea4ab	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967cbc	9836	changeClipmapParams	mdebug	dd84773d5cb9	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9680c0	6932	__glKonTexParameter	dynsym+mdebug	3aad6baa12c4	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd969bd4	1876	__glKonGetTexParameter	dynsym+mdebug	db22947090dc	named-only	docs/libglcore.md#texture-management	Texture management
@@ -36572,8 +36572,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94fdf0	344	__glKonSet
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94ff50	468	__glKonParseErrorDraw	dwarf+dynsym	120ff6322e22	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd950130	292	ParseErrorCopy	dwarf+funcnames	8e39d0cfae08	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950260	356	__glKonParseErrorRead	dwarf+dynsym	5f342add6c16	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9503d0	168	__glKonGetFormatIndex	dwarf+dynsym	3d45b9c9e35b	named-only	RM.h:316	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950480	212	__glKonGetTypeIndex	dwarf+dynsym	943926b8f696	named-only	RM.h:335	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9503d0	168	__glKonGetFormatIndex	dwarf+dynsym	3d45b9c9e35b	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950480	212	__glKonGetTypeIndex	dwarf+dynsym	943926b8f696	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950560	404	__glKonParseInput	dwarf+dynsym	fb52bfb9c59c	named-only	RM.h:176	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950700	536	__glKonParseHostImage	dwarf+dynsym	77f2e5a85ee4	named-only	GE.h:4054	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950920	68	GetConvolutionFilter	dwarf+dynsym	8c8d632ffa16	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36771,7 +36771,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967bf0	604	chang
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967e50	40	loadPostTextureScaleBias	dwarf+funcnames	a8f4ef6370aa	named-only	GE.h:3938	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967e80	172	setShadowRegs	dwarf+funcnames	9b63d61356a8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967f30	164	changeShadow	dwarf+funcnames	13f362925ec5	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967fe0	140	lodBias2Scale	dwarf+funcnames	7636d54700d2	named-only	RM.h:138	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967fe0	140	lodBias2Scale	dwarf+funcnames	7636d54700d2	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd968070	792	changeClipmapParams	dwarf+funcnames	67de73204dfb	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd968390	6156	__glKonTexParameter	dwarf+dynsym	f0dc4f474915	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd969ba0	1632	__glKonGetTexParameter	dwarf+dynsym	130e9ff1a9f9	named-only	docs/libglcore.md#texture-management	Texture management
@@ -42152,8 +42152,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2191ec0	344	__glKonSet
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192020	468	__glKonParseErrorDraw	dwarf+dynsym	acf59f448ec9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2192200	296	ParseErrorCopy	dwarf	539e73d26bf0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192330	356	__glKonParseErrorRead	dwarf+dynsym	9c9e2ff57cfa	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21924a0	168	__glKonGetFormatIndex	dwarf+dynsym	f5ed78ecf8a2	named-only	RM.h:316	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192550	212	__glKonGetTypeIndex	dwarf+dynsym	446019d52122	named-only	RM.h:335	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21924a0	168	__glKonGetFormatIndex	dwarf+dynsym	f5ed78ecf8a2	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192550	212	__glKonGetTypeIndex	dwarf+dynsym	446019d52122	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192630	404	__glKonParseInput	dwarf+dynsym	dcc98d454077	named-only	RM.h:176	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21927d0	544	__glKonParseHostImage	dwarf+dynsym	b0beb0800792	named-only	GE.h:4054	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21929f0	68	GetConvolutionFilter	dwarf+dynsym	84cfdebb4f0b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42327,8 +42327,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7290	24	update
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a72b0	172	stealARMTableCacheCallback	dwarf	eccf5c1dd87a	named-only	docs/opengl.md#inittextables	`initTexTables`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7360	216	freeARMTexCache	dwarf	9b03821c6f7c	named-only	docs/opengl.md#initarmtexcache	`initARMTexCache`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7440	92	bindARMTexCache	dwarf	acb741a7ba49	named-only	GE.h:7279	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a74a0	48	getS0p7	dwarf	a910e82befef	located	docs/opengl.md#gets0p7	`getS0p7`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a74d0	136	getS2p7	dwarf	5227d64cd6aa	located	docs/opengl.md#gets2p7	`getS2p7`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a74a0	48	getS0p7	dwarf	a910e82befef	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a74d0	136	getS2p7	dwarf	5227d64cd6aa	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7560	88	computeActiveTarget	dwarf	28528c34b5fa	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a75c0	944	bindTexTable	dwarf+dynsym	7311a4652b47	named-only	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a7970	184	getTexTableUsage	dwarf+dynsym	d67143b0851a	located	docs/opengl.md#gettextableusage	`getTexTableUsage`
@@ -42351,7 +42351,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa020	612	chang
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa290	40	loadPostTextureScaleBias	dwarf	2593b30b6fcf	named-only	GE.h:3938	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa2c0	172	setShadowRegs	dwarf	e5d5ccabeca6	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa370	164	changeShadow	dwarf	74396169d2aa	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa420	140	lodBias2Scale	dwarf	d099770ddcd6	named-only	RM.h:138	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa420	140	lodBias2Scale	dwarf	d099770ddcd6	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa4b0	792	changeClipmapParams	dwarf	bc8e58755664	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21aa7d0	6156	__glKonTexParameter	dwarf+dynsym	3103171a7231	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21abfe0	1632	__glKonGetTexParameter	dwarf+dynsym	d6a0406341e3	named-only	docs/libglcore.md#texture-management	Texture management
