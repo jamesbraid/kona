@@ -185,7 +185,8 @@ UNIT1 = {0x40: 'integer add', 0x42: 'integer subtract or compare', 0x4a: 'move',
          0x4b: 'move of the second operand', 0x50: 'AND', 0x54: 'OR', 0x56: 'XOR',
          0x58: 'NOT', 0x60: 'float add', 0x62: 'float subtract', 0x66: 'minimum',
          0x68: 'maximum', 0x73: 'integer-to-float conversion', 0x7c: 'clamp at zero',
-         0x20: 'double add', 0x22: 'double subtract'}
+         0x20: 'double add', 0x22: 'double subtract', 0x5b: 'arithmetic shift right',
+         0x5d: 'logical shift right', 0x5f: 'shift left', 0x71: 'float-to-integer conversion'}
 UNIT2 = {0x47: 'float multiply', 0x4f: 'reciprocal Newton step',
          0x57: 'reciprocal square-root Newton step', 0x07: 'double multiply',
          0x27: 'second-unit move', 0x2f: 'second-unit move or minimum', 0x37: 'double move',
@@ -317,7 +318,7 @@ def facts(name, addr, lines, nxt):
     other = sorted(v for v in stores if not 0x1f4 <= v <= 0x1f8)
     if other:
         n = sum(stores[v] for v in other)
-        parts.append('stores %s to engine address%s' % (
+        parts.append('stores %s to control-memory address%s' % (
             plural(n, 'word'), ' 0x%x' % other[0] if len(other) == 1 else
             'es from 0x%x to 0x%x' % (other[0], other[-1])))
     if mreads:
@@ -325,7 +326,7 @@ def facts(name, addr, lines, nxt):
         parts.append('reads engine memory at %s' % (
             '0x%x' % mr[0] if len(mr) == 1 else '%d addresses from 0x%x to 0x%x' % (len(mr), mr[0], mr[-1])))
     if outs:
-        parts.append('%s in the output-instruction form of the diagnostic test' % plural(outs, 'word'))
+        parts.append('%s stored through address registers 9-0xb (the diagnostic test\'s output form, an engine-memory store here)' % plural(outs, 'word'))
     if consts:
         parts.append('loads %s' % plural(len(consts), 'constant'))
     if cond:
@@ -343,9 +344,9 @@ def facts(name, addr, lines, nxt):
         out.append('calls `%s`%s' % (calls[0], ' and `%s`' % calls[1] if len(calls) == 2 else
                                      ' and ' + others(len(calls) - 1, 'routine') if len(calls) > 2 else ''))
     if 'home' in ends:
-        out.append('ends the command by jumping to `HereWeGo`')
+        out.append('ends the command with an indirect transfer in condition group 31')
     if 'ret' in ends:
-        out.append('returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31)')
+        out.append('returns to its caller or the next chained stage (an indirect transfer outside condition group 31)')
     if 'wait' in ends:
         out.append('ends with the end-of-command wait')
     if any(e.startswith('wait') and e != 'wait' for e in ends):

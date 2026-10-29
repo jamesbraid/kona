@@ -21,16 +21,16 @@ The `geif.u` dispatch slots are covered by the same entries: slot k is `geif.u` 
 
 - **Operations** names the operation of every word that carries the decoded group M, by the table of [ge_ops.md](ge_ops.md#operation-table): unit 1's code in M[6:0] and unit 2's in M[10:7], so a two-unit word counts once for each unit, except that the single-precision multiply paired with the add (M = 0x460) counts as one multiply-add. An operation the diagnostic test does not fix is given by its M value. The reciprocal and reciprocal-square-root seeds come from r110 = 0x6bf and 0x2bf. "Sets the condition flags" counts unit-1 or unit-2 words with the flag-enable bit.
 - **Reads command words** lists the offsets D of the words read as source A = 0x1f, the command-input reading of [ge_ops.md](ge_ops.md#input-and-output-fifo-operations). Offsets past a command's own length are the vertex record the distributor assembles.
-- **Raster-bus output addresses** counts form-5 stores (enable pair set, B = 0x1e) to 0x1f4-0x1f8, the addresses `mgesi_TbusRegWrite` and `mgesi_BshRegisterWrite` send a raster register write through. A form-5 store to another address is given as an engine address. **Reads engine memory** counts the form-14 reads (C = 0x1e with the memory pointer field 0x17) of [ge_isa.md](ge_isa.md#immediates).
-- **Words in the output-instruction form** counts form-10 and form-12 words that store into port B = 9, 10 or 11, the output instruction of the diagnostic test. Whether every such word in production code leaves the engine has not been checked: `mMatrixTransposeWW` has eleven of them.
+- **Raster-bus output addresses** counts form-5 stores (enable pair set, B = 0x1e) to 0x1f4-0x1f8, the addresses `mgesi_TbusRegWrite` and `mgesi_BshRegisterWrite` send a raster register write through. A form-5 store to another address is given as a control-memory address, the space the ARM fills with `WriteCram` ([ge_ops.md](ge_ops.md#control-memory-addresses-in-immediates) says which addresses are read back and which are not). **Reads engine memory** counts the form-14 reads (C = 0x1e with the memory pointer field 0x17) of [ge_isa.md](ge_isa.md#immediates).
+- **Stored through address registers 9-0xb** counts form-10 and form-12 words that store through B = 9, 10 or 11, the form of the diagnostic test's output instruction. In production code these are engine-memory stores: B names an address register, and only the diagnostic aims those registers at the output ([ge_ops.md](ge_ops.md#input-and-output-fifo-operations)); `mMatrixTransposeWW` uses eleven of them to transpose a matrix in place.
 - **Constants** counts form-15 constant loads. The constants line shows each distinct value once, in address order, with its single-precision reading where the pattern is an exactly representable float of moderate size.
 - **Conditional transfers** are sequencer code 5 and **loops** sequencer code 3 ([ge_isa.md](ge_isa.md#transfers)).
 
 **Inferred** (how a label ends, its last line):
 
 - **End-of-command wait**: a relative code-4 transfer with immediate 0 in condition group 31, the way 215 handlers end ([ge_ops.md](ge_ops.md#reading-a-handler-in-source-order)).
-- **Ends the command by jumping to `HereWeGo`**: a code-4 transfer to address 0 in condition group 31.
-- **Calls** and **returns**. Code-4 transfers in condition group 0 (112 words) all go to named routines, 96 of them subroutines with the bare `m`/`u` prefix, and none to address 0; code-4 transfers to address 0 in groups 4, 5 and 7 (161 words) sit mostly in those subroutines (92) and their local labels, while the 244 in group 31 sit in handlers, modules and their local labels (215 of 244). After a group-0 transfer the caller's own code goes on: `mgeb_LightSpotCutAng`'s word at 0xc6aa enters `mSinCos`, and the handler's own words from 0xc6ac on follow, ending with the end-of-command wait at 0xc6c2, and `mSinCos` itself ends with a group-5 transfer to address 0. So group 0 is read as a call and a transfer to address 0 outside group 31 as the return. This refines [ge_isa.md](ge_isa.md#transfers), which reads every code-4 transfer to address 0 as the end of a command.
+- **Ends the command with an indirect transfer in condition group 31**: a code-4 transfer with R88 set and immediate 0, which the listings print as a jump to `HereWeGo`. R88 takes the target from outside the word ([ge_isa.md](ge_isa.md#calls-returns-and-the-end-of-a-command)), here the next command's handler.
+- **Calls** and **returns**. Code-4 transfers in condition group 0 (112 words) all go to named routines, 96 of them subroutines with the bare `m`/`u` prefix, and at every one of the 112 sites the caller's own code resumes after the delay slots. R88 transfers in groups 4, 5 and 7 (the ones the listings print as going to address 0, 161 words) end 28 of the 31 called routines and most `mmo_` modules; the other three called routines end in a tail jump to one that returns. So group 0 is a call and an R88 transfer outside group 31 a return through a hardware return stack, **inferred** in [ge_isa.md](ge_isa.md#calls-returns-and-the-end-of-a-command) with the counts.
 - **Has no jump of its own and runs on into** the next label: the label's words hold no code-4 transfer, so execution continues at the next address.
 
 **Inferred** from the prefixes and from what reaches each class:
@@ -56,15 +56,15 @@ Antialiased-line response tables (maximum, step, response), used by the line-wid
 - `AA_Response`: address 0x9059, `aa.S` line 133 (65 words). Reached: transfers in `mGenerateAALineTable` and 3 other labels.
   **Inferred** role: subroutine that computes the antialiased-line response with float subtracts, adds and multiplies, called by the AA table generators and returning to them.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (18), float add (16), float multiply (16), move (8), operation 0x6ea (4), second-unit move (2); sets the condition flags 10 times.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `AA_Response_Step`: address 0x9045, `aa.S` line 264 (11 words). Reached: transfers in `mGenerateAALineTable` and 3 other labels.
   **Inferred** role: subroutine for one step of the antialiased response: four float compares that set the flags, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (4), move (4), float add (2); sets the condition flags 4 times.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `AA_Response_Max`: address 0x903c, `aa.S` line 337 (2 words). Reached: no slot, ARM load, decoded transfer or address constant reaches it (routes tried: [How to read the tables](#how-to-read-the-entries)).
   **Inferred** role: two-word subroutine, one move in each unit and a return, giving the response maximum by its name; nothing in the program calls it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1), second-unit move (1).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### bitmaptofloat.s
 
@@ -72,24 +72,24 @@ Pixel-path stage expanding bitmap bits to floats, LSB-first and MSB-first loops.
 
 - `umo_BitmapToFloat`: address 0x25a0, `bitmaptofloat.s` line 56 (69 words). Reached: no slot, ARM load, decoded transfer or address constant reaches it (routes tried: [How to read the tables](#how-to-read-the-entries)).
   **Inferred** role: pixel-path stage that expands bitmap bits to float pixels: single-bit masks (4 to 0x80) choose the bits, then the LSB-first or MSB-first loop runs; no slot or ARM function adds it to a path.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (12), operation 0x6df (8), second-unit operation 0xff (8), AND (4), second-unit move (4); loads 9 constants; closes 2 loops.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (12), second-unit operation 0xff (8), shift left (8), AND (4), second-unit move (4); loads 9 constants; closes 2 loops.
   It has no jump of its own and runs on into `mainloop_b2f_lsb_first`.
   Constants loaded: 0x4, 0x10, 0x20, 0x40, 0x80, 0x7f00, 0xfe00, 0x1fc00 and 1 more.
 - `mainloop_b2f_lsb_first`: address 0x25e5, `bitmaptofloat.s` line 150 (20 words). Reached: inside `umo_BitmapToFloat`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (16), second-unit operation 0xff (16), operation 0x6df (1); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (16), second-unit operation 0xff (16), shift left (1); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_b2f_lsb_first`.
 - `epilogue_b2f_lsb_first`: address 0x25f9, `bitmaptofloat.s` line 173 (39 words). Reached: transfers in `umo_BitmapToFloat`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (15), second-unit operation 0xff (15), second-unit move (2), operation 0x6df (1).
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (15), second-unit operation 0xff (15), second-unit move (2), shift left (1).
+  It ends the command with an indirect transfer in condition group 31.
 - `b2f_msb_first`: address 0x2620, `bitmaptofloat.s` line 219 (13 words). Reached: transfers in `umo_BitmapToFloat`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (4); closes 1 loop.
   It has no jump of its own and runs on into `mainloop_b2f_msb_first`.
 - `mainloop_b2f_msb_first`: address 0x262d, `bitmaptofloat.s` line 240 (21 words). Reached: inside `umo_BitmapToFloat`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (16), second-unit operation 0xff (16), operation 0x6df (1), second-unit move (1); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (16), second-unit operation 0xff (16), second-unit move (1), shift left (1); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_b2f_msb_first`.
 - `epilogue_b2f_msb_first`: address 0x2642, `bitmaptofloat.s` line 264 (39 words). Reached: transfers in `b2f_msb_first`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (15), second-unit operation 0xff (15), operation 0x6df (1), second-unit move (1).
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (15), second-unit operation 0xff (15), second-unit move (1), shift left (1).
+  It ends the command with an indirect transfer in condition group 31.
 
 ### bitmaptoint.s
 
@@ -97,24 +97,24 @@ Pixel-path stage expanding bitmap bits to integers, LSB-first and MSB-first loop
 
 - `umo_BitmapToInt`: address 0x2669, `bitmaptoint.s` line 45 (58 words). Reached: no slot, ARM load, decoded transfer or address constant reaches it (routes tried: [How to read the tables](#how-to-read-the-entries)).
   **Inferred** role: pixel-path stage that expands bitmap bits to integer pixels with masks and integer adds, through an LSB-first or MSB-first loop; no slot or ARM function adds it to a path.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (11), integer add (10), operation 0x6df (1); loads 4 constants; closes 2 loops.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (11), integer add (10), shift left (1); loads 4 constants; closes 2 loops.
   It has no jump of its own and runs on into `mainloop_b2i_lsb_first`.
   Constants loaded: 0x4, 0x1, 0x2, 0x3.
 - `mainloop_b2i_lsb_first`: address 0x26a3, `bitmaptoint.s` line 126 (35 words). Reached: inside `umo_BitmapToInt`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (16), operation 0x6dd (15); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (16), logical shift right (15); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_b2i_lsb_first`.
 - `epilogue_b2i_lsb_first`: address 0x26c6, `bitmaptoint.s` line 164 (49 words). Reached: transfers in `umo_BitmapToInt`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (15), operation 0x6dd (14).
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (15), logical shift right (14).
+  It ends the command with an indirect transfer in condition group 31.
 - `b2i_msb_first`: address 0x26f7, `bitmaptoint.s` line 218 (8 words). Reached: transfers in `umo_BitmapToInt`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_b2i_msb_first`.
 - `mainloop_b2i_msb_first`: address 0x26ff, `bitmaptoint.s` line 232 (35 words). Reached: inside `umo_BitmapToInt`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (16), operation 0x6dd (15); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (16), logical shift right (15); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_b2i_msb_first`.
 - `epilogue_b2i_msb_first`: address 0x2722, `bitmaptoint.s` line 270 (49 words). Reached: transfers in `b2i_msb_first`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (15), operation 0x6dd (15).
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (15), logical shift right (15).
+  It ends the command with an indirect transfer in condition group 31.
 
 ### bootinit.s
 
@@ -123,7 +123,7 @@ Start-up initialisation of engine memories and registers (`MemRegInit`), reached
 - `MemRegInit`: address 0x27cc, `bootinit.s` line 9 (9 words). Reached: transfers in `HereWeGo`.
   **Inferred** role: start-up subroutine that the entry code calls before the first command; its nine words carry no operation the field readings name, so what it sets is held in fields not yet read.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### bootstrap.s
 
@@ -152,7 +152,7 @@ Pixel-path clamp stage, added by AddClamp. **Inferred** from its labels and call
   It has no jump of its own and runs on into `epilogue_clamp`.
 - `epilogue_clamp`: address 0x16b4, `clamp.s` line 199 (51 words). Reached: transfers in `mmo_Clamp`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations clamp at zero (23), float multiply (23).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ARM functions and host tokens that send these handlers:
 
@@ -196,12 +196,12 @@ Clear commands: colour, index, depth, accumulation and overlay clears, sent by a
   Constants loaded: 0x13a1c09, 0x1408, 2.5 (0x40200000), 0x70000, 0xffffffff, 0x41efffff, 0x1681408.
 - `mgesi_ClearAccum`: address 0x911b, `clear.S` line 424 (29 words). Reached: geif slot 347 (entry 695); the ARM functions that send it are in the table below.
   **Inferred** role: accumulation-buffer clear: combines the operand with the masks 0xfff to 0x1f00000 (AND and OR) and writes six raster bus words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations AND (4), move (4), OR (2), operation 0x6dd (2), operation 0x6df (2), float multiply (1), operation 0x6f1 (1); writes 6 words to the raster-bus output addresses; loads 9 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations AND (4), move (4), OR (2), logical shift right (2), shift left (2), float multiply (1), float-to-integer conversion (1); writes 6 words to the raster-bus output addresses; loads 9 constants.
   It jumps within its own code.
   Constants loaded: 0x1c12, 0x1c13, 0x4b7fffff, 0xfff, 0xf000, 0xf0000, 0x1f00000, 0xc and 1 more.
 - `mgesi_ClearAccum32`: address 0x90f8, `clear.S` line 487 (35 words). Reached: geif slot 433 (entry 867); the ARM functions that send it are in the table below.
   **Inferred** role: 32-bit accumulation-buffer clear: the same masking as the 16-bit clear plus double-precision scaling, six raster bus words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations AND (4), move (4), OR (2), double multiply (2), operation 0x6b1 (2), operation 0x6dd (2), operation 0x6df (2), operation 0x6f5 (1); writes 6 words to the raster-bus output addresses; loads 11 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations AND (4), move (4), OR (2), double multiply (2), logical shift right (2), operation 0x6b1 (2), shift left (2), operation 0x6f5 (1); writes 6 words to the raster-bus output addresses; loads 11 constants.
   It jumps within its own code.
   Constants loaded: 0x4b7fffff, 0x1c12, 0x1c13, 0xff800000, 0x41dfffff, 0x4, 0xc, 0xfff00000 and 3 more.
 - `mgesi_ClearAccumWord`: address 0x90ea, `clear.S` line 551 (14 words). Reached: geif slot 348 (entry 697); the ARM functions that send it are in the table below.
@@ -211,12 +211,12 @@ Clear commands: colour, index, depth, accumulation and overlay clears, sent by a
   Constants loaded: 2.5 (0x40200000), 0x1c09, 0x4b7fffff.
 - `mgesi_ClearAccumWord32`: address 0x90c4, `clear.S` line 627 (26 words). Reached: geif slot 432 (entry 865); the ARM functions that send it are in the table below.
   **Inferred** role: writes one 32-bit accumulation-buffer clear word: double-precision scaling of two operand words, then three raster bus words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (6), double multiply (2), operation 0x6b1 (2), OR (1), operation 0x6dd (1), operation 0x6df (1), operation 0x6f5 (1); sets the condition flags once; writes 3 words to the raster-bus output addresses; loads 5 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (6), double multiply (2), operation 0x6b1 (2), OR (1), logical shift right (1), operation 0x6f5 (1), shift left (1); sets the condition flags once; writes 3 words to the raster-bus output addresses; loads 5 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0xff800000, 0x41dfffff, 0x10, 40.0 (0x42200000), 0x1c09.
 - `mgesi_ClearVertex`: address 0x90a3, `clear.S` line 658 (31 words). Reached: geif slot 349 (entry 699); the ARM functions that send it are in the table below.
   **Inferred** role: masked-clear set-up: reads nine operand words, converts and scales them and stores seven values to engine memory 0xc9-0xd5 before one raster bus word.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 8; operations move (6), float multiply (5), double move (4), double multiply (2), integer-to-float conversion (2), operation 0x6aa (2), AND (1), NOT (1); sets the condition flags 2 times; writes 1 word to the raster-bus output addresses; stores 7 words to engine addresses from 0xc9 to 0xd5; loads 4 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 8; operations move (6), float multiply (5), double move (4), double multiply (2), integer-to-float conversion (2), operation 0x6aa (2), AND (1), NOT (1); sets the condition flags 2 times; writes 1 word to the raster-bus output addresses; stores 7 words to control-memory addresses from 0xc9 to 0xd5; loads 4 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0x800, 16.0 (0x41800000), 0x412fffff, 0xfff00000.
 
@@ -242,37 +242,37 @@ Triangle and polygon clipping against the user planes and the view frustum. **In
 
 - `mClipPolyToPlane`: address 0xefb5, `clip.S` line 93 (229 words). Reached: transfers in `mClipTriUserAndFrustum`.
   **Inferred** role: clips a polygon against one plane: by its name and its float multiplies, adds and reciprocal steps it interpolates the crossing vertices, then returns to the triangle clipper.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (45), move (27), float add (14), reciprocal Newton step (8), float subtract (6), operation 0x6df (5), operation 0x6ea (5), AND (4), OR (4), XOR (2), float multiply-add (2), operation 0x6f1 (1), reciprocal seed (1); sets the condition flags 11 times; loads 6 constants; takes 12 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); jumps within its own code; conditional transfers reach `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (45), move (27), float add (14), reciprocal Newton step (8), float subtract (6), operation 0x6ea (5), shift left (5), AND (4), OR (4), XOR (2), float multiply-add (2), float-to-integer conversion (1), reciprocal seed (1); sets the condition flags 11 times; loads 6 constants; takes 12 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); jumps within its own code; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x400000, 0x1, 0x8000, 0.
 - `mEyeToClipAfterUserClip`: address 0xf182, `clip.S` line 712 (77 words). Reached: transfers in `mClipLinUserAndFrustum` and 1 other label.
   **Inferred** role: takes the vertices a user-plane clip produced from eye to clip space with multiply-add chains, then returns.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (20), float add (16), float multiply-add (16), move (5), AND (4), float subtract (4); sets the condition flags 4 times; loads 1 constant; takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.5 (0x3f000000).
 - `mSetClipVertsFree`: address 0xf20a, `clip.S` line 860 (16 words). Reached: transfers in `mClipTriUserAndFrustum`.
   **Inferred** role: marks the clipper's vertex slots free: loads six constants, five of them multiples of 0x9c (a vertex-record stride, inferred), and returns.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): loads 6 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0, 0x9c, 0x138, 0x1d4, 0x270, 0x3c.
 - `mPerTriClipFlagsFrustum`: address 0xef7e, `clip.S` line 924 (29 words). Reached: transfers in `mClipTriUserAndFrustum`.
   **Inferred** role: computes a triangle's frustum flags by float subtracts and multiplies against the bounds, then ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (5), float multiply (4), move (2), OR (1), float add (1); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mClipTriUserAndFrustum`: address 0xed52, `clip.S` line 1080 (218 words). Reached: its address loaded as a constant in `mGL_EM_Initialize` and 13 other labels.
   **Inferred** role: triangle clipper: tests the outcode flags, calls the vertex-slot, per-plane clip and clip-space routines and ends the command.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 11 to 14; operations move (73), AND (12), second-unit move (7), operation 0x6ec (5), OR (4), operation 0x6d1 (3), integer add (2), operation 0x6f1 (2), operation 0x6dd (1), operation 0x6df (1), second-unit move or minimum (1); sets the condition flags 11 times; loads 18 constants; takes 27 conditional transfers.
-  It calls `mSetClipVertsFree` and 4 other routines; ends the command by jumping to `HereWeGo`; returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); jumps within its own code; conditional transfers reach `uEvalSaveState` and 3 other labels.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 11 to 14; operations move (73), AND (12), second-unit move (7), operation 0x6ec (5), OR (4), operation 0x6d1 (3), float-to-integer conversion (2), integer add (2), logical shift right (1), second-unit move or minimum (1), shift left (1); sets the condition flags 11 times; loads 18 constants; takes 27 conditional transfers.
+  It calls `mSetClipVertsFree` and 4 other routines; ends the command with an indirect transfer in condition group 31; returns to its caller or the next chained stage (an indirect transfer outside condition group 31); jumps within its own code; conditional transfers reach `uEvalSaveState` and 3 other labels.
   Constants loaded: 0xeda7 (code in `mClipTriUserAndFrustum`), 0x2, 2.0 (0x40000000), 0x80000000, 0x1c00000, 0x10, 0x20, 0x1 and 6 more.
 - `mClipTriFlushSR`: address 0xf14f, `clip.S` line 1603 (42 words). Reached: transfers in `mClipTriUserAndFrustum`.
   **Inferred** role: ends a clipped triangle in the save-and-restore strip mode: 15 moves and a constant holding an address inside itself, then it returns or ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (15); loads 3 constants.
-  It ends the command by jumping to `HereWeGo`; returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It ends the command with an indirect transfer in condition group 31; returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x3f, 0xf168 (code in `mClipTriFlushSR`).
 - `mClipTriFlush`: address 0xf1dc, `clip.S` line 1700 (36 words). Reached: transfers in `mClipTriUserAndFrustum`.
   **Inferred** role: ends a clipped triangle: 15 moves and a constant holding an address inside itself, then it returns or ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (15); loads 3 constants.
-  It ends the command by jumping to `HereWeGo`; returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It ends the command with an indirect transfer in condition group 31; returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x3f, 0xf1f3 (code in `mClipTriFlush`).
 
 ### colortable.S
@@ -290,23 +290,23 @@ Colour-table and pixel-map lookup stages and their upload and download. **Inferr
 - `mLutoutDone`: address 0x41e0, `colortable.S` line 151 (8 words). Reached: transfers in `mmo_LutoutI` and 2 other labels.
   **Inferred** role: common exit of the three lookup output stages: two moves and a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); loads 2 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.
 - `mmo_LutoutRGBA`: address 0x41b5, `colortable.S` line 174 (25 words). Reached: geif slot 294 (entry 589); the ARM functions that send it are in the table below.
   **Inferred** role: RGBA lookup output: clamps and scales four components and joins the common exit.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations clamp at zero (4), float multiply (4), operation 0x6f1 (4), OR (2), operation 0x6df (2); takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations clamp at zero (4), float multiply (4), float-to-integer conversion (4), OR (2), shift left (2); takes 1 conditional transfer.
   It jumps to `mLutoutDone`.
 - `mmo_LutoutLA`: address 0x418e, `colortable.S` line 208 (19 words). Reached: geif slot 295 (entry 591); the ARM functions that send it are in the table below.
   **Inferred** role: luminance-alpha lookup output: clamps and scales two components and joins the common exit.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (2), clamp at zero (2), float multiply (2), operation 0x6f1 (2), operation 0x6df (1); takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (2), clamp at zero (2), float multiply (2), float-to-integer conversion (2), shift left (1); takes 1 conditional transfer.
   It jumps to `mLutoutDone`.
 - `mmo_LutoutI`: address 0x416c, `colortable.S` line 239 (13 words). Reached: geif slot 296 (entry 593); the ARM functions that send it are in the table below.
   **Inferred** role: intensity lookup output: clamps and scales one component and joins the common exit.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (1), clamp at zero (1), float multiply (1), operation 0x6df (1), operation 0x6f1 (1); takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (1), clamp at zero (1), float multiply (1), float-to-integer conversion (1), shift left (1); takes 1 conditional transfer.
   It jumps to `mLutoutDone`.
 - `mgeb_LutRamp3`: address 0x4074, `colortable.S` line 302 (192 words). Reached: geif slot 157 (entry 315); the ARM functions that send it are in the table below.
   **Inferred** role: fills a three-component lookup ramp: integer adds and 16-bit field packing (mask 0xffff0000) over the table.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations OR (48), operation 0x6df (32), move (22), integer add (17), AND (16), operation 0x6d1 (16), second-unit operation 0xff (1); loads 2 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations OR (48), shift left (32), move (22), integer add (17), AND (16), operation 0x6d1 (16), second-unit operation 0xff (1); loads 2 constants; takes 1 conditional transfer.
   It waits on its own address under another condition group.
   Constants loaded: 0xffff0000, 0x10.
 - `mgeb_LutRamp1`: address 0x4022, `colortable.S` line 379 (41 words). Reached: geif slot 156 (entry 313); the ARM functions that send it are in the table below.
@@ -316,18 +316,18 @@ Colour-table and pixel-map lookup stages and their upload and download. **Inferr
   Constants loaded: 0x3.
 - `mgeb_PixMapOutputI`: address 0x3fd8, `colortable.S` line 456 (39 words). Reached: geif slot 160 (entry 321).
   **Inferred** role: index pixel-map output stage: masks the value to 16 bits (0xffff).
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations move (3), AND (2), OR (2), operation 0x6df (2), operation 0x6f1 (2); loads 2 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations move (3), AND (2), OR (2), float-to-integer conversion (2), shift left (2); loads 2 constants; takes 1 conditional transfer.
   It waits on its own address under another condition group.
   Constants loaded: 0x10, 0xffff.
 - `mgeb_PixMapOutputRGBA`: address 0x3f87, `colortable.S` line 520 (43 words). Reached: geif slot 161 (entry 323); the ARM functions that send it are in the table below.
   **Inferred** role: RGBA pixel-map output stage: clamps, scales by 65535.0 and masks the components to 16 bits.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (4), operation 0x6df (3), OR (2), clamp at zero (2), float multiply (2), operation 0x6d1 (2), operation 0x6f1 (2); loads 2 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (4), shift left (3), OR (2), clamp at zero (2), float multiply (2), float-to-integer conversion (2), operation 0x6d1 (2); loads 2 constants; takes 1 conditional transfer.
   It ends with the end-of-command wait.
   Constants loaded: 65535.0 (0x477fff00), 0xffff.
 - `mgesi_TLutDownload`: address 0x3f52, `colortable.S` line 589 (32 words). Reached: geif slot 226 (entry 453); the ARM functions that send it are in the table below.
   **Inferred** role: texture-lookup-table download: reads six set-up words from engine memory and writes one raster bus word.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (9); writes 1 word to the raster-bus output addresses; reads engine memory at 6 addresses from 0x299 to 0x29e; loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x1854 (code in `mainloop_exp_ci`).
 - `mTLutDownloadDone`: address 0x3f49, `colortable.S` line 628 (6 words). Reached: transfers in `mmo_TLutDownloadI` and 2 other labels.
   **Inferred** role: common end of the texture lookup downloads: two complemented words to the raster bus and the end-of-command wait.
@@ -350,22 +350,22 @@ Colour-table and pixel-map lookup stages and their upload and download. **Inferr
   Constants loaded: 0x420c2400, 0x20c1800, 0x20c0c00, 0x20c0000.
 - `mmo_LUT16_big`: address 0x3c18, `colortable.S` line 809 (320 words). Reached: geif slot 290 (entry 581).
   **Inferred** role: large 16-bit lookup stage: float adds, 16-bit masks and 15 conditional transfers.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (36), operation 0x6f1 (36), AND (18), operation 0x6dd (18), move (17); loads 2 constants; takes 15 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (36), float-to-integer conversion (36), AND (18), logical shift right (18), move (17); loads 2 constants; takes 15 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x10, 0xffff.
 - `mmo_LUT_I2C_16`: address 0x3b81, `colortable.S` line 958 (101 words). Reached: geif slot 291 (entry 583); the ARM functions that send it are in the table below.
   **Inferred** role: index-to-colour 16-bit lookup stage: 15 engine-memory reads and 45 moves.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (45), AND (4), integer subtract or compare (1); sets the condition flags once; reads engine memory at 15 addresses from 0xb9e to 0xbad; loads 1 constant; closes 1 loop.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x1.
 - `mmo_LUT_I2I_16`: address 0x3aae, `colortable.S` line 1071 (113 words). Reached: geif slot 292 (entry 585); the ARM functions that send it are in the table below.
   **Inferred** role: index-to-index 16-bit lookup stage: ten engine-memory reads and 49 moves.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (49), AND (5), integer subtract or compare (1); sets the condition flags once; reads engine memory at 10 addresses from 0xb9e to 0xbaa; loads 1 constant; closes 4 loops.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x1.
 - `mgesi_LutUpload`: address 0x3a6d, `colortable.S` line 1213 (47 words). Reached: geif slot 210 (entry 421); the ARM functions that send it are in the table below.
   **Inferred** role: lookup-table upload: converts table entries to float, scales them and masks them to 16 bits.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 7; operations move (13), AND (4), float multiply (4), integer-to-float conversion (4), operation 0x6dd (3), integer subtract or compare (1); writes 1 word to the raster-bus output addresses; loads 3 constants; closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 7; operations move (13), AND (4), float multiply (4), integer-to-float conversion (4), logical shift right (3), integer subtract or compare (1); writes 1 word to the raster-bus output addresses; loads 3 constants; closes 1 loop.
   It waits on its own address under another condition group.
   Constants loaded: 0x10, 0x476, 0xffff.
 
@@ -412,7 +412,7 @@ General 3x3 convolution pixel stage. **Inferred** from its labels and callers.
   It has no jump of its own and runs on into `epilogue_conv3`.
 - `epilogue_conv3`: address 0x216f, `conv3x3.s` line 393 (26 words). Reached: transfers in `normal_path_conv3`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (9), float add (8).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### conv5x5.s
 
@@ -437,7 +437,7 @@ General 5x5 convolution pixel stage. **Inferred** from its labels and callers.
   It has no jump of its own and runs on into `epilogue_conv5`.
 - `epilogue_conv5`: address 0x22d2, `conv5x5.s` line 550 (91 words). Reached: transfers in `normal_path_conv5`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (46), float add (11), float multiply (4), integer subtract or compare (1), move (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### conv7x7.s
 
@@ -462,7 +462,7 @@ General 7x7 convolution pixel stage. **Inferred** from its labels and callers.
   It has no jump of its own and runs on into `epilogue_conv7`.
 - `epilogue_conv7`: address 0x2510, `conv7x7.s` line 734 (144 words). Reached: transfers in `normal_path_conv7`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (94), float add (11), float multiply (4), integer subtract or compare (1), move (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### CRAMBlockLoad.s
 
@@ -492,7 +492,7 @@ Context save (deactivate and mop-up): engine state written out section by sectio
 
 - `mges_ContextDeactivate`: address 0x68da, `ctx_deact.S` line 217 (240 words). Reached: geif slot 186 (entry 373); the ARM functions that send it are in the table below.
   **Inferred** role: context save: 96 moves and calls to the memory-clear and copy routines, ending with the end-of-command wait.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (96), NOT (6), integer add (5), integer subtract or compare (2), OR (1), operation 0x6db (1); sets the condition flags 2 times; writes 47 words to the raster-bus output addresses; reads engine memory at 3 addresses from 0xeae to 0xeb0; loads 55 constants; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (96), NOT (6), integer add (5), integer subtract or compare (2), OR (1), arithmetic shift right (1); sets the condition flags 2 times; writes 47 words to the raster-bus output addresses; reads engine memory at 3 addresses from 0xeae to 0xeb0; loads 55 constants; takes 2 conditional transfers.
   It calls `mClearEram` and 3 other routines; ends with the end-of-command wait; conditional transfers reach `uEvalSaveState`.
   Constants loaded: 0, 0x477, 0x3ff1 (code in `mgeb_PixMapOutputI`), 0x1, 0x460, 0x461, 0x462, 0x463 and 32 more.
 - `mges_ContextDeactGED`: address 0x68ba, `ctx_deact.S` line 585 (21 words). Reached: geif slot 183 (entry 367); the ARM functions that send it are in the table below.
@@ -582,7 +582,7 @@ Context load and destroy: registers, flag registers, WRAM, ERAM, CRAM and the in
 - `mLiUpdateMtrlState`: address 0x67a9, `ctx_load.S` line 670 (27 words). Reached: transfers in `mgeb_ContextLoadRegs`.
   **Inferred** role: updates the lighting material state after a register restore: one bit test (0x80), a conditional path, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (7), AND (2); sets the condition flags once; loads 2 constants; takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); jumps to `mmo_LighterGeneral`.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); jumps to `mmo_LighterGeneral`.
   Constants loaded: 0x80, 0x67c1 (code in `mLiUpdateMtrlState`).
 
 ARM functions and host tokens that send these handlers:
@@ -611,11 +611,11 @@ Debug monitor: number printing, drain, roll call and the slop command. **Inferre
 - `mmo_DebugGE`: address 0x4a8d, `debug.S` line 217 (4 words). Reached: geif slot 281 (entry 563).
   **Inferred** role: four-word debug module that ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mPrintf`: address 0x4aa9, `debug.S` line 294 (270 words). Reached: transfers in `MSPoint_Print_Scratch_Tables` and 2 other labels.
   **Inferred** role: formatted print routine (by its name): moves, bit tests and an engine-memory read, then a return.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (82), AND (5), operation 0x6df (2), XOR (1); sets the condition flags 7 times; reads engine memory at 0x1389; loads 85 constants; takes 4 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); jumps within its own code.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (82), AND (5), shift left (2), XOR (1); sets the condition flags 7 times; reads engine memory at 0x1389; loads 85 constants; takes 4 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); jumps within its own code.
   Constants loaded: 0, 0x1, 0x401, 0x2103000, 40.0 (0x42200000), 0x477, 0x440, 0x464 and 9 more.
 - `mgesi_PrintNum`: address 0x4961, `debug.S` line 548 (191 words). Reached: geif slot 351 (entry 703); the ARM functions that send it are in the table below.
   **Inferred** role: debug print of one number: calls the print routine with ASCII format words (0x526f6c6c, "Roll") and writes one raster bus word.
@@ -637,7 +637,7 @@ Deformation map loading and the deformation query. **Inferred** from its labels 
 - `mmo_DirtyDeformModule`: address 0x48d8, `deform.S` line 50 (22 words). Reached: its address loaded as a constant in `mgeb_DeformationMap3_1` and 1 other label.
   **Inferred** role: selects the deformation module after state changes: tests flag bits 0x80000 and 0x100000 and loads deformation module addresses.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (2); sets the condition flags 3 times; loads 7 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x100000, 0x80000, 0x2b32 (code in `mmo_DeformTexture`), 0x2ab8 (code in `mmo_DeformCoord`), 0x2ae7 (code in `mmo_DeformCoordTexture`), 0x2b61 (code in `mmo_DeformCoordNormal`), 0x2ba7 (code in `mmo_DeformCoordNormalTexture`).
 - `mgeb_DeformationMap3_1`: address 0x482e, `deform.S` line 129 (119 words). Reached: geif slot 407 (entry 815); the ARM functions that send it are in the table below; distributor table 29.
   **Inferred** role: loads a three-input deformation map: tests the flag bits and enumerant 0x8194 and handles the map coefficients.
@@ -646,7 +646,7 @@ Deformation map loading and the deformation query. **Inferred** from its labels 
   Constants loaded: 0x80000, 0x100000, 0x8194, 0x200000, 0x48d8 (code in `mmo_DirtyDeformModule`), 0xf4e4 (code in `mmo_DirtyPrePathModule`), 0x4.
 - `mgeb_LoadIdentityDeformation`: address 0x4806, `deform.S` line 344 (23 words). Reached: geif slot 408 (entry 817); the ARM functions that send it are in the table below; distributor table 30.
   **Inferred** role: resets the deformation to identity by clearing its flag bits.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations AND (4), move (3), NOT (1), XOR (1), operation 0x6d1 (1), operation 0x6df (1); sets the condition flags 3 times; loads 3 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations AND (4), move (3), NOT (1), XOR (1), operation 0x6d1 (1), shift left (1); sets the condition flags 3 times; loads 3 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0x13, 0x180000, 0xf4e4 (code in `mmo_DirtyPrePathModule`).
 - `mgesi_GetDeformation`: address 0x479b, `deform.S` line 447 (74 words). Reached: geif slot 409 (entry 819); the ARM functions that send it are in the table below.
@@ -656,7 +656,7 @@ Deformation map loading and the deformation query. **Inferred** from its labels 
   Constants loaded: 0x476, 0x8194, 0x80000, 0x100000.
 - `mgesi_GetDeformationsMask`: address 0x4786, `deform.S` line 559 (17 words). Reached: geif slot 410 (entry 821); the ARM functions that send it are in the table below.
   **Inferred** role: writes the mask of enabled deformations to the raster bus output addresses.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (5), AND (1), operation 0x6dd (1); writes 2 words to the raster-bus output addresses; loads 3 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (5), AND (1), logical shift right (1); writes 2 words to the raster-bus output addresses; loads 3 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0x476, 0x1, 0x3.
 
@@ -680,21 +680,21 @@ Line primitive output: plain, stippled, multisample and line-list forms. **Infer
   Constants loaded: 0x100, 0xe0000000.
 - `mDrawLinPrim`: address 0x892b, `drawlin.S` line 165 (136 words). Reached: transfers in `mmo_DrawLinPrim`.
   **Inferred** role: draws one line: endpoint deltas and slopes with float subtracts and multiplies.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (30), float multiply (26), move (23), float add (8), operation 0x6fe (8), NOT (4), AND (2), operation 0x6e4 (2); sets the condition flags 6 times; writes 3 words to the raster-bus output addresses; stores 20 words to engine addresses from 0xc9 to 0xd8; reads engine memory at 0x236; loads 1 constant; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (30), float multiply (26), move (23), float add (8), operation 0x6fe (8), NOT (4), AND (2), operation 0x6e4 (2); sets the condition flags 6 times; writes 3 words to the raster-bus output addresses; stores 20 words to control-memory addresses from 0xc9 to 0xd8; reads engine memory at 0x236; loads 1 constant; takes 2 conditional transfers.
   It jumps within its own code; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x70000.
 - `mDrawLinList`: address 0x89bc, `drawlin.S` line 318 (105 words). Reached: transfers in `mmo_DrawLinPrim`.
   **Inferred** role: draws a list of lines with the same set-up as the single-line code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (25), float multiply (22), move (17), float add (8), operation 0x6fe (6), NOT (4), operation 0x6e4 (2); sets the condition flags 2 times; writes 2 words to the raster-bus output addresses; stores 19 words to engine addresses from 0xc9 to 0xd8; reads engine memory at 0x236; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (25), float multiply (22), move (17), float add (8), operation 0x6fe (6), NOT (4), operation 0x6e4 (2); sets the condition flags 2 times; writes 2 words to the raster-bus output addresses; stores 19 words to control-memory addresses from 0xc9 to 0xd8; reads engine memory at 0x236; takes 2 conditional transfers.
   It waits on its own address under another condition group; conditional transfers reach `HereWeGo`.
 - `mmo_DrawMSLinPrim`: address 0x8a2d, `drawlin.S` line 482 (211 words). Reached: its address loaded as a constant in `mgeb_LineWidth_MS`.
   **Inferred** role: multisample line drawing: the single-line set-up plus multisample constants.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (52), float multiply (42), move (35), operation 0x6fe (16), float add (10), NOT (7), AND (2); sets the condition flags 4 times; writes 9 words to the raster-bus output addresses; stores 30 words to engine addresses from 0xc9 to 0xd7; reads engine memory at 0x236; loads 4 constants; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (52), float multiply (42), move (35), operation 0x6fe (16), float add (10), NOT (7), AND (2); sets the condition flags 4 times; writes 9 words to the raster-bus output addresses; stores 30 words to control-memory addresses from 0xc9 to 0xd7; reads engine memory at 0x236; loads 4 constants; takes 2 conditional transfers.
   It waits on its own address under another condition group; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x80a, 0x22f080a, 0x70000.
 - `mmo_DrawLinStipplePrim`: address 0x8b08, `drawlin.S` line 806 (516 words). Reached: its address loaded as a constant in `mgeb_LineWidth_Aliased` and 2 other labels.
   **Inferred** role: stippled line drawing: splits the line into stipple segments with multiply-add chains.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (154), float add (80), float subtract (71), move (47), float multiply-add (28), operation 0x6fe (16), reciprocal Newton step (10), NOT (8), AND (4), maximum (3), minimum (2), operation 0x6df (2), operation 0x6e4 (2), operation 0x6ee (2), reciprocal seed (2), reciprocal square-root Newton step (2), second-unit move or minimum (2), OR (1), reciprocal square-root seed (1); sets the condition flags 10 times; writes 4 words to the raster-bus output addresses; stores 82 words to engine addresses from 0xc9 to 0x1eb; reads engine memory at 4 addresses from 0x236 to 0x25e; loads 12 constants; takes 12 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (154), float add (80), float subtract (71), move (47), float multiply-add (28), operation 0x6fe (16), reciprocal Newton step (10), NOT (8), AND (4), maximum (3), minimum (2), operation 0x6e4 (2), operation 0x6ee (2), reciprocal seed (2), reciprocal square-root Newton step (2), second-unit move or minimum (2), shift left (2), OR (1), reciprocal square-root seed (1); sets the condition flags 10 times; writes 4 words to the raster-bus output addresses; stores 82 words to control-memory addresses from 0xc9 to 0x1eb; reads engine memory at 4 addresses from 0x236 to 0x25e; loads 12 constants; takes 12 conditional transfers.
   It waits on its own address under another condition group; jumps within its own code; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x100, 0x400, 0x17, 0, 0x15, 0x3013e00, 0x3023d00, 16.0 (0x41800000) and 4 more.
 
@@ -705,33 +705,33 @@ Multisample point output with distance attenuation and the sample tables. **Infe
 - `SaveClipState`: address 0x8123, `drawmstpnt.S` line 269 (9 words). Reached: transfers in `mmo_DrawMSDistAttTablePntPrim` and 2 other labels.
   **Inferred** role: saves the clip state by calling the WRAM-to-ERAM copy, then returns.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
-  It calls `mWramToEram`; returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It calls `mWramToEram`; returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `RestoreClipState`: address 0x810b, `drawmstpnt.S` line 285 (9 words). Reached: transfers in `mmo_DrawMSDistAttTablePntPrim` and 2 other labels.
   **Inferred** role: restores the clip state by calling the ERAM-to-WRAM copy, then returns.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
-  It calls `mEramToWram`; returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It calls `mEramToWram`; returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_DrawMSTablePntPrim`: address 0x7e6f, `drawmstpnt.S` line 662 (450 words). Reached: its address loaded as a constant in `mgebi_PointSize_MS`.
   **Inferred** role: multisample point drawing from the sample table: integer compares and masks pick the covered samples.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (79), integer subtract or compare (40), integer add (32), operation 0x6dd (22), AND (20), XOR (15), float multiply (15), float subtract (15), OR (14), operation 0x6df (14), operation 0x6f1 (9), operation 0x6d1 (8), NOT (6), second-unit operation 0xff (6), integer-to-float conversion (5), operation 0x6f7 (4), operation 0x6fe (4), second-unit move or minimum (1); sets the condition flags 22 times; writes 16 words to the raster-bus output addresses; stores 3 words to engine addresses from 0xd2 to 0xd9; reads engine memory at 4 addresses from 0x237 to 0x247; loads 53 constants; takes 10 conditional transfers; closes 2 loops.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (79), integer subtract or compare (40), integer add (32), logical shift right (22), AND (20), XOR (15), float multiply (15), float subtract (15), OR (14), shift left (14), float-to-integer conversion (9), operation 0x6d1 (8), NOT (6), second-unit operation 0xff (6), integer-to-float conversion (5), operation 0x6f7 (4), operation 0x6fe (4), second-unit move or minimum (1); sets the condition flags 22 times; writes 16 words to the raster-bus output addresses; stores 3 words to control-memory addresses from 0xd2 to 0xd9; reads engine memory at 4 addresses from 0x237 to 0x247; loads 53 constants; takes 10 conditional transfers; closes 2 loops.
   It waits on its own address under another condition group; conditional transfers reach `SaveClipState` and 2 other labels.
   Constants loaded: 0x2, 0x70000, 0x1, 0x5, 0xfffffffe, 0xfffffff0, 0x8, 8.0 (0x41000000) and 22 more.
 - `mmo_DrawMSTablePntPrim1`: address 0x7c28, `drawmstpnt.S` line 1382 (384 words). Reached: its address loaded as a constant in `mgebi_PointSize_MS`.
   **Inferred** role: second multisample table point drawer, with float distance terms.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (90), AND (20), integer add (16), integer subtract or compare (15), OR (14), float multiply (14), float subtract (14), operation 0x6dd (14), operation 0x6df (14), operation 0x6f1 (8), NOT (6), second-unit operation 0xff (6), integer-to-float conversion (4), operation 0x6d1 (4), operation 0x6f7 (4), operation 0x6fe (4); sets the condition flags 22 times; writes 17 words to the raster-bus output addresses; stores 3 words to engine addresses from 0xd2 to 0xd9; reads engine memory at 3 addresses from 0x245 to 0x247; loads 52 constants; takes 12 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (90), AND (20), integer add (16), integer subtract or compare (15), OR (14), float multiply (14), float subtract (14), logical shift right (14), shift left (14), float-to-integer conversion (8), NOT (6), second-unit operation 0xff (6), integer-to-float conversion (4), operation 0x6d1 (4), operation 0x6f7 (4), operation 0x6fe (4); sets the condition flags 22 times; writes 17 words to the raster-bus output addresses; stores 3 words to control-memory addresses from 0xd2 to 0xd9; reads engine memory at 3 addresses from 0x245 to 0x247; loads 52 constants; takes 12 conditional transfers.
   It waits on its own address under another condition group; conditional transfers reach `SaveClipState` and 2 other labels.
   Constants loaded: 0x2, 0x70000, 0x1, 0x5, 0xfffffffe, 0xfffffff0, 0x8, 8.0 (0x41000000) and 21 more.
 - `DrawMSTablePnt`: address 0x7a54, `drawmstpnt.S` line 3079 (268 words). Reached: transfers in `mmo_DrawMSDistAttTablePntPrim`.
   **Inferred** role: draws one multisample point from the sample table, then returns.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (60), integer subtract or compare (39), integer add (20), OR (13), operation 0x6df (13), operation 0x6dd (11), AND (8), float multiply (8), float subtract (7), NOT (6), integer-to-float conversion (6), operation 0x6f1 (5), second-unit operation 0xff (5), operation 0x6d1 (4), operation 0x6f7 (2), operation 0x6fe (2), second-unit move (1), second-unit move or minimum (1); sets the condition flags 27 times; writes 15 words to the raster-bus output addresses; stores 3 words to engine addresses from 0xd2 to 0xd9; loads 11 constants; takes 5 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (60), integer subtract or compare (39), integer add (20), OR (13), shift left (13), logical shift right (11), AND (8), float multiply (8), float subtract (7), NOT (6), integer-to-float conversion (6), float-to-integer conversion (5), second-unit operation 0xff (5), operation 0x6d1 (4), operation 0x6f7 (2), operation 0x6fe (2), second-unit move (1), second-unit move or minimum (1); sets the condition flags 27 times; writes 15 words to the raster-bus output addresses; stores 3 words to control-memory addresses from 0xd2 to 0xd9; loads 11 constants; takes 5 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0, 0x3fd3, 0x806, 0x1243fd3, 0x70000, 0x12b0806.
 - `DrawMSTFanPnt`: address 0x79a3, `drawmstpnt.S` line 4019 (144 words). Reached: transfers in `mmo_DrawMSDistAttTablePntPrim`.
   **Inferred** role: draws a large multisample point as a fan, calling the sine and cosine routines for its corners.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (39), float subtract (24), move (21), float add (15), operation 0x6fe (8), NOT (4), integer-to-float conversion (2), reciprocal Newton step (2), second-unit move (2), integer add (1), operation 0x6f1 (1), reciprocal seed (1), second-unit move or minimum (1); sets the condition flags once; writes 2 words to the raster-bus output addresses; stores 15 words to engine addresses from 0xc9 to 0xd3; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (39), float subtract (24), move (21), float add (15), operation 0x6fe (8), NOT (4), integer-to-float conversion (2), reciprocal Newton step (2), second-unit move (2), float-to-integer conversion (1), integer add (1), reciprocal seed (1), second-unit move or minimum (1); sets the condition flags once; writes 2 words to the raster-bus output addresses; stores 15 words to control-memory addresses from 0xc9 to 0xd3; takes 1 conditional transfer.
   It calls `mSinCosAB` and `mSinCos`; jumps within its own code.
 - `mmo_DrawMSDistAttTablePntPrim`: address 0x7855, `drawmstpnt.S` line 4198 (138 words). Reached: its address loaded as a constant in `mgebi_PointSize_MS`.
   **Inferred** role: multisample point drawing with distance attenuation: size from a reciprocal square root, then the table or fan code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (23), float multiply (20), float add (4), reciprocal square-root Newton step (4), AND (3), float subtract (3), reciprocal square-root seed (2), integer subtract or compare (1), integer-to-float conversion (1), operation 0x6f1 (1); sets the condition flags 8 times; writes 5 words to the raster-bus output addresses; reads engine memory at 9 addresses from 0x237 to 0x247; loads 37 constants; takes 8 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (23), float multiply (20), float add (4), reciprocal square-root Newton step (4), AND (3), float subtract (3), reciprocal square-root seed (2), float-to-integer conversion (1), integer subtract or compare (1), integer-to-float conversion (1); sets the condition flags 8 times; writes 5 words to the raster-bus output addresses; reads engine memory at 9 addresses from 0x237 to 0x247; loads 37 constants; takes 8 conditional transfers.
   It calls `DrawMSTFanPnt`; waits on its own address under another condition group; conditional transfers reach `SaveClipState` and 3 other labels.
   Constants loaded: 0x2, 0, 0x1, 0x5, 0xfffffffe, 0xfffffff0, 0x8, 8.0 (0x41000000) and 23 more.
 
@@ -741,27 +741,27 @@ Point primitive output: plain, antialiased, multisample and distance-attenuated.
 
 - `mmo_DrawPntPrim`: address 0x8465, `drawpnt.S` line 199 (79 words). Reached: its address loaded as a constant in `mGL_CM_Initialize` and 1 other label.
   **Inferred** role: point-drawing module: the point's screen square from its size.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (16), float subtract (10), float multiply (8), integer add (8), AND (6), NOT (4), operation 0x6fe (4); sets the condition flags 4 times; writes 4 words to the raster-bus output addresses; stores 10 words to engine addresses from 0xc9 to 0xd9; loads 1 constant; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (16), float subtract (10), float multiply (8), integer add (8), AND (6), NOT (4), operation 0x6fe (4); sets the condition flags 4 times; writes 4 words to the raster-bus output addresses; stores 10 words to control-memory addresses from 0xc9 to 0xd9; loads 1 constant; takes 2 conditional transfers.
   It waits on its own address under another condition group; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x70000.
 - `mmo_DrawDistAttPntPrim`: address 0x8357, `drawpnt.S` line 362 (214 words). Reached: its address loaded as a constant in `mgebi_PointSize_Aliased`.
   **Inferred** role: point drawing with distance attenuation: size from a reciprocal square root of the eye distance.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (63), float multiply (38), float subtract (14), float add (12), AND (8), integer add (8), reciprocal square-root Newton step (8), operation 0x6f1 (6), NOT (4), operation 0x6fe (4), reciprocal square-root seed (4), float multiply-add (2), operation 0x6df (2), second-unit operation 0xff (2); sets the condition flags 10 times; writes 16 words to the raster-bus output addresses; stores 10 words to engine addresses from 0xc9 to 0xd9; reads engine memory at 6 addresses from 0x237 to 0x242; loads 13 constants; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (63), float multiply (38), float subtract (14), float add (12), AND (8), integer add (8), reciprocal square-root Newton step (8), float-to-integer conversion (6), NOT (4), operation 0x6fe (4), reciprocal square-root seed (4), float multiply-add (2), second-unit operation 0xff (2), shift left (2); sets the condition flags 10 times; writes 16 words to the raster-bus output addresses; stores 10 words to control-memory addresses from 0xc9 to 0xd9; reads engine memory at 6 addresses from 0x237 to 0x242; loads 13 constants; takes 2 conditional transfers.
   It waits on its own address under another condition group; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x70000, 0xfff, 0xfff000, 0xc, 0x1203fcf, 0x128080f, 8.0 (0x41000000), 2.0 (0x40000000) and 3 more.
 - `mmo_DrawAAPntPrim`: address 0x84be, `drawpnt.S` line 768 (219 words). Reached: its address loaded as a constant in `mgebi_PointSize_AlphaAA`.
   **Inferred** role: antialiased point drawing: size and coverage terms with constants 0.5 and 3.0.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (37), move (37), float subtract (23), float add (19), AND (7), NOT (4), operation 0x6f7 (4), operation 0x6fe (4), reciprocal square-root Newton step (4), OR (3), operation 0x6e3 (2), operation 0x6ea (2), operation 0x6f1 (2), reciprocal square-root seed (2), float multiply-add (1), integer-to-float conversion (1), second-unit move (1), second-unit move or minimum (1); sets the condition flags 17 times; writes 4 words to the raster-bus output addresses; stores 11 words to engine addresses from 0x1a to 0xd9; reads engine memory at 6 addresses from 0x237 to 0x242; loads 12 constants; takes 10 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (37), move (37), float subtract (23), float add (19), AND (7), NOT (4), operation 0x6f7 (4), operation 0x6fe (4), reciprocal square-root Newton step (4), OR (3), float-to-integer conversion (2), operation 0x6e3 (2), operation 0x6ea (2), reciprocal square-root seed (2), float multiply-add (1), integer-to-float conversion (1), second-unit move (1), second-unit move or minimum (1); sets the condition flags 17 times; writes 4 words to the raster-bus output addresses; stores 11 words to control-memory addresses from 0x1a to 0xd9; reads engine memory at 6 addresses from 0x237 to 0x242; loads 12 constants; takes 10 conditional transfers.
   It waits on its own address under another condition group; jumps to `AA_Response_Step`; conditional transfers reach `AA_Response` and 1 other label.
   Constants loaded: 0x20000000, 0.5 (0x3f000000), 3.0 (0x40400000), 0x8, 6.0 (0x40c00000), 0.25 (0x3e800000), 1.0 (0x3f800000), 0x70000.
 - `mmo_DrawMSPntPrim`: address 0x82a7, `drawpnt.S` line 1264 (154 words). Reached: its address loaded as a constant in `mgebi_PointSize_MS`.
   **Inferred** role: multisample point drawing with float set-up of the point square.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (38), move (27), float subtract (26), float add (14), operation 0x6fe (12), AND (2), NOT (2); sets the condition flags 4 times; writes 4 words to the raster-bus output addresses; stores 25 words to engine addresses from 0xc9 to 0xd5; reads engine memory at 5 addresses from 0x237 to 0x245; loads 2 constants; takes 3 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (38), move (27), float subtract (26), float add (14), operation 0x6fe (12), AND (2), NOT (2); sets the condition flags 4 times; writes 4 words to the raster-bus output addresses; stores 25 words to control-memory addresses from 0xc9 to 0xd5; reads engine memory at 5 addresses from 0x237 to 0x245; loads 2 constants; takes 3 conditional transfers.
   It waits on its own address under another condition group; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x2043c00, 0x70000.
 - `mmo_DrawMSDistAttPntPrim`: address 0x813b, `drawpnt.S` line 1474 (283 words). Reached: its address loaded as a constant in `mgebi_PointSize_MS`.
   **Inferred** role: multisample point drawing with distance attenuation, calling the sine and cosine routine for its corners.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (86), move (41), float subtract (40), float add (26), operation 0x6fe (12), reciprocal square-root Newton step (8), integer add (4), reciprocal Newton step (4), AND (2), NOT (2), integer-to-float conversion (2), operation 0x6f1 (2), reciprocal seed (2), reciprocal square-root seed (2), second-unit move (1), second-unit move or minimum (1); sets the condition flags 10 times; writes 4 words to the raster-bus output addresses; stores 26 words to engine addresses from 0xc9 to 0xd5; reads engine memory at 8 addresses from 0x237 to 0x244; loads 3 constants; takes 2 conditional transfers; closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (86), move (41), float subtract (40), float add (26), operation 0x6fe (12), reciprocal square-root Newton step (8), integer add (4), reciprocal Newton step (4), AND (2), NOT (2), float-to-integer conversion (2), integer-to-float conversion (2), reciprocal seed (2), reciprocal square-root seed (2), second-unit move (1), second-unit move or minimum (1); sets the condition flags 10 times; writes 4 words to the raster-bus output addresses; stores 26 words to control-memory addresses from 0xc9 to 0xd5; reads engine memory at 8 addresses from 0x237 to 0x244; loads 3 constants; takes 2 conditional transfers; closes 1 loop.
   It calls `mSinCosAB`; waits on its own address under another condition group; conditional transfers reach `HereWeGo`.
   Constants loaded: 360.0 (0x43b40000), 0x2043c00, 0x70000.
 
@@ -771,7 +771,7 @@ Triangle output with polygon offset. **Inferred** from its labels and callers.
 
 - `mmo_DrawTriPrimOffset`: address 0x8dc0, `drawtri.S` line 127 (224 words). Reached: its address loaded as a constant in `mgeb_PolygonSetup_Render`.
   **Inferred** role: triangle drawing with polygon offset: edge set-up with float subtracts, multiplies and reciprocal steps.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (48), float multiply (47), move (33), operation 0x6fe (14), AND (5), NOT (4), reciprocal Newton step (4), operation 0x6e9 (2); sets the condition flags 8 times; writes 7 words to the raster-bus output addresses; stores 28 words to engine addresses from 0xc9 to 0xd7; reads engine memory at 2 addresses from 0x13ae to 0x13af; loads 7 constants; takes 6 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (48), float multiply (47), move (33), operation 0x6fe (14), AND (5), NOT (4), reciprocal Newton step (4), operation 0x6e9 (2); sets the condition flags 8 times; writes 7 words to the raster-bus output addresses; stores 28 words to control-memory addresses from 0xc9 to 0xd7; reads engine memory at 2 addresses from 0x13ae to 0x13af; loads 7 constants; takes 6 conditional transfers.
   It calls `mGenerateAALineTable`; waits on its own address under another condition group; conditional transfers reach `mDoPolygonStippleDownload` and 2 other labels.
   Constants loaded: 2.0 (0x40000000), 0x4020000c, 0x805, 1048576.0 (0x49800000), 0x8000000, 0x70000.
 
@@ -782,22 +782,22 @@ Vertex-entry points the distributor jumps to: raster position, points and the li
 - `mgesi_TriangleStrip`: address 0xb699, `entry.S` line 81 (28 words). Reached: geif slot 234 (entry 469); distributor relocated word.
   **Inferred** role: triangle-strip vertex entry: loads code addresses inside the strip decomposition modules and ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (7), float add (2); loads 3 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `HereWeGo`.
   Constants loaded: 0xca01 (code in `mmo_DummyDecompose`), 0xcc6, 0xc9b2 (code in `mmo_DecomposeTriangleStripWithSwapEven`).
 - `mgesi_TriangleStripSave`: address 0xb673, `entry.S` line 105 (31 words). Reached: geif slot 237 (entry 475); distributor relocated word.
   **Inferred** role: triangle-strip vertex entry that also saves the vertex (an extra code address in the save path).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8), float add (2), OR (1); loads 4 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `HereWeGo`.
   Constants loaded: 0xe4de (code in `mmo_Vn2ToSave`), 0xca01 (code in `mmo_DummyDecompose`), 0xcc6, 0xc9b2 (code in `mmo_DecomposeTriangleStripWithSwapEven`).
 - `mgesi_TriangleStripRestore`: address 0xb64d, `entry.S` line 131 (31 words). Reached: geif slot 235 (entry 471); distributor relocated word.
   **Inferred** role: triangle-strip vertex entry that restores a saved vertex first.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8), float add (2), OR (1); loads 4 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `HereWeGo`.
   Constants loaded: 0xe605 (code in `mmo_SaveToV0`), 0xca01 (code in `mmo_DummyDecompose`), 0xcc6, 0xc9b2 (code in `mmo_DecomposeTriangleStripWithSwapEven`).
 - `mgesi_TriangleStripRestoreSave`: address 0xb627, `entry.S` line 158 (31 words). Reached: geif slot 236 (entry 473); distributor relocated word.
   **Inferred** role: triangle-strip vertex entry that restores a saved vertex and saves the new one.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8), float add (2), OR (1); loads 4 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `HereWeGo`.
   Constants loaded: 0xe57e (code in `mmo_SaveToV0AndVn2ToSave`), 0xca01 (code in `mmo_DummyDecompose`), 0xcc6, 0xc9b2 (code in `mmo_DecomposeTriangleStripWithSwapEven`).
 - `mgesi_TriangleStripWithSwapOdd`: address 0xb60e, `entry.S` line 184 (25 words). Reached: geif slot 418 (entry 837); distributor relocated word.
   **Inferred** role: triangle-strip vertex entry that swaps the vertex order on odd triangles.
@@ -807,47 +807,47 @@ Vertex-entry points the distributor jumps to: raster position, points and the li
 - `mgesi_TriangleStripSaveWithSwapOdd`: address 0xb5f6, `entry.S` line 207 (24 words). Reached: geif slot 415 (entry 831); distributor relocated word.
   **Inferred** role: odd-swapping strip entry that also saves the vertex.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (2), OR (1); loads 2 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xc989 (code in `mmo_DecomposeTriangleStripWithSwapOdd`), 0xe4de (code in `mmo_Vn2ToSave`).
 - `mgesi_TriangleStripRestoreWithSwapOdd`: address 0xb5de, `entry.S` line 230 (24 words). Reached: geif slot 416 (entry 833); distributor relocated word.
   **Inferred** role: odd-swapping strip entry that restores a saved vertex first.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (2), OR (1); loads 2 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xc989 (code in `mmo_DecomposeTriangleStripWithSwapOdd`), 0xe605 (code in `mmo_SaveToV0`).
 - `mgesi_TriangleStripRestoreSaveWithSwapOdd`: address 0xb5c6, `entry.S` line 254 (24 words). Reached: geif slot 417 (entry 835); distributor relocated word.
   **Inferred** role: odd-swapping strip entry that restores and saves.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (2), OR (1); loads 2 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xc989 (code in `mmo_DecomposeTriangleStripWithSwapOdd`), 0xe57e (code in `mmo_SaveToV0AndVn2ToSave`).
 - `mgesi_Triangles`: address 0xb5ae, `entry.S` line 281 (24 words). Reached: geif slot 238 (entry 477); distributor relocated word.
   **Inferred** role: independent-triangles vertex entry: loads code addresses of the triangle decomposition and ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (2); loads 2 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xca01 (code in `mmo_DummyDecompose`), 0xca10 (code in `mmo_DecomposeSimpleTriangles`).
 - `mgesi_QuadStrip`: address 0xb596, `entry.S` line 304 (24 words). Reached: geif slot 217 (entry 435); distributor relocated word.
   **Inferred** role: quad-strip vertex entry: loads code addresses of the quad-strip decomposition and ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (2); loads 2 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xc9e1 (code in `mmo_DummyDecomposeQuadStrip`), 0xca60 (code in `mmo_DecomposeQuadStrip`).
 - `mgesi_QuadStripSave`: address 0xb57b, `entry.S` line 330 (27 words). Reached: geif slot 220 (entry 441); distributor relocated word.
   **Inferred** role: quad-strip vertex entry that also saves the vertex.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (7), float add (2), OR (1); loads 3 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xe4de (code in `mmo_Vn2ToSave`), 0xc9e1 (code in `mmo_DummyDecomposeQuadStrip`), 0xca60 (code in `mmo_DecomposeQuadStrip`).
 - `mgesi_QuadStripRestore`: address 0xb560, `entry.S` line 358 (27 words). Reached: geif slot 218 (entry 437); distributor relocated word.
   **Inferred** role: quad-strip vertex entry that restores a saved vertex first.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (7), float add (2), OR (1); loads 3 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xe605 (code in `mmo_SaveToV0`), 0xc9e1 (code in `mmo_DummyDecomposeQuadStrip`), 0xca60 (code in `mmo_DecomposeQuadStrip`).
 - `mgesi_QuadStripRestoreSave`: address 0xb545, `entry.S` line 387 (27 words). Reached: geif slot 219 (entry 439); distributor relocated word.
   **Inferred** role: quad-strip vertex entry that restores a saved vertex and saves the new one.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (7), float add (2), OR (1); loads 3 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xe57e (code in `mmo_SaveToV0AndVn2ToSave`), 0xc9e1 (code in `mmo_DummyDecomposeQuadStrip`), 0xca60 (code in `mmo_DecomposeQuadStrip`).
 - `mgesi_Quads`: address 0xb531, `entry.S` line 419 (20 words). Reached: geif slot 221 (entry 443); distributor relocated word.
   **Inferred** role: independent-quads vertex entry: loads one code address of the quad decomposition and ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (5), float add (2); loads 1 constant.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xca3a (code in `mmo_DecomposeQuads`).
 - `mgeb_SetTfanPolyMode`: address 0xb51f, `entry.S` line 445 (9 words). Reached: geif slot 171 (entry 343); distributor relocated word.
   **Inferred** role: sets the triangle-fan polygon mode with four moves.
@@ -856,77 +856,77 @@ Vertex-entry points the distributor jumps to: raster position, points and the li
 - `mgesi_TfanPoly`: address 0xb4f1, `entry.S` line 476 (36 words). Reached: geif slot 228 (entry 457); distributor relocated word.
   **Inferred** role: triangle-fan and polygon vertex entry: clears field bits 22-24 (mask 0xfe3fffff) and loads code addresses of the fan decomposition.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9), float add (2), AND (1); loads 5 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xca01 (code in `mmo_DummyDecompose`), 0xd25, 0xca86 (code in `mmo_DecomposePolygon`), 0xfe3fffff.
 - `mgesi_TfanPolySave`: address 0xb4bd, `entry.S` line 526 (45 words). Reached: geif slot 233 (entry 467); distributor relocated word.
   **Inferred** role: triangle-fan and polygon vertex entry that also saves the vertex.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (11), OR (2), float add (2), AND (1); loads 7 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xca01 (code in `mmo_DummyDecompose`), 0xe544 (code in `mmo_V0ToSave`), 0xd25, 0xe519 (code in `mmo_V0ToSave_SaveExtra`), 0xca86 (code in `mmo_DecomposePolygon`), 0xfe3fffff.
 - `mgesi_TfanPolyRestore`: address 0xb48b, `entry.S` line 581 (39 words). Reached: geif slot 230 (entry 461); distributor relocated word.
   **Inferred** role: triangle-fan and polygon vertex entry that restores a saved vertex first (a code address in the restore module).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (10), float add (2), AND (1), OR (1); loads 6 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xe605 (code in `mmo_SaveToV0`), 0xca01 (code in `mmo_DummyDecompose`), 0xd25, 0xca86 (code in `mmo_DecomposePolygon`), 0xfe3fffff.
 - `mgesi_TfanPolyRestoreEdge`: address 0xb430, `entry.S` line 635 (72 words). Reached: geif slot 338 (entry 677); distributor relocated word.
   **Inferred** role: fan and polygon vertex entry that restores a saved vertex and its edge state, calling the ERAM-to-WRAM copy.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (27), OR (4), AND (2), float add (2); loads 7 constants; takes 1 conditional transfer.
-  It calls `mEramToWram`; ends the command by jumping to `HereWeGo`.
+  It calls `mEramToWram`; ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xe0000000, 0xd25, 0xca01 (code in `mmo_DummyDecompose`), 0xe5d7 (code in `mmo_SaveToV0_RestoreExtra`), 0xca86 (code in `mmo_DecomposePolygon`), 0xfe3fffff.
 - `mgesi_TfanPolyRestoreSave`: address 0xb3fc, `entry.S` line 728 (45 words). Reached: geif slot 232 (entry 465); distributor relocated word.
   **Inferred** role: fan and polygon vertex entry that restores a saved vertex and saves the new one.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (11), OR (2), float add (2), AND (1); loads 7 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xca01 (code in `mmo_DummyDecompose`), 0xe605 (code in `mmo_SaveToV0`), 0xd25, 0xe5a9 (code in `mmo_SaveToV0_SaveExtra`), 0xca86 (code in `mmo_DecomposePolygon`), 0xfe3fffff.
 - `mgesi_TfanPolyEnd`: address 0xb3cf, `entry.S` line 778 (33 words). Reached: geif slot 229 (entry 459); distributor relocated word.
   **Inferred** role: fan and polygon vertex entry for the last vertex: loads the fan decomposition's code addresses and ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9), float add (2); loads 4 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xca01 (code in `mmo_DummyDecompose`), 0xd25, 0xca86 (code in `mmo_DecomposePolygon`).
 - `mgesi_TfanPolyRestoreEnd`: address 0xb39e, `entry.S` line 820 (36 words). Reached: geif slot 231 (entry 463); distributor relocated word.
   **Inferred** role: last-vertex fan entry that restores a saved vertex first.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (10), float add (2), OR (1); loads 5 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xe605 (code in `mmo_SaveToV0`), 0xca01 (code in `mmo_DummyDecompose`), 0xd25, 0xca86 (code in `mmo_DecomposePolygon`).
 - `mgesi_LineStrip`: address 0xb38a, `entry.S` line 865 (20 words). Reached: geif slot 203 (entry 407); distributor relocated word.
   **Inferred** role: line-strip vertex entry: loads one code address of the line decomposition and ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (5), float add (2); loads 1 constant.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xcfa.
 - `mgesi_LineStripSaveV0`: address 0xb372, `entry.S` line 888 (24 words). Reached: geif slot 208 (entry 417); distributor relocated word.
   **Inferred** role: line-strip vertex entry that also saves the first vertex (a code address in the save module).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (2), OR (1); loads 2 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xcfa, 0xe544 (code in `mmo_V0ToSave`).
 - `mgesi_LineStripSaveAndIgnoreV0`: address 0xb35a, `entry.S` line 914 (24 words). Reached: geif slot 207 (entry 415); distributor relocated word.
   **Inferred** role: line-strip vertex entry that saves the first vertex and draws nothing for it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (2), OR (1); loads 2 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xcfa, 0xe4fd (code in `mmo_V0ToSaveAndIgnore`).
 - `mgesi_LineStripCopyV0`: address 0xb342, `entry.S` line 939 (24 words). Reached: geif slot 205 (entry 411); distributor relocated word.
   **Inferred** role: line-strip vertex entry that copies the first vertex to the closing position (line loop).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (2), OR (1); loads 2 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xcfa, 0xe6d4 (code in `mmo_CopyV0ToVn1`).
 - `mgesi_LineStripCopyAndIgnoreV0`: address 0xb32a, `entry.S` line 965 (24 words). Reached: geif slot 204 (entry 409); distributor relocated word.
   **Inferred** role: line-strip vertex entry that copies the first vertex and draws nothing for it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (2), OR (1); loads 2 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xcfa, 0xe6c0 (code in `mmo_CopyV0ToVn1AndIgnore`).
 - `mgesi_LineStripRestoreV0`: address 0xb312, `entry.S` line 990 (24 words). Reached: geif slot 206 (entry 413); distributor relocated word.
   **Inferred** role: line-strip vertex entry that restores the saved first vertex.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (2), OR (1); loads 2 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xcfa, 0xe560 (code in `mmo_SaveToVn1`).
 - `mgesi_Points`: address 0xb2fe, `entry.S` line 1019 (20 words). Reached: geif slot 214 (entry 429); distributor relocated word.
   **Inferred** role: point vertex entry: loads one code address of the point decomposition and ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (5), float add (2); loads 1 constant.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xd10.
 - `mgeb_RasterPos`: address 0xb2d2, `entry.S` line 1044 (42 words). Reached: geif slot 169 (entry 339); distributor relocated word.
   **Inferred** role: raster position: transforms the four position words with float multiplies and adds and loads the address of the module that saves the raster position.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations float multiply (12), float add (8), move (6), float multiply-add (4), operation 0x6d1 (1); reads engine memory at 0x138a; loads 3 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xe623 (code in `mmo_SaveRasterPos`), 0xd10, 0x4.
 
 ### ERAMBlockClear.s
@@ -996,14 +996,14 @@ Evaluator polynomial inner loops of general order in U and V, with derivatives. 
   It has no jump of its own and runs on into `lPOLYVVORDERLOOP`.
 - `lPOLYVVORDERLOOP`: address 0x05ad, `eval.s` line 227 (29 words). Reached: inside `umo_EvalPolyV`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (24), float add (4); takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `lPOLYVUORDERLOOP`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `lPOLYVUORDERLOOP`.
 - `umo_EvalPolyU`: address 0x05ca, `eval.s` line 290 (37 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: evaluator stage for the u direction: multiply-add chains over the coefficients.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (11), float multiply-add (9), float subtract (3), move (3), AND (1), integer-to-float conversion (1); sets the condition flags once.
   It has no jump of its own and runs on into `lPOLYUUORDERLOOP`.
 - `lPOLYUUORDERLOOP`: address 0x05ef, `eval.s` line 328 (26 words). Reached: inside `umo_EvalPolyU`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (18), float add (6), float multiply (2); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_EvalPolyVdV`: address 0x0609, `eval.s` line 394 (28 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: evaluator stage for v with its derivative: set-up, then its order loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (2), AND (1), integer-to-float conversion (1), move (1); sets the condition flags once.
@@ -1013,7 +1013,7 @@ Evaluator polynomial inner loops of general order in U and V, with derivatives. 
   It has no jump of its own and runs on into `lPOLYVDVVORDERLOOP`.
 - `lPOLYVDVVORDERLOOP`: address 0x0635, `eval.s` line 440 (41 words). Reached: inside `umo_EvalPolyVdV`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (20), float multiply (8), float subtract (8), float add (4); takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `lPOLYVDVUORDERLOOP`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `lPOLYVDVUORDERLOOP`.
 - `umo_EvalPolyUdU`: address 0x065e, `eval.s` line 520 (22 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: evaluator stage for u with its derivative: set-up, then its size loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (2), move (2), AND (1), integer-to-float conversion (1); sets the condition flags once.
@@ -1022,16 +1022,16 @@ Evaluator polynomial inner loops of general order in U and V, with derivatives. 
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (12), float multiply-add (4), move (4).
   It has no jump of its own and runs on into `lPOLYUDUUORDERLOOP`.
 - `lPOLYUDUUORDERLOOP`: address 0x0684, `eval.s` line 560 (41 words). Reached: inside `umo_EvalPolyUdU`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (20), float subtract (9), float multiply (8), float add (4), move (1); 2 words in the output-instruction form of the diagnostic test; takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `lPOLYUDUUSIZELOOP`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (20), float subtract (9), float multiply (8), float add (4), move (1); 2 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 2 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `lPOLYUDUUSIZELOOP`.
 - `umo_EvalComputeNormals3D`: address 0x06ad, `eval.s` line 628 (83 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: computes evaluated-surface normals for 3D control points: cross products by float multiplies and a reciprocal square root to normalise.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (32), float subtract (6), float add (4), reciprocal square-root Newton step (4), reciprocal square-root seed (2), second-unit move (2), move (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_EvalComputeNormals4D`: address 0x0700, `eval.s` line 748 (111 words). Reached: its address loaded as a constant in `mGL_EM_Initialize` and 1 other label.
   **Inferred** role: computes evaluated-surface normals for 4D (rational) control points: more multiplies than the 3D form and a reciprocal square root.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (56), float subtract (18), second-unit move (6), float add (4), reciprocal square-root Newton step (4), reciprocal square-root seed (2), move (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### eval1.s
 
@@ -1043,22 +1043,22 @@ Evaluator polynomial loops of order 1. **Inferred** from its labels and callers.
   It has no jump of its own and runs on into `lPOLY1VLOOP`.
 - `lPOLY1VLOOP`: address 0x0783, `eval1.s` line 104 (11 words). Reached: inside `umo_EvalPoly1V`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_EvalPoly1U`: address 0x078e, `eval1.s` line 144 (22 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: first-order evaluator stage for u: nine moves and two words to the output port.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9); 2 words in the output-instruction form of the diagnostic test.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9); 2 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here).
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_EvalPoly1VdV`: address 0x07a4, `eval1.s` line 192 (13 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: first-order evaluator stage for v with derivative: set-up, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
   It has no jump of its own and runs on into `lPOLY1VDVLOOP`.
 - `lPOLY1VDVLOOP`: address 0x07b1, `eval1.s` line 205 (18 words). Reached: inside `umo_EvalPoly1VdV`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (16); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_EvalPoly1UdU`: address 0x07c3, `eval1.s` line 250 (34 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: first-order evaluator stage for u with derivative: 17 moves and five words to the output port.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (17); 5 words in the output-instruction form of the diagnostic test.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (17); 5 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here).
+  It ends the command with an indirect transfer in condition group 31.
 
 ### eval2.s
 
@@ -1070,25 +1070,25 @@ Evaluator polynomial loops of order 2. **Inferred** from its labels and callers.
   It has no jump of its own and runs on into `lPOLY2VLOOP`.
 - `lPOLY2VLOOP`: address 0x07fa, `eval2.s` line 139 (22 words). Reached: inside `umo_EvalPoly2V`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (8), float multiply-add (8), float add (4); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_EvalPoly2U`: address 0x0810, `eval2.s` line 189 (35 words). Reached: its address loaded as a constant in `mGL_EM_Initialize` and 1 other label.
   **Inferred** role: second-order evaluator stage for u: float multiplies and adds over the coefficients.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (14), float add (6), move (3), float multiply-add (2), float subtract (2).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_EvalPoly2VdV`: address 0x0833, `eval2.s` line 253 (24 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: second-order evaluator stage for v with derivative: set-up, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (1), move (1).
   It has no jump of its own and runs on into `lPOLY2VDVLOOP`.
 - `lPOLY2VDVLOOP`: address 0x084b, `eval2.s` line 278 (26 words). Reached: inside `umo_EvalPoly2VdV`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (8), float multiply (8), operation 0x6e3 (4); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_EvalPoly2UdU`: address 0x0865, `eval2.s` line 333 (13 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: second-order evaluator stage for u with derivative: set-up, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), float subtract (2).
   It has no jump of its own and runs on into `lPOLY2UDULOOP`.
 - `lPOLY2UDULOOP`: address 0x0872, `eval2.s` line 347 (17 words). Reached: inside `umo_EvalPoly2UdU`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (4), float multiply (4), float multiply-add (4), operation 0x6e3 (4), move (2); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### eval4.s
 
@@ -1100,25 +1100,25 @@ Evaluator polynomial loops of order 4. **Inferred** from its labels and callers.
   It has no jump of its own and runs on into `lPOLY4VLOOP`.
 - `lPOLY4VLOOP`: address 0x0894, `eval4.s` line 152 (41 words). Reached: inside `umo_EvalPoly4V`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (28), float multiply (8), float add (4); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_EvalPoly4U`: address 0x08bd, `eval4.s` line 220 (53 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: fourth-order evaluator stage for u: 22 multiply-adds over the coefficients.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (22), float multiply (14), float add (6), float subtract (2), second-unit move (2), move (1); 1 word in the output-instruction form of the diagnostic test.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (22), float multiply (14), float add (6), float subtract (2), second-unit move (2), move (1); 1 word stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here).
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_EvalPoly4VdV`: address 0x08f2, `eval4.s` line 307 (18 words). Reached: its address loaded as a constant in `mGL_EM_Initialize` and 1 other label.
   **Inferred** role: fourth-order evaluator stage for v with derivative: set-up, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (1), move (1).
   It has no jump of its own and runs on into `lPOLY4VDVLOOP`.
 - `lPOLY4VDVLOOP`: address 0x0904, `eval4.s` line 326 (41 words). Reached: inside `umo_EvalPoly4VdV`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (24), float add (8), float multiply-add (8), float subtract (8); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_EvalPoly4UdU`: address 0x092d, `eval4.s` line 400 (13 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: fourth-order evaluator stage for u with derivative: set-up, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2), float subtract (1).
   It has no jump of its own and runs on into `lPOLY4UDULOOP`.
 - `lPOLY4UDULOOP`: address 0x093a, `eval4.s` line 414 (40 words). Reached: inside `umo_EvalPoly4UdU`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (21), float add (9), float subtract (9), float multiply-add (7), move (1); 1 word in the output-instruction form of the diagnostic test; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (21), float add (9), float subtract (9), float multiply-add (7), move (1); 1 word stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### evalbasis.s
 
@@ -1127,28 +1127,28 @@ Evaluator change of basis for orders 1-8. **Inferred** from its labels and calle
 - `uEvalChangeBasis1and2`: address 0x09f5, `evalbasis.s` line 92 (15 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: evaluator basis change for orders one and two, which needs no arithmetic: it ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `uEvalChangeBasis3`: address 0x0a04, `evalbasis.s` line 128 (8 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: evaluator basis change for order three: set-up, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
   It has no jump of its own and runs on into `lCB3LOOP`.
 - `lCB3LOOP`: address 0x0a0c, `evalbasis.s` line 137 (22 words). Reached: inside `uEvalChangeBasis3`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (1), float multiply (1), float subtract (1), move (1); takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `uEvalChangeBasis4`: address 0x0a22, `evalbasis.s` line 181 (16 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: evaluator basis change for order four: multiplies and subtracts, then its polynomial loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), float multiply (3), float subtract (2).
   It has no jump of its own and runs on into `lCB4POLYLOOP`.
 - `lCB4POLYLOOP`: address 0x0a32, `evalbasis.s` line 198 (22 words). Reached: inside `uEvalChangeBasis4`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (5), float add (1), float multiply-add (1), float subtract (1); takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `uEvalChangeBasis5`: address 0x0a48, `evalbasis.s` line 243 (26 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: evaluator basis change for order five: multiplies, subtracts and adds, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8), float multiply (5), float subtract (5), float add (2).
   It has no jump of its own and runs on into `lCB5LOOP`.
 - `lCB5LOOP`: address 0x0a62, `evalbasis.s` line 270 (24 words). Reached: inside `uEvalChangeBasis5`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (8), float add (2), float multiply-add (2); takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `uEvalChangeBasis6`: address 0x0a7a, `evalbasis.s` line 318 (31 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: evaluator basis change for order six: multiplies and subtracts, then its matrix loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9), float multiply (7), float subtract (5), float add (4), float multiply-add (1).
@@ -1158,14 +1158,14 @@ Evaluator change of basis for orders 1-8. **Inferred** from its labels and calle
   It has no jump of its own and runs on into `lCB6LOOP`.
 - `lCB6LOOP`: address 0x0a9a, `evalbasis.s` line 352 (28 words). Reached: inside `uEvalChangeBasis6`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (11), float multiply-add (4), float add (2), float subtract (2); takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `lCB6MATRIXLOOP`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `lCB6MATRIXLOOP`.
 - `uEvalChangeBasis7`: address 0x0ab6, `evalbasis.s` line 405 (40 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: evaluator basis change for order seven: multiplies and subtracts, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (14), float subtract (12), move (6), float add (3).
   It has no jump of its own and runs on into `lCB7LOOP`.
 - `lCB7LOOP`: address 0x0ade, `evalbasis.s` line 446 (30 words). Reached: inside `uEvalChangeBasis7`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (12), float multiply-add (5), float add (2), float subtract (2); takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `uEvalChangeBasis8`: address 0x0afc, `evalbasis.s` line 502 (51 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: evaluator basis change for order eight: multiplies and subtracts, then its matrix loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (15), float subtract (15), move (11), float add (4), float multiply-add (1).
@@ -1175,14 +1175,14 @@ Evaluator change of basis for orders 1-8. **Inferred** from its labels and calle
   It has no jump of its own and runs on into `lCB8LOOP`.
 - `lCB8LOOP`: address 0x0b31, `evalbasis.s` line 557 (31 words). Reached: inside `uEvalChangeBasis8`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (12), float multiply (8), float add (1); takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `lCB8MATRIXLOOP`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `lCB8MATRIXLOOP`.
 - `uEvalChangeBasis4x4`: address 0x0b50, `evalbasis.s` line 613 (10 words). Reached: inside `uEvalChangeBasis8`, reached from that routine's own code.
   **Inferred** role: second entry inside the order-eight basis change for a 4x4 case: four moves and two subtracts, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), float subtract (2).
   It has no jump of its own and runs on into `lCB4X4LOOP`.
 - `lCB4X4LOOP`: address 0x0b5a, `evalbasis.s` line 624 (43 words). Reached: inside `uEvalChangeBasis4x4`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (12), float subtract (12), float multiply-add (10), float add (6); 7 words in the output-instruction form of the diagnostic test; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (12), float subtract (12), float multiply-add (10), float add (6); 7 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### evalmisc.s
 
@@ -1202,19 +1202,19 @@ Evaluator state save, load and swap for 1D and 2D maps. **Inferred** from its la
   It jumps to `mWramToEram`.
 - `uEvalLoadState1D`: address 0x099b, `evalmisc.s` line 160 (18 words). Reached: transfers in `mgeb_EvalMapData1D` and 2 other labels.
   **Inferred** role: loads the one-dimensional evaluator state through the ERAM-to-WRAM copy.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2), operation 0x6f1 (1).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2), float-to-integer conversion (1).
   It jumps to `mEramToWram`.
 - `uEvalLoadState2D`: address 0x09ad, `evalmisc.s` line 194 (18 words). Reached: transfers in `lstrip2dreturn` and 3 other labels.
   **Inferred** role: loads the two-dimensional evaluator state through the ERAM-to-WRAM copy.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2), operation 0x6f1 (1).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2), float-to-integer conversion (1).
   It jumps to `mEramToWram`.
 - `uEvalSwapState1D`: address 0x09bf, `evalmisc.s` line 228 (27 words). Reached: transfers in `mgeb_EvalMapData2D` and 2 other labels.
   **Inferred** role: swaps in the one-dimensional evaluator state: one copy out to ERAM and one back.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), operation 0x6f1 (1).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), float-to-integer conversion (1).
   It jumps to `mWramToEram` and `mEramToWram`.
 - `uEvalSwapState2D`: address 0x09da, `evalmisc.s` line 272 (27 words). Reached: transfers in `mgeb_EvalMapData1D` and 2 other labels.
   **Inferred** role: swaps in the two-dimensional evaluator state: one copy out to ERAM and one back.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), operation 0x6f1 (1).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), float-to-integer conversion (1).
   It jumps to `mWramToEram` and `mEramToWram`.
 
 ### expand.s
@@ -1237,7 +1237,7 @@ Pixel-path component expansion (RGB, LA, CI, single component), added by AddExpa
   It has no jump of its own and runs on into `epilogue_exp_rgb`.
 - `epilogue_exp_rgb`: address 0x1785, `expand.s` line 206 (30 words). Reached: transfers in `expand_rgb`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (20).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `expand_la`: address 0x17a3, `expand.s` line 248 (8 words). Reached: transfers in `mmo_Expand`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_exp_la`.
@@ -1246,7 +1246,7 @@ Pixel-path component expansion (RGB, LA, CI, single component), added by AddExpa
   It has no jump of its own and runs on into `epilogue_exp_la`.
 - `epilogue_exp_la`: address 0x17c8, `expand.s` line 291 (30 words). Reached: transfers in `expand_la`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (10), move (10).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `expand_l`: address 0x17e6, `expand.s` line 333 (9 words). Reached: transfers in `mmo_Expand`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_exp_l`.
@@ -1255,7 +1255,7 @@ Pixel-path component expansion (RGB, LA, CI, single component), added by AddExpa
   It has no jump of its own and runs on into `epilogue_exp_l`.
 - `epilogue_exp_l`: address 0x180c, `expand.s` line 377 (30 words). Reached: transfers in `expand_l`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (10), move (10).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `expand_ci`: address 0x182a, `expand.s` line 418 (20 words). Reached: transfers in `mmo_Expand`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 2 loops.
   It has no jump of its own and runs on into `mainloop_exp_ci`.
@@ -1264,7 +1264,7 @@ Pixel-path component expansion (RGB, LA, CI, single component), added by AddExpa
   It has no jump of its own and runs on into `epilogue_exp_ci`.
 - `epilogue_exp_ci`: address 0x185b, `expand.s` line 475 (30 words). Reached: transfers in `expand_ci`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (20).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `expand_ci2`: address 0x1879, `expand.s` line 517 (8 words). Reached: transfers in `expand_ci`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_exp_ci2`.
@@ -1273,7 +1273,7 @@ Pixel-path component expansion (RGB, LA, CI, single component), added by AddExpa
   It has no jump of its own and runs on into `epilogue_exp_ci2`.
 - `epilogue_exp_ci2`: address 0x189e, `expand.s` line 560 (41 words). Reached: transfers in `expand_ci2`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (24).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `expand_single`: address 0x18c7, `expand.s` line 616 (24 words). Reached: transfers in `mmo_Expand`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3); closes 1 loop.
   It has no jump of its own and runs on into `mainloop_exp_single`.
@@ -1282,7 +1282,7 @@ Pixel-path component expansion (RGB, LA, CI, single component), added by AddExpa
   It has no jump of its own and runs on into `epilogue_exp_single`.
 - `epilogue_exp_single`: address 0x18fc, `expand.s` line 682 (50 words). Reached: transfers in `expand_single`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (23).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ARM functions and host tokens that send these handlers:
 
@@ -1306,27 +1306,27 @@ Feedback mode: begin and end, and the point, line, triangle and pixel feedback r
   Constants loaded: 0xefffffff.
 - `mmo_FeedbackTriangle`: address 0xb76e, `feedback.S` line 166 (80 words). Reached: its address loaded as a constant in `mgeb_PolygonSetup_Feedback`.
   **Inferred** role: feedback output for a triangle: writes the polygon token (0x703) and calls the vertex feedback routine.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (19), integer add (6), integer-to-float conversion (4), AND (3), NOT (2), float add (2), operation 0x6f1 (1), second-unit operation 0xff (1); sets the condition flags 5 times; writes 7 words to the raster-bus output addresses; loads 5 constants; takes 4 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (19), integer add (6), integer-to-float conversion (4), AND (3), NOT (2), float add (2), float-to-integer conversion (1), second-unit operation 0xff (1); sets the condition flags 5 times; writes 7 words to the raster-bus output addresses; loads 5 constants; takes 4 conditional transfers.
   It calls `mFeedbackVertex`; ends with the end-of-command wait; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x703, 0, 0x452, 0x476, 0x477.
 - `mmo_FeedbackLine`: address 0xb89a, `feedback.S` line 320 (85 words). Reached: its address loaded as a constant in `mgeb_LineWidth_Feedback`.
   **Inferred** role: feedback output for a line: writes the line token (0x702, or 0x707 for a reset line) and calls the vertex feedback routine.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (19), AND (5), integer add (5), integer-to-float conversion (4), NOT (2), float add (2), operation 0x6f1 (1), second-unit operation 0xff (1); sets the condition flags 7 times; writes 7 words to the raster-bus output addresses; loads 7 constants; takes 4 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (19), AND (5), integer add (5), integer-to-float conversion (4), NOT (2), float add (2), float-to-integer conversion (1), second-unit operation 0xff (1); sets the condition flags 7 times; writes 7 words to the raster-bus output addresses; loads 7 constants; takes 4 conditional transfers.
   It calls `mFeedbackVertex`; ends with the end-of-command wait; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x702, 0x707, 0x20000000, 0, 0x452, 0x476, 0x477.
 - `mmo_FeedbackPoint`: address 0xb80f, `feedback.S` line 479 (72 words). Reached: its address loaded as a constant in `mgebi_PointSize_Feedback`.
   **Inferred** role: feedback output for a point: writes the point token (0x701) and calls the vertex feedback routine.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (20), integer add (4), AND (3), NOT (2), float add (2), integer-to-float conversion (2), operation 0x6f1 (1), second-unit operation 0xff (1); sets the condition flags 5 times; writes 7 words to the raster-bus output addresses; loads 5 constants; takes 4 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (20), integer add (4), AND (3), NOT (2), float add (2), integer-to-float conversion (2), float-to-integer conversion (1), second-unit operation 0xff (1); sets the condition flags 5 times; writes 7 words to the raster-bus output addresses; loads 5 constants; takes 4 conditional transfers.
   It calls `mFeedbackVertex`; ends with the end-of-command wait; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x701, 0, 0x452, 0x476, 0x477.
 - `mFeedbackVertex`: address 0xb93f, `feedback.S` line 612 (85 words). Reached: transfers in `mmo_FeedbackLine` and 2 other labels.
   **Inferred** role: writes one feedback vertex: multiply-adds to window coordinates, scaling by 1/16 and 2^-20, two raster bus words, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (24), move (20), float multiply (12), float add (10), float subtract (4), clamp at zero (2); writes 2 words to the raster-bus output addresses; loads 2 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.0625 (0x3d800000), 9.536743e-07 (0x35800000).
 - `mgesi_FeedbackPixel`: address 0xb6bc, `feedback.S` line 737 (65 words). Reached: geif slot 419 (entry 839); the ARM functions that send it are in the table below.
   **Inferred** role: feedback output for a pixel operation, with the same 1/16 and 2^-20 scaling.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (24), integer add (3), float multiply (2), clamp at zero (1), integer-to-float conversion (1), operation 0x6f1 (1); writes 7 words to the raster-bus output addresses; reads engine memory at 10 addresses from 0x28 to 0x33; loads 5 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (24), integer add (3), float multiply (2), clamp at zero (1), float-to-integer conversion (1), integer-to-float conversion (1); writes 7 words to the raster-bus output addresses; reads engine memory at 10 addresses from 0x28 to 0x33; loads 5 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0.0625 (0x3d800000), 9.536743e-07 (0x35800000), 0x476, 0x452, 0x477.
 
@@ -1345,52 +1345,52 @@ FFT pixel path (sizes 2 to 256), transpose and complex output, set up by SetupGE
 - `mmo_FFT_2`: address 0x37cb, `fft.S` line 764 (11 words). Reached: geif slot 440 (entry 881).
   **Inferred** role: two-point FFT stage: float adds and subtracts, then it ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), float add (2), float subtract (2).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_FFT_4`: address 0x37aa, `fft.S` line 810 (25 words). Reached: geif slot 441 (entry 883).
   **Inferred** role: four-point FFT stage: eight butterfly adds and subtracts.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (8), float subtract (8), move (6), second-unit move (2).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_FFT_8`: address 0x375e, `fft.S` line 858 (62 words). Reached: geif slot 442 (entry 885).
   **Inferred** role: eight-point FFT stage: butterflies with four twiddle multiplies.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (15), float add (13), float subtract (13), float multiply (4), second-unit move (2), second-unit move or minimum (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_FFT_16`: address 0x36c0, `fft.S` line 941 (139 words). Reached: geif slot 443 (entry 887); the ARM functions that send it are in the table below.
   **Inferred** role: 16-point FFT stage: butterflies and twiddle multiplies.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (35), float subtract (35), move (27), float multiply (12), second-unit move (8), second-unit move or minimum (3).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_FFT_32`: address 0x35c1, `fft.S` line 1027 (190 words). Reached: geif slot 444 (entry 889); the ARM functions that send it are in the table below.
   **Inferred** role: 32-point FFT stage: butterflies and twiddle multiplies.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (40), float subtract (40), move (39), float multiply (16), second-unit move (8), second-unit move or minimum (1); 6 words in the output-instruction form of the diagnostic test; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (40), float subtract (40), move (39), float multiply (16), second-unit move (8), second-unit move or minimum (1); 6 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 3 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_FFT_64`: address 0x3488, `fft.S` line 1090 (245 words). Reached: geif slot 445 (entry 891).
   **Inferred** role: 64-point FFT stage: butterflies and twiddle multiplies.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (54), float subtract (54), move (46), float multiply (24), second-unit move (12), second-unit move or minimum (2); 9 words in the output-instruction form of the diagnostic test; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (54), float subtract (54), move (46), float multiply (24), second-unit move (12), second-unit move or minimum (2); 9 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 3 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_FFT_128`: address 0x330f, `fft.S` line 1155 (293 words). Reached: geif slot 446 (entry 893); the ARM functions that send it are in the table below.
   **Inferred** role: 128-point FFT stage: butterflies and twiddle multiplies.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (59), float subtract (59), move (55), float multiply (28), second-unit move (12), second-unit move or minimum (3); 8 words in the output-instruction form of the diagnostic test; takes 5 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (59), float subtract (59), move (55), float multiply (28), second-unit move (12), second-unit move or minimum (3); 8 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 5 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_FFT_256`: address 0x315b, `fft.S` line 1219 (349 words). Reached: geif slot 447 (entry 895); the ARM functions that send it are in the table below.
   **Inferred** role: 256-point FFT stage: butterflies and twiddle multiplies.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (73), float subtract (73), move (62), float multiply (36), second-unit move (16), second-unit move or minimum (4); 11 words in the output-instruction form of the diagnostic test; takes 5 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (73), float subtract (73), move (62), float multiply (36), second-unit move (16), second-unit move or minimum (4); 11 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 5 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_Complex_Out`: address 0x3133, `fft.S` line 1385 (30 words). Reached: geif slot 448 (entry 897).
   **Inferred** role: FFT output stage for complex results: moves and one conditional transfer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (18), second-unit move (3), NOT (1); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_Complex_Sort_Out`: address 0x30d4, `fft.S` line 1489 (55 words). Reached: geif slot 449 (entry 899).
   **Inferred** role: FFT output stage that reorders the complex results: 27 moves and one conditional transfer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (27), NOT (1); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mgesi_PixRasterPosSetup_FFT`: address 0x3051, `fft.S` line 1667 (105 words). Reached: geif slot 452 (entry 905); the ARM functions that send it are in the table below.
   **Inferred** role: raster-position set-up for an FFT pixel operation: three operand words, minimum and maximum bounds and raster constants.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations move (36), float add (5), float multiply (4), integer-to-float conversion (3), NOT (2), maximum (2), minimum (2), operation 0x6f1 (2), operation 0x6f9 (2), AND (1); sets the condition flags once; writes 13 words to the raster-bus output addresses; loads 30 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations move (36), float add (5), float multiply (4), integer-to-float conversion (3), NOT (2), float-to-integer conversion (2), maximum (2), minimum (2), operation 0x6f9 (2), AND (1); sets the condition flags once; writes 13 words to the raster-bus output addresses; loads 30 constants.
   It waits on its own address under another condition group.
   Constants loaded: 0x3fc2, 8.0 (0x41000000), 0x400f0f00, 0xf0000, 0x806, 0x3fd3, 0x3fce (code in `mgeb_PixMapOutputRGBA`), 0x3fcd and 20 more.
 - `mmo_Transpose`: address 0x3026, `fft.S` line 2050 (43 words). Reached: geif slot 450 (entry 901); the ARM functions that send it are in the table below.
   **Inferred** role: transpose stage of the FFT pixel path.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (11), float add (7), AND (1), integer add (1), integer-to-float conversion (1), operation 0x6dd (1), second-unit move or minimum (1); writes 3 words to the raster-bus output addresses; stores 1 word to engine address 0x1a2; reads engine memory at 0x1389; loads 12 constants.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (11), float add (7), AND (1), integer add (1), integer-to-float conversion (1), logical shift right (1), second-unit move or minimum (1); writes 3 words to the raster-bus output addresses; stores 1 word to control-memory address 0x1a2; reads engine memory at 0x1389; loads 12 constants.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x400c0c00, 0xc0000, 0x3fcd, 35.0 (0x420c0000), 0x3eff0000, 0x8002000, 0xff, 0x2200000 and 3 more.
 - `mgeb_PixDrawColorSetup_FFT`: address 0x3000, `fft.S` line 2191 (15 words). Reached: geif slot 451 (entry 903); the ARM functions that send it are in the table below.
   **Inferred** role: draw-colour set-up for an FFT pixel operation: tests two operand words and branches.
@@ -1422,11 +1422,11 @@ Pixel-path float-to-integer stage, added by AddF2I. **Inferred** from its labels
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float multiply (2); closes 1 loop.
   It has no jump of its own and runs on into `mainloop_f2i`.
 - `mainloop_f2i`: address 0x277c, `floattoint.s` line 94 (29 words). Reached: inside `mmo_FloatToInt`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (24), operation 0x6f1 (24); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (24), float-to-integer conversion (24); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_f2i`.
 - `epilogue_f2i`: address 0x2799, `floattoint.s` line 126 (51 words). Reached: transfers in `mmo_FloatToInt`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (23), operation 0x6f1 (23).
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (23), float-to-integer conversion (23).
+  It ends the command with an indirect transfer in condition group 31.
 
 ARM functions and host tokens that send these handlers:
 
@@ -1448,21 +1448,21 @@ Geometry pipeline control: module dirty flags, multipass, punt and the vertex sa
   Constants loaded: 0x8, 0xe623 (code in `mmo_SaveRasterPos`), 0x70000.
 - `mdc_polymode_or_clip`: address 0xe4d0, `fluff.S` line 121 (3 words). Reached: transfers in `mDispatchCentral`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mdc_sprite`: address 0xe4b6, `fluff.S` line 140 (9 words). Reached: transfers in `mDispatchCentral`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); takes 2 conditional transfers.
   It calls `mEramToCram`; jumps to `mdc_finish`; conditional transfers reach `mdc_multipass` and 1 other label.
 - `mdc_multipass`: address 0xe471, `fluff.S` line 169 (29 words). Reached: transfers in `mDispatchCentral` and 1 other label.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (7), AND (1), OR (1), operation 0x6d1 (1); sets the condition flags once; loads 3 constants; takes 2 conditional transfers.
-  It calls `mEramToCram`; ends the command by jumping to `HereWeGo`; jumps to `mdc_finish`; conditional transfers reach `mdc_evaluator`.
+  It calls `mEramToCram`; ends the command with an indirect transfer in condition group 31; jumps to `mdc_finish`; conditional transfers reach `mdc_evaluator`.
   Constants loaded: 0x80, 0xfffffff7, 0xca01 (code in `mmo_DummyDecompose`).
 - `mdc_evaluator`: address 0xe462, `fluff.S` line 239 (4 words). Reached: transfers in `mDispatchCentral` and 2 other labels.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_AbortGeometry`: address 0xe6e8, `fluff.S` line 264 (38 words). Reached: transfers in `lCU2` and 17 other labels.
   **Inferred** role: abandons the current primitive: tests the abort flags, writes one raster bus word and ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (11), AND (3), integer subtract or compare (1); sets the condition flags 4 times; writes 1 word to the raster-bus output addresses; reads engine memory at 0x14d5; loads 5 constants; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; ends with the end-of-command wait; jumps within its own code; conditional transfers reach `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31; ends with the end-of-command wait; jumps within its own code; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x10, 0xe623 (code in `mmo_SaveRasterPos`), 0x70000, 0xe3d2 (code in `mmo_Punt`), 0xe730 (code in `mmo_AbortGeometry`).
 - `mmo_SaveRasterPos`: address 0xe623, `fluff.S` line 459 (65 words). Reached: its address loaded as a constant in `mRecordHit` and 3 other labels.
   **Inferred** role: saves the raster position: reads 15 vertex-record words (offsets 11 to 38), transforms them and copies them out with the WRAM-to-ERAM copy.
@@ -1472,43 +1472,43 @@ Geometry pipeline control: module dirty flags, multipass, punt and the vertex sa
 - `mmo_Vn2ToSave`: address 0xe4de, `fluff.S` line 625 (20 words). Reached: its address loaded as a constant in `mgesi_QuadStripSave` and 2 other labels.
   **Inferred** role: vertex-cache step that moves the vertex two back into the save slot (nine moves).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_SaveToV0`: address 0xe605, `fluff.S` line 656 (19 words). Reached: its address loaded as a constant in `mgesi_QuadStripRestore` and 5 other labels.
   **Inferred** role: vertex-cache step that moves the saved vertex into slot 0 (nine moves).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_SaveToV0AndVn2ToSave`: address 0xe57e, `fluff.S` line 687 (34 words). Reached: its address loaded as a constant in `mgesi_QuadStripRestoreSave` and 2 other labels.
   **Inferred** role: vertex-cache step doing both moves above (17 moves).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (17).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_V0ToSave`: address 0xe544, `fluff.S` line 731 (19 words). Reached: its address loaded as a constant in `mgesi_LineStripSaveV0` and 1 other label.
   **Inferred** role: vertex-cache step that moves the current vertex (record words 27 to 34) into the save slot.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 27 to 34; operations move (9).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_SaveToVn1`: address 0xe560, `fluff.S` line 766 (20 words). Reached: its address loaded as a constant in `mgesi_LineStripRestoreV0`.
   **Inferred** role: vertex-cache step that moves the saved vertex into the previous-vertex slot.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_CopyV0ToVn1`: address 0xe6d4, `fluff.S` line 796 (12 words). Reached: its address loaded as a constant in `mgesi_LineStripCopyV0`.
   **Inferred** role: vertex-cache step that copies the current vertex into the previous-vertex slot.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 27 to 34; operations move (9).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_V0ToSaveAndIgnore`: address 0xe4fd, `fluff.S` line 825 (21 words). Reached: its address loaded as a constant in `mgesi_LineStripSaveAndIgnoreV0`.
   **Inferred** role: saves the current vertex and draws nothing for it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 27 to 34; operations move (9).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_CopyV0ToVn1AndIgnore`: address 0xe6c0, `fluff.S` line 863 (15 words). Reached: its address loaded as a constant in `mgesi_LineStripCopyAndIgnoreV0`.
   **Inferred** role: copies the current vertex into the previous slot and draws nothing for it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 27 to 34; operations move (9).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_V0ToSave_SaveExtra`: address 0xe519, `fluff.S` line 895 (24 words). Reached: its address loaded as a constant in `mgesi_TfanPolySave`.
   **Inferred** role: saves the current vertex and its extra state through the WRAM-to-ERAM copy.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 27 to 34; operations move (9).
-  It calls `mWramToEram`; ends the command by jumping to `HereWeGo`.
+  It calls `mWramToEram`; ends the command with an indirect transfer in condition group 31.
 - `mmo_SaveToV0_SaveExtra`: address 0xe5a9, `fluff.S` line 932 (24 words). Reached: its address loaded as a constant in `mgesi_TfanPolyRestoreSave`.
   **Inferred** role: moves the saved vertex into slot 0 and saves the extra state.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9).
-  It calls `mWramToEram`; ends the command by jumping to `HereWeGo`.
+  It calls `mWramToEram`; ends the command with an indirect transfer in condition group 31.
 - `mmo_SaveToV0_RestoreExtra`: address 0xe5d7, `fluff.S` line 965 (35 words). Reached: its address loaded as a constant in `mgesi_TfanPolyRestoreEdge`.
   **Inferred** role: moves the saved vertex into slot 0 and restores the extra state.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (17).
@@ -1516,16 +1516,16 @@ Geometry pipeline control: module dirty flags, multipass, punt and the vertex sa
 - `mmo_Punt`: address 0xe3d2, `fluff.S` line 1002 (5 words). Reached: its address loaded as a constant in `mmo_AbortGeometry`.
   **Inferred** role: five-word module that gives up on the current primitive and ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_DirtyMultipassModule`: address 0xe6a5, `fluff.S` line 1016 (8 words). Reached: its address loaded as a constant in `mmo_DirtyPrePathModule`.
   **Inferred** role: selects the multipass module after a state change by loading its address.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1); loads 1 constant.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xe3e1 (code in `mmo_MultipassModule`).
 - `mmo_MultipassModule`: address 0xe3e1, `fluff.S` line 1038 (31 words). Reached: its address loaded as a constant in `mmo_DirtyMultipassModule`.
   **Inferred** role: multipass drawing: tests flags 0x80 and 0x10 and copies state between coefficient and external memory for each pass.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer subtract or compare (2), move (2), AND (1); sets the condition flags once; loads 3 constants; takes 1 conditional transfer.
-  It calls `mCramToEram` and `mEramToCram`; ends the command by jumping to `HereWeGo`; jumps within its own code.
+  It calls `mCramToEram` and `mEramToCram`; ends the command with an indirect transfer in condition group 31; jumps within its own code.
   Constants loaded: 0x80, 0x10.
 
 ### fog.S
@@ -1535,19 +1535,19 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
 - `mDummy`: address 0x7631, `fog.S` line 180 (1 word). Reached: no slot, ARM load, decoded transfer or address constant reaches it (routes tried: [How to read the tables](#how-to-read-the-entries)).
   **Inferred** role: one-word return routine; nothing in the program calls it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mZclipToEye`: address 0x7604, `fog.S` line 202 (29 words). Reached: transfers in `mCoarseTblSpecialEntry` and 6 other labels; its address loaded as a constant in `mLoadFogTable`.
   **Inferred** role: converts a clip-space depth to eye space: reciprocal steps, multiplies and a minimum, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (10), float add (4), reciprocal Newton step (4), minimum (2), operation 0x6ee (2).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mSendFog`: address 0x75d2, `fog.S` line 247 (22 words). Reached: its address loaded as a constant in `mStartFogDownload`.
   **Inferred** role: sends one fog value: float adds and multiplies and one raster bus word, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (4), float multiply (4), NOT (2); writes 1 word to the raster-bus output addresses; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `mZclipToEye`.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `mZclipToEye`.
 - `mFinishFogDownload`: address 0x75c3, `fog.S` line 316 (7 words). Reached: transfers in `mLoadFogTable` and 2 other labels; its address loaded as a constant in `mgeb_InitFogGlobal`.
   **Inferred** role: finishes a fog table download: one engine-memory read and a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); reads engine memory at 0x1389.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mSendFineTblSpecialEntry`: address 0x75ba, `fog.S` line 344 (3 words). Reached: its address loaded as a constant in `mFineTblSpecialEntry`.
   **Inferred** role: sends the special entry of the fine fog table: one multiply, then the download finish.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (1); loads 1 constant.
@@ -1561,7 +1561,7 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
 - `mSendCoarseTblSpecialEntry`: address 0x7595, `fog.S` line 389 (14 words). Reached: its address loaded as a constant in `mCoarseTblSpecialEntry`.
   **Inferred** role: sends the special entry of the coarse fog table: multiplies and moves, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (4), move (4).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mCoarseTblSpecialEntry`: address 0x74ff, `fog.S` line 448 (23 words). Reached: its address loaded as a constant in `mgeb_InitFogGlobal`.
   **Inferred** role: computes the special entry of the coarse fog table through the eye-depth conversion.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), float add (3), float multiply (1), integer-to-float conversion (1), operation 0x6ec (1), second-unit operation 0xff (1); reads engine memory at 2 addresses from 0x1414 to 0x1419; loads 3 constants.
@@ -1569,7 +1569,7 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
   Constants loaded: 0x7595 (code in `mSendCoarseTblSpecialEntry`), 0x7534 (code in `mSplineFogGSS`), 0x4.
 - `mSendOneBigTblSpecialEntry`: address 0x74f3, `fog.S` line 484 (12 words). Reached: its address loaded as a constant in `mOneBigTblSpecialEntry`.
   **Inferred** role: sends the special entry of the single large fog table: three raster bus words, then the download finish.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), float multiply (1), operation 0x6f1 (1); writes 3 words to the raster-bus output addresses; loads 5 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), float multiply (1), float-to-integer conversion (1); writes 3 words to the raster-bus output addresses; loads 5 constants.
   It jumps to `mFinishFogDownload`.
   Constants loaded: 0x400c000c, 0x70000, 0x10000, 0x1621403, 0x42011000.
 - `mOneBigTblSpecialEntry`: address 0x74e4, `fog.S` line 522 (8 words). Reached: its address loaded as a constant in `mgeb_InitFogGlobal`.
@@ -1584,7 +1584,7 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
 - `mLinearFog`: address 0x74a8, `fog.S` line 580 (9 words). Reached: its address loaded as a constant in `mgeb_Fogf`.
   **Inferred** role: linear fog value: subtract, multiply and clamp, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations clamp at zero (2), float multiply (2), float subtract (2).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mInitExpFog`: address 0x748a, `fog.S` line 644 (14 words). Reached: its address loaded as a constant in `mgeb_Fogf`.
   **Inferred** role: set-up for exponential fog: loads 256.0 and 127.9984 and reads the density from engine memory.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), float multiply (2); reads engine memory at 0x9df; loads 3 constants.
@@ -1592,12 +1592,12 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
   Constants loaded: 256.0 (0x43800000), 127.9984 (0x42ffff2e), 16.0 (0x41800000).
 - `mExpFog`: address 0x7431, `fog.S` line 686 (49 words). Reached: its address loaded as a constant in `mgeb_Fogf`.
   **Inferred** role: exponential fog value: table-based exponent with multiplies, clamps and a minimum, then a return.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (8), move (6), operation 0x6f1 (4), operation 0x6fb (4), clamp at zero (2), float subtract (2), minimum (2).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (8), move (6), float-to-integer conversion (4), operation 0x6fb (4), clamp at zero (2), float subtract (2), minimum (2).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mSplineSlopeAndOffset`: address 0x7404, `fog.S` line 777 (28 words). Reached: transfers in `mInitSplineFog` and 1 other label.
   **Inferred** role: slope and offset of one fog-spline interval: differences divided by reciprocal Newton steps, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (10), float subtract (6), reciprocal Newton step (4), float add (2).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mInitSplineFog`: address 0x73ec, `fog.S` line 826 (15 words). Reached: its address loaded as a constant in `mgeb_Fogf`.
   **Inferred** role: set-up for spline fog: reads the spline from engine memory and computes the first slope.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), second-unit move or minimum (4); reads engine memory at 0x9ed.
@@ -1622,7 +1622,7 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
 - `mLinearApproxErrorGSS`: address 0x7332, `fog.S` line 1089 (18 words). Reached: its address loaded as a constant in `mLinearApproxParamsGSS`.
   **Inferred** role: error of a linear approximation of the fog curve, compared during the golden-section search.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), float subtract (3), float add (2), float multiply (2), operation 0x6ee (2); sets the condition flags once; takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `mGetInternalPointsGSS`.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `mGetInternalPointsGSS`.
 - `mLinearApproxParamsGSS`: address 0x730b, `fog.S` line 1138 (17 words). Reached: its address loaded as a constant in `mStartGSS`.
   **Inferred** role: parameters of the linear fog approximation: reciprocal of the interval, then the inner points.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (4), float subtract (3), reciprocal Newton step (2), move (1), reciprocal seed (1); loads 1 constant.
@@ -1631,12 +1631,12 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
 - `mStartGSS`: address 0x783f, `fog.S` line 1167 (10 words). Reached: transfers in `mDefineCoarseMode` and 1 other label.
   **Inferred** role: starts a golden-section search: loads the address of the parameter routine and returns.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2), second-unit move or minimum (1); loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x730b (code in `mLinearApproxParamsGSS`).
 - `mDefineFineMode`: address 0x71c8, `fog.S` line 1222 (129 words). Reached: transfers in `mDefineCoarseMode`.
   **Inferred** role: builds the fine fog table: runs the search and scales into 4096 and 251-step ranges.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (28), float subtract (10), float multiply (7), float add (6), OR (1), XOR (1), integer subtract or compare (1), operation 0x6df (1); sets the condition flags 10 times; writes 3 words to the raster-bus output addresses; reads engine memory at 5 addresses from 0x9de to 0x142f; 1 word in the output-instruction form of the diagnostic test; loads 15 constants; takes 6 conditional transfers.
-  It calls `mStartGSS`; ends the command by jumping to `HereWeGo`; jumps within its own code; conditional transfers reach `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (28), float subtract (10), float multiply (7), float add (6), OR (1), XOR (1), integer subtract or compare (1), shift left (1); sets the condition flags 10 times; writes 3 words to the raster-bus output addresses; reads engine memory at 5 addresses from 0x9de to 0x142f; 1 word stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); loads 15 constants; takes 6 conditional transfers.
+  It calls `mStartGSS`; ends the command with an indirect transfer in condition group 31; jumps within its own code; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x801, 4096.0 (0x45800000), 251.0 (0x437b0000), 0.001 (0x3a83126f), 253.0 (0x437d0000), 0, 0x70000, 0x100ff and 4 more.
 - `mDefineCoarseMode`: address 0x7771, `fog.S` line 1490 (85 words). Reached: transfers in `mLoadFogTable`.
   **Inferred** role: builds the coarse fog table: runs the search with large float constants, then the fine table.
@@ -1666,11 +1666,11 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
 - `mSetFogOffset`: address 0x765c, `fog.S` line 1992 (38 words). Reached: transfers in `mResolveFogTable` and 2 other labels.
   **Inferred** role: computes the fog offset with reciprocal steps and a maximum, then returns.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (10), move (7), float add (2), maximum (2), reciprocal Newton step (2), float subtract (1), reciprocal seed (1); reads engine memory at 2 addresses from 0x9e9 to 0x9ea; loads 4 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x70000, 0xffffffff, 0x1651406, 0x4020000c.
 - `mgeb_Fogf`: address 0x6fb2, `fog.S` line 2079 (211 words). Reached: geif slot 352 (entry 705); the ARM functions that send it are in the table below; distributor table 1; transfers in `mgeb_Fogi`.
   **Inferred** role: GL fog call with a float parameter: compares the parameter name (XOR against GL fog enumerants), stores the value and rebuilds the table.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations move (52), XOR (15), float multiply (7), clamp at zero (4), AND (3), operation 0x6f1 (2), OR (1), integer subtract or compare (1), integer-to-float conversion (1), operation 0x6dd (1), operation 0x6df (1), operation 0x6ea (1); sets the condition flags 18 times; writes 12 words to the raster-bus output addresses; reads engine memory at 3 addresses from 0x9de to 0xa42; loads 49 constants; takes 14 conditional transfers; closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations move (52), XOR (15), float multiply (7), clamp at zero (4), AND (3), float-to-integer conversion (2), OR (1), integer subtract or compare (1), integer-to-float conversion (1), logical shift right (1), operation 0x6ea (1), shift left (1); sets the condition flags 18 times; writes 12 words to the raster-bus output addresses; reads engine memory at 3 addresses from 0x9de to 0xa42; loads 49 constants; takes 14 conditional transfers; closes 1 loop.
   It calls `mSetFogOffset` and `mLoadFogTable`; ends with the end-of-command wait; jumps within its own code.
   Constants loaded: 0xb63, 0xb64, 0xb65, 0xb62, 0xb66, 0xb61, 0x8199, 0x2601 and 24 more.
 - `mgeb_Fogi`: address 0x6fa5, `fog.S` line 2364 (4 words). Reached: geif slot 353 (entry 707); the ARM functions that send it are in the table below; distributor table 2.
@@ -1679,7 +1679,7 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
   It jumps to `mgeb_Fogf`.
 - `mgeb_FogEnable`: address 0x6f1e, `fog.S` line 2418 (51 words). Reached: geif slot 112 (entry 225); the ARM functions that send it are in the table below.
   **Inferred** role: enables fog: sets the fog flag bits and rebuilds the offset and table.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (12), float subtract (6), AND (2), NOT (1), operation 0x6f1 (1); sets the condition flags 7 times; reads engine memory at 6 addresses from 0xa36 to 0xa3b; loads 5 constants; takes 7 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (12), float subtract (6), AND (2), NOT (1), float-to-integer conversion (1); sets the condition flags 7 times; reads engine memory at 6 addresses from 0xa36 to 0xa3b; loads 5 constants; takes 7 conditional transfers.
   It calls `mSetFogOffset` and `mLoadFogTable`; ends with the end-of-command wait; jumps within its own code.
   Constants loaded: 0x70000, 0x100000, 0x1621403, 32.26953 (0x42011400), 0x4.
 - `mgebi_FogDisable`: address 0x6f05, `fog.S` line 2505 (18 words). Reached: geif slot 113 (entry 227); the ARM functions that send it are in the table below.
@@ -1699,7 +1699,7 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
   Constants loaded: 0x4.
 - `mgeb_FogFunc`: address 0x6e4b, `fog.S` line 2647 (45 words). Reached: geif slot 114 (entry 229); the ARM functions that send it are in the table below.
   **Inferred** role: GL fog func (SGIS) call: reads the point count and table words and rebuilds the table.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations move (8), OR (1), XOR (1), operation 0x6ea (1), operation 0x6f1 (1); sets the condition flags 2 times; reads engine memory at 0x9de; loads 4 constants; takes 3 conditional transfers; closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations move (8), OR (1), XOR (1), float-to-integer conversion (1), operation 0x6ea (1); sets the condition flags 2 times; reads engine memory at 0x9de; loads 4 constants; takes 3 conditional transfers; closes 1 loop.
   It calls `mLoadFogTable`; ends with the end-of-command wait; jumps within its own code.
   Constants loaded: 0, 0x7f800000, 0x812a, 0x4.
 - `mgesi_GetFogFunc`: address 0x6e20, `fog.S` line 2742 (23 words). Reached: geif slot 356 (entry 713).
@@ -1713,7 +1713,7 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
   It calls `mSetFogOffset` and `mLoadFogTable`; ends with the end-of-command wait.
 - `mgeb_InitFogGlobal`: address 0x6cf0, `fog.S` line 2821 (208 words). Reached: geif slot 355 (entry 711); the ARM functions that send it are in the table below.
   **Inferred** role: fog state initialisation: combines operand words with small constants by XOR and OR and branches on the result.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (61), XOR (11), OR (6), operation 0x6dd (5), second-unit operation 0xff (5), AND (4), integer subtract or compare (3), operation 0x6f1 (3), integer add (2), integer-to-float conversion (2); sets the condition flags 10 times; reads engine memory at 0x1389; loads 48 constants; takes 3 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (61), XOR (11), OR (6), logical shift right (5), second-unit operation 0xff (5), AND (4), float-to-integer conversion (3), integer subtract or compare (3), integer add (2), integer-to-float conversion (2); sets the condition flags 10 times; reads engine memory at 0x1389; loads 48 constants; takes 3 conditional transfers.
   It ends with the end-of-command wait; jumps within its own code.
   Constants loaded: 0x8, 0xf, 0x2, 0x7, 0x4, 0x5, 0x6, 0x74ff (code in `mCoarseTblSpecialEntry`) and 37 more.
 
@@ -1749,13 +1749,13 @@ Start-up and context initialisation of GL and X state, pipe set-up. **Inferred**
   It calls `mX_REGS_Initialize` and `mX_CM_Initialize`; ends with the end-of-command wait.
 - `mX_REGS_Initialize`: address 0xade8, `ge.S` line 132 (25 words). Reached: transfers in `mgeb_XContextInitialize`.
   **Inferred** role: initialises the engine registers for an X context: loads 0, 1.0 and the sign bit, then returns.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6f1 (4), move (3); loads 3 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float-to-integer conversion (4), move (3); loads 3 constants.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0, 1.0 (0x3f800000), 0x80000000.
 - `mGL_REGS_Initialize`: address 0xb25a, `ge.S` line 200 (26 words). Reached: transfers in `mgeb_GLContextInitialize` and 1 other label.
   **Inferred** role: initialises the engine registers for a GL context: loads 0, 0x14, 1.0 and the sign bit, then returns.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), operation 0x6f1 (4); loads 4 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float-to-integer conversion (4), move (4); loads 4 constants.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0, 0x14, 1.0 (0x3f800000), 0x80000000.
 - `mX_CM_Initialize`: address 0xadaf, `ge.S` line 279 (52 words). Reached: transfers in `mgeb_XContextInitialize`.
   **Inferred** role: initialises the X context's state words in engine memory: 18 mask and value constants.
@@ -1770,17 +1770,17 @@ Start-up and context initialisation of GL and X state, pipe set-up. **Inferred**
 - `mGL_EM_Initialize`: address 0xb0f4, `ge.S` line 496 (178 words). Reached: transfers in `mgeb_GlobalInitialize`.
   **Inferred** role: initialises the evaluator and math constants in engine memory: 86 constants, among them pi (0x40490fdb), -pi and pi/2.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (86); loads 86 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xc0490fdb, 0x40490fdb, 0x3c8efa35, 0x3fc90fdb, 0x4b400000, 0x40c90fdb, 0x3b360b61, 0x3941db50 and 56 more.
 - `mGL_EX_Initialize`: address 0xae09, `ge.S` line 941 (715 words). Reached: transfers in `mgeb_GLContextInitialize`.
   **Inferred** role: initialises the GL extension state: 246 constants, among them GL enumerants and module addresses, then returns.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (257), OR (2); loads 246 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x1b02, 0.5 (0x3f000000), 0, 1.0 (0x3f800000), 32.0 (0x42000000), 0x8a2, 0x8c2, 0x8e2 and 19 more.
 - `mDebugInitialize`: address 0xad90, `ge.S` line 985 (16 words). Reached: inside `mGL_EX_Initialize`, reached from that routine's own code.
   **Inferred** role: debug initialisation inside the extension initialiser: calls the ERAM clear and loads the marker 0xdeadbeef.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); loads 3 constants.
-  It calls `mClearEram`; returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It calls `mClearEram`; returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0, 0xdeadbeef.
 - `mgesi_PipeSetup`: address 0xab9d, `ge.S` line 1023 (224 words). Reached: geif slot 374 (entry 749); the ARM functions that send it are in the table below.
   **Inferred** role: pipe set-up from the ARM: four operand words, one raster bus word and a call to the print routine with a greeting string ("Welcome to GE...").
@@ -1803,8 +1803,8 @@ General (multi-light, local viewer) lighting loop. **Inferred** from its labels 
 
 - `mmo_LiColorMask`: address 0xd87e, `generallight.S` line 41 (26 words). Reached: its address loaded as a constant in `mmo_DirtyCullAndLightModule` and 1 other label.
   **Inferred** role: lighting colour-mask stage: converts integer colour components to float and masks them by the colour mask.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer-to-float conversion (6), AND (3), float multiply (2), move (2), operation 0x6f1 (2); loads 2 constants; takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `mmo_AbortGeometry`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer-to-float conversion (6), AND (3), float multiply (2), float-to-integer conversion (2), move (2); loads 2 constants; takes 2 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `mmo_AbortGeometry`.
   Constants loaded: 0xffffffef, 16.0 (0x41800000).
 - `mmo_LighterGeneral`: address 0xd85e, `generallight.S` line 147 (30 words). Reached: transfers in `mLiUpdateMtrlState`; its address loaded as a constant in `mLiPushMtrlInit` and 2 other labels.
   **Inferred** role: general lighting module entry: tests material flags and loads the per-vertex loop and colour code addresses before the primitive material set-up.
@@ -1814,7 +1814,7 @@ General (multi-light, local viewer) lighting loop. **Inferred** from its labels 
 - `mLiVtxLoop`: address 0xd8a0, `generallight.S` line 295 (27 words). Reached: transfers in `mLiPrimMtrlInit` and 1 other label; its address loaded as a constant in `mmo_LighterGeneral`.
   **Inferred** role: per-vertex lighting loop head: loads the back-colour and accumulation code addresses and returns.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (14); loads 2 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xd91a (code in `mLiBackClrInit`), 0xd943 (code in `mLiLocLiFrnClrInit`).
 - `mLiDirtyLocLiVwrLiSrcInit`: address 0xd9a2, `generallight.S` line 373 (27 words). Reached: its address loaded as a constant in `mgeb_LiDisableLightS` and 4 other labels.
   **Inferred** role: lighting set-up after a change to local lights, local viewer or light sources: picks the infinite or local path by three conditional transfers.
@@ -1824,34 +1824,34 @@ General (multi-light, local viewer) lighting loop. **Inferred** from its labels 
 - `mLiNoLightSrc`: address 0xd901, `generallight.S` line 492 (23 words). Reached: transfers in `mLiDirtyLocLiVwrLiSrcInit`; its address loaded as a constant in `mGL_CtxLightInitialize` and 1 other label.
   **Inferred** role: lighting with no enabled light: copies the emission and ambient terms (22 moves) and returns.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (22), second-unit move (7), second-unit move or minimum (2).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mLiInfVInfLiInit`: address 0xd9f7, `generallight.S` line 566 (68 words). Reached: transfers in `mLiDirtyLocLiVwrLiSrcInit`; its address loaded as a constant in `mLiDirtyLocLiVwrLiSrcInit`.
   **Inferred** role: lighting set-up for an infinite viewer and infinite lights: half-vector and colour products by float multiplies and adds.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (28), move (25), float add (10), second-unit move or minimum (8), second-unit move (4), operation 0x6ec (3), clamp at zero (2), float subtract (2), maximum (2), operation 0x6ea (1), operation 0x6ed (1); sets the condition flags 3 times; loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xd9c1 (code in `mLiLocLiFrnClrAccum`).
 - `mLiLocalViewer`: address 0xd8bc, `generallight.S` line 820 (61 words). Reached: transfers in `mLiDirtyLocLiVwrLiSrcInit`; its address loaded as a constant in `mLiDirtyLocLiVwrLiSrcInit`.
   **Inferred** role: lighting set-up for a local viewer: view vectors normalised by reciprocal and reciprocal-square-root steps.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (36), move (7), operation 0x6ec (6), float add (4), reciprocal Newton step (4), reciprocal square-root Newton step (4), operation 0x6eb (2), move of the second operand (1); sets the condition flags 2 times; loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x5f0ac723.
 - `mLiLocLiFrnClrAccum`: address 0xd9c1, `generallight.S` line 947 (54 words). Reached: its address loaded as a constant in `mLiInfVInfLiInit` and 4 other labels.
   **Inferred** role: front-colour accumulation for a local light: diffuse and specular terms with clamps.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (18), float multiply (14), move (12), operation 0x6ec (4), clamp at zero (2), float multiply-add (2), float subtract (2), maximum (2), second-unit move or minimum (1); sets the condition flags 2 times.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mLiLocLiFrnClrInit`: address 0xd943, `generallight.S` line 1146 (48 words). Reached: its address loaded as a constant in `mLiVtxLoop`.
   **Inferred** role: front-colour set-up for a local light: clamps and a maximum before the accumulation.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (22), float multiply (16), operation 0x6ec (4), clamp at zero (2), float add (2), float subtract (2), maximum (2), second-unit move (1), second-unit move or minimum (1); sets the condition flags 2 times; loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xd9c1 (code in `mLiLocLiFrnClrAccum`).
 - `mLiBackClrAccum`: address 0xd973, `generallight.S` line 1326 (41 words). Reached: its address loaded as a constant in `mLiBackClrInit` and 1 other label.
   **Inferred** role: back-colour accumulation for two-sided lighting.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (16), float add (14), move (3), clamp at zero (2), float subtract (2), maximum (2); sets the condition flags 2 times.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mLiBackClrInit`: address 0xd91a, `generallight.S` line 1479 (33 words). Reached: its address loaded as a constant in `mLiPrimShinLoop` and 1 other label.
   **Inferred** role: back-colour set-up for two-sided lighting, loading the address of the back accumulation.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (16), move (5), clamp at zero (2), float add (2), float subtract (2), maximum (2), second-unit move (1); sets the condition flags 2 times; loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xd973 (code in `mLiBackClrAccum`).
 - `mLiFinalLi`: address 0xda3c, `generallight.S` line 1585 (43 words). Reached: its address loaded as a constant in `mGL_CtxLightInitialize` and 2 other labels.
   **Inferred** role: final lighting step: multiply-adds of the colour terms and clamps to the vertex colour.
@@ -1869,16 +1869,16 @@ Local and infinite light-source terms of the general lighting. **Inferred** from
 - `mLiLocVInfLi`: address 0xc426, `generallight2.S` line 403 (104 words). Reached: its address loaded as a constant in `mLiDirtyLocLiVwrLiSrcInit`.
   **Inferred** role: per-vertex lighting for a local viewer and infinite lights.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (40), float add (34), move (19), second-unit move or minimum (6), float multiply-add (4), float subtract (4), reciprocal square-root Newton step (4), second-unit move (4), clamp at zero (2), maximum (2), operation 0x6ec (2), operation 0x6ed (2), operation 0x6ea (1), reciprocal square-root seed (1); sets the condition flags 5 times.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mLiLocVInfLiInit`: address 0xc493, `generallight2.S` line 761 (104 words). Reached: its address loaded as a constant in `mLiDirtyLocLiVwrLiSrcInit`.
   **Inferred** role: set-up for a local viewer with infinite lights.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (43), move (27), float add (19), second-unit move or minimum (5), float subtract (4), operation 0x6ec (4), reciprocal square-root Newton step (4), second-unit move (4), clamp at zero (2), maximum (2), float multiply-add (1), operation 0x6ea (1); sets the condition flags 5 times; loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xd9c1 (code in `mLiLocLiFrnClrAccum`).
 - `mLiLocalLight`: address 0xc321, `generallight2.S` line 1097 (175 words). Reached: transfers in `mLiPrmMtrlFrntClrAccmEnd`; its address loaded as a constant in `mLiDirtyLocLiVwrLiSrcInit` and 1 other label.
   **Inferred** role: per-vertex lighting for one local light: distance by a reciprocal square root, attenuation and spot terms (constant 1e-05 as a floor).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (63), move (31), float add (28), float multiply-add (19), reciprocal square-root Newton step (8), float subtract (6), maximum (4), reciprocal Newton step (4), operation 0x6f7 (3), reciprocal square-root seed (2), clamp at zero (1), move of the second operand (1), operation 0x6ea (1), operation 0x6f6 (1), operation 0x6fd (1), second-unit move (1), second-unit move or minimum (1); sets the condition flags 3 times; loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 1e-05 (0x3727c5ac).
 
 ### get.S
@@ -1892,12 +1892,12 @@ Query replies: current values, raster position and special registers. **Inferred
   Constants loaded: 0x476, 0x1c00000.
 - `mgesi_GetRaster`: address 0x959a, `get.S` line 99 (51 words). Reached: geif slot 200 (entry 401); the ARM functions that send it are in the table below.
   **Inferred** role: reads the raster position back: scales by 1/16 and 2^-20 and writes to the raster bus output addresses.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (25), AND (2), float multiply (2); sets the condition flags 2 times; writes 1 word to the raster-bus output addresses; stores 1 word to engine address 0x2b; reads engine memory at 11 addresses from 0x28 to 0x34; loads 5 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (25), AND (2), float multiply (2); sets the condition flags 2 times; writes 1 word to the raster-bus output addresses; stores 1 word to control-memory address 0x2b; reads engine memory at 11 addresses from 0x28 to 0x34; loads 5 constants.
   It jumps within its own code.
   Constants loaded: 0x4, 9.536743e-07 (0x35800000), 0.0625 (0x3d800000), 0x800, 0x476.
 - `mgesi_GetSpecial`: address 0x9562, `get.S` line 180 (54 words). Reached: geif slot 397 (entry 795); the ARM functions that send it are in the table below.
   **Inferred** role: reads special state back: compares the parameter name and writes the matching values.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (11), XOR (7), integer add (4), integer subtract or compare (4), operation 0x6db (4); sets the condition flags 7 times; writes 2 words to the raster-bus output addresses; loads 14 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (11), XOR (7), arithmetic shift right (4), integer add (4), integer subtract or compare (4); sets the condition flags 7 times; writes 2 words to the raster-bus output addresses; loads 14 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0x8038, 0x80b2, 0xba5, 0xba4, 0x8e2, 0x6a2, 0x4, 0x8a2 and 6 more.
 
@@ -2027,7 +2027,7 @@ Raster and pipeline modes: viewport, depth range, cull face, front face, matrix 
   Constants loaded: 2.0 (0x40000000), 0xf547 (code in `mmo_DirtyCullAndLightModule`).
 - `mgeb_SetLMCFlag`: address 0xf32f, `glmodes.S` line 687 (9 words). Reached: geif slot 405 (entry 811); the ARM functions that send it are in the table below.
   **Inferred** role: sets the IRIS GL lighting-mode flag (two words with operations 0x6ec and 0x6f1).
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6ec (1), operation 0x6f1 (1).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float-to-integer conversion (1), operation 0x6ec (1).
   It ends with the end-of-command wait.
 - `mgeb_ClearLMCFlag`: address 0xf320, `glmodes.S` line 714 (9 words). Reached: geif slot 406 (entry 813); the ARM functions that send it are in the table below.
   **Inferred** role: clears the IRIS GL lighting-mode flag.
@@ -2046,12 +2046,12 @@ Raster and pipeline modes: viewport, depth range, cull face, front face, matrix 
 - `mmo_DirtyXformAndObjToClipModule`: address 0xf449, `glmodes.S` line 1032 (38 words). Reached: its address loaded as a constant in `mTexGenResolve` and 11 other labels.
   **Inferred** role: re-selects the transform and object-to-clip modules: tests flag bits and loads one of nine module addresses.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (14), AND (3); sets the condition flags 5 times; loads 9 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`; jumps within its own code.
+  It ends the command with an indirect transfer in condition group 31; jumps within its own code.
   Constants loaded: 0x2, 0x135c (code in `mmo_ObjToEyeSpaceAndSixUserTR`), 0x1325, 0x1293 (code in `mmo_ObjToClipSpaceN2EN`), 0x124c (code in `mmo_ObjToClipSpaceN2E`), 0x12fe (code in `mmo_ObjToEyeSpace`), 0x1218, 0x4 and 1 more.
 - `mmo_DirtyTextureAndScreenModule`: address 0xf494, `glmodes.S` line 1136 (54 words). Reached: its address loaded as a constant in `mTexGenResolve` and 12 other labels.
   **Inferred** role: re-selects the texture and screen-space modules: bit tests and module addresses.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations NOT (10), OR (10), move (9), AND (5), float subtract (4), operation 0x6d1 (1), second-unit operation 0xff (1); sets the condition flags 12 times; loads 8 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x2000, 0x2000000, 0x10c9 (code in `mmo_ToScreenSpace`), 0x1, 0x11b6 (code in `mmo_ToScreenSpaceInvQ2DI`), 0x1113, 0x2.
 - `mgeb_Sprite`: address 0xf2cc, `glmodes.S` line 1263 (35 words). Reached: geif slot 81 (entry 163); the ARM functions that send it are in the table below.
   **Inferred** role: GL sprite parameter (SGIX) call: compares the parameter name and stores the sprite mode or axis.
@@ -2086,7 +2086,7 @@ Raster and pipeline modes: viewport, depth range, cull face, front face, matrix 
 - `mmo_DirtyPrePathModule`: address 0xf4e4, `glmodes.S` line 1637 (25 words). Reached: its address loaded as a constant in `mGL_CM_Initialize` and 9 other labels.
   **Inferred** role: re-selects the modules that run before the geometry path: tests sprite, deform and multipass bits and loads their addresses.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (5), AND (3); sets the condition flags 3 times; loads 6 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x4, 0x48d8 (code in `mmo_DirtyDeformModule`), 0x8, 0xe6a5 (code in `mmo_DirtyMultipassModule`), 0x10, 0x8669 (code in `mmo_DirtySpriteModule`).
 
 ARM functions and host tokens that send these handlers:
@@ -2119,7 +2119,7 @@ Histogram and min-max state moved between ERAM and CRAM, and the ERAM fill. **In
 - `DoEramFill`: address 0x4544, `histogram.S` line 38 (11 words). Reached: transfers in `mgeb_EramFill` and 1 other label.
   **Inferred** role: external-memory fill loop shared by the two fill commands, returning to them.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mgeb_EramFill`: address 0x4530, `histogram.S` line 77 (10 words). Reached: geif slot 140 (entry 281); the ARM functions that send it are in the table below.
   **Inferred** role: fills external memory with one operand word.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations move (1).
@@ -2130,13 +2130,13 @@ Histogram and min-max state moved between ERAM and CRAM, and the ERAM fill. **In
   It calls `DoEramFill`; waits on its own address under another condition group.
 - `mgesi_HistogramUpload`: address 0x449d, `histogram.S` line 175 (65 words). Reached: geif slot 201 (entry 403).
   **Inferred** role: reads the histogram back through the raster bus output addresses.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (11), operation 0x6f1 (2), OR (1), integer add (1); sets the condition flags 2 times; writes 2 words to the raster-bus output addresses; reads engine memory at 0x2a8; loads 2 constants; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (11), float-to-integer conversion (2), OR (1), integer add (1); sets the condition flags 2 times; writes 2 words to the raster-bus output addresses; reads engine memory at 0x2a8; loads 2 constants; takes 2 conditional transfers.
   It ends with the end-of-command wait.
   Constants loaded: 0x476, 0xfffffffd.
 - `mmo_CramMinmaxToEramMinmax`: address 0x4472, `histogram.S` line 271 (23 words). Reached: geif slot 300 (entry 601); the ARM functions that send it are in the table below.
   **Inferred** role: copies the minmax result from coefficient memory to external memory.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4); reads engine memory at 0x2a9.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mgeb_EramMinmaxToCramMinmax`: address 0x443b, `histogram.S` line 313 (24 words). Reached: geif slot 143 (entry 287); the ARM functions that send it are in the table below.
   **Inferred** role: copies the minmax result from external memory to coefficient memory.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9); reads engine memory at 0x2a9.
@@ -2157,18 +2157,18 @@ Pixel-path histogram stage, added by AddHistogram. **Inferred** from its labels 
 
 - `mmo_Histogram`: address 0x13b4, `histogram.s` line 46 (75 words). Reached: geif slot 286 (entry 573); the ARM functions that send it are in the table below.
   **Inferred** role: pixel-path histogram stage: set-up, then its main loop.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9), float multiply (1), minimum (1), operation 0x6f1 (1).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9), float multiply (1), float-to-integer conversion (1), minimum (1).
   It has no jump of its own and runs on into `mainloop_hist`.
 - `umo_Histogram`: address 0x13b4, `histogram.s` line 46 (75 words). Reached: second name for `mmo_Histogram` at the same address, so the same code.
   **Inferred** role: pixel-path histogram stage: set-up, then its main loop.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9), float multiply (1), minimum (1), operation 0x6f1 (1).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9), float multiply (1), float-to-integer conversion (1), minimum (1).
   It has no jump of its own and runs on into `mainloop_hist`.
 - `mainloop_hist`: address 0x13ff, `histogram.s` line 142 (24 words). Reached: inside `mmo_Histogram`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (1), minimum (1), operation 0x6f1 (1); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (1), float-to-integer conversion (1), minimum (1); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_hist`.
 - `epilogue_hist`: address 0x1417, `histogram.s` line 176 (9 words). Reached: inside `mmo_Histogram`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `uge_HistogramFill`: address 0x1420, `histogram.s` line 195 (30 words). Reached: inside `mmo_Histogram`, reached from that routine's own code.
   **Inferred** role: second entry inside the histogram stage that fills histogram counts from three operand words.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 5; operations integer add (3).
@@ -2254,7 +2254,7 @@ Colour-index and IrisGL lighting final stages. **Inferred** from its labels and 
 
 - `mLiPrimMtrlIndxFinalLi`: address 0xd536, `indxirislight.S` line 65 (23 words). Reached: its address loaded as a constant in `mLiPrimMtrlInit`.
   **Inferred** role: final lighting step for colour-index mode with per-primitive materials.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), AND (1), operation 0x6ec (1), operation 0x6f1 (1); sets the condition flags once; loads 4 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), AND (1), float-to-integer conversion (1), operation 0x6ec (1); sets the condition flags once; loads 4 constants; takes 1 conditional transfer.
   It jumps to `mLiPrimMtrlCopyStckCmpn`; conditional transfers reach `mLiPrimMtrlCopyCmpn`.
   Constants loaded: 0xd786 (code in `mLiPrimMtrlCopyCmpn`), 0x3f, 0xd745 (code in `mLiPrimMtrlCopyStckCmpn`), 0xd5c4 (code in `mLiFinalLiEquIndx`).
 - `mLiIndexFinalLi`: address 0xd5a6, `indxirislight.S` line 134 (22 words). Reached: its address loaded as a constant in `mgeb_CI_Mode`.
@@ -2263,13 +2263,13 @@ Colour-index and IrisGL lighting final stages. **Inferred** from its labels and 
   It jumps to `mLiFinalLiEquIndx`.
 - `mLiFinalLiEquIndx`: address 0xd5c4, `indxirislight.S` line 192 (62 words). Reached: transfers in `mLiIndexFinalLi`; its address loaded as a constant in `mLiPrimMtrlIndxFinalLi`.
   **Inferred** role: colour-index lighting result: luminance weights 0.3 and 0.59 on the colour terms, then a range scale.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (18), float add (10), float subtract (6), integer-to-float conversion (6), minimum (4), move (4), AND (2), float multiply-add (2), operation 0x6f1 (2); loads 4 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (18), float add (10), float subtract (6), integer-to-float conversion (6), minimum (4), move (4), AND (2), float multiply-add (2), float-to-integer conversion (2); loads 4 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 16.0 (0x41800000), 0.3 (0x3e99999a), 0.59 (0x3f170a3d), 0.11 (0x3de147ae).
 - `mLiIrisColoring`: address 0xd54e, `indxirislight.S` line 393 (66 words). Reached: transfers in `lLI1`; its address loaded as a constant in `mmo_LighterGeneral`.
   **Inferred** role: IRIS GL colour mode lighting: clamps and packs the colour.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (30), clamp at zero (8), AND (7), float multiply (2), integer-to-float conversion (2), operation 0x6f1 (2); sets the condition flags 5 times; loads 3 constants; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; jumps within its own code.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (30), clamp at zero (8), AND (7), float multiply (2), float-to-integer conversion (2), integer-to-float conversion (2); sets the condition flags 5 times; loads 3 constants; takes 3 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31; jumps within its own code.
   Constants loaded: 0x10, 0x10000, 16.0 (0x41800000).
 
 ### inttofloat.s
@@ -2289,7 +2289,7 @@ Pixel-path integer-to-float stage, added by AddInt2Float. **Inferred** from its 
   It has no jump of its own and runs on into `epilogue_i2f`.
 - `epilogue_i2f`: address 0x2070, `inttofloat.s` line 159 (51 words). Reached: transfers in `mmo_IntToFloat`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (23), integer-to-float conversion (23).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ARM functions and host tokens that send these handlers:
 
@@ -2308,12 +2308,12 @@ Lighting, light-source and colour-material enables and disables, spot power tabl
   Constants loaded: 0x2, 0x80000000, 0xf50d (code in `mmo_DirtyLightModule`), 0xf547 (code in `mmo_DirtyCullAndLightModule`), 0x24, 0xf449 (code in `mmo_DirtyXformAndObjToClipModule`), 0x80, 0x7 and 1 more.
 - `mLiSwichSpotPrwTable`: address 0xde3f, `lightenables.S` line 185 (78 words). Reached: transfers in `mgeb_LiEnableLighting` and 1 other label.
   **Inferred** role: rebuilds the spot-power table after a lighting change: conversions and multiplies over the table.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (20), operation 0x6f1 (13), float multiply (8), float subtract (8), operation 0x6f7 (8), integer add (7); sets the condition flags 17 times; reads engine memory at 0x1bff; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `mLiSwichSpotPrwTable2`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (20), float-to-integer conversion (13), float multiply (8), float subtract (8), operation 0x6f7 (8), integer add (7); sets the condition flags 17 times; reads engine memory at 0x1bff; takes 2 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `mLiSwichSpotPrwTable2`.
 - `mLiSwichSpotPrwTable2`: address 0xddc5, `lightenables.S` line 319 (52 words). Reached: transfers in `mLiSwichSpotPrwTable`.
   **Inferred** role: second part of the spot-power table switch: nine conditional transfers on the enabled lights.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6cc (8), move (2); takes 9 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `mLiSwichSpotPrwTableSub`.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `mLiSwichSpotPrwTableSub`.
 - `mLiSwichSpotPrwTableSub`: address 0xde2a, `lightenables.S` line 418 (10 words). Reached: transfers in `mLiSwichSpotPrwTable2`.
   **Inferred** role: subroutine for one spot-power table entry.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2), float multiply (1), float subtract (1); loads 1 constant.
@@ -2321,12 +2321,12 @@ Lighting, light-source and colour-material enables and disables, spot power tabl
   Constants loaded: 0x3d042108.
 - `mgeb_LiReCmpPwrTable`: address 0xdd83, `lightenables.S` line 462 (18 words). Reached: geif slot 154 (entry 309); the ARM functions that send it are in the table below.
   **Inferred** role: recomputes the lighting power table when the shininess changes.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (1), operation 0x6cc (1), operation 0x6ec (1), operation 0x6f1 (1); loads 4 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (1), float-to-integer conversion (1), operation 0x6cc (1), operation 0x6ec (1); loads 4 constants; takes 1 conditional transfer.
   It waits on its own address under another condition group; conditional transfers reach `mLiSwichSpotPrwTable`.
   Constants loaded: 0x80, 0x7, 0xf50d (code in `mmo_DirtyLightModule`), 0xf547 (code in `mmo_DirtyCullAndLightModule`).
 - `mgeb_LiEnableLightS`: address 0xdd3e, `lightenables.S` line 546 (49 words). Reached: geif slot 25 (entry 51); the ARM functions that send it are in the table below.
   **Inferred** role: enables one light: sets its bit and marks the lighting set-up for re-selection.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 1; operations move (15), operation 0x6cc (3), OR (2), integer add (2), operation 0x6f1 (2), AND (1), operation 0x6ea (1); sets the condition flags 2 times; loads 7 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 1; operations move (15), operation 0x6cc (3), OR (2), float-to-integer conversion (2), integer add (2), AND (1), operation 0x6ea (1); sets the condition flags 2 times; loads 7 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0xd9a2 (code in `mLiDirtyLocLiVwrLiSrcInit`), 0xf547 (code in `mmo_DirtyCullAndLightModule`), 0xf50d (code in `mmo_DirtyLightModule`), 0, 0x20, 0xf449 (code in `mmo_DirtyXformAndObjToClipModule`), 0x1.
 - `mgeb_LiEnableClrMtrl`: address 0xdd2b, `lightenables.S` line 665 (16 words). Reached: geif slot 24 (entry 49); the ARM functions that send it are in the table below.
@@ -2341,7 +2341,7 @@ Lighting, light-source and colour-material enables and disables, spot power tabl
   Constants loaded: 0x80000000, 0x8, 0xfffffffd, 0xffffffdb, 0xf449 (code in `mmo_DirtyXformAndObjToClipModule`), 0xffffff7f, 0xf50d (code in `mmo_DirtyLightModule`), 0xf547 (code in `mmo_DirtyCullAndLightModule`) and 1 more.
 - `mgeb_LiDisableLightS`: address 0xdcc0, `lightenables.S` line 832 (60 words). Reached: geif slot 22 (entry 45); the ARM functions that send it are in the table below.
   **Inferred** role: disables one light: clears its bit and marks the lighting set-up for re-selection.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 1; operations move (18), integer subtract or compare (3), operation 0x6cc (3), operation 0x6f1 (3), AND (1), OR (1), operation 0x6ea (1); sets the condition flags 2 times; loads 6 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 1; operations move (18), float-to-integer conversion (3), integer subtract or compare (3), operation 0x6cc (3), AND (1), OR (1), operation 0x6ea (1); sets the condition flags 2 times; loads 6 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0xd9a2 (code in `mLiDirtyLocLiVwrLiSrcInit`), 0xf547 (code in `mmo_DirtyCullAndLightModule`), 0x1, 0xf449 (code in `mmo_DirtyXformAndObjToClipModule`), 0xffffffdf, 0xf50d (code in `mmo_DirtyLightModule`).
 - `mgeb_LiDisableClrMtrl`: address 0xdc9c, `lightenables.S` line 967 (33 words). Reached: geif slot 21 (entry 43); the ARM functions that send it are in the table below.
@@ -2451,7 +2451,7 @@ Per-light parameters: position, spot direction, exponent and cutoff, attenuation
   Constants loaded: 90.0 (0x42b40000), 180.0 (0x43340000).
 - `mgeb_LightSpotExp`: address 0xc626, `lightsource.S` line 450 (74 words). Reached: geif slot 39 (entry 79); the ARM functions that send it are in the table below.
   **Inferred** role: spot exponent: range check against 128.0 (otherwise the invalid-value error) and the power-table scale.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations float multiply (11), move (10), float subtract (3), operation 0x6ea (2), operation 0x6f1 (2), reciprocal Newton step (2), float add (1), integer-to-float conversion (1), minimum (1), operation 0x6cc (1), operation 0x6ec (1), operation 0x6f7 (1), reciprocal seed (1), second-unit operation 0xff (1); sets the condition flags 5 times; loads 7 constants; takes 3 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations float multiply (11), move (10), float subtract (3), float-to-integer conversion (2), operation 0x6ea (2), reciprocal Newton step (2), float add (1), integer-to-float conversion (1), minimum (1), operation 0x6cc (1), operation 0x6ec (1), operation 0x6f7 (1), reciprocal seed (1), second-unit operation 0xff (1); sets the condition flags 5 times; loads 7 constants; takes 3 conditional transfers.
   It ends with the end-of-command wait; jumps to `mErrInvalidValue`; conditional transfers reach `mLiPwrTable`.
   Constants loaded: 0x8, 0x20, 128.0 (0x43000000), 0x3d042108, 30.99997 (0x41f7fff0), 262144.0 (0x48800000), 32.0 (0x42000000).
 - `mgeb_LightSpotDir`: address 0xc5cd, `lightsource.S` line 626 (52 words). Reached: geif slot 38 (entry 77); the ARM functions that send it are in the table below.
@@ -2460,7 +2460,7 @@ Per-light parameters: position, spot direction, exponent and cutoff, attenuation
   It ends with the end-of-command wait; conditional transfers reach `mMatrixInverse`.
 - `mgeb_LightPos`: address 0xc500, `lightsource.S` line 750 (165 words). Reached: geif slot 35 (entry 71); the ARM functions that send it are in the table below.
   **Inferred** role: light position: transforms the position by the modelview and stores it, with local or infinite light set-up.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations float multiply (41), move (26), float add (13), OR (4), float multiply-add (4), integer subtract or compare (4), operation 0x6cc (4), reciprocal square-root Newton step (4), operation 0x6f1 (3), AND (2), float subtract (2), operation 0x6ea (2), reciprocal Newton step (2), reciprocal seed (2), reciprocal square-root seed (2), integer add (1), operation 0x6ec (1); sets the condition flags 4 times; loads 10 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations float multiply (41), move (26), float add (13), OR (4), float multiply-add (4), integer subtract or compare (4), operation 0x6cc (4), reciprocal square-root Newton step (4), float-to-integer conversion (3), AND (2), float subtract (2), operation 0x6ea (2), reciprocal Newton step (2), reciprocal seed (2), reciprocal square-root seed (2), integer add (1), operation 0x6ec (1); sets the condition flags 4 times; loads 10 constants; takes 1 conditional transfer.
   It ends with the end-of-command wait.
   Constants loaded: 0x1, 0xd9a2 (code in `mLiDirtyLocLiVwrLiSrcInit`), 0xf449 (code in `mmo_DirtyXformAndObjToClipModule`), 1e-05 (0x3727c5ac), 0xf547 (code in `mmo_DirtyCullAndLightModule`), 0xf50d (code in `mmo_DirtyLightModule`).
 
@@ -2486,25 +2486,25 @@ Lighting initialisation and the dirty-state refresh of the lighting tables. **In
 - `mLiDirtySimLiCRAM`: address 0xe334, `lightsubroutines.S` line 108 (78 words). Reached: transfers in `mmo_DirtyCullAndLightModule` and 1 other label; its address loaded as a constant in `mmo_DirtyCullAndLightModule` and 1 other label.
   **Inferred** role: writes the simple lighting state to coefficient memory after a change.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (33), float multiply (12), float add (7), AND (2), operation 0x6d1 (1), second-unit move or minimum (1); sets the condition flags once.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mLiDirtyGenLiCRAM`: address 0xe391, `lightsubroutines.S` line 320 (52 words). Reached: transfers in `mmo_DirtyCullAndLightModule` and 1 other label; its address loaded as a constant in `mmo_DirtyCullAndLightModule` and 1 other label.
   **Inferred** role: writes the general lighting state to coefficient memory after a change.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (21), float add (6), float multiply (6), OR (1), operation 0x6d1 (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mLiUpdateShin`: address 0xe27a, `lightsubroutines.S` line 674 (143 words). Reached: transfers in `mLiEndPrimShinLp` and 3 other labels.
   **Inferred** role: updates the shininess terms: reciprocal steps and multiplies, then a return.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (23), float multiply (22), float add (15), float subtract (10), AND (4), operation 0x6f1 (4), reciprocal Newton step (4), operation 0x6cc (3), operation 0x6f7 (3), second-unit move (3), integer-to-float conversion (2), operation 0x6d1 (2), operation 0x6e3 (2), float multiply-add (1), move of the second operand (1), operation 0x6dd (1), operation 0x6ec (1), reciprocal seed (1), second-unit operation 0xff (1); sets the condition flags 5 times; reads engine memory at 2 addresses from 0x1bfc to 0x1bfd; loads 7 constants; takes 8 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); jumps within its own code; conditional transfers reach `mLiPwrTable` and 2 other labels.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (23), float multiply (22), float add (15), float subtract (10), AND (4), float-to-integer conversion (4), reciprocal Newton step (4), operation 0x6cc (3), operation 0x6f7 (3), second-unit move (3), integer-to-float conversion (2), operation 0x6d1 (2), operation 0x6e3 (2), float multiply-add (1), logical shift right (1), move of the second operand (1), operation 0x6ec (1), reciprocal seed (1), second-unit operation 0xff (1); sets the condition flags 5 times; reads engine memory at 2 addresses from 0x1bfc to 0x1bfd; loads 7 constants; takes 8 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); jumps within its own code; conditional transfers reach `mLiPwrTable` and 2 other labels.
   Constants loaded: 0xf50d (code in `mmo_DirtyLightModule`), 0xf547 (code in `mmo_DirtyCullAndLightModule`), 0.999999 (0x3f7fffef), 0.003921569 (0x3b808081), 32768.0 (0x47000000), 0x2.
 - `mGL_CtxLightInitialize`: address 0xe184, `lightsubroutines.S` line 896 (236 words). Reached: transfers in `mgeb_GLContextInitialize`.
   **Inferred** role: initialises the lighting state of a GL context: 106 constants (default material and light values such as 0.2 and 0.8).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (106); loads 106 constants; takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0, 1.0 (0x3f800000), 0.2 (0x3e4ccccd), 0.8 (0x3f4ccccd), 180.0 (0x43340000), 262152.0 (0x48800100), -1.0 (0xbf800000), 0x1602 and 8 more.
 - `mGL_LightInitialize`: address 0xe05a, `lightsubroutines.S` line 1087 (292 words). Reached: transfers in `mgeb_GlobalInitialize`.
   **Inferred** role: initialises the global lighting tables: 141 constants.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (141); loads 141 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: -1.0 (0xbf800000), 1.0 (0x3f800000), 0, 0.501319 (0x3f005671), 0.537159 (0x3f098341), 0.56838 (0x3f11815a), 0.59578 (0x3f18850a), 0.619993 (0x3f1eb7dc) and 123 more.
 
 ### linclip.S
@@ -2513,17 +2513,17 @@ Line clipping against the user planes and the view frustum. **Inferred** from it
 
 - `mClipLineToPlane`: address 0xebbf, `linclip.S` line 89 (338 words). Reached: transfers in `mClipLinUserAndFrustum`.
   **Inferred** role: clips a line against one plane: interpolation by multiplies and reciprocal steps, then a return.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (185), float add (65), move (38), reciprocal Newton step (10), float subtract (8), AND (6), float multiply-add (3), XOR (2), operation 0x6ea (2), reciprocal seed (2); sets the condition flags 12 times; 34 words in the output-instruction form of the diagnostic test; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (185), float add (65), move (38), reciprocal Newton step (10), float subtract (8), AND (6), float multiply-add (3), XOR (2), operation 0x6ea (2), reciprocal seed (2); sets the condition flags 12 times; 34 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 2 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `HereWeGo`.
 - `mClipLinUserAndFrustum`: address 0xea1c, `linclip.S` line 695 (230 words). Reached: its address loaded as a constant in `mGL_EM_Initialize` and 1 other label.
   **Inferred** role: line clipper: tests the outcode bits (0x1 to 0x20), calls the clip-space transform and the flush.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 11 to 14; operations move (133), AND (7), second-unit move (7), OR (5), operation 0x6ec (5), second-unit move or minimum (2), integer add (1), operation 0x6d1 (1), operation 0x6f1 (1); sets the condition flags 9 times; loads 15 constants; takes 11 conditional transfers.
-  It calls `mEyeToClipAfterUserClip` and `mClipLinFlush`; returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `uEvalSaveState` and 1 other label.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 11 to 14; operations move (133), AND (7), second-unit move (7), OR (5), operation 0x6ec (5), second-unit move or minimum (2), float-to-integer conversion (1), integer add (1), operation 0x6d1 (1); sets the condition flags 9 times; loads 15 constants; takes 11 conditional transfers.
+  It calls `mEyeToClipAfterUserClip` and `mClipLinFlush`; returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `uEvalSaveState` and 1 other label.
   Constants loaded: 0x2, 0, 0x10, 0x20, 0x1, 0x4, 0x8, 0x69045951.
 - `mClipLinFlush`: address 0xed2c, `linclip.S` line 1028 (30 words). Reached: transfers in `mClipLinUserAndFrustum`.
   **Inferred** role: ends a clipped line: nine moves and a constant holding an address inside itself, then it returns or ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9); loads 3 constants.
-  It ends the command by jumping to `HereWeGo`; returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It ends the command with an indirect transfer in condition group 31; returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x3f, 0xed41 (code in `mClipLinFlush`).
 
 ### line.S
@@ -2532,42 +2532,42 @@ Line width, stipple and antialiased-line tables. **Inferred** from its labels an
 
 - `mDownLoadAALineTable`: address 0x65db, `line.S` line 216 (59 words). Reached: transfers in `mGenerateAALineTable` and 2 other labels.
   **Inferred** role: sends the antialiased-line table to the raster system: scales by 255.0 and compares in a loop.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer subtract or compare (12), operation 0x6f1 (8), move (4), NOT (2), float multiply (2), AND (1), float subtract (1); sets the condition flags 2 times; writes 5 words to the raster-bus output addresses; loads 9 constants; takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer subtract or compare (12), float-to-integer conversion (8), move (4), NOT (2), float multiply (2), AND (1), float subtract (1); sets the condition flags 2 times; writes 5 words to the raster-bus output addresses; loads 9 constants; takes 1 conditional transfer.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.5 (0x3f000000), 0x10000000, 255.0 (0x437f0000), 0x3, 0x6, 0x89f, 0x8bf, 0x8df and 1 more.
 - `mDownLoadAALineTable4`: address 0x6579, `line.S` line 328 (76 words). Reached: transfers in `mGenerateAALineTable4` and 1 other label.
   **Inferred** role: sends the four-entry form of the antialiased-line table.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer subtract or compare (12), operation 0x6f1 (12), move (8), float multiply (3), AND (2), NOT (2), float subtract (1), integer add (1), second-unit operation 0xff (1); sets the condition flags 2 times; writes 8 words to the raster-bus output addresses; reads engine memory at 0x1389; loads 9 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float-to-integer conversion (12), integer subtract or compare (12), move (8), float multiply (3), AND (2), NOT (2), float subtract (1), integer add (1), second-unit operation 0xff (1); sets the condition flags 2 times; writes 8 words to the raster-bus output addresses; reads engine memory at 0x1389; loads 9 constants.
   It jumps within its own code.
   Constants loaded: 0.5 (0x3f000000), 0x89f, 0x10000000, 255.0 (0x437f0000), 0x3, 0x6, 0x8bf, 0x8df and 1 more.
 - `mDownLoadAALineTable8`: address 0x652d, `line.S` line 435 (56 words). Reached: transfers in `mGenerateAALineTable8` and 1 other label.
   **Inferred** role: sends the eight-entry form of the antialiased-line table.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer subtract or compare (8), operation 0x6f1 (8), move (4), AND (2), NOT (2), float multiply (2), float subtract (1), integer add (1), second-unit operation 0xff (1); sets the condition flags 2 times; writes 5 words to the raster-bus output addresses; reads engine memory at 0x1389; loads 9 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float-to-integer conversion (8), integer subtract or compare (8), move (4), AND (2), NOT (2), float multiply (2), float subtract (1), integer add (1), second-unit operation 0xff (1); sets the condition flags 2 times; writes 5 words to the raster-bus output addresses; reads engine memory at 0x1389; loads 9 constants.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.5 (0x3f000000), 0x89f, 0x10000000, 255.0 (0x437f0000), 0x3, 0x6, 0x8bf, 0x8df and 1 more.
 - `mGenerateAALineTable`: address 0x64af, `line.S` line 550 (62 words). Reached: transfers in `mgeb_DownLoadAALineTable` and 2 other labels.
   **Inferred** role: builds the antialiased-line table with the response routine (constant 3.0 among them).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (9), float add (6), move (5), AND (3), clamp at zero (2), float subtract (2), second-unit move or minimum (2), OR (1), integer-to-float conversion (1); sets the condition flags 5 times; loads 11 constants; takes 3 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); jumps to `AA_Response_Step`; conditional transfers reach `AA_Response` and 1 other label.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); jumps to `AA_Response_Step`; conditional transfers reach `AA_Response` and 1 other label.
   Constants loaded: 0x10000000, 0x3d042108, 3.0 (0x40400000), 0x8000000, 0.25 (0x3e800000), 0.5 (0x3f000000), 1.0 (0x3f800000).
 - `mGenerateAALineTable4`: address 0x6432, `line.S` line 702 (70 words). Reached: transfers in `mgeb_DownLoadAALineTable`.
   **Inferred** role: builds the four-entry antialiased-line table.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (9), AND (5), float add (4), move (4), clamp at zero (3), second-unit move or minimum (3), float subtract (2), integer add (1), integer-to-float conversion (1), second-unit operation 0xff (1); sets the condition flags 6 times; reads engine memory at 0x1389; loads 10 constants; takes 3 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); jumps to `AA_Response_Step`; conditional transfers reach `AA_Response` and 1 other label.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); jumps to `AA_Response_Step`; conditional transfers reach `AA_Response` and 1 other label.
   Constants loaded: 0x10000000, 0.5 (0x3f000000), 0x3d042108, 3.0 (0x40400000), 0.25 (0x3e800000), 1.0 (0x3f800000).
 - `mGenerateAALineTable8`: address 0x63d4, `line.S` line 854 (57 words). Reached: transfers in `mgeb_DownLoadAALineTable`.
   **Inferred** role: builds the eight-entry antialiased-line table.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (7), AND (4), move (4), float add (3), second-unit move or minimum (3), clamp at zero (2), float subtract (2), integer add (1), integer-to-float conversion (1), second-unit operation 0xff (1); sets the condition flags 5 times; reads engine memory at 0x1389; loads 10 constants; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); jumps to `AA_Response_Step`; conditional transfers reach `AA_Response` and 1 other label.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); jumps to `AA_Response_Step`; conditional transfers reach `AA_Response` and 1 other label.
   Constants loaded: 0x10000000, 0.5 (0x3f000000), 0x3d042108, 3.0 (0x40400000), 0.25 (0x3e800000), 1.0 (0x3f800000).
 - `mgeb_LineWidth_AlphaAA`: address 0x6379, `line.S` line 1014 (73 words). Reached: geif slot 94 (entry 189); the ARM functions that send it are in the table below.
   **Inferred** role: line width for alpha-antialiased lines: three operand words scaled by 2.0, 0.5 and 8.0.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (16), OR (4), float add (4), operation 0x6d1 (4), float subtract (3), float multiply (2), integer subtract or compare (2), AND (1), operation 0x6f1 (1), operation 0x6f9 (1); sets the condition flags 9 times; writes 2 words to the raster-bus output addresses; reads engine memory at 2 addresses from 0x13ae to 0x13af; loads 14 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (16), OR (4), float add (4), operation 0x6d1 (4), float subtract (3), float multiply (2), integer subtract or compare (2), AND (1), float-to-integer conversion (1), operation 0x6f9 (1); sets the condition flags 9 times; writes 2 words to the raster-bus output addresses; reads engine memory at 2 addresses from 0x13ae to 0x13af; loads 14 constants.
   It ends with the end-of-command wait.
   Constants loaded: 2.0 (0x40000000), 0.5 (0x3f000000), 8.0 (0x41000000), 0x8b08 (code in `mmo_DrawLinStipplePrim`), 0xfffffbff, 0x8db0 (code in `mmo_DrawLinPrim`), 0x20, 0x1102 and 6 more.
 - `mgeb_DownLoadAALineTable`: address 0x6319, `line.S` line 1190 (50 words). Reached: geif slot 375 (entry 751); the ARM functions that send it are in the table below.
   **Inferred** role: command that builds and sends the antialiased-line table from two operand words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (10), integer subtract or compare (4), float subtract (3), integer-to-float conversion (2), AND (1), float multiply (1), operation 0x6dd (1), operation 0x6ea (1); sets the condition flags 8 times; writes 3 words to the raster-bus output addresses; reads engine memory at 3 addresses from 0x1389 to 0x13af; loads 5 constants; takes 8 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (10), integer subtract or compare (4), float subtract (3), integer-to-float conversion (2), AND (1), float multiply (1), logical shift right (1), operation 0x6ea (1); sets the condition flags 8 times; writes 3 words to the raster-bus output addresses; reads engine memory at 3 addresses from 0x1389 to 0x13af; loads 5 constants; takes 8 conditional transfers.
   It calls `mGenerateAALineTable`; ends with the end-of-command wait; jumps within its own code; conditional transfers reach `mDownLoadAALineTable8` and 5 other labels.
   Constants loaded: 0.5 (0x3f000000), 0x1102, 0x10000000, 0x4, 0x70000.
 - `mgeb_InitAALineTables`: address 0x6300, `line.S` line 1325 (14 words). Reached: geif slot 400 (entry 801); the ARM functions that send it are in the table below.
@@ -2582,7 +2582,7 @@ Line width, stipple and antialiased-line tables. **Inferred** from its labels an
   Constants loaded: 0x400, 0xfffffeff, 0x8b08 (code in `mmo_DrawLinStipplePrim`), 0xbfffffff, 0.5 (0x3f000000), 0x8a2d (code in `mmo_DrawMSLinPrim`), 0x20.
 - `mgeb_LineStipple`: address 0x62a7, `line.S` line 1520 (31 words). Reached: geif slot 40 (entry 81); the ARM functions that send it are in the table below.
   **Inferred** role: GL line stipple call: converts the factor and pattern to float and computes a reciprocal of the factor.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations integer-to-float conversion (3), float multiply (2), reciprocal Newton step (2), move (1), operation 0x6dd (1), reciprocal seed (1); takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations integer-to-float conversion (3), float multiply (2), reciprocal Newton step (2), logical shift right (1), move (1), reciprocal seed (1); takes 1 conditional transfer.
   It ends with the end-of-command wait.
 - `mgeb_LineWidth_Select`: address 0x6298, `line.S` line 1572 (9 words). Reached: geif slot 175 (entry 351).
   **Inferred** role: line handling in selection mode: loads the address of the selection line module.
@@ -2596,7 +2596,7 @@ Line width, stipple and antialiased-line tables. **Inferred** from its labels an
   Constants loaded: 0xb89a (code in `mmo_FeedbackLine`).
 - `mgeb_LineWidth_Aliased`: address 0x6257, `line.S` line 1668 (41 words). Reached: geif slot 93 (entry 187).
   **Inferred** role: line width for aliased lines: masks the mode bits and selects the line module from the width.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (11), AND (2), integer add (2), OR (1), float multiply (1), operation 0x6d1 (1), operation 0x6f1 (1), second-unit operation 0xff (1); sets the condition flags 3 times; writes 2 words to the raster-bus output addresses; loads 11 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (11), AND (2), integer add (2), OR (1), float multiply (1), float-to-integer conversion (1), operation 0x6d1 (1), second-unit operation 0xff (1); sets the condition flags 3 times; writes 2 words to the raster-bus output addresses; loads 11 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0xfffffaff, 0x2, 0x8, 0x1213fd0, 0xfff, 0x8b08 (code in `mmo_DrawLinStipplePrim`), 0x8db0 (code in `mmo_DrawLinPrim`), 0x20 and 3 more.
 
@@ -2629,7 +2629,7 @@ Pixel-path lookup-table stage (16-bit and RGBA alpha-only forms), added by the A
   It has no jump of its own and runs on into `epilogue_lut`.
 - `epilogue_lut`: address 0x1c6d, `LUT.s` line 339 (168 words). Reached: transfers in `mmo_LUT16`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (72), second-unit move or minimum (72).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_LUT16RGBA_AlphaOnly`: address 0x1d15, `LUT.s` line 518 (137 words). Reached: inside `mmo_LUT16`, reached from that routine's own code.
   **Inferred** role: second entry of the 16-bit lookup stage for RGBA pixels where only alpha is looked up.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (24), float add (10); closes 1 loop.
@@ -2642,7 +2642,7 @@ Pixel-path lookup-table stage (16-bit and RGBA alpha-only forms), added by the A
   It has no jump of its own and runs on into `epilogue_lut_rgba_alpha_only`.
 - `epilogue_lut_rgba_alpha_only`: address 0x1dc5, `LUT.s` line 732 (73 words). Reached: transfers in `umo_LUT16RGBA_AlphaOnly`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (24), second-unit move or minimum (24).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_LUT16LA_AlphaOnly`: address 0x1e0e, `LUT.s` line 817 (137 words). Reached: inside `umo_LUT16RGBA_AlphaOnly`, reached from that routine's own code.
   **Inferred** role: third entry of the 16-bit lookup stage for luminance-alpha pixels where only alpha is looked up.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (24), float add (10); closes 1 loop.
@@ -2655,7 +2655,7 @@ Pixel-path lookup-table stage (16-bit and RGBA alpha-only forms), added by the A
   It has no jump of its own and runs on into `epilogue_lut_la_alpha_only`.
 - `epilogue_lut_la_alpha_only`: address 0x1ebe, `LUT.s` line 1031 (73 words). Reached: transfers in `umo_LUT16LA_AlphaOnly`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (24), second-unit move or minimum (24).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ARM functions and host tokens that send these handlers:
 
@@ -2698,7 +2698,7 @@ Pixel-path mask stage. **Inferred** from its labels and callers.
   It has no jump of its own and runs on into `epilogue_mask`.
 - `epilogue_mask`: address 0x1b5b, `mask.s` line 139 (50 words). Reached: transfers in `mmo_Mask`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (23).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ARM functions and host tokens that send these handlers:
 
@@ -2732,7 +2732,7 @@ Material parameters and their updates. **Inferred** from its labels and callers.
   Constants loaded: 0xf547 (code in `mmo_DirtyCullAndLightModule`), 0xf50d (code in `mmo_DirtyLightModule`), 0x1.
 - `mLiPushMaterial`: address 0xe036, `material.S` line 532 (24 words). Reached: transfers in `mLiPushMtrlInit` and 2 other labels.
   **Inferred** role: material update inside a primitive: compares the parameter name and branches to the per-term code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer-to-float conversion (2), AND (1), XOR (1), float multiply (1), integer subtract or compare (1), move (1), operation 0x6cc (1), operation 0x6df (1), operation 0x6f1 (1), second-unit operation 0xff (1); sets the condition flags once; loads 3 constants; takes 3 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer-to-float conversion (2), AND (1), XOR (1), float multiply (1), float-to-integer conversion (1), integer subtract or compare (1), move (1), operation 0x6cc (1), second-unit operation 0xff (1), shift left (1); sets the condition flags once; loads 3 constants; takes 3 conditional transfers.
   It jumps to `mLiPushMtrlShin`; conditional transfers reach `mLiPushMtrlDiff` and 1 other label.
   Constants loaded: 0x10, 0xe, 0x1200.
 - `mLiPushMtrlASEI`: address 0xe009, `material.S` line 612 (30 words). Reached: transfers in `mLiPushMaterial` and 1 other label.
@@ -2767,15 +2767,15 @@ Scalar math subroutines: reciprocal, square root, reciprocal square root. **Infe
 - `misqrt`: address 0xd340, `math.S` line 13 (11 words). Reached: no slot, ARM load, decoded transfer or address constant reaches it (routes tried: [How to read the tables](#how-to-read-the-entries)).
   **Inferred** role: reciprocal square root: seed and two Newton steps, then a return; nothing in the program calls it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (4), reciprocal square-root Newton step (2), reciprocal square-root seed (2).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `msqrt`: address 0xd31e, `math.S` line 34 (12 words). Reached: no slot, ARM load, decoded transfer or address constant reaches it (routes tried: [How to read the tables](#how-to-read-the-entries)).
   **Inferred** role: square root: a reciprocal square root multiplied back by the argument, then a return; nothing in the program calls it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (5), reciprocal square-root Newton step (2), reciprocal square-root seed (2).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `minv`: address 0xd308, `math.S` line 56 (9 words). Reached: no slot, ARM load, decoded transfer or address constant reaches it (routes tried: [How to read the tables](#how-to-read-the-entries)).
   **Inferred** role: reciprocal: seed and two Newton steps, then a return; nothing in the program calls it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (2), reciprocal Newton step (2), reciprocal seed (2).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### matrix.S
 
@@ -2783,20 +2783,20 @@ Matrix copy, transpose, identity, ortho and frustum helpers. **Inferred** from i
 
 - `mMatrixTransposeWW`: address 0xd399, `matrix.S` line 34 (12 words). Reached: no slot, ARM load, decoded transfer or address constant reaches it (routes tried: [How to read the tables](#how-to-read-the-entries)).
   **Inferred** role: transposes a matrix in working memory: twelve moves and a return; nothing in the program calls it.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (12); 11 words in the output-instruction form of the diagnostic test.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (12); 11 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mMatrixLoadIdentityC`: address 0xd3f7, `matrix.S` line 54 (17 words). Reached: inside `mMatrixTransposeWW`, reached from that routine's own code.
   **Inferred** role: loads an identity matrix in coefficient memory (second entry after the transpose).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mMatrixCopyCW`: address 0xd380, `matrix.S` line 87 (25 words). Reached: inside `mMatrixLoadIdentityC`, reached from that routine's own code.
   **Inferred** role: copies a 16-word matrix from coefficient to working memory.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (16).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mMatrixCopyCC`: address 0xd35e, `matrix.S` line 117 (32 words). Reached: inside `mMatrixCopyCW`, reached from that routine's own code.
   **Inferred** role: copies a 16-word matrix within coefficient memory.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (16).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mFrustum`: address 0xd410, `matrix.S` line 151 (67 words). Reached: transfers in `mgeb_Frustum_Color` and 3 other labels.
   **Inferred** role: builds a perspective matrix from the six operand words: double-precision products and differences, an invalid-value check, then the matrix multiply.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 5; operations double multiply (12), float multiply (10), double subtract (6), operation 0x6b5 (6), operation 0x6f5 (6), second-unit move (6), float add (5), float subtract (4), move (4), second-unit move or minimum (4), operation 0x6ea (3), reciprocal Newton step (3), move of the second operand (2), operation 0x6eb (1), operation 0x6f4 (1); sets the condition flags 5 times; loads 1 constant; takes 5 conditional transfers.
@@ -3070,7 +3070,7 @@ Pixel-path component-order reversal, added by AddCompOrder. **Inferred** from it
 - `mmo_ReverseComp4Order`: address 0x6b2f, `mcomporder.S` line 65 (62 words). Reached: geif slot 280 (entry 561); the ARM functions that send it are in the table below.
   **Inferred** role: pixel-path stage that reverses the order of four components (ABGR to RGBA): moves in three loops.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (39); reads engine memory at 3 addresses from 0xbae to 0xbb0; closes 3 loops.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ARM functions and host tokens that send these handlers:
 
@@ -3085,42 +3085,42 @@ Primitive decomposition: triangle strips, quads, quad strips, polygons, simple t
 - `mmo_DummyDecompose`: address 0xca01, `mdecompose2.S` line 37 (7 words). Reached: its address loaded as a constant in `mdc_multipass` and 13 other labels.
   **Inferred** role: decomposition that draws nothing: loads the triangle clipper's address and ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); loads 1 constant.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xed52 (code in `mClipTriUserAndFrustum`).
 - `mmo_DecomposePolygon`: address 0xca86, `mdecompose2.S` line 53 (37 words). Reached: its address loaded as a constant in `mgesi_TfanPoly` and 6 other labels.
   **Inferred** role: polygon decomposition into triangles for the clipper.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8), OR (5), AND (3); sets the condition flags once; loads 6 constants; takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `mmo_AbortGeometry`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `mmo_AbortGeometry`.
   Constants loaded: 0xed52 (code in `mClipTriUserAndFrustum`), -2.0 (0xc0000000), 0.
 - `mmo_DecomposeQuads`: address 0xca3a, `mdecompose2.S` line 132 (37 words). Reached: its address loaded as a constant in `mgesi_Quads`.
   **Inferred** role: independent-quad decomposition into triangles.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (6), AND (4), move (1), operation 0x6db (1); loads 11 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `mmo_AbortGeometry`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (6), AND (4), arithmetic shift right (1), move (1); loads 11 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `mmo_AbortGeometry`.
   Constants loaded: 0, 0x2, 0xed52 (code in `mClipTriUserAndFrustum`), -2.0 (0xc0000000), 0x7800, 0x6000.
 - `mmo_DummyDecomposeQuadStrip`: address 0xc9e1, `mdecompose2.S` line 222 (31 words). Reached: its address loaded as a constant in `mgesi_QuadStrip` and 3 other labels.
   **Inferred** role: quad-strip decomposition step that only advances the vertex count.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer add (4), move (4); sets the condition flags 2 times; loads 3 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `mmo_AbortGeometry`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `mmo_AbortGeometry`.
   Constants loaded: 0xed52 (code in `mClipTriUserAndFrustum`), 0x6000, 0x6800.
 - `mmo_DecomposeQuadStrip`: address 0xca60, `mdecompose2.S` line 281 (34 words). Reached: its address loaded as a constant in `mgesi_QuadStrip` and 3 other labels.
   **Inferred** role: quad-strip decomposition into triangles.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer add (2), move (2); sets the condition flags once; loads 11 constants; takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `mmo_AbortGeometry`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `mmo_AbortGeometry`.
   Constants loaded: 0xed52 (code in `mClipTriUserAndFrustum`), 0x6000, 0x6800, 0, -12.0 (0xc1400000).
 - `mmo_DecomposeSimpleTriangles`: address 0xca10, `mdecompose2.S` line 350 (38 words). Reached: its address loaded as a constant in `mgesi_Triangles`.
   **Inferred** role: independent-triangle decomposition.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (6), OR (6), float multiply (1), integer-to-float conversion (1), move (1), operation 0x6f1 (1), operation 0x6f7 (1); loads 6 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `mmo_AbortGeometry`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (6), OR (6), float multiply (1), float-to-integer conversion (1), integer-to-float conversion (1), move (1), operation 0x6f7 (1); loads 6 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `mmo_AbortGeometry`.
   Constants loaded: 0.334 (0x3eab020c), 0, -2.0 (0xc0000000), 0xed52 (code in `mClipTriUserAndFrustum`).
 - `mmo_DecomposeTriangleStripWithSwapEven`: address 0xc9b2, `mdecompose2.S` line 410 (34 words). Reached: its address loaded as a constant in `mgesi_TriangleStrip` and 3 other labels.
   **Inferred** role: triangle-strip decomposition with the vertex swap on even triangles.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (2), operation 0x6d1 (2), OR (1), XOR (1); sets the condition flags 2 times; loads 5 constants; takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `mmo_AbortGeometry`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `mmo_AbortGeometry`.
   Constants loaded: 0xed52 (code in `mClipTriUserAndFrustum`), 0x10000000, 0.
 - `mmo_DecomposeTriangleStripWithSwapOdd`: address 0xc989, `mdecompose2.S` line 501 (26 words). Reached: its address loaded as a constant in `mgesi_TriangleStripRestoreSaveWithSwapOdd` and 3 other labels.
   **Inferred** role: triangle-strip decomposition with the vertex swap on odd triangles.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), AND (1), XOR (1); sets the condition flags once; loads 4 constants; takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `mmo_AbortGeometry`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `mmo_AbortGeometry`.
   Constants loaded: 0xed52 (code in `mClipTriUserAndFrustum`), 0x10000000, 0.
 
 ### mdecompress.S
@@ -3129,8 +3129,8 @@ Pixel-path 16-bit depth decompression, added by AddDecompressZ. **Inferred** fro
 
 - `mmo_DecompressZ16`: address 0x9793, `mdecompress.S` line 68 (106 words). Reached: geif slot 255 (entry 511); the ARM functions that send it are in the table below.
   **Inferred** role: pixel-path stage that expands compressed 16-bit depth: masks and compares on 12- and 13-bit fields.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (18), OR (16), integer subtract or compare (16), operation 0x6df (16), AND (8), operation 0x6dd (8), integer add (1); sets the condition flags 8 times; reads engine memory at 4 addresses from 0xbf2 to 0xbf5; loads 4 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (18), OR (16), integer subtract or compare (16), shift left (16), AND (8), logical shift right (8), integer add (1); sets the condition flags 8 times; reads engine memory at 4 addresses from 0xbf2 to 0xbf5; loads 4 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xfffff000, 0xffffe000, 0x13, 0xfff.
 
 ARM functions and host tokens that send these handlers:
@@ -3146,15 +3146,15 @@ Memory moves between ERAM, WRAM and CRAM. **Inferred** from its labels and calle
 - `mCramToWram`: address 0xd4a2, `memove.S` line 32 (16 words). Reached: no slot, ARM load, decoded transfer or address constant reaches it (routes tried: [How to read the tables](#how-to-read-the-entries)).
   **Inferred** role: copy from coefficient to working memory; nothing in the program calls it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mEramToWram`: address 0xd45d, `memove.S` line 68 (18 words). Reached: transfers in `RestoreClipState` and 5 other labels.
   **Inferred** role: copy from external to working memory, returning to the caller.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mEramToEram`: address 0xd47f, `memove.S` line 108 (24 words). Reached: transfers in `mLiUpdateShin` and 1 other label.
   **Inferred** role: copy within external memory, returning to the caller.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### mexpand.S
 
@@ -3163,11 +3163,11 @@ Memory moves between ERAM, WRAM and CRAM. **Inferred** from its labels and calle
 - `mmo_Expand32_1_4`: address 0x6c55, `mexpand.S` line 43 (53 words). Reached: geif slot 257 (entry 515).
   **Inferred** role: expands 32-bit pixels from one to four components.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (37); closes 1 loop.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_Expand32_2_4`: address 0x6c0b, `mexpand.S` line 132 (52 words). Reached: geif slot 258 (entry 517).
   **Inferred** role: expands 32-bit pixels from two to four components.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (36); closes 1 loop.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### mextract.S
 
@@ -3175,8 +3175,8 @@ Pixel-path L12A4 extraction, added by AddExtract. **Inferred** from its labels a
 
 - `mmo_ExtractL12A4`: address 0x91e3, `mextract.S` line 71 (143 words). Reached: geif slot 282 (entry 565); the ARM functions that send it are in the table below.
   **Inferred** role: extracts 12-bit luminance and 4-bit alpha from packed pixels with masks.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (66), AND (18), operation 0x6dd (18); reads engine memory at 21 addresses from 0xbc0 to 0xbd4; closes 3 loops.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (66), AND (18), logical shift right (18); reads engine memory at 21 addresses from 0xbc0 to 0xbd4; closes 3 loops.
+  It ends the command with an indirect transfer in condition group 31.
 
 ARM functions and host tokens that send these handlers:
 
@@ -3204,16 +3204,16 @@ Pixel-path min-max stage, added by AddMinMax (ucode/ge_ops.md, "Settling the tie
   It has no jump of its own and runs on into `merge2_mm`.
 - `merge2_mm`: address 0x1518, `minmax.s` line 318 (54 words). Reached: inside `mmo_Minmax`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations maximum (14), minimum (14).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `merge1_mm`: address 0x154e, `minmax.s` line 381 (49 words). Reached: transfers in `epilogue_mm`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations maximum (12), minimum (12).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `merge3_mm`: address 0x157f, `minmax.s` line 438 (46 words). Reached: transfers in `epilogue_mm`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations maximum (12), minimum (12).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `merge4_mm`: address 0x15ad, `minmax.s` line 492 (46 words). Reached: transfers in `epilogue_mm`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations maximum (12), minimum (12).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `uge_MinmaxFill`: address 0x15db, `minmax.s` line 544 (30 words). Reached: inside `mmo_Minmax`, reached from that routine's own code.
   **Inferred** role: second entry inside the minmax stage that seeds the minimum and maximum from six operand words.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 8; operations move (6), maximum (3), minimum (3).
@@ -3232,7 +3232,7 @@ Sine and cosine of two angles. **Inferred** from its labels and callers.
 - `mSinCosAB`: address 0xd23f, `mmath.S` line 115 (119 words). Reached: transfers in `DrawMSTFanPnt` and 1 other label.
   **Inferred** role: sine and cosine of an angle range: series terms by multiplies and subtracts.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (33), float subtract (33), float add (9), double subtract (6), move (6), operation 0x6b5 (6), second-unit operation 0x5ff (6); sets the condition flags 9 times.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### mmatrix.S
 
@@ -3241,7 +3241,7 @@ Sine and cosine of two angles. **Inferred** from its labels and callers.
 - `mMatrixMultCCC`: address 0xe8a6, `mmatrix.S` line 36 (343 words). Reached: transfers in `mgebi_ReferencePlane`.
   **Inferred** role: matrix multiply in coefficient memory: 101 multiplies and 63 adds, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (101), float add (63), move (51), float subtract (44), float multiply-add (25), reciprocal Newton step (2), reciprocal seed (1); sets the condition flags once; loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); jumps within its own code.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); jumps within its own code.
   Constants loaded: 0.5 (0x3f000000).
 
 ### mmemove.S
@@ -3251,11 +3251,11 @@ Memory moves from WRAM to CRAM and to the output FIFO. **Inferred** from its lab
 - `mWramToCram`: address 0xd191, `mmemove.S` line 33 (17 words). Reached: transfers in `mgeb_ContextLoadCram` and 1 other label.
   **Inferred** role: copy from working to coefficient memory, returning to the caller.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mWramToFifo`: address 0xd1a9, `mmemove.S` line 271 (102 words). Reached: transfers in `mges_ContextDeactGED` and 2 other labels.
   **Inferred** role: copy from working memory out through the FIFO: complemented control words and raster bus words.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (19), NOT (6); writes 3 words to the raster-bus output addresses; takes 6 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### mpixelSetup.S
 
@@ -3263,12 +3263,12 @@ Pixel-path set-up: stream distribution to the next engine, CRAM/ERAM copies, int
 
 - `mgesi_PixRasterPosSetup`: address 0xa990, `mpixelSetup.S` line 143 (315 words). Reached: geif slot 106 (entry 213); the ARM functions that send it are in the table below.
   **Inferred** role: pixel raster-position set-up: nine operand words turned into the pixel rectangle and zoom terms.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 8; operations move (89), float add (23), float multiply (18), AND (9), integer-to-float conversion (9), OR (5), integer subtract or compare (5), float subtract (4), operation 0x6f1 (4), maximum (2), minimum (2), operation 0x6df (2), operation 0x6e1 (2), operation 0x6e4 (2), operation 0x6f9 (2), NOT (1); sets the condition flags 14 times; reads engine memory at 0x20; loads 81 constants; takes 7 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; waits on its own address under another condition group; jumps within its own code.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 8; operations move (89), float add (23), float multiply (18), AND (9), integer-to-float conversion (9), OR (5), integer subtract or compare (5), float subtract (4), float-to-integer conversion (4), maximum (2), minimum (2), operation 0x6e1 (2), operation 0x6e4 (2), operation 0x6f9 (2), shift left (2), NOT (1); sets the condition flags 14 times; reads engine memory at 0x20; loads 81 constants; takes 7 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31; waits on its own address under another condition group; jumps within its own code.
   Constants loaded: 0, 0x400, 0x2, 49152.0 (0x47400000), 8.0 (0x41000000), 0x2103000, 0x3fc2, 0xf0000 and 57 more.
 - `mgesi_PixQueryCopyOverlap`: address 0xa8f7, `mpixelSetup.S` line 667 (93 words). Reached: geif slot 213 (entry 427); the ARM functions that send it are in the table below.
   **Inferred** role: checks whether a pixel copy's source and destination overlap.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations move (16), float subtract (12), float add (9), integer add (9), integer-to-float conversion (5), operation 0x6f1 (3), AND (2), OR (2), float multiply (2), integer subtract or compare (2), maximum (2), minimum (2), operation 0x6e4 (2), operation 0x6df (1); sets the condition flags 18 times; loads 8 constants; takes 4 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations move (16), float subtract (12), float add (9), integer add (9), integer-to-float conversion (5), float-to-integer conversion (3), AND (2), OR (2), float multiply (2), integer subtract or compare (2), maximum (2), minimum (2), operation 0x6e4 (2), shift left (1); sets the condition flags 18 times; loads 8 constants; takes 4 conditional transfers.
   It waits on its own address under another condition group; jumps within its own code.
   Constants loaded: 0.0009765625 (0x3a800000), 0x3, 40.0 (0x42200000), 0x2103000, 0x430, 0x434, 142.0 (0x430e0000), 0x10.
 - `mgeb_StrideEramToCram`: address 0xa8bb, `mpixelSetup.S` line 840 (44 words). Reached: geif slot 172 (entry 345).
@@ -3277,12 +3277,12 @@ Pixel-path set-up: stream distribution to the next engine, CRAM/ERAM copies, int
   It waits on its own address under another condition group.
 - `mgeb_FlipXConvKern`: address 0xa864, `mpixelSetup.S` line 906 (53 words). Reached: geif slot 148 (entry 297); the ARM functions that send it are in the table below.
   **Inferred** role: flips a convolution kernel in x.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (15), second-unit move or minimum (6), integer subtract or compare (3), integer add (1), operation 0x6db (1), operation 0x6df (1); sets the condition flags once; loads 1 constant; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (15), second-unit move or minimum (6), integer subtract or compare (3), arithmetic shift right (1), integer add (1), shift left (1); sets the condition flags once; loads 1 constant; takes 2 conditional transfers.
   It waits on its own address under another condition group.
   Constants loaded: 0x1.
 - `mgeb_FlipYConvKern`: address 0xa7fe, `mpixelSetup.S` line 992 (61 words). Reached: geif slot 149 (entry 299); the ARM functions that send it are in the table below.
   **Inferred** role: flips a convolution kernel in y.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (18), second-unit move or minimum (6), integer subtract or compare (5), operation 0x6db (1), second-unit operation 0xff (1); sets the condition flags once; loads 1 constant; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (18), second-unit move or minimum (6), integer subtract or compare (5), arithmetic shift right (1), second-unit operation 0xff (1); sets the condition flags once; loads 1 constant; takes 2 conditional transfers.
   It waits on its own address under another condition group.
   Constants loaded: 0.
 - `mgeb_BitmapApplyOrig`: address 0xa7e8, `mpixelSetup.S` line 1076 (11 words). Reached: geif slot 1 (entry 3); the ARM functions that send it are in the table below.
@@ -3331,7 +3331,7 @@ Pixel-path set-up: stream distribution to the next engine, CRAM/ERAM copies, int
   It jumps to `DoFlushPGPCache`.
 - `mgeb_PixEndRGBStream`: address 0xa6e8, `mpixelSetup.S` line 1419 (23 words). Reached: geif slot 61 (entry 123); the ARM functions that send it are in the table below.
   **Inferred** role: ends an RGB pixel stream: one raster bus word.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6f1 (10), NOT (2), move (2); writes 1 word to the raster-bus output addresses; loads 2 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float-to-integer conversion (10), NOT (2), move (2); writes 1 word to the raster-bus output addresses; loads 2 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0x70000, 0x14.
 - `mgeb_PixEndPolygonStipple`: address 0xa6db, `mpixelSetup.S` line 1464 (8 words). Reached: geif slot 60 (entry 121); the ARM functions that send it are in the table below.
@@ -3340,7 +3340,7 @@ Pixel-path set-up: stream distribution to the next engine, CRAM/ERAM copies, int
   It waits on its own address under another condition group.
 - `mgesi_PixConv5GVEntry`: address 0xa6be, `mpixelSetup.S` line 1513 (23 words). Reached: geif slot 105 (entry 211).
   **Inferred** role: entry for the 5x5 convolution general-vertex path: counts and compares.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (5), integer add (2), integer subtract or compare (2), operation 0x6f1 (1); sets the condition flags once; loads 1 constant; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (5), integer add (2), integer subtract or compare (2), float-to-integer conversion (1); sets the condition flags once; loads 1 constant; takes 2 conditional transfers.
   It ends with the end-of-command wait.
   Constants loaded: 0x2.
 - `mmo_PixLineNextGE`: address 0xa6ad, `mpixelSetup.S` line 1608 (15 words). Reached: geif slot 301 (entry 603); the ARM functions that send it are in the table below; transfers in `FastRowConv5Epilog`.
@@ -3350,12 +3350,12 @@ Pixel-path set-up: stream distribution to the next engine, CRAM/ERAM copies, int
   Constants loaded: 0x70000, 142.0 (0x430e0000), 40.0 (0x42200000).
 - `mmo_SetupHip`: address 0xa62a, `mpixelSetup.S` line 1680 (98 words). Reached: geif slot 299 (entry 599); the ARM functions that send it are in the table below.
   **Inferred** role: sets up the host-interface side of a pixel operation: masks addresses to 4 KB pages (0xfffff000) and computes counts.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (42), integer add (6), AND (5), OR (2), operation 0x6dd (2), second-unit operation 0xff (1); sets the condition flags once; writes 3 words to the raster-bus output addresses; reads engine memory at 4 addresses from 0xdc6 to 0xdc9; loads 21 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (42), integer add (6), AND (5), OR (2), logical shift right (2), second-unit operation 0xff (1); sets the condition flags once; writes 3 words to the raster-bus output addresses; reads engine memory at 4 addresses from 0xdc6 to 0xdc9; loads 21 constants.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xc, 0xfffff000, 0xfff, 0, 0x7, 32.0 (0x42000000), 0x2103000, 0x400000 and 12 more.
 - `mmo_PixStreamNextGE_BEFWAR`: address 0xa614, `mpixelSetup.S` line 1915 (22 words). Reached: geif slot 303 (entry 607); the ARM functions that send it are in the table below.
   **Inferred** role: hands a pixel stream to the next engine with the back-end workaround: three raster bus words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6f1 (10), NOT (4), move (2); writes 3 words to the raster-bus output addresses; loads 1 constant.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float-to-integer conversion (10), NOT (4), move (2); writes 3 words to the raster-bus output addresses; loads 1 constant.
   It ends with the end-of-command wait.
   Constants loaded: 0x70000.
 - `mmo_PixStreamNextGE`: address 0xa60b, `mpixelSetup.S` line 1980 (6 words). Reached: geif slot 304 (entry 609); the ARM functions that send it are in the table below.
@@ -3386,15 +3386,15 @@ Pixel-path set-up: stream distribution to the next engine, CRAM/ERAM copies, int
 - `mmo_CopyFifoLine`: address 0xab59, `mpixelSetup.S` line 2246 (50 words). Reached: geif slot 267 (entry 535); the ARM functions that send it are in the table below.
   **Inferred** role: copies one FIFO line: reads the five words the ARM wrote at 0xbfc-0xc00 and moves the data.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (20); sets the condition flags once; reads engine memory at 5 addresses from 0xbfc to 0xc00; takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_Shift_Skip`: address 0xa570, `mpixelSetup.S` line 2433 (35 words). Reached: geif slot 438 (entry 877); the ARM functions that send it are in the table below.
   **Inferred** role: shift-and-skip pixel stage using the same five control words at 0xbfc-0xc00.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (8), move (5); reads engine memory at 5 addresses from 0xbfc to 0xc00; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (8), move (5); reads engine memory at 5 addresses from 0xbfc to 0xc00; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_I2F_Scale_Skip`: address 0xa532, `mpixelSetup.S` line 2556 (38 words). Reached: geif slot 439 (entry 879); the ARM functions that send it are in the table below.
   **Inferred** role: integer-to-float scale-and-skip pixel stage using the five control words at 0xbfc-0xc00.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (8), integer-to-float conversion (8), move (5); reads engine memory at 5 addresses from 0xbfc to 0xc00; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ARM functions and host tokens that send these handlers:
 
@@ -3434,16 +3434,16 @@ Pixel output stages for GL and X: component packing, polygon stipple, transparen
 
 - `mmo_Pixout_8_16NC`: address 0xa44e, `mpixout.S` line 90 (85 words). Reached: geif slot 310 (entry 621).
   **Inferred** role: pixel output for 8- and 16-bit formats without the colour path: 48 multiplies and output words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (48), move (11); sets the condition flags 2 times; 1 word in the output-instruction form of the diagnostic test; takes 4 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `mLASTGE`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (48), move (11); sets the condition flags 2 times; 1 word stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 4 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `mLASTGE`.
 - `mmo_Pixout_8_16`: address 0xa4b5, `mpixout.S` line 228 (27 words). Reached: geif slot 309 (entry 619).
   **Inferred** role: pixel output for 8- and 16-bit formats: tests the last block and engine, then the last-block code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9); sets the condition flags 2 times; takes 2 conditional transfers.
   It jumps to `uPO_8_16C_LastBlck`; conditional transfers reach `mLASTGE` and 1 other label.
 - `mmo_Pixout_2_4NC`: address 0xa407, `mpixout.S` line 308 (50 words). Reached: geif slot 312 (entry 625).
   **Inferred** role: pixel output for 2- and 4-component formats without the colour path.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (12), move (11); sets the condition flags 2 times; 1 word in the output-instruction form of the diagnostic test; takes 4 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `mLASTGE`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (12), move (11); sets the condition flags 2 times; 1 word stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 4 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `mLASTGE`.
 - `mmo_Pixout_2_4`: address 0xa3e8, `mpixout.S` line 404 (27 words). Reached: geif slot 311 (entry 623).
   **Inferred** role: pixel output for 2- and 4-component formats.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9); sets the condition flags 2 times; takes 2 conditional transfers.
@@ -3451,102 +3451,102 @@ Pixel output stages for GL and X: component packing, polygon stipple, transparen
 - `mmo_Pixout_RGB_in_RGBA`: address 0xa395, `mpixout.S` line 507 (60 words). Reached: geif slot 259 (entry 519).
   **Inferred** role: pixel output of RGB data in RGBA layout: clamps and scales in three loops.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations clamp at zero (20), float multiply (20), move (10); closes 3 loops.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_Pixout_RGB_in_RGBANC`: address 0xa33f, `mpixout.S` line 595 (57 words). Reached: geif slot 260 (entry 521).
   **Inferred** role: pixel output of RGB data in RGBA layout without clamping: scaling multiplies in three loops.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (20), move (10); closes 3 loops.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_Pixout_32`: address 0xa2d5, `mpixout.S` line 687 (102 words). Reached: geif slot 261 (entry 523).
   **Inferred** role: 32-bit pixel output: clamps and scales every component (64 of each) in its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations clamp at zero (64), float multiply (64), move (10); closes 1 loop.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_Pixout_32NC`: address 0xa276, `mpixout.S` line 859 (92 words). Reached: geif slot 262 (entry 525).
   **Inferred** role: 32-bit pixel output without clamping: 64 scaling multiplies in its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (64), move (10); closes 1 loop.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_PixoutCI_4_8`: address 0xa214, `mpixout.S` line 1034 (77 words). Reached: geif slot 306 (entry 613).
   **Inferred** role: colour-index pixel output for 4- and 8-bit indices: moves in three loops.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (56); 3 words in the output-instruction form of the diagnostic test; closes 3 loops.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (56); 3 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); closes 3 loops.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_PixoutMerge2_4C`: address 0xa1c2, `mpixout.S` line 1128 (68 words). Reached: geif slot 307 (entry 615).
   **Inferred** role: merges two-component pixels into four-component words for output, with two raster bus words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (38), operation 0x6f1 (1); writes 2 words to the raster-bus output addresses; 4 words in the output-instruction form of the diagnostic test; loads 2 constants; takes 2 conditional transfers; closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (38), float-to-integer conversion (1); writes 2 words to the raster-bus output addresses; 4 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); loads 2 constants; takes 2 conditional transfers; closes 1 loop.
   It ends with the end-of-command wait.
   Constants loaded: 0x2202000, 0x2200000.
 - `mmo_ArbClamp`: address 0xa154, `mpixout.S` line 1332 (90 words). Reached: geif slot 264 (entry 529); the ARM functions that send it are in the table below.
   **Inferred** role: pixel-path clamp to arbitrary bounds: 32 minimums and 32 maximums against four bounds read from engine memory 0xbbc-0xbbf.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations maximum (32), minimum (32), move (6); reads engine memory at 4 addresses from 0xbbc to 0xbbf; closes 1 loop.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_ConvEramToWram`: address 0xa132, `mpixout.S` line 1412 (19 words). Reached: geif slot 265 (entry 531); the ARM functions that send it are in the table below.
   **Inferred** role: loads a convolution kernel from external memory: five control words at 0xbb6-0xbba.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (5); reads engine memory at 5 addresses from 0xbb6 to 0xbba.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_unloadConvA`: address 0xa105, `mpixout.S` line 1467 (16 words). Reached: geif slot 268 (entry 537); the ARM functions that send it are in the table below.
   **Inferred** role: unloads alpha from the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1); loads 3 constants; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.
 - `mmo_unloadConvL`: address 0xa0d8, `mpixout.S` line 1505 (16 words). Reached: geif slot 270 (entry 541); the ARM functions that send it are in the table below.
   **Inferred** role: unloads luminance from the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1); loads 3 constants; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.
 - `mmo_unloadConvLA`: address 0xa0a9, `mpixout.S` line 1539 (17 words). Reached: geif slot 271 (entry 543); the ARM functions that send it are in the table below.
   **Inferred** role: unloads luminance-alpha from the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); loads 2 constants; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.
 - `mmo_unloadConvI`: address 0xa07c, `mpixout.S` line 1578 (16 words). Reached: geif slot 269 (entry 539); the ARM functions that send it are in the table below.
   **Inferred** role: unloads intensity from the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1); loads 3 constants; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.
 - `mmo_unloadConvRGBA`: address 0xa049, `mpixout.S` line 1612 (19 words). Reached: geif slot 273 (entry 547); the ARM functions that send it are in the table below.
   **Inferred** role: unloads RGBA from the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4); takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_unloadConvRGB`: address 0xa018, `mpixout.S` line 1645 (18 words). Reached: geif slot 272 (entry 545); the ARM functions that send it are in the table below.
   **Inferred** role: unloads RGB from the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3); loads 1 constant; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.
 - `mmo_ConvolveOut`: address 0xa002, `mpixout.S` line 1678 (11 words). Reached: geif slot 266 (entry 533); the ARM functions that send it are in the table below.
   **Inferred** role: convolution output stage: four moves.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_loadConvA`: address 0x9fd7, `mpixout.S` line 1726 (13 words). Reached: geif slot 274 (entry 549); the ARM functions that send it are in the table below.
   **Inferred** role: loads alpha into the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1); takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_loadConvL`: address 0x9fa9, `mpixout.S` line 1760 (14 words). Reached: geif slot 276 (entry 553); the ARM functions that send it are in the table below.
   **Inferred** role: loads luminance into the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1); takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_loadConvLA`: address 0x9f79, `mpixout.S` line 1794 (16 words). Reached: geif slot 277 (entry 555); the ARM functions that send it are in the table below.
   **Inferred** role: loads luminance-alpha into the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_loadConvI`: address 0x9f49, `mpixout.S` line 1829 (15 words). Reached: geif slot 275 (entry 551); the ARM functions that send it are in the table below.
   **Inferred** role: loads intensity into the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1); takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_loadConvRGBA`: address 0x9f19, `mpixout.S` line 1863 (18 words). Reached: geif slot 279 (entry 559); the ARM functions that send it are in the table below.
   **Inferred** role: loads RGBA into the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4); takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_loadConvRGB`: address 0x9eeb, `mpixout.S` line 1899 (16 words). Reached: geif slot 278 (entry 557); the ARM functions that send it are in the table below.
   **Inferred** role: loads RGB into the convolution buffer.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3); takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_PolygonStippleOut`: address 0x9eb1, `mpixout.S` line 1940 (23 words). Reached: geif slot 313 (entry 627); the ARM functions that send it are in the table below.
   **Inferred** role: polygon-stipple pixel output: tests the pattern bit and ends the command.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (5), AND (1), OR (1), operation 0x6df (1); loads 2 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (5), AND (1), OR (1), shift left (1); loads 2 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x1, 0.
 - `mDoPolygonStippleRotate`: address 0x9df3, `mpixout.S` line 1988 (80 words). Reached: transfers in `mgeb_PolygonStippleRotate` and 1 other label.
   **Inferred** role: rotates the 32-bit polygon-stipple rows by bit shifts (masks 0x1 and 0x20) and returns.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), operation 0x6df (6), AND (4), OR (4), integer subtract or compare (4), operation 0x6dd (4); sets the condition flags once; loads 3 constants; takes 3 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), shift left (6), AND (4), OR (4), integer subtract or compare (4), logical shift right (4); sets the condition flags once; loads 3 constants; takes 3 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x1, 0x20, 0xffffffff.
 - `mgeb_PolygonStippleRotate`: address 0x9ddc, `mpixout.S` line 2085 (13 words). Reached: geif slot 65 (entry 131); the ARM functions that send it are in the table below.
   **Inferred** role: rotates the polygon stipple by the two operand offsets through the rotate routine.
@@ -3555,12 +3555,12 @@ Pixel output stages for GL and X: component packing, polygon stipple, transparen
   Constants loaded: 0x20.
 - `mDoPolygonStippleDownloadInner`: address 0x9dae, `mpixout.S` line 2112 (26 words). Reached: transfers in `mDoPolygonStippleDownload`.
   **Inferred** role: inner loop of the stipple download: one raster bus word per row.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (10), operation 0x6dd (4), integer add (2); writes 1 word to the raster-bus output addresses; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (10), logical shift right (4), integer add (2); writes 1 word to the raster-bus output addresses; takes 2 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mDoPolygonStippleDownload`: address 0x9d6b, `mpixout.S` line 2160 (39 words). Reached: transfers in `mgesi_PolygonStippleDownload` and 2 other labels.
   **Inferred** role: downloads the polygon stipple to the raster system: 13 constants (0x880 to 0x8e0 among them) and the inner loop.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (8), integer add (4), NOT (2), operation 0x6df (1); writes 1 word to the raster-bus output addresses; loads 13 constants; takes 1 conditional transfer.
-  It calls `mDoPolygonStippleDownloadInner`; returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (8), integer add (4), NOT (2), shift left (1); writes 1 word to the raster-bus output addresses; loads 13 constants; takes 1 conditional transfer.
+  It calls `mDoPolygonStippleDownloadInner`; returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x880, 0x8a0, 0x8c0, 0x8e0, 0x1, 0x2010700, 0x2010600, 0x2010500 and 5 more.
 - `mgesi_PolygonStippleDownload`: address 0x9d56, `mpixout.S` line 2212 (9 words). Reached: geif slot 215 (entry 431); the ARM functions that send it are in the table below.
   **Inferred** role: command that downloads the polygon stipple.
@@ -3568,17 +3568,17 @@ Pixel output stages for GL and X: component packing, polygon stipple, transparen
   It calls `mDoPolygonStippleDownload`; ends with the end-of-command wait.
 - `mmo_X_pixout_8_16`: address 0x9cd5, `mpixout.S` line 2256 (122 words). Reached: geif slot 367 (entry 735).
   **Inferred** role: X server pixel output for 8- and 16-bit formats: 32 packing ORs and two raster bus words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (32), operation 0x6dd (32), operation 0x6df (32), move (13); writes 2 words to the raster-bus output addresses; loads 1 constant.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (32), logical shift right (32), shift left (32), move (13); writes 2 words to the raster-bus output addresses; loads 1 constant.
   It ends with the end-of-command wait.
   Constants loaded: 0x1.
 - `mmo_X_pixout_4`: address 0x9c54, `mpixout.S` line 2359 (122 words). Reached: geif slot 368 (entry 737).
   **Inferred** role: X server pixel output for 4-bit formats.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (32), operation 0x6dd (32), operation 0x6df (32), move (13); writes 2 words to the raster-bus output addresses; loads 1 constant.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (32), logical shift right (32), shift left (32), move (13); writes 2 words to the raster-bus output addresses; loads 1 constant.
   It ends with the end-of-command wait.
   Constants loaded: 0x1.
 - `mmo_X_pixout_4Comp`: address 0x9c14, `mpixout.S` line 2459 (59 words). Reached: geif slot 369 (entry 739).
   **Inferred** role: X server pixel output for four-component formats.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (32), move (12); writes 2 words to the raster-bus output addresses; loads 1 constant.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (32), move (12); writes 2 words to the raster-bus output addresses; loads 1 constant.
   It ends with the end-of-command wait.
   Constants loaded: 0x1.
 - `mmo_X_DrawBitmapOpaque`: address 0x9b8f, `mpixout.S` line 2561 (125 words). Reached: geif slot 370 (entry 741).
@@ -3588,20 +3588,20 @@ Pixel output stages for GL and X: component packing, polygon stipple, transparen
 - `mLASTGE`: address 0xa4d4, `mpixout.S` line 2711 (69 words). Reached: transfers in `mmo_Pixout_2_4` and 15 other labels.
   **Inferred** role: end of a pixel operation on the last engine: reads six control words at 0xbf6-0xbfb and clears bit 16.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (23), AND (1); reads engine memory at 6 addresses from 0xbf6 to 0xbfb; loads 2 constants; takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0, 0xfffeffff.
 - `mgesi_TransparentBitmap`: address 0x9b4a, `mpixout.S` line 2838 (48 words). Reached: geif slot 111 (entry 223); the ARM functions that send it are in the table below.
   **Inferred** role: transparent bitmap drawing: raster constants and two raster bus words in a loop.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (17), operation 0x6dd (7), NOT (2); writes 2 words to the raster-bus output addresses; loads 6 constants; closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (17), logical shift right (7), NOT (2); writes 2 words to the raster-bus output addresses; loads 6 constants; closes 1 loop.
   It waits on its own address under another condition group.
   Constants loaded: 0x2010f00, 0x2011f00, 0x4, 0x1, 0x42013f00, 0x2012f00.
 - `mod`: address 0x9ae9, `mpixout.S` line 2905 (12 words). Reached: transfers in `mgeb_XPolygonStippleRotate`.
   **Inferred** role: integer remainder by repeated subtract and compare, returning to the stipple rotation.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer subtract or compare (3), integer add (2), move (1); sets the condition flags 4 times; takes 4 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `HereWeGo`.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `HereWeGo`.
 - `mgeb_XPolygonStippleRotate`: address 0x9a98, `mpixout.S` line 2955 (40 words). Reached: geif slot 165 (entry 331); the ARM functions that send it are in the table below.
   **Inferred** role: X server polygon-stipple rotation: three operand words, the remainder routine and the rotate routine.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (14), integer subtract or compare (4), integer add (2), operation 0x6f1 (2).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (14), integer subtract or compare (4), float-to-integer conversion (2), integer add (2).
   It calls `mod` and `mDoPolygonStippleRotate`; waits on its own address under another condition group.
 - `mgesi_XPolygonStippleDownload`: address 0x9a83, `mpixout.S` line 3010 (9 words). Reached: geif slot 216 (entry 433); the ARM functions that send it are in the table below.
   **Inferred** role: X server polygon-stipple download through the common download routine.
@@ -3640,12 +3640,12 @@ Separable convolution stages 3x3, 5x5 and 7x7. **Inferred** from its labels and 
 
 - `mmo_SepConvolve3x3_124`: address 0x9710, `msepconv.S` line 107 (86 words). Reached: geif slot 314 (entry 629).
   **Inferred** role: separable 3x3 convolution stage set-up, then its inner routine.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (32), integer add (14), integer subtract or compare (1), operation 0x6dd (1), operation 0x6f1 (1), second-unit move or minimum (1); sets the condition flags once; loads 2 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (32), integer add (14), float-to-integer conversion (1), integer subtract or compare (1), logical shift right (1), second-unit move or minimum (1); sets the condition flags once; loads 2 constants; takes 1 conditional transfer.
   It jumps to `uSepConv3_124`.
   Constants loaded: 0.
 - `mmo_SepConvolve5x5_124`: address 0x96ac, `msepconv.S` line 424 (99 words). Reached: geif slot 315 (entry 631).
   **Inferred** role: separable 5x5 convolution stage set-up, then its inner routine.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (33), integer add (18), integer subtract or compare (1), operation 0x6dd (1), operation 0x6f1 (1); sets the condition flags once; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (33), integer add (18), float-to-integer conversion (1), integer subtract or compare (1), logical shift right (1); sets the condition flags once; takes 1 conditional transfer.
   It jumps to `uSepConv5_124`.
 - `mmo_FastSepConvolve5x5_124`: address 0x9654, `msepconv.S` line 769 (88 words). Reached: geif slot 316 (entry 633); the ARM functions that send it are in the table below.
   **Inferred** role: fast separable 5x5 convolution stage set-up, then its inner routine.
@@ -3653,7 +3653,7 @@ Separable convolution stages 3x3, 5x5 and 7x7. **Inferred** from its labels and 
   It jumps to `uFastSepConv5_124`.
 - `mmo_SepConvolve7x7_124`: address 0x95e5, `msepconv.S` line 1190 (111 words). Reached: geif slot 317 (entry 635).
   **Inferred** role: separable 7x7 convolution stage set-up, then its inner routine.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (35), integer add (21), integer subtract or compare (1), operation 0x6dd (1), operation 0x6f1 (1); sets the condition flags once; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (35), integer add (21), float-to-integer conversion (1), integer subtract or compare (1), logical shift right (1); sets the condition flags once; takes 1 conditional transfer.
   It jumps to `uSepConv7_124`.
 
 ARM functions and host tokens that send these handlers:
@@ -3669,7 +3669,7 @@ Short-circuit pixel conversions between packed formats. **Inferred** from its la
 - `mmo_shortpass8W`: address 0x99b0, `mshortcircuit.S` line 172 (48 words). Reached: geif slot 318 (entry 637).
   **Inferred** role: short-circuit pixel path that passes 8-bit words straight through.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (19); sets the condition flags 2 times; takes 5 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `mLASTGE`.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `mLASTGE`.
 - `mmo_short8to16`: address 0x998d, `mshortcircuit.S` line 318 (31 words). Reached: geif slot 319 (entry 639).
   **Inferred** role: short-circuit conversion of 8-bit to 16-bit pixels, then the merge code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (13); sets the condition flags 2 times; takes 2 conditional transfers.
@@ -3680,12 +3680,12 @@ Short-circuit pixel conversions between packed formats. **Inferred** from its la
   It jumps to `mMerge4_8C_LastBlk`; conditional transfers reach `mLASTGE` and 1 other label.
 - `mMerge4_8C`: address 0x9a57, `mshortcircuit.S` line 494 (38 words). Reached: transfers in `mmo_short8to16` and 1 other label.
   **Inferred** role: merges 4- and 8-component short-circuit pixels: 32 packing words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (32); takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `mMerge4_8C_LastBlk`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (32); takes 2 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `mMerge4_8C_LastBlk`.
 - `mMerge4_8C_LastBlk`: address 0x9a3d, `mshortcircuit.S` line 616 (21 words). Reached: transfers in `mMerge4_8C` and 2 other labels.
   **Inferred** role: last-block form of the 4-to-8 merge: 16 packing words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (16); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (16); takes 1 conditional transfer.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_short8to4`: address 0x9968, `mshortcircuit.S` line 705 (32 words). Reached: geif slot 320 (entry 641).
   **Inferred** role: short-circuit conversion of 8-bit to 4-bit pixels.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (13); sets the condition flags 2 times; loads 1 constant; takes 2 conditional transfers.
@@ -3722,20 +3722,20 @@ Short-circuit pixel conversions between packed formats. **Inferred** from its la
   It jumps to `mMerge8_16C_LastBlk`; conditional transfers reach `mLASTGE` and 1 other label.
 - `mMerge8_16C`: address 0x9a10, `mshortcircuit.S` line 1352 (39 words). Reached: transfers in `mmo_short16to4` and 6 other labels.
   **Inferred** role: merges 8- and 16-component short-circuit pixels: 32 packing words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (32); takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `mMerge8_16C_LastBlk`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (32); takes 2 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `mMerge8_16C_LastBlk`.
 - `mMerge8_16C_LastBlk`: address 0x99f5, `mshortcircuit.S` line 1491 (22 words). Reached: transfers in `mMerge8_16C` and 7 other labels.
   **Inferred** role: last-block form of the 8-to-16 merge: 16 packing words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (16); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (16); takes 1 conditional transfer.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mmo_Short_Complex_To_8`: address 0x9833, `mshortcircuit.S` line 1618 (40 words). Reached: geif slot 436 (entry 873).
   **Inferred** role: short-circuit conversion of complex (FFT) values to 8-bit pixels.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (16), move (6); takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `mLASTGE`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (16), move (6); takes 2 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `mLASTGE`.
 - `mmo_Short_Complex_To_16`: address 0x9805, `mshortcircuit.S` line 1734 (33 words). Reached: geif slot 437 (entry 875).
   **Inferred** role: short-circuit conversion of complex (FFT) values to 16-bit pixels.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (8), move (6); takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `mLASTGE`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (8), move (6); takes 2 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `mLASTGE`.
 
 ### msum.S
 
@@ -3744,7 +3744,7 @@ Pixel-path RGB-to-luminance sum, added by AddSumRGB2L. **Inferred** from its lab
 - `mmo_SumRGB2L`: address 0x6b9a, `msum.S` line 78 (65 words). Reached: geif slot 263 (entry 527); the ARM functions that send it are in the table below.
   **Inferred** role: pixel-path stage that sums RGB to luminance, clamped at 1.0 by a minimum.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (18), minimum (9), move (4); reads engine memory at 3 addresses from 0xbb1 to 0xbb3; loads 1 constant; closes 3 loops.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 1.0 (0x3f800000).
 
 ARM functions and host tokens that send these handlers:
@@ -3759,60 +3759,60 @@ Vertex-array unpack for lit vertex formats (V3F with colour, normal and texture 
 
 - `mmo_UnpackVertexV3F_N3S`: address 0x5757, `munpack.S` line 291 (141 words). Reached: geif slot 381 (entry 763); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position and short normal: scales the normal by 1/32767 (3.05185e-05).
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (39), float multiply (22), integer-to-float conversion (12), operation 0x6dd (8), operation 0x6df (8), float subtract (4), operation 0x6db (4), AND (2), float add (2), reciprocal square-root Newton step (2), reciprocal square-root seed (2), second-unit move (1); sets the condition flags 2 times; reads engine memory at 4 addresses from 0x13a7 to 0x13aa; loads 5 constants; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (39), float multiply (22), integer-to-float conversion (12), logical shift right (8), shift left (8), arithmetic shift right (4), float subtract (4), AND (2), float add (2), reciprocal square-root Newton step (2), reciprocal square-root seed (2), second-unit move (1); sets the condition flags 2 times; reads engine memory at 4 addresses from 0x13a7 to 0x13aa; loads 5 constants; takes 3 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 3.05185e-05 (0x380000fd), 0x3b808080, 0x8, 0x10.
 - `mmo_UnpackVertexV3F_C4UB_N3S`: address 0x56ff, `munpack.S` line 323 (82 words). Reached: geif slot 382 (entry 765); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position, byte colour (scaled by 1/255, 0x3b808080) and short normal.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (22), move (12), integer-to-float conversion (8), operation 0x6dd (8), operation 0x6df (8), float subtract (4), operation 0x6db (4), operation 0x6f2 (4), AND (2), float add (2), reciprocal square-root Newton step (2); sets the condition flags 2 times; loads 5 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (22), move (12), integer-to-float conversion (8), logical shift right (8), shift left (8), arithmetic shift right (4), float subtract (4), operation 0x6f2 (4), AND (2), float add (2), reciprocal square-root Newton step (2); sets the condition flags 2 times; loads 5 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x3b808080, 3.05185e-05 (0x380000fd), 0x18, 0x8, 0x10.
 - `mmo_UnpackVertexV3F_N3S_T2F`: address 0x563d, `munpack.S` line 407 (159 words). Reached: geif slot 385 (entry 771); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position, short normal and float texture coordinates.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (62), float multiply (22), integer-to-float conversion (12), operation 0x6dd (8), operation 0x6df (8), float subtract (4), operation 0x6db (4), AND (2), float add (2), reciprocal square-root Newton step (2), move of the second operand (1), reciprocal square-root seed (1), second-unit move (1); sets the condition flags 2 times; reads engine memory at 4 addresses from 0x13a7 to 0x13aa; loads 6 constants; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (62), float multiply (22), integer-to-float conversion (12), logical shift right (8), shift left (8), arithmetic shift right (4), float subtract (4), AND (2), float add (2), reciprocal square-root Newton step (2), move of the second operand (1), reciprocal square-root seed (1), second-unit move (1); sets the condition flags 2 times; reads engine memory at 4 addresses from 0x13a7 to 0x13aa; loads 6 constants; takes 3 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 3.05185e-05 (0x380000fd), 0x3b808080, 0x18, 0x8, 0x10.
 - `mmo_UnpackVertexV3F_C4UB_N3S_T2F`: address 0x55da, `munpack.S` line 440 (91 words). Reached: geif slot 386 (entry 773); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position, byte colour, short normal and float texture coordinates.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (22), move (20), integer-to-float conversion (10), operation 0x6dd (8), operation 0x6df (8), float subtract (4), operation 0x6db (4), AND (2), float add (2), operation 0x6f2 (2), reciprocal square-root Newton step (2), reciprocal square-root seed (2); sets the condition flags 2 times; loads 4 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (22), move (20), integer-to-float conversion (10), logical shift right (8), shift left (8), arithmetic shift right (4), float subtract (4), AND (2), float add (2), operation 0x6f2 (2), reciprocal square-root Newton step (2), reciprocal square-root seed (2); sets the condition flags 2 times; loads 4 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 3.05185e-05 (0x380000fd), 0x3b808080, 0x8, 0x10.
 - `mmo_UnpackVertexV3F_N3S_T2S`: address 0x5504, `munpack.S` line 533 (189 words). Reached: geif slot 389 (entry 779); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position, short normal and short texture coordinates.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (59), integer-to-float conversion (24), float multiply (22), operation 0x6db (16), operation 0x6df (14), operation 0x6dd (8), float subtract (4), AND (2), float add (2), reciprocal square-root Newton step (2), move of the second operand (1), reciprocal square-root seed (1), second-unit move (1); sets the condition flags 2 times; reads engine memory at 4 addresses from 0x13a7 to 0x13aa; loads 5 constants; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (59), integer-to-float conversion (24), float multiply (22), arithmetic shift right (16), shift left (14), logical shift right (8), float subtract (4), AND (2), float add (2), reciprocal square-root Newton step (2), move of the second operand (1), reciprocal square-root seed (1), second-unit move (1); sets the condition flags 2 times; reads engine memory at 4 addresses from 0x13a7 to 0x13aa; loads 5 constants; takes 3 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 3.05185e-05 (0x380000fd), 0x3b808080, 0x10, 0x8.
 - `mmo_UnpackVertexV3F_C4UB_N3S_T2S`: address 0x549e, `munpack.S` line 573 (96 words). Reached: geif slot 390 (entry 781); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position, byte colour, short normal and short texture coordinates.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (22), move (19), integer-to-float conversion (14), operation 0x6df (10), operation 0x6db (8), operation 0x6dd (8), float subtract (4), AND (2), float add (2), operation 0x6f2 (2), reciprocal square-root Newton step (2); sets the condition flags 2 times; loads 5 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (22), move (19), integer-to-float conversion (14), shift left (10), arithmetic shift right (8), logical shift right (8), float subtract (4), AND (2), float add (2), operation 0x6f2 (2), reciprocal square-root Newton step (2); sets the condition flags 2 times; loads 5 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x3b808080, 3.05185e-05 (0x380000fd), 0x8, 0x10.
 - `mmo_UnpackVertexV3F_LGT`: address 0x5470, `munpack.S` line 605 (36 words). Reached: geif slot 391 (entry 783); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position with lighting: reads seven state words at 0x13a7-0x13ad.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (23); reads engine memory at 7 addresses from 0x13a7 to 0x13ad; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_UnpackVertexV3F_C4UB_LGT`: address 0x542c, `munpack.S` line 632 (59 words). Reached: geif slot 392 (entry 785); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position and byte colour with lighting.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (14), float multiply (8), integer-to-float conversion (8), operation 0x6dd (8), operation 0x6df (6), second-unit move (1); reads engine memory at 3 addresses from 0x13ab to 0x13ad; loads 4 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (14), float multiply (8), integer-to-float conversion (8), logical shift right (8), shift left (6), second-unit move (1); reads engine memory at 3 addresses from 0x13ab to 0x13ad; loads 4 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x3b808080, 0x8, 0x10.
 - `mmo_UnpackVertexV3F_T2F_LGT`: address 0x53f6, `munpack.S` line 659 (44 words). Reached: geif slot 393 (entry 787); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position and float texture coordinates with lighting.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (31); reads engine memory at 7 addresses from 0x13a7 to 0x13ad; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_UnpackVertexV3F_C4UB_T2F_LGT`: address 0x53a8, `munpack.S` line 689 (67 words). Reached: geif slot 394 (entry 789); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position, byte colour and float texture coordinates with lighting.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (22), float multiply (8), integer-to-float conversion (8), operation 0x6dd (8), operation 0x6df (6), second-unit move (1); reads engine memory at 3 addresses from 0x13ab to 0x13ad; loads 5 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (22), float multiply (8), integer-to-float conversion (8), logical shift right (8), shift left (6), second-unit move (1); reads engine memory at 3 addresses from 0x13ab to 0x13ad; loads 5 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x3b808080, 0x18, 0x8, 0x10.
 - `mmo_UnpackVertexV3F_T2S_LGT`: address 0x5368, `munpack.S` line 720 (53 words). Reached: geif slot 395 (entry 791); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position and short texture coordinates with lighting.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (30), integer-to-float conversion (4), operation 0x6db (4), operation 0x6df (2); reads engine memory at 7 addresses from 0x13a7 to 0x13ad; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (30), arithmetic shift right (4), integer-to-float conversion (4), shift left (2); reads engine memory at 7 addresses from 0x13a7 to 0x13ad; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_UnpackVertexV3F_C4UB_T2S_LGT`: address 0x5312, `munpack.S` line 752 (75 words). Reached: geif slot 396 (entry 793); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack for float position, byte colour and short texture coordinates with lighting.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (22), integer-to-float conversion (12), float multiply (8), operation 0x6dd (8), operation 0x6df (8), operation 0x6db (4); reads engine memory at 3 addresses from 0x13ab to 0x13ad; loads 4 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (22), integer-to-float conversion (12), float multiply (8), logical shift right (8), shift left (8), arithmetic shift right (4); reads engine memory at 3 addresses from 0x13ab to 0x13ad; loads 4 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x3b808080, 0x10, 0x8.
 
 ### phong.S
@@ -3821,12 +3821,12 @@ Phong-shaded triangle output with per-pixel normalise and light. **Inferred** fr
 
 - `mmo_DrawTriPrimPhong`: address 0x9296, `phong.S` line 85 (523 words). Reached: no slot, ARM load, decoded transfer or address constant reaches it (routes tried: [How to read the tables](#how-to-read-the-entries)).
   **Inferred** role: Phong-shaded triangle drawing: 523 words with per-pixel normal interpolation and lighting; nothing in the program enters it.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (139), float subtract (99), move (83), float add (54), reciprocal Newton step (14), minimum (10), NOT (5), maximum (4), operation 0x6f7 (4), AND (1), operation 0x6e3 (1), reciprocal seed (1); sets the condition flags 5 times; writes 15 words to the raster-bus output addresses; stores 19 words to engine addresses from 0xc9 to 0xd7; 55 words in the output-instruction form of the diagnostic test; loads 33 constants; takes 6 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (139), float subtract (99), move (83), float add (54), reciprocal Newton step (14), minimum (10), NOT (5), maximum (4), operation 0x6f7 (4), AND (1), operation 0x6e3 (1), reciprocal seed (1); sets the condition flags 5 times; writes 15 words to the raster-bus output addresses; stores 19 words to control-memory addresses from 0xc9 to 0xd7; 55 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); loads 33 constants; takes 6 conditional transfers.
   It ends with the end-of-command wait; jumps to `normalize_and_light`; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x2, 0x3f, 0x70000, 0x6, 0x1243fd3, 0x1, 0.5 (0x3f000000), 2.0 (0x40000000) and 14 more.
 - `normalize_and_light`: address 0x952c, `phong.S` line 727 (35 words). Reached: transfers in `mmo_DrawTriPrimPhong`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (18), reciprocal square-root Newton step (4), float add (2), float multiply-add (2), reciprocal square-root seed (2), move (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### pi.S
 
@@ -3856,8 +3856,8 @@ Point clipping against the user planes and the view frustum. **Inferred** from i
 
 - `mClipPntUserAndFrustum`: address 0xe75e, `pntclip.S` line 54 (82 words). Reached: its address loaded as a constant in `mGL_EM_Initialize` and 1 other label.
   **Inferred** role: point clipper: tests the point against the user planes and the frustum and ends the command.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (17), OR (14), float subtract (10), float add (7), float multiply-add (7), move (3), AND (2), operation 0x6d1 (2), operation 0x6dd (2); sets the condition flags once; loads 3 constants; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (17), OR (14), float subtract (10), float add (7), float multiply-add (7), move (3), AND (2), logical shift right (2), operation 0x6d1 (2); sets the condition flags once; loads 3 constants; takes 3 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x3f, 0x1.
 
 ### point.S
@@ -3876,7 +3876,7 @@ Multisample point tables and point size. **Inferred** from its labels and caller
   Constants loaded: 0xb80f (code in `mmo_FeedbackPoint`), 0x70000.
 - `mgebi_PointSize_Aliased`: address 0x6163, `point.S` line 177 (81 words). Reached: geif slot 177 (entry 355).
   **Inferred** role: point size for aliased points: rounds the size (0.5) and selects the point module.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (23), AND (3), float add (3), operation 0x6f1 (3), float multiply (2), maximum (1), operation 0x6df (1), operation 0x6fb (1), second-unit operation 0xff (1); sets the condition flags 2 times; writes 7 words to the raster-bus output addresses; loads 19 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (23), AND (3), float add (3), float-to-integer conversion (3), float multiply (2), maximum (1), operation 0x6fb (1), second-unit operation 0xff (1), shift left (1); sets the condition flags 2 times; writes 7 words to the raster-bus output addresses; loads 19 constants; takes 1 conditional transfer.
   It ends with the end-of-command wait.
   Constants loaded: 0x8357 (code in `mmo_DrawDistAttPntPrim`), 0x8, 0.5 (0x3f000000), 0xfffffb7f, 0xfff000, 0x1203fcf, 0x1, 0 and 8 more.
 - `mgebi_PointSize_AlphaAA`: address 0x612c, `point.S` line 396 (51 words). Reached: geif slot 97 (entry 195).
@@ -3886,36 +3886,36 @@ Multisample point tables and point size. **Inferred** from its labels and caller
   Constants loaded: 0x20000000, 0x128080f, 0xfff, 0x8, 0xfffffbff, 0x1203fcf, 0x80, 0x70000 and 5 more.
 - `mgebi_PointSize_MS`: address 0x6094, `point.S` line 589 (95 words). Reached: geif slot 98 (entry 197).
   **Inferred** role: point size for multisample points: reciprocal steps on the size and the sine and cosine routine for the large-point fan.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (17), float multiply (12), reciprocal Newton step (4), integer subtract or compare (3), AND (2), integer add (2), operation 0x6f1 (2), reciprocal seed (2), OR (1), float subtract (1), integer-to-float conversion (1), operation 0x6d1 (1); sets the condition flags 6 times; writes 1 word to the raster-bus output addresses; loads 18 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (17), float multiply (12), reciprocal Newton step (4), integer subtract or compare (3), AND (2), float-to-integer conversion (2), integer add (2), reciprocal seed (2), OR (1), float subtract (1), integer-to-float conversion (1), operation 0x6d1 (1); sets the condition flags 6 times; writes 1 word to the raster-bus output addresses; loads 18 constants; takes 1 conditional transfer.
   It calls `mSinCos`; ends with the end-of-command wait.
   Constants loaded: 0xffffff7f, 0.5 (0x3f000000), 0x813b (code in `mmo_DrawMSDistAttPntPrim`), 0x1102, 0x20000000, 0x7855 (code in `mmo_DrawMSDistAttTablePntPrim`), 0x8, 2.0 (0x40000000) and 10 more.
 - `MSPoint_Print_Scratch_Tables`: address 0x5fbe, `point.S` line 858 (120 words). Reached: inside `mgebi_PointSize_MS`, reached from that routine's own code.
   **Inferred** role: debug dump of the multisample point tables inside the multisample point-size handler, through the print routine.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (25); loads 3 constants; takes 1 conditional transfer.
-  It calls `mPrintf`; returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It calls `mPrintf`; returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.
 - `MSPoint_Init_Samples`: address 0x5e9e, `point.S` line 927 (66 words). Reached: transfers in `mgeb_ComputeMSPointTables`.
   **Inferred** role: initialises the multisample sample offsets: 16 constants in steps of 3.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (16), integer add (16), operation 0x6dd (16); loads 16 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (16), integer add (16), logical shift right (16); loads 16 constants.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0, 0x3, 0x6, 0x9, 0xc, 0xf, 0x12, 0x15.
 - `MSPoint_Init`: address 0x5d94, `point.S` line 1056 (180 words). Reached: transfers in `mgeb_ComputeMSPointTables`.
   **Inferred** role: builds the multisample point tables: integer adds and packing over the samples.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6df (40), integer add (33), OR (32), second-unit operation 0xff (18), integer subtract or compare (6), move (1), operation 0x6f1 (1); sets the condition flags 2 times; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations shift left (40), integer add (33), OR (32), second-unit operation 0xff (18), integer subtract or compare (6), float-to-integer conversion (1), move (1); sets the condition flags 2 times; takes 2 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `MSPoint_Sort`: address 0x5ccc, `point.S` line 1200 (118 words). Reached: transfers in `mgeb_ComputeMSPointTables`.
   **Inferred** role: sorts the multisample point table entries by compare and move.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (46), AND (15), operation 0x6dd (12), integer subtract or compare (7); sets the condition flags 7 times; loads 1 constant; takes 3 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (46), AND (15), logical shift right (12), integer subtract or compare (7); sets the condition flags 7 times; loads 1 constant; takes 3 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `HereWeGo`.
   Constants loaded: 0.
 - `MSPoint_Pack`: address 0x5c5a, `point.S` line 1428 (74 words). Reached: transfers in `mgeb_ComputeMSPointTables`.
   **Inferred** role: packs the multisample point tables into fields of 5, 8, 16 and 24 bits.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (12), operation 0x6dd (8), OR (7), operation 0x6df (7), integer add (4), move (4), second-unit operation 0xff (4); loads 4 constants; takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (12), logical shift right (8), OR (7), shift left (7), integer add (4), move (4), second-unit operation 0xff (4); loads 4 constants; takes 1 conditional transfer.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x5, 0x8, 0x10, 0x18.
 - `mgeb_ComputeMSPointTables`: address 0x5bab, `point.S` line 1572 (77 words). Reached: geif slot 422 (entry 845); the ARM functions that send it are in the table below.
   **Inferred** role: computes the multisample point tables from three operand words through the init, sort and pack routines.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations integer subtract or compare (6), move (4), operation 0x6f1 (1), second-unit operation 0xff (1); sets the condition flags once; writes 2 words to the raster-bus output addresses; loads 20 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations integer subtract or compare (6), move (4), float-to-integer conversion (1), second-unit operation 0xff (1); sets the condition flags once; writes 2 words to the raster-bus output addresses; loads 20 constants; takes 1 conditional transfer.
   It calls `MSPoint_Init_Samples` and 3 other routines; ends with the end-of-command wait.
   Constants loaded: 0x640, 0x1, 0x5, 0xfffffffe, 0x8, 0x19, 0, 0x4 and 8 more.
 - `mgeb_SetMSPointTables`: address 0x5b96, `point.S` line 1871 (11 words). Reached: geif slot 423 (entry 847); the ARM functions that send it are in the table below.
@@ -3962,8 +3962,8 @@ Triangle output in line or point polygon mode. **Inferred** from its labels and 
 
 - `mmo_DrawTriPolymodePrim`: address 0xda68, `polymode.S` line 80 (306 words). Reached: its address loaded as a constant in `mPolymodeSetup`.
   **Inferred** role: triangle drawing for line and point polygon modes: compares the mode with GL_LINE (0x1b01) and draws the edges or vertices.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (59), float multiply (24), float subtract (18), AND (9), OR (9), operation 0x6df (7), integer subtract or compare (5), reciprocal Newton step (4), operation 0x6e9 (2), operation 0x6fe (2), reciprocal seed (2), XOR (1), operation 0x6d1 (1), operation 0x6d5 (1); sets the condition flags 11 times; writes 6 words to the raster-bus output addresses; reads engine memory at 7 addresses from 0xa8c to 0x14d9; 23 words in the output-instruction form of the diagnostic test; loads 36 constants; takes 20 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); jumps within its own code; conditional transfers reach `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (59), float multiply (24), float subtract (18), AND (9), OR (9), shift left (7), integer subtract or compare (5), reciprocal Newton step (4), operation 0x6e9 (2), operation 0x6fe (2), reciprocal seed (2), XOR (1), operation 0x6d1 (1), operation 0x6d5 (1); sets the condition flags 11 times; writes 6 words to the raster-bus output addresses; reads engine memory at 7 addresses from 0xa8c to 0x14d9; 23 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); loads 36 constants; takes 20 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); jumps within its own code; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x1, 0x1b01, 0, 1048576.0 (0x49800000), 0x8, 0x7, 0x6, 2.0 (0x40000000) and 7 more.
 
 ### primmtrllight.S
@@ -3977,50 +3977,50 @@ Lighting with per-primitive material changes. **Inferred** from its labels and c
   Constants loaded: 0xffffffef, 0, 0xd726 (code in `mLiPrimMtrlFinalLi`), 0xf547 (code in `mmo_DirtyCullAndLightModule`), 0xf50d (code in `mmo_DirtyLightModule`), 0x3f, 0xd536 (code in `mLiPrimMtrlIndxFinalLi`), 0xd6c4 (code in `mLiPrimMtrlCopyEnd`) and 4 more.
 - `mLiPrimShinLoop`: address 0xd60e, `primmtrllight.S` line 218 (74 words). Reached: transfers in `mLiEndPrimShinLp`; its address loaded as a constant in `mLiPrimMtrlCopyEnd` and 1 other label.
   **Inferred** role: per-primitive shininess loop of material lighting.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (13), OR (3), operation 0x6cc (3), AND (2), operation 0x6d1 (2), operation 0x6df (2), operation 0x6f1 (2), operation 0x6ec (1); sets the condition flags once; loads 9 constants; takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (13), OR (3), operation 0x6cc (3), AND (2), float-to-integer conversion (2), operation 0x6d1 (2), shift left (2), operation 0x6ec (1); sets the condition flags once; loads 9 constants; takes 1 conditional transfer.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x3f, 0x2, 0xd690 (code in `mLiPrmMtrlFrntClrAccmEnd`), 0, 0x4, 0xd676 (code in `mLiPrmMtrlBackClrInitAccm`), 0xd91a (code in `mLiBackClrInit`).
 - `mLiPrmMtrlFrntClrAccmEnd`: address 0xd690, `primmtrllight.S` line 432 (13 words). Reached: its address loaded as a constant in `mLiPrimShinLoop`.
   **Inferred** role: end of the front-colour accumulation for per-primitive materials.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), operation 0x6ea (1); sets the condition flags once; loads 1 constant; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `mLiEndPrimShinLp` and 1 other label.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `mLiEndPrimShinLp` and 1 other label.
   Constants loaded: 0xd9c1 (code in `mLiLocLiFrnClrAccum`).
 - `mLiPrmMtrlBackClrInitAccm`: address 0xd676, `primmtrllight.S` line 487 (20 words). Reached: its address loaded as a constant in `mLiPrimShinLoop` and 1 other label.
   **Inferred** role: set-up of the back-colour accumulation for per-primitive materials.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8), operation 0x6ea (1); sets the condition flags once; loads 3 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xd7d9 (code in `mLiEndPrimShinLp`), 0xd667 (code in `mLiPrmMtrlBackClrAccmEnd`), 0xd9c1 (code in `mLiLocLiFrnClrAccum`).
 - `mLiPrmMtrlBackClrAccmEnd`: address 0xd667, `primmtrllight.S` line 561 (8 words). Reached: its address loaded as a constant in `mLiPrmMtrlBackClrInitAccm`.
   **Inferred** role: end of the back-colour accumulation for per-primitive materials.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); loads 2 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xd973 (code in `mLiBackClrAccum`), 0xd676 (code in `mLiPrmMtrlBackClrInitAccm`).
 - `mLiEndPrimShinLp`: address 0xd7d9, `primmtrllight.S` line 604 (33 words). Reached: transfers in `mLiPrmMtrlFrntClrAccmEnd`; its address loaded as a constant in `mLiPrmMtrlBackClrInitAccm`.
   **Inferred** role: end of the per-primitive shininess loop: three conditional transfers.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9), integer subtract or compare (2), OR (1), operation 0x6c6 (1); loads 1 constant; takes 3 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31); conditional transfers reach `mLiUpdateShin` and 1 other label.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31); conditional transfers reach `mLiUpdateShin` and 1 other label.
   Constants loaded: 0xd7e9 (code in `mLiEndPrimShinLp`).
 - `mLiPrimMtrlFinalLi`: address 0xd726, `primmtrllight.S` line 737 (30 words). Reached: its address loaded as a constant in `mLiPrimMtrlInit`.
   **Inferred** role: final lighting step for per-primitive materials.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8), AND (5), integer add (1), operation 0x6f1 (1); sets the condition flags 4 times; loads 3 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8), AND (5), float-to-integer conversion (1), integer add (1); sets the condition flags 4 times; loads 3 constants.
   It jumps within its own code.
   Constants loaded: 0xd786 (code in `mLiPrimMtrlCopyCmpn`), 0x3f, 0xd745 (code in `mLiPrimMtrlCopyStckCmpn`).
 - `mLiPrimMtrlCopyStckCmpn`: address 0xd745, `primmtrllight.S` line 831 (62 words). Reached: transfers in `mLiPrimMtrlIndxFinalLi`; its address loaded as a constant in `mLiPrimMtrlFinalLi` and 1 other label.
   **Inferred** role: copies material components from the material stack.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (31), second-unit move or minimum (2), AND (1), integer subtract or compare (1), operation 0x6d1 (1), operation 0x6df (1); sets the condition flags 2 times; loads 1 constant; takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (31), second-unit move or minimum (2), AND (1), integer subtract or compare (1), operation 0x6d1 (1), shift left (1); sets the condition flags 2 times; loads 1 constant; takes 1 conditional transfer.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0.
 - `mLiPrimMtrlCopyCmpn`: address 0xd786, `primmtrllight.S` line 1052 (16 words). Reached: transfers in `mLiPrimMtrlIndxFinalLi`; its address loaded as a constant in `mLiPrimMtrlFinalLi` and 1 other label.
   **Inferred** role: copies material components for a per-primitive material.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (12), AND (1), integer subtract or compare (1); sets the condition flags once.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mLiPrimMtrlCpFrntEnd`: address 0xd6a7, `primmtrllight.S` line 1111 (29 words). Reached: its address loaded as a constant in `mLiPrimMtrlInit`.
   **Inferred** role: end of the front material copy.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (7), AND (3), integer add (1), operation 0x6cc (1); sets the condition flags 3 times.
   It jumps within its own code.
 - `mLiPrimMtrlCopyEnd`: address 0xd6c4, `primmtrllight.S` line 1174 (40 words). Reached: its address loaded as a constant in `mLiPrimMtrlInit`.
   **Inferred** role: end of the per-primitive material copy.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (12), float add (6), move (4), AND (1), OR (1), operation 0x6cc (1), second-unit operation 0xff (1); loads 5 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (12), float add (6), move (4), AND (1), OR (1), operation 0x6cc (1), second-unit operation 0xff (1); loads 5 constants.
   It jumps within its own code.
   Constants loaded: 0x6, 0x3f, 0x54, 0xd60e (code in `mLiPrimShinLoop`), 0.
 - `mLiClrMtrlFinalLi`: address 0xd831, `primmtrllight.S` line 1304 (43 words). Reached: its address loaded as a constant in `mgeb_LiEnableClrMtrl` and 1 other label.
@@ -4106,7 +4106,7 @@ Raster-board commands: register writes, flush, accumulation, current raster, col
   Constants loaded: 0x15b1407, 0x7fff, 0x70000, 0xc0000, 32.76172 (0x42030c00).
 - `mgesi_AlphaTest`: address 0x39b8, `raster.S` line 352 (16 words). Reached: geif slot 92 (entry 185); the ARM functions that send it are in the table below.
   **Inferred** role: enables or disables the alpha test: five raster bus words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (6), operation 0x6df (1); writes 5 words to the raster-bus output addresses; loads 4 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations move (6), shift left (1); writes 5 words to the raster-bus output addresses; loads 4 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0x15b1407, 0xf, 0x8000, 0x70000.
 - `mgesi_TBUS_1`: address 0x39ab, `raster.S` line 396 (10 words). Reached: geif slot 225 (entry 451); the ARM functions that send it are in the table below; distributor table 15.
@@ -4149,7 +4149,7 @@ Raster-board commands: register writes, flush, accumulation, current raster, col
   Constants loaded: 0x10, 0xf50d (code in `mmo_DirtyLightModule`), 0x8, 0x800, 0xda3c (code in `mLiFinalLi`), 0xf547 (code in `mmo_DirtyCullAndLightModule`), 0xd831 (code in `mLiClrMtrlFinalLi`), 4095.998 (0x457ffff8).
 - `mgeb_CI_Mode`: address 0x38fd, `raster.S` line 754 (31 words). Reached: geif slot 334 (entry 669); the ARM functions that send it are in the table below.
   **Inferred** role: switches the context to colour-index mode: two operand words scaled by 16.0 and 1/16.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (6), OR (2), float multiply (1), integer subtract or compare (1), integer-to-float conversion (1), operation 0x6df (1), operation 0x6f1 (1), second-unit operation 0xff (1); loads 7 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (6), OR (2), float multiply (1), float-to-integer conversion (1), integer subtract or compare (1), integer-to-float conversion (1), second-unit operation 0xff (1), shift left (1); loads 7 constants.
   It ends with the end-of-command wait.
   Constants loaded: 16.0 (0x41800000), 0x1, 0x800, 0.0625 (0x3d800000), 0xf547 (code in `mmo_DirtyCullAndLightModule`), 0xf50d (code in `mmo_DirtyLightModule`), 0xd5a6 (code in `mLiIndexFinalLi`).
 - `mgesi_UserColor`: address 0x38e5, `raster.S` line 842 (24 words). Reached: geif slot 342 (entry 685); the ARM functions that send it are in the table below.
@@ -4237,8 +4237,8 @@ Reference-plane commands. **Inferred** from its labels and callers.
   Constants loaded: 100.0 (0x42c80000), 1e-06 (0x358637bd), 0x4000000.
 - `mRefPlane`: address 0x5b4c, `refplane.S` line 464 (73 words). Reached: transfers in `mgebi_ReferencePlane` and 1 other label.
   **Inferred** role: computes the reference-plane raster terms and writes eight raster bus words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (23), float multiply (9), float add (6), float subtract (6), operation 0x6fe (6), minimum (3), NOT (1); writes 8 words to the raster-bus output addresses; stores 13 words to engine addresses from 0xc9 to 0xd7; reads engine memory at 9 addresses from 0x94b to 0x953; loads 3 constants.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (23), float multiply (9), float add (6), float subtract (6), operation 0x6fe (6), minimum (3), NOT (1); writes 8 words to the raster-bus output addresses; stores 13 words to control-memory addresses from 0xc9 to 0xd7; reads engine memory at 9 addresses from 0x94b to 0x953; loads 3 constants.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x70000, 0x1243fd3, 0x2.
 
 ARM functions and host tokens that send these handlers:
@@ -4270,7 +4270,7 @@ Pixel-path scale-and-bias stage and the depth final stage. **Inferred** from its
   It has no jump of its own and runs on into `epilogue_sb`.
 - `epilogue_sb`: address 0x1f9f, `scalebias.s` line 249 (51 words). Reached: transfers in `umo_DepthFinalCont`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (21), float add (2), float multiply (2).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_DepthFinal`: address 0x1fd2, `scalebias.s` line 313 (59 words). Reached: inside `umo_DepthFinalCont`, reached from that routine's own code.
   **Inferred** role: final depth scale-and-bias step inside the stage: multiplies and moves.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (18), float multiply (16), float add (1), float subtract (1); closes 1 loop.
@@ -4319,7 +4319,7 @@ Selection mode: begin and end, name stack. **Inferred** from its labels and call
 - `mSelectFlush`: address 0xc159, `select.S` line 282 (79 words). Reached: transfers in `mgeb_BgnSelectMode` and 5 other labels.
   **Inferred** role: writes a pending selection hit record (names, minimum and maximum depth) through seven raster bus words.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (24), NOT (2), minimum (2), AND (1), integer add (1); sets the condition flags once; writes 7 words to the raster-bus output addresses; reads engine memory at 0x1389; loads 10 constants; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x1, 0x1000, 0x452, 0, 0x476, 0x497fffff, 0x5020000c, 0x477 and 2 more.
 
 ARM functions and host tokens that send these handlers:
@@ -4372,23 +4372,23 @@ Pixel-path shift-and-add stage. **Inferred** from its labels and callers.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8), operation 0x6ce (1); sets the condition flags once; closes 1 loop.
   It has no jump of its own and runs on into `shift_left`.
 - `shift_left`: address 0x1965, `shiftadd.s` line 111 (9 words). Reached: inside `mmo_ShiftAdd`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6df (4); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations shift left (4); closes 1 loop.
   It has no jump of its own and runs on into `mainloop_sa_ls`.
 - `mainloop_sa_ls`: address 0x196e, `shiftadd.s` line 123 (19 words). Reached: inside `mmo_ShiftAdd`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer add (8), operation 0x6df (8); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer add (8), shift left (8); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_sa_ls`.
 - `epilogue_sa_ls`: address 0x1981, `shiftadd.s` line 145 (26 words). Reached: transfers in `shift_left`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer add (7), operation 0x6df (7).
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer add (7), shift left (7).
+  It ends the command with an indirect transfer in condition group 31.
 - `shift_right`: address 0x199b, `shiftadd.s` line 175 (9 words). Reached: transfers in `mmo_ShiftAdd`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (4); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (4); closes 1 loop.
   It has no jump of its own and runs on into `mainloop_sa_rs`.
 - `mainloop_sa_rs`: address 0x19a4, `shiftadd.s` line 187 (19 words). Reached: inside `mmo_ShiftAdd`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer add (8), operation 0x6dd (8); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer add (8), logical shift right (8); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_sa_rs`.
 - `epilogue_sa_rs`: address 0x19b7, `shiftadd.s` line 209 (26 words). Reached: transfers in `shift_right`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer add (7), operation 0x6dd (7).
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer add (7), logical shift right (7).
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_ShiftAdd_RGB`: address 0x19d1, `shiftadd.s` line 247 (55 words). Reached: inside `mmo_ShiftAdd`, reached from that routine's own code.
   **Inferred** role: RGB entry of the shift-and-add stage.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (7), operation 0x6ce (2); sets the condition flags once; closes 1 loop.
@@ -4397,20 +4397,20 @@ Pixel-path shift-and-add stage. **Inferred** from its labels and callers.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_sa_ls_rgb`.
 - `mainloop_sa_ls_rgb`: address 0x1a11, `shiftadd.s` line 337 (21 words). Reached: inside `umo_ShiftAdd_RGB`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6df (12), operation 0x6dd (4); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations shift left (12), logical shift right (4); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_sa_ls_rgb`.
 - `epilogue_sa_ls_rgb`: address 0x1a26, `shiftadd.s` line 361 (20 words). Reached: transfers in `shift_left_rgb`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6df (9), operation 0x6dd (3).
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations shift left (9), logical shift right (3).
+  It ends the command with an indirect transfer in condition group 31.
 - `shift_right_rgb`: address 0x1a3a, `shiftadd.s` line 390 (9 words). Reached: transfers in `umo_ShiftAdd_RGB`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_sa_rs_rgb`.
 - `mainloop_sa_rs_rgb`: address 0x1a43, `shiftadd.s` line 402 (21 words). Reached: inside `umo_ShiftAdd_RGB`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (16); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (16); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_sa_rs_rgb`.
 - `epilogue_sa_rs_rgb`: address 0x1a58, `shiftadd.s` line 426 (20 words). Reached: transfers in `shift_right_rgb`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (12).
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (12).
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_ShiftAdd_Luminance`: address 0x1a6c, `shiftadd.s` line 463 (55 words). Reached: inside `umo_ShiftAdd_RGB`, reached from that routine's own code.
   **Inferred** role: luminance entry of the shift-and-add stage.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (7), operation 0x6ce (2); sets the condition flags once; closes 1 loop.
@@ -4419,20 +4419,20 @@ Pixel-path shift-and-add stage. **Inferred** from its labels and callers.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_sa_ls_luminance`.
 - `mainloop_sa_ls_luminance`: address 0x1aac, `shiftadd.s` line 553 (21 words). Reached: inside `umo_ShiftAdd_Luminance`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6df (12), operation 0x6dd (4); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations shift left (12), logical shift right (4); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_sa_ls_luminance`.
 - `epilogue_sa_ls_luminance`: address 0x1ac1, `shiftadd.s` line 577 (20 words). Reached: transfers in `shift_left_luminance`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6df (9), operation 0x6dd (3).
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations shift left (9), logical shift right (3).
+  It ends the command with an indirect transfer in condition group 31.
 - `shift_right_luminance`: address 0x1ad5, `shiftadd.s` line 606 (9 words). Reached: transfers in `umo_ShiftAdd_Luminance`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_sa_rs_luminance`.
 - `mainloop_sa_rs_luminance`: address 0x1ade, `shiftadd.s` line 618 (21 words). Reached: inside `umo_ShiftAdd_Luminance`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (16); closes 1 loop.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (16); closes 1 loop.
   It has no jump of its own and runs on into `epilogue_sa_rs_luminance`.
 - `epilogue_sa_rs_luminance`: address 0x1af3, `shiftadd.s` line 642 (20 words). Reached: transfers in `shift_right_luminance`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6dd (12).
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (12).
+  It ends the command with an indirect transfer in condition group 31.
 
 ARM functions and host tokens that send these handlers:
 
@@ -4469,12 +4469,12 @@ Sprite (SGIX_sprite) rotation modes. **Inferred** from its labels and callers.
 - `mSpriteRotateMatrix`: address 0x8676, `sprite.S` line 466 (54 words). Reached: transfers in `mSpriteAxial` and 1 other label.
   **Inferred** role: applies the sprite rotation to the matrix, then ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (16), float add (8), move (6), float subtract (5), float multiply-add (2), OR (1), second-unit move (1), second-unit move or minimum (1); sets the condition flags once; loads 7 constants; takes 1 conditional transfer.
-  It calls `mMatrixMultCCWNoFetch`; ends the command by jumping to `HereWeGo`.
+  It calls `mMatrixMultCCWNoFetch`; ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0, 1.0 (0x3f800000).
 - `mMatrixMultCCWNoFetch`: address 0x88e9, `sprite.S` line 605 (63 words). Reached: transfers in `mSpriteRotateMatrix` and 1 other label.
   **Inferred** role: matrix multiply with the operands already loaded: 16 multiply-adds, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (16), float multiply (16), float multiply-add (16).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ARM functions and host tokens that send these handlers:
 
@@ -4513,7 +4513,7 @@ Texture environment. **Inferred** from its labels and callers.
 - `mValidateTexenvMode`: address 0x594d, `texenv.S` line 54 (43 words). Reached: transfers in `mgebi_TexEnv` and 1 other label.
   **Inferred** role: checks the texture environment mode against the texture format: compares with GL_MODULATE (0x2100), GL_DECAL (0x2101) and the format enumerants, and writes three raster bus words.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (13), integer subtract or compare (5), OR (3); sets the condition flags 6 times; writes 3 words to the raster-bus output addresses; reads engine memory at 6 addresses from 0x28f to 0x294; loads 7 constants; takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0x2100, 0x2101, 0xbe2, 0x8062, 0x1e01, 0x70000, 0x15d1401.
 - `mTexEnvDone`: address 0x5942, `texenv.S` line 111 (4 words). Reached: transfers in `mgebi_TexEnv`.
   **Inferred** role: common end of GL tex env call: one move and the end-of-command wait.
@@ -4521,7 +4521,7 @@ Texture environment. **Inferred** from its labels and callers.
   It ends with the end-of-command wait.
 - `mgebi_TexEnv`: address 0x5879, `texenv.S` line 137 (89 words). Reached: geif slot 109 (entry 219); the ARM functions that send it are in the table below.
   **Inferred** role: GL tex env call: compares the target and parameter names (0x2200, 0x2201) and the mode, scales the colour and validates the mode, or raises the invalid-enum error.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations move (25), integer subtract or compare (10), NOT (6), float multiply (4), operation 0x6f1 (1); sets the condition flags 10 times; writes 5 words to the raster-bus output addresses; loads 17 constants; takes 5 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations move (25), integer subtract or compare (10), NOT (6), float multiply (4), float-to-integer conversion (1); sets the condition flags 10 times; writes 5 words to the raster-bus output addresses; loads 17 constants; takes 5 conditional transfers.
   It jumps to `mTexEnvDone` and `mErrInvalidEnum`; jumps within its own code; conditional transfers reach `mTexEnvDone` and 1 other label.
   Constants loaded: 0x2200, 0x2201, 0x80be, 0x2100, 0x2101, 0xbe2, 0x8062, 0x1e01 and 6 more.
 - `mgebi_TexEnvComps`: address 0x5857, `texenv.S` line 238 (17 words). Reached: geif slot 110 (entry 221); the ARM functions that send it are in the table below.
@@ -4543,7 +4543,7 @@ Texture-coordinate generation modes and planes. **Inferred** from its labels and
 
 - `mTexGenResolve`: address 0xd11e, `texgen.S` line 57 (65 words). Reached: transfers in `mTexGenEyeLin` and 8 other labels.
   **Inferred** role: resolves the texture-coordinate generation state: combines the per-coordinate mode bits and selects the transform module.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9), OR (7), AND (6), operation 0x6df (4), integer subtract or compare (3), operation 0x6d1 (1); sets the condition flags 4 times; loads 10 constants; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (9), OR (7), AND (6), shift left (4), integer subtract or compare (3), operation 0x6d1 (1); sets the condition flags 4 times; loads 10 constants; takes 2 conditional transfers.
   It ends with the end-of-command wait.
   Constants loaded: 0x2c03ffff, 0x20000000, 0x1, 0x2, 0x8000000, 0x4c03ffff, 0x4000000, 0xf449 (code in `mmo_DirtyXformAndObjToClipModule`) and 2 more.
 - `mTexGenSph`: address 0xcd59, `texgen.S` line 189 (10 words). Reached: transfers in `mgeb_TexGen`.
@@ -4622,43 +4622,43 @@ Texture-coordinate generation modes and planes. **Inferred** from its labels and
   Constants loaded: 0x2500, 0x2402, 0x2401, 0x2400, 0x81f3, 0x81f2, 0x2501, 0x2502 and 8 more.
 - `mmo_TexGenObjPoint_ST`: address 0xce98, `texgen.S` line 870 (77 words). Reached: its address loaded as a constant in `mTexGenObjPointDist`.
   **Inferred** role: object point-distance generation for s and t: distances by reciprocal square roots.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (29), float subtract (12), reciprocal square-root Newton step (8), float add (5), float multiply-add (3), operation 0x6df (2), reciprocal square-root seed (2); loads 2 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (29), float subtract (12), reciprocal square-root Newton step (8), float add (5), float multiply-add (3), reciprocal square-root seed (2), shift left (2); loads 2 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x2, 0x1.
 - `mmo_TexGenObjPoint_RQ`: address 0xcef3, `texgen.S` line 961 (77 words). Reached: its address loaded as a constant in `mTexGenObjPointDist`.
   **Inferred** role: object point-distance generation for r and q.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (29), float subtract (12), reciprocal square-root Newton step (8), float add (5), float multiply-add (3), operation 0x6df (2), reciprocal square-root seed (2); loads 2 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (29), float subtract (12), reciprocal square-root Newton step (8), float add (5), float multiply-add (3), reciprocal square-root seed (2), shift left (2); loads 2 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x2, 0x1.
 - `mmo_TexGenObjLine_ST`: address 0xcd7e, `texgen.S` line 1057 (121 words). Reached: its address loaded as a constant in `mTexGenObjLineDist`.
   **Inferred** role: object line-distance generation for s and t.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (45), float subtract (24), float multiply-add (11), reciprocal square-root Newton step (8), move (6), float add (5), operation 0x6df (2), reciprocal square-root seed (2); loads 2 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (45), float subtract (24), float multiply-add (11), reciprocal square-root Newton step (8), move (6), float add (5), reciprocal square-root seed (2), shift left (2); loads 2 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x2, 0x1.
 - `mmo_TexGenObjLine_RQ`: address 0xce0b, `texgen.S` line 1216 (121 words). Reached: its address loaded as a constant in `mTexGenObjLineDist`.
   **Inferred** role: object line-distance generation for r and q.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (45), float subtract (24), float multiply-add (11), reciprocal square-root Newton step (8), move (6), float add (5), operation 0x6df (2), reciprocal square-root seed (2); loads 2 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (45), float subtract (24), float multiply-add (11), reciprocal square-root Newton step (8), move (6), float add (5), reciprocal square-root seed (2), shift left (2); loads 2 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x2, 0x1.
 - `mmo_TexGenEyePoint_ST`: address 0xd068, `texgen.S` line 1372 (77 words). Reached: its address loaded as a constant in `mTexGenEyePointDist`.
   **Inferred** role: eye point-distance generation for s and t.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (29), float subtract (12), reciprocal square-root Newton step (8), float add (5), float multiply-add (3), operation 0x6df (2), reciprocal square-root seed (2); loads 2 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (29), float subtract (12), reciprocal square-root Newton step (8), float add (5), float multiply-add (3), reciprocal square-root seed (2), shift left (2); loads 2 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x2, 0x1.
 - `mmo_TexGenEyePoint_RQ`: address 0xd0c3, `texgen.S` line 1463 (77 words). Reached: its address loaded as a constant in `mTexGenEyePointDist`.
   **Inferred** role: eye point-distance generation for r and q.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (29), float subtract (12), reciprocal square-root Newton step (8), float add (5), float multiply-add (3), operation 0x6df (2), reciprocal square-root seed (2); loads 2 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (29), float subtract (12), reciprocal square-root Newton step (8), float add (5), float multiply-add (3), reciprocal square-root seed (2), shift left (2); loads 2 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x2, 0x1.
 - `mmo_TexGenEyeLine_ST`: address 0xcf4e, `texgen.S` line 1559 (121 words). Reached: its address loaded as a constant in `mTexGenEyeLineDist`.
   **Inferred** role: eye line-distance generation for s and t.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (45), float subtract (24), float multiply-add (11), reciprocal square-root Newton step (8), move (6), float add (5), operation 0x6df (2), reciprocal square-root seed (2); loads 2 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (45), float subtract (24), float multiply-add (11), reciprocal square-root Newton step (8), move (6), float add (5), reciprocal square-root seed (2), shift left (2); loads 2 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x2, 0x1.
 - `mmo_TexGenEyeLine_RQ`: address 0xcfdb, `texgen.S` line 1718 (121 words). Reached: its address loaded as a constant in `mTexGenEyeLineDist`.
   **Inferred** role: eye line-distance generation for r and q.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (45), float subtract (24), float multiply-add (11), reciprocal square-root Newton step (8), move (6), float add (5), operation 0x6df (2), reciprocal square-root seed (2); loads 2 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (45), float subtract (24), float multiply-add (11), reciprocal square-root Newton step (8), move (6), float add (5), reciprocal square-root seed (2), shift left (2); loads 2 constants; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x2, 0x1.
 
 ARM functions and host tokens that send these handlers:
@@ -4680,7 +4680,7 @@ Texture binding, scale and bias, the texture-memory load FIFO and the texture ad
   Constants loaded: 0x15c1500, 0x70000, 0x1, 0xf494 (code in `mmo_DirtyTextureAndScreenModule`), 0x1243fd3.
 - `mgebi_UpdateTexturing`: address 0x43bd, `texture.S` line 170 (49 words). Reached: geif slot 101 (entry 203); the ARM functions that send it are in the table below.
   **Inferred** role: updates the texturing state from four operand words: 13 constants of raster register values and module addresses.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (16), operation 0x6df (4), AND (3), OR (2), NOT (1), operation 0x6d1 (1); loads 13 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (16), shift left (4), AND (3), OR (2), NOT (1), operation 0x6d1 (1); loads 13 constants.
   It jumps within its own code.
   Constants loaded: 0x1000000, 0x70000, 0x2000, 0xf494 (code in `mmo_DirtyTextureAndScreenModule`), 0x1000, 0x4000, 0, 0x12 and 4 more.
 - `mgeb_SkipNextTextureAddr`: address 0x43ae, `texture.S` line 301 (9 words). Reached: geif slot 122 (entry 245); the ARM functions that send it are in the table below.
@@ -4690,7 +4690,7 @@ Texture binding, scale and bias, the texture-memory load FIFO and the texture ad
   Constants loaded: 0x1000000.
 - `mgebi_Bind2dMipmapTexture`: address 0x42d3, `texture.S` line 367 (192 words). Reached: geif slot 428 (entry 857); the ARM functions that send it are in the table below; distributor table 32.
   **Inferred** role: binds a 2D mipmapped texture: 16 operand words packed into texture-manager register words (0x1471000 and others).
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 21; operations move (60), OR (26), AND (17), operation 0x6df (10), operation 0x6dd (9), integer add (2), NOT (1); sets the condition flags 4 times; loads 26 constants; takes 4 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 21; operations move (60), OR (26), AND (17), shift left (10), logical shift right (9), integer add (2), NOT (1); sets the condition flags 4 times; loads 26 constants; takes 4 conditional transfers.
   It ends with the end-of-command wait.
   Constants loaded: 0x1000000, 0x1471000, 0x14b0c05, 0x14a0c04, 0x14f13d5, 0x2, 0x1, 0x15a0c02 and 13 more.
 - `mgesi_RestoreTextureAddress`: address 0x4293, `texture.S` line 644 (35 words). Reached: geif slot 430 (entry 861); the ARM functions that send it are in the table below.
@@ -4731,7 +4731,7 @@ Colour-matrix inner loop. **Inferred** from its labels and callers.
   It has no jump of its own and runs on into `clrmtrixloop`.
 - `clrmtrixloop`: address 0x298e, `ucolormatrix.s` line 68 (20 words). Reached: inside `uColorMatrix`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (16); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### ucull.s
 
@@ -4749,7 +4749,7 @@ Face culling. **Inferred** from its labels and callers.
   Constants loaded: 0.
 - `lCU1`: address 0x0c87, `ucull.s` line 47 (54 words). Reached: inside `mmo_FaceCull`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (14), float add (7), XOR (6), float subtract (6), OR (4), float multiply-add (4), move (4), operation 0x6d1 (4), NOT (1); sets the condition flags 4 times; takes 2 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `lCU2`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `lCU2`.
 - `lCU2`: address 0x0cbd, `ucull.s` line 104 (9 words). Reached: transfers in `lCU1`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
   It jumps to `mmo_AbortGeometry`.
@@ -4770,7 +4770,7 @@ Primitive decomposition of strips, lines and triangles. **Inferred** from its la
   Constants loaded: 0xed52 (code in `mClipTriUserAndFrustum`).
 - `lDE2`: address 0x0cd1, `udecompose.s` line 32 (10 words). Reached: inside `mmo_DecomposeTriangleStrip`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (2), AND (1), XOR (1); sets the condition flags once; loads 2 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0.
 - `mmo_DecomposeTriangles`: address 0x0cdb, `udecompose.s` line 49 (10 words). Reached: inside `mmo_DecomposeTriangleStrip`, reached from that routine's own code.
   **Inferred** role: second entry inside the strip decomposition for independent triangles.
@@ -4784,7 +4784,7 @@ Primitive decomposition of strips, lines and triangles. **Inferred** from its la
   Constants loaded: 0xed52 (code in `mClipTriUserAndFrustum`), -2.0 (0xc0000000).
 - `lDE9`: address 0x0ce5, `udecompose.s` line 60 (21 words). Reached: inside `mmo_DecomposeTriangles`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (4), AND (3); sets the condition flags once; loads 3 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0.
 - `mmo_DecomposeLineStrip`: address 0x0cfa, `udecompose.s` line 90 (11 words). Reached: its address loaded as a constant in `mgesi_LineStrip` and 5 other labels.
   **Inferred** role: line-strip decomposition, loading the line clipper's address.
@@ -4798,7 +4798,7 @@ Primitive decomposition of strips, lines and triangles. **Inferred** from its la
   Constants loaded: 0x20000000, 0xea1c (code in `mClipLinUserAndFrustum`).
 - `lDE3`: address 0x0d05, `udecompose.s` line 102 (11 words). Reached: inside `mmo_DecomposeLineStrip`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2), AND (1), OR (1); sets the condition flags once; loads 1 constant; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0.
 - `mmo_DecomposePoints`: address 0x0d10, `udecompose.s` line 120 (9 words). Reached: its address loaded as a constant in `mgeb_RasterPos` and 1 other label.
   **Inferred** role: point decomposition, loading the point clipper's address.
@@ -4826,7 +4826,7 @@ Primitive decomposition of strips, lines and triangles. **Inferred** from its la
   Constants loaded: 0xed52 (code in `mClipTriUserAndFrustum`).
 - `lDE7`: address 0x0d30, `udecompose.s` line 162 (11 words). Reached: inside `mmo_DecomposeTriangleFan`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (1), move (1); sets the condition flags once; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### udecompose2.s
 
@@ -4835,7 +4835,7 @@ Simple triangle-strip decomposition. **Inferred** from its labels and callers.
 - `umo_DummyDecompose`: address 0x0d3b, `udecompose2.s` line 13 (15 words). Reached: no slot, ARM load, decoded transfer or address constant reaches it (routes tried: [How to read the tables](#how-to-read-the-entries)).
   **Inferred** role: decomposition that draws nothing (the same code as the other dummy decomposer); nothing in the program enters it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); loads 1 constant.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0xed52 (code in `mClipTriUserAndFrustum`).
 - `umo_DecomposeSimpleTriangleStrip`: address 0x0d4a, `udecompose2.s` line 41 (13 words). Reached: inside `umo_DummyDecompose`, reached from that routine's own code.
   **Inferred** role: simple triangle-strip decomposition inside the dummy decomposer's source.
@@ -4844,7 +4844,7 @@ Simple triangle-strip decomposition. **Inferred** from its labels and callers.
   Constants loaded: 0xed52 (code in `mClipTriUserAndFrustum`), 0x81c00000.
 - `lDE4`: address 0x0d57, `udecompose2.s` line 55 (18 words). Reached: inside `umo_DecomposeSimpleTriangleStrip`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (2), OR (2), operation 0x6d3 (2), XOR (1); loads 1 constant; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0.
 
 ### udeform.s
@@ -4863,7 +4863,7 @@ Deformation of coordinates and texture coordinates. **Inferred** from its labels
   Constants loaded: 0x40000.
 - `loopDC`: address 0x2acb, `udeform.s` line 71 (28 words). Reached: inside `mmo_DeformCoord`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (18), AND (2); sets the condition flags 2 times; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_DeformCoordTexture`: address 0x2ae7, `udeform.s` line 107 (26 words). Reached: its address loaded as a constant in `mmo_DirtyDeformModule`.
   **Inferred** role: deforms vertex coordinates and texture coordinates.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8), float multiply (4); reads engine memory at 3 addresses from 0x99d to 0x99f; loads 2 constants.
@@ -4876,7 +4876,7 @@ Deformation of coordinates and texture coordinates. **Inferred** from its labels
   Constants loaded: 0x20000, 0x40000.
 - `loopDCT`: address 0x2b01, `udeform.s` line 134 (49 words). Reached: inside `mmo_DeformCoordTexture`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (36), AND (4); sets the condition flags 4 times; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_DeformTexture`: address 0x2b32, `udeform.s` line 193 (19 words). Reached: its address loaded as a constant in `mmo_DirtyDeformModule`.
   **Inferred** role: deforms texture coordinates with the map read from engine memory 0x99d-0x9a2.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (4), move (4); reads engine memory at 6 addresses from 0x99d to 0x9a2; loads 1 constant.
@@ -4889,7 +4889,7 @@ Deformation of coordinates and texture coordinates. **Inferred** from its labels
   Constants loaded: 0x20000.
 - `loopDT`: address 0x2b45, `udeform.s` line 213 (28 words). Reached: inside `mmo_DeformTexture`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (18), AND (2); sets the condition flags 2 times; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_DeformCoordNormal`: address 0x2b61, `udeform.s` line 252 (24 words). Reached: its address loaded as a constant in `mmo_DirtyDeformModule`.
   **Inferred** role: deforms coordinates and normals, calling the inverse deformation for the normals.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (4), move (4), AND (1); sets the condition flags once; reads engine memory at 2 addresses from 0x95e to 0x95f; loads 2 constants; takes 1 conditional transfer.
@@ -4902,7 +4902,7 @@ Deformation of coordinates and texture coordinates. **Inferred** from its labels
   Constants loaded: 0x200000, 0x40000.
 - `loopDCN`: address 0x2b79, `udeform.s` line 277 (46 words). Reached: inside `mmo_DeformCoordNormal`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (36), AND (2); sets the condition flags 2 times; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_DeformCoordNormalTexture`: address 0x2ba7, `udeform.s` line 334 (30 words). Reached: its address loaded as a constant in `mmo_DirtyDeformModule`.
   **Inferred** role: deforms coordinates, normals and texture coordinates.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (8), float multiply (4), AND (1); sets the condition flags once; reads engine memory at 3 addresses from 0x99d to 0x99f; loads 3 constants; takes 1 conditional transfer.
@@ -4915,16 +4915,16 @@ Deformation of coordinates and texture coordinates. **Inferred** from its labels
   Constants loaded: 0x200000, 0x20000, 0x40000.
 - `loopDCNT`: address 0x2bc5, `udeform.s` line 365 (67 words). Reached: inside `mmo_DeformCoordNormalTexture`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (54), AND (4); sets the condition flags 4 times; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mDeformation3_1Inverse`: address 0x2c08, `udeform.s` line 453 (99 words). Reached: transfers in `mmo_DeformCoordNormal` and 1 other label.
   **Inferred** role: inverse of the three-input deformation for normals: reciprocal steps and multiplies, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (14), move (11), float subtract (3), float add (2), reciprocal Newton step (2), integer add (1), operation 0x6d2 (1), reciprocal seed (1); loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xfffffff8.
 - `uDeformation3_1Inverse`: address 0x2c08, `udeform.s` line 453 (99 words). Reached: second name for `mDeformation3_1Inverse` at the same address, so the same code.
   **Inferred** role: inverse of the three-input deformation for normals: reciprocal steps and multiplies, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (14), move (11), float subtract (3), float add (2), reciprocal Newton step (2), integer add (1), operation 0x6d2 (1), reciprocal seed (1); loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xfffffff8.
 
 ### udrawtri.s
@@ -4933,12 +4933,12 @@ Triangle and quad output. **Inferred** from its labels and callers.
 
 - `mmo_DrawTri`: address 0x288c, `udrawtri.s` line 42 (12 words). Reached: its address loaded as a constant in `mGL_CM_Initialize` and 1 other label.
   **Inferred** role: triangle-drawing module entry: tests the list and quad bits and enters the triangle code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (1), XOR (1), operation 0x6df (1); loads 1 constant; takes 3 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (1), XOR (1), shift left (1); loads 1 constant; takes 3 conditional transfers.
   It jumps to `mmo_DrawTriPrim`; conditional transfers reach `mmo_DrawTriPrim` and 1 other label.
   Constants loaded: 0xe0000000.
 - `umo_DrawTri`: address 0x288c, `udrawtri.s` line 42 (12 words). Reached: second name for `mmo_DrawTri` at the same address, so the same code.
   **Inferred** role: triangle-drawing module entry: tests the list and quad bits and enters the triangle code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (1), XOR (1), operation 0x6df (1); loads 1 constant; takes 3 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (1), XOR (1), shift left (1); loads 1 constant; takes 3 conditional transfers.
   It jumps to `mmo_DrawTriPrim`; conditional transfers reach `mmo_DrawTriPrim` and 1 other label.
   Constants loaded: 0xe0000000.
 - `uDTList`: address 0x2898, `udrawtri.s` line 55 (5 words). Reached: transfers in `mmo_DrawTri`.
@@ -4946,16 +4946,16 @@ Triangle and quad output. **Inferred** from its labels and callers.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (1).
   It has no jump of its own and runs on into `lDI3`.
 - `lDI3`: address 0x289d, `udrawtri.s` line 63 (45 words). Reached: inside `uDTList`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (10), float multiply (8), move (7), NOT (4), operation 0x6fe (4), OR (2); writes 2 words to the raster-bus output addresses; stores 1 word to engine address 0x3a8; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (10), float multiply (8), move (7), NOT (4), operation 0x6fe (4), OR (2); writes 2 words to the raster-bus output addresses; stores 1 word to control-memory address 0x3a8; takes 2 conditional transfers.
   It waits on its own address under another condition group; conditional transfers reach `HereWeGo`.
 - `mmo_DrawQuad`: address 0x28ca, `udrawtri.s` line 115 (12 words). Reached: its address loaded as a constant in `mGL_CM_Initialize` and 1 other label.
   **Inferred** role: quad-drawing module entry: the same tests as the triangle entry.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (1), XOR (1), operation 0x6df (1); loads 1 constant; takes 3 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (1), XOR (1), shift left (1); loads 1 constant; takes 3 conditional transfers.
   It jumps to `mmo_DrawTriPrim`; conditional transfers reach `mmo_DrawTriPrim` and 1 other label.
   Constants loaded: 0.
 - `umo_DrawQuad`: address 0x28ca, `udrawtri.s` line 115 (12 words). Reached: second name for `mmo_DrawQuad` at the same address, so the same code.
   **Inferred** role: quad-drawing module entry: the same tests as the triangle entry.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (1), XOR (1), operation 0x6df (1); loads 1 constant; takes 3 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), AND (1), XOR (1), shift left (1); loads 1 constant; takes 3 conditional transfers.
   It jumps to `mmo_DrawTriPrim`; conditional transfers reach `mmo_DrawTriPrim` and 1 other label.
   Constants loaded: 0.
 - `uDQList`: address 0x28d6, `udrawtri.s` line 128 (5 words). Reached: transfers in `mmo_DrawQuad`.
@@ -4964,7 +4964,7 @@ Triangle and quad output. **Inferred** from its labels and callers.
   It has no jump of its own and runs on into `lDI4`.
   Constants loaded: 0x800.
 - `lDI4`: address 0x28db, `udrawtri.s` line 136 (46 words). Reached: inside `uDQList`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (10), float multiply (8), operation 0x6fe (4), move (3), AND (2), NOT (2), operation 0x6df (2); sets the condition flags 2 times; writes 2 words to the raster-bus output addresses; stores 1 word to engine address 0x3a8; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (10), float multiply (8), operation 0x6fe (4), move (3), AND (2), NOT (2), shift left (2); sets the condition flags 2 times; writes 2 words to the raster-bus output addresses; stores 1 word to control-memory address 0x3a8; takes 2 conditional transfers.
   It waits on its own address under another condition group; conditional transfers reach `HereWeGo`.
 - `mmo_DrawTriPrim`: address 0x2909, `udrawtri.s` line 189 (5 words). Reached: transfers in `mmo_DrawQuad` and 1 other label.
   **Inferred** role: triangle drawer proper, entered from the triangle and quad entries.
@@ -4985,22 +4985,22 @@ Triangle and quad output. **Inferred** from its labels and callers.
 
 - `mgeb_EvalMapSpec1D`: address 0x0053, `ueval1D.s` line 114 (73 words). Reached: geif slot 146 (entry 293); the ARM functions that send it are in the table below; distributor table 27.
   **Inferred** role: GL one-dimensional map call specification: eight operand words of the map (order, range, stride) stored, with a save of the 1D state.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 10 command words between offsets 0 and 11; operations move (13), integer add (9), second-unit move or minimum (8), operation 0x6df (2), second-unit operation 0xff (2), AND (1), operation 0x6dd (1), operation 0x6f1 (1); sets the condition flags once; 5 words in the output-instruction form of the diagnostic test; loads 5 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 10 command words between offsets 0 and 11; operations move (13), integer add (9), second-unit move or minimum (8), second-unit operation 0xff (2), shift left (2), AND (1), float-to-integer conversion (1), logical shift right (1); sets the condition flags once; 5 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); loads 5 constants; takes 1 conditional transfer.
   It ends with the end-of-command wait; conditional transfers reach `uEvalSaveState2D`.
   Constants loaded: 0x81d0, 0x1d0, 0xf, 0x166, 0.
 - `ugeb_EvalMapSpec1D`: address 0x0053, `ueval1D.s` line 114 (73 words). Reached: second name for `mgeb_EvalMapSpec1D` at the same address, so the same code.
   **Inferred** role: GL one-dimensional map call specification: eight operand words of the map (order, range, stride) stored, with a save of the 1D state.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 10 command words between offsets 0 and 11; operations move (13), integer add (9), second-unit move or minimum (8), operation 0x6df (2), second-unit operation 0xff (2), AND (1), operation 0x6dd (1), operation 0x6f1 (1); sets the condition flags once; 5 words in the output-instruction form of the diagnostic test; loads 5 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 10 command words between offsets 0 and 11; operations move (13), integer add (9), second-unit move or minimum (8), second-unit operation 0xff (2), shift left (2), AND (1), float-to-integer conversion (1), logical shift right (1); sets the condition flags once; 5 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); loads 5 constants; takes 1 conditional transfer.
   It ends with the end-of-command wait; conditional transfers reach `uEvalSaveState2D`.
   Constants loaded: 0x81d0, 0x1d0, 0xf, 0x166, 0.
 - `mgeb_EvalMapData1D`: address 0x009c, `ueval1D.s` line 220 (38 words). Reached: geif slot 13 (entry 27); the ARM functions that send it are in the table below.
   **Inferred** role: GL one-dimensional map call control points: three operand words and the loop that stores them.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations move (7), AND (1), operation 0x6f1 (1); sets the condition flags 2 times; loads 4 constants; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations move (7), AND (1), float-to-integer conversion (1); sets the condition flags 2 times; loads 4 constants; takes 2 conditional transfers.
   It has no jump of its own and runs on into `levaldata1dloop`; conditional transfers reach `uEvalSwapState2D` and 1 other label.
   Constants loaded: 0x8010, 0x80f0, 0x8160, 0x8080.
 - `ugeb_EvalMapData1D`: address 0x009c, `ueval1D.s` line 220 (38 words). Reached: second name for `mgeb_EvalMapData1D` at the same address, so the same code.
   **Inferred** role: GL one-dimensional map call control points: three operand words and the loop that stores them.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations move (7), AND (1), operation 0x6f1 (1); sets the condition flags 2 times; loads 4 constants; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations move (7), AND (1), float-to-integer conversion (1); sets the condition flags 2 times; loads 4 constants; takes 2 conditional transfers.
   It has no jump of its own and runs on into `levaldata1dloop`; conditional transfers reach `uEvalSwapState2D` and 1 other label.
   Constants loaded: 0x8010, 0x80f0, 0x8160, 0x8080.
 - `levaldata1dloop`: address 0x00c2, `ueval1D.s` line 259 (15 words). Reached: inside `mgeb_EvalMapData1D`, reached from that routine's own code.
@@ -5016,26 +5016,26 @@ Triangle and quad output. **Inferred** from its labels and callers.
   It ends with the end-of-command wait.
 - `mgesi_EvalStrip1D`: address 0x00e1, `ueval1D.s` line 324 (118 words). Reached: geif slot 103 (entry 207); the ARM functions that send it are in the table below.
   **Inferred** role: evaluates a 1D strip of points: parameter steps by float subtracts, multiplies and adds.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations move (28), float subtract (18), float multiply (10), float add (8), operation 0x6f1 (2), AND (1), OR (1), integer-to-float conversion (1), second-unit move or minimum (1), second-unit operation 0xff (1); sets the condition flags 14 times; 4 words in the output-instruction form of the diagnostic test; loads 6 constants; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `uEvalSwapState2D` and 2 other labels.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations move (28), float subtract (18), float multiply (10), float add (8), float-to-integer conversion (2), AND (1), OR (1), integer-to-float conversion (1), second-unit move or minimum (1), second-unit operation 0xff (1); sets the condition flags 14 times; 4 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); loads 6 constants; takes 3 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `uEvalSwapState2D` and 2 other labels.
   Constants loaded: 0, 0x157.
 - `ugesi_EvalStrip1D`: address 0x00e1, `ueval1D.s` line 324 (118 words). Reached: second name for `mgesi_EvalStrip1D` at the same address, so the same code.
   **Inferred** role: evaluates a 1D strip of points: parameter steps by float subtracts, multiplies and adds.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations move (28), float subtract (18), float multiply (10), float add (8), operation 0x6f1 (2), AND (1), OR (1), integer-to-float conversion (1), second-unit move or minimum (1), second-unit operation 0xff (1); sets the condition flags 14 times; 4 words in the output-instruction form of the diagnostic test; loads 6 constants; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `uEvalSwapState2D` and 2 other labels.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 2; operations move (28), float subtract (18), float multiply (10), float add (8), float-to-integer conversion (2), AND (1), OR (1), integer-to-float conversion (1), second-unit move or minimum (1), second-unit operation 0xff (1); sets the condition flags 14 times; 4 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); loads 6 constants; takes 3 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `uEvalSwapState2D` and 2 other labels.
   Constants loaded: 0, 0x157.
 - `lstrip1dreturn`: address 0x0157, `ueval1D.s` line 443 (15 words). Reached: its address loaded as a constant in `mgesi_EvalStrip1D`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6d1 (1), operation 0x6f1 (1); loads 1 constant.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float-to-integer conversion (1), operation 0x6d1 (1); loads 1 constant.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x10.
 - `umo_EvalEntry1D`: address 0x0166, `ueval1D.s` line 470 (22 words). Reached: transfers in `mmo_Lutout`; its address loaded as a constant in `mgeb_EvalMapSpec1D`.
   **Inferred** role: entry of the 1D evaluator stage: one test and a branch.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 2; operations move (5); sets the condition flags once; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `HereWeGo`.
 - `umo_EvalDecomposeLines1D`: address 0x017c, `ueval1D.s` line 504 (15 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: line decomposition of 1D evaluator output: six constants.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3); loads 6 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0.
 
 ARM functions and host tokens that send these handlers:
@@ -5053,22 +5053,22 @@ ARM functions and host tokens that send these handlers:
 
 - `mgeb_EvalMapSpec2D`: address 0x018b, `ueval2D.s` line 178 (122 words). Reached: geif slot 147 (entry 295); the ARM functions that send it are in the table below; distributor table 28.
   **Inferred** role: GL two-dimensional map call specification: 15 operand words of the map stored, with a save of the 2D state.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 15 command words between offsets 0 and 16; operations move (40), integer add (17), second-unit operation 0xff (11), second-unit move or minimum (10), integer subtract or compare (3), operation 0x6df (2), AND (1), operation 0x6dd (1), operation 0x6f1 (1); sets the condition flags 2 times; loads 6 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 15 command words between offsets 0 and 16; operations move (40), integer add (17), second-unit operation 0xff (11), second-unit move or minimum (10), integer subtract or compare (3), shift left (2), AND (1), float-to-integer conversion (1), logical shift right (1); sets the condition flags 2 times; loads 6 constants; takes 1 conditional transfer.
   It ends with the end-of-command wait; conditional transfers reach `uEvalSaveState1D`.
   Constants loaded: 0x81e8, 0x8528, 0x1e8, 0x317, 0.
 - `ugeb_EvalMapSpec2D`: address 0x018b, `ueval2D.s` line 178 (122 words). Reached: second name for `mgeb_EvalMapSpec2D` at the same address, so the same code.
   **Inferred** role: GL two-dimensional map call specification: 15 operand words of the map stored, with a save of the 2D state.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 15 command words between offsets 0 and 16; operations move (40), integer add (17), second-unit operation 0xff (11), second-unit move or minimum (10), integer subtract or compare (3), operation 0x6df (2), AND (1), operation 0x6dd (1), operation 0x6f1 (1); sets the condition flags 2 times; loads 6 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 15 command words between offsets 0 and 16; operations move (40), integer add (17), second-unit operation 0xff (11), second-unit move or minimum (10), integer subtract or compare (3), shift left (2), AND (1), float-to-integer conversion (1), logical shift right (1); sets the condition flags 2 times; loads 6 constants; takes 1 conditional transfer.
   It ends with the end-of-command wait; conditional transfers reach `uEvalSaveState1D`.
   Constants loaded: 0x81e8, 0x8528, 0x1e8, 0x317, 0.
 - `mgeb_EvalMapData2D`: address 0x0205, `ueval2D.s` line 334 (38 words). Reached: geif slot 14 (entry 29); the ARM functions that send it are in the table below.
   **Inferred** role: GL two-dimensional map call control points: six operand words and the loop that stores them.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 7; operations move (10), AND (1), operation 0x6f1 (1); sets the condition flags 2 times; loads 4 constants; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 7; operations move (10), AND (1), float-to-integer conversion (1); sets the condition flags 2 times; loads 4 constants; takes 2 conditional transfers.
   It has no jump of its own and runs on into `levaldata2dloop`; conditional transfers reach `uEvalSwapState1D` and 1 other label.
   Constants loaded: 0x8028, 0x8108, 0x8178, 0x8098.
 - `ugeb_EvalMapData2D`: address 0x0205, `ueval2D.s` line 334 (38 words). Reached: second name for `mgeb_EvalMapData2D` at the same address, so the same code.
   **Inferred** role: GL two-dimensional map call control points: six operand words and the loop that stores them.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 7; operations move (10), AND (1), operation 0x6f1 (1); sets the condition flags 2 times; loads 4 constants; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 7; operations move (10), AND (1), float-to-integer conversion (1); sets the condition flags 2 times; loads 4 constants; takes 2 conditional transfers.
   It has no jump of its own and runs on into `levaldata2dloop`; conditional transfers reach `uEvalSwapState1D` and 1 other label.
   Constants loaded: 0x8028, 0x8108, 0x8178, 0x8098.
 - `levaldata2dloop`: address 0x022b, `ueval2D.s` line 373 (15 words). Reached: inside `mgeb_EvalMapData2D`, reached from that routine's own code.
@@ -5084,40 +5084,40 @@ ARM functions and host tokens that send these handlers:
   It ends with the end-of-command wait.
 - `mgesi_EvalStrip2D`: address 0x0254, `ueval2D.s` line 461 (111 words). Reached: geif slot 104 (entry 209); the ARM functions that send it are in the table below.
   **Inferred** role: evaluates a 2D strip of points: parameter steps by float subtracts, multiplies and adds.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 5 command words between offsets 2 and 7; operations move (38), float subtract (18), float multiply (10), float add (8), integer-to-float conversion (2), operation 0x6f1 (2), second-unit operation 0xff (2), AND (1), OR (1), second-unit move or minimum (1); sets the condition flags 15 times; 4 words in the output-instruction form of the diagnostic test; loads 4 constants; takes 3 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 5 command words between offsets 2 and 7; operations move (38), float subtract (18), float multiply (10), float add (8), float-to-integer conversion (2), integer-to-float conversion (2), second-unit operation 0xff (2), AND (1), OR (1), second-unit move or minimum (1); sets the condition flags 15 times; 4 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); loads 4 constants; takes 3 conditional transfers.
   It has no jump of its own and runs on into `lstrip2dloop`; conditional transfers reach `uEvalSwapState1D` and 2 other labels.
   Constants loaded: 0, 0x9c.
 - `ugesi_EvalStrip2D`: address 0x0254, `ueval2D.s` line 461 (111 words). Reached: second name for `mgesi_EvalStrip2D` at the same address, so the same code.
   **Inferred** role: evaluates a 2D strip of points: parameter steps by float subtracts, multiplies and adds.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 5 command words between offsets 2 and 7; operations move (38), float subtract (18), float multiply (10), float add (8), integer-to-float conversion (2), operation 0x6f1 (2), second-unit operation 0xff (2), AND (1), OR (1), second-unit move or minimum (1); sets the condition flags 15 times; 4 words in the output-instruction form of the diagnostic test; loads 4 constants; takes 3 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 5 command words between offsets 2 and 7; operations move (38), float subtract (18), float multiply (10), float add (8), float-to-integer conversion (2), integer-to-float conversion (2), second-unit operation 0xff (2), AND (1), OR (1), second-unit move or minimum (1); sets the condition flags 15 times; 4 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); loads 4 constants; takes 3 conditional transfers.
   It has no jump of its own and runs on into `lstrip2dloop`; conditional transfers reach `uEvalSwapState1D` and 2 other labels.
   Constants loaded: 0, 0x9c.
 - `lstrip2dloop`: address 0x02c3, `ueval2D.s` line 573 (46 words). Reached: transfers in `lstrip2dreturn`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 5; operations move (8), float subtract (5), float multiply (3), float add (1), operation 0x6f1 (1); sets the condition flags 4 times; loads 6 constants.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 5; operations move (8), float subtract (5), float multiply (3), float add (1), float-to-integer conversion (1); sets the condition flags 4 times; loads 6 constants.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0x2f1, 0.
 - `lstrip2dreturn`: address 0x02f1, `ueval2D.s` line 620 (38 words). Reached: its address loaded as a constant in `lstrip2dloop`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 4 command words between offsets 1 and 7; operations move (7), float add (1), operation 0x6d1 (1); sets the condition flags 2 times; loads 1 constant; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `uEvalLoadState2D` and 1 other label.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `uEvalLoadState2D` and 1 other label.
   Constants loaded: 0x10.
 - `umo_EvalEntry2D`: address 0x0317, `ueval2D.s` line 697 (30 words). Reached: its address loaded as a constant in `mgeb_EvalMapSpec2D`.
   **Inferred** role: entry of the 2D evaluator stage: one test and a branch.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 3 command words between offsets 1 and 5; operations move (5); sets the condition flags once; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `HereWeGo`.
 - `umo_EvalDecomposePoints`: address 0x0335, `ueval2D.s` line 750 (15 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: point decomposition of 2D evaluator output.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1); loads 6 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0, -24.0 (0xc1c00000).
 - `umo_EvalDecomposeLines2D`: address 0x0344, `ueval2D.s` line 777 (55 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: line decomposition of 2D evaluator output.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 5 command words between offsets 0 and 7; operations move (4), AND (2), second-unit operation 0xff (1); sets the condition flags 3 times; loads 20 constants; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `HereWeGo`.
   Constants loaded: 0, -24.0 (0xc1c00000).
 - `umo_EvalDecomposeFill`: address 0x037b, `ueval2D.s` line 844 (37 words). Reached: its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: fill decomposition of 2D evaluator output into triangles: 20 constants.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 2 command words between offsets 1 and 4; operations move (1); loads 20 constants.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0, -6.0 (0xc0c00000).
 
 ARM functions and host tokens that send these handlers:
@@ -5135,21 +5135,21 @@ Evaluator change of basis for geometry, colour, normal and texture maps. **Infer
 
 - `uEvalChangeBasis1D`: address 0x0484, `uevalbasis.s` line 102 (34 words). Reached: transfers in `mgesi_EvalStrip1D` and 1 other label.
   **Inferred** role: changes the basis of the 1D evaluator's texture and geometry maps.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (4); sets the condition flags 2 times; 1 word in the output-instruction form of the diagnostic test; loads 4 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (4); sets the condition flags 2 times; 1 word stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); loads 4 constants; takes 1 conditional transfer.
   It has no jump of its own and runs on into `eval_texturechangebasis`; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x4a6, 0x4b6, 0x4c6, 0x4d6.
 - `eval_texturechangebasis`: address 0x04a6, `uevalbasis.s` line 137 (16 words). Reached: its address loaded as a constant in `uEvalChangeBasis1D`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4); sets the condition flags once; takes 1 conditional transfer.
   It has no jump of its own and runs on into `eval_colorchangebasis`; conditional transfers reach `HereWeGo`.
 - `eval_colorchangebasis`: address 0x04b6, `uevalbasis.s` line 154 (16 words). Reached: its address loaded as a constant in `uEvalChangeBasis1D`.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4); sets the condition flags once; 1 word in the output-instruction form of the diagnostic test; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4); sets the condition flags once; 1 word stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 1 conditional transfer.
   It has no jump of its own and runs on into `eval_normalchangebasis`; conditional transfers reach `HereWeGo`.
 - `eval_normalchangebasis`: address 0x04c6, `uevalbasis.s` line 171 (16 words). Reached: its address loaded as a constant in `uEvalChangeBasis1D`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2); takes 1 conditional transfer.
   It has no jump of its own and runs on into `eval_changebasis1ddone`; conditional transfers reach `HereWeGo`.
 - `eval_changebasis1ddone`: address 0x04d6, `uevalbasis.s` line 188 (15 words). Reached: its address loaded as a constant in `uEvalChangeBasis1D`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `uEvalChangeBasis2D`: address 0x04e5, `uevalbasis.s` line 239 (34 words). Reached: transfers in `mgesi_EvalStrip2D` and 1 other label.
   **Inferred** role: changes the basis of the 2D evaluator's maps.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6), float add (4), second-unit operation 0xff (2); sets the condition flags once; loads 8 constants; takes 1 conditional transfer.
@@ -5178,7 +5178,7 @@ Evaluator change of basis for geometry, colour, normal and texture maps. **Infer
   It has no jump of its own and runs on into `eval_changebasis2ddone`; conditional transfers reach `HereWeGo`.
 - `eval_changebasis2ddone`: address 0x0577, `uevalbasis.s` line 393 (15 words). Reached: its address loaded as a constant in `uEvalChangeBasis2D`.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1).
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### uevalcoord.s
 
@@ -5202,13 +5202,13 @@ Evaluator coordinate entry (EvalCoord) for 1D and 2D. **Inferred** from its labe
   Constants loaded: 0x2000000, 0.
 - `uEvalCoord1D`: address 0x0406, `uevalcoord.s` line 195 (57 words). Reached: transfers in `evalcoord1dloop`.
   **Inferred** role: evaluates one 1D coordinate: parameter scaling and the polynomial stages.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (12), float subtract (4), AND (1), float multiply (1), operation 0x688 (1), operation 0x6f1 (1); sets the condition flags 6 times; loads 5 constants; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `uEvalSwapState2D` and 2 other labels.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (12), float subtract (4), AND (1), float multiply (1), float-to-integer conversion (1), operation 0x688 (1); sets the condition flags 6 times; loads 5 constants; takes 3 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `uEvalSwapState2D` and 2 other labels.
   Constants loaded: 0.
 - `uEvalCoord2D`: address 0x043f, `uevalcoord.s` line 264 (69 words). Reached: transfers in `evalcoord2dloop`.
   **Inferred** role: evaluates one 2D coordinate: parameter scaling and the polynomial stages.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (19), float subtract (8), float multiply (4), AND (1), operation 0x6f1 (1); sets the condition flags 9 times; loads 6 constants; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `uEvalSwapState1D` and 2 other labels.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (19), float subtract (8), float multiply (4), AND (1), float-to-integer conversion (1); sets the condition flags 9 times; loads 6 constants; takes 3 conditional transfers.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `uEvalSwapState1D` and 2 other labels.
   Constants loaded: 0.
 
 ### ulight.s
@@ -5227,7 +5227,7 @@ Simple lighting and colour clamp. **Inferred** from its labels and callers.
   Constants loaded: 0xffffffef.
 - `lLI2`: address 0x0d72, `ulight.s` line 46 (10 words). Reached: inside `mmo_LiColorClamp`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations clamp at zero (8); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_LighterSimple`: address 0x0d7c, `ulight.s` line 67 (13 words). Reached: its address loaded as a constant in `mmo_DirtyCullAndLightModule` and 1 other label.
   **Inferred** role: simple lighting module: multiplies with a 1e-05 floor.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (5), move (3); loads 1 constant; takes 1 conditional transfer.
@@ -5243,17 +5243,17 @@ Simple lighting and colour clamp. **Inferred** from its labels and callers.
   It jumps to `mLiIrisColoring`; conditional transfers reach `HereWeGo`.
 - `mLiPwrTable`: address 0x0dc9, `ulight.s` line 192 (44 words). Reached: transfers in `mLiSwichSpotPrwTableSub` and 2 other labels.
   **Inferred** role: builds the lighting power table: conversions, masks and multiply-adds.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (9), integer-to-float conversion (9), operation 0x6dd (9), AND (8), float add (6), float multiply-add (3), float subtract (3), second-unit operation 0xff (3), operation 0x6f1 (2), operation 0x6f7 (1), second-unit move (1); sets the condition flags 2 times; loads 3 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (9), integer-to-float conversion (9), logical shift right (9), AND (8), float add (6), float multiply-add (3), float subtract (3), second-unit operation 0xff (3), float-to-integer conversion (2), operation 0x6f7 (1), second-unit move (1); sets the condition flags 2 times; loads 3 constants.
   It has no jump of its own and runs on into `lPT1`.
   Constants loaded: 3.0 (0x40400000), 0.
 - `uLiPwrTable`: address 0x0dc9, `ulight.s` line 192 (44 words). Reached: second name for `mLiPwrTable` at the same address, so the same code.
   **Inferred** role: builds the lighting power table: conversions, masks and multiply-adds.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (9), integer-to-float conversion (9), operation 0x6dd (9), AND (8), float add (6), float multiply-add (3), float subtract (3), second-unit operation 0xff (3), operation 0x6f1 (2), operation 0x6f7 (1), second-unit move (1); sets the condition flags 2 times; loads 3 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (9), integer-to-float conversion (9), logical shift right (9), AND (8), float add (6), float multiply-add (3), float subtract (3), second-unit operation 0xff (3), float-to-integer conversion (2), operation 0x6f7 (1), second-unit move (1); sets the condition flags 2 times; loads 3 constants.
   It has no jump of its own and runs on into `lPT1`.
   Constants loaded: 3.0 (0x40400000), 0.
 - `lPT1`: address 0x0df5, `ulight.s` line 240 (30 words). Reached: inside `mLiPwrTable`, reached from that routine's own code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (8), float add (5), float multiply-add (5), float subtract (2), operation 0x6dd (2), move (1), second-unit move (1); sets the condition flags 3 times; takes 2 conditional transfers.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (8), float add (5), float multiply-add (5), float subtract (2), logical shift right (2), move (1), second-unit move (1); sets the condition flags 3 times; takes 2 conditional transfers.
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### umath.s
 
@@ -5262,11 +5262,11 @@ Sine and cosine. **Inferred** from its labels and callers.
 - `mSinCos`: address 0x0e13, `umath.s` line 24 (79 words). Reached: transfers in `DrawMSTFanPnt` and 2 other labels.
   **Inferred** role: sine and cosine of one angle by series multiplies and subtracts, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (11), float subtract (10), float add (3), double subtract (2), operation 0x6b5 (2), second-unit operation 0x5ff (2); sets the condition flags 3 times.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `uSinCos`: address 0x0e13, `umath.s` line 24 (79 words). Reached: second name for `mSinCos` at the same address, so the same code.
   **Inferred** role: sine and cosine of one angle by series multiplies and subtracts, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (11), float subtract (10), float add (3), double subtract (2), operation 0x6b5 (2), second-unit operation 0x5ff (2); sets the condition flags 3 times.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### umatrix.s
 
@@ -5288,21 +5288,21 @@ Matrix multiply, inverse, adjoint, rotate and scale. **Inferred** from its label
 - `mMatrixInverse`: address 0x0ee7, `umatrix.s` line 314 (113 words). Reached: transfers in `mTexGenEyeLine` and 6 other labels.
   **Inferred** role: inverts a 4x4 matrix: cofactors by multiplies and subtracts and a reciprocal of the determinant.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (31), float multiply-add (19), float subtract (16), move (16), float add (3), operation 0x6e3 (2), reciprocal Newton step (2), integer add (1), reciprocal seed (1); loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xfffffff8.
 - `uMatrixInverse`: address 0x0ee7, `umatrix.s` line 314 (113 words). Reached: second name for `mMatrixInverse` at the same address, so the same code.
   **Inferred** role: inverts a 4x4 matrix: cofactors by multiplies and subtracts and a reciprocal of the determinant.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (31), float multiply-add (19), float subtract (16), move (16), float add (3), operation 0x6e3 (2), reciprocal Newton step (2), integer add (1), reciprocal seed (1); loads 1 constant.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
   Constants loaded: 0xfffffff8.
 - `mMatrixAdjoint`: address 0x0f58, `umatrix.s` line 435 (88 words). Reached: transfers in `mSpriteAxial` and 2 other labels.
   **Inferred** role: adjoint of a 4x4 matrix: cofactors by multiplies and subtracts.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (24), float multiply (22), float multiply-add (18), move (16), float add (3), operation 0x6e3 (2); sets the condition flags once.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `uMatrixAdjoint`: address 0x0f58, `umatrix.s` line 435 (88 words). Reached: second name for `mMatrixAdjoint` at the same address, so the same code.
   **Inferred** role: adjoint of a 4x4 matrix: cofactors by multiplies and subtracts.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (24), float multiply (22), float multiply-add (18), move (16), float add (3), operation 0x6e3 (2); sets the condition flags once.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mRotate`: address 0x0fb0, `umatrix.s` line 557 (99 words). Reached: transfers in `mgeb_Rotate_Color` and 3 other labels.
   **Inferred** role: builds a rotation from the angle and axis (four operand words) with sine and cosine terms, then the matrix multiply.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations float multiply (33), float add (17), float subtract (17), float multiply-add (5), double subtract (2), operation 0x6b5 (2), reciprocal square-root Newton step (2), second-unit operation 0x5ff (2), move (1), reciprocal square-root seed (1); sets the condition flags 3 times.
@@ -5322,7 +5322,7 @@ Memory moves WRAM, CRAM and ERAM in each direction. **Inferred** from its labels
   It has no jump of its own and runs on into `lW2C`.
 - `lW2C`: address 0x101b, `umemove.s` line 27 (10 words). Reached: inside `uWramToCram`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mWramToEram`: address 0x1025, `umemove.s` line 45 (8 words). Reached: transfers in `SaveClipState` and 12 other labels.
   **Inferred** role: copy from working to external memory: four set-up moves, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4).
@@ -5333,7 +5333,7 @@ Memory moves WRAM, CRAM and ERAM in each direction. **Inferred** from its labels
   It has no jump of its own and runs on into `lW2E`.
 - `lW2E`: address 0x102d, `umemove.s` line 54 (13 words). Reached: inside `mWramToEram`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mCramToEram`: address 0x103a, `umemove.s` line 75 (7 words). Reached: transfers in `mgeb_CramToEram` and 3 other labels.
   **Inferred** role: copy from coefficient to external memory: set-up, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4).
@@ -5344,7 +5344,7 @@ Memory moves WRAM, CRAM and ERAM in each direction. **Inferred** from its labels
   It has no jump of its own and runs on into `lC2E`.
 - `lC2E`: address 0x1041, `umemove.s` line 83 (14 words). Reached: inside `mCramToEram`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mEramToCram`: address 0x104f, `umemove.s` line 105 (17 words). Reached: transfers in `mdc_multipass` and 4 other labels.
   **Inferred** role: copy from external to coefficient memory: set-up, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4).
@@ -5355,7 +5355,7 @@ Memory moves WRAM, CRAM and ERAM in each direction. **Inferred** from its labels
   It has no jump of its own and runs on into `lE2C`.
 - `lE2C`: address 0x1060, `umemove.s` line 123 (20 words). Reached: inside `mEramToCram`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mClearEram`: address 0x1074, `umemove.s` line 151 (8 words). Reached: transfers in `mDebugInitialize` and 1 other label.
   **Inferred** role: clears external memory: set-up, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1).
@@ -5366,7 +5366,7 @@ Memory moves WRAM, CRAM and ERAM in each direction. **Inferred** from its labels
   It has no jump of its own and runs on into `lcE`.
 - `lcE`: address 0x107c, `umemove.s` line 160 (13 words). Reached: inside `mClearEram`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mCramToFifo`: address 0x1089, `umemove.s` line 183 (6 words). Reached: transfers in `mges_ContextDeactivate`.
   **Inferred** role: copy from coefficient memory out through the FIFO: set-up, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
@@ -5377,7 +5377,7 @@ Memory moves WRAM, CRAM and ERAM in each direction. **Inferred** from its labels
   It has no jump of its own and runs on into `lC2F`.
 - `lC2F`: address 0x108f, `umemove.s` line 190 (12 words). Reached: inside `mCramToFifo`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations NOT (2), move (2); writes 1 word to the raster-bus output addresses; takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mEramToFifo`: address 0x109b, `umemove.s` line 210 (10 words). Reached: transfers in `mges_ContextDeactivate`.
   **Inferred** role: copy from external memory out through the FIFO: set-up, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): carries no operation, operand read, store or constant the field readings name.
@@ -5388,7 +5388,7 @@ Memory moves WRAM, CRAM and ERAM in each direction. **Inferred** from its labels
   It has no jump of its own and runs on into `lE2F`.
 - `lE2F`: address 0x10a5, `umemove.s` line 221 (19 words). Reached: inside `mEramToFifo`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations NOT (2), move (2); writes 1 word to the raster-bus output addresses; takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### unpack.S
 
@@ -5427,11 +5427,11 @@ Pixel colour-stream entry into the engine. **Inferred** from its labels and call
 - `mgesi_PixDrawColorEntry`: address 0x27d5, `upixelSetup.s` line 51 (16 words). Reached: geif slot 212 (entry 425); the ARM functions that send it are in the table below.
   **Inferred** role: pixel draw-colour entry: one add and one subtract, then the end of the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (1), float subtract (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `ugesi_PixDrawColorEntry`: address 0x27d5, `upixelSetup.s` line 51 (16 words). Reached: second name for `mgesi_PixDrawColorEntry` at the same address, so the same code.
   **Inferred** role: pixel draw-colour entry: one add and one subtract, then the end of the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (1), float subtract (1).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ARM functions and host tokens that send these handlers:
 
@@ -5462,7 +5462,7 @@ Packed pixel output loops. **Inferred** from its labels and callers.
 - `uPO_2_4C_LastBlck`: address 0x2841, `upixout.s` line 194 (9 words). Reached: transfers in `mmo_Pixout_2_4`.
   **Inferred** role: last block of the 2- and 4-component pixel output: clamps and scales, then ends the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations clamp at zero (4), float multiply (4).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `uPO_8_16C`: address 0x284a, `upixout.s` line 209 (4 words). Reached: transfers in `mmo_Pixout_8_16`.
   **Inferred** role: clamp step at the head of the 8- and 16-component pixel output, then its loop.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations clamp at zero (4).
@@ -5474,7 +5474,7 @@ Packed pixel output loops. **Inferred** from its labels and callers.
 - `uPostLoop`: address 0x2876, `upixout.s` line 259 (13 words). Reached: transfers in `uPO_8_16C_LastBlck`.
   **Inferred** role: tail of the 8- and 16-component pixel output after its loop, then the end of the command.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (12), clamp at zero (8).
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `uPO_8_16C_LastBlck`: address 0x2883, `upixout.s` line 275 (9 words). Reached: transfers in `mmo_Pixout_8_16`.
   **Inferred** role: last block of the 8- and 16-component pixel output, then the tail.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations clamp at zero (8), float multiply (4).
@@ -5506,7 +5506,7 @@ Transformation to screen space with the second-chance (clipped) path. **Inferred
   Constants loaded: 0.
 - `lSC1`: address 0x10d4, `uscreen2.s` line 104 (44 words). Reached: inside `uBack`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (14), move (13), float add (4), reciprocal Newton step (4), float multiply-add (2), minimum (2), reciprocal seed (2); writes 2 words to the raster-bus output addresses; reads engine memory at 0x138a; loads 1 constant; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x70000.
 - `uSecondChanceInvQ`: address 0x1100, `uscreen2.s` line 156 (3 words). Reached: transfers in `mmo_ToScreenSpaceInvQ`.
   **Inferred** role: second test of the screen-space transform that also keeps 1/q.
@@ -5530,7 +5530,7 @@ Transformation to screen space with the second-chance (clipped) path. **Inferred
   It has no jump of its own and runs on into `lSC3`.
 - `lSC3`: address 0x1121, `uscreen2.s` line 199 (130 words). Reached: inside `uBackInvQ`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (38), float multiply (26), minimum (23), move (19), float add (8), reciprocal Newton step (8), operation 0x6f7 (3), integer subtract or compare (1); sets the condition flags 2 times; writes 2 words to the raster-bus output addresses; reads engine memory at 0x138a; loads 1 constant; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x70000.
 - `uSecondChanceInvQ2DI`: address 0x11a3, `uscreen2.s` line 338 (3 words). Reached: transfers in `mmo_ToScreenSpaceInvQ2DI`.
   **Inferred** role: second test of the screen-space transform with 1/q for two-dimensional interpolation.
@@ -5554,7 +5554,7 @@ Transformation to screen space with the second-chance (clipped) path. **Inferred
   It has no jump of its own and runs on into `lSC5`.
 - `lSC5`: address 0x11c1, `uscreen2.s` line 378 (87 words). Reached: inside `uBackInvQ2DI`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (21), move (19), minimum (16), reciprocal Newton step (8), float multiply-add (6), float add (5), operation 0x6f7 (2), reciprocal seed (2); sets the condition flags 2 times; writes 2 words to the raster-bus output addresses; reads engine memory at 0x138a; loads 1 constant; takes 3 conditional transfers.
-  It ends the command by jumping to `HereWeGo`; conditional transfers reach `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31; conditional transfers reach `HereWeGo`.
   Constants loaded: 0x70000.
 
 ### usepconv3x3.s
@@ -5572,7 +5572,7 @@ Separable 3x3 convolution row and column loops. **Inferred** from its labels and
 - `ColumnConv3Loop`: address 0x29b9, `usepconv3x3.s` line 108 (13 words). Reached: inside `uSepConv3_124`, reached from that routine's own code.
   **Inferred** role: column pass of the separable 3x3 convolution: multiply-adds, then a return.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (12); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### usepconv5x5.s
 
@@ -5589,14 +5589,14 @@ Separable 5x5 convolution row and column loops, with a fast form. **Inferred** f
 - `ColumnConv5Loop`: address 0x29ec, `usepconv5x5.s` line 133 (21 words). Reached: inside `uSepConv5_124`, reached from that routine's own code.
   **Inferred** role: column pass of the separable 5x5 convolution.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (20); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `uFastSepConv5_124`: address 0x2a01, `usepconv5x5.s` line 188 (47 words). Reached: transfers in `mmo_FastSepConvolve5x5_124`.
   **Inferred** role: inner routine of the fast separable 5x5 convolution: integer conversions and multiplies.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (28), integer-to-float conversion (22), float multiply-add (11), move (1); 2 words in the output-instruction form of the diagnostic test.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (28), integer-to-float conversion (22), float multiply-add (11), move (1); 2 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here).
   It has no jump of its own and runs on into `FastRowConv5Loop`.
 - `FastRowConv5Loop`: address 0x2a30, `usepconv5x5.s` line 243 (24 words). Reached: inside `uFastSepConv5_124`, reached from that routine's own code.
   **Inferred** role: row pass of the fast separable 5x5 convolution.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (16), float multiply (8), integer-to-float conversion (4); 3 words in the output-instruction form of the diagnostic test; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (16), float multiply (8), integer-to-float conversion (4); 3 words stored through address registers 9-0xb (the diagnostic test's output form, an engine-memory store here); takes 1 conditional transfer.
   It has no jump of its own and runs on into `FastRowConv5Epilog`.
 - `FastRowConv5Epilog`: address 0x2a48, `usepconv5x5.s` line 280 (11 words). Reached: inside `uFastSepConv5_124`, reached from that routine's own code.
   **Inferred** role: end of the fast 5x5 row pass.
@@ -5605,7 +5605,7 @@ Separable 5x5 convolution row and column loops, with a fast form. **Inferred** f
 - `FastColumnConv5Loop`: address 0x2a53, `usepconv5x5.s` line 301 (21 words). Reached: inside `uFastSepConv5_124`, reached from that routine's own code.
   **Inferred** role: column pass of the fast separable 5x5 convolution.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (20); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### usepconv7x7.s
 
@@ -5622,7 +5622,7 @@ Separable 7x7 convolution row and column loops. **Inferred** from its labels and
 - `ColumnConv7Loop`: address 0x2a9a, `usepconv7x7.s` line 149 (30 words). Reached: inside `uSepConv7_124`, reached from that routine's own code.
   **Inferred** role: column pass of the separable 7x7 convolution.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (28); takes 1 conditional transfer.
-  It returns to its caller or the next chained stage (a transfer to address 0 outside condition group 31).
+  It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 
 ### utexgen.s
 
@@ -5630,70 +5630,70 @@ Texture-coordinate generation loops: sphere, eye-linear, object-linear. **Inferr
 
 - `mmo_TexGenSphere_ST`: address 0x0b85, `utexgen.s` line 45 (9 words). Reached: its address loaded as a constant in `mTexGenSph`.
   **Inferred** role: sphere-map texture-coordinate generation for s and t.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6df (2); loads 2 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations shift left (2); loads 2 constants.
   It has no jump of its own and runs on into `lTGLOOP2`.
   Constants loaded: 0.
 - `umo_TexGenSphere_ST`: address 0x0b85, `utexgen.s` line 45 (9 words). Reached: second name for `mmo_TexGenSphere_ST` at the same address, so the same code.
   **Inferred** role: sphere-map texture-coordinate generation for s and t.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations operation 0x6df (2); loads 2 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations shift left (2); loads 2 constants.
   It has no jump of its own and runs on into `lTGLOOP2`.
   Constants loaded: 0.
 - `lTGLOOP2`: address 0x0b8e, `utexgen.s` line 55 (92 words). Reached: inside `mmo_TexGenSphere_ST`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (44), float add (16), float multiply-add (8), reciprocal square-root Newton step (8), float subtract (6), move (2); loads 1 constant; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
   Constants loaded: 0.5 (0x3f000000).
 - `mmo_TexGenEyeLinear_ST`: address 0x0bea, `utexgen.s` line 154 (14 words). Reached: its address loaded as a constant in `mGL_EX_Initialize` and 1 other label.
   **Inferred** role: eye-linear texture-coordinate generation for s and t: plane dot products.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), operation 0x6df (2); loads 2 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), shift left (2); loads 2 constants.
   It has no jump of its own and runs on into `lXF8`.
   Constants loaded: 0.
 - `umo_TexGenEyeLinear_ST`: address 0x0bea, `utexgen.s` line 154 (14 words). Reached: second name for `mmo_TexGenEyeLinear_ST` at the same address, so the same code.
   **Inferred** role: eye-linear texture-coordinate generation for s and t: plane dot products.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), operation 0x6df (2); loads 2 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), shift left (2); loads 2 constants.
   It has no jump of its own and runs on into `lXF8`.
   Constants loaded: 0.
 - `lXF8`: address 0x0bf8, `utexgen.s` line 169 (21 words). Reached: inside `mmo_TexGenEyeLinear_ST`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (12), float add (4), float multiply (4); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_TexGenEyeLinear_RQ`: address 0x0c0d, `utexgen.s` line 197 (14 words). Reached: its address loaded as a constant in `mGL_EX_Initialize` and 1 other label.
   **Inferred** role: eye-linear texture-coordinate generation for r and q.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), operation 0x6df (2); loads 2 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), shift left (2); loads 2 constants.
   It has no jump of its own and runs on into `lXF9`.
   Constants loaded: 0.
 - `umo_TexGenEyeLinear_RQ`: address 0x0c0d, `utexgen.s` line 197 (14 words). Reached: second name for `mmo_TexGenEyeLinear_RQ` at the same address, so the same code.
   **Inferred** role: eye-linear texture-coordinate generation for r and q.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), operation 0x6df (2); loads 2 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), shift left (2); loads 2 constants.
   It has no jump of its own and runs on into `lXF9`.
   Constants loaded: 0.
 - `lXF9`: address 0x0c1b, `utexgen.s` line 212 (21 words). Reached: inside `mmo_TexGenEyeLinear_RQ`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (12), float add (4), float multiply (4); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_TexGenObjLinear_ST`: address 0x0c30, `utexgen.s` line 240 (14 words). Reached: its address loaded as a constant in `mTexGenObjLin`.
   **Inferred** role: object-linear texture-coordinate generation for s and t.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), operation 0x6df (2); loads 2 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), shift left (2); loads 2 constants.
   It has no jump of its own and runs on into `lXF10`.
   Constants loaded: 0.
 - `umo_TexGenObjLinear_ST`: address 0x0c30, `utexgen.s` line 240 (14 words). Reached: second name for `mmo_TexGenObjLinear_ST` at the same address, so the same code.
   **Inferred** role: object-linear texture-coordinate generation for s and t.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), operation 0x6df (2); loads 2 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), shift left (2); loads 2 constants.
   It has no jump of its own and runs on into `lXF10`.
   Constants loaded: 0.
 - `lXF10`: address 0x0c3e, `utexgen.s` line 255 (21 words). Reached: inside `mmo_TexGenObjLinear_ST`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (12), float add (4), float multiply (4); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_TexGenObjLinear_RQ`: address 0x0c53, `utexgen.s` line 283 (14 words). Reached: its address loaded as a constant in `mTexGenObjLin`.
   **Inferred** role: object-linear texture-coordinate generation for r and q.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), operation 0x6df (2); loads 2 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), shift left (2); loads 2 constants.
   It has no jump of its own and runs on into `lXF11`.
   Constants loaded: 0.
 - `umo_TexGenObjLinear_RQ`: address 0x0c53, `utexgen.s` line 283 (14 words). Reached: second name for `mmo_TexGenObjLinear_RQ` at the same address, so the same code.
   **Inferred** role: object-linear texture-coordinate generation for r and q.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), operation 0x6df (2); loads 2 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (3), shift left (2); loads 2 constants.
   It has no jump of its own and runs on into `lXF11`.
   Constants loaded: 0.
 - `lXF11`: address 0x0c61, `utexgen.s` line 298 (21 words). Reached: inside `mmo_TexGenObjLinear_RQ`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (12), float add (4), float multiply (4); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### uunpack.s
 
@@ -5710,21 +5710,21 @@ Vertex-array unpack loops for unlit vertex formats. **Inferred** from its labels
 - `V3Floop`: address 0x2c78, `uunpack.s` line 60 (11 words). Reached: inside `mmo_UnpackVertexV3F`, reached from that routine's own code.
   **Inferred** role: loop of the float-position unpack: ten moves per vertex.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (10); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_UnpackVertexV3F_C4UB`: address 0x2c83, `uunpack.s` line 78 (17 words). Reached: geif slot 380 (entry 761); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack of float positions and byte colours (scaled by 1/255).
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), operation 0x6dd (3); loads 5 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), logical shift right (3); loads 5 constants.
   It has no jump of its own and runs on into `V3F_C4UBloop`.
   Constants loaded: 0, 0xff, 0x3b808080.
 - `umo_UnpackVertexV3F_C4UB`: address 0x2c83, `uunpack.s` line 78 (17 words). Reached: second name for `mmo_UnpackVertexV3F_C4UB` at the same address, so the same code.
   **Inferred** role: vertex-array unpack of float positions and byte colours (scaled by 1/255).
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), operation 0x6dd (3); loads 5 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4), logical shift right (3); loads 5 constants.
   It has no jump of its own and runs on into `V3F_C4UBloop`.
   Constants loaded: 0, 0xff, 0x3b808080.
 - `V3F_C4UBloop`: address 0x2c94, `uunpack.s` line 97 (25 words). Reached: inside `mmo_UnpackVertexV3F_C4UB`, reached from that routine's own code.
   **Inferred** role: loop of the position and byte-colour unpack: masks, conversions and scales.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (8), integer-to-float conversion (8), AND (6), operation 0x6dd (6), move (2); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (8), integer-to-float conversion (8), AND (6), logical shift right (6), move (2); takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_UnpackVertexV3F_N3S`: address 0x2cad, `uunpack.s` line 129 (18 words). Reached: inside `mmo_UnpackVertexV3F_C4UB`, reached from that routine's own code.
   **Inferred** role: vertex-array unpack of float positions and short normals (scaled by 1/32767).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6); reads engine memory at 4 addresses from 0x13a7 to 0x13aa; loads 3 constants.
@@ -5732,8 +5732,8 @@ Vertex-array unpack loops for unlit vertex formats. **Inferred** from its labels
   Constants loaded: 0, 3.05185e-05 (0x380000fd).
 - `V3F_N3Sloop`: address 0x2cbf, `uunpack.s` line 150 (52 words). Reached: inside `umo_UnpackVertexV3F_N3S`, reached from that routine's own code.
   **Inferred** role: loop of the position and short-normal unpack.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (14), move (10), float subtract (4), integer-to-float conversion (4), operation 0x6db (4), float add (2), integer add (2), operation 0x6df (2), reciprocal square-root Newton step (2); sets the condition flags 2 times; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (14), move (10), arithmetic shift right (4), float subtract (4), integer-to-float conversion (4), float add (2), integer add (2), reciprocal square-root Newton step (2), shift left (2); sets the condition flags 2 times; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_UnpackVertexV3F_T2F`: address 0x2cf3, `uunpack.s` line 209 (12 words). Reached: geif slot 383 (entry 767); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack of float positions and float texture coordinates.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3); reads engine memory at 4 addresses from 0x13a7 to 0x13aa.
@@ -5745,7 +5745,7 @@ Vertex-array unpack loops for unlit vertex formats. **Inferred** from its labels
 - `V3F_T2Floop`: address 0x2cff, `uunpack.s` line 223 (19 words). Reached: inside `mmo_UnpackVertexV3F_T2F`, reached from that routine's own code.
   **Inferred** role: loop of the position and float texture-coordinate unpack.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (18); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_UnpackVertexV3F_C4UB_T2F`: address 0x2d12, `uunpack.s` line 249 (10 words). Reached: geif slot 384 (entry 769); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack of positions, byte colours and float texture coordinates.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3); loads 4 constants.
@@ -5758,8 +5758,8 @@ Vertex-array unpack loops for unlit vertex formats. **Inferred** from its labels
   Constants loaded: 0, 0x3b808080.
 - `V3F_C4UB_T2Floop`: address 0x2d1c, `uunpack.s` line 261 (38 words). Reached: inside `mmo_UnpackVertexV3F_C4UB_T2F`, reached from that routine's own code.
   **Inferred** role: loop of the position, byte-colour and float texture-coordinate unpack.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (10), float multiply (8), integer-to-float conversion (8), operation 0x6dd (8), operation 0x6df (6); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (10), float multiply (8), integer-to-float conversion (8), logical shift right (8), shift left (6); takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_UnpackVertexV3F_N3S_T2F`: address 0x2d42, `uunpack.s` line 306 (18 words). Reached: inside `mmo_UnpackVertexV3F_C4UB_T2F`, reached from that routine's own code.
   **Inferred** role: vertex-array unpack of positions, short normals and float texture coordinates.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6); reads engine memory at 4 addresses from 0x13a7 to 0x13aa; loads 3 constants.
@@ -5767,8 +5767,8 @@ Vertex-array unpack loops for unlit vertex formats. **Inferred** from its labels
   Constants loaded: 0, 3.05185e-05 (0x380000fd).
 - `V3F_N3S_T2Floop`: address 0x2d54, `uunpack.s` line 327 (58 words). Reached: inside `umo_UnpackVertexV3F_N3S_T2F`, reached from that routine's own code.
   **Inferred** role: loop of the position, short-normal and float texture-coordinate unpack.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (18), float multiply (14), float subtract (4), integer-to-float conversion (4), operation 0x6db (4), float add (2), integer add (2), operation 0x6df (2), reciprocal square-root Newton step (2); sets the condition flags 2 times; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (18), float multiply (14), arithmetic shift right (4), float subtract (4), integer-to-float conversion (4), float add (2), integer add (2), reciprocal square-root Newton step (2), shift left (2); sets the condition flags 2 times; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_UnpackVertexV3F_T2S`: address 0x2d8e, `uunpack.s` line 392 (14 words). Reached: geif slot 387 (entry 775); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack of positions and short texture coordinates.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (4); reads engine memory at 4 addresses from 0x13a7 to 0x13aa; loads 1 constant.
@@ -5781,8 +5781,8 @@ Vertex-array unpack loops for unlit vertex formats. **Inferred** from its labels
   Constants loaded: 0.
 - `V3F_T2Sloop`: address 0x2d9c, `uunpack.s` line 408 (25 words). Reached: inside `mmo_UnpackVertexV3F_T2S`, reached from that routine's own code.
   **Inferred** role: loop of the position and short texture-coordinate unpack.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (14), integer-to-float conversion (4), operation 0x6db (4), operation 0x6df (2); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (14), arithmetic shift right (4), integer-to-float conversion (4), shift left (2); takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_UnpackVertexV3F_C4UB_T2S`: address 0x2db5, `uunpack.s` line 440 (10 words). Reached: geif slot 388 (entry 777); its address loaded as a constant in `mGL_EM_Initialize`.
   **Inferred** role: vertex-array unpack of positions, byte colours and short texture coordinates.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3); loads 4 constants.
@@ -5795,8 +5795,8 @@ Vertex-array unpack loops for unlit vertex formats. **Inferred** from its labels
   Constants loaded: 0, 0x3b808080.
 - `V3F_C4UB_T2Sloop`: address 0x2dbf, `uunpack.s` line 452 (43 words). Reached: inside `mmo_UnpackVertexV3F_C4UB_T2S`, reached from that routine's own code.
   **Inferred** role: loop of the position, byte-colour and short texture-coordinate unpack.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer-to-float conversion (12), float multiply (8), operation 0x6dd (8), operation 0x6df (8), move (6), operation 0x6db (4); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer-to-float conversion (12), float multiply (8), logical shift right (8), shift left (8), move (6), arithmetic shift right (4); takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
 - `umo_UnpackVertexV3F_N3S_T2S`: address 0x2dea, `uunpack.s` line 502 (18 words). Reached: inside `mmo_UnpackVertexV3F_C4UB_T2S`, reached from that routine's own code.
   **Inferred** role: vertex-array unpack of positions, short normals and short texture coordinates.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6); reads engine memory at 4 addresses from 0x13a7 to 0x13aa; loads 3 constants.
@@ -5804,8 +5804,8 @@ Vertex-array unpack loops for unlit vertex formats. **Inferred** from its labels
   Constants loaded: 0, 3.05185e-05 (0x380000fd).
 - `V3F_N3S_T2Sloop`: address 0x2dfc, `uunpack.s` line 523 (64 words). Reached: inside `umo_UnpackVertexV3F_N3S_T2S`, reached from that routine's own code.
   **Inferred** role: loop of the position, short-normal and short texture-coordinate unpack.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (14), move (14), integer-to-float conversion (8), operation 0x6db (8), float subtract (4), operation 0x6df (4), float add (2), integer add (2), reciprocal square-root Newton step (2); sets the condition flags 2 times; takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (14), move (14), arithmetic shift right (8), integer-to-float conversion (8), float subtract (4), shift left (4), float add (2), integer add (2), reciprocal square-root Newton step (2); sets the condition flags 2 times; takes 1 conditional transfer.
+  It ends the command with an indirect transfer in condition group 31.
 
 ### uxform.s
 
@@ -5821,7 +5821,7 @@ Object-to-clip transformation with optional normal-to-eye transformation. **Infe
   It has no jump of its own and runs on into `lXF1`; conditional transfers reach `uMatrixMultCCC`.
 - `lXF1`: address 0x121f, `uxform.s` line 52 (45 words). Reached: inside `mmo_ObjToClipSpace`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (30), float add (8), float subtract (6), float multiply (5); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_ObjToClipSpaceN2E`: address 0x124c, `uxform.s` line 104 (8 words). Reached: its address loaded as a constant in `mmo_DirtyXformAndObjToClipModule`.
   **Inferred** role: object-to-clip transform that also takes the normal to eye space.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (2), float multiply-add (2); takes 2 conditional transfers.
@@ -5832,7 +5832,7 @@ Object-to-clip transformation with optional normal-to-eye transformation. **Infe
   It has no jump of its own and runs on into `lXF2`; conditional transfers reach `uMatrixMultCCC` and 1 other label.
 - `lXF2`: address 0x1254, `uxform.s` line 113 (63 words). Reached: inside `mmo_ObjToClipSpaceN2E`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (48), float add (8), float subtract (6), float multiply (5); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_ObjToClipSpaceN2EN`: address 0x1293, `uxform.s` line 183 (8 words). Reached: its address loaded as a constant in `mmo_DirtyXformAndObjToClipModule`.
   **Inferred** role: object-to-clip transform that also takes the normal to eye space and normalises it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (4); takes 2 conditional transfers.
@@ -5843,7 +5843,7 @@ Object-to-clip transformation with optional normal-to-eye transformation. **Infe
   It has no jump of its own and runs on into `lXF3`; conditional transfers reach `uMatrixMultCCC` and 1 other label.
 - `lXF3`: address 0x129b, `uxform.s` line 192 (99 words). Reached: inside `mmo_ObjToClipSpaceN2EN`, reached from that routine's own code.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply-add (50), float multiply (20), float add (10), float subtract (6), reciprocal square-root Newton step (4); takes 1 conditional transfer.
-  It ends the command by jumping to `HereWeGo`.
+  It ends the command with an indirect transfer in condition group 31.
 - `mmo_ObjToEyeSpace`: address 0x12fe, `uxform.s` line 558 (6 words). Reached: its address loaded as a constant in `mmo_DirtyXformAndObjToClipModule`.
   **Inferred** role: object-to-eye transform module.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (4).
@@ -5906,17 +5906,17 @@ X server clipped drawing of points, lines and rectangles. **Inferred** from its 
 
 - `mmo_XclipDrawPoints`: address 0x5130, `xclipdraw.S` line 70 (71 words). Reached: transfers in `mAbsX` and 1 other label.
   **Inferred** role: X server point drawing with clip: five raster bus words per point.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (24), float subtract (10), OR (6), float add (6), NOT (5); sets the condition flags 2 times; writes 5 words to the raster-bus output addresses; stores 4 words to engine addresses from 0xf to 0x15; loads 2 constants; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (24), float subtract (10), OR (6), float add (6), NOT (5); sets the condition flags 2 times; writes 5 words to the raster-bus output addresses; stores 4 words to control-memory addresses from 0xf to 0x15; loads 2 constants; takes 2 conditional transfers.
   It waits on its own address under another condition group.
   Constants loaded: 0.5 (0x3f000000), 0x70000.
 - `mmo_XclipDrawRects`: address 0x508b, `xclipdraw.S` line 170 (129 words). Reached: transfers in `mAbsX` and 2 other labels.
   **Inferred** role: X server rectangle drawing with clip: minimum and maximum against the clip rectangle.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (64), float subtract (16), float add (8), NOT (7), second-unit move (6), maximum (4), minimum (4), second-unit move or minimum (3); sets the condition flags 9 times; writes 12 words to the raster-bus output addresses; stores 14 words to engine addresses from 0xf to 0x13; loads 4 constants; takes 4 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (64), float subtract (16), float add (8), NOT (7), second-unit move (6), maximum (4), minimum (4), second-unit move or minimum (3); sets the condition flags 9 times; writes 12 words to the raster-bus output addresses; stores 14 words to control-memory addresses from 0xf to 0x13; loads 4 constants; takes 4 conditional transfers.
   It waits on its own address under another condition group.
   Constants loaded: 0x70000, 0x12f080a, 0x40.
 - `mmo_XclipDrawLines`: address 0x4ead, `xclipdraw.S` line 327 (386 words). Reached: transfers in `mAbsX` and 1 other label.
   **Inferred** role: X server line drawing with clip: 386 words of clipping and slope set-up.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (76), move (61), AND (50), float multiply (44), OR (36), operation 0x6dd (32), float add (24), XOR (8), reciprocal Newton step (8), NOT (4), reciprocal square-root Newton step (4), reciprocal seed (3), float multiply-add (2), move of the second operand (2), second-unit move or minimum (2); sets the condition flags 38 times; writes 7 words to the raster-bus output addresses; stores 9 words to engine addresses from 0xf to 0x14; loads 2 constants; takes 4 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float subtract (76), move (61), AND (50), float multiply (44), OR (36), logical shift right (32), float add (24), XOR (8), reciprocal Newton step (8), NOT (4), reciprocal square-root Newton step (4), reciprocal seed (3), float multiply-add (2), move of the second operand (2), second-unit move or minimum (2); sets the condition flags 38 times; writes 7 words to the raster-bus output addresses; stores 9 words to control-memory addresses from 0xf to 0x14; loads 2 constants; takes 4 conditional transfers.
   It waits on its own address under another condition group.
   Constants loaded: 0.5 (0x3f000000), 0x70000.
 
@@ -5942,27 +5942,27 @@ X server drawing commands: points, lines, segments, rectangles, boxes, spans. **
   It jumps to `mRelX`.
 - `mgesi_XRect`: address 0x5223, `xentry.S` line 163 (49 words). Reached: geif slot 244 (entry 489); the ARM functions that send it are in the table below; distributor table 44.
   **Inferred** role: X server rectangle: converts the coordinates to float and draws through the clipped rectangle code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (8), integer-to-float conversion (8), integer add (4), operation 0x6db (4), operation 0x6dd (3), AND (2), move (2), operation 0x6df (2); loads 3 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float add (8), integer-to-float conversion (8), arithmetic shift right (4), integer add (4), logical shift right (3), AND (2), move (2), shift left (2); loads 3 constants; takes 1 conditional transfer.
   It jumps to `mmo_XclipDrawRects`.
   Constants loaded: 0x1, 0, 0xffff.
 - `mgesi_XBox`: address 0x520c, `xentry.S` line 252 (9 words). Reached: geif slot 245 (entry 491); the ARM functions that send it are in the table below; distributor table 45.
   **Inferred** role: X server box outline through the absolute-coordinate path.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1), operation 0x6dd (1); loads 1 constant.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations logical shift right (1), move (1); loads 1 constant.
   It jumps to `mAbsX`.
   Constants loaded: 0x1.
 - `mgesi_XSpans`: address 0x51d4, `xentry.S` line 297 (43 words). Reached: geif slot 246 (entry 493); the ARM functions that send it are in the table below; distributor table 46.
   **Inferred** role: X server spans: converts the coordinates and draws them as rectangles.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations float add (8), integer-to-float conversion (6), integer add (4), operation 0x6db (4), operation 0x6df (2), move (1); loads 1 constant; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations float add (8), integer-to-float conversion (6), arithmetic shift right (4), integer add (4), shift left (2), move (1); loads 1 constant; takes 1 conditional transfer.
   It jumps to `mmo_XclipDrawRects`.
   Constants loaded: 0.
 - `mgesi_XSegment`: address 0x51bd, `xentry.S` line 370 (11 words). Reached: geif slot 247 (entry 495); the ARM functions that send it are in the table below; distributor table 47.
   **Inferred** role: X server line segment with absolute coordinates.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), operation 0x6dd (1); loads 1 constant.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (3), logical shift right (1); loads 1 constant.
   It jumps to `mAbsX`.
   Constants loaded: 0x1.
 - `mgesi_XSegmentRel`: address 0x51a6, `xentry.S` line 405 (10 words). Reached: geif slot 248 (entry 497); the ARM functions that send it are in the table below.
   **Inferred** role: X server line segment with relative coordinates.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2), operation 0x6dd (1); loads 1 constant.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (2), logical shift right (1); loads 1 constant.
   It jumps to `mRelX`.
   Constants loaded: 0x1.
 - `mgesi_XLine`: address 0x5196, `xentry.S` line 447 (8 words). Reached: geif slot 249 (entry 499); the ARM functions that send it are in the table below; distributor table 48.
@@ -5975,12 +5975,12 @@ X server drawing commands: points, lines, segments, rectangles, boxes, spans. **
   It jumps to `mRelX`.
 - `mAbsX`: address 0x52c4, `xentry.S` line 499 (26 words). Reached: transfers in `mgesi_XBgPoint` and 4 other labels.
   **Inferred** role: X server absolute-coordinate path: converts the coordinates and enters the clipped point or line code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer add (4), integer-to-float conversion (4), operation 0x6db (4), operation 0x6df (2), move (1); loads 1 constant; takes 3 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations arithmetic shift right (4), integer add (4), integer-to-float conversion (4), shift left (2), move (1); loads 1 constant; takes 3 conditional transfers.
   It jumps to `mmo_XclipDrawPoints`; conditional transfers reach `mmo_XclipDrawRects` and 1 other label.
   Constants loaded: 0.
 - `mRelX`: address 0x52a3, `xentry.S` line 552 (19 words). Reached: transfers in `mgesi_XBgPointRel` and 3 other labels.
   **Inferred** role: X server relative-coordinate path: adds the offsets and enters the clipped point or line code.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer-to-float conversion (4), float add (2), operation 0x6db (2), move (1), operation 0x6df (1); loads 1 constant; takes 2 conditional transfers.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations integer-to-float conversion (4), arithmetic shift right (2), float add (2), move (1), shift left (1); loads 1 constant; takes 2 conditional transfers.
   It jumps to `mmo_XclipDrawPoints`; conditional transfers reach `mmo_XclipDrawLines`.
   Constants loaded: 0.
 
@@ -6005,12 +6005,12 @@ X server state loads: graphics context, position, clip, scissor, pixel set-up. *
 
 - `mgebi_XLoadPosition`: address 0x4d7c, `xload.S` line 62 (96 words). Reached: geif slot 360 (entry 721); the ARM functions that send it are in the table below; distributor table 52.
   **Inferred** role: loads the X window position: four operand words masked and compared against the window bounds.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (23), integer add (12), integer subtract or compare (7), operation 0x6dd (4), operation 0x6df (4), AND (2), integer-to-float conversion (2), operation 0x6c6 (2), operation 0x6c8 (2), operation 0x6cc (2); writes 18 words to the raster-bus output addresses; loads 19 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (23), integer add (12), integer subtract or compare (7), logical shift right (4), shift left (4), AND (2), integer-to-float conversion (2), operation 0x6c6 (2), operation 0x6c8 (2), operation 0x6cc (2); writes 18 words to the raster-bus output addresses; loads 19 constants; takes 1 conditional transfer.
   It ends with the end-of-command wait.
   Constants loaded: 0x1, 0x803, 0xfffffff8, 0x80f, 0xffffffe0, 0, 0x70000, 0x7fff and 8 more.
 - `mgesi_XLoadScissor`: address 0x4d43, `xload.S` line 195 (57 words). Reached: geif slot 361 (entry 723); the ARM functions that send it are in the table below; distributor table 54.
   **Inferred** role: loads the X scissor rectangle: four operand words and raster register words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (17), integer add (8), integer subtract or compare (7), operation 0x6df (4), operation 0x6c6 (2), operation 0x6c8 (2), operation 0x6f1 (2); writes 12 words to the raster-bus output addresses; loads 8 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (17), integer add (8), integer subtract or compare (7), shift left (4), float-to-integer conversion (2), operation 0x6c6 (2), operation 0x6c8 (2); writes 12 words to the raster-bus output addresses; loads 8 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0x70000, 0x7fff, 0x3fff8000, 0x1133fc2, 0x3, 0x1143fc3.
 - `mgebi_XLoadGC`: address 0x4cf4, `xload.S` line 307 (72 words). Reached: geif slot 362 (entry 725); the ARM functions that send it are in the table below; distributor table 51.
@@ -6024,7 +6024,7 @@ X server state loads: graphics context, position, clip, scissor, pixel set-up. *
   It ends with the end-of-command wait.
 - `mgesi_XPixRmSetup`: address 0x4c70, `xload.S` line 554 (72 words). Reached: geif slot 116 (entry 233); the ARM functions that send it are in the table below.
   **Inferred** role: X server pixel set-up for the raster managers: seven operand words.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 6; operations move (27), integer add (5), operation 0x6f1 (5), integer subtract or compare (3), float add (2), NOT (1); writes 4 words to the raster-bus output addresses; loads 25 constants.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 6; operations move (27), float-to-integer conversion (5), integer add (5), integer subtract or compare (3), float add (2), NOT (1); writes 4 words to the raster-bus output addresses; loads 25 constants.
   It ends with the end-of-command wait.
   Constants loaded: 0x2103000, 0x806, 0x11b00, 0x2011a00, 0x2021800, 0x20c0c00, 0x20c0000, 0x12b0806 and 14 more.
 
@@ -6044,7 +6044,7 @@ X server set-up of clip, colours and window. **Inferred** from its labels and ca
 
 - `mgebi_XSetupWindow`: address 0x4e30, `xsetup.S` line 40 (101 words). Reached: geif slot 357 (entry 715); the ARM functions that send it are in the table below.
   **Inferred** role: X window set-up: two operand words and the window bounds.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (26), integer add (9), integer subtract or compare (9), operation 0x6dd (6), operation 0x6df (6), AND (2), float add (2), integer-to-float conversion (2), operation 0x6cc (2), operation 0x6db (2); sets the condition flags 4 times; writes 18 words to the raster-bus output addresses; loads 21 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 1; operations move (26), integer add (9), integer subtract or compare (9), logical shift right (6), shift left (6), AND (2), arithmetic shift right (2), float add (2), integer-to-float conversion (2), operation 0x6cc (2); sets the condition flags 4 times; writes 18 words to the raster-bus output addresses; loads 21 constants; takes 1 conditional transfer.
   It ends with the end-of-command wait.
   Constants loaded: 0, 0x1, 0x804, 0x810, 0xfffffff8, 0xffffffe0, 0.5 (0x3f000000), 0x70000 and 9 more.
 - `mgeb_XSetupColors`: address 0x4e22, `xsetup.S` line 199 (12 words). Reached: geif slot 358 (entry 717); the ARM functions that send it are in the table below.
@@ -6053,7 +6053,7 @@ X server set-up of clip, colours and window. **Inferred** from its labels and ca
   It ends with the end-of-command wait.
 - `mgeb_XSetupClip`: address 0x4deb, `xsetup.S` line 231 (47 words). Reached: geif slot 359 (entry 719); the ARM functions that send it are in the table below.
   **Inferred** role: X clip set-up: conversions to float and 16-bit masks.
-  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations integer-to-float conversion (8), AND (4), operation 0x6dd (4), move (3); loads 2 constants; takes 1 conditional transfer.
+  **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command word 0; operations integer-to-float conversion (8), AND (4), logical shift right (4), move (3); loads 2 constants; takes 1 conditional transfer.
   It ends with the end-of-command wait.
   Constants loaded: 0, 0xffff.
 
