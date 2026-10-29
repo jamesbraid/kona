@@ -1,0 +1,311 @@
+# Handlers of the ARM-run host tokens in arm1.u (IRIX 6.5.30m). Produced by scripts/arm1_handlers.py
+# from a linear scan of each function (no branch following). group: by function name, see the script.
+# pops: payload reads seen in the function body (r9+0, r9+0x3c, r9+0x40); final: reads r9+0x3c.
+# ge_handlers: engine handlers whose slot the body loads, in code order. ports: r9 offsets stored to.
+token	name	handler	address	group	instrs	pops	final	ge_handlers	ports	calls
+0x000	HP_DATA	arm_data	0x0c026590	unsupported	1	0	n			
+0x001	HP_BUFFER_CONFIG	arm_buffer_config	0x0c0131a0	buffers and windows	300	10	y	mgesi_TbusRegWrite,mgeb_CI_Mode,mgeb_RGBA_Mode	400,474,478,4f8,840,8c0	XferMask,XferMaskRpos,init_multisample,late_state_init,resolve_banks,SetFbState
+0x002	HP_PACK	arm_pack	0x0c03949c	raster and pipeline state	39	1	y		400,8c0	
+0x004	HP_READBUFFER_CONFIG	arm_readbuffer_config	0x0c013650	buffers and windows	181	10	y			resolve_banks,SetFbReadState
+0x005	HP_BITMAP_DLIST	arm_bitmap_dlist	0x0c02b590	pixels, bitmaps and filters	64	7	n	mgeb_TransparentBitmapSetup,mgesi_FeedbackPixel,mgesi_PixRasterPosSetup,mgesi_TransparentBitmap,mgebi_PixEndTransparentBitmap	434,474,478,47c,840,8c0	waitForDH
+0x006	HP_BITMAP	arm_bitmap	0x0c02b4c0	pixels, bitmaps and filters	52	7	n	mgeb_BitmapApplyMove	478,840,8c0	
+0x007	HP_LIGHTF	arm_lightf	0x0c016e94	lighting and material	21	6	y			
+0x008	HP_LIGHTI	arm_lighti	0x0c016ee8	lighting and material	20	6	y			
+0x009	HP_LIGHTMODELF	arm_lightmodelf	0x0c016ae4	lighting and material	15	5	y			
+0x00a	HP_LIGHTMODELI	arm_lightmodeli	0x0c016b20	lighting and material	15	5	y			
+0x00b	HP_POLYGONSTIPPLE	arm_polygonstipple	0x0c02c7bc	pixels, bitmaps and filters	53	2	n		400,8c0	ParseHostImage,CompCommonIndexStream,SetupGE_PolygonStipple,SetupGED,SendPixelsToPipe,PixEndPolygonStipple
+0x00c	HP_SCISSOR	arm_scissor	0x0c018c90	matrices, viewport and clipping	12	4	y			
+0x00d	HP_TEXPARAMETERF	arm_texparameterf	0x0c026594	unsupported	1	0	n			
+0x00e	HP_TEXPARAMETERI	arm_texparameteri	0x0c026598	unsupported	1	0	n			
+0x00f	HP_TEXIMAGE1D	arm_teximage1d	0x0c02659c	unsupported	1	0	n			
+0x010	HP_TEXIMAGE2D	arm_teximage2d	0x0c0265a0	unsupported	1	0	n			
+0x011	HP_TEXENVF	arm_texenvf	0x0c024ff4	texture	15	5	y	mgebi_TexEnv	47c,840,8c0	
+0x012	HP_TEXENVI	arm_texenvi	0x0c025030	texture	26	5	y	mgebi_TexEnv	400,428,4fc,840,8c0	
+0x013	HP_TEXGEND	arm_texgend	0x0c024d50	texture	17	0	n			
+0x014	HP_TEXGENF	arm_texgenf	0x0c024d9c	texture	76	9	y	mgeb_TexGen	478,840,8c0	set_invalid_enum
+0x015	HP_TEXGENI	arm_texgeni	0x0c024d94	texture	2	0	n			
+0x016	HP_TEXBIND	arm_texbind	0x0c036ae4	texture	14	0	n			GetTexManageBindParam,SetupRM_TextureBind
+0x017	HP_FEEDBACK_TYPE	arm_feedback_type	0x0c038a6c	selection, feedback and attributes	3	1	y			
+0x018	HP_SELECTBUFFER	arm_selectbuffer	0x0c0265a4	unsupported	1	0	n			
+0x019	HP_RENDERMODE	arm_rendermode	0x0c038964	selection, feedback and attributes	66	1	y	mgeb_EndFeedbackMode,mgeb_BgnSelectMode,mgeb_EndSelectMode,mgeb_BgnFeedbackMode	438,840,8c0	XferMask,resolve_viewport,ResolvePolygon,ResolveLine,ResolvePoint
+0x01a	HP_CLEAR	arm_clear	0x0c03bb60	clear and accumulate	221	1	y	mgesi_TbusRegWrite,mgesi_ClearIndex,mgesi_ClearLA16,mgesi_ClearColor	400,474,840,8c0	masked_clear,accum_clear32,accum_clear,overlay_clear,imp_clear
+0x01b	HP_CLEARACCUM	arm_clearaccum	0x0c037d94	clear and accumulate	15	4	y			
+0x01c	HP_CLEARINDEX	arm_clearindex	0x0c012bf4	clear and accumulate	3	1	y			
+0x01d	HP_CLEARCOLOR	arm_clearcolor	0x0c012c00	clear and accumulate	15	4	y			
+0x01e	HP_CLEARSTENCIL	arm_clearstencil	0x0c0148b8	clear and accumulate	19	1	y		400,840,8c0	
+0x01f	HP_CLEARDEPTH	arm_cleardepth	0x0c01465c	clear and accumulate	81	2	y	mgesi_ClearDepth32	400,474,840,8c0	
+0x020	HP_STENCILMASK	arm_stencilmask	0x0c014904	raster and pipeline state	23	1	y		400,840,8c0	
+0x021	HP_COLORMASK	arm_colormask	0x0c012c3c	raster and pipeline state	120	4	y	mgesi_TbusRegWrite	400,474,840,8c0	
+0x022	HP_DEPTHMASK	arm_depthmask	0x0c0147d0	raster and pipeline state	12	1	y		400,840,8c0	
+0x023	HP_INDEXMASK	arm_indexmask	0x0c012e1c	raster and pipeline state	30	1	y		400,840,8c0	
+0x024	HP_ENABLE	arm_enable	0x0c023380	enable and disable	50	1	y			
+0x025	HP_DISABLE	arm_disable	0x0c023448	enable and disable	50	1	y			
+0x026	HP_EVALSTRIP1D	arm_evalstrip1d	0x0c03dd58	vertex arrays, evaluators and patches	23	3	y	mgesi_EvalStrip1D	400,4f4,840,880,8c0	
+0x027	HP_EVALSTRIP2D	arm_evalstrip2d	0x0c03dcd4	vertex arrays, evaluators and patches	33	5	y	mgesi_EvalStrip2D	400,4f4,840,880,8c0	
+0x02a	HP_MAPDATA1D	arm_mapdata1d	0x0c03dc68	vertex arrays, evaluators and patches	14	1	n	mgeb_EvalMapData1D	438,8c0	waitForDH
+0x02b	HP_MAPDATA2D	arm_mapdata2d	0x0c03dca0	vertex arrays, evaluators and patches	13	1	n	mgeb_EvalMapData2D	438,8c0	waitForDH
+0x02e	HP_LOGICOP	arm_logicop	0x0c015c18	raster and pipeline state	11	1	y		400,840,8c0	
+0x02f	HP_PIXELZOOM	arm_pixelzoom	0x0c02ad74	pixels, bitmaps and filters	15	2	y			
+0x030	HP_PIXELTRANSFERF	arm_pixeltransferf	0x0c02b068	pixels, bitmaps and filters	205	1	y			
+0x031	HP_PIXELTRANSFERI	arm_pixeltransferi	0x0c0265a8	unsupported	1	0	n			
+0x032	HP_PIXELSTOREF	arm_pixelstoref	0x0c0265ac	unsupported	1	0	n			
+0x033	HP_PIXELSTOREI	arm_pixelstorei	0x0c02adb0	pixels, bitmaps and filters	92	2	y			
+0x034	HP_PIXELMAPFV	arm_pixelmapfv	0x0c03e7ec	pixels, bitmaps and filters	4	0	n			
+0x035	HP_PIXELMAPUIV	arm_pixelmapuiv	0x0c03e7fc	pixels, bitmaps and filters	5	0	n			
+0x036	HP_PIXELMAPUSV	arm_pixelmapusv	0x0c03e810	pixels, bitmaps and filters	5	0	n			
+0x037	HP_READBUFFER	arm_readbuffer	0x0c013bfc	buffers and windows	77	1	y			
+0x038	HP_COPYPIXELS	arm_copypixels	0x0c02bb34	pixels, bitmaps and filters	139	7	y		400,8c0	videoCopyPixels,QueryOverlap,SetDB,ResolveCopyPath,WaitOverlap,_printf,SetupReadback,SetupReadbackTF
+0x039	HP_READPIXELS	arm_readpixels	0x0c02c3ec	pixels, bitmaps and filters	186	7	y	mgebi_Texture	400,47c,840,8c0	ParseHostImage,tbus_regwrite,videoReadPixels,ResolveReadPath,SetupReadback,SetupReadbackTF,__glkonSetupPacker,__glkonSendPixelsToHost
+0x03a	HP_DRAWPIXELS	arm_drawpixels	0x0c02b9ec	pixels, bitmaps and filters	82	7	n		400,8c0	SetDB,ResolveDrawPath,ParseHostImage,SendPixelsToPipe
+0x03b	HP_GETCURRENT	arm_getcurrent	0x0c038460	queries	25	1	y	mgesi_StartRdata,mgesi_FinishRdata	474,840,8c0	tbus_regwrite,getcurrent
+0x03c	HP_GETCLIPPLANE	arm_getclipplane	0x0c0385c8	queries	33	1	y	mgesi_StartRdata,mgesi_Eram2ODMA,mgesi_FinishRdata	474,840,8c0	tbus_regwrite
+0x03d	HP_GETRASTER	arm_getraster	0x0c0384c4	queries	26	1	y	mgesi_StartRdata,mgesi_GetRaster,mgesi_FinishRdata	474,4f4,840,8c0	tbus_regwrite
+0x03e	HP_GETERROR	arm_geterror	0x0c03852c	queries	39	1	y	mgesi_StartRdata,mgebi_ErrQuery,mgesi_FinishRdata	474,4fc,840,8c0	tbus_regwrite
+0x03f	HP_GETFLOATV	arm_getfloatv	0x0c0265b0	unsupported	1	0	n			
+0x040	HP_GETINTEGERV	arm_getintegerv	0x0c0265b4	unsupported	1	0	n			
+0x041	HP_GETLIGHTFV	arm_getlightfv	0x0c017874	queries	28	2	y	mgesi_LiGetLight	474,840,8c0	start_rdata,tbus_regwrite
+0x042	HP_GETLIGHTIV	arm_getlightiv	0x0c0265b8	unsupported	1	0	n			
+0x043	HP_GETMAPDV	arm_getmapdv	0x0c0265bc	unsupported	1	0	n			
+0x044	HP_GETMAPFV	arm_getmapfv	0x0c0265c0	unsupported	1	0	n			
+0x045	HP_GETMAPIV	arm_getmapiv	0x0c0265c4	unsupported	1	0	n			
+0x046	HP_GETMATERIALFV	arm_getmaterialfv	0x0c0178e4	queries	43	2	y	mgesi_LiGetMaterial	400,474,840,880,8c0	start_rdata,tbus_regwrite,set_ged_xfer_mask
+0x047	HP_GETMATERIALIV	arm_getmaterialiv	0x0c0265c8	unsupported	1	0	n			
+0x048	HP_GETPIXELMAPFV	arm_getpixelmapfv	0x0c03f2a4	queries	14	3	y			pixelmap_index,do_getcolortable
+0x049	HP_GETPIXELMAPUIV	arm_getpixelmapuiv	0x0c0265cc	unsupported	1	0	n			
+0x04a	HP_GETPIXELMAPUSV	arm_getpixelmapusv	0x0c0265d0	unsupported	1	0	n			
+0x04b	HP_GETPOLYGONSTIPPLE	arm_getpolygonstipple	0x0c02c890	queries	47	1	y	mgeb_PolygonStippleRotate,mgesi_Eram2ODMA,mgeb_LoadMatrix_Modelview,mgeb_LoadMatrix_Projection	474,478,840,8c0	start_rdata,tbus_regwrite,finish_rdata
+0x04c	HP_GETV	arm_getv	0x0c038058	queries	155	1	y	mgesi_StartRdata,mgesi_Cram2ODMA,mgesi_Eram2ODMA,mgesi_FinishRdata	474,840,8c0	tbus_regwrite,set_invalid_enum
+0x04d	HP_GETTEXENVFV	arm_gettexenvfv	0x0c025098	queries	39	1	y	mgesi_Eram2ODMA	474,840,8c0	start_rdata,tbus_regwrite
+0x04e	HP_GETTEXENVIV	arm_gettexenviv	0x0c0265d4	unsupported	1	0	n			
+0x04f	HP_GETTEXGENDV	arm_gettexgendv	0x0c0265d8	unsupported	1	0	n			
+0x050	HP_GETTEXGENFV	arm_gettexgenfv	0x0c03864c	queries	100	2	y	mgesi_StartRdata,mgesi_Eram2ODMA,mgesi_FinishRdata	474,840,8c0	tbus_regwrite
+0x051	HP_GETTEXGENIV	arm_gettexgeniv	0x0c0265dc	unsupported	1	0	n			
+0x052	HP_GETTEXIMAGE	arm_getteximage	0x0c02c298	queries	48	18	y			
+0x053	HP_GETTEXPARAMETERFV	arm_gettexparameterfv	0x0c0265e0	unsupported	1	0	n			
+0x054	HP_GETTEXPARAMETERIV	arm_gettexparameteriv	0x0c0265e4	unsupported	1	0	n			
+0x055	HP_GETTEXLEVELPARAMETERFV	arm_gettexlevelparameterfv	0x0c0265e8	unsupported	1	0	n			
+0x056	HP_GETTEXLEVELPARAMETERIV	arm_gettexlevelparameteriv	0x0c0265ec	unsupported	1	0	n			
+0x0a7	HP_EDGEFLAG	arm_edgeflag	0x0c015c7c	raster and pipeline state	9	1	y		400,8c0	
+0x0a8	HP_RASTERPOS2D	arm_rasterpos2d	0x0c035cf4	vertex arrays, evaluators and patches	32	4	y		400,840,880,8c0	set_ged_xfer_mask
+0x0a9	HP_RASTERPOS2F	arm_rasterpos2f	0x0c035d74	vertex arrays, evaluators and patches	27	2	y		400,840,880,8c0	set_ged_xfer_mask
+0x0aa	HP_RASTERPOS2I	arm_rasterpos2i	0x0c035de0	vertex arrays, evaluators and patches	27	2	y		400,840,880,8c0	set_ged_xfer_mask
+0x0ab	HP_RASTERPOS2S	arm_rasterpos2s	0x0c035e4c	vertex arrays, evaluators and patches	37	2	y		400,840,880,8c0	set_ged_xfer_mask
+0x0ac	HP_RASTERPOS3D	arm_rasterpos3d	0x0c035ee0	vertex arrays, evaluators and patches	38	6	y		400,840,880,8c0	set_ged_xfer_mask
+0x0ad	HP_RASTERPOS3F	arm_rasterpos3f	0x0c035f78	vertex arrays, evaluators and patches	29	3	y		400,840,880,8c0	set_ged_xfer_mask
+0x0ae	HP_RASTERPOS3I	arm_rasterpos3i	0x0c035fec	vertex arrays, evaluators and patches	29	3	y		400,840,880,8c0	set_ged_xfer_mask
+0x0af	HP_RASTERPOS3S	arm_rasterpos3s	0x0c036060	vertex arrays, evaluators and patches	39	3	y		400,840,880,8c0	set_ged_xfer_mask
+0x0b0	HP_RASTERPOS4D	arm_rasterpos4d	0x0c0360fc	vertex arrays, evaluators and patches	46	8	y		400,840,880,8c0	set_ged_xfer_mask
+0x0b1	HP_RASTERPOS4F	arm_rasterpos4f	0x0c0361b4	vertex arrays, evaluators and patches	31	4	y		400,840,880,8c0	set_ged_xfer_mask
+0x0b2	HP_RASTERPOS4I	arm_rasterpos4i	0x0c036230	vertex arrays, evaluators and patches	31	4	y		400,840,880,8c0	set_ged_xfer_mask
+0x0b3	HP_RASTERPOS4S	arm_rasterpos4s	0x0c0362ac	vertex arrays, evaluators and patches	41	4	y		400,840,880,8c0	set_ged_xfer_mask
+0x0b4	HP_CLIPPLANE	arm_clipplane	0x0c018cc0	matrices, viewport and clipping	28	8	y	mgeb_UserClipPlane	400,428,4f8,840,8c0	
+0x0b5	HP_COLORMATERIAL	arm_colormaterial	0x0c016c70	lighting and material	29	2	y			
+0x0b6	HP_CULLFACE	arm_cullface	0x0c015544	raster and pipeline state	8	1	y	mgeb_CullFace	478,8c0	
+0x0ba	HP_FRONTFACE	arm_frontface	0x0c015524	raster and pipeline state	8	1	y	mgeb_FrontFace	478,8c0	
+0x0bb	HP_HINT	arm_hint	0x0c016468	raster and pipeline state	21	2	y			
+0x0bc	HP_LINESTIPPLE	arm_linestipple	0x0c015ca0	raster and pipeline state	82	2	y	mgeb_LineStipple	438,840,8c0	ResolveLine
+0x0bd	HP_LINEWIDTH	arm_linewidth	0x0c015a14	raster and pipeline state	5	2	y			
+0x0be	HP_POINTSIZE	arm_pointsize	0x0c015a00	raster and pipeline state	5	2	y			
+0x0bf	HP_POLYGONMODE	arm_polygonmode	0x0c015598	raster and pipeline state	23	2	y		400,800,8c0	
+0x0c0	HP_SHADEMODEL	arm_shademodel	0x0c016ab8	raster and pipeline state	11	1	y	mgebi_ShadeModel	47c,8c0	
+0x0c1	HP_PASSTHROUGH	arm_passthrough	0x0c038930	selection, feedback and attributes	13	1	y	mgesi_PassThrough	434,840,8c0	
+0x0c2	HP_POPNAME	arm_popname	0x0c038900	selection, feedback and attributes	12	1	y	mgeb_PopName	438,8c0	
+0x0c3	HP_PUSHNAME	arm_pushname	0x0c0388cc	selection, feedback and attributes	13	1	y	mgeb_PushName	438,840,8c0	
+0x0c4	HP_DRAWBUFFER	arm_drawbuffer	0x0c013a60	buffers and windows	103	1	y		400,840	
+0x0c5	HP_ACCUM	arm_accum	0x0c037dd0	clear and accumulate	122	2	y		400,474,840,8c0	set_invalid_operation,set_invalid_enum,generate_rect
+0x0c6	HP_FINISH	arm_finish	0x0c014040	buffers and windows	12	1	y	mgesi_FlushRM	4f4	start_rdata
+0x0c8	HP_POPATTRIB	arm_popattrib	0x0c03a8dc	selection, feedback and attributes	279	1	y			color_pop,depth_pop,enable_pop,fog_pop,light_pop,line_pop,multisample_pop,ResolvePoint
+0x0c9	HP_PUSHATTRIB	arm_pushattrib	0x0c039c80	selection, feedback and attributes	791	1	y	mgesi_StartRdata,mgesi_GetRaster,mgesi_Eram2ODMA,mgesi_GetSpecial,mgesi_FinishRdata	400,474,4f4,840,880,8c0	set_stack_overflow,getcurrent,material_push,ge_texture_attrib_to_host,ge_xform_attrib_to_host,get_deformations_mask
+0x0ca	HP_ALPHAFUNC	arm_alphafunc	0x0c012bbc	raster and pipeline state	14	2	y	mgesi_AlphaFunc	474,840,8c0	
+0x0cb	HP_BLENDFUNC	arm_blendfunc	0x0c015768	raster and pipeline state	100	2	y		400,840,8c0	
+0x0cc	HP_STENCILFUNC	arm_stencilfunc	0x0c014960	raster and pipeline state	22	3	y		400,840,8c0	
+0x0cd	HP_STENCILOP	arm_stencilop	0x0c0149b8	raster and pipeline state	34	3	y		400,840,8c0	
+0x0ce	HP_DEPTHFUNC	arm_depthfunc	0x0c0147a0	raster and pipeline state	12	1	y		400,840,8c0	
+0x0cf	HP_DEPTHRANGE	arm_depthrange	0x0c014800	matrices, viewport and clipping	22	4	y	mgeb_DepthRange	400,4f8,840,8c0	
+0x0d0	HP_MATRIXMODE	arm_matrixmode	0x0c01904c	matrices, viewport and clipping	173	1	y	mgeb_MatrixMode,mgeb_LoadIdentity_Modelview,mgeb_LoadMatrix_Modelview,mgeb_Frustum_Modelview,mgeb_MultMatrix_Modelview,mgeb_Ortho_Modelview,mgeb_PopMatrix_Modelview,mgeb_PushMatrix_Modelview,mgeb_Rotate_Modelview,mgeb_Scale_Modelview,mgeb_LoadIdentity_Projection,mgeb_LoadMatrix_Projection,mgeb_Frustum_Projection,mgeb_MultMatrix_Projection,mgeb_Ortho_Projection,mgeb_PopMatrix_Projection,mgeb_PushMatrix_Projection,mgeb_Rotate_Projection,mgeb_Scale_Projection,mgeb_Translate_Projection,mgeb_LoadIdentity_Texture,mgeb_LoadMatrix_Texture,mgeb_Frustum_Texture,mgeb_MultMatrix_Texture,mgeb_Ortho_Texture,mgeb_PopMatrix_Texture,mgeb_PushMatrix_Texture,mgeb_Rotate_Texture,mgeb_Scale_Texture,mgeb_Translate_Texture	400,478,8c0	matrix_passthru
+0x0e3	HP_VIEWPORT	arm_viewport	0x0c0186ec	matrices, viewport and clipping	16	4	y			
+0x0e4	HP_SETERROR	arm_seterror	0x0c015500	context, memory and host interface	9	1	y			
+0x0e5	HP_END_OF_SIMULATION	arm_end_of_simulation	0x0c0152cc	context, memory and host interface	83	1	y			report_icache_stats,simfast_bgn,_printf,simfast_end,tbus_regwrite
+0x0e6	HP_BLENDCOLOR	arm_blendcolor	0x0c012ee4	raster and pipeline state	46	4	y	mgesi_TbusRegWrite,mgesi_UserColor	400,474,840,8c0	
+0x0e7	HP_BLENDEQUATION	arm_blendequation	0x0c012f9c	raster and pipeline state	63	0	n		8c0	
+0x0e8	HP_COLORTABLE	arm_colortable	0x0c03e128	pixels, bitmaps and filters	179	9	y		400,840,8c0	lut_index,internalformat_index,__rt_sdiv,ResolveColortablePath,ParseHostImage,CompCommonColorStream,SetupGE_ColorTable,SetupGED
+0x0e9	HP_COPYCOLORTABLE	arm_copycolortable	0x0c0265f0	unsupported	1	0	n			
+0x0ea	HP_GETCOLORTABLE	arm_getcolortable	0x0c03f24c	queries	22	4	y			internalformat_index,lut_index
+0x0eb	HP_COLORTABLEPARAMETERFV	arm_colortableparameterfv	0x0c03edac	pixels, bitmaps and filters	49	6	y			lut_index,set_invalid_enum
+0x0ec	HP_GETCOLORTABLEPARAMETERFV	arm_getcolortableparameterfv	0x0c03ee70	queries	103	2	y			start_rdata,lut_index,tbus_regwrite,set_invalid_enum
+0x0ee	HP_GETLINEMODEDIST	arm_getlinemodedist	0x0c02a7cc	queries	35	1	y			start_rdata,tbus_regwrite
+0x0ef	HP_CONVOLUTIONFILTER1D	arm_convolutionfilter1d	0x0c036c44	pixels, bitmaps and filters	77	7	y			ParseHostImage,__glkonSetDefaultKernel,CompCommonColorStream,SetupGE_Convolution,SetupGED,SendPixelsToPipe
+0x0f0	HP_CONVOLUTIONFILTER2D	arm_convolutionfilter2d	0x0c036d78	pixels, bitmaps and filters	84	7	n			ParseHostImage,__glkonSetDefaultKernel,CompCommonColorStream,SetupGE_Convolution,SetupGED,SendPixelsToPipe
+0x0f1	HP_CONVOLUTIONFILTER3D	arm_convolutionfilter3d	0x0c026648	unsupported	1	0	n			
+0x0f2	HP_COPYCONVOLUTIONFILTER1D	arm_copyconvolutionfilter1d	0x0c036ee8	pixels, bitmaps and filters	76	4	y		400,840,8c0	SetupCopyConvolve,__glkonSetDefaultKernel,SetupReadback,CompCommonColorStream,SetupGED,SetupGE_Convolution,SetupReadbackTF,StartRbus
+0x0f3	HP_COPYCONVOLUTIONFILTER2D	arm_copyconvolutionfilter2d	0x0c037018	pixels, bitmaps and filters	78	5	y		400,840,8c0	SetupCopyConvolve,__glkonSetDefaultKernel,SetupReadback,CompCommonColorStream,SetupGED,SetupGE_Convolution,SetupReadbackTF,StartRbus
+0x0f4	HP_GETCONVOLUTIONFILTER	arm_getconvolutionfilter	0x0c0372d4	queries	79	2	y	mgebi_Texture	400,47c,840,8c0	ParseHostImage,__glkonFixConvKernDirection,CompCommonColorStream,__glkonGetTbusFmt,__glkonSetupPacker,SetupGE_Convolution,__glkonSendConvKernToHost,PixEndReadConvolve
+0x0f5	HP_SEPARABLEFILTER2D	arm_separablefilter2d	0x0c037150	pixels, bitmaps and filters	97	9	y			ParseHostImage,CompCommonColorStream,SetupGE_Convolution,SetupGED,SendPixelsToPipe,PixEndConvolve,__glkonSetDefaultKernel
+0x0f6	HP_SEPARABLEFILTER3D	arm_separablefilter3d	0x0c02664c	unsupported	1	0	n			
+0x0f7	HP_GETSEPARABLEFILTER	arm_getseparablefilter	0x0c037410	queries	78	3	y	mgebi_Texture	400,47c,840,8c0	ParseHostImage,__glkonFixConvKernDirection,CompCommonColorStream,__glkonGetTbusFmt,__glkonSetupPacker,SetupGE_Convolution,__glkonSendConvKernToHost,PixEndReadConvolve
+0x0f8	HP_PIXEL_TRANSFORM_PARAMETERIV	arm_pixel_transform_parameteriv	0x0c03784c	pixels, bitmaps and filters	35	2	n			
+0x0f9	HP_PIXEL_TRANSFORM_PARAMETERFV	arm_pixel_transform_parameterfv	0x0c03776c	pixels, bitmaps and filters	56	9	y			
+0x0fa	HP_GET_PIXEL_TRANSFORM_PARAMETERIV	arm_get_pixel_transform_parameteriv	0x0c0378d8	queries	32	2	y			start_rdata,tbus_regwrite
+0x0fb	HP_GET_PIXEL_TRANSFORM_PARAMETERFV	arm_get_pixel_transform_parameterfv	0x0c026650	unsupported	1	0	n			
+0x0fc	HP_COPYTEXIMAGE1D	arm_copyteximage1d	0x0c0265f4	unsupported	1	0	n			
+0x0fd	HP_COPYTEXIMAGE	arm_copyteximage	0x0c02bf60	texture	102	17	y		400,8c0	SetDB,ResolveCopyPath,SetupReadback,SetupSubtexload,SetupSubtexloadPos,SetupReadbackTF,SetTextureWorkaround,StartRbus
+0x0fe	HP_COPYTEXSUBIMAGE1D	arm_copytexsubimage1d	0x0c0265f8	unsupported	1	0	n			
+0x0ff	HP_WG_FLUSH_0	arm_wg_flush_0	0x0c0265fc	unsupported	1	0	n			
+0x100	HP_DATA_1	arm_data_1	0x0c026600	unsupported	1	0	n			
+0x101	HP_COPYTEXSUBIMAGE2D	arm_copytexsubimage2d	0x0c026604	unsupported	1	0	n			
+0x102	HP_HISTOGRAM	arm_histogram	0x0c03f8c4	pixels, bitmaps and filters	56	5	y			real_format
+0x103	HP_RESETHISTOGRAM	arm_resethistogram	0x0c03fab0	pixels, bitmaps and filters	5	1	y			
+0x104	HP_GETHISTOGRAM	arm_gethistogram	0x0c03f9a4	queries	67	1	y		400,840,8c0	start_rdata
+0x105	HP_GETHISTOGRAMPARAMETERIV	arm_gethistogramparameteriv	0x0c03fac4	queries	73	2	y			start_rdata,set_invalid_enum,tbus_regwrite
+0x106	HP_BIND_LINEAR_TEXTURE	arm_bind_linear_texture	0x0c0259ac	texture	120	7	y	mgesi_TbusRegWrite,mgesi_FillTMLoadFifo,mgeb_SkipNextTextureAddr,mgebi_Texture,mgebi_TexEnvComps,mgebi_UpdateTexturing	474,47c,4f4,4f8,840,8c0	XferMask,PixValidateTexColorTable
+0x107	HP_MINMAX	arm_minmax	0x0c03fc74	pixels, bitmaps and filters	29	2	y			real_format
+0x108	HP_RESETMINMAX	arm_resetminmax	0x0c03fce8	pixels, bitmaps and filters	5	1	y			
+0x109	HP_GETMINMAX	arm_getminmax	0x0c03fcfc	queries	39	1	y		400,474,840,8c0	start_rdata,tbus_regwrite,finish_rdata
+0x10a	HP_GETMINMAXPARAMETERIV	arm_getminmaxparameteriv	0x0c03fd98	queries	32	1	y			start_rdata,tbus_regwrite,set_invalid_enum
+0x10c	HP_INITNAMES	arm_initnames	0x0c038864	selection, feedback and attributes	13	1	y	mgeb_InitNames	438,8c0	
+0x10d	HP_LOADNAME	arm_loadname	0x0c038898	selection, feedback and attributes	13	1	y	mgeb_LoadName	438,840,8c0	
+0x10e	HP_SET_CURRENT_RASTER	arm_set_current_raster	0x0c036350	vertex arrays, evaluators and patches	14	2	y	mgeb_SetCurrentRaster	438,840,8c0	
+0x10f	HP_FOGFUNC	arm_fogfunc	0x0c03f628	raster and pipeline state	21	1	n	mgeb_FogFunc	438,840,8c0	waitForDH
+0x110	HP_COPYISOVERLAPPED	arm_copyisoverlapped	0x0c02c94c	pixels, bitmaps and filters	25	4	y			QueryOverlap,WaitOverlap,start_rdata,tbus_regwrite
+0x111	HP_PIXEL_NOMODE	arm_pixel_nomode	0x0c02ca20	pixels, bitmaps and filters	49	1	y			
+0x112	HP_IRISGL_MODE	arm_irisgl_mode	0x0c016770	raster and pipeline state	57	1	y	mgeb_SetLMCFlag,mgeb_ClearLMCFlag	400,4f8,8c0	
+0x113	HP_LMC_COLOR	arm_lmc_color	0x0c016898	lighting and material	5	1	y			
+0x114	HP_VIDEO_SOURCE	arm_video_source	0x0c013924	display generator and swap	2	1	y			
+0x115	HP_COPYCONVISOVERLAPPED	arm_copyconvisoverlapped	0x0c02c9b0	pixels, bitmaps and filters	28	4	y	mgesi_GetRaster	4f4	QueryOverlap,WaitOverlap,start_rdata,tbus_regwrite
+0x116	HP_RESOLVEISSINGLECOMP	arm_resolveissinglecomp	0x0c027d68	pixels, bitmaps and filters	43	4	y			commonResolve,start_rdata,tbus_regwrite,finish_rdata
+0x117	HP_SAMPLEPATTERN	arm_samplepattern	0x0c03c2a8	raster and pipeline state	42	1	y	mgeb_SetMSPointTables	400,478,840,8c0	
+0x118	HP_SAMPLEMASK	arm_samplemask	0x0c03c350	raster and pipeline state	34	2	y		400,840,8c0	
+0x119	HP_POPLIGHTS	arm_poplights	0x0c018134	lighting and material	13	1	n	mgeb_PopAttrLights	438,8c0	waitForDH
+0x11a	HP_PIXELTEXGEN	arm_pixeltexgen	0x0c026610	unsupported	1	0	n			
+0x11b	HP_POLYGONOFFSETEXT	arm_polygonoffsetext	0x0c016408	raster and pipeline state	8	2	y	mgeb_PolygonOffsetExt	478,840,8c0	
+0x11c	HP_TEXSUBIMAGE1D	arm_texsubimage1d	0x0c026614	unsupported	1	0	n			
+0x11d	HP_TEXSUBIMAGE2D	arm_texsubimage2d	0x0c026618	unsupported	1	0	n			
+0x11e	HP_TEXSUBIMAGE3D	arm_texsubimage3d	0x0c02661c	unsupported	1	0	n			
+0x11f	HP_TEXIMAGE3D	arm_teximage3d	0x0c026620	unsupported	1	0	n			
+0x120	HP_TEXIMAGE4D	arm_teximage4d	0x0c026624	unsupported	1	0	n			
+0x121	HP_TEXSUBIMAGE4D	arm_texsubimage4d	0x0c026628	unsupported	1	0	n			
+0x122	HP_GENTEXTURES1D	arm_gentextures1d	0x0c02662c	unsupported	1	0	n			
+0x123	HP_GENTEXTURES2D	arm_gentextures2d	0x0c026630	unsupported	1	0	n			
+0x124	HP_GENTEXTURES3D	arm_gentextures3d	0x0c026634	unsupported	1	0	n			
+0x125	HP_ISTEXTURE	arm_istexture	0x0c026638	unsupported	1	0	n			
+0x126	HP_DELETETEXTURES	arm_deletetextures	0x0c02663c	unsupported	1	0	n			
+0x127	HP_BINDTEXTURE	arm_bindtexture	0x0c026640	unsupported	1	0	n			
+0x128	HP_X_INIT	arm_x_init	0x0c03d2c8	X server	165	4	y	mgeb_XContextInitialize,mgeb_ContextLoadEram	438,478,840,8c0	x_initregs,x_initpixels,_printf,rect_word_clear,start_rdata,tbus_regwrite,finish_rdata
+0x12c	HP_X_LOADCLIP_ARM	arm_x_loadclip_arm	0x0c03d5b0	X server	14	1	n	mgeb_XLoadClip	438,840,8c0	waitForDH
+0x12e	HP_X_LOADCMAP	arm_x_loadcmap	0x0c03d5e8	X server	69	2	n	mgesi_VCbusWrite,mgesi_VCbusWriteMultiple	434,474,840,8c0	waitForDH
+0x12f	HP_X_LOADGAMMA	arm_x_loadgamma	0x0c03d6fc	X server	178	5	y	mgesi_VCbusWrite,mgesi_VCbusWriteMultiple	434,474,840,8c0	waitForDH
+0x130	HP_X_LOADCURSOR	arm_x_loadcursor	0x0c03d9c4	X server	55	1	n	mgesi_VCbusWrite,mgesi_VCbusWriteMultiple	434,474,840,8c0	waitForDH
+0x131	HP_X_LOADCURSORCOLOR	arm_x_loadcursorcolor	0x0c03daa0	X server	56	1	n	mgesi_VCbusWrite,mgesi_VCbusWriteMultiple	434,474,840,8c0	waitForDH
+0x132	HP_X_LOADXMAP_DID	arm_x_loadxmap_did	0x0c03db80	X server	49	2	y	mgesi_VCbusWrite	474,840,8c0	
+0x133	HP_X_LOADXMAP_CONFIG	arm_x_loadxmap_config	0x0c03dc44	X server	9	1	y	mgesi_VCbusWrite	474,840,8c0	
+0x134	HP_GET_GE_TEXTURE_ATTRIB	arm_get_ge_texture_attrib	0x0c03aea8	queries	21	1	y	mgesi_StartRdata,mgesi_FinishRdata	474,840,8c0	ge_texture_attrib_to_host
+0x135	HP_PIXEL_TRANSFORM	arm_pixel_transform	0x0c0376c4	pixels, bitmaps and filters	42	1	y			
+0x136	HP_X_PIX_SETUP	arm_x_pix_setup	0x0c034ac4	X server	60	7	y		400,8c0	X_PixSetupGE,CompGedReg,CompTF,XSetPacker
+0x137	HP_X_PIX_COPY	arm_x_pix_copy	0x0c034774	X server	104	4	y	mgeb_PixEndRGBStream	400,4f8,8c0	XSetupGedRead,XPixSetupRM,XSetTF,XStartRbus,tbus_regwrite
+0x138	HP_X_PIX_READ	arm_x_pix_read	0x0c0349e4	X server	56	2	y	mgeb_PixEndRGBStream	400,4f8,8c0	tbus_regwrite,XSetTF,XSetupGedRead,SendXToHost
+0x139	HP_X_PIX_WRITE	arm_x_pix_write	0x0c034914	X server	52	1	n	mgesi_XPixRmSetup,mgebi_PixCurGEIDSetup	400,474,4fc,840,8c0	waitForDH
+0x13a	HP_X_PIX_FINISH	arm_x_pix_finish	0x0c034bb4	X server	15	1	y	mgeb_PixEndRGBStream	400,4f8,8c0	
+0x13b	HP_X_UNUSED3	arm_badcmd	0x0c0017f4	unsupported	60	2	n			_printf
+0x13c	HP_X_LOADSTIPPLE	arm_x_loadstipple	0x0c035bec	X server	49	1	y	mgesi_XPolygonStippleDownload	400,474,840,8c0	
+0x13d	HP_X_STORESTIPPLE	arm_x_storestipple	0x0c035adc	X server	68	3	n	mgeb_LoadEram	478,840,8c0	
+0x13e	HP_X_ROTATESTIPPLE	arm_x_rotatestipple	0x0c035cb0	X server	17	3	y	mgeb_XPolygonStippleRotate	478,840,8c0	
+0x13f	HP_X_UNUSED4	arm_badcmd	0x0c0017f4	unsupported	60	2	n			_printf
+0x140	HP_X_UNUSED5	arm_badcmd	0x0c0017f4	unsupported	60	2	n			_printf
+0x162	HP_X_UNUSED6	arm_badcmd	0x0c0017f4	unsupported	60	2	n			_printf
+0x163	HP_X_UNUSED7	arm_badcmd	0x0c0017f4	unsupported	60	2	n			_printf
+0x164	HP_X_UNUSED8	arm_badcmd	0x0c0017f4	unsupported	60	2	n			_printf
+0x165	HP_X_UNUSED9	arm_badcmd	0x0c0017f4	unsupported	60	2	n			_printf
+0x166	HP_DPLEX_SWAP	arm_dplex_swap	0x0c013ef4	display generator and swap	26	1	y	mgesi_VCbusWrite	474,840,8c0	_printf,arm_badcmd
+0x167	HP_USERCOPYLIST_LDMA	arm_usercopylist_ldma	0x0c014ec4	display lists and DMA	51	4	y		840	
+0x168	HP_POLYGONOFFSET	arm_polygonoffset	0x0c016428	raster and pipeline state	8	2	y	mgeb_PolygonOffset	478,840,8c0	
+0x169	HP_DIAG_DISPATCH	arm_diag_dispatch	0x0c037958	context, memory and host interface	38	1	n			
+0x16c	HP_COPYLIST_LDMA	arm_copylist_ldma	0x0c014dd8	display lists and DMA	31	2	n		840	waitForDH
+0x16d	HP_EXECLIST_LDMA	arm_execlist_ldma	0x0c014f90	display lists and DMA	12	2	y			
+0x16e	HP_EXECLIST_IDMA	arm_execlist_idma	0x0c015058	display lists and DMA	67	2	y			_printf,__rt_sdiv10
+0x16f	HP_MOVELIST_LDMA	arm_movelist_ldma	0x0c01503c	display lists and DMA	7	3	y			
+0x170	HP_EXECLIST_LDMA_N	arm_execlist_ldma_n	0x0c014fc0	display lists and DMA	31	2	n			
+0x171	HP_EXECLIST_IDMA_N	arm_execlist_idma_n	0x0c015164	display lists and DMA	39	2	n			
+0x173	HP_TEXSETUP	arm_texsetup	0x0c0364e0	texture	36	11	y			ResolveTextureInternalFormat,PixRM_TextureLoadSetup
+0x174	HP_DRAWTEXELS	arm_drawtexels	0x0c02b7a8	texture	73	19	n			drawtexels
+0x175	HP_TEXLOAD_SETUP	arm_texload_setup	0x0c025134	ignored	1	0	n			
+0x176	HP_TEXLOAD_ID	arm_texload_id	0x0c0251fc	texture	2	1	y			
+0x177	HP_ACTIVE_TEXTURE	arm_active_texture	0x0c025204	texture	10	1	y	mgebi_Texture	47c,8c0	
+0x178	HP_TEXBIND_ID	arm_texbind_id	0x0c0252ec	texture	2	1	y			
+0x17a	HP_BIND_BICUBIC_TEXTURE	arm_bind_bicubic_texture	0x0c025da8	texture	49	3	n	mgesi_BshRegisterWriteN	474,840,8c0	get_addr,set_bicubic_or_3d_addr
+0x17b	HP_BIND_3D_MIPMAP_TEXTURE	arm_bind_3d_mipmap_texture	0x0c025ccc	texture	55	4	n	mgesi_BshRegisterWriteN	474,840,8c0	get_addr
+0x17c	HP_BIND_3D_TEXTURE	arm_bind_3d_texture	0x0c025e6c	texture	36	2	n	mgesi_BshRegisterWriteN	474,840,8c0	get_addr
+0x17d	HP_BIND_DETAIL_TEXTURE	arm_bind_detail_texture	0x0c025efc	texture	69	6	y	mgesi_FillTMLoadFifo	400,4f4,840,8c0	tbus_regwrite
+0x17e	HP_TEX_SEND_ARM_TABLE	arm_tex_send_arm_table	0x0c026010	texture	15	3	y			
+0x17f	HP_SLOP	arm_slop	0x0c038a78	context, memory and host interface	455	2	y	mgesi_Cram2ODMA,mgesi_Eram2ODMA,mgesi_SR2ODMA,mgesi_LastVertex2ODMA,mgeb_DebugDrain,mgeb_XContextInitialize,mgeb_XSetupClip,mgesi_XPointRel,mgesi_XLine,mgeb_LoadCram,mgeb_XSetupColors,mgebi_XSetupWindow,mgesi_XPoint,mgesi_XRect,mgesi_XBox,mgesi_XSpans,mgesi_XSegment,mgesi_XSegmentRel,mgesi_XLineRel	400,434,438,43c,478,840,8c0	slop_readword,start_rdata,tbus_regwrite,finish_rdata,SetVideoFormat,_printf,bef_tbus_redirect,__rt_sdiv10
+0x180	HP_VARRAY_SET_CMDS	arm_varray_set_cmds	0x0c039950	vertex arrays, evaluators and patches	29	1	y			varray_lru,varray_build_command
+0x181	HP_VARRAY_SETUP	arm_varray_setup	0x0c039a78	vertex arrays, evaluators and patches	7	1	y		400,8c0	
+0x182	HP_VARRAY_BGN_LOOP	arm_varray_bgn_loop	0x0c0399c4	vertex arrays, evaluators and patches	45	3	y		400,8c0	__rt_sdiv
+0x1a3	HP_VARRAY_UNSETUP	arm_varray_unsetup	0x0c039a94	vertex arrays, evaluators and patches	10	1	y		400,8c0	
+0x1a4	HP_SPRITEPARAMETERI	arm_spriteparameteri	0x0c03cbf0	raster and pipeline state	6	2	y			
+0x1a5	HP_SPRITEPARAMETERFV	arm_spriteparameterfv	0x0c03cc08	raster and pipeline state	59	8	y	mgeb_Sprite	478,840,8c0	
+0x1a6	HP_VIDEO_CMD	arm_video_cmd	0x0c006398	display generator and swap	88	4	y			_printf
+0x1a7	HP_POINTPARAMETERF	arm_pointparameterf	0x0c03cfc8	raster and pipeline state	22	2	y	mgeb_PointParameter	478,840,8c0	
+0x1a8	HP_POINTPARAMETERFV	arm_pointparameterfv	0x0c03d020	raster and pipeline state	38	3	y	mgeb_PointParameter	478,840,8c0	
+0x1aa	HP_BIND_2D_CLIPMAP_TEXTURE	arm_bind_2d_clipmap_texture	0x0c025b8c	texture	80	7	y	mgesi_BshRegisterWriteN,mgeb_ClipmapXform	474,478,840,8c0	
+0x1b7	HP_PVERTEX_SETUP	arm_pvertex_setup	0x0c039ac8	vertex arrays, evaluators and patches	57	2	y		400,840,880,8c0	
+0x1b8	HP_INSTRUMENTS_BUFFER	arm_instruments_buffer	0x0c03ce84	instruments	7	1	y			
+0x1b9	HP_START_INSTRUMENTS	arm_start_instruments	0x0c03cea0	instruments	21	1	y	mgesi_StartInstruments	474,8c0	
+0x1ba	HP_STOP_INSTRUMENTS	arm_stop_instruments	0x0c03cef4	instruments	24	1	y	mgesi_StopInstruments	474,840,8c0	
+0x1bb	HP_TEXELSTOREI	arm_texelstorei	0x0c02af20	texture	82	2	y			
+0x1bc	HP_RESTART_SELECTFEED	arm_restart_selectfeed	0x0c022b8c	context, memory and host interface	45	1	y			tbus_regwrite
+0x1c4	HP_BIND_ARM_TEX_CACHE	arm_bind_arm_tex_cache	0x0c0252f4	texture	7	1	y			
+0x1c5	HP_FREE_ARM_TEX_CACHE	arm_free_arm_tex_cache	0x0c025310	raster and pipeline state	35	1	y	mgesi_FillTMLoadFifo	4f4	tbus_regwrite
+0x1c6	HP_GET_DEFORMATION	arm_get_deformation	0x0c0387dc	queries	20	1	y	mgesi_StartRdata,mgesi_GetDeformation,mgesi_FinishRdata	474,840,8c0	
+0x1c7	HP_SHADOW_TEXTURE	arm_shadow_texture	0x0c026218	texture	28	3	y	mgesi_BshRegisterWriteN	474,840,8c0	
+0x1c8	HP_IDMACOPYLIST_LDMA	arm_idmacopylist_ldma	0x0c014e54	display lists and DMA	28	2	y		840	
+0x1c9	HP_TMESHMODE	arm_tmeshmode	0x0c016854	raster and pipeline state	17	1	y		400,8c0	
+0x1ca	HP_LOAD_GE_XFORM_ATTRIB	arm_load_ge_xform_attrib	0x0c03ad3c	raster and pipeline state	25	1	n	mgeb_InitFFTFactors	438,8c0	waitForDH,e_reference_plane,d_reference_plane
+0x1cb	HP_GET_GE_XFORM_ATTRIB	arm_get_ge_xform_attrib	0x0c03ade0	queries	21	1	y	mgesi_StartRdata,mgesi_FinishRdata	474,840,8c0	ge_xform_attrib_to_host
+0x1cc	HP_FLUSH_RASTER	arm_flush_raster	0x0c014070	buffers and windows	5	1	y	mgesi_FlushRM	4f4	
+0x1cd	HP_READ_INSTRUMENTS	arm_read_instruments	0x0c03cf54	instruments	29	1	y	mgesi_StopInstruments,mgesi_StartInstruments	474,840,8c0	
+0x1ce	HP_LAZYMODE	arm_lazymode	0x0c027e14	raster and pipeline state	8	1	y			
+0x1cf	HP_PVERTEX_CLEANUP	arm_pvertex_cleanup	0x0c039bac	vertex arrays, evaluators and patches	11	1	y		400,880,8c0	
+0x1d0	HP_SUBDIV_PATCH	arm_subdiv_patch	0x0c03ffac	vertex arrays, evaluators and patches	23	4	n	mges_SubdivTag	430,840,8c0	
+0x1d1	HP_SUBDIV_PATCH_SETUP	arm_subdiv_patch_setup	0x0c03ff14	vertex arrays, evaluators and patches	26	1	y		400,880,8c0	
+0x1d2	HP_SUBDIV_PATCH_CLEANUP	arm_subdiv_patch_cleanup	0x0c03ff7c	vertex arrays, evaluators and patches	12	1	y		400,880,8c0	
+0x1d3	HP_SUBDIV_PATCH_PARAMETER	arm_subdiv_patch_parameter	0x0c03fef0	vertex arrays, evaluators and patches	9	2	y	mgeb_Subdiv	478,840,8c0	
+0x1d5	HP_BIND_TEXTURE	arm_bind_texture	0x0c0256c8	texture	185	7	y	mgesi_TbusRegWrite,mgesi_FillTMLoadFifo,mgeb_SkipNextTextureAddr,mgebi_Texture,mgebi_TexEnvComps,mgebi_UpdateTexturing	400,474,47c,4f4,4f8,840,8c0	XferMask,PixValidateTexColorTable,sendTexTable
+0x1d6	HP_TEXGEN_POP	arm_texgen_pop	0x0c026554	texture	15	1	n	mgeb_LoadEram	478,8c0	waitForDH
+0x1d7	HP_CHANGE_POST_TEX_SCALE_BIAS	arm_change_post_tex_scale_bias	0x0c025688	texture	16	4	y		400,840,8c0	
+0x1db	HP_SWAP_CNTRL	arm_swap_cntrl	0x0c013e50	display generator and swap	41	1	y	mgesi_VCbusWrite	474,840,8c0	_printf,arm_badcmd
+0x1dc	HP_F3_WAR	arm_f3_war	0x0c022380	context, memory and host interface	5	1	y			
+0x1dd	HP_GE_INTR	arm_ge_intr	0x0c022cfc	context, memory and host interface	21	1	y			_printf,arm_badcmd,start_kcomm
+0x1de	HP_MEM_RESUME	arm_mem_resume	0x0c024954	context, memory and host interface	38	5	y			_printf,arm_badcmd,tbus_regwrite
+0x1df	HP_MEM_SUSPEND	arm_mem_suspend	0x0c0248a0	context, memory and host interface	45	1	y			_printf,arm_badcmd,start_kcomm,tbus_regwrite
+0x1e0	HP_TEX_ARM_CACHE_INDEX_INVALID	arm_tex_arm_cache_index_invalid	0x0c02604c	texture	20	2	y			
+0x1e1	HP_MEM_COPYDOWN	arm_mem_copydown	0x0c02481c	context, memory and host interface	33	4	y			_printf,arm_badcmd
+0x1e2	HP_MEM_SWAPIN	arm_mem_swapin	0x0c024710	context, memory and host interface	67	8	y			_printf,arm_badcmd,arm_mem_swapin_toobig,send_host_intr
+0x1e3	HP_MEM_SWAPOUT	arm_mem_swapout	0x0c024504	context, memory and host interface	88	7	n			_printf,arm_badcmd,arm_mem_swapout_toobig,tbus_regwrite,arm_mem_suspend
+0x1e4	HP_MEM_RESERVE	arm_mem_reserve	0x0c024378	context, memory and host interface	46	4	y			_printf,arm_badcmd
+0x1e5	HP_GEROLLCALL	arm_gerollcall	0x0c0042e0	context, memory and host interface	39	2	y	mgesi_PrintNum	474,8c0	_printf,check_pipe_sync
+0x1e6	HP_DISPMODE	arm_dispmode	0x0c013dd4	display generator and swap	31	3	y	mgesi_VCbusWrite	474,840,8c0	_printf,arm_badcmd,dgUpdateFMDidSwapTable
+0x1e7	HP_RETRACE_SEQID	arm_retrace_seqid	0x0c013f5c	display generator and swap	57	1	y	mgesi_VCbusWrite	474,840,8c0	_printf,arm_badcmd
+0x1e8	HP_ARM_NOP	arm_arm_nop	0x0c022d70	context, memory and host interface	33	3	y			_printf
+0x1e9	HP_GETCONFIG	arm_getconfig	0x0c022474	queries	24	1	y			start_rdata,tbus_regwrite
+0x1ea	HP_PIPE_SYNC	arm_pipe_sync	0x0c0042c0	context, memory and host interface	8	1	y			check_pipe_sync
+0x1eb	HP_DO_IDMA	arm_do_idma	0x0c022df4	display lists and DMA	297	6	y			_printf,arm_badcmd,__rt_sdiv,send_host_intr,tbus_regwrite
+0x1ec	HP_EEPROM_OP	arm_eeprom_op	0x0c01a0ec	context, memory and host interface	81	3	y			eeprom_load,start_rdata,tbus_regwrite,eeprom_read,eeprom_id
+0x1ed	HP_DMAPOOL_SETUP	arm_dmapool_setup	0x0c022398	context, memory and host interface	44	3	y			_printf,arm_badcmd
+0x1ee	HP_VALIDATE_READCLIP	arm_validate_readclip	0x0c018574	buffers and windows	94	3	y			_printf,arm_badcmd
+0x1ef	HP_GED_VERIF_LOAD	arm_ged_verif_load	0x0c012ae4	context, memory and host interface	18	4	y			load_ged
+0x1f0	HP_GED_VERIF_DUMP	arm_ged_verif_dump	0x0c012b2c	context, memory and host interface	31	2	y	mges_DiagDeactivate	400,430,840,8c0,980	_printf,deactivate_ged
+0x1f1	HP_PIPE_SETUP	arm_pipe_setup	0x0c023298	context, memory and host interface	58	3	y	mgesi_PipeSetup	400,474,840,8c0	_printf,arm_badcmd
+0x1f2	HP_RDATA_SETUP	arm_rdata_setup	0x0c022448	context, memory and host interface	11	3	y			
+0x1f3	HP_VALIDATE_CLIP	arm_validate_clip	0x0c018168	buffers and windows	259	11	y	mgesi_TbusRegWrite	400,474,840,8c0	_printf,arm_badcmd,resolve_scissor
+0x1f4	HP_VALIDATE_BANK	arm_validate_bank	0x0c013d30	buffers and windows	41	2	y			_printf,arm_badcmd
+0x1f5	HP_START_SELECTFEED	arm_start_selectfeed	0x0c022a50	context, memory and host interface	79	6	y			_printf,arm_badcmd,tbus_regwrite
+0x1f6	HP_FINISH_SELECTFEED	arm_finish_selectfeed	0x0c022c40	context, memory and host interface	47	2	y			_printf,arm_badcmd,start_kcomm,tbus_regwrite,finish_kcomm
+0x1f7	HP_CONTEXT_DESTROY	arm_context_destroy	0x0c021650	context, memory and host interface	72	1	y	mgeb_ContextDestroy	478,8c0	_printf,arm_badcmd
+0x1f8	HP_CONTEXT_MOPUP	arm_context_mopup	0x0c02226c	context, memory and host interface	58	1	y	mgebi_NullCommand,mgeb_ContextDeactReconfigureFifo	400,438,4f8,4fc,8c0,980	_printf,arm_badcmd,start_kcomm,finish_kcomm
+0x1f9	HP_CONTEXT_LOAD	arm_context_load	0x0c02112c	context, memory and host interface	329	4	y	mges_ContextLoadODMA,mges_ContextLoadBEF,mgeb_ContextLoadCram,mgeb_ContextLoadWram		_printf,arm_badcmd,store_data,load_arm,load_singlecast_ge,load_broadcast_geEram,load_broadcast_ge
+0x1fa	HP_CONTEXT_ACTIVATE	arm_context_activate	0x0c0209dc	context, memory and host interface	138	3	y	mgeb_ContextLoadFlagRegs,mgeb_DisableUserClipPlane,mges_TBUS_1,mgeb_CullFace	478,840,8c0	_printf,arm_badcmd,XPixelRestore,PixelRestore,activate_private,activate_setcurrentge,activate_geregs,activate_gefifo
+0x1fb	HP_CONTEXT_FIFO_SYNC	arm_context_fifo_sync	0x0c021770	context, memory and host interface	21	0	n			_printf
+0x1fc	HP_CONTEXT_DEACTIVATE	arm_context_deactivate	0x0c022188	context, memory and host interface	57	1	y	mges_ContextDeactGED,mgeb_ContextDeactReconfigureFifo,mges_ContextDeactFinish	400,438,470,4f0,4f8,8c0,980	_printf,arm_badcmd,deactivate_hip,deactivate_ge,deactivate_ged,deactivate_ged_ge,deactivate_arm
+0x1fd	HP_CONTEXT_INIT	arm_context_init	0x0c01fe04	context, memory and host interface	71	3	y	mgeb_ContextLoadEram	478,840,8c0	simfast_bgn,_printf,arm_badcmd,context_init,clear_icache_stats
+0x1fe	HP_KERNEL_PRIVATE	arm_kernel_private	0x0c022394	ignored	1	0	n			
+0x1ff	HP_WG_FLUSH_1	arm_wg_flush_1	0x0c026644	unsupported	1	0	n			

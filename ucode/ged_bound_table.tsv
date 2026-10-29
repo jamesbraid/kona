@@ -1,0 +1,48 @@
+# Handler table that init_ged writes through the engine port with descriptors 0x46000020 (set index)
+# and 0x46200020 (write entry, index then advances). IRIX 6.5.30m. Produced by scripts/arm1_handlers.py.
+# Entries 3-12 are the matrix operations for the matrix mode init_ged starts in; arm_matrixmode,
+# xform_init and xform_restore rewrite them. Indexes not listed are not written by init_ged.
+index	handler
+0	mgesi_BshRegisterWrite
+1	mgeb_Fogf
+2	mgeb_Fogi
+3	mgeb_LoadIdentity_Modelview
+4	mgeb_LoadMatrix_Modelview
+5	mgeb_Frustum_Modelview
+6	mgeb_MultMatrix_Modelview
+7	mgeb_Ortho_Modelview
+8	mgeb_PopMatrix_Modelview
+9	mgeb_PushMatrix_Modelview
+10	mgeb_Rotate_Modelview
+11	mgeb_Scale_Modelview
+12	mgeb_Translate_Modelview
+14	mges_NullCommand
+15	mgesi_TBUS_1
+16	mgebi_ReferencePlane
+25	mgeb_EvalGrid1D
+26	mgeb_EvalGrid2D
+27	mgeb_EvalMapSpec1D
+28	mgeb_EvalMapSpec2D
+29	mgeb_DeformationMap3_1
+30	mgeb_LoadIdentityDeformation
+31	mgesi_IMPbshRegisterWrite
+32	mgebi_Bind2dMipmapTexture
+33	mgebi_TextureScaleBias
+34	mgesi_PushAttrLights
+42	mgesi_XPoint
+43	mgesi_XPointRel
+44	mgesi_XRect
+45	mgesi_XBox
+46	mgesi_XSpans
+47	mgesi_XSegment
+48	mgesi_XLine
+49	mgesi_XLineRel
+50	mgesi_XBgPoint
+51	mgebi_XLoadGC
+52	mgebi_XLoadPosition
+53	mgeb_XLoadClip
+54	mgesi_XLoadScissor
+60	mgeb_EnableUnpack
+61	mgeb_DisableUnpack
+62	mgeb_RestoreColor
+63	mgeb_RestoreNormal
