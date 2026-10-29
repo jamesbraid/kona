@@ -19752,7 +19752,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd841510	364	__glx_PollInst
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd84167c	268	__glx_FlushRasterSGIX	dwarf+dynsym	25ad12748ee9	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf		undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947be0	884	_stub	dwarf		named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	32099000c754	located	docs/opengl.md#getboardinfo	`GetBoardInfo`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	32099000c754	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	1d6089bd1536	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948280	104	FindWindowSize	dwarf+funcnames	547e53b8c701	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9482f0	56	ApplyViewport	dwarf+funcnames	6fa4fb8cc682	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -19762,13 +19762,13 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9483e0	176	Chann
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948490	76	ChannelRectSync	dwarf+funcnames	7f549f3f29fc	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9484e0	16	Error	dwarf+funcnames	37635ea22bf8	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9484f0	52	PickBufferProcs	dwarf+funcnames	154c40c49c4e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	15a17e414639	located	docs/opengl.md#losecurrent	`LoseCurrent`
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	1351705deb83	located	docs/opengl.md#destroycontext	`DestroyContext`
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	65f1d247b8e0	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	15a17e414639	understood	docs/opengl.md#losecurrent	`LoseCurrent`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	1351705deb83	understood	docs/opengl.md#destroycontext	`DestroyContext`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	65f1d247b8e0	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948750	368	map_rtc	dwarf+funcnames	cae1181a77bb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	b292ae48622c	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	f76b99488d5c	located	docs/opengl.md#makecurrent	`MakeCurrent`
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	c9e126a39194	located	docs/opengl.md#visualsmatch	`VisualsMatch`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	b292ae48622c	understood	docs/opengl.md#makecurrentread	`MakeCurrentRead`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	f76b99488d5c	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	c9e126a39194	understood	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd949ae0	880	__glKonCreateContext	dwarf+dynsym	33fae5a928f1	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd949e50	360	kona_writeconfig	dwarf+funcnames	28a9315d5cf7	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd949fc0	396	kona_readconfig	dwarf+funcnames	cabd45550d55	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
@@ -19839,8 +19839,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94d9b0	68	__glkon_dli
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94da00	56	__glkon_dlist_mem_free	dwarf+dynsym	93852f10275a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94da40	68	__glkon_texture_mem_alloc	dwarf+dynsym	d5b24a566e79	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94da90	68	__glkon_texture_mem_realloc	dwarf+dynsym	9467ded09e1f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	d4283a215bff	located	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94db30	124	__glkon_share	dwarf+dynsym	75241e10246f	located	docs/opengl.md#__glkon_share	`__glkon_share`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	d4283a215bff	understood	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94db30	124	__glkon_share	dwarf+dynsym	75241e10246f	understood	docs/opengl.md#__glkon_share	`__glkon_share`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dbb0	52	__glkonim_Begin	dwarf+dynsym	75f0ed6d461b	named-only	GE.h:50	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dbf0	20	__glkonim_End	dwarf+dynsym	090885fb1d49	named-only	GE.h:51	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dc10	92	__glkonim_Finish	dwarf+dynsym	e0c972beb607	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36451,7 +36451,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd841510	364	__glx_PollInst
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd84167c	268	__glx_FlushRasterSGIX	dwarf+dynsym	25ad12748ee9	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf		undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947be0	884	_stub	dwarf		named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	32099000c754	located	docs/opengl.md#getboardinfo	`GetBoardInfo`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	32099000c754	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	1d6089bd1536	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948280	104	FindWindowSize	dwarf+funcnames	547e53b8c701	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9482f0	56	ApplyViewport	dwarf+funcnames	6fa4fb8cc682	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36461,13 +36461,13 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9483e0	176	Chann
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948490	76	ChannelRectSync	dwarf+funcnames	7f549f3f29fc	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9484e0	16	Error	dwarf+funcnames	37635ea22bf8	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9484f0	52	PickBufferProcs	dwarf+funcnames	154c40c49c4e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	15a17e414639	located	docs/opengl.md#losecurrent	`LoseCurrent`
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	1351705deb83	located	docs/opengl.md#destroycontext	`DestroyContext`
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	65f1d247b8e0	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	15a17e414639	understood	docs/opengl.md#losecurrent	`LoseCurrent`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	1351705deb83	understood	docs/opengl.md#destroycontext	`DestroyContext`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	65f1d247b8e0	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948750	368	map_rtc	dwarf+funcnames	cae1181a77bb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	b292ae48622c	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	f76b99488d5c	located	docs/opengl.md#makecurrent	`MakeCurrent`
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	c9e126a39194	located	docs/opengl.md#visualsmatch	`VisualsMatch`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	b292ae48622c	understood	docs/opengl.md#makecurrentread	`MakeCurrentRead`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	f76b99488d5c	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	c9e126a39194	understood	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd949ae0	880	__glKonCreateContext	dwarf+dynsym	33fae5a928f1	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd949e50	360	kona_writeconfig	dwarf+funcnames	28a9315d5cf7	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd949fc0	396	kona_readconfig	dwarf+funcnames	cabd45550d55	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
@@ -36538,8 +36538,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94d9b0	68	__glkon_dli
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94da00	56	__glkon_dlist_mem_free	dwarf+dynsym	93852f10275a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94da40	68	__glkon_texture_mem_alloc	dwarf+dynsym	d5b24a566e79	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94da90	68	__glkon_texture_mem_realloc	dwarf+dynsym	9467ded09e1f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	d4283a215bff	located	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94db30	124	__glkon_share	dwarf+dynsym	75241e10246f	located	docs/opengl.md#__glkon_share	`__glkon_share`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	d4283a215bff	understood	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94db30	124	__glkon_share	dwarf+dynsym	75241e10246f	understood	docs/opengl.md#__glkon_share	`__glkon_share`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dbb0	52	__glkonim_Begin	dwarf+dynsym	75f0ed6d461b	named-only	GE.h:50	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dbf0	20	__glkonim_End	dwarf+dynsym	090885fb1d49	named-only	GE.h:51	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dc10	92	__glkonim_Finish	dwarf+dynsym	e0c972beb607	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)

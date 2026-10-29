@@ -47,60 +47,60 @@ Each entry below is **established** from `kon_context.s` or `kon_mem.s`, `libGLc
 
 #### `GetBoardInfo`
 
-**Established** (`kon_context.s`, 6.5.30m): `GetBoardInfo` asks the kernel for the board description and fills the context's host-side capability words.
-At 0x0d947f60 it sends `GFX_GETBOARDINFO` (ioctl 102) with a 1952-byte reply buffer, then compares the first four bytes of the reply with a fixed board-name string; on a mismatch it reports through the context's error hook (+20) and calls `exit(1)`.
+`GetBoardInfo` at 0x0d947f60 (`kon_context.s`, `IP27KONA32/libGLcore.so`): **Established.** Asks the kernel for the board description and fills the context's host-side capability words.
+It sends `GFX_GETBOARDINFO` (ioctl 102) with a 1952-byte reply buffer, then compares the first four bytes of the reply with a fixed board-name string; on a mismatch it reports through the context's error hook (+20) and calls `exit(1)`.
 Otherwise it builds the renderer name with `strcat` and `strncat` from bytes and words of the reply (+5, +40, +80, +124, +128, +180), stores a `strdup` of it at ctx+3576 (which `DestroyContext` frees), stores reply word +124 at ctx+31568 and the product of reply words +288 and +292 at ctx+31644, and sets flag bits in ctx+31580: 0x4 and 0x8 always, 0x2 and 0x10 unless one of two environment variables is set, 0x20 when a third is set.
 The pipe sees nothing of this; it is host-side capability set-up.
 
 #### `LoseCurrent`
 
-**Established** (`kon_context.s`, 6.5.30m): `LoseCurrent` detaches the context from the thread without writing any command word to the pipe.
-At 0x0d948530 it returns 0 at once unless ctx+3204 is 7168 and the driver-page word 0x1018 is not 1.
+`LoseCurrent` at 0x0d948530 (`kon_context.s`, `IP27KONA32/libGLcore.so`): **Established.** Detaches the context from the thread without writing any command word to the pipe.
+It returns 0 at once unless ctx+3204 is 7168 and the driver-page word 0x1018 is not 1.
 Otherwise it calls `__glLoseCurrentBuffers(ctx, 0)` when bit 2 of ctx+168 is set, clears the current-context word 0x1010, keeps word 0x1018 in ctx+3200, and, when ctx+4988 is non-zero, copies the driver-page words 0x1028-0x1034 into ctx+5052-5064.
 It returns 1.
 It writes no command word: losing a context sends nothing to the pipe.
 
 #### `DestroyContext`
 
-**Established** (`kon_context.s`, 6.5.30m): `DestroyContext` frees the context's host memory and sends nothing to the pipe.
-At 0x0d9485f0 it calls `__glkon_FreeTextureState` and `__glKonFreeEvaluators`; when the pointer list at ctx+41252 exists, releases each of its ctx+3776 entries and then the list itself through the context's free hook (+12); releases ctx+31600 the same way, calls the hook at ctx+48, frees the renderer string at ctx+3576, clears the drawable serial ctx+31564 and calls the shared `__glDestroyContext`.
+`DestroyContext` at 0x0d9485f0 (`kon_context.s`, `IP27KONA32/libGLcore.so`): **Established.** Frees the context's host memory and sends nothing to the pipe.
+It calls `__glkon_FreeTextureState` and `__glKonFreeEvaluators`; when the pointer list at ctx+41252 exists, releases each of its ctx+3776 entries and then the list itself through the context's free hook (+12); releases ctx+31600 the same way, calls the hook at ctx+48, frees the renderer string at ctx+3576, clears the drawable serial ctx+31564 and calls the shared `__glDestroyContext`.
 No command word is written.
 
 #### `initialDestroyContext`
 
-**Established** (`kon_context.s`, 6.5.30m): `initialDestroyContext` is the short destroy procedure of a context that never became current.
-At 0x0d948700 (76 bytes) it calls `__glkon_FreeTextureState` and then `__glDestroyContext`, nothing else.
+`initialDestroyContext` at 0x0d948700 (`kon_context.s`, `IP27KONA32/libGLcore.so`, 76 bytes): **Established.** It is the short destroy procedure of a context that never became current.
+It calls `__glkon_FreeTextureState` and then `__glDestroyContext`, nothing else.
 `__glKonCreateContext` installs it at ctx+88, so it is the destroy procedure of a context that never became current; it sends nothing to the pipe.
 
 #### `MakeCurrent`
 
-**Established** (`kon_context.s`, 6.5.30m): `MakeCurrent` resolves the two drawables and hands them to the read-side function.
-At 0x0d9499e0 (108 bytes) it calls the draw-drawable callback at ctx+60 and the read-drawable callback at ctx+64 and tail-calls `MakeCurrentRead(ctx, draw, read)` with their results.
+`MakeCurrent` at 0x0d9499e0 (`kon_context.s`, `IP27KONA32/libGLcore.so`, 108 bytes): **Established.** Resolves the two drawables and hands them to the read-side function.
+It calls the draw-drawable callback at ctx+60 and the read-drawable callback at ctx+64 and tail-calls `MakeCurrentRead(ctx, draw, read)` with their results.
 It writes no command word itself.
 
 #### `MakeCurrentRead`
 
-**Established** (`kon_context.s`, 6.5.30m): `MakeCurrentRead` is where the configuration packets leave for the pipe.
-At 0x0d9488c0, on the first make-current of a context (bits 1 and 2 of ctx+168 clear) it calls `__glSoftResetContext`, `__glkon_unique_per_ge_mem_alloc`, `__glkon_share`, then `kona_writeconfig` and, for a separate read drawable, `kona_readconfig`, then the texture, evaluator, pixel and hyperpipe initialisers; on later calls it sends only `kona_readconfig` when the read drawable differs or is a video source.
+`MakeCurrentRead` at 0x0d9488c0 (`kon_context.s`, `IP27KONA32/libGLcore.so`): **Established.** It is where the configuration packets leave for the pipe.
+On the first make-current of a context (bits 1 and 2 of ctx+168 clear) it calls `__glSoftResetContext`, `__glkon_unique_per_ge_mem_alloc`, `__glkon_share`, then `kona_writeconfig` and, for a separate read drawable, `kona_readconfig`, then the texture, evaluator, pixel and hyperpipe initialisers; on later calls it sends only `kona_readconfig` when the read drawable differs or is a video source.
 So the configuration packets reach the pipe once per context and again per read-side change, as the section above says.
 
 #### `VisualsMatch`
 
-**Established** (`kon_context.s`, 6.5.30m): `VisualsMatch` compares a context's visual with a drawable's and touches no hardware.
-At 0x0d949a50 (136 bytes, no calls) it returns 1 when the visual id at ctx+3216 equals word 0 of the first mode record, neither mode record has word +84 set, and the two records agree on colour model (byte +4) and on the size word for that model (+40 for RGB, +36 for colour index); it returns 0 when word +72 of the first record is set and the fifth argument is 4, and 0 for any other mismatch.
+`VisualsMatch` at 0x0d949a50 (`kon_context.s`, `IP27KONA32/libGLcore.so`, 136 bytes, no calls): **Established.** Compares a context's visual with a drawable's and touches no hardware.
+It returns 1 when the visual id at ctx+3216 equals word 0 of the first mode record, neither mode record has word +84 set, and the two records agree on colour model (byte +4) and on the size word for that model (+40 for RGB, +36 for colour index); it returns 0 when word +72 of the first record is set and the fifth argument is 4, and 0 for any other mismatch.
 **Inferred** from the fields compared: the shared layer asks whether a drawable's visual can be used with this context.
 It sends nothing to the pipe.
 
 #### `__glkon_unique_per_ge_mem_alloc`
 
-**Established** (`kon_mem.s`, 6.5.30m): `__glkon_unique_per_ge_mem_alloc` reserves the context's pipe-memory block through the kernel's allocator.
-At 0x0d94dae0 (68 bytes) it calls `__glkon_mem_alloc(2, 9, 1, 1, 0)`, which packs its arguments into the 12-byte `KONA_MEM_ALLOC` (ioctl 10010) block as byte 0, byte 1, halfword +2, word +4 and word +8, sends it for the current context and returns 0 on success, -1 on failure.
+`__glkon_unique_per_ge_mem_alloc` at 0x0d94dae0 (`kon_mem.s`, `IP27KONA32/libGLcore.so`, 68 bytes): **Established.** Reserves the context's pipe-memory block through the kernel's allocator.
+It calls `__glkon_mem_alloc(2, 9, 1, 1, 0)`, which packs its arguments into the 12-byte `KONA_MEM_ALLOC` (ioctl 10010) block as byte 0, byte 1, halfword +2, word +4 and word +8, sends it for the current context and returns 0 on success, -1 on failure.
 **Inferred** from the name and the one caller (`MakeCurrentRead`, first make-current only): each context reserves one block of pipe memory per geometry engine before its first configuration packet; the kernel side is `kona_mem_alloc` ([kernel.md](kernel.md#ioctl-entries)).
 
 #### `__glkon_share`
 
-**Established** (`kon_mem.s`, 6.5.30m): `__glkon_share` joins the context to its kernel share group for pipe memory.
-At 0x0d94db30 (124 bytes) it takes ctx, follows the pointer at ctx+0x8aac to a share record and sends `KONA_SHARE` (ioctl 10015) with that record's 64-bit word +8 as the 8-byte argument.
+`__glkon_share` at 0x0d94db30 (`kon_mem.s`, `IP27KONA32/libGLcore.so`, 124 bytes): **Established.** Joins the context to its kernel share group for pipe memory.
+It takes ctx, follows the pointer at ctx+0x8aac to a share record and sends `KONA_SHARE` (ioctl 10015) with that record's 64-bit word +8 as the 8-byte argument.
 On success it writes the returned word back to record +8 and returns 0; on failure it returns -1.
 **Inferred:** contexts that share display lists and textures pass the same group handle, so the kernel's `kona_share` counts them into one share group, and a zero handle asks for a new group.
 
