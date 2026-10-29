@@ -45,6 +45,14 @@
 /* Window layout (kpm window-base records, ESTABLISHED; "FC" read as flow
  * control is INFERRED from the kernel's flow-control kick going to 0xc00108
  * and the user FIFO page being mapped from 0xc10000) */
+
+/*
+ * XG_MAP_RAM (window offset 0x100000), the widget's page map: one 32-bit entry per 16 KB page,
+ * entry n at 0x100000 + 4n. Established: `kona_mapram_init` in kona_mapram_hip2.o writes INVALID
+ * (0x10000000) or-ed with the entry number to every entry (store at 0x50 in the object) and reads each back at 0x5c;
+ * a mismatch is logged and the pipe declared dead through a call to `kona_die` with reason 21.
+ * `kona_mapram_map` later fills entries with a page-size code and frame number, so DMA addresses
+ * the pipe issues are translated through this table. */
 #define KONA_XG_MAP_RAM               0x100000  /* XG_MAP_RAM, to XG_MAP_RAM_END 0x200000 */
 #define KONA_XG_MAP_RAM_END           0x200000
 #define KONA_XG_CLIENT_REGS           0x800000  /* host-interface registers, no flow control */
@@ -52,10 +60,10 @@
 #define KONA_XG_FC_GFX                0xc10000  /* graphics FIFO through flow control */
 
 /*
- * XG +0x4 is the generic widget identification word. Established, 6.5.30m:
- * `kona_attach` (kona_edtinit_hip2.o) reads it and keeps bits 28-31, the widget revision,
- * at pipe state +2196. Inferred: the revision tells the reset path how many crossbar credits to use.
- */
+ * XG +0x4 is the generic widget identification word: revision in bits 28-31, part number 0xc102,
+ * manufacturer 0x2aa. Established: `kona_attach` in kona_edtinit_hip2.o reads it at +0x268 and keeps
+ * the revision at pipe state +2196, which `KONAprivate` copies into the configuration record at
+ * +0x4e8; the part and manufacturer are the pair `kona_init` registers the driver for (at +0x84). */
 #define KONA_XG_REG_WIDGET_ID       0x04    /* generic; attach keeps bits 31-28, the widget revision */
 #define   KONA_XG_WID_REV(v)            (((v) >> 28) & 0xf)
 #define   KONA_XG_WID_PART(v)           (((v) >> 12) & 0xffff)  /* 0xc102 */
@@ -71,11 +79,13 @@
 #define   KONA_XG_XT_STAT_TX_CNT          0x00ff0000
 #define   KONA_XG_XT_STAT_REC_CNT         0xff000000
 
-/* XG_XT_CTRL, the widget control register. kona_reset_adaptor writes
- * 0x00240200 | target << 22 | credits << 12 | widget number, then sets
- * INTERRUPT_ENA last (docs/xg.md). So the driver turns on map RAM parity
- * (bit 18) and Guava-bus parity (bit 21) and leaves F_BAD_PKT, the clear
- * strobes, classic mode and the forced-parity test bits clear. */
+/*
+ * XG_XT_CTRL (+0x24), the widget control register. Established: `kona_reset_adaptor` in
+ * kona_edtinit_hip2.o writes 0x00240200 | interrupt target << 22 | crossbar credits << 12 | widget
+ * number at +0x94 (credits 4, or 3 for an early crossbar revision), reads it back at +0xa0 to push the
+ * write out, and after clearing errors reads it again and sets INTERRUPT_ENA (0x20000) at +0x1ac.
+ * So the driver turns on map RAM parity (bit 18) and Guava-bus parity (bit 21) and keeps the
+ * bad-packet, clear-strobe, classic-mode and forced-parity test bits off. */
 #define KONA_XG_XT_CTRL               0x24
 #define   KONA_XG_XT_CTRL_WIDGET_ID       0x0000000f
 #define   KONA_XG_XT_CTRL_MAX_TRANS       0x000001f0
@@ -94,15 +104,23 @@
 #define   KONA_XG_XT_CTRL_FORCE_PERR_GUAVA_IN  0x08000000
 #define   KONA_XG_XT_CTRL_FORCE_PERR_GUAVA_OUT 0x10000000
 
-#define KONA_XG_REG_REQ_TIMEOUT     0x2c    /* generic; cleared to 0 once during reset */
 /*
- * XG +0x34 is the upper half of the interrupt destination address. Established, 6.5.30m:
- * `kona_reset_adaptor` (kona_edtinit_hip2.o) writes the target id in bits 16-19 and address bits
- * 32-47 there, and the lower half (+0x3c) beside it. Inferred from the generic widget layout in
- * Linux xwidget.h: these two words are where the XG sends its interrupt packets.
- */
-#define KONA_XG_REG_INTDEST_UPPER   0x34    /* generic; target id bits 19-16, address bits 47-32 */
-#define KONA_XG_REG_INTDEST_LOWER   0x3c    /* generic; interrupt target address bits 31-0 */
+ * XG +0x2c, the generic widget request-timeout register. Established: `kona_reset_adaptor` writes 0
+ * to it at +0x170, between two reads of the error status, and nowhere else touches it. Inferred from
+ * the generic widget layout: 0 is written as the timeout so an old pending-request timer cannot
+ * raise a new error while the reset clears the status. */
+#define KONA_XG_REG_REQ_TIMEOUT     0x2c
+/*
+ * XG +0x34, upper half of the interrupt destination. Established: `kona_reset_adaptor` writes it at
+ * +0xe8 with the interrupt target's crossbar id (from `xtalk_intr_target_get`) in bits 16-19 and
+ * bits 32-47 of the address `xtalk_intr_addr_get` returned in bits 0-15. Inferred from the generic
+ * widget layout in Linux xwidget.h: the XG sends its interrupt write packets to that node. */
+#define KONA_XG_REG_INTDEST_UPPER   0x34
+/*
+ * XG +0x3c, lower half of the interrupt destination: address bits 0-31. Established: written once,
+ * by `kona_reset_adaptor` at +0xbc, from the same `xtalk_intr_addr_get` result, before the upper
+ * half; together they give the hub address each interrupt packet from the pipe is written to. */
+#define KONA_XG_REG_INTDEST_LOWER   0x3c
 
 /*
  * XG_XT_INTRVEC: the three interrupt vectors. kona_reset_adaptor step 6
@@ -117,11 +135,11 @@
  * geometry-engine handler reads needs (docs/hip.md).
  */
 /*
- * XG +0x5c is XG_XT_INTRVEC, the three interrupt vectors. Established, 6.5.30m:
- * `kona_reset_adaptor` (kona_edtinit_hip2.o) writes 0x20000, the barrier bit of the second vector,
- * or-ed with the three vector numbers of its interrupt handles, so the XG error interrupt, the
- * geometry-engine interrupt and the host-interface interrupt each reach their own handler.
- */
+ * XG +0x5c is XG_XT_INTRVEC. Established: `kona_reset_adaptor` writes it at +0x148 with
+ * 0x20000 (the second vector's barrier bit) or-ed with three vector numbers from
+ * `xtalk_intr_vector_get`: the handle at pipe state +2240 in bits 18-25, +2264 in bits 9-16 and
+ * +2256 in bits 0-7. So the XG's own error interrupt, the geometry-engine interrupt and the
+ * host-interface interrupt each arrive at the hub with their own vector. */
 #define KONA_XG_XT_INTRVEC            0x5c
 #define   KONA_XG_XT_INTRVEC_INTR_VEC0      0x000000ff
 #define   KONA_XG_XT_INTRVEC_BARRIER_VEC0   0x00000100
@@ -133,10 +151,10 @@
  * count is that code << 15, 8 when zero). SUBSYSTEM and MAPRAM_TYPE are not
  * read by any shipped code found. */
 /*
- * XG +0x64 is XG_CONFIG. Established, 6.5.30m: `kona_attach` (kona_edtinit_hip2.o) reads it,
- * takes MAPRAM_SIZE (bits 3-5, 8 when zero) and stores that code shifted left by 15 at
- * pipe state +2312 as the number of map RAM entries it will fill with `kona_mapram_init`.
- */
+ * XG +0x64 is XG_CONFIG. Established: `kona_attach` reads it at +0x27c and again at +0x2a0, takes
+ * MAPRAM_SIZE (bits 3-5, treated as 8 when zero) and stores that code shifted left by 15 at pipe
+ * state +2312, the map RAM entry count that `kona_mapram_init` then fills; so the field tells the
+ * driver how large the fitted page-map RAM is. The SUBSYSTEM and MAPRAM_TYPE fields are not read. */
 #define KONA_XG_CONFIG                0x64
 #define   KONA_XG_CONFIG_SUBSYSTEM        0x07
 #define   KONA_XG_CONFIG_MAPRAM_SIZE      0x38
@@ -154,6 +172,12 @@
  * for the other side of a bus the XG talks to; which chip it names is
  * UNKNOWN.
  */
+/*
+ * XG +0x6c, XG_ERR_STAT. Established: `kona_report_errs` in kona_edtinit_hip2.o reads it at +0x18
+ * and logs one message per set bit; `kona_reset_adaptor` calls that routine, then reads the
+ * register at +0x160, writes 0 to +0x2c, reads it again at +0x17c and writes the value back at
+ * +0x18c. Inferred from that sequence: the bits are write-one-to-clear, so the reset leaves no
+ * stale error latched before interrupts are enabled. */
 #define KONA_XG_REG_ERR_STATUS        0x6c
 #define KONA_XG_ERR_GUAVA_OVERLAP            (1u << 0)  /* XG_ERR_STAT_G_OVLP_ERR */
 #define KONA_XG_ERR_GUAVA_PIO_DATA_OVF       (1u << 1)  /* XG_ERR_STAT_G_PRSP_DATA_OVFLOW */
@@ -200,11 +224,10 @@
  * xwidget.h. An emulator picks values and says so.
  */
 /*
- * XG +0x74 is XG_HI_LO_WATER. Established, 6.5.30m: `kona_reset_adaptor`
- * (kona_edtinit_hip2.o) reads it and writes back the two command-FIFO marks it found (bits 16-21
- * and 22-27) with the output-DMA marks set to 0x3f40, so the driver chooses where output DMA
- * stalls and resumes and leaves the command marks at the chip's own values.
- */
+ * XG +0x74 is XG_HI_LO_WATER. Established: `kona_reset_adaptor` reads it at +0x1b8 and writes it
+ * at +0x1f4 with the two command-FIFO marks it found (bits 16-21 and 22-27) kept and the output-DMA
+ * marks set to 0x3f40 (low mark 0x40, high mark 0x3f), so the driver chooses the levels where
+ * output DMA stalls and resumes and leaves the command marks at the chip's own values. */
 #define KONA_XG_HI_LO_WATER           0x74
 #define   KONA_XG_HI_LO_WATER_ODMA_LOWATER  0x000000ff
 #define   KONA_XG_HI_LO_WATER_ODMA_HIWATER  0x0000ff00
@@ -212,16 +235,13 @@
 #define   KONA_XG_HI_LO_WATER_CMD_HIWATER   0x0fc00000
 
 /*
- * XG_GFX_DET, the flow-control attach register (the kernel's
- * KONA_REG_DETACH_FLUSH at 0x7c). DETACH in bit 0, RES_TNUM in bits 1-5.
- * ESTABLISHED: the driver writes (tnum << 1) & 0x3e to attach and 1 to
- * detach (kona_kern.h); tnum is gfx_flow_credit_tnum_get(), the constant
- * 17, so the attach value is always 34, and the textport's kona_fc_attach
- * writes 34 directly.
- * with RES_TNUM 17) before its first command. INFERRED: RES_TNUM is the
- * Xtalk transaction number on which the pipe returns flow-control credits
- * to the hub (docs/kernel.md, "Flow-control layer").
- */
+ * XG_GFX_DET (+0x7c), the flow-control attach register: DETACH in bit 0, RES_TNUM in bits 1-5.
+ * Established: a sender attaches with (tnum << 1) & 0x3e, where tnum is the flow layer's credit
+ * transaction number 17, so the value is 34 (`kona_diag_flow` in kona_flow.o writes it at +0x104),
+ * and detaches with 1, read back at once to push it out (`KONAreleasegfxsema` at 0x980 and 0x98c);
+ * every packet sender in kona.a brackets its writes this way. Inferred: RES_TNUM is the crossbar
+ * transaction number on which the pipe returns flow-control credits to the hub, and DETACH stops
+ * the credit return before another process may own the pipe. */
 #define KONA_XG_GFX_DET               0x7c
 #define   KONA_XG_GFX_DET_DETACH          0x01
 #define   KONA_XG_GFX_DET_RES_TNUM        0x3e
