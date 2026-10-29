@@ -107,6 +107,7 @@ Pixel-path stage expanding bitmap bits to integers, LSB-first and MSB-first loop
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations AND (15), logical shift right (14).
   It ends the command with an indirect transfer in condition group 31.
 - `b2i_msb_first`: address 0x26f7, `bitmaptoint.s` line 218 (8 words). Reached: transfers in `umo_BitmapToInt`.
+  **Inferred** role: MSB-first entry of the bitmap-to-integer stage, which `umo_BitmapToInt` takes from its transfer at 0x2692 under condition 0x15; its eight words have the same encodings, in the same order, as the LSB-first set-up at 0x269b to 0x26a2 (the forward 0x15 exit to the epilogue, register loads into G = 0x10, 0 and 6 and the sequencer words), so the bit order is not chosen here but in the loop that follows.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_b2i_msb_first`.
 - `mainloop_b2i_msb_first`: address 0x26ff, `bitmaptoint.s` line 232 (35 words). Reached: inside `umo_BitmapToInt`, reached from that routine's own code.
@@ -1239,6 +1240,7 @@ Pixel-path component expansion (RGB, LA, CI, single component), added by AddExpa
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (20).
   It ends the command with an indirect transfer in condition group 31.
 - `expand_la`: address 0x17a3, `expand.s` line 248 (8 words). Reached: transfers in `mmo_Expand`.
+  **Inferred** role: luminance-alpha entry of the expand stage, reached from the condition-0x15 transfer of `mmo_Expand` at 0x1757; its one working word leaves for `epilogue_exp_la` under 0x15, the forward exit of the pixel loops (ge_ops.md), and seven empty words follow before the loop, which scales each component with a float multiply.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_exp_la`.
 - `mainloop_exp_la`: address 0x17ab, `expand.s` line 259 (29 words). Reached: inside `mmo_Expand`, reached from that routine's own code.
@@ -1248,6 +1250,7 @@ Pixel-path component expansion (RGB, LA, CI, single component), added by AddExpa
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (10), move (10).
   It ends the command with an indirect transfer in condition group 31.
 - `expand_l`: address 0x17e6, `expand.s` line 333 (9 words). Reached: transfers in `mmo_Expand`.
+  **Inferred** role: single-luminance entry of the expand stage: `mmo_Expand` reaches it at 0x174e under condition 0x15, on the word after its condition-0x14 transfer to `expand_ci`; an empty word, the 0x15 exit to `epilogue_exp_l`, then seven empty words lead into a loop that, like the luminance-alpha one, multiplies each component as it moves it.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_exp_l`.
 - `mainloop_exp_l`: address 0x17ef, `expand.s` line 345 (29 words). Reached: inside `mmo_Expand`, reached from that routine's own code.
@@ -1266,6 +1269,7 @@ Pixel-path component expansion (RGB, LA, CI, single component), added by AddExpa
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (20).
   It ends the command with an indirect transfer in condition group 31.
 - `expand_ci2`: address 0x1879, `expand.s` line 517 (8 words). Reached: transfers in `expand_ci`.
+  **Inferred** role: second colour-index entry: `expand_ci` jumps here at 0x182d under condition 0x14 before its own loop starts, so the colour-index path has two loops picked by that test; here the 0x15 exit goes to `epilogue_exp_ci2`, the loop is moves only with no multiply, and the closing epilogue is eleven words longer than the first colour-index one.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_exp_ci2`.
 - `mainloop_exp_ci2`: address 0x1881, `expand.s` line 528 (29 words). Reached: inside `mmo_Expand`, reached from that routine's own code.
@@ -4403,6 +4407,7 @@ Pixel-path shift-and-add stage. **Inferred** from its labels and callers.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations shift left (9), logical shift right (3).
   It ends the command with an indirect transfer in condition group 31.
 - `shift_right_rgb`: address 0x1a3a, `shiftadd.s` line 390 (9 words). Reached: transfers in `umo_ShiftAdd_RGB`.
+  **Inferred** role: right-shift path of the RGB shift-and-add stage, taken at 0x19ff on condition 4 of the flags the register-5 move at 0x19e9 sets; after the 0x15 exit to `epilogue_sa_rs_rgb` and eight empty words, its loop applies the logical right shift (unit-1 code 0x5d) to sixteen input words straight into the matching outputs, where the left path uses code 0x5f.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_sa_rs_rgb`.
 - `mainloop_sa_rs_rgb`: address 0x1a43, `shiftadd.s` line 402 (21 words). Reached: inside `umo_ShiftAdd_RGB`, reached from that routine's own code.
@@ -4425,6 +4430,7 @@ Pixel-path shift-and-add stage. **Inferred** from its labels and callers.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations shift left (9), logical shift right (3).
   It ends the command with an indirect transfer in condition group 31.
 - `shift_right_luminance`: address 0x1ad5, `shiftadd.s` line 606 (9 words). Reached: transfers in `umo_ShiftAdd_Luminance`.
+  **Inferred** role: right-shift path of the luminance shift-and-add stage, taken at 0x1a9a on condition 4 after the flag-setting move of register 5 at 0x1a84; its loop shifts right logically (code 0x5d) while widening pairs, each even input word going to three outputs and each odd one to one, sixteen outputs from eight inputs, so a luminance and alpha pair leaves as four components.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): closes 1 loop.
   It has no jump of its own and runs on into `mainloop_sa_rs_luminance`.
 - `mainloop_sa_rs_luminance`: address 0x1ade, `shiftadd.s` line 618 (21 words). Reached: inside `umo_ShiftAdd_Luminance`, reached from that routine's own code.

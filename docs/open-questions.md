@@ -62,8 +62,6 @@ No open questions. Answered and moved to [kernel.md](kernel.md#function-referenc
 
 Settled in the second pass (2026-10-29), in the owning header comments: `TFT_EXTRAP`, `TFT_DETAILTEX` and `TFT_BICUBIC` are blocks of 16, 16 and 33 registers that the firmware's `sendTexTable` fills from libGLcore's table records, with bits 32-39 of the 40-bit curve registers carried in the raster-bus address word ([RM.h](../RM.h)); the output-DMA lengths are in bytes and `HH_ODMA_LEN` is loaded with the line length ([HIP.h](../HIP.h)); the two GE11 trim settings the firmware writes are decoded field by field ([GE.h](../GE.h)). Labelled no-software-dependency with routes: the GE11 enable-mask and write-sync fields, the trim step unit, `HH_CURR_DATA_FM_ARM` and `HH_CURR_DATA_TO_ARM` latch timing, and `TFT_EOR`.
 
-Correction for the owner of [rm.md](rm.md): `fcTbusWrite` sends the 64-bit bus word low half first (it loads +4 of the stack copy before +0), the same order as the firmware's `tbus_write_word` (data, then register << 16 with data bits 32 and up); rm.md says high then low.
-
 | Question | Owner | Routes tried | Next route |
 |---|---|---|---|
 | The 24 geometry-engine special registers (`CHIP_ID` to `SORT_THRD_B`) share one comment block in `GE.h`, with roles from kpm's names only | `GE.h` | kpm's {number, name} list; the production listings (no instruction names the input-FIFO pointer registers as an operand, [ucode/ge_ops.md](../ucode/ge_ops.md#input-and-output-fifo-operations)) | find how kpm reads them (`ge11ReadDiagRegisters` and its callers in kpm) and which field of an engine word selects a special register, then read `mgesi_GetSpecial` and the diagnostic program's uses in `usr/diags/IR/ucode/ge.u` |

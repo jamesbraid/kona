@@ -133,6 +133,7 @@ AA_Response_Step	subroutine for one step of the antialiased response: four float
 AA_Response_Max	two-word subroutine, one move in each unit and a return, giving the response maximum by its name; nothing in the program calls it
 umo_BitmapToFloat	pixel-path stage that expands bitmap bits to float pixels: single-bit masks (4 to 0x80) choose the bits, then the LSB-first or MSB-first loop runs; no slot or ARM function adds it to a path
 umo_BitmapToInt	pixel-path stage that expands bitmap bits to integer pixels with masks and integer adds, through an LSB-first or MSB-first loop; no slot or ARM function adds it to a path
+b2i_msb_first	MSB-first entry of the bitmap-to-integer stage, which `umo_BitmapToInt` takes from its transfer at 0x2692 under condition 0x15; its eight words have the same encodings, in the same order, as the LSB-first set-up at 0x269b to 0x26a2 (the forward 0x15 exit to the epilogue, register loads into G = 0x10, 0 and 6 and the sequencer words), so the bit order is not chosen here but in the loop that follows
 MemRegInit	start-up subroutine that the entry code calls before the first command; its nine words carry no operation the field readings name, so what it sets is held in fields not yet read
 HereWeGo	program entry where the engines start: it loads four start-up values (among them 0x43 and 0x435, which the FIFO reconfiguration after a context save loads again), calls the start-up initialisation and waits for the first command
 mmo_Clamp	pixel-path clamp stage: set-up moves and two clamps, then it runs into its main loop
@@ -292,6 +293,9 @@ uEvalLoadState2D	loads the two-dimensional evaluator state through the ERAM-to-W
 uEvalSwapState1D	swaps in the one-dimensional evaluator state: one copy out to ERAM and one back
 uEvalSwapState2D	swaps in the two-dimensional evaluator state: one copy out to ERAM and one back
 mmo_Expand	pixel-path expand stage: set-up moves, four loops, then its RGB path
+expand_la	luminance-alpha entry of the expand stage, reached from the condition-0x15 transfer of `mmo_Expand` at 0x1757; its one working word leaves for `epilogue_exp_la` under 0x15, the forward exit of the pixel loops (ge_ops.md), and seven empty words follow before the loop, which scales each component with a float multiply
+expand_l	single-luminance entry of the expand stage: `mmo_Expand` reaches it at 0x174e under condition 0x15, on the word after its condition-0x14 transfer to `expand_ci`; an empty word, the 0x15 exit to `epilogue_exp_l`, then seven empty words lead into a loop that, like the luminance-alpha one, multiplies each component as it moves it
+expand_ci2	second colour-index entry: `expand_ci` jumps here at 0x182d under condition 0x14 before its own loop starts, so the colour-index path has two loops picked by that test; here the 0x15 exit goes to `epilogue_exp_ci2`, the loop is moves only with no multiply, and the closing epilogue is eleven words longer than the first colour-index one
 mgeb_BgnFeedbackMode	enters feedback mode: compares the type operand with the GL feedback types (0x601 to 0x604 among 11 constants) and sets mode bits
 mgeb_EndFeedbackMode	leaves feedback mode by clearing bit 28 (mask 0xefffffff)
 mmo_FeedbackTriangle	feedback output for a triangle: writes the polygon token (0x703) and calls the vertex feedback routine
@@ -780,7 +784,9 @@ mmo_SelectRasterPos	selection for a raster position: updates the hit depth range
 mRecordHit	records a selection hit: depth range update and one raster bus word
 mmo_ShiftAdd	pixel-path shift-and-add stage: set-up, then the shift loop
 umo_ShiftAdd_RGB	RGB entry of the shift-and-add stage
+shift_right_rgb	right-shift path of the RGB shift-and-add stage, taken at 0x19ff on condition 4 of the flags the register-5 move at 0x19e9 sets; after the 0x15 exit to `epilogue_sa_rs_rgb` and eight empty words, its loop applies the logical right shift (unit-1 code 0x5d) to sixteen input words straight into the matching outputs, where the left path uses code 0x5f
 umo_ShiftAdd_Luminance	luminance entry of the shift-and-add stage
+shift_right_luminance	right-shift path of the luminance shift-and-add stage, taken at 0x1a9a on condition 4 after the flag-setting move of register 5 at 0x1a84; its loop shifts right logically (code 0x5d) while widening pairs, each even input word going to three outputs and each odd one to one, sixteen outputs from eight inputs, so a luminance and alpha pair leaves as four components
 mmo_DirtySpriteModule	re-selects the sprite module after a state change, through the CRAM-to-ERAM copy
 mSpriteAxial	sprite in axial mode: rotates the sprite about its axis toward the eye with normalised vectors and the adjoint
 mSpriteObject	sprite in object mode: rotation toward the eye from normalised vectors and the adjoint
