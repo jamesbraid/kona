@@ -10,6 +10,19 @@ The "Next route" cells below were converted from requests for measurements on a 
 
 No open entries. **Where this section stopped (2026-10-29, fourth pass).** Answered and moved to [ucode/ge_ops.md](../ucode/ge_ops.md) and [GE.h](../GE.h): how one operation field names two operations (M[10:7] unit 2, M[6:0] unit 1, both live in form 11), the branch conditions' false sides from production handlers that need them (the low flag nibble is unit 1's, not the integer one's), the conditions 0x10, 0x11, 0x14 and 0x15 by their targets, and the input operands (word k is source A = 0x1f, D = k, matched against the host word counts). Labelled unknown with routes: the fourth flag condition (no production use), unit-2 code 0x0f, the pixel-loop exit counter, and how the engine advances its input pointer. The 13 unreached module heads stay labelled unknown with routes in ucode/ge_handlers.md.
 
+## Geometry engine routines
+
+Every `ge.u` label and `geif.u` slot has its own entry in [ucode/ge_handlers.md](../ucode/ge_handlers.md): placement, what reaches it, a role line, and what its words do in the field readings of [ucode/ge_ops.md](../ucode/ge_ops.md). The entries are only as good as those readings; the questions below would sharpen them.
+
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| What the unit-1 operations the diagnostic test does not fix compute, the most common being 0x6df (104 handler uses), 0x6f1 (98) and 0x6dd (85) | `ucode/ge_ops.md` | the 172 expected words of `ge_inst.s`; the per-label operation counts | read the pixel-path packing loops (`mmo_ExtractL12A4`, `mMerge8_16C`, `mmo_DecompressZ16`), where these codes sit next to field masks such as 0xfff and 0xffff0000, and fix shift amounts and directions from the masks |
+| Whether a transfer to address 0 outside condition group 31 is a return | `ucode/ge_isa.md` | the class counts in [ge_handlers.md](../ucode/ge_handlers.md#how-to-read-the-entries) (group-0 transfers go only to named routines; groups 4, 5 and 7 to address 0 sit mostly in subroutines) and the call from `mgeb_LightSpotCutAng` into `mSinCos` | find a link-register or return-address field among the decoded bits of the group-0 words, and check every caller continues after its call |
+| Whether every word in the diagnostic's output-instruction form leaves the engine in production code | `ucode/ge_ops.md` | form-10 and form-12 counts per label; `mMatrixTransposeWW` holds eleven | compare the B field of those words with the register numbers their neighbours read back |
+| What the form-5 stores to engine addresses outside 0x1f4-0x1f8 reach (0xc9-0xd7 in `mgesi_ClearVertex`, 0x161-0x169 elsewhere) | `ucode/ge_ops.md` | the store counts per label | match the addresses with the loads of the drawing modules that run after the handler |
+
+**Where this pass stopped** (2026-10-29). Every row of `ge.u` and `geif.u` in [inventory/ucode.tsv](inventory/ucode.tsv) is understood. Local labels (loop heads, epilogues) carry no role line of their own; their entry names the routine they sit in. 97 label rows cite a mention in another label's entry, where that label is named as a transfer target or address constant, because that entry comes first in the file. The textport image has no inventory rows, and its 92 unnamed functions in [ucode/tport.s](../ucode/tport.s) remain unread one by one.
+
 ## XG (Xtalk widget)
 
 No open questions. The reset values of the command water marks in `XG_HI_LO_WATER` and of the other XG registers are labelled unknown with the routes tried in [XG.h](../XG.h) and [xg.md](xg.md#reset-kona_reset_adaptor); what the `HH_RESET` pulse clears is labelled the same way in [xg.md](xg.md#pipe-reset-konainitialize-and-the-credit-wait-path).

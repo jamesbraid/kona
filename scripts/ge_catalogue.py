@@ -190,7 +190,7 @@ UNIT2 = {0x47: 'float multiply', 0x4f: 'reciprocal Newton step',
          0x57: 'reciprocal square-root Newton step', 0x07: 'double multiply',
          0x27: 'second-unit move', 0x2f: 'second-unit move or minimum', 0x37: 'double move',
          0x3f: 'double move or minimum'}
-A_FORMS = {1, 2, 5, 6, 7, 8, 9, 11, 12, 13, 15}
+A_FORMS = {1, 2, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15}
 INSN = re.compile(r'^([0-9a-f]{4}): [0-9a-f]+ f(\d+)\s+(.*?)(?:\s+;.*)?$')
 
 
