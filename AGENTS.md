@@ -37,13 +37,13 @@ The subdirectories below contain relative symbolic links resolving into `root/` 
 | Directory | Symlinked files | Target in `root/` | DWARF status (6.5.30m) |
 |---|---|---|---|
 | `kona_kernel/` | `kona.a` members (28 `kona_*.o`), `gfx.o`, `rrm.o`, `kernel.o`, `gfxs.a`, `gfxstubs.a` | `usr/cpu/sysgen/IP27boot/` | **DWARF** in all 31 objects |
-| `libglcore/` | `libGLcore.so` (64-bit), `libGLcore_n32.so`, `libGLcore_o32.so`, `libGL.so` | `usr/gfx/arch/IP27KONA64/`, `IP27KONA32/`, `IP27KONA/` | **DWARF** in the 64-bit and N32 libGLcore (N32: 163 compilation units) and libGL; o32 stripped. `pyelftools` cannot read the 64-bit DWARF header, so the extractor uses its symbol table; use `dwarfdump` for the types |
+| `libglcore/` | `libGLcore.so` (64-bit), `libGLcore_n32.so`, `libGLcore_o32.so`, `libGL.so` | `usr/gfx/arch/IP27KONA64/`, `IP27KONA32/`, `IP27KONA/` | **DWARF** in the 64-bit and N32 libGLcore (N32: 163 compilation units) and libGL; o32 stripped. `pyelftools` cannot read the 64-bit DWARF header, so the extractor uses its symbol table; `dwarfdump` reads both |
 | `irisgl/` | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` | **DWARF** (160 and 61 compilation units) |
 | `ddx/` | `kona.so`, `konad.so`, `konal.so`, `konas.so`, `konavis.so`, `glx.so`, `Xsgi` | `usr/lib/X11/dyDDX/`, `usr/gfx/arch/GENERIC/` | Stripped; dynamic symbols only (`kona.so`: 819 functions). `konavis.so` has no code section |
 | `ucode/` | `KONA/` microcode, tables and listings (`ge.u`, `ge11.u`, `geif.u`, `arm1.u`, `tport.bin`, `dg4/`, `vof/`) | `usr/gfx/ucode/KONA/` | Data |
 | `diags/` | `IR/` diagnostics (`irsaudit`, microcode, test vectors), `KONA_bin/` (`ireeprom`, `kpm`, `postmortem`) | `usr/diags/IR/`, `usr/gfx/KONA/bin/` | Stripped |
 
-DWARF status is what `scripts/map_binaries.py` reported on the primary release (IRIX 6.5.30); fill in the 6.5.0 column when you have a 6.5.0 install, since 6.5.0 binaries carry debug info.
+DWARF status is what `scripts/map_binaries.py` reported on the primary release (IRIX 6.5.30). The 6.5.30 DWARF is thin: `dwarfdump -i` finds only compilation units, subprograms with address ranges, global variables and line tables. It has no types, structure members or parameters, in the kernel objects, both libGLcore ABIs, `libGL.so`, `libgl.so` or `libfm.so`. It gives function names, source file names and source line numbers (the `# Line` comments in the assembly), so driver structures must be recovered from the code. Types need a release built with full debug info; fill in the 6.5.0 column when you have a 6.5.0 install, since 6.5.0 binaries carry debug info.
 
 ---
 
