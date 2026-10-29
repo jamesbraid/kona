@@ -34,9 +34,9 @@ user-io	0xc064		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:
 user-io	0xc06c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 user-io	0xc074		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	HIP.h:197	
 user-io	0xc07c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	HIP.h:206	
-user-io	0xc084		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	HIP.h:213	
-user-io	0xc08c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	HIP.h:220	
-user-io	0xc094		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	HIP.h:227	
+user-io	0xc084		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	located	HIP.h:213	
+user-io	0xc08c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	located	HIP.h:220	
+user-io	0xc094		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	located	HIP.h:227	
 user-io	0xc100		r4	12	6	__glkona_wait_rdata;__glkonim_Flush	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:__glkona_wait_rdata	understood	HIP.h:239	
 user-io	0x1fce00		r4	6	6	__glXInitThread	user pipe mapping	usr/gfx/arch/IP27KONA/libGL.so:__glXInitThread	understood	HIP.h:247	
 user-io	0x1fce90		r4	4	4	__glSoftResetContext	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:__glSoftResetContext	understood	HIP.h:255	

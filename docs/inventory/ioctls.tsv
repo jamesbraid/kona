@@ -3,7 +3,7 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 102	0x66	graphics init		sent	__glx_GetString;__iglooGetGraphicsType;crm_setmon;ddxFindAvailableBoards..CGC;+13 more	15	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 103	0x67	graphics init		sent	crm_setmon;gr2ev_info;irixKernInit;main;+4 more	4	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 104	0x68	graphics init		sent	gr2ev_info;main;ng1_setmon;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-105	0x69	graphics init		sent	main	1	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+105	0x69	graphics init		sent	main	1	usr/gfx/KONA/bin/ireeprom:main	located	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 106	0x6a	graphics init		sent	main;mgras_init;setup_ucode	2	usr/gfx/KONA/bin/ireeprom:setup_ucode	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 107	0x6b	graphics init		sent	main	1	usr/gfx/gfxinfo:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 108	0x6c	graphics init		sent	gr2_init;loadfile;mgras_init;odsy_init	1	usr/gfx/gfxinfo:gr2_init	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)

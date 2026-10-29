@@ -1,24 +1,24 @@
 spec	table	page	window	offset	name	count	stride	width	rw	reached_in_code	status	doc	section
-kpm register tables	geometry engine		ge	0x40000	Execution Control Register	1	0	32		0	understood	GE.h:9422	
-kpm register tables	geometry engine		ge	0x40004	Breakpoint Address Register	1	0	32		0	understood	GE.h:9436	
+kpm register tables	geometry engine		ge	0x40000	Execution Control Register	1	0	32		0	located	GE.h:9422	
+kpm register tables	geometry engine		ge	0x40004	Breakpoint Address Register	1	0	32		0	located	GE.h:9436	
 kpm register tables	geometry engine		ge	0x40008	RAMscan Control Register (trashed)	1	0	32		0	understood	GE.h:9444	
-kpm register tables	geometry engine		ge	0x4000c	Write/Sync FIFO Register	1	0	32		0	understood	GE.h:9452	
-kpm register tables	geometry engine		ge	0x40010	Diag Sel Register	1	0	32		0	understood	GE.h:9462	
+kpm register tables	geometry engine		ge	0x4000c	Write/Sync FIFO Register	1	0	32		0	located	GE.h:9452	
+kpm register tables	geometry engine		ge	0x40010	Diag Sel Register	1	0	32		0	located	GE.h:9462	
 kpm register tables	geometry engine		ge	0x40014	Enable Mask Register	1	0	32		0	no-software-dependency	GE.h:9472	
-kpm register tables	geometry engine		ge	0x40018	CM/Ofifo TAG Register	1	0	32		0	understood	GE.h:9484	
+kpm register tables	geometry engine		ge	0x40018	CM/Ofifo TAG Register	1	0	32		0	located	GE.h:9484	
 kpm register tables	geometry engine		ge	0x4001c	Ucode Error register	1	0	32		0	understood	GE.h:9497	
 kpm register tables	geometry engine		ge	0x40020	OFIFO0 A Status Register	1	0	32		0	understood	GE.h:9524	
-kpm register tables	geometry engine		ge	0x40024	OFIFO0 B Status Register	1	0	32		0	understood	GE.h:9532	
-kpm register tables	geometry engine		ge	0x40028	OFIFO1 A Status Register	1	0	32		0	understood	GE.h:9540	
-kpm register tables	geometry engine		ge	0x4002c	OFIFO1 B Status Register	1	0	32		0	understood	GE.h:9548	
+kpm register tables	geometry engine		ge	0x40024	OFIFO0 B Status Register	1	0	32		0	named-only	GE.h:9529	
+kpm register tables	geometry engine		ge	0x40028	OFIFO1 A Status Register	1	0	32		0	named-only	GE.h:9537	
+kpm register tables	geometry engine		ge	0x4002c	OFIFO1 B Status Register	1	0	32		0	named-only	GE.h:9545	
 kpm register tables	geometry engine		ge	0x40030	OFIFO2 A Status Register	1	0	32		0	understood	GE.h:9557	
-kpm register tables	geometry engine		ge	0x40034	OFIFO2 B Status Register	1	0	32		0	understood	GE.h:9565	
+kpm register tables	geometry engine		ge	0x40034	OFIFO2 B Status Register	1	0	32		0	named-only	GE.h:9562	
 kpm register tables	geometry engine		ge	0x40038	OFIFO Control Register (trashed)	1	0	32		0	understood	GE.h:9576	
 kpm register tables	host interface		hip	0x800000	HIP1_HH_GFIFO	1	0	32		0	understood	HIP.h:41	
-kpm register tables	host interface		hip	0x800100	HH_SWITCH	1	0	32		0	understood	HIP.h:270	
+kpm register tables	host interface		hip	0x800100	HH_SWITCH	1	0	32		0	located	HIP.h:309	
 kpm register tables	host interface		hip	0x800108	HIP1_HH_GINTR_INFO	1	0	32		0	understood	HIP.h:320	
 kpm register tables	host interface		hip	0x800108	HIP2_HH_GINTR_INFO	1	0	32		0	understood	HIP.h:320	
-kpm register tables	host interface		hip	0x8001f8	HH_NOP	1	0	32		0	no-software-dependency	HIP.h:335	
+kpm register tables	host interface		hip	0x8001f8	HH_NOP	1	0	32		0	located	HIP.h:335	
 kpm register tables	host interface		hip	0x800200	HH_RTC	1	0	32		0	understood	HIP.h:344	
 kpm register tables	host interface		hip	0x800208	HIP1_HH_GFIFO_LEVEL	1	0	32		1	understood	HIP.h:356	
 kpm register tables	host interface		hip	0x800208	HIP2_HH_GFIFO_LEVEL	1	0	32		1	understood	HIP.h:356	
@@ -52,11 +52,11 @@ kpm register tables	host interface		hip	0x8002b8	HH_ODMA2_TOTAL	1	0	32		1	unders
 kpm register tables	host interface		hip	0x8002c0	HH_ODMA2_OVER	1	0	32		0	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 kpm register tables	host interface		hip	0x8002c8	HIP2_HH_PIO_HI	1	0	32		0	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800300	HH_RESET	1	0	32		1	no-software-dependency	HIP.h:593	
-kpm register tables	host interface		hip	0x800308	HH_ARM_CTRL	1	0	32		0	understood	HIP.h:606	
+kpm register tables	host interface		hip	0x800308	HH_ARM_CTRL	1	0	32		0	located	HIP.h:606	
 kpm register tables	host interface		hip	0x800310	HH_ARM_STATUS	1	0	32		0	understood	HIP.h:615	
 kpm register tables	host interface		hip	0x800320	HH_ARM_STALL	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 kpm register tables	host interface		hip	0x800328	HH_ARM_UNSTALL	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
-kpm register tables	host interface		hip	0x800330	HH_ARM_STEP	1	0	32		0	no-software-dependency	HIP.h:649	
+kpm register tables	host interface		hip	0x800330	HH_ARM_STEP	1	0	32		0	located	HIP.h:649	
 kpm register tables	host interface		hip	0x800338	HH_ARM_CURR_ADDR	1	0	32		0	understood	HIP.h:657	
 kpm register tables	host interface		hip	0x800340	HH_CURR_DATA_FM_ARM	1	0	32		0	no-software-dependency	HIP.h:667	
 kpm register tables	host interface		hip	0x800348	HH_CURR_DATA_TO_ARM	1	0	32		0	no-software-dependency	HIP.h:675	
@@ -65,7 +65,7 @@ kpm register tables	host interface		hip	0x800358	HH_JTAG_TMS	1	0	32		0	understoo
 kpm register tables	host interface		hip	0x800360	HH_JTAG_CTRL	1	0	32		0	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800368	HH_JTAG_STATUS	1	0	32		0	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800370	HH_JTAG_ACCESS	1	0	32		0	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-kpm register tables	host interface		hip	0x800378	HH_JTAG_RESET	1	0	32		0	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+kpm register tables	host interface		hip	0x800378	HH_JTAG_RESET	1	0	32		0	no-software-dependency	HIP.h:714	
 kpm register tables	host interface		hip	0x800380	HIP1_HH_FCI_OVERLAP	1	0	32		0	understood	HIP.h:721	
 kpm register tables	host interface		hip	0x800388	HIP1_HH_FCI_LOOPBACK	1	0	32		0	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800390	HIP1_HH_FCI_ERR_STAT1	1	0	32		1	understood	HIP.h:740	
@@ -75,19 +75,19 @@ kpm register tables	host interface		hip	0x800398	HIP2_HH_GV_ERR_STAT2	1	0	32		1	
 kpm register tables	host interface		hip	0x8003a0	HIP1_HH_FCI_PIO_STATUS	1	0	32		0	understood	HIP.h:770	
 kpm register tables	host interface		hip	0x8003a0	HIP2_HH_GV_OVERLAP	1	0	32		0	understood	HIP.h:770	
 kpm register tables	host interface		hip	0x8003a8	HH_TBUS_STATUS	1	0	32		1	understood	HIP.h:787	
-kpm register tables	host interface		hip	0x8003b0	HH_TFIFO_HI	1	0	32		0	understood	HIP.h:797	
-kpm register tables	host interface		hip	0x8003b8	HIP2_HH_IDMA_HI	1	0	32		0	no-software-dependency	HIP.h:935	
+kpm register tables	host interface		hip	0x8003b0	HH_TFIFO_HI	1	0	32		0	located	HIP.h:797	
+kpm register tables	host interface		hip	0x8003b8	HIP2_HH_IDMA_HI	1	0	32		0	located	HIP.h:935	
 kpm register tables	host interface		hip	0x8003c0	HH_VC_ADDRESS	1	0	32		1	understood	HIP.h:808	
-kpm register tables	host interface		hip	0x8003c8	HH_VC_FREADY	1	0	32		0	no-software-dependency	HIP.h:819	
+kpm register tables	host interface		hip	0x8003c8	HH_VC_FREADY	1	0	32		0	located	HIP.h:819	
 kpm register tables	host interface		hip	0x8003d0	HH_VC_DATA	1	0	32		1	understood	HIP.h:828	
 kpm register tables	host interface		hip	0x8003d8	HH_VC_DATA_INCR	1	0	32		0	understood	HIP.h:836	
-kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	no-software-dependency	HIP.h:843	
+kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	located	HIP.h:843	
 kpm register tables	host interface		hip	0x8003e8	HH_ARM_ADDRESS	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 kpm register tables	host interface		hip	0x8003f0	HH_ARM_DATA	1	0	32		0	understood	HIP.h:861	
 kpm register tables	host interface		hip	0x8003f8	HH_ARM_DATA_INCR	1	0	32		0	understood	HIP.h:869	
 kpm register tables	raster		raster-index	0x1	BEF_DUMP	1	0	32		0	understood	RM.h:399	
-kpm register tables	raster		raster-index	0x2	BEF_PERF_COUNTALL	1	0	32		0	understood	RM.h:408	
-kpm register tables	raster		raster-index	0x3	BEF_PERF_COUNTDRAW	1	0	32		0	understood	RM.h:417	
+kpm register tables	raster		raster-index	0x2	BEF_PERF_COUNTALL	1	0	32		0	located	RM.h:408	
+kpm register tables	raster		raster-index	0x3	BEF_PERF_COUNTDRAW	1	0	32		0	located	RM.h:417	
 kpm register tables	raster		raster-index	0x4	BEF_PERF_COUNTLOAD	1	0	32		0	no-software-dependency	RM.h:422	
 kpm register tables	raster		raster-index	0x5	BEF_PERF_COUNTEMPTY	1	0	32		0	no-software-dependency	RM.h:427	
 kpm register tables	raster		raster-index	0x6	BEF_MAILBOX	1	0	32		0	understood	RM.h:436	
@@ -97,18 +97,18 @@ kpm register tables	raster		raster-index	0x200	BEF_REGSHADOW_READ	1	0	32		0	unde
 kpm register tables	raster		raster-index	0x300	BEF_REGSHADOW_WRITE	1	0	32		0	understood	RM.h:472	
 kpm register tables	raster		raster-index	0x800	PG_GENERAL	1	0	32		0	understood	RM.h:2163	
 kpm register tables	raster		raster-index	0x801	PG_QCOLOR	1	0	32		0	understood	RM.h:2177	
-kpm register tables	raster		raster-index	0x804	PG_BLOAT	1	0	32		0	understood	RM.h:2208	
-kpm register tables	raster		raster-index	0x805	PG_Z_OFF	1	0	32		0	understood	RM.h:2216	
+kpm register tables	raster		raster-index	0x804	PG_BLOAT	1	0	32		0	located	RM.h:2208	
+kpm register tables	raster		raster-index	0x805	PG_Z_OFF	1	0	32		0	located	RM.h:2216	
 kpm register tables	raster		raster-index	0x806	PG_MSK	1	0	32		0	understood	RM.h:2225	
-kpm register tables	raster		raster-index	0x807	PG_WIN_OFFSET_X	1	0	32		0	understood	RM.h:2276	
-kpm register tables	raster		raster-index	0x808	PG_WIN_OFFSET_Y	1	0	32		0	understood	RM.h:2285	
-kpm register tables	raster		raster-index	0x809	PG_SMASK	1	0	32		0	understood	RM.h:2293	
+kpm register tables	raster		raster-index	0x807	PG_WIN_OFFSET_X	1	0	32		0	located	RM.h:2276	
+kpm register tables	raster		raster-index	0x808	PG_WIN_OFFSET_Y	1	0	32		0	located	RM.h:2285	
+kpm register tables	raster		raster-index	0x809	PG_SMASK	1	0	32		0	located	RM.h:2293	
 kpm register tables	raster		raster-index	0x80a	PG_STIPPLE	1	0	32		0	understood	RM.h:2301	
 kpm register tables	raster		raster-index	0x80f	PG_PSPEC	1	0	32		0	understood	RM.h:2198	
 kpm register tables	raster		raster-index	0x810	PG_PRU	1	0	32		0	understood	RM.h:2321	
-kpm register tables	raster		raster-index	0x87f	PG_NOP	1	0	32		0	understood	RM.h:2341	
+kpm register tables	raster		raster-index	0x87f	PG_NOP	1	0	32		0	located	RM.h:2341	
 kpm register tables	raster		raster-index	0x880	PG_PRAM	1	0	32		0	understood	RM.h:2333	
-kpm register tables	raster		raster-index	0xc00	TG_DNOP	1	0	32		0	no-software-dependency	RM.h:489	
+kpm register tables	raster		raster-index	0xc00	TG_DNOP	1	0	32		0	located	RM.h:489	
 kpm register tables	raster		raster-index	0xc01	TG_FIFOLAT	1	0	32		0	understood	RM.h:497	
 kpm register tables	raster		raster-index	0xc02	TG_MISC	1	0	32		0	understood	RM.h:506	
 kpm register tables	raster		raster-index	0xc04	TG_MAP_LEVEL	1	0	32		0	understood	RM.h:518	
@@ -167,27 +167,27 @@ kpm register tables	raster		raster-index	0x140d	TFP_AE_RANGE	1	0	32		0	understoo
 kpm register tables	raster		raster-index	0x140e	TFP_AC	1	0	32		0	understood	RM.h:1259	
 kpm register tables	raster		raster-index	0x140f	TFP_COLOR_FMT	1	0	32		0	understood	RM.h:1269	
 kpm register tables	raster		raster-index	0x1410	TFP_PIX_FMT	1	0	32		0	understood	RM.h:1278	
-kpm register tables	raster		raster-index	0x1411	TFP_NOP	1	0	32		0	understood	RM.h:1284	
-kpm register tables	raster		raster-index	0x1412	TFP_FAKE	1	0	32		0	understood	RM.h:1292	
+kpm register tables	raster		raster-index	0x1411	TFP_NOP	1	0	32		0	named-only	RM.h:1281	
+kpm register tables	raster		raster-index	0x1412	TFP_FAKE	1	0	32		0	located	RM.h:1292	
 kpm register tables	raster		raster-index	0x1413	TFP_TEV_CC1	1	0	32		0	understood	RM.h:1095	
 kpm register tables	raster		raster-index	0x1414	TFP_FOG_CC1	1	0	32		0	understood	RM.h:1131	
 kpm register tables	raster		raster-index	0x1415	TFP_TEXRB_CLR	1	0	32		0	understood	RM.h:1053	
-kpm register tables	raster		raster-index	0x1500	TFP_TEX	1	0	32		0	understood	RM.h:1025	
+kpm register tables	raster		raster-index	0x1500	TFP_TEX	1	0	32		0	named-only	docs/rm.md#shadow-word-names	Shadow word names
 kpm register tables	raster		raster-index	0x150c	TFP_AE	1	0	32		0	understood	RM.h:1227	
 kpm register tables	raster		raster-index	0x153e	TFP_PASSR	1	0	32		0	understood	RM.h:1034	
 kpm register tables	raster		raster-index	0x153f	TFP_TEXRB	1	0	32		0	understood	RM.h:1043	
-kpm register tables	raster		raster-index	0x1800	TFT_EXTRAP	1	0	32		0	understood	RM.h:1301	
-kpm register tables	raster		raster-index	0x1810	TFT_DETAILTEX	1	0	32		0	understood	RM.h:1313	
+kpm register tables	raster		raster-index	0x1800	TFT_EXTRAP	1	0	32		0	located	RM.h:1301	
+kpm register tables	raster		raster-index	0x1810	TFT_DETAILTEX	1	0	32		0	located	RM.h:1313	
 kpm register tables	raster		raster-index	0x1820	TFT_BICUBIC	1	0	32		0	understood	RM.h:1325	
-kpm register tables	raster		raster-index	0x1850	TFT_SBIAS_EN	1	0	32		0	understood	RM.h:1334	
+kpm register tables	raster		raster-index	0x1850	TFT_SBIAS_EN	1	0	32		0	named-only	docs/rm.md#shadow-word-names	Shadow word names
 kpm register tables	raster		raster-index	0x1851	TFT_SCALE	1	0	32		0	understood	RM.h:1346	
 kpm register tables	raster		raster-index	0x1852	TFT_BIAS	1	0	32		0	understood	RM.h:1358	
 kpm register tables	raster		raster-index	0x1853	TFT_TLUT	1	0	32		0	understood	RM.h:1370	
 kpm register tables	raster		raster-index	0x1854	TFT_TLUT_DATA	1	0	32		0	understood	RM.h:1382	
 kpm register tables	raster		raster-index	0x1855	TFT_TEXRB	1	0	32		0	understood	RM.h:1394	
-kpm register tables	raster		raster-index	0x1856	TFT_NOP	1	0	32		0	no-software-dependency	RM.h:1402	
-kpm register tables	raster		raster-index	0x1857	TFT_FAKE	1	0	32		0	understood	RM.h:1409	
-kpm register tables	raster		raster-index	0x1858	TFT_EOR	1	0	32		0	no-software-dependency	RM.h:1417	
+kpm register tables	raster		raster-index	0x1856	TFT_NOP	1	0	32		0	located	RM.h:1402	
+kpm register tables	raster		raster-index	0x1857	TFT_FAKE	1	0	32		0	located	RM.h:1409	
+kpm register tables	raster		raster-index	0x1858	TFT_EOR	1	0	32		0	located	RM.h:1417	
 kpm register tables	raster		raster-index	0x1c00	IMP_CONFIG	1	0	32		0	understood	RM.h:1426	
 kpm register tables	raster		raster-index	0x1c02	IMP_OP	1	0	32		0	understood	RM.h:1467	
 kpm register tables	raster		raster-index	0x1c03	IMP_MS	1	0	32		0	understood	RM.h:1510	
@@ -195,7 +195,7 @@ kpm register tables	raster		raster-index	0x1c06	IMP_CLIP	1	0	32		0	understood	RM
 kpm register tables	raster		raster-index	0x1c07	IMP_SZ0	1	0	32		0	understood	RM.h:1543	
 kpm register tables	raster		raster-index	0x1c08	IMP_SZ1	1	0	32		0	understood	RM.h:1568	
 kpm register tables	raster		raster-index	0x1c09	IMP_DEPTH_CLEAR	1	0	32		0	understood	RM.h:1597	
-kpm register tables	raster		raster-index	0x1c0a	IMP_TAG_CLEAR	1	0	32		0	understood	RM.h:1605	
+kpm register tables	raster		raster-index	0x1c0a	IMP_TAG_CLEAR	1	0	32		0	located	RM.h:1605	
 kpm register tables	raster		raster-index	0x1c0b	IMP_ADDR	1	0	32		0	understood	RM.h:1614	
 kpm register tables	raster		raster-index	0x1c0d	IMP_BL	1	0	32		0	understood	RM.h:1631	
 kpm register tables	raster		raster-index	0x1c0e	IMP_ACCUM	1	0	32		0	understood	RM.h:1651	
@@ -205,10 +205,10 @@ kpm register tables	raster		raster-index	0x1c12	IMP_CLEAR_COLOR	1	0	32		0	unders
 kpm register tables	raster		raster-index	0x1c14	IMP_WMASK_BIT	1	0	32		0	understood	RM.h:1703	
 kpm register tables	raster		raster-index	0x1c3a	IMP_NOP	1	0	32		0	understood	RM.h:1762	
 kpm register tables	raster		raster-index	0x1c3b	IMP_FAKE_SIMPLE_FB_SIZE	1	0	32		0	understood	RM.h:1754	
-kpm register tables	raster		raster-index	0x1c3c	IMP_FAKE_SIMPLE_FB_ORIGIN	1	0	32		0	understood	RM.h:1744	
+kpm register tables	raster		raster-index	0x1c3c	IMP_FAKE_SIMPLE_FB_ORIGIN	1	0	32		0	located	RM.h:1744	
 kpm register tables	raster		raster-index	0x1c3d	IMP_FAKE_DRAWMODE	1	0	32		0	understood	RM.h:1731	
-kpm register tables	raster		raster-index	0x1c3e	IMP_FAKE_DRAW_OFFSET	1	0	32		0	understood	RM.h:1722	
-kpm register tables	raster		raster-index	0x1c3f	IMP_RAMSYNC	1	0	32		0	understood	RM.h:1715	
+kpm register tables	raster		raster-index	0x1c3e	IMP_FAKE_DRAW_OFFSET	1	0	32		0	located	RM.h:1722	
+kpm register tables	raster		raster-index	0x1c3f	IMP_RAMSYNC	1	0	32		0	located	RM.h:1715	
 kpm register tables	raster		raster-index	0x3be0	PGTFPIMP_MSLOC	1	0	32		0	understood	RM.h:1771	
 kpm register tables	raster		raster-index	0x3fc2	PGTG_SCIS	1	0	32		0	understood	RM.h:1796	
 kpm register tables	raster		raster-index	0x3fc4	PGTG_ZRECT	1	0	32		0	understood	RM.h:1809	
@@ -220,21 +220,21 @@ kpm register tables	raster		raster-index	0x3fd5	TGTM_TEX_SIZE	1	0	32		0	understo
 kpm register tables	raster		raster-index	0x3fd6	TGTM_DCTEX_SIZE	1	0	32		0	understood	RM.h:1986	
 kpm register tables	raster		raster-index	0x3fd7	TGTM_TEX_SCENTER	1	0	32		0	understood	RM.h:1999	
 kpm register tables	raster		raster-index	0x3fd8	TGTM_TEX_TCENTER	1	0	32		0	understood	RM.h:2008	
-kpm register tables	raster		raster-index	0x3ff0	COMMON_VERBOSE	1	0	32		0	understood	RM.h:2017	
+kpm register tables	raster		raster-index	0x3ff0	COMMON_VERBOSE	1	0	32		0	located	RM.h:2017	
 kpm register tables	raster		raster-index	0x3ff1	COMMON_PFLUSH	1	0	32		0	understood	RM.h:2023	
-kpm register tables	raster		raster-index	0x3ff3	COMMON_PSTART	1	0	32		0	understood	RM.h:2030	
-kpm register tables	raster		raster-index	0x3ff4	COMMON_PSTOP	1	0	32		0	understood	RM.h:2038	
+kpm register tables	raster		raster-index	0x3ff3	COMMON_PSTART	1	0	32		0	located	RM.h:2030	
+kpm register tables	raster		raster-index	0x3ff4	COMMON_PSTOP	1	0	32		0	located	RM.h:2038	
 kpm register tables	raster		raster-index	0x3ff5	COMMON_FB	1	0	32		0	understood	RM.h:2046	
-kpm register tables	raster		raster-index	0x3ff6	COMMON_PRIMID	1	0	32		0	understood	RM.h:2056	
-kpm register tables	raster		raster-index	0x3ff7	COMMON_STALL	1	0	32		0	understood	RM.h:2063	
+kpm register tables	raster		raster-index	0x3ff6	COMMON_PRIMID	1	0	32		0	located	RM.h:2056	
+kpm register tables	raster		raster-index	0x3ff7	COMMON_STALL	1	0	32		0	located	RM.h:2063	
 kpm register tables	raster		raster-index	0x3ff8	COMMON_IFMT	1	0	32		0	understood	RM.h:2072	
-kpm register tables	raster		raster-index	0x44a8	HTL_LOAD_STALL	1	0	32		0	no-software-dependency	RM.h:480	
+kpm register tables	raster		raster-index	0x44a8	HTL_LOAD_STALL	1	0	32		0	located	RM.h:480	
 kpm register tables	raster		raster-index	0x5000	TML_TEXLD_BASEADDR	1	0	32		0	understood	RM.h:969	
 kpm register tables	raster		raster-index	0x5001	TML_TEXLD_GLOBALOFFSET	1	0	32		0	understood	RM.h:982	
 kpm register tables	raster		raster-index	0x5002	TML_SYNC_WAITDRAW	1	0	32		0	understood	RM.h:992	
 kpm register tables	raster		raster-index	0x5003	TML_SYNC_IDLOAD	1	0	32		0	understood	RM.h:1002	
 kpm register tables	raster		raster-index	0x5004	TML_TM1A_COMPAT	1	0	32		0	understood	RM.h:1011	
-kpm register tables	raster		raster-index	0x53ff	TML_RAMSYNC	1	0	32		0	no-software-dependency	RM.h:1020	
+kpm register tables	raster		raster-index	0x53ff	TML_RAMSYNC	1	0	32		0	located	RM.h:1020	
 kpm register tables	raster		raster-index	0x7fc0	TGTML_NOP	1	0	32		0	understood	RM.h:2094	
 kpm register tables	raster		raster-index	0x7fc1	TGTML_TEXLD_SIZE	1	0	32		0	understood	RM.h:2102	
 kpm register tables	raster		raster-index	0x7fc2	TGTML_TEXLD_STSTART	1	0	32		0	understood	RM.h:2113	
