@@ -1681,7 +1681,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100764c4	1308	TEST_gpi	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100769e0	1032	TEST_hippio	dynsym	documented	ucode/arm1_firmware.md#control-and-status-registers	Control and status registers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10076dec	1564	TEST_icu	dynsym	documented	docs/hip.md#the-token-map-seen-from-the-host	The token map seen from the host
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10077408	1092	TEST_idma_cntrl	dynsym	documented	docs/hip.md#input-dma-command-queue	Input DMA command queue
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007784c	1620	TEST_idma	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007784c	1620	TEST_idma	dynsym	named-only	docs/open-questions.md#geometry-engine-program	Geometry engine program
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10077ea0	784	TEST_impvid	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100781b0	1980	impvid	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10078ff8	588	TEST_hh_reg	dynsym	undocumented		
@@ -1801,7 +1801,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ad210	460	TEST_xmapdid	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ad714	420	TEST_xmapovdid	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100adbfc	520	TEST_xmapmem	dynsym	documented	DG.h:271	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b0094	364	TEST_xmapreg	dynsym	documented	DG.h:247	check); the container layout is in ucode/dg.md. Roles marked INFERRED
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b04ec	1732	TEST_tbusdata	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b04ec	1732	TEST_tbusdata	dynsym	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b0e70	820	TEST_idmabug	dynsym	documented	docs/hip.md#input-dma-command-queue	Input DMA command queue
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b11a4	548	black_hole_ged	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b13c8	304	TEST_geclock	dynsym	undocumented		
@@ -2067,7 +2067,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10107e70	884	TEST_xgid	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101081e4	280	xg_xt_report_stats	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101082fc	816	TEST_encfb	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10109430	1160	TEST_framebuf1	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1010a75c	1840	TEST_tbusfile	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1010a75c	1840	TEST_tbusfile	dynsym	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1010c09c	944	TEST_fog	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1010c994	1056	fog	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10111444	964	TEST_imp9mem	dynsym	undocumented		
