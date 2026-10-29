@@ -90,8 +90,8 @@ These send commands to the pipe. A command is the token's first payload word sto
   Draws a list of points: it loads the position and clip through `kon_loadNfbGCoff` and `HP_X_LOADCLIP`, then sends the points as `HP_X_POINT24`, `HP_X_POINT6`, `HP_X_DATA1` to `HP_X_DATA6` and `HP_X_POINT`. Errors go through `ErrorF`.
 - `konCopyRect` (`kona.so` 0x542a20, 712 bytes): **Established.**
   Copies one rectangle inside the frame buffer: it loads the GC with `kon_loadPixmapGC`, writes `HP_X_LOADPOS` and `HP_X_LOADCLIP`, and then sends `HP_X_PIX_COPY` with the source and destination x and y. It reports failures with `ErrorF` at two sites.
-- `konCopyWindow` (`kona.so` 0x4d3df0, 2112 bytes): **Established.**
-  The copy-window hook. It builds the exposed region with the screen's region hooks (hooks at +0x154, +0x174 and +0x178 of the screen record, which it calls six times in all) for each clip rectangle of the destination and the window's marked list, and moves the covered pixels with the routine at 0x4817f0 (eight call sites), shifted by the difference between the old and new window origin. It sends no token itself.
+- `konCopyWindow` (`kona.so` 0x4d3df0, 2112 bytes): **Inferred.**
+  The copy-window hook. It works on the destination's clip rectangles and the window's marked list through the screen's region hooks (at +0x154, +0x174 and +0x178 of the screen record, among others), and moves the covered pixels by calling the local routine at 0x4817f0 at two sites, shifted by the difference between the old and new window origin. It sends no token itself.
 - `konDrawImage` (`kona.so` 0x552f40, 2276 bytes): **Established.**
   Writes an image rectangle to the frame buffer. It loads state with `kon_loadPixmapGC`, writes `HP_X_LOADPOS` and `HP_X_LOADCLIP`, then streams the pixels as `HP_X_PIX_WRITE` followed by `HP_X_PIX_FINISH`; for large images it sends the `KONA_DMAWRITE` ioctl (10001) instead, and reports failure with `ErrorF` and `perror`. Bulk words use `KonSeqData32_ip19` and its shorter siblings.
 - `konDrawMonoImage` (`kona.so` 0x5566f0, 1724 bytes): **Established.**
@@ -103,20 +103,20 @@ These send commands to the pipe. A command is the token's first payload word sto
 - `konFreeFBBlock` (`kona.so` 0x4d2630, 76 bytes): **Established.**
   Frees a block returned by `konReadFBBlock`: it calls `Xfree` on the pointer at +0x8 of the block record and clears that field.
 - `konImageGlyphBlt` (`kona.so` 0x508720, 2804 bytes): **Established.**
-  General ImageGlyphBlt. It measures the string with `QueryGlyphExtents` (eight sites), loads GC state with `kon_loadImgRectGC` and `kon_loadImgBitmapGC`, writes `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR` and `HP_X_BOX` for the background, then `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH` for the glyph bitmaps. Its fallback is `nfbImageGlyphBlt`.
+  General ImageGlyphBlt. It measures the string with `QueryGlyphExtents`, loads GC state with `kon_loadImgRectGC` and `kon_loadImgBitmapGC`, writes `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR` and `HP_X_BOX` for the background, then `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH` for the glyph bitmaps. Its fallback is `nfbImageGlyphBlt`.
 - `konImageGlyphBltTE10` (`kona.so` 0x4ddbb0, 3832 bytes): **Established.**
   ImageGlyphBlt for fixed-width fonts 10 pixels wide: it packs rows of glyphs into words, then uses the same token sequence as the general version (`HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`, `HP_X_BOX`, `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE`, `HP_X_PIX_FINISH`). Cases it cannot handle go to `nfbImageGlyphBlt`; it prints its arguments through `ErrorF` on error.
 - `konImageGlyphBltTE16` (`kona.so` 0x4deab0, 3044 bytes): **Established.**
   The same operation for fonts 16 pixels wide; a glyph row fits half a word, so two glyphs are packed per word before `HP_X_PIX_WRITE`. It uses `kon_loadImgRectGC` and `kon_loadImgBitmapGC` and falls back to `nfbImageGlyphBlt`.
 - `konImageGlyphBltTE32` (`kona.so` 0x4dafd0, 2540 bytes): **Established.**
-  The same operation for fonts 32 pixels wide, where each glyph row is exactly one word; same tokens and fallbacks as the other widths. It calls `nfbImageGlyphBlt` for the cases it declines and `kon_loadImgBitmapGC` at two sites.
+  The same operation for fonts 32 pixels wide, where each glyph row is exactly one word; same tokens and fallbacks as the other widths. It calls `nfbImageGlyphBlt` for the cases it declines and `kon_loadImgBitmapGC`.
 - `konPolyGlyphBltSolidTE3` (`kona.so` 0x50a7c0, 5660 bytes): **Established.**
-  Solid PolyGlyphBlt for fixed-width fonts 3 pixels wide: it packs the rows of several glyphs into each word, then sends `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`, `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`. Its GC state comes from `kon_loadBitmapGC` (two sites), and the general routine `nfbSolidPolyGlyphBlt` handles anything it declines.
+  Solid PolyGlyphBlt for fixed-width fonts 3 pixels wide: it packs the rows of several glyphs into each word, then sends `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`, `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`. Its GC state comes from `kon_loadBitmapGC`, and the general routine `nfbSolidPolyGlyphBlt` handles anything it declines.
 - `konPolyGlyphBltSolidTE6` (`kona.so` 0x50bde0, 5856 bytes): **Established.**
   Solid PolyGlyphBlt for fonts 6 pixels wide, with the same token sequence as the 3-pixel routine; it loads the GC with `kon_loadBitmapGC` and declines to `nfbSolidPolyGlyphBlt`.
 - `konPolyGlyphBltSolidTE8` (`kona.so` 0x50d5d0, 4700 bytes): **Established.**
   Solid PolyGlyphBlt for fonts 8 pixels wide, packing four glyph rows to a word before the same sequence of `HP_X_PIX_*` tokens; falls back to `nfbSolidPolyGlyphBlt`.
-- `konCreateWindow` (`kona.so` 0x4f4030, 560 bytes): **Established.**
+- `konCreateWindow` (`kona.so` 0x4f4030, 560 bytes): **Inferred.**
   Creates a window's private data: it finds the window's optional record with `FindWindowWithOptional`, fills the private slots, and, when the window needs a hardware window id, sends `HP_X_LOADXMAP_CONFIG` with 1 followed by `HP_WG_FLUSH_1` carrying 0xdeadbeef. It reloads the gamma tables with `konReloadAllGammas` and chains to the saved `konCreateWindow` hook of the layer below.
 
 ### Kona graphics-context loading and caches (`kon_load*`, `kon_*Stipple`, `konValidate*`)
@@ -161,8 +161,8 @@ These send commands to the pipe. A command is the token's first payload word sto
   Stub for tiled FillRects on the pipe path: it only prints a debug message with `ErrorF` and returns.
 - `konTilePatterns` (`kona.so` 0x522ee0, 3596 bytes): **Established.**
   Builds the replicated pattern words for a tile: allocates the buffer with `Xalloc`, replicates rows to fill 32 words when the tile height is 1, 2, 4, 8 or 16 by repeated `bcopy`, and reports an unsupported size with `ErrorF`.
-- `konTileRects` (`kona.so` 0x52ada0, 2636 bytes): **Established.**
-  Tiles a list of rectangles by copying one prepared tile: seven calls through the screen hooks to fetch the box lists and five calls to `nfbReplicateArea` to grow the tile across each rectangle by doubling.
+- `konTileRects` (`kona.so` 0x52ada0, 2636 bytes): **Inferred.**
+  Tiles a list of rectangles by copying one prepared tile: it reads the box lists through the screen's region hooks and calls `nfbReplicateArea` to grow the tile across each rectangle by doubling.
 - `konQueryBestSize` (`kona.so` 0x4d5000, 308 bytes): **Established.**
   Best-size query for the module: for tile and stipple (classes 1 and 2) it rounds the requested width down to a power of two, and for the cursor class it caps both sides at 64. Nothing calls it by name: its address is stored at 0x58663c in the module's data and at 0x58c308 in the global offset table.
 - `konStoreColors` (`kona.so` 0x523cf0, 2468 bytes): **Established.**
@@ -170,7 +170,7 @@ These send commands to the pipe. A command is the token's first payload word sto
 - `konInstallColormap` (`kona.so` 0x564710, 1768 bytes): **Established.**
   Installs a colormap into the display: sends `HP_X_LOADCMAP` with the map address, the entry count and one packed word per entry (10-bit channels), through `KonSeqData32_ip19` and `KonSeqData4_ip19`; it reports errors with `ErrorF`.
 - `konValidateVisual` (`kona.so` 0x52cc30, 4252 bytes): **Inferred.**
-  Re-validates a window's visual state after a change in clip or buffer: it works through the screen's three region slots, calls `konInitiateBufferSwap` at 11 sites, and calls a local routine at 0x53e7b0 at 28 sites. Roles are read from the call structure; the routine at 0x53e7b0 was not read.
+  Re-validates a window's visual state after a change in clip or buffer: it works through the screen's three region slots, calling the screen hooks at +0x154, +0x164, +0x168, +0x16c, +0x178, +0x188, +0x190 and +0x194 on them, and calls the local routines at 0x53e7b0 (ten sites) and 0x4b1cf0 (five sites). Roles are read from the call structure; neither routine was read.
 
 ### Screen set-up, hyperpipe, video control and rendering-manager client (`konInit`, `konAttachXvc`, `rrm*`)
 
@@ -187,12 +187,12 @@ These send commands to the pipe. A command is the token's first payload word sto
 - `konDestroyHyperpipeConfig` (`kona.so` 0x535310, 164 bytes): **Established.**
   Tears down a hyperpipe configuration: it finds the screen in `screenInfo` from the screen number and sends `KONA_NCLOPS_DESTROY_CONFIG` (10024) with the configuration id through the driver connection at +0x64 of the screen's private record, returning 1 if the ioctl failed and 0 if it succeeded.
 - `rrmCreateDefColormap` (`kona.so` 0x4d4630, 976 bytes): **Inferred.**
-  Creates the default colormap for a screen from the visual list (36 bytes per visual record, scanned for the visual whose id matches), by calling `CreateColormap`. It then allocates colours with `AllocColor` (two call sites, with the comparison `sgiOverrideColorCompare`) and refers to the tables `init4sight`, `initGL`, `initPseudo` and `initEnvm` for the initial entries; `ErrorF` reports failure. The meaning of each table was not read.
+  Creates the default colormap for a screen from the visual list (36 bytes per visual record, scanned for the visual whose id matches), by calling `CreateColormap`. It takes the addresses of `AllocColor` and `sgiOverrideColorCompare` and refers to the tables `init4sight`, `initGL`, `initPseudo` and `initEnvm` for the initial entries; `ErrorF` reports failure. The meaning of each table was not read.
 - `rrmBindRNToClip` (`kona.so` 0x579380, 572 bytes): **Inferred.**
-  Binds a rendering node to a window's clip for an ordinary window, from its reads of `rrmWindowPrivateIndex`, `nfbWindowPrivateIndex` and `rrmScreenPrivateIndex`. It allocates the window's record with `allocRRMpriv`, takes a reference with `incrRRMpriv`, picks a display id with `FindBestID` (two sites) or `FindFreeID`, sets the window's flag bits with `incrRRMFlags` and `nfbSetDidFlags`, and releases a replaced record with `Xfree`. It sends no ioctl itself.
+  Binds a rendering node to a window's clip for an ordinary window, from its reads of `rrmWindowPrivateIndex`, `nfbWindowPrivateIndex` and `rrmScreenPrivateIndex`. It allocates the window's record with `allocRRMpriv`, takes a reference with `incrRRMpriv`, picks a display id with `FindBestID` (two sites), sets the window's flag bits with `incrRRMFlags` and `nfbSetDidFlags`, and releases a replaced record with `Xfree`. It sends no ioctl itself.
 - `rrmOGLBindRNToClip` (`kona.so` 0x54aa90, 684 bytes): **Inferred.**
   The same binding for an OpenGL window, whose extra state is found through `glxWindowPrivateIndex`. It calls `allocRRMpriv`, `incrRRMpriv`, `FindBestID`, `FindFreeID`, `incrRRMFlags` (two sites) and `nfbSetDidFlags`, reports a failed allocation with `ErrorF`, and frees the replaced record with `Xfree`.
-- `rrmCopyWindow` (`kona.so` 0x50a740, 120 bytes): **Established.**
+- `rrmCopyWindow` (`kona.so` 0x50a740, 120 bytes): **Inferred.**
   Copy-window wrapper: it calls the saved copy-window hook at +0x78 of the rrm screen record with the window and the old origin passed through, saving and restoring the word at screen +0xe0 around the call, and returns its result.
 - `rrmValidateTree` (`kona.so` 0x540b90, 180 bytes): **Inferred.**
   Hook for ValidateTree: if the window has no rrm private record yet it calls the saved ValidateTree hook (offset +0x7c of the rrm screen record) with the window and the tree, then reinstalls itself at screen +0xcc. When the window already has a record it calls a local routine through the global offset table instead.
@@ -251,61 +251,61 @@ Every `nfbStereo*` function below draws a request once for each eye. The wrapper
   Replaces a new context's operations with the stereo vector: it records the stereo-free vector `nfbSolidOps` in the private record, builds the stereo copy of the table (a 28-byte header) and reports allocation trouble with `ErrorF`.
 - `nfbReduceGC` (`kona.so` 0x525ea0, 116 bytes): **Established.**
   Copies the context's foreground (+0x18), background (+0x1c), plane mask (+0x14), raster op byte (+0x5) and fill-style bits (+0x10) twice into the private record, at +0x28 to +0x4c and again at +0x40 to +0x54 for the second path; a leaf that calls nothing.
-- `nfbSolidFS` (`kona.so` 0x5343b0, 288 bytes): **Established.**
+- `nfbSolidFS` (`kona.so` 0x5343b0, 288 bytes): **Inferred.**
   FillSpans with a solid colour: it loops over the spans and for each calls an indirect routine with the private record's solid-fill word at +0x40 and rop byte at +0x48.
-- `nfbTiledFS` (`kona.so` 0x519ab0, 332 bytes): **Established.**
+- `nfbTiledFS` (`kona.so` 0x519ab0, 332 bytes): **Inferred.**
   FillSpans with a tile: loops over the spans, calling the tiled fill routine named in the window's private record for each. Its address is stored at 0x5882d4 in the module's data, and it reads the window record through the window's private array at +0x84.
-- `nfbStippledFillRects` (`kona.so` 0x52a520, 936 bytes): **Established.**
+- `nfbStippledFillRects` (`kona.so` 0x52a520, 936 bytes): **Inferred.**
   FillRects with a stipple: four indirect calls into the stippled-area routine of the window record, one per fill path. Nothing calls it by name: its address is stored at 0x5882e8 in the module's data, in the operation tables.
-- `nfbOpStippledFillRects` (`kona.so` 0x4d7bc0, 952 bytes): **Established.**
+- `nfbOpStippledFillRects` (`kona.so` 0x4d7bc0, 952 bytes): **Inferred.**
   FillRects with an opaque stipple, structured like the transparent one with four indirect calls into the opaque routine. Nothing calls it by name: its address is stored at 0x588300 in the module's data, in the operation tables.
-- `nfbOpStippledFS` (`kona.so` 0x4d9d40, 676 bytes): **Established.**
+- `nfbOpStippledFS` (`kona.so` 0x4d9d40, 676 bytes): **Inferred.**
   FillSpans with an opaque stipple: three indirect calls into the opaque stipple routine of the private records. Nothing calls it by name: its address is stored at 0x588304 in the module's data, next to the opaque-stippled FillRects pointer.
 - `nfbVert` (`kona.so` 0x544170, 132 bytes): **Established.**
   Wrapper for a vertical one-pixel run: when the two y coordinates in the box argument differ it widens the box by one row and calls the fill routine passed in a register with a count of 1. Called from `nfbSolidZeroSeg`.
-- `nfbPolyPoint` (`kona.so` 0x4eaea0, 728 bytes): **Established.**
+- `nfbPolyPoint` (`kona.so` 0x4eaea0, 728 bytes): **Inferred.**
   PolyPoint for the layer: for each point inside the window's clip it calls through the window record's point-fill routine (two sites); it reads the colour and rop from the private record at +0x28 and +0x30.
 - `nfbSolidPolyGlyphBlt` (`kona.so` 0x4f4390, 2360 bytes): **Established.**
-  Solid PolyGlyphBlt in the generic layer: calls `QueryGlyphExtents` four times for the text box and walks glyph rows to produce rectangles it fills with the solid colour.
+  Solid PolyGlyphBlt in the generic layer: calls `QueryGlyphExtents` for the text box and walks glyph rows to produce rectangles it fills with the solid colour.
 - `nfbCopyArea` (`kona.so` 0x512810, 2692 bytes): **Established.**
-  CopyArea in the generic layer. It decides between a host copy and the window-to-window path: calls `nfbDoBitBltSS` (five sites) for screen-to-screen, `nfbDoBitBltSP` for screen-to-pixmap, `cfb16CopyArea`, `cfb32CopyArea` or `cfbCopyArea` for pixmaps, `miCopyArea` as a fallback, `NotClippedByChildren` for the clip and `miHandleExposures` for the exposures.
-- `nfbDoBitBltSS` (`kona.so` 0x562660, 744 bytes): **Established.**
+  CopyArea in the generic layer. It decides between a host copy and the window-to-window path: calls `nfbDoBitBltSS` (three sites) for screen-to-screen, `nfbDoBitBltSP` for screen-to-pixmap, `cfb16CopyArea`, `cfb32CopyArea` or `cfbCopyArea` for pixmaps, `miCopyArea` as a fallback, `NotClippedByChildren` for the clip and `miHandleExposures` for the exposures.
+- `nfbDoBitBltSS` (`kona.so` 0x562660, 744 bytes): **Inferred.**
   Screen-to-screen box copy: for each box in the region it makes an indirect call (four sites) into the copy routine named in the window's private record. Called from `nfbCopyArea`.
 - `nfbDoBitBltSP` (`kona.so` 0x561ac0, 2968 bytes): **Established.**
-  Screen-to-pixmap box copy. It allocates a buffer with `Xalloc` (four sites), reads the screen into it through the raster-op tables `nfbRopFcn` and `nfbMaskRopFcn`, selected by `rop_needs_src` and `rop_needs_dst`, and frees it with `Xfree`.
-- `nfbDoBitBltPS` (`kona.so` 0x55f110, 340 bytes): **Established.**
+  Screen-to-pixmap box copy. It allocates a buffer with `Xalloc`, reads the screen into it through the raster-op tables `nfbRopFcn` and `nfbMaskRopFcn`, selected by `rop_needs_src` and `rop_needs_dst`, and frees it with `Xfree`.
+- `nfbDoBitBltPS` (`kona.so` 0x55f110, 340 bytes): **Inferred.**
   Pixmap-to-screen box copy: walks the box list of the region argument (+0x8) and for each box calls through the window record to write the pixmap rows to the screen.
-- `nfbSaveAreas` (`kona.so` 0x4fda80, 80 bytes): **Established.**
+- `nfbSaveAreas` (`kona.so` 0x4fda80, 80 bytes): **Inferred.**
   Save-under hook: forwards to `nfbDoBitBltSP` with the saved-area record to copy the covered screen area into a pixmap (the arguments 3 and -1 select the copy and all planes).
-- `nfbRestoreAreas` (`kona.so` 0x52a3f0, 292 bytes): **Established.**
-  Save-under restore hook: it calls `nfbDoBitBltPS` at six sites to copy the saved pixmap back to the screen, one per box.
-- `nfbReplicateArea` (`kona.so` 0x4f0990, 632 bytes): **Established.**
+- `nfbRestoreAreas` (`kona.so` 0x52a3f0, 292 bytes): **Inferred.**
+  Save-under restore hook: it calls `nfbDoBitBltPS` at two sites to copy the saved pixmap back to the screen, one per box.
+- `nfbReplicateArea` (`kona.so` 0x4f0990, 632 bytes): **Inferred.**
   Tiles a source box across a destination box by doubling: four indirect calls into the copy routine, starting from one tile and copying the grown block back into itself. Called from `konTileRects`.
-- `nfbPutImage` (`kona.so` 0x576e70, 1384 bytes): **Established.**
-  PutImage in the generic layer: it routes through the GC's operations (three indirect calls), calls `konInitiateBufferSwap` at two sites when the drawable is double-buffered, and uses `PixmapWidthPaddingInfo` for row sizes.
+- `nfbPutImage` (`kona.so` 0x576e70, 1384 bytes): **Inferred.**
+  PutImage in the generic layer: it routes through the GC's operations by indirect calls, calls the local routine at 0x4acef0 at two sites, and uses `PixmapWidthPaddingInfo` for row sizes.
 - `nfbShmPutImage` (`kona.so` 0x4ef2f0, 576 bytes): **Established.**
-  PutImage from shared memory: it checks the image format and depth, reports an unsupported one with `ErrorF` at four sites, and uses `PixmapWidthPaddingInfo` and `globalSerialNumber` to build a pixmap header over the shared data.
+  PutImage from shared memory: it checks the image format and depth, reports an unsupported one with `ErrorF`, and uses `PixmapWidthPaddingInfo` and `globalSerialNumber` to build a pixmap header over the shared data.
 - `nfbCreatePixmap` (`kona.so` 0x57a170, 468 bytes): **Established.**
   Creates a pixmap: allocates the record and its data with `Xalloc` (two sites), sizes rows with `PixmapWidthPaddingInfo`, stamps `globalSerialNumber`, and reports an unsupported depth with `ErrorF`; in a multi-screen setup it consults `panoramiXMode` and `panoramiXSharePixmap`.
 - `nfbCreateWindow` (`kona.so` 0x4d95b0, 1104 bytes): **Established.**
-  Creates the window's frame-buffer record: allocates it with `Xalloc` (five sites), looks up the window's visual with `LookupIDByType`, uses `FindWindowWithOptional` (six sites) to find the optional fields, and sets its private index to `nfbWindowPrivateIndex`.
-- `nfbDestroyWindow` (`kona.so` 0x526280, 212 bytes): **Established.**
+  Creates the window's frame-buffer record: allocates it with `Xalloc` (two sites), looks up the window's visual with `LookupIDByType`, uses `FindWindowWithOptional` (six sites) to find the optional fields, and sets its private index to `nfbWindowPrivateIndex`.
+- `nfbDestroyWindow` (`kona.so` 0x526280, 212 bytes): **Inferred.**
   Releases the window's record: it calls the screen hook at +0x160 for each of the stored colour ids in a loop, then frees two blocks with `Xfree`.
 - `nfbPositionWindow` (`kona.so` 0x522300, 8 bytes): **Established.**
   Hook that does nothing and returns 1 (TRUE); the layer needs no work when a window moves. Its address is stored at 0x58665c in the module's data.
-- `nfbUnrealizeWindow` (`kona.so` 0x55ceb0, 8 bytes): **Established.**
+- `nfbUnrealizeWindow` (`kona.so` 0x55ceb0, 8 bytes): **Inferred.**
   Hook that returns 1 immediately; unmapping a window needs no frame-buffer work. Its address is stored at 0x586668 in the module's data, eight bytes before the post-validate hook of the same table.
-- `nfbMarkWindow` (`kona.so` 0x56a730, 180 bytes): **Established.**
+- `nfbMarkWindow` (`kona.so` 0x56a730, 180 bytes): **Inferred.**
   Marks a window as needing revalidation: sets the flag word for its colour-map group (found through the window record at +0x18 and the screen's table at +0x3c), and allocates a 24-byte block with `Xalloc` if the window has none, with `Must_have_memory` set during the call.
-- `nfbMarkUnrealizedWindow` (`kona.so` 0x51d5d0, 292 bytes): **Established.**
+- `nfbMarkUnrealizedWindow` (`kona.so` 0x51d5d0, 292 bytes): **Inferred.**
   Marks a window when it is unrealised: it makes three indirect calls into the screen's mark hooks to flag the window and its parents. Its address is stored at 0x58679c in the module's data, and it calls through the screen's hook three times.
-- `nfbPostValidateTree` (`kona.so` 0x4f4f80, 200 bytes): **Established.**
+- `nfbPostValidateTree` (`kona.so` 0x4f4f80, 200 bytes): **Inferred.**
   After a tree validation it calls the window record's hook with the argument 3, once per window passed, to finish the revalidation. Its address is stored at 0x586670 in the module's data, and it reads the window record through the window's private array at +0x84.
 - `nfbTreeObscured` (`kona.so` 0x4dc4b0, 352 bytes): **Established.**
   Walks the window tree and sends visibility events with `SendVisibilityNotify` for windows that became fully obscured (visibility state 2) or visible, using the saved flag bits to avoid repeats.
 - `nfbPaintWindowBackground` (`kona.so` 0x4da9c0, 580 bytes): **Established.**
-  Paints a window's background: it reports an unrecognised background state with `ErrorF` (three sites) and otherwise calls the fill routine selected by the window record's background type (1 solid, 2 tile, 3 parent-relative). It calls `ErrorF` at three sites for background states it does not recognise; its address is stored at 0x586678 in the module's data.
-- `nfbSaveScreen` (`kona.so` 0x4d7f80, 64 bytes): **Established.**
+  Paints a window's background: it reports an unrecognised background state with `ErrorF` and otherwise calls the fill routine selected by the window record's background type (1 solid, 2 tile, 3 parent-relative). It calls `ErrorF` for background states it does not recognise; its address is stored at 0x586678 in the module's data.
+- `nfbSaveScreen` (`kona.so` 0x4d7f80, 64 bytes): **Inferred.**
   Screen saver hook: calls the function at +0xc0 of the object at +0x74 of the screen record, passing the blank flag (1 when the argument is 0) and the screen.
 - `nfbCursorLimits` (`kona.so` 0x527c50, 108 bytes): **Established.**
   Clamps the cursor's confinement box: it limits the new box (argument 4) to the screen extents at +0x8 and +0xa, writing the result halfwords to the output box; a leaf.
@@ -316,11 +316,11 @@ Every `nfbStereo*` function below draws a request once for each eye. The wrapper
 - `nfbFixupDepths` (`kona.so` 0x53bc60, 532 bytes): **Established.**
   Counts the visuals of each depth in a visual list into a 16-entry table of words on its stack, and rewrites the depth records to match; a leaf. It steps through 36-byte visual records reading the halfword at +0xa of each, and counts them into a 16-word table on its own stack; nothing in the module's code or data points at it.
 - `nfbInitHWCmapArrays` (`kona.so` 0x566760, 2276 bytes): **Established.**
-  Allocates the arrays that track the hardware colormaps and their groups with `Xalloc` (two sites), fills them with `memcpy` (five sites) and frees the temporary list with `Xfree`.
+  Allocates the arrays that track the hardware colormaps and their groups with `Xalloc` (two sites), fills them with `memcpy` and frees the temporary list with `Xfree`.
 - `nfbReadDisplayRegisterInfo` (`kona.so` 0x50a140, 168 bytes): **Established.**
   Reserves a screen private slot with `AllocateScreenPrivateIndex` and calls `ReadDisplayRegisterInfo` to fill the register description for the read-display extension.
 - `nfbReadDisplay` (`kona.so` 0x504ca0, 5260 bytes): **Established.**
-  Reads pixels from the screen for the read-display extension. It walks `WindowTable` and the window records, locates the cursor with `GetSpritePosition` and `GetSpriteCursor` (three sites), assembles the reply in an `Xalloc` buffer, sends it with `WriteToClient` and frees it with `Xfree`; it reports bad requests with `ErrorF`.
+  Reads pixels from the screen for the read-display extension. It walks `WindowTable` and the window records, locates the cursor with `GetSpritePosition` and `GetSpriteCursor`, assembles the reply in an `Xalloc` buffer, sends it with `WriteToClient` and frees it with `Xfree`; it reports bad requests with `ErrorF`.
 - `nfbInitRootWindow` (`kona.so` 0x5325d0, 2000 bytes): **Established.**
   Sets up the root window: it looks up background and border colours with `OsLookupColor` and `AllocColor`, makes a scratch GC with `GetScratchGC`, creates the default colormap with `CreateColormap`, sets the window properties with `ChangeWindowProperty` (five sites), interns atoms with `MakeAtom`, checks capabilities with `nmbxLookupCapability`, and ends the server with `FatalError` or `exit` on failure.
 - `nfbGenericScreenInit` (`kona.so` 0x5346b0, 3104 bytes): **Established.**
@@ -357,11 +357,11 @@ The sample server's device-independent drawing, region and window-tree code, com
 - `miFreeSpanGroup` (`kona.so` 0x5352d0, 60 bytes): **Established.**
   Frees a span group's span array with `Xfree`. Called from `miCleanupSpanData`. Called from `miCleanupSpanData`.
 - `miAppendSpans` (`kona.so` 0x5353c0, 368 bytes): **Established.**
-  Appends one span group to another, calling `miSubtractSpans` at three sites to drop overlap and `Xrealloc` to grow the array.
+  Appends one span group to another, calling `miSubtractSpans` to drop overlap and `Xrealloc` to grow the array.
 - `miWideLine` (`kona.so` 0x55d7a0, 2180 bytes): **Established.**
-  PolyLine for lines wider than one pixel. It builds spans with `miSetupSpanData`, fills them through calls into the GC's span routine (two sites, plus four indirect calls) and releases them with `miCleanupSpanData`.
+  PolyLine for lines wider than one pixel. It builds spans with `miSetupSpanData`, calls the local routines at 0x4a7050 (two sites), 0x544200 (two sites) and 0x4866b0 (four sites) to generate and fill them, and releases them with `miCleanupSpanData`.
 - `miWideDash` (`kona.so` 0x561160, 2392 bytes): **Established.**
-  The dashed form of the wide-line routine: dash steps via `miStepDash` (two calls), span building with `miSetupSpanData`, projecting caps with `miLineProjectingCap`, a one-pixel fallback in `miZeroDashLine` and clean-up with `miCleanupSpanData`.
+  The dashed form of the wide-line routine: dash steps via `miStepDash`, span building with `miSetupSpanData` and the local routines at 0x544200 (two sites) and 0x4866b0 (four sites), projecting caps with `miLineProjectingCap`, a one-pixel fallback in `miZeroDashLine` and clean-up with `miCleanupSpanData`.
 - `miZeroDashLine` (`kona.so` 0x4f1840, 72 bytes): **Established.**
   Thin wrapper for dashed zero-width lines: forwards its arguments with a mode of 1 to `miWideDash`.
 - `miPolyBuildPoly` (`kona.so` 0x4f0c10, 2216 bytes): **Established.**
@@ -371,74 +371,74 @@ The sample server's device-independent drawing, region and window-tree code, com
 - `miZeroArcSetup` (`kona.so` 0x4f6040, 5308 bytes): **Established.**
   Computes the starting state of the zero-width arc stepper from the arc's angles and axes. Its code calls `sin` four times and `cos` twice, and compares angles with 5760, 11520, 17280 and 23040 (the quarter-circle boundaries in 64ths of a degree).
 - `miZeroPolyArc` (`kona.so` 0x578bc0, 1820 bytes): **Established.**
-  PolyArc for zero-width arcs when the fast point stepper does not apply. It saves and changes the GC with `DoChangeGC` (three sites) and `ValidateGC` (four sites), steps the dash with `miStepDash` and calls `miPolyArc` for the general ellipse case.
+  PolyArc for zero-width arcs when the fast point stepper does not apply. It saves and changes the GC with `DoChangeGC` (two sites) and `ValidateGC` (two sites), steps the dash with `miStepDash` and calls the local routine at 0x492140; the address of `miPolyArc` is held for the case where it re-dispatches.
 - `miFillArcSliceSetup` (`kona.so` 0x56a800, 2368 bytes): **Established.**
-  Computes the edge data for a pie slice or chord fill: calls `ceil` five times and `floor` through the table, uses `__dcis` four times for double-precision compares, and compares angles with 5760 and 11520.
+  Computes the edge data for a pie slice or chord fill: calls `ceil` at two sites and the local routine at 0x4f2160 at two sites, uses `__dcis` at two sites for double-precision compares, and compares angles with 5760 and 11520.
 - `miEllipseAngleToSlope` (`kona.so` 0x54a810, 636 bytes): **Established.**
-  Converts an arc angle in 64ths of a degree to the slope of the corresponding ellipse point: it uses `floor` twice and `__dcis` for the compare, and handles the quarter-turn angles 5760, 11520 and 17280 as special cases.
+  Converts an arc angle in 64ths of a degree to the slope of the corresponding ellipse point: it uses `floor` and `__dcis` for the compare, and handles the quarter-turn angles 5760, 11520 and 17280 as special cases.
 - `miFillWideEllipse` (`kona.so` 0x51d160, 1124 bytes): **Established.**
-  Fills a wide-line ellipse by looping over rows and emitting spans, and frees its temporary span array with `Xfree` (two sites).
+  Fills a wide-line ellipse by looping over rows and emitting spans, and frees its temporary span array with `Xfree`.
 - `miFillConvexPoly` (`kona.so` 0x5511a0, 1964 bytes): **Established.**
-  Fills a convex polygon directly: finds the top and bottom vertices, walks both edges with integer stepping, and emits spans by calling through the GC (two sites). Called from `miFillPolygon`.
+  Fills a convex polygon directly: finds the top and bottom vertices, walks both edges with integer stepping, and emits spans by calling the local routine at 0x56a650 and a pointer. Called from `miFillPolygon`.
 - `miInsertEdgeInET` (`kona.so` 0x55e3d0, 452 bytes): **Established.**
   Inserts a polygon edge into the edge table bucket for its starting scanline, allocating a bucket record of 304 bytes with `Xalloc` when it needs one.
 - `miCreateETandAET` (`kona.so` 0x573de0, 660 bytes): **Established.**
   Builds the edge table and the empty active-edge list for a polygon fill, calling `miInsertEdgeInET` for every edge and freeing the storage with `miFreeStorage` on failure.
-- `miPolyFillRect` (`kona.so` 0x525570, 2344 bytes): **Established.**
+- `miPolyFillRect` (`kona.so` 0x525570, 2344 bytes): **Inferred.**
   PolyFillRect on top of the GC's FillSpans: clips each rectangle to the composite clip and emits one span row per scanline by an indirect call. Called from `cfb16PolyFillRect`, `cfb16ValidateGC`, `cfb32PolyFillRect`.
-- `miPolyRectangle` (`kona.so` 0x4f5540, 992 bytes): **Established.**
+- `miPolyRectangle` (`kona.so` 0x4f5540, 992 bytes): **Inferred.**
   PolyRectangle built from line segments: compares coordinates against 32767 and -32768 and issues the four edges of each rectangle through the GC's line routine (three sites). Its address is stored at 0x586860 in the module's data and in twenty-five operation vectors in all, and it calls through the vector three times.
 - `miPolySegment` (`kona.so` 0x5379e0, 152 bytes): **Established.**
   PolySegment built on the GC's PolyLine routine: it calls it once per segment with two points. Called from `cfb16ValidateGC`, `cfb32ValidateGC`, `cfbValidateGC`.
 - `miOpqStipDrawable` (`kona.so` 0x554fc0, 1368 bytes): **Established.**
-  Draws an opaque stipple into a drawable by the two-pass method: `GetScratchGC` for a work context, `dixChangeGC` (four sites) and `ValidateGC` (twelve sites) to switch between background and foreground fills, `miClearDrawable` for the background and `FreeScratchGC` when done.
+  Draws an opaque stipple into a drawable by the two-pass method: `GetScratchGC` for a work context, `dixChangeGC` (four sites) and `ValidateGC` (five sites) to switch between background and foreground fills, `miClearDrawable` for the background and `FreeScratchGC` when done.
 - `miImageText8` (`kona.so` 0x4d8b60, 136 bytes): **Established.**
-  ImageText for 8-bit fonts: calls `GetGlyphs` at two sites to look up the glyphs, then calls the GC's ImageGlyphBlt through the operation table.
+  ImageText for 8-bit fonts: calls `GetGlyphs` to look up the glyphs, then calls the GC's ImageGlyphBlt through the operation table.
 - `miPolyText16` (`kona.so` 0x4ffaa0, 556 bytes): **Established.**
   PolyText for 16-bit fonts: calls `GetGlyphs` twice and dispatches on the item type (font change versus text) to the GC's PolyGlyphBlt.
 - `miImageGlyphBlt` (`kona.so` 0x4ef530, 456 bytes): **Established.**
-  Default ImageGlyphBlt on top of other operations: calls `QueryGlyphExtents`, then `DoChangeGC` (three sites) and `ValidateGC` (four sites) to switch fill style, filling the background box and drawing the glyphs.
+  Default ImageGlyphBlt on top of other operations: calls `QueryGlyphExtents`, then `DoChangeGC` (three sites) and `ValidateGC` (two sites) to switch fill style, filling the background box and drawing the glyphs.
 - `miMarkWindow` (`kona.so` 0x501330, 108 bytes): **Established.**
   Allocates a 24-byte per-window validation record with `XNFalloc` when the window has none.
-- `miMarkOverlappedWindows` (`kona.so` 0x4d7980, 564 bytes): **Established.**
+- `miMarkOverlappedWindows` (`kona.so` 0x4d7980, 564 bytes): **Inferred.**
   Walks the sibling list marking each window that the target overlaps, calling through the screen's mark-window hook (five sites). Called from `miScreenInit`.
-- `miMarkUnrealizedWindow` (`kona.so` 0x567330, 124 bytes): **Established.**
+- `miMarkUnrealizedWindow` (`kona.so` 0x567330, 124 bytes): **Inferred.**
   Marks a window for revalidation when it becomes unrealised, calling the screen's mark hook three times. Called from `miScreenInit`.
-- `miValidateTree` (`kona.so` 0x552880, 1292 bytes): **Established.**
-  Recomputes the clip lists of a window subtree after a configure or map. It makes 21 indirect calls into the screen's clip-computation hooks and ten calls to local helpers, and bumps `globalSerialNumber` for each window it touches.
-- `miHandleValidateExposures` (`kona.so` 0x576d00, 364 bytes): **Established.**
+- `miValidateTree` (`kona.so` 0x552880, 1292 bytes): **Inferred.**
+  Recomputes the clip lists of a window subtree after a configure or map. It makes calls through the screen's clip-computation hooks (thirty indirect calls in all) and one call to the local routine at 0x48f100, and bumps `globalSerialNumber` for each window it touches.
+- `miHandleValidateExposures` (`kona.so` 0x576d00, 364 bytes): **Inferred.**
   After validation, generates exposures for newly uncovered regions through the screen's hooks (six indirect calls) and frees the temporary regions with `Xfree`.
 - `miWindowExposures` (`kona.so` 0x526360, 880 bytes): **Established.**
-  Computes the exposed region of a window and sends it as Expose events with `miSendExposures` at fourteen sites, one per output path.
+  Computes the exposed region of a window and sends it as Expose events with `miSendExposures`, choosing among several output paths.
 - `miMoveWindow` (`kona.so` 0x506440, 696 bytes): **Established.**
-  Implements MoveWindow: updates the window size and border with `SetWinSize` and `SetBorderSize`, restacks with `MoveWindowInStack`, moves the children with `ResizeChildrenWinSize` (nine sites) and tells the server with `WindowsRestructured`.
+  Implements MoveWindow: updates the window size and border with `SetWinSize` and `SetBorderSize`, restacks with `MoveWindowInStack`, moves the children with `ResizeChildrenWinSize` and tells the server with `WindowsRestructured`.
 - `miSlideAndSizeWindow` (`kona.so` 0x5335b0, 3044 bytes): **Established.**
-  The combined move and resize used by ConfigureWindow. It unmaps affected windows with `UnmapWindow` (six sites), applies gravity with `GravityTranslate` (19 sites), restacks with `MoveWindowInStack` and resizes children by `TraverseTree`, ending with `WindowsRestructured`.
+  The combined move and resize used by ConfigureWindow. It unmaps affected windows with `UnmapWindow` (six sites), applies gravity with `GravityTranslate` (two sites), restacks with `MoveWindowInStack` and resizes children by `TraverseTree`, ending with `WindowsRestructured`.
 - `miChangeBorderWidth` (`kona.so` 0x56b300, 504 bytes): **Established.**
-  Sets a window's border width: calls `SetBorderSize` at five sites to propagate it and `WindowsRestructured` at six sites for the revalidation.
+  Sets a window's border width: calls `SetBorderSize` to propagate it and then revalidates through `WindowsRestructured`.
 - `miSetShape` (`kona.so` 0x5639f0, 816 bytes): **Established.**
-  Applies a changed window shape: updates sizes with `SetWinSize` and `SetBorderSize`, resizes children with `ResizeChildrenWinSize` (11 sites), checks the pointer with `CheckCursorConfinement` and reports with `WindowsRestructured`.
-- `miChangeSaveUnder` (`kona.so` 0x567e00, 208 bytes): **Established.**
+  Applies a changed window shape: updates sizes with `SetWinSize` and `SetBorderSize`, resizes children with `ResizeChildrenWinSize`, checks the pointer with `CheckCursorConfinement` and reports with `WindowsRestructured`.
+- `miChangeSaveUnder` (`kona.so` 0x567e00, 208 bytes): **Inferred.**
   Maintains the count of viewable save-under windows: it adjusts `numSaveUndersViewable` and `deltaSaveUndersViewable` and calls the screen's hook.
 - `miComputeCompositeClip` (`kona.so` 0x5013a0, 748 bytes): **Established.**
-  Recomputes a GC's composite clip from the drawable's clip and the client clip, using `NotClippedByChildren` at three sites when the GC subwindow mode is clip-by-children, and storing the result in the GC's private record found through `miGCPrivateIndex`.
+  Recomputes a GC's composite clip from the drawable's clip and the client clip, using `NotClippedByChildren` when the GC subwindow mode is clip-by-children, and storing the result in the GC's private record found through `miGCPrivateIndex`.
 - `miChangeClip` (`kona.so` 0x4f4260, 296 bytes): **Established.**
-  Replaces a GC's client clip: it frees the old clip with `Xfree` (three sites) and installs the new rectangle list or region.
-- `miCopyClip` (`kona.so` 0x565bd0, 244 bytes): **Established.**
+  Replaces a GC's client clip: it frees the old clip with `Xfree` and installs the new rectangle list or region.
+- `miCopyClip` (`kona.so` 0x565bd0, 244 bytes): **Inferred.**
   Copies a GC's client clip into another by calling the screen's region copy hook (four sites). Its address is stored at 0x589dd8 in the module's data, the copy-clip slot of the context function table at 0x589dc0.
-- `miDestroyClip` (`kona.so` 0x565b30, 152 bytes): **Established.**
+- `miDestroyClip` (`kona.so` 0x565b30, 152 bytes): **Inferred.**
   Releases a GC's client clip, calling the screen's region destroy hook for a region clip. Its address is stored at 0x589dd4 in the module's data, the destroy-clip slot of the context function table at 0x589dc0.
-- `miDestroyGC` (`kona.so` 0x51d700, 160 bytes): **Established.**
+- `miDestroyGC` (`kona.so` 0x51d700, 160 bytes): **Inferred.**
   Destroys a GC: frees its client clip and composite clip through the screen hooks, and calls `miDestroyGCOps` twice.
-- `miCopyGC` (`kona.so` 0x52f210, 8 bytes): **Established.**
+- `miCopyGC` (`kona.so` 0x52f210, 8 bytes): **Inferred.**
   Empty hook: returns at once without touching either context. Its address is stored at 0x589dc8 in the module's data, the copy slot of the context function table that begins at 0x589dc0.
 - `miGetImage` (`kona.so` 0x51e860, 768 bytes): **Established.**
-  Default GetImage built on CopyArea: it gets a scratch GC with `GetScratchGC` (four sites), adjusts it with `DoChangeGC`, validates with `ValidateGC`, copies into a temporary pixmap and frees the scratch GC with `FreeScratchGC`. It also calls `konInitiateBufferSwap` and `ffs`.
+  Default GetImage built on CopyArea: it gets a scratch GC with `GetScratchGC`, adjusts it with `DoChangeGC`, validates with `ValidateGC`, copies into a temporary pixmap and frees the scratch GC with `FreeScratchGC`. It also calls `ffs` and the local routine at 0x4a95d0.
 - `miCopyPlane` (`kona.so` 0x5750b0, 916 bytes): **Established.**
-  Default CopyPlane: clips source and destination, draws with `miOpqStipDrawable`, handles exposures with `miHandleExposures` (five sites), and calls `ffs` to find the plane bit and `konInitiateBufferSwap` before reading the source.
-- `miCreateScreenResources` (`kona.so` 0x4f2f70, 280 bytes): **Established.**
+  Default CopyPlane: clips source and destination, draws with `miOpqStipDrawable`, handles exposures with `miHandleExposures`, and calls `ffs` to find the plane bit and the local routine at 0x4a95d0 before reading the source.
+- `miCreateScreenResources` (`kona.so` 0x4f2f70, 280 bytes): **Inferred.**
   Creates the root pixmap through the screen hook, stores it in the screen record, and releases a temporary block with `Xfree` on two paths.
-- `miCloseScreen` (`kona.so` 0x4e0f30, 52 bytes): **Established.**
+- `miCloseScreen` (`kona.so` 0x4e0f30, 52 bytes): **Inferred.**
   Closes a screen: it calls the hook at +0xf0 of the screen record with the root pixmap pointer from screen +0x74, which releases the root pixmap, and returns its result.
 - `miGetLayerWindow` (`kona.so` 0x547240, 8 bytes): **Established.**
   Leaf that returns the word stored at +0x24 of the window record; the module has no layered windows, so the lookup is a field read with no calls.
@@ -456,18 +456,18 @@ One-bit-deep drawing for bitmaps and monochrome windows, used when a drawable is
 - `mfbReduceRop` (`kona.so` 0x4fdad0, 404 bytes): **Established.**
   Collapses a raster op and a one-bit source pixel into one of the four simple results (clear, set, invert or leave alone, returned as 0, 15, 10 and 5): a jump table over the sixteen raster ops, with one table for source bit set and one for clear. A leaf. Called from `cfbCopyPlane`, `mfbCopyPlane`, `mfbCreateGC`.
 - `mfbSegmentSD` (`kona.so` 0x4d1c60, 2500 bytes): **Established.**
-  Dashed PolySegment for one-bit drawables. It reduces the raster op with `mfbReduceRop`, advances the dash with `miStepDash`, draws each dash through `mfbBresD` (two sites), and clips with `miZeroClipLine` (two sites).
+  Dashed PolySegment for one-bit drawables. It reduces the raster op with `mfbReduceRop`, advances the dash with `miStepDash`, draws each dash through `mfbBresD` (two sites), and clips with `miZeroClipLine`.
 - `mfbPolyGlyphBltWhite` (`kona.so` 0x4d8cd0, 2264 bytes): **Established.**
-  PolyGlyphBlt on a one-bit drawable that sets pixels where the glyph is set. It calls `QueryGlyphExtents` twice to size the string and writes glyph rows using `starttab` and `partmasks` for the ragged sides.
+  PolyGlyphBlt on a one-bit drawable that sets pixels where the glyph is set. It calls `QueryGlyphExtents` to size the string and writes glyph rows using `starttab` and `partmasks` for the ragged sides.
 - `mfbPolyGlyphBltBlack` (`kona.so` 0x4f7880, 3144 bytes): **Established.**
-  PolyGlyphBlt on a one-bit drawable that clears pixels where the glyph is set; two `QueryGlyphExtents` calls, and the same table use as the white variant.
+  PolyGlyphBlt on a one-bit drawable that clears pixels where the glyph is set; a `QueryGlyphExtents` call, and the same table use as the white variant.
 - `mfbPolyGlyphBltInvert` (`kona.so` 0x562a00, 2264 bytes): **Established.**
   PolyGlyphBlt on a one-bit drawable that inverts pixels under the glyph; two `QueryGlyphExtents` calls, size equal to the white variant.
 - `mfbImageGlyphBltBlack` (`kona.so` 0x5246a0, 3248 bytes): **Established.**
-  ImageGlyphBlt with black foreground on one-bit drawables: it measures with `QueryGlyphExtents`, paints the background box with `mfbPolyFillRect` (two sites) and then writes glyphs through `mfbSolidBlackArea` or `mfbSolidWhiteArea`.
+  ImageGlyphBlt with black foreground on one-bit drawables: it measures with `QueryGlyphExtents`, paints the background box with `mfbPolyFillRect` and then writes glyphs through `mfbSolidBlackArea` or `mfbSolidWhiteArea`.
 - `mfbImageGlyphBltWhite` (`kona.so` 0x531530, 2408 bytes): **Established.**
-  ImageGlyphBlt with white foreground on one-bit drawables: `QueryGlyphExtents`, a background fill with `mfbPolyFillRect` at two sites, and glyph rows via `mfbSolidWhiteArea`.
-- `mfbTEGlyphBltBlack` (`kona.so` 0x5267b0, 2256 bytes): **Established.**
+  ImageGlyphBlt with white foreground on one-bit drawables: `QueryGlyphExtents`, a background fill with `mfbPolyFillRect`, and glyph rows via `mfbSolidWhiteArea`.
+- `mfbTEGlyphBltBlack` (`kona.so` 0x5267b0, 2256 bytes): **Inferred.**
   Terminal-emulator-font text on a one-bit drawable in black: glyphs have a fixed width, so each row is assembled with shifts and masks from `starttab` and `partmasks` and stored word by word. It makes one indirect call.
 - `mfbUnnaturalStippleFS` (`kona.so` 0x4d9ff0, 2500 bytes): **Established.**
   FillSpans for a one-bit stipple whose width is not 32: clips with `miClipSpans` after `miFindMaxBand` and builds each row from the rotated stipple using `starttab` and `partmasks`.
@@ -494,26 +494,26 @@ One-bit-deep drawing for bitmaps and monochrome windows, used when a drawable is
 - `mfbPixmapToRegion` (`kona.so` 0x509220, 2944 bytes): **Established.**
   Converts a one-bit pixmap into a region of rectangles, one per run of set bits, reallocating the box list with `miRectAlloc` (six sites) and reporting an oversized transition list with `ErrorF`.
 - `mfbZeroPolyArcSS` (`kona.so` 0x50a1f0, 476 bytes): **Inferred.**
-  Zero-width arc entry for one-bit drawables: checks the 32767 limit, then calls the GC's arc routine or falls back to `miZeroPolyArc` and `miPolyArc`.
+  Zero-width arc entry for one-bit drawables: skipped when the GC's plane word at +0x14 is zero, otherwise the same walk as the colour versions, sending arcs over 800 pixels to `miZeroPolyArc`, clipped or out-of-range ones to `miPolyArc` and wholly visible ones to the one-bit routine.
 - `mfbXRotatePixmap` (`kona.so` 0x513bd0, 348 bytes): **Established.**
   Rotates a one-bit pixmap horizontally; it reports an unexpected width with `ErrorF` and uses the table `endtab` for the row mask.
 - `mfbYRotatePixmap` (`kona.so` 0x55e270, 236 bytes): **Established.**
   Rotates a one-bit pixmap vertically by moving rows with `memmove`, three sites.
-- `mfbCopyPixmap` (`kona.so` 0x522550, 148 bytes): **Established.**
+- `mfbCopyPixmap` (`kona.so` 0x522550, 148 bytes): **Inferred.**
   Duplicates a one-bit pixmap: it calls the screen's pixmap creation hook, then copies the data with `memmove`.
 - `mfbPadPixmap` (`kona.so` 0x525f20, 536 bytes): **Established.**
   Replicates a one-bit tile across the 32 bits of a row when the width divides 32, using `endtab` for the row masks; a leaf.
 - `mfbDestroyPixmap` (`kona.so` 0x577760, 88 bytes): **Established.**
   Drops a reference on a one-bit pixmap and, when none remain, releases it with `Xfree`.
-- `mfbCopyArea` (`kona.so` 0x51a6a0, 2136 bytes): **Established.**
-  CopyArea for one-bit drawables. It selects `mfbDoBitbltCopy`, `mfbDoBitbltXor`, `mfbDoBitbltOr`, `mfbDoBitbltCopyInverted` or `mfbDoBitbltGeneral` by raster op, makes ten calls through the chosen routine, calls `NotClippedByChildren` at six sites, and ends with `miHandleExposures`.
+- `mfbCopyArea` (`kona.so` 0x51a6a0, 2136 bytes): **Inferred.**
+  CopyArea for one-bit drawables. It selects `mfbDoBitbltCopy`, `mfbDoBitbltXor`, `mfbDoBitbltOr`, `mfbDoBitbltCopyInverted` or `mfbDoBitbltGeneral` by raster op, makes its calls through the chosen routine (fifteen indirect calls in all), calls `NotClippedByChildren`, and ends with `miHandleExposures`.
 - `mfbDoBitblt` (`kona.so` 0x531ea0, 164 bytes): **Established.**
   Chooser used by the one-bit copy: it compares the raster op with 3, 6, 7 and 12 and calls `mfbDoBitbltCopy` or `mfbDoBitbltGeneral` accordingly.
 - `mfbSetScanline` (`kona.so` 0x54fd20, 1664 bytes): **Established.**
   Writes one row of source bits into a one-bit destination scanline, shifting to align and masking the ends with `starttab` and `endtab`; a leaf.
-- `mfbPolyFillRect` (`kona.so` 0x551e00, 2676 bytes): **Established.**
+- `mfbPolyFillRect` (`kona.so` 0x551e00, 2676 bytes): **Inferred.**
   PolyFillRect on one-bit drawables: it clips each rectangle to the composite clip and calls through the GC's area-fill pointer (two sites) with the box list. Called from `mfbImageGlyphBltBlack`, `mfbImageGlyphBltWhite`, `mfbValidateGC`.
-- `mfbPushPixels` (`kona.so` 0x565cd0, 1412 bytes): **Established.**
+- `mfbPushPixels` (`kona.so` 0x565cd0, 1412 bytes): **Inferred.**
   PushPixels on a one-bit drawable: it makes seven indirect calls, walking the mask in 128-bit-wide groups and calling the stippled area fill with `endtab` masks for the edges.
 - `micomputeWAET` (`kona.so` 0x4ffcd0, 124 bytes): **Inferred.**
   Leaf of the polygon scan converter; the name and the walk over an edge list identify it as the pass that sets the winding count of each active edge for the even-odd or non-zero fill rule. It calls nothing, and works only on the edge records its argument points at. Called from `miFillGeneralPoly`.
@@ -552,7 +552,7 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
   Dashed Bresenham stepper for 32-bit pixels. It is built like the 8-bit dashed stepper, keeping the dash position and length in its pointer arguments, and has no callees. Called from `cfb32LineSD`, `cfb32SegmentSD`.
 - `cfb32HorzS` (`kona.so` 0x5503a0, 1308 bytes): **Inferred.**
   Horizontal run for 32-bit pixels, a leaf. A pixel is a whole word, so there are no start and end mask tables and the loop stores whole words. Called from `cfb32LineSS`, `cfb32SegmentSS`.
-- `cfb8LineSS1Rect` (`kona.so` 0x535e60, 728 bytes): **Established.**
+- `cfb8LineSS1Rect` (`kona.so` 0x535e60, 728 bytes): **Inferred.**
   Chooser for 8-bit polylines inside one clip rectangle. It tests the raster op and calls the copy, previous-point copy,
   exclusive-or or general routine through a pointer; the clipped variants `cfb8ClippedLineCopy` and `cfb8ClippedLineXor` stand behind it.
 - `cfb8LineSS1RectCopy` (`kona.so` 0x51efe0, 2088 bytes): **Established.**
@@ -577,7 +577,7 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
   Polyline for 16-bit pixels with any raster op in one clip rectangle; leaf, with the GC's and/xor pair applied per pixel. Called from `cfb16LineSS1Rect`.
 - `cfb16ClippedLineXor` (`kona.so` 0x549780, 2788 bytes): **Established.**
   Exclusive-or line for 16-bit pixels that may cross the clip box; it calls `miZeroClipLine` at two sites to clip the segment and its closing point.
-- `cfb32LineSS1Rect` (`kona.so` 0x567050, 728 bytes): **Established.**
+- `cfb32LineSS1Rect` (`kona.so` 0x567050, 728 bytes): **Inferred.**
   Chooser for 32-bit polylines in one clip rectangle; it calls the copy, previous-point copy, xor or general version through a pointer and falls back to `cfb32ClippedLineGeneral`.
 - `cfb32LineSS1RectPreviousCopy` (`kona.so` 0x4e87c0, 1728 bytes): **Inferred.**
   Relative-coordinate copy-mode polyline for 32-bit pixels inside one clip rectangle. A leaf that keeps the running point in registers. Called from `cfb32LineSS1Rect`.
@@ -585,7 +585,7 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
   Exclusive-or 32-bit polyline in one clip rectangle. Its size matches the 16-bit routine; the stores are word-wide. Called from `cfb32LineSS1Rect`.
 - `cfb32LineSS1RectGeneral` (`kona.so` 0x54e210, 2460 bytes): **Inferred.**
   General-raster-op 32-bit polyline in one clip rectangle, taking the and/xor pair the GC validation left in its private record. Called from `cfb32LineSS1Rect`.
-- `cfb32SegmentSS1Rect` (`kona.so` 0x4d4a00, 320 bytes): **Established.**
+- `cfb32SegmentSS1Rect` (`kona.so` 0x4d4a00, 320 bytes): **Inferred.**
   Chooser for 32-bit PolySegment in one clip rectangle. It calls the copy, xor or general routine through a pointer and falls back to `cfb32ClippedLineGeneral`.
 - `cfb32SegmentSS1RectXor` (`kona.so` 0x4f8700, 1764 bytes): **Inferred.**
   Exclusive-or PolySegment on 32-bit pixels in one clip rectangle. It reads the screen private array at +0x1b4, stores inline and has no callees.
@@ -598,18 +598,17 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
 - `cfb32PolyPoint` (`kona.so` 0x508140, 1312 bytes): **Established.**
   PolyPoint for 32-bit drawables, structured like the 16-bit routine with word stores; it calls `ffs` on a mask word as well.
 - `cfbZeroPolyArcSS8General` (`kona.so` 0x4cfc90, 468 bytes): **Inferred.**
-  Zero-width arc entry for 8-bit pixels and general raster ops. It compares coordinates with 32767 and either draws by calling through the GC's function table or
-  falls back to `miZeroPolyArc` and `miPolyArc`.
+  Zero-width arc entry for 8-bit pixels and general raster ops. It walks the arc list in 12-byte records: an arc wider or taller than 800 pixels goes alone to `miZeroPolyArc`; for the others it builds the bounding box and, if the box passes 32767 or the screen's rectangle-test hook at +0x17c does not report it wholly inside the clip, hands the arc to `miPolyArc`; a box wholly inside goes to the module's own fast arc routine (reached through a pointer in a saved register).
 - `cfbZeroPolyArcSS8Copy` (`kona.so` 0x54cfb0, 468 bytes): **Inferred.**
-  The same arc entry for 8-bit copy mode: coordinate-range test against 32767, then a call through the table, or `miPolyArc` as the fallback.
+  The same arc walk as `cfbZeroPolyArcSS8General`, specialised for 8-bit copy mode: arcs over 800 pixels go to `miZeroPolyArc`, a box past 32767 or not wholly inside the clip goes to `miPolyArc`, and a box wholly inside takes the copy-mode fast routine.
 - `cfb16ZeroPolyArcSSCopy` (`kona.so` 0x5333d0, 468 bytes): **Inferred.**
-  Zero-width arc entry for 16-bit copy mode, with the 32767 coordinate test and `miZeroPolyArc` as the fallback.
+  Zero-width arc entry for 16-bit copy mode with the same walk of 12-byte arc records: over 800 pixels to `miZeroPolyArc`, an out-of-range or partly clipped box to `miPolyArc`, a wholly visible box to the 16-bit copy fast routine.
 - `cfb16ZeroPolyArcSSGeneral` (`kona.so` 0x540c50, 468 bytes): **Inferred.**
-  Zero-width arc entry for 16-bit pixels under any raster op; coordinate test, then the GC table or `miPolyArc`.
+  Zero-width arc entry for 16-bit pixels under any raster op: the same 800-pixel size test, the 32767 bound and the clip test at screen +0x17c, with `miZeroPolyArc` for big arcs and `miPolyArc` for arcs that cross the clip.
 - `cfb32ZeroPolyArcSSGeneral` (`kona.so` 0x51d890, 468 bytes): **Inferred.**
-  Zero-width arc entry for 32-bit pixels under any raster op; the same coordinate test and fallbacks as the 16-bit entry, using `miZeroPolyArc`.
+  Zero-width arc entry for 32-bit pixels under any raster op: the arc walk of the 16-bit entry, sending big arcs to `miZeroPolyArc`, clipped or out-of-range ones to `miPolyArc` and wholly visible ones to the 32-bit routine.
 - `cfb32PolyFillArcSolidCopy` (`kona.so` 0x549350, 544 bytes): **Inferred.**
-  Solid-fill arc entry for 32-bit copy mode: arcs inside the 32767 limit are filled through the GC's table, anything larger is passed to `miPolyFillArc`.
+  Solid-fill arc entry for 32-bit copy mode. It walks 12-byte arc records: empty arcs, arcs over 800 pixels and boxes past 32767 or not wholly inside the clip (tested with the screen hook at +0x17c) go one at a time to `miPolyFillArc`; the rest are filled by the module's own routines, split on whether the end angle lies within +-23040 (a half turn in 64ths of a degree).
 - `cfbFillPoly1RectGeneral` (`kona.so` 0x4cdd80, 3304 bytes): **Established.**
   Polygon fill for 8-bit pixels in one clip rectangle under any raster op. It indexes the GC private array at gc +0x4c, tests the coordinate range
   against 32767, and calls `miFillPolygon` at two sites for shapes it does not scan inline.
@@ -620,12 +619,12 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
 
 ### Colour frame-buffer rectangle, span, tile and stipple fills (`cfb*`, `cfb16*`, `cfb32*`)
 
-- `cfbPolyFillRect` (`kona.so` 0x51c800, 2400 bytes): **Established.**
+- `cfbPolyFillRect` (`kona.so` 0x51c800, 2400 bytes): **Inferred.**
   PolyFillRect for 8-bit drawables. It looks at the GC's fill style and rop and calls one of the 8-bit routines named in its table
-  (`cfbFillRectSolidGeneral`, `cfbFillRectSolidCopy`, `cfbFillRectTileOdd`, the transparent and unnatural stipple fills) through a pointer, calling `miPolyFillRect` twice for the cases it does not handle.
+  (`cfbFillRectSolidGeneral`, `cfbFillRectSolidCopy`, `cfbFillRectTileOdd`, the transparent and unnatural stipple fills) through a pointer, calling `miPolyFillRect` for the cases it does not handle.
 - `cfb16PolyFillRect` (`kona.so` 0x4f3190, 2280 bytes): **Established.**
   PolyFillRect for 16-bit drawables, choosing among `cfb16FillRectSolidGeneral`, `cfb16FillRectSolidCopy`, `cfb16FillRectSolidXor`, and the tile forms
-  by fill style, with `miPolyFillRect` as the fallback at two sites.
+  by fill style, with `miPolyFillRect` as the fallback.
 - `cfb32PolyFillRect` (`kona.so` 0x4e76b0, 2276 bytes): **Established.**
   PolyFillRect for 32-bit drawables. Dispatch is by fill style to `cfb32FillRectSolidGeneral`, `cfb32FillRectSolidCopy`, `cfb32FillRectSolidXor`,
   `cfb32FillRectTile32General` or `cfb32FillRectTileOdd`; `miPolyFillRect` handles anything else.
@@ -738,8 +737,8 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
 - `cfb16CopyArea` (`kona.so` 0x562950, 164 bytes): **Established.**
   CopyArea for 16-bit drawables with the same shape as the 8-bit selector, comparing the plane mask with 0xffff and passing one of
   `cfb16DoBitbltGeneral`, `cfb16DoBitbltCopy`, `cfb16DoBitbltXor` or `cfb16DoBitbltOr` to `cfb16BitBlt`.
-- `cfb16BitBlt` (`kona.so` 0x4d6300, 2092 bytes): **Established.**
-  The 16-bit blit driver: it computes the source and destination clip boxes, makes six calls to `NotClippedByChildren` (for a window source), calls the inner blit routine passed in through a pointer ten times (one per box band and direction), and finishes with `miHandleExposures` for the exposure rectangles of a window source.
+- `cfb16BitBlt` (`kona.so` 0x4d6300, 2092 bytes): **Inferred.**
+  The 16-bit blit driver: it computes the source and destination clip boxes, makes `NotClippedByChildren` (for a window source), calls the inner blit routine passed in through a pointer (fifteen indirect calls in all, one per box band and direction), and finishes with `miHandleExposures` for the exposure rectangles of a window source.
 - `cfbDoBitblt` (`kona.so` 0x51eb60, 136 bytes): **Established.**
   Chooser that picks the raster op's blit routine for an 8-bit blit: it tests the op against 3, 6 and 7 and the plane mask against 255, and sends everything else to `cfbDoBitbltGeneral`.
 - `cfb16DoBitblt` (`kona.so` 0x574080, 136 bytes): **Established.**
@@ -765,7 +764,7 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
   The 32-bit rectangle copy that ors source into destination, the same size as the xor version. Called from `cfb32CopyArea`, `cfb32DoBitblt`.
 - `cfbCopyPlane` (`kona.so` 0x4d5a30, 1240 bytes): **Established.**
   CopyPlane for 8-bit drawables. When the source is one bit deep it takes the stipple route: `cfb8SetOpaqueStipple` (two sites), then `cfbBitBlt` through `cfbCopyPlane1to8`; otherwise it punts to `cfbPuntCopyPlane`, which builds a scratch GC with `GetScratchGC` and `ValidateGC`. Exposures come from `miHandleExposures`.
-- `cfb16CopyPlane` (`kona.so` 0x4cfc40, 72 bytes): **Established.**
+- `cfb16CopyPlane` (`kona.so` 0x4cfc40, 72 bytes): **Inferred.**
   CopyPlane for 16-bit drawables: no 16-bit plane routine exists, so it forwards all its arguments through a pointer to `cfbPuntCopyPlane`.
 - `cfbCopyPlane1to8` (`kona.so` 0x51da70, 3568 bytes): **Inferred.**
   Expands a one-bit-deep source rectangle into 8-bit pixels: each source bit selects the foreground or background value kept in `cfb8StippleXor` and `cfb8StippleAnd`, merged by the rop in `cfb8StippleRRop`.
@@ -775,17 +774,17 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
   GetImage for 16-bit drawables: for ZPixmap requests it builds a scratch pixmap header with `GetScratchPixmapHeader`, zeroes it with `bzero`, copies through `cfb16DoBitblt`, and frees it with `FreeScratchPixmapHeader`; other formats go to `miGetImage` or `mfbGetImage`.
 - `cfb16PutImage` (`kona.so` 0x4e8e80, 796 bytes): **Established.**
   PutImage for 16-bit drawables. It wraps the image in a scratch pixmap from `GetScratchPixmapHeader`, saves and restores the GC state with `DoChangeGC` and `ValidateGC`, and copies it to the window with the GC's own CopyArea.
-- `cfbImageGlyphBlt8` (`kona.so` 0x4f4cd0, 392 bytes): **Established.**
-  ImageGlyphBlt for 8-bit drawables: asks `QueryGlyphExtents` for the string's box (calls it three times, covering the one-rect and clipped cases), fills the background box with the GC's fill routine and then draws the glyphs through the GC's text routine.
+- `cfbImageGlyphBlt8` (`kona.so` 0x4f4cd0, 392 bytes): **Inferred.**
+  ImageGlyphBlt for 8-bit drawables: asks `QueryGlyphExtents` for the string's box (one call), fills the background box with the GC's fill routine and then draws the glyphs through the GC's text routine.
 - `cfb16ImageGlyphBlt8` (`kona.so` 0x574110, 360 bytes): **Established.**
-  The 16-bit ImageGlyphBlt: three `QueryGlyphExtents` sites, a background fill, then the glyph draw.
-- `cfbPolyGlyphBlt8` (`kona.so` 0x500a80, 1780 bytes): **Established.**
-  PolyGlyphBlt for 8-bit drawables: for each glyph it calls through the GC's stippled fill (three sites) after intersecting the glyph box with the clip box, using the `endtab` table to mask the right edge.
-- `cfb32PolyGlyphBlt8` (`kona.so` 0x5508c0, 1816 bytes): **Established.**
+  The 16-bit ImageGlyphBlt: a `QueryGlyphExtents` call to size the string, a background fill, then the glyph draw.
+- `cfbPolyGlyphBlt8` (`kona.so` 0x500a80, 1780 bytes): **Inferred.**
+  PolyGlyphBlt for 8-bit drawables: for each glyph it calls through the GC's stippled fill after intersecting the glyph box with the clip box, using the `endtab` table to mask the right edge.
+- `cfb32PolyGlyphBlt8` (`kona.so` 0x5508c0, 1816 bytes): **Inferred.**
   PolyGlyphBlt for 32-bit drawables; same structure with three indirect calls into the fill routine, reading the screen private data at +0x1b4.
 - `cfbTEGlyphBlt8` (`kona.so` 0x5573e0, 23240 bytes): **Established.**
   The large terminal-emulator-font text routine for 8-bit drawables. A table of unrolled cases, one per glyph width, writes whole words of expanded pixels; it uses `cfb8SetOpaqueStipple` to prepare the fill colours and falls back to `cfbImageGlyphBlt8` for fonts it cannot handle.
-- `cfbPushPixels8` (`kona.so` 0x513e30, 3956 bytes): **Established.**
+- `cfbPushPixels8` (`kona.so` 0x513e30, 3956 bytes): **Inferred.**
   PushPixels for 8-bit drawables: expands a one-bit mask into pixels using `cfb8BitLenMasks`, or passes the request to `mfbPushPixels` when the GC does not fit; there is one indirect call.
 - `cfbSetSpans` (`kona.so` 0x568b80, 1044 bytes): **Established.**
   SetSpans for 8-bit drawables. It walks the spans and calls `cfbSetScanline` for each one that is inside the clip rectangles, indexing rows using the padding information in `PixmapWidthPaddingInfo`.
@@ -802,17 +801,17 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
 - `cfb32GetSpans` (`kona.so` 0x522c10, 708 bytes): **Established.**
   GetSpans for 32-bit drawables: `FatalError` for an unexpected depth, `mfbGetSpans` for one-bit drawables, and a word-by-word copy for the rest.
 - `cfbCopyRotatePixmap` (`kona.so` 0x4e8680, 312 bytes): **Established.**
-  Makes a rotated copy of an 8-bit tile or stipple pixmap: it copies with `cfbCopyPixmap`, pads it with `cfbPadPixmap`, then calls `cfbXRotatePixmap` and `cfbYRotatePixmap`, and stamps the pixmap with the global serial number. It also uses `memmove` at two sites.
+  Makes a rotated copy of an 8-bit tile or stipple pixmap: it copies with `cfbCopyPixmap`, pads it with `cfbPadPixmap`, then calls `cfbXRotatePixmap` and `cfbYRotatePixmap`, and stamps the pixmap with the global serial number. It also uses `memmove`.
 - `cfb16CopyRotatePixmap` (`kona.so` 0x55fcd0, 312 bytes): **Established.**
   The 16-bit version of the rotated copy: `cfb16CopyPixmap`, `cfb16PadPixmap`, `cfb16XRotatePixmap` and `cfb16YRotatePixmap`, with `memmove` calls and the global serial number stamp.
 - `cfb16CopyPixmap` (`kona.so` 0x51d7f0, 148 bytes): **Established.**
   Duplicates a 16-bit pixmap: allocates through a function pointer, then copies the pixel data with `memmove`.
 - `cfbXRotatePixmap` (`kona.so` 0x550fe0, 448 bytes): **Established.**
-  Rotates an 8-bit pixmap horizontally by a given number of pixels. It reports a bad depth through `ErrorF` (three sites) and otherwise shifts each row using the table `cfbendtab`.
+  Rotates an 8-bit pixmap horizontally by a given number of pixels. It reports a bad depth through `ErrorF` and otherwise shifts each row using the table `cfbendtab`.
 - `cfb16XRotatePixmap` (`kona.so` 0x56a490, 448 bytes): **Established.**
   Horizontal rotation of a 16-bit pixmap with three `ErrorF` reports for unsupported widths and `cfb16endtab` for the masks.
 - `cfb32XRotatePixmap` (`kona.so` 0x578760, 432 bytes): **Established.**
-  Horizontal rotation of a 32-bit pixmap; three `ErrorF` sites and the table `cfb32endtab`.
+  Horizontal rotation of a 32-bit pixmap; `ErrorF` reports for unsupported widths and the table `cfb32endtab`.
 - `cfbPadPixmap` (`kona.so` 0x566260, 556 bytes): **Established.**
   Replicates an 8-bit tile horizontally until its row fills 32 bits, when the tile width divides 32; the code tests the width times depth against 32 and uses `endtab` for the row masks. A leaf.
 - `cfbDestroyPixmap` (`kona.so` 0x53bbc0, 88 bytes): **Established.**
