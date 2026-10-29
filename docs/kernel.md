@@ -116,34 +116,81 @@ Slots 10004 and 10013 are empty in both the header and the driver, and slots 100
 
 `KONA_NCLOPS_*` is the multi-pipe (hyperpipe) path: `kona_nclops_bind` and `kona_nclops_swapped` write the display-generator indirect port (`HH_VC_ADDRESS` then `HH_VC_DATA`, [dg.md](dg.md)), so binding a pipe to a network changes display-port registers: the addresses, values and names are in [Multi-pipe (DPLEX) display-port writes](#multi-pipe-dplex-display-port-writes).
 
-## Generic and manager ioctls: who sends them
+## Ioctl reference
 
-**Established** (dispatch in `gfxioctl` and `RRM_Dispatch`, 6.5.30m, described under [Function reference](#function-reference); numbers and names from the 6.5.5 installed headers `sys/gfx.h` and `sys/rrm.h`; senders from the call sites in the user-space binaries of the inventory). Two ranges of ioctl numbers reach the driver besides the private 10000 range above: 100-113 are the generic graphics ioctls any board driver answers through `gfxioctl`, and 1000-1025 are the rendering resource manager's commands, which `gfxioctl` forwards to `RRM_Dispatch`. This table lists the ioctls the user-space tools and libraries actually send and what each is for; argument sizes and error paths are in the function reference.
+Every ioctl number the user-space binaries send or the kernel dispatchers handle, one row each, in three groups: the generic graphics ioctls (100-113, answered by `gfxioctl` for every board), the rendering resource manager commands (1000-1025, forwarded by `gfxioctl` to `RRM_Dispatch`; names and argument structures from the 6.5.5 installed header `sys/rrm.h`) and the Kona private ioctls (10000 and up, `KONAprivate`). Argument sizes are the byte counts the code copies in or out. Numbers 108 (`GFX_DOWNLOAD`) and 10017, 10101 and 10102 are described elsewhere in this chapter.
 
-| Number | Name | Sent by | Purpose |
-|---|---|---|---|
-| 101 (0x65) | `GFX_GETNUM_BOARDS` | `__glXOpenGraphicsDevice`, `__glx_GetString`, `__iglooGetGraphicsType`, `ddxFindAvailableBoards` and seven more functions in 18 binaries | count the graphics boards the kernel registered; every client asks first |
-| 102 (0x66) | `GFX_GETBOARDINFO` | `__glx_GetString`, `__iglooGetGraphicsType`, `crm_setmon`, `ddxFindAvailableBoards` and 13 more functions in 15 binaries | read the board's name, label and size record (`gfx_info`) so the caller can match its own board type |
-| 103 (0x67) | `GFX_ATTACH_BOARD` | `crm_setmon`, `gr2ev_info`, `irixKernInit` (the X server), `main` (`ireeprom`) and four more, in four binaries | bind this open connection to a board and map it; a second attach on the same connection fails with 16 |
-| 104 (0x68) | `GFX_DETACH_BOARD` | `gr2ev_info`, `ng1_setmon`, `xgsetmon`, `main` (`ireeprom`) | release the board before the connection closes |
-| 105 (0x69) | `GFX_IS_MANAGED` | `main` of `ireeprom` | ask whether an X server already manages the board, so the tool does not initialise a live one |
-| 106 (0x6a) | `GFX_INITIALIZE` | `mgras_init`, `setup_ucode` (`ireeprom`), `main` | start the board's bring-up; only the board's owner connection may call it, and the kernel serialises it against the pipe semaphore |
-| 107 (0x6b) | `GFX_START` | `main` of `gfxinfo` | release the board to run after the microcode download; owner only |
-| 110 (0x6e) | `GFX_MAPALL` | `gr2ev_info`, `ng1_setmon`, `saXSGIvcQueryChannelGammaMap`, `main` and two more, in three binaries | the privileged "map everything" request the diagnostic and setup tools use instead of the normal per-process mapping |
-| 111 (0x6f) | `GFX_LABEL` | `irixKernInit` in the X server (`Xsgi`) | the X server names the board it manages; the driver stores the 16-byte label in the board record |
-| 112 (0x70) | `GFX_REATTACH_BOARD` | `ng1_setmon` in `setmon` | attach without the "already attached" check, for a tool that re-opens a board it already holds |
-| 113 (0x71) | `GFX_SET_DIAG_FLAG` | `gr2ev_info`, `saXSGIvcQueryChannelGammaMap`, `vs2setmon`, `main` | declare the caller a diagnostic (needs superuser); sets the privileged flag that selects the privileged mapping |
-| 1002 | `RRM_BINDPROCTORN` | `irixKernInit`, `xgsetmon`, `main` (`ireeprom`) | tie the calling process to a rendering node (slot 0 clears the binding; allowed for OpenGL connections) |
-| 1003 | `RRM_BINDRNTOCLIP` | `xgsetmon` in `setmon` | bind a rendering node to a clip region (window) |
-| 1004 | `RRM_UNBINDRNFROMCLIP` | `rrmDisposeClip` in `kona.so` | the window is going away: drop the pane's binding |
-| 1006 | `RRM_SETSWAPINTERVAL` | `glXSwapIntervalSGI` in `libGL.so` | frames between buffer swaps; the pane stores it and the board record gets the same count |
-| 1010 | `RRM_INVALIDATERN` | `rrmInvalidate`, `SGICapGLCapture` (`Xsgi`) | the X server tells the kernel that a window's clip, buffer or swap state changed so the next draw revalidates |
-| 1013 | `RRM_SWAPGROUP` | `glxJoinSwapGroupSGIX`, `glxBindSwapBarrierSGIX` in `glx.so` | join the window to a swap group, so the group's members swap together |
-| 1019 | `RRM_SWAPREADY` | `glxBindSwapBarrierSGIX` in `glx.so` | assert or deassert a swap-ready line for the group, the genlock barrier between pipes |
-| 1022 | `RRM_GETVSYNC` | `glXGetVideoSyncSGI` in `libGL.so` | read the retrace counter |
-| 1023 | `RRM_WAITVSYNC` | `glXWaitVideoSyncSGI` in `libGL.so` | sleep until the counter reaches a given remainder modulo an interval |
+### Generic graphics ioctls
 
-Numbers 108 (`GFX_DOWNLOAD`), 109 (`GFX_BLANKSCREEN`: the board owner may send it and the kernel does nothing) and 1000-1001, 1005, 1007-1009, 1011, 1012, 1014-1018, 1020, 1021, 1024 and 1025 are in the function reference and in [opengl.md](opengl.md#ioctls).
+| Ioctl number | Name | What it does |
+|---|---|---|
+| 101 (0x65) | `GFX_GETNUM_BOARDS` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2cf4): stores the number of registered graphics boards in the caller's return value and returns 0, so a client can size its scan of the boards. |
+| 102 (0x66) | `GFX_GETBOARDINFO` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m): copies in a 24-byte request, fails with ENODEV (19) for a board number past the count, and otherwise calls the board driver's information function, which returns the board name, label and screen size to the caller. |
+| 103 (0x67) | `GFX_ATTACH_BOARD` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x3260): binds the open connection to a board. It copies the board record, operation table and private state into the connection, calls the board driver's attach function with the user address, and makes the connection the board owner when it has none; a second attach on one connection fails with 16. |
+| 104 (0x68) | `GFX_DETACH_BOARD` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2e80): releases the connection's board, refusing with 16 when an IrisGL-mode connection shares its thread group with other threads. |
+| 105 (0x69) | `GFX_IS_MANAGED` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2ef0): copies in a 4-byte board number and returns 1 when the board has a managing connection (an X server), 0 otherwise, so setup tools do not re-initialise a live board. |
+| 106 (0x6a) | `GFX_INITIALIZE` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2ff8): board owner only (EPERM otherwise); takes the pipe semaphore, waits for the pending-operation count to drain, calls the board driver's initialise function (operation +24) and unmaps the connection if it was mapped. |
+| 107 (0x6b) | `GFX_START` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x3078): board owner only; takes the pipe semaphore the same way and calls the board driver's start function (operation +40), the call that lets the pipe run after its microcode is down. |
+| 109 (0x6d) | `GFX_BLANKSCREEN` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x309c): board owner only; returns 0 without calling the board driver, so on this driver the call has no effect on the display. |
+| 110 (0x6e) | `GFX_MAPALL` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2d78): takes the pipe semaphore, calls the board driver's map function (operation +96) with the arguments (connection, 0, -1) and sets connection flag 0x20 whether or not it succeeds, giving diagnostics a mapping of the whole pipe instead of the per-process one. |
+| 111 (0x6f) | `GFX_LABEL` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x30d4): board owner only; copies a 16-byte string from the caller into the label field of the board's information record, which is how the X server names the board it manages. |
+| 112 (0x70) | `GFX_REATTACH_BOARD` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x3260): the same steps as an attach but without the "already attached" refusal, for a tool that re-opens a board it already holds. |
+| 113 (0x71) | `GFX_SET_DIAG_FLAG` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2fa0): calls `drv_priv` on the caller's credentials and, if the caller is the super-user, sets connection flag 4, which selects the privileged register mapping described under "What a process maps". |
+
+### Resource manager ioctls
+
+| Ioctl number | Name | What it does |
+|---|---|---|
+| 1000 | `RRM_OPENRN` | **Established** (`RRM_OpenRN`, `rrm.o`, 6.5.30m, +0x1914): copies in 8 bytes, finds a free rendering-node slot, zeroes the 176-byte node, initialises its lock and calls the board driver's node-creation function; it returns the new node number with the resource mask the caller asked for. |
+| 1002 | `RRM_BINDPROCTORN` | **Established** (`RRM_BindProcToRN`, `rrm.o`, 6.5.30m, +0x1464): makes the node named in the 4-byte argument the calling process's current node, closing the previous one if it had no other user; slot 0 clears the binding and is allowed only for OpenGL connections. |
+| 1003 | `RRM_BINDRNTOCLIP` | **Established** (`RRM_BindRNToClip`, `rrm.o`, 6.5.30m, +0x1854): binds the node to a window's clip region by finding or creating the pane for that clip identifier, and returns the bind identifier; it calls the shared bind-to-read-and-clip routine with the read clip equal to the draw clip. |
+| 1004 | `RRM_UNBINDRNFROMCLIP` | **Established** (`RRM_UnbindRNFromClip`, `rrm.o`, 6.5.30m, +0x18f0): the window is going away, so the pane for the clip identifier in the 8-byte argument is cleaned up: its valid bits cleared, waiters woken and its swap group left. |
+| 1006 | `RRM_SETSWAPINTERVAL` | **Established** (`RRM_SetSwapInterval`, `rrm.o`, 6.5.30m, +0x41e4): stores the requested number of retraces between buffer swaps in the node and in its pane; a negative value fails with EINVAL (22). |
+| 1010 | `RRM_INVALIDATERN` | **Established** (`RRM_InvalidateRN`, `rrm.o`, 6.5.30m, +0x1228): manager call that clears the resource bits named by the 20-byte argument for one window, returns the hardware-independent mode the window wants and the wrong-buffer flag, and unmaps connections whose resources are gone so their next draw revalidates. |
+| 1011 | `RRM_VALIDATECLIP` | **Established** (`RRM_ValidateClip`, `rrm.o`, 6.5.30m, +0x3278): manager call that copies the 64-byte clip description, up to 14 pieces, into the window's pane and raises its serial number, so the next context switch resends the clip to the pipe. |
+| 1012 | `RRM_VALIDATESWAPBUF` | **Established** (`RRM_ValidateSwapBuf`, `rrm.o`, 6.5.30m, +0x2a84): manager call that records the hardware display identifier for the window's swap buffers in the pane and wakes the processes waiting for that resource. |
+| 1013 | `RRM_SWAPGROUP` | **Established** (`RRM_SwapGroup`, `rrm.o`, 6.5.30m, +0x3c4c): manager call that joins the window to the swap group of a second window, or starts a new group when the second identifier is 0, so the group's members swap together; windows on different boards are refused. |
+| 1017 | `RRM_LOADDISPLAYMODE` | **Established** (`RRM_LoadDisplayMode`, `rrm.o`, 6.5.30m, +0x2c3c): manager call that passes the hardware-dependent display mode for one display identifier to the board driver; the effect on the display bus is described with the `DISPMODE` command in dg.md. |
+| 1019 | `RRM_SWAPREADY` | **Established** (`RRM_SwapReady`, `rrm.o`, 6.5.30m, +0x3d84): manager call that asserts or releases one of the board's swap-ready lines for the window's swap group, the barrier line genlocked pipes share; a line already driven by another group fails with 16. |
+| 1020 | `RRM_MGR_SWAPBUF` | **Established** (`RRM_MGR_SwapBuf`, `rrm.o`, 6.5.30m, +0x3f90): the board manager reports that it performed a swap; the call stores the new display mode word, calls the board driver's swap-complete function and records the buffer bit in the pane. |
+| 1022 | `RRM_GETVSYNC` | **Established** (`RRM_GetVideoSync`, `rrm.o`, 6.5.30m, +0x432c): returns the board's retrace counter, kept at +128 of the board record, in the second word of the 8-byte argument. |
+| 1023 | `RRM_WAITVSYNC` | **Established** (`RRM_WaitVideoSync`, `rrm.o`, 6.5.30m, +0x4370): sleeps the caller until the retrace counter reaches a value with the given remainder modulo the given interval, then returns the counter at wakeup; an interval of 0 or a remainder outside it fails with 22. |
+
+### Kona private ioctls
+
+| Ioctl number | Name | What it does |
+|---|---|---|
+| 10000 | `KONA_DMAREAD` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 160 bytes (translated for a 32-bit caller) and starts a pipe-to-host transfer, the path pixel read-back uses. |
+| 10001 | `KONA_DMAWRITE` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 144 bytes naming a table of host buffers and starts a host-to-pipe transfer with `kona_dmawrite`; the number of vectors is not limited by this path. |
+| 10002 | `KONA_START_SELECTFEED` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 32 bytes describing the select or feedback buffer and arms the pipe to deliver records into it through `kona_start_selectfeed`. |
+| 10003 | `KONA_FINISH_SELECTFEED` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): takes no input, waits for the pipe to finish the select or feedback run through `kona_finish_selectfeed` and copies out 8 bytes with the amount returned. |
+| 10005 | `KONA_SELECT_CURSOR` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 16 bytes (mode, cursor address, hot x, hot y) and programs the display generator's cursor through `kona_select_cursor`. |
+| 10006 | `KONA_SETCONFIGINFO` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies 1912 bytes of board configuration into the pipe state at +244, then runs `kona_mem_init` so pipe memory pools can be allocated. |
+| 10007 | `KONA_DMAPOOL_OLD` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): not implemented in this release; the jump-table slot is the default one and the call fails with EINVAL (22). |
+| 10008 | `KONA_DEBUG_IOCTL` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): returns EINVAL (22) without calling anything, so the debug hook is compiled out of this release. |
+| 10009 | `KONA_SET_CHANNEL_RECT` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 18 bytes (channel number and rectangle) and records the screen rectangle each video channel scans out, through `kona_set_channel_rect`. |
+| 10010 | `KONA_MEM_ALLOC` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 12 bytes (pool, size, result slot) and allocates pipe memory from the driver's pool through `kona_mem_alloc`. |
+| 10011 | `KONA_MEM_FREE` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 12 bytes naming a pool block and returns it to the pool through `kona_mem_free`. |
+| 10012 | `KONA_GET_XY_CHANNEL` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 14 bytes (a screen position) and copies out the video channel that scans that position, through `kona_get_xy_channel`. |
+| 10014 | `KONA_MEM_REALLOC` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 12 bytes and reallocates a pool block by calling the free routine and then `kona_mem_alloc`; the call order was read but not traced to the end. |
+| 10015 | `KONA_SHARE` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 8 bytes and returns the result, letting a second process share a memory block of the first, through `kona_share`. |
+| 10016 | `KONA_HEALTH` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): takes no input and copies out the three words at pipe state +2172, +2176 and +2180: the death reason, the saved interrupt-info register and the saved bus-status register. |
+| 10018 | `KONA_DMAPOOL` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 24 bytes (translated for a 32-bit caller) and sets up the DMA pool that later transfers draw from. |
+| 10019 | `KONA_GET_NCLOPS_TOPOLOGY` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): takes no input and copies out 260 bytes from the topology record at pipe state +5480, which is **inferred** to be a count and 32 pairs of pipe index and network identifier. |
+| 10020 | `KONA_NCLOPS_CONFIGURE` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): allocates a 524-byte block for the multi-pipe network configuration (three header words and 32 pipe records) and applies it to the display ports. |
+| 10021 | `KONA_NCLOPS_QUERY_CONFIG` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): allocates the same 524-byte block and returns the current multi-pipe network configuration. |
+| 10022 | `KONA_NCLOPS_BIND` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 4 bytes and binds this pipe to a multi-pipe network by writing the display-generator indirect port, through `kona_nclops_bind`. |
+| 10023 | `KONA_NCLOPS_UNBIND` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 4 bytes and removes the pipe from its network through `kona_nclops_unbind`. |
+| 10024 | `KONA_NCLOPS_DESTROY_CONFIG` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): copies in 4 bytes and frees a multi-pipe configuration, through `kona_nclops_destroy`. |
+| 10025 | default slot | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): this number and every other jump-table slot not named in this table logs a message and returns EINVAL (22). |
+| 10026 | `gfxinfo` request | **Established** (`gfxinit`, 6.5.30m, +0xf7f0): sent by `venice_get_dg2_eeprom` to read a 7192-byte display-board EEPROM image; the Kona driver has no slot for it and fails the call with EINVAL, so the code runs only on the other board family that shares the number range. |
+| 10030 | `gfxinfo` request | **Established** (`gfxinit`, 6.5.30m, +0x198cc): sent by `vs2SetShadow` to write a video-board shadow register block; the Kona driver answers EINVAL because it has no slot for the number. |
+| 10031 | `gfxinfo` request | **Established** (`gfxinit`, 6.5.30m, +0x19870): sent by `vs2GetShadow` to read the same shadow block back; the Kona driver answers EINVAL because it has no slot for the number. |
+| 10100 | `KONA_DIAG_MAP` | **Established** (`KONAprivate`, `kona_ioctl.o`, 6.5.30m): maps or releases one host buffer for diagnostic DMA through `kona_diag_map` and returns its pipe-space address pair, as described under "Diagnostic map". |
+
+### Who sends them
+
+The senders below are read from the call sites of the 6.5.30m user-space binaries: 101 and 102 by the X server and OpenGL start-up code (`__glXOpenGraphicsDevice`, `__glx_GetString`, `__iglooGetGraphicsType`, `ddxFindAvailableBoards`) and by `setmon` and `gfxinfo`; 103 by `irixKernInit` in the X server, `crm_setmon` and `gr2ev_info`; 104 by `xgsetmon` and `ng1_setmon`; 105, 106 and 107 by `ireeprom` and `gfxinfo`; 110 and 113 by the diagnostic and setup tools (`gr2ev_info`, `ng1_setmon`, `vs2setmon`); 111 by `irixKernInit`; 112 by `ng1_setmon`. In the OpenGL client library `libGL.so`, `__glXHWAttach` sends 112 and then 103, `__glXAllocHWContext` 1000, `__glXFreeHWContext` 1001, `__glXBindHWContextToWindow` 1002 and 1003, and `glXSwapIntervalSGI`, `glXGetVideoSyncSGI` and `glXWaitVideoSyncSGI` 1006, 1022 and 1023. The X server sends 1002 (`irixKernInit`), 1004 (`rrmDisposeClip` in `kona.so`), 1010 (`rrmInvalidate`), and `glx.so` sends 1013 and 1019 (`glxJoinSwapGroupSGIX`, `glxBindSwapBarrierSGIX`). 1011, 1012, 1017 and 1020 come from the Kona X module ([opengl.md](opengl.md#ioctls)).
 
 ## Registers the driver touches
 

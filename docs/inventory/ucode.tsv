@@ -2228,12 +2228,12 @@ ge.u	label	0x0000395e	mgesi_IMPbshRegisterWrite		named-only	docs/rm.md#how-the-a
 ge.u	label	0x00003972	mgesi_BshRegisterWriteN		named-only	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003991	mgesi_BshRegisterWrite		named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
 ge.u	label	0x0000399e	mges_TBUS_1		named-only	ucode/arm1_functions.md#output-module-records-and-conversion-lists	Output-module records and conversion lists
-ge.u	label	0x000039ab	mgesi_TBUS_1		named-only	docs/open-questions.md#geometry-engine-program	Geometry engine program
+ge.u	label	0x000039ab	mgesi_TBUS_1		named-only	docs/rm.md#bus-modes-2-and-3	Bus modes 2 and 3
 ge.u	label	0x000039b8	mgesi_AlphaTest		named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 ge.u	label	0x000039c8	mgesi_AlphaFunc		named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 ge.u	label	0x000039da	mges_TbusRegWriteNoIncr		named-only	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x000039e7	mgesi_IMPtbusRegWrite		named-only	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x000039fd	mgesi_TbusRegWrite		named-only	docs/open-questions.md#geometry-engine-program	Geometry engine program
+ge.u	label	0x000039fd	mgesi_TbusRegWrite		named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
 ge.u	label	0x00003a0a	mgebi_ShadeModel		named-only	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003a25	mges_DiagDeactivate		named-only	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003a32	mgebi_NullCommand		named-only	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler	How a command reaches a geometry-engine handler
@@ -3089,7 +3089,7 @@ geif.u	dispatch slot	211	mgesi_PixConv5GVEntry	handler 0xa6be	named-only	ucode/g
 geif.u	dispatch slot	212	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	213	mgesi_PixRasterPosSetup	handler 0xa990	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 geif.u	dispatch slot	214	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	215	mgesi_TbusRegWrite	handler 0x39fd	named-only	docs/open-questions.md#geometry-engine-program	Geometry engine program
+geif.u	dispatch slot	215	mgesi_TbusRegWrite	handler 0x39fd	named-only	docs/open-questions.md#raster-and-texture-boards-rm-tm	Raster and texture boards (RM, TM)
 geif.u	dispatch slot	216	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	217	mgesi_IMPtbusRegWrite	handler 0x39e7	named-only	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	218	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3325,7 +3325,7 @@ geif.u	dispatch slot	447	mgesi_SR2ODMA	handler 0x6a9e	named-only	docs/ge.md#dma	
 geif.u	dispatch slot	448	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	449	mgesi_SetGeId	handler 0xf435	named-only	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	450	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	451	mgesi_TBUS_1	handler 0x39ab	named-only	docs/open-questions.md#geometry-engine-program	Geometry engine program
+geif.u	dispatch slot	451	mgesi_TBUS_1	handler 0x39ab	named-only	docs/rm.md#bus-modes-2-and-3	Bus modes 2 and 3
 geif.u	dispatch slot	452	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	453	mgesi_TLutDownload	handler 0x3f52	understood	RM.h:985	
 geif.u	dispatch slot	454	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
