@@ -402,7 +402,7 @@ arm1.u	symbol	0x0404da60	cvmg_32	flags=4	documented	ucode/arm1_functions.md#outp
 arm1.u	symbol	0x0404da68	cvmg_48	flags=4	documented	ucode/arm1_functions.md#output-module-records-and-conversion-lists	Output-module records and conversion lists
 arm1.u	symbol	0x0404da70	cvmg_rgb10_sw	flags=4	documented	ucode/arm1_functions.md#output-module-records-and-conversion-lists	Output-module records and conversion lists
 arm1.u	symbol	0x0404da78	cvmg_rgb10_sr	flags=4	documented	ucode/arm1_functions.md#output-module-records-and-conversion-lists	Output-module records and conversion lists
-arm1.u	symbol	0x0404da80	cvmg_tbm	flags=4	documented	ucode/arm1_functions.md#output-module-records-and-conversion-lists	Output-module records and conversion lists
+arm1.u	symbol	0x0404da80	cvmg_tbm	flags=4	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 arm1.u	symbol	0x0404da88	ptagBig	flags=4	documented	ucode/arm1_functions.md#output-module-records-and-conversion-lists	Output-module records and conversion lists
 arm1.u	symbol	0x0404da98	ptagSmall	flags=4	documented	ucode/arm1_functions.md#output-module-records-and-conversion-lists	Output-module records and conversion lists
 arm1.u	symbol	0x0404daa8	compFormatTable	flags=4	documented	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel-path parameter and format tables
@@ -1420,13 +1420,13 @@ arm1.u	symbol	0x0c034288	SetupSubtexload	flags=3	documented	docs/ge.md#pixel-ima
 arm1.u	symbol	0x0c0343a0	SetupSubtexloadPos	flags=3	documented	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x0c034464	SetupTexRead	flags=3	documented	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x0c034630	StartTexRead	flags=3	documented	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x0c034754	x_initpixels	flags=3	documented	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
+arm1.u	symbol	0x0c034754	x_initpixels	flags=3	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 arm1.u	symbol	0x0c034774	arm_x_pix_copy	flags=3	documented	ucode/arm1_functions.md#x-server-pixel-commands	X server pixel commands
 arm1.u	symbol	0x0c034914	arm_x_pix_write	flags=3	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 arm1.u	symbol	0x0c0349e4	arm_x_pix_read	flags=3	documented	ucode/arm1_functions.md#x-server-pixel-commands	X server pixel commands
 arm1.u	symbol	0x0c034ac4	arm_x_pix_setup	flags=3	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 arm1.u	symbol	0x0c034bb4	arm_x_pix_finish	flags=3	documented	GE.h:474	
-arm1.u	symbol	0x0c034bf0	CompGedReg	flags=2	documented	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
+arm1.u	symbol	0x0c034bf0	CompGedReg	flags=2	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 arm1.u	symbol	0x0c034cfc	CompPixGedReg	flags=2	documented	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
 arm1.u	symbol	0x0c034da4	CompBMGedReg	flags=2	documented	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
 arm1.u	symbol	0x0c034f68	CompFormatter	flags=2	documented	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
@@ -1437,9 +1437,9 @@ arm1.u	symbol	0x0c035244	X_PixSetupGE	flags=2	documented	docs/opengl.md#x-server
 arm1.u	symbol	0x0c035524	XPixSetupRM	flags=2	documented	ucode/ge_handlers.md#xloads	xload.S
 arm1.u	symbol	0x0c035560	XWriteCram	flags=2	documented	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 arm1.u	symbol	0x0c035598	XSetupGedRead	flags=2	documented	ucode/arm1_functions.md#x-server-pixel-commands	X server pixel commands
-arm1.u	symbol	0x0c0356d4	CompTF	flags=2	documented	ucode/arm1_functions.md#x-server-pixel-commands	X server pixel commands
+arm1.u	symbol	0x0c0356d4	CompTF	flags=2	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 arm1.u	symbol	0x0c03573c	XSetTF	flags=2	documented	ucode/arm1_functions.md#x-server-pixel-commands	X server pixel commands
-arm1.u	symbol	0x0c035830	XSetPacker	flags=2	documented	ucode/arm1_functions.md#x-server-pixel-commands	X server pixel commands
+arm1.u	symbol	0x0c035830	XSetPacker	flags=2	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 arm1.u	symbol	0x0c035874	SendXToHost	flags=2	documented	ucode/arm1_functions.md#x-server-pixel-commands	X server pixel commands
 arm1.u	symbol	0x0c0358e0	XStartRbus	flags=2	documented	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
 arm1.u	symbol	0x0c035988	f2i	flags=2	documented	ucode/arm1_functions.md#set-up-and-state	Set-up and state
@@ -2511,9 +2511,9 @@ ge.u	label	0x00009a83	mgesi_XPolygonStippleDownload		documented	ucode/ge_handler
 ge.u	label	0x00009a98	mgeb_XPolygonStippleRotate		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x00009ae9	mod		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x00009b4a	mgesi_TransparentBitmap		documented	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009b8f	mmo_X_DrawBitmapOpaque		documented	ucode/ge_handlers.md#mpixouts	mpixout.S
+ge.u	label	0x00009b8f	mmo_X_DrawBitmapOpaque		documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 ge.u	label	0x00009c14	mmo_X_pixout_4Comp		documented	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009c54	mmo_X_pixout_4		documented	ucode/ge_handlers.md#mpixouts	mpixout.S
+ge.u	label	0x00009c54	mmo_X_pixout_4		documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 ge.u	label	0x00009cd5	mmo_X_pixout_8_16		documented	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x00009d56	mgesi_PolygonStippleDownload		documented	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x00009d6b	mDoPolygonStippleDownload		documented	ucode/ge_handlers.md#mpixouts	mpixout.S
