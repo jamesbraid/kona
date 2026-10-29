@@ -2369,7 +2369,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014a5fc	1200	tbuBindCubeMap	d
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014aaac	7164	tbuBindTextureCCT	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014c6a8	7504	tbuBindTexture	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e548	16	tbuAttachDetailMap	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e558	52	log2	dynsym	documented	RM.h:135	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e558	52	log2	dynsym	documented	ucode/arm1_functions.md#texture-management	Texture management
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e58c	260	tbuClipBorder	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e690	772	tbuOffsetClip	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e994	1332	tbuMipToClipAndCenter	dynsym	undocumented		
@@ -2441,7 +2441,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164e00	76	jt_new_data_bvecto
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164e50	68	jt_new_inst_vector	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164ea0	76	jt_new_inst_bvector	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164ef0	64	jt_dispose_vector	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164f30	100	jt_vector_to_int	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164f30	100	jt_vector_to_int	dynsym	documented	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164fa0	124	jt_int_to_vector	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165020	252	jt_find_chip	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165130	348	jt_extract_chip_register	dynsym	undocumented		
@@ -2687,7 +2687,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033460	76	jt_new_data_bvector	dynsym	un
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100334b0	68	jt_new_inst_vector	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033500	76	jt_new_inst_bvector	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033550	64	jt_dispose_vector	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033590	100	jt_vector_to_int	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033590	100	jt_vector_to_int	dynsym	documented	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033600	124	jt_int_to_vector	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033680	252	jt_find_chip	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033780	104	jt_set_procs	dynsym	undocumented		
@@ -14359,7 +14359,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd951374	1556	__glko
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9518b8	208	__glkonim_ReadPixels	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd951988	876	BitmapReadModifyWrite	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd951c28	204	__glkonHostCopy	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd951cf4	1436	ReadPixels	mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd951cf4	1436	ReadPixels	mdebug	documented	ucode/arm1_functions.md#video-sources	Video sources
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9520f0	416	__glkonReadTexels3D	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd952290	2956	ReadTexels	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9525d4	764	__glkonim_Bitmap	dynsym+mdebug	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -14552,7 +14552,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96c170	2228	subloa
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96ca24	204	subgetSimple	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d038	192	validDimension	mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	documented	RM.h:135	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	documented	ucode/arm1_functions.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d118	164	areLodsConsistent	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d1bc	484	copyBackLods	mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d3a0	172	repPixels	mdebug	undocumented		
@@ -19750,7 +19750,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd841270	336	__glx_GetInstr
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd8413c0	336	__glx_InstrumentsBufferSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd841510	364	__glx_PollInstrumentsSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd84167c	268	__glx_FlushRasterSGIX	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf	undocumented		
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf	documented	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947be0	884	_stub	dwarf	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	documented	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	documented	docs/opengl.md#display-and-scanout	Display and scanout
@@ -19901,7 +19901,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd952d20	1200	__gl
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9531d0	184	__glkonim_ReadPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd953290	700	BitmapReadModifyWrite	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd953550	204	__glkonHostCopy	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd953620	1004	ReadPixels	dwarf+funcnames	undocumented		
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd953620	1004	ReadPixels	dwarf+funcnames	documented	ucode/arm1_functions.md#video-sources	Video sources
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd953a10	376	__glkonReadTexels3D	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd953b90	792	ReadTexels	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd953eb0	692	__glkonim_Bitmap	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -20094,7 +20094,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96bc80	2124	subl
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c4d0	160	subgetSimple	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c570	1140	getLevel	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c9f0	168	validDimension	dwarf+funcnames	undocumented		
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96caa0	56	log2	dwarf+funcnames	documented	RM.h:135	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96caa0	56	log2	dwarf+funcnames	documented	ucode/arm1_functions.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96cae0	204	areLodsConsistent	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96cbb0	660	copyBackLods	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96ce50	132	repPixels	dwarf+funcnames	undocumented		
@@ -25330,7 +25330,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2675df0	336	__glx_GetInstr
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2675f40	336	__glx_InstrumentsBufferSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2676090	364	__glx_PollInstrumentsSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26761fc	268	__glx_FlushRasterSGIX	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2677350	60	_init	dwarf	undocumented		
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2677350	60	_init	dwarf	documented	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2da9cc0	708	_stub	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2da9f90	712	GetBoardInfo	dwarf	documented	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa260	88	ChangeWindowSize	dwarf	documented	docs/opengl.md#display-and-scanout	Display and scanout
@@ -25481,7 +25481,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db4e20	1200	__gl
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db52d0	184	__glkonim_ReadPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db5390	700	BitmapReadModifyWrite	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db5650	204	__glkonHostCopy	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db5720	1032	ReadPixels	dwarf	undocumented		
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db5720	1032	ReadPixels	dwarf	documented	ucode/arm1_functions.md#video-sources	Video sources
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db5b30	388	__glkonReadTexels3D	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db5cc0	808	ReadTexels	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db5ff0	700	__glkonim_Bitmap	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -25674,7 +25674,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce0f0	2124	subl
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce940	160	subgetSimple	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce9e0	1144	getLevel	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcee60	168	validDimension	dwarf	undocumented		
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcef10	56	log2	dwarf	documented	RM.h:135	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcef10	56	log2	dwarf	documented	ucode/arm1_functions.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcef50	208	areLodsConsistent	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf020	668	copyBackLods	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf2c0	132	repPixels	dwarf	undocumented		
@@ -31058,7 +31058,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd951374	1556	__glko
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9518b8	208	__glkonim_ReadPixels	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd951988	876	BitmapReadModifyWrite	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd951c28	204	__glkonHostCopy	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd951cf4	1436	ReadPixels	mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd951cf4	1436	ReadPixels	mdebug	documented	ucode/arm1_functions.md#video-sources	Video sources
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9520f0	416	__glkonReadTexels3D	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd952290	2956	ReadTexels	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9525d4	764	__glkonim_Bitmap	dynsym+mdebug	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -31251,7 +31251,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96c170	2228	subloa
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96ca24	204	subgetSimple	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d038	192	validDimension	mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	documented	RM.h:135	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	documented	ucode/arm1_functions.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d118	164	areLodsConsistent	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d1bc	484	copyBackLods	mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d3a0	172	repPixels	mdebug	undocumented		
@@ -36449,7 +36449,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd841270	336	__glx_GetInstr
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd8413c0	336	__glx_InstrumentsBufferSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd841510	364	__glx_PollInstrumentsSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd84167c	268	__glx_FlushRasterSGIX	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf	undocumented		
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf	documented	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947be0	884	_stub	dwarf	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	documented	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	documented	docs/opengl.md#display-and-scanout	Display and scanout
@@ -36600,7 +36600,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd952d20	1200	__gl
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9531d0	184	__glkonim_ReadPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd953290	700	BitmapReadModifyWrite	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd953550	204	__glkonHostCopy	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd953620	1004	ReadPixels	dwarf+funcnames	undocumented		
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd953620	1004	ReadPixels	dwarf+funcnames	documented	ucode/arm1_functions.md#video-sources	Video sources
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd953a10	376	__glkonReadTexels3D	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd953b90	792	ReadTexels	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd953eb0	692	__glkonim_Bitmap	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -36793,7 +36793,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96bc80	2124	subl
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c4d0	160	subgetSimple	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c570	1140	getLevel	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c9f0	168	validDimension	dwarf+funcnames	undocumented		
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96caa0	56	log2	dwarf+funcnames	documented	RM.h:135	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96caa0	56	log2	dwarf+funcnames	documented	ucode/arm1_functions.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96cae0	204	areLodsConsistent	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96cbb0	660	copyBackLods	dwarf+funcnames	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96ce50	132	repPixels	dwarf+funcnames	undocumented		
@@ -42029,7 +42029,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2175df0	336	__glx_GetInstr
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2175f40	336	__glx_InstrumentsBufferSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2176090	364	__glx_PollInstrumentsSGIX	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21761fc	268	__glx_FlushRasterSGIX	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2177350	60	_init	dwarf	undocumented		
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2177350	60	_init	dwarf	documented	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2189cc0	708	_stub	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2189f90	712	GetBoardInfo	dwarf	documented	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a260	88	ChangeWindowSize	dwarf	documented	docs/opengl.md#display-and-scanout	Display and scanout
@@ -42180,7 +42180,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2194e20	1200	__gl
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21952d0	184	__glkonim_ReadPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2195390	700	BitmapReadModifyWrite	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2195650	204	__glkonHostCopy	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2195720	1032	ReadPixels	dwarf	undocumented		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2195720	1032	ReadPixels	dwarf	documented	ucode/arm1_functions.md#video-sources	Video sources
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2195b30	388	__glkonReadTexels3D	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2195cc0	808	ReadTexels	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2195ff0	700	__glkonim_Bitmap	dwarf+dynsym	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
@@ -42373,7 +42373,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae0f0	2124	subl
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae940	160	subgetSimple	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae9e0	1144	getLevel	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aee60	168	validDimension	dwarf	undocumented		
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aef10	56	log2	dwarf	documented	RM.h:135	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aef10	56	log2	dwarf	documented	ucode/arm1_functions.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aef50	208	areLodsConsistent	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af020	668	copyBackLods	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af2c0	132	repPixels	dwarf	undocumented		

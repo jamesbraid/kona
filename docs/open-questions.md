@@ -60,7 +60,7 @@ Routes already tried: `arm1.u` (6.5.30m, the whole image disassembled with its 1
 | Which distributor registers descriptors 0x44000020, 0x44200020, 0x44400020 load | `ucode/arm1_firmware.md` | `init_ged` | [ucode/ged.md](../ucode/ged.md)'s register list and the IR diagnostic's `ged*` builders |
 | `dgFetal`'s purpose | `ucode/arm1_firmware.md` | start-up call site | `DoDGRqstFetal` and its strings |
 
-**Where this pass stopped.** The DMA, status, privilege, source-select, vertex-array loop and engine-port registers are read from the firmware; `arm1_kpm.u` is identified; the unsupported tokens are explained from the host side. About 1100 of the firmware's 1682 symbols are still undocumented in [inventory/ucode.tsv](inventory/ucode.tsv), mostly display-generator (`dg*`, `DoDGRqst*`), pixel-path (`Add*`, `U_*`) and raster set-up functions. Next: the select-feedback handlers, then the `DoDGRqst*` family by command group with [dg_dispatch.tsv](../ucode/dg_dispatch.tsv).
+**Where this pass stopped.** Every function and data symbol of the firmware is now explained, the ones not in [arm1_firmware.md](../ucode/arm1_firmware.md) in [arm1_functions.md](../ucode/arm1_functions.md) by family. The inventory still counts about 20 short lower-case data names (`gepc`, `path`, `overlap`, `swapin` and the like) as named only: its English-word rule credits a short lower-case name only when written as a call, which a table cannot honestly be. Next: the open questions above, then a second pass over the pixel-path control-word lists (what each word of a `_8_16` list programs).
 
 ## Raster and texture boards (RM, TM)
 
