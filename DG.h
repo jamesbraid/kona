@@ -124,4 +124,79 @@
 #define KONA_CHANRECT_YOUT            14
 #define KONA_CHANNEL_NONE             32      /* the value kept when no channel owns the cursor */
 
+/*
+ * Video-format table files (ucode/KONA/dg4/vfo/*.vfo, dg4/cmb/*.cmb).
+ *
+ * These are host-side files, not registers; they are here because they set
+ * the numbers the display generator's timing sequencer is loaded with.
+ * ESTABLISHED from the 74 .vfo and 26 .cmb files (scripts/sdb_dump.py
+ * --check); the container layout is in ucode/dg.md. Roles marked INFERRED
+ * rest on the value patterns and on the register names in vof/*.vof.
+ */
+
+/* Container, big-endian. */
+#define KONA_SDB_VERSION              4
+#define KONA_SDB_MAGIC                0x73646220  /* "sdb " at offset 4 */
+#define KONA_SDB_TABLE_DESC           128         /* count, 0, name-table offset, 0 */
+#define KONA_SDB_FIRST_VALUE          144
+#define KONA_SDB_TYPE_INT             2           /* int32; 7 also int32 (cmb versions) */
+#define KONA_SDB_TYPE_BOOL            10          /* int32 holding 0 or 1 */
+#define KONA_SDB_TYPE_STRING          15          /* u32 length, bytes padded to 4 */
+#define KONA_SDB_TYPE_FLOAT           16          /* IEEE single */
+#define KONA_SDB_TYPE_DOUBLE          17          /* IEEE double */
+
+/* Sequencer capacity every .vfo states (TotalSignalCount etc.). */
+#define KONA_VFO_SIGNALS              14
+#define KONA_VFO_EDGE_SLOTS           50
+#define KONA_VFO_LINE_TYPES           32
+#define KONA_VFO_STATES               256
+#define KONA_VFO_LINE_LENGTH_MAX      8191        /* INFERRED 13-bit field */
+#define KONA_VFO_REPEAT_MAX           2047        /* INFERRED 11-bit field */
+#define KONA_VFO_FIELDS_MAX           16          /* FieldCountMaximum */
+
+/* Signal order (EdgeSignalAssignmentValue, SignalInitialState*), with the
+ * number of consecutive edge slots each owns. */
+enum kona_vfo_signal {
+    KONA_SIG_HSYNC = 0,       /* 4 slots */
+    KONA_SIG_VSYNC,           /* 4 */
+    KONA_SIG_CSYNC,           /* 8 */
+    KONA_SIG_CBLANK,          /* 6 */
+    KONA_SIG_TRISYNC,         /* 6 */
+    KONA_SIG_FIELD_START,     /* 2 */
+    KONA_SIG_FIELD,           /* 2 */
+    KONA_SIG_FRAME_START,     /* 2 */
+    KONA_SIG_VIDEO_ACTIVE,    /* 6 */
+    KONA_SIG_LINE_START,      /* 2 */
+    KONA_SIG_STEREO_OUT,      /* 2 */
+    KONA_SIG_IMPREG_LD,       /* 2 */
+    KONA_SIG_XMAPREG_LD,      /* 2 */
+    KONA_SIG_VOF_VDRC_EN,     /* 2 */
+};
+
+/* Level encoding of SignalInitialStateValue and TransitionDirection. */
+#define KONA_VFO_LEVEL_LOW            1
+#define KONA_VFO_LEVEL_HIGH           2
+
+/*
+ * Edge position (TransitionValue) and line-type length (LineTypeLength) are
+ * in video clocks: pixels * VideoClockRatio, with the ratio 1/1, 1/2 or 1/4.
+ * The sum of StateTableRepetitions over the valid states is the frame's
+ * line count.
+ */
+
+/* PFDTable entry codes (PFDEQ, PFDLT, PFDGT, PFDTrigger in every file);
+ * 32 entries, INFERRED to be the 2-bit codes of VOC_PFD_SEQUENCE_LO/HI. */
+#define KONA_PFD_EQ                   0
+#define KONA_PFD_LT                   1
+#define KONA_PFD_GT                   2
+#define KONA_PFD_TRIGGER              3
+#define KONA_PFD_TABLE_SIZE           32
+
+/* Combination files: 20 global fields, then 38 per channel. */
+#define KONA_CMB_GLOBAL_FIELDS        20
+#define KONA_CMB_CHANNEL_FIELDS       38
+#define KONA_CMB_ENCODER_CHANNEL      8           /* ch8, used by the +NTSC combinations */
+#define KONA_CMB_TILE_W               160         /* INFERRED from allocatedSize rounding */
+#define KONA_CMB_TILE_H               8
+
 #endif /* KONA_DG_H */

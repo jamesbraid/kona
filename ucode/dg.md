@@ -1,0 +1,106 @@
+# Display tables: video formats, combinations, VOF sources and the option-board image
+
+What the files under `ucode/KONA/dg4/`, `ucode/KONA/vof/` and `ucode/KONA/dgo1/` hold (IRIX 6.5.30m install). Facts are labelled **established** (read from the files, with the check that shows it), **inferred** (a reading, with the reasoning) or **unknown**. The reader is `scripts/sdb_dump.py`; every statement about "all files" was checked over the 74 `.vfo` and 26 `.cmb` files (`scripts/sdb_dump.py --check` passes on all of them). First configuration only: the table values are for IR with the DG4 display generator.
+
+No file here is read by the pipe's kernel driver, and none of the host tools that load the files is in the install copy (`root/`), so how the host turns a `.vfo` and a `.cmb` into display-generator requests is not read. The ARM firmware side (`DoDGRqstLoadFormat`, a 383-word request) is listed in [dg_dispatch.tsv](dg_dispatch.tsv) and not decoded here.
+
+## The container (`.vfo` and `.cmb`)
+
+**Established** (all 100 files; `scripts/sdb_dump.py`). Both kinds use one big-endian container whose magic is the ASCII string `sdb `. Layout:
+
+| Offset | Content |
+|---|---|
+| 0 | version, 4 |
+| 4 | `sdb ` |
+| 8 | words 0, 1, then 1 for a `.vfo` or 0 for a `.cmb` (two `.vfo` files, the `CCIR601_*_DGO` pair, have 0 at +16 instead, **unknown** why), then 100 at +24 |
+| 28 | description text in a 100-byte field, zero padded: `VideoFormatCompiler` for a `.vfo`, `Kona video format combination file` for a `.cmb` |
+| 128 | field count, 0, offset of the name table, 0 |
+| 144 | the field values, back to back, with no gaps (checked: each field starts where the previous one ends) |
+| table | count again, then per field: name length, name padded to 4 bytes, type, array length, value offset |
+
+The name table is sorted by name in all 100 files, so a reader can search it by name; the values are stored in the order the writer produced them, not sorted. Types: 2 and 7 are 32-bit signed integers (7 only for the two version fields of a `.cmb`), 10 is a boolean held in a 32-bit word, 15 a string (length word, bytes padded to 4), 16 a 32-bit float, 17 a 64-bit float. A field whose array length is nonzero stores its element count first and then the elements; for every field the stored count equals the table's array length.
+
+**Inferred.** The name is a writer's field dictionary (name, type, shape) followed by the data, so a consumer asks for fields by name. `sdb` probably abbreviates a database; the expansion is **unknown**.
+
+## Combination files (`.cmb`)
+
+**Established** (26 files in `dg4/cmb/`). A combination describes what each video channel shows and which format file drives it. The file name is the layout: `1280x1024_60.cmb` is one channel, `2@1280x1024_60` two, `8@640x480_60` eight, `1280x1024+1920x1080_72` two different formats side by side, and `+NTSC` adds the encoder channel.
+
+Global fields (20 of them, in file order): `MajorVersion` 1, `MinorVersion` 0, `name` (empty in every file), `dateStamp` 0, `textport` (1 only in `3@1280x1024_60`), `managedSize` and `allocatedSize` (width, height; the allocated size rounds up to whole tiles, below), `pixelDepth` 2 in every file, `syncSource` 0, `syncFormatName` empty, `syncFormatValid` 0, `syncFormatFrameRate` 0.0, `syncFormatDateStamp` 0, `syncComponent` 0, `fastlistChunksize` 1.0, `PSDhysteresis` 2, `minRMs` 0, `usingEncoderOutput` (1 in the three `+NTSC`/`+5@640x453` combinations that have a channel 8), `globalGamma` (1.7 three times) and `usingGlobalGamma` 0.
+
+Per-channel block, 38 fields named `ch0...` to `ch7...` (and `ch8...` for the encoder). Common to all channels in all files: `Enable` 1, `Blanking` 0, `OutputAlpha` 0, `CursorPriority` 0, `PixelFormat` 0, `DataFormat` 0, `PlacementRes` (2, 1), `HalfLineInterp` 0, `HPhase` `VPhase` `SCHPhase` 0, `Gain` 1.0, `SetGamma` 0, `Gamma` 1.7 three times, `FilterSize` (5.0, 3.0), `FlickerFilter` 0, `Letterbox` 0, `SafeArea` 100.0, `SetupEnable` 1, `TriLevelSyncEnable` 0, `FIFOwatermark` 0, `MaxTilesPerRequest` 8, `MaxTilesPerLine` 8, `SyncMethod` 0. Fields that vary:
+
+| Field | Values seen | Reading |
+|---|---|---|
+| `SourceChannel` | 0-7 | **Inferred:** which frame-buffer channel feeds this output; equals the channel number except on `ch8`, where it is 0 |
+| `InputOrigin`, `InputSize`, `MinSize`, `MaxSize`, `OutputSize` | pixel pairs | **Established** as values: in `1280x1024+4@640x480_60` the origins are (0,0), (1280,0), (1920,0), (1280,480), (1920,480) and the input sizes 1280x1024 then 640x480 four times, so each channel reads a rectangle of one managed frame buffer 2560x1024 wide. The `ch8` encoder channel reads (0,0) 1280x1024 and outputs 640x486 (scaled) |
+| `FormatName` | the `.vfo` file name | **Established:** the file of `dg4/vfo/` that gives the channel its timing; every name in the 26 files exists there |
+| `FormatDateStamp` | 893919841-893919884 (April 1998), 1153442198-9 (July 2006) | **Inferred:** Unix time of the `.vfo`, from the values being in the range of Unix seconds and the README in `dg4/vfo/` being dated 20 July 2006 |
+| `FrameRate` | 60.0, 72.0, 30.0, 29.969986, 60.018997, 66.0, 71.991989 | **Established** as values; equals the `.vfo` frame rate for the file named |
+| `FieldLayout` | 0, or 1 on the interlaced channels (`1920x1035_30i`, `3@1024x768_60+1280x959_30i` channel 3, and the NTSC encoder channel) | **Inferred:** 1 means interlaced fields; the 5 channels with 1 are the 5 interlaced ones |
+| `HSync` | 3, or 1 on the `120s` stereo formats and the two `1600x1024` formats | **Unknown** (a small selector; the stereo and 1600x1024 correlation is observed, nothing says why) |
+| `SyncSource` | the channel number, 8 on the encoder channel | **Inferred:** which timing source the output follows |
+| `SyncComponent` | (0, 1, 0), or (0, 0, 0) on the two `1600x1024` formats | **Unknown** (three booleans) |
+| `ch0VbobSyncSource` | present in only the two `1600x1024` files, 0 | **Unknown** (59 fields instead of 58) |
+
+Tile size, **inferred**: `allocatedSize` differs from `managedSize` only by rounding the width up to a multiple of 160 and the height to a multiple of 8 (1024x768 becomes 1120x768; 1200x900 becomes 1280x904; 1920x1036 becomes 1920x1040), matching the "tiles are 160 x 8 pixels" comment in `vof/640x480_60.vof` and the `MaxTilesPerLine` of 8 (8 x 160 = 1280).
+
+## Video format files (`.vfo`)
+
+**Established** (74 files in `dg4/vfo/`, 170-203 fields each depending on the number of fields per frame). A `.vfo` is the compiled description of one video format for the display generator ("VOC for DG4" in `VofHardwareName`, file generator `dg4_def_version` `$Revision: 1.54 $` for 54 files and `1.1` for 20). `dg4/vfo/README` is a human-readable summary of each format in the same terms (pixel clock, line, field and porch lengths) and is consistent with the fields below.
+
+### Format summary fields
+
+| Field | Reading |
+|---|---|
+| `FormatName`, `ActivePixelsPerLine`, `ActiveLinesPerFrame`, `FrameBufferWidth`, `FrameBufferHeight`, `ScreenHeight` | names and the active raster; **established** as values |
+| `TotalPixelsPerLine`, `TotalLinesPerFrame`, `FramesPerSecond`, `VerticalRetraceRate` | the raster; `FormatInfo_PixelClock` = `TotalPixelsPerLine` * `TotalLinesPerFrame` * `FramesPerSecond` to within 0.2 percent in all 74 files (1280x1024_60: 1680 * 1065 * 60 = 107352000, exactly the stored value). **Established** |
+| `FormatInfo_H_Active/_H_Sync/_H_FrontPorch/_H_BackPorch` | horizontal timing in pixels; 1280x1024_60 is 1280, 120, 40, 240, which add to 1680. `HorizontalSync/FrontPorch/BackPorch` and `LineLengthTime` are the same in seconds (120 / 107.352 MHz = 1.1178e-6). **Established** |
+| `FormatInfo_F_n_ActiveLineCount`, `_V_Active`, `_V_Sync`, `_V_SyncPulse`, `_V_BackPorch`, `_V_FrontPorch` | per field `n`, vertical timing in pixel clocks, not lines: 1280x1024_60 has V_Active 1720320 = 1024 * 1680, V_Sync 5040 = 3 * 1680, V_BackPorch 58800 = 35 * 1680, V_FrontPorch 5040 = 3 * 1680 and V_SyncPulse 5160 = 3 lines + 120 pixels. **Established** |
+| `FormatInfo_Interlaced`, `_Stereo`, `_FieldSequential`, `_FullScreenStereo`, `_UnbalancedSwaps`, `OldStyleStereo`, `FullScreenStereo` | booleans; of the 73 files that carry them, 25, 10 and 3 are interlaced, stereo and field-sequential |
+| `FieldsPerFrame`, `SwapsPerFrame`, `FramePortionIndex`, `FieldCountMaximum` (16) | see below |
+| `DACRateMaximum/Minimum` 36 MHz/13 MHz, `SystemVideoClockRateMaximum/Minimum` 35 MHz/12 MHz, `Monitor...` and `System...` rate limits 0.0 | constants in all files except as listed; the two clock ranges are in the unit the writer used, which cannot be the pixel clock (the formats run up to 215 MHz); **unknown** what they bound |
+| `VideoClockRatio` (0.5, 0.25 or 1.0), `VideoClockRatioNumerator` (1), `VideoClockRatioDenominator` (2, 4, 1) | **Established** as values; **inferred** reading: the timing tables below count video clocks, each covering `Denominator` pixels (`README` says "Hardware pixel rounding: every 4 pixels" for the 0.25 files). Every valid `LineTypeLength` equals `TotalPixelsPerLine` * `VideoClockRatio` in all 74 files |
+| `DisplayArchitecture` `Unspecified`, `OptionHardware` `None`, `BeginTime` 0, `EndTime` (one frame time), `CorrespondingPolarity` 2, `PixelAccurateBlanking` 1, `FetchExtraClocks` 1, `ProgrammableFrameDetection` 1, `LineLengthMaximum` 8191, `LineTypeCount` 32, `StateRepetitionMaximum` 2047, `VerticalStateCount` 256, `TotalSignalCount` 14, `TotalEdgeCount` 50, `TransitionDirectionSupport` 0 | the capacity of the target: **inferred** that 8191 and 2047 are the widest line length and repeat count the state tables can hold (13 and 11 bits), that 32, 256, 14 and 50 are the numbers of line types, vertical states, signals and edge slots below; the values are constant in all files |
+| `HBackPorchClampStart/Length`, `Vsync`, `Vbp`, `Vfp`, `EqualizationDuration`, `SerrationDuration`, `Horizontal_A/B/C/D_Length`, `HorizontalTriLevelLength`, `FrameStartShift`, `GlobalDelay` | extra timing parameters present in only some files (broadcast formats): **established** as values, role **unknown** |
+
+### The video-output-format tables
+
+**Established** (all 74 files, relations checked by `--check` and `ucode/KONA/vof/*.vof` for the meaning of the names). The display generator's timing is a small sequencer: a set of **signals**, each with up to a few **edge** slots, a set of **line types**, and a **state table** that runs the line types down the frame.
+
+1. **Signals.** 14, in this order, from `EdgeSignalAssignmentValue` and from the `I` lines of the `.vof` sources, which list the same 14 in the same order: HSYNC, VSYNC, CSYNC, CBLANK, TRISYNC, FIELD_START, FIELD, FRAME_START, VIDEO_ACTIVE, LINE_START, STEREO_OUT, IMPREG_LD, XMAPREG_LD, VOF_VDRC_EN. `SignalInitialStateValid` (all 1) and `SignalInitialStateValue` give the level at the start of a line: **established** that the encoding is 1 low, 2 high (`TransitionDirectionLow` 1 and `TransitionDirectionHigh` 2 are stored in each file; `640x480_60` has 2 for HSYNC, VSYNC, CSYNC, TRISYNC and 1 for the rest, and `640x480_60.vof` has `I HSYNC 1`, `I CBLANK 0`: level + 1).
+2. **Edge slots.** 50 slots, arrays `TransitionValid`, `TransitionValue`, `TransitionDirection`, `EdgeSignalAssignmentValid`, `EdgeSignalAssignmentValue`, each 50 entries. The slot count per signal is the same in all 74 files: 4, 4, 8, 6, 6, 2, 2, 2, 6, 2, 2, 2, 2, 2 in the signal order above, and the slots of one signal are consecutive. A valid slot is one transition: a position in video clocks (`TransitionValue`) and the level it goes to (`TransitionDirection`, 1 or 2). For 1280x1024_60 HSYNC has slot 0 (position 0, to low) and slot 1 (position 60, to high): 60 clocks = 120 pixels = `FormatInfo_H_Sync`; CBLANK goes high at 180 clocks (360 pixels = sync 120 + back porch 240) and low at 820 (1640 = 360 + 1280 active).
+3. **Which lines an edge applies to.** `TransitionLineTypesUsing00000` to `...00049` (names built from the format string stored in `_TransitionLineTypesUsing_Name_`) are 50 arrays of 32 booleans, one per edge slot: bit n set means the edge happens on lines of type n. **Established** as data; the reading matches the `E signal clock level types` lines of the `.vof` sources (`E HSYNC 95 1 0,1,2,3`: the last column is a line-type list).
+4. **Line types.** `LineTypeValid[32]` and `LineTypeLength[32]`: the length of each type in video clocks. 1280x1024_60 uses 11 types of 840 clocks each (1680 pixels / 2); other formats have different lengths on equalisation lines. Matches `L type length` in the `.vof` sources.
+5. **State table.** `StateTableLineType[256]` and `StateTableRepetitions[256]`, with `StateTableValidStates` and `StateTableSize` (256): state i runs `StateTableLineType[i]` lines for `StateTableRepetitions[i]` lines. **Established:** the repetitions of the valid states sum to `TotalLinesPerFrame` in all 74 files, and the entries after the valid ones are zero. 1280x1024_60 has 13 states: line types 0-7 once each (8 lines), type 6 for 30 lines, type 8 for the 1024 active lines, then types 9, 6 and 10 once each (8 + 30 + 1024 + 3 = 1065). 640x480_60 has 13 states in which line type 6 runs for the 480 active lines, preceded by type 3 for 28 lines and followed by type 3 for 7. Matches `V repeat type` in the `.vof` sources.
+
+The `.vof` text sources (below) show the same sequencer in the vertical-areas and line-length directives, so the mapping from `.vfo` arrays to `.vof` directives is one-to-one.
+
+### Fields and swaps
+
+**Established** as values, per field of the frame, arrays of `FieldsPerFrame` entries: `FieldLineCount`, `FieldLineOffset`, `FieldLineSkip`, `FieldSwap`, `FieldColor`, `FieldEye`. Non-interlaced one-field formats store 1 entry. `1920x1080_30i` has 2 fields of 540 lines, `FieldLineOffset` (0, 1) and `FieldLineSkip` (1, 1): field 1 starts one line down and takes every second line. The `.monitor` sources use the same idea (`field0 off = 0 inc = 2`, `field1 off = 1 inc = 2`), so skip = inc - 1 (**inferred** from this one pair). `1024x768_96s` (stereo) has 2 fields of 768 lines each, `FieldEye` (1, 2) and `FieldSwap` (1, 0): left eye then right eye, with a buffer swap after the first field only. `1280x1024_180qi` is field-sequential colour: 6 fields, `FieldColor` (1, 2, 4, 1, 2, 4) = red, green, blue as bit masks, 7 meaning all three; `FieldEye` 3 means both eyes. **Inferred:** `FieldEye` 1 left, 2 right, 3 both, and `FieldColor` a bit per primary, from the values in these three files. `SwapsPerFrame` equals the number of nonzero `FieldSwap` entries in the files read.
+
+### Frame detection
+
+**Established** as names and values, **inferred** as roles. The block named `PFD...` ("programmable frame detection", from `ProgrammableFrameDetection` 1) is a sequence the display generator uses to recognise a frame boundary on an incoming sync signal:
+
+- `PFDSourceSignalName` is `CSYNC` (57 files) or `HSYNC` (17): the signal watched.
+- `PFDTable` is 32 entries of 2 bits' worth of codes, with the names `PFDEQ` 0, `PFDLT` 1, `PFDGT` 2, `PFDTrigger` 3 stored in every file; 1280x1024_60 has (2, 1, 0 ..., 3). **Inferred:** the 32 entries are the 64-bit `VOC_PFD_SEQUENCE_LO/HI` register pair of the `.vof` sources (32 x 2 bits), each entry saying how a line's length compares with the previous (equal, shorter, longer) and 3 where the frame is declared. `PFDControlSize` is 32.
+- `PFDClockSpeeds` (50, 25, 12.5 MHz), `PFDNumClockSpeeds` 3, `PFDClockSettings` (0, 1, 2) and `PFDClockSelect` (0, or 1 in 6 files): the measuring clock and its register code. `PFDComparatorPrecision`, `PFDRegularLines`, `PFDInvert`, `PFDValidTable`, `PFDVOFVerticalPhase`, `PFDVerticalPhaseBias`, `PFDMaximumClocks` (4096) and `PFDMinimumPrecision` (4e-8): **inferred** to be the comparator width, the number of regular lines per frame, the invert flag, a validity flag, the vertical phase of the sequencer and limits, from the `VOC_PFD_CONTROL_COMP_PRECISION`, `_LINE_COUNT`, `_FLIP` and `VOC_VOF_VERT_PHASE` register names. `PFDVOFVerticalPhase` is close to, but not always, `TotalLinesPerFrame` minus the vertical back porch (1280x1024_60: 1065 - 35 = 1030, equal; 640x480_60: 525 - 34 = 491 with a 33-line back porch, one more); the exact rule is **unknown**.
+
+## VOF sources (`vof/`)
+
+**Established.** Three text files (`default.vof`, `vga.vof`, `640x480_60.vof`) and four `.monitor` files, hand-written inputs for an earlier or test version of the same compiler, with comments that define the directive set. They are not the sources of the shipped `.vfo` files (the 640x480_60 sync is 95 pixels in the `.vof` and 96 in the `.vfo`).
+
+- `I signal level`: the initial level of each of the 14 signals (two more, SPARE1 and SPARE2, are marked defunct).
+- `E signal pixel level types`: an edge, placed in the next free edge block of that signal, with the list of line types it applies to.
+- `L type length`: the length of a line type, in pixels in these files (800 for 640x480_60).
+- `V repeat type`: a vertical area appended to the state table. 640x480_60 is `V 1 0`, `V 9 1`, `V 2 2`, `V 33 1`, `V 480 3`: one set-up line, 9 front-porch lines, 2 sync lines, 33 back-porch lines, 480 active lines.
+- `R name value`: initial register values, names from a `voc1_regs.h` header that is not shipped. A fully commented-out list is the register map of the video output controller ("VOC"): `VOC_REVISION`; `VOC_CONTROL` (double-buffer enable and control, five interrupt enables: FIFO over, FIFO under, external sync loss, external frame, VDRC, host, and an output pixel mux); `VOC_IWSC_ORIGIN/SIZE/SCREEN` (input window: x and y origin and size, screen width); `VOC_VOF_CONTROL` (stop, one shot, reset source, clear state pointer, line/edge select) and `VOC_VOF_VERT_PHASE`; `VOC_PFD_CONTROL` (enable, flip, clock select, frame select, comparator precision, line count) and `VOC_PFD_SEQUENCE_LO/HI`; `VOC_VDRC_CONTROL` (enable, pixel size, dither, transfer size, transfer alpha), `VOC_VDRC_MAW`, `_FIRST_TILE_ADDRESS`, `_START_LINE`, `_MIDDLE_LINE`, `_END_LINE` (tile count, group-pixel count, request valid, repeat), `_PAN`, `_REQ` and `_REQ_PATTERN` (stereo and colour per slot, active lines, next cursor offset); `VOC_PLL_CONTROL` (ready, read and write execute, vertical wait, auto update), `VOC_PLL_ADDRESS/READBACK/DATA_REG`; `VOC_GEN_CONTROL`, `_HRATE_DIV`, `_H_MASK`, `_BP_CLAMP` (the horizontal mask and back-porch clamp, matching `HBackPorchClamp*` above); `VOC_FIFO_HIGH_WATER` (864 in these files), `VOC_FIFO_CONTROL`, `VOC_SAC_CONTROL`, `VOC_MUX_CONTROL_RATIO`, `VOC_SIZ_CONTROL` and the `VOC_SIZ_X_` and `_Y_` coefficient registers (a scaler: filter, slope, delta and four start coefficients per axis). The names are established; **no address, width or bit position is given**, and **unknown** is how a register number maps to the indirect port (`HH_VC_ADDRESS`).
+- The comment "tiles are 160 x 8 pixels" and `VOC_VDRC_END_LINE_GROUPXEL_COUNT 160`, `VOC_VDRC_MAW 4` (640 pixels = 4 tiles) show the tile geometry; "groupxel" is the file's word for a unit of pixels in a tile line (**unknown** size).
+
+The `.monitor` files give the monitor's raster for a `.vof` (front and back porch, `hsync_max`, `vsync_max` = whole lines plus one hsync, pixels per line, lines per field, `num_fields` and one `fieldN off = a inc = b` per field). `1280x1024.monitor`: `pixels_per_line = 1680`, `lines_per_field = 1065`, `vsync_max = 5165` (= 3 lines + 125 pixels).
+
+## Option-board image (`dgo1/dgo.mcs`)
+
+**Established.** An Intel HEX file: one extended-segment record (segment 0), 2133 data records of 16 bytes and one of 10, an end record; every record checksum is correct and the data addresses run 0 to 0x8559 without gaps, giving 34138 bytes (273104 bits). `dgo` names the display-generator option board in the firmware (`dgWriteDgoTMC22071a`, `dgDGOOutputLetterbox`, `NIC_dgopt_type` in `arm1.s`: the board has a TMC22071A video encoder, **inferred** from the function name) and the `CCIR601_*_DGO.vfo` formats. **Inferred:** a programmable-logic configuration image (47 percent of the bytes are 0xff, the rest is dense). Read with the bits of every byte reversed (least significant bit first), the stream starts with eight 1 bits, the nibble 0010, a 24-bit value 0x042ac9 = 273097 and the nibble 1111. 273097 is 7 bits short of the file's 273104 bits, so the value is **inferred** to be a length count, and the layout (fill, preamble, length, fill) is that of a serial configuration stream for a programmable-logic device; which family, and what the image implements, is **unknown**. The ARM firmware's stored "flashprom combo image" and "Emergency Backup Format" messages (`ucode/tport.md`) are about combinations, not this file; how `dgo.mcs` is loaded is **unknown**.
