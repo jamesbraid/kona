@@ -1,9 +1,109 @@
-table	rows	understood	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites
-binaries	599	215	0	42	341	1	35.9	36.1	43.1	36.1	
-functions	54309	6924	21	47346	6	12	12.7	12.8	100.0	12.8	
-functions (distinct names)	19170	1486	5	17667	3	9	7.8	7.8	100.0	7.8	
-mmio	53	53	0	0	0	0	100.0	100.0	100.0	100.0	10
-tokens	617	607	0	0	0	10	98.4	100.0	100.0	100.0	
-ioctls	55	55	0	0	0	0	100.0	100.0	100.0	100.0	
-ucode	3387	3387	0	0	0	0	100.0	100.0	100.0	100.0	
-spec-registers	242	227	0	0	0	15	93.8	100.0	100.0	100.0	
+table	rows	understood	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites
+binaries	599	67	9	0	2	189	341	0	11.2	11.5	43.1	11.2	
+functions	54309	539	258	1390	1667	52093	6	4	1.0	4.1	100.0	1.0	
+functions (distinct names)	19170	258	258	238	293	18615	3	1	1.3	2.9	100.0	1.4	
+mmio	53	8	7	0	0	45	0	0	15.1	15.1	100.0	15.1	10
+tokens	617	463	432	54	54	89	0	11	75.0	85.6	100.0	76.8	
+ioctls	55	41	41	0	0	14	0	0	74.5	74.5	100.0	74.5	
+ucode	3387	3198	2458	189	189	0	0	0	94.4	100.0	100.0	94.4	
+spec-registers	242	39	39	0	0	198	0	5	16.1	18.2	100.0	18.2	
+functions in usr/bin/X11/xsetmon	501	0	0	0	0	501	0	0	0.0	0.0	100.0	0.0	
+functions in usr/cpu/sysgen/IP27boot/gfx.o	62	30	30	0	5	27	0	0	48.4	56.5	100.0	48.4	
+functions in usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	19	6	6	0	7	6	0	0	31.6	68.4	100.0	31.6	
+functions in usr/cpu/sysgen/IP27boot/gfxs.a(klconfig.o)	1	0	0	0	1	0	0	0	0.0	100.0	100.0	0.0	
+functions in usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	62	30	30	0	5	27	0	0	48.4	56.5	100.0	48.4	
+functions in usr/cpu/sysgen/IP27boot/gfxstubs.a(gfxstubs.o)	18	2	2	0	4	12	0	0	11.1	33.3	100.0	11.1	
+functions in usr/cpu/sysgen/IP27boot/kona.a(gfx_io_space.o)	7	6	6	0	0	1	0	0	85.7	85.7	100.0	85.7	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_attach.o)	3	3	3	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	7	5	5	0	0	2	0	0	71.4	71.4	100.0	71.4	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o)	3	3	3	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_ddrn.o)	3	3	3	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_debug.o)	1	1	1	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	23	16	16	0	0	7	0	0	69.6	69.6	100.0	69.6	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit.o)	6	6	6	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	14	13	13	0	1	0	0	0	92.9	100.0	100.0	92.9	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_frs.o)	2	2	2	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_genlock.o)	1	1	1	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_geprint.o)	1	0	0	0	0	1	0	0	0.0	0.0	100.0	0.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_info.o)	1	1	1	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o)	2	2	2	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	1	0	0	0	0	1	0	0	0.0	0.0	100.0	0.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_map.o)	3	1	1	0	2	0	0	0	33.3	100.0	100.0	33.3	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	23	20	20	0	0	3	0	0	87.0	87.0	100.0	87.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	13	11	11	0	0	2	0	0	84.6	84.6	100.0	84.6	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_sched.o)	2	2	2	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_setup.o)	2	2	2	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_share.o)	2	2	2	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_stubs.o)	1	1	1	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	10	9	9	0	1	0	0	0	90.0	100.0	100.0	90.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	21	15	15	0	0	6	0	0	71.4	71.4	100.0	71.4	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_tport.o)	19	15	15	0	3	1	0	0	78.9	94.7	100.0	78.9	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o)	9	7	7	0	2	0	0	0	77.8	100.0	100.0	77.8	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	3	0	0	0	3	0	0	0	0.0	100.0	100.0	0.0	
+functions in usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	5	5	5	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP27boot/rrm.o	72	29	29	0	7	36	0	0	40.3	50.0	100.0	40.3	
+functions in usr/cpu/sysgen/IP27boot/tport.a(tport.o)	22	1	1	0	1	20	0	0	4.5	9.1	100.0	4.5	
+functions in usr/cpu/sysgen/IP35boot/gfx.o	62	30	30	0	5	27	0	0	48.4	56.5	100.0	48.4	
+functions in usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	16	4	4	0	7	5	0	0	25.0	68.8	100.0	25.0	
+functions in usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	5	3	3	0	1	1	0	0	60.0	80.0	100.0	60.0	
+functions in usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	62	30	30	0	5	27	0	0	48.4	56.5	100.0	48.4	
+functions in usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	18	2	2	0	4	12	0	0	11.1	33.3	100.0	11.1	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_attach.o)	3	3	3	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	7	5	5	0	0	2	0	0	71.4	71.4	100.0	71.4	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_crash.o)	3	3	3	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_ddrn.o)	3	3	3	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_debug.o)	1	1	1	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	23	16	16	0	0	7	0	0	69.6	69.6	100.0	69.6	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit.o)	6	6	6	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	14	13	13	0	1	0	0	0	92.9	100.0	100.0	92.9	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_frs.o)	2	2	2	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_genlock.o)	1	1	1	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_info.o)	1	1	1	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_intr.o)	2	2	2	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	1	0	0	0	0	1	0	0	0.0	0.0	100.0	0.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_map.o)	3	1	1	0	2	0	0	0	33.3	100.0	100.0	33.3	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	23	20	20	0	0	3	0	0	87.0	87.0	100.0	87.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	13	11	11	0	0	2	0	0	84.6	84.6	100.0	84.6	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_sched.o)	2	2	2	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_setup.o)	2	2	2	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_share.o)	2	2	2	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_stubs.o)	1	1	1	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	10	9	9	0	1	0	0	0	90.0	100.0	100.0	90.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	21	15	15	0	0	6	0	0	71.4	71.4	100.0	71.4	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_tport.o)	19	15	15	0	3	1	0	0	78.9	94.7	100.0	78.9	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit_hip2.o)	9	7	7	0	2	0	0	0	77.8	100.0	100.0	77.8	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	3	0	0	0	3	0	0	0	0.0	100.0	100.0	0.0	
+functions in usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	5	5	5	0	0	0	0	0	100.0	100.0	100.0	100.0	
+functions in usr/cpu/sysgen/IP35boot/rrm.o	72	29	29	0	7	36	0	0	40.3	50.0	100.0	40.3	
+functions in usr/diags/IR/bin/hyper	11	0	0	0	0	11	0	0	0.0	0.0	100.0	0.0	
+functions in usr/diags/IR/bin/irsaudit	1170	11	11	0	3	1155	1	0	0.9	1.2	99.9	0.9	
+functions in usr/gfx/KONA/bin/ireeprom	15	0	0	0	0	15	0	0	0.0	0.0	100.0	0.0	
+functions in usr/gfx/KONA/bin/kpm	426	1	1	0	2	423	0	0	0.2	0.7	100.0	0.2	
+functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	0	0	0	2936	0	0	0.0	0.0	100.0	0.0	
+functions in usr/gfx/arch/IGLOO/libgl.so	3811	0	0	0	2	3809	0	0	0.0	0.1	100.0	0.0	
+functions in usr/gfx/arch/IGLOO32/libgl.so	3811	0	0	0	2	3809	0	0	0.0	0.1	100.0	0.0	
+functions in usr/gfx/arch/IP27KONA/libGL.so	671	0	0	0	1	670	0	0	0.0	0.1	100.0	0.0	
+functions in usr/gfx/arch/IP27KONA/libGLcore.so	4868	1	1	219	233	4634	0	0	0.0	4.8	100.0	0.0	
+functions in usr/gfx/arch/IP27KONA32/libGL.so	673	0	0	0	1	671	1	0	0.0	0.1	99.9	0.0	
+functions in usr/gfx/arch/IP27KONA32/libGLcore.so	4907	1	1	219	233	4673	0	0	0.0	4.8	100.0	0.0	
+functions in usr/gfx/arch/IP27KONA64/libGL.so	673	0	0	0	1	671	1	0	0.0	0.1	99.9	0.0	
+functions in usr/gfx/arch/IP27KONA64/libGLcore.so	4907	1	1	219	233	4673	0	0	0.0	4.8	100.0	0.0	
+functions in usr/gfx/arch/IP35KONA/libGL.so	671	0	0	0	1	670	0	0	0.0	0.1	100.0	0.0	
+functions in usr/gfx/arch/IP35KONA/libGLcore.so	4868	1	1	219	233	4634	0	0	0.0	4.8	100.0	0.0	
+functions in usr/gfx/arch/IP35KONA32/libGL.so	673	0	0	0	1	671	1	0	0.0	0.1	99.9	0.0	
+functions in usr/gfx/arch/IP35KONA32/libGLcore.so	4907	1	1	219	233	4673	0	0	0.0	4.8	100.0	0.0	
+functions in usr/gfx/arch/IP35KONA64/libGL.so	673	0	0	0	1	671	1	0	0.0	0.1	99.9	0.0	
+functions in usr/gfx/arch/IP35KONA64/libGLcore.so	4907	1	1	219	233	4673	0	0	0.0	4.8	100.0	0.0	
+functions in usr/gfx/dmconf	192	0	0	0	0	192	0	0	0.0	0.0	100.0	0.0	
+functions in usr/gfx/gfxinfo	227	0	0	0	1	226	0	0	0.0	0.4	100.0	0.0	
+functions in usr/gfx/hyperpipeinfo	4	0	0	0	0	4	0	0	0.0	0.0	100.0	0.0	
+functions in usr/gfx/ircombine	1238	0	0	0	0	1238	0	0	0.0	0.0	100.0	0.0	
+functions in usr/gfx/setmon	249	0	0	0	1	247	1	0	0.0	0.4	99.6	0.0	
+functions in usr/gfx/sgcombine	402	0	0	0	0	402	0	0	0.0	0.0	100.0	0.0	
+functions in usr/gfx/ucode/vfc/sdbutil	93	0	0	0	0	93	0	0	0.0	0.0	100.0	0.0	
+functions in usr/lib/X11/dyDDX/glx.so	981	0	0	0	0	981	0	0	0.0	0.0	100.0	0.0	
+functions in usr/lib/X11/dyDDX/kona.so	809	24	24	19	25	759	0	1	3.0	6.2	100.0	3.1	
+functions in usr/lib/X11/dyDDX/konad.so	795	1	1	19	48	745	0	1	0.1	6.3	100.0	0.3	
+functions in usr/lib/X11/dyDDX/konal.so	795	1	1	19	48	745	0	1	0.1	6.3	100.0	0.3	
+functions in usr/lib/X11/dyDDX/konas.so	795	1	1	19	48	745	0	1	0.1	6.3	100.0	0.3	
+functions in usr/lib32/libfm.so	791	0	0	0	0	791	0	0	0.0	0.0	100.0	0.0	
