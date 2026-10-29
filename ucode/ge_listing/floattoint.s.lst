@@ -1,0 +1,127 @@
+# floattoint.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mmo_FloatToInt:
+umo_FloatToInt:
+2753: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; floattoint.s:30
+2754: 28003130dd4044f8a0 f5  imm=1ba r213=3 B=18 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; floattoint.s:31
+2755: 28003130ddc144f8a0 f5  imm=1bb r213=3 B=18 C=1b E=1 F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; floattoint.s:32
+2756: 28003130de4244f8a0 f5  imm=1bc r213=3 B=18 C=1b E=2 F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; floattoint.s:33
+2757: 28003130dec344f8a0 f5  imm=1bd r213=3 B=18 C=1b E=3 F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; floattoint.s:34
+2758: 28003130df4444f8a0 f5  imm=1be r213=3 B=18 C=1b E=4 F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; floattoint.s:35
+2759: 77fa4007c884f80000 f14 seq=6fe5  ; floattoint.s:36
+275a: 77fa4937c880f80000 f14 C=13 r95=2 r62=1ffc218170  ; floattoint.s:39
+275b: 77fa41374881980000 f14 r219=1 C=13 F=1d G=13 r62=1ffc23c170  ; floattoint.s:40
+275c: 1803406fdf0044f8a0 f3  imm=1bf cc=91 C=1b F=3f Q=0 M=6ca r110=7bd r95=13 r71=1 r62=1ffc318578  ; floattoint.s:42
+275d: 76003607ca04180000 f14 r217=1 A=18 G=3 r99=8 r62=1ffc884170  ; floattoint.s:43
+275e: 76013607ca04000000 f14 r217=1 A=18 D=1 G=0 r99=8 r62=1ffc884170  ; floattoint.s:44
+275f: 76023607ca04200000 f14 r217=1 A=18 D=2 G=4 r99=8 r62=1ffc884170  ; floattoint.s:45
+2760: 76033607ca04080000 f14 r217=1 A=18 D=3 G=1 r99=8 r62=1ffc884170  ; floattoint.s:46
+2761: 76043607ca04100000 f14 r217=1 A=18 D=4 G=2 r99=8 r62=1ffc884170  ; floattoint.s:47
+2762: 77fa4107c881300000 f14 r219=1 C=10 G=6 r62=1ffc23c170  ; floattoint.s:50
+2763: 000000000000000000 f0  nop  ; floattoint.s:51
+2764: 000000000000000000 f0  nop  ; floattoint.s:52
+2765: 000000000000000000 f0  nop  ; floattoint.s:55
+2766: 7000200fca01000000 f14 r219=1 r176=0 F=3f G=0 r62=1ffcb3c170  ; floattoint.s:56
+2767: 77fa4007c8c0f80000 f14 r222=1 r62=1ffc218170  ; floattoint.s:57
+2768: 000000000000000000 f0  nop  ; floattoint.s:58
+2769: 000000000000000000 f0  nop  ; floattoint.s:59
+276a: 76c0210fca82040000 f14 r219=2 r198=15 A=1b C=10 r176=0 r162=1 F=3f G=0 r62=1ffdb3c170  ; floattoint.s:62
+276b: 76c0200fca02340000 f14 r219=2 A=1b r176=0 r162=1 F=3f G=6 r62=1ffdb3c170  ; floattoint.s:64
+276c: 77fa4017c8c0f80000 f14 r222=1 C=1 r62=1ffc218170  ; floattoint.s:67
+276d: 70d9c007c888f80000 f14 seq=619e r25=3e2fc00  ; floattoint.s:70
+276e: 70c0210fca03840000 f14 r219=3 A=3 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; floattoint.s:71
+276f: 7100200fca03040000 f14 r219=3 A=4 r176=0 r162=1 F=3f G=0 r62=1ffcb3c170  ; floattoint.s:72
+2770: 77fa4007c884f80000 f14 seq=6fe5  ; floattoint.s:73
+2771: 77ee4007ca90f80028 f14 xfer3.rel c4 cc=15 -> 2799 <epilogue_f2i> imm=28 cc=15 seq=bfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; floattoint.s:75
+2772: 7099c007c888f80000 f14 seq=611e r25=3e2fc00  ; floattoint.s:77
+2773: 70c0210fca03840000 f14 r219=3 A=3 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; floattoint.s:78
+2774: 7100200fca03040000 f14 r219=3 A=4 r176=0 r162=1 F=3f G=0 r62=1ffcb3c170  ; floattoint.s:79
+2775: 77fa4007c884f80000 f14 seq=6fe5  ; floattoint.s:80
+2776: 77fa4117c8c0f80000 f14 r222=1 C=11 r62=1ffc218170  ; floattoint.s:83
+2777: 000000000000000000 f0  nop  ; floattoint.s:84
+2778: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; floattoint.s:85
+2779: 6c008007e80fc0f8a0 f13 A=10 M=47f r110=6b5 r99=8 r62=1ffc881173  ; floattoint.s:88
+277a: 000000000000000000 f0  nop  ; floattoint.s:89
+277b: 6c018007e80fc0f8a0 f13 A=10 D=1 M=47f r110=6b5 r99=8 r62=1ffc881173  ; floattoint.s:90
+mainloop_f2i:
+277c: 3c028018000608f8a0 f7  r222=1 r219=1 A=10 C=1 D=2 F=20 G=1 M=47f r110=6b5 r99=8 r62=1ffcabd173  ; floattoint.s:94
+277d: 4c038127c0538f1580 f9  r213=3 A=10 C=12 D=3 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:95
+277e: 6c048007e80fc0f8a0 f13 A=10 D=4 M=47f r110=6b5 r99=8 r62=1ffc881173  ; floattoint.s:96
+277f: 4c05812781538f1580 f9  r213=3 A=10 C=12 D=5 E=1 F=1e r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:97
+2780: 4c06812742538f1580 f9  r213=3 A=10 C=12 D=6 E=2 F=1d r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:98
+2781: 4c07812703538f1580 f9  r213=3 A=10 C=12 D=7 E=3 F=1c r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:99
+2782: 4c088126c4538f1580 f9  r213=3 A=10 C=12 D=8 E=4 F=1b r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:100
+2783: 4c09812685538f1580 f9  r213=3 A=10 C=12 D=9 E=5 F=1a r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:101
+2784: 4c0a812646538f1580 f9  r213=3 A=10 C=12 D=a E=6 F=19 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:102
+2785: 4c0b812607538f1580 f9  r213=3 A=10 C=12 D=b E=7 F=18 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:103
+2786: 4c0c8127c8538f1580 f9  r213=3 A=10 C=12 D=c E=8 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:104
+2787: 4c0d812789538f1580 f9  r213=3 A=10 C=12 D=d E=9 F=1e r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:105
+2788: 4c0e81274a538f1580 f9  r213=3 A=10 C=12 D=e E=a F=1d r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:106
+2789: 4c0f81270b538f1580 f9  r213=3 A=10 C=12 D=f E=b F=1c r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:107
+278a: 4c108126cc538f1580 f9  r213=3 A=10 C=12 D=10 E=c F=1b r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:108
+278b: 4c1181268d538f1580 f9  r213=3 A=10 C=12 D=11 E=d F=1a r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:109
+278c: 57ce41267fb788b000 f10 r213=3 C=12 E=e F=19 r128=25 M=6f1 r110=5bd r95=13 r62=1ffc658178 r25=3e69c00  ; floattoint.s:110
+278d: 4c1281260f538f1580 f9  r213=3 A=10 C=12 D=12 E=f F=18 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:111
+278e: 4c138127d0538f1580 f9  r213=3 A=10 C=12 D=13 E=10 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:112
+278f: 4c14812791538f1580 f9  r213=3 A=10 C=12 D=14 E=11 F=1e r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:113
+2790: 77ee4007ca10fbffec f14 xfer3.rel c4 cc=14 -> 277c <mainloop_f2i> imm=ffffffec cc=14 seq=bfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; floattoint.s:114
+2791: 4c15812752538f1580 f9  r213=3 A=10 C=12 D=15 E=12 F=1d r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:115
+2792: 57d341273fb788b000 f10 r213=3 C=12 E=13 F=1c r128=25 M=6f1 r110=5bd r95=13 r62=1ffc658178 r25=3e69c00  ; floattoint.s:116
+2793: 4c168126d4538f1580 f9  r213=3 A=10 C=12 D=16 E=14 F=1b r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:117
+2794: 3c178106004108f8a0 f7  r219=1 A=10 C=10 D=17 r162=1 F=18 G=10 M=47f r110=6b5 r99=8 r62=1ffcabd173  ; floattoint.s:118
+2795: 57d54126bfb788b000 f10 r213=3 C=12 E=15 F=1a r128=25 M=6f1 r110=5bd r95=13 r62=1ffc658178 r25=3e69c00  ; floattoint.s:119
+2796: 3c188006000108f8a0 f7  r219=1 A=10 D=18 r162=1 F=18 G=0 M=47f r110=6b5 r99=8 r62=1ffcabd173  ; floattoint.s:120
+2797: 57d641267fb788b000 f10 r213=3 C=12 E=16 F=19 r128=25 M=6f1 r110=5bd r95=13 r62=1ffc658178 r25=3e69c00  ; floattoint.s:121
+2798: 4c01812617538f1580 f9  r213=3 A=10 C=12 D=1 E=17 F=18 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:122
+epilogue_f2i:
+2799: 77fa4027c8c0f80000 f14 r222=1 C=2 r62=1ffc218170  ; floattoint.s:126
+279a: 6c008007e80fc0f8a0 f13 A=10 M=47f r110=6b5 r99=8 r62=1ffc881173  ; floattoint.s:127
+279b: 77fa402808c0f80000 f14 r222=1 C=2 F=20 r62=1ffc218170  ; floattoint.s:128
+279c: 6c018007e80fc0f8a0 f13 A=10 D=1 M=47f r110=6b5 r99=8 r62=1ffc881173  ; floattoint.s:129
+279d: 77f840284a4cf80000 f14 r222=1 cc=14 C=2 F=21 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:130
+279e: 4c028127c0538f1580 f9  r213=3 A=10 C=12 D=2 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:131
+279f: 77f840288a4cf80000 f14 r222=1 cc=14 C=2 F=22 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:132
+27a0: 4c03812781538f1580 f9  r213=3 A=10 C=12 D=3 E=1 F=1e r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:133
+27a1: 77f84028ca4cf80000 f14 r222=1 cc=14 C=2 F=23 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:134
+27a2: 4c04812742538f1580 f9  r213=3 A=10 C=12 D=4 E=2 F=1d r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:135
+27a3: 77f840290a4cf80000 f14 r222=1 cc=14 C=2 F=24 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:136
+27a4: 4c05812703538f1580 f9  r213=3 A=10 C=12 D=5 E=3 F=1c r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:137
+27a5: 77f840294a4cf80000 f14 r222=1 cc=14 C=2 F=25 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:138
+27a6: 4c068126c4538f1580 f9  r213=3 A=10 C=12 D=6 E=4 F=1b r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:139
+27a7: 77f840298a4cf80000 f14 r222=1 cc=14 C=2 F=26 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:140
+27a8: 4c07812685538f1580 f9  r213=3 A=10 C=12 D=7 E=5 F=1a r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:141
+27a9: 77f84029ca4cf80000 f14 r222=1 cc=14 C=2 F=27 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:142
+27aa: 4c08812646538f1580 f9  r213=3 A=10 C=12 D=8 E=6 F=19 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:143
+27ab: 77f8402a0a4cf80000 f14 r222=1 cc=14 C=2 F=28 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:144
+27ac: 4c09812607538f1580 f9  r213=3 A=10 C=12 D=9 E=7 F=18 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:145
+27ad: 77f8402a4a4cf80000 f14 r222=1 cc=14 C=2 F=29 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:146
+27ae: 4c0a8127c8538f1580 f9  r213=3 A=10 C=12 D=a E=8 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:147
+27af: 77f8402a8a4cf80000 f14 r222=1 cc=14 C=2 F=2a seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:148
+27b0: 4c0b812789538f1580 f9  r213=3 A=10 C=12 D=b E=9 F=1e r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:149
+27b1: 77f8402aca4cf80000 f14 r222=1 cc=14 C=2 F=2b seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:150
+27b2: 4c0c81274a538f1580 f9  r213=3 A=10 C=12 D=c E=a F=1d r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:151
+27b3: 77f8402b0a4cf80000 f14 r222=1 cc=14 C=2 F=2c seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:152
+27b4: 4c0d81270b538f1580 f9  r213=3 A=10 C=12 D=d E=b F=1c r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:153
+27b5: 77f8402b4a4cf80000 f14 r222=1 cc=14 C=2 F=2d seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:154
+27b6: 4c0e8126cc538f1580 f9  r213=3 A=10 C=12 D=e E=c F=1b r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:155
+27b7: 77f8402b8a4cf80000 f14 r222=1 cc=14 C=2 F=2e seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:156
+27b8: 4c0f81268d538f1580 f9  r213=3 A=10 C=12 D=f E=d F=1a r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:157
+27b9: 77f8402bca4cf80000 f14 r222=1 cc=14 C=2 F=2f seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:158
+27ba: 4c1081264e538f1580 f9  r213=3 A=10 C=12 D=10 E=e F=19 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:159
+27bb: 77f8402c0a4cf80000 f14 r222=1 cc=14 C=2 F=30 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:160
+27bc: 4c1181260f538f1580 f9  r213=3 A=10 C=12 D=11 E=f F=18 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:161
+27bd: 77f8402c4a4cf80000 f14 r222=1 cc=14 C=2 F=31 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:162
+27be: 4c128127d0538f1580 f9  r213=3 A=10 C=12 D=12 E=10 r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:163
+27bf: 77f8402c8a4cf80000 f14 r222=1 cc=14 C=2 F=32 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:164
+27c0: 4c13812791538f1580 f9  r213=3 A=10 C=12 D=13 E=11 F=1e r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:165
+27c1: 77f84007ca0cf80000 f14 cc=14 seq=6fc7 r62=1ffe000170 r25=3e2bc00  ; floattoint.s:166
+27c2: 4c14812752538f1580 f9  r213=3 A=10 C=12 D=14 E=12 F=1d r128=25 M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:167
+27c3: 70f1c02cc8ecf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r222=1 C=2 F=33 seq=141df r62=1ffc218170 r25=3e3fc00  ; floattoint.s:170
+27c4: 77f8402d0a4cf80000 f14 r222=1 cc=14 C=2 F=34 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:171
+27c5: 4c15812713538f15a0 f9  r213=3 A=10 C=12 D=15 E=13 F=1c M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:172
+27c6: 77f8402d4a4cf80000 f14 r222=1 cc=14 C=2 F=35 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; floattoint.s:173
+27c7: 4c168126d4538f15a0 f9  r213=3 A=10 C=12 D=16 E=14 F=1b M=471 r110=5b5 r99=8 r95=13 r62=1ffced917b r25=3e69c00  ; floattoint.s:174
+27c8: 77f84067ca0d800000 f14 r219=1 cc=14 C=6 G=10 seq=6fc7 r62=1ffe23c170 r25=3e2bc00  ; floattoint.s:177
+27c9: 57d54126bfb788b000 f10 r213=3 C=12 E=15 F=1a r128=25 M=6f1 r110=5bd r95=13 r62=1ffc658178 r25=3e69c00  ; floattoint.s:178
+27ca: 77f84007ca0cf80000 f14 cc=14 seq=6fc7 r62=1ffe000170 r25=3e2bc00  ; floattoint.s:179
+27cb: 57d641267fb788b000 f10 r213=3 C=12 E=16 F=19 r128=25 M=6f1 r110=5bd r95=13 r62=1ffc658178 r25=3e69c00  ; floattoint.s:180

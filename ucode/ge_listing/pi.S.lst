@@ -1,0 +1,92 @@
+# pi.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mgesi_StopInstruments:
+4905: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; pi.S:81
+4906: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; pi.S:82
+4907: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; pi.S:79
+4908: 782071e7c10000817f f15 imm=817f r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; pi.S:86
+4909: 782071e7c004760000 f15 imm=4760000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; pi.S:85
+490a: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:90
+490b: 2e01bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:91
+490c: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:93
+490e: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; pi.S:83
+490f: 782071e7c804610000 f15 imm=4610000 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; pi.S:148
+4910: 782071e7cf04600000 f15 imm=4600000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; pi.S:144
+4911: 782071e7c20000000a f15 imm=a r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; pi.S:87
+4913: 7e228007c000000000 f15 A=18 D=2 r99=8 r62=1ffc880170  ; pi.S:94
+4915: 782071e7c204740000 f15 imm=4740000 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; pi.S:156
+4916: 782071e7ce00000400 f15 imm=400 r215=3 B=18 C=1e E=e r71=1 r62=1ffc658170  ; pi.S:140
+4917: 782071e7cd04640000 f15 imm=4640000 r215=3 B=18 C=1e E=d r71=1 r62=1ffc658170  ; pi.S:139
+4918: 782071e7cc04630000 f15 imm=4630000 r215=3 B=18 C=1e E=c r71=1 r62=1ffc658170  ; pi.S:135
+4919: 782071e7cb04400000 f15 imm=4400000 r215=3 B=18 C=1e E=b r71=1 r62=1ffc658170  ; pi.S:131
+491a: 782071e7c400000003 f15 imm=3 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; pi.S:97
+491b: 782071e7c300010476 f15 imm=10476 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; pi.S:96
+491c: 28003d32fac044f6a0 f5  imm=1f5 r213=3 B=1e C=1e M=6ca r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; pi.S:94
+491d: 2e03bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:102
+491e: 2e04bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=4 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:103
+491f: 782071e7ca04770000 f15 imm=4770000 r215=3 B=18 C=1e E=a r71=1 r62=1ffc658170  ; pi.S:127
+4920: 782071e7c600000002 f15 imm=2 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; pi.S:99
+4921: 782071e7c500000001 f15 imm=1 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; pi.S:98
+4922: 2e03bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:105
+4923: 2e05bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=5 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:106
+4924: 2e03bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:108
+4925: 7e268007c000000000 f15 A=18 D=6 r99=8 r62=1ffc880170  ; pi.S:109
+4927: 782071e7c604620000 f15 imm=4620000 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; pi.S:152
+4928: 782071e7c900000004 f15 imm=4 r215=3 B=18 C=1e E=9 r71=1 r62=1ffc658170  ; pi.S:123
+4929: 782071e7c700000005 f15 imm=5 r215=3 B=18 C=1e E=7 r71=1 r62=1ffc658170  ; pi.S:100
+492a: 28003d32fac044f6a0 f5  imm=1f5 r213=3 B=1e C=1e M=6ca r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; pi.S:109
+492b: 2e03bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:111
+492c: 2e07bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=7 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:112
+492d: 2e03bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:114
+492e: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; pi.S:115
+492f: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:117
+4930: 2fc0bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:118
+4931: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:120
+4932: 2fc0bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:121
+4933: 2e03bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:124
+4934: 2e09bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=9 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:125
+4935: 2e0abd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=a M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:128
+4936: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; pi.S:129
+4937: 2e0bbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=b M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:132
+4938: 2e05bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=5 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:133
+4939: 2e0cbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=c M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:136
+493a: 2e09bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=9 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:137
+493b: 2e0dbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=d M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:141
+493c: 2e0ebd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:142
+493d: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:145
+493e: 2fc1bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:146
+493f: 2e08bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=8 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:149
+4940: 2fc2bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:150
+4941: 2e06bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=6 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:153
+4942: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; pi.S:180
+4943: 2fc9bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e D=9 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:154
+4944: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:157
+4945: 2e0abd32fac044941e f5  imm=1f5 r213=3 A=18 B=1e C=1e D=a r148=3c0 M=6ca r110=4bd r99=8 r95=13 r71=1 r62=1ffceda178 r25=3e69c00  ; pi.S:158
+4946: 18137d7e08ff44f6a0 f3  xfer4.rel c31 cc=11 -> 4b3e imm=1f8 r213=3 B=1e C=1e M=6ca r95=13 seq=1cfdf r71=1 r62=1ffc658178 r25=3e7fc00  ; pi.S:161
+4947: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; pi.S:162
+4948: 2e0cbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=c M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:165
+4949: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; pi.S:166
+494a: 2e0dbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=d M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:170
+494b: 2e0ebd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:171
+494c: 2e0bbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=b M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:174
+494d: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; pi.S:175
+494e: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:178
+mgesi_StartInstruments:
+494f: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; pi.S:37
+4950: 782071e7c300050476 f15 imm=50476 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; pi.S:46
+4951: 782071e7c200040476 f15 imm=40476 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; pi.S:45
+4952: 77fa4de7c880f801f8 f14 imm=1f8 C=1e r95=13 r71=1 r62=1ffc218170  ; pi.S:49
+4953: 782071e7c000060476 f15 imm=60476 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; pi.S:43
+4954: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; pi.S:39
+4955: 6600bdd7ea0001dd80 f12 r213=3 A=18 B=1e C=1d M=6ca r99=8 r62=1ffcec0178 r25=3e69c00  ; pi.S:40
+4956: 782071e7c100030476 f15 imm=30476 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; pi.S:44
+4957: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; pi.S:41
+4958: 77f1c1a7c8bdf80000 f14 xfer4.rel c31 cc=11 -> 4958 r219=1 C=1a seq=1cfdf r62=1ffc23c170 r25=3e3fc00  ; pi.S:65
+4959: 2fc0bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:50
+495a: 2e01bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:53
+495b: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; pi.S:54
+495c: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:56
+495d: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; pi.S:57
+495e: 2e03bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:59
+495f: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; pi.S:60
+4960: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; pi.S:63

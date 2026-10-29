@@ -1,0 +1,65 @@
+# CRAMBlockLoad.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mgeb_CRAMBlockLoad:
+ugeb_CRAMBlockLoad:
+15f9: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; CRAMBlockLoad.s:50
+15fa: 77c03607ca04180000 f14 r217=1 A=1f G=3 r99=8 r62=1ffc884170  ; CRAMBlockLoad.s:51
+15fb: 77c13607ca04200000 f14 r217=1 A=1f D=1 G=4 r99=8 r62=1ffc884170  ; CRAMBlockLoad.s:52
+15fc: 77c23607ca04600000 f14 r217=1 A=1f D=2 G=c r99=8 r62=1ffc884170  ; CRAMBlockLoad.s:53
+15fd: 77c33607ca04500000 f14 r217=1 A=1f D=3 G=a r99=8 r62=1ffc884170  ; CRAMBlockLoad.s:54
+15fe: 77c43607ca04580000 f14 r217=1 A=1f D=4 G=b r99=8 r62=1ffc884170  ; CRAMBlockLoad.s:55
+15ff: 77fa41f148810c0000 f14 r219=1 C=1f r162=1 F=5 G=1 r62=1ffc23c170  ; CRAMBlockLoad.s:56
+1600: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:57
+1601: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:58
+1602: 77fa4037c8c0f80000 f14 r222=1 C=3 r62=1ffc218170  ; CRAMBlockLoad.s:59
+1603: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:60
+1604: 380019ffc0318d9400 f7  r219=1 B=c C=1f r176=1 r162=1 F=3f G=c r62=1ffc73c170  ; CRAMBlockLoad.s:61
+1605: 77ee4007ca90f8001e f14 xfer3.rel c4 cc=15 -> 1623 <epilogue_cbl> imm=1e cc=15 seq=bfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; CRAMBlockLoad.s:62
+1606: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:63
+1607: 3800161fc0048d9400 f7  r219=1 B=b C=1 r176=1 F=3f G=1 r62=1ffc73c170  ; CRAMBlockLoad.s:64
+1608: 77fa40c14881640000 f14 r219=1 C=c r162=1 F=5 G=c r62=1ffc23c170  ; CRAMBlockLoad.s:65
+1609: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:66
+160a: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:67
+160b: 78408007e000000000 f15 A=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; CRAMBlockLoad.s:81
+160c: 78418007e000000000 f15 A=1 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; CRAMBlockLoad.s:82
+160d: 78428007e000000000 f15 A=1 D=2 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; CRAMBlockLoad.s:83
+160e: 1043a03803be44f6a0 f2  r222=1 r219=1 A=1 C=3 D=3 F=20 G=3 M=6ca r99=a r62=1ffcabc178 r25=3ea9c00  ; CRAMBlockLoad.s:84
+160f: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:85
+1610: 77fa401148810c0000 f14 r219=1 C=1 r162=1 F=5 G=1 r62=1ffc23c170  ; CRAMBlockLoad.s:86
+1611: 78448007e000000000 f15 A=1 D=4 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; CRAMBlockLoad.s:87
+1612: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:88
+mainloop_cbl:
+1613: 77ee40380a51180000 f14 xfer3.rel c4 cc=14 -> 1613 <mainloop_cbl> r222=1 r219=1 cc=14 C=3 F=20 G=3 seq=bfe4 r71=1 r62=1ffe23c170 r25=3e39c00  ; CRAMBlockLoad.s:103
+1614: 684088a7e83fcaf6a0 f13 r211=3 A=1 C=a M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; CRAMBlockLoad.s:104
+1615: 684188a7a83fcaf6a0 f13 r211=3 A=1 C=a D=1 F=1e M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; CRAMBlockLoad.s:105
+1616: 684288a7683fcaf6a0 f13 r211=3 A=1 C=a D=2 F=1d M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; CRAMBlockLoad.s:106
+1617: 684388a7283fcaf6a0 f13 r211=3 A=1 C=a D=3 F=1c M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; CRAMBlockLoad.s:107
+1618: 77fa40a68881500000 f14 r219=1 C=a F=1a G=a r62=1ffc23c170  ; CRAMBlockLoad.s:108
+1619: 77fa401148810c0000 f14 r219=1 C=1 r162=1 F=5 G=1 r62=1ffc23c170  ; CRAMBlockLoad.s:109
+161a: 684488a6e83fcaf6a0 f13 r211=3 A=1 C=a D=4 F=1b M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; CRAMBlockLoad.s:110
+161b: 77fa401008816c0000 f14 r219=1 C=1 r162=1 F=0 G=d r62=1ffc23c170  ; CRAMBlockLoad.s:111
+post_loop_cbl:
+161c: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:118
+161d: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:119
+161e: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:120
+161f: 77fa40d008810c0000 f14 r219=1 C=d r162=1 F=0 G=1 r62=1ffc23c170  ; CRAMBlockLoad.s:121
+1620: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:122
+1621: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:123
+1622: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:124
+epilogue_cbl:
+1623: 78408007e000000000 f15 A=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; CRAMBlockLoad.s:148
+1624: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:149
+1625: 78418007e000000000 f15 A=1 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; CRAMBlockLoad.s:150
+1626: 000000000000000000 f0  nop  ; CRAMBlockLoad.s:151
+1627: 78428007e000000000 f15 A=1 D=2 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; CRAMBlockLoad.s:152
+1628: 77fa4047c8c0f80000 f14 r222=1 C=4 r62=1ffc218170  ; CRAMBlockLoad.s:153
+1629: 40438048000088dd80 f8  r222=1 A=1 C=4 D=3 F=20 M=6ca r99=a r62=1ffca98178 r25=3ea9c00  ; CRAMBlockLoad.s:154
+162a: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 162a seq=1cfdf r25=3e3fc00  ; CRAMBlockLoad.s:157
+162b: 77f840484a4cf80000 f14 r222=1 cc=14 C=4 F=21 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; CRAMBlockLoad.s:161
+162c: 77fa42a7c880f80000 f14 r211=3 C=a r95=4 r62=1ffc218170  ; CRAMBlockLoad.s:162
+162d: 77f840488a4cf80000 f14 r222=1 cc=14 C=4 F=22 seq=6fc7 r62=1ffe218170 r25=3e2bc00  ; CRAMBlockLoad.s:163
+162e: 77fa42a78880f80000 f14 r211=3 C=a F=1e r95=4 r62=1ffc218170  ; CRAMBlockLoad.s:164
+162f: 77f840c7ca0df80000 f14 r219=1 cc=14 C=c seq=6fc7 r62=1ffe23c170 r25=3e2bc00  ; CRAMBlockLoad.s:165
+1630: 77fa42a74880f80000 f14 r211=3 C=a F=1d r95=4 r62=1ffc218170  ; CRAMBlockLoad.s:166
+1631: 77f84007ca0cf80000 f14 cc=14 seq=6fc7 r62=1ffe000170 r25=3e2bc00  ; CRAMBlockLoad.s:167
+1632: 77fa42a70880f80000 f14 r211=3 C=a F=1c r95=4 r62=1ffc218170  ; CRAMBlockLoad.s:168

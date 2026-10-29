@@ -1,0 +1,156 @@
+# evalmisc.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+uEvalSaveState:
+0962: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; evalmisc.s:55
+0963: 28000130f70054f8a0 f5  imm=1ee r220=1 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc318178  ; evalmisc.s:56
+0964: 28003130f7c044f8a0 f5  imm=1ef r213=3 B=18 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; evalmisc.s:57
+0965: 28003130f84144f8a0 f5  imm=1f0 r213=3 B=18 C=1b E=1 F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; evalmisc.s:58
+0966: 000000000000000000 f0  nop  ; evalmisc.s:59
+0967: 000000000000000000 f0  nop  ; evalmisc.s:60
+0968: 000000000000000000 f0  nop  ; evalmisc.s:61
+0969: 000000000000000000 f0  nop  ; evalmisc.s:62
+096a: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; evalmisc.s:63
+096b: 000000000000000000 f0  nop  ; evalmisc.s:64
+096c: 000000000000000000 f0  nop  ; evalmisc.s:65
+096d: 76003607ca04100000 f14 r217=1 A=18 G=2 r99=8 r62=1ffc884170  ; evalmisc.s:66
+096e: 77f24007c884f81025 f14 xfer4 c5 cc=11 -> 1025 <mWramToEram> imm=1025 seq=4fe5 r71=1 r25=3e39c00  ; evalmisc.s:67
+096f: 76013607c188100000 f14 r217=2 r198=3 A=18 D=1 G=2 r99=8 r62=1ffd884170  ; evalmisc.s:68
+0970: 77fa41e7c881008000 f14 imm=8000 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; evalmisc.s:69
+0971: 77fa416fc881080461 f14 imm=461 r219=1 C=16 F=3f G=1 r71=1 r62=1ffc33c170  ; evalmisc.s:70
+0972: 7000276fc182080555 f14 imm=555 r219=2 r198=3 C=16 F=3f G=1 r71=1 r62=1ffd33c170  ; evalmisc.s:71
+0973: 77fa43e7c880f801ec f14 imm=1ec r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:72
+0974: 77fa43e7c880f801ed f14 imm=1ed r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:73
+0975: 77fa43e7c880f801ee f14 imm=1ee r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:74
+0976: 000000000000000000 f0  nop  ; evalmisc.s:75
+uEvalSaveState1D:
+0977: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; evalmisc.s:92
+0978: 28003130f7c044f8a0 f5  imm=1ef r213=3 B=18 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; evalmisc.s:93
+0979: 000000000000000000 f0  nop  ; evalmisc.s:94
+097a: 000000000000000000 f0  nop  ; evalmisc.s:95
+097b: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; evalmisc.s:96
+097c: 000000000000000000 f0  nop  ; evalmisc.s:97
+097d: 000000000000000000 f0  nop  ; evalmisc.s:98
+097e: 000000000000000000 f0  nop  ; evalmisc.s:99
+097f: 000000000000000000 f0  nop  ; evalmisc.s:100
+0980: 77f24007c884f81025 f14 xfer4 c5 cc=11 -> 1025 <mWramToEram> imm=1025 seq=4fe5 r71=1 r25=3e39c00  ; evalmisc.s:101
+0981: 76003607ca04100000 f14 r217=1 A=18 G=2 r99=8 r62=1ffc884170  ; evalmisc.s:102
+0982: 77fa41e7c881008000 f14 imm=8000 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; evalmisc.s:103
+0983: 77fa416fc881080461 f14 imm=461 r219=1 C=16 F=3f G=1 r71=1 r62=1ffc33c170  ; evalmisc.s:104
+0984: 77fa43e7c880f801ec f14 imm=1ec r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:105
+0985: 000000000000000000 f0  nop  ; evalmisc.s:106
+0986: 000000000000000000 f0  nop  ; evalmisc.s:107
+0987: 000000000000000000 f0  nop  ; evalmisc.s:108
+0988: 000000000000000000 f0  nop  ; evalmisc.s:109
+uEvalSaveState2D:
+0989: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; evalmisc.s:126
+098a: 28003130f84044f8a0 f5  imm=1f0 r213=3 B=18 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; evalmisc.s:127
+098b: 000000000000000000 f0  nop  ; evalmisc.s:128
+098c: 000000000000000000 f0  nop  ; evalmisc.s:129
+098d: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; evalmisc.s:130
+098e: 000000000000000000 f0  nop  ; evalmisc.s:131
+098f: 000000000000000000 f0  nop  ; evalmisc.s:132
+0990: 000000000000000000 f0  nop  ; evalmisc.s:133
+0991: 000000000000000000 f0  nop  ; evalmisc.s:134
+0992: 77f24007c884f81025 f14 xfer4 c5 cc=11 -> 1025 <mWramToEram> imm=1025 seq=4fe5 r71=1 r25=3e39c00  ; evalmisc.s:135
+0993: 76003607ca04100000 f14 r217=1 A=18 G=2 r99=8 r62=1ffc884170  ; evalmisc.s:136
+0994: 77fa41e7c881008000 f14 imm=8000 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; evalmisc.s:137
+0995: 77fa416fc881080555 f14 imm=555 r219=1 C=16 F=3f G=1 r71=1 r62=1ffc33c170  ; evalmisc.s:138
+0996: 77fa43e7c880f801ec f14 imm=1ec r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:139
+0997: 000000000000000000 f0  nop  ; evalmisc.s:140
+0998: 000000000000000000 f0  nop  ; evalmisc.s:141
+0999: 000000000000000000 f0  nop  ; evalmisc.s:142
+099a: 000000000000000000 f0  nop  ; evalmisc.s:143
+uEvalLoadState1D:
+099b: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; evalmisc.s:160
+099c: 28003130f7c044f8a0 f5  imm=1ef r213=3 B=18 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; evalmisc.s:161
+099d: 000000000000000000 f0  nop  ; evalmisc.s:162
+099e: 000000000000000000 f0  nop  ; evalmisc.s:163
+099f: 68000007e83ff1941f f13 r148=3e0 M=6f1 r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; evalmisc.s:164
+09a0: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; evalmisc.s:165
+09a1: 000000000000000000 f0  nop  ; evalmisc.s:166
+09a2: 000000000000000000 f0  nop  ; evalmisc.s:167
+09a3: 000000000000000000 f0  nop  ; evalmisc.s:168
+09a4: 77f24007c884f8d45d f14 xfer4 c5 cc=11 -> d45d <mEramToWram> imm=d45d seq=4fe5 r71=1 r25=3e39c00  ; evalmisc.s:169
+09a5: 76003607ca04100000 f14 r217=1 A=18 G=2 r99=8 r62=1ffc884170  ; evalmisc.s:170
+09a6: 77fa416fc881000461 f14 imm=461 r219=1 C=16 F=3f G=0 r71=1 r62=1ffc33c170  ; evalmisc.s:171
+09a7: 77fa41e7c881088000 f14 imm=8000 r219=1 C=1e G=1 r71=1 r62=1ffc23c170  ; evalmisc.s:172
+09a8: 77fa43e7c880f801ed f14 imm=1ed r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:173
+09a9: 77fa43e7c880f801ee f14 imm=1ee r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:174
+09aa: 000000000000000000 f0  nop  ; evalmisc.s:175
+09ab: 000000000000000000 f0  nop  ; evalmisc.s:176
+09ac: 000000000000000000 f0  nop  ; evalmisc.s:177
+uEvalLoadState2D:
+09ad: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; evalmisc.s:194
+09ae: 28003130f84044f8a0 f5  imm=1f0 r213=3 B=18 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; evalmisc.s:195
+09af: 000000000000000000 f0  nop  ; evalmisc.s:196
+09b0: 000000000000000000 f0  nop  ; evalmisc.s:197
+09b1: 68000007e83ff1941f f13 r148=3e0 M=6f1 r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; evalmisc.s:198
+09b2: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; evalmisc.s:199
+09b3: 000000000000000000 f0  nop  ; evalmisc.s:200
+09b4: 000000000000000000 f0  nop  ; evalmisc.s:201
+09b5: 000000000000000000 f0  nop  ; evalmisc.s:202
+09b6: 77f24007c884f8d45d f14 xfer4 c5 cc=11 -> d45d <mEramToWram> imm=d45d seq=4fe5 r71=1 r25=3e39c00  ; evalmisc.s:203
+09b7: 76003607ca04100000 f14 r217=1 A=18 G=2 r99=8 r62=1ffc884170  ; evalmisc.s:204
+09b8: 77fa416fc881000555 f14 imm=555 r219=1 C=16 F=3f G=0 r71=1 r62=1ffc33c170  ; evalmisc.s:205
+09b9: 77fa41e7c881088000 f14 imm=8000 r219=1 C=1e G=1 r71=1 r62=1ffc23c170  ; evalmisc.s:206
+09ba: 77fa43e7c880f801ee f14 imm=1ee r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:207
+09bb: 77fa43e7c880f801ed f14 imm=1ed r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:208
+09bc: 000000000000000000 f0  nop  ; evalmisc.s:209
+09bd: 000000000000000000 f0  nop  ; evalmisc.s:210
+09be: 000000000000000000 f0  nop  ; evalmisc.s:211
+uEvalSwapState1D:
+09bf: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; evalmisc.s:228
+09c0: 28003130f7c044f8a0 f5  imm=1ef r213=3 B=18 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; evalmisc.s:229
+09c1: 28003130f84144f8a0 f5  imm=1f0 r213=3 B=18 C=1b E=1 F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; evalmisc.s:230
+09c2: 77fa4b778880f80000 f14 r211=3 C=17 F=1e r95=7 r62=1ffc218170  ; evalmisc.s:231
+09c3: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; evalmisc.s:232
+09c4: 000000000000000000 f0  nop  ; evalmisc.s:233
+09c5: 68000007e83ff1941f f13 r148=3e0 M=6f1 r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; evalmisc.s:234
+09c6: 000000000000000000 f0  nop  ; evalmisc.s:235
+09c7: 000000000000000000 f0  nop  ; evalmisc.s:236
+09c8: 77f18007c88cf81025 f14 xfer4 c27 cc=11 -> 1025 <mWramToEram> imm=1025 seq=4fdb r71=1 r25=3e3fc00  ; evalmisc.s:237
+09c9: 76003607ca04100000 f14 r217=1 A=18 G=2 r99=8 r62=1ffc884170  ; evalmisc.s:238
+09ca: 77fa41e7c881008000 f14 imm=8000 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; evalmisc.s:239
+09cb: 77fa416fc881080461 f14 imm=461 r219=1 C=16 F=3f G=1 r71=1 r62=1ffc33c170  ; evalmisc.s:240
+09cc: 77fa43e7c880f801ec f14 imm=1ec r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:241
+09cd: 77fa43e7c880f801ed f14 imm=1ed r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:242
+09ce: 77fa43e7c880f801ee f14 imm=1ee r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:243
+09cf: 000000000000000000 f0  nop  ; evalmisc.s:244
+09d0: 000000000000000000 f0  nop  ; evalmisc.s:245
+09d1: 77f24007c884f8d45d f14 xfer4 c5 cc=11 -> d45d <mEramToWram> imm=d45d seq=4fe5 r71=1 r25=3e39c00  ; evalmisc.s:246
+09d2: 76013607ca04100000 f14 r217=1 A=18 D=1 G=2 r99=8 r62=1ffc884170  ; evalmisc.s:247
+09d3: 77fa416fc881000555 f14 imm=555 r219=1 C=16 F=3f G=0 r71=1 r62=1ffc33c170  ; evalmisc.s:248
+09d4: 77fa41e7c881088000 f14 imm=8000 r219=1 C=1e G=1 r71=1 r62=1ffc23c170  ; evalmisc.s:249
+09d5: 77fa49778880f80000 f14 C=17 F=1e r95=2 r62=1ffc218170  ; evalmisc.s:250
+09d6: 000000000000000000 f0  nop  ; evalmisc.s:251
+09d7: 000000000000000000 f0  nop  ; evalmisc.s:252
+09d8: 000000000000000000 f0  nop  ; evalmisc.s:253
+09d9: 000000000000000000 f0  nop  ; evalmisc.s:254
+uEvalSwapState2D:
+09da: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; evalmisc.s:272
+09db: 28003130f84044f8a0 f5  imm=1f0 r213=3 B=18 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; evalmisc.s:273
+09dc: 28003130f7c144f8a0 f5  imm=1ef r213=3 B=18 C=1b E=1 F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; evalmisc.s:274
+09dd: 77fa4b778880f80000 f14 r211=3 C=17 F=1e r95=7 r62=1ffc218170  ; evalmisc.s:275
+09de: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; evalmisc.s:276
+09df: 000000000000000000 f0  nop  ; evalmisc.s:277
+09e0: 68000007e83ff1941f f13 r148=3e0 M=6f1 r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; evalmisc.s:278
+09e1: 000000000000000000 f0  nop  ; evalmisc.s:279
+09e2: 000000000000000000 f0  nop  ; evalmisc.s:280
+09e3: 77f18007c88cf81025 f14 xfer4 c27 cc=11 -> 1025 <mWramToEram> imm=1025 seq=4fdb r71=1 r25=3e3fc00  ; evalmisc.s:281
+09e4: 76003607ca04100000 f14 r217=1 A=18 G=2 r99=8 r62=1ffc884170  ; evalmisc.s:282
+09e5: 77fa41e7c881008000 f14 imm=8000 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; evalmisc.s:283
+09e6: 77fa416fc881080555 f14 imm=555 r219=1 C=16 F=3f G=1 r71=1 r62=1ffc33c170  ; evalmisc.s:284
+09e7: 77fa43e7c880f801ec f14 imm=1ec r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:285
+09e8: 77fa43e7c880f801ee f14 imm=1ee r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:286
+09e9: 77fa43e7c880f801ed f14 imm=1ed r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; evalmisc.s:287
+09ea: 000000000000000000 f0  nop  ; evalmisc.s:288
+09eb: 000000000000000000 f0  nop  ; evalmisc.s:289
+09ec: 77f24007c884f8d45d f14 xfer4 c5 cc=11 -> d45d <mEramToWram> imm=d45d seq=4fe5 r71=1 r25=3e39c00  ; evalmisc.s:290
+09ed: 76013607ca04100000 f14 r217=1 A=18 D=1 G=2 r99=8 r62=1ffc884170  ; evalmisc.s:291
+09ee: 77fa416fc881000461 f14 imm=461 r219=1 C=16 F=3f G=0 r71=1 r62=1ffc33c170  ; evalmisc.s:292
+09ef: 77fa41e7c881088000 f14 imm=8000 r219=1 C=1e G=1 r71=1 r62=1ffc23c170  ; evalmisc.s:293
+09f0: 77fa49778880f80000 f14 C=17 F=1e r95=2 r62=1ffc218170  ; evalmisc.s:294
+09f1: 000000000000000000 f0  nop  ; evalmisc.s:295
+09f2: 000000000000000000 f0  nop  ; evalmisc.s:296
+09f3: 000000000000000000 f0  nop  ; evalmisc.s:297
+09f4: 000000000000000000 f0  nop  ; evalmisc.s:298

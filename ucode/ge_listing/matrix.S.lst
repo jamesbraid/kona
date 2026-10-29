@@ -1,0 +1,225 @@
+# matrix.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mMatrixCopyCC:
+d35e: 680026a7e83fcaf8a0 f13 C=a M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:117
+d35f: 680026a7a83fcaf8a0 f13 C=a F=1e M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:118
+d360: 680026a7683fcaf8a0 f13 C=a F=1d M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:119
+d361: 680026a7283fcaf8a0 f13 C=a F=1c M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:120
+d362: 680026a6e83fcaf8a0 f13 C=a F=1b M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:121
+d363: 680026a6a83fcaf8a0 f13 C=a F=1a M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:122
+d365: 680026a6683fcaf8a0 f13 C=a F=19 M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:123
+d367: 77fa42c7c880f80000 f14 r211=3 C=c r95=4 r62=1ffc218170  ; matrix.S:117
+d368: 77fa42c78880f80000 f14 r211=3 C=c F=1e r95=4 r62=1ffc218170  ; matrix.S:118
+d369: 77fa42c74880f80000 f14 r211=3 C=c F=1d r95=4 r62=1ffc218170  ; matrix.S:119
+d36a: 77fa42c70880f80000 f14 r211=3 C=c F=1c r95=4 r62=1ffc218170  ; matrix.S:120
+d36b: 77fa42c6c880f80000 f14 r211=3 C=c F=1b r95=4 r62=1ffc218170  ; matrix.S:121
+d36c: 77fa42c68880f80000 f14 r211=3 C=c F=1a r95=4 r62=1ffc218170  ; matrix.S:122
+d36d: 77fa4ca60880f80000 f14 C=a F=18 r95=13 r62=1ffc218170  ; matrix.S:124
+d36e: 680008c6683fcaf8a0 f13 r211=3 C=c F=19 M=6ca r110=7bd r99=2 r95=4 r62=1ffc218178 r25=3ea9c00  ; matrix.S:123
+d36f: 680026a5e83fcaf8a0 f13 C=a F=17 M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:125
+d370: 680026a5a83fcaf8a0 f13 C=a F=16 M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:126
+d371: 680026a5683fcaf8a0 f13 C=a F=15 M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:127
+d372: 680026a5283fcaf8a0 f13 C=a F=14 M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:128
+d373: 680026a4e83fcaf8a0 f13 C=a F=13 M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:129
+d374: 680026a4a83fcaf8a0 f13 C=a F=12 M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:130
+d375: 680026a4683fcaf8a0 f13 C=a F=11 M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:131
+d376: 680026a4283fcaf8a0 f13 C=a F=10 M=6ca r110=7bd r99=2 r95=13 r62=1ffc218178 r25=3ea9c00  ; matrix.S:132
+d377: 77f242c608a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> r211=3 C=c F=18 r95=4 seq=14fe4 r62=1ffc218170 r25=3e39c00  ; matrix.S:124
+d378: 77fa42c5c880f80000 f14 r211=3 C=c F=17 r95=4 r62=1ffc218170  ; matrix.S:125
+d379: 77fa42c58880f80000 f14 r211=3 C=c F=16 r95=4 r62=1ffc218170  ; matrix.S:126
+d37a: 77fa42c54880f80000 f14 r211=3 C=c F=15 r95=4 r62=1ffc218170  ; matrix.S:127
+d37b: 77fa42c50880f80000 f14 r211=3 C=c F=14 r95=4 r62=1ffc218170  ; matrix.S:128
+d37c: 77fa42c4c880f80000 f14 r211=3 C=c F=13 r95=4 r62=1ffc218170  ; matrix.S:129
+d37d: 77fa42c48880f80000 f14 r211=3 C=c F=12 r95=4 r62=1ffc218170  ; matrix.S:130
+d37e: 77fa42c44880f80000 f14 r211=3 C=c F=11 r95=4 r62=1ffc218170  ; matrix.S:131
+d37f: 77fa42c40880f80000 f14 r211=3 C=c F=10 r95=4 r62=1ffc218170  ; matrix.S:132
+mMatrixCopyCW:
+d380: 7ac08007e000000000 f15 A=b M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; matrix.S:87
+d381: 7ac18007e000000000 f15 A=b D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; matrix.S:88
+d382: 7ac28007e000000000 f15 A=b D=2 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; matrix.S:89
+d383: 7ac38007e000000000 f15 A=b D=3 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; matrix.S:90
+d384: 7ac48007e000000000 f15 A=b D=4 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; matrix.S:91
+d385: 7ac58007e000000000 f15 A=b D=5 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; matrix.S:92
+d386: 7ac68007e000000000 f15 A=b D=6 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; matrix.S:93
+d387: 7ac78007e000000000 f15 A=b D=7 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; matrix.S:94
+d388: 7ac88007e000000000 f15 A=b D=8 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; matrix.S:95
+d389: 6ac988c7e83fcaf6a0 f13 r211=3 A=b C=c D=9 M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; matrix.S:87
+d38a: 6aca88c7a83fcaf6a0 f13 r211=3 A=b C=c D=a F=1e M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; matrix.S:88
+d38b: 6acb88c7683fcaf6a0 f13 r211=3 A=b C=c D=b F=1d M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; matrix.S:89
+d38c: 6acc88c7283fcaf6a0 f13 r211=3 A=b C=c D=c F=1c M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; matrix.S:90
+d38d: 6acd88c6e83fcaf6a0 f13 r211=3 A=b C=c D=d F=1b M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; matrix.S:91
+d38e: 6ace88c6a83fcaf6a0 f13 r211=3 A=b C=c D=e F=1a M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; matrix.S:92
+d38f: 6acf88c6683fcaf6a0 f13 r211=3 A=b C=c D=f F=19 M=6ca r99=a r95=4 r62=1ffca98178 r25=3ea9c00  ; matrix.S:93
+d390: 77f242c608a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> r211=3 C=c F=18 r95=4 seq=14fe4 r62=1ffc218170 r25=3e39c00  ; matrix.S:94
+d391: 77fa42c5c880f80000 f14 r211=3 C=c F=17 r95=4 r62=1ffc218170  ; matrix.S:95
+d392: 77fa42c58880f80000 f14 r211=3 C=c F=16 r95=4 r62=1ffc218170  ; matrix.S:96
+d393: 77fa42c54880f80000 f14 r211=3 C=c F=15 r95=4 r62=1ffc218170  ; matrix.S:97
+d394: 77fa42c50880f80000 f14 r211=3 C=c F=14 r95=4 r62=1ffc218170  ; matrix.S:98
+d395: 77fa42c4c880f80000 f14 r211=3 C=c F=13 r95=4 r62=1ffc218170  ; matrix.S:99
+d396: 77fa42c48880f80000 f14 r211=3 C=c F=12 r95=4 r62=1ffc218170  ; matrix.S:100
+d397: 77fa42c44880f80000 f14 r211=3 C=c F=11 r95=4 r62=1ffc218170  ; matrix.S:101
+d398: 77fa42c40880f80000 f14 r211=3 C=c F=10 r95=4 r62=1ffc218170  ; matrix.S:102
+mMatrixTransposeWW:
+d399: 62c25607ea0801de80 f12 r213=3 A=b B=b D=2 E=8 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; matrix.S:34
+d39a: 62c89607ea0201dd80 f12 r213=3 A=b B=b D=8 E=2 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; matrix.S:34
+d39b: 62c35607ea0c01de80 f12 r213=3 A=b B=b D=3 E=c M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; matrix.S:35
+d39c: 62cc9607ea0301dd80 f12 r213=3 A=b B=b D=c E=3 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; matrix.S:35
+d39d: 62c45607ea0101de80 f12 r213=3 A=b B=b D=4 E=1 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; matrix.S:36
+d39e: 62c19607ea0401dd80 f12 r213=3 A=b B=b D=1 E=4 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; matrix.S:36
+d39f: 62c65607ea0901de80 f12 r213=3 A=b B=b D=6 E=9 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; matrix.S:37
+d3a0: 62c99607ea0601dd80 f12 r213=3 A=b B=b D=9 E=6 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; matrix.S:37
+d3a1: 62c75607ea0d01de80 f12 r213=3 A=b B=b D=7 E=d M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; matrix.S:38
+d3a2: 62cd9607ea0701dd80 f12 r213=3 A=b B=b D=d E=7 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; matrix.S:38
+d3a3: 62cb5607ea0e01de80 f12 r213=3 A=b B=b D=b E=e M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; matrix.S:39
+d3a4: 0ace965c08e144f6a0 f1  xfer4 c4 cc=11 -> 0000 <HereWeGo> r213=3 A=b B=b D=e E=b M=6ca r99=8 seq=14fe4 r62=1ffccc0178 r25=3e79c00  ; matrix.S:39
+mOrtho:
+d3ad: 6fc08007ec2d4af6a0 f13 cc=91 A=1f Q=1a M=6ca r99=8 r62=1ffc880578  ; matrix.S:233
+d3ae: 5fc17607f81717f180 f11 cc=291 A=1f D=1 P=1b Q=1c M=2e2 r110=7bd r99=4 r62=1ffc880d7d  ; matrix.S:234
+d3af: 7fe2f1e7c040000000 f15 imm=40000000 r215=3 A=1f B=18 C=1e D=2 r99=8 r71=1 r62=1ffced8170  ; matrix.S:237
+d3b0: 6fc34007ec29e2ffc5 f13 cc=91 A=1f D=3 Q=13 M=6e2 r110=7bd r99=4 r62=1ffc88057c  ; matrix.S:238
+d3b1: 68000007ec2b4af6a0 f13 cc=91 Q=16 M=6ca r62=1ffc000578  ; matrix.S:237
+d3b2: 6fc48007ec2bcaf8a0 f13 cc=91 A=1f D=4 Q=17 M=6ca r110=7bd r99=8 r62=1ffc880578  ; matrix.S:238
+d3b3: 6fc54007ec2962ffa5 f13 cc=91 A=1f D=5 Q=12 M=6e2 r110=6fd r99=4 r62=1ffc88057c  ; matrix.S:242
+d3b4: 68000007ec2d75f440 f13 cc=91 Q=1a r128=15 M=6f5 r110=5bd r62=1ffc000578  ; matrix.S:248
+d3b5: 68000007e80fe88400 f13 r128=d  ; matrix.S:249
+d3b6: 68000007ec2e60977a f13 cc=91 r148=35b Q=1c M=6e0 r110=43d r62=1ffc00357c  ; matrix.S:256
+d3b7: 68000007e80fc8fb7c f13 r148=380 r128=2b M=4ff r110=68b r62=1ffc0020f3  ; matrix.S:248
+d3b8: 68000007e86fea941c f13 r220=1 r148=380 M=6ea r110=4bd r62=1ffc002178  ; matrix.S:279
+d3b9: 68000007e80fc8e793 f13 r148=27c M=4ff r110=687 r62=1ffc003073  ; matrix.S:249
+d3ba: 68000007ec2c748e60 f13 cc=91 r148=13 Q=18 r128=1d M=6f4 r110=63d r62=1ffc001574  ; matrix.S:249
+d3bb: 68000007e80fc0fb9c f13 r148=380 r128=2c M=47f r110=68b r62=1ffc0020f3  ; matrix.S:248
+d3bc: 68000007e80fc8f4b2 f13 r148=12 M=4ff r110=685 r62=1ffc001173
+d3bd: 58003e07e823ae3012 f11 cc=91 r148=240 Q=14 r128=2c M=475 r110=489 r62=1ffc0025fb  ; matrix.S:250
+d3be: 38003007c1fc05b7d2 f7  r213=3 B=18 E=1 r148=25e M=2ff r110=6b7 r95=20 r62=1ffc443071 r25=3e69c00  ; matrix.S:250
+d3bf: 68000007ec2b75f480 f13 cc=91 Q=16 r128=25 M=6f5 r110=5bd r62=1ffc000578  ; matrix.S:249
+d3c0: 68000007e80fc0fea5 f13 r128=2c M=47f r110=689 r62=1ffc0001f3
+d3c1: 68000007ec2d75f480 f13 cc=91 Q=1a r128=25 M=6f5 r110=5bd r62=1ffc000578  ; matrix.S:248
+d3c2: 60003007ea0200401e f12 r213=3 B=18 E=2 r148=3c0 M=27f r110=69d r95=20 r62=1ffc442172 r25=3e69c00  ; matrix.S:268
+d3c3: 68000007ec28e096d7 f13 cc=91 r148=2f6 Q=11 M=6e0 r110=43d r62=1ffc00357c  ; matrix.S:260
+d3c4: 58002007f013af1580 f11 cc=291 P=10 Q=18 r128=25 M=275 r110=5bd r62=1ffc000d7a  ; matrix.S:241
+d3c5: 68000007e80f80f61a f13 r148=1a r128=5 M=7f r110=6a5 r62=1ffc001173  ; matrix.S:248
+d3c6: 4e00b007c30252a37e f9  r213=3 A=18 B=18 E=3 r148=3db r128=5 M=4a r110=4a5 r99=8 r62=1ffccc317b r25=3e69c00  ; matrix.S:246
+d3c7: 58003e07e803ad7716 f11 cc=91 r148=2d8 Q=14 M=75 r110=695 r62=1ffc00357b  ; matrix.S:247
+d3c8: 68000007e80f809737 f13 r148=2f9 M=7f r110=695 r62=1ffc003173
+d3c9: 68000007e80f80f634 f13 r148=14 r128=d M=7f r110=6a5 r62=1ffc001173  ; matrix.S:250
+d3ca: 57c47007fe0252a6be f10 r213=3 B=18 E=4 r148=3d5 r128=d M=4a r110=4a5 r62=1ffc44317b r25=3e69c00  ; matrix.S:270
+d3cb: 68000007e82fa2fea0 f13 r128=4 M=6a2 r110=57d r62=1ffc0001fc  ; matrix.S:248
+d3cc: 68000007e82fa2fea0 f13 r128=4 M=6a2 r110=57d r62=1ffc0001fc
+d3cd: 68000007e82fa2fea2 f13 r128=14 M=6a2 r110=57d r62=1ffc0001fc  ; matrix.S:249
+d3ce: 57c6f007fe1110881e f10 r213=3 B=18 E=6 r148=3c0 r128=14 M=222 r110=55d r95=20 r62=1ffc4421fe r25=3e69c00  ; matrix.S:271
+d3cf: 68000007e82fa2c4b4 f13 r148=280 r128=2c M=6a2 r110=47d r62=1ffc0021fc  ; matrix.S:250
+d3d0: 57c7f007fe151297d5 f10 r213=3 B=18 E=7 r148=2be r128=2c M=2a2 r110=475 r95=20 r62=1ffc4431fd r25=3e69c00  ; matrix.S:272
+d3d1: 68000007e80f80c0ba f13 r148=340 r128=28 M=7f r110=699 r62=1ffc0021f3  ; matrix.S:248
+d3d2: 68000007e80f80c0bb f13 r148=360 r128=28 M=7f r110=699 r62=1ffc0021f3
+d3d3: 68000007e80f80c0b6 f13 r148=2c0 r128=28 M=7f r110=699 r62=1ffc0021f3  ; matrix.S:249
+d3d4: 57c87007fe025917d7 f10 r213=3 B=18 E=8 r148=2fe r128=28 M=4b r110=619 r62=1ffc4431f7 r25=3e69c00  ; matrix.S:273
+d3d5: 68000007e80f80c0b8 f13 r148=300 r128=28 M=7f r110=699 r62=1ffc0021f3  ; matrix.S:250
+d3d6: 57c97007fe025917d9 f10 r213=3 B=18 E=9 r148=33e r128=28 M=4b r110=619 r62=1ffc4431f7 r25=3e69c00  ; matrix.S:274
+d3d7: 68000007ec2db5f480 f13 cc=91 Q=1b r128=25 M=6b5 r110=5bd r62=1ffc000578  ; matrix.S:248
+d3d8: 68000007e82fb5f480 f13 r128=25 M=6b5 r110=5bd r62=1ffc000178
+d3d9: 68000007ec2d35f480 f13 cc=91 Q=1a r128=25 M=6b5 r110=5bd r62=1ffc000578  ; matrix.S:249
+d3da: 57cbf007fe11a8b01e f10 r213=3 B=18 E=b r148=3c0 r128=25 M=235 r110=59d r95=20 r62=1ffc44217a r25=3e69c00  ; matrix.S:275
+d3db: 58003e07f815ac9000 f11 cc=91 Q=1c r128=25 M=2b5 r110=5bd r62=1ffc000579  ; matrix.S:242
+d3dc: 57cff007fe11a8b01f f10 r213=3 B=18 E=f r148=3e0 r128=25 M=235 r110=59d r95=20 r62=1ffc44217a r25=3e69c00  ; matrix.S:276
+d3dd: 68000007e86fea9413 f13 r220=1 r148=260 M=6ea r110=4bd r62=1ffc002178  ; matrix.S:281
+d3de: 68000007e86fea9412 f13 r220=1 r148=240 M=6ea r110=4bd r62=1ffc002178  ; matrix.S:283
+d3df: 68000007e82fe0c4b0 f13 r148=200 r128=2c M=6e0 r110=47d r62=1ffc0021fc  ; matrix.S:264
+d3e0: 60003007ea0001037b f12 r213=3 B=18 r148=37b M=6e0 r110=43d r62=1ffc44317c r25=3e69c00  ; matrix.S:252
+d3e1: 68000007e80fc0977c f13 r148=39b M=47f r110=695 r62=1ffc003173  ; matrix.S:257
+d3e2: 60003007ea0501035a f12 r213=3 B=18 E=5 r148=35a M=6e0 r110=43d r62=1ffc44317c r25=3e69c00  ; matrix.S:253
+d3e3: 68000007e80fc09751 f13 r148=23a M=47f r110=695 r62=1ffc003173  ; matrix.S:261
+d3e4: 60003007ea0a01039c f12 r213=3 B=18 E=a r148=39c M=6e0 r110=43d r62=1ffc44317c r25=3e69c00  ; matrix.S:254
+d3e5: 60003007ea0e00905c f12 r213=3 B=18 E=e r148=1c r128=15 M=47f r110=6a5 r95=20 r62=1ffc441173 r25=3e69c00  ; matrix.S:265
+d3e6: 60003007ea0c015cbe f12 r213=3 B=18 E=c r148=3c0 M=6e2 r110=47d r62=1ffc4421fc r25=3e69c00  ; matrix.S:258
+d3e7: 60003007ea0d015c9e f12 r213=3 B=18 E=d r148=3c0 r128=2c M=6e2 r110=47d r62=1ffc4421fc r25=3e69c00  ; matrix.S:262
+d3e8: 77f64007c100f8d50a f14 xfer5 c4 cc=2 -> d50a <mErrInvalidValue> imm=d50a cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; matrix.S:280
+d3e9: 77f64007c100f8d50a f14 xfer5 c4 cc=2 -> d50a <mErrInvalidValue> imm=d50a cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; matrix.S:282
+d3ea: 77f64007c100f8d50a f14 xfer5 c4 cc=2 -> d50a <mErrInvalidValue> imm=d50a cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; matrix.S:284
+d3ee: 77f24007c880f80eb0 f14 xfer4 c4 cc=11 -> 0eb0 <mMatrixMultCCW> imm=eb0 seq=4fe4 r71=1 r25=3e39c00  ; matrix.S:290
+d3f3: 77fa41e008815c8d2c f14 imm=8d2c r219=1 C=1e r162=1 F=0 G=b r71=1 r62=1ffc23c170  ; matrix.S:289
+mMatrixLoadIdentityC:
+d3f7: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; matrix.S:54
+d400: 77fa42c78880f80000 f14 r211=3 C=c F=1e r95=4 r62=1ffc218170  ; matrix.S:55
+d401: 77fa42c74880f80000 f14 r211=3 C=c F=1d r95=4 r62=1ffc218170  ; matrix.S:56
+d402: 77fa42c70880f80000 f14 r211=3 C=c F=1c r95=4 r62=1ffc218170  ; matrix.S:57
+d403: 680008c6e83fca941f f13 r211=3 C=c F=1b r148=3e0 M=6ca r110=4bd r99=2 r95=4 r62=1ffc21a178 r25=3ea9c00  ; matrix.S:58
+d404: 77fa42c64880f80000 f14 r211=3 C=c F=19 r95=4 r62=1ffc218170  ; matrix.S:59
+d405: 77fa42c60880f80000 f14 r211=3 C=c F=18 r95=4 r62=1ffc218170  ; matrix.S:60
+d406: 77fa42c5c880f80000 f14 r211=3 C=c F=17 r95=4 r62=1ffc218170  ; matrix.S:61
+d407: 77f242c588a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> r211=3 C=c F=16 r95=4 seq=14fe4 r62=1ffc218170 r25=3e39c00  ; matrix.S:62
+d408: 77fa42c50880f80000 f14 r211=3 C=c F=14 r95=4 r62=1ffc218170  ; matrix.S:63
+d409: 77fa42c4c880f80000 f14 r211=3 C=c F=13 r95=4 r62=1ffc218170  ; matrix.S:64
+d40a: 77fa42c48880f80000 f14 r211=3 C=c F=12 r95=4 r62=1ffc218170  ; matrix.S:65
+d40b: 77fa42c44880f80000 f14 r211=3 C=c F=11 r95=4 r62=1ffc218170  ; matrix.S:66
+d40c: 77fa42c7c880f80000 f14 r211=3 C=c r95=4 r62=1ffc218170  ; matrix.S:69
+d40d: 77fa42c68880f80000 f14 r211=3 C=c F=1a r95=4 r62=1ffc218170  ; matrix.S:70
+d40e: 77fa42c54880f80000 f14 r211=3 C=c F=15 r95=4 r62=1ffc218170  ; matrix.S:71
+d40f: 77fa42c40880f80000 f14 r211=3 C=c F=10 r95=4 r62=1ffc218170  ; matrix.S:72
+mFrustum:
+d410: 7fe08007c000000000 f15 A=1f r99=8 r62=1ffc880170  ; matrix.S:151
+d411: 5fc17807f21717f180 f11 cc=291 A=1f D=1 P=1c Q=19 M=2e2 r110=7bd r99=4 r62=1ffc880d7d  ; matrix.S:152
+d412: 780071e7c040000000 f15 imm=40000000 r215=3 B=18 C=1e M=6ca r71=1 r62=1ffc658178  ; matrix.S:151
+d413: 67c2b007ea0b0143fe f12 r213=3 A=1f B=18 D=2 E=b r148=3df M=6e2 r110=43d r99=8 r62=1ffccc317c r25=3e69c00  ; matrix.S:155
+d414: 5fc37e07e01317fc00 f11 cc=91 A=1f D=3 Q=10 M=262 r110=7bd r99=4 r62=1ffc88057e  ; matrix.S:155
+d415: 6fc48007e82fcaf8a0 f13 A=1f D=4 M=6ca r110=7bd r99=8 r62=1ffc880178  ; matrix.S:156
+d416: 6fc54007ec27e2ffa5 f13 cc=91 A=1f D=5 Q=f M=6e2 r110=6fd r99=4 r62=1ffc88057c  ; matrix.S:160
+d417: 68000007ec2d75f440 f13 cc=91 Q=1a r128=15 M=6f5 r110=5bd r62=1ffc000578  ; matrix.S:166
+d418: 68000007ec0720f860 f13 cc=211 P=e r128=1d M=27f r62=1ffc000972  ; matrix.S:159
+d419: 58002e07e217048f80 f11 cc=291 r148=1c P=17 Q=11 r128=1d M=2e0 r110=53d r62=1ffc001d7d  ; matrix.S:160
+d41a: 68000007ec0e48f459 f13 cc=211 r148=19 P=1c r128=15 M=4ff r110=685 r62=1ffc001973  ; matrix.S:167
+d41b: 68000007ec2960feba f13 cc=91 Q=12 r128=17 M=6e0 r110=57d r62=1ffc0005fc  ; matrix.S:177
+d41c: 68000007e80fc8f4b0 f13 r148=10 M=4ff r110=685 r62=1ffc001173
+d41d: 68000007ec29e0fead f13 cc=91 Q=13 M=6e0 r110=57d r62=1ffc0005fc  ; matrix.S:170
+d41e: 68000007ec2e60feb5 f13 cc=91 Q=1c r128=2e M=6e0 r110=57d r62=1ffc0005fc  ; matrix.S:180
+d41f: 68000007e86febb730 f13 r220=1 r148=219 M=6eb r110=63f r62=1ffc003074  ; matrix.S:167
+d420: 68000007ec2c74b60f f13 cc=91 r148=1f0 Q=18 M=6f4 r110=63f r62=1ffc003474  ; matrix.S:167
+d421: 68000007e80fc0fbb9 f13 r148=320 M=47f r110=68b r62=1ffc0020f3  ; matrix.S:166
+d422: 68000007e80fc8f4af f13 r148=f M=4ff r110=685 r62=1ffc001173
+d423: 58003e07ec23ae178f f11 cc=91 r148=1fc Q=16 M=475 r110=485 r62=1ffc00357b  ; matrix.S:168
+d424: 38003007c1fc05b7cf f7  r213=3 B=18 E=1 r148=1fe M=2ff r110=6b7 r95=20 r62=1ffc443071 r25=3e69c00  ; matrix.S:168
+d425: 58003e07e823a8b1d7 f11 cc=91 r148=2ee Q=14 r128=25 M=475 r110=595 r62=1ffc00357b  ; matrix.S:167
+d426: 68000007e80fc0fea5 f13 r128=2c M=47f r110=689 r62=1ffc0001f3
+d427: 68000007ec2d75f480 f13 cc=91 Q=1a r128=25 M=6f5 r110=5bd r62=1ffc000578  ; matrix.S:166
+d428: 68000007e84fa09417 f13 r221=1 r148=2e0 M=27f r110=69d r62=1ffc002172  ; matrix.S:207
+d429: 68000007ec26e0fea4 f13 cc=91 Q=d r128=24 M=6e0 r110=57d r62=1ffc0005fc  ; matrix.S:184
+d42a: 68000007ec2c75f480 f13 cc=91 Q=18 r128=25 M=6f5 r110=5bd r62=1ffc000578  ; matrix.S:168
+d42b: 68000007e80f80f61a f13 r148=1a r128=5 M=7f r110=6a5 r62=1ffc001173  ; matrix.S:166
+d42c: 4e00b007c20252a37e f9  r213=3 A=18 B=18 E=2 r148=3db r128=5 M=4a r110=4a5 r99=8 r62=1ffccc317b r25=3e69c00  ; matrix.S:164
+d42d: 58003e07ec03ad7714 f11 cc=91 r148=298 Q=16 M=75 r110=695 r62=1ffc00357b  ; matrix.S:165
+d42e: 68000007e80f809735 f13 r148=2b9 M=7f r110=695 r62=1ffc003173
+d42f: 68000007e80f80f636 f13 r148=16 r128=d M=7f r110=6a5 r62=1ffc001173  ; matrix.S:168
+d430: 57c37007fe0252a6fe f10 r213=3 B=18 E=3 r148=3d7 r128=d M=4a r110=4a5 r62=1ffc44317b r25=3e69c00  ; matrix.S:189
+d431: 68000007e82fa2fea0 f13 r128=4 M=6a2 r110=57d r62=1ffc0001fc  ; matrix.S:166
+d432: 68000007e82fa2fea0 f13 r128=4 M=6a2 r110=57d r62=1ffc0001fc
+d433: 68000007e82fa2fea2 f13 r128=14 M=6a2 r110=57d r62=1ffc0001fc  ; matrix.S:167
+d434: 57c4f007fe1110881e f10 r213=3 B=18 E=4 r148=3c0 r128=14 M=222 r110=55d r95=20 r62=1ffc4421fe r25=3e69c00  ; matrix.S:190
+d435: 68000007e82fa2c4b6 f13 r148=2c0 r128=2c M=6a2 r110=47d r62=1ffc0021fc  ; matrix.S:168
+d436: 57c6f007fe151297d7 f10 r213=3 B=18 E=6 r148=2fe r128=2c M=2a2 r110=475 r95=20 r62=1ffc4431fd r25=3e69c00  ; matrix.S:191
+d437: 68000007e80f80c0ba f13 r148=340 r128=28 M=7f r110=699 r62=1ffc0021f3  ; matrix.S:166
+d438: 68000007e80f80c0bb f13 r148=360 r128=28 M=7f r110=699 r62=1ffc0021f3
+d439: 68000007e80f80c0b4 f13 r148=280 r128=28 M=7f r110=699 r62=1ffc0021f3  ; matrix.S:167
+d43a: 57c77007fe025917d5 f10 r213=3 B=18 E=7 r148=2be r128=28 M=4b r110=619 r62=1ffc4431f7 r25=3e69c00  ; matrix.S:192
+d43b: 68000007e80f80c0b8 f13 r148=300 r128=28 M=7f r110=699 r62=1ffc0021f3  ; matrix.S:168
+d43c: 57cc7007fe025917d9 f10 r213=3 B=18 E=c r148=33e r128=28 M=4b r110=619 r62=1ffc4431f7 r25=3e69c00  ; matrix.S:194
+d43d: 68000007ec2d35f480 f13 cc=91 Q=1a r128=25 M=6b5 r110=5bd r62=1ffc000578  ; matrix.S:166
+d43e: 68000007e82fb5f480 f13 r128=25 M=6b5 r110=5bd r62=1ffc000178
+d43f: 68000007ec2db5f480 f13 cc=91 Q=1b r128=25 M=6b5 r110=5bd r62=1ffc000578  ; matrix.S:167
+d440: 57cdf007fe11a8b01e f10 r213=3 B=18 E=d r148=3c0 r128=25 M=235 r110=59d r95=20 r62=1ffc44217a r25=3e69c00  ; matrix.S:195
+d441: 68000007e86fea9410 f13 r220=1 r148=200 M=6ea r110=4bd r62=1ffc002178  ; matrix.S:201
+d442: 68000007e86fea940f f13 r220=1 r148=1e0 M=6ea r110=4bd r62=1ffc002178  ; matrix.S:203
+d443: 68000007e86fea940e f13 r220=1 r148=1c0 M=6ea r110=4bd r62=1ffc002178  ; matrix.S:205
+d444: 68000007e82fb5f4e0 f13 r128=3d M=6b5 r110=5bd r62=1ffc000178  ; matrix.S:168
+d445: 57cff007fe11a8bc1e f10 r213=3 B=18 E=f r148=3c0 r128=3d M=235 r110=59d r95=20 r62=1ffc44217a r25=3e69c00  ; matrix.S:196
+d446: 60003007ea00008353 f12 r213=3 B=18 r148=27a M=47f r110=695 r95=20 r62=1ffc443173 r25=3e69c00  ; matrix.S:171
+d447: 60003007ea08008351 f12 r213=3 B=18 E=8 r148=23a M=47f r110=695 r95=20 r62=1ffc443173 r25=3e69c00  ; matrix.S:175
+d448: 60003007ea05008373 f12 r213=3 B=18 E=5 r148=27b M=47f r110=695 r95=20 r62=1ffc443173 r25=3e69c00  ; matrix.S:172
+d449: 60003007ea09008372 f12 r213=3 B=18 E=9 r148=25b M=47f r110=695 r95=20 r62=1ffc443173 r25=3e69c00  ; matrix.S:178
+d44a: 60003007ea0a009c5c f12 r213=3 B=18 E=a r148=380 r128=2a M=47f r110=699 r95=20 r62=1ffc4421f3 r25=3e69c00  ; matrix.S:181
+d44b: 60003007ea0e009c6d f12 r213=3 B=18 E=e r148=1a0 r128=2b M=47f r110=699 r95=20 r62=1ffc4421f3 r25=3e69c00  ; matrix.S:185
+d44c: 77f64007c100f8d50a f14 xfer5 c4 cc=2 -> d50a <mErrInvalidValue> imm=d50a cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; matrix.S:200
+d44d: 77f64007c100f8d50a f14 xfer5 c4 cc=2 -> d50a <mErrInvalidValue> imm=d50a cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; matrix.S:202
+d44e: 77f64007c100f8d50a f14 xfer5 c4 cc=2 -> d50a <mErrInvalidValue> imm=d50a cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; matrix.S:204
+d44f: 77f64007c000f8d50a f14 xfer5 c4 cc=0 -> d50a <mErrInvalidValue> imm=d50a cc=0 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; matrix.S:206
+d450: 77f64007c400f8d50a f14 xfer5 c4 cc=8 -> d50a <mErrInvalidValue> imm=d50a cc=8 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; matrix.S:208
+d454: 77f24007c880f80eb0 f14 xfer4 c4 cc=11 -> 0eb0 <mMatrixMultCCW> imm=eb0 seq=4fe4 r71=1 r25=3e39c00  ; matrix.S:216
+d459: 77fa41e008815c8d2c f14 imm=8d2c r219=1 C=1e r162=1 F=0 G=b r71=1 r62=1ffc23c170  ; matrix.S:215

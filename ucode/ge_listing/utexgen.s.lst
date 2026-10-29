@@ -1,0 +1,258 @@
+# utexgen.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mmo_TexGenSphere_ST:
+umo_TexGenSphere_ST:
+0b85: 782071b78000000000 f15 r215=3 B=18 C=1b F=1e r62=1ffc658170  ; utexgen.s:45
+0b86: 782071b74100000000 f15 r215=3 B=18 C=1b E=1 F=1d r62=1ffc658170  ; utexgen.s:46
+0b87: 77fa419948c1000000 f14 r222=1 r219=1 C=19 F=25 G=0 r62=1ffc23c170  ; utexgen.s:47
+0b88: 77fa410008810c0000 f14 r219=1 C=10 r162=1 F=0 G=1 r62=1ffc23c170  ; utexgen.s:48
+0b89: 77fa41100881140000 f14 r219=1 C=11 r162=1 F=0 G=2 r62=1ffc23c170  ; utexgen.s:49
+0b8a: 77fa40e78881700000 f14 r219=1 C=e F=1e G=e r62=1ffc23c170  ; utexgen.s:50
+0b8b: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; utexgen.s:51
+0b8c: 4e01b807ee1aff3c00 f9  r213=3 A=18 B=1c D=1 E=2e M=6df r110=7bd r99=8 r62=1ffccc017c r25=3e69c00  ; utexgen.s:52
+0b8d: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; utexgen.s:53
+lTGLOOP2:
+0b8e: 6853c007e80fc0ffe5 f13 A=1 D=13 M=47f r99=c r62=1ffc880173  ; utexgen.s:55
+0b8f: 684f4007e80fc0ffe5 f13 A=1 D=f M=47f r99=4 r62=1ffc880173  ; utexgen.s:56
+0b90: 6893c007e80fc0ffe5 f13 A=2 D=13 M=47f r99=c r62=1ffc880173  ; utexgen.s:57
+0b91: 688f4007e80fc0ffe5 f13 A=2 D=f M=47f r99=4 r62=1ffc880173  ; utexgen.s:58
+0b92: 5854fe07fe2307c49e f11 A=1 D=14 r148=1e r128=25 M=460 r110=53d r99=c r62=1ffc88117f  ; utexgen.s:59
+0b93: 58507e07fe2307c49e f11 A=1 D=10 r148=1e r128=25 M=460 r110=53d r99=4 r62=1ffc88117f  ; utexgen.s:60
+0b94: 5894fe07fe2307c49e f11 A=2 D=14 r148=1e r128=25 M=460 r110=53d r99=c r62=1ffc88117f  ; utexgen.s:61
+0b95: 58907e07fe2307c49e f11 A=2 D=10 r148=1e r128=25 M=460 r110=53d r99=4 r62=1ffc88117f  ; utexgen.s:62
+0b96: 5855fe07fe2307fa04 f11 A=1 D=15 r128=20 M=460 r110=57d r99=c r62=1ffc8801ff  ; utexgen.s:63
+0b97: 58517e07fe2307fa04 f11 A=1 D=11 r128=20 M=460 r110=57d r99=4 r62=1ffc8801ff  ; utexgen.s:64
+0b98: 5895fe07fe2307fa04 f11 A=2 D=15 r128=20 M=460 r110=57d r99=c r62=1ffc8801ff  ; utexgen.s:65
+0b99: 58917e07fe2307fa04 f11 A=2 D=11 r128=20 M=460 r110=57d r99=4 r62=1ffc8801ff  ; utexgen.s:66
+0b9a: 68000007ec2160fe84 f13 cc=91 Q=2 r128=20 M=6e0 r110=57d r62=1ffc0005fc  ; utexgen.s:67
+0b9b: 68000007e82fe0fe84 f13 r128=20 M=6e0 r110=57d r62=1ffc0001fc  ; utexgen.s:68
+0b9c: 68000007ec21e0fe84 f13 cc=91 Q=3 r128=20 M=6e0 r110=57d r62=1ffc0005fc  ; utexgen.s:69
+0b9d: 68000007e82fe0fe84 f13 r128=20 M=6e0 r110=57d r62=1ffc0001fc  ; utexgen.s:70
+0b9e: 77fa48e7c880f80000 f14 C=e r95=2 r62=1ffc218170  ; utexgen.s:71
+0b9f: 68000007e80fe80400 f13 r128=d r110=2bd  ; utexgen.s:72
+0ba0: 68000007ec2060fe89 f13 cc=91 Q=0 r128=9 M=6e0 r110=57d r62=1ffc0005fc  ; utexgen.s:73
+0ba1: 68000007e80fc07f41 f13 r128=d M=47f r110=281 r62=1ffc000173  ; utexgen.s:74
+0ba2: 68000007ec20e0fe89 f13 cc=91 Q=1 r128=9 M=6e0 r110=57d r62=1ffc0005fc  ; utexgen.s:75
+0ba3: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173  ; utexgen.s:76
+0ba4: 684f8007e80fc0ff05 f13 A=1 D=f r128=28 M=47f r110=6b9 r99=8 r62=1ffc8801f3  ; utexgen.s:77
+0ba5: 68000007e80fd0f682 f13 r148=2 r128=25 M=57f r110=6a5 r62=1ffc001173  ; utexgen.s:78
+0ba6: 688f8007ec03c0ff05 f13 cc=211 A=2 D=f P=7 r128=28 M=47f r110=6b9 r99=8 r62=1ffc8809f3  ; utexgen.s:79
+0ba7: 68000007e80fd03062 f13 r148=43 r128=25 M=57f r110=2a7 r62=1ffc003173  ; utexgen.s:80
+0ba8: 68518007ec0540f8a0 f13 cc=211 A=1 D=11 P=a M=47f r110=6b5 r99=8 r62=1ffc881973  ; utexgen.s:81
+0ba9: 68000007ec02407083 f13 cc=211 r148=60 P=4 r128=25 M=47f r110=2a3 r62=1ffc002973  ; utexgen.s:82
+0baa: 68918007ec05c0f8a1 f13 cc=211 A=2 D=11 r148=1 P=b M=47f r110=6b5 r99=8 r62=1ffc881973  ; utexgen.s:83
+0bab: 58538a07cc2317f5bc f11 cc=291 A=1 D=13 P=5 Q=6 r128=27 M=462 r110=661 r99=8 r62=1ffc880dff  ; utexgen.s:84
+0bac: 68508007e80fc0f8a0 f13 A=1 D=10 M=47f r110=6b5 r99=8 r62=1ffc881173  ; utexgen.s:85
+0bad: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; utexgen.s:86
+0bae: 68908007e80fc0f8a1 f13 A=2 D=10 r148=1 M=47f r110=6b5 r99=8 r62=1ffc881173  ; utexgen.s:87
+0baf: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; utexgen.s:88
+0bb0: 68938007ec23e2f6a7 f13 cc=91 A=2 D=13 r148=7 Q=7 M=6e2 r110=63d r99=8 r62=1ffc88157c  ; utexgen.s:89
+0bb1: 5855be07d42b15d142 f11 cc=91 A=1 D=15 r148=4a Q=a r128=2c M=562 r110=619 r99=8 r62=1ffc8835ff  ; utexgen.s:90
+0bb2: 68958007ec25e2f6ab f13 cc=91 A=2 D=15 r148=b Q=b M=6e2 r110=63d r99=8 r62=1ffc88157c  ; utexgen.s:91
+0bb3: 5854be07d02b16ef83 f11 cc=91 A=1 D=14 r148=3 Q=8 r128=27 M=562 r110=665 r99=8 r62=1ffc8815ff  ; utexgen.s:92
+0bb4: 000000000000000000 f0  nop  ; utexgen.s:93
+0bb5: 5894be07d22316ef84 f11 cc=91 A=2 D=14 r148=4 Q=9 r128=27 M=462 r110=665 r99=8 r62=1ffc8815ff  ; utexgen.s:94
+0bb6: 000000000000000000 f0  nop  ; utexgen.s:95
+0bb7: 68000007e80fc0f685 f13 r148=5 r128=25 M=47f r110=6a5 r62=1ffc001173  ; utexgen.s:96
+0bb8: 68000007e80fc094c6 f13 r148=c6 M=47f r110=695 r62=1ffc003173  ; utexgen.s:97
+0bb9: 68000007e80fc0f682 f13 r148=2 r128=25 M=47f r110=6a5 r62=1ffc001173  ; utexgen.s:98
+0bba: 68000007e80fc094e7 f13 r148=e7 M=47f r110=695 r62=1ffc003173  ; utexgen.s:99
+0bbb: 68000007e80fc0f683 f13 r148=3 r128=25 M=47f r110=6a5 r62=1ffc001173  ; utexgen.s:100
+0bbc: 58003e07fe2250b108 f11 r148=108 r128=25 M=44a r110=595 r62=1ffc00317b  ; utexgen.s:101
+0bbd: 68000007e82fe0c4aa f13 r148=140 r128=2c M=6e0 r110=47d r62=1ffc0021fc  ; utexgen.s:102
+0bbe: 58003e07fe2250b129 f11 r148=129 r128=25 M=44a r110=595 r62=1ffc00317b  ; utexgen.s:103
+0bbf: 68000007e82fe0c4ab f13 r148=160 r128=2c M=6e0 r110=47d r62=1ffc0021fc  ; utexgen.s:104
+0bc0: 68000007e82fe0fe84 f13 r128=20 M=6e0 r110=57d r62=1ffc0001fc  ; utexgen.s:105
+0bc1: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; utexgen.s:106
+0bc2: 68000007e82fe0fe84 f13 r128=20 M=6e0 r110=57d r62=1ffc0001fc  ; utexgen.s:107
+0bc3: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; utexgen.s:108
+0bc4: 782071e7c03f000000 f15 imm=3f000000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; utexgen.s:109
+0bc5: 68000007ec2160fea1 f13 cc=91 Q=2 r128=c M=6e0 r110=57d r62=1ffc0005fc  ; utexgen.s:110
+0bc6: 000000000000000000 f0  nop  ; utexgen.s:111
+0bc7: 68000007ec21e0fea1 f13 cc=91 Q=3 r128=c M=6e0 r110=57d r62=1ffc0005fc  ; utexgen.s:112
+0bc8: 6e008007ec0340f8a6 f13 cc=211 A=18 r148=6 P=6 M=47f r110=6b5 r99=8 r62=1ffc881973  ; utexgen.s:113
+0bc9: 68000007ec0440f8a8 f13 cc=211 r148=8 P=8 M=47f r110=6b5 r62=1ffc001973  ; utexgen.s:114
+0bca: 68000007ec03c07827 f13 cc=211 r148=7 P=7 r128=d M=47f r110=2b5 r62=1ffc001973  ; utexgen.s:115
+0bcb: 68000007ec04c0f8a9 f13 cc=211 r148=9 P=9 M=47f r110=6b5 r62=1ffc001973  ; utexgen.s:116
+0bcc: 68000007e80fc07f41 f13 r128=d M=47f r110=281 r62=1ffc000173  ; utexgen.s:117
+0bcd: 000000000000000000 f0  nop  ; utexgen.s:118
+0bce: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173  ; utexgen.s:119
+0bcf: 000000000000000000 f0  nop  ; utexgen.s:120
+0bd0: 68000007e80fd0f682 f13 r148=2 r128=25 M=57f r110=6a5 r62=1ffc001173  ; utexgen.s:121
+0bd1: 000000000000000000 f0  nop  ; utexgen.s:122
+0bd2: 68000007e80fd03062 f13 r148=43 r128=25 M=57f r110=2a7 r62=1ffc003173  ; utexgen.s:123
+0bd3: 77fa400948c1000000 f14 r222=1 r219=1 F=25 G=0 r62=1ffc23c170  ; utexgen.s:124
+0bd4: 68000007ec02407083 f13 cc=211 r148=60 P=4 r128=25 M=47f r110=2a3 r62=1ffc002973  ; utexgen.s:125
+0bd5: 77fa401008811c0000 f14 r219=1 C=1 r162=1 F=0 G=3 r62=1ffc23c170  ; utexgen.s:126
+0bd6: 68000007ec02c0ff84 f13 cc=211 P=5 r128=25 M=47f r110=6a1 r62=1ffc000973  ; utexgen.s:127
+0bd7: 77fa40200881240000 f14 r219=1 C=2 r162=1 F=0 G=4 r62=1ffc23c170  ; utexgen.s:128
+0bd8: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; utexgen.s:129
+0bd9: 14c0001fc14c08f6a6 f2  r219=1 cc=211 A=13 C=1 r176=0 r162=1 F=3f G=1 r148=6 P=6 M=47f r110=6a5 r62=1ffcb3d973  ; utexgen.s:130
+0bda: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; utexgen.s:131
+0bdb: 3cc0002fc00908f6e8 f7  r219=1 A=13 C=2 r176=0 r162=1 F=3f G=2 r148=8 r128=3d M=47f r110=6a5 r62=1ffcb3d173  ; utexgen.s:132
+0bdc: 68000007e80fd0f682 f13 r148=2 r128=25 M=57f r110=6a5 r62=1ffc001173  ; utexgen.s:133
+0bdd: 68000007e80fc0f6e7 f13 r148=7 r128=3d M=47f r110=6a5 r62=1ffc001173  ; utexgen.s:134
+0bde: 68000007e80fd0f683 f13 r148=3 r128=25 M=57f r110=6a5 r62=1ffc001173  ; utexgen.s:135
+0bdf: 68000007e80fc09525 f13 r148=a9 M=47f r110=695 r62=1ffc003173  ; utexgen.s:136
+0be0: 77f64007c88cf80b8e f14 xfer5 c7 cc=11 -> 0b8e <lTGLOOP2> imm=b8e seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; utexgen.s:137
+0be1: 18000007c8ef08f6a6 f3  xfer4 c31 cc=11 -> 0000 <HereWeGo> r148=6 M=47f r110=6a5 seq=14fdf r62=1ffc001173 r25=3e3fc00  ; utexgen.s:138
+0be2: 68000007e80fc0fefe f13 r128=37 M=47f r110=6a9 r62=1ffc0001f3  ; utexgen.s:139
+0be3: 68000007e80fc0fef5 f13 r128=2e M=47f r110=6a9 r62=1ffc0001f3  ; utexgen.s:140
+0be4: 68000007e80fc0feee f13 r128=35 M=47f r110=6a9 r62=1ffc0001f3  ; utexgen.s:141
+0be5: 66008607ff0b011fe4 f12 r213=2 r198=7e A=18 B=3 E=b r128=2c M=6e0 r110=67d r99=8 r62=1ffdcc01fc r25=3e69c00  ; utexgen.s:142
+0be6: 60000607fe0c011fe4 f12 r213=2 r198=7c B=3 E=c r128=2c M=6e0 r110=67d r62=1ffd4401fc r25=3e69c00  ; utexgen.s:143
+0be7: e0000807ff0b011fe4 f12 w71=1 r213=2 r198=7e B=4 E=b r128=2c M=6e0 r110=67d r62=1ffd4401fc r25=3e69c00  ; utexgen.s:144
+0be8: e0000807fe0c011fe4 f12 w71=1 r213=2 r198=7c B=4 E=c r128=2c M=6e0 r110=67d r62=1ffd4401fc r25=3e69c00  ; utexgen.s:145
+0be9: 000000000000000000 f0  nop  ; utexgen.s:147
+mmo_TexGenEyeLinear_ST:
+umo_TexGenEyeLinear_ST:
+0bea: 782071b78000000000 f15 r215=3 B=18 C=1b F=1e r62=1ffc658170  ; utexgen.s:154
+0beb: 77fa41100881140000 f14 r219=1 C=11 r162=1 F=0 G=2 r62=1ffc23c170  ; utexgen.s:155
+0bec: 77fa416fc8813003f3 f14 imm=3f3 r219=1 C=16 F=3f G=6 r71=1 r62=1ffc33c170  ; utexgen.s:156
+0bed: 782071b74100000000 f15 r215=3 B=18 C=1b E=1 F=1d r62=1ffc658170  ; utexgen.s:157
+0bee: 77fa4f6fc880f803f3 f14 imm=3f3 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; utexgen.s:158
+0bef: 77fa419948c1000000 f14 r222=1 r219=1 C=19 F=25 G=0 r62=1ffc23c170  ; utexgen.s:159
+0bf0: 77fa4e678880f80000 f14 C=6 F=1e r95=17 r62=1ffc218170  ; utexgen.s:160
+0bf1: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; utexgen.s:161
+0bf2: 4e01b866ee7aff3c00 f9  r213=3 A=18 B=1c C=6 D=1 E=2e F=1b M=6df r110=7bd r99=8 r95=17 r62=1ffced817c r25=3e69c00  ; utexgen.s:162
+0bf3: 77fa48e78881700000 f14 r219=1 C=e F=1e G=e r95=2 r62=1ffc23c170  ; utexgen.s:163
+0bf4: 77fa4e66888cf80000 f14 C=6 F=1a r95=17 seq=6fe7 r62=1ffc218170 r25=3e2bc00  ; utexgen.s:164
+0bf5: 3c138100000508ffe5 f7  r219=1 A=10 C=10 D=13 r162=1 F=0 G=1 M=47f r99=8 r62=1ffcabc173  ; utexgen.s:165
+0bf6: 6c53ae65e80fc0ffe5 f13 A=11 C=6 D=13 F=17 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:166
+0bf7: 6c138007e80fc0ffe5 f13 A=10 D=13 M=47f r99=8 r62=1ffc880173  ; utexgen.s:167
+lXF8:
+0bf8: 6893ae65a80fc0ffe5 f13 A=2 C=6 D=13 F=16 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:169
+0bf9: 38548009400227c49e f7  r222=1 r219=1 A=1 D=14 F=25 G=0 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffcabd17f  ; utexgen.s:170
+0bfa: 5894be64ffe307c49e f11 A=2 C=6 D=14 F=13 r148=1e r128=25 M=460 r110=53d r99=8 r95=17 r62=1ffca9917f  ; utexgen.s:171
+0bfb: 5854be07fe2307c49e f11 A=1 D=14 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; utexgen.s:172
+0bfc: 5894be64bfe307c49e f11 A=2 C=6 D=14 F=12 r148=1e r128=25 M=460 r110=53d r99=8 r95=17 r62=1ffca9917f  ; utexgen.s:173
+0bfd: 38558010000d27fa04 f7  r219=1 A=1 C=1 D=15 r162=1 F=0 G=3 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; utexgen.s:174
+0bfe: 38958020001127fa04 f7  r219=1 A=2 C=2 D=15 r162=1 F=0 G=4 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; utexgen.s:175
+0bff: 5855be07fe2307fa04 f11 A=1 D=15 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; utexgen.s:176
+0c00: 3895a61fc005a7fa04 f7  r219=1 A=2 B=13 C=1 r176=1 D=15 r162=1 F=3f G=1 r128=20 M=460 r110=57d r99=8 r62=1ffcfbc1ff  ; utexgen.s:177
+0c01: 3856a62fc009a7fa04 f7  r219=1 A=1 B=13 C=2 r176=1 D=16 r162=1 F=3f G=2 r128=20 M=460 r110=57d r99=8 r62=1ffcfbc1ff  ; utexgen.s:178
+0c02: 5896be67ffe307fa04 f11 A=2 C=6 D=16 r128=20 M=460 r110=57d r99=8 r95=17 r62=1ffca981ff  ; utexgen.s:179
+0c03: 10d68007fab7a7fa04 f2  xfer5.rel c7 cc=11 -> 0bf8 <lXF8> imm=fffffff5 A=3 D=16 r128=20 M=460 r110=57d r99=8 seq=dfe7 r71=1 r62=1ffe8801ff r25=3e3bc00  ; utexgen.s:180
+0c04: 11169c6788ef27fa04 f2  xfer4 c31 cc=11 -> 0000 <HereWeGo> A=4 C=6 D=16 F=1e r128=20 M=460 r110=57d r99=8 r95=17 seq=14fdf r62=1ffca981ff r25=3e3fc00  ; utexgen.s:181
+0c05: 60000607ff0b011f84 f12 r213=2 r198=7e B=3 E=b r128=20 M=6e0 r110=57d r62=1ffd4401fc r25=3e69c00  ; utexgen.s:182
+0c06: e0000866ff0b2f1f84 f12 w71=1 r213=2 r198=7e B=4 C=6 E=b F=1b r128=20 M=6e0 r110=57d r95=17 r62=1ffd6581fc r25=3e69c00  ; utexgen.s:183
+0c07: 60000607fe0c011f84 f12 r213=2 r198=7c B=3 E=c r128=20 M=6e0 r110=57d r62=1ffd4401fc r25=3e69c00  ; utexgen.s:184
+0c08: e0000866be0c2f1f84 f12 w71=1 r213=2 r198=7c B=4 C=6 E=c F=1a r128=20 M=6e0 r110=57d r95=17 r62=1ffd6581fc r25=3e69c00  ; utexgen.s:185
+0c09: 68538007e80fc0ffe5 f13 A=1 D=13 M=47f r99=8 r62=1ffc880173  ; utexgen.s:186
+0c0a: 6893ae65e80fc0ffe5 f13 A=2 C=6 D=13 F=17 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:187
+0c0b: 68538007e80fc0ffe5 f13 A=1 D=13 M=47f r99=8 r62=1ffc880173  ; utexgen.s:188
+0c0c: 000000000000000000 f0  nop  ; utexgen.s:190
+mmo_TexGenEyeLinear_RQ:
+umo_TexGenEyeLinear_RQ:
+0c0d: 782071b78000000000 f15 r215=3 B=18 C=1b F=1e r62=1ffc658170  ; utexgen.s:197
+0c0e: 77fa41100881140000 f14 r219=1 C=11 r162=1 F=0 G=2 r62=1ffc23c170  ; utexgen.s:198
+0c0f: 77fa416fc8813003f3 f14 imm=3f3 r219=1 C=16 F=3f G=6 r71=1 r62=1ffc33c170  ; utexgen.s:199
+0c10: 782071b74100000000 f15 r215=3 B=18 C=1b E=1 F=1d r62=1ffc658170  ; utexgen.s:200
+0c11: 77fa4f6fc880f803f5 f14 imm=3f5 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; utexgen.s:201
+0c12: 77fa419948c1000000 f14 r222=1 r219=1 C=19 F=25 G=0 r62=1ffc23c170  ; utexgen.s:202
+0c13: 77fa4e670880f80000 f14 C=6 F=1c r95=17 r62=1ffc218170  ; utexgen.s:203
+0c14: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; utexgen.s:204
+0c15: 4e01b8666e7aff3c00 f9  r213=3 A=18 B=1c C=6 D=1 E=2e F=19 M=6df r110=7bd r99=8 r95=17 r62=1ffced817c r25=3e69c00  ; utexgen.s:205
+0c16: 77fa48e78881700000 f14 r219=1 C=e F=1e G=e r95=2 r62=1ffc23c170  ; utexgen.s:206
+0c17: 77fa4e66088cf80000 f14 C=6 F=18 r95=17 seq=6fe7 r62=1ffc218170 r25=3e2bc00  ; utexgen.s:207
+0c18: 3c138100000508ffe5 f7  r219=1 A=10 C=10 D=13 r162=1 F=0 G=1 M=47f r99=8 r62=1ffcabc173  ; utexgen.s:208
+0c19: 6c53ae65680fc0ffe5 f13 A=11 C=6 D=13 F=15 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:209
+0c1a: 6c138007e80fc0ffe5 f13 A=10 D=13 M=47f r99=8 r62=1ffc880173  ; utexgen.s:210
+lXF9:
+0c1b: 6893ae65280fc0ffe5 f13 A=2 C=6 D=13 F=14 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:212
+0c1c: 38548009400227c49e f7  r222=1 r219=1 A=1 D=14 F=25 G=0 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffcabd17f  ; utexgen.s:213
+0c1d: 5894be647fe307c49e f11 A=2 C=6 D=14 F=11 r148=1e r128=25 M=460 r110=53d r99=8 r95=17 r62=1ffca9917f  ; utexgen.s:214
+0c1e: 5854be07fe2307c49e f11 A=1 D=14 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; utexgen.s:215
+0c1f: 5894be643fe307c49e f11 A=2 C=6 D=14 F=10 r148=1e r128=25 M=460 r110=53d r99=8 r95=17 r62=1ffca9917f  ; utexgen.s:216
+0c20: 38558010000d27fa04 f7  r219=1 A=1 C=1 D=15 r162=1 F=0 G=3 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; utexgen.s:217
+0c21: 38958020001127fa04 f7  r219=1 A=2 C=2 D=15 r162=1 F=0 G=4 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; utexgen.s:218
+0c22: 5855be07fe2307fa04 f11 A=1 D=15 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; utexgen.s:219
+0c23: 3895a61fc005a7fa04 f7  r219=1 A=2 B=13 C=1 r176=1 D=15 r162=1 F=3f G=1 r128=20 M=460 r110=57d r99=8 r62=1ffcfbc1ff  ; utexgen.s:220
+0c24: 3856a62fc009a7fa04 f7  r219=1 A=1 B=13 C=2 r176=1 D=16 r162=1 F=3f G=2 r128=20 M=460 r110=57d r99=8 r62=1ffcfbc1ff  ; utexgen.s:221
+0c25: 5896be677fe307fa04 f11 A=2 C=6 D=16 F=1d r128=20 M=460 r110=57d r99=8 r95=17 r62=1ffca981ff  ; utexgen.s:222
+0c26: 10d68007fab7a7fa04 f2  xfer5.rel c7 cc=11 -> 0c1b <lXF9> imm=fffffff5 A=3 D=16 r128=20 M=460 r110=57d r99=8 seq=dfe7 r71=1 r62=1ffe8801ff r25=3e3bc00  ; utexgen.s:223
+0c27: 11169c6708ef27fa04 f2  xfer4 c31 cc=11 -> 0000 <HereWeGo> A=4 C=6 D=16 F=1c r128=20 M=460 r110=57d r99=8 r95=17 seq=14fdf r62=1ffca981ff r25=3e3fc00  ; utexgen.s:224
+0c28: 60000607ff0d011f84 f12 r213=2 r198=7e B=3 E=d r128=20 M=6e0 r110=57d r62=1ffd4401fc r25=3e69c00  ; utexgen.s:225
+0c29: e00008667f0d2f1f84 f12 w71=1 r213=2 r198=7e B=4 C=6 E=d F=19 r128=20 M=6e0 r110=57d r95=17 r62=1ffd6581fc r25=3e69c00  ; utexgen.s:226
+0c2a: 60000607fe0e011f84 f12 r213=2 r198=7c B=3 E=e r128=20 M=6e0 r110=57d r62=1ffd4401fc r25=3e69c00  ; utexgen.s:227
+0c2b: e00008663e0e2f1f84 f12 w71=1 r213=2 r198=7c B=4 C=6 E=e F=18 r128=20 M=6e0 r110=57d r95=17 r62=1ffd6581fc r25=3e69c00  ; utexgen.s:228
+0c2c: 68538007e80fc0ffe5 f13 A=1 D=13 M=47f r99=8 r62=1ffc880173  ; utexgen.s:229
+0c2d: 6893ae65680fc0ffe5 f13 A=2 C=6 D=13 F=15 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:230
+0c2e: 68538007e80fc0ffe5 f13 A=1 D=13 M=47f r99=8 r62=1ffc880173  ; utexgen.s:231
+0c2f: 000000000000000000 f0  nop  ; utexgen.s:233
+mmo_TexGenObjLinear_ST:
+umo_TexGenObjLinear_ST:
+0c30: 782071b78000000000 f15 r215=3 B=18 C=1b F=1e r62=1ffc658170  ; utexgen.s:240
+0c31: 77fa41100881140000 f14 r219=1 C=11 r162=1 F=0 G=2 r62=1ffc23c170  ; utexgen.s:241
+0c32: 77fa416fc8813003e3 f14 imm=3e3 r219=1 C=16 F=3f G=6 r71=1 r62=1ffc33c170  ; utexgen.s:242
+0c33: 782071b74100000000 f15 r215=3 B=18 C=1b E=1 F=1d r62=1ffc658170  ; utexgen.s:243
+0c34: 77fa4f6fc880f803e3 f14 imm=3e3 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; utexgen.s:244
+0c35: 77fa419948c1000000 f14 r222=1 r219=1 C=19 F=25 G=0 r62=1ffc23c170  ; utexgen.s:245
+0c36: 77fa4e678880f80000 f14 C=6 F=1e r95=17 r62=1ffc218170  ; utexgen.s:246
+0c37: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; utexgen.s:247
+0c38: 4e01b866ee7aff3c00 f9  r213=3 A=18 B=1c C=6 D=1 E=2e F=1b M=6df r110=7bd r99=8 r95=17 r62=1ffced817c r25=3e69c00  ; utexgen.s:248
+0c39: 77fa48e78881700000 f14 r219=1 C=e F=1e G=e r95=2 r62=1ffc23c170  ; utexgen.s:249
+0c3a: 77fa4e66888cf80000 f14 C=6 F=1a r95=17 seq=6fe7 r62=1ffc218170 r25=3e2bc00  ; utexgen.s:250
+0c3b: 3c008100000508ffe5 f7  r219=1 A=10 C=10 r162=1 F=0 G=1 M=47f r99=8 r62=1ffcabc173  ; utexgen.s:251
+0c3c: 6c40ae65e80fc0ffe5 f13 A=11 C=6 F=17 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:252
+0c3d: 6c008007e80fc0ffe5 f13 A=10 M=47f r99=8 r62=1ffc880173  ; utexgen.s:253
+lXF10:
+0c3e: 6880ae65a80fc0ffe5 f13 A=2 C=6 F=16 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:255
+0c3f: 38418009400227c49e f7  r222=1 r219=1 A=1 D=1 F=25 G=0 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffcabd17f  ; utexgen.s:256
+0c40: 5881be64ffe307c49e f11 A=2 C=6 D=1 F=13 r148=1e r128=25 M=460 r110=53d r99=8 r95=17 r62=1ffca9917f  ; utexgen.s:257
+0c41: 5841be07fe2307c49e f11 A=1 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; utexgen.s:258
+0c42: 5881be64bfe307c49e f11 A=2 C=6 D=1 F=12 r148=1e r128=25 M=460 r110=53d r99=8 r95=17 r62=1ffca9917f  ; utexgen.s:259
+0c43: 38428010000d27fa04 f7  r219=1 A=1 C=1 D=2 r162=1 F=0 G=3 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; utexgen.s:260
+0c44: 38828020001127fa04 f7  r219=1 A=2 C=2 D=2 r162=1 F=0 G=4 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; utexgen.s:261
+0c45: 5842be07fe2307fa04 f11 A=1 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; utexgen.s:262
+0c46: 3882a61fc005a7fa04 f7  r219=1 A=2 B=13 C=1 r176=1 D=2 r162=1 F=3f G=1 r128=20 M=460 r110=57d r99=8 r62=1ffcfbc1ff  ; utexgen.s:263
+0c47: 3843a62fc009a7fa04 f7  r219=1 A=1 B=13 C=2 r176=1 D=3 r162=1 F=3f G=2 r128=20 M=460 r110=57d r99=8 r62=1ffcfbc1ff  ; utexgen.s:264
+0c48: 5883be67ffe307fa04 f11 A=2 C=6 D=3 r128=20 M=460 r110=57d r99=8 r95=17 r62=1ffca981ff  ; utexgen.s:265
+0c49: 10c38007fab7a7fa04 f2  xfer5.rel c7 cc=11 -> 0c3e <lXF10> imm=fffffff5 A=3 D=3 r128=20 M=460 r110=57d r99=8 seq=dfe7 r71=1 r62=1ffe8801ff r25=3e3bc00  ; utexgen.s:266
+0c4a: 11039c6788ef27fa04 f2  xfer4 c31 cc=11 -> 0000 <HereWeGo> A=4 C=6 D=3 F=1e r128=20 M=460 r110=57d r99=8 r95=17 seq=14fdf r62=1ffca981ff r25=3e3fc00  ; utexgen.s:267
+0c4b: 60000607ff0b011f84 f12 r213=2 r198=7e B=3 E=b r128=20 M=6e0 r110=57d r62=1ffd4401fc r25=3e69c00  ; utexgen.s:268
+0c4c: e0000866ff0b2f1f84 f12 w71=1 r213=2 r198=7e B=4 C=6 E=b F=1b r128=20 M=6e0 r110=57d r95=17 r62=1ffd6581fc r25=3e69c00  ; utexgen.s:269
+0c4d: 60000607fe0c011f84 f12 r213=2 r198=7c B=3 E=c r128=20 M=6e0 r110=57d r62=1ffd4401fc r25=3e69c00  ; utexgen.s:270
+0c4e: e0000866be0c2f1f84 f12 w71=1 r213=2 r198=7c B=4 C=6 E=c F=1a r128=20 M=6e0 r110=57d r95=17 r62=1ffd6581fc r25=3e69c00  ; utexgen.s:271
+0c4f: 68408007e80fc0ffe5 f13 A=1 M=47f r99=8 r62=1ffc880173  ; utexgen.s:272
+0c50: 6880ae65e80fc0ffe5 f13 A=2 C=6 F=17 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:273
+0c51: 68408007e80fc0ffe5 f13 A=1 M=47f r99=8 r62=1ffc880173  ; utexgen.s:274
+0c52: 000000000000000000 f0  nop  ; utexgen.s:276
+mmo_TexGenObjLinear_RQ:
+umo_TexGenObjLinear_RQ:
+0c53: 782071b78000000000 f15 r215=3 B=18 C=1b F=1e r62=1ffc658170  ; utexgen.s:283
+0c54: 77fa41100881140000 f14 r219=1 C=11 r162=1 F=0 G=2 r62=1ffc23c170  ; utexgen.s:284
+0c55: 77fa416fc8813003e3 f14 imm=3e3 r219=1 C=16 F=3f G=6 r71=1 r62=1ffc33c170  ; utexgen.s:285
+0c56: 782071b74100000000 f15 r215=3 B=18 C=1b E=1 F=1d r62=1ffc658170  ; utexgen.s:286
+0c57: 77fa4f6fc880f803e5 f14 imm=3e5 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; utexgen.s:287
+0c58: 77fa419948c1000000 f14 r222=1 r219=1 C=19 F=25 G=0 r62=1ffc23c170  ; utexgen.s:288
+0c59: 77fa4e670880f80000 f14 C=6 F=1c r95=17 r62=1ffc218170  ; utexgen.s:289
+0c5a: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; utexgen.s:290
+0c5b: 4e01b8666e7aff3c00 f9  r213=3 A=18 B=1c C=6 D=1 E=2e F=19 M=6df r110=7bd r99=8 r95=17 r62=1ffced817c r25=3e69c00  ; utexgen.s:291
+0c5c: 77fa48e78881700000 f14 r219=1 C=e F=1e G=e r95=2 r62=1ffc23c170  ; utexgen.s:292
+0c5d: 77fa4e66088cf80000 f14 C=6 F=18 r95=17 seq=6fe7 r62=1ffc218170 r25=3e2bc00  ; utexgen.s:293
+0c5e: 3c008100000508ffe5 f7  r219=1 A=10 C=10 r162=1 F=0 G=1 M=47f r99=8 r62=1ffcabc173  ; utexgen.s:294
+0c5f: 6c40ae65680fc0ffe5 f13 A=11 C=6 F=15 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:295
+0c60: 6c008007e80fc0ffe5 f13 A=10 M=47f r99=8 r62=1ffc880173  ; utexgen.s:296
+lXF11:
+0c61: 6880ae65280fc0ffe5 f13 A=2 C=6 F=14 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:298
+0c62: 38418009400227c49e f7  r222=1 r219=1 A=1 D=1 F=25 G=0 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffcabd17f  ; utexgen.s:299
+0c63: 5881be647fe307c49e f11 A=2 C=6 D=1 F=11 r148=1e r128=25 M=460 r110=53d r99=8 r95=17 r62=1ffca9917f  ; utexgen.s:300
+0c64: 5841be07fe2307c49e f11 A=1 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; utexgen.s:301
+0c65: 5881be643fe307c49e f11 A=2 C=6 D=1 F=10 r148=1e r128=25 M=460 r110=53d r99=8 r95=17 r62=1ffca9917f  ; utexgen.s:302
+0c66: 38428010000d27fa04 f7  r219=1 A=1 C=1 D=2 r162=1 F=0 G=3 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; utexgen.s:303
+0c67: 38828020001127fa04 f7  r219=1 A=2 C=2 D=2 r162=1 F=0 G=4 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; utexgen.s:304
+0c68: 5842be07fe2307fa04 f11 A=1 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; utexgen.s:305
+0c69: 3882a61fc005a7fa04 f7  r219=1 A=2 B=13 C=1 r176=1 D=2 r162=1 F=3f G=1 r128=20 M=460 r110=57d r99=8 r62=1ffcfbc1ff  ; utexgen.s:306
+0c6a: 3843a62fc009a7fa04 f7  r219=1 A=1 B=13 C=2 r176=1 D=3 r162=1 F=3f G=2 r128=20 M=460 r110=57d r99=8 r62=1ffcfbc1ff  ; utexgen.s:307
+0c6b: 5883be677fe307fa04 f11 A=2 C=6 D=3 F=1d r128=20 M=460 r110=57d r99=8 r95=17 r62=1ffca981ff  ; utexgen.s:308
+0c6c: 10c38007fab7a7fa04 f2  xfer5.rel c7 cc=11 -> 0c61 <lXF11> imm=fffffff5 A=3 D=3 r128=20 M=460 r110=57d r99=8 seq=dfe7 r71=1 r62=1ffe8801ff r25=3e3bc00  ; utexgen.s:309
+0c6d: 11039c6708ef27fa04 f2  xfer4 c31 cc=11 -> 0000 <HereWeGo> A=4 C=6 D=3 F=1c r128=20 M=460 r110=57d r99=8 r95=17 seq=14fdf r62=1ffca981ff r25=3e3fc00  ; utexgen.s:310
+0c6e: 60000607ff0d011f84 f12 r213=2 r198=7e B=3 E=d r128=20 M=6e0 r110=57d r62=1ffd4401fc r25=3e69c00  ; utexgen.s:311
+0c6f: e00008667f0d2f1f84 f12 w71=1 r213=2 r198=7e B=4 C=6 E=d F=19 r128=20 M=6e0 r110=57d r95=17 r62=1ffd6581fc r25=3e69c00  ; utexgen.s:312
+0c70: 60000607fe0e011f84 f12 r213=2 r198=7c B=3 E=e r128=20 M=6e0 r110=57d r62=1ffd4401fc r25=3e69c00  ; utexgen.s:313
+0c71: e00008663e0e2f1f84 f12 w71=1 r213=2 r198=7c B=4 C=6 E=e F=18 r128=20 M=6e0 r110=57d r95=17 r62=1ffd6581fc r25=3e69c00  ; utexgen.s:314
+0c72: 68408007e80fc0ffe5 f13 A=1 M=47f r99=8 r62=1ffc880173  ; utexgen.s:315
+0c73: 6880ae65680fc0ffe5 f13 A=2 C=6 F=15 M=47f r99=8 r95=17 r62=1ffca98173  ; utexgen.s:316
+0c74: 68408007e80fc0ffe5 f13 A=1 M=47f r99=8 r62=1ffc880173  ; utexgen.s:317
+0c75: 000000000000000000 f0  nop  ; utexgen.s:319

@@ -1,0 +1,20 @@
+# upixelSetup.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mgesi_PixDrawColorEntry:
+ugesi_PixDrawColorEntry:
+27d5: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; upixelSetup.s:51
+27d6: 77fa49e7c880f80129 f14 imm=129 C=1e r95=2 r71=1 r62=1ffc218170  ; upixelSetup.s:54
+27d7: 77fa41e7c881810000 f14 imm=10000 r219=1 C=1e G=10 r71=1 r62=1ffc23c170  ; upixelSetup.s:57
+27d8: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; upixelSetup.s:58
+27d9: 28007930b76f4ef8bf f5  imm=16e r213=3 B=1c C=1b E=2f F=3f r148=1f M=6e2 r110=73d r99=2 r95=13 r71=1 r62=1ffc75917c r25=3ee9c00  ; upixelSetup.s:59
+27da: 000000000000000000 f0  nop  ; upixelSetup.s:60
+27db: 28004130b78049f8bf f5  imm=16f C=1b F=3f r148=1f M=6e0 r110=73d r99=2 r95=13 r71=1 r62=1ffc31917c r25=3ea9c00  ; upixelSetup.s:61
+27dc: 70f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=141df r25=3e3fc00  ; upixelSetup.s:62
+27dd: 77fa41d7c881c80000 f14 r219=1 C=1d G=19 r62=1ffc23c170  ; upixelSetup.s:63
+27de: 1e0831d7c13e0d9400 f3  r219=1 r215=3 B=18 C=1d E=30 G=1 r62=1ffc67c170  ; upixelSetup.s:64
+27df: 000000000000000000 f0  nop  ; upixelSetup.s:65
+27e0: 740021ffca01800000 f14 r219=1 A=10 C=1f r176=0 F=3f G=10 r62=1ffcb3c170  ; upixelSetup.s:66
+27e1: 77fa41e74881980129 f14 imm=129 r219=1 C=1e F=1d G=13 r71=1 r62=1ffc23c170  ; upixelSetup.s:67
+27e2: 77fa43e7c880f8016e f14 imm=16e r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; upixelSetup.s:68
+27e3: 000000000000000000 f0  nop  ; upixelSetup.s:69
+27e4: 77fa43e7c880f8016f f14 imm=16f r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; upixelSetup.s:70

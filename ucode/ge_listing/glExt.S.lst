@@ -1,0 +1,59 @@
+# glExt.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mgeb_Disable_EnablePolyOffsetExt:
+b27b: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; glExt.S:118
+b27c: 782071e7c080000000 f15 imm=80000000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; glExt.S:124
+b27d: 7fe0f1e7c100000001 f15 imm=1 r215=3 A=1f B=18 C=1e E=1 r99=8 r71=1 r62=1ffced8170  ; glExt.S:127
+b27e: 6e014007e86fd0ffa5 f13 r220=1 A=18 D=1 M=6d0 r110=6fd r99=4 r62=1ffc88017c  ; glExt.S:128
+b27f: 77fa4fe7c880f80a8c f14 imm=a8c C=1e r95=17 r71=1 r62=1ffc218170  ; glExt.S:141
+b280: 7609f7e7ca00f8001b f14 imm=1b A=18 C=1e r99=8 r95=13 r71=1 r62=1ffca98170  ; glExt.S:130
+b281: 182c31e7c151c3ffa5 f3  imm=2 r215=3 B=18 C=1e E=1 M=6d4 r110=6fd r99=2 r71=1 r62=1ffc65817c r25=3ea9c00  ; glExt.S:132
+b282: 68000007e83fd1ffa5 f13 M=6d1 r110=6fd r99=2 r62=1ffc00017c r25=3ea9c00  ; glExt.S:133
+b283: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; glExt.S:137
+b284: 6fc08007e86fd0ffa5 f13 r220=1 A=1f M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; glExt.S:139
+b286: 6e008007e83fd4ffa5 f13 A=18 M=6d4 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; glExt.S:140
+b28a: 702267e7c180f8001b f14 imm=1b r211=2 r198=3 C=1e r95=4 r71=1 r62=1ffd218170  ; glExt.S:132
+b28e: 702267e7c100f8001b f14 imm=1b r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; glExt.S:133
+b28f: 702467e7c180f80a8c f14 imm=a8c r211=2 r198=3 C=1e r95=8 r71=1 r62=1ffd218170  ; glExt.S:142
+b291: 77fa4fe7c880f80a8d f14 imm=a8d C=1e r95=17 r71=1 r62=1ffc218170  ; glExt.S:151
+b294: 68000007e83fd1ffa5 f13 M=6d1 r110=6fd r99=2 r62=1ffc00017c r25=3ea9c00  ; glExt.S:143
+b295: 7fe0f1e7c100000004 f15 imm=4 r215=3 A=1f B=18 C=1e E=1 r99=8 r71=1 r62=1ffced8170  ; glExt.S:146
+b296: 6e014007e86fd0ffa5 f13 r220=1 A=18 D=1 M=6d0 r110=6fd r99=4 r62=1ffc88017c  ; glExt.S:147
+b297: 60003807ea2601c01e f12 r213=3 B=1c E=26 r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; glExt.S:156
+b298: 1600a1d7da3e43ffa5 f2  r219=1 A=18 C=1d G=1a M=6d4 r110=6fd r99=a r62=1ffcabc17c r25=3ea9c00  ; glExt.S:120
+b299: 68000007e83fd1ffa5 f13 M=6d1 r110=6fd r99=2 r62=1ffc00017c r25=3ea9c00  ; glExt.S:153
+b29a: 28000132030054f8a0 f5  imm=6 r220=1 C=1e M=6ca r110=7bd r95=13 r71=1 r62=1ffc218178  ; glExt.S:157
+b29b: 280001320d8054f8a0 f5  imm=1b r220=1 C=1e M=6ca r110=7bd r95=13 r71=1 r62=1ffc218178  ; glExt.S:158
+b29c: 60003807c1a601c01d f12 r213=2 r198=3 B=1c E=26 r148=3a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; glExt.S:157
+b29d: 60003807c1a601c01d f12 r213=2 r198=3 B=1c E=26 r148=3a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; glExt.S:158
+b29e: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; glExt.S:121
+b29f: 702467e7c100f80a8c f14 imm=a8c r211=2 r198=2 C=1e r95=8 r71=1 r62=1ffd218170  ; glExt.S:143
+b2a0: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; glExt.S:122
+b2a1: 702467e7c180f80a8d f14 imm=a8d r211=2 r198=3 C=1e r95=8 r71=1 r62=1ffd218170  ; glExt.S:152
+b2a2: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> b2a2 seq=1cfdf r25=3e3fc00  ; glExt.S:161
+b2a4: 702467e7c100f80a8d f14 imm=a8d r211=2 r198=2 C=1e r95=8 r71=1 r62=1ffd218170  ; glExt.S:153
+b2a7: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; glExt.S:160
+mgeb_PolygonOffset:
+b2ab: 77fa4f6fc880f80a46 f14 imm=a46 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; glExt.S:93
+b2b1: 7fc08007e000000000 f15 A=1f M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; glExt.S:95
+b2b2: 6fc18007e80fc0ffe5 f13 A=1f D=1 M=47f r99=8 r62=1ffc880173  ; glExt.S:98
+b2b4: 78000007e000000000 f15 M=6ca r99=2 r62=1ffc000178 r25=3ea9c00  ; glExt.S:100
+b2b6: 180401d7da3e44f480 f3  r219=1 C=1d G=1a r128=25 M=6ca r110=5bd r99=2 r62=1ffc23c178 r25=3ea9c00  ; glExt.S:89
+b2b7: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; glExt.S:90
+b2b8: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; glExt.S:91
+b2b9: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; glExt.S:87
+b2ba: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> b2ba seq=1cfdf r25=3e3fc00  ; glExt.S:105
+b2bb: 75b461efca00f80a43 f14 imm=a43 r211=3 A=16 C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; glExt.S:96
+b2bd: 75b461efca00f80a45 f14 imm=a45 r211=3 A=16 C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; glExt.S:100
+b2be: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; glExt.S:104
+b2bf: 75b461efca00f80a44 f14 imm=a44 r211=3 A=16 C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; glExt.S:102
+mgeb_PolygonOffsetExt:
+b2c3: 7fc08007e000000000 f15 A=1f M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; glExt.S:64
+b2c5: 17c1a1d7da3e44f6a0 f2  r219=1 A=1f C=1d D=1 G=1a M=6ca r99=a r62=1ffcabc178 r25=3ea9c00  ; glExt.S:32
+b2c6: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; glExt.S:33
+b2c7: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; glExt.S:34
+b2c9: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> b2c9 seq=1cfdf r25=3e3fc00  ; glExt.S:72
+b2cb: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; glExt.S:30
+b2cc: 75b461efca00f80a43 f14 imm=a43 r211=3 A=16 C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; glExt.S:65
+b2cd: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; glExt.S:71
+b2ce: 75b461efca00f80a44 f14 imm=a44 r211=3 A=16 C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; glExt.S:68

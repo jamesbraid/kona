@@ -1,0 +1,86 @@
+# bootstrap.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+HereWeGo:
+0000: 000000000000000000 f0  nop  ; bootstrap.s:20
+0001: 000000000000000000 f0  nop  ; bootstrap.s:21
+0002: 77f9c007c88cf80000 f14 seq=6fdf r25=3e2fc00  ; bootstrap.s:22
+0003: 77f20007c880f827cc f14 xfer4 c0 cc=11 -> 27cc <MemRegInit> imm=27cc seq=4fe0 r71=1 r25=3e39c00  ; bootstrap.s:30
+0004: 000000000000000000 f0  nop  ; bootstrap.s:31
+0005: 000000000000000000 f0  nop  ; bootstrap.s:32
+0006: 000000000000000000 f0  nop  ; bootstrap.s:33
+0007: 000000000000000000 f0  nop  ; bootstrap.s:34
+0008: 000000000000000000 f0  nop  ; bootstrap.s:35
+0009: 000000000000000000 f0  nop  ; bootstrap.s:36
+000a: 000000000000000000 f0  nop  ; bootstrap.s:37
+000b: 000000000000000000 f0  nop  ; bootstrap.s:38
+000c: 77fa41e7c881e20000 f14 imm=fffe0000 r219=1 C=1e G=1c r71=1 r62=1ffc23c170  ; bootstrap.s:41
+000d: 77fa41e7c881ea0100 f14 imm=fffe0100 r219=1 C=1e G=1d r71=1 r62=1ffc23c170  ; bootstrap.s:42
+000e: 77fa41e7c881f30000 f14 imm=ffff0000 r219=1 C=1e G=1e r71=1 r62=1ffc23c170  ; bootstrap.s:43
+000f: 77fa41e7c881b00000 f14 r219=1 C=1e G=16 r71=1 r62=1ffc23c170  ; bootstrap.s:44
+0010: 7259c1e0088dc48d2c f14 imm=8d2c r219=1 C=1e r162=1 F=0 G=18 seq=649f r71=1 r62=1ffc23c170 r25=3e2fc00  ; bootstrap.s:45
+0011: 7499c1e4488fc48d2c f14 imm=8d2c r219=3 C=1e r162=1 F=11 G=18 seq=691f r71=1 r62=1ffc23c170 r25=3e2fc00  ; bootstrap.s:46
+0012: 77f9c1e8888fc48d2c f14 imm=8d2c r219=3 C=1e r162=1 F=22 G=18 seq=6fdf r71=1 r62=1ffc23c170 r25=3e2fc00  ; bootstrap.s:47
+0013: 000000000000000000 f0  nop  ; bootstrap.s:48
+0014: 000000000000000000 f0  nop  ; bootstrap.s:49
+0015: 000000000000000000 f0  nop  ; bootstrap.s:50
+0016: 782071e7c000000380 f15 imm=380 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; bootstrap.s:51
+0017: 6600b807ea0001dd80 f12 r213=3 A=18 B=1c M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; bootstrap.s:52
+0018: 782071e7c100000043 f15 imm=43 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; bootstrap.s:53
+0019: 6601b807ea0101dd80 f12 r213=3 A=18 B=1c D=1 E=1 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; bootstrap.s:54
+001a: 782071e7c200000435 f15 imm=435 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; bootstrap.s:55
+001b: 6602b807ea0201dd80 f12 r213=3 A=18 B=1c D=2 E=2 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; bootstrap.s:56
+001c: 77fa41e7c881f80e00 f14 imm=e00 r219=1 C=1e r71=1 r62=1ffc23c170  ; bootstrap.s:57
+001d: 782071e7c300000014 f15 imm=14 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; bootstrap.s:58
+001e: 6603b807ea0a01dd80 f12 r213=3 A=18 B=1c D=3 E=a M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; bootstrap.s:59
+001f: 000000000000000000 f0  nop  ; bootstrap.s:60
+0020: 000000000000000000 f0  nop  ; bootstrap.s:61
+0021: 000000000000000000 f0  nop  ; bootstrap.s:62
+0022: 000000000000000000 f0  nop  ; bootstrap.s:63
+0023: 000000000000000000 f0  nop  ; bootstrap.s:64
+0024: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:65
+0025: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:66
+0026: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:67
+0027: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:68
+0028: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:69
+0029: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:70
+002a: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:71
+002b: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:72
+002c: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:73
+002d: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:74
+002e: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:75
+002f: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:76
+0030: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:77
+0031: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:78
+0032: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:79
+0033: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:80
+0034: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:81
+0035: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:82
+0036: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:83
+0037: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:84
+0038: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:85
+0039: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:86
+003a: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:87
+003b: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:88
+003c: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:89
+003d: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:90
+003e: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:91
+003f: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:92
+0040: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:93
+0041: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:94
+0042: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:95
+0043: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:96
+0044: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:97
+0045: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:98
+0046: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:99
+0047: 77fa41d7c881000000 f14 r219=1 C=1d G=0 r62=1ffc23c170  ; bootstrap.s:100
+0048: 000000000000000000 f0  nop  ; bootstrap.s:101
+0049: 000000000000000000 f0  nop  ; bootstrap.s:102
+004a: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 004a seq=1cfdf r25=3e3fc00  ; bootstrap.s:103
+004b: 000000000000000000 f0  nop  ; bootstrap.s:104
+004c: 000000000000000000 f0  nop  ; bootstrap.s:105
+004d: 000000000000000000 f0  nop  ; bootstrap.s:106
+004e: 000000000000000000 f0  nop  ; bootstrap.s:107
+004f: 000000000000000000 f0  nop  ; bootstrap.s:108
+0050: 000000000000000000 f0  nop  ; bootstrap.s:109
+0051: 000000000000000000 f0  nop  ; bootstrap.s:110
+0052: 000000000000000000 f0  nop  ; bootstrap.s:111

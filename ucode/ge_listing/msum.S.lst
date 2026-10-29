@@ -1,0 +1,68 @@
+# msum.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mmo_SumRGB2L:
+6b9a: 77fa4fe7c880f80bb1 f14 imm=bb1 C=1e r95=17 r71=1 r62=1ffc218170  ; msum.S:78
+6b9f: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; msum.S:68
+6ba0: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; msum.S:73
+6ba1: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; msum.S:78
+6ba2: 77fa4fe7c880f80bb2 f14 imm=bb2 C=1e r95=17 r71=1 r62=1ffc218170  ; msum.S:79
+6ba4: 77fa4fe7c880f80bb3 f14 imm=bb3 C=1e r95=17 r71=1 r62=1ffc218170  ; msum.S:80
+6ba6: 782071e7c03f800000 f15 imm=3f800000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; msum.S:75
+6ba7: 7e208007c000000000 f15 A=18 r99=8 r62=1ffc880170  ; msum.S:75
+6ba9: 68000007ec2c4af6a0 f13 cc=91 Q=18 M=6ca r62=1ffc000578  ; msum.S:76
+6baa: 0e00b00c2f3e44f8a0 f1  r217=1 r213=3 A=18 B=18 E=1 G=f M=6ca r110=7bd r99=8 r62=1ffccc4178 r25=3e69c00  ; msum.S:79
+6bab: 60003007ea0201de80 f12 r213=3 B=18 E=2 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; msum.S:80
+6bb0: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; msum.S:85
+6bb1: 70d9c107c88d680000 f14 r219=1 C=10 G=d seq=619f r62=1ffc23c170 r25=3e2fc00  ; msum.S:82
+6bb2: 73c0210fca03840000 f14 r219=3 A=f C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; msum.S:91
+6bb3: 76013607ca04700000 f14 r217=1 A=18 D=1 G=e r99=8 r62=1ffc884170  ; msum.S:87
+6bb4: 76023607ca04780000 f14 r217=1 A=18 D=2 G=f r99=8 r62=1ffc884170  ; msum.S:88
+6bb5: 7099c937c88cf80000 f14 C=13 r95=2 seq=611f r62=1ffc218170 r25=3e2fc00  ; msum.S:70
+6bb6: 73c0210fca03840000 f14 r219=3 A=f C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; msum.S:93
+6bb7: 77fa4117c8c0f80000 f14 r222=1 C=11 r62=1ffc218170  ; msum.S:95
+6bb9: 77fa4137488d980000 f14 r219=1 C=13 F=1d G=13 seq=6fe7 r62=1ffc23c170 r25=3e2bc00  ; msum.S:71
+6bba: 7c208007c000000000 f15 A=10 r99=8 r62=1ffc880170  ; msum.S:102
+6bbb: 6c014007ec2ce0ffa5 f13 cc=91 A=10 D=1 Q=19 M=6e0 r110=6fd r99=4 r62=1ffc88057c  ; msum.S:102
+6bbc: 7c248007c000000000 f15 A=10 D=4 r99=8 r62=1ffc880170  ; msum.S:103
+6bbd: 6c054007ec2be0ffa5 f13 cc=91 A=10 D=5 Q=17 M=6e0 r110=6fd r99=4 r62=1ffc88057c  ; msum.S:103
+6bbe: 7c288007c000000000 f15 A=10 D=8 r99=8 r62=1ffc880170  ; msum.S:104
+6bbf: 6c094007ec2d60ffa5 f13 cc=91 A=10 D=9 Q=1a M=6e0 r110=6fd r99=4 r62=1ffc88057c  ; msum.S:104
+6bc0: 7c2c8007c000000000 f15 A=10 D=c r99=8 r62=1ffc880170  ; msum.S:105
+6bc1: 6c0d4007ec2de0ffa5 f13 cc=91 A=10 D=d Q=1b M=6e0 r110=6fd r99=4 r62=1ffc88057c  ; msum.S:105
+6bc2: 74112e07ca00f80000 f14 A=10 D=11 r99=4 r62=1ffc880170  ; msum.S:106
+6bc3: 6c108007ec2e60ffa5 f13 cc=91 A=10 D=10 Q=1c M=6e0 r110=6fd r99=8 r62=1ffc88057c  ; msum.S:106
+6bc4: 74152e07ca00f80000 f14 A=10 D=15 r99=4 r62=1ffc880170  ; msum.S:107
+6bc5: 6c148007ec2ce0ffa5 f13 cc=91 A=10 D=14 Q=19 M=6e0 r110=6fd r99=8 r62=1ffc88057c  ; msum.S:107
+6bc6: 74192e07ca00f80000 f14 A=10 D=19 r99=4 r62=1ffc880170  ; msum.S:108
+6bc7: 6c188007ec2d60ffa5 f13 cc=91 A=10 D=18 Q=1a M=6e0 r110=6fd r99=8 r62=1ffc88057c  ; msum.S:108
+6bc8: 741d2e07ca00f80000 f14 A=10 D=1d r99=4 r62=1ffc880170  ; msum.S:109
+6bc9: 6c1c8007ec2de0ffa5 f13 cc=91 A=10 D=1c Q=1b M=6e0 r110=6fd r99=8 r62=1ffc88057c  ; msum.S:109
+6bca: 6c028007e82fe0f6b9 f13 A=10 D=2 r148=19 M=6e0 r110=63d r99=8 r62=1ffc88117c  ; msum.S:102
+6bcb: 6c068007e82fe0f6b7 f13 A=10 D=6 r148=17 M=6e0 r110=63d r99=8 r62=1ffc88117c  ; msum.S:103
+6bcc: 6c0a8007e82fe0f6ba f13 A=10 D=a r148=1a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; msum.S:104
+6bcd: 6c0e8007e82fe0f6bb f13 A=10 D=e r148=1b M=6e0 r110=63d r99=8 r62=1ffc88117c  ; msum.S:105
+6bce: 57c06007fe3731a300 f10 r213=3 B=10 r148=18 r128=5 M=6e6 r110=53d r62=1ffc44117c r25=3e69c00  ; msum.S:102
+6bcf: 57c46007fe3731a300 f10 r213=3 B=10 E=4 r148=18 r128=5 M=6e6 r110=53d r62=1ffc44117c r25=3e69c00  ; msum.S:103
+6bd0: 57c86007fe3731a300 f10 r213=3 B=10 E=8 r148=18 r128=5 M=6e6 r110=53d r62=1ffc44117c r25=3e69c00  ; msum.S:104
+6bd1: 57cc6007fe3731a300 f10 r213=3 B=10 E=c r148=18 r128=5 M=6e6 r110=53d r62=1ffc44117c r25=3e69c00  ; msum.S:105
+6bd2: 6c128007e82fe0f6bc f13 A=10 D=12 r148=1c M=6e0 r110=63d r99=8 r62=1ffc88117c  ; msum.S:106
+6bd3: 6c168007e82fe0f6b9 f13 A=10 D=16 r148=19 M=6e0 r110=63d r99=8 r62=1ffc88117c  ; msum.S:107
+6bd4: 6c1a8007e82fe0f6ba f13 A=10 D=1a r148=1a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; msum.S:108
+6bd5: 6c1e8007e82fe0f6bb f13 A=10 D=1e r148=1b M=6e0 r110=63d r99=8 r62=1ffc88117c  ; msum.S:109
+6bd6: 57d06007fe3731a300 f10 r213=3 B=10 E=10 r148=18 r128=5 M=6e6 r110=53d r62=1ffc44117c r25=3e69c00  ; msum.S:106
+6bd7: 380020e814ba4ff418 f7  r222=1 r219=1 r213=3 B=10 C=e E=14 F=20 G=e r148=18 r128=5 M=6e6 r110=53d r62=1ffc67d17c r25=3e69c00  ; msum.S:100
+6bd8: 57d86007fe3731a300 f10 r213=3 B=10 E=18 r148=18 r128=5 M=6e6 r110=53d r62=1ffc44117c r25=3e69c00  ; msum.S:108
+6bd9: 57dc6007fe3731a300 f10 r213=3 B=10 E=1c r148=18 r128=5 M=6e6 r110=53d r62=1ffc44117c r25=3e69c00  ; msum.S:109
+6bda: 77ee4007ca00f86bba f14 xfer3 c4 cc=14 -> 6bba imm=6bba cc=14 seq=3fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; msum.S:112
+6bdf: 77fa41080881840000 f14 r219=1 C=10 r162=1 F=20 G=10 r62=1ffc23c170  ; msum.S:111
+6be3: 77fa40f7c8c0f80000 f14 r222=1 C=f r62=1ffc218170  ; msum.S:114
+6be6: 77ee4007ca80f86c02 f14 xfer3 c4 cc=15 -> 6c02 imm=6c02 cc=15 seq=3fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; msum.S:115
+6bef: 7c208007c000000000 f15 A=10 r99=8 r62=1ffc880170  ; msum.S:120
+6bf0: 6c014007e82fe0ffa5 f13 A=10 D=1 M=6e0 r110=6fd r99=4 r62=1ffc88017c  ; msum.S:120
+6bf4: 6c028007e82fe0fec5 f13 A=10 D=2 r128=28 M=6e0 r110=67d r99=8 r62=1ffc8801fc  ; msum.S:120
+6bf6: 77fa40f8c8c1780000 f14 r222=1 r219=1 C=f F=23 G=f r62=1ffc23c170  ; msum.S:118
+6bf8: 57c06007fe3731a300 f10 r213=3 B=10 r148=18 r128=5 M=6e6 r110=53d r62=1ffc44117c r25=3e69c00  ; msum.S:120
+6bf9: 77ee4007ca00f86bef f14 xfer3 c4 cc=14 -> 6bef imm=6bef cc=14 seq=3fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; msum.S:123
+6bfe: 77fa41010881840000 f14 r219=1 C=10 r162=1 F=4 G=10 r62=1ffc23c170  ; msum.S:122
+6c02: 77f24007c8a4f80000 f14 xfer4 c5 cc=11 -> 0000 <HereWeGo> seq=14fe5 r25=3e39c00  ; msum.S:127
+6c07: 77fa40d7c881800000 f14 r219=1 C=d G=10 r62=1ffc23c170  ; msum.S:126

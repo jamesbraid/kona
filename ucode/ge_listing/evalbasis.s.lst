@@ -1,0 +1,419 @@
+# evalbasis.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+uEvalChangeBasis1and2:
+09f5: 77fa49e7c880f801f3 f14 imm=1f3 C=1e r95=2 r71=1 r62=1ffc218170  ; evalbasis.s:92
+09f6: 000000000000000000 f0  nop  ; evalbasis.s:93
+09f7: 000000000000000000 f0  nop  ; evalbasis.s:94
+09f8: 000000000000000000 f0  nop  ; evalbasis.s:95
+09f9: 000000000000000000 f0  nop  ; evalbasis.s:96
+09fa: 000000000000000000 f0  nop  ; evalbasis.s:97
+09fb: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; evalbasis.s:98
+09fc: 000000000000000000 f0  nop  ; evalbasis.s:99
+09fd: 000000000000000000 f0  nop  ; evalbasis.s:100
+09fe: 000000000000000000 f0  nop  ; evalbasis.s:101
+09ff: 000000000000000000 f0  nop  ; evalbasis.s:102
+0a00: 000000000000000000 f0  nop  ; evalbasis.s:103
+0a01: 000000000000000000 f0  nop  ; evalbasis.s:104
+0a02: 000000000000000000 f0  nop  ; evalbasis.s:105
+0a03: 000000000000000000 f0  nop  ; evalbasis.s:106
+uEvalChangeBasis3:
+0a04: 7100201fca01540000 f14 r219=1 A=4 C=1 r176=0 r162=1 F=3f G=a r62=1ffcb3c170  ; evalbasis.s:128
+0a05: 77fa401008814c0000 f14 r219=1 C=1 r162=1 F=0 G=9 r62=1ffc23c170  ; evalbasis.s:129
+0a06: 7039c9e7c88cf801f3 f14 imm=1f3 C=1e r95=2 seq=605f r71=1 r62=1ffc218170 r25=3e2fc00  ; evalbasis.s:130
+0a07: 7100201fca018c0000 f14 r219=1 A=4 C=1 r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:131
+0a08: 710020afca015c0000 f14 r219=1 A=4 C=a r176=0 r162=1 F=3f G=b r62=1ffcb3c170  ; evalbasis.s:132
+0a09: 77fa403808c1980000 f14 r222=1 r219=1 C=3 F=20 G=13 r62=1ffc23c170  ; evalbasis.s:133
+0a0a: 000000000000000000 f0  nop  ; evalbasis.s:134
+0a0b: 000000000000000000 f0  nop  ; evalbasis.s:135
+lCB3LOOP:
+0a0c: 124082000a31c4f6a0 f2  xfer5.rel c4 cc=14 -> 0a0c <lCB3LOOP> cc=14 A=9 M=6ca r99=8 seq=dfe4 r71=1 r62=1ffe880178 r25=3e39c00  ; evalbasis.s:137
+0a0d: 7140209fca014c0000 f14 r219=1 A=5 C=9 r176=0 r162=1 F=3f G=9 r62=1ffcb3c170  ; evalbasis.s:138
+0a0e: 000000000000000000 f0  nop  ; evalbasis.s:139
+0a0f: 3a808aafc02988f8a0 f7  r219=1 A=a B=5 C=a r176=1 r162=1 F=3f G=a M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:140
+0a10: 3ac08abfc02dc9fec5 f7  r219=1 A=b B=5 C=b r176=1 r162=1 F=3f G=b r128=28 M=6e0 r110=67d r99=8 r62=1ffcfbc1fc  ; evalbasis.s:141
+0a11: 77fa413808c1980000 f14 r222=1 r219=1 C=13 F=20 G=13 r62=1ffc23c170  ; evalbasis.s:142
+0a12: 000000000000000000 f0  nop  ; evalbasis.s:143
+0a13: 000000000000000000 f0  nop  ; evalbasis.s:144
+0a14: 3940231fc0c54efe85 f7  r219=1 r213=3 A=5 B=11 C=11 r176=0 r162=1 F=3f G=11 r128=28 M=6e2 r110=57d r62=1ffcf7c1fc r25=3e69c00  ; evalbasis.s:145
+0a15: 77fa402808c1100000 f14 r222=1 r219=1 C=2 F=20 G=2 r62=1ffc23c170  ; evalbasis.s:146
+0a16: 7180201fca010c0000 f14 r219=1 A=6 C=1 r176=0 r162=1 F=3f G=1 r62=1ffcb3c170  ; evalbasis.s:147
+0a17: 7180201fca014c0000 f14 r219=1 A=6 C=1 r176=0 r162=1 F=3f G=9 r62=1ffcb3c170  ; evalbasis.s:148
+0a18: 77f64007ca10fbfff4 f14 xfer5.rel c4 cc=14 -> 0a0c <lCB3LOOP> imm=fffffff4 cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; evalbasis.s:149
+0a19: 77f1c03808ed980000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r222=1 r219=1 C=3 F=20 G=13 seq=14fdf r62=1ffc23c170 r25=3e3fc00  ; evalbasis.s:150
+0a1a: 7100201fca01540000 f14 r219=1 A=4 C=1 r176=0 r162=1 F=3f G=a r62=1ffcb3c170  ; evalbasis.s:151
+0a1b: 7100201fca018c0000 f14 r219=1 A=4 C=1 r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:152
+0a1c: 000000000000000000 f0  nop  ; evalbasis.s:153
+0a1d: 000000000000000000 f0  nop  ; evalbasis.s:154
+0a1e: 710020afca015c0000 f14 r219=1 A=4 C=a r176=0 r162=1 F=3f G=b r62=1ffcb3c170  ; evalbasis.s:155
+0a1f: 000000000000000000 f0  nop  ; evalbasis.s:156
+0a20: 000000000000000000 f0  nop  ; evalbasis.s:157
+0a21: 000000000000000000 f0  nop  ; evalbasis.s:158
+uEvalChangeBasis4:
+0a22: 7059c9e7c88cf801f3 f14 imm=1f3 C=1e r95=2 seq=609f r71=1 r62=1ffc218170 r25=3e2fc00  ; evalbasis.s:181
+0a23: 7100204fca013c0000 f14 r219=1 A=4 C=4 r176=0 r162=1 F=3f G=7 r62=1ffcb3c170  ; evalbasis.s:182
+0a24: 1100001fca4644941f f2  r219=1 cc=91 A=4 C=1 r176=0 r162=1 F=3f G=a r148=3e0 Q=3 M=6ca r110=4bd r62=1ffcb3e578  ; evalbasis.s:183
+0a25: 68000007ea21e2941e f13 cc=191 r148=3c0 Q=3 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:184
+0a26: 1100001fd1484e943e f2  r219=1 cc=91 A=4 C=1 r176=0 r162=1 F=3f G=11 r148=3c1 Q=4 M=6e2 r110=43d r62=1ffcb3f57c  ; evalbasis.s:185
+0a27: 68000007ea224a9401 f13 cc=191 r148=20 Q=4 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:186
+0a28: 11c000afcc4a449401 f2  r219=1 cc=91 A=7 C=a r176=0 r162=1 F=3f G=c r148=20 Q=5 M=6ca r110=4bd r62=1ffcb3e578  ; evalbasis.s:187
+0a29: 68000007ea22ca941e f13 cc=191 r148=3c0 Q=5 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:188
+0a2a: 71c0201fca038c0000 f14 r219=3 A=7 C=1 r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:189
+0a2b: 71c0201fca015c0000 f14 r219=1 A=7 C=1 r176=0 r162=1 F=3f G=b r62=1ffcb3c170  ; evalbasis.s:190
+0a2c: 77fa403808c1980000 f14 r222=1 r219=1 C=3 F=20 G=13 r62=1ffc23c170  ; evalbasis.s:191
+0a2d: 7079c007c88cf80000 f14 seq=60df r25=3e2fc00  ; evalbasis.s:192
+0a2e: 77fa41100881940000 f14 r219=1 C=11 r162=1 F=0 G=12 r62=1ffc23c170  ; evalbasis.s:193
+0a2f: 38408a1fc02588f8a3 f7  r219=1 A=1 B=5 C=1 r176=1 r162=1 F=3f G=9 r148=3 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:194
+0a30: 3a808aafc02988f8a4 f7  r219=1 A=a B=5 C=a r176=1 r162=1 F=3f G=a r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:195
+0a31: 3ac0887fc02188f8a5 f7  r219=1 A=b B=4 C=7 r176=1 r162=1 F=3f G=8 r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:196
+lCB4POLYLOOP:
+0a32: 77f64007ca10f80000 f14 xfer5.rel c4 cc=14 -> 0a32 <lCB4POLYLOOP> cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; evalbasis.s:198
+0a33: 714020bfca015c0000 f14 r219=1 A=5 C=b r176=0 r162=1 F=3f G=b r62=1ffcb3c170  ; evalbasis.s:199
+0a34: 68000007e82fe0feac f13 r128=25 M=6e0 r110=57d r62=1ffc0001fc  ; evalbasis.s:200
+0a35: 3b008acfc031ceff44 f7  r219=1 A=c B=5 C=c r176=1 r162=1 F=3f G=c r128=25 M=6e2 r110=5bd r99=8 r62=1ffcfbc17c  ; evalbasis.s:201
+0a36: 77fa413808c1980000 f14 r222=1 r219=1 C=13 F=20 G=13 r62=1ffc23c170  ; evalbasis.s:202
+0a37: 7140212fca01940000 f14 r219=1 A=5 C=12 r176=0 r162=1 F=3f G=12 r62=1ffcb3c170  ; evalbasis.s:203
+0a38: 3a408a9fc02588f8a3 f7  r219=1 A=9 B=5 C=9 r176=1 r162=1 F=3f G=9 r148=3 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:204
+0a39: 4a80a407c013071104 f9  r213=3 A=a B=12 r148=4 r128=1 M=460 r110=575 r99=8 r62=1ffccc11ff r25=3e69c00  ; evalbasis.s:205
+0a3a: 3ac08aafc02988f8a5 f7  r219=1 A=b B=5 C=a r176=1 r162=1 F=3f G=a r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:206
+0a3b: 77fa402808c1100000 f14 r222=1 r219=1 C=2 F=20 G=2 r62=1ffc23c170  ; evalbasis.s:207
+0a3c: 7180201fca014c0000 f14 r219=1 A=6 C=1 r176=0 r162=1 F=3f G=9 r62=1ffcb3c170  ; evalbasis.s:208
+0a3d: 7180211fca01940000 f14 r219=1 A=6 C=11 r176=0 r162=1 F=3f G=12 r62=1ffcb3c170  ; evalbasis.s:209
+0a3e: 77f64007ca10fbfff4 f14 xfer5.rel c4 cc=14 -> 0a32 <lCB4POLYLOOP> imm=fffffff4 cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; evalbasis.s:210
+0a3f: 77f1c03808ed980000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r222=1 r219=1 C=3 F=20 G=13 seq=14fdf r62=1ffc23c170 r25=3e3fc00  ; evalbasis.s:211
+0a40: 7100209fca01540000 f14 r219=1 A=4 C=9 r176=0 r162=1 F=3f G=a r62=1ffcb3c170  ; evalbasis.s:212
+0a41: 71c0209fca015c0000 f14 r219=1 A=7 C=9 r176=0 r162=1 F=3f G=b r62=1ffcb3c170  ; evalbasis.s:213
+0a42: 7200209fca01640000 f14 r219=1 A=8 C=9 r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; evalbasis.s:214
+0a43: 7180201fca010c0000 f14 r219=1 A=6 C=1 r176=0 r162=1 F=3f G=1 r62=1ffcb3c170  ; evalbasis.s:215
+0a44: 3a408a9fc02588f8a3 f7  r219=1 A=9 B=5 C=9 r176=1 r162=1 F=3f G=9 r148=3 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:216
+0a45: 3a808aafc02988f8a4 f7  r219=1 A=a B=5 C=a r176=1 r162=1 F=3f G=a r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:217
+0a46: 3ac08d1fc04588f8a5 f7  r219=1 A=b B=6 C=11 r176=1 r162=1 F=3f G=11 r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:218
+0a47: 000000000000000000 f0  nop  ; evalbasis.s:219
+uEvalChangeBasis5:
+0a48: 7059c9e7c88cf801f3 f14 imm=1f3 C=1e r95=2 seq=609f r71=1 r62=1ffc218170 r25=3e2fc00  ; evalbasis.s:243
+0a49: 1100004fc756499400 f2  r219=1 cc=91 A=4 C=4 r176=0 r162=1 F=3f G=7 Q=b M=6e0 r110=43d r62=1ffcb3f57c  ; evalbasis.s:244
+0a4a: 1100001fca4644941f f2  r219=1 cc=91 A=4 C=1 r176=0 r162=1 F=3f G=a r148=3e0 Q=3 M=6ca r110=4bd r62=1ffcb3e578  ; evalbasis.s:245
+0a4b: 68000007ea21ca9400 f13 cc=191 Q=3 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:246
+0a4c: 1100001fd14a499421 f2  r219=1 cc=91 A=4 C=1 r176=0 r162=1 F=3f G=11 r148=21 Q=5 M=6e0 r110=43d r62=1ffcb3f57c  ; evalbasis.s:247
+0a4d: 11c0001fcb484ec0be f2  r219=1 cc=91 A=7 C=1 r176=0 r162=1 F=3f G=b r148=3c0 Q=4 r128=28 M=6e2 r110=47d r62=1ffcb3e5fc  ; evalbasis.s:248
+0a4e: 68000007ea22ca941e f13 cc=191 r148=3c0 Q=5 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:249
+0a4f: 11c000afcc4c4ec2be f2  r219=1 cc=91 A=7 C=a r176=0 r162=1 F=3f G=c r148=3c0 Q=6 r128=2a M=6e2 r110=47d r62=1ffcb3e5fc  ; evalbasis.s:250
+0a50: 68000007ea234af460 f13 cc=191 Q=6 r128=1d M=6ca r110=5bd r62=1ffc000578  ; evalbasis.s:251
+0a51: 11c000bfcd4e44941f f2  r219=1 cc=91 A=7 C=b r176=0 r162=1 F=3f G=d r148=3e0 Q=7 M=6ca r110=4bd r62=1ffcb3e578  ; evalbasis.s:252
+0a52: 68000007ea23e2941e f13 cc=191 r148=3c0 Q=7 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:253
+0a53: 71c0201fca038c0000 f14 r219=3 A=7 C=1 r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:254
+0a54: 7099c007c88cf80000 f14 seq=611f r25=3e2fc00  ; evalbasis.s:255
+0a55: 68000007ea21e2943e f13 cc=191 r148=3c1 Q=3 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:256
+0a56: 68000007ea224a940b f13 cc=191 r148=160 Q=4 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:257
+0a57: 68000007ea22ca941e f13 cc=191 r148=3c0 Q=5 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:258
+0a58: 68000007ea234a941e f13 cc=191 r148=3c0 Q=6 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:259
+0a59: 68000007ea23e297fe f13 cc=191 r148=3df Q=7 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:260
+0a5a: 71c020afca038c0000 f14 r219=3 A=7 C=a r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:261
+0a5b: 77fa403808c1980000 f14 r222=1 r219=1 C=3 F=20 G=13 r62=1ffc23c170  ; evalbasis.s:262
+0a5c: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; evalbasis.s:263
+0a5d: 38408a1fc02588f8a3 f7  r219=1 A=1 B=5 C=1 r176=1 r162=1 F=3f G=9 r148=3 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:264
+0a5e: 3a808aafc02988f8a4 f7  r219=1 A=a B=5 C=a r176=1 r162=1 F=3f G=a r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:265
+0a5f: 3ac08abfc02d88f8a5 f7  r219=1 A=b B=5 C=b r176=1 r162=1 F=3f G=b r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:266
+0a60: 3b008110004908f8a6 f7  r219=1 A=c C=11 r162=1 F=0 G=12 r148=6 M=47f r110=6b5 r99=8 r62=1ffcabd173  ; evalbasis.s:267
+0a61: 3b408e7fc02188f8a7 f7  r219=1 A=d B=7 C=7 r176=1 r162=1 F=3f G=8 r148=7 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:268
+lCB5LOOP:
+0a62: 180040000a31c9feac f3  xfer5.rel c4 cc=14 -> 0a62 <lCB5LOOP> cc=14 r128=25 M=6e0 r110=57d seq=dfe4 r71=1 r62=1ffe0001fc r25=3e39c00  ; evalbasis.s:270
+0a63: 38000acfc0318d9400 f7  r219=1 B=5 C=c r176=1 r162=1 F=3f G=c r62=1ffc73c170  ; evalbasis.s:271
+0a64: 38000adfc035c9feac f7  r219=1 B=5 C=d r176=1 r162=1 F=3f G=d r128=25 M=6e0 r110=57d r62=1ffc73c1fc  ; evalbasis.s:272
+0a65: 77fa413808c1980000 f14 r222=1 r219=1 C=13 F=20 G=13 r62=1ffc23c170  ; evalbasis.s:273
+0a66: 3a408a9fc025a71503 f7  r219=1 A=9 B=5 C=9 r176=1 r162=1 F=3f G=9 r148=3 r128=5 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:274
+0a67: 3a808aafc02988f8a4 f7  r219=1 A=a B=5 C=a r176=1 r162=1 F=3f G=a r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:275
+0a68: 3ac08abfc02d88f8a5 f7  r219=1 A=b B=5 C=b r176=1 r162=1 F=3f G=b r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:276
+0a69: 3b008b2fc04988f8a6 f7  r219=1 A=c B=5 C=12 r176=1 r162=1 F=3f G=12 r148=6 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:277
+0a6a: 4b40a407c013071207 f9  r213=3 A=d B=12 r148=7 r128=2 M=460 r110=575 r99=8 r62=1ffccc11ff r25=3e69c00  ; evalbasis.s:278
+0a6b: 7180201fca010c0000 f14 r219=1 A=6 C=1 r176=0 r162=1 F=3f G=1 r62=1ffcb3c170  ; evalbasis.s:279
+0a6c: 77fa402808c1100000 f14 r222=1 r219=1 C=2 F=20 G=2 r62=1ffc23c170  ; evalbasis.s:280
+0a6d: 7180211fca01940000 f14 r219=1 A=6 C=11 r176=0 r162=1 F=3f G=12 r62=1ffcb3c170  ; evalbasis.s:281
+0a6e: 7180211fca018c0000 f14 r219=1 A=6 C=11 r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:282
+0a6f: 7100201fca01540000 f14 r219=1 A=4 C=1 r176=0 r162=1 F=3f G=a r62=1ffcb3c170  ; evalbasis.s:283
+0a70: 77f64007ca10fbfff2 f14 xfer5.rel c4 cc=14 -> 0a62 <lCB5LOOP> imm=fffffff2 cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; evalbasis.s:284
+0a71: 77f1c03808ed980000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r222=1 r219=1 C=3 F=20 G=13 seq=14fdf r62=1ffc23c170 r25=3e3fc00  ; evalbasis.s:285
+0a72: 71c0201fca015c0000 f14 r219=1 A=7 C=1 r176=0 r162=1 F=3f G=b r62=1ffcb3c170  ; evalbasis.s:286
+0a73: 71c020afca01640000 f14 r219=1 A=7 C=a r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; evalbasis.s:287
+0a74: 3840901fc03588f8a3 f7  r219=1 A=1 B=8 C=1 r176=1 r162=1 F=3f G=d r148=3 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:288
+0a75: 3a808a1fc02588f8a4 f7  r219=1 A=a B=5 C=1 r176=1 r162=1 F=3f G=9 r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:289
+0a76: 3ac08aafc02988f8a5 f7  r219=1 A=b B=5 C=a r176=1 r162=1 F=3f G=a r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:290
+0a77: 3b008abfc02d88f8a6 f7  r219=1 A=c B=5 C=b r176=1 r162=1 F=3f G=b r148=6 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:291
+0a78: 6b408007e80fc0f8a7 f13 A=d r148=7 M=47f r110=6b5 r99=8 r62=1ffc881173  ; evalbasis.s:292
+0a79: 000000000000000000 f0  nop  ; evalbasis.s:293
+uEvalChangeBasis6:
+0a7a: 7059c9e7c88cf801f3 f14 imm=1f3 C=1e r95=2 seq=609f r71=1 r62=1ffc218170 r25=3e2fc00  ; evalbasis.s:318
+0a7b: 1100004fc748499420 f2  r219=1 cc=91 A=4 C=4 r176=0 r162=1 F=3f G=7 r148=1 Q=4 M=6e0 r110=43d r62=1ffcb3f57c  ; evalbasis.s:319
+0a7c: 1100001fca464e97fe f2  r219=1 cc=91 A=4 C=1 r176=0 r162=1 F=3f G=a r148=3df Q=3 M=6e2 r110=43d r62=1ffcb3f57c  ; evalbasis.s:320
+0a7d: 1100001fd15044941f f2  r219=1 cc=91 A=4 C=1 r176=0 r162=1 F=3f G=11 r148=3e0 Q=8 M=6ca r110=4bd r62=1ffcb3e578  ; evalbasis.s:321
+0a7e: 68000007ea21ca9401 f13 cc=191 r148=20 Q=3 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:322
+0a7f: 11c0001fcb4c08f600 f2  r219=1 cc=211 A=7 C=1 r176=0 r162=1 F=3f G=b P=6 r128=5 M=47f r110=6a5 r62=1ffcb3d973  ; evalbasis.s:323
+0a80: 11c000afcc4e4ec1be f2  r219=1 cc=91 A=7 C=a r176=0 r162=1 F=3f G=c r148=3c0 Q=7 r128=29 M=6e2 r110=47d r62=1ffcb3e5fc  ; evalbasis.s:324
+0a81: 68000007ea244a9400 f13 cc=191 Q=8 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:325
+0a82: 68000007ea234a941e f13 cc=191 r148=3c0 Q=6 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:326
+0a83: 11c000bfcd4a4ec4be f2  r219=1 cc=91 A=7 C=b r176=0 r162=1 F=3f G=d r148=3c0 Q=5 r128=2c M=6e2 r110=47d r62=1ffcb3e5fc  ; evalbasis.s:327
+0a84: 68000007ea2262c5be f13 cc=191 r148=3c0 Q=4 M=6e2 r110=47d r62=1ffc0025fc  ; evalbasis.s:328
+0a85: 68000007ea22caf4c0 f13 cc=191 Q=5 r128=35 M=6ca r110=5bd r62=1ffc000578  ; evalbasis.s:329
+0a86: 68000007ec26e09400 f13 cc=91 Q=d M=6e0 r110=43d r62=1ffc00357c  ; evalbasis.s:330
+0a87: 68000007ec27609420 f13 cc=91 r148=1 Q=e M=6e0 r110=43d r62=1ffc00357c  ; evalbasis.s:331
+0a88: 71c0201fca038c0000 f14 r219=3 A=7 C=1 r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:332
+0a89: 7099c007c88cf80000 f14 seq=611f r25=3e2fc00  ; evalbasis.s:333
+0a8a: 68000007ea21ca9401 f13 cc=191 r148=20 Q=3 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:334
+0a8b: 68000007ea224a9407 f13 cc=191 r148=e0 Q=4 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:335
+0a8c: 68000007ea22ca941e f13 cc=191 r148=3c0 Q=5 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:336
+0a8d: 68000007ea234a941e f13 cc=191 r148=3c0 Q=6 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:337
+0a8e: 68000007ea23e09420 f13 cc=191 r148=1 Q=7 M=6e0 r110=43d r62=1ffc00357c  ; evalbasis.s:338
+0a8f: 68000007ea2462943e f13 cc=191 r148=3c1 Q=8 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:339
+0a90: 71c020afca038c0000 f14 r219=3 A=7 C=a r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:340
+0a91: 71f9c037c88d980000 f14 r219=1 C=3 G=13 seq=63df r62=1ffc23c170 r25=3e2fc00  ; evalbasis.s:341
+0a92: 38408a1fc02588f8a3 f7  r219=1 A=1 B=5 C=1 r176=1 r162=1 F=3f G=9 r148=3 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:342
+0a93: 39c0007fc02108f8ad f7  r219=1 A=7 C=7 r176=0 r162=1 F=3f G=8 r148=d M=47f r110=6b5 r62=1ffcb3d173  ; evalbasis.s:343
+0a94: 3a808aafc02988f8a4 f7  r219=1 A=a B=5 C=a r176=1 r162=1 F=3f G=a r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:344
+0a95: 39c000cfc03908f8ae f7  r219=1 A=7 C=c r176=0 r162=1 F=3f G=e r148=e M=47f r110=6b5 r62=1ffcb3d173  ; evalbasis.s:345
+0a96: 3ac08abfc02d88f8a5 f7  r219=1 A=b B=5 C=b r176=1 r162=1 F=3f G=b r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:346
+0a97: 3b008110004908f8a6 f7  r219=1 A=c C=11 r162=1 F=0 G=12 r148=6 M=47f r110=6b5 r99=8 r62=1ffcabd173  ; evalbasis.s:347
+0a98: 5b40be07fe23071687 f11 A=d r148=7 r128=26 M=460 r110=575 r99=8 r62=1ffc8811ff  ; evalbasis.s:348
+lCB6MATRIXLOOP:
+0a99: 3b8080d000552f1688 f7  r219=1 A=e C=d r162=1 F=0 G=15 r148=8 r128=26 M=462 r110=575 r99=8 r62=1ffcabd1ff  ; evalbasis.s:350
+lCB6LOOP:
+0a9a: 77fa413808c1980000 f14 r222=1 r219=1 C=13 F=20 G=13 r62=1ffc23c170  ; evalbasis.s:352
+0a9b: 394000cfc03149feac f7  r219=1 A=5 C=c r176=0 r162=1 F=3f G=c r128=25 M=6e0 r110=57d r62=1ffcb3c1fc  ; evalbasis.s:353
+0a9c: 714020dfca016c0000 f14 r219=1 A=5 C=d r176=0 r162=1 F=3f G=d r62=1ffcb3c170  ; evalbasis.s:354
+0a9d: 394000efc03949feac f7  r219=1 A=5 C=e r176=0 r162=1 F=3f G=e r128=25 M=6e0 r110=57d r62=1ffcb3c1fc  ; evalbasis.s:355
+0a9e: 98106aff0a31ceff41 f3  xfer5.rel c4 cc=14 -> 0a9a <lCB6LOOP> imm=fffffffc w71=1 r213=3 cc=14 B=15 r128=d M=6e2 r110=5bd seq=dfe4 r71=1 r62=1ffe44017c r25=3e79c00  ; evalbasis.s:356
+0a9f: 3a408a9fc025a71303 f7  r219=1 A=9 B=5 C=9 r176=1 r162=1 F=3f G=9 r148=3 r128=3 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:357
+0aa0: 3940015fc05508f8ad f7  r219=1 A=5 C=15 r176=0 r162=1 F=3f G=15 r148=d M=47f r110=6b5 r62=1ffcb3d173  ; evalbasis.s:358
+0aa1: 3a808aafc02988f8a4 f7  r219=1 A=a B=5 C=a r176=1 r162=1 F=3f G=a r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:359
+0aa2: 68000007e80fc0f8ae f13 r148=e M=47f r110=6b5 r62=1ffc001173  ; evalbasis.s:360
+0aa3: 4ac0a407c013071205 f9  r213=3 A=b B=12 r148=5 r128=2 M=460 r110=575 r99=8 r62=1ffccc11ff r25=3e69c00  ; evalbasis.s:361
+0aa4: 3b008abfc02d88f8a6 f7  r219=1 A=c B=5 C=b r176=1 r162=1 F=3f G=b r148=6 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:362
+0aa5: 3b408b2fc049a71687 f7  r219=1 A=d B=5 C=12 r176=1 r162=1 F=3f G=12 r148=7 r128=26 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:363
+0aa6: 5b80be07fe23171688 f11 A=e r148=8 r128=26 M=462 r110=575 r99=8 r62=1ffc8811ff  ; evalbasis.s:364
+0aa7: 7180201fca010c0000 f14 r219=1 A=6 C=1 r176=0 r162=1 F=3f G=1 r62=1ffcb3c170  ; evalbasis.s:365
+0aa8: 77fa402808c1100000 f14 r222=1 r219=1 C=2 F=20 G=2 r62=1ffc23c170  ; evalbasis.s:366
+0aa9: 7180211fca01940000 f14 r219=1 A=6 C=11 r176=0 r162=1 F=3f G=12 r62=1ffcb3c170  ; evalbasis.s:367
+0aaa: 7180211fca018c0000 f14 r219=1 A=6 C=11 r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:368
+0aab: 7100201fca01540000 f14 r219=1 A=4 C=1 r176=0 r162=1 F=3f G=a r62=1ffcb3c170  ; evalbasis.s:369
+0aac: 77f64007ca10fbffed f14 xfer5.rel c4 cc=14 -> 0a99 <lCB6MATRIXLOOP> imm=ffffffed cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; evalbasis.s:370
+0aad: 77f1c037c8ad980000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r219=1 C=3 G=13 seq=14fdf r62=1ffc23c170 r25=3e3fc00  ; evalbasis.s:371
+0aae: 38408e1fc02d88f8a3 f7  r219=1 A=1 B=7 C=1 r176=1 r162=1 F=3f G=b r148=3 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:372
+0aaf: 39c000afc03108f8ad f7  r219=1 A=7 C=a r176=0 r162=1 F=3f G=c r148=d M=47f r110=6b5 r62=1ffcb3d173  ; evalbasis.s:373
+0ab0: 3a80901fc03588f8a4 f7  r219=1 A=a B=8 C=1 r176=1 r162=1 F=3f G=d r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:374
+0ab1: 3a0000afc03908f8ae f7  r219=1 A=8 C=a r176=0 r162=1 F=3f G=e r148=e M=47f r110=6b5 r62=1ffcb3d173  ; evalbasis.s:375
+0ab2: 3ac08a1fc02588f8a5 f7  r219=1 A=b B=5 C=1 r176=1 r162=1 F=3f G=9 r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:376
+0ab3: 3b008aafc02988f8a6 f7  r219=1 A=c B=5 C=a r176=1 r162=1 F=3f G=a r148=6 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:377
+0ab4: 3b408abfc02da71687 f7  r219=1 A=d B=5 C=b r176=1 r162=1 F=3f G=b r148=7 r128=26 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:378
+0ab5: 000000000000000000 f0  nop  ; evalbasis.s:379
+uEvalChangeBasis7:
+0ab6: 7059c9e7c88cf801f3 f14 imm=1f3 C=1e r95=2 seq=609f r71=1 r62=1ffc218170 r25=3e2fc00  ; evalbasis.s:405
+0ab7: 1100004fc758499420 f2  r219=1 cc=91 A=4 C=4 r176=0 r162=1 F=3f G=7 r148=1 Q=c M=6e0 r110=43d r62=1ffcb3f57c  ; evalbasis.s:406
+0ab8: 1100001fca464e97fe f2  r219=1 cc=91 A=4 C=1 r176=0 r162=1 F=3f G=a r148=3df Q=3 M=6e2 r110=43d r62=1ffcb3f57c  ; evalbasis.s:407
+0ab9: 1100001fd15a499400 f2  r219=1 cc=91 A=4 C=1 r176=0 r162=1 F=3f G=11 Q=d M=6e0 r110=43d r62=1ffcb3f57c  ; evalbasis.s:408
+0aba: 68000007ea21e2943e f13 cc=191 r148=3c1 Q=3 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:409
+0abb: 11c0001fcb48089420 f2  r219=1 cc=211 A=7 C=1 r176=0 r162=1 F=3f G=b r148=1 P=4 M=47f r110=695 r62=1ffcb3f973  ; evalbasis.s:410
+0abc: 11c000afcc4a08c1a1 f2  r219=1 cc=211 A=7 C=a r176=0 r162=1 F=3f G=c r148=20 P=5 r128=29 M=47f r110=699 r62=1ffcb3e9f3  ; evalbasis.s:411
+0abd: 68000007ea26e2c2be f13 cc=191 r148=3c0 Q=d r128=2a M=6e2 r110=47d r62=1ffc0025fc  ; evalbasis.s:412
+0abe: 68000007ea0240c1a1 f13 cc=611 r148=20 P=4 r128=29 M=47f r110=699 r62=1ffc0029f3  ; evalbasis.s:413
+0abf: 11c000bfcd5c4ec4be f2  r219=1 cc=91 A=7 C=b r176=0 r162=1 F=3f G=d r148=3c0 Q=e r128=2c M=6e2 r110=47d r62=1ffcb3e5fc  ; evalbasis.s:414
+0ac0: 11c000cfce4c49c4ac f2  r219=1 cc=91 A=7 C=c r176=0 r162=1 F=3f G=e r148=180 Q=6 r128=2c M=6e0 r110=47d r62=1ffcb3e5fc  ; evalbasis.s:415
+0ac1: 68000007ea07409420 f13 cc=611 r148=1 P=e M=47f r110=695 r62=1ffc003973  ; evalbasis.s:416
+0ac2: 68000007ea234a941e f13 cc=191 r148=3c0 Q=6 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:417
+0ac3: 11c000dfcf4e089581 f2  r219=1 cc=211 A=7 C=d r176=0 r162=1 F=3f G=f r148=2c P=7 M=47f r110=695 r62=1ffcb3f973  ; evalbasis.s:418
+0ac4: 11c0004fc850089420 f2  r219=1 cc=211 A=7 C=4 r176=0 r162=1 F=3f G=8 r148=1 P=8 M=47f r110=695 r62=1ffcb3f973  ; evalbasis.s:419
+0ac5: 68000007ec08409420 f13 cc=211 r148=1 P=10 M=47f r110=695 r62=1ffc003973  ; evalbasis.s:420
+0ac6: 68000007ec24e297fe f13 cc=91 r148=3df Q=9 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:421
+0ac7: 68000007ec28e2959f f13 cc=91 r148=3ec Q=11 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:422
+0ac8: 68000007ea23e2c5be f13 cc=191 r148=3c0 Q=7 M=6e2 r110=47d r62=1ffc0025fc  ; evalbasis.s:423
+0ac9: 68000007ea2462c6a1 f13 cc=191 r148=20 Q=8 r128=2e M=6e2 r110=47d r62=1ffc0025fc  ; evalbasis.s:424
+0aca: 68000007ea284a941e f13 cc=191 r148=3c0 Q=10 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:425
+0acb: 68000007ea24ca9401 f13 cc=191 r148=20 Q=9 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:426
+0acc: 68000007ea28e297fe f13 cc=191 r148=3df Q=11 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:427
+0acd: 71c0201fca038c0000 f14 r219=3 A=7 C=1 r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:428
+0ace: 7099c007c88cf80000 f14 seq=611f r25=3e2fc00  ; evalbasis.s:429
+0acf: 68000007ea2262f461 f13 cc=191 r148=1 Q=4 r128=1d M=6e2 r110=53d r62=1ffc00157c  ; evalbasis.s:430
+0ad0: 68000007ea22e2f461 f13 cc=191 r148=1 Q=5 r128=1d M=6e2 r110=53d r62=1ffc00157c  ; evalbasis.s:431
+0ad1: 68000007ea01c09420 f13 cc=611 r148=1 P=3 M=47f r110=695 r62=1ffc003973  ; evalbasis.s:432
+0ad2: 68000007ea234a941e f13 cc=191 r148=3c0 Q=6 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:433
+0ad3: 68000007ea23ca941e f13 cc=191 r148=3c0 Q=7 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:434
+0ad4: 68000007ea24ca9401 f13 cc=191 r148=20 Q=9 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:435
+0ad5: 68000007ea2462c4be f13 cc=191 r148=3c0 Q=8 r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; evalbasis.s:436
+0ad6: 71c020afca038c0000 f14 r219=3 A=7 C=a r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:437
+0ad7: 73f9c037c88d980000 f14 r219=1 C=3 G=13 seq=67df r62=1ffc23c170 r25=3e2fc00  ; evalbasis.s:438
+0ad8: 38408a1fc02588f8ad f7  r219=1 A=1 B=5 C=1 r176=1 r162=1 F=3f G=9 r148=d M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:439
+0ad9: 68000007e80fc0f8a3 f13 r148=3 M=47f r110=6b5 r62=1ffc001173  ; evalbasis.s:440
+0ada: 3a808aafc02988f8a4 f7  r219=1 A=a B=5 C=a r176=1 r162=1 F=3f G=a r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:441
+0adb: 38000110004908f8ae f7  r219=1 C=11 r162=1 F=0 G=12 r148=e M=47f r110=6b5 r62=1ffc23d173  ; evalbasis.s:442
+0adc: 3ac08abfc02d88f8a5 f7  r219=1 A=b B=5 C=b r176=1 r162=1 F=3f G=b r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:443
+0add: 6b008007e80fc0f8a6 f13 A=c r148=6 M=47f r110=6b5 r99=8 r62=1ffc881173  ; evalbasis.s:444
+lCB7LOOP:
+0ade: 3b408acfc031a71587 f7  r219=1 A=d B=5 C=c r176=1 r162=1 F=3f G=c r148=7 r128=25 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:446
+0adf: 3b808adfc035a71788 f7  r219=1 A=e B=5 C=d r176=1 r162=1 F=3f G=d r148=8 r128=27 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:447
+0ae0: 38000138004e08f8b0 f7  r222=1 r219=1 C=13 F=20 G=13 r148=10 M=47f r110=6b5 r62=1ffc23d173  ; evalbasis.s:448
+0ae1: 3bc08aefc039af1589 f7  r219=1 A=f B=5 C=e r176=1 r162=1 F=3f G=e r148=9 r128=25 M=462 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:449
+0ae2: 394000ffc03d08f8b1 f7  r219=1 A=5 C=f r176=0 r162=1 F=3f G=f r148=11 M=47f r110=6b5 r62=1ffcb3d173  ; evalbasis.s:450
+0ae3: 180040feca31cefeac f3  xfer5.rel c4 cc=14 -> 0ade <lCB7LOOP> imm=fffffffb cc=14 r128=25 M=6e2 r110=57d seq=dfe4 r71=1 r62=1ffe0001fc r25=3e39c00  ; evalbasis.s:451
+0ae4: 3a00012fc05549fe8c f7  r219=1 A=8 C=12 r176=0 r162=1 F=3f G=15 r128=21 M=6e0 r110=57d r62=1ffcb3c1fc  ; evalbasis.s:452
+0ae5: 68000007e82fe0fe98 f13 r128=3 M=6e0 r110=57d r62=1ffc0001fc  ; evalbasis.s:453
+0ae6: 3a408a9fc02588f8ad f7  r219=1 A=9 B=5 C=9 r176=1 r162=1 F=3f G=9 r148=d M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:454
+0ae7: 394000afc029271603 f7  r219=1 A=5 C=a r176=0 r162=1 F=3f G=a r148=3 r128=6 M=460 r110=575 r62=1ffcb3d1ff  ; evalbasis.s:455
+0ae8: ca80aa07c013071604 f9  w71=1 r213=3 A=a B=15 r148=4 r128=6 M=460 r110=575 r99=8 r62=1ffccc11ff r25=3e69c00  ; evalbasis.s:456
+0ae9: 394000bfc02d08f8ae f7  r219=1 A=5 C=b r176=0 r162=1 F=3f G=b r148=e M=47f r110=6b5 r62=1ffcb3d173  ; evalbasis.s:457
+0aea: 3ac08b2fc04988f8a5 f7  r219=1 A=b B=5 C=12 r176=1 r162=1 F=3f G=12 r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:458
+0aeb: 4b00a407c013071206 f9  r213=3 A=c B=12 r148=6 r128=2 M=460 r110=575 r99=8 r62=1ffccc11ff r25=3e69c00  ; evalbasis.s:459
+0aec: 7180201fca010c0000 f14 r219=1 A=6 C=1 r176=0 r162=1 F=3f G=1 r62=1ffcb3c170  ; evalbasis.s:460
+0aed: 77fa402808c1100000 f14 r222=1 r219=1 C=2 F=20 G=2 r62=1ffc23c170  ; evalbasis.s:461
+0aee: 7180211fca01940000 f14 r219=1 A=6 C=11 r176=0 r162=1 F=3f G=12 r62=1ffcb3c170  ; evalbasis.s:462
+0aef: 7180211fca018c0000 f14 r219=1 A=6 C=11 r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:463
+0af0: 7100201fca01540000 f14 r219=1 A=4 C=1 r176=0 r162=1 F=3f G=a r62=1ffcb3c170  ; evalbasis.s:464
+0af1: 7140201fca014c0000 f14 r219=1 A=5 C=1 r176=0 r162=1 F=3f G=9 r62=1ffcb3c170  ; evalbasis.s:465
+0af2: 77f64007ca10fbffec f14 xfer5.rel c4 cc=14 -> 0ade <lCB7LOOP> imm=ffffffec cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; evalbasis.s:466
+0af3: 77f1c037c8ad980000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r219=1 C=3 G=13 seq=14fdf r62=1ffc23c170 r25=3e3fc00  ; evalbasis.s:467
+0af4: 71c0201fca015c0000 f14 r219=1 A=7 C=1 r176=0 r162=1 F=3f G=b r62=1ffcb3c170  ; evalbasis.s:468
+0af5: 3840901fc03188f8ad f7  r219=1 A=1 B=8 C=1 r176=1 r162=1 F=3f G=c r148=d M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:469
+0af6: 3a0000afc03508f8a3 f7  r219=1 A=8 C=a r176=0 r162=1 F=3f G=d r148=3 M=47f r110=6b5 r62=1ffcb3d173  ; evalbasis.s:470
+0af7: 3a808aafc02988f8a4 f7  r219=1 A=a B=5 C=a r176=1 r162=1 F=3f G=a r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:471
+0af8: 3a0000bfc03908f8ae f7  r219=1 A=8 C=b r176=0 r162=1 F=3f G=e r148=e M=47f r110=6b5 r62=1ffcb3d173  ; evalbasis.s:472
+0af9: 3ac090cfc03d88f8a5 f7  r219=1 A=b B=8 C=c r176=1 r162=1 F=3f G=f r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:473
+0afa: 3b008abfc02d88f8a6 f7  r219=1 A=c B=5 C=b r176=1 r162=1 F=3f G=b r148=6 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:474
+0afb: 000000000000000000 f0  nop  ; evalbasis.s:475
+uEvalChangeBasis8:
+0afc: 7059c9e7c88cf801f3 f14 imm=1f3 C=1e r95=2 seq=609f r71=1 r62=1ffc218170 r25=3e2fc00  ; evalbasis.s:502
+0afd: 1100004fc74644941f f2  r219=1 cc=91 A=4 C=4 r176=0 r162=1 F=3f G=7 r148=3e0 Q=3 M=6ca r110=4bd r62=1ffcb3e578  ; evalbasis.s:503
+0afe: 1100001fca5a499441 f2  r219=1 cc=91 A=4 C=1 r176=0 r162=1 F=3f G=a r148=22 Q=d M=6e0 r110=43d r62=1ffcb3f57c  ; evalbasis.s:504
+0aff: 1100001fd1484e945e f2  r219=1 cc=91 A=4 C=1 r176=0 r162=1 F=3f G=11 r148=3c2 Q=4 M=6e2 r110=43d r62=1ffcb3f57c  ; evalbasis.s:505
+0b00: 68000007ea21e29441 f13 cc=191 r148=22 Q=3 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:506
+0b01: 11c0001fcb4a089441 f2  r219=1 cc=211 A=7 C=1 r176=0 r162=1 F=3f G=b r148=22 P=5 M=47f r110=695 r62=1ffcb3f973  ; evalbasis.s:507
+0b02: 11c000afcc5e089441 f2  r219=1 cc=211 A=7 C=a r176=0 r162=1 F=3f G=c r148=22 P=f M=47f r110=695 r62=1ffcb3f973  ; evalbasis.s:508
+0b03: 68000007ea26e09420 f13 cc=191 r148=1 Q=d M=6e0 r110=43d r62=1ffc00357c  ; evalbasis.s:509
+0b04: 68000007ea02409441 f13 cc=611 r148=22 P=4 M=47f r110=695 r62=1ffc003973  ; evalbasis.s:510
+0b05: 11c000bfcd5c08c1a2 f2  r219=1 cc=211 A=7 C=b r176=0 r162=1 F=3f G=d r148=40 P=e r128=29 M=47f r110=699 r62=1ffcb3e9f3  ; evalbasis.s:511
+0b06: 11c000cfce504ec4be f2  r219=1 cc=91 A=7 C=c r176=0 r162=1 F=3f G=e r148=3c0 Q=8 r128=2c M=6e2 r110=47d r62=1ffcb3e5fc  ; evalbasis.s:512
+0b07: 68000007ea2762945e f13 cc=191 r148=3c2 Q=e M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:513
+0b08: 68000007ea27ca941e f13 cc=191 r148=3c0 Q=f M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:514
+0b09: 11c000dfcf4c4ef482 f2  r219=1 cc=91 A=7 C=d r176=0 r162=1 F=3f G=f r148=2 Q=6 r128=25 M=6e2 r110=53d r62=1ffcb3d57c  ; evalbasis.s:515
+0b0a: 11c000efd052449402 f2  r219=1 cc=91 A=7 C=e r176=0 r162=1 F=3f G=10 r148=40 Q=9 M=6ca r110=4bd r62=1ffcb3e578  ; evalbasis.s:516
+0b0b: 68000007ea02c0c1a0 f13 cc=611 P=5 r128=29 M=47f r110=699 r62=1ffc0029f3  ; evalbasis.s:517
+0b0c: 68000007ea04c09440 f13 cc=611 r148=2 P=9 M=47f r110=695 r62=1ffc003973  ; evalbasis.s:518
+0b0d: 11c0004fc84e4ec0be f2  r219=1 cc=91 A=7 C=4 r176=0 r162=1 F=3f G=8 r148=3c0 Q=7 r128=28 M=6e2 r110=47d r62=1ffcb3e5fc  ; evalbasis.s:519
+0b0e: 68000007ec28e2945e f13 cc=91 r148=3c2 Q=11 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:520
+0b0f: 68000007ec256297fe f13 cc=91 r148=3df Q=a M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:521
+0b10: 68000007ec29609400 f13 cc=91 Q=12 M=6e0 r110=43d r62=1ffc00357c  ; evalbasis.s:522
+0b11: 68000007ea234af400 f13 cc=191 Q=6 r128=5 M=6ca r110=5bd r62=1ffc000578  ; evalbasis.s:523
+0b12: 68000007ea23ca941e f13 cc=191 r148=3c0 Q=7 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:524
+0b13: 68000007ea04c09440 f13 cc=611 r148=2 P=9 M=47f r110=695 r62=1ffc003973  ; evalbasis.s:525
+0b14: 68000007ea28ca9402 f13 cc=191 r148=40 Q=11 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:526
+0b15: 68000007ea2562943e f13 cc=191 r148=3c1 Q=a M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:527
+0b16: 68000007ea29629440 f13 cc=191 r148=2 Q=12 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:528
+0b17: 71c0201fca038c0000 f14 r219=3 A=7 C=1 r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:529
+0b18: 7099c007c88cf80000 f14 seq=611f r25=3e2fc00  ; evalbasis.s:530
+0b19: 68000007ea21e2945f f13 cc=191 r148=3e2 Q=3 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:531
+0b1a: 68000007ea26e2945f f13 cc=191 r148=3e2 Q=d M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:532
+0b1b: 68000007ea02409441 f13 cc=611 r148=22 P=4 M=47f r110=695 r62=1ffc003973  ; evalbasis.s:533
+0b1c: 68000007ea274a9402 f13 cc=191 r148=40 Q=e M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:534
+0b1d: 68000007ea27ca941e f13 cc=191 r148=3c0 Q=f M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:535
+0b1e: 68000007ea234a941e f13 cc=191 r148=3c0 Q=6 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:536
+0b1f: 68000007ea22e2c4be f13 cc=191 r148=3c0 Q=5 r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; evalbasis.s:537
+0b20: 68000007ea23ca941e f13 cc=191 r148=3c0 Q=7 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:538
+0b21: 68000007ea04409441 f13 cc=611 r148=22 P=8 M=47f r110=695 r62=1ffc003973  ; evalbasis.s:539
+0b22: 68000007ea28ca941e f13 cc=191 r148=3c0 Q=11 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:540
+0b23: 68000007ea25609421 f13 cc=191 r148=21 Q=a M=6e0 r110=43d r62=1ffc00357c  ; evalbasis.s:541
+0b24: 68000007ea296297fe f13 cc=191 r148=3df Q=12 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:542
+0b25: 68000007ea24e2c4be f13 cc=191 r148=3c0 Q=9 r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; evalbasis.s:543
+0b26: 71c020afca038c0000 f14 r219=3 A=7 C=a r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:544
+0b27: 77f9c037c88d980000 f14 r219=1 C=3 G=13 seq=6fdf r62=1ffc23c170 r25=3e2fc00  ; evalbasis.s:545
+0b28: 38408a1fc02588f8a3 f7  r219=1 A=1 B=5 C=1 r176=1 r162=1 F=3f G=9 r148=3 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:546
+0b29: 68000007e80fc0f8ad f13 r148=d M=47f r110=6b5 r62=1ffc001173  ; evalbasis.s:547
+0b2a: 3a808aafc02988f8a4 f7  r219=1 A=a B=5 C=a r176=1 r162=1 F=3f G=a r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:548
+0b2b: 38000110004908f8ae f7  r219=1 C=11 r162=1 F=0 G=12 r148=e M=47f r110=6b5 r62=1ffc23d173  ; evalbasis.s:549
+0b2c: 3ac0911fc05588f8a5 f7  r219=1 A=b B=8 C=11 r176=1 r162=1 F=3f G=15 r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:550
+0b2d: 68000007e80fc0f8af f13 r148=f M=47f r110=6b5 r62=1ffc001173  ; evalbasis.s:551
+0b2e: 5b00be07fe23071686 f11 A=c r148=6 r128=26 M=460 r110=575 r99=8 r62=1ffc8811ff  ; evalbasis.s:552
+lCB8MATRIXLOOP:
+0b2f: 3b408abfc02da71687 f7  r219=1 A=d B=5 C=b r176=1 r162=1 F=3f G=b r148=7 r128=26 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:554
+0b30: 3b808acfc03188f8a8 f7  r219=1 A=e B=5 C=c r176=1 r162=1 F=3f G=c r148=8 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:555
+lCB8LOOP:
+0b31: 3bc08adfc03588f8a9 f7  r219=1 A=f B=5 C=d r176=1 r162=1 F=3f G=d r148=9 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:557
+0b32: 38000138004e271611 f7  r222=1 r219=1 C=13 F=20 G=13 r148=11 r128=6 M=460 r110=575 r62=1ffc23d1ff  ; evalbasis.s:558
+0b33: 3c008aefc039a7160a f7  r219=1 A=10 B=5 C=e r176=1 r162=1 F=3f G=e r148=a r128=6 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:559
+0b34: 394000ffc03d2716b2 f7  r219=1 A=5 C=f r176=0 r162=1 F=3f G=f r148=12 r128=2e M=460 r110=575 r62=1ffcb3d1ff  ; evalbasis.s:560
+0b35: 3940010fc04149feac f7  r219=1 A=5 C=10 r176=0 r162=1 F=3f G=10 r128=25 M=6e0 r110=57d r62=1ffcb3c1fc  ; evalbasis.s:561
+0b36: 124082feca3188f8a3 f2  xfer5.rel c4 cc=14 -> 0b31 <lCB8LOOP> imm=fffffffb cc=14 A=9 r148=3 M=47f r110=6b5 r99=8 seq=dfe4 r71=1 r62=1ffe881173 r25=3e39c00  ; evalbasis.s:562
+0b37: 3940009fc02527150d f7  r219=1 A=5 C=9 r176=0 r162=1 F=3f G=9 r148=d r128=5 M=460 r110=575 r62=1ffcb3d1ff  ; evalbasis.s:563
+0b38: 3a808aafc029a71604 f7  r219=1 A=a B=5 C=a r176=1 r162=1 F=3f G=a r148=4 r128=6 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:564
+0b39: 58003e07fe2307166e f11 r148=e r128=1e M=460 r110=575 r62=1ffc0011ff  ; evalbasis.s:565
+0b3a: 3ac08abfc02da71225 f7  r219=1 A=b B=5 C=b r176=1 r162=1 F=3f G=b r148=5 r128=a M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:566
+0b3b: 39402b5fc0d527170f f7  r219=1 r213=3 A=5 B=15 C=15 r176=0 r162=1 F=3f G=15 r148=f r128=7 M=460 r110=575 r62=1ffcf7d1ff r25=3e69c00  ; evalbasis.s:567
+0b3c: 3b008acfc031a71686 f7  r219=1 A=c B=5 C=c r176=1 r162=1 F=3f G=c r148=6 r128=26 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:568
+0b3d: 3b408b2fc049a71687 f7  r219=1 A=d B=5 C=12 r176=1 r162=1 F=3f G=12 r148=7 r128=26 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:569
+0b3e: 4b80a407c013071108 f9  r213=3 A=e B=12 r148=8 r128=1 M=460 r110=575 r99=8 r62=1ffccc11ff r25=3e69c00  ; evalbasis.s:570
+0b3f: 7180201fca010c0000 f14 r219=1 A=6 C=1 r176=0 r162=1 F=3f G=1 r62=1ffcb3c170  ; evalbasis.s:571
+0b40: 77fa402808c1100000 f14 r222=1 r219=1 C=2 F=20 G=2 r62=1ffc23c170  ; evalbasis.s:572
+0b41: 7180211fca01940000 f14 r219=1 A=6 C=11 r176=0 r162=1 F=3f G=12 r62=1ffcb3c170  ; evalbasis.s:573
+0b42: 7180211fca018c0000 f14 r219=1 A=6 C=11 r176=0 r162=1 F=3f G=11 r62=1ffcb3c170  ; evalbasis.s:574
+0b43: 7100201fca01540000 f14 r219=1 A=4 C=1 r176=0 r162=1 F=3f G=a r62=1ffcb3c170  ; evalbasis.s:575
+0b44: 71c0201fca015c0000 f14 r219=1 A=7 C=1 r176=0 r162=1 F=3f G=b r62=1ffcb3c170  ; evalbasis.s:576
+0b45: 7200212fca01ac0000 f14 r219=1 A=8 C=12 r176=0 r162=1 F=3f G=15 r62=1ffcb3c170  ; evalbasis.s:577
+0b46: 77f64007ca10fbffe9 f14 xfer5.rel c4 cc=14 -> 0b2f <lCB8MATRIXLOOP> imm=ffffffe9 cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; evalbasis.s:578
+0b47: 77f1c037c8ad980000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r219=1 C=3 G=13 seq=14fdf r62=1ffc23c170 r25=3e3fc00  ; evalbasis.s:579
+0b48: 38408eafc03188f8a3 f7  r219=1 A=1 B=7 C=a r176=1 r162=1 F=3f G=c r148=3 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:580
+0b49: 38000ebfc03588f8ad f7  r219=1 B=7 C=b r176=1 r162=1 F=3f G=d r148=d M=47f r110=6b5 r62=1ffc73d173  ; evalbasis.s:581
+0b4a: 3a8090bfc03988f8a4 f7  r219=1 A=a B=8 C=b r176=1 r162=1 F=3f G=e r148=4 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:582
+0b4b: 3940001fc02508f8ae f7  r219=1 A=5 C=1 r176=0 r162=1 F=3f G=9 r148=e M=47f r110=6b5 r62=1ffcb3d173  ; evalbasis.s:583
+0b4c: 3ac090cfc03d88f8a5 f7  r219=1 A=b B=8 C=c r176=1 r162=1 F=3f G=f r148=5 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; evalbasis.s:584
+0b4d: 3a0000dfc04108f8af f7  r219=1 A=8 C=d r176=0 r162=1 F=3f G=10 r148=f M=47f r110=6b5 r62=1ffcb3d173  ; evalbasis.s:585
+0b4e: 3b008aafc029a71686 f7  r219=1 A=c B=5 C=a r176=1 r162=1 F=3f G=a r148=6 r128=26 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; evalbasis.s:586
+0b4f: 000000000000000000 f0  nop  ; evalbasis.s:587
+uEvalChangeBasis4x4:
+0b50: 7059c9e7c88cf801f3 f14 imm=1f3 C=1e r95=2 seq=609f r71=1 r62=1ffc218170 r25=3e2fc00  ; evalbasis.s:613
+0b51: 68000007ec21ca941f f13 cc=91 r148=3e0 Q=3 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:614
+0b52: 68000007ea21e2941e f13 cc=191 r148=3c0 Q=3 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:615
+0b53: 68000007ec2262943e f13 cc=91 r148=3c1 Q=4 M=6e2 r110=43d r62=1ffc00357c  ; evalbasis.s:616
+0b54: 68000007ea224a9401 f13 cc=191 r148=20 Q=4 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:617
+0b55: 68000007ec22ca9401 f13 cc=91 r148=20 Q=5 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:618
+0b56: 68000007ea22ca941e f13 cc=191 r148=3c0 Q=5 M=6ca r110=4bd r62=1ffc002578  ; evalbasis.s:619
+0b57: 77fa401008815c0000 f14 r219=1 C=1 r162=1 F=0 G=b r62=1ffc23c170  ; evalbasis.s:620
+0b58: 77fa401048815c0000 f14 r219=1 C=1 r162=1 F=1 G=b r62=1ffc23c170  ; evalbasis.s:621
+0b59: 7079c007c88cf80000 f14 seq=60df r25=3e2fc00  ; evalbasis.s:622
+lCB4X4LOOP:
+0b5a: 38408028000a08f8a3 f7  r222=1 r219=1 A=1 C=2 F=20 G=2 r148=3 M=47f r110=6b5 r99=8 r62=1ffcabd173  ; evalbasis.s:624
+0b5b: 68448007e80fc0f8a3 f13 A=1 D=4 r148=3 M=47f r110=6b5 r99=8 r62=1ffc881173  ; evalbasis.s:625
+0b5c: 68488007e80fc0f8a3 f13 A=1 D=8 r148=3 M=47f r110=6b5 r99=8 r62=1ffc881173  ; evalbasis.s:626
+0b5d: 684c8007e80fc0f8a3 f13 A=1 D=c r148=3 M=47f r110=6b5 r99=8 r62=1ffc881173  ; evalbasis.s:627
+0b5e: 5841be07fe2306509e f11 A=1 D=1 r148=3c4 r128=2c M=460 r110=475 r99=8 r62=1ffc8831ff  ; evalbasis.s:628
+0b5f: 5845be07fe2306509e f11 A=1 D=5 r148=3c4 r128=2c M=460 r110=475 r99=8 r62=1ffc8831ff  ; evalbasis.s:629
+0b60: 5849be07fe2306509e f11 A=1 D=9 r148=3c4 r128=2c M=460 r110=475 r99=8 r62=1ffc8831ff  ; evalbasis.s:630
+0b61: 584dbe07fe2306509e f11 A=1 D=d r148=3c4 r128=2c M=460 r110=475 r99=8 r62=1ffc8831ff  ; evalbasis.s:631
+0b62: 5842be07fe23071405 f11 A=1 D=2 r148=5 r128=4 M=460 r110=575 r99=8 r62=1ffc8811ff  ; evalbasis.s:632
+0b63: 5846be07fe23071405 f11 A=1 D=6 r148=5 r128=4 M=460 r110=575 r99=8 r62=1ffc8811ff  ; evalbasis.s:633
+0b64: 584abe07fe23071405 f11 A=1 D=a r148=5 r128=4 M=460 r110=575 r99=8 r62=1ffc8811ff  ; evalbasis.s:634
+0b65: 584ebe07fe23071405 f11 A=1 D=e r148=5 r128=4 M=460 r110=575 r99=8 r62=1ffc8811ff  ; evalbasis.s:635
+0b66: 5843be07fe2316941f f11 A=1 D=3 r148=3e0 r128=4 M=462 r110=599 r99=8 r62=1ffc8821ff  ; evalbasis.s:636
+0b67: 5847be07fe2316941f f11 A=1 D=7 r148=3e0 r128=4 M=462 r110=599 r99=8 r62=1ffc8821ff  ; evalbasis.s:637
+0b68: 584bbe07fe2316941f f11 A=1 D=b r148=3e0 r128=4 M=462 r110=599 r99=8 r62=1ffc8821ff  ; evalbasis.s:638
+0b69: 584fbe07fe2316941f f11 A=1 D=f r148=3e0 r128=4 M=462 r110=599 r99=8 r62=1ffc8821ff  ; evalbasis.s:639
+0b6a: 60001607ea01011fa0 f12 r213=3 B=b E=1 r128=4 M=6e0 r110=57d r62=1ffc4401fc r25=3e69c00  ; evalbasis.s:640
+0b6b: 60001607ea05011fa0 f12 r213=3 B=b E=5 r128=4 M=6e0 r110=57d r62=1ffc4401fc r25=3e69c00  ; evalbasis.s:641
+0b6c: 60001607ea09011fa0 f12 r213=3 B=b E=9 r128=4 M=6e0 r110=57d r62=1ffc4401fc r25=3e69c00  ; evalbasis.s:642
+0b6d: 60001607ea0d011fa0 f12 r213=3 B=b E=d r128=4 M=6e0 r110=57d r62=1ffc4401fc r25=3e69c00  ; evalbasis.s:643
+0b6e: 77fa401408810c0000 f14 r219=1 C=1 r162=1 F=10 G=1 r62=1ffc23c170  ; evalbasis.s:644
+0b6f: 000000000000000000 f0  nop  ; evalbasis.s:645
+0b70: 000000000000000000 f0  nop  ; evalbasis.s:646
+0b71: 000000000000000000 f0  nop  ; evalbasis.s:647
+0b72: 000000000000000000 f0  nop  ; evalbasis.s:648
+0b73: 000000000000000000 f0  nop  ; evalbasis.s:649
+0b74: 6ac48007e80fc0f8a1 f13 A=b D=4 r148=1 M=47f r110=6b5 r99=8 r62=1ffc881173  ; evalbasis.s:650
+0b75: 6ac68007e80fc0f8a1 f13 A=b D=6 r148=1 M=47f r110=6b5 r99=8 r62=1ffc881173  ; evalbasis.s:651
+0b76: 6ac88007e80fc0f8a1 f13 A=b D=8 r148=1 M=47f r110=6b5 r99=8 r62=1ffc881173  ; evalbasis.s:652
+0b77: 6aca8007e80fc0f8a1 f13 A=b D=a r148=1 M=47f r110=6b5 r99=8 r62=1ffc881173  ; evalbasis.s:653
+0b78: 5ac0be07fe2306501e f11 A=b r148=3c0 r128=2c M=460 r110=475 r99=8 r62=1ffc8831ff  ; evalbasis.s:654
+0b79: 5ac2be07fe2306501e f11 A=b D=2 r148=3c0 r128=2c M=460 r110=475 r99=8 r62=1ffc8831ff  ; evalbasis.s:655
+0b7a: 6ac08007e82fe2fef5 f13 A=b r128=2e M=6e2 r110=67d r99=8 r62=1ffc8801fc  ; evalbasis.s:656
+0b7b: 12c282f7ca31cefef5 f2  xfer5.rel c4 cc=14 -> 0b5a <lCB4X4LOOP> imm=ffffffdf cc=14 A=b D=2 r128=2e M=6e2 r110=67d r99=8 seq=dfe4 r71=1 r62=1ffe8801fc r25=3e39c00  ; evalbasis.s:657
+0b7c: 12cc8007c8ef4eff46 f2  xfer4 c31 cc=11 -> 0000 <HereWeGo> A=b D=c r128=35 M=6e2 r110=5bd r99=8 seq=14fdf r62=1ffc88017c r25=3e3fc00  ; evalbasis.s:658
+0b7d: 6ace8007e82fe2ff46 f13 A=b D=e r128=35 M=6e2 r110=5bd r99=8 r62=1ffc88017c  ; evalbasis.s:659
+0b7e: 68000007e82fe2feb2 f13 r128=16 M=6e2 r110=57d r62=1ffc0001fc  ; evalbasis.s:660
+0b7f: 68000007e82fe2feb2 f13 r128=16 M=6e2 r110=57d r62=1ffc0001fc  ; evalbasis.s:661
+0b80: 60001607ea04011f82 f12 r213=3 B=b E=4 r128=10 M=6e0 r110=57d r62=1ffc4401fc r25=3e69c00  ; evalbasis.s:662
+0b81: 60001607ea06011f82 f12 r213=3 B=b E=6 r128=10 M=6e0 r110=57d r62=1ffc4401fc r25=3e69c00  ; evalbasis.s:663
+0b82: 62cc9607ea08015fc0 f12 r213=3 A=b B=b D=c E=8 r128=5 M=6e2 r110=5bd r99=8 r62=1ffccc017c r25=3e69c00  ; evalbasis.s:664
+0b83: 3ace96b40aad4eff40 f7  r219=1 r213=3 A=b B=b C=b D=e E=a r162=1 F=10 G=b r128=5 M=6e2 r110=5bd r99=8 r62=1ffcefc17c r25=3e69c00  ; evalbasis.s:665
+0b84: 000000000000000000 f0  nop  ; evalbasis.s:666

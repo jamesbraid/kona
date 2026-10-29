@@ -1,0 +1,51 @@
+# udecompose2.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+umo_DummyDecompose:
+0d3b: 77fa49e7c880f8000b f14 imm=b C=1e r95=2 r71=1 r62=1ffc218170  ; udecompose2.s:13
+0d3c: 000000000000000000 f0  nop  ; udecompose2.s:14
+0d3d: 782071e7c00000ed52 f15 imm=ed52 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; udecompose2.s:15
+0d3e: 7e008007e000000000 f15 A=18 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; udecompose2.s:16
+0d3f: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; udecompose2.s:17
+0d40: 000000000000000000 f0  nop  ; udecompose2.s:18
+0d41: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; udecompose2.s:19
+0d42: 000000000000000000 f0  nop  ; udecompose2.s:20
+0d43: 000000000000000000 f0  nop  ; udecompose2.s:21
+0d44: 000000000000000000 f0  nop  ; udecompose2.s:22
+0d45: 000000000000000000 f0  nop  ; udecompose2.s:23
+0d46: 000000000000000000 f0  nop  ; udecompose2.s:24
+0d47: 77fa43bfc880f80017 f14 imm=17 r211=3 C=1b F=3f r95=4 r71=1 r62=1ffc318170  ; udecompose2.s:25
+0d48: 77fa43bfc880f8000a f14 imm=a r211=3 C=1b F=3f r95=4 r71=1 r62=1ffc318170  ; udecompose2.s:26
+0d49: 000000000000000000 f0  nop  ; udecompose2.s:27
+umo_DecomposeSimpleTriangleStrip:
+0d4a: 180340071f0244f8a0 f3  imm=1c cc=91 C=1b F=3f Q=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc318578  ; udecompose2.s:41
+0d4b: 782071e7c00000ed52 f15 imm=ed52 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; udecompose2.s:42
+0d4c: 782071e7c281c00000 f15 imm=81c00000 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; udecompose2.s:43
+0d4d: 77fa41e7c881480134 f14 imm=134 r219=1 C=1e G=9 r71=1 r62=1ffc23c170  ; udecompose2.s:44
+0d4e: 77fa41100881140000 f14 r219=1 C=11 r162=1 F=0 G=2 r62=1ffc23c170  ; udecompose2.s:45
+0d4f: 7059c198488d900000 f14 r219=1 C=19 F=21 G=12 seq=609f r62=1ffc23c170 r25=3e2fc00  ; udecompose2.s:46
+0d50: 6e028007ec204af6a0 f13 cc=91 A=18 D=2 Q=0 M=6ca r99=8 r62=1ffc880578  ; udecompose2.s:47
+0d51: 68000007ea2056f6bd f13 cc=191 r148=1d Q=0 M=6d6 r110=63d r62=1ffc00157c  ; udecompose2.s:48
+0d52: 77f9c9e7c88cf8000b f14 imm=b C=1e r95=2 seq=6fdf r71=1 r62=1ffc218170 r25=3e2fc00  ; udecompose2.s:49
+0d53: 77fa412948c1000000 f14 r222=1 r219=1 C=12 F=25 G=0 r62=1ffc23c170  ; udecompose2.s:50
+0d54: 754021efca01388bb0 f14 imm=8bb0 r219=1 A=15 C=1e r176=0 F=3f G=7 r71=1 r62=1ffcb3c170  ; udecompose2.s:51
+0d55: 77f5c100080d0ce6e8 f14 xfer5 c31 cc=10 -> e6e8 <mmo_AbortGeometry> imm=e6e8 r219=1 cc=10 C=10 r162=1 F=0 G=1 seq=5fdf r71=1 r62=1ffe23c170 r25=3e3fc00  ; udecompose2.s:52
+0d56: 1600a34e0806c4f6a0 f2  imm=138 r219=1 A=18 C=1e G=8 M=6ca r99=a seq=6fe7 r71=1 r62=1ffcabc178 r25=3eabc00  ; udecompose2.s:53
+lDE4:
+0d57: 70bf36094a410001d0 f14 imm=1d0 r222=1 r219=1 A=2 D=3f F=25 G=0 r99=8 r71=1 r62=1ffcbbc170  ; udecompose2.s:55
+0d58: 68bf4097e82fd3ffa5 f13 A=2 C=9 r176=2 D=3f M=6d3 r110=6fd r99=4 r62=1ffcb8017c  ; udecompose2.s:56
+0d59: 707f3607ca00f801d0 f14 imm=1d0 A=1 D=3f r99=8 r71=1 r62=1ffc980170  ; udecompose2.s:57
+0d5a: 687f4097e82fd3ffa5 f13 A=1 C=9 r176=2 D=3f M=6d3 r110=6fd r99=4 r62=1ffcb8017c  ; udecompose2.s:58
+0d5b: 78204e19d100000000 f15 r215=3 B=7 C=1 E=1 r162=1 F=27 r62=1ffc658170  ; udecompose2.s:59
+0d5c: e0000e29ea5040c000 f12 w71=1 r215=3 B=7 C=2 E=10 r162=1 F=27 r62=1ffc658170  ; udecompose2.s:60
+0d5d: 62000e1fea4240c000 f12 r215=3 A=8 B=7 C=1 r176=0 E=2 r162=1 F=3f r62=1ffcf58170  ; udecompose2.s:61
+0d5e: e2000e2fea5140c000 f12 w71=1 r215=3 A=8 B=7 C=2 r176=0 E=11 r162=1 F=3f r62=1ffcf58170  ; udecompose2.s:62
+0d5f: 18080e17fc37c1f461 f3  xfer5.rel c7 cc=11 -> 0d57 <lDE4> imm=fffffff8 r215=3 B=7 C=1 r148=1 r128=1d M=6d0 r110=53d seq=dfe7 r71=1 r62=1ffe65917c r25=3e3bc00  ; udecompose2.s:63
+0d60: 99e80e27c8ef41f441 f3  xfer4 c31 cc=11 -> 0000 <HereWeGo> w71=1 r215=3 B=7 C=2 E=f r148=1 r128=15 M=6d0 r110=53d seq=14fdf r62=1ffc65917c r25=3e3fc00  ; udecompose2.s:64
+0d61: 62000e1fea4340c000 f12 r215=3 A=8 B=7 C=1 r176=0 E=3 r162=1 F=3f r62=1ffcf58170  ; udecompose2.s:65
+0d62: e2000e2fea5240c000 f12 w71=1 r215=3 A=8 B=7 C=2 r176=0 E=12 r162=1 F=3f r62=1ffcf58170  ; udecompose2.s:66
+0d63: 3cc0001fc00543f400 f7  r219=1 A=13 C=1 r176=0 r162=1 F=3f G=1 r128=5 M=6d4 r110=53d r62=1ffcb3d17c  ; udecompose2.s:67
+0d64: 74c0202fca01140000 f14 r219=1 A=13 C=2 r176=0 r162=1 F=3f G=2 r62=1ffcb3c170  ; udecompose2.s:68
+0d65: 77fa407788813c0000 f14 r219=1 C=7 r162=1 F=1e G=7 r62=1ffc23c170  ; udecompose2.s:69
+0d66: 57c44e07fe36a1a800 f10 r213=3 B=7 E=4 r128=15 M=6d4 r110=53d r62=1ffc44117c r25=3e69c00  ; udecompose2.s:70
+0d67: d7d34e07fe36b1a3a0 f10 w71=1 r213=3 B=7 E=13 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; udecompose2.s:71
+0d68: 77fa43b20880f80000 f14 r211=3 C=1b F=8 r95=4 r62=1ffc218170  ; udecompose2.s:73

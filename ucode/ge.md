@@ -46,7 +46,9 @@ The method: pair each `ge.hex` word W with the record of the same address in `ge
 
 **Inferred:** the `ge.u` record is a decoded form of the instruction, with one byte per control field, and the decoding is not an identity for most fields. It may be a lookup (for example a one-hot or encoded-to-index conversion by the assembler), which the single-bit method cannot invert. The record bytes' value ranges (byte 8 has up to 133 distinct values in form 7, byte 5 only 2) fit that reading.
 
-**Unknown:** the value mapping of each byte and the meaning of the forms. A decoder of `ge.hex` fields from the instruction-set text in the build string table, or the `gefields.h` field names referenced by the line table, would settle it; the line table names the file but not its contents.
+**Superseded:** the record is a bit-level decoded control word, not one byte per field; [ge_isa.md](ge_isa.md) maps every record bit to its W bit per form. The paragraph below is kept for the byte-level evidence.
+
+**Unknown (byte-level reading):** the value mapping of each byte and the meaning of the forms. A decoder of `ge.hex` fields from the instruction-set text in the build string table, or the `gefields.h` field names referenced by the line table, would settle it; the line table names the file but not its contents.
 
 ## Command dispatch table (`geif.u`)
 
@@ -81,6 +83,6 @@ The 47 name matches are written to [ge_name_matches.tsv](ge_name_matches.tsv) as
 
 ## Next steps for a reader
 
-1. Finish the `ge.u` record decode: the byte-to-W-bit map is in ge_u_bitmap.tsv, the value mapping of most bytes is open.
+1. The instruction fields are mapped bit for bit in [ge_isa.md](ge_isa.md); name the operations behind the decoded control bits.
 2. Find what turns a hardware-routed token's 9-bit command number into an engine address ([arm1.md](arm1.md) lists what is ruled out).
 3. Decode the distributor's own instruction set; its relocated words are listed in [ged_relocs.tsv](ged_relocs.tsv).

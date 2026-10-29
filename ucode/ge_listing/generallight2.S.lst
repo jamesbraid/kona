@@ -1,0 +1,461 @@
+# generallight2.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mLiLocalLight:
+c321: 69728007ec20e0eca0 f13 cc=91 A=5 D=32 Q=1 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:1097
+c322: 69738007ec2160eca1 f13 cc=91 A=5 D=33 r148=20 Q=2 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:1101
+c323: 69b28007ec2460eca0 f13 cc=91 A=6 D=32 Q=8 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:1099
+c324: 69b38007ec23e0eca1 f13 cc=91 A=6 D=33 r148=20 Q=7 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:1103
+c325: 69748007ec21e0eca2 f13 cc=91 A=5 D=34 r148=40 Q=3 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:1105
+c326: 69b48007ec24e0eca2 f13 cc=91 A=6 D=34 r148=40 Q=9 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:1107
+c327: 68000007e80fc0fed2 f13 r128=12 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:1111
+c328: 68000007e80fc0fed2 f13 r128=12 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:1114
+c329: 68000007e80fc0fed2 f13 r128=12 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:1112
+c32a: 68000007e80fc0fed2 f13 r128=12 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:1116
+c32d: 58003e07fe2300b863 f11 r148=63 r128=35 M=460 r110=555 r62=1ffc0031ff  ; generallight2.S:1115
+c32e: 58003e07fe23009529 f11 r148=129 r128=2c M=460 r110=555 r62=1ffc0031ff  ; generallight2.S:1117
+c330: 77fa4e368880f80000 f14 C=3 F=1a r95=17 r62=1ffc218170  ; generallight2.S:1189
+c331: 68000007ec2560fea0 f13 cc=91 Q=a r128=4 M=6e0 r110=57d r62=1ffc0005fc  ; generallight2.S:1122
+c332: 68002e366c25e0fea0 f13 cc=91 C=3 F=19 Q=b r128=4 M=6e0 r110=57d r95=17 r62=1ffc2185fc  ; generallight2.S:1123
+c334: 77fa4e360880f80000 f14 C=3 F=18 r95=17 r62=1ffc218170  ; generallight2.S:1193
+c336: 68002e30280fe80400 f13 C=3 F=0 r128=d r110=2bd r95=17 r62=1ffc218170  ; generallight2.S:1133
+c337: 68000007e80fe80400 f13 r128=d r110=2bd  ; generallight2.S:1134
+c338: 58003e3199e257fb20 f11 cc=91 C=3 F=6 Q=c M=44a r110=781 r95=17 r62=1ffc21857b  ; generallight2.S:1143
+c339: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+c33a: 68002e31ec26caf8a0 f13 cc=91 C=3 F=7 Q=d M=6ca r110=7bd r95=17 r62=1ffc218578  ; generallight2.S:1147
+c33c: 58003e321dea55f00a f11 cc=91 C=3 F=8 r148=140 Q=e r128=2c M=54a r110=799 r95=17 r62=1ffc21a5fb  ; generallight2.S:1133
+c33d: 68000007e80fd0c4ab f13 r148=160 r128=2c M=57f r110=699 r62=1ffc0021f3  ; generallight2.S:1134
+c33e: 68002e30ec27ca680a f13 cc=91 C=3 F=3 r148=140 Q=f M=6ca r110=3bf r95=17 r62=1ffc21a478  ; generallight2.S:1133
+c33f: 68000007e80fe8340b f13 r148=160 r110=2bf r62=1ffc002070  ; generallight2.S:1134
+c340: 5880004fe1e257cc80 f11 cc=291 A=2 C=4 r176=0 F=3f P=0 Q=10 r128=2c M=44a r110=789 r95=17 r62=1ffcb18dfb  ; generallight2.S:1127
+c341: 58000807e22257cc80 f11 cc=291 P=4 Q=11 r128=2c M=44a r110=789 r62=1ffc000dfb  ; generallight2.S:1148
+c342: 680026d0ec22caf8a0 f13 cc=91 C=d F=3 Q=5 M=6ca r110=7bd r95=13 r62=1ffc218578  ; generallight2.S:1168
+c343: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; generallight2.S:1091
+c344: 58003e07e422570c80 f11 cc=91 Q=12 r128=24 M=44a r110=7a9 r62=1ffc0005fb  ; generallight2.S:1133
+c345: 58003e07e62306c49f f11 cc=91 r148=3e0 Q=13 r128=24 M=460 r110=4e9 r62=1ffc0025ff  ; generallight2.S:1134
+c346: 68000007ec2a4af8a0 f13 cc=91 Q=14 M=6ca r110=7bd r62=1ffc000578  ; generallight2.S:1226
+c347: 60000a07ea0701de80 f12 r213=3 B=5 E=7 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; generallight2.S:1130
+c348: 68000007e80fd0c4aa f13 r148=140 r128=2c M=57f r110=699 r62=1ffc0021f3  ; generallight2.S:1133
+c349: 68000007e80fd0c4ab f13 r148=160 r128=2c M=57f r110=699 r62=1ffc0021f3  ; generallight2.S:1134
+c34a: 68000007e86feaf8a0 f13 r220=1 M=6ea r110=7bd r62=1ffc000178  ; generallight2.S:1129
+c34b: 60000a07ea2d01c01e f12 r213=3 B=5 E=2d r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; generallight2.S:1389
+c34c: 68000007ec0ac0c4a0 f13 cc=211 P=15 r128=2c M=47f r110=699 r62=1ffc0029f3  ; generallight2.S:1133
+c34d: 68000007ec0b40c4a4 f13 cc=211 r148=80 P=16 r128=2c M=47f r110=699 r62=1ffc0029f3  ; generallight2.S:1134
+c34e: 69448007c1a2caf6a0 f13 cc=111 r198=3 A=5 D=4 Q=5 M=6ca r99=8 r62=1ffd880578  ; generallight2.S:1171
+c34f: 69408007caa2caf6a0 f13 cc=111 r198=15 A=5 Q=5 M=6ca r99=8 r62=1ffd880578  ; generallight2.S:1174
+c350: 68000007ec0240c4a1 f13 cc=211 r148=20 P=4 r128=2c M=47f r110=699 r62=1ffc0029f3  ; generallight2.S:1294
+c351: 68000007ec0bc0c4a8 f13 cc=211 r148=100 P=17 r128=2c M=47f r110=699 r62=1ffc0029f3  ; generallight2.S:1295
+c352: 68000007ec0c40c6a2 f13 cc=211 r148=40 P=18 r128=2e M=47f r110=699 r62=1ffc0029f3  ; generallight2.S:1296
+c353: 68000007ec0cc0c6a7 f13 cc=211 r148=e0 P=19 r128=2e M=47f r110=699 r62=1ffc0029f3  ; generallight2.S:1297
+c354: 696f8007ec2d60ff44 f13 cc=91 A=5 D=2f Q=1a r128=25 M=6e0 r110=5bd r99=8 r62=1ffc88057c  ; generallight2.S:1306
+c355: 11af8047dfb649ff44 f2  r222=1 cc=91 A=6 C=4 D=2f Q=1b r128=25 M=6e0 r110=5bd r99=8 r62=1ffca9857c  ; generallight2.S:1173
+c356: 5970b807c0230432a3 f11 cc=291 A=5 D=30 r148=75 P=1c Q=0 r128=25 M=460 r110=595 r99=8 r62=1ffc883d7f  ; generallight2.S:1298
+c357: 59b08207c4230432c9 f11 cc=291 A=6 D=30 r148=136 P=1 Q=2 r128=25 M=460 r110=595 r99=8 r62=1ffc883d7f  ; generallight2.S:1299
+c358: 68000007e80fc09581 f13 r148=2c M=47f r110=695 r62=1ffc003173  ; generallight2.S:1196
+c359: 68000007e80fc095a2 f13 r148=4d M=47f r110=695 r62=1ffc003173  ; generallight2.S:1199
+c35a: 78204be7c53727c5ac f15 imm=3727c5ac r215=3 B=5 C=1e E=5 r71=1 r62=1ffc658170  ; generallight2.S:1343
+c35b: 69718007ec21e0ff45 f13 cc=91 A=5 D=31 Q=3 M=6e0 r110=5bd r99=8 r62=1ffc88057c  ; generallight2.S:1314
+c35c: 69b18007ec2260ff45 f13 cc=91 A=6 D=31 Q=4 M=6e0 r110=5bd r99=8 r62=1ffc88057c  ; generallight2.S:1316
+c35d: 58003e07fe230095c3 f11 r148=6e r128=2c M=460 r110=555 r62=1ffc0031ff  ; generallight2.S:1200
+c35e: 6a0f8007ec0640f8ba f13 cc=211 A=8 D=f r148=1a P=c M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:1349
+c35f: 6a4f8007ec0440f8bb f13 cc=211 A=9 D=f r148=1b P=8 M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:1351
+c360: 6a108007ec06c0f8a0 f13 cc=211 A=8 D=10 P=d M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:1354
+c361: 5a508e07fe23071402 f11 cc=211 A=9 D=10 r148=2 P=7 r128=4 M=460 r110=575 r99=8 r62=1ffc8819ff  ; generallight2.S:1205
+c362: 6a0f8007ec0740f8a4 f13 cc=211 A=8 D=f r148=4 P=e M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:1369
+c363: 68000007e80fc09588 f13 r148=10c M=47f r110=695 r62=1ffc003173  ; generallight2.S:1197
+c364: 62c0016fe8002e81a7 f12 A=b C=16 r176=0 F=3f r148=ed M=47f r110=695 r95=17 r62=1ffcb1b173  ; generallight2.S:1138
+c365: 68000007ec02c0f615 f13 cc=211 r148=15 P=5 r128=5 M=47f r110=6a5 r62=1ffc001973  ; generallight2.S:1211
+c366: 68000007ec08409550 f13 cc=211 r148=20a P=10 M=47f r110=695 r62=1ffc003973  ; generallight2.S:1150
+c367: 77fa4e3fc880f80020 f14 imm=20 C=3 F=3f r95=17 r71=1 r62=1ffc318170  ; generallight2.S:1256
+c368: 58003e07fe230095c9 f11 r148=12e r128=2c M=460 r110=555 r62=1ffc0031ff  ; generallight2.S:1202
+c369: 68000007e82fe0f48f f13 r148=f r128=25 M=6e0 r110=53d r62=1ffc00117c  ; generallight2.S:1240
+c36a: 68000007e83fca9405 f13 r148=a0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; generallight2.S:1179
+c36b: 54464a07fe22559551 f10 r213=3 cc=211 B=5 E=6 r148=22a P=11 M=44a r110=795 r62=1ffc44397b r25=3e69c00  ; generallight2.S:1139
+c36c: 58003e07fe23008170 f11 r148=20b r128=4 M=460 r110=555 r62=1ffc0031ff  ; generallight2.S:1151
+c36d: 68000007ec2968f41e f13 cc=91 r148=1e Q=12 r128=5 M=6e8 r110=53d r62=1ffc00157c  ; generallight2.S:1244
+c36e: 68000007ec08409571 f13 cc=211 r148=22b P=10 M=47f r110=695 r62=1ffc003973  ; generallight2.S:1154
+c36f: 68000007ec27e09650 f13 cc=91 r148=212 Q=f M=6e0 r110=43d r62=1ffc00357c  ; generallight2.S:1156
+c370: 68000007ec0d40f616 f13 cc=211 r148=16 P=1a r128=5 M=47f r110=6a5 r62=1ffc001973  ; generallight2.S:1212
+c371: 58001407d617bc8000 f11 cc=291 P=a Q=b r128=5 M=2f7 r110=5bd r62=1ffc000d79  ; generallight2.S:1248
+c372: 68000007ec22e0f4d2 f13 cc=91 r148=12 Q=5 r128=35 M=6e0 r110=53d r62=1ffc00157c  ; generallight2.S:1157
+c373: 702267e7fe80f8009d f14 imm=9d r211=2 r198=7d C=1e r95=4 r71=1 r62=1ffd218170  ; generallight2.S:1180
+c374: 68000007e82fe0f48f f13 r148=f r128=25 M=6e0 r110=53d r62=1ffc00117c  ; generallight2.S:1241
+c375: 68000007e83fe0fea0 f13 r128=4 M=6e0 r110=57d r99=2 r62=1ffc0001fc r25=3ea9c00  ; generallight2.S:1260
+c376: 68000007ec0040975a f13 cc=211 r148=35a P=0 M=47f r110=695 r62=1ffc003973  ; generallight2.S:1324
+c377: 68000007ec0ac09463 f13 cc=211 r148=63 P=15 M=47f r110=695 r62=1ffc003973  ; generallight2.S:1332
+c378: 68000007ec2d609665 f13 cc=91 r148=b3 Q=1a M=6e0 r110=43d r62=1ffc00357c  ; generallight2.S:1228
+c379: 68000007ec29e8f43e f13 cc=91 r148=1e Q=13 r128=d M=6e8 r110=53d r62=1ffc00157c  ; generallight2.S:1245
+c37a: 68000007ec2960967a f13 cc=91 r148=353 Q=12 M=6e0 r110=43d r62=1ffc00357c  ; generallight2.S:1229
+c37b: 68000007e83fe0f45f f13 r148=1f r128=15 M=6e0 r110=53d r99=2 r62=1ffc00117c r25=3ea9c00  ; generallight2.S:1265
+c37c: 1800c1279f22089400 f3  imm=9e r211=3 cc=211 C=1e P=11 M=47f r110=695 r95=4 r71=1 r62=1ffc21b973  ; generallight2.S:1181
+c37d: 58002c07e023b8a2b1 f11 cc=291 r148=235 P=16 Q=10 r128=5 M=477 r110=595 r62=1ffc003d7b  ; generallight2.S:1159
+c37e: 700e67e7ca00f81100 f14 imm=1100 C=1e r95=1c r71=1 r62=1ffc218170  ; generallight2.S:1261
+c37f: 68000007ec2be29572 f13 cc=91 r148=24b Q=17 M=6e2 r110=43d r62=1ffc00357c  ; generallight2.S:1250
+c380: 700ee7e7ca00f81100 f14 imm=1100 C=1e r95=1d r71=1 r62=1ffc218170  ; generallight2.S:1262
+c381: 68000007e83fe0f40a f13 r148=a r128=5 M=6e0 r110=53d r99=2 r62=1ffc00117c r25=3ea9c00  ; generallight2.S:1273
+c382: 700f67e7ca00f81100 f14 imm=1100 C=1e r95=1e r71=1 r62=1ffc218170  ; generallight2.S:1263
+c383: 68000007ec0b4096d0 f13 cc=211 r148=216 P=16 M=47f r110=695 r62=1ffc003973  ; generallight2.S:1160
+c384: 700e67e7ca00f81100 f14 imm=1100 C=1e r95=1c r71=1 r62=1ffc218170  ; generallight2.S:1266
+c385: 5a4f8a07fe23164aff f11 cc=211 A=9 D=f r148=3f7 P=5 r128=2a M=462 r110=475 r99=8 r62=1ffc8839ff  ; generallight2.S:1252
+c386: 700ee7e7ca00f81100 f14 imm=1100 C=1e r95=1d r71=1 r62=1ffc218170  ; generallight2.S:1267
+c387: 68000007e83fe0f45f f13 r148=1f r128=15 M=6e0 r110=53d r99=2 r62=1ffc00117c r25=3ea9c00  ; generallight2.S:1278
+c388: 700f67e7ca00f81100 f14 imm=1100 C=1e r95=1e r71=1 r62=1ffc218170  ; generallight2.S:1268
+c389: 58002e07ec230522cf f11 cc=291 r148=1f6 P=17 Q=16 r128=5 M=460 r110=42d r62=1ffc003d7f  ; generallight2.S:1162
+c38a: 700e67e7ca00f81100 f14 imm=1100 C=1e r95=1c r71=1 r62=1ffc218170  ; generallight2.S:1274
+c38b: 68000007ec2c6096c5 f13 cc=91 r148=b6 Q=18 M=6e0 r110=43d r62=1ffc00357c  ; generallight2.S:1163
+c38c: 700ee7e7ca00f81100 f14 imm=1100 C=1e r95=1d r71=1 r62=1ffc218170  ; generallight2.S:1275
+c38d: 68000007ec2d629613 f13 cc=91 r148=270 Q=1a M=6e2 r110=43d r62=1ffc00357c  ; generallight2.S:1251
+c38e: 700f67e7ca00f81100 f14 imm=1100 C=1e r95=1e r71=1 r62=1ffc218170  ; generallight2.S:1276
+c38f: 68000007ec09c0eeb7 f13 cc=211 r148=2e0 P=13 M=47f r110=69d r62=1ffc002973  ; generallight2.S:1269
+c390: 700e67e7ca00f81100 f14 imm=1100 C=1e r95=1c r71=1 r62=1ffc218170  ; generallight2.S:1279
+c391: 5a108007fe2316431f f11 cc=211 A=8 D=10 r148=3f8 P=0 r128=28 M=462 r110=475 r99=8 r62=1ffc8839ff  ; generallight2.S:1253
+c392: 700ee7e7ca00f81100 f14 imm=1100 C=1e r95=1d r71=1 r62=1ffc218170  ; generallight2.S:1280
+c393: 68000007ec2df6b756 f13 cc=91 r148=2da Q=1b M=6f6 r110=63f r62=1ffc003474  ; generallight2.S:1185
+c394: 700f67e7ca00f81100 f14 imm=1100 C=1e r95=1e r71=1 r62=1ffc218170  ; generallight2.S:1281
+c395: 58003e07f627be16d2 f11 cc=91 r148=256 Q=1b M=4f7 r110=485 r62=1ffc00357b  ; generallight2.S:1232
+c396: 68000007ec0d40f238 f13 cc=211 r148=300 P=1a r128=d M=47f r110=6af r62=1ffc002973  ; generallight2.S:1186
+c397: 68000007e82fe09620 f13 r148=11 M=6e0 r110=43d r62=1ffc00317c  ; generallight2.S:1328
+c398: 68000007e80fc8e716 f13 r148=2d8 M=4ff r110=687 r62=1ffc003073  ; generallight2.S:1185
+c399: 68000007ec0dc0977b f13 cc=211 r148=37b P=1b M=47f r110=695 r62=1ffc003973  ; generallight2.S:1325
+c39a: 68000007ec0d40fbb8 f13 cc=211 r148=300 P=1a M=47f r110=68b r62=1ffc0028f3  ; generallight2.S:1186
+c39b: 58003e07fe23ec977a f11 r148=35b M=47d r110=61d r62=1ffc003177  ; generallight2.S:1234
+c39c: 58003207f42306dc35 f11 cc=291 r148=15 P=19 Q=1a r128=c M=460 r110=509 r62=1ffc001dff  ; generallight2.S:1333
+c39d: 68000007e82fe09677 f13 r148=2f3 M=6e0 r110=43d r62=1ffc00317c  ; generallight2.S:1270
+c39e: 58003e07fe27e2b2db f11 r148=376 r128=25 M=4fc r110=4a5 r62=1ffc00317b  ; generallight2.S:1185
+c39f: 5a50b207fe2306533a f11 cc=211 A=9 D=10 r148=359 P=19 r128=2c M=460 r110=475 r99=8 r62=1ffc8839ff  ; generallight2.S:1283
+c3a0: 68000007e80fc8f698 f13 r148=18 r128=25 M=4ff r110=6a5 r62=1ffc001173  ; generallight2.S:1186
+c3a1: 68002e35e80fc0fed0 f13 C=3 F=17 r128=2 M=47f r110=6a9 r95=17 r62=1ffc2181f3  ; generallight2.S:1286
+c3a2: 68000007e80fc0c4ba f13 r148=340 r128=2c M=47f r110=699 r62=1ffc0021f3  ; generallight2.S:1185
+c3a3: 68000007e80fc0fec8 f13 r128=1 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:1287
+c3a4: 68000007e80fc0c4b9 f13 r148=320 r128=2c M=47f r110=699 r62=1ffc0021f3  ; generallight2.S:1186
+c3a5: 68002e35a82fe8329a f13 C=3 F=16 r148=354 r128=25 M=6e8 r110=13f r95=17 r62=1ffc21b17c  ; generallight2.S:1290
+c3a6: 68000007e80fc09442 f13 r148=42 M=47f r110=695 r62=1ffc003173  ; generallight2.S:1329
+c3a7: 58003e357fe3479a94 f11 C=3 F=15 r148=14 r128=25 M=468 r110=501 r95=17 r62=1ffc21917f  ; generallight2.S:1291
+c3a8: 57e04a07fe22559484 f10 r213=3 B=5 E=20 r148=84 M=44a r110=795 r62=1ffc44317b r25=3e69c00  ; generallight2.S:1334
+c3a9: 57eeca34c7e3031dac f10 r213=3 cc=91 B=5 C=3 E=2e F=13 r148=18d Q=3 r128=38 M=460 r110=429 r95=37 r62=1ffc65b5ff r25=3e69c00  ; generallight2.S:1302
+c3aa: 5a118807fe2306507b f11 cc=211 A=8 D=11 r148=363 P=4 r128=2c M=460 r110=475 r99=8 r62=1ffc8839ff  ; generallight2.S:1330
+c3ab: d7eecc34b9e3031ce8 f10 w71=1 r213=3 cc=91 B=6 C=3 E=2e F=12 r148=107 Q=1c r128=38 M=460 r110=429 r95=37 r62=1ffc65b5ff r25=3e69c00  ; generallight2.S:1303
+c3ac: 6a518007ec00c0f8a4 f13 cc=211 A=9 D=11 r148=4 P=1 M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:1364
+c3ad: 57e14a07fe2a55f81a f10 r213=3 B=5 E=21 r148=340 r128=2e M=54a r110=799 r62=1ffc4421fb r25=3e69c00  ; generallight2.S:1338
+c3ae: 6a11ae346c2de0feb0 f13 cc=91 A=8 C=3 D=11 F=11 Q=1b r128=6 M=6e0 r110=57d r99=8 r95=17 r62=1ffca985fc  ; generallight2.S:1335
+c3af: 50a24a07fe2257d0bc f10 r213=3 cc=211 B=5 E=22 r148=1c P=2 M=44a r110=7b5 r62=1ffc44197b r25=3e69c00  ; generallight2.S:1382
+c3b0: 6a51ae33e80fe8341a f13 A=9 C=3 D=11 F=f r148=340 r110=2bf r99=8 r95=17 r62=1ffca9a070  ; generallight2.S:1338
+c3b1: 561d4a07fe2257d0a1 f10 r213=3 cc=211 B=5 E=1d r148=1 P=18 M=44a r110=7b5 r62=1ffc44197b r25=3e69c00  ; generallight2.S:1385
+c3b2: 50de4a07fe2257cca0 f10 r213=3 cc=211 B=5 E=1e P=3 M=44a r110=789 r62=1ffc4409fb r25=3e69c00  ; generallight2.S:1414
+c3b3: 696eae33ac224a7620 f13 cc=91 A=5 C=3 D=2e F=e Q=4 r128=d M=6ca r110=2bd r99=8 r95=17 r62=1ffca98578  ; generallight2.S:1339
+c3b4: 69ae8007ec20caf6a0 f13 cc=91 A=6 D=2e Q=1 M=6ca r99=8 r62=1ffc880578  ; generallight2.S:1421
+c3b5: 3900016fc01008ff45 f7  r219=1 A=4 C=16 r176=0 F=3f G=4 M=47f r110=681 r62=1ffcb3c173  ; generallight2.S:1436
+c3b6: 571f4a07fe22570c80 f10 r213=3 cc=211 B=5 E=1f P=1c r128=24 M=44a r110=7a9 r62=1ffc4409fb r25=3e69c00  ; generallight2.S:1338
+c3b7: 60000a336a1a2e9fd0 f12 r213=3 B=5 C=3 E=1a F=d r128=5 M=47f r110=6ad r95=37 r62=1ffc658173 r25=3e69c00  ; generallight2.S:1424
+c3b8: d7dacc07c823052083 f10 w71=1 r213=3 cc=91 B=6 E=1a r148=64 Q=4 r128=5 M=460 r110=42d r95=20 r62=1ffc44357f r25=3e69c00  ; generallight2.S:1363
+c3b9: 68000007e80fd0c4bb f13 r148=360 r128=2c M=57f r110=699 r62=1ffc0021f3  ; generallight2.S:1339
+c3ba: 57dbca07c223052c3c f10 r213=3 cc=91 B=5 E=1b r148=381 Q=1 r128=1d M=460 r110=42d r95=20 r62=1ffc44357f r25=3e69c00  ; generallight2.S:1366
+c3bb: b8000c07edfc4537db f7  w71=1 r213=3 B=6 E=2d r148=37e M=6cb r110=23f r62=1ffc443074 r25=3e69c00  ; generallight2.S:1339
+c3bc: e0000c46aa1b2e9d41 f12 w71=1 r213=3 B=6 C=4 E=1b F=1a r148=20 M=47f r110=69d r95=37 r62=1ffc65a173 r25=3e69c00  ; generallight2.S:1428
+c3bd: 58000a07fe2306300e f11 cc=211 r148=1c0 P=5 r128=2c M=460 r110=409 r62=1ffc0039ff  ; generallight2.S:1376
+c3be: 60000a466a1c2e9d44 f12 r213=3 B=5 C=4 E=1c F=19 r148=80 M=47f r110=69d r95=37 r62=1ffc65a173 r25=3e69c00  ; generallight2.S:1430
+c3bf: e0000c07ea1c009d41 f12 w71=1 r213=3 B=6 E=1c r148=20 M=47f r110=69d r95=20 r62=1ffc442173 r25=3e69c00  ; generallight2.S:1431
+c3c0: 69456e46286fe2eeba f13 r220=1 A=5 C=4 D=5 F=18 r148=340 M=6e2 r110=4fd r99=4 r95=17 r62=1ffca9a17c  ; generallight2.S:1344
+c3c1: 58003e07fe23039325 f11 r148=b9 r128=24 M=460 r110=429 r62=1ffc0031ff  ; generallight2.S:1339
+c3c2: e8002e47686fe2eebb f13 w71=1 r220=1 C=4 F=1d r148=360 M=6e2 r110=4fd r95=17 r62=1ffc21a17c  ; generallight2.S:1346
+c3c3: 68000007ec2160f442 f13 cc=91 r148=2 Q=2 r128=15 M=6e0 r110=53d r62=1ffc00157c  ; generallight2.S:1383
+c3c4: 58003e4707ea55979a f11 cc=91 C=4 F=1c r148=35c Q=3 M=54a r110=795 r95=17 r62=1ffc21b57b  ; generallight2.S:1338
+c3c5: 68000007e80fd0c4bb f13 r148=360 r128=2c M=57f r110=699 r62=1ffc0021f3  ; generallight2.S:1339
+c3c6: 68000007ec224af8a0 f13 cc=91 Q=4 M=6ca r110=7bd r62=1ffc000578  ; generallight2.S:1440
+c3c7: 68000007ec20e0f458 f13 cc=91 r148=18 Q=1 r128=15 M=6e0 r110=53d r62=1ffc00157c  ; generallight2.S:1386
+c3c8: 58003e46cbe255f003 f11 cc=91 C=4 F=1b r148=60 Q=5 r128=2c M=44a r110=799 r95=17 r62=1ffc21a5fb  ; generallight2.S:1338
+c3c9: 68000007e80fc0c4a5 f13 r148=a0 r128=2c M=47f r110=699 r62=1ffc0021f3  ; generallight2.S:1339
+c3ca: 280000224e0044f8a0 f5  imm=9c C=1e M=6ca r110=7bd r95=2 r71=1 r62=1ffc218178  ; generallight2.S:1447
+c3cb: 68000007ec214af8a0 f13 cc=91 Q=2 M=6ca r110=7bd r62=1ffc000578  ; generallight2.S:1450
+c3cc: 60000a07c0ad009c84 f12 r213=2 r198=1 B=5 E=2d r148=80 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; generallight2.S:1399
+c3cd: e0000c07c0ad009c81 f12 w71=1 r213=2 r198=1 B=6 E=2d r148=20 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; generallight2.S:1400
+c3ce: 616e8a07ea2c009e82 f12 r213=3 A=5 B=5 D=2e E=2c r148=2 M=47f r110=6b5 r99=8 r95=20 r62=1ffccc1173 r25=3e69c00  ; generallight2.S:1393
+c3cf: 68000007e82fcaf8a0 f13 M=6ca r110=7bd r62=1ffc000178  ; generallight2.S:1453
+c3d0: e1ae8c07ea2c009e81 f12 w71=1 r213=3 A=6 B=6 D=2e E=2c r148=1 M=47f r110=6b5 r99=8 r95=20 r62=1ffccc1173 r25=3e69c00  ; generallight2.S:1395
+c3d1: 11468007e40044f460 f2  r217=1 cc=91 A=5 D=6 G=4 Q=0 r128=1d M=6ca r110=5bd r99=8 r62=1ffc884578  ; generallight2.S:1448
+c3d2: 77f24007c8a4f80000 f14 xfer4 c5 cc=11 -> 0000 <HereWeGo> seq=14fe5 r25=3e39c00  ; generallight2.S:1468
+c3d3: 58000207c41250a002 f11 cc=291 r148=40 P=1 Q=2 r128=5 M=24a r110=59d r62=1ffc002d7a  ; generallight2.S:1451
+c3d6: 77fa40b78881580000 f14 r219=1 C=b F=1e G=b r62=1ffc23c170  ; generallight2.S:1461
+c3d7: 77fa4047c881180000 f14 r219=1 C=4 G=3 r62=1ffc23c170  ; generallight2.S:1460
+mLiInfVInfLi:
+c3db: 6a0f8007e80fc0f8a3 f13 A=8 D=f r148=3 M=47f r110=6b5 r99=8 r62=1ffc881173  ; generallight2.S:91
+c3dc: 6a4f8007ec09c0f8a3 f13 cc=211 A=9 D=f r148=3 P=13 M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:93
+c3dd: 6a108007e80fc0f8a4 f13 A=8 D=10 r148=4 M=47f r110=6b5 r99=8 r62=1ffc881173  ; generallight2.S:96
+c3df: 72cbe16fca00f80000 f14 A=b C=16 r176=0 F=3f r95=17 r62=1ffcb18170  ; generallight2.S:179
+c3e0: 6a508007e80fc0f8a4 f13 A=9 D=10 r148=4 M=47f r110=6b5 r99=8 r62=1ffc881173  ; generallight2.S:99
+c3e1: 6080004fe8002f1fa6 f12 A=2 C=4 r176=0 F=3f r128=34 M=6e0 r110=57d r95=17 r62=1ffcb181fc  ; generallight2.S:98
+c3e2: 6a118007e80fc0f8a5 f13 A=8 D=11 r148=5 M=47f r110=6b5 r99=8 r62=1ffc881173  ; generallight2.S:103
+c3e4: 68000007e82fe0c4b3 f13 r148=260 r128=2c M=6e0 r110=47d r62=1ffc0021fc  ; generallight2.S:101
+c3e5: 6a518007e80fc0f8a5 f13 A=9 D=11 r148=5 M=47f r110=6b5 r99=8 r62=1ffc881173  ; generallight2.S:106
+c3e6: 68000007ec28e0fea1 f13 cc=91 Q=11 r128=c M=6e0 r110=57d r62=1ffc0005fc  ; generallight2.S:105
+c3e7: 57c64a07e636559400 f10 r213=3 cc=91 B=5 E=6 Q=13 M=6ca r110=7bd r62=1ffc440578 r25=3e69c00  ; generallight2.S:180
+c3e8: 68000007ec696af8a0 f13 r220=1 cc=91 Q=12 M=6ea r110=7bd r62=1ffc000578  ; generallight2.S:164
+c3e9: 68002e35ec27e0fea1 f13 cc=91 C=3 F=17 Q=f r128=c M=6e0 r110=57d r95=17 r62=1ffc2185fc  ; generallight2.S:108
+c3ea: 5a0fa007fe23e71500 f11 cc=211 A=8 D=f P=10 r128=5 M=47c r110=5b5 r99=8 r62=1ffc88197b  ; generallight2.S:111
+c3eb: 6a4fae35ac04c0f8a0 f13 cc=211 A=9 C=3 D=f F=16 P=9 M=47f r110=6b5 r99=8 r95=17 r62=1ffca99973  ; generallight2.S:113
+c3ec: 6a108007ec0440f8a1 f13 cc=211 A=8 D=10 r148=1 P=8 M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:116
+c3ed: 6a50ae356c0540f8a1 f13 cc=211 A=9 C=3 D=10 F=15 r148=1 P=a M=47f r110=6b5 r99=8 r95=17 r62=1ffca99973  ; generallight2.S:119
+c3ee: 5813bed0d7a257d200 f11 cc=91 C=d D=13 F=3 Q=b r128=28 M=44a r110=6b9 r99=8 r95=13 r62=1ffca985fb  ; generallight2.S:167
+c3ef: 5a119834dbe257d0a2 f11 cc=291 A=8 C=3 D=11 F=13 r148=2 P=c Q=d M=44a r110=7b5 r99=8 r95=17 r62=1ffca99d7b  ; generallight2.S:123
+c3f0: 5a519c07cc2257d0a2 f11 cc=291 A=9 D=11 r148=2 P=e Q=6 M=44a r110=7b5 r99=8 r62=1ffc881d7b  ; generallight2.S:126
+c3f1: 6944ae3481a6caf6a0 f13 cc=111 r198=3 A=5 C=3 D=4 F=12 Q=d M=6ca r99=8 r95=17 r62=1ffda98578  ; generallight2.S:171
+c3f2: 58148e07e016575400 f11 cc=291 D=14 P=7 Q=10 M=2ca r99=8 r62=1ffc880d79  ; generallight2.S:186
+c3f3: 68002e34683fe0ff45 f13 C=3 F=11 M=6e0 r110=5bd r99=2 r95=17 r62=1ffc21817c r25=3ea9c00  ; generallight2.S:195
+c3f4: 69408007caa6caf6a0 f13 cc=111 r198=15 A=5 Q=d M=6ca r99=8 r62=1ffd880578  ; generallight2.S:174
+c3f5: 11469c33ef1044f8a0 f2  r217=1 cc=91 A=5 C=3 D=6 F=f G=f Q=8 M=6ca r110=7bd r99=8 r95=17 r62=1ffca9c578  ; generallight2.S:137
+c3f7: 58001233bfd7e5340f f11 cc=211 C=3 F=e r148=1e0 P=9 M=2fc r110=4bd r95=17 r62=1ffc21a979  ; generallight2.S:139
+c3f8: 3900016fc00c499510 f7  r219=1 A=4 C=16 r176=0 F=3f G=3 r148=208 M=6e0 r110=43d r62=1ffcb3f17c  ; generallight2.S:118
+c3f9: 58001407fe17053549 f11 cc=211 r148=12a P=a M=2e0 r110=43d r62=1ffc00397d  ; generallight2.S:121
+c3fa: 68002e336c25caf8a0 f13 cc=91 C=3 F=d Q=b M=6ca r110=7bd r95=17 r62=1ffc218578  ; generallight2.S:141
+c3fb: 38000047c07e08f60b f7  r222=1 C=4 r148=b r128=5 M=47f r110=6a5 r62=1ffc219173  ; generallight2.S:173
+c3fc: 58003e36a1d7048180 f11 cc=91 C=3 F=1a r148=c Q=10 r128=5 M=2e0 r110=53d r95=17 r62=1ffc21957d  ; generallight2.S:125
+c3fd: 58001c07d81301a1df f11 cc=291 r148=3ee P=e Q=c r128=5 M=260 r110=51d r62=1ffc003d7e  ; generallight2.S:128
+c3fe: 5945be364bd6575400 f11 cc=91 A=5 C=3 D=5 F=19 Q=5 M=2ca r99=8 r95=17 r62=1ffca98579  ; generallight2.S:140
+c3ff: 68000007e83fe0f490 f13 r148=10 r128=25 M=6e0 r110=53d r99=2 r62=1ffc00117c r25=3ea9c00  ; generallight2.S:272
+c400: 614e8a362a0e2f1fc4 f12 r213=3 A=5 B=5 C=3 D=e E=e F=18 r128=25 M=6e0 r110=5bd r99=8 r95=17 r62=1ffced817c r25=3e69c00  ; generallight2.S:145
+c401: c18e8c07ce60007fc5 f8  w71=1 r213=3 A=6 B=6 D=e E=e M=2e0 r110=5bd r99=8 r62=1ffccc017d r25=3e69c00  ; generallight2.S:142
+c402: 614f8a77ea0f391fc4 f12 r213=3 A=5 B=5 C=7 D=f E=f r128=25 M=6e0 r110=5bd r99=8 r95=1c r62=1ffced817c r25=3e69c00  ; generallight2.S:149
+c403: e18f8c07ea0f011fc5 f12 w71=1 r213=3 A=6 B=6 D=f E=f M=6e0 r110=5bd r99=8 r62=1ffccc017c r25=3e69c00  ; generallight2.S:151
+c404: 68003a77ec21caf8a0 f13 cc=91 C=7 Q=3 M=6ca r110=7bd r95=1d r62=1ffc218578  ; generallight2.S:201
+c405: 61508a07ea10011fc4 f12 r213=3 A=5 B=5 D=10 E=10 r128=25 M=6e0 r110=5bd r99=8 r62=1ffccc017c r25=3e69c00  ; generallight2.S:153
+c406: 68003c77ec224af8a0 f13 cc=91 C=7 Q=4 M=6ca r110=7bd r95=1e r62=1ffc218578  ; generallight2.S:203
+c407: e1908c07ea10011fc6 f12 w71=1 r213=3 A=6 B=6 D=10 E=10 r128=35 M=6e0 r110=5bd r99=8 r62=1ffccc017c r25=3e69c00  ; generallight2.S:155
+c408: 68003877ec22caf8a0 f13 cc=91 C=7 Q=5 M=6ca r110=7bd r95=1c r62=1ffc218578  ; generallight2.S:205
+c409: 68000007e86fe294b0 f13 r220=1 r148=205 M=6e2 r110=43d r62=1ffc00317c  ; generallight2.S:241
+c40a: 68003a77ec28e897d0 f13 cc=91 C=7 r148=21e Q=11 M=6e8 r110=43d r95=1d r62=1ffc21b57c  ; generallight2.S:242
+c40b: 68000007ec26e897cc f13 cc=91 r148=19e Q=d M=6e8 r110=43d r62=1ffc00357c  ; generallight2.S:249
+c40c: 68003c77e83fca940d f13 C=7 r148=1a0 M=6ca r110=4bd r99=2 r95=1e r62=1ffc21a178 r25=3ea9c00  ; generallight2.S:275
+c40d: e8000007e86fe294ac f13 w71=1 r220=1 r148=185 M=6e2 r110=43d r62=1ffc00317c  ; generallight2.S:248
+c40e: 58003e07de2256f506 f11 cc=91 r148=6 Q=f r128=5 M=44a r110=7a5 r62=1ffc00157b  ; generallight2.S:252
+c40f: 58003407e22252a11f f11 cc=291 r148=3e8 P=1a Q=11 r128=5 M=44a r110=4a5 r62=1ffc003d7b  ; generallight2.S:257
+c410: 58003e375be362a8f1 f11 cc=91 C=3 F=1d r148=227 Q=d r128=15 M=46c r110=4a5 r95=17 r62=1ffc21b57b  ; generallight2.S:132
+c411: 58000407e02362a8ef f11 cc=291 r148=1e7 P=2 Q=10 r128=15 M=46c r110=4a5 r62=1ffc003d7b  ; generallight2.S:134
+c412: 480080370073043111 f9  r213=3 C=3 F=1c r148=228 r128=25 M=460 r110=595 r99=8 r95=17 r62=1ffcedb17f r25=3e69c00  ; generallight2.S:256
+c413: 58000207d8225594cd f11 cc=291 r148=1a6 P=1 Q=c M=44a r110=795 r62=1ffc003d7b  ; generallight2.S:253
+c414: 60018036ea012f1fc4 f12 r213=3 C=3 D=1 E=1 F=1b r128=25 M=6e0 r110=5bd r99=8 r95=17 r62=1ffced817c r25=3e69c00  ; generallight2.S:262
+c415: 702267e7fe80f8009d f14 imm=9d r211=2 r198=7d C=1e r95=4 r71=1 r62=1ffd218170  ; generallight2.S:281
+c416: 280280224ec249ff44 f5  imm=9d r213=3 C=1e D=2 E=2 r128=25 M=6e0 r110=5bd r99=8 r95=2 r71=1 r62=1ffced817c r25=3e69c00  ; generallight2.S:264
+c417: 58003607d82362a170 f11 cc=291 r148=20b P=1b Q=c r128=5 M=46c r110=4a5 r62=1ffc003d7b  ; generallight2.S:131
+c418: 58003e07c02255952f f11 cc=91 r148=1e9 Q=0 M=44a r110=795 r62=1ffc00357b  ; generallight2.S:285
+c419: 58003807de2362a94c f11 cc=291 r148=18a P=1c Q=f r128=15 M=46c r110=4a5 r62=1ffc003d7b  ; generallight2.S:133
+c41a: 58003e07c22255954f f11 cc=91 r148=1ea Q=1 M=44a r110=795 r62=1ffc00357b  ; generallight2.S:286
+c41b: 58003e07c42255956f f11 cc=91 r148=1eb Q=2 M=44a r110=795 r62=1ffc00357b  ; generallight2.S:287
+c41c: 60038007c083011fc4 f12 r213=2 r198=1 D=3 E=3 r128=25 M=6e0 r110=5bd r99=8 r62=1ffdcc017c r25=3e69c00  ; generallight2.S:290
+c41d: 1800c12788e108952c f3  xfer4 c4 cc=11 -> 009e imm=9e r211=3 C=1e r148=189 M=47f r110=695 r95=4 seq=14fe4 r71=1 r62=1ffc21b173 r25=3e39c00  ; generallight2.S:282
+c41e: 60048007c084011fc4 f12 r213=2 r198=1 D=4 E=4 r128=25 M=6e0 r110=5bd r99=8 r62=1ffdcc017c r25=3e69c00  ; generallight2.S:292
+c41f: 60058007c085011fc4 f12 r213=2 r198=1 D=5 E=5 r128=25 M=6e0 r110=5bd r99=8 r62=1ffdcc017c r25=3e69c00  ; generallight2.S:294
+c420: b84082b780ac49eca1 f7  w71=1 r219=1 r213=3 A=1 B=1 C=b F=1e G=b r148=20 M=6e0 r110=4bd r99=8 r62=1ffcefe17c r25=3e69c00  ; generallight2.S:298
+c421: b8418237c18c49eca2 f7  w71=1 r219=1 r213=3 A=1 B=1 C=3 D=1 E=1 G=3 r148=40 M=6e0 r110=4bd r99=8 r62=1ffcefe17c r25=3e69c00  ; generallight2.S:300
+c422: b84282f7c29049ecba f7  w71=1 r219=1 r213=3 A=1 B=1 C=f D=2 E=2 G=4 r148=340 M=6e0 r110=4bd r99=8 r62=1ffcefe17c r25=3e69c00  ; generallight2.S:302
+c423: e0438207c083011fc6 f12 w71=1 r213=2 r198=1 A=1 B=1 D=3 E=3 r128=35 M=6e0 r110=5bd r99=8 r62=1ffdcc017c r25=3e69c00  ; generallight2.S:311
+c424: e0448207c084011d1c f12 w71=1 r213=2 r198=1 A=1 B=1 D=4 E=4 r148=380 M=6e0 r110=4bd r99=8 r62=1ffdcc217c r25=3e69c00  ; generallight2.S:313
+c425: e0458207c085011d1b f12 w71=1 r213=2 r198=1 A=1 B=1 D=5 E=5 r148=360 M=6e0 r110=4bd r99=8 r62=1ffdcc217c r25=3e69c00  ; generallight2.S:315
+mLiLocVInfLi:
+c426: 696f8007ec2760eca0 f13 cc=91 A=5 D=2f Q=e M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:403
+c427: 69af8007ec27e0eca0 f13 cc=91 A=6 D=2f Q=f M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:405
+c428: 69708007ec29e0eca1 f13 cc=91 A=5 D=30 r148=20 Q=13 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:407
+c429: 69b08007ec2960eca1 f13 cc=91 A=6 D=30 r148=20 Q=12 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:409
+c42a: 69718007ec2860eca2 f13 cc=91 A=5 D=31 r148=40 Q=10 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:411
+c42b: 68000007e80fc0fec9 f13 r128=9 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:417
+c42c: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:420
+c42f: 68000007e80fc0fec9 f13 r128=9 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:425
+c430: 62c0016fe8002f1fa5 f12 A=b C=16 r176=0 F=3f r128=2c M=6e0 r110=57d r95=17 r62=1ffcb181fc  ; generallight2.S:421
+c431: 69b18007ec28e0eca2 f13 cc=91 A=6 D=31 r148=40 Q=11 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:413
+c432: 68000007e80fc095ef f13 r148=1ef M=47f r110=695 r62=1ffc003173  ; generallight2.S:418
+c433: 6080004fe8002e8252 f12 A=2 C=4 r176=0 F=3f r148=252 M=47f r110=695 r95=17 r62=1ffcb1b173  ; generallight2.S:422
+c434: 68000007ec2560fea8 f13 cc=91 Q=a r128=5 M=6e0 r110=57d r62=1ffc0005fc  ; generallight2.S:426
+c436: 68000007e80fc0fec9 f13 r128=9 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:427
+c437: 68000007e82fe0fea5 f13 r128=2c M=6e0 r110=57d r62=1ffc0001fc  ; generallight2.S:423
+c439: 30000a07c6cc447820 f6  r213=3 cc=91 B=5 E=6 Q=13 r128=d M=6ca r110=3bd r62=1ffc440578 r25=3e69c00  ; generallight2.S:486
+c43a: 68000007ec696af8a0 f13 r220=1 cc=91 Q=12 M=6ea r110=7bd r62=1ffc000578  ; generallight2.S:432
+c43b: 58003e07d22307f428 f11 cc=91 Q=9 r128=5 M=460 r110=541 r62=1ffc0005ff  ; generallight2.S:428
+c43c: 6a0f8007ec05c0f8ae f13 cc=211 A=8 D=f r148=e P=b M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:466
+c43d: 6a4f8007ec0640f8af f13 cc=211 A=9 D=f r148=f P=c M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:468
+c43e: 6a108007ec06c0f8b3 f13 cc=211 A=8 D=10 r148=13 P=d M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:471
+c43f: 68000007e80fd0c4aa f13 r148=140 r128=2c M=57f r110=699 r62=1ffc0021f3  ; generallight2.S:486
+c440: 6a508007ec07407832 f13 cc=211 A=9 D=10 r148=12 P=e r128=d M=47f r110=2b5 r99=8 r62=1ffc881973  ; generallight2.S:474
+c441: 6a118007ec08406a0a f13 cc=211 A=8 D=11 r148=150 P=10 M=47f r110=2b7 r99=8 r62=1ffc883873  ; generallight2.S:478
+c442: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+c443: 68000007ec0440fea5 f13 cc=211 P=8 r128=2c M=47f r110=689 r62=1ffc0009f3
+c444: 5a51a2d0dfa257d0b1 f11 cc=291 A=9 C=d D=11 F=3 r148=11 P=11 Q=f M=44a r110=7b5 r99=8 r95=13 r62=1ffca99d7b  ; generallight2.S:436
+c445: 69448007c1a7caf6a0 f13 cc=111 r198=3 A=5 D=4 Q=f M=6ca r99=8 r62=1ffd880578  ; generallight2.S:439
+c446: 11468007ef3e0ac4a9 f2  r217=1 A=5 D=6 G=f r148=120 r128=2c M=57f r110=699 r99=8 r62=1ffc8861f3  ; generallight2.S:487
+c447: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:486
+c448: 68000007e80fe83409 f13 r148=120 r110=2bf r62=1ffc002070  ; generallight2.S:487
+c449: 69454007e86fe2eeaa f13 r220=1 A=5 D=5 r148=140 M=6e2 r110=4fd r99=4 r62=1ffc88217c  ; generallight2.S:492
+c44a: 68000007ec0840fea5 f13 cc=211 P=10 r128=2c M=47f r110=689 r62=1ffc0009f3
+c44b: 68000007e82fe095ab f13 r148=16d M=6e0 r110=43d r62=1ffc00317c  ; generallight2.S:473
+c44c: 68000007e80fd0c5aa f13 r148=140 M=57f r110=699 r62=1ffc0021f3  ; generallight2.S:486
+c44d: e8000007e86fe2eea9 f13 w71=1 r220=1 r148=120 M=6e2 r110=4fd r62=1ffc00217c  ; generallight2.S:494
+c44e: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:487
+c44f: 68000007ec28e0f410 f13 cc=91 r148=10 Q=11 r128=5 M=6e0 r110=53d r62=1ffc00157c  ; generallight2.S:480
+c450: 68002e35e80fc0c4a8 f13 C=3 F=17 r148=100 r128=2c M=47f r110=699 r95=17 r62=1ffc21a1f3  ; generallight2.S:486
+c451: 68000007e82fe095cc f13 r148=18e M=6e0 r110=43d r62=1ffc00317c  ; generallight2.S:476
+c452: 68002e35a80fd0c4a9 f13 C=3 F=16 r148=120 r128=2c M=57f r110=699 r95=17 r62=1ffc21a1f3  ; generallight2.S:487
+c453: 6a0f8007ec06c0f8a0 f13 cc=211 A=8 D=f P=d M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:446
+c454: 68002e354088c0fee1 f13 cc=411 r198=1 C=3 F=15 P=11 r128=c M=47f r110=6a9 r95=17 r62=1ffd2189f3  ; generallight2.S:499
+c455: 68000007ec2860f411 f13 cc=91 r148=11 Q=10 r128=5 M=6e0 r110=53d r62=1ffc00157c  ; generallight2.S:483
+c456: 58003e34d9e255f010 f11 cc=91 C=3 F=13 r148=200 Q=c r128=2c M=44a r110=799 r95=17 r62=1ffc21a5fb  ; generallight2.S:487
+c457: 6a4f8007e80fc0f8a0 f13 A=9 D=f M=47f r110=6b5 r99=8 r62=1ffc881173  ; generallight2.S:448
+c458: 5a109c348de257d0a1 f11 cc=291 A=8 C=3 D=10 F=12 r148=1 P=e Q=6 M=44a r110=7b5 r99=8 r95=17 r62=1ffca99d7b  ; generallight2.S:451
+c459: 5a50be07ce2257d0a1 f11 cc=91 A=9 D=10 r148=1 Q=7 M=44a r110=7b5 r99=8 r62=1ffc88157b  ; generallight2.S:454
+c45a: e8002e33c08840fee1 f13 w71=1 cc=411 r198=1 C=3 F=f P=10 r128=c M=47f r110=6a9 r95=17 r62=1ffd2189f3  ; generallight2.S:500
+c45c: 58001033bfd7e53411 f11 cc=211 C=3 F=e r148=220 P=8 M=2fc r110=4bd r95=17 r62=1ffc21a979  ; generallight2.S:526
+c45d: 6a118007ec06c0f8a2 f13 cc=211 A=8 D=11 r148=2 P=d M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:458
+c45e: 580012337fd706a5e0 f11 cc=211 C=3 F=d P=9 r128=3d M=2e0 r110=57d r95=17 r62=1ffc2189fd  ; generallight2.S:456
+c45f: 6a518007e80fc0f8a2 f13 A=9 D=11 r148=2 M=47f r110=6b5 r99=8 r62=1ffc881173  ; generallight2.S:461
+c460: 5813be07d42257d400 f11 cc=91 D=13 Q=a r128=28 M=44a r110=7b9 r99=8 r62=1ffc8805fb  ; generallight2.S:557
+c461: 58001c07fe170535cd f11 cc=211 r148=1ae P=e M=2e0 r110=43d r62=1ffc00397d  ; generallight2.S:453
+c462: 58003e07fe13e65410 f11 r148=200 M=27c r110=4bd r62=1ffc00217a  ; generallight2.S:610
+c463: 58001607ca1706a420 f11 cc=291 P=b Q=5 r128=c M=2e0 r110=57d r62=1ffc000dfd  ; generallight2.S:463
+c464: 68148007e83fe0ff44 f13 D=14 r128=25 M=6e0 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; generallight2.S:619
+c465: 68000007ec214af8a0 f13 cc=91 Q=2 M=6ca r110=7bd r62=1ffc000578  ; generallight2.S:529
+c466: 58003e07fe22570400 f11 r128=4 M=44a r110=6a9 r62=1ffc0001fb  ; generallight2.S:621
+c467: 58001c3447d301a9be f11 cc=291 C=3 F=11 r148=3cd P=e Q=3 r128=15 M=260 r110=51d r95=17 r62=1ffc21bd7e  ; generallight2.S:460
+c468: 58001a07c81341a7de f11 cc=291 r148=3de P=d Q=4 r128=d M=268 r110=51d r62=1ffc003d7e  ; generallight2.S:566
+c469: 69408007caa7caf6a0 f13 cc=111 r198=15 A=5 Q=f M=6ca r99=8 r62=1ffd880578  ; generallight2.S:442
+c46a: 68000007e83fe0fe84 f13 r128=20 M=6e0 r110=57d r99=2 r62=1ffc0001fc r25=3ea9c00  ; generallight2.S:631
+c46b: 414e8a47ce60085d0e f8  r222=1 r213=3 A=5 B=5 C=4 D=e E=e r148=1c0 M=6e0 r110=4bd r99=8 r62=1ffceda17c r25=3e69c00  ; generallight2.S:441
+c46c: e18e8c07ea0e011d0e f12 w71=1 r213=3 A=6 B=6 D=e E=e r148=1c0 M=6e0 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; generallight2.S:534
+c46d: 614f8a77ea0f391d0b f12 r213=3 A=5 B=5 C=7 D=f E=f r148=160 M=6e0 r110=4bd r99=8 r95=1c r62=1ffceda17c r25=3e69c00  ; generallight2.S:536
+c46e: 58001607de17448fc0 f11 cc=291 r148=1e P=b Q=f r128=1d M=2e8 r110=53d r62=1ffc001d7d  ; generallight2.S:559
+c46f: 68003a77e86fe29583 f13 r220=1 C=7 r148=6c M=6e2 r110=43d r95=1d r62=1ffc21b17c  ; generallight2.S:564
+c470: e18f8c07ea0f011d0b f12 w71=1 r213=3 A=6 B=6 D=f E=f r148=160 M=6e0 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; generallight2.S:538
+c471: 68003c77c0a6ca941f f13 cc=111 r198=1 C=7 r148=3e0 Q=d M=6ca r110=4bd r95=1e r62=1ffd21a578  ; generallight2.S:567
+c472: 61508a07ea10011d02 f12 r213=3 A=5 B=5 D=10 E=10 r148=40 M=6e0 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; generallight2.S:540
+c473: 68003877ec07c0f628 f13 cc=211 C=7 r148=8 P=f r128=d M=47f r110=6a5 r95=1c r62=1ffc219973  ; generallight2.S:578
+c474: 68000007e83fca940f f13 r148=1e0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; generallight2.S:639
+c475: 68003a77e80fc0f667 f13 C=7 r148=7 r128=1d M=47f r110=6a5 r95=1d r62=1ffc219173  ; generallight2.S:577
+c476: b900016fc0105e9585 f7  w71=1 r220=1 r219=1 A=4 C=16 r176=0 F=3f G=4 r148=ac M=6e2 r110=43d r62=1ffcb3f17c  ; generallight2.S:570
+c477: 68003c77e80fc094cf f13 C=7 r148=1e6 M=47f r110=695 r95=1e r62=1ffc21b173  ; generallight2.S:576
+c478: e8000007c0a74a941f f13 w71=1 cc=111 r198=1 r148=3e0 Q=e M=6ca r110=4bd r62=1ffd002578  ; generallight2.S:573
+c479: 58001a07d8236c946d f11 cc=291 r148=1a3 P=d Q=c M=46d r110=61d r62=1ffc003d77  ; generallight2.S:503
+c47a: e1908c476a102f1d02 f12 w71=1 r213=3 A=6 B=6 C=4 D=10 E=10 F=1d r148=40 M=6e0 r110=4bd r99=8 r95=17 r62=1ffceda17c r25=3e69c00  ; generallight2.S:542
+c47b: 48008007c0130430c4 f9  r213=3 r148=86 r128=25 M=460 r110=595 r99=8 r62=1ffccc317f r25=3e69c00  ; generallight2.S:581
+c47c: 480180470173043ce4 f9  r213=3 C=4 D=1 E=1 F=1c r148=87 r128=3d M=460 r110=595 r99=8 r95=17 r62=1ffcedb17f r25=3e69c00  ; generallight2.S:583
+c47d: 702267e7fe80f8009d f14 imm=9d r211=2 r198=7d C=1e r95=4 r71=1 r62=1ffd218170  ; generallight2.S:640
+c47e: 60028046ea022f1d0f f12 r213=3 C=4 D=2 E=2 F=1b r148=1e0 M=6e0 r110=4bd r99=8 r95=17 r62=1ffceda17c r25=3e69c00  ; generallight2.S:585
+c47f: a84082224ec0243104 f5  imm=9d w71=1 r213=3 A=1 B=1 C=1e r148=88 r128=25 M=460 r110=595 r99=8 r95=2 r71=1 r62=1ffcedb17f r25=3e69c00  ; generallight2.S:591
+c480: 58000a469fe36c94ae f11 cc=291 C=4 F=1a r148=1c5 P=5 Q=f M=46d r110=61d r95=17 r62=1ffc21bd77  ; generallight2.S:504
+c481: b84182b781ac49ff45 f7  w71=1 r219=1 r213=3 A=1 B=1 C=b D=1 E=1 F=1e G=b M=6e0 r110=5bd r99=8 r62=1ffcefc17c r25=3e69c00  ; generallight2.S:596
+c482: 68002e466c204af8a0 f13 cc=91 C=4 F=19 Q=0 M=6ca r110=7bd r95=17 r62=1ffc218578  ; generallight2.S:674
+c483: b8428247c28c49ff44 f7  w71=1 r219=1 r213=3 A=1 B=1 C=4 D=2 E=2 G=3 r128=25 M=6e0 r110=5bd r99=8 r62=1ffcefc17c r25=3e69c00  ; generallight2.S:598
+c484: 58001c4603d255941f f11 cc=291 C=4 F=18 r148=3e0 P=e Q=1 M=24a r110=79d r95=17 r62=1ffc21ad7a  ; generallight2.S:676
+c485: 58002207da1762b7f1 f11 cc=291 r148=23f P=11 Q=d M=2ec r110=4b5 r62=1ffc003d79  ; generallight2.S:505
+c486: 180000f7c40444f8a0 f3  r219=1 cc=91 C=f G=4 Q=2 M=6ca r110=7bd r62=1ffc23c578  ; generallight2.S:678
+c487: 58003807e02362bd70 f11 cc=291 r148=20b P=1c Q=10 r128=3d M=46c r110=4a5 r62=1ffc003d7b  ; generallight2.S:506
+c488: 58000a07c622559545 f11 cc=291 r148=aa P=5 Q=3 M=44a r110=795 r62=1ffc003d7b  ; generallight2.S:658
+c489: 58003e07c82255952d f11 cc=91 r148=1a9 Q=4 M=44a r110=795 r62=1ffc00357b  ; generallight2.S:644
+c48a: 18000007c8e108954d f3  xfer4 c4 cc=11 -> 0000 <HereWeGo> r148=1aa M=47f r110=695 seq=14fe4 r62=1ffc003173 r25=3e39c00  ; generallight2.S:645
+c48b: 58003e07ca2255956d f11 cc=91 r148=1ab Q=5 M=44a r110=795 r62=1ffc00357b  ; generallight2.S:646
+c48c: 280000424f00089525 f5  imm=9e r211=3 C=1e r148=a9 M=47f r110=695 r95=4 r71=1 r62=1ffc21b173  ; generallight2.S:641
+c48d: 60038007c083011fc4 f12 r213=2 r198=1 D=3 E=3 r128=25 M=6e0 r110=5bd r99=8 r62=1ffdcc017c r25=3e69c00  ; generallight2.S:649
+c48e: 60048007c084011fc4 f12 r213=2 r198=1 D=4 E=4 r128=25 M=6e0 r110=5bd r99=8 r62=1ffdcc017c r25=3e69c00  ; generallight2.S:651
+c48f: 60058007c085011fc4 f12 r213=2 r198=1 D=5 E=5 r128=25 M=6e0 r110=5bd r99=8 r62=1ffdcc017c r25=3e69c00  ; generallight2.S:653
+c490: e0438207c083011fc4 f12 w71=1 r213=2 r198=1 A=1 B=1 D=3 E=3 r128=25 M=6e0 r110=5bd r99=8 r62=1ffdcc017c r25=3e69c00  ; generallight2.S:662
+c491: e0448207c084011d05 f12 w71=1 r213=2 r198=1 A=1 B=1 D=4 E=4 r148=a0 M=6e0 r110=4bd r99=8 r62=1ffdcc217c r25=3e69c00  ; generallight2.S:664
+c492: e0458207c085011d1c f12 w71=1 r213=2 r198=1 A=1 B=1 D=5 E=5 r148=380 M=6e0 r110=4bd r99=8 r62=1ffdcc217c r25=3e69c00  ; generallight2.S:666
+mLiLocVInfLiInit:
+c493: 696f8007ec26e0eca0 f13 cc=91 A=5 D=2f Q=d M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:761
+c494: 69af8007ec28e0eca0 f13 cc=91 A=6 D=2f Q=11 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:763
+c495: 69708007ec2960eca1 f13 cc=91 A=5 D=30 r148=20 Q=12 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:765
+c496: 69b08007ec2760eca1 f13 cc=91 A=6 D=30 r148=20 Q=e M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:767
+c497: 69718007ec2860eca2 f13 cc=91 A=5 D=31 r148=40 Q=10 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:769
+c498: 68000007e80fc0fec9 f13 r128=9 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:775
+c499: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:778
+c49c: 68000007e80fc0fec9 f13 r128=9 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:783
+c49d: 68000007e82fe0fea5 f13 r128=2c M=6e0 r110=57d r62=1ffc0001fc  ; generallight2.S:779
+c49e: 69b18007ec27e0eca2 f13 cc=91 A=6 D=31 r148=40 Q=f M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; generallight2.S:771
+c49f: 68000007e80fc09631 f13 r148=231 M=47f r110=695 r62=1ffc003173  ; generallight2.S:776
+c4a0: 68000007e80fc095ce f13 r148=1ce M=47f r110=695 r62=1ffc003173  ; generallight2.S:780
+c4a1: 68000007ec29e0fea8 f13 cc=91 Q=13 r128=5 M=6e0 r110=57d r62=1ffc0005fc  ; generallight2.S:784
+c4a3: 6080004fe8002e9f89 f12 A=2 C=4 r176=0 F=3f r128=9 M=47f r110=6a9 r95=17 r62=1ffcb181f3  ; generallight2.S:785
+c4a4: 68000007e82fe0fea5 f13 r128=2c M=6e0 r110=57d r62=1ffc0001fc  ; generallight2.S:781
+c4a6: 68000007e80fe80400 f13 r128=d r110=2bd  ; generallight2.S:853
+c4a7: 000000000000000000 f0  nop
+c4a8: 58003e07e22307f428 f11 cc=91 Q=11 r128=5 M=460 r110=541 r62=1ffc0005ff  ; generallight2.S:786
+c4aa: 68000007ec696af8a0 f13 r220=1 cc=91 Q=12 M=6ea r110=7bd r62=1ffc000578  ; generallight2.S:799
+c4ab: 6a0f8007ec0640f8ad f13 cc=211 A=8 D=f r148=d P=c M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:833
+c4ac: 68000007e80fd0c4b3 f13 r148=260 r128=2c M=57f r110=699 r62=1ffc0021f3  ; generallight2.S:853
+c4ad: 6a4f8007ec06c07831 f13 cc=211 A=9 D=f r148=11 P=d r128=d M=47f r110=2b5 r99=8 r62=1ffc881973  ; generallight2.S:835
+c4ae: 6a108007ec08406a53 f13 cc=211 A=8 D=10 r148=272 P=10 M=47f r110=2b7 r99=8 r62=1ffc883873  ; generallight2.S:838
+c4af: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+c4b0: 68000007ec0740fea5 f13 cc=211 P=e r128=2c M=47f r110=689 r62=1ffc0009f3
+c4b1: 6a508007ec07c0f8ae f13 cc=211 A=9 D=10 r148=e P=f M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:841
+c4b2: 6a118007ec0840f8b0 f13 cc=211 A=8 D=11 r148=10 P=10 M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:845
+c4b3: 68000007e80fd0c4b1 f13 r148=220 r128=2c M=57f r110=699 r62=1ffc0021f3  ; generallight2.S:854
+c4b4: 58003ed0e7a2570c80 f11 cc=91 C=d F=3 Q=13 r128=24 M=44a r110=7a9 r95=13 r62=1ffc2185fb  ; generallight2.S:803
+c4b5: 6a518007ec064069f1 f13 cc=211 A=9 D=11 r148=22f P=c M=47f r110=2b7 r99=8 r62=1ffc883873  ; generallight2.S:848
+c4b6: 69448007c1a9caf6a0 f13 cc=111 r198=3 A=5 D=4 Q=13 M=6ca r99=8 r62=1ffd880578  ; generallight2.S:806
+c4b7: 68000007ec0840fea5 f13 cc=211 P=10 r128=2c M=47f r110=689 r62=1ffc0009f3
+c4b8: 68000007e82fe0960c f13 r148=190 M=6e0 r110=43d r62=1ffc00317c  ; generallight2.S:840
+c4b9: 68000007e80fd0c5b3 f13 r148=260 M=57f r110=699 r62=1ffc0021f3  ; generallight2.S:853
+c4ba: 69454007e86fe2eeb3 f13 r220=1 A=5 D=5 r148=260 M=6e2 r110=4fd r99=4 r62=1ffc88217c  ; generallight2.S:859
+c4bb: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; generallight2.S:854
+c4bc: 68000007ec27e0f410 f13 cc=91 r148=10 Q=f r128=5 M=6e0 r110=53d r62=1ffc00157c  ; generallight2.S:847
+c4bd: 68000007e80fc0c4ae f13 r148=1c0 r128=2c M=47f r110=699 r62=1ffc0021f3  ; generallight2.S:853
+c4be: 68000007e82fe095ed f13 r148=1af M=6e0 r110=43d r62=1ffc00317c  ; generallight2.S:843
+c4bf: 68000007e80fd0c4b1 f13 r148=220 r128=2c M=57f r110=699 r62=1ffc0021f3  ; generallight2.S:854
+c4c0: 77fa4e33c880f80000 f14 C=3 F=f r95=17 r62=1ffc218170  ; generallight2.S:881
+c4c1: 68000007c087c0fee1 f13 cc=411 r198=1 P=f r128=c M=47f r110=6a9 r62=1ffd0009f3  ; generallight2.S:866
+c4c2: 68002e33ac2760f40c f13 cc=91 C=3 F=e r148=c Q=e r128=5 M=6e0 r110=53d r95=17 r62=1ffc21957c  ; generallight2.S:850
+c4c3: 68000007e80fc0c4b0 f13 r148=200 r128=2c M=47f r110=699 r62=1ffc0021f3  ; generallight2.S:854
+c4c4: e8002e33686fe2eeb1 f13 w71=1 r220=1 C=3 F=d r148=220 M=6e2 r110=4fd r95=17 r62=1ffc21a17c  ; generallight2.S:861
+c4c5: 6a0f8007ec0340f8a0 f13 cc=211 A=8 D=f P=6 M=47f r110=6b5 r99=8 r62=1ffc881973  ; generallight2.S:813
+c4c6: 5a4f9407e22257d0a0 f11 cc=291 A=9 D=f P=a Q=11 M=44a r110=7b5 r99=8 r62=1ffc881d7b  ; generallight2.S:815
+c4c7: e8000007c08740fee1 f13 w71=1 cc=411 r198=1 P=e r128=c M=47f r110=6a9 r62=1ffd0009f3  ; generallight2.S:867
+c4c8: 5a108e35d1e257d0a1 f11 cc=291 A=8 C=3 D=10 F=17 r148=1 P=7 Q=8 M=44a r110=7b5 r99=8 r95=17 r62=1ffca99d7b  ; generallight2.S:818
+c4c9: 5a509607fe23e6542f f11 cc=211 A=9 D=10 r148=1e1 P=b M=47c r110=4b5 r99=8 r62=1ffc88397b  ; generallight2.S:821
+c4ca: 5a119207d82257d0a2 f11 cc=291 A=8 D=11 r148=2 P=9 Q=c M=44a r110=7b5 r99=8 r62=1ffc881d7b  ; generallight2.S:825
+c4cb: 5a519a35a1e257d0a2 f11 cc=291 A=9 C=3 D=11 F=16 r148=2 P=d Q=10 M=44a r110=7b5 r99=8 r95=17 r62=1ffca99d7b  ; generallight2.S:828
+c4cc: 78204be7c70000d9c1 f15 imm=d9c1 r215=3 B=5 C=1e E=7 r71=1 r62=1ffc658170  ; generallight2.S:789
+c4cd: 5813be357fe257d200 f11 C=3 D=13 F=15 r128=28 M=44a r110=6b9 r99=8 r95=17 r62=1ffca981fb  ; generallight2.S:901
+c4ce: 69408007caa9caf6a0 f13 cc=111 r198=15 A=5 Q=13 M=6ca r99=8 r62=1ffd880578  ; generallight2.S:809
+c4cf: 58000c34ffd7e5340e f11 cc=211 C=3 F=13 r148=1c0 P=6 M=2fc r110=4bd r95=17 r62=1ffc21a979  ; generallight2.S:898
+c4d0: 79478007e000000000 f15 A=5 D=7 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; generallight2.S:793
+c4d1: 6814ae34a83fe0ff44 f13 C=3 D=14 F=12 r128=25 M=6e0 r110=5bd r99=a r95=17 r62=1ffca9817c r25=3ea9c00  ; generallight2.S:907
+c4d2: 68000007ec23caf8a0 f13 cc=91 Q=7 M=6ca r110=7bd r62=1ffc000578  ; generallight2.S:900
+c4d3: 58003e07fe22570200 f11 r128=2 M=44a r110=6a9 r62=1ffc0001fb  ; generallight2.S:961
+c4d4: 580010347fd70534e6 f11 cc=211 C=3 F=11 r148=c7 P=8 M=2e0 r110=43d r95=17 r62=1ffc21b97d  ; generallight2.S:820
+c4d5: 40000a47ce6008c008 f8  r222=1 r213=3 B=5 C=4 E=e r148=100 M=6ca r110=4bd r62=1ffc65a178 r25=3e69c00  ; generallight2.S:808
+c4d6: d24e4c07fe16553408 f10 w71=1 r213=3 cc=211 B=6 E=e r148=100 P=9 M=2ca r110=4bd r62=1ffc442979 r25=3e69c00  ; generallight2.S:890
+c4d7: 68000007e83fe0fe84 f13 r128=20 M=6e0 r110=57d r99=2 r62=1ffc0001fc r25=3ea9c00  ; generallight2.S:971
+c4d8: 5ac0156fd9d7048120 f11 cc=291 A=b C=16 r176=0 F=3f r148=9 P=a Q=c r128=5 M=2e0 r110=53d r95=17 r62=1ffcb19d7d  ; generallight2.S:827
+c4d9: 280000424e0049956a f5  imm=9c r211=3 C=1e r148=14b M=6e0 r110=43d r95=4 r71=1 r62=1ffc21b17c  ; generallight2.S:795
+c4da: 60000a77ea0f39c00c f12 r213=3 B=5 C=7 E=f r148=180 M=6ca r110=4bd r95=1c r62=1ffc65a178 r25=3e69c00  ; generallight2.S:891
+c4db: d2cf4c07fe1655340c f10 w71=1 r213=3 cc=211 B=6 E=f r148=180 P=b M=2ca r110=4bd r62=1ffc442979 r25=3e69c00  ; generallight2.S:892
+c4dc: 68003a77e86fe2f411 f13 r220=1 C=7 r148=11 r128=5 M=6e2 r110=53d r95=1d r62=1ffc21917c  ; generallight2.S:915
+c4dd: 58002207da1301a1be f11 cc=291 r148=3cd P=11 Q=d r128=5 M=260 r110=51d r62=1ffc003d7e  ; generallight2.S:830
+c4de: 68003c77c0a8ca941f f13 cc=111 r198=1 C=7 r148=3e0 Q=11 M=6ca r110=4bd r95=1e r62=1ffd21a578  ; generallight2.S:918
+c4df: 54064a07e61255941e f10 r213=3 cc=291 B=5 E=6 r148=3c0 P=10 Q=13 M=24a r110=79d r62=1ffc442d7a r25=3e69c00  ; generallight2.S:923
+c4e0: 60000a77ea1039c010 f12 r213=3 B=5 C=7 E=10 r148=200 M=6ca r110=4bd r95=1c r62=1ffc65a178 r25=3e69c00  ; generallight2.S:893
+c4e1: 68000007e83fca9413 f13 r148=260 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; generallight2.S:979
+c4e2: 68003a77ec22e897cc f13 cc=91 C=7 r148=19e Q=5 M=6e8 r110=43d r95=1d r62=1ffc21b57c  ; generallight2.S:916
+c4e3: b900016fc0105ef451 f7  w71=1 r220=1 r219=1 A=4 C=16 r176=0 F=3f G=4 r148=11 r128=15 M=6e2 r110=53d r62=1ffcb3d17c  ; generallight2.S:921
+c4e4: e0000c77ea103dc010 f12 w71=1 r213=3 B=6 C=7 E=10 r148=200 M=6ca r110=4bd r95=1e r62=1ffc65a178 r25=3e69c00  ; generallight2.S:894
+c4e5: e8000007c0a84a941f f13 w71=1 cc=111 r198=1 r148=3e0 Q=10 M=6ca r110=4bd r62=1ffd002578  ; generallight2.S:924
+c4e6: 68000007ec08c0eeb1 f13 cc=211 r148=220 P=11 M=47f r110=69d r62=1ffc002973  ; generallight2.S:970
+c4e7: 600000476a002e9026 f12 r213=3 C=4 F=1d r148=6 r128=d M=47f r110=6a5 r95=37 r62=1ffc659173 r25=3e69c00  ; generallight2.S:927
+c4e8: 68000007ec286897cd f13 cc=91 r148=1be Q=10 M=6e8 r110=43d r62=1ffc00357c  ; generallight2.S:922
+c4e9: 600000472a012e9067 f12 r213=3 C=4 E=1 F=1c r148=7 r128=1d M=47f r110=6a5 r95=37 r62=1ffc659173 r25=3e69c00  ; generallight2.S:928
+c4ea: 702267e7fe80f8009d f14 imm=9d r211=2 r198=7d C=1e r95=4 r71=1 r62=1ffd218170  ; generallight2.S:980
+c4eb: 60000046ea022e8105 f12 r213=3 C=4 E=2 F=1b r148=a8 M=47f r110=695 r95=37 r62=1ffc65b173 r25=3e69c00  ; generallight2.S:929
+c4ec: a80002224ec008f606 f5  imm=9d w71=1 r213=3 B=1 C=1e r148=6 r128=5 M=47f r110=6a5 r95=22 r71=1 r62=1ffc659173 r25=3e69c00  ; generallight2.S:932
+c4ed: 68002e46ac0e40eeb0 f13 cc=211 C=4 F=1a r148=200 P=1c M=47f r110=69d r95=17 r62=1ffc21a973  ; generallight2.S:975
+c4ee: 68000007ec266c940c f13 cc=91 r148=180 Q=c M=6ec r110=4bd r62=1ffc002578  ; generallight2.S:870
+c4ef: 68002e466c204af8a0 f13 cc=91 C=4 F=19 Q=0 M=6ca r110=7bd r95=17 r62=1ffc218578  ; generallight2.S:998
+c4f0: 68000007ec27ec940d f13 cc=91 r148=1a0 Q=f M=6ec r110=4bd r62=1ffc002578  ; generallight2.S:871
+c4f1: 68002e462c20caf8a0 f13 cc=91 C=4 F=18 Q=1 M=6ca r110=7bd r95=17 r62=1ffc218578  ; generallight2.S:1000
+c4f2: 68000007ec26ec940f f13 cc=91 r148=1e0 Q=d M=6ec r110=4bd r62=1ffc002578  ; generallight2.S:872
+c4f3: 68000007ec214af8a0 f13 cc=91 Q=2 M=6ca r110=7bd r62=1ffc000578  ; generallight2.S:1002
+c4f4: 68000007ec286c940e f13 cc=91 r148=1c0 Q=10 M=6ec r110=4bd r62=1ffc002578  ; generallight2.S:873
+c4f5: 58001c07c61255941f f11 cc=291 r148=3e0 P=e Q=3 M=24a r110=79d r62=1ffc002d7a  ; generallight2.S:1006
+c4f6: 58002207c81255941f f11 cc=291 r148=3e0 P=11 Q=4 M=24a r110=79d r62=1ffc002d7a  ; generallight2.S:1008
+c4f7: 98300207c8e10894f0 f3  xfer4 c4 cc=11 -> 0000 <HereWeGo> w71=1 r213=3 B=1 E=1 r148=207 M=47f r110=695 r95=20 seq=14fe4 r62=1ffc443173 r25=3e79c00  ; generallight2.S:933
+c4f8: 11468007e40a44f8a0 f2  r217=1 cc=91 A=5 D=6 G=4 Q=5 M=6ca r110=7bd r99=8 r62=1ffc884578  ; generallight2.S:1010
+c4f9: e0000207ea02008110 f12 w71=1 r213=3 B=1 E=2 r148=208 M=47f r110=695 r95=20 r62=1ffc443173 r25=3e69c00  ; generallight2.S:934
+c4fa: 60000007ea03008131 f12 r213=3 E=3 r148=229 M=47f r110=695 r95=20 r62=1ffc443173 r25=3e69c00  ; generallight2.S:984
+c4fb: 38000047c48c089551 f7  r219=1 r213=3 C=4 E=4 G=3 r148=22a M=47f r110=695 r95=20 r62=1ffc67f173 r25=3e69c00  ; generallight2.S:985
+c4fc: 280000424f45089571 f5  imm=9e r213=3 r211=3 C=1e E=5 r148=22b M=47f r110=695 r95=24 r71=1 r62=1ffc65b173 r25=3e69c00  ; generallight2.S:981
+c4fd: e0000207ea0300813c f12 w71=1 r213=3 B=1 E=3 r148=389 M=47f r110=695 r95=20 r62=1ffc443173 r25=3e69c00  ; generallight2.S:989
+c4fe: e0000207ea0400815c f12 w71=1 r213=3 B=1 E=4 r148=38a M=47f r110=695 r95=20 r62=1ffc443173 r25=3e69c00  ; generallight2.S:990
+c4ff: b80002b785ac08957c f7  w71=1 r219=1 r213=3 B=1 C=b E=5 F=1e G=b r148=38b M=47f r110=695 r95=20 r62=1ffc67f173 r25=3e69c00  ; generallight2.S:991

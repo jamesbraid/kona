@@ -1,0 +1,63 @@
+# err.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mge_ErrNoError:
+d4b9: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; err.S:32
+d4ba: 782071e7c000000000 f15 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; err.S:34
+d4bb: 7e008007e000000000 f15 A=18 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; err.S:35
+d4bc: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; err.S:27
+d4bd: 77fa41d7c881c80000 f14 r219=1 C=1d G=19 r62=1ffc23c170  ; err.S:28
+d4be: 77fa41d7c881980000 f14 r219=1 C=1d G=13 r62=1ffc23c170  ; err.S:29
+d4bf: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> d4bf seq=1cfe5 r25=3e39c00  ; err.S:40
+d4c3: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; err.S:39
+d4c4: 75b461efca00f80004 f14 imm=4 r211=3 A=16 C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; err.S:37
+d4c5: 77fa4137c8c0f80000 f14 r222=1 C=13 r62=1ffc218170  ; err.S:30
+mErrStackUnderflow:
+d4c8: 77fa4f66c880f80000 f14 C=16 F=1b r95=17 r62=1ffc218170  ; err.S:146
+d4cd: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; err.S:142
+d4ce: 782071e7c000000000 f15 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; err.S:144
+d4cf: 6e008007e86fc2ffa5 f13 r220=1 A=18 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; err.S:145
+d4d0: 782071e7c100000504 f15 imm=504 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; err.S:149
+d4d1: 7e018007e000000000 f15 A=18 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; err.S:150
+d4d5: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> d4d5 seq=1cfdf r25=3e3fc00  ; err.S:155
+d4d9: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; err.S:154
+d4da: 70246766c100f80000 f14 r211=2 r198=2 C=16 F=1b r95=8 r62=1ffd218170  ; err.S:152
+mErrStackOverflow:
+d4de: 77fa4f66c880f80000 f14 C=16 F=1b r95=17 r62=1ffc218170  ; err.S:123
+d4e3: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; err.S:119
+d4e4: 782071e7c000000000 f15 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; err.S:121
+d4e5: 6e008007e86fc2ffa5 f13 r220=1 A=18 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; err.S:122
+d4e6: 782071e7c100000503 f15 imm=503 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; err.S:126
+d4e7: 7e018007e000000000 f15 A=18 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; err.S:127
+d4eb: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> d4eb seq=1cfdf r25=3e3fc00  ; err.S:132
+d4ef: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; err.S:131
+d4f0: 70246766c100f80000 f14 r211=2 r198=2 C=16 F=1b r95=8 r62=1ffd218170  ; err.S:129
+mErrInvalidOperation:
+d4f4: 77fa4f66c880f80000 f14 C=16 F=1b r95=17 r62=1ffc218170  ; err.S:100
+d4f9: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; err.S:96
+d4fa: 782071e7c000000000 f15 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; err.S:98
+d4fb: 6e008007e86fc2ffa5 f13 r220=1 A=18 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; err.S:99
+d4fc: 782071e7c100000502 f15 imm=502 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; err.S:103
+d4fd: 7e018007e000000000 f15 A=18 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; err.S:104
+d501: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> d501 seq=1cfdf r25=3e3fc00  ; err.S:109
+d505: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; err.S:108
+d506: 70246766c100f80000 f14 r211=2 r198=2 C=16 F=1b r95=8 r62=1ffd218170  ; err.S:106
+mErrInvalidValue:
+d50a: 77fa4f66c880f80000 f14 C=16 F=1b r95=17 r62=1ffc218170  ; err.S:77
+d50f: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; err.S:73
+d510: 782071e7c000000000 f15 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; err.S:75
+d511: 6e008007e86fc2ffa5 f13 r220=1 A=18 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; err.S:76
+d512: 782071e7c100000501 f15 imm=501 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; err.S:80
+d513: 7e018007e000000000 f15 A=18 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; err.S:81
+d517: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> d517 seq=1cfdf r25=3e3fc00  ; err.S:86
+d51b: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; err.S:85
+d51c: 70246766c100f80000 f14 r211=2 r198=2 C=16 F=1b r95=8 r62=1ffd218170  ; err.S:83
+mErrInvalidEnum:
+d520: 77fa4f66c880f80000 f14 C=16 F=1b r95=17 r62=1ffc218170  ; err.S:54
+d525: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; err.S:50
+d526: 782071e7c000000000 f15 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; err.S:52
+d527: 6e008007e86fc2ffa5 f13 r220=1 A=18 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; err.S:53
+d528: 782071e7c100000500 f15 imm=500 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; err.S:57
+d529: 7e018007e000000000 f15 A=18 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; err.S:58
+d52d: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> d52d seq=1cfdf r25=3e3fc00  ; err.S:63
+d531: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; err.S:62
+d532: 70246766c100f80000 f14 r211=2 r198=2 C=16 F=1b r95=8 r62=1ffd218170  ; err.S:60

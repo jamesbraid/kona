@@ -1,0 +1,392 @@
+# lightenables.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mgeb_LiDisableClrMtrl:
+dc9c: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; lightenables.S:967
+dc9d: 782071e7c500000010 f15 imm=10 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; lightenables.S:974
+dc9e: 2e058132420051ffa5 f5  imm=84 r220=1 A=18 C=1e D=5 M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; lightenables.S:975
+dc9f: 782071e7cb0000da3c f15 imm=da3c r215=3 B=18 C=1e E=b r71=1 r62=1ffc658170  ; lightenables.S:980
+dca0: 7e0bf1e7e100000405 f15 imm=405 r215=3 A=18 B=18 C=1e D=b E=1 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:981
+dca1: 782071e7c300001200 f15 imm=1200 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; lightenables.S:1027
+dca2: 782071e7c600001600 f15 imm=1600 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; lightenables.S:1030
+dca3: 782071e7c800000008 f15 imm=8 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightenables.S:986
+dca4: 6e088007e86fd0ffa5 f13 r220=1 A=18 D=8 M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; lightenables.S:988
+dca5: 782071e7c500001202 f15 imm=1202 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; lightenables.S:1029
+dca6: 782071e7c800001602 f15 imm=1602 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightenables.S:1031
+dca7: 782071e7c40000f50d f15 imm=f50d r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; lightenables.S:993
+dca8: 57ee7807fe3660a000 f10 r213=3 B=1c E=2e r128=5 M=6cc r110=5bd r62=1ffc440178 r25=3e69c00  ; lightenables.S:990
+dca9: 702267e7c100f800a1 f14 imm=a1 r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:983
+dcaa: 67c4b007ea0d01dd80 f12 r213=3 A=1f B=18 D=4 E=d M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightenables.S:1016
+dcab: 67c5b007ea0e01dd80 f12 r213=3 A=1f B=18 D=5 E=e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightenables.S:1018
+dcac: 77fa4f6fc880f802b9 f14 imm=2b9 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; lightenables.S:1010
+dcad: 67c6b007ea0f01dd80 f12 r213=3 A=1f B=18 D=6 E=f M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightenables.S:1020
+dcae: 77fa4f6fc880f802b8 f14 imm=2b8 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; lightenables.S:1012
+dcaf: 782071e7c70000f547 f15 imm=f547 r215=3 B=18 C=1e E=7 r71=1 r62=1ffc658170  ; lightenables.S:997
+dcb0: 7e048007e000000000 f15 A=18 D=4 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightenables.S:994
+dcb1: 7e07f1e7eafffffff7 f15 imm=fffffff7 r215=3 A=18 B=18 C=1e D=7 E=a M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:998
+dcb2: 2e0ac132420041ffa5 f5  imm=84 A=18 C=1e D=a M=6d0 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:1004
+dcb3: 3fc7b1d7d0e844f6a0 f7  r219=1 r213=3 A=1f B=18 C=1d D=7 E=10 G=1a M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; lightenables.S:969
+dcb4: 600031d7ea0b01de80 f12 r213=3 B=18 C=1d E=b M=6ca r110=7bd r62=1ffc640178 r25=3e69c00  ; lightenables.S:970
+dcb5: 600031d7ea0c01de80 f12 r213=3 B=18 C=1d E=c M=6ca r110=7bd r62=1ffc640178 r25=3e69c00  ; lightenables.S:971
+dcb6: 77f64007fe00f8def0 f14 xfer5 c4 cc=7c -> def0 <mLiUpdateMtrlColor> imm=def0 cc=7c seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; lightenables.S:1037
+dcb7: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> dcb7 seq=1cfdf r25=3e3fc00  ; lightenables.S:1038
+dcb8: 782071e7c400000080 f15 imm=80 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; lightenables.S:1028
+dcb9: 77fa43e7c880f8000c f14 imm=c r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:996
+dcba: 77fa43e7c880f8000b f14 imm=b r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:1000
+dcbb: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; lightenables.S:1034
+dcbe: 77fa43e7c880f80084 f14 imm=84 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:1007
+mgeb_LiDisableLightS:
+dcc0: 77c13607ca04d00000 f14 r217=1 A=1f D=1 G=1a r99=8 r62=1ffc884170  ; lightenables.S:832
+dcc4: 68000007ec2e71941f f13 cc=91 r148=3e0 Q=1c M=6f1 r110=4bd r62=1ffc002578  ; lightenables.S:836
+dcc7: 7039cde7c88cf80087 f14 imm=87 C=1e r95=13 seq=605f r71=1 r62=1ffc218170 r25=3e2fc00  ; lightenables.S:815
+dcc8: 3e80316fc28c46ff05 f7  r219=1 r213=3 A=1a B=18 C=16 r176=0 E=2 F=3f G=3 r128=28 M=6c2 r110=77d r62=1ffcf7c1fc r25=3e69c00  ; lightenables.S:832
+dccc: 77fa4e378880f80000 f14 C=3 F=1e r95=17 r62=1ffc218170  ; lightenables.S:879
+dccd: 782071e7c50000d9a2 f15 imm=d9a2 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; lightenables.S:931
+dcce: 77fa4e37c880f80000 f14 C=3 r95=17 r62=1ffc218170  ; lightenables.S:846
+dccf: 782071e7c70000f547 f15 imm=f547 r215=3 B=18 C=1e E=7 r71=1 r62=1ffc658170  ; lightenables.S:920
+dcd1: 6e028007ec2e71941f f13 cc=91 A=18 D=2 r148=3e0 Q=1c M=6f1 r110=4bd r99=8 r62=1ffc882578  ; lightenables.S:839
+dcd2: 197379213a3e44f8a0 f3  imm=84 r217=1 r213=3 B=1c C=1e E=b G=1a M=6ca r110=7bd r95=13 r71=1 r62=1ffc65c178 r25=3e69c00  ; lightenables.S:824
+dcd3: 670bb007ea0001dd80 f12 r213=3 A=1c B=18 D=b M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightenables.S:822
+dcd4: 68000007e86feaf8a0 f13 r220=1 M=6ea r110=7bd r62=1ffc000178  ; lightenables.S:880
+dcd5: 57ee7807fe36659400 f10 r213=3 B=1c E=2e M=6cc r110=7bd r62=1ffc440178 r25=3e69c00  ; lightenables.S:847
+dcd6: 68000007ec2dca941e f13 cc=91 r148=3c0 Q=1b M=6ca r110=4bd r62=1ffc002578  ; lightenables.S:881
+dcd7: 6e028007ec2d42f6bc f13 cc=91 A=18 D=2 r148=1c Q=1a M=6c2 r110=63d r99=8 r62=1ffc88157c  ; lightenables.S:866
+dcd8: 68000007c1adf1941f f13 cc=111 r198=3 r148=3e0 Q=1b M=6f1 r110=4bd r62=1ffd002578  ; lightenables.S:882
+dcd9: 68000007feadca941e f13 cc=111 r198=7d r148=3c0 Q=1b M=6ca r110=4bd r62=1ffd002578  ; lightenables.S:883
+dcda: 77fa4f6fc880f802ba f14 imm=2ba C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; lightenables.S:884
+dcdb: 6f208007fe2e4af6a0 f13 cc=111 r198=7c A=1c D=20 Q=1c M=6ca r99=8 r62=1ffd880578  ; lightenables.S:903
+dcdc: 7680216fca01500000 f14 r219=1 A=1a C=16 r176=0 F=3f G=a r62=1ffcb3c170  ; lightenables.S:841
+dcdd: 7e078007e000000000 f15 A=18 D=7 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightenables.S:921
+dcde: 7e058007e000000000 f15 A=18 D=5 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightenables.S:932
+dcdf: 60003007ea0301de80 f12 r213=3 B=18 E=3 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; lightenables.S:848
+dce0: 77fa4eafc880f802af f14 imm=2af C=a F=3f r95=17 r71=1 r62=1ffc318170  ; lightenables.S:854
+dce1: 68000007e83fc2f8bb f13 r148=1b M=6c2 r110=73d r99=2 r62=1ffc00117c r25=3ea9c00  ; lightenables.S:885
+dce3: 782071e7c600000001 f15 imm=1 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; lightenables.S:909
+dce4: 782071e7ca0000f449 f15 imm=f449 r215=3 B=18 C=1e E=a r71=1 r62=1ffc658170  ; lightenables.S:897
+dce5: 57e57807fe3660a000 f10 r213=3 B=1c E=25 r128=5 M=6cc r110=5bd r62=1ffc440178 r25=3e69c00  ; lightenables.S:886
+dce6: 28000042058054941c f5  imm=b r220=1 r211=3 C=1e r148=380 M=6ca r110=4bd r95=4 r71=1 r62=1ffc21a178  ; lightenables.S:906
+dce7: 60003007ea0401de80 f12 r213=3 B=18 E=4 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; lightenables.S:855
+dce8: 702267e7fe00f8009a f14 imm=9a r211=2 r198=7c C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:934
+dce9: 7e0af1e7e8ffffffdf f15 imm=ffffffdf r215=3 A=18 B=18 C=1e D=a E=8 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:890
+dcea: 2e08c132020041ffa5 f5  imm=4 A=18 C=1e D=8 M=6d0 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:891
+dceb: 2e06c132430043ffa5 f5  imm=86 A=18 C=1e D=6 M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:910
+dcec: 57e67807fe3662b41a f10 r213=3 B=1c E=26 r148=340 M=6cc r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:868
+dced: 7e028007e000000000 f15 A=18 D=2 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightenables.S:861
+dcee: 76033607ca04d00000 f14 r217=1 A=18 D=3 G=1a r99=8 r62=1ffc884170  ; lightenables.S:849
+dcef: 7e038007e000000000 f15 A=18 D=3 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightenables.S:871
+dcf0: 76043607ca04580000 f14 r217=1 A=18 D=4 G=b r99=8 r62=1ffc884170  ; lightenables.S:856
+dcf1: 7024676ffe00f802ba f14 imm=2ba r211=2 r198=7c C=16 F=3f r95=8 r71=1 r62=1ffd318170  ; lightenables.S:887
+dcf2: 702267e7f580f80008 f14 imm=8 r211=2 r198=6b C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:900
+dcf3: 702267e7f580f80004 f14 imm=4 r211=2 r198=6b C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:894
+dcf4: 702267e7c100f80086 f14 imm=86 r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:913
+dcf5: 7e248007c000000000 f15 A=18 D=4 r99=8 r62=1ffc880170  ; lightenables.S:874
+dcf6: 702267e7fe00f80087 f14 imm=87 r211=2 r198=7c C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:863
+dcf7: 782071e7c40000f50d f15 imm=f50d r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; lightenables.S:916
+dcf8: 12c0216fc43e44f6a0 f2  r219=1 A=b C=16 r176=0 F=3f G=4 M=6ca r99=2 r62=1ffcb3c178 r25=3ea9c00  ; lightenables.S:858
+dcf9: 7e048007e000000000 f15 A=18 D=4 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightenables.S:917
+dcfa: 7f0b8007e000000000 f15 A=1c D=b M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightenables.S:926
+dcfc: 7680216fca01580000 f14 r219=1 A=1a C=16 r176=0 F=3f G=b r62=1ffcb3c170  ; lightenables.S:851
+dcfd: 70246647fe00f80000 f14 r211=2 r198=7c C=4 r95=8 r62=1ffd218170  ; lightenables.S:873
+dcfe: 180401d7da3e44941e f3  r219=1 C=1d G=1a r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc23e178 r25=3ea9c00  ; lightenables.S:817
+dcff: 6600b9d7ea0b01dd80 f12 r213=3 A=18 B=1c C=1d E=b M=6ca r99=8 r62=1ffcec0178 r25=3e69c00  ; lightenables.S:818
+dd00: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; lightenables.S:819
+dd01: 702466bffe00f802ae f14 imm=2ae r211=2 r198=7c C=b F=3f r95=8 r71=1 r62=1ffd318170  ; lightenables.S:876
+dd02: 77fa43e7c880f8000c f14 imm=c r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:919
+dd03: 702267e7fe00f80084 f14 imm=84 r211=2 r198=7c C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:928
+dd04: 77f1c1a7c8bdf80000 f14 xfer4.rel c31 cc=11 -> dd04 r219=1 C=1a seq=1cfdf r62=1ffc23c170 r25=3e3fc00  ; lightenables.S:941
+dd07: 70246637fe00f80000 f14 r211=2 r198=7c C=3 r95=8 r62=1ffd218170  ; lightenables.S:950
+dd09: 702466affe00f802af f14 imm=2af r211=2 r198=7c C=a F=3f r95=8 r71=1 r62=1ffd318170  ; lightenables.S:951
+mgeb_LiDisableLighting:
+dd0d: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; lightenables.S:722
+dd0e: 7039cde7c88cf80006 f14 imm=6 C=1e r95=13 seq=605f r71=1 r62=1ffc218170 r25=3e2fc00  ; lightenables.S:720
+dd0f: 782071e7cc80000000 f15 imm=80000000 r215=3 B=18 C=1e E=c r71=1 r62=1ffc658170  ; lightenables.S:730
+dd10: 782071e7c600000008 f15 imm=8 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; lightenables.S:745
+dd11: 782071e7c9fffffffd f15 imm=fffffffd r215=3 B=18 C=1e E=9 r71=1 r62=1ffc658170  ; lightenables.S:752
+dd12: 6e0c8007e83fd1ffa5 f13 A=18 D=c M=6d1 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; lightenables.S:731
+dd13: 782071e7c8ffffffdb f15 imm=ffffffdb r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightenables.S:759
+dd14: 782071e7ca0000f449 f15 imm=f449 r215=3 B=18 C=1e E=a r71=1 r62=1ffc658170  ; lightenables.S:766
+dd15: 782071e7c7ffffff7f f15 imm=ffffff7f r215=3 B=18 C=1e E=7 r71=1 r62=1ffc658170  ; lightenables.S:772
+dd16: 280001320d8043ff05 f5  imm=1b C=1e r128=28 M=6d4 r110=77d r95=13 r71=1 r62=1ffc2181fc  ; lightenables.S:739
+dd17: 2e068132420041ffa5 f5  imm=84 A=18 C=1e D=6 M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; lightenables.S:746
+dd18: 2e09c132028041ffc5 f5  imm=5 A=18 C=1e D=9 M=6d0 r110=7bd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:753
+dd19: 2e08c132020041ffa5 f5  imm=4 A=18 C=1e D=8 M=6d0 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:760
+dd1a: 57e679d7fe3622141e f10 r213=3 B=1c C=1d E=26 r148=3c0 r128=28 M=6c4 r110=47d r62=1ffc6421fc r25=3e69c00  ; lightenables.S:723
+dd1b: 7e0af1e7e40000f50d f15 imm=f50d r215=3 A=18 B=18 C=1e D=a E=4 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:767
+dd1c: 57ee79d7fe3660a400 f10 r213=3 B=1c C=1d E=2e r128=d M=6cc r110=5bd r62=1ffc640178 r25=3e69c00  ; lightenables.S:724
+dd1d: 7e04f1e7e50000f547 f15 imm=f547 r215=3 A=18 B=18 C=1e D=4 E=5 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:780
+dd1e: 7e05f1e7e00000f4e4 f15 imm=f4e4 r215=3 A=18 B=18 C=1e D=5 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:784
+dd1f: 2e07c132420041ffa5 f5  imm=84 A=18 C=1e D=7 M=6d0 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:773
+dd20: 2e00c042030044f6a0 f5  imm=6 r211=3 A=18 C=1e M=6ca r99=a r95=4 r71=1 r62=1ffca98178 r25=3ea9c00  ; lightenables.S:734
+dd21: 77fa43e7c880f80005 f14 imm=5 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:756
+dd22: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> dd22 seq=1cfdf r25=3e3fc00  ; lightenables.S:795
+dd23: 77fa43e7c880f80004 f14 imm=4 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:763
+dd24: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; lightenables.S:794
+dd25: 77fa43e7c880f80008 f14 imm=8 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:769
+dd26: 77fa43e7c880f8000c f14 imm=c r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:782
+dd27: 77fa43e7c880f8000b f14 imm=b r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:786
+dd28: 77fa43e7c880f80084 f14 imm=84 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:776
+dd29: 77fa43e7c880f800da f14 imm=da r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:790
+dd2a: 77fa43e7c880f800db f14 imm=db r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:790
+mgeb_LiEnableClrMtrl:
+dd2b: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; lightenables.S:665
+dd2c: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; lightenables.S:666
+dd2d: 7039cde7c88cf80084 f14 imm=84 C=1e r95=13 seq=605f r71=1 r62=1ffc218170 r25=3e2fc00  ; lightenables.S:663
+dd2e: 782071e7c700000010 f15 imm=10 r215=3 B=18 C=1e E=7 r71=1 r62=1ffc658170  ; lightenables.S:671
+dd2f: 6e0781d7e86fd0ffa5 f13 r220=1 A=18 C=1d D=7 M=6d0 r110=6fd r99=8 r62=1ffca8017c  ; lightenables.S:667
+dd30: 782071e7c30000d831 f15 imm=d831 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; lightenables.S:676
+dd31: 7e03f1e7e40000f50d f15 imm=f50d r215=3 A=18 B=18 C=1e D=3 E=4 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:677
+dd32: 7e04f1e7e50000f547 f15 imm=f547 r215=3 A=18 B=18 C=1e D=4 E=5 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:683
+dd33: 7e05f1e7e600000008 f15 imm=8 r215=3 A=18 B=18 C=1e D=5 E=6 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:687
+dd34: 2e06c132420043ffa5 f5  imm=84 A=18 C=1e D=6 M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:693
+dd35: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> dd35 seq=1cfdf r25=3e3fc00  ; lightenables.S:701
+dd39: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; lightenables.S:699
+dd3a: 702267e7c100f800a1 f14 imm=a1 r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:679
+dd3b: 77fa43e7c880f8000c f14 imm=c r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:685
+dd3c: 77fa43e7c880f8000b f14 imm=b r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:689
+dd3d: 77fa43e7c880f80084 f14 imm=84 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:696
+mgeb_LiEnableLightS:
+dd3e: 77c13607ca04d00000 f14 r217=1 A=1f D=1 G=1a r99=8 r62=1ffc884170  ; lightenables.S:546
+dd46: 7680216fca01180000 f14 r219=1 A=1a C=16 r176=0 F=3f G=3 r62=1ffcb3c170  ; lightenables.S:546
+dd4a: 77fa4e37c880f80000 f14 C=3 r95=17 r62=1ffc218170  ; lightenables.S:559
+dd4c: 7039ce37888cf80000 f14 C=3 F=1e r95=17 seq=605f r62=1ffc218170 r25=3e2fc00  ; lightenables.S:533
+dd4d: 2800313243c944f8a0 f5  imm=87 r213=3 B=18 C=1e E=9 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; lightenables.S:549
+dd51: 782071e7c50000d9a2 f15 imm=d9a2 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; lightenables.S:612
+dd52: 57ee7807fe36659400 f10 r213=3 B=1c E=2e M=6cc r110=7bd r62=1ffc440178 r25=3e69c00  ; lightenables.S:560
+dd53: 68000007e86feaf8a0 f13 r220=1 M=6ea r110=7bd r62=1ffc000178  ; lightenables.S:562
+dd54: 28003932424b44f8a0 f5  imm=84 r213=3 B=1c C=1e E=b M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; lightenables.S:542
+dd55: 670bb007ea0001dd80 f12 r213=3 A=1c B=18 D=b M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightenables.S:540
+dd56: 4e09b807e61a657400 f9  r213=3 A=18 B=1c D=9 E=26 M=6cc r99=8 r62=1ffccc0178 r25=3e69c00  ; lightenables.S:578
+dd57: 7e05f1e7e70000f547 f15 imm=f547 r215=3 A=18 B=18 C=1e D=5 E=7 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:613
+dd58: 7e07f1e7e40000f50d f15 imm=f50d r215=3 A=18 B=18 C=1e D=7 E=4 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:631
+dd59: 7e048007e000000000 f15 A=18 D=4 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightenables.S:632
+dd5a: 68000007ec2e4a941e f13 cc=91 r148=3c0 Q=1c M=6ca r110=4bd r62=1ffc002578  ; lightenables.S:580
+dd5b: 68000007c1ae71941f f13 cc=111 r198=3 r148=3e0 Q=1c M=6f1 r110=4bd r62=1ffd002578  ; lightenables.S:581
+dd5c: 6e098007fe2e4a941e f13 cc=111 r198=7c A=18 D=9 r148=3c0 Q=1c M=6ca r110=4bd r99=8 r62=1ffd882578  ; lightenables.S:551
+dd5d: 700be76fca04d002ba f14 imm=2ba r217=1 C=16 F=3f G=1a r95=17 r71=1 r62=1ffc31c170  ; lightenables.S:552
+dd5e: 68000007e82ff1941f f13 r148=3e0 M=6f1 r110=4bd r62=1ffc002178  ; lightenables.S:565
+dd5f: 782071a7ca00000000 f15 r215=3 B=18 C=1a E=a r62=1ffc658170  ; lightenables.S:572
+dd60: 702267e7fe80f8009a f14 imm=9a r211=2 r198=7d C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:615
+dd61: 2e0ac042058044f6a0 f5  imm=b r211=3 A=18 C=1e D=a M=6ca r99=a r95=4 r71=1 r62=1ffca98178 r25=3ea9c00  ; lightenables.S:573
+dd62: 6e098007e83fc0ff40 f13 A=18 D=9 r128=5 M=6c0 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; lightenables.S:566
+dd63: 782071e7c800000020 f15 imm=20 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightenables.S:589
+dd64: 198c711f9f3e40eebc f3  imm=7e r215=3 B=18 C=1e E=c r148=380 M=6c0 r110=4fd r99=2 r71=1 r62=1ffc65a17c r25=3ea9c00  ; lightenables.S:584
+dd65: 782071e7ca0000f449 f15 imm=f449 r215=3 B=18 C=1e E=a r71=1 r62=1ffc658170  ; lightenables.S:598
+dd66: 7680216fca01580000 f14 r219=1 A=1a C=16 r176=0 F=3f G=b r62=1ffcb3c170  ; lightenables.S:553
+dd67: 1800c1031f3844941e f3  imm=c r211=3 cc=91 C=1e r148=3c0 Q=1c M=6ca r110=4bd r95=4 r71=1 r62=1ffc21a578  ; lightenables.S:606
+dd68: 57e57807fe3660a000 f10 r213=3 B=1c E=25 r128=5 M=6cc r110=5bd r62=1ffc440178 r25=3e69c00  ; lightenables.S:585
+dd69: 6e0c4007feae4af8a0 f13 cc=111 r198=7d A=18 D=c Q=1c M=6ca r110=7bd r99=4 r62=1ffd880578  ; lightenables.S:605
+dd6a: 702466bffe80f802af f14 imm=2af r211=2 r198=7d C=b F=3f r95=8 r71=1 r62=1ffd318170  ; lightenables.S:575
+dd6b: 702267e7fe80f80087 f14 imm=87 r211=2 r198=7d C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:568
+dd6c: 70246637fe80f80000 f14 r211=2 r198=7d C=3 r95=8 r62=1ffd218170  ; lightenables.S:569
+dd6d: 2e08c132020043ffa5 f5  imm=4 A=18 C=1e D=8 M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:590
+dd6e: 68000007e83fcaf8a0 f13 M=6ca r110=7bd r99=2 r62=1ffc000178 r25=3ea9c00  ; lightenables.S:594
+dd6f: 7e0af1e7e600000001 f15 imm=1 r215=3 A=18 B=18 C=1e D=a E=6 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:599
+dd70: 2e06c132430043ffa5 f5  imm=86 A=18 C=1e D=6 M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:624
+dd71: 6f0b8007e86fd0f6bc f13 r220=1 A=1c D=b r148=1c M=6d0 r110=63d r99=8 r62=1ffc88117c  ; lightenables.S:608
+dd72: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; lightenables.S:535
+dd73: 7024676ffe80f802ba f14 imm=2ba r211=2 r198=7d C=16 F=3f r95=8 r71=1 r62=1ffd318170  ; lightenables.S:586
+dd74: 7f0b81d7e000000000 f15 A=1c C=1d D=b M=6ca r99=a r62=1ffca80178 r25=3ea9c00  ; lightenables.S:536
+dd75: 6600b9d7ea0b01dd80 f12 r213=3 A=18 B=1c C=1d E=b M=6ca r99=8 r62=1ffcec0178 r25=3e69c00  ; lightenables.S:537
+dd76: 702267e7f500f80004 f14 imm=4 r211=2 r198=6a C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:593
+dd77: 702267e7f780f80004 f14 imm=4 r211=2 r198=6f C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:595
+dd78: 702267e7f700f80008 f14 imm=8 r211=2 r198=6e C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:601
+dd7a: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> dd7a seq=1cfdf r25=3e3fc00  ; lightenables.S:647
+dd7c: 702267e7c100f80086 f14 imm=86 r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:627
+dd7f: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; lightenables.S:641
+dd82: 702267e7fe80f80084 f14 imm=84 r211=2 r198=7d C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:620
+mgeb_LiReCmpPwrTable:
+dd83: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; lightenables.S:462
+dd84: 782071e7cf00000080 f15 imm=80 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; lightenables.S:500
+dd85: 2e0f8132420041ffa5 f5  imm=84 A=18 C=1e D=f M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; lightenables.S:501
+dd89: 57ee7807fe3660a000 f10 r213=3 B=1c E=2e r128=5 M=6cc r110=5bd r62=1ffc440178 r25=3e69c00  ; lightenables.S:504
+dd90: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; lightenables.S:464
+dd91: 68000007e83ff1941f f13 r148=3e0 M=6f1 r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; lightenables.S:493
+dd92: 57ef79d7fe3762b41f f10 r213=3 B=1c C=1d E=2f r148=3e0 M=6ec r110=4bd r62=1ffc642178 r25=3e69c00  ; lightenables.S:465
+dd93: 782071e7cc00000007 f15 imm=7 r215=3 B=18 C=1e E=c r71=1 r62=1ffc658170  ; lightenables.S:473
+dd94: 7e0cf1e7ed0000f50d f15 imm=f50d r215=3 A=18 B=18 C=1e D=c E=d M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:474
+dd95: 7e0df1e7ee0000f547 f15 imm=f547 r215=3 A=18 B=18 C=1e D=d E=e M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:480
+dd96: 7e0e81d7e000000000 f15 A=18 C=1d D=e M=6ca r99=a r62=1ffca80178 r25=3ea9c00  ; lightenables.S:466
+dd97: 77f64007fe00f8de3f f14 xfer5 c4 cc=7c -> de3f <mLiSwichSpotPrwTable> imm=de3f cc=7c seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; lightenables.S:508
+dd98: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> dd98 seq=1cfe5 r25=3e39c00  ; lightenables.S:509
+dd9b: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; lightenables.S:506
+dd9c: 77fa47e7c880f81bfe f14 imm=1bfe r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; lightenables.S:494
+dd9d: 77fa43e7c880f80086 f14 imm=86 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:476
+dd9e: 77fa43e7c880f8000c f14 imm=c r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:482
+dd9f: 77fa43e7c880f8000b f14 imm=b r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:486
+mgeb_LiEnableLighting:
+dda1: 7039cfe7c88cf81bfe f14 imm=1bfe C=1e r95=17 seq=605f r71=1 r62=1ffc218170 r25=3e2fc00  ; lightenables.S:77
+dda2: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; lightenables.S:81
+dda3: 68000007ec2e6c941f f13 cc=91 r148=3e0 Q=1c M=6ec r110=4bd r62=1ffc002578  ; lightenables.S:102
+dda4: 782071e7cb00000002 f15 imm=2 r215=3 B=18 C=1e E=b r71=1 r62=1ffc658170  ; lightenables.S:89
+dda5: 782071e7cc80000000 f15 imm=80000000 r215=3 B=18 C=1e E=c r71=1 r62=1ffc658170  ; lightenables.S:95
+dda6: 782071e7c40000f50d f15 imm=f50d r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; lightenables.S:108
+dda7: 782071e7c60000f547 f15 imm=f547 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; lightenables.S:112
+dda8: 57ef7807fe36659400 f10 r213=3 B=1c E=2f M=6cc r110=7bd r62=1ffc440178 r25=3e69c00  ; lightenables.S:79
+dda9: 2e0b8132420051ffa5 f5  imm=84 r220=1 A=18 C=1e D=b M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; lightenables.S:90
+ddaa: 782071e7c700000002 f15 imm=2 r215=3 B=18 C=1e E=7 r71=1 r62=1ffc658170  ; lightenables.S:118
+ddab: 2e0cc132030043ffa5 f5  imm=6 A=18 C=1e D=c M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:96
+ddac: 782071e7c800000024 f15 imm=24 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightenables.S:125
+ddad: 7e04f1e7ea0000f449 f15 imm=f449 r215=3 A=18 B=18 C=1e D=4 E=a M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:109
+ddae: 782071e7c900000080 f15 imm=80 r215=3 B=18 C=1e E=9 r71=1 r62=1ffc658170  ; lightenables.S:140
+ddaf: 7e06f1e7e500000007 f15 imm=7 r215=3 A=18 B=18 C=1e D=6 E=5 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightenables.S:113
+ddb0: 2e07c132028043ffc5 f5  imm=5 A=18 C=1e D=7 M=6d4 r110=7bd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:119
+ddb1: 2e088132420041ffa5 f5  imm=84 A=18 C=1e D=8 M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; lightenables.S:126
+ddb2: 782071e7c00000f4e4 f15 imm=f4e4 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; lightenables.S:154
+ddb3: 600039d7c1a601c01c f12 r213=2 r198=3 B=1c C=1d E=26 r148=380 M=6ca r110=4bd r62=1ffd642178 r25=3e69c00  ; lightenables.S:82
+ddb4: 702267e7c180f80006 f14 imm=6 r211=2 r198=3 C=1e r95=4 r71=1 r62=1ffd218170  ; lightenables.S:99
+ddb5: 28004132020043ff60 f5  imm=4 C=1e r128=5 M=6d4 r110=5fd r99=2 r95=13 r71=1 r62=1ffc21817c r25=3ea9c00  ; lightenables.S:129
+ddb6: 2e0ac042060044f6a0 f5  imm=c r211=3 A=18 C=1e D=a M=6ca r99=a r95=4 r71=1 r62=1ffca98178 r25=3ea9c00  ; lightenables.S:111
+ddb7: 2e09c132420043ffa5 f5  imm=84 A=18 C=1e D=9 M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightenables.S:141
+ddb8: 2e05c042058044f6a0 f5  imm=b r211=3 A=18 C=1e D=5 M=6ca r99=a r95=4 r71=1 r62=1ffca98178 r25=3ea9c00  ; lightenables.S:115
+ddb9: 7e0081d7e000000000 f15 A=18 C=1d M=6ca r99=a r62=1ffca80178 r25=3ea9c00  ; lightenables.S:83
+ddbb: 77f5c007ffbcf80000 f14 xfer5.rel c31 cc=7f -> ddbb cc=7f seq=1dfdf r62=1ffe000170 r25=3e3fc00  ; lightenables.S:159
+ddbc: 77f241a7c881f8de3f f14 xfer4 c4 cc=11 -> de3f <mLiSwichSpotPrwTable> imm=de3f r219=1 C=1a seq=4fe4 r71=1 r62=1ffc23c170 r25=3e39c00  ; lightenables.S:158
+ddbd: 77fa43e7c880f80005 f14 imm=5 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:122
+ddbe: 77fa43e7c880f80004 f14 imm=4 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:131
+ddbf: 77fa43e7c880f80008 f14 imm=8 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:137
+ddc0: 77fa43e7c880f80084 f14 imm=84 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:144
+ddc1: 77fa43e7c880f80086 f14 imm=86 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:150
+ddc2: 77fa43e7c880f800da f14 imm=da r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:154
+ddc3: 77fa43e7c880f800db f14 imm=db r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightenables.S:154
+mLiSwichSpotPrwTable2:
+ddc5: 57e07807fe3662b400 f10 r213=3 B=1c E=20 M=6cc r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:319
+ddc8: 57e17807fe3662b401 f10 r213=3 B=1c E=21 r148=20 M=6cc r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:320
+ddc9: 57e27807fe3662b402 f10 r213=3 B=1c E=22 r148=40 M=6cc r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:321
+ddca: 57e37807fe3662b403 f10 r213=3 B=1c E=23 r148=60 M=6cc r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:322
+ddcb: 57e47807fe3662b404 f10 r213=3 B=1c E=24 r148=80 M=6cc r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:323
+ddcc: 57e57807fe3662b405 f10 r213=3 B=1c E=25 r148=a0 M=6cc r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:324
+ddcd: 4f0bb807e61a62b406 f9  r213=3 A=1c B=1c D=b E=26 r148=c0 M=6cc r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; lightenables.S:315
+ddce: 57e77807fe3662b407 f10 r213=3 B=1c E=27 r148=e0 M=6cc r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:326
+ddd2: 60003007ea0001dd80 f12 r213=3 B=18 M=6ca r62=1ffc440178 r25=3e69c00  ; lightenables.S:316
+ddd3: 77f58007f008f8de2a f14 xfer5 c26 cc=60 -> de2a <mLiSwichSpotPrwTableSub> imm=de2a cc=60 seq=5fda r71=1 r62=1ffe000170 r25=3e3fc00  ; lightenables.S:337
+ddd4: 76023607ca04080000 f14 r217=1 A=18 D=2 G=1 r99=8 r62=1ffc884170  ; lightenables.S:332
+ddd5: 77fa416fc8811802c7 f14 imm=2c7 r219=1 C=16 F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:334
+ddd6: 77fa41e7c881001100 f14 imm=1100 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; lightenables.S:335
+ddd7: 77fa41e7c881101bff f14 imm=1bff r219=1 C=1e G=2 r71=1 r62=1ffc23c170  ; lightenables.S:336
+dddc: 77f58007f108f8de2a f14 xfer5 c26 cc=62 -> de2a <mLiSwichSpotPrwTableSub> imm=de2a cc=62 seq=5fda r71=1 r62=1ffe000170 r25=3e3fc00  ; lightenables.S:344
+dddd: 76033607ca04080000 f14 r217=1 A=18 D=3 G=1 r99=8 r62=1ffc884170  ; lightenables.S:339
+ddde: 77fa416fc8811802ea f14 imm=2ea r219=1 C=16 F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:341
+dddf: 77fa41e7c881001120 f14 imm=1120 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; lightenables.S:342
+dde0: 77fa41e78881101bff f14 imm=1bff r219=1 C=1e F=1e G=2 r71=1 r62=1ffc23c170  ; lightenables.S:343
+dde5: 77f58007f208f8de2a f14 xfer5 c26 cc=64 -> de2a <mLiSwichSpotPrwTableSub> imm=de2a cc=64 seq=5fda r71=1 r62=1ffe000170 r25=3e3fc00  ; lightenables.S:351
+dde6: 76043607ca04080000 f14 r217=1 A=18 D=4 G=1 r99=8 r62=1ffc884170  ; lightenables.S:346
+dde7: 77fa416fc88118030d f14 imm=30d r219=1 C=16 F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:348
+dde8: 77fa41e7c881001140 f14 imm=1140 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; lightenables.S:349
+dde9: 77fa41e74881101bff f14 imm=1bff r219=1 C=1e F=1d G=2 r71=1 r62=1ffc23c170  ; lightenables.S:350
+ddee: 77f58007f308f8de2a f14 xfer5 c26 cc=66 -> de2a <mLiSwichSpotPrwTableSub> imm=de2a cc=66 seq=5fda r71=1 r62=1ffe000170 r25=3e3fc00  ; lightenables.S:358
+ddef: 76053607ca04080000 f14 r217=1 A=18 D=5 G=1 r99=8 r62=1ffc884170  ; lightenables.S:353
+ddf0: 77fa416fc881180330 f14 imm=330 r219=1 C=16 F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:355
+ddf1: 77fa41e7c881001160 f14 imm=1160 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; lightenables.S:356
+ddf2: 77fa41e70881101bff f14 imm=1bff r219=1 C=1e F=1c G=2 r71=1 r62=1ffc23c170  ; lightenables.S:357
+ddf7: 77f58007f408f8de2a f14 xfer5 c26 cc=68 -> de2a <mLiSwichSpotPrwTableSub> imm=de2a cc=68 seq=5fda r71=1 r62=1ffe000170 r25=3e3fc00  ; lightenables.S:365
+ddf8: 76063607ca04080000 f14 r217=1 A=18 D=6 G=1 r99=8 r62=1ffc884170  ; lightenables.S:360
+ddf9: 77fa416fc881180353 f14 imm=353 r219=1 C=16 F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:362
+ddfa: 77fa41e7c881001180 f14 imm=1180 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; lightenables.S:363
+ddfb: 77fa41e6c881101bff f14 imm=1bff r219=1 C=1e F=1b G=2 r71=1 r62=1ffc23c170  ; lightenables.S:364
+de00: 77f58007f508f8de2a f14 xfer5 c26 cc=6a -> de2a <mLiSwichSpotPrwTableSub> imm=de2a cc=6a seq=5fda r71=1 r62=1ffe000170 r25=3e3fc00  ; lightenables.S:372
+de01: 76073607ca04080000 f14 r217=1 A=18 D=7 G=1 r99=8 r62=1ffc884170  ; lightenables.S:367
+de02: 77fa416fc881180376 f14 imm=376 r219=1 C=16 F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:369
+de03: 77fa41e7c8810011a0 f14 imm=11a0 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; lightenables.S:370
+de04: 77fa41e68881101bff f14 imm=1bff r219=1 C=1e F=1a G=2 r71=1 r62=1ffc23c170  ; lightenables.S:371
+de09: 77f58007f608f8de2a f14 xfer5 c26 cc=6c -> de2a <mLiSwichSpotPrwTableSub> imm=de2a cc=6c seq=5fda r71=1 r62=1ffe000170 r25=3e3fc00  ; lightenables.S:379
+de0a: 76083607ca04080000 f14 r217=1 A=18 D=8 G=1 r99=8 r62=1ffc884170  ; lightenables.S:374
+de0b: 77fa416fc881180399 f14 imm=399 r219=1 C=16 F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:376
+de0c: 77fa41e7c8810011c0 f14 imm=11c0 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; lightenables.S:377
+de0d: 77fa41e64881101bff f14 imm=1bff r219=1 C=1e F=19 G=2 r71=1 r62=1ffc23c170  ; lightenables.S:378
+de12: 77f58007f708f8de2a f14 xfer5 c26 cc=6e -> de2a <mLiSwichSpotPrwTableSub> imm=de2a cc=6e seq=5fda r71=1 r62=1ffe000170 r25=3e3fc00  ; lightenables.S:386
+de13: 76093607ca04080000 f14 r217=1 A=18 D=9 G=1 r99=8 r62=1ffc884170  ; lightenables.S:381
+de14: 77fa416fc8811803bc f14 imm=3bc r219=1 C=16 F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:383
+de15: 77fa41e7c8810011e0 f14 imm=11e0 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; lightenables.S:384
+de16: 77fa41e60881101bff f14 imm=1bff r219=1 C=1e F=18 G=2 r71=1 r62=1ffc23c170  ; lightenables.S:385
+de1b: 2e00b8224f4b44f6a0 f5  imm=9e r213=3 A=18 B=1c C=1e E=b M=6ca r99=8 r95=2 r71=1 r62=1ffced8178 r25=3e69c00  ; lightenables.S:389
+de20: 77f5c007ff3cf80000 f14 xfer5.rel c31 cc=7e -> de20 cc=7e seq=1dfdf r62=1ffe000170 r25=3e3fc00  ; lightenables.S:395
+de21: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; lightenables.S:396
+mLiSwichSpotPrwTableSub:
+de2a: 77fa4e308880f80000 f14 C=3 F=2 r95=17 r62=1ffc218170  ; lightenables.S:418
+de2c: 77fa4e1fc880f81448 f14 imm=1448 C=1 F=3f r95=17 r71=1 r62=1ffc318170  ; lightenables.S:423
+de32: 68000007ec314af8a0 f13 cc=91 Q=2 M=6ca r110=7bd r99=2 r62=1ffc000578 r25=3ea9c00  ; lightenables.S:419
+de33: 68000007e82fe2eebf f13 r148=3e0 M=6e2 r110=4fd r62=1ffc00217c  ; lightenables.S:424
+de35: 782071e7cb3d042108 f15 imm=3d042108 r215=3 B=18 C=1e E=b r71=1 r62=1ffc658170  ; lightenables.S:428
+de36: 77f24007c880f80dc9 f14 xfer4 c4 cc=11 -> 0dc9 <mLiPwrTable> imm=dc9 seq=4fe4 r71=1 r25=3e39c00  ; lightenables.S:445
+de37: 5e0b8607c22257d400 f11 cc=291 A=18 D=b P=3 Q=1 r128=28 M=44a r110=7b9 r99=8 r62=1ffc880dfb  ; lightenables.S:425
+de39: 77fa41e008816c8584 f14 imm=8584 r219=1 C=1e r162=1 F=0 G=d r71=1 r62=1ffc23c170  ; lightenables.S:434
+de3a: 77fa41e7c881080020 f14 imm=20 r219=1 C=1e G=1 r71=1 r62=1ffc23c170  ; lightenables.S:437
+de3b: 77fa4627c880f80000 f14 r211=3 C=2 r95=8 r62=1ffc218170  ; lightenables.S:440
+mLiSwichSpotPrwTable:
+de3f: 77fa41e7c881781c00 f14 imm=1c00 r219=1 C=1e G=f r71=1 r62=1ffc23c170  ; lightenables.S:185
+de40: 77fa416fc88118030d f14 imm=30d r219=1 C=16 F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:186
+de41: 77fa4f6fc880f802e4 f14 imm=2e4 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; lightenables.S:190
+de42: 68000007ec23f1941f f13 cc=91 r148=3e0 Q=7 M=6f1 r110=4bd r62=1ffc002578  ; lightenables.S:187
+de43: 68000007ec2071941f f13 cc=91 r148=3e0 Q=0 M=6f1 r110=4bd r62=1ffc002578  ; lightenables.S:189
+de44: 68000007ec20f1941f f13 cc=91 r148=3e0 Q=1 M=6f1 r110=4bd r62=1ffc002578  ; lightenables.S:197
+de45: 77fa4f6fc880f80307 f14 imm=307 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; lightenables.S:198
+de46: 68000007ec2171941f f13 cc=91 r148=3e0 Q=2 M=6f1 r110=4bd r62=1ffc002578  ; lightenables.S:206
+de47: 68000007ec21f1941f f13 cc=91 r148=3e0 Q=3 M=6f1 r110=4bd r62=1ffc002578  ; lightenables.S:216
+de48: 68002e30ac4c40eebf f13 r221=1 cc=211 C=3 F=2 r148=3e0 P=18 M=47f r110=69d r95=17 r62=1ffc21a973  ; lightenables.S:191
+de49: 77fa403fc881700023 f14 imm=23 r219=1 C=3 F=3f G=e r71=1 r62=1ffc33c170  ; lightenables.S:213
+de4a: 68000007c5204a941e f13 cc=111 r198=a r148=3c0 Q=0 M=6ca r110=4bd r62=1ffd002578  ; lightenables.S:194
+de4b: 77fa4fe7c880f81bff f14 imm=1bff C=1e r95=17 r71=1 r62=1ffc218170  ; lightenables.S:192
+de4c: 180000f7832e18eebf f3  r221=1 r219=1 cc=211 C=f F=1e G=3 r148=3e0 P=17 M=47f r110=69d r62=1ffc23e973  ; lightenables.S:199
+de4d: 68002ee0ac224a9407 f13 cc=91 C=e F=2 r148=e0 Q=4 M=6ca r110=4bd r95=17 r62=1ffc21a578  ; lightenables.S:217
+de4e: 68000007ec22ca9407 f13 cc=91 r148=e0 Q=5 M=6ca r110=4bd r62=1ffc002578  ; lightenables.S:236
+de4f: 68002ef7c520ca941e f13 cc=111 r198=a C=f r148=3c0 Q=1 M=6ca r110=4bd r95=17 r62=1ffd21a578  ; lightenables.S:200
+de50: 77fa40efc881780023 f14 imm=23 r219=1 C=e F=3f G=f r71=1 r62=1ffc33c170  ; lightenables.S:223
+de51: 18000037832c18eebf f3  r221=1 r219=1 cc=211 C=3 F=1e G=3 r148=3e0 P=16 M=47f r110=69d r62=1ffc23e973  ; lightenables.S:208
+de52: 68002e37e86fe2eeb8 f13 r220=1 C=3 r148=300 M=6e2 r110=4fd r95=17 r62=1ffc21a17c  ; lightenables.S:193
+de53: 68000007c5214a941e f13 cc=111 r198=a r148=3c0 Q=2 M=6ca r110=4bd r62=1ffd002578  ; lightenables.S:211
+de54: 68002ef0ac4ac0eebf f13 r221=1 cc=211 C=f F=2 r148=3e0 P=15 M=47f r110=69d r95=17 r62=1ffc21a973  ; lightenables.S:218
+de55: 77fa40ffc881180023 f14 imm=23 r219=1 C=f F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:233
+de56: 38000037803c5eeeb7 f7  r220=1 r219=1 C=3 F=1e G=f r148=2e0 M=6e2 r110=4fd r62=1ffc23e17c  ; lightenables.S:201
+de57: 68002e37c1204a941e f13 cc=111 r198=2 C=3 r148=3c0 Q=0 M=6ca r110=4bd r95=17 r62=1ffd21a578  ; lightenables.S:195
+de58: 68000007c120ca941e f13 cc=111 r198=2 r148=3c0 Q=1 M=6ca r110=4bd r62=1ffd002578  ; lightenables.S:203
+de59: 68002e308521ca941e f13 cc=111 r198=a C=3 F=2 r148=3c0 Q=3 M=6ca r110=4bd r95=17 r62=1ffd21a578  ; lightenables.S:221
+de5a: 380000f7803c5eeeb6 f7  r220=1 r219=1 C=f F=1e G=f r148=2c0 M=6e2 r110=4fd r62=1ffc23e17c  ; lightenables.S:210
+de5b: 68002ef7ec4cc0eebf f13 r221=1 cc=211 C=f r148=3e0 P=19 M=47f r110=69d r95=17 r62=1ffc21a973  ; lightenables.S:228
+de5c: 68000007c1214a941e f13 cc=111 r198=2 r148=3c0 Q=2 M=6ca r110=4bd r62=1ffd002578  ; lightenables.S:212
+de5d: 77fa403fc881180023 f14 imm=23 r219=1 C=3 F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:243
+de5e: 68000007e86fe2eeb5 f13 r220=1 r148=2a0 M=6e2 r110=4fd r62=1ffc00217c  ; lightenables.S:220
+de5f: 68002ef7c5224a941e f13 cc=111 r198=a C=f r148=3c0 Q=4 M=6ca r110=4bd r95=17 r62=1ffd21a578  ; lightenables.S:231
+de60: 180000f78f3418eebf f3  r221=1 r219=1 cc=211 C=f F=1e G=f r148=3e0 P=1a M=47f r110=69d r62=1ffc23e973  ; lightenables.S:238
+de61: 68002e308121ca941e f13 cc=111 r198=2 C=3 F=2 r148=3c0 Q=3 M=6ca r110=4bd r95=17 r62=1ffd21a578  ; lightenables.S:222
+de62: 68000007e86fe2ff67 f13 r220=1 r128=3d M=6e2 r110=5fd r62=1ffc00017c  ; lightenables.S:230
+de63: 77fa403fc881180023 f14 imm=23 r219=1 C=3 F=3f G=3 r71=1 r62=1ffc33c170  ; lightenables.S:253
+de64: 68000007ec234a9407 f13 cc=91 r148=e0 Q=6 M=6ca r110=4bd r62=1ffc002578  ; lightenables.S:246
+de65: 68002ef7c1224a941e f13 cc=111 r198=2 C=f r148=3c0 Q=4 M=6ca r110=4bd r95=17 r62=1ffd21a578  ; lightenables.S:232
+de66: 380000f7803c5eff66 f7  r220=1 r219=1 C=f F=1e G=f r128=35 M=6e2 r110=5fd r62=1ffc23c17c  ; lightenables.S:240
+de67: 68002e308522ca941e f13 cc=111 r198=a C=3 F=2 r148=3c0 Q=5 M=6ca r110=4bd r95=17 r62=1ffd21a578  ; lightenables.S:241
+de68: 68000007ec4dc0eebf f13 r221=1 cc=211 r148=3e0 P=1b M=47f r110=69d r62=1ffc002973  ; lightenables.S:248
+de69: 68000007c122ca941e f13 cc=111 r198=2 r148=3c0 Q=5 M=6ca r110=4bd r62=1ffd002578  ; lightenables.S:242
+de6a: 68000007e82fc09420 f13 r148=1 M=6c0 r110=43d r62=1ffc00317c  ; lightenables.S:265
+de6b: 68002ef7e82fc09462 f13 C=f r148=43 M=6c0 r110=43d r95=17 r62=1ffc21b17c  ; lightenables.S:258
+de6c: 68000007e86fe2ff64 f13 r220=1 r128=25 M=6e2 r110=5fd r62=1ffc00017c  ; lightenables.S:250
+de6d: 68000007c5234a941e f13 cc=111 r198=a r148=3c0 Q=6 M=6ca r110=4bd r62=1ffd002578  ; lightenables.S:251
+de6e: 68000007ec4e40eebf f13 r221=1 cc=211 r148=3e0 P=1c M=47f r110=69d r62=1ffc002973  ; lightenables.S:257
+de6f: 68000007e82fc0fe81 f13 r128=8 M=6c0 r110=57d r62=1ffc0001fc  ; lightenables.S:268
+de70: 68000007c1234a941e f13 cc=111 r198=2 r148=3c0 Q=6 M=6ca r110=4bd r62=1ffd002578  ; lightenables.S:252
+de71: 68000007e82fc094a4 f13 r148=85 M=6c0 r110=43d r62=1ffc00317c  ; lightenables.S:267
+de72: 68000007e86fe2ff64 f13 r220=1 r128=25 M=6e2 r110=5fd r62=1ffc00017c  ; lightenables.S:259
+de73: 68000007c523ca941e f13 cc=111 r198=a r148=3c0 Q=7 M=6ca r110=4bd r62=1ffd002578  ; lightenables.S:260
+de74: 68000007c123ca941e f13 cc=111 r198=2 r148=3c0 Q=7 M=6ca r110=4bd r62=1ffd002578  ; lightenables.S:261
+de75: 68000007e82fc0fe82 f13 r128=10 M=6c0 r110=57d r62=1ffc0001fc  ; lightenables.S:269
+de76: 68000007ec2d779418 f13 cc=91 r148=300 Q=1a M=6f7 r110=4bd r62=1ffc002578  ; lightenables.S:270
+de77: 68000007ec2cf79417 f13 cc=91 r148=2e0 Q=19 M=6f7 r110=4bd r62=1ffc002578  ; lightenables.S:278
+de78: 68000007ec2df79416 f13 cc=91 r148=2c0 Q=1b M=6f7 r110=4bd r62=1ffc002578  ; lightenables.S:279
+de79: 68000007e82fc0f406 f13 r148=6 r128=5 M=6c0 r110=53d r62=1ffc00117c  ; lightenables.S:271
+de7a: 68000007ec2e779415 f13 cc=91 r148=2a0 Q=1c M=6f7 r110=4bd r62=1ffc002578  ; lightenables.S:280
+de7b: 68000007ec2d779419 f13 cc=91 r148=320 Q=1a M=6f7 r110=4bd r62=1ffc002578  ; lightenables.S:281
+de7c: 68000007ec2cf7941a f13 cc=91 r148=340 Q=19 M=6f7 r110=4bd r62=1ffc002578  ; lightenables.S:282
+de7d: 68000007e86fc0f407 f13 r220=1 r148=7 r128=5 M=6c0 r110=53d r62=1ffc00117c  ; lightenables.S:272
+de7e: 68000007ec2e77941b f13 cc=91 r148=360 Q=1c M=6f7 r110=4bd r62=1ffc002578  ; lightenables.S:283
+de7f: 68000007ec2df7941c f13 cc=91 r148=380 Q=1b M=6f7 r110=4bd r62=1ffc002578  ; lightenables.S:284
+de80: 280040224f0044941e f5  imm=9e C=1e r148=3c0 M=6ca r110=4bd r99=2 r95=2 r71=1 r62=1ffc21a178 r25=3ea9c00  ; lightenables.S:275
+de81: 57c27007fe378ab41a f10 r213=3 B=18 E=2 r148=340 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:285
+de82: 57c37007fe378ab419 f10 r213=3 B=18 E=3 r148=320 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:286
+de83: 57c47007fe378ab41b f10 r213=3 B=18 E=4 r148=360 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:287
+de84: 57c57007fe378ab41c f10 r213=3 B=18 E=5 r148=380 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:288
+de85: 57c67007fe378ab41a f10 r213=3 B=18 E=6 r148=340 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:289
+de86: 57c77007fe378ab419 f10 r213=3 B=18 E=7 r148=320 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:290
+de87: 57c87007fe378ab41c f10 r213=3 B=18 E=8 r148=380 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:291
+de88: 57c97007fe378ab41b f10 r213=3 B=18 E=9 r148=360 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; lightenables.S:292
+de89: 77f5c007c18cf8ddc5 f14 xfer5 c31 cc=3 -> ddc5 <mLiSwichSpotPrwTable2> imm=ddc5 cc=3 seq=5fdf r71=1 r62=1ffe000170 r25=3e3fc00  ; lightenables.S:298
+de8a: 77f5c007ff3cf80000 f14 xfer5.rel c31 cc=7e -> de8a cc=7e seq=1dfdf r62=1ffe000170 r25=3e3fc00  ; lightenables.S:299
+de8b: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; lightenables.S:300
+de8e: 77fa47e7c880f81bfe f14 imm=1bfe r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; lightenables.S:296

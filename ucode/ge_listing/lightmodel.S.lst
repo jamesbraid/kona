@@ -1,0 +1,244 @@
+# lightmodel.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mgeb_LiClrMtrlFrontBack:
+c721: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; lightmodel.S:543
+c722: 782071e7c100000405 f15 imm=405 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; lightmodel.S:642
+c723: 782071e7c400001600 f15 imm=1600 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; lightmodel.S:569
+c724: 77e72e07ca00f80000 f14 A=1f D=27 r99=4 r62=1ffc880170  ; lightmodel.S:568
+c725: 782071e7c800001602 f15 imm=1602 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightmodel.S:593
+c726: 782071e7c600001201 f15 imm=1201 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; lightmodel.S:581
+c727: 782071e7c500001200 f15 imm=1200 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; lightmodel.S:575
+c728: 6e058007ec2e42ffa5 f13 cc=91 A=18 D=5 Q=1c M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:576
+c729: 6e068007ec2d42ffa5 f13 cc=91 A=18 D=6 Q=1a M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:582
+c72a: 6e088007ec2cc2ffa5 f13 cc=91 A=18 D=8 Q=19 M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:594
+c72b: 77fa4f6fc880f802b9 f14 imm=2b9 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; lightmodel.S:555
+c72c: 7e24f1e7c300001200 f15 imm=1200 r215=3 A=18 B=18 C=1e D=4 E=3 r99=8 r71=1 r62=1ffced8170  ; lightmodel.S:570
+c72d: 192831e7c451c6ffa5 f3  imm=8 r215=3 B=18 C=1e E=9 M=6c2 r110=6fd r71=1 r62=1ffc65817c  ; lightmodel.S:571
+c72e: 782071e7c700001202 f15 imm=1202 r215=3 B=18 C=1e E=7 r71=1 r62=1ffc658170  ; lightmodel.S:587
+c72f: 6e078007ec2dc2ffa5 f13 cc=91 A=18 D=7 Q=1b M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:588
+c730: 16099b211f3841ffa5 f2  imm=84 cc=91 A=18 C=1e D=9 Q=1c M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9857c  ; lightmodel.S:602
+c731: 68000007ec2cc4c0be f13 cc=91 r148=3c0 Q=19 r128=28 M=6c4 r110=47d r62=1ffc0025fc  ; lightmodel.S:572
+c732: 60003007ea0b01de80 f12 r213=3 B=18 E=b M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; lightmodel.S:556
+c733: 782071e7cf00000408 f15 imm=408 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; lightmodel.S:562
+c734: 670bb007ea0001dd80 f12 r213=3 A=1c B=18 D=b M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:550
+c735: 57e07807fe36b1a3a0 f10 r213=3 B=1c E=20 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:609
+c736: 68000007e82fc4979e f13 r148=3dc M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:578
+c737: 68000007e82fc4973e f13 r148=3d9 M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:596
+c738: 68000007e82fc4975e f13 r148=3da M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:584
+c739: 68000007e82fc4977e f13 r148=3db M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:590
+c73a: 57e47807fe36b3b7b9 f10 r213=3 B=1c E=24 r148=33d M=6d6 r110=43d r62=1ffc44317c r25=3e69c00  ; lightmodel.S:614
+c73b: 188871201f3e41fe81 f3  imm=80 r215=3 B=18 C=1e E=4 r128=8 M=6d0 r110=57d r71=1 r62=1ffc6581fc  ; lightmodel.S:598
+c73c: 68000007e82fd0fe88 f13 r128=1 M=6d0 r110=57d r62=1ffc0001fc  ; lightmodel.S:599
+c73d: 57e37807fe36b1a3a0 f10 r213=3 B=1c E=23 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:612
+c73e: 57e77807fe36b1a7a0 f10 r213=3 B=1c E=27 r148=1d r128=d M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:617
+c73f: 57e17807fe36b1a3a0 f10 r213=3 B=1c E=21 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:610
+c740: 57e27807fe36b1a3a0 f10 r213=3 B=1c E=22 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:611
+c741: 57e57807fe36b1aba0 f10 r213=3 B=1c E=25 r148=1d r128=15 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:615
+c742: 57e67807fe36b1aba0 f10 r213=3 B=1c E=26 r148=1d r128=15 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:616
+c743: 57ef7807fe3662b41c f10 r213=3 B=1c E=2f r148=380 M=6cc r110=4bd r62=1ffc442178 r25=3e69c00  ; lightmodel.S:606
+c744: 6fe78007e83fcaf6a0 f13 A=1f D=27 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightmodel.S:559
+c745: 77fa4f6fc880f802b8 f14 imm=2b8 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; lightmodel.S:557
+c746: 7e0f8007e000000000 f15 A=18 D=f M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightmodel.S:563
+c747: 67c4b007ea0d01dd80 f12 r213=3 A=1f B=18 D=4 E=d M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:629
+c748: 67c5b007ea0e01dd80 f12 r213=3 A=1f B=18 D=5 E=e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:631
+c749: 67c6b007ea0f01dd80 f12 r213=3 A=1f B=18 D=6 E=f M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:633
+c74a: 67c7b007ea1001dd80 f12 r213=3 A=1f B=18 D=7 E=10 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:635
+c74b: 7f0b8007e000000000 f15 A=1c D=b M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightmodel.S:620
+c74c: 3e00b9d7cbe844f6a0 f7  r219=1 r213=3 A=18 B=1c C=1d E=b G=1a M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; lightmodel.S:545
+c74d: 77fa476fc880f802b8 f14 imm=2b8 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; lightmodel.S:561
+c74e: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; lightmodel.S:546
+c74f: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; lightmodel.S:547
+c751: 19903007ffbf44f8a0 f3  xfer5.rel c31 cc=7f -> c751 r213=3 cc=7f B=18 E=c M=6ca r110=7bd seq=1dfdf r62=1ffe440178 r25=3e7fc00  ; lightmodel.S:558
+c752: 77f24007c880f8def0 f14 xfer4 c4 cc=11 -> def0 <mLiUpdateMtrlColor> imm=def0 seq=4fe4 r71=1 r25=3e39c00  ; lightmodel.S:652
+c753: 77fa476fc880f802b9 f14 imm=2b9 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; lightmodel.S:565
+c755: 782071e7c500001202 f15 imm=1202 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; lightmodel.S:645
+c756: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; lightmodel.S:639
+c757: 782071e7c600001600 f15 imm=1600 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; lightmodel.S:646
+c758: 782071e7c800001602 f15 imm=1602 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightmodel.S:647
+c759: 77fa43e7c880f80085 f14 imm=85 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightmodel.S:622
+mgeb_LiClrMtrlBack:
+c75b: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; lightmodel.S:416
+c75c: 782071e7c100000405 f15 imm=405 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; lightmodel.S:515
+c75d: 782071e7c300001200 f15 imm=1200 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; lightmodel.S:516
+c75e: 782071e7c400001600 f15 imm=1600 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; lightmodel.S:442
+c75f: 77e72e07ca00f80000 f14 A=1f D=27 r99=4 r62=1ffc880170  ; lightmodel.S:441
+c760: 782071e7c800001602 f15 imm=1602 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightmodel.S:466
+c761: 782071e7c600001201 f15 imm=1201 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; lightmodel.S:454
+c762: 782071e7c500001200 f15 imm=1200 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; lightmodel.S:448
+c763: 6e058007ec2bc2ffa5 f13 cc=91 A=18 D=5 Q=17 M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:449
+c764: 77fa4f6fc880f802b9 f14 imm=2b9 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; lightmodel.S:428
+c765: 6e068007ec2c42ffa5 f13 cc=91 A=18 D=6 Q=18 M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:455
+c766: 6e088007ec2cc2ffa5 f13 cc=91 A=18 D=8 Q=19 M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:467
+c767: 7e24f1e7c700001202 f15 imm=1202 r215=3 A=18 B=18 C=1e D=4 E=7 r99=8 r71=1 r62=1ffced8170  ; lightmodel.S:443
+c768: 192871021f3446ffa5 f3  imm=8 r215=3 cc=91 B=18 C=1e E=9 Q=1a M=6c2 r110=6fd r71=1 r62=1ffc65857c  ; lightmodel.S:444
+c769: 6e078007ec2dc2ffa5 f13 cc=91 A=18 D=7 Q=1b M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:461
+c76a: 16099b211f3841ffa5 f2  imm=84 cc=91 A=18 C=1e D=9 Q=1c M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9857c  ; lightmodel.S:475
+c76b: 60003007ea0b01de80 f12 r213=3 B=18 E=b M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; lightmodel.S:429
+c76c: 77fa4f6fc880f802b8 f14 imm=2b8 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; lightmodel.S:430
+c76d: 670bb007ea0001dd80 f12 r213=3 A=1c B=18 D=b M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:423
+c76e: 60003807ea2001c01e f12 r213=3 B=1c E=20 r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; lightmodel.S:482
+c76f: 60003807ea2101c01e f12 r213=3 B=1c E=21 r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; lightmodel.S:483
+c770: 60003807ea2201c01e f12 r213=3 B=1c E=22 r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; lightmodel.S:484
+c771: 60003807ea2301c01e f12 r213=3 B=1c E=23 r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; lightmodel.S:485
+c772: 68000007e82fc496fe f13 r148=3d7 M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:451
+c773: 68000007e82fc4973e f13 r148=3d9 M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:469
+c774: 68000007e82fc4971e f13 r148=3d8 M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:457
+c775: 68000007e82fc4975e f13 r148=3da M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:445
+c776: 68000007e82fc4977e f13 r148=3db M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:463
+c777: 68000007e82fd0fe81 f13 r128=8 M=6d0 r110=57d r62=1ffc0001fc  ; lightmodel.S:471
+c778: 68000007e82fd0fe88 f13 r128=1 M=6d0 r110=57d r62=1ffc0001fc  ; lightmodel.S:472
+c779: 57e47807fe36b1a3a0 f10 r213=3 B=1c E=24 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:487
+c77a: 57e77807fe36b1a3a0 f10 r213=3 B=1c E=27 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:490
+c77b: 57e57807fe36b1a3a0 f10 r213=3 B=1c E=25 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:488
+c77c: 57e67807fe36b1a3a0 f10 r213=3 B=1c E=26 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:489
+c77d: 57ef7807fe3662b41c f10 r213=3 B=1c E=2f r148=380 M=6cc r110=4bd r62=1ffc442178 r25=3e69c00  ; lightmodel.S:479
+c77e: 6fe78007e83fcaf6a0 f13 A=1f D=27 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightmodel.S:432
+c77f: 782071e7cf00000405 f15 imm=405 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; lightmodel.S:435
+c780: 7e0ff1e7e400000080 f15 imm=80 r215=3 A=18 B=18 C=1e D=f E=4 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightmodel.S:436
+c781: 67c4b007ea0d01dd80 f12 r213=3 A=1f B=18 D=4 E=d M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:502
+c782: 67c5b007ea0e01dd80 f12 r213=3 A=1f B=18 D=5 E=e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:504
+c783: 67c6b007ea0f01dd80 f12 r213=3 A=1f B=18 D=6 E=f M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:506
+c784: 67c7b007ea1001dd80 f12 r213=3 A=1f B=18 D=7 E=10 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:508
+c785: 7f0b8007e000000000 f15 A=1c D=b M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightmodel.S:493
+c786: 3e00b9d7cbe844f6a0 f7  r219=1 r213=3 A=18 B=1c C=1d E=b G=1a M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; lightmodel.S:418
+c787: 77fa476fc880f802b8 f14 imm=2b8 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; lightmodel.S:434
+c788: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; lightmodel.S:419
+c789: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; lightmodel.S:420
+c78b: 19903007ffbf44f8a0 f3  xfer5.rel c31 cc=7f -> c78b r213=3 cc=7f B=18 E=c M=6ca r110=7bd seq=1dfdf r62=1ffe440178 r25=3e7fc00  ; lightmodel.S:431
+c78c: 77f24007c880f8def0 f14 xfer4 c4 cc=11 -> def0 <mLiUpdateMtrlColor> imm=def0 seq=4fe4 r71=1 r25=3e39c00  ; lightmodel.S:525
+c78d: 77fa476fc880f802b9 f14 imm=2b9 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; lightmodel.S:438
+c78f: 782071e7c500001202 f15 imm=1202 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; lightmodel.S:518
+c790: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; lightmodel.S:512
+c791: 782071e7c600001600 f15 imm=1600 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; lightmodel.S:519
+c792: 782071e7c800001602 f15 imm=1602 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightmodel.S:520
+c793: 77fa43e7c880f80085 f14 imm=85 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightmodel.S:495
+mgeb_LiClrMtrlFront:
+c795: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; lightmodel.S:289
+c796: 782071e7c100000405 f15 imm=405 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; lightmodel.S:388
+c797: 782071e7c300001200 f15 imm=1200 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; lightmodel.S:389
+c798: 782071e7c400001600 f15 imm=1600 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; lightmodel.S:315
+c799: 77e72e07ca00f80000 f14 A=1f D=27 r99=4 r62=1ffc880170  ; lightmodel.S:314
+c79a: 782071e7c800001602 f15 imm=1602 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightmodel.S:339
+c79b: 782071e7c600001201 f15 imm=1201 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; lightmodel.S:327
+c79c: 782071e7c500001200 f15 imm=1200 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; lightmodel.S:321
+c79d: 6e058007ec2bc2ffa5 f13 cc=91 A=18 D=5 Q=17 M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:322
+c79e: 77fa4f6fc880f802b9 f14 imm=2b9 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; lightmodel.S:301
+c79f: 6e068007ec2c42ffa5 f13 cc=91 A=18 D=6 Q=18 M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:328
+c7a0: 6e088007ec2cc2ffa5 f13 cc=91 A=18 D=8 Q=19 M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:340
+c7a1: 7e24f1e7c700001202 f15 imm=1202 r215=3 A=18 B=18 C=1e D=4 E=7 r99=8 r71=1 r62=1ffced8170  ; lightmodel.S:316
+c7a2: 192871021f3446ffa5 f3  imm=8 r215=3 cc=91 B=18 C=1e E=9 Q=1a M=6c2 r110=6fd r71=1 r62=1ffc65857c  ; lightmodel.S:317
+c7a3: 6e078007ec2dc2ffa5 f13 cc=91 A=18 D=7 Q=1b M=6c2 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:334
+c7a4: 16099b211f3841ffa5 f2  imm=84 cc=91 A=18 C=1e D=9 Q=1c M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9857c  ; lightmodel.S:348
+c7a5: 60003007ea0b01de80 f12 r213=3 B=18 E=b M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; lightmodel.S:302
+c7a6: 77fa4f6fc880f802b8 f14 imm=2b8 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; lightmodel.S:303
+c7a7: 670bb007ea0001dd80 f12 r213=3 A=1c B=18 D=b M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:296
+c7a8: 60003807ea2401c01e f12 r213=3 B=1c E=24 r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; lightmodel.S:355
+c7a9: 60003807ea2501c01e f12 r213=3 B=1c E=25 r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; lightmodel.S:356
+c7aa: 60003807ea2601c01e f12 r213=3 B=1c E=26 r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; lightmodel.S:357
+c7ab: 60003807ea2701c01e f12 r213=3 B=1c E=27 r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; lightmodel.S:358
+c7ac: 68000007e82fc496fe f13 r148=3d7 M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:324
+c7ad: 68000007e82fc4973e f13 r148=3d9 M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:342
+c7ae: 68000007e82fc4971e f13 r148=3d8 M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:330
+c7af: 68000007e82fc4975e f13 r148=3da M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:318
+c7b0: 68000007e82fc4977e f13 r148=3db M=6c4 r110=43d r62=1ffc00317c  ; lightmodel.S:336
+c7b1: 68000007e82fd0fe81 f13 r128=8 M=6d0 r110=57d r62=1ffc0001fc  ; lightmodel.S:344
+c7b2: 68000007e82fd0fe88 f13 r128=1 M=6d0 r110=57d r62=1ffc0001fc  ; lightmodel.S:345
+c7b3: 57e07807fe36b1a3a0 f10 r213=3 B=1c E=20 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:360
+c7b4: 57e37807fe36b1a3a0 f10 r213=3 B=1c E=23 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:363
+c7b5: 57e17807fe36b1a3a0 f10 r213=3 B=1c E=21 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:361
+c7b6: 57e27807fe36b1a3a0 f10 r213=3 B=1c E=22 r148=1d r128=5 M=6d6 r110=53d r62=1ffc44117c r25=3e69c00  ; lightmodel.S:362
+c7b7: 57ef7807fe3662b41c f10 r213=3 B=1c E=2f r148=380 M=6cc r110=4bd r62=1ffc442178 r25=3e69c00  ; lightmodel.S:352
+c7b8: 6fe78007e83fcaf6a0 f13 A=1f D=27 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightmodel.S:305
+c7b9: 782071e7cf00000404 f15 imm=404 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; lightmodel.S:308
+c7ba: 7e0ff1e7e400000080 f15 imm=80 r215=3 A=18 B=18 C=1e D=f E=4 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightmodel.S:309
+c7bb: 67c4b007ea0d01dd80 f12 r213=3 A=1f B=18 D=4 E=d M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:375
+c7bc: 67c5b007ea0e01dd80 f12 r213=3 A=1f B=18 D=5 E=e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:377
+c7bd: 67c6b007ea0f01dd80 f12 r213=3 A=1f B=18 D=6 E=f M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:379
+c7be: 67c7b007ea1001dd80 f12 r213=3 A=1f B=18 D=7 E=10 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; lightmodel.S:381
+c7bf: 7f0b8007e000000000 f15 A=1c D=b M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightmodel.S:366
+c7c0: 3e00b9d7cbe844f6a0 f7  r219=1 r213=3 A=18 B=1c C=1d E=b G=1a M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; lightmodel.S:291
+c7c1: 77fa476fc880f802b8 f14 imm=2b8 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; lightmodel.S:307
+c7c2: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; lightmodel.S:292
+c7c3: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; lightmodel.S:293
+c7c5: 19903007ffbf44f8a0 f3  xfer5.rel c31 cc=7f -> c7c5 r213=3 cc=7f B=18 E=c M=6ca r110=7bd seq=1dfdf r62=1ffe440178 r25=3e7fc00  ; lightmodel.S:304
+c7c6: 77f24007c880f8def0 f14 xfer4 c4 cc=11 -> def0 <mLiUpdateMtrlColor> imm=def0 seq=4fe4 r71=1 r25=3e39c00  ; lightmodel.S:398
+c7c7: 77fa476fc880f802b9 f14 imm=2b9 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; lightmodel.S:311
+c7c9: 782071e7c500001202 f15 imm=1202 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; lightmodel.S:391
+c7ca: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; lightmodel.S:385
+c7cb: 782071e7c600001600 f15 imm=1600 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; lightmodel.S:392
+c7cc: 782071e7c800001602 f15 imm=1602 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightmodel.S:393
+c7cd: 77fa43e7c880f80085 f14 imm=85 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightmodel.S:368
+mgeb_LightModelGAmb:
+c7cf: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; lightmodel.S:228
+c7d0: 17c0a1d7da3e44f6a0 f2  r219=1 A=1f C=1d G=1a M=6ca r99=a r62=1ffcabc178 r25=3ea9c00  ; lightmodel.S:230
+c7d1: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; lightmodel.S:231
+c7d2: 2fc1c132430044f6a0 f5  imm=86 A=1f C=1e D=1 M=6ca r99=a r95=13 r71=1 r62=1ffca98178 r25=3ea9c00  ; lightmodel.S:238
+c7d3: 782071e7c40000f50d f15 imm=f50d r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; lightmodel.S:256
+c7d4: 7fc2f1e7e500000001 f15 imm=1 r215=3 A=1f B=18 C=1e D=2 E=5 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightmodel.S:241
+c7d5: 6e0581d7e83fd4ffa5 f13 A=18 C=1d D=5 M=6d4 r110=6fd r99=a r62=1ffca8017c r25=3ea9c00  ; lightmodel.S:232
+c7d6: 7e04f1e7e70000f547 f15 imm=f547 r215=3 A=18 B=18 C=1e D=4 E=7 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightmodel.S:257
+c7d7: 7e078007e000000000 f15 A=18 D=7 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightmodel.S:261
+c7d8: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> c7d8 seq=1cfdf r25=3e3fc00  ; lightmodel.S:268
+c7d9: 77fa476fc880f802ab f14 imm=2ab r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; lightmodel.S:237
+c7db: 77fa476fc880f802ac f14 imm=2ac r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; lightmodel.S:240
+c7dc: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; lightmodel.S:266
+c7dd: 77fa476fc880f802ad f14 imm=2ad r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; lightmodel.S:243
+c7de: 77fa43e7c880f80086 f14 imm=86 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightmodel.S:253
+c7df: 77fa43e7c880f8000c f14 imm=c r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightmodel.S:259
+c7e0: 77fa43e7c880f8000b f14 imm=b r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightmodel.S:263
+mgeb_LightModelLocV:
+c7e1: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; lightmodel.S:152
+c7e2: 7039cde7c88cf80084 f14 imm=84 C=1e r95=13 seq=605f r71=1 r62=1ffc218170 r25=3e2fc00  ; lightmodel.S:150
+c7e3: 782071e7c800000080 f15 imm=80 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; lightmodel.S:158
+c7e4: 7e28f1e7ca0000f449 f15 imm=f449 r215=3 A=18 B=18 C=1e D=8 E=a r99=8 r71=1 r62=1ffced8170  ; lightmodel.S:159
+c7e5: 192831e7fdd1c1ffa5 f3  imm=fffffffb r215=3 B=18 C=1e E=9 M=6d0 r110=6fd r71=1 r62=1ffc65817c  ; lightmodel.S:160
+c7e6: 7fe0f1e7c600000004 f15 imm=4 r215=3 A=1f B=18 C=1e E=6 r99=8 r71=1 r62=1ffced8170  ; lightmodel.S:164
+c7e7: 190831e7c251d4f6a0 f3  imm=4 r220=1 r215=3 B=18 C=1e E=8 M=6ca r71=1 r62=1ffc658178  ; lightmodel.S:168
+c7e8: 2e06c132420043ffa5 f5  imm=84 A=18 C=1e D=6 M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightmodel.S:169
+c7e9: 68000007e83fd1ffa5 f13 M=6d1 r110=6fd r99=2 r62=1ffc00017c r25=3ea9c00  ; lightmodel.S:174
+c7ea: 57ee7807fe3660a400 f10 r213=3 B=1c E=2e r128=d M=6cc r110=5bd r62=1ffc440178 r25=3e69c00  ; lightmodel.S:161
+c7eb: 2e08c132020043ffa5 f5  imm=4 A=18 C=1e D=8 M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightmodel.S:180
+c7ec: 6e0981d7e83fd0ffa5 f13 A=18 C=1d D=9 M=6d0 r110=6fd r99=a r62=1ffca8017c r25=3ea9c00  ; lightmodel.S:153
+c7ed: 7e0af1e7e50000d9a2 f15 imm=d9a2 r215=3 A=18 B=18 C=1e D=a E=5 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightmodel.S:192
+c7ee: 7e05f1e7e40000f50d f15 imm=f50d r215=3 A=18 B=18 C=1e D=5 E=4 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightmodel.S:198
+c7ef: 7e04f1e7e70000f547 f15 imm=f547 r215=3 A=18 B=18 C=1e D=4 E=7 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightmodel.S:204
+c7f0: 680001d7e83fcaf8a0 f13 C=1d M=6ca r110=7bd r99=2 r62=1ffc200178 r25=3ea9c00  ; lightmodel.S:154
+c7f1: 2e07c042420044f6a0 f5  imm=84 r211=3 A=18 C=1e D=7 M=6ca r99=a r95=4 r71=1 r62=1ffca98178 r25=3ea9c00  ; lightmodel.S:173
+c7f2: 77f1c1a7c8bdf80000 f14 xfer4.rel c31 cc=11 -> c7f2 r219=1 C=1a seq=1cfdf r62=1ffc23c170 r25=3e3fc00  ; lightmodel.S:213
+c7f3: 702267e7c100f80084 f14 imm=84 r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; lightmodel.S:175
+c7f4: 702267e7c180f80004 f14 imm=4 r211=2 r198=3 C=1e r95=4 r71=1 r62=1ffd218170  ; lightmodel.S:183
+c7f5: 702267e7c100f80004 f14 imm=4 r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; lightmodel.S:186
+c7f6: 77fa43e7c880f80008 f14 imm=8 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightmodel.S:194
+c7f7: 77fa43e7c880f8009a f14 imm=9a r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; lightmodel.S:200
+c7f8: 702267e7fe00f8000c f14 imm=c r211=2 r198=7c C=1e r95=4 r71=1 r62=1ffd218170  ; lightmodel.S:206
+c7f9: 702267e7fe80f80004 f14 imm=4 r211=2 r198=7d C=1e r95=4 r71=1 r62=1ffd218170  ; lightmodel.S:188
+c7fa: 702267e7fe00f8000b f14 imm=b r211=2 r198=7c C=1e r95=4 r71=1 r62=1ffd218170  ; lightmodel.S:210
+mgeb_LightModel2Side:
+c7fb: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; lightmodel.S:59
+c7fc: 7039cde7c88cf80006 f14 imm=6 C=1e r95=13 seq=605f r71=1 r62=1ffc218170 r25=3e2fc00  ; lightmodel.S:57
+c7fd: 782071e7c700000080 f15 imm=80 r215=3 B=18 C=1e E=7 r71=1 r62=1ffc658170  ; lightmodel.S:64
+c7fe: 782071e7c380000000 f15 imm=80000000 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; lightmodel.S:71
+c7ff: 6e038007ec2dd1ffa5 f13 cc=91 A=18 D=3 Q=1b M=6d1 r110=6fd r99=8 r62=1ffc88057c  ; lightmodel.S:72
+c800: 2e078132420041ffa5 f5  imm=84 A=18 C=1e D=7 M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; lightmodel.S:65
+c801: 6f268007ec2e4cf6a0 f13 cc=91 A=1c D=26 Q=1c M=6cc r99=8 r62=1ffc880578  ; lightmodel.S:86
+c802: 7fe0f1e7c40000f547 f15 imm=f547 r215=3 A=1f B=18 C=1e E=4 r99=8 r71=1 r62=1ffced8170  ; lightmodel.S:77
+c803: 18c831e7c151d4f6a0 f3  imm=2 r220=1 r215=3 B=18 C=1e E=6 M=6ca r71=1 r62=1ffc658178  ; lightmodel.S:81
+c804: 68000007e82fec941f f13 r148=3e0 M=6ec r110=4bd r62=1ffc002178  ; lightmodel.S:88
+c805: 280001320d8043ff15 f5  imm=1b C=1e r128=2a M=6d4 r110=77d r95=13 r71=1 r62=1ffc2181fc  ; lightmodel.S:84
+c806: 2e06c132420043ffa5 f5  imm=84 A=18 C=1e D=6 M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightmodel.S:91
+c807: 57ee7807fe3660ac00 f10 r213=3 B=1c E=2e r128=1d M=6cc r110=5bd r62=1ffc440178 r25=3e69c00  ; lightmodel.S:68
+c808: 68000007e83fd1ffa5 f13 M=6d1 r110=6fd r99=2 r62=1ffc00017c r25=3ea9c00  ; lightmodel.S:96
+c809: 57e67807fe3622141e f10 r213=3 B=1c E=26 r148=3c0 r128=28 M=6c4 r110=47d r62=1ffc4421fc r25=3e69c00  ; lightmodel.S:120
+c80a: 60003807c1a601d040 f12 r213=2 r198=3 B=1c E=26 r128=15 M=6ca r110=5bd r62=1ffd440178 r25=3e69c00  ; lightmodel.S:121
+c80b: 600039d7fea601c01c f12 r213=2 r198=7d B=1c C=1d E=26 r148=380 M=6ca r110=4bd r62=1ffd642178 r25=3e69c00  ; lightmodel.S:60
+c80c: 7e04f1e7e50000f50d f15 imm=f50d r215=3 A=18 B=18 C=1e D=4 E=5 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; lightmodel.S:109
+c80d: 2e03c132030043ffa5 f5  imm=6 A=18 C=1e D=3 M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; lightmodel.S:100
+c80e: 680001d7e83fca941b f13 C=1d r148=360 M=6ca r110=4bd r99=2 r62=1ffc202178 r25=3ea9c00  ; lightmodel.S:61
+c80f: 7e058007e000000000 f15 A=18 D=5 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; lightmodel.S:113
+c810: 77f1c3e7c8bcf80084 f14 xfer4.rel c31 cc=11 -> c894 imm=84 r211=3 C=1e r95=4 seq=1cfdf r71=1 r62=1ffc218170 r25=3e3fc00  ; lightmodel.S:95
+c813: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; lightmodel.S:126
+c814: 702267e7c100f80084 f14 imm=84 r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; lightmodel.S:97
+c815: 702267e7fe00f8000b f14 imm=b r211=2 r198=7c C=1e r95=4 r71=1 r62=1ffd218170  ; lightmodel.S:111
+c816: 702267e7fe00f80006 f14 imm=6 r211=2 r198=7c C=1e r95=4 r71=1 r62=1ffd218170  ; lightmodel.S:103
+c817: 702267e7c100f80006 f14 imm=6 r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; lightmodel.S:105
+c818: 702267e7fe00f8000c f14 imm=c r211=2 r198=7c C=1e r95=4 r71=1 r62=1ffd218170  ; lightmodel.S:115

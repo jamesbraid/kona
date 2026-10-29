@@ -1,0 +1,41 @@
+# usepconv3x3.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+uSepConv3_124:
+29a2: 6a008007e80fc0f8a4 f13 A=8 r148=4 M=47f r110=6b5 r99=8 r62=1ffc881173  ; usepconv3x3.s:68
+29a3: 3a3f9880802988f8ac f7  r219=1 A=8 B=c C=8 r176=1 D=3f r162=1 F=2 G=a r148=c M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; usepconv3x3.s:69
+29a4: 623f9a376800a69ffc f12 A=8 B=d C=3 r176=1 D=3f F=1d M=47f r99=8 r95=13 r62=1ffcf98173  ; usepconv3x3.s:70
+29a5: 6a408007e80fc0f8a5 f13 A=9 r148=5 M=47f r110=6b5 r99=8 r62=1ffc881173  ; usepconv3x3.s:72
+29a6: 3a7f9890802d88f8b7 f7  r219=1 A=9 B=c C=9 r176=1 D=3f r162=1 F=2 G=b r148=17 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; usepconv3x3.s:73
+29a7: 3a7f9a080006a71590 f7  r222=1 r219=1 A=9 B=d r176=1 D=3f F=20 G=1 r148=10 r128=25 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; usepconv3x3.s:74
+29a8: 6a808007e80fc0f8a6 f13 A=a r148=6 M=47f r110=6b5 r99=8 r62=1ffc881173  ; usepconv3x3.s:76
+RowConv3Loop:
+29a9: 3abf98a0802188f8b8 f7  r219=1 A=a B=c C=a r176=1 D=3f r162=1 F=2 G=8 r148=18 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; usepconv3x3.s:80
+29aa: 3abfda57407ca7fa2c f7  A=a B=d C=5 r176=1 D=3f F=1d r128=25 M=460 r110=57d r99=8 r95=13 r62=1ffcf981ff  ; usepconv3x3.s:81
+29ab: 4ac09007c0130710e7 f9  r213=3 A=b B=8 r148=7 r128=38 M=460 r110=575 r99=8 r62=1ffccc11ff r25=3e69c00  ; usepconv3x3.s:83
+29ac: 0aff98013eb188f8ad f1  xfer5.rel c4 cc=11 -> 29a9 <RowConv3Loop> imm=fffffffd A=b B=c r176=1 D=3f r148=d M=47f r110=6b5 r99=8 seq=dfe4 r71=1 r62=1ffed81173 r25=3e39c00  ; usepconv3x3.s:84
+29ad: 3aff9ab08025a71591 f7  r219=1 A=b B=d C=b r176=1 D=3f r162=1 F=2 G=9 r148=11 r128=25 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; usepconv3x3.s:85
+29ae: 4a009207c0130710e4 f9  r213=3 A=8 B=9 r148=4 r128=38 M=460 r110=575 r99=8 r62=1ffccc11ff r25=3e69c00  ; usepconv3x3.s:87
+29af: 3a3f9880802988f8ac f7  r219=1 A=8 B=c C=8 r176=1 D=3f r162=1 F=2 G=a r148=c M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; usepconv3x3.s:88
+29b0: 3a3fda37407ca7fa2c f7  A=8 B=d C=3 r176=1 D=3f F=1d r128=25 M=460 r110=57d r99=8 r95=13 r62=1ffcf981ff  ; usepconv3x3.s:89
+29b1: 4a409407c0130710e5 f9  r213=3 A=9 B=a r148=5 r128=38 M=460 r110=575 r99=8 r62=1ffccc11ff r25=3e69c00  ; usepconv3x3.s:91
+29b2: 3a7f9890802d88f8b7 f7  r219=1 A=9 B=c C=9 r176=1 D=3f r162=1 F=2 G=b r148=17 M=47f r110=6b5 r99=8 r62=1ffcfbd173  ; usepconv3x3.s:92
+29b3: 3a7f9a180006a71590 f7  r222=1 r219=1 A=9 B=d C=1 r176=1 D=3f F=20 G=1 r148=10 r128=25 M=460 r110=575 r99=8 r62=1ffcfbd1ff  ; usepconv3x3.s:93
+29b4: 4a809607c0130710e6 f9  r213=3 A=a B=b r148=6 r128=38 M=460 r110=575 r99=8 r62=1ffccc11ff r25=3e69c00  ; usepconv3x3.s:95
+29b5: 69c0a637280fc0ffe5 f13 A=7 C=3 F=1c M=47f r99=8 r95=13 r62=1ffca98173  ; usepconv3x3.s:102
+29b6: 69c1a647280fc0ffe5 f13 A=7 C=4 D=1 F=1c M=47f r99=8 r95=13 r62=1ffca98173  ; usepconv3x3.s:103
+29b7: 69c2a657280fc0ffe5 f13 A=7 C=5 D=2 F=1c M=47f r99=8 r95=13 r62=1ffca98173  ; usepconv3x3.s:104
+29b8: 11c398671f0288ffe5 f2  A=7 C=6 D=3 F=1c M=47f r99=8 r95=13 seq=6fe5 r62=1ffca98173  ; usepconv3x3.s:104
+ColumnConv3Loop:
+29b9: 3b8080080002265100 f7  r222=1 r219=1 A=e F=20 G=0 r148=8 r128=2c M=460 r110=475 r99=8 r62=1ffcabf1ff  ; usepconv3x3.s:108
+29ba: 3b818071001d265121 f7  r219=1 A=e C=7 D=1 r162=1 F=4 G=7 r148=29 r128=2c M=460 r110=475 r99=8 r62=1ffcabf1ff  ; usepconv3x3.s:109
+29bb: 3b8280210009265142 f7  r219=1 A=e C=2 D=2 r162=1 F=4 G=2 r148=4a r128=2c M=460 r110=475 r99=8 r62=1ffcabf1ff  ; usepconv3x3.s:110
+29bc: 13838007feb1a65163 f2  xfer5.rel c4 cc=11 -> 29b9 <ColumnConv3Loop> imm=fffffffd A=e D=3 r148=6b r128=2c M=460 r110=475 r99=8 seq=dfe4 r71=1 r62=1ffe8831ff r25=3e39c00  ; usepconv3x3.s:111
+29bd: 13c08007c8e1271092 f2  xfer4 c4 cc=11 -> 0000 <HereWeGo> A=f r148=12 r128=20 M=460 r110=575 r99=8 seq=14fe4 r62=1ffc8811ff r25=3e39c00  ; usepconv3x3.s:113
+29be: 5bc1be07fe23071093 f11 A=f D=1 r148=13 r128=20 M=460 r110=575 r99=8 r62=1ffc8811ff  ; usepconv3x3.s:114
+29bf: 3bc280e10039271094 f7  r219=1 A=f C=e D=2 r162=1 F=4 G=e r148=14 r128=20 M=460 r110=575 r99=8 r62=1ffcabd1ff  ; usepconv3x3.s:115
+29c0: 3bc380f1003d271095 f7  r219=1 A=f C=f D=3 r162=1 F=4 G=f r148=15 r128=20 M=460 r110=575 r99=8 r62=1ffcabd1ff  ; usepconv3x3.s:116
+29c1: 49c08437005307fa04 f9  r213=3 A=7 B=2 C=3 F=1c r128=20 M=460 r110=57d r99=8 r95=13 r62=1ffced81ff r25=3e69c00  ; usepconv3x3.s:118
+29c2: 49c18447015307fa04 f9  r213=3 A=7 B=2 C=4 D=1 E=1 F=1c r128=20 M=460 r110=57d r99=8 r95=13 r62=1ffced81ff r25=3e69c00  ; usepconv3x3.s:119
+29c3: 49c28457025307fa04 f9  r213=3 A=7 B=2 C=5 D=2 E=2 F=1c r128=20 M=460 r110=57d r99=8 r95=13 r62=1ffced81ff r25=3e69c00  ; usepconv3x3.s:120
+29c4: 49c38467035307fa04 f9  r213=3 A=7 B=2 C=6 D=3 E=3 F=1c r128=20 M=460 r110=57d r99=8 r95=13 r62=1ffced81ff r25=3e69c00  ; usepconv3x3.s:121
+29c5: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; usepconv3x3.s:123

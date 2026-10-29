@@ -1,0 +1,28 @@
+# ucolormatrix.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+uColorMatrix:
+298a: 6c008007e80fc0f8a0 f13 A=10 M=47f r110=6b5 r99=8 r62=1ffc881173  ; ucolormatrix.s:59
+298b: 38000117c07e08f8a4 f7  r222=1 C=11 r148=4 M=47f r110=6b5 r62=1ffc219173  ; ucolormatrix.s:60
+298c: 68000007e80fc0f8a8 f13 r148=8 M=47f r110=6b5 r62=1ffc001173  ; ucolormatrix.s:61
+298d: 18000007df0688f8ac f3  r148=c M=47f r110=6b5 seq=6fe7 r62=1ffc001173 r25=3e2bc00  ; ucolormatrix.s:62
+clrmtrixloop:
+298e: 5c01be07fe23065030 f11 A=10 D=1 r148=201 r128=2c M=460 r110=475 r99=8 r62=1ffc8831ff  ; ucolormatrix.s:68
+298f: 58003e07fe230650b1 f11 r148=225 r128=2c M=460 r110=475 r62=1ffc0031ff  ; ucolormatrix.s:69
+2990: 58003e07fe23065132 f11 r148=249 r128=2c M=460 r110=475 r62=1ffc0031ff  ; ucolormatrix.s:70
+2991: 3800001800062651b3 f7  r222=1 r219=1 C=1 F=20 G=1 r148=26d r128=2c M=460 r110=475 r62=1ffc23f1ff  ; ucolormatrix.s:71
+2992: 5c02be07fe23071402 f11 A=10 D=2 r148=2 r128=4 M=460 r110=575 r99=8 r62=1ffc8811ff  ; ucolormatrix.s:72
+2993: 58003e07fe23071406 f11 r148=6 r128=4 M=460 r110=575 r62=1ffc0011ff  ; ucolormatrix.s:73
+2994: 58003e07fe2307140a f11 r148=a r128=4 M=460 r110=575 r62=1ffc0011ff  ; ucolormatrix.s:74
+2995: 180040fe4a31a7140e f3  xfer5.rel c4 cc=14 -> 298e <clrmtrixloop> imm=fffffff9 cc=14 r148=e r128=4 M=460 r110=575 seq=dfe4 r71=1 r62=1ffe0011ff r25=3e39c00  ; ucolormatrix.s:75
+2996: 5c03be07fe23071403 f11 A=10 D=3 r148=3 r128=4 M=460 r110=575 r99=8 r62=1ffc8811ff  ; ucolormatrix.s:76
+2997: 58003e07fe23071407 f11 r148=7 r128=4 M=460 r110=575 r62=1ffc0011ff  ; ucolormatrix.s:77
+2998: 38000103c04027140b f7  r219=1 C=10 F=f G=10 r148=b r128=4 M=460 r110=575 r62=1ffc23d1ff  ; ucolormatrix.s:78
+2999: 18000007c8e127140f f3  xfer4 c4 cc=11 -> 0000 <HereWeGo> r148=f r128=4 M=460 r110=575 seq=14fe4 r62=1ffc0011ff r25=3e39c00  ; ucolormatrix.s:79
+299a: 4c048007c013071400 f9  r213=3 A=10 D=4 r128=4 M=460 r110=575 r99=8 r62=1ffccc11ff r25=3e69c00  ; ucolormatrix.s:80
+299b: 57c14007fe23071404 f10 r213=3 E=1 r148=4 r128=4 M=460 r110=575 r62=1ffc4411ff r25=3e69c00  ; ucolormatrix.s:81
+299c: 57c24007fe23071408 f10 r213=3 E=2 r148=8 r128=4 M=460 r110=575 r62=1ffc4411ff r25=3e69c00  ; ucolormatrix.s:82
+299d: 38000003c38027140c f7  r219=1 r213=3 E=3 F=f G=0 r148=c r128=4 M=460 r110=575 r62=1ffc67d1ff r25=3e69c00  ; ucolormatrix.s:83
+299e: 77fa4057c881800000 f14 r219=1 C=5 G=10 r62=1ffc23c170  ; ucolormatrix.s:86
+299f: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; ucolormatrix.s:87
+29a0: 000000000000000000 f0  nop  ; ucolormatrix.s:88
+29a1: 000000000000000000 f0  nop  ; ucolormatrix.s:89

@@ -1,0 +1,432 @@
+# uxform.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mmo_ObjToClipSpace:
+umo_ObjToClipSpace:
+1218: 77f58007f90cf80e62 f14 xfer5 c27 cc=72 -> 0e62 <uMatrixMultCCC> imm=e62 cc=72 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uxform.s:44
+1219: 77fa410008810c0000 f14 r219=1 C=10 r162=1 F=0 G=1 r62=1ffc23c170  ; uxform.s:45
+121a: 77fa419948c1000000 f14 r222=1 r219=1 C=19 F=25 G=0 r62=1ffc23c170  ; uxform.s:46
+121b: 14009a13df0267fcbe f2  imm=4f cc=91 A=10 C=1b F=3f r148=1e Q=1 M=460 r110=73d r99=8 r95=13 r71=1 r62=1ffcb9957f  ; uxform.s:47
+121c: 3c408110000908ffe5 f7  r219=1 A=11 C=11 r162=1 F=0 G=2 M=47f r99=8 r62=1ffcabc173  ; uxform.s:48
+121d: 14009a141f0467fcbe f2  imm=50 cc=91 A=10 C=1b F=3f r148=1e Q=2 M=460 r110=73d r99=8 r95=13 r71=1 r62=1ffcb9957f  ; uxform.s:49
+121e: 44408007c000110000 f8  A=11 M=47f r99=8 seq=6fe7 r62=1ffc880173 r25=3e2bc00  ; uxform.s:50
+lXF1:
+121f: 28418130298027c49e f5  imm=53 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:52
+1220: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:53
+1221: 284181302a0027c49e f5  imm=54 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:54
+1222: 28818022050027c49e f5  imm=a A=2 C=1e D=1 r148=1e r128=25 M=460 r110=53d r99=8 r95=2 r71=1 r62=1ffca9917f  ; uxform.s:55
+1223: 284281302b8027fa04 f5  imm=57 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:56
+1224: 5882be07fe2307fa04 f11 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:57
+1225: 284281302c0027fa04 f5  imm=58 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:58
+1226: 38828010000d27fa04 f7  r219=1 A=2 C=1 D=2 r162=1 F=0 G=3 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:59
+1227: 284381302d8027fa04 f5  imm=5b A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:60
+1228: 38838020001127fa04 f7  r219=1 A=2 C=2 D=3 r162=1 F=0 G=4 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:61
+1229: 284381302e0027fa04 f5  imm=5c A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:62
+122a: 38838009400227fa04 f7  r222=1 r219=1 A=2 D=3 F=25 G=0 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:63
+122b: 28408330295727fa04 f5  imm=52 r213=3 A=1 B=1 C=1b E=17 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:64
+122c: c8808407d71307fa04 f9  w71=1 r213=3 A=2 B=2 E=17 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:65
+122d: 2840833028d827fa04 f5  imm=51 r213=3 A=1 B=1 C=1b E=18 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:66
+122e: c8808407d81307fa04 f9  w71=1 r213=3 A=2 B=2 E=18 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:67
+122f: 284181302b0027c49e f5  imm=56 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:68
+1230: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:69
+1231: 284181302a8027c49e f5  imm=55 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:70
+1232: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:71
+1233: 284281302d0027fa04 f5  imm=5a A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:72
+1234: 5882be07fe2307fa04 f11 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:73
+1235: 284281302c8027fa04 f5  imm=59 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:74
+1236: 5882be07fe2307fa04 f11 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:75
+1237: 284381302f0027fa04 f5  imm=5e A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:76
+1238: 5883be07fe2307fa04 f11 A=2 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:77
+1239: 284381302e8027fa04 f5  imm=5d A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:78
+123a: 5883be07fe2307fa04 f11 A=2 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:79
+123b: 57da4207cc37001000 f10 r213=3 cc=91 B=1 E=1a Q=6 r128=20 M=6e0 r110=57d r62=1ffc4405fc r25=3e69c00  ; uxform.s:80
+123c: d7da4407ce37001000 f10 w71=1 r213=3 cc=91 B=2 E=1a Q=7 r128=20 M=6e0 r110=57d r62=1ffc4405fc r25=3e69c00  ; uxform.s:81
+123d: 3cc0021fd98549fe84 f7  r219=1 r213=3 A=13 B=1 C=1 r176=0 E=19 r162=1 F=3f G=1 r128=20 M=6e0 r110=57d r62=1ffcf7c1fc r25=3e69c00  ; uxform.s:82
+123e: bcc0042fd98949fe84 f7  w71=1 r219=1 r213=3 A=13 B=2 C=2 r176=0 E=19 r162=1 F=3f G=2 r128=20 M=6e0 r110=57d r62=1ffcf7c1fc r25=3e69c00  ; uxform.s:83
+123f: 60d7b807ea11015fc0 f12 r213=3 A=3 B=1c D=17 E=11 r128=5 M=6e2 r110=5bd r99=8 r62=1ffccc017c r25=3e69c00  ; uxform.s:84
+1240: 60003807ea10011fc1 f12 r213=3 B=1c E=10 r128=d M=6e0 r110=5bd r62=1ffc44017c r25=3e69c00  ; uxform.s:85
+1241: 4917b807d5131643fe f9  r213=3 A=4 B=1c D=17 E=15 r148=3df r128=28 M=462 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:86
+1242: 1a903807eeb7c9fe8b f3  xfer5.rel c7 cc=11 -> 121f <lXF1> imm=ffffffdd r213=3 B=1c E=14 r128=19 M=6e0 r110=57d seq=dfe7 r71=1 r62=1ffe4401fc r25=3e7bc00  ; uxform.s:87
+1243: 88d8b8ac08ef2e47fe f1  xfer4 c31 cc=11 -> 0000 <HereWeGo> w71=1 r213=3 A=3 B=1c D=18 E=15 r148=3df r128=29 M=462 r110=475 r99=8 seq=14fdf r62=1ffccc31ff r25=3e7fc00  ; uxform.s:88
+1244: e0003807ea14011c47 f12 w71=1 r213=3 B=1c E=14 r148=e0 r128=2a M=6e0 r110=47d r62=1ffc4421fc r25=3e69c00  ; uxform.s:89
+1245: c918b807d1131653e7 f9  w71=1 r213=3 A=4 B=1c D=18 E=11 r148=ff r128=2c M=462 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:90
+1246: e0003807ea10011ca7 f12 w71=1 r213=3 B=1c E=10 r148=e0 M=6e0 r110=47d r62=1ffc4421fc r25=3e69c00  ; uxform.s:91
+1247: 4840b807d313165026 f9  r213=3 A=1 B=1c E=13 r148=c1 r128=2c M=462 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:92
+1248: 4880b807d213065426 f9  r213=3 A=2 B=1c E=12 r148=c1 M=460 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:93
+1249: c840b807d313165047 f9  w71=1 r213=3 A=1 B=1c E=13 r148=e2 r128=2c M=462 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:94
+124a: c880b807d213065447 f9  w71=1 r213=3 A=2 B=1c E=12 r148=e2 M=460 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:95
+124b: 000000000000000000 f0  nop  ; uxform.s:97
+mmo_ObjToClipSpaceN2E:
+umo_ObjToClipSpaceN2E:
+124c: 77f58007f90cf80e62 f14 xfer5 c27 cc=72 -> 0e62 <uMatrixMultCCC> imm=e62 cc=72 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uxform.s:104
+124d: 77f58007fb0cf80ee7 f14 xfer5 c27 cc=76 -> 0ee7 <mMatrixInverse> imm=ee7 cc=76 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uxform.s:105
+124e: 77fa410008810c0000 f14 r219=1 C=10 r162=1 F=0 G=1 r62=1ffc23c170  ; uxform.s:106
+124f: 77fa419948c1000000 f14 r222=1 r219=1 C=19 F=25 G=0 r62=1ffc23c170  ; uxform.s:107
+1250: 14089a07df0267fcbe f2  imm=1f cc=91 A=10 C=1b D=8 F=3f r148=1e Q=1 M=460 r110=73d r99=8 r95=13 r71=1 r62=1ffcb9957f  ; uxform.s:108
+1251: 3c488110000908ffe5 f7  r219=1 A=11 C=11 D=8 r162=1 F=0 G=2 M=47f r99=8 r62=1ffcabc173  ; uxform.s:109
+1252: 14089a081f0467fcbe f2  imm=20 cc=91 A=10 C=1b D=8 F=3f r148=1e Q=2 M=460 r110=73d r99=8 r95=13 r71=1 r62=1ffcb9957f  ; uxform.s:110
+1253: 44488007c000110000 f8  A=11 D=8 M=47f r99=8 seq=6fe7 r62=1ffc880173 r25=3e2bc00  ; uxform.s:111
+lXF2:
+1254: 28488130108027c49e f5  imm=21 A=1 C=1b D=8 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:113
+1255: 5888be07fe2307c49e f11 A=2 D=8 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:114
+1256: 28498130118027c49e f5  imm=23 A=1 C=1b D=9 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:115
+1257: 38898010000d27c49e f7  r219=1 A=2 C=1 D=9 r162=1 F=0 G=3 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffcabd17f  ; uxform.s:116
+1258: 28498130120027c49e f5  imm=24 A=1 C=1b D=9 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:117
+1259: 38898020001127c49e f7  r219=1 A=2 C=2 D=9 r162=1 F=0 G=4 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffcabd17f  ; uxform.s:118
+125a: 28498130128027fa14 f5  imm=25 A=1 C=1b D=9 F=3f r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:119
+125b: 38898009400227fa14 f7  r222=1 r219=1 A=2 D=9 F=25 G=0 r128=22 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:120
+125c: 284a8130138027fa14 f5  imm=27 A=1 C=1b D=a F=3f r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:121
+125d: 288a8022050027fa14 f5  imm=a A=2 C=1e D=a r128=22 M=460 r110=57d r99=8 r95=2 r71=1 r62=1ffca981ff  ; uxform.s:122
+125e: 284a8130140027fa14 f5  imm=28 A=1 C=1b D=a F=3f r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:123
+125f: 588abe07fe2307fa14 f11 A=2 D=a r128=22 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:124
+1260: 284a833014cf27fa14 f5  imm=29 r213=3 A=1 B=1 C=1b D=a E=f F=3f r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:125
+1261: c88a8407cf1307fa14 f9  w71=1 r213=3 A=2 B=2 D=a E=f r128=22 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:126
+1262: 2840833027d027fa14 f5  imm=4f r213=3 A=1 B=1 C=1b E=10 F=3f r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:127
+1263: c8808407d01307fa14 f9  w71=1 r213=3 A=2 B=2 E=10 r128=22 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:128
+1264: 28408330285127fa14 f5  imm=50 r213=3 A=1 B=1 C=1b E=11 F=3f r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:129
+1265: c8808407d11307fa14 f9  w71=1 r213=3 A=2 B=2 E=11 r128=22 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:130
+1266: 28418130298027c49e f5  imm=53 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:131
+1267: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:132
+1268: 284181302a0027c49e f5  imm=54 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:133
+1269: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:134
+126a: 284281302b8027fa04 f5  imm=57 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:135
+126b: 5882be07fe2307fa04 f11 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:136
+126c: 284281302c0027fa04 f5  imm=58 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:137
+126d: 5882be07fe2307fa04 f11 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:138
+126e: 284381302d8027fa04 f5  imm=5b A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:139
+126f: 5883be07fe2307fa04 f11 A=2 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:140
+1270: 284381302e0027fa04 f5  imm=5c A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:141
+1271: 5883be07fe2307fa04 f11 A=2 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:142
+1272: 28408330295727fa04 f5  imm=52 r213=3 A=1 B=1 C=1b E=17 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:143
+1273: c8808407d71307fa04 f9  w71=1 r213=3 A=2 B=2 E=17 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:144
+1274: 2840833028d827fa04 f5  imm=51 r213=3 A=1 B=1 C=1b E=18 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:145
+1275: c8808407d81307fa04 f9  w71=1 r213=3 A=2 B=2 E=18 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:146
+1276: 284181302b0027c49e f5  imm=56 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:147
+1277: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:148
+1278: 284181302a8027c49e f5  imm=55 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:149
+1279: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:150
+127a: 284281302d0027fa04 f5  imm=5a A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:151
+127b: 5882be07fe2307fa04 f11 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:152
+127c: 284281302c8027fa04 f5  imm=59 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:153
+127d: 5882be07fe2307fa04 f11 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:154
+127e: 284381302f0027fa04 f5  imm=5e A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:155
+127f: 5883be07fe2307fa04 f11 A=2 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:156
+1280: 284381302e8027fa04 f5  imm=5d A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:157
+1281: 5883be07fe2307fa04 f11 A=2 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:158
+1282: 57da4207cc37001000 f10 r213=3 cc=91 B=1 E=1a Q=6 r128=20 M=6e0 r110=57d r62=1ffc4405fc r25=3e69c00  ; uxform.s:159
+1283: d7da4407ce37001000 f10 w71=1 r213=3 cc=91 B=2 E=1a Q=7 r128=20 M=6e0 r110=57d r62=1ffc4405fc r25=3e69c00  ; uxform.s:160
+1284: 3cc0021fd98549fe84 f7  r219=1 r213=3 A=13 B=1 C=1 r176=0 E=19 r162=1 F=3f G=1 r128=20 M=6e0 r110=57d r62=1ffcf7c1fc r25=3e69c00  ; uxform.s:161
+1285: bcc0042fd98949fe84 f7  w71=1 r219=1 r213=3 A=13 B=2 C=2 r176=0 E=19 r162=1 F=3f G=2 r128=20 M=6e0 r110=57d r62=1ffcf7c1fc r25=3e69c00  ; uxform.s:162
+1286: 60d7b807ea11015fc0 f12 r213=3 A=3 B=1c D=17 E=11 r128=5 M=6e2 r110=5bd r99=8 r62=1ffccc017c r25=3e69c00  ; uxform.s:163
+1287: 60003807ea10011fc1 f12 r213=3 B=1c E=10 r128=d M=6e0 r110=5bd r62=1ffc44017c r25=3e69c00  ; uxform.s:164
+1288: 4917b807d5131643fe f9  r213=3 A=4 B=1c D=17 E=15 r148=3df r128=28 M=462 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:165
+1289: 1a903807e5b7c9fe8b f3  xfer5.rel c7 cc=11 -> 1254 <lXF2> imm=ffffffcb r213=3 B=1c E=14 r128=19 M=6e0 r110=57d seq=dfe7 r71=1 r62=1ffe4401fc r25=3e7bc00  ; uxform.s:166
+128a: 88d8b8ac08ef2e47fe f1  xfer4 c31 cc=11 -> 0000 <HereWeGo> w71=1 r213=3 A=3 B=1c D=18 E=15 r148=3df r128=29 M=462 r110=475 r99=8 seq=14fdf r62=1ffccc31ff r25=3e7fc00  ; uxform.s:167
+128b: e0003807ea14011c47 f12 w71=1 r213=3 B=1c E=14 r148=e0 r128=2a M=6e0 r110=47d r62=1ffc4421fc r25=3e69c00  ; uxform.s:168
+128c: c918b807d1131653e7 f9  w71=1 r213=3 A=4 B=1c D=18 E=11 r148=ff r128=2c M=462 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:169
+128d: e0003807ea10011ca7 f12 w71=1 r213=3 B=1c E=10 r148=e0 M=6e0 r110=47d r62=1ffc4421fc r25=3e69c00  ; uxform.s:170
+128e: 4848b807d313165026 f9  r213=3 A=1 B=1c D=8 E=13 r148=c1 r128=2c M=462 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:171
+128f: 4888b807d213065426 f9  r213=3 A=2 B=1c D=8 E=12 r148=c1 M=460 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:172
+1290: c848b807d313165047 f9  w71=1 r213=3 A=1 B=1c D=8 E=13 r148=e2 r128=2c M=462 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:173
+1291: c888b807d213065447 f9  w71=1 r213=3 A=2 B=1c D=8 E=12 r148=e2 M=460 r110=475 r99=8 r62=1ffccc31ff r25=3e69c00  ; uxform.s:174
+1292: 000000000000000000 f0  nop  ; uxform.s:176
+mmo_ObjToClipSpaceN2EN:
+umo_ObjToClipSpaceN2EN:
+1293: 77f58007f90cf80e62 f14 xfer5 c27 cc=72 -> 0e62 <uMatrixMultCCC> imm=e62 cc=72 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uxform.s:183
+1294: 77f58007fb0cf80ee7 f14 xfer5 c27 cc=76 -> 0ee7 <mMatrixInverse> imm=ee7 cc=76 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uxform.s:184
+1295: 77fa410008810c0000 f14 r219=1 C=10 r162=1 F=0 G=1 r62=1ffc23c170  ; uxform.s:185
+1296: 77fa419948c1000000 f14 r222=1 r219=1 C=19 F=25 G=0 r62=1ffc23c170  ; uxform.s:186
+1297: 2c0881300f8008ffe5 f5  imm=1f A=10 C=1b D=8 F=3f M=47f r99=8 r95=13 r71=1 r62=1ffcb98173  ; uxform.s:187
+1298: 3c488110000908ffe5 f7  r219=1 A=11 C=11 D=8 r162=1 F=0 G=2 M=47f r99=8 r62=1ffcabc173  ; uxform.s:188
+1299: 2c088130100008ffe5 f5  imm=20 A=10 C=1b D=8 F=3f M=47f r99=8 r95=13 r71=1 r62=1ffcb98173  ; uxform.s:189
+129a: 44488007c000110000 f8  A=11 D=8 M=47f r99=8 seq=6fe7 r62=1ffc880173 r25=3e2bc00  ; uxform.s:190
+lXF3:
+129b: 28488130108027c49e f5  imm=21 A=1 C=1b D=8 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:192
+129c: 5888be07fe2307c49e f11 A=2 D=8 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:193
+129d: 28498130118027c49e f5  imm=23 A=1 C=1b D=9 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:194
+129e: 28898022050027c49e f5  imm=a A=2 C=1e D=9 r148=1e r128=25 M=460 r110=53d r99=8 r95=2 r71=1 r62=1ffca9917f  ; uxform.s:195
+129f: 28498130120027c49e f5  imm=24 A=1 C=1b D=9 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:196
+12a0: 5889be07fe2307c49e f11 A=2 D=9 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:197
+12a1: 28498130128027fa14 f5  imm=25 A=1 C=1b D=9 F=3f r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:198
+12a2: 5889be07fe2307fa14 f11 A=2 D=9 r128=22 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:199
+12a3: 284a8130138027fa14 f5  imm=27 A=1 C=1b D=a F=3f r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:200
+12a4: 588abe07fe2307fa14 f11 A=2 D=a r128=22 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:201
+12a5: 284a8130140027fa14 f5  imm=28 A=1 C=1b D=a F=3f r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:202
+12a6: 588abe07fe2307fa14 f11 A=2 D=a r128=22 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:203
+12a7: 104a9a0a5f1467fa14 f2  imm=29 cc=91 A=1 C=1b D=a F=3f Q=a r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb985ff  ; uxform.s:204
+12a8: 588abe07d62307fa14 f11 cc=91 A=2 D=a Q=b r128=22 M=460 r110=57d r99=8 r62=1ffc8805ff  ; uxform.s:205
+12a9: 10409a13df1867fa14 f2  imm=4f cc=91 A=1 C=1b F=3f Q=c r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb985ff  ; uxform.s:206
+12aa: 5880be07da2307fa14 f11 cc=91 A=2 Q=d r128=22 M=460 r110=57d r99=8 r62=1ffc8805ff  ; uxform.s:207
+12ab: 10409a141f1c67fa14 f2  imm=50 cc=91 A=1 C=1b F=3f Q=e r128=22 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb985ff  ; uxform.s:208
+12ac: 5880be07de2307fa14 f11 cc=91 A=2 Q=f r128=22 M=460 r110=57d r99=8 r62=1ffc8805ff  ; uxform.s:209
+12ad: 28418130298027c49e f5  imm=53 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:210
+12ae: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:211
+12af: 284181302a0027c49e f5  imm=54 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:212
+12b0: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:213
+12b1: 284281302b8027fa04 f5  imm=57 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:214
+12b2: 5882be07fe2307fa04 f11 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:215
+12b3: 284281302c0027fa04 f5  imm=58 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:216
+12b4: 38828010000d27fa04 f7  r219=1 A=2 C=1 D=2 r162=1 F=0 G=3 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:217
+12b5: 284381302d8027fa04 f5  imm=5b A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:218
+12b6: 38838020001127fa04 f7  r219=1 A=2 C=2 D=3 r162=1 F=0 G=4 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:219
+12b7: 284381302e0027fa04 f5  imm=5c A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:220
+12b8: 38838009400227fa04 f7  r222=1 r219=1 A=2 D=3 F=25 G=0 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:221
+12b9: 28408330295727fa04 f5  imm=52 r213=3 A=1 B=1 C=1b E=17 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:222
+12ba: c8808407d71307fa04 f9  w71=1 r213=3 A=2 B=2 E=17 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:223
+12bb: 2840833028d827fa04 f5  imm=51 r213=3 A=1 B=1 C=1b E=18 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:224
+12bc: c8808407d81307fa04 f9  w71=1 r213=3 A=2 B=2 E=18 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:225
+12bd: 284181302b0027c49e f5  imm=56 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:226
+12be: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:227
+12bf: 284181302a8027c49e f5  imm=55 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:228
+12c0: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:229
+12c1: 284281302d0027fa04 f5  imm=5a A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:230
+12c2: 5882be07fe2307fa04 f11 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:231
+12c3: 284281302c8027fa04 f5  imm=59 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:232
+12c4: 5882be07fe2307fa04 f11 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:233
+12c5: 284381302f0027fa04 f5  imm=5e A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:234
+12c6: 5883be07fe2307fa04 f11 A=2 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:235
+12c7: 284381302e8027fa04 f5  imm=5d A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:236
+12c8: 5883be07fe2307fa04 f11 A=2 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:237
+12c9: 57da4207cc2300114a f10 r213=3 cc=91 B=1 E=1a r148=14a Q=6 r128=20 M=460 r110=555 r62=1ffc4435ff r25=3e69c00  ; uxform.s:238
+12ca: d7da4407ce2300116b f10 w71=1 r213=3 cc=91 B=2 E=1a r148=16b Q=7 r128=20 M=460 r110=555 r62=1ffc4435ff r25=3e69c00  ; uxform.s:239
+12cb: 57d94207fe2300118c f10 r213=3 B=1 E=19 r148=18c r128=20 M=460 r110=555 r62=1ffc4431ff r25=3e69c00  ; uxform.s:240
+12cc: d7d94407fe230011ad f10 w71=1 r213=3 B=2 E=19 r148=1ad r128=20 M=460 r110=555 r62=1ffc4431ff r25=3e69c00  ; uxform.s:241
+12cd: 68000007e80fc095ce f13 r148=1ce M=47f r110=695 r62=1ffc003173  ; uxform.s:242
+12ce: 68000007e80fc095ef f13 r148=1ef M=47f r110=695 r62=1ffc003173  ; uxform.s:243
+12cf: 68000007e82fe0feb4 f13 r128=26 M=6e0 r110=57d r62=1ffc0001fc  ; uxform.s:244
+12d0: 68000007e82fe0feb4 f13 r128=26 M=6e0 r110=57d r62=1ffc0001fc  ; uxform.s:245
+12d1: 6057b807ea10011d06 f12 r213=3 A=1 B=1c D=17 E=10 r148=c0 M=6e0 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; uxform.s:246
+12d2: e097b807ea10011d07 f12 w71=1 r213=3 A=2 B=1c D=17 E=10 r148=e0 M=6e0 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; uxform.s:247
+12d3: 68000007ec2460feb0 f13 cc=91 Q=8 r128=6 M=6e0 r110=57d r62=1ffc0005fc  ; uxform.s:248
+12d4: 68000007ec24e0feb0 f13 cc=91 Q=9 r128=6 M=6e0 r110=57d r62=1ffc0005fc  ; uxform.s:249
+12d5: 6057b807ea11015d06 f12 r213=3 A=1 B=1c D=17 E=11 r148=c0 M=6e2 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; uxform.s:250
+12d6: e097b807ea11015d07 f12 w71=1 r213=3 A=2 B=1c D=17 E=11 r148=e0 M=6e2 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; uxform.s:251
+12d7: 000000000000000000 f0  nop  ; uxform.s:252
+12d8: 3858b807d2fc496c26 f7  r213=3 A=1 B=1c D=18 E=12 r148=c0 r128=d M=6e0 r110=bd r99=8 r62=1ffccc217c r25=3e69c00  ; uxform.s:253
+12d9: b898b807d2fc496c27 f7  w71=1 r213=3 A=2 B=1c D=18 E=12 r148=e0 r128=d M=6e0 r110=bd r99=8 r62=1ffccc217c r25=3e69c00  ; uxform.s:254
+12da: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173  ; uxform.s:255
+12db: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173  ; uxform.s:256
+12dc: 6058b807ea13015d06 f12 r213=3 A=1 B=1c D=18 E=13 r148=c0 M=6e2 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; uxform.s:257
+12dd: e098b807ea13015d07 f12 w71=1 r213=3 A=2 B=1c D=18 E=13 r148=e0 M=6e2 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; uxform.s:258
+12de: 68000007e80fd0f688 f13 r148=8 r128=25 M=57f r110=6a5 r62=1ffc001173  ; uxform.s:259
+12df: 68000007e80fd0f689 f13 r148=9 r128=25 M=57f r110=6a5 r62=1ffc001173  ; uxform.s:260
+12e0: 3859b807d4fc4964c8 f7  r213=3 A=1 B=1c D=19 E=14 r148=106 M=6e0 r110=23f r99=8 r62=1ffccc307c r25=3e69c00  ; uxform.s:261
+12e1: b899b807d4fc4964e9 f7  w71=1 r213=3 A=2 B=1c D=19 E=14 r148=127 M=6e0 r110=23f r99=8 r62=1ffccc307c r25=3e69c00  ; uxform.s:262
+12e2: 68000007ec0340ff84 f13 cc=211 P=6 r128=25 M=47f r110=6a1 r62=1ffc000973  ; uxform.s:263
+12e3: 68000007ec03c0ff84 f13 cc=211 P=7 r128=25 M=47f r110=6a1 r62=1ffc000973  ; uxform.s:264
+12e4: 6059b807ea15015d1e f12 r213=3 A=1 B=1c D=19 E=15 r148=3c0 M=6e2 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; uxform.s:265
+12e5: e099b807ea15015d1e f12 w71=1 r213=3 A=2 B=1c D=19 E=15 r148=3c0 M=6e2 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; uxform.s:266
+12e6: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; uxform.s:267
+12e7: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; uxform.s:268
+12e8: 74c0201fca010c0000 f14 r219=1 A=13 C=1 r176=0 r162=1 F=3f G=1 r62=1ffcb3c170  ; uxform.s:269
+12e9: 74c0202fca01140000 f14 r219=1 A=13 C=2 r176=0 r162=1 F=3f G=2 r62=1ffcb3c170  ; uxform.s:270
+12ea: 68000007e80fd0f688 f13 r148=8 r128=25 M=57f r110=6a5 r62=1ffc001173  ; uxform.s:271
+12eb: 68000007e80fd0f689 f13 r148=9 r128=25 M=57f r110=6a5 r62=1ffc001173  ; uxform.s:272
+12ec: 000000000000000000 f0  nop  ; uxform.s:273
+12ed: 000000000000000000 f0  nop  ; uxform.s:274
+12ee: 68000007ec0340f686 f13 cc=211 r148=6 P=6 r128=25 M=47f r110=6a5 r62=1ffc001973  ; uxform.s:275
+12ef: 68000007ec03c0f687 f13 cc=211 r148=7 P=7 r128=25 M=47f r110=6a5 r62=1ffc001973  ; uxform.s:276
+12f0: 000000000000000000 f0  nop  ; uxform.s:277
+12f1: 000000000000000000 f0  nop  ; uxform.s:278
+12f2: 60000607ea0f009c8a f12 r213=3 B=3 E=f r148=140 r128=2c M=47f r110=699 r95=20 r62=1ffc4421f3 r25=3e69c00  ; uxform.s:279
+12f3: e0000807ea0f009c8b f12 w71=1 r213=3 B=4 E=f r148=160 r128=2c M=47f r110=699 r95=20 r62=1ffc4421f3 r25=3e69c00  ; uxform.s:280
+12f4: f7f64007c88cf8129b f14 xfer5 c7 cc=11 -> 129b <lXF3> imm=129b w71=1 seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; uxform.s:281
+12f5: 1a100607c8ef08c7ac f3  xfer4 c31 cc=11 -> 0000 <HereWeGo> r213=3 B=3 E=10 r148=180 r128=2f M=47f r110=699 r95=20 seq=14fdf r62=1ffc4421f3 r25=3e7fc00  ; uxform.s:282
+12f6: e0000807ea10009ced f12 w71=1 r213=3 B=4 E=10 r148=1a0 r128=2f M=47f r110=699 r95=20 r62=1ffc4421f3 r25=3e69c00  ; uxform.s:283
+12f7: 60000607ea110080ce f12 r213=3 B=3 E=11 r148=1c6 M=47f r110=695 r95=20 r62=1ffc443173 r25=3e69c00  ; uxform.s:284
+12f8: e0000807ea110080ef f12 w71=1 r213=3 B=4 E=11 r148=1e7 M=47f r110=695 r95=20 r62=1ffc443173 r25=3e69c00  ; uxform.s:285
+12f9: 284881300f8008ffe5 f5  imm=1f A=1 C=1b D=8 F=3f M=47f r99=8 r95=13 r71=1 r62=1ffcb98173  ; uxform.s:286
+12fa: 68888007e80fc0ffe5 f13 A=2 D=8 M=47f r99=8 r62=1ffc880173  ; uxform.s:287
+12fb: 28488130100008ffe5 f5  imm=20 A=1 C=1b D=8 F=3f M=47f r99=8 r95=13 r71=1 r62=1ffcb98173  ; uxform.s:288
+12fc: 68888007e80fc0ffe5 f13 A=2 D=8 M=47f r99=8 r62=1ffc880173  ; uxform.s:289
+12fd: 000000000000000000 f0  nop  ; uxform.s:291
+mmo_ObjToEyeSpace:
+umo_ObjToEyeSpace:
+12fe: 77fa410008810c0000 f14 r219=1 C=10 r162=1 F=0 G=1 r62=1ffc23c170  ; uxform.s:558
+12ff: 77fa419948c1000000 f14 r222=1 r219=1 C=19 F=25 G=0 r62=1ffc23c170  ; uxform.s:559
+1300: 2c008130178008ffe5 f5  imm=2f A=10 C=1b F=3f M=47f r99=8 r95=13 r71=1 r62=1ffcb98173  ; uxform.s:560
+1301: 3c408110000908ffe5 f7  r219=1 A=11 C=11 r162=1 F=0 G=2 M=47f r99=8 r62=1ffcabc173  ; uxform.s:561
+1302: 2c008130180008ffe5 f5  imm=30 A=10 C=1b F=3f M=47f r99=8 r95=13 r71=1 r62=1ffcb98173  ; uxform.s:562
+1303: 144091e7c4d788ffe5 f2  imm=9 A=11 C=1e M=47f r99=8 r95=2 seq=6fe7 r71=1 r62=1ffca98173 r25=3e2bc00  ; uxform.s:563
+lXF5:
+1304: 28418130198027c49e f5  imm=33 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:565
+1305: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:566
+1306: 284181301a0027c49e f5  imm=34 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:567
+1307: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:568
+1308: 284281301b8027fa04 f5  imm=37 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:569
+1309: 5882be07fe2307fa04 f11 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:570
+130a: 284281301c0027fa04 f5  imm=38 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:571
+130b: 38828010000d27fa04 f7  r219=1 A=2 C=1 D=2 r162=1 F=0 G=3 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:572
+130c: 284381301d8027fa04 f5  imm=3b A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:573
+130d: 38838020001127fa04 f7  r219=1 A=2 C=2 D=3 r162=1 F=0 G=4 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:574
+130e: 284381301e0027fa04 f5  imm=3c A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:575
+130f: 38838009400227fa04 f7  r222=1 r219=1 A=2 D=3 F=25 G=0 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:576
+1310: 28408330195327fa04 f5  imm=32 r213=3 A=1 B=1 C=1b E=13 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:577
+1311: c8808407d31307fa04 f9  w71=1 r213=3 A=2 B=2 E=13 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:578
+1312: 2840833018d427fa04 f5  imm=31 r213=3 A=1 B=1 C=1b E=14 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:579
+1313: c8808407d41307fa04 f9  w71=1 r213=3 A=2 B=2 E=14 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:580
+1314: 284181301b0027c49e f5  imm=36 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:581
+1315: 5881be07fe2307c49e f11 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:582
+1316: 284181301a8027c49e f5  imm=35 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:583
+1317: 28818015d400a7c49e f5  imm=3a8 r219=1 A=2 C=1 D=1 r162=1 F=3f G=1 r148=1e r128=25 M=460 r110=53d r99=8 r71=1 r62=1ffcbbd17f  ; uxform.s:584
+1318: 28c281301d0027fa04 f5  imm=3a A=3 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:585
+1319: 29028025d400a7fa04 f5  imm=3a8 r219=1 A=4 C=2 D=2 r162=1 F=3f G=2 r128=20 M=460 r110=57d r99=8 r71=1 r62=1ffcbbc1ff  ; uxform.s:586
+131a: 28c281301c8027fa04 f5  imm=39 A=3 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:587
+131b: 11028007f4b7a7fa04 f2  xfer5.rel c7 cc=11 -> 1304 <lXF5> imm=ffffffe9 A=4 D=2 r128=20 M=460 r110=57d r99=8 seq=dfe7 r71=1 r62=1ffe8801ff r25=3e3bc00  ; uxform.s:588
+131c: 10c39a0f88ef27fa04 f2  xfer4 c31 cc=11 -> 003e imm=3e A=3 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 seq=14fdf r71=1 r62=1ffcb981ff r25=3e3fc00  ; uxform.s:589
+131d: 5903be07fe2307fa04 f11 A=4 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:590
+131e: 28c381301e8027fa04 f5  imm=3d A=3 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:591
+131f: 5903be07fe2307fa04 f11 A=4 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:592
+1320: 2840873017d627fa04 f5  imm=2f r213=3 A=1 B=3 C=1b E=16 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:593
+1321: c8808807d61307fa04 f9  w71=1 r213=3 A=2 B=4 E=16 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:594
+1322: 28408730185527fa04 f5  imm=30 r213=3 A=1 B=3 C=1b E=15 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:595
+1323: c8808807d51307fa04 f9  w71=1 r213=3 A=2 B=4 E=15 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:596
+1324: 000000000000000000 f0  nop  ; uxform.s:598
+mmo_ObjToEyeSpaceAndTwoUserTR:
+umo_ObjToEyeSpaceAndTwoUserTR:
+1325: 77fa410008810c0000 f14 r219=1 C=10 r162=1 F=0 G=1 r62=1ffc23c170  ; uxform.s:605
+1326: 77fa419948c1000000 f14 r222=1 r219=1 C=19 F=25 G=0 r62=1ffc23c170  ; uxform.s:606
+1327: 2c008130178008ffe5 f5  imm=2f A=10 C=1b F=3f M=47f r99=8 r95=13 r71=1 r62=1ffcb98173  ; uxform.s:607
+1328: 3c408110000908ffe5 f7  r219=1 A=11 C=11 r162=1 F=0 G=2 M=47f r99=8 r62=1ffcabc173  ; uxform.s:608
+1329: 2c008130180008ffe5 f5  imm=30 A=10 C=1b F=3f M=47f r99=8 r95=13 r71=1 r62=1ffcb98173  ; uxform.s:609
+132a: 144091e7c4d788ffe5 f2  imm=9 A=11 C=1e M=47f r99=8 r95=2 seq=6fe7 r71=1 r62=1ffca98173 r25=3e2bc00  ; uxform.s:610
+lXF12:
+132b: 28418130198027c49e f5  imm=33 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:612
+132c: d881be07fe2307c49e f11 w71=1 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:613
+132d: 284181301a0027c49e f5  imm=34 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:614
+132e: d881be07fe2307c49e f11 w71=1 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:615
+132f: 284281301b8027fa04 f5  imm=37 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:616
+1330: d882be07fe2307fa04 f11 w71=1 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:617
+1331: 284281301c0027fa04 f5  imm=38 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:618
+1332: b8828010000d27fa04 f7  w71=1 r219=1 A=2 C=1 D=2 r162=1 F=0 G=3 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:619
+1333: 284381301d8027fa04 f5  imm=3b A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:620
+1334: b8838020001127fa04 f7  w71=1 r219=1 A=2 C=2 D=3 r162=1 F=0 G=4 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:621
+1335: 284381301e0027fa04 f5  imm=3c A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:622
+1336: b8838009400227fa04 f7  w71=1 r222=1 r219=1 A=2 D=3 F=25 G=0 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:623
+1337: 2840833018d327fa04 f5  imm=31 r213=3 A=1 B=1 C=1b E=13 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:624
+1338: c8808407d31307fa04 f9  w71=1 r213=3 A=2 B=2 E=13 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:625
+1339: 28408330195427fa04 f5  imm=32 r213=3 A=1 B=1 C=1b E=14 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:626
+133a: c8808407d41307fa04 f9  w71=1 r213=3 A=2 B=2 E=14 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:627
+133b: 284181301a8027c49e f5  imm=35 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:628
+133c: d881be07fe2307c49e f11 w71=1 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:629
+133d: 284181301b0027c49e f5  imm=36 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:630
+133e: a8818015d400a7c49e f5  imm=3a8 w71=1 r219=1 A=2 C=1 D=1 r162=1 F=3f G=1 r148=1e r128=25 M=460 r110=53d r99=8 r71=1 r62=1ffcbbd17f  ; uxform.s:631
+133f: 28c281301c8027fa04 f5  imm=39 A=3 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:632
+1340: a9028025d400a7fa04 f5  imm=3a8 w71=1 r219=1 A=4 C=2 D=2 r162=1 F=3f G=2 r128=20 M=460 r110=57d r99=8 r71=1 r62=1ffcbbc1ff  ; uxform.s:633
+1341: 28c281301d0027fa04 f5  imm=3a A=3 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:634
+1342: d902be07fe2307fa04 f11 w71=1 A=4 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:635
+1343: 28c381301e8027fa04 f5  imm=3d A=3 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:636
+1344: d903be07fe2307fa04 f11 w71=1 A=4 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:637
+1345: 28c381301f0027fa04 f5  imm=3e A=3 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:638
+1346: d903be07fe2307fa04 f11 w71=1 A=4 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:639
+1347: 28d3873051d527fa04 f5  imm=a3 r213=3 A=3 B=3 C=1b D=13 E=15 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:640
+1348: c9138807d51307fa04 f9  w71=1 r213=3 A=4 B=4 D=13 E=15 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:641
+1349: 28d3873053d627fa04 f5  imm=a7 r213=3 A=3 B=3 C=1b D=13 E=16 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:642
+134a: c9138807d61307fa04 f9  w71=1 r213=3 A=4 B=4 D=13 E=16 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:643
+134b: 28000130528026cc1e f5  imm=a5 C=1b F=3f r148=3c0 r128=4 M=460 r110=46d r95=13 r71=1 r62=1ffc31a1ff  ; uxform.s:644
+134c: d8003e07fe2306cc1e f11 w71=1 r148=3c0 r128=4 M=460 r110=46d r62=1ffc0021ff  ; uxform.s:645
+134d: 28000130548026cc5e f5  imm=a9 C=1b F=3f r148=3c0 r128=14 M=460 r110=46d r95=13 r71=1 r62=1ffc31a1ff  ; uxform.s:646
+134e: d8003e07fe2306cc5e f11 w71=1 r148=3c0 r128=14 M=460 r110=46d r62=1ffc0021ff  ; uxform.s:647
+134f: 28d48130520027fa04 f5  imm=a4 A=3 C=1b D=14 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:648
+1350: d914be07fe2307fa04 f11 w71=1 A=4 D=14 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:649
+1351: 28d48130540027fa04 f5  imm=a8 A=3 C=1b D=14 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:650
+1352: 91148007ecb7a7fa04 f2  xfer5.rel c7 cc=11 -> 132b <lXF12> imm=ffffffd9 w71=1 A=4 D=14 r128=20 M=460 r110=57d r99=8 seq=dfe7 r71=1 r62=1ffe8801ff r25=3e3bc00  ; uxform.s:651
+1353: 10d69a2988ef27fa04 f2  xfer4 c31 cc=11 -> 00a6 imm=a6 A=3 C=1b D=16 F=3f r128=20 M=460 r110=57d r99=8 r95=13 seq=14fdf r71=1 r62=1ffcb981ff r25=3e3fc00  ; uxform.s:652
+1354: d916be07fe2307fa04 f11 w71=1 A=4 D=16 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:653
+1355: 28d68130550027fa04 f5  imm=aa A=3 C=1b D=16 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:654
+1356: d916be07fe2307fa04 f11 w71=1 A=4 D=16 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:655
+1357: 2840b93017d627fa04 f5  imm=2f r213=3 A=1 B=1c C=1b E=16 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:656
+1358: c880b807d61307fa04 f9  w71=1 r213=3 A=2 B=1c E=16 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:657
+1359: 2840b930185727fa04 f5  imm=30 r213=3 A=1 B=1c C=1b E=17 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:658
+135a: c880b807d71307fa04 f9  w71=1 r213=3 A=2 B=1c E=17 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:659
+135b: 000000000000000000 f0  nop  ; uxform.s:661
+mmo_ObjToEyeSpaceAndSixUserTR:
+umo_ObjToEyeSpaceAndSixUserTR:
+135c: 77fa410008810c0000 f14 r219=1 C=10 r162=1 F=0 G=1 r62=1ffc23c170  ; uxform.s:668
+135d: 77fa419948c1000000 f14 r222=1 r219=1 C=19 F=25 G=0 r62=1ffc23c170  ; uxform.s:669
+135e: 2c008130178008ffe5 f5  imm=2f A=10 C=1b F=3f M=47f r99=8 r95=13 r71=1 r62=1ffcb98173  ; uxform.s:670
+135f: 3c408110000908ffe5 f7  r219=1 A=11 C=11 r162=1 F=0 G=2 M=47f r99=8 r62=1ffcabc173  ; uxform.s:671
+1360: 2c008130180008ffe5 f5  imm=30 A=10 C=1b F=3f M=47f r99=8 r95=13 r71=1 r62=1ffcb98173  ; uxform.s:672
+1361: 144091e7c4d788ffe5 f2  imm=9 A=11 C=1e M=47f r99=8 r95=2 seq=6fe7 r71=1 r62=1ffca98173 r25=3e2bc00  ; uxform.s:673
+lXF7:
+1362: 28418130198027c49e f5  imm=33 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:675
+1363: d881be07fe2307c49e f11 w71=1 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:676
+1364: 284181301a0027c49e f5  imm=34 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:677
+1365: d881be07fe2307c49e f11 w71=1 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:678
+1366: 284281301b8027fa04 f5  imm=37 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:679
+1367: d882be07fe2307fa04 f11 w71=1 A=2 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:680
+1368: 284281301c0027fa04 f5  imm=38 A=1 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:681
+1369: b8828010000d27fa04 f7  w71=1 r219=1 A=2 C=1 D=2 r162=1 F=0 G=3 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:682
+136a: 284381301d8027fa04 f5  imm=3b A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:683
+136b: b8838020001127fa04 f7  w71=1 r219=1 A=2 C=2 D=3 r162=1 F=0 G=4 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:684
+136c: 284381301e0027fa04 f5  imm=3c A=1 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:685
+136d: b8838009400227fa04 f7  w71=1 r222=1 r219=1 A=2 D=3 F=25 G=0 r128=20 M=460 r110=57d r99=8 r62=1ffcabc1ff  ; uxform.s:686
+136e: 2840833018d327fa04 f5  imm=31 r213=3 A=1 B=1 C=1b E=13 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:687
+136f: c8808407d31307fa04 f9  w71=1 r213=3 A=2 B=2 E=13 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:688
+1370: 28408330195427fa04 f5  imm=32 r213=3 A=1 B=1 C=1b E=14 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:689
+1371: c8808407d41307fa04 f9  w71=1 r213=3 A=2 B=2 E=14 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:690
+1372: 284181301a8027c49e f5  imm=35 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:691
+1373: d881be07fe2307c49e f11 w71=1 A=2 D=1 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:692
+1374: 284181301b0027c49e f5  imm=36 A=1 C=1b D=1 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:693
+1375: a8818015d400a7c49e f5  imm=3a8 w71=1 r219=1 A=2 C=1 D=1 r162=1 F=3f G=1 r148=1e r128=25 M=460 r110=53d r99=8 r71=1 r62=1ffcbbd17f  ; uxform.s:694
+1376: 28c281301c8027fa04 f5  imm=39 A=3 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:695
+1377: a9028025d400a7fa04 f5  imm=3a8 w71=1 r219=1 A=4 C=2 D=2 r162=1 F=3f G=2 r128=20 M=460 r110=57d r99=8 r71=1 r62=1ffcbbc1ff  ; uxform.s:696
+1378: 28c281301d0027fa04 f5  imm=3a A=3 C=1b D=2 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:697
+1379: d902be07fe2307fa04 f11 w71=1 A=4 D=2 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:698
+137a: 28c381301e8027fa04 f5  imm=3d A=3 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:699
+137b: d903be07fe2307fa04 f11 w71=1 A=4 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:700
+137c: 28c381301f0027fa04 f5  imm=3e A=3 C=1b D=3 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:701
+137d: d903be07fe2307fa04 f11 w71=1 A=4 D=3 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:702
+137e: 28d3873051d527fa04 f5  imm=a3 r213=3 A=3 B=3 C=1b D=13 E=15 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:703
+137f: c9138807d51307fa04 f9  w71=1 r213=3 A=4 B=4 D=13 E=15 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:704
+1380: 28d3873053d627fa04 f5  imm=a7 r213=3 A=3 B=3 C=1b D=13 E=16 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:705
+1381: c9138807d61307fa04 f9  w71=1 r213=3 A=4 B=4 D=13 E=16 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:706
+1382: 28000130528026cc1e f5  imm=a5 C=1b F=3f r148=3c0 r128=4 M=460 r110=46d r95=13 r71=1 r62=1ffc31a1ff  ; uxform.s:707
+1383: d8003e07fe2306cc1e f11 w71=1 r148=3c0 r128=4 M=460 r110=46d r62=1ffc0021ff  ; uxform.s:708
+1384: 28000130548026cc5e f5  imm=a9 C=1b F=3f r148=3c0 r128=14 M=460 r110=46d r95=13 r71=1 r62=1ffc31a1ff  ; uxform.s:709
+1385: d8003e07fe2306cc5e f11 w71=1 r148=3c0 r128=14 M=460 r110=46d r62=1ffc0021ff  ; uxform.s:710
+1386: 28d48130520027fa04 f5  imm=a4 A=3 C=1b D=14 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:711
+1387: d914be07fe2307fa04 f11 w71=1 A=4 D=14 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:712
+1388: 28d48130540027fa04 f5  imm=a8 A=3 C=1b D=14 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:713
+1389: d914be07fe2307fa04 f11 w71=1 A=4 D=14 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:714
+138a: 28d68130530027fa04 f5  imm=a6 A=3 C=1b D=16 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:715
+138b: d916be07fe2307fa04 f11 w71=1 A=4 D=16 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:716
+138c: 28d68130550027fa04 f5  imm=aa A=3 C=1b D=16 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:717
+138d: d916be07fe2307fa04 f11 w71=1 A=4 D=16 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:718
+138e: 28d3b93055d627fa04 f5  imm=ab r213=3 A=3 B=1c C=1b D=13 E=16 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:719
+138f: c913b807d61307fa04 f9  w71=1 r213=3 A=4 B=1c D=13 E=16 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:720
+1390: 28d3b93057d727fa04 f5  imm=af r213=3 A=3 B=1c C=1b D=13 E=17 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:721
+1391: c913b807d71307fa04 f9  w71=1 r213=3 A=4 B=1c D=13 E=17 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:722
+1392: 28d58130568027c49e f5  imm=ad A=3 C=1b D=15 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:723
+1393: d915be07fe2307c49e f11 w71=1 A=4 D=15 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:724
+1394: 28d58130588027c49e f5  imm=b1 A=3 C=1b D=15 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:725
+1395: d915be07fe2307c49e f11 w71=1 A=4 D=15 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:726
+1396: 28d48130560027fa04 f5  imm=ac A=3 C=1b D=14 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:727
+1397: d914be07fe2307fa04 f11 w71=1 A=4 D=14 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:728
+1398: 28d48130580027fa04 f5  imm=b0 A=3 C=1b D=14 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:729
+1399: d914be07fe2307fa04 f11 w71=1 A=4 D=14 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:730
+139a: 28d68130570027fa04 f5  imm=ae A=3 C=1b D=16 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:731
+139b: d916be07fe2307fa04 f11 w71=1 A=4 D=16 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:732
+139c: 28d68130590027fa04 f5  imm=b2 A=3 C=1b D=16 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:733
+139d: d916be07fe2307fa04 f11 w71=1 A=4 D=16 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:734
+139e: 28d3b93059d827fa04 f5  imm=b3 r213=3 A=3 B=1c C=1b D=13 E=18 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:735
+139f: c913b807d81307fa04 f9  w71=1 r213=3 A=4 B=1c D=13 E=18 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:736
+13a0: 28d3b9305bd927fa04 f5  imm=b7 r213=3 A=3 B=1c C=1b D=13 E=19 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:737
+13a1: c913b807d91307fa04 f9  w71=1 r213=3 A=4 B=1c D=13 E=19 r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:738
+13a2: 28d581305a8027c49e f5  imm=b5 A=3 C=1b D=15 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:739
+13a3: d915be07fe2307c49e f11 w71=1 A=4 D=15 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:740
+13a4: 28d581305c8027c49e f5  imm=b9 A=3 C=1b D=15 F=3f r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffcb9917f  ; uxform.s:741
+13a5: d915be07fe2307c49e f11 w71=1 A=4 D=15 r148=1e r128=25 M=460 r110=53d r99=8 r62=1ffc88117f  ; uxform.s:742
+13a6: 28d481305a0027fa04 f5  imm=b4 A=3 C=1b D=14 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:743
+13a7: d914be07fe2307fa04 f11 w71=1 A=4 D=14 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:744
+13a8: 28d481305c0027fa04 f5  imm=b8 A=3 C=1b D=14 F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:745
+13a9: d914be07fe2307fa04 f11 w71=1 A=4 D=14 r128=20 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:746
+13aa: f7f64007c88cf81362 f14 xfer5 c7 cc=11 -> 1362 <lXF7> imm=1362 w71=1 seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; uxform.s:747
+13ab: 10d69a2d88ef27fa0d f2  xfer4 c31 cc=11 -> 00b6 imm=b6 A=3 C=1b D=16 F=3f r128=29 M=460 r110=57d r99=8 r95=13 seq=14fdf r71=1 r62=1ffcb981ff r25=3e3fc00  ; uxform.s:748
+13ac: d916be07fe2307fa0d f11 w71=1 A=4 D=16 r128=29 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:749
+13ad: 28d681305d0027fa0d f5  imm=ba A=3 C=1b D=16 F=3f r128=29 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcb981ff  ; uxform.s:750
+13ae: d916be07fe2307fa0d f11 w71=1 A=4 D=16 r128=29 M=460 r110=57d r99=8 r62=1ffc8801ff  ; uxform.s:751
+13af: 2840b93017da27fa04 f5  imm=2f r213=3 A=1 B=1c C=1b E=1a F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:752
+13b0: c880b807da1307fa04 f9  w71=1 r213=3 A=2 B=1c E=1a r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:753
+13b1: 2840b930185b27fa04 f5  imm=30 r213=3 A=1 B=1c C=1b E=1b F=3f r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffcfd81ff r25=3e69c00  ; uxform.s:754
+13b2: c880b807db1307fa04 f9  w71=1 r213=3 A=2 B=1c E=1b r128=20 M=460 r110=57d r99=8 r62=1ffccc01ff r25=3e69c00  ; uxform.s:755
+13b3: 000000000000000000 f0  nop  ; uxform.s:757

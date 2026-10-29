@@ -1,0 +1,1169 @@
+# colortable.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per ucode/ge_isa.md.
+mgesi_LutUpload:
+3a6d: 77c03607ca04d00000 f14 r217=1 A=1f G=1a r99=8 r62=1ffc884170  ; colortable.S:1213
+3a75: 77fa4fa7c880f80000 f14 C=1a r95=17 r62=1ffc218170  ; colortable.S:1224
+3a7a: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; colortable.S:1207
+3a7b: 6fc78007ec2ccaf6a0 f13 cc=91 A=1f D=7 Q=19 M=6ca r99=8 r62=1ffc880578  ; colortable.S:1220
+3a7c: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:1224
+3a7d: 77c13607ca04980000 f14 r217=1 A=1f D=1 G=13 r99=8 r62=1ffc884170  ; colortable.S:1214
+3a7e: 782071e7c100000010 f15 imm=10 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; colortable.S:1229
+3a7f: 77c23607ca04880000 f14 r217=1 A=1f D=2 G=11 r99=8 r62=1ffc884170  ; colortable.S:1215
+3a80: 6e018007ec2c42fecd f13 cc=91 A=18 D=1 Q=18 r128=29 M=6c2 r110=67d r99=8 r62=1ffc8805fc  ; colortable.S:1229
+3a81: 77c33607ca04900000 f14 r217=1 A=1f D=3 G=12 r99=8 r62=1ffc884170  ; colortable.S:1216
+3a82: 6fc48007ec2d4af6a0 f13 cc=91 A=1f D=4 Q=1a M=6ca r99=8 r62=1ffc880578  ; colortable.S:1217
+3a83: 6fc58007ec2dcaf6a0 f13 cc=91 A=1f D=5 Q=1b M=6ca r99=8 r62=1ffc880578  ; colortable.S:1218
+3a84: 17c681d7da3844f6a0 f2  r219=1 cc=91 A=1f C=1d D=6 G=1a Q=1c M=6ca r99=8 r62=1ffcabc578  ; colortable.S:1209
+3a85: 76003607ca04800000 f14 r217=1 A=18 G=10 r99=8 r62=1ffc884170  ; colortable.S:1224
+3a87: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; colortable.S:1210
+3a88: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; colortable.S:1221
+3a89: 782071e7c200000476 f15 imm=476 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; colortable.S:1232
+3a8a: 782071e7c00000ffff f15 imm=ffff r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; colortable.S:1228
+3a8b: 6600b1d7ea5001dd80 f12 r215=3 A=18 B=18 C=1d E=10 M=6ca r99=8 r62=1ffced8178  ; colortable.S:1211
+3a8c: 2e028132fb800d9400 f5  imm=1f7 A=18 C=1e D=2 r99=8 r95=13 r71=1 r62=1ffca98170  ; colortable.S:1232
+3a8d: 3c003d3fc0cc44f6a0 f7  r219=1 r213=3 A=10 B=1e C=13 r176=0 F=3f G=13 M=6ca r62=1ffcf7c178 r25=3e69c00  ; colortable.S:1225
+3a8e: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; colortable.S:1234
+3a8f: 1400011fd13044f8a0 f2  r219=1 cc=91 A=10 C=11 r176=0 F=3f G=11 Q=18 M=6ca r110=7bd r62=1ffcb3c578  ; colortable.S:1225
+3a90: 68000007ec2bddf438 f13 cc=91 r148=18 Q=17 r128=d M=6dd r110=53d r62=1ffc00157c  ; colortable.S:1229
+3a91: 77fa4f37c880f80000 f14 C=13 r95=17 r62=1ffc218170  ; colortable.S:1239
+3a93: 77fa4f17c880f80000 f14 C=11 r95=17 r62=1ffc218170  ; colortable.S:1240
+3a98: 68000007e82fd0f8bb f13 r148=1b M=6d0 r110=73d r62=1ffc00117c  ; colortable.S:1239
+3a9a: 68000007e82fd0f8bc f13 r148=1c M=6d0 r110=73d r62=1ffc00117c  ; colortable.S:1240
+3a9b: 77fa41378883980000 f14 r219=3 C=13 F=1e G=13 r62=1ffc23c170  ; colortable.S:1246
+3a9c: 68000007e82fddf419 f13 r148=19 r128=5 M=6dd r110=53d r62=1ffc00117c  ; colortable.S:1239
+3a9d: 68000007e82fd0f437 f13 r148=17 r128=d M=6d0 r110=53d r62=1ffc00117c  ; colortable.S:1239
+3a9e: 68000007e82fddf419 f13 r148=19 r128=5 M=6dd r110=53d r62=1ffc00117c  ; colortable.S:1240
+3a9f: 68000007e82fd0f437 f13 r148=17 r128=d M=6d0 r110=53d r62=1ffc00117c  ; colortable.S:1240
+3aa0: 68000007e82ff3f400 f13 r128=5 M=6f3 r110=5bd r62=1ffc000178  ; colortable.S:1241
+3aa1: 38000128004a4df400 f7  r222=1 r219=1 C=12 F=20 G=12 r128=5 M=6f3 r110=5bd r62=1ffc23c178  ; colortable.S:1241
+3aa2: 68000007e82ff3f400 f13 r128=5 M=6f3 r110=5bd r62=1ffc000178  ; colortable.S:1242
+3aa3: 68000007e82ff3f400 f13 r128=5 M=6f3 r110=5bd r62=1ffc000178  ; colortable.S:1242
+3aa4: 77ee41178a03883a91 f14 xfer3 c4 cc=14 -> 3a91 imm=3a91 r219=3 cc=14 C=11 F=1e G=11 seq=3fe4 r71=1 r62=1ffe23c170 r25=3e39c00  ; colortable.S:1247
+3aa5: 18000007c8f308f63a f3  xfer4.rel c5 cc=11 -> 3aa5 r148=1a r128=d M=47f r110=6a5 seq=1cfe5 r62=1ffc001173 r25=3e39c00  ; colortable.S:1241
+3aa6: 68000007e80fc0f63a f13 r148=1a r128=d M=47f r110=6a5 r62=1ffc001173  ; colortable.S:1241
+3aa7: 68000007e80fc0f63a f13 r148=1a r128=d M=47f r110=6a5 r62=1ffc001173  ; colortable.S:1242
+3aa8: 68000007e80fc0f63a f13 r148=1a r128=d M=47f r110=6a5 r62=1ffc001173  ; colortable.S:1242
+3aa9: 60003c07ea0001d298 f12 r213=3 B=1e r148=18 r128=25 M=6ca r110=5bc r62=1ffc441178 r25=3e69c00  ; colortable.S:1243
+3aaa: 60003c07ea0001d298 f12 r213=3 B=1e r148=18 r128=25 M=6ca r110=5bc r62=1ffc441178 r25=3e69c00  ; colortable.S:1243
+3aab: 60003c07ea0001d298 f12 r213=3 B=1e r148=18 r128=25 M=6ca r110=5bc r62=1ffc441178 r25=3e69c00  ; colortable.S:1244
+3aac: 60003c07ea0001d298 f12 r213=3 B=1e r148=18 r128=25 M=6ca r110=5bc r62=1ffc441178 r25=3e69c00  ; colortable.S:1244
+3aad: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; colortable.S:1252
+mmo_LUT_I2I_16:
+3aae: 77fa4fe7c880f80ba5 f14 imm=ba5 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1071
+3ab0: 77fa4fe7c880f80b9e f14 imm=b9e C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1067
+3ab2: 77fa4fe7c880f80b9e f14 imm=b9e C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1074
+3ab4: 7039cfe7c888f80b9f f14 imm=b9f C=1e r95=17 seq=605e r71=1 r62=1ffc218170 r25=3e2fc00  ; colortable.S:1056
+3ab5: 60003007ea0f01de80 f12 r213=3 B=18 E=f M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:1071
+3ab6: 77fa4fe7c880f80ba0 f14 imm=ba0 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1068
+3ab7: 60003007ea0401de80 f12 r213=3 B=18 E=4 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:1067
+3ab8: 77fa4fe7c880f80b9f f14 imm=b9f C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1073
+3ab9: 60003007ea0401de80 f12 r213=3 B=18 E=4 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:1074
+3aba: 77fa4fe7c880f80ba0 f14 imm=ba0 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1075
+3abb: 60003007ea0101de80 f12 r213=3 B=18 E=1 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:1066
+3abc: 77fa4fe7c880f80ba1 f14 imm=ba1 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1069
+3abd: 60003007ea0801de80 f12 r213=3 B=18 E=8 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:1068
+3abe: 77fa4fe7c880f80ba1 f14 imm=ba1 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1076
+3abf: 60003007ea0101de80 f12 r213=3 B=18 E=1 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:1073
+3ac0: 77fa4fe7c880f80ba2 f14 imm=ba2 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1070
+3ac1: 60003007ea0801de80 f12 r213=3 B=18 E=8 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:1075
+3ac2: 77fa4fe7c880f80ba6 f14 imm=ba6 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1072
+3ac3: 60003007ea0201de80 f12 r213=3 B=18 E=2 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:1069
+3ac4: 77fa4fe7c880f80ba3 f14 imm=ba3 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1063
+3ac5: 0e0fb0142f3e44f8a0 f1  r217=1 r213=3 A=18 B=18 D=f E=2 G=f M=6ca r110=7bd r99=8 r62=1ffccc4178 r25=3e69c00  ; colortable.S:1076
+3ac6: 77fa4fe7c880f80ba2 f14 imm=ba2 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1077
+3ac8: 60003007ea0e01de80 f12 r213=3 B=18 E=e M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:1070
+3ac9: 77fa4fe7c880f80ba4 f14 imm=ba4 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:1078
+3aca: 6604b007ea0901de80 f12 r213=3 A=18 B=18 D=4 E=9 M=6ca r110=7bd r99=8 r62=1ffccc0178 r25=3e69c00  ; colortable.S:1072
+3acb: 700be7e7ca04700ba6 f14 imm=ba6 r217=1 C=1e G=e r95=17 r71=1 r62=1ffc21c170  ; colortable.S:1079
+3acc: 60003807ea0a01de80 f12 r213=3 B=1c E=a M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:1063
+3acd: 600030f7ea0e2fde80 f12 r213=3 B=18 C=f E=e M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:1077
+3ace: 782071e7cd00000001 f15 imm=1 r215=3 B=18 C=1e E=d r71=1 r62=1ffc658170  ; colortable.S:1087
+3acf: 6e0d8007ec2e4af6a0 f13 cc=91 A=18 D=d Q=1c M=6ca r99=8 r62=1ffc880578  ; colortable.S:1098
+3ad0: 76013607ca04780000 f14 r217=1 A=18 D=1 G=f r99=8 r62=1ffc884170  ; colortable.S:1091
+3ad1: 0e08b01c2c3e44f8a0 f1  r217=1 r213=3 A=18 B=18 D=8 E=3 G=c M=6ca r110=7bd r99=8 r62=1ffccc4178 r25=3e69c00  ; colortable.S:1078
+3ad3: 400030e7c96008de80 f8  r222=1 r213=3 B=18 C=e E=9 M=6ca r110=7bd r62=1ffc658178 r25=3e69c00  ; colortable.S:1079
+3ad4: 0e02b07c2d3e44f8a0 f1  r217=1 r213=3 A=18 B=18 D=2 E=f G=d M=6ca r110=7bd r99=8 r62=1ffccc4178 r25=3e69c00  ; colortable.S:1084
+3ad5: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; colortable.S:1089
+3ad6: 70002707ca82700000 f14 r219=2 r198=15 C=10 G=e r62=1ffd23c170  ; colortable.S:1107
+3ad8: 70d9cfe7c88cf80baa f14 imm=baa C=1e r95=17 seq=619f r71=1 r62=1ffc218170 r25=3e2fc00  ; colortable.S:1101
+3ad9: 73c0210fca03840000 f14 r219=3 A=f C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; colortable.S:1117
+3ada: 77fa40e7c881580000 f14 r219=1 C=e G=b r62=1ffc23c170  ; colortable.S:1110
+3adb: 730020efca03740000 f14 r219=3 A=c C=e r176=0 r162=1 F=3f G=e r62=1ffcb3c170  ; colortable.S:1118
+3adc: 76093607ca04600000 f14 r217=1 A=18 D=9 G=c r99=8 r62=1ffc884170  ; colortable.S:1097
+3add: 7099c117c8ccf80000 f14 r222=1 C=11 seq=611f r62=1ffc218170 r25=3e2fc00  ; colortable.S:1119
+3ade: 73c0210fca03840000 f14 r219=3 A=f C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; colortable.S:1120
+3adf: 730020efca03740000 f14 r219=3 A=c C=e r176=0 r162=1 F=3f G=e r62=1ffcb3c170  ; colortable.S:1121
+3ae0: 77fa40d7c8c0f80000 f14 r222=1 C=d r62=1ffc218170  ; colortable.S:1126
+3ae1: 160e8007ef068d9400 f2  r217=1 A=18 D=e G=f r99=8 seq=6fe7 r62=1ffc884170 r25=3e2bc00  ; colortable.S:1095
+3ae2: 760f3607ca04500000 f14 r217=1 A=18 D=f G=a r99=8 r62=1ffc884170  ; colortable.S:1096
+3ae3: 77ee4007ca80f83b45 f14 xfer3 c4 cc=15 -> 3b45 imm=3b45 cc=15 seq=3fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:1127
+3ae4: 68000007ec2c4af8a0 f13 cc=91 Q=18 M=6ca r110=7bd r62=1ffc000578  ; colortable.S:1101
+3ae5: 77fa4937c880f80000 f14 C=13 r95=2 r62=1ffc218170  ; colortable.S:1059
+3ae9: 77fa41374881980000 f14 r219=1 C=13 F=1d G=13 r62=1ffc23c170  ; colortable.S:1060
+3aea: 3f4098afc030d6f6bc f7  r220=1 r219=1 A=1d B=c C=a r176=1 F=3f G=c r148=1c M=6c2 r110=63d r99=8 r62=1ffcfbd17c  ; colortable.S:1103
+3aec: 6c008007ec2cd0f6b8 f13 cc=91 A=10 r148=18 Q=19 M=6d0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:1132
+3aed: 6c018007ec2dd0f6b8 f13 cc=91 A=10 D=1 r148=18 Q=1b M=6d0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:1133
+3aee: 6c028007ec2e50f6b8 f13 cc=91 A=10 D=2 r148=18 Q=1c M=6d0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:1134
+3aef: 6c038007ec2d50f6b8 f13 cc=91 A=10 D=3 r148=18 Q=1a M=6d0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:1135
+3af0: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:1136
+3af1: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:1137
+3af2: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:1138
+3af3: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:1139
+3af9: 700c66c7ca00f80000 f14 C=c r95=18 r62=1ffc218170  ; colortable.S:1136
+3afa: 700e66c74a00f80000 f14 C=c F=1d r95=1c r62=1ffc218170  ; colortable.S:1137
+3afb: 700c66c7ca00f80000 f14 C=c r95=18 r62=1ffc218170  ; colortable.S:1138
+3afc: 700e66c74a00f80000 f14 C=c F=1d r95=1c r62=1ffc218170  ; colortable.S:1139
+3b00: 68000007c22ccaf8a0 f13 cc=111 r198=4 Q=19 M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1136
+3b01: 68000007c22dcaf8a0 f13 cc=111 r198=4 Q=1b M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1137
+3b02: 68000007c22e4af8a0 f13 cc=111 r198=4 Q=1c M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1138
+3b03: 68000007c22d4af8a0 f13 cc=111 r198=4 Q=1a M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1139
+3b08: 68000007e83fca9419 f13 r148=320 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1140
+3b09: 68000007e83fca941b f13 r148=360 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1141
+3b0a: 68000007e83fca941c f13 r148=380 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1142
+3b0b: 68000007e83fca941a f13 r148=340 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1143
+3b11: 700ce6c7ca00f80000 f14 C=c r95=19 r62=1ffc218170  ; colortable.S:1140
+3b12: 700ee6c74a00f80000 f14 C=c F=1d r95=1d r62=1ffc218170  ; colortable.S:1141
+3b13: 700ce6c7ca00f80000 f14 C=c r95=19 r62=1ffc218170  ; colortable.S:1142
+3b14: 700ee6c74a00f80000 f14 C=c F=1d r95=1d r62=1ffc218170  ; colortable.S:1143
+3b18: 68000007c12ccaf8a0 f13 cc=111 r198=2 Q=19 M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1140
+3b19: 68000007c12dcaf8a0 f13 cc=111 r198=2 Q=1b M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1141
+3b1a: 68000007c12e4af8a0 f13 cc=111 r198=2 Q=1c M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1142
+3b1b: 68000007c12d4af8a0 f13 cc=111 r198=2 Q=1a M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1143
+3b20: 68000007e83fca9419 f13 r148=320 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1144
+3b21: 68000007e83fca941b f13 r148=360 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1145
+3b22: 68000007e83fca941c f13 r148=380 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1146
+3b23: 68000007e83fca941a f13 r148=340 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1147
+3b29: 700d66c7ca00f80000 f14 C=c r95=1a r62=1ffc218170  ; colortable.S:1144
+3b2a: 700f66c74a00f80000 f14 C=c F=1d r95=1e r62=1ffc218170  ; colortable.S:1145
+3b2b: 700d66c7ca00f80000 f14 C=c r95=1a r62=1ffc218170  ; colortable.S:1146
+3b2c: 700f66c74a00f80000 f14 C=c F=1d r95=1e r62=1ffc218170  ; colortable.S:1147
+3b30: 68000007c0accaf8a0 f13 cc=111 r198=1 Q=19 M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1144
+3b31: 68000007c0adcaf8a0 f13 cc=111 r198=1 Q=1b M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1145
+3b32: 68000007c0ae4af8a0 f13 cc=111 r198=1 Q=1c M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1146
+3b33: 68000007c0ad4af8a0 f13 cc=111 r198=1 Q=1a M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1147
+3b38: 60001c07ea0001c019 f12 r213=3 B=e r148=320 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; colortable.S:1148
+3b39: 38001cd801b644941b f7  r222=1 r219=1 r213=3 B=e C=d E=1 F=20 G=d r148=360 M=6ca r110=4bd r62=1ffc67e178 r25=3e69c00  ; colortable.S:1130
+3b3a: 60001c07ea0201c01c f12 r213=3 B=e E=2 r148=380 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; colortable.S:1150
+3b3b: 60001c07ea0301c01a f12 r213=3 B=e E=3 r148=340 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; colortable.S:1151
+3b3c: 77ee4007ca00f83aec f14 xfer3 c4 cc=14 -> 3aec imm=3aec cc=14 seq=3fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:1156
+3b40: 77fa41010883840000 f14 r219=3 C=10 r162=1 F=4 G=10 r62=1ffc23c170  ; colortable.S:1153
+3b41: 77fa40e10883740000 f14 r219=3 C=e r162=1 F=4 G=e r62=1ffc23c170  ; colortable.S:1154
+3b45: 77fa40f7c8c0f80000 f14 r222=1 C=f r62=1ffc218170  ; colortable.S:1159
+3b48: 77ee4007ca90f80030 f14 xfer3.rel c4 cc=15 -> 3b78 imm=30 cc=15 seq=bfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:1160
+3b51: 6c008007ec2e50f6b8 f13 cc=91 A=10 r148=18 Q=1c M=6d0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:1164
+3b55: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:1166
+3b5e: 700c66c7ca00f80000 f14 C=c r95=18 r62=1ffc218170  ; colortable.S:1166
+3b5f: 700e66c74a00f80000 f14 C=c F=1d r95=1c r62=1ffc218170  ; colortable.S:1167
+3b66: 68000007c22e4af8a0 f13 cc=111 r198=4 Q=1c M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1167
+3b6c: 77fa40f808c1780000 f14 r222=1 r219=1 C=f F=20 G=f r62=1ffc23c170  ; colortable.S:1163
+3b6e: 60001c07ea0001c01c f12 r213=3 B=e r148=380 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; colortable.S:1168
+3b6f: 77ee4007ca10fbffe2 f14 xfer3.rel c4 cc=14 -> 3b51 imm=ffffffe2 cc=14 seq=bfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:1172
+3b73: 77fa41004883840000 f14 r219=3 C=10 r162=1 F=1 G=10 r62=1ffc23c170  ; colortable.S:1169
+3b74: 77fa40e04883740000 f14 r219=3 C=e r162=1 F=1 G=e r62=1ffc23c170  ; colortable.S:1170
+3b78: 77f24007c8a4f80000 f14 xfer4 c5 cc=11 -> 0000 <HereWeGo> seq=14fe5 r25=3e39c00  ; colortable.S:1178
+3b7d: 77fa40b7c881800000 f14 r219=1 C=b G=10 r62=1ffc23c170  ; colortable.S:1176
+mmo_LUT_I2C_16:
+3b81: 77fa4fe7c880f80ba5 f14 imm=ba5 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:958
+3b83: 77fa4fe7c880f80b9e f14 imm=b9e C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:955
+3b85: 77fa4fe7c880f80ba4 f14 imm=ba4 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:959
+3b86: 782071e7cb00000001 f15 imm=1 r215=3 B=18 C=1e E=b r71=1 r62=1ffc658170  ; colortable.S:970
+3b87: 77fa4fe7c880f80b9f f14 imm=b9f C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:954
+3b88: 60003007ea0401de80 f12 r213=3 B=18 E=4 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:958
+3b89: 77fa4fe7c880f80ba0 f14 imm=ba0 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:956
+3b8a: 60003007ea0101de80 f12 r213=3 B=18 E=1 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:955
+3b8b: 77fa4fe7c880f80ba6 f14 imm=ba6 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:960
+3b8c: 60003007ea0501de80 f12 r213=3 B=18 E=5 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:959
+3b8d: 77fa4fe7c880f80ba7 f14 imm=ba7 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:961
+3b8e: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:954
+3b8f: 77fa4fe7c880f80ba8 f14 imm=ba8 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:962
+3b90: 60003007ea0201de80 f12 r213=3 B=18 E=2 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:956
+3b91: 77fa4fe7c880f80ba9 f14 imm=ba9 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:963
+3b92: 60003007ea0601de80 f12 r213=3 B=18 E=6 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:960
+3b93: 77fa4fe7c880f80ba1 f14 imm=ba1 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:957
+3b95: 60003007ea0701de80 f12 r213=3 B=18 E=7 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:961
+3b96: 77fa4fe7c880f80ba3 f14 imm=ba3 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:951
+3b97: 0e04b0442f3e44f8a0 f1  r217=1 r213=3 A=18 B=18 D=4 E=8 G=f M=6ca r110=7bd r99=8 r62=1ffccc4178 r25=3e69c00  ; colortable.S:958
+3b98: 60003007ea0901de80 f12 r213=3 B=18 E=9 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:963
+3b99: 77fa4fe7c880f80baa f14 imm=baa C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:973
+3b9a: 60003007ea0301de80 f12 r213=3 B=18 E=3 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:957
+3b9b: 77fa4fe7c880f80bab f14 imm=bab C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:974
+3b9c: 6e0b8007ec2e4af6a0 f13 cc=91 A=18 D=b Q=1c M=6ca r99=8 r62=1ffc880578  ; colortable.S:970
+3b9d: 77fa4fe7c880f80bac f14 imm=bac C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:975
+3b9e: 76013607ca04780000 f14 r217=1 A=18 D=1 G=f r99=8 r62=1ffc884170  ; colortable.S:955
+3b9f: 600038f7ea0a2fde80 f12 r213=3 B=1c C=f E=a M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:951
+3ba1: 16058007ee3044f8a0 f2  r217=1 cc=91 A=18 D=5 G=e Q=18 M=6ca r110=7bd r99=8 r62=1ffc884578  ; colortable.S:959
+3ba2: 76003607ca04680000 f14 r217=1 A=18 G=d r99=8 r62=1ffc884170  ; colortable.S:954
+3ba3: 16028007e82e44f8a0 f2  r217=1 cc=91 A=18 D=2 G=8 Q=17 M=6ca r110=7bd r99=8 r62=1ffc884578  ; colortable.S:956
+3ba4: 77fa41374881980000 f14 r219=1 C=13 F=1d G=13 r62=1ffc23c170  ; colortable.S:948
+3ba5: 16069137ec2c44f8a0 f2  r217=1 cc=91 A=18 C=13 D=6 G=c Q=16 M=6ca r110=7bd r99=8 r95=2 r62=1ffca9c578  ; colortable.S:947
+3ba6: 400030f7ca6008de80 f8  r222=1 r213=3 B=18 C=f E=a M=6ca r110=7bd r62=1ffc658178 r25=3e69c00  ; colortable.S:966
+3ba7: 76073607ca04580000 f14 r217=1 A=18 D=7 G=b r99=8 r62=1ffc884170  ; colortable.S:961
+3ba8: 70002707ca82780000 f14 r219=2 r198=15 C=10 G=f r62=1ffd23c170  ; colortable.S:985
+3ba9: 76083607ca04500000 f14 r217=1 A=18 D=8 G=a r99=8 r62=1ffc884170  ; colortable.S:962
+3baa: 76093607ca04480000 f14 r217=1 A=18 D=9 G=9 r99=8 r62=1ffc884170  ; colortable.S:963
+3bab: 76033607ca04700000 f14 r217=1 A=18 D=3 G=e r99=8 r62=1ffc884170  ; colortable.S:957
+3bac: 738020ffca01780000 f14 r219=1 A=e C=f r176=0 F=3f G=f r62=1ffcb3c170  ; colortable.S:988
+3bae: 70d9cfe7c88cf80bad f14 imm=bad C=1e r95=17 seq=619f r71=1 r62=1ffc218170 r25=3e2fc00  ; colortable.S:976
+3baf: 760a3607ca04680000 f14 r217=1 A=18 D=a G=d r99=8 r62=1ffc884170  ; colortable.S:967
+3bb0: 720020ffca037c0000 f14 r219=3 A=8 C=f r176=0 r162=1 F=3f G=f r62=1ffcb3c170  ; colortable.S:996
+3bb1: 7340210fca03840000 f14 r219=3 A=d C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; colortable.S:995
+3bb2: 77fa40f7c881400000 f14 r219=1 C=f G=8 r62=1ffc23c170  ; colortable.S:991
+3bb3: 7099c007c88cf80000 f14 seq=611f r25=3e2fc00  ; colortable.S:997
+3bb4: 720020ffca037c0000 f14 r219=3 A=8 C=f r176=0 r162=1 F=3f G=f r62=1ffcb3c170  ; colortable.S:999
+3bb5: 7340210fca03840000 f14 r219=3 A=d C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; colortable.S:998
+3bb6: 17408117dfaa44f8a0 f2  r222=1 cc=91 A=1d C=11 Q=15 M=6ca r110=7bd r99=8 r62=1ffca98578  ; colortable.S:976
+3bb7: 730020dfca01600000 f14 r219=1 A=c C=d r176=0 F=3f G=c r62=1ffcb3c170  ; colortable.S:978
+3bb8: 72c020dfca01580000 f14 r219=1 A=b C=d r176=0 F=3f G=b r62=1ffcb3c170  ; colortable.S:979
+3bb9: 728020dfca01500000 f14 r219=1 A=a C=d r176=0 F=3f G=a r62=1ffcb3c170  ; colortable.S:980
+3bba: 124000dfcd06d6f6bc f2  r220=1 r219=1 A=9 C=d r176=0 F=3f G=d r148=1c M=6c2 r110=63d seq=6fe7 r62=1ffcb3d17c r25=3e2bc00  ; colortable.S:981
+3bbb: 6c008007ec2cd0f6b8 f13 cc=91 A=10 r148=18 Q=19 M=6d0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:1011
+3bbc: 68000007ec2dd0f6b7 f13 cc=91 r148=17 Q=1b M=6d0 r110=63d r62=1ffc00157c  ; colortable.S:1012
+3bbd: 68000007ec2e50f6b6 f13 cc=91 r148=16 Q=1c M=6d0 r110=63d r62=1ffc00157c  ; colortable.S:1012
+3bbe: 68000007ec2d50f6b5 f13 cc=91 r148=15 Q=1a M=6d0 r110=63d r62=1ffc00157c  ; colortable.S:1012
+3bbf: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:1013
+3bc0: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:1014
+3bc1: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:1015
+3bc2: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:1016
+3bc8: 700c66c7ca00f80000 f14 C=c r95=18 r62=1ffc218170  ; colortable.S:1013
+3bc9: 700e66b74a00f80000 f14 C=b F=1d r95=1c r62=1ffc218170  ; colortable.S:1014
+3bca: 700c66a7ca00f80000 f14 C=a r95=18 r62=1ffc218170  ; colortable.S:1015
+3bcb: 700e66d74a00f80000 f14 C=d F=1d r95=1c r62=1ffc218170  ; colortable.S:1016
+3bcf: 68000007c22ccaf8a0 f13 cc=111 r198=4 Q=19 M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1013
+3bd0: 68000007c22dcaf8a0 f13 cc=111 r198=4 Q=1b M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1014
+3bd1: 68000007c22e4af8a0 f13 cc=111 r198=4 Q=1c M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1015
+3bd2: 68000007c22d4af8a0 f13 cc=111 r198=4 Q=1a M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1016
+3bd7: 68000007e83fca9419 f13 r148=320 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1017
+3bd8: 68000007e83fca941b f13 r148=360 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1018
+3bd9: 68000007e83fca941c f13 r148=380 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1019
+3bda: 68000007e83fca941a f13 r148=340 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1020
+3be0: 700ce6c7ca00f80000 f14 C=c r95=19 r62=1ffc218170  ; colortable.S:1017
+3be1: 700ee6b74a00f80000 f14 C=b F=1d r95=1d r62=1ffc218170  ; colortable.S:1018
+3be2: 700ce6a7ca00f80000 f14 C=a r95=19 r62=1ffc218170  ; colortable.S:1019
+3be3: 700ee6d74a00f80000 f14 C=d F=1d r95=1d r62=1ffc218170  ; colortable.S:1020
+3be7: 68000007c12ccaf8a0 f13 cc=111 r198=2 Q=19 M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1017
+3be8: 68000007c12dcaf8a0 f13 cc=111 r198=2 Q=1b M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1018
+3be9: 68000007c12e4af8a0 f13 cc=111 r198=2 Q=1c M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1019
+3bea: 68000007c12d4af8a0 f13 cc=111 r198=2 Q=1a M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1020
+3bef: 68000007e83fca9419 f13 r148=320 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1021
+3bf0: 68000007e83fca941b f13 r148=360 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1022
+3bf1: 68000007e83fca941c f13 r148=380 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1023
+3bf2: 68000007e83fca941a f13 r148=340 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:1024
+3bf8: 700d66c7ca00f80000 f14 C=c r95=1a r62=1ffc218170  ; colortable.S:1021
+3bf9: 700f66b74a00f80000 f14 C=b F=1d r95=1e r62=1ffc218170  ; colortable.S:1022
+3bfa: 700d66a7ca00f80000 f14 C=a r95=1a r62=1ffc218170  ; colortable.S:1023
+3bfb: 700f66d74a00f80000 f14 C=d F=1d r95=1e r62=1ffc218170  ; colortable.S:1024
+3bff: 68000007c0accaf8a0 f13 cc=111 r198=1 Q=19 M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1021
+3c00: 68000007c0adcaf8a0 f13 cc=111 r198=1 Q=1b M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1022
+3c01: 68000007c0ae4af8a0 f13 cc=111 r198=1 Q=1c M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1023
+3c02: 68000007c0ad4af8a0 f13 cc=111 r198=1 Q=1a M=6ca r110=7bd r62=1ffd000578  ; colortable.S:1024
+3c07: 60001e07ea0001c019 f12 r213=3 B=f r148=320 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; colortable.S:1025
+3c08: 38001ee801ba44941b f7  r222=1 r219=1 r213=3 B=f C=e E=1 F=20 G=e r148=360 M=6ca r110=4bd r62=1ffc67e178 r25=3e69c00  ; colortable.S:1009
+3c09: 60001e07ea0201c01c f12 r213=3 B=f E=2 r148=380 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; colortable.S:1027
+3c0a: 60001e07ea0301c01a f12 r213=3 B=f E=3 r148=340 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; colortable.S:1028
+3c0b: 77ee4007ca00f83bbb f14 xfer3 c4 cc=14 -> 3bbb imm=3bbb cc=14 seq=3fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:1033
+3c0f: 70f1c10048ad840000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r219=1 C=10 r162=1 F=1 G=10 seq=141df r62=1ffc23c170 r25=3e3fc00  ; colortable.S:1030
+3c10: 77fa40f108817c0000 f14 r219=1 C=f r162=1 F=4 G=f r62=1ffc23c170  ; colortable.S:1031
+3c14: 77fa4087c881800000 f14 r219=1 C=8 G=10 r62=1ffc23c170  ; colortable.S:1035
+mmo_LUT16_big:
+3c18: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; colortable.S:809
+3c19: 60003137aa0027de80 f12 r213=3 B=18 C=13 F=1e M=6ca r110=7bd r95=13 r62=1ffc658178 r25=3e69c00  ; colortable.S:813
+3c22: 76003607ca04780000 f14 r217=1 A=18 G=f r99=8 r62=1ffc884170  ; colortable.S:813
+3c2a: 77fa4ef64880f80000 f14 C=f F=19 r95=17 r62=1ffc218170  ; colortable.S:822
+3c2c: 77fa4ef78880f80000 f14 C=f F=1e r95=17 r62=1ffc218170  ; colortable.S:818
+3c2e: 77fa4ef7c880f80000 f14 C=f r95=17 r62=1ffc218170  ; colortable.S:817
+3c30: 77fa4ef74880f80000 f14 C=f F=1d r95=17 r62=1ffc218170  ; colortable.S:819
+3c32: 600030f72a062fde80 f12 r213=3 B=18 C=f E=6 F=1c M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:820
+3c34: 600030f6ea022fde80 f12 r213=3 B=18 C=f E=2 F=1b M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:818
+3c36: 600030f62a012fde80 f12 r213=3 B=18 C=f E=1 F=18 M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:817
+3c38: 600030f5ea032fde80 f12 r213=3 B=18 C=f E=3 F=17 M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:819
+3c3a: 600030f5aa042fde80 f12 r213=3 B=18 C=f E=4 F=16 M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:820
+3c3c: 600030f56a052fde80 f12 r213=3 B=18 C=f E=5 F=15 M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:821
+3c3e: 60003007ea0701de80 f12 r213=3 B=18 E=7 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:823
+3c3f: 76063607ca04780000 f14 r217=1 A=18 D=6 G=f r99=8 r62=1ffc884170  ; colortable.S:822
+3c40: 600030f52a082fde80 f12 r213=3 B=18 C=f E=8 F=14 M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:824
+3c41: 782071e7ce00000010 f15 imm=10 r215=3 B=18 C=1e E=e r71=1 r62=1ffc658170  ; colortable.S:843
+3c42: 600030f4ea092fde80 f12 r213=3 B=18 C=f E=9 F=13 M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:825
+3c43: 60003007ea0a01de80 f12 r213=3 B=18 E=a M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:826
+3c44: 6e0e8007ec244af6a0 f13 cc=91 A=18 D=e Q=8 M=6ca r99=8 r62=1ffc880578  ; colortable.S:843
+3c45: 16029cf4af3e0d9400 f2  r217=1 A=18 C=f D=2 F=12 G=f r99=8 r95=17 r62=1ffca9c170  ; colortable.S:818
+3c46: 76013607ca04680000 f14 r217=1 A=18 D=1 G=d r99=8 r62=1ffc884170  ; colortable.S:817
+3c47: 16039cf7ec3e0d9400 f2  r217=1 A=18 C=f D=3 G=c r99=8 r95=17 r62=1ffca9c170  ; colortable.S:819
+3c48: 0e04b05c2e3e44f8a0 f1  r217=1 r213=3 A=18 B=18 D=4 E=b G=e M=6ca r110=7bd r99=8 r62=1ffccc4178 r25=3e69c00  ; colortable.S:820
+3c49: 0e07b064253e44f8a0 f1  r217=1 r213=3 A=18 B=18 D=7 E=c G=5 M=6ca r110=7bd r99=8 r62=1ffccc4178 r25=3e69c00  ; colortable.S:823
+3c4a: 76083607ca04380000 f14 r217=1 A=18 D=8 G=7 r99=8 r62=1ffc884170  ; colortable.S:824
+3c4b: 76093607ca04400000 f14 r217=1 A=18 D=9 G=8 r99=8 r62=1ffc884170  ; colortable.S:825
+3c4c: 782071e7cf0000ffff f15 imm=ffff r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; colortable.S:844
+3c4d: 160a8007e91444f8a0 f2  r217=1 cc=91 A=18 D=a G=9 Q=a M=6ca r110=7bd r99=8 r62=1ffc884578  ; colortable.S:826
+3c4e: 400030f7cd6008de80 f8  r222=1 r213=3 B=18 C=f E=d M=6ca r110=7bd r62=1ffc658178 r25=3e69c00  ; colortable.S:832
+3c4f: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; colortable.S:846
+3c50: 70002707ca82780000 f14 r219=2 r198=15 C=10 G=f r62=1ffd23c170  ; colortable.S:850
+3c51: 760b3607ca04500000 f14 r217=1 A=18 D=b G=a r99=8 r62=1ffc884170  ; colortable.S:827
+3c52: 760c3607ca04580000 f14 r217=1 A=18 D=c G=b r99=8 r62=1ffc884170  ; colortable.S:828
+3c54: 700024ffca02780000 f14 r219=2 C=f r176=2 F=3f G=f r62=1ffd33c170  ; colortable.S:851
+3c55: 76053607ca04680000 f14 r217=1 A=18 D=5 G=d r99=8 r62=1ffc884170  ; colortable.S:821
+3c56: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; colortable.S:855
+3c57: 7340210fca03840000 f14 r219=3 A=d C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; colortable.S:856
+3c58: 730020ffca037c0000 f14 r219=3 A=c C=f r176=0 r162=1 F=3f G=f r62=1ffcb3c170  ; colortable.S:857
+3c59: 760d3717ca44600000 f14 r222=1 r217=1 A=18 C=11 D=d G=c r99=8 r62=1ffca9c170  ; colortable.S:832
+3c5a: 7099c0f7c88d300000 f14 r219=1 C=f G=6 seq=611f r62=1ffc23c170 r25=3e2fc00  ; colortable.S:852
+3c5b: 7340210fca03840000 f14 r219=3 A=d C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; colortable.S:859
+3c5c: 730020ffca037c0000 f14 r219=3 A=c C=f r176=0 r162=1 F=3f G=f r62=1ffcb3c170  ; colortable.S:860
+3c5d: 77fa40e7c8c0f80000 f14 r222=1 C=e r62=1ffc218170  ; colortable.S:866
+3c5e: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; colortable.S:863
+3c60: 77f64937ca80f83d2a f14 xfer5 c4 cc=15 -> 3d2a imm=3d2a cc=15 C=13 r95=2 seq=5fe4 r71=1 r62=1ffe218170 r25=3e39c00  ; colortable.S:812
+3c61: 760f37374a01980000 f14 r219=1 A=18 C=13 D=f F=1d G=13 r99=8 r62=1ffcabc170  ; colortable.S:814
+3c62: 714020cfca01380000 f14 r219=1 A=5 C=c r176=0 F=3f G=7 r62=1ffcb3c170  ; colortable.S:835
+3c63: 71c020cfca01400000 f14 r219=1 A=7 C=c r176=0 F=3f G=8 r62=1ffcb3c170  ; colortable.S:836
+3c64: 720020cfca01480000 f14 r219=1 A=8 C=c r176=0 F=3f G=9 r62=1ffcb3c170  ; colortable.S:837
+3c65: 724020cfca01500000 f14 r219=1 A=9 C=c r176=0 F=3f G=a r62=1ffcb3c170  ; colortable.S:838
+3c66: 728020cfca01580000 f14 r219=1 A=a C=c r176=0 F=3f G=b r62=1ffcb3c170  ; colortable.S:839
+3c67: 12c000cfcc0c44f6a0 f2  r219=1 cc=91 A=b C=c r176=0 F=3f G=c Q=6 M=6ca r62=1ffcb3c578  ; colortable.S:840
+3c69: 6c008007e82fe0f6aa f13 A=10 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:873
+3c6a: 6c018007e82fe0f6aa f13 A=10 D=1 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:873
+3c6b: 6c028007ec2e60f6aa f13 cc=91 A=10 D=2 r148=a Q=1c M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:874
+3c6c: 6c038007ec23e0f6aa f13 cc=91 A=10 D=3 r148=a Q=7 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:874
+3c6d: 57c05e07fe3788a000 f10 r213=3 B=f r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:873
+3c6e: 6c048007ec24e0f6aa f13 cc=91 A=10 D=4 r148=a Q=9 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:875
+3c6f: 57c15e07fe3788a400 f10 r213=3 B=f E=1 r128=d M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:873
+3c70: 6c058007ec25e0f6aa f13 cc=91 A=10 D=5 r148=a Q=b M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:875
+3c71: 6c068007ec2660f6aa f13 cc=91 A=10 D=6 r148=a Q=c M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:876
+3c72: 6c078007ec26e0f6aa f13 cc=91 A=10 D=7 r148=a Q=d M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:876
+3c73: 6c088007ec2760f6aa f13 cc=91 A=10 D=8 r148=a Q=e M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:877
+3c74: 6c098007ec27e0f6aa f13 cc=91 A=10 D=9 r148=a Q=f M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:877
+3c75: 6c0a8007ec2860f6aa f13 cc=91 A=10 D=a r148=a Q=10 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:878
+3c76: 6c0b8007ec28e0f6aa f13 cc=91 A=10 D=b r148=a Q=11 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:878
+3c77: 6c0c8007ec2960f6aa f13 cc=91 A=10 D=c r148=a Q=12 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:879
+3c78: 6c0d8007ec29e0f6aa f13 cc=91 A=10 D=d r148=a Q=13 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:879
+3c79: 6c0e8007ec2a60f6aa f13 cc=91 A=10 D=e r148=a Q=14 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:880
+3c7a: 6c0f8007ec2ae0f6aa f13 cc=91 A=10 D=f r148=a Q=15 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:880
+3c7b: 6c108007ec2b60f6aa f13 cc=91 A=10 D=10 r148=a Q=16 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:881
+3c7c: 6c118007ec2be0f6aa f13 cc=91 A=10 D=11 r148=a Q=17 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:881
+3c7d: 6c128007ec2c60f6aa f13 cc=91 A=10 D=12 r148=a Q=18 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:882
+3c7e: 6c138007ec2ce0f6aa f13 cc=91 A=10 D=13 r148=a Q=19 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:882
+3c7f: 6c148007ec22e0f6aa f13 cc=91 A=10 D=14 r148=a Q=5 M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:883
+3c80: 6c158007ec2d60f6aa f13 cc=91 A=10 D=15 r148=a Q=1a M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:883
+3c81: 6c168007ec2de0f6aa f13 cc=91 A=10 D=16 r148=a Q=1b M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:884
+3c82: 6c178007ec2e60f6aa f13 cc=91 A=10 D=17 r148=a Q=1c M=6e0 r110=63d r99=8 r62=1ffc88157c  ; colortable.S:884
+3c83: 73c03607ca04280000 f14 r217=1 A=f G=5 r99=8 r62=1ffc884170  ; colortable.S:873
+3c85: 57c25e07fe378ab41c f10 r213=3 B=f E=2 r148=380 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; colortable.S:874
+3c89: 73c13607ca04280000 f14 r217=1 A=f D=1 G=5 r99=8 r62=1ffc884170  ; colortable.S:873
+3c8a: 57c35e07fe378ab407 f10 r213=3 B=f E=3 r148=e0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; colortable.S:874
+3c8b: 714a607fca00f80000 f14 A=5 C=7 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:873
+3c8d: 714ae07fca00f80000 f14 A=5 C=7 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:873
+3c8e: 7be28007c000000000 f15 A=f D=2 r99=8 r62=1ffc880170  ; colortable.S:874
+3c8f: 714b607fca04280000 f14 r217=1 A=5 C=7 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:873
+3c90: 57c45e07fe378ab409 f10 r213=3 B=f E=4 r148=120 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; colortable.S:875
+3c91: 714a607fca00f80000 f14 A=5 C=7 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:873
+3c93: 714ae07fca00f80000 f14 A=5 C=7 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:873
+3c94: 4bc39e07c51b8ab40b f9  r213=3 A=f B=f D=3 E=5 r148=160 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:874
+3c95: 714b607fca04280000 f14 r217=1 A=5 C=7 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:873
+3c96: 57c05e07fe36edf500 f10 r213=3 B=f r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:873
+3c97: 714a608fca00f80000 f14 A=5 C=8 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:874
+3c99: 714ae08fca00f80000 f14 A=5 C=8 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:874
+3c9a: 4bc49e07c61b8ab40c f9  r213=3 A=f B=f D=4 E=6 r148=180 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:875
+3c9b: 714b608fca04280000 f14 r217=1 A=5 C=8 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:874
+3c9c: 57c15e07fe3685f4c0 f10 r213=3 B=f E=1 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:873
+3c9d: 714a608fca00f80000 f14 A=5 C=8 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:874
+3c9f: 714ae08fca00f80000 f14 A=5 C=8 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:874
+3ca0: 4bc59e07c71b8ab40d f9  r213=3 A=f B=f D=5 E=7 r148=1a0 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:875
+3ca1: 714b608fca04280000 f14 r217=1 A=5 C=8 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:874
+3ca2: 57c25e07fe36edf500 f10 r213=3 B=f E=2 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:874
+3ca3: 714a609fca00f80000 f14 A=5 C=9 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:875
+3ca5: 714ae09fca00f80000 f14 A=5 C=9 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:875
+3ca6: 4bc69e07c81b8ab40e f9  r213=3 A=f B=f D=6 E=8 r148=1c0 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:876
+3ca7: 714b609fca04280000 f14 r217=1 A=5 C=9 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:875
+3ca8: 57c35e07fe3685f4c0 f10 r213=3 B=f E=3 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:874
+3ca9: 714a609fca00f80000 f14 A=5 C=9 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:875
+3cab: 714ae09fca00f80000 f14 A=5 C=9 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:875
+3cac: 4bc79e07c91b8ab40f f9  r213=3 A=f B=f D=7 E=9 r148=1e0 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:876
+3cad: 714b609fca04280000 f14 r217=1 A=5 C=9 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:875
+3cae: 57c45e07fe36edf500 f10 r213=3 B=f E=4 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:875
+3caf: 714a60afca00f80000 f14 A=5 C=a r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:876
+3cb1: 714ae0afca00f80000 f14 A=5 C=a r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:876
+3cb2: 4bc89e07ca1b8ab410 f9  r213=3 A=f B=f D=8 E=a r148=200 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:877
+3cb3: 714b60afca04280000 f14 r217=1 A=5 C=a r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:876
+3cb4: 57c55e07fe3685f4c0 f10 r213=3 B=f E=5 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:875
+3cb5: 714a60afca00f80000 f14 A=5 C=a r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:876
+3cb7: 714ae0afca00f80000 f14 A=5 C=a r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:876
+3cb8: 4bc99e07cb1b8ab411 f9  r213=3 A=f B=f D=9 E=b r148=220 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:877
+3cb9: 714b60afca04280000 f14 r217=1 A=5 C=a r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:876
+3cba: 57c65e07fe36edf500 f10 r213=3 B=f E=6 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:876
+3cbb: 714a60bfca00f80000 f14 A=5 C=b r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:877
+3cbd: 714ae0bfca00f80000 f14 A=5 C=b r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:877
+3cbe: 4bca9e07cc1b8ab412 f9  r213=3 A=f B=f D=a E=c r148=240 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:878
+3cbf: 714b60bfca04280000 f14 r217=1 A=5 C=b r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:877
+3cc0: 57c75e07fe3685f4c0 f10 r213=3 B=f E=7 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:876
+3cc1: 714a60bfca00f80000 f14 A=5 C=b r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:877
+3cc3: 714ae0bfca00f80000 f14 A=5 C=b r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:877
+3cc4: 4bcb9e07cd1b8ab413 f9  r213=3 A=f B=f D=b E=d r148=260 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:878
+3cc5: 714b60bfca04280000 f14 r217=1 A=5 C=b r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:877
+3cc6: 57c85e07fe36edf500 f10 r213=3 B=f E=8 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:877
+3cc7: 714a60cfca00f80000 f14 A=5 C=c r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:878
+3cc9: 714ae0cfca00f80000 f14 A=5 C=c r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:878
+3cca: 4bcc9e07ce1b8ab414 f9  r213=3 A=f B=f D=c E=e r148=280 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:879
+3ccb: 714b60cfca04280000 f14 r217=1 A=5 C=c r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:878
+3ccc: 57c95e07fe3685f4c0 f10 r213=3 B=f E=9 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:877
+3ccd: 714a60cfca00f80000 f14 A=5 C=c r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:878
+3ccf: 714ae0cfca00f80000 f14 A=5 C=c r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:878
+3cd0: 4bcd9e07cf1b8ab415 f9  r213=3 A=f B=f D=d E=f r148=2a0 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:879
+3cd1: 714b60cfca04280000 f14 r217=1 A=5 C=c r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:878
+3cd2: 57ca5e07fe36edf500 f10 r213=3 B=f E=a r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:878
+3cd3: 714a607fca00f80000 f14 A=5 C=7 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:879
+3cd5: 714ae07fca00f80000 f14 A=5 C=7 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:879
+3cd6: 4bce9e07d01b8ab416 f9  r213=3 A=f B=f D=e E=10 r148=2c0 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:880
+3cd7: 714b607fca04280000 f14 r217=1 A=5 C=7 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:879
+3cd8: 57cb5e07fe3685f4c0 f10 r213=3 B=f E=b r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:878
+3cd9: 714a607fca00f80000 f14 A=5 C=7 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:879
+3cdb: 714ae07fca00f80000 f14 A=5 C=7 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:879
+3cdc: 4bcf9e07d11b8ab417 f9  r213=3 A=f B=f D=f E=11 r148=2e0 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:880
+3cdd: 714b607fca04280000 f14 r217=1 A=5 C=7 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:879
+3cde: 57cc5e07fe36edf500 f10 r213=3 B=f E=c r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:879
+3cdf: 714a608fca00f80000 f14 A=5 C=8 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:880
+3ce1: 714ae08fca00f80000 f14 A=5 C=8 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:880
+3ce2: 4bd09e07d21b8ab418 f9  r213=3 A=f B=f D=10 E=12 r148=300 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:881
+3ce3: 714b608fca04280000 f14 r217=1 A=5 C=8 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:880
+3ce4: 57cd5e07fe3685f4c0 f10 r213=3 B=f E=d r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:879
+3ce5: 714a608fca00f80000 f14 A=5 C=8 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:880
+3ce7: 714ae08fca00f80000 f14 A=5 C=8 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:880
+3ce8: 4bd19e07d31b8ab419 f9  r213=3 A=f B=f D=11 E=13 r148=320 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:881
+3ce9: 714b608fca04280000 f14 r217=1 A=5 C=8 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:880
+3cea: 57ce5e07fe36edf500 f10 r213=3 B=f E=e r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:880
+3ceb: 714a609fca00f80000 f14 A=5 C=9 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:881
+3ced: 714ae09fca00f80000 f14 A=5 C=9 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:881
+3cee: 4bd29e07d41b8ab405 f9  r213=3 A=f B=f D=12 E=14 r148=a0 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:882
+3cef: 714b609fca04280000 f14 r217=1 A=5 C=9 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:881
+3cf0: 57cf5e07fe3685f4c0 f10 r213=3 B=f E=f r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:880
+3cf1: 714a609fca00f80000 f14 A=5 C=9 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:881
+3cf3: 714ae09fca00f80000 f14 A=5 C=9 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:881
+3cf4: 4bd39e07d51b8ab41a f9  r213=3 A=f B=f D=13 E=15 r148=340 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:882
+3cf5: 714b609fca04280000 f14 r217=1 A=5 C=9 r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:881
+3cf6: 57d05e07fe36edf500 f10 r213=3 B=f E=10 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:881
+3cf7: 714a60afca00f80000 f14 A=5 C=a r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:882
+3cf9: 714ae0afca00f80000 f14 A=5 C=a r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:882
+3cfa: 4bd49e07d61b8ab41b f9  r213=3 A=f B=f D=14 E=16 r148=360 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:883
+3cfb: 714b60afca04280000 f14 r217=1 A=5 C=a r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:882
+3cfc: 57d15e07fe3685f4c0 f10 r213=3 B=f E=11 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:881
+3cfd: 714a60afca00f80000 f14 A=5 C=a r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:882
+3cff: 714ae0afca00f80000 f14 A=5 C=a r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:882
+3d00: 4bd59e07d71b8ab41c f9  r213=3 A=f B=f D=15 E=17 r148=380 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; colortable.S:883
+3d01: 714b60afca04280000 f14 r217=1 A=5 C=a r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:882
+3d02: 57d25e07fe36edf500 f10 r213=3 B=f E=12 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:882
+3d03: 714a60bfca00f80000 f14 A=5 C=b r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:883
+3d05: 714ae0bfca00f80000 f14 A=5 C=b r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:883
+3d06: 7bf68007c000000000 f15 A=f D=16 r99=8 r62=1ffc880170  ; colortable.S:884
+3d07: 714b60bfca04280000 f14 r217=1 A=5 C=b r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:883
+3d08: 57d35e07fe3685f4c0 f10 r213=3 B=f E=13 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:882
+3d09: 714a60bfca00f80000 f14 A=5 C=b r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:883
+3d0b: 714ae0bfca00f80000 f14 A=5 C=b r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:883
+3d0c: 7bf78007c000000000 f15 A=f D=17 r99=8 r62=1ffc880170  ; colortable.S:884
+3d0d: 714b60bfca04280000 f14 r217=1 A=5 C=b r176=0 F=3f G=5 r95=16 r62=1ffcb1c170  ; colortable.S:883
+3d0e: 57d45e07fe36edf500 f10 r213=3 B=f E=14 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:883
+3d0f: 714a60cfca00f80000 f14 A=5 C=c r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:884
+3d11: 714ae0cfca00f80000 f14 A=5 C=c r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:884
+3d13: 714b60cfca00f80000 f14 A=5 C=c r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:884
+3d14: 57d55e07fe3685f4c0 f10 r213=3 B=f E=15 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:883
+3d15: 714a60cfca00f80000 f14 A=5 C=c r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:884
+3d17: 714ae0cfca00f80000 f14 A=5 C=c r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:884
+3d19: 714b60cfca00f80000 f14 A=5 C=c r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:884
+3d1b: 57d65e07fe36edf500 f10 r213=3 B=f E=16 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:884
+3d1e: 77fa40e808c1700000 f14 r222=1 r219=1 C=e F=20 G=e r62=1ffc23c170  ; colortable.S:871
+3d20: 57d75e07fe3685f4c0 f10 r213=3 B=f E=17 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:884
+3d21: 77f64007ca00f83c69 f14 xfer5 c4 cc=14 -> 3c69 imm=3c69 cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:886
+3d25: 77fa41060881840000 f14 r219=1 C=10 r162=1 F=18 G=10 r62=1ffc23c170  ; colortable.S:887
+3d26: 77fa40f608817c0000 f14 r219=1 C=f r162=1 F=18 G=f r62=1ffc23c170  ; colortable.S:888
+3d2a: 77fa40d7c8c0f80000 f14 r222=1 C=d r62=1ffc218170  ; colortable.S:892
+3d2d: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:893
+3d36: 6c008007e82fe0f6aa f13 A=10 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:898
+3d3a: 57c05e07fe3788a000 f10 r213=3 B=f r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:898
+3d43: 73c03607ca04700000 f14 r217=1 A=f G=e r99=8 r62=1ffc884170  ; colortable.S:898
+3d4a: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:898
+3d4b: 738a607fca00f80000 f14 A=e C=7 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:898
+3d4d: 738ae07fca00f80000 f14 A=e C=7 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:898
+3d4e: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:899
+3d4f: 738b607fca00f80000 f14 A=e C=7 r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:898
+3d53: 6c018007e82fe0f6aa f13 A=10 D=1 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:900
+3d56: 57c05e07fe36edf500 f10 r213=3 B=f r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:898
+3d57: 57c15e07fe3788a000 f10 r213=3 B=f E=1 r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:900
+3d60: 73c13607ca04700000 f14 r217=1 A=f D=1 G=e r99=8 r62=1ffc884170  ; colortable.S:900
+3d67: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:900
+3d68: 738a607fca00f80000 f14 A=e C=7 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:900
+3d6a: 738ae07fca00f80000 f14 A=e C=7 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:900
+3d6b: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:901
+3d6c: 738b607fca00f80000 f14 A=e C=7 r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:900
+3d70: 6c028007e82fe0f6aa f13 A=10 D=2 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:902
+3d73: 57c15e07fe3685f4c0 f10 r213=3 B=f E=1 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:900
+3d74: 57c25e07fe3788a000 f10 r213=3 B=f E=2 r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:902
+3d7d: 73c23607ca04700000 f14 r217=1 A=f D=2 G=e r99=8 r62=1ffc884170  ; colortable.S:902
+3d84: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:902
+3d85: 738a608fca00f80000 f14 A=e C=8 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:902
+3d87: 738ae08fca00f80000 f14 A=e C=8 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:902
+3d88: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:903
+3d89: 738b608fca00f80000 f14 A=e C=8 r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:902
+3d8d: 6c038007e82fe0f6aa f13 A=10 D=3 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:904
+3d90: 57c25e07fe36edf500 f10 r213=3 B=f E=2 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:902
+3d91: 57c35e07fe3788a000 f10 r213=3 B=f E=3 r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:904
+3d9a: 73c33607ca04700000 f14 r217=1 A=f D=3 G=e r99=8 r62=1ffc884170  ; colortable.S:904
+3da1: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:904
+3da2: 738a608fca00f80000 f14 A=e C=8 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:904
+3da4: 738ae08fca00f80000 f14 A=e C=8 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:904
+3da5: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:905
+3da6: 738b608fca00f80000 f14 A=e C=8 r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:904
+3daa: 6c048007e82fe0f6aa f13 A=10 D=4 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:906
+3dad: 57c35e07fe3685f4c0 f10 r213=3 B=f E=3 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:904
+3dae: 57c45e07fe3788a000 f10 r213=3 B=f E=4 r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:906
+3db7: 73c43607ca04700000 f14 r217=1 A=f D=4 G=e r99=8 r62=1ffc884170  ; colortable.S:906
+3dbe: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:906
+3dbf: 738a609fca00f80000 f14 A=e C=9 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:906
+3dc1: 738ae09fca00f80000 f14 A=e C=9 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:906
+3dc2: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:907
+3dc3: 738b609fca00f80000 f14 A=e C=9 r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:906
+3dc7: 6c058007e82fe0f6aa f13 A=10 D=5 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:908
+3dca: 57c45e07fe36edf500 f10 r213=3 B=f E=4 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:906
+3dcb: 57c55e07fe3788a000 f10 r213=3 B=f E=5 r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:908
+3dd4: 73c53607ca04700000 f14 r217=1 A=f D=5 G=e r99=8 r62=1ffc884170  ; colortable.S:908
+3ddb: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:908
+3ddc: 738a609fca00f80000 f14 A=e C=9 r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:908
+3dde: 738ae09fca00f80000 f14 A=e C=9 r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:908
+3ddf: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:909
+3de0: 738b609fca00f80000 f14 A=e C=9 r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:908
+3de4: 6c068007e82fe0f6aa f13 A=10 D=6 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:910
+3de7: 57c55e07fe3685f4c0 f10 r213=3 B=f E=5 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:908
+3de8: 57c65e07fe3788a000 f10 r213=3 B=f E=6 r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:910
+3df1: 73c63607ca04700000 f14 r217=1 A=f D=6 G=e r99=8 r62=1ffc884170  ; colortable.S:910
+3df8: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:910
+3df9: 738a60afca00f80000 f14 A=e C=a r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:910
+3dfb: 738ae0afca00f80000 f14 A=e C=a r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:910
+3dfc: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:911
+3dfd: 738b60afca00f80000 f14 A=e C=a r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:910
+3e01: 6c078007e82fe0f6aa f13 A=10 D=7 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:912
+3e04: 57c65e07fe36edf500 f10 r213=3 B=f E=6 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:910
+3e05: 57c75e07fe3788a000 f10 r213=3 B=f E=7 r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:912
+3e0e: 73c73607ca04700000 f14 r217=1 A=f D=7 G=e r99=8 r62=1ffc884170  ; colortable.S:912
+3e15: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:912
+3e16: 738a60afca00f80000 f14 A=e C=a r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:912
+3e18: 738ae0afca00f80000 f14 A=e C=a r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:912
+3e19: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:913
+3e1a: 738b60afca00f80000 f14 A=e C=a r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:912
+3e1e: 6c088007e82fe0f6aa f13 A=10 D=8 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:914
+3e21: 57c75e07fe3685f4c0 f10 r213=3 B=f E=7 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:912
+3e22: 57c85e07fe3788a000 f10 r213=3 B=f E=8 r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:914
+3e2b: 73c83607ca04700000 f14 r217=1 A=f D=8 G=e r99=8 r62=1ffc884170  ; colortable.S:914
+3e32: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:914
+3e33: 738a60bfca00f80000 f14 A=e C=b r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:914
+3e35: 738ae0bfca00f80000 f14 A=e C=b r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:914
+3e36: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:915
+3e37: 738b60bfca00f80000 f14 A=e C=b r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:914
+3e3b: 6c098007e82fe0f6aa f13 A=10 D=9 r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:916
+3e3e: 57c85e07fe36edf500 f10 r213=3 B=f E=8 r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:914
+3e3f: 57c95e07fe3788a000 f10 r213=3 B=f E=9 r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:916
+3e48: 73c93607ca04700000 f14 r217=1 A=f D=9 G=e r99=8 r62=1ffc884170  ; colortable.S:916
+3e4f: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:916
+3e50: 738a60bfca00f80000 f14 A=e C=b r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:916
+3e52: 738ae0bfca00f80000 f14 A=e C=b r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:916
+3e53: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:917
+3e54: 738b60bfca00f80000 f14 A=e C=b r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:916
+3e58: 6c0a8007e82fe0f6aa f13 A=10 D=a r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:918
+3e5b: 57c95e07fe3685f4c0 f10 r213=3 B=f E=9 r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:916
+3e5c: 57ca5e07fe3788a000 f10 r213=3 B=f E=a r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:918
+3e65: 73ca3607ca04700000 f14 r217=1 A=f D=a G=e r99=8 r62=1ffc884170  ; colortable.S:918
+3e6c: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:918
+3e6d: 738a60cfca00f80000 f14 A=e C=c r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:918
+3e6f: 738ae0cfca00f80000 f14 A=e C=c r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:918
+3e70: 77f64007ca80f83e9f f14 xfer5 c4 cc=15 -> 3e9f imm=3e9f cc=15 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:919
+3e71: 738b60cfca00f80000 f14 A=e C=c r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:918
+3e75: 6c0b8007e82fe0f6aa f13 A=10 D=b r148=a M=6e0 r110=63d r99=8 r62=1ffc88117c  ; colortable.S:920
+3e78: 57ca5e07fe36edf500 f10 r213=3 B=f E=a r148=8 M=6dd r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:918
+3e79: 57cb5e07fe3788a000 f10 r213=3 B=f E=b r128=5 M=6f1 r110=5bd r62=1ffc440178 r25=3e69c00  ; colortable.S:920
+3e82: 73cb3607ca04700000 f14 r217=1 A=f D=b G=e r99=8 r62=1ffc884170  ; colortable.S:920
+3e8a: 738a60cfca00f80000 f14 A=e C=c r176=0 F=3f r95=14 r62=1ffcb18170  ; colortable.S:920
+3e8c: 738ae0cfca00f80000 f14 A=e C=c r176=0 F=3f r95=15 r62=1ffcb18170  ; colortable.S:920
+3e8e: 738b60cfca00f80000 f14 A=e C=c r176=0 F=3f r95=16 r62=1ffcb18170  ; colortable.S:920
+3e93: 77fa40d808c1680000 f14 r222=1 r219=1 C=d F=20 G=d r62=1ffc23c170  ; colortable.S:921
+3e95: 57cb5e07fe3685f4c0 f10 r213=3 B=f E=b r148=6 M=6d0 r110=73d r62=1ffc44117c r25=3e69c00  ; colortable.S:920
+3e96: 77f64007ca00f83d36 f14 xfer5 c4 cc=14 -> 3d36 imm=3d36 cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:921
+3e9a: 77fa41030881840000 f14 r219=1 C=10 r162=1 F=c G=10 r62=1ffc23c170  ; colortable.S:922
+3e9b: 77fa40f308817c0000 f14 r219=1 C=f r162=1 F=c G=f r62=1ffc23c170  ; colortable.S:923
+3e9f: 77f24007c8a4f80000 f14 xfer4 c5 cc=11 -> 0000 <HereWeGo> seq=14fe5 r25=3e39c00  ; colortable.S:929
+3ea4: 77fa4067c881800000 f14 r219=1 C=6 G=10 r62=1ffc23c170  ; colortable.S:927
+mmo_TLutDownloadI:
+3ea8: 7059c007c88cf80000 f14 seq=609f r25=3e2fc00  ; colortable.S:744
+3ea9: 7140200fca03000000 f14 r219=3 A=5 r176=0 F=3f G=0 r62=1ffcb3c170  ; colortable.S:746
+3ead: 7140200fca03000000 f14 r219=3 A=5 r176=0 F=3f G=0 r62=1ffcb3c170  ; colortable.S:747
+3eb1: 7140200fca03000000 f14 r219=3 A=5 r176=0 F=3f G=0 r62=1ffcb3c170  ; colortable.S:748
+3eb5: 7140200fca03000000 f14 r219=3 A=5 r176=0 F=3f G=0 r62=1ffcb3c170  ; colortable.S:749
+3eb6: 7079c007c88cf80000 f14 seq=60df r25=3e2fc00  ; colortable.S:751
+3eb7: 782071e7c3420c2400 f15 imm=420c2400 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; colortable.S:756
+3eb8: 782071e7c2020c1800 f15 imm=20c1800 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; colortable.S:755
+3eb9: 782071e7c1020c0c00 f15 imm=20c0c00 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; colortable.S:754
+3eba: 782071e7c0020c0000 f15 imm=20c0000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; colortable.S:753
+3ebb: 6e008007ec2e4af6a0 f13 cc=91 A=18 Q=1c M=6ca r99=8 r62=1ffc880578  ; colortable.S:753
+3ebc: 6e018007ec2dcaf6a0 f13 cc=91 A=18 D=1 Q=1b M=6ca r99=8 r62=1ffc880578  ; colortable.S:754
+3ebd: 6e028007ec2d4af6a0 f13 cc=91 A=18 D=2 Q=1a M=6ca r99=8 r62=1ffc880578  ; colortable.S:755
+3ebe: 6e038007ec2c4af6a0 f13 cc=91 A=18 D=3 Q=18 M=6ca r99=8 r62=1ffc880578  ; colortable.S:756
+3ebf: 700a6607ca00f80000 f14 r95=14 r62=1ffc218170  ; colortable.S:760
+3ec1: 700ae607ca00f80000 f14 r95=15 r62=1ffc218170  ; colortable.S:760
+3ec3: 700a66078a00f80000 f14 F=1e r95=14 r62=1ffc218170  ; colortable.S:761
+3ec5: 700ae6078a00f80000 f14 F=1e r95=15 r62=1ffc218170  ; colortable.S:761
+3ec7: 700a66074a00f80000 f14 F=1d r95=14 r62=1ffc218170  ; colortable.S:762
+3ec9: 68002a076c2bcaf8a0 f13 cc=91 F=1d Q=17 M=6ca r110=7bd r95=15 r62=1ffc218578  ; colortable.S:760
+3ecb: 700a66070a00f80000 f14 F=1c r95=14 r62=1ffc218170  ; colortable.S:763
+3ecd: 68002a072c2ccaf8a0 f13 cc=91 F=1c Q=19 M=6ca r110=7bd r95=15 r62=1ffc218578  ; colortable.S:761
+3ece: 77fa405808c1280000 f14 r222=1 r219=1 C=5 F=20 G=5 r62=1ffc23c170  ; colortable.S:770
+3ed0: 68000007e82fcaf8a0 f13 M=6ca r110=7bd r62=1ffc000178  ; colortable.S:762
+3ed1: 77f64007ca00f83ebf f14 xfer5 c4 cc=14 -> 3ebf imm=3ebf cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:771
+3ed2: 77f24007c880f83f49 f14 xfer4 c4 cc=11 -> 3f49 <mTLutDownloadDone> imm=3f49 seq=4fe4 r71=1 r25=3e39c00  ; colortable.S:774
+3ed3: 77fa4006c883000000 f14 r219=3 F=1b G=0 r62=1ffc23c170  ; colortable.S:763
+3ed4: 68000007e82fcaf8a0 f13 M=6ca r110=7bd r62=1ffc000178  ; colortable.S:763
+3ed5: 60003c07ea0001c797 f12 r213=3 B=1e r148=2fc M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; colortable.S:765
+3ed6: 60003c07ea0001c779 f12 r213=3 B=1e r148=33b M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; colortable.S:766
+3ed7: 60003c07ea0001d27a f12 r213=3 B=1e r148=1a r128=1d M=6ca r110=5bc r62=1ffc441178 r25=3e69c00  ; colortable.S:767
+3ed8: 60003c07ea0001d218 f12 r213=3 B=1e r148=18 r128=5 M=6ca r110=5bc r62=1ffc441178 r25=3e69c00  ; colortable.S:768
+3ed9: 77f9c007c88cf80000 f14 seq=6fdf r25=3e2fc00  ; colortable.S:773
+mmo_TLutDownloadLA:
+3edb: 782071e7c102180000 f15 imm=2180000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; colortable.S:699
+3edc: 77fa4fe7c880f80295 f14 imm=295 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:701
+3edd: 782071e7c000000002 f15 imm=2 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; colortable.S:695
+3ede: 6e008007ec2e4af6a0 f13 cc=91 A=18 Q=1c M=6ca r99=8 r62=1ffc880578  ; colortable.S:695
+3edf: 6e018007ec2dcaf6a0 f13 cc=91 A=18 D=1 Q=1b M=6ca r99=8 r62=1ffc880578  ; colortable.S:699
+3ee0: 77fa4fe7c880f80296 f14 imm=296 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:702
+3ee1: 782071e7c202181800 f15 imm=2181800 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; colortable.S:700
+3ee2: 77fa4fe7c880f80297 f14 imm=297 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:703
+3ee3: 68000007ec21caf8a0 f13 cc=91 Q=3 M=6ca r110=7bd r62=1ffc000578  ; colortable.S:701
+3ee4: 77fa4fe7c880f80298 f14 imm=298 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:704
+3ee5: 68000007ea0208c3a4 f13 cc=611 r148=80 P=4 r128=2b M=ff r110=699 r62=1ffc0029f3  ; colortable.S:697
+3ee6: 7059c007c88cf80000 f14 seq=609f r25=3e2fc00  ; colortable.S:706
+3ee7: 7140201fca03080000 f14 r219=3 A=5 C=1 r176=0 F=3f G=1 r62=1ffcb3c170  ; colortable.S:708
+3ee8: 68000007ec2d4af8a0 f13 cc=91 Q=1a M=6ca r110=7bd r62=1ffc000578  ; colortable.S:702
+3ee9: 5e028807ee0655747c f11 cc=291 A=18 D=2 r148=383 P=4 Q=17 M=ca r110=695 r99=8 r62=1ffc883d7b  ; colortable.S:696
+3eea: 68000007ec2ccaf8a0 f13 cc=91 Q=19 M=6ca r110=7bd r62=1ffc000578  ; colortable.S:703
+3eeb: 7140201fca03080000 f14 r219=3 A=5 C=1 r176=0 F=3f G=1 r62=1ffcb3c170  ; colortable.S:709
+3eec: 68000007ec2c4af8a0 f13 cc=91 Q=18 M=6ca r110=7bd r62=1ffc000578  ; colortable.S:704
+3eed: 68000007ea2240f484 f13 cc=191 r148=4 Q=4 r128=25 M=6c0 r110=53d r62=1ffc00157c  ; colortable.S:710
+3eee: 7079c007c88cf80000 f14 seq=60df r25=3e2fc00  ; colortable.S:712
+3eef: 700a6617ca00f80000 f14 C=1 r95=14 r62=1ffc218170  ; colortable.S:715
+3ef1: 700ae617ca00f80000 f14 C=1 r95=15 r62=1ffc218170  ; colortable.S:715
+3ef3: 700a66178a00f80000 f14 C=1 F=1e r95=14 r62=1ffc218170  ; colortable.S:716
+3ef5: 700ae6178a00f80000 f14 C=1 F=1e r95=15 r62=1ffc218170  ; colortable.S:716
+3ef9: 68000007e82fcaf8a0 f13 M=6ca r110=7bd r62=1ffc000178  ; colortable.S:715
+3efc: 68000007e82fcaf8a0 f13 M=6ca r110=7bd r62=1ffc000178  ; colortable.S:716
+3efd: 68000007ea22409784 f13 cc=191 r148=9c Q=4 M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:721
+3eff: 77fa405808c1280000 f14 r222=1 r219=1 C=5 F=20 G=5 r62=1ffc23c170  ; colortable.S:725
+3f00: 60003c07ea0001d27b f12 r213=3 B=1e r148=1b r128=1d M=6ca r110=5bc r62=1ffc441178 r25=3e69c00  ; colortable.S:718
+3f01: 60003c07ea0001d237 f12 r213=3 B=1e r148=17 r128=d M=6ca r110=5bc r62=1ffc441178 r25=3e69c00  ; colortable.S:719
+3f02: 60003c07ea0001c464 f12 r213=3 B=1e r148=83 M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; colortable.S:720
+3f03: 60003c07ea0001c744 f12 r213=3 B=1e r148=9a M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; colortable.S:721
+3f05: 68000007ea22409784 f13 cc=191 r148=9c Q=4 M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:723
+3f06: 77f64007ca00f83eef f14 xfer5 c4 cc=14 -> 3eef imm=3eef cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:726
+3f07: 77f24007c880f83f49 f14 xfer4 c4 cc=11 -> 3f49 <mTLutDownloadDone> imm=3f49 seq=4fe4 r71=1 r25=3e39c00  ; colortable.S:729
+3f09: 77fa40174883080000 f14 r219=3 C=1 F=1d G=1 r62=1ffc23c170  ; colortable.S:716
+3f0a: 60003c07ea0001c724 f12 r213=3 B=1e r148=99 M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; colortable.S:722
+3f0b: 60003c07ea0001c704 f12 r213=3 B=1e r148=98 M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; colortable.S:723
+3f0e: 77f9c007c88cf80000 f14 seq=6fdf r25=3e2fc00  ; colortable.S:728
+mmo_TLutDownloadRGBA:
+3f10: 782071e7c102181800 f15 imm=2181800 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; colortable.S:647
+3f11: 782071e7c000004004 f15 imm=4004 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; colortable.S:643
+3f12: 6e008007ec2e4af6a0 f13 cc=91 A=18 Q=1c M=6ca r99=8 r62=1ffc880578  ; colortable.S:643
+3f13: 6e018007ec2dcaf6a0 f13 cc=91 A=18 D=1 Q=1b M=6ca r99=8 r62=1ffc880578  ; colortable.S:647
+3f14: 77fa4fe7c880f80295 f14 imm=295 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:649
+3f15: 782071e7c202180000 f15 imm=2180000 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; colortable.S:648
+3f16: 77fa4fe7c880f80296 f14 imm=296 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:650
+3f17: 68000007ea0208c1a4 f13 cc=611 r148=80 P=4 r128=29 M=ff r110=699 r62=1ffc0029f3  ; colortable.S:645
+3f18: 77fa4fe7c880f80297 f14 imm=297 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:651
+3f19: 6e028007ec21caf6a0 f13 cc=91 A=18 D=2 Q=3 M=6ca r99=8 r62=1ffc880578  ; colortable.S:648
+3f1a: 7059c007c88cf80000 f14 seq=609f r25=3e2fc00  ; colortable.S:653
+3f1b: 7140201fca03080000 f14 r219=3 A=5 C=1 r176=0 F=3f G=1 r62=1ffcb3c170  ; colortable.S:655
+3f1c: 58000807f40655947c f11 cc=291 r148=383 P=4 Q=1a M=ca r110=795 r62=1ffc003d7b  ; colortable.S:644
+3f1d: 68000007ec2ccaf8a0 f13 cc=91 Q=19 M=6ca r110=7bd r62=1ffc000578  ; colortable.S:650
+3f1e: 7140200fca03000000 f14 r219=3 A=5 r176=0 F=3f G=0 r62=1ffcb3c170  ; colortable.S:654
+3f1f: 68000007ec2bcaf8a0 f13 cc=91 Q=17 M=6ca r110=7bd r62=1ffc000578  ; colortable.S:651
+3f20: 68000007ea2240f484 f13 cc=191 r148=4 Q=4 r128=25 M=6c0 r110=53d r62=1ffc00157c  ; colortable.S:656
+3f21: 7079c007c88cf80000 f14 seq=60df r25=3e2fc00  ; colortable.S:658
+3f22: 700a6607ca00f80000 f14 r95=14 r62=1ffc218170  ; colortable.S:663
+3f24: 700ae607ca00f80000 f14 r95=15 r62=1ffc218170  ; colortable.S:663
+3f26: 700a6617ca00f80000 f14 C=1 r95=14 r62=1ffc218170  ; colortable.S:664
+3f28: 700ae617ca00f80000 f14 C=1 r95=15 r62=1ffc218170  ; colortable.S:664
+3f2b: 68000007ec2b4af8a0 f13 cc=91 Q=16 M=6ca r110=7bd r62=1ffc000578  ; colortable.S:663
+3f2c: 77fa4077c883980000 f14 r219=3 C=7 G=13 r62=1ffc23c170  ; colortable.S:662
+3f2d: 77fa40078883000000 f14 r219=3 F=1e G=0 r62=1ffc23c170  ; colortable.S:663
+3f2e: 77fa40178883080000 f14 r219=3 C=1 F=1e G=1 r62=1ffc23c170  ; colortable.S:664
+3f2f: 68000007ec2c4af8a0 f13 cc=91 Q=18 M=6ca r110=7bd r62=1ffc000578  ; colortable.S:664
+3f30: 77fa413808c1980000 f14 r222=1 r219=1 C=13 F=20 G=13 r62=1ffc23c170  ; colortable.S:667
+3f33: 77f64007ca00f83f30 f14 xfer5 c4 cc=14 -> 3f30 imm=3f30 cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:675
+3f34: 68000007ea22409784 f13 cc=191 r148=9c Q=4 M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:674
+3f36: 60003c07ea0001c776 f12 r213=3 B=1e r148=2db M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; colortable.S:668
+3f37: 60003c07ea0001c478 f12 r213=3 B=1e r148=303 M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; colortable.S:669
+3f38: 60003c07ea0001c744 f12 r213=3 B=1e r148=9a M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; colortable.S:672
+3f39: 60003c07ea0001c724 f12 r213=3 B=1e r148=99 M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; colortable.S:673
+3f3a: 60003c07ea0001c6e4 f12 r213=3 B=1e r148=97 M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; colortable.S:674
+3f3c: 77fa405808c1280000 f14 r222=1 r219=1 C=5 F=20 G=5 r62=1ffc23c170  ; colortable.S:677
+3f3f: 77f64007ca00f83f22 f14 xfer5 c4 cc=14 -> 3f22 imm=3f22 cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:678
+3f40: 77f24007c880f83f49 f14 xfer4 c4 cc=11 -> 3f49 <mTLutDownloadDone> imm=3f49 seq=4fe4 r71=1 r25=3e39c00  ; colortable.S:680
+mTLutDownloadDone:
+3f49: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 3f49 <mTLutDownloadDone> seq=1cfdf r25=3e3fc00  ; colortable.S:628
+3f4d: 77f9c1a7c88df80000 f14 r219=1 C=1a seq=6fdf r62=1ffc23c170 r25=3e2fc00  ; colortable.S:617
+3f4e: 28003d32fac342941e f5  imm=1f5 r213=3 B=1e C=1e E=3 r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; colortable.S:618
+3f4f: d7c37c07fe36c2b41e f10 w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; colortable.S:620
+3f50: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; colortable.S:623
+3f51: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; colortable.S:624
+mgesi_TLutDownload:
+3f52: 77fa4fe7c880f8029c f14 imm=29c C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:589
+3f59: 60003007ea0601de80 f12 r213=3 B=18 E=6 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:589
+3f5f: 77fa4fe7c880f8029d f14 imm=29d C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:590
+3f61: 77fa4fe7c880f8029e f14 imm=29e C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:591
+3f62: 76063607ca04d00000 f14 r217=1 A=18 D=6 G=1a r99=8 r62=1ffc884170  ; colortable.S:589
+3f64: 77fa4fe7c880f8029a f14 imm=29a C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:587
+3f66: 77fa4fe7c880f80299 f14 imm=299 C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:588
+3f67: 60003007ea0701de80 f12 r213=3 B=18 E=7 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:590
+3f68: 77fa4fe7c880f8029b f14 imm=29b C=1e r95=17 r71=1 r62=1ffc218170  ; colortable.S:592
+3f6a: 600031a7ea082fde80 f12 r213=3 B=18 C=1a E=8 M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:591
+3f6c: 60003007ea0401de80 f12 r213=3 B=18 E=4 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:587
+3f6e: 60003007ea0501de80 f12 r213=3 B=18 E=5 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:588
+3f6f: 77fa45e7c880f8029f f14 imm=29f C=1e r95=1 r71=1 r62=1ffc218170  ; colortable.S:608
+3f70: 68000007ec224af8a0 f13 cc=91 Q=4 M=6ca r110=7bd r62=1ffc000578  ; colortable.S:592
+3f71: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:602
+3f73: 77c03607ca04080000 f14 r217=1 A=1f G=1 r99=8 r62=1ffc884170  ; colortable.S:595
+3f74: 6fc18007ec21caf6a0 f13 cc=91 A=1f D=1 Q=3 M=6ca r99=8 r62=1ffc880578  ; colortable.S:596
+3f75: 76073607ca04380000 f14 r217=1 A=18 D=7 G=7 r99=8 r62=1ffc884170  ; colortable.S:590
+3f76: 76083607ca04d00000 f14 r217=1 A=18 D=8 G=1a r99=8 r62=1ffc884170  ; colortable.S:591
+3f77: 76043607ca04280000 f14 r217=1 A=18 D=4 G=5 r99=8 r62=1ffc884170  ; colortable.S:587
+3f78: 76053607ca04380000 f14 r217=1 A=18 D=5 G=7 r99=8 r62=1ffc884170  ; colortable.S:588
+3f7a: 76003607ca04000000 f14 r217=1 A=18 G=0 r99=8 r62=1ffc884170  ; colortable.S:602
+3f7d: 7040207fca01d00000 f14 r219=1 A=1 C=7 r176=0 F=3f G=1a r62=1ffcb3c170  ; colortable.S:598
+3f7e: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; colortable.S:609
+3f7f: 704021afca01080000 f14 r219=1 A=1 C=1a r176=0 F=3f G=1 r62=1ffcb3c170  ; colortable.S:599
+3f80: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; colortable.S:582
+3f81: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; colortable.S:583
+3f82: 7680200fca01000000 f14 r219=1 A=1a r176=0 F=3f G=0 r62=1ffcb3c170  ; colortable.S:603
+3f83: 7040200fca01080000 f14 r219=1 A=1 r176=0 F=3f G=1 r62=1ffcb3c170  ; colortable.S:603
+3f84: 782071e7c900001854 f15 imm=1854 r215=3 B=18 C=1e E=9 r71=1 r62=1ffc658170  ; colortable.S:605
+3f85: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; colortable.S:584
+3f86: 2e09bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e D=9 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; colortable.S:605
+mgeb_PixMapOutputRGBA:
+3f87: 77c13607ca04d00000 f14 r217=1 A=1f D=1 G=1a r99=8 r62=1ffc884170  ; colortable.S:520
+3f8f: 77fa4fa7c880f80000 f14 C=1a r95=17 r62=1ffc218170  ; colortable.S:526
+3f96: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:526
+3f9a: 782071e7c1477fff00 f15 imm=477fff00 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; colortable.S:531
+3f9b: 77c23607ca04980000 f14 r217=1 A=1f D=2 G=13 r99=8 r62=1ffc884170  ; colortable.S:521
+3f9c: 77c03607ca04d00000 f14 r217=1 A=1f G=1a r99=8 r62=1ffc884170  ; colortable.S:519
+3f9d: 6fc38007ec2d4af6a0 f13 cc=91 A=1f D=3 Q=1a M=6ca r99=8 r62=1ffc880578  ; colortable.S:522
+3f9e: 160181f1127644f6a0 f2  r219=1 cc=91 A=18 C=1f D=1 r162=1 F=4 G=12 Q=1b M=6ca r99=8 r62=1ffcabc578  ; colortable.S:523
+3f9f: 0e00b84c313e44941e f1  r217=1 r213=3 A=18 B=1c E=9 G=11 r148=3c0 M=6ca r110=4bd r99=8 r62=1ffccc6178 r25=3e69c00  ; colortable.S:526
+3fa0: 782071e7c20000ffff f15 imm=ffff r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; colortable.S:532
+3fa1: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; colortable.S:534
+3fa2: 77fa41204883940000 f14 r219=3 C=12 r162=1 F=1 G=12 r62=1ffc23c170  ; colortable.S:535
+3fa4: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; colortable.S:515
+3fa5: 7099c1a948cd980000 f14 r222=1 r219=1 C=1a F=25 G=13 seq=611f r62=1ffc23c170 r25=3e2fc00  ; colortable.S:536
+3fa6: 77fa41204883940000 f14 r219=3 C=12 r162=1 F=1 G=12 r62=1ffc23c170  ; colortable.S:537
+3fa7: 74c0211fca01880000 f14 r219=1 A=13 C=11 r176=0 F=3f G=11 r62=1ffcb3c170  ; colortable.S:527
+3fa8: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; colortable.S:516
+3fa9: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; colortable.S:540
+3faa: 6e0281d7ec2e5ff6ba f13 cc=91 A=18 C=1d D=2 r148=1a Q=1c M=6df r110=63d r99=8 r62=1ffca8157c  ; colortable.S:517
+3fab: 6c80a917e82ffcf6a0 f13 A=12 C=11 M=6fc r99=8 r95=14 r62=1ffca98178  ; colortable.S:543
+3fad: 700ae7178a00f80000 f14 C=11 F=1e r95=15 r62=1ffc218170  ; colortable.S:545
+3faf: 68002d17680fc0f61b f13 C=11 F=1d r148=1b r128=5 M=47f r110=6a5 r95=16 r62=1ffc219173  ; colortable.S:543
+3fb1: 6c83a917282ffcf6a0 f13 A=12 C=11 D=3 F=1c M=6fc r99=8 r95=14 r62=1ffca98178  ; colortable.S:549
+3fb3: 68002b16e82ff1f480 f13 C=11 F=1b r128=25 M=6f1 r110=5bd r95=15 r62=1ffc218178  ; colortable.S:544
+3fb5: 68002d16a80fc0f61b f13 C=11 F=1a r148=1b r128=5 M=47f r110=6a5 r95=16 r62=1ffc219173  ; colortable.S:549
+3fb6: 68000007e82fd1eebc f13 r148=380 M=6d1 r110=4fd r62=1ffc00217c  ; colortable.S:546
+3fb7: 68000007e82fdff41a f13 r148=1a r128=5 M=6df r110=53d r62=1ffc00117c  ; colortable.S:544
+3fb9: 68000007e82ff1f480 f13 r128=25 M=6f1 r110=5bd r62=1ffc000178  ; colortable.S:550
+3fbb: 68000007e83fd4fe88 f13 r128=1 M=6d4 r110=57d r99=2 r62=1ffc0001fc r25=3ea9c00  ; colortable.S:546
+3fbc: 68000007e82fd1eebc f13 r148=380 M=6d1 r110=4fd r62=1ffc00217c  ; colortable.S:552
+3fbd: 68000007e82fdff41a f13 r148=1a r128=5 M=6df r110=53d r62=1ffc00117c  ; colortable.S:550
+3fc1: 68000007e83fd4fe88 f13 r128=1 M=6d4 r110=57d r99=2 r62=1ffc0001fc r25=3ea9c00  ; colortable.S:552
+3fc4: 77fa4717c880f80000 f14 r211=3 C=11 r95=8 r62=1ffc218170  ; colortable.S:547
+3fc6: 7034e7178a00f80000 f14 r211=3 C=11 F=1e r95=9 r62=1ffc218170  ; colortable.S:547
+3fc8: 703567174a00f80000 f14 r211=3 C=11 F=1d r95=a r62=1ffc218170  ; colortable.S:547
+3fc9: 77fa413948c1980000 f14 r222=1 r219=1 C=13 F=25 G=13 r62=1ffc23c170  ; colortable.S:558
+3fca: f7fa47170880f80000 f14 w71=1 r211=3 C=11 F=1c r95=8 r62=1ffc218170  ; colortable.S:553
+3fcb: 77f64007c89cfbffe0 f14 xfer5.rel c7 cc=11 -> 3fab imm=ffffffe0 seq=dfe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; colortable.S:559
+3fcc: f034e716ca00f80000 f14 w71=1 r211=3 C=11 F=1b r95=9 r62=1ffc218170  ; colortable.S:553
+3fce: f03567168a00f80000 f14 w71=1 r211=3 C=11 F=1a r95=a r62=1ffc218170  ; colortable.S:553
+3fcf: 77f1c12188bd940000 f14 xfer4.rel c31 cc=11 -> 3fcf r219=1 C=12 r162=1 F=6 G=12 seq=1cfdf r62=1ffc23c170 r25=3e3fc00  ; colortable.S:555
+3fd0: 77fa41164881880000 f14 r219=1 C=11 F=19 G=11 r62=1ffc23c170  ; colortable.S:556
+3fd4: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; colortable.S:561
+mgeb_PixMapOutputI:
+3fd8: 77c13607ca04d00000 f14 r217=1 A=1f D=1 G=1a r99=8 r62=1ffc884170  ; colortable.S:456
+3fe0: 77fa4fa7c880f80000 f14 C=1a r95=17 r62=1ffc218170  ; colortable.S:461
+3fe6: 70f9c007c888f80000 f14 seq=61de r25=3e2fc00  ; colortable.S:453
+3fe7: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:461
+3fe8: 77c03607ca04880000 f14 r217=1 A=1f G=11 r99=8 r62=1ffc884170  ; colortable.S:455
+3fe9: 77c23607ca04980000 f14 r217=1 A=1f D=2 G=13 r99=8 r62=1ffc884170  ; colortable.S:457
+3fea: 782071e7c100000010 f15 imm=10 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; colortable.S:465
+3feb: 77fa41f10881940000 f14 r219=1 C=1f r162=1 F=4 G=12 r62=1ffc23c170  ; colortable.S:458
+3fec: 782071e7c20000ffff f15 imm=ffff r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; colortable.S:466
+3fed: 6e018007ec2e4af6a0 f13 cc=91 A=18 D=1 Q=1c M=6ca r99=8 r62=1ffc880578  ; colortable.S:465
+3fee: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; colortable.S:468
+3fef: 77fa41204883940000 f14 r219=3 C=12 r162=1 F=1 G=12 r62=1ffc23c170  ; colortable.S:469
+3ff0: 76003607ca04880000 f14 r217=1 A=18 G=11 r99=8 r62=1ffc884170  ; colortable.S:461
+3ff1: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; colortable.S:449
+3ff2: 7099c007c88cf80000 f14 seq=611f r25=3e2fc00  ; colortable.S:470
+3ff3: 77fa41204883940000 f14 r219=3 C=12 r162=1 F=1 G=12 r62=1ffc23c170  ; colortable.S:471
+3ff5: 6e0281d7ec2dcaf6a0 f13 cc=91 A=18 C=1d D=2 Q=1b M=6ca r99=8 r62=1ffca80578  ; colortable.S:450
+3ff6: 77fa411948c1980000 f14 r222=1 r219=1 C=11 F=25 G=13 r62=1ffc23c170  ; colortable.S:473
+3ff7: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; colortable.S:451
+3ff8: 14c0011fd1068d9400 f2  r219=1 A=13 C=11 r176=0 F=3f G=11 seq=6fe7 r62=1ffcb3c170 r25=3e2bc00  ; colortable.S:462
+3ff9: 6c808007e82ff1f6a0 f13 A=12 M=6f1 r99=8 r62=1ffc880178  ; colortable.S:479
+3ffd: 68000007ec2d50f41b f13 cc=91 r148=1b Q=1a r128=5 M=6d0 r110=53d r62=1ffc00157c  ; colortable.S:479
+3fff: 6c838007e82ff1f6a0 f13 A=12 D=3 M=6f1 r99=8 r62=1ffc880178  ; colortable.S:482
+4001: 68000007e82fdff41c f13 r148=1c r128=5 M=6df r110=53d r62=1ffc00117c  ; colortable.S:479
+4003: 68000007ec2d50f41b f13 cc=91 r148=1b Q=1a r128=5 M=6d0 r110=53d r62=1ffc00157c  ; colortable.S:482
+4005: 68000007e83fd4c0ba f13 r148=340 r128=28 M=6d4 r110=47d r99=2 r62=1ffc0021fc r25=3ea9c00  ; colortable.S:479
+4007: 68000007e82fdff41c f13 r148=1c r128=5 M=6df r110=53d r62=1ffc00117c  ; colortable.S:482
+400b: 68000007e83fd4c0ba f13 r148=340 r128=28 M=6d4 r110=47d r99=2 r62=1ffc0021fc r25=3ea9c00  ; colortable.S:482
+400e: 77fa4717c880f80000 f14 r211=3 C=11 r95=8 r62=1ffc218170  ; colortable.S:480
+4010: 7034e7178a00f80000 f14 r211=3 C=11 F=1e r95=9 r62=1ffc218170  ; colortable.S:480
+4012: 703567174a00f80000 f14 r211=3 C=11 F=1d r95=a r62=1ffc218170  ; colortable.S:480
+4013: 77fa413948c1980000 f14 r222=1 r219=1 C=13 F=25 G=13 r62=1ffc23c170  ; colortable.S:477
+4014: f7fa47170880f80000 f14 w71=1 r211=3 C=11 F=1c r95=8 r62=1ffc218170  ; colortable.S:483
+4015: 77f64007c89cfbffe4 f14 xfer5.rel c7 cc=11 -> 3ff9 imm=ffffffe4 seq=dfe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; colortable.S:487
+4016: f034e716ca00f80000 f14 w71=1 r211=3 C=11 F=1b r95=9 r62=1ffc218170  ; colortable.S:483
+4018: f03567168a00f80000 f14 w71=1 r211=3 C=11 F=1a r95=a r62=1ffc218170  ; colortable.S:483
+4019: 77f2412188b5940000 f14 xfer4.rel c5 cc=11 -> 4019 r219=1 C=12 r162=1 F=6 G=12 seq=1cfe5 r62=1ffc23c170 r25=3e39c00  ; colortable.S:485
+401a: 77fa41164881880000 f14 r219=1 C=11 F=19 G=11 r62=1ffc23c170  ; colortable.S:486
+401e: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; colortable.S:489
+mgeb_LutRamp1:
+4022: 77c03607ca04d00000 f14 r217=1 A=1f G=1a r99=8 r62=1ffc884170  ; colortable.S:379
+402a: 77fa4fa7c880f80000 f14 C=1a r95=17 r62=1ffc218170  ; colortable.S:386
+4030: 70f9c007c888f80000 f14 seq=61de r25=3e2fc00  ; colortable.S:373
+4031: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:386
+4036: 6fc38007ec2d4af6a0 f13 cc=91 A=1f D=3 Q=1a M=6ca r99=8 r62=1ffc880578  ; colortable.S:382
+4037: 77c13607ca04900000 f14 r217=1 A=1f D=1 G=12 r99=8 r62=1ffc884170  ; colortable.S:380
+4038: 77c23607ca04980000 f14 r217=1 A=1f D=2 G=13 r99=8 r62=1ffc884170  ; colortable.S:381
+4039: 6fc48007ec2dcaf6a0 f13 cc=91 A=1f D=4 Q=1b M=6ca r99=8 r62=1ffc880578  ; colortable.S:383
+403a: 6e008007ec2e4a941e f13 cc=91 A=18 r148=3c0 Q=1c M=6ca r110=4bd r99=8 r62=1ffc882578  ; colortable.S:386
+403b: 70002607ca04d00000 f14 r217=1 G=1a r62=1ffc004170  ; colortable.S:386
+403c: 782071e7c000000003 f15 imm=3 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; colortable.S:390
+403d: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; colortable.S:394
+403e: 68000007ea2e40f41a f13 cc=191 r148=1a Q=1c r128=5 M=6c0 r110=53d r62=1ffc00157c  ; colortable.S:395
+4042: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; colortable.S:375
+4043: 7e2081d7c000000000 f15 A=18 C=1d r99=8 r62=1ffca80170  ; colortable.S:376
+4044: 148001afd33401f8ba f2  r219=1 cc=211 A=12 C=1a r176=0 F=3f G=13 r148=1a P=1a M=ff r110=6b5 r62=1ffcb3d973  ; colortable.S:387
+4045: 7099c13948cd900000 f14 r222=1 r219=1 C=13 F=25 G=12 seq=611f r62=1ffc23c170 r25=3e2fc00  ; colortable.S:396
+4046: 680001d7ea2e40975c f13 cc=191 C=1d r148=39a Q=1c M=6c0 r110=43d r62=1ffc20357c  ; colortable.S:377
+4047: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; colortable.S:400
+4048: 700a6737ca00f80000 f14 C=13 r95=14 r62=1ffc218170  ; colortable.S:403
+404a: 700ae7378a00f80000 f14 C=13 F=1e r95=15 r62=1ffc218170  ; colortable.S:404
+404c: 700b67374a00f80000 f14 C=13 F=1d r95=16 r62=1ffc218170  ; colortable.S:405
+404e: 700a67370a00f80000 f14 C=13 F=1c r95=14 r62=1ffc218170  ; colortable.S:412
+4050: 700ae736ca00f80000 f14 C=13 F=1b r95=15 r62=1ffc218170  ; colortable.S:413
+4052: 700b67368a00f80000 f14 C=13 F=1a r95=16 r62=1ffc218170  ; colortable.S:414
+4053: 68000007e82fd1eebb f13 r148=360 M=6d1 r110=4fd r62=1ffc00217c  ; colortable.S:406
+4057: 68000007e83fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r99=2 r62=1ffc00117c r25=3ea9c00  ; colortable.S:406
+4058: 68000007ec2e40975c f13 cc=91 r148=39a Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:410
+4059: 68000007e82fd1eebb f13 r148=360 M=6d1 r110=4fd r62=1ffc00217c  ; colortable.S:415
+405d: 68000007e83fd4fe88 f13 r128=1 M=6d4 r110=57d r99=2 r62=1ffc0001fc r25=3ea9c00  ; colortable.S:415
+4060: 77fa4737c880f80000 f14 r211=3 C=13 r95=8 r62=1ffc218170  ; colortable.S:407
+4062: 7034e7378a00f80000 f14 r211=3 C=13 F=1e r95=9 r62=1ffc218170  ; colortable.S:408
+4064: 703567374a00f80000 f14 r211=3 C=13 F=1d r95=a r62=1ffc218170  ; colortable.S:409
+4065: 77fa412948c1900000 f14 r222=1 r219=1 C=12 F=25 G=12 r62=1ffc23c170  ; colortable.S:422
+4066: f7fa47370880f80000 f14 w71=1 r211=3 C=13 F=1c r95=8 r62=1ffc218170  ; colortable.S:416
+4067: 77f64007c89cfbffe1 f14 xfer5.rel c7 cc=11 -> 4048 imm=ffffffe1 seq=dfe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; colortable.S:423
+4068: e8001336ec2e40975c f13 w71=1 r211=3 cc=91 C=13 F=1b r148=39a Q=1c M=6c0 r110=43d r95=9 r62=1ffc21b57c  ; colortable.S:417
+406a: f03567368a00f80000 f14 w71=1 r211=3 C=13 F=1a r95=a r62=1ffc218170  ; colortable.S:418
+406b: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> 406b seq=1cfe5 r25=3e39c00  ; colortable.S:426
+406c: 77fa41364881980000 f14 r219=1 C=13 F=19 G=13 r62=1ffc23c170  ; colortable.S:421
+4070: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; colortable.S:425
+mgeb_LutRamp3:
+4074: 77c03607ca04d00000 f14 r217=1 A=1f G=1a r99=8 r62=1ffc884170  ; colortable.S:302
+407c: 77fa4fa7c880f80000 f14 C=1a r95=17 r62=1ffc218170  ; colortable.S:310
+4081: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; colortable.S:294
+4082: 7079c007c88cf80000 f14 seq=60df r25=3e2fc00  ; colortable.S:300
+4083: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:310
+4087: 77c13607ca04d00000 f14 r217=1 A=1f D=1 G=1a r99=8 r62=1ffc884170  ; colortable.S:303
+4088: 6fc38007ec28caf6a0 f13 cc=91 A=1f D=3 Q=11 M=6ca r99=8 r62=1ffc880578  ; colortable.S:305
+4089: 77c23607ca04900000 f14 r217=1 A=1f D=2 G=12 r99=8 r62=1ffc884170  ; colortable.S:304
+408a: 782071e7c2ffff0000 f15 imm=ffff0000 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; colortable.S:314
+408b: 6e028007ec27caf6a0 f13 cc=91 A=18 D=2 Q=f M=6ca r99=8 r62=1ffc880578  ; colortable.S:314
+408c: 76003607ca04980000 f14 r217=1 A=18 G=13 r99=8 r62=1ffc884170  ; colortable.S:310
+4093: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; colortable.S:296
+4094: 7680213fca01880000 f14 r219=1 A=1a C=13 r176=0 F=3f G=11 r62=1ffcb3c170  ; colortable.S:311
+4095: 782071e7c300000010 f15 imm=10 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; colortable.S:315
+4096: 5e039607f80656563e f11 cc=291 A=18 D=3 r148=3d1 P=b Q=1c M=ca r110=4b5 r99=8 r62=1ffc883d7b  ; colortable.S:315
+4097: 7059c1a7c88df80000 f14 r219=1 C=1a seq=609f r62=1ffc23c170 r25=3e2fc00  ; colortable.S:307
+4098: 77fa4113c883880000 f14 r219=3 C=11 F=f G=11 r62=1ffc23c170  ; colortable.S:320
+4099: 680001d7ec26caf6a0 f13 cc=91 C=1d Q=d M=6ca r62=1ffc200578  ; colortable.S:297
+409a: 680001d7ea2e4af480 f13 cc=191 C=1d Q=1c r128=25 M=6ca r110=5bd r62=1ffc200578  ; colortable.S:298
+409b: 7079c133c88f980000 f14 r219=3 C=13 F=f G=13 seq=60df r62=1ffc23c170 r25=3e2fc00  ; colortable.S:320
+409c: 700a6717ca00f80000 f14 C=11 r95=14 r62=1ffc218170  ; colortable.S:328
+409e: 700ae717ca00f80000 f14 C=11 r95=15 r62=1ffc218170  ; colortable.S:328
+40a0: 700a67178a00f80000 f14 C=11 F=1e r95=14 r62=1ffc218170  ; colortable.S:329
+40a2: 700ae7178a00f80000 f14 C=11 F=1e r95=15 r62=1ffc218170  ; colortable.S:329
+40a4: 700a67174a00f80000 f14 C=11 F=1d r95=14 r62=1ffc218170  ; colortable.S:330
+40a6: 68002b176c2dd1eeaf f13 cc=91 C=11 F=1d r148=1e0 Q=1b M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:328
+40a8: 700a67170a00f80000 f14 C=11 F=1c r95=14 r62=1ffc218170  ; colortable.S:331
+40aa: 68002b172c2651eeaf f13 cc=91 C=11 F=1c r148=1e0 Q=c M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:329
+40ac: 700a6716ca00f80000 f14 C=11 F=1b r95=14 r62=1ffc218170  ; colortable.S:332
+40ae: 68002b16ec2751eeaf f13 cc=91 C=11 F=1b r148=1e0 Q=e M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:330
+40b0: 700a67168a00f80000 f14 C=11 F=1a r95=14 r62=1ffc218170  ; colortable.S:333
+40b2: 68002b16ac2851eeaf f13 cc=91 C=11 F=1a r148=1e0 Q=10 M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:331
+40b4: 700a67164a00f80000 f14 C=11 F=19 r95=14 r62=1ffc218170  ; colortable.S:334
+40b6: 68002b166c2951eeaf f13 cc=91 C=11 F=19 r148=1e0 Q=12 M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:332
+40b8: 700a67160a00f80000 f14 C=11 F=18 r95=14 r62=1ffc218170  ; colortable.S:335
+40ba: 68002b162c29d1eeaf f13 cc=91 C=11 F=18 r148=1e0 Q=13 M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:333
+40bc: 700a6715ca00f80000 f14 C=11 F=17 r95=14 r62=1ffc218170  ; colortable.S:337
+40be: 68002b15ec2a51eeaf f13 cc=91 C=11 F=17 r148=1e0 Q=14 M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:334
+40c0: 700a67158a00f80000 f14 C=11 F=16 r95=14 r62=1ffc218170  ; colortable.S:338
+40c2: 68002b15ac2ad1eeaf f13 cc=91 C=11 F=16 r148=1e0 Q=15 M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:335
+40c4: 700a67154a00f80000 f14 C=11 F=15 r95=14 r62=1ffc218170  ; colortable.S:339
+40c6: 68002b156c2b51eeaf f13 cc=91 C=11 F=15 r148=1e0 Q=16 M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:337
+40c8: 700a67150a00f80000 f14 C=11 F=14 r95=14 r62=1ffc218170  ; colortable.S:340
+40ca: 68002b152c2bd1eeaf f13 cc=91 C=11 F=14 r148=1e0 Q=17 M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:338
+40cc: 68002914ea2e40963c f13 cc=191 C=11 F=13 r148=391 Q=1c M=6c0 r110=43d r95=14 r62=1ffc21b57c  ; colortable.S:328
+40cd: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:328
+40ce: 68002b14ec2c51eeaf f13 cc=91 C=11 F=13 r148=1e0 Q=18 M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:339
+40d0: 700a67148a00f80000 f14 C=11 F=12 r95=14 r62=1ffc218170  ; colortable.S:342
+40d1: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:328
+40d2: 68002b14ac2cd1eeaf f13 cc=91 C=11 F=12 r148=1e0 Q=19 M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:340
+40d4: 68002914682fdf95bc f13 C=11 F=11 r148=38d M=6df r110=43d r95=14 r62=1ffc21b17c  ; colortable.S:328
+40d5: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:329
+40d6: 68002b146c2d51eeaf f13 cc=91 C=11 F=11 r148=1e0 Q=1a M=6d1 r110=4fd r95=15 r62=1ffc21a57c  ; colortable.S:341
+40d7: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:329
+40d8: 68000007e82fd0f46f f13 r148=f r128=1d M=6d0 r110=53d r62=1ffc00117c  ; colortable.S:328
+40d9: 68000007ec2554f43c f13 cc=91 r148=1c Q=a r128=d M=6d4 r110=53d r62=1ffc00157c  ; colortable.S:328
+40da: 68000007ec2dd1eeaf f13 cc=91 r148=1e0 Q=1b M=6d1 r110=4fd r62=1ffc00257c  ; colortable.S:342
+40db: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:329
+40dc: 68000007e83fd4c0bb f13 r148=360 r128=28 M=6d4 r110=47d r99=2 r62=1ffc0021fc r25=3ea9c00  ; colortable.S:328
+40dd: 68000007ec2551eeaf f13 cc=91 r148=1e0 Q=a M=6d1 r110=4fd r62=1ffc00257c  ; colortable.S:343
+40de: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:330
+40df: 68002914282fdf95bc f13 C=11 F=10 r148=38d M=6df r110=43d r95=14 r62=1ffc21b17c  ; colortable.S:329
+40e0: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:330
+40e1: 68002b14282fd0f44f f13 C=11 F=10 r148=f r128=15 M=6d0 r110=53d r95=15 r62=1ffc21917c  ; colortable.S:329
+40e2: 68000007e83fca940a f13 r148=140 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:328
+40e3: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:329
+40e4: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:330
+40e5: 68000007e83fd4c0ac f13 r148=180 r128=28 M=6d4 r110=47d r99=2 r62=1ffc0021fc r25=3ea9c00  ; colortable.S:329
+40e6: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:331
+40e7: 68001117e82fdf95bc f13 r211=3 C=11 r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:328
+40e8: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:331
+40e9: 68001317e82fd0f42f f13 r211=3 C=11 r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:328
+40ea: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:329
+40eb: 68001137e82fd4f41c f13 r211=3 C=13 r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:328
+40ec: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:331
+40ed: 68001337e83fd4c0ae f13 r211=3 C=13 r148=1c0 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:328
+40ee: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:332
+40ef: 68001117a82fdf95bc f13 r211=3 C=11 F=1e r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:329
+40f0: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:332
+40f1: 68001317a82fd0f42f f13 r211=3 C=11 F=1e r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:329
+40f2: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:330
+40f3: 68001137a82fd4f41c f13 r211=3 C=13 F=1e r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:329
+40f4: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:332
+40f5: 68001337a83fd4c0b0 f13 r211=3 C=13 F=1e r148=200 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:329
+40f6: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:333
+40f7: 68001117682fdf95bc f13 r211=3 C=11 F=1d r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:330
+40f8: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:333
+40f9: 68001317682fd0f42f f13 r211=3 C=11 F=1d r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:330
+40fa: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:331
+40fb: 68001137682fd4f41c f13 r211=3 C=13 F=1d r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:330
+40fc: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:333
+40fd: 68001337683fd4c0b2 f13 r211=3 C=13 F=1d r148=240 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:330
+40fe: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:334
+40ff: 68001117282fdf95bc f13 r211=3 C=11 F=1c r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:331
+4100: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:334
+4101: 68001317282fd0f42f f13 r211=3 C=11 F=1c r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:331
+4102: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:332
+4103: 68001137282fd4f41c f13 r211=3 C=13 F=1c r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:331
+4104: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:334
+4105: 68001337283fd4c0b3 f13 r211=3 C=13 F=1c r148=260 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:331
+4106: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:335
+4107: 68001116e82fdf95bc f13 r211=3 C=11 F=1b r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:332
+4108: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:335
+4109: 68001316e82fd0f42f f13 r211=3 C=11 F=1b r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:332
+410a: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:333
+410b: 68001136e82fd4f41c f13 r211=3 C=13 F=1b r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:332
+410c: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:335
+410d: 68001336e83fd4c0b4 f13 r211=3 C=13 F=1b r148=280 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:332
+410e: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:337
+410f: 68001116a82fdf95bc f13 r211=3 C=11 F=1a r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:333
+4110: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:337
+4111: 68001316a82fd0f42f f13 r211=3 C=11 F=1a r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:333
+4112: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:334
+4113: 68001136a82fd4f41c f13 r211=3 C=13 F=1a r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:333
+4114: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:337
+4115: 68001336a83fd4c0b5 f13 r211=3 C=13 F=1a r148=2a0 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:333
+4116: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:338
+4117: 68001116682fdf95bc f13 r211=3 C=11 F=19 r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:334
+4118: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:338
+4119: 68001316682fd0f42f f13 r211=3 C=11 F=19 r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:334
+411a: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:335
+411b: 68001136682fd4f41c f13 r211=3 C=13 F=19 r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:334
+411c: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:338
+411d: 68001336683fd4c0b6 f13 r211=3 C=13 F=19 r148=2c0 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:334
+411e: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:339
+411f: 68001116282fdf95bc f13 r211=3 C=11 F=18 r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:335
+4120: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:339
+4121: 68001316282fd0f42f f13 r211=3 C=11 F=18 r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:335
+4122: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:337
+4123: 68001136282fd4f41c f13 r211=3 C=13 F=18 r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:335
+4124: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:339
+4125: 68001336283fd4c0b7 f13 r211=3 C=13 F=18 r148=2e0 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:335
+4126: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:340
+4127: 68001115e82fdf95bc f13 r211=3 C=11 F=17 r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:337
+4128: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:340
+4129: 68001315e82fd0f42f f13 r211=3 C=11 F=17 r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:337
+412a: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:338
+412b: 68001135e82fd4f41c f13 r211=3 C=13 F=17 r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:337
+412c: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:340
+412d: 68001335e83fd4c0b8 f13 r211=3 C=13 F=17 r148=300 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:337
+412e: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:341
+412f: 68001115a82fdf95bc f13 r211=3 C=11 F=16 r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:338
+4130: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:341
+4131: 68001315a82fd0f42f f13 r211=3 C=11 F=16 r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:338
+4132: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:339
+4133: 68001135a82fd4f41c f13 r211=3 C=13 F=16 r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:338
+4134: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:341
+4135: 68001335a83fd4c0b9 f13 r211=3 C=13 F=16 r148=320 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:338
+4136: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:342
+4137: 68001115682fdf95bc f13 r211=3 C=11 F=15 r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:339
+4138: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:342
+4139: 68001315682fd0f42f f13 r211=3 C=11 F=15 r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:339
+413a: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:340
+413b: 68001135682fd4f41c f13 r211=3 C=13 F=15 r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:339
+413c: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:342
+413d: 68001335683fd4c0ba f13 r211=3 C=13 F=15 r148=340 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:339
+413e: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:343
+413f: 68001115282fdf95bc f13 r211=3 C=11 F=14 r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:340
+4140: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:343
+4141: 68001315282fd0f42f f13 r211=3 C=11 F=14 r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:340
+4142: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:341
+4143: 68001135282fd4f41c f13 r211=3 C=13 F=14 r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:340
+4144: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:343
+4145: 68001335283fd4c0bb f13 r211=3 C=13 F=14 r148=360 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:340
+4146: 68000007ea2e40963c f13 cc=191 r148=391 Q=1c M=6c0 r110=43d r62=1ffc00357c  ; colortable.S:344
+4147: 68001114e82fdf95bc f13 r211=3 C=11 F=13 r148=38d M=6df r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:341
+4148: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:344
+4149: 68001314e82fd0f42f f13 r211=3 C=11 F=13 r148=f r128=d M=6d0 r110=53d r95=9 r62=1ffc21917c  ; colortable.S:341
+414a: 68000007e83fcaf460 f13 r128=1d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:342
+414b: 68001134e82fd4f41c f13 r211=3 C=13 F=13 r148=1c r128=5 M=6d4 r110=53d r95=8 r62=1ffc21917c  ; colortable.S:341
+414c: 68000007ec2dd4f41c f13 cc=91 r148=1c Q=1b r128=5 M=6d4 r110=53d r62=1ffc00157c  ; colortable.S:344
+414d: 68001334e83fd4c0aa f13 r211=3 C=13 F=13 r148=140 r128=28 M=6d4 r110=47d r99=2 r95=9 r62=1ffc21a1fc r25=3ea9c00  ; colortable.S:341
+414e: 68000007e82fdf95bc f13 r148=38d M=6df r110=43d r62=1ffc00317c  ; colortable.S:344
+414f: 77fa47148880f80000 f14 r211=3 C=11 F=12 r95=8 r62=1ffc218170  ; colortable.S:342
+4151: 68001314a83fcaf440 f13 r211=3 C=11 F=12 r128=15 M=6ca r110=5bd r99=2 r95=9 r62=1ffc218178 r25=3ea9c00  ; colortable.S:342
+4152: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; colortable.S:344
+4153: 77fa47348880f80000 f14 r211=3 C=13 F=12 r95=8 r62=1ffc218170  ; colortable.S:342
+4155: 68001334a82fd1eeaf f13 r211=3 C=13 F=12 r148=1e0 M=6d1 r110=4fd r95=9 r62=1ffc21a17c  ; colortable.S:342
+4156: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; colortable.S:344
+4157: 68001114682fd095fb f13 r211=3 C=11 F=11 r148=36f M=6d0 r110=43d r95=8 r62=1ffc21b17c  ; colortable.S:343
+4159: 7034e7144a00f80000 f14 r211=3 C=11 F=11 r95=9 r62=1ffc218170  ; colortable.S:343
+415b: 68001134683fd4fe82 f13 r211=3 C=13 F=11 r128=10 M=6d4 r110=57d r99=2 r95=8 r62=1ffc2181fc r25=3ea9c00  ; colortable.S:343
+415d: 7034e7344a00f80000 f14 r211=3 C=13 F=11 r95=9 r62=1ffc218170  ; colortable.S:343
+415e: 77fa412fc8c193ffe0 f14 imm=ffffffe0 r222=1 r219=1 C=12 F=3f G=12 r71=1 r62=1ffc33c170  ; colortable.S:326
+415f: 77fa47340880f80000 f14 r211=3 C=13 F=10 r95=8 r62=1ffc218170  ; colortable.S:344
+4161: 680013342a2e40957c f13 r211=3 cc=191 C=13 F=10 r148=38b Q=1c M=6c0 r110=43d r95=9 r62=1ffc21b57c  ; colortable.S:344
+4162: 77f64007ca00f8409c f14 xfer5 c4 cc=14 -> 409c imm=409c cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:349
+4163: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> 4163 seq=1cfe5 r25=3e39c00  ; colortable.S:351
+4164: 77fa47140880f80000 f14 r211=3 C=11 F=10 r95=8 r62=1ffc218170  ; colortable.S:344
+4165: 77fa413fc883980020 f14 imm=20 r219=3 C=13 F=3f G=13 r71=1 r62=1ffc33c170  ; colortable.S:346
+4166: 7034e7140a00f80000 f14 r211=3 C=11 F=10 r95=9 r62=1ffc218170  ; colortable.S:344
+4167: 77fa411fc883880020 f14 imm=20 r219=3 C=11 F=3f G=11 r71=1 r62=1ffc33c170  ; colortable.S:347
+mmo_LutoutI:
+416c: 7079c007c888f80000 f14 seq=60de r25=3e2fc00  ; colortable.S:239
+416d: 6c008007e82ffcf6a0 f13 A=10 M=6fc r99=8 r62=1ffc880178  ; colortable.S:244
+4171: 68000007e80fc0f604 f13 r148=4 r128=5 M=47f r110=6a5 r62=1ffc001173  ; colortable.S:244
+4175: 68000007ec2e71f480 f13 cc=91 Q=1c r128=25 M=6f1 r110=5bd r62=1ffc000578  ; colortable.S:244
+4179: 68000007e82fdff403 f13 r148=3 r128=5 M=6df r110=53d r62=1ffc00117c  ; colortable.S:244
+417d: 68000007e83fd4c0bc f13 r148=380 r128=28 M=6d4 r110=47d r99=2 r62=1ffc0021fc r25=3ea9c00  ; colortable.S:245
+4181: 77fa405808c1280000 f14 r222=1 r219=1 C=5 F=20 G=5 r62=1ffc23c170  ; colortable.S:242
+4184: 77f64007ca10fbffe9 f14 xfer5.rel c4 cc=14 -> 416d imm=ffffffe9 cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:247
+4185: 77f24007c884f841e0 f14 xfer4 c5 cc=11 -> 41e0 <mLutoutDone> imm=41e0 seq=4fe5 r71=1 r25=3e39c00  ; colortable.S:252
+4186: 77fa4607c880f80000 f14 r211=3 r95=8 r62=1ffc218170  ; colortable.S:245
+4187: 77fa41010881840000 f14 r219=1 C=10 r162=1 F=4 G=10 r62=1ffc23c170  ; colortable.S:249
+4188: 7034e607ca00f80000 f14 r211=3 r95=9 r62=1ffc218170  ; colortable.S:245
+4189: 77fa40078881000000 f14 r219=1 F=1e G=0 r62=1ffc23c170  ; colortable.S:248
+mmo_LutoutLA:
+418e: 7079c007c888f80000 f14 seq=60de r25=3e2fc00  ; colortable.S:208
+418f: 6c008007e82ffcf6a0 f13 A=10 M=6fc r99=8 r62=1ffc880178  ; colortable.S:213
+4193: 68000007e80fc0f604 f13 r148=4 r128=5 M=47f r110=6a5 r62=1ffc001173  ; colortable.S:213
+4197: 68000007ec2e71f480 f13 cc=91 Q=1c r128=25 M=6f1 r110=5bd r62=1ffc000578  ; colortable.S:213
+4198: 6c038007e82ffcf6a0 f13 A=10 D=3 M=6fc r99=8 r62=1ffc880178  ; colortable.S:214
+419b: 68000007ec2e5ff403 f13 cc=91 r148=3 Q=1c r128=5 M=6df r110=53d r62=1ffc00157c  ; colortable.S:213
+419c: 68000007e80fc0f604 f13 r148=4 r128=5 M=47f r110=6a5 r62=1ffc001173  ; colortable.S:214
+419f: 68000007e83fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r99=2 r62=1ffc00117c r25=3ea9c00  ; colortable.S:215
+41a0: 68000007e82ff1f480 f13 r128=25 M=6f1 r110=5bd r62=1ffc000178  ; colortable.S:214
+41a4: 68000007e83fd4c0bc f13 r148=380 r128=28 M=6d4 r110=47d r99=2 r62=1ffc0021fc r25=3ea9c00  ; colortable.S:216
+41a7: 77fa405808c1280000 f14 r222=1 r219=1 C=5 F=20 G=5 r62=1ffc23c170  ; colortable.S:211
+41a8: 77fa4607c880f80000 f14 r211=3 r95=8 r62=1ffc218170  ; colortable.S:215
+41aa: 7034e607ca00f80000 f14 r211=3 r95=9 r62=1ffc218170  ; colortable.S:215
+41ab: 77f64007ca10fbffe4 f14 xfer5.rel c4 cc=14 -> 418f imm=ffffffe4 cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:218
+41ac: 77f2410108878441e0 f14 xfer4 c5 cc=11 -> 41e0 <mLutoutDone> imm=41e0 r219=3 C=10 r162=1 F=4 G=10 seq=4fe5 r71=1 r62=1ffc23c170 r25=3e39c00  ; colortable.S:221
+41ad: 77fa4617c880f80000 f14 r211=3 C=1 r95=8 r62=1ffc218170  ; colortable.S:216
+41ae: 77fa40078883000000 f14 r219=3 F=1e G=0 r62=1ffc23c170  ; colortable.S:219
+41af: 7034e617ca00f80000 f14 r211=3 C=1 r95=9 r62=1ffc218170  ; colortable.S:216
+41b0: 77fa40178883080000 f14 r219=3 C=1 F=1e G=1 r62=1ffc23c170  ; colortable.S:220
+mmo_LutoutRGBA:
+41b5: 7079c007c888f80000 f14 seq=60de r25=3e2fc00  ; colortable.S:174
+41b6: 6c008007e82ffcf6a0 f13 A=10 M=6fc r99=8 r62=1ffc880178  ; colortable.S:179
+41b8: 6c028007e82ffcf6a0 f13 A=10 D=2 M=6fc r99=8 r62=1ffc880178  ; colortable.S:181
+41b9: 6c018007e82ffcf6a0 f13 A=10 D=1 M=6fc r99=8 r62=1ffc880178  ; colortable.S:180
+41ba: 68000007e80fc0f604 f13 r148=4 r128=5 M=47f r110=6a5 r62=1ffc001173  ; colortable.S:179
+41bd: 5c03be07fe23e6ed04 f11 A=10 D=3 r148=4 r128=5 M=47c r110=6a5 r99=8 r62=1ffc88117b  ; colortable.S:180
+41be: 68000007ea2d71f480 f13 cc=191 Q=1a r128=25 M=6f1 r110=5bd r62=1ffc000578  ; colortable.S:179
+41bf: 68000007e80fc0f664 f13 r148=4 r128=1d M=47f r110=6a5 r62=1ffc001173  ; colortable.S:181
+41c1: 68000007e80fc0f604 f13 r148=4 r128=5 M=47f r110=6a5 r62=1ffc001173  ; colortable.S:182
+41c2: 68000007ea2df1f4a0 f13 cc=191 Q=1b M=6f1 r110=5bd r62=1ffc000578  ; colortable.S:180
+41c3: 68000007ea2cf1f480 f13 cc=191 Q=19 r128=25 M=6f1 r110=5bd r62=1ffc000578  ; colortable.S:181
+41c6: 68000007ec2d5f947a f13 cc=91 r148=343 Q=1a M=6df r110=43d r62=1ffc00357c  ; colortable.S:183
+41c7: 68000007ea2e71f4c0 f13 cc=191 Q=1c r128=35 M=6f1 r110=5bd r62=1ffc000578  ; colortable.S:182
+41ca: 68000007e83fd4f41b f13 r148=1b r128=5 M=6d4 r110=53d r99=2 r62=1ffc00117c r25=3ea9c00  ; colortable.S:185
+41cb: 68000007ec2cdf9479 f13 cc=91 r148=323 Q=19 M=6df r110=43d r62=1ffc00357c  ; colortable.S:184
+41cf: 68000007e83fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r99=2 r62=1ffc00117c r25=3ea9c00  ; colortable.S:186
+41d2: 77fa405808c1280000 f14 r222=1 r219=1 C=5 F=20 G=5 r62=1ffc23c170  ; colortable.S:177
+41d3: 77fa4607c880f80000 f14 r211=3 r95=8 r62=1ffc218170  ; colortable.S:185
+41d5: 7034e607ca00f80000 f14 r211=3 r95=9 r62=1ffc218170  ; colortable.S:185
+41d6: 77f64007ca10fbffe0 f14 xfer5.rel c4 cc=14 -> 41b6 imm=ffffffe0 cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:188
+41d7: 77f2410108878441e0 f14 xfer4 c5 cc=11 -> 41e0 <mLutoutDone> imm=41e0 r219=3 C=10 r162=1 F=4 G=10 seq=4fe5 r71=1 r62=1ffc23c170 r25=3e39c00  ; colortable.S:191
+41d8: 77fa4617c880f80000 f14 r211=3 C=1 r95=8 r62=1ffc218170  ; colortable.S:186
+41d9: 77fa40078883000000 f14 r219=3 F=1e G=0 r62=1ffc23c170  ; colortable.S:189
+41da: 7034e617ca00f80000 f14 r211=3 C=1 r95=9 r62=1ffc218170  ; colortable.S:186
+41db: 77fa40178883080000 f14 r219=3 C=1 F=1e G=1 r62=1ffc23c170  ; colortable.S:190
+mLutoutDone:
+41e0: 78207037c000000000 f15 r215=3 B=18 C=3 r62=1ffc658170  ; colortable.S:151
+41e1: 7e00f047e100000000 f15 r215=3 A=18 B=18 C=4 E=1 M=6ca r99=a r62=1ffced8178 r25=3ea9c00  ; colortable.S:151
+41e2: 7e018007e000000000 f15 A=18 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; colortable.S:153
+41ea: 77fa43e7c880f80164 f14 imm=164 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; colortable.S:152
+41eb: 77fa43e7c880f80165 f14 imm=165 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; colortable.S:154
+41ec: 77fa4937c880f80000 f14 C=13 r95=2 r62=1ffc218170  ; colortable.S:157
+41f2: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; colortable.S:160
+41f7: 77fa41374881980000 f14 r219=1 C=13 F=1d G=13 r62=1ffc23c170  ; colortable.S:158
+mmo_Lutout:
+41fb: 28003132b1c344f8a0 f5  imm=163 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; colortable.S:110
+4204: 76033607ca04280000 f14 r217=1 A=18 D=3 G=5 r99=8 r62=1ffc884170  ; colortable.S:115
+420a: 28003132b14244f8a0 f5  imm=162 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; colortable.S:109
+420b: 77fa4de7c880f80164 f14 imm=164 C=1e r95=13 r71=1 r62=1ffc218170  ; colortable.S:111
+420c: 60003057ea082fde80 f12 r213=3 B=18 C=5 E=8 M=6ca r110=7bd r95=17 r62=1ffc658178 r25=3e69c00  ; colortable.S:111
+420d: 28003132b2c944f8a0 f5  imm=165 r213=3 B=18 C=1e E=9 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; colortable.S:112
+4212: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; colortable.S:108
+4213: 60003007ea0301de80 f12 r213=3 B=18 E=3 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; colortable.S:116
+4214: 76023607ca04280000 f14 r217=1 A=18 D=2 G=5 r99=8 r62=1ffc884170  ; colortable.S:119
+4215: 76083607ca04200000 f14 r217=1 A=18 D=8 G=4 r99=8 r62=1ffc884170  ; colortable.S:121
+4216: 76093607ca04000000 f14 r217=1 A=18 D=9 G=0 r99=8 r62=1ffc884170  ; colortable.S:122
+421b: 76013607ca04080000 f14 r217=1 A=18 D=1 G=1 r99=8 r62=1ffc884170  ; colortable.S:118
+421c: 76033607ca04780000 f14 r217=1 A=18 D=3 G=f r99=8 r62=1ffc884170  ; colortable.S:120
+421d: 7140204fca01700000 f14 r219=1 A=5 C=4 r176=0 F=3f G=e r62=1ffcb3c170  ; colortable.S:128
+421e: 7140200fca01180000 f14 r219=1 A=5 r176=0 F=3f G=3 r62=1ffcb3c170  ; colortable.S:130
+421f: 77fa49e7c880f80168 f14 imm=168 C=1e r95=2 r71=1 r62=1ffc218170  ; colortable.S:141
+4221: 714020efca01180000 f14 r219=1 A=5 C=e r176=0 F=3f G=3 r62=1ffcb3c170  ; colortable.S:129
+4222: 7140203fca01200000 f14 r219=1 A=5 C=3 r176=0 F=3f G=4 r62=1ffcb3c170  ; colortable.S:131
+4223: 77fa4de7c880f80167 f14 imm=167 C=1e r95=13 r71=1 r62=1ffc218170  ; colortable.S:124
+4224: 110000ffc00644f8a0 f2  r219=1 cc=91 A=4 C=f r176=0 F=3f G=0 Q=3 M=6ca r110=7bd r62=1ffcb3c578  ; colortable.S:124
+4225: 70f1cde7c8acf80166 f14 xfer4 c31 cc=11 -> 0166 <umo_EvalEntry1D> imm=166 C=1e r95=13 seq=141df r71=1 r62=1ffc218170 r25=3e3fc00  ; colortable.S:125
+4226: 100000ffc10844f8a0 f2  r219=1 cc=91 C=f r176=0 F=3f G=1 Q=4 M=6ca r110=7bd r62=1ffcb3c578  ; colortable.S:125
+4227: 7059c007c88cf80000 f14 seq=609f r25=3e2fc00  ; colortable.S:136
+4228: 7040210fca03840000 f14 r219=3 A=1 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; colortable.S:137
+4229: 7140200fca03000000 f14 r219=3 A=5 r176=0 F=3f G=0 r62=1ffcb3c170  ; colortable.S:138
+422a: 7140201fca03080000 f14 r219=3 A=5 C=1 r176=0 F=3f G=1 r62=1ffcb3c170  ; colortable.S:139
+mgeb_ColorTableSetup:
+422e: 28000132f60054f8a0 f5  imm=1ec r220=1 C=1e M=6ca r110=7bd r95=13 r71=1 r62=1ffc218178  ; colortable.S:80
+4235: 67c0b807ea0801dd80 f12 r213=3 A=1f B=1c E=8 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; colortable.S:74
+423a: 77f60007c180f80962 f14 xfer5 c0 cc=3 -> 0962 <uEvalSaveState> imm=962 cc=3 seq=5fe0 r71=1 r62=1ffe000170 r25=3e39c00  ; colortable.S:82
+423e: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; colortable.S:69
+423f: 77fa41b70881880000 f14 r219=1 C=1b F=1c G=11 r62=1ffc23c170  ; colortable.S:77
+4241: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; colortable.S:70
+4242: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; colortable.S:71
+4243: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; colortable.S:86
+4245: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 4245 seq=1cfdf r25=3e3fc00  ; colortable.S:91
+4249: 77fa41e00881c48000 f14 imm=8000 r219=1 C=1e r162=1 F=0 G=18 r71=1 r62=1ffc23c170  ; colortable.S:85
+424a: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; colortable.S:90
+424c: 77fa43e7c880f801ed f14 imm=1ed r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; colortable.S:87
+424d: 77fa43e7c880f801ee f14 imm=1ee r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; colortable.S:88
