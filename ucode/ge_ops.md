@@ -55,16 +55,16 @@ Each row is one operation word in `ge_inst.s`, its operands and the word `irsaud
 |---|---|---|---|---|
 | 1096, 1122, 1143 | 1, 0x40 (0x6c0) | 2 and 2, then +2, +2 | 4, 6, 8 (index 48-50) | integer add, **established** (2 | 2 and 2 ^ 2 would give 2 and 0) |
 | 3601 | 1, 0x40 (0x6c0) | A = 0xaaaaaaaa, B = 0x55555555 | 0xffffffff (136) | consistent with add |
-| 3617 | 1, 0x50 (0x6d0) | same | 0x00000000 (137) | AND or NOR; **inferred** AND: production code applies it with single-bit masks (0x2, 0x4, 0x8, 0x10) and field-clearing masks (0xfe3fffff) |
+| 3617 | 1, 0x50 (0x6d0) | same | 0x00000000 (137) | AND or NOR; AND **inferred** ([below](#settling-the-ties)) |
 | 3632 | 1, 0x58 (0x6d8), one operand | A = 0xaaaaaaaa | 0x55555555 (138) | bitwise NOT, **established** for one operand |
-| 3648 | 1, 0x54 (0x6d4) | A, B as above | 0xffffffff (139) | OR, XOR or NAND; **inferred** OR: production code applies it with single-bit constants (0x1, 0x4, 0x40000000) |
+| 3648 | 1, 0x54 (0x6d4) | A, B as above | 0xffffffff (139) | OR, XOR or NAND; OR **inferred** ([below](#settling-the-ties)) |
 | 3663 | 1, 0x42 (0x6c2) | A = 0xaaaaaaaa, B = 0x55555555 | 0x80000000 (140) | a subtract that does not wrap: **established** against wrapping A - B (0x55555555) and B - A (0xaaaaaaab); **inferred** signed A - B saturated at the 32-bit limit, which the production compare idiom also fits; the sign bit of a wider result would also give 0x80000000 |
-| 3678 | 1, 0x56 (0x6d6) | A, B | 0xffffffff (141) | OR, XOR or NAND; **inferred** XOR as the remaining one, production code applies it to GL enumerants (0x801, 0x8199), which fits an equality test |
+| 3678 | 1, 0x56 (0x6d6) | A, B | 0xffffffff (141) | OR, XOR or NAND; XOR **inferred** ([below](#settling-the-ties)) |
 | 3694 | 1, 0x4a (0x6ca), one operand | A = 0xaaaaaaaa | 0xaaaaaaaa (142) | move of the first operand, **established** |
 | 3709 | 1, 0x4b (0x6cb) | A, B | 0x55555555 (143) | move of the second operand, **established** with the register walk at lines 3326-3448 (index 120-127), where 0x6cb with second operand 0, 1, 2, 4, 8, 0x10, 0x1f, 0x15 sends each register's loaded pattern |
 | 3729 | 1, 0x60 (0x6e0) | A = 1024.1024 (0x44800347), B = 2048.2048 (0x45000347) | 3072.307 (0x454004ea, 144) | single-precision add, **established** (the only candidate giving 3A) |
-| 3744 | 1, 0x66 (0x6e6) | same | 0x44800347 = A (145) | returns the smaller and the first operand; **inferred** minimum from `mgeb_DepthRange` |
-| 3759 | 1, 0x68 (0x6e8) | same | 0x45000347 = B (146) | returns the larger and the second operand; **inferred** maximum, as above |
+| 3744 | 1, 0x66 (0x6e6) | same | 0x44800347 = A (145) | returns the smaller and the first operand; minimum, **inferred** from `mmo_Minmax` ([below](#settling-the-ties)) |
+| 3759 | 1, 0x68 (0x6e8) | same | 0x45000347 = B (146) | returns the larger and the second operand; maximum, **inferred** as above |
 | 3774 | 1, 0x62 (0x6e2) | first = B, second = A (`r148` = 0x20) | 0x44800347 (147) | single-precision subtract B - A, **established** (B = 2A exactly) |
 | 3792 | 1, 0x73 (0x6f3), one operand | 0x400 | 1024.0 (0x44800000, 148) | integer to single-precision float, **established** |
 | 3829-3830 | 1, 0x20 (0x6a0), two words | 0x400a5a5a5a5a5a5a (3.294...), 0x4005a5a5a5a5a5a5 (2.706...) as doubles | 0x40180000 00000000 = 6.0 (149-150) | double-precision add, **established**; the second word names the low halves |
@@ -116,12 +116,26 @@ Lines 1210-2195 test conditional transfers (sequencer code 3 with condition code
 
 **Inferred:** the low four bits are the integer flags and the high four the float flags, each with bit 3 = result <= 0, bit 2 = zero, bit 1 = negative, bit 0 = a fourth condition clear in every observed case. `cc` 0-7 test the integer nibble and 8-15 the float nibble; `cc` bits 2-1 pick the condition (0 <= 0, 1 zero, 2 negative, 3 the fourth) and bit 0 inverts it. All 14 cases with a known operation agree. The fourth condition (true after 0x6c8 and after 0x2f, false after an add or multiply that did not overflow) is **inferred** to be signed overflow, on that alone. The carry out is not a condition the test names.
 
-**Open question** ([docs/open-questions.md](../docs/open-questions.md)): each condition on its false side, the fourth condition, and the three ties in the table above (0x6d0 against NOR, 0x6d4 and 0x6d6 against each other and NAND, 0x6e6 and 0x6e8 against moves, 0x2f and 0x3f against minimum). Static routes tried for the ties, none of which separates them:
+## Settling the ties
 
-- `irsaudit` 6.5.30m exports one expected-result array, `expected_token`; its operands give equal results for each tied pair.
-- In the diagnostic engine program (listed per source with `scripts/ge_disasm.py`), 0x6d0, 0x6d4 and 0x6d6 occur only in `debug.S` and `eram.S`, and 0x6e6, 0x6e8, 0x2ff and 0x3ff only in `ge_inst.s`. `eram.S` builds and checks its memory patterns on the engine; `TEST_ge_eram` (`irsaudit` 0x1006c9b0-0x1006ccdc) only gathers the mismatch records the engine reports, ending at a 0xbabebabe marker, so a NOR in place of an AND would pass the same way.
-- Production use supports AND, OR, XOR, maximum and minimum by intent only: single-bit masks tested for zero, field-clearing masks before an OR, XOR against GL enumerants before a zero test, and `mgeb_DepthRange`'s clamp.
+The engine test leaves five pairs tied, because its operands give the same word for each candidate: 0x50 (AND or NOR), 0x54 and 0x56 (OR, XOR or NAND), 0x66 and 0x68 (minimum and maximum, or moves of the first and second operand), and unit 2's 0x2f and 0x3f (move of the second operand, or minimum). No shipped program carries an expected result that separates them, so the readings below rest on what production handlers need the operation to do. Routes tried, none of which carries a separating result:
 
+- `irsaudit` 6.5.30m exports one expected-result array, `expected_token`. The 6.5 base release (June 1998) ships a different `irsaudit` build but byte-identical `ge.hex`, `ge.u`, `ge_diag_init.*` and `geif.u` in `usr/diags/IR/ucode/`, so no older `ge_inst.s` with other operands exists on the media read.
+- The diagnostic program's other sources: 0x6d0, 0x6d4 and 0x6d6 occur only in `debug.S` and `eram.S`, and 0x6e6, 0x6e8, 0x2ff and 0x3ff only in `ge_inst.s`. `eram.S` builds each memory pattern with the same code on its write and its check pass and compares with the subtract 0x6c2, so any bitwise reading passes; `debug.S` uses 0x6d0 and 0x6d6 on status words (masks 0x2, 0x4, 0x100) with no result returned to the host. `TEST_ge_eram` only gathers the engine's mismatch records.
+- The other engine tests in `irsaudit`: `ge_hist_stress_test` and `ge_mul_test` start their program, wait for the output DMA (`wait_for_odma`) and print on failure, with no expected-result array; `ge12_multige_test` and `ge12_splitge_test` drive the engines' scan chain (`jt_select_chain`, `jt_send_data`, `jt_unpack_vector`) and run no engine instructions.
+- A Library mail search for published `irsaudit` output failed twice (mail service refused the connection, 2026-10-29).
+
+**0x66 minimum and 0x68 maximum: inferred, by function.** `mmo_Minmax` (minmax.s, 0x1472-0x1486, loop `mainloop_mm`) is the module the ARM adds to the pixel path for `HP_MINMAX` (`AddMinMax`, `U_uMinMax`); `HP_GETMINMAX` reads its result back. Its loop body is 36 pairs of words: for each input word (A = 0x10, D = k), 0x6e6 writes even register 2k with second operand 2k, and 0x6e8 writes odd register 2k+1 with second operand 2k+1. Each register is an accumulator updated from the same input. If 0x6e6 and 0x6e8 were the moves the test also allows (0x6e6 returning its first operand, the input; 0x6e8 its second, the accumulator), the even registers would end at the last pixel and the odd ones would never change, and `glGetMinmax` could not return a minimum or a maximum. Only minimum and maximum make the module work; the test fixes which is which (0x66 returned the smaller). `mgeb_DepthRange`'s clamp of zNear and zFar fits the same reading.
+
+**0x56 XOR and 0x54 OR: inferred, by function.** In `mgeb_InitFogGlobal` (fog.S lines 2835-2862, 0x6cff-0x6d2a) operand words are combined with small constants (4, 5, 6, 7) by 0x6d6, the results are folded together by 0x6d4 in a word that sets the flags (`r220`), and conditional moves (`cc` 0x111) follow. Production code elsewhere applies 0x6d6 to GL enumerants (0x801, 0x8199) before a zero test. A zero result must therefore be reachable when an operand equals the constant. Of OR, XOR and NAND only XOR gives zero for equal non-zero operands, and of the remaining pair only OR keeps a fold of several such results zero exactly when every one is zero. So 0x56 is XOR and 0x54 is OR; the alternatives leave those branches unreachable.
+
+**0x50 AND: inferred, by intent.** Production code applies 0x6d0 to single-bit masks (0x2, 0x4, 0x8, 0x10) before a zero test and to field-clearing masks before a store (for example `entry.S` line 759, 0xb427: 0xfe3fffff, result written back to engine memory). NOR with a single-bit mask is zero only when every other bit of the operand is set, and NOR with 0xfe3fffff discards every bit outside 22-24; AND is the only reading under which these handlers test a bit or clear a field. Unlike the two cases above, no handler's result is checked by the host, so this stays an inference from intent.
+
+**Unit-2 0x2f and 0x3f: unknown.** Production uses 0x2ff 50 times (`LUT.s`, `ueval1D.s`, `ueval2D.s`, `matrix.S`) and 0x3ff never. In 48 of the 50 the first-operand field is 0 and the word stores the second operand's register (`r213` = 2 or 3), which fits a move of the second operand, but the unit-2 move of the first operand (0x27f) also mostly carries a zero first field, so the field value does not separate a move from a minimum against register 0. Unknown: no shipped software or published source separates them; routes as listed above.
+
+**0x42's 0x80000000.** A saturating signed subtract and the sign bit of a wider difference both give 0x80000000 for these operands, and production uses 0x6c2 only as a compare whose zero result is tested, which both readings satisfy. Unknown: no shipped software or published source depends on the difference; routes as above.
+
+**Open question** ([docs/open-questions.md](../docs/open-questions.md)): each branch condition on its false side and the fourth flag condition.
 
 ## Input and output FIFO operations
 

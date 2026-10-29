@@ -1330,7 +1330,7 @@ arm1.u	symbol (flags 2)	0x0c02fd44	AddColorMatrix		undocumented
 arm1.u	symbol (flags 2)	0x0c02fd8c	AddPostClrMtrxScaleBias		undocumented	
 arm1.u	symbol (flags 2)	0x0c02fddc	AddPostClrMtrxScaleBias1Cmpnt		undocumented	
 arm1.u	symbol (flags 2)	0x0c02fe2c	AddHistogram		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
-arm1.u	symbol (flags 2)	0x0c02fe88	AddMinMax		undocumented	
+arm1.u	symbol (flags 2)	0x0c02fe88	AddMinMax		documented	ucode/ge_ops.md#settling-the-ties
 arm1.u	symbol (flags 2)	0x0c02fef8	AddCompOrder		undocumented	
 arm1.u	symbol (flags 2)	0x0c02ff40	AddSumRGB2L		undocumented	
 arm1.u	symbol (flags 2)	0x0c02ff88	AddArbClamp		undocumented	
@@ -1363,7 +1363,7 @@ arm1.u	symbol (flags 2)	0x0c031424	U_uCompOrder		undocumented
 arm1.u	symbol (flags 2)	0x0c031470	U_uSumRGB2L		undocumented	
 arm1.u	symbol (flags 2)	0x0c0314bc	U_uArbClamp		undocumented	
 arm1.u	symbol (flags 2)	0x0c03150c	U_uHistogram		undocumented	
-arm1.u	symbol (flags 2)	0x0c03156c	U_uMinMax		undocumented	
+arm1.u	symbol (flags 2)	0x0c03156c	U_uMinMax		documented	ucode/ge_ops.md#settling-the-ties
 arm1.u	symbol (flags 2)	0x0c0315c8	U_uLutOutput		undocumented	
 arm1.u	symbol (flags 2)	0x0c031690	U_mColorMatrix		undocumented	
 arm1.u	symbol (flags 2)	0x0c03172c	U_uPostClrMtrxScaleBias		undocumented	
@@ -1997,9 +1997,9 @@ ge.u	label	0x000013b4	umo_Histogram		undocumented
 ge.u	label	0x000013ff	mainloop_hist		undocumented	
 ge.u	label	0x00001417	epilogue_hist		undocumented	
 ge.u	label	0x00001420	uge_HistogramFill		undocumented	
-ge.u	label	0x0000143e	mmo_Minmax		undocumented	
+ge.u	label	0x0000143e	mmo_Minmax		documented	ucode/ge_ops.md#operation-table
 ge.u	label	0x0000143e	umo_Minmax		undocumented	
-ge.u	label	0x00001472	mainloop_mm		undocumented	
+ge.u	label	0x00001472	mainloop_mm		documented	ucode/ge_ops.md#settling-the-ties
 ge.u	label	0x0000148d	epilogue_mm		undocumented	
 ge.u	label	0x00001518	merge2_mm		undocumented	
 ge.u	label	0x0000154e	merge1_mm		undocumented	
@@ -2400,7 +2400,7 @@ ge.u	label	0x00006c55	mmo_Expand32_1_4		undocumented
 ge.u	label	0x00006c9f	mgeb_SwapInGL		undocumented	
 ge.u	label	0x00006cb3	mgeb_SwapOutGL		undocumented	
 ge.u	label	0x00006cc7	mmo_PixEndStream		undocumented	
-ge.u	label	0x00006cf0	mgeb_InitFogGlobal		undocumented	
+ge.u	label	0x00006cf0	mgeb_InitFogGlobal		documented	ucode/ge_ops.md#settling-the-ties
 ge.u	label	0x00006e20	mgesi_GetFogFunc		undocumented	
 ge.u	label	0x00006e4b	mgeb_FogFunc		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 ge.u	label	0x00006ebf	mgeb_FogRestore		undocumented	

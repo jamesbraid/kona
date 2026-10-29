@@ -882,7 +882,8 @@ enum kona_hp_token {
  * expected result for known constant operands. Unit 1 writes register Q
  * and takes its code in M[6:0] (M = 0x680 | code); unit 2 writes P and
  * takes its code in M[10:4] (M = code << 4 | 0x7f).
- * INFERRED readings are marked; see ge_ops.md for the ties left open.
+ * INFERRED readings are marked; ge_ops.md, "Settling the ties", gives
+ * the functional argument for each and the routes tried.
  */
 #define KONA_GE_U1_DADD                 0x20  /* double add, two words */
 #define KONA_GE_U1_DSUB                 0x22  /* double subtract */
@@ -890,21 +891,21 @@ enum kona_hp_token {
 #define KONA_GE_U1_ISUB                 0x42  /* signed, 0xaaaaaaaa - 0x55555555 = 0x80000000 */
 #define KONA_GE_U1_MOVA                 0x4a  /* first operand */
 #define KONA_GE_U1_MOVB                 0x4b  /* second operand */
-#define KONA_GE_U1_AND                  0x50  /* AND or NOR; AND INFERRED */
-#define KONA_GE_U1_OR                   0x54  /* OR, XOR or NAND; OR INFERRED */
-#define KONA_GE_U1_XOR                  0x56  /* as above; XOR INFERRED */
+#define KONA_GE_U1_AND                  0x50  /* AND or NOR in the test; AND INFERRED by intent */
+#define KONA_GE_U1_OR                   0x54  /* OR INFERRED: folds XOR equality tests */
+#define KONA_GE_U1_XOR                  0x56  /* XOR INFERRED: zero for equal operands */
 #define KONA_GE_U1_NOT                  0x58  /* one operand */
 #define KONA_GE_U1_FADD                 0x60
 #define KONA_GE_U1_FSUB                 0x62
-#define KONA_GE_U1_FMIN                 0x66  /* returned the smaller; min INFERRED */
-#define KONA_GE_U1_FMAX                 0x68  /* returned the larger; max INFERRED */
+#define KONA_GE_U1_FMIN                 0x66  /* min INFERRED: mmo_Minmax accumulator */
+#define KONA_GE_U1_FMAX                 0x68  /* max INFERRED: mmo_Minmax accumulator */
 #define KONA_GE_U1_ITOF                 0x73  /* integer to single */
 #define KONA_GE_U1_CLAMP0               0x7c  /* negative to 0, positive unchanged */
 #define KONA_GE_U2_DMUL                 0x07  /* double multiply, two words */
 #define KONA_GE_U2_MOVA                 0x27  /* also the output move */
-#define KONA_GE_U2_MOVB                 0x2f  /* returned the second (smaller) operand */
+#define KONA_GE_U2_MOVB                 0x2f  /* move B or min: unknown, no software separates */
 #define KONA_GE_U2_DMOVA                0x37
-#define KONA_GE_U2_DMOVB                0x3f  /* returned the second (smaller) pair */
+#define KONA_GE_U2_DMOVB                0x3f  /* move B pair or min: unknown, unused in production */
 #define KONA_GE_U2_FMUL                 0x47  /* bit-exact IEEE single product */
 #define KONA_GE_U2_RCP_STEP             0x4f  /* 2 - a * b */
 #define KONA_GE_U2_RSQ_STEP             0x57  /* (3 - a * b) / 2 */

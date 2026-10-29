@@ -262,9 +262,9 @@ token	kpm_name	header_name	firmware_route	sources	status	doc
 0x104	HP_GETHISTOGRAM	KONA_HP_GETHISTOGRAM	HP_GETHISTOGRAM	GE.h,firmware map,kpm	named-only	GE.h:406
 0x105	HP_GETHISTOGRAMPARAMETERIV	KONA_HP_GETHISTOGRAMPARAMETERIV	HP_GETHISTOGRAMPARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:407
 0x106	HP_BIND_LINEAR_TEXTURE	KONA_HP_BIND_LINEAR_TEXTURE	HP_BIND_LINEAR_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:408
-0x107	HP_MINMAX	KONA_HP_MINMAX	HP_MINMAX	GE.h,firmware map,kpm	named-only	GE.h:409
+0x107	HP_MINMAX	KONA_HP_MINMAX	HP_MINMAX	GE.h,firmware map,kpm	documented	ucode/ge_ops.md#settling-the-ties
 0x108	HP_RESETMINMAX	KONA_HP_RESETMINMAX	HP_RESETMINMAX	GE.h,firmware map,kpm	named-only	GE.h:410
-0x109	HP_GETMINMAX	KONA_HP_GETMINMAX	HP_GETMINMAX	GE.h,firmware map,kpm	named-only	GE.h:411
+0x109	HP_GETMINMAX	KONA_HP_GETMINMAX	HP_GETMINMAX	GE.h,firmware map,kpm	documented	ucode/ge_ops.md#settling-the-ties
 0x10a	HP_GETMINMAXPARAMETERIV	KONA_HP_GETMINMAXPARAMETERIV	HP_GETMINMAXPARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:412
 0x10b	HP_GET_LIGHT_ATTRIBS	KONA_HP_GET_LIGHT_ATTRIBS	HP_GET_LIGHT_ATTRIBS	GE.h,firmware map,kpm	named-only	GE.h:413
 0x10c	HP_INITNAMES	KONA_HP_INITNAMES	HP_INITNAMES	GE.h,firmware map,kpm	named-only	GE.h:414
