@@ -211,9 +211,20 @@
  *         so the driver uses it as an "initialised" flag. The header name
  *         does not match the use; both are labelled and the use is what the
  *         code does.
- *   +64   the header calls this gr_gfxp. UNRESOLVED: the driver treats the
- *         object as having a word at +4 and a link at +8 whose own +8 link
- *         returns to it (kona_act_pcx step 3), which gfx_gfx does not.
+ *   +64   gr_gfxp: the graphics connection (struct gfx_gfx) the node
+ *         belongs to. ESTABLISHED by comparison: clean_up_other_gfxp
+ *         (kona_context.o 0x0) loads node+64, walks the list that
+ *         gthread_find_gfxp(curthreadhandle()) returns (6.5.5 sys/gfx.h
+ *         declares it as returning struct gfx_gfx *), skips the entry equal
+ *         to node+64 and calls KONAunmapgfx on every other entry whose word
+ *         at +4 has bit 0 set. So +64 holds the same kind of pointer as
+ *         that list. The walk follows the link at +24; the 6.5.5 header has
+ *         gx_next third, after gx_board and gx_thd, which fits only if the
+ *         thread handle takes 16 bytes (UNKNOWN). UNRESOLVED: kona_act_pcx
+ *         step 3 reads gfxp->+8->+8 and compares it with gfxp, and which
+ *         6.5.5 field sits at +8 is open for the same reason; the +4 bit 0
+ *         test does not match any 6.5.5 field either, so the 6.5.30m
+ *         layout differs from the 6.5.5 header in at least that word.
  *   +112  gr_private: the driver's 256-byte private record (below).
  *   +120  gr_pane, the draw pane; +128 gr_readpane, the read pane.
  *   +136  gr_serial, +140 gr_readserial: the pane serial numbers the node
@@ -286,6 +297,19 @@
  * both words when it saves a context (a header the host reads back and
  * returns), which answers "who writes X+8" by exclusion; it was not
  * observed.
+ *
+ * Pipe side, ESTABLISHED from the ARM firmware and the geometry program
+ * (ucode/arm1.md, ucode/ge_isa.md): the firmware's token map sends 0x1fa
+ * to arm_context_activate, 0x1f9 to arm_context_load, 0x1fc to
+ * arm_context_deactivate and 0x1fd to arm_context_init, so 0x1fa is the
+ * token the pipe treats as activate. arm_context_deactivate ends by
+ * handing the geometry engine slot 182, mges_ContextDeactFinish. The only
+ * geometry-engine instruction with the immediate 0x1fa is at 0x6641 in
+ * mgeb_ContextDestroy (ctx_load.S line 602). INFERRED: the context code
+ * in the geometry program is what puts the activate token into the save
+ * area's +8 word; that strengthens the exclusion above but the store
+ * itself is not decoded (the instruction's operation field is not yet
+ * read).
  */
 
 /*
