@@ -199,4 +199,31 @@ enum kona_vfo_signal {
 #define KONA_CMB_TILE_W               160         /* INFERRED from allocatedSize rounding */
 #define KONA_CMB_TILE_H               8
 
+/*
+ * XMAP and video DAC registers, ESTABLISHED as a list (irsaudit 6.5.30m,
+ * tables xmap_regs at 0x101ffdc0 and vdac_regs at 0x101fffc0, entries
+ * {name, register number, mask}, walked by TEST_xmapreg and TEST_dacreg).
+ * INFERRED: the mask is the set of bits the register test can write and
+ * read back, so it bounds each register's width. INFERRED: XMAP register
+ * n is the kernel's video-controller address 0x100 + n; the four cursor
+ * registers above carry exactly the values these names describe.
+ * Numbers 4, 5, 8-10 and 0x10 are not in the table: UNKNOWN.
+ */
+#define KONA_XMAP_CURSOR_CHAN_ID      0x00    /* mask 0x1f */
+#define KONA_XMAP_CURSOR_GLYPH_BASE   0x01    /* mask 0x1ffff */
+#define KONA_XMAP_CURSOR_POS          0x02    /* mask 0x3ffffff */
+#define KONA_XMAP_CURSOR_ENABLES      0x03    /* mask 0x1ff */
+#define KONA_XMAP_SUBSTITUTE_LOW      0x06    /* mask 0xffffffff */
+#define KONA_XMAP_SUBSTITUTE_HIGH     0x07    /* mask 0x1fff */
+#define KONA_XMAP_RM_CONFIG           0x0b    /* mask 0x3 */
+#define KONA_XMAP_DI_COMPARE_ADDR     0x0c    /* mask 0x3f */
+#define KONA_XMAP_IMP_DELAY           0x0d    /* mask 0x1ff */
+#define KONA_XMAP_PIPE_DELAY          0x0e    /* mask 0x7 */
+#define KONA_XMAP_FASTLIST_CONFIG     0x0f    /* mask 0x3ff */
+#define KONA_XMAP_RD_ADDR             0x11    /* mask 0x7ffff */
+
+#define KONA_VDAC_PIXEL_MASK          0x004   /* mask 0x3ff */
+#define KONA_VDAC_CURSOR_CTRL         0x204   /* mask 0xf */
+#define KONA_VDAC_CURSOR_CLR_2        0x304   /* mask 0x3ff */
+
 #endif /* KONA_DG_H */

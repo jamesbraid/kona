@@ -35,8 +35,12 @@
  * INFERRED: a combined name addresses several blocks at once (one write
  * reaching e.g. both the TG and TM copies of the texture size), since its
  * fields repeat fields of the separate blocks (TGTM_TEX_SIZE has the same
- * layout as TM_TEX_SIZE). Which ASIC each prefix is (PG, TG, TM, TFP,
- * TFT, IMP) is UNKNOWN beyond the names.
+ * layout as TM_TEX_SIZE). INFERRED: each prefix is the netlist chip type
+ * of the same letters (pg, tg, tm, imp; TFP and TFT the four tf chips),
+ * backed by the firmware's init_pg/init_tf/init_imp writing their own
+ * prefixes (docs/rm.md, chips on each board). Which tf chip answers TFP
+ * and TFT, and which chips answer a combined index, is UNKNOWN (capture in
+ * docs/captures.md).
  *
  * INFERRED: registers are up to 48 bits wide. Fields reach bit 47
  * (TM_TEXMAP_1_HIGH at bits 45-47, TFP_FOG_DATA_N3 at 36-47,
