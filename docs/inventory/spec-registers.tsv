@@ -14,10 +14,10 @@ kpm register tables	geometry engine		ge	0x4002c	OFIFO1 B Status Register	1	0	32	
 kpm register tables	geometry engine		ge	0x40030	OFIFO2 A Status Register	1	0	32		0	named-only	GE.h:846	
 kpm register tables	geometry engine		ge	0x40034	OFIFO2 B Status Register	1	0	32		0	named-only	GE.h:850	
 kpm register tables	geometry engine		ge	0x40038	OFIFO Control Register (trashed)	1	0	32		0	documented	docs/ge.md#registers-the-arms-path-to-them	Registers: the ARM's path to them
-kpm register tables	host interface		hip	0x800000	HIP1_HH_GFIFO	1	0	32		0	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+kpm register tables	host interface		hip	0x800000	HIP1_HH_GFIFO	1	0	32		0	documented	docs/kernel.md#hh_tbus_status	`HH_TBUS_STATUS`
 kpm register tables	host interface		hip	0x800100	HH_SWITCH	1	0	32		0	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma	Host to pipe: `kona_dmawrite`, `kona_idma`
-kpm register tables	host interface		hip	0x800108	HIP1_HH_GINTR_INFO	1	0	32		0	documented	HIP.h:49	
-kpm register tables	host interface		hip	0x800108	HIP2_HH_GINTR_INFO	1	0	32		0	documented	HIP.h:49	
+kpm register tables	host interface		hip	0x800108	HIP1_HH_GINTR_INFO	1	0	32		0	documented	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
+kpm register tables	host interface		hip	0x800108	HIP2_HH_GINTR_INFO	1	0	32		0	documented	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
 kpm register tables	host interface		hip	0x8001f8	HH_NOP	1	0	32		0	documented	docs/kernel.md#what-a-process-maps	What a process maps
 kpm register tables	host interface		hip	0x800200	HH_RTC	1	0	32		0	documented	HIP.h:127	
 kpm register tables	host interface		hip	0x800208	HIP1_HH_GFIFO_LEVEL	1	0	32		1	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
@@ -38,7 +38,7 @@ kpm register tables	host interface		hip	0x800258	HH_PACK_MODE	1	0	32		0	document
 kpm register tables	host interface		hip	0x800260	HH_ODMA_PNUM	1	0	32		1	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread	Pipe to host: select feedback, `kona_dmaread`
 kpm register tables	host interface		hip	0x800268	HIP1_HH_ODMA_POFF	1	0	32		1	named-only	HIP.h:181	
 kpm register tables	host interface		hip	0x800268	HIP2_HH_ODMA_POFF	1	0	32		1	named-only	HIP.h:181	
-kpm register tables	host interface		hip	0x800270	HH_ODMA_LEN	1	0	32		0	named-only	HIP.h:183	
+kpm register tables	host interface		hip	0x800270	HH_ODMA_LEN	1	0	32		0	documented	docs/kernel.md#dispatch-and-messages-rrm_dispatch-rrm_message-rrm_validatemessage	Dispatch and messages: `RRM_Dispatch`, `RRM_Message`, `RRM_ValidateMessage`
 kpm register tables	host interface		hip	0x800278	HH_ODMA_TOTAL	1	0	32		1	named-only	kona_kernel/registers.tsv	
 kpm register tables	host interface		hip	0x800280	HH_ODMA_OVER	1	0	32		0	named-only	HIP.h:187	
 kpm register tables	host interface		hip	0x800288	HH_ODMA_LLEN	1	0	32		0	named-only	HIP.h:189	
@@ -59,29 +59,29 @@ kpm register tables	host interface		hip	0x800328	HH_ARM_UNSTALL	1	0	32		0	docume
 kpm register tables	host interface		hip	0x800330	HH_ARM_STEP	1	0	32		0	documented	docs/hip.md#reset-and-start-of-the-arm	Reset and start of the ARM
 kpm register tables	host interface		hip	0x800338	HH_ARM_CURR_ADDR	1	0	32		0	named-only	HIP.h:231	
 kpm register tables	host interface		hip	0x800340	HH_CURR_DATA_FM_ARM	1	0	32		0	named-only	HIP.h:233	
-kpm register tables	host interface		hip	0x800348	HH_CURR_DATA_TO_ARM	1	0	32		0	named-only	HIP.h:235	
-kpm register tables	host interface		hip	0x800350	HH_JTAG_DATA	1	0	32		0	named-only	HIP.h:237	
+kpm register tables	host interface		hip	0x800348	HH_CURR_DATA_TO_ARM	1	0	32		0	documented	docs/kernel.md#flow-control-layer	Flow-control layer
+kpm register tables	host interface		hip	0x800350	HH_JTAG_DATA	1	0	32		0	documented	docs/kernel.md#character-entry-points-gfxopen-gfxclose-gfxioctl-gfxcleanup-gfxread-gfxwrite-gfxmap-gfxunmap	Character entry points: `gfxopen`, `gfxclose`, `gfxioctl`, `gfxcleanup`, `gfxread`, `gfxwrite`, `gfxmap`, `gfxunmap`
 kpm register tables	host interface		hip	0x800358	HH_JTAG_TMS	1	0	32		0	named-only	HIP.h:239	
 kpm register tables	host interface		hip	0x800360	HH_JTAG_CTRL	1	0	32		0	named-only	HIP.h:241	
 kpm register tables	host interface		hip	0x800368	HH_JTAG_STATUS	1	0	32		0	named-only	HIP.h:243	
 kpm register tables	host interface		hip	0x800370	HH_JTAG_ACCESS	1	0	32		0	named-only	HIP.h:245	
-kpm register tables	host interface		hip	0x800378	HH_JTAG_RESET	1	0	32		0	documented	docs/xg.md#pipe-reset-konainitialize-and-the-credit-wait-path	Pipe reset, `KONAinitialize` and the credit-wait path
+kpm register tables	host interface		hip	0x800378	HH_JTAG_RESET	1	0	32		0	no-software-dependency	docs/xg.md#pipe-reset-konainitialize-and-the-credit-wait-path	Pipe reset, `KONAinitialize` and the credit-wait path
 kpm register tables	host interface		hip	0x800380	HIP1_HH_FCI_OVERLAP	1	0	32		0	named-only	HIP.h:250	
 kpm register tables	host interface		hip	0x800388	HIP1_HH_FCI_LOOPBACK	1	0	32		0	named-only	HIP.h:254	
 kpm register tables	host interface		hip	0x800390	HIP1_HH_FCI_ERR_STAT1	1	0	32		1	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 kpm register tables	host interface		hip	0x800390	HIP2_HH_GV_ERR_STAT1	1	0	32		1	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 kpm register tables	host interface		hip	0x800398	HIP1_HH_FCI_ERR_STAT2	1	0	32		1	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 kpm register tables	host interface		hip	0x800398	HIP2_HH_GV_ERR_STAT2	1	0	32		1	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
-kpm register tables	host interface		hip	0x8003a0	HIP1_HH_FCI_PIO_STATUS	1	0	32		0	named-only	HIP.h:274	
-kpm register tables	host interface		hip	0x8003a0	HIP2_HH_GV_OVERLAP	1	0	32		0	named-only	HIP.h:274	
+kpm register tables	host interface		hip	0x8003a0	HIP1_HH_FCI_PIO_STATUS	1	0	32		0	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
+kpm register tables	host interface		hip	0x8003a0	HIP2_HH_GV_OVERLAP	1	0	32		0	no-software-dependency	docs/kernel.md#what-a-process-maps	What a process maps
 kpm register tables	host interface		hip	0x8003a8	HH_TBUS_STATUS	1	0	32		1	documented	docs/kernel.md#private-ioctls	Private ioctls
 kpm register tables	host interface		hip	0x8003b0	HH_TFIFO_HI	1	0	32		0	named-only	HIP.h:289	
-kpm register tables	host interface		hip	0x8003b8	HIP2_HH_IDMA_HI	1	0	32		0	named-only	HIP.h:350	
+kpm register tables	host interface		hip	0x8003b8	HIP2_HH_IDMA_HI	1	0	32		0	documented	docs/kernel.md#frame-rate-scheduler-hooks-gfx_frs_valid_pipenum-gfx_frs_install-gfx_frs_uninstall	Frame-rate-scheduler hooks: `gfx_frs_valid_pipenum`, `gfx_frs_install`, `gfx_frs_uninstall`
 kpm register tables	host interface		hip	0x8003c0	HH_VC_ADDRESS	1	0	32		1	documented	docs/dg.md#what-the-driver-can-reach	What the driver can reach
 kpm register tables	host interface		hip	0x8003c8	HH_VC_FREADY	1	0	32		0	documented	docs/dg.md#what-the-driver-can-reach	What the driver can reach
 kpm register tables	host interface		hip	0x8003d0	HH_VC_DATA	1	0	32		1	documented	docs/dg.md#what-the-driver-can-reach	What the driver can reach
 kpm register tables	host interface		hip	0x8003d8	HH_VC_DATA_INCR	1	0	32		0	documented	docs/dg.md#what-the-driver-can-reach	What the driver can reach
-kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	named-only	HIP.h:299	
+kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	documented	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
 kpm register tables	host interface		hip	0x8003e8	HH_ARM_ADDRESS	1	0	32		0	documented	docs/hip.md#reset-and-start-of-the-arm	Reset and start of the ARM
 kpm register tables	host interface		hip	0x8003f0	HH_ARM_DATA	1	0	32		0	documented	docs/hip.md#reset-and-start-of-the-arm	Reset and start of the ARM
 kpm register tables	host interface		hip	0x8003f8	HH_ARM_DATA_INCR	1	0	32		0	documented	HIP.h:26	

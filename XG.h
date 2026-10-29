@@ -34,9 +34,10 @@
  * register slots seen through the big-endian low half (INFERRED from every
  * kpm offset and every generic widget offset being 4 mod 8).
  *
- * Reset values, UNKNOWN: kpm's table has masks but no reset values, and the
- * driver writes every register whose value it relies on except the command
- * water marks in XG_HI_LO_WATER (docs/open-questions.md).
+ * Reset values: UNKNOWN: no shipped software or published source depends
+ * on them. kpm's table has masks but no reset values, and the driver writes
+ * every register whose value it relies on except the command water marks
+ * in XG_HI_LO_WATER (routes tried listed there, below).
  */
 #ifndef KONA_XG_H
 #define KONA_XG_H
@@ -168,7 +169,13 @@
  * XG_HI_LO_WATER, ESTABLISHED names. kona_reset_adaptor step 10 keeps the
  * two command-FIFO marks and writes the output-DMA marks: ODMA_LOWATER =
  * 0x40, ODMA_HIWATER = 0x3f (the 0x3f40 constant). So the command marks
- * stay at whatever the chip resets them to (docs/open-questions.md).
+ * stay at whatever the chip resets them to. Their reset values are
+ * UNKNOWN: no shipped software or published source depends on them.
+ * Routes tried: the 6.5.30m kernel (it only carries the bits over), kpm's
+ * XG table (masks, no defaults), the strings of kpm, irsaudit, postmortem
+ * and ireeprom (no water-mark name beyond kpm's table), the 6.5.5 headers and Linux
+
+ * xwidget.h. An emulator picks values and says so.
  */
 #define KONA_XG_HI_LO_WATER           0x74
 #define   KONA_XG_HI_LO_WATER_ODMA_LOWATER  0x000000ff
@@ -177,10 +184,15 @@
 #define   KONA_XG_HI_LO_WATER_CMD_HIWATER   0x0fc00000
 
 /*
- * XG_GFX_DET, the write-gather group register (the kernel's
- * KONA_REG_DETACH_FLUSH at 0x7c). DETACH in bit 0, RES_TNUM in bits 1-5:
- * the driver writes (group << 1) & 0x3e to attach and 1 to detach
- * (kona_kern.h).
+ * XG_GFX_DET, the flow-control attach register (the kernel's
+ * KONA_REG_DETACH_FLUSH at 0x7c). DETACH in bit 0, RES_TNUM in bits 1-5.
+ * ESTABLISHED: the driver writes (tnum << 1) & 0x3e to attach and 1 to
+ * detach (kona_kern.h); tnum is gfx_flow_credit_tnum_get(), the constant
+ * 17, so the attach value is always 34, and the textport's kona_fc_attach
+ * writes 34 directly.
+ * with RES_TNUM 17) before its first command. INFERRED: RES_TNUM is the
+ * Xtalk transaction number on which the pipe returns flow-control credits
+ * to the hub (docs/kernel.md, "Flow-control layer").
  */
 #define KONA_XG_GFX_DET               0x7c
 #define   KONA_XG_GFX_DET_DETACH          0x01

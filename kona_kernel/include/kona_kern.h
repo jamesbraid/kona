@@ -44,7 +44,8 @@
  *
  * DETACH_FLUSH, ESTABLISHED (KONApcxswap 0x8a8): before leaving the
  * flow-control group the driver writes 1 to REGBASE + 0x7c and reads it back;
- * joining writes the group number there (see kona_act_pcx below).
+ * joining writes the credit-return transaction number there, shifted left
+ * by one (see kona_act_pcx below).
  */
 #define KONA_REG_KICK             0xc00108
 #define KONA_REG_DETACH_FLUSH     0x7c
@@ -180,8 +181,13 @@
  * Attaching to the flow-control group, ESTABLISHED (kona_act_pcx 0x478 and
  * three copies): the driver writes ((sc+0x8c8) << 1) & 0x3e to register-
  * window offset 0x7c, then waits for returned credits. Leaving the group
- * writes 1 to the same offset (KONApcxswap). INFERRED: offset 0x7c takes a
- * write-gather group number in bits 1-5 with bit 0 as "detach".
+ * writes 1 to the same offset (KONApcxswap). sc+0x8c8 is not a group
+ * number: kona_attach stores gfx_flow_credit_tnum_get() there
+ * (kona_edtinit_hip2.o 0x1010-0x1018), a constant 17, so every attach
+ * writes 34. ESTABLISHED (kpm's XG table): 0x7c is XG_GFX_DET, bit 0
+ * DETACH and bits 1-5 RES_TNUM, so 17 is the Xtalk transaction number the
+ * pipe returns flow-control credits on (XG.h, docs/kernel.md "Flow-control
+ * layer").
  *
  * Nothing in the switch saves pipe state through the host: the kernel only
  * names the save area. INFERRED: the pipe saves and restores its own state
