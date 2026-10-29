@@ -429,3 +429,25 @@ A conversion record is a list of {word count, pointer to a word list}: `cvmg_8_1
 | `C$$data$$Base`, `Image$$RW$$Base`, `C$$data$$Limit`, `C$$zidata$$Base`, `Image$$ZI$$Base`, `_edata`, `C$$zidata$$Limit`, `Image$$RW$$Limit`, `Image$$ZI$$Limit`, `_end`, `Image$$RO$$Limit`, `_etext` | | **Established.** Linker marks: initialised data 0x04040260-0x04067edc, zero-initialised data 0x04067edc-0x040953d8, read-only image end 0x0c040248. Code addresses initialised data relative to `C$$data$$Base`, which is also `InSimulator` |
 | `arm_gethistogramparameterfv`, `arm_getminmaxparameterfv` | 0x0c026608, 0x0c02660c | **Established.** One branch each to `arm_badcmd` (through the `C$$code$$Base` mark): the two queries are not supported |
 
+## Handlers and helpers named only in the token table
+
+**Established** from the code at each address; [arm1_handlers.tsv](arm1_handlers.tsv) gives each token's payload reads and ports.
+
+| Symbol | Token | What it does |
+|---|---|---|
+| `arm_texgend` | 0x013 `TEXGEND` | prints "arm_texgend NYI -- use arm_texgenf instead" and returns without reading the payload. So the host must never send it: its payload words would be taken as the next command |
+| `arm_texgeni` | 0x015 `TEXGENI` | the same message and the same behaviour (it reuses the string) |
+| `arm_bind_arm_tex_cache` | 0x1c4 `BIND_ARM_TEX_CACHE` | reads one index and marks that `tex_cache` entry invalid (both words -1) |
+| `arm_tex_send_arm_table` | 0x17e `TEX_SEND_ARM_TABLE` | reads an index and 33 words into the texture record at r8 + 0xcf4 (entry = index x 33 words, from +0x86c) |
+| `arm_tex_arm_cache_index_invalid` | 0x1e0 `TEX_ARM_CACHE_INDEX_INVALID` | reads a kind (0, 1, 2) and an index; if the remembered index of that kind (r8 + 0x8a0, 0x8b4, 0x8b0) equals it, sets it to -1 |
+| `arm_change_post_tex_scale_bias` | 0x1d7 `CHANGE_POST_TEX_SCALE_BIAS` | reads a texture id and three words; when the id is the bound one (r8 + 0x890), writes them through descriptor 0x5850d800 |
+| `arm_texelstorei` | 0x1bb `TEXELSTOREI` | keeps the texel-store parameter (GL targets 0xcf0-0xcf4 and 0xd00-0xd02) in the pixel shadow and marks the pixel state dirty (bit 0x80 of r8 + 0x90c) |
+| `arm_copyteximage` | 0x0fd `COPYTEXIMAGE` | `SetDB`, `ResolveCopyPath`, `SetupReadback`, `SetupSubtexload`, `SetupSubtexloadPos`, `SetupReadbackTF`, `SetTextureWorkaround`, `StartRbus`: a framebuffer-to-texture copy through the pixel path |
+| `arm_get_pixel_transform_parameteriv` | 0x0fa | answers through the read-back path (`start_rdata`, register 0x476) |
+| `arm_getcolortableparameterfv`, `arm_getcolortable`, `arm_getpixelmapfv` | 0x0ec, 0x0ea, 0x048 | colour-table and pixel-map queries: `lut_index` or `pixelmap_index`, then `do_getcolortable` or the read-back path |
+| `arm_gethistogram`, `arm_gethistogramparameteriv`, `arm_getminmax`, `arm_getminmaxparameteriv` | 0x104, 0x105, 0x109, 0x10a | histogram and min-max queries through `start_rdata`; `arm_getminmax` also sends an engine handler (port 0x474) to collect the result from the engines |
+| `load_ged` | | one branch to `activate_ged` (a second name for it) |
+| `get_addr` | | reads n payload words: discards them when the destination pointer is 0, else stores them; ends with the last-word read at r9 + 0x3c |
+| `real_format` | | maps a GL format number to the one the pixel path works with; it tests 0x1906 (`ALPHA`), 0x1909 (`LUMINANCE`) and the extension range from 0x8000 (exact mapping not written out here) |
+| `ge_xform_attrib_to_host`, `ge_texture_attrib_to_host` | | for `arm_pushattrib`: ask the engines to send the transform or texture attribute block to the host (operands 0x90a and 0x94b, or 0x293, at port 0x474, then slot 197, `mgesi_Eram2ODMA`: engine external memory out through the output DMA) |
+
