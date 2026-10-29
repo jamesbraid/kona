@@ -25,10 +25,10 @@ Xtalk widget and XIO attachment: the pipe's identity and apertures as the host s
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | none | `XG.h`, `docs/xg.md` | kernel attach and host interface | widget identity, aperture windows and a map RAM are reported by prior work |
+| Registers and fields | partial | `XG.h`, `docs/xg.md` | kernel attach and host interface | offsets 0x24, 0x2c, 0x34, 0x3c, 0x5c, 0x6c, 0x74 and the packing the driver writes are in docs/xg.md; names and meanings unknown; aperture windows and map RAM not read |
 | DMA | none | `XG.h`, `docs/xg.md` | kernel attach and host interface |  |
 | Interrupts | none | `XG.h`, `docs/xg.md` | kernel attach and host interface |  |
-| Reset | none | `XG.h`, `docs/xg.md` | kernel attach and host interface | liveness and bring-up ordering reported by prior work |
+| Reset | partial | `XG.h`, `docs/xg.md` | kernel attach and host interface | kona_reset_adaptor register sequence and the HH_RESET pulse sites written down; XG register names, meaning of the writes and `xwidget_gfx_reset` unknown |
 
 ### HIP
 
@@ -93,7 +93,7 @@ The kernel graphics driver and its resource manager: attach, ioctls, context and
 | Command and FIFO formats | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | private ioctl family and kernel command selectors reported by prior work |
 | DMA | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
 | Interrupts | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
-| Reset | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | pipe check and kona_die register writes named, 16 death reasons by caller with 6.5.5 names; attach-time HH_RESET sequence not read |
+| Reset | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | pipe check and kona_die register writes named, 16 death reasons by caller with 6.5.5 names; attach-time XG setup and the HH_RESET pulse in KONAinitialize and the credit-wait path read (docs/xg.md); what the reset clears unknown |
 | Context save and restore | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | KONApcxswap and kona_act_pcx packet order and payload word sources, flow-group attach/detach at offset 0x7c. Address pair shapes written down (0x9000 meaning unknown). KONAvalidateclip and KONAsetnullclip layouts written; the activate token is data read at X+8, not a constant. Remaining: drawable field meanings (origin, size, +8 generation word, +40/+44), who writes X+8 |
 
 ### OpenGL core and X modules
