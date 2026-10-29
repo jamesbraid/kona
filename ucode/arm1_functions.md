@@ -1,10 +1,305 @@
-# ARM firmware (arm1.u) functions and data by family
+# ARM firmware (arm1.u) functions and data, one entry per symbol
 
-A reference to the named functions and data of `usr/gfx/ucode/KONA/arm1.u` (IRIX 6.5.30m) that [arm1_firmware.md](arm1_firmware.md) does not already explain, grouped by what they do. [arm1_firmware.md](arm1_firmware.md) covers the structure (start-up, the input loop, the engine ports, the host-interface registers and the token handlers by group); this page is the per-symbol companion.
+The named functions and data of `usr/gfx/ucode/KONA/arm1.u` (IRIX 6.5.30m), one table row per debug-table symbol, grouped by what they do. [arm1_firmware.md](arm1_firmware.md) covers the structure (start-up, the input loop, the engine ports, the host-interface registers and the token handlers by group) and [arm1.md](arm1.md) the token map.
 
-Facts are labelled as elsewhere: **established** (read from the code at the stated address), **inferred** (with the reasoning) or **unknown**. Addresses are ARM addresses (code from 0x0c000000, initialised data from 0x04040260, zero-initialised data from 0x04067edc). "Engine handler" names are the `geif.u` slots a routine sends to port 0x8c0 (the `ge_symbols` names, [ge.md](ge.md)). "r8 + n" is the ARM's RAM block that holds the GL state shadow. The evidence columns come from a straight scan of each function in [arm1.s](arm1.s): the routines it calls, the engine handlers it names, the strings it prints and the ports it writes.
+Each row was written from the code at its address in [arm1.s](arm1.s): its callers, the registers and state it touches and its effect. Labels as elsewhere: **established** (read from the code or the image), **inferred** (with the reasoning in the row). A code row cites `+0x` offsets from the read-only image base 0x0c000000, so `+0x2336c` is ARM address 0x0c02336c; data rows give the ARM address (initialised data from 0x04040260, zero-initialised data from 0x04067edc). "The state block" is the RAM the firmware addresses through r8 (base 0), which holds the GL state shadow; "the host-interface block" is the register window at 0x00200200 it addresses through r9. "Port n" is offset n in that window: 0x8c0 takes an engine handler address, 0x400 a descriptor, 0x474-0x47c operands, and reads at 0, 0x3c and 0x40 return payload words. Engine handler names are the `geif.u` slots of [ge.md](ge.md). Names that occur twice belong to two objects and have one row each.
 
-## Enable and disable
+## Start-up, exceptions and the run-time library
+
+Reset, start-up, fault reporting, printing and the ARM C library helpers. A short lowercase name is written in backticks so it is read as code.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `fault_cookie` | 0x040516ec | **Established** (`arm1.u` 6.5.30m). Zero in the image; `fault()` writes 0xdead into it before printing the exception, so a debugger reading memory can tell that the firmware stopped in its fault handler. |
+| `REV_REL` | 0x04067ed4 | **Established** (`arm1.u` 6.5.30m). A pointer to the string "sherwood-root", the build tree name that `init()` prints in its start-up banner. |
+| `REV_VER` | 0x04067ed8 | **Established** (`arm1.u` 6.5.30m). A pointer to the string "0607201829" that `init()` prints beside the tree name. **Inferred:** a build time stamp (date and time). |
+
+## Host interface, token map and input loop
+
+Building the token map, the input loop, refused-token paths, payload helpers and the vertex-array token chains. The token map and its entry format are in [arm1.md](arm1.md); the loop is in [arm1_firmware.md](arm1_firmware.md#the-input-loop).
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `SendDGRply` | 0x0c0064f8 | **Established** (`arm1.u` +0x64f8). Sends a reply to the host through the read-back path: checks the reply type is below 0x20 (else prints an error and stops), opens the read-back stream, writes the word count plus one, the type, then each payload word to raster-bus register 0x476, and finally the sum of the type and the words as a checksum, then closes the stream. Called by every get-style display request. |
+| `vertex_table` | 0x0405102c | **Established** (`arm1.u` 6.5.30m). 60 words indexed by vertex-array type and size giving the vertex token for each array format, zero where none exists; `varray_build_command` reads it to build the vertex-array token-map chain. |
+| `normal_table` | 0x0405111c | **Established** (`arm1.u` 6.5.30m). 60 words giving the normal token for each array format (for example 0x76), zero where none exists; read by `varray_build_command`. |
+| `color_table` | 0x0405120c | **Established** (`arm1.u` 6.5.30m). 60 words giving the colour token for each array format (such as 0x61), zero where none exists; read by `varray_build_command`. |
+| `index_table` | 0x040512fc | **Established** (`arm1.u` 6.5.30m). 60 words giving the colour-index token for each array format, zero where none exists; read by `varray_build_command`. |
+| `tex_coord_table` | 0x040513ec | **Established** (`arm1.u` 6.5.30m). 60 words giving the texture-coordinate token for each array format, zero where none exists; read by `varray_build_command`. |
+| `wordCountTable` | 0x040514dc | **Established** (`arm1.u` 6.5.30m). 60 payload word counts per array format that `varray_build_command` puts into bits 6-8 of each vertex-array token-map entry. |
+| `lastWrdTable` | 0x040515cc | **Established** (`arm1.u` 6.5.30m). 60 values (0-3) per array format that `varray_build_command` puts into bits 27-28 of each vertex-array token-map entry. |
+| `byteCmpTable` | 0x040516bc | **Established** (`arm1.u` 6.5.30m). Twelve values (0-3) per component type that `varray_build_command` puts into bits 29-30 of a vertex-array token-map entry, the component-type field. |
+| `icu_map` | 0x04068e54 | **Established** (`arm1.u` 6.5.30m). The firmware's 512-word copy of the token map that `init_hip` builds; the vertex-array builder and `arm_pack` read entries from it to build vertex-array and packed entries. |
+
+## Engine and distributor set-up
+
+Loading the distributor program and tables, the geometry-engine microcode and the bef chip, and the per-engine set-up commands ([arm1_firmware.md](arm1_firmware.md#how-a-handler-reaches-the-engines), [ged.md](ged.md)).
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `befsh_addrs` | 0x04067c0c | **Established** (`arm1.u` 6.5.30m). 89 register addresses of the bef chip (starting at 0x441) that `init_geBefAddrs` broadcasts to every engine as one command; `arm_slop` also reads it. |
+| `befsh_init` | 0x04067d70 | **Established** (`arm1.u` 6.5.30m). 89 initial values for the bef chip shadow (mostly zero, some 0x3fff8000), matching the address list entry by entry; `init_befshadow` sends them to one engine as one command. |
+| `gepc` | 0x04068654 | **Established** (`arm1.u` 6.5.30m). 512 words, the engine handler address table copied from `geif.u` by `init_hip`; every engine send loads its handler address from here or from the packed copy in the state block. |
+
+## Boundary scan, boards and serial numbers
+
+The scan chain, board and chip identification, the board-configuration block and the serial-number (NIC) readers.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `sysconf` | 0x04067edc | **Established** (`arm1.u` 6.5.30m). The board-configuration block at the start of zero-initialised data, filled at start-up (engine count at +0x54, occupancy mask at +0x5c, engine numbering from +0x64); `arm_getconfig` returns its 478 words to the host. |
+| `v0` | 0x0408ce34 | **Established** (`arm1.u` 6.5.30m). A 1 KB bit-vector buffer for the boundary-scan chain, shifted in and out by `jt_reg_read`, `jt_reg_write` and the board and chip identity readers. |
+
+## Display generator
+
+The display-generator requests (`arm_video_cmd`, [dg_dispatch.tsv](dg_dispatch.tsv)) and their helpers. [docs/dg.md](../docs/dg.md) explains the display side; the entries here say what each routine in `arm1.u` does.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `DoDGRqstGetInternalGenlock` | 0x0c006364 | **Established** (`arm1.u` +0x6364). Replies to the host with one word, bit 27 of the firmware's genlock-state word at 0x0406cd1c, which the internal-genlock request stores from its payload; reply type 0x1c, sent through the reply writer. Touches no display hardware. |
+| `arm_video_cmd` | 0x0c006398 | **Established** (`arm1.u` +0x6398). Token 0x1a6 handler (the display-generator command port): reads a command number from the host-interface block, rejects numbers of 0x5d or more, then reads as many payload words as the command's entry in the dispatch table gives (on the stack up to 16 words, else into the 128 KB scratch buffer). Adds them to the command number, compares with the checksum word at offset 0x3c and prints a message and drops the command on a mismatch, else calls the entry's handler. Keeps the last two command numbers in a history pair. |
+| `DoDGRqstCursorChannel` | 0x0c0065d4 | **Established** (`arm1.u` +0x65d4). Selects which video channel owns the hardware cursor: looks up the per-channel record named by payload word 0 and writes its first word (the channel's index) to XMAP register 0x100, with short delay loops around the access. Dispatch-table request only. |
+| `DoDGRqstCursorType` | 0x0c00663c | **Established** (`arm1.u` +0x663c). Sets the cursor mode in XMAP register 0x103: payload 0 writes 2, payload 1 writes 1, any other value writes 0 (cursor off). Delay loops surround the display-bus write; no state is kept. |
+| `DoDGRqstCursorPosition` | 0x0c0066a4 | **Established** (`arm1.u` +0x66a4). Writes the cursor position to XMAP register 0x102: payload word 0 masked to 13 bits is the horizontal part and payload word 1 shifted left by 13 and masked to bits 13-25 is the vertical part, combined into one word, the same layout the host kernel driver writes. |
+| `DoDGRqstCursorPriority` | 0x0c006710 | **Established** (`arm1.u` +0x6710). Stores payload word 1 (the cursor priority) at offset 4 of the per-channel record named by payload word 0; it writes no display register, so the value only changes firmware state. |
+| `dgVDacControlWrite` | 0x0c006730 | **Established** (`arm1.u` +0x6730). Writes one indexed control register of a video DAC: argument 0 is the channel, argument 1 the register number, argument 2 the value. Sends the register number as a low byte then a high byte to the DAC index port at display-bus address 0xb00 plus 0x100 per channel, then the value to the data port at 0xb02, with delay loops between accesses. |
+| `dgVDacControlRead` | 0x0c006814 | **Established** (`arm1.u` +0x6814). Reads one indexed control register of a video DAC: argument 0 is the channel, argument 1 the register number. Sends the number as two bytes to the DAC index port at display-bus address 0xb00 plus 0x100 per channel, waits, and returns the value read from the data port at 0xb02. |
+| `dgVDacClutWrite` | 0x0c0068b8 | **Established** (`arm1.u` +0x68b8). Writes one byte of a video DAC's colour map: argument 0 is the channel, argument 1 the map index sent as two bytes to the index port at 0xb00 plus 0x100 per channel, argument 2 the value written to the colour-map data port at 0xb01. No caller in the image uses it. |
+| `dgVDacClutRead` | 0x0c00699c | **Established** (`arm1.u` +0x699c). Reads one byte of a video DAC's colour map: argument 0 is the channel, argument 1 the map index sent as two bytes to the index port at 0xb00 plus 0x100 per channel; returns the byte read from the colour-map data port at 0xb01. No caller in the image uses it. |
+| `dgVDacModeWrite` | 0x0c006a40 | **Established** (`arm1.u` +0x6a40). Writes argument 1 to a video DAC's mode port at display-bus address 0xb03 plus 0x100 per channel (argument 0), after a delay loop and followed by another. Its only caller is the video-DAC reset sequence. |
+| `dgVDacModeRead` | 0x0c006a90 | **Established** (`arm1.u` +0x6a90). Returns the value read from a video DAC's mode port at display-bus address 0xb03 plus 0x100 per channel (the first argument), with no delay loops. No caller in the image uses it. |
+| `dgGDacChannelWrite` | 0x0c006a9c | **Established** (`arm1.u` +0x6a9c). Writes a register of the gain or gamma DAC serving a channel: argument 0 is the channel (0-7, or 0xdc/0xde for the option-board DAC), argument 1 picks register slot 0-2, argument 2 is the value. Channels 0-7 use display-bus block 0x1300 plus 0x100 per channel pair, registers 4/5/0xf for even channels and 2/3/0x17 for odd ones; the option-board channels write 0xe600/0xe601/0xe610 (bit 0 only). |
+| `dgSetDacPixelMux` | 0x0c006db4 | **Established** (`arm1.u` +0x6db4). Sets the pixel-multiplex ratio of a video DAC: argument 0 is the channel (0-7, or 0xde mapped to 0xdc), argument 1 the pixels per clock. Ratios 1/2/4 map to codes 0/1/3, written to bits 7-6 of video-DAC control register 7 (the other bits are written as zero); any other ratio prints an error and writes nothing. |
+| `dgBlankChannel` | 0x0c006e40 | **Established** (`arm1.u` +0x6e40). Blanks or unblanks one channel's output: argument 0 is the channel id, argument 1 points to the blank flag (zero means use the channel record's stored blank bit). For video DACs it writes 0 (blank) or 0xff to control register 4; for the option-board id 0xc6 it sets a blank field in register 0xc104 and, when blanking, writes 1024 zero entries at 0xf000; for id 0x5e it sends the option board a command. |
+| `DoDGRqstChannelBlanking` | 0x0c007088 | **Established** (`arm1.u` +0x7088). Records the blank flag (payload word 1, one bit) in bit 31 of the channel record's flag word for the channel in payload word 0, and applies it through the blanking routine only when no temporary all-channel blank is in force. |
+| `DoDGRqstGetChannelBlanking` | 0x0c0070d0 | **Established** (`arm1.u` +0x70d0). Replies (type 9) with one word: the channel's stored blank bit, from bit 31 of its record's flag word, or 1 when a temporary all-channel blank is in force. Reads no display hardware. |
+| `DoDGRqstTempBlankAllChannels` | 0x0c007124 | **Established** (`arm1.u` +0x7124). Nests a temporary blank of every present channel: a nonzero payload increments a blank-depth counter and blanks all channels only if it was not already positive; a zero payload decrements it (clamped at zero) and unblanks all when it reaches zero. Walks the present video-output chips with the per-channel blank routine. Used by genlock handling and the board reset. |
+| `dgTempBlankAllChannels` | 0x0c007188 | **Established** (`arm1.u` +0x7188). Wrapper that puts its argument (nonzero to blank, zero to unblank) on the stack as a one-word payload and calls the temporary-blank request. Called once with 1 by the display-board start-up code, so every channel is blank before the stored video combination loads. |
+| `DoDGRqstOutputGain` | 0x0c0071a4 | **Established** (`arm1.u` +0x71a4). Sets the output gain of a video DAC channel (payload word 0, ids 0-7 or 0xde; word 1 the gain 0-255). Stores the gain in the channel record and writes 255 minus the gain to the gain DAC through the gain-DAC writer; channel 1, when its record marks encoder drive, instead stores it in the encoder gain word and writes display-bus register 0x1708. |
+| `DoDGRqstGetOutputGain` | 0x0c007270 | **Established** (`arm1.u` +0x7270). Replies (type 0xa) with one word, the gain last set for the channel in payload word 0: the stored value in its channel record, or for channel 1 with the encoder-drive flag set the shared encoder gain word. Reads no display hardware. |
+| `dgResolveVDacGain` | 0x0c0072d8 | **Established** (`arm1.u` +0x72d8). Recomputes the gain-select field, bits 4-3, of video-DAC control register 8 from the sync and pedestal switches held in registers 6 and 8: gain code 2 when no switch is set, 1 when exactly one of the two groups is set, 0 when both are. Argument 0 is the channel (0xde maps to 0xdc); ids outside 0-7 are ignored. |
+| `DoDGRqstSyncSelects` | 0x0c007394 | **Established** (`arm1.u` +0x7394). Sets one sync-output option of a video DAC channel: payload word 0 is the channel, word 1 picks one of five options (control register 8 bit 1, register 6 bit 2, register 8 bit 2, the gain-DAC sync bit, or the sync-source bits of display-bus register 0x8400), word 2 the on/off value, word 3 control register 8 bit 0. Option-board ids use registers 0x3400/0xcd00 instead; it ends by recomputing the DAC gain select. |
+| `DoDGRqstGetSyncSelects` | 0x0c007808 | **Established** (`arm1.u` +0x7808). Replies (type 0xb) with six words giving the sync options of the channel in payload word 0: control register 8 bit 1, register 6 bit 2, register 8 bit 2, register 8 bit 0, the record's stored gain-DAC sync bit, and a sync-source code read from register 0x8400 or the option-board register. Unsupported ids return minus one in four of them. |
+| `DoDGRqstOutputPedestal` | 0x0c0079ec | **Established** (`arm1.u` +0x79ec). Sets the output pedestal (payload word 1, low bit) of the channel in payload word 0: channel 1 additionally goes through the encoder pedestal routine; ids 0-7 set bit 3 of video-DAC control register 6 from the value, then the gain select is recomputed. |
+| `DoDGRqstGetOutputPedestal` | 0x0c007a54 | **Established** (`arm1.u` +0x7a54). Replies (type 0xc) with one word: bit 3 of control register 6 of the video DAC for the channel in payload word 0 (ids 0-7), or minus one for any other id. |
+| `DoDGRqstLoadDacCursor` | 0x0c007aa8 | **Established** (`arm1.u` +0x7aa8). Loads a video DAC's hardware cursor (263 payload words: channel, six colour words, 256 image words): selects the DAC's indexed register 0x0303 and writes six colour bytes to the data port, then selects index 0x0400 and streams 1024 image bytes, four from each image word, low byte first. Only ids 0-7 and 0xde are accepted. **Inferred:** index 0x0303 is the cursor colours and 0x0400 the cursor RAM, from the byte counts and the 64 by 64 two-bit size of the image. |
+| `DoDGRqstDiagXmapColor` | 0x0c007ef0 | **Established** (`arm1.u` +0x7ef0). Diagnostic request 3 (ten payload words): packs the colour in the payload, in a layout chosen by word 7, into two words written to XMAP registers 0x106 and 0x107 for every XMAP chip whose bit is set in the mask in word 9 (the chip number goes to 0x108 first), switches on the substitute colour in XMAP register 0x105 and forces an XMAP copy-buffer update. |
+| `DoDGRqstDisableDiagXmapColor` | 0x0c008120 | **Established** (`arm1.u` +0x8120). Diagnostic request 4: writes 0 to XMAP register 0x105, turning the substitute colour off, then forces an XMAP copy-buffer update. It reads no payload. |
+| `DoDGRqstVCBusTrace` | 0x0c00816c | **Established** (`arm1.u` +0x816c). Diagnostic request 5: prints the message that the firmware must be compiled with bus tracing enabled and returns, so in this build the request does nothing to the hardware and ignores its four payload words. |
+| `DoDGRqstDiagCursorFromImage` | 0x0c0081a0 | **Established** (`arm1.u` +0x81a0). Diagnostic request 6 (4107 payload words): writes payload word 0 to XMAP register 0x118, then converts a 64 by 64 image of two-bit pixels, one pixel per word, taken from the bottom row up, into four packed words per row (two bit planes of 64 pixels) written to XMAP data port 0x119, then writes colour words packed from ten-bit fields near the payload end to port 0x119 and a closing 0-3 value sequence to ports 0x11f and 0x11e. |
+| `dgEncoderControlWrite` | 0x0c00852c | **Established** (`arm1.u` +0x852c). Writes one register of the video encoder chip: argument 0 is the register number, sent to the encoder index port at display-bus address 0x1800, argument 1 the value written to the control data port at 0x1802, with delay loops between the accesses. |
+| `dgEncoderControlRead` | 0x0c0085bc | **Established** (`arm1.u` +0x85bc). Reads one register of the video encoder chip: sends the register number (argument 0) to the encoder index port at display-bus address 0x1800, waits, and returns the value read from the control data port at 0x1802. |
+| `dgEncoderClutWrite` | 0x0c008614 | **Established** (`arm1.u` +0x8614). Writes one byte of the video encoder's colour map: argument 0 is the index sent to the encoder's map index port at display-bus address 0x1801, argument 1 the value written to the map data port at 0x1803. No caller in the image uses it. |
+| `dgEncoderClutRead` | 0x0c0086a4 | **Established** (`arm1.u` +0x86a4). Reads one byte of the video encoder's colour map: sends the index (argument 0) to the map index port at display-bus address 0x1801 and returns the value read from the map data port at 0x1803. No caller in the image uses it. |
+| `dgEncoderPedestal` | 0x0c0086fc | **Established** (`arm1.u` +0x86fc). Sets the encoder's pedestal control: reads encoder register 0xf and rewrites bit 4 and the two 2-bit fields at bits 3-2 and 1-0 from the argument and the master-clock-select word saved by the clock request; when that word is zero the fields become 2 and bit 4 clears, else bit 4 takes the argument and the fields become 1 for a zero argument and 0 otherwise. |
+| `DoDGRqstEncoderOutputGain` | 0x0c008784 | **Established** (`arm1.u` +0x8784). Sets the video encoder's output gain: keeps the low 8 bits of payload word 0 in the shared encoder gain word and writes 255 minus that value to display-bus register 0x1708 (with delay loops), the same gain register channel 1 uses when it is encoder-driven. |
+| `DoDGRqstGetEncoderOutputGain` | 0x0c0087e8 | **Established** (`arm1.u` +0x87e8). Replies (type 0xe) with one word, the encoder output gain last stored by the encoder gain request; reads no display hardware. |
+| `DoDGRqstSCHPhase` | 0x0c008814 | **Established** (`arm1.u` +0x8814). Sets the encoder's subcarrier-to-sync phase: writes the low and high bytes of payload word 0 to encoder registers 0x24-0x25, then the low and high bytes of that value plus 0x2000 to registers 0x26-0x27. |
+| `DoDGRqstGetSCHPhase` | 0x0c008870 | **Established** (`arm1.u` +0x8870). Replies (type 0xf) with one word, the encoder's phase value rebuilt from the bytes read back from encoder registers 0x24 (low) and 0x25 (high). |
+| `DoDGRqstLoadEncoder` | 0x0c0088b4 | **Established** (`arm1.u` +0x88b4). Programs the video encoder from scratch: clears control register 0 twice, sets it again from the master-clock-select word, then writes registers 0xe/0xf/1/2 (bit 2 from payload word 0), clears registers 3-4, loads one of two fixed tables into registers 0x10-0x23 chosen by the master-clock-select word, and clears registers 0x26-0x27 (0x27 gets 0x20 for the second table). **Inferred:** the two tables are the two video standards, since the choice follows the master clock select. |
+| `DoDGRqstEncoderTestPattern` | 0x0c008c00 | **Established** (`arm1.u` +0x8c00). Controls the encoder test pattern: reads encoder register 1, clears bit 5 and sets bit 4, then payload 1 clears bit 4 and payload 2 sets bit 5 (other values leave bit 4 set and bit 5 clear), and writes the result back to register 1. |
+| `DoDGRqstEnableEncoder` | 0x0c008c44 | **Established** (`arm1.u` +0x8c44). Enables or disables the video encoder: writes encoder control register 0 twice with bit 0 and bit 4 both taken from bit 0 of payload word 0 and bit 3 set when the master-clock-select word is zero. |
+| `DoDGRqstFetal` | 0x0c008cb0 | **Established** (`arm1.u` +0x8cb0). Builds the display board's default state from scratch (the payload is ignored): clears the blank-depth counter, writes 0xff to display-bus register 0x1711, sets the raster-board count to zero, fills display-bus words 0-0x3f with 0x20 and 0x40-0x5f with 0, zeroes three 4096-word XMAP banks, then runs the XMAP, channel, VOC, video-DAC, gain-DAC and encoder default builders for each VOC the board reports present, the option-board builders by board type, and a board-generation-specific final register write. |
+| `dgFetal` | 0x0c009628 | **Established** (`arm1.u` +0x9628). Thin wrapper that pushes a zero word as a payload and calls the default-state request; the request ignores its payload. Called by the start-up code unless the firmware runs in the simulator, and again by the stored-combination loader when the flash image fails to load, just before it loads the emergency format. |
+| `DoDGRqstXServerVideoInit` | 0x0c009648 | **Established** (`arm1.u` +0x9648). Dispatch-table request 83: when the board option word is 6 it pulses display-bus register 0xc000 to 1 then 0 with sleeps between, then walks the 17 option VOC entries, rebuilding default VOC state for each present option VOC (printing warnings for unexpected or missing ones), and finishes by tail-calling the late-channel auto-initialisation. |
+| `dgMakeXmapFetal` | 0x0c0097d4 | **Established** (`arm1.u` +0x97d4). Writes the XMAP defaults: zero to seven of the registers 0x100-0x109, then 2 to 0x10c, a board-dependent pair of values (0xa5 with 6, or 0x64 with 3) to 0x10d-0x10e, 0x339 to 0x10f and zero to 0x110, then forces an XMAP copy-buffer update so the values take effect. |
+| `dgMakeChannelFetal` | 0x0c009b98 | **Established** (`arm1.u` +0x9b98). Initialises a channel record: argument 0 is the channel id, argument 1 its ordinal in the record array. Stores the ordinal, the id and minus one (the vertical-phase word), clears the size, format and field fields, stores 0x500 and 0x400 in two size fields, puts the flag word in a known state, then calls the gamma-map request with the id and zero. Writes no display register directly. |
+| `dgMakeVocFetal` | 0x0c009c88 | **Established** (`arm1.u` +0x9c88). Resets one video-output chip to its defaults: writes zero to VOC registers 0x01/0x07/0x30/0x43/0x44/0x50/0x60/0x70/0x81/0x8d/0x8f, the channel ordinal's low five bits to register 0x03, a 0x10-then-zero pair to 0x06 and 0x10000 to 0x14, then resets the VOC's FIFO and reads back register 0. Argument 0 is the channel id. |
+| `dgMakeVDacFetal` | 0x0c00a108 | **Established** (`arm1.u` +0xa108). Resets a video DAC to defaults: writes mode port values 6 then 7 with delays, control register 5 to 0x88, register 6 to 0xe4, loads a 256-entry linear ten-bit ramp into the colour map (each value written three times), then register 4 to 0xff and registers 7/8/0xd/9/0x204 to zero. Argument 0 is the channel (0-7, or 0xdc). |
+| `dgMakeGDacFetal` | 0x0c00a3f0 | **Established** (`arm1.u` +0xa3f0). Sets the gain DAC of a channel to its default of 0x80: calls the gain-DAC writer for the channel (argument 0) with selector 0, then selector 1, each with value 0x80. |
+| `dgMakeEncoderFetal` | 0x0c00a420 | **Established** (`arm1.u` +0xa420). Loads a linear ramp into the video encoder's colour map: sets the map index port at display-bus 0x1801 to 0, then for each of 256 entries writes the entry number three times to the map data port at 0x1803. |
+| `dgMakeGvoFetal` | 0x0c00a544 | **Established** (`arm1.u` +0xa544). Does nothing: the function is a single return, so the digital-video-output option board board type gets no default state set from here. |
+| `dgMakeTvoFetal` | 0x0c00a548 | **Established** (`arm1.u` +0xa548). Selects the TVO option board: sets the two mode bits 12-11 of the saved copy of display-bus register 0x8400 to 1, writes the word to 0x8400 and starts the I2C interface with bus base 0xa000. |
+| `dgMakeDplexFetal` | 0x0c00a5b4 | **Established** (`arm1.u` +0xa5b4). Selects the DPLEX option board: sets the two mode bits 12-11 of the saved copy of display-bus register 0x8400 to 2 and writes it, writes 0 to 0x8001, writes 1 to 0xe300 and to 0xe500, then resets the option VOC id 0xde and video DAC id 0xdc to their defaults. A table of sequencer signal names follows it in the image. |
+| `dgLoadFieldSequentialAndStereo` | 0x0c00a7ac | **Established** (`arm1.u` +0xa7ac). Builds the per-field colour and eye selects of a loaded format: for each field (count in payload word 20) combines the field's colour word and eye code from the format payload into a field word, writes it to the channel's VOC register 0x60 plus the field number, and keeps a copy in the channel record; an eye code above 3 prints an error. |
+| `dgEnableRequester` | 0x0c00a930 | **Established** (`arm1.u` +0xa930). Starts or stops a channel's video requester: argument 0 is the channel and argument 1 the enable bit, written to bit 0 of VOC register 0x44 (read, modify, write with delays), and mirrored into bit 27 of the channel record's flag word. |
+| `DoDGRqstLoadFormat` | 0x0c00a9b0 | **Established** (`arm1.u` +0xa9b0). Loads a video format (383 payload words) into a channel: disables the channel, copies the summary words into the channel record, loads both clock parameter sets and starts the VOC clock, writes the state table, edge and line-type registers of the sequencer, sets pixel mux, blanking, FIFO and vertical-phase registers, loads partner VOCs of option boards by recursion, sets the DAC pixel mux for ids 0-7, then the field selects and the XMAP channel format. Does not enable the channel. |
+| `dgSyncWithMasterVoc` | 0x0c00b9a0 | **Established** (`arm1.u` +0xb9a0). Waits for a frame boundary on the master VOC: reads its status at display-bus 0x300 until bit 7 goes high, then until it goes low, each wait bounded at one million ticks of the free-running counter at 0x2000b0. Returns the ticks elapsed since entry. |
+| `DoDGRqstEnableChannel` | 0x0c00ba20 | **Established** (`arm1.u` +0xba20). Turns a channel on (payload: channel, turn-on flag, set-up flag). A set-up flag pauses the channel, sets VOC register 0x01 bits 1-0 to 1, computes a FIFO threshold from the record's width into register 0x8a (also on option-board copies), starts the requester and resumes it. A turn-on flag clears VOC 0x01 bits 1-0 on the write VOC, syncs to the master VOC, sets bit 0 of register 0x06 and marks the record enabled. |
+| `DoDGRqstGetChannelEnables` | 0x0c00bf50 | **Established** (`arm1.u` +0xbf50). Replies (type 0x13) with two words from the channel record's flag word: the requester-enabled bit 27 and the channel-enabled bit 28 for the channel in payload word 0. Reads no display hardware. |
+| `DoDGRqstDisableChannel` | 0x0c00bfb4 | **Established** (`arm1.u` +0xbfb4). Turns a channel off: clears bits 1-0 of VOC register 0x01 and bit 0 of register 0x06 on the channel's write VOC, clears the enabled bit 28 in the record flag word (and in the partner option-board channel's record), and stops the requester. |
+| `DoDGRqstGetChannelFormatInfo` | 0x0c00c10c | **Established** (`arm1.u` +0xc10c). Replies (type 0x17) with five words about the channel's loaded format, all from its record and none from the hardware: the saved pixel-format word at offset 0xac, flag bits 30 and 26, a constant minus one, and the saved vertical-phase word at offset 0x164. |
+| `dgWriteDgoTMC22071a` | 0x0c00c1a4 | **Established** (`arm1.u` +0xc1a4). Shifts a 47-bit configuration image out to the digital-video-output board's encoder chip: bits 46 down to 1 of the image (argument 0, an array of words) go one at a time to display-bus register 0xc400, each followed by a sleep of 50 ticks, then bit 0 of word 0 goes to 0xc401 as a final strobe. **Inferred:** a bit-serial load, from the one-bit writes and sleeps. |
+| `DoDGRqstDataFormat` | 0x0c00c280 | **Established** (`arm1.u` +0xc280). Sets the data format of an output channel (payload: channel, format code, flag): stores the format and the flag in the channel record, then by channel id programs the option board. Ids 0x5e-0x60 write the same 0x8400 mode value as the TVO default builder and send a serial-bus byte for device 0xee chosen from the format; the digital video output ids load registers 0xc006/0xc104, the range 0xc200-0xc216 and the encoder bit image; the remaining option ids set mode bit 12 of 0x8400, and 0xde also writes three more registers. |
+| `DoDGRqstGetDataFormat` | 0x0c00ca44 | **Established** (`arm1.u` +0xca44). Replies (type 0x1e) with two words about the channel in payload word 0: the data-format code kept at offset 0xb0 of its record, and 1 when bit 20 of the record's flag word is clear, else 0. Reads no display hardware. |
+| `DGGlobalState` | 0x04069654 | **Established** (`arm1.u` 6.5.30m). The display generator's 0x37e0-byte state record (channels, formats, genlock and option-board state), cleared by `DoDGRqstAutoInit` and read and written by nearly every display-request handler. |
+| `sdram_scratch` | 0x0406ce34 | **Established** (`arm1.u` 6.5.30m). A 128 KB scratch buffer used for flash PROM contents: `eeprom_read` and the write routine move data through it, and the display auto-initialisation checks the stored video combination in it. |
+
+## GL state handlers
+
+Token handlers and helpers that keep GL state (colour, lighting, material, fog, blending, depth, stencil, hints, evaluators) in the state block and send it to the engines or raster boards.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `expX` | 0x04051804 | **Established** (`arm1.u` 6.5.30m). 128 decreasing floats from 1.0 (the next is 0.9394) loaded into engine memory by `InitFogGlobal`. **Inferred:** coarse steps of the exponential fog function, multiplied with the fine table. |
+| `expY` | 0x04051a04 | **Established** (`arm1.u` 6.5.30m). 258 floats falling slowly from 1.0 (0.99976 ...) loaded by `InitFogGlobal`. **Inferred:** fine steps of the exponential fog function between the coarse entries. |
+
+## Lines, points, polygons and raster set-up
+
+Primitive set-up derived from GL state: line, point and polygon modes, stipple, antialiasing tables, multisampling and scissor.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `initStipplePat` | 0x0404d538 | **Established** (`arm1.u` 6.5.30m). 32 words of all ones: the default polygon stipple that `InitPolygonStippleGEState` loads so an unstippled polygon draws every pixel. |
+| `MSPoints_Infos` | 0x04051e0c | **Established** (`arm1.u` 6.5.30m). 0x15e00 bytes of packed sample-coverage data that `InitMSPointsGlobal` expands and loads into engine memory for drawing multisampled points. |
+
+## Texture management
+
+Texture binding, loading, the ARM texture cache and texture-format tables.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `texFormatConvert` | 0x0404db08 | **Established** (`arm1.u` 6.5.30m). 33 words translating a texture's internal format to the raster boards' texel format number (up to 0xe); `SetupRM_TextureBind` reads it when binding a texture. |
+| `nComponents` | 0x040516f0 | **Established** (`arm1.u` 6.5.30m). Six words of components per texture colour-table format (one to four) that `PixValidateTexColorTable` uses to size the table load. |
+| `texFormatLookup` | 0x04051708 | **Established** (`arm1.u` 6.5.30m). 63 words mapping a texture internal format and colour-table format pair to the resulting texel layout (values 1-5); read by `PixValidateTexColorTable`. |
+| `tex_cache` | 0x0409086c | **Established** (`arm1.u` 6.5.30m). The ARM's texture cache table of id pairs, invalidated by writing -1 to both words; the bind handlers, `flush_texload_ids` and `update_texbind_id` keep it. |
+| `texState` | 0x04095334 | **Established** (`arm1.u` 6.5.30m). 0xa4 bytes of current texture set-up shared by `arm_texsetup`, `arm_texbind` and the raster-board load and bind routines, including the resolved internal format. |
+
+## Pixel path: engine pipeline modules
+
+The engine-side pixel pipeline: the modules each stage adds and their parameters.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `UConvolveTable` | 0x0404d3a8 | **Established** (`arm1.u` 6.5.30m). Twelve pairs of an engine module slot (0x11b-0x11d) and one of three writer routines in the image (from 0x0c032080 to 0x0c0325b0), one pair per kernel shape; `AddConvolution` picks the pair that builds the convolution stage. |
+
+## Pixel path: X server pixel commands
+
+The X server's pixel read, write and copy commands and the X pixel planners.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `cvm_spec_8` | 0x0404d970 | **Established** (`arm1.u` 6.5.30m). Eight converter words (0x02083800 down to 0x42080000, bit 30 marking the last) for 8-bit X pixels, reached through the 8-bit converter group by `X_PixSetupGE`; `CompGedReg` loads its address only as a base for the register-list count at +0x15c. |
+| `cvm_spec_16` | 0x0404d990 | **Established** (`arm1.u` 6.5.30m). Eight converter words for 16-bit X pixels (0x02103000 ... 0x42100000), reached only through the 16-bit converter group that `X_PixSetupGE` picks. |
+| `cvm_spec_32` | 0x0404d9b0 | **Established** (`arm1.u` 6.5.30m). Eight converter words for 32-bit X pixels, alternating between 0x02202000 and the last-word form 0x42200000, reached only through the 32-bit converter group that the X pixel set-up picks. |
+| `cvm_spec_48` | 0x0404d9d0 | **Established** (`arm1.u` 6.5.30m). Eight converter words for 48-bit X pixels (0x020c3400 ... 0x420c1000), reached only through the 48-bit converter group of `X_PixSetupGE`. |
+| `cvm_spec_rgb10_sw` | 0x0404d9f0 | **Established** (`arm1.u` 6.5.30m). Eight converter words for 10-bit-per-component RGB X pixels written to the framebuffer, reached only through their converter group in `X_PixSetupGE`. |
+| `cvm_spec_rgb10_sr` | 0x0404da10 | **Established** (`arm1.u` 6.5.30m). Eight converter words for 10-bit-per-component RGB X pixels read back, the field order of the write set reversed; reached through `X_PixSetupGE`. |
+| `cvm_spec_tbm` | 0x0404da30 | **Established** (`arm1.u` 6.5.30m). Eight converter words (0x02013f00 ... 0x42010f00) for X bitmap transfers, reached only through their converter group in `X_PixSetupGE`. |
+| `cvmg_8` | 0x0404da50 | **Established** (`arm1.u` 6.5.30m). Converter group for 8-bit X pixels: a count of 8 and a pointer to its converter words; `X_PixSetupGE` chooses it by pixel depth. |
+| `cvmg_16` | 0x0404da58 | **Established** (`arm1.u` 6.5.30m). Converter group for 16-bit X pixels: a count of 8 and a pointer to its words; `X_PixSetupGE` uses it with the small tag table for depth 1. |
+| `cvmg_32` | 0x0404da60 | **Established** (`arm1.u` 6.5.30m). Converter group for 32-bit X pixels: count 8 and a pointer to its words; `X_PixSetupGE` uses it with the big tag table for depth 2. |
+| `cvmg_48` | 0x0404da68 | **Established** (`arm1.u` 6.5.30m). Converter group for 48-bit X pixels: count 8 and a pointer to its words, chosen by `X_PixSetupGE`. |
+| `cvmg_rgb10_sw` | 0x0404da70 | **Established** (`arm1.u` 6.5.30m). Converter group for 10-bit RGB X pixel writes: count 8 and a pointer to its words, chosen by `X_PixSetupGE`. |
+| `cvmg_rgb10_sr` | 0x0404da78 | **Established** (`arm1.u` 6.5.30m). Converter group for 10-bit RGB X pixel reads: count 8 and a pointer to its words, chosen by `X_PixSetupGE`. |
+| `cvmg_tbm` | 0x0404da80 | **Established** (`arm1.u` 6.5.30m). Converter group for X bitmap transfers: count 8 and a pointer to its words, chosen by `X_PixSetupGE`. |
+| `ptagBig` | 0x0404da88 | **Established** (`arm1.u` 6.5.30m). Four tag words alternating between 0x30006 and the plain form 0x30000 that `X_PixSetupGE` pairs with the 32-bit converter group for wide X pixels. A second table of the same name for the GL output modules sits at 0x0404c038. |
+| `ptagSmall` | 0x0404da98 | **Established** (`arm1.u` 6.5.30m). Four tag words, 0x30006 in the second and 0x30000 elsewhere, that `X_PixSetupGE` pairs with the 16-bit converter group; a GL-path table of the same name sits at 0x0404c048. |
+| `NumGedRegs` | 0x0404dacc | **Established** (`arm1.u` 6.5.30m). The count of pending entries in the distributor register list `GedRegs`: `CompGedReg` clears it, the formatter, unpacker, reorderer and transfer-unit planners append, and the same routine then writes each entry through a computed descriptor. |
+| `tfRegs` | 0x0404dae8 | **Established** (`arm1.u` 6.5.30m). Five words of X-path texture-filter register values, zero in the image: `CompTF` stores a mode (up to 2) and a component mask (up to 0x1f) by pixel kind, and `XSetTF` stores 3 in the third word and applies the mask. |
+| `NumRMBoards` | 0x0404dafc | **Established** (`arm1.u` 6.5.30m). Second copy of the three words counting up from 0 indexed by raster-board count, in the X pixel object; `XSetupGedRead` reads it when it sets up a framebuffer read. |
+| `GedRegs` | 0x040952cc | **Established** (`arm1.u` 6.5.30m). Thirteen register-number and value pairs collected by the X pixel planners (formatter, unpacker, reorderer, transfer unit); `CompGedReg` writes each as a distributor register through a descriptor built from the number. |
+
+## Pixel path: output-module records and conversion lists
+
+Fixed records that describe an output module: command words, module routine, tag tables and converter groups.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `cvmg_4_8_CI16ToFBPup2` | 0x0404d0a0 | **Established** (`arm1.u` 6.5.30m). An eight-byte converter group: a count of 16 and a pointer to the sixteen converter words at 0x0404cfb0; it is the sixth word of the output-module record for 16-bit colour index into the pop-up planes, which reaches it only through that record. |
+| `tbus2CI` | 0x0404d0a8 | **Established** (`arm1.u` 6.5.30m). Table of 26 words, mostly 0xffff with small selector values between them, that `AddOutputI` indexes by output format to pick the index mask written for colour-index output. |
+| `CIoutputModuleTable` | 0x0404d110 | **Established** (`arm1.u` 6.5.30m). Output-module records for colour-index output, seven words each: two 0x132 command words, the module routine 0x0c031b6c, two tag tables, a converter group pointer and a flag; `AddOutputI` selects one by format. |
+| `CI16ToFBNorOvr8` | 0x0404d164 | **Established** (`arm1.u` 6.5.30m). One seven-word output-module record for 16-bit colour index written to the 8-bit normal or overlay planes: two command words of 0x132, the module routine, the big and small tag tables, a converter-group pointer and flag 1; chosen by `AddOutputI`. |
+| `CI16ToFBNorOvr12` | 0x0404d180 | **Established** (`arm1.u` 6.5.30m). The same seven-word output-module record for 16-bit colour index written to the 12-bit normal or overlay planes, differing only in its converter group; chosen by `AddOutputI`. |
+| `CI16ToFBPup2` | 0x0404d19c | **Established** (`arm1.u` 6.5.30m). The seven-word output-module record for 16-bit colour index written to the two-bit pop-up planes; its converter group is the record at 0x0404d0a0; chosen by `AddOutputI`. |
+| `S16ToFB` | 0x0404d1b8 | **Established** (`arm1.u` 6.5.30m). The seven-word output-module record for 16-bit stencil values written to the framebuffer, with the converter group at 0x0404d080 and flag 1; chosen by `AddOutputI`. |
+| `FBToBitmap16` | 0x0404d1d4 | **Established** (`arm1.u` 6.5.30m). The seven-word output-module record that reads framebuffer data back as a 16-bit bitmap, with the short-to-bitmap converter group and flag 0; chosen by `AddOutputI`. |
+| `FBToBitmap16Rev` | 0x0404d1f0 | **Established** (`arm1.u` 6.5.30m). The same read-back record as the forward bitmap one but with the bit-reversed converter group, for least-significant-bit-first bitmaps; chosen by `AddOutputI`. |
+| `LUMoutputModuleTable` | 0x04094ff4 | **Established** (`arm1.u` 6.5.30m). 0x2d8 bytes of zero-initialised space that no instruction or pool word in the image addresses. **Inferred** from the name and the colour-index table beside it: room for luminance output-module records that this build never fills. |
+
+## Pixel path: parameter and format tables
+
+Constant tables the pixel path indexes by format, type or kernel shape.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `defaultKernel` | 0x0404d20c | **Established** (`arm1.u` 6.5.30m). 100 floats of the default convolution kernel (the first four 1.0, the rest 0), copied into engine memory by `__glkonSetDefaultKernel` when a context starts. |
+| `ConvolveEramLoc` | 0x0404d39c | **Established** (`arm1.u` 6.5.30m). Three engine external-memory word addresses, 0xc06 then 0xcca then 0xd8e, where the convolution kernels sit; read by `LoadKernel` and the default-kernel and kernel-copy routines. |
+| `promotedTotalSize` | 0x0404d408 | **Established** (`arm1.u` 6.5.30m). Twelve words of kernel word counts after promotion to the working size, from 4 up to 0xc4 for square kernels and smaller for separable ones; read by `LoadKernel` and `AddConvolutionOutput`. |
+| `saveRestoreCram` | 0x0404d438 | **Established** (`arm1.u` 6.5.30m). Twelve words giving where in engine control memory a kernel shape saves and restores its working words (word offsets up to 0x92); read by `LoadKernel` and `RestoreKernel`. |
+| `cramKernelLoc` | 0x0404d468 | **Established** (`arm1.u` 6.5.30m). Twelve control-memory addresses (from 0x4e up to 0xe0) where `LoadKernel` places each kernel shape for the engine convolution module. |
+| `promotedSize` | 0x0404d498 | **Established** (`arm1.u` 6.5.30m). Twelve words of promoted kernel widths, the odd sizes from 1 to 7 repeated, that `LoadKernel` and the engine-memory copy routines use to size the convolution working area. |
+| `passthruComp` | 0x0404d4c8 | **Established** (`arm1.u` 6.5.30m). Twelve words of component selectors in the range 0-3 that `AddConvolutionOutput` uses to route components past the convolution unchanged. |
+| `ExtractShiftMasksL12A4` | 0x0404d4f8 | **Established** (`arm1.u` 6.5.30m). Repeated shift-and-mask quadruples (shift 4 with mask 0xfff, then shift 0 with mask 0xf) that `U_uExtract` uses to split a 16-bit word into 12-bit luminance and 4-bit alpha. |
+| `F4thCompTable` | 0x0404d5b8 | **Established** (`arm1.u` 6.5.30m). Per-type fill value for a missing fourth component: the largest value of each signed and unsigned integer type from 0x7f to 0xffffffff, then 1.0 for floats, with 0xdeadbabe in unused slots; read by `SetupFormatter` and `SetupReorderer`. |
+| `UnpackerTable` | 0x0404d60c | **Established** (`arm1.u` 6.5.30m). 21 per-format unpacker mode numbers, 0 for plain types and small codes up to 7 for packed formats, that `SetupUnpacker` writes to the distributor's unpacker register. |
+| `UnpackedTypeTable` | 0x0404d660 | **Established** (`arm1.u` 6.5.30m). 21 words mapping each host type code to the component type after unpacking (identity for the eight plain types, then 1 for the packed ones); read by `SetupUnpacker`. |
+| `UnpackednumByteInCmpTable` | 0x0404d6b4 | **Established** (`arm1.u` 6.5.30m). 21 words of bytes per component after unpacking (one to four) that `SetupUnpacker` uses to set the unpacker's component width. |
+| `rByteSel_PASS` | 0x0404d708 | **Established** (`arm1.u` 6.5.30m). A constant 0x00053053 that no instruction or pool word in the image refers to. **Inferred** from the name and its siblings: the raster-bus byte-select pattern for unswapped data, compiled from a shared definition into two objects and left unused (a second copy sits at 0x0404dad0). |
+| `rWordSel_PASS` | 0x0404d70c | **Established** (`arm1.u` 6.5.30m). A zero word that no code refers to; **inferred** to be the word-select partner of the pass-through byte select above, unused at run time. |
+| `rByteSel_REVERSE_BYTE` | 0x0404d710 | **Established** (`arm1.u` 6.5.30m). A constant 0x00688688 that no code refers to; **inferred** to be the byte-select pattern for byte-reversed data, compiled in but unused. |
+| `rWordSel_REVERSE_BYTE` | 0x0404d714 | **Established** (`arm1.u` 6.5.30m). A zero word that no code refers to; **inferred** to be the word-select half of the byte-reversal pattern, unused. |
+| `rByteSel_REVERSE_SHORT` | 0x0404d718 | **Established** (`arm1.u` 6.5.30m). A constant 0x00b64b64 that no code refers to; **inferred** to be the byte-select pattern for 16-bit swapped data, unused at run time. |
+| `rWordSel_REVERSE_SHORT` | 0x0404d71c | **Established** (`arm1.u` 6.5.30m). A zero word that no code refers to; **inferred** to be the word-select half of the 16-bit swap pattern, unused. |
+| `rByteSel_REVERSE_WORD` | 0x0404d720 | **Established** (`arm1.u` 6.5.30m). A constant 0x00b64b64 that no code refers to; **inferred** to be the byte-select pattern for 32-bit reversal, the same value as the 16-bit case, unused. |
+| `rWordSel_REVERSE_WORD` | 0x0404d724 | **Established** (`arm1.u` 6.5.30m). A constant 0x00016349 that no code refers to; **inferred** to be the word-select pattern that swaps the halves for 32-bit reversal, unused. |
+| `rByteSel_SWAP_16B_COMP` | 0x0404d728 | **Established** (`arm1.u` 6.5.30m). A constant 0x004c14c1 that no code refers to; **inferred** to be a byte-select pattern for swapping 16-bit components, unused at run time. |
+| `NumRMBoards` | 0x0404d72c | **Established** (`arm1.u` 6.5.30m). Three words counting up from 0, indexed by raster-board count; `SetupRbus` and `XSetupGedRead` read this copy to encode the board count into the raster-bus set-up. A second copy sits at 0x0404dafc. |
+| `BgnLineOffsetTable` | 0x0404d738 | **Established** (`arm1.u` 6.5.30m). 64 words of starting component offsets per format and alignment (0-3 pattern) that `SetupFormatter` uses to place the first component of a line. |
+| `fbRbusIs16Bit` | 0x0404d838 | **Established** (`arm1.u` 6.5.30m). Sixteen words, 2 for the first seven framebuffer formats and 0 after, that `SetupPTUStream` and `SetupPTULine` use to choose a 16-bit raster-bus packing for framebuffer data. |
+| `tmRbusIs16Bit` | 0x0404d878 | **Established** (`arm1.u` 6.5.30m). Ten words, each zero, two or four, giving the raster-bus packing for each texture-memory format, read by `SetupPTUStream` and `SetupPTULine`. |
+| `ifmt` | 0x0404d8a0 | **Established** (`arm1.u` 6.5.30m). 26 words translating the pixel path's internal format codes to raster-board format numbers, with -1 for none; read by `SetupPGTG` and `SetupSubtexload`. |
+| `numPixelPerTBUSPacket` | 0x0404d908 | **Established** (`arm1.u` 6.5.30m). 26 words of pixels per raster-bus packet for each format (one to eight); `CompCommonIndexStream` and `CompLineDist`, like the colour and luminance stream planners, divide the work by it. |
+| `compFormatTable` | 0x0404daa8 | **Established** (`arm1.u` 6.5.30m). Nine words of components per pixel format (one, three or four), read by the engine set-up routines such as `SetupGE_PerRect` and `X_PixSetupGE`. |
+| `rByteSel_PASS` | 0x0404dad0 | **Established** (`arm1.u` 6.5.30m). The second copy of the unswapped byte-select constant 0x00053053, beside the X pixel tables; no code refers to it. |
+| `rWordSel_PASS` | 0x0404dad4 | **Established** (`arm1.u` 6.5.30m). Second copy of the zero pass-through word-select constant, in the X pixel object; no code refers to it. |
+| `rByteSel_REVERSE_BYTE` | 0x0404dad8 | **Established** (`arm1.u` 6.5.30m). Second copy of the byte-reversal select constant 0x00688688, in the X pixel object; no code refers to it. |
+| `rWordSel_REVERSE_BYTE` | 0x0404dadc | **Established** (`arm1.u` 6.5.30m). Second copy of the zero word-select constant for byte reversal, in the X pixel object; no code refers to it. |
+| `rByteSel_REVERSE_SHORT` | 0x0404dae0 | **Established** (`arm1.u` 6.5.30m). Second copy of the 16-bit swap byte-select constant 0x00b64b64, in the X pixel object; no code refers to it. |
+| `rWordSel_REVERSE_SHORT` | 0x0404dae4 | **Established** (`arm1.u` 6.5.30m). Second copy of the zero word-select constant for the 16-bit swap, in the X pixel object; no code refers to it. |
+| `promotedSizeTable` | 0x0404db8c | **Established** (`arm1.u` 6.5.30m). 24 words of promoted kernel sizes per filter width and type; `__glkonGetPromotedSize` reads it for the convolution-filter handlers. |
+| `FFT_Factors` | 0x0404dbec | **Established** (`arm1.u` 6.5.30m). 256 complex twiddle factors as float pairs, the first being one and zero and the rest the cosine and negated sine of steps of 2 pi over 256, that `InitFFTGlobal` loads into engine memory for the FFT pixel path. |
+| `FFT_Sort_2` | 0x0404e3ec | **Established** (`arm1.u` 6.5.30m). Bit-reversed sample order for a 2-point transform as byte offsets, zero then 8, loaded by `InitFFTGlobal`. |
+| `FFT_Sort_4` | 0x0404e3f4 | **Established** (`arm1.u` 6.5.30m). Sample order for a 4-point transform as byte offsets, here the natural order 0x0-0x18 in steps of 8, loaded by `InitFFTGlobal`. |
+| `FFT_Sort_8` | 0x0404e404 | **Established** (`arm1.u` 6.5.30m). Bit-reversed sample order for an 8-point transform as byte offsets (the first two are 0 then 0x20), loaded by `InitFFTGlobal`. |
+| `FFT_Sort_16` | 0x0404e424 | **Established** (`arm1.u` 6.5.30m). Sample order for a 16-point transform as byte offsets in a four-by-four interleave (0 to 0x60 in steps of 0x20, then from 8), loaded by `InitFFTGlobal`. |
+| `FFT_Sort_32` | 0x0404e464 | **Established** (`arm1.u` 6.5.30m). Bit-reversed sample order for a 32-point transform as byte offsets, starting 0 then 0x80, loaded by `InitFFTGlobal`. |
+| `FFT_Sort_64` | 0x0404e4e4 | **Established** (`arm1.u` 6.5.30m). Sample order for a 64-point transform as byte offsets, 64 words, loaded into engine memory by `InitFFTGlobal`. |
+| `FFT_Sort_128` | 0x0404e5e4 | **Established** (`arm1.u` 6.5.30m). Bit-reversed sample order for a 128-point transform as byte offsets, 128 words, loaded by `InitFFTGlobal`. |
+| `FFT_Sort_256` | 0x0404e7e4 | **Established** (`arm1.u` 6.5.30m). Sample order for a 256-point transform as byte offsets, 256 words, loaded by `InitFFTGlobal`. |
+| `divModLut` | 0x04091874 | **Established** (`arm1.u` 6.5.30m). A 0x1020-byte quotient and remainder cache filled by `InitDivModLut` and read by `DivModFunc` to avoid the slow software divide. |
+| `GeTypeFormatTable` | 0x04092894 | **Established** (`arm1.u` 6.5.30m). Zero in the image and filled by `InitGeTypeFormatTable`: per host type and format, what the engines receive; read by the colour, luminance, index, depth and FFT stream planners. |
+
+## Context switch, saved state and memory
+
+Context creation, activation and deactivation, saved engine and distributor state, memory reservation, swap and list DMA.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `stored_gedstate_mem` | 0x0408d234 | **Established** (`arm1.u` 6.5.30m). Storage for the saved distributor state; no code names it directly, `init_arm` rounds its address plus 4 down to eight bytes and stores that in the pointer `stored_gedstate`. |
+| `stored_gefifo_mem` | 0x0408d640 | **Established** (`arm1.u` 6.5.30m). 8 KB of storage for saved engine input words; `init_arm` stores its eight-byte-aligned address in the pointer `stored_gefifo`, through which the context code reaches it. |
+| `stored_geregs_mem` | 0x0408f64c | **Established** (`arm1.u` 6.5.30m). Storage for saved engine registers; `init_arm` stores its eight-byte-aligned address in the pointer `stored_geregs`. |
+| `saved_stack_mem` | 0x0408f718 | **Established** (`arm1.u` 6.5.30m). 4 KB of storage for a saved ARM stack; `init_arm` stores its eight-byte-aligned address in the pointer that the context code and the resume routine use. |
+| `loadCtxMap` | 0x04090724 | **Established** (`arm1.u` 6.5.30m). An 82-word zero-initialised record shared by the context load handler and `arm_context_activate`; when a context's pixel record says kind 3 (X pixels), the activation passes three of its words (offsets 0x20-0x24 with 0xc) to `XPixelRestore`, so it holds the X pixel set-up a context resumes with. |
+
+## Queries and read-back
+
+Handlers that answer GL queries through the read-back path ([arm1_firmware.md](arm1_firmware.md#how-the-arm-answers-the-host)).
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `get_table` | 0x0404ebe4 | **Established** (`arm1.u` 6.5.30m). 1161 two-word query descriptors that `arm_getv` indexes by GL query enum (folded into one range): word 0 holds a value count in bits 0-4 and a kind in bits 5-7, word 1 an offset into the state; the handler sends the values to the host through read-back register 0x476. |
+
+## Linker marks and other data
+
+Region marks the linker defines and data with no closer family.
+
+| Symbol | Address | What it is and does |
+|---|---|---|
+| `C$$data$$Limit` | 0x04067edc | **Established** (`arm1.u` 6.5.30m). Linker mark for the end of initialised data and so the start of zero-initialised data; code uses it as the address of the board-configuration block that begins there. |
+| `C$$zidata$$Base` | 0x04067edc | **Established** (`arm1.u` 6.5.30m). Linker mark for the start of the zero-initialised data region, 0x04067edc-0x040953d8, which the loader clears rather than copies. |
+| `Image$$ZI$$Base` | 0x04067edc | **Established** (`arm1.u` 6.5.30m). Image-level linker mark for the start of zero-initialised data, the same address as the end of initialised data. |
+| `_edata` | 0x04067edc | **Established** (`arm1.u` 6.5.30m). Conventional end-of-initialised-data mark, the same address as the start of zero-initialised data. |
+| `C$$zidata$$Limit` | 0x040953d8 | **Established** (`arm1.u` 6.5.30m). Linker mark for the end of zero-initialised data; `init()` records it as the base of free memory. |
+| `Image$$RW$$Limit` | 0x040953d8 | **Established** (`arm1.u` 6.5.30m). Image-level mark for the end of all read-write data, initialised and zero-initialised. |
+| `Image$$ZI$$Limit` | 0x040953d8 | **Established** (`arm1.u` 6.5.30m). Image-level mark for the end of zero-initialised data, the same address as the end of all data. |
+| `_end` | 0x040953d8 | **Established** (`arm1.u` 6.5.30m). Conventional end-of-program mark at the end of zero-initialised data, the same address as the read-write limit. |
+
+## First-pass family summaries
+
+The family tables of the first pass, kept until every symbol above has its own row. They list several symbols per line; the per-symbol rows above supersede them.
+
+### Enable and disable
 
 **Established** (`arm_enable` 0x0c02336c, `arm_disable` 0x0c023418, and the twelve pointer tables they index). The capability number is the token's last payload word. Each of `arm_enable` and `arm_disable` checks six ranges and jumps through one table per range; a number outside every range, or one whose slot holds `set_invalid_enum`, raises the GL invalid-enum error.
 
@@ -63,7 +358,7 @@ Facts are labelled as elsewhere: **established** (read from the code at the stat
 | 0x8198 (FOG_OFFSET_SGIX) | `e_fog_offset`, `d_fog_offset` | 0x78b | `mgebi_FogOffsetEnableDisable` |
 | 0x81c7 | `e_pixel_transform`, `d_pixel_transform` | 0x796 | sets bit 0x80000 of r8 + 0xc88 unless the transform mode word is 0x81c5, in which case it re-applies the three convolution bits; the disable clears all four. `InitPixelGLState` calls the enable |
 
-## Start-up, exceptions and the run-time library
+### Start-up, exceptions and the run-time library
 
 A short lowercase name is written as a call (`name()`) so it is not read as an English word.
 
@@ -97,7 +392,7 @@ A short lowercase name is written as a call (`name()`) so it is not read as an E
 | `pack_cmd` | 0x0c039538 | **Established.** A zero-length label inside the X pixel code; nothing branches to it |
 | `ungray()` | 0x0c01a3e4 | **Established.** Returns entry n of the table at 0x04040284. **Inferred** from the name and its users (`init_ge`, `init_ge_jtag`): converts a Gray-coded board-position number to binary |
 
-## State shadow: initialisation, push and pop
+### State shadow: initialisation, push and pop
 
 **Established.** When a context is created, `context_init` calls one `*_init` routine per attribute group to put the GL defaults into the r8 shadow and to the hardware; `arm_popattrib` calls one `*_pop` routine per group to send the restored shadow back. Errors keep the first code in the two bytes at r8 + 0x860 ([arm1_firmware.md](arm1_firmware.md#what-the-arm-sees)).
 
@@ -133,7 +428,7 @@ A short lowercase name is written as a call (`name()`) so it is not read as an E
 | `x_initregs` | 0x0c03d0b8 | **Established.** The X server's raster-board defaults sent by `arm_x_init`: about fifteen raster registers (address words 0x01203fcf-0x01243fd3, 0x01351c02 and others) and `mgesi_TbusRegWrite` |
 | `x_initpixels` | 0x0c034754 | **Established.** Marks the six cached X pixel-path words at r8 + 0x938-0x94c invalid (-1), so the next X pixel command reprograms the path |
 
-## Diagnostic commands (`DIAG_DISPATCH`)
+### Diagnostic commands (`DIAG_DISPATCH`)
 
 **Established** (`arm_diag_dispatch` 0x0c037958, token 0x169). The first payload word is a sub-command 0-11; any other prints "Unrecognized diag command". The IR diagnostics use these to reach the distributor and the ARM's address space from the host.
 
@@ -153,7 +448,7 @@ A short lowercase name is written as a call (`name()`) so it is not read as an E
 | 11 | `diag_ged_nextge` | 0x0c037d48 | selects the next engine (port 0x434) |
 | | `arm_diag_reserved0()`, `arm_diag_reserved1()` | 0x0c037d40, 0x0c037d44 | handlers of tokens 0x16a and 0x16b: return at once |
 
-## Boundary scan, boards and serial numbers
+### Boundary scan, boards and serial numbers
 
 **Established.** The firmware finds the boards on the boundary-scan ("JTAG") chain through the bit-bang port 0x2000c0-0x2000cc ([arm1_firmware.md](arm1_firmware.md#control-and-status-registers)). A chain description is a list of chips, each a chip-type record; `init_kona_jtag_chain` picks the description that matches the boards found.
 
@@ -184,7 +479,7 @@ A short lowercase name is written as a call (`name()`) so it is not read as an E
 | `pgmclr()`, `databit()`, `waitclr()`, `chkframe()`, `chkdone()` | 0x0c012644-0x0c01272c | **Established.** The steps `DoDGRqstLoadPabXilinx` uses to load an FPGA on the display board through the register at 0x609400 (data bit) and 0x609800 (status, bit 0 = done): pulse program and wait for clear, clock one data bit, check frame and done |
 | `ungray()` | 0x0c01a3e4 | see the start-up table |
 
-## Memory reservation and swap
+### Memory reservation and swap
 
 **Established** (the `reserve`, `swapout`, `swapin` and `copydown` tables at 0x040494d8-0x04049508, each four function pointers). `arm_mem_reserve`, `arm_mem_swapout`, `arm_mem_swapin` and `arm_mem_copydown` take a memory kind 0-3 from the command and call entry n of their table: 0 ARM memory, 1 a second ARM area ("sarm"), 2 geometry-engine memory, 3 texture memory. The base of each area is in `arm_mem_base`, `sarm_mem_base`, `ge_mem_base`, `tex_mem_base` (0x040494c8-0x040494d4), set by `mem_init`.
 
@@ -200,7 +495,7 @@ A short lowercase name is written as a call (`name()`) so it is not read as an E
 | `sdram_reserved`, `sdram_length` | 0x04040274, 0x04040278 | **Established.** Zero in the image; **inferred** the reserved part of the ARM's SDRAM |
 | `sdram_scratch` | 0x0406ce34 | **Established.** A 128 KB zero-initialised buffer used by the display-generator command handler, `DoDGRqstAutoInit` and the EEPROM routines (`eeprom_read`, `eeprom_write`, `eeprom_load`, `arm_eeprom_op`) as a staging area |
 
-## Saved context and exception state
+### Saved context and exception state
 
 | Symbol | Address | What it is |
 |---|---|---|
@@ -216,7 +511,7 @@ A short lowercase name is written as a call (`name()`) so it is not read as an E
 | `backdoor_ged_loading`, `backdoor_geif_loading`, `backdoor_ge_loading` | 0x04040264-0x0404026c | **Established.** Three flags initialised to 1. **Inferred** from the names: whether the distributor program, the engine interface table and the engine program are loaded by a back door (the simulator) rather than through the ports |
 | `REV_REL`, `REV_VER` | 0x04067ed4, 0x04067ed8 | **Established.** Pointers to the build strings "sherwood-root" and "0607201829" that `init()` prints in its banner |
 
-## Texture management
+### Texture management
 
 **Established.** The texture handlers ([arm1_firmware.md](arm1_firmware.md#the-306-arm-run-tokens-by-kind), group texture) keep a 513-entry cache `tex_cache` (0x0409086c, 8 bytes an entry) of texture-memory table entries indexed by the load or bind number the driver passes ([docs/opengl.md](../docs/opengl.md)).
 
@@ -245,7 +540,7 @@ A short lowercase name is written as a call (`name()`) so it is not read as an E
 | `SetupTexRead`, `StartTexRead` | 0x0c034464, 0x0c034630 | **Established.** Program the raster boards to read texture memory (raster register 0x013f3ff8 and raster-bus words) and start the read |
 | `SetupSubtexloadPos` | 0x0c0343a0 | **Established.** Writes the position of a texture sub-load to the raster boards |
 
-## Pixel path
+### Pixel path
 
 **Established.** Pixel transfers (`DRAWPIXELS`, `READPIXELS`, `COPYPIXELS`, texture loads and reads, colour tables, convolution filters, bitmaps and the polygon stipple) are built from five stages chosen by a path number. The table `path` (0x04049698) holds ten records of five routine pointers, in this order: set up the raster boards, compute how the data is split across the engines, set up the distributor, load the engine pipeline, and finish.
 
@@ -429,7 +724,7 @@ A conversion record is a list of {word count, pointer to a word list}: `cvmg_8_1
 | `C$$data$$Base`, `Image$$RW$$Base`, `C$$data$$Limit`, `C$$zidata$$Base`, `Image$$ZI$$Base`, `_edata`, `C$$zidata$$Limit`, `Image$$RW$$Limit`, `Image$$ZI$$Limit`, `_end`, `Image$$RO$$Limit`, `_etext` | | **Established.** Linker marks: initialised data 0x04040260-0x04067edc, zero-initialised data 0x04067edc-0x040953d8, read-only image end 0x0c040248. Code addresses initialised data relative to `C$$data$$Base`, which is also `InSimulator` |
 | `arm_gethistogramparameterfv`, `arm_getminmaxparameterfv` | 0x0c026608, 0x0c02660c | **Established.** One branch each to `arm_badcmd` (through the `C$$code$$Base` mark): the two queries are not supported |
 
-## Handlers and helpers named only in the token table
+### Handlers and helpers named only in the token table
 
 **Established** from the code at each address; [arm1_handlers.tsv](arm1_handlers.tsv) gives each token's payload reads and ports.
 
@@ -450,4 +745,3 @@ A conversion record is a list of {word count, pointer to a word list}: `cvmg_8_1
 | `get_addr` | | reads n payload words: discards them when the destination pointer is 0, else stores them; ends with the last-word read at r9 + 0x3c |
 | `real_format` | | maps a GL format number to the one the pixel path works with; it tests 0x1906 (`ALPHA`), 0x1909 (`LUMINANCE`) and the extension range from 0x8000 (exact mapping not written out here) |
 | `ge_xform_attrib_to_host`, `ge_texture_attrib_to_host` | | for `arm_pushattrib`: ask the engines to send the transform or texture attribute block to the host (operands 0x90a and 0x94b, or 0x293, at port 0x474, then slot 197, `mgesi_Eram2ODMA`: engine external memory out through the output DMA) |
-

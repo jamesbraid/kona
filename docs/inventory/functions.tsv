@@ -1447,9 +1447,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036610	508	dg_clock_setup	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003680c	764	dgopt_clock_setup	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036b08	492	dg_clock_restore	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036cf4	536	dgopt_clock_restore	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036f0c	64	dgVDacModeWrite	dynsym	named-only	docs/dg.md#helper-functions	Helper functions
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036f4c	152	dgVDacControlWrite	dynsym	named-only	docs/dg.md#helper-functions	Helper functions
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036fe4	372	dgMakeVDacFetal	dynsym	named-only	docs/dg.md#helper-functions	Helper functions
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036f0c	64	dgVDacModeWrite	dynsym	understood	ucode/arm1_functions.md#display-generator	Display generator
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036f4c	152	dgVDacControlWrite	dynsym	understood	ucode/arm1_functions.md#display-generator	Display generator
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036fe4	372	dgMakeVDacFetal	dynsym	understood	ucode/arm1_functions.md#display-generator	Display generator
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037158	192	dg_make_dac_fetal	dynsym	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037218	188	destroy_map_diag	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100372d4	156	ged_host_reg_write	dynsym	named-only	ucode/ged.md#registers-the-host-writes	Registers the host writes

@@ -433,7 +433,7 @@ usr/diags/IR/ucode/ge.hex	diagnostics	board-diagnostic	data	-	363650	ae8bfbf6f40
 usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3edf		0	0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
 usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/ucode/ge_diag_init.u	diagnostics	board-diagnostic	data	-	12082	7e407147118cf628		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0	0	0	understood	ucode/arm1_functions.md#other-data	Other data
+usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0	0	0	understood	ucode/arm1_functions.md#engine-and-distributor-set-up	Engine and distributor set-up
 usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	0	0	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	14	0	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100		0	0	0	no-software-dependency	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
@@ -571,7 +571,7 @@ usr/gfx/ucode/KONA/ge11.u	microcode	board-microcode	data	-	1275741	95724af2dc9dc
 usr/gfx/ucode/KONA/ge_kpm.hex	microcode	board-microcode	data	-	4650	617b3f0afd02ae0e		0	0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
 usr/gfx/ucode/KONA/ge_symbols	microcode	board-microcode	data	-	67100	67126e0f66aea936		0	0	0	understood	ucode/ge.md#command-dispatch-table-geifu	Command dispatch table (`geif.u`)
 usr/gfx/ucode/KONA/ged1b.u	microcode	board-microcode	data	-	14411	41c4b5724774fe42		0	0	0	understood	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
-usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0	0	0	understood	ucode/arm1_functions.md#other-data	Other data
+usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0	0	0	understood	ucode/arm1_functions.md#engine-and-distributor-set-up	Engine and distributor set-up
 usr/gfx/ucode/KONA/tport.bin	microcode	board-microcode	data	-	127889	ba8efd1cc0f83068		0	0	0	understood	ucode/tport.md#what-the-image-contains	What the image contains
 usr/gfx/ucode/KONA/vof/1280x1024.monitor	microcode	board-microcode	data	-	295	55c148a0d113b0eb		0	0	0	named-only	ucode/dg.md#vof-sources-vof	VOF sources (`vof/`)
 usr/gfx/ucode/KONA/vof/640x480_60.vof	microcode	board-microcode	data	-	6775	87aa18319bb63ea8		0	0	0	named-only	ucode/dg.md#combination-files-cmb	Combination files (`.cmb`)
