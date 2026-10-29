@@ -1,6 +1,6 @@
 # The Kona X server module (`kona.so`): function reference
 
-Sources: `usr/lib/X11/dyDDX/kona.so` (6.5.30m; the same functions appear in `konad.so`, `konal.so` and `konas.so`, the other builds of the module the server loads for other configurations) and the per-module assembly in [ddx/asm/kona/](../ddx/asm/kona/). The X server loads the module as the device-dependent part of the Kona screen: it layers a Kona-specific drawing and window layer (`kon*`) over SGI's new frame-buffer layer (`nfb*`), the generic colour and mono frame-buffer code (`cfb*`, `mfb*`) and the machine-independent code (`mi*`). Roles are **inferred** from the function names and from the neighbouring documents ([opengl.md](opengl.md), [dg.md](dg.md)); the functions those documents already read in detail are not repeated. Where a function is the standard routine of the same name in the X11 sample server (the `mi`, `mfb` and `cfb` layers), the table says so and nothing more.
+Sources: `usr/lib/X11/dyDDX/kona.so` (6.5.30m; `konad.so`, `konal.so` and `konas.so` carry the same function names with different bytes for most of them, which relocation alone would explain; they also frame commands differently, writing each token word and then its payload at FIFO offset 0 ([arm1_firmware.md](../ucode/arm1_firmware.md)). The entries in this file describe `kona.so` only; which build a given server loads is a separate question, recorded in [open-questions.md](open-questions.md)) and the per-module assembly in [ddx/asm/kona/](../ddx/asm/kona/). The X server loads the module as the device-dependent part of the Kona screen: it layers a Kona-specific drawing and window layer (`kon*`) over SGI's new frame-buffer layer (`nfb*`), the generic colour and mono frame-buffer code (`cfb*`, `mfb*`) and the machine-independent code (`mi*`). Roles are **inferred** from the function names and from the neighbouring documents ([opengl.md](opengl.md), [dg.md](dg.md)); the functions those documents already read in detail are not repeated. Where a function is the standard routine of the same name in the X11 sample server (the `mi`, `mfb` and `cfb` layers), the table says so and nothing more.
 
 One entry per function for the stereo wrappers, context hooks, caches, cursor and resource-manager hooks is in [kona-so-functions.md](kona-so-functions.md).
 
@@ -828,3 +828,1124 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
 - `cfb16ValidateGC` (`kona.so` 0x55e5a0, 2928 bytes): **Established.**
   ValidateGC for the 16-bit layer: the same sequence with the 16-bit calls `cfb16ReduceRasterOp`, `cfb16MatchCommon`, `cfb16CopyRotatePixmap` and `cfb16PadPixmap`, after `miComputeCompositeClip`.
 
+
+## Functions below 0x4cdd80
+
+Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` disassembly (callee names resolved through the module's global offset table; command tokens named as in [GE.h](../GE.h), found from the offsets the code stores to in the pipe window, token number times 32). One entry per function, grouped by subsystem. A function marked **established** was read for its callees, tokens and ioctls; **inferred** marks an entry whose role comes from the name and the observed structure (callees, store widths, constants) but whose finer behaviour was not traced. Where the module has the standard X server routine of the same name the entry says which callees confirm it. Entries cite the function's own address.
+
+### Pipe payload copy routines
+
+- `KonSeqData32_ip19` (kona.so, address 0x427010): **established.** Copies 32 consecutive 32-bit words to the
+  pipe, using the first argument as source and the second and third as the two store destinations. An
+  8-byte-aligned source goes out as 16 doubleword stores to the third; a word-aligned source sends words 0 and
+  31 as single stores to the second and 15 doublewords to the third. Called by `konDrawOpaqueMonoImage` for
+  full-width image bursts and by `konInstall24DCColormap`, 48 times.
+- `KonSeqData24_ip19` (kona.so, address 0x427128): **established.** Burst copy of 24 words. Aligned source: 12
+  doubleword stores to the third argument. Word-aligned source: the first and last words go to the second
+  argument and 11 doublewords to the third. A leaf with no state; no direct call to it appears in the kon
+  routines read in this range.
+- `KonSeqData23_ip19` (kona.so, address 0x427200): **established.** Odd-length burst copy of 23 words,
+  matching the 24-word payload of the `HP_X_POINT24` command after its first word. Aligned input writes 11
+  doublewords then the last word; misaligned input writes word 0 first. Only `konPolyPoint` calls it.
+- `KonSeqData16_ip19` (kona.so, address 0x4272d0): **established.** Sixteen-word copy: eight doubleword stores
+  for an aligned source, seven doublewords plus a head and a tail word for a word-aligned one. Leaf routine;
+  none of the kon routines in this range calls it. The routine is 38 instructions long.
+- `KonSeqData12_ip19` (kona.so, address 0x427368): **established.** Twelve-word copy: six doublewords when the
+  source is 8-byte aligned, otherwise one head word, five doublewords and a tail word. A leaf routine that no
+  kon routine in this range calls directly.
+- `KonSeqData11_ip19` (kona.so, address 0x4273e0): **established.** Copies the 11 words that follow the first
+  word of a six-rectangle batch: the caller stores word 0 at the `HP_X_BOX6` slot, then calls this routine.
+  Five doublewords go out with the odd word separate. Called by `konSolidFillRects` and four other rectangle
+  fills (stippled, tiled and the accelerated tile paths).
+- `KonSeqData10_ip19` (kona.so, address 0x427450): **established.** Ten-word copy: five doublewords when the
+  source is 8-byte aligned, otherwise a head word, four doublewords and a tail word. Straight-line leaf code.
+  None of the kon routines in this range calls it.
+- `KonSeqData9_ip19` (kona.so, address 0x4274b8): **established.** Copies nine words: the payload after the
+  first word of the `HP_X_DATA10` command, which carries five rectangles. Four doublewords plus one single
+  word. Called by `konSolidFillRects`, `konDrawSolidRects` and the three other rectangle fills in the tail of
+  a batch.
+- `KonSeqData8_ip19` (kona.so, address 0x427518): **established.** Copies eight words in four doublewords
+  (aligned) or three doublewords with two single words (word-aligned). Its only caller in this range is
+  `konDrawOpaqueMonoImage`, which uses it for mid-sized runs of image words.
+- `KonSeqData7_ip19` (kona.so, address 0x427570): **established.** Seven-word payload copy for the
+  `HP_X_DATA8` command, which carries four rectangles: the caller stores the first word itself and this
+  routine sends the other seven, three doublewords and one word. Called by the rectangle-fill routines such as
+  `konSolidFillRects`.
+- `KonSeqData6_ip19` (kona.so, address 0x4275c0): **established.** Copies six words, three doublewords when
+  aligned and two doublewords plus two single words otherwise. The span fills `konSolidFS` and
+  `konFillSpansSolid` call it, as do `konLineSS` and the tiled and stippled span fills.
+- `KonSeqData5_ip19` (kona.so, address 0x427608): **established.** Five-word copy, two doublewords plus one
+  word. It finishes a three-rectangle `HP_X_DATA6` command in the rectangle fills and is also called by
+  `konLineSS` and `konPolyPoint` for their short groups.
+- `KonSeqData4_ip19` (kona.so, address 0x427648): **established.** Four-word copy: two doublewords for an
+  aligned source, or a head word, one doubleword and a tail word otherwise. Called by `konLineSS`,
+  `konPolyPoint` and `konDrawOpaqueMonoImage` for their short tails.
+- `KonSeqData3_ip19` (kona.so, address 0x427680): **established.** Three-word copy, the tail of a
+  two-rectangle `HP_X_DATA4` payload: aligned input sends one doubleword and word 2; misaligned input sends
+  word 0 and a doubleword. The shortest of the family at 12 instructions, called from every rectangle fill and
+  the line and point routines.
+
+### Symbol database reader and writer
+
+- `SDBaddNewArraySymbol` (kona.so, address 0x431f84): **established.** Adds an array-valued symbol to a
+  database being written. It forwards its arguments unchanged to the shared adder at 0x431cc4, so the caller's
+  element count reaches the table entry at +4. The adder doubles the table when full (starting at 512
+  entries), copies the 32-byte name to +12, records the stream position at +8 and writes the values with
+  `xdr_typedData`.
+- `SDBaddNewScalarSymbol` (kona.so, address 0x431fbc): **established.** Adds a single-valued symbol to a
+  database being written. It shifts its trailing arguments up one place and passes an element count of zero to
+  the shared adder at 0x431cc4, which `SDBaddNewArraySymbol` also calls; a scalar entry is therefore recorded
+  with count 0 in the same 44-byte table record.
+- `SDBcloseNewDatabase` (kona.so, address 0x431ffc): **established.** Finishes writing a symbol database:
+  sorts the 44-byte table entries with `qsort` and `compareSTEName`, writes the table with `xdr_array`,
+  patches the offsets into the header, writes the header with `xdr_SDBfileHeader`, then frees the table,
+  closes the stream and the file.
+- `SDBopenNewDatabase` (kona.so, address 0x432190): **established.** Opens a symbol database for writing. A
+  file name of "-" compared with `strcmp` selects standard output (the second `__iob` entry); any other name
+  goes through `fopen` with mode "w". It then allocates a 20-byte stream record and a 24-byte handle, sets up
+  an XDR encode stream with `xdrstdio_create`, and stores errno 2 or 12 on a bad name or failed allocation,
+  closing the handle through `SDBcloseNewDatabase` if setup fails.
+- `SDBsetHeader` (kona.so, address 0x4322f4): **established.** Stores the version pair (two 16-bit halves at
+  +8 and +10 of the header, zero if none is supplied) and a description string of at most 100 bytes at +12,
+  copied with `strncpy`. The static header-allocation routine at 0x431d84 calls it when a new database is
+  created.
+- `SDBgetSymbolDataAddress` (kona.so, address 0x432524): **established.** Looks up a symbol with the helper at
+  0x432424, which bsearches the 44-byte entries and seeks the XDR stream to the entry's data offset (errno 6
+  when absent), then returns the stream position through the position entry (+16) of the stream's operations
+  table.
+- `SDBgetSymbolDatatype` (kona.so, address 0x43258c): **established.** Returns the data type word of a
+  symbol's table entry: the name is looked up with the helper at 0x432424 and the first word of the entry is
+  read; it returns 0 when the name is absent.
+- `SDBgetSymbolElementCount` (kona.so, address 0x4325e4): **established.** Reads the element count (the word
+  at +4) of a symbol's table entry, found with the lookup helper at 0x432424; returns 0 when the name is
+  absent.
+- `SDBgetSymbolValueArray` (kona.so, address 0x432640): **established.** Fetches an array symbol's values: a
+  thin wrapper that calls the value reader at 0x4324c4, which finds the entry with the helper at 0x432424 and
+  decodes its data with `xdr_typedData`.
+- `SDBgetSymbolValueScalar` (kona.so, address 0x432678): **established.** Fetches a scalar symbol's value
+  through the same reader at 0x4324c4 as `SDBgetSymbolValueArray`; the reader looks up the entry and decodes
+  it with `xdr_typedData`, so the two wrappers differ only in their own return conventions.
+- `SDBcloseReadDatabase` (kona.so, address 0x4326b0): **established.** Closes a database opened for reading:
+  frees the symbol table pointer at +172, runs the memory interface's destroy entries (+28 then free), and
+  closes the `FILE` with `fclose` when this handle opened it.
+- `SDBreadOpenDatabase` (kona.so, address 0x432768): **established.** Opens a symbol database for reading. A
+  name of "-" selects standard input, otherwise `fopen` with mode "r" is used. It allocates a 176-byte handle
+  and a 24-byte stream record, builds a decode stream with `xdrstdio_create`, reads the header with
+  `xdr_SDBfileHeader`, validates it with `strncmp` and loads the table. Errors set errno 12 (no memory) or 20
+  (bad file) and close the handle through `SDBcloseReadDatabase`.
+- `SDBprocessOneUserMethod` (kona.so, address 0x432968): **established.** Runs one registered user method over
+  a symbol's values: finds the symbol with the helper at 0x432424, checks that the symbol's type matches the
+  method's, maps it with `mapTypeToXDRPROC`, and calls the method's function pointer (+24) once per element.
+  Sets errno 22 for a size mismatch.
+- `SDBinitializeSymbolTableEntries` (kona.so, address 0x432d50): **established.** Zeroes a run of 44-byte
+  symbol table entries: for each entry it clears the type, element count, file offset and the first name byte.
+  Called when a database table is allocated.
+- `SDBsetupMemoryInterface` (kona.so, address 0x433254): **established.** Installs four function pointers (16
+  bytes) into the memory-interface table the symbol database code calls instead of the C library: a hook
+  first, then allocate (called with a count and a size), reallocate and free, one word each in that order.
+- `compareSTEName` (kona.so, address 0x432b0c): **established.** `qsort` and `bsearch` comparison for symbol
+  table entries: runs `strcmp` on the 32-byte name field that starts at +12 of each 44-byte entry.
+- `mapTypeToXDRPROC` (kona.so, address 0x432b44): **established.** Translates a symbol data type number (0 to
+  20) into the matching XDR routine and element size: `xdr_int`, `xdr_u_short`, `xdr_float`,
+  `xdr_double`, `xdr_wrapstring`, `xdr_enum` and others. Asserts through
+  `__assert` with messages from sdbcommon.c when the type is not defined or the routine would be null.
+- `xdr_SDBelementIndex` (kona.so, address 0x432d84): **established.** XDR routine for an element index field:
+  calls `xdr_u_long` on the 32-bit value. One of five small codecs that `xdr_SDBfileHeader` and
+  `xdr_SDBsymbolTableEntry` compose.
+- `xdr_SDBfileOffset` (kona.so, address 0x432db8): **established.** XDR routine for a file offset field in the
+  symbol database, forwarding to `xdr_u_long`. Used for the table and data offsets in the header and the data
+  offset in each table entry.
+- `xdr_typedData` (kona.so, address 0x432dec): **established.** XDR routine for a symbol's value whose type is
+  given as an argument: picks the codec with `mapTypeToXDRPROC`, then encodes or decodes the scalar directly,
+  or a counted array with `xdr_array`. For string types it uses `xdr_wrapstring` and `strlen`,
+  `strcpy` to size and copy the buffer.
+- `xdr_SDBfileHeader` (kona.so, address 0x432f40): **established.** XDR routine for the 124-byte database
+  header: a 100-byte magic string through `xdr_bytes`, two version numbers via `xdr_SDBversionNumber`, a
+  second 100-byte string, the element index and two file offsets, then a ten-entry `xdr_array` of 4-byte
+  counters.
+- `xdr_SDBdataType` (kona.so, address 0x433080): **established.** XDR codec for the data type field of a
+  symbol entry, an enumeration, so it is `xdr_enum` on the 32-bit word. Called by `xdr_SDBsymbolTableEntry`.
+- `xdr_SDBsymbolName` (kona.so, address 0x4330b4): **established.** XDR codec for a symbol name: `xdr_string`
+  with a maximum of 31 characters, then forces the byte at index 31 to NUL. A null or empty destination fails
+  with return 0.
+- `xdr_SDBsymbolTableEntry` (kona.so, address 0x433124): **established.** XDR codec for one 44-byte table
+  entry: the 32-byte name at +12 via `xdr_SDBsymbolName`, the type, the element index at +4 and the file
+  offset at +8; stops with failure at the first field that fails.
+- `xdr_SDBversionNumber` (kona.so, address 0x4331ec): **established.** XDR codec for a version number: two
+  `xdr_u_short` calls, major then minor (the second at +2). Used twice by `xdr_SDBfileHeader`.
+
+### Video format files
+
+- `vfmtReadKonaVideoFormat` (kona.so, address 0x4319c0): **established.** Loads a Kona video format file into
+  a caller's record: finds the file with `vfmtFindKonaFormatFile`, opens it with `SDBreadOpenDatabase`, copies
+  the 64-byte format name, takes its modification time via `vfmtGetLastKonaFileStat`, then runs seven section
+  decoders in turn. Error text "failed to stat" or "failed to open" is recorded with source line numbers 646,
+  649 and 662.
+
+### Graphics-context hooks
+
+- `konChangeGC` (kona.so, address 0x496100): **established.** Wrapper for the ChangeGC entry (offset +4) of
+  the graphics-context function table. It puts back the table the module saved in the context's private record
+  at +164, calls the saved entry, saves the table again and reinstalls the module's own. It touches no pipe
+  register. The routine is 40 instructions long.
+- `konCopyClip` (kona.so, address 0x439260): **established.** Wrapper for the CopyClip entry (+24) of the
+  context function table, built exactly like `konChangeGC`: swap in the saved original table from private
+  +164, call the original, restore the module's table. The private record comes from the context's private
+  array at +76 indexed by `konScreenPrivateIndex`.
+- `konDestroyClip` (kona.so, address 0x45c1c0): **established.** Wrapper for the DestroyClip entry (+20) of
+  the context function table: restores the saved original table from private +164, calls the original destroy,
+  and reinstalls the module's table. No pipe store. The routine is 38 instructions long.
+- `konChangeClip` (kona.so, address 0x47efb0): **established.** Wrapper for the ChangeClip entry (+16) of the
+  context function table. Same swap as `konChangeGC` with four arguments passed through: original table back,
+  call entry +16, module table reinstalled.
+- `kon_GCOpsCacheInit` (kona.so, address 0x4c9580): **established.** Clears the module's cache of
+  drawing-operation sets: a loop that stores zero into each of 2048 word entries of a table in the module's
+  data. Run when the screen is set up so no stale operation set is used.
+- `kon_loadAccelGC` (kona.so, address 0x449a40): **established.** Sends `HP_X_LOADPOS` and then the context
+  state through `HP_X_LOADGC` for the accelerated tiled and span paths. The position words come from the four
+  halfword fields at +8 to +14 of the screen record and the GC words from the context's private record (fields
+  at +4 to +80). It makes no call.
+- `kon_loadImgRectGC` (kona.so, address 0x4a9480): **established.** Builds and sends a `HP_X_LOADGC` for image
+  rectangles: it forces the mode field (clears bits 1 to 4, sets the value 6) and masks the colour word with
+  0xffffff before storing the context words, so a rectangle fill ignores the high byte. No callee.
+- `kon_loadImpWordGC` (kona.so, address 0x462a10): **established.** Loads graphics state for the word-sized
+  image path through `HP_X_LOADGC`, after printing its own name with `ErrorF`. The context words are combined
+  with the constant masks 0xff03ffff and 0xfffc3fff and the colour mask 0xffffff, and the constants 0x13000a
+  and 0x28000 are or'ed in; what each field means to the pipe is not read from this routine.
+- `kon_loadNfbBitmapGC` (kona.so, address 0x4396e0): **established.** Loads the state for a bitmap draw: after
+  an `ErrorF` trace it emits `HP_X_LOADGC` and `HP_X_PIX_SETUP`. The routine builds its words with the
+  constants 0xfff000 and 0xffffff; it is the one the solid poly-text and stipple image paths use before
+  sending pixel data.
+- `kon_loadNfbOpaqueBitmapGC` (kona.so, address 0x44cb10): **established.** Opaque-bitmap variant of the
+  loader: after an `ErrorF` trace it sends `HP_X_LOADGC` and `HP_X_PIX_SETUP`, setting mode words 0x100030,
+  0xff0005 and 0xff0028 so both foreground and background colours are drawn. Used by `konDrawOpaqueMonoImage`.
+- `kon_loadNfbGCoff` (kona.so, address 0x471860): **established.** Sends `HP_X_LOADPOS` with an origin given
+  by its fifth and sixth arguments and the distances from that origin to the extent held in the screen
+  record's halfwords at +8 and +10, then calls the loader at 0x52f810 through the global offset table with the
+  drawable's byte at +2 as the last argument.
+- `kon_loadCopyWindowGC` (kona.so, address 0x47f7d0): **established.** Loads the context for a window copy
+  through `HP_X_LOADGC`, tracing with `ErrorF`. The mode word is picked among several constants (0x110001,
+  0x40001, 0x40005 and others) and combined with masks such as 0xff03ffff,
+  0xfffc3fff and 0xf00fff; the selection follows branches on context fields that this entry does not decode.
+- `kon_loadGC` (kona.so, address 0x4a6270): **established.** The general loader: sends `HP_X_LOADPOS` (four
+  words from the screen record's halfword fields at +8 to +14) and `HP_X_LOADGC` with the foreground and
+  background colours, write masks, configuration, operation and format words taken from the context's private
+  record at +4 to +64. Prints the word values with `ErrorF` under the trace flag.
+- `kon_loadClipRects` (kona.so, address 0x495b40): **established.** Sends the clip rectangle list:
+  `HP_X_LOADCLIP` with the count, and either the one box as four 16-bit values or, for many boxes, the first
+  through `HP_X_LOADCLIP` and the rest in pairs through `HP_X_BDATA4`. Uses a loop that steps eight bytes per
+  box.
+
+### Fills, spans and tiles
+
+- `konSolidFillRects` (kona.so, address 0x4aa9b0): **established.** Fills a rectangle list with the context's
+  foreground colour: calls `kon_loadGC`, sends `HP_X_LOADPOS` and `HP_X_LOADCLIP`, then batches boxes six at a
+  time as `HP_X_BOX6` (11 payload words through `KonSeqData11_ip19`). A tail of five, four, three, two or one
+  box goes out as `HP_X_DATA10`, `HP_X_DATA8`, `HP_X_DATA6`,
+  `HP_X_DATA4` or `HP_X_DATA2`.
+- `konDrawSolidRects` (kona.so, address 0x4980a0): **established.** Draws solid rectangles for a window whose
+  private data is found through `dbcWindowPrivateIndex`: calls `kon_loadNfbGC`, sends `HP_X_LOADCLIP` and then
+  `HP_X_BOX6` batches with the same `HP_X_DATA10` to `HP_X_DATA2` tails as the plain solid fill.
+- `konStippledCFillRects` (kona.so, address 0x438d30): **established.** Stippled rectangle fill: loads the
+  colour state with `kon_loadGC`, puts the stipple in pipe memory through `kon_loadStipple`, sends
+  `HP_X_LOADPOS`, `HP_X_LOADCLIP` and the box batches, and drops the stipple with `kon_unloadStipple`. It
+  prints "konSolidFillRects" in its trace, a copy of the solid routine's string.
+- `konTiledCFillRects` (kona.so, address 0x48cca0): **established.** Empty stub with the four-argument
+  rectangle-fill signature: it saves its arguments and returns at once, issuing no pipe command and calling
+  nothing. The accelerated tiled version is `konTiledCAccelFillRects`.
+- `konTiledCAccelFillRects` (kona.so, address 0x4c8c10): **established.** Tiled rectangle fill for the
+  accelerated path: `kon_loadGC` for colours, `kon_loadTilePlane` for the tile, then `HP_X_LOADPOS`,
+  `HP_X_LOADCLIP` and the `HP_X_BOX6` and `HP_X_DATA10` to
+  `HP_X_DATA2` box batches, with `kon_unloadStipple` at the end. Its trace string says "konSolidFillRects",
+  copied from the solid fill.
+- `konPolyFillRectTiledCAccel` (kona.so, address 0x49edd0): **established.** PolyFillRect with a tiled fill
+  for the accelerated path. It caches the tile as a stipple with `kon_allocCachedStipple`,
+  `kon_loadCachedStipple` and `kon_hitCachedStipple`, rotates it with `HP_X_ROTATESTIPPLE`, loads it with
+  `HP_X_LOADSTIPPLE`, sends `HP_X_LOADGC`, `HP_X_LOADCLIP` and
+  `HP_X_RECT6` or `HP_X_RECT` boxes plus the data tails.
+- `konSolidFS` (kona.so, address 0x451160): **established.** Fills a list of spans with the solid colour:
+  after `kon_loadGC` it sends `HP_X_LOADCLIP`, `HP_X_LOADPOS` and spans six at a time as
+  `HP_X_SPANS6` with the remainder as `HP_X_SPANS2` or `HP_X_SPANS`, data copied with
+  `KonSeqData6_ip19`. Traces its name with `ErrorF`.
+- `konFillSpansSolid` (kona.so, address 0x4ad7e0): **established.** The span fill with clipping by hand: it
+  uses `miFindMaxBand` and `miClipSpans` to cut spans against the clip rectangles when more than one is
+  present (the message "clipping by hand" names this path), loads the rectangles with `kon_loadClipRects` and
+  sends the spans as `HP_X_SPANS6`, `HP_X_SPANS2` or `HP_X_SPANS`.
+- `konFillSpansStippledC` (kona.so, address 0x449c30): **established.** Stippled version of the span fill:
+  `kon_loadGC` and `kon_loadStipple` set the colour and stipple, `miFindMaxBand` and
+  `miClipSpans` clip the spans, and `HP_X_SPANS6`, `HP_X_SPANS2` and
+  `HP_X_SPANS` carry them; the stipple is released by `kon_unloadStipple`.
+- `konFillSpansTiledCAccel` (kona.so, address 0x4b2db0): **established.** Tiled span fill for the accelerated
+  path, shaped like the stippled one: `kon_loadAccelGC`, `kon_loadTilePlane` and `kon_loadClipRects` prepare
+  the pipe, then `HP_X_SPANS6`, `HP_X_SPANS2` and `HP_X_SPANS` send the clipped spans and
+  `kon_unloadStipple` releases the tile.
+- `konExpandTile` (kona.so, address 0x452620): **established.** Builds an expanded copy of a tile pixmap:
+  allocates a new pixmap with `nfbCreatePixmap` and copies the tile rows into it in repeated passes with
+  `bcopy`, so the pipe sees a tile of a size it can load. Traces with `ErrorF`.
+- `konExpandStipple` (kona.so, address 0x4b34e0): **established.** Expands a stipple bitmap to a wider one:
+  allocates the pixmap with `nfbCreatePixmap` and replicates the source rows into it by two `bcopy` loops, to
+  reach a width the pipe's stipple memory takes.
+- `konRotateStipple` (kona.so, address 0x47aa60): **established.** Rotates a stipple bitmap by the tile origin
+  before it is loaded: shifts the rows in place with three `memmove` calls (by row and by bit offset) and
+  prints the size and offsets with `ErrorF`.
+- `kon_loadStipple` (kona.so, address 0x47c790): **established.** Gets a stipple into pipe memory: looks it up
+  with `kon_hitCachedStipple`, allocates a slot with `kon_allocCachedStipple` and fills it with
+  `kon_loadCachedStipple` on a miss, then sends `HP_X_LOADSTIPPLE` (store or load) and `HP_X_ROTATESTIPPLE` to
+  set the rotation. Three `ErrorF` traces describe store, load and rotation.
+- `kon_hitCachedStipple` (kona.so, address 0x4cbb20): **established.** Marks a cached stipple as most recently
+  used. The argument is a cache node with previous and next links at +4 and +8; the list head and tail sit at
+  +104 and +108 of the screen private record. A node already at the head is left alone, otherwise it is
+  unlinked (from the tail or the middle) and relinked at the head, and the function returns non-zero. The
+  routine is 78 instructions long.
+
+### Lines and points
+
+- `konSolidZeroSeg` (kona.so, address 0x489200): **established.** Draws a one-segment zero-width line: calls
+  `kon_loadGC`, sends `HP_X_LOADCLIP` (one box) and `HP_X_LOADPOS`, offsets the endpoints by half the extent
+  according to the line's direction flag, and sends the segment through `HP_X_SEGMENT`. It returns without
+  drawing when bit 0x400 is set in the second argument's word at +124.
+- `konLineSS` (kona.so, address 0x465810): **established.** Single-width solid polyline: `kon_loadGC` and
+  `kon_loadClipRects` set up, then points go out as `HP_X_LINE`, `HP_X_LINE6`, or the relative forms
+  `HP_X_LINE_R` and `HP_X_LINE6_R`, with tails through `HP_X_DATA6` to
+  `HP_X_DATA1`. Falls back to `konSlowLineSS` for cases the pipe cannot take, with messages like "konLine
+  relative".
+- `konSlowSegmentSD` (kona.so, address 0x4b8cb0): **established.** Host-drawn dashed segments: `kon_loadGC`
+  loads the state, `miZeroClipLine` clips each segment, `miStepDash` steps the dash pattern and `konBresD`
+  draws the pieces through the pipe after `HP_X_LOADPOS` and `HP_X_LOADCLIP`.
+- `konSlowSegmentSS` (kona.so, address 0x4c3ac0): **established.** Host-drawn solid segments: `kon_loadGC`,
+  then `miZeroClipLine` clips each segment and `konBresS` steps the pixels, sending `HP_X_LOADPOS`,
+  `HP_X_LOADCLIP` and `HP_X_BOX` per run. Traces with "konSlowSegmentSS" and
+  `ErrorF`.
+- `konPolyPoint` (kona.so, address 0x499c10): **established.** PolyPoint: `kon_loadGC`, then points sent as
+  `HP_X_POINT`, `HP_X_POINT6` or `HP_X_POINT24`, and the relative forms
+  `HP_X_POINT_R` and `HP_X_POINT6_R`, grouped with `KonSeqData23_ip19` and shorter copies, with tails through
+  `HP_X_DATA6` to `HP_X_DATA1` and the clip through `HP_X_LOADCLIP`.
+
+### Text and images
+
+- `konImageGlyphBltTE3` (kona.so, address 0x43cde0): **established.** Image-text blit for terminal-emulator
+  fonts three pixels wide: loads state with `kon_loadImgRectGC` and `kon_loadImgBitmapGC`, sends
+  `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`, a background
+  `HP_X_BOX`, then glyph bitmaps by `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and
+  `HP_X_PIX_FINISH`; falls back to `nfbImageGlyphBlt`.
+- `konImageGlyphBltTE6` (kona.so, address 0x43eba0): **established.** Six-pixel-wide terminal-emulator
+  image-text blit. It prepares the pipe with `kon_loadImgRectGC` and `kon_loadImgBitmapGC`, sends the clip and
+  scissor, the cell background with `HP_X_BOX` and the glyph bits with `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and
+  `HP_X_PIX_FINISH`; unsupported cases go to `nfbImageGlyphBlt`.
+- `konImageGlyphBltTE8` (kona.so, address 0x440310): **established.** Eight-pixel version of the
+  terminal-emulator image-text blit, one byte of bitmap per glyph row: `kon_loadImgRectGC` and
+  `kon_loadImgBitmapGC` for state, `HP_X_LOADSCISSOR` and `HP_X_BOX` for the cell,
+  `HP_X_PIX_WRITE` for the rows, and `nfbImageGlyphBlt` as the fallback.
+- `konPolyGlyphBltSolidTE10` (kona.so, address 0x46dfa0): **established.** Solid poly-text for ten-pixel
+  terminal-emulator fonts: `kon_loadBitmapGC` sets state, then `HP_X_LOADPOS`, `HP_X_LOADCLIP`,
+  `HP_X_LOADSCISSOR`, `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and
+  `HP_X_PIX_FINISH` deliver the glyph rows; `nfbSolidPolyGlyphBlt` handles what the pipe path rejects.
+- `konPolyGlyphBltSolidTE16` (kona.so, address 0x46f150): **established.** Solid poly-text for
+  sixteen-pixel-wide fonts (two bytes per glyph row). Same sequence as the ten-pixel routine,
+  `kon_loadBitmapGC` then the clip, scissor and `HP_X_PIX_WRITE` data, and also `HP_X_SPANS` for part of the
+  output. Falls back to `nfbSolidPolyGlyphBlt`.
+- `konPolyGlyphBltSolidTE32` (kona.so, address 0x471940): **established.** Thirty-two-pixel-wide solid
+  poly-text, four bytes per glyph row: `kon_loadBitmapGC`, `HP_X_LOADSCISSOR`, `HP_X_PIX_SETUP`,
+  `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`, with `nfbSolidPolyGlyphBlt` as the host fallback. Traces its
+  arguments with `ErrorF`.
+- `konPolyGlyphBltSolid` (kona.so, address 0x4ba690): **established.** General solid poly-text for any font
+  width: `QueryGlyphExtents` first measures the string, then `kon_loadBitmapGC` and the same clip, scissor and
+  `HP_X_PIX_WRITE` pixel path as the fixed-width routines; `nfbSolidPolyGlyphBlt` does the rest.
+- `konDrawOpaqueMonoImage` (kona.so, address 0x479030): **established.** Draws a one-bit image with both
+  colours: finds the window private through `dbcWindowPrivateIndex`, calls `kon_loadNfbOpaqueBitmapGC`, sends
+  `HP_X_LOADCLIP` and `HP_X_LOADPOS`, then the rows through `HP_X_PIX_WRITE` using
+  `KonSeqData32_ip19` for full 32-word bursts and shorter copies for tails, ending with `HP_X_PIX_FINISH`.
+- `konReadImage` (kona.so, address 0x4b20e0): **established.** Reads pixels back from the pipe: loads state
+  with `kon_loadPixmapGC`, sends `HP_X_LOADPOS` and `HP_X_PIX_READ` and flushes with
+  `HP_WG_FLUSH_1`. Above a byte-count threshold it uses DMA, sending ioctl 10000 (`KONA_DMAREAD`) and checking
+  with 10017 (`KONA_CHECK_PIPE`) while waiting in `sginap`; below it, copies words from the return area with
+  `bcopy`. A timeout prints "return area did not go valid".
+
+### Windows, colormaps and hyperpipe
+
+- `konValidateWindowPriv` (kona.so, address 0x448120): **established.** Refreshes a window's private data: it
+  takes the window's visual (from the optional record at +120, or through `FindWindowWithOptional` when there
+  is none), indexes the screen's visual array (entries of 20 bytes) and copies that entry's field at +8 into
+  the window private at +20, then stores the address of a module table (0x586818) in the private's first word.
+- `konInitRootWindow` (kona.so, address 0x4817a0): **established.** Initialises the root window's device state
+  by calling a shared routine at 0x480e90 with its one argument (a branch-and-link through the module's local
+  entry); it performs no other work and issues no pipe command.
+- `konDestroyWindow` (kona.so, address 0x467440): **established.** Tears down a window's Kona state. It reads
+  the window private and screen private, tests the 0x8000 flag at +20, decrements the count at +28 and, when
+  it reaches zero, stores 0 into the `HP_X_LOADXMAP_CONFIG` slot and 0xdeadbeef into the `HP_WG_FLUSH_1` slot
+  and calls `konReloadAllGammas`. It then frees private blocks with `Xfree`, calls `konUnbindDestroyedWindow`
+  and chains to the saved destroy entry (+184).
+- `konInstall24DCColormap` (kona.so, address 0x476c40): **established.** Loads a 24-bit direct-colour map into
+  the pipe: after an `ErrorF` trace it sends `HP_X_LOADGAMMA` and `HP_DATA_1` words and copies the table with
+  48 unrolled calls of `KonSeqData32_ip19` (1536 words in all).
+- `konStore24DCColors` (kona.so, address 0x4a45e0): **established.** Stores a run of 24-bit direct-colour
+  entries into the hardware map: it traces the red, green and blue source and destination addresses through
+  `ErrorF` and writes the changed entries with `HP_X_LOADGAMMA` and `HP_DATA_1`.
+- `konQueryHyperpipeNetwork` (kona.so, address 0x44b7f0): **established.** Answers the hyperpipe network
+  query: sends ioctl 10019 (`KONA_GET_NCLOPS_TOPOLOGY`), then for each entry of the returned list sends the
+  generic ioctl 102 (`GFX_GETBOARDINFO`) with a 40-byte block and copies the returned name with `strcpy` into
+  a per-pipe table in the module's data. Failures are reported with `perror` and the count is set to zero.
+- `konQueryHyperpipeConfig` (kona.so, address 0x4523c0): **established.** Answers the hyperpipe configuration
+  query: sends ioctl 10021 (`KONA_NCLOPS_QUERY_CONFIG`) with a 524-byte block, then asks for board information
+  with ioctl 102 (`GFX_GETBOARDINFO`), copies names with `strcpy` into the module's table, and reports a
+  failed ioctl with `perror`.
+
+### Frame-buffer layer: stereo wrappers
+
+- `nfbStereoRegisterWrapperOps` (kona.so, address 0x46ee10): **established.** Six instructions that store its
+  one argument (the stereo wrapper table to use) into a module global; nothing else happens, no pipe command
+  is sent and nothing is called. The routine is 6 instructions long.
+- `nfbStereoImageText16` (kona.so, address 0x43a250): **established.** Stereo ImageText16: calls the
+  ImageText16 entry (+64) of the context operations table four times, so the text lands in both eye buffers;
+  it calls no named routine. The routine is 118 instructions long.
+- `nfbStereoPolyText16` (kona.so, address 0x45cfe0): **established.** Stereo PolyText16 wrapper: invokes the
+  PolyText16 entry (+56) of the context operations table four times, once for each eye buffer and again after
+  the buffer swap that follows, with no other callee. The routine is 118 instructions long.
+- `nfbStereoPolyText8` (kona.so, address 0x489c60): **established.** Stereo PolyText8 wrapper: the context
+  operations table's PolyText8 entry (+52) is called four times, covering both eye buffers; it is the 8-bit
+  twin of `nfbStereoPolyText16`.
+- `nfbStereoPutImage` (kona.so, address 0x481400): **established.** Stereo PutImage wrapper: calls the
+  PutImage entry (+8) of the operations table four times so the image is written to both eye buffers. The
+  routine is 149 instructions long.
+- `nfbStereoPolyFillArc` (kona.so, address 0x45b210): **established.** Stereo PolyFillArc: allocates a scratch
+  arc array with `Xalloc`, calls the PolyFillArc entry (+48) four times across both eyes, and frees the array
+  with `Xfree`.
+- `nfbStereoFillPolygon` (kona.so, address 0x49bba0): **established.** Stereo FillPolygon: copies the point
+  list into memory from `Xalloc`, calls the FillPolygon entry (+40) of the operations table four times for
+  both eyes, and releases the copy with `Xfree`.
+- `nfbSetStereoBuffer` (kona.so, address 0x4ca2e0): **established.** Selects which eye buffer a window draws
+  to. It tests the screen record's stereo word (+220) and the window's flags, updates the window private's
+  buffer fields at +52 and +56, and when the state changes allocates a clip id with `FindFreeCID`, invalidates
+  the old one with `rrmInvalidateCID` and revalidates with `rrmValidateCID`.
+
+### Frame-buffer layer: drawing entry points
+
+- `nfbGetImage` (kona.so, address 0x43c670): **established.** GetImage entry for the frame-buffer layer:
+  selects by the drawable's depth, calls `cfbGetImage` or `cfb32GetImage` for the supported depths, clears the
+  output area with `bzero` when needed, finds the lowest set plane with `ffs`, and calls `FatalError` with
+  "invalid depth" for any other.
+- `nfbGetSpans` (kona.so, address 0x4a8d30): **established.** GetSpans entry: dispatches on the drawable's
+  depth to one of seven copy loops and calls `FatalError` with "nfbGetSpans: invalid depth" if none fits. The
+  pixmap width padding is read from `PixmapWidthPaddingInfo`.
+- `nfbSetSpans` (kona.so, address 0x49bed0): **inferred.** SetSpans entry: looks up the padding for the
+  drawable's depth in `PixmapWidthPaddingInfo` and calls the per-depth entry at +0 for each span, in two call
+  sites (clipped and unclipped).
+- `nfbFillSpans` (kona.so, address 0x49cf20): **established.** FillSpans entry: when the clip is complex it
+  finds the widest band with `miFindMaxBand` and trims the spans with `miClipSpans` (called at two places)
+  before they reach the pipe path.
+- `nfbStippledFS` (kona.so, address 0x49d470): **inferred.** Stippled span fill: reads the span list and calls
+  the depth table's entry at +0 from three places, one per stipple style. The routine is 161 instructions
+  long.
+- `nfbPolyFillRect` (kona.so, address 0x44f490): **established.** PolyFillRect entry. It fetches the composite
+  clip region through the entry at +396 of the context's operation table and intersects every rectangle with
+  the region's boxes by hand (a loop over 8-byte boxes), using a stack buffer for up to 1024 results and a
+  larger block otherwise, then hands the clipped list to the solid or tiled fill.
+- `nfbSolidFillRects` (kona.so, address 0x4b7390): **inferred.** Solid rectangle fill hook on the frame-buffer
+  path. It reads the window and screen privates through two private-index globals, then calls the solid-fill
+  entry (+4) of the ops table found there with the colour word at +64 and the depth byte at +72. The routine
+  is 31 instructions long.
+- `nfbTiledFillRects` (kona.so, address 0x448080): **inferred.** Tiled rectangle fill hook on the frame-buffer
+  path, the twin of `nfbSolidFillRects`: it loads the tile width and height from halfwords at +12 and +14 of
+  the tile pixmap and calls the tiled-fill entry (+28) of the ops table found through the screen private.
+- `nfbCopyPlane` (kona.so, address 0x4bf820): **inferred.** CopyPlane entry for the frame-buffer layer.
+  Depending on the drawable's depth it calls `cfb16CopyPlane`, `cfbCopyPlane` or the generic `miCopyPlane`,
+  bracketing the copy with the screen's clip and region entries at +340, +352 and +356.
+- `nfbImageGlyphBlt` (kona.so, address 0x4a3900): **inferred.** ImageGlyphBlt on the frame-buffer path:
+  measures the string with `QueryGlyphExtents`, calls the clip entry at +380 and draws the cell background and
+  the glyph bits through the entries at +4 and +12 of the screen's operation table; 814 instructions.
+- `nfbSolidZeroSeg` (kona.so, address 0x4c1850): **established.** Zero-width segment drawing: handles the
+  horizontal and vertical cases itself with `nfbHoriz` and `nfbVert` (the latter called seven times) and calls
+  an indirect entry for the diagonal case.
+- `nfbHoriz` (kona.so, address 0x4b37d0): **established.** Draws one horizontal run for a zero-width segment:
+  compares the two x coordinates, swaps them if reversed, stores the clamped pair back and calls the span
+  entry through a function pointer with a count of one. The routine is 34 instructions long.
+- `nfbShmCreatePixmap` (kona.so, address 0x485910): **inferred.** Shared-memory pixmap creation: allocates the
+  header with `Xalloc`, rejects depths it cannot hold with the `ErrorF` message "unsupported depth", fills in
+  the padding from `PixmapWidthPaddingInfo` and numbers the pixmap from `globalSerialNumber`.
+
+### Frame-buffer layer: windows and colormaps
+
+- `nfbMoveWindow` (kona.so, address 0x47cb60): **established.** Window move: mirrors the sample server's
+  MoveWindow. It allocates a region with `Xalloc` ("Couldn't allocate storage in MoveWindow"), calls
+  `SetWinSize` and `SetBorderSize`, restacks with `MoveWindowInStack`, resizes children with
+  `ResizeChildrenWinSize` and runs the screen hooks around them (entries +336 to +492), noting the change in
+  `WindowsRestructured`.
+- `nfbSlideAndSizeWindow` (kona.so, address 0x48a420): **established.** Combined move and resize. It follows
+  the sample server's SlideAndSizeWindow: `UnmapWindow` when needed, `GravityTranslate` for bit gravity,
+  `TraverseTree` over the children, `SetWinSize`, `SetBorderSize`,
+  `MoveWindowInStack` and `ResizeChildrenWinSize`, calling many screen entries (+336 to +492) and
+  `WindowsRestructured` at the end.
+- `nfbLayerValidateTreeSL` (kona.so, address 0x490410): **inferred.** Validates the window tree for the
+  layered visual scheme: iterates windows through screen entries (+340 to +464), calls `nfbUnmapTree` for
+  windows that must be unmapped and `konInitiateBufferSwap` when a swap is due, stamping the pass with
+  `globalSerialNumber`.
+- `nfbMarkOverlappedWindows` (kona.so, address 0x4ab3b0): **inferred.** Walks the sibling windows with the
+  screen entry at +396 and calls `nfbMarkWindow` at six places to flag each window whose region the changed
+  window overlaps; 671 instructions, mostly region comparisons.
+- `nfbUnmapTree` (kona.so, address 0x4a73a0): **inferred.** Unmaps a window subtree: for each window it calls
+  `nfbSetDidFlags` to drop the display-ID state kept for it; short, 101 instructions.
+- `nfbGetLayerWindow` (kona.so, address 0x47b060): **inferred.** Finds the window to use for a layer. It
+  follows the parent and sibling links of the window (+24, +28), builds a bit mask by shifting one by each
+  window's layer number, skips windows whose +124 flag bit 0x400 is set, and writes the result into +72 of the
+  screen private; 257 instructions with no calls.
+- `nfbChangeSaveUnder` (kona.so, address 0x497e80): **inferred.** ChangeSaveUnder entry: walks the affected
+  windows using screen entries +340 and +352, adjusts `numSaveUndersViewable` and `deltaSaveUndersViewable`,
+  and calls two indirect hooks for each changed window.
+- `nfbPostChangeSaveUnder` (kona.so, address 0x4a0cd0): **inferred.** PostChangeSaveUnder entry: after the
+  change it calls an indirect hook at two points; it keeps no counters of its own, 76 instructions.
+- `nfbNoopDDATranslateBackingStore` (kona.so, address 0x493180): **established.** Empty routine that returns
+  at once, standing in for the backing-store coordinate-translation hook which this module does not need. The
+  whole routine is 2 instructions (8 bytes), a return and its delay slot.
+- `nfbValidateWindowVisual` (kona.so, address 0x460c80): **inferred.** Re-validates a window against the
+  screen's visual list. It calls the screen function entries at +344 (twice), +360 and +364 and reads the
+  screen record's visual array at +108; the result decides whether the window keeps its visual. The routine is
+  105 instructions long.
+- `nfbPaintWindowBorder` (kona.so, address 0x4a36e0): **established.** PaintWindowBorder entry: if the request
+  is not for the border it prints "what != PW_BORDER" with `ErrorF`; otherwise it asks `nmbxCanSupportBuffers`
+  whether the window has multibuffers and paints with entry +28 or +4 using the window private from
+  `dbcWindowPrivateIndex`.
+- `nfbTellGainedMap` (kona.so, address 0x478b10): **inferred.** Tells a window that its colormap was
+  installed: it finds the window with `FindWindowWithOptional`, reads the colormap records at +72 and +200 of
+  the screen and sends the notify event through `DeliverEvents`.
+- `nfbInstallColormap` (kona.so, address 0x4beb40): **inferred.** InstallColormap entry: three `WalkTree`
+  passes call `TellLostMap` for windows of the old map and `TellGainedMap` for those of the new map, and the
+  hardware install hook at +136 is called once.
+- `nfbStoreColors` (kona.so, address 0x49ad00): **inferred.** StoreColors entry: when the colormap is the
+  installed one and the count is positive it calls the hardware store hook at +136 once per 12-byte colour
+  cell.
+- `nfbHWStoreColors` (kona.so, address 0x456f10): **established.** Sends colours to the hardware colormap by
+  an indirect call to the saved hardware function; it is the 52-byte pass-through used by `nfbStoreColors`.
+- `nfbFreeHWCmapArrays` (kona.so, address 0x4a92d0): **established.** Frees the arrays that hold a hardware
+  colormap: loops over two arrays of 24-byte and 28-byte records, freeing each non-null block with `Xfree`
+  unless it is shared with an entry already freed.
+- `nfbListInstalledColormaps` (kona.so, address 0x4a2d00): **established.** ListInstalledColormaps entry:
+  stores the screen's installed colormap id (from the record at +128 of the screen private) into the caller's
+  array and returns 1. The routine is 6 instructions long.
+- `nfbDestroyColormap` (kona.so, address 0x4b20d0): **established.** Empty routine that returns at once:
+  destroying a colormap needs no work in the frame-buffer layer. The whole routine is 2 instructions (8
+  bytes), a return and its delay slot.
+- `nfbRecolorCursor` (kona.so, address 0x4a90b0): **established.** RecolorCursor entry: when the cursor
+  argument is non-null it calls the screen's recolour hook at +284, passing the arguments through. The routine
+  is 14 instructions long.
+- `nfbGetBestVisualForPEX` (kona.so, address 0x44d700): **established.** Reports the best visual for the PEX
+  extension: copies two words at +204 and +208 of the screen's private record into the caller's two output
+  arguments. The routine is 6 instructions long.
+- `nfbCloseScreen` (kona.so, address 0x4865b0): **established.** CloseScreen entry: calls nine screen entries
+  at +352 to release resources, then frees memory with `Xfree`, 62 instructions in all.
+- `nfbAbort` (kona.so, address 0x4781a0): **established.** Calls the C library `abort` and does nothing else;
+  it is the fatal-error exit of the frame-buffer layer.
+
+### Rendering resource manager client
+
+- `rrmMapWindow` (kona.so, address 0x43ae20): **inferred.** Called when a window is mapped: bumps the private
+  counters with `incrRRMpriv` and `incrRRMFlags`, takes identifiers from `FindFreeID` or
+  `FindBestID` and `FindFreeCID`, then validates the clip id through `rrmValidateCID`.
+- `rrmUnmapWindow` (kona.so, address 0x44d720): **established.** Called when a window is unmapped: frees the
+  window's display id and its swap id with two `FreeID` calls and invokes the screen entries at +32 and +108.
+- `rrmCreateWindow` (kona.so, address 0x465540): **established.** CreateWindow wrapper: clears the window's
+  private slot, saves the screen's CreateWindow entry (+112) in the private (+180), calls the original and
+  reinstalls the module's function. The routine is 30 instructions long.
+- `rrmDestroyWindow` (kona.so, address 0x4c4b00): **established.** DestroyWindow wrapper: calls the saved
+  screen entries +100 and +116 and then puts the module's function back at +184 of the screen. The routine is
+  33 instructions long.
+- `rrmDestroyDrawable` (kona.so, address 0x44b5a0): **established.** Frees a drawable's rendering-manager
+  state: cancels any delayed validation with `rrmDelayValidateClipCancel`, calls the screen entries +60, +96
+  and +68, and frees the private block with `Xfree`.
+- `rrmValidateCID` (kona.so, address 0x476340): **inferred.** Revalidates the clip id of a window: reads the
+  window private (+76, +92) and screen entries (+32, +344) and calls the manager through an indirect pointer
+  twice, six indirect calls in all, to set up the rendering-node binding of the clip. The routine is 129
+  instructions long.
+- `rrmProcessRequestQueue` (kona.so, address 0x47b480): **inferred.** Processes queued window requests: pops
+  entries with `rrmUnqueueRequest`, gives each window an identifier with `FindFreeID` and a clip id with
+  `FindFreeCID`, and calls screen entries +28 and +36; loops until the queue is empty.
+- `rrmUnqueueRequest` (kona.so, address 0x450370): **established.** Removes a window from the doubly linked
+  request queue (links at +52 and +56 of the window private), fixing the queue head and tail at +140 and +144
+  of the screen private and clearing the flag bit 0x20 at +0.
+- `rrmBindMultipleClips` (kona.so, address 0x4b8940): **inferred.** Binds several clips in one pass: allocates
+  an argument array with `Xalloc` and calls the screen entry at +68 for the windows that need a bind, 100
+  instructions.
+- `rrmUndoubleBufferWindow` (kona.so, address 0x49d700): **established.** Empty routine that returns at once:
+  the rendering-manager hook for taking a window out of double-buffer mode does nothing here. The whole
+  routine is 2 instructions (8 bytes), a return and its delay slot.
+- `rrmDisposeClip` (kona.so, address 0x4cdd00): **established.** Releases a window's clip in the kernel: sends
+  ioctl 1004 (`RRM_UNBINDRNFROMCLIP`) and, on failure (return -1), prints "Failed to unbind rn from clip" with
+  the node id and errno using `ErrorF`.
+
+### Monochrome frame-buffer routines
+
+- `mfbTEGlyphBltWhite` (kona.so, address 0x433280): **inferred.** Draws fixed-width glyph bitmaps into a
+  one-bit drawable in white. It reads the glyph rows with halfword loads, shifts them into place with 34
+  variable shifts, merges them into the destination words and falls back to `mfbImageGlyphBltWhite` through
+  the clip entry (+380) when a case is not handled.
+- `mfbCopyRotatePixmap` (kona.so, address 0x433f90): **inferred.** Copies a one-bit pixmap and rotates it to
+  the tile origin: shallow copy with `mfbCopyPixmap` or `memmove`, pads with `mfbPadPixmap` and rotates in x
+  with `mfbXRotatePixmap` and in y with `mfbYRotatePixmap`; it reads the private copy through entry +240.
+- `mfbBlackSolidFS` (kona.so, address 0x43a890): **inferred.** Fills a span list with black pixels:
+  `miFindMaxBand` and `miClipSpans` trim spans against the clip, then each span is cleared word by word with
+  partial-word masks at both ends.
+- `mfbInvertSolidFS` (kona.so, address 0x4a3280): **inferred.** Span fill that inverts the destination bits
+  instead of setting them: the same band and clip handling with `miFindMaxBand` and `miClipSpans`, and an
+  exclusive-or of the ends and body words.
+- `mfbTileFS` (kona.so, address 0x4a9a20): **inferred.** Tiled span fill for a one-bit drawable whose tile
+  width divides a word: clips with `miFindMaxBand` and `miClipSpans`, then combines a rotated tile word with
+  the destination under the raster-operation masks for each span.
+- `mfbUnnaturalTileFS` (kona.so, address 0x4b4eb0): **inferred.** Tiled span fill for tile widths that do not
+  divide a word. The tile row is fetched bit by bit (34 variable shifts, 142 loop edges) and merged into the
+  span, the slow companion of `mfbTileFS`; clipping uses `miFindMaxBand` and `miClipSpans`.
+- `mfbSolidWhiteArea` (kona.so, address 0x4781f0): **inferred.** Fills a list of rectangles with white in a
+  one-bit drawable: for each box it sets partial words at the left and right edge and whole words between
+  them, with 137 word stores in the unrolled loops.
+- `mfbSolidInvertArea` (kona.so, address 0x48ba60): **inferred.** Inverts the bits inside each rectangle of a
+  list in a one-bit drawable: edge words get masks and the body words are complemented in unrolled loops. The
+  routine is 758 instructions long.
+- `mfbTileAreaPPWCopy` (kona.so, address 0x4b4640): **inferred.** Copies a one-word-wide pixmap tile over
+  rectangles with a plain copy raster operation (the mask-free case), unrolled with 107 word stores and no
+  calls.
+- `mfbTileAreaPPWGeneral` (kona.so, address 0x4bb0f0): **inferred.** Tiles rectangles from a one-word-wide
+  pixmap for any raster operation: the source word is combined with the destination through the context's
+  and/xor mask pair, 105 word stores across the unrolled variants.
+- `mfbFillPolyWhite` (kona.so, address 0x4590e0): **inferred.** Fills a polygon in white when the clip is a
+  single box and falls back to `miFillPolygon` (two call sites) otherwise; the constants 0x7fff and 0xfffeffff
+  bound coordinates and span lengths.
+- `mfbFillPolyInvert` (kona.so, address 0x4476d0): **inferred.** Polygon fill that inverts pixels. Like the
+  white version it handles the single-box clip itself and calls `miFillPolygon` at two places for the other
+  cases; 567 instructions with 28 loop edges.
+- `mfbPolyFillArcSolid` (kona.so, address 0x44be00): **inferred.** PolyFillArc for solid fills of one-bit
+  drawables: fetches the clip through entry +380, makes two calls to a shared span-fill routine at 0x516580
+  and loops over the arcs (13 loop edges); 0x7fff bounds the y range.
+- `mfbPolyPoint` (kona.so, address 0x4b15e0): **inferred.** PolyPoint for one-bit drawables: for each point it
+  tests the clip box (35 loop edges), computes the word and bit and sets, clears or toggles the bit according
+  to the raster operation.
+- `mfbPutImage` (kona.so, address 0x449500): **inferred.** PutImage for one-bit drawables: builds a scratch
+  pixmap header around the caller's data with `GetScratchPixmapHeader`, copies through the entry at +12 of the
+  operations table and releases the header with `FreeScratchPixmapHeader`.
+- `mfbGetImage` (kona.so, address 0x456320): **inferred.** GetImage for one-bit drawables: allocates a scratch
+  header with `GetScratchPixmapHeader`, zeroes the output with `bzero`, copies with `mfbDoBitblt` between the
+  clip entries +340 and +352, and frees the header with `FreeScratchPixmapHeader`.
+- `mfbGetSpans` (kona.so, address 0x4a27a0): **inferred.** GetSpans for one-bit drawables: for each requested
+  span it reads the packed bits from the drawable and shifts them (10 variable shifts) into the caller's word
+  buffer.
+- `mfbSetSpans` (kona.so, address 0x498520): **inferred.** SetSpans for one-bit drawables: for each span it
+  takes the clip into account (halfword compares) and writes the source bits into the destination words via
+  `mfbSetScanline`, called at two places.
+- `mfbCopyPlane` (kona.so, address 0x491f00): **established.** CopyPlane for one-bit destinations: it reduces
+  the raster operation with `mfbReduceRop`, calls the registered per-depth copy routine through the table
+  built by `mfbRegisterCopyPlaneProc`, and reports "No copyPlane proc registered for depth" through
+  `FatalError` when none is set.
+- `mfbRegisterCopyPlaneProc` (kona.so, address 0x481360): **established.** Records the copy-plane routine to
+  use for a source depth: on first use it takes a screen private index with `AllocateScreenPrivateIndex` and
+  stores the routine in a table keyed by depth.
+- `mfbSolidPP` (kona.so, address 0x4a3070): **inferred.** PushPixels with a solid fill for one-bit drawables:
+  brackets a call to `mfbDoBitblt` with the clip entries +340, +352 and +356.
+- `mfbValidateGC` (kona.so, address 0x4a4be0): **inferred.** ValidateGC for the monochrome layer: when the
+  context changed it recomputes the composite clip with `miComputeCompositeClip`, reduces the raster operation
+  with `mfbReduceRop`, selects the right operation set (and replaces it via `miDestroyGCOps` when the font or
+  fill style changed) and rotates the tile with `mfbCopyRotatePixmap`.
+- `mfbRealizeFont` (kona.so, address 0x4a8c80): **established.** Returns the constant 1 and nothing else: the
+  monochrome layer keeps no device-dependent font state, so realising a font succeeds at once. The whole
+  routine is 2 instructions (8 bytes).
+- `mfbUnrealizeFont` (kona.so, address 0x462a00): **established.** Returns the constant 1 and nothing else:
+  the monochrome layer holds no per-font state to release. The whole routine is 2 instructions (8 bytes), like
+  `mfbRealizeFont`.
+- `mfbDoBitbltGeneral` (kona.so, address 0x4680a0): **inferred.** The general one-bit copy: it moves
+  rectangles between bit-aligned positions of two one-bit drawables for any raster operation, with 70 variable
+  shifts, left-to-right and right-to-left loops and per-edge masks.
+- `mfbDoBitbltCopy` (kona.so, address 0x48dec0): **inferred.** One-bit rectangle copy for the plain
+  source-copy raster operation: the same shift-and-merge structure as `mfbDoBitbltGeneral` but with the
+  combination rule fixed at copy (116 word stores).
+- `mfbDoBitbltCopyInverted` (kona.so, address 0x4c2370): **inferred.** One-bit rectangle copy that complements
+  the source: the shift-and-merge loops of the copy case with the source word inverted before the store. The
+  routine is 1074 instructions long.
+- `mfbDoBitbltXor` (kona.so, address 0x479700): **inferred.** One-bit rectangle copy that exclusive-ors the
+  source into the destination, built on the same loops as the copy case; 1129 instructions with 70 variable
+  shifts.
+- `mfbDoBitbltOr` (kona.so, address 0x482300): **inferred.** One-bit rectangle copy that ors the source into
+  the destination: identical shape and size to the exclusive-or version, differing in the combine instruction.
+  The routine is 1129 instructions long.
+- `mfbBresD` (kona.so, address 0x4b99a0): **inferred.** Bresenham stepper for dashed one-bit lines: advances
+  the error term per pixel, switches between dash and gap with a counter and writes each pixel with the
+  raster-operation masks (87 loop edges).
+- `mfbBresS` (kona.so, address 0x4c7630): **inferred.** Bresenham stepper for solid one-bit lines: the same
+  error stepping as `mfbBresD` without dash handling, writing each pixel with the current mask word.
+- `mfbHorzS` (kona.so, address 0x4bdfd0): **inferred.** Draws a horizontal solid run in a one-bit drawable:
+  partial words at both ends and full words in the middle, using 95 word stores across several unrolled cases.
+- `mfbVertS` (kona.so, address 0x45e460): **inferred.** Draws a vertical solid run in a one-bit drawable:
+  steps one scan line per pixel by the row stride and applies the mask; 21 word stores in a short loop.
+- `mfbLineSS` (kona.so, address 0x45f3c0): **inferred.** Solid single-width polyline for one-bit drawables:
+  clips each segment with `miZeroClipLine`, draws horizontals with `mfbHorzS`, verticals with `mfbVertS` and
+  the rest with `mfbBresS`.
+- `mfbLineSD` (kona.so, address 0x458400): **inferred.** Dashed polyline for one-bit drawables: clips with
+  `miZeroClipLine`, advances the dash state with `miStepDash` (called at five places) and draws with
+  `mfbBresD`.
+- `mfbSegmentSS` (kona.so, address 0x4cc800): **inferred.** Solid PolySegment for one-bit drawables: handles
+  each segment with `miZeroClipLine` for clipping, then `mfbHorzS`, `mfbVertS` or
+  `mfbBresS` by slope.
+
+### Machine-independent routines: regions
+
+- `miRegionCreate` (kona.so, address 0x467880): **established.** Creates a region: two `Xalloc` calls take the
+  region header and a first box array and initialise the extents to the given box or to empty.
+- `miRegionDestroy` (kona.so, address 0x4b6770): **established.** Destroys a region: calls `Xfree` for the box
+  array (unless it is the shared empty one) and for the header.
+- `miRegionReset` (kona.so, address 0x44c280): **established.** Resets a region to a single box: frees the old
+  box array with `Xfree` if it is not the static one and sets the extents and count.
+- `miRegionExtents` (kona.so, address 0x4781e0): **established.** Returns the address of a region's extents
+  box: its argument is moved to the return register unchanged, since the extents are the first field of the
+  region record. The whole routine is 2 instructions (8 bytes), with no calls.
+- `miRegionAppend` (kona.so, address 0x4c5270): **inferred.** Appends the boxes of one region to another:
+  grows the destination with `miRectAlloc`, shifts existing boxes with `memmove` (two places) and merges
+  extents.
+- `miRegionValidate` (kona.so, address 0x489430): **inferred.** Sorts and merges the boxes of an appended
+  region into canonical y-x banded form: reallocates with `Xrealloc`, allocates work arrays with `Xalloc`,
+  calls `miRectAlloc` eight times while building bands and frees temporary storage with `Xfree`.
+- `miIntersect` (kona.so, address 0x439300): **inferred.** Region intersection: computes the intersection into
+  the target, handling empty and one-box shortcuts with `miRegionCopy`, calling a banded overlap routine at
+  0x4d11a0, `miSetExtents` for the result bounds and `Xfree` for the old boxes.
+- `miUnion` (kona.so, address 0x463360): **inferred.** Region union: copies when either side is empty,
+  otherwise merges bands through the routine at 0x4d11a0; `miRegionCopy` is called at five places for the
+  shortcut cases.
+- `miSubtract` (kona.so, address 0x4adcb0): **inferred.** Region subtraction: `miRegionCopy` for trivial
+  cases, a banded subtract through the common overlap routine, `miSetExtents` for the extents and `Xfree` for
+  freed storage.
+- `miTranslateRegion` (kona.so, address 0x455ce0): **inferred.** Translates a region by an offset: adds the
+  offsets to every box coordinate (397 instructions, unrolled by four), checks the 0x7fff range limits and
+  recomputes extents with `miSetExtents` when clamping happened.
+- `miSetExtents` (kona.so, address 0x450430): **inferred.** Recomputes a region's extents box from its first
+  and last band: reads the first and last boxes for top and bottom and scans all boxes for the minimum left
+  and maximum right. The routine is 78 instructions long.
+- `miRectIn` (kona.so, address 0x4ba420): **inferred.** Tests a rectangle against a region and returns whether
+  it is fully inside, partly inside or outside, walking the banded boxes with halfword compares. The routine
+  is 153 instructions long.
+- `miFindMaxBand` (kona.so, address 0x491cf0): **inferred.** Returns the number of boxes in the first band of
+  a clip: advances while the y coordinate of successive boxes is unchanged; 35 instructions.
+- `miFreeStorage` (kona.so, address 0x45e410): **established.** Frees a storage block handed to it by calling
+  `Xfree` when the pointer is non-null; the polygon code uses it to release its edge tables. 18 instructions.
+
+### Machine-independent routines: spans and lines
+
+- `miSetupSpanData` (kona.so, address 0x447fd0): **established.** Prepares the span groups for wide drawing:
+  it tests the fill style and calls `miInitSpanGroup` for each of the two groups that style needs; 42
+  instructions.
+- `miCleanupSpanData` (kona.so, address 0x44c9e0): **inferred.** Flushes and frees the span groups after wide
+  drawing: runs `miFillUniqueSpanGroup` and `miFreeSpanGroup` for each group and restores the context's
+  foreground with `DoChangeGC` and `ValidateGC` (both called twice).
+- `miDisposeSpanGroup` (kona.so, address 0x4b3430): **inferred.** Disposes a span group: calls the supplied
+  free hook for the group's spans and again for the group record, 39 instructions.
+- `miFillUniqueSpanGroup` (kona.so, address 0x46cad0): **inferred.** Fills the spans in a group after removing
+  duplicates: sorts with a shell-sort style loop, reallocates the work arrays with `Xrealloc` (six places) and
+  `Xalloc`, copies with `memcpy` and calls the fill entry (+0) of the operations table with
+  `miDisposeSpanGroup` afterwards.
+- `miSubtractSpans` (kona.so, address 0x4b84f0): **inferred.** Removes one span group from another so
+  wide-line pieces are not painted twice: edits the lists with `memmove` (four places) and `Xrealloc` when a
+  list must grow.
+- `miClipSpans` (kona.so, address 0x4882b0): **inferred.** Clips a span list against a region's boxes and
+  passes the surviving pieces to the span-fill routine whose address is at 0x466ff0; 279 instructions.
+- `miZeroClipLine` (kona.so, address 0x4376f0): **inferred.** Clips a one-pixel line segment to a box and
+  returns the clipped endpoints and error terms, using the 0x7fff coordinate limit; used before every
+  Bresenham stepper in the module.
+- `miZeroLine` (kona.so, address 0x473080): **inferred.** Zero-width polyline: for each segment it clips with
+  `miZeroClipLine` (two call sites) and steps pixels through an indirect entry of the operations table; 784
+  instructions covering the octant cases.
+- `miStepDash` (kona.so, address 0x44ba30): **inferred.** Advances a dash pattern by a given distance: walks
+  the dash array until the distance is consumed and updates the current index and offset; 241 instructions, no
+  calls.
+- `miSetZeroLineBias` (kona.so, address 0x496880): **established.** Takes a screen private index with
+  `AllocateScreenPrivateIndex` and stores the bias bits that decide which edge pixels belong to a zero-width
+  line on this screen.
+- `miLineProjectingCap` (kona.so, address 0x489e40): **inferred.** Builds the projecting cap of a wide line:
+  it computes the corner points with `miPolyBuildEdge` (eight calls) and fills the polygons with
+  `miFillPolyHelper` three times.
+- `miRoundCapClip` (kona.so, address 0x474310): **inferred.** Computes the clip for a round line cap: uses
+  `miPolyBuildEdge` to build the two half-edges and the 0x7fff limit for the y range.
+- `miRoundJoinFace` (kona.so, address 0x467720): **inferred.** Builds one face of a round line join:
+  `miPolyBuildEdge` produces the edge, and 0x7fff bounds the search.
+- `miRoundJoinClip` (kona.so, address 0x4a2d20): **established.** Round join clip: calls `miRoundJoinFace`
+  twice for the two faces of the join, 66 instructions.
+- `miPolyBuildEdge` (kona.so, address 0x4a9890): **inferred.** Builds the left or right edge list of a wide
+  line from its endpoints and slope, with no callee; 97 instructions of integer arithmetic.
+
+### Machine-independent routines: polygons and arcs
+
+- `miFillPolygon` (kona.so, address 0x499820): **established.** FillPolygon entry: hands convex shapes to
+  `miFillConvexPoly` and all others to `miFillGeneralPoly`.
+- `miFillGeneralPoly` (kona.so, address 0x4988e0): **inferred.** Scan-line fill for general polygons: builds
+  the edge table with `miCreateETandAET` (twice), inserts edges with `miInsertionSort`, advances them with
+  `micomputeWAET` (twice), calls the fill entry at +0 for each scan line and frees the tables with
+  `miFreeStorage`.
+- `miFillSppPoly` (kona.so, address 0x463a10): **inferred.** Fills a single-pixel-per-scanline polygon through
+  the span entry at +0 and the routine at 0x491ad0 that computes span extents; 399 instructions.
+- `miFillPolyHelper` (kona.so, address 0x45a2c0): **inferred.** Fills a polygon built from two edge lists:
+  `miAppendSpans` adds spans to a group, `Xalloc` (twice) gets work arrays, the context is changed and
+  validated twice with `DoChangeGC` and `ValidateGC`, and the memory is freed with `Xfree`.
+- `miFillArcSetup` (kona.so, address 0x47b640): **inferred.** Computes the integer parameters for filling an
+  ellipse arc (x radius, y radius, and the starting error terms) in a record the caller supplies; no calls.
+  The routine is 77 instructions long.
+- `miFillArcDSetup` (kona.so, address 0x451f90): **inferred.** Computes the same parameters as
+  `miFillArcSetup` for a full ellipse with the dash-style integer error terms; 68 instructions, no calls.
+- `miPolyFillArc` (kona.so, address 0x45c260): **inferred.** PolyFillArc entry: calls the arc fill entry four
+  times through function pointers according to whether the arc is a full ellipse or a slice. The routine is
+  107 instructions long.
+- `miPolyArc` (kona.so, address 0x49d740): **inferred.** PolyArc: for thin arcs it calls the zero-width arc
+  routine through its function pointers and draws wide arcs with a scratch context: `GetScratchGC`,
+  `ValidateGC` (five times) and `DoChangeGC`, `miClearDrawable` to restore, then
+  `FreeScratchGC`; 745 instructions.
+- `miFreeArcCache` (kona.so, address 0x499630): **established.** Frees the arc cache: calls an indirect free
+  hook once if the cache exists and zeroes the pointer. The routine is 35 instructions long.
+
+### Machine-independent routines: contexts, text, copies and exposures
+
+- `miCreateGCOps` (kona.so, address 0x437d00): **established.** Allocates an 84-byte graphics-context
+  operations table with `Xalloc` and fills it with the machine-independent routines for each operation slot.
+- `miDestroyGCOps` (kona.so, address 0x4ac000): **established.** Destroys an operations table: one `Xfree`
+  call.
+- `miRegisterGCPrivateIndex` (kona.so, address 0x43cdc0): **established.** Stores its argument in a module
+  global: the index the layer uses for its graphics-context private records. The routine is 6 instructions
+  long.
+- `miChangeGC` (kona.so, address 0x487750): **established.** Empty hook that returns at once: the
+  machine-independent ChangeGC step has nothing to do. The whole routine is 2 instructions (8 bytes), a return
+  and its delay slot.
+- `miScreenInit` (kona.so, address 0x443e30): **established.** Initialises a screen for the
+  machine-independent layer: calls `ShmRegisterFbFuncs`, `miInitializeBackingStore`, `miSetZeroLineBias` and
+  `miScreenDevPrivateInit`.
+- `miScreenDevPrivateInit` (kona.so, address 0x4bfd50): **established.** Allocates the screen's device-private
+  block with `Xalloc` and stores the pointer.
+- `miInitializeBackingStore` (kona.so, address 0x443c30): **established.** Sets up backing store for a screen:
+  takes a GC private index with `AllocateGCPrivateIndex`, a screen private index with
+  `AllocateScreenPrivateIndex`, allocates the record with `Xalloc` and a GC private with `AllocateGCPrivate`.
+- `miPostChangeSaveUnder` (kona.so, address 0x44fcf0): **inferred.** PostChangeSaveUnder hook: calls an
+  indirect routine twice after save-under changes. The routine is 70 instructions long.
+- `miClearDrawable` (kona.so, address 0x44e0d0): **inferred.** Clears a drawable to its background by changing
+  the scratch context with `DoChangeGC` and `ValidateGC` and filling through entry +44.
+- `miClearToBackground` (kona.so, address 0x49eb20): **inferred.** ClearToBackground request: clips with the
+  screen entries +340 to +356, paints the background with the entry at +212 and +216 and handles exposures.
+  The routine is 129 instructions long.
+- `miCopyArea` (kona.so, address 0x47fc30): **inferred.** CopyArea for the machine-independent layer:
+  allocates a source region with `Xalloc`, reads with entry +168, writes with +4 through the clip entries,
+  uses `NotClippedByChildren` and finishes with `miHandleExposures`.
+- `miHandleExposures` (kona.so, address 0x475010): **inferred.** Generates the graphics-expose events after a
+  copy: computes the exposed region with region entries +336 to +396 and `NotClippedByChildren`, then passes
+  it to `miSendGraphicsExpose`.
+- `miSendExposures` (kona.so, address 0x462eb0): **inferred.** Sends Expose events for a region: finds the
+  window with `LookupIDByType`, delivers events with `DeliverEvents` (three places) and with Xinerama builds
+  uses `PanoramiXFindIDByScrnum` and `XineramaCollectExpose`.
+- `miSendGraphicsExpose` (kona.so, address 0x467f40): **established.** Sends the graphics-expose events for a
+  copy: calls `TryClientEvents` twice, once for each of the exposure and no-exposure cases.
+- `miShapedWindowIn` (kona.so, address 0x44c040): **inferred.** Tests whether a rectangle lies in a shaped
+  window by walking the window's shape region through entry +380, 141 instructions.
+- `miPushPixels` (kona.so, address 0x48cd60): **inferred.** PushPixels for the machine-independent layer:
+  allocates a scratch buffer with `Xalloc`, reads the stencil through +168, paints with entry +0x7 per run and
+  frees with `Xfree`.
+- `miImageText16` (kona.so, address 0x486a90): **established.** ImageText16: collects glyphs with `GetGlyphs`
+  and draws with the ImageGlyphBlt entry (+68) of the operations table.
+- `miPolyText8` (kona.so, address 0x4afae0): **established.** PolyText8: collects glyphs with `GetGlyphs` and
+  calls the PolyGlyphBlt entry (+72) once.
+- `miPolyGlyphBlt` (kona.so, address 0x4b2930): **inferred.** PolyGlyphBlt on a scratch context: gets the
+  scratch with `GetScratchGC`, sets the colour with `DoChangeGC`, validates with `ValidateGC` and
+  `FreeScratchGC`, and pushes pixels through entry +8.
+
+### Colour frame-buffer: set-up, graphics context and pixmaps
+
+- `cfbAllocatePrivates` (kona.so, address 0x4395a0): **established.** Reserves the private slots the 8-bit
+  colour layer needs: `AllocateWindowPrivate` and `AllocateGCPrivate` for the window and context records, then
+  `mfbAllocatePrivates` so the monochrome layer shares the same indexes.
+- `cfb16AllocatePrivates` (kona.so, address 0x4556d0): **established.** The 16-bit twin of
+  `cfbAllocatePrivates`: allocates window and context privates with `AllocateWindowPrivate` and
+  `AllocateGCPrivate`, takes a screen private index with `AllocateScreenPrivateIndex` and calls
+  `mfbAllocatePrivates`.
+- `cfb32ValidateGC` (kona.so, address 0x49b030): **inferred.** ValidateGC for 32-bit-per-pixel drawables:
+  recomputes the composite clip with `miComputeCompositeClip`, reduces the raster operation with
+  `cfb32ReduceRasterOp`, selects line, fill and text routines for the fill style (reporting "illegal
+  fillStyle" through `FatalError`), pads and rotates tiles with `cfb32PadPixmap` and
+  `cfb32CopyRotatePixmap`, and rebuilds the operation table with `miCreateGCOps`.
+- `cfbResolveColor` (kona.so, address 0x4a0720): **inferred.** Reduces a 16-bit-per-channel colour to the
+  visual's precision using the visual's masks and shifts (12 variable shifts, no calls) so the pixel stored
+  matches what the display can show.
+- `cfb16ReduceRasterOp` (kona.so, address 0x4b8ad0): **inferred.** Turns a raster operation, plane mask and
+  foreground pixel into the and/xor pair the span and line routines apply to destination words; 119
+  instructions built around a switch on the operation.
+- `cfb32MatchCommon` (kona.so, address 0x44dff0): **inferred.** Decides whether the context qualifies for one
+  of the module's common fast cases at 32 bits per pixel: 54 instructions, no calls and no stores beyond the
+  return value.
+- `cfbCreatePixmap` (kona.so, address 0x4b9800): **established.** CreatePixmap for 8-bit drawables:
+  `AllocatePixmap` makes the header and pixel store (called at two places), then the width padding and byte
+  count are filled in.
+- `cfb16CreatePixmap` (kona.so, address 0x45e940): **established.** CreatePixmap for 16-bit drawables:
+  allocates the pixmap with `AllocatePixmap`, sets the 16-bit bits-per-pixel and the row stride rounded to a
+  word.
+- `cfb32CreatePixmap` (kona.so, address 0x46aa40): **established.** CreatePixmap for 32-bit drawables:
+  identical in structure and size to the 16-bit routine, calling `AllocatePixmap` twice and setting 32 bits
+  per pixel and the matching stride.
+- `cfbCopyPixmap` (kona.so, address 0x462e10): **inferred.** Duplicates a pixmap for the 8-bit layer: asks the
+  screen to create a pixmap with the entry at +236 and copies the pixel store with `memmove`; 37 instructions.
+- `cfb32CopyPixmap` (kona.so, address 0x4a8c90): **inferred.** Duplicates a 32-bit pixmap by the same two
+  steps as the 8-bit routine, create through the screen entry +236 and copy with `memmove`.
+- `cfb16PadPixmap` (kona.so, address 0x4aeaf0): **inferred.** Widens a small tile pixmap to a whole number of
+  words by replicating its rows: 26 variable shifts compose each padded row from repeated 16-bit pixels.
+- `cfb32PadPixmap` (kona.so, address 0x4b6540): **inferred.** Pads a 32-bit tile pixmap to the word multiple
+  the fill code needs, by repeating each row; 137 instructions, the same loop structure as the 16-bit padder.
+- `cfbYRotatePixmap` (kona.so, address 0x4565a0): **inferred.** Rotates a pixmap vertically by moving rows
+  with three `memmove` calls; for a bits-per-pixel it does not know it prints "cfbYRotatePixmap: unsupported
+  bitsPerPixel" with `ErrorF` and hands over to `mfbYRotatePixmap`.
+- `cfb16YRotatePixmap` (kona.so, address 0x481660): **inferred.** Vertical rotation for 16-bit tiles: three
+  `memmove` calls reposition the rows, and an unsupported depth is reported with `ErrorF` before
+  `mfbYRotatePixmap` takes over. Its text is the same as the 8-bit version's.
+- `cfb32YRotatePixmap` (kona.so, address 0x48f8c0): **inferred.** Vertical tile rotation for 32-bit pixmaps,
+  three `memmove` calls and the `mfbYRotatePixmap` fallback for depths it cannot rotate.
+- `cfb32CopyRotatePixmap` (kona.so, address 0x4ca1a0): **inferred.** Copies a 32-bit pixmap and rotates it to
+  a new origin: `cfb32CopyPixmap` duplicates it (or `memmove` when the sizes match), `cfb32PadPixmap` widens
+  it, `cfb32XRotatePixmap` and `cfb32YRotatePixmap` shift it; reads the screen entry +240.
+- `cfb32CopyPlane` (kona.so, address 0x4c95f0): **inferred.** CopyPlane for 32-bit drawables: a short routine
+  that calls the generic copy-plane entry at +0 of the depth table with its arguments.
+- `cfbCopyPlane8to1` (kona.so, address 0x46acf0): **inferred.** CopyPlane from an 8-bit source to a one-bit
+  destination: finds the selected plane with `ffs`, extracts that bit from every pixel with 308 variable
+  shifts and packs eight pixels per byte; 1762 instructions, the largest routine of this group.
+- `cfbPutImage` (kona.so, address 0x46ee30): **inferred.** PutImage for 8-bit drawables: for formats it cannot
+  copy directly it builds a scratch header with `GetScratchPixmapHeader` and a temporary context with
+  `DoChangeGC` and `ValidateGC`, copies through the entries at +8, +12 and +16 and releases with
+  `FreeScratchPixmapHeader`.
+- `cfb32PutImage` (kona.so, address 0x4b7070): **inferred.** PutImage for 32-bit drawables, same structure as
+  the 8-bit routine: scratch header from `GetScratchPixmapHeader`, context changes through `DoChangeGC` (three
+  places), `ValidateGC` and the copy entries, header freed with `FreeScratchPixmapHeader`.
+- `cfbGetImage` (kona.so, address 0x4820a0): **inferred.** GetImage for the 8-bit layer: builds two scratch
+  headers (`GetScratchPixmapHeader` at two places), copies with `cfbDoBitblt` or `mfbGetImage` between the
+  clip entries +340 and +352, extracts a single plane with `cfbCopyImagePlane` and cleans up with `bzero` and
+  `FreeScratchPixmapHeader`.
+- `cfb32GetImage` (kona.so, address 0x4aa7f0): **inferred.** GetImage for 32-bit drawables: scratch header via
+  `GetScratchPixmapHeader`, `bzero` of the output, copy with `cfb32DoBitblt` or the generic
+  `miGetImage`, `mfbGetImage` for one-bit results, and `FreeScratchPixmapHeader`.
+- `cfbSetScanline` (kona.so, address 0x4c8fe0): **inferred.** Writes one scan line of 8-bit pixels from a
+  packed source into the destination words, shifting with 11 variable shifts to align the source and masking
+  the first and last word.
+- `cfb16SetScanline` (kona.so, address 0x473cf0): **inferred.** Writes a scan line of 16-bit pixels into the
+  drawable: the source is shifted into alignment (11 variable shifts) and stored a word at a time with edge
+  masks.
+
+### Colour frame-buffer: copies
+
+- `cfbBitBlt` (kona.so, address 0x4340c0): **inferred.** The CopyArea worker: clips the source and destination
+  boxes through the clip entries (+340 to +376), copies with the entry at +12 or the routine at +176 and calls
+  `NotClippedByChildren` and `miHandleExposures` for the exposures. It is byte-for-byte the same size as
+  `cfb32BitBlt`.
+- `cfb32BitBlt` (kona.so, address 0x4af2b0): **inferred.** CopyArea worker for 32-bit drawables, 521
+  instructions long like `cfbBitBlt`: clip entries +340 to +376, the copy entry at +12, then
+  `NotClippedByChildren` and `miHandleExposures` for the exposed regions.
+- `cfb32CopyArea` (kona.so, address 0x443960): **established.** CopyArea entry for 32-bit drawables: a
+  40-instruction wrapper that passes its eight arguments on to `cfb32BitBlt`.
+- `cfb32DoBitblt` (kona.so, address 0x44fa20): **inferred.** Rectangle copy dispatcher for 32-bit drawables: a
+  33-instruction wrapper that forwards to `cfb32DoBitbltGeneral`.
+- `cfbDoBitbltCopy` (kona.so, address 0x4482c0): **inferred.** Rectangle copy for the plain copy raster
+  operation in the 8-bit layer: forward and backward loops with word-aligned moves and eight-way unrolled edge
+  cases (116 word stores, 70 variable shifts).
+- `cfb16DoBitbltXor` (kona.so, address 0x441c90): **inferred.** Rectangle copy for the exclusive-or raster
+  operation at 16 bits per pixel: the same shift-and-merge loops as the copy version with the combine step an
+  exclusive-or.
+- `cfb16DoBitbltOr` (kona.so, address 0x47cfd0): **inferred.** Rectangle copy for the or raster operation at
+  16 bits per pixel; shares its 1146-instruction size and loop layout with the exclusive-or version, differing
+  in the merge instruction.
+
+### Colour frame-buffer: solid rectangles and spans
+
+- `cfbFillRectSolidCopy` (kona.so, address 0x44e4a0): **inferred.** Fills rectangles with a single colour
+  using the copy raster operation, 8 bits per pixel: head and tail pixels by byte stores and the body by word
+  stores in unrolled loops (109 word stores).
+- `cfb16FillRectSolidCopy` (kona.so, address 0x44d900): **inferred.** Solid rectangle fill for 16-bit pixels
+  with the copy raster operation: two pixels per word store, with a halfword store for an odd edge pixel; 403
+  instructions.
+- `cfb16FillRectSolidXor` (kona.so, address 0x4a8160): **inferred.** Solid rectangle fill for 16-bit pixels
+  with the exclusive-or raster operation: loads each destination word and stores its exclusive-or with the
+  colour, in unrolled loops.
+- `cfbSolidSpansCopy` (kona.so, address 0x4cbc60): **inferred.** Fills spans in a solid 8-bit colour with the
+  copy raster operation: byte stores for the unaligned ends and word stores in between; clips with
+  `miFindMaxBand` and `miClipSpans`.
+- `cfb16SolidSpansCopy` (kona.so, address 0x4aa410): **inferred.** Fills spans in a solid 16-bit colour with
+  copy: clips with `miFindMaxBand` and `miClipSpans`, then writes whole words for the middle of each span.
+- `cfbSolidSpansGeneral` (kona.so, address 0x48f250): **inferred.** Solid span fill with any raster operation
+  at 8 bits per pixel: applies the and/xor pair per word with byte-wise edges and clips with `miFindMaxBand`
+  and `miClipSpans`.
+- `cfb32SolidSpansGeneral` (kona.so, address 0x4b80c0): **inferred.** Solid span fill with an arbitrary raster
+  operation at 32 bits per pixel, clipped by `miFindMaxBand` and `miClipSpans`, one word store per pixel pair
+  of masks.
+
+### Colour frame-buffer: tiles and stipples
+
+- `cfbFillSpanTile32sCopy` (kona.so, address 0x443180): **inferred.** Fills spans from a tile exactly 32
+  pixels wide, copy operation, 8 bits per pixel: rotates the tile word to the span's phase with 35 variable
+  shifts and stores whole words.
+- `cfb16FillSpanTile32sGeneral` (kona.so, address 0x436f90): **inferred.** Fills spans from a 32-bit-wide tile
+  for any raster operation at 16 bits per pixel: shifts the tile word to the span's start (15 variable shifts)
+  and merges with the and/xor masks.
+- `cfb32FillSpanTile32sGeneral` (kona.so, address 0x4b6cf0): **inferred.** Span fill from a tile of one word
+  for 32-bit pixels and any raster operation; 219 instructions, a word per pixel with the mask pair applied.
+- `cfbFillSpanTileOddGeneral` (kona.so, address 0x485ad0): **inferred.** Span fill from a tile whose width is
+  not a word multiple, 8-bit pixels, any raster operation: the tile row is read with 39 variable shifts to
+  line up with the destination word.
+- `cfb16FillSpanTileOddGeneral` (kona.so, address 0x4c9640): **inferred.** Odd-width tile span fill for 16-bit
+  pixels: tile row bits are realigned with 39 variable shifts and merged under the raster-operation masks.
+- `cfb32Tile32FSCopy` (kona.so, address 0x45cc00): **inferred.** FillSpans from a one-word tile, copy
+  operation, 32 bits per pixel: clips with `miFindMaxBand` and `miClipSpans`, then stores the tile word for
+  each pixel.
+- `cfb16Tile32FSCopy` (kona.so, address 0x4679b0): **inferred.** FillSpans from a 32-bit tile with copy at 16
+  bits per pixel: clipped by `miFindMaxBand` and `miClipSpans`, then stores tile words aligned to the span
+  start.
+- `cfb32Tile32FSGeneral` (kona.so, address 0x466090): **inferred.** FillSpans from a one-word tile for 32-bit
+  pixels and any raster operation, clipping with `miFindMaxBand` and `miClipSpans` and combining by the
+  and/xor pair.
+- `cfb16Tile32FSGeneral` (kona.so, address 0x476570): **inferred.** FillSpans from a word-wide tile at 16 bits
+  per pixel for any raster operation: `miFindMaxBand` and `miClipSpans` clip, then each span is merged under
+  masks.
+- `cfbUnnaturalTileFS` (kona.so, address 0x4b67d0): **inferred.** Dispatches span fills for tile widths that
+  do not divide a word: clips spans with `miFindMaxBand` and `miClipSpans` (called at two places) and hands
+  them to the odd-width span routines; 120 instructions.
+- `cfbFillBoxTile32sGeneral` (kona.so, address 0x45eae0): **inferred.** Fills boxes from a 32-pixel-wide tile,
+  any raster operation, 8-bit pixels: realigns the tile word with 15 variable shifts and combines with the
+  and/xor pair.
+- `cfbFillBoxTileOdd` (kona.so, address 0x4698c0): **inferred.** Chooses between the copy and general box
+  fills for odd-width tiles: calls `cfbFillBoxTileOddCopy` or `cfbFillBoxTile32sCopy` depending on the tile
+  width; 23 instructions.
+- `cfb16FillBoxTileOddCopy` (kona.so, address 0x48d360): **inferred.** Fills boxes from an odd-width tile with
+  copy at 16 bits per pixel: 42 variable shifts assemble each destination word from two tile words.
+- `cfb16FillBoxTileOddGeneral` (kona.so, address 0x487760): **inferred.** Odd-width tile box fill at 16 bits
+  per pixel for any raster operation: 36 variable shifts line the tile up and the and/xor masks combine it.
+- `cfb32FillBoxTileOddCopy` (kona.so, address 0x464fa0): **inferred.** Odd-width tile box fill, copy
+  operation, 32 bits per pixel: 351 instructions, with few shifts because a 32-bit pixel is a whole word.
+- `cfb32FillBoxTileOddGeneral` (kona.so, address 0x48fa00): **inferred.** Odd-width tile box fill for 32-bit
+  pixels and any raster operation; 345 instructions applying the mask pair to each tile word.
+- `cfb16FillRectTileOdd` (kona.so, address 0x4ab2d0): **inferred.** Rectangle fill from an odd-width tile at
+  16 bits per pixel: forwards to `cfb16FillBoxTileOddGeneral` with the rectangle list; 55 instructions.
+- `cfb32FillRectTileOdd` (kona.so, address 0x4a7300): **inferred.** Rectangle fill from an odd-width tile at
+  32 bits per pixel: forwards to `cfb32FillBoxTile32sGeneral` for each rectangle.
+- `cfb32FillRectTile32Copy` (kona.so, address 0x4be6d0): **inferred.** Rectangle fill from a one-word tile
+  with copy at 32 bits per pixel: stores the tile word across each row (26 word stores) without any shift.
+- `cfb8FillRectOpaqueStippled32` (kona.so, address 0x44a430): **inferred.** Fills rectangles from a
+  32-pixel-wide stipple painting both foreground and background: `cfb8SetOpaqueStipple` prepares the tables,
+  then word stores (98) write the pixels in unrolled loops.
+- `cfb8FillRectTransparentStippled32` (kona.so, address 0x453200): **inferred.** Fills rectangles from a
+  32-pixel-wide stipple painting only the foreground: `cfb8SetStipple` builds the mask tables, then 536 byte
+  stores and 218 halfword stores place the set pixels; 2304 instructions.
+- `cfb8Stipple32FS` (kona.so, address 0x4834d0): **inferred.** FillSpans with a 32-pixel stipple at 8 bits per
+  pixel: `cfb8SetStipple` prepares the tables, `miFindMaxBand` and `miClipSpans` clip, and byte and halfword
+  stores write the stippled pixels.
+
+### Colour frame-buffer: polygons, arcs and glyphs
+
+- `cfb16FillPoly1RectCopy` (kona.so, address 0x4665a0): **inferred.** Convex polygon fill for 16-bit pixels
+  with copy when the clip is a single rectangle; falls back to `miFillPolygon` (two places) for other clips.
+  645 instructions.
+- `cfb16FillPoly1RectGeneral` (kona.so, address 0x472370): **inferred.** Polygon fill for 16-bit pixels with
+  any raster operation and a single-rectangle clip, handing other clips to `miFillPolygon` (two call sites);
+  829 instructions.
+- `cfb32FillPoly1RectGeneral` (kona.so, address 0x446260): **inferred.** Polygon fill for 32-bit pixels and a
+  single clip rectangle, with `miFillPolygon` as the fallback at two call sites; the 0x7fff and 0xfffeffff
+  constants test coordinate range.
+- `cfbPolyFillArcSolidCopy` (kona.so, address 0x499410): **inferred.** PolyFillArc with a solid colour and
+  copy operation, 8 bits per pixel: fetches the clip through entry +380 and calls a shared helper at 0x493370;
+  136 instructions.
+- `cfbPolyFillArcSolidGeneral` (kona.so, address 0x47f060): **inferred.** PolyFillArc with a solid colour and
+  arbitrary raster operation at 8 bits per pixel: 137 instructions fetching the clip via entry +380 and
+  calling an indirect fill three times.
+- `cfb16PolyFillArcSolidCopy` (kona.so, address 0x47f4a0): **inferred.** Solid copy PolyFillArc for 16-bit
+  pixels: loops over arcs (13 loop edges), takes the clip from entry +380 and fills spans through an indirect
+  call.
+- `cfb16PolyFillArcSolidGeneral` (kona.so, address 0x4810c0): **inferred.** PolyFillArc for 16-bit pixels with
+  any raster operation and solid fill; calls the clip entry +380 three times and an indirect span filler.
+- `cfb32PolyFillArcSolidGeneral` (kona.so, address 0x443a00): **inferred.** PolyFillArc for 32-bit pixels,
+  solid fill, any raster operation; the structure matches the 16-bit general version.
+- `cfb32ZeroPolyArcSSCopy` (kona.so, address 0x4521e0): **inferred.** Zero-width single-segment arc draw for
+  32-bit pixels with copy: calls the clip entry +380 three times and an indirect routine, bounded by 0x7fff.
+- `cfb16ZeroPolyArcSSXor` (kona.so, address 0x49a6d0): **inferred.** Zero-width arc drawing for 16-bit pixels
+  with exclusive-or: falls back to `miPolyArc` when the arc is not simple, clipping through entry +380.
+- `cfb32ZeroPolyArcSSXor` (kona.so, address 0x4a25c0): **inferred.** Zero-width arc for 32-bit pixels with
+  exclusive-or: calls entry +380 twice and `miPolyArc` as the general path.
+- `cfbZeroPolyArcSS8Xor` (kona.so, address 0x4a90f0): **inferred.** Zero-width arc for 8-bit pixels with
+  exclusive-or: `miPolyArc` handles the cases the fast loop does not, after three calls of the clip entry
+  +380.
+- `cfb16PolyGlyphBlt8` (kona.so, address 0x43e490): **inferred.** PolyGlyphBlt for 16-bit pixels with 8-pixel
+  glyph rows: clips through entry +380, calls the shared glyph painter at 0x444fb0 twice and writes pixels
+  with halfword stores (41 of them).
+- `cfbPolyGlyphRop8` (kona.so, address 0x4c5740): **inferred.** PolyGlyphBlt with a general raster operation
+  at 8 bits per pixel: `cfb8SetStipple` is called twice to build the stipple tables and the glyph rows are
+  applied through entry +0.
+- `cfb32ImageGlyphBlt8` (kona.so, address 0x4a71b0): **inferred.** ImageGlyphBlt for 32-bit pixels: measures
+  with `QueryGlyphExtents`, then fills the cell background and paints the glyph bits through the entries at
+  +44 and +72; 84 instructions.
+
+### Colour frame-buffer: lines
+
+- `cfb16BresD` (kona.so, address 0x437ec0): **inferred.** Bresenham stepper for dashed 16-bit lines: advances
+  the error term per pixel, toggles dash and gap with a counter and stores pixels with halfword stores (12 of
+  them).
+- `cfb32VertS` (kona.so, address 0x457b90): **inferred.** Draws a vertical run of 32-bit pixels, one word
+  store per scan line stepped by the row stride; 174 instructions.
+- `cfb16VertS` (kona.so, address 0x4cc040): **inferred.** Vertical run at 16 bits per pixel: steps by the row
+  stride and stores each pixel with a halfword store, 35 stores in the unrolled loop.
+- `cfb16HorzS` (kona.so, address 0x4776d0): **inferred.** Horizontal run at 16 bits per pixel: head and tail
+  pixels by halfword, middle as words (76 word stores in unrolled cases).
+- `cfb32LineSS` (kona.so, address 0x47e200): **inferred.** Single-width solid polyline for 32-bit pixels:
+  clips with `miZeroClipLine`, uses `cfb32VertS` and `cfb32HorzS` for axis-aligned segments and
+  `cfb32BresS` (two call sites) otherwise.
+- `cfb16LineSS` (kona.so, address 0x4a0e00): **inferred.** Single-width solid polyline for 16-bit pixels:
+  `miZeroClipLine` clips, then `cfb16VertS`, `cfb16HorzS` or
+  `cfb16BresS` draw by slope; the same shape as the 32-bit routine.
+- `cfb32LineSD` (kona.so, address 0x486b50): **inferred.** Dashed polyline for 32-bit pixels: reduces the
+  raster operation with `cfb32ReduceRasterOp`, clips with `miZeroClipLine`, steps dashes with `miStepDash` and
+  draws with `cfb32BresD`.
+- `cfb16LineSD` (kona.so, address 0x4a7550): **inferred.** Dashed polyline for 16-bit pixels:
+  `cfb16ReduceRasterOp`, `miZeroClipLine`, `miStepDash` and
+  `cfb16BresD` in the same order as the 32-bit routine.
+- `cfbLineSD` (kona.so, address 0x4c6a20): **inferred.** Dashed polyline for 8-bit pixels:
+  `cfbReduceRasterOp`, `miZeroClipLine`, `miStepDash` and
+  `cfbBresD` (two call sites each for the last three).
+- `cfb32SegmentSS` (kona.so, address 0x461930): **inferred.** Solid PolySegment for 32-bit pixels:
+  `miZeroClipLine` clips each segment, then `cfb32VertS`, `cfb32HorzS` or
+  `cfb32BresS` draws it.
+- `cfb16SegmentSS` (kona.so, address 0x469e50): **inferred.** Solid PolySegment for 16-bit pixels: clips with
+  `miZeroClipLine` and draws with `cfb16VertS`, `cfb16HorzS` or
+  `cfb16BresS`; same size as the 32-bit version.
+- `cfb32SegmentSD` (kona.so, address 0x45a810): **inferred.** Dashed PolySegment for 32-bit pixels:
+  `cfb32ReduceRasterOp`, `miZeroClipLine`, `miStepDash` and
+  `cfb32BresD`, reading the screen entries +32 and +108 for the context.
+- `cfb16SegmentSD` (kona.so, address 0x460f20): **inferred.** Dashed PolySegment for 16-bit pixels:
+  `cfb16ReduceRasterOp` then `miZeroClipLine`, `miStepDash` and
+  `cfb16BresD`, with the screen entries +32 and +108.
+- `cfb16SegmentSS1Rect` (kona.so, address 0x456460): **inferred.** Entry for solid PolySegment with a
+  one-rectangle clip at 16 bits per pixel: 78 instructions choosing the copy, xor or general routine through
+  two indirect calls.
+- `cfb16SegmentSS1RectCopy` (kona.so, address 0x4974d0): **inferred.** Single-clip-rectangle solid segments at
+  16 bits per pixel with copy: unpacks packed coordinate pairs, tests them against the clip with the
+  0x80008000 and 0xfffeffff checks and draws with halfword stores.
+- `cfb16SegmentSS1RectXor` (kona.so, address 0x4888c0): **inferred.** Single-clip solid segments at 16 bits
+  per pixel with exclusive-or: the same packed-coordinate loop as the copy version, but each pixel is
+  exclusive-ored; 552 instructions.
+- `cfb16SegmentSS1RectGeneral` (kona.so, address 0x459890): **inferred.** Single-clip solid segments at 16
+  bits per pixel for any raster operation; 644 instructions with the same overflow and range checks
+  (0x80008000, 0xfffeffff).
+- `cfb32SegmentSS1RectCopy` (kona.so, address 0x4b0ce0): **inferred.** Single-clip solid segments at 32 bits
+  per pixel with copy: packed coordinates tested against the clip, a word store for each pixel.
+- `cfb32SegmentSS1RectGeneral` (kona.so, address 0x450620): **inferred.** Single-clip solid segments for
+  32-bit pixels and any raster operation; 459 instructions using the and/xor pair per pixel.
+- `cfb8SegmentSS1RectGeneral` (kona.so, address 0x4ac0d0): **inferred.** Single-clip solid segments for 8-bit
+  pixels and any raster operation, with 16 byte stores and the packed coordinate checks 0x80008000 and
+  0xfffeffff.
+- `cfb16LineSS1Rect` (kona.so, address 0x4b0a00): **inferred.** Entry for solid polylines with a one-rectangle
+  clip at 16 bits per pixel: four indirect calls choose copy, xor or general line routines; 180 instructions.
+- `cfb16LineSS1RectCopy` (kona.so, address 0x4c60f0): **inferred.** Single-clip solid polyline at 16 bits per
+  pixel with copy: packed coordinates, clip tests and halfword stores (32 of them) along the major axis.
+- `cfb16LineSS1RectPreviousCopy` (kona.so, address 0x4745c0): **inferred.** Variant of the single-clip copy
+  polyline at 16 bits per pixel whose name ends in Previous; 432 instructions with 16 halfword stores and 15
+  loop edges, drawing a connected line from packed coordinates tested with the 0xfffeffff mask.
+- `cfb32LineSS1RectCopy` (kona.so, address 0x4cd3d0): **inferred.** Single-clip solid polyline for 32-bit
+  pixels with copy: 585 instructions, word stores along the line with the packed-coordinate clip tests.
+- `cfb8LineSS1RectXor` (kona.so, address 0x4910f0): **inferred.** Single-clip solid polyline for 8-bit pixels
+  with exclusive-or: 16 byte stores and the packed coordinate clip checks.
+- `cfb8ClippedLineCopy` (kona.so, address 0x446b90): **inferred.** Clipped zero-width line for 8-bit pixels
+  with copy: clips with `miZeroClipLine` (two call sites) and steps pixels with byte stores (56 of them).
+- `cfb8ClippedLineGeneral` (kona.so, address 0x45d1c0): **inferred.** Clipped line for 8-bit pixels with any
+  raster operation, clipping with `miZeroClipLine` at two places and combining with the and/xor pair.
+- `cfb16ClippedLineCopy` (kona.so, address 0x49c370): **inferred.** Clipped line for 16-bit pixels with copy:
+  `miZeroClipLine` twice, then halfword stores (55) along the line.
+- `cfb16ClippedLineGeneral` (kona.so, address 0x475710): **inferred.** Clipped line for 16-bit pixels with any
+  raster operation: two `miZeroClipLine` calls and masked halfword stores.
+- `cfb32ClippedLineCopy` (kona.so, address 0x496920): **inferred.** Clipped line for 32-bit pixels with copy:
+  `miZeroClipLine` at two places and 77 word stores.
+- `cfb32ClippedLineGeneral` (kona.so, address 0x464450): **inferred.** Clipped line for 32-bit pixels with any
+  raster operation, built like the 16-bit one around two `miZeroClipLine` calls.
