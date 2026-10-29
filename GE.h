@@ -58,10 +58,12 @@
 /*
  * Command framing.
  *
- * ESTABLISHED: a command is one 32-bit token word holding only the token
- * value (no length or flag bits), followed by its payload in the client's
- * native formats: IEEE single floats from swc1, 64-bit doubles from sdc1,
- * integers as 32-bit words. Checked against kpm's table for 225 of the 354
+ * ESTABLISHED: a command is one 32-bit token word with the token value in
+ * bits 0-15, followed by its payload. Float, double and int forms send
+ * native words: IEEE single floats from swc1, 64-bit doubles from sdc1,
+ * integers as 32-bit words, and the token word's bits 16-31 are zero.
+ * Byte and short forms pack their components into the upper halves of
+ * words instead, starting in the token word (see "Packed forms" below). Checked against kpm's table for 225 of the 354
  * libGLcore functions whose first FIFO store is a constant; the names
  * agree (e.g. Color3f = 0x63 COLOR3F, Color4f = 0x6b COLOR4F,
  * EdgeFlag = 0xa7 EDGEFLAG, Indexd = 0x72 INDEXD followed by one sdc1,
@@ -83,8 +85,7 @@
  * tokens with the word count and type of every payload item. Highlights:
  *   COLOR3F/NORMAL3F/VERTEX3F/TEXCOORD3F  3 floats; the 4-component forms 4
  *   *D forms                              the same count of doubles (2 words each)
- *   *I and *S forms                       one word per component; shorts
- *                                         and unsigned bytes widened to a word
+ *   *I forms                              one word per component
  *   LOADMATRIXF/MULTMATRIXF               16 floats; *D: 16 doubles
  *   ROTATEF 4 floats, SCALEF and TRANSLATEF 3 floats
  *   ORTHO, FRUSTUM                        6 doubles; DEPTHRANGE 2 doubles
@@ -98,6 +99,24 @@
  * A vector GL entry point sends the same words as its scalar form.
  * GL calls that convert (TexGend, TexGeni, Materiali) send the float
  * token; Indexub sends INDEXS.
+ *
+ * Packed forms, ESTABLISHED (kon_cfuncs.s; the emitter ORs the token into
+ * the low half of the first word):
+ *   short components (Color3s 0x65, Color4s 0x6d, Color3us 0x68,
+ *   Normal3s 0x7a, TexCoord2s 0x82, Vertex2s 0x8e, Vertex3s 0x92):
+ *     word0 = c0 << 16 | token, word1 = c1 << 16 | (c2 & 0xffff),
+ *     word2 = c3 << 16 when there is a fourth; a lone trailing component
+ *     goes in bits 16-31 of its word (TexCoord2s, Vertex2s: word1 = c1 << 16).
+ *   byte components (Color3b 0x61, Color3ub 0x66, Color4b 0x69,
+ *   Color4ub 0x6e, Normal3b 0x76):
+ *     word0 = c0 << 24 | (c1 & 0xff) << 16 | token,
+ *     word1 = c2 << 24 | (c3 & 0xff) << 16  (bits 0-15 zero).
+ *   Indexs 0x75 is the exception: token alone, then i << 16.
+ * Signed components keep their sign in the top bits of their slot; the
+ * low bits of a slot below a signed short are masked off.
+ * INFERRED: the geometry engine reads a packed word as two 16-bit slots
+ * (the low slot of word0 being the token), and bytes occupy the top byte
+ * of each slot.
  *
  * INFERRED: variable-length commands carry their own counts in the
  * payload, since the token word has no room for one. Their grammars are
