@@ -594,7 +594,7 @@ usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047
 usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	0	0	documented	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
 usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	0	0	documented	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
 usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
-usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
+usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	0	0	documented	docs/libfm.md#the-font-manager-library-libfmso-function-reference	The font-manager library (`libfm.so`): function reference
 var/sysgen/master.d/gfxs	kernel-config	shared-data	data	-	399	ef56620faa1e0634		0	0	0	undocumented		
 var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0	0	0	undocumented		
 var/sysgen/system/gfx.sm	kernel-config	shared-data	data	-	878	47fa105a54a80d26		0	0	0	named-only	IRIX_FILES.md#1-irix-6530-primary	1. IRIX 6.5.30 (primary)
