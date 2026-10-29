@@ -487,7 +487,7 @@ arm1.u	linker region	0x0c001958	ucode$$Limit		undocumented
 arm1.u	symbol (flags 3)	0x0c001a34	arm_divert		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 3)	0x0c001ab0	find_ucode		documented	docs/ge.md#reset-and-start-up
 arm1.u	symbol (flags 3)	0x0c001aec	init_arm		documented	ucode/arm1_firmware.md#what-the-arm-sees
-arm1.u	symbol (flags 3)	0x0c001c60	init_hip		documented	ucode/arm1.md#container
+arm1.u	symbol (flags 3)	0x0c001c60	init_hip		documented	docs/open-questions.md#kernel-driver
 arm1.u	symbol (flags 3)	0x0c001e20	init_ged_ucode		documented	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler
 arm1.u	symbol (flags 3)	0x0c0020ec	init_ged_regs		documented	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler
 arm1.u	symbol (flags 3)	0x0c0024e8	init_ged		documented	docs/ge.md#reset-and-start-up
@@ -1016,7 +1016,7 @@ arm1.u	symbol (flags 2)	0x0c02184c	deactivate_ge		undocumented
 arm1.u	symbol (flags 3)	0x0c021864	deactivate_ged		documented	docs/ge.md#context-save-and-restore
 arm1.u	symbol (flags 2)	0x0c021df8	deactivate_hip		documented	docs/ge.md#context-save-and-restore
 arm1.u	symbol (flags 2)	0x0c021f7c	deact_section		undocumented	
-arm1.u	symbol (flags 2)	0x0c02209c	deactivate_arm		undocumented	
+arm1.u	symbol (flags 2)	0x0c02209c	deactivate_arm		documented	docs/open-questions.md#kernel-driver
 arm1.u	symbol (flags 3)	0x0c022188	arm_context_deactivate		documented	docs/ge.md#context-save-and-restore
 arm1.u	symbol (flags 3)	0x0c02226c	arm_context_mopup		documented	docs/ge.md#context-save-and-restore
 arm1.u	symbol (flags 3)	0x0c022354	waitForDH		documented	ucode/arm1_firmware.md#control-and-status-registers
@@ -2366,7 +2366,7 @@ ge.u	label	0x000064af	mGenerateAALineTable		undocumented
 ge.u	label	0x0000652d	mDownLoadAALineTable8		undocumented	
 ge.u	label	0x00006579	mDownLoadAALineTable4		undocumented	
 ge.u	label	0x000065db	mDownLoadAALineTable		documented	ucode/ge.md#precision
-ge.u	label	0x00006622	mgeb_ContextDestroy		documented	docs/kernel.md#rendering-node-drawable-and-private-record
+ge.u	label	0x00006622	mgeb_ContextDestroy		documented	kona_kernel/include/kona_kern.h:314
 ge.u	label	0x0000668a	mges_ContextLoadFifo		undocumented	
 ge.u	label	0x00006697	mgeb_ContextLoadRegs		undocumented	
 ge.u	label	0x000066ed	mgeb_ContextLoadFlagRegs		undocumented	
@@ -3133,7 +3133,7 @@ geif.u	dispatch slot	255	mgeb_CRAMBlockLoad	handler 0x15f9	undocumented
 geif.u	dispatch slot	256	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up
 geif.u	dispatch slot	257	mgeb_ColorTableSetup	handler 0x422e	undocumented	
 geif.u	dispatch slot	258	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up
-geif.u	dispatch slot	259	mgeb_ContextDestroy	handler 0x6622	documented	docs/kernel.md#rendering-node-drawable-and-private-record
+geif.u	dispatch slot	259	mgeb_ContextDestroy	handler 0x6622	documented	kona_kernel/include/kona_kern.h:314
 geif.u	dispatch slot	260	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up
 geif.u	dispatch slot	261	mgeb_ContextLoadCram	handler 0x671e	documented	docs/ge.md#dma
 geif.u	dispatch slot	262	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up

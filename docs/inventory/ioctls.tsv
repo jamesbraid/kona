@@ -21,9 +21,9 @@ kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10021	KONA_NCLOPS_QUERY_CONF
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10022	KONA_NCLOPS_BIND	copyin	kona private	documented	docs/kernel.md#private-ioctls
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10023	KONA_NCLOPS_UNBIND	copyin	kona private	documented	docs/kernel.md#private-ioctls
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10024	KONA_NCLOPS_DESTROY_CONFIG	copyin	kona private	documented	docs/kernel.md#private-ioctls
-kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10100		curproc_abi	kona private	documented	docs/kernel.md#private-ioctls
-kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10101		RRM_CheckValidFault	kona private	undocumented	
-kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10102		RRM_CheckValidFault	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10100	kona_diag_map	curproc_abi	kona private	documented	docs/hip.md#not-covered
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10101	kona_diag_flow	RRM_CheckValidFault	kona private	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10102	kona_diag_credits	RRM_CheckValidFault	kona private	documented	docs/kernel.md#diagnostic-ioctls
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10000	KONA_DMAREAD	curproc_abi	kona private	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10001	KONA_DMAWRITE	curproc_abi	kona private	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10002	KONA_START_SELECTFEED	curproc_abi	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
@@ -46,9 +46,9 @@ kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10021	KONA_NCLOPS_QUERY_CONF
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10022	KONA_NCLOPS_BIND	copyin	kona private	documented	docs/kernel.md#private-ioctls
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10023	KONA_NCLOPS_UNBIND	copyin	kona private	documented	docs/kernel.md#private-ioctls
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10024	KONA_NCLOPS_DESTROY_CONFIG	copyin	kona private	documented	docs/kernel.md#private-ioctls
-kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10100		curproc_abi	kona private	documented	docs/kernel.md#private-ioctls
-kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10101		RRM_CheckValidFault	kona private	undocumented	
-kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10102		RRM_CheckValidFault	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10100	kona_diag_map	curproc_abi	kona private	documented	docs/hip.md#not-covered
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10101	kona_diag_flow	RRM_CheckValidFault	kona private	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10102	kona_diag_credits	RRM_CheckValidFault	kona private	documented	docs/kernel.md#diagnostic-ioctls
 user	ireeprom;Xsgi;libgl.so;libgl.so;+14 more	101		__glXOpenGraphicsDevice;__glx_GetString;__iglooGetGraphicsType	graphics init	undocumented	
 user	ireeprom;libgl.so;libgl.so;libGL.so;+10 more	102		__glx_GetString;__iglooGetGraphicsType;crm_setmon	graphics init	undocumented	
 user	Xsgi;gfxinit;setmon	103		gr2ev_info;irixKernInit;saXSGIvcQueryChannelGammaMap	graphics init	undocumented	

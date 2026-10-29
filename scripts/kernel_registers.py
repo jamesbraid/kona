@@ -38,6 +38,52 @@ add = re.compile(r'\s*d?addu\s+(\$\w+),(\$\w+),(\$\w+)')
 mov = re.compile(r'\s*move\s+(\$\w+),(\$\w+)')
 glabel = re.compile(r'glabel (\w+)')
 
+CMD = 'cmd'   # the command-port pointer, pipe state +2304 (0x900)
+cmdport = re.compile(r'\s*ld\s+(\$\w+),2304\(')
+jal = re.compile(r'\s*jal\s+(\w+)')
+kept = re.compile(r'\$(s\d|s8|sp|gp|fp)$')
+
+
+def step(regs, s):
+    """Replay one instruction on the map of registers holding known values."""
+    for pat, kind in ((lui, 'lui'), (cmdport, 'cmd'), (base, 'base'), (ori, 'ori'),
+                      (li, 'li'), (add, 'add'), (mov, 'mov')):
+        m = pat.match(s)
+        if not m:
+            continue
+        if kind == 'lui':
+            regs[m.group(1)] = int(m.group(2), 0) << 16
+        elif kind == 'cmd':
+            regs[m.group(1)] = CMD
+        elif kind == 'base':
+            regs[m.group(1)] = 0   # the pipe's register base, state offset 2376 (0x948)
+        elif kind == 'ori':
+            src = regs.get(m.group(2))
+            if isinstance(src, int):
+                v = int(m.group(3), 0)
+                regs[m.group(1)] = src | v if 'ori' in s else src + v
+            else:
+                regs.pop(m.group(1), None)
+        elif kind == 'li':
+            regs[m.group(1)] = int(m.group(2), 0)
+        elif kind == 'add':
+            a, b = regs.get(m.group(2)), regs.get(m.group(3))
+            if isinstance(a, int) and isinstance(b, int):
+                regs[m.group(1)] = a + b
+            else:
+                regs.pop(m.group(1), None)
+        elif kind == 'mov':
+            if m.group(2) in regs:
+                regs[m.group(1)] = regs[m.group(2)]
+            else:
+                regs.pop(m.group(1), None)
+        return
+    # any other instruction that writes a register forgets it
+    m = re.match(r'\s*[a-z.0-9]+\s+(\$\w+),', s)
+    if m and not re.match(r'\s*(s[bhwd]|sw[lr]|sd[lr]|b\w*|teq|tne|mt\w*|div\w*|mult\w*)\s', s):
+        regs.pop(m.group(1), None)
+
+
 rows = collections.Counter()
 for member in sorted(os.listdir(root)):
     p = os.path.join(root, member, member + '.text.s')
@@ -45,63 +91,59 @@ for member in sorted(os.listdir(root)):
         continue
     func = '?'
     lines = open(p).read().split('\n')
+    regs = {}
+    skip = False
     for i, ln in enumerate(lines):
+        if skip:
+            skip = False
+            continue
         g = glabel.match(ln)
         if g:
             func = g.group(1)
-        c = call.match(ln)
-        if not c:
+            regs = {}
             continue
-        regs = {}
-        # walk back to the start of the straight-line block and replay
-        j = i - 1
-        while j > 0 and i - j < 16 and not lines[j].startswith('.L') and not glabel.match(lines[j]):
-            j -= 1
-        for k in range(j, i + 2):
-            s = lines[k]
-            m = lui.match(s)
-            if m:
-                regs[m.group(1)] = int(m.group(2), 0) << 16
-                continue
-            m = base.match(s)
-            if m:
-                regs[m.group(1)] = 0   # the pipe's register base, state offset 2376 (0x948)
-                continue
-            m = ori.match(s)
-            if m and m.group(2) in regs:
-                v = int(m.group(3), 0)
-                regs[m.group(1)] = regs[m.group(2)] | v if 'ori' in s else regs[m.group(2)] + v
-                continue
-            m = li.match(s)
-            if m:
-                regs[m.group(1)] = int(m.group(2), 0)
-                continue
-            m = add.match(s)
-            if m:
-                a, b = regs.get(m.group(2)), regs.get(m.group(3))
-                if a is not None and b is not None:
-                    regs[m.group(1)] = a + b
-                else:
-                    regs.pop(m.group(1), None)
-                continue
-            m = mov.match(s)
-            if m and m.group(2) in regs:
-                regs[m.group(1)] = regs[m.group(2)]
-        # the address argument is $a0 at the call (delay slot included)
-        off = regs.get('$a0')
-        if off is not None and off % 4:
-            off = None   # a 32-bit register offset is a multiple of 4
-        key = (member, func, '?' if off is None else '0x%x' % off, c.group(1))
-        rows[key] += 1
+        j = jal.match(ln)
+        if not j:
+            step(regs, ln)
+            if re.match(r'\s*(b|j|jr)\s', ln):
+                # an unconditional transfer: what follows its delay slot is
+                # reached only by a branch, so only the saved registers,
+                # which this compiler keeps fixed across a function's
+                # loops, are carried over
+                if i + 1 < len(lines):
+                    step(regs, lines[i + 1])
+                regs = {r: v for r, v in regs.items() if kept.match(r)}
+                skip = True
+            continue
+        # the delay slot runs before the call
+        if i + 1 < len(lines):
+            step(regs, lines[i + 1])
+        skip = True
+        c = call.match(ln)
+        if c:
+            # the address argument is $a0 at the call. Values are followed in
+            # text order through labels, so a value reached only by a branch
+            # from elsewhere stays unknown rather than taking a wrong one.
+            off = regs.get('$a0')
+            if off == CMD:
+                key = (member, func, 'cmd', c.group(1))
+            else:
+                if off is not None and off % 4:
+                    off = None   # a 32-bit register offset is a multiple of 4
+                key = (member, func, '?' if off is None else '0x%x' % off, c.group(1))
+            rows[key] += 1
+        regs = {r: v for r, v in regs.items() if kept.match(r)}
 
 print('member\tfunction\toffset\tdirection\tcalls\twindow\tname')
 for (member, func, off, d), n in sorted(rows.items()):
     nm = ''
-    if off != '?':
+    if off == 'cmd':
+        win = 'command port (pointer at pipe state +2304)'
+    elif off != '?':
         v = int(off, 16)
         nm = ','.join(sorted(set(names.get(v & 0xfff, []))) if v >= 0x800000 else [])
         win = ('host-interface window' if v >= 0x800000 and v < 0xc00000 else
                'host-interface alias 0xc00000' if v >= 0xc00000 else 'pipe base offset (XG widget registers, docs/xg.md)')
     else:
-        win = 'computed address (command port, mapping or pipe-space address)'
+        win = 'address from a data structure or reached by a branch (see docs/kernel.md)'
     print('\t'.join([member, func, off, d, str(n), win, nm]))

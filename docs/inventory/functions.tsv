@@ -516,8 +516,8 @@ usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x6f8	84	gthread_detach_list	undocumente
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x74c	92	gthread_attach_group	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x7a8	88	gthread_detach_group	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x800	220	gthread_find	undocumented	
-usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x8dc	56	gthread_find_gfxp	documented	docs/kernel.md#rendering-node-drawable-and-private-record
-usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x914	336	gthread_scan	documented	kona_kernel/include/kona_kern.h:339
+usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x8dc	56	gthread_find_gfxp	documented	kona_kernel/include/kona_kern.h:221
+usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x914	336	gthread_scan	documented	kona_kernel/include/kona_kern.h:345
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0xa64	228	GfxRegisterBoard	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0xb48	224	GfxAddHwgraphEdge	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0xc28	308	gfx_disp	undocumented	
@@ -527,8 +527,8 @@ usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0xfe0	596	gfx_shcheck	undocumented
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x1234	124	gfx_shdup	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x12b0	252	GfxKiller	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x13ac	52	gfxcleanup	undocumented	
-usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x13e0	364	GfxOpen	undocumented	
-usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x154c	388	GfxUnmanage	undocumented	
+usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x13e0	364	GfxOpen	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
+usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x154c	388	GfxUnmanage	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x16d0	108	GfxClose	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x173c	260	GfxProto	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x1840	156	GfxWput	undocumented	
@@ -538,7 +538,7 @@ usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x1a7c	348	GfxSendMessage	undocumented
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x1bd8	28	GfxMessage	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x1bf4	28	GfxIntrMessage	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x1c10	124	GfxRqService	undocumented	
-usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x1c8c	244	GfxDetach	undocumented	
+usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x1c8c	244	GfxDetach	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x1d80	196	gfxinit	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x1e44	228	gfx_conflict_scan	undocumented	
 usr/cpu/sysgen/IP27boot/gfx.o	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	undocumented	
@@ -578,8 +578,8 @@ usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x6f8	84	gthread_detach_list	und
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x74c	92	gthread_attach_group	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x7a8	88	gthread_detach_group	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x800	220	gthread_find	undocumented	
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x8dc	56	gthread_find_gfxp	documented	docs/kernel.md#rendering-node-drawable-and-private-record
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x914	336	gthread_scan	documented	kona_kernel/include/kona_kern.h:339
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x8dc	56	gthread_find_gfxp	documented	kona_kernel/include/kona_kern.h:221
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x914	336	gthread_scan	documented	kona_kernel/include/kona_kern.h:345
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0xa64	228	GfxRegisterBoard	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0xb48	224	GfxAddHwgraphEdge	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0xc28	308	gfx_disp	undocumented	
@@ -589,8 +589,8 @@ usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0xfe0	596	gfx_shcheck	undocument
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x1234	124	gfx_shdup	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x12b0	252	GfxKiller	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x13ac	52	gfxcleanup	undocumented	
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x13e0	364	GfxOpen	undocumented	
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x154c	388	GfxUnmanage	undocumented	
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x13e0	364	GfxOpen	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x154c	388	GfxUnmanage	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x16d0	108	GfxClose	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x173c	260	GfxProto	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x1840	156	GfxWput	undocumented	
@@ -600,7 +600,7 @@ usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x1a7c	348	GfxSendMessage	undocu
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x1bd8	28	GfxMessage	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x1bf4	28	GfxIntrMessage	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x1c10	124	GfxRqService	undocumented	
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x1c8c	244	GfxDetach	undocumented	
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x1c8c	244	GfxDetach	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x1d80	196	gfxinit	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x1e44	228	gfx_conflict_scan	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	undocumented	
@@ -631,7 +631,7 @@ usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	n64	.text	0x5d0	12	gfx_flow_reset	doc
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	n64	.text	0x5dc	72	gfx_flow_dealloc	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	n64	.text	0x624	36	gfx_flow_wg_info_get	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	n64	.text	0x648	8	gfx_flow_credit_tnum_get	undocumented	
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	n64	.text	0x650	12	gfx_flow_credit_total_get	undocumented	
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	n64	.text	0x650	12	gfx_flow_credit_total_get	documented	docs/kernel.md#diagnostic-ioctls
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	n64	.text	0x65c	12	gfx_flow_credit_bias_get	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	n64	.text	0x668	72	gfx_flow_credit_count_get	undocumented	
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	n64	.text	0x6b0	8	gfx_flow_detach_requires_credit_flow_disable	undocumented	
@@ -672,13 +672,13 @@ usr/cpu/sysgen/IP27boot/kona.a(gfx_io_space.o)	n64	.text	0x424	628	free_gfx_io_s
 usr/cpu/sysgen/IP27boot/kona.a(kona_attach.o)	n64	.text	0x0	92	new_pipe_to_region	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_attach.o)	n64	.text	0x5c	364	KONAattach	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_attach.o)	n64	.text	0x1c8	84	KONAdetach	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	n64	.text	0x0	156	clean_up_other_gfxp	documented	docs/kernel.md#rendering-node-drawable-and-private-record
+usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	n64	.text	0x0	156	clean_up_other_gfxp	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	n64	.text	0x9c	136	kona_deact_timeout	documented	kona_kernel/include/kona_kern.h:111
 usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	n64	.text	0x124	1372	kona_act_pcx	documented	docs/kernel.md#rendering-node-drawable-and-private-record
 usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	n64	.text	0x680	2068	KONApcxswap	documented	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr
 usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	n64	.text	0xe94	52	KONApcxswitch	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	n64	.text	0xec8	1288	KONAvalidateclip	documented	docs/kernel.md#commands-the-driver-sends
-usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	n64	.text	0x13d0	56	KONAsetnullclip	documented	kona_kernel/include/kona_kern.h:170
+usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	n64	.text	0xec8	1288	KONAvalidateclip	documented	docs/kernel.md#registers-the-driver-touches
+usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	n64	.text	0x13d0	56	KONAsetnullclip	documented	kona_kernel/include/kona_kern.h:174
 usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o)	n64	.text	0x0	372	kona_die	documented	docs/hip.md#xg-errors-kona_xg_intr_handler
 usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o)	n64	.text	0x174	100	kona_checkpipe_complete	documented	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr
 usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o)	n64	.text	0x1d8	888	kona_checkpipe	documented	docs/kernel.md#private-ioctls
@@ -700,12 +700,12 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0xcf4	960	kona_start_select
 usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x10b4	164	kona_selectfeed_timeout	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x1158	968	kona_finish_selectfeed	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x1520	52	kona_free_up_space	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x1554	100	kona_diag_map_cleanup	undocumented	
+usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x1554	100	kona_diag_map_cleanup	documented	docs/kernel.md#diagnostic-map-kona_diag_map
 usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x15b8	536	kona_diag_map	documented	docs/hip.md#not-covered
 usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x17d0	204	abi32_to_kona_dmaread_args	documented	docs/kernel.md#dma-ioctls
 usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x189c	188	abi32_to_kona_dmawrite_args	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x1958	128	abi32_to_kona_dmapool_args	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x19d8	128	abi32_to_kona_dmavec	undocumented	
+usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x19d8	128	abi32_to_kona_dmavec	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x1a58	136	abi32_to_kona_start_selectfeed_args	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x1ae0	120	abi32_to_kona_diag_map	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	n64	.text	0x1b58	136	kona_diag_map_to_abi32	undocumented	
@@ -730,9 +730,9 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x84	192	kona_hiwater_time
 usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x144	164	kona_delay_monitor_gfifo	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x1e8	740	kona_hiwater_intr	documented	docs/hip.md#flow-control-the-fifo-interrupts
 usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x4cc	216	kona_lowater_intr	documented	docs/hip.md#host-interface-interrupts-kona_intr_handler
-usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x5a4	336	kona_diag_flow	documented	docs/kernel.md#registers-the-driver-touches
-usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x6f4	96	kona_diag_credits	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x754	484	kona_flow_await_returned_credits	documented	docs/kernel.md#registers-the-driver-touches
+usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x5a4	336	kona_diag_flow	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
+usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x6f4	96	kona_diag_credits	documented	docs/kernel.md#diagnostic-ioctls
+usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x754	484	kona_flow_await_returned_credits	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x938	184	KONAreleasegfxsema	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0x9f0	16	gfx_pio_write_32	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	n64	.text	0xa00	16	gfx_pio_write_64	undocumented	
@@ -749,8 +749,8 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	n64	.text	0x0	112	kona_xg_intr_
 usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	n64	.text	0x70	588	kona_intr_handler	documented	docs/hip.md#delivery
 usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	n64	.text	0x2bc	88	kona_ge_intr_handler	documented	docs/hip.md#delivery
 usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	n64	.text	0x0	2364	KONAprivate	documented	docs/kernel.md#dma-ioctls
-usr/cpu/sysgen/IP27boot/kona.a(kona_map.o)	n64	.text	0x0	860	KONAmapgfx	documented	docs/kernel.md#registers-the-driver-touches
-usr/cpu/sysgen/IP27boot/kona.a(kona_map.o)	n64	.text	0x35c	260	KONAunmapgfx	documented	docs/kernel.md#registers-the-driver-touches
+usr/cpu/sysgen/IP27boot/kona.a(kona_map.o)	n64	.text	0x0	860	KONAmapgfx	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
+usr/cpu/sysgen/IP27boot/kona.a(kona_map.o)	n64	.text	0x35c	260	KONAunmapgfx	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP27boot/kona.a(kona_map.o)	n64	.text	0x460	84	KONAinvaltlb	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	n64	.text	0x0	8	kona_mapram_pagesizeshiftof	documented	docs/hip.md#address-path
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	n64	.text	0x8	192	kona_mapram_init	documented	docs/hip.md#address-path
@@ -759,37 +759,37 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	n64	.text	0x210	8	kona_mapram
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	n64	.text	0x218	8	kona_mapram_select_id_mask	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x0	64	kona_mem_init	documented	docs/kernel.md#private-ioctls
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x40	1012	kona_mem_swapout_func	documented	docs/kernel.md#commands-the-driver-sends
-usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x434	932	kona_mem_swapin_func	documented	docs/kernel.md#commands-the-driver-sends
+usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x434	932	kona_mem_swapin_func	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x7d8	672	kona_mem_copydown_func	documented	docs/kernel.md#commands-the-driver-sends
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0xa78	16	kona_mem_suspend	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0xa88	704	kona_mem_resume	documented	docs/kernel.md#commands-the-driver-sends
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0xd48	672	kona_mem_reserve_func	documented	docs/kernel.md#commands-the-driver-sends
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0xfe8	332	kona_mem_cleanup	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1134	428	kona_mem_swapout	documented	kona_kernel/include/kona_kern.h:79
-usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x12e0	200	kona_mem_compress	undocumented	
+usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1134	428	kona_mem_swapout	documented	docs/kernel.md#commands-the-driver-sends
+usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x12e0	200	kona_mem_compress	documented	docs/kernel.md#commands-the-driver-sends
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x13a8	280	kona_mem_grow	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x14c0	608	kona_mem_reserve	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1720	300	kona_mem_swapin_complete	documented	docs/hip.md#arm-events-kona_arm_intr
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x184c	308	kona_mem_swapout_complete	documented	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1980	168	kona_mem_suspend_complete	documented	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr
-usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1a28	376	kona_mem_swapin	documented	kona_kernel/include/kona_kern.h:79
-usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1ba0	224	kona_mem_update_driver	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1c80	152	kona_mem_update	undocumented	
+usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1a28	376	kona_mem_swapin	documented	docs/kernel.md#commands-the-driver-sends
+usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1ba0	224	kona_mem_update_driver	documented	docs/kernel.md#commands-the-driver-sends
+usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1c80	152	kona_mem_update	documented	docs/kernel.md#commands-the-driver-sends
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1d18	296	kona_mem_validate_driver	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1e40	276	kona_mem_validate	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x1f54	488	kona_mem_destroy	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x213c	1336	kona_mem_alloc	documented	docs/kernel.md#private-ioctls
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	n64	.text	0x2674	616	kona_mem_free	documented	docs/kernel.md#private-ioctls
-usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x0	136	alloc_new_network_id	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x88	120	alloc_network_id	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x100	40	is_ddo3	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x128	28	is_managed	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x144	4244	kona_nclops_discover	named-only	kona_kernel/registers.tsv
-usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x11d8	1108	kona_nclops_configure	named-only	kona_kernel/registers.tsv
+usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x0	136	alloc_new_network_id	documented	docs/kernel.md#multi-pipe-dplex-display-port-writes
+usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x88	120	alloc_network_id	documented	docs/kernel.md#multi-pipe-dplex-display-port-writes
+usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x100	40	is_ddo3	documented	docs/kernel.md#multi-pipe-dplex-display-port-writes
+usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x128	28	is_managed	documented	docs/kernel.md#multi-pipe-dplex-display-port-writes
+usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x144	4244	kona_nclops_discover	documented	docs/kernel.md#registers-the-driver-touches
+usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x11d8	1108	kona_nclops_configure	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x162c	204	kona_nclops_query_config	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x16f8	372	kona_nclops_bind	documented	docs/kernel.md#private-ioctls
 usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x186c	252	kona_nclops_unbind	documented	docs/kernel.md#private-ioctls
-usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x1968	496	kona_nclops_swapped	documented	docs/kernel.md#private-ioctls
+usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x1968	496	kona_nclops_swapped	documented	docs/kernel.md#diagnostic-ioctls
 usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x1b58	496	kona_nclops_destroy	documented	docs/kernel.md#private-ioctls
 usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x1d48	188	kona_nclops_cleanup	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	n64	.text	0x1e04	48	kona_nclops_init	documented	docs/kernel.md#private-ioctls
@@ -806,10 +806,10 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	n64	.text	0xac	28	kona_timeout_fr
 usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	n64	.text	0xc8	236	kona_timein	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	n64	.text	0x1b4	256	kona_callout	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	n64	.text	0x2b4	156	kona_sched_tick	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	n64	.text	0x350	160	kona_itimeout_func	documented	kona_kernel/include/kona_kern.h:361
+usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	n64	.text	0x350	160	kona_itimeout_func	documented	kona_kernel/include/kona_kern.h:367
 usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	n64	.text	0x3f0	400	kona_timeout	documented	docs/dg.md#retrace-sequence
 usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	n64	.text	0x580	300	kona_untimeout	undocumented	
-usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	n64	.text	0x6ac	344	kona_gfifo_spin	documented	kona_kernel/include/kona_kern.h:361
+usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	n64	.text	0x6ac	344	kona_gfifo_spin	documented	kona_kernel/include/kona_kern.h:367
 usr/cpu/sysgen/IP27boot/kona.a(kona_tport.o)	n64	.text	0x0	340	kona_setcolor	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_tport.o)	n64	.text	0x154	388	kona_mapcolor	undocumented	
 usr/cpu/sysgen/IP27boot/kona.a(kona_tport.o)	n64	.text	0x2d8	352	kona_point	undocumented	
@@ -868,7 +868,7 @@ usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0xdc4	224	init_panes	undocumented
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0xea4	216	RRM_init_panes	undocumented	
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0xf7c	172	RRM_init	undocumented	
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x1028	72	RRM_Init	undocumented	
-usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x1070	100	rrmDoUnMapGfx	undocumented	
+usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x1070	100	rrmDoUnMapGfx	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x10d4	148	rrmUnMapGfx	undocumented	
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x1168	192	rrmInvalidateRN	undocumented	
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x1228	396	RRM_InvalidateRN	undocumented	
@@ -894,10 +894,10 @@ usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x2d8c	88	RRM_GetDisplayModes	undocument
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x2de4	120	rrmValidateMyRetrace	undocumented	
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x2e5c	80	rrmValidateRetrace	documented	docs/dg.md#retrace-sequence
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x2eac	376	rrmAllocPcxid	undocumented	
-usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x3024	596	rrmValidateMyPcx	undocumented	
+usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x3024	596	rrmValidateMyPcx	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x3278	256	RRM_ValidateClip	documented	docs/opengl.md#ioctls
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x3378	880	RRM_ValidFault	undocumented	
-usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x36e8	96	RRM_CheckValidFault	documented	kona_kernel/include/kona_kern.h:317
+usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x36e8	96	RRM_CheckValidFault	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x3748	240	rrmSwapWait	undocumented	
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x3838	668	RRM_SwapBuf	undocumented	
 usr/cpu/sysgen/IP27boot/rrm.o	n64	.text	0x3ad4	248	rrmSwapUnGroup	undocumented	
@@ -960,8 +960,8 @@ usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x6f8	84	gthread_detach_list	undocumente
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x74c	92	gthread_attach_group	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x7a8	88	gthread_detach_group	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x800	220	gthread_find	undocumented	
-usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x8dc	56	gthread_find_gfxp	documented	docs/kernel.md#rendering-node-drawable-and-private-record
-usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x914	336	gthread_scan	documented	kona_kernel/include/kona_kern.h:339
+usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x8dc	56	gthread_find_gfxp	documented	kona_kernel/include/kona_kern.h:221
+usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x914	336	gthread_scan	documented	kona_kernel/include/kona_kern.h:345
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0xa64	228	GfxRegisterBoard	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0xb48	224	GfxAddHwgraphEdge	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0xc28	308	gfx_disp	undocumented	
@@ -971,8 +971,8 @@ usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0xfe0	596	gfx_shcheck	undocumented
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x1234	124	gfx_shdup	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x12b0	252	GfxKiller	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x13ac	52	gfxcleanup	undocumented	
-usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x13e0	364	GfxOpen	undocumented	
-usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x154c	388	GfxUnmanage	undocumented	
+usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x13e0	364	GfxOpen	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
+usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x154c	388	GfxUnmanage	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x16d0	108	GfxClose	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x173c	260	GfxProto	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x1840	156	GfxWput	undocumented	
@@ -982,7 +982,7 @@ usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x1a7c	348	GfxSendMessage	undocumented
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x1bd8	28	GfxMessage	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x1bf4	28	GfxIntrMessage	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x1c10	124	GfxRqService	undocumented	
-usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x1c8c	244	GfxDetach	undocumented	
+usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x1c8c	244	GfxDetach	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x1d80	196	gfxinit	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x1e44	228	gfx_conflict_scan	undocumented	
 usr/cpu/sysgen/IP35boot/gfx.o	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	undocumented	
@@ -1022,8 +1022,8 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x6f8	84	gthread_detach_list	und
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x74c	92	gthread_attach_group	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x7a8	88	gthread_detach_group	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x800	220	gthread_find	undocumented	
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x8dc	56	gthread_find_gfxp	documented	docs/kernel.md#rendering-node-drawable-and-private-record
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x914	336	gthread_scan	documented	kona_kernel/include/kona_kern.h:339
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x8dc	56	gthread_find_gfxp	documented	kona_kernel/include/kona_kern.h:221
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x914	336	gthread_scan	documented	kona_kernel/include/kona_kern.h:345
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0xa64	228	GfxRegisterBoard	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0xb48	224	GfxAddHwgraphEdge	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0xc28	308	gfx_disp	undocumented	
@@ -1033,8 +1033,8 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0xfe0	596	gfx_shcheck	undocument
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x1234	124	gfx_shdup	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x12b0	252	GfxKiller	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x13ac	52	gfxcleanup	undocumented	
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x13e0	364	GfxOpen	undocumented	
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x154c	388	GfxUnmanage	undocumented	
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x13e0	364	GfxOpen	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x154c	388	GfxUnmanage	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x16d0	108	GfxClose	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x173c	260	GfxProto	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x1840	156	GfxWput	undocumented	
@@ -1044,7 +1044,7 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x1a7c	348	GfxSendMessage	undocu
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x1bd8	28	GfxMessage	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x1bf4	28	GfxIntrMessage	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x1c10	124	GfxRqService	undocumented	
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x1c8c	244	GfxDetach	undocumented	
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x1c8c	244	GfxDetach	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x1d80	196	gfxinit	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x1e44	228	gfx_conflict_scan	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	n64	.text	0x1f28	144	irisgl_sproc_setup_scan	undocumented	
@@ -1075,7 +1075,7 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	n64	.text	0x454	12	gfx_flow_reset	doc
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	n64	.text	0x460	72	gfx_flow_dealloc	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	n64	.text	0x4a8	36	gfx_flow_wg_info_get	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	n64	.text	0x4cc	8	gfx_flow_credit_tnum_get	undocumented	
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	n64	.text	0x4d4	12	gfx_flow_credit_total_get	undocumented	
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	n64	.text	0x4d4	12	gfx_flow_credit_total_get	documented	docs/kernel.md#diagnostic-ioctls
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	n64	.text	0x4e0	12	gfx_flow_credit_bias_get	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	n64	.text	0x4ec	76	gfx_flow_credit_count_get	undocumented	
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	n64	.text	0x538	8	gfx_flow_detach_requires_credit_flow_disable	undocumented	
@@ -1110,13 +1110,13 @@ usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	n64	.text	0x88	8	gfx_frs_uninstal
 usr/cpu/sysgen/IP35boot/kona.a(kona_attach.o)	n64	.text	0x0	92	new_pipe_to_region	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_attach.o)	n64	.text	0x5c	364	KONAattach	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_attach.o)	n64	.text	0x1c8	84	KONAdetach	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	n64	.text	0x0	156	clean_up_other_gfxp	documented	docs/kernel.md#rendering-node-drawable-and-private-record
+usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	n64	.text	0x0	156	clean_up_other_gfxp	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	n64	.text	0x9c	136	kona_deact_timeout	documented	kona_kernel/include/kona_kern.h:111
 usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	n64	.text	0x124	1372	kona_act_pcx	documented	docs/kernel.md#rendering-node-drawable-and-private-record
 usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	n64	.text	0x680	2068	KONApcxswap	documented	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr
 usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	n64	.text	0xe94	52	KONApcxswitch	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	n64	.text	0xec8	1288	KONAvalidateclip	documented	docs/kernel.md#commands-the-driver-sends
-usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	n64	.text	0x13d0	56	KONAsetnullclip	documented	kona_kernel/include/kona_kern.h:170
+usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	n64	.text	0xec8	1288	KONAvalidateclip	documented	docs/kernel.md#registers-the-driver-touches
+usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	n64	.text	0x13d0	56	KONAsetnullclip	documented	kona_kernel/include/kona_kern.h:174
 usr/cpu/sysgen/IP35boot/kona.a(kona_crash.o)	n64	.text	0x0	372	kona_die	documented	docs/hip.md#xg-errors-kona_xg_intr_handler
 usr/cpu/sysgen/IP35boot/kona.a(kona_crash.o)	n64	.text	0x174	100	kona_checkpipe_complete	documented	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr
 usr/cpu/sysgen/IP35boot/kona.a(kona_crash.o)	n64	.text	0x1d8	888	kona_checkpipe	documented	docs/kernel.md#private-ioctls
@@ -1138,12 +1138,12 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0xcf4	960	kona_start_select
 usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x10b4	164	kona_selectfeed_timeout	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x1158	968	kona_finish_selectfeed	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x1520	52	kona_free_up_space	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x1554	100	kona_diag_map_cleanup	undocumented	
+usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x1554	100	kona_diag_map_cleanup	documented	docs/kernel.md#diagnostic-map-kona_diag_map
 usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x15b8	536	kona_diag_map	documented	docs/hip.md#not-covered
 usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x17d0	204	abi32_to_kona_dmaread_args	documented	docs/kernel.md#dma-ioctls
 usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x189c	188	abi32_to_kona_dmawrite_args	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x1958	128	abi32_to_kona_dmapool_args	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x19d8	128	abi32_to_kona_dmavec	undocumented	
+usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x19d8	128	abi32_to_kona_dmavec	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x1a58	136	abi32_to_kona_start_selectfeed_args	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x1ae0	120	abi32_to_kona_diag_map	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	n64	.text	0x1b58	136	kona_diag_map_to_abi32	undocumented	
@@ -1168,9 +1168,9 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x84	192	kona_hiwater_time
 usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x144	164	kona_delay_monitor_gfifo	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x1e8	740	kona_hiwater_intr	documented	docs/hip.md#flow-control-the-fifo-interrupts
 usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x4cc	216	kona_lowater_intr	documented	docs/hip.md#host-interface-interrupts-kona_intr_handler
-usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x5a4	336	kona_diag_flow	documented	docs/kernel.md#registers-the-driver-touches
-usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x6f4	96	kona_diag_credits	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x754	484	kona_flow_await_returned_credits	documented	docs/kernel.md#registers-the-driver-touches
+usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x5a4	336	kona_diag_flow	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
+usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x6f4	96	kona_diag_credits	documented	docs/kernel.md#diagnostic-ioctls
+usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x754	484	kona_flow_await_returned_credits	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x938	184	KONAreleasegfxsema	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0x9f0	16	gfx_pio_write_32	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	n64	.text	0xa00	16	gfx_pio_write_64	undocumented	
@@ -1186,8 +1186,8 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	n64	.text	0x0	112	kona_xg_intr_
 usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	n64	.text	0x70	588	kona_intr_handler	documented	docs/hip.md#delivery
 usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	n64	.text	0x2bc	88	kona_ge_intr_handler	documented	docs/hip.md#delivery
 usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	n64	.text	0x0	2364	KONAprivate	documented	docs/kernel.md#dma-ioctls
-usr/cpu/sysgen/IP35boot/kona.a(kona_map.o)	n64	.text	0x0	860	KONAmapgfx	documented	docs/kernel.md#registers-the-driver-touches
-usr/cpu/sysgen/IP35boot/kona.a(kona_map.o)	n64	.text	0x35c	280	KONAunmapgfx	documented	docs/kernel.md#registers-the-driver-touches
+usr/cpu/sysgen/IP35boot/kona.a(kona_map.o)	n64	.text	0x0	860	KONAmapgfx	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
+usr/cpu/sysgen/IP35boot/kona.a(kona_map.o)	n64	.text	0x35c	280	KONAunmapgfx	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP35boot/kona.a(kona_map.o)	n64	.text	0x474	84	KONAinvaltlb	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	n64	.text	0x0	8	kona_mapram_pagesizeshiftof	documented	docs/hip.md#address-path
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	n64	.text	0x8	192	kona_mapram_init	documented	docs/hip.md#address-path
@@ -1196,37 +1196,37 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	n64	.text	0x210	8	kona_mapram
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	n64	.text	0x218	8	kona_mapram_select_id_mask	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x0	64	kona_mem_init	documented	docs/kernel.md#private-ioctls
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x40	1012	kona_mem_swapout_func	documented	docs/kernel.md#commands-the-driver-sends
-usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x434	932	kona_mem_swapin_func	documented	docs/kernel.md#commands-the-driver-sends
+usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x434	932	kona_mem_swapin_func	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x7d8	672	kona_mem_copydown_func	documented	docs/kernel.md#commands-the-driver-sends
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0xa78	16	kona_mem_suspend	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0xa88	704	kona_mem_resume	documented	docs/kernel.md#commands-the-driver-sends
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0xd48	672	kona_mem_reserve_func	documented	docs/kernel.md#commands-the-driver-sends
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0xfe8	332	kona_mem_cleanup	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1134	428	kona_mem_swapout	documented	kona_kernel/include/kona_kern.h:79
-usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x12e0	200	kona_mem_compress	undocumented	
+usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1134	428	kona_mem_swapout	documented	docs/kernel.md#commands-the-driver-sends
+usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x12e0	200	kona_mem_compress	documented	docs/kernel.md#commands-the-driver-sends
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x13a8	280	kona_mem_grow	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x14c0	608	kona_mem_reserve	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1720	300	kona_mem_swapin_complete	documented	docs/hip.md#arm-events-kona_arm_intr
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x184c	308	kona_mem_swapout_complete	documented	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1980	168	kona_mem_suspend_complete	documented	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr
-usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1a28	376	kona_mem_swapin	documented	kona_kernel/include/kona_kern.h:79
-usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1ba0	224	kona_mem_update_driver	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1c80	152	kona_mem_update	undocumented	
+usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1a28	376	kona_mem_swapin	documented	docs/kernel.md#commands-the-driver-sends
+usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1ba0	224	kona_mem_update_driver	documented	docs/kernel.md#commands-the-driver-sends
+usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1c80	152	kona_mem_update	documented	docs/kernel.md#commands-the-driver-sends
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1d18	296	kona_mem_validate_driver	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1e40	276	kona_mem_validate	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x1f54	488	kona_mem_destroy	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x213c	1336	kona_mem_alloc	documented	docs/kernel.md#private-ioctls
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	n64	.text	0x2674	616	kona_mem_free	documented	docs/kernel.md#private-ioctls
-usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x0	136	alloc_new_network_id	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x88	120	alloc_network_id	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x100	40	is_ddo3	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x128	28	is_managed	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x144	4244	kona_nclops_discover	named-only	kona_kernel/registers.tsv
-usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x11d8	1108	kona_nclops_configure	named-only	kona_kernel/registers.tsv
+usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x0	136	alloc_new_network_id	documented	docs/kernel.md#multi-pipe-dplex-display-port-writes
+usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x88	120	alloc_network_id	documented	docs/kernel.md#multi-pipe-dplex-display-port-writes
+usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x100	40	is_ddo3	documented	docs/kernel.md#multi-pipe-dplex-display-port-writes
+usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x128	28	is_managed	documented	docs/kernel.md#multi-pipe-dplex-display-port-writes
+usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x144	4244	kona_nclops_discover	documented	docs/kernel.md#registers-the-driver-touches
+usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x11d8	1108	kona_nclops_configure	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x162c	204	kona_nclops_query_config	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x16f8	372	kona_nclops_bind	documented	docs/kernel.md#private-ioctls
 usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x186c	252	kona_nclops_unbind	documented	docs/kernel.md#private-ioctls
-usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x1968	496	kona_nclops_swapped	documented	docs/kernel.md#private-ioctls
+usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x1968	496	kona_nclops_swapped	documented	docs/kernel.md#diagnostic-ioctls
 usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x1b58	496	kona_nclops_destroy	documented	docs/kernel.md#private-ioctls
 usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x1d48	188	kona_nclops_cleanup	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	n64	.text	0x1e04	48	kona_nclops_init	documented	docs/kernel.md#private-ioctls
@@ -1243,10 +1243,10 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	n64	.text	0xac	28	kona_timeout_fr
 usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	n64	.text	0xc8	236	kona_timein	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	n64	.text	0x1b4	256	kona_callout	documented	docs/kernel.md#registers-the-driver-touches
 usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	n64	.text	0x2b4	156	kona_sched_tick	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	n64	.text	0x350	160	kona_itimeout_func	documented	kona_kernel/include/kona_kern.h:361
+usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	n64	.text	0x350	160	kona_itimeout_func	documented	kona_kernel/include/kona_kern.h:367
 usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	n64	.text	0x3f0	400	kona_timeout	documented	docs/dg.md#retrace-sequence
 usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	n64	.text	0x580	300	kona_untimeout	undocumented	
-usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	n64	.text	0x6ac	344	kona_gfifo_spin	documented	kona_kernel/include/kona_kern.h:361
+usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	n64	.text	0x6ac	344	kona_gfifo_spin	documented	kona_kernel/include/kona_kern.h:367
 usr/cpu/sysgen/IP35boot/kona.a(kona_tport.o)	n64	.text	0x0	340	kona_setcolor	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_tport.o)	n64	.text	0x154	388	kona_mapcolor	undocumented	
 usr/cpu/sysgen/IP35boot/kona.a(kona_tport.o)	n64	.text	0x2d8	352	kona_point	undocumented	
@@ -1305,7 +1305,7 @@ usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0xdc4	224	init_panes	undocumented
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0xea4	216	RRM_init_panes	undocumented	
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0xf7c	172	RRM_init	undocumented	
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x1028	72	RRM_Init	undocumented	
-usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x1070	100	rrmDoUnMapGfx	undocumented	
+usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x1070	100	rrmDoUnMapGfx	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x10d4	148	rrmUnMapGfx	undocumented	
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x1168	192	rrmInvalidateRN	undocumented	
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x1228	396	RRM_InvalidateRN	undocumented	
@@ -1331,10 +1331,10 @@ usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x2d8c	88	RRM_GetDisplayModes	undocument
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x2de4	120	rrmValidateMyRetrace	undocumented	
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x2e5c	80	rrmValidateRetrace	documented	docs/dg.md#retrace-sequence
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x2eac	376	rrmAllocPcxid	undocumented	
-usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x3024	596	rrmValidateMyPcx	undocumented	
+usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x3024	596	rrmValidateMyPcx	documented	docs/kernel.md#the-graphics-connection-gfx_gfx
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x3278	256	RRM_ValidateClip	documented	docs/opengl.md#ioctls
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x3378	880	RRM_ValidFault	undocumented	
-usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x36e8	96	RRM_CheckValidFault	documented	kona_kernel/include/kona_kern.h:317
+usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x36e8	96	RRM_CheckValidFault	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x3748	240	rrmSwapWait	undocumented	
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x3838	668	RRM_SwapBuf	undocumented	
 usr/cpu/sysgen/IP35boot/rrm.o	n64	.text	0x3ad4	248	rrmSwapUnGroup	undocumented	
@@ -47942,7 +47942,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x44a280	424	FindBestID	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44a430	4452	cfb8FillRectOpaqueStippled32	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44b5a0	264	rrmDestroyDrawable	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44b6b0	84	decrRRMFlags	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x44b7f0	572	konQueryHyperpipeNetwork	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x44b7f0	572	konQueryHyperpipeNetwork	documented	docs/open-questions.md#kernel-driver
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44ba30	972	miStepDash	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44be00	576	mfbPolyFillArcSolid	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44c040	564	miShapedWindowIn	undocumented	
@@ -48360,7 +48360,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f8700	1764	cfb32SegmentSS1RectXor	undocum
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f8df0	2076	nfbStereoFillSpans	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f9610	352	realAllocSpan	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f9770	528	konCreateGC	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f9af0	2216	konWriteFBSubBlock	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f9af0	2216	konWriteFBSubBlock	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4fcec0	104	miRegionEmpty	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4fd9b0	136	rrmDelayValidateClipCancel	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4fda40	56	cfb32FillBoxTileOdd	undocumented	
@@ -48550,7 +48550,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x5511a0	1964	miFillConvexPoly	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x551950	1200	konDrawPoints	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x551e00	2676	mfbPolyFillRect	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x552880	1292	miValidateTree	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x552f40	2276	konDrawImage	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x552f40	2276	konDrawImage	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x553830	1284	mfbBlackStippleFS	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x553d40	2320	konValidateWindowGC	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x554650	452	nfbStereoPolyline	undocumented	
@@ -48612,7 +48612,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x56a800	2368	miFillArcSliceSetup	undocument
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x56b140	436	cfb8SetStipple	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x56b300	504	miChangeBorderWidth	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x56b500	3524	mfbStippleInvertArea	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x56c2d0	788	konHyperpipeConfig	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x56c2d0	788	konHyperpipeConfig	documented	docs/open-questions.md#kernel-driver
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x56c7b0	4220	cfbFillRectTile32General	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x56d9c0	68	nfbDestroyHWColormap	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x56da10	788	konStereoImageGlyphBlt	undocumented	
@@ -48737,7 +48737,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x449e30	424	FindBestID	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x449fe0	4452	cfb8FillRectOpaqueStippled32	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x44b150	264	rrmDestroyDrawable	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x44b260	84	decrRRMFlags	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x44b3a0	572	konQueryHyperpipeNetwork	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x44b3a0	572	konQueryHyperpipeNetwork	documented	docs/open-questions.md#kernel-driver
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x44b5e0	972	miStepDash	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x44b9b0	576	mfbPolyFillArcSolid	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x44bbf0	564	miShapedWindowIn	undocumented	
@@ -49155,7 +49155,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x501ae0	1764	cfb32SegmentSS1RectXor	undocu
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x5021d0	2076	nfbStereoFillSpans	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x5029f0	352	realAllocSpan	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x502b50	528	konCreateGC	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x502ed0	3892	konWriteFBSubBlock	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x502ed0	3892	konWriteFBSubBlock	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x506940	104	miRegionEmpty	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x507430	136	rrmDelayValidateClipCancel	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x5074c0	56	cfb32FillBoxTileOdd	undocumented	
@@ -49345,7 +49345,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x55c630	1964	miFillConvexPoly	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x55cde0	1920	konDrawPoints	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x55d560	2676	mfbPolyFillRect	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x55dfe0	1292	miValidateTree	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x55e6a0	3944	konDrawImage	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x55e6a0	3944	konDrawImage	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x55f610	1284	mfbBlackStippleFS	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x55fb20	2320	konValidateWindowGC	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x560430	452	nfbStereoPolyline	undocumented	
@@ -49407,7 +49407,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x576bb0	2368	miFillArcSliceSetup	undocumen
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x5774f0	436	cfb8SetStipple	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x5776b0	504	miChangeBorderWidth	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x5778b0	3524	mfbStippleInvertArea	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x578680	788	konHyperpipeConfig	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x578680	788	konHyperpipeConfig	documented	docs/open-questions.md#kernel-driver
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x578b60	4220	cfbFillRectTile32General	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x579d70	68	nfbDestroyHWColormap	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x579dc0	788	konStereoImageGlyphBlt	undocumented	
@@ -49532,7 +49532,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x13c9e30	424	FindBestID	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13c9fe0	4452	cfb8FillRectOpaqueStippled32	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cb150	264	rrmDestroyDrawable	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cb260	84	decrRRMFlags	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cb3a0	572	konQueryHyperpipeNetwork	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cb3a0	572	konQueryHyperpipeNetwork	documented	docs/open-questions.md#kernel-driver
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cb5e0	972	miStepDash	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cb9b0	576	mfbPolyFillArcSolid	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cbbf0	564	miShapedWindowIn	undocumented	
@@ -49950,7 +49950,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x1481ae0	1764	cfb32SegmentSS1RectXor	undoc
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14821d0	2076	nfbStereoFillSpans	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14829f0	352	realAllocSpan	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1482b50	528	konCreateGC	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x1482ed0	3888	konWriteFBSubBlock	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x1482ed0	3888	konWriteFBSubBlock	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1486920	104	miRegionEmpty	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1487410	136	rrmDelayValidateClipCancel	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14874a0	56	cfb32FillBoxTileOdd	undocumented	
@@ -50140,7 +50140,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x14dc630	1964	miFillConvexPoly	undocumente
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14dcde0	1920	konDrawPoints	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14dd560	2676	mfbPolyFillRect	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14ddfe0	1292	miValidateTree	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x14de6c0	3932	konDrawImage	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x14de6c0	3932	konDrawImage	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14df620	1284	mfbBlackStippleFS	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14dfb30	2320	konValidateWindowGC	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14e0440	452	nfbStereoPolyline	undocumented	
@@ -50202,7 +50202,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f6bb0	2368	miFillArcSliceSetup	undocume
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f74f0	436	cfb8SetStipple	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f76b0	504	miChangeBorderWidth	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f78b0	3524	mfbStippleInvertArea	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f8680	788	konHyperpipeConfig	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f8680	788	konHyperpipeConfig	documented	docs/open-questions.md#kernel-driver
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f8b60	4220	cfbFillRectTile32General	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f9d70	68	nfbDestroyHWColormap	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f9dc0	788	konStereoImageGlyphBlt	undocumented	
@@ -50327,7 +50327,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x449e30	424	FindBestID	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x449fe0	4452	cfb8FillRectOpaqueStippled32	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x44b150	264	rrmDestroyDrawable	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x44b260	84	decrRRMFlags	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x44b3a0	572	konQueryHyperpipeNetwork	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x44b3a0	572	konQueryHyperpipeNetwork	documented	docs/open-questions.md#kernel-driver
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x44b5e0	972	miStepDash	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x44b9b0	576	mfbPolyFillArcSolid	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x44bbf0	564	miShapedWindowIn	undocumented	
@@ -50745,7 +50745,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x501ae0	1764	cfb32SegmentSS1RectXor	undocu
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x5021d0	2076	nfbStereoFillSpans	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x5029f0	352	realAllocSpan	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x502b50	528	konCreateGC	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x502ed0	3888	konWriteFBSubBlock	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x502ed0	3888	konWriteFBSubBlock	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x506920	104	miRegionEmpty	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x507410	136	rrmDelayValidateClipCancel	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x5074a0	56	cfb32FillBoxTileOdd	undocumented	
@@ -50935,7 +50935,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x55c630	1964	miFillConvexPoly	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x55cde0	1920	konDrawPoints	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x55d560	2676	mfbPolyFillRect	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x55dfe0	1292	miValidateTree	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x55e6c0	3932	konDrawImage	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x55e6c0	3932	konDrawImage	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x55f620	1284	mfbBlackStippleFS	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x55fb30	2320	konValidateWindowGC	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x560440	452	nfbStereoPolyline	undocumented	
@@ -50997,7 +50997,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x576bb0	2368	miFillArcSliceSetup	undocumen
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x5774f0	436	cfb8SetStipple	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x5776b0	504	miChangeBorderWidth	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x5778b0	3524	mfbStippleInvertArea	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x578680	788	konHyperpipeConfig	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x578680	788	konHyperpipeConfig	documented	docs/open-questions.md#kernel-driver
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x578b60	4220	cfbFillRectTile32General	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x579d70	68	nfbDestroyHWColormap	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x579dc0	788	konStereoImageGlyphBlt	undocumented	

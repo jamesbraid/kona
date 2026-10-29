@@ -147,9 +147,11 @@
  * Activate token, ESTABLISHED: it is not a constant. KONApcxswap loads
  * X = the pointer at context record +16 (the same pointer CONTEXT_LOAD
  * reads its first payload word from) and passes the word at X+8 to
- * kona_act_pcx. The disassembly of every kona.a member, gfx.o and rrm.o has no 0x1fa or
- * 506 immediate, and neither has the libGLcore assembly, so the value is data that some
- * other code puts at X+8; which code was not found. INFERRED to be
+ * kona_act_pcx. X is the 64 KB context save area and X+8 is word 2 of the
+ * saved image's header (CONTEXT_LOAD sends word 0, the image length). The
+ * disassembly of every kona.a member, gfx.o and rrm.o has no 0x1fa or 506
+ * immediate, and neither has the libGLcore assembly, so the pipe writes the
+ * word when it saves the context. INFERRED to be
  * HP_CONTEXT_ACTIVATE 0x1fa, since no other token in KONApcxswap or
  * kona_act_pcx activates the context; that reading rests on the name only.
  *
@@ -163,9 +165,11 @@
  * INFERRED a change counter or generation number, since it alone decides
  * whether the clip is resent. Step 1 of kona_act_pcx instead tests bit 1 of
  * the halfword at gfxp+4. KONApcxswap ORs 2 into the word at +4 of the
- * object that gfxp+64 points to just before it sends the context packets;
- * whether that object is gfxp itself's relative is UNKNOWN, so the link
- * between that write and the test in step 1 is not established.
+ * object that gfxp+64 points to (kona_context.o 0x734) just before it sends
+ * the context packets. ESTABLISHED: that object is the node's graphics
+ * connection, whose +4 is its flags word, not the node's request mask, so
+ * the write and the step 1 test touch different words; no reader of the
+ * connection's bit 1 was found in kona.a, gfx.o or rrm.o.
  *
  * KONAsetnullclip(R) (kona_context.o 0x1350), ESTABLISHED: stores R+8,
  * +12, +16, +20, +24, +48 and +60 as 0, R+40 as -1 and R+44, R+52 as 1.
@@ -218,13 +222,15 @@
  *         declares it as returning struct gfx_gfx *), skips the entry equal
  *         to node+64 and calls KONAunmapgfx on every other entry whose word
  *         at +4 has bit 0 set. So +64 holds the same kind of pointer as
- *         that list. The walk follows the link at +24; the 6.5.5 header has
- *         gx_next third, after gx_board and gx_thd, which fits only if the
- *         thread handle takes 16 bytes (UNKNOWN). UNRESOLVED: kona_act_pcx
- *         step 3 reads gfxp->+8->+8 and compares it with gfxp, and which
- *         6.5.5 field sits at +8 is open for the same reason; the +4 bit 0
- *         test does not match any 6.5.5 field either, so the 6.5.30m
- *         layout differs from the 6.5.5 header in at least that word.
+ *         that list. The connection's own layout in 6.5.30m (gfxopen
+ *         allocates 128 bytes; docs/kernel.md "The graphics connection"):
+ *         +4 flags (bit 0 mapped, bit 2 privileged, set from drv_priv),
+ *         +8 the board's generic record, +16 thread, +24 next connection,
+ *         +32 operation table, +40 pipe state, +48 address-space handle.
+ *         ESTABLISHED: kona_act_pcx step 3 compares node+64 with
+ *         (node+64)->+8->+8, the generic board record's manager slot that
+ *         GfxOpen fills and GfxUnmanage clears; only nodes of the managing
+ *         connection skip VALIDATE_BANK.
  *   +112  gr_private: the driver's 256-byte private record (below).
  *   +120  gr_pane, the draw pane; +128 gr_readpane, the read pane.
  *   +136  gr_serial, +140 gr_readserial: the pane serial numbers the node

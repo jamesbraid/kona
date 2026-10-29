@@ -80,6 +80,11 @@ The distributor questions are written in [ucode/ged.md](../ucode/ged.md); listed
 
 ## Kernel driver
 
-| Question | Owner | Next route |
-|---|---|---|
-| What the kernel's reset path clears in the pipe (beyond the registers it rewrites) | `docs/kernel.md`, `docs/xg.md` | As for the host-interface reset item above: read the token map, FIFO level and counters before and after `kona_reset_adaptor` plus the `HH_RESET` pulse. |
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| Why `kona_video_intr` writes 1 to `HH_TBUS_STATUS` (0x8003a8) after `kona_nclops_swapped` on every video interrupt | `docs/kernel.md`, `HIP.h` | the kernel write site (`kona_video.o` 0x1830-0x1840) and kpm's register mask (0xf) | kpm's field names for `HH_TBUS_STATUS`, the firmware's reads of the same register, and `kona_callout`'s use of it |
+| What the user-safe host-interface page at window offset 0x810000 (mapped at user offset 0x4000 for unprivileged processes) exposes, against 0x800000 for privileged ones | `docs/kernel.md`, `HIP.h` | `KONAmapgfx` (`kona_map.o` 0x0-0x1f8) | libGLcore's and the X modules' loads and stores relative to the 0x4000 page, and the HIP2 register table in kpm for a second bank at +0x10000 |
+| Which pipe program writes the activate token into word 2 of a saved context header | `docs/kernel.md`, `docs/ge.md` | every host binary (no 0x1fa store); `arm_context_deactivate` and `deactivate_arm` in `arm1.u` (they save sections tagged 0x200, 0x400, 0x401 but write no header word) | the geometry-engine save code in `ucode/ge_listing/ctx_deact.S.lst` and the output words it sends |
+| The meaning of the DPLEX display-port addresses (0x8001, 0x8400, 0x80, 0xe200, 0xe300, 0xe500) beyond the bits the discovery messages name | `docs/kernel.md`, `DG.h` | `kona_nclops.o` (all functions) | the X modules' hyperpipe code (`konHyperpipeConfig`, `konQueryHyperpipeNetwork`), `gfxinit` and `setmon` for DPLEX setup, and the display-board netlist for the `dplex` chip's address decode |
+
+Where this reader stopped (2026-10-29): the four kernel rows' named gaps are read (`docs/kernel.md`). Next: document the remaining undocumented functions of `kona.a`, `gfx.o`, `rrm.o` and `gfxs.a` from `docs/inventory/functions.tsv`, then the questions above.
