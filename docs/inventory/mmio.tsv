@@ -1,265 +1,54 @@
-window	offset	direction	sites	sources	status	doc
-ge-register	0x40000	-	1	kpm:Execution Control Register	documented	GE.h:777
-ge-register	0x40004	-	1	kpm:Breakpoint Address Register	documented	GE.h:785
-ge-register	0x40008	-	1	kpm:RAMscan Control Register (trashed)	documented	GE.h:787
-ge-register	0x4000c	-	1	kpm:Write/Sync FIFO Register	documented	GE.h:789
-ge-register	0x40010	-	1	kpm:Diag Sel Register	documented	GE.h:793
-ge-register	0x40014	-	1	kpm:Enable Mask Register	documented	GE.h:796
-ge-register	0x40018	-	1	kpm:CM/Ofifo TAG Register	documented	GE.h:800
-ge-register	0x4001c	-	1	kpm:Ucode Error register	documented	GE.h:808
-ge-register	0x40020	-	1	kpm:OFIFO0 A Status Register	documented	GE.h:830
-ge-register	0x40024	-	1	kpm:OFIFO0 B Status Register	documented	GE.h:834
-ge-register	0x40028	-	1	kpm:OFIFO1 A Status Register	documented	GE.h:838
-ge-register	0x4002c	-	1	kpm:OFIFO1 B Status Register	documented	GE.h:842
-ge-register	0x40030	-	1	kpm:OFIFO2 A Status Register	documented	GE.h:846
-ge-register	0x40034	-	1	kpm:OFIFO2 B Status Register	documented	GE.h:850
-ge-register	0x40038	-	1	kpm:OFIFO Control Register (trashed)	documented	GE.h:854
-hip	0x800208	read	8	kona.a(kona_crash.o):kona_die;kona.a(kona_flow.o):kona_flow_await_returned_credits;kona.a(kona_flow.o):kona_hiwater_timeout	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800210	write	2	kona.a(kona_flow.o):kona_flow_init	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800220	read,write	6	kona.a(kona_crash.o):kona_die;kona.a(kona_setup.o):KONAinitialize	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800228	write	4	kona.a(kona_intr_hip2.o):kona_intr_handler;kona.a(kona_setup.o):KONAstart	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800230	write	14	kona.a(kona_flow.o):kona_diag_flow;kona.a(kona_flow.o):kona_hiwater_intr;kona.a(kona_flow.o):kona_lowater_intr;kona.a(kona_setup.o):KONAinitialize;kona.a(kona_setup.o):KONAstart	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800238	read,write	24	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor;kona.a(kona_flow.o):kona_delay_monitor_gfifo;kona.a(kona_flow.o):kona_hiwater_intr;kona.a(kona_flow.o):kona_lowater_intr;kona.a(kona_intr.o):kona_arm_intr;kona.a(kona_intr_hip2.o):kona_ge_intr_handler;+2 more	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800240	read	4	kona.a(kona_intr.o):kona_arm_intr	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800248	read	2	kona.a(kona_video.o):kona_video_intr	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800260	read	2	kona.a(kona_intr.o):kona_ge_intr	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800268	read	2	kona.a(kona_intr.o):kona_ge_intr	documented	HIP.h:181
-hip	0x800278	read	2	kona.a(kona_intr.o):kona_ge_intr	documented	HIP.h:185
-hip	0x800298	write	2	kona.a(kona_crash.o):kona_die	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x8002a0	read	2	kona.a(kona_intr.o):kona_ge_intr	documented	HIP.h:195
-hip	0x8002a8	read	2	kona.a(kona_intr.o):kona_ge_intr	documented	HIP.h:197
-hip	0x8002b8	read	2	kona.a(kona_intr.o):kona_ge_intr	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800300	read,write	16	kona.a(kona_flow.o):kona_flow_await_returned_credits;kona.a(kona_setup.o):KONAinitialize	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800390	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x800398	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x8003a8	read,write	8	kona.a(kona_crash.o):kona_die;kona.a(kona_timeout.o):kona_callout	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x8003c0	write	20	kona.a(kona_edtinit_hip2.o):kona_attach;kona.a(kona_nclops.o):kona_nclops_bind;kona.a(kona_nclops.o):kona_nclops_swapped;kona.a(kona_video.o):kona_enable_dac_cursor;kona.a(kona_video.o):kona_swap_complete;kona.a(kona_video.o):kona_video_intr	documented	docs/kernel.md#registers-the-driver-touches
-hip	0x8003d0	read,write	20	kona.a(kona_edtinit_hip2.o):kona_attach;kona.a(kona_nclops.o):kona_nclops_bind;kona.a(kona_nclops.o):kona_nclops_swapped;kona.a(kona_video.o):kona_enable_dac_cursor;kona.a(kona_video.o):kona_swap_complete;kona.a(kona_video.o):kona_video_intr	documented	docs/kernel.md#registers-the-driver-touches
-hip-alias	0xc00108	write	68	kona.a(kona_context.o):KONApcxswap;kona.a(kona_context.o):KONAvalidateclip;kona.a(kona_context.o):kona_act_pcx;kona.a(kona_ddrn.o):KONAdestroyddrn;kona.a(kona_dma.o):kona_dmapool_update_pipe;kona.a(kona_dma.o):kona_finish_selectfeed;+14 more	documented	docs/kernel.md#registers-the-driver-touches
-hip-register	0x0	-	1	kpm:HIP1_HH_GFIFO	documented	HIP.h:112
-hip-register	0x100	-	1	kpm:HH_SWITCH	documented	HIP.h:114
-hip-register	0x108	-	2	kpm:HIP1_HH_GINTR_INFO;kpm:HIP2_HH_GINTR_INFO	documented	HIP.h:116
-hip-register	0x1f8	-	1	kpm:HH_NOP	documented	HIP.h:123
-hip-register	0x200	-	1	kpm:HH_RTC	documented	HIP.h:125
-hip-register	0x208	-	2	kpm:HIP1_HH_GFIFO_LEVEL;kpm:HIP2_HH_GFIFO_LEVEL	documented	HIP.h:138
-hip-register	0x210	-	1	kpm:HH_GFIFO_HI	documented	HIP.h:142
-hip-register	0x218	-	1	kpm:HH_GFIFO_LO	documented	HIP.h:146
-hip-register	0x220	-	2	kpm:HIP1_HH_INTR_INFO;kpm:HIP2_HH_INTR_INFO	documented	HIP.h:150
-hip-register	0x228	-	1	kpm:HH_INTR_ACK	documented	HIP.h:155
-hip-register	0x230	-	2	kpm:HIP1_HH_INTR_ENABLE;kpm:HIP2_HH_INTR_ENABLE	documented	HIP.h:157
-hip-register	0x238	-	2	kpm:HIP1_HH_INTR_STATUS;kpm:HIP2_HH_INTR_STATUS	documented	HIP.h:159
-hip-register	0x240	-	1	kpm:HH_ARM_MBOX	documented	HIP.h:171
-hip-register	0x248	-	1	kpm:HH_SEQID	documented	HIP.h:173
-hip-register	0x250	-	1	kpm:HH_ODMA_CHANNEL	documented	HIP.h:175
-hip-register	0x258	-	1	kpm:HH_PACK_MODE	documented	HIP.h:177
-hip-register	0x260	-	1	kpm:HH_ODMA_PNUM	documented	HIP.h:179
-hip-register	0x268	-	2	kpm:HIP1_HH_ODMA_POFF;kpm:HIP2_HH_ODMA_POFF	documented	HIP.h:181
-hip-register	0x270	-	1	kpm:HH_ODMA_LEN	documented	HIP.h:183
-hip-register	0x278	-	1	kpm:HH_ODMA_TOTAL	documented	HIP.h:185
-hip-register	0x280	-	1	kpm:HH_ODMA_OVER	documented	HIP.h:187
-hip-register	0x288	-	1	kpm:HH_ODMA_LLEN	documented	HIP.h:189
-hip-register	0x290	-	1	kpm:HH_ODMA_STRIDE	documented	HIP.h:191
-hip-register	0x298	-	1	kpm:HH_ODMA_FLUSH	documented	HIP.h:193
-hip-register	0x2a0	-	1	kpm:HH_ODMA2_PNUM	documented	HIP.h:195
-hip-register	0x2a8	-	2	kpm:HIP1_HH_ODMA2_POFF;kpm:HIP2_HH_ODMA2_POFF	documented	HIP.h:197
-hip-register	0x2b0	-	1	kpm:HH_ODMA2_LEN	documented	HIP.h:199
-hip-register	0x2b8	-	1	kpm:HH_ODMA2_TOTAL	documented	HIP.h:201
-hip-register	0x2c0	-	1	kpm:HH_ODMA2_OVER	documented	HIP.h:203
-hip-register	0x2c8	-	1	kpm:HIP2_HH_PIO_HI	documented	HIP.h:347
-hip-register	0x300	-	1	kpm:HH_RESET	documented	HIP.h:205
-hip-register	0x308	-	1	kpm:HH_ARM_CTRL	documented	HIP.h:209
-hip-register	0x310	-	1	kpm:HH_ARM_STATUS	documented	HIP.h:213
-hip-register	0x320	-	1	kpm:HH_ARM_STALL	documented	HIP.h:225
-hip-register	0x328	-	1	kpm:HH_ARM_UNSTALL	documented	HIP.h:227
-hip-register	0x330	-	1	kpm:HH_ARM_STEP	documented	HIP.h:229
-hip-register	0x338	-	1	kpm:HH_ARM_CURR_ADDR	documented	HIP.h:231
-hip-register	0x340	-	1	kpm:HH_CURR_DATA_FM_ARM	documented	HIP.h:233
-hip-register	0x348	-	1	kpm:HH_CURR_DATA_TO_ARM	documented	HIP.h:235
-hip-register	0x350	-	1	kpm:HH_JTAG_DATA	documented	HIP.h:237
-hip-register	0x358	-	1	kpm:HH_JTAG_TMS	documented	HIP.h:239
-hip-register	0x360	-	1	kpm:HH_JTAG_CTRL	documented	HIP.h:241
-hip-register	0x368	-	1	kpm:HH_JTAG_STATUS	documented	HIP.h:243
-hip-register	0x370	-	1	kpm:HH_JTAG_ACCESS	documented	HIP.h:245
-hip-register	0x378	-	1	kpm:HH_JTAG_RESET	documented	HIP.h:248
-hip-register	0x380	-	1	kpm:HIP1_HH_FCI_OVERLAP	documented	HIP.h:250
-hip-register	0x388	-	1	kpm:HIP1_HH_FCI_LOOPBACK	documented	HIP.h:254
-hip-register	0x390	-	2	kpm:HIP1_HH_FCI_ERR_STAT1;kpm:HIP2_HH_GV_ERR_STAT1	documented	HIP.h:256
-hip-register	0x398	-	2	kpm:HIP1_HH_FCI_ERR_STAT2;kpm:HIP2_HH_GV_ERR_STAT2	documented	HIP.h:259
-hip-register	0x3a0	-	2	kpm:HIP1_HH_FCI_PIO_STATUS;kpm:HIP2_HH_GV_OVERLAP	documented	HIP.h:274
-hip-register	0x3a8	-	1	kpm:HH_TBUS_STATUS	documented	HIP.h:283
-hip-register	0x3b0	-	1	kpm:HH_TFIFO_HI	documented	HIP.h:289
-hip-register	0x3b8	-	1	kpm:HIP2_HH_IDMA_HI	documented	HIP.h:350
-hip-register	0x3c0	-	1	kpm:HH_VC_ADDRESS	documented	HIP.h:291
-hip-register	0x3c8	-	1	kpm:HH_VC_FREADY	documented	HIP.h:293
-hip-register	0x3d0	-	1	kpm:HH_VC_DATA	documented	HIP.h:295
-hip-register	0x3d8	-	1	kpm:HH_VC_DATA_INCR	documented	HIP.h:297
-hip-register	0x3e0	-	1	kpm:HH_GFIFO_WAIT	documented	HIP.h:299
-hip-register	0x3e8	-	1	kpm:HH_ARM_ADDRESS	documented	HIP.h:301
-hip-register	0x3f0	-	1	kpm:HH_ARM_DATA	documented	HIP.h:305
-hip-register	0x3f8	-	1	kpm:HH_ARM_DATA_INCR	documented	HIP.h:307
-raster-index	0x1	-	1	kpm:BEF_DUMP	documented	docs/rm.md#interrupts
-raster-index	0x2	-	1	kpm:BEF_PERF_COUNTALL	named-only	RM.h:371
-raster-index	0x3	-	1	kpm:BEF_PERF_COUNTDRAW	named-only	RM.h:373
-raster-index	0x4	-	1	kpm:BEF_PERF_COUNTLOAD	named-only	RM.h:375
-raster-index	0x5	-	1	kpm:BEF_PERF_COUNTEMPTY	named-only	RM.h:377
-raster-index	0x6	-	1	kpm:BEF_MAILBOX	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-raster-index	0x7	-	1	kpm:BEF_REGSHADOW_BMASK	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x100	-	1	kpm:BEF_REGSHADOW	documented	docs/rm.md#the-register-write-word
-raster-index	0x200	-	1	kpm:BEF_REGSHADOW_READ	documented	docs/rm.md#context-save-and-restore
-raster-index	0x300	-	1	kpm:BEF_REGSHADOW_WRITE	documented	docs/rm.md#context-save-and-restore
-raster-index	0x800	-	1	kpm:PG_GENERAL	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x801	-	1	kpm:PG_QCOLOR	documented	RM.h:49
-raster-index	0x804	-	1	kpm:PG_BLOAT	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x805	-	1	kpm:PG_Z_OFF	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x806	-	1	kpm:PG_MSK	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x807	-	1	kpm:PG_WIN_OFFSET_X	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x808	-	1	kpm:PG_WIN_OFFSET_Y	documented	GE.h:720
-raster-index	0x809	-	1	kpm:PG_SMASK	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x80a	-	1	kpm:PG_STIPPLE	documented	docs/rm.md#names-for-the-unnamed-indexes
-raster-index	0x80f	-	1	kpm:PG_PSPEC	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x810	-	1	kpm:PG_PRU	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x87f	-	1	kpm:PG_NOP	documented	docs/rm.md#the-register-write-word
-raster-index	0x880	-	1	kpm:PG_PRAM	documented	docs/rm.md#the-register-write-word
-raster-index	0xc00	-	1	kpm:TG_DNOP	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-raster-index	0xc01	-	1	kpm:TG_FIFOLAT	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-raster-index	0xc02	-	1	kpm:TG_MISC	documented	GE.h:733
-raster-index	0xc04	-	1	kpm:TG_MAP_LEVEL	documented	GE.h:728
-raster-index	0xc05	-	1	kpm:TG_LOD_SCALEST	documented	GE.h:728
-raster-index	0xc06	-	1	kpm:TG_LOD_SCALER	documented	GE.h:729
-raster-index	0x1000	-	1	kpm:TM_MEMCONF	documented	GE.h:727
-raster-index	0x1001	-	1	kpm:TM_REFCTR	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-raster-index	0x1002	-	1	kpm:TM_SYNC_WAITLOAD	documented	RM.h:141
-raster-index	0x1003	-	1	kpm:TM_SYNC_IDDRAW	documented	RM.h:141
-raster-index	0x1004	-	1	kpm:TM_DRAW_TEXMAP_0_1	named-only	RM.h:426
-raster-index	0x1005	-	1	kpm:TM_DRAW_TEXMAP_2_3	named-only	RM.h:432
-raster-index	0x1006	-	1	kpm:TM_DRAW_TEXMAP_4_5	named-only	RM.h:438
-raster-index	0x1007	-	1	kpm:TM_DRAW_TEXMAP_6_7	named-only	RM.h:444
-raster-index	0x1008	-	1	kpm:TM_DRAW_TEXMAP_8_9	named-only	RM.h:450
-raster-index	0x1009	-	1	kpm:TM_DRAW_TEXMAP_10_11	named-only	RM.h:456
-raster-index	0x100a	-	1	kpm:TM_DRAW_TEXMAP_12_13	named-only	RM.h:462
-raster-index	0x100b	-	1	kpm:TM_DRAW_TEXMAP_14_15	named-only	RM.h:468
-raster-index	0x100c	-	1	kpm:TM_DRAW_TEXMAP_3DM_0	named-only	RM.h:474
-raster-index	0x100d	-	1	kpm:TM_DRAW_TEXMAP_3DM_1	named-only	RM.h:480
-raster-index	0x100e	-	1	kpm:TM_DRAW_TEXMAP_3DM_2	named-only	RM.h:486
-raster-index	0x100f	-	1	kpm:TM_DRAW_TEXMAP_3DM_3	named-only	RM.h:492
-raster-index	0x1010	-	1	kpm:TM_DRAW_TEXMAP_3DM_4	named-only	RM.h:498
-raster-index	0x1011	-	1	kpm:TM_DRAW_TEXMAP_3DM_5	named-only	RM.h:504
-raster-index	0x1012	-	1	kpm:TM_DRAW_TEXMAP_3DM_6	named-only	RM.h:510
-raster-index	0x1013	-	1	kpm:TM_DRAW_TEXMAP_3DM_7	named-only	RM.h:516
-raster-index	0x1014	-	1	kpm:TM_DRAW_TEXMAP_3DM_8	named-only	RM.h:522
-raster-index	0x1015	-	1	kpm:TM_DRAW_TEXMAP_3DM_9	named-only	RM.h:528
-raster-index	0x1016	-	1	kpm:TM_DRAW_CUBEMAP_FAR	named-only	RM.h:534
-raster-index	0x1017	-	1	kpm:TM_DRAW_CUBEMAP_LFTRGHT	named-only	RM.h:538
-raster-index	0x1018	-	1	kpm:TM_DRAW_CUBEMAP_TOPBOT	named-only	RM.h:544
-raster-index	0x1019	-	1	kpm:TM_DRAW_DETAILMAP	documented	GE.h:729
-raster-index	0x101a	-	1	kpm:TM_DRAW_GLOBALOFFSET	documented	GE.h:727
-raster-index	0x101b	-	1	kpm:TM_RDBK_STRSTART	named-only	RM.h:558
-raster-index	0x101c	-	1	kpm:TM_RDBK_STEND	named-only	RM.h:566
-raster-index	0x101d	-	1	kpm:TM_RDBK_END	named-only	RM.h:572
-raster-index	0x101e	-	1	kpm:TM_DRAW_SHA_AMBIENT	documented	GE.h:732
-raster-index	0x101f	-	1	kpm:TM_DRAW_REDUNDANCY	documented	GE.h:733
-raster-index	0x1020	-	1	kpm:TM_DRAW_CLIP_OFFSET	documented	GE.h:730
-raster-index	0x1021	-	1	kpm:TM_DRAW_CLIP_BKPT	documented	GE.h:730
-raster-index	0x1022	-	1	kpm:TM_TEXBIND_START	named-only	RM.h:587
-raster-index	0x1023	-	1	kpm:TM_TM1A_COMPAT	named-only	RM.h:589
-raster-index	0x102f	-	1	kpm:TM_DNOP	named-only	RM.h:593
-raster-index	0x13d5	-	1	kpm:TM_TEX_SIZE	documented	GE.h:730
-raster-index	0x1401	-	1	kpm:TFP_TEV	documented	GE.h:734
-raster-index	0x1402	-	1	kpm:TFP_TEV_CC	documented	GE.h:734
-raster-index	0x1403	-	1	kpm:TFP_FOG	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x1404	-	1	kpm:TFP_FOG_CC	documented	GE.h:735
-raster-index	0x1405	-	1	kpm:TFP_FOG_DATA	named-only	RM.h:681
-raster-index	0x1406	-	1	kpm:TFP_FOG_OFFSET	documented	docs/rm.md#the-register-write-word
-raster-index	0x1407	-	1	kpm:TFP_AFUNC	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x1408	-	1	kpm:TFP_AMASK	documented	docs/rm.md#the-register-write-word
-raster-index	0x1409	-	1	kpm:TFP_A2M_LUT0	named-only	RM.h:708
-raster-index	0x140a	-	1	kpm:TFP_A2M_LUT1	named-only	RM.h:714
-raster-index	0x140b	-	1	kpm:TFP_FADE_MASK_LUT	documented	GE.h:735
-raster-index	0x140d	-	1	kpm:TFP_AE_RANGE	named-only	RM.h:740
-raster-index	0x140e	-	1	kpm:TFP_AC	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x140f	-	1	kpm:TFP_COLOR_FMT	documented	GE.h:736
-raster-index	0x1410	-	1	kpm:TFP_PIX_FMT	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x1411	-	1	kpm:TFP_NOP	named-only	RM.h:756
-raster-index	0x1412	-	1	kpm:TFP_FAKE	named-only	RM.h:758
-raster-index	0x1413	-	1	kpm:TFP_TEV_CC1	documented	GE.h:734
-raster-index	0x1414	-	1	kpm:TFP_FOG_CC1	documented	GE.h:735
-raster-index	0x1415	-	1	kpm:TFP_TEXRB_CLR	named-only	RM.h:636
-raster-index	0x1500	-	1	kpm:TFP_TEX	documented	GE.h:733
-raster-index	0x150c	-	1	kpm:TFP_AE	named-only	RM.h:727
-raster-index	0x153e	-	1	kpm:TFP_PASSR	named-only	RM.h:627
-raster-index	0x153f	-	1	kpm:TFP_TEXRB	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-raster-index	0x1800	-	1	kpm:TFT_EXTRAP	documented	RM.h:106
-raster-index	0x1810	-	1	kpm:TFT_DETAILTEX	documented	RM.h:107
-raster-index	0x1820	-	1	kpm:TFT_BICUBIC	documented	RM.h:91
-raster-index	0x1850	-	1	kpm:TFT_SBIAS_EN	documented	GE.h:731
-raster-index	0x1851	-	1	kpm:TFT_SCALE	documented	GE.h:732
-raster-index	0x1852	-	1	kpm:TFT_BIAS	documented	GE.h:732
-raster-index	0x1853	-	1	kpm:TFT_TLUT	documented	GE.h:732
-raster-index	0x1854	-	1	kpm:TFT_TLUT_DATA	named-only	RM.h:805
-raster-index	0x1855	-	1	kpm:TFT_TEXRB	named-only	RM.h:811
-raster-index	0x1856	-	1	kpm:TFT_NOP	named-only	RM.h:813
-raster-index	0x1857	-	1	kpm:TFT_FAKE	named-only	RM.h:815
-raster-index	0x1858	-	1	kpm:TFT_EOR	named-only	RM.h:818
-raster-index	0x1c00	-	1	kpm:IMP_CONFIG	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x1c02	-	1	kpm:IMP_OP	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x1c03	-	1	kpm:IMP_MS	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x1c06	-	1	kpm:IMP_CLIP	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x1c07	-	1	kpm:IMP_SZ0	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x1c08	-	1	kpm:IMP_SZ1	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x1c09	-	1	kpm:IMP_DEPTH_CLEAR	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x1c0a	-	1	kpm:IMP_TAG_CLEAR	named-only	RM.h:952
-raster-index	0x1c0b	-	1	kpm:IMP_ADDR	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x1c0d	-	1	kpm:IMP_BL	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x1c0e	-	1	kpm:IMP_ACCUM	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-raster-index	0x1c0f	-	1	kpm:IMP_FLAG	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-raster-index	0x1c10	-	1	kpm:IMP_USER_COLOR	documented	RM.h:51
-raster-index	0x1c12	-	1	kpm:IMP_CLEAR_COLOR	documented	RM.h:51
-raster-index	0x1c14	-	1	kpm:IMP_WMASK_BIT	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x1c3a	-	1	kpm:IMP_NOP	named-only	RM.h:1031
-raster-index	0x1c3b	-	1	kpm:IMP_FAKE_SIMPLE_FB_SIZE	named-only	RM.h:1027
-raster-index	0x1c3c	-	1	kpm:IMP_FAKE_SIMPLE_FB_ORIGIN	named-only	RM.h:1023
-raster-index	0x1c3d	-	1	kpm:IMP_FAKE_DRAWMODE	named-only	RM.h:1016
-raster-index	0x1c3e	-	1	kpm:IMP_FAKE_DRAW_OFFSET	named-only	RM.h:1012
-raster-index	0x1c3f	-	1	kpm:IMP_RAMSYNC	named-only	RM.h:1010
-raster-index	0x3be0	-	1	kpm:PGTFPIMP_MSLOC	documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-raster-index	0x3fc2	-	1	kpm:PGTG_SCIS	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x3fc4	-	1	kpm:PGTG_ZRECT	documented	docs/rm.md#names-for-the-unnamed-indexes
-raster-index	0x3fcc	-	1	kpm:PGTG_DRECT	documented	docs/rm.md#names-for-the-unnamed-indexes
-raster-index	0x3fcf	-	1	kpm:PGTG_SIZE	documented	docs/rm.md#chips-on-each-board
-raster-index	0x3fd3	-	1	kpm:PGTG_ENABLES	documented	docs/rm.md#chips-on-each-board
-raster-index	0x3fd4	-	1	kpm:TGTMTFT	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-raster-index	0x3fd5	-	1	kpm:TGTM_TEX_SIZE	documented	GE.h:728
-raster-index	0x3fd6	-	1	kpm:TGTM_DCTEX_SIZE	documented	GE.h:729
-raster-index	0x3fd7	-	1	kpm:TGTM_TEX_SCENTER	documented	GE.h:731
-raster-index	0x3fd8	-	1	kpm:TGTM_TEX_TCENTER	documented	GE.h:731
-raster-index	0x3ff0	-	1	kpm:COMMON_VERBOSE	named-only	RM.h:1207
-raster-index	0x3ff1	-	1	kpm:COMMON_PFLUSH	named-only	RM.h:1209
-raster-index	0x3ff3	-	1	kpm:COMMON_PSTART	named-only	RM.h:1211
-raster-index	0x3ff4	-	1	kpm:COMMON_PSTOP	named-only	RM.h:1213
-raster-index	0x3ff5	-	1	kpm:COMMON_FB	named-only	RM.h:1215
-raster-index	0x3ff6	-	1	kpm:COMMON_PRIMID	named-only	RM.h:1219
-raster-index	0x3ff7	-	1	kpm:COMMON_STALL	named-only	RM.h:1221
-raster-index	0x3ff8	-	1	kpm:COMMON_IFMT	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x44a8	-	1	kpm:HTL_LOAD_STALL	documented	RM.h:33
-raster-index	0x5000	-	1	kpm:TML_TEXLD_BASEADDR	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards
-raster-index	0x5001	-	1	kpm:TML_TEXLD_GLOBALOFFSET	documented	docs/rm.md#the-89-word-register-shadow
-raster-index	0x5002	-	1	kpm:TML_SYNC_WAITDRAW	documented	RM.h:142
-raster-index	0x5003	-	1	kpm:TML_SYNC_IDLOAD	documented	RM.h:141
-raster-index	0x5004	-	1	kpm:TML_TM1A_COMPAT	named-only	RM.h:619
-raster-index	0x53ff	-	1	kpm:TML_RAMSYNC	named-only	RM.h:622
-raster-index	0x7fc0	-	1	kpm:TGTML_NOP	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-raster-index	0x7fc1	-	1	kpm:TGTML_TEXLD_SIZE	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards
-raster-index	0x7fc2	-	1	kpm:TGTML_TEXLD_STSTART	documented	GE.h:726
-raster-index	0x7fc3	-	1	kpm:TGTML_TEXLD_S1ST_RSTART	documented	GE.h:725
-raster-index	0x7fc4	-	1	kpm:TGTML_TEXLD_STEND	documented	GE.h:726
-raster-index	0x7fc5	-	1	kpm:TGTML_TEXLD_MISC	documented	docs/opengl.md#texel-download-header-word-7-and-the-load-scissor-bit
-xg	0x4	read	2	kona.a(kona_edtinit_hip2.o):kona_attach	documented	XG.h:53
-xg	0x24	read,write	8	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#unknown
-xg	0x2c	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	XG.h:91
-xg	0x34	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	XG.h:92
-xg	0x3c	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	XG.h:93
-xg	0x5c	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#delivery
-xg	0x64	read	4	kona.a(kona_edtinit_hip2.o):kona_attach	documented	docs/hip.md#address-path
-xg	0x6c	read,write	8	kona.a(kona_edtinit_hip2.o):kona_report_errs;kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#xg-errors-kona_xg_intr_handler
-xg	0x74	read,write	4	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#unknown
-xg	0x7c	read,write	156	kona.a(kona_context.o):KONApcxswap;kona.a(kona_context.o):KONAvalidateclip;kona.a(kona_context.o):kona_act_pcx;kona.a(kona_crash.o):kona_checkpipe;kona.a(kona_ddrn.o):KONAdestroyddrn;kona.a(kona_dma.o):kona_dmapool_update_pipe;+20 more	documented	docs/xg.md#the-rest-of-the-window
+window	offset	name	access	sites	binaries	functions	evidence	example	status	doc	section
+command-port	0x0		w4	336	14	KONAdestroyddrn;KONApcxswap;KONAschedmgrswapbuf;KONAschedswapbuf;KONAsetdisplaymode;KONAstart;+18 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	documented	docs/kernel.md#what-a-process-maps	What a process maps
+hip	0x800208	HIP1_HH_GFIFO_LEVEL;HIP2_HH_GFIFO_LEVEL	r4	14	4	kona_delay_monitor_gfifo;kona_die;kona_flow_await_returned_credits;kona_hiwater_intr;kona_hiwater_timeout	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x800210	HH_GFIFO_HI	w4	2	2	kona_flow_init	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o):kona_flow_init	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x800220	HIP1_HH_INTR_INFO;HIP2_HH_INTR_INFO	r4,w4	6	4	KONAinitialize;kona_die	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x800228	HH_INTR_ACK	w4	4	4	KONAstart;kona_intr_handler	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o):kona_intr_handler	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x800230	HIP1_HH_INTR_ENABLE;HIP2_HH_INTR_ENABLE	w4	14	4	KONAinitialize;KONAstart;kona_diag_flow;kona_hiwater_intr;kona_lowater_intr	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o):kona_diag_flow	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x800238	HIP1_HH_INTR_STATUS;HIP2_HH_INTR_STATUS	r4,w4	26	10	KONAstart;kona_arm_intr;kona_delay_monitor_gfifo;kona_ge_intr_handler;kona_hiwater_intr;kona_intr_handler;+2 more	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x800240	HH_ARM_MBOX	r4	4	2	kona_arm_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_arm_intr	documented	docs/hip.md#arm-events-kona_arm_intr	ARM events: `kona_arm_intr`
+hip	0x800248	HH_SEQID	r4	2	2	kona_video_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):kona_video_intr	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x800260	HH_ODMA_PNUM	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x800268	HIP1_HH_ODMA_POFF;HIP2_HH_ODMA_POFF	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	named-only	HIP.h:181	
+hip	0x800278	HH_ODMA_TOTAL	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	named-only	HIP.h:185	
+hip	0x800298	HH_ODMA_FLUSH	w4	2	2	kona_die	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x8002a0	HH_ODMA2_PNUM	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	documented	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr	Geometry-engine events: `kona_ge_intr_handler`, `kona_ge_intr`
+hip	0x8002a8	HIP1_HH_ODMA2_POFF;HIP2_HH_ODMA2_POFF	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	named-only	HIP.h:197	
+hip	0x8002b8	HH_ODMA2_TOTAL	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x800300	HH_RESET	r4,w4	16	4	KONAinitialize;kona_flow_await_returned_credits	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o):kona_flow_await_returned_credits	documented	docs/hip.md#flow-control-the-fifo-interrupts	Flow control: the FIFO interrupts
+hip	0x800390	HIP1_HH_FCI_ERR_STAT1;HIP2_HH_GV_ERR_STAT1	w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x800398	HIP1_HH_FCI_ERR_STAT2;HIP2_HH_GV_ERR_STAT2	w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x8003a8	HH_TBUS_STATUS	r4,w4	10	6	kona_callout;kona_die;kona_video_intr	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x8003c0	HH_VC_ADDRESS	w4	94	6	kona_attach;kona_enable_dac_cursor;kona_nclops_bind;kona_nclops_configure;kona_nclops_destroy;kona_nclops_discover;+3 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip	0x8003d0	HH_VC_DATA	r4,w4	98	6	kona_attach;kona_enable_dac_cursor;kona_nclops_bind;kona_nclops_configure;kona_nclops_destroy;kona_nclops_discover;+3 more	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+hip-alias	0xc00108		w4	138	18	KONAdestroyddrn;KONAmapgfx;KONApcxswap;KONAschedmgrswapbuf;KONAschedswapbuf;KONAsetdisplaymode;+15 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+user-fifo	0x0		w4,w8	17348	6	GetSingleCompFromPipe;__glKonCopyTexImage;__glKonCreateContext;__glKonCreateContext-0x15e8;__glKonCreateContext-0x1a60;__glKonCreateContext-0x1b80;+335 more	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:GetSingleCompFromPipe	documented	docs/kernel.md#what-a-process-maps	What a process maps
+user-io	0xc00c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/xg.md#reset-kona_reset_adaptor	Reset, `kona_reset_adaptor`
+user-io	0xc014		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/xg.md#reset-kona_reset_adaptor	Reset, `kona_reset_adaptor`
+user-io	0xc01c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	named-only	HIP.h:216	
+user-io	0xc024		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/hip.md#unknown	Unknown
+user-io	0xc02c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
+user-io	0xc034		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+user-io	0xc03c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/hip.md#the-command-stream-as-the-arm-firmware-reads-it	The command stream as the ARM firmware reads it
+user-io	0xc064		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/hip.md#address-path	Address path
+user-io	0xc06c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
+user-io	0xc074		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/hip.md#unknown	Unknown
+user-io	0xc07c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/kernel.md#diagnostic-ioctls	Diagnostic ioctls
+user-io	0xc084		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/xg.md#the-rest-of-the-window	The rest of the window
+user-io	0xc08c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/xg.md#the-rest-of-the-window	The rest of the window
+user-io	0xc094		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	documented	docs/xg.md#the-rest-of-the-window	The rest of the window
+user-io	0xc100		r4	12	6	__glkona_wait_rdata;__glkonim_Flush	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:__glkona_wait_rdata	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma	Host to pipe: `kona_dmawrite`, `kona_idma`
+user-io	0x1fce00		r4	6	6	__glXInitThread	user pipe mapping	usr/gfx/arch/IP27KONA/libGL.so:__glXInitThread	undocumented		
+user-io	0x1fce90		r4	4	4	__glSoftResetContext	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:__glSoftResetContext	undocumented		
+user-io	0x1fce98		r8	2	2	__glSoftResetContext	user pipe mapping	usr/gfx/arch/IP27KONA64/libGLcore.so:__glSoftResetContext	undocumented		
+xg	0x4		r4	2	2	kona_attach	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	documented	docs/hip.md#unknown	Unknown
+xg	0x24		r4,w4	8	2	kona_reset_adaptor	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#unknown	Unknown
+xg	0x2c		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
+xg	0x34		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
+xg	0x3c		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#the-command-stream-as-the-arm-firmware-reads-it	The command stream as the ARM firmware reads it
+xg	0x5c		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#delivery	Delivery
+xg	0x64		r4	4	2	kona_attach	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	documented	docs/hip.md#address-path	Address path
+xg	0x6c		r4,w4	8	2	kona_report_errs;kona_reset_adaptor	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_report_errs	documented	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
+xg	0x74		r4,w4	4	2	kona_reset_adaptor	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#unknown	Unknown
+xg	0x7c		r4,w4	166	20	KONAdestroyddrn;KONAmapgfx;KONApcxswap;KONAreleasegfxsema;KONAresume;KONAschedmgrswapbuf;+20 more	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	documented	docs/kernel.md#diagnostic-ioctls	Diagnostic ioctls
+xg	0x100000		r4,w4	4	2	kona_mapram_init	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o):kona_mapram_init	documented	docs/hip.md#address-path	Address path

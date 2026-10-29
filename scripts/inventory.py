@@ -1,51 +1,42 @@
 #!/usr/bin/env python3
 """Measure what the workspace has covered, from the binaries.
 
-Usage: scripts/inventory.py [--out docs/inventory] [--no-coverage]
-       Run it from the repository root, with root/ filled (IRIX_FILES.md) and
-       the MIPS binutils and pyelftools installed (see AGENTS.md).
+Usage: scripts/inventory.py [--config scripts/inventory-config.json]
+                            [--out docs/inventory] [--no-coverage] [--jobs N]
 
-The scope is the `files` block of IRIX_FILES.md minus its `exclude` block.
-Every ELF file and every ELF member of an `ar` archive in scope is read.
-Five tables are written to the output directory, one row per item, each with
-a status column:
+Run it from the repository root with root/ populated (IRIX_FILES.md), inside
+the toolchain environment of AGENTS.md (MIPS objdump, dwarfdump, pyelftools).
 
-  functions.tsv  every function symbol (.symtab, .dynsym and, for o32 files,
-                 the .mdebug procedure table) with address and size
-  mmio.tsv       every distinct device offset the code reaches: kernel calls
-                 to the PIO accessor with a recoverable offset, loads and
-                 stores off the pipe's base pointer, and the register tables
-                 the kpm diagnostic carries
-  tokens.tsv     every host command token: the kpm name table, the ARM
-                 firmware's token map and the names in GE.h
-  ioctls.tsv     every private ioctl slot the kernel dispatcher serves, and
-                 every command constant user code passes to an ioctl wrapper
-  ucode.tsv      every microcode routine and entry point: the ARM firmware's
-                 symbols, the geometry engine's labels, the interface table's
-                 slots and the display generator's command table
+The script is the same in every workspace. Everything that belongs to one
+graphics family -- which files are in scope and what role each plays, the
+register windows and how code reaches them, where command tokens come from,
+which kernel tables dispatch ioctls, the microcode images and any register
+tables from a specification -- is in scripts/inventory-config.json.
 
-Status:
-  documented  the item is explained in prose: a markdown page names it (in
-              backticks or a code block) or a header carries a comment that
-              names it or sits on its definition. The doc column gives
-              `file#anchor` for a page or `file:line` for a header.
-  named-only  the item appears in the repository only as a bare name or
-              value: a header definition with no comment, or a committed
-              table other than a verbatim dump of the binary's own names.
-  undocumented  nothing in the docs, headers or tables mentions it.
-Generated listings, disassembly and decompiled C are not evidence: they
-restate the binary. So are verbatim dumps of a binary's own tables.
+It writes eight tables to docs/inventory/ and rewrites the block between the
+inventory markers in docs/coverage.md:
 
-The script also rewrites the block between the inventory markers in
-docs/coverage.md with the totals. Run it in the same commit as any doc or
-header change, so the percentages stay current.
+  binaries.tsv        every file in scope, one row per distinct content
+  functions.tsv       one row per (binary, function symbol)
+  mmio.tsv            one row per register offset the code reaches
+  tokens.tsv          command tokens and constant words sent to the hardware
+  ioctls.tsv          one row per ioctl number handled or sent
+  ucode.tsv           microcode routines, labels and dispatch entries
+  spec-registers.tsv  registers listed by a specification or register table
+  summary.tsv         row counts per status, and unresolved access sites
+
+docs/inventory/README.md defines every column and status. The output is
+deterministic: the same inputs give byte-identical tables.
 """
 import argparse
 import bisect
 import collections
+import fnmatch
 import glob
 import hashlib
 import io
+import json
+import multiprocessing
 import os
 import re
 import shutil
@@ -54,86 +45,438 @@ import subprocess
 import sys
 import tempfile
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from elftools.elf.elffile import ELFFile
-from scripts.toolchain import objdump
-
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(REPO, 'scripts'))
 
-# ---------------------------------------------------------------------------
-# Repository-specific settings. Everything else is generic.
+STATUSES = ('documented', 'no-software-dependency', 'named-only', 'undocumented')
+RANK = {'documented': 3, 'no-software-dependency': 2, 'named-only': 1, 'undocumented': 0}
+NSD_PHRASE = re.compile(r'no\s+shipped\s+software\s+or\s+published\s+source', re.I)
+MARK_BEGIN, MARK_END = '<!-- inventory:begin -->', '<!-- inventory:end -->'
+OLD_MARKS = (re.compile(r'<!-- inventory:start[^>]*-->'),)
 
-# Kernel accessors for the pipe's registers: the first argument is the
-# address, the register base pointer held at this slot of the per-pipe state
-# plus an offset.
-PIO_ACCESSORS = {'gfx_pio_read_32': 'read', 'gfx_pio_write_32': 'write'}
-BASE_SLOTS = {2376}
-# Functions that take an ioctl command as their second argument.
-IOCTL_WRAPPERS = {'ioctl', '__glKon_ioctl'}
-# The kernel's private ioctl dispatcher; slot n serves command base + n.
-IOCTL_DISPATCHER = 'KONAprivate'
-
-# Where each device window is explained: headers (a define with a comment
-# documents it) and docs (a hex literal in prose documents it).
-WINDOWS = {
-    'xg': (['XG.h'], ['docs/xg.md', 'docs/hip.md']),
-    'hip': (['HIP.h'], ['docs/hip.md', 'docs/kernel.md', 'docs/xg.md']),
-    'hip-alias': (['HIP.h'], ['docs/hip.md', 'docs/kernel.md']),
-    'hip-register': (['HIP.h'], ['docs/hip.md']),
-    'ge-register': (['GE.h'], ['docs/ge.md', 'ucode/ged.md']),
-    'raster-index': (['RM.h'], ['docs/rm.md']),
+COLUMNS = {
+    'binaries': ['binary', 'group', 'role', 'kind', 'abi', 'bytes', 'sha256', 'copies', 'functions',
+                 'access_sites', 'unresolved_sites', 'status', 'doc', 'section'],
+    'functions': ['binary', 'role', 'abi', 'elf_section', 'address', 'size', 'name', 'source',
+                  'status', 'doc', 'section'],
+    'mmio': ['window', 'offset', 'name', 'access', 'sites', 'binaries', 'functions', 'evidence', 'example',
+             'status', 'doc', 'section'],
+    'tokens': ['kind', 'value', 'name', 'register', 'detail', 'sources', 'sites', 'binaries', 'example',
+               'status', 'doc', 'section'],
+    'ioctls': ['number', 'hex', 'table', 'handler', 'evidence', 'senders', 'binaries', 'example',
+               'status', 'doc', 'section'],
+    'ucode': ['program', 'kind', 'address', 'name', 'detail', 'status', 'doc', 'section'],
+    'spec-registers': ['spec', 'table', 'page', 'window', 'offset', 'name', 'count', 'stride', 'width', 'rw',
+                       'reached_in_code', 'status', 'doc', 'section'],
+    'summary': ['table', 'rows', 'documented', 'no_software_dependency', 'named_only', 'undocumented',
+                'pct_documented', 'pct_done', 'unresolved_sites'],
 }
-
-# Committed tables that restate a binary's own names; they are not evidence.
-DUMP_TABLES = {
-    'ucode/arm1_symbols.tsv', 'ucode/icu_map.tsv',
-}
-DUMP_DIRS = ('docs/inventory/', 'diags/kpm/')
-# Prose and header sources.
-PROSE_GLOBS = ['docs/*.md', 'ucode/*.md', 'README.md']
-PROSE_SKIP = {'docs/coverage.md'}
-HEADER_GLOBS = ['*.h', '*/include/*.h']
-TABLE_GLOBS = ['*/*.tsv', 'docs/*/*.tsv']
-
-# ---------------------------------------------------------------------------
-# Scope
+TABLES = ('binaries', 'functions', 'mmio', 'tokens', 'ioctls', 'ucode', 'spec-registers')
 
 
-def read_blocks(name):
-    text = open(os.path.join(REPO, 'IRIX_FILES.md')).read()
-    out = []
-    for b in re.findall(r'^```%s\s*$(.*?)^```\s*$' % name, text, re.S | re.M):
-        out += [l.strip() for l in b.split('\n') if l.strip()]
+def num(s):
+    if isinstance(s, int):
+        return s
+    s = str(s).strip()
+    neg = s.startswith('-')
+    s = s.lstrip('-')
+    v = int(s, 16) if s.lower().startswith('0x') else int(s)
+    return -v if neg else v
+
+
+def s64(v):
+    v &= (1 << 64) - 1
+    return v - (1 << 64) if v >> 63 else v
+
+
+def s32(v):
+    v &= 0xffffffff
+    return v - (1 << 32) if v >> 31 else v
+
+
+def globs_match(path, pats):
+    return any(fnmatch.fnmatch(path, p) for p in pats)
+
+
+def toolchain_objdump():
+    import toolchain
+    return toolchain.objdump()
+
+
+# ===================================================================== docs
+
+def slug(h):
+    h = re.sub(r'[`*_]', lambda m: '_' if m.group(0) == '_' else '', h.strip().lower())
+    h = re.sub(r'[^\w\s-]', '', h)
+    return re.sub(r'\s', '-', h)
+
+
+IDENT = re.compile(r'[A-Za-z_][A-Za-z0-9_$.]*[A-Za-z0-9_$]|[A-Za-z_]')
+CODELIKE = re.compile(r'(?=.*[_0-9])|(?=.*[a-z][A-Z])')
+HEXLIT = re.compile(r'(\+?)\b0[xX]([0-9a-fA-F]+)\b')
+DECLIT = re.compile(r'(?<![\w.+-])(\d{1,10})(?![\w.])')
+FILELIKE = re.compile(r'[A-Za-z0-9_+-]+(?:\.[A-Za-z0-9_+-]+)+')
+WORD = re.compile(r'\b[A-Za-z]{2,}\b')
+
+
+def plain_words(text):
+    text = re.sub(r'`[^`]*`', ' ', text)
+    text = re.sub(r'\]\([^)]*\)', ' ', text)
+    text = re.sub(r'0[xX][0-9a-fA-F]+|\b\w*[_0-9]\w*\b|\b\w+[a-z][A-Z]\w*\b', ' ', text)
+    return len(WORD.findall(text))
+
+
+def ambiguous(name):
+    return len(name) <= 3 or re.fullmatch(r'[a-z]+', name) is not None
+
+
+class Hit:
+    __slots__ = ('file', 'line', 'ref', 'section', 'explained', 'nsd', 'code', 'ctx', 'order')
+
+    def __init__(self, file, line, ref, section, explained, nsd, code, ctx, order):
+        self.file, self.line, self.ref, self.section = file, line, ref, section
+        self.explained, self.nsd, self.code, self.ctx, self.order = explained, nsd, code, ctx, order
+
+    def status(self):
+        if self.nsd:
+            return 'no-software-dependency'
+        return 'documented' if self.explained else 'named-only'
+
+
+class DocIndex:
+    """Where the repository's own text mentions each name and number."""
+
+    def __init__(self, cfg):
+        self.names = collections.defaultdict(list)
+        self.files = collections.defaultdict(list)
+        self.hexes = collections.defaultdict(list)     # value -> [(hit, plus)]
+        self.decs = collections.defaultdict(list)
+        self.defs = collections.defaultdict(list)      # value -> [hit] for header #define / enum values
+        self.lines = collections.defaultdict(set)      # (file, line) -> {'hex:..', 'id:..'}
+        self.order = 0
+        d = cfg['docs']
+        index = set()
+        for p in d.get('index', []):
+            index.update(self.expand(p))
+        skip = set()
+        for p in d.get('skip', []):
+            skip.update(self.expand(p))
+        seen = set()
+        for kind, pats in (('md', d.get('prose', [])), ('h', d.get('headers', []))):
+            for pat in pats:
+                for rel in self.expand(pat):
+                    if rel in seen or rel in skip:
+                        continue
+                    seen.add(rel)
+                    (self.read_md if kind == 'md' else self.read_header)(rel, rel in index)
+        for rel in sorted(index):
+            if rel not in seen and rel not in skip and os.path.isfile(os.path.join(REPO, rel)):
+                seen.add(rel)
+                self.read_md(rel, True)
+        dumps = set()
+        for p in d.get('dumps', []):
+            dumps.update(self.expand(p))
+        for pat in d.get('tables', []):
+            for rel in self.expand(pat):
+                if rel in seen or rel in skip or rel in dumps:
+                    continue
+                seen.add(rel)
+                self.read_table(rel)
+
+    @staticmethod
+    def expand(pat):
+        out = []
+        for p in sorted(glob.glob(os.path.join(REPO, pat), recursive=True)):
+            if os.path.isfile(p):
+                out.append(os.path.relpath(p, REPO))
+        return out
+
+    def hit(self, file, line, ref, section, explained, nsd, code, ctx):
+        self.order += 1
+        return Hit(file, line, ref, section, explained, nsd, code, ctx, self.order)
+
+    def add_text(self, file, n, ref, section, text, explained, nsd, code_spans, code_all, ctx):
+        """Index one line. code_spans are the parts written as code."""
+        key = (file, n)
+        code_text = ' '.join(code_spans)
+        seen = set()
+        for m in IDENT.finditer(code_text):
+            nm = m.group(0).rstrip('.')
+            if nm in seen:
+                continue
+            seen.add(nm)
+            self.names[nm].append(self.hit(file, n, ref, section, explained, nsd, True, ctx))
+            self.lines[key].add('id:' + nm)
+        if not code_all:
+            for m in IDENT.finditer(re.sub(r'`[^`]*`', ' ', text)):
+                nm = m.group(0).rstrip('.')
+                if nm in seen:
+                    continue
+                call = text[m.end():m.end() + 1] == '('
+                if not call and not CODELIKE.match(nm):
+                    continue
+                seen.add(nm)
+                self.names[nm].append(self.hit(file, n, ref, section, explained, nsd, call, ctx))
+                self.lines[key].add('id:' + nm)
+        for m in FILELIKE.finditer(code_text if not code_all else text):
+            self.files[m.group(0)].append(self.hit(file, n, ref, section, explained, nsd, True, ctx))
+        for plus, h in set(HEXLIT.findall(text)):
+            v = int(h, 16)
+            self.hexes[v].append((self.hit(file, n, ref, section, explained, nsd, True, ctx), bool(plus)))
+            self.lines[key].add('hex:%x' % v)
+        for d in set(DECLIT.findall(text)):
+            self.decs[int(d)].append(self.hit(file, n, ref, section, explained, nsd, True, ctx))
+
+    def read_md(self, rel, index):
+        lines = open(os.path.join(REPO, rel), encoding='utf-8', errors='replace').read().split('\n')
+        if rel.endswith('coverage.md'):
+            lines = strip_generated(lines)
+        section, ref = '', rel
+        fence = False
+        # paragraphs carry the "no shipped software" label to every line in them
+        paras, cur = [], []
+        for i, ln in enumerate(lines):
+            s = ln.strip()
+            brk = (not s or s.startswith('```') or s.startswith('#') or s.startswith('|')
+                   or re.match(r'([-*+]|\d+\.)\s', s))
+            if brk and cur:
+                paras.append(cur)
+                cur = []
+            if s:
+                cur.append(i)
+                if s.startswith('|') or s.startswith('#') or s.startswith('```'):
+                    paras.append(cur)
+                    cur = []
+        if cur:
+            paras.append(cur)
+        nsd_line = set()
+        for p in paras:
+            if NSD_PHRASE.search(' '.join(lines[i] for i in p)):
+                nsd_line.update(p)
+        table_head_words = 0
+        prev_table = False
+        for i, ln in enumerate(lines):
+            n = i + 1
+            st = ln.strip()
+            if st.startswith('```'):
+                fence = not fence
+                continue
+            if not fence and re.match(r'#{1,6}\s', ln):
+                section = re.sub(r'^#+\s*', '', ln).strip()
+                ref = '%s#%s' % (rel, slug(section))
+            is_table = not fence and st.startswith('|')
+            if is_table and not prev_table:
+                table_head_words = plain_words(st)
+            prev_table = is_table
+            if fence:
+                words = plain_words(re.sub(r'(//|/\*|#)', ' ', ln))
+                explained = words >= 3
+                spans, code_all = [ln], True
+            elif is_table:
+                explained = plain_words(st) >= 3 or table_head_words >= 2
+                spans = re.findall(r'`([^`]+)`', ln)
+                code_all = False
+            else:
+                explained = plain_words(ln) >= 3
+                spans, code_all = re.findall(r'`([^`]+)`', ln), False
+            if index:
+                explained = False
+            nsd = (i in nsd_line) and not index
+            ctx = (ln + ' ' + section).lower()
+            self.add_text(rel, n, ref, section, ln, explained, nsd, spans, code_all, ctx)
+
+    def read_header(self, rel, index):
+        lines = open(os.path.join(REPO, rel), encoding='utf-8', errors='replace').read().split('\n')
+        # split each line into code and comment; a standalone comment line has no code
+        parts = []
+        incomment = False
+        for ln in lines:
+            code, comment = ln, ''
+            if incomment:
+                if '*/' in ln:
+                    comment, code = ln.split('*/', 1)
+                    incomment = False
+                else:
+                    comment, code = ln, ''
+            if not incomment:
+                while True:
+                    m = re.search(r'/\*(.*?)(\*/|$)', code)
+                    if not m:
+                        break
+                    comment += ' ' + m.group(1)
+                    code = code[:m.start()] + ' ' + code[m.end():]
+                    if not m.group(2):
+                        incomment = True
+                        break
+                m2 = re.search(r'//(.*)$', code)
+                if m2:
+                    comment += ' ' + m2.group(1)
+                    code = code[:m2.start()]
+            text = comment.strip().lstrip('*').strip()
+            parts.append((code, comment, text, not code.strip()))
+        # paragraphs of standalone comment lines carry their word count and label to each line
+        para = [None] * len(lines)
+        i = 0
+        while i < len(lines):
+            if parts[i][3] and parts[i][2] and not re.fullmatch(r'[-=*/ ]*', parts[i][2]):
+                j = i
+                while j < len(lines) and parts[j][3] and parts[j][2] and not re.fullmatch(r'[-=*/ ]*', parts[j][2]):
+                    j += 1
+                text = ' '.join(parts[k][2] for k in range(i, j))
+                info = (plain_words(text), bool(NSD_PHRASE.search(text)), j - 1)
+                for k in range(i, j):
+                    para[k] = info
+                i = j
+            else:
+                i += 1
+        section = ''
+        banner = False
+        last_para = None
+        for i, ln in enumerate(lines):
+            n = i + 1
+            code, comment, c, standalone = parts[i]
+            if re.match(r'\s*/\*\s*=+', ln):
+                banner = True
+            m = re.match(r'^[-=]{2,}\s*(\S.*?)\s*[-=]*$', c)
+            if m and m.group(1) and not re.fullmatch(r'[-=*/ ]*', m.group(1)):
+                section = m.group(1)[:80]
+            elif banner and re.match(r'\d+\.\s+\S', c):
+                section = c[:80]
+                banner = False
+            ref = '%s:%d' % (rel, n)
+            ctx = (ln + ' ' + section).lower()
+            if para[i] is not None:
+                last_para = para[i]
+            if standalone:
+                if c:
+                    words, nsd = (para[i][0], para[i][1]) if para[i] else (plain_words(c), False)
+                    self.add_text(rel, n, ref, section, comment, words >= 3 and not index, nsd and not index,
+                                  re.findall(r'`([^`]+)`', comment), False, ctx)
+                continue
+            cwords = plain_words(comment)
+            above = last_para if (last_para and last_para[2] == i - 1) else None
+            commented = (cwords >= 3 or (above is not None and above[0] >= 3)) and not index
+            nsd = (bool(NSD_PHRASE.search(comment)) or (above is not None and above[1])) and not index
+            if comment.strip():
+                self.add_text(rel, n, ref, section, comment, cwords >= 3 and not index, nsd,
+                              re.findall(r'`([^`]+)`', comment), False, ctx)
+            d = (re.match(r'\s*#\s*define\s+(\w+)\s+\(?\s*(-?0[xX][0-9a-fA-F]+|-?\d+)[uUlL]*\b', code) or
+                 re.match(r'\s*(\w+)\s*=\s*\(?\s*(-?0[xX][0-9a-fA-F]+|-?\d+)[uUlL]*\)?\s*,?\s*$', code))
+            if d:
+                name, val = d.group(1), num(re.sub(r'[uUlL]+$', '', d.group(2)))
+                h = self.hit(rel, n, ref, section, commented, nsd, True, ctx)
+                self.names[name].append(h)
+                self.defs[val & 0xffffffffffffffff].append(h)
+                self.lines[(rel, n)].add('id:' + name)
+                self.lines[(rel, n)].add('hex:%x' % (val & 0xffffffffffffffff))
+            else:
+                for m in IDENT.finditer(code):
+                    nm = m.group(0).rstrip('.')
+                    self.names[nm].append(self.hit(rel, n, ref, section, False, False, True, ctx))
+                    self.lines[(rel, n)].add('id:' + nm)
+                for plus, h in set(HEXLIT.findall(code)):
+                    v = int(h, 16)
+                    self.hexes[v].append((self.hit(rel, n, ref, section, commented, nsd, True, ctx), bool(plus)))
+
+    def read_table(self, rel):
+        for n, ln in enumerate(open(os.path.join(REPO, rel), encoding='utf-8', errors='replace'), 1):
+            if ln.startswith('#'):
+                continue
+            for cell in ln.rstrip('\n').split('\t'):
+                cell = cell.strip()
+                if IDENT.fullmatch(cell):
+                    self.names[cell].append(self.hit(rel, n, rel, '', False, False, True, ''))
+                for plus, h in HEXLIT.findall(cell):
+                    self.hexes[int(h, 16)].append((self.hit(rel, n, rel, '', False, False, True, ''), bool(plus)))
+
+    # ---------------------------------------------------------------- queries
+
+    @staticmethod
+    def best(hits):
+        """(status, doc, section) of the best hit; first in index order on a tie."""
+        top = None
+        for h in hits:
+            if top is None or RANK[h.status()] > RANK[top.status()] or \
+                    (RANK[h.status()] == RANK[top.status()] and h.order < top.order):
+                top = h
+        if top is None:
+            return ('undocumented', '', '')
+        return (top.status(), top.ref, top.section)
+
+    def name_hits(self, name):
+        hits = self.names.get(name, [])
+        if ambiguous(name):
+            hits = [h for h in hits if h.code]
+        return hits
+
+    def by_name(self, *names):
+        hits = []
+        for n in names:
+            if n:
+                hits += self.name_hits(n)
+        return self.best(hits)
+
+    def by_file(self, *names):
+        hits = []
+        for n in names:
+            if n:
+                hits += self.files.get(n, [])
+        return self.best(hits)
+
+    def value_hits(self, values, files=None, context=None, plus_ok=True, bare=True, absolute=()):
+        out = []
+        for v in values:
+            for h in self.defs.get(v & 0xffffffffffffffff, []):
+                if in_files(h.file, files) and h.file.endswith('.h'):
+                    out.append(h)
+            for h, plus in self.hexes.get(v, []):
+                if not in_files(h.file, files):
+                    continue
+                if plus and plus_ok:
+                    out.append(h)
+                elif bare and (context is None or any(c in h.ctx for c in context)):
+                    out.append(h)
+        for a in absolute:
+            for h, plus in self.hexes.get(a, []):
+                out.append(h)
+            for h in self.defs.get(a, []):
+                out.append(h)
+        return out
+
+    def dec_hits(self, values, files=None, context=None):
+        out = []
+        for v in values:
+            for h in self.decs.get(v, []):
+                if in_files(h.file, files) and (context is None or any(c in h.ctx for c in context)):
+                    out.append(h)
+        return out
+
+    def near(self, h, key, dist=2):
+        for k in range(h.line - dist, h.line + dist + 1):
+            if key in self.lines.get((h.file, k), ()):
+                return True
+        return False
+
+
+def in_files(f, files):
+    return files is None or globs_match(f, files)
+
+
+def strip_generated(lines):
+    out, skip = [], False
+    for ln in lines:
+        if MARK_BEGIN in ln or any(p.search(ln) for p in OLD_MARKS):
+            skip = True
+        if not skip:
+            out.append(ln)
+        else:
+            out.append('')
+        if MARK_END in ln:
+            skip = False
     return out
 
 
-def scope_files():
-    excl = [l.split()[0].lstrip('/') for l in read_blocks('exclude')]
-    root = os.path.join(REPO, 'root')
-    seen, out = set(), []
-    for line in read_blocks('files'):
-        rel = line.split()[0].lstrip('/')
-        base = os.path.join(root, rel)
-        if os.path.isdir(base):
-            cands = [os.path.join(dp, f) for dp, _, fs in os.walk(base) for f in fs]
-        elif os.path.lexists(base):
-            cands = [base]
-        else:
-            continue
-        for p in cands:
-            r = os.path.relpath(p, root)
-            if any(r == e or r.startswith(e.rstrip('/') + '/') for e in excl):
-                continue
-            if os.path.islink(p) and os.path.realpath(p).startswith(os.path.realpath(root)):
-                real = os.path.realpath(p)
-            else:
-                real = p
-            if real in seen or not os.path.isfile(real):
-                continue
-            seen.add(real)
-            out.append((r, real))
-    return sorted(out)
-
+# ===================================================================== scope
 
 def unpack_ar(data):
     if data[:8] != b'!<arch>\n':
@@ -154,750 +497,1158 @@ def unpack_ar(data):
             end = names.index(b'\n', int(name[1:]))
             name = names[int(name[1:]):end].decode('latin1')
         elif name.startswith('#1/'):
-            n = int(name[3:])
-            name, body = body[:n].decode('latin1').rstrip('\0'), body[n:]
+            k = int(name[3:])
+            name, body = body[:k].decode('latin1').rstrip('\0'), body[k:]
         mem.append((name.rstrip('/'), body))
     return mem
 
 
-class Binary:
-    """One ELF image: a file, or a member of an archive."""
-
-    def __init__(self, label, member, data):
-        self.label, self.member, self.data = label, member, data
-        self.elf = ELFFile(io.BytesIO(data))
-        h = self.elf.header
-        self.rel = h['e_type'] == 'ET_REL'
-        flags = h['e_flags']
-        if self.elf.elfclass == 64:
-            self.abi = 'n64'
-        elif flags & 0x20:
-            self.abi = 'n32'
+def scope(cfg):
+    """[(label, member, group, data)] for every file in scope, plus the copies map."""
+    root = os.path.join(REPO, 'root')
+    excl = cfg.get('exclude', [])
+    files = []
+    claimed = set()
+    for g in cfg['binaries']:
+        for pat in g['paths']:
+            hits = sorted(glob.glob(os.path.join(root, pat), recursive=True))
+            for p in hits:
+                cands = []
+                if os.path.isdir(p):
+                    for dp, dn, fn in os.walk(p):
+                        dn.sort()
+                        for f in sorted(fn):
+                            cands.append(os.path.join(dp, f))
+                else:
+                    cands.append(p)
+                for c in cands:
+                    rel = os.path.relpath(c, root)
+                    if rel in claimed or globs_match(rel, excl) or not os.path.isfile(c):
+                        continue
+                    claimed.add(rel)
+                    files.append((rel, c, g))
+    files.sort(key=lambda x: x[0])
+    images = []
+    by_sha = {}
+    for rel, real, g in files:
+        data = open(real, 'rb').read()
+        if data[:8] == b'!<arch>\n':
+            want = g.get('members')
+            for name, body in unpack_ar(data):
+                if want and not any(fnmatch.fnmatch(name, w) for w in want):
+                    continue
+                images.append(('%s(%s)' % (rel, name), rel, name, g, body))
         else:
-            self.abi = 'o32'
-        self.name = label if not member else '%s(%s)' % (label, member)
-
-    def section_name(self, idx):
-        if isinstance(idx, int) and idx < self.elf.num_sections():
-            return self.elf.get_section(idx).name
-        return str(idx)
-
-    def symbols(self):
-        """Defined function symbols as (section, address, size, name)."""
-        rows, seen = [], set()
-        for sn in ('.symtab', '.dynsym'):
-            sec = self.elf.get_section_by_name(sn)
-            if sec is None or not hasattr(sec, 'iter_symbols'):
-                continue
-            for s in sec.iter_symbols():
-                if s['st_info']['type'] != 'STT_FUNC' or s['st_shndx'] == 'SHN_UNDEF':
-                    continue
-                key = (s.name, s['st_value'])
-                if key in seen or not s.name:
-                    continue
-                seen.add(key)
-                rows.append([self.section_name(s['st_shndx']), s['st_value'], s['st_size'], s.name])
-        for sec, addr, name in mdebug_procs(self):
-            if (name, addr) not in seen:
-                seen.add((name, addr))
-                rows.append([sec, addr, 0, name])
-        # a missing size runs to the next symbol of the same section
-        by = collections.defaultdict(list)
-        for r in rows:
-            by[r[0]].append(r[1])
-        for sec in by:
-            by[sec] = sorted(set(by[sec]))
-        end = {}
-        text = self.elf.get_section_by_name('.text')
-        for sec_name in by:
-            s = self.elf.get_section_by_name(sec_name)
-            end[sec_name] = (s['sh_addr'] + s['sh_size']) if s is not None and s['sh_addr'] + s['sh_size'] else None
-        for r in rows:
-            if r[2] == 0:
-                a = by[r[0]]
-                i = bisect.bisect_right(a, r[1])
-                nxt = a[i] if i < len(a) else end.get(r[0])
-                if nxt is not None and nxt > r[1]:
-                    r[2] = nxt - r[1]
-        return rows
-
-
-def mdebug_procs(b):
-    """Procedures in an ECOFF .mdebug table (o32 files with no function symbols)."""
-    sec = b.elf.get_section_by_name('.mdebug')
-    if sec is None:
-        return []
-    d = sec.data()
-    e = '>' if b.elf.little_endian is False else '<'
-    f = struct.unpack(e + 'HH' + 'I' * 23, d[:96])
-    (iline, cbline, cbLineOff, idn, cbdn, ipd, cbpd, isym, cbSymOff, iopt, cbopt, iaux, cbaux,
-     iss, cbss, issext, cbssext, ifd, cbfd, crfd, cbrfd, iext, cbext) = f[2:]
-    base = sec['sh_offset']
-    full = b.data
+            images.append((rel, rel, '', g, data))
     out = []
-    # file descriptors: 72 bytes each
-    for i in range(ifd):
-        o = cbfd + i * 72
-        if o + 72 > len(full):
-            break
-        (adr, rss, issBase, cbSs, isymBase, csym) = struct.unpack(e + 'IiiiiI', full[o:o + 24])
-        for j in range(csym):
-            so = cbSymOff + (isymBase + j) * 12
-            iss_, val, bf = struct.unpack(e + 'iII', full[so:so + 12])
-            st = bf >> 26
-            if st in (6, 14):  # proc, static proc
-                no = cbss + issBase + iss_
-                end = full.index(b'\0', no)
-                name = full[no:end].decode('latin1')
-                if name:
-                    out.append(('.text', val, name))
+    for label, path, member, g, data in images:
+        h = hashlib.sha256(data).hexdigest()
+        if h in by_sha:
+            by_sha[h]['copies'].append(label)
+            continue
+        e = {'label': label, 'path': path, 'member': member, 'group': g, 'data': data, 'sha': h, 'copies': [],
+             'size': len(data)}
+        by_sha[h] = e
+        out.append(e)
     return out
 
 
-# ---------------------------------------------------------------------------
-# Documentation index
+# ===================================================================== ELF symbols
+
+def elf_of(data):
+    from elftools.elf.elffile import ELFFile
+    return ELFFile(io.BytesIO(data))
 
 
-def slug(h):
-    h = re.sub(r'`', '', h.strip().lower())
-    h = re.sub(r'[^\w\s-]', '', h)
-    return re.sub(r'\s', '-', h)
+def abi_of(elf):
+    if elf.elfclass == 64:
+        return 'n64'
+    return 'n32' if elf.header['e_flags'] & 0x20 else 'o32'
 
 
-IDENT = re.compile(r'[A-Za-z_][A-Za-z0-9_]*')
-AMBIGUOUS = re.compile(r'[a-z]{1,10}')
-HEXLIT = re.compile(r'\b0x([0-9a-fA-F]+)\b')
-DECLIT = re.compile(r'(?<![\w.])(\d{4,6})(?![\w.])')
+def kind_of(data, elf):
+    if elf is None:
+        return 'data'
+    t = elf.header['e_type']
+    return {'ET_REL': 'object', 'ET_EXEC': 'executable', 'ET_DYN': 'shared-object'}.get(t, 'elf')
 
 
-class DocIndex:
-    def __init__(self):
-        self.prose = {}        # identifier -> 'file#anchor'
-        self.call = {}         # identifier written as a call, name(), in prose or a comment
-        self.hex = collections.defaultdict(list)    # int -> [(file, anchor)]
-        self.dec = collections.defaultdict(list)
-        self.hdr_doc = {}      # identifier -> 'file:line' (commented)
-        self.hdr_named = {}    # identifier -> 'file:line' (bare define)
-        self.hdr_val = collections.defaultdict(list)   # int -> [(file, line, name, commented)]
-        self.tbl = {}          # identifier -> file
-        self.tbl_val = {}
-        self.load()
+def mdebug_procs(elf, data):
+    sec = elf.get_section_by_name('.mdebug')
+    if sec is None:
+        return []
+    e = '<' if elf.little_endian else '>'
+    d = sec.data()
+    if len(d) < 96:
+        return []
+    h = struct.unpack(e + '2H23I', d[:96])
+    cbpd, cbsym, cbss, ifd, cbfd = h[8], h[10], h[16], h[19], h[20]
+    out = []
+    try:
+        for i in range(ifd):
+            o = cbfd + 72 * i
+            fd = struct.unpack(e + '10I2H', data[o:o + 44])
+            issbase, isymbase, ipdfirst, cpd = fd[2], fd[4], fd[10], fd[11]
+            for p in range(ipdfirst, ipdfirst + cpd):
+                po = cbpd + 52 * p
+                adr, isym = struct.unpack(e + 'Ii', data[po:po + 8])
+                so = cbsym + 12 * (isymbase + isym)
+                iss, value = struct.unpack(e + 'iI', data[so:so + 8])
+                a = cbss + issbase + iss
+                b = data.index(b'\0', a)
+                name = data[a:b].decode('latin1')
+                if name:
+                    out.append((name, value))
+    except (struct.error, ValueError):
+        pass
+    return out
 
-    def md(self, path):
-        sect, fence = '', False
-        for ln in open(os.path.join(REPO, path), encoding='utf-8', errors='replace'):
-            if ln.startswith('```'):
-                fence = not fence
-                continue
-            if not fence and ln.startswith('#'):
-                sect = slug(ln.lstrip('#'))
-                continue
-            where = '%s#%s' % (path, sect) if sect else path
-            if fence:
-                spans = [ln]
+
+def debug_funcnames(elf):
+    sec = elf.get_section_by_name('.debug_funcnames')
+    if sec is None:
+        return []
+    data = sec.data()
+    names, pos = [], 0
+    while pos + 14 <= len(data):
+        ln, = struct.unpack('>I', data[pos:pos + 4])
+        if ln == 0 or ln > len(data):
+            break
+        end = pos + 4 + ln
+        p = pos + 14
+        while p + 4 < end:
+            off, = struct.unpack('>I', data[p:p + 4])
+            if off == 0:
+                break
+            q = data.index(b'\0', p + 4)
+            names.append(data[p + 4:q].decode('latin1'))
+            p = q + 1
+        pos = end
+    return names
+
+
+def dwarf_subprograms(path):
+    dd = shutil.which(os.environ.get('DWARFDUMP', 'dwarfdump'))
+    if not dd:
+        return []
+    txt = subprocess.run([dd, '-i', path], capture_output=True, text=True, errors='replace').stdout
+    out, cur = [], None
+    for line in txt.splitlines():
+        if 'DW_TAG_' in line:
+            if cur and cur.get('name') and 'lo' in cur:
+                out.append((cur['name'], cur['lo'], cur.get('hi', 0)))
+            cur = {} if 'DW_TAG_subprogram' in line else None
+            continue
+        if cur is None:
+            continue
+        m = re.match(r'\s+DW_AT_(name|low_pc|high_pc)\s+(\S+)', line)
+        if m:
+            k, v = m.groups()
+            if k == 'name':
+                cur['name'] = line.split(None, 1)[1].strip()
+            elif k == 'low_pc':
+                cur['lo'] = int(v, 16)
             else:
-                spans = re.findall(r'`([^`]+)`', ln)
-            for sp in spans:
-                for m in IDENT.finditer(sp):
-                    self.prose.setdefault(m.group(0), where)
-                    if sp[m.end():m.end() + 1] == '(':
-                        self.call.setdefault(m.group(0), where)
-            # numbers count in any prose line
-            for m in HEXLIT.finditer(ln):
-                self.hex[int(m.group(1), 16)].append((path, where))
-            for m in DECLIT.finditer(ln):
-                self.dec[int(m.group(1))].append((path, where))
+                cur['hi'] = int(v, 16) if v.startswith('0x') else 0
+    if cur and cur.get('name') and 'lo' in cur:
+        out.append((cur['name'], cur['lo'], cur.get('hi', 0)))
+    return out
 
-    def header(self, path):
-        text = open(os.path.join(REPO, path), encoding='utf-8', errors='replace').read()
-        lines = text.split('\n')
-        incomment = False
-        for n, ln in enumerate(lines, 1):
-            s = ln
-            code, comment = s, ''
-            if incomment:
-                if '*/' in s:
-                    comment, code = s.split('*/', 1)
-                    incomment = False
-                else:
-                    comment, code = s, ''
-            else:
-                m = re.search(r'/\*(.*?)(\*/|$)', s)
-                if m:
-                    comment = m.group(1)
-                    code = s[:m.start()] + s[m.end():]
-                    if not m.group(2):
-                        incomment = True
-                m2 = re.search(r'//(.*)$', code)
-                if m2:
-                    comment += ' ' + m2.group(1)
-                    code = code[:m2.start()]
-            where = '%s:%d' % (path, n)
-            for m in IDENT.finditer(comment):
-                self.hdr_doc.setdefault(m.group(0), where)
-                if comment[m.end():m.end() + 1] == '(':
-                    self.call.setdefault(m.group(0), where)
-            for m in HEXLIT.finditer(comment):
-                self.hex[int(m.group(1), 16)].append((path, where))
-            for m in DECLIT.finditer(comment):
-                self.dec[int(m.group(1))].append((path, where))
-            if not code.strip():
+
+def functions_of(img, elf, path):
+    """{name: [elf_section, address, size, sources]} for one image."""
+    g = img['group']
+    if g.get('string_names'):
+        names = sorted({m.decode('latin1') for m in re.findall(g['string_names'].encode(), img['data'])})
+        return {n: ['', 0, 0, {'strings'}] for n in names}
+    if elf is None:
+        return {}
+    funcs = {}
+    execsec = {i for i, s in enumerate(elf.iter_sections()) if s['sh_flags'] & 4}
+
+    def secname(idx):
+        if isinstance(idx, int) and idx < elf.num_sections():
+            return elf.get_section(idx).name
+        return ''
+
+    def add(name, addr, size, sec, src):
+        e = funcs.get(name)
+        if e is None:
+            funcs[name] = [sec, addr, size, {src}]
+            return
+        e[3].add(src)
+        if (not e[1] and addr) or (addr and addr < e[1] and src != 'mdebug'):
+            e[0], e[1] = sec or e[0], addr
+        if not e[2] and size:
+            e[2] = size
+
+    for sn, src in (('.symtab', 'symtab'), ('.dynsym', 'dynsym')):
+        sec = elf.get_section_by_name(sn)
+        if sec is None or not hasattr(sec, 'iter_symbols'):
+            continue
+        for s in sec.iter_symbols():
+            t = s['st_info']['type']
+            if not s.name or s['st_shndx'] in ('SHN_UNDEF', 'SHN_ABS', 'SHN_COMMON'):
                 continue
-            commented = len(comment.split()) >= 3
-            d = re.match(r'\s*#\s*define\s+(\w+)\s+\(?(0x[0-9a-fA-F]+|\d+)', code)
-            e = re.match(r'\s*(\w+)\s*=\s*\(?(0x[0-9a-fA-F]+|\d+)\)?\s*,?', code)
-            m = d or e
-            if m:
-                name, val = m.group(1), int(m.group(2), 0)
-                self.hdr_val[val].append((path, n, name, commented))
-                if commented:
-                    self.hdr_doc.setdefault(name, where)
-                else:
-                    self.hdr_named.setdefault(name, where)
-            else:
-                for m in IDENT.finditer(code):
-                    self.hdr_named.setdefault(m.group(0), where)
-
-    def table(self, path):
-        for ln in open(os.path.join(REPO, path), encoding='utf-8', errors='replace'):
-            if ln.startswith('#'):
-                continue
-            for cell in ln.rstrip('\n').split('\t'):
-                if IDENT.fullmatch(cell):
-                    self.tbl.setdefault(cell, path)
-                for m in HEXLIT.finditer(cell):
-                    self.tbl_val.setdefault(int(m.group(1), 16), path)
-
-    def load(self):
-        for g in PROSE_GLOBS:
-            for p in sorted(glob.glob(os.path.join(REPO, g))):
-                r = os.path.relpath(p, REPO)
-                if r not in PROSE_SKIP:
-                    self.md(r)
-        for g in HEADER_GLOBS:
-            for p in sorted(glob.glob(os.path.join(REPO, g))):
-                self.header(os.path.relpath(p, REPO))
-        for g in TABLE_GLOBS:
-            for p in sorted(glob.glob(os.path.join(REPO, g))):
-                r = os.path.relpath(p, REPO)
-                if r in DUMP_TABLES or r.startswith(DUMP_DIRS):
-                    continue
-                self.table(r)
-
-    def by_name(self, *names):
-        """(status, doc) for the best of several spellings of one item."""
-        # A short lower-case word is also ordinary English: count it only
-        # when it is written as a call, name(), in prose or a header comment.
-        keep = []
-        for n in names:
-            if AMBIGUOUS.fullmatch(n):
-                if n in self.call:
-                    return 'documented', self.call[n]
-            else:
-                keep.append(n)
-        names = keep
-        for n in names:
-            if n in self.prose:
-                return 'documented', self.prose[n]
-        for n in names:
-            if n in self.hdr_doc:
-                return 'documented', self.hdr_doc[n]
-        for n in names:
-            if n in self.hdr_named:
-                return 'named-only', self.hdr_named[n]
-        for n in names:
-            if n in self.tbl:
-                return 'named-only', self.tbl[n]
-        return 'undocumented', ''
-
-    def by_value(self, window, values, names=()):
-        hdrs, docs = WINDOWS.get(window, ([], []))
-        best = None
-        for v in values:
-            for (f, line, name, com) in self.hdr_val.get(v, []):
-                if f in hdrs:
-                    if com:
-                        return 'documented', '%s:%d' % (f, line)
-                    best = best or ('named-only', '%s:%d' % (f, line))
-            for (f, where) in self.hex.get(v, []):
-                if f in docs and ':' not in where:
-                    return 'documented', where
-        for n in names:
-            st = self.by_name(n)
-            if st[0] == 'documented':
-                return st
-        if best:
-            return best
-        for n in names:
-            st = self.by_name(n)
-            if st[0] != 'undocumented':
-                return st
-        for v in values:
-            if v in self.tbl_val and (window in ('hip', 'xg') and v > 0xff):
-                return 'named-only', self.tbl_val[v]
-        return 'undocumented', ''
+            if t == 'STT_FUNC' or (t == 'STT_NOTYPE' and s['st_shndx'] in execsec and
+                                   s['st_info']['bind'] == 'STB_GLOBAL'):
+                add(s.name, s['st_value'], s['st_size'], secname(s['st_shndx']), src)
+    for name, addr in mdebug_procs(elf, img['data']):
+        add(name, addr, 0, '.text', 'mdebug')
+    for name in debug_funcnames(elf):
+        add(name, 0, 0, '', 'funcnames')
+    if elf.get_section_by_name('.debug_info') is not None:
+        for name, lo, hi in dwarf_subprograms(path):
+            add(name, lo, (hi - lo) if hi > lo else 0, '.text', 'dwarf')
+    # a missing size runs to the next function of the same section
+    by = collections.defaultdict(list)
+    for name, e in funcs.items():
+        by[e[0]].append(e[1])
+    ends = {}
+    for sec in by:
+        by[sec] = sorted(set(by[sec]))
+        s = elf.get_section_by_name(sec) if sec else None
+        ends[sec] = (s['sh_addr'] + s['sh_size']) if s is not None else None
+    for name, e in funcs.items():
+        if not e[2] and e[1]:
+            a = by[e[0]]
+            i = bisect.bisect_right(a, e[1])
+            nxt = a[i] if i < len(a) else ends.get(e[0])
+            if nxt and nxt > e[1]:
+                e[2] = nxt - e[1]
+    return funcs
 
 
-# ---------------------------------------------------------------------------
-# Disassembly and a small constant replay
+# ===================================================================== disassembly
 
-INSN = re.compile(r'^\s*([0-9a-f]+):\t[0-9a-f]{8}\s+(\S+)(?:\s+(.*?))?\s*$')
+INSN = re.compile(r'^\s*([0-9a-f]+):\t(\S+)\t?(.*)$')
 FUNC = re.compile(r'^([0-9a-f]+) <(.+)>:$')
-RELOC = re.compile(r'^\s+([0-9a-f]+): (R_\w+)\s+(\S+)')
-TARGET = re.compile(r'([0-9a-f]+) <([^>+]+)(?:\+0x[0-9a-f]+)?>$')
-TARGET0 = re.compile(r'(?:^|,)([0-9a-f]+)(?: <|$)')
-CALLS = {'jal', 'bal', 'bgezal', 'bgezall', 'jalr'}
-NODEST = {'sw', 'sd', 'sb', 'sh', 'swl', 'swr', 'sdl', 'sdr', 'sc', 'scd', 'swc1', 'sdc1', 'sdc2', 'swc2',
-          'beq', 'bne', 'beqz', 'bnez', 'blez', 'bgtz', 'bltz', 'bgez', 'b', 'j', 'jr', 'nop', 'break',
-          'beql', 'bnel', 'beqzl', 'bnezl', 'blezl', 'bgtzl', 'bltzl', 'bgezl', 'mtc0', 'mtc1', 'dmtc1',
-          'dmtc0', 'sync', 'teq', 'tne', 'tge', 'tlt', 'mthi', 'mtlo', 'cache', 'pref', 'syscall', 'eret'}
+RELOC = re.compile(r'^\s*([0-9a-f]+): (R_MIPS\w*)\s+(\S+)\s*$')
+REG = re.compile(r'^\$(\d+)$')
+MEMOP = re.compile(r'^(-?(?:0x)?[0-9a-fA-F]+)\(\$(\d+)\)$')
+LOADS = {'lb': 1, 'lbu': 1, 'lh': 2, 'lhu': 2, 'lw': 4, 'lwu': 4, 'ld': 8, 'll': 4, 'lld': 8,
+         'lwl': 4, 'lwr': 4, 'ldl': 8, 'ldr': 8, 'lwc1': 4, 'ldc1': 8, 'lwc2': 4, 'ldc2': 8}
+STORES = {'sb': 1, 'sh': 2, 'sw': 4, 'sd': 8, 'sc': 4, 'scd': 8, 'swl': 4, 'swr': 4, 'sdl': 8, 'sdr': 8,
+          'swc1': 4, 'sdc1': 8, 'swc2': 4, 'sdc2': 8}
+FPMEM = {'lwc1', 'ldc1', 'lwc2', 'ldc2'}
+CALLS = {'jal', 'jalr', 'bal', 'bgezal', 'bltzal', 'bgezall', 'bltzall', 'jalx'}
+LIKELY = {'beql', 'bnel', 'blezl', 'bgtzl', 'bltzl', 'bgezl', 'bc1tl', 'bc1fl', 'bc0tl', 'bc0fl',
+          'bc2tl', 'bc2fl', 'bgezall', 'bltzall'}
+NO_DEST = set('''mult multu dmult dmultu div divu ddiv ddivu madd maddu msub msubu mtc0 dmtc0 mtc1 dmtc1 ctc1
+mtc2 dmtc2 ctc2 mthi mtlo nop sync break syscall cache teq tne tlt tltu tge tgeu teqi tnei tlti tltiu tgei
+tgeiu tlbwi tlbwr tlbp tlbr eret pref prefx ssnop deret wait c.f c.un c.eq c.ueq c.olt c.ult c.ole c.ule
+c.sf c.ngle c.seq c.ngl c.lt c.nge c.le c.ngt'''.split())
+CALLER_SAVED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 24, 25, 31]
+ARG_REGS = (4, 5, 6, 7, 8, 9, 10, 11)
+
+
+def is_branch(mn):
+    return mn in ('j', 'jr', 'jal', 'jalr', 'jalx', 'jr.hb', 'jalr.hb') or \
+        (mn.startswith('b') and mn not in ('break',))
 
 
 def run_objdump(path):
-    out = subprocess.run([objdump(), '-d', '-r', '-w', '-M', 'gpr-names=numeric', path],
+    """[(name, [(addr, mnemonic, [operands], reloc)])] in address order."""
+    out = subprocess.run([toolchain_objdump(), '-d', '-r', '-w', '-M', 'no-aliases,gpr-names=numeric',
+                          '--no-show-raw-insn', path],
                          capture_output=True, text=True, errors='replace').stdout
-    funcs, cur, relocs = [], None, {}
+    funcs, cur = [], None
     last = None
     for ln in out.split('\n'):
-        inline = re.findall(r'\t([0-9a-f]+): (R_\w+)\t(\S+)', ln)
-        for ra, rt, rn in inline:
-            if rt != 'R_MIPS_NONE' and not rn.startswith('.'):
-                relocs.setdefault(int(ra, 16), rn)
-        if inline:
-            ln = ln[:ln.index('\t' + inline[0][0] + ': ' + inline[0][1])]
-        m = INSN.match(ln)
-        if m:
-            cur_insn = (int(m.group(1), 16), m.group(2), m.group(3) or '')
-            if cur is None:
-                cur = ['?', []]
-                funcs.append(cur)
-            cur[1].append(cur_insn)
-            last = cur_insn[0]
-            continue
-        m = RELOC.match(ln)
-        if m and m.group(2) != 'R_MIPS_NONE':
-            relocs.setdefault(int(m.group(1), 16), m.group(3))
-            continue
         m = FUNC.match(ln)
         if m:
             cur = [m.group(2), []]
             funcs.append(cur)
-    return funcs, relocs
+            last = None
+            continue
+        m = RELOC.match(ln)
+        if m:
+            if last is not None and last[3] is None and m.group(2) != 'R_MIPS_NONE' and \
+                    int(m.group(1), 16) == last[0]:
+                last[3] = parse_reloc(m.group(2), m.group(3))
+            continue
+        m = INSN.match(ln)
+        if not m:
+            continue
+        rest = m.group(3).split('\t')
+        opstr = rest[0]
+        sym = None
+        mm = re.search(r'<([^>+]+)(?:\+0x[0-9a-f]+)?>', opstr)
+        if mm:
+            sym = mm.group(1)
+        opstr = re.sub(r'\s*<[^>]*>', '', opstr).split('#')[0].strip()
+        rel = None
+        if len(rest) >= 3:
+            r = re.match(r'\s*[0-9a-f]+: (R_MIPS\w*)$', rest[1])
+            if r and r.group(1) != 'R_MIPS_NONE':
+                rel = parse_reloc(r.group(1), rest[2].strip())
+        ops = [o.strip() for o in opstr.split(',')] if opstr else []
+        last = [int(m.group(1), 16), m.group(2), ops, rel, sym]
+        if cur is None:
+            cur = ['', []]
+            funcs.append(cur)
+        cur[1].append(last)
+    return funcs
 
 
-def reg(s):
-    s = s.strip()
-    m = re.fullmatch(r'\$(\d+)', s)
-    return int(m.group(1)) if m else None
+def parse_reloc(rtype, target):
+    m = re.match(r'^(.*?)(?:([+-])0x([0-9a-f]+))?$', target)
+    name = m.group(1)
+    add = int(m.group(3), 16) * (-1 if m.group(2) == '-' else 1) if m.group(3) else 0
+    return (rtype, name, add)
 
 
-def target_name(op, addr_reloc, relocs):
-    if addr_reloc in relocs:
-        return relocs[addr_reloc]
-    m = TARGET.search(op)
-    return m.group(2) if m else None
+class ImageInfo:
+    """What the replay needs from the ELF image: GOT, stubs, constant memory, gp0."""
 
+    def __init__(self, elf):
+        self.elf = elf
+        self.rel = elf.header['e_type'] == 'ET_REL'
+        self.got_names = {}
+        self.got_local = {}
+        self.stubs = {}
+        self.ro = []        # (lo, hi, data) read-only sections by address (linked images)
+        self.secdata = {}   # name -> data (relocatable images)
+        self.gp0 = 0
+        self.gsz = 8 if elf.elfclass == 64 else 4
+        try:
+            self.load()
+        except Exception:
+            pass
 
-def replay(funcs, relocs, want_calls, base_slots=(), stubs=None, got=None):
-    """Walk each function; at each call to a name in want_calls yield
-    (function, call name, {reg: (kind, value)}). Also yield direct accesses
-    through registers loaded from a base slot as ('mem', ...)."""
-    for fname, insns in funcs:
-        # block boundaries: targets of branches inside the function
-        starts = set()
-        for a, op, args in insns:
-            if (op[0] in 'bj' and op not in ('jr', 'jalr', 'jal', 'bal')) or op in ('bgezall',):
-                m = re.search(r'([0-9a-f]+) <', args) or re.search(r',([0-9a-f]+)$', args) or re.fullmatch(r'([0-9a-f]+)', args.strip())
-                if m:
-                    starts.add(int(m.group(1), 16))
-        regs = {}
-        pending = None
-        for i, (a, op, args) in enumerate(insns):
-            if a in starts:
-                regs = {}
-            ops = [x.strip() for x in re.split(r',(?![^()]*\))', args)] if args else []
-            if pending is not None:
-                # delay slot of a recorded call: evaluate after it executes
-                call_name, call_addr = pending
-                pending = None
-                _apply(regs, op, ops, base_slots)
-                if call_name is not None:
-                    yield fname, 'call', call_name, dict(regs), call_addr
-                regs = {k: v for k, v in regs.items() if k >= 26 or k in (16, 17, 18, 19, 20, 21, 22, 23, 28, 29, 30)}
-                continue
-            if op in CALLS:
-                nm = None
-                if op == 'jalr':
-                    r = reg(ops[-1]) if ops else None
-                    v = regs.get(r)
-                    if v and v[0] == 'got' and got:
-                        nm = got(v[1])
-                else:
-                    tgt = ops[-1] if ops else ''
-                    nm = relocs.get(a)
-                    if nm is None:
-                        m = TARGET.search(tgt)
-                        nm = m.group(2) if m else None
-                        if stubs and m is None:
-                            mm = re.match(r'([0-9a-f]+)', tgt)
-                            if mm and int(mm.group(1), 16) in stubs:
-                                nm = stubs[int(mm.group(1), 16)]
-                    if stubs and nm and nm.startswith('.MIPS.stubs'):
-                        mm = re.match(r'([0-9a-f]+)', tgt)
-                        nm = stubs.get(int(mm.group(1), 16), nm) if mm else nm
-                if nm in want_calls:
-                    pending = (nm, a)
-                else:
-                    # an unwanted call: its delay slot still runs, then clobber
-                    pending = (None, a)
-                continue
-            _apply(regs, op, ops, base_slots)
-            mem = _mem(regs, op, ops)
-            if mem is not None:
-                yield fname, 'mem', mem, None, a
-        # (pending at end of a function is ignored)
-
-
-def _apply(regs, op, ops, base_slots):
-    def get(r):
-        return regs.get(reg(r)) if reg(r) is not None else None
-
-    def put(r, v):
-        n = reg(r)
-        if n is None:
+    def load(self):
+        e = self.elf
+        for s in e.iter_sections():
+            name = s.name
+            ro = (s['sh_flags'] & 2) and not (s['sh_flags'] & 1) and s['sh_type'] == 'SHT_PROGBITS' \
+                and not (s['sh_flags'] & 4)
+            if ro:
+                if self.rel:
+                    self.secdata[name] = s.data()
+                elif s['sh_addr']:
+                    self.ro.append((s['sh_addr'], s['sh_addr'] + s['sh_size'], s.data()))
+        self.ro.sort()
+        if self.rel:
+            ri = e.get_section_by_name('.reginfo')
+            if ri is not None and len(ri.data()) >= 24:
+                self.gp0 = struct.unpack('>i', ri.data()[20:24])[0]
+            op = e.get_section_by_name('.MIPS.options')
+            if op is not None:
+                d = op.data()
+                p = 0
+                while p + 8 <= len(d):
+                    kind, size = d[p], d[p + 1]
+                    if size == 0:
+                        break
+                    if kind == 1:
+                        if e.elfclass == 64 and size >= 40:
+                            self.gp0 = struct.unpack('>q', d[p + 32:p + 40])[0]
+                        elif size >= 32:
+                            self.gp0 = struct.unpack('>i', d[p + 28:p + 32])[0]
+                    p += size
             return
-        if v is None:
-            regs.pop(n, None)
-        else:
-            regs[n] = v
-    if not ops or op in NODEST:
-        return
-    d = ops[0]
-    if op == 'lui' and len(ops) == 2:
-        try:
-            put(d, ('c', (int(ops[1], 0) << 16) & 0xffffffffffffffff))
-        except ValueError:
-            put(d, None)
-    elif op in ('li',) and len(ops) == 2:
-        try:
-            put(d, ('c', int(ops[1], 0)))
-        except ValueError:
-            put(d, None)
-    elif op in ('ori', 'addiu', 'daddiu', 'addi', 'daddi') and len(ops) == 3:
-        s = get(ops[1])
-        try:
-            imm = int(ops[2], 0)
-        except ValueError:
-            imm = None
-        if reg(ops[1]) == 0 and imm is not None:
-            put(d, ('c', imm))
-        elif s and s[0] in ('c', 'b') and imm is not None:
-            put(d, (s[0], (s[1] | imm) if op == 'ori' else s[1] + imm))
-        else:
-            put(d, None)
-    elif op in ('move', 'or') and len(ops) >= 2 and (op == 'move' or ops[2:] == ['$0']):
-        put(d, get(ops[1]))
-    elif op in ('addu', 'daddu') and len(ops) == 3:
-        a, b = get(ops[1]), get(ops[2])
-        if a and b and a[0] == 'b' and b[0] == 'c':
-            put(d, ('b', a[1] + b[1]))
-        elif a and b and a[0] == 'c' and b[0] == 'b':
-            put(d, ('b', a[1] + b[1]))
-        elif a and b and a[0] == 'c' and b[0] == 'c':
-            put(d, ('c', a[1] + b[1]))
-        else:
-            put(d, None)
-    elif op in ('ld', 'lw', 'lwu') and len(ops) == 2:
-        m = re.fullmatch(r'(-?\d+)\((\$\d+)\)', ops[1])
-        if m and int(m.group(1)) in base_slots and op == 'ld':
-            put(d, ('b', 0))
-        elif m and m.group(2) == '$28':
-            put(d, ('got', int(m.group(1))))
-        else:
-            put(d, None)
-    else:
-        put(d, None)
+        dyn = e.get_section_by_name('.dynamic')
+        dsym = e.get_section_by_name('.dynsym')
+        if dyn is None or dsym is None:
+            return
+        tags = {}
+        for t in dyn.iter_tags():
+            tags[t.entry.d_tag] = t.entry.d_val
+        names = [s.name for s in dsym.iter_symbols()]
+        if 'DT_PLTGOT' in tags and 'DT_MIPS_LOCAL_GOTNO' in tags and 'DT_MIPS_GOTSYM' in tags:
+            gotaddr, local, gotsym = tags['DT_PLTGOT'], tags['DT_MIPS_LOCAL_GOTNO'], tags['DT_MIPS_GOTSYM']
+            gotdata = None
+            for s in e.iter_sections():
+                if s['sh_addr'] == gotaddr and s['sh_type'] == 'SHT_PROGBITS':
+                    gotdata = s.data()
+            fmt = '>Q' if self.gsz == 8 else '>I'
+            n = (len(gotdata) // self.gsz) if gotdata else 0
+            for i in range(n):
+                off = i * self.gsz - 0x7ff0
+                if i >= local:
+                    k = gotsym + i - local
+                    if k < len(names):
+                        self.got_names[off] = names[k]
+                else:
+                    self.got_local[off] = struct.unpack(fmt, gotdata[i * self.gsz:(i + 1) * self.gsz])[0]
+        sec = e.get_section_by_name('.MIPS.stubs')
+        if sec is not None:
+            d = sec.data()
+            base = sec['sh_addr']
+            for off in range(0, len(d) - 3, 4):
+                w, = struct.unpack('>I', d[off:off + 4])
+                if (w >> 16) in (0x2418, 0x6418) and (w & 0xffff) < len(names):
+                    self.stubs[base + off - 12] = names[w & 0xffff]
 
-
-MEM_OPS = {'lb': ('r', 1), 'lbu': ('r', 1), 'lh': ('r', 2), 'lhu': ('r', 2), 'lw': ('r', 4), 'lwu': ('r', 4),
-           'ld': ('r', 8), 'sb': ('w', 1), 'sh': ('w', 2), 'sw': ('w', 4), 'sd': ('w', 8)}
-
-
-def _mem(regs, op, ops):
-    if op not in MEM_OPS or len(ops) != 2:
+    def read(self, addr, width):
+        i = bisect.bisect_right(self.ro, (addr, float('inf'), b'')) - 1
+        if i >= 0:
+            lo, hi, d = self.ro[i]
+            if lo <= addr and addr + width <= hi:
+                return int.from_bytes(d[addr - lo:addr - lo + width], 'big', signed=True)
         return None
-    m = re.fullmatch(r'(-?\d+)\((\$\d+)\)', ops[1])
-    if not m:
+
+    def read_sec(self, name, off, width):
+        d = self.secdata.get(name)
+        if d is not None and 0 <= off and off + width <= len(d):
+            return int.from_bytes(d[off:off + width], 'big', signed=True)
         return None
-    b = regs.get(int(m.group(2)[1:]))
-    if b and b[0] == 'b':
-        return (b[1] + int(m.group(1)), MEM_OPS[op][0], MEM_OPS[op][1])
+
+
+# ===================================================================== replay
+
+class Model:
+    """The family's windows, base-pointer sources, sinks and decoders, from the config."""
+
+    def __init__(self, cfg):
+        self.windows = {}
+        for w in cfg.get('windows', []):
+            w = dict(w)
+            w['size'] = num(w.get('size', 1 << 40))
+            w['regions'] = [dict(r, lo=num(r['lo']), hi=num(r['hi'])) for r in w.get('regions', [])]
+            self.windows[w['name']] = w
+        self.bases = cfg.get('bases', [])
+        self.accessors = cfg.get('accessors', [])
+        self.aliases = [dict(a, lo=num(a['lo']), hi=num(a['hi']), bit=num(a['bit']))
+                        for a in cfg.get('aliases', [])]
+        self.decoders = cfg.get('decoders', [])
+        tk = cfg.get('tokens', {})
+        self.sinks = [s for s in tk.get('sources', []) if s['type'] == 'stores']
+        self.families = tk.get('families', [])
+        io_ = cfg.get('ioctls', {})
+        self.ioctl_send = io_.get('send_functions', [])
+        self.ioctl_ranges = [(num(a), num(b)) for a, b in io_.get('ranges', [])]
+        self.ioctl_const = io_.get('constants')
+        self.ioctl_compare = [d for d in io_.get('dispatchers', []) if d['type'] == 'compare']
+
+    def region(self, win, off):
+        w = self.windows[win]
+        for r in w['regions']:
+            if r['lo'] <= off < r['hi']:
+                return r['name']
+        return win
+
+    def family(self, w):
+        for f in self.families:
+            if all(cond_ok(c, w) for c in f['when']):
+                return f
+        return None
+
+
+def cond_ok(c, w):
+    v = (w >> c.get('shift', 0)) & num(c.get('mask', '0xffffffff'))
+    if 'in' in c:
+        return v in [num(x) for x in c['in']]
+    if 'range' in c:
+        return num(c['range'][0]) <= v <= num(c['range'][1])
+    return v == num(c['eq'])
+
+
+def translate(cfgb, v):
+    """Physical address of a kernel-segment or XKPHYS constant, if the rule asks for it."""
+    v &= (1 << 64) - 1
+    if not cfgb.get('translate'):
+        return v
+    hi32 = v >> 32
+    if hi32 == 0xffffffff and (v & 0xe0000000) in (0x80000000, 0xa0000000):
+        return v & 0x1fffffff
+    if v >> 62 == 2:
+        return v & 0xffffffffff
+    if hi32 == 0 and (v & 0xe0000000) in (0x80000000, 0xa0000000):
+        return v & 0x1fffffff
+    return v
+
+
+class Unit:
+    """Replay of every function of one file in scope (an archive's members together)."""
+
+    def __init__(self, model, cfg, images):
+        self.m = model
+        self.cfg = cfg
+        self.images = images
+        self.out_mmio = {}
+        self.unresolved = collections.Counter()
+        self.sites = collections.Counter()
+        self.tokens = {}
+        self.ioctl = {}
+        self.recording = False
+        self.mode = 'record'
+        self.shadow = {}
+
+    # ------------------------------------------------------------ helpers
+
+    def applies(self, rule, img, func=None):
+        bins = rule.get('binaries')
+        if bins and not (globs_match(img['label'], bins) or globs_match(img['path'], bins)):
+            return False
+        fns = rule.get('functions')
+        if fns and func is not None and not any(re.fullmatch(f, func) for f in fns):
+            return False
+        return True
+
+    def run(self):
+        # parse every image once
+        self.code = []
+        for img in self.images:
+            if img['elf'] is None or img['group'].get('scan') is False:
+                continue
+            info = ImageInfo(img['elf'])
+            funcs = run_objdump(img['tmp'])
+            self.code.append((img, info, funcs))
+        defined = collections.defaultdict(list)
+        for k, (img, info, funcs) in enumerate(self.code):
+            for j, (name, insns) in enumerate(funcs):
+                if name:
+                    defined[name].append((k, j))
+        self.defined = defined
+        seeds_arg, seeds_ret = {}, {}
+        for p in range(4):
+            self.calls = collections.defaultdict(list)
+            self.rets = collections.defaultdict(list)
+            self.reset()
+            for k, (img, info, funcs) in enumerate(self.code):
+                for j, (name, insns) in enumerate(funcs):
+                    self.replay(img, info, name, insns, seeds_arg.get((k, j), {}), seeds_ret)
+            na, nr = self.derive_seeds()
+            if na == seeds_arg and nr == seeds_ret:
+                break
+            seeds_arg, seeds_ret = na, nr
+        return self
+
+    def reset(self):
+        self.out_mmio, self.tokens, self.ioctl = {}, {}, {}
+        self.unresolved, self.sites = collections.Counter(), collections.Counter()
+
+    def derive_seeds(self):
+        na = {}
+        for callee, sites in sorted(self.calls.items()):
+            targets = self.defined.get(callee)
+            if not targets:
+                continue
+            seed = {}
+            for r in ARG_REGS:
+                vals = [s.get(r) for s in sites]
+                if vals and all(v and v[0] == 'w' for v in vals) and len({v[1] for v in vals}) == 1:
+                    offs = {v[2] for v in vals}
+                    seed[r] = ('w', vals[0][1], offs.pop() if len(offs) == 1 else None, 'caller argument')
+            if seed:
+                for t in targets:
+                    na[t] = seed
+        nr = {}
+        for name, vals in sorted(self.rets.items()):
+            if vals and all(v and v[0] == 'w' for v in vals) and len({v[1] for v in vals}) == 1:
+                offs = {v[2] for v in vals}
+                nr[name] = ('w', vals[0][1], offs.pop() if len(offs) == 1 else None, 'callee return')
+        return na, nr
+
+    # ------------------------------------------------------------ the replay
+
+    def replay(self, img, info, fname, insns, seed, seeds_ret):
+        """Data flow over the function's basic blocks to a fixed point, then one recording pass.
+        A register or stack slot keeps a value at a join only when every path into it agrees."""
+        m = self.m
+        entry = {}
+        for b in m.bases:
+            if b['type'] == 'argument' and self.applies(b, img) and re.fullmatch(b['function'], fname or ''):
+                entry[int(b['reg'])] = ('w', b['window'], num(b.get('offset', 0)), b.get('label', 'argument'))
+        entry.update(seed)
+        self.img, self.info, self.fname = img, info, fname
+        self.compare_rules = [d for d in m.ioctl_compare
+                              if self.applies(d, img) and re.search(d['functions'], fname or '')]
+        n = len(insns)
+        if not n:
+            return
+        index = {ins[0]: i for i, ins in enumerate(insns)}
+        leaders = {0}
+        for i, ins in enumerate(insns):
+            mn = ins[1]
+            if is_branch(mn) and mn not in CALLS:
+                leaders.add(i + 2)
+                t = branch_target(ins)
+                if t is not None and t in index:
+                    leaders.add(index[t])
+        starts = sorted(x for x in leaders if x < n)
+        blocks = []
+        for k, st in enumerate(starts):
+            blocks.append((st, starts[k + 1] if k + 1 < len(starts) else n))
+        bindex = {st: k for k, (st, en) in enumerate(blocks)}
+        preds = collections.defaultdict(int)
+        for k, (st, en) in enumerate(blocks):
+            for succ, _ in self.block_succ(insns, index, bindex, st, en, None):
+                preds[succ] += 1
+        IN = [None] * len(blocks)
+        IN[0] = dict(entry)
+        FIRST = [None] * len(blocks)
+        FIRST[0] = dict(entry)
+        for k in range(1, len(blocks)):
+            if not preds[k]:
+                IN[k] = {}
+        self.recording = False
+        work = sorted(k for k in range(len(blocks)) if IN[k] is not None)
+        queued = set(work)
+        rounds = 0
+        while work and rounds < 50 * len(blocks):
+            rounds += 1
+            k = work.pop(0)
+            queued.discard(k)
+            st, en = blocks[k]
+            for succ, state in self.block_succ(insns, index, bindex, st, en, dict(IN[k]), seeds_ret):
+                old = IN[succ]
+                if old is None:
+                    new = dict(state)
+                    FIRST[succ] = dict(state)
+                else:
+                    new = {}
+                    for q, v in old.items():
+                        mv = meet(v, state.get(q))
+                        if mv is not None:
+                            new[q] = mv
+                if new != old:
+                    IN[succ] = new
+                    if succ not in queued:
+                        queued.add(succ)
+                        bisect.insort(work, succ)
+        # The first pass into a loop gives the offsets of its first iteration: an access the
+        # converged state cannot place uses them, and still counts as unresolved.
+        self.recording = True
+        self.mode = 'shadow'
+        self.shadow = collections.defaultdict(list)
+        for k, (st, en) in enumerate(blocks):
+            if FIRST[k] is not None and FIRST[k] != IN[k]:
+                for _ in self.block_succ(insns, index, bindex, st, en, dict(FIRST[k]), seeds_ret):
+                    pass
+        self.mode = 'record'
+        self.first_store = set()
+        for k, (st, en) in enumerate(blocks):
+            for _ in self.block_succ(insns, index, bindex, st, en, dict(IN[k] or {}), seeds_ret):
+                pass
+
+    def block_succ(self, insns, index, bindex, st, en, regs, seeds_ret=None):
+        """Run one block; yield (successor block, state on that edge). With regs None, only
+        the successors."""
+        i = st
+        while i < en:
+            addr, mn, ops, rel, sym = insns[i]
+            if regs is not None and self.recording and self.mode == 'record' and self.compare_rules:
+                self.compare(mn, ops, addr, self.compare_rules)
+            if not is_branch(mn):
+                if regs is not None:
+                    self.step(regs, addr, mn, ops, rel, seeds_ret)
+                i += 1
+                continue
+            likely = mn in LIKELY
+            pre = dict(regs) if (likely and regs is not None) else None
+            callee = self.callee(mn, ops, rel, sym, regs) if (mn in CALLS and regs is not None) else None
+            if i + 1 < len(insns) and regs is not None:
+                s = insns[i + 1]
+                if self.recording and self.mode == 'record' and self.compare_rules:
+                    self.compare(s[1], s[2], s[0], self.compare_rules)
+                self.step(regs, s[0], s[1], s[2], s[3], seeds_ret)
+            nxt = bindex.get(i + 2)
+            if mn in CALLS:
+                if regs is not None:
+                    self.after_call(regs, callee, addr, seeds_ret)
+                i += 2
+                continue
+            if mn in ('jr', 'jr.hb'):
+                if regs is not None and self.recording and self.mode == 'record' and ops and ops[0] == '$31':
+                    self.rets[self.fname].append(regs.get(2))
+                return
+            t = branch_target(insns[i])
+            tb = bindex.get(index.get(t)) if t is not None else None
+            uncond = mn == 'j' or (mn == 'beq' and ops[:2] == ['$0', '$0']) or (mn == 'bgez' and ops[:1] == ['$0'])
+            if tb is not None:
+                yield tb, regs
+            if not uncond and nxt is not None:
+                yield nxt, (pre if likely else regs)
+            return
+        nxt = bindex.get(en)
+        if nxt is not None:
+            yield nxt, regs
+
+    def callee(self, mn, ops, rel, sym, regs):
+        if rel and rel[0] in ('R_MIPS_26', 'R_MIPS_CALL16', 'R_MIPS_JALR', 'R_MIPS_PC16'):
+            return rel[1]
+        if mn in ('jalr', 'jalr.hb'):
+            r = REG.match(ops[-1]) if ops else None
+            v = regs.get(int(r.group(1))) if r else None
+            if v and v[0] == 's':
+                return v[1]
+            return None
+        if ops:
+            try:
+                t = int(ops[-1], 16)
+            except ValueError:
+                return sym
+            if t in self.info.stubs:
+                return self.info.stubs[t]
+        if sym and not sym.startswith('.'):
+            return sym
+        return None
+
+    def after_call(self, regs, callee, addr, seeds_ret):
+        m = self.m
+        if callee:
+            if self.recording and self.mode == 'record':
+                self.calls[callee].append({r: regs.get(r) for r in ARG_REGS})
+            for a in m.accessors:
+                if a['function'] == callee and self.applies(a, self.img):
+                    v = regs.get(int(a['address_reg']))
+                    val = regs.get(int(a['value_reg'])) if 'value_reg' in a else None
+                    self.access(v, 0, a['access'], int(a.get('width', 4)), addr, val,
+                                'accessor ' + callee, force=True)
+            if callee in m.ioctl_send:
+                v = regs.get(5)
+                if v and v[0] == 'c':
+                    c = v[1] & 0xffffffff
+                    if any(lo <= c <= hi for lo, hi in m.ioctl_ranges):
+                        self.note_ioctl(c, 'sent', addr)
+        for r in CALLER_SAVED:
+            regs.pop(r, None)
+        if callee and callee in seeds_ret:
+            regs[2] = seeds_ret[callee]
+        for b in m.bases:
+            if b['type'] == 'return' and callee and re.fullmatch(b['function'], callee) and \
+                    self.applies(b, self.img):
+                regs[2] = ('w', b['window'], num(b.get('offset', 0)), b.get('label', 'return of ' + callee))
+
+    def compare(self, mn, ops, addr, rules):
+        if len(ops) != 3:
+            return
+        role = None
+        if mn in ('addiu', 'daddiu', 'ori') and ops[1] == '$0':
+            role = 'handled'
+        elif mn in ('sltiu', 'slti'):
+            role = 'boundary'
+        if role is None:
+            return
+        try:
+            v = num(ops[2]) & 0xffff
+        except ValueError:
+            return
+        for d in rules:
+            lo, hi = num(d['range'][0]), num(d['range'][1])
+            if lo <= v <= hi:
+                self.note_ioctl(v, role, addr)
+
+    def note_ioctl(self, v, role, addr):
+        if not self.recording or self.mode == 'shadow':
+            return
+        e = self.ioctl.setdefault(v, {'roles': set(), 'funcs': set(), 'bins': set(), 'ex': None})
+        e['roles'].add(role)
+        e['funcs'].add(self.fname)
+        e['bins'].add(self.img['label'])
+        ex = '%s:%s' % (self.img['label'], self.fname)
+        if e['ex'] is None or ex < e['ex']:
+            e['ex'] = ex
+
+    def const(self, v, addr):
+        if not self.recording or self.mode == 'shadow':
+            return
+        c = self.m.ioctl_const
+        if c and self.applies(c, self.img):
+            w = v & 0xffffffff
+            if w & num(c['mask']) == num(c['value']):
+                self.note_ioctl(w, 'constant', addr)
+
+    def classify(self, v, computed=False):
+        """(window, offset, rule) of a constant address, or None. A computed address (a constant
+        plus an unknown) counts only for rules that say the constant can only be an address."""
+        for b in self.m.bases:
+            if b['type'] != 'constant' or not self.applies(b, self.img):
+                continue
+            if computed and not b.get('computed'):
+                continue
+            p = translate(b, v)
+            lo, hi = num(b['lo']), num(b['hi'])
+            if lo <= p < hi:
+                return b['window'], p - lo + num(b.get('offset', 0)), b.get('label', 'constant address')
+        return None
+
+    def access(self, base, disp, acc, width, addr, value, how=None, force=False):
+        """Record a load or store whose address is base + disp."""
+        if not self.recording:
+            return
+        if base is None:
+            if force:
+                self.unres('unknown window')
+            return
+        if base[0] == 'w':
+            win, off, ev = base[1], base[2], how or base[3]
+            if off is None:
+                if self.mode == 'shadow':
+                    return
+                self.unres(win)
+                for args in self.shadow.get(addr, ()):
+                    self.place(*args)
+                return
+            off += disp
+        elif base[0] == 'c':
+            c = self.classify(base[1] + disp)
+            if c is None:
+                if force:
+                    self.unres('unknown window')
+                return
+            win, off, ev = c
+            if how:
+                ev = how
+        elif base[0] == 'cu':
+            c = self.classify(base[1] + disp, computed=True)
+            if c is not None:
+                self.unres(c[0])
+            elif force:
+                self.unres('unknown window')
+            return
+        else:
+            if force:
+                self.unres('unknown window')
+            return
+        if self.mode == 'shadow':
+            self.shadow[addr].append((win, off, acc, width, addr, value, ev))
+            return
+        self.place(win, off, acc, width, addr, value, ev)
+
+    def unres(self, win):
+        if self.mode != 'shadow':
+            self.unresolved[(self.img['label'], win)] += 1
+
+    def place(self, win, off, acc, width, addr, value, ev):
+        w = self.m.windows.get(win)
+        if w is None or not (0 <= off < w['size']):
+            return
+        alias = False
+        for a in self.m.aliases:
+            if a['window'] == win and a['lo'] <= off < a['hi'] and off & a['bit']:
+                off &= ~a['bit']
+                alias = True
+        self.sites[self.img['label']] += 1
+        if value is not None and acc == 'w' and value[0] == 'c':
+            self.sink(win, off, value[1], width, addr)
+        for d in self.m.decoders:
+            if d['window'] != win:
+                continue
+            if d['type'] == 'stride' and num(d['lo']) <= off < num(d['hi']):
+                idx = (off - num(d['lo'])) // int(d['stride'])
+                part = (off - num(d['lo'])) % int(d['stride'])
+                self.record(d['to_window'], idx, acc, width, ev, addr, alias,
+                            d.get('label', 'stride window') + (' +%d' % part if part else ''))
+                return
+            if d['type'] == 'port-field' and off == num(d['offset']) and acc == 'w' and value and value[0] == 'c':
+                v = value[1] & ((1 << 64) - 1)
+                word = v >> 32 if width == 8 else v & 0xffffffff
+                if all(cond_ok(c, word) for c in d['when']):
+                    f = d['field']
+                    self.record(d['to_window'], (word >> f.get('shift', 0)) & num(f['mask']), acc, width,
+                                ev, addr, False, d.get('label', 'port field'))
+        self.record(win, off, acc, width, ev, addr, alias)
+
+    def record(self, win, off, acc, width, ev, addr, alias, note=''):
+        key = (self.m.region(win, off) if win in self.m.windows else win, off)
+        e = self.out_mmio.get(key)
+        if e is None:
+            e = self.out_mmio[key] = {'acc': set(), 'sites': 0, 'funcs': set(), 'bins': set(), 'ev': set(),
+                                      'ex': None}
+        e['acc'].add('%s%d%s%s' % (acc, width, ' alias' if alias else '', ' ' + note if note else ''))
+        e['sites'] += 1
+        e['funcs'].add(self.fname)
+        e['bins'].add(self.img['label'])
+        e['ev'].add(ev)
+        ex = '%s:%s' % (self.img['label'], self.fname)
+        if e['ex'] is None or ex < e['ex']:
+            e['ex'] = ex
+
+    def sink(self, win, off, v, width, addr):
+        for s in self.m.sinks:
+            if s.get('window') != win or not self.applies(s, self.img):
+                continue
+            lo, hi = num(s.get('lo', 0)), num(s.get('hi', 1 << 40))
+            if not (lo <= off < hi):
+                continue
+            if s.get('first_store_only'):
+                k = (win, lo)
+                if k in self.first_store:
+                    continue
+                self.first_store.add(k)
+            self.token(v, width, s, off if s.get('register') else None)
+
+    def token(self, v, width, s, reg):
+        if not self.recording or self.mode == 'shadow':
+            return
+        v &= (1 << 64) - 1
+        if width == 8 and s.get('split64', True) and (v >> 32) not in (0, 0xffffffff):
+            words = [v >> 32, v & 0xffffffff]
+        else:
+            words = [v & (0xffffffff if width <= 4 or not s.get('keep64') else (1 << 64) - 1)]
+        for w in words:
+            if 'value_mask' in s:
+                w &= num(s['value_mask'])
+            if s.get('families') and self.m.family(w) is None:
+                continue
+            key = (s.get('kind', 'word'), reg, w)
+            e = self.tokens.get(key)
+            if e is None:
+                e = self.tokens[key] = {'sites': 0, 'bins': set(), 'ex': None, 'src': set(), 'known_only':
+                                        bool(s.get('known_only'))}
+            e['sites'] += 1
+            e['bins'].add(self.img['label'])
+            e['src'].add(s.get('label', 'code'))
+            ex = '%s:%s' % (self.img['label'], self.fname)
+            if e['ex'] is None or ex < e['ex']:
+                e['ex'] = ex
+
+    # ------------------------------------------------------------ one instruction
+
+    def step(self, regs, addr, mn, ops, rel, seeds_ret):
+        n = len(ops)
+
+        def val(tok):
+            mm = REG.match(tok)
+            if not mm:
+                return None
+            k = int(mm.group(1))
+            return ('c', 0) if k == 0 else regs.get(k)
+
+        def setr(tok, v):
+            mm = REG.match(tok)
+            if mm and int(mm.group(1)) != 0:
+                k = int(mm.group(1))
+                if v is None:
+                    regs.pop(k, None)
+                else:
+                    regs[k] = v
+                    if v[0] == 'c':
+                        self.const(v[1], addr)
+
+        if mn in LOADS or mn in STORES:
+            mm = MEMOP.match(ops[-1]) if n >= 2 else None
+            if not mm:
+                if mn in LOADS and n and mn not in FPMEM:
+                    setr(ops[0], None)
+                return
+            disp = num(mm.group(1))
+            bk = int(mm.group(2))
+            bv = ('c', 0) if bk == 0 else regs.get(bk)
+            width = LOADS.get(mn) or STORES[mn]
+            if mn in STORES:
+                value = val(ops[0]) if mn not in ('swc1', 'sdc1', 'swc2', 'sdc2') else None
+                if bk == 29:
+                    if value is not None:
+                        regs[('m', disp)] = value
+                    else:
+                        regs.pop(('m', disp), None)
+                    return
+                self.access(bv, disp, 'w', width, addr, value)
+                if value and value[0] == 'c' and bk != 29:
+                    for s in self.m.sinks:
+                        if s.get('any_store') and self.applies(s, self.img):
+                            self.token(value[1], width, s, None)
+                return
+            # loads
+            self.access(bv, disp, 'r', width, addr, None)
+            if mn in FPMEM:
+                return
+            setr(ops[0], self.load_value(regs, bk, bv, disp, rel, width, mn))
+            return
+        if mn in NO_DEST or mn.startswith('c.') or not ops:
+            return
+        d = ops[0]
+        v = None
+        if mn == 'lui' and n == 2:
+            if rel:
+                v = ('s', rel[1], rel[2] + (num(ops[1]) << 16 if not rel[2] else 0))
+            else:
+                v = ('c', s32(num(ops[1]) << 16))
+        elif mn in ('addiu', 'daddiu', 'addi', 'daddi') and n == 3:
+            s = val(ops[1])
+            imm = num(ops[2])
+            if rel and rel[0] in ('R_MIPS_LO16', 'R_MIPS_GOT_OFST', 'R_MIPS_GPREL16', 'R_MIPS_GOT_LO16'):
+                if s and s[0] == 's' and s[1] == rel[1]:
+                    v = ('s', rel[1], s[2] + imm + rel[2])
+                else:
+                    v = ('s', rel[1], imm + rel[2])
+            elif s and s[0] == 'c':
+                v = ('c', s32(s[1] + imm) if mn in ('addiu', 'addi') else s64(s[1] + imm))
+            elif s and s[0] == 'w':
+                v = ('w', s[1], None if s[2] is None else s[2] + imm, s[3])
+            elif s and s[0] in ('s', 'cu'):
+                v = (s[0], s[1], s[2] + imm) if s[0] == 's' else ('cu', s[1] + imm)
+        elif mn in ('li', 'dli') and n == 2:
+            v = ('c', num(ops[1]))
+        elif mn in ('ori', 'xori', 'andi') and n == 3:
+            s = val(ops[1])
+            imm = num(ops[2])
+            if rel and mn == 'ori':
+                v = ('s', rel[1], (s[2] if s and s[0] == 's' else 0) + imm + rel[2])
+            elif s and s[0] == 'c':
+                v = ('c', s[1] | imm if mn == 'ori' else (s[1] ^ imm if mn == 'xori' else s[1] & imm))
+            elif s and s[0] == 'w' and mn == 'ori' and s[2] is not None:
+                v = ('w', s[1], s[2] | imm, s[3])
+            elif s and s[0] == 's' and mn == 'ori':
+                v = ('s', s[1], s[2] + imm)
+        elif mn in ('addu', 'daddu', 'add', 'dadd', 'or', 'xor', 'subu', 'dsubu', 'sub', 'dsub') and n == 3:
+            a, c = val(ops[1]), val(ops[2])
+            sub = mn in ('subu', 'dsubu', 'sub', 'dsub')
+            if mn in ('or', 'addu', 'daddu') and ops[2] == '$0':
+                v = a
+            elif mn in ('or', 'addu', 'daddu') and ops[1] == '$0':
+                v = c
+            elif a and c and a[0] == 'c' and c[0] == 'c':
+                if mn == 'or':
+                    r = a[1] | c[1]
+                elif mn == 'xor':
+                    r = a[1] ^ c[1]
+                elif sub:
+                    r = a[1] - c[1]
+                else:
+                    r = a[1] + c[1]
+                v = ('c', s32(r) if mn in ('addu', 'add', 'subu', 'sub') else s64(r))
+            elif mn != 'xor':
+                if not sub and c and c[0] == 'w' and not (a and a[0] == 'w'):
+                    a, c = c, a
+                elif not sub and c and c[0] in ('s', 'cu') and a and a[0] == 'c':
+                    a, c = c, a
+                if a and a[0] == 'w':
+                    if c and c[0] == 'c' and a[2] is not None:
+                        v = ('w', a[1], a[2] - c[1] if sub else (a[2] | c[1] if mn == 'or' else a[2] + c[1]), a[3])
+                    elif not (c and c[0] == 'w'):
+                        v = ('w', a[1], None, a[3])
+                elif a and a[0] == 's' and c and c[0] == 'c' and not sub:
+                    v = ('s', a[1], a[2] + c[1])
+                elif a and a[0] in ('c', 'cu') and not sub and not (c and c[0] in ('w', 's')):
+                    v = ('cu', a[1])
+        elif mn in ('sll', 'dsll', 'dsll32', 'srl', 'dsrl', 'dsrl32', 'sra', 'dsra', 'dsra32') and n == 3:
+            s = val(ops[1])
+            sa = num(ops[2]) + (32 if mn.endswith('32') else 0)
+            if s and s[0] == 'c':
+                u = s[1] & ((1 << 64) - 1)
+                if mn == 'sll':
+                    v = ('c', s32(u << sa))
+                elif mn.startswith('dsll'):
+                    v = ('c', s64(u << sa))
+                elif mn == 'srl':
+                    v = ('c', s32((u & 0xffffffff) >> sa))
+                elif mn.startswith('dsrl'):
+                    v = ('c', s64(u >> sa))
+                elif mn == 'sra':
+                    v = ('c', s32(s32(u) >> sa))
+                else:
+                    v = ('c', s64(s64(u) >> sa))
+            elif s and s[0] == 's' and mn.startswith('dsll'):
+                v = s
+        elif mn in ('movn', 'movz'):
+            v = None
+        setr(d, v)
+
+    def load_value(self, regs, bk, bv, disp, rel, width, mn):
+        info, img = self.info, self.img
+        if bk == 29:
+            return regs.get(('m', disp))
+        # configured pointer fields and globals
+        for b in self.m.bases:
+            t = b['type']
+            if t not in ('field', 'global') or not self.applies(b, img, self.fname):
+                continue
+            if b.get('loads') and mn not in b['loads']:
+                continue
+            if t == 'field':
+                if num(b['disp']) == disp and bk not in (0, 28, 29) and not (bv and bv[0] in ('c', 's')):
+                    return ('w', b['window'], num(b.get('offset', 0)), b.get('label', 'field +%d' % disp))
+            else:
+                g = None
+                if bv and bv[0] == 's':
+                    g = (bv[1], bv[2] + disp)
+                elif rel and rel[0] in ('R_MIPS_GPREL16', 'R_MIPS_LO16', 'R_MIPS_LITERAL'):
+                    g = (rel[1], rel[2] + (disp if bk != 28 else 0))
+                if g and g[0] == b['symbol'] and g[1] == num(b.get('disp', 0)):
+                    return ('w', b['window'], num(b.get('offset', 0)), b.get('label', 'global ' + b['symbol']))
+        # GOT and literal pools
+        if rel:
+            rt, sym, add = rel
+            if rt in ('R_MIPS_CALL16', 'R_MIPS_GOT16', 'R_MIPS_GOT_DISP', 'R_MIPS_GOT_PAGE', 'R_MIPS_CALL_LO16',
+                      'R_MIPS_GOT_LO16'):
+                return ('s', sym, add if rt != 'R_MIPS_GOT16' else add)
+            if rt in ('R_MIPS_GPREL16', 'R_MIPS_LITERAL') and sym.startswith('.'):
+                w = 8 if mn == 'ld' else 4
+                c = info.read_sec(sym, disp + info.gp0 + add, w) if mn in ('ld', 'lw', 'lwu') else None
+                return ('c', c) if c is not None else None
+            if rt == 'R_MIPS_LO16' and bv and bv[0] == 's' and sym.startswith('.'):
+                c = info.read_sec(sym, bv[2] + disp, 8 if mn == 'ld' else 4) if mn in ('ld', 'lw') else None
+                return ('c', c) if c is not None else None
+            return None
+        if bk == 28 and not info.rel:
+            nm = info.got_names.get(disp)
+            if nm:
+                return ('s', nm, 0)
+            loc = info.got_local.get(disp)
+            if loc is not None:
+                return ('c', loc)
+            return None
+        if bv and bv[0] == 'c' and not info.rel and mn in ('ld', 'lw', 'lwu'):
+            c = info.read(bv[1] + disp, 8 if mn == 'ld' else 4)
+            if c is not None:
+                return ('c', c)
+        return None
+
+
+def meet(a, b):
+    """The value two paths agree on: equal values, or a window base with an untraced offset."""
+    if a == b:
+        return a
+    if a and b and a[0] == 'w' and b[0] == 'w' and a[1] == b[1]:
+        return ('w', a[1], None, a[3])
     return None
 
 
-def stub_map(b, relocs_unused=None):
-    """Map the address of each .MIPS.stubs entry to its dynamic symbol name."""
-    sec = b.elf.get_section_by_name('.MIPS.stubs')
-    dyn = b.elf.get_section_by_name('.dynsym')
-    if sec is None or dyn is None:
-        return {}
-    d = sec.data()
-    base = sec['sh_addr']
-    names = [s.name for s in dyn.iter_symbols()]
-    out = {}
-    e = '>'
-    for off in range(0, len(d) - 3, 4):
-        w, = struct.unpack(e + 'I', d[off:off + 4])
-        if (w >> 16) == 0x240e or (w >> 16) == 0x2418:  # li t8 / li t6 ... (addiu $24,$0,N)
-            idx = w & 0xffff
-            if (w >> 16) == 0x2418 and idx < len(names):
-                for back in (12, 16, 8):
-                    out[base + off - back] = names[idx]
-    return out
-
-
-def got_resolver(b):
-    dyn = b.elf.get_section_by_name('.dynamic')
-    dsym = b.elf.get_section_by_name('.dynsym')
-    if dyn is None or dsym is None:
-        return None
-    tags = {}
-    for t in dyn.iter_tags():
-        tags[t.entry.d_tag] = t.entry.d_val
-    if 'DT_PLTGOT' not in tags:
-        return None
-    gotno = tags.get('DT_MIPS_LOCAL_GOTNO')
-    gotsym = tags.get('DT_MIPS_GOTSYM')
-    if gotno is None or gotsym is None:
-        return None
-    gsz = 8 if b.elf.elfclass == 64 else 4
-    names = [s.name for s in dsym.iter_symbols()]
-    gotsec = None
-    for s in b.elf.iter_sections():
-        if s['sh_addr'] == tags['DT_PLTGOT']:
-            gotsec = s
-    if gotsec is None:
+def branch_target(ins):
+    try:
+        return int(ins[2][-1], 16)
+    except (ValueError, IndexError):
         return None
 
-    def res(off):
-        idx = (off + 0x7ff0) // gsz
-        if idx >= gotno and gotsym + idx - gotno < len(names):
-            return names[gotsym + idx - gotno]
-        return None
-    return res
+
+def dest_keys(ins):
+    addr, mn, ops, rel, sym = ins
+    if mn in CALLS:
+        return set(CALLER_SAVED) | {2, 3}
+    if mn in STORES:
+        mm = MEMOP.match(ops[-1]) if len(ops) >= 2 else None
+        if mm and mm.group(2) == '29':
+            return {('m', num(mm.group(1)))}
+        return set()
+    if is_branch(mn) or mn in NO_DEST or not ops:
+        return set()
+    r = REG.match(ops[0])
+    return {int(r.group(1))} if r else set()
 
 
-# ---------------------------------------------------------------------------
-# Inventories
+# ===================================================================== ioctl tables
 
-
-def esc(s):
-    return str(s).replace('\t', ' ').replace('\n', ' ')
-
-
-def write_tsv(path, header, rows):
-    with open(path, 'w') as f:
-        f.write('\t'.join(header) + '\n')
-        for r in rows:
-            f.write('\t'.join(esc(x) for x in r) + '\n')
-
-
-def load_binaries():
-    out, seen, dup = [], {}, []
-    for rel, real in scope_files():
-        data = open(real, 'rb').read()
-        if data[:4] == b'\x7fELF':
-            digest = hashlib.sha1(data).hexdigest()
-            if digest in seen:
-                dup.append((rel, seen[digest]))
-                continue
-            seen[digest] = rel
-            try:
-                out.append(Binary(rel, '', data))
-            except Exception as ex:
-                print('skip %s: %s' % (rel, ex), file=sys.stderr)
-        elif data[:8] == b'!<arch>\n':
-            for name, body in unpack_ar(data):
-                if body[:4] == b'\x7fELF':
-                    digest = hashlib.sha1(body).hexdigest()
-                    if digest in seen:
-                        dup.append(('%s(%s)' % (rel, name), seen[digest]))
-                        continue
-                    seen[digest] = '%s(%s)' % (rel, name)
-                    try:
-                        out.append(Binary(rel, name, body))
-                    except Exception as ex:
-                        print('skip %s(%s): %s' % (rel, name, ex), file=sys.stderr)
-    load_binaries.duplicates = dup
-    return out
-
-
-def inv_functions(bins, docs):
-    rows = []
-    for b in bins:
-        for sec, addr, size, name in b.symbols():
-            st, doc = docs.by_name(name)
-            rows.append([b.name, b.abi, sec, '0x%x' % addr, size, name, st, doc])
-    rows.sort(key=lambda r: (r[0], int(r[3], 16), r[5]))
-    return ['binary', 'abi', 'section', 'address', 'size', 'name', 'status', 'doc'], rows
-
-
-def kpm_tables(tmp):
-    kpm = os.path.join(REPO, 'root/usr/gfx/KONA/bin/kpm')
-    if not os.path.exists(kpm):
-        return None
-    subprocess.run([sys.executable, os.path.join(REPO, 'scripts/extract_kpm_tables.py'), kpm, tmp],
-                   check=True, capture_output=True)
-    return tmp
-
-
-def read_tsv(path):
-    rows = []
-    for ln in open(path):
-        if ln.startswith('#') or not ln.strip():
-            continue
-        rows.append(ln.rstrip('\n').split('\t'))
-    h, rows = rows[0], rows[1:]
-    return [dict(zip(h, r)) for r in rows]
-
-
-def host_window(off):
-    if off >= 0xc00000:
-        return 'hip-alias'
-    if off >= 0x800000:
-        return 'hip'
-    return 'xg'
-
-
-def inv_mmio(bins, docs, tmp):
-    acc = collections.defaultdict(lambda: {'dir': set(), 'src': set(), 'n': 0})
-    unresolved = 0
-    kernel = [b for b in bins if b.rel]
-    for b in kernel:
-        with tempfile.NamedTemporaryFile(suffix='.o', dir=tmp, delete=False) as f:
-            f.write(b.data)
-            path = f.name
-        funcs, relocs = run_objdump(path)
-        os.unlink(path)
-        for fname, kind, what, regs, addr in replay(funcs, relocs, set(PIO_ACCESSORS), BASE_SLOTS):
-            if kind == 'call':
-                v = regs.get(4)
-                if v and v[0] in ('b', 'c') and v[1] % 4 == 0 and v[1] < (1 << 32):
-                    key = (host_window(v[1]), v[1])
-                    e = acc[key]
-                    e['dir'].add(PIO_ACCESSORS[what])
-                    e['src'].add('%s:%s' % (b.name.split('/')[-1], fname))
-                    e['n'] += 1
-                else:
-                    unresolved += 1
-            elif kind == 'mem' and what[0] >= 0 and what[0] < (1 << 32):
-                off, d, w = what
-                d = {'r': 'read', 'w': 'write'}[d]
-                if off % 4 == 0 and off < 0x1000000 and off not in BASE_SLOTS:
-                    key = (host_window(off), off)
-                    e = acc[key]
-                    e['dir'].add(d)
-                    e['src'].add('%s:%s' % (b.name.split('/')[-1], fname))
-                    e['n'] += 1
-    # the register tables the diagnostic tool carries
-    if tmp and os.path.exists(os.path.join(tmp, 'hip_registers.tsv')):
-        for r in read_tsv(os.path.join(tmp, 'hip_registers.tsv')):
-            if r['kind'] == '1' and int(r['offset'], 16) != 0xdead:
-                key = ('hip-register', int(r['offset'], 16))
-                e = acc[key]
-                e['src'].add('kpm:' + r['name'])
-                e['n'] += 1
-        for r in read_tsv(os.path.join(tmp, 'ge_registers.tsv')):
-            if r['kind'] == '1':
-                key = ('ge-register', int(r['address'], 16))
-                e = acc[key]
-                e['src'].add('kpm:' + r['name'])
-                e['n'] += 1
-        for r in read_tsv(os.path.join(tmp, 'raster_registers.tsv')):
-            if r['kind'] == '1':
-                key = ('raster-index', int(r['value'], 16))
-                e = acc[key]
-                e['src'].add('kpm:' + r['name'])
-                e['n'] += 1
-    rows = []
-    for (win, off), e in sorted(acc.items()):
-        names = [s.split(':', 1)[1] for s in e['src'] if s.startswith('kpm:')]
-        vals = [off] if win != 'hip' else [off, off & 0xfff]
-        if win == 'hip-alias':
-            vals = [off, off & 0xfff]
-        st, doc = docs.by_value(win, vals, names)
-        srcs = sorted(e['src'])
-        rows.append([win, '0x%x' % off, ','.join(sorted(e['dir'])) or '-', e['n'],
-                     ';'.join(srcs[:6]) + (';+%d more' % (len(srcs) - 6) if len(srcs) > 6 else ''), st, doc])
-    return (['window', 'offset', 'direction', 'sites', 'sources', 'status', 'doc'], rows, unresolved)
-
-
-def inv_tokens(docs, tmp):
-    toks = {}
-    if tmp and os.path.exists(os.path.join(tmp, 'hp_commands.tsv')):
-        for r in read_tsv(os.path.join(tmp, 'hp_commands.tsv')):
-            t = int(r['token'], 16)
-            toks.setdefault(t, {'kpm': '', 'hdr': '', 'src': set()})
-            toks[t]['kpm'] = r['name']
-            toks[t]['src'].add('kpm')
-    for line in open(os.path.join(REPO, 'GE.h')):
-        m = re.match(r'\s*(KONA_HP_\w+)\s*=\s*(0x[0-9a-f]+)', line)
-        if m:
-            t = int(m.group(2), 16)
-            toks.setdefault(t, {'kpm': '', 'hdr': '', 'src': set()})
-            toks[t]['hdr'] = m.group(1)
-            toks[t]['src'].add('GE.h')
-    icu = os.path.join(tmp, 'icu_map.tsv') if tmp else ''
-    route = {}
-    if icu and os.path.exists(icu):
-        for ln in open(icu):
-            if ln.startswith('#') or ln.startswith('token'):
-                continue
-            c = ln.rstrip('\n').split('\t')
-            if c and re.fullmatch(r'0x[0-9a-f]+|\d+', c[0]):
-                t = int(c[0], 0)
-                toks.setdefault(t, {'kpm': '', 'hdr': '', 'src': set()})
-                toks[t]['src'].add('firmware map')
-                route[t] = c[1] if len(c) > 1 else ''
-    rows = []
-    for t in sorted(toks):
-        e = toks[t]
-        names = [n for n in (e['hdr'], e['kpm']) if n]
-        if e['kpm'] and ('KONA_' + e['kpm']) not in names:
-            names.append('KONA_' + e['kpm'])
-        st, doc = docs.by_name(*names) if names else ('undocumented', '')
-        rows.append(['0x%03x' % t, e['kpm'], e['hdr'], route.get(t, ''), ','.join(sorted(e['src'])), st, doc])
-    return ['token', 'kpm_name', 'header_name', 'firmware_route', 'sources', 'status', 'doc'], rows
-
-
-def dispatch_table(b, funcs, relocs):
-    """Slots of the jump table that the named dispatcher function indexes."""
+def jump_table(img, elf, funcs, d):
+    """Slots of a switch table the named dispatcher indexes: [(number, handler)]."""
     sym = None
-    for sn in ('.symtab',):
-        sec = b.elf.get_section_by_name(sn)
-        for s in sec.iter_symbols():
-            if s.name == IOCTL_DISPATCHER and s['st_info']['type'] == 'STT_FUNC':
-                sym = s
+    sec = elf.get_section_by_name('.symtab')
+    if sec is None:
+        return []
+    for s in sec.iter_symbols():
+        if s.name == d['function'] and s['st_info']['type'] == 'STT_FUNC':
+            sym = s
     if sym is None:
-        return None
+        return []
     lo, hi = sym['st_value'], sym['st_value'] + sym['st_size']
-    text = b.elf.get_section_by_name('.text')
-    # relocations of the read-only section give the jump table targets
-    rod = b.elf.get_section_by_name('.rodata')
-    rel = b.elf.get_section_by_name('.rel.rodata')
+    rod = elf.get_section_by_name(d.get('section', '.rodata'))
+    rel = elf.get_section_by_name('.rel' + d.get('section', '.rodata'))
     if rod is None or rel is None:
-        return None
+        return []
     data = rod.data()
+    wsz = 8 if elf.elfclass == 64 else 4
     entries = []
     for r in rel.iter_relocations():
         off = r['r_offset']
-        val = struct.unpack('>Q', data[off:off + 8])[0] if b.elf.elfclass == 64 else struct.unpack('>I', data[off:off + 4])[0]
-        entries.append((off, val))
+        entries.append((off, int.from_bytes(data[off:off + wsz], 'big')))
     entries.sort()
-    # contiguous runs of 8-byte entries whose values point into the function
     best, run = [], []
     for off, val in entries:
-        if lo <= val < hi and (not run or off == run[-1][0] + 8):
+        if lo <= val < hi and (not run or off == run[-1][0] + wsz):
             run.append((off, val))
         else:
             if len(run) > len(best):
@@ -906,257 +1657,733 @@ def dispatch_table(b, funcs, relocs):
     if len(run) > len(best):
         best = run
     if not best:
-        return None
-    insns = [x for f in funcs if f[0] == IOCTL_DISPATCHER for x in f[1]]
-    base = 0
-    for a, op, args in insns:
-        m = re.match(r'\$\d+,\$\d+,(-\d+)$', args or '')
-        if op in ('addiu', 'daddiu') and m and abs(int(m.group(1))) >= 1000:
-            base = -int(m.group(1))
-            break
-    return base, [v for _, v in best], insns, lo
-
-
-def inv_ioctls(bins, docs, tmp):
-    rows = []
-    # kernel dispatcher
-    for b in bins:
-        if not b.rel or not b.elf.get_section_by_name('.rel.rodata'):
-            continue
-        sec = b.elf.get_section_by_name('.symtab')
-        if not any(s.name == IOCTL_DISPATCHER for s in sec.iter_symbols()):
-            continue
-        with tempfile.NamedTemporaryFile(suffix='.o', dir=tmp, delete=False) as f:
-            f.write(b.data)
-            path = f.name
-        funcs, relocs = run_objdump(path)
-        os.unlink(path)
-        r = dispatch_table(b, funcs, relocs)
-        if not r:
-            continue
-        base, targets, insns, lo = r
-        default = collections.Counter(targets).most_common(1)[0][0]
-        order = sorted(set(targets))
-        addr_idx = {a: i for i, (a, _, _) in enumerate(insns)}
-        for slot, tgt in enumerate(targets):
-            number = base + slot
-            if tgt == default:
-                continue
-            # first call after the case label names the handler
-            handler = ''
-            i = addr_idx.get(tgt)
-            j = bisect.bisect_right(order, tgt)
-            stop = order[j] if j < len(order) else 1 << 62
-            while i is not None and i < len(insns) and insns[i][0] < stop:
-                a, op, args = insns[i]
-                if op in ('jal', 'bal', 'jalr'):
-                    handler = relocs.get(a, '') or (TARGET.search(args).group(2) if TARGET.search(args) else '')
-                    break
-                i += 1
-            name = ''
-            for ln in open(os.path.join(REPO, 'docs/kernel.md'), encoding='utf-8'):
-                if re.match(r'\|\s*%d\s*\|' % number, ln):
-                    m = re.search(r'`(\w+)`', ln)
-                    name = m.group(1) if m else ''
-                    break
-            st, doc = _ioctl_status(docs, number, name)
-            rows.append(['kernel', b.name, str(number), name, handler, ioctl_class(number), st, doc])
-        # the table has `len(targets)` slots; default slots are not ioctls
-    # user-side callers
-    users = collections.defaultdict(lambda: collections.defaultdict(set))
-    for b in bins:
-        if b.rel:
-            continue
-        with tempfile.NamedTemporaryFile(suffix='.elf', dir=tmp, delete=False) as f:
-            f.write(b.data)
-            path = f.name
-        funcs, relocs = run_objdump(path)
-        os.unlink(path)
-        stubs = stub_map(b)
-        got = got_resolver(b)
-        for fname, kind, what, regs, addr in replay(funcs, relocs, IOCTL_WRAPPERS, (), stubs, got):
-            if kind != 'call':
-                continue
-            v = regs.get(5)
-            if v and v[0] == 'c' and 0 < v[1] < (1 << 32):
-                users[v[1]][b.name].add(fname)
-    for cmd in sorted(users):
-        where = users[cmd]
-        names = sorted(where)
-        st, doc = _ioctl_status(docs, cmd, '')
-        rows.append(['user', ';'.join(n.split('/')[-1] for n in names[:4]) + (';+%d more' % (len(names) - 4) if len(names) > 4 else ''),
-                     str(cmd), '', ';'.join(sorted({f for n in names for f in where[n]})[:3]), ioctl_class(cmd), st, doc])
-    return ['side', 'binary', 'command', 'name', 'handler_or_caller', 'class', 'status', 'doc'], rows
-
-
-def ioctl_class(n):
-    """Which family a command number belongs to, by range."""
-    if 10000 <= n < 10200:
-        return 'kona private'
-    if 1000 <= n < 2000:
-        return 'graphics manager'
-    if 100 <= n < 200:
-        return 'graphics init'
-    return 'other'
-
-
-def _ioctl_status(docs, number, name):
-    st, doc = docs.by_name(name) if name else ('undocumented', '')
-    if st == 'documented':
-        return st, doc
-    if number < 1000:
-        return st, doc
-    for f, where in docs.dec.get(number, []) + docs.hex.get(number, []):
-        if f.endswith('.md') and f != 'docs/coverage.md':
-            return 'documented', where
-    for f, where in docs.dec.get(number, []) + docs.hex.get(number, []):
-        return 'named-only', where
-    return st, doc
-
-
-def inv_ucode(docs, tmp):
-    rows = []
-    # ARM firmware symbols and the display generator's command table
-    arm = os.path.join(REPO, 'root/usr/gfx/ucode/KONA/arm1.u')
-    if os.path.exists(arm):
-        out = tempfile.mkdtemp(dir=tmp)
-        subprocess.run([sys.executable, os.path.join(REPO, 'scripts/arm1_disasm.py'), arm, out],
-                       check=True, capture_output=True)
-        for ln in open(os.path.join(out, 'arm1_symbols.tsv')):
-            if ln.startswith('#') or ln.startswith('address'):
-                continue
-            a, flags, name = ln.rstrip('\n').split('\t')
-            if name.startswith(('Image$$', 'C$$', 'Load$$')) or '$$' in name:
-                kind = 'linker region'
-            else:
-                kind = 'symbol (flags %s)' % flags
-            st, doc = docs.by_name(name)
-            rows.append(['arm1.u', kind, a, name, '', st, doc])
-        if os.path.exists(os.path.join(REPO, 'ucode/dg_dispatch.tsv')):
-            for ln in open(os.path.join(REPO, 'ucode/dg_dispatch.tsv')):
-                if ln.startswith('#') or ln.startswith('command'):
+        return []
+    insns = [x for name, ins in funcs if name == d['function'] for x in ins]
+    base = num(d.get('base', 0))
+    if d.get('base') is None:
+        for a, mn, ops, rl, sy in insns:
+            if mn in ('addiu', 'daddiu') and len(ops) == 3:
+                try:
+                    k = num(ops[2])
+                except ValueError:
                     continue
-                c = ln.rstrip('\n').split('\t')
-                if len(c) >= 3:
-                    st, doc = docs.by_name(c[2])
-                    if st != 'documented':
-                        st2, doc2 = _dg_cmd(docs, c[0])
-                        if st2 == 'documented':
-                            st, doc = st2, doc2
-                    rows.append(['arm1.u', 'display command', c[0], c[2], 'words=%s' % c[1], st, doc])
-    # geometry engine labels and the interface table
-    gsym = os.path.join(REPO, 'root/usr/gfx/ucode/KONA/ge_symbols')
-    labels = {}
-    if os.path.exists(gsym):
-        for ln in open(gsym):
-            p = ln.split()
-            if len(p) == 2:
-                labels.setdefault(int(p[1], 16), []).append(p[0])
-                st, doc = docs.by_name(p[0])
-                rows.append(['ge.u', 'label', p[1], p[0], '', st, doc])
-    gif = os.path.join(REPO, 'root/usr/gfx/ucode/KONA/geif.u')
-    if os.path.exists(gif):
-        d = open(gif, 'rb').read()
-        for k in range(len(d) // 2):
-            v = struct.unpack('>H', d[2 * k:2 * k + 2])[0]
-            name = labels.get(v, [''])[0]
-            if k < 512:
-                st, doc = _slot_status(docs, k, name)
-                rows.append(['geif.u', 'dispatch slot', '%d' % k, name, 'handler 0x%x' % v, st, doc])
-    return ['program', 'kind', 'address_or_index', 'name', 'detail', 'status', 'doc'], rows
+                if k <= -int(d.get('min_base', 1000)):
+                    base = -k
+                    break
+    targets = [v for _, v in best]
+    default = collections.Counter(targets).most_common(1)[0][0]
+    order = sorted(set(targets))
+    idx = {ins[0]: i for i, ins in enumerate(insns)}
+    out = []
+    for slot, tgt in enumerate(targets):
+        if tgt == default:
+            continue
+        handler = ''
+        i = idx.get(tgt)
+        j = bisect.bisect_right(order, tgt)
+        stop = order[j] if j < len(order) else 1 << 62
+        while i is not None and i < len(insns) and insns[i][0] < stop:
+            a, mn, ops, rl, sy = insns[i]
+            if mn in CALLS:
+                handler = rl[1] if rl else (sy or '')
+                break
+            i += 1
+        out.append((base + slot, handler))
+    return out
 
 
-def _dg_cmd(docs, cmd):
-    return 'undocumented', ''
-
-
-def _slot_status(docs, k, name):
-    st, doc = docs.by_name(name) if name else ('undocumented', '')
-    return st, doc
-
-
-# ---------------------------------------------------------------------------
-
-
-def summarize(name, rows, col):
-    n = len(rows)
-    c = collections.Counter(r[col] for r in rows)
-    return name, n, c['documented'], c['named-only'], c['undocumented']
-
-
-def update_coverage(summary, scope_n, path):
-    block = ['<!-- inventory:start (generated by scripts/inventory.py; do not edit) -->',
-             '## Coverage measured from the binaries',
-             '',
-             'Counts come from `scripts/inventory.py` run over %d files in scope; each row of the tables in '
-             '[docs/inventory/](inventory/README.md) is one item with a status. "Documented" means a doc or '
-             'header explains the item; "named-only" means it appears as a bare name or value; '
-             '"undocumented" means nothing mentions it.' % scope_n,
-             '',
-             '| Inventory | Items | Documented | Named only | Undocumented |',
-             '|---|---:|---:|---:|---:|']
-    for name, n, d, no, u in summary:
-        pct = lambda x: '%d (%.1f%%)' % (x, 100.0 * x / n) if n else '0'
-        block.append('| %s | %d | %s | %s | %s |' % (name, n, pct(d), pct(no), pct(u)))
-    block += ['', 'The rows below are the areas view: one row per area of each block, written by hand.',
-              '<!-- inventory:end -->']
-    text = open(path).read()
-    new = '\n'.join(block)
-    if '<!-- inventory:start' in text:
-        text = re.sub(r'<!-- inventory:start.*?<!-- inventory:end -->', lambda m: new, text, flags=re.S)
+def pointer_table(img, elf, d):
+    """Entries of a table of handler pointers in a data section: [(number, handler)]."""
+    sec = elf.get_section_by_name(d['section'])
+    rel = elf.get_section_by_name('.rel' + d['section']) or elf.get_section_by_name('.rela' + d['section'])
+    sym = elf.get_section_by_name('.symtab')
+    if not (sec and rel and sym):
+        return []
+    data = sec.data()
+    fmap = {s['st_value']: s.name for s in sym.iter_symbols() if s['st_info']['type'] == 'STT_FUNC' and s.name}
+    relocs = []
+    wid = 8 if elf.elfclass == 64 else 4
+    for r in rel.iter_relocations():
+        s = sym.get_symbol(r['r_info_sym'])
+        off = r['r_offset']
+        if s.name and not s.name.startswith('.'):
+            nm = s.name
+        else:
+            nm = fmap.get(int.from_bytes(data[off:off + wid], 'big'), '')
+            if not nm:
+                continue
+        relocs.append((off, nm))
+    prefix = d.get('prefix', '')
+    if d['start'] == 'auto':
+        c = [o for o, n in relocs if n.startswith(prefix)]
+        if not c:
+            return []
+        start = min(c)
     else:
-        # place it after the first heading and intro paragraph
-        i = text.index('\n## Status key')
-        text = text[:i] + '\n' + new + '\n' + text[i:]
-    open(path, 'w').write(text)
+        start = num(d['start'])
+    stride, base = int(d['stride']), num(d['base'])
+    out = []
+    for off, nm in sorted(relocs):
+        if off < start or (off - start) % stride or (off - start) // stride >= int(d['count']):
+            continue
+        if prefix and not nm.startswith(prefix):
+            continue
+        out.append((base + (off - start) // stride, nm))
+    return out
+
+
+# ===================================================================== worker
+
+def analyse_unit(args):
+    """Symbols, register accesses, tokens and ioctls of one file in scope."""
+    cfg, imgs, tmpdir = args
+    model = Model(cfg)
+    res = {'funcs': {}, 'abi': {}, 'kind': {}, 'tables': []}
+    work = tempfile.mkdtemp(dir=tmpdir)
+    try:
+        for img in imgs:
+            elf = None
+            if img['data'][:4] == b'\x7fELF':
+                try:
+                    elf = elf_of(img['data'])
+                except Exception as ex:
+                    print('skip %s: %s' % (img['label'], ex), file=sys.stderr)
+            img['elf'] = elf
+            path = os.path.join(work, '%d.elf' % len(res['abi']))
+            with open(path, 'wb') as f:
+                f.write(img['data'])
+            img['tmp'] = path
+            res['abi'][img['label']] = abi_of(elf) if elf else '-'
+            res['kind'][img['label']] = kind_of(img['data'], elf)
+            res['funcs'][img['label']] = functions_of(img, elf, path)
+        u = Unit(model, cfg, imgs).run()
+        # kernel dispatch tables
+        for d in cfg.get('ioctls', {}).get('dispatchers', []):
+            for img in imgs:
+                if img['elf'] is None or not u.applies(d, img):
+                    continue
+                if d.get('member') and img['member'] != d['member']:
+                    continue
+                rows = []
+                if d['type'] == 'jump-table':
+                    funcs = next((f for (i2, info, f) in u.code if i2 is img), [])
+                    rows = jump_table(img, img['elf'], funcs, d)
+                elif d['type'] == 'pointer-table':
+                    rows = pointer_table(img, img['elf'], d)
+                for number, handler in rows:
+                    res['tables'].append((d['name'], number, handler, img['label'], d.get('strip', '')))
+        res['mmio'] = u.out_mmio
+        res['unresolved'] = dict(u.unresolved)
+        res['sites'] = dict(u.sites)
+        res['tokens'] = u.tokens
+        res['ioctl'] = u.ioctl
+    finally:
+        shutil.rmtree(work, ignore_errors=True)
+    for img in imgs:
+        img.pop('elf', None)
+        img.pop('data', None)
+    return res
+
+
+# ===================================================================== external tables
+
+def fmt(s, tmp):
+    return s.replace('{tmp}', tmp).replace('{root}', os.path.join(REPO, 'root'))
+
+
+def read_tsv(path):
+    rows, head = [], None
+    for ln in open(path, encoding='utf-8', errors='replace'):
+        if ln.startswith('#') or not ln.strip():
+            continue
+        c = ln.rstrip('\n').split('\t')
+        if head is None:
+            head = c
+            continue
+        rows.append(dict(zip(head, c)))
+    return rows
+
+
+def table_rows(src, tmp):
+    path = os.path.join(REPO, fmt(src['file'], tmp))
+    if not os.path.exists(path):
+        return []
+    if src.get('header', True):
+        rows = read_tsv(path)
+    else:
+        rows = []
+        for ln in open(path, encoding='utf-8', errors='replace'):
+            if ln.startswith('#') or not ln.strip():
+                continue
+            c = ln.rstrip('\n').split('\t')
+            rows.append({str(i): x for i, x in enumerate(c)})
+    out = []
+    for r in rows:
+        if any(r.get(k) != v for k, v in src.get('where', {}).items()):
+            continue
+        if any(r.get(k) in v for k, v in src.get('where_not', {}).items()):
+            continue
+        out.append(r)
+    return out
+
+
+# ===================================================================== inventories
+
+def tsv_cell(x):
+    return str(x).replace('\t', ' ').replace('\n', ' ')
+
+
+def write_tsv(path, table, rows):
+    with open(path, 'w') as f:
+        f.write('\t'.join(COLUMNS[table]) + '\n')
+        for r in rows:
+            f.write('\t'.join(tsv_cell(r.get(c, '')) for c in COLUMNS[table]) + '\n')
+
+
+def short_list(items, k=6):
+    items = sorted(items)
+    s = ';'.join(items[:k])
+    return s + (';+%d more' % (len(items) - k) if len(items) > k else '')
+
+
+def put_status(row, st):
+    row['status'], row['doc'], row['section'] = st
+
+
+def window_files(cfg, win):
+    for w in cfg.get('windows', []):
+        if w['name'] == win:
+            return w.get('docs')
+        for r in w.get('regions', []):
+            if r['name'] == win:
+                return r.get('docs', w.get('docs'))
+    return None
+
+
+def window_forms(cfg, win, off):
+    """The numbers a document may write for an offset: the offset, its value within the
+    region, and the full physical address."""
+    vals, absolute = [off], []
+    for w in cfg.get('windows', []):
+        regs = [r for r in w.get('regions', []) if r['name'] == win]
+        if w['name'] == win or regs:
+            if regs and num(regs[0]['lo']):
+                vals.append(off - num(regs[0]['lo']))
+            if w.get('physical') is not None:
+                absolute.append(num(w['physical']) + off)
+    return vals, absolute
+
+
+def best_of(*sts):
+    top = ('undocumented', '', '')
+    for s in sts:
+        if RANK[s[0]] > RANK[top[0]]:
+            top = s
+    return top
+
+
+def context_words(cfg, key):
+    return cfg.get('docs', {}).get('context', {}).get(key)
 
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument('--out', default=os.path.join(REPO, 'docs/inventory'))
+    ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
+    ap.add_argument('--config', default=os.path.join(REPO, 'scripts', 'inventory-config.json'))
+    ap.add_argument('--out', default=os.path.join(REPO, 'docs', 'inventory'))
     ap.add_argument('--no-coverage', action='store_true')
+    ap.add_argument('--jobs', type=int, default=min(16, os.cpu_count() or 1))
     a = ap.parse_args()
+    os.chdir(REPO)
+    cfg = json.load(open(a.config))
     os.makedirs(a.out, exist_ok=True)
     tmp = tempfile.mkdtemp(prefix='inventory-')
     try:
-        bins = load_binaries()
-        print('%d ELF images in scope; %d byte-identical copies skipped' % (len(bins), len(load_binaries.duplicates)), file=sys.stderr)
-        docs = DocIndex()
-        kt = kpm_tables(tmp)
-        # the firmware's token map comes from the ARM image
-        arm = os.path.join(REPO, 'root/usr/gfx/ucode/KONA/arm1.u')
-        if os.path.exists(arm):
-            subprocess.run([sys.executable, os.path.join(REPO, 'scripts/arm1_disasm.py'), arm, tmp],
-                           check=True, capture_output=True)
-        summary = []
-        h, rows = inv_functions(bins, docs)
-        write_tsv(os.path.join(a.out, 'functions.tsv'), h, rows)
-        summary.append(summarize('Functions (every binary)', rows, 6))
-        best = {}
-        rank = {'documented': 2, 'named-only': 1, 'undocumented': 0}
-        for r in rows:
-            if r[5] not in best or rank[r[6]] > rank[best[r[5]][6]]:
-                best[r[5]] = r
-        summary.append(summarize('Functions (distinct names)', list(best.values()), 6))
-        h, rows, unresolved = inv_mmio(bins, docs, tmp)
-        write_tsv(os.path.join(a.out, 'mmio.tsv'), h, rows)
-        summary.append(summarize('MMIO offsets', rows, 5))
-        print('mmio: %d accessor calls with an offset that could not be recovered' % unresolved, file=sys.stderr)
-        h, rows = inv_tokens(docs, tmp)
-        write_tsv(os.path.join(a.out, 'tokens.tsv'), h, rows)
-        summary.append(summarize('Command tokens', rows, 5))
-        h, rows = inv_ioctls(bins, docs, tmp)
-        write_tsv(os.path.join(a.out, 'ioctls.tsv'), h, rows)
-        summary.append(summarize('Ioctls', rows, 6))
-        h, rows = inv_ucode(docs, tmp)
-        write_tsv(os.path.join(a.out, 'ucode.tsv'), h, rows)
-        summary.append(summarize('Microcode routines and entry points', rows, 5))
-        for s in summary:
-            print('%-40s %6d  documented %6d  named-only %6d  undocumented %6d' % s, file=sys.stderr)
-        if not a.no_coverage:
-            update_coverage(summary, len(scope_files()), os.path.join(REPO, 'docs/coverage.md'))
+        for cmd in cfg.get('prepare', []):
+            r = subprocess.run([sys.executable if c == 'python3' else fmt(c, tmp) for c in cmd],
+                               capture_output=True, text=True, cwd=REPO)
+            if r.returncode:
+                print('prepare %s failed: %s' % (' '.join(cmd), r.stderr.strip()[-500:]), file=sys.stderr)
+        build(cfg, a, tmp)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+
+
+def build(cfg, a, tmp):
+    docs = DocIndex(cfg)
+    imgs = scope(cfg)
+    print('%d distinct images in scope (%d byte-identical copies folded)' %
+          (len(imgs), sum(len(i['copies']) for i in imgs)), file=sys.stderr)
+    units = collections.OrderedDict()
+    for img in imgs:
+        units.setdefault(img['path'], []).append(img)
+    meta = {i['label']: i for i in imgs}
+    jobs = [(cfg, [dict(i) for i in u], tmp) for u in units.values()]
+    jobs.sort(key=lambda j: -sum(len(i['data']) for i in j[1]))
+    if a.jobs > 1:
+        with multiprocessing.get_context('fork').Pool(a.jobs) as pool:
+            results = pool.map(analyse_unit, jobs, chunksize=1)
+    else:
+        results = [analyse_unit(j) for j in jobs]
+
+    funcs, abi, kinds = {}, {}, {}
+    mmio, unresolved, sites, tokens_code, ioctl_code, tables = {}, collections.Counter(), collections.Counter(), {}, {}, []
+    for r in results:
+        funcs.update(r['funcs'])
+        abi.update(r['abi'])
+        kinds.update(r['kind'])
+        for k, e in r['mmio'].items():
+            t = mmio.setdefault(k, {'acc': set(), 'sites': 0, 'funcs': set(), 'bins': set(), 'ev': set(), 'ex': None})
+            t['acc'] |= e['acc']
+            t['sites'] += e['sites']
+            t['funcs'] |= e['funcs']
+            t['bins'] |= e['bins']
+            t['ev'] |= e['ev']
+            t['ex'] = min(x for x in (t['ex'], e['ex']) if x is not None)
+        unresolved.update(r['unresolved'])
+        sites.update(r['sites'])
+        for k, e in r['tokens'].items():
+            t = tokens_code.setdefault(k, {'sites': 0, 'bins': set(), 'ex': None, 'src': set(),
+                                           'known_only': e['known_only']})
+            t['sites'] += e['sites']
+            t['bins'] |= e['bins']
+            t['src'] |= e['src']
+            t['ex'] = min(x for x in (t['ex'], e['ex']) if x is not None)
+        for k, e in r['ioctl'].items():
+            t = ioctl_code.setdefault(k, {'roles': set(), 'funcs': set(), 'bins': set(), 'ex': None})
+            t['roles'] |= e['roles']
+            t['funcs'] |= e['funcs']
+            t['bins'] |= e['bins']
+            t['ex'] = min(x for x in (t['ex'], e['ex']) if x is not None)
+        tables += r['tables']
+
+    out = {}
+    # ---------------------------------------------------------------- spec registers
+    spec = []
+    for src in cfg.get('spec_registers', []):
+        if src['type'] == 'rows':
+            for r in src['rows']:
+                row = dict(zip(src.get('columns', ['table', 'page', 'window', 'offset', 'name', 'count', 'stride',
+                                                   'width', 'rw']), r))
+                row['spec'] = src['spec']
+                row['offset'] = num(row['offset'])
+                spec.append(row)
+        elif src['type'] == 'table':
+            for r in table_rows(src, tmp):
+                c = src['columns']
+                off = num(r[c['offset']])
+                spec.append({'spec': src['spec'], 'table': src.get('table', ''), 'page': '',
+                             'window': src['window'], 'offset': off + num(src.get('offset_bias', 0)),
+                             'name': r[c['name']].strip(), 'count': 1, 'stride': 0,
+                             'width': src.get('width', ''), 'rw': ''})
+    spec.sort(key=lambda r: (r['spec'], r['window'], r['offset'], r['name']))
+    spec_by_win = collections.defaultdict(list)
+    for r in spec:
+        r['span'] = max(1, int(r['count'] or 1)) * (int(r['stride'] or 0) or (8 if str(r['width']) == '64' else 4))
+        spec_by_win[r['window']].append(r)
+
+    def spec_names(win, off):
+        return [r for r in spec_by_win.get(win, []) if r['offset'] <= off < r['offset'] + r['span']]
+
+    def reg_name_status(r):
+        base = r['name'].split('[')[0]
+        names = {base, base.split('.')[-1], re.sub(r'\W+', '_', base)}
+        return docs.by_name(*sorted(n for n in names if n and IDENT.fullmatch(n)))
+
+    def offset_status(win, off, extra_names=()):
+        vals, absolute = window_forms(cfg, win, off)
+        files = window_files(cfg, win)
+        hits = docs.value_hits(vals, files, context_words(cfg, 'registers') or REG_CONTEXT, absolute=absolute)
+        st = docs.best(hits)
+        for r in spec_names(win, off):
+            st = best_of(st, reg_name_status(r))
+        if extra_names:
+            st = best_of(st, docs.by_name(*extra_names))
+        return st
+
+    # ---------------------------------------------------------------- mmio
+    rows = []
+    for (win, off), e in sorted(mmio.items()):
+        names = [r['name'] for r in spec_names(win, off)]
+        row = {'window': win, 'offset': '0x%x' % off, 'name': ';'.join(sorted(set(names))),
+               'access': ','.join(sorted(e['acc'])), 'sites': e['sites'], 'binaries': len(e['bins']),
+               'functions': short_list(e['funcs']), 'evidence': ';'.join(sorted(e['ev'])), 'example': e['ex']}
+        put_status(row, offset_status(win, off))
+        rows.append(row)
+    out['mmio'] = rows
+    reached = collections.defaultdict(list)
+    for (win, off) in mmio:
+        reached[win].append(off)
+
+    rows = []
+    for r in spec:
+        st = best_of(reg_name_status(r), offset_status(r['window'], r['offset']))
+        n = sum(1 for o in reached.get(r['window'], []) if r['offset'] <= o < r['offset'] + r['span'])
+        row = {k: r[k] for k in ('spec', 'table', 'page', 'window', 'name', 'count', 'stride', 'width', 'rw')}
+        row['offset'] = '0x%x' % r['offset']
+        row['reached_in_code'] = n
+        put_status(row, st)
+        rows.append(row)
+    out['spec-registers'] = rows
+
+    # ---------------------------------------------------------------- tokens
+    tk = cfg.get('tokens', {})
+    toks = collections.OrderedDict()
+
+    def tok(kind, reg, value):
+        k = (kind, reg, value)
+        if k not in toks:
+            toks[k] = {'names': [], 'detail': [], 'src': set(), 'sites': 0, 'bins': set(), 'ex': None}
+        return toks[k]
+
+    for src in tk.get('sources', []):
+        if src['type'] == 'table':
+            c = src['columns']
+            for r in table_rows(src, tmp):
+                v = r.get(c['value'], '')
+                if not re.fullmatch(r'0x[0-9a-fA-F]+|\d+', v.strip()):
+                    continue
+                e = tok(src.get('kind', 'token'), None, num(v))
+                if c.get('name') and r.get(c['name']):
+                    e['names'].append(r[c['name']].strip())
+                for col, lab in sorted(c.get('detail', {}).items()):
+                    if r.get(col):
+                        e['detail'].append('%s=%s' % (lab, r[col]))
+                e['src'].add(src['label'])
+        elif src['type'] == 'header':
+            for f in sorted(glob.glob(os.path.join(REPO, src['file']))):
+                for ln in open(f, encoding='utf-8', errors='replace'):
+                    m = re.match(src['pattern'], ln)
+                    if m:
+                        e = tok(src.get('kind', 'token'), None, num(m.group(2)))
+                        e['names'].append(m.group(1))
+                        e['src'].add(src['label'])
+    known_values = {k[2] for k in toks}
+    for (kind, reg, w), e in sorted(tokens_code.items(), key=lambda x: (x[0][0], -1 if x[0][1] is None else x[0][1], x[0][2])):
+        if e['known_only']:
+            if w not in known_values:
+                continue
+            kk = next(k for k in toks if k[2] == w)
+            t = toks[kk]
+        else:
+            t = tok(kind, reg, w)
+        t['src'] |= e['src']
+        t['sites'] += e['sites']
+        t['bins'] |= e['bins']
+        t['ex'] = min(x for x in (t['ex'], e['ex']) if x is not None)
+    model = Model(cfg)
+    for g in tk.get('groups', []):
+        members = collections.defaultdict(list)
+        for (kind, reg, w), e in list(toks.items()):
+            f = model.family(w) if kind == 'word' else None
+            if f is not None and f['name'] == g['family']:
+                members[(w >> g.get('shift', 0)) & num(g['mask'])].append(e)
+        for gid in sorted(members):
+            t = tok(g['kind'], None, gid)
+            t['detail'] = ['words=%d' % len(members[gid])]
+            for e in members[gid]:
+                t['src'] |= e['src']
+                t['sites'] += e['sites']
+                t['bins'] |= e['bins']
+                if e['ex']:
+                    t['ex'] = min(x for x in (t['ex'], e['ex']) if x is not None)
+    model = Model(cfg)
+    rows = []
+    vw = tk.get('value_width', 8)
+    for (kind, reg, w), e in sorted(toks.items(), key=lambda x: (x[0][0], -1 if x[0][1] is None else x[0][1], x[0][2])):
+        names = sorted(set(e['names']))
+        alt = []
+        for n in names:
+            for p in tk.get('name_prefixes', []):
+                alt.append(p + n)
+        detail = list(e['detail'])
+        if kind == 'word':
+            f = model.family(w)
+            if f:
+                detail = [f['name']] + ['%s=0x%x' % (fl['name'], (w >> fl.get('shift', 0)) & num(fl['mask']))
+                                        for fl in f.get('fields', [])] + detail
+        st = docs.by_name(*(names + alt))
+        if st[0] != 'documented':
+            files = tk.get('docs')
+            if reg is not None:
+                keys = ['hex:%x' % reg] + ['id:' + r['name'].split('[')[0] for r in spec_names(tk.get('window', ''), reg)]
+                hits = [h for h in docs.value_hits([w], files, None, absolute=())
+                        if any(docs.near(h, k) for k in keys)]
+                st = best_of(st, docs.best(hits))
+            elif kind in tk.get('value_match', []):
+                ctx = tk.get('context', {}).get(kind) or REG_CONTEXT
+                st = best_of(st, docs.best(docs.value_hits([w], files, ctx)))
+        row = {'kind': kind, 'value': ('0x%0' + str(tk.get('widths', {}).get(kind, vw)) + 'x') % w,
+               'name': ';'.join(names), 'register': '' if reg is None else '0x%x' % reg,
+               'detail': ' '.join(detail), 'sources': ','.join(sorted(e['src'])), 'sites': e['sites'],
+               'binaries': len(e['bins']), 'example': e['ex'] or ''}
+        put_status(row, st)
+        rows.append(row)
+    out['tokens'] = rows
+
+    # ---------------------------------------------------------------- ioctls
+    ic = cfg.get('ioctls', {})
+    ioc = {}
+    for name, number, handler, label, strip in tables:
+        e = ioc.setdefault(number, {'tables': set(), 'handlers': set(), 'ev': set(), 'senders': set(),
+                                    'bins': set(), 'ex': None, 'strip': set()})
+        e['tables'].add(name)
+        if handler:
+            e['handlers'].add(handler)
+        e['ev'].add('table')
+        e['bins'].add(label)
+        if strip:
+            e['strip'].add(strip)
+    for number, c in ioctl_code.items():
+        e = ioc.setdefault(number, {'tables': set(), 'handlers': set(), 'ev': set(), 'senders': set(),
+                                    'bins': set(), 'ex': None, 'strip': set()})
+        e['ev'] |= c['roles']
+        if c['roles'] & {'sent', 'constant'}:
+            e['senders'] |= c['funcs']
+        else:
+            e['handlers'] |= c['funcs']
+        e['bins'] |= c['bins']
+        e['ex'] = min(x for x in (e['ex'], c['ex']) if x is not None)
+    rows = []
+    for number in sorted(ioc):
+        e = ioc[number]
+        tname = ';'.join(sorted(e['tables']))
+        if not tname:
+            for c in ic.get('classes', []):
+                if num(c['lo']) <= number <= num(c['hi']):
+                    tname = c['name']
+                    break
+        names = sorted(e['handlers'])
+        for h in list(names):
+            for s in e['strip']:
+                if h.startswith(s):
+                    names.append(h[len(s):])
+        st = docs.by_name(*names)
+        files = ic.get('docs')
+        ctx = context_words(cfg, 'ioctls') or IOCTL_CONTEXT
+        if number >= int(ic.get('min_decimal', 100)):
+            st = best_of(st, docs.best(docs.dec_hits([number], files, ctx)))
+        st = best_of(st, docs.best(docs.value_hits([number], files, ctx, absolute=())))
+        row = {'number': number, 'hex': '0x%x' % number, 'table': tname, 'handler': short_list(e['handlers'], 4),
+               'evidence': ','.join(sorted(e['ev'])), 'senders': short_list(e['senders'], 4),
+               'binaries': len(e['bins']), 'example': e['ex'] or ''}
+        put_status(row, st)
+        rows.append(row)
+    out['ioctls'] = rows
+
+    # ---------------------------------------------------------------- ucode
+    rows = []
+    labels = {}
+    for src in cfg.get('ucode', []):
+        t = src['type']
+        if t == 'table':
+            c = src['columns']
+            for r in table_rows(src, tmp):
+                name = r.get(c['name'], '').strip()
+                kind = src.get('kind', 'symbol')
+                for pat, k in src.get('kind_by_name', {}).items():
+                    if re.search(pat, name):
+                        kind = k
+                detail = ' '.join('%s=%s' % (d, r[d]) for d in c.get('detail', []) if r.get(d))
+                rows.append({'program': src['program'], 'kind': kind, 'address': r.get(c['address'], ''),
+                             'name': name, 'detail': detail, '_names': [name]})
+        elif t == 'symbols':
+            p = os.path.join(REPO, fmt(src['file'], tmp))
+            if not os.path.exists(p):
+                continue
+            for ln in open(p, encoding='utf-8', errors='replace'):
+                parts = ln.split()
+                if len(parts) == 2 and re.fullmatch(r'(0x)?[0-9a-fA-F]+', parts[1]):
+                    labels.setdefault((src['program'], int(parts[1], 16)), []).append(parts[0])
+                    rows.append({'program': src['program'], 'kind': src.get('kind', 'label'), 'address': parts[1],
+                                 'name': parts[0], 'detail': '', '_names': [parts[0]]})
+        elif t == 'u16-table':
+            p = os.path.join(REPO, fmt(src['file'], tmp))
+            if not os.path.exists(p):
+                continue
+            d = open(p, 'rb').read()
+            for k in range(min(len(d) // 2, int(src.get('limit', 1 << 30)))):
+                v = struct.unpack('>H', d[2 * k:2 * k + 2])[0]
+                name = labels.get((src['labels'], v), [''])[0]
+                rows.append({'program': src['program'], 'kind': src.get('kind', 'dispatch slot'), 'address': str(k),
+                             'name': name, 'detail': 'handler 0x%x' % v, '_names': [name]})
+        elif t == 'records':
+            rows += record_routines(src)
+    for r in rows:
+        st = docs.by_name(*[n for n in r.pop('_names', []) if n])
+        rec = r.pop('_record', None)
+        if rec is not None and st[0] != 'documented':
+            st = best_of(st, record_status(docs, rec, cfg))
+        put_status(r, st)
+    out['ucode'] = rows
+
+    # ---------------------------------------------------------------- functions and binaries
+    rows = []
+    brows = []
+    for img in imgs:
+        lab = img['label']
+        g = img['group']
+        fl = funcs.get(lab, {})
+        for name in sorted(fl, key=lambda n: (fl[n][1], n)):
+            sec, addr, size, srcs = fl[name]
+            row = {'binary': lab, 'role': g['role'], 'abi': abi.get(lab, '-'), 'elf_section': sec,
+                   'address': '0x%x' % addr, 'size': size or '', 'name': name, 'source': '+'.join(sorted(srcs))}
+            put_status(row, docs.by_name(name))
+            rows.append(row)
+        base = os.path.basename(img['path'])
+        st = docs.by_file(img['member'] or base, *([base] if img['member'] else []))
+        unr = sum(v for (b, w), v in unresolved.items() if b == lab)
+        row = {'binary': lab, 'group': g['group'], 'role': g['role'], 'kind': kinds.get(lab, 'data'),
+               'abi': abi.get(lab, '-'), 'bytes': meta[lab].get('size', ''), 'sha256': img['sha'][:16],
+               'copies': ';'.join(img['copies']), 'functions': len(fl), 'access_sites': sites.get(lab, 0),
+               'unresolved_sites': unr}
+        put_status(row, st)
+        brows.append(row)
+    out['functions'] = rows
+    out['binaries'] = brows
+
+    for t in TABLES:
+        write_tsv(os.path.join(a.out, t + '.tsv'), t, out[t])
+    # ---------------------------------------------------------------- summary
+    total_unres = sum(unresolved.values())
+    resolved_sites = sum(e['sites'] for e in mmio.values())
+    srows = []
+    for t in TABLES:
+        srows.append(summary_row(t, out[t], total_unres if t == 'mmio' else ''))
+        if t == 'functions':
+            best = {}
+            for r in out['functions']:
+                if r['name'] not in best or RANK[r['status']] > RANK[best[r['name']]]:
+                    best[r['name']] = r['status']
+            srows.append(summary_row('functions (distinct names)', [{'status': s} for s in best.values()], ''))
+    write_tsv(os.path.join(a.out, 'summary.tsv'), 'summary', srows)
+    for r in srows:
+        print('%-28s %7s  documented %6s (%5s%%)  nsd %5s  named-only %6s  undocumented %6s' %
+              (r['table'], r['rows'], r['documented'], r['pct_documented'], r['no_software_dependency'],
+               r['named_only'], r['undocumented']), file=sys.stderr)
+    by_win = collections.Counter()
+    for (b, w), v in unresolved.items():
+        by_win[w] += v
+    print('register access sites: %d resolved, %d unresolved (%s)' %
+          (resolved_sites, total_unres, ', '.join('%s %d' % kv for kv in sorted(by_win.items()))), file=sys.stderr)
+    if not a.no_coverage:
+        update_coverage(cfg, srows, imgs, kinds, resolved_sites, total_unres, by_win)
+
+
+REG_CONTEXT = ('register', 'offset', 'pio', 'window', 'fifo', 'port', 'status', 'flag', 'store', 'load',
+               'read', 'write', 'address', 'field', 'word', 'command', 'block', 'bit', 'mask', 'interrupt',
+               'dma', 'reset', 'base', 'map', 'token')
+IOCTL_CONTEXT = ('ioctl',)
+
+
+def record_routines(src):
+    """Routines of a fixed-record microcode image: one starts at record 0, a fixed distance after
+    each end-mark record and at every host entry point."""
+    import importlib
+    mod = importlib.import_module(src['module']) if src.get('module') else None
+
+    def attr(k, default=None):
+        v = src.get(k)
+        if isinstance(v, str) and v.startswith('module.'):
+            return getattr(mod, v[7:])
+        return default if v is None else v
+    entries = set(attr('entries', []))
+    ram = attr('ram_records')
+    rows = []
+    seen = set()
+    for img in src['images']:
+        p = os.path.join(REPO, img['path'])
+        if not os.path.exists(p):
+            continue
+        data = open(p, 'rb').read()
+        h = hashlib.sha256(data).hexdigest()
+        if h in seen:
+            continue
+        seen.add(h)
+        size = int(src['record_bytes'])
+        n = len(data) // size
+        recs = [int.from_bytes(data[i * size:(i + 1) * size], 'big') for i in range(n)]
+        ends = [i for i, w in enumerate(recs) if (w & num(src['end_mask'])) in [num(x) for x in src['end_values']]]
+        ent = set()
+        ins_at, ins_len = attr('insert_at'), attr('insert_len')
+        for e in entries:
+            if img.get('kernel_copy') and ins_at is not None and e >= ins_at:
+                if e < ins_at + ins_len:
+                    continue
+                e -= ins_len
+            ent.add(e)
+        after = int(src['start_after_end'])
+        starts = {0} | {i + after for i in ends if i + after < n} | {e for e in ent if e < n}
+        prog = os.path.basename(p)
+        for s in sorted(starts):
+            k = bisect.bisect_left(ends, s)
+            end = ends[k] if k < len(ends) else -1
+            kind = 'host entry' if s in ent else ('image start' if s == 0 else 'follows end mark')
+            detail = 'end_mark=%d records=%d' % (end, (end - s + 1) if end >= 0 else 0)
+            if ram is not None:
+                detail += ' beyond_ram=%s' % ('yes' if s >= ram else 'no')
+            rows.append({'program': prog, 'kind': kind, 'address': str(s), 'name': '', 'detail': detail,
+                         '_names': [], '_record': s})
+    return rows
+
+
+def record_status(docs, v, cfg):
+    words = cfg.get('docs', {}).get('context', {}).get('ucode') or ('entry', 'entries', 'routine', 'record')
+    hits = []
+    for h in docs.decs.get(v, []):
+        if not any(w in h.ctx for w in words):
+            continue
+        if v >= 100 or re.search(r'(%s)\W+(\w+\W+){0,2}%d\b' % ('|'.join(words), v), h.ctx):
+            hits.append(h)
+    return docs.best(hits)
+
+
+def summary_row(name, rows, unresolved):
+    c = collections.Counter(r['status'] for r in rows)
+    n = len(rows)
+
+    def pct(x):
+        return '%.1f' % (100.0 * x / n) if n else '0.0'
+    return {'table': name, 'rows': n, 'documented': c['documented'],
+            'no_software_dependency': c['no-software-dependency'], 'named_only': c['named-only'],
+            'undocumented': c['undocumented'], 'pct_documented': pct(c['documented']),
+            'pct_done': pct(c['documented'] + c['no-software-dependency']), 'unresolved_sites': unresolved}
+
+
+def update_coverage(cfg, srows, imgs, kind, resolved, unres, by_win):
+    path = os.path.join(REPO, 'docs', 'coverage.md')
+    if not os.path.exists(path):
+        return
+    text = open(path).read()
+    elf = sum(1 for i in imgs if kind.get(i['label'], 'data') != 'data')
+    lines = [MARK_BEGIN, '## Measured coverage', '',
+             'Generated by `scripts/inventory.py` from %d distinct files in scope, %d of them ELF images. '
+             'The rows are in [docs/inventory/](inventory/README.md), which defines every column and status. '
+             'A row is done when it is documented or labelled as having no software dependency.'
+             % (len(imgs), elf), '',
+             '| Table | Rows | Documented | No software dependency | Named only | Undocumented | % documented | % done |',
+             '|---|---:|---:|---:|---:|---:|---:|---:|']
+    for r in srows:
+        link = r['table'] if r['table'] in TABLES else None
+        label = '[%s](inventory/%s.tsv)' % (link, link) if link else r['table']
+        lines.append('| %s | %d | %d | %d | %d | %d | %s | %s |' % (
+            label, r['rows'], r['documented'], r['no_software_dependency'], r['named_only'], r['undocumented'],
+            r['pct_documented'], r['pct_done']))
+    tot = resolved + unres
+    lines += ['',
+              'Register access sites: %d found, %d resolved to an offset and %d (%s%%) unresolved, where the base '
+              'is a known register window but the offset could not be traced.%s' % (
+                  tot, resolved, unres, ('%.1f' % (100.0 * unres / tot)) if tot else '0.0',
+                  (' Unresolved by window: %s.' % ', '.join('%s %d' % kv for kv in sorted(by_win.items())))
+                  if by_win else ''),
+              '', MARK_END]
+    block = '\n'.join(lines)
+    pat = re.compile(r'(<!-- inventory:(?:begin|start)[^>]*-->).*?(<!-- inventory:end -->)', re.S)
+    if pat.search(text):
+        text = pat.sub(lambda m: block, text, count=1)
+    else:
+        i = text.find('\n## ')
+        text = (text[:i] + '\n\n' + block + '\n' + text[i:]) if i >= 0 else text + '\n' + block + '\n'
+    open(path, 'w').write(text)
 
 
 if __name__ == '__main__':
