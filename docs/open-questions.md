@@ -74,7 +74,7 @@ The distributor questions are written in [ucode/ged.md](../ucode/ged.md); listed
 |---|---|---|---|
 | How the hardware chooses between the state-based index and the token's own entry number | `ucode/ged.md` | the distributor program and the firmware's tables | The `irsaudit` distributor tests (`TEST_gedcrc_*`, `TEST_geducode`) and their host models of the expected routing |
 | What transfer ops 1, 3, 5, 6 and 7 test; control fields x, y, r, a, b, c, z and n; the small-constant registers r13, r14, r30-r67 and the sequencer-test registers 0x280-0x2b0 | `ucode/ged.md` | the diagnostic's instruction packer | The `gedSequencer` test's host side and `Get_GED_*_Inst` builders |
-| How the distributor picks among the eight engines (round-robin flag and occupancy mask) | `ucode/ged.md` | none from software yet | The 6.5.5 `sys/kona_if.h` header and `irsaudit` `ge12_multige_test`/`ge12_splitge_test` |
+| How the distributor chooses among the engines in its occupancy mask (the mask and its register are read: ucode/ged.md, "Engine occupancy mask") | `ucode/ged.md` | `arm1.u` start-up (`init_ge_config`, `init_ge`); 6.5.5 `sys/kona_if.h` (a round-robin flag no 6.5.30m firmware path tests) | `irsaudit` `ge12_multige_test` and `ge12_splitge_test`; if they predict no assignment, label it unknown with these routes |
 
 **Where this section stopped (2026-10-29).** Not yet worked from software; take the rows in order.
 
