@@ -628,15 +628,32 @@ enum kona_vfo_signal {
  * docs/dg.md gives each word's source and destination.
  */
 #define KONA_LF_VOC_ID                0
+#define KONA_LF_ONE                   1       /* ESTABLISHED: the channel loader (kona.so
+                                               * 0x4dc610) always stores 1 here; the
+                                               * firmware never reads it */
 #define KONA_LF_NAME                  2       /* 16 words: format name, NUL padded */
 #define KONA_LF_DATESTAMP             18      /* modification time of the .vfo file */
-#define KONA_LF_FRAME_RATE            19      /* FramesPerSecond * 65536 */
+#define KONA_LF_FRAME_RATE            19      /* FramesPerSecond * 65536; when the channel is
+                                               * genlocked, 0x4fcfd0 rounds it to a whole
+                                               * multiple or fraction of the sync format's rate */
 #define KONA_LF_FIELDS                20      /* FieldsPerFrame (1-8) */
 #define KONA_LF_TOTAL_LINES           21
 #define KONA_LF_TOTAL_PIXELS          22
 #define KONA_LF_ACTIVE_LINES          23
 #define KONA_LF_ACTIVE_PIXELS         24
-#define KONA_LF_PIXELS_PER_CLOCK      25      /* VideoClockRatioDenominator: 1, 2 or 4 */
+#define KONA_LF_PIXELS_PER_CLOCK      25      /* VideoClockRatioDenominator: 1, 2 or 4; the
+                                               * channel loader zeroes it for a field-sequential
+                                               * channel that copies another channel */
+#define KONA_LF_PIXEL_FORMAT          26      /* ESTABLISHED (channel loader): the source
+                                               * channel's PixelFormat, 0 RGB10, 1 RGBA10,
+                                               * 2 RGB12 (ircombine's buttons), 3 and 4 also
+                                               * legal to vfmtIsKonaCombinationValidForTarget;
+                                               * 5 when the channel's OutputAlpha (alpha on
+                                               * blue) is set */
+#define KONA_LF_DITHER                27      /* ESTABLISHED: channel record +324, the word
+                                               * ircombine's Dither toggle sets; no .cmb field
+                                               * fills it, so a loaded file sends 0. INFERRED:
+                                               * its bit 0, VOC 0x44 bit 7, is the dither bit */
 #define KONA_LF_BLANK                 28      /* 28-30 -> KONA_VOC_BLANK */
 #define KONA_LF_STATE_COUNT           31      /* StateTableValidStates */
 #define KONA_LF_INITIAL_LEVELS        32      /* -> KONA_VOC_VOF_INITIAL */
@@ -646,13 +663,97 @@ enum kona_vfo_signal {
 #define KONA_LF_LINE_A                161     /* 32 words -> KONA_VOC_LINE_A */
 #define KONA_LF_LINE_B                193     /* 32 words -> KONA_VOC_LINE_B */
 #define KONA_LF_EDGES                 225     /* 50 words -> KONA_VOC_EDGE, signal by signal */
+#define KONA_LF_OPTION_A              275     /* ESTABLISHED (channel loader), by channel kind:
+                                               * the combination's usingEncoderOutput on an
+                                               * encoder-capable channel; 1 on a GVO channel
+                                               * that copies another channel; 1 on the VBOB
+                                               * channel 14 after its command 91 */
+#define KONA_LF_OPTION_B              276     /* 1 when an encoder or GVO channel copies
+                                               * another channel's pixels, else 0 */
+#define KONA_LF_FLAT                  277     /* 0 for field-sequential colour, for an
+                                               * interlaced format (FieldLineSkip[0] > 0) or on
+                                               * a PAB channel; otherwise 1 */
+#define KONA_LF_EYES                  278     /* union of the fields' re-coded eye codes as a
+                                               * 2-bit mask (1, 2 or 3); 1 for a record the
+                                               * module marks non-stereo */
 #define KONA_LF_CLOCK0                279     /* 8 words, dgLoadVocClockParams(id, ., 0) */
 #define KONA_LF_CLOCK1                287     /* 8 words, dgLoadVocClockParams(id, ., 1) */
+/*
+ * Clock parameter set (8 words). ESTABLISHED as computed by the X module's
+ * PLL solver at kona.so 0x4adfc0 (konCalcVocClockParams is among the
+ * module's section-name strings; the match is INFERRED). Inputs: a reference
+ * frequency and the pixel clock. Set 0 uses the crystal, 14.75 MHz or
+ * 12.2727 MHz by a flag of the loaded combination; set 1 uses the external
+ * sync format's line rate when the channel is genlocked, else it equals
+ * set 0. Names are INFERRED from the solver's arithmetic, which is a
+ * charge-pump PLL model:
+ *   word 0  control: 0x80 always; 0x85 for an output below 12 MHz and 0x87
+ *           otherwise when the reference is a crystal, 0x80 when it is a line
+ *           rate. Bit 1 picks the loop constants the solver uses (120000,
+ *           1.1e-10, 1.1e-11, else 56000, 1e-8, 1e-9: INFERRED ohms and farads).
+ *   word 1  feedback divider N
+ *   word 2  reference divider M: 1 in line-rate mode; 64, with N = 64 x the
+ *           post-divider ratio, when the output is within 100 Hz of
+ *           12.2727 MHz; otherwise from the search at 0x542cf0 (bounds 2048
+ *           and 1024)
+ *   word 3  1 in line-rate mode, else 0
+ *   word 4  VCO range index 0-7 into 10, 15, 20, 25, 45, 60, 75, 90 MHz
+ *           (first entry whose 85 percent exceeds VCO / 3.5)
+ *   word 5  charge-pump index 0-7 into 0.2344, 0.9375, 3.75, 15, 1.875, 7.5,
+ *           30, 120 uA (table at 0x586f58), chosen for the loop's damping
+ *   word 6  post-divider code: 0 = /8, 1 = /4, 2 = /2, 3 = /1, the largest
+ *           ratio that keeps the VCO at or below 230 MHz; above that the
+ *           module prints "output frequency ... is greater than PLL max"
+ *   word 7  3, constant
+ * What the clock chip does with each code beyond the solver's model:
+ * UNKNOWN: no shipped software or published source depends on it. Routes
+ * tried: the solver; dgLoadVocClockParams, which copies the words to VOC
+ * 0x71 and 0x73 unchanged; the .vfo and vfc/rules files, which carry no PLL
+ * field; setmon, which carries its own copy of the solver (the same
+ * section name and "PLL max" message).
+ */
+#define KONA_LF_LOCK_MUL              295     /* ESTABLISHED (0x4fcfd0): genlocked to a sync
+                                               * format with another line count, this format's
+                                               * lines / gcd(lines, sync lines); 1 when the
+                                               * counts match; 0 when not genlocked */
+#define KONA_LF_LOCK_DIV              296     /* sync lines / gcd - 1 for a ratio, else 0 */
+#define KONA_LF_LINE_MAX              297     /* always 8191 from the X module */
+#define KONA_LF_LOCK_LINE             298     /* the sync format's PFDVOFVerticalPhase when
+                                               * the line counts match; lines x that phase /
+                                               * sync lines - 2 for a ratio; 8191 when not
+                                               * genlocked */
+#define KONA_LF_VOC08_HI              299     /* 299 and 300: the X module stores neither, so
+                                               * both are 0; the firmware puts them in VOC 0x08
+                                               * bits 28-26 and 29. Their meaning: UNKNOWN: no
+                                               * shipped software or published source depends
+                                               * on it (routes: every store into the request
+                                               * in kona.so, setmon, ircombine, the firmware) */
+#define KONA_LF_TILES_PER_REQUEST     301     /* the source channel's MaxTilesPerRequest */
+#define KONA_LF_TILES_PER_LINE        302     /* the source channel's MaxTilesPerLine */
 #define KONA_LF_FIELD_LINES           303     /* 16 words each: FieldLineCount, */
 #define KONA_LF_FIELD_OFFSET          319     /* FieldLineOffset, */
 #define KONA_LF_FIELD_SKIP            335     /* FieldLineSkip, */
 #define KONA_LF_FIELD_COLOR           351     /* FieldColor, re-coded by the module, */
 #define KONA_LF_FIELD_EYE             367     /* FieldEye, re-coded by the module */
 #define KONA_LF_WORDS                 383
+
+/*
+ * Sync selection (display command 35, DoDGRqstSyncSelects, 4 words).
+ * ESTABLISHED from the X module's sender at kona.so 0x555cf0 (section name
+ * konSetOutputSync, INFERRED match): word 0 the VOC id, word 1 the port,
+ * word 2 the select code, word 3 the tri-level flag. Ports: 0 red, 1 green,
+ * 2 blue, 3 the auxiliary H/C sync connector. The module's sync types map
+ * to select codes as below and refuse the rest with its own messages.
+ */
+#define KONA_SYNC_PORT_RED            0
+#define KONA_SYNC_PORT_GREEN          1
+#define KONA_SYNC_PORT_BLUE           2
+#define KONA_SYNC_PORT_AUX            3
+#define KONA_SYNC_SEL_NONE            0       /* type 0: refused on the aux port */
+#define KONA_SYNC_SEL_COMPOSITE       1       /* type 3 composite on a colour port; type 6
+                                               * composite TTL on the aux port; type 9
+                                               * composite tri-level on a colour port, with
+                                               * word 3 = 1 */
+#define KONA_SYNC_SEL_HORIZONTAL      2       /* type 4 horizontal TTL, aux port only */
 
 #endif /* KONA_DG_H */

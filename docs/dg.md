@@ -126,15 +126,15 @@ Option-board VOCs use ids above 7: `DoDGRqstLoadFormat` loads a format into the 
 | Words | Host source (`kona.so` readers) | Firmware use |
 |---|---|---|
 | 0 | the channel's VOC id, from the combination | the VOC block for every write; partner ids above |
-| 1 | a second channel word from the caller | not read |
+| 1 | always 1: the channel loader at 0x4dc610 stores it | not read |
 | 2-17 | the `.vfo` file name (64 bytes) | copied to the channel record + 0x08 |
 | 18 | modification time of the `.vfo` file | record + 0x48 |
-| 19 | `FramesPerSecond` x 65536 | record + 0x8c |
+| 19 | `FramesPerSecond` x 65536; on a genlocked channel 0x4fcfd0 rounds it to a whole multiple or fraction of the sync format's rate | record + 0x8c |
 | 20 | `FieldsPerFrame` (1-8, else "illegal nFieldsPerFrame") | record + 0xa4, field loop count |
 | 21, 22 | `TotalLinesPerFrame`, `TotalPixelsPerLine` | record + 0x90, + 0x94 |
 | 23, 24 | `ActiveLinesPerFrame`, `ActivePixelsPerLine` | not read by this handler |
 | 25 | `VideoClockRatioDenominator` (1, 2 or 4, else "illegal nPixelsPerClock") | record + 0x98; VOC 0x01 bits 11-9 through the table at 0x040416c4 (clamped to 4 above 9); DAC pixel mux |
-| 26, 27 | two words from the combination channel | record + 0xac; bit 0 to record flag bit 30. `dgConfigureVideoRequester` turns word 26 (1, 2 or 3) into bits 10-8 of VOC 0x44 and flag bit 30 into its bit 7 ([requester](#the-video-requester)) |
+| 26, 27 | word 26: the source channel's `PixelFormat` (0 RGB10, 1 RGBA10, 2 RGB12; 3 and 4 also pass the module's validator), or 5 when this channel's `OutputAlpha` is set; word 27: channel record +324, which ircombine's Dither toggle sets and no `.cmb` field fills ([combination channels](#loading-a-combination-channel)) | record + 0xac; bit 0 to record flag bit 30. `dgConfigureVideoRequester` turns word 26 (1, 2 or 3) into bits 10-8 of VOC 0x44 and flag bit 30 into its bit 7 ([requester](#the-video-requester)) |
 | 28-30 | built from `ActiveBlankingLeft` and `ActiveBlankingRight` | VOC 0x14: bit 16, bits 7-0, bits 15-8 |
 | 31 | `StateTableValidStates` | number of state words: words 33 to 33 + 31/2 go to VOC 0x09 |
 | 32 | bit n set when `SignalInitialStateValue[n]` equals `TransitionDirectionHigh` | VOC 0x07; bits 17-18 added on an old DG4 |
@@ -142,19 +142,93 @@ Option-board VOCs use ids above 7: `DoDGRqstLoadFormat` loads a format into the 
 | 161-192 | per line type: bit e set when edge e (< 32) is used on that type (`TransitionLineTypesUsing`) | VOC 0x0a, type selected in VOC 0x06 |
 | 193-224 | per line type: `LineTypeLength` - 3 in bits 30-18 (0 if invalid), edges 32-49 in bits 17-0 | VOC 0x0b |
 | 225-274 | per edge slot: `TransitionValue` in bits 12-0, 0x1fff if not `TransitionValid` | VOC 0x0c + slot, signal selected in VOC 0x06 |
-| 275 | from the combination (record + 1552) | tested for ids 1, 0x5e and 0xc6/0xc7 before the record + 0x88 update and the HDGVO set-up |
-| 276-278 | from the combination | record + 0x88 bits 9, 12-13, 14; word 278 also VOC 0x8a bits 12-13 |
-| 279-286, 287-294 | two clock parameter sets computed by the module at 0x4fcfd0 from the frame rate, the line and pixel totals and a reference frequency chosen by a board flag | `dgLoadVocClockParams` set 0 and set 1 (VOC 0x71, 0x73) |
-| 295, 296 | set at 0x4fcfd0 (0 or 1, and a count) | VOC 0x81 bits 11-2; VOC 0x82 bits 21-14 |
-| 297-300 | the same function (297 and 298 default to 8191) | VOC 0x08 bits 12-0, 25-13, 28-26, 29; word 298 also record + 0x164 |
-| 301, 302 | from the combination channel (record + 1656, 1660) | record + 0xb4, + 0xb8 |
+| 275 | by channel kind ([combination channels](#loading-a-combination-channel)): `usingEncoderOutput` on an encoder-capable channel, 1 on a GVO channel that copies another channel, 1 on the VBOB channel | tested for ids 1, 0x5e and 0xc6/0xc7 before the record + 0x88 update and the HDGVO set-up |
+| 276-278 | 276: 1 when an encoder or GVO channel copies another channel; 277: 0 for field-sequential colour, an interlaced format or a PAB channel, else 1; 278: the union of the fields' eye codes as a 2-bit mask, 1 for a non-stereo record | record + 0x88 bits 9, 12-13, 14; word 278 also VOC 0x8a bits 12-13 |
+| 279-286, 287-294 | two clock parameter sets from the module's PLL solver at 0x4adfc0: set 0 from a 14.75 MHz or 12.2727 MHz crystal, set 1 from the sync format's line rate when genlocked (word layout in [DG.h](../DG.h), `KONA_LF_CLOCK0`) | `dgLoadVocClockParams` set 0 and set 1 (VOC 0x71, 0x73) |
+| 295, 296 | genlock line ratio, from 0x4fcfd0: this format's lines / gcd and the sync format's lines / gcd - 1 when the line counts differ; 1 and 0 when they match; 0 and 0 when not genlocked | VOC 0x81 bits 11-2; VOC 0x82 bits 21-14 |
+| 297-300 | 297: always 8191; 298: the sync format's `PFDVOFVerticalPhase` when the line counts match, lines x that phase / sync lines - 2 for a ratio, 8191 when not genlocked; 299 and 300: never stored, 0 | VOC 0x08 bits 12-0, 25-13, 28-26, 29; word 298 also record + 0x164 |
+| 301, 302 | the source channel's `MaxTilesPerRequest` and `MaxTilesPerLine` | record + 0xb4, + 0xb8 |
 | 303-318 | `FieldLineCount` | per-field records |
 | 319-334, 335-350 | `FieldLineOffset`, `FieldLineSkip` | record + 0xe0 + 16 x field, + 0xe4 + 16 x field; the number of distinct offsets to record + 0xa8 |
 | 351-366, 367-382 | `FieldColor`, `FieldEye`, re-coded by the module | `dgLoadFieldSequentialAndStereo` (VOC 0x60 table) |
 
 **Established** (absence): the edge direction arrays (`TransitionDirection`) are read by the module but no request word carries them; the frame-detection fields (`PFDTable` packed into two words, `PFDInvert`, `PFDRegularLines`, `PFDComparatorPrecision`, `PFDClockSelect`, `PFDVOFVerticalPhase`, `PFDValidTable`) are read into the record past the request (offsets 1984-2012), so they are not part of it. **Inferred:** the hardware toggles a signal at each valid edge, so no direction is needed.
 
-**Unknown: no shipped software or published source depends on it:** the units of the clock parameter words and the meaning of words 1, 275-277 and 297-300 beyond the register bits they fill, and which requester-control field words 26 and 27 set. Routes tried: the module's builder and the firmware's consumer above, `dgLoadVocClockParams` and the `.vfo` and `vfc/rules/*.def` files.
+**Unknown: no shipped software or published source depends on it:** what the clock chip does with each PLL code beyond the solver's own model, and what VOC 0x08 bits 28-26 and 29 (words 299 and 300, always 0 from the host) select. Routes tried: the module's builder, the channel loader and the PLL solver, `setmon` (which carries its own copy of the loader and solver), `ircombine`, the firmware's consumer above, `dgLoadVocClockParams` and the `.vfo` and `vfc/rules/*.def` files.
+
+## Loading a combination channel
+
+**Established** (`kona.so` 6.5.30m, static function at 0x4dc610, called once per enabled channel by the combination loader that follows `konWriteFBSubBlock` in the file). **Inferred** names: the module's section-name strings include `konLdCombinationChannel` and `konLdCombination`, and `setmon` carries the same names; the functions match them by content.
+
+The combination record is the one `vfmtReadKonaCombination` fills (see [opengl.md](opengl.md#vfmtreadkonacombination)): global fields first, then 15 channel records of 2736 bytes at +596. The channel-record offsets the readers and `ircombine`'s channel form use:
+
+| Offset | `.cmb` field | `ircombine` control | Sent as |
+|---:|---|---|---|
+| +260 | `SourceChannel` | | the channel whose pixels this one copies (vampire) |
+| +264, +272 | `InputOrigin`, `InputSize` | | commands 20 and 79 |
+| +280, +288 | `MinSize`, `MaxSize` | | command 67 |
+| +296 | `OutputSize` | | command 79 |
+| +308 | `PixelFormat` | RGB10 0, RGBA10 1, RGB12 2 | LoadFormat word 26 |
+| +312 | `DataFormat` | | command 88 |
+| +316 | `OutputAlpha` | Alpha On Blue | LoadFormat word 26 = 5 |
+| +320 | `CursorPriority` | | command 30 |
+| +324 | (none) | Dither | LoadFormat word 27 |
+| +328 | `PlacementRes` | | command 67 |
+| +340 | `FormatName` | | the `.vfo` to load |
+| +600, +604, +608 | `HPhase`, `VPhase`, `SCHPhase` | | commands 11, 13, 49 |
+| +612 | `Gain` | | command 33 |
+| +628 | `FilterSize` | | command 79 |
+| +636, +640, +644 | `FlickerFilter`, `Letterbox`, `SafeArea` | | commands 20 and 86 |
+| +648 | `SetupEnable` | Setup | command 37 (pedestal) |
+| +652 | `HSync` | Horizontal stores 1, Composite stores 3 | command 35 on the auxiliary port |
+| +656 | `TriLevelSyncEnable` | Tri-Level Sync | command 35 on the colour ports |
+| +660 | `SyncSource` | | |
+| +664-+672 | `SyncComponent` | R, G, B sync toggles | command 35 on the colour ports |
+| +676, +680 | `Enable`, `Blanking` | | channel skipped when disabled; command 31 |
+| +684 | `FieldLayout` | | command 79 |
+| +688 | `VbobSyncSource` | | command 91 |
+| +696, +700 | `MaxTilesPerRequest`, `MaxTilesPerLine` | | LoadFormat words 301, 302 |
+| +712 | (none) | | set by the reader when the channel exists |
+
+The `ircombine` column is **established** from its channel-form handlers (`horizontalSync__5Form1`, `compositeSync__5Form1`, `rSync__5Form1`, `gSync__5Form1`, `bSync__5Form1`, `triLevelSync__5Form1`, `setup__5Form1`, `dither__5Form1`, `alphaChannel__5Form1`, `rgba10__5Form1`, `rgb12__5Form1`), each of which stores into the same offset of the same channel record.
+
+Each channel's description word (a record the module keeps per pipe channel, reached through word +500 of a 504-byte entry) decides some steps: bit 1 of its first word marks the channel that runs `SCHPhase`, **inferred** the encoder-capable channel; its word +24 is 1 on the path that prints the PAB pixel-mux messages, 3 and 4 elsewhere. **Inferred:** word +24 is the option-board channel type of the 6.5.5 `sys/kona_if.h` configuration record (none 0, PAB 1, VEG 2, DGO/GVO 3, DVP 4, DPLEX 5), from the value match and those messages.
+
+The steps, in order (display-command numbers from [dg_dispatch.tsv](../ucode/dg_dispatch.tsv), payloads as the module stores them):
+
+1. Command 30 (`DoDGRqstCursorPriority`): the VOC id and `CursorPriority`.
+2. The format: the source channel's `.vfo` is read into the request (above), words 1, 26, 27, 275-278, 301 and 302 are set, and a channel that copies another one takes the source's name and date words. On a field-sequential channel that copies another, word 25 is cleared.
+3. On channel 14 only, command 91 (`DoDGRqstVBOBCommand`, 42 words): 1, 161 and a sync byte, 0x80 | s << 4 for formats whose `TotalLinesPerFrame` is neither 525 nor 625, else 0x08 | s, with s = 3 when `VbobSyncSource` is set and 0 otherwise. The other 39 words are not written (stack contents). Word 275 of the format then becomes 1. **Inferred:** the byte selects the VBOB option's sync input and standard; the firmware passes it to the option over I2C ([display requests](#display-requests)).
+4. Command 22 (LoadFormat), through 0x4fcfd0, which also computes the clock and genlock words.
+5. Command 88 (`DoDGRqstDataFormat`): the VOC id, `DataFormat` (0-9 passed through, anything else 3) and a flag from the helper at 0x47ad00.
+6. Command 86 (`DoDGRqstBufferParams`): the VOC id, `Letterbox`, and `SafeArea` clamped to 50-100 and multiplied by 65536.
+7. Command 79 (`DoDGRqstVampire`, 7 words): the VOC id, the source's VOC id, the output width and height (`OutputSize`, or on channels 8 and 11 with `Letterbox` set a size from `SafeArea` and the input's aspect; the width rounded down to a multiple of 4, the height to an even number), `FieldLayout` (5 for a record marked stereo), and the two `FilterSize` values truncated.
+8. Command 20 (Resize, [below](#the-resize-request-8-words)): the input rectangle with its y turned into a top line, 1, `FlickerFilter` == 0, 0.
+9. Command 67 (`DoDGRqstPlacementRes`, 9 words): the VOC id, the x code (`PlacementRes` x 0 gives 0, 1 gives 4, 2 gives 160 when the channel is its own source and 4 otherwise), the y code (0 gives 0, 1 gives 1 or 4 by the same test), 4 when the channel copies another or its format runs two pixels per clock (word 25 of the format copy the channel record keeps at +716) and 0 otherwise, 1, `MaxSize` and `MinSize`. **Inferred** from the Combiner user guide's placement menu (Locked, Pixel, Tile; files store x 2 and y 1, its defaults Tile and Pixel): the codes are the panning step, 0 none, 4 pixels (one groupxel) or 1 line for Pixel, 160 pixels (one tile) for Tile.
+10. Sync, for channels 0-7, 10 and 12: command 35 through the sender at 0x555cf0 (**inferred** `konSetOutputSync`): the auxiliary port gets horizontal TTL sync when `HSync` is 1 and composite TTL sync otherwise. With `TriLevelSyncEnable` set, each colour port whose `SyncComponent` entry is set gets composite tri-level sync and the others none; without it, each set entry gets composite sync and the others none. Select codes and refusals are in [DG.h](../DG.h) (`KONA_SYNC_*`).
+11. Controls, through 0x548db0 (**inferred** `konSetControls`, attribute codes 5-11): `Gain` (command 33), `SetupEnable` (command 37, pedestal), `HPhase` (command 11), `VPhase` (command 13), blanking (command 31: 1 when `Blanking` is set or the channel copies another channel, except on channel 11, which sends `Blanking` alone), and on the encoder-capable channel `SCHPhase` (command 49) and `VPhase` again. Attribute codes 1-4 are per-colour gains the module refuses ("CTRLRedOutputGain( %g ) not supported").
+
+**Established** (absence): `SyncSource` (+660), `SyncMethod` (+708) and `HalfLineInterp` (+336) are read but no step above sends them, and no other load of +660 or +708 exists in `kona.so` (the loads at +336 elsewhere are screen function-table calls). **Unknown: no shipped software or published source depends on it:** what the hardware would do with those three fields. Routes tried: every load of those offsets in `kona.so`, `ircombine`'s channel form (no control stores them), the Combiner user guide, `setmon`.
+
+## Genlock parameters (command 25)
+
+**Established** (the combination loader, 0x4fb4c0-0x4fbd24). When the combination names an external sync format, the loader reads that `.vfo` ("failed to load external sync format %s!") and keeps four values in its combination state: the sync format's `TotalLinesPerFrame`, its `PFDVOFVerticalPhase`, its frame rate and its line rate. The first two feed LoadFormat words 295-298 (above). It then fills the 16 words of `DoDGRqstLoadGenlockParams`:
+
+| Word | Value |
+|---|---|
+| 0 | 0 |
+| 1-3 | timing values computed from the sync format's `FormatInfo_H_Sync` (bounded by three times itself), `TotalPixelsPerLine` and a factor 0.33, each multiplied by the ratio of 50 MHz to the sync format's pixel clock (50 MHz is the fastest `PFDClockSpeeds` entry) |
+| 4 | 1 |
+| 5 | `FormatInfo_H_BackPorch` / 4, scaled the same way, at most 8191 |
+| 6 | `FormatInfo_H_BackPorch` / 2, scaled, at most 63 |
+| 7, 8 | `PFDTable`, packed into two words by the format reader |
+| 9 | `PFDInvert` |
+| 10 | `PFDClockSelect` |
+| 11 | `PFDComparatorPrecision` |
+| 12-15 | 1, 1, 2, 7 |
+
+The firmware handler keeps the words and `dgLoadChannelGenlockParams` writes VOC 0x30-0x32 from them ([display requests](#display-requests)); **inferred** from the `.vof` register list that 0x30-0x32 are `VOC_PFD_CONTROL` and `VOC_PFD_SEQUENCE_LO/HI`, which matches words 7-11 being the frame-detection fields. **Established** (absence): `PFDRegularLines` and `PFDValidTable` are read into the format record (+1996, +2012) and no code in `kona.so` loads them again. **Unknown: no shipped software or published source depends on it:** their role, and the meaning of words 1-6 and 12-15 in the hardware. Routes tried: the loader, the format readers and every load of the record offsets in `kona.so`, the firmware handler, the Combiner user guide, and the same loads in `setmon` (whose copy of this builder loads the same six fields) and `ircombine` (which carries the reader and loads none of them).
+
 
 ## The Resize request (8 words)
 
