@@ -2400,46 +2400,46 @@ ge.u	label	0x00006c55	mmo_Expand32_1_4		located	ucode/ge_handlers.md#mexpands	me
 ge.u	label	0x00006c9f	mgeb_SwapInGL		located	ucode/ge_handlers.md#m_pipecontrols	m_pipecontrol.S
 ge.u	label	0x00006cb3	mgeb_SwapOutGL		located	ucode/ge_handlers.md#m_pipecontrols	m_pipecontrol.S
 ge.u	label	0x00006cc7	mmo_PixEndStream		located	ucode/ge_handlers.md#m_pipecontrols	m_pipecontrol.S
-ge.u	label	0x00006cf0	mgeb_InitFogGlobal		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006e20	mgesi_GetFogFunc		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006e4b	mgeb_FogFunc		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006ebf	mgeb_FogRestore		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006eea	mgebi_FogOffsetEnableDisable		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006f05	mgebi_FogDisable		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006f1e	mgeb_FogEnable		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006fa5	mgeb_Fogi		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006fb2	mgeb_Fogf		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007146	mLoadFineTable		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x0000715c	mLoadOneBigTable		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007187	mStartFogDownload		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000071c8	mDefineFineMode		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x0000730b	mLinearApproxParamsGSS		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007332	mLinearApproxErrorGSS		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007360	mGetInternalPointsGSS		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007372	mSplineFog		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007390	mUpdateSplineIntervals		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000073ec	mInitSplineFog		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007404	mSplineSlopeAndOffset		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007431	mExpFog		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x0000748a	mInitExpFog		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000074a8	mLinearFog		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000074be	mInitLinearFog		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000074e4	mOneBigTblSpecialEntry		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000074f3	mSendOneBigTblSpecialEntry		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000074ff	mCoarseTblSpecialEntry		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007534	mSplineFogGSS		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007595	mSendCoarseTblSpecialEntry		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000075ab	mFineTblSpecialEntry		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000075ba	mSendFineTblSpecialEntry		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000075c3	mFinishFogDownload		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000075d2	mSendFog		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007604	mZclipToEye		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007631	mDummy		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x0000763a	mResolveFogTable		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x0000765c	mSetFogOffset		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x000076a2	mLoadFogTable		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007771	mDefineCoarseMode		located	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x0000783f	mStartGSS		located	ucode/ge_handlers.md#fogs	fog.S
+ge.u	label	0x00006cf0	mgeb_InitFogGlobal		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00006e20	mgesi_GetFogFunc		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00006e4b	mgeb_FogFunc		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00006ebf	mgeb_FogRestore		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00006eea	mgebi_FogOffsetEnableDisable		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00006f05	mgebi_FogDisable		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00006f1e	mgeb_FogEnable		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00006fa5	mgeb_Fogi		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00006fb2	mgeb_Fogf		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007146	mLoadFineTable		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x0000715c	mLoadOneBigTable		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007187	mStartFogDownload		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000071c8	mDefineFineMode		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x0000730b	mLinearApproxParamsGSS		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007332	mLinearApproxErrorGSS		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007360	mGetInternalPointsGSS		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007372	mSplineFog		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007390	mUpdateSplineIntervals		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000073ec	mInitSplineFog		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007404	mSplineSlopeAndOffset		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007431	mExpFog		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x0000748a	mInitExpFog		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000074a8	mLinearFog		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000074be	mInitLinearFog		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000074e4	mOneBigTblSpecialEntry		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000074f3	mSendOneBigTblSpecialEntry		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000074ff	mCoarseTblSpecialEntry		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007534	mSplineFogGSS		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007595	mSendCoarseTblSpecialEntry		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000075ab	mFineTblSpecialEntry		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000075ba	mSendFineTblSpecialEntry		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000075c3	mFinishFogDownload		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000075d2	mSendFog		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007604	mZclipToEye		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007631	mDummy		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x0000763a	mResolveFogTable		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x0000765c	mSetFogOffset		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x000076a2	mLoadFogTable		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x00007771	mDefineCoarseMode		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
+ge.u	label	0x0000783f	mStartGSS		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
 ge.u	label	0x00007855	mmo_DrawMSDistAttTablePntPrim		located	ucode/ge_handlers.md#drawmstpnts	drawmstpnt.S
 ge.u	label	0x000079a3	DrawMSTFanPnt		located	ucode/ge_handlers.md#drawmstpnts	drawmstpnt.S
 ge.u	label	0x00007a54	DrawMSTablePnt		located	ucode/ge_handlers.md#drawmstpnts	drawmstpnt.S

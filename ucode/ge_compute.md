@@ -516,3 +516,154 @@ the `epilogue_*` code drains the last components. The parameter offsets below us
   clamps each with code 0x7c and multiplies it by parameter register 1-8 in turn (0x1698-0x16b3), results stored at E = 0 upward.
 - `epilogue_clamp` (`clamp.s` lines 199-253): **inferred**, the drain at 0x16b4 that clamps and multiplies the last
   input components and stores the results before the command ends.
+## Fog (fog.S)
+
+**Inferred**, from the words of `fog.S` in the listing and the GL fog model. Fog is applied per pixel by the texture
+filters from a table (`TFP_FOG*`, the `ufog.fog_lut` RAMs of [docs/rm.md](../docs/rm.md#chips-on-each-board)); the engine's
+part is twice over. Per vertex it turns the clip-space depth into an eye distance and evaluates the current fog function
+on it, through a routine whose address the set-up handlers leave in control memory 0xa3c. Per state change it builds and
+downloads the filter's fog table. The parameters live in engine memory from 0x9de (mode), 0x9df (density), 0x9e0 and
+0x9e1 (start and end) and 0x9eb-0x9ed (the `GL_FOG_FUNC_SGIS` point list).
+
+- `mZclipToEye` (`fog.S` lines 196-227, at 0x7604): **inferred**, converts the depth of two vertices from clip space to the eye
+  distance the fog functions take as input. Starting at 0x7604 it limits each clip z by a minimum, multiplies and adds
+  projection terms, takes a reciprocal (seed and Newton-Raphson steps at 0x7613-0x761d) and multiplies by it, so the
+  result is a ratio of two linear functions of z, the inverse of the projection's depth mapping. Unit-1 code 0x6e, which
+  the diagnostic test does not fix, writes the two results to registers 0x10 and 0x11 (0x7627, 0x7629) before the end of
+  command at 0x7628.
+- `mLinearFog` (`fog.S` lines 580-596, at 0x74a8): **inferred**, the per-vertex `GL_LINEAR` fog factor. It subtracts each of the two
+  input eye distances from the end value (register subtracts at 0x74ac and 0x74ae), multiplies the differences by the stored
+  1/(end - start) and clamps both results to [0, 1] with 0x7c into registers 0x10 and 0x11, the outputs the drawing
+  modules send.
+- `mInitLinearFog` (`fog.S` lines 553-563, at 0x74be): **inferred**, set-up of linear fog. It takes fog start and end from engine
+  words 0x9e0 and 0x9e1 as input operands, subtracts them, computes the reciprocal of the difference with the seed and two
+  Newton-Raphson steps (0x74d0-0x74dc), stores the result for the per-vertex multiply, and stores the linear routine's address at control address 0xa3c so later
+  vertices run `mLinearFog`; it ends by calling `mZclipToEye`.
+- `mExpFog` (`fog.S` lines 681-758, at 0x7431): **inferred**, the per-vertex exponential fog factor, e to the power of minus
+  density times distance, for two vertices. It multiplies each input distance by the stored scale, limits it with a minimum
+  against 127.998, splits it with unit-1 code 0x7b and the float-to-integer conversion (0x7445, 0x744a) into an integer
+  part and a fraction, and uses the integer parts as indexes into two tables through address registers 0x12 and 0x13
+  (0x745a-0x7477); the looked-up words are multiplied together and clamped with 0x7c to give the results in registers
+  0x10 and 0x11.
+- `mInitExpFog` (`fog.S` lines 641-662, at 0x748a): **inferred**, set-up of exponential fog. It reads the density from engine word
+  0x9df as input, multiplies it by the constants 16 and 256 loaded at 0x749c and 0x749a to give the table scale as its result, stores
+  127.998 as the index limit, points the per-vertex address at control address 0xa3c to `mExpFog` and the two table bases
+  at 0x1555 and 0x15d5, then calls `mZclipToEye`.
+- `mSplineFog` (`fog.S` lines 932-956, at 0x7372): **inferred**, the per-vertex `GL_FOG_FUNC_SGIS` factor. For each of the two
+  input distances it subtracts the start of the current interval, multiplies by the interval's slope and adds its offset, with
+  the outputs going to registers 0x10 and 0x11 (0x737e, 0x7380); when a distance falls outside the interval (`cc` 5 at
+  0x737f) it calls `mUpdateSplineIntervals` and computes again.
+- `mUpdateSplineIntervals` (`fog.S` lines 856-915, at 0x7390): **inferred**, finds the interval of the fog point list at 0x9ed that
+  holds each input distance. Its loop (back transfer to 0x7391 on `cc` 4) steps through the point pairs, compares the
+  distance with each point by subtraction, and on a match copies the interval's two end points into registers 4-7 and
+  calls `mSplineSlopeAndOffset` for the result.
+- `mInitSplineFog` (`fog.S` lines 815-840, at 0x73ec): **inferred**, set-up of the point-list fog. It copies the first two points of
+  the list at 0x9ed into the interval registers as input and stores the spline routine's address at control address
+  0xa3c, then calls `mSplineSlopeAndOffset` to compute the first interval's coefficients.
+- `mSplineSlopeAndOffset` (`fog.S` lines 777-799, at 0x7404): **inferred**, computes the line through two fog points as slope and
+  offset. It subtracts the two distances and the two factors, takes the reciprocal of the distance difference (seed and
+  Newton-Raphson steps), multiplies to get the slope and derives the offset from one end point by a multiply and a
+  subtract; the results are the coefficients `mSplineFog` uses.
+- `mSplineFogGSS` (`fog.S` lines 972-1023, at 0x7534): **inferred**, the table-building form of the spline evaluation. It takes a
+  distance as input, subtracts the interval ends, steps through the point list at 0x9ed in a loop (back transfer to 0x7556)
+  and calls `mSplineFog` and `mUpdateSplineIntervals` to give the fog value at that distance as its result.
+- `mDummy` (`fog.S` line 180, at 0x7631): **inferred**, the empty per-vertex routine: one word at 0x7631 that ends the command, so
+  with fog off the vertex input passes through and no fog factor is computed or produced.
+- `mSendFog` (`fog.S` lines 243-297, at 0x75d2): **inferred**, the per-primitive fog stage. It adds the vertex record's input depth words
+  to an offset (0x75d8, 0x75d9), calls `mZclipToEye` and then the routine at 0xa3c through the indirect transfers at
+  0x75da and 0x75e5, multiplies the two resulting fog factors by a scale, and writes the results for the raster bus;
+  it ends with two bitwise-not words at 0x7600-0x7601 that store to bus address 0x1f5.
+- `mgeb_InitFogGlobal` (`fog.S` lines 2810-3072, at 0x6cf0): **inferred**, initialises the fog state at start-up. Its 208 words
+  combine operand words with small constants by XOR and OR (the enumerant tests of
+  [ge_ops.md](ge_ops.md#settling-the-ties)), convert the default parameters with integer-to-float and float-to-integer
+  conversions, and store the results, mostly by moves, into the fog block from 0x9de and the table descriptors.
+- `mgesi_GetFogFunc` (`fog.S` lines 2728-2766, at 0x6e20): **inferred**, answers a query for the fog point list. It takes the count
+  at 0x9eb and 0x9ec as input, writes the reply header 0x476 to bus address 0x1f7 (0x6e2e), moves the points from 0x9ed to bus address 0x1f5 in a
+  loop (relative transfer at 0x6e3e) and closes with a word to 0x1f4 at 0x6e4a, returning the list to the host as its result.
+- `mgeb_FogFunc` (`fog.S` lines 2639-2713, at 0x6e4b): **inferred**, stores a new `GL_FOG_FUNC_SGIS` point list. It takes the point
+  count as its first operand, converts it with float-to-integer at 0x6e61, copies the operand pairs into the list at
+  0x9ed in a loop (back transfer to 0x6e70), compares the mode word 0x9de with the fog-function enumerant 0x812a by XOR
+  at 0x6e87 and, when that mode is current, calls `mLoadFogTable`, whose result is the rebuilt table.
+- `mgeb_FogRestore` (`fog.S` lines 2599-2624, at 0x6ebf): **inferred**, rebuilds the fog table after a context restore. It tests the
+  fog mode flags (`cc` 0x64 at 0x6ed3), and when fog is on calls `mLoadFogTable` so the filter's table again matches the
+  restored parameters; no arithmetic of its own produces a result.
+- `mgebi_FogOffsetEnableDisable` (`fog.S` lines 2555-2585, at 0x6eea): **inferred**, writes the fog offset enable to the filters.
+  It moves fixed words (0x70000, 0x40000, 0x1621403, 0x42011200) to bus addresses 0x1f8, 0x1f5 and 0x1f4, a raster
+  register write with its mode word, with no computed input.
+- `mgebi_FogDisable` (`fog.S` lines 2503-2535, at 0x6f05): **inferred**, turns fog off in the filters with the same bus sequence as
+  the offset handler but the fixed words 0x42011400 and 0x100000, so its output is a constant register write.
+- `mgeb_FogEnable` (`fog.S` lines 2386-2483, at 0x6f1e): **inferred**, turns fog on. It takes the stored range words 0xa36-0xa38 as
+  input, subtracts pairs of them (0x6f25-0x6f5f) and branches on `cc` 3 seven times (0x6f31-0x6f6c) to decide whether the table is still
+  valid, writes the filter's enable register on the bus (0x1f8, 0x1f5, 0x1f4) and then calls `mSetFogOffset` and
+  `mLoadFogTable` for the offset and table results.
+- `mgeb_Fogi` (`fog.S` lines 2363-2367, at 0x6fa5): **inferred**, the integer-parameter entry: four words that store the operand
+  pointer at 0xa35 and branch to `mgeb_Fogf`, which converts and handles the parameter.
+- `mgeb_Fogf` (`fog.S` lines 2079-2349, at 0x6fb2): **inferred**, the `glFog` parameter handler. It compares the parameter name
+  operand with the fog enumerants by XOR and dispatches on `cc` 2 (0x6fc9-0x6fcf, invalid names to `mErrInvalidEnum` at
+  0x7058), stores density, start, end, index and mode
+  into the block from 0x9de, clamps the four fog colour components with 0x7c (0x708f-0x7095), converts an integer parameter with
+  float-to-integer, a subtract, a shift left and a shift right (0x70c9-0x70da), and writes the packed colour as its result to the
+  filters.
+- `mLoadFogTable` (`fog.S` lines 1831-1975, at 0x76a2): **inferred**, chooses how to build the filter's fog table. It reads the
+  viewport and projection depth words (0x49, 0x4a, 0x4d, 0x4e) and the range words 0xa36-0xa38 as input, multiplies and
+  subtracts them to get the depth range the table must cover, takes a reciprocal, and by the fog mode selects `mLoadOneBigTable` (`cc` 4 and 2 at 0x76f3 and 0x7701), `mDefineCoarseMode`
+  (0x7710) or the finishing path (`cc` 3 at 0x76b5); the result is a table layout that
+  `mStartFogDownload` sends.
+- `mLoadOneBigTable` (`fog.S` lines 1736-1771, at 0x715c): **inferred**, lays out a single uniform table. It takes the near and far
+  depth words 0xc7 and 0xc8 as input, multiplies their span by 4096, takes the reciprocal for the step, rounds with the
+  2^23 constant (0x4b000000), and stores the start and step results at 0xa3a and 0xa3b before calling `mStartFogDownload`.
+- `mDefineCoarseMode` (`fog.S` lines 1490-1594, at 0x7771): **inferred**, lays out the coarse part of a two-level table. From the
+  input depth words 0xc7 and 0xc8 it computes the span and its reciprocal, applies unit-1 code 0x6c (not fixed by the test) to the break points and
+  compares them against the large constants 0x4f600000-0x4f7f8000 and 0.001, calling `mStartGSS` where the fog function
+  needs searched break points; the results go to 0xa3a and 0xa3b, and it continues into `mDefineFineMode`.
+- `mDefineFineMode` (`fog.S` lines 1220-1449, at 0x71c8): **inferred**, lays out the fine part of the table. It subtracts and
+  multiplies the input depth bounds to get the fine step as a result, compares against 251, 253 and 0.001 (constants loaded at 0x7206, 0x7241 and 0x7220),
+  calls `mStartGSS` for searched points (0x7217, 0x7255), and writes the resulting mode word to the filters through bus address 0x1f8;
+  it ends the command itself on `cc` 2 or 0x11.
+- `mStartGSS` (`fog.S` lines 1162-1181, at 0x783f): **inferred**, starts a golden-section search for a table break point. It stores
+  the address of `mLinearApproxParamsGSS` as the routine to run (0x730b) and sets up the search state at 0xa3f, so the
+  result is a search that the following commands advance.
+- `mGetInternalPointsGSS` (`fog.S` lines 1060-1071, at 0x7360): **inferred**, places the two interior probe points of a golden-section
+  step. It subtracts the input interval ends, multiplies the length by 0.382 (0x3ec39581, the golden-section ratio), adds and
+  subtracts it from the ends, and calls `mZclipToEye` to evaluate fog at the probes as its output.
+- `mLinearApproxParamsGSS` (`fog.S` lines 1131-1147, at 0x730b): **inferred**, computes the straight line between the fog values at
+  an interval's two ends: subtracts, takes the reciprocal of the distance difference, multiplies to get slope and
+  offset, and continues to `mGetInternalPointsGSS` with those results.
+- `mLinearApproxErrorGSS` (`fog.S` lines 1089-1114, at 0x7332): **inferred**, measures how far the fog function departs from that
+  line at the two probes. It multiplies and adds to evaluate the line at the input probes, subtracts the true fog values, applies unit-1 code
+  0x6e to the two differences and compares them, then narrows the interval and repeats through `mGetInternalPointsGSS`
+  (`cc` 0x14) or ends; the result is the break point of largest error.
+- `mStartFogDownload` (`fog.S` lines 1660-1715, at 0x7187): **inferred**, sends the table to the filters. It takes the table layout
+  as input, multiplies three pairs of its words by the constants 21 and 12, 16 and 4, 20 and 8 and sums each pair
+  (0x718b-0x71b1), writes the filter's table register 0x1405 through bus address 0x1f7 (0x71b4) as its output, and stores `mSendFog`
+  (0x75d2) as the per-entry routine (0x71b7) before calling the entry loop at 0x0010 (0x71bf).
+- `mLoadFineTable` (`fog.S` lines 1794-1813, at 0x7146): **inferred**, starts the download of the fine table: it stores
+  `mFineTblSpecialEntry` (0x75ab) as the entry routine and the fine-table bounds from 0xa33 and 0xa34 as input to
+  `mStartFogDownload`, whose result is the loaded fine table.
+- `mOneBigTblSpecialEntry` (`fog.S` lines 522-535, at 0x74e4): **inferred**, computes the special first entry of the single table:
+  it applies unit-1 code 0x6c, which the diagnostic test does not fix, to the start depth (0x74e8), stores `mSendOneBigTblSpecialEntry` (0x74f3) as the next routine and calls
+  `mZclipToEye` and the fog routine at 0xa3c to produce that entry's value.
+- `mSendOneBigTblSpecialEntry` (`fog.S` lines 484-508, at 0x74f3): **inferred**, sends that entry: it multiplies the input fog value by
+  2.1875, converts it with float-to-integer, and writes it with the fixed words 0x400c000c and 0x42011000 to bus
+  addresses 0x1f8 and 0x1f5, then calls `mFinishFogDownload` after this output.
+- `mCoarseTblSpecialEntry` (`fog.S` lines 435-469, at 0x74ff): **inferred**, computes the coarse table's special entry. It converts
+  the input entry index to float, multiplies by the coarse step and adds the start (0x750b-0x751b) to get the entry's depth,
+  applies code 0x6c at 0x752a and calls `mZclipToEye` and the fog routine for the value, with `mSendCoarseTblSpecialEntry`
+  (0x7595) as the routine that sends the result.
+- `mSendCoarseTblSpecialEntry` (`fog.S` lines 386-409, at 0x7595): **inferred**, copies two values through the table pointer at 0x8d2c
+  (0x759c-0x759d) and multiplies the four input coarse fog values by their scales (0x75a7-0x75aa), whose results go to the
+  output window for the download.
+- `mFineTblSpecialEntry` (`fog.S` lines 358-370, at 0x75ab): **inferred**, the fine table's special entry: stores
+  `mSendFineTblSpecialEntry` (0x75ba) as the next routine and calls `mZclipToEye` so the fog routine evaluates the entry
+  as its result.
+- `mSendFineTblSpecialEntry` (`fog.S` lines 335-344, at 0x75ba): **inferred**, multiplies the fine entry's input fog value by 2.1875
+  (0x75c2), the float reading of the word 0x400c000c loaded at 0x75c1, and calls `mFinishFogDownload`, producing the last table word.
+- `mFinishFogDownload` (`fog.S` lines 311-317, at 0x75c3): **inferred**, closes the download: it writes 0x1389 to bus address
+  0x1f4 (0x75c8-0x75ca), the end of the table transfer, and ends the command, with no computed input.
+- `mResolveFogTable` (`fog.S` lines 2782-2790, at 0x763a): **inferred**, called from `mgeb_DepthRange` at 0xf3fa when the depth
+  range changes: it calls `mSetFogOffset` and `mLoadFogTable` so both the offset and the table are recomputed for the
+  new range, and produces no value of its own.
+- `mSetFogOffset` (`fog.S` lines 1992-2041, at 0x765c): **inferred**, computes the fog depth offset and scale for the filters. It
+  takes the offset parameters at 0x9e9 and 0x9ea and the projection depth words 0x49, 0x4a, 0x4d and 0x4e as input,
+  multiplies and adds them, takes a reciprocal and limits with maxima, and writes the results with the register word
+  0x1651406 to bus addresses 0x1f8 and 0x1f5.
