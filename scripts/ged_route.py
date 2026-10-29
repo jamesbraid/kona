@@ -15,15 +15,24 @@ This script joins the two:
   ged_banks.tsv   all 512 table entries, split into the eight banks of 64
                   that bits 6-8 of n select: bank, k = n & 63, entry word,
                   source file, source line.
-  ged_route.tsv   every routed token: command number, bank, k, entry word,
-                  source file and line, the words from the entry to the
-                  next entry point of any token, and the geometry-engine
-                  handler words (ged_relocs.tsv) inside that span. The
-                  "bound" column is yes for the 54 tokens whose handler is
-                  already fixed by the handler table (ucode/arm1.md: the
-                  handler at index n & 63 has the token's own name, or the
-                  same role for six more); the other 152 are the vertex,
-                  primitive and begin/end tokens this page is about.
+  ged_route.tsv   every routed token: command number, bank, k, the table
+                  word at index n with its source file and line, the words
+                  from there to the next entry point of any token, and the
+                  geometry-engine handler words (ged_relocs.tsv) inside that
+                  span; then the token's form, and the idle-class entry
+                  B[k] with its source. The "bound" column is yes for the 54
+                  pass and register tokens whose handler is already fixed by
+                  the handler table (ucode/arm1.md: the handler at index
+                  n & 63 has the token's own name, or the same role for six
+                  more); never for the geometry form.
+
+ucode/ged.md supersedes the reading of the table as indexed by command
+number: the 512 words are laid out per primitive class and vertex state
+(B[8 x A[r48] + 4 x state + j]), so the word at index n is where n falls in
+that layout, not the program the token runs. For a token whose entry number
+k (n & 63) is used, the idle class gives B[k]; which index the hardware uses
+for a given token inside a primitive, and for the pass and register forms,
+is the open question in ucode/ged.md.
 """
 import csv
 import re
@@ -86,22 +95,30 @@ with open(out_banks, 'w') as f:
         f.write('%d\t%d\t%d\t0x%03x\t%s\t%s\n' % (n, n >> 6 & 7, n & 63, e, src, ln))
 
 with open(out_route, 'w') as f:
-    f.write('# Hardware-routed host tokens and their entry in the distributor program.\n')
-    f.write('# bound = yes when the handler table fixes the handler (ucode/arm1.md); no for the 152\n')
-    f.write('# vertex, primitive and begin/end tokens. span = words from the entry to the next entry\n')
-    f.write('# point of any command number; handlers = relocated slot words inside the span. Produced by\n')
+    f.write('# Hardware-routed host tokens and the distributor table words their numbers reach.\n')
+    f.write('# entry = table B word at index n. ucode/ged.md lays table B out by primitive class and\n')
+    f.write('# vertex state, so this is where n falls in that layout, not the program the token runs.\n')
+    f.write('# idle_entry = B[k], the entry for entry number k = n & 63 in the idle class (ged.md);\n')
+    f.write('# which index the hardware uses inside a primitive, and for the pass and register forms,\n')
+    f.write('# is open in ged.md. bound = yes when the handler table fixes the handler (ucode/arm1.md),\n')
+    f.write('# never for the geometry form. span = words from the entry to the next entry point of any\n')
+    f.write('# command number; handlers = relocated slot words inside the span. Produced by\n')
     f.write('# scripts/ged_route.py.\n')
-    f.write('token\tname\tn\tbank\tk\tentry\tsource\tline\tspan\tbound\thandlers\n')
+    f.write('token\tname\tn\tbank\tk\tentry\tsource\tline\tspan\tbound\thandlers\tform\tidle_entry\tidle_source\n')
     for ln_ in open(hw):
         if ln_.startswith('#') or ln_.startswith('token'):
             continue
         p = ln_.rstrip('\n').split('\t')
         tok, name, n = p[0], p[1], int(p[2])
         bnd = p[5] if len(p) > 5 else ''
+        form = p[6] if len(p) > 6 else ''
         e = tab[n]
         ln, src = line.get(e, ('', '?'))
         nxt = [s for s in starts if s > e]
         end = nxt[0] if nxt else nwords
         hs = [handler[a] for a in range(e, end) if a in handler]
+        ie = tab[n & 63]
+        iln, isrc = line.get(ie, ('', '?'))
         f.write('\t'.join([tok, name, str(n), str(n >> 6 & 7), str(n & 63), '0x%03x' % e, src,
-                           str(ln), str(end - e), 'yes' if bound(name, bnd) else 'no', ','.join(hs)]) + '\n')
+                           str(ln), str(end - e), 'yes' if form != 'geometry' and bound(name, bnd) else 'no',
+                           ','.join(hs), form, '0x%03x' % ie, '%s:%s' % (isrc, iln)]) + '\n')

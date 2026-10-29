@@ -310,14 +310,19 @@ def main():
     with open(os.path.join(out, 'hw_route.tsv'), 'w') as fh:
         fh.write('# Hardware-routed host tokens (bit 0 of the token-map entry set) with the command number in bits 15-23.\n')
         fh.write('# index = number & 63; bound = the handler init_ged writes at that index of the handler table\n')
-        fh.write('# (ged_bound_table.tsv), blank if init_ged writes none. See ucode/arm1.md for what is established.\n')
-        fh.write('token\tname\tcommand\tgroup\tindex\tbound\n')
+        fh.write('# (ged_bound_table.tsv), blank if init_ged writes none, and blank for the geometry form (bit 31 set),\n')
+        fh.write('# which does not use the handler table (ucode/arm1.md). form = geometry, pass (bit 5 clear) or\n')
+        fh.write('# register (bit 5 set), per ucode/ged.md. See ucode/arm1.md for what is established.\n')
+        fh.write('token\tname\tcommand\tgroup\tindex\tbound\tform\n')
         for tok in sorted(icu):
             f = icu[tok]
             if f[3] != 'hw':
                 continue
             n = int(f[7])
-            fh.write('0x%03x\t%s\t%d\t%d\t%d\t%s\n' % (tok, f[1], n, n >> 6, n & 63, bound.get(n & 63, '')))
+            e = int(f[2], 16)
+            form = 'geometry' if e >> 31 else ('register' if e & 0x20 else 'pass')
+            b = '' if form == 'geometry' else bound.get(n & 63, '')
+            fh.write('0x%03x\t%s\t%d\t%d\t%d\t%s\t%s\n' % (tok, f[1], n, n >> 6, n & 63, b, form))
 
     # ---- arm_video_cmd's table: {word count, handler} x 0x5d, in the initialised data
     def rd(a):

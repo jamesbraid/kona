@@ -1,8 +1,9 @@
 # Host-token map built by arm1.u init_hip from the static table at vector_end
 # (IRIX 6.5.30m). entry = the 32-bit value init_hip stores for the token.
 # ARM rows: entry = handler << 4 | low word; the handler is the arm1.u function
-# the token runs. Routed rows (bit 0 set): fields per ucode/arm1.md.
-token	name	entry	route	kind	chain	bits6_10	bits15_23	bits27_28	bits29_30	arm_handler
+# the token runs. Routed rows (bit 0 set): fields per ucode/arm1.md. count is the
+# word-count field: bits 6-8 in the geometry form (bit 31 set), bits 6-10 otherwise.
+token	name	entry	route	kind	chain	count	bits15_23	bits27_28	bits29_30	arm_handler
 0x000	HP_DATA	0xc0265900	arm	0						arm_data
 0x001	HP_BUFFER_CONFIG	0xc0131a00	arm	0						arm_buffer_config
 0x002	HP_PACK	0xc03949c0	arm	0						arm_pack
@@ -121,11 +122,11 @@ token	name	entry	route	kind	chain	bits6_10	bits15_23	bits27_28	bits29_30	arm_han
 0x073	HP_INDEXF	0xd848d847	hw	3	0	1	145	3	2	
 0x074	HP_INDEXI	0xd808d847	hw	3	0	1	17	3	2	
 0x075	HP_INDEXS	0xa808d847	hw	3	0	1	17	1	1	
-0x076	HP_NORMAL3B	0x9107dac7	hw	3	0	11	15	2	0	
-0x077	HP_NORMAL3D	0xf847db87	hw	3	0	14	143	3	3	
-0x078	HP_NORMAL3F	0xd847dac7	hw	3	0	11	143	3	2	
-0x079	HP_NORMAL3I	0xd907dac7	hw	3	0	11	15	3	2	
-0x07a	HP_NORMAL3S	0xa907dac7	hw	3	0	11	15	1	1	
+0x076	HP_NORMAL3B	0x9107dac7	hw	3	0	3	15	2	0	
+0x077	HP_NORMAL3D	0xf847db87	hw	3	0	6	143	3	3	
+0x078	HP_NORMAL3F	0xd847dac7	hw	3	0	3	143	3	2	
+0x079	HP_NORMAL3I	0xd907dac7	hw	3	0	3	15	3	2	
+0x07a	HP_NORMAL3S	0xa907dac7	hw	3	0	3	15	1	1	
 0x07b	HP_TEXCOORD1D	0xfe496087	hw	3	0	2	146	3	3	
 0x07c	HP_TEXCOORD1F	0xde496047	hw	3	0	1	146	3	2	
 0x07d	HP_TEXCOORD1I	0xde096047	hw	3	0	1	18	3	2	
@@ -155,9 +156,9 @@ token	name	entry	route	kind	chain	bits6_10	bits15_23	bits27_28	bits29_30	arm_han
 0x095	HP_VERTEX4I	0xd8274107	hw	3	0	4	78	3	2	
 0x096	HP_VERTEX4S	0xb8274107	hw	3	0	4	78	3	1	
 0x097	HP_MATERIALF	0xd8408187	hw	3	0	6	129	3	2	
-0x098	HP_MATERIALF_cont	0xd84f8507	hw	3	0	20	159	3	2	
+0x098	HP_MATERIALF_cont	0xd84f8507	hw	3	0	4	159	3	2	
 0x099	HP_MATERIALI	0xd84f808f	hw	3	1	2	159	3	2	
-0x09a	HP_MATERIALI_cont	0xd8008507	hw	3	0	20	1	3	2	
+0x09a	HP_MATERIALI_cont	0xd8008507	hw	3	0	4	1	3	2	
 0x09b	HP_EVAL_COORD1D	0x51e0006f	hw	3	1	1	448	2	2	
 0x09c	HP_EVAL_COORD1D_cont	0xf8474087	hw	3	0	2	142	3	3	
 0x09d	HP_EVAL_COORD1F	0x51e0006f	hw	3	1	1	448	2	2	

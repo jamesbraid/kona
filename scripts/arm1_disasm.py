@@ -21,7 +21,8 @@ Writes:
                            labelled with the symbols
   OUTDIR/icu_map.tsv       the 512-entry host-token map that init_hip copies
                            from the static table at vector_end (see
-                           ucode/arm1.md for the entry format)
+                           ucode/arm1.md for the entry format; the count
+                           column reads bits 6-8 for geometry-form entries)
 
 The disassembler covers the ARMv4 instructions the image uses (data
 processing, multiply, single and block transfers, halfword transfers,
@@ -387,8 +388,9 @@ def main():
         fh.write('# Host-token map built by arm1.u init_hip from the static table at vector_end\n')
         fh.write('# (IRIX 6.5.30m). entry = the 32-bit value init_hip stores for the token.\n')
         fh.write('# ARM rows: entry = handler << 4 | low word; the handler is the arm1.u function\n')
-        fh.write('# the token runs. Routed rows (bit 0 set): fields per ucode/arm1.md.\n')
-        fh.write('token\tname\tentry\troute\tkind\tchain\tbits6_10\tbits15_23\tbits27_28\tbits29_30\tarm_handler\n')
+        fh.write('# the token runs. Routed rows (bit 0 set): fields per ucode/arm1.md. count is the\n')
+        fh.write('# word-count field: bits 6-8 in the geometry form (bit 31 set), bits 6-10 otherwise.\n')
+        fh.write('token\tname\tentry\troute\tkind\tchain\tcount\tbits15_23\tbits27_28\tbits29_30\tarm_handler\n')
         for tok in range(512):
             e, h, w = rows[tok] if tok < len(rows) else (None, None, None)
             if e is None:
@@ -399,7 +401,7 @@ def main():
                     tok, nm, e, (e >> 1) & 3, ','.join(byaddr.get(h, ['0x%08x' % h]))))
             else:
                 fh.write('0x%03x\t%s\t0x%08x\thw\t%d\t%d\t%d\t%d\t%d\t%d\t\n' % (
-                    tok, nm, e, (e >> 1) & 3, (e >> 3) & 1, (e >> 6) & 0x1f,
+                    tok, nm, e, (e >> 1) & 3, (e >> 3) & 1, (e >> 6) & (7 if e >> 31 else 0x1f),
                     (e >> 15) & 0x1ff, (e >> 27) & 3, (e >> 29) & 3))
 
 
