@@ -1,92 +1,131 @@
 # IRIX files needed for SGI InfiniteReality (KONA) reverse engineering
 
-This lists the proprietary SGI files a reader copies from their own IRIX 6.5
+This lists the proprietary SGI files a reader copies from their own IRIX
 install into a local `root/` directory. They are not tracked in source control.
 Paths only: this repository holds no file contents.
 
-`root/` mirrors the IRIX filesystem. The top-level directories (`kernel/`,
-`libglcore/`, `ddx/`, `ucode/`) hold relative symlinks into `root/`.
+`root/` mirrors the IRIX filesystem. The top-level binary directories
+(`kona_kernel/`, `libglcore/`, `irisgl/`, `ddx/`, `ucode/`, `diags/`) hold
+relative symlinks into `root/`.
 
-## 1. Layout under `root/`
+Two releases are listed:
 
+- **IRIX 6.5.30** is the primary release. Every path in section 1 was checked
+  against an installed 6.5.30m Onyx2 with one InfiniteReality2 pipe. Its kernel
+  objects, the N32 and 64-bit `libGLcore.so` and the IrisGL libraries carry
+  DWARF (checked with `scripts/map_binaries.py`); the X modules and the o32
+  `libGLcore.so` are stripped.
+- **IRIX 6.5.0** ships unstripped binaries with full DWARF (reported by
+  Dominik Behr for the gr2 and gr4 work). Section 3 covers it. No path there
+  is verified against a 6.5.0 install yet.
+
+## 1. IRIX 6.5.30 (primary)
+
+Verified on `uname -R` = `6.5 6.5.30m`, Onyx2, graphics installed with
+`eoe.sw.gfx`, `eoe.sw64.gfx` and `x_eoe.sw.Server`. The set below was copied
+from that install with `cp -rp`.
+
+```files
+/unix
+/usr/cpu/sysgen/IP27boot/kernel.o
+/usr/cpu/sysgen/IP27boot/kona.a
+/usr/cpu/sysgen/IP27boot/gfx.o
+/usr/cpu/sysgen/IP27boot/gfxs.a
+/usr/cpu/sysgen/IP27boot/gfxstubs.a
+/usr/cpu/sysgen/IP27boot/rrm.o
+/usr/gfx/gfxinit
+/usr/gfx/arch/GENERIC/Xsgi
+/usr/gfx/arch/IP27KONA
+/usr/gfx/arch/IP27KONA32
+/usr/gfx/arch/IP27KONA64
+/usr/gfx/arch/IP35KONA
+/usr/gfx/arch/IP35KONA32
+/usr/gfx/arch/IP35KONA64
+/usr/gfx/arch/IGLOO32/libgl.so
+/usr/gfx/KONA
+/usr/gfx/ucode/KONA
+/usr/diags/IR
+/usr/lib32/libfm.so
+/usr/lib/X11/dyDDX/kona.so
+/usr/lib/X11/dyDDX/konad.so
+/usr/lib/X11/dyDDX/konal.so
+/usr/lib/X11/dyDDX/konas.so
+/usr/lib/X11/dyDDX/konavis.so
+/usr/lib/X11/dyDDX/glx.so
 ```
-root/
-├── usr/
-│   ├── cpu/sysgen/IP27boot/
-│   │   ├── kernel.o                      <- IP27 kernel object
-│   │   ├── kona.a                        <- KONA kernel driver archive
-│   │   ├── gfx.o                         <- core graphics kernel module
-│   │   ├── gfxs.a
-│   │   ├── gfxstubs.a
-│   │   └── rrm.o                         <- rendering resource manager
-│   ├── gfx/
-│   │   ├── gfxinit                       <- graphics initialisation program
-│   │   ├── arch/
-│   │   │   ├── IP27KONA/                 <- also IP27KONA32/ and IP27KONA64/
-│   │   │   │   ├── libGLcore.so          <- OpenGL core driver
-│   │   │   │   └── libGL.so
-│   │   │   └── GENERIC/Xsgi              <- X server
-│   │   ├── KONA/bin/
-│   │   │   ├── ireeprom
-│   │   │   ├── kpm
-│   │   │   └── postmortem
-│   │   └── ucode/KONA/
-│   │       ├── ge.u  ge.hex  ge11.u  ged1b.u  geif.u  ge_kpm.hex  ge_symbols
-│   │       ├── arm1.u  arm1_kpm.u
-│   │       ├── tport.bin
-│   │       ├── dg4/vfo/*.vfo  dg4/cmb/*.cmb   <- display tables
-│   │       └── vof/*                          <- video output formats
-│   ├── diags/IR/
-│   │   ├── bin/irsaudit
-│   │   └── ucode/                        <- ge.u ge.hex ge_diag_init.u ge_diag_init.hex
-│   │                                        geif.u arm1.u arm1_nic.u diag_arm_init.u
-│   └── lib/X11/dyDDX/
-│       ├── kona.so                       <- X server KONA module
-│       └── glx.so                        <- GLX module
-└── unix                                  <- running kernel (optional)
-```
+(The block above is the machine-readable list; the tables below describe it.)
 
-## 2. Where each group goes
+### Where each group goes
 
 | Group | Files | Location under `root/` |
 |---|---|---|
-| Kernel (`kernel/`) | `kona.a` (members extracted with `ar x`), `gfx.o`, `rrm.o`, `kernel.o` | `root/usr/cpu/sysgen/IP27boot/` |
-| OpenGL core (`libglcore/`) | `libGLcore.so`, `libGL.so` | `root/usr/gfx/arch/IP27KONA64/` (also `IP27KONA/`, `IP27KONA32/`) |
-| X server module (`ddx/`) | `kona.so`, `glx.so` | `root/usr/lib/X11/dyDDX/` |
-| Microcode and tables (`ucode/`) | `ge11.u`, `ge.u`, `geif.u`, `arm1.u`, `tport.bin`, `dg4/vfo/`, `dg4/cmb/`, `vof/` | `root/usr/gfx/ucode/KONA/` |
+| Kernel (`kona_kernel/`) | `kona.a` (members extracted with `ar x`), `gfx.o`, `rrm.o`, `kernel.o`, `gfxs.a`, `gfxstubs.a` | `usr/cpu/sysgen/IP27boot/` (also reached as `var/sysgen/boot/`) |
+| OpenGL core (`libglcore/`) | `libGLcore.so`, `libGL.so` | `usr/gfx/arch/IP27KONA64/` (also `IP27KONA/`, `IP27KONA32/`, and the `IP35KONA*` twins) |
+| IrisGL (`irisgl/`) | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` |
+| X server modules (`ddx/`) | `kona.so`, `konad.so`, `konal.so`, `konas.so`, `konavis.so`, `glx.so` | `usr/lib/X11/dyDDX/` |
+| Microcode and tables (`ucode/`) | `ge.u`, `ge.hex`, `ge11.u`, `ged1b.u`, `geif.u`, `ge_kpm.hex`, `ge_symbols`, `arm1.u`, `arm1_kpm.u`, `tport.bin`, `dg4/`, `vof/` | `usr/gfx/ucode/KONA/` |
+| Diagnostics and tools (`diags/`) | `irsaudit`, `ge_diag_init.*`, `arm1_nic.u`, `dgo.mcs`, `ireeprom`, `kpm`, `postmortem` | `usr/diags/IR/`, `usr/gfx/KONA/bin/` |
 
-The paths above come from an IRIX 6.4 Origin/Onyx2/Octane media listing, a 6.5 listing of `kona.so` and `glx.so` consumers, and Origami's published graphics datasheets. A 6.5.x install may place the same files under a differently named `arch/` directory. Check your own install with `ls /usr/gfx/arch` and `inst`'s file list for the `eoe.sw64.gfx` and `kona` subsystems.
+`usr/gfx/ucode/KONA/` also holds `dgo1`. `kona.so`, `konad.so`, `konal.so`,
+`konas.so` and `konavis.so` are all present on 6.5.30; the earlier checklist
+named only `kona.so`. The 6.5.30 Onyx2 install has no `odyssey.a`, only
+`odysseystubs.a`.
 
-## 3. Copying the files from an IRIX 6.5 system
+Verify the install on your own system with `ls /usr/gfx/arch`, `ls
+/usr/lib/X11/dyDDX` and `ls /usr/cpu/sysgen/IP27boot`. Missing paths are
+normal: layouts differ by release and graphics option.
 
-Run on the IRIX host with the InfiniteReality graphics software installed:
+## 2. Copying the files
 
-```sh
-tar -cvf /tmp/kona_root.tar \
-    /unix \
-    /usr/cpu/sysgen/IP27boot/kernel.o \
-    /usr/cpu/sysgen/IP27boot/kona.a \
-    /usr/cpu/sysgen/IP27boot/gfx.o \
-    /usr/cpu/sysgen/IP27boot/gfxs.a \
-    /usr/cpu/sysgen/IP27boot/gfxstubs.a \
-    /usr/cpu/sysgen/IP27boot/rrm.o \
-    /usr/gfx/gfxinit \
-    /usr/gfx/arch/GENERIC/Xsgi \
-    /usr/gfx/arch/IP27KONA \
-    /usr/gfx/arch/IP27KONA32 \
-    /usr/gfx/arch/IP27KONA64 \
-    /usr/gfx/KONA \
-    /usr/gfx/ucode/KONA \
-    /usr/diags/IR \
-    /usr/lib/X11/dyDDX/kona.so \
-    /usr/lib/X11/dyDDX/glx.so
+On the IRIX host, tar the paths in the block above (`tar -cvf /tmp/kona_root.tar
+<paths>`) and unpack on your workstation with `mkdir -p root && cd root && tar
+-xvf /path/to/kona_root.tar`. `scripts/populate-root` then creates the symlinks
+in the binary directories from the second block below.
+
+Reference image used for the 6.5.30 listing, for reproducibility:
+`kona-installed-20261023.qcow2`, SHA-256
+`d7b012a30d912b9f5474c185002063f7d3293f999e8ce78867a06e1acbffc8c7`.
+
+## 3. IRIX 6.5.0 (DWARF; paths unverified)
+
+Dominik Behr reports that 6.5.0 binaries are unstripped with full DWARF
+(gr2 and gr4 work from them), but 6.5.0 has no VPro. No 6.5.0 install has been
+checked for this board, so no path here is verified. Start from the layout in
+section 1, swap in whatever `ls /usr/gfx/arch` shows, and record what you find.
+Use 6.5.0 for names and types, 6.5.30 for shipping behaviour.
+
+## 4. Symlinks
+
+`scripts/populate-root` reads these blocks. `archives` lines are `ARCHIVE LINKDIR`: the
+archive's members are unpacked inside `root/` and linked into `LINKDIR`. `links`
+lines are `LINK TARGET`, relative to the repository root. `libGLcore.so` exists once per ABI: `IP27KONA` is o32,
+`IP27KONA32` N32 and `IP27KONA64` 64-bit.
+
+```archives
+root/usr/cpu/sysgen/IP27boot/kona.a kona_kernel
 ```
 
-Unpack it on your workstation into the ignored `root/` directory:
-
-```sh
-mkdir -p root && cd root && tar -xvf /path/to/kona_root.tar
+```links
+kona_kernel/kona.a root/usr/cpu/sysgen/IP27boot/kona.a
+kona_kernel/gfx.o root/usr/cpu/sysgen/IP27boot/gfx.o
+kona_kernel/rrm.o root/usr/cpu/sysgen/IP27boot/rrm.o
+kona_kernel/kernel.o root/usr/cpu/sysgen/IP27boot/kernel.o
+kona_kernel/gfxs.a root/usr/cpu/sysgen/IP27boot/gfxs.a
+kona_kernel/gfxstubs.a root/usr/cpu/sysgen/IP27boot/gfxstubs.a
+libglcore/libGLcore.so root/usr/gfx/arch/IP27KONA64/libGLcore.so
+libglcore/libGL.so root/usr/gfx/arch/IP27KONA64/libGL.so
+libglcore/libGLcore_n32.so root/usr/gfx/arch/IP27KONA32/libGLcore.so
+libglcore/libGLcore_o32.so root/usr/gfx/arch/IP27KONA/libGLcore.so
+irisgl/libgl.so root/usr/gfx/arch/IGLOO32/libgl.so
+irisgl/libfm.so root/usr/lib32/libfm.so
+ddx/kona.so root/usr/lib/X11/dyDDX/kona.so
+ddx/konad.so root/usr/lib/X11/dyDDX/konad.so
+ddx/konal.so root/usr/lib/X11/dyDDX/konal.so
+ddx/konas.so root/usr/lib/X11/dyDDX/konas.so
+ddx/konavis.so root/usr/lib/X11/dyDDX/konavis.so
+ddx/glx.so root/usr/lib/X11/dyDDX/glx.so
+ddx/Xsgi root/usr/gfx/arch/GENERIC/Xsgi
+ucode/KONA root/usr/gfx/ucode/KONA
+diags/IR root/usr/diags/IR
+diags/KONA_bin root/usr/gfx/KONA/bin
 ```
-
-Missing paths are normal: install layouts differ by IRIX release and by
-graphics option. Edit this list to match what your system has.
