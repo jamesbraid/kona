@@ -166,31 +166,107 @@
  *                                      context bit (+0x7b5c bit 2)
  *    8  split flag     7               desc+0xb8: set to 1 when the image is
  *                                      sent in several pieces
- *    9  a3             8               UNKNOWN (always the third argument;
- *                                      the pixel path passes 0)
- *   10  desc+0x64                      not written by any function in
- *                                      kon_pixel.c or by subloadSimple;
- *                                      UNKNOWN
- *   11  desc+0x68                      subloadSimple stores a word read from
- *                                      the context object at ctx+0x110, offset
- *                                      +4; UNKNOWN meaning
+ *    9  a3             8               the fourth argument of
+ *                                      DoDrawPixelsOrTexels. ESTABLISHED:
+ *                                      every DrawSubTexels call (all the
+ *                                      texel senders found) passes 0 in the
+ *                                      branch delay slot, so the texel word
+ *                                      is 0; DrawPixels passes the number of
+ *                                      columns already sent (0 for the first
+ *                                      piece), so the pixel word is that
+ *                                      column offset. Hardware use of the
+ *                                      texel word UNKNOWN
+ *   10  desc+0x64                      texel format id, INFERRED. Set in
+ *                                      subloadLevel (the local descriptor's
+ *                                      +0x64) from the 16-byte internal-
+ *                                      format table (see "Texel format id"
+ *                                      below)
+ *   11  desc+0x68                      the texture-table entry index, the
+ *                                      same word TEXLOAD_ID carries (see
+ *                                      "Texture load and bind commands").
+ *                                      ESTABLISHED source (subloadSimple:
+ *                                      word at the +4 of the entry that
+ *                                      ctx+0x110 points to). INFERRED role:
+ *                                      the load id the pipe writes to
+ *                                      TML_SYNC_IDLOAD
  *   12  desc+0x6c                      s start (INFERRED)
  *   13  desc+0x70                      t start (INFERRED)
  *   14  desc+0x74                      s end, inclusive (INFERRED)
  *   15  desc+0x78                      t end, inclusive (INFERRED)
  *   16  desc+0x7c                      r start; __glKonDrawTexels3D adds 1
  *                                      per slice (INFERRED)
- *   17  desc+0x80                      subloadSimple stores its eighth
- *                                      argument here. UNKNOWN: depth, end or
- *                                      level
- *   18  flags         (desc+0x84)      subloadSimple stores its ninth
- *                                      argument. Bit 2 is set on the
- *                                      single-image path, bit 15 when context
- *                                      word +0x704 bit 5 is set. Other bits
- *                                      UNKNOWN
- *   19  desc+0x88                      first word of a pair passed to
- *                                      subloadSimple by pointer; UNKNOWN
- *   20  desc+0x8c                      second word of that pair; UNKNOWN
+ *   17  desc+0x80                      packed log2 sizes, the image of
+ *                                      TGTML_TEXLD_SIZE: bits 0-3 s, 4-7 t,
+ *                                      8-11 r. ESTABLISHED: subloadLevel
+ *                                      builds it as (t << 4) | s | (r << 8)
+ *                                      and passes it as subloadSimple's
+ *                                      eighth argument. INFERRED that s, t
+ *                                      and r are log2 sizes: each is the
+ *                                      level's log2 size raised to at least
+ *                                      the tile size tileinfo gives for the
+ *                                      tiling kind, and the field layout
+ *                                      equals the register's
+ *   18  flags         (desc+0x84)      the image of TGTML_TEXLD_MISC, see
+ *                                      below
+ *   19  desc+0x88                      even texture-memory base address
+ *                                      word, one of the two addresses of
+ *                                      TML_TEXLD_BASEADDR. ESTABLISHED:
+ *                                      the pair is built in subloadLevel at
+ *                                      local +64/+68 from the per-level
+ *                                      table the context points to at
+ *                                      +252 (or, for tiling kind 4, from
+ *                                      context +276/+280) and passed to
+ *                                      subloadSimple by pointer; for tiling
+ *                                      kind 0 one slot of the pair holds the
+ *                                      level's word, chosen by even/odd
+ *                                      level parity, and the other is 0.
+ *                                      INFERRED role from the register's
+ *                                      even/odd pair
+ *   20  desc+0x8c                      odd base address word, same source
+ *
+ * Flags word (word 18), ESTABLISHED as to source and INFERRED as to
+ * meaning. subloadLevel builds it and subloadSimple stores it to desc+0x84:
+ *   bits 0-1   texel size code, table entry +8 of the internal format
+ *   bit 2      set on the single-image path (the load scissor enable)
+ *   bits 3-4   target bank: 1 when the level's even/odd parity equals the
+ *              context word at +284, else 0
+ *   bits 5-6   tiling kind of the texture, (gc+12) & 3
+ *   bits 7-10  S bits, st_bits_per_page[(tiling & 3) * 3 + size code][0]
+ *   bits 11-14 T bits, same table, second word
+ *   bit 15     interlaced download, set from context bit +0x704 bit 5
+ * These are exactly the fields and positions of TGTML_TEXLD_MISC in the kpm
+ * table (TEXELSIZE, LDSCISSOREN, TARGETBANK, TILING, S_BITS, T_BITS,
+ * INTERLACE_DWNLD at shifts 0, 2, 3, 5, 7, 11, 15), so header word 18 is
+ * that register's value. st_bits_per_page (libGLcore_n32.so 0x0da7ec80,
+ * eight bytes per row, read from the file), rows 0-11: (4,4) (3,4) (2,4)
+ * (3,2) (3,1) (3,1) (3,2) (2,2) (2,1) (5,3) (4,3) (3,3).
+ *
+ * Words 12-16, the header's start and end values, follow the register
+ * layouts of TGTML_TEXLD_STSTART (s, t), _STEND (s, t) and _S1ST_RSTART
+ * (the r start); the header order is s start, t start, s end, t end,
+ * r start.
+ *
+ * Texel format id (word 10), ESTABLISHED for the table, INFERRED for its
+ * role. intern_format_arr3 (libGLcore_n32.so 0x0da7e6f0, 67 entries of four
+ * big-endian words: GL internal format, id, texel size code, group) was read
+ * from the file. subloadLevel sets desc+0x64 to the entry's id when the
+ * group is 1, to 8 when it is 2 and to 16 when it is 3 or 4. Group 1 is
+ * every ordinary format, group 2 the dual formats 0x8110-0x811b, group 3
+ * 0x811c-0x811d and group 4 the quad formats 0x811e-0x8123 (the GL
+ * texture-select extension names for those enums are GL_DUAL_* and
+ * GL_QUAD_*). Ids seen, with the formats that use them (GL names from the
+ * public registry): 13 LUMINANCE and its sized forms, and also
+ * DEPTH_COMPONENT and its 16/24/32 forms; 14 ALPHA; 15 INTENSITY; 8
+ * LUMINANCE_ALPHA up to 8/8 and 6/2; 12 LUMINANCE12_ALPHA4; 16 RGB2,
+ * RGBA2, R3_G3_B2, RGB4 and RGBA4; 20 RGB5 and RGB5_A1; 40
+ * LUMINANCE12_ALPHA12 and LUMINANCE16_ALPHA16; 48 RGB8, RGBA8 and the
+ * unsized RGB, RGBA, 3 and 4; 56 RGB10 and RGB10_A2; 80 RGB12, RGB16,
+ * RGBA12 and RGBA16. Ids 5, 4 and 6 belong to group 2, 3 to group 3 and 1,
+ * 0 and 2 to group 4. The texel size code is 0 for ids 13, 14, 15, 8, 12,
+ * 16 and 20 and the groups 2-4, 1 for 40, 48 and 56, and 2 for 80; that
+ * these are 16, 32 and 64 bits per texel is INFERRED from the format
+ * widths. The unit of the id and why 13 serves both luminance and depth
+ * are UNKNOWN.
  *
  * The INFERRED rows 12-16: subloadSimple stores its third and fourth
  * arguments to desc+0x6c and desc+0x70 and the sums (third + width - 1) and
