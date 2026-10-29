@@ -3761,14 +3761,17 @@ enum kona_hp_token {
      * (0x478478 twice), so the third word the pipe takes there is the next
      * word written to the command port (inferred from the count; no shipped
      * program states what follows). Payload 3: three words: a bus-mode code,
-     * then the data word as its high and low halves (irsaudit fcTbusWrite:
-     * (mode XOR 1) << 1, high, low). Established: routed by the host
-     * interface with no ARM code, arm1.u token-map entry 0x5847c8c1: command
-     * 143, count field 3 (bits 6-10, 0 read as 32), single floats; engine
-     * handler `mgesi_TBUS_1` (index 15 of the handler table). Sent by
-     * irsaudit fcTbusWrite 0x1013e81c (token, then three words); kona.a
-     * kona_video KONAschedswapbuf (kona_video.text.s 0xc80-0xca0, swap mode 2
-     * only): token 226, then 0x478478 twice, then rrmValidateBuffer and the
+     * then the 64-bit bus word as its low half and then its high half; the
+     * high half carries the register number from bit 16 (irsaudit fcTbusWrite
+     * 0x1013e81c: (mode XOR 1) << 1, then lw 4(sp) before lw 0(sp); arm1.u
+     * tbus_write_word 0x0c036408: mode 0, data, then register << 16 ORed with
+     * data bits 32 and up). Established: routed by the host interface with no
+     * ARM code, arm1.u token-map entry 0x5847c8c1: command 143, count field 3
+     * (bits 6-10, 0 read as 32), single floats; engine handler `mgesi_TBUS_1`
+     * (index 15 of the handler table). Sent by irsaudit fcTbusWrite
+     * 0x1013e81c (token, then three words); kona.a kona_video
+     * KONAschedswapbuf (kona_video.text.s 0xc80-0xca0, swap mode 2 only):
+     * token 226, then 0x478478 twice, then rrmValidateBuffer and the
      * HH_GINTR_INFO kick, with no third word. */
     KONA_HP_TBUS_1                       = 0x0e2,
 
@@ -9485,7 +9488,10 @@ enum kona_kpm_spare_token {
  * Write/Sync FIFO Register (0x4000c), established as a kpm table entry with two
  * fields: DISABLE (bit 0) and WM (bits 1-5). Inferred from the names: DISABLE
  * turns the write-sync FIFO off and WM is its water mark, a five-bit level.
- * kpm 6.5.30m reads it in `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it.
+ * kpm 6.5.30m reads it in `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it,
+ * so the engines run with its reset value. What the FIFO synchronises and the unit of WM are
+ * unknown: no shipped software or published source depends on them. Routes tried: arm1.u
+ * (its engine-register writes reach only 0x40000, 0x40010, 0x40018 and 0x40038), kpm's dump and
  */
 #define KONA_GE11_REG_WRITE_SYNC_FIFO                0x4000c  /* "Write/Sync FIFO Register" */
 #define KONA_GE11_SYNCFIFO_DISABLE              0x00000001  /* bits from 0 */
@@ -9505,7 +9511,9 @@ enum kona_kpm_spare_token {
  * Enable Mask Register (0x40014), established as a kpm table entry with two
  * three-bit fields, ENABMSK_A (bits 0-2) and ENABMSK_B (bits 4-6). Inferred from
  * the name: each field masks one group of engine units on or off. kpm 6.5.30m reads it
- * in `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it.
+ * in `ge11ReadDiagRegisters` (0x1001e748); no shipped program writes it. Which units the six
+ * bits name is unknown: no shipped software or published source depends on them. Routes tried
+ * as for the Write/Sync FIFO Register.
  */
 #define KONA_GE11_REG_ENABLE_MASK                    0x40014  /* "Enable Mask Register" */
 #define KONA_GE11_ENABMSK_A                     0x00000007  /* bits from 0 */
@@ -9515,9 +9523,13 @@ enum kona_kpm_spare_token {
  * CM/Ofifo TAG Register (0x40018), established, 6.5.30m: `init_ge` (0x0c0032e4,
  * arm1.u) writes 0x4930 when the Gray-decoded board id is 8 or more and 0x9b60 below that (0x0c00340c-0x0c003444). The fields are CFG
  * (bit 0), WTRIM_WD, WTRIM_DLY, CTRIM_WD, CTRIM_DLY (bits 4-15) and PULSE_EN
- * (bit 16). Inferred from the names: the trim fields set the width and delay of
- * the write and clock strobes of the command-memory and output-FIFO tag RAM.
- * kpm 6.5.30m reads it in `ge11ReadDiagRegisters` (0x1001e748).
+ * (bit 16). Decoded, the two values are CFG 0 and PULSE_EN 0 with trims (WTRIM_WD,
+ * WTRIM_DLY, CTRIM_WD, CTRIM_DLY) = (3, 2, 2, 2) for 0x4930 and (6, 6, 6, 4) for 0x9b60,
+ * so boards with id 8 or more get shorter settings. Inferred from the names: the trim fields
+ * set the width and delay of the write and clock strobes of the command-memory and
+ * output-FIFO tag RAM. The time unit of a trim step is unknown: no shipped software or
+ * published source depends on it beyond these two values; routes tried as for the
+ * Write/Sync FIFO Register. kpm 6.5.30m reads it in `ge11ReadDiagRegisters` (0x1001e748).
  */
 #define KONA_GE11_REG_CM_OFIFO_TAG                   0x40018  /* "CM/Ofifo TAG Register" */
 #define KONA_GE11_CMTAG_CFG                     0x00000001  /* bits from 0 */

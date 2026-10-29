@@ -123,10 +123,13 @@
  * left-shift exponent: value = v * 2^e / 128, range about [-8, 8).
  * Four codes are packed into 40 bits as two words:
  *   word0 = c0 | c1 << 10 | c2 << 20 | c3 << 30,  word1 = c3 >> 2.
- * INFERRED: these fill the 10-bit N0..N3 fields of TFT_EXTRAP (0x1800) and
- * TFT_DETAILTEX (0x1810), which have exactly this 40-bit layout.
- * UNKNOWN: what the hardware does with the 33rd data word on this path
- * (the loop fills 32).
+ * ESTABLISHED (arm1.u 6.5.30m): arm_tex_send_arm_table (0x0c026010) keeps the
+ * 33 words as one table record; sendTexTable (0x0c02539c) sends a curve record
+ * as 16 word pairs to 16 consecutive registers, 0x1810-0x181f for kind 1
+ * (TFT_DETAILTEX) and 0x1800-0x180f otherwise (TFT_EXTRAP), the first word of
+ * the pair as bits 0-31 and the second ORed into the bus address word as bits
+ * 32-39. So each register holds four 10-bit codes N0..N3, 64 samples in all,
+ * and the 33rd word of a curve record is never sent.
  */
 
 /*
@@ -1009,10 +1012,13 @@
 #define KONA_RM_TFP_FAKE_TEST_ID                          0, 12  /* shift, width */
 
 /*
- * TFT_EXTRAP (index 0x1800): the sharpen (extrapolation) curve, four 10-bit codes N0-N3 per
- * word. Established, 6.5.30m: irsaudit `tbuRegReset` (0x10154cb4) writes 0 to it. Inferred: libGLcore
- * fits the user's control points with `__glKonTexGetCubicSpline` and packs 32 samples into these
- * words, each an 8-bit mantissa and a 2-bit exponent.
+ * TFT_EXTRAP (index 0x1800, a block of 16 registers to 0x180f): the sharpen (extrapolation)
+ * curve, four 10-bit codes N0-N3 in 40 bits per register. Established, 6.5.30m: irsaudit
+ * `tbuRegReset` (0x10154cb4) writes 0 to it; arm1.u `sendTexTable` (0x0c02539c) writes all 16 from
+ * a table record that libGLcore `bindTexTable` sent with token 0x17e, bits 32-39 travelling in the
+ * low byte of the raster-bus address word (`tbus_write_word`). libGLcore's getS2p7 codes (an 8-bit
+ * mantissa and a 2-bit exponent, packed c0 | c1 << 10 | c2 << 20 | c3 << 30 and c3 >> 2) fill
+ * exactly these fields. `arm_bind_texture` (0x0c0258cc) and `activate_texture` send kind 2 here.
  */
 #define KONA_RM_TFT_EXTRAP                               0x1800
 #define KONA_RM_TFT_EXTRAP_N0                             0, 10  /* shift, width */
@@ -1021,9 +1027,10 @@
 #define KONA_RM_TFT_EXTRAP_N3                            30, 10  /* shift, width */
 
 /*
- * TFT_DETAILTEX (index 0x1810): the detail-texture curve, four 10-bit codes N0-N3 per word like
- * TFT_EXTRAP. Established, 6.5.30m: irsaudit `tbuRegReset` (0x10154cb4) writes 0 to it. Inferred:
- * libGLcore fills it from the same spline routine that fills the sharpen curve.
+ * TFT_DETAILTEX (index 0x1810, a block of 16 registers to 0x181f): the detail-texture curve,
+ * packed like TFT_EXTRAP. Established, 6.5.30m: irsaudit `tbuRegReset` (0x10154cb4) writes 0 to it;
+ * arm1.u `sendTexTable` (0x0c02539c) writes the 16 registers for table kind 1 from the same
+ * record form, which libGLcore fills from the same spline routine as the sharpen curve.
  */
 #define KONA_RM_TFT_DETAILTEX                            0x1810
 #define KONA_RM_TFT_DETAILTEX_N0                          0, 10  /* shift, width */
@@ -1032,9 +1039,11 @@
 #define KONA_RM_TFT_DETAILTEX_N3                         30, 10  /* shift, width */
 
 /*
- * TFT_BICUBIC (index 0x1820): the bicubic filter weights, four signed 8-bit values K0K4..K3K7 per
- * word. Established, 6.5.30m: irsaudit `tbuRegReset` (0x10154cb4) writes 0 to it. Inferred: libGLcore
- * packs the user's weights, four to a word, as 1.7 fixed-point numbers for the bicubic path.
+ * TFT_BICUBIC (index 0x1820, a block of 33 registers to 0x1840): the bicubic filter weights,
+ * four signed 8-bit values K0K4..K3K7 per register. Established, 6.5.30m: irsaudit `tbuRegReset`
+ * (0x10154cb4) writes 0 to it; arm1.u `sendTexTable` (0x0c02539c) writes all 33 words of a kind-0
+ * table record, one per register. libGLcore's getS0p7 packs its 129 weights four to a word as 1.7
+ * fixed-point bytes, which is 33 words with the last three bytes unused.
  */
 #define KONA_RM_TFT_BICUBIC                              0x1820
 #define KONA_RM_TFT_BICUBIC_K0K4                          0,  8  /* shift, width */
@@ -1106,8 +1115,9 @@
 
 /*
  * TFT_EOR (index 0x1858), the end marker of the texture-filter block by name. Unknown: no shipped
- * software or published source depends on it. Routes tried: irsaudit, kpm, arm1.u, ge.u and the
- * vector files; no program writes or reads it.
+ * software or published source depends on it. Routes tried: irsaudit, kpm, arm1.u (including
+ * `sendTexTable`, whose writes stop at 0x1840), ge.u, libGLcore's table senders and the vector
+ * files; no program writes or reads it.
  */
 #define KONA_RM_TFT_EOR                                  0x1858
 

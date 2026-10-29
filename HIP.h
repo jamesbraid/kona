@@ -351,8 +351,12 @@
 /*
  * HH_ODMA_LEN at 0x800270 (32 bits), established as a kpm table entry, read by kpm 6.5.30m
  * `hipInspectionPreJtag` (0x10012834); irsaudit `TEST_ge_hip` (0x1006f0f4) writes patterns to the
- * paired raster-bus index and reads them back from this offset. Inferred: it counts the bytes
- * left in the current line of a primary output-DMA transfer.
+ * paired raster-bus index and reads them back from this offset. The firmware loads it (raster-bus
+ * 0x452) with the same line length as HH_ODMA_LLEN (0x455) when a select-feedback starts
+ * (`arm_start_selectfeed`, 0x0c022a50), and the secondary channel's length is in bytes (kpm
+ * `ge11ReadDiagRegisters` 0x1001e748 sets 64 for its sixteen 4-byte registers). Inferred: it
+ * counts the bytes left in the current line of a primary output-DMA transfer and reloads from
+ * HH_ODMA_LLEN.
  */
 #define KONA_HH_ODMA_LEN                    0x270  /* register mask 0xffffffff */
 
@@ -410,7 +414,9 @@
 /*
  * HH_ODMA2_LEN at 0x8002b0 (32 bits), established: kpm 6.5.30m `setup_dma` (0x1001f76c)
  * writes the whole transfer length to it and to HH_ODMA2_TOTAL before starting a pull of pipe
- * state. Inferred: it is the secondary channel's length counter.
+ * state, in bytes: `ge11ReadDiagRegisters` (0x1001e748) passes 64 to pull sixteen 4-byte
+ * registers. Inferred: it is the secondary channel's line counter, which for kpm's one-line
+ * pulls equals the total.
  */
 #define KONA_HH_ODMA2_LEN                   0x2b0  /* register mask 0xffffffff */
 
@@ -505,15 +511,21 @@
 
 /*
  * HH_CURR_DATA_FM_ARM at 0x800340 (32 bits), established as read by kpm 6.5.30m
- * `hipInspectionPreJtag` (0x10012834) into its dump, which prints it raw. Inferred from the name:
- * it holds the data word the ARM drives on its bus in the current cycle.
+ * `hipInspectionPreJtag` (0x10012834) into its dump, which `show_hip_host_registers_section`
+ * (0x1001545c) prints raw; `analyze_hip` uses HH_ARM_CURR_ADDR but not this word. Inferred from
+ * the name: it holds the data word the ARM drives on its bus in the current cycle. Which cycle it
+ * latches and when it updates is unknown: no shipped software or published source depends on it.
+ * Routes tried: kpm's dump, display and analysis code, the kernel's register accesses
+ * (kona_kernel/registers.tsv has none), the firmware and the 6.5.5 headers.
  */
 #define KONA_HH_CURR_DATA_FM_ARM            0x340  /* register mask 0xffffffff */
 
 /*
  * HH_CURR_DATA_TO_ARM at 0x800348 (32 bits), established as read by kpm 6.5.30m
- * `hipInspectionPreJtag` (0x10012834) into its dump, which prints it raw. Inferred from the
- * name: it holds the data word presented to the ARM in the current cycle.
+ * `hipInspectionPreJtag` (0x10012834) into its dump, which `show_hip_host_registers_section`
+ * (0x1001545c) prints raw. Inferred from the name: it holds the data word presented to the ARM in
+ * the current cycle. Which cycle it latches is unknown: no shipped software or published source
+ * depends on it; routes tried as for HH_CURR_DATA_FM_ARM.
  */
 #define KONA_HH_CURR_DATA_TO_ARM            0x348  /* register mask 0xffffffff */
 
