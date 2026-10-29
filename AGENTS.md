@@ -43,6 +43,8 @@ The subdirectories below contain relative symbolic links resolving into `root/` 
 | `ucode/` | `KONA/` microcode, tables and listings (`ge.u`, `ge11.u`, `geif.u`, `arm1.u`, `tport.bin`, `dg4/`, `vof/`) | `usr/gfx/ucode/KONA/` | Data |
 | `diags/` | `IR/` diagnostics (`irsaudit`, microcode, test vectors), `KONA_bin/` (`ireeprom`, `kpm`, `postmortem`) | `usr/diags/IR/`, `usr/gfx/KONA/bin/` | Stripped |
 
+The scope is wider than the six directories: IRIX_FILES.md also lists the Origin 350 (IP35) twins of the kernel objects, the textport driver `tport.a`, the `gfxinfo`, `gfxtopology`, `hyperpipeinfo`, `ircombine`, `sgcombine`, `setmon`, `dmconf`, `startgfx` and `stopgfx` tools, the o32 IrisGL library, the `xsetmon` client and its resource files, the video-format compiler `sdbutil` with the `dg4`, `dg4_ddo_gvo`, `dplex` and `voc1` rule files, and the driver's tuning files. They have no symlink directory; `scripts/inventory.py` reads them from `root/`. Files on the 6.5.30 media that name no InfiniteReality symbol (`usr/stand/ide`, `stand/ideloader`, `videod`, `libvl.so.1`) are out of scope, and no PROM image is on that media.
+
 DWARF status is what `scripts/map_binaries.py` reported on the primary release (IRIX 6.5.30). The 6.5.30 DWARF is thin: `dwarfdump -i` finds only compilation units, subprograms with address ranges, global variables and line tables. It has no types, structure members or parameters, in the kernel objects, both libGLcore ABIs, `libGL.so`, `libgl.so` or `libfm.so`. It gives function names, source file names and source line numbers (the `# Line` comments in the assembly), so driver structures must be recovered from the code. Types need a release built with full debug info; fill in the 6.5.0 column when you have a 6.5.0 install, since 6.5.0 binaries carry debug info.
 
 ---
@@ -95,6 +97,7 @@ Scripts (`scripts/`, run from the repository root):
 - `resolve_got.py`, `clean_asm.py`: resolve `$gp`-relative GOT loads to symbol names.
 - `extract_libglcore_kona.py`: extract compilation units, types and functions from `libGLcore.so` into `libglcore/asm/` and `manifest.json`, and write `libglcore/decompile_libglcore.sh`. A binary without DWARF falls back to its symbol table.
 - `extract_kona_ddx.py`: the same for an X server module, grouped by function-name prefix or by your own `ddx/groups.json`.
+- `inventory.py`: measure coverage from the binaries. It lists every function, MMIO offset, command token, ioctl and microcode routine in scope into [docs/inventory/](docs/inventory/README.md), gives each a status (documented, named-only or undocumented, with the doc and section that explains it) and rewrites the totals at the top of `docs/coverage.md`. Run it inside the build image with this workspace mounted; it needs the MIPS binutils and `pyelftools`.
 - `analyze_fifo.py`, `extract_gl_tokens.py`: find accesses to a hardware address window in the assembly, and map the first FIFO word each decompiled GL function stores to that function. Both take the address window or FIFO address you found as arguments; none is built in.
 
 The scripts descend from gr4's and carry its BSD-3 notice ([scripts/LICENSE-gr4](scripts/LICENSE-gr4)).
@@ -107,14 +110,16 @@ Workflow: populate `root/` (IRIX_FILES.md), run `scripts/populate-root`, run the
 
 Roles:
 
-- **Opus readers** take the Priority list in `docs/coverage.md`, in order.
-- **Sonnet readers** backfill `docs/coverage.md` rows one block at a time.
+- **Readers** pick work from the `undocumented` rows of the tables in `docs/inventory/`, which are measured from the binaries and so list what is really missing. Take a cluster of related rows (one function family, one register block, one token group, one ioctl) and explain it. **Opus readers** start with the Priority list in `docs/coverage.md` and use the inventory to find the rows behind each item; **Sonnet readers** work through `undocumented` and `named-only` rows by block.
+- The areas table in `docs/coverage.md` stays as the by-hand view of each block. Keep its rows true when you change them.
+
+Regenerate the inventory in the same commit as any doc or header change that explains an item (`scripts/inventory.py`, then commit `docs/inventory/` and the totals in `docs/coverage.md` with it). A row only becomes `documented` when a markdown page names the item in backticks or a code block, or a header comment names it. Write the name exactly as the binary spells it, and put the explanation under a heading, so the row cites the right section.
 
 Output rules:
 
 - Findings go in chip headers at the repository root plus `docs/` chapters, written in your own words.
 - Label every fact established, inferred or unknown, with its derivation: binary and release, function or offset, or the public source path.
-- Update `docs/coverage.md` in the same commit as the finding.
+- Update `docs/coverage.md` and regenerate `docs/inventory/` in the same commit as the finding.
 - Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
 - Commit what you cite: findings may rest on IRIX binaries or public sources only.
 

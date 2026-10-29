@@ -1,0 +1,114 @@
+side	binary	command	name	handler_or_caller	class	status	doc
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10000	KONA_DMAREAD	curproc_abi	kona private	documented	docs/captures.md#xg-xtalk-widget
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10001	KONA_DMAWRITE	curproc_abi	kona private	documented	docs/captures.md#xg-xtalk-widget
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10002	KONA_START_SELECTFEED	curproc_abi	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10003	KONA_FINISH_SELECTFEED	kona_finish_selectfeed	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10005	KONA_SELECT_CURSOR	copyin	kona private	documented	docs/dg.md#cursor
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10006	KONA_SETCONFIGINFO	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10008	KONA_DEBUG_IOCTL		kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10009	KONA_SET_CHANNEL_RECT	copyin	kona private	documented	docs/dg.md#cursor
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10010	KONA_MEM_ALLOC	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10011	KONA_MEM_FREE	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10012	KONA_GET_XY_CHANNEL	copyin	kona private	documented	docs/dg.md#choosing-the-cursor-channel
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10014	KONA_MEM_REALLOC	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10015	KONA_SHARE	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10016	KONA_HEALTH	copyout	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10017	KONA_CHECK_PIPE	kona_checkpipe	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10018	KONA_DMAPOOL	curproc_abi	kona private	documented	docs/hip.md#dma-pools
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10019	KONA_GET_NCLOPS_TOPOLOGY	copyout	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10020	KONA_NCLOPS_CONFIGURE	kmem_alloc	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10021	KONA_NCLOPS_QUERY_CONFIG	kmem_alloc	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10022	KONA_NCLOPS_BIND	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10023	KONA_NCLOPS_UNBIND	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10024	KONA_NCLOPS_DESTROY_CONFIG	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10100		curproc_abi	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10101		RRM_CheckValidFault	kona private	undocumented	
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10102		RRM_CheckValidFault	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10000	KONA_DMAREAD	curproc_abi	kona private	documented	docs/captures.md#xg-xtalk-widget
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10001	KONA_DMAWRITE	curproc_abi	kona private	documented	docs/captures.md#xg-xtalk-widget
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10002	KONA_START_SELECTFEED	curproc_abi	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10003	KONA_FINISH_SELECTFEED	kona_finish_selectfeed	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10005	KONA_SELECT_CURSOR	copyin	kona private	documented	docs/dg.md#cursor
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10006	KONA_SETCONFIGINFO	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10008	KONA_DEBUG_IOCTL		kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10009	KONA_SET_CHANNEL_RECT	copyin	kona private	documented	docs/dg.md#cursor
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10010	KONA_MEM_ALLOC	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10011	KONA_MEM_FREE	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10012	KONA_GET_XY_CHANNEL	copyin	kona private	documented	docs/dg.md#choosing-the-cursor-channel
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10014	KONA_MEM_REALLOC	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10015	KONA_SHARE	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10016	KONA_HEALTH	copyout	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10017	KONA_CHECK_PIPE	kona_checkpipe	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10018	KONA_DMAPOOL	curproc_abi	kona private	documented	docs/hip.md#dma-pools
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10019	KONA_GET_NCLOPS_TOPOLOGY	copyout	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10020	KONA_NCLOPS_CONFIGURE	kmem_alloc	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10021	KONA_NCLOPS_QUERY_CONFIG	kmem_alloc	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10022	KONA_NCLOPS_BIND	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10023	KONA_NCLOPS_UNBIND	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10024	KONA_NCLOPS_DESTROY_CONFIG	copyin	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10100		curproc_abi	kona private	documented	docs/kernel.md#private-ioctls
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10101		RRM_CheckValidFault	kona private	undocumented	
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10102		RRM_CheckValidFault	kona private	documented	docs/kernel.md#private-ioctls
+user	ireeprom;Xsgi;libgl.so;libgl.so;+14 more	101		__glXOpenGraphicsDevice;__glx_GetString;__iglooGetGraphicsType	graphics init	undocumented	
+user	ireeprom;libgl.so;libgl.so;libGL.so;+10 more	102		__glx_GetString;__iglooGetGraphicsType;crm_setmon	graphics init	undocumented	
+user	Xsgi;gfxinit;setmon	103		gr2ev_info;irixKernInit;saXSGIvcQueryChannelGammaMap	graphics init	undocumented	
+user	ireeprom;gfxinit	104		gr2ev_info;main	graphics init	undocumented	
+user	ireeprom;gfxinit	106		mgras_init;setup_ucode	graphics init	undocumented	
+user	gfxinit	108		gr2_init;loadfile;mgras_init	graphics init	undocumented	
+user	setmon	110		saXSGIvcQueryChannelGammaMap;vensetmon;vs2setmon	graphics init	undocumented	
+user	Xsgi	111		irixKernInit	graphics init	undocumented	
+user	gfxinit;setmon	113		gr2ev_info;saXSGIvcQueryChannelGammaMap;vs2setmon	graphics init	undocumented	
+user	Xsgi	1000		irixKernInit	graphics manager	documented	docs/opengl.md#which-functions-call-the-kernel
+user	Xsgi	1002		irixKernInit	graphics manager	undocumented	
+user	kona.so;konad.so;konal.so;konas.so	1004		rrmDisposeClip	graphics manager	undocumented	
+user	libGL.so;libGL.so;libGL.so;libGL.so;+2 more	1006		glXSwapIntervalSGI	graphics manager	undocumented	
+user	Xsgi;kona.so;konad.so;konal.so;+1 more	1010		SGICapGLCapture..HAE;rrmInvalidate	graphics manager	undocumented	
+user	kona.so;konad.so;konal.so;konas.so	1011		konValidateClip	graphics manager	documented	docs/opengl.md#ioctls
+user	kona.so;konad.so;konal.so;konas.so	1012		konValidateSwapbuf	graphics manager	documented	docs/opengl.md#ioctls
+user	glx.so	1013		glxBindSwapBarrierSGIX;glxJoinSwapGroupSGIX	graphics manager	undocumented	
+user	kona.so;konad.so;konal.so;konas.so	1017		konLoadDisplayMode	graphics manager	documented	docs/dg.md#buffer-swap-and-retrace-wait
+user	glx.so	1019		glxBindSwapBarrierSGIX	graphics manager	undocumented	
+user	kona.so;konad.so;konal.so;konas.so	1020		rrmMGRSwapBuf	graphics manager	documented	docs/opengl.md#ioctls
+user	libGL.so;libGL.so;libGL.so;libGL.so;+2 more	1022		glXGetVideoSyncSGI	graphics manager	undocumented	
+user	libGL.so;libGL.so;libGL.so;libGL.so;+2 more	1023		glXWaitVideoSyncSGI	graphics manager	documented	docs/ge.md#registers-the-arms-path-to-them
+user	kona.so;konad.so;konal.so;konas.so	10000		konReadFBBlock;konReadImage;kon_loadGC	kona private	documented	docs/kernel.md#dma-ioctls
+user	kona.so;konad.so;konal.so;konas.so	10001		konDrawImage;konWriteFBSubBlock	kona private	documented	docs/kernel.md#private-ioctls
+user	libGLcore.so;libGLcore.so;libGLcore.so;libGLcore.so	10002		__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	kona private	documented	docs/kernel.md#private-ioctls
+user	libGLcore.so;libGLcore.so;libGLcore.so;libGLcore.so	10003		__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	kona private	documented	docs/kernel.md#private-ioctls
+user	kona.so;konad.so;konal.so;konas.so	10005		cfb16DoBitbltXor;konCursorOn;konDisplayCursor	kona private	documented	docs/kernel.md#private-ioctls
+user	kona.so;konad.so;konal.so;konas.so	10009		konaSetStereoMode;nfbUnrealizeCursor	kona private	documented	docs/kernel.md#private-ioctls
+user	kona.so;konad.so;konal.so;konas.so	10012		cfb32FillRectSolidGeneral	kona private	documented	docs/kernel.md#private-ioctls
+user	gfxinit	10016		kona_diagnose	kona private	documented	docs/kernel.md#private-ioctls
+user	libGLcore.so;libGLcore.so;libGLcore.so;libGLcore.so;+5 more	10017		KonWaitRData;__glkona_wait_rdata;konReadFBBlock	kona private	documented	docs/kernel.md#private-ioctls
+user	kona.so;konad.so;konal.so;konas.so	10019		konQueryHyperpipeNetwork	kona private	documented	docs/kernel.md#private-ioctls
+user	kona.so;konad.so;konal.so;konas.so	10020		konHyperpipeConfig	kona private	documented	docs/kernel.md#private-ioctls
+user	kona.so;konad.so;konal.so;konas.so	10021		konQueryHyperpipeConfig	kona private	documented	docs/kernel.md#private-ioctls
+user	libGLcore.so;libGLcore.so;libGLcore.so;libGLcore.so;+1 more	10022		__glkon_BindHyperpipe;venice_loadsection_dg2_body;venice_loadsection_dg2_top	kona private	documented	docs/kernel.md#private-ioctls
+user	libGLcore.so;libGLcore.so;libGLcore.so;libGLcore.so;+2 more	10023		__glkon_UnbindHyperpipe	kona private	documented	docs/kernel.md#private-ioctls
+user	gfxinit;setmon;kona.so;konad.so;+2 more	10024		konDestroyHyperpipeConfig;venice_set_dg2_eeprom	kona private	documented	docs/kernel.md#private-ioctls
+user	gfxinit	10025		read_encoder_reg	kona private	documented	docs/kernel.md#private-ioctls
+user	gfxinit;setmon	10026		venice_get_dg2_eeprom	kona private	undocumented	
+user	gfxinit;setmon	10030		venice_loadsection_vs2_top;vs2SetShadow	kona private	undocumented	
+user	gfxinit;setmon	10031		venice_loadsection_vs2_top;vs2GetShadow;vs2_set_MasterGenlock	kona private	undocumented	
+user	ireeprom;gfxinit;setmon	10100		kona_getconfig;saXSGIvcQueryChannelGammaMap;setup_ucode	kona private	documented	docs/kernel.md#private-ioctls
+user	setmon	15005		xgsetmon	other	undocumented	
+user	setmon	15017		xgsetmon	other	undocumented	
+user	Xsgi	21250		sgiDeviceControl..NFC;sgiGetDeviceFD..HFC	other	undocumented	
+user	Xsgi	21251		sgiGetDeviceFD..HFC	other	undocumented	
+user	Xsgi	21256		XkbDDXUpdateIndicators;ddxMultiCursorDisable;ddxMultiCursorSetDefaultOffsets	other	undocumented	
+user	Xsgi	21260		shmiqLink	other	undocumented	
+user	Xsgi	21261		sgiCloseDevice;shmiqLink	other	undocumented	
+user	Xsgi	21269		sgiIsModulePresent..GFC	other	undocumented	
+user	libgl.so;libgl.so	21505		gl_open_textport	other	undocumented	
+user	libgl.so;libgl.so	21508		gl_open_textport	other	undocumented	
+user	Xsgi	7889664		_XSERVTransShmBufAccept	other	undocumented	
+user	Xsgi	7889665		_XSERVTransShmBufAccept;_XSERVTransShmBufReceiveInternal;_XSERVTransShmBufRelease	other	undocumented	
+user	Xsgi	536891651		Dispatch	other	undocumented	
+user	libgl.so	1074030207		gl_fast_qcheck	other	undocumented	
+user	Xsgi;libgl.so;libgl.so	1074033418		_FontTransSocketBytesReadable..PHB;_XSERVTransShmBufBytesReadable;_XSERVTransSocketBytesReadable..KH	other	undocumented	
+user	gfxinit	1835466761		mgras_init	other	undocumented	
+user	Xsgi	2148028673		shmiqInit	other	undocumented	
+user	Xsgi;libGL.so;libGL.so;libGL.so;+1 more	3221776660		CreateWellKnownSockets;__glXOpenGraphics;__glx_GetString	other	undocumented	
+user	libGL.so;libGL.so	3222300948		__glx_GetString	other	undocumented	
+user	Xsgi	3223349527		CreateWellKnownSockets	other	undocumented	
+user	Xsgi	3223349627		CreateWellKnownSockets	other	undocumented	
