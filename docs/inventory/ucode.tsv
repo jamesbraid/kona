@@ -1264,7 +1264,7 @@ arm1.u	symbol	0x0c02c890	arm_getpolygonstipple	flags=3	understood	ucode/arm1_fun
 arm1.u	symbol	0x0c02c94c	arm_copyisoverlapped	flags=3	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
 arm1.u	symbol	0x0c02c9b0	arm_copyconvisoverlapped	flags=3	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
 arm1.u	symbol	0x0c02ca20	arm_pixel_nomode	flags=3	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
-arm1.u	symbol	0x0c02cae4	InitPolygonStippleState	flags=2	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
+arm1.u	symbol	0x0c02cae4	InitPolygonStippleState	flags=2	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 arm1.u	symbol	0x0c02cae8	invalidate_colormatrix	flags=3	understood	ucode/arm1_functions.md#transform-matrices-and-clipping	Transform, matrices and clipping
 arm1.u	symbol	0x0c02cb0c	update_colormatrix	flags=3	understood	ucode/arm1_functions.md#transform-matrices-and-clipping	Transform, matrices and clipping
 arm1.u	symbol	0x0c02cb28	push_colormatrix	flags=3	understood	ucode/arm1_functions.md#transform-matrices-and-clipping	Transform, matrices and clipping
@@ -1375,86 +1375,86 @@ arm1.u	symbol	0x0c031a14	U_mPixout_2_4	flags=2	understood	ucode/arm1_functions.m
 arm1.u	symbol	0x0c031b04	U_mPixout_32	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 arm1.u	symbol	0x0c031b6c	U_mPixoutI_4_8	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 arm1.u	symbol	0x0c031bc4	SetupGE_PerRect	flags=3	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
-arm1.u	symbol	0x0c031ca8	U_loadLastGEState	flags=2	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
-arm1.u	symbol	0x0c031d24	U_mShortWord	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031df0	U_mShort8_16	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031ed0	U_mShort4_8	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c031fb0	U_mShort_Complex_To_8	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c032014	U_mShort_Complex_To_16	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c032080	U_uConv3x3G	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c032084	U_uConv5x5S	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
+arm1.u	symbol	0x0c031ca8	U_loadLastGEState	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c031d24	U_mShortWord	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c031df0	U_mShort8_16	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c031ed0	U_mShort4_8	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c031fb0	U_mShort_Complex_To_8	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c032014	U_mShort_Complex_To_16	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c032080	U_uConv3x3G	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c032084	U_uConv5x5S	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0c032228	U_uFastConv5x5S	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
-arm1.u	symbol	0x0c0323b8	U_uConv5x5G	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c0325b0	U_uConv7x7G	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
-arm1.u	symbol	0x0c0327a8	Cache	flags=2	named-only	ucode/arm1_functions.md#engine-pipeline-set-up-modules-and-parameters	Engine pipeline: set-up, modules and parameters
+arm1.u	symbol	0x0c0323b8	U_uConv5x5G	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c0325b0	U_uConv7x7G	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+arm1.u	symbol	0x0c0327a8	Cache	flags=2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 arm1.u	symbol	0x0c0327d4	WriteCram	flags=3	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
-arm1.u	symbol	0x0c03281c	WriteEram	flags=3	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
-arm1.u	symbol	0x0c032860	CopyCramToEram	flags=3	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-arm1.u	symbol	0x0c032880	CopyEramToCram	flags=3	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-arm1.u	symbol	0x0c03289c	IncrGEDPtr	flags=2	named-only	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines	How a handler reaches the engines
+arm1.u	symbol	0x0c03281c	WriteEram	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
+arm1.u	symbol	0x0c032860	CopyCramToEram	flags=3	understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
+arm1.u	symbol	0x0c032880	CopyEramToCram	flags=3	understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
+arm1.u	symbol	0x0c03289c	IncrGEDPtr	flags=2	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
 arm1.u	symbol	0x0c0328c8	InitPolygonStippleGEState	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
-arm1.u	symbol	0x0c0328e0	SetGEDRbusReg	flags=3	named-only	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x0c0329c0	SetupRbus	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c032b9c	SetupVbus	flags=3	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
-arm1.u	symbol	0x0c032c30	StartVbus	flags=3	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
-arm1.u	symbol	0x0c032ccc	SetGedVideoBoard	flags=3	understood	GE.h:4467	
-arm1.u	symbol	0x0c032dc0	SetupFormatter	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c033180	SetupUnpacker	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c0332d8	SetupReorderer	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c0333c0	SetupPTUStream	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c033580	SetupPTULine	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c033738	SetupGED	flags=3	named-only	ucode/arm1_functions.md#pixel-path	Pixel path
-arm1.u	symbol	0x0c0337e4	SetupRbus_FFT	flags=2	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
-arm1.u	symbol	0x0c0338e4	SetupGED_FFT	flags=3	named-only	ucode/arm1_functions.md#pixel-path	Pixel path
-arm1.u	symbol	0x0c033a18	SetupGED_ColorStream	flags=3	named-only	ucode/arm1_functions.md#pixel-path	Pixel path
-arm1.u	symbol	0x0c033aa0	StartRbus	flags=3	understood	GE.h:1024	
-arm1.u	symbol	0x0c033b28	RestoreDistMode	flags=3	named-only	ucode/arm1_firmware.md#descriptor-port-r9--0x400	Descriptor port (r9 + 0x400)
-arm1.u	symbol	0x0c033b40	InitPixGED	flags=3	named-only	ucode/arm1_functions.md#set-up-and-state	Set-up and state
-arm1.u	symbol	0x0c033b84	WrapScreenCord	flags=2	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
-arm1.u	symbol	0x0c033bbc	SetupReadback	flags=3	understood	GE.h:1023	
-arm1.u	symbol	0x0c033c80	SetupReadbackTF	flags=3	named-only	ucode/arm1_functions.md#handlers-and-helpers-named-only-in-the-token-table	Handlers and helpers named only in the token table
-arm1.u	symbol	0x0c033fac	SetupRM	flags=3	named-only	docs/rm.md#how-the-arm-firmware-writes-raster-registers	How the ARM firmware writes raster registers
-arm1.u	symbol	0x0c034170	SetupRM_FFT	flags=3	named-only	ucode/arm1_functions.md#pixel-path	Pixel path
-arm1.u	symbol	0x0c0341cc	SetupPGTG	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c034288	SetupSubtexload	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c0343a0	SetupSubtexloadPos	flags=3	understood	GE.h:4134	
-arm1.u	symbol	0x0c034464	SetupTexRead	flags=3	named-only	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x0c0328e0	SetGEDRbusReg	flags=3	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c0329c0	SetupRbus	flags=2	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c032b9c	SetupVbus	flags=3	understood	ucode/arm1_functions.md#pixel-path-video-sources	Pixel path: video sources
+arm1.u	symbol	0x0c032c30	StartVbus	flags=3	understood	ucode/arm1_functions.md#pixel-path-video-sources	Pixel path: video sources
+arm1.u	symbol	0x0c032ccc	SetGedVideoBoard	flags=3	understood	ucode/arm1_functions.md#pixel-path-video-sources	Pixel path: video sources
+arm1.u	symbol	0x0c032dc0	SetupFormatter	flags=2	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c033180	SetupUnpacker	flags=2	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c0332d8	SetupReorderer	flags=2	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c0333c0	SetupPTUStream	flags=2	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c033580	SetupPTULine	flags=2	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c033738	SetupGED	flags=3	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c0337e4	SetupRbus_FFT	flags=2	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c0338e4	SetupGED_FFT	flags=3	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c033a18	SetupGED_ColorStream	flags=3	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c033aa0	StartRbus	flags=3	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
+arm1.u	symbol	0x0c033b28	RestoreDistMode	flags=3	understood	ucode/arm1_functions.md#pixel-path-finishing-a-transfer	Pixel path: finishing a transfer
+arm1.u	symbol	0x0c033b40	InitPixGED	flags=3	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
+arm1.u	symbol	0x0c033b84	WrapScreenCord	flags=2	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
+arm1.u	symbol	0x0c033bbc	SetupReadback	flags=3	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
+arm1.u	symbol	0x0c033c80	SetupReadbackTF	flags=3	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
+arm1.u	symbol	0x0c033fac	SetupRM	flags=3	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
+arm1.u	symbol	0x0c034170	SetupRM_FFT	flags=3	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
+arm1.u	symbol	0x0c0341cc	SetupPGTG	flags=3	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
+arm1.u	symbol	0x0c034288	SetupSubtexload	flags=3	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x0c0343a0	SetupSubtexloadPos	flags=3	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x0c034464	SetupTexRead	flags=3	understood	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x0c034630	StartTexRead	flags=3	understood	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x0c034754	x_initpixels	flags=3	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
-arm1.u	symbol	0x0c034774	arm_x_pix_copy	flags=3	understood	GE.h:5024	
-arm1.u	symbol	0x0c034914	arm_x_pix_write	flags=3	understood	GE.h:5057	
-arm1.u	symbol	0x0c0349e4	arm_x_pix_read	flags=3	understood	GE.h:5041	
-arm1.u	symbol	0x0c034ac4	arm_x_pix_setup	flags=3	understood	GE.h:5005	
-arm1.u	symbol	0x0c034bb4	arm_x_pix_finish	flags=3	understood	GE.h:5072	
+arm1.u	symbol	0x0c034754	x_initpixels	flags=3	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
+arm1.u	symbol	0x0c034774	arm_x_pix_copy	flags=3	understood	ucode/arm1_functions.md#x-server-commands	X server commands
+arm1.u	symbol	0x0c034914	arm_x_pix_write	flags=3	understood	ucode/arm1_functions.md#x-server-commands	X server commands
+arm1.u	symbol	0x0c0349e4	arm_x_pix_read	flags=3	understood	ucode/arm1_functions.md#x-server-commands	X server commands
+arm1.u	symbol	0x0c034ac4	arm_x_pix_setup	flags=3	understood	ucode/arm1_functions.md#x-server-commands	X server commands
+arm1.u	symbol	0x0c034bb4	arm_x_pix_finish	flags=3	understood	ucode/arm1_functions.md#x-server-commands	X server commands
 arm1.u	symbol	0x0c034bf0	CompGedReg	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
-arm1.u	symbol	0x0c034cfc	CompPixGedReg	flags=2	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
-arm1.u	symbol	0x0c034da4	CompBMGedReg	flags=2	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
-arm1.u	symbol	0x0c034f68	CompFormatter	flags=2	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
-arm1.u	symbol	0x0c035020	CompUnpacker	flags=2	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
-arm1.u	symbol	0x0c03506c	CompReorderer	flags=2	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
-arm1.u	symbol	0x0c035108	CompPtu	flags=2	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
+arm1.u	symbol	0x0c034cfc	CompPixGedReg	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
+arm1.u	symbol	0x0c034da4	CompBMGedReg	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
+arm1.u	symbol	0x0c034f68	CompFormatter	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
+arm1.u	symbol	0x0c035020	CompUnpacker	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
+arm1.u	symbol	0x0c03506c	CompReorderer	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
+arm1.u	symbol	0x0c035108	CompPtu	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
 arm1.u	symbol	0x0c035244	X_PixSetupGE	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
-arm1.u	symbol	0x0c035524	XPixSetupRM	flags=2	named-only	ucode/ge_handlers.md#xloads	xload.S
-arm1.u	symbol	0x0c035560	XWriteCram	flags=2	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+arm1.u	symbol	0x0c035524	XPixSetupRM	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
+arm1.u	symbol	0x0c035560	XWriteCram	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
 arm1.u	symbol	0x0c035598	XSetupGedRead	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
 arm1.u	symbol	0x0c0356d4	CompTF	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
 arm1.u	symbol	0x0c03573c	XSetTF	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
-arm1.u	symbol	0x0c035830	XSetPacker	flags=2	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
-arm1.u	symbol	0x0c035874	SendXToHost	flags=2	understood	GE.h:5037	
-arm1.u	symbol	0x0c0358e0	XStartRbus	flags=2	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
+arm1.u	symbol	0x0c035830	XSetPacker	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
+arm1.u	symbol	0x0c035874	SendXToHost	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
+arm1.u	symbol	0x0c0358e0	XStartRbus	flags=2	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
 arm1.u	symbol	0x0c035988	f2i	flags=2	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
-arm1.u	symbol	0x0c0359c4	XPixelRestore	flags=3	understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
-arm1.u	symbol	0x0c035adc	arm_x_storestipple	flags=3	understood	GE.h:5121	
-arm1.u	symbol	0x0c035bec	arm_x_loadstipple	flags=3	understood	GE.h:5104	
-arm1.u	symbol	0x0c035cb0	arm_x_rotatestipple	flags=3	understood	GE.h:5135	
-arm1.u	symbol	0x0c035cf4	arm_rasterpos2d	flags=3	understood	GE.h:2821	
-arm1.u	symbol	0x0c035d74	arm_rasterpos2f	flags=3	understood	GE.h:2836	
-arm1.u	symbol	0x0c035de0	arm_rasterpos2i	flags=3	understood	GE.h:2851	
-arm1.u	symbol	0x0c035e4c	arm_rasterpos2s	flags=3	understood	GE.h:2868	
-arm1.u	symbol	0x0c035ee0	arm_rasterpos3d	flags=3	understood	GE.h:2885	
-arm1.u	symbol	0x0c035f78	arm_rasterpos3f	flags=3	understood	GE.h:2900	
-arm1.u	symbol	0x0c035fec	arm_rasterpos3i	flags=3	understood	GE.h:2915	
-arm1.u	symbol	0x0c036060	arm_rasterpos3s	flags=3	understood	GE.h:2932	
+arm1.u	symbol	0x0c0359c4	XPixelRestore	flags=3	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
+arm1.u	symbol	0x0c035adc	arm_x_storestipple	flags=3	understood	ucode/arm1_functions.md#x-server-commands	X server commands
+arm1.u	symbol	0x0c035bec	arm_x_loadstipple	flags=3	understood	ucode/arm1_functions.md#x-server-commands	X server commands
+arm1.u	symbol	0x0c035cb0	arm_x_rotatestipple	flags=3	understood	ucode/arm1_functions.md#x-server-commands	X server commands
+arm1.u	symbol	0x0c035cf4	arm_rasterpos2d	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c035d74	arm_rasterpos2f	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c035de0	arm_rasterpos2i	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c035e4c	arm_rasterpos2s	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c035ee0	arm_rasterpos3d	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c035f78	arm_rasterpos3f	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c035fec	arm_rasterpos3i	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c036060	arm_rasterpos3s	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 arm1.u	symbol	0x0c0360fc	arm_rasterpos4d	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 arm1.u	symbol	0x0c0361b4	arm_rasterpos4f	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 arm1.u	symbol	0x0c036230	arm_rasterpos4i	flags=3	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
@@ -2120,7 +2120,7 @@ ge.u	label	0x00002753	umo_FloatToInt		understood	ucode/ge_handlers.md#floattoint
 ge.u	label	0x0000277c	mainloop_f2i		understood	ucode/ge_handlers.md#floattoints	floattoint.s
 ge.u	label	0x00002799	epilogue_f2i		understood	ucode/ge_handlers.md#floattoints	floattoint.s
 ge.u	label	0x000027cc	MemRegInit		understood	docs/ge.md#reset-and-start-up	Reset and start-up
-ge.u	label	0x000027d5	mgesi_PixDrawColorEntry		understood	ucode/ge_handlers.md#upixelsetups	upixelSetup.s
+ge.u	label	0x000027d5	mgesi_PixDrawColorEntry		understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
 ge.u	label	0x000027d5	ugesi_PixDrawColorEntry		understood	ucode/ge_handlers.md#upixelsetups	upixelSetup.s
 ge.u	label	0x000027e5	umo_Pixout32_8_16		understood	ucode/ge_handlers.md#upixouts	upixout.s
 ge.u	label	0x00002803	loop32_8_16		understood	ucode/ge_handlers.md#upixouts	upixout.s
@@ -2200,7 +2200,7 @@ ge.u	label	0x00002dea	umo_UnpackVertexV3F_N3S_T2S		understood	ucode/ge_handlers.
 ge.u	label	0x00002dfc	V3F_N3S_T2Sloop		understood	ucode/ge_handlers.md#uunpacks	uunpack.s
 ge.u	label	0x00003000	mgeb_PixDrawColorSetup_FFT		understood	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x00003026	mmo_Transpose		understood	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x00003051	mgesi_PixRasterPosSetup_FFT		understood	ucode/ge_handlers.md#ffts	fft.S
+ge.u	label	0x00003051	mgesi_PixRasterPosSetup_FFT		understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
 ge.u	label	0x000030d4	mmo_Complex_Sort_Out		understood	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x00003133	mmo_Complex_Out		understood	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x0000315b	mmo_FFT_256		understood	ucode/ge_handlers.md#ffts	fft.S
@@ -2260,7 +2260,7 @@ ge.u	label	0x000041e0	mLutoutDone		understood	ucode/ge_handlers.md#colortables	c
 ge.u	label	0x000041fb	mmo_Lutout		understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 ge.u	label	0x0000422e	mgeb_ColorTableSetup		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x0000424e	mgebi_TextureScaleBias		understood	ucode/ge_handlers.md#textures	texture.S
-ge.u	label	0x00004278	mgesi_FillTMLoadFifo		understood	ucode/ge_handlers.md#textures	texture.S
+ge.u	label	0x00004278	mgesi_FillTMLoadFifo		understood	ucode/arm1_functions.md#texture-management	Texture management
 ge.u	label	0x00004293	mgesi_RestoreTextureAddress		understood	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x000042d3	mgebi_Bind2dMipmapTexture		understood	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x000043ae	mgeb_SkipNextTextureAddr		understood	ucode/ge_handlers.md#textures	texture.S
@@ -2286,7 +2286,7 @@ ge.u	label	0x00004961	mgesi_PrintNum		understood	ucode/ge_handlers.md#debugs	deb
 ge.u	label	0x00004a8d	mmo_DebugGE		understood	ucode/ge_handlers.md#debugs	debug.S
 ge.u	label	0x00004a9c	mgeb_DebugDrain		understood	ucode/ge_handlers.md#debugs	debug.S
 ge.u	label	0x00004aa9	mPrintf		understood	ucode/ge_handlers.md#debugs	debug.S
-ge.u	label	0x00004c70	mgesi_XPixRmSetup		understood	ucode/ge_handlers.md#xloads	xload.S
+ge.u	label	0x00004c70	mgesi_XPixRmSetup		understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
 ge.u	label	0x00004cc0	mgeb_XLoadClip		understood	ucode/ge_handlers.md#xloads	xload.S
 ge.u	label	0x00004cf4	mgebi_XLoadGC		understood	ucode/ge_handlers.md#xloads	xload.S
 ge.u	label	0x00004d43	mgesi_XLoadScissor		understood	ucode/ge_handlers.md#xloads	xload.S
@@ -2389,7 +2389,7 @@ ge.u	label	0x00006a79	mgesi_SlopReadWord		understood	ucode/ge_handlers.md#hostio
 ge.u	label	0x00006a86	mgesi_LastVertex2ODMA		understood	ucode/ge_handlers.md#hostios	hostio.S
 ge.u	label	0x00006a9e	mgesi_SR2ODMA		understood	ucode/ge_handlers.md#hostios	hostio.S
 ge.u	label	0x00006ab0	mgesi_LoadEram		understood	ucode/ge_handlers.md#hostios	hostio.S
-ge.u	label	0x00006ac2	mgeb_LoadEram		understood	ucode/ge_handlers.md#hostios	hostio.S
+ge.u	label	0x00006ac2	mgeb_LoadEram		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x00006ad4	mgesi_WramFifo2ODMA		understood	ucode/ge_handlers.md#hostios	hostio.S
 ge.u	label	0x00006af0	mgesi_Eram2ODMA		understood	ucode/ge_handlers.md#hostios	hostio.S
 ge.u	label	0x00006b13	mgesi_Cram2ODMA		understood	ucode/ge_handlers.md#hostios	hostio.S
@@ -2507,8 +2507,8 @@ ge.u	label	0x000099f5	mMerge8_16C_LastBlk		understood	ucode/ge_handlers.md#mshor
 ge.u	label	0x00009a10	mMerge8_16C		understood	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
 ge.u	label	0x00009a3d	mMerge4_8C_LastBlk		understood	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
 ge.u	label	0x00009a57	mMerge4_8C		understood	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x00009a83	mgesi_XPolygonStippleDownload		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009a98	mgeb_XPolygonStippleRotate		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
+ge.u	label	0x00009a83	mgesi_XPolygonStippleDownload		understood	ucode/arm1_functions.md#x-server-commands	X server commands
+ge.u	label	0x00009a98	mgeb_XPolygonStippleRotate		understood	ucode/arm1_functions.md#x-server-commands	X server commands
 ge.u	label	0x00009ae9	mod		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x00009b4a	mgesi_TransparentBitmap		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 ge.u	label	0x00009b8f	mmo_X_DrawBitmapOpaque		understood	ucode/ge_handlers.md#mpixouts	mpixout.S
@@ -2550,23 +2550,23 @@ ge.u	label	0x0000a4d4	mLASTGE		understood	ucode/ge_handlers.md#mpixouts	mpixout.
 ge.u	label	0x0000a532	mmo_I2F_Scale_Skip		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a570	mmo_Shift_Skip		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a5ac	mgeb_EramToEram		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a5c0	mgeb_EramToCram		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a5d4	mgeb_CramToEram		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a5e8	mgeb_LoadCram		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+ge.u	label	0x0000a5c0	mgeb_EramToCram		understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
+ge.u	label	0x0000a5d4	mgeb_CramToEram		understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
+ge.u	label	0x0000a5e8	mgeb_LoadCram		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a5fa	mmo_PixStreamBrdcastCore0ANextGE		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a60b	mmo_PixStreamNextGE		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a614	mmo_PixStreamNextGE_BEFWAR		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a62a	mmo_SetupHip		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a6ad	mmo_PixLineNextGE		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a6be	mgesi_PixConv5GVEntry		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+ge.u	label	0x0000a6be	mgesi_PixConv5GVEntry		understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
 ge.u	label	0x0000a6db	mgeb_PixEndPolygonStipple		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a6e8	mgeb_PixEndRGBStream		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+ge.u	label	0x0000a6e8	mgeb_PixEndRGBStream		understood	ucode/arm1_functions.md#x-server-commands	X server commands
 ge.u	label	0x0000a6ff	mgebi_PixEndTransparentBitmap		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a715	mgesi_FlushPGPCache		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a71e	DoFlushPGPCache		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a747	mgeb_TransparentBitmapSetup		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a75f	mgeb_PixPolygonStippleSetup		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a77f	mgebi_PixCurGEIDSetup		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+ge.u	label	0x0000a77f	mgebi_PixCurGEIDSetup		understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
 ge.u	label	0x0000a79b	mgeb_PixLastGECounterSetup		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a7aa	mgeb_PixDrawColorSetup		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000a7cf	mgeb_BitmapApplyMove		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
@@ -2575,7 +2575,7 @@ ge.u	label	0x0000a7fe	mgeb_FlipYConvKern		understood	ucode/ge_handlers.md#mpixel
 ge.u	label	0x0000a864	mgeb_FlipXConvKern		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a8bb	mgeb_StrideEramToCram		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000a8f7	mgesi_PixQueryCopyOverlap		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a990	mgesi_PixRasterPosSetup		understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+ge.u	label	0x0000a990	mgesi_PixRasterPosSetup		understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
 ge.u	label	0x0000ab59	mmo_CopyFifoLine		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x0000ab9d	mgesi_PipeSetup		understood	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000ad1c	mgeb_XContextInitialize		understood	ucode/ge_handlers.md#ges	ge.S
@@ -2621,7 +2621,7 @@ ge.u	label	0x0000b627	mgesi_TriangleStripRestoreSave		understood	ucode/ge_handle
 ge.u	label	0x0000b64d	mgesi_TriangleStripRestore		understood	ucode/ge_handlers.md#entrys	entry.S
 ge.u	label	0x0000b673	mgesi_TriangleStripSave		understood	ucode/ge_handlers.md#entrys	entry.S
 ge.u	label	0x0000b699	mgesi_TriangleStrip		understood	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b6bc	mgesi_FeedbackPixel		understood	ucode/ge_handlers.md#feedbacks	feedback.S
+ge.u	label	0x0000b6bc	mgesi_FeedbackPixel		understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
 ge.u	label	0x0000b720	mgeb_EndFeedbackMode		understood	ucode/ge_handlers.md#feedbacks	feedback.S
 ge.u	label	0x0000b72f	mgeb_BgnFeedbackMode		understood	ucode/ge_handlers.md#feedbacks	feedback.S
 ge.u	label	0x0000b76e	mmo_FeedbackTriangle		understood	ucode/ge_handlers.md#feedbacks	feedback.S
@@ -2957,9 +2957,9 @@ geif.u	dispatch slot	79	mgeb_LightSpotExp	handler 0xc626	understood	ucode/ge_han
 geif.u	dispatch slot	80	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	81	mgeb_LineStipple	handler 0x62a7	understood	ucode/ge_handlers.md#lines	line.S
 geif.u	dispatch slot	82	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	83	mgeb_LoadCram	handler 0xa5e8	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+geif.u	dispatch slot	83	mgeb_LoadCram	handler 0xa5e8	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 geif.u	dispatch slot	84	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	85	mgeb_LoadEram	handler 0x6ac2	understood	ucode/ge_handlers.md#hostios	hostio.S
+geif.u	dispatch slot	85	mgeb_LoadEram	handler 0x6ac2	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 geif.u	dispatch slot	86	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	87	mgeb_LoadIdentity_Color	handler 0xbe08	understood	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 geif.u	dispatch slot	88	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -2997,7 +2997,7 @@ geif.u	dispatch slot	119	mgeb_PixDrawColorSetup	handler 0xa7aa	understood	ucode/
 geif.u	dispatch slot	120	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	121	mgeb_PixEndPolygonStipple	handler 0xa6db	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 geif.u	dispatch slot	122	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	123	mgeb_PixEndRGBStream	handler 0xa6e8	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+geif.u	dispatch slot	123	mgeb_PixEndRGBStream	handler 0xa6e8	understood	ucode/arm1_functions.md#x-server-commands	X server commands
 geif.u	dispatch slot	124	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	125	mgeb_PixPolygonStippleSetup	handler 0xa75f	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 geif.u	dispatch slot	126	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3085,9 +3085,9 @@ geif.u	dispatch slot	207	mgesi_EvalStrip1D	handler 0xe1	understood	ucode/ge_hand
 geif.u	dispatch slot	208	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	209	mgesi_EvalStrip2D	handler 0x254	understood	ucode/ge_handlers.md#ueval2ds	ueval2D.s
 geif.u	dispatch slot	210	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	211	mgesi_PixConv5GVEntry	handler 0xa6be	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+geif.u	dispatch slot	211	mgesi_PixConv5GVEntry	handler 0xa6be	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
 geif.u	dispatch slot	212	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	213	mgesi_PixRasterPosSetup	handler 0xa990	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+geif.u	dispatch slot	213	mgesi_PixRasterPosSetup	handler 0xa990	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
 geif.u	dispatch slot	214	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	215	mgesi_TbusRegWrite	handler 0x39fd	understood	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	216	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3107,7 +3107,7 @@ geif.u	dispatch slot	229	mgeb_FogFunc	handler 0x6e4b	understood	ucode/ge_handler
 geif.u	dispatch slot	230	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	231	mgebi_FogOffsetEnableDisable	handler 0x6eea	understood	ucode/ge_handlers.md#fogs	fog.S
 geif.u	dispatch slot	232	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	233	mgesi_XPixRmSetup	handler 0x4c70	understood	ucode/ge_handlers.md#xloads	xload.S
+geif.u	dispatch slot	233	mgesi_XPixRmSetup	handler 0x4c70	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
 geif.u	dispatch slot	234	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	235	mgebi_ReferencePlane_Enable	handler 0x5b2f	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	236	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3117,11 +3117,11 @@ geif.u	dispatch slot	239	mgeb_EnableUnpack	handler 0x583e	understood	ucode/ge_ha
 geif.u	dispatch slot	240	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	241	mgeb_DisableUnpack	handler 0x582e	understood	ucode/ge_handlers.md#unpacks	unpack.S
 geif.u	dispatch slot	242	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	243	mgebi_PixCurGEIDSetup	handler 0xa77f	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+geif.u	dispatch slot	243	mgebi_PixCurGEIDSetup	handler 0xa77f	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
 geif.u	dispatch slot	244	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	245	mgeb_SkipNextTextureAddr	handler 0x43ae	understood	ucode/ge_handlers.md#textures	texture.S
 geif.u	dispatch slot	246	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	247	mgesi_FillTMLoadFifo	handler 0x4278	understood	ucode/ge_handlers.md#textures	texture.S
+geif.u	dispatch slot	247	mgesi_FillTMLoadFifo	handler 0x4278	understood	ucode/arm1_functions.md#texture-management	Texture management
 geif.u	dispatch slot	248	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	249	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	250	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3205,7 +3205,7 @@ geif.u	dispatch slot	327	mgeb_PolygonSetup_Render	handler 0x6216	understood	ucod
 geif.u	dispatch slot	328	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	329	mgeb_PolygonSetup_Select	handler 0x6208	understood	ucode/ge_handlers.md#polygons	polygon.S
 geif.u	dispatch slot	330	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	331	mgeb_XPolygonStippleRotate	handler 0x9a98	understood	ucode/ge_handlers.md#mpixouts	mpixout.S
+geif.u	dispatch slot	331	mgeb_XPolygonStippleRotate	handler 0x9a98	understood	ucode/arm1_functions.md#x-server-commands	X server commands
 geif.u	dispatch slot	332	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	333	mgeb_PopAttrLights	handler 0xc20a	understood	ucode/ge_handlers.md#getlights	getlight.S
 geif.u	dispatch slot	334	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3299,7 +3299,7 @@ geif.u	dispatch slot	421	mgesi_LutUpload	handler 0x3a6d	understood	ucode/ge_hand
 geif.u	dispatch slot	422	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	423	mgesi_PassThrough	handler 0x3a5b	understood	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	424	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	425	mgesi_PixDrawColorEntry	handler 0x27d5	understood	ucode/ge_handlers.md#upixelsetups	upixelSetup.s
+geif.u	dispatch slot	425	mgesi_PixDrawColorEntry	handler 0x27d5	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
 geif.u	dispatch slot	426	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	427	mgesi_PixQueryCopyOverlap	handler 0xa8f7	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 geif.u	dispatch slot	428	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3307,7 +3307,7 @@ geif.u	dispatch slot	429	mgesi_Points	handler 0xb2fe	understood	ucode/ge_handler
 geif.u	dispatch slot	430	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	431	mgesi_PolygonStippleDownload	handler 0x9d56	understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 geif.u	dispatch slot	432	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	433	mgesi_XPolygonStippleDownload	handler 0x9a83	understood	ucode/ge_handlers.md#mpixouts	mpixout.S
+geif.u	dispatch slot	433	mgesi_XPolygonStippleDownload	handler 0x9a83	understood	ucode/arm1_functions.md#x-server-commands	X server commands
 geif.u	dispatch slot	434	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	435	mgesi_QuadStrip	handler 0xb596	understood	ucode/ge_handlers.md#entrys	entry.S
 geif.u	dispatch slot	436	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
