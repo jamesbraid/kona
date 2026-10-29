@@ -104,7 +104,7 @@ Userspace drivers: libGLcore command emission and the X server modules (kona*.so
 |---|---|---|---|---|
 | Command and FIFO formats | partial | `GE.h`, `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar | user doorbell 0x4000, token-only header word, Begin/End/Vertex/Color/LoadMatrix/Viewport payloads in GE.h; X module emission not read |
 | Context save and restore | none | `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar |  |
-| Texture formats and filtering (incl. precision) | partial | `RM.h`, `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar | host builds TGTMTFT and filter tables; DRAWTEXELS/DRAWPIXELS header word sources and format/type codes. Remaining: words 9-18 and 20-21, the format remap table at .rodata+0x29f8, TEXLOAD_SETUP/TEXLOAD_ID payloads |
+| Texture formats and filtering (incl. precision) | partial | `RM.h`, `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar | host builds TGTMTFT and filter tables; DRAWTEXELS (20 header words) and DRAWPIXELS (8) word sources, format remap table, components-per-format and type-size tables. Remaining: meaning of header words 9-11, 17, 19-20 (desc+0x64, +0x68, +0x80, +0x88, +0x8c, the third argument), bits of the flags word, TEXLOAD_SETUP/TEXLOAD_ID payloads |
 | Display and scanout | none | `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar |  |
 
 ## Microcode (lower priority)

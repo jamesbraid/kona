@@ -137,19 +137,27 @@
  * TML_SYNC_IDLOAD / TM_SYNC_WAITLOAD and TM_SYNC_IDDRAW /
  * TML_SYNC_WAITDRAW.
  *
- * ESTABLISHED (libglcore/decomp/KONA/kon_pixel.c, DoDrawPixelsOrTexels;
- * asm kon_pixel.s line 3015): texel downloads go out as token 0x174
- * (KONA_HP_DRAWTEXELS) followed by 21 header words, then the image through
- * __glKonSendData; pixel draws use token 0x3a (KONA_HP_DRAWPIXELS) followed
- * by 8 header words. Both are built from one pixel-transfer descriptor
- * (desc below) plus three arguments a1, a2, a3.
+ * ESTABLISHED (libGLcore_n32.so 6.5.30m, DoDrawPixelsOrTexels, asm
+ * libglcore/asm/KONA/kon_pixel.s line 3015): texel downloads go out as
+ * token 0x174 (KONA_HP_DRAWTEXELS) followed by 20 header words, then the image
+ * through __glKonSendData; pixel draws use token 0x3a (KONA_HP_DRAWPIXELS)
+ * followed by 8 header words. The 20 is a count of the stores to the 0x4000
+ * FIFO address in the direct path (the argument-passing path to
+ * __glKonSendData carries the same words in the same order). Both are built
+ * from one pixel-transfer descriptor (desc below) plus three arguments a1, a2,
+ * a3. The descriptor is a plain struct of 32-bit words filled by
+ * __glKonParseInput, __glKonParseHostImage, DrawSubTexels and subloadSimple.
  *
  *   DRAWTEXELS word  DRAWPIXELS word  source
  *    1  target                         desc+0x20: GL target; the code tests
  *                                      it against 0x0de0 / 0x0de1
  *                                      (GL_TEXTURE_1D / GL_TEXTURE_2D)
- *    2  a1             1               INFERRED width
- *    3  a2             2               INFERRED height
+ *    2  a1             1               width of the piece being sent
+ *                                      (INFERRED: DrawSubTexels splits the
+ *                                      image across its width, in pieces
+ *                                      whose width is a power of two, and
+ *                                      passes the piece width here)
+ *    3  a2             2               height, desc+0x4 (INFERRED)
  *    4  format code    3               desc+0x90 (see below)
  *    5  type code      4               desc+0x94 (see below)
  *    6  address & 3    5               desc+0x14 & 3: byte offset of the
@@ -158,25 +166,72 @@
  *                                      context bit (+0x7b5c bit 2)
  *    8  split flag     7               desc+0xb8: set to 1 when the image is
  *                                      sent in several pieces
- *    9  a3             8               UNKNOWN
- *   10-18                              desc+0x64..+0x84 in order, nine words.
- *                                      DrawSubTexels steps +0x6c (first
- *                                      row of a piece) and +0x74 (last row,
- *                                      first + count - 1) when it splits a
- *                                      download; INFERRED a start/end box.
- *                                      The others are UNKNOWN.
- *   19  flags                          desc+0x84; bit 15 is set when context
- *                                      flag +0x704 bit 5 is set, bit 2 on
- *                                      one other path. Meaning UNKNOWN.
- *   20-21                              desc+0x88, desc+0x8c, UNKNOWN.
+ *    9  a3             8               UNKNOWN (always the third argument;
+ *                                      the pixel path passes 0)
+ *   10  desc+0x64                      not written by any function in
+ *                                      kon_pixel.c or by subloadSimple;
+ *                                      UNKNOWN
+ *   11  desc+0x68                      subloadSimple stores a word read from
+ *                                      the context object at ctx+0x110, offset
+ *                                      +4; UNKNOWN meaning
+ *   12  desc+0x6c                      s start (INFERRED)
+ *   13  desc+0x70                      t start (INFERRED)
+ *   14  desc+0x74                      s end, inclusive (INFERRED)
+ *   15  desc+0x78                      t end, inclusive (INFERRED)
+ *   16  desc+0x7c                      r start; __glKonDrawTexels3D adds 1
+ *                                      per slice (INFERRED)
+ *   17  desc+0x80                      subloadSimple stores its eighth
+ *                                      argument here. UNKNOWN: depth, end or
+ *                                      level
+ *   18  flags         (desc+0x84)      subloadSimple stores its ninth
+ *                                      argument. Bit 2 is set on the
+ *                                      single-image path, bit 15 when context
+ *                                      word +0x704 bit 5 is set. Other bits
+ *                                      UNKNOWN
+ *   19  desc+0x88                      first word of a pair passed to
+ *                                      subloadSimple by pointer; UNKNOWN
+ *   20  desc+0x8c                      second word of that pair; UNKNOWN
  *
- * Format code, ESTABLISHED (__glKonParseInput): the GL format becomes an
- * index (GL_COLOR_INDEX 0x1900 .. GL_LUMINANCE_ALPHA 0x190a -> 0..10,
- * GL_ABGR_EXT 0x8000 -> 11, GL_CMYK_EXT 0x800c -> 12, GL_CMYKA_EXT 0x800d
- * -> 13) and is then remapped through a 4-byte table in libGLcore .rodata
- * (__rodata0 + 0x29f8, not yet dumped). Type code: GL_BYTE 0x1400 ..
- * GL_FLOAT 0x1406 -> 0..6, GL_BITMAP 0x1a00 -> 7, packed types 0x8032 ..
- * 0x8036 -> 8..12, 0x81bd .. 0x81c3 -> 14..20; sent without remapping.
+ * The INFERRED rows 12-16: subloadSimple stores its third and fourth
+ * arguments to desc+0x6c and desc+0x70 and the sums (third + width - 1) and
+ * (fourth + height - 1) to desc+0x74 and desc+0x78, which is a start and an
+ * inclusive end in two dimensions; DrawSubTexels moves the width piece with
+ * desc+0x6c = desc+0x74 + 1 and advances the host pointer (desc+0x14) by
+ * bytes-per-pixel * (desc+0x6c - original desc+0x6c), which makes desc+0x6c the
+ * pixel column. UNKNOWN: whether the hardware sees these as texel
+ * coordinates of the target level; no register write was traced.
+ *
+ * The descriptor flag desc+0x18 bit 7 selects the texel header (0x174) over
+ * the pixel header (0x3a); __glKonDrawTexels3D sets desc+0x18 to 0x81.
+ *
+ * Format code, ESTABLISHED (__glKonParseInput, __glKonGetFormatIndex): the GL
+ * format becomes an index (GL_COLOR_INDEX 0x1900 .. GL_LUMINANCE_ALPHA
+ * 0x190a -> 0..10, GL_ABGR_EXT 0x8000 -> 11, GL_CMYK_EXT 0x800c -> 12,
+ * GL_CMYKA_EXT 0x800d -> 13) and that index is looked up in a 14-entry table
+ * of 32-bit words at libGLcore_n32.so .data page 0x0da80000 + 0x29f8 (file
+ * offset 0x1829f8), read from the file:
+ *
+ *   index   0 1 2 3 4 5 6 7 8 9 10 11 12 13
+ *   code   11 12 13 0 1 2 3 4 5 6  7  8  9 10
+ *
+ * so the code on the wire is: RED 0, GREEN 1, BLUE 2, ALPHA 3, RGB 4,
+ * RGBA 5, LUMINANCE 6, LUMINANCE_ALPHA 7, ABGR_EXT 8, CMYK_EXT 9,
+ * CMYKA_EXT 10, COLOR_INDEX 11, STENCIL_INDEX 12, DEPTH_COMPONENT 13.
+ * __glKonParseInput also stores 1 << code at desc+0x98; the draw path tests
+ * mask 0x3000 (codes 12 and 13, stencil and depth) there.
+ *
+ * Components per format, ESTABLISHED (same page, table at +0x28e0, indexed by
+ * wire code): 1 1 1 1 3 4 1 2 4 4 5 1 1 1 (CMYK 4, CMYKA 5).
+ *
+ * Type code, ESTABLISHED (__glKonGetTypeIndex): GL_BYTE 0x1400 .. GL_FLOAT
+ * 0x1406 -> 0..6, GL_BITMAP 0x1a00 -> 7, packed types 0x8032 .. 0x8036 -> 8..12,
+ * 0x81bd .. 0x81c3 -> 14..20; sent without remapping. Code 13 is unused by
+ * the tested ranges. 1 << code is stored at desc+0x9c: bit 7 is bitmap,
+ * mask 0x1f00 packed types. Bytes per element, ESTABLISHED (table at
+ * +0x2920, indexed by type code): 1 1 2 2 4 4 4 0 | 1 2 2 4 4 | 0 | 2 2 4 4 8 8 8
+ * (BITMAP 0; the packed types 0x8032..0x8036 are 1, 2, 2, 4, 4).
+ * Bytes per pixel is components * element size, stored at desc+0xac
+ * (__glKonParseHostImage).
  */
 
 /* Register table (kpm vaddr 0x10145980). Field defines are "shift, width". */
