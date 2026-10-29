@@ -137,6 +137,8 @@ What `kona.so` (the X server module, `usr/lib/X11/dyDDX/`, IRIX 6.5.30m, strippe
 
 **Established** (`konal.so`, `konad.so`, `konas.so` 6.5.30m, `konCreateWindow` and `konDestroyWindow`): the other three builds of the module use the token-as-data framing instead. `konal.so` `konCreateWindow` stores 307 (`X_LOADXMAP_CONFIG`) and then the flag word, both at FIFO offset 0 (0x147d190-0x147d1a4), and where `kona.so` stores `WG_FLUSH_1` they load a word through the pointer at screen private +16 and discard it. **Established** (`kona_edtinit.o` `kona_alloc_bdata`, `Xsgi` `ddxGetBoardName` 0x1012a250 and `ddxMakeDynamicModulePath` 0x10080080): the IP27 kernel reports the board name `KONAL`, the IP35 kernel `KONAD`, and the X server lower-cases board names and loads `/usr/lib/X11/dyDDX/<name>.so`. **Inferred** (the name passed to the path builder was not traced): IP27 and IP35 servers run `konal.so` and `konad.so`, and the address-encoded framing above is the IP19 host's, the one `setmon`'s `KonCmd` uses for board type 19 ([setup-tools.md](setup-tools.md#setmon)).
 
+**Established** by comparing each display sender of `konad.so`, `konal.so` and `konas.so` with its `kona.so` build instruction by instruction ([their entries](#display-functions-in-the-konadso-konalso-and-konasso-builds)); the payload words are unchanged and only the framing differs. Where `kona.so` adds 32 x token to the FIFO pointer and stores the first payload word there, these builds store the token number as a word at the pointer + 0 and then every payload word at + 0. Seen: 306 (`X_LOADXMAP_DID`) in `konValidateMode` and `konChangeDIDCmap`, 305 (`X_LOADCURSORCOLOR`) in `konRecolorCursor`, 303 (`X_LOADGAMMA`) three times in `konStore24DCColors`, 307 in `konDestroyWindow` as in `konCreateWindow`, 299, 298 and 297 (`X_LOADCLIP`, `X_LOADPOS`, `X_LOADGC`) in `kon_drawDid`, and 345 (`X_SEGMENT`) in `konSegmentSS`. None of the three builds forms the `WG_FLUSH_1` address (no `addiu` of 0x3fe0 in any of them, eleven in `kona.so`). **Inferred:** both framings reach the same firmware handlers, since the token map is the same; the modules differ in how the host writes, not in what the display generator receives.
+
 ### Ioctls
 
 | Number | Header name | Module function | Argument (fields in order; source in the module) |
@@ -939,6 +941,165 @@ The Combiner user guide calls swap rates within about 2 percent equal; the code'
 `vfmtSyncFormatFrameRatesCompatible` at 0x429120 in `kona.so` (**established**) decides whether a channel can lock to a sync format's frame rate.
 It is false when either rate is 0 or the larger is more than 16 times the smaller.
 Otherwise it is true when the ratio is within 0.01 of a whole number (its fractional part's distance from one half exceeds 0.49).
+
+### Display functions in the `konad.so`, `konal.so` and `konas.so` builds
+
+The display functions the display-generator chapter ([dg.md](dg.md)) relies on, read in the three other 6.5.30m builds of the module. Each entry was checked by comparing the function's instruction words with its `kona.so` build. Where the entry says the words match, every differing word is a global-table offset, one half of an address built in a register, or an offset taken from a global-table pointer, and the branch and call structure is the same, so the reading of the `kona.so` entry above holds unchanged. `konal.so` and `konas.so` have the same code as `konad.so` (equal `code_sha`) except where a second entry names `konas.so`; that code also matches `kona.so` in the same way.
+
+#### Cursor
+
+- `konRealizeCursor` in `konad.so` at 0x5561d0 (**established**) builds the host copy of a cursor image and sends nothing to the pipe yet.
+  Word for word it matches the `kona.so` build at 0x54ad40 apart from global-table offsets and address halves.
+- `konUnrealizeCursor` in `konad.so` at 0x56b390 (**established**) frees a cursor's host records and puts its cursor-memory slot back on the free list.
+  Its words match the `kona.so` code at 0x55f270 except for relocated offsets.
+- `konUnrealizeCursor` in `konas.so` at 0x56b3b0 (**established**) is the same slot-releasing cleanup, compiled at another address.
+  It matches the `kona.so` build at 0x55f270 in the same way, and `konal.so` holds this code.
+- `konDisplayCursor` in `konad.so` at 0x441430 (**established**) chooses which cursor image the display generator shows, loading a glyph into a free slot first when needed.
+  Apart from relocated words it is the `kona.so` function at 0x441980.
+- `konCursorOn` in `konad.so` at 0x44fbc0 (**established**) switches the hardware cursor on or off through the kernel's cursor-select call.
+  The `kona.so` build at 0x44fff0 has the same instructions modulo global-table offsets.
+- `konRecolorCursor` in `konad.so` at 0x545ff0 (**established**) reloads a cursor's four colour words into the pipe's cursor memory, for a glyph slot or the crosshair.
+  It is the `kona.so` routine at 0x53be80 with one change, made at two sites.
+  The sites are 0x5460c4 and 0x546184:
+  the token number 305 goes out as a data word at FIFO offset 0 before the address word, instead of being folded into the store address.
+- `kon_initCursorCaches` in `konad.so` at 0x4cabb0 (**established**) allocates and links the 39 cursor-memory slot records of a screen.
+  It equals the `kona.so` build at 0x4c2230 once the two relocated words are set aside.
+- `kon_freeCursorCaches` in `konad.so` at 0x573ac0 (**established**) frees a screen's table of cursor slot records when one exists.
+  Only relocated words differ from the `kona.so` copy at 0x567700.
+- `kon_freeCursorCaches` in `konas.so` at 0x573ad0 (**established**) releases that same slot table at screen close.
+  It matches the `kona.so` copy at 0x567700 the same way; `konal.so` carries identical code.
+- `nfbRealizeCursor` in `konad.so` at 0x4f8cf0 (**established**) converts an X cursor into two 32 by 32 bit planes for the frame-buffer layer.
+  It is the `kona.so` function at 0x4efd70 with relocated offsets only.
+
+#### Display ids and modes
+
+- `konValidateMode` in `konad.so` at 0x45fe70 (**established**) loads a display id's mode into the XMAP and then tells the kernel the window's mode.
+  Against the `kona.so` build at 0x4601e0 the one change is at 0x4605cc:
+  token 306 is stored as a data word at FIFO offset 0, and the payload follows at the same offset.
+- `konLoadDisplayMode` in `konad.so` at 0x52c910 (**established**) passes one display id's hardware mode to the kernel's load-display-mode call.
+  Its code is the `kona.so` routine at 0x522a90 with relocation-only differences.
+- `konInitDIDState` in `konad.so` at 0x457290 (**established**) sets the starting kind of every display id in the screen's id table.
+  Relocated offsets are the only difference from the `kona.so` code at 0x457600.
+- `konChangeDIDCmap` in `konad.so` at 0x44ed90 (**established**) rewrites one display id's colour-map field after a window changes colormap.
+  It follows the `kona.so` build at 0x44f1d0, except that at 0x44efd0 token 306 is written as a word at FIFO offset 0 before its payload.
+- `kon_drawDid` in `konad.so` at 0x471770 (**established**) loads the full-screen clip, position and drawing state used to paint display-id planes.
+  Compared with the `kona.so` build at 0x4715c0 the three commands change form only:
+  tokens 299, 298 and 297 are stored as data words at FIFO offset 0 (0x4718e8, 0x471930, 0x47196c), ahead of unchanged payloads.
+- `SetDIDMode` in `konad.so` at 0x50ac90 (**established**) loads an id's mode into the hardware when the holding window's mode is new to the id.
+  The `kona.so` code at 0x501220 is the same apart from relocated offsets.
+- `SetDIDMode` in `konas.so` at 0x50ac70 (**established**) performs the same once-per-mode hardware load of a display id.
+  It too matches the `kona.so` code at 0x501220 modulo relocation, and `konal.so` shares this build.
+- `UpdateDIDMode` in `konad.so` at 0x5864e0 (**established**) copies a window's current mode into its id's table entry after a swap.
+  Relocated words aside it is the `kona.so` function at 0x57a0e0.
+- `nfbSetDidFlags` in `konad.so` at 0x4fcd60 (**established**) marks which windows of a tree need their own display id rather than the parent's.
+  The `kona.so` build at 0x4f3dd0 differs from it only in global-table and address words.
+- `cmapDID` in `konad.so` at 0x4b8c00 (**established**) returns the display id paired with a window's colour map.
+  It matches the `kona.so` routine at 0x4b05f0 except for relocated address halves.
+
+#### Colour maps and gamma
+
+- `konInitializeColormap` in `konad.so` at 0x53f6a0 (**established**) gives a new colormap its hardware private block and first entries.
+  Its instructions are those of the `kona.so` build at 0x535530 with relocated words.
+- `konUninstallColormap` in `konad.so` at 0x5120e0 (**established**) keeps true-colour maps installed and passes every other map to the frame-buffer layer's uninstall.
+  It equals the `kona.so` code at 0x508660 once relocations are set aside.
+- `konUninstallColormap` in `konas.so` at 0x5120c0 (**established**) makes the same split between true-colour and other colormaps on uninstall.
+  It also matches the `kona.so` code at 0x508660, and `konal.so` holds the same code.
+- `nfbCreateHWColormap` in `konad.so` at 0x4f0550 (**established**) allocates the block recording a colormap's hardware slot and allocated cells.
+  Only relocated words separate it from the `kona.so` function at 0x4e75e0.
+- `nfbDestroyHWColormap` in `konad.so` at 0x579d70 (**established**) frees a colormap's hardware private block and clears the pointer to it.
+  It is the `kona.so` build at 0x56d9c0 apart from relocated words.
+- `nfbInstallHWColormap` in `konad.so` at 0x450930 (**established**) gives a colormap a hardware slot in its visual's group and calls the group's install hook.
+  The `kona.so` code at 0x450d60 has the same words modulo relocation.
+- `nfbUninstallHWColormap` in `konad.so` at 0x573770 (**established**) takes a colormap off its hardware slot and queues that slot for reuse next.
+  Relocated offsets are its only difference from the `kona.so` build at 0x5673b0.
+- `nfbUninstallHWColormap` in `konas.so` at 0x573780 (**established**) frees the hardware slot of an uninstalled colormap in the same way.
+  It matches the `kona.so` build at 0x5673b0 too, and `konal.so` has this code.
+- `nfbHWColormapScreenInit` in `konad.so` at 0x4fc010 (**established**) copies the module's slot and group tables into the pipe record when a screen starts.
+  It matches the `kona.so` function at 0x4f3090 apart from relocated words.
+- `nfbHWColormapScreenClose` in `konad.so` at 0x4fb240 (**established**) frees the slot table and then the group table when a screen closes.
+  The `kona.so` build at 0x4f22c0 is the same code with other global-table offsets.
+- `konReloadAllGammas` in `konad.so` at 0x463d00 (**established**) reloads every video channel's gamma tables from their host shadows.
+  Its words match the `kona.so` routine at 0x464060 except for relocated addresses.
+- `konStoreColors` in `konad.so` at 0x52db70 (**established**) stores individual colormap cells on the pipe, one load command per changed cell.
+  Its four sends store token 302 as a data word at FIFO offset 0 before the map address, the count and the colour word.
+  The colour words go out as direct stores, so it makes one call where the `kona.so` build at 0x523cf0 makes three.
+- `konInstallColormap` in `konad.so` at 0x570830 (**established**) loads a whole colormap into the XMAP colour memory when the map is installed.
+  It stores token 302 once as a data word at FIFO offset 0, then the map address, the entry count and one packed word per entry.
+  The `kona.so` build at 0x564710 folds the token into the store address and moves the entries through its copy helpers.
+- `konInstallColormap` in `konas.so` at 0x570850 (**established**) performs the same whole-map load into the colour memory.
+  It differs from the `konad.so` code in one relocated address half only, and `konal.so` holds this code.
+- `konInstall24DCColormap` in `konad.so` at 0x476e50 (**established**) loads the direct-colour tables of a 24-bit visual into the gamma memory.
+  It stores token 303 as a data word at FIFO offset 0, then the table address and the count 512.
+  The table words follow as plain stores; the `kona.so` build at 0x476c40 makes 48 calls of a 32-word copy helper instead.
+- `konStore24DCColors` in `konad.so` at 0x4ac860 (**established**) writes changed direct-colour entries into the gamma memory, red, green and blue in turn.
+  The token 303 is stored as a data word at FIFO offset 0 at each of its three sends.
+  Those sends are at 0x4acb08, 0x4acc70 and 0x4acdd8.
+  The `kona.so` build at 0x4a45e0 folds the token into the store address instead.
+
+#### Swap, blanking and stereo
+
+- `konInitiateBufferSwap` in `konad.so` at 0x4b8610 (**established**) starts a buffer swap for a list of windows and asks the manager to perform it.
+  It is the `kona.so` function at 0x4b0000 with relocation-only changes.
+- `rrmMGRSwapBuf` in `konad.so` at 0x54b990 (**established**) sends one window's swap to the kernel through the manager swap call.
+  The `kona.so` build at 0x540ac0 differs only in relocated words.
+- `konTempBlankAllChannels` in `konad.so` at 0x465430 (**established**) blanks or unblanks all video channels with a single display request.
+  Apart from relocated words it is the `kona.so` code at 0x4657a0.
+- `konBlankScreen` in `konad.so` at 0x4d5f70 (**established**) is the screen-saver entry that blanks or restores every channel.
+  It matches the `kona.so` routine at 0x4cd370 once relocations are set aside.
+- `konaSetStereoMode` in `konad.so` at 0x4aaeb0 (**established**) updates the kernel's cursor rectangle for a stereo switch and then changes the frame-buffer layer's mode.
+  Its instructions equal the `kona.so` build at 0x4a2c10 modulo relocated words.
+- `nfbSetStereoMode` in `konad.so` at 0x452650 (**established**) switches a screen into or out of stereo by exchanging its drawing procedures and hooks.
+  Relocated words are its only difference from the `kona.so` function at 0x4529c0.
+- `nfbSetStereoMode` in `konas.so` at 0x452650 (**established**) makes the same stereo switch of screen procedures and hooks.
+  It also matches the `kona.so` function at 0x4529c0, and `konal.so` carries this code.
+
+#### Windows
+
+- `konCreateWindow` in `konad.so` at 0x4fcfc0 (**established**) sets up a window's private data and sends the XMAP configuration flag 1 when the window needs a hardware window id.
+  At 0x4fd190 it stores token 307 and then the flag as data words at FIFO offset 0.
+  Where the `kona.so` build at 0x4f4030 next stores the flush word, this build loads one word through screen private +16 and discards it.
+- `konDestroyWindow` in `konad.so` at 0x467320 (**established**) tears down a window's state and sends a zero configuration flag when the last such window goes.
+  At 0x4673ec it stores token 307 and then 0 as data words at FIFO offset 0, with no flush word after them.
+  The `kona.so` build at 0x467440 folds the token into the store address and adds the flush.
+
+#### Video formats and combinations
+
+- `vfmtReadKonaVideoFormat` in `konad.so` at 0x431140 (**established**) reads a video format file into the record the LoadFormat request is built from.
+  It matches the `kona.so` build at 0x4319c0 word for word apart from relocated offsets.
+- `vfmtFindFormatFile` in `konad.so` at 0x42af50 (**established**) locates a video format file by name below the graphics root.
+  Only relocated words differ from the `kona.so` build at 0x42b7d0.
+- `vfmtFindKonaFormatFile` in `konad.so` at 0x42b1a0 (**established**) searches this board's own format directory through the generic finder.
+  It is the `kona.so` code at 0x42ba20 apart from relocated addresses.
+- `vfmtFindCmpFormatFile` in `konad.so` at 0x42b1f0 (**established**) tries the two compositor format directories in turn.
+  The `kona.so` routine at 0x42ba70 has the same words modulo relocation.
+- `vfmtFindOdyFormatFile` in `konad.so` at 0x42b290 (**established**) looks up a format in the Odyssey board's directory.
+  It matches the `kona.so` function at 0x42bb10 apart from relocated addresses.
+- `vfmtFindSG2FormatFile` in `konad.so` at 0x42b2e0 (**established**) looks up a format among the SG2 video option's files.
+  Its code is the `kona.so` build at 0x42bb60 with its addresses relocated.
+- `vfmtFindKonaCombinationFile` in `konad.so` at 0x42b330 (**established**) resolves a combination file name for this board.
+  It equals the `kona.so` code at 0x42bbb0 once relocated words are set aside.
+- `vfmtFindCmpCombinationFile` in `konad.so` at 0x42b470 (**established**) resolves a compositor combination file name.
+  The `kona.so` build at 0x42bcf0 differs from it only in relocated offsets.
+- `vfmtGetLastKonaFileStat` in `konad.so` at 0x42b6e0 (**established**) copies out the file status saved by the last successful find.
+  It matches the `kona.so` routine at 0x42bf60 apart from relocation.
+- `vfmtReadKonaCombination` in `konad.so` at 0x42cd70 (**established**) reads a combination file into the record the display set-up loads.
+  Relocated words are the only difference from the `kona.so` function at 0x42d5f0.
+- `vfmtWriteKonaCombination` in `konad.so` at 0x42dfc0 (**established**) writes a combination record back out as a symbol database.
+  Its instructions are the `kona.so` build at 0x42e840 with relocated offsets and string addresses.
+- `vfmtUpdateFormatInfoInCombination` in `konad.so` at 0x428aa0 (**established**) refreshes each channel's format copy inside a combination from its file.
+  It matches the `kona.so` code at 0x429320 modulo relocation.
+- `vfmtActualHWToKonaTarget` in `konad.so` at 0x4277f0 (**established**) describes the installed pipe as a target for validation.
+  The `kona.so` function at 0x428070 has the same instruction stream apart from relocated words.
+- `vfmtIsKonaCombinationValidForTarget` in `konad.so` at 0x427d10 (**established**) checks a combination against a target and reports each failure.
+  It is the `kona.so` build at 0x428590 with relocation-only differences.
+- `vfmtIsKonaCombinationValidForActualHW` in `konad.so` at 0x428770 (**established**) validates a combination against the pipe actually present, caching that target.
+  Relocated words aside it equals the `kona.so` routine at 0x428ff0.
+- `vfmtResolvePixelDepth` in `konad.so` at 0x427040 (**established**) turns a combination's requested pixel depth into one the target can hold.
+  It matches the `kona.so` code at 0x4278c0 except for relocated words.
+- `vfmtSwapRateCloseEnough` in `konad.so` at 0x428810 (**established**) treats two swap rates as equal when they differ by under one percent.
+  It is the `kona.so` function at 0x429090; the constant is loaded from another address.
+- `vfmtSyncFormatFrameRatesCompatible` in `konad.so` at 0x4288a0 (**established**) decides whether a channel can lock to a sync format's frame rate.
+  The `kona.so` build at 0x429120 differs from it only in relocated words.
 
 ## X server module: drawing commands
 
