@@ -1646,7 +1646,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006e278	976	ge_mul_test	dynsy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006e648	1368	TEST_ge_cram	dynsym	d99e441b6eb5	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006eba0	1364	TEST_ge_wram	dynsym	a15b44aae79e	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f0f4	876	TEST_ge_hip	dynsym	a9d601f1b6d3	named-only	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread	Pipe to host: select feedback, `kona_dmaread`
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f460	1856	TEST_ge_instTest	dynsym	d4768d2ff7e5	named-only	ucode/ge_ops.md#the-diagnostic-programs-instruction-test	The diagnostic program's instruction test
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f460	1856	TEST_ge_instTest	dynsym	d4768d2ff7e5	named-only	ucode/ge_isa.md#the-program-files	The program files
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fba0	220	hist_ecd_check	dynsym	b8eba19c901a	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fc7c	292	hist_base_check	dynsym	5ebf269fa935	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fda0	312	hist_ecdbase_check	dynsym	c914f35b093f	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
