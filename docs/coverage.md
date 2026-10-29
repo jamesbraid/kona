@@ -114,10 +114,10 @@ Rows for each microcoded engine. They rank below the Priority items: take them w
 | Program | Behaviour to cover | Status | Owner | Datasheet topic |
 |---|---|---|---|---|
 | ge.u, ge11.u, ged1b.u, geif.u, ge_kpm.hex | Geometry engine programs and their interface stub: instruction format, schedule, local memory, entry points, command dispatch | partial | `ucode/ge.md, GE.h` | host and geometry |
-| arm1.u, arm1_kpm.u | The ARM-named program: role, instruction format and what it controls (role unknown) | partial | `ucode/ge.md` (ARM section), `ucode/arm1.md` | host and geometry |
+| arm1.u, arm1_kpm.u | The ARM-named program: role, instruction format and what it controls | partial | `ucode/arm1.md`, `ucode/arm1.s`, `ucode/icu_map.tsv` | host and geometry |
 | tport.bin | Textport program: command set and display behaviour | none | `ucode/tport.md` | command grammar |
 | dg4/vfo, dg4/cmb, vof, dgo1 | Display tables: video format and combiner table layouts | none | `ucode/dg.md, DG.h` | display |
 
-Microcode detail: container formats, the one-program-three-encodings equivalence and the geif.u slot table are established in ucode/ge.md. The ge.u record is mapped byte to W bit per form (ucode/ge_u_bitmap.tsv) but the byte values are not slices of W, so the field layout is still open. Open, in order: the ge.u byte value mapping, the token-to-slot translation (not in ged1b.u, which is a per-primitive distributor; no plain token-indexed array exists under root/ for the inferred pairs), the decode of ged1b.u, and a disassembly of arm1.u (plain ARM code, load address unknown).
+Microcode detail: container formats, the one-program-three-encodings equivalence and the geif.u slot table are established in ucode/ge.md. The ge.u record is mapped byte to W bit per form (ucode/ge_u_bitmap.tsv) but the byte values are not slices of W, so the field layout is still open. arm1.u is disassembled (AIF image, 1682 symbols; ucode/arm1.md). Token routing: the firmware's 512-entry token map is extracted (icu_map.tsv); 306 tokens run ARM handlers that send a geif.u slot's handler address to the engine, and 83 distributor words carry slots the firmware relocates (ged_relocs.tsv). Open, in order: the ge.u byte value mapping, how a hardware-routed token's 9-bit command number selects an engine address, and the distributor's instruction set.
 
 Rows: 43.

@@ -12,7 +12,7 @@ What the files in `usr/gfx/ucode/KONA/` (IRIX 6.5.30m, linked as `ucode/KONA/`) 
 
 **Inferred:** the geometry-engine instruction is 72 bits wide, and the program counter is 16 bits wide.
 
-`ge_kpm.hex` (186 lines) and `ged1b.u` are other programs in the same formats. `ged1b.u` has magic 0x45910003 and the build string "uasm 6.0" ("Thu Jul 20 17:33:26 2006"). Its code is two segments, 313 instructions at address 0 and 176 at 0x1000 (12-byte records, as in `ge11.u`). **Established:** its file-name table lists `dist.s`, `flush.s`, `material.s`, `trigger.s` and one source per primitive type (`tstrip.s`, `points.s`, `lineloop.s`, `linestrip.s`, `quad.s`, `qstrip.s`, `tfanpoly.s`, `tri.s`, `lines.s`), with headers `ged1seq.h`, `ged1if.h` and `ge11exports.h`. **Inferred:** it is the program of the geometry-engine distributor, the stage that assembles primitives from vertices and hands them to the geometry engines, built per primitive type. Nothing in the file names a command-token table, so the earlier expectation that the token-to-slot translation sits in `ged1b.u` is not supported.
+`ge_kpm.hex` (186 lines) and `ged1b.u` are other programs in the same formats. `ged1b.u` has magic 0x45910003 and the build string "uasm 6.0" ("Thu Jul 20 17:33:26 2006"). Its code is two segments of 32-bit words: a 931-word program at byte address 0 and a 528-word table block at byte address 0x1000 (word 0x400). An earlier reading of 12-byte records was wrong; the ARM firmware loads the program as 1024 32-bit words ([arm1.md](arm1.md)). **Established:** its file-name table lists `dist.s`, `flush.s`, `material.s`, `trigger.s` and one source per primitive type (`tstrip.s`, `points.s`, `lineloop.s`, `linestrip.s`, `quad.s`, `qstrip.s`, `tfanpoly.s`, `tri.s`, `lines.s`), with headers `ged1seq.h`, `ged1if.h` and `ge11exports.h`. **Inferred:** it is the program of the geometry-engine distributor, the stage that assembles primitives from vertices and hands them to the geometry engines, built per primitive type. Nothing in the file names a command-token table. **Established** ([arm1.md](arm1.md)): 83 of its words carry geometry-engine slot numbers that the ARM firmware relocates to handler addresses at load, all of them primitive-assembly handlers ([ged_relocs.tsv](ged_relocs.tsv)).
 
 ## Debug tables in the .u files
 
@@ -65,13 +65,15 @@ Slots are grouped by handler class, not by host token:
 
 **Inferred:** this is the geometry engine's own command-index table, loaded into a lookup memory. kpm's GE11 error register names `ELUT_ADR` (`GE.h`), which suggests an entry lookup table.
 
-**Unknown:** how a host token (`GE.h`) becomes a slot number. For 47 handlers whose names match a token name (for example `HP_CULLFACE` 0xb6 to `mgeb_CullFace` in slot 3), a GF(2) fit found no single linear map from token bits to slot bits. A search of `arm1.u`, `ged1b.u`, `tport.bin`, kpm and libGLcore found no 512-entry token-to-slot table either. A wider search, also negative: using the 47 name matches below as (token, slot) pairs, every file under `root/` (479 regular files) was scanned for a table indexed by token, in 8-, 16- and 32-bit entries of either byte order, whose entry for each token equals the slot, 2 x slot, 2 x slot + 1 or the handler address; no location agreed with even 9 of the 47 pairs. This only rules out a plain array for those pairings, which are themselves inferred from names. The pairs are weakly ordered: of all 1081 pairs of matches, 700 have token and slot in the same order (65%; 155 of 231 inside the `mgesi_` group, 110 of 171 inside `mgeb_`), and the X-server tokens 0x14c-0x15f land in slots 240-249 in near token order. That fits a table sorted by handler class, with the order within a class partly following the token numbers, but it does not give a rule. The translation is therefore expected in the distributor program or the main dispatch code of `ge.hex`, which need the instruction fields decoded first.
+**Established** ([arm1.md](arm1.md)): the ARM firmware copies the 512 words of `geif.u` into its table `gepc`, so slot k's handler address is the low half of 32-bit word k. A host token first selects one of 512 entries in a map the firmware builds at start-up ([icu_map.tsv](icu_map.tsv)). 306 tokens run an ARM handler, which forwards to the engine by writing a `gepc` handler address to a host-interface register: `arm_cullface` sends slot 3, `arm_frontface` slot 15 and `arm_matrixmode` slot 51, which confirms those three name matches. For these tokens the token-to-slot step is in the ARM code, not in a table. The other 206 tokens are routed by the hardware with a 9-bit command number in bits 15-23 of the entry. How that number selects a handler is **unknown**: it is not the slot, not a direct index into the distributor's table, and no static array in `arm1.u` maps it.
+
+Earlier negative results still stand. A GF(2) fit found no linear map from token bits to slot bits for the 47 name matches, and no file under `root/` holds a token-indexed array of slots or handler addresses in any width or byte order.
 
 The 47 name matches are written to [ge_name_matches.tsv](ge_name_matches.tsv) as leads, labelled **inferred**.
 
 ## ARM program
 
-**Established:** `arm1.u` and `arm1_kpm.u` are ARM machine code. In big-endian word order, both begin with 0xe1a00000 (mov r0, r0) twice and a BL (0xeb00000c); the fourth word is the data value 0x2c and the fifth an SWI (0xef000011). So the block the software calls "ARM" runs a real ARM-architecture processor. Its load address and role are **unknown**. The 6.5.5 headers say the host reaches it through a mailbox register (`HIP.h`).
+**Established:** `arm1.u` and `arm1_kpm.u` are big-endian ARM images in AIF layout. `arm1.u` loads at 0x0c000000 with data at 0x04040260 and carries a 1682-entry symbol table; [arm1.md](arm1.md) gives the layout, the disassembly and what the firmware does with host tokens. The 6.5.5 headers say the host reaches it through a mailbox register (`HIP.h`).
 
 ## Precision
 
@@ -80,5 +82,5 @@ The 47 name matches are written to [ge_name_matches.tsv](ge_name_matches.tsv) as
 ## Next steps for a reader
 
 1. Finish the `ge.u` record decode: the byte-to-W-bit map is in ge_u_bitmap.tsv, the value mapping of most bytes is open.
-2. With fields known, find the main loop (`mainloop*` labels) and the read of the token word, to recover the token-to-slot translation.
-3. Decode `ged1b.u` once the record layout is known; it is a primitive distributor, so expect it to explain vertex flow rather than command dispatch.
+2. Find what turns a hardware-routed token's 9-bit command number into an engine address ([arm1.md](arm1.md) lists what is ruled out).
+3. Decode the distributor's own instruction set; its relocated words are listed in [ged_relocs.tsv](ged_relocs.tsv).
