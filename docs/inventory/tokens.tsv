@@ -1,516 +1,516 @@
 token	kpm_name	header_name	firmware_route	sources	status	doc
-0x000	HP_DATA	KONA_HP_DATA	HP_DATA	GE.h,firmware map,kpm	named-only	GE.h:144
+0x000	HP_DATA	KONA_HP_DATA	HP_DATA	GE.h,firmware map,kpm	named-only	GE.h:146
 0x001	HP_BUFFER_CONFIG	KONA_HP_BUFFER_CONFIG	HP_BUFFER_CONFIG	GE.h,firmware map,kpm	documented	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig
 0x002	HP_PACK	KONA_HP_PACK	HP_PACK	GE.h,firmware map,kpm	documented	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig
-0x003	HP_BEGIN_RECT	KONA_HP_BEGIN_RECT	HP_BEGIN_RECT	GE.h,firmware map,kpm	named-only	GE.h:147
+0x003	HP_BEGIN_RECT	KONA_HP_BEGIN_RECT	HP_BEGIN_RECT	GE.h,firmware map,kpm	named-only	GE.h:149
 0x004	HP_READBUFFER_CONFIG	KONA_HP_READBUFFER_CONFIG	HP_READBUFFER_CONFIG	GE.h,firmware map,kpm	documented	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig
-0x005	HP_BITMAP_DLIST	KONA_HP_BITMAP_DLIST	HP_BITMAP_DLIST	GE.h,firmware map,kpm	named-only	GE.h:149
-0x006	HP_BITMAP	KONA_HP_BITMAP	HP_BITMAP	GE.h,firmware map,kpm	named-only	GE.h:150
-0x007	HP_LIGHTF	KONA_HP_LIGHTF	HP_LIGHTF	GE.h,firmware map,kpm	named-only	GE.h:151
-0x008	HP_LIGHTI	KONA_HP_LIGHTI	HP_LIGHTI	GE.h,firmware map,kpm	named-only	GE.h:152
-0x009	HP_LIGHTMODELF	KONA_HP_LIGHTMODELF	HP_LIGHTMODELF	GE.h,firmware map,kpm	named-only	GE.h:153
-0x00a	HP_LIGHTMODELI	KONA_HP_LIGHTMODELI	HP_LIGHTMODELI	GE.h,firmware map,kpm	named-only	GE.h:154
-0x00b	HP_POLYGONSTIPPLE	KONA_HP_POLYGONSTIPPLE	HP_POLYGONSTIPPLE	GE.h,firmware map,kpm	named-only	GE.h:155
-0x00c	HP_SCISSOR	KONA_HP_SCISSOR	HP_SCISSOR	GE.h,firmware map,kpm	named-only	GE.h:156
-0x00d	HP_TEXPARAMETERF	KONA_HP_TEXPARAMETERF	HP_TEXPARAMETERF	GE.h,firmware map,kpm	named-only	GE.h:157
-0x00e	HP_TEXPARAMETERI	KONA_HP_TEXPARAMETERI	HP_TEXPARAMETERI	GE.h,firmware map,kpm	named-only	GE.h:158
-0x00f	HP_TEXIMAGE1D	KONA_HP_TEXIMAGE1D	HP_TEXIMAGE1D	GE.h,firmware map,kpm	named-only	GE.h:159
-0x010	HP_TEXIMAGE2D	KONA_HP_TEXIMAGE2D	HP_TEXIMAGE2D	GE.h,firmware map,kpm	named-only	GE.h:160
-0x011	HP_TEXENVF	KONA_HP_TEXENVF	HP_TEXENVF	GE.h,firmware map,kpm	named-only	GE.h:161
-0x012	HP_TEXENVI	KONA_HP_TEXENVI	HP_TEXENVI	GE.h,firmware map,kpm	named-only	GE.h:162
-0x013	HP_TEXGEND	KONA_HP_TEXGEND	HP_TEXGEND	GE.h,firmware map,kpm	named-only	GE.h:163
-0x014	HP_TEXGENF	KONA_HP_TEXGENF	HP_TEXGENF	GE.h,firmware map,kpm	named-only	GE.h:164
-0x015	HP_TEXGENI	KONA_HP_TEXGENI	HP_TEXGENI	GE.h,firmware map,kpm	named-only	GE.h:165
-0x016	HP_TEXBIND	KONA_HP_TEXBIND	HP_TEXBIND	GE.h,firmware map,kpm	named-only	GE.h:166
-0x017	HP_FEEDBACK_TYPE	KONA_HP_FEEDBACK_TYPE	HP_FEEDBACK_TYPE	GE.h,firmware map,kpm	named-only	GE.h:167
-0x018	HP_SELECTBUFFER	KONA_HP_SELECTBUFFER	HP_SELECTBUFFER	GE.h,firmware map,kpm	named-only	GE.h:168
-0x019	HP_RENDERMODE	KONA_HP_RENDERMODE	HP_RENDERMODE	GE.h,firmware map,kpm	named-only	GE.h:169
-0x01a	HP_CLEAR	KONA_HP_CLEAR	HP_CLEAR	GE.h,firmware map,kpm	named-only	GE.h:170
-0x01b	HP_CLEARACCUM	KONA_HP_CLEARACCUM	HP_CLEARACCUM	GE.h,firmware map,kpm	named-only	GE.h:171
-0x01c	HP_CLEARINDEX	KONA_HP_CLEARINDEX	HP_CLEARINDEX	GE.h,firmware map,kpm	named-only	GE.h:172
-0x01d	HP_CLEARCOLOR	KONA_HP_CLEARCOLOR	HP_CLEARCOLOR	GE.h,firmware map,kpm	named-only	GE.h:173
-0x01e	HP_CLEARSTENCIL	KONA_HP_CLEARSTENCIL	HP_CLEARSTENCIL	GE.h,firmware map,kpm	named-only	GE.h:174
-0x01f	HP_CLEARDEPTH	KONA_HP_CLEARDEPTH	HP_CLEARDEPTH	GE.h,firmware map,kpm	named-only	GE.h:175
-0x020	HP_STENCILMASK	KONA_HP_STENCILMASK	HP_STENCILMASK	GE.h,firmware map,kpm	named-only	GE.h:176
-0x021	HP_COLORMASK	KONA_HP_COLORMASK	HP_COLORMASK	GE.h,firmware map,kpm	named-only	GE.h:177
-0x022	HP_DEPTHMASK	KONA_HP_DEPTHMASK	HP_DEPTHMASK	GE.h,firmware map,kpm	named-only	GE.h:178
-0x023	HP_INDEXMASK	KONA_HP_INDEXMASK	HP_INDEXMASK	GE.h,firmware map,kpm	named-only	GE.h:179
-0x024	HP_ENABLE	KONA_HP_ENABLE	HP_ENABLE	GE.h,firmware map,kpm	named-only	GE.h:180
-0x025	HP_DISABLE	KONA_HP_DISABLE	HP_DISABLE	GE.h,firmware map,kpm	named-only	GE.h:181
-0x026	HP_EVALSTRIP1D	KONA_HP_EVALSTRIP1D	HP_EVALSTRIP1D	GE.h,firmware map,kpm	named-only	GE.h:182
-0x027	HP_EVALSTRIP2D	KONA_HP_EVALSTRIP2D	HP_EVALSTRIP2D	GE.h,firmware map,kpm	named-only	GE.h:183
-0x028	HP_MAPGRID1D	KONA_HP_MAPGRID1D	HP_MAPGRID1D	GE.h,firmware map,kpm	named-only	GE.h:184
-0x029	HP_MAPGRID2D	KONA_HP_MAPGRID2D	HP_MAPGRID2D	GE.h,firmware map,kpm	named-only	GE.h:185
-0x02a	HP_MAPDATA1D	KONA_HP_MAPDATA1D	HP_MAPDATA1D	GE.h,firmware map,kpm	named-only	GE.h:186
-0x02b	HP_MAPDATA2D	KONA_HP_MAPDATA2D	HP_MAPDATA2D	GE.h,firmware map,kpm	named-only	GE.h:187
-0x02c	HP_MAPSPEC1D	KONA_HP_MAPSPEC1D	HP_MAPSPEC1D	GE.h,firmware map,kpm	named-only	GE.h:188
-0x02d	HP_MAPSPEC2D	KONA_HP_MAPSPEC2D	HP_MAPSPEC2D	GE.h,firmware map,kpm	named-only	GE.h:189
-0x02e	HP_LOGICOP	KONA_HP_LOGICOP	HP_LOGICOP	GE.h,firmware map,kpm	named-only	GE.h:190
-0x02f	HP_PIXELZOOM	KONA_HP_PIXELZOOM	HP_PIXELZOOM	GE.h,firmware map,kpm	named-only	GE.h:191
-0x030	HP_PIXELTRANSFERF	KONA_HP_PIXELTRANSFERF	HP_PIXELTRANSFERF	GE.h,firmware map,kpm	named-only	GE.h:192
-0x031	HP_PIXELTRANSFERI	KONA_HP_PIXELTRANSFERI	HP_PIXELTRANSFERI	GE.h,firmware map,kpm	named-only	GE.h:193
-0x032	HP_PIXELSTOREF	KONA_HP_PIXELSTOREF	HP_PIXELSTOREF	GE.h,firmware map,kpm	named-only	GE.h:194
-0x033	HP_PIXELSTOREI	KONA_HP_PIXELSTOREI	HP_PIXELSTOREI	GE.h,firmware map,kpm	named-only	GE.h:195
-0x034	HP_PIXELMAPFV	KONA_HP_PIXELMAPFV	HP_PIXELMAPFV	GE.h,firmware map,kpm	named-only	GE.h:196
-0x035	HP_PIXELMAPUIV	KONA_HP_PIXELMAPUIV	HP_PIXELMAPUIV	GE.h,firmware map,kpm	named-only	GE.h:197
-0x036	HP_PIXELMAPUSV	KONA_HP_PIXELMAPUSV	HP_PIXELMAPUSV	GE.h,firmware map,kpm	named-only	GE.h:198
-0x037	HP_READBUFFER	KONA_HP_READBUFFER	HP_READBUFFER	GE.h,firmware map,kpm	named-only	GE.h:199
-0x038	HP_COPYPIXELS	KONA_HP_COPYPIXELS	HP_COPYPIXELS	GE.h,firmware map,kpm	named-only	GE.h:200
-0x039	HP_READPIXELS	KONA_HP_READPIXELS	HP_READPIXELS	GE.h,firmware map,kpm	named-only	GE.h:201
+0x005	HP_BITMAP_DLIST	KONA_HP_BITMAP_DLIST	HP_BITMAP_DLIST	GE.h,firmware map,kpm	named-only	GE.h:151
+0x006	HP_BITMAP	KONA_HP_BITMAP	HP_BITMAP	GE.h,firmware map,kpm	named-only	GE.h:152
+0x007	HP_LIGHTF	KONA_HP_LIGHTF	HP_LIGHTF	GE.h,firmware map,kpm	named-only	GE.h:153
+0x008	HP_LIGHTI	KONA_HP_LIGHTI	HP_LIGHTI	GE.h,firmware map,kpm	named-only	GE.h:154
+0x009	HP_LIGHTMODELF	KONA_HP_LIGHTMODELF	HP_LIGHTMODELF	GE.h,firmware map,kpm	named-only	GE.h:155
+0x00a	HP_LIGHTMODELI	KONA_HP_LIGHTMODELI	HP_LIGHTMODELI	GE.h,firmware map,kpm	named-only	GE.h:156
+0x00b	HP_POLYGONSTIPPLE	KONA_HP_POLYGONSTIPPLE	HP_POLYGONSTIPPLE	GE.h,firmware map,kpm	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
+0x00c	HP_SCISSOR	KONA_HP_SCISSOR	HP_SCISSOR	GE.h,firmware map,kpm	named-only	GE.h:158
+0x00d	HP_TEXPARAMETERF	KONA_HP_TEXPARAMETERF	HP_TEXPARAMETERF	GE.h,firmware map,kpm	named-only	GE.h:159
+0x00e	HP_TEXPARAMETERI	KONA_HP_TEXPARAMETERI	HP_TEXPARAMETERI	GE.h,firmware map,kpm	named-only	GE.h:160
+0x00f	HP_TEXIMAGE1D	KONA_HP_TEXIMAGE1D	HP_TEXIMAGE1D	GE.h,firmware map,kpm	named-only	GE.h:161
+0x010	HP_TEXIMAGE2D	KONA_HP_TEXIMAGE2D	HP_TEXIMAGE2D	GE.h,firmware map,kpm	named-only	GE.h:162
+0x011	HP_TEXENVF	KONA_HP_TEXENVF	HP_TEXENVF	GE.h,firmware map,kpm	named-only	GE.h:163
+0x012	HP_TEXENVI	KONA_HP_TEXENVI	HP_TEXENVI	GE.h,firmware map,kpm	named-only	GE.h:164
+0x013	HP_TEXGEND	KONA_HP_TEXGEND	HP_TEXGEND	GE.h,firmware map,kpm	named-only	GE.h:165
+0x014	HP_TEXGENF	KONA_HP_TEXGENF	HP_TEXGENF	GE.h,firmware map,kpm	named-only	GE.h:166
+0x015	HP_TEXGENI	KONA_HP_TEXGENI	HP_TEXGENI	GE.h,firmware map,kpm	named-only	GE.h:167
+0x016	HP_TEXBIND	KONA_HP_TEXBIND	HP_TEXBIND	GE.h,firmware map,kpm	named-only	GE.h:168
+0x017	HP_FEEDBACK_TYPE	KONA_HP_FEEDBACK_TYPE	HP_FEEDBACK_TYPE	GE.h,firmware map,kpm	named-only	GE.h:169
+0x018	HP_SELECTBUFFER	KONA_HP_SELECTBUFFER	HP_SELECTBUFFER	GE.h,firmware map,kpm	named-only	GE.h:170
+0x019	HP_RENDERMODE	KONA_HP_RENDERMODE	HP_RENDERMODE	GE.h,firmware map,kpm	named-only	GE.h:171
+0x01a	HP_CLEAR	KONA_HP_CLEAR	HP_CLEAR	GE.h,firmware map,kpm	named-only	GE.h:172
+0x01b	HP_CLEARACCUM	KONA_HP_CLEARACCUM	HP_CLEARACCUM	GE.h,firmware map,kpm	named-only	GE.h:173
+0x01c	HP_CLEARINDEX	KONA_HP_CLEARINDEX	HP_CLEARINDEX	GE.h,firmware map,kpm	named-only	GE.h:174
+0x01d	HP_CLEARCOLOR	KONA_HP_CLEARCOLOR	HP_CLEARCOLOR	GE.h,firmware map,kpm	named-only	GE.h:175
+0x01e	HP_CLEARSTENCIL	KONA_HP_CLEARSTENCIL	HP_CLEARSTENCIL	GE.h,firmware map,kpm	named-only	GE.h:176
+0x01f	HP_CLEARDEPTH	KONA_HP_CLEARDEPTH	HP_CLEARDEPTH	GE.h,firmware map,kpm	named-only	GE.h:177
+0x020	HP_STENCILMASK	KONA_HP_STENCILMASK	HP_STENCILMASK	GE.h,firmware map,kpm	named-only	GE.h:178
+0x021	HP_COLORMASK	KONA_HP_COLORMASK	HP_COLORMASK	GE.h,firmware map,kpm	named-only	GE.h:179
+0x022	HP_DEPTHMASK	KONA_HP_DEPTHMASK	HP_DEPTHMASK	GE.h,firmware map,kpm	named-only	GE.h:180
+0x023	HP_INDEXMASK	KONA_HP_INDEXMASK	HP_INDEXMASK	GE.h,firmware map,kpm	named-only	GE.h:181
+0x024	HP_ENABLE	KONA_HP_ENABLE	HP_ENABLE	GE.h,firmware map,kpm	named-only	GE.h:182
+0x025	HP_DISABLE	KONA_HP_DISABLE	HP_DISABLE	GE.h,firmware map,kpm	named-only	GE.h:183
+0x026	HP_EVALSTRIP1D	KONA_HP_EVALSTRIP1D	HP_EVALSTRIP1D	GE.h,firmware map,kpm	documented	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d
+0x027	HP_EVALSTRIP2D	KONA_HP_EVALSTRIP2D	HP_EVALSTRIP2D	GE.h,firmware map,kpm	documented	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d
+0x028	HP_MAPGRID1D	KONA_HP_MAPGRID1D	HP_MAPGRID1D	GE.h,firmware map,kpm	named-only	GE.h:186
+0x029	HP_MAPGRID2D	KONA_HP_MAPGRID2D	HP_MAPGRID2D	GE.h,firmware map,kpm	named-only	GE.h:187
+0x02a	HP_MAPDATA1D	KONA_HP_MAPDATA1D	HP_MAPDATA1D	GE.h,firmware map,kpm	documented	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d
+0x02b	HP_MAPDATA2D	KONA_HP_MAPDATA2D	HP_MAPDATA2D	GE.h,firmware map,kpm	documented	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d
+0x02c	HP_MAPSPEC1D	KONA_HP_MAPSPEC1D	HP_MAPSPEC1D	GE.h,firmware map,kpm	documented	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d
+0x02d	HP_MAPSPEC2D	KONA_HP_MAPSPEC2D	HP_MAPSPEC2D	GE.h,firmware map,kpm	documented	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d
+0x02e	HP_LOGICOP	KONA_HP_LOGICOP	HP_LOGICOP	GE.h,firmware map,kpm	named-only	GE.h:192
+0x02f	HP_PIXELZOOM	KONA_HP_PIXELZOOM	HP_PIXELZOOM	GE.h,firmware map,kpm	named-only	GE.h:193
+0x030	HP_PIXELTRANSFERF	KONA_HP_PIXELTRANSFERF	HP_PIXELTRANSFERF	GE.h,firmware map,kpm	named-only	GE.h:194
+0x031	HP_PIXELTRANSFERI	KONA_HP_PIXELTRANSFERI	HP_PIXELTRANSFERI	GE.h,firmware map,kpm	named-only	GE.h:195
+0x032	HP_PIXELSTOREF	KONA_HP_PIXELSTOREF	HP_PIXELSTOREF	GE.h,firmware map,kpm	named-only	GE.h:196
+0x033	HP_PIXELSTOREI	KONA_HP_PIXELSTOREI	HP_PIXELSTOREI	GE.h,firmware map,kpm	named-only	GE.h:197
+0x034	HP_PIXELMAPFV	KONA_HP_PIXELMAPFV	HP_PIXELMAPFV	GE.h,firmware map,kpm	named-only	GE.h:198
+0x035	HP_PIXELMAPUIV	KONA_HP_PIXELMAPUIV	HP_PIXELMAPUIV	GE.h,firmware map,kpm	named-only	GE.h:199
+0x036	HP_PIXELMAPUSV	KONA_HP_PIXELMAPUSV	HP_PIXELMAPUSV	GE.h,firmware map,kpm	named-only	GE.h:200
+0x037	HP_READBUFFER	KONA_HP_READBUFFER	HP_READBUFFER	GE.h,firmware map,kpm	named-only	GE.h:201
+0x038	HP_COPYPIXELS	KONA_HP_COPYPIXELS	HP_COPYPIXELS	GE.h,firmware map,kpm	named-only	GE.h:202
+0x039	HP_READPIXELS	KONA_HP_READPIXELS	HP_READPIXELS	GE.h,firmware map,kpm	named-only	GE.h:203
 0x03a	HP_DRAWPIXELS	KONA_HP_DRAWPIXELS	HP_DRAWPIXELS	GE.h,firmware map,kpm	documented	RM.h:147
-0x03b	HP_GETCURRENT	KONA_HP_GETCURRENT	HP_GETCURRENT	GE.h,firmware map,kpm	named-only	GE.h:203
-0x03c	HP_GETCLIPPLANE	KONA_HP_GETCLIPPLANE	HP_GETCLIPPLANE	GE.h,firmware map,kpm	named-only	GE.h:204
-0x03d	HP_GETRASTER	KONA_HP_GETRASTER	HP_GETRASTER	GE.h,firmware map,kpm	named-only	GE.h:205
-0x03e	HP_GETERROR	KONA_HP_GETERROR	HP_GETERROR	GE.h,firmware map,kpm	named-only	GE.h:206
-0x03f	HP_GETFLOATV	KONA_HP_GETFLOATV	HP_GETFLOATV	GE.h,firmware map,kpm	named-only	GE.h:207
-0x040	HP_GETINTEGERV	KONA_HP_GETINTEGERV	HP_GETINTEGERV	GE.h,firmware map,kpm	named-only	GE.h:208
-0x041	HP_GETLIGHTFV	KONA_HP_GETLIGHTFV	HP_GETLIGHTFV	GE.h,firmware map,kpm	named-only	GE.h:209
-0x042	HP_GETLIGHTIV	KONA_HP_GETLIGHTIV	HP_GETLIGHTIV	GE.h,firmware map,kpm	named-only	GE.h:210
-0x043	HP_GETMAPDV	KONA_HP_GETMAPDV	HP_GETMAPDV	GE.h,firmware map,kpm	named-only	GE.h:211
-0x044	HP_GETMAPFV	KONA_HP_GETMAPFV	HP_GETMAPFV	GE.h,firmware map,kpm	named-only	GE.h:212
-0x045	HP_GETMAPIV	KONA_HP_GETMAPIV	HP_GETMAPIV	GE.h,firmware map,kpm	named-only	GE.h:213
-0x046	HP_GETMATERIALFV	KONA_HP_GETMATERIALFV	HP_GETMATERIALFV	GE.h,firmware map,kpm	named-only	GE.h:214
-0x047	HP_GETMATERIALIV	KONA_HP_GETMATERIALIV	HP_GETMATERIALIV	GE.h,firmware map,kpm	named-only	GE.h:215
-0x048	HP_GETPIXELMAPFV	KONA_HP_GETPIXELMAPFV	HP_GETPIXELMAPFV	GE.h,firmware map,kpm	named-only	GE.h:216
-0x049	HP_GETPIXELMAPUIV	KONA_HP_GETPIXELMAPUIV	HP_GETPIXELMAPUIV	GE.h,firmware map,kpm	named-only	GE.h:217
-0x04a	HP_GETPIXELMAPUSV	KONA_HP_GETPIXELMAPUSV	HP_GETPIXELMAPUSV	GE.h,firmware map,kpm	named-only	GE.h:218
-0x04b	HP_GETPOLYGONSTIPPLE	KONA_HP_GETPOLYGONSTIPPLE	HP_GETPOLYGONSTIPPLE	GE.h,firmware map,kpm	named-only	GE.h:219
-0x04c	HP_GETV	KONA_HP_GETV	HP_GETV	GE.h,firmware map,kpm	named-only	GE.h:220
-0x04d	HP_GETTEXENVFV	KONA_HP_GETTEXENVFV	HP_GETTEXENVFV	GE.h,firmware map,kpm	named-only	GE.h:221
-0x04e	HP_GETTEXENVIV	KONA_HP_GETTEXENVIV	HP_GETTEXENVIV	GE.h,firmware map,kpm	named-only	GE.h:222
-0x04f	HP_GETTEXGENDV	KONA_HP_GETTEXGENDV	HP_GETTEXGENDV	GE.h,firmware map,kpm	named-only	GE.h:223
-0x050	HP_GETTEXGENFV	KONA_HP_GETTEXGENFV	HP_GETTEXGENFV	GE.h,firmware map,kpm	named-only	GE.h:224
-0x051	HP_GETTEXGENIV	KONA_HP_GETTEXGENIV	HP_GETTEXGENIV	GE.h,firmware map,kpm	named-only	GE.h:225
-0x052	HP_GETTEXIMAGE	KONA_HP_GETTEXIMAGE	HP_GETTEXIMAGE	GE.h,firmware map,kpm	named-only	GE.h:226
-0x053	HP_GETTEXPARAMETERFV	KONA_HP_GETTEXPARAMETERFV	HP_GETTEXPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:227
-0x054	HP_GETTEXPARAMETERIV	KONA_HP_GETTEXPARAMETERIV	HP_GETTEXPARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:228
-0x055	HP_GETTEXLEVELPARAMETERFV	KONA_HP_GETTEXLEVELPARAMETERFV	HP_GETTEXLEVELPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:229
-0x056	HP_GETTEXLEVELPARAMETERIV	KONA_HP_GETTEXLEVELPARAMETERIV	HP_GETTEXLEVELPARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:230
+0x03b	HP_GETCURRENT	KONA_HP_GETCURRENT	HP_GETCURRENT	GE.h,firmware map,kpm	named-only	GE.h:205
+0x03c	HP_GETCLIPPLANE	KONA_HP_GETCLIPPLANE	HP_GETCLIPPLANE	GE.h,firmware map,kpm	named-only	GE.h:206
+0x03d	HP_GETRASTER	KONA_HP_GETRASTER	HP_GETRASTER	GE.h,firmware map,kpm	named-only	GE.h:207
+0x03e	HP_GETERROR	KONA_HP_GETERROR	HP_GETERROR	GE.h,firmware map,kpm	named-only	GE.h:208
+0x03f	HP_GETFLOATV	KONA_HP_GETFLOATV	HP_GETFLOATV	GE.h,firmware map,kpm	named-only	GE.h:209
+0x040	HP_GETINTEGERV	KONA_HP_GETINTEGERV	HP_GETINTEGERV	GE.h,firmware map,kpm	named-only	GE.h:210
+0x041	HP_GETLIGHTFV	KONA_HP_GETLIGHTFV	HP_GETLIGHTFV	GE.h,firmware map,kpm	named-only	GE.h:211
+0x042	HP_GETLIGHTIV	KONA_HP_GETLIGHTIV	HP_GETLIGHTIV	GE.h,firmware map,kpm	named-only	GE.h:212
+0x043	HP_GETMAPDV	KONA_HP_GETMAPDV	HP_GETMAPDV	GE.h,firmware map,kpm	named-only	GE.h:213
+0x044	HP_GETMAPFV	KONA_HP_GETMAPFV	HP_GETMAPFV	GE.h,firmware map,kpm	named-only	GE.h:214
+0x045	HP_GETMAPIV	KONA_HP_GETMAPIV	HP_GETMAPIV	GE.h,firmware map,kpm	named-only	GE.h:215
+0x046	HP_GETMATERIALFV	KONA_HP_GETMATERIALFV	HP_GETMATERIALFV	GE.h,firmware map,kpm	named-only	GE.h:216
+0x047	HP_GETMATERIALIV	KONA_HP_GETMATERIALIV	HP_GETMATERIALIV	GE.h,firmware map,kpm	named-only	GE.h:217
+0x048	HP_GETPIXELMAPFV	KONA_HP_GETPIXELMAPFV	HP_GETPIXELMAPFV	GE.h,firmware map,kpm	named-only	GE.h:218
+0x049	HP_GETPIXELMAPUIV	KONA_HP_GETPIXELMAPUIV	HP_GETPIXELMAPUIV	GE.h,firmware map,kpm	named-only	GE.h:219
+0x04a	HP_GETPIXELMAPUSV	KONA_HP_GETPIXELMAPUSV	HP_GETPIXELMAPUSV	GE.h,firmware map,kpm	named-only	GE.h:220
+0x04b	HP_GETPOLYGONSTIPPLE	KONA_HP_GETPOLYGONSTIPPLE	HP_GETPOLYGONSTIPPLE	GE.h,firmware map,kpm	named-only	GE.h:221
+0x04c	HP_GETV	KONA_HP_GETV	HP_GETV	GE.h,firmware map,kpm	named-only	GE.h:222
+0x04d	HP_GETTEXENVFV	KONA_HP_GETTEXENVFV	HP_GETTEXENVFV	GE.h,firmware map,kpm	named-only	GE.h:223
+0x04e	HP_GETTEXENVIV	KONA_HP_GETTEXENVIV	HP_GETTEXENVIV	GE.h,firmware map,kpm	named-only	GE.h:224
+0x04f	HP_GETTEXGENDV	KONA_HP_GETTEXGENDV	HP_GETTEXGENDV	GE.h,firmware map,kpm	named-only	GE.h:225
+0x050	HP_GETTEXGENFV	KONA_HP_GETTEXGENFV	HP_GETTEXGENFV	GE.h,firmware map,kpm	named-only	GE.h:226
+0x051	HP_GETTEXGENIV	KONA_HP_GETTEXGENIV	HP_GETTEXGENIV	GE.h,firmware map,kpm	named-only	GE.h:227
+0x052	HP_GETTEXIMAGE	KONA_HP_GETTEXIMAGE	HP_GETTEXIMAGE	GE.h,firmware map,kpm	named-only	GE.h:228
+0x053	HP_GETTEXPARAMETERFV	KONA_HP_GETTEXPARAMETERFV	HP_GETTEXPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:229
+0x054	HP_GETTEXPARAMETERIV	KONA_HP_GETTEXPARAMETERIV	HP_GETTEXPARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:230
+0x055	HP_GETTEXLEVELPARAMETERFV	KONA_HP_GETTEXLEVELPARAMETERFV	HP_GETTEXLEVELPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:231
+0x056	HP_GETTEXLEVELPARAMETERIV	KONA_HP_GETTEXLEVELPARAMETERIV	HP_GETTEXLEVELPARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:232
 0x057	HP_BEGIN_POINTS	KONA_HP_BEGIN_POINTS	HP_BEGIN_POINTS	GE.h,firmware map,kpm	documented	ucode/arm1.md#the-512-entry-table-as-eight-banks-the-152-vertex-primitive-and-beginend-tokens
-0x058	HP_BEGIN_LINES	KONA_HP_BEGIN_LINES	HP_BEGIN_LINES	GE.h,firmware map,kpm	named-only	GE.h:232
-0x059	HP_BEGIN_LINELOOP	KONA_HP_BEGIN_LINELOOP	HP_BEGIN_LINELOOP	GE.h,firmware map,kpm	named-only	GE.h:233
-0x05a	HP_BEGIN_LINESTRIP	KONA_HP_BEGIN_LINESTRIP	HP_BEGIN_LINESTRIP	GE.h,firmware map,kpm	named-only	GE.h:234
-0x05b	HP_BEGIN_TRIANGLES	KONA_HP_BEGIN_TRIANGLES	HP_BEGIN_TRIANGLES	GE.h,firmware map,kpm	named-only	GE.h:235
-0x05c	HP_BEGIN_TSTRIP	KONA_HP_BEGIN_TSTRIP	HP_BEGIN_TSTRIP	GE.h,firmware map,kpm	named-only	GE.h:236
-0x05d	HP_BEGIN_TFAN	KONA_HP_BEGIN_TFAN	HP_BEGIN_TFAN	GE.h,firmware map,kpm	named-only	GE.h:237
-0x05e	HP_BEGIN_QUADS	KONA_HP_BEGIN_QUADS	HP_BEGIN_QUADS	GE.h,firmware map,kpm	named-only	GE.h:238
-0x05f	HP_BEGIN_QSTRIP	KONA_HP_BEGIN_QSTRIP	HP_BEGIN_QSTRIP	GE.h,firmware map,kpm	named-only	GE.h:239
-0x060	HP_BEGIN_POLYGON	KONA_HP_BEGIN_POLYGON	HP_BEGIN_POLYGON	GE.h,firmware map,kpm	named-only	GE.h:240
-0x061	HP_COLOR3B	KONA_HP_COLOR3B	HP_COLOR3B	GE.h,firmware map,kpm	named-only	GE.h:241
-0x062	HP_COLOR3D	KONA_HP_COLOR3D	HP_COLOR3D	GE.h,firmware map,kpm	named-only	GE.h:242
-0x063	HP_COLOR3F	KONA_HP_COLOR3F	HP_COLOR3F	GE.h,firmware map,kpm	named-only	GE.h:243
-0x064	HP_COLOR3I	KONA_HP_COLOR3I	HP_COLOR3I	GE.h,firmware map,kpm	named-only	GE.h:244
-0x065	HP_COLOR3S	KONA_HP_COLOR3S	HP_COLOR3S	GE.h,firmware map,kpm	named-only	GE.h:245
-0x066	HP_COLOR3UB	KONA_HP_COLOR3UB	HP_COLOR3UB	GE.h,firmware map,kpm	named-only	GE.h:246
-0x067	HP_COLOR3UI	KONA_HP_COLOR3UI	HP_COLOR3UI	GE.h,firmware map,kpm	named-only	GE.h:247
-0x068	HP_COLOR3US	KONA_HP_COLOR3US	HP_COLOR3US	GE.h,firmware map,kpm	named-only	GE.h:248
-0x069	HP_COLOR4B	KONA_HP_COLOR4B	HP_COLOR4B	GE.h,firmware map,kpm	named-only	GE.h:249
-0x06a	HP_COLOR4D	KONA_HP_COLOR4D	HP_COLOR4D	GE.h,firmware map,kpm	named-only	GE.h:250
-0x06b	HP_COLOR4F	KONA_HP_COLOR4F	HP_COLOR4F	GE.h,firmware map,kpm	named-only	GE.h:251
-0x06c	HP_COLOR4I	KONA_HP_COLOR4I	HP_COLOR4I	GE.h,firmware map,kpm	named-only	GE.h:252
-0x06d	HP_COLOR4S	KONA_HP_COLOR4S	HP_COLOR4S	GE.h,firmware map,kpm	named-only	GE.h:253
-0x06e	HP_COLOR4UB	KONA_HP_COLOR4UB	HP_COLOR4UB	GE.h,firmware map,kpm	named-only	GE.h:254
-0x06f	HP_COLOR4UI	KONA_HP_COLOR4UI	HP_COLOR4UI	GE.h,firmware map,kpm	named-only	GE.h:255
-0x070	HP_COLOR4US	KONA_HP_COLOR4US	HP_COLOR4US	GE.h,firmware map,kpm	named-only	GE.h:256
+0x058	HP_BEGIN_LINES	KONA_HP_BEGIN_LINES	HP_BEGIN_LINES	GE.h,firmware map,kpm	named-only	GE.h:234
+0x059	HP_BEGIN_LINELOOP	KONA_HP_BEGIN_LINELOOP	HP_BEGIN_LINELOOP	GE.h,firmware map,kpm	named-only	GE.h:235
+0x05a	HP_BEGIN_LINESTRIP	KONA_HP_BEGIN_LINESTRIP	HP_BEGIN_LINESTRIP	GE.h,firmware map,kpm	named-only	GE.h:236
+0x05b	HP_BEGIN_TRIANGLES	KONA_HP_BEGIN_TRIANGLES	HP_BEGIN_TRIANGLES	GE.h,firmware map,kpm	named-only	GE.h:237
+0x05c	HP_BEGIN_TSTRIP	KONA_HP_BEGIN_TSTRIP	HP_BEGIN_TSTRIP	GE.h,firmware map,kpm	named-only	GE.h:238
+0x05d	HP_BEGIN_TFAN	KONA_HP_BEGIN_TFAN	HP_BEGIN_TFAN	GE.h,firmware map,kpm	named-only	GE.h:239
+0x05e	HP_BEGIN_QUADS	KONA_HP_BEGIN_QUADS	HP_BEGIN_QUADS	GE.h,firmware map,kpm	named-only	GE.h:240
+0x05f	HP_BEGIN_QSTRIP	KONA_HP_BEGIN_QSTRIP	HP_BEGIN_QSTRIP	GE.h,firmware map,kpm	named-only	GE.h:241
+0x060	HP_BEGIN_POLYGON	KONA_HP_BEGIN_POLYGON	HP_BEGIN_POLYGON	GE.h,firmware map,kpm	named-only	GE.h:242
+0x061	HP_COLOR3B	KONA_HP_COLOR3B	HP_COLOR3B	GE.h,firmware map,kpm	named-only	GE.h:243
+0x062	HP_COLOR3D	KONA_HP_COLOR3D	HP_COLOR3D	GE.h,firmware map,kpm	named-only	GE.h:244
+0x063	HP_COLOR3F	KONA_HP_COLOR3F	HP_COLOR3F	GE.h,firmware map,kpm	named-only	GE.h:245
+0x064	HP_COLOR3I	KONA_HP_COLOR3I	HP_COLOR3I	GE.h,firmware map,kpm	named-only	GE.h:246
+0x065	HP_COLOR3S	KONA_HP_COLOR3S	HP_COLOR3S	GE.h,firmware map,kpm	named-only	GE.h:247
+0x066	HP_COLOR3UB	KONA_HP_COLOR3UB	HP_COLOR3UB	GE.h,firmware map,kpm	named-only	GE.h:248
+0x067	HP_COLOR3UI	KONA_HP_COLOR3UI	HP_COLOR3UI	GE.h,firmware map,kpm	named-only	GE.h:249
+0x068	HP_COLOR3US	KONA_HP_COLOR3US	HP_COLOR3US	GE.h,firmware map,kpm	named-only	GE.h:250
+0x069	HP_COLOR4B	KONA_HP_COLOR4B	HP_COLOR4B	GE.h,firmware map,kpm	named-only	GE.h:251
+0x06a	HP_COLOR4D	KONA_HP_COLOR4D	HP_COLOR4D	GE.h,firmware map,kpm	named-only	GE.h:252
+0x06b	HP_COLOR4F	KONA_HP_COLOR4F	HP_COLOR4F	GE.h,firmware map,kpm	named-only	GE.h:253
+0x06c	HP_COLOR4I	KONA_HP_COLOR4I	HP_COLOR4I	GE.h,firmware map,kpm	named-only	GE.h:254
+0x06d	HP_COLOR4S	KONA_HP_COLOR4S	HP_COLOR4S	GE.h,firmware map,kpm	named-only	GE.h:255
+0x06e	HP_COLOR4UB	KONA_HP_COLOR4UB	HP_COLOR4UB	GE.h,firmware map,kpm	named-only	GE.h:256
+0x06f	HP_COLOR4UI	KONA_HP_COLOR4UI	HP_COLOR4UI	GE.h,firmware map,kpm	named-only	GE.h:257
+0x070	HP_COLOR4US	KONA_HP_COLOR4US	HP_COLOR4US	GE.h,firmware map,kpm	named-only	GE.h:258
 0x071	HP_END	KONA_HP_END	HP_END	GE.h,firmware map,kpm	documented	ucode/arm1.md#the-512-entry-table-as-eight-banks-the-152-vertex-primitive-and-beginend-tokens
-0x072	HP_INDEXD	KONA_HP_INDEXD	HP_INDEXD	GE.h,firmware map,kpm	named-only	GE.h:258
-0x073	HP_INDEXF	KONA_HP_INDEXF	HP_INDEXF	GE.h,firmware map,kpm	named-only	GE.h:259
-0x074	HP_INDEXI	KONA_HP_INDEXI	HP_INDEXI	GE.h,firmware map,kpm	named-only	GE.h:260
-0x075	HP_INDEXS	KONA_HP_INDEXS	HP_INDEXS	GE.h,firmware map,kpm	named-only	GE.h:261
-0x076	HP_NORMAL3B	KONA_HP_NORMAL3B	HP_NORMAL3B	GE.h,firmware map,kpm	named-only	GE.h:262
-0x077	HP_NORMAL3D	KONA_HP_NORMAL3D	HP_NORMAL3D	GE.h,firmware map,kpm	named-only	GE.h:263
-0x078	HP_NORMAL3F	KONA_HP_NORMAL3F	HP_NORMAL3F	GE.h,firmware map,kpm	named-only	GE.h:264
-0x079	HP_NORMAL3I	KONA_HP_NORMAL3I	HP_NORMAL3I	GE.h,firmware map,kpm	named-only	GE.h:265
-0x07a	HP_NORMAL3S	KONA_HP_NORMAL3S	HP_NORMAL3S	GE.h,firmware map,kpm	named-only	GE.h:266
-0x07b	HP_TEXCOORD1D	KONA_HP_TEXCOORD1D	HP_TEXCOORD1D	GE.h,firmware map,kpm	named-only	GE.h:267
-0x07c	HP_TEXCOORD1F	KONA_HP_TEXCOORD1F	HP_TEXCOORD1F	GE.h,firmware map,kpm	named-only	GE.h:268
-0x07d	HP_TEXCOORD1I	KONA_HP_TEXCOORD1I	HP_TEXCOORD1I	GE.h,firmware map,kpm	named-only	GE.h:269
-0x07e	HP_TEXCOORD1S	KONA_HP_TEXCOORD1S	HP_TEXCOORD1S	GE.h,firmware map,kpm	named-only	GE.h:270
-0x07f	HP_TEXCOORD2D	KONA_HP_TEXCOORD2D	HP_TEXCOORD2D	GE.h,firmware map,kpm	named-only	GE.h:271
-0x080	HP_TEXCOORD2F	KONA_HP_TEXCOORD2F	HP_TEXCOORD2F	GE.h,firmware map,kpm	named-only	GE.h:272
-0x081	HP_TEXCOORD2I	KONA_HP_TEXCOORD2I	HP_TEXCOORD2I	GE.h,firmware map,kpm	named-only	GE.h:273
-0x082	HP_TEXCOORD2S	KONA_HP_TEXCOORD2S	HP_TEXCOORD2S	GE.h,firmware map,kpm	named-only	GE.h:274
-0x083	HP_TEXCOORD3D	KONA_HP_TEXCOORD3D	HP_TEXCOORD3D	GE.h,firmware map,kpm	named-only	GE.h:275
-0x084	HP_TEXCOORD3F	KONA_HP_TEXCOORD3F	HP_TEXCOORD3F	GE.h,firmware map,kpm	named-only	GE.h:276
-0x085	HP_TEXCOORD3I	KONA_HP_TEXCOORD3I	HP_TEXCOORD3I	GE.h,firmware map,kpm	named-only	GE.h:277
-0x086	HP_TEXCOORD3S	KONA_HP_TEXCOORD3S	HP_TEXCOORD3S	GE.h,firmware map,kpm	named-only	GE.h:278
-0x087	HP_TEXCOORD4D	KONA_HP_TEXCOORD4D	HP_TEXCOORD4D	GE.h,firmware map,kpm	named-only	GE.h:279
-0x088	HP_TEXCOORD4F	KONA_HP_TEXCOORD4F	HP_TEXCOORD4F	GE.h,firmware map,kpm	named-only	GE.h:280
-0x089	HP_TEXCOORD4I	KONA_HP_TEXCOORD4I	HP_TEXCOORD4I	GE.h,firmware map,kpm	named-only	GE.h:281
-0x08a	HP_TEXCOORD4S	KONA_HP_TEXCOORD4S	HP_TEXCOORD4S	GE.h,firmware map,kpm	named-only	GE.h:282
-0x08b	HP_VERTEX2D	KONA_HP_VERTEX2D	HP_VERTEX2D	GE.h,firmware map,kpm	named-only	GE.h:283
-0x08c	HP_VERTEX2F	KONA_HP_VERTEX2F	HP_VERTEX2F	GE.h,firmware map,kpm	named-only	GE.h:284
-0x08d	HP_VERTEX2I	KONA_HP_VERTEX2I	HP_VERTEX2I	GE.h,firmware map,kpm	named-only	GE.h:285
-0x08e	HP_VERTEX2S	KONA_HP_VERTEX2S	HP_VERTEX2S	GE.h,firmware map,kpm	named-only	GE.h:286
-0x08f	HP_VERTEX3D	KONA_HP_VERTEX3D	HP_VERTEX3D	GE.h,firmware map,kpm	named-only	GE.h:287
-0x090	HP_VERTEX3F	KONA_HP_VERTEX3F	HP_VERTEX3F	GE.h,firmware map,kpm	named-only	GE.h:288
-0x091	HP_VERTEX3I	KONA_HP_VERTEX3I	HP_VERTEX3I	GE.h,firmware map,kpm	named-only	GE.h:289
-0x092	HP_VERTEX3S	KONA_HP_VERTEX3S	HP_VERTEX3S	GE.h,firmware map,kpm	named-only	GE.h:290
-0x093	HP_VERTEX4D	KONA_HP_VERTEX4D	HP_VERTEX4D	GE.h,firmware map,kpm	named-only	GE.h:291
-0x094	HP_VERTEX4F	KONA_HP_VERTEX4F	HP_VERTEX4F	GE.h,firmware map,kpm	named-only	GE.h:292
-0x095	HP_VERTEX4I	KONA_HP_VERTEX4I	HP_VERTEX4I	GE.h,firmware map,kpm	named-only	GE.h:293
-0x096	HP_VERTEX4S	KONA_HP_VERTEX4S	HP_VERTEX4S	GE.h,firmware map,kpm	named-only	GE.h:294
-0x097	HP_MATERIALF	KONA_HP_MATERIALF	HP_MATERIALF	GE.h,firmware map,kpm	named-only	GE.h:295
-0x098	HP_MATERIALF_cont	KONA_HP_MATERIALF_cont	HP_MATERIALF_cont	GE.h,firmware map,kpm	named-only	GE.h:296
-0x099	HP_MATERIALI	KONA_HP_MATERIALI	HP_MATERIALI	GE.h,firmware map,kpm	named-only	GE.h:297
-0x09a	HP_MATERIALI_cont	KONA_HP_MATERIALI_cont	HP_MATERIALI_cont	GE.h,firmware map,kpm	named-only	GE.h:298
-0x09b	HP_EVAL_COORD1D	KONA_HP_EVAL_COORD1D	HP_EVAL_COORD1D	GE.h,firmware map,kpm	named-only	GE.h:299
-0x09c	HP_EVAL_COORD1D_cont	KONA_HP_EVAL_COORD1D_cont	HP_EVAL_COORD1D_cont	GE.h,firmware map,kpm	named-only	GE.h:300
-0x09d	HP_EVAL_COORD1F	KONA_HP_EVAL_COORD1F	HP_EVAL_COORD1F	GE.h,firmware map,kpm	named-only	GE.h:301
-0x09e	HP_EVAL_COORD1F_cont	KONA_HP_EVAL_COORD1F_cont	HP_EVAL_COORD1F_cont	GE.h,firmware map,kpm	named-only	GE.h:302
-0x09f	HP_EVAL_COORD2D	KONA_HP_EVAL_COORD2D	HP_EVAL_COORD2D	GE.h,firmware map,kpm	named-only	GE.h:303
-0x0a0	HP_EVAL_COORD2D_cont	KONA_HP_EVAL_COORD2D_cont	HP_EVAL_COORD2D_cont	GE.h,firmware map,kpm	named-only	GE.h:304
-0x0a1	HP_EVAL_COORD2F	KONA_HP_EVAL_COORD2F	HP_EVAL_COORD2F	GE.h,firmware map,kpm	named-only	GE.h:305
-0x0a2	HP_EVAL_COORD2F_cont	KONA_HP_EVAL_COORD2F_cont	HP_EVAL_COORD2F_cont	GE.h,firmware map,kpm	named-only	GE.h:306
-0x0a3	HP_EVAL_POINT1	KONA_HP_EVAL_POINT1	HP_EVAL_POINT1	GE.h,firmware map,kpm	named-only	GE.h:307
-0x0a4	HP_EVAL_POINT1_cont	KONA_HP_EVAL_POINT1_cont	HP_EVAL_POINT1_cont	GE.h,firmware map,kpm	named-only	GE.h:308
-0x0a5	HP_EVAL_POINT2	KONA_HP_EVAL_POINT2	HP_EVAL_POINT2	GE.h,firmware map,kpm	named-only	GE.h:309
-0x0a6	HP_EVAL_POINT2_cont	KONA_HP_EVAL_POINT2_cont	HP_EVAL_POINT2_cont	GE.h,firmware map,kpm	named-only	GE.h:310
-0x0a7	HP_EDGEFLAG	KONA_HP_EDGEFLAG	HP_EDGEFLAG	GE.h,firmware map,kpm	named-only	GE.h:311
-0x0a8	HP_RASTERPOS2D	KONA_HP_RASTERPOS2D	HP_RASTERPOS2D	GE.h,firmware map,kpm	named-only	GE.h:312
-0x0a9	HP_RASTERPOS2F	KONA_HP_RASTERPOS2F	HP_RASTERPOS2F	GE.h,firmware map,kpm	named-only	GE.h:313
-0x0aa	HP_RASTERPOS2I	KONA_HP_RASTERPOS2I	HP_RASTERPOS2I	GE.h,firmware map,kpm	named-only	GE.h:314
-0x0ab	HP_RASTERPOS2S	KONA_HP_RASTERPOS2S	HP_RASTERPOS2S	GE.h,firmware map,kpm	named-only	GE.h:315
-0x0ac	HP_RASTERPOS3D	KONA_HP_RASTERPOS3D	HP_RASTERPOS3D	GE.h,firmware map,kpm	named-only	GE.h:316
-0x0ad	HP_RASTERPOS3F	KONA_HP_RASTERPOS3F	HP_RASTERPOS3F	GE.h,firmware map,kpm	named-only	GE.h:317
-0x0ae	HP_RASTERPOS3I	KONA_HP_RASTERPOS3I	HP_RASTERPOS3I	GE.h,firmware map,kpm	named-only	GE.h:318
-0x0af	HP_RASTERPOS3S	KONA_HP_RASTERPOS3S	HP_RASTERPOS3S	GE.h,firmware map,kpm	named-only	GE.h:319
-0x0b0	HP_RASTERPOS4D	KONA_HP_RASTERPOS4D	HP_RASTERPOS4D	GE.h,firmware map,kpm	named-only	GE.h:320
-0x0b1	HP_RASTERPOS4F	KONA_HP_RASTERPOS4F	HP_RASTERPOS4F	GE.h,firmware map,kpm	named-only	GE.h:321
-0x0b2	HP_RASTERPOS4I	KONA_HP_RASTERPOS4I	HP_RASTERPOS4I	GE.h,firmware map,kpm	named-only	GE.h:322
-0x0b3	HP_RASTERPOS4S	KONA_HP_RASTERPOS4S	HP_RASTERPOS4S	GE.h,firmware map,kpm	named-only	GE.h:323
-0x0b4	HP_CLIPPLANE	KONA_HP_CLIPPLANE	HP_CLIPPLANE	GE.h,firmware map,kpm	named-only	GE.h:324
-0x0b5	HP_COLORMATERIAL	KONA_HP_COLORMATERIAL	HP_COLORMATERIAL	GE.h,firmware map,kpm	named-only	GE.h:325
-0x0b6	HP_CULLFACE	KONA_HP_CULLFACE	HP_CULLFACE	GE.h,firmware map,kpm	named-only	GE.h:326
-0x0b7	HP_FOGF	KONA_HP_FOGF	HP_FOGF	GE.h,firmware map,kpm	named-only	GE.h:327
-0x0b8	HP_FOGI	KONA_HP_FOGI	HP_FOGI	GE.h,firmware map,kpm	named-only	GE.h:328
-0x0b9	HP_FOGI_cont	KONA_HP_FOGI_cont	HP_FOGI_cont	GE.h,firmware map,kpm	named-only	GE.h:329
-0x0ba	HP_FRONTFACE	KONA_HP_FRONTFACE	HP_FRONTFACE	GE.h,firmware map,kpm	named-only	GE.h:330
-0x0bb	HP_HINT	KONA_HP_HINT	HP_HINT	GE.h,firmware map,kpm	named-only	GE.h:331
-0x0bc	HP_LINESTIPPLE	KONA_HP_LINESTIPPLE	HP_LINESTIPPLE	GE.h,firmware map,kpm	named-only	GE.h:332
-0x0bd	HP_LINEWIDTH	KONA_HP_LINEWIDTH	HP_LINEWIDTH	GE.h,firmware map,kpm	named-only	GE.h:333
-0x0be	HP_POINTSIZE	KONA_HP_POINTSIZE	HP_POINTSIZE	GE.h,firmware map,kpm	named-only	GE.h:334
-0x0bf	HP_POLYGONMODE	KONA_HP_POLYGONMODE	HP_POLYGONMODE	GE.h,firmware map,kpm	named-only	GE.h:335
-0x0c0	HP_SHADEMODEL	KONA_HP_SHADEMODEL	HP_SHADEMODEL	GE.h,firmware map,kpm	named-only	GE.h:336
-0x0c1	HP_PASSTHROUGH	KONA_HP_PASSTHROUGH	HP_PASSTHROUGH	GE.h,firmware map,kpm	named-only	GE.h:337
-0x0c2	HP_POPNAME	KONA_HP_POPNAME	HP_POPNAME	GE.h,firmware map,kpm	named-only	GE.h:338
-0x0c3	HP_PUSHNAME	KONA_HP_PUSHNAME	HP_PUSHNAME	GE.h,firmware map,kpm	named-only	GE.h:339
-0x0c4	HP_DRAWBUFFER	KONA_HP_DRAWBUFFER	HP_DRAWBUFFER	GE.h,firmware map,kpm	named-only	GE.h:340
-0x0c5	HP_ACCUM	KONA_HP_ACCUM	HP_ACCUM	GE.h,firmware map,kpm	named-only	GE.h:341
+0x072	HP_INDEXD	KONA_HP_INDEXD	HP_INDEXD	GE.h,firmware map,kpm	named-only	GE.h:260
+0x073	HP_INDEXF	KONA_HP_INDEXF	HP_INDEXF	GE.h,firmware map,kpm	named-only	GE.h:261
+0x074	HP_INDEXI	KONA_HP_INDEXI	HP_INDEXI	GE.h,firmware map,kpm	named-only	GE.h:262
+0x075	HP_INDEXS	KONA_HP_INDEXS	HP_INDEXS	GE.h,firmware map,kpm	named-only	GE.h:263
+0x076	HP_NORMAL3B	KONA_HP_NORMAL3B	HP_NORMAL3B	GE.h,firmware map,kpm	named-only	GE.h:264
+0x077	HP_NORMAL3D	KONA_HP_NORMAL3D	HP_NORMAL3D	GE.h,firmware map,kpm	named-only	GE.h:265
+0x078	HP_NORMAL3F	KONA_HP_NORMAL3F	HP_NORMAL3F	GE.h,firmware map,kpm	named-only	GE.h:266
+0x079	HP_NORMAL3I	KONA_HP_NORMAL3I	HP_NORMAL3I	GE.h,firmware map,kpm	named-only	GE.h:267
+0x07a	HP_NORMAL3S	KONA_HP_NORMAL3S	HP_NORMAL3S	GE.h,firmware map,kpm	named-only	GE.h:268
+0x07b	HP_TEXCOORD1D	KONA_HP_TEXCOORD1D	HP_TEXCOORD1D	GE.h,firmware map,kpm	named-only	GE.h:269
+0x07c	HP_TEXCOORD1F	KONA_HP_TEXCOORD1F	HP_TEXCOORD1F	GE.h,firmware map,kpm	named-only	GE.h:270
+0x07d	HP_TEXCOORD1I	KONA_HP_TEXCOORD1I	HP_TEXCOORD1I	GE.h,firmware map,kpm	named-only	GE.h:271
+0x07e	HP_TEXCOORD1S	KONA_HP_TEXCOORD1S	HP_TEXCOORD1S	GE.h,firmware map,kpm	named-only	GE.h:272
+0x07f	HP_TEXCOORD2D	KONA_HP_TEXCOORD2D	HP_TEXCOORD2D	GE.h,firmware map,kpm	named-only	GE.h:273
+0x080	HP_TEXCOORD2F	KONA_HP_TEXCOORD2F	HP_TEXCOORD2F	GE.h,firmware map,kpm	named-only	GE.h:274
+0x081	HP_TEXCOORD2I	KONA_HP_TEXCOORD2I	HP_TEXCOORD2I	GE.h,firmware map,kpm	named-only	GE.h:275
+0x082	HP_TEXCOORD2S	KONA_HP_TEXCOORD2S	HP_TEXCOORD2S	GE.h,firmware map,kpm	named-only	GE.h:276
+0x083	HP_TEXCOORD3D	KONA_HP_TEXCOORD3D	HP_TEXCOORD3D	GE.h,firmware map,kpm	named-only	GE.h:277
+0x084	HP_TEXCOORD3F	KONA_HP_TEXCOORD3F	HP_TEXCOORD3F	GE.h,firmware map,kpm	named-only	GE.h:278
+0x085	HP_TEXCOORD3I	KONA_HP_TEXCOORD3I	HP_TEXCOORD3I	GE.h,firmware map,kpm	named-only	GE.h:279
+0x086	HP_TEXCOORD3S	KONA_HP_TEXCOORD3S	HP_TEXCOORD3S	GE.h,firmware map,kpm	named-only	GE.h:280
+0x087	HP_TEXCOORD4D	KONA_HP_TEXCOORD4D	HP_TEXCOORD4D	GE.h,firmware map,kpm	named-only	GE.h:281
+0x088	HP_TEXCOORD4F	KONA_HP_TEXCOORD4F	HP_TEXCOORD4F	GE.h,firmware map,kpm	named-only	GE.h:282
+0x089	HP_TEXCOORD4I	KONA_HP_TEXCOORD4I	HP_TEXCOORD4I	GE.h,firmware map,kpm	named-only	GE.h:283
+0x08a	HP_TEXCOORD4S	KONA_HP_TEXCOORD4S	HP_TEXCOORD4S	GE.h,firmware map,kpm	named-only	GE.h:284
+0x08b	HP_VERTEX2D	KONA_HP_VERTEX2D	HP_VERTEX2D	GE.h,firmware map,kpm	named-only	GE.h:285
+0x08c	HP_VERTEX2F	KONA_HP_VERTEX2F	HP_VERTEX2F	GE.h,firmware map,kpm	named-only	GE.h:286
+0x08d	HP_VERTEX2I	KONA_HP_VERTEX2I	HP_VERTEX2I	GE.h,firmware map,kpm	named-only	GE.h:287
+0x08e	HP_VERTEX2S	KONA_HP_VERTEX2S	HP_VERTEX2S	GE.h,firmware map,kpm	named-only	GE.h:288
+0x08f	HP_VERTEX3D	KONA_HP_VERTEX3D	HP_VERTEX3D	GE.h,firmware map,kpm	named-only	GE.h:289
+0x090	HP_VERTEX3F	KONA_HP_VERTEX3F	HP_VERTEX3F	GE.h,firmware map,kpm	named-only	GE.h:290
+0x091	HP_VERTEX3I	KONA_HP_VERTEX3I	HP_VERTEX3I	GE.h,firmware map,kpm	named-only	GE.h:291
+0x092	HP_VERTEX3S	KONA_HP_VERTEX3S	HP_VERTEX3S	GE.h,firmware map,kpm	named-only	GE.h:292
+0x093	HP_VERTEX4D	KONA_HP_VERTEX4D	HP_VERTEX4D	GE.h,firmware map,kpm	named-only	GE.h:293
+0x094	HP_VERTEX4F	KONA_HP_VERTEX4F	HP_VERTEX4F	GE.h,firmware map,kpm	named-only	GE.h:294
+0x095	HP_VERTEX4I	KONA_HP_VERTEX4I	HP_VERTEX4I	GE.h,firmware map,kpm	named-only	GE.h:295
+0x096	HP_VERTEX4S	KONA_HP_VERTEX4S	HP_VERTEX4S	GE.h,firmware map,kpm	named-only	GE.h:296
+0x097	HP_MATERIALF	KONA_HP_MATERIALF	HP_MATERIALF	GE.h,firmware map,kpm	named-only	GE.h:297
+0x098	HP_MATERIALF_cont	KONA_HP_MATERIALF_cont	HP_MATERIALF_cont	GE.h,firmware map,kpm	named-only	GE.h:298
+0x099	HP_MATERIALI	KONA_HP_MATERIALI	HP_MATERIALI	GE.h,firmware map,kpm	named-only	GE.h:299
+0x09a	HP_MATERIALI_cont	KONA_HP_MATERIALI_cont	HP_MATERIALI_cont	GE.h,firmware map,kpm	named-only	GE.h:300
+0x09b	HP_EVAL_COORD1D	KONA_HP_EVAL_COORD1D	HP_EVAL_COORD1D	GE.h,firmware map,kpm	named-only	GE.h:301
+0x09c	HP_EVAL_COORD1D_cont	KONA_HP_EVAL_COORD1D_cont	HP_EVAL_COORD1D_cont	GE.h,firmware map,kpm	named-only	GE.h:302
+0x09d	HP_EVAL_COORD1F	KONA_HP_EVAL_COORD1F	HP_EVAL_COORD1F	GE.h,firmware map,kpm	named-only	GE.h:303
+0x09e	HP_EVAL_COORD1F_cont	KONA_HP_EVAL_COORD1F_cont	HP_EVAL_COORD1F_cont	GE.h,firmware map,kpm	named-only	GE.h:304
+0x09f	HP_EVAL_COORD2D	KONA_HP_EVAL_COORD2D	HP_EVAL_COORD2D	GE.h,firmware map,kpm	named-only	GE.h:305
+0x0a0	HP_EVAL_COORD2D_cont	KONA_HP_EVAL_COORD2D_cont	HP_EVAL_COORD2D_cont	GE.h,firmware map,kpm	named-only	GE.h:306
+0x0a1	HP_EVAL_COORD2F	KONA_HP_EVAL_COORD2F	HP_EVAL_COORD2F	GE.h,firmware map,kpm	named-only	GE.h:307
+0x0a2	HP_EVAL_COORD2F_cont	KONA_HP_EVAL_COORD2F_cont	HP_EVAL_COORD2F_cont	GE.h,firmware map,kpm	named-only	GE.h:308
+0x0a3	HP_EVAL_POINT1	KONA_HP_EVAL_POINT1	HP_EVAL_POINT1	GE.h,firmware map,kpm	named-only	GE.h:309
+0x0a4	HP_EVAL_POINT1_cont	KONA_HP_EVAL_POINT1_cont	HP_EVAL_POINT1_cont	GE.h,firmware map,kpm	named-only	GE.h:310
+0x0a5	HP_EVAL_POINT2	KONA_HP_EVAL_POINT2	HP_EVAL_POINT2	GE.h,firmware map,kpm	named-only	GE.h:311
+0x0a6	HP_EVAL_POINT2_cont	KONA_HP_EVAL_POINT2_cont	HP_EVAL_POINT2_cont	GE.h,firmware map,kpm	named-only	GE.h:312
+0x0a7	HP_EDGEFLAG	KONA_HP_EDGEFLAG	HP_EDGEFLAG	GE.h,firmware map,kpm	named-only	GE.h:313
+0x0a8	HP_RASTERPOS2D	KONA_HP_RASTERPOS2D	HP_RASTERPOS2D	GE.h,firmware map,kpm	named-only	GE.h:314
+0x0a9	HP_RASTERPOS2F	KONA_HP_RASTERPOS2F	HP_RASTERPOS2F	GE.h,firmware map,kpm	named-only	GE.h:315
+0x0aa	HP_RASTERPOS2I	KONA_HP_RASTERPOS2I	HP_RASTERPOS2I	GE.h,firmware map,kpm	named-only	GE.h:316
+0x0ab	HP_RASTERPOS2S	KONA_HP_RASTERPOS2S	HP_RASTERPOS2S	GE.h,firmware map,kpm	named-only	GE.h:317
+0x0ac	HP_RASTERPOS3D	KONA_HP_RASTERPOS3D	HP_RASTERPOS3D	GE.h,firmware map,kpm	named-only	GE.h:318
+0x0ad	HP_RASTERPOS3F	KONA_HP_RASTERPOS3F	HP_RASTERPOS3F	GE.h,firmware map,kpm	named-only	GE.h:319
+0x0ae	HP_RASTERPOS3I	KONA_HP_RASTERPOS3I	HP_RASTERPOS3I	GE.h,firmware map,kpm	named-only	GE.h:320
+0x0af	HP_RASTERPOS3S	KONA_HP_RASTERPOS3S	HP_RASTERPOS3S	GE.h,firmware map,kpm	named-only	GE.h:321
+0x0b0	HP_RASTERPOS4D	KONA_HP_RASTERPOS4D	HP_RASTERPOS4D	GE.h,firmware map,kpm	named-only	GE.h:322
+0x0b1	HP_RASTERPOS4F	KONA_HP_RASTERPOS4F	HP_RASTERPOS4F	GE.h,firmware map,kpm	named-only	GE.h:323
+0x0b2	HP_RASTERPOS4I	KONA_HP_RASTERPOS4I	HP_RASTERPOS4I	GE.h,firmware map,kpm	named-only	GE.h:324
+0x0b3	HP_RASTERPOS4S	KONA_HP_RASTERPOS4S	HP_RASTERPOS4S	GE.h,firmware map,kpm	named-only	GE.h:325
+0x0b4	HP_CLIPPLANE	KONA_HP_CLIPPLANE	HP_CLIPPLANE	GE.h,firmware map,kpm	named-only	GE.h:326
+0x0b5	HP_COLORMATERIAL	KONA_HP_COLORMATERIAL	HP_COLORMATERIAL	GE.h,firmware map,kpm	named-only	GE.h:327
+0x0b6	HP_CULLFACE	KONA_HP_CULLFACE	HP_CULLFACE	GE.h,firmware map,kpm	named-only	GE.h:328
+0x0b7	HP_FOGF	KONA_HP_FOGF	HP_FOGF	GE.h,firmware map,kpm	named-only	GE.h:329
+0x0b8	HP_FOGI	KONA_HP_FOGI	HP_FOGI	GE.h,firmware map,kpm	named-only	GE.h:330
+0x0b9	HP_FOGI_cont	KONA_HP_FOGI_cont	HP_FOGI_cont	GE.h,firmware map,kpm	named-only	GE.h:331
+0x0ba	HP_FRONTFACE	KONA_HP_FRONTFACE	HP_FRONTFACE	GE.h,firmware map,kpm	named-only	GE.h:332
+0x0bb	HP_HINT	KONA_HP_HINT	HP_HINT	GE.h,firmware map,kpm	named-only	GE.h:333
+0x0bc	HP_LINESTIPPLE	KONA_HP_LINESTIPPLE	HP_LINESTIPPLE	GE.h,firmware map,kpm	named-only	GE.h:334
+0x0bd	HP_LINEWIDTH	KONA_HP_LINEWIDTH	HP_LINEWIDTH	GE.h,firmware map,kpm	named-only	GE.h:335
+0x0be	HP_POINTSIZE	KONA_HP_POINTSIZE	HP_POINTSIZE	GE.h,firmware map,kpm	named-only	GE.h:336
+0x0bf	HP_POLYGONMODE	KONA_HP_POLYGONMODE	HP_POLYGONMODE	GE.h,firmware map,kpm	named-only	GE.h:337
+0x0c0	HP_SHADEMODEL	KONA_HP_SHADEMODEL	HP_SHADEMODEL	GE.h,firmware map,kpm	named-only	GE.h:338
+0x0c1	HP_PASSTHROUGH	KONA_HP_PASSTHROUGH	HP_PASSTHROUGH	GE.h,firmware map,kpm	named-only	GE.h:339
+0x0c2	HP_POPNAME	KONA_HP_POPNAME	HP_POPNAME	GE.h,firmware map,kpm	named-only	GE.h:340
+0x0c3	HP_PUSHNAME	KONA_HP_PUSHNAME	HP_PUSHNAME	GE.h,firmware map,kpm	named-only	GE.h:341
+0x0c4	HP_DRAWBUFFER	KONA_HP_DRAWBUFFER	HP_DRAWBUFFER	GE.h,firmware map,kpm	named-only	GE.h:342
+0x0c5	HP_ACCUM	KONA_HP_ACCUM	HP_ACCUM	GE.h,firmware map,kpm	named-only	GE.h:343
 0x0c6	HP_FINISH	KONA_HP_FINISH	HP_FINISH	GE.h,firmware map,kpm	documented	docs/opengl.md#display-and-scanout
-0x0c7	HP_FLUSH	KONA_HP_FLUSH	HP_FLUSH	GE.h,firmware map,kpm	named-only	GE.h:343
-0x0c8	HP_POPATTRIB	KONA_HP_POPATTRIB	HP_POPATTRIB	GE.h,firmware map,kpm	named-only	GE.h:344
-0x0c9	HP_PUSHATTRIB	KONA_HP_PUSHATTRIB	HP_PUSHATTRIB	GE.h,firmware map,kpm	named-only	GE.h:345
-0x0ca	HP_ALPHAFUNC	KONA_HP_ALPHAFUNC	HP_ALPHAFUNC	GE.h,firmware map,kpm	named-only	GE.h:346
-0x0cb	HP_BLENDFUNC	KONA_HP_BLENDFUNC	HP_BLENDFUNC	GE.h,firmware map,kpm	named-only	GE.h:347
-0x0cc	HP_STENCILFUNC	KONA_HP_STENCILFUNC	HP_STENCILFUNC	GE.h,firmware map,kpm	named-only	GE.h:348
-0x0cd	HP_STENCILOP	KONA_HP_STENCILOP	HP_STENCILOP	GE.h,firmware map,kpm	named-only	GE.h:349
-0x0ce	HP_DEPTHFUNC	KONA_HP_DEPTHFUNC	HP_DEPTHFUNC	GE.h,firmware map,kpm	named-only	GE.h:350
-0x0cf	HP_DEPTHRANGE	KONA_HP_DEPTHRANGE	HP_DEPTHRANGE	GE.h,firmware map,kpm	named-only	GE.h:351
-0x0d0	HP_MATRIXMODE	KONA_HP_MATRIXMODE	HP_MATRIXMODE	GE.h,firmware map,kpm	named-only	GE.h:352
-0x0d1	HP_FRUSTUM	KONA_HP_FRUSTUM	HP_FRUSTUM	GE.h,firmware map,kpm	named-only	GE.h:353
-0x0d2	HP_LOADIDENTITY	KONA_HP_LOADIDENTITY	HP_LOADIDENTITY	GE.h,firmware map,kpm	named-only	GE.h:354
+0x0c7	HP_FLUSH	KONA_HP_FLUSH	HP_FLUSH	GE.h,firmware map,kpm	named-only	GE.h:345
+0x0c8	HP_POPATTRIB	KONA_HP_POPATTRIB	HP_POPATTRIB	GE.h,firmware map,kpm	named-only	GE.h:346
+0x0c9	HP_PUSHATTRIB	KONA_HP_PUSHATTRIB	HP_PUSHATTRIB	GE.h,firmware map,kpm	named-only	GE.h:347
+0x0ca	HP_ALPHAFUNC	KONA_HP_ALPHAFUNC	HP_ALPHAFUNC	GE.h,firmware map,kpm	named-only	GE.h:348
+0x0cb	HP_BLENDFUNC	KONA_HP_BLENDFUNC	HP_BLENDFUNC	GE.h,firmware map,kpm	named-only	GE.h:349
+0x0cc	HP_STENCILFUNC	KONA_HP_STENCILFUNC	HP_STENCILFUNC	GE.h,firmware map,kpm	named-only	GE.h:350
+0x0cd	HP_STENCILOP	KONA_HP_STENCILOP	HP_STENCILOP	GE.h,firmware map,kpm	named-only	GE.h:351
+0x0ce	HP_DEPTHFUNC	KONA_HP_DEPTHFUNC	HP_DEPTHFUNC	GE.h,firmware map,kpm	named-only	GE.h:352
+0x0cf	HP_DEPTHRANGE	KONA_HP_DEPTHRANGE	HP_DEPTHRANGE	GE.h,firmware map,kpm	named-only	GE.h:353
+0x0d0	HP_MATRIXMODE	KONA_HP_MATRIXMODE	HP_MATRIXMODE	GE.h,firmware map,kpm	named-only	GE.h:354
+0x0d1	HP_FRUSTUM	KONA_HP_FRUSTUM	HP_FRUSTUM	GE.h,firmware map,kpm	named-only	GE.h:355
+0x0d2	HP_LOADIDENTITY	KONA_HP_LOADIDENTITY	HP_LOADIDENTITY	GE.h,firmware map,kpm	named-only	GE.h:356
 0x0d3	HP_LOADMATRIXF	KONA_HP_LOADMATRIXF	HP_LOADMATRIXF	GE.h,firmware map,kpm	documented	ucode/arm1.md#entry-format
 0x0d4	HP_LOADMATRIXD	KONA_HP_LOADMATRIXD	HP_LOADMATRIXD	GE.h,firmware map,kpm	documented	ucode/arm1.md#entry-format
-0x0d5	HP_MULTMATRIXF	KONA_HP_MULTMATRIXF	HP_MULTMATRIXF	GE.h,firmware map,kpm	named-only	GE.h:357
-0x0d6	HP_MULTMATRIXD	KONA_HP_MULTMATRIXD	HP_MULTMATRIXD	GE.h,firmware map,kpm	named-only	GE.h:358
-0x0d7	HP_ORTHO	KONA_HP_ORTHO	HP_ORTHO	GE.h,firmware map,kpm	named-only	GE.h:359
-0x0d8	HP_POPMATRIX	KONA_HP_POPMATRIX	HP_POPMATRIX	GE.h,firmware map,kpm	named-only	GE.h:360
-0x0d9	HP_PUSHMATRIX	KONA_HP_PUSHMATRIX	HP_PUSHMATRIX	GE.h,firmware map,kpm	named-only	GE.h:361
-0x0da	HP_ROTATED	KONA_HP_ROTATED	HP_ROTATED	GE.h,firmware map,kpm	named-only	GE.h:362
-0x0db	HP_ROTATEF	KONA_HP_ROTATEF	HP_ROTATEF	GE.h,firmware map,kpm	named-only	GE.h:363
-0x0dc	HP_SCALED	KONA_HP_SCALED	HP_SCALED	GE.h,firmware map,kpm	named-only	GE.h:364
-0x0dd	HP_SCALEF	KONA_HP_SCALEF	HP_SCALEF	GE.h,firmware map,kpm	named-only	GE.h:365
-0x0de	HP_TRANSLATED	KONA_HP_TRANSLATED	HP_TRANSLATED	GE.h,firmware map,kpm	named-only	GE.h:366
-0x0df	HP_TRANSLATEF	KONA_HP_TRANSLATEF	HP_TRANSLATEF	GE.h,firmware map,kpm	named-only	GE.h:367
-0x0e0	HP_WRAM2CRAM	KONA_HP_WRAM2CRAM	HP_WRAM2CRAM	GE.h,firmware map,kpm	named-only	GE.h:368
-0x0e1	HP_GEPASSCMD	KONA_HP_GEPASSCMD	HP_GEPASSCMD	GE.h,firmware map,kpm	named-only	GE.h:369
+0x0d5	HP_MULTMATRIXF	KONA_HP_MULTMATRIXF	HP_MULTMATRIXF	GE.h,firmware map,kpm	named-only	GE.h:359
+0x0d6	HP_MULTMATRIXD	KONA_HP_MULTMATRIXD	HP_MULTMATRIXD	GE.h,firmware map,kpm	named-only	GE.h:360
+0x0d7	HP_ORTHO	KONA_HP_ORTHO	HP_ORTHO	GE.h,firmware map,kpm	named-only	GE.h:361
+0x0d8	HP_POPMATRIX	KONA_HP_POPMATRIX	HP_POPMATRIX	GE.h,firmware map,kpm	named-only	GE.h:362
+0x0d9	HP_PUSHMATRIX	KONA_HP_PUSHMATRIX	HP_PUSHMATRIX	GE.h,firmware map,kpm	named-only	GE.h:363
+0x0da	HP_ROTATED	KONA_HP_ROTATED	HP_ROTATED	GE.h,firmware map,kpm	named-only	GE.h:364
+0x0db	HP_ROTATEF	KONA_HP_ROTATEF	HP_ROTATEF	GE.h,firmware map,kpm	named-only	GE.h:365
+0x0dc	HP_SCALED	KONA_HP_SCALED	HP_SCALED	GE.h,firmware map,kpm	named-only	GE.h:366
+0x0dd	HP_SCALEF	KONA_HP_SCALEF	HP_SCALEF	GE.h,firmware map,kpm	named-only	GE.h:367
+0x0de	HP_TRANSLATED	KONA_HP_TRANSLATED	HP_TRANSLATED	GE.h,firmware map,kpm	named-only	GE.h:368
+0x0df	HP_TRANSLATEF	KONA_HP_TRANSLATEF	HP_TRANSLATEF	GE.h,firmware map,kpm	named-only	GE.h:369
+0x0e0	HP_WRAM2CRAM	KONA_HP_WRAM2CRAM	HP_WRAM2CRAM	GE.h,firmware map,kpm	named-only	GE.h:370
+0x0e1	HP_GEPASSCMD	KONA_HP_GEPASSCMD	HP_GEPASSCMD	GE.h,firmware map,kpm	named-only	GE.h:371
 0x0e2	HP_TBUS_1	KONA_HP_TBUS_1	HP_TBUS_1	GE.h,firmware map,kpm	documented	docs/dg.md#buffer-swap-and-retrace-wait
-0x0e3	HP_VIEWPORT	KONA_HP_VIEWPORT	HP_VIEWPORT	GE.h,firmware map,kpm	named-only	GE.h:371
+0x0e3	HP_VIEWPORT	KONA_HP_VIEWPORT	HP_VIEWPORT	GE.h,firmware map,kpm	named-only	GE.h:373
 0x0e4	HP_SETERROR	KONA_HP_SETERROR	HP_SETERROR	GE.h,firmware map,kpm	documented	docs/opengl.md#display-and-scanout
-0x0e5	HP_END_OF_SIMULATION	KONA_HP_END_OF_SIMULATION	HP_END_OF_SIMULATION	GE.h,firmware map,kpm	named-only	GE.h:373
-0x0e6	HP_BLENDCOLOR	KONA_HP_BLENDCOLOR	HP_BLENDCOLOR	GE.h,firmware map,kpm	named-only	GE.h:374
-0x0e7	HP_BLENDEQUATION	KONA_HP_BLENDEQUATION	HP_BLENDEQUATION	GE.h,firmware map,kpm	named-only	GE.h:375
-0x0e8	HP_COLORTABLE	KONA_HP_COLORTABLE	HP_COLORTABLE	GE.h,firmware map,kpm	named-only	GE.h:376
-0x0e9	HP_COPYCOLORTABLE	KONA_HP_COPYCOLORTABLE	HP_COPYCOLORTABLE	GE.h,firmware map,kpm	named-only	GE.h:377
-0x0ea	HP_GETCOLORTABLE	KONA_HP_GETCOLORTABLE	HP_GETCOLORTABLE	GE.h,firmware map,kpm	named-only	GE.h:378
-0x0eb	HP_COLORTABLEPARAMETERFV	KONA_HP_COLORTABLEPARAMETERFV	HP_COLORTABLEPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:379
-0x0ec	HP_GETCOLORTABLEPARAMETERFV	KONA_HP_GETCOLORTABLEPARAMETERFV	HP_GETCOLORTABLEPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:380
-0x0ed	HP_LOAD_POST_TEX_SCALE_BIAS	KONA_HP_LOAD_POST_TEX_SCALE_BIAS	HP_LOAD_POST_TEX_SCALE_BIAS	GE.h,firmware map,kpm	named-only	GE.h:381
-0x0ee	HP_GETLINEMODEDIST	KONA_HP_GETLINEMODEDIST	HP_GETLINEMODEDIST	GE.h,firmware map,kpm	named-only	GE.h:382
-0x0ef	HP_CONVOLUTIONFILTER1D	KONA_HP_CONVOLUTIONFILTER1D	HP_CONVOLUTIONFILTER1D	GE.h,firmware map,kpm	named-only	GE.h:383
-0x0f0	HP_CONVOLUTIONFILTER2D	KONA_HP_CONVOLUTIONFILTER2D	HP_CONVOLUTIONFILTER2D	GE.h,firmware map,kpm	named-only	GE.h:384
-0x0f1	HP_CONVOLUTIONFILTER3D	KONA_HP_CONVOLUTIONFILTER3D	HP_CONVOLUTIONFILTER3D	GE.h,firmware map,kpm	named-only	GE.h:385
-0x0f2	HP_COPYCONVOLUTIONFILTER1D	KONA_HP_COPYCONVOLUTIONFILTER1D	HP_COPYCONVOLUTIONFILTER1D	GE.h,firmware map,kpm	named-only	GE.h:386
-0x0f3	HP_COPYCONVOLUTIONFILTER2D	KONA_HP_COPYCONVOLUTIONFILTER2D	HP_COPYCONVOLUTIONFILTER2D	GE.h,firmware map,kpm	named-only	GE.h:387
-0x0f4	HP_GETCONVOLUTIONFILTER	KONA_HP_GETCONVOLUTIONFILTER	HP_GETCONVOLUTIONFILTER	GE.h,firmware map,kpm	named-only	GE.h:388
-0x0f5	HP_SEPARABLEFILTER2D	KONA_HP_SEPARABLEFILTER2D	HP_SEPARABLEFILTER2D	GE.h,firmware map,kpm	named-only	GE.h:389
-0x0f6	HP_SEPARABLEFILTER3D	KONA_HP_SEPARABLEFILTER3D	HP_SEPARABLEFILTER3D	GE.h,firmware map,kpm	named-only	GE.h:390
-0x0f7	HP_GETSEPARABLEFILTER	KONA_HP_GETSEPARABLEFILTER	HP_GETSEPARABLEFILTER	GE.h,firmware map,kpm	named-only	GE.h:391
-0x0f8	HP_PIXEL_TRANSFORM_PARAMETERIV	KONA_HP_PIXEL_TRANSFORM_PARAMETERIV	HP_PIXEL_TRANSFORM_PARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:392
-0x0f9	HP_PIXEL_TRANSFORM_PARAMETERFV	KONA_HP_PIXEL_TRANSFORM_PARAMETERFV	HP_PIXEL_TRANSFORM_PARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:393
-0x0fa	HP_GET_PIXEL_TRANSFORM_PARAMETERIV	KONA_HP_GET_PIXEL_TRANSFORM_PARAMETERIV	HP_GET_PIXEL_TRANSFORM_PARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:394
-0x0fb	HP_GET_PIXEL_TRANSFORM_PARAMETERFV	KONA_HP_GET_PIXEL_TRANSFORM_PARAMETERFV	HP_GET_PIXEL_TRANSFORM_PARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:395
-0x0fc	HP_COPYTEXIMAGE1D	KONA_HP_COPYTEXIMAGE1D	HP_COPYTEXIMAGE1D	GE.h,firmware map,kpm	named-only	GE.h:396
-0x0fd	HP_COPYTEXIMAGE	KONA_HP_COPYTEXIMAGE	HP_COPYTEXIMAGE	GE.h,firmware map,kpm	named-only	GE.h:397
-0x0fe	HP_COPYTEXSUBIMAGE1D	KONA_HP_COPYTEXSUBIMAGE1D	HP_COPYTEXSUBIMAGE1D	GE.h,firmware map,kpm	named-only	GE.h:398
-0x0ff	HP_WG_FLUSH_0	KONA_HP_WG_FLUSH_0	HP_WG_FLUSH_0	GE.h,firmware map,kpm	named-only	GE.h:399
-0x100	HP_DATA_1	KONA_HP_DATA_1	HP_DATA_1	GE.h,firmware map,kpm	named-only	GE.h:400
-0x101	HP_COPYTEXSUBIMAGE2D	KONA_HP_COPYTEXSUBIMAGE2D	HP_COPYTEXSUBIMAGE2D	GE.h,firmware map,kpm	named-only	GE.h:401
-0x102	HP_HISTOGRAM	KONA_HP_HISTOGRAM	HP_HISTOGRAM	GE.h,firmware map,kpm	named-only	GE.h:402
-0x103	HP_RESETHISTOGRAM	KONA_HP_RESETHISTOGRAM	HP_RESETHISTOGRAM	GE.h,firmware map,kpm	named-only	GE.h:403
-0x104	HP_GETHISTOGRAM	KONA_HP_GETHISTOGRAM	HP_GETHISTOGRAM	GE.h,firmware map,kpm	named-only	GE.h:404
-0x105	HP_GETHISTOGRAMPARAMETERIV	KONA_HP_GETHISTOGRAMPARAMETERIV	HP_GETHISTOGRAMPARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:405
-0x106	HP_BIND_LINEAR_TEXTURE	KONA_HP_BIND_LINEAR_TEXTURE	HP_BIND_LINEAR_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:406
-0x107	HP_MINMAX	KONA_HP_MINMAX	HP_MINMAX	GE.h,firmware map,kpm	named-only	GE.h:407
-0x108	HP_RESETMINMAX	KONA_HP_RESETMINMAX	HP_RESETMINMAX	GE.h,firmware map,kpm	named-only	GE.h:408
-0x109	HP_GETMINMAX	KONA_HP_GETMINMAX	HP_GETMINMAX	GE.h,firmware map,kpm	named-only	GE.h:409
-0x10a	HP_GETMINMAXPARAMETERIV	KONA_HP_GETMINMAXPARAMETERIV	HP_GETMINMAXPARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:410
-0x10b	HP_GET_LIGHT_ATTRIBS	KONA_HP_GET_LIGHT_ATTRIBS	HP_GET_LIGHT_ATTRIBS	GE.h,firmware map,kpm	named-only	GE.h:411
-0x10c	HP_INITNAMES	KONA_HP_INITNAMES	HP_INITNAMES	GE.h,firmware map,kpm	named-only	GE.h:412
-0x10d	HP_LOADNAME	KONA_HP_LOADNAME	HP_LOADNAME	GE.h,firmware map,kpm	named-only	GE.h:413
-0x10e	HP_SET_CURRENT_RASTER	KONA_HP_SET_CURRENT_RASTER	HP_SET_CURRENT_RASTER	GE.h,firmware map,kpm	named-only	GE.h:414
-0x10f	HP_FOGFUNC	KONA_HP_FOGFUNC	HP_FOGFUNC	GE.h,firmware map,kpm	named-only	GE.h:415
-0x110	HP_COPYISOVERLAPPED	KONA_HP_COPYISOVERLAPPED	HP_COPYISOVERLAPPED	GE.h,firmware map,kpm	named-only	GE.h:416
-0x111	HP_PIXEL_NOMODE	KONA_HP_PIXEL_NOMODE	HP_PIXEL_NOMODE	GE.h,firmware map,kpm	named-only	GE.h:417
-0x112	HP_IRISGL_MODE	KONA_HP_IRISGL_MODE	HP_IRISGL_MODE	GE.h,firmware map,kpm	named-only	GE.h:418
-0x113	HP_LMC_COLOR	KONA_HP_LMC_COLOR	HP_LMC_COLOR	GE.h,firmware map,kpm	named-only	GE.h:419
+0x0e5	HP_END_OF_SIMULATION	KONA_HP_END_OF_SIMULATION	HP_END_OF_SIMULATION	GE.h,firmware map,kpm	named-only	GE.h:375
+0x0e6	HP_BLENDCOLOR	KONA_HP_BLENDCOLOR	HP_BLENDCOLOR	GE.h,firmware map,kpm	named-only	GE.h:376
+0x0e7	HP_BLENDEQUATION	KONA_HP_BLENDEQUATION	HP_BLENDEQUATION	GE.h,firmware map,kpm	named-only	GE.h:377
+0x0e8	HP_COLORTABLE	KONA_HP_COLORTABLE	HP_COLORTABLE	GE.h,firmware map,kpm	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
+0x0e9	HP_COPYCOLORTABLE	KONA_HP_COPYCOLORTABLE	HP_COPYCOLORTABLE	GE.h,firmware map,kpm	named-only	GE.h:379
+0x0ea	HP_GETCOLORTABLE	KONA_HP_GETCOLORTABLE	HP_GETCOLORTABLE	GE.h,firmware map,kpm	named-only	GE.h:380
+0x0eb	HP_COLORTABLEPARAMETERFV	KONA_HP_COLORTABLEPARAMETERFV	HP_COLORTABLEPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:381
+0x0ec	HP_GETCOLORTABLEPARAMETERFV	KONA_HP_GETCOLORTABLEPARAMETERFV	HP_GETCOLORTABLEPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:382
+0x0ed	HP_LOAD_POST_TEX_SCALE_BIAS	KONA_HP_LOAD_POST_TEX_SCALE_BIAS	HP_LOAD_POST_TEX_SCALE_BIAS	GE.h,firmware map,kpm	named-only	GE.h:383
+0x0ee	HP_GETLINEMODEDIST	KONA_HP_GETLINEMODEDIST	HP_GETLINEMODEDIST	GE.h,firmware map,kpm	named-only	GE.h:384
+0x0ef	HP_CONVOLUTIONFILTER1D	KONA_HP_CONVOLUTIONFILTER1D	HP_CONVOLUTIONFILTER1D	GE.h,firmware map,kpm	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
+0x0f0	HP_CONVOLUTIONFILTER2D	KONA_HP_CONVOLUTIONFILTER2D	HP_CONVOLUTIONFILTER2D	GE.h,firmware map,kpm	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
+0x0f1	HP_CONVOLUTIONFILTER3D	KONA_HP_CONVOLUTIONFILTER3D	HP_CONVOLUTIONFILTER3D	GE.h,firmware map,kpm	named-only	GE.h:387
+0x0f2	HP_COPYCONVOLUTIONFILTER1D	KONA_HP_COPYCONVOLUTIONFILTER1D	HP_COPYCONVOLUTIONFILTER1D	GE.h,firmware map,kpm	named-only	GE.h:388
+0x0f3	HP_COPYCONVOLUTIONFILTER2D	KONA_HP_COPYCONVOLUTIONFILTER2D	HP_COPYCONVOLUTIONFILTER2D	GE.h,firmware map,kpm	named-only	GE.h:389
+0x0f4	HP_GETCONVOLUTIONFILTER	KONA_HP_GETCONVOLUTIONFILTER	HP_GETCONVOLUTIONFILTER	GE.h,firmware map,kpm	named-only	GE.h:390
+0x0f5	HP_SEPARABLEFILTER2D	KONA_HP_SEPARABLEFILTER2D	HP_SEPARABLEFILTER2D	GE.h,firmware map,kpm	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
+0x0f6	HP_SEPARABLEFILTER3D	KONA_HP_SEPARABLEFILTER3D	HP_SEPARABLEFILTER3D	GE.h,firmware map,kpm	named-only	GE.h:392
+0x0f7	HP_GETSEPARABLEFILTER	KONA_HP_GETSEPARABLEFILTER	HP_GETSEPARABLEFILTER	GE.h,firmware map,kpm	named-only	GE.h:393
+0x0f8	HP_PIXEL_TRANSFORM_PARAMETERIV	KONA_HP_PIXEL_TRANSFORM_PARAMETERIV	HP_PIXEL_TRANSFORM_PARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:394
+0x0f9	HP_PIXEL_TRANSFORM_PARAMETERFV	KONA_HP_PIXEL_TRANSFORM_PARAMETERFV	HP_PIXEL_TRANSFORM_PARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:395
+0x0fa	HP_GET_PIXEL_TRANSFORM_PARAMETERIV	KONA_HP_GET_PIXEL_TRANSFORM_PARAMETERIV	HP_GET_PIXEL_TRANSFORM_PARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:396
+0x0fb	HP_GET_PIXEL_TRANSFORM_PARAMETERFV	KONA_HP_GET_PIXEL_TRANSFORM_PARAMETERFV	HP_GET_PIXEL_TRANSFORM_PARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:397
+0x0fc	HP_COPYTEXIMAGE1D	KONA_HP_COPYTEXIMAGE1D	HP_COPYTEXIMAGE1D	GE.h,firmware map,kpm	named-only	GE.h:398
+0x0fd	HP_COPYTEXIMAGE	KONA_HP_COPYTEXIMAGE	HP_COPYTEXIMAGE	GE.h,firmware map,kpm	named-only	GE.h:399
+0x0fe	HP_COPYTEXSUBIMAGE1D	KONA_HP_COPYTEXSUBIMAGE1D	HP_COPYTEXSUBIMAGE1D	GE.h,firmware map,kpm	named-only	GE.h:400
+0x0ff	HP_WG_FLUSH_0	KONA_HP_WG_FLUSH_0	HP_WG_FLUSH_0	GE.h,firmware map,kpm	named-only	GE.h:401
+0x100	HP_DATA_1	KONA_HP_DATA_1	HP_DATA_1	GE.h,firmware map,kpm	named-only	GE.h:402
+0x101	HP_COPYTEXSUBIMAGE2D	KONA_HP_COPYTEXSUBIMAGE2D	HP_COPYTEXSUBIMAGE2D	GE.h,firmware map,kpm	named-only	GE.h:403
+0x102	HP_HISTOGRAM	KONA_HP_HISTOGRAM	HP_HISTOGRAM	GE.h,firmware map,kpm	named-only	GE.h:404
+0x103	HP_RESETHISTOGRAM	KONA_HP_RESETHISTOGRAM	HP_RESETHISTOGRAM	GE.h,firmware map,kpm	named-only	GE.h:405
+0x104	HP_GETHISTOGRAM	KONA_HP_GETHISTOGRAM	HP_GETHISTOGRAM	GE.h,firmware map,kpm	named-only	GE.h:406
+0x105	HP_GETHISTOGRAMPARAMETERIV	KONA_HP_GETHISTOGRAMPARAMETERIV	HP_GETHISTOGRAMPARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:407
+0x106	HP_BIND_LINEAR_TEXTURE	KONA_HP_BIND_LINEAR_TEXTURE	HP_BIND_LINEAR_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:408
+0x107	HP_MINMAX	KONA_HP_MINMAX	HP_MINMAX	GE.h,firmware map,kpm	named-only	GE.h:409
+0x108	HP_RESETMINMAX	KONA_HP_RESETMINMAX	HP_RESETMINMAX	GE.h,firmware map,kpm	named-only	GE.h:410
+0x109	HP_GETMINMAX	KONA_HP_GETMINMAX	HP_GETMINMAX	GE.h,firmware map,kpm	named-only	GE.h:411
+0x10a	HP_GETMINMAXPARAMETERIV	KONA_HP_GETMINMAXPARAMETERIV	HP_GETMINMAXPARAMETERIV	GE.h,firmware map,kpm	named-only	GE.h:412
+0x10b	HP_GET_LIGHT_ATTRIBS	KONA_HP_GET_LIGHT_ATTRIBS	HP_GET_LIGHT_ATTRIBS	GE.h,firmware map,kpm	named-only	GE.h:413
+0x10c	HP_INITNAMES	KONA_HP_INITNAMES	HP_INITNAMES	GE.h,firmware map,kpm	named-only	GE.h:414
+0x10d	HP_LOADNAME	KONA_HP_LOADNAME	HP_LOADNAME	GE.h,firmware map,kpm	named-only	GE.h:415
+0x10e	HP_SET_CURRENT_RASTER	KONA_HP_SET_CURRENT_RASTER	HP_SET_CURRENT_RASTER	GE.h,firmware map,kpm	named-only	GE.h:416
+0x10f	HP_FOGFUNC	KONA_HP_FOGFUNC	HP_FOGFUNC	GE.h,firmware map,kpm	named-only	GE.h:417
+0x110	HP_COPYISOVERLAPPED	KONA_HP_COPYISOVERLAPPED	HP_COPYISOVERLAPPED	GE.h,firmware map,kpm	named-only	GE.h:418
+0x111	HP_PIXEL_NOMODE	KONA_HP_PIXEL_NOMODE	HP_PIXEL_NOMODE	GE.h,firmware map,kpm	named-only	GE.h:419
+0x112	HP_IRISGL_MODE	KONA_HP_IRISGL_MODE	HP_IRISGL_MODE	GE.h,firmware map,kpm	named-only	GE.h:420
+0x113	HP_LMC_COLOR	KONA_HP_LMC_COLOR	HP_LMC_COLOR	GE.h,firmware map,kpm	named-only	GE.h:421
 0x114	HP_VIDEO_SOURCE	KONA_HP_VIDEO_SOURCE	HP_VIDEO_SOURCE	GE.h,firmware map,kpm	documented	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig
-0x115	HP_COPYCONVISOVERLAPPED	KONA_HP_COPYCONVISOVERLAPPED	HP_COPYCONVISOVERLAPPED	GE.h,firmware map,kpm	named-only	GE.h:421
-0x116	HP_RESOLVEISSINGLECOMP	KONA_HP_RESOLVEISSINGLECOMP	HP_RESOLVEISSINGLECOMP	GE.h,firmware map,kpm	named-only	GE.h:422
-0x117	HP_SAMPLEPATTERN	KONA_HP_SAMPLEPATTERN	HP_SAMPLEPATTERN	GE.h,firmware map,kpm	named-only	GE.h:423
-0x118	HP_SAMPLEMASK	KONA_HP_SAMPLEMASK	HP_SAMPLEMASK	GE.h,firmware map,kpm	named-only	GE.h:424
-0x119	HP_POPLIGHTS	KONA_HP_POPLIGHTS	HP_POPLIGHTS	GE.h,firmware map,kpm	named-only	GE.h:425
-0x11a	HP_PIXELTEXGEN	KONA_HP_PIXELTEXGEN	HP_PIXELTEXGEN	GE.h,firmware map,kpm	named-only	GE.h:426
-0x11b	HP_POLYGONOFFSETEXT	KONA_HP_POLYGONOFFSETEXT	HP_POLYGONOFFSETEXT	GE.h,firmware map,kpm	named-only	GE.h:427
-0x11c	HP_TEXSUBIMAGE1D	KONA_HP_TEXSUBIMAGE1D	HP_TEXSUBIMAGE1D	GE.h,firmware map,kpm	named-only	GE.h:428
-0x11d	HP_TEXSUBIMAGE2D	KONA_HP_TEXSUBIMAGE2D	HP_TEXSUBIMAGE2D	GE.h,firmware map,kpm	named-only	GE.h:429
-0x11e	HP_TEXSUBIMAGE3D	KONA_HP_TEXSUBIMAGE3D	HP_TEXSUBIMAGE3D	GE.h,firmware map,kpm	named-only	GE.h:430
-0x11f	HP_TEXIMAGE3D	KONA_HP_TEXIMAGE3D	HP_TEXIMAGE3D	GE.h,firmware map,kpm	named-only	GE.h:431
-0x120	HP_TEXIMAGE4D	KONA_HP_TEXIMAGE4D	HP_TEXIMAGE4D	GE.h,firmware map,kpm	named-only	GE.h:432
-0x121	HP_TEXSUBIMAGE4D	KONA_HP_TEXSUBIMAGE4D	HP_TEXSUBIMAGE4D	GE.h,firmware map,kpm	named-only	GE.h:433
-0x122	HP_GENTEXTURES1D	KONA_HP_GENTEXTURES1D	HP_GENTEXTURES1D	GE.h,firmware map,kpm	named-only	GE.h:434
-0x123	HP_GENTEXTURES2D	KONA_HP_GENTEXTURES2D	HP_GENTEXTURES2D	GE.h,firmware map,kpm	named-only	GE.h:435
-0x124	HP_GENTEXTURES3D	KONA_HP_GENTEXTURES3D	HP_GENTEXTURES3D	GE.h,firmware map,kpm	named-only	GE.h:436
-0x125	HP_ISTEXTURE	KONA_HP_ISTEXTURE	HP_ISTEXTURE	GE.h,firmware map,kpm	named-only	GE.h:437
-0x126	HP_DELETETEXTURES	KONA_HP_DELETETEXTURES	HP_DELETETEXTURES	GE.h,firmware map,kpm	named-only	GE.h:438
-0x127	HP_BINDTEXTURE	KONA_HP_BINDTEXTURE	HP_BINDTEXTURE	GE.h,firmware map,kpm	named-only	GE.h:439
-0x128	HP_X_INIT	KONA_HP_X_INIT	HP_X_INIT	GE.h,firmware map,kpm	named-only	GE.h:440
-0x129	HP_X_LOADGC	KONA_HP_X_LOADGC	HP_X_LOADGC	GE.h,firmware map,kpm	named-only	GE.h:441
-0x12a	HP_X_LOADPOS	KONA_HP_X_LOADPOS	HP_X_LOADPOS	GE.h,firmware map,kpm	named-only	GE.h:442
-0x12b	HP_X_LOADCLIP	KONA_HP_X_LOADCLIP	HP_X_LOADCLIP	GE.h,firmware map,kpm	named-only	GE.h:443
-0x12c	HP_X_LOADCLIP_ARM	KONA_HP_X_LOADCLIP_ARM	HP_X_LOADCLIP_ARM	GE.h,firmware map,kpm	named-only	GE.h:444
-0x12d	HP_X_LOADSCISSOR	KONA_HP_X_LOADSCISSOR	HP_X_LOADSCISSOR	GE.h,firmware map,kpm	named-only	GE.h:445
-0x12e	HP_X_LOADCMAP	KONA_HP_X_LOADCMAP	HP_X_LOADCMAP	GE.h,firmware map,kpm	named-only	GE.h:446
-0x12f	HP_X_LOADGAMMA	KONA_HP_X_LOADGAMMA	HP_X_LOADGAMMA	GE.h,firmware map,kpm	named-only	GE.h:447
-0x130	HP_X_LOADCURSOR	KONA_HP_X_LOADCURSOR	HP_X_LOADCURSOR	GE.h,firmware map,kpm	named-only	GE.h:448
-0x131	HP_X_LOADCURSORCOLOR	KONA_HP_X_LOADCURSORCOLOR	HP_X_LOADCURSORCOLOR	GE.h,firmware map,kpm	named-only	GE.h:449
-0x132	HP_X_LOADXMAP_DID	KONA_HP_X_LOADXMAP_DID	HP_X_LOADXMAP_DID	GE.h,firmware map,kpm	named-only	GE.h:450
-0x133	HP_X_LOADXMAP_CONFIG	KONA_HP_X_LOADXMAP_CONFIG	HP_X_LOADXMAP_CONFIG	GE.h,firmware map,kpm	named-only	GE.h:451
-0x134	HP_GET_GE_TEXTURE_ATTRIB	KONA_HP_GET_GE_TEXTURE_ATTRIB	HP_GET_GE_TEXTURE_ATTRIB	GE.h,firmware map,kpm	named-only	GE.h:452
-0x135	HP_PIXEL_TRANSFORM	KONA_HP_PIXEL_TRANSFORM	HP_PIXEL_TRANSFORM	GE.h,firmware map,kpm	named-only	GE.h:453
-0x136	HP_X_PIX_SETUP	KONA_HP_X_PIX_SETUP	HP_X_PIX_SETUP	GE.h,firmware map,kpm	named-only	GE.h:454
-0x137	HP_X_PIX_COPY	KONA_HP_X_PIX_COPY	HP_X_PIX_COPY	GE.h,firmware map,kpm	named-only	GE.h:455
-0x138	HP_X_PIX_READ	KONA_HP_X_PIX_READ	HP_X_PIX_READ	GE.h,firmware map,kpm	named-only	GE.h:456
-0x139	HP_X_PIX_WRITE	KONA_HP_X_PIX_WRITE	HP_X_PIX_WRITE	GE.h,firmware map,kpm	named-only	GE.h:457
-0x13a	HP_X_PIX_FINISH	KONA_HP_X_PIX_FINISH	HP_X_PIX_FINISH	GE.h,firmware map,kpm	named-only	GE.h:458
-0x13b	HP_X_UNUSED3	KONA_HP_X_UNUSED3	HP_X_UNUSED3	GE.h,firmware map,kpm	named-only	GE.h:459
-0x13c	HP_X_LOADSTIPPLE	KONA_HP_X_LOADSTIPPLE	HP_X_LOADSTIPPLE	GE.h,firmware map,kpm	named-only	GE.h:460
-0x13d	HP_X_STORESTIPPLE	KONA_HP_X_STORESTIPPLE	HP_X_STORESTIPPLE	GE.h,firmware map,kpm	named-only	GE.h:461
-0x13e	HP_X_ROTATESTIPPLE	KONA_HP_X_ROTATESTIPPLE	HP_X_ROTATESTIPPLE	GE.h,firmware map,kpm	named-only	GE.h:462
-0x13f	HP_X_UNUSED4	KONA_HP_X_UNUSED4	HP_X_UNUSED4	GE.h,firmware map,kpm	named-only	GE.h:463
-0x140	HP_X_UNUSED5	KONA_HP_X_UNUSED5	HP_X_UNUSED5	GE.h,firmware map,kpm	named-only	GE.h:464
-0x141	HP_X_DATA1	KONA_HP_X_DATA1	HP_X_DATA1	GE.h,firmware map,kpm	named-only	GE.h:465
-0x142	HP_X_DATA2	KONA_HP_X_DATA2	HP_X_DATA2	GE.h,firmware map,kpm	named-only	GE.h:466
-0x143	HP_X_DATA3	KONA_HP_X_DATA3	HP_X_DATA3	GE.h,firmware map,kpm	named-only	GE.h:467
-0x144	HP_X_DATA4	KONA_HP_X_DATA4	HP_X_DATA4	GE.h,firmware map,kpm	named-only	GE.h:468
-0x145	HP_X_BDATA4	KONA_HP_X_BDATA4	HP_X_BDATA4	GE.h,firmware map,kpm	named-only	GE.h:469
-0x146	HP_X_DATA5	KONA_HP_X_DATA5	HP_X_DATA5	GE.h,firmware map,kpm	named-only	GE.h:470
-0x147	HP_X_DATA6	KONA_HP_X_DATA6	HP_X_DATA6	GE.h,firmware map,kpm	named-only	GE.h:471
-0x148	HP_X_DATA7	KONA_HP_X_DATA7	HP_X_DATA7	GE.h,firmware map,kpm	named-only	GE.h:472
-0x149	HP_X_DATA8	KONA_HP_X_DATA8	HP_X_DATA8	GE.h,firmware map,kpm	named-only	GE.h:473
-0x14a	HP_X_DATA9	KONA_HP_X_DATA9	HP_X_DATA9	GE.h,firmware map,kpm	named-only	GE.h:474
-0x14b	HP_X_DATA10	KONA_HP_X_DATA10	HP_X_DATA10	GE.h,firmware map,kpm	named-only	GE.h:475
-0x14c	HP_X_POINT	KONA_HP_X_POINT	HP_X_POINT	GE.h,firmware map,kpm	named-only	GE.h:476
-0x14d	HP_X_POINT6	KONA_HP_X_POINT6	HP_X_POINT6	GE.h,firmware map,kpm	named-only	GE.h:477
-0x14e	HP_X_POINT24	KONA_HP_X_POINT24	HP_X_POINT24	GE.h,firmware map,kpm	named-only	GE.h:478
-0x14f	HP_X_POINT_R	KONA_HP_X_POINT_R	HP_X_POINT_R	GE.h,firmware map,kpm	named-only	GE.h:479
-0x150	HP_X_POINT6_R	KONA_HP_X_POINT6_R	HP_X_POINT6_R	GE.h,firmware map,kpm	named-only	GE.h:480
-0x151	HP_X_POINT24_R	KONA_HP_X_POINT24_R	HP_X_POINT24_R	GE.h,firmware map,kpm	named-only	GE.h:481
-0x152	HP_X_RECT	KONA_HP_X_RECT	HP_X_RECT	GE.h,firmware map,kpm	named-only	GE.h:482
-0x153	HP_X_RECT6	KONA_HP_X_RECT6	HP_X_RECT6	GE.h,firmware map,kpm	named-only	GE.h:483
-0x154	HP_X_BOX	KONA_HP_X_BOX	HP_X_BOX	GE.h,firmware map,kpm	named-only	GE.h:484
-0x155	HP_X_BOX6	KONA_HP_X_BOX6	HP_X_BOX6	GE.h,firmware map,kpm	named-only	GE.h:485
-0x156	HP_X_SPANS	KONA_HP_X_SPANS	HP_X_SPANS	GE.h,firmware map,kpm	named-only	GE.h:486
-0x157	HP_X_SPANS2	KONA_HP_X_SPANS2	HP_X_SPANS2	GE.h,firmware map,kpm	named-only	GE.h:487
-0x158	HP_X_SPANS6	KONA_HP_X_SPANS6	HP_X_SPANS6	GE.h,firmware map,kpm	named-only	GE.h:488
-0x159	HP_X_SEGMENT	KONA_HP_X_SEGMENT	HP_X_SEGMENT	GE.h,firmware map,kpm	named-only	GE.h:489
-0x15a	HP_X_SEGMENT6	KONA_HP_X_SEGMENT6	HP_X_SEGMENT6	GE.h,firmware map,kpm	named-only	GE.h:490
-0x15b	HP_X_LINE	KONA_HP_X_LINE	HP_X_LINE	GE.h,firmware map,kpm	named-only	GE.h:491
-0x15c	HP_X_LINE6	KONA_HP_X_LINE6	HP_X_LINE6	GE.h,firmware map,kpm	named-only	GE.h:492
-0x15d	HP_X_LINE_R	KONA_HP_X_LINE_R	HP_X_LINE_R	GE.h,firmware map,kpm	named-only	GE.h:493
-0x15e	HP_X_LINE6_R	KONA_HP_X_LINE6_R	HP_X_LINE6_R	GE.h,firmware map,kpm	named-only	GE.h:494
-0x15f	HP_X_BGPOINT	KONA_HP_X_BGPOINT	HP_X_BGPOINT	GE.h,firmware map,kpm	named-only	GE.h:495
-0x160	HP_X_BGPOINT6	KONA_HP_X_BGPOINT6	HP_X_BGPOINT6	GE.h,firmware map,kpm	named-only	GE.h:496
-0x161	HP_X_BGPOINT24	KONA_HP_X_BGPOINT24	HP_X_BGPOINT24	GE.h,firmware map,kpm	named-only	GE.h:497
-0x162	HP_X_UNUSED6	KONA_HP_X_UNUSED6	HP_X_UNUSED6	GE.h,firmware map,kpm	named-only	GE.h:498
-0x163	HP_X_UNUSED7	KONA_HP_X_UNUSED7	HP_X_UNUSED7	GE.h,firmware map,kpm	named-only	GE.h:499
-0x164	HP_X_UNUSED8	KONA_HP_X_UNUSED8	HP_X_UNUSED8	GE.h,firmware map,kpm	named-only	GE.h:500
-0x165	HP_X_UNUSED9	KONA_HP_X_UNUSED9	HP_X_UNUSED9	GE.h,firmware map,kpm	named-only	GE.h:501
+0x115	HP_COPYCONVISOVERLAPPED	KONA_HP_COPYCONVISOVERLAPPED	HP_COPYCONVISOVERLAPPED	GE.h,firmware map,kpm	named-only	GE.h:423
+0x116	HP_RESOLVEISSINGLECOMP	KONA_HP_RESOLVEISSINGLECOMP	HP_RESOLVEISSINGLECOMP	GE.h,firmware map,kpm	named-only	GE.h:424
+0x117	HP_SAMPLEPATTERN	KONA_HP_SAMPLEPATTERN	HP_SAMPLEPATTERN	GE.h,firmware map,kpm	named-only	GE.h:425
+0x118	HP_SAMPLEMASK	KONA_HP_SAMPLEMASK	HP_SAMPLEMASK	GE.h,firmware map,kpm	named-only	GE.h:426
+0x119	HP_POPLIGHTS	KONA_HP_POPLIGHTS	HP_POPLIGHTS	GE.h,firmware map,kpm	named-only	GE.h:427
+0x11a	HP_PIXELTEXGEN	KONA_HP_PIXELTEXGEN	HP_PIXELTEXGEN	GE.h,firmware map,kpm	named-only	GE.h:428
+0x11b	HP_POLYGONOFFSETEXT	KONA_HP_POLYGONOFFSETEXT	HP_POLYGONOFFSETEXT	GE.h,firmware map,kpm	named-only	GE.h:429
+0x11c	HP_TEXSUBIMAGE1D	KONA_HP_TEXSUBIMAGE1D	HP_TEXSUBIMAGE1D	GE.h,firmware map,kpm	named-only	GE.h:430
+0x11d	HP_TEXSUBIMAGE2D	KONA_HP_TEXSUBIMAGE2D	HP_TEXSUBIMAGE2D	GE.h,firmware map,kpm	named-only	GE.h:431
+0x11e	HP_TEXSUBIMAGE3D	KONA_HP_TEXSUBIMAGE3D	HP_TEXSUBIMAGE3D	GE.h,firmware map,kpm	named-only	GE.h:432
+0x11f	HP_TEXIMAGE3D	KONA_HP_TEXIMAGE3D	HP_TEXIMAGE3D	GE.h,firmware map,kpm	named-only	GE.h:433
+0x120	HP_TEXIMAGE4D	KONA_HP_TEXIMAGE4D	HP_TEXIMAGE4D	GE.h,firmware map,kpm	named-only	GE.h:434
+0x121	HP_TEXSUBIMAGE4D	KONA_HP_TEXSUBIMAGE4D	HP_TEXSUBIMAGE4D	GE.h,firmware map,kpm	named-only	GE.h:435
+0x122	HP_GENTEXTURES1D	KONA_HP_GENTEXTURES1D	HP_GENTEXTURES1D	GE.h,firmware map,kpm	named-only	GE.h:436
+0x123	HP_GENTEXTURES2D	KONA_HP_GENTEXTURES2D	HP_GENTEXTURES2D	GE.h,firmware map,kpm	named-only	GE.h:437
+0x124	HP_GENTEXTURES3D	KONA_HP_GENTEXTURES3D	HP_GENTEXTURES3D	GE.h,firmware map,kpm	named-only	GE.h:438
+0x125	HP_ISTEXTURE	KONA_HP_ISTEXTURE	HP_ISTEXTURE	GE.h,firmware map,kpm	named-only	GE.h:439
+0x126	HP_DELETETEXTURES	KONA_HP_DELETETEXTURES	HP_DELETETEXTURES	GE.h,firmware map,kpm	named-only	GE.h:440
+0x127	HP_BINDTEXTURE	KONA_HP_BINDTEXTURE	HP_BINDTEXTURE	GE.h,firmware map,kpm	named-only	GE.h:441
+0x128	HP_X_INIT	KONA_HP_X_INIT	HP_X_INIT	GE.h,firmware map,kpm	named-only	GE.h:442
+0x129	HP_X_LOADGC	KONA_HP_X_LOADGC	HP_X_LOADGC	GE.h,firmware map,kpm	named-only	GE.h:443
+0x12a	HP_X_LOADPOS	KONA_HP_X_LOADPOS	HP_X_LOADPOS	GE.h,firmware map,kpm	named-only	GE.h:444
+0x12b	HP_X_LOADCLIP	KONA_HP_X_LOADCLIP	HP_X_LOADCLIP	GE.h,firmware map,kpm	named-only	GE.h:445
+0x12c	HP_X_LOADCLIP_ARM	KONA_HP_X_LOADCLIP_ARM	HP_X_LOADCLIP_ARM	GE.h,firmware map,kpm	named-only	GE.h:446
+0x12d	HP_X_LOADSCISSOR	KONA_HP_X_LOADSCISSOR	HP_X_LOADSCISSOR	GE.h,firmware map,kpm	named-only	GE.h:447
+0x12e	HP_X_LOADCMAP	KONA_HP_X_LOADCMAP	HP_X_LOADCMAP	GE.h,firmware map,kpm	named-only	GE.h:448
+0x12f	HP_X_LOADGAMMA	KONA_HP_X_LOADGAMMA	HP_X_LOADGAMMA	GE.h,firmware map,kpm	named-only	GE.h:449
+0x130	HP_X_LOADCURSOR	KONA_HP_X_LOADCURSOR	HP_X_LOADCURSOR	GE.h,firmware map,kpm	documented	docs/ge.md#context-query-and-other-long-commands
+0x131	HP_X_LOADCURSORCOLOR	KONA_HP_X_LOADCURSORCOLOR	HP_X_LOADCURSORCOLOR	GE.h,firmware map,kpm	named-only	GE.h:451
+0x132	HP_X_LOADXMAP_DID	KONA_HP_X_LOADXMAP_DID	HP_X_LOADXMAP_DID	GE.h,firmware map,kpm	named-only	GE.h:452
+0x133	HP_X_LOADXMAP_CONFIG	KONA_HP_X_LOADXMAP_CONFIG	HP_X_LOADXMAP_CONFIG	GE.h,firmware map,kpm	named-only	GE.h:453
+0x134	HP_GET_GE_TEXTURE_ATTRIB	KONA_HP_GET_GE_TEXTURE_ATTRIB	HP_GET_GE_TEXTURE_ATTRIB	GE.h,firmware map,kpm	named-only	GE.h:454
+0x135	HP_PIXEL_TRANSFORM	KONA_HP_PIXEL_TRANSFORM	HP_PIXEL_TRANSFORM	GE.h,firmware map,kpm	named-only	GE.h:455
+0x136	HP_X_PIX_SETUP	KONA_HP_X_PIX_SETUP	HP_X_PIX_SETUP	GE.h,firmware map,kpm	named-only	GE.h:456
+0x137	HP_X_PIX_COPY	KONA_HP_X_PIX_COPY	HP_X_PIX_COPY	GE.h,firmware map,kpm	named-only	GE.h:457
+0x138	HP_X_PIX_READ	KONA_HP_X_PIX_READ	HP_X_PIX_READ	GE.h,firmware map,kpm	named-only	GE.h:458
+0x139	HP_X_PIX_WRITE	KONA_HP_X_PIX_WRITE	HP_X_PIX_WRITE	GE.h,firmware map,kpm	named-only	GE.h:459
+0x13a	HP_X_PIX_FINISH	KONA_HP_X_PIX_FINISH	HP_X_PIX_FINISH	GE.h,firmware map,kpm	named-only	GE.h:460
+0x13b	HP_X_UNUSED3	KONA_HP_X_UNUSED3	HP_X_UNUSED3	GE.h,firmware map,kpm	named-only	GE.h:461
+0x13c	HP_X_LOADSTIPPLE	KONA_HP_X_LOADSTIPPLE	HP_X_LOADSTIPPLE	GE.h,firmware map,kpm	named-only	GE.h:462
+0x13d	HP_X_STORESTIPPLE	KONA_HP_X_STORESTIPPLE	HP_X_STORESTIPPLE	GE.h,firmware map,kpm	named-only	GE.h:463
+0x13e	HP_X_ROTATESTIPPLE	KONA_HP_X_ROTATESTIPPLE	HP_X_ROTATESTIPPLE	GE.h,firmware map,kpm	named-only	GE.h:464
+0x13f	HP_X_UNUSED4	KONA_HP_X_UNUSED4	HP_X_UNUSED4	GE.h,firmware map,kpm	named-only	GE.h:465
+0x140	HP_X_UNUSED5	KONA_HP_X_UNUSED5	HP_X_UNUSED5	GE.h,firmware map,kpm	named-only	GE.h:466
+0x141	HP_X_DATA1	KONA_HP_X_DATA1	HP_X_DATA1	GE.h,firmware map,kpm	named-only	GE.h:467
+0x142	HP_X_DATA2	KONA_HP_X_DATA2	HP_X_DATA2	GE.h,firmware map,kpm	named-only	GE.h:468
+0x143	HP_X_DATA3	KONA_HP_X_DATA3	HP_X_DATA3	GE.h,firmware map,kpm	named-only	GE.h:469
+0x144	HP_X_DATA4	KONA_HP_X_DATA4	HP_X_DATA4	GE.h,firmware map,kpm	named-only	GE.h:470
+0x145	HP_X_BDATA4	KONA_HP_X_BDATA4	HP_X_BDATA4	GE.h,firmware map,kpm	named-only	GE.h:471
+0x146	HP_X_DATA5	KONA_HP_X_DATA5	HP_X_DATA5	GE.h,firmware map,kpm	named-only	GE.h:472
+0x147	HP_X_DATA6	KONA_HP_X_DATA6	HP_X_DATA6	GE.h,firmware map,kpm	named-only	GE.h:473
+0x148	HP_X_DATA7	KONA_HP_X_DATA7	HP_X_DATA7	GE.h,firmware map,kpm	named-only	GE.h:474
+0x149	HP_X_DATA8	KONA_HP_X_DATA8	HP_X_DATA8	GE.h,firmware map,kpm	named-only	GE.h:475
+0x14a	HP_X_DATA9	KONA_HP_X_DATA9	HP_X_DATA9	GE.h,firmware map,kpm	named-only	GE.h:476
+0x14b	HP_X_DATA10	KONA_HP_X_DATA10	HP_X_DATA10	GE.h,firmware map,kpm	named-only	GE.h:477
+0x14c	HP_X_POINT	KONA_HP_X_POINT	HP_X_POINT	GE.h,firmware map,kpm	named-only	GE.h:478
+0x14d	HP_X_POINT6	KONA_HP_X_POINT6	HP_X_POINT6	GE.h,firmware map,kpm	named-only	GE.h:479
+0x14e	HP_X_POINT24	KONA_HP_X_POINT24	HP_X_POINT24	GE.h,firmware map,kpm	named-only	GE.h:480
+0x14f	HP_X_POINT_R	KONA_HP_X_POINT_R	HP_X_POINT_R	GE.h,firmware map,kpm	named-only	GE.h:481
+0x150	HP_X_POINT6_R	KONA_HP_X_POINT6_R	HP_X_POINT6_R	GE.h,firmware map,kpm	named-only	GE.h:482
+0x151	HP_X_POINT24_R	KONA_HP_X_POINT24_R	HP_X_POINT24_R	GE.h,firmware map,kpm	named-only	GE.h:483
+0x152	HP_X_RECT	KONA_HP_X_RECT	HP_X_RECT	GE.h,firmware map,kpm	named-only	GE.h:484
+0x153	HP_X_RECT6	KONA_HP_X_RECT6	HP_X_RECT6	GE.h,firmware map,kpm	named-only	GE.h:485
+0x154	HP_X_BOX	KONA_HP_X_BOX	HP_X_BOX	GE.h,firmware map,kpm	named-only	GE.h:486
+0x155	HP_X_BOX6	KONA_HP_X_BOX6	HP_X_BOX6	GE.h,firmware map,kpm	named-only	GE.h:487
+0x156	HP_X_SPANS	KONA_HP_X_SPANS	HP_X_SPANS	GE.h,firmware map,kpm	named-only	GE.h:488
+0x157	HP_X_SPANS2	KONA_HP_X_SPANS2	HP_X_SPANS2	GE.h,firmware map,kpm	named-only	GE.h:489
+0x158	HP_X_SPANS6	KONA_HP_X_SPANS6	HP_X_SPANS6	GE.h,firmware map,kpm	named-only	GE.h:490
+0x159	HP_X_SEGMENT	KONA_HP_X_SEGMENT	HP_X_SEGMENT	GE.h,firmware map,kpm	named-only	GE.h:491
+0x15a	HP_X_SEGMENT6	KONA_HP_X_SEGMENT6	HP_X_SEGMENT6	GE.h,firmware map,kpm	named-only	GE.h:492
+0x15b	HP_X_LINE	KONA_HP_X_LINE	HP_X_LINE	GE.h,firmware map,kpm	named-only	GE.h:493
+0x15c	HP_X_LINE6	KONA_HP_X_LINE6	HP_X_LINE6	GE.h,firmware map,kpm	named-only	GE.h:494
+0x15d	HP_X_LINE_R	KONA_HP_X_LINE_R	HP_X_LINE_R	GE.h,firmware map,kpm	named-only	GE.h:495
+0x15e	HP_X_LINE6_R	KONA_HP_X_LINE6_R	HP_X_LINE6_R	GE.h,firmware map,kpm	named-only	GE.h:496
+0x15f	HP_X_BGPOINT	KONA_HP_X_BGPOINT	HP_X_BGPOINT	GE.h,firmware map,kpm	named-only	GE.h:497
+0x160	HP_X_BGPOINT6	KONA_HP_X_BGPOINT6	HP_X_BGPOINT6	GE.h,firmware map,kpm	named-only	GE.h:498
+0x161	HP_X_BGPOINT24	KONA_HP_X_BGPOINT24	HP_X_BGPOINT24	GE.h,firmware map,kpm	named-only	GE.h:499
+0x162	HP_X_UNUSED6	KONA_HP_X_UNUSED6	HP_X_UNUSED6	GE.h,firmware map,kpm	named-only	GE.h:500
+0x163	HP_X_UNUSED7	KONA_HP_X_UNUSED7	HP_X_UNUSED7	GE.h,firmware map,kpm	named-only	GE.h:501
+0x164	HP_X_UNUSED8	KONA_HP_X_UNUSED8	HP_X_UNUSED8	GE.h,firmware map,kpm	named-only	GE.h:502
+0x165	HP_X_UNUSED9	KONA_HP_X_UNUSED9	HP_X_UNUSED9	GE.h,firmware map,kpm	named-only	GE.h:503
 0x166	HP_DPLEX_SWAP	KONA_HP_DPLEX_SWAP	HP_DPLEX_SWAP	GE.h,firmware map,kpm	documented	docs/dg.md#buffer-swap-and-retrace-wait
-0x167	HP_USERCOPYLIST_LDMA	KONA_HP_USERCOPYLIST_LDMA	HP_USERCOPYLIST_LDMA	GE.h,firmware map,kpm	named-only	GE.h:503
-0x168	HP_POLYGONOFFSET	KONA_HP_POLYGONOFFSET	HP_POLYGONOFFSET	GE.h,firmware map,kpm	named-only	GE.h:504
-0x169	HP_DIAG_DISPATCH	KONA_HP_DIAG_DISPATCH	HP_DIAG_DISPATCH	GE.h,firmware map,kpm	named-only	GE.h:505
-0x16a	HP_DIAG_RESERVED0	KONA_HP_DIAG_RESERVED0	HP_DIAG_RESERVED0	GE.h,firmware map,kpm	named-only	GE.h:506
-0x16b	HP_DIAG_RESERVED1	KONA_HP_DIAG_RESERVED1	HP_DIAG_RESERVED1	GE.h,firmware map,kpm	named-only	GE.h:507
-0x16c	HP_COPYLIST_LDMA	KONA_HP_COPYLIST_LDMA	HP_COPYLIST_LDMA	GE.h,firmware map,kpm	named-only	GE.h:508
-0x16d	HP_EXECLIST_LDMA	KONA_HP_EXECLIST_LDMA	HP_EXECLIST_LDMA	GE.h,firmware map,kpm	named-only	GE.h:509
-0x16e	HP_EXECLIST_IDMA	KONA_HP_EXECLIST_IDMA	HP_EXECLIST_IDMA	GE.h,firmware map,kpm	named-only	GE.h:510
-0x16f	HP_MOVELIST_LDMA	KONA_HP_MOVELIST_LDMA	HP_MOVELIST_LDMA	GE.h,firmware map,kpm	named-only	GE.h:511
-0x170	HP_EXECLIST_LDMA_N	KONA_HP_EXECLIST_LDMA_N	HP_EXECLIST_LDMA_N	GE.h,firmware map,kpm	named-only	GE.h:512
-0x171	HP_EXECLIST_IDMA_N	KONA_HP_EXECLIST_IDMA_N	HP_EXECLIST_IDMA_N	GE.h,firmware map,kpm	named-only	GE.h:513
+0x167	HP_USERCOPYLIST_LDMA	KONA_HP_USERCOPYLIST_LDMA	HP_USERCOPYLIST_LDMA	GE.h,firmware map,kpm	documented	docs/ge.md#display-lists-the-list-commands
+0x168	HP_POLYGONOFFSET	KONA_HP_POLYGONOFFSET	HP_POLYGONOFFSET	GE.h,firmware map,kpm	named-only	GE.h:506
+0x169	HP_DIAG_DISPATCH	KONA_HP_DIAG_DISPATCH	HP_DIAG_DISPATCH	GE.h,firmware map,kpm	named-only	GE.h:507
+0x16a	HP_DIAG_RESERVED0	KONA_HP_DIAG_RESERVED0	HP_DIAG_RESERVED0	GE.h,firmware map,kpm	named-only	GE.h:508
+0x16b	HP_DIAG_RESERVED1	KONA_HP_DIAG_RESERVED1	HP_DIAG_RESERVED1	GE.h,firmware map,kpm	named-only	GE.h:509
+0x16c	HP_COPYLIST_LDMA	KONA_HP_COPYLIST_LDMA	HP_COPYLIST_LDMA	GE.h,firmware map,kpm	documented	docs/ge.md#display-lists-the-list-commands
+0x16d	HP_EXECLIST_LDMA	KONA_HP_EXECLIST_LDMA	HP_EXECLIST_LDMA	GE.h,firmware map,kpm	documented	docs/ge.md#display-lists-the-list-commands
+0x16e	HP_EXECLIST_IDMA	KONA_HP_EXECLIST_IDMA	HP_EXECLIST_IDMA	GE.h,firmware map,kpm	documented	docs/ge.md#display-lists-the-list-commands
+0x16f	HP_MOVELIST_LDMA	KONA_HP_MOVELIST_LDMA	HP_MOVELIST_LDMA	GE.h,firmware map,kpm	documented	docs/ge.md#display-lists-the-list-commands
+0x170	HP_EXECLIST_LDMA_N	KONA_HP_EXECLIST_LDMA_N	HP_EXECLIST_LDMA_N	GE.h,firmware map,kpm	documented	docs/ge.md#display-lists-the-list-commands
+0x171	HP_EXECLIST_IDMA_N	KONA_HP_EXECLIST_IDMA_N	HP_EXECLIST_IDMA_N	GE.h,firmware map,kpm	documented	docs/ge.md#display-lists-the-list-commands
 0x172	HP_GED_NOP	KONA_HP_GED_NOP	HP_GED_NOP	GE.h,firmware map,kpm	documented	docs/dg.md#buffer-swap-and-retrace-wait
-0x173	HP_TEXSETUP	KONA_HP_TEXSETUP	HP_TEXSETUP	GE.h,firmware map,kpm	named-only	GE.h:515
-0x174	HP_DRAWTEXELS	KONA_HP_DRAWTEXELS	HP_DRAWTEXELS	GE.h,firmware map,kpm	documented	RM.h:146
-0x175	HP_TEXLOAD_SETUP	KONA_HP_TEXLOAD_SETUP	HP_TEXLOAD_SETUP	GE.h,firmware map,kpm	named-only	GE.h:517
-0x176	HP_TEXLOAD_ID	KONA_HP_TEXLOAD_ID	HP_TEXLOAD_ID	GE.h,firmware map,kpm	named-only	GE.h:518
-0x177	HP_ACTIVE_TEXTURE	KONA_HP_ACTIVE_TEXTURE	HP_ACTIVE_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:519
-0x178	HP_TEXBIND_ID	KONA_HP_TEXBIND_ID	HP_TEXBIND_ID	GE.h,firmware map,kpm	named-only	GE.h:520
-0x179	HP_BIND_2D_MIPMAP_TEXTURE	KONA_HP_BIND_2D_MIPMAP_TEXTURE	HP_BIND_2D_MIPMAP_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:521
-0x17a	HP_BIND_BICUBIC_TEXTURE	KONA_HP_BIND_BICUBIC_TEXTURE	HP_BIND_BICUBIC_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:522
-0x17b	HP_BIND_3D_MIPMAP_TEXTURE	KONA_HP_BIND_3D_MIPMAP_TEXTURE	HP_BIND_3D_MIPMAP_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:523
-0x17c	HP_BIND_3D_TEXTURE	KONA_HP_BIND_3D_TEXTURE	HP_BIND_3D_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:524
-0x17d	HP_BIND_DETAIL_TEXTURE	KONA_HP_BIND_DETAIL_TEXTURE	HP_BIND_DETAIL_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:525
+0x173	HP_TEXSETUP	KONA_HP_TEXSETUP	HP_TEXSETUP	GE.h,firmware map,kpm	named-only	GE.h:517
+0x174	HP_DRAWTEXELS	KONA_HP_DRAWTEXELS	HP_DRAWTEXELS	GE.h,firmware map,kpm	documented	docs/ge.md#the-texel-format-id
+0x175	HP_TEXLOAD_SETUP	KONA_HP_TEXLOAD_SETUP	HP_TEXLOAD_SETUP	GE.h,firmware map,kpm	named-only	GE.h:519
+0x176	HP_TEXLOAD_ID	KONA_HP_TEXLOAD_ID	HP_TEXLOAD_ID	GE.h,firmware map,kpm	named-only	GE.h:520
+0x177	HP_ACTIVE_TEXTURE	KONA_HP_ACTIVE_TEXTURE	HP_ACTIVE_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:521
+0x178	HP_TEXBIND_ID	KONA_HP_TEXBIND_ID	HP_TEXBIND_ID	GE.h,firmware map,kpm	named-only	GE.h:522
+0x179	HP_BIND_2D_MIPMAP_TEXTURE	KONA_HP_BIND_2D_MIPMAP_TEXTURE	HP_BIND_2D_MIPMAP_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:523
+0x17a	HP_BIND_BICUBIC_TEXTURE	KONA_HP_BIND_BICUBIC_TEXTURE	HP_BIND_BICUBIC_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:524
+0x17b	HP_BIND_3D_MIPMAP_TEXTURE	KONA_HP_BIND_3D_MIPMAP_TEXTURE	HP_BIND_3D_MIPMAP_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:525
+0x17c	HP_BIND_3D_TEXTURE	KONA_HP_BIND_3D_TEXTURE	HP_BIND_3D_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:526
+0x17d	HP_BIND_DETAIL_TEXTURE	KONA_HP_BIND_DETAIL_TEXTURE	HP_BIND_DETAIL_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:527
 0x17e	HP_TEX_SEND_ARM_TABLE	KONA_HP_TEX_SEND_ARM_TABLE	HP_TEX_SEND_ARM_TABLE	GE.h,firmware map,kpm	documented	RM.h:83
-0x17f	HP_SLOP	KONA_HP_SLOP	HP_SLOP	GE.h,firmware map,kpm	named-only	GE.h:527
-0x180	HP_VARRAY_SET_CMDS	KONA_HP_VARRAY_SET_CMDS	HP_VARRAY_SET_CMDS	GE.h,firmware map,kpm	named-only	GE.h:528
-0x181	HP_VARRAY_SETUP	KONA_HP_VARRAY_SETUP	HP_VARRAY_SETUP	GE.h,firmware map,kpm	named-only	GE.h:529
-0x182	HP_VARRAY_BGN_LOOP	KONA_HP_VARRAY_BGN_LOOP	HP_VARRAY_BGN_LOOP	GE.h,firmware map,kpm	named-only	GE.h:530
-0x183	HP_VARRAY_LOOP00	KONA_HP_VARRAY_LOOP00	HP_VARRAY_LOOP00	GE.h,firmware map,kpm	named-only	GE.h:531
-0x184	HP_VARRAY_LOOP01	KONA_HP_VARRAY_LOOP01	HP_VARRAY_LOOP01	GE.h,firmware map,kpm	named-only	GE.h:532
-0x185	HP_VARRAY_LOOP02	KONA_HP_VARRAY_LOOP02	HP_VARRAY_LOOP02	GE.h,firmware map,kpm	named-only	GE.h:533
-0x186	HP_VARRAY_LOOP03	KONA_HP_VARRAY_LOOP03	HP_VARRAY_LOOP03	GE.h,firmware map,kpm	named-only	GE.h:534
-0x187	HP_VARRAY_LOOP04	KONA_HP_VARRAY_LOOP04	HP_VARRAY_LOOP04	GE.h,firmware map,kpm	named-only	GE.h:535
-0x188	HP_VARRAY_LOOP05	KONA_HP_VARRAY_LOOP05	HP_VARRAY_LOOP05	GE.h,firmware map,kpm	named-only	GE.h:536
-0x189	HP_VARRAY_LOOP06	KONA_HP_VARRAY_LOOP06	HP_VARRAY_LOOP06	GE.h,firmware map,kpm	named-only	GE.h:537
-0x18a	HP_VARRAY_LOOP07	KONA_HP_VARRAY_LOOP07	HP_VARRAY_LOOP07	GE.h,firmware map,kpm	named-only	GE.h:538
-0x18b	HP_VARRAY_LOOP08	KONA_HP_VARRAY_LOOP08	HP_VARRAY_LOOP08	GE.h,firmware map,kpm	named-only	GE.h:539
-0x18c	HP_VARRAY_LOOP09	KONA_HP_VARRAY_LOOP09	HP_VARRAY_LOOP09	GE.h,firmware map,kpm	named-only	GE.h:540
-0x18d	HP_VARRAY_LOOP0A	KONA_HP_VARRAY_LOOP0A	HP_VARRAY_LOOP0A	GE.h,firmware map,kpm	named-only	GE.h:541
-0x18e	HP_VARRAY_LOOP0B	KONA_HP_VARRAY_LOOP0B	HP_VARRAY_LOOP0B	GE.h,firmware map,kpm	named-only	GE.h:542
-0x18f	HP_VARRAY_LOOP0C	KONA_HP_VARRAY_LOOP0C	HP_VARRAY_LOOP0C	GE.h,firmware map,kpm	named-only	GE.h:543
-0x190	HP_VARRAY_LOOP0D	KONA_HP_VARRAY_LOOP0D	HP_VARRAY_LOOP0D	GE.h,firmware map,kpm	named-only	GE.h:544
-0x191	HP_VARRAY_LOOP0E	KONA_HP_VARRAY_LOOP0E	HP_VARRAY_LOOP0E	GE.h,firmware map,kpm	named-only	GE.h:545
-0x192	HP_VARRAY_LOOP0F	KONA_HP_VARRAY_LOOP0F	HP_VARRAY_LOOP0F	GE.h,firmware map,kpm	named-only	GE.h:546
-0x193	HP_VARRAY_LOOP10	KONA_HP_VARRAY_LOOP10	HP_VARRAY_LOOP10	GE.h,firmware map,kpm	named-only	GE.h:547
-0x194	HP_VARRAY_LOOP11	KONA_HP_VARRAY_LOOP11	HP_VARRAY_LOOP11	GE.h,firmware map,kpm	named-only	GE.h:548
-0x195	HP_VARRAY_LOOP12	KONA_HP_VARRAY_LOOP12	HP_VARRAY_LOOP12	GE.h,firmware map,kpm	named-only	GE.h:549
-0x196	HP_VARRAY_LOOP13	KONA_HP_VARRAY_LOOP13	HP_VARRAY_LOOP13	GE.h,firmware map,kpm	named-only	GE.h:550
-0x197	HP_VARRAY_LOOP14	KONA_HP_VARRAY_LOOP14	HP_VARRAY_LOOP14	GE.h,firmware map,kpm	named-only	GE.h:551
-0x198	HP_VARRAY_LOOP15	KONA_HP_VARRAY_LOOP15	HP_VARRAY_LOOP15	GE.h,firmware map,kpm	named-only	GE.h:552
-0x199	HP_VARRAY_LOOP16	KONA_HP_VARRAY_LOOP16	HP_VARRAY_LOOP16	GE.h,firmware map,kpm	named-only	GE.h:553
-0x19a	HP_VARRAY_LOOP17	KONA_HP_VARRAY_LOOP17	HP_VARRAY_LOOP17	GE.h,firmware map,kpm	named-only	GE.h:554
-0x19b	HP_VARRAY_LOOP18	KONA_HP_VARRAY_LOOP18	HP_VARRAY_LOOP18	GE.h,firmware map,kpm	named-only	GE.h:555
-0x19c	HP_VARRAY_LOOP19	KONA_HP_VARRAY_LOOP19	HP_VARRAY_LOOP19	GE.h,firmware map,kpm	named-only	GE.h:556
-0x19d	HP_VARRAY_LOOP1A	KONA_HP_VARRAY_LOOP1A	HP_VARRAY_LOOP1A	GE.h,firmware map,kpm	named-only	GE.h:557
-0x19e	HP_VARRAY_LOOP1B	KONA_HP_VARRAY_LOOP1B	HP_VARRAY_LOOP1B	GE.h,firmware map,kpm	named-only	GE.h:558
-0x19f	HP_VARRAY_LOOP1C	KONA_HP_VARRAY_LOOP1C	HP_VARRAY_LOOP1C	GE.h,firmware map,kpm	named-only	GE.h:559
-0x1a0	HP_VARRAY_LOOP1D	KONA_HP_VARRAY_LOOP1D	HP_VARRAY_LOOP1D	GE.h,firmware map,kpm	named-only	GE.h:560
-0x1a1	HP_VARRAY_LOOP1E	KONA_HP_VARRAY_LOOP1E	HP_VARRAY_LOOP1E	GE.h,firmware map,kpm	named-only	GE.h:561
-0x1a2	HP_VARRAY_LOOP1F	KONA_HP_VARRAY_LOOP1F	HP_VARRAY_LOOP1F	GE.h,firmware map,kpm	named-only	GE.h:562
-0x1a3	HP_VARRAY_UNSETUP	KONA_HP_VARRAY_UNSETUP	HP_VARRAY_UNSETUP	GE.h,firmware map,kpm	named-only	GE.h:563
-0x1a4	HP_SPRITEPARAMETERI	KONA_HP_SPRITEPARAMETERI	HP_SPRITEPARAMETERI	GE.h,firmware map,kpm	named-only	GE.h:564
-0x1a5	HP_SPRITEPARAMETERFV	KONA_HP_SPRITEPARAMETERFV	HP_SPRITEPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:565
-0x1a6	HP_VIDEO_CMD	KONA_HP_VIDEO_CMD	HP_VIDEO_CMD	GE.h,firmware map,kpm	documented	docs/opengl.md#display-and-scanout
-0x1a7	HP_POINTPARAMETERF	KONA_HP_POINTPARAMETERF	HP_POINTPARAMETERF	GE.h,firmware map,kpm	named-only	GE.h:567
-0x1a8	HP_POINTPARAMETERFV	KONA_HP_POINTPARAMETERFV	HP_POINTPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:568
+0x17f	HP_SLOP	KONA_HP_SLOP	HP_SLOP	GE.h,firmware map,kpm	named-only	GE.h:529
+0x180	HP_VARRAY_SET_CMDS	KONA_HP_VARRAY_SET_CMDS	HP_VARRAY_SET_CMDS	GE.h,firmware map,kpm	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+0x181	HP_VARRAY_SETUP	KONA_HP_VARRAY_SETUP	HP_VARRAY_SETUP	GE.h,firmware map,kpm	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+0x182	HP_VARRAY_BGN_LOOP	KONA_HP_VARRAY_BGN_LOOP	HP_VARRAY_BGN_LOOP	GE.h,firmware map,kpm	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+0x183	HP_VARRAY_LOOP00	KONA_HP_VARRAY_LOOP00	HP_VARRAY_LOOP00	GE.h,firmware map,kpm	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+0x184	HP_VARRAY_LOOP01	KONA_HP_VARRAY_LOOP01	HP_VARRAY_LOOP01	GE.h,firmware map,kpm	named-only	GE.h:534
+0x185	HP_VARRAY_LOOP02	KONA_HP_VARRAY_LOOP02	HP_VARRAY_LOOP02	GE.h,firmware map,kpm	named-only	GE.h:535
+0x186	HP_VARRAY_LOOP03	KONA_HP_VARRAY_LOOP03	HP_VARRAY_LOOP03	GE.h,firmware map,kpm	named-only	GE.h:536
+0x187	HP_VARRAY_LOOP04	KONA_HP_VARRAY_LOOP04	HP_VARRAY_LOOP04	GE.h,firmware map,kpm	named-only	GE.h:537
+0x188	HP_VARRAY_LOOP05	KONA_HP_VARRAY_LOOP05	HP_VARRAY_LOOP05	GE.h,firmware map,kpm	named-only	GE.h:538
+0x189	HP_VARRAY_LOOP06	KONA_HP_VARRAY_LOOP06	HP_VARRAY_LOOP06	GE.h,firmware map,kpm	named-only	GE.h:539
+0x18a	HP_VARRAY_LOOP07	KONA_HP_VARRAY_LOOP07	HP_VARRAY_LOOP07	GE.h,firmware map,kpm	named-only	GE.h:540
+0x18b	HP_VARRAY_LOOP08	KONA_HP_VARRAY_LOOP08	HP_VARRAY_LOOP08	GE.h,firmware map,kpm	named-only	GE.h:541
+0x18c	HP_VARRAY_LOOP09	KONA_HP_VARRAY_LOOP09	HP_VARRAY_LOOP09	GE.h,firmware map,kpm	named-only	GE.h:542
+0x18d	HP_VARRAY_LOOP0A	KONA_HP_VARRAY_LOOP0A	HP_VARRAY_LOOP0A	GE.h,firmware map,kpm	named-only	GE.h:543
+0x18e	HP_VARRAY_LOOP0B	KONA_HP_VARRAY_LOOP0B	HP_VARRAY_LOOP0B	GE.h,firmware map,kpm	named-only	GE.h:544
+0x18f	HP_VARRAY_LOOP0C	KONA_HP_VARRAY_LOOP0C	HP_VARRAY_LOOP0C	GE.h,firmware map,kpm	named-only	GE.h:545
+0x190	HP_VARRAY_LOOP0D	KONA_HP_VARRAY_LOOP0D	HP_VARRAY_LOOP0D	GE.h,firmware map,kpm	named-only	GE.h:546
+0x191	HP_VARRAY_LOOP0E	KONA_HP_VARRAY_LOOP0E	HP_VARRAY_LOOP0E	GE.h,firmware map,kpm	named-only	GE.h:547
+0x192	HP_VARRAY_LOOP0F	KONA_HP_VARRAY_LOOP0F	HP_VARRAY_LOOP0F	GE.h,firmware map,kpm	named-only	GE.h:548
+0x193	HP_VARRAY_LOOP10	KONA_HP_VARRAY_LOOP10	HP_VARRAY_LOOP10	GE.h,firmware map,kpm	named-only	GE.h:549
+0x194	HP_VARRAY_LOOP11	KONA_HP_VARRAY_LOOP11	HP_VARRAY_LOOP11	GE.h,firmware map,kpm	named-only	GE.h:550
+0x195	HP_VARRAY_LOOP12	KONA_HP_VARRAY_LOOP12	HP_VARRAY_LOOP12	GE.h,firmware map,kpm	named-only	GE.h:551
+0x196	HP_VARRAY_LOOP13	KONA_HP_VARRAY_LOOP13	HP_VARRAY_LOOP13	GE.h,firmware map,kpm	named-only	GE.h:552
+0x197	HP_VARRAY_LOOP14	KONA_HP_VARRAY_LOOP14	HP_VARRAY_LOOP14	GE.h,firmware map,kpm	named-only	GE.h:553
+0x198	HP_VARRAY_LOOP15	KONA_HP_VARRAY_LOOP15	HP_VARRAY_LOOP15	GE.h,firmware map,kpm	named-only	GE.h:554
+0x199	HP_VARRAY_LOOP16	KONA_HP_VARRAY_LOOP16	HP_VARRAY_LOOP16	GE.h,firmware map,kpm	named-only	GE.h:555
+0x19a	HP_VARRAY_LOOP17	KONA_HP_VARRAY_LOOP17	HP_VARRAY_LOOP17	GE.h,firmware map,kpm	named-only	GE.h:556
+0x19b	HP_VARRAY_LOOP18	KONA_HP_VARRAY_LOOP18	HP_VARRAY_LOOP18	GE.h,firmware map,kpm	named-only	GE.h:557
+0x19c	HP_VARRAY_LOOP19	KONA_HP_VARRAY_LOOP19	HP_VARRAY_LOOP19	GE.h,firmware map,kpm	named-only	GE.h:558
+0x19d	HP_VARRAY_LOOP1A	KONA_HP_VARRAY_LOOP1A	HP_VARRAY_LOOP1A	GE.h,firmware map,kpm	named-only	GE.h:559
+0x19e	HP_VARRAY_LOOP1B	KONA_HP_VARRAY_LOOP1B	HP_VARRAY_LOOP1B	GE.h,firmware map,kpm	named-only	GE.h:560
+0x19f	HP_VARRAY_LOOP1C	KONA_HP_VARRAY_LOOP1C	HP_VARRAY_LOOP1C	GE.h,firmware map,kpm	named-only	GE.h:561
+0x1a0	HP_VARRAY_LOOP1D	KONA_HP_VARRAY_LOOP1D	HP_VARRAY_LOOP1D	GE.h,firmware map,kpm	named-only	GE.h:562
+0x1a1	HP_VARRAY_LOOP1E	KONA_HP_VARRAY_LOOP1E	HP_VARRAY_LOOP1E	GE.h,firmware map,kpm	named-only	GE.h:563
+0x1a2	HP_VARRAY_LOOP1F	KONA_HP_VARRAY_LOOP1F	HP_VARRAY_LOOP1F	GE.h,firmware map,kpm	named-only	GE.h:564
+0x1a3	HP_VARRAY_UNSETUP	KONA_HP_VARRAY_UNSETUP	HP_VARRAY_UNSETUP	GE.h,firmware map,kpm	documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+0x1a4	HP_SPRITEPARAMETERI	KONA_HP_SPRITEPARAMETERI	HP_SPRITEPARAMETERI	GE.h,firmware map,kpm	named-only	GE.h:566
+0x1a5	HP_SPRITEPARAMETERFV	KONA_HP_SPRITEPARAMETERFV	HP_SPRITEPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:567
+0x1a6	HP_VIDEO_CMD	KONA_HP_VIDEO_CMD	HP_VIDEO_CMD	GE.h,firmware map,kpm	documented	docs/ge.md#context-query-and-other-long-commands
+0x1a7	HP_POINTPARAMETERF	KONA_HP_POINTPARAMETERF	HP_POINTPARAMETERF	GE.h,firmware map,kpm	named-only	GE.h:569
+0x1a8	HP_POINTPARAMETERFV	KONA_HP_POINTPARAMETERFV	HP_POINTPARAMETERFV	GE.h,firmware map,kpm	named-only	GE.h:570
 0x1a9	HP_SWAPTMESH	KONA_HP_SWAPTMESH	HP_SWAPTMESH	GE.h,firmware map,kpm	documented	ucode/arm1.md#the-512-entry-table-as-eight-banks-the-152-vertex-primitive-and-beginend-tokens
-0x1aa	HP_BIND_2D_CLIPMAP_TEXTURE	KONA_HP_BIND_2D_CLIPMAP_TEXTURE	HP_BIND_2D_CLIPMAP_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:570
-0x1ab	HP_PVERTEX_V3F	KONA_HP_PVERTEX_V3F	HP_PVERTEX_V3F	GE.h,firmware map,kpm	named-only	GE.h:571
-0x1ac	HP_PVERTEX_V3F_C4UB	KONA_HP_PVERTEX_V3F_C4UB	HP_PVERTEX_V3F_C4UB	GE.h,firmware map,kpm	named-only	GE.h:572
-0x1ad	HP_PVERTEX_V3F_N3S	KONA_HP_PVERTEX_V3F_N3S	HP_PVERTEX_V3F_N3S	GE.h,firmware map,kpm	named-only	GE.h:573
-0x1ae	HP_PVERTEX_V3F_C4UB_N3S	KONA_HP_PVERTEX_V3F_C4UB_N3S	HP_PVERTEX_V3F_C4UB_N3S	GE.h,firmware map,kpm	named-only	GE.h:574
-0x1af	HP_PVERTEX_V3F_T2F	KONA_HP_PVERTEX_V3F_T2F	HP_PVERTEX_V3F_T2F	GE.h,firmware map,kpm	named-only	GE.h:575
-0x1b0	HP_PVERTEX_V3F_C4UB_T2F	KONA_HP_PVERTEX_V3F_C4UB_T2F	HP_PVERTEX_V3F_C4UB_T2F	GE.h,firmware map,kpm	named-only	GE.h:576
-0x1b1	HP_PVERTEX_V3F_N3S_T2F	KONA_HP_PVERTEX_V3F_N3S_T2F	HP_PVERTEX_V3F_N3S_T2F	GE.h,firmware map,kpm	named-only	GE.h:577
-0x1b2	HP_PVERTEX_V3F_C4UB_N3S_T2F	KONA_HP_PVERTEX_V3F_C4UB_N3S_T2F	HP_PVERTEX_V3F_C4UB_N3S_T2F	GE.h,firmware map,kpm	named-only	GE.h:578
-0x1b3	HP_PVERTEX_V3F_T2S	KONA_HP_PVERTEX_V3F_T2S	HP_PVERTEX_V3F_T2S	GE.h,firmware map,kpm	named-only	GE.h:579
-0x1b4	HP_PVERTEX_V3F_C4UB_T2S	KONA_HP_PVERTEX_V3F_C4UB_T2S	HP_PVERTEX_V3F_C4UB_T2S	GE.h,firmware map,kpm	named-only	GE.h:580
-0x1b5	HP_PVERTEX_V3F_N3S_T2S	KONA_HP_PVERTEX_V3F_N3S_T2S	HP_PVERTEX_V3F_N3S_T2S	GE.h,firmware map,kpm	named-only	GE.h:581
-0x1b6	HP_PVERTEX_V3F_C4UB_N3S_T2S	KONA_HP_PVERTEX_V3F_C4UB_N3S_T2S	HP_PVERTEX_V3F_C4UB_N3S_T2S	GE.h,firmware map,kpm	named-only	GE.h:582
-0x1b7	HP_PVERTEX_SETUP	KONA_HP_PVERTEX_SETUP	HP_PVERTEX_SETUP	GE.h,firmware map,kpm	named-only	GE.h:583
-0x1b8	HP_INSTRUMENTS_BUFFER	KONA_HP_INSTRUMENTS_BUFFER	HP_INSTRUMENTS_BUFFER	GE.h,firmware map,kpm	named-only	GE.h:584
-0x1b9	HP_START_INSTRUMENTS	KONA_HP_START_INSTRUMENTS	HP_START_INSTRUMENTS	GE.h,firmware map,kpm	named-only	GE.h:585
-0x1ba	HP_STOP_INSTRUMENTS	KONA_HP_STOP_INSTRUMENTS	HP_STOP_INSTRUMENTS	GE.h,firmware map,kpm	named-only	GE.h:586
-0x1bb	HP_TEXELSTOREI	KONA_HP_TEXELSTOREI	HP_TEXELSTOREI	GE.h,firmware map,kpm	named-only	GE.h:587
-0x1bc	HP_RESTART_SELECTFEED	KONA_HP_RESTART_SELECTFEED	HP_RESTART_SELECTFEED	GE.h,firmware map,kpm	named-only	GE.h:588
-0x1bd	HP_REFERENCE_PLANE	KONA_HP_REFERENCE_PLANE	HP_REFERENCE_PLANE	GE.h,firmware map,kpm	named-only	GE.h:589
-0x1be	HP_SETCOLORNORMAL	KONA_HP_SETCOLORNORMAL	HP_SETCOLORNORMAL	GE.h,firmware map,kpm	named-only	GE.h:590
-0x1bf	HP_DEFORM	KONA_HP_DEFORM	HP_DEFORM	GE.h,firmware map,kpm	named-only	GE.h:591
-0x1c0	HP_DEFORMATION_MAP3_1F	KONA_HP_DEFORMATION_MAP3_1F	HP_DEFORMATION_MAP3_1F	GE.h,firmware map,kpm	named-only	GE.h:592
-0x1c1	HP_DEFORMATION_MAP3_1D	KONA_HP_DEFORMATION_MAP3_1D	HP_DEFORMATION_MAP3_1D	GE.h,firmware map,kpm	named-only	GE.h:593
-0x1c2	HP_DEFORMATION_MAP3_1D_cont	KONA_HP_DEFORMATION_MAP3_1D_cont	HP_DEFORMATION_MAP3_1D_cont	GE.h,firmware map,kpm	named-only	GE.h:594
-0x1c3	HP_LOAD_IDENTITY_DEFORMATION	KONA_HP_LOAD_IDENTITY_DEFORMATION	HP_LOAD_IDENTITY_DEFORMATION	GE.h,firmware map,kpm	named-only	GE.h:595
-0x1c4	HP_BIND_ARM_TEX_CACHE	KONA_HP_BIND_ARM_TEX_CACHE	HP_BIND_ARM_TEX_CACHE	GE.h,firmware map,kpm	named-only	GE.h:596
-0x1c5	HP_FREE_ARM_TEX_CACHE	KONA_HP_FREE_ARM_TEX_CACHE	HP_FREE_ARM_TEX_CACHE	GE.h,firmware map,kpm	named-only	GE.h:597
-0x1c6	HP_GET_DEFORMATION	KONA_HP_GET_DEFORMATION	HP_GET_DEFORMATION	GE.h,firmware map,kpm	named-only	GE.h:598
-0x1c7	HP_SHADOW_TEXTURE	KONA_HP_SHADOW_TEXTURE	HP_SHADOW_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:599
-0x1c8	HP_IDMACOPYLIST_LDMA	KONA_HP_IDMACOPYLIST_LDMA	HP_IDMACOPYLIST_LDMA	GE.h,firmware map,kpm	named-only	GE.h:600
-0x1c9	HP_TMESHMODE	KONA_HP_TMESHMODE	HP_TMESHMODE	GE.h,firmware map,kpm	named-only	GE.h:601
-0x1ca	HP_LOAD_GE_XFORM_ATTRIB	KONA_HP_LOAD_GE_XFORM_ATTRIB	HP_LOAD_GE_XFORM_ATTRIB	GE.h,firmware map,kpm	named-only	GE.h:602
-0x1cb	HP_GET_GE_XFORM_ATTRIB	KONA_HP_GET_GE_XFORM_ATTRIB	HP_GET_GE_XFORM_ATTRIB	GE.h,firmware map,kpm	named-only	GE.h:603
-0x1cc	HP_FLUSH_RASTER	KONA_HP_FLUSH_RASTER	HP_FLUSH_RASTER	GE.h,firmware map,kpm	named-only	GE.h:604
-0x1cd	HP_READ_INSTRUMENTS	KONA_HP_READ_INSTRUMENTS	HP_READ_INSTRUMENTS	GE.h,firmware map,kpm	named-only	GE.h:605
-0x1ce	HP_LAZYMODE	KONA_HP_LAZYMODE	HP_LAZYMODE	GE.h,firmware map,kpm	named-only	GE.h:606
-0x1cf	HP_PVERTEX_CLEANUP	KONA_HP_PVERTEX_CLEANUP	HP_PVERTEX_CLEANUP	GE.h,firmware map,kpm	named-only	GE.h:607
-0x1d0	HP_SUBDIV_PATCH	KONA_HP_SUBDIV_PATCH	HP_SUBDIV_PATCH	GE.h,firmware map,kpm	named-only	GE.h:608
-0x1d1	HP_SUBDIV_PATCH_SETUP	KONA_HP_SUBDIV_PATCH_SETUP	HP_SUBDIV_PATCH_SETUP	GE.h,firmware map,kpm	named-only	GE.h:609
-0x1d2	HP_SUBDIV_PATCH_CLEANUP	KONA_HP_SUBDIV_PATCH_CLEANUP	HP_SUBDIV_PATCH_CLEANUP	GE.h,firmware map,kpm	named-only	GE.h:610
-0x1d3	HP_SUBDIV_PATCH_PARAMETER	KONA_HP_SUBDIV_PATCH_PARAMETER	HP_SUBDIV_PATCH_PARAMETER	GE.h,firmware map,kpm	named-only	GE.h:611
-0x1d4	HP_BEGIN_SUBDIV_PATCH	KONA_HP_BEGIN_SUBDIV_PATCH	HP_BEGIN_SUBDIV_PATCH	GE.h,firmware map,kpm	named-only	GE.h:612
-0x1d5	HP_BIND_TEXTURE	KONA_HP_BIND_TEXTURE	HP_BIND_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:613
-0x1d6	HP_TEXGEN_POP	KONA_HP_TEXGEN_POP	HP_TEXGEN_POP	GE.h,firmware map,kpm	named-only	GE.h:614
-0x1d7	HP_CHANGE_POST_TEX_SCALE_BIAS	KONA_HP_CHANGE_POST_TEX_SCALE_BIAS	HP_CHANGE_POST_TEX_SCALE_BIAS	GE.h,firmware map,kpm	named-only	GE.h:615
-0x1d8	HP_SKIP2	KONA_HP_SKIP2	HP_SKIP2	GE.h,firmware map,kpm	named-only	GE.h:616
-0x1d9	HP_SKIP4	KONA_HP_SKIP4	HP_SKIP4	GE.h,firmware map,kpm	named-only	GE.h:617
-0x1da	HP_SKIP5	KONA_HP_SKIP5	HP_SKIP5	GE.h,firmware map,kpm	named-only	GE.h:618
-0x1db	HP_SWAP_CNTRL	KONA_HP_SWAP_CNTRL	HP_SWAP_CNTRL	GE.h,firmware map,kpm	named-only	GE.h:619
-0x1dc	HP_F3_WAR	KONA_HP_F3_WAR	HP_F3_WAR	GE.h,firmware map,kpm	named-only	GE.h:620
+0x1aa	HP_BIND_2D_CLIPMAP_TEXTURE	KONA_HP_BIND_2D_CLIPMAP_TEXTURE	HP_BIND_2D_CLIPMAP_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:572
+0x1ab	HP_PVERTEX_V3F	KONA_HP_PVERTEX_V3F	HP_PVERTEX_V3F	GE.h,firmware map,kpm	named-only	GE.h:573
+0x1ac	HP_PVERTEX_V3F_C4UB	KONA_HP_PVERTEX_V3F_C4UB	HP_PVERTEX_V3F_C4UB	GE.h,firmware map,kpm	named-only	GE.h:574
+0x1ad	HP_PVERTEX_V3F_N3S	KONA_HP_PVERTEX_V3F_N3S	HP_PVERTEX_V3F_N3S	GE.h,firmware map,kpm	named-only	GE.h:575
+0x1ae	HP_PVERTEX_V3F_C4UB_N3S	KONA_HP_PVERTEX_V3F_C4UB_N3S	HP_PVERTEX_V3F_C4UB_N3S	GE.h,firmware map,kpm	named-only	GE.h:576
+0x1af	HP_PVERTEX_V3F_T2F	KONA_HP_PVERTEX_V3F_T2F	HP_PVERTEX_V3F_T2F	GE.h,firmware map,kpm	named-only	GE.h:577
+0x1b0	HP_PVERTEX_V3F_C4UB_T2F	KONA_HP_PVERTEX_V3F_C4UB_T2F	HP_PVERTEX_V3F_C4UB_T2F	GE.h,firmware map,kpm	named-only	GE.h:578
+0x1b1	HP_PVERTEX_V3F_N3S_T2F	KONA_HP_PVERTEX_V3F_N3S_T2F	HP_PVERTEX_V3F_N3S_T2F	GE.h,firmware map,kpm	named-only	GE.h:579
+0x1b2	HP_PVERTEX_V3F_C4UB_N3S_T2F	KONA_HP_PVERTEX_V3F_C4UB_N3S_T2F	HP_PVERTEX_V3F_C4UB_N3S_T2F	GE.h,firmware map,kpm	named-only	GE.h:580
+0x1b3	HP_PVERTEX_V3F_T2S	KONA_HP_PVERTEX_V3F_T2S	HP_PVERTEX_V3F_T2S	GE.h,firmware map,kpm	named-only	GE.h:581
+0x1b4	HP_PVERTEX_V3F_C4UB_T2S	KONA_HP_PVERTEX_V3F_C4UB_T2S	HP_PVERTEX_V3F_C4UB_T2S	GE.h,firmware map,kpm	named-only	GE.h:582
+0x1b5	HP_PVERTEX_V3F_N3S_T2S	KONA_HP_PVERTEX_V3F_N3S_T2S	HP_PVERTEX_V3F_N3S_T2S	GE.h,firmware map,kpm	named-only	GE.h:583
+0x1b6	HP_PVERTEX_V3F_C4UB_N3S_T2S	KONA_HP_PVERTEX_V3F_C4UB_N3S_T2S	HP_PVERTEX_V3F_C4UB_N3S_T2S	GE.h,firmware map,kpm	named-only	GE.h:584
+0x1b7	HP_PVERTEX_SETUP	KONA_HP_PVERTEX_SETUP	HP_PVERTEX_SETUP	GE.h,firmware map,kpm	named-only	GE.h:585
+0x1b8	HP_INSTRUMENTS_BUFFER	KONA_HP_INSTRUMENTS_BUFFER	HP_INSTRUMENTS_BUFFER	GE.h,firmware map,kpm	named-only	GE.h:586
+0x1b9	HP_START_INSTRUMENTS	KONA_HP_START_INSTRUMENTS	HP_START_INSTRUMENTS	GE.h,firmware map,kpm	named-only	GE.h:587
+0x1ba	HP_STOP_INSTRUMENTS	KONA_HP_STOP_INSTRUMENTS	HP_STOP_INSTRUMENTS	GE.h,firmware map,kpm	named-only	GE.h:588
+0x1bb	HP_TEXELSTOREI	KONA_HP_TEXELSTOREI	HP_TEXELSTOREI	GE.h,firmware map,kpm	named-only	GE.h:589
+0x1bc	HP_RESTART_SELECTFEED	KONA_HP_RESTART_SELECTFEED	HP_RESTART_SELECTFEED	GE.h,firmware map,kpm	named-only	GE.h:590
+0x1bd	HP_REFERENCE_PLANE	KONA_HP_REFERENCE_PLANE	HP_REFERENCE_PLANE	GE.h,firmware map,kpm	named-only	GE.h:591
+0x1be	HP_SETCOLORNORMAL	KONA_HP_SETCOLORNORMAL	HP_SETCOLORNORMAL	GE.h,firmware map,kpm	named-only	GE.h:592
+0x1bf	HP_DEFORM	KONA_HP_DEFORM	HP_DEFORM	GE.h,firmware map,kpm	named-only	GE.h:593
+0x1c0	HP_DEFORMATION_MAP3_1F	KONA_HP_DEFORMATION_MAP3_1F	HP_DEFORMATION_MAP3_1F	GE.h,firmware map,kpm	named-only	GE.h:594
+0x1c1	HP_DEFORMATION_MAP3_1D	KONA_HP_DEFORMATION_MAP3_1D	HP_DEFORMATION_MAP3_1D	GE.h,firmware map,kpm	named-only	GE.h:595
+0x1c2	HP_DEFORMATION_MAP3_1D_cont	KONA_HP_DEFORMATION_MAP3_1D_cont	HP_DEFORMATION_MAP3_1D_cont	GE.h,firmware map,kpm	named-only	GE.h:596
+0x1c3	HP_LOAD_IDENTITY_DEFORMATION	KONA_HP_LOAD_IDENTITY_DEFORMATION	HP_LOAD_IDENTITY_DEFORMATION	GE.h,firmware map,kpm	named-only	GE.h:597
+0x1c4	HP_BIND_ARM_TEX_CACHE	KONA_HP_BIND_ARM_TEX_CACHE	HP_BIND_ARM_TEX_CACHE	GE.h,firmware map,kpm	named-only	GE.h:598
+0x1c5	HP_FREE_ARM_TEX_CACHE	KONA_HP_FREE_ARM_TEX_CACHE	HP_FREE_ARM_TEX_CACHE	GE.h,firmware map,kpm	named-only	GE.h:599
+0x1c6	HP_GET_DEFORMATION	KONA_HP_GET_DEFORMATION	HP_GET_DEFORMATION	GE.h,firmware map,kpm	named-only	GE.h:600
+0x1c7	HP_SHADOW_TEXTURE	KONA_HP_SHADOW_TEXTURE	HP_SHADOW_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:601
+0x1c8	HP_IDMACOPYLIST_LDMA	KONA_HP_IDMACOPYLIST_LDMA	HP_IDMACOPYLIST_LDMA	GE.h,firmware map,kpm	documented	docs/ge.md#display-lists-the-list-commands
+0x1c9	HP_TMESHMODE	KONA_HP_TMESHMODE	HP_TMESHMODE	GE.h,firmware map,kpm	named-only	GE.h:603
+0x1ca	HP_LOAD_GE_XFORM_ATTRIB	KONA_HP_LOAD_GE_XFORM_ATTRIB	HP_LOAD_GE_XFORM_ATTRIB	GE.h,firmware map,kpm	named-only	GE.h:604
+0x1cb	HP_GET_GE_XFORM_ATTRIB	KONA_HP_GET_GE_XFORM_ATTRIB	HP_GET_GE_XFORM_ATTRIB	GE.h,firmware map,kpm	named-only	GE.h:605
+0x1cc	HP_FLUSH_RASTER	KONA_HP_FLUSH_RASTER	HP_FLUSH_RASTER	GE.h,firmware map,kpm	named-only	GE.h:606
+0x1cd	HP_READ_INSTRUMENTS	KONA_HP_READ_INSTRUMENTS	HP_READ_INSTRUMENTS	GE.h,firmware map,kpm	named-only	GE.h:607
+0x1ce	HP_LAZYMODE	KONA_HP_LAZYMODE	HP_LAZYMODE	GE.h,firmware map,kpm	named-only	GE.h:608
+0x1cf	HP_PVERTEX_CLEANUP	KONA_HP_PVERTEX_CLEANUP	HP_PVERTEX_CLEANUP	GE.h,firmware map,kpm	named-only	GE.h:609
+0x1d0	HP_SUBDIV_PATCH	KONA_HP_SUBDIV_PATCH	HP_SUBDIV_PATCH	GE.h,firmware map,kpm	named-only	GE.h:610
+0x1d1	HP_SUBDIV_PATCH_SETUP	KONA_HP_SUBDIV_PATCH_SETUP	HP_SUBDIV_PATCH_SETUP	GE.h,firmware map,kpm	named-only	GE.h:611
+0x1d2	HP_SUBDIV_PATCH_CLEANUP	KONA_HP_SUBDIV_PATCH_CLEANUP	HP_SUBDIV_PATCH_CLEANUP	GE.h,firmware map,kpm	named-only	GE.h:612
+0x1d3	HP_SUBDIV_PATCH_PARAMETER	KONA_HP_SUBDIV_PATCH_PARAMETER	HP_SUBDIV_PATCH_PARAMETER	GE.h,firmware map,kpm	named-only	GE.h:613
+0x1d4	HP_BEGIN_SUBDIV_PATCH	KONA_HP_BEGIN_SUBDIV_PATCH	HP_BEGIN_SUBDIV_PATCH	GE.h,firmware map,kpm	named-only	GE.h:614
+0x1d5	HP_BIND_TEXTURE	KONA_HP_BIND_TEXTURE	HP_BIND_TEXTURE	GE.h,firmware map,kpm	named-only	GE.h:615
+0x1d6	HP_TEXGEN_POP	KONA_HP_TEXGEN_POP	HP_TEXGEN_POP	GE.h,firmware map,kpm	named-only	GE.h:616
+0x1d7	HP_CHANGE_POST_TEX_SCALE_BIAS	KONA_HP_CHANGE_POST_TEX_SCALE_BIAS	HP_CHANGE_POST_TEX_SCALE_BIAS	GE.h,firmware map,kpm	named-only	GE.h:617
+0x1d8	HP_SKIP2	KONA_HP_SKIP2	HP_SKIP2	GE.h,firmware map,kpm	named-only	GE.h:618
+0x1d9	HP_SKIP4	KONA_HP_SKIP4	HP_SKIP4	GE.h,firmware map,kpm	named-only	GE.h:619
+0x1da	HP_SKIP5	KONA_HP_SKIP5	HP_SKIP5	GE.h,firmware map,kpm	named-only	GE.h:620
+0x1db	HP_SWAP_CNTRL	KONA_HP_SWAP_CNTRL	HP_SWAP_CNTRL	GE.h,firmware map,kpm	named-only	GE.h:621
+0x1dc	HP_F3_WAR	KONA_HP_F3_WAR	HP_F3_WAR	GE.h,firmware map,kpm	named-only	GE.h:622
 0x1dd	HP_GE_INTR	KONA_HP_GE_INTR	HP_GE_INTR	GE.h,firmware map,kpm	documented	kona_kernel/include/kona_kern.h:320
-0x1de	HP_MEM_RESUME	KONA_HP_MEM_RESUME	HP_MEM_RESUME	GE.h,firmware map,kpm	named-only	GE.h:622
-0x1df	HP_MEM_SUSPEND	KONA_HP_MEM_SUSPEND	HP_MEM_SUSPEND	GE.h,firmware map,kpm	named-only	GE.h:623
-0x1e0	HP_TEX_ARM_CACHE_INDEX_INVALID	KONA_HP_TEX_ARM_CACHE_INDEX_INVALID	HP_TEX_ARM_CACHE_INDEX_INVALID	GE.h,firmware map,kpm	named-only	GE.h:624
-0x1e1	HP_MEM_COPYDOWN	KONA_HP_MEM_COPYDOWN	HP_MEM_COPYDOWN	GE.h,firmware map,kpm	named-only	GE.h:625
-0x1e2	HP_MEM_SWAPIN	KONA_HP_MEM_SWAPIN	HP_MEM_SWAPIN	GE.h,firmware map,kpm	named-only	GE.h:626
-0x1e3	HP_MEM_SWAPOUT	KONA_HP_MEM_SWAPOUT	HP_MEM_SWAPOUT	GE.h,firmware map,kpm	named-only	GE.h:627
-0x1e4	HP_MEM_RESERVE	KONA_HP_MEM_RESERVE	HP_MEM_RESERVE	GE.h,firmware map,kpm	named-only	GE.h:628
-0x1e5	HP_GEROLLCALL	KONA_HP_GEROLLCALL	HP_GEROLLCALL	GE.h,firmware map,kpm	named-only	GE.h:629
-0x1e6	HP_DISPMODE	KONA_HP_DISPMODE	HP_DISPMODE	GE.h,firmware map,kpm	named-only	GE.h:630
-0x1e7	HP_RETRACE_SEQID	KONA_HP_RETRACE_SEQID	HP_RETRACE_SEQID	GE.h,firmware map,kpm	named-only	GE.h:631
-0x1e8	HP_ARM_NOP	KONA_HP_ARM_NOP	HP_ARM_NOP	GE.h,firmware map,kpm	named-only	GE.h:632
-0x1e9	HP_GETCONFIG	KONA_HP_GETCONFIG	HP_GETCONFIG	GE.h,firmware map,kpm	named-only	GE.h:633
-0x1ea	HP_PIPE_SYNC	KONA_HP_PIPE_SYNC	HP_PIPE_SYNC	GE.h,firmware map,kpm	named-only	GE.h:634
-0x1eb	HP_DO_IDMA	KONA_HP_DO_IDMA	HP_DO_IDMA	GE.h,firmware map,kpm	named-only	GE.h:635
-0x1ec	HP_EEPROM_OP	KONA_HP_EEPROM_OP	HP_EEPROM_OP	GE.h,firmware map,kpm	named-only	GE.h:636
-0x1ed	HP_DMAPOOL_SETUP	KONA_HP_DMAPOOL_SETUP	HP_DMAPOOL_SETUP	GE.h,firmware map,kpm	named-only	GE.h:637
+0x1de	HP_MEM_RESUME	KONA_HP_MEM_RESUME	HP_MEM_RESUME	GE.h,firmware map,kpm	named-only	GE.h:624
+0x1df	HP_MEM_SUSPEND	KONA_HP_MEM_SUSPEND	HP_MEM_SUSPEND	GE.h,firmware map,kpm	named-only	GE.h:625
+0x1e0	HP_TEX_ARM_CACHE_INDEX_INVALID	KONA_HP_TEX_ARM_CACHE_INDEX_INVALID	HP_TEX_ARM_CACHE_INDEX_INVALID	GE.h,firmware map,kpm	named-only	GE.h:626
+0x1e1	HP_MEM_COPYDOWN	KONA_HP_MEM_COPYDOWN	HP_MEM_COPYDOWN	GE.h,firmware map,kpm	named-only	GE.h:627
+0x1e2	HP_MEM_SWAPIN	KONA_HP_MEM_SWAPIN	HP_MEM_SWAPIN	GE.h,firmware map,kpm	named-only	GE.h:628
+0x1e3	HP_MEM_SWAPOUT	KONA_HP_MEM_SWAPOUT	HP_MEM_SWAPOUT	GE.h,firmware map,kpm	named-only	GE.h:629
+0x1e4	HP_MEM_RESERVE	KONA_HP_MEM_RESERVE	HP_MEM_RESERVE	GE.h,firmware map,kpm	named-only	GE.h:630
+0x1e5	HP_GEROLLCALL	KONA_HP_GEROLLCALL	HP_GEROLLCALL	GE.h,firmware map,kpm	named-only	GE.h:631
+0x1e6	HP_DISPMODE	KONA_HP_DISPMODE	HP_DISPMODE	GE.h,firmware map,kpm	named-only	GE.h:632
+0x1e7	HP_RETRACE_SEQID	KONA_HP_RETRACE_SEQID	HP_RETRACE_SEQID	GE.h,firmware map,kpm	named-only	GE.h:633
+0x1e8	HP_ARM_NOP	KONA_HP_ARM_NOP	HP_ARM_NOP	GE.h,firmware map,kpm	named-only	GE.h:634
+0x1e9	HP_GETCONFIG	KONA_HP_GETCONFIG	HP_GETCONFIG	GE.h,firmware map,kpm	named-only	GE.h:635
+0x1ea	HP_PIPE_SYNC	KONA_HP_PIPE_SYNC	HP_PIPE_SYNC	GE.h,firmware map,kpm	named-only	GE.h:636
+0x1eb	HP_DO_IDMA	KONA_HP_DO_IDMA	HP_DO_IDMA	GE.h,firmware map,kpm	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
+0x1ec	HP_EEPROM_OP	KONA_HP_EEPROM_OP	HP_EEPROM_OP	GE.h,firmware map,kpm	named-only	GE.h:638
+0x1ed	HP_DMAPOOL_SETUP	KONA_HP_DMAPOOL_SETUP	HP_DMAPOOL_SETUP	GE.h,firmware map,kpm	documented	docs/ge.md#display-lists-the-list-commands
 0x1ee	HP_VALIDATE_READCLIP	KONA_HP_VALIDATE_READCLIP	HP_VALIDATE_READCLIP	GE.h,firmware map,kpm	documented	kona_kernel/include/kona_kern.h:138
-0x1ef	HP_GED_VERIF_LOAD	KONA_HP_GED_VERIF_LOAD	HP_GED_VERIF_LOAD	GE.h,firmware map,kpm	named-only	GE.h:639
-0x1f0	HP_GED_VERIF_DUMP	KONA_HP_GED_VERIF_DUMP	HP_GED_VERIF_DUMP	GE.h,firmware map,kpm	named-only	GE.h:640
+0x1ef	HP_GED_VERIF_LOAD	KONA_HP_GED_VERIF_LOAD	HP_GED_VERIF_LOAD	GE.h,firmware map,kpm	named-only	GE.h:641
+0x1f0	HP_GED_VERIF_DUMP	KONA_HP_GED_VERIF_DUMP	HP_GED_VERIF_DUMP	GE.h,firmware map,kpm	named-only	GE.h:642
 0x1f1	HP_PIPE_SETUP	KONA_HP_PIPE_SETUP	HP_PIPE_SETUP	GE.h,firmware map,kpm	documented	HIP.h:88
 0x1f2	HP_RDATA_SETUP	KONA_HP_RDATA_SETUP	HP_RDATA_SETUP	GE.h,firmware map,kpm	documented	kona_kernel/include/kona_kern.h:72
 0x1f3	HP_VALIDATE_CLIP	KONA_HP_VALIDATE_CLIP	HP_VALIDATE_CLIP	GE.h,firmware map,kpm	documented	kona_kernel/include/kona_kern.h:134
 0x1f4	HP_VALIDATE_BANK	KONA_HP_VALIDATE_BANK	HP_VALIDATE_BANK	GE.h,firmware map,kpm	documented	kona_kernel/include/kona_kern.h:141
-0x1f5	HP_START_SELECTFEED	KONA_HP_START_SELECTFEED	HP_START_SELECTFEED	GE.h,firmware map,kpm	named-only	GE.h:645
-0x1f6	HP_FINISH_SELECTFEED	KONA_HP_FINISH_SELECTFEED	HP_FINISH_SELECTFEED	GE.h,firmware map,kpm	named-only	GE.h:646
-0x1f7	HP_CONTEXT_DESTROY	KONA_HP_CONTEXT_DESTROY	HP_CONTEXT_DESTROY	GE.h,firmware map,kpm	named-only	GE.h:647
-0x1f8	HP_CONTEXT_MOPUP	KONA_HP_CONTEXT_MOPUP	HP_CONTEXT_MOPUP	GE.h,firmware map,kpm	named-only	GE.h:648
-0x1f9	HP_CONTEXT_LOAD	KONA_HP_CONTEXT_LOAD	HP_CONTEXT_LOAD	GE.h,firmware map,kpm	documented	kona_kernel/include/kona_kern.h:83
+0x1f5	HP_START_SELECTFEED	KONA_HP_START_SELECTFEED	HP_START_SELECTFEED	GE.h,firmware map,kpm	named-only	GE.h:647
+0x1f6	HP_FINISH_SELECTFEED	KONA_HP_FINISH_SELECTFEED	HP_FINISH_SELECTFEED	GE.h,firmware map,kpm	named-only	GE.h:648
+0x1f7	HP_CONTEXT_DESTROY	KONA_HP_CONTEXT_DESTROY	HP_CONTEXT_DESTROY	GE.h,firmware map,kpm	named-only	GE.h:649
+0x1f8	HP_CONTEXT_MOPUP	KONA_HP_CONTEXT_MOPUP	HP_CONTEXT_MOPUP	GE.h,firmware map,kpm	named-only	GE.h:650
+0x1f9	HP_CONTEXT_LOAD	KONA_HP_CONTEXT_LOAD	HP_CONTEXT_LOAD	GE.h,firmware map,kpm	documented	docs/ge.md#context-query-and-other-long-commands
 0x1fa	HP_CONTEXT_ACTIVATE	KONA_HP_CONTEXT_ACTIVATE	HP_CONTEXT_ACTIVATE	GE.h,firmware map,kpm	documented	kona_kernel/include/kona_kern.h:153
-0x1fb	HP_CONTEXT_FIFO_SYNC	KONA_HP_CONTEXT_FIFO_SYNC	HP_CONTEXT_FIFO_SYNC	GE.h,firmware map,kpm	named-only	GE.h:651
+0x1fb	HP_CONTEXT_FIFO_SYNC	KONA_HP_CONTEXT_FIFO_SYNC	HP_CONTEXT_FIFO_SYNC	GE.h,firmware map,kpm	named-only	GE.h:653
 0x1fc	HP_CONTEXT_DEACTIVATE	KONA_HP_CONTEXT_DEACTIVATE	HP_CONTEXT_DEACTIVATE	GE.h,firmware map,kpm	documented	kona_kernel/include/kona_kern.h:108
 0x1fd	HP_CONTEXT_INIT	KONA_HP_CONTEXT_INIT	HP_CONTEXT_INIT	GE.h,firmware map,kpm	documented	kona_kernel/include/kona_kern.h:121
-0x1fe	HP_KERNEL_PRIVATE	KONA_HP_KERNEL_PRIVATE	HP_KERNEL_PRIVATE	GE.h,firmware map,kpm	named-only	GE.h:654
-0x1ff	HP_WG_FLUSH_1	KONA_HP_WG_FLUSH_1	HP_WG_FLUSH_1	GE.h,firmware map,kpm	named-only	GE.h:655
+0x1fe	HP_KERNEL_PRIVATE	KONA_HP_KERNEL_PRIVATE	HP_KERNEL_PRIVATE	GE.h,firmware map,kpm	named-only	GE.h:656
+0x1ff	HP_WG_FLUSH_1	KONA_HP_WG_FLUSH_1	HP_WG_FLUSH_1	GE.h,firmware map,kpm	named-only	GE.h:657
 0x200	**** 0x0			kpm	undocumented	
 0x201	**** 0x1			kpm	undocumented	
 0x202	**** 0x2			kpm	undocumented	
@@ -527,26 +527,26 @@ token	kpm_name	header_name	firmware_route	sources	status	doc
 0x20d	**** 0xd			kpm	undocumented	
 0x20e	**** 0xe			kpm	undocumented	
 0x20f	**** PIXELS_STARTGEID			kpm	undocumented	
-0x210	HT_PACK_MODE			kpm	documented	GE.h:665
-0x211	HT_ODMA_LLEN			kpm	documented	GE.h:665
-0x212	HT_ODMA_STRIDE			kpm	documented	GE.h:666
+0x210	HT_PACK_MODE			kpm	documented	GE.h:667
+0x211	HT_ODMA_LLEN			kpm	documented	GE.h:667
+0x212	HT_ODMA_STRIDE			kpm	documented	GE.h:668
 0x213	PGTG_SCIS			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x214	PGTG_SCIS_1			kpm	documented	docs/rm.md#names-for-the-unnamed-indexes
 0x215	PGTG_ZRECT			kpm	documented	docs/rm.md#names-for-the-unnamed-indexes
 0x216	PGTG_ZRECT_1			kpm	documented	docs/rm.md#names-for-the-unnamed-indexes
-0x217	PGTG_ZRECT_2			kpm	documented	GE.h:671
-0x218	PGTG_ZRECT_3			kpm	documented	GE.h:672
-0x219	PGTG_ZRECT_4			kpm	documented	GE.h:672
-0x21a	PGTG_ZRECT_5			kpm	documented	GE.h:672
-0x21b	PGTG_ZRECT_6			kpm	documented	GE.h:673
-0x21c	PGTG_ZRECT_7			kpm	documented	GE.h:673
+0x217	PGTG_ZRECT_2			kpm	documented	GE.h:673
+0x218	PGTG_ZRECT_3			kpm	documented	GE.h:674
+0x219	PGTG_ZRECT_4			kpm	documented	GE.h:674
+0x21a	PGTG_ZRECT_5			kpm	documented	GE.h:674
+0x21b	PGTG_ZRECT_6			kpm	documented	GE.h:675
+0x21c	PGTG_ZRECT_7			kpm	documented	GE.h:675
 0x21d	PGTG_DRECT			kpm	documented	docs/rm.md#names-for-the-unnamed-indexes
 0x21e	PGTG_DRECT_1			kpm	documented	docs/rm.md#names-for-the-unnamed-indexes
-0x21f	PGTG_DRECT_2			kpm	documented	GE.h:674
+0x21f	PGTG_DRECT_2			kpm	documented	GE.h:676
 0x220	PGTG_SIZE			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x221	PGTG_SIZE_1			kpm	documented	docs/rm.md#names-for-the-unnamed-indexes
-0x222	PGTG_SIZE_2			kpm	documented	GE.h:674
-0x223	PGTG_SIZE_3			kpm	documented	GE.h:675
+0x222	PGTG_SIZE_2			kpm	documented	GE.h:676
+0x223	PGTG_SIZE_3			kpm	documented	GE.h:677
 0x224	PGTG_ENABLES			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x225	PGTFPIMP_MSLOC			kpm	documented	docs/rm.md#names-for-the-unnamed-indexes
 0x226	PGTFPIMP_MSLOC_1			kpm	documented	docs/rm.md#names-for-the-unnamed-indexes
@@ -556,12 +556,12 @@ token	kpm_name	header_name	firmware_route	sources	status	doc
 0x22a	PG_Z_OFF			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x22b	PG_MSK			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x22c	PG_WIN_OFFSET_X			kpm	documented	docs/rm.md#the-89-word-register-shadow
-0x22d	PG_WIN_OFFSET_Y			kpm	documented	GE.h:677
+0x22d	PG_WIN_OFFSET_Y			kpm	documented	GE.h:679
 0x22e	PG_SMASK			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x22f	PG_STIPPLE			kpm	documented	docs/rm.md#names-for-the-unnamed-indexes
 0x230	PG_STIPPLE_1			kpm	documented	docs/rm.md#names-for-the-unnamed-indexes
-0x231	PG_STIPPLE_2			kpm	documented	GE.h:678
-0x232	PG_STIPPLE_3			kpm	documented	GE.h:679
+0x231	PG_STIPPLE_2			kpm	documented	GE.h:680
+0x232	PG_STIPPLE_3			kpm	documented	GE.h:681
 0x233	PG_PRU			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x234	IMP_CONFIG			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x235	IMP_OP			kpm	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
@@ -576,43 +576,43 @@ token	kpm_name	header_name	firmware_route	sources	status	doc
 0x23e	IMP_WMASK_BIT_1			kpm	documented	docs/rm.md#names-for-the-unnamed-indexes
 0x23f	COMMON_IFMT			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x240	TGTML_TEXLD_MISC			kpm	documented	docs/opengl.md#texel-download-header-word-7-and-the-load-scissor-bit
-0x241	TGTML_TEXLD_S1ST_RSTART			kpm	documented	GE.h:682
-0x242	TGTML_TEXLD_STSTART			kpm	documented	GE.h:683
+0x241	TGTML_TEXLD_S1ST_RSTART			kpm	documented	GE.h:684
+0x242	TGTML_TEXLD_STSTART			kpm	documented	GE.h:685
 0x243	TGTML_TEXLD_SIZE			kpm	documented	docs/rm.md#moving-data-in-and-out-of-the-raster-boards
-0x244	TGTML_TEXLD_STEND			kpm	documented	GE.h:683
+0x244	TGTML_TEXLD_STEND			kpm	documented	GE.h:685
 0x245	TML_TEXLD_GLOBALOFFSET			kpm	documented	docs/rm.md#the-89-word-register-shadow
-0x246	TM_DRAW_GLOBALOFFSET			kpm	documented	GE.h:684
-0x247	TM_MEMCONF			kpm	documented	GE.h:684
-0x248	TGTM_TEX_SIZE			kpm	documented	GE.h:685
+0x246	TM_DRAW_GLOBALOFFSET			kpm	documented	GE.h:686
+0x247	TM_MEMCONF			kpm	documented	GE.h:686
+0x248	TGTM_TEX_SIZE			kpm	documented	GE.h:687
 0x249	TGTMTFT			kpm	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-0x24a	TG_MAP_LEVEL			kpm	documented	GE.h:685
-0x24b	TG_LOD_SCALEST			kpm	documented	GE.h:685
-0x24c	TG_LOD_SCALER			kpm	documented	GE.h:686
-0x24d	TGTM_DCTEX_SIZE			kpm	documented	GE.h:686
-0x24e	TM_DRAW_DETAILMAP			kpm	documented	GE.h:686
-0x24f	TM_TEX_SIZE			kpm	documented	GE.h:687
-0x250	TM_DRAW_CLIP_OFFSET			kpm	documented	GE.h:687
-0x251	TM_DRAW_CLIP_BKPT			kpm	documented	GE.h:687
-0x252	TGTM_TEX_SCENTER			kpm	documented	GE.h:688
-0x253	TGTM_TEX_TCENTER			kpm	documented	GE.h:688
-0x254	TFT_SBIAS_EN			kpm	documented	GE.h:688
-0x255	TFT_SCALE			kpm	documented	GE.h:689
-0x256	TFT_BIAS			kpm	documented	GE.h:689
-0x257	TFT_TLUT			kpm	documented	GE.h:689
-0x258	TM_DRAW_SHA_AMBIENT			kpm	documented	GE.h:689
-0x259	TM_DRAW_REDUNDANCY			kpm	documented	GE.h:690
-0x25a	TG_MISC			kpm	documented	GE.h:690
+0x24a	TG_MAP_LEVEL			kpm	documented	GE.h:687
+0x24b	TG_LOD_SCALEST			kpm	documented	GE.h:687
+0x24c	TG_LOD_SCALER			kpm	documented	GE.h:688
+0x24d	TGTM_DCTEX_SIZE			kpm	documented	GE.h:688
+0x24e	TM_DRAW_DETAILMAP			kpm	documented	GE.h:688
+0x24f	TM_TEX_SIZE			kpm	documented	GE.h:689
+0x250	TM_DRAW_CLIP_OFFSET			kpm	documented	GE.h:689
+0x251	TM_DRAW_CLIP_BKPT			kpm	documented	GE.h:689
+0x252	TGTM_TEX_SCENTER			kpm	documented	GE.h:690
+0x253	TGTM_TEX_TCENTER			kpm	documented	GE.h:690
+0x254	TFT_SBIAS_EN			kpm	documented	GE.h:690
+0x255	TFT_SCALE			kpm	documented	GE.h:691
+0x256	TFT_BIAS			kpm	documented	GE.h:691
+0x257	TFT_TLUT			kpm	documented	GE.h:691
+0x258	TM_DRAW_SHA_AMBIENT			kpm	documented	GE.h:691
+0x259	TM_DRAW_REDUNDANCY			kpm	documented	GE.h:692
+0x25a	TG_MISC			kpm	documented	GE.h:692
 0x25b	TFP_AFUNC			kpm	documented	docs/rm.md#the-89-word-register-shadow
-0x25c	TFP_TEX			kpm	documented	GE.h:690
-0x25d	TFP_TEV			kpm	documented	GE.h:691
-0x25e	TFP_TEV_CC			kpm	documented	GE.h:691
-0x25f	TFP_TEV_CC1			kpm	documented	GE.h:691
-0x260	TFP_AC			kpm	documented	GE.h:691
-0x261	TFP_FADE_MASK_LUT			kpm	documented	GE.h:692
+0x25c	TFP_TEX			kpm	documented	GE.h:692
+0x25d	TFP_TEV			kpm	documented	GE.h:693
+0x25e	TFP_TEV_CC			kpm	documented	GE.h:693
+0x25f	TFP_TEV_CC1			kpm	documented	GE.h:693
+0x260	TFP_AC			kpm	documented	GE.h:693
+0x261	TFP_FADE_MASK_LUT			kpm	documented	GE.h:694
 0x262	TFP_FOG			kpm	documented	docs/rm.md#the-89-word-register-shadow
-0x263	TFP_FOG_CC			kpm	documented	GE.h:692
-0x264	TFP_FOG_CC1			kpm	documented	GE.h:692
+0x263	TFP_FOG_CC			kpm	documented	GE.h:694
+0x264	TFP_FOG_CC1			kpm	documented	GE.h:694
 0x265	TFP_FOG_OFFSET			kpm	documented	docs/rm.md#the-register-write-word
-0x266	TFP_PIX_FMT			kpm	documented	GE.h:693
-0x267	TFP_COLOR_FMT			kpm	documented	GE.h:693
-0x268	TFP_AMASK			kpm	documented	GE.h:693
+0x266	TFP_PIX_FMT			kpm	documented	GE.h:695
+0x267	TFP_COLOR_FMT			kpm	documented	GE.h:695
+0x268	TFP_AMASK			kpm	documented	GE.h:695

@@ -180,7 +180,8 @@
  *                                      piece), so the pixel word is that
  *                                      column offset. Hardware use of the
  *                                      texel word UNKNOWN
- *   10  desc+0x64                      texel format id, INFERRED. Set in
+ *   10  desc+0x64                      texel format id (ESTABLISHED, see
+ *                                      "Texel format id" below). Set in
  *                                      subloadLevel (the local descriptor's
  *                                      +0x64) from the 16-byte internal-
  *                                      format table (see "Texel format id"
@@ -269,8 +270,13 @@
  * 0 and 2 to group 4. The texel size code is 0 for ids 13, 14, 15, 8, 12,
  * 16 and 20 and the groups 2-4, 1 for 40, 48 and 56, and 2 for 80; that
  * these are 16, 32 and 64 bits per texel is INFERRED from the format
- * widths. The unit of the id and why 13 serves both luminance and depth
- * are UNKNOWN.
+ * widths. ESTABLISHED (arm1.u commonResolve 0x0c027a30-0x0c027a78): the
+ * firmware uses the id as a row number, row id of its 17-row A format
+ * tables below 20 and row id / 4 of its 21-row B tables from 20 up; each
+ * row gives the destination component signature and the raster-bus format
+ * codes. Luminance and depth share id 13 because both load as one
+ * component with bus code 0x9. Full table: docs/ge.md, "The texel format
+ * id".
  *
  * The INFERRED rows 12-16: subloadSimple stores its third and fourth
  * arguments to desc+0x6c and desc+0x70 and the sums (third + width - 1) and

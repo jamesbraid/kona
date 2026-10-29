@@ -1,6 +1,6 @@
 side	binary	command	name	handler_or_caller	class	status	doc
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10000	KONA_DMAREAD	curproc_abi	kona private	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma
-kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10001	KONA_DMAWRITE	curproc_abi	kona private	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10001	KONA_DMAWRITE	curproc_abi	kona private	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10002	KONA_START_SELECTFEED	curproc_abi	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10003	KONA_FINISH_SELECTFEED	kona_finish_selectfeed	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10005	KONA_SELECT_CURSOR	copyin	kona private	documented	docs/dg.md#cursor
@@ -25,7 +25,7 @@ kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10100		curproc_abi	kona priv
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10101		RRM_CheckValidFault	kona private	undocumented	
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10102		RRM_CheckValidFault	kona private	documented	docs/kernel.md#private-ioctls
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10000	KONA_DMAREAD	curproc_abi	kona private	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma
-kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10001	KONA_DMAWRITE	curproc_abi	kona private	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10001	KONA_DMAWRITE	curproc_abi	kona private	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10002	KONA_START_SELECTFEED	curproc_abi	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10003	KONA_FINISH_SELECTFEED	kona_finish_selectfeed	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10005	KONA_SELECT_CURSOR	copyin	kona private	documented	docs/dg.md#cursor
@@ -72,7 +72,7 @@ user	kona.so;konad.so;konal.so;konas.so	1020		rrmMGRSwapBuf	graphics manager	doc
 user	libGL.so;libGL.so;libGL.so;libGL.so;+2 more	1022		glXGetVideoSyncSGI	graphics manager	undocumented	
 user	libGL.so;libGL.so;libGL.so;libGL.so;+2 more	1023		glXWaitVideoSyncSGI	graphics manager	documented	docs/ge.md#registers-the-arms-path-to-them
 user	kona.so;konad.so;konal.so;konas.so	10000		konReadFBBlock;konReadImage;kon_loadGC	kona private	documented	docs/kernel.md#dma-ioctls
-user	kona.so;konad.so;konal.so;konas.so	10001		konDrawImage;konWriteFBSubBlock	kona private	documented	docs/kernel.md#private-ioctls
+user	kona.so;konad.so;konal.so;konas.so	10001		konDrawImage;konWriteFBSubBlock	kona private	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 user	libGLcore.so;libGLcore.so;libGLcore.so;libGLcore.so	10002		__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	kona private	documented	docs/kernel.md#private-ioctls
 user	libGLcore.so;libGLcore.so;libGLcore.so;libGLcore.so	10003		__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	kona private	documented	docs/kernel.md#private-ioctls
 user	kona.so;konad.so;konal.so;konas.so	10005		cfb16DoBitbltXor;konCursorOn;konDisplayCursor	kona private	documented	docs/kernel.md#private-ioctls

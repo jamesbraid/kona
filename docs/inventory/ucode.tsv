@@ -12,7 +12,7 @@ arm1.u	symbol (flags 5)	0x0404027c	frustum_index		undocumented
 arm1.u	symbol (flags 4)	0x04040280	trash		undocumented	
 arm1.u	symbol (flags 4)	0x040402c4	bLateInit		undocumented	
 arm1.u	symbol (flags 4)	0x040402c8	pEmergencyBackupFormat		undocumented	
-arm1.u	symbol (flags 5)	0x040412c0	DGDispatchTable		documented	ucode/arm1.md#container
+arm1.u	symbol (flags 5)	0x040412c0	DGDispatchTable		documented	docs/ge.md#context-query-and-other-long-commands
 arm1.u	symbol (flags 5)	0x040415a8	nVideoCmdHistory		undocumented	
 arm1.u	symbol (flags 4)	0x040415b0	OptVocAddress		undocumented	
 arm1.u	symbol (flags 5)	0x040416ec	dgTextportGlyph		undocumented	
@@ -148,24 +148,24 @@ arm1.u	symbol (flags 4)	0x040497a0	GlobalTexPackState		undocumented
 arm1.u	symbol (flags 4)	0x040497c4	DefUnpackState		undocumented	
 arm1.u	symbol (flags 4)	0x040497e8	GlobalTexUnpackState		undocumented	
 arm1.u	symbol (flags 4)	0x0404980c	DlistUnpackState		undocumented	
-arm1.u	symbol (flags 5)	0x04049950	numCompInPixTable		undocumented	
-arm1.u	symbol (flags 5)	0x0404998c	numByteInTypeTable		undocumented	
-arm1.u	symbol (flags 4)	0x040499e0	mod1248Table		undocumented	
+arm1.u	symbol (flags 5)	0x04049950	numCompInPixTable		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
+arm1.u	symbol (flags 5)	0x0404998c	numByteInTypeTable		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
+arm1.u	symbol (flags 4)	0x040499e0	mod1248Table		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 arm1.u	symbol (flags 4)	0x04049a04	OverlapFromGE		undocumented	
-arm1.u	symbol (flags 4)	0x04049a08	TexFmt2DstSignatureA		undocumented	
+arm1.u	symbol (flags 4)	0x04049a08	TexFmt2DstSignatureA		documented	docs/ge.md#the-texel-format-id
 arm1.u	symbol (flags 4)	0x04049a4c	TexFmt2DstSignatureB		undocumented	
 arm1.u	symbol (flags 4)	0x04049aa0	FBFmt2TbusFmt		undocumented	
 arm1.u	symbol (flags 4)	0x04049ab4	FBFmt2DstSignature		undocumented	
-arm1.u	symbol (flags 4)	0x04049ac8	HostFmt2DstSignature		undocumented	
-arm1.u	symbol (flags 4)	0x04049b00	TexFmt2NoAlphaInpA		undocumented	
+arm1.u	symbol (flags 4)	0x04049ac8	HostFmt2DstSignature		documented	docs/ge.md#the-texel-format-id
+arm1.u	symbol (flags 4)	0x04049b00	TexFmt2NoAlphaInpA		documented	docs/ge.md#the-texel-format-id
 arm1.u	symbol (flags 4)	0x04049b44	TexFmt2NoAlphaInpB		undocumented	
-arm1.u	symbol (flags 4)	0x04049b98	TexFmt2TbusTableA		undocumented	
+arm1.u	symbol (flags 4)	0x04049b98	TexFmt2TbusTableA		documented	docs/ge.md#the-texel-format-id
 arm1.u	symbol (flags 4)	0x04049bdc	TexFmt2TbusTableB		undocumented	
 arm1.u	symbol (flags 4)	0x04049c30	HostFmt2TbusTable		undocumented	
 arm1.u	symbol (flags 4)	0x0404a11c	FBFmt2RbusTable		undocumented	
-arm1.u	symbol (flags 4)	0x0404a130	TexFmt2RbusTableA		undocumented	
+arm1.u	symbol (flags 4)	0x0404a130	TexFmt2RbusTableA		documented	docs/ge.md#the-texel-format-id
 arm1.u	symbol (flags 4)	0x0404a174	TexFmt2RbusTableB		undocumented	
-arm1.u	symbol (flags 4)	0x0404a1c8	TexFmt2MayInp1CmpA		undocumented	
+arm1.u	symbol (flags 4)	0x0404a1c8	TexFmt2MayInp1CmpA		documented	docs/ge.md#the-texel-format-id
 arm1.u	symbol (flags 4)	0x0404a20c	HostFmt2MayInp1Cmp		undocumented	
 arm1.u	symbol (flags 5)	0x0404a244	TexRPacket		undocumented	
 arm1.u	symbol (flags 5)	0x0404a26c	TexTFType		undocumented	
@@ -427,14 +427,14 @@ arm1.u	symbol (flags 4)	0x0404e4e4	FFT_Sort_64		undocumented
 arm1.u	symbol (flags 4)	0x0404e5e4	FFT_Sort_128		undocumented	
 arm1.u	symbol (flags 4)	0x0404e7e4	FFT_Sort_256		undocumented	
 arm1.u	symbol (flags 4)	0x0404ebe4	get_table		undocumented	
-arm1.u	symbol (flags 4)	0x0405102c	vertex_table		undocumented	
-arm1.u	symbol (flags 4)	0x0405111c	normal_table		undocumented	
-arm1.u	symbol (flags 4)	0x0405120c	color_table		undocumented	
-arm1.u	symbol (flags 4)	0x040512fc	index_table		undocumented	
-arm1.u	symbol (flags 4)	0x040513ec	tex_coord_table		undocumented	
-arm1.u	symbol (flags 4)	0x040514dc	wordCountTable		documented	ucode/arm1.md#entry-format
-arm1.u	symbol (flags 4)	0x040515cc	lastWrdTable		documented	ucode/arm1.md#entry-format
-arm1.u	symbol (flags 4)	0x040516bc	byteCmpTable		documented	ucode/arm1.md#entry-format
+arm1.u	symbol (flags 4)	0x0405102c	vertex_table		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+arm1.u	symbol (flags 4)	0x0405111c	normal_table		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+arm1.u	symbol (flags 4)	0x0405120c	color_table		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+arm1.u	symbol (flags 4)	0x040512fc	index_table		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+arm1.u	symbol (flags 4)	0x040513ec	tex_coord_table		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+arm1.u	symbol (flags 4)	0x040514dc	wordCountTable		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+arm1.u	symbol (flags 4)	0x040515cc	lastWrdTable		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+arm1.u	symbol (flags 4)	0x040516bc	byteCmpTable		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
 arm1.u	symbol (flags 4)	0x040516ec	fault_cookie		undocumented	
 arm1.u	symbol (flags 4)	0x040516f0	nComponents		undocumented	
 arm1.u	symbol (flags 4)	0x04051708	texFormatLookup		undocumented	
@@ -460,7 +460,7 @@ arm1.u	symbol (flags 7)	0x0408d640	stored_gefifo_mem		undocumented
 arm1.u	symbol (flags 7)	0x0408f64c	stored_geregs_mem		undocumented	
 arm1.u	symbol (flags 7)	0x0408f718	saved_stack_mem		undocumented	
 arm1.u	symbol (flags 7)	0x04090724	loadCtxMap		documented	docs/ge.md#context-save-and-restore
-arm1.u	symbol (flags 7)	0x0409086c	tex_cache		undocumented	
+arm1.u	symbol (flags 7)	0x0409086c	tex_cache		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 arm1.u	symbol (flags 6)	0x04091874	divModLut		undocumented	
 arm1.u	symbol (flags 7)	0x04092894	GeTypeFormatTable		undocumented	
 arm1.u	symbol (flags 6)	0x04094ff4	LUMoutputModuleTable		undocumented	
@@ -741,9 +741,9 @@ arm1.u	symbol (flags 3)	0x0c014a70	d_stencil_test		undocumented
 arm1.u	symbol (flags 3)	0x0c014a9c	depth_init		undocumented	
 arm1.u	symbol (flags 3)	0x0c014b34	stencil_pop		undocumented	
 arm1.u	symbol (flags 3)	0x0c014ca0	depth_pop		undocumented	
-arm1.u	symbol (flags 3)	0x0c014dd8	arm_copylist_ldma		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c014dd8	arm_copylist_ldma		documented	docs/ge.md#variable-length-command-grammars
 arm1.u	symbol (flags 3)	0x0c014e54	arm_idmacopylist_ldma		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c014ec4	arm_usercopylist_ldma		documented	docs/hip.md#dma-pools
+arm1.u	symbol (flags 3)	0x0c014ec4	arm_usercopylist_ldma		documented	docs/ge.md#variable-length-command-grammars
 arm1.u	symbol (flags 3)	0x0c014f90	arm_execlist_ldma		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c014fc0	arm_execlist_ldma_n		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c01503c	arm_movelist_ldma		named-only	ucode/arm1_handlers.tsv
@@ -1174,7 +1174,7 @@ arm1.u	symbol (flags 2)	0x0c026874	SetDB		undocumented
 arm1.u	symbol (flags 3)	0x0c0269b0	PixEndRGBStream		undocumented	
 arm1.u	symbol (flags 2)	0x0c026a14	PixEnd_FFT		undocumented	
 arm1.u	symbol (flags 3)	0x0c026a68	PixEndRGBLine		undocumented	
-arm1.u	symbol (flags 3)	0x0c026ac4	BitmapEndStream		undocumented	
+arm1.u	symbol (flags 3)	0x0c026ac4	BitmapEndStream		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 arm1.u	symbol (flags 3)	0x0c026b24	PolygonStippleGLRotate		undocumented	
 arm1.u	symbol (flags 3)	0x0c026bdc	PixEndReadConvolve		undocumented	
 arm1.u	symbol (flags 3)	0x0c026c1c	PixEndConvolve		undocumented	
@@ -1192,24 +1192,24 @@ arm1.u	symbol (flags 2)	0x0c0271c4	InitPixelGLState		undocumented
 arm1.u	symbol (flags 3)	0x0c0272e8	SetFbState		documented	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig
 arm1.u	symbol (flags 3)	0x0c027360	SetFbReadState		undocumented	
 arm1.u	symbol (flags 2)	0x0c0273cc	InitFbState		undocumented	
-arm1.u	symbol (flags 3)	0x0c027420	ParseHostImage		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 3)	0x0c027420	ParseHostImage		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 arm1.u	symbol (flags 2)	0x0c0275a4	QueryOverlap		undocumented	
 arm1.u	symbol (flags 2)	0x0c027664	WaitOverlap		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 3)	0x0c0276e0	__glkonFbToRbusFmt		undocumented	
 arm1.u	symbol (flags 3)	0x0c0276f8	__glkonGetTbusFmt		undocumented	
-arm1.u	symbol (flags 2)	0x0c027714	commonResolve		undocumented	
+arm1.u	symbol (flags 2)	0x0c027714	commonResolve		documented	docs/ge.md#the-texel-format-id
 arm1.u	symbol (flags 3)	0x0c027d68	arm_resolveissinglecomp		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c027e14	arm_lazymode		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 2)	0x0c027e34	resolveColorPath		undocumented	
-arm1.u	symbol (flags 2)	0x0c0284cc	ResolveDrawPath		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 2)	0x0c0284cc	ResolveDrawPath		documented	docs/ge.md#the-texel-format-id
 arm1.u	symbol (flags 2)	0x0c0286cc	ResolveCopyPath		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 2)	0x0c0288f4	ResolveReadPath		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 2)	0x0c028a1c	resolveVideoPath		undocumented	
 arm1.u	symbol (flags 2)	0x0c028ac8	setFromTM		undocumented	
 arm1.u	symbol (flags 3)	0x0c028b0c	__glkonSetFromFB		undocumented	
 arm1.u	symbol (flags 3)	0x0c028d20	__glkonSetupPacker		documented	docs/rm.md#host-interface-registers-on-the-raster-bus
-arm1.u	symbol (flags 3)	0x0c028dd8	SendPixelsToPipe		undocumented	
-arm1.u	symbol (flags 2)	0x0c028e7c	NumWordToPipe		undocumented	
+arm1.u	symbol (flags 3)	0x0c028dd8	SendPixelsToPipe		documented	docs/ge.md#variable-length-command-grammars
+arm1.u	symbol (flags 2)	0x0c028e7c	NumWordToPipe		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 arm1.u	symbol (flags 2)	0x0c0290a0	f2i		undocumented	
 arm1.u	symbol (flags 3)	0x0c0290dc	PixelRestore		undocumented	
 arm1.u	symbol (flags 2)	0x0c029428	TexReadWar		undocumented	
@@ -1238,13 +1238,13 @@ arm1.u	symbol (flags 3)	0x0c02adb0	arm_pixelstorei		named-only	ucode/arm1_handle
 arm1.u	symbol (flags 3)	0x0c02af20	arm_texelstorei		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c02b068	arm_pixeltransferf		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 2)	0x0c02b39c	do_bitmap		undocumented	
-arm1.u	symbol (flags 3)	0x0c02b4c0	arm_bitmap		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
-arm1.u	symbol (flags 3)	0x0c02b590	arm_bitmap_dlist		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c02b4c0	arm_bitmap		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
+arm1.u	symbol (flags 3)	0x0c02b590	arm_bitmap_dlist		documented	docs/ge.md#variable-length-command-grammars
 arm1.u	symbol (flags 2)	0x0c02b690	log2		documented	RM.h:135
 arm1.u	symbol (flags 3)	0x0c02b6b0	tex_swapin		undocumented	
-arm1.u	symbol (flags 3)	0x0c02b7a8	arm_drawtexels		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c02b7a8	arm_drawtexels		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 arm1.u	symbol (flags 3)	0x0c02b8cc	drawtexels		undocumented	
-arm1.u	symbol (flags 3)	0x0c02b9ec	arm_drawpixels		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 3)	0x0c02b9ec	arm_drawpixels		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 arm1.u	symbol (flags 3)	0x0c02bb34	arm_copypixels		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 2)	0x0c02bd60	videoCopyPixels		undocumented	
 arm1.u	symbol (flags 3)	0x0c02bdfc	SetVideoFormat		undocumented	
@@ -1416,7 +1416,7 @@ arm1.u	symbol (flags 3)	0x0c033c80	SetupReadbackTF		undocumented
 arm1.u	symbol (flags 3)	0x0c033fac	SetupRM		documented	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler
 arm1.u	symbol (flags 3)	0x0c034170	SetupRM_FFT		undocumented	
 arm1.u	symbol (flags 3)	0x0c0341cc	SetupPGTG		undocumented	
-arm1.u	symbol (flags 3)	0x0c034288	SetupSubtexload		undocumented	
+arm1.u	symbol (flags 3)	0x0c034288	SetupSubtexload		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 arm1.u	symbol (flags 3)	0x0c0343a0	SetupSubtexloadPos		undocumented	
 arm1.u	symbol (flags 3)	0x0c034464	SetupTexRead		undocumented	
 arm1.u	symbol (flags 3)	0x0c034630	StartTexRead		undocumented	
@@ -1530,11 +1530,11 @@ arm1.u	symbol (flags 2)	0x0c039194	slop_readword		undocumented
 arm1.u	symbol (flags 3)	0x0c03949c	arm_pack		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 2)	0x0c039538	pack_cmd		undocumented	
 arm1.u	symbol (flags 2)	0x0c039538	x$constdata		undocumented	
-arm1.u	symbol (flags 2)	0x0c0395c0	varray_lru		undocumented	
-arm1.u	symbol (flags 2)	0x0c0395fc	varray_build_command		documented	ucode/arm1.md#entry-format
-arm1.u	symbol (flags 2)	0x0c039884	varray_set_cmd_table		documented	ucode/arm1.md#entry-format
-arm1.u	symbol (flags 3)	0x0c039950	arm_varray_set_cmds		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
-arm1.u	symbol (flags 3)	0x0c0399c4	arm_varray_bgn_loop		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 2)	0x0c0395c0	varray_lru		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+arm1.u	symbol (flags 2)	0x0c0395fc	varray_build_command		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+arm1.u	symbol (flags 2)	0x0c039884	varray_set_cmd_table		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+arm1.u	symbol (flags 3)	0x0c039950	arm_varray_set_cmds		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
+arm1.u	symbol (flags 3)	0x0c0399c4	arm_varray_bgn_loop		documented	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens
 arm1.u	symbol (flags 3)	0x0c039a78	arm_varray_setup		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c039a94	arm_varray_unsetup		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c039abc	VertarrayRestore		undocumented	
@@ -1606,17 +1606,17 @@ arm1.u	symbol (flags 3)	0x0c03d9c4	arm_x_loadcursor		documented	docs/opengl.md#c
 arm1.u	symbol (flags 3)	0x0c03daa0	arm_x_loadcursorcolor		documented	docs/opengl.md#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor
 arm1.u	symbol (flags 3)	0x0c03db80	arm_x_loadxmap_did		documented	docs/opengl.md#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017
 arm1.u	symbol (flags 3)	0x0c03dc44	arm_x_loadxmap_config		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c03dc68	arm_mapdata1d		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c03dca0	arm_mapdata2d		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c03dcd4	arm_evalstrip2d		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c03dd58	arm_evalstrip1d		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c03dc68	arm_mapdata1d		documented	docs/ge.md#variable-length-command-grammars
+arm1.u	symbol (flags 3)	0x0c03dca0	arm_mapdata2d		documented	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d
+arm1.u	symbol (flags 3)	0x0c03dcd4	arm_evalstrip2d		documented	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d
+arm1.u	symbol (flags 3)	0x0c03dd58	arm_evalstrip1d		documented	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d
 arm1.u	symbol (flags 3)	0x0c03ddb4	InitColortableState		undocumented	
 arm1.u	symbol (flags 2)	0x0c03dec8	lut_index		undocumented	
 arm1.u	symbol (flags 2)	0x0c03df58	pixelmap_index		undocumented	
 arm1.u	symbol (flags 2)	0x0c03e008	internalformat_index		undocumented	
-arm1.u	symbol (flags 3)	0x0c03e128	arm_colortable		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 2)	0x0c03e3f4	snarf_pixelmap		undocumented	
-arm1.u	symbol (flags 2)	0x0c03e420	do_pixelmap		undocumented	
+arm1.u	symbol (flags 3)	0x0c03e128	arm_colortable		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
+arm1.u	symbol (flags 2)	0x0c03e3f4	snarf_pixelmap		documented	docs/ge.md#pixel-maps-hp_pixelmapfv-hp_pixelmapuiv-hp_pixelmapusv
+arm1.u	symbol (flags 2)	0x0c03e420	do_pixelmap		documented	docs/ge.md#pixel-maps-hp_pixelmapfv-hp_pixelmapuiv-hp_pixelmapusv
 arm1.u	symbol (flags 3)	0x0c03e7ec	arm_pixelmapfv		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c03e7fc	arm_pixelmapuiv		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c03e810	arm_pixelmapusv		named-only	ucode/arm1_handlers.tsv

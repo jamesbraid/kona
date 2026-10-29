@@ -118,10 +118,12 @@
  * the low slot of word0 being the token; shorts fill whole slots and
  * bytes go two to the upper slot, leaving the lower slot zero.
  *
- * INFERRED: variable-length commands carry their own counts in the
- * payload, since the token word has no room for one. Their grammars are
- * not in payloads.tsv because their emitters branch (UNKNOWN unless
- * stated elsewhere, e.g. DRAWTEXELS in RM.h).
+ * ESTABLISHED (libGLcore emitters and arm1.u handlers): variable-length
+ * commands carry their own counts in a header word, or the firmware
+ * computes the length from the header and the current pixel-unpack state
+ * (pixel, texel and bitmap images). The grammars of the image, pixel-map,
+ * evaluator, display-list and vertex-array commands are in docs/ge.md,
+ * "Variable-length command grammars"; DRAWTEXELS's header is in RM.h.
  */
 #define KONA_HP_BEGIN(glmode)     (KONA_HP_BEGIN_POINTS + (glmode))
 
