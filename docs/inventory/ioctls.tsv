@@ -25,9 +25,9 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 1020	0x3fc	graphics manager		sent	rrmMGRSwapBuf	4	usr/lib/X11/dyDDX/kona.so:rrmMGRSwapBuf	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
 1022	0x3fe	graphics manager		sent	glXGetVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXGetVideoSyncSGI	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
 1023	0x3ff	graphics manager		sent	glXWaitVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXWaitVideoSyncSGI	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
-10000	0x2710	kona private	curproc_abi	sent,table	konReadFBBlock;konReadImage;kon_loadGC	6	usr/lib/X11/dyDDX/kona.so:konReadFBBlock	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
-10001	0x2711	kona private	curproc_abi	sent,table	konDrawImage;konWriteFBSubBlock	6	usr/lib/X11/dyDDX/kona.so:konDrawImage	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
-10002	0x2712	kona private	curproc_abi	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
+10000	0x2710	kona private	curproc_abi	sent,table	konReadFBBlock;konReadImage;kon_loadGC	6	usr/lib/X11/dyDDX/kona.so:konReadFBBlock	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
+10001	0x2711	kona private	curproc_abi	sent,table	konDrawImage;konWriteFBSubBlock	6	usr/lib/X11/dyDDX/kona.so:konDrawImage	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
+10002	0x2712	kona private	curproc_abi	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
 10003	0x2713	kona private	kona_finish_selectfeed	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	understood	docs/kernel-functions.md#dma-support-kona_dmao	DMA support: `kona_dma.o`
 10005	0x2715	kona private	copyin	sent,table	cfb16DoBitbltXor;konCursorOn;konDisplayCursor	6	usr/lib/X11/dyDDX/kona.so:cfb16DoBitbltXor	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10006	0x2716	kona private	copyin	sent,table	kona_getconfig	3	usr/gfx/gfxinfo:kona_getconfig	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
@@ -40,7 +40,7 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 10015	0x271f	kona private	copyin	table		2		understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10016	0x2720	kona private	copyout	sent,table	kona_diagnose	3	usr/gfx/gfxinfo:kona_diagnose	understood	docs/kernel-functions.md#sharing-genlock-information-scheduling-hooks-and-stubs	Sharing, genlock, information, scheduling hooks and stubs
 10017	0x2721	kona private	kona_checkpipe	sent,table	KonWaitRData;__glkona_wait_rdata;konReadFBBlock;konReadImage;+4 more	11	usr/gfx/arch/IP27KONA32/libGLcore.so:__glkona_wait_rdata	understood	docs/kernel-functions.md#failure-handling-kona_crasho	Failure handling: `kona_crash.o`
-10018	0x2722	kona private	curproc_abi	table		2		understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
+10018	0x2722	kona private	curproc_abi	table		2		understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
 10019	0x2723	kona private	copyout	sent,table	konQueryHyperpipeNetwork	6	usr/lib/X11/dyDDX/kona.so:konQueryHyperpipeNetwork	understood	docs/kernel-functions.md#sharing-genlock-information-scheduling-hooks-and-stubs	Sharing, genlock, information, scheduling hooks and stubs
 10020	0x2724	kona private	kmem_alloc	sent,table	konHyperpipeConfig;venice_calcframebuffer	7	usr/gfx/gfxinfo:venice_calcframebuffer	understood	docs/kernel-functions.md#driver-timeouts-kona_timeouto	Driver timeouts: `kona_timeout.o`
 10021	0x2725	kona private	kmem_alloc	sent,table	konQueryHyperpipeConfig	6	usr/lib/X11/dyDDX/kona.so:konQueryHyperpipeConfig	understood	docs/kernel-functions.md#driver-timeouts-kona_timeouto	Driver timeouts: `kona_timeout.o`
@@ -51,6 +51,6 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 10026	0x272a	kona private		sent	venice_get_dg2_eeprom	2	usr/gfx/gfxinfo:venice_get_dg2_eeprom	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10030	0x272e	kona private		sent	venice_loadsection_vs2_top;vs2SetShadow	2	usr/gfx/gfxinfo:venice_loadsection_vs2_top	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10031	0x272f	kona private		sent	venice_loadsection_vs2_top;vs2GetShadow;vs2_set_MasterGenlock	2	usr/gfx/gfxinfo:venice_loadsection_vs2_top	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
-10100	0x2774	kona private	curproc_abi	sent,table	kona_getconfig;main;saXSGIvcQueryChannelGammaMap;setup_ucode	5	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
+10100	0x2774	kona private	curproc_abi	sent,table	kona_getconfig;main;saXSGIvcQueryChannelGammaMap;setup_ucode	5	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
 10101	0x2775	kona private	RRM_CheckValidFault	table		2		understood	docs/kernel-functions.md#sharing-genlock-information-scheduling-hooks-and-stubs	Sharing, genlock, information, scheduling hooks and stubs
 10102	0x2776	kona private	RRM_CheckValidFault	table		2		understood	docs/kernel-functions.md#sharing-genlock-information-scheduling-hooks-and-stubs	Sharing, genlock, information, scheduling hooks and stubs

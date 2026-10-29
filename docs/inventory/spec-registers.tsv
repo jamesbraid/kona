@@ -14,16 +14,16 @@ kpm register tables	geometry engine		ge	0x4002c	OFIFO1 B Status Register	1	0	32	
 kpm register tables	geometry engine		ge	0x40030	OFIFO2 A Status Register	1	0	32		0	understood	GE.h:9518	
 kpm register tables	geometry engine		ge	0x40034	OFIFO2 B Status Register	1	0	32		0	understood	GE.h:9528	
 kpm register tables	geometry engine		ge	0x40038	OFIFO Control Register (trashed)	1	0	32		0	understood	GE.h:9538	
-kpm register tables	host interface		hip	0x800000	HIP1_HH_GFIFO	1	0	32		0	understood	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
-kpm register tables	host interface		hip	0x800100	HH_SWITCH	1	0	32		0	understood	HIP.h:260	
-kpm register tables	host interface		hip	0x800108	HIP1_HH_GINTR_INFO	1	0	32		0	no-software-dependency	HIP.h:49	
-kpm register tables	host interface		hip	0x800108	HIP2_HH_GINTR_INFO	1	0	32		0	no-software-dependency	HIP.h:49	
+kpm register tables	host interface		hip	0x800000	HIP1_HH_GFIFO	1	0	32		0	understood	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
+kpm register tables	host interface		hip	0x800100	HH_SWITCH	1	0	32		0	understood	docs/kernel.md#suspend-and-resume-rrmsuspend-rrmresume	Suspend and resume: `rrmSuspend`, `rrmResume`
+kpm register tables	host interface		hip	0x800108	HIP1_HH_GINTR_INFO	1	0	32		0	understood	docs/kernel.md#further-functions-of-gfxo-and-gfxstubsa	Further functions of gfx.o and gfxstubs.a
+kpm register tables	host interface		hip	0x800108	HIP2_HH_GINTR_INFO	1	0	32		0	understood	docs/kernel.md#further-functions-of-gfxo-and-gfxstubsa	Further functions of gfx.o and gfxstubs.a
 kpm register tables	host interface		hip	0x8001f8	HH_NOP	1	0	32		0	no-software-dependency	HIP.h:169	
 kpm register tables	host interface		hip	0x800200	HH_RTC	1	0	32		0	understood	HIP.h:180	
 kpm register tables	host interface		hip	0x800208	HIP1_HH_GFIFO_LEVEL	1	0	32		1	understood	HIP.h:34	
 kpm register tables	host interface		hip	0x800208	HIP2_HH_GFIFO_LEVEL	1	0	32		1	understood	HIP.h:34	
 kpm register tables	host interface		hip	0x800210	HH_GFIFO_HI	1	0	32		1	understood	docs/kernel-functions.md#flow-control-kona_flowo	Flow control: `kona_flow.o`
-kpm register tables	host interface		hip	0x800218	HH_GFIFO_LO	1	0	32		0	no-software-dependency	HIP.h:202	
+kpm register tables	host interface		hip	0x800218	HH_GFIFO_LO	1	0	32		0	understood	docs/kernel.md#textport-drawing-kona_setcolor-kona_mapcolor-kona_point-kona_box-kona_unblank-kona_movechar-kona_bitmap-kona_tportinit	Textport drawing: `kona_setcolor`, `kona_mapcolor`, `kona_point`, `kona_box`, `kona_unblank`, `kona_movechar`, `kona_bitmap`, `kona_tportinit`
 kpm register tables	host interface		hip	0x800220	HIP1_HH_INTR_INFO	1	0	32		1	understood	HIP.h:35	
 kpm register tables	host interface		hip	0x800220	HIP2_HH_INTR_INFO	1	0	32		1	understood	HIP.h:35	
 kpm register tables	host interface		hip	0x800228	HH_INTR_ACK	1	0	32		1	understood	docs/kernel-functions.md#start-up-and-suspend-kona_setupo-kona_schedo	Start-up and suspend: `kona_setup.o`, `kona_sched.o`
@@ -81,7 +81,7 @@ kpm register tables	host interface		hip	0x8003c0	HH_VC_ADDRESS	1	0	32		1	underst
 kpm register tables	host interface		hip	0x8003c8	HH_VC_FREADY	1	0	32		0	understood	DG.h:31	
 kpm register tables	host interface		hip	0x8003d0	HH_VC_DATA	1	0	32		1	understood	docs/kernel-functions.md#video-swap-and-retrace-kona_videoo	Video, swap and retrace: `kona_video.o`
 kpm register tables	host interface		hip	0x8003d8	HH_VC_DATA_INCR	1	0	32		0	understood	DG.h:30	
-kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	no-software-dependency	HIP.h:648	
+kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	understood	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
 kpm register tables	host interface		hip	0x8003e8	HH_ARM_ADDRESS	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 kpm register tables	host interface		hip	0x8003f0	HH_ARM_DATA	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 kpm register tables	host interface		hip	0x8003f8	HH_ARM_DATA_INCR	1	0	32		0	understood	HIP.h:26	

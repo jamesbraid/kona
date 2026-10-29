@@ -57,6 +57,18 @@ No open entries. **Where this section stopped (2026-10-29, fourth pass).** The `
 
 Where this reader stopped (2026-10-29): every function of `kona.a`, `gfx.o`, `rrm.o` and `gfxs.a` has an entry in the [function reference](kernel.md#function-reference). Answered and moved: the `HH_TBUS_STATUS` writes ([kernel.md](kernel.md#hh_tbus_status)), the 0x810000 page (the `USER` address bit, [kernel.md](kernel.md#what-a-process-maps)), the DPLEX register names from `irsaudit` ([kernel.md](kernel.md#multi-pipe-dplex-display-port-writes)), what the reset pulse clears ([xg.md](xg.md#pipe-reset-konainitialize-and-the-credit-wait-path)). The 0x9000 low word: the kernel is its only producer (no 0x9000 constant in kpm, libGLcore or the X module `kona.so`; irsaudit's two are in an IMP test), and HIP2's `HH_ODMA_POFF` is 17 bits wide against HIP1's 12, so bits 12-16 exist only on HIP2; what 0x9 selects stays with the host-interface entry above. Since then `rrmSuspend`/`rrmResume` were read branch by branch and the `MESSAGE` valid bit was settled (nothing sets it again), both in [kernel.md](kernel.md#function-reference). Next: the row above, then the smaller unknowns marked in the function reference (copy-in conversion arguments, `streams_timeout` arguments, the `gfxdd_mmap` region attribute words in `KONAattach`).
 
+### Kernel functions
+
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| Descriptor words +0 and +8 of the `copyin_xlate` converters (`irix5_to_gfx_*`, `irix5_to_RRM_GetDisplayModes`) | `docs/kernel.md` | stores read in `gfx.o` and `rrm.o`; `gfxioctl` and `RRM_Dispatch` call sites | `copyin_xlate` itself, which is in the base kernel, not in these objects |
+| Callers and arguments of the stub functions `gfx_earlyinit`, `tpcons_write`, `shmiq_sproc`, `initkbdtype` | `docs/kernel.md` | `gfxstubs.o` listing, every `kona.a` listing | the base kernel's callers |
+| Why `invalidate_pane_buffer` exists | `docs/kernel.md` | grep of every annotated listing for calls and table pointers | none in these objects |
+| The -100 and trailing 0 arguments of `streams_timeout` in `rrmValidateMGRSwapBuf` and `rrmGenlockNotify` | `docs/kernel.md` | both call sites | the base kernel's `streams_timeout` |
+| Whether byte +177 of a pane (`RRM_CushionBuffer` off case) behaves as intended; why `rrmValidateMyPcx` releases the big semaphore after a node's first CLIP validation | `docs/kernel.md` | disassembly, all accesses of +177, callers | none in these objects |
+
+Where this reader stopped (2026-10-29): every function row of `gfx.o`, `gfxs.a`, `gfxstubs.a`, `rrm.o` and `kona.a` is understood; other readers' entries covered `kona.a` while this reader worked, so only the `gfx.o`, `gfxstubs.a` and `rrm.o` entries here are new. Nothing next in this slice.
+
 ## Registers and ioctls
 
 2026-10-29, register and ioctl reader (mmio, spec-registers, ioctls tables): every row of the three tables is now understood or finished as no-software-dependency. Ioctls: one entry per number in [kernel.md](kernel.md#ioctl-entries), with the handler, argument size and sender read from `gfx.o`, `rrm.o` and `kona_ioctl.o`. Registers: one header comment each in `GE.h` (15 diagnostic registers), `HIP.h` (the host-interface registers kpm lists), `XG.h` (widget registers reached by offset) and `RM.h` (32 raster indexes).
