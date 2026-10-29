@@ -36,38 +36,38 @@ kpm register tables	host interface		hip	0x800248	HH_SEQID	1	0	32		1	documented	d
 kpm register tables	host interface		hip	0x800250	HH_ODMA_CHANNEL	1	0	32		0	documented	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
 kpm register tables	host interface		hip	0x800258	HH_PACK_MODE	1	0	32		0	documented	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
 kpm register tables	host interface		hip	0x800260	HH_ODMA_PNUM	1	0	32		1	documented	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr	Geometry-engine events: `kona_ge_intr_handler`, `kona_ge_intr`
-kpm register tables	host interface		hip	0x800268	HIP1_HH_ODMA_POFF	1	0	32		1	named-only	HIP.h:203	
-kpm register tables	host interface		hip	0x800268	HIP2_HH_ODMA_POFF	1	0	32		1	named-only	HIP.h:203	
+kpm register tables	host interface		hip	0x800268	HIP1_HH_ODMA_POFF	1	0	32		1	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+kpm register tables	host interface		hip	0x800268	HIP2_HH_ODMA_POFF	1	0	32		1	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 kpm register tables	host interface		hip	0x800270	HH_ODMA_LEN	1	0	32		0	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread	Pipe to host: select feedback, `kona_dmaread`
 kpm register tables	host interface		hip	0x800278	HH_ODMA_TOTAL	1	0	32		1	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread	Pipe to host: select feedback, `kona_dmaread`
-kpm register tables	host interface		hip	0x800280	HH_ODMA_OVER	1	0	32		0	named-only	HIP.h:209	
-kpm register tables	host interface		hip	0x800288	HH_ODMA_LLEN	1	0	32		0	named-only	HIP.h:211	
+kpm register tables	host interface		hip	0x800280	HH_ODMA_OVER	1	0	32		0	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+kpm register tables	host interface		hip	0x800288	HH_ODMA_LLEN	1	0	32		0	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 kpm register tables	host interface		hip	0x800290	HH_ODMA_STRIDE	1	0	32		0	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread	Pipe to host: select feedback, `kona_dmaread`
 kpm register tables	host interface		hip	0x800298	HH_ODMA_FLUSH	1	0	32		1	documented	docs/hip.md#output-dma-from-the-pipe-side	Output DMA from the pipe side
 kpm register tables	host interface		hip	0x8002a0	HH_ODMA2_PNUM	1	0	32		1	documented	docs/hip.md#geometry-engine-events-kona_ge_intr_handler-kona_ge_intr	Geometry-engine events: `kona_ge_intr_handler`, `kona_ge_intr`
-kpm register tables	host interface		hip	0x8002a8	HIP1_HH_ODMA2_POFF	1	0	32		1	named-only	HIP.h:219	
-kpm register tables	host interface		hip	0x8002a8	HIP2_HH_ODMA2_POFF	1	0	32		1	named-only	HIP.h:219	
-kpm register tables	host interface		hip	0x8002b0	HH_ODMA2_LEN	1	0	32		0	named-only	HIP.h:221	
+kpm register tables	host interface		hip	0x8002a8	HIP1_HH_ODMA2_POFF	1	0	32		1	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+kpm register tables	host interface		hip	0x8002a8	HIP2_HH_ODMA2_POFF	1	0	32		1	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+kpm register tables	host interface		hip	0x8002b0	HH_ODMA2_LEN	1	0	32		0	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 kpm register tables	host interface		hip	0x8002b8	HH_ODMA2_TOTAL	1	0	32		1	documented	docs/hip.md#output-dma-from-the-pipe-side	Output DMA from the pipe side
-kpm register tables	host interface		hip	0x8002c0	HH_ODMA2_OVER	1	0	32		0	named-only	HIP.h:225	
-kpm register tables	host interface		hip	0x8002c8	HIP2_HH_PIO_HI	1	0	32		0	named-only	HIP.h:376	
+kpm register tables	host interface		hip	0x8002c0	HH_ODMA2_OVER	1	0	32		0	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+kpm register tables	host interface		hip	0x8002c8	HIP2_HH_PIO_HI	1	0	32		0	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800300	HH_RESET	1	0	32		1	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 kpm register tables	host interface		hip	0x800308	HH_ARM_CTRL	1	0	32		0	documented	docs/hip.md#interrupt-conditions	Interrupt conditions
 kpm register tables	host interface		hip	0x800310	HH_ARM_STATUS	1	0	32		0	documented	docs/hip.md#reset-and-start-of-the-arm	Reset and start of the ARM
 kpm register tables	host interface		hip	0x800320	HH_ARM_STALL	1	0	32		0	documented	docs/hip.md#reset-and-start-of-the-arm	Reset and start of the ARM
 kpm register tables	host interface		hip	0x800328	HH_ARM_UNSTALL	1	0	32		0	documented	docs/hip.md#reset-and-start-of-the-arm	Reset and start of the ARM
 kpm register tables	host interface		hip	0x800330	HH_ARM_STEP	1	0	32		0	documented	docs/hip.md#reset-and-start-of-the-arm	Reset and start of the ARM
-kpm register tables	host interface		hip	0x800338	HH_ARM_CURR_ADDR	1	0	32		0	named-only	HIP.h:253	
-kpm register tables	host interface		hip	0x800340	HH_CURR_DATA_FM_ARM	1	0	32		0	named-only	HIP.h:255	
+kpm register tables	host interface		hip	0x800338	HH_ARM_CURR_ADDR	1	0	32		0	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+kpm register tables	host interface		hip	0x800340	HH_CURR_DATA_FM_ARM	1	0	32		0	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800348	HH_CURR_DATA_TO_ARM	1	0	32		0	documented	docs/kernel.md#flow-control-layer	Flow-control layer
-kpm register tables	host interface		hip	0x800350	HH_JTAG_DATA	1	0	32		0	documented	docs/kernel.md#character-entry-points-gfxopen-gfxclose-gfxioctl-gfxcleanup-gfxread-gfxwrite-gfxmap-gfxunmap	Character entry points: `gfxopen`, `gfxclose`, `gfxioctl`, `gfxcleanup`, `gfxread`, `gfxwrite`, `gfxmap`, `gfxunmap`
-kpm register tables	host interface		hip	0x800358	HH_JTAG_TMS	1	0	32		0	named-only	HIP.h:261	
-kpm register tables	host interface		hip	0x800360	HH_JTAG_CTRL	1	0	32		0	named-only	HIP.h:263	
-kpm register tables	host interface		hip	0x800368	HH_JTAG_STATUS	1	0	32		0	named-only	HIP.h:265	
-kpm register tables	host interface		hip	0x800370	HH_JTAG_ACCESS	1	0	32		0	named-only	HIP.h:267	
-kpm register tables	host interface		hip	0x800378	HH_JTAG_RESET	1	0	32		0	no-software-dependency	docs/xg.md#pipe-reset-konainitialize-and-the-credit-wait-path	Pipe reset, `KONAinitialize` and the credit-wait path
+kpm register tables	host interface		hip	0x800350	HH_JTAG_DATA	1	0	32		0	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+kpm register tables	host interface		hip	0x800358	HH_JTAG_TMS	1	0	32		0	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+kpm register tables	host interface		hip	0x800360	HH_JTAG_CTRL	1	0	32		0	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+kpm register tables	host interface		hip	0x800368	HH_JTAG_STATUS	1	0	32		0	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+kpm register tables	host interface		hip	0x800370	HH_JTAG_ACCESS	1	0	32		0	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+kpm register tables	host interface		hip	0x800378	HH_JTAG_RESET	1	0	32		0	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800380	HIP1_HH_FCI_OVERLAP	1	0	32		0	documented	docs/hip.md#reset	Reset
-kpm register tables	host interface		hip	0x800388	HIP1_HH_FCI_LOOPBACK	1	0	32		0	named-only	HIP.h:276	
+kpm register tables	host interface		hip	0x800388	HIP1_HH_FCI_LOOPBACK	1	0	32		0	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800390	HIP1_HH_FCI_ERR_STAT1	1	0	32		1	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 kpm register tables	host interface		hip	0x800390	HIP2_HH_GV_ERR_STAT1	1	0	32		1	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 kpm register tables	host interface		hip	0x800398	HIP1_HH_FCI_ERR_STAT2	1	0	32		1	documented	docs/kernel.md#registers-the-driver-touches	Registers the driver touches

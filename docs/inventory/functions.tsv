@@ -1417,7 +1417,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d7e0	6016	init_rm_jtag	dyn
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002ef60	292	TEST_rmjtaginit	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f084	132	dump_indata_as_bits	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f108	156	dump_outdata_as_bits	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f1a4	32	kona_jt_set_custom_error_report	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f1a4	32	kona_jt_set_custom_error_report	dynsym	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f3dc	204	kt_current_chain	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10030dec	236	kt_setup_pin_status	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10030ed8	2256	kt_report_pin_status	dynsym	undocumented		
@@ -1462,8 +1462,8 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037984	228	ge11_bypass_read	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037a68	104	switch_ged_ge	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037ad0	408	ge_bypass_read_nomap	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037c68	480	wait_for_odma	dynsym	documented	docs/hip.md#output-dma-from-the-pipe-side	Output DMA from the pipe side
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037e48	396	setup_dma	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037fd4	184	wait_for_dma_completion	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037e48	396	setup_dma	dynsym	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037fd4	184	wait_for_dma_completion	dynsym	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003808c	384	init_ge_num	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003820c	124	diag_arm_reg_write	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038288	140	arm_ged_write	dynsym	undocumented		
@@ -2461,12 +2461,12 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101671d0	1816	jt_conditional_r
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101678f0	904	jt_set_individual_instructions	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10167c80	960	jt_isolate_chip	dynsym	documented	docs/hip.md#reset	Reset
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168040	548	jt_powerup_chain	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168270	104	jt_set_procs	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168270	104	jt_set_procs	dynsym	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168530	60	jt_init	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168570	68	jt_select_chain	dynsym	documented	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101685c0	60	jt_soft_reset	dynsym	documented	docs/rm.md#reset-of-the-raster-boards	Reset of the raster boards
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168600	60	jt_hard_reset	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168640	60	jt_test_thyself	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168600	60	jt_hard_reset	dynsym	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168640	60	jt_test_thyself	dynsym	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168680	84	jt_send_instruction	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101686e0	84	jt_send_data	dynsym	documented	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168740	40	jt_set_error_handler	dynsym	undocumented		
@@ -2592,7 +2592,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000fb0c	644	create_file	dynsym	undocumen
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000fd90	692	open_file	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10010044	132	dump_indata_as_bits	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100100c8	156	dump_outdata_as_bits	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10010164	32	kona_jt_set_custom_error_report	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10010164	32	kona_jt_set_custom_error_report	dynsym	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100116f0	548	kjiSetSubField	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011914	528	kjiGetSubField	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011b24	720	kjiGetSubFieldV	dynsym	undocumented		
@@ -2650,10 +2650,10 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001ef74	208	ge11WriteSection	dynsym	undo
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f044	444	dgInspection	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f200	424	show_fm_section	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f3a8	396	show_xmap_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f534	568	set_transfer_address	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f76c	84	setup_dma	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f7c0	216	wait_for_dma_completion	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f898	352	cleanup_dma	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f534	568	set_transfer_address	dynsym	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f76c	84	setup_dma	dynsym	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f7c0	216	wait_for_dma_completion	dynsym	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f898	352	cleanup_dma	dynsym	documented	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100216dc	2464	read_chains	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002207c	568	jtagInspection	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10022410	400	read_jtag_vector	dynsym	undocumented		
@@ -2690,12 +2690,12 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033550	64	jt_dispose_vector	dynsym	undo
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033590	100	jt_vector_to_int	dynsym	documented	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033600	124	jt_int_to_vector	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033680	252	jt_find_chip	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033780	104	jt_set_procs	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033780	104	jt_set_procs	dynsym	documented	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a40	60	jt_init	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a80	68	jt_select_chain	dynsym	documented	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033ad0	60	jt_soft_reset	dynsym	documented	docs/rm.md#reset-of-the-raster-boards	Reset of the raster boards
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b10	60	jt_hard_reset	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b50	60	jt_test_thyself	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b10	60	jt_hard_reset	dynsym	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b50	60	jt_test_thyself	dynsym	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b90	84	jt_send_instruction	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033bf0	84	jt_send_data	dynsym	documented	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033c50	40	jt_set_error_handler	dynsym	undocumented		
