@@ -1,5 +1,5 @@
 token	kpm_name	header_name	firmware_route	sources	status	doc
-0x000	HP_DATA	KONA_HP_DATA	HP_DATA	GE.h,firmware map,kpm	named-only	GE.h:146
+0x000	HP_DATA	KONA_HP_DATA	HP_DATA	GE.h,firmware map,kpm	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
 0x001	HP_BUFFER_CONFIG	KONA_HP_BUFFER_CONFIG	HP_BUFFER_CONFIG	GE.h,firmware map,kpm	documented	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig
 0x002	HP_PACK	KONA_HP_PACK	HP_PACK	GE.h,firmware map,kpm	documented	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig
 0x003	HP_BEGIN_RECT	KONA_HP_BEGIN_RECT	HP_BEGIN_RECT	GE.h,firmware map,kpm	named-only	GE.h:149
@@ -255,7 +255,7 @@ token	kpm_name	header_name	firmware_route	sources	status	doc
 0x0fd	HP_COPYTEXIMAGE	KONA_HP_COPYTEXIMAGE	HP_COPYTEXIMAGE	GE.h,firmware map,kpm	named-only	GE.h:399
 0x0fe	HP_COPYTEXSUBIMAGE1D	KONA_HP_COPYTEXSUBIMAGE1D	HP_COPYTEXSUBIMAGE1D	GE.h,firmware map,kpm	named-only	GE.h:400
 0x0ff	HP_WG_FLUSH_0	KONA_HP_WG_FLUSH_0	HP_WG_FLUSH_0	GE.h,firmware map,kpm	named-only	GE.h:401
-0x100	HP_DATA_1	KONA_HP_DATA_1	HP_DATA_1	GE.h,firmware map,kpm	named-only	GE.h:402
+0x100	HP_DATA_1	KONA_HP_DATA_1	HP_DATA_1	GE.h,firmware map,kpm	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
 0x101	HP_COPYTEXSUBIMAGE2D	KONA_HP_COPYTEXSUBIMAGE2D	HP_COPYTEXSUBIMAGE2D	GE.h,firmware map,kpm	named-only	GE.h:403
 0x102	HP_HISTOGRAM	KONA_HP_HISTOGRAM	HP_HISTOGRAM	GE.h,firmware map,kpm	named-only	GE.h:404
 0x103	HP_RESETHISTOGRAM	KONA_HP_RESETHISTOGRAM	HP_RESETHISTOGRAM	GE.h,firmware map,kpm	named-only	GE.h:405

@@ -13849,12 +13849,12 @@ usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd946890	20	Error	documented	docs/
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9468a4	52	PickBufferProcs	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9468d8	188	LoseCurrent	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd946994	304	DestroyContext	documented	docs/opengl.md#which-functions-call-the-kernel
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd946ac4	76	initialDestroyContext	undocumented	
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd946ac4	76	initialDestroyContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd946b10	460	map_rtc	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd946cdc	2608	MakeCurrentRead	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd94770c	116	MakeCurrent	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd947780	980	VisualsMatch	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd947848	780	__glKonCreateContext	undocumented	
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd946cdc	2608	MakeCurrentRead	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd94770c	116	MakeCurrent	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd947780	980	VisualsMatch	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd947848	780	__glKonCreateContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd947b54	428	kona_writeconfig	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd947d00	456	kona_readconfig	documented	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd947ec8	116	BindHyperpipe	undocumented	
@@ -13924,8 +13924,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd94bc14	72	__glkon_dlist_mem_real
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd94bc5c	60	__glkon_dlist_mem_free	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd94bc98	72	__glkon_texture_mem_alloc	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd94bce0	72	__glkon_texture_mem_realloc	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd94bd28	72	__glkon_unique_per_ge_mem_alloc	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd94bd70	132	__glkon_share	undocumented	
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd94bd28	72	__glkon_unique_per_ge_mem_alloc	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd94bd70	132	__glkon_share	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd94be00	56	__glkonim_Begin	documented	GE.h:50
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd94be38	20	__glkonim_End	documented	GE.h:51
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd94be4c	100	__glkonim_Finish	undocumented	
@@ -14005,8 +14005,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd954224	300	__glkonPixSize	undocu
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd954350	260	__glkonim_PixelZoom	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd954454	272	__glkonim_PixelStoref	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd954564	1112	__glkonim_TextureStorei	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9549bc	1108	__glkonim_PixelStorei	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd954e10	1592	__glkonim_PixelTransferf	undocumented	
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9549bc	1108	__glkonim_PixelStorei	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd954e10	1592	__glkonim_PixelTransferf	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd955448	72	__glkonim_PixelTransferi	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9554a0	284	__glKonInitConvolutionState	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9555bc	100	InvalidGetFormat	undocumented	
@@ -14923,7 +14923,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9bf0b4	484	__glSpanPostColorMatr
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9bf2a0	924	Load	documented	RM.h:140
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9bf63c	1088	Accumulate	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9bfa7c	928	Mult	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9bfe1c	584	Add	documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9bfe1c	584	Add	documented	docs/open-questions.md#arm-firmware
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9c0064	392	Return	documented	HIP.h:76
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9c01ec	520	Clear	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9c03f4	11232	Pick	undocumented	
@@ -15149,7 +15149,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9d05c8	84	__glBeginDispatchOverr
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9d061c	6528	__glEndDispatchOverride	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9d0638	428	__glEarlyInitContext	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9d07e4	980	__glContextSetColorScales	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9d0bb8	2848	__glSoftResetContext	undocumented	
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9d0bb8	2848	__glSoftResetContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9d16d8	116	__glDestroyContext	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9d174c	684	__glDestroySoftContext	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9d19f8	256	__glFreePrivate	undocumented	
@@ -15213,7 +15213,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9d47d0	1344	Clear	undocumented
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9d4d10	492	Fix_zbuffer	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9d4efc	44	Pick	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9d4f28	68	Resize	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9d4f6c	188	MakeCurrent	undocumented	
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9d4f6c	188	MakeCurrent	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	.text	0xd9d5028	8436	LoseCurrent	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9d5104	228	__glInitDepth24	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xd9d51e8	224	__glInitDepth32	undocumented	
@@ -19347,7 +19347,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	n32	65281	0xd841270	336	__glx_GetInstrumentsSGI
 usr/gfx/arch/IP27KONA32/libGL.so	n32	65281	0xd8413c0	336	__glx_InstrumentsBufferSGIX	undocumented	
 usr/gfx/arch/IP27KONA32/libGL.so	n32	65281	0xd841510	364	__glx_PollInstrumentsSGIX	undocumented	
 usr/gfx/arch/IP27KONA32/libGL.so	n32	65281	0xd84167c	268	__glx_FlushRasterSGIX	undocumented	
-usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd949ae0	880	__glKonCreateContext	undocumented	
+usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd949ae0	880	__glKonCreateContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94b250	340	__glkonim_ListParameterfvSGIX	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94b3b0	56	__glkonim_ListParameterfSGIX	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94b3f0	328	__glkonim_ListParameterivSGIX	undocumented	
@@ -19380,8 +19380,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94d9b0	68	__glkon_dlist_mem_re
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94da00	56	__glkon_dlist_mem_free	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94da40	68	__glkon_texture_mem_alloc	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94da90	68	__glkon_texture_mem_realloc	undocumented	
-usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	undocumented	
-usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94db30	124	__glkon_share	undocumented	
+usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94db30	124	__glkon_share	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94dbb0	52	__glkonim_Begin	documented	GE.h:50
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94dbf0	20	__glkonim_End	documented	GE.h:51
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd94dc10	92	__glkonim_Finish	undocumented	
@@ -19446,8 +19446,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd955ea0	240	__glkonPixSize	undo
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd955f90	220	__glkonim_PixelZoom	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd956070	204	__glkonim_PixelStoref	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd956140	1284	__glkonim_TextureStorei	undocumented	
-usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd956650	1268	__glkonim_PixelStorei	undocumented	
-usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd956b50	1596	__glkonim_PixelTransferf	undocumented	
+usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd956650	1268	__glkonim_PixelStorei	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
+usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd956b50	1596	__glkonim_PixelTransferf	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd957190	56	__glkonim_PixelTransferi	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd9571d0	280	__glKonInitConvolutionState	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd957530	420	__glkonim_ConvolutionFilter1DEXT	undocumented	
@@ -20386,7 +20386,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd9cc090	116	__glFreeColorTables
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd9cc110	516	__glCopyColorTableScaleBias	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd9cc4d0	388	__glEarlyInitContext	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd9cc660	908	__glContextSetColorScales	undocumented	
-usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd9cc9f0	2980	__glSoftResetContext	undocumented	
+usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd9cc9f0	2980	__glSoftResetContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd9cd5a0	112	__glDestroyContext	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd9cd610	536	__glDestroySoftContext	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xd9cd830	208	__glFreePrivate	undocumented	
@@ -24385,7 +24385,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	n64	65281	0x2675df0	336	__glx_GetInstrumentsSGI
 usr/gfx/arch/IP27KONA64/libGL.so	n64	65281	0x2675f40	336	__glx_InstrumentsBufferSGIX	undocumented	
 usr/gfx/arch/IP27KONA64/libGL.so	n64	65281	0x2676090	364	__glx_PollInstrumentsSGIX	undocumented	
 usr/gfx/arch/IP27KONA64/libGL.so	n64	65281	0x26761fc	268	__glx_FlushRasterSGIX	undocumented	
-usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dab9f0	852	__glKonCreateContext	undocumented	
+usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dab9f0	852	__glKonCreateContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dad2f0	340	__glkonim_ListParameterfvSGIX	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dad450	56	__glkonim_ListParameterfSGIX	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dad490	324	__glkonim_ListParameterivSGIX	undocumented	
@@ -24418,8 +24418,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dafab0	68	__glkon_dlist_mem_re
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dafb00	56	__glkon_dlist_mem_free	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dafb40	68	__glkon_texture_mem_alloc	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dafb90	68	__glkon_texture_mem_realloc	undocumented	
-usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dafbe0	68	__glkon_unique_per_ge_mem_alloc	undocumented	
-usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dafc30	124	__glkon_share	undocumented	
+usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dafbe0	68	__glkon_unique_per_ge_mem_alloc	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dafc30	124	__glkon_share	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dafcb0	52	__glkonim_Begin	documented	GE.h:50
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dafcf0	20	__glkonim_End	documented	GE.h:51
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2dafd10	92	__glkonim_Finish	undocumented	
@@ -24484,8 +24484,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2db8050	244	__glkonPixSize	undo
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2db8150	220	__glkonim_PixelZoom	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2db8230	204	__glkonim_PixelStoref	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2db8300	1284	__glkonim_TextureStorei	undocumented	
-usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2db8810	1272	__glkonim_PixelStorei	undocumented	
-usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2db8d10	1596	__glkonim_PixelTransferf	undocumented	
+usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2db8810	1272	__glkonim_PixelStorei	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
+usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2db8d10	1596	__glkonim_PixelTransferf	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2db9350	56	__glkonim_PixelTransferi	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2db9390	280	__glKonInitConvolutionState	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2db96f0	424	__glkonim_ConvolutionFilter1DEXT	undocumented	
@@ -25424,7 +25424,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2e2fd60	116	__glFreeColorTables
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2e2fde0	516	__glCopyColorTableScaleBias	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2e30130	404	__glEarlyInitContext	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2e302d0	940	__glContextSetColorScales	undocumented	
-usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2e30680	3036	__glSoftResetContext	undocumented	
+usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2e30680	3036	__glSoftResetContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2e31260	112	__glDestroyContext	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2e312d0	552	__glDestroySoftContext	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2e31500	208	__glFreePrivate	undocumented	
@@ -29492,12 +29492,12 @@ usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd946890	20	Error	documented	docs/
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9468a4	52	PickBufferProcs	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9468d8	188	LoseCurrent	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd946994	304	DestroyContext	documented	docs/opengl.md#which-functions-call-the-kernel
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd946ac4	76	initialDestroyContext	undocumented	
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd946ac4	76	initialDestroyContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd946b10	460	map_rtc	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd946cdc	2608	MakeCurrentRead	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd94770c	116	MakeCurrent	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd947780	980	VisualsMatch	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd947848	780	__glKonCreateContext	undocumented	
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd946cdc	2608	MakeCurrentRead	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd94770c	116	MakeCurrent	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd947780	980	VisualsMatch	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd947848	780	__glKonCreateContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd947b54	428	kona_writeconfig	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd947d00	456	kona_readconfig	documented	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd947ec8	116	BindHyperpipe	undocumented	
@@ -29567,8 +29567,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd94bc14	72	__glkon_dlist_mem_real
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd94bc5c	60	__glkon_dlist_mem_free	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd94bc98	72	__glkon_texture_mem_alloc	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd94bce0	72	__glkon_texture_mem_realloc	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd94bd28	72	__glkon_unique_per_ge_mem_alloc	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd94bd70	132	__glkon_share	undocumented	
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd94bd28	72	__glkon_unique_per_ge_mem_alloc	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd94bd70	132	__glkon_share	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd94be00	56	__glkonim_Begin	documented	GE.h:50
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd94be38	20	__glkonim_End	documented	GE.h:51
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd94be4c	100	__glkonim_Finish	undocumented	
@@ -29648,8 +29648,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd954224	300	__glkonPixSize	undocu
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd954350	260	__glkonim_PixelZoom	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd954454	272	__glkonim_PixelStoref	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd954564	1112	__glkonim_TextureStorei	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9549bc	1108	__glkonim_PixelStorei	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd954e10	1592	__glkonim_PixelTransferf	undocumented	
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9549bc	1108	__glkonim_PixelStorei	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd954e10	1592	__glkonim_PixelTransferf	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd955448	72	__glkonim_PixelTransferi	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9554a0	284	__glKonInitConvolutionState	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9555bc	100	InvalidGetFormat	undocumented	
@@ -30566,7 +30566,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9bf0b4	484	__glSpanPostColorMatr
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9bf2a0	924	Load	documented	RM.h:140
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9bf63c	1088	Accumulate	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9bfa7c	928	Mult	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9bfe1c	584	Add	documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9bfe1c	584	Add	documented	docs/open-questions.md#arm-firmware
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9c0064	392	Return	documented	HIP.h:76
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9c01ec	520	Clear	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9c03f4	11232	Pick	undocumented	
@@ -30792,7 +30792,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9d05c8	84	__glBeginDispatchOverr
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9d061c	6528	__glEndDispatchOverride	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9d0638	428	__glEarlyInitContext	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9d07e4	980	__glContextSetColorScales	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9d0bb8	2848	__glSoftResetContext	undocumented	
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9d0bb8	2848	__glSoftResetContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9d16d8	116	__glDestroyContext	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9d174c	684	__glDestroySoftContext	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9d19f8	256	__glFreePrivate	undocumented	
@@ -30856,7 +30856,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9d47d0	1344	Clear	undocumented
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9d4d10	492	Fix_zbuffer	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9d4efc	44	Pick	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9d4f28	68	Resize	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9d4f6c	188	MakeCurrent	undocumented	
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9d4f6c	188	MakeCurrent	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	.text	0xd9d5028	8436	LoseCurrent	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9d5104	228	__glInitDepth24	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xd9d51e8	224	__glInitDepth32	undocumented	
@@ -34990,7 +34990,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	n32	65281	0xd841270	336	__glx_GetInstrumentsSGI
 usr/gfx/arch/IP35KONA32/libGL.so	n32	65281	0xd8413c0	336	__glx_InstrumentsBufferSGIX	undocumented	
 usr/gfx/arch/IP35KONA32/libGL.so	n32	65281	0xd841510	364	__glx_PollInstrumentsSGIX	undocumented	
 usr/gfx/arch/IP35KONA32/libGL.so	n32	65281	0xd84167c	268	__glx_FlushRasterSGIX	undocumented	
-usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd949ae0	880	__glKonCreateContext	undocumented	
+usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd949ae0	880	__glKonCreateContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94b250	340	__glkonim_ListParameterfvSGIX	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94b3b0	56	__glkonim_ListParameterfSGIX	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94b3f0	328	__glkonim_ListParameterivSGIX	undocumented	
@@ -35023,8 +35023,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94d9b0	68	__glkon_dlist_mem_re
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94da00	56	__glkon_dlist_mem_free	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94da40	68	__glkon_texture_mem_alloc	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94da90	68	__glkon_texture_mem_realloc	undocumented	
-usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	undocumented	
-usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94db30	124	__glkon_share	undocumented	
+usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94db30	124	__glkon_share	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94dbb0	52	__glkonim_Begin	documented	GE.h:50
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94dbf0	20	__glkonim_End	documented	GE.h:51
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd94dc10	92	__glkonim_Finish	undocumented	
@@ -35089,8 +35089,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd955ea0	240	__glkonPixSize	undo
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd955f90	220	__glkonim_PixelZoom	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd956070	204	__glkonim_PixelStoref	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd956140	1284	__glkonim_TextureStorei	undocumented	
-usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd956650	1268	__glkonim_PixelStorei	undocumented	
-usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd956b50	1596	__glkonim_PixelTransferf	undocumented	
+usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd956650	1268	__glkonim_PixelStorei	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
+usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd956b50	1596	__glkonim_PixelTransferf	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd957190	56	__glkonim_PixelTransferi	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd9571d0	280	__glKonInitConvolutionState	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd957530	420	__glkonim_ConvolutionFilter1DEXT	undocumented	
@@ -36029,7 +36029,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd9cc090	116	__glFreeColorTables
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd9cc110	516	__glCopyColorTableScaleBias	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd9cc4d0	388	__glEarlyInitContext	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd9cc660	908	__glContextSetColorScales	undocumented	
-usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd9cc9f0	2980	__glSoftResetContext	undocumented	
+usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd9cc9f0	2980	__glSoftResetContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd9cd5a0	112	__glDestroyContext	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd9cd610	536	__glDestroySoftContext	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xd9cd830	208	__glFreePrivate	undocumented	
@@ -40028,7 +40028,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	n64	65281	0x2175df0	336	__glx_GetInstrumentsSGI
 usr/gfx/arch/IP35KONA64/libGL.so	n64	65281	0x2175f40	336	__glx_InstrumentsBufferSGIX	undocumented	
 usr/gfx/arch/IP35KONA64/libGL.so	n64	65281	0x2176090	364	__glx_PollInstrumentsSGIX	undocumented	
 usr/gfx/arch/IP35KONA64/libGL.so	n64	65281	0x21761fc	268	__glx_FlushRasterSGIX	undocumented	
-usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218b9f0	852	__glKonCreateContext	undocumented	
+usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218b9f0	852	__glKonCreateContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218d2f0	340	__glkonim_ListParameterfvSGIX	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218d450	56	__glkonim_ListParameterfSGIX	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218d490	324	__glkonim_ListParameterivSGIX	undocumented	
@@ -40061,8 +40061,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218fab0	68	__glkon_dlist_mem_re
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218fb00	56	__glkon_dlist_mem_free	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218fb40	68	__glkon_texture_mem_alloc	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218fb90	68	__glkon_texture_mem_realloc	undocumented	
-usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218fbe0	68	__glkon_unique_per_ge_mem_alloc	undocumented	
-usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218fc30	124	__glkon_share	undocumented	
+usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218fbe0	68	__glkon_unique_per_ge_mem_alloc	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
+usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218fc30	124	__glkon_share	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218fcb0	52	__glkonim_Begin	documented	GE.h:50
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218fcf0	20	__glkonim_End	documented	GE.h:51
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x218fd10	92	__glkonim_Finish	undocumented	
@@ -40127,8 +40127,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2198050	244	__glkonPixSize	undo
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2198150	220	__glkonim_PixelZoom	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2198230	204	__glkonim_PixelStoref	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2198300	1284	__glkonim_TextureStorei	undocumented	
-usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2198810	1272	__glkonim_PixelStorei	undocumented	
-usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2198d10	1596	__glkonim_PixelTransferf	undocumented	
+usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2198810	1272	__glkonim_PixelStorei	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
+usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2198d10	1596	__glkonim_PixelTransferf	documented	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2199350	56	__glkonim_PixelTransferi	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2199390	280	__glKonInitConvolutionState	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x21996f0	424	__glkonim_ConvolutionFilter1DEXT	undocumented	
@@ -41067,7 +41067,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x220fd60	116	__glFreeColorTables
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x220fde0	516	__glCopyColorTableScaleBias	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2210130	404	__glEarlyInitContext	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22102d0	940	__glContextSetColorScales	undocumented	
-usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2210680	3036	__glSoftResetContext	undocumented	
+usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2210680	3036	__glSoftResetContext	documented	docs/opengl.md#who-calls-them-the-contexts-function-table
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2211260	112	__glDestroyContext	documented	docs/opengl.md#which-functions-call-the-kernel
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22112d0	552	__glDestroySoftContext	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x2211500	208	__glFreePrivate	undocumented	
@@ -47843,15 +47843,15 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x427128	216	KonSeqData24_ip19	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x427200	208	KonSeqData23_ip19	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4272d0	152	KonSeqData16_ip19	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x427368	120	KonSeqData12_ip19	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4273e0	112	KonSeqData11_ip19	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4273e0	112	KonSeqData11_ip19	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x427450	104	KonSeqData10_ip19	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4274b8	96	KonSeqData9_ip19	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x427518	88	KonSeqData8_ip19	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x427570	80	KonSeqData7_ip19	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4275c0	72	KonSeqData6_ip19	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4275c0	72	KonSeqData6_ip19	documented	docs/open-questions.md#arm-firmware
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x427608	64	KonSeqData5_ip19	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x427648	56	KonSeqData4_ip19	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x427680	48	KonSeqData3_ip19	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x427680	48	KonSeqData3_ip19	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4278c0	1052	vfmtResolvePixelDepth	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x428010	84	vfmtMinimalKonaTarget	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x428070	1312	vfmtActualHWToKonaTarget	undocumented	
@@ -47909,7 +47909,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x438d30	964	konStippledCFillRects	undocumen
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x439260	160	konCopyClip	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x439300	672	miIntersect	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4395a0	320	cfbAllocatePrivates	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4396e0	2928	kon_loadNfbBitmapGC	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4396e0	2928	kon_loadNfbBitmapGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x43a250	472	nfbStereoImageText16	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x43a890	948	mfbBlackSolidFS	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x43ae20	428	rrmMapWindow	undocumented	
@@ -47949,7 +47949,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x44c040	564	miShapedWindowIn	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44c280	116	miRegionReset	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44c6e0	768	konStereoPolyText8	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44c9e0	292	miCleanupSpanData	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x44cb10	2684	kon_loadNfbOpaqueBitmapGC	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x44cb10	2684	kon_loadNfbOpaqueBitmapGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44d590	96	rrmNeedCID	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44d700	24	nfbGetBestVisualForPEX	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x44d720	284	rrmUnmapWindow	undocumented	
@@ -47969,7 +47969,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x450370	192	rrmUnqueueRequest	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x450430	324	miSetExtents	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x450620	1844	cfb32SegmentSS1RectGeneral	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x450d60	920	nfbInstallHWColormap	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x451160	704	konSolidFS	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x451160	704	konSolidFS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x451f90	272	miFillArcDSetup	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4521e0	468	cfb32ZeroPolyArcSSCopy	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4523c0	608	konQueryHyperpipeConfig	undocumented	
@@ -48023,10 +48023,10 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x465540	120	rrmCreateWindow	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4655c0	104	konSetSpans	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x465630	368	konDestroyGC	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4657a0	104	konTempBlankAllChannels	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x465810	2172	konLineSS	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x465810	2172	konLineSS	documented	docs/open-questions.md#arm-firmware
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x466090	1284	cfb32Tile32FSGeneral	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4665a0	2628	cfb16FillPoly1RectCopy	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x467440	724	konDestroyWindow	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x467440	724	konDestroyWindow	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x467720	352	miRoundJoinFace	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x467880	304	miRegionCreate	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4679b0	1412	cfb16Tile32FSCopy	undocumented	
@@ -48056,13 +48056,13 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x475010	1788	miHandleExposures	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x475710	2876	cfb16ClippedLineGeneral	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x476340	524	rrmValidateCID	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x476570	1736	cfb16Tile32FSGeneral	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x476c40	2700	konInstall24DCColormap	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x476c40	2700	konInstall24DCColormap	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4776d0	1776	cfb16HorzS	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4781a0	52	nfbAbort	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4781e0	8	miRegionExtents	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4781f0	2328	mfbSolidWhiteArea	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x478b10	404	nfbTellGainedMap	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x479030	1732	konDrawOpaqueMonoImage	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x479030	1732	konDrawOpaqueMonoImage	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x479700	4560	mfbDoBitbltXor	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x47aa60	672	konRotateStipple	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x47adc0	668	nfbChangeWindowAttributes	undocumented	
@@ -48070,7 +48070,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x47b060	1048	nfbGetLayerWindow	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x47b480	440	rrmProcessRequestQueue	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x47b640	316	miFillArcSetup	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x47c6f0	152	konTiledCAccelFS	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x47c790	972	kon_loadStipple	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x47c790	972	kon_loadStipple	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x47cb60	1136	nfbMoveWindow	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x47cfd0	4644	cfb16DoBitbltOr	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x47e200	3496	cfb32LineSS	undocumented	
@@ -48097,7 +48097,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x487750	8	miChangeGC	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x487760	2896	cfb16FillBoxTileOddGeneral	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4882b0	1140	miClipSpans	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4888c0	2216	cfb16SegmentSS1RectXor	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x489200	552	konSolidZeroSeg	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x489200	552	konSolidZeroSeg	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x489430	1904	miRegionValidate	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x489c60	472	nfbStereoPolyText8	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x489e40	1496	miLineProjectingCap	undocumented	
@@ -48117,7 +48117,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x4910f0	2284	cfb8LineSS1RectXor	undocumente
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x491cf0	140	miFindMaxBand	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x491f00	564	mfbCopyPlane	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x493180	8	nfbNoopDDATranslateBackingStore	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x495b40	532	kon_loadClipRects	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x495b40	532	kon_loadClipRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x496100	160	konChangeGC	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x496580	112	nfbUninstallColormap	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4965f0	652	rrmDoubleBufferWindow	undocumented	
@@ -48125,13 +48125,13 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x496880	156	miSetZeroLineBias	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x496920	2980	cfb32ClippedLineCopy	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4974d0	2468	cfb16SegmentSS1RectCopy	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x497e80	536	nfbChangeSaveUnder	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4980a0	1144	konDrawSolidRects	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4980a0	1144	konDrawSolidRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x498520	956	mfbSetSpans	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4988e0	1808	miFillGeneralPoly	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x499410	544	cfbPolyFillArcSolidCopy	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x499630	152	miFreeArcCache	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x499820	984	miFillPolygon	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x499c10	2608	konPolyPoint	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x499c10	2608	konPolyPoint	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x49a6d0	468	cfb16ZeroPolyArcSSXor	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x49ac60	148	FreeID	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x49ad00	168	nfbStoreColors	undocumented	
@@ -48161,9 +48161,9 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a3070	520	mfbSolidPP	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a3280	1116	mfbInvertSolidFS	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a36e0	508	nfbPaintWindowBorder	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a3900	3288	nfbImageGlyphBlt	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a45e0	1532	konStore24DCColors	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a45e0	1532	konStore24DCColors	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a4be0	3204	mfbValidateGC	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a6270	640	kon_loadGC	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a6270	640	kon_loadGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a71b0	336	cfb32ImageGlyphBlt8	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a7300	148	cfb32FillRectTileOdd	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a73a0	428	nfbUnmapTree	undocumented	
@@ -48180,12 +48180,12 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a9890	396	miPolyBuildEdge	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4a9a20	2276	mfbTileFS	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4aa410	832	cfb16SolidSpansCopy	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4aa7f0	436	cfb32GetImage	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4aa9b0	916	konSolidFillRects	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4aa9b0	916	konSolidFillRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4ab2d0	220	cfb16FillRectTileOdd	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4ab3b0	2720	nfbMarkOverlappedWindows	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4ac000	60	miDestroyGCOps	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4ac0d0	2572	cfb8SegmentSS1RectGeneral	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4ad7e0	1220	konFillSpansSolid	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4ad7e0	1220	konFillSpansSolid	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4adcb0	348	miSubtract	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4aeaf0	556	cfb16PadPixmap	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4aed20	788	konStereoPolyGlyphBlt	undocumented	
@@ -48197,7 +48197,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x4b0a00	728	cfb16LineSS1Rect	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4b0ce0	2296	cfb32SegmentSS1RectCopy	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4b15e0	1796	mfbPolyPoint	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4b20d0	8	nfbDestroyColormap	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4b20e0	2128	konReadImage	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4b20e0	2128	konReadImage	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4b2930	1152	miPolyGlyphBlt	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4b2db0	1220	konFillSpansTiledCAccel	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4b3430	168	miDisposeSpanGroup	undocumented	
@@ -48264,12 +48264,12 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x4cfa50	492	nfbStereoPolyGlyphBlt	undocumen
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4cfc40	72	cfb16CopyPlane	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4cfc90	468	cfbZeroPolyArcSS8General	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4cfe80	1720	cfbTile32FSGeneral	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d0540	3160	konPolyFillRectSolid	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d0540	3160	konPolyFillRectSolid	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d1c60	2500	mfbSegmentSD	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d2630	76	konFreeFBBlock	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d2d70	472	nfbStereoImageText8	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d3280	480	cfb16UnnaturalTileFS	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d3460	1388	kon_loadTilePlane	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d3460	1388	kon_loadTilePlane	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d3da0	72	miRegionUninit	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d3df0	2112	konCopyWindow	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d4630	976	rrmCreateDefColormap	undocumented	
@@ -48283,7 +48283,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d6300	2092	cfb16BitBlt	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d6b30	440	cfb16GetImage	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d6cf0	844	nfbStereoCopyArea	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d7340	1036	cfb16SolidSpansXor	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d7750	548	konSegmentSS	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d7750	548	konSegmentSS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d7980	564	miMarkOverlappedWindows	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d7bc0	952	nfbOpStippledFillRects	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4d7f80	64	nfbSaveScreen	undocumented	
@@ -48340,7 +48340,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f3090	244	nfbHWColormapScreenInit	undocum
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f3190	2280	cfb16PolyFillRect	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f3a80	288	kon_loadBitmapGC	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f3dd0	596	nfbSetDidFlags	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f4030	560	konCreateWindow	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f4030	560	konCreateWindow	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f4260	296	miChangeClip	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f4390	2360	nfbSolidPolyGlyphBlt	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f4cd0	392	cfbImageGlyphBlt8	undocumented	
@@ -48350,7 +48350,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f5050	524	cfb8SetOpaqueStipple	undocument
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f5260	728	cfbInitializeColormap	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f5540	992	miPolyRectangle	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f5920	28	sgiReleaseCapabilityUnsupported	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f5990	612	kon_loadCachedStipple	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f5990	612	kon_loadCachedStipple	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f5d10	808	cfb32SolidSpansXor	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f6040	5308	miZeroArcSetup	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x4f7790	240	cfbMatchCommon	undocumented	
@@ -48447,7 +48447,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x5225f0	1184	konStereoFillSpans	undocumente
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x522a90	384	konLoadDisplayMode	documented	docs/opengl.md#ioctls
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x522c10	708	cfb32GetSpans	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x522ee0	3596	konTilePatterns	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x523cf0	2468	konStoreColors	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x523cf0	2468	konStoreColors	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x5246a0	3248	mfbImageGlyphBltBlack	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x525350	144	nfbListInstalledHWColormaps	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x525570	2344	miPolyFillRect	undocumented	
@@ -48472,7 +48472,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x52ada0	2636	konTileRects	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x52cc30	4252	konValidateVisual	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x52dcd0	304	nfbInitVisDIDs	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x52de00	1304	cfb16SolidSpansGeneral	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x52e460	1900	konReadFBBlock	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x52e460	1900	konReadFBBlock	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x52ebd0	332	kon_loadImgBitmapGC	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x52f210	8	miCopyGC	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x52f810	3452	kon_loadGeomGC	undocumented	
@@ -48506,7 +48506,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x53bbc0	88	cfbDestroyPixmap	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x53bc60	532	nfbFixupDepths	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x53be80	524	konRecolorCursor	documented	docs/opengl.md#how-the-module-writes-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x53c450	3548	mfbStippleBlackArea	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x53d2e0	5320	konBresD	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x53d2e0	5320	konBresD	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x53eb40	168	konValidateGC	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x53f520	124	rrmWorkProc	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x53f5a0	1776	cfbHorzS	undocumented	
@@ -48518,8 +48518,8 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x540b90	180	rrmValidateTree	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x540c50	468	cfb16ZeroPolyArcSSGeneral	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x540e30	4596	cfbDoBitbltOr	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x542030	1376	cfb32FillRectTile32General	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x542a20	712	konCopyRect	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x542ee0	2288	konBresS	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x542a20	712	konCopyRect	documented	docs/opengl.md#x-server-module-drawing-commands
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x542ee0	2288	konBresS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x5437d0	2460	cfb16LineSS1RectGeneral	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x544170	132	nfbVert	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x5447f0	2792	cfbFillBoxTileOddCopy	undocumented	
@@ -48547,7 +48547,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x5503a0	1308	cfb32HorzS	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x5508c0	1816	cfb32PolyGlyphBlt8	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x550fe0	448	cfbXRotatePixmap	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x5511a0	1964	miFillConvexPoly	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x551950	1200	konDrawPoints	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x551950	1200	konDrawPoints	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x551e00	2676	mfbPolyFillRect	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x552880	1292	miValidateTree	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x552f40	2276	konDrawImage	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
@@ -48589,7 +48589,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x5639f0	816	miSetShape	undocumented
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x563e20	164	miInsertionSort	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x563ed0	1932	cfbFillRectTile32Copy	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x564660	168	konDetachXvc	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x564710	1768	konInstallColormap	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x564710	1768	konInstallColormap	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x564e00	2984	cfbFillRectSolidXor	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x565b30	152	miDestroyClip	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x565bd0	244	miCopyClip	undocumented	
@@ -48616,7 +48616,7 @@ usr/lib/X11/dyDDX/kona.so	n32	65281	0x56c2d0	788	konHyperpipeConfig	documented	d
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x56c7b0	4220	cfbFillRectTile32General	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x56d9c0	68	nfbDestroyHWColormap	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x56da10	788	konStereoImageGlyphBlt	undocumented	
-usr/lib/X11/dyDDX/kona.so	n32	65281	0x56dd30	4124	konSlowLineSS	undocumented	
+usr/lib/X11/dyDDX/kona.so	n32	65281	0x56dd30	4124	konSlowLineSS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x56ed50	9132	konInit	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x571ca0	4716	cfb16DoBitbltCopy	undocumented	
 usr/lib/X11/dyDDX/kona.so	n32	65281	0x572f10	536	SetReservedID	undocumented	
@@ -48704,7 +48704,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x4384b0	1576	konStippledCFillRects	undocum
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x438c40	160	konCopyClip	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x438ce0	672	miIntersect	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x438f80	320	cfbAllocatePrivates	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4390c0	2944	kon_loadNfbBitmapGC	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4390c0	2944	kon_loadNfbBitmapGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x439c40	472	nfbStereoImageText16	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x43a280	948	mfbBlackSolidFS	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x43a810	428	rrmMapWindow	undocumented	
@@ -48744,7 +48744,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x44bbf0	564	miShapedWindowIn	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x44be30	116	miRegionReset	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x44c290	768	konStereoPolyText8	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x44c590	292	miCleanupSpanData	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x44c6c0	2700	kon_loadNfbOpaqueBitmapGC	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x44c6c0	2700	kon_loadNfbOpaqueBitmapGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x44d150	96	rrmNeedCID	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x44d2c0	24	nfbGetBestVisualForPEX	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x44d2e0	284	rrmUnmapWindow	undocumented	
@@ -48764,7 +48764,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x44ff40	192	rrmUnqueueRequest	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x450000	324	miSetExtents	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4501f0	1844	cfb32SegmentSS1RectGeneral	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x450930	920	nfbInstallHWColormap	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x450d30	920	konSolidFS	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x450d30	920	konSolidFS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x451c40	272	miFillArcDSetup	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x451e90	468	cfb32ZeroPolyArcSSCopy	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x452070	608	konQueryHyperpipeConfig	undocumented	
@@ -48818,10 +48818,10 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x4651d0	120	rrmCreateWindow	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x465250	104	konSetSpans	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4652c0	368	konDestroyGC	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x465430	104	konTempBlankAllChannels	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4654a0	2764	konLineSS	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4654a0	2764	konLineSS	documented	docs/open-questions.md#arm-firmware
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x465f70	1284	cfb32Tile32FSGeneral	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x466480	2628	cfb16FillPoly1RectCopy	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x467320	728	konDestroyWindow	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x467320	728	konDestroyWindow	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x467600	352	miRoundJoinFace	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x467760	304	miRegionCreate	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x467890	1412	cfb16Tile32FSCopy	undocumented	
@@ -48851,13 +48851,13 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x475220	1788	miHandleExposures	undocumente
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x475920	2876	cfb16ClippedLineGeneral	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x476550	524	rrmValidateCID	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x476780	1736	cfb16Tile32FSGeneral	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x476e50	31908	konInstall24DCColormap	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x476e50	31908	konInstall24DCColormap	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x47eb00	1776	cfb16HorzS	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x47f5d0	52	nfbAbort	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x47f610	8	miRegionExtents	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x47f620	2328	mfbSolidWhiteArea	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x47ff40	404	nfbTellGainedMap	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x480460	2576	konDrawOpaqueMonoImage	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x480460	2576	konDrawOpaqueMonoImage	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x480e80	4560	mfbDoBitbltXor	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4821e0	672	konRotateStipple	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x482540	668	nfbChangeWindowAttributes	undocumented	
@@ -48865,7 +48865,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x4827e0	1048	nfbGetLayerWindow	undocumente
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x482c00	440	rrmProcessRequestQueue	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x482dc0	316	miFillArcSetup	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x483e70	152	konTiledCAccelFS	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x483f20	1012	kon_loadStipple	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x483f20	1012	kon_loadStipple	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x484320	1136	nfbMoveWindow	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x484790	4644	cfb16DoBitbltOr	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4859c0	3496	cfb32LineSS	undocumented	
@@ -48892,7 +48892,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x48ef40	8	miChangeGC	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x48ef50	2896	cfb16FillBoxTileOddGeneral	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x48faa0	1140	miClipSpans	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4900b0	2216	cfb16SegmentSS1RectXor	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4909f0	576	konSolidZeroSeg	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4909f0	576	konSolidZeroSeg	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x490c30	1904	miRegionValidate	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x491460	472	nfbStereoPolyText8	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x491640	1496	miLineProjectingCap	undocumented	
@@ -48912,7 +48912,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x4988e0	2284	cfb8LineSS1RectXor	undocument
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4994e0	140	miFindMaxBand	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4996f0	564	mfbCopyPlane	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x49a970	8	nfbNoopDDATranslateBackingStore	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x49d330	564	kon_loadClipRects	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x49d330	564	kon_loadClipRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x49d910	160	konChangeGC	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x49dd90	112	nfbUninstallColormap	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x49de00	652	rrmDoubleBufferWindow	undocumented	
@@ -48920,13 +48920,13 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x49e090	156	miSetZeroLineBias	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x49e130	2980	cfb32ClippedLineCopy	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x49ece0	2468	cfb16SegmentSS1RectCopy	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x49f690	536	nfbChangeSaveUnder	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x49f8b0	1748	konDrawSolidRects	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x49f8b0	1748	konDrawSolidRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x49ff90	956	mfbSetSpans	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4a0350	1808	miFillGeneralPoly	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4a0e80	544	cfbPolyFillArcSolidCopy	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4a10a0	152	miFreeArcCache	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4a1290	984	miFillPolygon	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4a1680	3612	konPolyPoint	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4a1680	3612	konPolyPoint	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4a2530	468	cfb16ZeroPolyArcSSXor	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4a2ac0	148	FreeID	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4a2b60	168	nfbStoreColors	undocumented	
@@ -48956,9 +48956,9 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ab310	520	mfbSolidPP	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ab520	1116	mfbInvertSolidFS	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ab980	508	nfbPaintWindowBorder	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4abb80	3288	nfbImageGlyphBlt	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ac860	1556	konStore24DCColors	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ac860	1556	konStore24DCColors	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ace80	3204	mfbValidateGC	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ae510	656	kon_loadGC	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ae510	656	kon_loadGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4af480	336	cfb32ImageGlyphBlt8	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4af5d0	148	cfb32FillRectTileOdd	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4af670	428	nfbUnmapTree	undocumented	
@@ -48975,12 +48975,12 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b1b70	396	miPolyBuildEdge	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b1d00	2276	mfbTileFS	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b26f0	832	cfb16SolidSpansCopy	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b2ad0	436	cfb32GetImage	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b2c90	1528	konSolidFillRects	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b2c90	1528	konSolidFillRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b3810	220	cfb16FillRectTileOdd	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b38f0	2720	nfbMarkOverlappedWindows	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b4540	60	miDestroyGCOps	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b4610	2572	cfb8SegmentSS1RectGeneral	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b5d20	1436	konFillSpansSolid	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b5d20	1436	konFillSpansSolid	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b62c0	348	miSubtract	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b7100	556	cfb16PadPixmap	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b7330	788	konStereoPolyGlyphBlt	undocumented	
@@ -48992,7 +48992,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b9020	728	cfb16LineSS1Rect	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b9300	2296	cfb32SegmentSS1RectCopy	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4b9c00	1796	mfbPolyPoint	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ba940	8	nfbDestroyColormap	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ba950	2140	konReadImage	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ba950	2140	konReadImage	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4bb1b0	1152	miPolyGlyphBlt	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4bb630	1436	konFillSpansTiledCAccel	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4bbd80	168	miDisposeSpanGroup	undocumented	
@@ -49059,12 +49059,12 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x4d8650	492	nfbStereoPolyGlyphBlt	undocume
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4d8840	72	cfb16CopyPlane	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4d8890	468	cfbZeroPolyArcSS8General	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4d8a70	1720	cfbTile32FSGeneral	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4d9130	3828	konPolyFillRectSolid	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4d9130	3828	konPolyFillRectSolid	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4daaf0	2500	mfbSegmentSD	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4db4c0	76	konFreeFBBlock	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4dbc00	472	nfbStereoImageText8	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4dc100	480	cfb16UnnaturalTileFS	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4dc2e0	1428	kon_loadTilePlane	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4dc2e0	1428	kon_loadTilePlane	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4dcc50	72	miRegionUninit	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4dcca0	2112	konCopyWindow	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4dd4e0	976	rrmCreateDefColormap	undocumented	
@@ -49078,7 +49078,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x4df1b0	2092	cfb16BitBlt	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4df9e0	440	cfb16GetImage	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4dfba0	844	nfbStereoCopyArea	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4e01f0	1036	cfb16SolidSpansXor	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4e0600	556	konSegmentSS	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4e0600	556	konSegmentSS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4e0830	564	miMarkOverlappedWindows	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4e0a70	952	nfbOpStippledFillRects	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4e0e30	64	nfbSaveScreen	undocumented	
@@ -49135,7 +49135,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fc010	244	nfbHWColormapScreenInit	undocu
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fc110	2280	cfb16PolyFillRect	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fca00	296	kon_loadBitmapGC	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fcd60	596	nfbSetDidFlags	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fcfc0	564	konCreateWindow	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fcfc0	564	konCreateWindow	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fd200	296	miChangeClip	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fd330	2360	nfbSolidPolyGlyphBlt	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fdc70	392	cfbImageGlyphBlt8	undocumented	
@@ -49145,7 +49145,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fdff0	524	cfb8SetOpaqueStipple	undocumen
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fe200	728	cfbInitializeColormap	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fe4e0	992	miPolyRectangle	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fe8c0	28	sgiReleaseCapabilityUnsupported	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fe930	1712	kon_loadCachedStipple	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x4fe930	1712	kon_loadCachedStipple	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ff0f0	808	cfb32SolidSpansXor	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x4ff420	5308	miZeroArcSetup	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x500b70	240	cfbMatchCommon	undocumented	
@@ -49242,7 +49242,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x52c470	1184	konStereoFillSpans	undocument
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x52c910	384	konLoadDisplayMode	documented	docs/opengl.md#ioctls
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x52ca90	708	cfb32GetSpans	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x52cd60	3596	konTilePatterns	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x52db70	3156	konStoreColors	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x52db70	3156	konStoreColors	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x52e7d0	3248	mfbImageGlyphBltBlack	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x52f480	144	nfbListInstalledHWColormaps	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x52f6a0	2344	miPolyFillRect	undocumented	
@@ -49267,7 +49267,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x534ed0	2636	konTileRects	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x536d50	4252	konValidateVisual	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x537df0	304	nfbInitVisDIDs	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x537f20	1304	cfb16SolidSpansGeneral	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x538580	1924	konReadFBBlock	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x538580	1924	konReadFBBlock	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x538d10	340	kon_loadImgBitmapGC	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x539360	8	miCopyGC	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x539960	3460	kon_loadGeomGC	undocumented	
@@ -49301,7 +49301,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x545d30	88	cfbDestroyPixmap	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x545dd0	532	nfbFixupDepths	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x545ff0	540	konRecolorCursor	documented	docs/opengl.md#how-the-module-writes-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x5465d0	3548	mfbStippleBlackArea	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x547430	8160	konBresD	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x547430	8160	konBresD	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x549a00	168	konValidateGC	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x54a3f0	124	rrmWorkProc	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x54a470	1776	cfbHorzS	undocumented	
@@ -49313,8 +49313,8 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x54ba60	180	rrmValidateTree	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x54bb20	468	cfb16ZeroPolyArcSSGeneral	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x54bd00	4596	cfbDoBitbltOr	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x54cf10	1376	cfb32FillRectTile32General	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x54d900	736	konCopyRect	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x54ddd0	3704	konBresS	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x54d900	736	konCopyRect	documented	docs/opengl.md#x-server-module-drawing-commands
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x54ddd0	3704	konBresS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x54ec50	2460	cfb16LineSS1RectGeneral	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x54f5f0	132	nfbVert	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x54fc80	2792	cfbFillBoxTileOddCopy	undocumented	
@@ -49342,7 +49342,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x55b830	1308	cfb32HorzS	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x55bd50	1816	cfb32PolyGlyphBlt8	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x55c470	448	cfbXRotatePixmap	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x55c630	1964	miFillConvexPoly	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x55cde0	1920	konDrawPoints	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x55cde0	1920	konDrawPoints	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x55d560	2676	mfbPolyFillRect	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x55dfe0	1292	miValidateTree	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x55e6a0	3944	konDrawImage	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
@@ -49384,7 +49384,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x56fb10	816	miSetShape	undocumented
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x56ff40	164	miInsertionSort	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x56fff0	1932	cfbFillRectTile32Copy	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x570780	168	konDetachXvc	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x570830	2432	konInstallColormap	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x570830	2432	konInstallColormap	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x5711b0	2984	cfbFillRectSolidXor	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x571ee0	152	miDestroyClip	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x571f80	244	miCopyClip	undocumented	
@@ -49411,7 +49411,7 @@ usr/lib/X11/dyDDX/konad.so	n32	65281	0x578680	788	konHyperpipeConfig	documented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x578b60	4220	cfbFillRectTile32General	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x579d70	68	nfbDestroyHWColormap	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x579dc0	788	konStereoImageGlyphBlt	undocumented	
-usr/lib/X11/dyDDX/konad.so	n32	65281	0x57a0e0	4164	konSlowLineSS	undocumented	
+usr/lib/X11/dyDDX/konad.so	n32	65281	0x57a0e0	4164	konSlowLineSS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x57b130	9132	konInit	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x57e080	4716	cfb16DoBitbltCopy	undocumented	
 usr/lib/X11/dyDDX/konad.so	n32	65281	0x57f2f0	536	SetReservedID	undocumented	
@@ -49499,7 +49499,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b84b0	1576	konStippledCFillRects	undocu
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b8c40	160	konCopyClip	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b8ce0	672	miIntersect	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b8f80	320	cfbAllocatePrivates	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b90c0	2944	kon_loadNfbBitmapGC	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b90c0	2944	kon_loadNfbBitmapGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13b9c40	472	nfbStereoImageText16	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13ba280	948	mfbBlackSolidFS	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13ba810	428	rrmMapWindow	undocumented	
@@ -49539,7 +49539,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cbbf0	564	miShapedWindowIn	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cbe30	116	miRegionReset	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cc290	768	konStereoPolyText8	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cc590	292	miCleanupSpanData	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cc6c0	2700	kon_loadNfbOpaqueBitmapGC	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cc6c0	2700	kon_loadNfbOpaqueBitmapGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cd150	96	rrmNeedCID	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cd2c0	24	nfbGetBestVisualForPEX	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cd2e0	284	rrmUnmapWindow	undocumented	
@@ -49559,7 +49559,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x13cff40	192	rrmUnqueueRequest	undocumente
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13d0000	324	miSetExtents	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13d01f0	1844	cfb32SegmentSS1RectGeneral	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13d0930	920	nfbInstallHWColormap	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x13d0d30	920	konSolidFS	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x13d0d30	920	konSolidFS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13d1c40	272	miFillArcDSetup	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13d1e90	468	cfb32ZeroPolyArcSSCopy	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13d2070	608	konQueryHyperpipeConfig	undocumented	
@@ -49613,10 +49613,10 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e51d0	120	rrmCreateWindow	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e5250	104	konSetSpans	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e52c0	368	konDestroyGC	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e5430	104	konTempBlankAllChannels	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e54a0	2764	konLineSS	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e54a0	2764	konLineSS	documented	docs/open-questions.md#arm-firmware
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e5f70	1284	cfb32Tile32FSGeneral	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e6480	2628	cfb16FillPoly1RectCopy	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e7320	728	konDestroyWindow	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e7320	728	konDestroyWindow	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e7600	352	miRoundJoinFace	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e7760	304	miRegionCreate	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13e7890	1412	cfb16Tile32FSCopy	undocumented	
@@ -49646,13 +49646,13 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x13f5220	1788	miHandleExposures	undocument
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13f5920	2876	cfb16ClippedLineGeneral	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13f6550	524	rrmValidateCID	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13f6780	1736	cfb16Tile32FSGeneral	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x13f6e50	31908	konInstall24DCColormap	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x13f6e50	31908	konInstall24DCColormap	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13feb00	1776	cfb16HorzS	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13ff5d0	52	nfbAbort	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13ff610	8	miRegionExtents	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13ff620	2328	mfbSolidWhiteArea	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x13fff40	404	nfbTellGainedMap	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x1400460	2576	konDrawOpaqueMonoImage	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x1400460	2576	konDrawOpaqueMonoImage	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1400e80	4560	mfbDoBitbltXor	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14021e0	672	konRotateStipple	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1402540	668	nfbChangeWindowAttributes	undocumented	
@@ -49660,7 +49660,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x14027e0	1048	nfbGetLayerWindow	undocument
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1402c00	440	rrmProcessRequestQueue	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1402dc0	316	miFillArcSetup	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1403e70	152	konTiledCAccelFS	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x1403f20	1012	kon_loadStipple	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x1403f20	1012	kon_loadStipple	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1404320	1136	nfbMoveWindow	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1404790	4644	cfb16DoBitbltOr	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14059c0	3496	cfb32LineSS	undocumented	
@@ -49687,7 +49687,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x140ef40	8	miChangeGC	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x140ef50	2896	cfb16FillBoxTileOddGeneral	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x140faa0	1140	miClipSpans	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14100b0	2216	cfb16SegmentSS1RectXor	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x14109f0	576	konSolidZeroSeg	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x14109f0	576	konSolidZeroSeg	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1410c30	1904	miRegionValidate	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1411460	472	nfbStereoPolyText8	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1411640	1496	miLineProjectingCap	undocumented	
@@ -49707,7 +49707,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x14188e0	2284	cfb8LineSS1RectXor	undocumen
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14194e0	140	miFindMaxBand	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14196f0	564	mfbCopyPlane	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x141a970	8	nfbNoopDDATranslateBackingStore	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x141d330	564	kon_loadClipRects	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x141d330	564	kon_loadClipRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x141d910	160	konChangeGC	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x141dd90	112	nfbUninstallColormap	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x141de00	652	rrmDoubleBufferWindow	undocumented	
@@ -49715,13 +49715,13 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x141e090	156	miSetZeroLineBias	undocumente
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x141e130	2980	cfb32ClippedLineCopy	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x141ece0	2468	cfb16SegmentSS1RectCopy	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x141f690	536	nfbChangeSaveUnder	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x141f8b0	1748	konDrawSolidRects	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x141f8b0	1748	konDrawSolidRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x141ff90	956	mfbSetSpans	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1420350	1808	miFillGeneralPoly	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1420e80	544	cfbPolyFillArcSolidCopy	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14210a0	152	miFreeArcCache	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1421290	984	miFillPolygon	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x1421680	3612	konPolyPoint	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x1421680	3612	konPolyPoint	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1422530	468	cfb16ZeroPolyArcSSXor	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1422ac0	148	FreeID	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1422b60	168	nfbStoreColors	undocumented	
@@ -49751,9 +49751,9 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x142b310	520	mfbSolidPP	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x142b520	1116	mfbInvertSolidFS	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x142b980	508	nfbPaintWindowBorder	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x142bb80	3288	nfbImageGlyphBlt	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x142c860	1556	konStore24DCColors	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x142c860	1556	konStore24DCColors	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x142ce80	3204	mfbValidateGC	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x142e510	656	kon_loadGC	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x142e510	656	kon_loadGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x142f480	336	cfb32ImageGlyphBlt8	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x142f5d0	148	cfb32FillRectTileOdd	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x142f670	428	nfbUnmapTree	undocumented	
@@ -49770,12 +49770,12 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x1431b70	396	miPolyBuildEdge	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1431d00	2276	mfbTileFS	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14326f0	832	cfb16SolidSpansCopy	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1432ad0	436	cfb32GetImage	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x1432c90	1528	konSolidFillRects	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x1432c90	1528	konSolidFillRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1433810	220	cfb16FillRectTileOdd	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14338f0	2720	nfbMarkOverlappedWindows	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1434540	60	miDestroyGCOps	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1434610	2572	cfb8SegmentSS1RectGeneral	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x1435d20	1436	konFillSpansSolid	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x1435d20	1436	konFillSpansSolid	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14362c0	348	miSubtract	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1437100	556	cfb16PadPixmap	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1437330	788	konStereoPolyGlyphBlt	undocumented	
@@ -49787,7 +49787,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x1439020	728	cfb16LineSS1Rect	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1439300	2296	cfb32SegmentSS1RectCopy	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1439c00	1796	mfbPolyPoint	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x143a940	8	nfbDestroyColormap	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x143a950	2140	konReadImage	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x143a950	2140	konReadImage	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x143b1b0	1152	miPolyGlyphBlt	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x143b630	1436	konFillSpansTiledCAccel	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x143bd80	168	miDisposeSpanGroup	undocumented	
@@ -49854,12 +49854,12 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x1458650	492	nfbStereoPolyGlyphBlt	undocum
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1458840	72	cfb16CopyPlane	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1458890	468	cfbZeroPolyArcSS8General	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1458a70	1720	cfbTile32FSGeneral	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x1459130	3828	konPolyFillRectSolid	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x1459130	3828	konPolyFillRectSolid	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x145aaf0	2500	mfbSegmentSD	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x145b4c0	76	konFreeFBBlock	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x145bc00	472	nfbStereoImageText8	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x145c100	480	cfb16UnnaturalTileFS	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x145c2e0	1428	kon_loadTilePlane	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x145c2e0	1428	kon_loadTilePlane	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x145cc50	72	miRegionUninit	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x145cca0	2112	konCopyWindow	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x145d4e0	976	rrmCreateDefColormap	undocumented	
@@ -49873,7 +49873,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x145f1b0	2092	cfb16BitBlt	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x145f9e0	440	cfb16GetImage	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x145fba0	844	nfbStereoCopyArea	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14601f0	1036	cfb16SolidSpansXor	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x1460600	556	konSegmentSS	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x1460600	556	konSegmentSS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1460830	564	miMarkOverlappedWindows	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1460a70	952	nfbOpStippledFillRects	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1460e30	64	nfbSaveScreen	undocumented	
@@ -49930,7 +49930,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x147c010	244	nfbHWColormapScreenInit	undoc
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x147c110	2280	cfb16PolyFillRect	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x147ca00	296	kon_loadBitmapGC	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x147cd60	596	nfbSetDidFlags	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x147cfc0	564	konCreateWindow	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x147cfc0	564	konCreateWindow	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x147d200	296	miChangeClip	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x147d330	2360	nfbSolidPolyGlyphBlt	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x147dc70	392	cfbImageGlyphBlt8	undocumented	
@@ -49940,7 +49940,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x147dff0	524	cfb8SetOpaqueStipple	undocume
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x147e200	728	cfbInitializeColormap	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x147e4e0	992	miPolyRectangle	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x147e8c0	28	sgiReleaseCapabilityUnsupported	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x147e930	1712	kon_loadCachedStipple	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x147e930	1712	kon_loadCachedStipple	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x147f0f0	808	cfb32SolidSpansXor	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x147f420	5308	miZeroArcSetup	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x1480b70	240	cfbMatchCommon	undocumented	
@@ -50037,7 +50037,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x14ac470	1184	konStereoFillSpans	undocumen
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14ac910	384	konLoadDisplayMode	documented	docs/opengl.md#ioctls
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14aca90	708	cfb32GetSpans	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14acd60	3596	konTilePatterns	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x14adb70	3156	konStoreColors	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x14adb70	3156	konStoreColors	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14ae7d0	3248	mfbImageGlyphBltBlack	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14af480	144	nfbListInstalledHWColormaps	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14af6a0	2344	miPolyFillRect	undocumented	
@@ -50062,7 +50062,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x14b4ed0	2636	konTileRects	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14b6d50	4252	konValidateVisual	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14b7df0	304	nfbInitVisDIDs	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14b7f20	1304	cfb16SolidSpansGeneral	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x14b8580	1924	konReadFBBlock	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x14b8580	1924	konReadFBBlock	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14b8d10	340	kon_loadImgBitmapGC	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14b9360	8	miCopyGC	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14b9960	3460	kon_loadGeomGC	undocumented	
@@ -50096,7 +50096,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x14c5d30	88	cfbDestroyPixmap	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14c5dd0	532	nfbFixupDepths	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14c5ff0	540	konRecolorCursor	documented	docs/opengl.md#how-the-module-writes-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14c65d0	3548	mfbStippleBlackArea	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x14c7430	8160	konBresD	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x14c7430	8160	konBresD	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14c9a00	168	konValidateGC	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14ca3f0	124	rrmWorkProc	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14ca470	1776	cfbHorzS	undocumented	
@@ -50108,8 +50108,8 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x14cba60	180	rrmValidateTree	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14cbb20	468	cfb16ZeroPolyArcSSGeneral	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14cbd00	4596	cfbDoBitbltOr	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14ccf10	1376	cfb32FillRectTile32General	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x14cd900	736	konCopyRect	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x14cddd0	3704	konBresS	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x14cd900	736	konCopyRect	documented	docs/opengl.md#x-server-module-drawing-commands
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x14cddd0	3704	konBresS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14cec50	2460	cfb16LineSS1RectGeneral	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14cf5f0	132	nfbVert	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14cfc80	2792	cfbFillBoxTileOddCopy	undocumented	
@@ -50137,7 +50137,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x14db830	1308	cfb32HorzS	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14dbd50	1816	cfb32PolyGlyphBlt8	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14dc470	448	cfbXRotatePixmap	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14dc630	1964	miFillConvexPoly	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x14dcde0	1920	konDrawPoints	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x14dcde0	1920	konDrawPoints	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14dd560	2676	mfbPolyFillRect	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14ddfe0	1292	miValidateTree	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14de6c0	3932	konDrawImage	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
@@ -50179,7 +50179,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x14efb30	816	miSetShape	undocumented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14eff60	164	miInsertionSort	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f0010	1932	cfbFillRectTile32Copy	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f07a0	168	konDetachXvc	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f0850	2432	konInstallColormap	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f0850	2432	konInstallColormap	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f11d0	2984	cfbFillRectSolidXor	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f1f00	152	miDestroyClip	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f1fa0	244	miCopyClip	undocumented	
@@ -50206,7 +50206,7 @@ usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f8680	788	konHyperpipeConfig	documented
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f8b60	4220	cfbFillRectTile32General	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f9d70	68	nfbDestroyHWColormap	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14f9dc0	788	konStereoImageGlyphBlt	undocumented	
-usr/lib/X11/dyDDX/konal.so	n32	65281	0x14fa0e0	4164	konSlowLineSS	undocumented	
+usr/lib/X11/dyDDX/konal.so	n32	65281	0x14fa0e0	4164	konSlowLineSS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14fb130	9132	konInit	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14fe080	4716	cfb16DoBitbltCopy	undocumented	
 usr/lib/X11/dyDDX/konal.so	n32	65281	0x14ff2f0	536	SetReservedID	undocumented	
@@ -50294,7 +50294,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x4384b0	1576	konStippledCFillRects	undocum
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x438c40	160	konCopyClip	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x438ce0	672	miIntersect	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x438f80	320	cfbAllocatePrivates	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4390c0	2944	kon_loadNfbBitmapGC	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4390c0	2944	kon_loadNfbBitmapGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x439c40	472	nfbStereoImageText16	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x43a280	948	mfbBlackSolidFS	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x43a810	428	rrmMapWindow	undocumented	
@@ -50334,7 +50334,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x44bbf0	564	miShapedWindowIn	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x44be30	116	miRegionReset	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x44c290	768	konStereoPolyText8	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x44c590	292	miCleanupSpanData	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x44c6c0	2700	kon_loadNfbOpaqueBitmapGC	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x44c6c0	2700	kon_loadNfbOpaqueBitmapGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x44d150	96	rrmNeedCID	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x44d2c0	24	nfbGetBestVisualForPEX	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x44d2e0	284	rrmUnmapWindow	undocumented	
@@ -50354,7 +50354,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x44ff40	192	rrmUnqueueRequest	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x450000	324	miSetExtents	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4501f0	1844	cfb32SegmentSS1RectGeneral	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x450930	920	nfbInstallHWColormap	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x450d30	920	konSolidFS	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x450d30	920	konSolidFS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x451c40	272	miFillArcDSetup	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x451e90	468	cfb32ZeroPolyArcSSCopy	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x452070	608	konQueryHyperpipeConfig	undocumented	
@@ -50408,10 +50408,10 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x4651d0	120	rrmCreateWindow	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x465250	104	konSetSpans	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4652c0	368	konDestroyGC	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x465430	104	konTempBlankAllChannels	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4654a0	2764	konLineSS	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4654a0	2764	konLineSS	documented	docs/open-questions.md#arm-firmware
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x465f70	1284	cfb32Tile32FSGeneral	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x466480	2628	cfb16FillPoly1RectCopy	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x467320	728	konDestroyWindow	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x467320	728	konDestroyWindow	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x467600	352	miRoundJoinFace	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x467760	304	miRegionCreate	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x467890	1412	cfb16Tile32FSCopy	undocumented	
@@ -50441,13 +50441,13 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x475220	1788	miHandleExposures	undocumente
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x475920	2876	cfb16ClippedLineGeneral	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x476550	524	rrmValidateCID	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x476780	1736	cfb16Tile32FSGeneral	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x476e50	31908	konInstall24DCColormap	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x476e50	31908	konInstall24DCColormap	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x47eb00	1776	cfb16HorzS	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x47f5d0	52	nfbAbort	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x47f610	8	miRegionExtents	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x47f620	2328	mfbSolidWhiteArea	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x47ff40	404	nfbTellGainedMap	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x480460	2576	konDrawOpaqueMonoImage	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x480460	2576	konDrawOpaqueMonoImage	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x480e80	4560	mfbDoBitbltXor	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4821e0	672	konRotateStipple	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x482540	668	nfbChangeWindowAttributes	undocumented	
@@ -50455,7 +50455,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x4827e0	1048	nfbGetLayerWindow	undocumente
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x482c00	440	rrmProcessRequestQueue	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x482dc0	316	miFillArcSetup	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x483e70	152	konTiledCAccelFS	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x483f20	1012	kon_loadStipple	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x483f20	1012	kon_loadStipple	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x484320	1136	nfbMoveWindow	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x484790	4644	cfb16DoBitbltOr	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4859c0	3496	cfb32LineSS	undocumented	
@@ -50482,7 +50482,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x48ef40	8	miChangeGC	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x48ef50	2896	cfb16FillBoxTileOddGeneral	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x48faa0	1140	miClipSpans	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4900b0	2216	cfb16SegmentSS1RectXor	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4909f0	576	konSolidZeroSeg	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4909f0	576	konSolidZeroSeg	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x490c30	1904	miRegionValidate	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x491460	472	nfbStereoPolyText8	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x491640	1496	miLineProjectingCap	undocumented	
@@ -50502,7 +50502,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x4988e0	2284	cfb8LineSS1RectXor	undocument
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4994e0	140	miFindMaxBand	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4996f0	564	mfbCopyPlane	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x49a970	8	nfbNoopDDATranslateBackingStore	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x49d330	564	kon_loadClipRects	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x49d330	564	kon_loadClipRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x49d910	160	konChangeGC	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x49dd90	112	nfbUninstallColormap	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x49de00	652	rrmDoubleBufferWindow	undocumented	
@@ -50510,13 +50510,13 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x49e090	156	miSetZeroLineBias	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x49e130	2980	cfb32ClippedLineCopy	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x49ece0	2468	cfb16SegmentSS1RectCopy	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x49f690	536	nfbChangeSaveUnder	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x49f8b0	1748	konDrawSolidRects	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x49f8b0	1748	konDrawSolidRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x49ff90	956	mfbSetSpans	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4a0350	1808	miFillGeneralPoly	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4a0e80	544	cfbPolyFillArcSolidCopy	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4a10a0	152	miFreeArcCache	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4a1290	984	miFillPolygon	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4a1680	3612	konPolyPoint	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4a1680	3612	konPolyPoint	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4a2530	468	cfb16ZeroPolyArcSSXor	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4a2ac0	148	FreeID	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4a2b60	168	nfbStoreColors	undocumented	
@@ -50546,9 +50546,9 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ab310	520	mfbSolidPP	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ab520	1116	mfbInvertSolidFS	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ab980	508	nfbPaintWindowBorder	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4abb80	3288	nfbImageGlyphBlt	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ac860	1556	konStore24DCColors	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ac860	1556	konStore24DCColors	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ace80	3204	mfbValidateGC	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ae510	656	kon_loadGC	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ae510	656	kon_loadGC	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4af480	336	cfb32ImageGlyphBlt8	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4af5d0	148	cfb32FillRectTileOdd	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4af670	428	nfbUnmapTree	undocumented	
@@ -50565,12 +50565,12 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b1b70	396	miPolyBuildEdge	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b1d00	2276	mfbTileFS	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b26f0	832	cfb16SolidSpansCopy	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b2ad0	436	cfb32GetImage	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b2c90	1528	konSolidFillRects	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b2c90	1528	konSolidFillRects	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b3810	220	cfb16FillRectTileOdd	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b38f0	2720	nfbMarkOverlappedWindows	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b4540	60	miDestroyGCOps	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b4610	2572	cfb8SegmentSS1RectGeneral	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b5d20	1436	konFillSpansSolid	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b5d20	1436	konFillSpansSolid	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b62c0	348	miSubtract	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b7100	556	cfb16PadPixmap	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b7330	788	konStereoPolyGlyphBlt	undocumented	
@@ -50582,7 +50582,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b9020	728	cfb16LineSS1Rect	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b9300	2296	cfb32SegmentSS1RectCopy	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4b9c00	1796	mfbPolyPoint	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ba940	8	nfbDestroyColormap	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ba950	2140	konReadImage	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ba950	2140	konReadImage	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4bb1b0	1152	miPolyGlyphBlt	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4bb630	1436	konFillSpansTiledCAccel	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4bbd80	168	miDisposeSpanGroup	undocumented	
@@ -50649,12 +50649,12 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x4d8650	492	nfbStereoPolyGlyphBlt	undocume
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4d8840	72	cfb16CopyPlane	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4d8890	468	cfbZeroPolyArcSS8General	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4d8a70	1720	cfbTile32FSGeneral	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4d9130	3828	konPolyFillRectSolid	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4d9130	3828	konPolyFillRectSolid	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4daaf0	2500	mfbSegmentSD	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4db4c0	76	konFreeFBBlock	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4dbc00	472	nfbStereoImageText8	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4dc100	480	cfb16UnnaturalTileFS	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4dc2e0	1428	kon_loadTilePlane	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4dc2e0	1428	kon_loadTilePlane	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4dcc50	72	miRegionUninit	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4dcca0	2112	konCopyWindow	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4dd4e0	976	rrmCreateDefColormap	undocumented	
@@ -50668,7 +50668,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x4df1b0	2092	cfb16BitBlt	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4df9e0	440	cfb16GetImage	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4dfba0	844	nfbStereoCopyArea	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4e01f0	1036	cfb16SolidSpansXor	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4e0600	556	konSegmentSS	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4e0600	556	konSegmentSS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4e0830	564	miMarkOverlappedWindows	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4e0a70	952	nfbOpStippledFillRects	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4e0e30	64	nfbSaveScreen	undocumented	
@@ -50725,7 +50725,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fc010	244	nfbHWColormapScreenInit	undocu
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fc110	2280	cfb16PolyFillRect	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fca00	296	kon_loadBitmapGC	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fcd60	596	nfbSetDidFlags	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fcfc0	564	konCreateWindow	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fcfc0	564	konCreateWindow	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fd200	296	miChangeClip	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fd330	2360	nfbSolidPolyGlyphBlt	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fdc70	392	cfbImageGlyphBlt8	undocumented	
@@ -50735,7 +50735,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fdff0	524	cfb8SetOpaqueStipple	undocumen
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fe200	728	cfbInitializeColormap	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fe4e0	992	miPolyRectangle	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fe8c0	28	sgiReleaseCapabilityUnsupported	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fe930	1712	kon_loadCachedStipple	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x4fe930	1712	kon_loadCachedStipple	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ff0f0	808	cfb32SolidSpansXor	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x4ff420	5308	miZeroArcSetup	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x500b70	240	cfbMatchCommon	undocumented	
@@ -50832,7 +50832,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x52c470	1184	konStereoFillSpans	undocument
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x52c910	384	konLoadDisplayMode	documented	docs/opengl.md#ioctls
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x52ca90	708	cfb32GetSpans	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x52cd60	3596	konTilePatterns	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x52db70	3156	konStoreColors	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x52db70	3156	konStoreColors	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x52e7d0	3248	mfbImageGlyphBltBlack	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x52f480	144	nfbListInstalledHWColormaps	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x52f6a0	2344	miPolyFillRect	undocumented	
@@ -50857,7 +50857,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x534ed0	2636	konTileRects	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x536d50	4252	konValidateVisual	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x537df0	304	nfbInitVisDIDs	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x537f20	1304	cfb16SolidSpansGeneral	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x538580	1924	konReadFBBlock	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x538580	1924	konReadFBBlock	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x538d10	340	kon_loadImgBitmapGC	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x539360	8	miCopyGC	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x539960	3460	kon_loadGeomGC	undocumented	
@@ -50891,7 +50891,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x545d30	88	cfbDestroyPixmap	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x545dd0	532	nfbFixupDepths	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x545ff0	540	konRecolorCursor	documented	docs/opengl.md#how-the-module-writes-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x5465d0	3548	mfbStippleBlackArea	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x547430	8160	konBresD	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x547430	8160	konBresD	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x549a00	168	konValidateGC	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x54a3f0	124	rrmWorkProc	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x54a470	1776	cfbHorzS	undocumented	
@@ -50903,8 +50903,8 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x54ba60	180	rrmValidateTree	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x54bb20	468	cfb16ZeroPolyArcSSGeneral	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x54bd00	4596	cfbDoBitbltOr	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x54cf10	1376	cfb32FillRectTile32General	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x54d900	736	konCopyRect	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x54ddd0	3704	konBresS	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x54d900	736	konCopyRect	documented	docs/opengl.md#x-server-module-drawing-commands
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x54ddd0	3704	konBresS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x54ec50	2460	cfb16LineSS1RectGeneral	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x54f5f0	132	nfbVert	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x54fc80	2792	cfbFillBoxTileOddCopy	undocumented	
@@ -50932,7 +50932,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x55b830	1308	cfb32HorzS	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x55bd50	1816	cfb32PolyGlyphBlt8	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x55c470	448	cfbXRotatePixmap	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x55c630	1964	miFillConvexPoly	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x55cde0	1920	konDrawPoints	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x55cde0	1920	konDrawPoints	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x55d560	2676	mfbPolyFillRect	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x55dfe0	1292	miValidateTree	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x55e6c0	3932	konDrawImage	documented	docs/kernel.md#multi-vector-writes-kona_dmawrite
@@ -50974,7 +50974,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x56fb30	816	miSetShape	undocumented
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x56ff60	164	miInsertionSort	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x570010	1932	cfbFillRectTile32Copy	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x5707a0	168	konDetachXvc	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x570850	2432	konInstallColormap	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x570850	2432	konInstallColormap	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x5711d0	2984	cfbFillRectSolidXor	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x571f00	152	miDestroyClip	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x571fa0	244	miCopyClip	undocumented	
@@ -51001,7 +51001,7 @@ usr/lib/X11/dyDDX/konas.so	n32	65281	0x578680	788	konHyperpipeConfig	documented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x578b60	4220	cfbFillRectTile32General	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x579d70	68	nfbDestroyHWColormap	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x579dc0	788	konStereoImageGlyphBlt	undocumented	
-usr/lib/X11/dyDDX/konas.so	n32	65281	0x57a0e0	4164	konSlowLineSS	undocumented	
+usr/lib/X11/dyDDX/konas.so	n32	65281	0x57a0e0	4164	konSlowLineSS	documented	docs/opengl.md#x-server-module-drawing-commands
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x57b130	9132	konInit	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x57e080	4716	cfb16DoBitbltCopy	undocumented	
 usr/lib/X11/dyDDX/konas.so	n32	65281	0x57f2f0	536	SetReservedID	undocumented	

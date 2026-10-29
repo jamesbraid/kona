@@ -93,7 +93,7 @@ arm1.u	symbol (flags 5)	0x04045dec	NIC_dgopt_type		documented	ucode/dg.md#option
 arm1.u	symbol (flags 5)	0x04045df0	NIC_clock_mhz		undocumented	
 arm1.u	symbol (flags 5)	0x04045df4	NIC_rm_nic		undocumented	
 arm1.u	symbol (flags 5)	0x04045df8	NIC_rm_config		undocumented	
-arm1.u	symbol (flags 5)	0x04045dfc	saved_regs_mem		undocumented	
+arm1.u	symbol (flags 5)	0x04045dfc	saved_regs_mem		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 5)	0x04045e4c	saved_hipState_mem		undocumented	
 arm1.u	symbol (flags 5)	0x04045e80	stored_gedstate		undocumented	
 arm1.u	symbol (flags 5)	0x04045e84	stored_gefifo		undocumented	
@@ -107,7 +107,7 @@ arm1.u	symbol (flags 5)	0x04045ea0	load_nopipe		undocumented
 arm1.u	symbol (flags 5)	0x04045ea4	geFifoEntry		undocumented	
 arm1.u	symbol (flags 5)	0x04045ea8	geRegsEntry		undocumented	
 arm1.u	symbol (flags 4)	0x04045eac	context		undocumented	
-arm1.u	symbol (flags 5)	0x04046fd8	gecomm_pnum		undocumented	
+arm1.u	symbol (flags 5)	0x04046fd8	gecomm_pnum		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 5)	0x04046fdc	gecomm_poff		undocumented	
 arm1.u	symbol (flags 5)	0x04046fe0	gecomm_len		undocumented	
 arm1.u	symbol (flags 5)	0x04046fe4	f3_war		undocumented	
@@ -481,13 +481,13 @@ arm1.u	symbol (flags 3)	0x0c000328	hipctl		undocumented
 arm1.u	symbol (flags 3)	0x0c000328	vector_end		documented	ucode/arm1.md#the-token-map-icu_map
 arm1.u	symbol (flags 3)	0x0c000ff4	hipwc		undocumented	
 arm1.u	linker region	0x0c0017f4	C$$code$$Base		undocumented	
-arm1.u	symbol (flags 3)	0x0c0017f4	arm_badcmd		documented	ucode/arm1.md#the-token-map-icu_map
+arm1.u	symbol (flags 3)	0x0c0017f4	arm_badcmd		documented	docs/open-questions.md#arm-firmware
 arm1.u	symbol (flags 3)	0x0c0018e4	arm_bgnend		documented	ucode/arm1.md#entry-format
 arm1.u	linker region	0x0c001958	ucode$$Limit		undocumented	
-arm1.u	symbol (flags 3)	0x0c001a34	arm_divert		documented	ucode/arm1_firmware.md#control-and-status-registers
+arm1.u	symbol (flags 3)	0x0c001a34	arm_divert		documented	docs/open-questions.md#host-interface-hip
 arm1.u	symbol (flags 3)	0x0c001ab0	find_ucode		documented	docs/ge.md#reset-and-start-up
 arm1.u	symbol (flags 3)	0x0c001aec	init_arm		documented	ucode/arm1_firmware.md#what-the-arm-sees
-arm1.u	symbol (flags 3)	0x0c001c60	init_hip		documented	docs/open-questions.md#kernel-driver
+arm1.u	symbol (flags 3)	0x0c001c60	init_hip		documented	docs/open-questions.md#host-interface-hip
 arm1.u	symbol (flags 3)	0x0c001e20	init_ged_ucode		documented	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler
 arm1.u	symbol (flags 3)	0x0c0020ec	init_ged_regs		documented	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler
 arm1.u	symbol (flags 3)	0x0c0024e8	init_ged		documented	docs/ge.md#reset-and-start-up
@@ -590,8 +590,8 @@ arm1.u	symbol (flags 3)	0x0c008870	DoDGRqstGetSCHPhase		named-only	ucode/dg_disp
 arm1.u	symbol (flags 3)	0x0c0088b4	DoDGRqstLoadEncoder		named-only	ucode/dg_dispatch.tsv
 arm1.u	symbol (flags 3)	0x0c008c00	DoDGRqstEncoderTestPattern		named-only	ucode/dg_dispatch.tsv
 arm1.u	symbol (flags 3)	0x0c008c44	DoDGRqstEnableEncoder		named-only	ucode/dg_dispatch.tsv
-arm1.u	symbol (flags 3)	0x0c008cb0	DoDGRqstFetal		documented	ucode/arm1_firmware.md#start-up
-arm1.u	symbol (flags 3)	0x0c009628	dgFetal		documented	ucode/arm1_firmware.md#start-up
+arm1.u	symbol (flags 3)	0x0c008cb0	DoDGRqstFetal		documented	docs/open-questions.md#arm-firmware
+arm1.u	symbol (flags 3)	0x0c009628	dgFetal		documented	docs/open-questions.md#arm-firmware
 arm1.u	symbol (flags 3)	0x0c009648	DoDGRqstXServerVideoInit		documented	ucode/tport.md#what-the-image-contains
 arm1.u	symbol (flags 3)	0x0c0097d4	dgMakeXmapFetal		named-only	ucode/dg_access.tsv
 arm1.u	symbol (flags 3)	0x0c009b98	dgMakeChannelFetal		undocumented	
@@ -694,8 +694,8 @@ arm1.u	symbol (flags 3)	0x0c01274c	DoDGRqstLoadPabSizeRegs		documented	ucode/tpo
 arm1.u	symbol (flags 3)	0x0c01286c	DoDGRqstLoadPabCtrlRegs		documented	ucode/tport.md#what-the-image-contains
 arm1.u	symbol (flags 3)	0x0c0128c0	pabSetupRegisters		named-only	ucode/dg_access.tsv
 arm1.u	symbol (flags 2)	0x0c012a98	compute_gedxfermask		undocumented	
-arm1.u	symbol (flags 3)	0x0c012ae4	arm_ged_verif_load		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c012b2c	arm_ged_verif_dump		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c012ae4	arm_ged_verif_load		documented	ucode/arm1_firmware.md#control-and-status-registers
+arm1.u	symbol (flags 3)	0x0c012b2c	arm_ged_verif_dump		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 3)	0x0c012ba8	set_ged_xfer_mask		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c012bbc	arm_alphafunc		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c012bf4	arm_clearindex		named-only	ucode/arm1_handlers.tsv
@@ -717,9 +717,9 @@ arm1.u	symbol (flags 3)	0x0c01392c	resolve_banks		documented	docs/opengl.md#buff
 arm1.u	symbol (flags 3)	0x0c013a60	arm_drawbuffer		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 3)	0x0c013bfc	arm_readbuffer		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 3)	0x0c013d30	arm_validate_bank		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c013dd4	arm_dispmode		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 3)	0x0c013dd4	arm_dispmode		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 3)	0x0c013e50	arm_swap_cntrl		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
-arm1.u	symbol (flags 3)	0x0c013ef4	arm_dplex_swap		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 3)	0x0c013ef4	arm_dplex_swap		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 3)	0x0c013f5c	arm_retrace_seqid		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 3)	0x0c014040	arm_finish		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c014070	arm_flush_raster		named-only	ucode/arm1_handlers.tsv
@@ -742,10 +742,10 @@ arm1.u	symbol (flags 3)	0x0c014a9c	depth_init		undocumented
 arm1.u	symbol (flags 3)	0x0c014b34	stencil_pop		undocumented	
 arm1.u	symbol (flags 3)	0x0c014ca0	depth_pop		undocumented	
 arm1.u	symbol (flags 3)	0x0c014dd8	arm_copylist_ldma		documented	docs/ge.md#variable-length-command-grammars
-arm1.u	symbol (flags 3)	0x0c014e54	arm_idmacopylist_ldma		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c014e54	arm_idmacopylist_ldma		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 3)	0x0c014ec4	arm_usercopylist_ldma		documented	docs/ge.md#variable-length-command-grammars
-arm1.u	symbol (flags 3)	0x0c014f90	arm_execlist_ldma		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c014fc0	arm_execlist_ldma_n		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c014f90	arm_execlist_ldma		documented	ucode/arm1_firmware.md#control-and-status-registers
+arm1.u	symbol (flags 3)	0x0c014fc0	arm_execlist_ldma_n		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 3)	0x0c01503c	arm_movelist_ldma		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c015058	arm_execlist_idma		documented	docs/hip.md#dma-pools
 arm1.u	symbol (flags 3)	0x0c015164	arm_execlist_idma_n		documented	docs/hip.md#dma-pools
@@ -881,12 +881,12 @@ arm1.u	symbol (flags 3)	0x0c018134	arm_poplights		named-only	ucode/arm1_handlers
 arm1.u	symbol (flags 3)	0x0c018168	arm_validate_clip		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c018574	arm_validate_readclip		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c0186ec	arm_viewport		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
-arm1.u	symbol (flags 3)	0x0c01872c	resolve_viewport		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 3)	0x0c01872c	resolve_viewport		documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
 arm1.u	symbol (flags 2)	0x0c018a00	resolve_scissor		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 3)	0x0c018c78	e_scissor		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 3)	0x0c018c84	d_scissor		undocumented	
 arm1.u	symbol (flags 3)	0x0c018c90	arm_scissor		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
-arm1.u	symbol (flags 3)	0x0c018cc0	arm_clipplane		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 3)	0x0c018cc0	arm_clipplane		documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
 arm1.u	symbol (flags 3)	0x0c018d30	e_clip_plane0		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 3)	0x0c018d54	e_clip_plane1		undocumented	
 arm1.u	symbol (flags 3)	0x0c018d7c	e_clip_plane2		undocumented	
@@ -901,7 +901,7 @@ arm1.u	symbol (flags 3)	0x0c018ea8	d_clip_plane4		undocumented
 arm1.u	symbol (flags 3)	0x0c018ecc	d_clip_plane5		undocumented	
 arm1.u	symbol (flags 2)	0x0c018ef0	matrix_passthru		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 2)	0x0c018f44	matrix_vector		documented	ucode/arm1_firmware.md#control-and-status-registers
-arm1.u	symbol (flags 3)	0x0c01904c	arm_matrixmode		documented	ucode/arm1.md#the-token-map-icu_map
+arm1.u	symbol (flags 3)	0x0c01904c	arm_matrixmode		documented	docs/open-questions.md#arm-firmware
 arm1.u	symbol (flags 3)	0x0c019300	arm_frustum		documented	ucode/arm1_firmware.md#matrix-tokens-flip-between-hardware-and-arm
 arm1.u	symbol (flags 3)	0x0c01939c	arm_loadidentity		undocumented	
 arm1.u	symbol (flags 3)	0x0c0193c0	arm_loadmatrixf		undocumented	
@@ -917,8 +917,8 @@ arm1.u	symbol (flags 3)	0x0c01967c	arm_scaled		undocumented
 arm1.u	symbol (flags 3)	0x0c0196cc	arm_scalef		undocumented	
 arm1.u	symbol (flags 3)	0x0c0196f4	arm_translated		undocumented	
 arm1.u	symbol (flags 3)	0x0c019744	arm_translatef		documented	ucode/arm1_firmware.md#matrix-tokens-flip-between-hardware-and-arm
-arm1.u	symbol (flags 3)	0x0c01976c	xform_init		documented	ucode/arm1_firmware.md#descriptor-port-r9--0x400
-arm1.u	symbol (flags 3)	0x0c019898	xform_restore		documented	ucode/arm1_firmware.md#descriptor-port-r9--0x400
+arm1.u	symbol (flags 3)	0x0c01976c	xform_init		documented	docs/open-questions.md#arm-firmware
+arm1.u	symbol (flags 3)	0x0c019898	xform_restore		documented	docs/open-questions.md#arm-firmware
 arm1.u	symbol (flags 3)	0x0c019b24	viewport_pop		undocumented	
 arm1.u	symbol (flags 3)	0x0c019b5c	scissor_pop		undocumented	
 arm1.u	symbol (flags 3)	0x0c019b60	xform_pop		undocumented	
@@ -990,7 +990,7 @@ arm1.u	symbol (flags 2)	0x0c01f5d0	knic_sample		undocumented
 arm1.u	symbol (flags 2)	0x0c01fae0	knic_stall		undocumented	
 arm1.u	symbol (flags 3)	0x0c01fb04	knic_write		undocumented	
 arm1.u	symbol (flags 3)	0x0c01fb40	knic_read		undocumented	
-arm1.u	symbol (flags 2)	0x0c01fb50	activate_private		undocumented	
+arm1.u	symbol (flags 2)	0x0c01fb50	activate_private		documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
 arm1.u	symbol (flags 3)	0x0c01fc38	init_geBefAddrs		documented	docs/ge.md#reset-and-start-up
 arm1.u	symbol (flags 3)	0x0c01fc80	init_befshadow		documented	docs/rm.md#the-89-word-register-shadow
 arm1.u	symbol (flags 3)	0x0c01fcb8	context_init_ged		undocumented	
@@ -999,8 +999,8 @@ arm1.u	symbol (flags 3)	0x0c01fe04	arm_context_init		documented	docs/ge.md#reset
 arm1.u	symbol (flags 2)	0x0c01ff20	activate_setcurrentge		undocumented	
 arm1.u	symbol (flags 2)	0x0c020018	activate_ged		documented	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler
 arm1.u	symbol (flags 2)	0x0c02081c	activate_geregs		undocumented	
-arm1.u	symbol (flags 2)	0x0c020888	activate_gefifo		undocumented	
-arm1.u	symbol (flags 2)	0x0c020978	activate_hip		documented	ucode/arm1_firmware.md#control-and-status-registers
+arm1.u	symbol (flags 2)	0x0c020888	activate_gefifo		documented	docs/open-questions.md#arm-firmware
+arm1.u	symbol (flags 2)	0x0c020978	activate_hip		documented	docs/open-questions.md#arm-firmware
 arm1.u	symbol (flags 3)	0x0c0209dc	arm_context_activate		documented	docs/ge.md#context-save-and-restore
 arm1.u	symbol (flags 2)	0x0c020c04	load_broadcast_geEram		documented	docs/ge.md#dma
 arm1.u	symbol (flags 2)	0x0c020c68	load_broadcast_ge		documented	docs/ge.md#dma
@@ -1015,7 +1015,7 @@ arm1.u	symbol (flags 2)	0x0c0217c4	deactivate_ged_ge		documented	docs/ge.md#cont
 arm1.u	symbol (flags 2)	0x0c02184c	deactivate_ge		undocumented	
 arm1.u	symbol (flags 3)	0x0c021864	deactivate_ged		documented	docs/ge.md#context-save-and-restore
 arm1.u	symbol (flags 2)	0x0c021df8	deactivate_hip		documented	docs/ge.md#context-save-and-restore
-arm1.u	symbol (flags 2)	0x0c021f7c	deact_section		undocumented	
+arm1.u	symbol (flags 2)	0x0c021f7c	deact_section		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 2)	0x0c02209c	deactivate_arm		documented	docs/open-questions.md#kernel-driver
 arm1.u	symbol (flags 3)	0x0c022188	arm_context_deactivate		documented	docs/ge.md#context-save-and-restore
 arm1.u	symbol (flags 3)	0x0c02226c	arm_context_mopup		documented	docs/ge.md#context-save-and-restore
@@ -1032,11 +1032,11 @@ arm1.u	symbol (flags 3)	0x0c0226b4	start_pixel_rdata_noincr		undocumented
 arm1.u	symbol (flags 3)	0x0c022754	finish_pixel_rdata		undocumented	
 arm1.u	symbol (flags 3)	0x0c022800	start_kcomm		documented	docs/open-questions.md#geometry-engine-program
 arm1.u	symbol (flags 3)	0x0c022980	finish_kcomm		documented	docs/open-questions.md#geometry-engine-program
-arm1.u	symbol (flags 3)	0x0c022a50	arm_start_selectfeed		documented	docs/rm.md#host-interface-registers-on-the-raster-bus
+arm1.u	symbol (flags 3)	0x0c022a50	arm_start_selectfeed		documented	docs/open-questions.md#host-interface-hip
 arm1.u	symbol (flags 3)	0x0c022b8c	arm_restart_selectfeed		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c022c40	arm_finish_selectfeed		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c022cfc	arm_ge_intr		documented	ucode/arm1_firmware.md#how-the-arm-answers-the-host
-arm1.u	symbol (flags 3)	0x0c022d50	send_host_intr		documented	ucode/arm1_firmware.md#control-and-status-registers
+arm1.u	symbol (flags 3)	0x0c022c40	arm_finish_selectfeed		documented	docs/open-questions.md#host-interface-hip
+arm1.u	symbol (flags 3)	0x0c022cfc	arm_ge_intr		documented	ucode/arm1_firmware.md#control-and-status-registers
+arm1.u	symbol (flags 3)	0x0c022d50	send_host_intr		documented	ucode/arm1.md#the-second-image-arm1_kpmu
 arm1.u	symbol (flags 3)	0x0c022d70	arm_arm_nop		documented	ucode/arm1_firmware.md#the-input-loop
 arm1.u	symbol (flags 3)	0x0c022df4	arm_do_idma		documented	docs/ge.md#dma
 arm1.u	symbol (flags 3)	0x0c023298	arm_pipe_setup		named-only	ucode/arm1_handlers.tsv
@@ -1064,8 +1064,8 @@ arm1.u	symbol (flags 2)	0x0c024374	mem_copydown_tex		undocumented
 arm1.u	symbol (flags 3)	0x0c024378	arm_mem_reserve		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c024430	arm_mem_swapout_toobig		undocumented	
 arm1.u	symbol (flags 3)	0x0c024504	arm_mem_swapout		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c024664	arm_mem_swapin_toobig		undocumented	
-arm1.u	symbol (flags 3)	0x0c024710	arm_mem_swapin		documented	ucode/arm1_firmware.md#how-the-arm-answers-the-host
+arm1.u	symbol (flags 3)	0x0c024664	arm_mem_swapin_toobig		documented	ucode/arm1_firmware.md#control-and-status-registers
+arm1.u	symbol (flags 3)	0x0c024710	arm_mem_swapin		documented	ucode/arm1_firmware.md#control-and-status-registers
 arm1.u	symbol (flags 3)	0x0c02481c	arm_mem_copydown		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c0248a0	arm_mem_suspend		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c024954	arm_mem_resume		named-only	ucode/arm1_handlers.tsv
@@ -1089,7 +1089,7 @@ arm1.u	symbol (flags 3)	0x0c024f80	d_texgen_r		undocumented
 arm1.u	symbol (flags 3)	0x0c024fa8	e_texgen_q		undocumented	
 arm1.u	symbol (flags 3)	0x0c024fcc	d_texgen_q		undocumented	
 arm1.u	symbol (flags 3)	0x0c024ff4	arm_texenvf		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c025030	arm_texenvi		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c025030	arm_texenvi		documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
 arm1.u	symbol (flags 3)	0x0c025098	arm_gettexenvfv		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c025134	arm_texload_setup		documented	ucode/arm1_firmware.md#the-input-loop
 arm1.u	symbol (flags 2)	0x0c025138	flush_texload_ids		undocumented	
@@ -1165,7 +1165,7 @@ arm1.u	symbol (flags 3)	0x0c026634	arm_gentextures3d		named-only	ucode/arm1_hand
 arm1.u	symbol (flags 3)	0x0c026638	arm_istexture		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c02663c	arm_deletetextures		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c026640	arm_bindtexture		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c026644	arm_wg_flush_1		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c026644	arm_wg_flush_1		documented	docs/opengl.md#x-server-module-drawing-commands
 arm1.u	symbol (flags 3)	0x0c026648	arm_convolutionfilter3d		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c02664c	arm_separablefilter3d		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c026650	arm_get_pixel_transform_parameterfv		named-only	ucode/arm1_handlers.tsv
@@ -1422,9 +1422,9 @@ arm1.u	symbol (flags 3)	0x0c034464	SetupTexRead		undocumented
 arm1.u	symbol (flags 3)	0x0c034630	StartTexRead		undocumented	
 arm1.u	symbol (flags 3)	0x0c034754	x_initpixels		undocumented	
 arm1.u	symbol (flags 3)	0x0c034774	arm_x_pix_copy		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c034914	arm_x_pix_write		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c034914	arm_x_pix_write		documented	docs/opengl.md#x-server-module-drawing-commands
 arm1.u	symbol (flags 3)	0x0c0349e4	arm_x_pix_read		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c034ac4	arm_x_pix_setup		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c034ac4	arm_x_pix_setup		documented	docs/opengl.md#x-server-module-drawing-commands
 arm1.u	symbol (flags 3)	0x0c034bb4	arm_x_pix_finish		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 2)	0x0c034bf0	CompGedReg		undocumented	
 arm1.u	symbol (flags 2)	0x0c034cfc	CompPixGedReg		undocumented	
@@ -1433,7 +1433,7 @@ arm1.u	symbol (flags 2)	0x0c034f68	CompFormatter		undocumented
 arm1.u	symbol (flags 2)	0x0c035020	CompUnpacker		undocumented	
 arm1.u	symbol (flags 2)	0x0c03506c	CompReorderer		undocumented	
 arm1.u	symbol (flags 2)	0x0c035108	CompPtu		undocumented	
-arm1.u	symbol (flags 2)	0x0c035244	X_PixSetupGE		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 2)	0x0c035244	X_PixSetupGE		documented	docs/opengl.md#x-server-module-drawing-commands
 arm1.u	symbol (flags 2)	0x0c035524	XPixSetupRM		undocumented	
 arm1.u	symbol (flags 2)	0x0c035560	XWriteCram		undocumented	
 arm1.u	symbol (flags 2)	0x0c035598	XSetupGedRead		undocumented	
@@ -1499,11 +1499,11 @@ arm1.u	symbol (flags 2)	0x0c037b40	diag_ged_pixels		undocumented
 arm1.u	symbol (flags 2)	0x0c037b90	diag_ged_pixels_b2b		undocumented	
 arm1.u	symbol (flags 2)	0x0c037bcc	diag_load_ged_table		undocumented	
 arm1.u	symbol (flags 2)	0x0c037c6c	diag_transfer_ged_table		undocumented	
-arm1.u	symbol (flags 2)	0x0c037ce8	diag_tbus_1		undocumented	
+arm1.u	symbol (flags 2)	0x0c037ce8	diag_tbus_1		documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
 arm1.u	symbol (flags 2)	0x0c037d14	diag_tbus_1_noid		undocumented	
 arm1.u	symbol (flags 3)	0x0c037d40	arm_diag_reserved0		undocumented	
 arm1.u	symbol (flags 3)	0x0c037d44	arm_diag_reserved1		undocumented	
-arm1.u	symbol (flags 2)	0x0c037d48	diag_ged_nextge		undocumented	
+arm1.u	symbol (flags 2)	0x0c037d48	diag_ged_nextge		documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
 arm1.u	symbol (flags 2)	0x0c037d64	diag_ged_deactivate_context		undocumented	
 arm1.u	symbol (flags 3)	0x0c037d94	arm_clearaccum		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c037dd0	arm_accum		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
@@ -1522,7 +1522,7 @@ arm1.u	symbol (flags 3)	0x0c038864	arm_initnames		named-only	ucode/arm1_handlers
 arm1.u	symbol (flags 3)	0x0c038898	arm_loadname		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c0388cc	arm_pushname		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c038900	arm_popname		named-only	ucode/arm1_handlers.tsv
-arm1.u	symbol (flags 3)	0x0c038930	arm_passthrough		named-only	ucode/arm1_handlers.tsv
+arm1.u	symbol (flags 3)	0x0c038930	arm_passthrough		documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
 arm1.u	symbol (flags 3)	0x0c038964	arm_rendermode		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 3)	0x0c038a6c	arm_feedback_type		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c038a78	arm_slop		documented	docs/rm.md#the-89-word-register-shadow
@@ -1598,9 +1598,9 @@ arm1.u	symbol (flags 3)	0x0c03cfc8	arm_pointparameterf		named-only	ucode/arm1_ha
 arm1.u	symbol (flags 3)	0x0c03d020	arm_pointparameterfv		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 2)	0x0c03d0b8	x_initregs		undocumented	
 arm1.u	symbol (flags 3)	0x0c03d2c8	arm_x_init		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
-arm1.u	symbol (flags 3)	0x0c03d55c	arm_x_loadpos		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 3)	0x0c03d55c	arm_x_loadpos		documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
 arm1.u	symbol (flags 3)	0x0c03d5b0	arm_x_loadclip_arm		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
-arm1.u	symbol (flags 3)	0x0c03d5e8	arm_x_loadcmap		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
+arm1.u	symbol (flags 3)	0x0c03d5e8	arm_x_loadcmap		documented	docs/opengl.md#x-server-module-drawing-commands
 arm1.u	symbol (flags 3)	0x0c03d6fc	arm_x_loadgamma		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 arm1.u	symbol (flags 3)	0x0c03d9c4	arm_x_loadcursor		documented	docs/opengl.md#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor
 arm1.u	symbol (flags 3)	0x0c03daa0	arm_x_loadcursorcolor		documented	docs/opengl.md#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor
@@ -1698,7 +1698,7 @@ arm1.u	display command	13	DoDGRqstVPhase	words=1	named-only	ucode/dg_dispatch.ts
 arm1.u	display command	14	DoDGRqstGetVPhase	words=1	named-only	ucode/dg_dispatch.tsv
 arm1.u	display command	15	DoDGRqstChannelGammaMap	words=2	named-only	ucode/dg_dispatch.tsv
 arm1.u	display command	16	DoDGRqstGetChannelGammaMap	words=1	named-only	ucode/dg_dispatch.tsv
-arm1.u	display command	17	DoDGRqstFetal	words=1	documented	ucode/arm1_firmware.md#start-up
+arm1.u	display command	17	DoDGRqstFetal	words=1	documented	docs/open-questions.md#arm-firmware
 arm1.u	display command	18	DoDGRqstGetBoardConfig	words=1	named-only	ucode/dg_dispatch.tsv
 arm1.u	display command	19	DoDGRqstGetChannelConfig	words=1	named-only	ucode/dg_access.tsv
 arm1.u	display command	20	DoDGRqstResize	words=8	documented	docs/opengl.md#display-and-scanout

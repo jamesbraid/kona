@@ -31,6 +31,16 @@ Notation: `ctx` is the driver's per-context structure, offsets as the code uses 
 
 **Inferred:** the sixteen-bit `lvl` is the framebuffer level (overlay or normal), `rgb`/`ci` choose colour-index or RGB, `isize`/`rsize` the index and RGB sizes, `db` double buffering, `st` stereo, `zb`/`ss`/`acc`/`aux` the depth, stencil, accumulation and auxiliary buffer depths and `ms` the multisample count, from the field abbreviations; the meaning of the ten words inside the pipe is the ARM handler's (`arm_buffer_config` calls `XferMask`, `init_multisample`, `resolve_banks`, `SetFbState`, [arm1_handlers.tsv](../ucode/arm1_handlers.tsv)). **Unknown:** the unit of each size word, and what the four source selectors 4096-4099 name.
 
+### Who calls them: the context's function table
+
+**Established** (`__glKonCreateContext`, `MakeCurrent`, `MakeCurrentRead`, `kon_context.s`, N32 6.5.30m; targets resolved from the GOT page word 0x0d950000 plus the low offset each call adds). `__glKonCreateContext` fills five function pointers in the new context that the shared GL layer calls: +88 `initialDestroyContext` (0x0d948700), +92 `LoseCurrent` (0x0d948530), +96 `MakeCurrent` (0x0d9499e0), +100 `MakeCurrentRead` (0x0d9488c0) and +104 `VisualsMatch` (0x0d949a50).
+
+- `MakeCurrent(ctx)` calls the drawable callbacks at ctx+60 and ctx+64 for the draw and read drawables and tail-calls `MakeCurrentRead(ctx, draw, read)`.
+- `MakeCurrentRead` holds the only three calls to the configuration functions in the library (offsets -25008 and -24640 from that page, at source lines 737, 738 and 796). When bits 1 and 2 of the word at ctx+168 are clear (**inferred** to be the first make-current of the context: bit 1 clear first installs the context's dispatch procedures, and this path resets the context and allocates its per-engine memory) it runs `__glSoftResetContext`, `__glkon_unique_per_ge_mem_alloc` and `__glkon_share`, then `kona_writeconfig(ctx)`, then `kona_readconfig(ctx, read)` when the read drawable differs from the draw drawable, then the texture, evaluator, pixel and hyperpipe initialisers. On every later make-current it calls `kona_readconfig(ctx, read)` when the read drawable differs or when the read drawable's first word is 3, the same test `kona_readconfig` applies before it sends `HP_VIDEO_SOURCE`.
+- `LoseCurrent`, `initialDestroyContext`, `DestroyContext` and `VisualsMatch` call neither function.
+
+So `BUFFER_CONFIG` and `PACK` go to the pipe once per context, when it is first bound, together with the `RRM_SETDISPLAYMODE` ioctl; `READBUFFER_CONFIG` goes whenever the read side changes. Rebinding a context to a new draw drawable sends no buffer configuration from the library. **Inferred:** the kernel's context switch restores the pipe's copy, since the configuration packet is part of the per-context state the ARM saves (`arm_buffer_config` keeps it in its shadow, [ucode/arm1_firmware.md](../ucode/arm1_firmware.md)).
+
 ## Display and scanout
 
 **Established** (`kon_context.s`).
@@ -128,6 +138,41 @@ The margin c, **established** from the arithmetic: c = trunc(sqrt(s^2 - w*h/4 + 
 ### Stereo: `KONA_SET_CHANNEL_RECT` (10009)
 
 **Established** (`konaSetStereoMode(screen, a, b, mode)`, `misc` group). When `mode` is 1 and a small-data flag of the module is set, it writes 531 to the halfword at +6 (`y1`) of an 18-byte block in `.bss` (0x591ba0) and passes the block to 10009; on failure it stores -7905 in a module error word and logs "Failed : update kernel with channel cursorinfo". It then calls `nfbSetStereoMode`. No other store to the block was found by offset in the module, so the call sends channel 0, valid 0, priority 0, x1 0, y1 531 and zeros: **inferred** to withdraw channel 0 from the cursor rectangles while stereo is on. Whether another path fills the block through a pointer is **unknown**. Kernel side: `kona_set_channel_rect` ([dg.md](dg.md#choosing-the-cursor-channel)).
+
+## X server module: drawing commands
+
+What `kona.so` (IRIX 6.5.30m) sends for X drawing, from a scan of every store whose address is the module's FIFO pointer plus 32 x token in the `kon` group of `ddx/asm/kona/`, with the module's own debug format strings (read at their `.rodata` addresses) naming the fields. The framing is the one in [How the module writes commands](#how-the-module-writes-commands): the first payload word goes to the token's address, the rest to offset 0. Word counts in the table are what the module stores; "map" is the routed entry's count field (bits 6-10) in [ucode/icu_map.tsv](../ucode/icu_map.tsv), and "ARM" the payload reads of the ARM handler ([ucode/arm1_handlers.tsv](../ucode/arm1_handlers.tsv)). Labels as above.
+
+**Established** (bulk words). Runs of more than three words go through the module's copy helpers `KonSeqData3_ip19` to `KonSeqData11_ip19` (0x4275c0 onwards): helper N copies N words from the source, using 64-bit stores (`sdc1`) to a second FIFO pointer kept at +12 of the module's screen record when the source is 8-byte aligned, and one 32-bit store to the ordinary pointer first when it is not. So a 64-bit store to the FIFO carries two payload words, high word first.
+
+**Established** (the remainder rule). A drawing call cuts its list into the largest fixed form (24, 6 or 1 items); a remainder of r items (2 to 6) goes as `X_DATAk` carrying the first r - 1 items' words, then the single form with the last item. So `X_DATA1`-`X_DATA10` are never sent alone: they preload words that the next drawing command consumes. **Inferred** from that order and from the routed entries of `X_DATA*` landing on the register-write handler ([ucode/arm1.md](../ucode/arm1.md)).
+
+| Token | Words | Emitted by | Payload |
+|---|---|---|---|
+| `X_LOADPOS` 0x12a | 4 (map 4) | `kon_loadGC` and 42 drawing functions before they draw | drawable x, y (halfwords +8, +10 of the `DrawableRec`), width, height (+12, +14); 0, 0, screen width, height for screen-wide work |
+| `X_LOADGC` 0x129 | 13 (map 13) | `kon_loadGC` and inlined copies (16 functions) | in order, named by the module's debug print: `fg_h`, `fg_l`, `bg_h`, `bg_l`, `wmask0`, `wmask1`, `cfg`, `op`, `addr`, `bl`, `ifmt`, `colfmt`, `pixfmt`, taken from words +52, +56, +60, +64, +20, +24, +4, +8, +12, +16, +0, +28, +32 of the GC private record. **Inferred** from the names: foreground and background colour in two halves each, two write-mask words, configuration, raster op, framebuffer address, a buffer selector and three format words |
+| `X_LOADCLIP` 0x12b | 5 (map 5) | `kon_loadClipRects` and 39 others | the number of clip rectangles n, then the first rectangle's x1, y1, x2, y2 one per word; rectangles 2 to n follow as `X_BDATA4` 0x145, four words each. A whole-screen clip is 1, 0, 0, width, height |
+| `X_LOADSCISSOR` 0x12d | 4 (map 4) | the glyph routines (`kon*GlyphBlt*`, 14) | x, y of the glyph box, then its width and height (computed as differences) |
+| `X_POINT` 0x14c, `X_POINT6`, `X_POINT24` | 1, 6, 24 (map 1, 6, 24) | `konPolyPoint`, `konDrawPoints`, `konBresS`, `konBresD`, `konSlowLineSS` | one word per point, the X `DDXPointRec` (x in the high half, y in the low) |
+| `X_POINT_R` 0x14f, `X_POINT6_R` | 1, 6 | `konPolyPoint` for `CoordModePrevious` | the same with each point relative to the previous one |
+| `X_BGPOINT` 0x15f, `X_BGPOINT6`, `X_BGPOINT24` | 1, 6, 24 | `konBresD` (double-dashed lines) | points drawn in the background colour, same format |
+| `X_RECT` 0x152, `X_RECT6` | 2, 12 (map 2, 12) | `konPolyFillRectSolid`, `...StippledC`, `...TiledCAccel` | two words per rectangle, the X `xRectangle`: (x, y) then (width, height) |
+| `X_BOX` 0x154, `X_BOX6` | 2, 12 (map 2, 12) | `konDrawSolidRects`, `konSolidFillRects`, `konValidateClip`, the glyph routines | two words per box, (x1, y1) then (x2, y2) halfword pairs ([clips](#clips-rrm_validateclip-1011) has the clip-repaint form) |
+| `X_SPANS` 0x156, `X_SPANS2`, `X_SPANS6` | 3, 5, 13 (map 3, 5, 13) | `konFillSpansSolid`, `...StippledC`, `...TiledCAccel`, `konSolidFS` | the span count (1, 2 or 6), then per span its start point word and its width word |
+| `X_SEGMENT` 0x159, `X_SEGMENT6` | 2, 12 | `konSegmentSS`, `konSolidZeroSeg` | two point words per segment |
+| `X_LINE` 0x15b, `X_LINE6`, `X_LINE_R`, `X_LINE6_R` | 2, 7, 2, 7 (map 2, 12, 2, 12) | `konLineSS` | a polyline: `X_LINE6` sends one point at the token address and six more through `KonSeqData6_ip19`, then advances six points, so consecutive commands share their end point. The map's count of 12 is two per segment; the module sends seven words. **Inferred:** for the polyline forms the count field counts segment end points, which the distributor expands; this is the one routed X token whose stored word count differs from the field ([open-questions.md](open-questions.md#arm-firmware)) |
+| `X_PIX_SETUP` 0x136 | 7 (ARM 7) | `kon_loadNfbBitmapGC`, `kon_loadNfbOpaqueBitmapGC`, the glyph routines | 0, 4, a word from the GC private (+84), 0, two values computed by the caller, 0. **Unknown:** the field meanings; `arm_x_pix_setup` builds the engine's pixel path from them through `X_PixSetupGE` ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md)) |
+| `X_PIX_WRITE` 0x139 | 1 + data | the glyph routines, `konDrawOpaqueMonoImage` | a header word, then the bitmap words; `arm_x_pix_write` reads the header and moves the data with the pass-through counter |
+| `X_PIX_FINISH` 0x13a | 1 (ARM 1) | the same callers | 0 |
+| `X_PIX_COPY` 0x137 | 4 (ARM 4) | `konCopyRect` | source x, source y, destination x, destination y, from the halfwords the debug print names `xs`, `ys`, `xd`, `yd`; width and height come from the preceding `X_LOADPOS`/`X_LOADCLIP` |
+| `X_PIX_READ` 0x138 | 2 (ARM 2) | `konReadImage`, `konReadFBBlock` | the read position and a size word; small reads return through the read-back area ("konReadImage/rdata"), larger ones go through `KONA_DMAREAD` ("DOING DMA!"); followed by `WG_FLUSH_1` with 0xdeadbeef |
+| `X_LOADSTIPPLE` 0x13c, `X_STORESTIPPLE` 0x13d, `X_ROTATESTIPPLE` 0x13e | 1, 3, 3 (ARM 1, 3, 3) | `kon_loadStipple`, `kon_loadTilePlane`, `kon_loadCachedStipple` | a stipple cache slot; store adds the pattern's size and then the pattern words; rotate adds the x and y origin (halfwords +96, +98 of the GC private). The debug print "store/load %d, rot %d,%d" names them |
+| `X_LOADCMAP` 0x12e | 2 + n (ARM 2) | `konStoreColors`, `konInstallColormap` | colour-map address, a count n (1 per entry in `konStoreColors`), then n colour words. `arm_x_loadcmap` writes the address to display-bus register 0x118, peeks the count through port + 0x40 and moves the colour words to register 0x119 with the pass-through counter (0x4000000 \| n) |
+| `X_LOADGAMMA` 0x12f | 5 (ARM 5) | `konStore24DCColors`, `konInstall24DCColormap` | per channel (red, green, blue in turn): the start address, 2, two table words, and the end address masked to 12 bits |
+| `X_LOADXMAP_CONFIG` 0x133 | 1 (ARM 1) | `konCreateWindow` (1), `konDestroyWindow` (0), each followed by `WG_FLUSH_1` with 0xdeadbeef | one flag word |
+| `WG_FLUSH_1` 0x1ff | 1 | after cursor loads, read-backs and the X-map configuration | 0xdeadbeef. The firmware's handler `arm_wg_flush_1` is a branch to `arm_badcmd`, so the store is **inferred** to be a flush of the processor's write-gather buffer that the host interface drops before dispatch ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command)) |
+
+**Established, negative.** No store in the module addresses `X_INIT` (0x128), `X_LOADCLIP_ARM` (0x12c), `X_POINT24_R` (0x151) or any `X_UNUSED*` token; the scan's hits for them were string addresses that happen to be multiples of 32. Who sends `X_INIT` is not settled by this module.
 
 ## Texel download: header word 7 and the load-scissor bit
 

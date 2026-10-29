@@ -34,15 +34,38 @@ The "Next route" cells below were converted from requests for measurements on a 
 
 ## Host interface (HIP)
 
-| Question | Owner | Next route |
-|---|---|---|
-| What the 0xc00000 alias of the host-interface window selects (the kernel writes `HH_GINTR_INFO` at 0xc00108, not 0x800108) | `HIP.h` | Read and write a harmless register (`HH_INTR_ENABLE`) through both offsets from a kernel debugger and compare; then repeat the kernel's kick through 0x800108 and see whether the privileged packet is taken. |
-| How the host interface splits the user's 64-bit stores at 0x4000 into token and payload words, and the credit scheme behind `HH_GFIFO_LEVEL` beyond the 0x700 and 0x300 marks | `docs/hip.md`, `GE.h` | Trace the Xtalk PIO writes to the pipe (logic analyser on the crossbar port) while a GL program issues Begin, Vertex3f, End; read `HH_GFIFO_LEVEL` after each store with the pipe held (`HH_GINTR_INFO` hold). |
-| What makes the hardware refuse a token to the ARM's divert and begin/end vectors | `docs/hip.md`, `ucode/arm1_firmware.md` | Send a geometry token outside Begin/End and a token whose map entry is the bad-command entry; log the ARM's vector entry with its firmware trace (`printf` output on the ARM console) and the token registers 0x200078 and 0x20007c. |
-| Register-level behaviour of the input and output DMA engines (0x200010-0x200024, the `ODMA` set), the meaning of bits 15-12 = 0x9 of the page-offset word, and of `flags` 256 and `snapshot` | `docs/hip.md`, `HIP.h`, `kona_kernel/include/kona_kern.h` | Trace the Xtalk read requests of one `DO_IDMA` with the page-offset word's top nibble 0x9 and then 0x0 (sent through the diagnostic map); repeat a select feedback with `snapshot` 0 and 1 and compare the returned words. |
-| The hardware conditions behind each `HH_INTR_STATUS` bit, the low-water level that ends the FIFO-full wait, whether `HH_INTR_ACK` is required | `docs/hip.md`, `HIP.h` | Read `HH_INTR_STATUS` and `HH_GFIFO_LEVEL` on every interrupt while a program fills the FIFO past 0x700 and drains it; repeat once without writing `HH_INTR_ACK`. |
-| What the host-interface reset pulse (1 then 0, start bit clear) does to the token map, the FIFOs, the DMA and event counters, and whether it stops a running ARM | `docs/hip.md`, `docs/xg.md` | Fill the FIFO with a held pipe, read the token map at ARM 0x00400000 and the counters, pulse `HH_RESET` as the kernel does, read them again and check whether the ARM still answers its mailbox. |
-| The exact effect of `HH_GINTR_INFO` FORCE on a user stream that is mid-command | `HIP.h` | Kick a privileged packet while a user process is between a token and its payload; read back the user's next result. |
+Routes already tried for every entry here: the 6.5.30m kernel objects (`kona.a`), the ARM firmware `arm1.u` and its NIC image `arm1_kpm.u`, `kpm`, `irsaudit`, `libGLcore` (N32) and the X module `kona.so`. The firmware side of each register the ARM touches is in [ucode/arm1_firmware.md](../ucode/arm1_firmware.md#control-and-status-registers).
+
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| What the 0xc00000 view of the host-interface window is (the kernel writes `HH_GINTR_INFO` at 0xc00108, never at 0x800108) | `HIP.h` | kernel: every 0xc00000 access is that one register, written; `kpm` and `irsaudit` register tables name only the 0x800000 view | `irsaudit` and `ireeprom` for any read or write above 0xc00000; earlier IRIX releases' `kona.a` for a second user of the alias |
+| How the host interface splits the user's 64-bit stores into token and payload words, and how a token-as-data word at FIFO offset 0 is told from a payload word | `docs/hip.md`, `GE.h` | `libGLcore` framing (token word first, then payload) and the X module's framing (first payload word at 32 x token) are both read ([docs/opengl.md](opengl.md#x-server-module-drawing-commands)); the firmware sees only handler addresses | `libGL`/`libGLcore` of an earlier release for a comment-bearing build; run the X server under an emulator with a logging FIFO model and compare both framings' word streams |
+| The credit scheme behind `HH_GFIFO_LEVEL` beyond the 0x700 and 0x300 marks | `docs/hip.md` | kernel flow-control code (`kona_flow.o`) | `kpm`'s FIFO test, if any, and `irsaudit`'s FIFO tests |
+| What makes the hardware divert a token to `arm_divert` | `ucode/arm1_firmware.md` | 6.5.30m firmware: the vector prints "divert not handled!" and spins; nothing else references it | `arm1.u` from other IRIX releases (the Library's 6.5.x media) for a build with a divert handler |
+| Register-level detail of the input-DMA status bits 0, 5 and 6 of 0x200024, the mode value 2 at 0x200020, and what 0x9 in bits 15-12 of the page offset selects | `ucode/arm1_firmware.md`, `HIP.h` | firmware value flow in every DMA handler (now written); kernel DMAPOOL and DO_IDMA payload builders | `irsaudit`'s DMA tests, which program the DMA from the host through the diagnostic map, for other mode values and offset nibbles |
+| The meaning of `flags` 256 and `snapshot` in the select-feedback ioctl | `kona_kernel/include/kona_kern.h` | kernel ioctl code | the firmware's `arm_start_selectfeed` and `arm_finish_selectfeed` payload reads (not yet read) |
+| The hardware conditions behind each `HH_INTR_STATUS` bit, the low-water level that ends the FIFO-full wait, whether `HH_INTR_ACK` is required | `docs/hip.md`, `HIP.h` | kernel handlers and masks | `irsaudit` interrupt tests; `kpm` |
+| What the reset pulse does to the token map, FIFOs and counters | `docs/hip.md`, `docs/xg.md` | kernel pulse sites; the firmware rebuilds the whole token map and reloads every table in `init_hip`/`init_ged` on each start, so no shipped firmware relies on any of it surviving | `irsaudit` reset tests; otherwise label unknown: no shipped software depends on it |
+| The exact effect of `HH_GINTR_INFO` FORCE on a user stream that is mid-command | `HIP.h` | kernel kick sites; firmware: the privilege bit (0x200060 bit 2) is what the ARM tests, never FORCE | `irsaudit`; otherwise unknown: no shipped software depends on it beyond the kernel's use |
+
+## ARM firmware
+
+Routes already tried: `arm1.u` (6.5.30m, the whole image disassembled with its 1682 symbols), `arm1_kpm.u`, `kpm`, `libGLcore` N32 and `kona.so`. Answers live in [ucode/arm1.md](../ucode/arm1.md) and [ucode/arm1_firmware.md](../ucode/arm1_firmware.md).
+
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| Roles of engine ports 0x420, 0x428 and 0x43c (0x430, 0x434, 0x438 are read) | `ucode/arm1_firmware.md` | every store in `arm1.u` (users listed there) | the engine program's input handling in `ge.u` (`activate_gefifo` pairs these with known handlers); `irsaudit`'s `ged*` tests |
+| Bits 26-28 of the pass-through counter 0x200058 (four values seen) | `ucode/arm1_firmware.md` | all 27 writers | `irsaudit` and `kpm` writes to ARM 0x200058 through the host's ARM-space path |
+| Tick rate of the counter 0x2000b0 | `ucode/arm1_firmware.md` | `sleep` and the video-clock waits | a caller of `sleep` with a stated time in its message (the DG and EEPROM code print delays); `irsaudit` |
+| Roles of 0x200004, 0x20005c, 0x2000f4 | `ucode/arm1_firmware.md` | `init_ge`, `init_hip`, `activate_hip`, `arm_ged_verif_*` | `irsaudit`'s HIP register tests and `kpm`'s register table, which name the host-side copies |
+| Whether the host interface drops `WG_FLUSH_0`/`WG_FLUSH_1` before the token map | `ucode/arm1_firmware.md`, `docs/opengl.md` | firmware: both handlers branch to `arm_badcmd`; the X module sends `WG_FLUSH_1` after cursor loads | `libGLcore` for `WG_FLUSH_0` stores; run the X server under an emulator and see whether a model that dispatches the token hangs |
+| Why `X_LINE6` and `X_LINE6_R` carry 7 words while their map entries count 12 | `docs/opengl.md`, `ucode/arm1.md` | X module (`konLineSS`, `KonSeqData6_ip19`); routed entry fields | the distributor's line-strip entries in `ged1b.u` ([ucode/ged.md](../ucode/ged.md)) for how a line command consumes words |
+| The unknown bits of routed token-map entries (4, 9-14 beyond the count, 24-26, 31) and the `HP_NORMAL3*` count exception | `ucode/arm1.md` | firmware builders (`init_hip`, `varray_build_command`) | the distributor control-word layout in [ucode/ged.md](../ucode/ged.md), which covers the same 24 bits |
+| Who writes handler-table indexes 19-21 (used by the raster-position, material and evaluator code) | `ucode/arm1.md` | `init_ged`, `arm_matrixmode`, `xform_init`, `xform_restore` | the remaining stores of descriptor 0x46000020 in `arm1.u` (search by value, not by function) |
+| Which distributor registers descriptors 0x44000020, 0x44200020, 0x44400020 load | `ucode/arm1_firmware.md` | `init_ged` | [ucode/ged.md](../ucode/ged.md)'s register list and the IR diagnostic's `ged*` builders |
+| `dgFetal`'s purpose | `ucode/arm1_firmware.md` | start-up call site | `DoDGRqstFetal` and its strings |
+
+**Where this pass stopped.** The DMA, status, privilege, source-select, vertex-array loop and engine-port registers are read from the firmware; `arm1_kpm.u` is identified; the unsupported tokens are explained from the host side. About 1100 of the firmware's 1682 symbols are still undocumented in [inventory/ucode.tsv](inventory/ucode.tsv), mostly display-generator (`dg*`, `DoDGRqst*`), pixel-path (`Add*`, `U_*`) and raster set-up functions. Next: the select-feedback handlers, then the `DoDGRqst*` family by command group with [dg_dispatch.tsv](../ucode/dg_dispatch.tsv).
 
 ## Raster and texture boards (RM, TM)
 
