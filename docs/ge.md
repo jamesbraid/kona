@@ -41,7 +41,7 @@ CONTEXT_LOAD (token 0x1f9) has three payload words: the image length, a host add
 | Tag | Length checked | Where the data go |
 |---|---|---|
 | 0x10 | 7 | the ODMA register block to one engine, handler `mges_ContextLoadODMA` (slot 190). Message name "KONA_CTX_HIP_ODMAREGS" |
-| 0x20 | 0x59 | the BEF shadow (89 words) to one engine, handler `mges_ContextLoadBEF` (slot 187) |
+| 0x20 | 0x59 | the BEF shadow (89 words, layout in [rm.md](rm.md#the-89-word-register-shadow)) to one engine, handler `mges_ContextLoadBEF` (slot 187) |
 | 0x41 | 0x200 | engine code RAM image to all engines, `mgeb_ContextLoadCram` (slot 130). Message name "KONA_CTX_GE_CRAM" |
 | 0x42 | any | engine external RAM to all engines, `mgeb_ContextLoadEram` (slot 131) |
 | 0x80 | any | engine work RAM to all engines, `mgeb_ContextLoadWram` (slot 134) |

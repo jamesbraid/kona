@@ -64,6 +64,34 @@ The ARM firmware ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md)) programs 
 
 A separate path writes the board-side registers numbered 0x400-0x477 (`tbus_regwrite`): `init_hip_tbus`, `start_rdata`, `finish_rdata`, `check_pipe_sync` and `init_tf`, `init_tm`. These are not in the `RM.h` index space. **Inferred:** they are registers of the host interface's own bus to the boards (`HH_TBUS_STATUS` and its neighbours in [HIP.h](../HIP.h)).
 
+## The 89-word register shadow
+
+Facts are labelled **established** (read from `arm1.u`, IRIX 6.5.30m, by [scripts/befshadow.py](../scripts/befshadow.py)), **inferred** (with the reasoning) or **unknown**. The full table is [ucode/befshadow.tsv](../ucode/befshadow.tsv).
+
+**Established.** The ARM image holds two 89-word tables in its data, `befsh_addrs` (0x04067c0c) and `befsh_init` (0x04067d70). `init_geBefAddrs` (0x0c01fc38) sends `befsh_addrs` to the engines' data port (r9 + 0x840) one word at a time; `init_befshadow` (0x0c01fc80) does the same with `befsh_init`; both loop to count 0x59. **Inferred** from that pairing: shadow word i is shadow register `BEF_REGSHADOW` + i (0x100 + i), `befsh_addrs[i]` names the raster register it mirrors and `befsh_init[i]` is the value it holds after start-up.
+
+**Established** (layout, word order; names where the kpm raster table has a register at that index).
+
+| Words | Registers mirrored |
+|---|---|
+| 0-2 | indexes 0x441, 0x455, 0x456, not in the kpm raster table |
+| 3-20 | 0x3fc2-0x3fd3, the combined pixel-generator and texture-generator range (`PGTG_SCIS`, `PGTG_ZRECT`, `PGTG_DRECT`, `PGTG_SIZE`, `PGTG_ENABLES`, the rest unnamed) |
+| 21-22 | 0x3be0, 0x3be1 (`PGTFPIMP_MSLOC` and its neighbour) |
+| 23-35 | `PG_GENERAL`, `PG_PSPEC`, `PG_BLOAT`, `PG_Z_OFF`, `PG_MSK`, `PG_WIN_OFFSET_X/Y`, `PG_SMASK`, `PG_STIPPLE`, three unnamed (0x80a-0x80d), `PG_PRU` |
+| 36-46 | `IMP_CONFIG`, `IMP_OP`, `IMP_MS`, `IMP_CLIP`, `IMP_SZ0`, `IMP_SZ1`, `IMP_DEPTH_CLEAR`, `IMP_ADDR`, `IMP_BL`, `IMP_WMASK_BIT`, 0x1c15 |
+| 47 | `COMMON_IFMT` (0x3ff8) |
+| 48-53 | `TGTML_TEXLD_*` and `TML_TEXLD_GLOBALOFFSET`, stored with bit 30 set (0x40007fc1-0x40007fc5, 0x40005001) |
+| 54-74 | texture-memory draw registers (`TM_*`), `TGTM_*`, `TG_*` and `TFT_*` |
+| 75-88 | `TFP_*`: alpha function, texture, texture environment, fog, pixel and colour format, alpha mask |
+
+**Established** (start-up values, `befsh_init`). Non-zero for words 3-4 (0x3fff8000), 11-14, 16-22, 24, 27, 30, 32-34, 36-38, 43-44, 57, 75, 77, 80 and 82; all others are zero. Examples: `PG_SMASK` 0xffffffff, `IMP_ADDR` 0x32212301, `TFP_AFUNC` 0x7000, `TFP_FOG` 0x80000. **Inferred:** a context with no saved shadow keeps these values, because `init_befshadow` runs once in `init_bef` and the load handler (tag 0x20) replaces the same 89 words.
+
+**Established** (a bulk write form). One case of `arm_slop` (the code at 0x0c038ee4, after the "slop[1].sync gembox" test) writes all 89 registers in a loop: descriptor 0x58404800, then through the data port a word (the same one sent as the final value), then an address word of `befsh_addrs[i]` with (0x100 + i) in the high half. This is the four-store raster register write [above](#how-the-arm-firmware-writes-raster-registers).
+
+**Inferred.** Bit 30 on words 48-53 marks registers reached by the texture-load path; the kpm table has them at the low 15 bits. The saved image's word order equals table order because the load handler checks the length 0x59 and nothing in the loader reorders words.
+
+**Unknown: needs capture.** (1) What the high half of the address word selects: in this loop it is (0x100 + i), but `init_pg` sends 0x0127 for `PG_GENERAL`, which is word 23 (0x117). A capture of the descriptor words at the raster-board register bus during pipe start-up would settle it. (2) The register behind an index with no kpm name (0x441, 0x455, 0x456, 0x3fc3 and the others marked `unknown`): a read-back of those indexes on a live raster board. (3) The engine handler's walk over the 89 words (`mges_ContextLoadBEF`): the engine program's arithmetic operation codes are open, so only table order is read.
+
 ## Reset of the raster boards
 
 From the ARM firmware ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md), IRIX 6.5.30m). Labels as above.
@@ -90,7 +118,7 @@ Facts are labelled as above. The raster-board connections below are from the IR 
 
 ## Context save and restore
 
-**Established, negative.** The saved context image the ARM loads ([ge.md](ge.md#context-save-and-restore)) has records for the output-DMA registers, the `BEF` shadow, the engine code, external and work RAMs, ARM-side regions and the distributor registers. It has no record for the raster board: no tag stands for pixel-generator, texture or image-processor state, and the context packets the driver sends ([kona_kern.h](../kona_kernel/include/kona_kern.h)) carry no raster register. The raster side has one shadow facility, the `BEF` registers `BEF_REGSHADOW` (0x100), `_READ` (0x200), `_WRITE` (0x300) and the byte mask `BEF_REGSHADOW_BMASK` (0x7), which live on the geometry board's back-end chip, not on a raster chip; the context image holds that shadow as 89 words (tag 0x20). **Inferred:** a raster board's registers are restored from that shadow by writing it back through the register-write path ([How the ARM firmware writes raster registers](#how-the-arm-firmware-writes-raster-registers)), and the framebuffer and texture memory contents are not saved by the context switch but moved by the memory commands (`MEM_SWAPOUT`/`MEM_SWAPIN`, [kernel.md](kernel.md#commands-the-driver-sends)); the header's memory types are ARM, shared ARM (display lists), geometry-engine and texture memory, with no framebuffer type. **Unknown:** the layout of the 89 shadow words, and what is written back for a context with no shadow.
+**Established, negative.** The saved context image the ARM loads ([ge.md](ge.md#context-save-and-restore)) has records for the output-DMA registers, the `BEF` shadow, the engine code, external and work RAMs, ARM-side regions and the distributor registers. It has no record for the raster board: no tag stands for pixel-generator, texture or image-processor state, and the context packets the driver sends ([kona_kern.h](../kona_kernel/include/kona_kern.h)) carry no raster register. The raster side has one shadow facility, the `BEF` registers `BEF_REGSHADOW` (0x100), `_READ` (0x200), `_WRITE` (0x300) and the byte mask `BEF_REGSHADOW_BMASK` (0x7), which live on the geometry board's back-end chip, not on a raster chip; the context image holds that shadow as 89 words (tag 0x20). **Inferred:** a raster board's registers are restored from that shadow by writing it back through the register-write path ([How the ARM firmware writes raster registers](#how-the-arm-firmware-writes-raster-registers)), and the framebuffer and texture memory contents are not saved by the context switch but moved by the memory commands (`MEM_SWAPOUT`/`MEM_SWAPIN`, [kernel.md](kernel.md#commands-the-driver-sends)); the header's memory types are ARM, shared ARM (display lists), geometry-engine and texture memory, with no framebuffer type. The layout of the 89 words is in [the next section](#the-89-word-register-shadow).
 
 ## Display and scanout from the raster boards
 
