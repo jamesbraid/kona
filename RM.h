@@ -137,11 +137,46 @@
  * TML_SYNC_IDLOAD / TM_SYNC_WAITLOAD and TM_SYNC_IDDRAW /
  * TML_SYNC_WAITDRAW.
  *
- * ESTABLISHED (libglcore/decomp/KONA/kon_pixel.c, DoDrawPixelsOrTexels):
- * texel downloads go out as token 0x174 (KONA_HP_DRAWTEXELS) followed by 21
- * header words, then the image through __glKonSendData; pixel draws use
- * token 0x3a (KONA_HP_DRAWPIXELS) followed by 8 header words. Which header
- * word carries which image parameter is UNKNOWN.
+ * ESTABLISHED (libglcore/decomp/KONA/kon_pixel.c, DoDrawPixelsOrTexels;
+ * asm kon_pixel.s line 3015): texel downloads go out as token 0x174
+ * (KONA_HP_DRAWTEXELS) followed by 21 header words, then the image through
+ * __glKonSendData; pixel draws use token 0x3a (KONA_HP_DRAWPIXELS) followed
+ * by 8 header words. Both are built from one pixel-transfer descriptor
+ * (desc below) plus three arguments a1, a2, a3.
+ *
+ *   DRAWTEXELS word  DRAWPIXELS word  source
+ *    1  target                         desc+0x20: GL target; the code tests
+ *                                      it against 0x0de0 / 0x0de1
+ *                                      (GL_TEXTURE_1D / GL_TEXTURE_2D)
+ *    2  a1             1               INFERRED width
+ *    3  a2             2               INFERRED height
+ *    4  format code    3               desc+0x90 (see below)
+ *    5  type code      4               desc+0x94 (see below)
+ *    6  address & 3    5               desc+0x14 & 3: byte offset of the
+ *                                      host image pointer within a word
+ *    7  flag           6               desc+0xb4: 0 or 1, copied from a
+ *                                      context bit (+0x7b5c bit 2)
+ *    8  split flag     7               desc+0xb8: set to 1 when the image is
+ *                                      sent in several pieces
+ *    9  a3             8               UNKNOWN
+ *   10-18                              desc+0x64..+0x84 in order, nine words.
+ *                                      DrawSubTexels steps +0x6c (first
+ *                                      row of a piece) and +0x74 (last row,
+ *                                      first + count - 1) when it splits a
+ *                                      download; INFERRED a start/end box.
+ *                                      The others are UNKNOWN.
+ *   19  flags                          desc+0x84; bit 15 is set when context
+ *                                      flag +0x704 bit 5 is set, bit 2 on
+ *                                      one other path. Meaning UNKNOWN.
+ *   20-21                              desc+0x88, desc+0x8c, UNKNOWN.
+ *
+ * Format code, ESTABLISHED (__glKonParseInput): the GL format becomes an
+ * index (GL_COLOR_INDEX 0x1900 .. GL_LUMINANCE_ALPHA 0x190a -> 0..10,
+ * GL_ABGR_EXT 0x8000 -> 11, GL_CMYK_EXT 0x800c -> 12, GL_CMYKA_EXT 0x800d
+ * -> 13) and is then remapped through a 4-byte table in libGLcore .rodata
+ * (__rodata0 + 0x29f8, not yet dumped). Type code: GL_BYTE 0x1400 ..
+ * GL_FLOAT 0x1406 -> 0..6, GL_BITMAP 0x1a00 -> 7, packed types 0x8032 ..
+ * 0x8036 -> 8..12, 0x81bd .. 0x81c3 -> 14..20; sent without remapping.
  */
 
 /* Register table (kpm vaddr 0x10145980). Field defines are "shift, width". */

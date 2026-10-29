@@ -104,7 +104,7 @@ Userspace drivers: libGLcore command emission and the X server modules (kona*.so
 |---|---|---|---|---|
 | Command and FIFO formats | partial | `GE.h`, `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar | user doorbell 0x4000, token-only header word, Begin/End/Vertex/Color/LoadMatrix/Viewport payloads in GE.h; X module emission not read |
 | Context save and restore | none | `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar |  |
-| Texture formats and filtering (incl. precision) | partial | `RM.h`, `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar | host builds TGTMTFT (texture object +64) and filter tables; DRAWTEXELS header length; header word meanings unknown |
+| Texture formats and filtering (incl. precision) | partial | `RM.h`, `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar | host builds TGTMTFT and filter tables; DRAWTEXELS/DRAWPIXELS header word sources and format/type codes. Remaining: words 9-18 and 20-21, the format remap table at .rodata+0x29f8, TEXLOAD_SETUP/TEXLOAD_ID payloads |
 | Display and scanout | none | `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar |  |
 
 ## Microcode (lower priority)
