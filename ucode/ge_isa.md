@@ -70,12 +70,12 @@ The record group R88-72 (`seq` in the listings) and R209-199 (`cc`) control the 
 
 **Inferred:** R86-84 is the sequencer operation: 6 = continue, 5 = conditional jump, 4 = jump (and, to address 0, the end of a command: the 405 handler exits), 3 = a loop form (its targets are the `mainloop` and `epilogue` labels of the pixel paths). R87 makes the target relative to the instruction's own address. `cc` selects the condition, as the dispatch chain tests one condition per word. R76-72 is a second condition or mode code (4 in the no-op and in most jumps). R83-77 is 0x7f or 0x7e in transfers; its role is **unknown**.
 
-**Inferred:** the engine starts each command in hardware. `HereWeGo` holds two no-ops, one word with code 6 and a jump to `MemRegInit` (0x27cc, `bootinit.s`), and no code that looks up a command's handler was found anywhere in the program. Handlers end by jumping to address 0, so the jump to 0 is where the hardware takes the next command's handler address (from the ARM, [arm1.md](arm1.md), or from the distributor).
+**Inferred:** the engine starts each command in hardware. `HereWeGo` holds two no-ops, one word with code 6 and a jump to `MemRegInit` (0x27cc, `bootinit.s`), and no code that looks up a command's handler was found anywhere in the program. Most handlers end differently: 215 of the 320 handler labels end in a relative transfer with immediate 0 and condition code 0x11, and 31 jump to address 0 ([ge_ops.md](ge_ops.md)). Either way the hardware takes the next command's handler address (from the ARM, [arm1.md](arm1.md), or from the distributor) when the handler finishes; that part is **inferred** from the absence of any handler lookup code.
 
 ## Not yet decoded
 
-- **ALU:** which decoded record bits select add, multiply, compare and the conversions; where results go. **Unknown.**
-- **FIFO input and output:** the special-register numbers in `GE.h` (FIFO pointers 0x00-0x02) have not been located in any field. **Unknown.**
+- **ALU:** the operation id is the decoded group M, whose low seven bits come from a form-specific W field ([ge_ops.md](ge_ops.md)). Identified: a move (M = 0x6ca) and an equality compare against an enumerant (M = 0x6c2, r110 = 0x7bd). Add, multiply, compare and the conversions are **unknown**.
+- **FIFO input and output:** the special-register numbers in `GE.h` (FIFO pointers 0x00-0x02) have not been located in any field ([ge_ops.md](ge_ops.md) lists the leads). **Unknown.**
 - **Branch conditions:** the meaning of each `cc` value. **Unknown.**
 
 A reader can extend the decode without the `ge.u` record: every field in the tables above is a plain slice of W.

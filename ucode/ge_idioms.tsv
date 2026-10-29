@@ -1,0 +1,47 @@
+# Counts behind ucode/ge_ops.md (ge.hex, ge.u and ge_symbols of IRIX 6.5.30m). Produced by scripts/ge_ops.py.
+name	value	note
+handlers	320	ge_symbols labels starting mgeb, mges, mgebi, mgesi
+first_word_7039c007c88cf80000	78	handlers whose first instruction is this word with its immediate masked
+first_word_77fa41d7c881d00000	76	handlers whose first instruction is this word with its immediate masked
+first_word_77f20007c880f80000	11	handlers whose first instruction is this word with its immediate masked
+first_word_77c03607ca04d00000	10	handlers whose first instruction is this word with its immediate masked
+end_transfer_cc11_imm0	215	handlers holding a relative jump with imm 0 and cc 0x11
+end_jump_to_address_0	31	handlers holding an absolute jump to address 0
+end_other	75	handlers with neither (they jump into shared code)
+end_idiom_on_last_source_line	161	of the end_transfer_cc11_imm0 handlers, idiom on the last or next-to-last source line
+rel_transfer_code3_imm0_base0_lands_on_instruction	2	of 2 relative transfers
+rel_transfer_code3_imm0_base5_lands_on_instruction	2	of 2 relative transfers
+rel_transfer_code3_imm_nonzero_base0_lands_on_instruction	54	of 54 relative transfers
+rel_transfer_code3_imm_nonzero_base5_lands_on_instruction	53	of 54 relative transfers
+rel_transfer_code4_imm0_base0_lands_on_instruction	296	of 296 relative transfers
+rel_transfer_code4_imm0_base5_lands_on_instruction	283	of 296 relative transfers
+rel_transfer_code4_imm_nonzero_base0_lands_on_instruction	41	of 52 relative transfers
+rel_transfer_code4_imm_nonzero_base5_lands_on_instruction	36	of 52 relative transfers
+rel_transfer_code5_imm0_base0_lands_on_instruction	21	of 21 relative transfers
+rel_transfer_code5_imm0_base5_lands_on_instruction	18	of 21 relative transfers
+rel_transfer_code5_imm_nonzero_base0_lands_on_instruction	216	of 216 relative transfers
+rel_transfer_code5_imm_nonzero_base5_lands_on_instruction	144	of 216 relative transfers
+compare_idiom_instances	34	form 13 with M=0x6c2 and r110=0x7bd
+compare_idiom_A_0x18	32	
+compare_idiom_with_constant_loaded_to_C1e	31	a form-15 load into C=0x1e within the three words before
+compare_constant_0x1	1	
+compare_constant_0x4	3	
+compare_constant_0x8	1	
+compare_constant_0x405	2	
+compare_constant_0x472	1	
+compare_constant_0x892	1	
+compare_constant_0x8a2	2	
+compare_constant_0x8b2	1	
+compare_constant_0x8c2	3	
+compare_constant_0x8d2	1	
+compare_constant_0x8e2	1	
+compare_constant_0x8f2	1	
+compare_constant_0x900	1	
+compare_constant_0x1602	1	
+compare_constant_0x1701	1	
+compare_constant_0x1b01	2	
+compare_constant_0x1b02	2	
+compare_constant_0x2500	1	
+compare_constant_0x8126	3	
+compare_constant_0x81f4	1	
+compare_constant_0x3727c5ac	1	
