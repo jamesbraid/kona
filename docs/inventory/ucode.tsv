@@ -1997,15 +1997,15 @@ ge.u	label	0x000013b4	umo_Histogram		located	ucode/ge_handlers.md#histograms	his
 ge.u	label	0x000013ff	mainloop_hist		located	ucode/ge_handlers.md#histograms	histogram.s
 ge.u	label	0x00001417	epilogue_hist		located	ucode/ge_handlers.md#histograms	histogram.s
 ge.u	label	0x00001420	uge_HistogramFill		located	ucode/ge_handlers.md#histograms	histogram.s
-ge.u	label	0x0000143e	mmo_Minmax		located	ucode/ge_handlers.md#minmaxs	minmax.s
-ge.u	label	0x0000143e	umo_Minmax		located	ucode/ge_handlers.md#minmaxs	minmax.s
-ge.u	label	0x00001472	mainloop_mm		located	ucode/ge_handlers.md#minmaxs	minmax.s
-ge.u	label	0x0000148d	epilogue_mm		located	ucode/ge_handlers.md#minmaxs	minmax.s
-ge.u	label	0x00001518	merge2_mm		located	ucode/ge_handlers.md#minmaxs	minmax.s
-ge.u	label	0x0000154e	merge1_mm		located	ucode/ge_handlers.md#minmaxs	minmax.s
-ge.u	label	0x0000157f	merge3_mm		located	ucode/ge_handlers.md#minmaxs	minmax.s
-ge.u	label	0x000015ad	merge4_mm		located	ucode/ge_handlers.md#minmaxs	minmax.s
-ge.u	label	0x000015db	uge_MinmaxFill		located	ucode/ge_handlers.md#minmaxs	minmax.s
+ge.u	label	0x0000143e	mmo_Minmax		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000143e	umo_Minmax		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001472	mainloop_mm		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000148d	epilogue_mm		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001518	merge2_mm		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000154e	merge1_mm		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000157f	merge3_mm		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000015ad	merge4_mm		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000015db	uge_MinmaxFill		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x000015f9	mgeb_CRAMBlockLoad		located	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
 ge.u	label	0x000015f9	ugeb_CRAMBlockLoad		located	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
 ge.u	label	0x00001613	mainloop_cbl		located	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
@@ -2019,65 +2019,65 @@ ge.u	label	0x000016e7	mgeb_ERAMBlockClear		located	ucode/ge_handlers.md#erambloc
 ge.u	label	0x000016e7	ugeb_ERAMBlockClear		located	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
 ge.u	label	0x0000170b	mainloop_ebc		located	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
 ge.u	label	0x00001714	epilogue_ebc		located	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
-ge.u	label	0x0000171e	mmo_Expand		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x0000171e	umo_Expand		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x00001760	expand_rgb		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x00001768	mainloop_exp_rgb		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x00001785	epilogue_exp_rgb		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x000017a3	expand_la		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x000017ab	mainloop_exp_la		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x000017c8	epilogue_exp_la		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x000017e6	expand_l		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x000017ef	mainloop_exp_l		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x0000180c	epilogue_exp_l		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x0000182a	expand_ci		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x0000183e	mainloop_exp_ci		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x0000185b	epilogue_exp_ci		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x00001879	expand_ci2		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x00001881	mainloop_exp_ci2		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x0000189e	epilogue_exp_ci2		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x000018c7	expand_single		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x000018df	mainloop_exp_single		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x000018fc	epilogue_exp_single		located	ucode/ge_handlers.md#expands	expand.s
-ge.u	label	0x0000192e	mmo_ShiftAdd		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x0000192e	umo_ShiftAdd		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001965	shift_left		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x0000196e	mainloop_sa_ls		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001981	epilogue_sa_ls		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x0000199b	shift_right		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x000019a4	mainloop_sa_rs		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x000019b7	epilogue_sa_rs		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x000019d1	umo_ShiftAdd_RGB		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001a08	shift_left_rgb		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001a11	mainloop_sa_ls_rgb		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001a26	epilogue_sa_ls_rgb		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001a3a	shift_right_rgb		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001a43	mainloop_sa_rs_rgb		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001a58	epilogue_sa_rs_rgb		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001a6c	umo_ShiftAdd_Luminance		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001aa3	shift_left_luminance		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001aac	mainloop_sa_ls_luminance		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001ac1	epilogue_sa_ls_luminance		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001ad5	shift_right_luminance		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001ade	mainloop_sa_rs_luminance		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001af3	epilogue_sa_rs_luminance		located	ucode/ge_handlers.md#shiftadds	shiftadd.s
-ge.u	label	0x00001b07	mmo_Mask		located	ucode/ge_handlers.md#masks	mask.s
-ge.u	label	0x00001b07	umo_Mask		located	ucode/ge_handlers.md#masks	mask.s
-ge.u	label	0x00001b3e	mainloop_mask		located	ucode/ge_handlers.md#masks	mask.s
-ge.u	label	0x00001b5b	epilogue_mask		located	ucode/ge_handlers.md#masks	mask.s
-ge.u	label	0x00001b8d	mmo_LUT16		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001b8d	umo_LUT16		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001c16	mainloop_lut		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001c69	postmainloop_lut		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001c6d	epilogue_lut		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001d15	umo_LUT16RGBA_AlphaOnly		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001d9e	mainloop_lut_rgba_alpha_only		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001dc1	postmainloop_lut_rgba_alpha_only		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001dc5	epilogue_lut_rgba_alpha_only		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001e0e	umo_LUT16LA_AlphaOnly		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001e97	mainloop_lut_la_alpha_only		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001eba	postmainloop_lut_la_alpha_only		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001ebe	epilogue_lut_la_alpha_only		located	ucode/ge_handlers.md#luts	LUT.s
+ge.u	label	0x0000171e	mmo_Expand		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000171e	umo_Expand		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001760	expand_rgb		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001768	mainloop_exp_rgb		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001785	epilogue_exp_rgb		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000017a3	expand_la		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000017ab	mainloop_exp_la		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000017c8	epilogue_exp_la		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000017e6	expand_l		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000017ef	mainloop_exp_l		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000180c	epilogue_exp_l		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000182a	expand_ci		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000183e	mainloop_exp_ci		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000185b	epilogue_exp_ci		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001879	expand_ci2		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001881	mainloop_exp_ci2		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000189e	epilogue_exp_ci2		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000018c7	expand_single		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000018df	mainloop_exp_single		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000018fc	epilogue_exp_single		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000192e	mmo_ShiftAdd		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000192e	umo_ShiftAdd		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001965	shift_left		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000196e	mainloop_sa_ls		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001981	epilogue_sa_ls		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000199b	shift_right		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000019a4	mainloop_sa_rs		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000019b7	epilogue_sa_rs		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x000019d1	umo_ShiftAdd_RGB		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001a08	shift_left_rgb		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001a11	mainloop_sa_ls_rgb		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001a26	epilogue_sa_ls_rgb		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001a3a	shift_right_rgb		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001a43	mainloop_sa_rs_rgb		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001a58	epilogue_sa_rs_rgb		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001a6c	umo_ShiftAdd_Luminance		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001aa3	shift_left_luminance		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001aac	mainloop_sa_ls_luminance		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001ac1	epilogue_sa_ls_luminance		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001ad5	shift_right_luminance		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001ade	mainloop_sa_rs_luminance		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001af3	epilogue_sa_rs_luminance		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001b07	mmo_Mask		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001b07	umo_Mask		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001b3e	mainloop_mask		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001b5b	epilogue_mask		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001b8d	mmo_LUT16		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001b8d	umo_LUT16		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001c16	mainloop_lut		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001c69	postmainloop_lut		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001c6d	epilogue_lut		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001d15	umo_LUT16RGBA_AlphaOnly		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001d9e	mainloop_lut_rgba_alpha_only		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001dc1	postmainloop_lut_rgba_alpha_only		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001dc5	epilogue_lut_rgba_alpha_only		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001e0e	umo_LUT16LA_AlphaOnly		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001e97	mainloop_lut_la_alpha_only		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001eba	postmainloop_lut_la_alpha_only		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x00001ebe	epilogue_lut_la_alpha_only		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x00001f07	mmo_ScaleBias		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
 ge.u	label	0x00001f07	umo_ScaleBias		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
 ge.u	label	0x00001f77	umo_DepthFinalCont		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
@@ -2142,8 +2142,8 @@ ge.u	label	0x000028db	lDI4		understood	ucode/ge_compute.md#triangle-output-udraw
 ge.u	label	0x00002909	mmo_DrawTriPrim		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
 ge.u	label	0x00002909	umo_DrawTriPrim		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
 ge.u	label	0x0000290e	lDI1		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
-ge.u	label	0x0000298a	uColorMatrix		located	ucode/ge_handlers.md#ucolormatrixs	ucolormatrix.s
-ge.u	label	0x0000298e	clrmtrixloop		located	ucode/ge_handlers.md#ucolormatrixs	ucolormatrix.s
+ge.u	label	0x0000298a	uColorMatrix		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+ge.u	label	0x0000298e	clrmtrixloop		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x000029a2	uSepConv3_124		located	ucode/ge_handlers.md#usepconv3x3s	usepconv3x3.s
 ge.u	label	0x000029a9	RowConv3Loop		located	ucode/ge_handlers.md#usepconv3x3s	usepconv3x3.s
 ge.u	label	0x000029b9	ColumnConv3Loop		located	ucode/ge_handlers.md#usepconv3x3s	usepconv3x3.s

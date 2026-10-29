@@ -733,3 +733,160 @@ of the drawing modules and send their results to the host on the raster-bus retu
 - `mmo_SelectRasterPos` (`selectmods.S` lines 261-296, at 0xbf2f): **inferred**, selection for a raster position: when
   the position is valid (AND with the flag word) it compares its z by minimum and maximum with the stored range and
   calls `mRecordHit`, so a raster position inside the view volume counts as a hit.
+
+## Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
+
+**Inferred**, from the words of each module and the ARM routine that writes its parameters ([arm1_functions.md](arm1_functions.md)).
+Each stage has the shape of the stages in [Pixel-path stages](#pixel-path-stages-scalebiass-inttofloats-clamps): a set-up
+(`umo_*`) that loads its parameter block, a `mainloop_*` of 24 components per pass that reads the input stream through
+address register 0x10 and stores through register 0x12 two components behind, and an `epilogue_*` that drains the rest
+and ends the command. The `mmo_*` names sit on the same words as the `umo_*` ones.
+
+- `mmo_Mask` (`mask.s` line 29, at 0x1b07): **inferred**, the module name of the masking stage, on the same word as
+  `umo_Mask`; the host picks it by slot and its words AND each input with a mask to give the masked result.
+- `umo_Mask` (`mask.s` lines 29-102, at 0x1b07): **inferred**, loads the mask words from the stage's parameter block into
+  registers (seven moves) as the operands of the loop, then branches straight to `epilogue_mask` (`cc` 0x15) when the
+  input holds fewer than one pass of components.
+- `mainloop_mask` (`mask.s` lines 107-134, at 0x1b3e): **inferred**, ANDs each of 24 input components with its mask
+  register (0x1b3f onward) and stores the results, the loop transfer on `cc` 0x14 repeating while input remains.
+- `epilogue_mask` (`mask.s` lines 139-192, at 0x1b5b): **inferred**, ANDs the last 23 input components with their masks,
+  stores those results and ends the command with the group-31 transfer.
+- `mmo_ShiftAdd` (`shiftadd.s` line 33, at 0x192e): **inferred**, the slot name of the `GL_INDEX_SHIFT` and
+  `GL_INDEX_OFFSET` stage, on the same word as `umo_ShiftAdd`, which shifts each input index and adds the offset.
+- `umo_ShiftAdd` (`shiftadd.s` lines 33-106, at 0x192e): **inferred**, takes the seven words `U_uShiftAdd` writes at
+  0x1a3 (offset, shift and add arguments) as input, applies unit-1 code 0x4e (not fixed by the test) to one parameter,
+  and branches on the sign of the result (`cc` 4 at 0x195c) to `shift_right` for a negative shift; otherwise it falls into `shift_left`.
+- `shift_left` (`shiftadd.s` lines 111-119, at 0x1965): **inferred**, shifts the first four input indexes left by the
+  shift count (four shift words) before the loop, or branches to the drain on a short input.
+- `mainloop_sa_ls` (`shiftadd.s` lines 123-141, at 0x196e): **inferred**, the left-shift loop: per pass it adds the offset
+  to four shifted indexes (integer adds at 0x196e-0x1971, stored as results) and shifts the next four input indexes left.
+- `epilogue_sa_ls` (`shiftadd.s` lines 145-170, at 0x1981): **inferred**, finishes the left-shift case: the last indexes
+  are shifted, the offset is added, and the results are stored before the command ends.
+- `shift_right` (`shiftadd.s` lines 175-183, at 0x199b): **inferred**, the negative-shift entry: it shifts the first four
+  input indexes right with the logical shift 0x5d, the mirror of `shift_left`.
+- `mainloop_sa_rs` (`shiftadd.s` lines 187-205, at 0x19a4): **inferred**, the right-shift loop: it adds the offset to four
+  indexes and shifts the next four right per pass, giving index >> -shift + offset as each result.
+- `epilogue_sa_rs` (`shiftadd.s` lines 209-234, at 0x19b7): **inferred**, drains the right-shift case with the same shift
+  and add pattern and ends the command after the last stored result.
+- `umo_ShiftAdd_RGB` (`shiftadd.s` lines 247-320, at 0x19d1): **inferred**, the set-up of the three-component variant: it
+  loads the same parameter words, applies code 0x4e twice to derive two shift counts, and branches on their sign to
+  `shift_right_rgb`.
+- `shift_left_rgb` (`shiftadd.s` line 325, at 0x1a08): **inferred**, a single transfer word that skips the RGB left-shift
+  loop when the input is shorter than one pass, so no component is shifted there.
+- `mainloop_sa_ls_rgb` (`shiftadd.s` lines 337-356, at 0x1a11): **inferred**, per pixel shifts the first three input
+  components left and the fourth right by a register amount (0x1a12-0x1a15), so it repositions packed fields rather than
+  adding an offset; the shifted results are stored.
+- `epilogue_sa_ls_rgb` (`shiftadd.s` lines 361-384, at 0x1a26): **inferred**, applies the shift-left, shift-left,
+  shift-left, shift-right pattern to the last three pixels and stores those results.
+- `shift_right_rgb` (`shiftadd.s` line 390, at 0x1a3a): **inferred**, the one-word guard of the RGB right-shift loop,
+  branching to its drain when fewer than one pass of input remains.
+- `mainloop_sa_rs_rgb` (`shiftadd.s` lines 402-421, at 0x1a43): **inferred**, shifts all sixteen input components of a pass
+  right with logical shifts and stores them, the RGB form for a negative shift count.
+- `epilogue_sa_rs_rgb` (`shiftadd.s` lines 426-449, at 0x1a58): **inferred**, the last twelve right shifts of the RGB
+  variant, whose stored results end the command.
+- `umo_ShiftAdd_Luminance` (`shiftadd.s` lines 463-536, at 0x1a6c): **inferred**, the luminance variant's set-up, with the
+  same parameter loads and two applications of code 0x4e as the RGB one, branching to `shift_right_luminance` on a
+  negative count.
+- `shift_left_luminance` (`shiftadd.s` line 541, at 0x1aa3): **inferred**, the guard word of the luminance left-shift
+  loop: a short input goes directly to its drain.
+- `mainloop_sa_ls_luminance` (`shiftadd.s` lines 553-572, at 0x1aac): **inferred**, the luminance loop, with the RGB
+  loop's per-pixel shift pattern (three left shifts and one right shift, 0x1aad onward) on luminance input.
+- `epilogue_sa_ls_luminance` (`shiftadd.s` lines 577-600, at 0x1ac1): **inferred**, drains that luminance loop with twelve
+  more shifts before the command ends.
+- `shift_right_luminance` (`shiftadd.s` line 606, at 0x1ad5): **inferred**, guard of the luminance right-shift loop.
+- `mainloop_sa_rs_luminance` (`shiftadd.s` lines 618-637, at 0x1ade): **inferred**, shifts sixteen luminance inputs right
+  per pass and stores the results.
+- `epilogue_sa_rs_luminance` (`shiftadd.s` lines 642-665, at 0x1af3): **inferred**, the twelve-shift drain of the luminance
+  right-shift case, the last luminance results of the stage.
+- `mmo_Expand` (`expand.s` line 69, at 0x171e): **inferred**, slot name of the expand-to-RGBA stage, sharing its first word
+  with `umo_Expand`.
+- `umo_Expand` (`expand.s` lines 69-155, at 0x171e): **inferred**, reads the ten layout words `U_uExpand` writes at
+  0x1b0-0x1b9 as input and selects the form by them: `expand_single` (`cc` 0x15), `expand_ci` (`cc` 0x14), `expand_l` or
+  `expand_la`, falling into `expand_rgb` otherwise.
+- `expand_rgb` (`expand.s` line 163, at 0x1760): **inferred**, guard of the RGB loop; a short input goes to its drain.
+- `mainloop_exp_rgb` (`expand.s` lines 174-201, at 0x1768): **inferred**, turns three-component input into four: per pixel
+  it moves red, green and blue to output words 0-2, writes the fill value (the alpha word from the layout block) to word
+  3 and stores the next input into word 4 onward (0x1769-0x176d), so each RGB pixel results in RGBA with constant alpha.
+- `epilogue_exp_rgb` (`expand.s` lines 206-239, at 0x1785): **inferred**, applies the same RGB-to-RGBA moves to the last
+  input pixels and ends the command.
+- `expand_la` (`expand.s` line 248, at 0x17a3): **inferred**, guard word of the luminance-alpha loop.
+- `mainloop_exp_la` (`expand.s` lines 259-286, at 0x17ab): **inferred**, expands luminance-alpha input: it copies the
+  luminance to red, multiplies it by a unit register into green and blue (0x17ad-0x17ae) and moves alpha into the fourth
+  output, giving (L, L, L, A) results.
+- `epilogue_exp_la` (`expand.s` lines 291-324, at 0x17c8): **inferred**, the luminance-alpha drain: the same move, two
+  multiplies and move for the last pixels.
+- `expand_l` (`expand.s` line 334, at 0x17e7): **inferred**, guard word of the luminance-only loop.
+- `mainloop_exp_l` (`expand.s` lines 345-372, at 0x17ef): **inferred**, expands luminance input to (L, L, L, fill): one
+  move and two multiplies replicate the luminance, and a move writes the fill into alpha of each result.
+- `epilogue_exp_l` (`expand.s` lines 377-410, at 0x180c): **inferred**, drains the luminance-only expansion with the
+  loop's move, two multiplies and fill move for each remaining pixel.
+- `expand_ci` (`expand.s` lines 418-432, at 0x182a): **inferred**, chooses between the one-word and two-word colour-index
+  loops (`cc` 0x14 to `expand_ci2`) from the layout words.
+- `mainloop_exp_ci` (`expand.s` lines 443-470, at 0x183e): **inferred**, copies each colour-index input into four output
+  words (0x183f-0x1842), so the index travels as four equal components for the later stages.
+- `epilogue_exp_ci` (`expand.s` lines 475-508, at 0x185b): **inferred**, the colour-index drain, replicating the last
+  indexes the same way.
+- `expand_ci2` (`expand.s` line 517, at 0x1879): **inferred**, guard word of the second index loop.
+- `mainloop_exp_ci2` (`expand.s` lines 528-555, at 0x1881): **inferred**, the second index layout, whose 24 moves per pass
+  place each input index in the output positions this layout's words select.
+- `epilogue_exp_ci2` (`expand.s` lines 560-604, at 0x189e): **inferred**, drains the second index layout with 24 moves and
+  ends the command.
+- `expand_single` (`expand.s` lines 616-642, at 0x18c7): **inferred**, set-up of the single-component form: it stores the
+  fill values for the three components that the input lacks (moves at 0x18cb, 0x18d0, 0x18d8) and takes the drain on a
+  short input.
+- `mainloop_exp_single` (`expand.s` lines 650-677, at 0x18df): **inferred**, places each single-component input in its
+  output slot and stores the three fill values beside it (0x18e0-0x18e3), giving four-component results.
+- `epilogue_exp_single` (`expand.s` lines 682-735, at 0x18fc): **inferred**, drains the single-component expansion: 23
+  moves place the last inputs beside their fill values, and the group-31 transfer ends the command after the stores.
+- `mmo_LUT16` (`LUT.s` line 77, at 0x1b8d): **inferred**, slot name of the 16-bit-index look-up stage, sharing its words
+  with `umo_LUT16`.
+- `umo_LUT16` (`LUT.s` lines 77-242, at 0x1b8d): **inferred**, loads the 14-word `U_uLut` block (table size, six table
+  offsets and the constant 2^23) into registers as input, and starts the pipeline with ten float adds of 2^23 to the first
+  components, which turn each clamped, scaled component into an integer table index in the low mantissa bits.
+- `mainloop_lut` (`LUT.s` lines 246-328, at 0x1c16): **inferred**, the look-up loop: each component is added to 2^23
+  (0x1c16 onward) and the resulting index word addresses the table through registers 8 and 9, whose entry a unit-2 move
+  (code 0x2f) brings back as the result.
+- `postmainloop_lut` (`LUT.s` lines 332-333, at 0x1c69): **inferred**, two words between the loop and the drain that move
+  the last in-flight look-ups out of the pipeline, with no arithmetic of their own.
+- `epilogue_lut` (`LUT.s` lines 339-509, at 0x1c6d): **inferred**, drains the look-up pipeline: eight more index adds and
+  the table reads for every component still in flight, the results stored before the command ends.
+- `umo_LUT16RGBA_AlphaOnly` (`LUT.s` lines 518-683, at 0x1d15): **inferred**, set-up of the RGBA look-up that maps only
+  alpha: the same parameter loads and first index adds as `umo_LUT16`.
+- `mainloop_lut_rgba_alpha_only` (`LUT.s` lines 687-721, at 0x1d9e): **inferred**, per pixel it passes red, green and
+  blue through with unit-2 moves and looks up alpha through the table, so only the alpha result changes.
+- `postmainloop_lut_rgba_alpha_only` (`LUT.s` lines 725-726, at 0x1dc1): **inferred**, the two words that empty that
+  loop's pipeline.
+- `epilogue_lut_rgba_alpha_only` (`LUT.s` lines 732-806, at 0x1dc5): **inferred**, the drain of the alpha-only RGBA look-up,
+  ending with eight unit-2 moves of the passed-through components.
+- `umo_LUT16LA_AlphaOnly` (`LUT.s` lines 817-982, at 0x1e0e): **inferred**, set-up of the luminance-alpha look-up that maps
+  alpha only, loading the table block as the RGBA form does.
+- `mainloop_lut_la_alpha_only` (`LUT.s` lines 986-1020, at 0x1e97): **inferred**, passes luminance through and looks up
+  alpha, two components per pixel.
+- `postmainloop_lut_la_alpha_only` (`LUT.s` lines 1024-1025, at 0x1eba): **inferred**, pipeline flush of that loop.
+- `epilogue_lut_la_alpha_only` (`LUT.s` lines 1031-1105, at 0x1ebe): **inferred**, drains the luminance-alpha alpha-only
+  look-up and ends the command.
+- `uColorMatrix` (`ucolormatrix.s` lines 59-62, at 0x298a): **inferred**, the start of the colour-matrix stage: four
+  multiplies of the first input pixel's red by the first matrix column fill the pipeline.
+- `clrmtrixloop` (`ucolormatrix.s` lines 68-87, at 0x298e): **inferred**, the colour-matrix loop: per pixel sixteen
+  two-unit words (multiply-add, 0x298e onward) multiply the input RGBA by the 4 x 4 matrix of `U_mColorMatrix` and sum
+  the products, giving the four output components; it repeats on `cc` 0x14 and ends on `cc` 0x11.
+- `mmo_Minmax` (`minmax.s` line 62, at 0x143e): **inferred**, slot name of the `GL_MINMAX` stage, on the same word as
+  `umo_Minmax`.
+- `umo_Minmax` (`minmax.s` lines 62-125, at 0x143e): **inferred**, reads the seven `U_uMinMax` words at 0x17c-0x182 as
+  input (the destination record and the initial range 0 and 1.0) and seeds 24 accumulator registers from them.
+- `mainloop_mm` (`minmax.s` lines 129-154, at 0x1472): **inferred**, per input component a minimum into an even register
+  and a maximum into the odd one ([ge_ops.md](ge_ops.md#settling-the-ties)), 24 words per pass.
+- `epilogue_mm` (`minmax.s` lines 159-301, at 0x148d): **inferred**, folds the last inputs into the accumulators, then
+  reduces the per-lane minima and maxima to one minimum and one maximum per component with chains of minimum and maximum
+  words, the results for the merge routines.
+- `merge1_mm` (`minmax.s` lines 381-432, at 0x154e): **inferred**, merges the single-component result with the stored
+  range at 0x183 and 0x187 by minimum and maximum and stores it back.
+- `merge2_mm` (`minmax.s` lines 318-375, at 0x1518): **inferred**, the two-component merge, comparing with the stored
+  minima at 0x183-0x184 and maxima at 0x187-0x188.
+- `merge3_mm` (`minmax.s` lines 438-486, at 0x157f): **inferred**, the three-component merge against stored words
+  0x183-0x185 and 0x187-0x189.
+- `merge4_mm` (`minmax.s` lines 492-540, at 0x15ad): **inferred**, the four-component merge against 0x183-0x186 and
+  0x187-0x18a, the full RGBA min-max result.
+- `uge_MinmaxFill` (`minmax.s` lines 544-578, at 0x15db): **inferred**, combines three operands with the stored range:
+  three minima and three maxima (0x15ea-0x15ef) between the input words and the stored minimum and maximum, the results
+  written back by predicated stores (0x15f3-0x15f8).
