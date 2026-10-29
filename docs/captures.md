@@ -50,3 +50,27 @@ Everything here is **unknown** from the binaries and public sources read so far.
 | Register and pixel-memory contents of `pg`, `tg`, `tf` and `tm` after reset and after `ResetRMBoards` | `docs/rm.md` | Read every register of one raster board over the scan chain after power-on, after `init_rm_board` and after `ResetRMBoards`; dump a framebuffer tile before and after. |
 | Per-pixel LOD, sub-texel position, filter-weight and iterator widths inside the fixed-function chips | `docs/rm.md`, `RM.h` | Draw a magnified two-texel texture with a slowly varying LOD and a long colour-iterated span, read back every pixel and fit the step sizes. |
 | The pixel format on the 160-wire display bus, the tile request format, and the XMAP registers the diagnostic's list leaves out (4, 5, 8-10, 0x10) | `docs/rm.md`, `DG.h` | Logic-analyser trace of `impadg_data`/`impbdg_data`, `dgvreq` and the shift enables during one frame of a known image; read XMAP registers 0-0x11 through the video-controller port. |
+
+## Display generator (DG)
+
+| Item | Owner | Capture |
+|---|---|---|
+| The display-bus writes for the cursor crosshair address 9884 and colour word 259 of `X_LOADCURSOR` | `docs/opengl.md`, `DG.h` | Trace the video-controller port (`vc_data[8]` with its strobes) while the X server loads a cursor and switches it to crosshair mode. |
+| When the hardware raises the VIDEO interrupt (bit 3) and writes `HH_SEQID` relative to vertical retrace, and what raises VOC (bit 9) | `docs/dg.md`, `docs/hip.md` | Log `HH_INTR_STATUS` and `HH_SEQID` with timestamps against the vertical sync on the video connector while a program swaps every frame; unplug and replug genlock for VOC. |
+| The display generator's own reset register and whether a host request or interrupt reaches it | `docs/dg.md` | Read the display board's scan-chain registers before and after `ResetRMBoards` and after an `HH_RESET` pulse. |
+
+## Geometry distributor
+
+The distributor items are written in [ucode/ged.md](../ucode/ged.md) with their captures; listed here so this page is complete.
+
+| Item | Owner | Capture |
+|---|---|---|
+| How the hardware chooses between the state-based index and the token's own entry number | `ucode/ged.md` | JTAG read of `ged_dispInst`, `ged_dispGeomCtrl` and `ged_geomStatus`, one token at a time, while the pipe receives `BEGIN_TRIANGLES`, three `VERTEX3F`, `COLOR3F`, `SWAPTMESH` and `END`. |
+| What transfer ops 1, 3, 5, 6 and 7 test; control fields x, y, r, a, b, c, z and n; the small-constant registers r13, r14, r30-r67 and the sequencer-test registers 0x280-0x2b0 | `ucode/ged.md` | The same JTAG reads over the diagnostic's `gedSequencer` test. |
+| How the distributor picks among the eight engines (round-robin flag and occupancy mask in `sys/kona_if.h`) | `ucode/ged.md` | Read the engines' input counters after a run of 64 triangles with one, two and eight engines enabled. |
+
+## Kernel driver
+
+| Item | Owner | Capture |
+|---|---|---|
+| What the kernel's reset path clears in the pipe (beyond the registers it rewrites) | `docs/kernel.md`, `docs/xg.md` | As for the host-interface reset item above: read the token map, FIFO level and counters before and after `kona_reset_adaptor` plus the `HH_RESET` pulse. |
