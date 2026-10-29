@@ -14378,7 +14378,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954224	300	__glkonPixSi
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954350	260	__glkonim_PixelZoom	dynsym+mdebug	ed3d8a333904	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954454	272	__glkonim_PixelStoref	dynsym+mdebug	124d0ddda58a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954564	1112	__glkonim_TextureStorei	dynsym+mdebug	f2e82ab97f08	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9549bc	1108	__glkonim_PixelStorei	dynsym+mdebug	2270563ecc37	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9549bc	1108	__glkonim_PixelStorei	dynsym+mdebug	2270563ecc37	named-only	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd954e10	1592	__glkonim_PixelTransferf	dynsym+mdebug	509950315560	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd955448	72	__glkonim_PixelTransferi	dynsym+mdebug	a71416864064	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9554a0	284	__glKonInitConvolutionState	dynsym+mdebug	8889bb52fc37	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14501,30 +14501,30 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9645f0	264	__glkonim_Po
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9646f8	316	__glkonim_PointParameterfvSGIS	dynsym+mdebug	7f45d187522c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd964834	440	__glkonlc_PointParameterfSGIS	dynsym+mdebug	e653e38ca058	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9649ec	588	__glkonlc_PointParameterfvSGIS	dynsym+mdebug	3fb85c03a757	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd964cc0	592	__glkonim_ProcImage	mdebug	a01e21457ef4	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd964cc0	592	__glkonim_ProcImage	mdebug	a01e21457ef4	located	docs/opengl.md#__glkonim_procimage	`__glkonim_ProcImage`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd964f10	28	updateTexBindID	mdebug	e823113bac58	named-only	GE.h:4791	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd964f2c	204	stealARMTableCacheCallback	mdebug	a4200228cde0	named-only	GE.h:7991	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd964ff8	208	freeARMTexCache	mdebug	4501abc2f486	named-only	GE.h:7611	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd964f2c	204	stealARMTableCacheCallback	mdebug	a4200228cde0	named-only	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd964ff8	208	freeARMTexCache	mdebug	4501abc2f486	named-only	docs/opengl.md#initarmtexcache	`initARMTexCache`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9650c8	108	bindARMTexCache	mdebug	7bce4ce33c9f	named-only	GE.h:7597	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965134	88	getS0p7	mdebug	fe7fe9d9c46b	named-only	RM.h:107	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96518c	164	getS2p7	mdebug	240591f8206e	named-only	RM.h:117	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965134	88	getS0p7	mdebug	fe7fe9d9c46b	located	docs/opengl.md#gets0p7	`getS0p7`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96518c	164	getS2p7	mdebug	240591f8206e	located	docs/opengl.md#gets2p7	`getS2p7`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965230	3180	computeActiveTarget	mdebug	afb5dc2bc21e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd965290	1184	bindTexTable	dynsym+mdebug	c347d1324806	named-only	GE.h:6271	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd965730	220	getTexTableUsage	dynsym+mdebug	2e6458cb2f9d	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd96580c	1340	addTexTableUsage	dynsym+mdebug	a7e772d4ef16	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd965290	1184	bindTexTable	dynsym+mdebug	c347d1324806	named-only	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd965730	220	getTexTableUsage	dynsym+mdebug	2e6458cb2f9d	located	docs/opengl.md#gettextableusage	`getTexTableUsage`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd96580c	1340	addTexTableUsage	dynsym+mdebug	a7e772d4ef16	located	docs/opengl.md#addtextableusage	`addTexTableUsage`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd965d48	340	subtractTexTableUsage	dynsym+mdebug	6219c9027159	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965e9c	136	initTexTables	mdebug	e74bbb87feef	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965f24	252	freeTexTables	mdebug	f065310155f1	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966020	68	initARMTexCache	mdebug	78f9323e1b3a	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966064	116	updateTexUsage	mdebug	c1a5825ea937	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9660d8	84	targetIndex	mdebug	ce53763eda64	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96612c	140	isLodInvalid	mdebug	14bc218e4014	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9661b8	572	unmatchObjLevel	mdebug	62b19e9fd95f	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9663f4	228	allocLevelImage	mdebug	5b0a282a25d0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9664d8	236	setDetailFilter	mdebug	88225a4a2831	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965e9c	136	initTexTables	mdebug	e74bbb87feef	located	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd965f24	252	freeTexTables	mdebug	f065310155f1	located	docs/opengl.md#freetextables	`freeTexTables`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966020	68	initARMTexCache	mdebug	78f9323e1b3a	located	docs/opengl.md#initarmtexcache	`initARMTexCache`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966064	116	updateTexUsage	mdebug	c1a5825ea937	located	docs/opengl.md#updatetexusage	`updateTexUsage`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9660d8	84	targetIndex	mdebug	ce53763eda64	located	docs/opengl.md#targetindex	`targetIndex`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96612c	140	isLodInvalid	mdebug	14bc218e4014	located	docs/opengl.md#islodinvalid	`isLodInvalid`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9661b8	572	unmatchObjLevel	mdebug	62b19e9fd95f	located	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9663f4	228	allocLevelImage	mdebug	5b0a282a25d0	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9664d8	236	setDetailFilter	mdebug	88225a4a2831	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9665c4	320	setSharpenFilter	mdebug	22260cca3eb9	named-only	RM.h:91	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	changeMinMaxLod	mdebug	22d2b27bfcf1	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283	located	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966d88	2576	changeFilter	mdebug	00df2425e6bb	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeClamp	mdebug	0e9d6a147fff	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967a20	40	loadPostTextureScaleBias	mdebug	f2b05be99aa6	named-only	GE.h:3928	
@@ -14535,39 +14535,39 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967cbc	9836	change
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9680c0	6932	__glKonTexParameter	dynsym+mdebug	3aad6baa12c4	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd969bd4	1876	__glKonGetTexParameter	dynsym+mdebug	db22947090dc	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a328	536	bind2DMipmapTexture	mdebug	a30de34cfb3b	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a540	72	setClipmapRegisters	mdebug	d68cf4f31c14	named-only	GE.h:7093	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a540	72	setClipmapRegisters	mdebug	d68cf4f31c14	named-only	docs/opengl.md#getlevel	`getLevel`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a588	248	bind2DClipmapTexture	mdebug	17542b2c1fc6	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a680	280	bindBicubicTexture	mdebug	3143dd981f6d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a798	344	bind3DMipmapTexture	mdebug	b3ed65fa92c4	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a8f0	228	bind3DTexture	mdebug	5af2a93d2b1d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a9d4	152	bindDetailTexture	mdebug	ca4841330bec	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96aa6c	972	initTexture	mdebug	a50f6477d7c8	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96ae38	272	subloadSimple	mdebug	56eeec38aba5	named-only	GE.h:52	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96af48	184	tileinfo	mdebug	e160ec041741	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96b000	796	subloadBorderedLevel	mdebug	ce9ac9b03aab	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96b31c	648	subcopyBorderedLevel	mdebug	6136ea106f89	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96b5a4	2720	subloadPyramidLevel	mdebug	ae297dcf066a	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96c044	300	subloadClipLevel	mdebug	9f27ab21889e	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96ae38	272	subloadSimple	mdebug	56eeec38aba5	named-only	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96af48	184	tileinfo	mdebug	e160ec041741	located	docs/opengl.md#tileinfo	`tileinfo`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96b000	796	subloadBorderedLevel	mdebug	ce9ac9b03aab	located	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96b31c	648	subcopyBorderedLevel	mdebug	6136ea106f89	located	docs/opengl.md#subcopyborderedlevel	`subcopyBorderedLevel`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96b5a4	2720	subloadPyramidLevel	mdebug	ae297dcf066a	located	docs/opengl.md#subloadpyramidlevel	`subloadPyramidLevel`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96c044	300	subloadClipLevel	mdebug	9f27ab21889e	located	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96c170	2228	subloadLevel	mdebug	af93f34f54d7	named-only	docs/ge.md#the-texel-format-id	The texel format id
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96ca24	204	subgetSimple	mdebug	a90ac6d8ac73	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	7e692cc91f1c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d038	192	validDimension	mdebug	d3678100d330	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96ca24	204	subgetSimple	mdebug	a90ac6d8ac73	located	docs/opengl.md#subgetsimple	`subgetSimple`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	7e692cc91f1c	located	docs/opengl.md#getlevel	`getLevel`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d038	192	validDimension	mdebug	d3678100d330	located	docs/opengl.md#validdimension	`validDimension`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	f6a6c8e600c7	located	ucode/arm1_functions.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d118	164	areLodsConsistent	mdebug	4a1af1d26d0f	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d1bc	484	copyBackLods	mdebug	6c59368c99da	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d3a0	172	repPixels	mdebug	4eec8c5b819a	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d44c	1568	fillBorderColorLevel	mdebug	bf4da7ad2aa4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96da6c	768	downloadLods	mdebug	84e1e8380266	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96dd6c	204	whichComps	mdebug	5547856afcc8	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96de38	340	storage2Comp	mdebug	0eb8074db6b2	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d118	164	areLodsConsistent	mdebug	4a1af1d26d0f	located	docs/opengl.md#arelodsconsistent	`areLodsConsistent`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d1bc	484	copyBackLods	mdebug	6c59368c99da	located	docs/opengl.md#copybacklods	`copyBackLods`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d3a0	172	repPixels	mdebug	4eec8c5b819a	located	docs/opengl.md#reppixels	`repPixels`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d44c	1568	fillBorderColorLevel	mdebug	bf4da7ad2aa4	located	docs/opengl.md#fillbordercolorlevel	`fillBorderColorLevel`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96da6c	768	downloadLods	mdebug	84e1e8380266	located	docs/opengl.md#downloadlods	`downloadLods`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96dd6c	204	whichComps	mdebug	5547856afcc8	located	docs/opengl.md#whichcomps	`whichComps`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96de38	340	storage2Comp	mdebug	0eb8074db6b2	located	docs/opengl.md#storage2comp	`storage2Comp`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96df8c	2892	calcObjSize	mdebug	ba1747cfaa2c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96ead8	96	deallocTexture	mdebug	89387718ed72	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96eb38	124	freeTexture	mdebug	de0bd7ea70ef	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96ead8	96	deallocTexture	mdebug	89387718ed72	located	docs/opengl.md#dealloctexture	`deallocTexture`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96eb38	124	freeTexture	mdebug	de0bd7ea70ef	located	docs/opengl.md#freetexture	`freeTexture`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96ebb4	976	translateLodAddr	mdebug	8538e2de4dd8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96ef84	580	configTexture	mdebug	1ada3392d152	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96f1c8	664	slowBindTexture	mdebug	09170fa50b30	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96f460	252	validateTexture	mdebug	e347509ab643	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96f55c	5544	destroyTextureObj	mdebug	67e0641f01cd	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96f460	252	validateTexture	mdebug	e347509ab643	located	docs/opengl.md#validatetexture	`validateTexture`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96f55c	5544	destroyTextureObj	mdebug	67e0641f01cd	located	docs/opengl.md#destroytextureobj	`destroyTextureObj`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd96f63c	644	__glkonim_GenTexturesEXT_Slow	dynsym+mdebug	d105d2961e01	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd96f8c0	704	__glkonim_GenTexturesEXT	dynsym+mdebug	b1b6fcfb150a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd96fb80	96	__glKonFreeTextureObj	dynsym+mdebug	ec140c9f275e	named-only	docs/libglcore.md#texture-management	Texture management
@@ -14579,14 +14579,14 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97076c	360	__glkonim_Ar
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9708d4	420	__glkonim_PrioritizeTexturesEXT	dynsym+mdebug	5aa7e759afc9	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd970a78	140	__glkonim_IsTextureEXT	dynsym+mdebug	511769ccb13b	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd970b04	268	guessClipmapBreakpoint	mdebug	c985e2db11b2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd970c10	380	undefineTextureLevel	mdebug	61f28ff1e0c2	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd970c10	380	undefineTextureLevel	mdebug	61f28ff1e0c2	located	docs/opengl.md#undefinetexturelevel	`undefineTextureLevel`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd970d8c	2824	checkTexImage	mdebug	eb5d579518cd	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd971894	344	computeDestinationDims	mdebug	863ef91f01c0	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9719ec	2692	checkPixelError	mdebug	2e795238b073	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd971af8	1140	__glkonim_TexImage	dynsym+mdebug	1bc64ec18577	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd971f6c	600	__glkonim_CopyTexImage	dynsym+mdebug	4533e5aae870	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9721c4	144	__glkonim_TexImage3DEXT	dynsym+mdebug	47efbf85677a	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd972254	152	__glkonim_TexImage2D	dynsym+mdebug	a1174d1523a6	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd972254	152	__glkonim_TexImage2D	dynsym+mdebug	a1174d1523a6	located	docs/opengl.md#__glkonim_teximage2d	`__glkonim_TexImage2D`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9722ec	144	__glkonim_TexImage1D	dynsym+mdebug	58cbd4734a8d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97237c	116	__glkonim_CopyTexImage1DEXT	dynsym+mdebug	6cb61f9b63d7	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9723f0	128	__glkonim_CopyTexImage2DEXT	dynsym+mdebug	9420e45ad3cd	named-only	docs/libglcore.md#texture-management	Texture management
@@ -14598,19 +14598,19 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd973504	148	__glkonim_Te
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd973598	144	__glkonim_TexSubImage1DEXT	dynsym+mdebug	750f35fea097	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd973628	128	__glkonim_CopyTexSubImage1DEXT	dynsym+mdebug	7e9fbf921290	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9736a8	132	__glkonim_CopyTexSubImage2DEXT	dynsym+mdebug	35be2d83829e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97372c	124	__glkonim_CopyTexSubImage3DEXT	dynsym+mdebug	0358686b1bba	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97372c	124	__glkonim_CopyTexSubImage3DEXT	dynsym+mdebug	0358686b1bba	located	docs/opengl.md#__glkonim_copytexsubimage3dext	`__glkonim_CopyTexSubImage3DEXT`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9737a8	580	__glkonim_GetTexImage	dynsym+mdebug	f8421507cb7b	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9739ec	312	__glkon_EnableTexture	dynsym+mdebug	ed7ce8c6f1a8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd973b24	316	__glkonim_TexParameterfv	dynsym+mdebug	fc7ba70dbdd7	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd973c60	592	__glkonim_TexParameterf	dynsym+mdebug	f172cd853f6c	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd973eb0	312	__glkonim_TexParameteriv	dynsym+mdebug	f8cc4ebd5326	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd973fe8	588	__glkonim_TexParameteri	dynsym+mdebug	0ee35ad962d0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd974234	436	__glkonim_DetailTexFuncSGIS	dynsym+mdebug	3b1fbd2385e3	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9743e8	156	__glkonim_GetDetailTexFuncSGIS	dynsym+mdebug	ad3537d60770	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd974484	544	__glkonim_SharpenTexFuncSGIS	dynsym+mdebug	e29cf85d0dc6	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9746a4	272	__glkonim_GetSharpenTexFuncSGIS	dynsym+mdebug	fed4da1be3ed	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9747b4	528	__glkonim_TexFilterFuncSGIS	dynsym+mdebug	0681e44f57fd	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9749c4	276	__glkonim_GetTexFilterFuncSGIS	dynsym+mdebug	cbfa2f155be9	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd974234	436	__glkonim_DetailTexFuncSGIS	dynsym+mdebug	3b1fbd2385e3	located	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9743e8	156	__glkonim_GetDetailTexFuncSGIS	dynsym+mdebug	ad3537d60770	located	docs/opengl.md#__glkonim_getdetailtexfuncsgis	`__glkonim_GetDetailTexFuncSGIS`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd974484	544	__glkonim_SharpenTexFuncSGIS	dynsym+mdebug	e29cf85d0dc6	located	docs/opengl.md#__glkonim_sharpentexfuncsgis	`__glkonim_SharpenTexFuncSGIS`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9746a4	272	__glkonim_GetSharpenTexFuncSGIS	dynsym+mdebug	fed4da1be3ed	located	docs/opengl.md#__glkonim_getsharpentexfuncsgis	`__glkonim_GetSharpenTexFuncSGIS`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9747b4	528	__glkonim_TexFilterFuncSGIS	dynsym+mdebug	0681e44f57fd	located	docs/opengl.md#__glkonim_texfilterfuncsgis	`__glkonim_TexFilterFuncSGIS`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9749c4	276	__glkonim_GetTexFilterFuncSGIS	dynsym+mdebug	cbfa2f155be9	located	docs/opengl.md#__glkonim_gettexfilterfuncsgis	`__glkonim_GetTexFilterFuncSGIS`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd974ad8	2972	checkProxyTexture	mdebug	ba59df1a2813	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd974f4c	1212	__glkonim_GetTexLevelParameteriv	dynsym+mdebug	366b28e60eaf	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd975408	80	__glkonim_GetTexLevelParameterfv	dynsym+mdebug	50f8a9083e3a	named-only	docs/libglcore.md#texture-management	Texture management
@@ -14626,14 +14626,14 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd975dc4	284	__glKonFreeA
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd975ee0	160	__glKonShareTexture	dynsym+mdebug	518b390229c3	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd975f80	656	__glKonPushTextureAttrib	dynsym+mdebug	4c7840f4d893	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976210	536	__glKonPopTextureAttrib	dynsym+mdebug	389e9416a0f2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd976428	1944	__glkonlc_TexImage	mdebug	d0e754e14db1	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976564	276	__glkonlc_TexImage1D	dynsym+mdebug	b706708fa7fd	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976678	276	__glkonlc_TexImage2D	dynsym+mdebug	c24cffaecd65	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97678c	276	__glkonlc_TexImage3DEXT	dynsym+mdebug	6032a4fef2bc	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9768a0	184	__glkonle_TexImage	dynsym+mdebug	7b40851b9caf	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976958	188	__glkonle_TexSubImage1DEXT	dynsym+mdebug	808a20036653	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976a14	188	__glkonle_TexSubImage2DEXT	dynsym+mdebug	7b204b126c04	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976ad0	192	__glkonle_TexSubImage3DEXT	dynsym+mdebug	7e026d60aecd	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd976428	1944	__glkonlc_TexImage	mdebug	d0e754e14db1	located	docs/opengl.md#__glkonlc_teximage	`__glkonlc_TexImage`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976564	276	__glkonlc_TexImage1D	dynsym+mdebug	b706708fa7fd	located	docs/opengl.md#__glkonlc_teximage1d	`__glkonlc_TexImage1D`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976678	276	__glkonlc_TexImage2D	dynsym+mdebug	c24cffaecd65	located	docs/opengl.md#__glkonlc_teximage2d	`__glkonlc_TexImage2D`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97678c	276	__glkonlc_TexImage3DEXT	dynsym+mdebug	6032a4fef2bc	located	docs/opengl.md#__glkonlc_teximage3dext	`__glkonlc_TexImage3DEXT`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9768a0	184	__glkonle_TexImage	dynsym+mdebug	7b40851b9caf	located	docs/opengl.md#__glkonle_teximage	`__glkonle_TexImage`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976958	188	__glkonle_TexSubImage1DEXT	dynsym+mdebug	808a20036653	located	docs/opengl.md#__glkonle_texsubimage1dext	`__glkonle_TexSubImage1DEXT`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976a14	188	__glkonle_TexSubImage2DEXT	dynsym+mdebug	7b204b126c04	located	docs/opengl.md#__glkonle_texsubimage2dext	`__glkonle_TexSubImage2DEXT`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976ad0	192	__glkonle_TexSubImage3DEXT	dynsym+mdebug	7e026d60aecd	located	docs/opengl.md#__glkonle_texsubimage3dext	`__glkonle_TexSubImage3DEXT`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd976bc0	256	globalAlloc	mdebug	07c3f41be0f5	located	docs/opengl.md#globalalloc	`globalAlloc`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd976cc0	412	whichBucket	mdebug	f201e56bdc52	located	docs/opengl.md#whichbucket	`whichBucket`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd976d6c	240	findFreeBank	dynsym+mdebug	023c6ac2177f	located	docs/opengl.md#findfreebank	`findFreeBank`
@@ -19920,7 +19920,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955ea0	240	__glkonPix
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd955f90	220	__glkonim_PixelZoom	dwarf+dynsym	d0ddbc82bc04	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd956070	204	__glkonim_PixelStoref	dwarf+dynsym	da1aaf6b8598	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd956140	1284	__glkonim_TextureStorei	dwarf+dynsym	daff98e5ebe5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd956650	1268	__glkonim_PixelStorei	dwarf+dynsym	c3b61bd9302e	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd956650	1268	__glkonim_PixelStorei	dwarf+dynsym	c3b61bd9302e	named-only	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd956b50	1596	__glkonim_PixelTransferf	dwarf+dynsym	3ea2438d7fe5	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd957190	56	__glkonim_PixelTransferi	dwarf+dynsym	d39909e9628c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9571d0	280	__glKonInitConvolutionState	dwarf+dynsym	9ade3529e6f9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -20043,30 +20043,30 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9646d0	232	__glkonim_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9647c0	288	__glkonim_PointParameterfvSGIS	dwarf+dynsym	8235775dd7f6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9648e0	388	__glkonlc_PointParameterfSGIS	dwarf+dynsym	1f66e5771e0b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd964a70	536	__glkonlc_PointParameterfvSGIS	dwarf+dynsym	01e61c9d5e11	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd964c90	512	__glkonim_ProcImage	dwarf+funcnames	2b7874b5b12b	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd964c90	512	__glkonim_ProcImage	dwarf+funcnames	2b7874b5b12b	understood	docs/opengl.md#__glkonim_procimage	`__glkonim_ProcImage`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd964e90	24	updateTexBindID	dwarf+funcnames	4ff0d4304f9b	named-only	GE.h:4791	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd964eb0	172	stealARMTableCacheCallback	dwarf+funcnames	f1a16807f8fc	named-only	GE.h:7991	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd964f60	216	freeARMTexCache	dwarf+funcnames	79ede03b8138	named-only	GE.h:7611	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd964eb0	172	stealARMTableCacheCallback	dwarf+funcnames	f1a16807f8fc	named-only	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd964f60	216	freeARMTexCache	dwarf+funcnames	79ede03b8138	named-only	docs/opengl.md#initarmtexcache	`initARMTexCache`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965040	88	bindARMTexCache	dwarf+funcnames	5114faf67ad5	named-only	GE.h:7597	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9650a0	48	getS0p7	dwarf+funcnames	2788d8c5a1e1	named-only	RM.h:107	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9650d0	136	getS2p7	dwarf+funcnames	93c2d4f2d5ee	named-only	RM.h:117	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9650a0	48	getS0p7	dwarf+funcnames	2788d8c5a1e1	understood	docs/opengl.md#gets0p7	`getS0p7`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9650d0	136	getS2p7	dwarf+funcnames	93c2d4f2d5ee	understood	docs/opengl.md#gets2p7	`getS2p7`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965160	88	computeActiveTarget	dwarf+funcnames	0fadd45ebb53	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9651c0	944	bindTexTable	dwarf+dynsym	f7875c4362af	named-only	GE.h:6271	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd965570	184	getTexTableUsage	dwarf+dynsym	02a104cd33b6	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd965630	1252	addTexTableUsage	dwarf+dynsym	3eb2c81833bb	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9651c0	944	bindTexTable	dwarf+dynsym	f7875c4362af	named-only	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd965570	184	getTexTableUsage	dwarf+dynsym	02a104cd33b6	understood	docs/opengl.md#gettextableusage	`getTexTableUsage`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd965630	1252	addTexTableUsage	dwarf+dynsym	3eb2c81833bb	understood	docs/opengl.md#addtextableusage	`addTexTableUsage`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd965b20	332	subtractTexTableUsage	dwarf+dynsym	19082ef679e8	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965c70	88	initTexTables	dwarf+funcnames	85b899c14cc9	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965cd0	196	freeTexTables	dwarf+funcnames	ab0cb0e158db	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965da0	24	initARMTexCache	dwarf+funcnames	c1bc50077ff7	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965dc0	64	updateTexUsage	dwarf+funcnames	dac9fc52f2a4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965e00	80	targetIndex	dwarf+funcnames	6f68bad0cd13	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965e50	120	isLodInvalid	dwarf+funcnames	aa2cc2f097d4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965ed0	504	unmatchObjLevel	dwarf+funcnames	23589c00be9e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9660d0	192	allocLevelImage	dwarf+funcnames	f4c2c6cc319c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd966190	244	setDetailFilter	dwarf+funcnames	bb239e36767f	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965c70	88	initTexTables	dwarf+funcnames	85b899c14cc9	understood	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965cd0	196	freeTexTables	dwarf+funcnames	ab0cb0e158db	understood	docs/opengl.md#freetextables	`freeTexTables`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965da0	24	initARMTexCache	dwarf+funcnames	c1bc50077ff7	understood	docs/opengl.md#initarmtexcache	`initARMTexCache`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965dc0	64	updateTexUsage	dwarf+funcnames	dac9fc52f2a4	understood	docs/opengl.md#updatetexusage	`updateTexUsage`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965e00	80	targetIndex	dwarf+funcnames	6f68bad0cd13	understood	docs/opengl.md#targetindex	`targetIndex`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965e50	120	isLodInvalid	dwarf+funcnames	aa2cc2f097d4	understood	docs/opengl.md#islodinvalid	`isLodInvalid`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd965ed0	504	unmatchObjLevel	dwarf+funcnames	23589c00be9e	understood	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9660d0	192	allocLevelImage	dwarf+funcnames	f4c2c6cc319c	understood	docs/opengl.md#alloclevelimage	`allocLevelImage`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd966190	244	setDetailFilter	dwarf+funcnames	bb239e36767f	understood	docs/opengl.md#setdetailfilter	`setDetailFilter`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd966290	292	setSharpenFilter	dwarf+funcnames	7659b3be2475	named-only	RM.h:91	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9663c0	1148	changeMinMaxLod	dwarf+funcnames	c8960bacaa74	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd966840	116	guessBaseLevel	dwarf+funcnames	43f2125a21d1	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd966840	116	guessBaseLevel	dwarf+funcnames	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9668c0	4900	changeFilter	dwarf+funcnames	41df356a3e3b	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967bf0	604	changeClamp	dwarf+funcnames	41ff4926380e	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967e50	40	loadPostTextureScaleBias	dwarf+funcnames	a8f4ef6370aa	named-only	GE.h:3928	
@@ -20077,39 +20077,39 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd968070	792	chang
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd968390	6156	__glKonTexParameter	dwarf+dynsym	f0dc4f474915	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd969ba0	1632	__glKonGetTexParameter	dwarf+dynsym	130e9ff1a9f9	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96a200	444	bind2DMipmapTexture	dwarf+funcnames	8cec997ecb39	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96a3c0	72	setClipmapRegisters	dwarf+funcnames	83b3b6f62728	named-only	GE.h:7093	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96a3c0	72	setClipmapRegisters	dwarf+funcnames	83b3b6f62728	named-only	docs/opengl.md#getlevel	`getLevel`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96a410	272	bind2DClipmapTexture	dwarf+funcnames	3531f4239038	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96a520	264	bindBicubicTexture	dwarf+funcnames	6a6ef8f1d3d9	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96a630	300	bind3DMipmapTexture	dwarf+funcnames	a3fbe264192f	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96a760	220	bind3DTexture	dwarf+funcnames	d8ac6008809f	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96a840	144	bindDetailTexture	dwarf+funcnames	fc82df1640e1	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96a8d0	860	initTexture	dwarf+funcnames	0d6bf27b91f5	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96ac30	256	subloadSimple	dwarf+funcnames	376b04f1e24b	named-only	GE.h:52	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96ad30	144	tileinfo	dwarf+funcnames	e64ace867745	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96adc0	708	subloadBorderedLevel	dwarf+funcnames	b57dca380043	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96b090	604	subcopyBorderedLevel	dwarf+funcnames	9ca80c3ee602	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96b2f0	2212	subloadPyramidLevel	dwarf+funcnames	9276cd4ed88e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96bba0	224	subloadClipLevel	dwarf+funcnames	cec3a5f6d99e	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96ac30	256	subloadSimple	dwarf+funcnames	376b04f1e24b	named-only	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96ad30	144	tileinfo	dwarf+funcnames	e64ace867745	understood	docs/opengl.md#tileinfo	`tileinfo`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96adc0	708	subloadBorderedLevel	dwarf+funcnames	b57dca380043	understood	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96b090	604	subcopyBorderedLevel	dwarf+funcnames	9ca80c3ee602	understood	docs/opengl.md#subcopyborderedlevel	`subcopyBorderedLevel`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96b2f0	2212	subloadPyramidLevel	dwarf+funcnames	9276cd4ed88e	understood	docs/opengl.md#subloadpyramidlevel	`subloadPyramidLevel`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96bba0	224	subloadClipLevel	dwarf+funcnames	cec3a5f6d99e	understood	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96bc80	2124	subloadLevel	dwarf+funcnames	34734057e25a	named-only	docs/ge.md#the-texel-format-id	The texel format id
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c4d0	160	subgetSimple	dwarf+funcnames	0e9b9565f831	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c570	1140	getLevel	dwarf+funcnames	ac60c4c88b10	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c9f0	168	validDimension	dwarf+funcnames	bf83fc33250e	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c4d0	160	subgetSimple	dwarf+funcnames	0e9b9565f831	understood	docs/opengl.md#subgetsimple	`subgetSimple`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c570	1140	getLevel	dwarf+funcnames	ac60c4c88b10	understood	docs/opengl.md#getlevel	`getLevel`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96c9f0	168	validDimension	dwarf+funcnames	bf83fc33250e	understood	docs/opengl.md#validdimension	`validDimension`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96caa0	56	log2	dwarf+funcnames	9b6432f02abb	located	ucode/arm1_functions.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96cae0	204	areLodsConsistent	dwarf+funcnames	78fc40942c50	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96cbb0	660	copyBackLods	dwarf+funcnames	d9d59aa5f935	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96ce50	132	repPixels	dwarf+funcnames	f8b27a52154c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96cee0	1292	fillBorderColorLevel	dwarf+funcnames	fbe00c6e36d0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96d3f0	736	downloadLods	dwarf+funcnames	4c46715c01f2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96d6d0	52	whichComps	dwarf+funcnames	b9da73ba4723	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96d710	64	storage2Comp	dwarf+funcnames	2f5152e1e43f	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96cae0	204	areLodsConsistent	dwarf+funcnames	78fc40942c50	understood	docs/opengl.md#arelodsconsistent	`areLodsConsistent`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96cbb0	660	copyBackLods	dwarf+funcnames	d9d59aa5f935	understood	docs/opengl.md#copybacklods	`copyBackLods`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96ce50	132	repPixels	dwarf+funcnames	f8b27a52154c	understood	docs/opengl.md#reppixels	`repPixels`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96cee0	1292	fillBorderColorLevel	dwarf+funcnames	fbe00c6e36d0	understood	docs/opengl.md#fillbordercolorlevel	`fillBorderColorLevel`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96d3f0	736	downloadLods	dwarf+funcnames	4c46715c01f2	understood	docs/opengl.md#downloadlods	`downloadLods`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96d6d0	52	whichComps	dwarf+funcnames	b9da73ba4723	understood	docs/opengl.md#whichcomps	`whichComps`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96d710	64	storage2Comp	dwarf+funcnames	2f5152e1e43f	understood	docs/opengl.md#storage2comp	`storage2Comp`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96d750	2556	calcObjSize	dwarf+funcnames	46db5d5a5055	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96e150	72	deallocTexture	dwarf+funcnames	2cbffbd98488	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96e1a0	104	freeTexture	dwarf+funcnames	d6083f738e1f	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96e150	72	deallocTexture	dwarf+funcnames	2cbffbd98488	understood	docs/opengl.md#dealloctexture	`deallocTexture`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96e1a0	104	freeTexture	dwarf+funcnames	d6083f738e1f	understood	docs/opengl.md#freetexture	`freeTexture`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96e210	1032	translateLodAddr	dwarf+funcnames	9e1dc9391f6a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96e620	512	configTexture	dwarf+funcnames	731503c098fc	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96e820	572	slowBindTexture	dwarf+funcnames	830a639624c7	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96ea60	224	validateTexture	dwarf+funcnames	6369713b8553	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96eb40	200	destroyTextureObj	dwarf+funcnames	7bd19f795461	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96ea60	224	validateTexture	dwarf+funcnames	6369713b8553	understood	docs/opengl.md#validatetexture	`validateTexture`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96eb40	200	destroyTextureObj	dwarf+funcnames	7bd19f795461	understood	docs/opengl.md#destroytextureobj	`destroyTextureObj`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd96ec10	524	__glkonim_GenTexturesEXT_Slow	dwarf+dynsym	80b97797e1da	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd96ee20	596	__glkonim_GenTexturesEXT	dwarf+dynsym	7d124245fed5	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd96f080	96	__glKonFreeTextureObj	dwarf+dynsym	a11d89b5c164	named-only	docs/libglcore.md#texture-management	Texture management
@@ -20121,14 +20121,14 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd96fba0	392	__glkonim_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd96fd30	408	__glkonim_PrioritizeTexturesEXT	dwarf+dynsym	00e42ada610a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd96fed0	156	__glkonim_IsTextureEXT	dwarf+dynsym	3ba3b7b7bae8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd96ff70	352	guessClipmapBreakpoint	dwarf+funcnames	8d744ab6e7e1	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9700d0	312	undefineTextureLevel	dwarf+funcnames	0d49fb52f3d3	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9700d0	312	undefineTextureLevel	dwarf+funcnames	0d49fb52f3d3	understood	docs/opengl.md#undefinetexturelevel	`undefineTextureLevel`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd970210	2436	checkTexImage	dwarf+funcnames	089768e5a17c	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd970ba0	324	computeDestinationDims	dwarf+funcnames	3a88c37d876f	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd970cf0	232	checkPixelError	dwarf+funcnames	982be02fe33c	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd970de0	1004	__glkonim_TexImage	dwarf+dynsym	c8f640a05ef2	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9711d0	548	__glkonim_CopyTexImage	dwarf+dynsym	565e27659ff3	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd971400	104	__glkonim_TexImage3DEXT	dwarf+dynsym	c176ccc88d8b	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd971470	136	__glkonim_TexImage2D	dwarf+dynsym	5487e437bfb9	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd971470	136	__glkonim_TexImage2D	dwarf+dynsym	5487e437bfb9	understood	docs/opengl.md#__glkonim_teximage2d	`__glkonim_TexImage2D`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd971500	124	__glkonim_TexImage1D	dwarf+dynsym	1c9022b0f653	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd971580	84	__glkonim_CopyTexImage1DEXT	dwarf+dynsym	ae23eccc6e9a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9715e0	92	__glkonim_CopyTexImage2DEXT	dwarf+dynsym	2a2eb57e5ba0	named-only	docs/libglcore.md#texture-management	Texture management
@@ -20140,19 +20140,19 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd972610	132	__glkonim_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9726a0	124	__glkonim_TexSubImage1DEXT	dwarf+dynsym	28e23354e344	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd972720	108	__glkonim_CopyTexSubImage1DEXT	dwarf+dynsym	473afa67ab8b	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd972790	120	__glkonim_CopyTexSubImage2DEXT	dwarf+dynsym	2e3e0f18f4b2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd972810	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	eaaf23d8551f	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd972810	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	eaaf23d8551f	understood	docs/opengl.md#__glkonim_copytexsubimage3dext	`__glkonim_CopyTexSubImage3DEXT`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd972870	512	__glkonim_GetTexImage	dwarf+dynsym	08a7bb221d4e	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd972a70	296	__glkon_EnableTexture	dwarf+dynsym	b5501b6d13f9	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd972ba0	280	__glkonim_TexParameterfv	dwarf+dynsym	a5f4b173bcab	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd972cc0	752	__glkonim_TexParameterf	dwarf+dynsym	4072ac043713	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd972fb0	280	__glkonim_TexParameteriv	dwarf+dynsym	8597c69e4764	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9730d0	772	__glkonim_TexParameteri	dwarf+dynsym	88dd56061d32	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9733e0	400	__glkonim_DetailTexFuncSGIS	dwarf+dynsym	68b842cfbdc0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd973570	144	__glkonim_GetDetailTexFuncSGIS	dwarf+dynsym	b08bcd56f58e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd973600	476	__glkonim_SharpenTexFuncSGIS	dwarf+dynsym	b52da7bf4207	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9737e0	236	__glkonim_GetSharpenTexFuncSGIS	dwarf+dynsym	0ac92d41f7c9	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9738d0	464	__glkonim_TexFilterFuncSGIS	dwarf+dynsym	be72aa957bcb	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd973aa0	232	__glkonim_GetTexFilterFuncSGIS	dwarf+dynsym	416c3c1697aa	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9733e0	400	__glkonim_DetailTexFuncSGIS	dwarf+dynsym	68b842cfbdc0	understood	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd973570	144	__glkonim_GetDetailTexFuncSGIS	dwarf+dynsym	b08bcd56f58e	understood	docs/opengl.md#__glkonim_getdetailtexfuncsgis	`__glkonim_GetDetailTexFuncSGIS`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd973600	476	__glkonim_SharpenTexFuncSGIS	dwarf+dynsym	b52da7bf4207	understood	docs/opengl.md#__glkonim_sharpentexfuncsgis	`__glkonim_SharpenTexFuncSGIS`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9737e0	236	__glkonim_GetSharpenTexFuncSGIS	dwarf+dynsym	0ac92d41f7c9	understood	docs/opengl.md#__glkonim_getsharpentexfuncsgis	`__glkonim_GetSharpenTexFuncSGIS`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9738d0	464	__glkonim_TexFilterFuncSGIS	dwarf+dynsym	be72aa957bcb	understood	docs/opengl.md#__glkonim_texfilterfuncsgis	`__glkonim_TexFilterFuncSGIS`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd973aa0	232	__glkonim_GetTexFilterFuncSGIS	dwarf+dynsym	416c3c1697aa	understood	docs/opengl.md#__glkonim_gettexfilterfuncsgis	`__glkonim_GetTexFilterFuncSGIS`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd973b90	1004	checkProxyTexture	dwarf+funcnames	e75de1ac3df8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd973f80	1412	__glkonim_GetTexLevelParameteriv	dwarf+dynsym	1c846cc5b6a6	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd974510	76	__glkonim_GetTexLevelParameterfv	dwarf+dynsym	041ec4bc3324	named-only	docs/libglcore.md#texture-management	Texture management
@@ -20168,14 +20168,14 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd974da0	276	__glKonFre
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd974ec0	192	__glKonShareTexture	dwarf+dynsym	26ce4bdae9cc	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd974f80	668	__glKonPushTextureAttrib	dwarf+dynsym	1ceb218742e7	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975220	488	__glKonPopTextureAttrib	dwarf+dynsym	728eba46688b	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd975410	292	__glkonlc_TexImage	dwarf+funcnames	42eb6162ae4b	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975540	224	__glkonlc_TexImage1D	dwarf+dynsym	e06a4831df16	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975620	220	__glkonlc_TexImage2D	dwarf+dynsym	1715279b110b	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975700	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	5a2221177973	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9757d0	156	__glkonle_TexImage	dwarf+dynsym	1394d1dc9756	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975870	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	fed7b53b299e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975920	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	e2d2e6798b0d	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9759d0	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	a9289efae4e9	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd975410	292	__glkonlc_TexImage	dwarf+funcnames	42eb6162ae4b	understood	docs/opengl.md#__glkonlc_teximage	`__glkonlc_TexImage`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975540	224	__glkonlc_TexImage1D	dwarf+dynsym	e06a4831df16	understood	docs/opengl.md#__glkonlc_teximage1d	`__glkonlc_TexImage1D`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975620	220	__glkonlc_TexImage2D	dwarf+dynsym	1715279b110b	understood	docs/opengl.md#__glkonlc_teximage2d	`__glkonlc_TexImage2D`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975700	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	5a2221177973	understood	docs/opengl.md#__glkonlc_teximage3dext	`__glkonlc_TexImage3DEXT`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9757d0	156	__glkonle_TexImage	dwarf+dynsym	1394d1dc9756	understood	docs/opengl.md#__glkonle_teximage	`__glkonle_TexImage`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975870	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	fed7b53b299e	understood	docs/opengl.md#__glkonle_texsubimage1dext	`__glkonle_TexSubImage1DEXT`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975920	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	e2d2e6798b0d	understood	docs/opengl.md#__glkonle_texsubimage2dext	`__glkonle_TexSubImage2DEXT`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9759d0	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	a9289efae4e9	understood	docs/opengl.md#__glkonle_texsubimage3dext	`__glkonle_TexSubImage3DEXT`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd975a80	204	globalAlloc	dwarf+funcnames	a3d59f6d80a6	understood	docs/opengl.md#globalalloc	`globalAlloc`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd975b50	156	whichBucket	dwarf+funcnames	0d0acca1e277	understood	docs/opengl.md#whichbucket	`whichBucket`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd975bf0	308	findFreeBank	dwarf+dynsym	a046bb08169f	understood	docs/opengl.md#findfreebank	`findFreeBank`
@@ -25500,7 +25500,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8050	244	__glkonPix
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8150	220	__glkonim_PixelZoom	dwarf+dynsym	d65b863f1f3d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8230	204	__glkonim_PixelStoref	dwarf+dynsym	e51841618eaf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8300	1284	__glkonim_TextureStorei	dwarf+dynsym	a17c58ded522	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8810	1272	__glkonim_PixelStorei	dwarf+dynsym	b3d53e425c54	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8810	1272	__glkonim_PixelStorei	dwarf+dynsym	b3d53e425c54	named-only	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8d10	1596	__glkonim_PixelTransferf	dwarf+dynsym	21ff493e5c9c	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db9350	56	__glkonim_PixelTransferi	dwarf+dynsym	2336b68af1b9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db9390	280	__glKonInitConvolutionState	dwarf+dynsym	4d9c5c3cd716	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25623,30 +25623,30 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc6ac0	232	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc6bb0	288	__glkonim_PointParameterfvSGIS	dwarf+dynsym	c4f481ef5e8c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc6cd0	388	__glkonlc_PointParameterfSGIS	dwarf+dynsym	a25fd4287022	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc6e60	536	__glkonlc_PointParameterfvSGIS	dwarf+dynsym	7ccf707a40a6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7080	516	__glkonim_ProcImage	dwarf	8d334bdd96dc	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7080	516	__glkonim_ProcImage	dwarf	8d334bdd96dc	located	docs/opengl.md#__glkonim_procimage	`__glkonim_ProcImage`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7290	24	updateTexBindID	dwarf	1199db90c148	named-only	GE.h:4791	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc72b0	172	stealARMTableCacheCallback	dwarf	eccf5c1dd87a	named-only	GE.h:7991	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7360	216	freeARMTexCache	dwarf	9b03821c6f7c	named-only	GE.h:7611	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc72b0	172	stealARMTableCacheCallback	dwarf	eccf5c1dd87a	named-only	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7360	216	freeARMTexCache	dwarf	9b03821c6f7c	named-only	docs/opengl.md#initarmtexcache	`initARMTexCache`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7440	92	bindARMTexCache	dwarf	acb741a7ba49	named-only	GE.h:7597	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc74a0	48	getS0p7	dwarf	a910e82befef	named-only	RM.h:107	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc74d0	136	getS2p7	dwarf	5227d64cd6aa	named-only	RM.h:117	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc74a0	48	getS0p7	dwarf	a910e82befef	located	docs/opengl.md#gets0p7	`getS0p7`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc74d0	136	getS2p7	dwarf	5227d64cd6aa	located	docs/opengl.md#gets2p7	`getS2p7`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc7560	88	computeActiveTarget	dwarf	28528c34b5fa	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc75c0	944	bindTexTable	dwarf+dynsym	7311a4652b47	named-only	GE.h:6271	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc7970	184	getTexTableUsage	dwarf+dynsym	d67143b0851a	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc7a30	1300	addTexTableUsage	dwarf+dynsym	38a57b37bec4	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc75c0	944	bindTexTable	dwarf+dynsym	7311a4652b47	named-only	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc7970	184	getTexTableUsage	dwarf+dynsym	d67143b0851a	located	docs/opengl.md#gettextableusage	`getTexTableUsage`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc7a30	1300	addTexTableUsage	dwarf+dynsym	38a57b37bec4	located	docs/opengl.md#addtextableusage	`addTexTableUsage`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc7f50	332	subtractTexTableUsage	dwarf+dynsym	7f94894c6917	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc80a0	88	initTexTables	dwarf	76f33c21378e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8100	196	freeTexTables	dwarf	9978ede8ca43	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc81d0	24	initARMTexCache	dwarf	d722d64bc7a2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc81f0	64	updateTexUsage	dwarf	081714a571ce	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8230	80	targetIndex	dwarf	6f68bad0cd13	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8280	120	isLodInvalid	dwarf	aa2cc2f097d4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8300	504	unmatchObjLevel	dwarf	4f5e44ed6cf4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8500	192	allocLevelImage	dwarf	e8e5bc978623	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc85c0	244	setDetailFilter	dwarf	336aeb2d6c55	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc80a0	88	initTexTables	dwarf	76f33c21378e	located	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8100	196	freeTexTables	dwarf	9978ede8ca43	located	docs/opengl.md#freetextables	`freeTexTables`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc81d0	24	initARMTexCache	dwarf	d722d64bc7a2	located	docs/opengl.md#initarmtexcache	`initARMTexCache`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc81f0	64	updateTexUsage	dwarf	081714a571ce	located	docs/opengl.md#updatetexusage	`updateTexUsage`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8230	80	targetIndex	dwarf	6f68bad0cd13	understood	docs/opengl.md#targetindex	`targetIndex`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8280	120	isLodInvalid	dwarf	aa2cc2f097d4	understood	docs/opengl.md#islodinvalid	`isLodInvalid`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8300	504	unmatchObjLevel	dwarf	4f5e44ed6cf4	located	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8500	192	allocLevelImage	dwarf	e8e5bc978623	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc85c0	244	setDetailFilter	dwarf	336aeb2d6c55	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc86c0	288	setSharpenFilter	dwarf	8155d4fd1fa6	named-only	RM.h:91	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc87e0	1148	changeMinMaxLod	dwarf	aa208316f62f	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8c60	116	guessBaseLevel	dwarf	43f2125a21d1	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8c60	116	guessBaseLevel	dwarf	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8ce0	4916	changeFilter	dwarf	1a1a6986a431	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca020	612	changeClamp	dwarf	69abaa85072a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca290	40	loadPostTextureScaleBias	dwarf	2593b30b6fcf	named-only	GE.h:3928	
@@ -25657,39 +25657,39 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca4b0	792	chang
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dca7d0	6156	__glKonTexParameter	dwarf+dynsym	3103171a7231	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dcbfe0	1632	__glKonGetTexParameter	dwarf+dynsym	d6a0406341e3	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc640	448	bind2DMipmapTexture	dwarf	fdeac58983f4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc800	72	setClipmapRegisters	dwarf	bf173099a5f2	named-only	GE.h:7093	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc800	72	setClipmapRegisters	dwarf	bf173099a5f2	named-only	docs/opengl.md#getlevel	`getLevel`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc850	272	bind2DClipmapTexture	dwarf	4f4c62a2a004	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc960	268	bindBicubicTexture	dwarf	0fef740662b0	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcca70	300	bind3DMipmapTexture	dwarf	a8020f9fb479	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dccba0	220	bind3DTexture	dwarf	aa3d17378c91	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dccc80	144	bindDetailTexture	dwarf	4398caf42ac6	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dccd10	872	initTexture	dwarf	f53337a27864	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcd080	252	subloadSimple	dwarf	d5d2ea3df96c	named-only	GE.h:52	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcd180	144	tileinfo	dwarf	e64ace867745	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcd210	724	subloadBorderedLevel	dwarf	3e68d26c9387	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcd4f0	620	subcopyBorderedLevel	dwarf	95d576ba59fc	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcd760	2216	subloadPyramidLevel	dwarf	9b24aae352de	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce010	220	subloadClipLevel	dwarf	4b2a3d6d102b	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcd080	252	subloadSimple	dwarf	d5d2ea3df96c	named-only	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcd180	144	tileinfo	dwarf	e64ace867745	understood	docs/opengl.md#tileinfo	`tileinfo`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcd210	724	subloadBorderedLevel	dwarf	3e68d26c9387	located	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcd4f0	620	subcopyBorderedLevel	dwarf	95d576ba59fc	located	docs/opengl.md#subcopyborderedlevel	`subcopyBorderedLevel`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcd760	2216	subloadPyramidLevel	dwarf	9b24aae352de	located	docs/opengl.md#subloadpyramidlevel	`subloadPyramidLevel`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce010	220	subloadClipLevel	dwarf	4b2a3d6d102b	located	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce0f0	2124	subloadLevel	dwarf	c523cefdb774	named-only	docs/ge.md#the-texel-format-id	The texel format id
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce940	160	subgetSimple	dwarf	1dc2fe96242c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce9e0	1144	getLevel	dwarf	46e47660017e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcee60	168	validDimension	dwarf	2fba24c0b12d	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce940	160	subgetSimple	dwarf	1dc2fe96242c	located	docs/opengl.md#subgetsimple	`subgetSimple`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce9e0	1144	getLevel	dwarf	46e47660017e	located	docs/opengl.md#getlevel	`getLevel`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcee60	168	validDimension	dwarf	2fba24c0b12d	located	docs/opengl.md#validdimension	`validDimension`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcef10	56	log2	dwarf	9b6432f02abb	located	ucode/arm1_functions.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcef50	208	areLodsConsistent	dwarf	76f7857d2063	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf020	668	copyBackLods	dwarf	395a3ad48f70	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf2c0	132	repPixels	dwarf	4cc0aa1cc030	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf350	1268	fillBorderColorLevel	dwarf	1c1523ec8096	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf850	740	downloadLods	dwarf	c712018886cf	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcfb40	52	whichComps	dwarf	1c7e8409836f	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcfb80	64	storage2Comp	dwarf	1a0f8e58d108	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcef50	208	areLodsConsistent	dwarf	76f7857d2063	located	docs/opengl.md#arelodsconsistent	`areLodsConsistent`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf020	668	copyBackLods	dwarf	395a3ad48f70	located	docs/opengl.md#copybacklods	`copyBackLods`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf2c0	132	repPixels	dwarf	4cc0aa1cc030	located	docs/opengl.md#reppixels	`repPixels`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf350	1268	fillBorderColorLevel	dwarf	1c1523ec8096	located	docs/opengl.md#fillbordercolorlevel	`fillBorderColorLevel`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf850	740	downloadLods	dwarf	c712018886cf	located	docs/opengl.md#downloadlods	`downloadLods`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcfb40	52	whichComps	dwarf	1c7e8409836f	located	docs/opengl.md#whichcomps	`whichComps`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcfb80	64	storage2Comp	dwarf	1a0f8e58d108	located	docs/opengl.md#storage2comp	`storage2Comp`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcfbc0	2556	calcObjSize	dwarf	86cf48b426a0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd05c0	72	deallocTexture	dwarf	782561627fb0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd0610	104	freeTexture	dwarf	871ee0230b37	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd05c0	72	deallocTexture	dwarf	782561627fb0	located	docs/opengl.md#dealloctexture	`deallocTexture`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd0610	104	freeTexture	dwarf	871ee0230b37	located	docs/opengl.md#freetexture	`freeTexture`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd0680	1032	translateLodAddr	dwarf	c3a8e84a024a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd0a90	508	configTexture	dwarf	90015845cf3f	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd0c90	576	slowBindTexture	dwarf	1e04d53eae75	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd0ed0	224	validateTexture	dwarf	c675ff675cb4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd0fb0	200	destroyTextureObj	dwarf	7c455d940db8	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd0ed0	224	validateTexture	dwarf	c675ff675cb4	located	docs/opengl.md#validatetexture	`validateTexture`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd0fb0	200	destroyTextureObj	dwarf	7c455d940db8	located	docs/opengl.md#destroytextureobj	`destroyTextureObj`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd1080	524	__glkonim_GenTexturesEXT_Slow	dwarf+dynsym	bbd281a64681	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd1290	596	__glkonim_GenTexturesEXT	dwarf+dynsym	4a4593941b1e	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd14f0	96	__glKonFreeTextureObj	dwarf+dynsym	c5769f54cc1f	named-only	docs/libglcore.md#texture-management	Texture management
@@ -25701,14 +25701,14 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd2090	392	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd2220	408	__glkonim_PrioritizeTexturesEXT	dwarf+dynsym	1bd0f1d4b6b4	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd23c0	156	__glkonim_IsTextureEXT	dwarf+dynsym	3c1d01893fd4	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd2460	352	guessClipmapBreakpoint	dwarf	4918a60ffaa2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd25c0	324	undefineTextureLevel	dwarf	662e93be2395	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd25c0	324	undefineTextureLevel	dwarf	662e93be2395	located	docs/opengl.md#undefinetexturelevel	`undefineTextureLevel`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd2710	2480	checkTexImage	dwarf	770cdf355997	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd30c0	324	computeDestinationDims	dwarf	07f321b3fb34	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd3210	232	checkPixelError	dwarf	81fadbd4cabf	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3300	1008	__glkonim_TexImage	dwarf+dynsym	0cb58a219769	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd36f0	552	__glkonim_CopyTexImage	dwarf+dynsym	ed0f30e10785	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3920	100	__glkonim_TexImage3DEXT	dwarf+dynsym	ae5feb455993	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3990	132	__glkonim_TexImage2D	dwarf+dynsym	4683173e1f85	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3990	132	__glkonim_TexImage2D	dwarf+dynsym	4683173e1f85	located	docs/opengl.md#__glkonim_teximage2d	`__glkonim_TexImage2D`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3a20	128	__glkonim_TexImage1D	dwarf+dynsym	6c539085d37d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3aa0	84	__glkonim_CopyTexImage1DEXT	dwarf+dynsym	c3a083394da7	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3b00	88	__glkonim_CopyTexImage2DEXT	dwarf+dynsym	27fc9abe24a5	named-only	docs/libglcore.md#texture-management	Texture management
@@ -25720,19 +25720,19 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4b70	132	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4c00	124	__glkonim_TexSubImage1DEXT	dwarf+dynsym	1ee2d908c2ea	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4c80	108	__glkonim_CopyTexSubImage1DEXT	dwarf+dynsym	f9ffe993175d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4cf0	120	__glkonim_CopyTexSubImage2DEXT	dwarf+dynsym	12e71f29cc32	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4d70	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	9a19c1e6359d	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4d70	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	9a19c1e6359d	located	docs/opengl.md#__glkonim_copytexsubimage3dext	`__glkonim_CopyTexSubImage3DEXT`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4dd0	536	__glkonim_GetTexImage	dwarf+dynsym	f88bacc34365	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4ff0	336	__glkon_EnableTexture	dwarf+dynsym	de4283765d75	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5140	300	__glkonim_TexParameterfv	dwarf+dynsym	312b6e577e6e	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5270	780	__glkonim_TexParameterf	dwarf+dynsym	47ba41621188	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5580	300	__glkonim_TexParameteriv	dwarf+dynsym	c008931a4088	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd56b0	792	__glkonim_TexParameteri	dwarf+dynsym	9e3586d2034f	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd59d0	416	__glkonim_DetailTexFuncSGIS	dwarf+dynsym	ac399ddae772	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5b70	144	__glkonim_GetDetailTexFuncSGIS	dwarf+dynsym	df3ffc3101e3	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5c00	492	__glkonim_SharpenTexFuncSGIS	dwarf+dynsym	cdfe92c5cf1e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5df0	256	__glkonim_GetSharpenTexFuncSGIS	dwarf+dynsym	d4d03376716c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5ef0	492	__glkonim_TexFilterFuncSGIS	dwarf+dynsym	c37ff2e7d87d	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd60e0	252	__glkonim_GetTexFilterFuncSGIS	dwarf+dynsym	30a05e848261	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd59d0	416	__glkonim_DetailTexFuncSGIS	dwarf+dynsym	ac399ddae772	located	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5b70	144	__glkonim_GetDetailTexFuncSGIS	dwarf+dynsym	df3ffc3101e3	located	docs/opengl.md#__glkonim_getdetailtexfuncsgis	`__glkonim_GetDetailTexFuncSGIS`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5c00	492	__glkonim_SharpenTexFuncSGIS	dwarf+dynsym	cdfe92c5cf1e	located	docs/opengl.md#__glkonim_sharpentexfuncsgis	`__glkonim_SharpenTexFuncSGIS`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5df0	256	__glkonim_GetSharpenTexFuncSGIS	dwarf+dynsym	d4d03376716c	located	docs/opengl.md#__glkonim_getsharpentexfuncsgis	`__glkonim_GetSharpenTexFuncSGIS`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5ef0	492	__glkonim_TexFilterFuncSGIS	dwarf+dynsym	c37ff2e7d87d	located	docs/opengl.md#__glkonim_texfilterfuncsgis	`__glkonim_TexFilterFuncSGIS`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd60e0	252	__glkonim_GetTexFilterFuncSGIS	dwarf+dynsym	30a05e848261	located	docs/opengl.md#__glkonim_gettexfilterfuncsgis	`__glkonim_GetTexFilterFuncSGIS`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd61e0	1060	checkProxyTexture	dwarf	63319146d96d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd6610	1404	__glkonim_GetTexLevelParameteriv	dwarf+dynsym	3fda7fedc370	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd6b90	76	__glkonim_GetTexLevelParameterfv	dwarf+dynsym	1cda6a220004	named-only	docs/libglcore.md#texture-management	Texture management
@@ -25748,14 +25748,14 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd74a0	276	__glKonFre
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd75c0	196	__glKonShareTexture	dwarf+dynsym	67abb0592dc3	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7690	688	__glKonPushTextureAttrib	dwarf+dynsym	e3986e0eb261	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7940	500	__glKonPopTextureAttrib	dwarf+dynsym	05cbf7ed4211	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd7b40	292	__glkonlc_TexImage	dwarf	095d647f9382	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7c70	224	__glkonlc_TexImage1D	dwarf+dynsym	68075bc503eb	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7d50	220	__glkonlc_TexImage2D	dwarf+dynsym	c0346c920851	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7e30	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	693eb87fea68	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7f00	156	__glkonle_TexImage	dwarf+dynsym	4ac7cf20bd8d	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7fa0	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	b32b44207a55	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd8050	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	bf19c248cd98	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd8100	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	1ca3cd163a0d	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd7b40	292	__glkonlc_TexImage	dwarf	095d647f9382	located	docs/opengl.md#__glkonlc_teximage	`__glkonlc_TexImage`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7c70	224	__glkonlc_TexImage1D	dwarf+dynsym	68075bc503eb	located	docs/opengl.md#__glkonlc_teximage1d	`__glkonlc_TexImage1D`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7d50	220	__glkonlc_TexImage2D	dwarf+dynsym	c0346c920851	located	docs/opengl.md#__glkonlc_teximage2d	`__glkonlc_TexImage2D`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7e30	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	693eb87fea68	located	docs/opengl.md#__glkonlc_teximage3dext	`__glkonlc_TexImage3DEXT`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7f00	156	__glkonle_TexImage	dwarf+dynsym	4ac7cf20bd8d	located	docs/opengl.md#__glkonle_teximage	`__glkonle_TexImage`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7fa0	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	b32b44207a55	located	docs/opengl.md#__glkonle_texsubimage1dext	`__glkonle_TexSubImage1DEXT`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd8050	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	bf19c248cd98	located	docs/opengl.md#__glkonle_texsubimage2dext	`__glkonle_TexSubImage2DEXT`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd8100	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	1ca3cd163a0d	located	docs/opengl.md#__glkonle_texsubimage3dext	`__glkonle_TexSubImage3DEXT`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd81b0	208	globalAlloc	dwarf	012ebe49a68a	located	docs/opengl.md#globalalloc	`globalAlloc`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd8280	152	whichBucket	dwarf	4408931580d2	located	docs/opengl.md#whichbucket	`whichBucket`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd8320	320	findFreeBank	dwarf+dynsym	dda116cb6d01	located	docs/opengl.md#findfreebank	`findFreeBank`
@@ -31077,7 +31077,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954224	300	__glkonPixSi
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954350	260	__glkonim_PixelZoom	dynsym+mdebug	ed3d8a333904	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954454	272	__glkonim_PixelStoref	dynsym+mdebug	124d0ddda58a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954564	1112	__glkonim_TextureStorei	dynsym+mdebug	f2e82ab97f08	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9549bc	1108	__glkonim_PixelStorei	dynsym+mdebug	2270563ecc37	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9549bc	1108	__glkonim_PixelStorei	dynsym+mdebug	2270563ecc37	named-only	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd954e10	1592	__glkonim_PixelTransferf	dynsym+mdebug	509950315560	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd955448	72	__glkonim_PixelTransferi	dynsym+mdebug	a71416864064	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9554a0	284	__glKonInitConvolutionState	dynsym+mdebug	8889bb52fc37	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31200,30 +31200,30 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9645f0	264	__glkonim_Po
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9646f8	316	__glkonim_PointParameterfvSGIS	dynsym+mdebug	7f45d187522c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd964834	440	__glkonlc_PointParameterfSGIS	dynsym+mdebug	e653e38ca058	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9649ec	588	__glkonlc_PointParameterfvSGIS	dynsym+mdebug	3fb85c03a757	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd964cc0	592	__glkonim_ProcImage	mdebug	a01e21457ef4	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd964cc0	592	__glkonim_ProcImage	mdebug	a01e21457ef4	located	docs/opengl.md#__glkonim_procimage	`__glkonim_ProcImage`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd964f10	28	updateTexBindID	mdebug	e823113bac58	named-only	GE.h:4791	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd964f2c	204	stealARMTableCacheCallback	mdebug	a4200228cde0	named-only	GE.h:7991	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd964ff8	208	freeARMTexCache	mdebug	4501abc2f486	named-only	GE.h:7611	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd964f2c	204	stealARMTableCacheCallback	mdebug	a4200228cde0	named-only	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd964ff8	208	freeARMTexCache	mdebug	4501abc2f486	named-only	docs/opengl.md#initarmtexcache	`initARMTexCache`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9650c8	108	bindARMTexCache	mdebug	7bce4ce33c9f	named-only	GE.h:7597	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965134	88	getS0p7	mdebug	fe7fe9d9c46b	named-only	RM.h:107	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96518c	164	getS2p7	mdebug	240591f8206e	named-only	RM.h:117	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965134	88	getS0p7	mdebug	fe7fe9d9c46b	located	docs/opengl.md#gets0p7	`getS0p7`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96518c	164	getS2p7	mdebug	240591f8206e	located	docs/opengl.md#gets2p7	`getS2p7`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965230	3180	computeActiveTarget	mdebug	afb5dc2bc21e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd965290	1184	bindTexTable	dynsym+mdebug	c347d1324806	named-only	GE.h:6271	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd965730	220	getTexTableUsage	dynsym+mdebug	2e6458cb2f9d	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd96580c	1340	addTexTableUsage	dynsym+mdebug	a7e772d4ef16	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd965290	1184	bindTexTable	dynsym+mdebug	c347d1324806	named-only	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd965730	220	getTexTableUsage	dynsym+mdebug	2e6458cb2f9d	located	docs/opengl.md#gettextableusage	`getTexTableUsage`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd96580c	1340	addTexTableUsage	dynsym+mdebug	a7e772d4ef16	located	docs/opengl.md#addtextableusage	`addTexTableUsage`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd965d48	340	subtractTexTableUsage	dynsym+mdebug	6219c9027159	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965e9c	136	initTexTables	mdebug	e74bbb87feef	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965f24	252	freeTexTables	mdebug	f065310155f1	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966020	68	initARMTexCache	mdebug	78f9323e1b3a	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966064	116	updateTexUsage	mdebug	c1a5825ea937	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9660d8	84	targetIndex	mdebug	ce53763eda64	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96612c	140	isLodInvalid	mdebug	14bc218e4014	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9661b8	572	unmatchObjLevel	mdebug	62b19e9fd95f	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9663f4	228	allocLevelImage	mdebug	5b0a282a25d0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9664d8	236	setDetailFilter	mdebug	88225a4a2831	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965e9c	136	initTexTables	mdebug	e74bbb87feef	located	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd965f24	252	freeTexTables	mdebug	f065310155f1	located	docs/opengl.md#freetextables	`freeTexTables`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966020	68	initARMTexCache	mdebug	78f9323e1b3a	located	docs/opengl.md#initarmtexcache	`initARMTexCache`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966064	116	updateTexUsage	mdebug	c1a5825ea937	located	docs/opengl.md#updatetexusage	`updateTexUsage`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9660d8	84	targetIndex	mdebug	ce53763eda64	located	docs/opengl.md#targetindex	`targetIndex`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96612c	140	isLodInvalid	mdebug	14bc218e4014	located	docs/opengl.md#islodinvalid	`isLodInvalid`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9661b8	572	unmatchObjLevel	mdebug	62b19e9fd95f	located	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9663f4	228	allocLevelImage	mdebug	5b0a282a25d0	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9664d8	236	setDetailFilter	mdebug	88225a4a2831	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9665c4	320	setSharpenFilter	mdebug	22260cca3eb9	named-only	RM.h:91	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	changeMinMaxLod	mdebug	22d2b27bfcf1	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283	located	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966d88	2576	changeFilter	mdebug	00df2425e6bb	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeClamp	mdebug	0e9d6a147fff	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967a20	40	loadPostTextureScaleBias	mdebug	f2b05be99aa6	named-only	GE.h:3928	
@@ -31234,39 +31234,39 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967cbc	9836	change
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9680c0	6932	__glKonTexParameter	dynsym+mdebug	3aad6baa12c4	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd969bd4	1876	__glKonGetTexParameter	dynsym+mdebug	db22947090dc	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a328	536	bind2DMipmapTexture	mdebug	a30de34cfb3b	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a540	72	setClipmapRegisters	mdebug	d68cf4f31c14	named-only	GE.h:7093	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a540	72	setClipmapRegisters	mdebug	d68cf4f31c14	named-only	docs/opengl.md#getlevel	`getLevel`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a588	248	bind2DClipmapTexture	mdebug	17542b2c1fc6	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a680	280	bindBicubicTexture	mdebug	3143dd981f6d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a798	344	bind3DMipmapTexture	mdebug	b3ed65fa92c4	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a8f0	228	bind3DTexture	mdebug	5af2a93d2b1d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a9d4	152	bindDetailTexture	mdebug	ca4841330bec	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96aa6c	972	initTexture	mdebug	a50f6477d7c8	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96ae38	272	subloadSimple	mdebug	56eeec38aba5	named-only	GE.h:52	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96af48	184	tileinfo	mdebug	e160ec041741	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96b000	796	subloadBorderedLevel	mdebug	ce9ac9b03aab	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96b31c	648	subcopyBorderedLevel	mdebug	6136ea106f89	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96b5a4	2720	subloadPyramidLevel	mdebug	ae297dcf066a	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96c044	300	subloadClipLevel	mdebug	9f27ab21889e	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96ae38	272	subloadSimple	mdebug	56eeec38aba5	named-only	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96af48	184	tileinfo	mdebug	e160ec041741	located	docs/opengl.md#tileinfo	`tileinfo`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96b000	796	subloadBorderedLevel	mdebug	ce9ac9b03aab	located	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96b31c	648	subcopyBorderedLevel	mdebug	6136ea106f89	located	docs/opengl.md#subcopyborderedlevel	`subcopyBorderedLevel`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96b5a4	2720	subloadPyramidLevel	mdebug	ae297dcf066a	located	docs/opengl.md#subloadpyramidlevel	`subloadPyramidLevel`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96c044	300	subloadClipLevel	mdebug	9f27ab21889e	located	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96c170	2228	subloadLevel	mdebug	af93f34f54d7	named-only	docs/ge.md#the-texel-format-id	The texel format id
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96ca24	204	subgetSimple	mdebug	a90ac6d8ac73	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	7e692cc91f1c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d038	192	validDimension	mdebug	d3678100d330	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96ca24	204	subgetSimple	mdebug	a90ac6d8ac73	located	docs/opengl.md#subgetsimple	`subgetSimple`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	7e692cc91f1c	located	docs/opengl.md#getlevel	`getLevel`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d038	192	validDimension	mdebug	d3678100d330	located	docs/opengl.md#validdimension	`validDimension`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	f6a6c8e600c7	located	ucode/arm1_functions.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d118	164	areLodsConsistent	mdebug	4a1af1d26d0f	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d1bc	484	copyBackLods	mdebug	6c59368c99da	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d3a0	172	repPixels	mdebug	4eec8c5b819a	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d44c	1568	fillBorderColorLevel	mdebug	bf4da7ad2aa4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96da6c	768	downloadLods	mdebug	84e1e8380266	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96dd6c	204	whichComps	mdebug	5547856afcc8	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96de38	340	storage2Comp	mdebug	0eb8074db6b2	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d118	164	areLodsConsistent	mdebug	4a1af1d26d0f	located	docs/opengl.md#arelodsconsistent	`areLodsConsistent`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d1bc	484	copyBackLods	mdebug	6c59368c99da	located	docs/opengl.md#copybacklods	`copyBackLods`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d3a0	172	repPixels	mdebug	4eec8c5b819a	located	docs/opengl.md#reppixels	`repPixels`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d44c	1568	fillBorderColorLevel	mdebug	bf4da7ad2aa4	located	docs/opengl.md#fillbordercolorlevel	`fillBorderColorLevel`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96da6c	768	downloadLods	mdebug	84e1e8380266	located	docs/opengl.md#downloadlods	`downloadLods`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96dd6c	204	whichComps	mdebug	5547856afcc8	located	docs/opengl.md#whichcomps	`whichComps`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96de38	340	storage2Comp	mdebug	0eb8074db6b2	located	docs/opengl.md#storage2comp	`storage2Comp`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96df8c	2892	calcObjSize	mdebug	ba1747cfaa2c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96ead8	96	deallocTexture	mdebug	89387718ed72	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96eb38	124	freeTexture	mdebug	de0bd7ea70ef	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96ead8	96	deallocTexture	mdebug	89387718ed72	located	docs/opengl.md#dealloctexture	`deallocTexture`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96eb38	124	freeTexture	mdebug	de0bd7ea70ef	located	docs/opengl.md#freetexture	`freeTexture`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96ebb4	976	translateLodAddr	mdebug	8538e2de4dd8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96ef84	580	configTexture	mdebug	1ada3392d152	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96f1c8	664	slowBindTexture	mdebug	09170fa50b30	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96f460	252	validateTexture	mdebug	e347509ab643	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96f55c	5544	destroyTextureObj	mdebug	67e0641f01cd	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96f460	252	validateTexture	mdebug	e347509ab643	located	docs/opengl.md#validatetexture	`validateTexture`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96f55c	5544	destroyTextureObj	mdebug	67e0641f01cd	located	docs/opengl.md#destroytextureobj	`destroyTextureObj`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd96f63c	644	__glkonim_GenTexturesEXT_Slow	dynsym+mdebug	d105d2961e01	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd96f8c0	704	__glkonim_GenTexturesEXT	dynsym+mdebug	b1b6fcfb150a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd96fb80	96	__glKonFreeTextureObj	dynsym+mdebug	ec140c9f275e	named-only	docs/libglcore.md#texture-management	Texture management
@@ -31278,14 +31278,14 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97076c	360	__glkonim_Ar
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9708d4	420	__glkonim_PrioritizeTexturesEXT	dynsym+mdebug	5aa7e759afc9	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd970a78	140	__glkonim_IsTextureEXT	dynsym+mdebug	511769ccb13b	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd970b04	268	guessClipmapBreakpoint	mdebug	c985e2db11b2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd970c10	380	undefineTextureLevel	mdebug	61f28ff1e0c2	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd970c10	380	undefineTextureLevel	mdebug	61f28ff1e0c2	located	docs/opengl.md#undefinetexturelevel	`undefineTextureLevel`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd970d8c	2824	checkTexImage	mdebug	eb5d579518cd	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd971894	344	computeDestinationDims	mdebug	863ef91f01c0	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9719ec	2692	checkPixelError	mdebug	2e795238b073	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd971af8	1140	__glkonim_TexImage	dynsym+mdebug	1bc64ec18577	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd971f6c	600	__glkonim_CopyTexImage	dynsym+mdebug	4533e5aae870	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9721c4	144	__glkonim_TexImage3DEXT	dynsym+mdebug	47efbf85677a	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd972254	152	__glkonim_TexImage2D	dynsym+mdebug	a1174d1523a6	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd972254	152	__glkonim_TexImage2D	dynsym+mdebug	a1174d1523a6	located	docs/opengl.md#__glkonim_teximage2d	`__glkonim_TexImage2D`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9722ec	144	__glkonim_TexImage1D	dynsym+mdebug	58cbd4734a8d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97237c	116	__glkonim_CopyTexImage1DEXT	dynsym+mdebug	6cb61f9b63d7	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9723f0	128	__glkonim_CopyTexImage2DEXT	dynsym+mdebug	9420e45ad3cd	named-only	docs/libglcore.md#texture-management	Texture management
@@ -31297,19 +31297,19 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd973504	148	__glkonim_Te
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd973598	144	__glkonim_TexSubImage1DEXT	dynsym+mdebug	750f35fea097	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd973628	128	__glkonim_CopyTexSubImage1DEXT	dynsym+mdebug	7e9fbf921290	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9736a8	132	__glkonim_CopyTexSubImage2DEXT	dynsym+mdebug	35be2d83829e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97372c	124	__glkonim_CopyTexSubImage3DEXT	dynsym+mdebug	0358686b1bba	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97372c	124	__glkonim_CopyTexSubImage3DEXT	dynsym+mdebug	0358686b1bba	located	docs/opengl.md#__glkonim_copytexsubimage3dext	`__glkonim_CopyTexSubImage3DEXT`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9737a8	580	__glkonim_GetTexImage	dynsym+mdebug	f8421507cb7b	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9739ec	312	__glkon_EnableTexture	dynsym+mdebug	ed7ce8c6f1a8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd973b24	316	__glkonim_TexParameterfv	dynsym+mdebug	fc7ba70dbdd7	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd973c60	592	__glkonim_TexParameterf	dynsym+mdebug	f172cd853f6c	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd973eb0	312	__glkonim_TexParameteriv	dynsym+mdebug	f8cc4ebd5326	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd973fe8	588	__glkonim_TexParameteri	dynsym+mdebug	0ee35ad962d0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd974234	436	__glkonim_DetailTexFuncSGIS	dynsym+mdebug	3b1fbd2385e3	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9743e8	156	__glkonim_GetDetailTexFuncSGIS	dynsym+mdebug	ad3537d60770	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd974484	544	__glkonim_SharpenTexFuncSGIS	dynsym+mdebug	e29cf85d0dc6	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9746a4	272	__glkonim_GetSharpenTexFuncSGIS	dynsym+mdebug	fed4da1be3ed	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9747b4	528	__glkonim_TexFilterFuncSGIS	dynsym+mdebug	0681e44f57fd	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9749c4	276	__glkonim_GetTexFilterFuncSGIS	dynsym+mdebug	cbfa2f155be9	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd974234	436	__glkonim_DetailTexFuncSGIS	dynsym+mdebug	3b1fbd2385e3	located	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9743e8	156	__glkonim_GetDetailTexFuncSGIS	dynsym+mdebug	ad3537d60770	located	docs/opengl.md#__glkonim_getdetailtexfuncsgis	`__glkonim_GetDetailTexFuncSGIS`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd974484	544	__glkonim_SharpenTexFuncSGIS	dynsym+mdebug	e29cf85d0dc6	located	docs/opengl.md#__glkonim_sharpentexfuncsgis	`__glkonim_SharpenTexFuncSGIS`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9746a4	272	__glkonim_GetSharpenTexFuncSGIS	dynsym+mdebug	fed4da1be3ed	located	docs/opengl.md#__glkonim_getsharpentexfuncsgis	`__glkonim_GetSharpenTexFuncSGIS`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9747b4	528	__glkonim_TexFilterFuncSGIS	dynsym+mdebug	0681e44f57fd	located	docs/opengl.md#__glkonim_texfilterfuncsgis	`__glkonim_TexFilterFuncSGIS`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9749c4	276	__glkonim_GetTexFilterFuncSGIS	dynsym+mdebug	cbfa2f155be9	located	docs/opengl.md#__glkonim_gettexfilterfuncsgis	`__glkonim_GetTexFilterFuncSGIS`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd974ad8	2972	checkProxyTexture	mdebug	ba59df1a2813	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd974f4c	1212	__glkonim_GetTexLevelParameteriv	dynsym+mdebug	366b28e60eaf	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd975408	80	__glkonim_GetTexLevelParameterfv	dynsym+mdebug	50f8a9083e3a	named-only	docs/libglcore.md#texture-management	Texture management
@@ -31325,14 +31325,14 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd975dc4	284	__glKonFreeA
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd975ee0	160	__glKonShareTexture	dynsym+mdebug	518b390229c3	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd975f80	656	__glKonPushTextureAttrib	dynsym+mdebug	4c7840f4d893	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976210	536	__glKonPopTextureAttrib	dynsym+mdebug	389e9416a0f2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd976428	1944	__glkonlc_TexImage	mdebug	d0e754e14db1	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976564	276	__glkonlc_TexImage1D	dynsym+mdebug	b706708fa7fd	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976678	276	__glkonlc_TexImage2D	dynsym+mdebug	c24cffaecd65	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97678c	276	__glkonlc_TexImage3DEXT	dynsym+mdebug	6032a4fef2bc	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9768a0	184	__glkonle_TexImage	dynsym+mdebug	7b40851b9caf	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976958	188	__glkonle_TexSubImage1DEXT	dynsym+mdebug	808a20036653	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976a14	188	__glkonle_TexSubImage2DEXT	dynsym+mdebug	7b204b126c04	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976ad0	192	__glkonle_TexSubImage3DEXT	dynsym+mdebug	7e026d60aecd	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd976428	1944	__glkonlc_TexImage	mdebug	d0e754e14db1	located	docs/opengl.md#__glkonlc_teximage	`__glkonlc_TexImage`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976564	276	__glkonlc_TexImage1D	dynsym+mdebug	b706708fa7fd	located	docs/opengl.md#__glkonlc_teximage1d	`__glkonlc_TexImage1D`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976678	276	__glkonlc_TexImage2D	dynsym+mdebug	c24cffaecd65	located	docs/opengl.md#__glkonlc_teximage2d	`__glkonlc_TexImage2D`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97678c	276	__glkonlc_TexImage3DEXT	dynsym+mdebug	6032a4fef2bc	located	docs/opengl.md#__glkonlc_teximage3dext	`__glkonlc_TexImage3DEXT`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9768a0	184	__glkonle_TexImage	dynsym+mdebug	7b40851b9caf	located	docs/opengl.md#__glkonle_teximage	`__glkonle_TexImage`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976958	188	__glkonle_TexSubImage1DEXT	dynsym+mdebug	808a20036653	located	docs/opengl.md#__glkonle_texsubimage1dext	`__glkonle_TexSubImage1DEXT`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976a14	188	__glkonle_TexSubImage2DEXT	dynsym+mdebug	7b204b126c04	located	docs/opengl.md#__glkonle_texsubimage2dext	`__glkonle_TexSubImage2DEXT`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976ad0	192	__glkonle_TexSubImage3DEXT	dynsym+mdebug	7e026d60aecd	located	docs/opengl.md#__glkonle_texsubimage3dext	`__glkonle_TexSubImage3DEXT`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd976bc0	256	globalAlloc	mdebug	07c3f41be0f5	located	docs/opengl.md#globalalloc	`globalAlloc`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd976cc0	412	whichBucket	mdebug	f201e56bdc52	located	docs/opengl.md#whichbucket	`whichBucket`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd976d6c	240	findFreeBank	dynsym+mdebug	023c6ac2177f	located	docs/opengl.md#findfreebank	`findFreeBank`
@@ -36619,7 +36619,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955ea0	240	__glkonPix
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd955f90	220	__glkonim_PixelZoom	dwarf+dynsym	d0ddbc82bc04	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd956070	204	__glkonim_PixelStoref	dwarf+dynsym	da1aaf6b8598	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd956140	1284	__glkonim_TextureStorei	dwarf+dynsym	daff98e5ebe5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd956650	1268	__glkonim_PixelStorei	dwarf+dynsym	c3b61bd9302e	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd956650	1268	__glkonim_PixelStorei	dwarf+dynsym	c3b61bd9302e	named-only	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd956b50	1596	__glkonim_PixelTransferf	dwarf+dynsym	3ea2438d7fe5	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd957190	56	__glkonim_PixelTransferi	dwarf+dynsym	d39909e9628c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9571d0	280	__glKonInitConvolutionState	dwarf+dynsym	9ade3529e6f9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36742,30 +36742,30 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9646d0	232	__glkonim_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9647c0	288	__glkonim_PointParameterfvSGIS	dwarf+dynsym	8235775dd7f6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9648e0	388	__glkonlc_PointParameterfSGIS	dwarf+dynsym	1f66e5771e0b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd964a70	536	__glkonlc_PointParameterfvSGIS	dwarf+dynsym	01e61c9d5e11	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd964c90	512	__glkonim_ProcImage	dwarf+funcnames	2b7874b5b12b	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd964c90	512	__glkonim_ProcImage	dwarf+funcnames	2b7874b5b12b	understood	docs/opengl.md#__glkonim_procimage	`__glkonim_ProcImage`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd964e90	24	updateTexBindID	dwarf+funcnames	4ff0d4304f9b	named-only	GE.h:4791	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd964eb0	172	stealARMTableCacheCallback	dwarf+funcnames	f1a16807f8fc	named-only	GE.h:7991	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd964f60	216	freeARMTexCache	dwarf+funcnames	79ede03b8138	named-only	GE.h:7611	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd964eb0	172	stealARMTableCacheCallback	dwarf+funcnames	f1a16807f8fc	named-only	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd964f60	216	freeARMTexCache	dwarf+funcnames	79ede03b8138	named-only	docs/opengl.md#initarmtexcache	`initARMTexCache`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965040	88	bindARMTexCache	dwarf+funcnames	5114faf67ad5	named-only	GE.h:7597	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9650a0	48	getS0p7	dwarf+funcnames	2788d8c5a1e1	named-only	RM.h:107	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9650d0	136	getS2p7	dwarf+funcnames	93c2d4f2d5ee	named-only	RM.h:117	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9650a0	48	getS0p7	dwarf+funcnames	2788d8c5a1e1	understood	docs/opengl.md#gets0p7	`getS0p7`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9650d0	136	getS2p7	dwarf+funcnames	93c2d4f2d5ee	understood	docs/opengl.md#gets2p7	`getS2p7`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965160	88	computeActiveTarget	dwarf+funcnames	0fadd45ebb53	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9651c0	944	bindTexTable	dwarf+dynsym	f7875c4362af	named-only	GE.h:6271	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd965570	184	getTexTableUsage	dwarf+dynsym	02a104cd33b6	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd965630	1252	addTexTableUsage	dwarf+dynsym	3eb2c81833bb	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9651c0	944	bindTexTable	dwarf+dynsym	f7875c4362af	named-only	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd965570	184	getTexTableUsage	dwarf+dynsym	02a104cd33b6	understood	docs/opengl.md#gettextableusage	`getTexTableUsage`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd965630	1252	addTexTableUsage	dwarf+dynsym	3eb2c81833bb	understood	docs/opengl.md#addtextableusage	`addTexTableUsage`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd965b20	332	subtractTexTableUsage	dwarf+dynsym	19082ef679e8	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965c70	88	initTexTables	dwarf+funcnames	85b899c14cc9	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965cd0	196	freeTexTables	dwarf+funcnames	ab0cb0e158db	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965da0	24	initARMTexCache	dwarf+funcnames	c1bc50077ff7	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965dc0	64	updateTexUsage	dwarf+funcnames	dac9fc52f2a4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965e00	80	targetIndex	dwarf+funcnames	6f68bad0cd13	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965e50	120	isLodInvalid	dwarf+funcnames	aa2cc2f097d4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965ed0	504	unmatchObjLevel	dwarf+funcnames	23589c00be9e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9660d0	192	allocLevelImage	dwarf+funcnames	f4c2c6cc319c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd966190	244	setDetailFilter	dwarf+funcnames	bb239e36767f	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965c70	88	initTexTables	dwarf+funcnames	85b899c14cc9	understood	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965cd0	196	freeTexTables	dwarf+funcnames	ab0cb0e158db	understood	docs/opengl.md#freetextables	`freeTexTables`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965da0	24	initARMTexCache	dwarf+funcnames	c1bc50077ff7	understood	docs/opengl.md#initarmtexcache	`initARMTexCache`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965dc0	64	updateTexUsage	dwarf+funcnames	dac9fc52f2a4	understood	docs/opengl.md#updatetexusage	`updateTexUsage`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965e00	80	targetIndex	dwarf+funcnames	6f68bad0cd13	understood	docs/opengl.md#targetindex	`targetIndex`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965e50	120	isLodInvalid	dwarf+funcnames	aa2cc2f097d4	understood	docs/opengl.md#islodinvalid	`isLodInvalid`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd965ed0	504	unmatchObjLevel	dwarf+funcnames	23589c00be9e	understood	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9660d0	192	allocLevelImage	dwarf+funcnames	f4c2c6cc319c	understood	docs/opengl.md#alloclevelimage	`allocLevelImage`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd966190	244	setDetailFilter	dwarf+funcnames	bb239e36767f	understood	docs/opengl.md#setdetailfilter	`setDetailFilter`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd966290	292	setSharpenFilter	dwarf+funcnames	7659b3be2475	named-only	RM.h:91	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9663c0	1148	changeMinMaxLod	dwarf+funcnames	c8960bacaa74	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd966840	116	guessBaseLevel	dwarf+funcnames	43f2125a21d1	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd966840	116	guessBaseLevel	dwarf+funcnames	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9668c0	4900	changeFilter	dwarf+funcnames	41df356a3e3b	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967bf0	604	changeClamp	dwarf+funcnames	41ff4926380e	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967e50	40	loadPostTextureScaleBias	dwarf+funcnames	a8f4ef6370aa	named-only	GE.h:3928	
@@ -36776,39 +36776,39 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd968070	792	chang
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd968390	6156	__glKonTexParameter	dwarf+dynsym	f0dc4f474915	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd969ba0	1632	__glKonGetTexParameter	dwarf+dynsym	130e9ff1a9f9	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96a200	444	bind2DMipmapTexture	dwarf+funcnames	8cec997ecb39	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96a3c0	72	setClipmapRegisters	dwarf+funcnames	83b3b6f62728	named-only	GE.h:7093	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96a3c0	72	setClipmapRegisters	dwarf+funcnames	83b3b6f62728	named-only	docs/opengl.md#getlevel	`getLevel`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96a410	272	bind2DClipmapTexture	dwarf+funcnames	3531f4239038	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96a520	264	bindBicubicTexture	dwarf+funcnames	6a6ef8f1d3d9	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96a630	300	bind3DMipmapTexture	dwarf+funcnames	a3fbe264192f	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96a760	220	bind3DTexture	dwarf+funcnames	d8ac6008809f	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96a840	144	bindDetailTexture	dwarf+funcnames	fc82df1640e1	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96a8d0	860	initTexture	dwarf+funcnames	0d6bf27b91f5	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96ac30	256	subloadSimple	dwarf+funcnames	376b04f1e24b	named-only	GE.h:52	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96ad30	144	tileinfo	dwarf+funcnames	e64ace867745	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96adc0	708	subloadBorderedLevel	dwarf+funcnames	b57dca380043	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96b090	604	subcopyBorderedLevel	dwarf+funcnames	9ca80c3ee602	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96b2f0	2212	subloadPyramidLevel	dwarf+funcnames	9276cd4ed88e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96bba0	224	subloadClipLevel	dwarf+funcnames	cec3a5f6d99e	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96ac30	256	subloadSimple	dwarf+funcnames	376b04f1e24b	named-only	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96ad30	144	tileinfo	dwarf+funcnames	e64ace867745	understood	docs/opengl.md#tileinfo	`tileinfo`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96adc0	708	subloadBorderedLevel	dwarf+funcnames	b57dca380043	understood	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96b090	604	subcopyBorderedLevel	dwarf+funcnames	9ca80c3ee602	understood	docs/opengl.md#subcopyborderedlevel	`subcopyBorderedLevel`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96b2f0	2212	subloadPyramidLevel	dwarf+funcnames	9276cd4ed88e	understood	docs/opengl.md#subloadpyramidlevel	`subloadPyramidLevel`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96bba0	224	subloadClipLevel	dwarf+funcnames	cec3a5f6d99e	understood	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96bc80	2124	subloadLevel	dwarf+funcnames	34734057e25a	named-only	docs/ge.md#the-texel-format-id	The texel format id
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c4d0	160	subgetSimple	dwarf+funcnames	0e9b9565f831	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c570	1140	getLevel	dwarf+funcnames	ac60c4c88b10	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c9f0	168	validDimension	dwarf+funcnames	bf83fc33250e	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c4d0	160	subgetSimple	dwarf+funcnames	0e9b9565f831	understood	docs/opengl.md#subgetsimple	`subgetSimple`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c570	1140	getLevel	dwarf+funcnames	ac60c4c88b10	understood	docs/opengl.md#getlevel	`getLevel`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96c9f0	168	validDimension	dwarf+funcnames	bf83fc33250e	understood	docs/opengl.md#validdimension	`validDimension`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96caa0	56	log2	dwarf+funcnames	9b6432f02abb	located	ucode/arm1_functions.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96cae0	204	areLodsConsistent	dwarf+funcnames	78fc40942c50	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96cbb0	660	copyBackLods	dwarf+funcnames	d9d59aa5f935	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96ce50	132	repPixels	dwarf+funcnames	f8b27a52154c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96cee0	1292	fillBorderColorLevel	dwarf+funcnames	fbe00c6e36d0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96d3f0	736	downloadLods	dwarf+funcnames	4c46715c01f2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96d6d0	52	whichComps	dwarf+funcnames	b9da73ba4723	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96d710	64	storage2Comp	dwarf+funcnames	2f5152e1e43f	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96cae0	204	areLodsConsistent	dwarf+funcnames	78fc40942c50	understood	docs/opengl.md#arelodsconsistent	`areLodsConsistent`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96cbb0	660	copyBackLods	dwarf+funcnames	d9d59aa5f935	understood	docs/opengl.md#copybacklods	`copyBackLods`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96ce50	132	repPixels	dwarf+funcnames	f8b27a52154c	understood	docs/opengl.md#reppixels	`repPixels`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96cee0	1292	fillBorderColorLevel	dwarf+funcnames	fbe00c6e36d0	understood	docs/opengl.md#fillbordercolorlevel	`fillBorderColorLevel`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96d3f0	736	downloadLods	dwarf+funcnames	4c46715c01f2	understood	docs/opengl.md#downloadlods	`downloadLods`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96d6d0	52	whichComps	dwarf+funcnames	b9da73ba4723	understood	docs/opengl.md#whichcomps	`whichComps`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96d710	64	storage2Comp	dwarf+funcnames	2f5152e1e43f	understood	docs/opengl.md#storage2comp	`storage2Comp`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96d750	2556	calcObjSize	dwarf+funcnames	46db5d5a5055	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96e150	72	deallocTexture	dwarf+funcnames	2cbffbd98488	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96e1a0	104	freeTexture	dwarf+funcnames	d6083f738e1f	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96e150	72	deallocTexture	dwarf+funcnames	2cbffbd98488	understood	docs/opengl.md#dealloctexture	`deallocTexture`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96e1a0	104	freeTexture	dwarf+funcnames	d6083f738e1f	understood	docs/opengl.md#freetexture	`freeTexture`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96e210	1032	translateLodAddr	dwarf+funcnames	9e1dc9391f6a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96e620	512	configTexture	dwarf+funcnames	731503c098fc	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96e820	572	slowBindTexture	dwarf+funcnames	830a639624c7	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96ea60	224	validateTexture	dwarf+funcnames	6369713b8553	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96eb40	200	destroyTextureObj	dwarf+funcnames	7bd19f795461	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96ea60	224	validateTexture	dwarf+funcnames	6369713b8553	understood	docs/opengl.md#validatetexture	`validateTexture`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96eb40	200	destroyTextureObj	dwarf+funcnames	7bd19f795461	understood	docs/opengl.md#destroytextureobj	`destroyTextureObj`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd96ec10	524	__glkonim_GenTexturesEXT_Slow	dwarf+dynsym	80b97797e1da	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd96ee20	596	__glkonim_GenTexturesEXT	dwarf+dynsym	7d124245fed5	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd96f080	96	__glKonFreeTextureObj	dwarf+dynsym	a11d89b5c164	named-only	docs/libglcore.md#texture-management	Texture management
@@ -36820,14 +36820,14 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd96fba0	392	__glkonim_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd96fd30	408	__glkonim_PrioritizeTexturesEXT	dwarf+dynsym	00e42ada610a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd96fed0	156	__glkonim_IsTextureEXT	dwarf+dynsym	3ba3b7b7bae8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd96ff70	352	guessClipmapBreakpoint	dwarf+funcnames	8d744ab6e7e1	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9700d0	312	undefineTextureLevel	dwarf+funcnames	0d49fb52f3d3	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9700d0	312	undefineTextureLevel	dwarf+funcnames	0d49fb52f3d3	understood	docs/opengl.md#undefinetexturelevel	`undefineTextureLevel`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd970210	2436	checkTexImage	dwarf+funcnames	089768e5a17c	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd970ba0	324	computeDestinationDims	dwarf+funcnames	3a88c37d876f	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd970cf0	232	checkPixelError	dwarf+funcnames	982be02fe33c	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd970de0	1004	__glkonim_TexImage	dwarf+dynsym	c8f640a05ef2	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9711d0	548	__glkonim_CopyTexImage	dwarf+dynsym	565e27659ff3	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd971400	104	__glkonim_TexImage3DEXT	dwarf+dynsym	c176ccc88d8b	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd971470	136	__glkonim_TexImage2D	dwarf+dynsym	5487e437bfb9	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd971470	136	__glkonim_TexImage2D	dwarf+dynsym	5487e437bfb9	understood	docs/opengl.md#__glkonim_teximage2d	`__glkonim_TexImage2D`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd971500	124	__glkonim_TexImage1D	dwarf+dynsym	1c9022b0f653	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd971580	84	__glkonim_CopyTexImage1DEXT	dwarf+dynsym	ae23eccc6e9a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9715e0	92	__glkonim_CopyTexImage2DEXT	dwarf+dynsym	2a2eb57e5ba0	named-only	docs/libglcore.md#texture-management	Texture management
@@ -36839,19 +36839,19 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd972610	132	__glkonim_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9726a0	124	__glkonim_TexSubImage1DEXT	dwarf+dynsym	28e23354e344	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd972720	108	__glkonim_CopyTexSubImage1DEXT	dwarf+dynsym	473afa67ab8b	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd972790	120	__glkonim_CopyTexSubImage2DEXT	dwarf+dynsym	2e3e0f18f4b2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd972810	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	eaaf23d8551f	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd972810	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	eaaf23d8551f	understood	docs/opengl.md#__glkonim_copytexsubimage3dext	`__glkonim_CopyTexSubImage3DEXT`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd972870	512	__glkonim_GetTexImage	dwarf+dynsym	08a7bb221d4e	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd972a70	296	__glkon_EnableTexture	dwarf+dynsym	b5501b6d13f9	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd972ba0	280	__glkonim_TexParameterfv	dwarf+dynsym	a5f4b173bcab	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd972cc0	752	__glkonim_TexParameterf	dwarf+dynsym	4072ac043713	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd972fb0	280	__glkonim_TexParameteriv	dwarf+dynsym	8597c69e4764	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9730d0	772	__glkonim_TexParameteri	dwarf+dynsym	88dd56061d32	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9733e0	400	__glkonim_DetailTexFuncSGIS	dwarf+dynsym	68b842cfbdc0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd973570	144	__glkonim_GetDetailTexFuncSGIS	dwarf+dynsym	b08bcd56f58e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd973600	476	__glkonim_SharpenTexFuncSGIS	dwarf+dynsym	b52da7bf4207	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9737e0	236	__glkonim_GetSharpenTexFuncSGIS	dwarf+dynsym	0ac92d41f7c9	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9738d0	464	__glkonim_TexFilterFuncSGIS	dwarf+dynsym	be72aa957bcb	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd973aa0	232	__glkonim_GetTexFilterFuncSGIS	dwarf+dynsym	416c3c1697aa	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9733e0	400	__glkonim_DetailTexFuncSGIS	dwarf+dynsym	68b842cfbdc0	understood	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd973570	144	__glkonim_GetDetailTexFuncSGIS	dwarf+dynsym	b08bcd56f58e	understood	docs/opengl.md#__glkonim_getdetailtexfuncsgis	`__glkonim_GetDetailTexFuncSGIS`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd973600	476	__glkonim_SharpenTexFuncSGIS	dwarf+dynsym	b52da7bf4207	understood	docs/opengl.md#__glkonim_sharpentexfuncsgis	`__glkonim_SharpenTexFuncSGIS`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9737e0	236	__glkonim_GetSharpenTexFuncSGIS	dwarf+dynsym	0ac92d41f7c9	understood	docs/opengl.md#__glkonim_getsharpentexfuncsgis	`__glkonim_GetSharpenTexFuncSGIS`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9738d0	464	__glkonim_TexFilterFuncSGIS	dwarf+dynsym	be72aa957bcb	understood	docs/opengl.md#__glkonim_texfilterfuncsgis	`__glkonim_TexFilterFuncSGIS`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd973aa0	232	__glkonim_GetTexFilterFuncSGIS	dwarf+dynsym	416c3c1697aa	understood	docs/opengl.md#__glkonim_gettexfilterfuncsgis	`__glkonim_GetTexFilterFuncSGIS`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd973b90	1004	checkProxyTexture	dwarf+funcnames	e75de1ac3df8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd973f80	1412	__glkonim_GetTexLevelParameteriv	dwarf+dynsym	1c846cc5b6a6	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd974510	76	__glkonim_GetTexLevelParameterfv	dwarf+dynsym	041ec4bc3324	named-only	docs/libglcore.md#texture-management	Texture management
@@ -36867,14 +36867,14 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd974da0	276	__glKonFre
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd974ec0	192	__glKonShareTexture	dwarf+dynsym	26ce4bdae9cc	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd974f80	668	__glKonPushTextureAttrib	dwarf+dynsym	1ceb218742e7	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975220	488	__glKonPopTextureAttrib	dwarf+dynsym	728eba46688b	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd975410	292	__glkonlc_TexImage	dwarf+funcnames	42eb6162ae4b	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975540	224	__glkonlc_TexImage1D	dwarf+dynsym	e06a4831df16	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975620	220	__glkonlc_TexImage2D	dwarf+dynsym	1715279b110b	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975700	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	5a2221177973	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9757d0	156	__glkonle_TexImage	dwarf+dynsym	1394d1dc9756	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975870	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	fed7b53b299e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975920	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	e2d2e6798b0d	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9759d0	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	a9289efae4e9	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd975410	292	__glkonlc_TexImage	dwarf+funcnames	42eb6162ae4b	understood	docs/opengl.md#__glkonlc_teximage	`__glkonlc_TexImage`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975540	224	__glkonlc_TexImage1D	dwarf+dynsym	e06a4831df16	understood	docs/opengl.md#__glkonlc_teximage1d	`__glkonlc_TexImage1D`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975620	220	__glkonlc_TexImage2D	dwarf+dynsym	1715279b110b	understood	docs/opengl.md#__glkonlc_teximage2d	`__glkonlc_TexImage2D`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975700	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	5a2221177973	understood	docs/opengl.md#__glkonlc_teximage3dext	`__glkonlc_TexImage3DEXT`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9757d0	156	__glkonle_TexImage	dwarf+dynsym	1394d1dc9756	understood	docs/opengl.md#__glkonle_teximage	`__glkonle_TexImage`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975870	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	fed7b53b299e	understood	docs/opengl.md#__glkonle_texsubimage1dext	`__glkonle_TexSubImage1DEXT`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975920	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	e2d2e6798b0d	understood	docs/opengl.md#__glkonle_texsubimage2dext	`__glkonle_TexSubImage2DEXT`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9759d0	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	a9289efae4e9	understood	docs/opengl.md#__glkonle_texsubimage3dext	`__glkonle_TexSubImage3DEXT`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd975a80	204	globalAlloc	dwarf+funcnames	a3d59f6d80a6	understood	docs/opengl.md#globalalloc	`globalAlloc`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd975b50	156	whichBucket	dwarf+funcnames	0d0acca1e277	understood	docs/opengl.md#whichbucket	`whichBucket`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd975bf0	308	findFreeBank	dwarf+dynsym	a046bb08169f	understood	docs/opengl.md#findfreebank	`findFreeBank`
@@ -42199,7 +42199,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198050	244	__glkonPix
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198150	220	__glkonim_PixelZoom	dwarf+dynsym	d65b863f1f3d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198230	204	__glkonim_PixelStoref	dwarf+dynsym	e51841618eaf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198300	1284	__glkonim_TextureStorei	dwarf+dynsym	a17c58ded522	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198810	1272	__glkonim_PixelStorei	dwarf+dynsym	b3d53e425c54	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198810	1272	__glkonim_PixelStorei	dwarf+dynsym	b3d53e425c54	named-only	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198d10	1596	__glkonim_PixelTransferf	dwarf+dynsym	21ff493e5c9c	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2199350	56	__glkonim_PixelTransferi	dwarf+dynsym	2336b68af1b9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2199390	280	__glKonInitConvolutionState	dwarf+dynsym	4d9c5c3cd716	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42322,30 +42322,30 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a6ac0	232	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a6bb0	288	__glkonim_PointParameterfvSGIS	dwarf+dynsym	c4f481ef5e8c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a6cd0	388	__glkonlc_PointParameterfSGIS	dwarf+dynsym	a25fd4287022	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a6e60	536	__glkonlc_PointParameterfvSGIS	dwarf+dynsym	7ccf707a40a6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7080	516	__glkonim_ProcImage	dwarf	8d334bdd96dc	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7080	516	__glkonim_ProcImage	dwarf	8d334bdd96dc	located	docs/opengl.md#__glkonim_procimage	`__glkonim_ProcImage`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7290	24	updateTexBindID	dwarf	1199db90c148	named-only	GE.h:4791	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a72b0	172	stealARMTableCacheCallback	dwarf	eccf5c1dd87a	named-only	GE.h:7991	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7360	216	freeARMTexCache	dwarf	9b03821c6f7c	named-only	GE.h:7611	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a72b0	172	stealARMTableCacheCallback	dwarf	eccf5c1dd87a	named-only	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7360	216	freeARMTexCache	dwarf	9b03821c6f7c	named-only	docs/opengl.md#initarmtexcache	`initARMTexCache`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7440	92	bindARMTexCache	dwarf	acb741a7ba49	named-only	GE.h:7597	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a74a0	48	getS0p7	dwarf	a910e82befef	named-only	RM.h:107	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a74d0	136	getS2p7	dwarf	5227d64cd6aa	named-only	RM.h:117	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a74a0	48	getS0p7	dwarf	a910e82befef	located	docs/opengl.md#gets0p7	`getS0p7`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a74d0	136	getS2p7	dwarf	5227d64cd6aa	located	docs/opengl.md#gets2p7	`getS2p7`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a7560	88	computeActiveTarget	dwarf	28528c34b5fa	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a75c0	944	bindTexTable	dwarf+dynsym	7311a4652b47	named-only	GE.h:6271	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a7970	184	getTexTableUsage	dwarf+dynsym	d67143b0851a	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a7a30	1300	addTexTableUsage	dwarf+dynsym	38a57b37bec4	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a75c0	944	bindTexTable	dwarf+dynsym	7311a4652b47	named-only	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a7970	184	getTexTableUsage	dwarf+dynsym	d67143b0851a	located	docs/opengl.md#gettextableusage	`getTexTableUsage`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a7a30	1300	addTexTableUsage	dwarf+dynsym	38a57b37bec4	located	docs/opengl.md#addtextableusage	`addTexTableUsage`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a7f50	332	subtractTexTableUsage	dwarf+dynsym	7f94894c6917	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a80a0	88	initTexTables	dwarf	76f33c21378e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8100	196	freeTexTables	dwarf	9978ede8ca43	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a81d0	24	initARMTexCache	dwarf	d722d64bc7a2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a81f0	64	updateTexUsage	dwarf	081714a571ce	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8230	80	targetIndex	dwarf	6f68bad0cd13	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8280	120	isLodInvalid	dwarf	aa2cc2f097d4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8300	504	unmatchObjLevel	dwarf	4f5e44ed6cf4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8500	192	allocLevelImage	dwarf	e8e5bc978623	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a85c0	244	setDetailFilter	dwarf	336aeb2d6c55	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a80a0	88	initTexTables	dwarf	76f33c21378e	located	docs/opengl.md#inittextables	`initTexTables`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8100	196	freeTexTables	dwarf	9978ede8ca43	located	docs/opengl.md#freetextables	`freeTexTables`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a81d0	24	initARMTexCache	dwarf	d722d64bc7a2	located	docs/opengl.md#initarmtexcache	`initARMTexCache`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a81f0	64	updateTexUsage	dwarf	081714a571ce	located	docs/opengl.md#updatetexusage	`updateTexUsage`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8230	80	targetIndex	dwarf	6f68bad0cd13	understood	docs/opengl.md#targetindex	`targetIndex`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8280	120	isLodInvalid	dwarf	aa2cc2f097d4	understood	docs/opengl.md#islodinvalid	`isLodInvalid`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8300	504	unmatchObjLevel	dwarf	4f5e44ed6cf4	located	docs/opengl.md#unmatchobjlevel	`unmatchObjLevel`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8500	192	allocLevelImage	dwarf	e8e5bc978623	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a85c0	244	setDetailFilter	dwarf	336aeb2d6c55	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a86c0	288	setSharpenFilter	dwarf	8155d4fd1fa6	named-only	RM.h:91	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a87e0	1148	changeMinMaxLod	dwarf	aa208316f62f	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8c60	116	guessBaseLevel	dwarf	43f2125a21d1	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8c60	116	guessBaseLevel	dwarf	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8ce0	4916	changeFilter	dwarf	1a1a6986a431	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa020	612	changeClamp	dwarf	69abaa85072a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa290	40	loadPostTextureScaleBias	dwarf	2593b30b6fcf	named-only	GE.h:3928	
@@ -42356,39 +42356,39 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa4b0	792	chang
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21aa7d0	6156	__glKonTexParameter	dwarf+dynsym	3103171a7231	named-only	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21abfe0	1632	__glKonGetTexParameter	dwarf+dynsym	d6a0406341e3	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac640	448	bind2DMipmapTexture	dwarf	fdeac58983f4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac800	72	setClipmapRegisters	dwarf	bf173099a5f2	named-only	GE.h:7093	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac800	72	setClipmapRegisters	dwarf	bf173099a5f2	named-only	docs/opengl.md#getlevel	`getLevel`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac850	272	bind2DClipmapTexture	dwarf	4f4c62a2a004	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac960	268	bindBicubicTexture	dwarf	0fef740662b0	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aca70	300	bind3DMipmapTexture	dwarf	a8020f9fb479	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21acba0	220	bind3DTexture	dwarf	aa3d17378c91	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21acc80	144	bindDetailTexture	dwarf	4398caf42ac6	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21acd10	872	initTexture	dwarf	f53337a27864	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ad080	252	subloadSimple	dwarf	d5d2ea3df96c	named-only	GE.h:52	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ad180	144	tileinfo	dwarf	e64ace867745	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ad210	724	subloadBorderedLevel	dwarf	3e68d26c9387	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ad4f0	620	subcopyBorderedLevel	dwarf	95d576ba59fc	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ad760	2216	subloadPyramidLevel	dwarf	9b24aae352de	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae010	220	subloadClipLevel	dwarf	4b2a3d6d102b	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ad080	252	subloadSimple	dwarf	d5d2ea3df96c	named-only	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ad180	144	tileinfo	dwarf	e64ace867745	understood	docs/opengl.md#tileinfo	`tileinfo`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ad210	724	subloadBorderedLevel	dwarf	3e68d26c9387	located	docs/opengl.md#subloadborderedlevel	`subloadBorderedLevel`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ad4f0	620	subcopyBorderedLevel	dwarf	95d576ba59fc	located	docs/opengl.md#subcopyborderedlevel	`subcopyBorderedLevel`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ad760	2216	subloadPyramidLevel	dwarf	9b24aae352de	located	docs/opengl.md#subloadpyramidlevel	`subloadPyramidLevel`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae010	220	subloadClipLevel	dwarf	4b2a3d6d102b	located	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae0f0	2124	subloadLevel	dwarf	c523cefdb774	named-only	docs/ge.md#the-texel-format-id	The texel format id
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae940	160	subgetSimple	dwarf	1dc2fe96242c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae9e0	1144	getLevel	dwarf	46e47660017e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aee60	168	validDimension	dwarf	2fba24c0b12d	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae940	160	subgetSimple	dwarf	1dc2fe96242c	located	docs/opengl.md#subgetsimple	`subgetSimple`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae9e0	1144	getLevel	dwarf	46e47660017e	located	docs/opengl.md#getlevel	`getLevel`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aee60	168	validDimension	dwarf	2fba24c0b12d	located	docs/opengl.md#validdimension	`validDimension`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aef10	56	log2	dwarf	9b6432f02abb	located	ucode/arm1_functions.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aef50	208	areLodsConsistent	dwarf	76f7857d2063	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af020	668	copyBackLods	dwarf	395a3ad48f70	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af2c0	132	repPixels	dwarf	4cc0aa1cc030	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af350	1268	fillBorderColorLevel	dwarf	1c1523ec8096	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af850	740	downloadLods	dwarf	c712018886cf	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21afb40	52	whichComps	dwarf	1c7e8409836f	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21afb80	64	storage2Comp	dwarf	1a0f8e58d108	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aef50	208	areLodsConsistent	dwarf	76f7857d2063	located	docs/opengl.md#arelodsconsistent	`areLodsConsistent`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af020	668	copyBackLods	dwarf	395a3ad48f70	located	docs/opengl.md#copybacklods	`copyBackLods`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af2c0	132	repPixels	dwarf	4cc0aa1cc030	located	docs/opengl.md#reppixels	`repPixels`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af350	1268	fillBorderColorLevel	dwarf	1c1523ec8096	located	docs/opengl.md#fillbordercolorlevel	`fillBorderColorLevel`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af850	740	downloadLods	dwarf	c712018886cf	located	docs/opengl.md#downloadlods	`downloadLods`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21afb40	52	whichComps	dwarf	1c7e8409836f	located	docs/opengl.md#whichcomps	`whichComps`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21afb80	64	storage2Comp	dwarf	1a0f8e58d108	located	docs/opengl.md#storage2comp	`storage2Comp`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21afbc0	2556	calcObjSize	dwarf	86cf48b426a0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b05c0	72	deallocTexture	dwarf	782561627fb0	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b0610	104	freeTexture	dwarf	871ee0230b37	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b05c0	72	deallocTexture	dwarf	782561627fb0	located	docs/opengl.md#dealloctexture	`deallocTexture`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b0610	104	freeTexture	dwarf	871ee0230b37	located	docs/opengl.md#freetexture	`freeTexture`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b0680	1032	translateLodAddr	dwarf	c3a8e84a024a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b0a90	508	configTexture	dwarf	90015845cf3f	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b0c90	576	slowBindTexture	dwarf	1e04d53eae75	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b0ed0	224	validateTexture	dwarf	c675ff675cb4	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b0fb0	200	destroyTextureObj	dwarf	7c455d940db8	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b0ed0	224	validateTexture	dwarf	c675ff675cb4	located	docs/opengl.md#validatetexture	`validateTexture`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b0fb0	200	destroyTextureObj	dwarf	7c455d940db8	located	docs/opengl.md#destroytextureobj	`destroyTextureObj`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b1080	524	__glkonim_GenTexturesEXT_Slow	dwarf+dynsym	bbd281a64681	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b1290	596	__glkonim_GenTexturesEXT	dwarf+dynsym	4a4593941b1e	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b14f0	96	__glKonFreeTextureObj	dwarf+dynsym	c5769f54cc1f	named-only	docs/libglcore.md#texture-management	Texture management
@@ -42400,14 +42400,14 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b2090	392	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b2220	408	__glkonim_PrioritizeTexturesEXT	dwarf+dynsym	1bd0f1d4b6b4	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b23c0	156	__glkonim_IsTextureEXT	dwarf+dynsym	3c1d01893fd4	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b2460	352	guessClipmapBreakpoint	dwarf	4918a60ffaa2	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b25c0	324	undefineTextureLevel	dwarf	662e93be2395	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b25c0	324	undefineTextureLevel	dwarf	662e93be2395	located	docs/opengl.md#undefinetexturelevel	`undefineTextureLevel`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b2710	2480	checkTexImage	dwarf	770cdf355997	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b30c0	324	computeDestinationDims	dwarf	07f321b3fb34	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b3210	232	checkPixelError	dwarf	81fadbd4cabf	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3300	1008	__glkonim_TexImage	dwarf+dynsym	0cb58a219769	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b36f0	552	__glkonim_CopyTexImage	dwarf+dynsym	ed0f30e10785	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3920	100	__glkonim_TexImage3DEXT	dwarf+dynsym	ae5feb455993	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3990	132	__glkonim_TexImage2D	dwarf+dynsym	4683173e1f85	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3990	132	__glkonim_TexImage2D	dwarf+dynsym	4683173e1f85	located	docs/opengl.md#__glkonim_teximage2d	`__glkonim_TexImage2D`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3a20	128	__glkonim_TexImage1D	dwarf+dynsym	6c539085d37d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3aa0	84	__glkonim_CopyTexImage1DEXT	dwarf+dynsym	c3a083394da7	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3b00	88	__glkonim_CopyTexImage2DEXT	dwarf+dynsym	27fc9abe24a5	named-only	docs/libglcore.md#texture-management	Texture management
@@ -42419,19 +42419,19 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4b70	132	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4c00	124	__glkonim_TexSubImage1DEXT	dwarf+dynsym	1ee2d908c2ea	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4c80	108	__glkonim_CopyTexSubImage1DEXT	dwarf+dynsym	f9ffe993175d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4cf0	120	__glkonim_CopyTexSubImage2DEXT	dwarf+dynsym	12e71f29cc32	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4d70	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	9a19c1e6359d	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4d70	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	9a19c1e6359d	located	docs/opengl.md#__glkonim_copytexsubimage3dext	`__glkonim_CopyTexSubImage3DEXT`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4dd0	536	__glkonim_GetTexImage	dwarf+dynsym	f88bacc34365	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4ff0	336	__glkon_EnableTexture	dwarf+dynsym	de4283765d75	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5140	300	__glkonim_TexParameterfv	dwarf+dynsym	312b6e577e6e	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5270	780	__glkonim_TexParameterf	dwarf+dynsym	47ba41621188	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5580	300	__glkonim_TexParameteriv	dwarf+dynsym	c008931a4088	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b56b0	792	__glkonim_TexParameteri	dwarf+dynsym	9e3586d2034f	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b59d0	416	__glkonim_DetailTexFuncSGIS	dwarf+dynsym	ac399ddae772	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5b70	144	__glkonim_GetDetailTexFuncSGIS	dwarf+dynsym	df3ffc3101e3	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5c00	492	__glkonim_SharpenTexFuncSGIS	dwarf+dynsym	cdfe92c5cf1e	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5df0	256	__glkonim_GetSharpenTexFuncSGIS	dwarf+dynsym	d4d03376716c	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5ef0	492	__glkonim_TexFilterFuncSGIS	dwarf+dynsym	c37ff2e7d87d	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b60e0	252	__glkonim_GetTexFilterFuncSGIS	dwarf+dynsym	30a05e848261	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b59d0	416	__glkonim_DetailTexFuncSGIS	dwarf+dynsym	ac399ddae772	located	docs/opengl.md#__glkonim_detailtexfuncsgis	`__glkonim_DetailTexFuncSGIS`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5b70	144	__glkonim_GetDetailTexFuncSGIS	dwarf+dynsym	df3ffc3101e3	located	docs/opengl.md#__glkonim_getdetailtexfuncsgis	`__glkonim_GetDetailTexFuncSGIS`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5c00	492	__glkonim_SharpenTexFuncSGIS	dwarf+dynsym	cdfe92c5cf1e	located	docs/opengl.md#__glkonim_sharpentexfuncsgis	`__glkonim_SharpenTexFuncSGIS`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5df0	256	__glkonim_GetSharpenTexFuncSGIS	dwarf+dynsym	d4d03376716c	located	docs/opengl.md#__glkonim_getsharpentexfuncsgis	`__glkonim_GetSharpenTexFuncSGIS`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5ef0	492	__glkonim_TexFilterFuncSGIS	dwarf+dynsym	c37ff2e7d87d	located	docs/opengl.md#__glkonim_texfilterfuncsgis	`__glkonim_TexFilterFuncSGIS`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b60e0	252	__glkonim_GetTexFilterFuncSGIS	dwarf+dynsym	30a05e848261	located	docs/opengl.md#__glkonim_gettexfilterfuncsgis	`__glkonim_GetTexFilterFuncSGIS`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b61e0	1060	checkProxyTexture	dwarf	63319146d96d	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b6610	1404	__glkonim_GetTexLevelParameteriv	dwarf+dynsym	3fda7fedc370	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b6b90	76	__glkonim_GetTexLevelParameterfv	dwarf+dynsym	1cda6a220004	named-only	docs/libglcore.md#texture-management	Texture management
@@ -42447,14 +42447,14 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b74a0	276	__glKonFre
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b75c0	196	__glKonShareTexture	dwarf+dynsym	67abb0592dc3	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7690	688	__glKonPushTextureAttrib	dwarf+dynsym	e3986e0eb261	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7940	500	__glKonPopTextureAttrib	dwarf+dynsym	05cbf7ed4211	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b7b40	292	__glkonlc_TexImage	dwarf	095d647f9382	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7c70	224	__glkonlc_TexImage1D	dwarf+dynsym	68075bc503eb	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7d50	220	__glkonlc_TexImage2D	dwarf+dynsym	c0346c920851	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7e30	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	693eb87fea68	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7f00	156	__glkonle_TexImage	dwarf+dynsym	4ac7cf20bd8d	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7fa0	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	b32b44207a55	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b8050	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	bf19c248cd98	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b8100	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	1ca3cd163a0d	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b7b40	292	__glkonlc_TexImage	dwarf	095d647f9382	located	docs/opengl.md#__glkonlc_teximage	`__glkonlc_TexImage`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7c70	224	__glkonlc_TexImage1D	dwarf+dynsym	68075bc503eb	located	docs/opengl.md#__glkonlc_teximage1d	`__glkonlc_TexImage1D`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7d50	220	__glkonlc_TexImage2D	dwarf+dynsym	c0346c920851	located	docs/opengl.md#__glkonlc_teximage2d	`__glkonlc_TexImage2D`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7e30	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	693eb87fea68	located	docs/opengl.md#__glkonlc_teximage3dext	`__glkonlc_TexImage3DEXT`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7f00	156	__glkonle_TexImage	dwarf+dynsym	4ac7cf20bd8d	located	docs/opengl.md#__glkonle_teximage	`__glkonle_TexImage`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7fa0	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	b32b44207a55	located	docs/opengl.md#__glkonle_texsubimage1dext	`__glkonle_TexSubImage1DEXT`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b8050	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	bf19c248cd98	located	docs/opengl.md#__glkonle_texsubimage2dext	`__glkonle_TexSubImage2DEXT`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b8100	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	1ca3cd163a0d	located	docs/opengl.md#__glkonle_texsubimage3dext	`__glkonle_TexSubImage3DEXT`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b81b0	208	globalAlloc	dwarf	012ebe49a68a	located	docs/opengl.md#globalalloc	`globalAlloc`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b8280	152	whichBucket	dwarf	4408931580d2	located	docs/opengl.md#whichbucket	`whichBucket`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b8320	320	findFreeBank	dwarf+dynsym	dda116cb6d01	located	docs/opengl.md#findfreebank	`findFreeBank`
