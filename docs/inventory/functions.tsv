@@ -50426,7 +50426,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44a0f0	400	nfbRealizeWindow	dyns
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44a280	424	FindBestID	dynsym	a935007042c0	understood	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44a430	4452	cfb8FillRectOpaqueStippled32	dynsym	02efe196cbe8	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44b5a0	264	rrmDestroyDrawable	dynsym	606529bdf6bf	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44b6b0	84	decrRRMFlags	dynsym	f0caaf709160	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44b6b0	84	decrRRMFlags	dynsym	f0caaf709160	understood	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44b7f0	572	konQueryHyperpipeNetwork	dynsym	710e485ba662	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44ba30	972	miStepDash	dynsym	c7f88d8264e2	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44be00	576	mfbPolyFillArcSolid	dynsym	a362dd6f25cc	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -50488,7 +50488,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x45e460	940	mfbVertS	dynsym	ca014
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x45e940	408	cfb16CreatePixmap	dynsym	7ea22dc317f2	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x45eae0	2268	cfbFillBoxTile32sGeneral	dynsym	1ed6ff0c9edb	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x45f3c0	3604	mfbLineSS	dynsym	8c2ac23db4df	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4601e0	2040	konValidateMode	dynsym	b16920baf0db	named-only	docs/dg.md#buffer-swap-and-retrace-wait	Buffer swap and retrace wait
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4601e0	2040	konValidateMode	dynsym	b16920baf0db	understood	docs/opengl.md#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017	Display modes: `X_LOADXMAP_DID` and `RRM_LOADDISPLAYMODE` (1017)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4609e0	628	FindFreeCID	dynsym	41acdfbdbaff	understood	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x460c60	28	konStoreFakeColors	dynsym	b8426775f7ed	understood	docs/opengl.md#konstorefakecolors	`konStoreFakeColors`
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x460c80	432	nfbValidateWindowVisual	dynsym	c38413457196	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
@@ -50522,8 +50522,8 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x469e50	3052	cfb16SegmentSS	dynsy
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46aa40	408	cfb32CreatePixmap	dynsym	a8c98385816f	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46acf0	7112	cfbCopyPlane8to1	dynsym	60b0ca73d0f8	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46cad0	2076	miFillUniqueSpanGroup	dynsym	e95859bb1f82	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46d2f0	256	konInitWindowType	dynsym	72534aeb1c55	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46d3f0	2776	konValidateClip	dynsym	954e6d646c4d	named-only	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46d2f0	256	konInitWindowType	dynsym	72534aeb1c55	understood	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46d3f0	2776	konValidateClip	dynsym	954e6d646c4d	understood	docs/opengl.md#clips-rrm_validateclip-1011	Clips: `RRM_VALIDATECLIP` (1011)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46dfa0	3692	konPolyGlyphBltSolidTE10	dynsym	fccb2ccd0d9f	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46ee10	24	nfbStereoRegisterWrapperOps	dynsym	69ae29e0b25e	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46ee30	796	cfbPutImage	dynsym	76a81f50586f	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -50536,7 +50536,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x473080	3184	miZeroLine	dynsym	e9
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x473cf0	1256	cfb16SetScanline	dynsym	7ce3517e85a0	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x474310	368	miRoundCapClip	dynsym	8af0b5bcc9f6	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4745c0	1736	cfb16LineSS1RectPreviousCopy	dynsym	2dbdfd0d691e	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x474c90	188	incrRRMpriv	dynsym	e533e3c5c43f	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x474c90	188	incrRRMpriv	dynsym	e533e3c5c43f	understood	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x475010	1788	miHandleExposures	dynsym	64a73404413c	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x475710	2876	cfb16ClippedLineGeneral	dynsym	06b1dab2a8b2	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x476340	524	rrmValidateCID	dynsym	b0bf904cec49	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
@@ -50621,7 +50621,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49a6d0	468	cfb16ZeroPolyArcSSXor
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49ac60	148	FreeID	dynsym	d7719b490ea3	understood	docs/opengl.md#freeid	`FreeID`
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49ad00	168	nfbStoreColors	dynsym	268eac9514d9	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49adb0	328	konProbe	dynsym	9c6223b1d0ef	understood	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49af00	84	incrRRMFlags	dynsym	4a682c888367	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49af00	84	incrRRMFlags	dynsym	4a682c888367	understood	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49af60	208	allocRRMpriv	dynsym	d97b9c5a2a6b	understood	docs/opengl.md#allocrrmpriv	`allocRRMpriv`
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49b030	2920	cfb32ValidateGC	dynsym	c27b2ab6f8fb	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49bba0	812	nfbStereoFillPolygon	dynsym	632b7b8cae32	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
@@ -50639,7 +50639,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a0e00	3512	cfb16LineSS	dynsym	a
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a25a0	20	konClearHWColormap	dynsym	6bd96815d363	understood	docs/opengl.md#konclearhwcolormap	`konClearHWColormap`
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a25c0	468	cfb32ZeroPolyArcSSXor	dynsym	9855f78d294f	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a27a0	1132	mfbGetSpans	dynsym	973f2708bffa	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a2c10	228	konaSetStereoMode	dynsym	4ef036378273	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a2c10	228	konaSetStereoMode	dynsym	4ef036378273	understood	docs/opengl.md#stereo-kona_set_channel_rect-10009	Stereo: `KONA_SET_CHANNEL_RECT` (10009)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a2d00	24	nfbListInstalledColormaps	dynsym	397c357ee5a1	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a2d20	264	miRoundJoinClip	dynsym	e2c3c04914cf	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a3070	520	mfbSolidPP	dynsym	6b719e63933c	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -50697,7 +50697,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b69b0	824	konValidateSwapbuf	dy
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b6cf0	892	cfb32FillSpanTile32sGeneral	dynsym	412206248778	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b7070	796	cfb32PutImage	dynsym	ef4d49812ce8	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b7390	124	nfbSolidFillRects	dynsym	655d67c8c2b6	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b7410	188	rrmInvalidateCID	dynsym	0deee0bacd63	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b7410	188	rrmInvalidateCID	dynsym	0deee0bacd63	understood	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b80c0	1064	cfb32SolidSpansGeneral	dynsym	ff8c02034de6	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b84f0	1104	miSubtractSpans	dynsym	36234ccd0ba5	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b8940	400	rrmBindMultipleClips	dynsym	102f9312f2df	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
@@ -50783,7 +50783,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4d9ff0	2500	mfbUnnaturalStippleF
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4da9c0	580	nfbPaintWindowBackground	dynsym	0467515fe881	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4dac10	100	konSetColor	dynsym	12f55e54a6f2	understood	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4dac80	748	konStereoPolyPoint	dynsym	6b40a17f8403	understood	docs/opengl.md#konstereopolypoint	`konStereoPolyPoint`
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4daf70	88	rrmSetResourceMask	dynsym	627ed041d4d1	located	docs/kernel.md#resource-masks-rrmgetresourcemask-rrmsetresourcemask	Resource masks: `rrmGetResourceMask`, `rrmSetResourceMask`
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4daf70	88	rrmSetResourceMask	dynsym	627ed041d4d1	understood	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4dafd0	2540	konImageGlyphBltTE32	dynsym	c72222d83f1a	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4dc4b0	352	nfbTreeObscured	dynsym	3feadf9319da	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4ddbb0	3832	konImageGlyphBltTE10	dynsym	51e67ecbb873	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
@@ -50929,7 +50929,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522310	352	cfb32AllocatePrivates
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522470	224	kon_loadClearGC	dynsym	2328fa56f73c	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522550	148	mfbCopyPixmap	dynsym	68d80f006d09	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5225f0	1184	konStereoFillSpans	dynsym	02a34ca9d7ac	understood	docs/opengl.md#konstereofillspans	`konStereoFillSpans`
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522a90	384	konLoadDisplayMode	dynsym	42173077f360	named-only	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522a90	384	konLoadDisplayMode	dynsym	42173077f360	understood	docs/opengl.md#konloaddisplaymode	`konLoadDisplayMode`
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522c10	708	cfb32GetSpans	dynsym	e127182cd881	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x522ee0	3596	konTilePatterns	dynsym	274caaae60c1	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x523cf0	2468	konStoreColors	dynsym	e21fad4c2a4a	named-only	docs/opengl.md#konsetcolor	`konSetColor`
@@ -50989,7 +50989,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x53adf0	2192	cfb8SegmentSS1RectXo
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x53b680	56	cfbCopyImagePlane	dynsym	a8a6a23623fd	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x53bbc0	88	cfbDestroyPixmap	dynsym	41058b082a87	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x53bc60	532	nfbFixupDepths	dynsym	f3d2d88f2998	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x53be80	524	konRecolorCursor	dynsym	f60e34e0eb53	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x53be80	524	konRecolorCursor	dynsym	f60e34e0eb53	understood	docs/opengl.md#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor	Cursor: `KONA_SELECT_CURSOR` (10005), `X_LOADCURSOR`, `X_LOADCURSORCOLOR`
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x53c450	3548	mfbStippleBlackArea	dynsym	34d62cf4a7fc	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x53d2e0	5320	konBresD	dynsym	ab3cbc92f409	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x53eb40	168	konValidateGC	dynsym	fbeac7cfbcc1	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
@@ -51221,7 +51221,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x449ca0	400	nfbRealizeWindow	dyn
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x449e30	424	FindBestID	dynsym	2f0a11bcf94c	located	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x449fe0	4452	cfb8FillRectOpaqueStippled32	dynsym	f1fc185e301d	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b150	264	rrmDestroyDrawable	dynsym	c7ecc6498d0a	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b260	84	decrRRMFlags	dynsym	5b28cac6950e	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b260	84	decrRRMFlags	dynsym	5b28cac6950e	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b3a0	572	konQueryHyperpipeNetwork	dynsym	daacbadb1f75	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b5e0	972	miStepDash	dynsym	c7f88d8264e2	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b9b0	576	mfbPolyFillArcSolid	dynsym	eb2958900bb0	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -51283,7 +51283,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45e0f0	940	mfbVertS	dynsym	6857
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45e5d0	408	cfb16CreatePixmap	dynsym	026262edb0d0	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45e770	2268	cfbFillBoxTile32sGeneral	dynsym	86f6fcf5d9df	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45f050	3604	mfbLineSS	dynsym	bed08b314839	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45fe70	2048	konValidateMode	dynsym	49eb1f0850a0	named-only	docs/dg.md#buffer-swap-and-retrace-wait	Buffer swap and retrace wait
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45fe70	2048	konValidateMode	dynsym	49eb1f0850a0	located	docs/opengl.md#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017	Display modes: `X_LOADXMAP_DID` and `RRM_LOADDISPLAYMODE` (1017)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x460670	628	FindFreeCID	dynsym	736d1e3bb928	located	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4608f0	28	konStoreFakeColors	dynsym	b8426775f7ed	understood	docs/opengl.md#konstorefakecolors	`konStoreFakeColors`
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x460910	432	nfbValidateWindowVisual	dynsym	68c7857a2dec	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
@@ -51317,8 +51317,8 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x469d30	3052	cfb16SegmentSS	dyns
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46a920	408	cfb32CreatePixmap	dynsym	976432b19294	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46abd0	7112	cfbCopyPlane8to1	dynsym	0c0c6aa3a1f3	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46c9b0	2076	miFillUniqueSpanGroup	dynsym	6c8667de4e85	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46d1d0	256	konInitWindowType	dynsym	6f70ffe1fcd2	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46d2d0	3380	konValidateClip	dynsym	5ec0d99b354a	named-only	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46d1d0	256	konInitWindowType	dynsym	6f70ffe1fcd2	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46d2d0	3380	konValidateClip	dynsym	5ec0d99b354a	located	docs/opengl.md#clips-rrm_validateclip-1011	Clips: `RRM_VALIDATECLIP` (1011)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46e0e0	3748	konPolyGlyphBltSolidTE10	dynsym	58bb939ed73e	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46ef90	24	nfbStereoRegisterWrapperOps	dynsym	b6b5dc7396d2	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46efb0	796	cfbPutImage	dynsym	b1d2e46a7885	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -51331,7 +51331,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x473290	3184	miZeroLine	dynsym	3
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x473f00	1256	cfb16SetScanline	dynsym	68c6052f0107	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x474520	368	miRoundCapClip	dynsym	9ba0ba46eaca	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4747d0	1736	cfb16LineSS1RectPreviousCopy	dynsym	16ddb24925a3	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x474ea0	188	incrRRMpriv	dynsym	7292eea1d00b	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x474ea0	188	incrRRMpriv	dynsym	7292eea1d00b	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x475220	1788	miHandleExposures	dynsym	77bbec64d248	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x475920	2876	cfb16ClippedLineGeneral	dynsym	9b00e9e19f72	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x476550	524	rrmValidateCID	dynsym	b19905745a69	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
@@ -51416,7 +51416,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a2530	468	cfb16ZeroPolyArcSSXo
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a2ac0	148	FreeID	dynsym	f68c4eb6f4f9	located	docs/opengl.md#freeid	`FreeID`
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a2b60	168	nfbStoreColors	dynsym	136fcd8293ef	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a2c10	328	konProbe	dynsym	16ef16a44786	located	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a2d60	84	incrRRMFlags	dynsym	ee66ad7727de	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a2d60	84	incrRRMFlags	dynsym	ee66ad7727de	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a2dc0	208	allocRRMpriv	dynsym	ca430c8b4bd8	located	docs/opengl.md#allocrrmpriv	`allocRRMpriv`
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a2e90	2920	cfb32ValidateGC	dynsym	d200304af660	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a3a00	812	nfbStereoFillPolygon	dynsym	f1f971a9bcd1	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
@@ -51434,7 +51434,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a90a0	3512	cfb16LineSS	dynsym	
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aa840	20	konClearHWColormap	dynsym	6bd96815d363	understood	docs/opengl.md#konclearhwcolormap	`konClearHWColormap`
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aa860	468	cfb32ZeroPolyArcSSXor	dynsym	652e17126550	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aaa40	1132	mfbGetSpans	dynsym	ac8122b37ed3	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aaeb0	228	konaSetStereoMode	dynsym	9ad8b703c7ba	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aaeb0	228	konaSetStereoMode	dynsym	9ad8b703c7ba	located	docs/opengl.md#stereo-kona_set_channel_rect-10009	Stereo: `KONA_SET_CHANNEL_RECT` (10009)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aafa0	24	nfbListInstalledColormaps	dynsym	397c357ee5a1	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aafc0	264	miRoundJoinClip	dynsym	91fdb90450b8	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4ab310	520	mfbSolidPP	dynsym	b62cf6046d62	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -51492,7 +51492,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4bf300	824	konValidateSwapbuf	d
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4bf640	892	cfb32FillSpanTile32sGeneral	dynsym	191e7d3c6064	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4bf9c0	796	cfb32PutImage	dynsym	eacfe374821f	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4bfce0	124	nfbSolidFillRects	dynsym	27ae47e08f13	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4bfd60	188	rrmInvalidateCID	dynsym	66c4d49e9587	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4bfd60	188	rrmInvalidateCID	dynsym	66c4d49e9587	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4c0a10	1064	cfb32SolidSpansGeneral	dynsym	e3cdafd04cd4	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4c0e40	1104	miSubtractSpans	dynsym	dbf17c1c9ef8	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4c1290	400	rrmBindMultipleClips	dynsym	9e087ae1cf52	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
@@ -51724,7 +51724,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c180	352	cfb32AllocatePrivate
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c2e0	240	kon_loadClearGC	dynsym	97ba07410ca8	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c3d0	148	mfbCopyPixmap	dynsym	50c88b5a5af5	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c470	1184	konStereoFillSpans	dynsym	6dcfcf56037d	located	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c910	384	konLoadDisplayMode	dynsym	01e8cfd8262b	named-only	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c910	384	konLoadDisplayMode	dynsym	01e8cfd8262b	located	docs/opengl.md#konloaddisplaymode	`konLoadDisplayMode`
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52ca90	708	cfb32GetSpans	dynsym	d57965cf6a4a	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52cd60	3596	konTilePatterns	dynsym	4c33bf588421	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52db70	3156	konStoreColors	dynsym	1b9e91d09c02	named-only	docs/opengl.md#konsetcolor	`konSetColor`
@@ -51784,7 +51784,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x544f60	2192	cfb8SegmentSS1RectX
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5457f0	56	cfbCopyImagePlane	dynsym	10e3f033286c	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x545d30	88	cfbDestroyPixmap	dynsym	a3fb51f66dc2	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x545dd0	532	nfbFixupDepths	dynsym	f3d2d88f2998	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x545ff0	540	konRecolorCursor	dynsym	af0f340e1ab7	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x545ff0	540	konRecolorCursor	dynsym	af0f340e1ab7	located	docs/opengl.md#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor	Cursor: `KONA_SELECT_CURSOR` (10005), `X_LOADCURSOR`, `X_LOADCURSORCOLOR`
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5465d0	3548	mfbStippleBlackArea	dynsym	626aa7b8bffd	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x547430	8160	konBresD	dynsym	d4682812f8f4	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x549a00	168	konValidateGC	dynsym	065d5f51a65c	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
@@ -52016,7 +52016,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13c9ca0	400	nfbRealizeWindow	dy
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13c9e30	424	FindBestID	dynsym	7ba0f70fae84	located	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13c9fe0	4452	cfb8FillRectOpaqueStippled32	dynsym	f1fc185e301d	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cb150	264	rrmDestroyDrawable	dynsym	c7ecc6498d0a	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cb260	84	decrRRMFlags	dynsym	5b28cac6950e	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cb260	84	decrRRMFlags	dynsym	5b28cac6950e	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cb3a0	572	konQueryHyperpipeNetwork	dynsym	daacbadb1f75	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cb5e0	972	miStepDash	dynsym	c7f88d8264e2	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cb9b0	576	mfbPolyFillArcSolid	dynsym	b8251bd71703	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -52078,7 +52078,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13de0f0	940	mfbVertS	dynsym	685
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13de5d0	408	cfb16CreatePixmap	dynsym	026262edb0d0	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13de770	2268	cfbFillBoxTile32sGeneral	dynsym	86f6fcf5d9df	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13df050	3604	mfbLineSS	dynsym	bed08b314839	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13dfe70	2048	konValidateMode	dynsym	49eb1f0850a0	named-only	docs/dg.md#buffer-swap-and-retrace-wait	Buffer swap and retrace wait
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13dfe70	2048	konValidateMode	dynsym	49eb1f0850a0	located	docs/opengl.md#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017	Display modes: `X_LOADXMAP_DID` and `RRM_LOADDISPLAYMODE` (1017)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e0670	628	FindFreeCID	dynsym	18eff3c744e6	located	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e08f0	28	konStoreFakeColors	dynsym	b8426775f7ed	understood	docs/opengl.md#konstorefakecolors	`konStoreFakeColors`
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e0910	432	nfbValidateWindowVisual	dynsym	68c7857a2dec	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
@@ -52112,8 +52112,8 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e9d30	3052	cfb16SegmentSS	dyn
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ea920	408	cfb32CreatePixmap	dynsym	976432b19294	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13eabd0	7112	cfbCopyPlane8to1	dynsym	0c0c6aa3a1f3	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ec9b0	2076	miFillUniqueSpanGroup	dynsym	6c8667de4e85	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ed1d0	256	konInitWindowType	dynsym	6f70ffe1fcd2	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ed2d0	3380	konValidateClip	dynsym	5ec0d99b354a	named-only	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ed1d0	256	konInitWindowType	dynsym	6f70ffe1fcd2	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ed2d0	3380	konValidateClip	dynsym	5ec0d99b354a	located	docs/opengl.md#clips-rrm_validateclip-1011	Clips: `RRM_VALIDATECLIP` (1011)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ee0e0	3748	konPolyGlyphBltSolidTE10	dynsym	58bb939ed73e	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13eef90	24	nfbStereoRegisterWrapperOps	dynsym	b6b5dc7396d2	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13eefb0	796	cfbPutImage	dynsym	b1d2e46a7885	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -52126,7 +52126,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f3290	3184	miZeroLine	dynsym	
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f3f00	1256	cfb16SetScanline	dynsym	68c6052f0107	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f4520	368	miRoundCapClip	dynsym	9ba0ba46eaca	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f47d0	1736	cfb16LineSS1RectPreviousCopy	dynsym	16ddb24925a3	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f4ea0	188	incrRRMpriv	dynsym	7292eea1d00b	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f4ea0	188	incrRRMpriv	dynsym	7292eea1d00b	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f5220	1788	miHandleExposures	dynsym	77bbec64d248	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f5920	2876	cfb16ClippedLineGeneral	dynsym	9b00e9e19f72	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f6550	524	rrmValidateCID	dynsym	81d739efbc73	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
@@ -52211,7 +52211,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1422530	468	cfb16ZeroPolyArcSSX
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1422ac0	148	FreeID	dynsym	f68c4eb6f4f9	located	docs/opengl.md#freeid	`FreeID`
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1422b60	168	nfbStoreColors	dynsym	136fcd8293ef	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1422c10	328	konProbe	dynsym	16ef16a44786	located	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1422d60	84	incrRRMFlags	dynsym	ee66ad7727de	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1422d60	84	incrRRMFlags	dynsym	ee66ad7727de	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1422dc0	208	allocRRMpriv	dynsym	ca430c8b4bd8	located	docs/opengl.md#allocrrmpriv	`allocRRMpriv`
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1422e90	2920	cfb32ValidateGC	dynsym	d200304af660	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1423a00	812	nfbStereoFillPolygon	dynsym	f1f971a9bcd1	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
@@ -52229,7 +52229,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14290a0	3512	cfb16LineSS	dynsym
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142a840	20	konClearHWColormap	dynsym	6bd96815d363	understood	docs/opengl.md#konclearhwcolormap	`konClearHWColormap`
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142a860	468	cfb32ZeroPolyArcSSXor	dynsym	652e17126550	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142aa40	1132	mfbGetSpans	dynsym	ac8122b37ed3	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142aeb0	228	konaSetStereoMode	dynsym	9ad8b703c7ba	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142aeb0	228	konaSetStereoMode	dynsym	9ad8b703c7ba	located	docs/opengl.md#stereo-kona_set_channel_rect-10009	Stereo: `KONA_SET_CHANNEL_RECT` (10009)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142afa0	24	nfbListInstalledColormaps	dynsym	397c357ee5a1	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142afc0	264	miRoundJoinClip	dynsym	91fdb90450b8	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142b310	520	mfbSolidPP	dynsym	b62cf6046d62	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -52287,7 +52287,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x143f300	824	konValidateSwapbuf	
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x143f640	892	cfb32FillSpanTile32sGeneral	dynsym	191e7d3c6064	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x143f9c0	796	cfb32PutImage	dynsym	eacfe374821f	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x143fce0	124	nfbSolidFillRects	dynsym	27ae47e08f13	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x143fd60	188	rrmInvalidateCID	dynsym	66c4d49e9587	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x143fd60	188	rrmInvalidateCID	dynsym	66c4d49e9587	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1440a10	1064	cfb32SolidSpansGeneral	dynsym	e3cdafd04cd4	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1440e40	1104	miSubtractSpans	dynsym	dbf17c1c9ef8	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1441290	400	rrmBindMultipleClips	dynsym	9e087ae1cf52	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
@@ -52519,7 +52519,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ac180	352	cfb32AllocatePrivat
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ac2e0	240	kon_loadClearGC	dynsym	97ba07410ca8	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ac3d0	148	mfbCopyPixmap	dynsym	50c88b5a5af5	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ac470	1184	konStereoFillSpans	dynsym	6dcfcf56037d	located	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ac910	384	konLoadDisplayMode	dynsym	01e8cfd8262b	named-only	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ac910	384	konLoadDisplayMode	dynsym	01e8cfd8262b	located	docs/opengl.md#konloaddisplaymode	`konLoadDisplayMode`
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14aca90	708	cfb32GetSpans	dynsym	d57965cf6a4a	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14acd60	3596	konTilePatterns	dynsym	4c33bf588421	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14adb70	3156	konStoreColors	dynsym	1b9e91d09c02	named-only	docs/opengl.md#konsetcolor	`konSetColor`
@@ -52579,7 +52579,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14c4f60	2192	cfb8SegmentSS1Rect
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14c57f0	56	cfbCopyImagePlane	dynsym	10e3f033286c	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14c5d30	88	cfbDestroyPixmap	dynsym	a3fb51f66dc2	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14c5dd0	532	nfbFixupDepths	dynsym	f3d2d88f2998	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14c5ff0	540	konRecolorCursor	dynsym	af0f340e1ab7	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14c5ff0	540	konRecolorCursor	dynsym	af0f340e1ab7	located	docs/opengl.md#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor	Cursor: `KONA_SELECT_CURSOR` (10005), `X_LOADCURSOR`, `X_LOADCURSORCOLOR`
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14c65d0	3548	mfbStippleBlackArea	dynsym	626aa7b8bffd	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14c7430	8160	konBresD	dynsym	d4682812f8f4	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14c9a00	168	konValidateGC	dynsym	065d5f51a65c	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
@@ -52811,7 +52811,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x449ca0	400	nfbRealizeWindow	dyn
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x449e30	424	FindBestID	dynsym	7ba0f70fae84	located	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x449fe0	4452	cfb8FillRectOpaqueStippled32	dynsym	f1fc185e301d	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44b150	264	rrmDestroyDrawable	dynsym	c7ecc6498d0a	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44b260	84	decrRRMFlags	dynsym	5b28cac6950e	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44b260	84	decrRRMFlags	dynsym	5b28cac6950e	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44b3a0	572	konQueryHyperpipeNetwork	dynsym	daacbadb1f75	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44b5e0	972	miStepDash	dynsym	c7f88d8264e2	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44b9b0	576	mfbPolyFillArcSolid	dynsym	b8251bd71703	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -52873,7 +52873,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45e0f0	940	mfbVertS	dynsym	6857
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45e5d0	408	cfb16CreatePixmap	dynsym	026262edb0d0	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45e770	2268	cfbFillBoxTile32sGeneral	dynsym	86f6fcf5d9df	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45f050	3604	mfbLineSS	dynsym	bed08b314839	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45fe70	2048	konValidateMode	dynsym	49eb1f0850a0	named-only	docs/dg.md#buffer-swap-and-retrace-wait	Buffer swap and retrace wait
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45fe70	2048	konValidateMode	dynsym	49eb1f0850a0	located	docs/opengl.md#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017	Display modes: `X_LOADXMAP_DID` and `RRM_LOADDISPLAYMODE` (1017)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x460670	628	FindFreeCID	dynsym	18eff3c744e6	located	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4608f0	28	konStoreFakeColors	dynsym	b8426775f7ed	understood	docs/opengl.md#konstorefakecolors	`konStoreFakeColors`
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x460910	432	nfbValidateWindowVisual	dynsym	68c7857a2dec	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
@@ -52907,8 +52907,8 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x469d30	3052	cfb16SegmentSS	dyns
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46a920	408	cfb32CreatePixmap	dynsym	976432b19294	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46abd0	7112	cfbCopyPlane8to1	dynsym	0c0c6aa3a1f3	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46c9b0	2076	miFillUniqueSpanGroup	dynsym	6c8667de4e85	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46d1d0	256	konInitWindowType	dynsym	6f70ffe1fcd2	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46d2d0	3380	konValidateClip	dynsym	5ec0d99b354a	named-only	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46d1d0	256	konInitWindowType	dynsym	6f70ffe1fcd2	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46d2d0	3380	konValidateClip	dynsym	5ec0d99b354a	located	docs/opengl.md#clips-rrm_validateclip-1011	Clips: `RRM_VALIDATECLIP` (1011)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46e0e0	3748	konPolyGlyphBltSolidTE10	dynsym	58bb939ed73e	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46ef90	24	nfbStereoRegisterWrapperOps	dynsym	b6b5dc7396d2	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46efb0	796	cfbPutImage	dynsym	b1d2e46a7885	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -52921,7 +52921,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x473290	3184	miZeroLine	dynsym	3
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x473f00	1256	cfb16SetScanline	dynsym	68c6052f0107	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x474520	368	miRoundCapClip	dynsym	9ba0ba46eaca	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4747d0	1736	cfb16LineSS1RectPreviousCopy	dynsym	16ddb24925a3	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x474ea0	188	incrRRMpriv	dynsym	7292eea1d00b	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x474ea0	188	incrRRMpriv	dynsym	7292eea1d00b	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x475220	1788	miHandleExposures	dynsym	77bbec64d248	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x475920	2876	cfb16ClippedLineGeneral	dynsym	9b00e9e19f72	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x476550	524	rrmValidateCID	dynsym	81d739efbc73	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
@@ -53006,7 +53006,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a2530	468	cfb16ZeroPolyArcSSXo
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a2ac0	148	FreeID	dynsym	f68c4eb6f4f9	located	docs/opengl.md#freeid	`FreeID`
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a2b60	168	nfbStoreColors	dynsym	136fcd8293ef	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a2c10	328	konProbe	dynsym	16ef16a44786	located	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a2d60	84	incrRRMFlags	dynsym	ee66ad7727de	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a2d60	84	incrRRMFlags	dynsym	ee66ad7727de	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a2dc0	208	allocRRMpriv	dynsym	ca430c8b4bd8	located	docs/opengl.md#allocrrmpriv	`allocRRMpriv`
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a2e90	2920	cfb32ValidateGC	dynsym	d200304af660	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a3a00	812	nfbStereoFillPolygon	dynsym	f1f971a9bcd1	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
@@ -53024,7 +53024,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a90a0	3512	cfb16LineSS	dynsym	
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aa840	20	konClearHWColormap	dynsym	6bd96815d363	understood	docs/opengl.md#konclearhwcolormap	`konClearHWColormap`
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aa860	468	cfb32ZeroPolyArcSSXor	dynsym	652e17126550	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aaa40	1132	mfbGetSpans	dynsym	ac8122b37ed3	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aaeb0	228	konaSetStereoMode	dynsym	9ad8b703c7ba	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aaeb0	228	konaSetStereoMode	dynsym	9ad8b703c7ba	located	docs/opengl.md#stereo-kona_set_channel_rect-10009	Stereo: `KONA_SET_CHANNEL_RECT` (10009)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aafa0	24	nfbListInstalledColormaps	dynsym	397c357ee5a1	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aafc0	264	miRoundJoinClip	dynsym	91fdb90450b8	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4ab310	520	mfbSolidPP	dynsym	b62cf6046d62	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -53082,7 +53082,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4bf300	824	konValidateSwapbuf	d
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4bf640	892	cfb32FillSpanTile32sGeneral	dynsym	191e7d3c6064	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4bf9c0	796	cfb32PutImage	dynsym	eacfe374821f	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4bfce0	124	nfbSolidFillRects	dynsym	27ae47e08f13	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4bfd60	188	rrmInvalidateCID	dynsym	66c4d49e9587	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4bfd60	188	rrmInvalidateCID	dynsym	66c4d49e9587	located	docs/opengl.md#the-rrm-descriptor-and-its-hooks	The rrm descriptor and its hooks
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4c0a10	1064	cfb32SolidSpansGeneral	dynsym	e3cdafd04cd4	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4c0e40	1104	miSubtractSpans	dynsym	dbf17c1c9ef8	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4c1290	400	rrmBindMultipleClips	dynsym	9e087ae1cf52	named-only	docs/kona-ddx.md#rendering-resource-manager-client-rrm	Rendering resource manager client (`rrm*`)
@@ -53314,7 +53314,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52c180	352	cfb32AllocatePrivate
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52c2e0	240	kon_loadClearGC	dynsym	97ba07410ca8	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52c3d0	148	mfbCopyPixmap	dynsym	50c88b5a5af5	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52c470	1184	konStereoFillSpans	dynsym	6dcfcf56037d	located	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52c910	384	konLoadDisplayMode	dynsym	01e8cfd8262b	named-only	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52c910	384	konLoadDisplayMode	dynsym	01e8cfd8262b	located	docs/opengl.md#konloaddisplaymode	`konLoadDisplayMode`
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52ca90	708	cfb32GetSpans	dynsym	d57965cf6a4a	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52cd60	3596	konTilePatterns	dynsym	4c33bf588421	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x52db70	3156	konStoreColors	dynsym	1b9e91d09c02	named-only	docs/opengl.md#konsetcolor	`konSetColor`
@@ -53374,7 +53374,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x544f60	2192	cfb8SegmentSS1RectX
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x5457f0	56	cfbCopyImagePlane	dynsym	10e3f033286c	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x545d30	88	cfbDestroyPixmap	dynsym	a3fb51f66dc2	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x545dd0	532	nfbFixupDepths	dynsym	f3d2d88f2998	named-only	docs/kona-ddx.md#sgi-frame-buffer-layer-nfb	SGI frame-buffer layer (`nfb*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x545ff0	540	konRecolorCursor	dynsym	af0f340e1ab7	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x545ff0	540	konRecolorCursor	dynsym	af0f340e1ab7	located	docs/opengl.md#cursor-kona_select_cursor-10005-x_loadcursor-x_loadcursorcolor	Cursor: `KONA_SELECT_CURSOR` (10005), `X_LOADCURSOR`, `X_LOADCURSORCOLOR`
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x5465d0	3548	mfbStippleBlackArea	dynsym	626aa7b8bffd	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x547430	8160	konBresD	dynsym	d4682812f8f4	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x549a00	168	konValidateGC	dynsym	065d5f51a65c	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)

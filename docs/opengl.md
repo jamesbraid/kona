@@ -158,6 +158,8 @@ It then calls the descriptor's hook +80, `konInitWindowType`, with the window, a
 
 ### Cursor: `KONA_SELECT_CURSOR` (10005), `X_LOADCURSOR`, `X_LOADCURSORCOLOR`
 
+`konRecolorCursor` at 0x53be80 in `kona.so` (**established**) reloads a cursor's colours on the pipe: it sends `X_LOADCURSORCOLOR` (store offset +0x2620) addressed to the cursor's slot, or to 9884 for the crosshair.
+
 **Established** (`konDisplayCursor` 0x441980, `konCursorOn`, `konRecolorCursor` 0x53be80, the static helpers 0x4a6c10, 0x531f50 and 0x526140). The cursor's per-screen private word (`devPriv[screen]`, CursorRec +20) is either 1, the crosshair, or a pointer to a cursor record.
 
 - **Crosshair.** `konDisplayCursor` sets the screen's current slot (screen private +112) to -1 and selects mode 1 (`KONA_CURSOR_XHAIR`) with address 9884 and hot spot 32, 32. `konRecolorCursor` sends `X_LOADCURSORCOLOR` with address 9884 and the same colour word four times.
@@ -174,6 +176,8 @@ It then calls the descriptor's hook +80, `konInitWindowType`, with the window, a
 
 ### Display modes: `X_LOADXMAP_DID` and `RRM_LOADDISPLAYMODE` (1017)
 
+`konValidateMode` at 0x4601e0 in `kona.so` (**established**) is descriptor hook +40, which loads a display id's mode: it builds the hwd word, sends `X_LOADXMAP_DID` at +0x2640 and ends by calling `konLoadDisplayMode`.
+
 **Established** (`konValidateMode` 0x4601e0; the module's own debug strings name the cases). For a window with a display id (rrm private +20 not negative) it builds `hwd_mode` from the window's visual flags (word +20 of the `nfbWindowPrivateIndex` record) and the `hwi_mode` word:
 
 | Visual | Bits set in `hwd_mode` |
@@ -185,11 +189,13 @@ It then calls the descriptor's hook +80, `konInitWindowType`, with the window, a
 | main buffer, `hwi_mode` & 6 == 6 ("starting in backbuffer") | 0x1 |
 | overlay or underlay (visual flag bit 0 clear, flag 0x6 nonzero) | (u << 1) & 0xe, u = 4 for underlay plus 2, plus 1 when `hwi_mode` has 0x2 and 0x40000 ("doublebuffered, starting in backbuffer"); 0x1 without visual flag 0x2000 ("over/under RGB"); 0x10 with visual flag 0x40000 ("over/under Opaque") |
 
-It stores the result at rrm private +36 and sends `X_LOADXMAP_DID` with two words: the display id, then `(cmap << 7) & 0xffff80 | ((size - 1) & 0xf) << 3 | lum << 2 | grey << 1`. `cmap` is the colormap's entry in the module's colormap table, `size` the visual's plane count (VisualRec +10, capped at 12 when screen private +32 is set), `lum` and `grey` are visual flags 0x20000 and 0x10000; the debug string reads "did, cmap, size, lum, grey". The four values are cached at screen private +48 + 16 x did. `arm_x_loadxmap_did` writes the first word to display-bus register 0x118 and the second to 0x11c through `mgesi_VCbusWrite`; **inferred** an index and data pair into the XMAP's per-display-id table.
+It stores the result at rrm private +36 and sends `X_LOADXMAP_DID` with two words: the display id, then `(cmap << 7) & 0xffff80 | ((size - 1) & 0xf) << 3 | lum << 2 | grey << 1`. `cmap` is the colormap's entry in the module's colormap table, `size` the visual's plane count (VisualRec +10, capped at 12 when screen private +32 is set), `lum` and `grey` are visual flags 0x20000 and 0x10000; the debug string reads "did, cmap, size, lum, grey". The four values are cached in the 16-byte-per-id table that screen private +48 points to. `arm_x_loadxmap_did` writes the first word to display-bus register 0x118 and the second to 0x11c through `mgesi_VCbusWrite`; **inferred** an index and data pair into the XMAP's per-display-id table.
 
-It then calls `konLoadDisplayMode(screen, rnid, clipid, did, hwd_mode, hwi_mode)`, which issues 1017 with those five words and on success caches {hwi_mode, hwd_mode} at screen private +52 + 8 x did. **Established** (kernel, `RRM_LoadDisplayMode` in `rrm.o`): the display id must be below the board's count (gfx_data +88) or the call returns EINVAL; it calls the board's set-display-mode entry, which is slot +0xa0 of the driver's function table in `kona_edtinit.o`, `KONAsetdisplaymode`, with (did, hwd_mode); stores `hwi_mode` in the pane (+32) and in the board's per-id table (gfx_data +96); and sets pane +18 to 1 when `hwi_mode` bit 2 is set. `KONAsetdisplaymode` keeps the low byte at pipe state +4360 + did and sends `DISPMODE` (0x1e6) with 0, did, `hwd_mode`. So the third `DISPMODE` word is this X-built `hwd_mode`. **Established** (`arm_dispmode` 0x0c013dd4): the firmware passes the byte on unchanged, as a display-bus write of `hwd_mode` to address = display id through the engine's `mgesi_VCbusWrite`, after recording the display id in the swap-group slots that match the first word ([dg.md](dg.md#the-firmwares-display-bus-window)); at a swap the kernel rewrites bits 0 and 1 from the buffer's display bank ([dg.md](dg.md#buffer-swap-and-retrace-wait)), which fits bit 0 as "show the back buffer". **Unknown: no shipped software or published source depends on it:** what the display hardware does with bits 2-4 beyond the module's own names (RGB, colour index, DC RGB). Routes tried: the module, the kernel, the firmware (which forwards the byte untouched), the diagnostic's XMAP register list, which has no per-display-id mode table, and `setmon` and `ircombine`, neither of which issues `RRM_LOADDISPLAYMODE`, `RRM_MGR_SWAPBUF` or `DISPMODE`.
+It then calls `konLoadDisplayMode(screen, rnid, clipid, did, hwd_mode, hwi_mode)`, which issues 1017 with those five words and on success caches {hwi_mode, hwd_mode} in the 8-byte-per-id table that screen private +52 points to ([its entry](#konloaddisplaymode)). **Established** (kernel, `RRM_LoadDisplayMode` in `rrm.o`): the display id must be below the board's count (gfx_data +88) or the call returns EINVAL; it calls the board's set-display-mode entry, which is slot +0xa0 of the driver's function table in `kona_edtinit.o`, `KONAsetdisplaymode`, with (did, hwd_mode); stores `hwi_mode` in the pane (+32) and in the board's per-id table (gfx_data +96); and sets pane +18 to 1 when `hwi_mode` bit 2 is set. `KONAsetdisplaymode` keeps the low byte at pipe state +4360 + did and sends `DISPMODE` (0x1e6) with 0, did, `hwd_mode`. So the third `DISPMODE` word is this X-built `hwd_mode`. **Established** (`arm_dispmode` 0x0c013dd4): the firmware passes the byte on unchanged, as a display-bus write of `hwd_mode` to address = display id through the engine's `mgesi_VCbusWrite`, after recording the display id in the swap-group slots that match the first word ([dg.md](dg.md#the-firmwares-display-bus-window)); at a swap the kernel rewrites bits 0 and 1 from the buffer's display bank ([dg.md](dg.md#buffer-swap-and-retrace-wait)), which fits bit 0 as "show the back buffer". **Unknown: no shipped software or published source depends on it:** what the display hardware does with bits 2-4 beyond the module's own names (RGB, colour index, DC RGB). Routes tried: the module, the kernel, the firmware (which forwards the byte untouched), the diagnostic's XMAP register list, which has no per-display-id mode table, and `setmon` and `ircombine`, neither of which issues `RRM_LOADDISPLAYMODE`, `RRM_MGR_SWAPBUF` or `DISPMODE`.
 
 ### Clips: `RRM_VALIDATECLIP` (1011)
+
+`konValidateClip` at 0x46d3f0 in `kona.so` (**established**) is descriptor hook +28: it sends the window's clip to the kernel as `RRM_VALIDATECLIP` (1011) and then marks the clip resource valid with `rrmSetResourceMask` and bit 0x2.
 
 **Established** (`konValidateClip` 0x46d3f0). Before the ioctl the module repaints the window's display-id planes on the pipe: `X_LOADCLIP` with 1, 0, 0, screen width, screen height (a full-screen clip), a GC load, then the window's clip boxes, six at a time as `X_BOX6` and the rest through `X_DATA2`-`X_DATA10` and a closing `X_BOX`, each box as four halfwords x1, y1 + offset, x2 - 1, y2 + offset - 1 (offset: halfword +226 of the screen's device record). The ioctl argument:
 
@@ -223,7 +229,7 @@ For an overlay or underlay window (visual flags 0x6) it puts code 2, plus 1 when
 An unrealized window (word +124 bit 11 clear) has its swap reported done at once through `dbcDelayedSwapBufferDone`.
 Otherwise it tries `ShareSwappingID`; a window that joins a swapping id is also reported done at once and sends nothing.
 Else it takes an id from `FindFreeID`, or from `StealID` when none is free.
-It records the new hwd word in the module's screen private at +52 + 8 x id + 4, sets bit 0x10 (swap pending) on the id's entry and adds the window to a list.
+It records the new hwd word in the id's 8-byte entry of the table that the module's screen private +52 points to, sets bit 0x10 (swap pending) on the id's entry and adds the window to a list.
 Last, walking that list backwards, it calls `rrmMGRSwapBuf` for each window; on a failure it reports the swap done and clears bit 0x10 again.
 It returns 0.
 
@@ -242,7 +248,22 @@ It writes the window's hwi word (+32) to entry +8, with bit 0x4 inverted when fl
 
 ### Stereo: `KONA_SET_CHANNEL_RECT` (10009)
 
-**Established** (`konaSetStereoMode(screen, a, b, mode)`, `misc` group). When `mode` is 1 and a small-data flag of the module is set, it writes 531 to the halfword at +6 (`y1`) of an 18-byte block in `.bss` (0x591ba0) and passes the block to 10009; on failure it stores -7905 in a module error word and logs "Failed : update kernel with channel cursorinfo". It then calls `nfbSetStereoMode`. No other store to the block was found by offset in the module, so the call sends channel 0, valid 0, priority 0, x1 0, y1 531 and zeros: **inferred** to withdraw channel 0 from the cursor rectangles while stereo is on. Whether another path fills the block through a pointer is **unknown**. Kernel side: `kona_set_channel_rect` ([dg.md](dg.md#choosing-the-cursor-channel)).
+`konaSetStereoMode` at 0x4a2c10 in `kona.so` (**established**) tells the kernel's cursor-channel table about a stereo switch and then switches the frame-buffer layer.
+It takes (screen, a, b, mode).
+When `mode` is 1 and a small-data flag of the module is set, it writes 531 to the halfword at +6 (`y1`) of an 18-byte block in `.bss` (0x591ba0) and passes the block to 10009.
+On failure it stores -7905 in a module error word and logs "Failed : update kernel with channel cursorinfo"; it then calls `nfbSetStereoMode`.
+The block is not left zero: the static function at 0x4fed90 fills all of it and sends 10009 itself, from thirteen call sites.
+That function writes the bytes at +0, +1 and +2 (**inferred** channel, valid and priority, the field order of `kona_set_channel_rect_args`) and the halfwords from +4 on from its arguments and the channel's video-control record.
+So this call re-sends the rectangle last set up, with only `y1` replaced (**established** from the stores).
+**Inferred:** the stereo switch moves the top edge of the cursor rectangle to line 531 for that channel; the module gives no reason for the value.
+Kernel side: `kona_set_channel_rect` ([dg.md](dg.md#choosing-the-cursor-channel)).
+
+#### `konLoadDisplayMode`
+
+`konLoadDisplayMode` at 0x522a90 in `kona.so` (**established**) sends one display id's mode to the kernel as `RRM_LOADDISPLAYMODE` (1017).
+It takes (screen, rnid, clipid, did, hwd_mode, hwi_mode) and passes those five words.
+On success it stores the two mode words in the id's 8-byte entry of the table that the module's screen private +52 points to.
+A failure prints "RRM_LOADDISPLAYMODE failed" with the node id, the display id and errno, then `perror`.
 
 #### `nfbSetStereoMode`
 
@@ -307,7 +328,7 @@ Words +8 and +12 are the hardware-independent and hardware-dependent mode words 
 It takes (window, colormap) and acts only for a window with a display id (rrm private +20 not negative) and a colormap.
 It re-sends `X_LOADXMAP_DID` exactly as `konValidateMode` does ([display modes](#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017)).
 The words are the display id, then the colormap's table entry << 7, the plane count - 1 (capped at 12 when screen private +32 is set) << 3, and the luminance and grey flags.
-It takes those two flags only for colour-index visuals (visual flag bit 0 set, 0x2000 clear), and caches {entry, size, grey, lum} at screen private +48 + 16 x id first.
+It takes those two flags only for colour-index visuals (visual flag bit 0 set, 0x2000 clear), and first caches {entry, size, grey, lum} in the 16-byte-per-id table that screen private +48 points to.
 Its debug print reads "did = %d cmap base = 0x%x, size = %d".
 
 #### `kon_drawDid`
@@ -627,6 +648,22 @@ With the clip bit it invalidates the window's clip id (`rrmInvalidateCID`) when 
 With this module's 0 at +8 that is every window with a non-empty clip.
 
 `konValidateSwapbuf` and `konValidateClip` mark their resource valid through `rrmSetResourceMask` at 0x4daf70 in `kona.so` (**established**), which sets the given bits in rrm private byte +4 and clears them in byte +5; the swap-buffer validation passes 8 and the clip validation 2.
+
+`rrmSetResourceMask` at 0x4daf70 in `kona.so` (**established**) marks kernel resources valid on a window: it takes (window, mask) and returns non-zero at once when any of the bits is already set in rrm private byte +4.
+Otherwise it sets them in byte +4 and clears them in byte +5.
+
+`konInitWindowType` at 0x46d2f0 in `kona.so` (**established**) is descriptor hook +80: it sets the new window private's kind halfword (+2) to 1 when the visual's flags (visual table word +8) have bit 0x2, the overlay and underlay visuals, and to 0 otherwise.
+That kind is what the allocator matches against the id kinds `konInitDIDState` sets (0 main, 1 overlay).
+
+`incrRRMpriv` at 0x474c90 in `kona.so` (**established**) makes sure a window and all its ancestors have an rrm private, creating each missing one with `allocRRMpriv`; it returns 0, or 1 when an allocation fails.
+
+`incrRRMFlags` at 0x49af00 in `kona.so` (**established**) adds one to rrm private word +16 of a window and of every ancestor; **inferred** a count of bound descendants.
+
+`decrRRMFlags` at 0x44b6b0 in `kona.so` (**established**) is the inverse walk: it subtracts one from word +16 of the window and each ancestor.
+
+`rrmInvalidateCID` at 0x4b7410 in `kona.so` (**established**) drops a window's clip id when its clip changes.
+A window whose clip id is 0 or the no-id value (the clip-id count) just gets 0.
+Otherwise it calls hook +76 with the id's entry, then the screen procedure at +392; the descriptor leaves +76 empty, and the stereo switch installs 0x4afce0 there.
 
 **Reserved ids** (**established**, `Xsgi` and `kona.so`): `konInit` calls the static function at 0x4feb90 once, which calls the server's `rrmSetReservedDID` for seventeen ids.
 `rrmSetReservedDID` at 0x1015ce50 in `Xsgi` writes the id's flags as 0xd (reserved, shared, mode recorded), the given hwi word to entry +8 and +24, the hwd word to +12 and +28, and 1 to +32.
