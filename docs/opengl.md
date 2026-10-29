@@ -1449,7 +1449,7 @@ Otherwise it returns 0.
 `__glkonim_DetailTexFuncSGIS` at 0x0d9733e0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it sets the detail function of the bound 2D texture from a list of control points.
 Its arguments are the target, the point count and the points.
 An error is raised through `__glSetError` for the word at process address 0x1018 being 1 (0x502), a target other than 0xde1 (0x500) and a count below 2 (0x501).
-Otherwise it calls `subtractTexTableUsage` for the object at context +31672 and `addTexTableUsage` with kind 1, and, when the object's word at +16 is 1 and bit 24 of its flags at +32 is set, it invalidates the texture-table cache entry and, if the context target index is 2, calls `bindTexTable` and the object's hook at +256.
+Otherwise it calls `subtractTexTableUsage` for the object at context +31672 and `addTexTableUsage` with kind 1, and, when the object's word at +16 is 1 and bit 24 of its flags at +32 is set, it invalidates the texture-table cache entry and, if the context word at +31636 is 2, calls `bindTexTable` and the object's hook at +256.
 
 #### `__glkonim_GetDetailTexFuncSGIS`
 
@@ -1461,7 +1461,7 @@ Otherwise it calls `getTexTableUsage` with kind 1 for the object at context +316
 
 `__glkonim_SharpenTexFuncSGIS` at 0x0d973600 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it sets the sharpen function of the texture bound for a 1D, 2D or 3D target from control points.
 It raises 0x502 when the word at 0x1018 is 1 and 0x501 for a count below 2; the target is converted with `targetIndex` unless it matches the context's current one, and an index outside 1 to 3 raises 0x500.
-Otherwise it calls `subtractTexTableUsage` and `addTexTableUsage` with kind 2 for the object at context +31664 + 4 x index, and, when the object's word at +16 is 2 and its target index is the context's current one, it refreshes the object with `bindTexTable` and its hook at +256.
+Otherwise it calls `subtractTexTableUsage` and `addTexTableUsage` with kind 2 for the object at context +31664 + 4 x index, and, when the object's word at +16 is 2 and its target index equals the context word at +31636, it refreshes the object with `bindTexTable` and its hook at +256.
 
 #### `__glkonim_GetSharpenTexFuncSGIS`
 
@@ -1474,7 +1474,7 @@ Otherwise it calls `getTexTableUsage` with kind 2 for the object at context +316
 `__glkonim_TexFilterFuncSGIS` at 0x0d9738d0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it sets the four-tap filter weights of the texture bound for a 1D or 2D target.
 Its arguments are the target, the filter enumeration (only 0x8146 is accepted), the weight count and the weights.
 It raises 0x502 when the word at 0x1018 is 1, 0x501 when the count is not 129 and 0x500 for an index other than 1 or 2 or a filter other than 0x8146.
-Otherwise it calls `subtractTexTableUsage` and `addTexTableUsage` with kind 0 and 129 weights for the object at context +31664 + 4 x index, and when the object's word at +16 is 0 and its target index is the context's current one it refreshes the object with `bindTexTable` and its hook at +256.
+Otherwise it calls `subtractTexTableUsage` and `addTexTableUsage` with kind 0 and 129 weights for the object at context +31664 + 4 x index, and when the object's word at +16 is 0 and its target index equals the context word at +31636 it refreshes the object with `bindTexTable` and its hook at +256.
 
 #### `__glkonim_GetTexFilterFuncSGIS`
 
@@ -1635,3 +1635,246 @@ It ends by jumping to the same hook for the address table at +252.
 Its arguments are the context, the object, a size argument, the new tiling kind and the new flag bits.
 It calls `freeTexture` with the state at context +3868, sets object +12 to the kind, sets the flags to the old flags with bit 22 cleared ORed with the new bits, and, when bit 19 of the flags is set, calls `calcObjSize` and `areLodsConsistent`.
 An inconsistent object gets bits 16 and 21 set and a consistent one gets bit 16 cleared, and `slowBindTexture` is called last.
+
+### Texture objects, deletion, attribute stack and per-context state
+
+The context's texture state starts at context +0x7b90 (31632) with the enable word, which has bit n set for target index n. After it come the active target index at +0x7b94, the current target index at +0x7b98, the bound object pointer for each index from +0x7bb0 and the four built-in default objects of 544 bytes from +0x7bcc. Three proxy objects for the indices 4, 5 and 6 lie 0x8bc, 0xadc and 0xcfc bytes after the start of the state. An object's word at +376 is its target index, +380 its name, +120 its reference count and +272 its texture-table cache entry. The shared state pointer is at context +0x8aac.
+
+#### `__glKonFreeTextureObj`
+
+`__glKonFreeTextureObj` at 0x0d96f080 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it releases both the texture memory and the host memory of a texture object.
+It reads the shared state from context +0x8aac, calls `__glKonTexFree` with it and the object, and then jumps to `destroyTextureObj`.
+
+#### `__glKonDeleteTextureObj`
+
+`__glKonDeleteTextureObj` at 0x0d96f0e0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it destroys a texture object that is no longer referenced.
+It first calls `freeARMTexCache` when the object holds a cache entry (+272), then `__glKonFreeTextureObj`.
+It then detaches the object from the shared function lists with `subtractTexTableUsage`: kinds 1, 2 and 0 for the target indices 1 and 2, kind 2 alone for index 3.
+It ends by freeing the object with the context's free hook at offset 12.
+
+#### `__glKonDeleteTexturesEXT`
+
+`__glKonDeleteTexturesEXT` at 0x0d96f230 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it deletes the textures with the given names, unbinding any that are bound.
+Name 0 is skipped.
+For each other name it removes the object from the hash through the delete function at hash +0xc00c, and when the name is a generated one (at least 0x40004000 and below the next-name counter at state +0x1c) it appends the name to the free-name array at state +0x10, growing it by 256 entries with the context's reallocation hook (+8) when full.
+If the object is the one bound for its target index it rebinds the built-in default object of that index (after `setClipmapRegisters` for the clip-map minification filters 0x8170 and 0x844d to 0x844f) and subtracts 1 from the reference count at +120; a count that is still non-zero, or an object that is not bound but still referenced, gets bit 25 of its flags at +32 set, and an unreferenced object goes to `__glKonDeleteTextureObj`.
+
+#### `__glKonFreeAllocedTexObjBank`
+
+`__glKonFreeAllocedTexObjBank` at 0x0d974da0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it saves an evicted object's levels and tells the caller whether both memory units of the object were given up.
+It clears bit 24 of the object's flags, points the hooks at +256 and +260 at `slowBindTexture` and `__glNop`, and calls `copyBackLods`: with both parities and a return of 1 for tiling kinds 1 to 4 (word +12), and with the odd parity (mode 1) or, when its flag argument is set, the even one (mode 2) and a return of 0 for kind 0.
+When the object holds a cache entry (+272) it frees it with `freeARMTexCache`.
+`getFreeBank` calls it for each owner it evicts.
+
+#### `__glKonShareTexture`
+
+`__glKonShareTexture` at 0x0d974ec0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it makes a context use a shared texture state, creating one when none is given.
+Given another context it takes that context's state from +0x8aac; otherwise it allocates 0xc2d8 bytes with the allocator hook at offset 0 and clears them.
+It adds 1 to the state's share count at +4, sets bit 2 of the state's first word when the count was already 1 or more, and stores the pointer at context +0x8aac.
+
+#### `__glKonValidateTextureState`
+
+`__glKonValidateTextureState` at 0x0d974aa0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it prepares the texture state before drawing.
+When the share count at state +4 is 2 or more, or bit 2 of the state's first word is set, it calls `__glKonInvalidateARMTexCache` on the function-node cache at state +0xc074, and with a share count of exactly 1 clears bit 2 again.
+It then looks at the object bound for the current target: if the target is enabled in the word at +31632 and the object has defined levels (from +24 to +20) that are not yet all in texture memory (+40), it calls the object's bind hook at +256.
+
+#### `__glkon_EnableTexture`
+
+`__glkon_EnableTexture` at 0x0d972a70 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it turns one texture target on or off.
+Its arguments are the target and the new state; a target other than the current one is converted with `targetIndex`, and an unrecognised one raises 0x500 through `__glSetError`.
+Setting a bit in the enable word at context +31632 that was clear, or clearing one that was set, ends in a call of `slowBindTexture` for that word; clearing it first frees the object's cache entry (+272) with `freeARMTexCache`.
+Nothing changes when the bit already has the requested value.
+
+#### `__glkon_InitSharedTextureState`
+
+`__glkon_InitSharedTextureState` at 0x0d974740 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it sets up a new shared texture state.
+It calls `__glKonInitTextureMemory`, `__glKonInitTextureHash` with the state plus 40, `initTexTables` for the record at +0xc074 and `initARMTexCache` for the record at +0xc03c.
+It then stores 0x40004000, the first generated texture name, at state +28.
+
+#### `__glkon_InitTextureState`
+
+`__glkon_InitTextureState` at 0x0d9748e0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it sets up a context's texture state and its default texture objects.
+It clears the 0xf20 bytes from context +0x7b90, stores 0x40 and 0x400 at +0xe90 and +0xe8c when the context word at +0x7b9c is 0x01000000 and 0x80 and 0x800 otherwise, and stores 16 and 32 at +0x7ba0 and +0x7ba4.
+It makes the shared state initialisation with `__glkon_InitSharedTextureState` the first time the state's flag bit 0 is clear, then calls `initTexture` four times for the default objects of the target indices 0 to 3, makes index 2 the current target, binds the four objects at +0x7bb0 and calls `initProxyTextures`.
+
+#### `initProxyTextures`
+
+`initProxyTextures` at 0x0d974850 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it makes the three proxy texture objects of a context's texture state.
+It clears three 544-byte areas at offsets 0x8bc, 0xadc and 0xcfc of the state, points the state's proxy slots at +48, +52 and +56 to them, and gives them target indices 4, 5 and 6 at +376.
+The indices 4, 5 and 6 are the ones `isLodInvalid` limits to 17, 17 and 12 levels.
+
+#### `freeTextureAttrib`
+
+`freeTextureAttrib` at 0x0d9747b0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it releases the saved texture attribute stack.
+For as many passes as the entry count at +28 it calls the context's free hook (offset 12) with the word at offset 1164 of the array at +24; the array pointer is not advanced in the loop, so every pass frees that same word.
+It ends by freeing the array itself through the same hook.
+
+#### `__glkonim_AreTexturesResidentEXT`
+
+`__glkonim_AreTexturesResidentEXT` at 0x0d96fba0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it reports which named textures have all their levels in texture memory.
+A negative count or an unrecognised name raises 0x501 and the word at process address 0x1018 being 1 raises 0x502, each returning 0.
+For each name it finds the object with the hash's find function at +0xc008 and writes 1 to the output byte when every level from +24 to +20 is set in the mask at +40, and 0 otherwise.
+It returns 1 only if every texture was resident.
+
+#### `__glkonim_PrioritizeTexturesEXT`
+
+`__glkonim_PrioritizeTexturesEXT` at 0x0d96fd30 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it sets the priorities of the named textures.
+A negative count or an unrecognised name raises 0x501 and the word at process address 0x1018 being 1 raises 0x502.
+For each name it finds the object through the hash, clamps the priority to the range 0.0 to 1.0, stores it as a float at object +328, and, when the object's target index at +376 is not negative, calls `__glKonTexUpdatePriority` with the integer part of twice the priority, which is 0, 1 or 2.
+
+#### `__glKonPushTextureAttrib`
+
+`__glKonPushTextureAttrib` at 0x0d974f80 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it saves the texture state on the attribute stack for a push of the texture attribute group.
+The word at process address 0x1018 being 1 raises 0x502.
+It allocates the stack on first use (context +0x7ba8, depth limit at +0xec0, 1172 bytes per record, depth at +0x7bac), saves the parameters of the four targets with `__glKonGetTexParams` into 160-byte parts of the record, the four bound object names, the enable word, and the point counts of the detail and sharpen functions.
+A buffer made with the context's allocator holds the 129 filter weights for 1D (0xde0) and 2D (0xde1) from `__glkonim_GetTexFilterFuncSGIS`, the detail points from `__glkonim_GetDetailTexFuncSGIS` and the sharpen points from `__glkonim_GetSharpenTexFuncSGIS` for the three targets, and the depth is increased.
+
+#### `__glKonPopTextureAttrib`
+
+`__glKonPopTextureAttrib` at 0x0d975220 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it restores the texture state saved by the matching push.
+The word at process address 0x1018 being 1 raises 0x502.
+It lowers the depth at context +0x7bac, and for each of the four target indices it binds the saved texture with `__glkonim_BindTextureEXT`, restores the parameters with `__glKonSetTexParams` and the enable bit with `__glkon_EnableTexture`.
+It then restores the filter weights with `__glkonim_TexFilterFuncSGIS` (129 weights each for 1D and 2D), the detail points with `__glkonim_DetailTexFuncSGIS` and the sharpen points with `__glkonim_SharpenTexFuncSGIS`, and frees the saved buffer.
+
+### Parameters, validation, binding and layout
+
+The parameter functions below all work on a 544-byte texture object. Besides the fields named earlier, its word at +64 holds filter and detail bits (bits 0 and 1 are a mode, bits 2 to 4 and 5 to 7 are two more fields written by `changeFilter`), +68 holds the three wrap bits at 0x1000, 0x2000 and 0x4000, +116 holds the target index in its top nibble, +252 points at the per-level address table, +360 and +364 are the magnification and minimisation filter enumerations, +401 holds the three wrap modes (two bits each), +404 and +408 hold the clip-map breakpoint level and the log2 of the clip size, and +436 is the clip-map flag. Bit 24 of the flags at +32 is set while the object is bound with the fast hooks and bit 25 is set when it was deleted while still referenced.
+
+#### `__glkonim_TexParameteri`
+
+`__glkonim_TexParameteri` at 0x0d9730d0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it sets one integer texture parameter on the object bound to a target.
+The word at process address 0x1018 being 1 raises 0x502.
+A target other than the current one is converted with `targetIndex`, an unrecognised target raises 0x500, and a valid one becomes the current index at context +31640.
+The parameter name must be one of 0x2800 to 0x2803, 0x8066, 0x8072, 0x809a, 0x809b, 0x80bf, 0x8124, 0x8125, 0x813a to 0x813d, 0x8172, 0x818e to 0x8190, 0x819a or 0x819b, otherwise it raises 0x500; the rest goes to `__glKonTexParameter`, whose result -1 raises 0x500 and -2 raises 0x501.
+
+#### `__glkonim_TexParameteriv`
+
+`__glkonim_TexParameteriv` at 0x0d972fb0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it sets a texture parameter from an integer vector.
+It raises 0x502 when the word at 0x1018 is 1, converts the target with `targetIndex` unless it is the current one and raises 0x500 for an unrecognised target.
+It then passes the vector to `__glKonTexParameter`, mapping a result of -1 to 0x500 and -2 to 0x501, and leaves the validation of the parameter name to that function.
+
+#### `__glkonim_TexParameterfv`
+
+`__glkonim_TexParameterfv` at 0x0d972ba0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it sets a texture parameter from a float vector.
+It follows the same steps as the integer-vector version: error 0x502 for the word at 0x1018 being 1, `targetIndex` for a target that is not the current one with 0x500 for failure, then `__glKonTexParameter` with the float flag set, where -1 gives 0x500 and -2 gives 0x501.
+
+#### `__glkonim_GetTexImage`
+
+`__glkonim_GetTexImage` at 0x0d972870 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it returns one level of the bound texture to the caller's buffer, for those levels that are in texture memory but have no current host copy.
+It raises 0x502 for the word at 0x1018 being 1 and 0x500 for an unrecognised target, and calls `isLodInvalid` for the level, raising 0x501 for an invalid one that is not below the clip-map value at +436.
+When the level has a current host copy (+48) it prints "__glkonim_GetTexImage: proc_image not implemented" to stderr and returns.
+When the level is only in texture memory (+40) it picks a component count from the format row's group word, calls `getLevel`, and then calls the object's hook at +256 so the object is rebound.
+
+#### `initTexture`
+
+`initTexture` at 0x0d96a8d0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it resets a texture object to its defaults while keeping its identity.
+It saves the target index (+376), name (+380), reference count (+120) and priority (+328), clears the 544 bytes, restores them, stores the index in the top nibble of the word at +116, applies the default parameters with `__glKonSetTexParams` and sets the priority again through `__glKonTexParameter` (0x8066) when it differs from the default.
+It sets the hooks at +256 and +260 to `slowBindTexture` and `__glNop`.
+Index 0 (the detail target) then gets its level range 0 to 0 and the fields +16 = 3 and +12 = 4.
+Indices 1, 2 and 3 get default shared curves through `addTexTableUsage` and `bindTexTable`: sharpen (kind 2, 2 points) for 1, 2 and 3, the 129-weight filter (kind 0) for 1 and 2, and the detail curve (kind 1, 2 points) for 2.
+
+#### `slowBindTexture`
+
+`slowBindTexture` at 0x0d96e820 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it is the object's default bind hook, which checks that the object is ready, loads what is missing and installs the fast bind hooks.
+It calls `configTexture` first.
+If the layout is invalid (bit 19), a defined level is missing from the mask at +36 or a level is not in texture memory it keeps the hooks at `slowBindTexture` and `__glNop` and clears bit 24.
+Otherwise it runs `downloadLods` when the object has no border and levels are missing from +52, makes a cache entry with `bindARMTexCache` when the object has none, calls `bindTexTable` unless the kind at +16 is 3, sets bit 24 and installs the fast hooks: `bind2DClipmapTexture` for the clip-map filters (unless the magnification filter is 0x8146), else a routine chosen by the tiling kind from a table, with `updateTexBindID` as the second hook.
+It ends by calling the hook of the object bound for the active target, after `setShadowRegs` when its word at +508 is not 0.
+
+#### `configTexture`
+
+`configTexture` at 0x0d96e620 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it gives a texture object texture memory when the bits of its flags at +32 call for it.
+With a non-zero mode argument, or with bit 21 clear, it needs bit 20 clear and bit 19 set; with bit 21 set and a mode of 0 it needs the target enabled in the state word, every level from +24 to +20 defined in the mask at +36, bit 20 clear and bit 16 clear, and it clears bit 21 afterwards.
+It calls `__glKonTexAlloc` with mode 3 when the object already has a bank (+264 or +268) and mode 1 otherwise; when that fails it calls `freeTexture` and tries mode 1 once more.
+On success it calls `translateLodAddr`.
+
+#### `translateLodAddr`
+
+`translateLodAddr` at 0x0d96e210 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it turns the object's level address table from bank-relative into absolute texture-memory addresses.
+By tiling kind (+12) it adds the object's bank start offsets (+276 and +280) to the entries of the table at +252, one pair per even and odd level for kinds 0 and 2 and a single pair for kinds 1 and 3, and ends the table with -1.
+For kind 0 it also sets bit 28 of the word at +64 from the parity that the object keeps at +284.
+
+#### `calcObjSize`
+
+`calcObjSize` at 0x0d96d750 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it computes how much texture memory an object needs and builds its level address table.
+It takes the level record of the base level, stores its format row at +28, and the log2 sizes of width, height and depth (from `log2`) at +332, +336 and +340, the border byte at +400, and packs the sizes into the words at +68 and +84 with the tile sizes from `tileinfo`.
+It frees any old table at +252 with the context's free hook and allocates a new one with `calloc` (17 words, or 48 for clip-maps), filling one start offset per level by adding 1 shifted left by the texel size code and the level's log2 sizes minus 4 (at least 4 bytes), alternating between the two units' running totals, and stores the two totals at +0 and +4.
+It calls `changeMinMaxLod` first.
+
+#### `changeMinMaxLod`
+
+`changeMinMaxLod` at 0x0d9663c0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it converts the minimum and maximum level of detail into the hardware fields and refreshes the object.
+It sets the first and last level (+24 and +20) from the tiling kind: kinds 1 and 3 give 0 and 0; kind 0 gives the stored base level at +344 for both when the minification filter is 0x2600 or 0x2601, and otherwise +344 and the smaller of the log2 sizes at +332 and +336 and the stored maximum level at +348; kind 2 gives +344 and the smallest of +332, +336, +340 and +348.
+For the clip-map filters (0x8170 and 0x844d to 0x844f) with the flag at +436 set it also uses the clip-map levels at +432 and +440.
+It scales the float minimum (+352) and maximum (+356) levels by 64 with the help of `__glKonTexExp2NegX64`, caps the maximum at 1023, and stores them as 10-bit fields at bits 0 to 9 and 10 to 19 of the word at +80.
+When the object is bound it then calls its hook at +256.
+
+#### `changeClamp`
+
+`changeClamp` at 0x0d967bf0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it records a wrap mode change for one axis of a texture object.
+Parameter 0x2802 changes the S axis, 0x2803 the T axis and 0x8072 the R axis; the mode goes to bits 0 to 1, 2 to 3 or 4 to 5 of the byte at +401, and the bit at 0x1000, 0x2000 or 0x4000 of the word at +68 is set to 1 for the modes 1, 2 and 3 and to 0 otherwise.
+It then clears bit 12 of the word at +64; when bit 22 of the flags is set it calls `guessBaseLevel` and `validateTexture` for the object, and when bit 24 is also set it calls the object's hook at +256.
+
+#### `changeShadow`
+
+`changeShadow` at 0x0d967f30 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it applies a shadow-compare change to a texture object.
+It clears the word at +516, calls `setShadowRegs` for the object, and, when the object is bound with the fast hooks and is the current target's object, calls its hook at +256 to rebind it.
+
+#### `changeClipmapParams`
+
+`changeClipmapParams` at 0x0d968070 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it recomputes the clip-map centre and extent fields of an object from its clip-map parameters.
+It reads the clip size and offsets at +0x19c to +0x1b8 (+412 to +440), a scale factor from the environment (read once with `getenv` and `atof`, the alignment limit), uses `log2` of the clip dimensions, and stores the aligned values back in the same area of the object.
+It then calls `computeActiveTarget` and the object's bind hook when the object is the current one.
+
+#### `guessClipmapBreakpoint`
+
+`guessClipmapBreakpoint` at 0x0d96ff70 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it finds where the level sizes of a clip-map stop being equal.
+It finds the first defined level, takes its width, and walks up while the following level records exist and have the same width.
+It stores the last such level at +404 and `log2` of that width at +408 and returns 1, or stores 0 in both and returns 0 when no breakpoint exists.
+
+#### `bind2DClipmapTexture`
+
+`bind2DClipmapTexture` at 0x0d96a410 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it binds a 2D clip-map as a mipmap that starts at the breakpoint level.
+It calls `setClipmapRegisters`, moves the address table pointer at +252 forward by the level offset at +440, and calls `bind2DMipmapTexture`.
+When that offset is odd it flips bit 28 of the word at +64 to the parity at +284 for the call and back after it; the table pointer is restored at the end.
+
+#### `changeFilter`
+
+`changeFilter` at 0x0d9668c0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it applies a change of magnification or minimisation filter to a texture object.
+From the filters at +364 (the nearest, linear and mipmap forms 9728 to 9987, and the clip-map forms 0x8170 and 0x844d to 0x844f) and +360 (the detail and sharpen forms 0x8097 to 0x8099 and 0x80ad to 0x80af) it selects a table kind for +16 and a tiling kind for +12 and rewrites the fields of the word at +64.
+When the tiling kind changes it calls `freeTexture`, `changeMinMaxLod`, `guessBaseLevel`, `calcObjSize` and `areLodsConsistent` and ends in `slowBindTexture`.
+Otherwise it calls `setDetailFilter`, detaches old shared function data with `subtractTexTableUsage`, attaches the new with `bindTexTable`, and rebinds the object through its hook at +256.
+
+#### `checkTexImage`
+
+`checkTexImage` at 0x0d970210 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it validates a texture-image call and prepares the object's level record for it.
+It converts the target with `targetIndex` (0x500 on failure), rejects an invalid level with `isLodInvalid` unless the clip-map word at +436 covers it (0x501) and a border other than 0 or 1 (0x501), checks each dimension of the target with `validDimension`, and maps the internal format to its table row with `whichComps`, returning that row through its output pointer.
+It then frees or allocates the level's record (24 bytes), and for an object that already has other levels compares them with `unmatchObjLevel`, calling `freeTexture`, `calcObjSize`, `areLodsConsistent` and `configTexture` as the layout needs and `undefineTextureLevel` when an old level no longer fits.
+It returns the target index, or -1 after raising an error.
+
+#### `checkProxyTexture`
+
+`checkProxyTexture` at 0x0d973b90 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it answers a proxy texture-image call by filling in a proxy object instead of loading anything.
+It accepts the targets 0x8063, 0x8064 and 0x8070 with a border of 0 or 1 and takes the proxy object from context +31680, +31684 or +31688, with the target index 1, 2 or 3 stored at +376.
+It checks each dimension with `validDimension` (shifted left by the level) and the format with `whichComps`, returning -1 without an error when one of them fails, and calls `isLodInvalid` with the proxy index (0x501 for an invalid level).
+It stores the format row, border and sizes in the proxy's level record and calls `calcObjSize`; when that returns 0 it clears the record's row, border and sizes to 0.
+It returns 4, 5 or 6, the proxy's own index.
+
+#### `checkTexSubImage`
+
+`checkTexSubImage` at 0x0d971640 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it validates a sub-image call against the level that it would change.
+It converts the target with `targetIndex` (0x500 on failure, otherwise the target becomes the current index), calls `isLodInvalid` (0x501), and requires the level to be defined in the mask at +36 (0x502 if not).
+It then checks that the x, y and z offsets are not below minus the border and that offset plus size does not pass the level's width, height or depth (0x501), taking one off the height when the context's interlaced bit is set.
+It returns the target index when the region is valid and not empty, and -1 otherwise.
+
+#### `checkPixelError`
+
+`checkPixelError` at 0x0d970cf0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it checks the pixel-transfer state before a texture read or write that uses the pixel path.
+It returns -1 at once when its third argument is non-zero, bit 8 of the context word at +1796 is set, the context word at +1792 has a bit of 0x0e000000 set and the word at +1380 equals 0x81c5.
+Otherwise it calls `__glKonParseInput` and returns -1 if that reports an error, raises 0x500 and returns -1 when the format is 0x1901, and calls `__glKonParseErrorDraw` for a non-zero output pointer, returning -1 if that fails and 0 otherwise.
+
+#### `computeDestinationDims`
+
+`computeDestinationDims` at 0x0d970ba0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it computes the size that a pixel-transfer image has after the context's convolution step.
+It stores the width and height it was given and, when the context words at +1792, +1796 and +1380 select a convolution (+1380 equal to 0x81c5), reduces the width, and for target 0xde1 the height, by the filter's own size minus 1, read through `GetConvolutionFilter`.
+When bit 5 of the context word at +1796 is set it doubles the height.
