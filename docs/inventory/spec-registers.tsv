@@ -15,10 +15,10 @@ kpm register tables	geometry engine		ge	0x40030	OFIFO2 A Status Register	1	0	32	
 kpm register tables	geometry engine		ge	0x40034	OFIFO2 B Status Register	1	0	32		0	located	GE.h:889	
 kpm register tables	geometry engine		ge	0x40038	OFIFO Control Register (trashed)	1	0	32		0	located	GE.h:769	
 kpm register tables	host interface		hip	0x800000	HIP1_HH_GFIFO	1	0	32		0	understood	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
-kpm register tables	host interface		hip	0x800100	HH_SWITCH	1	0	32		0	named-only	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma	Host to pipe: `kona_dmawrite`, `kona_idma`
+kpm register tables	host interface		hip	0x800100	HH_SWITCH	1	0	32		0	named-only	docs/open-questions.md#where-work-stopped	Where work stopped
 kpm register tables	host interface		hip	0x800108	HIP1_HH_GINTR_INFO	1	0	32		0	no-software-dependency	HIP.h:49	
 kpm register tables	host interface		hip	0x800108	HIP2_HH_GINTR_INFO	1	0	32		0	no-software-dependency	HIP.h:49	
-kpm register tables	host interface		hip	0x8001f8	HH_NOP	1	0	32		0	named-only	docs/kernel.md#what-a-process-maps	What a process maps
+kpm register tables	host interface		hip	0x8001f8	HH_NOP	1	0	32		0	named-only	docs/open-questions.md#where-work-stopped	Where work stopped
 kpm register tables	host interface		hip	0x800200	HH_RTC	1	0	32		0	located	HIP.h:163	
 kpm register tables	host interface		hip	0x800208	HIP1_HH_GFIFO_LEVEL	1	0	32		1	understood	HIP.h:34	
 kpm register tables	host interface		hip	0x800208	HIP2_HH_GFIFO_LEVEL	1	0	32		1	understood	HIP.h:34	
@@ -76,12 +76,12 @@ kpm register tables	host interface		hip	0x8003a0	HIP1_HH_FCI_PIO_STATUS	1	0	32		
 kpm register tables	host interface		hip	0x8003a0	HIP2_HH_GV_OVERLAP	1	0	32		0	named-only	docs/hip.md#reset	Reset
 kpm register tables	host interface		hip	0x8003a8	HH_TBUS_STATUS	1	0	32		1	understood	HIP.h:37	
 kpm register tables	host interface		hip	0x8003b0	HH_TFIFO_HI	1	0	32		0	named-only	docs/hip.md#reset	Reset
-kpm register tables	host interface		hip	0x8003b8	HIP2_HH_IDMA_HI	1	0	32		0	named-only	docs/kernel.md#frame-rate-scheduler-hooks-gfx_frs_valid_pipenum-gfx_frs_install-gfx_frs_uninstall	Frame-rate-scheduler hooks: `gfx_frs_valid_pipenum`, `gfx_frs_install`, `gfx_frs_uninstall`
+kpm register tables	host interface		hip	0x8003b8	HIP2_HH_IDMA_HI	1	0	32		0	named-only	docs/open-questions.md#where-work-stopped	Where work stopped
 kpm register tables	host interface		hip	0x8003c0	HH_VC_ADDRESS	1	0	32		1	understood	docs/xg.md#attach-kona_attach	Attach, `kona_attach`
 kpm register tables	host interface		hip	0x8003c8	HH_VC_FREADY	1	0	32		0	understood	DG.h:31	
 kpm register tables	host interface		hip	0x8003d0	HH_VC_DATA	1	0	32		1	understood	docs/xg.md#attach-kona_attach	Attach, `kona_attach`
 kpm register tables	host interface		hip	0x8003d8	HH_VC_DATA_INCR	1	0	32		0	understood	DG.h:30	
-kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	named-only	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
+kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	named-only	docs/open-questions.md#where-work-stopped	Where work stopped
 kpm register tables	host interface		hip	0x8003e8	HH_ARM_ADDRESS	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 kpm register tables	host interface		hip	0x8003f0	HH_ARM_DATA	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 kpm register tables	host interface		hip	0x8003f8	HH_ARM_DATA_INCR	1	0	32		0	understood	HIP.h:26	
