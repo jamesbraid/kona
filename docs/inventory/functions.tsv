@@ -1494,7 +1494,7 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x1003a14c	668	load_ged_seq_ucode	documented
 usr/diags/IR/bin/irsaudit	n32	65281	0x1003a3e8	500	load_ged_pcl_table	documented	ucode/ged.md#the-distributor-instruction-set-registers-and-dispatch
 usr/diags/IR/bin/irsaudit	n32	65281	0x1003a5dc	1072	LoadUcodeFile	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1003aa0c	5292	init_ged_regs	documented	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler
-usr/diags/IR/bin/irsaudit	n32	65281	0x1003beb8	316	TEST_geducode	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x1003beb8	316	TEST_geducode	documented	docs/open-questions.md#geometry-distributor
 usr/diags/IR/bin/irsaudit	n32	65281	0x1003bff4	528	LoadArmBoot	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1003c214	100	sort_test_list	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1003c278	100	exit_with_brief_usage_message	undocumented	
@@ -1628,15 +1628,15 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x1006928c	248	fpln_stop	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x100693cc	1964	TEST_fpconn	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x10069b78	1056	TEST_framebuf	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006b14c	444	ge12_init	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x1006b308	764	ge12_splitge_test	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x1006b604	740	ge12_multige_test	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x1006b308	764	ge12_splitge_test	documented	docs/open-questions.md#geometry-distributor
+usr/diags/IR/bin/irsaudit	n32	65281	0x1006b604	740	ge12_multige_test	documented	docs/open-questions.md#geometry-distributor
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006b8e8	512	ge12_noge_test	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006bae8	252	ge12_stop	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006bbe4	648	geconn	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006be6c	652	split_geconn	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006c0f8	240	TEST_minigeconn	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006c1e8	1036	TEST_geconn	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x1006c5f4	572	TEST_ge_eram	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x1006c5f4	572	TEST_ge_eram	documented	docs/open-questions.md#geometry-engine-program
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006d11c	320	TEST_ge_eram_parallel	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006d25c	892	Ge11ERamDataPathParallel	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006d5d8	1024	Ge11ERamAddrPathParallel	undocumented	
@@ -1645,8 +1645,8 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x1006dd58	1312	TEST_ge_ext_stress	undocumen
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006e278	976	ge_mul_test	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006e648	1368	TEST_ge_cram	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006eba0	1364	TEST_ge_wram	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x1006f0f4	876	TEST_ge_hip	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x1006f460	1856	TEST_ge_instTest	documented	docs/open-questions.md#geometry-engine-program
+usr/diags/IR/bin/irsaudit	n32	65281	0x1006f0f4	876	TEST_ge_hip	documented	docs/open-questions.md#geometry-engine-program
+usr/diags/IR/bin/irsaudit	n32	65281	0x1006f460	1856	TEST_ge_instTest	documented	ucode/ge_ops.md#the-diagnostic-programs-instruction-test
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006fba0	220	hist_ecd_check	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006fc7c	292	hist_base_check	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1006fda0	312	hist_ecdbase_check	undocumented	
@@ -1966,7 +1966,7 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x100f99c8	144	PutNextID	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x100f9a58	384	GetTextureLevelSize	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100f9bd8	188	CreateTexture	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100f9c94	272	TextureClamp	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x100f9da4	516	GenerateTexturePattern	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x100f9da4	516	GenerateTexturePattern	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 usr/diags/IR/bin/irsaudit	n32	65281	0x100f9fa8	428	LoadTextureImage	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100fa154	200	UnAttachDetail	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x100fa21c	504	AttachDetail	undocumented	
@@ -2266,7 +2266,7 @@ usr/diags/IR/bin/irsaudit	n32	65281	0x1013e934	284	read_hub_rtc	undocumented
 usr/diags/IR/bin/irsaudit	n32	65281	0x1013ea50	68	tlForce	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1013ea94	72	tlRelease	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1013eadc	96	tlDelay	undocumented	
-usr/diags/IR/bin/irsaudit	n32	65281	0x1013eb3c	144	tbRegWrite	undocumented	
+usr/diags/IR/bin/irsaudit	n32	65281	0x1013eb3c	144	tbRegWrite	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 usr/diags/IR/bin/irsaudit	n32	65281	0x1013ebcc	292	tbVertex	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1013ecf0	176	tbTextureCoord	undocumented	
 usr/diags/IR/bin/irsaudit	n32	65281	0x1013eda0	176	tbTextureCoord1	undocumented	
@@ -18329,8 +18329,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xda6eb7c	12	glPixelMapuiv	undocume
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xda6eb88	12	glPixelMapusv	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xda6eb94	12	glReadBuffer	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xda6eba0	12	glCopyPixels	undocumented	
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xda6ebac	12	glReadPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xda6ebb8	12	glDrawPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xda6ebac	12	glReadPixels	documented	docs/rm.md#host-interface-registers-on-the-raster-bus
+usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xda6ebb8	12	glDrawPixels	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xda6ebc4	12	glGetBooleanv	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xda6ebd0	12	glGetClipPlane	undocumented	
 usr/gfx/arch/IP27KONA/libGLcore.so	o32	65281	0xda6ebdc	12	glGetDoublev	undocumented	
@@ -23323,8 +23323,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xda78a3c	12	glPixelMapuiv	undocu
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xda78a48	12	glPixelMapusv	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xda78a54	12	glReadBuffer	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xda78a60	12	glCopyPixels	undocumented	
-usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xda78a6c	12	glReadPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xda78a78	12	glDrawPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xda78a6c	12	glReadPixels	documented	docs/rm.md#host-interface-registers-on-the-raster-bus
+usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xda78a78	12	glDrawPixels	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xda78a84	12	glGetBooleanv	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xda78a90	12	glGetClipPlane	undocumented	
 usr/gfx/arch/IP27KONA32/libGLcore.so	n32	65281	0xda78a9c	12	glGetDoublev	undocumented	
@@ -28361,8 +28361,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2ede01c	12	glPixelMapuiv	undocu
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2ede028	12	glPixelMapusv	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2ede034	12	glReadBuffer	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2ede040	12	glCopyPixels	undocumented	
-usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2ede04c	12	glReadPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2ede058	12	glDrawPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2ede04c	12	glReadPixels	documented	docs/rm.md#host-interface-registers-on-the-raster-bus
+usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2ede058	12	glDrawPixels	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2ede064	12	glGetBooleanv	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2ede070	12	glGetClipPlane	undocumented	
 usr/gfx/arch/IP27KONA64/libGLcore.so	n64	65281	0x2ede07c	12	glGetDoublev	undocumented	
@@ -33972,8 +33972,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xda6eb7c	12	glPixelMapuiv	undocume
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xda6eb88	12	glPixelMapusv	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xda6eb94	12	glReadBuffer	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xda6eba0	12	glCopyPixels	undocumented	
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xda6ebac	12	glReadPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xda6ebb8	12	glDrawPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xda6ebac	12	glReadPixels	documented	docs/rm.md#host-interface-registers-on-the-raster-bus
+usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xda6ebb8	12	glDrawPixels	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xda6ebc4	12	glGetBooleanv	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xda6ebd0	12	glGetClipPlane	undocumented	
 usr/gfx/arch/IP35KONA/libGLcore.so	o32	65281	0xda6ebdc	12	glGetDoublev	undocumented	
@@ -38966,8 +38966,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xda78a3c	12	glPixelMapuiv	undocu
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xda78a48	12	glPixelMapusv	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xda78a54	12	glReadBuffer	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xda78a60	12	glCopyPixels	undocumented	
-usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xda78a6c	12	glReadPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xda78a78	12	glDrawPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xda78a6c	12	glReadPixels	documented	docs/rm.md#host-interface-registers-on-the-raster-bus
+usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xda78a78	12	glDrawPixels	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xda78a84	12	glGetBooleanv	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xda78a90	12	glGetClipPlane	undocumented	
 usr/gfx/arch/IP35KONA32/libGLcore.so	n32	65281	0xda78a9c	12	glGetDoublev	undocumented	
@@ -44004,8 +44004,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22be01c	12	glPixelMapuiv	undocu
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22be028	12	glPixelMapusv	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22be034	12	glReadBuffer	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22be040	12	glCopyPixels	undocumented	
-usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22be04c	12	glReadPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
-usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22be058	12	glDrawPixels	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22be04c	12	glReadPixels	documented	docs/rm.md#host-interface-registers-on-the-raster-bus
+usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22be058	12	glDrawPixels	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22be064	12	glGetBooleanv	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22be070	12	glGetClipPlane	undocumented	
 usr/gfx/arch/IP35KONA64/libGLcore.so	n64	65281	0x22be07c	12	glGetDoublev	undocumented	

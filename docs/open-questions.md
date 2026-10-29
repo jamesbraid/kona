@@ -8,17 +8,19 @@ The "Next route" cells below were converted from requests for measurements on a 
 
 ## Geometry engine program
 
-| Question | Owner | Next route |
-|---|---|---|
-| Ties the instruction test leaves open: 0x50 AND or NOR, 0x54 and 0x56 between OR, XOR and NAND, 0x66 and 0x68 minimum and maximum or moves, unit-2 0x2f and 0x3f move of the second operand or minimum; whether 0x42's 0x80000000 is saturation | `ucode/ge_ops.md` | Run the diagnostic `ge_inst.s` test on a real pipe with its operand constants changed (first operand larger, one negative, one zero, an overflowing pair) and record the engine's output DMA, as `TEST_ge_instTest` does. |
-| Each branch condition on its false side, the fourth flag condition, and `cc` 0x10, 0x11, 0x14, 0x15 | `ucode/ge_ops.md`, `GE.h` | The same run with each branch case given an input that makes its condition false; read the flag register (source 0x1b) after each flag-setting word. |
-| How form 11 encodes two operations in one M (M = 0x440: integer add and float multiply together) | `ucode/ge_ops.md` | The same run with the form-11 lines 3512-3528 given distinct integer and float operands. |
-| Which staging register each command operand word lands in (the engine's input FIFO operation) | `ucode/ge_ops.md`, `ucode/ge_isa.md` | Send `TbusRegWrite` with two known operand words and trace the engine's raster-bus output, or single-step the engine with the diagnostic's `ge_host_reg_write` path and read registers 0x1d-0x1f. |
-| What the `value` column of kpm's engine register table is (reset value, test value or mask) | `docs/ge.md`, `GE.h` | Read the 15 registers 0x40000-0x40038 through the diagnostic's port path right after `ResetKona`, before `init_ge`, and compare with the column. |
-| Bit meanings of the ARM's DMA registers 0x200010-0x200048 (input, list and output DMA) | `docs/ge.md`, `ucode/arm1_firmware.md` | Log the ARM's writes and reads of 0x200010-0x200048 (firmware `printf` build or a bus trace on the ARM's local bus) during one `DO_IDMA`, one list load and one select feedback, with the Xtalk trace of the same transfers. |
-| Which engine-side condition produces each GE event code (0, 0x100-0x105) in the record the ARM writes through `start_kcomm`/`finish_kcomm` | `docs/hip.md`, `ucode/arm1_firmware.md` | Trace the raster-bus register writes 0x460-0x477 while the kernel runs a select feedback, a swap and a context switch, alongside the record the kernel reads. |
-| Whether any path resets only the engines (no firmware path pulses one; `HH_RESET` restarts the host interface) and the engines' state after it | `docs/ge.md` | Read the engine diagnostic registers 0x40000-0x40038 and an engine's mailbox before and after an `HH_RESET` pulse and after the loader's start-bit restart. |
-| Order and size of the engine-state records in a saved context image, the third word of each record, and which tag (0x200, 0x400-0x403) is which ARM region | `docs/ge.md` | Dump the kernel's 64 KB context save area after one context switch-out of a GL process (kernel debugger), and walk its 0x52-word header. |
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| Ties the instruction test leaves open: 0x50 AND or NOR, 0x54 and 0x56 between OR, XOR and NAND, 0x66 and 0x68 minimum and maximum or moves, unit-2 0x2f and 0x3f move of the second operand or minimum; whether 0x42's 0x80000000 is saturation | `ucode/ge_ops.md` | `expected_token` in `irsaudit` 6.5.30m (its operands give equal results for each tied pair); `irsaudit` exports no other expected-result array; the diagnostic engine program's other sources (listed with `scripts/ge_disasm.py`): 0x6d0, 0x6d4 and 0x6d6 occur only in `debug.S` and `eram.S`, and 0x6e6, 0x6e8, 0x2ff, 0x3ff only in `ge_inst.s`;
+| Each branch condition on its false side, the fourth flag condition, and `cc` 0x10, 0x11, 0x14, 0x15 | `ucode/ge_ops.md`, `GE.h` | `ge_inst.s` branch cases (all taken) | The same source routes; production handlers whose fall-through path is reachable only when a known condition is false |
+| How form 11 encodes two operations in one M (M = 0x440: integer add and float multiply together) | `ucode/ge_ops.md` | `ge_inst.s` lines 3512-3528 | Compare the form-11 words of `ge.hex` with the same program's other encodings (`ge11.u`), and the assembler source if present |
+| Which staging register each command operand word lands in (the engine's input FIFO operation) | `ucode/ge_ops.md`, `ucode/ge_isa.md` | `ge_inst.s` (reads no input) | `mgesi_TbusRegWrite` against the ARM's operand-port writes (r9 + 0x470-0x47c) for a handler whose two operands go to different outputs; `geif.u`-driven handlers with one operand |
+| What the `value` column of kpm's engine register table is (reset value, test value or mask) | `docs/ge.md`, `GE.h` | kpm's table read as data | The kpm code that reads the column (write-then-read test, or a printed default) |
+| Bit meanings of the ARM's DMA registers 0x200010-0x200048 (input, list and output DMA) | `docs/ge.md`, `ucode/arm1_firmware.md` | every firmware writer of 0x200010-0x20004c; the list-DMA commands in docs/ge.md give the address, length and mode words | The `irsaudit` DMA tests (`TEST_ge_hip` and the HIP tests) and the 6.5.5 `kona_if.h` header |
+| Which engine-side condition produces each GE event code (0, 0x100-0x105) | `docs/hip.md`, `ucode/arm1_firmware.md` | kernel handler and the ARM's `start_kcomm`/`finish_kcomm` | The `ge.u` handlers that write the event registers (raster-bus 0x460-0x477) |
+| Whether any path resets only the engines, and the engines' state after it | `docs/ge.md` | firmware start-up and reset paths | `irsaudit` `ResetKona` and the engine tests' set-up |
+| Order and size of the engine-state records in a saved context image, the third word of each record, and which tag (0x200, 0x400-0x403) is which ARM region | `docs/ge.md` | the firmware loader `arm_context_load` | The engine save handlers `mges_ContextDeact*` in `ge.u` and the firmware save side (`deactivate_*`), which write the records in order |
+
+**Where this section stopped (2026-10-29).** The variable-length command grammars and the texel format id are done (docs/ge.md). The ties were tried from every diagnostic and production program in the 6.5.30m media without a constraining result; the next step is the source routes in the first row. The remaining rows have not been worked from software yet; take them in table order.
 
 ## XG (Xtalk widget)
 
@@ -44,16 +46,17 @@ The "Next route" cells below were converted from requests for measurements on a 
 
 ## Raster and texture boards (RM, TM)
 
-| Question | Owner | Next route |
-|---|---|---|
-| Which `tf` chip or chips answer `TFP_` and `TFT_` indexes, and which chip types answer each combined index (`PGTG_`, `TGTM_`, `TGTMTFT`, `PGTFPIMP_`) | `RM.h`, `docs/rm.md` | Write a distinct value to one combined register and to one `TFT_` register, then read each chip's copy back over the boundary-scan chain (`jt_reg_read` path of the diagnostic) chip by chip. |
-| The select word of the ARM's register write (all ones in `init_pg`, per-call in `init_tg` and `init_imp`, 0x7 or 0x7f in pixel paths), bus modes 2 and 3, and whether the back-end chip rewrites the top half of the bus word | `docs/rm.md` | Logic-analyser trace of `tbus_mode[2]` and `tbus_data[64]` at a raster board while the firmware runs `init_pg`, `init_tg` and `init_imp`, and while a program loads one small texture and draws one `glDrawPixels` rectangle. |
-| Texel and pixel data formats on the raster bus | `docs/rm.md`, `RM.h`, `docs/opengl.md` | The same trace during a texture download of a recognisable 4 x 4 image in each internal format, and a `glDrawPixels` of known pixels in RGBA8 and depth. |
-| The bytes of a read-back reply on the 16-bit-per-filter read-back bus (`IMP_OP`, `TFP_TEXRB`, `TM_RDBK` encodings) | `docs/rm.md` | Trace the read-back bus and the host-interface output DMA during `glReadPixels` of a known 2 x 2 image and a texture read-back. |
-| How a raster fault shows (the boards have no interrupt or error pin): stall, timeout or `BEF` counters | `docs/rm.md` | Write an out-of-range value to a raster register on a test pipe and watch the FIFO level, the kernel timeouts and the `BEF` counters. |
-| Register and pixel-memory contents of `pg`, `tg`, `tf` and `tm` after reset and after `ResetRMBoards` | `docs/rm.md` | Read every register of one raster board over the scan chain after power-on, after `init_rm_board` and after `ResetRMBoards`; dump a framebuffer tile before and after. |
-| Per-pixel LOD, sub-texel position, filter-weight and iterator widths inside the fixed-function chips | `docs/rm.md`, `RM.h` | Draw a magnified two-texel texture with a slowly varying LOD and a long colour-iterated span, read back every pixel and fit the step sizes. |
-| The pixel format on the 160-wire display bus, the tile request format, and the XMAP registers the diagnostic's list leaves out (4, 5, 8-10, 0x10) | `docs/rm.md`, `DG.h` | Logic-analyser trace of `impadg_data`/`impbdg_data`, `dgvreq` and the shift enables during one frame of a known image; read XMAP registers 0-0x11 through the video-controller port. |
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| Which `tf` chip or chips answer `TFP_` and `TFT_` indexes, and which chip types answer each combined index (`PGTG_`, `TGTM_`, `TGTMTFT`, `PGTFPIMP_`) | `RM.h`, `docs/rm.md` | register names, `init_*` writers in the firmware | `irsaudit`'s per-chip register tests (`jt_reg_read` callers) and their expected values; the 6.5.5 `kona_diag.h` header |
+| The select word of the ARM's register write, bus modes 2 and 3, and whether the back-end chip rewrites the top half of the bus word | `docs/rm.md` | firmware writers; the diagnostic vector files' mode column | `irsaudit`'s `tbRegWrite` and the `.tbus` vector builders, which form the same words on the host |
+| Texel and pixel data formats on the raster bus | `docs/rm.md`, `RM.h`, `docs/opengl.md` | the firmware's format tables now give the bus format code per texel format (docs/ge.md, "The texel format id") | The firmware's path setup that sends those codes (`SetupGE_*`, `SetupPGTG`), and the diagnostic texture tests' host pattern generators (`GenerateTexturePattern`) |
+| The bytes of a read-back reply on the read-back bus (`IMP_OP`, `TFP_TEXRB`, `TM_RDBK` encodings) | `docs/rm.md` | netlists, register names | `irsaudit`'s read-back tests, which unpack the reply on the host |
+| How a raster fault shows (no interrupt or error pin) | `docs/rm.md` | netlists, kernel interrupt handler | Kernel timeout paths and the diagnostics' error reports; if none decode a raster fault, label it unknown with those routes |
+| Register and pixel-memory contents of `pg`, `tg`, `tf` and `tm` after reset and after `ResetRMBoards` | `docs/rm.md` | firmware reset paths | The diagnostic BIST files (`*.tcbist`, `*.sdbist`) and the register tests' expected reset values in `irsaudit` |
+| Per-pixel LOD, sub-texel position, filter-weight and iterator widths inside the fixed-function chips | `docs/rm.md`, `RM.h` | bus widths from the netlists | Host reference models in `irsaudit`'s texture and shading tests, which must compute the expected pixels at the hardware's precision |
+
+**Where this section stopped (2026-10-29).** Not yet worked from software; the texel-format part of the third row is answered and the rest follows the next-route column.
 
 ## Display generator (DG)
 
@@ -67,11 +70,13 @@ The "Next route" cells below were converted from requests for measurements on a 
 
 The distributor questions are written in [ucode/ged.md](../ucode/ged.md); listed here so this page is complete.
 
-| Question | Owner | Next route |
-|---|---|---|
-| How the hardware chooses between the state-based index and the token's own entry number | `ucode/ged.md` | JTAG read of `ged_dispInst`, `ged_dispGeomCtrl` and `ged_geomStatus`, one token at a time, while the pipe receives `BEGIN_TRIANGLES`, three `VERTEX3F`, `COLOR3F`, `SWAPTMESH` and `END`. |
-| What transfer ops 1, 3, 5, 6 and 7 test; control fields x, y, r, a, b, c, z and n; the small-constant registers r13, r14, r30-r67 and the sequencer-test registers 0x280-0x2b0 | `ucode/ged.md` | The same JTAG reads over the diagnostic's `gedSequencer` test. |
-| How the distributor picks among the eight engines (round-robin flag and occupancy mask in `sys/kona_if.h`) | `ucode/ged.md` | Read the engines' input counters after a run of 64 triangles with one, two and eight engines enabled. |
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| How the hardware chooses between the state-based index and the token's own entry number | `ucode/ged.md` | the distributor program and the firmware's tables | The `irsaudit` distributor tests (`TEST_gedcrc_*`, `TEST_geducode`) and their host models of the expected routing |
+| What transfer ops 1, 3, 5, 6 and 7 test; control fields x, y, r, a, b, c, z and n; the small-constant registers r13, r14, r30-r67 and the sequencer-test registers 0x280-0x2b0 | `ucode/ged.md` | the diagnostic's instruction packer | The `gedSequencer` test's host side and `Get_GED_*_Inst` builders |
+| How the distributor picks among the eight engines (round-robin flag and occupancy mask) | `ucode/ged.md` | none from software yet | The 6.5.5 `sys/kona_if.h` header and `irsaudit` `ge12_multige_test`/`ge12_splitge_test` |
+
+**Where this section stopped (2026-10-29).** Not yet worked from software; take the rows in order.
 
 ## Kernel driver
 

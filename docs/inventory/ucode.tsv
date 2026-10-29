@@ -500,14 +500,14 @@ arm1.u	symbol (flags 3)	0x0c003760	init_hip_tbus		documented	docs/rm.md#how-the-
 arm1.u	symbol (flags 3)	0x0c0037a0	init_voc		undocumented	
 arm1.u	symbol (flags 3)	0x0c0037a4	init_dac		undocumented	
 arm1.u	symbol (flags 3)	0x0c0037a8	init_fm		undocumented	
-arm1.u	symbol (flags 3)	0x0c0037ac	init_pg		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+arm1.u	symbol (flags 3)	0x0c0037ac	init_pg		documented	docs/rm.md#chips-on-each-board
 arm1.u	symbol (flags 3)	0x0c00386c	init_tf		documented	docs/rm.md#chips-on-each-board
-arm1.u	symbol (flags 3)	0x0c0038e8	init_tg		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+arm1.u	symbol (flags 3)	0x0c0038e8	init_tg		documented	docs/rm.md#chips-on-each-board
 arm1.u	symbol (flags 3)	0x0c003980	init_tm		documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-arm1.u	symbol (flags 3)	0x0c003aac	init_imp		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+arm1.u	symbol (flags 3)	0x0c003aac	init_imp		documented	docs/rm.md#chips-on-each-board
 arm1.u	symbol (flags 3)	0x0c003d0c	init_ge_board		documented	docs/ge.md#reset-and-start-up
 arm1.u	symbol (flags 3)	0x0c003d3c	init_dg_board		documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
-arm1.u	symbol (flags 3)	0x0c003de8	init_rm_board		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
+arm1.u	symbol (flags 3)	0x0c003de8	init_rm_board		documented	docs/rm.md#reset-of-the-raster-boards
 arm1.u	symbol (flags 3)	0x0c003eb8	init_simulator_hacks		undocumented	
 arm1.u	symbol (flags 3)	0x0c004108	init		undocumented	
 arm1.u	symbol (flags 3)	0x0c0042bc	arm_initpipe		undocumented	
@@ -1415,7 +1415,7 @@ arm1.u	symbol (flags 3)	0x0c033bbc	SetupReadback		undocumented
 arm1.u	symbol (flags 3)	0x0c033c80	SetupReadbackTF		undocumented	
 arm1.u	symbol (flags 3)	0x0c033fac	SetupRM		documented	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler
 arm1.u	symbol (flags 3)	0x0c034170	SetupRM_FFT		undocumented	
-arm1.u	symbol (flags 3)	0x0c0341cc	SetupPGTG		undocumented	
+arm1.u	symbol (flags 3)	0x0c0341cc	SetupPGTG		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 arm1.u	symbol (flags 3)	0x0c034288	SetupSubtexload		documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap
 arm1.u	symbol (flags 3)	0x0c0343a0	SetupSubtexloadPos		undocumented	
 arm1.u	symbol (flags 3)	0x0c034464	SetupTexRead		undocumented	
@@ -2233,7 +2233,7 @@ ge.u	label	0x000039b8	mgesi_AlphaTest		undocumented
 ge.u	label	0x000039c8	mgesi_AlphaFunc		documented	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind
 ge.u	label	0x000039da	mges_TbusRegWriteNoIncr		undocumented	
 ge.u	label	0x000039e7	mgesi_IMPtbusRegWrite		undocumented	
-ge.u	label	0x000039fd	mgesi_TbusRegWrite		documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
+ge.u	label	0x000039fd	mgesi_TbusRegWrite		documented	docs/open-questions.md#geometry-engine-program
 ge.u	label	0x00003a0a	mgebi_ShadeModel		named-only	ucode/arm1_handlers.tsv
 ge.u	label	0x00003a25	mges_DiagDeactivate		named-only	ucode/arm1_handlers.tsv
 ge.u	label	0x00003a32	mgebi_NullCommand		documented	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler
@@ -3089,7 +3089,7 @@ geif.u	dispatch slot	211	mgesi_PixConv5GVEntry	handler 0xa6be	undocumented
 geif.u	dispatch slot	212	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up
 geif.u	dispatch slot	213	mgesi_PixRasterPosSetup	handler 0xa990	undocumented	
 geif.u	dispatch slot	214	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up
-geif.u	dispatch slot	215	mgesi_TbusRegWrite	handler 0x39fd	documented	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines
+geif.u	dispatch slot	215	mgesi_TbusRegWrite	handler 0x39fd	documented	docs/open-questions.md#geometry-engine-program
 geif.u	dispatch slot	216	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up
 geif.u	dispatch slot	217	mgesi_IMPtbusRegWrite	handler 0x39e7	undocumented	
 geif.u	dispatch slot	218	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up

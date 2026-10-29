@@ -116,7 +116,12 @@ Lines 1210-2195 test conditional transfers (sequencer code 3 with condition code
 
 **Inferred:** the low four bits are the integer flags and the high four the float flags, each with bit 3 = result <= 0, bit 2 = zero, bit 1 = negative, bit 0 = a fourth condition clear in every observed case. `cc` 0-7 test the integer nibble and 8-15 the float nibble; `cc` bits 2-1 pick the condition (0 <= 0, 1 zero, 2 negative, 3 the fourth) and bit 0 inverts it. All 14 cases with a known operation agree. The fourth condition (true after 0x6c8 and after 0x2f, false after an add or multiply that did not overflow) is **inferred** to be signed overflow, on that alone. The carry out is not a condition the test names.
 
-**Open question** ([docs/open-questions.md](../docs/open-questions.md)): each condition on its false side, the fourth condition, and the three ties in the table above (0x6d0 against NOR, 0x6d4 and 0x6d6 against each other and NAND, 0x6e6 and 0x6e8 against moves, 0x2f and 0x3f against minimum). One capture settles all of them: run the `ge_inst.s` test with the operand constants swapped (A > B, a negative, a zero) on a real pipe and record the engine's output DMA.
+**Open question** ([docs/open-questions.md](../docs/open-questions.md)): each condition on its false side, the fourth condition, and the three ties in the table above (0x6d0 against NOR, 0x6d4 and 0x6d6 against each other and NAND, 0x6e6 and 0x6e8 against moves, 0x2f and 0x3f against minimum). Static routes tried for the ties, none of which separates them:
+
+- `irsaudit` 6.5.30m exports one expected-result array, `expected_token`; its operands give equal results for each tied pair.
+- In the diagnostic engine program (listed per source with `scripts/ge_disasm.py`), 0x6d0, 0x6d4 and 0x6d6 occur only in `debug.S` and `eram.S`, and 0x6e6, 0x6e8, 0x2ff and 0x3ff only in `ge_inst.s`. `eram.S` builds and checks its memory patterns on the engine; `TEST_ge_eram` (`irsaudit` 0x1006c9b0-0x1006ccdc) only gathers the mismatch records the engine reports, ending at a 0xbabebabe marker, so a NOR in place of an AND would pass the same way.
+- Production use supports AND, OR, XOR, maximum and minimum by intent only: single-bit masks tested for zero, field-clearing masks before an OR, XOR against GL enumerants before a zero test, and `mgeb_DepthRange`'s clamp.
+
 
 ## Input and output FIFO operations
 
