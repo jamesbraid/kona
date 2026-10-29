@@ -1,0 +1,177 @@
+token	name	function	words	items	unit
+0x007	HP_LIGHTF	__glkonim_Lightfv	6	i i f f f f	kon_cfuncs.s
+0x008	HP_LIGHTI	__glkonim_Lightiv	6	i i i i i i	kon_cfuncs.s
+0x009	HP_LIGHTMODELF	__glkonim_LightModelfv	5	i f f f f	kon_cfuncs.s
+0x00a	HP_LIGHTMODELI	__glkonim_LightModeliv	5	i i i i i	kon_cfuncs.s
+0x014	HP_TEXGENF	__glkonim_TexGend	9	i i f i i i i i i	kon_cfuncs.s
+0x014	HP_TEXGENF	__glkonim_TexGenf	9	i i f i i i i i i	kon_cfuncs.s
+0x014	HP_TEXGENF	__glkonim_TexGeni	9	i i i i i i i i i	kon_cfuncs.s
+0x01a	HP_CLEAR	__glkonim_Clear	1	i	kon_modes.s
+0x01c	HP_CLEARINDEX	__glkonim_ClearIndex	1	f	kon_cfuncs.s
+0x01e	HP_CLEARSTENCIL	__glkonim_ClearStencil	1	i	kon_cfuncs.s
+0x020	HP_STENCILMASK	__glkonim_StencilMask	1	i	kon_cfuncs.s
+0x021	HP_COLORMASK	__glkonim_ColorMask	4	i i i i	kon_cfuncs.s
+0x022	HP_DEPTHMASK	__glkonim_DepthMask	1	i	kon_cfuncs.s
+0x023	HP_INDEXMASK	__glkonim_IndexMask	1	i	kon_cfuncs.s
+0x037	HP_READBUFFER	__glkonim_ReadBuffer	1	i	kon_cfuncs.s
+0x062	HP_COLOR3D	__glkonim_Color3d	6	d d d	kon_cfuncs.s
+0x062	HP_COLOR3D	__glkonim_Color3dv	6	d d d	kon_sfuncs.s
+0x063	HP_COLOR3F	__glkonim_Color3f	3	f f f	kon_cfuncs.s
+0x063	HP_COLOR3F	__glkonim_Color3fv	3	ii i	kon_sfuncs.s
+0x064	HP_COLOR3I	__glkonim_Color3i	3	i i i	kon_cfuncs.s
+0x064	HP_COLOR3I	__glkonim_Color3iv	3	ii i	kon_sfuncs.s
+0x067	HP_COLOR3UI	__glkonim_Color3ui	3	i i i	kon_cfuncs.s
+0x067	HP_COLOR3UI	__glkonim_Color3uiv	3	ii i	kon_sfuncs.s
+0x06a	HP_COLOR4D	__glkonim_Color4d	8	d d d d	kon_cfuncs.s
+0x06a	HP_COLOR4D	__glkonim_Color4dv	8	d d d d	kon_sfuncs.s
+0x06b	HP_COLOR4F	__glkonim_Color4f	4	f f f f	kon_cfuncs.s
+0x06b	HP_COLOR4F	__glkonim_Color4fv	4	ii ii	kon_sfuncs.s
+0x06c	HP_COLOR4I	__glkonim_Color4i	4	i i i i	kon_cfuncs.s
+0x06c	HP_COLOR4I	__glkonim_Color4iv	4	ii ii	kon_sfuncs.s
+0x06f	HP_COLOR4UI	__glkonim_Color4ui	4	i i i i	kon_cfuncs.s
+0x06f	HP_COLOR4UI	__glkonim_Color4uiv	4	ii ii	kon_sfuncs.s
+0x071	HP_END	__glkonim_End	1	i	kon_modes.s
+0x072	HP_INDEXD	__glkonim_Indexd	2	d	kon_cfuncs.s
+0x072	HP_INDEXD	__glkonim_Indexdv	2	d	kon_sfuncs.s
+0x073	HP_INDEXF	__glkonim_Indexf	1	f	kon_cfuncs.s
+0x073	HP_INDEXF	__glkonim_Indexfv	1	i	kon_sfuncs.s
+0x074	HP_INDEXI	__glkonim_Indexi	1	i	kon_cfuncs.s
+0x074	HP_INDEXI	__glkonim_Indexiv	1	i	kon_sfuncs.s
+0x075	HP_INDEXS	__glkonim_Indexs	1	i	kon_cfuncs.s
+0x075	HP_INDEXS	__glkonim_Indexsv	1	i	kon_cfuncs.s
+0x075	HP_INDEXS	__glkonim_Indexub	1	i	kon_cfuncs.s
+0x075	HP_INDEXS	__glkonim_Indexubv	1	i	kon_cfuncs.s
+0x077	HP_NORMAL3D	__glkonim_Normal3d	6	d d d	kon_cfuncs.s
+0x077	HP_NORMAL3D	__glkonim_Normal3dv	6	d d d	kon_sfuncs.s
+0x078	HP_NORMAL3F	__glkonim_Normal3f	3	f f f	kon_cfuncs.s
+0x078	HP_NORMAL3F	__glkonim_Normal3fv	3	ii i	kon_sfuncs.s
+0x079	HP_NORMAL3I	__glkonim_Normal3i	3	i i i	kon_cfuncs.s
+0x079	HP_NORMAL3I	__glkonim_Normal3iv	3	ii i	kon_sfuncs.s
+0x07b	HP_TEXCOORD1D	__glkonim_TexCoord1d	2	d	kon_cfuncs.s
+0x07b	HP_TEXCOORD1D	__glkonim_TexCoord1dv	2	d	kon_sfuncs.s
+0x07c	HP_TEXCOORD1F	__glkonim_TexCoord1f	1	f	kon_cfuncs.s
+0x07c	HP_TEXCOORD1F	__glkonim_TexCoord1fv	1	i	kon_sfuncs.s
+0x07d	HP_TEXCOORD1I	__glkonim_TexCoord1i	1	i	kon_cfuncs.s
+0x07d	HP_TEXCOORD1I	__glkonim_TexCoord1iv	1	i	kon_sfuncs.s
+0x07e	HP_TEXCOORD1S	__glkonim_TexCoord1s	1	i	kon_cfuncs.s
+0x07e	HP_TEXCOORD1S	__glkonim_TexCoord1sv	1	i	kon_cfuncs.s
+0x07f	HP_TEXCOORD2D	__glkonim_TexCoord2d	4	d d	kon_cfuncs.s
+0x07f	HP_TEXCOORD2D	__glkonim_TexCoord2dv	4	d d	kon_sfuncs.s
+0x080	HP_TEXCOORD2F	__glkonim_TexCoord2f	2	f f	kon_cfuncs.s
+0x080	HP_TEXCOORD2F	__glkonim_TexCoord2fv	2	ii	kon_sfuncs.s
+0x081	HP_TEXCOORD2I	__glkonim_TexCoord2i	2	i i	kon_cfuncs.s
+0x081	HP_TEXCOORD2I	__glkonim_TexCoord2iv	2	ii	kon_sfuncs.s
+0x083	HP_TEXCOORD3D	__glkonim_TexCoord3d	6	d d d	kon_cfuncs.s
+0x083	HP_TEXCOORD3D	__glkonim_TexCoord3dv	6	d d d	kon_sfuncs.s
+0x084	HP_TEXCOORD3F	__glkonim_TexCoord3f	3	f f f	kon_cfuncs.s
+0x084	HP_TEXCOORD3F	__glkonim_TexCoord3fv	3	ii i	kon_sfuncs.s
+0x085	HP_TEXCOORD3I	__glkonim_TexCoord3i	3	i i i	kon_cfuncs.s
+0x085	HP_TEXCOORD3I	__glkonim_TexCoord3iv	3	ii i	kon_sfuncs.s
+0x087	HP_TEXCOORD4D	__glkonim_TexCoord4d	8	d d d d	kon_cfuncs.s
+0x087	HP_TEXCOORD4D	__glkonim_TexCoord4dv	8	d d d d	kon_sfuncs.s
+0x088	HP_TEXCOORD4F	__glkonim_TexCoord4f	4	f f f f	kon_cfuncs.s
+0x088	HP_TEXCOORD4F	__glkonim_TexCoord4fv	4	ii ii	kon_sfuncs.s
+0x089	HP_TEXCOORD4I	__glkonim_TexCoord4i	4	i i i i	kon_cfuncs.s
+0x089	HP_TEXCOORD4I	__glkonim_TexCoord4iv	4	ii ii	kon_sfuncs.s
+0x08b	HP_VERTEX2D	__glkonim_Vertex2d	4	d d	kon_cfuncs.s
+0x08b	HP_VERTEX2D	__glkonim_Vertex2dv	4	d d	kon_sfuncs.s
+0x08c	HP_VERTEX2F	__glkonim_Vertex2f	2	f f	kon_cfuncs.s
+0x08c	HP_VERTEX2F	__glkonim_Vertex2fv	2	ii	kon_sfuncs.s
+0x08d	HP_VERTEX2I	__glkonim_Vertex2i	2	i i	kon_cfuncs.s
+0x08d	HP_VERTEX2I	__glkonim_Vertex2iv	2	ii	kon_sfuncs.s
+0x08f	HP_VERTEX3D	__glkonim_Vertex3d	6	d d d	kon_cfuncs.s
+0x08f	HP_VERTEX3D	__glkonim_Vertex3dv	6	d d d	kon_sfuncs.s
+0x090	HP_VERTEX3F	__glkonim_Vertex3f	3	f f f	kon_cfuncs.s
+0x090	HP_VERTEX3F	__glkonim_Vertex3fv	3	ii i	kon_sfuncs.s
+0x091	HP_VERTEX3I	__glkonim_Vertex3i	3	i i i	kon_cfuncs.s
+0x091	HP_VERTEX3I	__glkonim_Vertex3iv	3	ii i	kon_sfuncs.s
+0x093	HP_VERTEX4D	__glkonim_Vertex4d	8	d d d d	kon_cfuncs.s
+0x093	HP_VERTEX4D	__glkonim_Vertex4dv	8	d d d d	kon_sfuncs.s
+0x094	HP_VERTEX4F	__glkonim_Vertex4f	4	f f f f	kon_cfuncs.s
+0x094	HP_VERTEX4F	__glkonim_Vertex4fv	4	ii ii	kon_sfuncs.s
+0x095	HP_VERTEX4I	__glkonim_Vertex4i	4	i i i i	kon_cfuncs.s
+0x095	HP_VERTEX4I	__glkonim_Vertex4iv	4	ii ii	kon_sfuncs.s
+0x097	HP_MATERIALF	__glkonim_Materialfv	6	i i f f f f	kon_cfuncs.s
+0x09d	HP_EVAL_COORD1F	__glKonEvalCoord1DGe11	2	i f	kon_eval.s
+0x0a1	HP_EVAL_COORD2F	__glKonEvalCoord2DGe11	3	i f f	kon_eval.s
+0x0a7	HP_EDGEFLAG	__glkonim_EdgeFlag	1	i	kon_cfuncs.s
+0x0a7	HP_EDGEFLAG	__glkonim_EdgeFlagv	1	i	kon_sfuncs.s
+0x0a8	HP_RASTERPOS2D	__glkonim_RasterPos2d	4	d d	kon_cfuncs.s
+0x0a8	HP_RASTERPOS2D	__glkonim_RasterPos2dv	4	d d	kon_sfuncs.s
+0x0a9	HP_RASTERPOS2F	__glkonim_RasterPos2f	2	f f	kon_cfuncs.s
+0x0a9	HP_RASTERPOS2F	__glkonim_RasterPos2fv	2	ii	kon_sfuncs.s
+0x0aa	HP_RASTERPOS2I	__glkonim_RasterPos2i	2	i i	kon_cfuncs.s
+0x0aa	HP_RASTERPOS2I	__glkonim_RasterPos2iv	2	ii	kon_sfuncs.s
+0x0ab	HP_RASTERPOS2S	__glkonim_RasterPos2s	2	i i	kon_cfuncs.s
+0x0ab	HP_RASTERPOS2S	__glkonim_RasterPos2sv	2	ii	kon_sfuncs.s
+0x0ac	HP_RASTERPOS3D	__glkonim_RasterPos3d	6	d d d	kon_cfuncs.s
+0x0ac	HP_RASTERPOS3D	__glkonim_RasterPos3dv	6	d d d	kon_sfuncs.s
+0x0ad	HP_RASTERPOS3F	__glkonim_RasterPos3f	3	f f f	kon_cfuncs.s
+0x0ad	HP_RASTERPOS3F	__glkonim_RasterPos3fv	3	ii i	kon_sfuncs.s
+0x0ae	HP_RASTERPOS3I	__glkonim_RasterPos3i	3	i i i	kon_cfuncs.s
+0x0ae	HP_RASTERPOS3I	__glkonim_RasterPos3iv	3	ii i	kon_sfuncs.s
+0x0af	HP_RASTERPOS3S	__glkonim_RasterPos3s	3	i i i	kon_cfuncs.s
+0x0af	HP_RASTERPOS3S	__glkonim_RasterPos3sv	3	ii i	kon_sfuncs.s
+0x0b0	HP_RASTERPOS4D	__glkonim_RasterPos4d	8	d d d d	kon_cfuncs.s
+0x0b0	HP_RASTERPOS4D	__glkonim_RasterPos4dv	8	d d d d	kon_sfuncs.s
+0x0b1	HP_RASTERPOS4F	__glkonim_RasterPos4f	4	f f f f	kon_cfuncs.s
+0x0b1	HP_RASTERPOS4F	__glkonim_RasterPos4fv	4	ii ii	kon_sfuncs.s
+0x0b2	HP_RASTERPOS4I	__glkonim_RasterPos4i	4	i i i i	kon_cfuncs.s
+0x0b2	HP_RASTERPOS4I	__glkonim_RasterPos4iv	4	ii ii	kon_sfuncs.s
+0x0b3	HP_RASTERPOS4S	__glkonim_RasterPos4s	4	i i i i	kon_cfuncs.s
+0x0b3	HP_RASTERPOS4S	__glkonim_RasterPos4sv	4	ii ii	kon_sfuncs.s
+0x0b5	HP_COLORMATERIAL	__glkonim_ColorMaterial	2	i i	kon_cfuncs.s
+0x0bc	HP_LINESTIPPLE	__glkonim_LineStipple	2	i i	kon_cfuncs.s
+0x0c0	HP_SHADEMODEL	__glkonim_ShadeModel	1	i	kon_cfuncs.s
+0x0c1	HP_PASSTHROUGH	__glkonim_PassThrough	1	f	kon_cfuncs.s
+0x0c2	HP_POPNAME	__glkonim_PopName	1	i	kon_cfuncs.s
+0x0c3	HP_PUSHNAME	__glkonim_PushName	1	i	kon_cfuncs.s
+0x0c4	HP_DRAWBUFFER	__glkonim_DrawBuffer	1	i	kon_cfuncs.s
+0x0c5	HP_ACCUM	__glkonim_Accum	2	i f	kon_cfuncs.s
+0x0c7	HP_FLUSH	__glkonim_Flush	1	i	kon_modes.s
+0x0cf	HP_DEPTHRANGE	__glkonim_DepthRange	4	d d	kon_cfuncs.s
+0x0d1	HP_FRUSTUM	__glkonim_Frustum	12	d d d d d d	kon_cfuncs.s
+0x0d2	HP_LOADIDENTITY	__glkonim_LoadIdentity	1	i	kon_cfuncs.s
+0x0d3	HP_LOADMATRIXF	__glkonim_LoadMatrixf	16	f f f f f f f f f f f f f f f f	kon_cfuncs.s
+0x0d4	HP_LOADMATRIXD	__glkonim_LoadMatrixd	32	d d d d d d d d d d d d d d d d	kon_cfuncs.s
+0x0d5	HP_MULTMATRIXF	__glkonim_MultMatrixf	16	f f f f f f f f f f f f f f f f	kon_cfuncs.s
+0x0d6	HP_MULTMATRIXD	__glkonim_MultMatrixd	32	d d d d d d d d d d d d d d d d	kon_cfuncs.s
+0x0d7	HP_ORTHO	__glkonim_Ortho	12	d d d d d d	kon_cfuncs.s
+0x0d8	HP_POPMATRIX	__glkonim_PopMatrix	1	i	kon_cfuncs.s
+0x0d9	HP_PUSHMATRIX	__glkonim_PushMatrix	1	i	kon_cfuncs.s
+0x0da	HP_ROTATED	__glkonim_Rotated	8	d d d d	kon_cfuncs.s
+0x0db	HP_ROTATEF	__glkonim_Rotatef	4	f f f f	kon_cfuncs.s
+0x0dc	HP_SCALED	__glkonim_Scaled	6	d d d	kon_cfuncs.s
+0x0dd	HP_SCALEF	__glkonim_Scalef	3	f f f	kon_cfuncs.s
+0x0de	HP_TRANSLATED	__glkonim_Translated	6	d d d	kon_cfuncs.s
+0x0df	HP_TRANSLATEF	__glkonim_Translatef	3	f f f	kon_cfuncs.s
+0x0e4	HP_SETERROR	Error	1	i	kon_context.s
+0x0e4	HP_SETERROR	__invalid_enum	3	i i i	kon_sdlfuncs.s
+0x0e4	HP_SETERROR	__invalid_enum	3	i i i	kon_sfuncs.s
+0x0e6	HP_BLENDCOLOR	__glkonim_BlendColorEXT	4	f f f f	kon_cfuncs.s
+0x0e7	HP_BLENDEQUATION	__glkonim_BlendEquationEXT	1	i	kon_cfuncs.s
+0x0eb	HP_COLORTABLEPARAMETERFV	__glkonim_ColorTableParameterfvSGI	6	i i f f f f	kon_cfuncs.s
+0x0eb	HP_COLORTABLEPARAMETERFV	__glkonim_ColorTableParameterivSGI	6	i i f f f f	kon_cfuncs.s
+0x0ed	HP_LOAD_POST_TEX_SCALE_BIAS	loadPostTextureScaleBias	4	i i i i	kon_texture_api.s
+0x103	HP_RESETHISTOGRAM	__glkonim_ResetHistogramEXT	1	i	kon_cfuncs.s
+0x108	HP_RESETMINMAX	__glkonim_ResetMinmaxEXT	1	i	kon_cfuncs.s
+0x10c	HP_INITNAMES	__glkonim_InitNames	1	i	kon_cfuncs.s
+0x10d	HP_LOADNAME	__glkonim_LoadName	1	i	kon_cfuncs.s
+0x10e	HP_SET_CURRENT_RASTER	setCurrentRaster	15	f f f f f f f f f f f f f f f	kon_attrib.s
+0x117	HP_SAMPLEPATTERN	__glkonim_SamplePatternSGIS	1	i	kon_cfuncs.s
+0x11b	HP_POLYGONOFFSETEXT	__glkonim_PolygonOffsetEXT	2	f f	kon_cfuncs.s
+0x167	HP_USERCOPYLIST_LDMA	__glSdramPushIn	4	i i i i	kon_dlist.s
+0x168	HP_POLYGONOFFSET	__glkonim_PolygonOffset	2	f f	kon_cfuncs.s
+0x16d	HP_EXECLIST_LDMA	__glKonExecuteLDMA	2	i i	kon_dlist.s
+0x16f	HP_MOVELIST_LDMA	__glSdramMemmove	3	i i i	kon_dlist.s
+0x178	HP_TEXBIND_ID	updateTexBindID	1	i	kon_texture_api.s
+0x180	HP_VARRAY_SET_CMDS	update_cmpnd_cmd	1	i	kon_vertarray.s
+0x1a6	HP_VIDEO_CMD	ChannelRect	10	i i i i i i i i i i	kon_context.s
+0x1a6	HP_VIDEO_CMD	ChannelRectSync	4	i i i i	kon_context.s
+0x1aa	HP_BIND_2D_CLIPMAP_TEXTURE	setClipmapRegisters	8	i i i i i f f f	kon_texture_api.s
+0x1b9	HP_START_INSTRUMENTS	__glkonim_StartInstrumentsSGIX	1	i	kon_cfuncs.s
+0x1ba	HP_STOP_INSTRUMENTS	__glkonim_StopInstrumentsSGIX	1	i	kon_cfuncs.s
+0x1bd	HP_REFERENCE_PLANE	__glkonim_ReferencePlaneSGIX	8	d d d d	kon_cfuncs.s
+0x1c3	HP_LOAD_IDENTITY_DEFORMATION	__glkonim_LoadIdentityDeformationMapSGIX	1	i	kon_deform.s
+0x1cc	HP_FLUSH_RASTER	__glkonim_FlushRasterSGIX	1	i	kon_cfuncs.s
+0x1cd	HP_READ_INSTRUMENTS	__glkonim_ReadInstrumentsSGIX	1	i	kon_cfuncs.s

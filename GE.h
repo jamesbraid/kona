@@ -28,10 +28,20 @@
  * reads it. Example: __glkonim_Color3f (libglcore/asm/kon/kon_cfuncs.s,
  * 0x0da65200) is "sw 99 -> 0x4000; swc1 r,g,b -> 0x4000".
  *
- * INFERRED: the mapping behind 0x4000 is a write-only FIFO port set up by
- * the kernel; how a 64-bit store is split into FIFO words (high word
- * first, by MIPS big-endian order) is not shown by the client and is
- * UNKNOWN until a capture or the receiving microcode settles it.
+ * INFERRED: 0x4000 is the start of the per-thread graphics region whose
+ * first 16 KB is the FIFO (HIP.h, from the 6.5.5 kona.h).
+ *
+ * 64-bit stores, ESTABLISHED as the client's contract: an sd or sdc1 to
+ * 0x4000 delivers two FIFO words, the high (first in memory) word first.
+ * libGLcore relies on it in kon_sfuncs.s: __glkonim_RasterPos2sv
+ * (0x0da79618) builds (x << 32) | y and sends token 0xab plus one sd,
+ * where __glkonim_RasterPos2s sends token 0xab, sw x, sw y; the vector
+ * forms of Color, Normal, TexCoord, Vertex and RasterPos likewise send
+ * two components per sd straight from memory. Stores do not need to be
+ * paired to 8-byte stream positions: Color3fv sends sw token, sd r|g, sw b.
+ * So the FIFO is a stream of 32-bit words, and a 64-bit store is two
+ * consecutive words in big-endian order. How the host interface widens or
+ * narrows the Crosstalk write is UNKNOWN but invisible to the stream.
  */
 #define KONA_USER_FIFO_VA         0x4000
 
@@ -65,10 +75,34 @@
  *   bad mode       -> KONA_HP_SETERROR, 0x500 (GL_INVALID_ENUM);
  *   glEnd()        -> KONA_HP_END, then one 0 word.
  *
+ * ESTABLISHED: a command with no arguments still sends one zero payload
+ * word (End, PushMatrix 0xd9, LoadIdentity 0xd2, Flush 0xc7).
+ *
+ * Fixed payloads, ESTABLISHED: libglcore/payloads.tsv (written by
+ * scripts/extract_payloads.py) lists 176 straight-line emitters covering 118
+ * tokens with the word count and type of every payload item. Highlights:
+ *   COLOR3F/NORMAL3F/VERTEX3F/TEXCOORD3F  3 floats; the 4-component forms 4
+ *   *D forms                              the same count of doubles (2 words each)
+ *   *I and *S forms                       one word per component; shorts
+ *                                         and unsigned bytes widened to a word
+ *   LOADMATRIXF/MULTMATRIXF               16 floats; *D: 16 doubles
+ *   ROTATEF 4 floats, SCALEF and TRANSLATEF 3 floats
+ *   ORTHO, FRUSTUM                        6 doubles; DEPTHRANGE 2 doubles
+ *   LIGHTF, MATERIALF                     2 ints (light/face, pname) + 4 floats
+ *   LIGHTMODELF                           1 int + 4 floats
+ *   TEXGENF                               2 ints + 1 float + 6 ints
+ *   COLORMASK 4 ints; BLENDCOLOR 4 floats; POLYGONOFFSET 2 floats
+ *   ACCUM                                 1 int (op) + 1 float (value)
+ *   SET_CURRENT_RASTER                    15 floats
+ *   VIDEO_CMD                             4 or 10 ints
+ * A vector GL entry point sends the same words as its scalar form.
+ * GL calls that convert (TexGend, TexGeni, Materiali) send the float
+ * token; Indexub sends INDEXS.
+ *
  * INFERRED: variable-length commands carry their own counts in the
- * payload, since the token word has no room for one. The receiving side
- * must therefore know each token's payload grammar; no length table has
- * been found in libGLcore or kpm yet (UNKNOWN).
+ * payload, since the token word has no room for one. Their grammars are
+ * not in payloads.tsv because their emitters branch (UNKNOWN unless
+ * stated elsewhere, e.g. DRAWTEXELS in RM.h).
  */
 #define KONA_HP_BEGIN(glmode)     (KONA_HP_BEGIN_POINTS + (glmode))
 
