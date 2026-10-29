@@ -828,6 +828,2299 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
   ValidateGC for the 16-bit layer: the same sequence with the 16-bit calls `cfb16ReduceRasterOp`, `cfb16MatchCommon`, `cfb16CopyRotatePixmap` and `cfb16PadPixmap`, after `miComputeCompositeClip`.
 
 
+## konal.so functions below the split
+
+The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/konal.so` (6.5.30m; inferred, see the refused-tokens section of [arm1_firmware.md](../ucode/arm1_firmware.md)). Each entry below is the `konal.so` build of a function that kona.so has below 0x4cdd80, read from konal.so's own disassembly (extracted with `scripts/extract_kona_ddx.py`) and compared word by word with the kona.so build. konal.so is linked at a different base, so its addresses start at 0x13a6e30 and the global-pointer constants, table slots and addresses of static data differ throughout. Of the 379 functions below the split whose bytes differ from kona.so, 338 have the same opcode, register and branch fields in every word: only 16-bit immediates change, and each entry says how many words and of what kind. Of the other 41, 40 are `kon*` pipe writers and loaders, where konal.so frames commands differently, and one is `rrmProcessRequestQueue`, whose only change is a call made through a register. It stores the token number as a word at the FIFO pointer (screen private +8) at offset 0, followed by the payload words, also at offset 0, where kona.so stores the first payload word 32 times the token above the pointer. konal.so has no `KonSeqData*_ip19` calls, so bulk payloads are stored word by word inline, and where kona.so stores `HP_WG_FLUSH_1` konal.so reads a word through the pointer at screen private +16. A further 26 functions below the split have identical bytes in both builds and are covered by the kona.so entries. Entries describe the function as read in konal.so, using the kona.so entry for the unchanged parts.
+
+### Video format files
+
+- `vfmtResolvePixelDepth` (konal.so, address 0x13a7040): **established.** Turns the combination's
+  `pixelDepth` request into a depth the target can hold. It takes (record, target) and counts the allocated
+  pixels: the width rounded up to a multiple of 160, times the height. It divides raster boards x 5 x 2^22 by
+  that count (halved for class 2; class 3 uses 2^27). It maps the requested depth (a jump on values 0-7) and
+  that quotient through thresholds at 64, 32 and 16, then 8 and 4, to a depth code, or 0 when nothing fits.
+  Only the layout-dependent immediates differ from kona.so, namely 1 load offset, 2 low address halves and 1
+  high address half (earliest at +0x8), and the other 259 of 263 words are bit-identical, and its prologue
+  builds the global pointer from 0x178c00 where kona.so uses 0x16c318.
+- `vfmtActualHWToKonaTarget` (konal.so, address 0x13a77f0): **established.** Fills a target description
+  from the installed pipe. It takes (pipe, target), starts from `vfmtMinimalKonaTarget` and opens the
+  graphics device. It asks the board count (ioctl 101, "GFX_GETNUM_BOARDS") and the board information (ioctl
+  102, 1952 bytes), and refuses a board whose name is not `KONA`. It reads the configuration record at +40 of
+  that information, the `kona_config` of the 6.5.5 sys/kona_if.h header. Its `bdset` becomes the class: 0
+  stays 0, 2 stays 2, 6 becomes 3, others 1. It copies `numrms`, which must be 1, 2 or 4 (any other value
+  prints a message and becomes 1). It copies `pixeldepth` (0-3) and the display generator's channel count,
+  revision, option type and option revision. It returns 1, or 0 after printing why the pipe could not be
+  read. Same code as kona.so with 59 words re-addressed for this module (26 load offsets, 27 low address
+  halves, 1 high address half and 5 store offsets, beginning at +0xc), nothing else in the 328 words changing
+  (gp offset 0x178450, kona.so 0x16bb68).
+- `vfmtIsKonaCombinationValidForTarget` (konal.so, address 0x13a7d10): **established.** Checks a
+  combination against a target, reporting through the message catalogue `IR_VIDEO`. It takes (record, target,
+  ...). Each channel's `PixelFormat` must be 0-4 ("Illegal Pixel Format"). Formats 0 and 4 count 32 data
+  bits, formats 1-3 count 42, and format 4 also marks the channel. `MaxTilesPerRequest` must be at least 1; a
+  class-2 target forces it to 4. Then the tile requests per line, the data bits and the fill cost per channel
+  go against the video bandwidth ("Video bandwidth exceeded"), and it prints each channel's frame rate, swap
+  rate and fields per swap. The instruction stream is word for word that of kona.so except for 30 load
+  offsets, 30 low address halves and 3 store offsets, 63 words in all (earliest at +0x10), with the gp offset
+  in the prologue at 0x177f30 here against 0x16b648 there.
+- `vfmtIsKonaCombinationValidForActualHW` (konal.so, address 0x13a8770): **established.** Builds the target
+  from the pipe with `vfmtActualHWToKonaTarget` and calls `vfmtIsKonaCombinationValidForTarget`. It caches
+  one target: it rebuilds it only when the pipe number differs from the last call's (the cached pipe starts
+  at -1). Same code as kona.so with 9 words re-addressed for this module (5 load offsets, 3 low address
+  halves and 1 store offset, starting at +0x10), nothing else in the 37 words changing, with the gp offset in
+  the prologue at 0x1774d0 here against 0x16abe8 there.
+- `vfmtSwapRateCloseEnough` (konal.so, address 0x13a8810): **established.** Compares two swap rates: it is
+  true when |a - b| / a is below 0.01. The Combiner user guide calls swap rates within about 2 percent equal;
+  the code's bound is 1 percent. Relocation is the entire difference from kona.so, since 1 load offset and 1
+  low address half change (the first at +0xc) and every other bit of the 36-word routine stays the same (gp
+  offset 0x177430, kona.so 0x16ab48).
+- `vfmtSyncFormatFrameRatesCompatible` (konal.so, address 0x13a88a0): **established.** Decides whether a
+  channel can lock to a sync format's frame rate. It is false when either rate is 0 or the larger is more
+  than 16 times the smaller. Otherwise it is true when the ratio is within 0.01 of a whole number (its
+  fractional part's distance from one half exceeds 0.49). The instruction stream is word for word that of
+  kona.so except for 4 load offsets and 1 low address half, 5 words in all (first seen at +0x10) (gp offset
+  0x1773a0, kona.so 0x16aab8).
+- `vfmtUpdateFormatInfoInCombination` (konal.so, address 0x13a8aa0): **established.** Refreshes the format
+  copies inside a combination from the `.vfo` files. It takes (record); for each existing channel (+712 set)
+  it finds the format named at channel +340 with `vfmtFindKonaFormatFile` and loads it through 0x13b1140. It
+  stores word +260 of the loaded format at channel +256 (**inferred** its date stamp) and copies the
+  2020-byte format record into the channel at +716. A missing file sets error code 953 and prints "failed to
+  load format %s!", returning 0; otherwise it returns 1. Beyond 3 load offsets, 3 low address halves and 1
+  store offset (starting at +0x10), which make up 7 of its 98 words, nothing separates this build from
+  kona.so, with the gp offset in the prologue at 0x1771a0 here against 0x16a8b8 there.
+- `vfmtFindFormatFile` (konal.so, address 0x13aaf50): **established.** Finds a video format (`.vfo`) file
+  by name and returns 0 when it exists. It takes (out, name, directory) and appends `.vfo` when missing; the
+  root is `GL_GRROOT` or empty. A bare name becomes root + directory + "/" + name; a name with a directory
+  part is used as given when that part equals root + directory, and otherwise returns 3 without looking. It
+  stats the result into a static buffer and returns 0 when found; else it tries `$VFOPATH/name` and returns 0
+  when that exists, or puts the name back in out and returns 1. Beyond 16 load offsets and 11 low address
+  halves (earliest at +0x10), which make up 27 of its 148 words, nothing separates this build from kona.so
+  (gp offset 0x174cf0, kona.so 0x168408).
+- `vfmtFindKonaFormatFile` (konal.so, address 0x13ab1a0): **established.** Looks for an InfiniteReality
+  format through `vfmtFindFormatFile`. The directory it passes is `/usr/gfx/ucode/KONA/dg4/vfo`. Checked
+  against kona.so word by word, 16 of 19 words are bit-identical and the 3 others differ only in their 16-bit
+  immediate (2 load offsets and 1 low address half, starting at +0x10), the prologue's gp constant reading
+  0x174aa0 instead of 0x1681b8.
+- `vfmtFindCmpFormatFile` (konal.so, address 0x13ab1f0): **established.** Searches the two compositor
+  format directories, both through `vfmtFindFormatFile`. It tries `/usr/gfx/ucode/VOYAGER/vfo` first. Then,
+  when the first search fails, `/usr/gfx/ucode/STINGRAY/vfo`. Relocation is the entire difference from
+  kona.so, since 4 load offsets and 1 low address half change (beginning at +0x10) and every other bit of the
+  39-word routine stays the same, the prologue's gp constant reading 0x174a50 instead of 0x168168.
+- `vfmtFindOdyFormatFile` (konal.so, address 0x13ab290): **established.** Serves the Odyssey board's
+  formats through `vfmtFindFormatFile`. It passes the directory `/usr/gfx/ucode/ODSY/vof`, spelled so. All 19
+  words of the body match kona.so apart from 3 whose 16-bit immediate differs (2 load offsets and 1 low
+  address half, first seen at +0x10), so opcodes, registers and branch offsets are identical, and its
+  prologue builds the global pointer from 0x1749b0 where kona.so uses 0x1680c8.
+- `vfmtFindSG2FormatFile` (konal.so, address 0x13ab2e0): **established.** Covers the SG2 video option
+  through `vfmtFindFormatFile`. It seeks those formats in `/var/X11/Xvc/SG2_formats`. The instruction stream
+  is word for word that of kona.so except for 2 load offsets and 1 low address half, 3 words in all (the
+  first at +0x10), with the gp offset in the prologue at 0x174960 here against 0x168078 there.
+- `vfmtFindKonaCombinationFile` (konal.so, address 0x13ab330): **established.** Finds a combination file
+  for this board. It takes (out, name) and returns 1 with the name as given when that file exists. Else it
+  returns 1 with root + `/usr/gfx/ucode/KONA/dg4/cmb/` + name when that exists. Else it returns 0 with the
+  name copied back to out. Only the layout-dependent immediates differ from kona.so, namely 11 load offsets
+  and 6 low address halves (beginning at +0x10), and the other 60 of 77 words are bit-identical, the
+  prologue's gp constant reading 0x174910 instead of 0x168028.
+- `vfmtFindCmpCombinationFile` (konal.so, address 0x13ab470): **established.** Finds a compositor
+  combination file and returns 0 when one exists. It takes (out, name) and tries the name first. Then the
+  `VOYAGER/cmb` directory. Then the `STINGRAY/cmb` directory. Then `/usr/diags/compositor/data`. Then the
+  whole list again with `.cmb` appended when the name lacks it. When nothing is found it returns 1 with the
+  `STINGRAY/cmb` path, or the name itself when it has a directory part. The three directory attempts pass a
+  length of 4 to `snprintf`, so they build a three-character path and cannot match (**established** from the
+  argument; **inferred** to be a defect). All 154 words of the body match kona.so apart from 38 whose 16-bit
+  immediate differs (24 load offsets, 13 low address halves and 1 high address half, earliest at +0xc), so
+  opcodes, registers and branch offsets are identical, and its prologue builds the global pointer from
+  0x1747d0 where kona.so uses 0x167ee8.
+- `vfmtGetLastKonaFileStat` (konal.so, address 0x13ab6e0): **established.** Hands back the last file status
+  the find functions took: it copies 19 doublewords (152 bytes, a `stat` result) from their static buffer to
+  the caller's and returns 1. Compared with kona.so only immediates move, 4 of the 33 words (1 load offset, 2
+  low address halves and 1 high address half, first seen at +0x8) since this module's data and table layout
+  differ (gp offset 0x174560, kona.so 0x167c78).
+- `vfmtReadKonaCombination` (konal.so, address 0x13acd70): **established.** Loads a combination file into
+  the 41636-byte record the display set-up uses. It takes (name, record), clears the record, finds the file
+  with `vfmtFindKonaCombinationFile` and opens it as a symbol database. It reads `MajorVersion` and
+  `MinorVersion`; the comparison it computes from them is never used, so any version loads. The 18 global
+  fields come next, through a static helper. Examples: `textport` at +256, `managedSize` at +260,
+  `pixelDepth` at +268. More: `syncSource` at +272, `usingEncoderOutput` at +552,
+  `allocatedSize` at +588. Then up to 15 channel records of 2736 bytes at +596, through a static helper
+  (fields `ch%1d` + name, offsets in dg.md). `FieldLayout` and `VbobSyncSource` may be absent. It returns 0,
+  1 when the file cannot be opened, 2 on a missing field. The instruction stream is word for word that of
+  kona.so except for 8 load offsets, 5 low address halves and 1 high address half, 14 words in all (earliest
+  at +0xc), and its prologue builds the global pointer from 0x172ed0 where kona.so uses 0x1665e8.
+- `vfmtWriteKonaCombination` (konal.so, address 0x13adfc0): **established.** The inverse of the reader: it
+  writes a combination record out as a symbol database. It takes (name, record), resolves the path with
+  `vfmtFindKonaCombinationFile` and opens a new database described as "Kona video format combination file".
+  It writes the two version fields, the same 18 globals and each existing channel through a static helper,
+  and closes it. Only the layout-dependent immediates differ from kona.so, namely 82 load offsets, 42 low
+  address halves and 1 high address half (earliest at +0xc), and the other 451 of 576 words are
+  bit-identical, with the gp offset in the prologue at 0x171c80 here against 0x165398 there.
+- `vfmtReadKonaVideoFormat` (konal.so, address 0x13b1140): **established.** Loads a Kona video format file
+  into a caller's record: finds the file with `vfmtFindKonaFormatFile`, opens it with `SDBreadOpenDatabase`,
+  copies the 64-byte format name, takes its modification time via `vfmtGetLastKonaFileStat`, then runs seven
+  section decoders in turn. Error text "failed to stat" or "failed to open" is recorded with source line
+  numbers 646, 649 and 662. The instruction stream is word for word that of kona.so except for 9 load
+  offsets, 14 low address halves, 1 high address half and 3 store offsets, 27 words in all (first seen at
+  +0xc), and its prologue builds the global pointer from 0x16eb00 where kona.so uses 0x162218.
+
+### Symbol database reader and writer
+
+- `SDBaddNewArraySymbol` (konal.so, address 0x13b1704): **established.** Adds an array-valued symbol to a
+  database being written. It forwards its arguments unchanged to the shared adder, so the caller's element
+  count reaches the table entry at +4. The adder doubles the table when full (starting at 512 entries),
+  copies the 32-byte name to +12, records the stream position at +8 and writes the values with
+  `xdr_typedData`. All 14 words of the body match kona.so apart from 3 whose 16-bit immediate differs (2 low
+  address halves and 1 high address half, beginning at +0x8), so opcodes, registers and branch offsets are
+  identical, with the gp offset in the prologue at 0x16e53c here against 0x161c54 there.
+- `SDBaddNewScalarSymbol` (konal.so, address 0x13b173c): **established.** Adds a single-valued symbol to a
+  database being written. It shifts its trailing arguments up one place and passes an element count of zero
+  to the shared adder, which `SDBaddNewArraySymbol` also calls; a scalar entry is therefore recorded with
+  count 0 in the same 44-byte table record. The instruction stream is word for word that of kona.so except
+  for 2 low address halves and 1 high address half, 3 words in all (the first at +0x8) (gp offset 0x16e504,
+  kona.so 0x161c1c).
+- `SDBcloseNewDatabase` (konal.so, address 0x13b177c): **established.** Finishes writing a symbol database:
+  sorts the 44-byte table entries with `qsort` and `compareSTEName`, writes the table with
+  `xdr_array`, patches the offsets into the header, writes the header with `xdr_SDBfileHeader`, then frees
+  the table, closes the stream and the file. Only the layout-dependent immediates differ from kona.so, namely
+  12 load offsets, 1 low address half and 1 high address half (first seen at +0x8), and the other 87 of 101
+  words are bit-identical, and its prologue builds the global pointer from 0x16e4c4 where kona.so uses
+  0x161bdc.
+- `SDBopenNewDatabase` (konal.so, address 0x13b1910): **established.** Opens a symbol database for writing.
+  A file name of "-" compared with `strcmp` selects standard output (the second `__iob` entry); any other
+  name goes through `fopen` with mode "w". It then allocates a 20-byte stream record and a 24-byte handle,
+  sets up an XDR encode stream with `xdrstdio_create`, and stores errno 2 or 12 on a bad name or failed
+  allocation, closing the handle through `SDBcloseNewDatabase` if setup fails. Compared with kona.so only
+  immediates move, 19 of the 89 words (14 load offsets, 4 low address halves and 1 high address half, the
+  first at +0x4) since this module's data and table layout differ, with the gp offset in the prologue at
+  0x16e330 here against 0x161a48 there.
+- `SDBsetHeader` (konal.so, address 0x13b1a74): **established.** Stores the version pair (two 16-bit halves
+  at +8 and +10 of the header, zero if none is supplied) and a description string of at most 100 bytes at
+  +12, copied with `strncpy`. The static header-allocation routine calls it when a new database is created.
+  All 30 words of the body match kona.so apart from 4 whose 16-bit immediate differs (1 load offset, 2 low
+  address halves and 1 high address half, earliest at +0x8), so opcodes, registers and branch offsets are
+  identical, and its prologue builds the global pointer from 0x16e1cc where kona.so uses 0x1618e4.
+- `SDBgetSymbolDataAddress` (konal.so, address 0x13b1ca4): **established.** Looks up a symbol with the
+  helper, which bsearches the 44-byte entries and seeks the XDR stream to the entry's data offset (errno 6
+  when absent), then returns the stream position through the position entry (+16) of the stream's operations
+  table. Same code as kona.so with 3 words re-addressed for this module (2 low address halves and 1 high
+  address half, first seen at +0x8), nothing else in the 26 words changing, with the gp offset in the
+  prologue at 0x16df9c here against 0x1616b4 there.
+- `SDBgetSymbolDatatype` (konal.so, address 0x13b1d0c): **established.** Returns the data type word of a
+  symbol's table entry: the name is looked up with the helper and the first word of the entry is read; it
+  returns 0 when the name is absent. Compared with kona.so only immediates move, 3 of the 22 words (2 low
+  address halves and 1 high address half, earliest at +0x8) since this module's data and table layout differ,
+  and its prologue builds the global pointer from 0x16df34 where kona.so uses 0x16164c.
+- `SDBgetSymbolElementCount` (konal.so, address 0x13b1d64): **established.** Reads the element count (the
+  word at +4) of a symbol's table entry, found with the lookup helper; returns 0 when the name is absent.
+  Compared with kona.so only immediates move, 3 of the 23 words (2 low address halves and 1 high address
+  half, starting at +0x8) since this module's data and table layout differ, and its prologue builds the
+  global pointer from 0x16dedc where kona.so uses 0x1615f4.
+- `SDBgetSymbolValueArray` (konal.so, address 0x13b1dc0): **established.** Fetches an array symbol's
+  values: a thin wrapper that calls the value reader, which finds the entry with the helper and decodes its
+  data with `xdr_typedData`. Beyond 2 low address halves and 1 high address half (the first at +0x8), which
+  make up 3 of its 14 words, nothing separates this build from kona.so (gp offset 0x16de80, kona.so
+  0x161598).
+- `SDBgetSymbolValueScalar` (konal.so, address 0x13b1df8): **established.** Fetches a scalar symbol's value
+  through the same reader as `SDBgetSymbolValueArray`; the reader looks up the entry and decodes it with
+  `xdr_typedData`, so the two wrappers differ only in their own return conventions. Compared with kona.so
+  only immediates move, 3 of the 14 words (2 low address halves and 1 high address half, starting at +0x8)
+  since this module's data and table layout differ, with the gp offset in the prologue at 0x16de48 here
+  against 0x161560 there.
+- `SDBcloseReadDatabase` (konal.so, address 0x13b1e30): **established.** Closes a database opened for
+  reading: frees the symbol table pointer at +172, runs the memory interface's destroy entries (+28 then
+  free), and closes the `FILE` with `fclose` when this handle opened it. Checked against kona.so word by
+  word, 39 of 46 words are bit-identical and the 7 others differ only in their 16-bit immediate (5 load
+  offsets, 1 low address half and 1 high address half, first seen at +0xc), with the gp offset in the
+  prologue at 0x16de10 here against 0x161528 there.
+- `SDBreadOpenDatabase` (konal.so, address 0x13b1ee8): **established.** Opens a symbol database for
+  reading. A name of "-" selects standard input, otherwise `fopen` with mode "r" is used. It allocates a
+  176-byte handle and a 24-byte stream record, builds a decode stream with `xdrstdio_create`, reads the
+  header with `xdr_SDBfileHeader`, validates it with `strncmp` and loads the table. Errors set errno 12 (no
+  memory) or 20 (bad file) and close the handle through `SDBcloseReadDatabase`. The instruction stream is
+  word for word that of kona.so except for 19 load offsets, 4 low address halves and 1 high address half, 24
+  words in all (beginning at +0x0) (gp offset 0x16dd58, kona.so 0x161470).
+- `SDBprocessOneUserMethod` (konal.so, address 0x13b20e8): **established.** Runs one registered user method
+  over a symbol's values: finds the symbol with the helper, checks that the symbol's type matches the
+  method's, maps it with `mapTypeToXDRPROC`, and calls the method's function pointer (+24) once per element.
+  Sets errno 22 for a size mismatch. Checked against kona.so word by word, 98 of 105 words are bit-identical
+  and the 7 others differ only in their 16-bit immediate (3 load offsets, 3 low address halves and 1 high
+  address half, first seen at +0x8), the prologue's gp constant reading 0x16db58 instead of 0x161270.
+- `compareSTEName` (konal.so, address 0x13b228c): **established.** `qsort` and
+  `bsearch` comparison for symbol table entries: runs `strcmp` on the 32-byte name field that starts at +12
+  of each 44-byte entry. Same code as kona.so with 3 words re-addressed for this module (1 load offset, 1 low
+  address half and 1 high address half, first seen at +0x0), nothing else in the 14 words changing, with the
+  gp offset in the prologue at 0x16d9b4 here against 0x1610cc there.
+- `mapTypeToXDRPROC` (konal.so, address 0x13b22c4): **established.** Translates a symbol data type number
+  (0 to 20) into the matching XDR routine and element size: `xdr_int`, `xdr_u_short`, `xdr_float`,
+  `xdr_double`, `xdr_wrapstring`, `xdr_enum` and others. Asserts through
+  `__assert` with messages from sdbcommon.c when the type is not defined or the routine would be null.
+  Relocation is the entire difference from kona.so, since 32 load offsets, 10 low address halves and 1 high
+  address half change (earliest at +0x8) and every other bit of the 131-word routine stays the same, with the
+  gp offset in the prologue at 0x16d97c here against 0x161094 there.
+- `xdr_SDBelementIndex` (konal.so, address 0x13b2504): **established.** XDR routine for an element index
+  field: calls `xdr_u_long` on the 32-bit value. One of five small codecs that `xdr_SDBfileHeader` and
+  `xdr_SDBsymbolTableEntry` compose. Only the layout-dependent immediates differ from kona.so, namely 1 load
+  offset, 1 low address half and 1 high address half (starting at +0x0), and the other 10 of 13 words are
+  bit-identical (gp offset 0x16d73c, kona.so 0x160e54).
+- `xdr_SDBfileOffset` (konal.so, address 0x13b2538): **established.** XDR routine for a file offset field
+  in the symbol database, forwarding to `xdr_u_long`. Used for the table and data offsets in the header and
+  the data offset in each table entry. All 13 words of the body match kona.so apart from 3 whose 16-bit
+  immediate differs (1 load offset, 1 low address half and 1 high address half, first seen at +0x0), so
+  opcodes, registers and branch offsets are identical, and its prologue builds the global pointer from
+  0x16d708 where kona.so uses 0x160e20.
+- `xdr_typedData` (konal.so, address 0x13b256c): **established.** XDR routine for a symbol's value whose
+  type is given as an argument: picks the codec with `mapTypeToXDRPROC`, then encodes or decodes the scalar
+  directly, or a counted array with `xdr_array`. For string types it uses `xdr_wrapstring` and `strlen`,
+  `strcpy` to size and copy the buffer. Beyond 8 load offsets, 1 low address half and 1 high address half
+  (the first at +0x2c), which make up 10 of its 85 words, nothing separates this build from kona.so.
+- `xdr_SDBfileHeader` (konal.so, address 0x13b26c0): **established.** XDR routine for the 124-byte database
+  header: a 100-byte magic string through `xdr_bytes`, two version numbers via `xdr_SDBversionNumber`, a
+  second 100-byte string, the element index and two file offsets, then a ten-entry `xdr_array` of 4-byte
+  counters. Relocation is the entire difference from kona.so, since 10 load offsets, 1 low address half and 1
+  high address half change (the first at +0x4) and every other bit of the 80-word routine stays the same (gp
+  offset 0x16d580, kona.so 0x160c98).
+- `xdr_SDBdataType` (konal.so, address 0x13b2800): **established.** XDR codec for the data type field of a
+  symbol entry, an enumeration, so it is `xdr_enum` on the 32-bit word. Called by `xdr_SDBsymbolTableEntry`.
+  Checked against kona.so word by word, 10 of 13 words are bit-identical and the 3 others differ only in
+  their 16-bit immediate (1 load offset, 1 low address half and 1 high address half, beginning at +0x0) (gp
+  offset 0x16d440, kona.so 0x160b58).
+- `xdr_SDBsymbolName` (konal.so, address 0x13b2834): **established.** XDR codec for a symbol name:
+  `xdr_string` with a maximum of 31 characters, then forces the byte at index 31 to NUL. A null or empty
+  destination fails with return 0. Relocation is the entire difference from kona.so, since 1 load offset, 1
+  low address half and 1 high address half change (beginning at +0x0) and every other bit of the 28-word
+  routine stays the same, with the gp offset in the prologue at 0x16d40c here against 0x160b24 there.
+- `xdr_SDBsymbolTableEntry` (konal.so, address 0x13b28a4): **established.** XDR codec for one 44-byte table
+  entry: the 32-byte name at +12 via `xdr_SDBsymbolName`, the type, the element index at +4 and the file
+  offset at +8; stops with failure at the first field that fails. Relocation is the entire difference from
+  kona.so, since 4 load offsets, 1 low address half and 1 high address half change (starting at +0x4) and
+  every other bit of the 50-word routine stays the same, with the gp offset in the prologue at 0x16d39c here
+  against 0x160ab4 there.
+- `xdr_SDBversionNumber` (konal.so, address 0x13b296c): **established.** XDR codec for a version number:
+  two `xdr_u_short` calls, major then minor (the second at +2). Used twice by `xdr_SDBfileHeader`. Compared
+  with kona.so only immediates move, 4 of the 26 words (2 load offsets, 1 low address half and 1 high address
+  half, the first at +0x0) since this module's data and table layout differ, with the gp offset in the
+  prologue at 0x16d2d4 here against 0x1609ec there.
+- `SDBsetupMemoryInterface` (konal.so, address 0x13b29d4): **established.** Installs four function pointers
+  (16 bytes) into the memory-interface table the symbol database code calls instead of the C library: a hook
+  first, then allocate (called with a count and a size), reallocate and free, one word each in that order.
+  All 9 words of the body match kona.so apart from 3 whose 16-bit immediate differs (1 load offset, 1 low
+  address half and 1 high address half, the first at +0x0), so opcodes, registers and branch offsets are
+  identical, with the gp offset in the prologue at 0x16d26c here against 0x160984 there.
+
+### Kona layer
+
+- `konStippledCFillRects` (konal.so, address 0x13b84b0): **established.** Stippled rectangle fill: loads
+  the colour state with `kon_loadGC`, puts the stipple in pipe memory through `kon_loadStipple`, sends
+  `HP_X_LOADPOS`, `HP_X_LOADCLIP` and the box batches, and drops the stipple with `kon_unloadStipple`. It
+  prints "konSolidFillRects" in its trace, a copy of the solid routine's string. Every command
+  (`HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_BOX6` and 6 others) begins here with a word holding the token
+  number, stored at offset 0 of the saved FIFO pointer from +0xa4, in place of kona.so's store at the pointer
+  plus 32 times the token, and its payload words follow at offset 0, while the burst-copy calls of kona.so
+  (`KonSeqData11_ip19`, `KonSeqData9_ip19`, `KonSeqData7_ip19` and 2 others) become unrolled word stores,
+  which accounts for most of the growth from 964 to 1576 bytes, and 30% of its instructions line up with
+  kona.so after address normalisation, 50% once register numbers are ignored in a routine of 1576 bytes
+  against 964.
+- `konCopyClip` (konal.so, address 0x13b8c40): **established.** Wrapper for the CopyClip entry (+24) of the
+  context function table, built exactly like `konChangeGC`: swap in the saved original table from private
+  +164, call the original, restore the module's table. The private record comes from the context's private
+  array at +76 indexed by `konScreenPrivateIndex`. All 40 words of the body match kona.so apart from 4 whose
+  16-bit immediate differs (2 load offsets and 2 low address halves, beginning at +0x10), so opcodes,
+  registers and branch offsets are identical, and its prologue builds the global pointer from 0x167000 where
+  kona.so uses 0x15a978.
+- `kon_loadNfbBitmapGC` (konal.so, address 0x13b90c0): **established.** Loads the state for a bitmap draw:
+  after an `ErrorF` trace it emits `HP_X_LOADGC` and `HP_X_PIX_SETUP`. The routine builds its words with the
+  constants 0xfff000 and 0xffffff; it is the one the solid poly-text and stipple image paths use before
+  sending pixel data. Every command (`HP_X_LOADGC` and `HP_X_PIX_SETUP`) begins here with a word holding the
+  token number, stored at offset 0 of the saved FIFO pointer from +0xa74, in place of kona.so's store at the
+  pointer plus 32 times the token, and its payload words follow at offset 0, with 91% of the instructions
+  unchanged from kona.so once addresses are normalised, 99% once register numbers are ignored and the size
+  2944 bytes against 2928.
+- `konImageGlyphBltTE3` (konal.so, address 0x13bc7d0): **established.** Image-text blit for
+  terminal-emulator fonts three pixels wide: loads state with `kon_loadImgRectGC` and `kon_loadImgBitmapGC`,
+  sends `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`, a background
+  `HP_X_BOX`, then glyph bitmaps by `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and
+  `HP_X_PIX_FINISH`; falls back to `nfbImageGlyphBlt`. konal.so writes its 8 token stores (`HP_X_LOADPOS`,
+  `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR` and 4 others) as the token number in a word at offset 0 of the FIFO
+  pointer saved in the frame (first at +0x448), followed by the payload words at that offset, where kona.so
+  addresses the command at the pointer plus 32 times the token, with 30% of the instructions unchanged from
+  kona.so once addresses are normalised, 95% once register numbers are ignored and the size 5864 bytes
+  against 5800.
+- `konImageGlyphBltTE6` (konal.so, address 0x13be5d0): **established.** Six-pixel-wide terminal-emulator
+  image-text blit. It prepares the pipe with `kon_loadImgRectGC` and `kon_loadImgBitmapGC`, sends the clip
+  and scissor, the cell background with `HP_X_BOX` and the glyph bits with `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE`
+  and `HP_X_PIX_FINISH`; unsupported cases go to `nfbImageGlyphBlt`. Every command (`HP_X_LOADPOS`,
+  `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR` and 4 others) begins here with a word holding the token number, stored
+  at offset 0 of the saved FIFO pointer from +0x448, in place of kona.so's store at the pointer plus 32 times
+  the token, and its payload words follow at offset 0, and 37% of its instructions line up with kona.so after
+  address normalisation, 95% once register numbers are ignored in a routine of 6060 bytes against 5996.
+- `konImageGlyphBltTE8` (konal.so, address 0x13bfd80): **established.** Eight-pixel version of the
+  terminal-emulator image-text blit, one byte of bitmap per glyph row: `kon_loadImgRectGC` and
+  `kon_loadImgBitmapGC` for state, `HP_X_LOADSCISSOR` and `HP_X_BOX` for the cell,
+  `HP_X_PIX_WRITE` for the rows, and `nfbImageGlyphBlt` as the fallback. Token framing is where this build
+  departs from kona.so, since the token words (`HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR` and 4
+  others) are written to offset 0 of the saved FIFO pointer, the first at +0x448, with the payload words
+  trailing them at offset 0, and 38% of its instructions line up with kona.so after address normalisation,
+  95% once register numbers are ignored in a routine of 4904 bytes against 4840.
+- `konStereoPolySegment` (konal.so, address 0x13c10b0): **established.** Stereo wrapper for the
+  segment-drawing slot (+28) of the context operations table. It makes a private copy of the segment list
+  with `Xalloc`, runs the saved plain operation once per eye on a draw buffer taken from private +96 and then
+  +100, and releases the copy at the end. Before each call it moves the drawable's y position and the private
+  y offset by the eye offset at screen +226 and revalidates the context through `konValidateWindowGC` with
+  mask 8192. No pipe register is written here. Checked against kona.so word by word, 213 of 222 words are
+  bit-identical and the 9 others differ only in their 16-bit immediate (7 load offsets, 1 low address half
+  and 1 high address half, beginning at +0xc) (gp offset 0x15eb90, kona.so 0x1525d8).
+- `konDisplayCursor` (konal.so, address 0x13c1430): **established.** Selects the cursor image: for the
+  crosshair it sets the current slot (screen +112) to -1 and sends `KONA_SELECT_CURSOR` (10005) with mode 1,
+  address 9884 and hot spot 32, 32; for a glyph cursor it loads the image into a cache slot if needed
+  (`X_LOADCURSOR`, `X_LOADCURSORCOLOR`) and sends mode 2 with address slot x 260. A failed ioctl is reported
+  with `ErrorF` and `perror`. Checked against kona.so word by word, 174 of 195 words are bit-identical and
+  the 21 others differ only in their 16-bit immediate (10 load offsets, 10 low address halves and 1 high
+  address half, first seen at +0xc), with the gp offset in the prologue at 0x15e810 here against 0x152258
+  there. Its `perror` prefix string is "konal" where kona.so prints "kona".
+- `konValidateWindowPriv` (konal.so, address 0x13c7bd0): **established.** Refreshes a window's private
+  data: it takes the window's visual (from the optional record at +120, or through `FindWindowWithOptional`
+  when there is none), indexes the screen's visual array (entries of 20 bytes) and copies that entry's field
+  at +8 into the window private at +20, then stores the address of a module table in the private's first
+  word. Relocation is the entire difference from kona.so, since 3 load offsets, 1 low address half and 1 high
+  address half change (beginning at +0xc) and every other bit of the 57-word routine stays the same, with the
+  gp offset in the prologue at 0x158070 here against 0x14bab8 there.
+- `kon_loadAccelGC` (konal.so, address 0x13c9500): **established.** Sends `HP_X_LOADPOS` and then the
+  context state through `HP_X_LOADGC` for the accelerated tiled and span paths. The position words come from
+  the four halfword fields at +8 to +14 of the screen record and the GC words from the context's private
+  record (fields at +4 to +80). It makes no call. The command set matches kona.so token for token
+  (`HP_X_LOADPOS` and `HP_X_LOADGC`), but every token travels as data at offset 0 of the pointer kept in a
+  stack slot (first at +0x44, 2 token stores in all) rather than as part of a store address, and 76% of its
+  instructions line up with kona.so after address normalisation, 95% once register numbers are ignored in a
+  routine of 376 bytes against 360.
+- `konFillSpansStippledC` (konal.so, address 0x13c9700): **established.** Stippled version of the span
+  fill: `kon_loadGC` and `kon_loadStipple` set the colour and stipple, `miFindMaxBand` and
+  `miClipSpans` clip the spans, and `HP_X_SPANS6`, `HP_X_SPANS2` and
+  `HP_X_SPANS` carry them; the stipple is released by `kon_unloadStipple`. Every command (`HP_X_LOADPOS`,
+  `HP_X_LOADCLIP`, `HP_X_SPANS6` and 2 others) begins here with a word holding the token number, stored at
+  offset 0 of the saved FIFO pointer from +0x184, in place of kona.so's store at the pointer plus 32 times
+  the token, and its payload words follow at offset 0, and no `KonSeqData` helper is called, the copies
+  kona.so makes through `KonSeqData6_ip19` being written out as individual stores at offset 0, and 54% of its
+  instructions line up with kona.so after address normalisation, 83% once register numbers are ignored in a
+  routine of 1432 bytes against 1216.
+- `konQueryHyperpipeNetwork` (konal.so, address 0x13cb3a0): **established.** Answers the hyperpipe network
+  query: sends ioctl 10019 (`KONA_GET_NCLOPS_TOPOLOGY`), then for each entry of the returned list sends the
+  generic ioctl 102 (`GFX_GETBOARDINFO`) with a 40-byte block and copies the returned name with `strcpy` into
+  a per-pipe table in the module's data. Failures are reported with `perror` and the count is set to zero.
+  Checked against kona.so word by word, 124 of 143 words are bit-identical and the 19 others differ only in
+  their 16-bit immediate (11 load offsets, 7 low address halves and 1 store offset, beginning at +0x10) (gp
+  offset 0x1548a0, kona.so 0x1483e8).
+- `konStereoPolyText8` (konal.so, address 0x13cc290): **established.** Eight-bit text goes through this
+  stereo wrapper for slot +52. It does not copy its arguments. When the stereo word at screen +220 is 1 it
+  swaps in the plain table from private +92 and calls the saved operation twice, using the buffer words at
+  private +96 and +100 and moving y by the eye offset (screen +226), with `konValidateWindowGC` and mask 8192
+  run before each call. Afterwards it puts the position, buffer word and table back. Checked against kona.so
+  word by word, 185 of 192 words are bit-identical and the 7 others differ only in their 16-bit immediate (5
+  load offsets, 1 low address half and 1 high address half, first seen at +0xc) (gp offset 0x1539b0, kona.so
+  0x1474f8).
+- `kon_loadNfbOpaqueBitmapGC` (konal.so, address 0x13cc6c0): **established.** Opaque-bitmap variant of the
+  loader: after an `ErrorF` trace it sends `HP_X_LOADGC` and `HP_X_PIX_SETUP`, setting mode words
+  0x100030, 0xff0005 and 0xff0028 so both foreground and background colours are drawn. Used by
+  `konDrawOpaqueMonoImage`. The command set matches kona.so token for token (`HP_X_LOADGC` and
+  `HP_X_PIX_SETUP`), but every token travels as data at offset 0 of the pointer kept in a stack slot (first
+  at +0x980, 2 token stores in all) rather than as part of a store address, and 93% of its instructions line
+  up with kona.so after address normalisation, 99% once register numbers are ignored in a routine of 2700
+  bytes against 2684.
+- `konStereoPolyline` (konal.so, address 0x13cdd70): **established.** Polyline wrapper for stereo screens,
+  installed in operations slot +24. With the screen's stereo word (+220) equal to 1 it puts back the saved
+  plain table from private +92 and calls the original once per eye, first with the buffer word at private +96
+  and then with +100. Each pass shifts the y position by the halfword at screen +226 and revalidates with
+  `konValidateWindowGC` (mask 8192), and the drawable and table are restored afterwards. The instruction
+  stream is word for word that of kona.so except for 5 load offsets, 1 low address half and 1 high address
+  half, 7 words in all (the first at +0xc), the prologue's gp constant reading 0x151ed0 instead of 0x145a28.
+- `konChangeDIDCmap` (konal.so, address 0x13ced90): **established.** Reloads one display id's colour-map
+  field in the XMAP when a window's colormap changes. It takes (window, colormap) and acts only for a window
+  with a display id (rrm private +20 not negative) and a colormap. It re-sends `X_LOADXMAP_DID` exactly as
+  `konValidateMode` does (display modes). The words are the display id, then the colormap's table entry << 7,
+  the plane count - 1 (capped at 12 when screen private +32 is set) << 3, and the luminance and grey flags.
+  It takes those two flags only for colour-index visuals (visual flag bit 0 set, 0x2000 clear), and first
+  caches {entry, size, grey, lum} in the 16-byte-per-id table that screen private +48 points to. Its debug
+  print reads "did = %d cmap base = 0x%x, size = %d". Every command (`HP_X_LOADXMAP_DID`) begins here with a
+  word holding the token number, stored at offset 0 of the saved FIFO pointer from +0x240, in place of
+  kona.so's store at the pointer plus 32 times the token, and its payload words follow at offset 0, with 98%
+  of the instructions unchanged from kona.so once addresses are normalised and the size 696 bytes against
+  688.
+- `konCursorOn` (konal.so, address 0x13cfbc0): **established.** Turns the hardware cursor on or off with
+  the `KONA_SELECT_CURSOR` ioctl (10005): it sends the four cursor words kept in the screen record (mode,
+  address, hot spot x and y), or mode 0 when switching off, through the driver connection (screen record
+  +100), and reports `ioctl` failure with `ErrorF` and `perror`. Compared with kona.so only immediates move,
+  9 of the 61 words (5 load offsets, 3 low address halves and 1 high address half, first seen at +0xc) since
+  this module's data and table layout differ, with the gp offset in the prologue at 0x150080 here against
+  0x143be8 there. Its `perror` prefix string is "konal" where kona.so prints "kona".
+- `konSolidFS` (konal.so, address 0x13d0d30): **established.** Fills a list of spans with the solid colour:
+  after `kon_loadGC` it sends `HP_X_LOADCLIP`, `HP_X_LOADPOS` and spans six at a time as
+  `HP_X_SPANS6` with the remainder as `HP_X_SPANS2` or `HP_X_SPANS`. Traces its name with
+  `ErrorF`. konal.so writes its 5 token stores (`HP_X_LOADCLIP`, `HP_X_LOADPOS`,
+  `HP_X_SPANS6` and 2 others) as the token number in a word at offset 0 of the FIFO pointer saved in the
+  frame (first at +0xc4), followed by the payload words at that offset, where kona.so addresses the command
+  at the pointer plus 32 times the token, while the burst-copy calls of kona.so (`KonSeqData6_ip19`) become
+  unrolled word stores, which accounts for most of the growth from 704 to 920 bytes, and 48% of its
+  instructions line up with kona.so after address normalisation, 76% once register numbers are ignored in a
+  routine of 920 bytes against 704.
+- `konQueryHyperpipeConfig` (konal.so, address 0x13d2070): **established.** Answers the hyperpipe
+  configuration query: sends ioctl 10021 (`KONA_NCLOPS_QUERY_CONFIG`) with a 524-byte block, then asks for
+  board information with ioctl 102 (`GFX_GETBOARDINFO`), copies names with `strcpy` into the module's table,
+  and reports a failed ioctl with `perror`. Checked against kona.so word by word, 140 of 152 words are
+  bit-identical and the 12 others differ only in their 16-bit immediate (7 load offsets, 4 low address halves
+  and 1 high address half, first seen at +0xc), and its prologue builds the global pointer from 0x14dbd0
+  where kona.so uses 0x141818.
+- `konExpandTile` (konal.so, address 0x13d22d0): **established.** Builds an expanded copy of a tile pixmap:
+  allocates a new pixmap with `nfbCreatePixmap` and copies the tile rows into it in repeated passes with
+  `bcopy`, so the pipe sees a tile of a size it can load. Traces with `ErrorF`. Only the layout-dependent
+  immediates differ from kona.so, namely 5 load offsets, 2 low address halves and 1 high address half
+  (starting at +0xc), and the other 215 of 223 words are bit-identical, with the gp offset in the prologue at
+  0x14d970 here against 0x1415b8 there.
+- `konInitDIDState` (konal.so, address 0x13d7290): **established.** Sets the kind of every display id in
+  the rrm screen private's table. The server's `rrmInit` calls it through descriptor word +84, after clearing
+  the table (descriptor). It takes (screen) and works on the 36-byte entries from rrm screen private +152.
+  Ids 0-62 are main-plane ids (halfword +18 = 0, +8 = 0, +12 = 8); id 63 is one of kind 3 (+8 = 0x3c00, +12 =
+  5); ids 64-95 are overlay ids (kind 1); no id gets kind 2. Main ids at or above the limit in
+  `KON_X_LIMIT_MAIN_DID` (accepted 14-63, default 63) get kind 0xffff (unusable). The overlay limit
+  `KON_X_LIMIT_OVERLAY_DID` (accepted 5-32, default 32) is added to running totals in a way that leaves ids
+  63-95 usable for every accepted value, so as coded it removes no overlay id. A rejected value prints
+  "punting, bogus DID limit" and keeps the default. It checks that the total, 96, equals the count at rrm
+  private +0 ("numids mismatch"); the module's descriptor sets that count to 96. **Inferred:** kind 0 main, 1
+  overlay, 3 a reserved id, from the counts and the variable names. Words +8 and +12 are the
+  hardware-independent and hardware-dependent mode words of the windows that hold the id, **established**
+  from the setter that records them, below. Checked against kona.so word by word, 316 of 354 words are
+  bit-identical and the 38 others differ only in their 16-bit immediate (25 load offsets, 12 low address
+  halves and 1 high address half, first seen at +0xc), and its prologue builds the global pointer from
+  0x1489b0 where kona.so uses 0x13c5d8.
+- `konStippledCFS` (konal.so, address 0x13d7bc0): **established.** Stippled fill-spans entry: it reports
+  the call through `ErrorF` when its flag argument is set, and in every case passes the spans to
+  `konFillSpansStippledC` with a zero final argument. Checked against kona.so word by word, 32 of 38 words
+  are bit-identical and the 6 others differ only in their 16-bit immediate (3 load offsets, 2 low address
+  halves and 1 high address half, beginning at +0xc), the prologue's gp constant reading 0x148080 instead of
+  0x13bca8.
+- `konStereoImageText8` (konal.so, address 0x13db240): **established.** Image text for stereo screens,
+  hooked at slot +60. The routine draws once per eye by calling the original operation held in the saved
+  table (private +92), taking the draw buffer from private +96 for the first call and +100 for the second and
+  moving y by the eye offset kept at screen +226, after revalidating the context with `konValidateWindowGC`
+  and mask 8192. It leaves the pipe alone and restores the table when it finishes. Checked against kona.so
+  word by word, 186 of 192 words are bit-identical and the 6 others differ only in their 16-bit immediate (5
+  load offsets and 1 low address half, beginning at +0x10), with the gp offset in the prologue at 0x144a00
+  here against 0x138628 there.
+- `konStereoPolyRectangle` (konal.so, address 0x13db750): **established.** Rectangle outlines on a stereo
+  screen go through this wrapper (slot +32). It first duplicates the rectangle list with `Xalloc`, then lets
+  the original operation from the saved table at private +92 draw it for the left eye and the right eye in
+  turn, switching the buffer word between private +96 and +100 and offsetting y by the eye distance stored at
+  screen +226. The context is revalidated with `konValidateWindowGC` before each pass and the list copy is
+  freed on exit. Only the layout-dependent immediates differ from kona.so, namely 7 load offsets and 1 low
+  address half (beginning at +0x10), and the other 214 of 222 words are bit-identical, the prologue's gp
+  constant reading 0x1444f0 instead of 0x138118.
+- `konDestroyClip` (konal.so, address 0x13dbe50): **established.** Wrapper for the DestroyClip entry (+20)
+  of the context function table: restores the saved original table from private +164, calls the original
+  destroy, and reinstalls the module's table. No pipe store. The routine is 38 instructions long. Beyond 2
+  load offsets, 2 low address halves and 1 high address half (starting at +0xc), which make up 5 of its 38
+  words, nothing separates this build from kona.so, with the gp offset in the prologue at 0x143df0 here
+  against 0x137a18 there.
+- `konValidateMode` (konal.so, address 0x13dfe70): **established.** Descriptor hook +40, which loads a
+  display id's mode: it builds the hwd word, sends `X_LOADXMAP_DID` and ends by calling `konLoadDisplayMode`.
+  Token framing is where this build departs from kona.so, since the token words (`HP_X_LOADXMAP_DID`) are
+  written to offset 0 of the saved FIFO pointer, the first at +0x75c, with the payload words trailing them at
+  offset 0, and 99% of its instructions line up with kona.so after address normalisation in a routine of 2048
+  bytes against 2040.
+- `kon_loadImpWordGC` (konal.so, address 0x13e26a0): **established.** Loads graphics state for the
+  word-sized image path through `HP_X_LOADGC`, after printing its own name with `ErrorF`. The context words
+  are combined with the constant masks 0xff03ffff and 0xfffc3fff and the colour mask 0xffffff, and the
+  constants 0x13000a and 0x28000 are or'ed in. konal.so writes its single token store (`HP_X_LOADGC`) as the
+  token number in a word at offset 0 of the FIFO pointer saved in the frame (first at +0x140), followed by
+  the payload words at that offset, where kona.so addresses the command at the pointer plus 32 times the
+  token, with 61% of the instructions unchanged from kona.so once addresses are normalised, 98% once register
+  numbers are ignored and the size 500 bytes against 492.
+- `konReloadAllGammas` (konal.so, address 0x13e3d00): **established.** Reloads the gamma tables of every
+  video channel from their shadows, by calling the module's gamma loader with the screen's video-control
+  record (`vcScreenPrivateIndex`). The loader sends the `X_LOADGAMMA` command for red, green and blue.
+  Relocation is the entire difference from kona.so, since 1 load offset, 2 low address halves and 1 high
+  address half change (beginning at +0xc) and every other bit of the 24-word routine stays the same, the
+  prologue's gp constant reading 0x13bf40 instead of 0x12fb78.
+- `konStereoPolyArc` (konal.so, address 0x13e3d60): **established.** Arc drawing for stereo (operations
+  slot +36). The request list is copied with `Xalloc` and freed when both passes are done. Each pass swaps in
+  the plain operations table kept at private +92, selects one eye's buffer word (private +96, then +100),
+  adds the eye offset from screen +226 to the y position and calls the original after `konValidateWindowGC`
+  with mask 8192. The pipe is only reached through that original. All 228 words of the body match kona.so
+  apart from 9 whose 16-bit immediate differs (7 load offsets, 1 low address half and 1 high address half,
+  the first at +0xc), so opcodes, registers and branch offsets are identical, the prologue's gp constant
+  reading 0x13bee0 instead of 0x12fb18.
+- `konSetSpans` (konal.so, address 0x13e5250): **established.** Placeholder for the set-spans operation: it
+  reports through `ErrorF` that it was called and draws nothing. All 26 words of the body match kona.so apart
+  from 5 whose 16-bit immediate differs (2 load offsets, 2 low address halves and 1 high address half, the
+  first at +0xc), so opcodes, registers and branch offsets are identical, with the gp offset in the prologue
+  at 0x13a9f0 here against 0x12e618 there.
+- `konDestroyGC` (konal.so, address 0x13e52c0): **established.** Context destroy wrapper: it frees the four
+  cached-stipple slots at private record +148 and a fifth at +104 (`kon_freeCachedStipple`) and the private
+  buffer at +144 (`Xfree`), then restores the saved original function table and calls its destroy entry
+  (+12). No register is touched. Relocation is the entire difference from kona.so, since 6 load offsets, 2
+  low address halves and 1 high address half change (first seen at +0xc) and every other bit of the 92-word
+  routine stays the same, with the gp offset in the prologue at 0x13a980 here against 0x12e5a8 there.
+- `konTempBlankAllChannels` (konal.so, address 0x13e5430): **established.** Blanks or unblanks every
+  display channel: it builds a one-word display request (command 60, value from the caller) and sends it
+  through the module's display-request sender. The hardware effect is the display command it issues; the
+  function itself touches no register. Only the layout-dependent immediates differ from kona.so, namely 1
+  load offset, 2 low address halves and 1 high address half (beginning at +0xc), and the other 22 of 26 words
+  are bit-identical, the prologue's gp constant reading 0x13a810 instead of 0x12e438.
+- `konLineSS` (konal.so, address 0x13e54a0): **established.** Single-width solid polyline: `kon_loadGC` and
+  `kon_loadClipRects` set up, then points go out as `HP_X_LINE`, `HP_X_LINE6`, or the relative forms
+  `HP_X_LINE_R` and `HP_X_LINE6_R`, with tails through `HP_X_DATA6` to
+  `HP_X_DATA1`. Falls back to `konSlowLineSS` for cases the pipe cannot take, with messages like "konLine
+  relative". konal.so writes its 16 token stores (`HP_X_LINE6_R`, `HP_X_DATA6`, `HP_X_DATA5` and 7 others) as
+  the token number in a word at offset 0 of the FIFO pointer saved in the frame (first at +0x200), followed
+  by the payload words at that offset, where kona.so addresses the command at the pointer plus 32 times the
+  token, and where kona.so calls `KonSeqData6_ip19`, `KonSeqData5_ip19`, `KonSeqData4_ip19` and
+  `KonSeqData3_ip19` to copy fixed-length payloads konal.so stores the words inline, one `lw` and `sw` pair
+  per word, with no `KonSeqData` call at all, and 42% of its instructions line up with kona.so after address
+  normalisation, 64% once register numbers are ignored in a routine of 2764 bytes against 2172.
+- `konDestroyWindow` (konal.so, address 0x13e7320): **established.** Tears down a window's Kona state. It
+  reads the window private and screen private, tests the 0x8000 flag at +20, decrements the count at +28 and,
+  when it reaches zero, sends `HP_X_LOADXMAP_CONFIG` with a zero word, flushes the pipe and calls
+  `konReloadAllGammas`. It then frees private blocks with `Xfree`, calls `konUnbindDestroyedWindow` and
+  chains to the saved destroy entry (+184). Every command (`HP_X_LOADXMAP_CONFIG`) begins here with a word
+  holding the token number, stored at offset 0 of the saved FIFO pointer from +0xcc, in place of kona.so's
+  store at the pointer plus 32 times the token, and its payload words follow at offset 0, and the flush that
+  kona.so performs by storing 0xdeadbeef at pointer offset 16352 (`HP_WG_FLUSH_1`) is replaced by a load of
+  the word at +16 of the screen private record and a dereference of it whose value is discarded, with 87% of
+  the instructions unchanged from kona.so once addresses are normalised, 91% once register numbers are
+  ignored and the size 728 bytes against 724.
+- `konInitWindowType` (konal.so, address 0x13ed1d0): **established.** Descriptor hook +80: it sets the new
+  window private's kind halfword (+2) to 1 when the visual's flags (visual table word +8) have bit 0x2, the
+  overlay and underlay visuals, and to 0 otherwise. That kind is what the allocator matches against the id
+  kinds `konInitDIDState` sets (0 main, 1 overlay). Checked against kona.so word by word, 60 of 64 words are
+  bit-identical and the 4 others differ only in their 16-bit immediate (2 load offsets, 1 low address half
+  and 1 high address half, starting at +0xc), the prologue's gp constant reading 0x132a70 instead of
+  0x1268e8.
+- `konValidateClip` (konal.so, address 0x13ed2d0): **established.** Descriptor hook +28: it sends the
+  window's clip to the kernel as `RRM_VALIDATECLIP` (1011) and then marks the clip resource valid with
+  `rrmSetResourceMask` and bit 0x2. The command set matches kona.so token for token (`HP_X_LOADCLIP`,
+  `HP_X_BOX6`, `HP_X_DATA10` and 5 others), but every token travels as data at offset 0 of the pointer kept
+  in a stack slot (first at +0x220, 8 token stores in all) rather than as part of a store address, and no
+  `KonSeqData` helper is called, the copies kona.so makes through `KonSeqData11_ip19`, `KonSeqData9_ip19`,
+  `KonSeqData7_ip19` and 2 others being written out as individual stores at offset 0, with 34% of the
+  instructions unchanged from kona.so once addresses are normalised, 76% once register numbers are ignored
+  and the size 3380 bytes against 2776.
+- `konPolyGlyphBltSolidTE10` (konal.so, address 0x13ee0e0): **established.** Solid poly-text for ten-pixel
+  terminal-emulator fonts: `kon_loadBitmapGC` sets state, then `HP_X_LOADPOS`, `HP_X_LOADCLIP`,
+  `HP_X_LOADSCISSOR`, `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and
+  `HP_X_PIX_FINISH` deliver the glyph rows; `nfbSolidPolyGlyphBlt` handles what the pipe path rejects. The
+  command set matches kona.so token for token (`HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR` and 3
+  others), but every token travels as data at offset 0 of the pointer kept in a stack slot (first at +0x400,
+  7 token stores in all) rather than as part of a store address, with 41% of the instructions unchanged from
+  kona.so once addresses are normalised, 94% once register numbers are ignored and the size 3748 bytes
+  against 3692.
+- `konPolyGlyphBltSolidTE16` (konal.so, address 0x13ef2d0): **established.** Solid poly-text for
+  sixteen-pixel-wide fonts (two bytes per glyph row). Same sequence as the ten-pixel routine,
+  `kon_loadBitmapGC` then the clip, scissor and `HP_X_PIX_WRITE` data, and also `HP_X_SPANS` for part of the
+  output. Falls back to `nfbSolidPolyGlyphBlt`. The command set matches kona.so token for token
+  (`HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR` and 3 others), but every token travels as data at
+  offset 0 of the pointer kept in a stack slot (first at +0x400, 7 token stores in all) rather than as part
+  of a store address, and 48% of its instructions line up with kona.so after address normalisation, 93% once
+  register numbers are ignored in a routine of 2960 bytes against 2904.
+- `kon_drawDid` (konal.so, address 0x13f1770): **established.** Loads the clip, position and
+  graphics-context state for painting display-id planes, and draws nothing itself. It takes (id, plane mask,
+  screen, command pointer). It sends `X_LOADCLIP` with a full-screen clip (enable word 1, a zero origin, the
+  screen width and height). Then `X_LOADPOS` (0x12a) with a zero origin and the screen size, and `X_LOADGC`
+  with 13 words in the order of the drawing grammar. Those words are: foreground = the id placed in the
+  display-id bit field, write mask from the plane mask, then fixed words (cfg low bits 0x8, op low nibble 1,
+  addr low six bits 0, bl bits 1-4 = 3, ifmt 0, colfmt 1, pixfmt 1). Two placements exist, chosen by bit 2 of
+  screen private +148. In one the id's low four bits go to bit 3 and its next twelve to bit 8 of `fg_h`, with
+  mask `wmask0`. In the other they go to bit 9 and to bit 14 of `fg_l`, with mask `wmask1`. **Inferred:** the
+  two layouts are the display-id field's position in two pixel depths; the callers then send the boxes. The
+  command set matches kona.so token for token (`HP_X_LOADCLIP`, `HP_X_LOADPOS` and `HP_X_LOADGC`), but every
+  token travels as data at offset 0 of the pointer kept in a stack slot (first at +0x178, 3 token stores in
+  all) rather than as part of a store address, with 81% of the instructions unchanged from kona.so once
+  addresses are normalised, 96% once register numbers are ignored and the size 684 bytes against 660.
+- `kon_loadNfbGCoff` (konal.so, address 0x13f1a20): **established.** Sends `HP_X_LOADPOS` with an origin
+  given by its fifth and sixth arguments and the distances from that origin to the extent held in the screen
+  record's halfwords at +8 and +10, then calls the loader at 0x14b9960 through the global offset table with
+  the drawable's byte at +2 as the last argument. konal.so writes its single token store (`HP_X_LOADPOS`) as
+  the token number in a word at offset 0 of the FIFO pointer saved in the frame (first at +0x68), followed by
+  the payload words at that offset, where kona.so addresses the command at the pointer plus 32 times the
+  token, with 75% of the instructions unchanged from kona.so once addresses are normalised, 96% once register
+  numbers are ignored and the size 232 bytes against 224.
+- `konPolyGlyphBltSolidTE32` (konal.so, address 0x13f1b10): **established.** Thirty-two-pixel-wide solid
+  poly-text, four bytes per glyph row: `kon_loadBitmapGC`, `HP_X_LOADSCISSOR`, `HP_X_PIX_SETUP`,
+  `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`, with `nfbSolidPolyGlyphBlt` as the host fallback. Traces its
+  arguments with `ErrorF`. Every command (`HP_X_LOADPOS`, `HP_X_LOADCLIP`,
+  `HP_X_LOADSCISSOR` and 3 others) begins here with a word holding the token number, stored at offset 0 of
+  the saved FIFO pointer from +0x400, in place of kona.so's store at the pointer plus 32 times the token, and
+  its payload words follow at offset 0, with 57% of the instructions unchanged from kona.so once addresses
+  are normalised, 93% once register numbers are ignored and the size 2456 bytes against 2400.
+- `konInstall24DCColormap` (konal.so, address 0x13f6e50): **established.** Loads a 24-bit direct-colour map
+  into the pipe: after an `ErrorF` trace it sends `HP_X_LOADGAMMA` and `HP_DATA_1` words and copies the
+  1536-word table into the pipe. konal.so writes its 3 token stores (`HP_X_LOADGAMMA`) as the token number in
+  a word at offset 0 of the FIFO pointer saved in the frame (first at +0x2a8), followed by the payload words
+  at that offset, where kona.so addresses the command at the pointer plus 32 times the token, and where
+  kona.so calls `KonSeqData32_ip19` to copy fixed-length payloads konal.so stores the words inline, one `lw`
+  and `sw` pair per word, with no `KonSeqData` call at all, with 5% of the instructions unchanged from
+  kona.so once addresses are normalised, 11% once register numbers are ignored and the size 31908 bytes
+  against 2700.
+- `konDrawOpaqueMonoImage` (konal.so, address 0x1400460): **established.** Draws a one-bit image with both
+  colours: finds the window private through `dbcWindowPrivateIndex`, calls `kon_loadNfbOpaqueBitmapGC`, sends
+  `HP_X_LOADCLIP` and `HP_X_LOADPOS`, then the rows through `HP_X_PIX_WRITE` in
+  32-word bursts with shorter copies for tails, ending with `HP_X_PIX_FINISH`. The command set matches
+  kona.so token for token (`HP_X_LOADCLIP`, `HP_X_LOADPOS`, `HP_X_PIX_WRITE` and
+  `HP_X_PIX_FINISH`), but every token travels as data at offset 0 of the pointer kept in a stack slot (first
+  at +0x328, 4 token stores in all) rather than as part of a store address, and where kona.so calls
+  `KonSeqData32_ip19`, `KonSeqData8_ip19`, `KonSeqData4_ip19` and
+  `KonSeqData3_ip19` to copy fixed-length payloads konal.so stores the words inline, one `lw` and `sw` pair
+  per word, with no `KonSeqData` call at all, and 49% of its instructions line up with kona.so after address
+  normalisation, 62% once register numbers are ignored in a routine of 2576 bytes against 1732.
+- `konRotateStipple` (konal.so, address 0x14021e0): **established.** Rotates a stipple bitmap by the tile
+  origin before it is loaded: shifts the rows in place with three `memmove` calls (by row and by bit offset)
+  and prints the size and offsets with `ErrorF`. Same code as kona.so with 9 words re-addressed for this
+  module (7 load offsets and 2 low address halves, starting at +0x1c), nothing else in the 168 words
+  changing, with the gp offset in the prologue at 0x11da60 here against 0x119178 there.
+- `konTiledCAccelFS` (konal.so, address 0x1403e70): **established.** Tiled accelerated fill-spans entry: it
+  reports the call through `ErrorF` when its flag argument is set and passes the spans to
+  `konFillSpansTiledCAccel`. Only the layout-dependent immediates differ from kona.so, namely 3 load offsets,
+  2 low address halves and 1 high address half (beginning at +0xc), and the other 32 of 38 words are
+  bit-identical, with the gp offset in the prologue at 0x11bdd0 here against 0x1174e8 there.
+- `kon_loadStipple` (konal.so, address 0x1403f20): **established.** Gets a stipple into pipe memory: looks
+  it up with `kon_hitCachedStipple`, allocates a slot with `kon_allocCachedStipple` and fills it with
+  `kon_loadCachedStipple` on a miss, then sends `HP_X_LOADSTIPPLE` (store or load) and `HP_X_ROTATESTIPPLE`
+  to set the rotation. Three `ErrorF` traces describe store, load and rotation. The command set matches
+  kona.so token for token (`HP_X_ROTATESTIPPLE` and `HP_X_LOADSTIPPLE`), but every token travels as data at
+  offset 0 of the pointer kept in a stack slot (first at +0x184, 5 token stores in all) rather than as part
+  of a store address, and 58% of its instructions line up with kona.so after address normalisation, 91% once
+  register numbers are ignored in a routine of 1012 bytes against 972.
+- `konChangeClip` (konal.so, address 0x1406770): **established.** Wrapper for the ChangeClip entry (+16) of
+  the context function table. Same swap as `konChangeGC` with four arguments passed through: original table
+  back, call entry +16, module table reinstalled. Only the layout-dependent immediates differ from kona.so,
+  namely 2 load offsets, 2 low address halves and 1 high address half (beginning at +0xc), and the other 39
+  of 44 words are bit-identical, and its prologue builds the global pointer from 0x1194d0 where kona.so uses
+  0x114c28.
+- `kon_loadCopyWindowGC` (konal.so, address 0x1406f90): **established.** Loads the context for a window
+  copy through `HP_X_LOADGC`, tracing with `ErrorF`. The mode word is picked among several constants
+  (0x110001, 0x40001, 0x40005 and others) and combined with masks such as
+  0xff03ffff, 0xfffc3fff and 0xf00fff. Every command
+  (`HP_X_LOADGC`) begins here with a word holding the token number, stored at offset 0 of the saved FIFO
+  pointer from +0x3b8, in place of kona.so's store at the pointer plus 32 times the token, and its payload
+  words follow at offset 0, and 95% of its instructions line up with kona.so after address normalisation, 99%
+  once register numbers are ignored in a routine of 1124 bytes against 1116.
+- `konStereoPolyText16` (konal.so, address 0x1408360): **established.** The sixteen-bit counterpart of the
+  stereo text wrapper, filling slot +56. Its two draws, one for each eye, use the saved plain table at
+  private +92, a buffer word from private +96 or +100 and a y position moved by the halfword at screen +226.
+  `konValidateWindowGC` (mask 8192) refreshes the context first, and everything it changed is restored on
+  return. It stores nothing to the pipe itself. Compared with kona.so only immediates move, 6 of the 192
+  words (5 load offsets and 1 low address half, starting at +0x10) since this module's data and table layout
+  differ, and its prologue builds the global pointer from 0x1178e0 where kona.so uses 0x113048.
+- `konInitRootWindow` (konal.so, address 0x1408f70): **established.** Initialises the root window's device
+  state by calling a shared routine with its one argument (a branch-and-link through the module's local
+  entry); it performs no other work and issues no pipe command. Compared with kona.so only immediates move, 3
+  of the 17 words (1 load offset and 2 low address halves, the first at +0x10) since this module's data and
+  table layout differ, and its prologue builds the global pointer from 0x116cd0 where kona.so uses 0x112438.
+- `konSolidZeroSeg` (konal.so, address 0x14109f0): **established.** Draws a one-segment zero-width line:
+  calls `kon_loadGC`, sends `HP_X_LOADCLIP` (one box) and `HP_X_LOADPOS`, offsets the endpoints by half the
+  extent according to the line's direction flag, and sends the segment through `HP_X_SEGMENT`. It returns
+  without drawing when bit 0x400 is set in the second argument's word at +124. Every command
+  (`HP_X_LOADCLIP`, `HP_X_LOADPOS` and `HP_X_SEGMENT`) begins here with a word holding the token number,
+  stored at offset 0 of the saved FIFO pointer from +0xa4, in place of kona.so's store at the pointer plus 32
+  times the token, and its payload words follow at offset 0, with 63% of the instructions unchanged from
+  kona.so once addresses are normalised, 92% once register numbers are ignored and the size 576 bytes against
+  552.
+- `kon_loadClipRects` (konal.so, address 0x141d330): **established.** Sends the clip rectangle list:
+  `HP_X_LOADCLIP` with the count, and either the one box as four 16-bit values or, for many boxes, the first
+  through `HP_X_LOADCLIP` and the rest in pairs through `HP_X_BDATA4`. Uses a loop that steps eight bytes per
+  box. Token framing is where this build departs from kona.so, since the token words (`HP_X_LOADCLIP` and
+  `HP_X_BDATA4`) are written to offset 0 of the saved FIFO pointer, the first at +0x68, with the payload
+  words trailing them at offset 0, with 47% of the instructions unchanged from kona.so once addresses are
+  normalised, 90% once register numbers are ignored and the size 564 bytes against 532.
+- `konChangeGC` (konal.so, address 0x141d910): **established.** Wrapper for the ChangeGC entry (offset +4)
+  of the graphics-context function table. It puts back the table the module saved in the context's private
+  record at +164, calls the saved entry, saves the table again and reinstalls the module's own. It touches no
+  pipe register. The routine is 40 instructions long. Same code as kona.so with 4 words re-addressed for this
+  module (2 load offsets and 2 low address halves, the first at +0x10), nothing else in the 40 words
+  changing, the prologue's gp constant reading 0x102330 instead of 0xfdad8.
+- `konDrawSolidRects` (konal.so, address 0x141f8b0): **established.** Draws solid rectangles for a window
+  whose private data is found through `dbcWindowPrivateIndex`: calls `kon_loadNfbGC`, sends `HP_X_LOADCLIP`
+  and then `HP_X_BOX6` batches with the same `HP_X_DATA10` to `HP_X_DATA2` tails as the plain solid fill.
+  konal.so writes its 8 token stores (`HP_X_LOADCLIP`, `HP_X_BOX6`, `HP_X_DATA10` and 5 others) as the token
+  number in a word at offset 0 of the FIFO pointer saved in the frame (first at +0x144), followed by the
+  payload words at that offset, where kona.so addresses the command at the pointer plus 32 times the token,
+  while the burst-copy calls of kona.so (`KonSeqData11_ip19`, `KonSeqData9_ip19`, `KonSeqData7_ip19` and 2
+  others) become unrolled word stores, which accounts for most of the growth from 1144 to 1748 bytes, with
+  42% of the instructions unchanged from kona.so once addresses are normalised, 56% once register numbers are
+  ignored and the size 1748 bytes against 1144.
+- `konPolyPoint` (konal.so, address 0x1421680): **established.** PolyPoint:
+  `kon_loadGC`, then points sent as `HP_X_POINT`, `HP_X_POINT6` or
+  `HP_X_POINT24`, and the relative forms `HP_X_POINT_R` and `HP_X_POINT6_R`, grouped into
+  23-word and shorter payloads, with tails through `HP_X_DATA6` to `HP_X_DATA1` and the clip through
+  `HP_X_LOADCLIP`. konal.so writes its 19 token stores (`HP_X_POINT24`, `HP_X_POINT6`,
+  `HP_X_DATA6` and 9 others) as the token number in a word at offset 0 of the FIFO pointer saved in the frame
+  (first at +0x190), followed by the payload words at that offset, where kona.so addresses the command at the
+  pointer plus 32 times the token, and where kona.so calls `KonSeqData23_ip19`, `KonSeqData5_ip19`,
+  `KonSeqData4_ip19` and `KonSeqData3_ip19` to copy fixed-length payloads konal.so stores the words inline,
+  one `lw` and `sw` pair per word, with no `KonSeqData` call at all, with 23% of the instructions unchanged
+  from kona.so once addresses are normalised, 62% once register numbers are ignored and the size 3612 bytes
+  against 2608.
+- `konProbe` (konal.so, address 0x1422c10): **established.** Screen probe: it asks `ddxGetBoardName` for
+  the name of the board that serves the screen (a 255-byte buffer), compares it with a name using `strcmp`,
+  looks for the first board of the matching type with `ddxFindFirstTypedBoard`, and reports problems with
+  `ErrorF`. **Inferred:** it decides whether this module drives the screen. It writes no register. Compared
+  with kona.so only immediates move, 15 of the 82 words (9 load offsets and 6 low address halves, earliest at
+  +0x10) since this module's data and table layout differ, the prologue's gp constant reading 0xfd030 instead
+  of 0xf8e28. The name string it passes to `strcmp` and to `ddxFindFirstTypedBoard` is "konal" in this build,
+  where kona.so uses "kona".
+- `konPolyFillRectTiledCAccel` (konal.so, address 0x1426d80): **established.** PolyFillRect with a tiled
+  fill for the accelerated path. It caches the tile as a stipple with `kon_allocCachedStipple`,
+  `kon_loadCachedStipple` and `kon_hitCachedStipple`, rotates it with `HP_X_ROTATESTIPPLE`, loads it with
+  `HP_X_LOADSTIPPLE`, sends `HP_X_LOADGC`, `HP_X_LOADCLIP` and
+  `HP_X_RECT6` or `HP_X_RECT` boxes plus the data tails. The command set matches kona.so token for token
+  (`HP_X_LOADPOS`, `HP_X_LOADGC`, `HP_X_ROTATESTIPPLE` and 11 others), but every token travels as data at
+  offset 0 of the pointer kept in a stack slot (first at +0x148, 27 token stores in all) rather than as part
+  of a store address, and where kona.so calls `KonSeqData11_ip19`, `KonSeqData9_ip19`, `KonSeqData7_ip19` and
+  2 others to copy fixed-length payloads konal.so stores the words inline, one `lw` and `sw` pair per word,
+  with no `KonSeqData` call at all, with 39% of the instructions unchanged from kona.so once addresses are
+  normalised, 80% once register numbers are ignored and the size 5680 bytes against 4924.
+- `konaSetStereoMode` (konal.so, address 0x142aeb0): **established.** Tells the kernel's cursor-channel
+  table about a stereo switch and then switches the frame-buffer layer. It takes (screen, a, b, mode). When
+  `mode` is 1 and a small-data flag of the module is set, it writes 531 to the halfword at +6 (`y1`) of an
+  18-byte block in `.bss` and passes the block to 10009. On failure it stores -7905 in a module error word
+  and logs "Failed : update kernel with channel cursorinfo"; it then calls `nfbSetStereoMode`. The block is
+  not left zero: the static function fills all of it and sends 10009 itself, from thirteen call sites. That
+  function writes the bytes at +0, +1 and +2 (**inferred** channel, valid and priority, the field order of
+  `kona_set_channel_rect_args`) and the halfwords from +4 on from its arguments and the channel's
+  video-control record. So this call re-sends the rectangle last set up, with only `y1` replaced
+  (**established** from the stores). **Inferred:** the stereo switch moves the top edge of the cursor
+  rectangle to line 531 for that channel; the module gives no reason for the value. Kernel side:
+  `kona_set_channel_rect` (dg.md). Beyond 7 load offsets, 4 low address halves and 2 store offsets (starting
+  at +0x10), which make up 13 of its 57 words, nothing separates this build from kona.so, the prologue's gp
+  constant reading 0xf4d90 instead of 0xf0fc8.
+- `konStore24DCColors` (konal.so, address 0x142c860): **established.** Stores a run of 24-bit direct-colour
+  entries into the hardware map: it traces the red, green and blue source and destination addresses through
+  `ErrorF` and writes the changed entries with `HP_X_LOADGAMMA` and `HP_DATA_1`. Every command
+  (`HP_X_LOADGAMMA`) begins here with a word holding the token number, stored at offset 0 of the saved FIFO
+  pointer from +0x2a8, in place of kona.so's store at the pointer plus 32 times the token, and its payload
+  words follow at offset 0, and 69% of its instructions line up with kona.so after address normalisation, 96%
+  once register numbers are ignored in a routine of 1556 bytes against 1532.
+- `kon_loadGC` (konal.so, address 0x142e510): **established.** The general loader: sends `HP_X_LOADPOS`
+  (four words from the screen record's halfword fields at +8 to +14) and `HP_X_LOADGC` with the foreground
+  and background colours, write masks, configuration, operation and format words taken from the context's
+  private record at +4 to +64. Prints the word values with `ErrorF` under the trace flag. konal.so writes its
+  2 token stores (`HP_X_LOADPOS` and `HP_X_LOADGC`) as the token number in a word at offset 0 of the FIFO
+  pointer saved in the frame (first at +0x6c), followed by the payload words at that offset, where kona.so
+  addresses the command at the pointer plus 32 times the token, with 95% of the instructions unchanged from
+  kona.so once addresses are normalised and the size 656 bytes against 640.
+- `kon_loadImgRectGC` (konal.so, address 0x1431750): **established.** Builds and sends a `HP_X_LOADGC` for
+  image rectangles: it forces the mode field (clears bits 1 to 4, sets the value 6) and masks the colour word
+  with 0xffffff before storing the context words, so a rectangle fill ignores the high byte. No callee. The
+  command set matches kona.so token for token (`HP_X_LOADGC`), but every token travels as data at offset 0 of
+  the pointer kept in a stack slot (first at +0x74, single token store in all) rather than as part of a store
+  address, with 72% of the instructions unchanged from kona.so once addresses are normalised, 97% once
+  register numbers are ignored and the size 340 bytes against 332.
+- `konSolidFillRects` (konal.so, address 0x1432c90): **established.** Fills a rectangle list with the
+  context's foreground colour: calls `kon_loadGC`, sends `HP_X_LOADPOS` and `HP_X_LOADCLIP`, then batches
+  boxes six at a time as `HP_X_BOX6` (11 payload words). A tail of five, four, three, two or one box goes out
+  as `HP_X_DATA10`, `HP_X_DATA8`, `HP_X_DATA6`,
+  `HP_X_DATA4` or `HP_X_DATA2`. The command set matches kona.so token for token (`HP_X_LOADPOS`,
+  `HP_X_LOADCLIP`, `HP_X_BOX6` and 6 others), but every token travels as data at offset 0 of the pointer kept
+  in a stack slot (first at +0xa4, 9 token stores in all) rather than as part of a store address, and where
+  kona.so calls `KonSeqData11_ip19`, `KonSeqData9_ip19`, `KonSeqData7_ip19` and 2 others to copy fixed-length
+  payloads konal.so stores the words inline, one `lw` and `sw` pair per word, with no `KonSeqData` call at
+  all, and 29% of its instructions line up with kona.so after address normalisation, 48% once register
+  numbers are ignored in a routine of 1528 bytes against 916.
+- `konFillSpansSolid` (konal.so, address 0x1435d20): **established.** The span fill with clipping by hand:
+  it uses `miFindMaxBand` and `miClipSpans` to cut spans against the clip rectangles when more than one is
+  present (the message "clipping by hand" names this path), loads the rectangles with `kon_loadClipRects` and
+  sends the spans as `HP_X_SPANS6`, `HP_X_SPANS2` or `HP_X_SPANS`. The command set matches kona.so token for
+  token (`HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_SPANS6` and 2 others), but every token travels as data at
+  offset 0 of the pointer kept in a stack slot (first at +0x184, 5 token stores in all) rather than as part
+  of a store address, and where kona.so calls `KonSeqData6_ip19` to copy fixed-length payloads konal.so
+  stores the words inline, one `lw` and `sw` pair per word, with no `KonSeqData` call at all, and 58% of its
+  instructions line up with kona.so after address normalisation, 83% once register numbers are ignored in a
+  routine of 1436 bytes against 1220.
+- `konStereoPolyGlyphBlt` (konal.so, address 0x1437330): **established.** Wrapper for glyph blits on a
+  stereo screen (slot +72). If screen +220 holds 1 it replaces the operations table with the saved one from
+  private +92 and invokes the original two times, one per eye, selecting buffer words private +96 and +100
+  and shifting y by the screen's eye offset at +226. Every call is preceded by `konValidateWindowGC` with
+  mask 8192. The pipe writes come from the operation it calls. Checked against kona.so word by word, 190 of
+  197 words are bit-identical and the 7 others differ only in their 16-bit immediate (5 load offsets, 1 low
+  address half and 1 high address half, earliest at +0xc) (gp offset 0xe8910, kona.so 0xe4eb8).
+- `konInitiateBufferSwap` (konal.so, address 0x1438610): **established.** Starts a buffer swap for a list
+  of windows: it flips each window's mode words, finds it a display id and sends the manager swap. It takes
+  (window list, count). For each window that holds a validated swap buffer (rrm private byte +4 bit 0x8) it
+  first invalidates that resource through hook +32 with (window, 8, 1). For a main-plane window (visual flag
+  bit 0) it sets hwi bit 0x4 and hwd bit 0x1 when the double-buffer private's byte +2 is not 1, and clears
+  both when it is: the displayed buffer flips. For an overlay or underlay window (visual flags 0x6) it puts
+  code 2, plus 1 when it sets hwi bit 0x4, into hwd bits 1-3; any other window prints "TRYing to swap bogus
+  did". An unrealized window (word +124 bit 11 clear) has its swap reported done at once through
+  `dbcDelayedSwapBufferDone`. Otherwise it tries `ShareSwappingID`; a window that joins a swapping id is also
+  reported done at once and sends nothing. Else it takes an id from `FindFreeID`, or from `StealID` when none
+  is free. It records the new hwd word in the id's 8-byte entry of the table that the module's screen private
+  +52 points to, sets bit 0x10 (swap pending) on the id's entry and adds the window to a list. Last, walking
+  that list backwards, it calls `rrmMGRSwapBuf` for each window; on a failure it reports the swap done and
+  clears bit 0x10 again. It returns 0. Checked against kona.so word by word, 343 of 377 words are
+  bit-identical and the 34 others differ only in their 16-bit immediate (26 load offsets and 8 low address
+  halves, starting at +0x1c) (gp offset 0xe7630, kona.so 0xe3bd8).
+- `konReadImage` (konal.so, address 0x143a950): **established.** Reads pixels back from the pipe: loads
+  state with `kon_loadPixmapGC`, sends `HP_X_LOADPOS` and `HP_X_PIX_READ` and flushes the pipe. Above a
+  byte-count threshold it uses DMA, sending ioctl 10000 (`KONA_DMAREAD`) and checking with 10017
+  (`KONA_CHECK_PIPE`) while waiting in `sginap`; below it, copies words from the return area with `bcopy`. A
+  timeout prints "return area did not go valid". The command set matches kona.so token for token
+  (`HP_X_LOADPOS` and `HP_X_PIX_READ`), but every token travels as data at offset 0 of the pointer kept in a
+  stack slot (first at +0x1fc, 2 token stores in all) rather than as part of a store address, and the flush
+  that kona.so performs by storing 0xdeadbeef at pointer offset 16352 (`HP_WG_FLUSH_1`) is replaced by a load
+  of the word at +16 of the screen private record and a dereference of it whose value is discarded, and 84%
+  of its instructions line up with kona.so after address normalisation, 91% once register numbers are ignored
+  in a routine of 2140 bytes against 2128.
+- `konFillSpansTiledCAccel` (konal.so, address 0x143b630): **established.** Tiled span fill for the
+  accelerated path, shaped like the stippled one: `kon_loadAccelGC`, `kon_loadTilePlane` and
+  `kon_loadClipRects` prepare the pipe, then `HP_X_SPANS6`, `HP_X_SPANS2` and
+  `HP_X_SPANS` send the clipped spans and `kon_unloadStipple` releases the tile. The command set matches
+  kona.so token for token (`HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_SPANS6` and 2 others), but every token
+  travels as data at offset 0 of the pointer kept in a stack slot (first at +0x184, 5 token stores in all)
+  rather than as part of a store address, and where kona.so calls `KonSeqData6_ip19` to copy fixed-length
+  payloads konal.so stores the words inline, one `lw` and `sw` pair per word, with no `KonSeqData` call at
+  all, with 54% of the instructions unchanged from kona.so once addresses are normalised, 84% once register
+  numbers are ignored and the size 1436 bytes against 1220.
+- `konExpandStipple` (konal.so, address 0x143be30): **established.** Expands a stipple bitmap to a wider
+  one: allocates the pixmap with `nfbCreatePixmap` and replicates the source rows into it by two `bcopy`
+  loops, to reach a width the pipe's stipple memory takes. Same code as kona.so with 8 words re-addressed for
+  this module (6 load offsets and 2 low address halves, beginning at +0x10), nothing else in the 187 words
+  changing, with the gp offset in the prologue at 0xe3e10 here against 0xe06f8 there.
+- `konValidateSwapbuf` (konal.so, address 0x143f300): **established.** Window hook +36 that validates a
+  window's swap buffer with the kernel: it sends the rendering-node id (rrm private +12), the window's XID
+  and the display id (+20) as `RRM_VALIDATESWAPBUF` (1012), sets word +20 of the module's window private to 1
+  and bumps its byte +24, for the window and its descendants that share the same buffer. It then marks the
+  resource valid through `rrmSetResourceMask` with bit 0x8. Beyond 20 load offsets and 8 low address halves
+  (beginning at +0x10), which make up 28 of its 206 words, nothing separates this build from kona.so, and its
+  prologue builds the global pointer from 0xe0940 where kona.so uses 0xdd228.
+- `konSlowSegmentSD` (konal.so, address 0x1441600): **established.** Host-drawn dashed segments:
+  `kon_loadGC` loads the state, `miZeroClipLine` clips each segment, `miStepDash` steps the dash pattern and
+  `konBresD` draws the pieces through the pipe after `HP_X_LOADPOS` and `HP_X_LOADCLIP`. The command set
+  matches kona.so token for token (`HP_X_LOADPOS` and `HP_X_LOADCLIP`), but every token travels as data at
+  offset 0 of the pointer kept in a stack slot (first at +0x17c, 2 token stores in all) rather than as part
+  of a store address, and 61% of its instructions line up with kona.so after address normalisation, 92% once
+  register numbers are ignored in a routine of 2820 bytes against 2804.
+- `konPolyGlyphBltSolid` (konal.so, address 0x1442ff0): **established.** General solid poly-text for any
+  font width: `QueryGlyphExtents` first measures the string, then `kon_loadBitmapGC` and the same clip,
+  scissor and `HP_X_PIX_WRITE` pixel path as the fixed-width routines; `nfbSolidPolyGlyphBlt` does the rest.
+  Token framing is where this build departs from kona.so, since the token words (`HP_X_LOADPOS`,
+  `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR` and 3 others) are written to offset 0 of the saved FIFO pointer, the
+  first at +0x4d0, with the payload words trailing them at offset 0, and 59% of its instructions line up with
+  kona.so after address normalisation, 93% once register numbers are ignored in a routine of 2704 bytes
+  against 2656.
+- `kon_initGCCaches` (konal.so, address 0x1446630): **established.** Allocates the 512-byte cache of 32
+  sixteen-byte cache nodes (`Xalloc`), numbers them 0-31 and chains them into a doubly linked list in the
+  screen record (+100, +104, +108), returning 1 on success and 0 when the allocation fails. No register is
+  touched. All 86 words of the body match kona.so apart from 4 whose 16-bit immediate differs (2 load
+  offsets, 1 low address half and 1 high address half, beginning at +0xc), so opcodes, registers and branch
+  offsets are identical, the prologue's gp constant reading 0xd9610 instead of 0xd5f38.
+- `kon_initCursorCaches` (konal.so, address 0x144abb0): **established.** Allocates the 624-byte cache of 39
+  sixteen-byte nodes (`Xalloc`) used for cursor images, numbers them 0-38 and links them into a list in the
+  screen record (+116, +120, +124). Returns 1 on success and 0 when the allocation fails. No register is
+  touched. Same code as kona.so with 2 words re-addressed for this module (1 load offset and 1 low address
+  half, the first at +0x10), nothing else in the 77 words changing, and its prologue builds the global
+  pointer from 0xd5090 where kona.so uses 0xd19a8.
+- `konSlowSegmentSS` (konal.so, address 0x144c440): **established.** Host-drawn solid segments:
+  `kon_loadGC`, then `miZeroClipLine` clips each segment and `konBresS` steps the pixels, sending
+  `HP_X_LOADPOS`, `HP_X_LOADCLIP` and `HP_X_BOX` per run. Traces with
+  "konSlowSegmentSS" and `ErrorF`. Every command (`HP_X_LOADPOS`,
+  `HP_X_LOADCLIP` and `HP_X_BOX`) begins here with a word holding the token number, stored at offset 0 of the
+  saved FIFO pointer from +0x17c, in place of kona.so's store at the pointer plus 32 times the token, and its
+  payload words follow at offset 0, with 58% of the instructions unchanged from kona.so once addresses are
+  normalised, 89% once register numbers are ignored and the size 3924 bytes against 3892.
+- `konStereoPutImage` (konal.so, address 0x144d8a0): **established.** PutImage under stereo (slot +8). Per
+  eye it installs the plain table saved at private +92, picks the buffer word at private +96 for the first
+  eye and +100 for the second, offsets the y position by the halfword at screen +226, refreshes the context
+  through `konValidateWindowGC` (mask 8192) and calls the original operation. After the second call it puts
+  the position, buffer word and operations table back. No register is written directly. Compared with kona.so
+  only immediates move, 6 of the 218 words (5 load offsets and 1 low address half, the first at +0x10) since
+  this module's data and table layout differ, and its prologue builds the global pointer from 0xd23a0 where
+  kona.so uses 0xcecd8.
+- `konTiledCAccelFillRects` (konal.so, address 0x14515b0): **established.** Tiled rectangle fill for the
+  accelerated path: `kon_loadGC` for colours, `kon_loadTilePlane` for the tile, then `HP_X_LOADPOS`,
+  `HP_X_LOADCLIP` and the `HP_X_BOX6` and `HP_X_DATA10` to
+  `HP_X_DATA2` box batches, with `kon_unloadStipple` at the end. Its trace string says "konSolidFillRects",
+  copied from the solid fill. konal.so writes its 9 token stores (`HP_X_LOADPOS`, `HP_X_LOADCLIP`,
+  `HP_X_BOX6` and 6 others) as the token number in a word at offset 0 of the FIFO pointer saved in the frame
+  (first at +0xa4), followed by the payload words at that offset, where kona.so addresses the command at the
+  pointer plus 32 times the token, while the burst-copy calls of kona.so (`KonSeqData11_ip19`,
+  `KonSeqData9_ip19`, `KonSeqData7_ip19` and 2 others) become unrolled word stores, which accounts for most
+  of the growth from 968 to 1580 bytes, with 31% of the instructions unchanged from kona.so once addresses
+  are normalised, 50% once register numbers are ignored and the size 1580 bytes against 968.
+- `kon_GCOpsCacheInit` (konal.so, address 0x1452180): **established.** Clears the module's cache of
+  drawing-operation sets: a loop that stores zero into each of 2048 word entries of a table in the module's
+  data. Run when the screen is set up so no stale operation set is used. Beyond 2 low address halves
+  (earliest at +0xc), which make up 2 of its 27 words, nothing separates this build from kona.so, and its
+  prologue builds the global pointer from 0xcdac0 where kona.so uses 0xca658.
+- `kon_hitCachedStipple` (konal.so, address 0x1454720): **established.** Marks a cached stipple as most
+  recently used. The argument is a cache node with previous and next links at +4 and +8; the list head and
+  tail sit at +104 and +108 of the screen private record. A node already at the head is left alone, otherwise
+  it is unlinked (from the tail or the middle) and relinked at the head, and the function returns non-zero.
+  The routine is 78 instructions long. Same code as kona.so with 2 words re-addressed for this module (1 load
+  offset and 1 low address half, earliest at +0xc), nothing else in the 78 words changing, with the gp offset
+  in the prologue at 0xcb520 here against 0xc80b8 there.
+- `konStereoCopyPlane` (konal.so, address 0x1454f10): **established.** Stereo version of the plane-copy
+  slot (+16). It temporarily restores the plain operations table from private +92 and calls the saved
+  operation for each eye in turn, using private +96 and +100 as the draw-buffer words and moving the y
+  position by the offset at screen +226, with the context revalidated through `konValidateWindowGC` and mask
+  8192 beforehand. The original table, position and buffer word are put back at the end and the routine
+  writes no pipe register. Checked against kona.so word by word, 307 of 314 words are bit-identical and the 7
+  others differ only in their 16-bit immediate (5 load offsets, 1 low address half and 1 high address half,
+  starting at +0xc) (gp offset 0xcad30, kona.so 0xc78c8).
+- `konBlankScreen` (konal.so, address 0x1455f70): **established.** The screen-saver blank entry: it calls
+  `konTempBlankAllChannels` with the blank value and returns 1. Checked against kona.so word by word, 18 of
+  21 words are bit-identical and the 3 others differ only in their 16-bit immediate (1 load offset, 1 low
+  address half and 1 high address half, the first at +0xc) (gp offset 0xc9cd0, kona.so 0xc6868).
+
+### Frame-buffer layer (`nfb*`)
+
+- `nfbStereoImageText16` (konal.so, address 0x13b9c40): **established.** Stereo ImageText16: calls the
+  ImageText16 entry (+64) of the context operations table four times, so the text lands in both eye buffers;
+  it calls no named routine. The routine is 118 instructions long. Relocation is the entire difference from
+  kona.so, since 1 load offset and 1 low address half change (starting at +0x20) and every other bit of the
+  118-word routine stays the same.
+- `nfbGetImage` (konal.so, address 0x13bc060): **established.** GetImage entry for the frame-buffer layer:
+  selects by the drawable's depth, calls `cfbGetImage` or `cfb32GetImage` for the supported depths, clears
+  the output area with `bzero` when needed, finds the lowest set plane with `ffs`, and calls `FatalError`
+  with "invalid depth" for any other. Compared with kona.so only immediates move, 18 of the 377 words (10
+  load offsets, 7 low address halves and 1 high address half, the first at +0x48) since this module's data
+  and table layout differ.
+- `nfbTiledFillRects` (konal.so, address 0x13c7b30): **inferred.** Tiled rectangle fill hook on the
+  frame-buffer path, the twin of `nfbSolidFillRects`: it loads the tile width and height from halfwords at
+  +12 and +14 of the tile pixmap and calls the tiled-fill entry (+28) of the ops table found through the
+  screen private. Beyond 2 load offsets, 1 low address half and 1 high address half (earliest at +0x10),
+  which make up 4 of its 39 words, nothing separates this build from kona.so, and its prologue builds the
+  global pointer from 0x158110 where kona.so uses 0x14bb58.
+- `nfbRealizeWindow` (konal.so, address 0x13c9ca0): **established.** The frame-buffer layer's
+  realize-window procedure; it settles the window's display-id bits and its layer counts. For a viewable
+  window (word +124 bit 10) it first adds one to the per-layer count of the pipe record (table at +64,
+  indexed by frame-buffer private +24, the layer). A window with a parent then goes through `nfbSetDidFlags`.
+  When its layer differs from the parent's it adds one to frame-buffer private +28 of every ancestor
+  (**inferred** a count of descendants in another layer). For the root window it sets bit (1 << layer) in
+  private +36, passes a box of the whole screen to the screen procedure at +372 with that layer's region, and
+  calls the root set-up at 0x14bc730 (`nfbInitRootWindow`). It returns 1. Beyond 3 load offsets and 1 low
+  address half (beginning at +0xc), which make up 4 of its 100 words, nothing separates this build from
+  kona.so, the prologue's gp constant reading 0x155fa0 instead of 0x149ae8.
+- `nfbPolyFillRect` (konal.so, address 0x13cf060): **established.** PolyFillRect entry. It fetches the
+  composite clip region through the entry at +396 of the context's operation table and intersects every
+  rectangle with the region's boxes by hand (a loop over 8-byte boxes), using a stack buffer for up to 1024
+  results and a larger block otherwise, then hands the clipped list to the solid or tiled fill. The
+  instruction stream is word for word that of kona.so except for 1 load offset, 1 low address half and 1 high
+  address half, 3 words in all (beginning at +0x2c).
+- `nfbInstallHWColormap` (konal.so, address 0x13d0930): **established.** Gives a colormap a hardware slot
+  of its visual's group and runs the group's install hook; it loads no colours itself. It takes (colormap).
+  Its address is the table word, between destroy and uninstall (**inferred** install-colormap slot).
+  Relocation is the entire difference from kona.so, since 8 load offsets, 1 low address half and 1 high
+  address half change (the first at +0x5c) and every other bit of the 230-word routine stays the same.
+- `nfbSetStereoMode` (konal.so, address 0x13d2650): **established.** Switches a screen into or out of
+  stereo by swapping screen procedures and rrm hooks for stereo versions. It takes (screen, a, b, mode); the
+  current mode is word +220 of the pipe record. The same mode again returns 0; a change between two non-zero
+  modes returns 8, the X match error. Entering stereo, it saves screen procedures +216, +220 and +224 and rrm
+  hooks +28, +36 and +76 in the pipe record (+228 to +248). It installs this module's stereo procedures at
+  those three screen slots and stereo versions of the clip validation (+28), the swap-buffer validation (+36)
+  and the hook at +76. It stores b at pipe record halfword +226, the eye offset the stereo wrappers add
+  (wrappers), and a, clamped so that a + b fits the screen height, at +224. It then repaints through the
+  screen procedure at +340 and, by the calls it makes, creates a server-owned colormap and window, maps it
+  and confines the pointer (`ConfineCursorToWindow`), resizing the root window's extents. The leave path
+  frees those resources. Compared with kona.so only immediates move, 43 of the 488 words (32 load offsets, 10
+  low address halves and 1 high address half, starting at +0x14) since this module's data and table layout
+  differ.
+- `nfbHWStoreColors` (konal.so, address 0x13d6ba0): **established.** Sends colours to the hardware colormap
+  by an indirect call to the saved hardware function; it is the 52-byte pass-through used by
+  `nfbStoreColors`. Beyond 2 low address halves and 1 high address half (earliest at +0x64), which make up 3
+  of its 52 words, nothing separates this build from kona.so.
+- `nfbStereoPolyFillArc` (konal.so, address 0x13daea0): **established.** Stereo PolyFillArc: allocates a
+  scratch arc array with `Xalloc`, calls the PolyFillArc entry (+48) four times across both eyes, and frees
+  the array with `Xfree`. The instruction stream is word for word that of kona.so except for 3 load offsets
+  and 1 low address half, 4 words in all (beginning at +0x34).
+- `nfbStereoPolyText16` (konal.so, address 0x13dcc70): **established.** Stereo PolyText16 wrapper: invokes
+  the PolyText16 entry (+56) of the context operations table four times, once for each eye buffer and again
+  after the buffer swap that follows, with no other callee. The routine is 118 instructions long. Checked
+  against kona.so word by word, 115 of 118 words are bit-identical and the 3 others differ only in their
+  16-bit immediate (1 load offset, 1 low address half and 1 high address half, beginning at +0x18).
+- `nfbValidateWindowVisual` (konal.so, address 0x13e0910): **inferred.** Re-validates a window against the
+  screen's visual list. It calls the screen function entries at +344 (twice), +360 and +364 and reads the
+  screen record's visual array at +108; the result decides whether the window keeps its visual. The routine
+  is 105 instructions long. The instruction stream is word for word that of kona.so except for 1 load offset,
+  1 low address half and 1 high address half, 3 words in all (earliest at +0x1c).
+- `nfbStereoRegisterWrapperOps` (konal.so, address 0x13eef90): **established.** Six instructions that store
+  its one argument (the stereo wrapper table to use) into a module global; nothing else happens, no pipe
+  command is sent and nothing is called. The routine is 6 instructions long. Only the layout-dependent
+  immediates differ from kona.so, namely 1 load offset, 1 low address half and 1 high address half (beginning
+  at +0x0), and the other 3 of 6 words are bit-identical, and its prologue builds the global pointer from
+  0x130cb0 where kona.so uses 0x124dc8.
+- `nfbAbort` (konal.so, address 0x13ff5d0): **established.** Calls the C library `abort` and does nothing
+  else; it is the fatal-error exit of the frame-buffer layer. Checked against kona.so word by word, 11 of 13
+  words are bit-identical and the 2 others differ only in their 16-bit immediate (1 load offset and 1 low
+  address half, first seen at +0x8), with the gp offset in the prologue at 0x120670 here against 0x11ba38
+  there.
+- `nfbTellGainedMap` (konal.so, address 0x13fff40): **inferred.** Tells a window that its colormap was
+  installed: it finds the window with `FindWindowWithOptional`, reads the colormap records at +72 and +200 of
+  the screen and sends the notify event through `DeliverEvents`. The instruction stream is word for word that
+  of kona.so except for 5 load offsets and 1 low address half, 6 words in all (the first at +0x24).
+- `nfbChangeWindowAttributes` (konal.so, address 0x1402540): **established.** Follows a colormap change
+  through to the display-id bits. When the change mask has the colormap bit (0x2000) it compares the window's
+  new colormap with its parent's. It records the result in frame-buffer private +32 bit 0x10 (set when they
+  differ) and re-runs `nfbSetDidFlags` on the window. All 167 words of the body match kona.so apart from 9
+  whose 16-bit immediate differs (8 load offsets and 1 low address half, earliest at +0x24), so opcodes,
+  registers and branch offsets are identical.
+- `nfbGetLayerWindow` (konal.so, address 0x14027e0): **inferred.** Finds the window to use for a layer. It
+  follows the parent and sibling links of the window (+24, +28), builds a bit mask by shifting one by each
+  window's layer number, skips windows whose +124 flag bit 0x400 is set, and writes the result into +72 of
+  the screen private; 257 instructions with no calls. Checked against kona.so word by word, 257 of 262 words
+  are bit-identical and the 5 others differ only in their 16-bit immediate (4 load offsets and 1 low address
+  half, earliest at +0x8) (gp offset 0x11d460, kona.so 0x118b78).
+- `nfbMoveWindow` (konal.so, address 0x1404320): **established.** Window move: mirrors the sample server's
+  MoveWindow. It allocates a region with `Xalloc` ("Couldn't allocate storage in MoveWindow"), calls
+  `SetWinSize` and `SetBorderSize`, restacks with `MoveWindowInStack`, resizes children with
+  `ResizeChildrenWinSize` and runs the screen hooks around them (entries +336 to +492), noting the change in
+  `WindowsRestructured`. All 284 words of the body match kona.so apart from 13 whose 16-bit immediate differs
+  (10 load offsets, 2 low address halves and 1 high address half, earliest at +0x24), so opcodes, registers
+  and branch offsets are identical.
+- `nfbStereoPutImage` (konal.so, address 0x1408bd0): **established.** Stereo PutImage wrapper: calls the
+  PutImage entry (+8) of the operations table four times so the image is written to both eye buffers. The
+  routine is 149 instructions long. Compared with kona.so only immediates move, 2 of the 149 words (1 load
+  offset and 1 low address half, the first at +0x28) since this module's data and table layout differ.
+- `nfbShmCreatePixmap` (konal.so, address 0x140d100): **inferred.** Shared-memory pixmap creation:
+  allocates the header with `Xalloc`, rejects depths it cannot hold with the `ErrorF` message "unsupported
+  depth", fills in the padding from `PixmapWidthPaddingInfo` and numbers the pixmap from
+  `globalSerialNumber`. Only the layout-dependent immediates differ from kona.so, namely 6 load offsets and 3
+  low address halves (first seen at +0x8), and the other 103 of 112 words are bit-identical, and its prologue
+  builds the global pointer from 0x112b40 where kona.so uses 0x10e2c8.
+- `nfbCloseScreen` (konal.so, address 0x140dda0): **established.** CloseScreen entry: calls nine screen
+  entries at +352 to release resources, then frees memory with `Xfree`, 62 instructions in all. Beyond 1 load
+  offset and 1 low address half (the first at +0x30), which make up 2 of its 62 words, nothing separates this
+  build from kona.so.
+- `nfbStereoPolyText8` (konal.so, address 0x1411460): **established.** Stereo PolyText8 wrapper: the
+  context operations table's PolyText8 entry (+52) is called four times, covering both eye buffers; it is the
+  8-bit twin of `nfbStereoPolyText16`. Checked against kona.so word by word, 116 of 118 words are
+  bit-identical and the 2 others differ only in their 16-bit immediate (1 load offset and 1 low address half,
+  earliest at +0x20).
+- `nfbSlideAndSizeWindow` (konal.so, address 0x1411c20): **established.** Combined move and resize. It
+  follows the sample server's SlideAndSizeWindow: `UnmapWindow` when needed, `GravityTranslate` for bit
+  gravity, `TraverseTree` over the children, `SetWinSize`, `SetBorderSize`,
+  `MoveWindowInStack` and `ResizeChildrenWinSize`, calling many screen entries (+336 to +492) and
+  `WindowsRestructured` at the end. All 1414 words of the body match kona.so apart from 39 whose 16-bit
+  immediate differs (33 load offsets and 6 low address halves, the first at +0x4c), so opcodes, registers and
+  branch offsets are identical.
+- `nfbLayerValidateTreeSL` (konal.so, address 0x1417bf0): **inferred.** Validates the window tree for the
+  layered visual scheme: iterates windows through screen entries (+340 to +464), calls `nfbUnmapTree` for
+  windows that must be unmapped and `konInitiateBufferSwap` when a swap is due, stamping the pass with
+  `globalSerialNumber`. Compared with kona.so only immediates move, 11 of the 768 words (7 load offsets, 3
+  low address halves and 1 high address half, earliest at +0x34) since this module's data and table layout
+  differ.
+- `nfbUninstallColormap` (konal.so, address 0x141dd90): **established.** Puts the screen's default colormap
+  back when the colormap being uninstalled is the one recorded as installed. It takes (colormap) and compares
+  it with the word at pipe record +128. When they match and the colormap is not the screen's default (screen
+  record +28), it looks the default up as a resource of type 6 and passes it to the screen's install function
+  (screen record +316). Otherwise it returns; it does not touch hardware slots itself. The instruction stream
+  is word for word that of kona.so except for 1 load offset and 1 low address half, 2 words in all (beginning
+  at +0x1c), with the gp offset in the prologue at 0x101eb0 here against 0xfd658 there.
+- `nfbChangeSaveUnder` (konal.so, address 0x141f690): **inferred.** ChangeSaveUnder entry: walks the
+  affected windows using screen entries +340 and +352, adjusts `numSaveUndersViewable` and
+  `deltaSaveUndersViewable`, and calls two indirect hooks for each changed window. Compared with kona.so only
+  immediates move, 8 of the 134 words (5 load offsets and 3 low address halves, earliest at +0x28) since this
+  module's data and table layout differ.
+- `nfbStoreColors` (konal.so, address 0x1422b60): **inferred.** StoreColors entry: when the colormap is the
+  installed one and the count is positive it calls the hardware store hook at +136 once per 12-byte colour
+  cell. Beyond 1 low address half (starting at +0x30), which make up 1 of its 42 words, nothing separates
+  this build from kona.so.
+- `nfbStereoFillPolygon` (konal.so, address 0x1423a00): **established.** Stereo FillPolygon: copies the
+  point list into memory from `Xalloc`, calls the FillPolygon entry (+40) of the operations table four times
+  for both eyes, and releases the copy with `Xfree`. Relocation is the entire difference from kona.so, since
+  3 load offsets and 1 low address half change (starting at +0x44) and every other bit of the 203-word
+  routine stays the same.
+- `nfbSetSpans` (konal.so, address 0x1423d40): **inferred.** SetSpans entry: looks up the padding for the
+  drawable's depth in `PixmapWidthPaddingInfo` and calls the per-depth entry at +0 for each span, in two call
+  sites (clipped and unclipped). Only the layout-dependent immediates differ from kona.so, namely 4 load
+  offsets, 1 low address half and 1 high address half (earliest at +0x30), and the other 287 of 293 words are
+  bit-identical.
+- `nfbFillSpans` (konal.so, address 0x1424d90): **established.** FillSpans entry: when the clip is complex
+  it finds the widest band with `miFindMaxBand` and trims the spans with `miClipSpans` (called at two places)
+  before they reach the pipe path. Beyond 3 load offsets, 1 low address half and 1 high address half
+  (starting at +0x24), which make up 5 of its 72 words, nothing separates this build from kona.so.
+- `nfbStippledFS` (konal.so, address 0x1425420): **inferred.** Stippled span fill: reads the span list and
+  calls the depth table's entry at +0 from three places, one per stipple style. The routine is 161
+  instructions long. Checked against kona.so word by word, 159 of 163 words are bit-identical and the 4
+  others differ only in their 16-bit immediate (2 load offsets, 1 low address half and 1 high address half,
+  first seen at +0x20).
+- `nfbPostChangeSaveUnder` (konal.so, address 0x1428f70): **inferred.** PostChangeSaveUnder entry: after
+  the change it calls an indirect hook at two points; it keeps no counters of its own, 76 instructions. All
+  76 words of the body match kona.so apart from 1 whose 16-bit immediate differs (1 low address half, the
+  first at +0x28), so opcodes, registers and branch offsets are identical.
+- `nfbPaintWindowBorder` (konal.so, address 0x142b980): **established.** PaintWindowBorder entry: if the
+  request is not for the border it prints "what != PW_BORDER" with `ErrorF`; otherwise it asks
+  `nmbxCanSupportBuffers` whether the window has multibuffers and paints with entry +28 or +4 using the
+  window private from `dbcWindowPrivateIndex`. The instruction stream is word for word that of kona.so except
+  for 5 load offsets and 2 low address halves, 7 words in all (earliest at +0x14), the prologue's gp constant
+  reading 0xf42c0 instead of 0xf04f8.
+- `nfbImageGlyphBlt` (konal.so, address 0x142bb80): **inferred.** ImageGlyphBlt on the frame-buffer path:
+  measures the string with `QueryGlyphExtents`, calls the clip entry at +380 and draws the cell background
+  and the glyph bits through the entries at +4 and +12 of the screen's operation table; 814 instructions.
+  Only the layout-dependent immediates differ from kona.so, namely 3 load offsets and 1 low address half
+  (starting at +0x64), and the other 818 of 822 words are bit-identical.
+- `nfbUnmapTree` (konal.so, address 0x142f670): **inferred.** Unmaps a window subtree: for each window it
+  calls `nfbSetDidFlags` to drop the display-ID state kept for it; short, 101 instructions. The instruction
+  stream is word for word that of kona.so except for 3 load offsets and 1 low address half, 4 words in all
+  (starting at +0xc) (gp offset 0xf05d0, kona.so 0xec838).
+- `nfbGetSpans` (konal.so, address 0x1431000): **established.** GetSpans entry: dispatches on the
+  drawable's depth to one of seven copy loops and calls `FatalError` with "nfbGetSpans: invalid depth" if
+  none fits. The pixmap width padding is read from `PixmapWidthPaddingInfo`. Beyond 8 load offsets, 2 low
+  address halves and 1 pc-relative call distance (starting at +0x4c), which make up 11 of its 190 words,
+  nothing separates this build from kona.so.
+- `nfbRecolorCursor` (konal.so, address 0x1431380): **established.** RecolorCursor entry: when the cursor
+  argument is non-null it calls the screen's recolour hook at +284, passing the arguments through. The
+  routine is 14 instructions long. Compared with kona.so only immediates move, 1 of the 14 words (1 low
+  address half, the first at +0xc) since this module's data and table layout differ (gp offset 0xee8c0,
+  kona.so 0xeab28).
+- `nfbFreeHWCmapArrays` (konal.so, address 0x14315a0): **established.** Frees the arrays that hold a
+  hardware colormap: loops over two arrays of 24-byte and 28-byte records, freeing each non-null block with
+  `Xfree` unless it is shared with an entry already freed. Compared with kona.so only immediates move, 3 of
+  the 108 words (2 load offsets and 1 low address half, first seen at +0x50) since this module's data and
+  table layout differ.
+- `nfbMarkOverlappedWindows` (konal.so, address 0x14338f0): **inferred.** Walks the sibling windows with
+  the screen entry at +396 and calls `nfbMarkWindow` at six places to flag each window whose region the
+  changed window overlaps; 671 instructions, mostly region comparisons. Only the layout-dependent immediates
+  differ from kona.so, namely 13 load offsets and 1 low address half (first seen at +0x48), and the other 666
+  of 680 words are bit-identical.
+- `nfbHoriz` (konal.so, address 0x143c120): **established.** Draws one horizontal run for a zero-width
+  segment: compares the two x coordinates, swaps them if reversed, stores the clamped pair back and calls the
+  span entry through a function pointer with a count of one. The routine is 34 instructions long. The
+  instruction stream is word for word that of kona.so except for 1 low address half, 1 words in all (earliest
+  at +0x24).
+- `nfbSolidFillRects` (konal.so, address 0x143fce0): **inferred.** Solid rectangle fill hook on the
+  frame-buffer path. It reads the window and screen privates through two private-index globals, then calls
+  the solid-fill entry (+4) of the ops table found there with the colour word at +64 and the depth byte at
+  +72. The routine is 31 instructions long. Relocation is the entire difference from kona.so, since 2 load
+  offsets and 1 low address half change (beginning at +0xc) and every other bit of the 31-word routine stays
+  the same, and its prologue builds the global pointer from 0xdff60 where kona.so uses 0xdc848.
+- `nfbInstallColormap` (konal.so, address 0x14474d0): **inferred.** InstallColormap entry: three
+  `WalkTree` passes call `TellLostMap` for windows of the old map and `TellGainedMap` for those of the new
+  map, and the hardware install hook at +136 is called once. Same code as kona.so with 6 words re-addressed
+  for this module (4 load offsets, 1 low address half and 1 high address half, earliest at +0x20), nothing
+  else in the 82 words changing.
+- `nfbCopyPlane` (konal.so, address 0x14481b0): **inferred.** CopyPlane entry for the frame-buffer layer.
+  Depending on the drawable's depth it calls `cfb16CopyPlane`, `cfbCopyPlane` or the generic `miCopyPlane`,
+  bracketing the copy with the screen's clip and region entries at +340, +352 and +356. Beyond 6 load offsets
+  and 1 low address half (the first at +0x20), which make up 7 of its 330 words, nothing separates this build
+  from kona.so.
+- `nfbSolidZeroSeg` (konal.so, address 0x144a1d0): **established.** Zero-width segment drawing: handles the
+  horizontal and vertical cases itself with `nfbHoriz` and `nfbVert` (the latter called seven times) and
+  calls an indirect entry for the diagonal case. Relocation is the entire difference from kona.so, since 14
+  load offsets and 1 low address half change (starting at +0x2c) and every other bit of the 497-word routine
+  stays the same.
+- `nfbSetStereoBuffer` (konal.so, address 0x1452ee0): **established.** Selects which eye buffer a window
+  draws to. It tests the screen record's stereo word (+220) and the window's flags, updates the window
+  private's buffer fields at +52 and +56, and when the state changes allocates a clip id with `FindFreeCID`,
+  invalidates the old one with `rrmInvalidateCID` and revalidates with `rrmValidateCID`. Relocation is the
+  entire difference from kona.so, since 8 load offsets and 1 low address half change (earliest at +0x8) and
+  every other bit of the 104-word routine stays the same (gp offset 0xccd60, kona.so 0xc98f8).
+
+### Resource manager client and identifier allocation
+
+- `StealID` (konal.so, address 0x13b32a0): **established.** Takes (window) and frees a display id for it in
+  three passes over the ids of the window's kind. The first moves the holder of an unshared id onto another
+  id whose recorded mode equals the holder's (`compareModes`), calling hook +32 on the holders when their
+  byte +6 has bit 0x8. The second walks from the cursor at screen private +132 and asks a helper to vacate
+  the first holder of each unshared id. The third, from the same cursor, takes any id of the kind without bit
+  0x1, hands the old holders and that id to a second helper together with the `cmapDID` id of the first
+  holder, and gives the id to the window. Relocation is the entire difference from kona.so, since 13 load
+  offsets, 8 low address halves and 1 high address half change (earliest at +0x28) and every other bit of the
+  282-word routine stays the same.
+- `UnsetReservedID` (konal.so, address 0x13b81c0): **established.** Clears the occupied bit 0x2 of an id's
+  entry flags (+16); it takes (screen, id). `nfbUninstallHWColormap` calls it to release a colour map's
+  reservation, a path this module never takes because its descriptor leaves reservations off. Same code as
+  kona.so with 2 words re-addressed for this module (1 load offset and 1 low address half, starting at +0x4),
+  nothing else in the 18 words changing (gp offset 0x167a80, kona.so 0x15b198).
+- `rrmMapWindow` (konal.so, address 0x13ba810): **inferred.** Called when a window is mapped: bumps the
+  private counters with `incrRRMpriv` and `incrRRMFlags`, takes identifiers from `FindFreeID` or
+  `FindBestID` and `FindFreeCID`, then validates the clip id through `rrmValidateCID`. All 107 words of the
+  body match kona.so apart from 14 whose 16-bit immediate differs (11 load offsets, 2 low address halves and
+  1 pc-relative call distance, the first at +0x1c), so opcodes, registers and branch offsets are identical,
+  with the gp offset in the prologue at 0x165430 here against 0x158db8 there.
+- `FindBestID` (konal.so, address 0x13c9e30): **established.** Takes (window) and picks a display id for
+  it. It scans the ids and remembers the best one whose recorded modes match the window's (`compareModes`); a
+  shared id (flag 0x4) of the window's own kind is joined at once. A remembered match is otherwise announced
+  to its holders through hook +32 before the window is given the id. With no match, or an empty table, it
+  asks `cmapDID` and gives the window that id unless it already holds it. Compared with kona.so only
+  immediates move, 13 of the 106 words (8 load offsets and 5 low address halves, earliest at +0x28) since
+  this module's data and table layout differ.
+- `rrmDestroyDrawable` (konal.so, address 0x13cb150): **established.** Frees a drawable's rendering-manager
+  state: cancels any delayed validation with `rrmDelayValidateClipCancel`, calls the screen entries +60, +96
+  and +68, and frees the private block with `Xfree`. Same code as kona.so with 5 words re-addressed for this
+  module (4 load offsets and 1 low address half, earliest at +0x14), nothing else in the 66 words changing
+  (gp offset 0x154af0, kona.so 0x148638).
+- `decrRRMFlags` (konal.so, address 0x13cb260): **established.** The inverse walk: it subtracts one from
+  word +16 of the window and each ancestor. Relocation is the entire difference from kona.so, since 2 load
+  offsets and 1 low address half change (beginning at +0x8) and every other bit of the 21-word routine stays
+  the same (gp offset 0x1549e0, kona.so 0x148528).
+- `rrmNeedCID` (konal.so, address 0x13cd150): **established.** Hook +92: it returns 1 unless the window's
+  clip list is empty or fits within the rectangle count at rrm private +8. With this module's 0 at +8 that is
+  every window with a non-empty clip. All 24 words of the body match kona.so apart from 3 whose 16-bit
+  immediate differs (1 load offset, 1 low address half and 1 high address half, the first at +0x0), so
+  opcodes, registers and branch offsets are identical, and its prologue builds the global pointer from
+  0x152af0 where kona.so uses 0x146648.
+- `rrmUnmapWindow` (konal.so, address 0x13cd2e0): **established.** Called when a window is unmapped: frees
+  the window's display id and its swap id with two `FreeID` calls and invokes the screen entries at +32 and
+  +108. Beyond 8 load offsets, 1 low address half, 1 high address half and 1 pc-relative call distance (the
+  first at +0x14), which make up 11 of its 71 words, nothing separates this build from kona.so, the
+  prologue's gp constant reading 0x152960 instead of 0x1464b8.
+- `rrmUnbindRNFromClip` (konal.so, address 0x13cea20): **established.** Descriptor hook +68: it detaches a
+  rendering node from a window and returns the window to plain X drawing. It takes (window, node); a window
+  with no rrm private returns at once. It first invalidates every resource the window holds through hook +32
+  (`rrmInvalidate` with a zero mask), and drops a queued request when the private flag halfword has bit 0x20.
+  For a realized window (word +124 bit 11) it releases the display id with `FreeID`, or just sets it to -1
+  when it holds the no-id value (the id count, rrm screen private +0). It releases the clip id too
+  (`FreeCID`), and lowers the parent's counters with `decrRRMFlags`. It sets the frame-buffer id (private +4)
+  to the colour map's id from `cmapDID`, clears the bound-window list at rrm private +40, unbinding each
+  listed window the same way, and frees it. It then sets frame-buffer private +32 bit 0x1 and runs
+  `nfbSetDidFlags`; for a realized window it calls hook +72 (`nfbValidateWindowVisual`) with the old id.
+  Finally it clears bit 0x1 of the rrm private flag halfword and returns 1. Relocation is the entire
+  difference from kona.so, since 24 load offsets, 1 low address half, 1 high address half and 2 pc-relative
+  call distances change (earliest at +0x8) and every other bit of the 211-word routine stays the same, with
+  the gp offset in the prologue at 0x151220 here against 0x144d78 there.
+- `rrmUnqueueRequest` (konal.so, address 0x13cff40): **established.** Removes a window from the doubly
+  linked request queue (links at +52 and +56 of the window private), fixing the queue head and tail at +140
+  and +144 of the screen private and clearing the flag bit 0x20 at +0. Only the layout-dependent immediates
+  differ from kona.so, namely 2 load offsets, 1 low address half and 1 high address half (first seen at
+  +0x0), and the other 44 of 48 words are bit-identical, and its prologue builds the global pointer from
+  0x14fd00 where kona.so uses 0x143868.
+- `FindFreeCID` (konal.so, address 0x13e0670): **established.** Gives a window a clip id, the hardware tag
+  that lets a window with a complex clip be drawn without per-rectangle clipping (**inferred** from
+  `rrmNeedCID`). It works on the clip-id table: 28-byte entries from screen-private +148, count at +4; entry
+  +0 first holder, +8 flags, +10 kind, +12 holder count; cursor at +136. It first calls hook +92
+  (`rrmNeedCID`) with the window; on 0 it sets the window's clip id to the table count (**inferred** "none").
+  A window whose current clip id is not shared (bit 0x4 of entry +8 clear) keeps it. Otherwise it scans for
+  an entry of the window's kind without bit 0x1 (a kind-1 window also accepts other kinds when screen word
+  +12 has bit 0x2). An entry with no holder is given to the window at once; of the others it remembers the
+  last whose first holder's private bytes +4 and +6 differ. When none is remembered it takes the entry after
+  the cursor (wrapping to 1, never 0) and advances the cursor. For the chosen entry it sends hook +32
+  (`rrmInvalidate`) to the first holder with (2, 0), invalidating its clip, moves that holder to clip id 0
+  and gives the window the entry. Both moves go through a static helper (window, id), which frees the
+  window's current clip id with `FreeCID` and joins the new one through a static helper, which stores the id
+  at private +24 and adds the window as a holder. With `kona.so` the clip-id count is 0, so no clip-id table
+  exists and the guarded callers never reach this function (descriptor). Relocation is the entire difference
+  from kona.so, since 6 load offsets, 4 low address halves and 1 high address half change (earliest at +0x8)
+  and every other bit of the 157-word routine stays the same (gp offset 0x13f5d0, kona.so 0x1331f8).
+- `rrmCreateWindow` (konal.so, address 0x13e51d0): **established.** CreateWindow wrapper: clears the
+  window's private slot, saves the screen's CreateWindow entry (+112) in the private (+180), calls the
+  original and reinstalls the module's function. The routine is 30 instructions long. Beyond 3 load offsets,
+  1 low address half and 1 high address half (the first at +0x0), which make up 5 of its 30 words, nothing
+  separates this build from kona.so, and its prologue builds the global pointer from 0x13aa70 where kona.so
+  uses 0x12e698.
+- `incrRRMpriv` (konal.so, address 0x13f4ea0): **established.** Makes sure a window and all its ancestors
+  have an rrm private, creating each missing one with `allocRRMpriv`; it returns 0, or 1 when an allocation
+  fails. Relocation is the entire difference from kona.so, since 4 load offsets, 1 low address half and 1
+  high address half change (first seen at +0x8) and every other bit of the 47-word routine stays the same,
+  and its prologue builds the global pointer from 0x12ada0 where kona.so uses 0x11ef48.
+- `rrmValidateCID` (konal.so, address 0x13f6550): **inferred.** Revalidates the clip id of a window: reads
+  the window private (+76, +92) and screen entries (+32, +344) and calls the manager through an indirect
+  pointer twice, six indirect calls in all, to set up the rendering-node binding of the clip. The routine is
+  129 instructions long. Only the layout-dependent immediates differ from kona.so, namely 6 load offsets, 2
+  low address halves and 1 high address half (earliest at +0x18), and the other 122 of 131 words are
+  bit-identical.
+- `rrmProcessRequestQueue` (konal.so, address 0x1402c00): **inferred.** Processes queued window requests:
+  pops entries with `rrmUnqueueRequest`, gives each window an identifier with `FindFreeID` and a clip id with
+  `FindFreeCID`, and calls screen entries +28 and +36; loops until the queue is empty. The command set
+  matches kona.so token for token (none), but every token travels as data at offset 0 of the pointer kept in
+  a stack slot (first at +0x0, 0 token stores in all) rather than as part of a store address, with 99% of the
+  instructions unchanged from kona.so once addresses are normalised and the size 440 bytes against 440. The
+  call to `rrmValidateCID` at +0x188 is made with `jalr $25` here, where kona.so uses a pc-relative
+  `bal`.
+- `ShareSwappingID` (konal.so, address 0x1413e30): **established.** Lets a window that starts a buffer swap
+  join a display id already mid-swap in the same mode; it returns 1 when the window was given an id, else 0.
+  Pass 1 walks the ids from the highest down to 1 and considers entries with bit 0x10 (swap pending) other
+  than the window's own, whose first holder has the same hardware-dependent mode (+36) as the window. For
+  each it walks the holder list of id 0 (entry +0 of the table, whatever entry it is considering) and notes
+  whether any holder has bit 0x8 in its private byte +4. When none does, it gives the window the entry's id
+  through a static helper and returns 1; the scan stops at an entry with bit 0x1. When some holder of id 0
+  does, pass 2 walks the same entries again. For each swap-pending entry other than the window's own it calls
+  a static routine on the entry once per holder of id 0 with that bit, and gives the window the entry's id if
+  `compareModes` accepts the window's modes against it. Bit 0x8 of private byte +4 is the swap-buffer
+  resource: `konValidateSwapbuf` sets it after a successful validation (1012) and `rrmInvalidate` clears it
+  (hooks). Id 0 is the first of the colour-index ids the server reserves at start-up. **Inferred:** a window
+  that starts a swap may join an id that is mid-swap when the modes agree. All 181 words of the body match
+  kona.so apart from 11 whose 16-bit immediate differs (6 load offsets, 4 low address halves and 1 high
+  address half, earliest at +0x18), so opcodes, registers and branch offsets are identical.
+- `rrmInitializeGLStaticColormap` (konal.so, address 0x14187f0): **established.** Loads the fixed colours
+  of a 256-entry static-colour colormap from a table in the module. For any other class or size it calls
+  `cfbInitializeColormap` instead. The table holds 256 red bytes, then 256 green and 256 blue; each byte is
+  shifted into the high half of a 16-bit component. The loop runs 257 times, so it also writes one entry past
+  the 256th from the next table's first bytes (**established** from the loop bound, **inferred** a defect
+  that the colormap's allocation absorbs). Only the layout-dependent immediates differ from kona.so, namely 3
+  load offsets and 2 low address halves (earliest at +0x10), and the other 48 of 53 words are bit-identical,
+  the prologue's gp constant reading 0x107450 instead of 0x102bc8.
+- `rrmDoubleBufferWindow` (konal.so, address 0x141de00): **established.** Makes the X server's
+  double-buffer extension window double-buffered in the pipe. It allocates the rrm private with
+  `allocRRMpriv` when there is none (status 11 on failure, the X allocation error). For a window not yet
+  bound it sets holder count +8 to 1, flag halfword 5, clears +28 and +30, takes the rendering-node id (+12)
+  from pipe record +104 and raises the parent's counters with `incrRRMpriv`. It builds the
+  hardware-independent mode (+32) from the mode recorded for the window's current frame-buffer id, with bit
+  0x2 (double-buffered) set and bit 0x4 (back buffer shown) clear. The hardware-dependent mode (+36) is that
+  id's recorded word +12, or its pending word +28 when reservations are on and the id is marked at +32. It
+  clears frame-buffer private +32 bit 0x1, runs `nfbSetDidFlags` and sets the display id to -1. A realized
+  window then gets a new id from `FindFreeID`, or from `StealID` when none is free. It loads the new mode
+  through hook +40 (`konValidateMode`) and finally calls the screen procedure at +192 with (window, 0); it
+  returns 0. Only the layout-dependent immediates differ from kona.so, namely 13 load offsets, 2 low address
+  halves and 2 pc-relative call distances (earliest at +0x20), and the other 146 of 163 words are
+  bit-identical.
+- `FreeID` (konal.so, address 0x1422ac0): **established.** Takes a window off its display id. It takes
+  (window), unlinks the window from its display-id entry through the static helper and sets the window's id
+  (rrm window private +20) to -1. The helper runs only when the window's private flag halfword has bit 0x8.
+  It drops the entry's window count (+20), removes the window from the doubly linked list of holders (window
+  privates +44 and +48) and recomputes the entry's flag bits from the list's head and tail. The flag bits are
+  settled in the allocator. The instruction stream is word for word that of kona.so except for 2 load offsets
+  and 2 low address halves, 4 words in all (beginning at +0x10), with the gp offset in the prologue at
+  0xfd180 here against 0xf8f78 there.
+- `incrRRMFlags` (konal.so, address 0x1422d60): **established.** Adds one to rrm private word +16 of a
+  window and of every ancestor; **inferred** a count of bound descendants. Same code as kona.so with 3 words
+  re-addressed for this module (2 load offsets and 1 low address half, the first at +0x8), nothing else in
+  the 21 words changing (gp offset 0xfcee0, kona.so 0xf8cd8).
+- `allocRRMpriv` (konal.so, address 0x1422dc0): **established.** Creates a window's rrm private: it
+  allocates 76 bytes, clears them and stores the record in the window's private slot
+  (`rrmWindowPrivateIndex`). It then calls the descriptor's hook +80, `konInitWindowType`, with the window,
+  and returns the record, or 0 when the allocation fails. `rrmDoubleBufferWindow` and the two bind functions
+  call it. Compared with kona.so only immediates move, 5 of the 52 words (4 load offsets and 1 low address
+  half, the first at +0x8) since this module's data and table layout differ, the prologue's gp constant
+  reading 0xfce80 instead of 0xf8c78.
+- `cmapDID` (konal.so, address 0x1438c00): **established.** Returns the display id that goes with a
+  window's colour map. It takes (window) and looks up the window's colormap (the optional record's colormap,
+  or none for an input-only window) as a resource of type 6 (colormap). With a colormap whose block word 0 is
+  not negative, it returns that slot's +16 field; otherwise it returns word +0 of the visual-table entry for
+  the window's visual. **Inferred:** the second form is the id a window gets when its colormap has no slot.
+  Callers: the best-id search and the steal function of the allocator. The two unbind functions call it too
+  (`rrmUnbindRNFromClip`, `rrmOGLUnbindRNFromClip`). Same code as kona.so with 5 words re-addressed for this
+  module (4 load offsets and 1 low address half, starting at +0x24), nothing else in the 90 words changing.
+- `rrmInvalidateCID` (konal.so, address 0x143fd60): **established.** Drops a window's clip id when its clip
+  changes. A window whose clip id is 0 or the no-id value (the clip-id count) just gets 0. Otherwise it calls
+  hook +76 with the id's entry, then the screen procedure at +392; the descriptor leaves +76 empty, and the
+  stereo switch installs a stereo routine there. Beyond 2 load offsets and 1 low address half (earliest at
+  +0xc), which make up 3 of its 47 words, nothing separates this build from kona.so, and its prologue builds
+  the global pointer from 0xdfee0 where kona.so uses 0xdc7c8.
+- `rrmBindMultipleClips` (konal.so, address 0x1441290): **inferred.** Binds several clips in one pass:
+  allocates an argument array with `Xalloc` and calls the screen entry at +68 for the windows that need a
+  bind, 100 instructions. The instruction stream is word for word that of kona.so except for 3 load offsets
+  and 1 low address half, 4 words in all (beginning at +0x14), the prologue's gp constant reading 0xde9b0
+  instead of 0xdb298.
+- `rrmDestroyWindow` (konal.so, address 0x144d4a0): **established.** DestroyWindow wrapper: calls the saved
+  screen entries +100 and +116 and then puts the module's function back at +184 of the screen. The routine is
+  33 instructions long. Only the layout-dependent immediates differ from kona.so, namely 2 load offsets and 1
+  low address half (starting at +0x14), and the other 30 of 33 words are bit-identical, with the gp offset in
+  the prologue at 0xd27a0 here against 0xcf0d8 there.
+- `FreeCID` (konal.so, address 0x14520f0): **established.** Takes a window off its clip id. It calls the
+  leave helper with the window and its entry (28-byte entries at screen private +148, index rrm window
+  private +24), then sets the window's clip id to 0, an entry the allocator never hands out. The helper runs
+  only when the window's private flag halfword has bit 0x40. It unlinks the window from the holders (window
+  privates +60 and +64), drops the entry's count (+12) and recomputes the entry's flags (+8) from bit 0x1 and
+  the holders that remain. All 35 words of the body match kona.so apart from 5 whose 16-bit immediate differs
+  (3 load offsets and 2 low address halves, earliest at +0x14), so opcodes, registers and branch offsets are
+  identical, with the gp offset in the prologue at 0xcdb50 here against 0xca6e8 there.
+- `rrmDisposeClip` (konal.so, address 0x1456900): **established.** Releases a window's clip in the kernel:
+  sends ioctl 1004 (`RRM_UNBINDRNFROMCLIP`) and, on failure (return -1), prints "Failed to unbind rn from
+  clip" with the node id and errno using `ErrorF`. Checked against kona.so word by word, 22 of 29 words are
+  bit-identical and the 7 others differ only in their 16-bit immediate (4 load offsets, 2 low address halves
+  and 1 high address half, first seen at +0x8), and its prologue builds the global pointer from 0xc9340 where
+  kona.so uses 0xc5ed8.
+
+### Monochrome frame-buffer routines (`mfb*`)
+
+- `mfbTEGlyphBltWhite` (konal.so, address 0x13b2a00): **inferred.** Draws fixed-width glyph bitmaps into a
+  one-bit drawable in white. It reads the glyph rows with halfword loads, shifts them into place with 34
+  variable shifts, merges them into the destination words and falls back to `mfbImageGlyphBltWhite` through
+  the clip entry (+380) when a case is not handled. Compared with kona.so only immediates move, 12 of the 551
+  words (10 load offsets, 1 low address half and 1 high address half, the first at +0x38) since this module's
+  data and table layout differ.
+- `mfbCopyRotatePixmap` (konal.so, address 0x13b3710): **inferred.** Copies a one-bit pixmap and rotates it
+  to the tile origin: shallow copy with `mfbCopyPixmap` or `memmove`, pads with `mfbPadPixmap` and rotates in
+  x with `mfbXRotatePixmap` and in y with `mfbYRotatePixmap`; it reads the private copy through entry +240.
+  Checked against kona.so word by word, 65 of 73 words are bit-identical and the 8 others differ only in
+  their 16-bit immediate (6 load offsets, 1 low address half and 1 high address half, beginning at +0x20).
+- `mfbBlackSolidFS` (konal.so, address 0x13ba280): **inferred.** Fills a span list with black pixels:
+  `miFindMaxBand` and `miClipSpans` trim spans against the clip, then each span is cleared word by word with
+  partial-word masks at both ends. The instruction stream is word for word that of kona.so except for 6 load
+  offsets and 1 low address half, 7 words in all (the first at +0x2c).
+- `mfbFillPolyInvert` (konal.so, address 0x13c7180): **inferred.** Polygon fill that inverts pixels. Like
+  the white version it handles the single-box clip itself and calls `miFillPolygon` at two places for the
+  other cases; 567 instructions with 28 loop edges. Relocation is the entire difference from kona.so, since 4
+  load offsets, 1 low address half and 1 high address half change (first seen at +0x20) and every other bit
+  of the 575-word routine stays the same.
+- `mfbPutImage` (konal.so, address 0x13c8fc0): **inferred.** PutImage for one-bit drawables: builds a
+  scratch pixmap header around the caller's data with `GetScratchPixmapHeader`, copies through the entry at
+  +12 of the operations table and releases the header with `FreeScratchPixmapHeader`. Checked against kona.so
+  word by word, 95 of 101 words are bit-identical and the 6 others differ only in their 16-bit immediate (5
+  load offsets and 1 low address half, first seen at +0x44).
+- `mfbPolyFillArcSolid` (konal.so, address 0x13cb9b0): **inferred.** PolyFillArc for solid fills of one-bit
+  drawables: fetches the clip through entry +380, makes two calls to a shared span-fill routine and loops
+  over the arcs (13 loop edges); 0x7fff bounds the y range. Checked against kona.so word by word, 136 of 144
+  words are bit-identical and the 8 others differ only in their 16-bit immediate (4 load offsets, 3 low
+  address halves and 1 high address half, the first at +0x10), with the gp offset in the prologue at 0x154290
+  here against 0x147dd8 there.
+- `mfbGetImage` (konal.so, address 0x13d5fb0): **inferred.** GetImage for one-bit drawables: allocates a
+  scratch header with `GetScratchPixmapHeader`, zeroes the output with `bzero`, copies with `mfbDoBitblt`
+  between the clip entries +340 and +352, and frees the header with `FreeScratchPixmapHeader`. Relocation is
+  the entire difference from kona.so, since 4 load offsets, 1 low address half and 1 high address half change
+  (beginning at +0x28) and every other bit of the 78-word routine stays the same.
+- `mfbLineSD` (konal.so, address 0x13d8090): **inferred.** Dashed polyline for one-bit drawables: clips
+  with `miZeroClipLine`, advances the dash state with `miStepDash` (called at five places) and draws with
+  `mfbBresD`. Beyond 13 load offsets and 1 low address half (the first at +0x24), which make up 14 of its 774
+  words, nothing separates this build from kona.so.
+- `mfbFillPolyWhite` (konal.so, address 0x13d8d70): **inferred.** Fills a polygon in white when the clip is
+  a single box and falls back to `miFillPolygon` (two call sites) otherwise; the constants 0x7fff and
+  0xfffeffff bound coordinates and span lengths. Compared with kona.so only immediates move, 5 of the 491
+  words (4 load offsets and 1 low address half, starting at +0x28) since this module's data and table layout
+  differ.
+- `mfbVertS` (konal.so, address 0x13de0f0): **inferred.** Draws a vertical solid run in a one-bit drawable:
+  steps one scan line per pixel by the row stride and applies the mask; 21 word stores in a short loop.
+  Relocation is the entire difference from kona.so, since 3 load offsets, 1 low address half and 1 high
+  address half change (first seen at +0x4) and every other bit of the 235-word routine stays the same, with
+  the gp offset in the prologue at 0x141b50 here against 0x135778 there.
+- `mfbLineSS` (konal.so, address 0x13df050): **inferred.** Solid single-width polyline for one-bit
+  drawables: clips each segment with `miZeroClipLine`, draws horizontals with `mfbHorzS`, verticals with
+  `mfbVertS` and the rest with `mfbBresS`. Checked against kona.so word by word, 890 of 901 words are
+  bit-identical and the 11 others differ only in their 16-bit immediate (9 load offsets, 1 low address half
+  and 1 high address half, earliest at +0x20).
+- `mfbDoBitbltGeneral` (konal.so, address 0x13e7f80): **inferred.** The general one-bit copy: it moves
+  rectangles between bit-aligned positions of two one-bit drawables for any raster operation, with 70
+  variable shifts, left-to-right and right-to-left loops and per-edge masks. Same code as kona.so with 16
+  words re-addressed for this module (11 load offsets and 5 low address halves, earliest at +0x4), nothing
+  else in the 1543 words changing (gp offset 0x137cc0, kona.so 0x12bb38).
+- `mfbSolidWhiteArea` (konal.so, address 0x13ff620): **inferred.** Fills a list of rectangles with white in
+  a one-bit drawable: for each box it sets partial words at the left and right edge and whole words between
+  them, with 137 word stores in the unrolled loops. Compared with kona.so only immediates move, 5 of the 582
+  words (4 load offsets and 1 low address half, earliest at +0x24) since this module's data and table layout
+  differ.
+- `mfbDoBitbltXor` (konal.so, address 0x1400e80): **inferred.** One-bit rectangle copy that exclusive-ors
+  the source into the destination, built on the same loops as the copy case; 1129 instructions with 70
+  variable shifts. Relocation is the entire difference from kona.so, since 10 load offsets and 5 low address
+  halves change (first seen at +0x10) and every other bit of the 1140-word routine stays the same, with the
+  gp offset in the prologue at 0x11edc0 here against 0x11a4d8 there.
+- `mfbRegisterCopyPlaneProc` (konal.so, address 0x1408b30): **established.** Records the copy-plane routine
+  to use for a source depth: on first use it takes a screen private index with `AllocateScreenPrivateIndex`
+  and stores the routine in a table keyed by depth. Checked against kona.so word by word, 30 of 38 words are
+  bit-identical and the 8 others differ only in their 16-bit immediate (5 load offsets, 1 low address half
+  and 2 store offsets, earliest at +0x8), with the gp offset in the prologue at 0x117110 here against
+  0x112878 there.
+- `mfbDoBitbltOr` (konal.so, address 0x1409af0): **inferred.** One-bit rectangle copy that ors the source
+  into the destination: identical shape and size to the exclusive-or version, differing in the combine
+  instruction. The routine is 1129 instructions long. Checked against kona.so word by word, 1125 of 1140
+  words are bit-identical and the 15 others differ only in their 16-bit immediate (10 load offsets and 5 low
+  address halves, earliest at +0x10), with the gp offset in the prologue at 0x116150 here against 0x1118d8
+  there.
+- `mfbSolidInvertArea` (konal.so, address 0x1413240): **inferred.** Inverts the bits inside each rectangle
+  of a list in a one-bit drawable: edge words get masks and the body words are complemented in unrolled
+  loops. The routine is 758 instructions long. Compared with kona.so only immediates move, 6 of the 763 words
+  (5 load offsets and 1 low address half, beginning at +0x30) since this module's data and table layout
+  differ.
+- `mfbDoBitbltCopy` (konal.so, address 0x14156a0): **inferred.** One-bit rectangle copy for the plain
+  source-copy raster operation: the same shift-and-merge structure as `mfbDoBitbltGeneral` but with the
+  combination rule fixed at copy (116 word stores). Beyond 8 load offsets, 5 low address halves and 1 high
+  address half (earliest at +0xc), which make up 14 of its 1165 words, nothing separates this build from
+  kona.so (gp offset 0x10a5a0, kona.so 0x105d18).
+- `mfbCopyPlane` (konal.so, address 0x14196f0): **established.** CopyPlane for one-bit destinations: it
+  reduces the raster operation with `mfbReduceRop`, calls the registered per-depth copy routine through the
+  table built by `mfbRegisterCopyPlaneProc`, and reports "No copyPlane proc registered for depth" through
+  `FatalError` when none is set. Checked against kona.so word by word, 134 of 141 words are bit-identical and
+  the 7 others differ only in their 16-bit immediate (5 load offsets and 2 low address halves, starting at
+  +0x38).
+- `mfbSetSpans` (konal.so, address 0x141ff90): **inferred.** SetSpans for one-bit drawables: for each span
+  it takes the clip into account (halfword compares) and writes the source bits into the destination words
+  via `mfbSetScanline`, called at two places. Checked against kona.so word by word, 230 of 239 words are
+  bit-identical and the 9 others differ only in their 16-bit immediate (8 load offsets and 1 low address
+  half, earliest at +0x40).
+- `mfbGetSpans` (konal.so, address 0x142aa40): **inferred.** GetSpans for one-bit drawables: for each
+  requested span it reads the packed bits from the drawable and shifts them (10 variable shifts) into the
+  caller's word buffer. Checked against kona.so word by word, 278 of 283 words are bit-identical and the 5
+  others differ only in their 16-bit immediate (4 load offsets and 1 low address half, the first at +0x2c).
+- `mfbSolidPP` (konal.so, address 0x142b310): **inferred.** PushPixels with a solid fill for one-bit
+  drawables: brackets a call to `mfbDoBitblt` with the clip entries +340, +352 and +356. Checked against
+  kona.so word by word, 127 of 130 words are bit-identical and the 3 others differ only in their 16-bit
+  immediate (2 load offsets and 1 low address half, the first at +0x1c) (gp offset 0xf4930, kona.so 0xf0b68).
+- `mfbInvertSolidFS` (konal.so, address 0x142b520): **inferred.** Span fill that inverts the destination
+  bits instead of setting them: the same band and clip handling with `miFindMaxBand` and `miClipSpans`, and
+  an exclusive-or of the ends and body words. Compared with kona.so only immediates move, 8 of the 279 words
+  (7 load offsets and 1 low address half, earliest at +0x2c) since this module's data and table layout
+  differ.
+- `mfbValidateGC` (konal.so, address 0x142ce80): **inferred.** ValidateGC for the monochrome layer: when
+  the context changed it recomputes the composite clip with `miComputeCompositeClip`, reduces the raster
+  operation with `mfbReduceRop`, selects the right operation set (and replaces it via `miDestroyGCOps` when
+  the font or fill style changed) and rotates the tile with `mfbCopyRotatePixmap`. Relocation is the entire
+  difference from kona.so, since 70 load offsets, 2 low address halves and 1 pc-relative call distance change
+  (first seen at +0x40) and every other bit of the 801-word routine stays the same.
+- `mfbTileFS` (konal.so, address 0x1431d00): **inferred.** Tiled span fill for a one-bit drawable whose
+  tile width divides a word: clips with `miFindMaxBand` and `miClipSpans`, then combines a rotated tile word
+  with the destination under the raster-operation masks for each span. Compared with kona.so only immediates
+  move, 14 of the 569 words (13 load offsets and 1 low address half, first seen at +0x2c) since this module's
+  data and table layout differ.
+- `mfbPolyPoint` (konal.so, address 0x1439c00): **inferred.** PolyPoint for one-bit drawables: for each
+  point it tests the clip box (35 loop edges), computes the word and bit and sets, clears or toggles the bit
+  according to the raster operation. The instruction stream is word for word that of kona.so except for 3
+  load offsets and 1 low address half, 4 words in all (earliest at +0x40).
+- `mfbTileAreaPPWCopy` (konal.so, address 0x143cf90): **inferred.** Copies a one-word-wide pixmap tile over
+  rectangles with a plain copy raster operation (the mask-free case), unrolled with 107 word stores and no
+  calls. The instruction stream is word for word that of kona.so except for 4 load offsets and 1 low address
+  half, 5 words in all (earliest at +0x34).
+- `mfbUnnaturalTileFS` (konal.so, address 0x143d800): **inferred.** Tiled span fill for tile widths that do
+  not divide a word. The tile row is fetched bit by bit (34 variable shifts, 142 loop edges) and merged into
+  the span, the slow companion of `mfbTileFS`; clipping uses `miFindMaxBand` and `miClipSpans`. Only the
+  layout-dependent immediates differ from kona.so, namely 17 load offsets and 9 low address halves (beginning
+  at +0x58), and the other 978 of 1004 words are bit-identical.
+- `mfbBresD` (konal.so, address 0x1442300): **inferred.** Bresenham stepper for dashed one-bit lines:
+  advances the error term per pixel, switches between dash and gap with a counter and writes each pixel with
+  the raster-operation masks (87 loop edges). Compared with kona.so only immediates move, 3 of the 669 words
+  (2 load offsets and 1 low address half, first seen at +0x34) since this module's data and table layout
+  differ.
+- `mfbTileAreaPPWGeneral` (konal.so, address 0x1443a80): **inferred.** Tiles rectangles from a
+  one-word-wide pixmap for any raster operation: the source word is combined with the destination through the
+  context's and/xor mask pair, 105 word stores across the unrolled variants. Compared with kona.so only
+  immediates move, 6 of the 1001 words (5 load offsets and 1 low address half, first seen at +0x38) since
+  this module's data and table layout differ.
+- `mfbHorzS` (konal.so, address 0x1446960): **inferred.** Draws a horizontal solid run in a one-bit
+  drawable: partial words at both ends and full words in the middle, using 95 word stores across several
+  unrolled cases. Same code as kona.so with 5 words re-addressed for this module (3 load offsets, 1 low
+  address half and 1 high address half, beginning at +0x4), nothing else in the 446 words changing, the
+  prologue's gp constant reading 0xd92e0 instead of 0xd5c08.
+- `mfbDoBitbltCopyInverted` (konal.so, address 0x144acf0): **inferred.** One-bit rectangle copy that
+  complements the source: the shift-and-merge loops of the copy case with the source word inverted before the
+  store. The routine is 1074 instructions long. The instruction stream is word for word that of kona.so
+  except for 10 load offsets and 5 low address halves, 15 words in all (the first at +0x10), with the gp
+  offset in the prologue at 0xd4f50 here against 0xd1868 there.
+- `mfbBresS` (konal.so, address 0x144ffd0): **inferred.** Bresenham stepper for solid one-bit lines: the
+  same error stepping as `mfbBresD` without dash handling, writing each pixel with the current mask word. All
+  671 words of the body match kona.so apart from 2 whose 16-bit immediate differs (1 load offset and 1 low
+  address half, first seen at +0x1c), so opcodes, registers and branch offsets are identical, with the gp
+  offset in the prologue at 0xcfc70 here against 0xcc5a8 there.
+- `mfbSegmentSS` (konal.so, address 0x1455400): **inferred.** Solid PolySegment for one-bit drawables:
+  handles each segment with `miZeroClipLine` for clipping, then `mfbHorzS`, `mfbVertS` or
+  `mfbBresS` by slope. Relocation is the entire difference from kona.so, since 7 load offsets, 1 low address
+  half, 1 high address half and 2 pc-relative call distances change (earliest at +0x28) and every other bit
+  of the 730-word routine stays the same.
+
+### Machine-independent routines (`mi*`)
+
+- `miCreateGCOps` (konal.so, address 0x13b7480): **established.** Allocates an 84-byte graphics-context
+  operations table with `Xalloc` and fills it with the machine-independent routines for each operation slot.
+  The instruction stream is word for word that of kona.so except for 3 load offsets, 1 low address half and 1
+  high address half, 5 words in all (beginning at +0x8) (gp offset 0x1687c0, kona.so 0x15bed8).
+- `miIntersect` (konal.so, address 0x13b8ce0): **inferred.** Region intersection: computes the intersection
+  into the target, handling empty and one-box shortcuts with `miRegionCopy`, calling a banded overlap
+  routine, `miSetExtents` for the result bounds and `Xfree` for the old boxes. Compared with kona.so only
+  immediates move, 12 of the 168 words (9 load offsets and 3 low address halves, beginning at +0x10) since
+  this module's data and table layout differ (gp offset 0x166f60, kona.so 0x15a8d8).
+- `miRegisterGCPrivateIndex` (konal.so, address 0x13bc7b0): **established.** Stores its argument in a
+  module global: the index the layer uses for its graphics-context private records. The routine is 6
+  instructions long. Checked against kona.so word by word, 3 of 6 words are bit-identical and the 3 others
+  differ only in their 16-bit immediate (1 load offset, 1 low address half and 1 high address half, starting
+  at +0x0), and its prologue builds the global pointer from 0x163490 where kona.so uses 0x156e18.
+- `miInitializeBackingStore` (konal.so, address 0x13c36f0): **established.** Sets up backing store for a
+  screen: takes a GC private index with `AllocateGCPrivateIndex`, a screen private index with
+  `AllocateScreenPrivateIndex`, allocates the record with `Xalloc` and a GC private with `AllocateGCPrivate`.
+  Only the layout-dependent immediates differ from kona.so, namely 14 load offsets, 13 low address halves, 1
+  high address half and 3 store offsets (the first at +0x0), and the other 69 of 100 words are bit-identical,
+  with the gp offset in the prologue at 0x15c550 here against 0x14ffa8 there.
+- `miScreenInit` (konal.so, address 0x13c38f0): **established.** Initialises a screen for the
+  machine-independent layer: calls `ShmRegisterFbFuncs`, `miInitializeBackingStore`, `miSetZeroLineBias` and
+  `miScreenDevPrivateInit`. Relocation is the entire difference from kona.so, since 42 load offsets, 1 low
+  address half and 1 high address half change (the first at +0xa8) and every other bit of the 160-word
+  routine stays the same.
+- `miSetupSpanData` (konal.so, address 0x13c7a80): **established.** Prepares the span groups for wide
+  drawing: it tests the fill style and calls `miInitSpanGroup` for each of the two groups that style needs;
+  42 instructions. Relocation is the entire difference from kona.so, since 3 load offsets, 1 low address half
+  and 1 high address half change (earliest at +0xc) and every other bit of the 42-word routine stays the same
+  (gp offset 0x1581c0, kona.so 0x14bc08).
+- `miShapedWindowIn` (konal.so, address 0x13cbbf0): **inferred.** Tests whether a rectangle lies in a
+  shaped window by walking the window's shape region through entry +380, 141 instructions. All 141 words of
+  the body match kona.so apart from 2 whose 16-bit immediate differs (1 low address half and 1 high address
+  half, beginning at +0x24), so opcodes, registers and branch offsets are identical.
+- `miRegionReset` (konal.so, address 0x13cbe30): **established.** Resets a region to a single box: frees
+  the old box array with `Xfree` if it is not the static one and sets the extents and count. Relocation is
+  the entire difference from kona.so, since 1 load offset, 1 low address half and 1 high address half change
+  (beginning at +0x28) and every other bit of the 29-word routine stays the same.
+- `miCleanupSpanData` (konal.so, address 0x13cc590): **inferred.** Flushes and frees the span groups after
+  wide drawing: runs `miFillUniqueSpanGroup` and `miFreeSpanGroup` for each group and restores the context's
+  foreground with `DoChangeGC` and `ValidateGC` (both called twice). Only the layout-dependent immediates
+  differ from kona.so, namely 11 load offsets, 1 low address half and 1 high address half (earliest at
+  +0x20), and the other 60 of 73 words are bit-identical.
+- `miClearDrawable` (konal.so, address 0x13cdc90): **inferred.** Clears a drawable to its background by
+  changing the scratch context with `DoChangeGC` and `ValidateGC` and filling through entry +44. Relocation
+  is the entire difference from kona.so, since 4 load offsets, 1 low address half and 1 high address half
+  change (earliest at +0x28) and every other bit of the 53-word routine stays the same.
+- `miPostChangeSaveUnder` (konal.so, address 0x13cf8c0): **inferred.** PostChangeSaveUnder hook: calls an
+  indirect routine twice after save-under changes. The routine is 70 instructions long. Checked against
+  kona.so word by word, 71 of 73 words are bit-identical and the 2 others differ only in their 16-bit
+  immediate (1 low address half and 1 high address half, the first at +0x14) (gp offset 0x150380, kona.so
+  0x143ee8).
+- `miFillArcDSetup` (konal.so, address 0x13d1c40): **inferred.** Computes the same parameters as
+  `miFillArcSetup` for a full ellipse with the dash-style integer error terms; 68 instructions, no calls. All
+  68 words of the body match kona.so apart from 5 whose 16-bit immediate differs (3 load offsets, 1 low
+  address half and 1 high address half, starting at +0x88), so opcodes, registers and branch offsets are
+  identical.
+- `miTranslateRegion` (konal.so, address 0x13d5970): **inferred.** Translates a region by an offset: adds
+  the offsets to every box coordinate (397 instructions, unrolled by four), checks the 0x7fff range limits
+  and recomputes extents with `miSetExtents` when clamping happened. Only the layout-dependent immediates
+  differ from kona.so, namely 4 load offsets, 1 low address half, 1 high address half and 1 pc-relative call
+  distance (earliest at +0x74), and the other 390 of 397 words are bit-identical.
+- `miFillPolyHelper` (konal.so, address 0x13d9f50): **inferred.** Fills a polygon built from two edge
+  lists: `miAppendSpans` adds spans to a group, `Xalloc` (twice) gets work arrays, the context is changed and
+  validated twice with `DoChangeGC` and `ValidateGC`, and the memory is freed with `Xfree`. All 340 words of
+  the body match kona.so apart from 10 whose 16-bit immediate differs (9 load offsets and 1 low address half,
+  earliest at +0x30), so opcodes, registers and branch offsets are identical.
+- `miPolyFillArc` (konal.so, address 0x13dbef0): **inferred.** PolyFillArc entry: calls the arc fill entry
+  four times through function pointers according to whether the arc is a full ellipse or a slice. The routine
+  is 107 instructions long. Checked against kona.so word by word, 97 of 107 words are bit-identical and the
+  10 others differ only in their 16-bit immediate (4 load offsets, 5 low address halves and 1 high address
+  half, beginning at +0xc), and its prologue builds the global pointer from 0x143d50 where kona.so uses
+  0x137978.
+- `miFreeStorage` (konal.so, address 0x13de0a0): **established.** Frees a storage block handed to it by
+  calling `Xfree` when the pointer is non-null; the polygon code uses it to release its edge tables. 18
+  instructions. Relocation is the entire difference from kona.so, since 1 load offset, 1 low address half and
+  1 high address half change (earliest at +0x0) and every other bit of the 18-word routine stays the same,
+  and its prologue builds the global pointer from 0x141ba0 where kona.so uses 0x1357c8.
+- `miSendExposures` (konal.so, address 0x13e2b50): **inferred.** Sends Expose events for a region: finds
+  the window with `LookupIDByType`, delivers events with `DeliverEvents` (three places) and with Xinerama
+  builds uses `PanoramiXFindIDByScrnum` and `XineramaCollectExpose`. Only the layout-dependent immediates
+  differ from kona.so, namely 16 load offsets, 1 low address half and 1 high address half (first seen at
+  +0x18), and the other 281 of 299 words are bit-identical.
+- `miUnion` (konal.so, address 0x13e3000): **inferred.** Region union: copies when either side is empty,
+  otherwise merges bands through the routine; `miRegionCopy` is called at five places for the shortcut cases.
+  Only the layout-dependent immediates differ from kona.so, namely 6 load offsets, 3 low address halves and 1
+  high address half (starting at +0x18), and the other 177 of 187 words are bit-identical.
+- `miFillSppPoly` (konal.so, address 0x13e36b0): **inferred.** Fills a single-pixel-per-scanline polygon
+  through the span entry at +0 and the routine that computes span extents; 399 instructions. All 401 words of
+  the body match kona.so apart from 7 whose 16-bit immediate differs (2 load offsets, 2 low address halves, 1
+  high address half and 2 store offsets, the first at +0x48), so opcodes, registers and branch offsets are
+  identical.
+- `miRoundJoinFace` (konal.so, address 0x13e7600): **inferred.** Builds one face of a round line join:
+  `miPolyBuildEdge` produces the edge, and 0x7fff bounds the search. Same code as kona.so with 4 words
+  re-addressed for this module (1 load offset, 1 low address half, 1 high address half and 1 store offset,
+  beginning at +0x2c), nothing else in the 88 words changing.
+- `miRegionCreate` (konal.so, address 0x13e7760): **established.** Creates a region: two `Xalloc` calls
+  take the region header and a first box array and initialise the extents to the given box or to empty. The
+  instruction stream is word for word that of kona.so except for 6 load offsets, 1 low address half and 1
+  high address half, 8 words in all (beginning at +0xc), with the gp offset in the prologue at 0x1384e0 here
+  against 0x12c358 there.
+- `miSendGraphicsExpose` (konal.so, address 0x13e7e20): **established.** Sends the graphics-expose events
+  for a copy: calls `TryClientEvents` twice, once for each of the exposure and no-exposure cases. Relocation
+  is the entire difference from kona.so, since 2 load offsets and 1 low address half change (first seen at
+  +0x28) and every other bit of the 87-word routine stays the same.
+- `miFillUniqueSpanGroup` (konal.so, address 0x13ec9b0): **inferred.** Fills the spans in a group after
+  removing duplicates: sorts with a shell-sort style loop, reallocates the work arrays with `Xrealloc` (six
+  places) and `Xalloc`, copies with `memcpy` and calls the fill entry (+0) of the operations table with
+  `miDisposeSpanGroup` afterwards. Checked against kona.so word by word, 500 of 519 words are bit-identical
+  and the 19 others differ only in their 16-bit immediate (15 load offsets, 3 low address halves and 1 high
+  address half, beginning at +0x34).
+- `miZeroLine` (konal.so, address 0x13f3290): **inferred.** Zero-width polyline: for each segment it clips
+  with `miZeroClipLine` (two call sites) and steps pixels through an indirect entry of the operations table;
+  784 instructions covering the octant cases. Beyond 3 load offsets, 1 low address half and 1 high address
+  half (earliest at +0x10), which make up 5 of its 796 words, nothing separates this build from kona.so (gp
+  offset 0x12c9b0, kona.so 0x120b58).
+- `miRoundCapClip` (konal.so, address 0x13f4520): **inferred.** Computes the clip for a round line cap:
+  uses `miPolyBuildEdge` to build the two half-edges and the 0x7fff limit for the y range. Checked against
+  kona.so word by word, 88 of 92 words are bit-identical and the 4 others differ only in their 16-bit
+  immediate (1 load offset, 1 low address half, 1 high address half and 1 store offset, first seen at +0x28).
+- `miHandleExposures` (konal.so, address 0x13f5220): **inferred.** Generates the graphics-expose events
+  after a copy: computes the exposed region with region entries +336 to +396 and `NotClippedByChildren`, then
+  passes it to `miSendGraphicsExpose`. Relocation is the entire difference from kona.so, since 2 load
+  offsets, 1 low address half and 1 high address half change (earliest at +0x3c) and every other bit of the
+  447-word routine stays the same.
+- `miCopyArea` (konal.so, address 0x1407400): **inferred.** CopyArea for the machine-independent layer:
+  allocates a source region with `Xalloc`, reads with entry +168, writes with +4 through the clip entries,
+  uses `NotClippedByChildren` and finishes with `miHandleExposures`. Beyond 5 load offsets, 1 low address
+  half and 1 high address half (starting at +0x50), which make up 7 of its 984 words, nothing separates this
+  build from kona.so.
+- `miImageText16` (konal.so, address 0x140e280): **established.** ImageText16: collects glyphs with
+  `GetGlyphs` and draws with the ImageGlyphBlt entry (+68) of the operations table. The instruction stream is
+  word for word that of kona.so except for 1 load offset and 1 low address half, 2 words in all (beginning at
+  +0x20).
+- `miClipSpans` (konal.so, address 0x140faa0): **inferred.** Clips a span list against a region's boxes and
+  passes the surviving pieces to the span-fill routine whose address is; 279 instructions. Beyond 2 low
+  address halves (starting at +0x48), which make up 2 of its 285 words, nothing separates this build from
+  kona.so.
+- `miRegionValidate` (konal.so, address 0x1410c30): **inferred.** Sorts and merges the boxes of an appended
+  region into canonical y-x banded form: reallocates with `Xrealloc`, allocates work arrays with `Xalloc`,
+  calls `miRectAlloc` eight times while building bands and frees temporary storage with `Xfree`. All 476
+  words of the body match kona.so apart from 27 whose 16-bit immediate differs (19 load offsets and 8 low
+  address halves, beginning at +0x20), so opcodes, registers and branch offsets are identical.
+- `miLineProjectingCap` (konal.so, address 0x1411640): **inferred.** Builds the projecting cap of a wide
+  line: it computes the corner points with `miPolyBuildEdge` (eight calls) and fills the polygons with
+  `miFillPolyHelper` three times. Only the layout-dependent immediates differ from kona.so, namely 11 load
+  offsets, 1 low address half and 1 store offset (earliest at +0x38), and the other 361 of 374 words are
+  bit-identical.
+- `miPushPixels` (konal.so, address 0x1414540): **inferred.** PushPixels for the machine-independent layer:
+  allocates a scratch buffer with `Xalloc`, reads the stencil through +168, paints with entry +0x7 per run
+  and frees with `Xfree`. Only the layout-dependent immediates differ from kona.so, namely 6 load offsets, 1
+  low address half and 1 high address half (first seen at +0x14), and the other 375 of 383 words are
+  bit-identical, the prologue's gp constant reading 0x10b700 instead of 0x106e78.
+- `miSetZeroLineBias` (konal.so, address 0x141e090): **established.** Takes a screen private index with
+  `AllocateScreenPrivateIndex` and stores the bias bits that decide which edge pixels belong to a zero-width
+  line on this screen. Compared with kona.so only immediates move, 8 of the 39 words (7 load offsets and 1
+  low address half, beginning at +0x8) since this module's data and table layout differ (gp offset 0x101bb0,
+  kona.so 0xfd358).
+- `miFillGeneralPoly` (konal.so, address 0x1420350): **inferred.** Scan-line fill for general polygons:
+  builds the edge table with `miCreateETandAET` (twice), inserts edges with `miInsertionSort`, advances them
+  with `micomputeWAET` (twice), calls the fill entry at +0 for each scan line and frees the tables with
+  `miFreeStorage`. Relocation is the entire difference from kona.so, since 8 load offsets and 1 low address
+  half change (beginning at +0x24) and every other bit of the 452-word routine stays the same.
+- `miFreeArcCache` (konal.so, address 0x14210a0): **established.** Frees the arc cache: calls an indirect
+  free hook once if the cache exists and zeroes the pointer. The routine is 35 instructions long. Compared
+  with kona.so only immediates move, 6 of the 38 words (2 load offsets, 2 low address halves and 2 store
+  offsets, beginning at +0x18) since this module's data and table layout differ, and its prologue builds the
+  global pointer from 0xfeba0 where kona.so uses 0xfa5a8.
+- `miFillPolygon` (konal.so, address 0x1421290): **established.** FillPolygon entry: hands convex shapes to
+  `miFillConvexPoly` and all others to `miFillGeneralPoly`. Only the layout-dependent immediates differ from
+  kona.so, namely 2 load offsets and 1 low address half (beginning at +0x30), and the other 243 of 246 words
+  are bit-identical.
+- `miPolyArc` (konal.so, address 0x14256f0): **inferred.** PolyArc: for thin arcs it calls the zero-width
+  arc routine through its function pointers and draws wide arcs with a scratch context: `GetScratchGC`,
+  `ValidateGC` (five times) and `DoChangeGC`, `miClearDrawable` to restore, then
+  `FreeScratchGC`; 745 instructions. The instruction stream is word for word that of kona.so except for 20
+  load offsets, 14 low address halves, 1 high address half and 1 store offset, 36 words in all (the first at
+  +0x40).
+- `miClearToBackground` (konal.so, address 0x1426ad0): **inferred.** ClearToBackground request: clips with
+  the screen entries +340 to +356, paints the background with the entry at +212 and +216 and handles
+  exposures. The routine is 129 instructions long. Relocation is the entire difference from kona.so, since 1
+  low address half and 1 high address half change (first seen at +0x38) and every other bit of the 129-word
+  routine stays the same.
+- `miRoundJoinClip` (konal.so, address 0x142afc0): **established.** Round join clip: calls
+  `miRoundJoinFace` twice for the two faces of the join, 66 instructions. Same code as kona.so with 3 words
+  re-addressed for this module (2 load offsets and 1 low address half, earliest at +0x70), nothing else in
+  the 66 words changing.
+- `miPolyBuildEdge` (konal.so, address 0x1431b70): **inferred.** Builds the left or right edge list of a
+  wide line from its endpoints and slope, with no callee; 97 instructions of integer arithmetic. Same code as
+  kona.so with 2 words re-addressed for this module (1 low address half and 1 store offset, earliest at
+  +0x8), nothing else in the 99 words changing, and its prologue builds the global pointer from 0xee0d0 where
+  kona.so uses 0xea348.
+- `miDestroyGCOps` (konal.so, address 0x1434540): **established.** Destroys an operations table: one
+  `Xfree` call. Only the layout-dependent immediates differ from kona.so, namely 1 load offset, 1 low address
+  half and 1 high address half (the first at +0x8), and the other 12 of 15 words are bit-identical, and its
+  prologue builds the global pointer from 0xeb700 where kona.so uses 0xe7bd8.
+- `miSubtract` (konal.so, address 0x14362c0): **inferred.** Region subtraction: `miRegionCopy` for trivial
+  cases, a banded subtract through the common overlap routine, `miSetExtents` for the extents and `Xfree` for
+  freed storage. Beyond 12 load offsets, 3 low address halves and 1 high address half (the first at +0x8),
+  which make up 16 of its 87 words, nothing separates this build from kona.so, and its prologue builds the
+  global pointer from 0xe9980 where kona.so uses 0xe5f28.
+- `miPolyText8` (konal.so, address 0x14380f0): **established.** PolyText8: collects glyphs with
+  `GetGlyphs` and calls the PolyGlyphBlt entry (+72) once. Relocation is the entire difference from kona.so,
+  since 1 load offset and 1 low address half change (starting at +0x14) and every other bit of the 125-word
+  routine stays the same, and its prologue builds the global pointer from 0xe7b50 where kona.so uses 0xe40f8.
+- `miPolyGlyphBlt` (konal.so, address 0x143b1b0): **inferred.** PolyGlyphBlt on a scratch context: gets the
+  scratch with `GetScratchGC`, sets the colour with `DoChangeGC`, validates with `ValidateGC` and
+  `FreeScratchGC`, and pushes pixels through entry +8. Compared with kona.so only immediates move, 6 of the
+  288 words (5 load offsets and 1 low address half, earliest at +0x38) since this module's data and table
+  layout differ.
+- `miDisposeSpanGroup` (konal.so, address 0x143bd80): **inferred.** Disposes a span group: calls the
+  supplied free hook for the group's spans and again for the group record, 39 instructions. Compared with
+  kona.so only immediates move, 2 of the 42 words (1 load offset and 1 low address half, starting at +0x1c)
+  since this module's data and table layout differ, the prologue's gp constant reading 0xe3ec0 instead of
+  0xe07a8.
+- `miRegionDestroy` (konal.so, address 0x143f0c0): **established.** Destroys a region: calls `Xfree` for
+  the box array (unless it is the shared empty one) and for the header. Only the layout-dependent immediates
+  differ from kona.so, namely 2 load offsets and 1 low address half (beginning at +0x14), and the other 18 of
+  21 words are bit-identical, with the gp offset in the prologue at 0xe0b80 here against 0xdd468 there.
+- `miSubtractSpans` (konal.so, address 0x1440e40): **inferred.** Removes one span group from another so
+  wide-line pieces are not painted twice: edits the lists with `memmove` (four places) and `Xrealloc` when a
+  list must grow. Beyond 6 load offsets and 1 low address half (beginning at +0x24), which make up 7 of its
+  276 words, nothing separates this build from kona.so.
+- `miScreenDevPrivateInit` (konal.so, address 0x14486e0): **established.** Allocates the screen's
+  device-private block with `Xalloc` and stores the pointer. The instruction stream is word for word that of
+  kona.so except for 1 load offset and 1 low address half, 2 words in all (earliest at +0xc), and its
+  prologue builds the global pointer from 0xd7560 where kona.so uses 0xd3e88.
+- `miRegionAppend` (konal.so, address 0x144dc10): **inferred.** Appends the boxes of one region to another:
+  grows the destination with `miRectAlloc`, shifts existing boxes with `memmove` (two places) and merges
+  extents. The instruction stream is word for word that of kona.so except for 6 load offsets and 1 low
+  address half, 7 words in all (beginning at +0x24).
+
+### Colour frame-buffer routines (`cfb*`)
+
+- `cfbBitBlt` (konal.so, address 0x13b3840): **inferred.** The CopyArea worker: clips the source and
+  destination boxes through the clip entries (+340 to +376), copies with the entry at +12 or the routine at
+  +176 and calls `NotClippedByChildren` and `miHandleExposures` for the exposures. It is byte-for-byte the
+  same size as `cfb32BitBlt`. Relocation is the entire difference from kona.so, since 10 load offsets, 1 low
+  address half and 1 high address half change (first seen at +0x34) and every other bit of the 523-word
+  routine stays the same.
+- `cfb16FillSpanTile32sGeneral` (konal.so, address 0x13b6710): **inferred.** Fills spans from a 32-bit-wide
+  tile for any raster operation at 16 bits per pixel: shifts the tile word to the span's start (15 variable
+  shifts) and merges with the and/xor masks. The instruction stream is word for word that of kona.so except
+  for 6 load offsets, 1 low address half and 1 high address half, 8 words in all (earliest at +0x40).
+- `cfbAllocatePrivates` (konal.so, address 0x13b8f80): **established.** Reserves the private slots the
+  8-bit colour layer needs: `AllocateWindowPrivate` and `AllocateGCPrivate` for the window and context
+  records, then `mfbAllocatePrivates` so the monochrome layer shares the same indexes. The instruction stream
+  is word for word that of kona.so except for 13 load offsets and 1 low address half, 14 words in all (the
+  first at +0x28).
+- `cfb16PolyGlyphBlt8` (konal.so, address 0x13bdec0): **inferred.** PolyGlyphBlt for
+  16-bit pixels with 8-pixel glyph rows: clips through entry +380, calls the shared glyph painter twice and
+  writes pixels with halfword stores (41 of them). Only the layout-dependent immediates differ from kona.so,
+  namely 6 load offsets, 6 low address halves, 1 high address half and 2 pc-relative call distances (the
+  first at +0x4c), and the other 434 of 449 words are bit-identical.
+- `cfb16DoBitbltXor` (konal.so, address 0x13c1740): **inferred.** Rectangle copy for the exclusive-or
+  raster operation at 16 bits per pixel: the same shift-and-merge loops as the copy version with the combine
+  step an exclusive-or. Only the layout-dependent immediates differ from kona.so, namely 13 load offsets, 5
+  low address halves and 1 high address half (first seen at +0x10), and the other 1142 of 1161 words are
+  bit-identical, and its prologue builds the global pointer from 0x15e500 where kona.so uses 0x151f48.
+- `cfbFillSpanTile32sCopy` (konal.so, address 0x13c2c40): **inferred.** Fills spans from a tile exactly 32
+  pixels wide, copy operation, 8 bits per pixel: rotates the tile word to the span's phase with 35 variable
+  shifts and stores whole words. Compared with kona.so only immediates move, 11 of the 503 words (7 load
+  offsets, 3 low address halves and 1 high address half, first seen at +0x48) since this module's data and
+  table layout differ.
+- `cfb32CopyArea` (konal.so, address 0x13c3420): **established.** CopyArea entry for
+  32-bit drawables: a 40-instruction wrapper that passes its eight arguments on to `cfb32BitBlt`. Checked
+  against kona.so word by word, 32 of 40 words are bit-identical and the 8 others differ only in their 16-bit
+  immediate (6 load offsets, 1 low address half and 1 high address half, first seen at +0xc), with the gp
+  offset in the prologue at 0x15c820 here against 0x150278 there.
+- `cfb32PolyFillArcSolidGeneral` (konal.so, address 0x13c34c0): **inferred.** PolyFillArc for
+  32-bit pixels, solid fill, any raster operation; the structure matches the 16-bit general version. All 137
+  words of the body match kona.so apart from 7 whose 16-bit immediate differs (3 load offsets, 3 low address
+  halves and 1 high address half, first seen at +0x1c), so opcodes, registers and branch offsets are
+  identical.
+- `cfb32FillPoly1RectGeneral` (konal.so, address 0x13c5d20): **inferred.** Polygon fill for 32-bit pixels
+  and a single clip rectangle, with `miFillPolygon` as the fallback at two call sites; the 0x7fff and
+  0xfffeffff constants test coordinate range. Checked against kona.so word by word, 575 of 581 words are
+  bit-identical and the 6 others differ only in their 16-bit immediate (4 load offsets, 1 low address half
+  and 1 high address half, the first at +0x30).
+- `cfb8ClippedLineCopy` (konal.so, address 0x13c6640): **inferred.** Clipped zero-width line for 8-bit
+  pixels with copy: clips with `miZeroClipLine` (two call sites) and steps pixels with byte stores (56 of
+  them). Same code as kona.so with 6 words re-addressed for this module (4 load offsets, 1 low address half
+  and 1 high address half, earliest at +0xc), nothing else in the 720 words changing, the prologue's gp
+  constant reading 0x159600 instead of 0x14d048.
+- `cfbDoBitbltCopy` (konal.so, address 0x13c7d70): **inferred.** Rectangle copy for the plain copy raster
+  operation in the 8-bit layer: forward and backward loops with word-aligned moves and eight-way unrolled
+  edge cases (116 word stores, 70 variable shifts). Compared with kona.so only immediates move, 14 of the
+  1167 words (9 load offsets and 5 low address halves, the first at +0x14) since this module's data and table
+  layout differ, and its prologue builds the global pointer from 0x157ed0 where kona.so uses 0x14b918.
+- `cfb8FillRectOpaqueStippled32` (konal.so, address 0x13c9fe0): **inferred.** Fills rectangles from a
+  32-pixel-wide stipple painting both foreground and background: `cfb8SetOpaqueStipple` prepares the tables,
+  then word stores (98) write the pixels in unrolled loops. The instruction stream is word for word that of
+  kona.so except for 15 load offsets and 1 low address half, 16 words in all (earliest at +0x20).
+- `cfb16FillRectSolidCopy` (konal.so, address 0x13cd4c0): **inferred.** Solid rectangle fill for 16-bit
+  pixels with the copy raster operation: two pixels per word store, with a halfword store for an odd edge
+  pixel; 403 instructions. Same code as kona.so with 9 words re-addressed for this module (7 load offsets, 1
+  low address half and 1 high address half, the first at +0x30), nothing else in the 421 words changing.
+- `cfb32MatchCommon` (konal.so, address 0x13cdbb0): **inferred.** Decides whether the context qualifies for
+  one of the module's common fast cases at 32 bits per pixel: 54 instructions, no calls and no stores beyond
+  the return value. All 54 words of the body match kona.so apart from 6 whose 16-bit immediate differs (4
+  load offsets, 1 low address half and 1 high address half, first seen at +0x4), so opcodes, registers and
+  branch offsets are identical, the prologue's gp constant reading 0x152090 instead of 0x145be8.
+- `cfbFillRectSolidCopy` (konal.so, address 0x13ce060): **inferred.** Fills rectangles with a single colour
+  using the copy raster operation, 8 bits per pixel: head and tail pixels by byte stores and the body by word
+  stores in unrolled loops (109 word stores). Checked against kona.so word by word, 486 of 493 words are
+  bit-identical and the 7 others differ only in their 16-bit immediate (5 load offsets, 1 low address half
+  and 1 high address half, beginning at +0x1c).
+- `cfb32DoBitblt` (konal.so, address 0x13cf5f0): **inferred.** Rectangle copy dispatcher for 32-bit
+  drawables: a 33-instruction wrapper that forwards to `cfb32DoBitbltGeneral`. Checked against kona.so word
+  by word, 26 of 33 words are bit-identical and the 7 others differ only in their 16-bit immediate (5 load
+  offsets, 1 low address half and 1 high address half, earliest at +0x4), and its prologue builds the global
+  pointer from 0x150650 where kona.so uses 0x1441b8.
+- `cfb32SegmentSS1RectGeneral` (konal.so, address 0x13d01f0): **inferred.** Single-clip solid segments for
+  32-bit pixels and any raster operation; 459 instructions using the and/xor pair per pixel. Checked against
+  kona.so word by word, 456 of 461 words are bit-identical and the 5 others differ only in their 16-bit
+  immediate (3 load offsets, 1 low address half and 1 high address half, earliest at +0x4), with the gp
+  offset in the prologue at 0x14fa50 here against 0x1435b8 there.
+- `cfb32ZeroPolyArcSSCopy` (konal.so, address 0x13d1e90): **inferred.** Zero-width single-segment arc draw
+  for 32-bit pixels with copy: calls the clip entry +380 three times and an indirect routine, bounded by
+  0x7fff. Checked against kona.so word by word, 111 of 117 words are bit-identical and the 6 others differ
+  only in their 16-bit immediate (3 load offsets, 2 low address halves and 1 high address half, first seen at
+  +0x1c).
+- `cfb8FillRectTransparentStippled32` (konal.so, address 0x13d2e90): **inferred.** Fills rectangles from a
+  32-pixel-wide stipple painting only the foreground: `cfb8SetStipple` builds the mask tables, then 536 byte
+  stores and 218 halfword stores place the set pixels; 2304 instructions. Same code as kona.so with 27 words
+  re-addressed for this module (22 load offsets, 4 low address halves and 1 high address half, first seen at
+  +0x4), nothing else in the 2356 words changing, and its prologue builds the global pointer from 0x14cdb0
+  where kona.so uses 0x1409d8.
+- `cfb16AllocatePrivates` (konal.so, address 0x13d5360): **established.** The 16-bit twin of
+  `cfbAllocatePrivates`: allocates window and context privates with `AllocateWindowPrivate` and
+  `AllocateGCPrivate`, takes a screen private index with `AllocateScreenPrivateIndex` and calls
+  `mfbAllocatePrivates`. Beyond 15 load offsets, 1 low address half and 1 high address half (earliest at
+  +0x18), which make up 17 of its 88 words, nothing separates this build from kona.so.
+- `cfb16SegmentSS1Rect` (konal.so, address 0x13d60f0): **inferred.** Entry for solid PolySegment with a
+  one-rectangle clip at 16 bits per pixel: 78 instructions choosing the copy, xor or general routine through
+  two indirect calls. Checked against kona.so word by word, 71 of 80 words are bit-identical and the 9 others
+  differ only in their 16-bit immediate (7 load offsets, 1 low address half and 1 high address half, starting
+  at +0x14), and its prologue builds the global pointer from 0x149b50 where kona.so uses 0x13d778.
+- `cfbYRotatePixmap` (konal.so, address 0x13d6230): **inferred.** Rotates a pixmap vertically by moving
+  rows with three `memmove` calls; for a bits-per-pixel it does not know it prints "cfbYRotatePixmap:
+  unsupported bitsPerPixel" with `ErrorF` and hands over to `mfbYRotatePixmap`. Checked against kona.so word
+  by word, 70 of 79 words are bit-identical and the 9 others differ only in their 16-bit immediate (6 load
+  offsets, 2 low address halves and 1 high address half, first seen at +0x14).
+- `cfb16SegmentSS1RectGeneral` (konal.so, address 0x13d9520): **inferred.** Single-clip solid segments at
+  16 bits per pixel for any raster operation; 644 instructions with the same overflow and range checks
+  (0x80008000, 0xfffeffff). Relocation is the entire difference from kona.so, since 7 load offsets and 1 low
+  address half change (first seen at +0x4) and every other bit of the 650-word routine stays the same, and
+  its prologue builds the global pointer from 0x146720 where kona.so uses 0x13a348.
+- `cfb32SegmentSD` (konal.so, address 0x13da4a0): **inferred.** Dashed PolySegment for
+  32-bit pixels: `cfb32ReduceRasterOp`, `miZeroClipLine`,
+  `miStepDash` and `cfb32BresD`, reading the screen entries +32 and +108 for the context. Checked against
+  kona.so word by word, 629 of 640 words are bit-identical and the 11 others differ only in their 16-bit
+  immediate (10 load offsets and 1 low address half, first seen at +0x24).
+- `cfb32Tile32FSCopy` (konal.so, address 0x13dc890): **inferred.** FillSpans from a one-word tile, copy
+  operation, 32 bits per pixel: clips with `miFindMaxBand` and `miClipSpans`, then stores the tile word for
+  each pixel. Checked against kona.so word by word, 240 of 248 words are bit-identical and the 8 others
+  differ only in their 16-bit immediate (6 load offsets, 1 low address half and 1 high address half, earliest
+  at +0x20).
+- `cfb8ClippedLineGeneral` (konal.so, address 0x13dce50): **inferred.** Clipped line for 8-bit pixels with
+  any raster operation, clipping with `miZeroClipLine` at two places and combining with the and/xor pair. The
+  instruction stream is word for word that of kona.so except for 4 load offsets, 1 low address half and 1
+  high address half, 6 words in all (beginning at +0x10) (gp offset 0x142df0, kona.so 0x136a18).
+- `cfb16CreatePixmap` (konal.so, address 0x13de5d0): **established.** CreatePixmap for
+  16-bit drawables: allocates the pixmap with `AllocatePixmap`, sets the 16-bit bits-per-pixel and the row
+  stride rounded to a word. Only the layout-dependent immediates differ from kona.so, namely 6 load offsets,
+  1 low address half and 1 high address half (first seen at +0xc), and the other 94 of 102 words are
+  bit-identical (gp offset 0x141670, kona.so 0x135298).
+- `cfbFillBoxTile32sGeneral` (konal.so, address 0x13de770): **inferred.** Fills boxes from a 32-pixel-wide
+  tile, any raster operation, 8-bit pixels: realigns the tile word with 15 variable shifts and combines with
+  the and/xor pair. Compared with kona.so only immediates move, 7 of the 567 words (5 load offsets, 1 low
+  address half and 1 high address half, earliest at +0x38) since this module's data and table layout differ.
+- `cfb16SegmentSD` (konal.so, address 0x13e0bb0): **inferred.** Dashed PolySegment for
+  16-bit pixels: `cfb16ReduceRasterOp` then `miZeroClipLine`,
+  `miStepDash` and `cfb16BresD`, with the screen entries +32 and +108. Compared with kona.so only immediates
+  move, 12 of the 644 words (10 load offsets, 1 low address half and 1 high address half, starting at +0x1c)
+  since this module's data and table layout differ.
+- `cfb32SegmentSS` (konal.so, address 0x13e15c0): **inferred.** Solid PolySegment for
+  32-bit pixels: `miZeroClipLine` clips each segment, then `cfb32VertS`,
+  `cfb32HorzS` or `cfb32BresS` draws it. All 763 words of the body match kona.so apart from 10 whose 16-bit
+  immediate differs (8 load offsets, 1 low address half and 1 high address half, starting at +0x24), so
+  opcodes, registers and branch offsets are identical.
+- `cfbCopyPixmap` (konal.so, address 0x13e2ab0): **inferred.** Duplicates a pixmap for the 8-bit layer:
+  asks the screen to create a pixmap with the entry at +236 and copies the pixel store with `memmove`; 37
+  instructions. Beyond 1 load offset, 1 low address half and 1 high address half (first seen at +0x18), which
+  make up 3 of its 37 words, nothing separates this build from kona.so.
+- `cfb32ClippedLineGeneral` (konal.so, address 0x13e40f0): **inferred.** Clipped line for 32-bit pixels
+  with any raster operation, built like the 16-bit one around two `miZeroClipLine` calls. Compared with
+  kona.so only immediates move, 7 of the 719 words (5 load offsets, 1 low address half and 1 high address
+  half, the first at +0x8) since this module's data and table layout differ, the prologue's gp constant
+  reading 0x13bb50 instead of 0x12f788.
+- `cfb32FillBoxTileOddCopy` (konal.so, address 0x13e4c30): **inferred.** Odd-width tile box fill, copy
+  operation, 32 bits per pixel: 351 instructions, with few shifts because a 32-bit pixel is a whole word. All
+  358 words of the body match kona.so apart from 4 whose 16-bit immediate differs (2 load offsets, 1 low
+  address half and 1 high address half, first seen at +0x48), so opcodes, registers and branch offsets are
+  identical.
+- `cfb32Tile32FSGeneral` (konal.so, address 0x13e5f70): **inferred.** FillSpans from a one-word tile for
+  32-bit pixels and any raster operation, clipping with `miFindMaxBand` and `miClipSpans` and combining by
+  the and/xor pair. Relocation is the entire difference from kona.so, since 7 load offsets, 1 low address
+  half and 1 high address half change (first seen at +0x24) and every other bit of the 321-word routine stays
+  the same.
+- `cfb16FillPoly1RectCopy` (konal.so, address 0x13e6480): **inferred.** Convex polygon fill for 16-bit
+  pixels with copy when the clip is a single rectangle; falls back to `miFillPolygon` (two places) for other
+  clips. 645 instructions. Compared with kona.so only immediates move, 6 of the 657 words (4 load offsets, 1
+  low address half and 1 high address half, first seen at +0x30) since this module's data and table layout
+  differ.
+- `cfb16Tile32FSCopy` (konal.so, address 0x13e7890): **inferred.** FillSpans from a
+  32-bit tile with copy at 16 bits per pixel: clipped by `miFindMaxBand` and `miClipSpans`, then stores tile
+  words aligned to the span start. Only the layout-dependent immediates differ from kona.so, namely 14 load
+  offsets, 1 low address half and 1 high address half (earliest at +0x24), and the other 337 of 353 words are
+  bit-identical.
+- `cfbFillBoxTileOdd` (konal.so, address 0x13e97a0): **inferred.** Chooses between the copy and general box
+  fills for odd-width tiles: calls `cfbFillBoxTileOddCopy` or `cfbFillBoxTile32sCopy` depending on the tile
+  width; 23 instructions. Only the layout-dependent immediates differ from kona.so, namely 2 load offsets and
+  1 low address half (the first at +0x14), and the other 20 of 23 words are bit-identical, and its prologue
+  builds the global pointer from 0x1364a0 where kona.so uses 0x12a318.
+- `cfb16SegmentSS` (konal.so, address 0x13e9d30): **inferred.** Solid PolySegment for
+  16-bit pixels: clips with `miZeroClipLine` and draws with `cfb16VertS`,
+  `cfb16HorzS` or `cfb16BresS`; same size as the 32-bit version. Checked against kona.so word by word, 754 of
+  763 words are bit-identical and the 9 others differ only in their 16-bit immediate (8 load offsets and 1
+  low address half, beginning at +0x2c).
+- `cfb32CreatePixmap` (konal.so, address 0x13ea920): **established.** CreatePixmap for
+  32-bit drawables: identical in structure and size to the 16-bit routine, calling `AllocatePixmap` twice and
+  setting 32 bits per pixel and the matching stride. Only the layout-dependent immediates differ from
+  kona.so, namely 6 load offsets and 1 low address half (starting at +0x14), and the other 95 of 102 words
+  are bit-identical, and its prologue builds the global pointer from 0x135320 where kona.so uses 0x129198.
+- `cfbCopyPlane8to1` (konal.so, address 0x13eabd0): **inferred.** CopyPlane from an
+  8-bit source to a one-bit destination: finds the selected plane with `ffs`, extracts that bit from every
+  pixel with 308 variable shifts and packs eight pixels per byte; 1762 instructions, the largest routine of
+  this group. Beyond 5 load offsets and 1 low address half (earliest at +0x40), which make up 6 of its 1778
+  words, nothing separates this build from kona.so.
+- `cfbPutImage` (konal.so, address 0x13eefb0): **inferred.** PutImage for
+  8-bit drawables: for formats it cannot copy directly it builds a scratch header with
+  `GetScratchPixmapHeader` and a temporary context with `DoChangeGC` and `ValidateGC`, copies through the
+  entries at +8, +12 and +16 and releases with `FreeScratchPixmapHeader`. The instruction stream is word for
+  word that of kona.so except for 9 load offsets, 1 low address half and 1 high address half, 11 words in all
+  (beginning at +0x40).
+- `cfb16FillPoly1RectGeneral` (konal.so, address 0x13f2580): **inferred.** Polygon fill for 16-bit pixels
+  with any raster operation and a single-rectangle clip, handing other clips to `miFillPolygon` (two call
+  sites); 829 instructions. Checked against kona.so word by word, 830 of 836 words are bit-identical and the
+  6 others differ only in their 16-bit immediate (4 load offsets, 1 low address half and 1 high address half,
+  earliest at +0x34).
+- `cfb16SetScanline` (konal.so, address 0x13f3f00): **inferred.** Writes a scan line of 16-bit pixels into
+  the drawable: the source is shifted into alignment (11 variable shifts) and stored a word at a time with
+  edge masks. Checked against kona.so word by word, 295 of 314 words are bit-identical and the 19 others
+  differ only in their 16-bit immediate (17 load offsets, 1 low address half and 1 high address half,
+  earliest at +0x2c).
+- `cfb16LineSS1RectPreviousCopy` (konal.so, address 0x13f47d0): **inferred.** Variant of the single-clip
+  copy polyline at 16 bits per pixel whose name ends in Previous; 432 instructions with 16 halfword stores
+  and 15 loop edges, drawing a connected line from packed coordinates tested with the 0xfffeffff mask.
+  Relocation is the entire difference from kona.so, since 3 load offsets, 1 low address half and 1 high
+  address half change (earliest at +0x8) and every other bit of the 434-word routine stays the same, with the
+  gp offset in the prologue at 0x12b470 here against 0x11f618 there.
+- `cfb16ClippedLineGeneral` (konal.so, address 0x13f5920): **inferred.** Clipped line for 16-bit pixels
+  with any raster operation: two `miZeroClipLine` calls and masked halfword stores. Compared with kona.so
+  only immediates move, 7 of the 719 words (5 load offsets, 1 low address half and 1 high address half,
+  beginning at +0x8) since this module's data and table layout differ, and its prologue builds the global
+  pointer from 0x12a320 where kona.so uses 0x11e4c8.
+- `cfb16Tile32FSGeneral` (konal.so, address 0x13f6780): **inferred.** FillSpans from a word-wide tile at 16
+  bits per pixel for any raster operation: `miFindMaxBand` and `miClipSpans` clip, then each span is merged
+  under masks. Checked against kona.so word by word, 418 of 434 words are bit-identical and the 16 others
+  differ only in their 16-bit immediate (14 load offsets, 1 low address half and 1 high address half,
+  earliest at +0x24).
+- `cfb16HorzS` (konal.so, address 0x13feb00): **inferred.** Horizontal run at 16 bits per pixel: head and
+  tail pixels by halfword, middle as words (76 word stores in unrolled cases). Compared with kona.so only
+  immediates move, 5 of the 444 words (4 load offsets and 1 low address half, earliest at +0x30) since this
+  module's data and table layout differ.
+- `cfb16DoBitbltOr` (konal.so, address 0x1404790): **inferred.** Rectangle copy for the or raster operation
+  at 16 bits per pixel; shares its 1146-instruction size and loop layout with the exclusive-or version,
+  differing in the merge instruction. Relocation is the entire difference from kona.so, since 13 load
+  offsets, 5 low address halves and 1 high address half change (starting at +0x10) and every other bit of the
+  1161-word routine stays the same, with the gp offset in the prologue at 0x11b4b0 here against 0x116c08
+  there.
+- `cfb32LineSS` (konal.so, address 0x14059c0): **inferred.** Single-width solid polyline for 32-bit pixels:
+  clips with `miZeroClipLine`, uses `cfb32VertS` and `cfb32HorzS` for axis-aligned segments and
+  `cfb32BresS` (two call sites) otherwise. Beyond 9 load offsets, 1 low address half and 1 high address half
+  (starting at +0x24), which make up 11 of its 874 words, nothing separates this build from kona.so.
+- `cfbPolyFillArcSolidGeneral` (konal.so, address 0x1406820): **inferred.** PolyFillArc with a solid colour
+  and arbitrary raster operation at 8 bits per pixel: 137 instructions fetching the clip via entry +380 and
+  calling an indirect fill three times. The instruction stream is word for word that of kona.so except for 3
+  load offsets, 3 low address halves and 1 high address half, 7 words in all (the first at +0x1c).
+- `cfb16PolyFillArcSolidCopy` (konal.so, address 0x1406c60): **inferred.** Solid copy PolyFillArc for
+  16-bit pixels: loops over arcs (13 loop edges), takes the clip from entry +380 and fills spans through an
+  indirect call. Relocation is the entire difference from kona.so, since 4 load offsets, 3 low address halves
+  and 1 high address half change (first seen at +0x1c) and every other bit of the 136-word routine stays the
+  same.
+- `cfb16PolyFillArcSolidGeneral` (konal.so, address 0x1408890): **inferred.** PolyFillArc for
+  16-bit pixels with any raster operation and solid fill; calls the clip entry +380 three times and an
+  indirect span filler. Compared with kona.so only immediates move, 6 of the 137 words (3 load offsets and 3
+  low address halves, the first at +0x24) since this module's data and table layout differ.
+- `cfb16YRotatePixmap` (konal.so, address 0x1408e30): **inferred.** Vertical rotation for 16-bit tiles:
+  three `memmove` calls reposition the rows, and an unsupported depth is reported with `ErrorF` before
+  `mfbYRotatePixmap` takes over. Its text is the same as the 8-bit version's. Beyond 6 load offsets and 2 low
+  address halves (beginning at +0x20), which make up 8 of its 79 words, nothing separates this build from
+  kona.so.
+- `cfbGetImage` (konal.so, address 0x1409890): **inferred.** GetImage for the
+  8-bit layer: builds two scratch headers (`GetScratchPixmapHeader` at two places), copies with `cfbDoBitblt`
+  or `mfbGetImage` between the clip entries +340 and +352, extracts a single plane with `cfbCopyImagePlane`
+  and cleans up with `bzero` and `FreeScratchPixmapHeader`. Checked against kona.so word by word, 140 of 150
+  words are bit-identical and the 10 others differ only in their 16-bit immediate (9 load offsets and 1 low
+  address half, beginning at +0x34).
+- `cfb8Stipple32FS` (konal.so, address 0x140acc0): **inferred.** FillSpans with a
+  32-pixel stipple at 8 bits per pixel: `cfb8SetStipple` prepares the tables, `miFindMaxBand` and
+  `miClipSpans` clip, and byte and halfword stores write the stippled pixels. All 2320 words of the body
+  match kona.so apart from 43 whose 16-bit immediate differs (39 load offsets and 4 low address halves,
+  beginning at +0x18), so opcodes, registers and branch offsets are identical, and its prologue builds the
+  global pointer from 0x114f80 where kona.so uses 0x110708.
+- `cfbFillSpanTileOddGeneral` (konal.so, address 0x140d2c0): **inferred.** Span fill from a tile whose
+  width is not a word multiple, 8-bit pixels, any raster operation: the tile row is read with 39 variable
+  shifts to line up with the destination word. Only the layout-dependent immediates differ from kona.so,
+  namely 7 load offsets and 1 low address half (earliest at +0x60), and the other 686 of 694 words are
+  bit-identical.
+- `cfb32LineSD` (konal.so, address 0x140e340): **inferred.** Dashed polyline for 32-bit pixels: reduces the
+  raster operation with `cfb32ReduceRasterOp`, clips with `miZeroClipLine`, steps dashes with `miStepDash`
+  and draws with `cfb32BresD`. All 765 words of the body match kona.so apart from 14 whose 16-bit immediate
+  differs (13 load offsets and 1 low address half, earliest at +0x1c), so opcodes, registers and branch
+  offsets are identical, and its prologue builds the global pointer from 0x111900 where kona.so uses
+  0x10d088.
+- `cfb16FillBoxTileOddGeneral` (konal.so, address 0x140ef50): **inferred.** Odd-width tile box fill at 16
+  bits per pixel for any raster operation: 36 variable shifts line the tile up and the and/xor masks combine
+  it. Relocation is the entire difference from kona.so, since 8 load offsets and 1 low address half change
+  (starting at +0x24) and every other bit of the 724-word routine stays the same.
+- `cfb16SegmentSS1RectXor` (konal.so, address 0x14100b0): **inferred.** Single-clip solid segments at 16
+  bits per pixel with exclusive-or: the same packed-coordinate loop as the copy version, but each pixel is
+  exclusive-ored; 552 instructions. Relocation is the entire difference from kona.so, since 7 load offsets
+  and 1 low address half change (beginning at +0x4) and every other bit of the 554-word routine stays the
+  same, the prologue's gp constant reading 0x10fb90 instead of 0x10b318.
+- `cfb16FillBoxTileOddCopy` (konal.so, address 0x1414b40): **inferred.** Fills boxes from an odd-width tile
+  with copy at 16 bits per pixel: 42 variable shifts assemble each destination word from two tile words. All
+  702 words of the body match kona.so apart from 9 whose 16-bit immediate differs (7 load offsets, 1 low
+  address half and 1 high address half, earliest at +0x44), so opcodes, registers and branch offsets are
+  identical.
+- `cfbSolidSpansGeneral` (konal.so, address 0x1416a30): **inferred.** Solid span fill with any raster
+  operation at 8 bits per pixel: applies the and/xor pair per word with byte-wise edges and clips with
+  `miFindMaxBand` and `miClipSpans`. Only the layout-dependent immediates differ from kona.so, namely 6 load
+  offsets, 1 low address half, 1 high address half and 2 pc-relative call distances (first seen at +0x2c),
+  and the other 332 of 342 words are bit-identical.
+- `cfb32YRotatePixmap` (konal.so, address 0x14170a0): **inferred.** Vertical tile rotation for 32-bit
+  pixmaps, three `memmove` calls and the `mfbYRotatePixmap` fallback for depths it cannot rotate. Compared
+  with kona.so only immediates move, 9 of the 79 words (6 load offsets, 2 low address halves and 1 high
+  address half, earliest at +0x14) since this module's data and table layout differ.
+- `cfb32FillBoxTileOddGeneral` (konal.so, address 0x14171e0): **inferred.** Odd-width tile box fill for
+  32-bit pixels and any raster operation; 345 instructions applying the mask pair to each tile word. All 350
+  words of the body match kona.so apart from 5 whose 16-bit immediate differs (3 load offsets, 1 low address
+  half and 1 high address half, first seen at +0x30), so opcodes, registers and branch offsets are identical.
+- `cfb8LineSS1RectXor` (konal.so, address 0x14188e0): **inferred.** Single-clip solid polyline for 8-bit
+  pixels with exclusive-or: 16 byte stores and the packed coordinate clip checks. Checked against kona.so
+  word by word, 568 of 571 words are bit-identical and the 3 others differ only in their 16-bit immediate (2
+  load offsets and 1 low address half, beginning at +0x4), the prologue's gp constant reading 0x107360
+  instead of 0x102ae8.
+- `cfb32ClippedLineCopy` (konal.so, address 0x141e130): **inferred.** Clipped line for 32-bit pixels with
+  copy: `miZeroClipLine` at two places and 77 word stores. Checked against kona.so word by word, 739 of 745
+  words are bit-identical and the 6 others differ only in their 16-bit immediate (5 load offsets and 1 low
+  address half, earliest at +0xc) (gp offset 0x101b10, kona.so 0xfd2b8).
+- `cfb16SegmentSS1RectCopy` (konal.so, address 0x141ece0): **inferred.** Single-clip-rectangle solid
+  segments at 16 bits per pixel with copy: unpacks packed coordinate pairs, tests them against the clip with
+  the 0x80008000 and 0xfffeffff checks and draws with halfword stores. Only the layout-dependent immediates
+  differ from kona.so, namely 8 load offsets and 2 low address halves (beginning at +0xc), and the other 607
+  of 617 words are bit-identical, the prologue's gp constant reading 0x100f60 instead of 0xfc708.
+- `cfbPolyFillArcSolidCopy` (konal.so, address 0x1420e80): **inferred.** PolyFillArc with a solid colour
+  and copy operation, 8 bits per pixel: fetches the clip through entry +380 and calls a shared helper; 136
+  instructions. Relocation is the entire difference from kona.so, since 4 load offsets, 3 low address halves
+  and 1 pc-relative call distance change (beginning at +0x24) and every other bit of the 136-word routine
+  stays the same.
+- `cfb16ZeroPolyArcSSXor` (konal.so, address 0x1422530): **inferred.** Zero-width arc drawing for 16-bit
+  pixels with exclusive-or: falls back to `miPolyArc` when the arc is not simple, clipping through entry
+  +380. Beyond 3 load offsets, 2 low address halves and 1 pc-relative call distance (first seen at +0x24),
+  which make up 6 of its 117 words, nothing separates this build from kona.so.
+- `cfb32ValidateGC` (konal.so, address 0x1422e90): **inferred.** ValidateGC for
+  32-bit-per-pixel drawables: recomputes the composite clip with `miComputeCompositeClip`, reduces the raster
+  operation with `cfb32ReduceRasterOp`, selects line, fill and text routines for the fill style (reporting
+  "illegal fillStyle" through `FatalError`), pads and rotates tiles with `cfb32PadPixmap` and
+  `cfb32CopyRotatePixmap`, and rebuilds the operation table with `miCreateGCOps`. All 730 words of the body
+  match kona.so apart from 53 whose 16-bit immediate differs (51 load offsets and 2 low address halves, the
+  first at +0x2c), so opcodes, registers and branch offsets are identical.
+- `cfb16ClippedLineCopy` (konal.so, address 0x14241e0): **inferred.** Clipped line for 16-bit pixels with
+  copy: `miZeroClipLine` twice, then halfword stores (55) along the line. Same code as kona.so with 7 words
+  re-addressed for this module (5 load offsets, 1 low address half and 1 high address half, starting at
+  +0x4), nothing else in the 745 words changing, the prologue's gp constant reading 0xfba60 instead of
+  0xf7868.
+- `cfb16LineSS` (konal.so, address 0x14290a0): **inferred.** Single-width solid polyline for 16-bit pixels:
+  `miZeroClipLine` clips, then `cfb16VertS`, `cfb16HorzS` or
+  `cfb16BresS` draw by slope; the same shape as the 32-bit routine. Only the layout-dependent immediates
+  differ from kona.so, namely 9 load offsets and 1 low address half (the first at +0x2c), and the other 868
+  of 878 words are bit-identical.
+- `cfb32ZeroPolyArcSSXor` (konal.so, address 0x142a860): **inferred.** Zero-width arc for 32-bit pixels
+  with exclusive-or: calls entry +380 twice and `miPolyArc` as the general path. Relocation is the entire
+  difference from kona.so, since 3 load offsets, 2 low address halves and 1 pc-relative call distance change
+  (first seen at +0x24) and every other bit of the 117-word routine stays the same.
+- `cfb32ImageGlyphBlt8` (konal.so, address 0x142f480): **inferred.** ImageGlyphBlt for
+  32-bit pixels: measures with `QueryGlyphExtents`, then fills the cell background and paints the glyph bits
+  through the entries at +44 and +72; 84 instructions. Beyond 2 load offsets and 1 low address half (earliest
+  at +0x20), which make up 3 of its 84 words, nothing separates this build from kona.so.
+- `cfb32FillRectTileOdd` (konal.so, address 0x142f5d0): **inferred.** Rectangle fill from an odd-width tile
+  at 32 bits per pixel: forwards to `cfb32FillBoxTile32sGeneral` for each rectangle. Compared with kona.so
+  only immediates move, 4 of the 37 words (3 load offsets and 1 low address half, beginning at +0x24) since
+  this module's data and table layout differ.
+- `cfb16LineSD` (konal.so, address 0x142f820): **inferred.** Dashed polyline for 16-bit pixels:
+  `cfb16ReduceRasterOp`, `miZeroClipLine`, `miStepDash` and
+  `cfb16BresD` in the same order as the 32-bit routine. Checked against kona.so word by word, 755 of 769
+  words are bit-identical and the 14 others differ only in their 16-bit immediate (13 load offsets and 1 low
+  address half, earliest at +0x1c), the prologue's gp constant reading 0xf0420 instead of 0xec688.
+- `cfb16FillRectSolidXor` (konal.so, address 0x1430430): **inferred.** Solid rectangle fill for 16-bit
+  pixels with the exclusive-or raster operation: loads each destination word and stores its exclusive-or with
+  the colour, in unrolled loops. Only the layout-dependent immediates differ from kona.so, namely 7 load
+  offsets and 1 low address half (the first at +0x34), and the other 702 of 710 words are bit-identical.
+- `cfb32CopyPixmap` (konal.so, address 0x1430f60): **inferred.** Duplicates a 32-bit pixmap by the same two
+  steps as the 8-bit routine, create through the screen entry +236 and copy with `memmove`. Relocation is the
+  entire difference from kona.so, since 1 load offset and 1 low address half change (first seen at +0x28) and
+  every other bit of the 37-word routine stays the same.
+- `cfbZeroPolyArcSS8Xor` (konal.so, address 0x14313c0): **inferred.** Zero-width arc for 8-bit pixels with
+  exclusive-or: `miPolyArc` handles the cases the fast loop does not, after three calls of the clip entry
+  +380. Relocation is the entire difference from kona.so, since 3 load offsets and 2 low address halves
+  change (earliest at +0x24) and every other bit of the 117-word routine stays the same.
+- `cfb16SolidSpansCopy` (konal.so, address 0x14326f0): **inferred.** Fills spans in a solid 16-bit colour
+  with copy: clips with `miFindMaxBand` and `miClipSpans`, then writes whole words for the middle of each
+  span. All 208 words of the body match kona.so apart from 9 whose 16-bit immediate differs (8 load offsets
+  and 1 low address half, starting at +0x30), so opcodes, registers and branch offsets are identical.
+- `cfb32GetImage` (konal.so, address 0x1432ad0): **inferred.** GetImage for
+  32-bit drawables: scratch header via `GetScratchPixmapHeader`, `bzero` of the output, copy with
+  `cfb32DoBitblt` or the generic `miGetImage`, `mfbGetImage` for one-bit results, and
+  `FreeScratchPixmapHeader`. Only the layout-dependent immediates differ from kona.so, namely 7 load offsets
+  and 1 low address half (earliest at +0x28), and the other 101 of 109 words are bit-identical.
+- `cfb16FillRectTileOdd` (konal.so, address 0x1433810): **inferred.** Rectangle fill from an odd-width tile
+  at 16 bits per pixel: forwards to `cfb16FillBoxTileOddGeneral` with the rectangle list; 55 instructions.
+  The instruction stream is word for word that of kona.so except for 6 load offsets and 1 low address half, 7
+  words in all (first seen at +0x30).
+- `cfb8SegmentSS1RectGeneral` (konal.so, address 0x1434610): **inferred.** Single-clip solid segments for
+  8-bit pixels and any raster operation, with 16 byte stores and the packed coordinate checks 0x80008000 and
+  0xfffeffff. The instruction stream is word for word that of kona.so except for 6 load offsets, 1 low
+  address half and 1 high address half, 8 words in all (beginning at +0x0) (gp offset 0xeb630, kona.so
+  0xe7b08).
+- `cfb16PadPixmap` (konal.so, address 0x1437100): **inferred.** Widens a small tile pixmap to a whole
+  number of words by replicating its rows: 26 variable shifts compose each padded row from repeated 16-bit
+  pixels. All 139 words of the body match kona.so apart from 3 whose 16-bit immediate differs (1 load offset,
+  1 low address half and 1 high address half, starting at +0x10), so opcodes, registers and branch offsets
+  are identical.
+- `cfb32BitBlt` (konal.so, address 0x14378c0): **inferred.** CopyArea worker for
+  32-bit drawables, 521 instructions long like `cfbBitBlt`: clip entries +340 to +376, the copy entry at +12,
+  then `NotClippedByChildren` and `miHandleExposures` for the exposed regions. Only the layout-dependent
+  immediates differ from kona.so, namely 10 load offsets, 1 low address half and 1 high address half
+  (starting at +0x34), and the other 511 of 523 words are bit-identical.
+- `cfb16LineSS1Rect` (konal.so, address 0x1439020): **inferred.** Entry for solid polylines with a
+  one-rectangle clip at 16 bits per pixel: four indirect calls choose copy, xor or general line routines; 180
+  instructions. Only the layout-dependent immediates differ from kona.so, namely 9 load offsets and 1 low
+  address half (the first at +0x14), and the other 172 of 182 words are bit-identical, and its prologue
+  builds the global pointer from 0xe6c20 where kona.so uses 0xe31d8.
+- `cfb32SegmentSS1RectCopy` (konal.so, address 0x1439300): **inferred.** Single-clip solid segments at 32
+  bits per pixel with copy: packed coordinates tested against the clip, a word store for each pixel. All 574
+  words of the body match kona.so apart from 6 whose 16-bit immediate differs (4 load offsets and 2 low
+  address halves, the first at +0x4), so opcodes, registers and branch offsets are identical, and its
+  prologue builds the global pointer from 0xe6940 where kona.so uses 0xe2ef8.
+- `cfb32PadPixmap` (konal.so, address 0x143ee90): **inferred.** Pads a 32-bit tile pixmap to the word
+  multiple the fill code needs, by repeating each row; 137 instructions, the same loop structure as the
+  16-bit padder. Relocation is the entire difference from kona.so, since 1 load offset and 1 low address half
+  change (beginning at +0x2c) and every other bit of the 139-word routine stays the same.
+- `cfbUnnaturalTileFS` (konal.so, address 0x143f120): **inferred.** Dispatches span fills for tile widths
+  that do not divide a word: clips spans with `miFindMaxBand` and `miClipSpans` (called at two places) and
+  hands them to the odd-width span routines; 120 instructions. Relocation is the entire difference from
+  kona.so, since 9 load offsets and 1 low address half change (beginning at +0x20) and every other bit of the
+  120-word routine stays the same.
+- `cfb32FillSpanTile32sGeneral` (konal.so, address 0x143f640): **inferred.** Span fill from a tile of one
+  word for 32-bit pixels and any raster operation; 219 instructions, a word per pixel with the mask pair
+  applied. Relocation is the entire difference from kona.so, since 2 load offsets and 1 low address half
+  change (the first at +0x38) and every other bit of the 223-word routine stays the same.
+- `cfb32PutImage` (konal.so, address 0x143f9c0): **inferred.** PutImage for
+  32-bit drawables, same structure as the 8-bit routine: scratch header from `GetScratchPixmapHeader`,
+  context changes through `DoChangeGC` (three places), `ValidateGC` and the copy entries, header freed with
+  `FreeScratchPixmapHeader`. Compared with kona.so only immediates move, 10 of the 199 words (9 load offsets
+  and 1 low address half, starting at +0x4c) since this module's data and table layout differ.
+- `cfb32SolidSpansGeneral` (konal.so, address 0x1440a10): **inferred.** Solid span fill with an arbitrary
+  raster operation at 32 bits per pixel, clipped by `miFindMaxBand` and `miClipSpans`, one word store per
+  pixel pair of masks. Same code as kona.so with 5 words re-addressed for this module (4 load offsets and 1
+  low address half, beginning at +0x34), nothing else in the 266 words changing.
+- `cfb16ReduceRasterOp` (konal.so, address 0x1441420): **inferred.** Turns a raster operation, plane mask
+  and foreground pixel into the and/xor pair the span and line routines apply to destination words; 119
+  instructions built around a switch on the operation. All 119 words of the body match kona.so apart from 3
+  whose 16-bit immediate differs (1 load offset and 2 low address halves, earliest at +0x4), so opcodes,
+  registers and branch offsets are identical, the prologue's gp constant reading 0xde820 instead of 0xdb108.
+- `cfbCreatePixmap` (konal.so, address 0x1442160): **established.** CreatePixmap for
+  8-bit drawables: `AllocatePixmap` makes the header and pixel store (called at two places), then the width
+  padding and byte count are filled in. Relocation is the entire difference from kona.so, since 6 load
+  offsets and 1 low address half change (beginning at +0x14) and every other bit of the 102-word routine
+  stays the same (gp offset 0xddae0, kona.so 0xda3d8).
+- `cfb32FillRectTile32Copy` (konal.so, address 0x1447060): **inferred.** Rectangle fill from a one-word
+  tile with copy at 32 bits per pixel: stores the tile word across each row (26 word stores) without any
+  shift. Compared with kona.so only immediates move, 4 of the 172 words (2 load offsets, 1 low address half
+  and 1 high address half, first seen at +0xc) since this module's data and table layout differ, and its
+  prologue builds the global pointer from 0xd8be0 where kona.so uses 0xd5508.
+- `cfbPolyGlyphRop8` (konal.so, address 0x144e0e0): **inferred.** PolyGlyphBlt with a general raster
+  operation at 8 bits per pixel: `cfb8SetStipple` is called twice to build the stipple tables and the glyph
+  rows are applied through entry +0. The instruction stream is word for word that of kona.so except for 12
+  load offsets and 3 low address halves, 15 words in all (first seen at +0x5c).
+- `cfb16LineSS1RectCopy` (konal.so, address 0x144ea90): **inferred.** Single-clip solid polyline at 16 bits
+  per pixel with copy: packed coordinates, clip tests and halfword stores (32 of them) along the major axis.
+  Compared with kona.so only immediates move, 6 of the 586 words (4 load offsets and 2 low address halves,
+  starting at +0x4) since this module's data and table layout differ, with the gp offset in the prologue at
+  0xd11b0 here against 0xcdae8 there.
+- `cfbLineSD` (konal.so, address 0x144f3c0): **inferred.** Dashed polyline for 8-bit pixels:
+  `cfbReduceRasterOp`, `miZeroClipLine`, `miStepDash` and
+  `cfbBresD` (two call sites each for the last three). The instruction stream is word for word that of
+  kona.so except for 12 load offsets and 1 low address half, 13 words in all (beginning at +0x1c), and its
+  prologue builds the global pointer from 0xd0880 where kona.so uses 0xcd1b8.
+- `cfbSetScanline` (konal.so, address 0x1451be0): **inferred.** Writes one scan line of 8-bit pixels from a
+  packed source into the destination words, shifting with 11 variable shifts to align the source and masking
+  the first and last word. Same code as kona.so with 18 words re-addressed for this module (17 load offsets
+  and 1 low address half, first seen at +0x48), nothing else in the 321 words changing.
+- `cfb32CopyPlane` (konal.so, address 0x14521f0): **inferred.** CopyPlane for
+  32-bit drawables: a short routine that calls the generic copy-plane entry at +0 of the depth table with its
+  arguments. All 18 words of the body match kona.so apart from 2 whose 16-bit immediate differs (1 load
+  offset and 1 low address half, first seen at +0x18), so opcodes, registers and branch offsets are
+  identical, the prologue's gp constant reading 0xcda50 instead of 0xca5e8.
+- `cfb16FillSpanTileOddGeneral` (konal.so, address 0x1452240): **inferred.** Odd-width tile span fill for
+  16-bit pixels: tile row bits are realigned with 39 variable shifts and merged under the raster-operation
+  masks. Compared with kona.so only immediates move, 9 of the 697 words (8 load offsets and 1 low address
+  half, first seen at +0x38) since this module's data and table layout differ.
+- `cfb32CopyRotatePixmap` (konal.so, address 0x1452da0): **inferred.** Copies a 32-bit pixmap and rotates
+  it to a new origin: `cfb32CopyPixmap` duplicates it (or `memmove` when the sizes match), `cfb32PadPixmap`
+  widens it, `cfb32XRotatePixmap` and `cfb32YRotatePixmap` shift it; reads the screen entry +240. All 78
+  words of the body match kona.so apart from 7 whose 16-bit immediate differs (6 load offsets and 1 low
+  address half, beginning at +0x2c), so opcodes, registers and branch offsets are identical.
+- `cfbSolidSpansCopy` (konal.so, address 0x1454860): **inferred.** Fills spans in a solid 8-bit colour with
+  the copy raster operation: byte stores for the unaligned ends and word stores in between; clips with
+  `miFindMaxBand` and `miClipSpans`. Relocation is the entire difference from kona.so, since 5 load offsets,
+  1 low address half and 1 high address half change (beginning at +0x28) and every other bit of the 247-word
+  routine stays the same.
+- `cfb32LineSS1RectCopy` (konal.so, address 0x1455fd0): **inferred.** Single-clip solid polyline for 32-bit
+  pixels with copy: 585 instructions, word stores along the line with the packed-coordinate clip tests. Only
+  the layout-dependent immediates differ from kona.so, namely 4 load offsets, 2 low address halves and 1 high
+  address half (starting at +0x0), and the other 580 of 587 words are bit-identical, the prologue's gp
+  constant reading 0xc9c70 instead of 0xc6808.
+
 ## Functions below 0x4cdd80
 
 Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` disassembly (callee names resolved through the module's global offset table; command tokens named as in [GE.h](../GE.h), found from the offsets the code stores to in the pipe window, token number times 32). One entry per function, grouped by subsystem. A function marked **established** was read for its callees, tokens and ioctls; **inferred** marks an entry whose role comes from the name and the observed structure (callees, store widths, constants) but whose finer behaviour was not traced. Where the module has the standard X server routine of the same name the entry says which callees confirm it. Entries cite the function's own address.
