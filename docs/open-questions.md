@@ -46,14 +46,7 @@ Routes already tried: `arm1.u` (6.5.30m, the whole image disassembled with its 1
 
 ## Geometry distributor
 
-The distributor questions are written in [ucode/ged.md](../ucode/ged.md); listed here so this page is complete.
-
-| Question | Owner | Routes tried | Next route |
-|---|---|---|---|
-| How the hardware chooses between the state-based index and the token's own entry number | `ucode/ged.md` | the distributor program and the firmware's tables | The `irsaudit` distributor tests (`TEST_gedcrc_*`, `TEST_geducode`) and their host models of the expected routing |
-| What transfer ops 1, 3, 5, 6 and 7 test; control fields x, y, r, a, b, c, z and n; the small-constant registers r13, r14, r30-r67 and the sequencer-test registers 0x280-0x2b0 | `ucode/ged.md` | the diagnostic's instruction packer | The `gedSequencer` test's host side and `Get_GED_*_Inst` builders |
-
-**Where this section stopped (2026-10-29).** The engine-choice row is closed as unknown with its routes (ucode/ged.md). Next: the `irsaudit` distributor tests for the first row (`TEST_gedcrc_*` compare CRCs against gold files, so look for a host model of the routing in `gedStress*`), then `gedSequencer` and the `Get_GED_*_Inst` builders for the second.
+No open entries. **Where this section stopped (2026-10-29, fourth pass).** The `irsaudit` sequencer and stress tests are read into [ucode/ged.md](../ucode/ged.md#the-diagnostics-sequencer-and-stress-tests): the register/pixel form's transfer bit, the programs `gedSequencer` and `gedStressTd` build, the registers each test loads and the pointer and data pairs among them. Every such test is checked only by CRC signatures against `irsaudit.*.gold`, so the state-or-token entry choice, transfer ops 1, 3, 5, 6 and 7, the control fields, the small-constant registers and the roles of 0x280-0x2b0 are labelled unknown there with the routes tried.
 
 ## Kernel driver
 

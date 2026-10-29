@@ -494,7 +494,7 @@ token	0x1eb	HP_DO_IDMA;KONA_HP_DO_IDMA		handler=arm_do_idma route=arm	GE.h,firmw
 token	0x1ec	HP_EEPROM_OP;KONA_HP_EEPROM_OP		handler=arm_eeprom_op route=arm	GE.h,firmware map,kpm	0	0		named-only	GE.h:652	
 token	0x1ed	HP_DMAPOOL_SETUP;KONA_HP_DMAPOOL_SETUP		handler=arm_dmapool_setup route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_dmapool_update_pipe	understood	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 token	0x1ee	HP_VALIDATE_READCLIP;KONA_HP_VALIDATE_READCLIP		handler=arm_validate_readclip route=arm	GE.h,firmware map,kpm	0	0		understood	kona_kernel/include/kona_kern.h:140	
-token	0x1ef	HP_GED_VERIF_LOAD;KONA_HP_GED_VERIF_LOAD		handler=arm_ged_verif_load route=arm	GE.h,firmware map,kpm	0	0		named-only	GE.h:655	
+token	0x1ef	HP_GED_VERIF_LOAD;KONA_HP_GED_VERIF_LOAD		handler=arm_ged_verif_load route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ged.md#the-diagnostics-sequencer-and-stress-tests	The diagnostic's sequencer and stress tests
 token	0x1f0	HP_GED_VERIF_DUMP;KONA_HP_GED_VERIF_DUMP		handler=arm_ged_verif_dump route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ge_handlers.md#rasters	raster.S
 token	0x1f1	HP_PIPE_SETUP;KONA_HP_PIPE_SETUP		handler=arm_pipe_setup route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_setup.o):KONAstart	understood	HIP.h:124	
 token	0x1f2	HP_RDATA_SETUP;KONA_HP_RDATA_SETUP		handler=arm_rdata_setup route=arm	GE.h,firmware map,kpm	0	0		named-only	GE.h:658	
