@@ -1879,21 +1879,21 @@ ge.u	label	0x00000b2f	lCB8MATRIXLOOP		located	ucode/ge_handlers.md#evalbasiss	ev
 ge.u	label	0x00000b31	lCB8LOOP		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
 ge.u	label	0x00000b50	uEvalChangeBasis4x4		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
 ge.u	label	0x00000b5a	lCB4X4LOOP		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000b85	mmo_TexGenSphere_ST		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000b85	umo_TexGenSphere_ST		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000b8e	lTGLOOP2		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000bea	mmo_TexGenEyeLinear_ST		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000bea	umo_TexGenEyeLinear_ST		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000bf8	lXF8		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000c0d	mmo_TexGenEyeLinear_RQ		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000c0d	umo_TexGenEyeLinear_RQ		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000c1b	lXF9		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000c30	mmo_TexGenObjLinear_ST		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000c30	umo_TexGenObjLinear_ST		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000c3e	lXF10		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000c53	mmo_TexGenObjLinear_RQ		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000c53	umo_TexGenObjLinear_RQ		located	ucode/ge_handlers.md#utexgens	utexgen.s
-ge.u	label	0x00000c61	lXF11		located	ucode/ge_handlers.md#utexgens	utexgen.s
+ge.u	label	0x00000b85	mmo_TexGenSphere_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000b85	umo_TexGenSphere_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000b8e	lTGLOOP2		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000bea	mmo_TexGenEyeLinear_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000bea	umo_TexGenEyeLinear_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000bf8	lXF8		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000c0d	mmo_TexGenEyeLinear_RQ		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000c0d	umo_TexGenEyeLinear_RQ		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000c1b	lXF9		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000c30	mmo_TexGenObjLinear_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000c30	umo_TexGenObjLinear_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000c3e	lXF10		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000c53	mmo_TexGenObjLinear_RQ		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000c53	umo_TexGenObjLinear_RQ		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
+ge.u	label	0x00000c61	lXF11		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
 ge.u	label	0x00000c76	mmo_FaceCull		located	ucode/ge_handlers.md#uculls	ucull.s
 ge.u	label	0x00000c76	umo_FaceCull		located	ucode/ge_handlers.md#uculls	ucull.s
 ge.u	label	0x00000c87	lCU1		located	ucode/ge_handlers.md#uculls	ucull.s
