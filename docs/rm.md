@@ -353,6 +353,33 @@ Facts are labelled as above. The raster-board connections below are from the IR 
 
 The bytes of a reply on the internal read-back bus (`rbus_data`, 16 bits per filter chip, with `rbus_sel` and the byte enables) are unknown: no shipped software or published source depends on them, because every reader sees only the packed host image. Routes tried: the netlists (widths and byte enables only); the register names `IMP_OP`, `TFP_TEXRB`, `TM_RDBK_*`; the three `irsaudit` read-back tests above (CRC comparison, no host unpacking); the firmware's read-back paths `start_rdata`, `start_pixel_rdata` and `__glkonSendPixelsToHost` (they program the output DMA and the packer, [Host-interface registers on the raster bus](#host-interface-registers-on-the-raster-bus)); libGLcore's pixel-read path, which receives the packed image.
 
+The four `irsaudit` tests that move data through the raster boards, each read from its own code (IRIX 6.5.30m):
+
+- `TEST_texread` reads texture memory back through the filters and the host interface's output path.
+  **Established:** it first points the output at a mapped buffer, writing board registers 0x450 and 0x451 with the address,
+  register 0x441 to 0x40, register 0x440 to 0,
+  both 0x452 and 0x453 to 4096 through `tbRegWrite` (calls at 0x100c6404 and 0x100c6414),
+  and 0x477 = 1. After binding a generated pattern texture it sets the read-back registers in order:
+  `TM_DRAW_REDUNDANCY`, then the two filter halves' `TFP_TEXRB` and `TFT_TEXRB`, all to 1,
+  the start and end positions, two `TM_DNOP` writes, and last `TM_RDBK_END` = 1 at 0x100c68a8.
+  It never unpacks the returned words; it compares chip CRCs with `run_crc_testlist`.
+- `TEST_readback` reads the framebuffer back in each pixel format the image processors offer.
+  **Established** (entry 0x10085fb4): its 63 raster writes set `IMP_CONFIG` seven times and `IMP_OP` five,
+  each time with the filters' `TFP_COLOR_FMT` and `TFP_PIX_FMT` and, three times, `TFP_AE`,
+  and it programs the geometry distributor with 26 writes through `arm_ged_write` before it draws.
+  The result is judged by CRC, as in the texture test.
+- `TEST_rbstress` loads the read-back path with a long run of pixel transfers.
+  **Established** (entry 0x1008459c): it sets the pixel generator's stipple and mask words from 0x806 to 0x80d,
+  the image processors' state from `IMP_CONFIG` up, the read-back rectangle `TFP_AE_RANGE` and the host packing `COMMON_IFMT`,
+  then sends vertices and pixels with `tbVertex` and `tbPixel` and checks CRCs once at the end.
+- `TEST_texmem` writes texture memory and draws with it, the texture-memory test of the diagnostic.
+  **Established** (entry 0x1008db24): its 79 raster writes cover the load side,
+  `TML_TEXLD_BASEADDR` and the four `TGTML_TEXLD_*` size and position words, the draw side
+  (`TM_MEMCONF`, the base word of levels 0 and 1, `TM_DRAW_GLOBALOFFSET`,
+  `TG_MAP_LEVEL`, `TGTMTFT` and the texture size),
+  and the filter's texture enable `TFP_TEX`; texels go down through `tbTexel`,
+  a quad is drawn with four `tbVertex` calls, and `run_crc_testlist` checks the chips.
+
 **Established (texture and pixel loads).** Downloads are register-driven writes on the same 64-bit bus, not transfers the raster chips pull: `TGTML_TEXLD_SIZE`, `_STSTART`, `_STEND`, `_S1ST_RSTART`, `_MISC` and `TML_TEXLD_BASEADDR` describe the rectangle and address; `COMMON_IFMT` selects the host-side packing (RGBA4, 1-bit bitmap, RGB5A1, R5G6B5, LA8, L16, I16, S16, Z16, RGBA8, RGB10A2, LA16, Z32, RGBA16, RGBA12). The host command that carries the header words is in [opengl.md](opengl.md#texel-download-header-word-7-and-the-load-scissor-bit).
 
 ## Interrupts

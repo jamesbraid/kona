@@ -1717,9 +1717,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100835c8	224	ge12_external_mem
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100836a8	940	rm6_external_memory_config	dynsym	ed591fdaeffe	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10083a54	1200	TEST_ge_extbist	dynsym	19153a28602a	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10083f04	1688	TEST_rm_extbist	dynsym	3f8062755073	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008459c	912	TEST_rbstress	dynsym	0f1244a1cd5b	named-only	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008459c	912	TEST_rbstress	dynsym	0f1244a1cd5b	understood	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10085904	1712	TEST_readback_comp	dynsym	21184395a107	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10085fb4	884	TEST_readback	dynsym	e19710884472	named-only	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10085fb4	884	TEST_readback	dynsym	e19710884472	understood	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087bd8	352	rm6_init	dynsym	251aeedfa6ee	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087d38	616	rm6_test	dynsym	a469253c16a2	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087fa0	192	rm6_stop	dynsym	9de42c88345b	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
@@ -1735,7 +1735,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008cbd8	856	unscramble_ge_boa
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008cf30	828	unscramble_dg_boardId	dynsym	41611deca552	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008d26c	644	unscramble_rm_boardId	dynsym	d745fb129ceb	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008d4f0	804	TEST_tbstress	dynsym	26d8711aa18b	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008db24	1964	TEST_texmem	dynsym	0a71e617fcbb	named-only	docs/rm.md#precision-bounds	Precision bounds
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008db24	1964	TEST_texmem	dynsym	0a71e617fcbb	understood	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008fddc	1992	TEST_texmem2	dynsym	70b3153a0bb4	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10091fb0	2940	TEST_texmem3	dynsym	8c21a75193a5	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10094350	1460	TEST_ge_tbus_walk	dynsym	301ec74769fe	named-only	docs/irsaudit.md#tests	Tests
@@ -1839,7 +1839,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0634	148	init_ms_loc	dynsy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c06c8	380	init_tf	dynsym	d036a751c622	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0ea4	820	TEST_rmvis	dynsym	db2722d44bc3	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c4320	1748	TEST_miniread	dynsym	c55f0a912396	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c5d20	1512	TEST_texread	dynsym	3aa9cd7e4bbc	named-only	docs/rm.md#precision-bounds	Precision bounds
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c5d20	1512	TEST_texread	dynsym	3aa9cd7e4bbc	understood	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c6d2c	820	TEST_fbread	dynsym	24eceab5fbcb	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c7e0c	1216	TEST_fbread_video	dynsym	bfc68b2f7069	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c8f64	656	TEST_pixelcopy	dynsym	373267317983	named-only	docs/irsaudit.md#tests	Tests

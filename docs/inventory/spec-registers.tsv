@@ -163,7 +163,7 @@ kpm register tables	raster		raster-index	0x1408	TFP_AMASK	1	0	32		0	named-only	d
 kpm register tables	raster		raster-index	0x1409	TFP_A2M_LUT0	1	0	32		0	named-only	RM.h:1091	
 kpm register tables	raster		raster-index	0x140a	TFP_A2M_LUT1	1	0	32		0	named-only	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x140b	TFP_FADE_MASK_LUT	1	0	32		0	named-only	docs/rm.md#shadow-word-names	Shadow word names
-kpm register tables	raster		raster-index	0x140d	TFP_AE_RANGE	1	0	32		0	named-only	RM.h:1118	
+kpm register tables	raster		raster-index	0x140d	TFP_AE_RANGE	1	0	32		0	named-only	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 kpm register tables	raster		raster-index	0x140e	TFP_AC	1	0	32		0	named-only	docs/rm.md#the-register-write-word	The register-write word
 kpm register tables	raster		raster-index	0x140f	TFP_COLOR_FMT	1	0	32		0	named-only	docs/rm.md#shadow-word-names	Shadow word names
 kpm register tables	raster		raster-index	0x1410	TFP_PIX_FMT	1	0	32		0	named-only	docs/rm.md#shadow-word-names	Shadow word names
@@ -173,7 +173,7 @@ kpm register tables	raster		raster-index	0x1413	TFP_TEV_CC1	1	0	32		0	named-only
 kpm register tables	raster		raster-index	0x1414	TFP_FOG_CC1	1	0	32		0	named-only	docs/rm.md#shadow-word-names	Shadow word names
 kpm register tables	raster		raster-index	0x1415	TFP_TEXRB_CLR	1	0	32		0	understood	RM.h:1015	
 kpm register tables	raster		raster-index	0x1500	TFP_TEX	1	0	32		0	understood	RM.h:989	
-kpm register tables	raster		raster-index	0x150c	TFP_AE	1	0	32		0	named-only	RM.h:1118	
+kpm register tables	raster		raster-index	0x150c	TFP_AE	1	0	32		0	named-only	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
 kpm register tables	raster		raster-index	0x153e	TFP_PASSR	1	0	32		0	named-only	RM.h:993	
 kpm register tables	raster		raster-index	0x153f	TFP_TEXRB	1	0	32		0	named-only	docs/coverage.md#rm-and-tm	RM and TM
 kpm register tables	raster		raster-index	0x1800	TFT_EXTRAP	1	0	32		0	named-only	docs/open-questions.md#registers-and-ioctls	Registers and ioctls
