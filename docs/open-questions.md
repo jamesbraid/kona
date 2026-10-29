@@ -90,7 +90,6 @@ Corrections found while reading, for the owners of those files (the GE.h entries
 - `docs/kernel.md`: `HP_PIPE_SETUP`'s 0x4000 is a length (the firmware stores the three words at 0x04046fd8-0x04046fe0 and `start_rdata` uses the third as one), not the doorbell offset.
 - `ucode/arm1_functions.md`: `arm_enable` and `arm_disable` sit at 0x0c023380 and 0x0c023448; `pack_cmd` is a 16-pair table that `arm_pack` walks to rewrite token-map entries of the byte and short attribute forms; `f3_war` is written by `arm_f3_war` and read by `arm_do_idma`.
 - `ucode/arm1_firmware.md`: the `rasterpos*` handlers do no arithmetic; they switch the distributor transfer mask and inject command 211 or 83.
-- `docs/rm.md`: `arm_buffer_config`, `arm_colormask` and `arm_validate_clip` write IMP registers through descriptor 0x58404800, not only 0x584fc800.
 - `ucode/icu_map.tsv` and `ucode/hw_route.tsv`: `bits6_10` over-reads the count of geometry-form entries (bit 31 set), and the `bound` column is a name match with no meaning for geometry tokens. `ucode/ged_route.tsv` gives the table entry indexed by command number, which `ucode/ged.md` supersedes.
 - `docs/inventory/tokens.tsv` misses the senders that pack data into the token word or call `__glkon_get_special*`, and names wrong example emitters for several tokens (`HP_BIND_2D_MIPMAP_TEXTURE`, 0x180, 0x182); a sender scan of `scripts/inventory-config.json` would need those patterns.
 
