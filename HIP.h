@@ -144,6 +144,15 @@
 #define KONA_GFIFO_HI_MASK                  0x000007fe  /* shift 1 */
 
 #define KONA_HH_GFIFO_LO                    0x218  /* register mask 0x7ff */
+/*
+ * GFIFO_HI/GFIFO_LO: established (irsaudit TEST_intr 0x10079858, register
+ * test table 0x10200c00): writable mask 0x7fe, the field in bits 1-10 like
+ * the level register. FIFO_HI sets when the level is at or above HI (two
+ * words reach a HI field of 2 on HILO boards); FIFO_LO sets when it is at
+ * or below LO (an empty FIFO raises it). Inferred: the level counts 32-bit
+ * words. The diagnostic's working values are HI = 256, LO = 0 (raw); the
+ * kernel writes HI = 0x700. HIP1's FIFO holds fewer than 2051 words.
+ */
 #define KONA_GFIFO_LO_ZERO_MASK             0x00000001  /* shift 0 */
 #define KONA_GFIFO_LO_MASK                  0x000007fe  /* shift 1 */
 
@@ -153,10 +162,23 @@
 #define KONA_HIP1_INTR_GLOBAL_EN_MASK       0x00008000  /* shift 15 */
 
 #define KONA_HH_INTR_ACK                    0x228  /* register mask 0x0 */
+/*
+ * INTR_ACK: written only after a write-back to INTR_STATUS, with 0 by
+ * irsaudit and 0xbadc0ffe by the kernel. Inferred: an end-of-interrupt
+ * strobe whose data is ignored; clearing status does not need it (irsaudit
+ * TEST_intr clears the ARM bit without it).
+ */
 
 #define KONA_HIP1_HH_INTR_ENABLE            0x230  /* register mask 0x3ff */
 
 #define KONA_HIP1_HH_INTR_STATUS            0x238  /* register mask 0x3ff */
+/*
+ * INTR_STATUS: write one to clear (irsaudit TEST_intr, TEST_mbox). The bits
+ * set whether or not INTR_ENABLE has them. ARM (bit 4) is raised by any
+ * ARM write to its doorbell 0x200094 and clearing it here clears the
+ * doorbell. docs/hip.md has the condition behind each bit as the
+ * diagnostic raises it.
+ */
 #define KONA_HIP1_INTR_BIT_FIFO_HI_MASK     0x00000001  /* shift 0 */
 #define KONA_HIP1_INTR_BIT_FIFO_LO_MASK     0x00000002  /* shift 1 */
 #define KONA_HIP1_INTR_BIT_FIFO_OV_MASK     0x00000004  /* shift 2 */
@@ -305,6 +327,13 @@
 #define KONA_HH_ARM_DATA                    0x3f0  /* register mask 0xffffffff */
 
 #define KONA_HH_ARM_DATA_INCR               0x3f8  /* register mask 0xffffffff */
+/*
+ * ARM_DATA_INCR: established (irsaudit initialize_icu, icuSanity,
+ * load_arm_mem): reads and writes ARM memory at HH_ARM_ADDRESS like
+ * ARM_DATA; the loops write the address once and then use only this
+ * register, so (inferred) each access steps the address by 4. ARM_CTRL
+ * bit 0 (HOST_ACCESS) is set around every such use.
+ */
 
 /* HIP2_HH_ADDR: address-bit layout of a register access */
 #define KONA_HIP2_ADDR_REGCNT_ZERO_MASK     0x00000007  /* shift 0 */

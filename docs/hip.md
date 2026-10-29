@@ -46,7 +46,9 @@ The caller commands are a list of groups, each one a token word, a count word n 
 3. `kona_finish_selectfeed` arms a timeout, sends `FINISH_SELECTFEED` (token 0x1f6) with two payload words, 256 and the context's slot index (`(context address - table base) / 176`), and sleeps on the context's semaphore.
 4. The pipe answers with the geometry-engine event 0x100 (`KONA_GE_EV_SELECTFEED`) carrying the slot index, a remaining-bytes count and a status word (`kona_ge_intr`). The driver wakes the sleeper. The word count returned is `(len - remaining) / 4`, and the overflow flag is bit 11 (0x800) of the status word. A timeout (`kona_selectfeed_timeout`, message tag 2123) sets the count to -1 and kills the pipe with reason 5. The driver's message calls the slot index "rnid".
 
-**Inferred.** The six words of `START_SELECTFEED` load the output-DMA registers (`HH_ODMA_PNUM`, `_POFF`, `_LEN`, `_LLEN`, `_STRIDE`, `_TOTAL`, `_OVER`, `_FLUSH`, HIP.h) from the stream, since the register names carry the same fields. The driver reads `HH_ODMA_PNUM/POFF/TOTAL` and the `ODMA2` set only in a diagnostic dump of an unexpected GE event. What `snapshot` selects, the exact meaning of the second word of `FINISH_SELECTFEED` beyond "slot index" being its second payload, and why 256 is sent, are **unknown**.
+**Established** (firmware `arm_start_selectfeed` 0x0c022a50, `arm_finish_selectfeed`, `arm_restart_selectfeed`, `start_kcomm`, `arm1.u` 6.5.30m; irsaudit `TEST_ge_hip` 0x1006f0f4 for the register pairing). The six words of `START_SELECTFEED` program output-DMA channel 0 through the raster-bus register path (`tbus_regwrite`): `len` to 0x453, 0 to 0x454, `A_hi` to 0x450, `A_lo` to 0x451, `llen` to 0x452 and 0x455, `stride` to 0x456. irsaudit writes test patterns to 0x452, 0x453 and 0x456 and reads them back from the host registers `HH_ODMA_LEN` (0x270), `HH_ODMA_TOTAL` (0x278) and `HH_ODMA_STRIDE` (0x290), so the raster-bus numbers 0x450-0x456 are the host's `HH_ODMA_*` registers in the order PNUM, POFF, LEN, TOTAL, OVER, LLEN, STRIDE (**inferred** for the four irsaudit does not read back), and by the same layout 0x460-0x464 are the `HH_ODMA2_*` set. `snapshot` = 1 makes the ARM keep a copy of the five values (r8 + 0xcb4 and 0xcc8); `RESTART_SELECTFEED` reprograms channel 0 from that copy while a feed is active (r8 + 0xca4 = 1). So `snapshot` asks the pipe to remember the set-up for a restart. `FINISH_SELECTFEED`'s first word (256 from the kernel) is passed to `start_kcomm`, which writes it as word 0 of the engine-event record through the second channel (0x460-0x464 loaded from `gecomm_pnum`, then the word to 0x476); the slot index follows as word 1, then raster-bus writes to 0x473 and 0x474 (data 0), then 0x453 = 0 and 0x454 = 0x400. So 256 is the event code 0x100 that `kona_ge_intr` reads as "select feedback done", chosen by the kernel and echoed by the pipe. **Inferred:** the writes to 0x473 and 0x474 append the channel's remaining count and status (the record's words 2 and 3, which the kernel reads as remaining bytes and a status with overflow bit 0x800); no software states what those two register numbers do.
+
+**Established** (firmware `arm_do_idma`): `DO_IDMA`'s last word is the mailbox value the ARM sends when the transfer has been set up, and 0 sends nothing. 256 is the ARM event 0x100 the kernel waits for; that is why `kona_idma` sends 256 only when the caller waits.
 
 ### DMA pools
 
@@ -166,6 +168,82 @@ Software timers cover the rest: an input DMA that never completes is `kona_idma_
 
 How the pipe decides when to raise each bit beyond what the names say; what the XG registers 0x04, 0x24, 0x2c, 0x74 do; whether `HH_INTR_ACK` is needed or only conventional; the units of the 2328 and 2332 thresholds beyond their use as microseconds and FIFO level. RM and kernel timeout interrupts are not separate sources: timeouts are software timers.
 
+## What the IR diagnostic shows of the host interface
+
+`usr/diags/IR/bin/irsaudit` (IRIX 6.5.30m) tests the host interface from the host. It maps only the user register page (FIFO at +0, registers at +0x4000, every register offset it uses is in 0x000-0x3f8) and reaches the ARM side through `HH_ARM_ADDRESS` (0x3e8) and `HH_ARM_DATA` (0x3f0), with `HH_ARM_DATA_INCR` (0x3f8) for runs of consecutive words. Facts below are **established** from its code, with the function and address, unless labelled.
+
+### ARM-side register names
+
+`TEST_ha_reg` (0x10079244) checks a table of ARM-side registers with a name and a read/write mask each. It names the registers the firmware uses ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md#control-and-status-registers)):
+
+| ARM address | Name | Read/write mask | Firmware role |
+|---|---|---|---|
+| 0x000000 | `HA_SRAM` | 0xffffffff | ARM memory |
+| 0x200000 | `HA_ARM_CTRL` | 0x3 | the firmware reads bit 31 as "in a simulator" (outside the writable mask) |
+| 0x200010 | `HA_IDMA_PNUM` | 0x1fffffff | input-DMA page number |
+| 0x200014 | `HA_IDMA_POFF` | 0xffc | input-DMA page offset |
+| 0x200020 | `HA_IDMA_CTRL` | 0x3 | input-DMA mode (the firmware writes 2, the diagnostic 1) |
+| 0x200030 | `HA_LDMA_ADDR` | 0x3fffff8 | list-DMA pipe address |
+| 0x20003c | `HA_LDMA_CTRL` | 0x1 | list-DMA control; the firmware never writes it |
+| 0x200048 | `HA_LDMA_SRC` | 0x1 | list-DMA source: the firmware's "steer the input stream into the list-DMA writer" |
+| 0x200050 | `HA_ICU_CTRL` | 0x3 | token-map control; bit 0 is `ARMACC` |
+| 0x200054 | `HA_ICU_DIVERT_PC` | 0xffffffc | the divert vector |
+| 0x20005c | `HA_ICU_WC` ("ICU DH word count") | 0x13f | the per-context word the firmware saves at +0xc |
+| 0x200068 | `HA_ICU_STATE` | 0x3 | the in-begin flag |
+| 0x20006c | `HA_ICU_ERROR_PC` | 0xffffffc | the begin/end refusal vector (`arm_bgnend`) |
+| 0x200070 | `HA_ICU_LOOP_ADDR` ("arrayed command start address") | 0x1ff | the vertex-array loop token |
+| 0x200074 | `HA_ICU_ARRCNT` ("arrayed command count") | 0xffff | the loop's repeat count |
+| 0x200090 | `HA_HOST_MBOX` | 0xffffffff | the mailbox word to the host |
+
+**Established:** the ARM address 0xc00000 in the same table is the ARM cache-tag RAM on revision-A host-interface chips (0x8000000 on revision B, chosen by `HipRevRead` = 0x30). It is an ARM-side address and has nothing to do with the host's 0xc00000 window.
+
+### Interrupt conditions
+
+`TEST_intr` (0x10079858) resets the pipe, gives the host ARM-space access (`HH_ARM_CTRL` = 1, so the ARM is not running), loads its own six-entry token map (`initialize_icu`, below) and writes `HH_INTR_ENABLE` = 0, `HH_INTR_STATUS` = 0xfff, `HH_INTR_INFO` = 0. It then polls `HH_INTR_STATUS` directly, so the status bits set whether or not they are enabled.
+
+| Bit | What raises it in the test | Clearing |
+|---|---|---|
+| 4 ARM | the host writes 0xbabebabe to ARM 0x200094. Bit 4 rises; ARM 0x200094 then reads nonzero ("expected ARM to pend") | writing the bits back to `HH_INTR_STATUS` (0x3ff on HIP1, 0xfff on HIP2) clears bit 4 and makes ARM 0x200094 read 0 ("ARM still pending" otherwise); no `HH_INTR_ACK` write is involved |
+| 0 FIFO_HI | `HH_GFIFO_HI` = 4 and `HH_GFIFO_LO` = 3 (raw values; the registers' writable mask is 0x7fe, so the fields are 2 and 1), then 40 FIFO words (eight token-1 commands of four payload words). On the board sets the diagnostic calls HILO (those with the wider HIP2 register fields) two words suffice (log text "Setting #requests to 1") | status write-back, then `HH_INTR_ACK` = 0 |
+| 1 FIFO_LO | an empty FIFO: nothing is written first. `HH_GFIFO_LEVEL` must then read 0 ("Unable to clear the GFX FIFO") | the test restores `HH_GFIFO_HI` = 256, `HH_GFIFO_LO` = 0 and writes 0x3ff to the status |
+| 2 FIFO_OV | 2051 words with no ARM consuming (original board set only; skipped on HILO) | status write-back |
+| 5 GE | `TEST_ge_hip` (0x1006f0f4): a raster-bus write to register 0x400 from the host's diagnostic path | |
+| 3 VIDEO, 9 VOC | `vdEnableDgInterrupts` (0x10130c9c) enables them with `HH_INTR_ENABLE` = 0x208 after `HH_INTR_INFO` = 0x8000 (GLOBAL_EN) and `HH_GINTR_INFO` = 0x30000 (PRIV \| FORCE); `vdCheckDgInterrupts` reads bits 3 and 9 | status write-back, then `HH_INTR_ACK` = 0 |
+
+`TEST_mbox` (0x1007a720) shows the mailbox round trip: the host writes 0x5a5a5a5a to ARM 0x200090 and 1 to 0x200094, waits for bit 4, reads 0x5a5a5a5a from `HH_ARM_MBOX` (0x240), writes the status back and `HH_INTR_ACK` = 0, and requires 0x200094 to read 0 afterwards.
+
+What this settles:
+
+- `HH_INTR_STATUS` is write-one-to-clear, and clearing the ARM bit also clears the ARM's doorbell 0x200094. That is how the kernel's text loop ([ARM events](#arm-events-kona_arm_intr)) paces the ARM: writing 0x10 lets the firmware's `send_host_intr` post the next character.
+- `HH_INTR_ACK` is only ever written with 0, and only after a status write-back, by the kernel (0xbadc0ffe) and by both diagnostics. The test that most needs it (the ARM bit) works without it. **Inferred:** it is an end-of-interrupt strobe for the interrupt message, with its data ignored; no shipped software relies on it to clear status.
+- The FIFO marks compare against the level with "at or above" for HI and "at or below" for LO, since two words reach a HI field of 2 and an empty FIFO raises LO. **Inferred:** the level counts 32-bit words; the "#requests" in the HIP2 log is the only hint of another unit.
+- The FIFO holds fewer than 2051 words on HIP1. **Inferred** from the 11-bit HIP1 level field (`HIP1_GFIFO_LEVEL` 0x7fe of 0x208): 2048 words.
+
+### The token map seen from the host
+
+`initialize_icu` (0x100385d4) sets `HA_ICU_CTRL` = 1, writes entries for tokens 0-5 at ARM 0x400000 through `HH_ARM_DATA_INCR`, writes 0xbabebabe to `HA_ICU_ERROR_PC` and clears `HA_ICU_CTRL`. Tokens 1 and 2 are routed entries with payload counts 4 and 1, token 3 is an ARM entry, token 4 is END (kind 2) and token 5 is BEGIN (kind 1). `icuSanity` (0x1008ac74) writes all 512 entries with `HA_ICU_CTRL` = 0, reads them back with `HA_ICU_CTRL` = 1 and compares every bit: the map is 512 x 32 bits of read/write memory.
+
+`TEST_icu` (0x10076dec), with no ARM running:
+
+- The 40 words of eight token-1 commands and the 16 words of eight token-2 commands leave the FIFO by themselves: routed tokens go to the engines in hardware.
+- The ARM token (token 3 with two payload words) stays in the FIFO until something reads ARM 0x200400 (the handler fetch), 0x200200 (the next payload word) and 0x20023c (the last word). The diagnostic does these three reads itself and calls them `ha_cmd`, `ha_data` and `ha_data_last`. So the hardware advances past an ARM-run command only when its last word has been read at r9 + 0x3c, which settles the firmware reading in [ucode/arm1_firmware.md](../ucode/arm1_firmware.md#the-input-loop).
+- A token stream sent as single 32-bit stores to FIFO offset 0 (`fcGfxWrite32`) works: the first word of a command is the token number, and the map entry's payload count (routed) or the ARM's reads (ARM-run) decide where the next command starts.
+- BEGIN followed by a second BEGIN and then an ARM token leaves bits 0 and 1 of ARM 0x200060 set; the test requires both ("Replace GE board; repair by reworking flawed HIP ASIC" otherwise). **Inferred:** these record a token refused inside a begin/end pair and the jump to `HA_ICU_ERROR_PC`; which bit is which is not separable from this test.
+
+### Input DMA command queue
+
+`TEST_idma_cntrl` (0x10077408) sets `HA_IDMA_CTRL` = 1 and writes 16 values in turn to 0x200010, 0x200014 and 0x200018. Then status 0x200024 bit 1 must be set ("CFULL bit not set") with a nonzero field in bits 14-18 ("command FIFO size error"); 16 reads of ARM 0x200028 return the values in order ("error in reading value from CFIFO"); and bit 0 must be set at the end ("CEMPTY bit is not set"). So page, offset and count writes enter a 16-entry command queue, 0x200024 bit 0 is "queue empty" and bit 1 "queue full", and in mode 1 the queue can be read back at 0x200028. The firmware's wait on bit 1 is a wait for room in this queue. The writable offset field is 12 bits on HIP1 (mask 0xfff) and 17 bits on HIP2 (0x1ffff, table at 0x10200b40), so the 0x9000 the kernel adds to every low address word fits inside the stored field only on HIP2.
+
+`TEST_idmabug` (0x100b0e70) plays the firmware's `arm_do_idma` from the host: 0x200010 = page, 0x200014 = offset, 0x200018 = 0x10000 bytes, 0x20001c = 0, 0x200064 = 1, then the pass-through counter 0x200058 = 0x4000 (the full word count, with none of bits 26-28 set), then it waits for bit 2 of 0x200024 and bit 4 of 0x200060. **Inferred:** 0x200024 bit 2 reports the transfer complete.
+
+### Output DMA from the pipe side
+
+`TEST_odma` sets up the primary channel with raster-bus writes (`tbRegWrite`, which sends FIFO token 5, then (register << 16) \| the value's bits 32-47, then its low 32 bits): 0x440 = channel 0, 0x441 = pack mode 0x43, 0x452 = 0x453 = the length, 0x450 and 0x451 = the mapped address; draws pixels; writes 0x477 = 1; and polls `HH_ODMA_TOTAL` (0x278) until it reads 0. The secondary channel uses 0x440 = 1 and 0x460-0x463 and is fed through 0x476, ending with 0x477 = 1 and a poll of `HH_ODMA2_TOTAL` (0x2b8). `wait_for_odma` (0x10037c68) writes `HH_ODMA_FLUSH` (0x298) = 0 after TOTAL reaches 0. **Inferred:** 0x476 is the data port into the output DMA and 0x477 = 1 ends a transfer, the order the firmware's `start_rdata` and `finish_rdata` use.
+
+### Reset
+
+`ResetKona` in irsaudit is only the pipe-initialise ioctl and nothing checks the state afterwards. kpm's `hipReset` (`usr/gfx/KONA/bin/kpm`, 0x10017204) either resets the chip through boundary scan (`jt_isolate_chip` "hip" "RESET", then "IDCODE"), or sets the overlap-disable bit (bit 0 of 0x380 on HIP1, 0x3a0 on HIP2) and writes 5 to `HH_TFIFO_HI`; it does not write `HH_RESET`. The FIFO_LO test passes straight after a reset, so whatever the reset leaves in the low-water mark, an empty FIFO is at or below it.
+
 ## The command stream as the ARM firmware reads it
 
 What the pipe's own firmware (`arm1.u`, IRIX 6.5.30m; [ucode/arm1_firmware.md](../ucode/arm1_firmware.md)) shows of the command format the host sends. Facts are labelled **established** (read from the firmware), **inferred** (with the reasoning) or **unknown**.
@@ -176,7 +254,7 @@ What the pipe's own firmware (`arm1.u`, IRIX 6.5.30m; [ucode/arm1_firmware.md](.
 
 **Established.** The ARM firmware also sends commands to itself and to the engines using the same entry format: it writes an entry-shaped word to a descriptor port and then the payload ([ucode/arm1.md](../ucode/arm1.md)). The host cannot see that path.
 
-**Unknown.** The framing of the 64-bit stores the user process makes at 0x4000 and how the hardware splits them into tokens and payload ([GE.h](../GE.h) records the stores); the FIFO depth and credit scheme beyond the high and low water marks above; what makes the hardware refuse a token (the begin/end and divert vectors).
+**Established** (irsaudit, [above](#the-token-map-seen-from-the-host)): a stream of single 32-bit words at FIFO offset 0 is split by the token map alone: the first word is a token number, a routed entry's count says how many payload words follow, and an ARM-run command ends when the ARM reads its last word at offset 0x3c. **Unknown:** how a 64-bit user store at 0x4000 is split into two such words (GE.h records the stores; no shipped software states the order beyond the host library's own), the FIFO's exact depth on HIP2, and what makes the hardware divert a token (`HA_ICU_DIVERT_PC` is named but no shipped software installs a divert handler).
 
 ## Reset and start of the ARM
 

@@ -1461,7 +1461,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037874	272	ge11_bypass_write
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037984	228	ge11_bypass_read	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037a68	104	switch_ged_ge	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037ad0	408	ge_bypass_read_nomap	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037c68	480	wait_for_odma	dynsym	documented	ucode/ge_ops.md#the-diagnostic-programs-instruction-test	The diagnostic program's instruction test
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037c68	480	wait_for_odma	dynsym	documented	docs/hip.md#output-dma-from-the-pipe-side	Output DMA from the pipe side
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037e48	396	setup_dma	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037fd4	184	wait_for_dma_completion	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003808c	384	init_ge_num	dynsym	undocumented		
@@ -1473,14 +1473,14 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100384ac	84	PioReadArm32	dynsy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038500	84	PioReadArmIncr32	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038554	64	StallArm	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038594	64	UnStallArm	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100385d4	444	initialize_icu	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100385d4	444	initialize_icu	dynsym	documented	docs/hip.md#interrupt-conditions	Interrupt conditions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038790	104	enable_hip_intr	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100387f8	108	init_hip_interrupt_regs	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038864	124	set_hip_intr_info	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100388e0	116	ResetKona	dynsym	named-only	docs/open-questions.md#geometry-engine-program	Geometry engine program
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038954	52	HipRevRead	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100388e0	116	ResetKona	dynsym	documented	docs/hip.md#reset	Reset
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038954	52	HipRevRead	dynsym	documented	docs/hip.md#arm-side-register-names	ARM-side register names
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038988	52	f3RevRead	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100389c0	256	load_arm_mem	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100389c0	256	load_arm_mem	dynsym	documented	HIP.h:332	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038ac0	144	zero_arm_mem	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038b50	288	verify_arm_mem	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038c70	1184	LoadArmFile	dynsym	undocumented		
@@ -1645,7 +1645,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006dd58	1312	TEST_ge_ext_stre
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006e278	976	ge_mul_test	dynsym	documented	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006e648	1368	TEST_ge_cram	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006eba0	1364	TEST_ge_wram	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f0f4	876	TEST_ge_hip	dynsym	named-only	docs/open-questions.md#geometry-engine-program	Geometry engine program
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f0f4	876	TEST_ge_hip	dynsym	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread	Pipe to host: select feedback, `kona_dmaread`
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f460	1856	TEST_ge_instTest	dynsym	documented	ucode/ge_ops.md#the-diagnostic-programs-instruction-test	The diagnostic program's instruction test
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fba0	220	hist_ecd_check	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fc7c	292	hist_base_check	dynsym	undocumented		
@@ -1678,18 +1678,18 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100762c4	292	sendBoardControlR
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100763e8	156	formatterFlush	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10076484	64	vidbusFlush	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100764c4	1308	TEST_gpi	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100769e0	1032	TEST_hippio	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10076dec	1564	TEST_icu	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10077408	1092	TEST_idma_cntrl	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100769e0	1032	TEST_hippio	dynsym	documented	ucode/arm1_firmware.md#control-and-status-registers	Control and status registers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10076dec	1564	TEST_icu	dynsym	documented	docs/hip.md#the-token-map-seen-from-the-host	The token map seen from the host
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10077408	1092	TEST_idma_cntrl	dynsym	documented	docs/hip.md#input-dma-command-queue	Input DMA command queue
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007784c	1620	TEST_idma	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10077ea0	784	TEST_impvid	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100781b0	1980	impvid	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10078ff8	588	TEST_hh_reg	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079244	800	TEST_ha_reg	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079244	800	TEST_ha_reg	dynsym	documented	docs/hip.md#arm-side-register-names	ARM-side register names
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079564	556	TEST_icu_mem	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079790	200	TEST_dg_reg	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079858	572	TEST_intr	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a71c	640	TEST_mbox	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079858	572	TEST_intr	dynsym	documented	docs/hip.md#interrupt-conditions	Interrupt conditions
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a71c	640	TEST_mbox	dynsym	documented	docs/hip.md#interrupt-conditions	Interrupt conditions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a99c	64	TEST_dganalog	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a9dc	72	TEST_fail	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af50	72	nic_setup	dynsym	documented	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
@@ -1701,7 +1701,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c234	148	nic_info_get	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c2c8	104	klcfg_get_nic_info	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c330	280	diag_sleep	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c448	1404	TEST_miniodma	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c9c4	4844	TEST_odma	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007c9c4	4844	TEST_odma	dynsym	documented	docs/hip.md#output-dma-from-the-pipe-side	Output DMA from the pipe side
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007e8dc	768	TEST_pab2voccpbuf	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007f270	848	Pab2_TestDblBuffRegs	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007f79c	1020	TEST_pab2vocdblbuf	dynsym	undocumented		
@@ -1726,7 +1726,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10087fa0	192	rm6_stop	dynsym	u
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10088060	2008	TEST_rmconn	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10088838	1684	TEST_rmstress	dynsym	documented	RM.h:1453	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008a820	1108	basicSanityReg	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008ac74	732	icuSanity	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008ac74	732	icuSanity	dynsym	documented	docs/hip.md#the-token-map-seen-from-the-host	The token map seen from the host
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008af50	1024	TEST_arm_sdram	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008b350	528	TEST_sdrampio	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1008c57c	1336	TEST_showconfig	dynsym	undocumented		
@@ -1802,7 +1802,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ad714	420	TEST_xmapovdid	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100adbfc	520	TEST_xmapmem	dynsym	documented	DG.h:271	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b0094	364	TEST_xmapreg	dynsym	documented	DG.h:247	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b04ec	1732	TEST_tbusdata	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b0e70	820	TEST_idmabug	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b0e70	820	TEST_idmabug	dynsym	documented	docs/hip.md#input-dma-command-queue	Input DMA command queue
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b11a4	548	black_hole_ged	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b13c8	304	TEST_geclock	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b14f8	144	TEST_tris	dynsym	undocumented		
@@ -2145,9 +2145,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101300d0	348	ogLibOrderRand	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013022c	940	TEST_ddo3_ctrlreg	dynsym	documented	docs/kernel.md#multi-pipe-dplex-display-port-writes	Multi-pipe (DPLEX) display-port writes
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101305d8	1072	TEST_ddo3_autoconfig_loopback	dynsym	documented	docs/kernel.md#multi-pipe-dplex-display-port-writes	Multi-pipe (DPLEX) display-port writes
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130a08	568	TEST_wait_done	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130c98	140	vdEnableDgInterrupts	dynsym	no-software-dependency	docs/dg.md#interrupts	Interrupts
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130c98	140	vdEnableDgInterrupts	dynsym	documented	docs/hip.md#interrupt-conditions	Interrupt conditions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130d24	108	vdDisableDgInterrupts	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130d90	384	vdCheckDgInterrupts	dynsym	no-software-dependency	docs/dg.md#interrupts	Interrupts
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130d90	384	vdCheckDgInterrupts	dynsym	documented	docs/hip.md#interrupt-conditions	Interrupt conditions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130f10	96	fmDidLoadShifting	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130f70	220	fmFrameBufferRead	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013104c	148	vdEnableVOCSignalTrace	dynsym	undocumented		
@@ -2256,7 +2256,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dd20	52	fcAdapPioRead32	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dd54	52	fcAdapPioRead64	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dd88	292	fcPioRead32	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013deac	128	fcGfxWrite	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013df2c	932	fcGfxWrite32	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013df2c	932	fcGfxWrite32	dynsym	documented	docs/hip.md#the-token-map-seen-from-the-host	The token map seen from the host
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e2d0	768	fcGfxWrite64	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e5d0	588	fcGfxFlush	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e81c	128	fcTbusWrite	dynsym	undocumented		
@@ -2266,7 +2266,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e934	284	read_hub_rtc	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ea50	68	tlForce	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ea94	72	tlRelease	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eadc	96	tlDelay	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eb3c	144	tbRegWrite	dynsym	documented	docs/rm.md#the-register-write-word	The register-write word
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eb3c	144	tbRegWrite	dynsym	documented	docs/hip.md#output-dma-from-the-pipe-side	Output DMA from the pipe side
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ebcc	292	tbVertex	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ecf0	176	tbTextureCoord	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013eda0	176	tbTextureCoord1	dynsym	undocumented		
@@ -2459,7 +2459,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166cc0	408	jt_lookup_pin_fro
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166e60	876	jt_set_global_instruction	dynsym	no-software-dependency	ucode/ged.md#how-an-entry-is-chosen	How an entry is chosen
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101671d0	1816	jt_conditional_reset	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101678f0	904	jt_set_individual_instructions	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10167c80	960	jt_isolate_chip	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10167c80	960	jt_isolate_chip	dynsym	documented	docs/hip.md#reset	Reset
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168040	548	jt_powerup_chain	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168270	104	jt_set_procs	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168530	60	jt_init	dynsym	undocumented		
@@ -2616,7 +2616,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x100167cc	292	show_icu_map0_section	dynsym
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100168f0	796	show_arm_eeprom_section	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016c0c	408	show_arm_sram_section	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016da4	1120	show_arm_sdram_section	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017204	368	hipReset	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017204	368	hipReset	dynsym	documented	docs/hip.md#reset	Reset
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100173b0	1152	analyze_hip	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017830	1872	befFIFOInspection	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100180cc	228	bef_reset	dynsym	undocumented		
@@ -2706,7 +2706,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033df0	120	jt_perror	dynsym	undocumente
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033e70	876	jt_set_global_instruction	dynsym	no-software-dependency	ucode/ged.md#how-an-entry-is-chosen	How an entry is chosen
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100341e0	1816	jt_conditional_reset	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10034900	904	jt_set_individual_instructions	dynsym	undocumented		
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10034c90	960	jt_isolate_chip	dynsym	undocumented		
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10034c90	960	jt_isolate_chip	dynsym	documented	docs/hip.md#reset	Reset
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10035050	548	jt_powerup_chain	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100352a0	2388	jt_read_chain	dynsym	undocumented		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10035c00	6000	read_bsr	dynsym	undocumented		
