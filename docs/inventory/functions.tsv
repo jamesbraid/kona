@@ -18569,7 +18569,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e674	12	glVertex4i	dy
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e680	20	glVertex4iv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e694	12	glVertex4s	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e6a0	20	glVertex4sv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e6b4	12	glClipPlane	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e6b4	12	glClipPlane	dynsym+mdebug	understood	ucode/arm1_functions.md#transform-matrices-and-clipping	Transform, matrices and clipping
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e6c0	12	glColorMaterial	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e6cc	12	glCullFace	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e6d8	12	glFogf	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -18683,12 +18683,12 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebdc	12	glGetDoublev	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebe8	12	glGetError	dynsym+mdebug	understood	GE.h:3764	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebf4	12	glGetFloatv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec00	12	glGetIntegerv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec0c	12	glGetLightfv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec0c	12	glGetLightfv	dynsym+mdebug	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec18	12	glGetLightiv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec24	12	glGetMapdv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec30	12	glGetMapfv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec3c	12	glGetMapiv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec48	12	glGetMaterialfv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec48	12	glGetMaterialfv	dynsym+mdebug	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec54	12	glGetMaterialiv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec60	12	glGetPixelMapfv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec6c	12	glGetPixelMapuiv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -24103,7 +24103,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78534	12	glVertex4i	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78540	20	glVertex4iv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78554	12	glVertex4s	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78560	20	glVertex4sv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78574	12	glClipPlane	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78574	12	glClipPlane	dwarf+dynsym	understood	ucode/arm1_functions.md#transform-matrices-and-clipping	Transform, matrices and clipping
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78580	12	glColorMaterial	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda7858c	12	glCullFace	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78598	12	glFogf	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -24217,12 +24217,12 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a9c	12	glGetDouble
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78aa8	12	glGetError	dwarf+dynsym	understood	GE.h:3764	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78ab4	12	glGetFloatv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78ac0	12	glGetIntegerv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78acc	12	glGetLightfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78acc	12	glGetLightfv	dwarf+dynsym	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78ad8	12	glGetLightiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78ae4	12	glGetMapdv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78af0	12	glGetMapfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78afc	12	glGetMapiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78b08	12	glGetMaterialfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78b08	12	glGetMaterialfv	dwarf+dynsym	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78b14	12	glGetMaterialiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78b20	12	glGetPixelMapfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78b2c	12	glGetPixelMapuiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -29683,7 +29683,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddb14	12	glVertex4i	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddb20	20	glVertex4iv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddb34	12	glVertex4s	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddb40	20	glVertex4sv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddb54	12	glClipPlane	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddb54	12	glClipPlane	dwarf+dynsym	understood	ucode/arm1_functions.md#transform-matrices-and-clipping	Transform, matrices and clipping
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddb60	12	glColorMaterial	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddb6c	12	glCullFace	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddb78	12	glFogf	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -29797,12 +29797,12 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede07c	12	glGetDouble
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede088	12	glGetError	dwarf+dynsym	understood	GE.h:3764	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede094	12	glGetFloatv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0a0	12	glGetIntegerv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0ac	12	glGetLightfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0ac	12	glGetLightfv	dwarf+dynsym	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0b8	12	glGetLightiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0c4	12	glGetMapdv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0d0	12	glGetMapfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0dc	12	glGetMapiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0e8	12	glGetMaterialfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0e8	12	glGetMaterialfv	dwarf+dynsym	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0f4	12	glGetMaterialiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede100	12	glGetPixelMapfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede10c	12	glGetPixelMapuiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -35268,7 +35268,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e674	12	glVertex4i	dy
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e680	20	glVertex4iv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e694	12	glVertex4s	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e6a0	20	glVertex4sv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e6b4	12	glClipPlane	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e6b4	12	glClipPlane	dynsym+mdebug	understood	ucode/arm1_functions.md#transform-matrices-and-clipping	Transform, matrices and clipping
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e6c0	12	glColorMaterial	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e6cc	12	glCullFace	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e6d8	12	glFogf	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -35382,12 +35382,12 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebdc	12	glGetDoublev	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebe8	12	glGetError	dynsym+mdebug	understood	GE.h:3764	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebf4	12	glGetFloatv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec00	12	glGetIntegerv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec0c	12	glGetLightfv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec0c	12	glGetLightfv	dynsym+mdebug	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec18	12	glGetLightiv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec24	12	glGetMapdv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec30	12	glGetMapfv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec3c	12	glGetMapiv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec48	12	glGetMaterialfv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec48	12	glGetMaterialfv	dynsym+mdebug	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec54	12	glGetMaterialiv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec60	12	glGetPixelMapfv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec6c	12	glGetPixelMapuiv	dynsym+mdebug	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -40802,7 +40802,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78534	12	glVertex4i	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78540	20	glVertex4iv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78554	12	glVertex4s	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78560	20	glVertex4sv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78574	12	glClipPlane	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78574	12	glClipPlane	dwarf+dynsym	understood	ucode/arm1_functions.md#transform-matrices-and-clipping	Transform, matrices and clipping
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78580	12	glColorMaterial	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda7858c	12	glCullFace	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78598	12	glFogf	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -40916,12 +40916,12 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a9c	12	glGetDouble
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78aa8	12	glGetError	dwarf+dynsym	understood	GE.h:3764	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78ab4	12	glGetFloatv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78ac0	12	glGetIntegerv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78acc	12	glGetLightfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78acc	12	glGetLightfv	dwarf+dynsym	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78ad8	12	glGetLightiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78ae4	12	glGetMapdv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78af0	12	glGetMapfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78afc	12	glGetMapiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78b08	12	glGetMaterialfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78b08	12	glGetMaterialfv	dwarf+dynsym	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78b14	12	glGetMaterialiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78b20	12	glGetPixelMapfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78b2c	12	glGetPixelMapuiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -46382,7 +46382,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdb14	12	glVertex4i	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdb20	20	glVertex4iv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdb34	12	glVertex4s	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdb40	20	glVertex4sv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdb54	12	glClipPlane	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdb54	12	glClipPlane	dwarf+dynsym	understood	ucode/arm1_functions.md#transform-matrices-and-clipping	Transform, matrices and clipping
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdb60	12	glColorMaterial	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdb6c	12	glCullFace	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdb78	12	glFogf	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -46496,12 +46496,12 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be07c	12	glGetDouble
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be088	12	glGetError	dwarf+dynsym	understood	GE.h:3764	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be094	12	glGetFloatv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0a0	12	glGetIntegerv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0ac	12	glGetLightfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0ac	12	glGetLightfv	dwarf+dynsym	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0b8	12	glGetLightiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0c4	12	glGetMapdv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0d0	12	glGetMapfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0dc	12	glGetMapiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0e8	12	glGetMaterialfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0e8	12	glGetMaterialfv	dwarf+dynsym	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0f4	12	glGetMaterialiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be100	12	glGetPixelMapfv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be10c	12	glGetPixelMapuiv	dwarf+dynsym	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
