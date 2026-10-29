@@ -1,9 +1,9 @@
 binary	group	role	kind	abi	bytes	sha256	copies	functions	access_sites	unresolved_sites	status	doc	section
 usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/cpu/sysgen/IP27boot/gfx.o	kernel-shared	shared-kernel	object	n64	53816	28186f9362dcd19e		62	0	0	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/cpu/sysgen/IP27boot/gfx.o	kernel-shared	shared-kernel	object	n64	53816	28186f9362dcd19e		62	0	0	understood	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	17812	70f668a5a117d389		19	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP27boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	5844	d56b66fd1e680c4a		1	0	0	understood	docs/kernel.md#vga-pipe-discovery-ip35-klconfigo-prom_has_vga_support-find_vga_pipe-find_vga_noprom_pipe-klcheck_vga	VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53828	690a5f9776008c1e		62	0	0	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53828	690a5f9776008c1e		62	0	0	understood	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx_debug.o)	kernel-shared	shared-kernel	object	n64	1220	5db884a0a151483d	usr/cpu/sysgen/IP35boot/gfxs.a(gfx_debug.o)	0	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP27boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	8948	b7b1cb0860460856		18	0	0	understood	docs/kernel.md#stubs-for-a-kernel-without-graphics-gfxstubsa	Stubs for a kernel without graphics (`gfxstubs.a`)
 usr/cpu/sysgen/IP27boot/kona.a(gfx_io_space.o)	kernel	board-kernel	object	n64	9460	314b148a33451dbe	usr/cpu/sysgen/IP35boot/kona.a(gfx_io_space.o)	7	0	0	understood	docs/kernel.md#the-rest-of-konaa	The rest of `kona.a`
@@ -36,10 +36,10 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7492	a1c62957a81158d7		5	2	3	understood	docs/kernel.md#the-rest-of-konaa	The rest of `kona.a`
 usr/cpu/sysgen/IP27boot/rrm.o	kernel-shared	shared-kernel	object	n64	63984	6da3783f920cc0ad		72	0	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
 usr/cpu/sysgen/IP27boot/tport.a(tport.o)	kernel-shared	shared-kernel	object	n64	23620	12e8b895c97f0544		22	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/cpu/sysgen/IP35boot/gfx.o	kernel-shared	shared-kernel	object	n64	53720	a42762015aa4c9ed		62	0	0	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/cpu/sysgen/IP35boot/gfx.o	kernel-shared	shared-kernel	object	n64	53720	a42762015aa4c9ed		62	0	0	understood	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	14836	2908dd361cfa0ac9		16	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
 usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	11492	e0766b2bbeb929c9		5	0	0	understood	docs/kernel.md#vga-pipe-discovery-ip35-klconfigo-prom_has_vga_support-find_vga_pipe-find_vga_noprom_pipe-klcheck_vga	VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53732	4d6ae8238fd650db		62	0	0	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53732	4d6ae8238fd650db		62	0	0	understood	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
 usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	7300	92a8e73ac592455b		18	0	0	understood	docs/kernel.md#stubs-for-a-kernel-without-graphics-gfxstubsa	Stubs for a kernel without graphics (`gfxstubs.a`)
 usr/cpu/sysgen/IP35boot/kona.a(kona_attach.o)	kernel	board-kernel	object	n64	7428	a08cbc38e11d09fc		3	0	0	understood	docs/kernel.md#the-rest-of-konaa	The rest of `kona.a`
 usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	kernel	board-kernel	object	n64	19748	04d720ca35795bd9		7	93	0	understood	docs/kernel.md#the-rest-of-konaa	The rest of `kona.a`

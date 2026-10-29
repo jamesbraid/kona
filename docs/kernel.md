@@ -200,42 +200,65 @@ binary and function the inventory finds loading the number into the ioctl call.
 
 ### Generic ioctls (`gfx.o`)
 
-- Ioctl 101 (0x65), `GFX_GETNUM_BOARDS`, established from `gfx.o`.
-  `gfxioctl` stores the registered board count in the caller's result word.
-  The graphics libraries send it first, for example from `main` of `ireeprom`.
-- Ioctl 102 (0x66), `GFX_GETBOARDINFO`, established from `gfx.o`.
-  `gfxioctl` copies in 24 bytes through `copyin_xlate`, then calls the board's info function.
-  That function fills the caller's buffer with the board's name and size record.
-  Sent by `main` of `ireeprom` and by `crm_setmon`.
-- Ioctl 103 (0x67), `GFX_ATTACH_BOARD`, established from `gfx.o`.
-  `gfxioctl` copies in 16 bytes, refuses a connection that already has a function table with error 16,
-  then calls the board's attach function and makes the caller the board's owner if it has none.
-  Sent by `main` of `ireeprom` and by `irixKernInit`.
-- Ioctl 104 (0x68), `GFX_DETACH_BOARD`, established from `gfx.o`.
-  `gfxioctl` calls `GfxDetach` on the connection; an IrisGL connection sharing a thread group is refused with 16.
-  Sent by `main` of `ireeprom` and by `xgsetmon`.
-- Ioctl 105 (0x69), `GFX_IS_MANAGED`, established from `gfx.o`.
-  `gfxioctl` copies in a 4-byte board number and returns 1 in the result word when the board has a managing connection.
-  Sent by `main` of `ireeprom`.
-- Ioctl 106 (0x6a), `GFX_INITIALIZE`, established from `gfx.o`.
-  The board's owner takes the pipe semaphore and `gfxioctl` calls the board's initialize function (table slot +24),
-  clears the board's counter and unmaps the connection.
-  Other callers get 1. Sent by `setup_ucode` in `ireeprom` and by `mgras_init`.
-- Ioctl 107 (0x6b), `GFX_START`, established from `gfx.o`.
-  The owner takes the pipe semaphore and `gfxioctl` calls the board's start function (slot +40) and returns its result.
-  Sent by `main` of `gfxinfo`.
-- Ioctl 110 (0x6e), `GFX_MAPALL`, established from `gfx.o`.
-  `gfxioctl` takes the pipe semaphore, locks the region with `ddv_lock`, calls the board's map function (slot +96)
-  for the whole pipe and sets the connection's map-all flag 0x20. Sent by `main` of `ireeprom`
-  and by `ng1_setmon`.
-- Ioctl 111 (0x6f), `GFX_LABEL`, established from `gfx.o`.
-  The owner's `gfxioctl` copies 16 bytes into the label field of the board's info record.
-  Sent by `irixKernInit` in `Xsgi`.
-- Ioctl 112 (0x70), `GFX_REATTACH_BOARD`, established from `gfx.o`.
-  `gfxioctl` repeats the attach steps without the test for an existing attachment. Sent by `ng1_setmon` in `setmon`.
-- Ioctl 113 (0x71), `GFX_SET_DIAG_FLAG`, established from `gfx.o`.
-  `gfxioctl` calls `drv_priv` and, if the caller is privileged, sets connection flag 4,
-  which selects the privileged mapping. Sent by `main` of `ireeprom` and by `vs2setmon`.
+`gfxioctl` (`gfx.o` 6.5.30m, at 0x2b88) answers 101, 102, 103, 105, 112 and 113 for any open connection, before it
+checks that the connection is attached to a board. Every other number below 1000 needs an attached connection
+(EACCES, 13, otherwise). Numbers 1000-9999 go to `RRM_Dispatch`, and 10000 and up go to the board's private
+operation (+200 of its operation table), which for this board is `KONAprivate`. Offsets below are within `gfx.o`'s
+text section.
+
+- 0x65 (ioctl 101), `GFX_GETNUM_BOARDS`.
+  Established at 0x2cf4: `gfxioctl` copies the global `GfxNumberOfBoards` into the caller's
+  result word and returns 0, with no argument copied in, so a client knows how many boards to scan.
+  The inventory scan finds it sent first by `main` in `ireeprom` and by the X server's board search.
+- 0x66 (ioctl 102), `GFX_GETBOARDINFO`.
+  Established at 0x2eb8: `gfxioctl` translates a 24-byte request with `copyin_xlate`
+  (EFAULT, 14, on a bad pointer), refuses a board number past the count or an empty slot with ENODEV (19),
+  then at 0x323c calls slot 0 of the board's information operations with the user buffer address and
+  length from the request, so the board driver fills the caller's buffer itself. Sent by `main` in `ireeprom` and by `crm_setmon`.
+- 0x67 (ioctl 103), `GFX_ATTACH_BOARD`.
+  Established from `gfxioctl` at 0x2f30 and 0x32dc: a 16-byte request through `copyin_xlate`, the same
+  board-number checks, then EBUSY (16) if this connection already has an operation table. Otherwise it records
+  the board, its operation table and its private state in the connection (+8, +32, +40) and calls the board's attach
+  operation (+8) with the user address from the request; a failure clears those three fields again, and success makes
+  the connection the board's owner when the board has none. Sent by `irixKernInit` in `Xsgi`.
+- 0x68 (ioctl 104), `GFX_DETACH_BOARD`.
+  Established at 0x2e80: the handler releases the board with a call to `GfxDetach`. An OpenGL-mode connection
+  (flag 8) or one whose thread record has no group link (+24) is detached at once; an IrisGL-mode connection is
+  detached only when `threadgroup_refcnt` reports one member, and a shared group gets EBUSY (16). Sent by `xgsetmon`.
+- 0x69 (ioctl 105), `GFX_IS_MANAGED`.
+  Established at 0x2ef0 and 0x3144: `gfxioctl` reads a 4-byte board number with `copyin`, rejects a bad board with 19,
+  and writes 1 to the result word when the board record's +8 field is set, 0 when it is not; inferred from the
+  name, that field is the board's managing connection.
+  Setup tools ask this before touching a board an X server may hold; sent by `main` in `ireeprom`.
+- 0x6a (ioctl 106), `GFX_INITIALIZE`.
+  Established at 0x2ff8: only the board's owner gets past 0x2cdc (others receive 1). The handler takes the pipe
+  semaphore unless it already holds it, spins with 2-microsecond delays until the pipe's pending count (+104) drains,
+  calls the board's initialise operation (+24), then at raised priority zeroes the retrace counter at +128,
+  calls the optional operation at +192, drops the semaphore and unmaps a mapped connection with `rrmUnMapGfx`.
+  The inventory scan finds it sent by `setup_ucode` in `ireeprom`.
+- 0x6b (ioctl 107), `GFX_START`.
+  Established at 0x3078: an owner-only call that takes the pipe semaphore in the same way and returns what the
+  board's start operation (+40) returns; that operation lets the pipe run once its microcode is loaded. Sent by `main` in `gfxinfo`.
+- 0x6c (ioctl 108), `GFX_DOWNLOAD`.
+  Established at 0x2fc0: an attached connection's 40-byte request is translated by `copyin_xlate` and passed with the
+  connection to the board's download operation (+32). For this board that operation is `KONAdownload` in `kona_stubs.o`,
+  which returns 0, so the request changes nothing on the pipe. The inventory finds it sent by `gr2_init`
+  and `mgras_init` in `gfxinfo`, code for other board families.
+- 0x6e (ioctl 110), `GFX_MAPALL`.
+  Established at 0x2d78: the handler takes the pipe semaphore, locks the region with `ddv_lock`, calls the board's map
+  operation (+96) with offset 0 and length -1 to map the whole pipe, and sets connection flag 0x20 before `ddv_unlock`,
+  whatever the map returned. Diagnostics use it to reach every register. Sent by `main` in `ireeprom` and by `ng1_setmon`.
+- 0x6f (ioctl 111), `GFX_LABEL`.
+  Established at 0x30d4: an owner-only call that copies 16 bytes from the caller into the board's information
+  record at +16 with `copyin` (14 on a fault). The X server labels the board it manages this way; sent by
+  `irixKernInit` in `Xsgi`.
+- 0x70 (ioctl 112), `GFX_REATTACH_BOARD`.
+  Established at 0x2f68 and 0x3260: the same request size and board checks as the attach call, but it skips the
+  EBUSY test and binds the connection again, so a process holding a board can re-attach it. Sent by `ng1_setmon` in `setmon`.
+- 0x71 (ioctl 113), `GFX_SET_DIAG_FLAG`.
+  Established at 0x2fa0: `gfxioctl` calls `drv_priv` with the caller's credentials and, for the super-user only,
+  sets connection flag 4. `KONAmapgfx` in kona_map.o tests that flag at +0x134 and then maps the register page at
+  pipe offset 0x800000 instead of 0x810000, plus the I/O window at 0xc000. Sent by `main` in `ireeprom` and by `vs2setmon`.
 
 ### Rendering manager ioctls (`rrm.o`)
 
@@ -367,6 +390,20 @@ in `rrm.o` (each entry is the handler, the argument size and a manager-only flag
 - Ioctl 10100 (0x2774), `KONA_DIAG_MAP`, established.
   `KONAprivate` copies in 24 bytes through `copyin_xlate`, calls `kona_diag_map` to map a user buffer for DMA
   and copies 24 bytes back. Sent by `kona_getconfig` in `gfxinfo` and by `main` of `ireeprom`.
+- 0x2775 (ioctl 10101), the flow-control switch.
+  Established from `kona_ioctl.o`: jump-table slot 101 (at .rodata 0x340) leads to `KONAprivate`+0x10c, which
+  calls `RRM_CheckValidFault` (EFAULT, 14, when it fails) and then `kona_diag_flow` with the ioctl argument itself as
+  the value. In `kona_flow.o`, argument 0 clears bits 0-2 of the interrupt-enable shadow at pipe state +2368 and writes
+  it to `HH_INTR_ENABLE` (0x800230), turning the FIFO water-mark interrupts off; argument 1 refuses a dead pipe with
+  EACCES (13), sets bit 2 again, flushes the caller's write-gather buffer, attaches the caller to the
+  write-gather group (programming XG offset 0x7c) if it is not attached yet, and writes 0 to the flow-controlled
+  alias of `HH_GINTR_INFO` (0xc00108). Any other value returns EINVAL (22). No sender in the inventory loads the number.
+- 0x2776 (ioctl 10102), the credit read.
+  Established from `kona_ioctl.o`: slot 102 (at .rodata 0x348) leads to `KONAprivate`+0xf4, which checks
+  `RRM_CheckValidFault`, copies 16 bytes in, calls `kona_diag_credits` and copies 16 bytes back. That routine in
+  `kona_flow.o` (at 0x6f4) fills four words: the flow-control credit total, bias and current count from
+  the generic flow layer, and the constant 100000, so a diagnostic can check the credit state after
+  switching flow control with 10101. No sender in the inventory loads the number.
 
 ## Registers the driver touches
 

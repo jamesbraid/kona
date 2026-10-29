@@ -2,9 +2,9 @@ table	rows	understood	understood_distinct	templated	located	named_only	undocumen
 binaries	599	67	9	0	2	189	341	0	11.2	11.5	43.1	11.2	
 functions	54309	686	341	1390	1829	51780	6	8	1.3	4.6	100.0	1.3	
 functions (distinct names)	19170	340	340	238	284	18540	3	3	1.8	3.3	100.0	1.8	
-mmio	53	8	7	0	0	45	0	0	15.1	15.1	100.0	15.1	10
+mmio	53	10	8	0	0	43	0	0	18.9	18.9	100.0	18.9	10
 tokens	617	463	432	54	54	89	0	11	75.0	85.6	100.0	76.8	
-ioctls	55	41	41	0	0	14	0	0	74.5	74.5	100.0	74.5	
+ioctls	55	55	55	0	0	0	0	0	100.0	100.0	100.0	100.0	
 ucode	3387	3204	2464	183	183	0	0	0	94.6	100.0	100.0	94.6	
 spec-registers	242	39	39	0	0	198	0	5	16.1	18.2	100.0	18.2	
 functions in usr/bin/X11/xsetmon	501	0	0	0	0	501	0	0	0.0	0.0	100.0	0.0	
