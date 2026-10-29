@@ -39,7 +39,7 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 10014	0x271e	kona private	copyin	sent,table	venice_calcframebuffer	3	usr/gfx/gfxinfo:venice_calcframebuffer	documented	docs/kernel.md#private-ioctls	Private ioctls
 10015	0x271f	kona private	copyin	table		2		documented	docs/kernel.md#private-ioctls	Private ioctls
 10016	0x2720	kona private	copyout	sent,table	kona_diagnose	3	usr/gfx/gfxinfo:kona_diagnose	documented	docs/kernel.md#private-ioctls	Private ioctls
-10017	0x2721	kona private	kona_checkpipe	sent,table	KonWaitRData;__glkona_wait_rdata;konReadFBBlock;konReadImage;+4 more	11	usr/gfx/arch/IP27KONA32/libGLcore.so:__glkona_wait_rdata	documented	docs/kernel.md#private-ioctls	Private ioctls
+10017	0x2721	kona private	kona_checkpipe	sent,table	KonWaitRData;__glkona_wait_rdata;konReadFBBlock;konReadImage;+4 more	11	usr/gfx/arch/IP27KONA32/libGLcore.so:__glkona_wait_rdata	documented	docs/ge.md#engine-events	Engine events
 10018	0x2722	kona private	curproc_abi	table		2		documented	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
 10019	0x2723	kona private	copyout	sent,table	konQueryHyperpipeNetwork	6	usr/lib/X11/dyDDX/kona.so:konQueryHyperpipeNetwork	documented	docs/kernel.md#private-ioctls	Private ioctls
 10020	0x2724	kona private	kmem_alloc	sent,table	konHyperpipeConfig;venice_calcframebuffer	7	usr/gfx/gfxinfo:venice_calcframebuffer	documented	docs/kernel.md#flow-control-layer	Flow-control layer

@@ -30,6 +30,25 @@ What the ARM firmware (`arm1.u`, IRIX 6.5.30m, [ucode/arm1_firmware.md](../ucode
 
 **Established** since: the engine-side output operation is the move into output port B = 9-11 ([ucode/ge_ops.md](../ucode/ge_ops.md#input-and-output-fifo-operations)), checked against the 172 words the IR diagnostic reads back by output DMA. **open question** ([open-questions.md](open-questions.md)): the bit meanings of the DMA registers 0x200010-0x200048.
 
+## Engine events
+
+Source: `arm1.u` (IRIX 6.5.30m, [ucode/arm1.s](../ucode/arm1.s)). Labels as above.
+
+**Established.** The event record the kernel reads in `kona_ge_intr` ([hip.md](hip.md)) is written by `start_kcomm` (0x0c022800) and `finish_kcomm` (0x0c022980), and only four ARM handlers call `start_kcomm`. Each passes a word of its own command's payload as the event code:
+
+| Handler | Token | Code passed |
+|---|---|---|
+| `arm_ge_intr` (0x0c022cfc) | `GE_INTR` 0x1dd | the last payload word (`[r9, #0x3c]`); refused unless the command came through the privileged stream (bit 2 of 0x200060) |
+| `arm_finish_selectfeed` (0x0c022c44) | `FINISH_SELECTFEED` 0x1f6 | the first payload word (`[r9, #0x0]`), 256 from the kernel |
+| `arm_mem_suspend` | `MEM_SUSPEND` 0x1df | the last payload word, 0x104 from the kernel |
+| `arm_context_mopup` (0x0c02226c) | `CONTEXT_MOPUP` 0x1f8 | the last payload word |
+
+The `MEM_SWAPIN` and `MEM_SWAPOUT` trailing word 0x102 is the same kind of host-chosen code ([kernel.md](kernel.md)), and so is the check-pipe answer 0x105, which `kona_checkpipe` asks for with `GE_INTR`. **Inferred:** for these codes no engine-side condition picks the value. The host names the code in the command, and the event is raised when the ARM reaches that command in stream order, after everything queued before it.
+
+**Established** (`ge.u`, [ctx_deact.S listing](../ucode/ge_listing/ctx_deact.S.lst)). Code 0x101, context deactivate done, has no ARM sender. The engine program's `mges_ContextDeactFinish`, the slot `arm_context_deactivate` sends last, loads the constant 0x101 at 0x6831. That load sits among raster-bus writes to 0x463 and 0x462, the second output-DMA channel's length registers ([rm.md](rm.md#host-interface-registers-on-the-raster-bus)). **Inferred:** the engines write the 0x101 record themselves through that channel when the save is finished.
+
+Code 0, a text print request, has no writer found in `arm1.u` or `ge.u`: no `start_kcomm` caller passes it, and `finish_kcomm` has only the four callers above. unknown: no shipped software or published source depends on which pipe program sends it beyond the kernel's print handler.
+
 ## Context save and restore
 
 **Established** (`arm_context_load` 0x0c02112c, `load_arm`, `store_data`).
