@@ -12,7 +12,7 @@ What the files in `usr/gfx/ucode/KONA/` (IRIX 6.5.30m, linked as `ucode/KONA/`) 
 
 **Inferred:** the geometry-engine instruction is 72 bits wide, and the program counter is 16 bits wide.
 
-`ge_kpm.hex` (186 lines) and `ged1b.u` are other programs in the same formats. `ged1b.u` has magic 0x45910003 and the build string "uasm 6.0". **Inferred** from its name: it is the program of the geometry-engine distributor, the stage that feeds the geometry engines.
+`ge_kpm.hex` (186 lines) and `ged1b.u` are other programs in the same formats. `ged1b.u` has magic 0x45910003 and the build string "uasm 6.0" ("Thu Jul 20 17:33:26 2006"). Its code is two segments, 313 instructions at address 0 and 176 at 0x1000 (12-byte records, as in `ge11.u`). **Established:** its file-name table lists `dist.s`, `flush.s`, `material.s`, `trigger.s` and one source per primitive type (`tstrip.s`, `points.s`, `lineloop.s`, `linestrip.s`, `quad.s`, `qstrip.s`, `tfanpoly.s`, `tri.s`, `lines.s`), with headers `ged1seq.h`, `ged1if.h` and `ge11exports.h`. **Inferred:** it is the program of the geometry-engine distributor, the stage that assembles primitives from vertices and hands them to the geometry engines, built per primitive type. Nothing in the file names a command-token table, so the earlier expectation that the token-to-slot translation sits in `ged1b.u` is not supported.
 
 ## Debug tables in the .u files
 
@@ -65,7 +65,7 @@ Slots are grouped by handler class, not by host token:
 
 **Inferred:** this is the geometry engine's own command-index table, loaded into a lookup memory. kpm's GE11 error register names `ELUT_ADR` (`GE.h`), which suggests an entry lookup table.
 
-**Unknown:** how a host token (`GE.h`) becomes a slot number. For 47 handlers whose names match a token name (for example `HP_CULLFACE` 0xb6 to `mgeb_CullFace` in slot 3), a GF(2) fit found no single linear map from token bits to slot bits. A search of `arm1.u`, `ged1b.u`, `tport.bin`, kpm and libGLcore found no 512-entry token-to-slot table either. The translation is therefore expected in the distributor program or the main dispatch code of `ge.hex`, which need the instruction fields decoded first.
+**Unknown:** how a host token (`GE.h`) becomes a slot number. For 47 handlers whose names match a token name (for example `HP_CULLFACE` 0xb6 to `mgeb_CullFace` in slot 3), a GF(2) fit found no single linear map from token bits to slot bits. A search of `arm1.u`, `ged1b.u`, `tport.bin`, kpm and libGLcore found no 512-entry token-to-slot table either. A wider search, also negative: using the 47 name matches below as (token, slot) pairs, every file under `root/` (479 regular files) was scanned for a table indexed by token, in 8-, 16- and 32-bit entries of either byte order, whose entry for each token equals the slot, 2 x slot, 2 x slot + 1 or the handler address; no location agreed with even 9 of the 47 pairs. This only rules out a plain array for those pairings, which are themselves inferred from names. The pairs are weakly ordered: of all 1081 pairs of matches, 700 have token and slot in the same order (65%; 155 of 231 inside the `mgesi_` group, 110 of 171 inside `mgeb_`), and the X-server tokens 0x14c-0x15f land in slots 240-249 in near token order. That fits a table sorted by handler class, with the order within a class partly following the token numbers, but it does not give a rule. The translation is therefore expected in the distributor program or the main dispatch code of `ge.hex`, which need the instruction fields decoded first.
 
 The 47 name matches are written to [ge_name_matches.tsv](ge_name_matches.tsv) as leads, labelled **inferred**.
 
@@ -81,4 +81,4 @@ The 47 name matches are written to [ge_name_matches.tsv](ge_name_matches.tsv) as
 
 1. Finish the `ge.u` record decode: the byte-to-W-bit map is in ge_u_bitmap.tsv, the value mapping of most bytes is open.
 2. With fields known, find the main loop (`mainloop*` labels) and the read of the token word, to recover the token-to-slot translation.
-3. Read the distributor program `ged1b.u` the same way.
+3. Decode `ged1b.u` once the record layout is known; it is a primitive distributor, so expect it to explain vertex flow rather than command dispatch.
