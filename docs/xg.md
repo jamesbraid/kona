@@ -8,7 +8,7 @@ Notation: `P` is the driver's pipe state (offset 2376 holds the base of a 16 MB 
 
 **Established.** In order:
 
-1. Finds the pipe's Xtalk widget info and its id; the low 8 bits are the widget number, used to find or claim a free pipe record (byte at `P+2208` holds it). The check `lw 100(base)` & 7 must be zero before it goes on (the offset-0x64 test of the crossbow node's widget status; the base here is the node's widget window, not the pipe's).
+1. Finds the pipe's Xtalk widget info and its id; the low 8 bits are the widget number, used to find or claim a free pipe record (byte at `P+2208` holds it). The check `lw 100(base)` & 7 must be zero before it goes on (INFERRED role: a status word of the node's widget window, not the pipe's).
 2. Maps the window, calls `kona_init_flow_control`, adds a hardware-graph edge.
 3. Allocates three Xtalk interrupt handles, stored at `P+2240`, `P+2256` and `P+2264`, and connects each to a driver handler taken from a handler table. The device description used for the first sets the interrupt target CPU; the second and third reuse it. The identities of the three handlers are **unknown** (the table is resolved through the global pointer); `kona_xg_intr_handler` and `kona_intr_handler` both exist in `kona_intr_hip2.o`.
 4. Writes 0x8800 to window+0x8003c0 (`HH_VC_ADDRESS`) and reads window+0x8003d0 (`HH_VC_DATA`) (**established**; the names are from `HIP.h`).
