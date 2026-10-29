@@ -827,26 +827,56 @@ enum kona_kpm_spare_token {
 #define KONA_GE11_UERROR_CMD_UC_TAG             0x00040000  /* bits from 18 */
 #define KONA_GE11_UERROR_AALU_WR                0x00080000  /* bits from 19 */
 
+/* Output FIFO 0, half A: write and read pointers. ESTABLISHED only as a
+ * kpm table entry. No reader or writer in arm1.u (init_ge touches 0x40000,
+ * 0x40010, 0x40018 and 0x40038), irsaudit (ge_host_reg_write reaches
+ * distributor registers 0x233-0x236 only), the kernel or ge.u. unknown: no
+ * shipped software or published source depends on it. */
 #define KONA_GE11_REG_OFIFO0_A_STATUS                0x40020  /* "OFIFO0 A Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
+/* Output FIFO 0, half B: write and read pointers. ESTABLISHED only as a
+ * kpm table entry. No reader or writer in arm1.u (init_ge touches 0x40000,
+ * 0x40010, 0x40018 and 0x40038), irsaudit (ge_host_reg_write reaches
+ * distributor registers 0x233-0x236 only), the kernel or ge.u. unknown: no
+ * shipped software or published source depends on it. */
 #define KONA_GE11_REG_OFIFO0_B_STATUS                0x40024  /* "OFIFO0 B Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
+/* Output FIFO 1, half A: write and read pointers. ESTABLISHED only as a
+ * kpm table entry. No reader or writer in arm1.u (init_ge touches 0x40000,
+ * 0x40010, 0x40018 and 0x40038), irsaudit (ge_host_reg_write reaches
+ * distributor registers 0x233-0x236 only), the kernel or ge.u. unknown: no
+ * shipped software or published source depends on it. */
 #define KONA_GE11_REG_OFIFO1_A_STATUS                0x40028  /* "OFIFO1 A Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
+/* Output FIFO 1, half B: write and read pointers. ESTABLISHED only as a
+ * kpm table entry. No reader or writer in arm1.u (init_ge touches 0x40000,
+ * 0x40010, 0x40018 and 0x40038), irsaudit (ge_host_reg_write reaches
+ * distributor registers 0x233-0x236 only), the kernel or ge.u. unknown: no
+ * shipped software or published source depends on it. */
 #define KONA_GE11_REG_OFIFO1_B_STATUS                0x4002c  /* "OFIFO1 B Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
+/* Output FIFO 2, half A: write and read pointers. ESTABLISHED only as a
+ * kpm table entry. No reader or writer in arm1.u (init_ge touches 0x40000,
+ * 0x40010, 0x40018 and 0x40038), irsaudit (ge_host_reg_write reaches
+ * distributor registers 0x233-0x236 only), the kernel or ge.u. unknown: no
+ * shipped software or published source depends on it. */
 #define KONA_GE11_REG_OFIFO2_A_STATUS                0x40030  /* "OFIFO2 A Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
+/* Output FIFO 2, half B: write and read pointers. ESTABLISHED only as a
+ * kpm table entry. No reader or writer in arm1.u (init_ge touches 0x40000,
+ * 0x40010, 0x40018 and 0x40038), irsaudit (ge_host_reg_write reaches
+ * distributor registers 0x233-0x236 only), the kernel or ge.u. unknown: no
+ * shipped software or published source depends on it. */
 #define KONA_GE11_REG_OFIFO2_B_STATUS                0x40034  /* "OFIFO2 B Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */

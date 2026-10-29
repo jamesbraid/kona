@@ -7,12 +7,12 @@ kpm register tables	geometry engine		ge	0x40010	Diag Sel Register	1	0	32		0	docu
 kpm register tables	geometry engine		ge	0x40014	Enable Mask Register	1	0	32		0	documented	GE.h:796	
 kpm register tables	geometry engine		ge	0x40018	CM/Ofifo TAG Register	1	0	32		0	documented	docs/ge.md#registers-the-arms-path-to-them	Registers: the ARM's path to them
 kpm register tables	geometry engine		ge	0x4001c	Ucode Error register	1	0	32		0	documented	GE.h:808	
-kpm register tables	geometry engine		ge	0x40020	OFIFO0 A Status Register	1	0	32		0	named-only	GE.h:830	
-kpm register tables	geometry engine		ge	0x40024	OFIFO0 B Status Register	1	0	32		0	named-only	GE.h:834	
-kpm register tables	geometry engine		ge	0x40028	OFIFO1 A Status Register	1	0	32		0	named-only	GE.h:838	
-kpm register tables	geometry engine		ge	0x4002c	OFIFO1 B Status Register	1	0	32		0	named-only	GE.h:842	
-kpm register tables	geometry engine		ge	0x40030	OFIFO2 A Status Register	1	0	32		0	named-only	GE.h:846	
-kpm register tables	geometry engine		ge	0x40034	OFIFO2 B Status Register	1	0	32		0	named-only	GE.h:850	
+kpm register tables	geometry engine		ge	0x40020	OFIFO0 A Status Register	1	0	32		0	no-software-dependency	GE.h:835	
+kpm register tables	geometry engine		ge	0x40024	OFIFO0 B Status Register	1	0	32		0	no-software-dependency	GE.h:844	
+kpm register tables	geometry engine		ge	0x40028	OFIFO1 A Status Register	1	0	32		0	no-software-dependency	GE.h:853	
+kpm register tables	geometry engine		ge	0x4002c	OFIFO1 B Status Register	1	0	32		0	no-software-dependency	GE.h:862	
+kpm register tables	geometry engine		ge	0x40030	OFIFO2 A Status Register	1	0	32		0	no-software-dependency	GE.h:871	
+kpm register tables	geometry engine		ge	0x40034	OFIFO2 B Status Register	1	0	32		0	no-software-dependency	GE.h:880	
 kpm register tables	geometry engine		ge	0x40038	OFIFO Control Register (trashed)	1	0	32		0	documented	docs/ge.md#registers-the-arms-path-to-them	Registers: the ARM's path to them
 kpm register tables	host interface		hip	0x800000	HIP1_HH_GFIFO	1	0	32		0	documented	docs/kernel.md#hh_tbus_status	`HH_TBUS_STATUS`
 kpm register tables	host interface		hip	0x800100	HH_SWITCH	1	0	32		0	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma	Host to pipe: `kona_dmawrite`, `kona_idma`
