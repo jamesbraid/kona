@@ -1,56 +1,56 @@
 number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
-101	0x65	graphics init		sent	__glXOpenGraphicsDevice;__glx_GetString;__iglooGetGraphicsType;ddxFindAvailableBoards..CGC;+7 more	18	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-102	0x66	graphics init		sent	__glx_GetString;__iglooGetGraphicsType;crm_setmon;ddxFindAvailableBoards..CGC;+13 more	15	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-103	0x67	graphics init		sent	crm_setmon;gr2ev_info;irixKernInit;main;+4 more	4	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-104	0x68	graphics init		sent	gr2ev_info;main;ng1_setmon;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	documented	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
-105	0x69	graphics init		sent	main	1	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-106	0x6a	graphics init		sent	main;mgras_init;setup_ucode	2	usr/gfx/KONA/bin/ireeprom:setup_ucode	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-107	0x6b	graphics init		sent	main	1	usr/gfx/gfxinfo:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-108	0x6c	graphics init		sent	gr2_init;loadfile;mgras_init;odsy_init	1	usr/gfx/gfxinfo:gr2_init	documented	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
-110	0x6e	graphics init		sent	gr2ev_info;main;ng1_setmon;saXSGIvcQueryChannelGammaMap;+2 more	3	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-111	0x6f	graphics init		sent	irixKernInit	1	usr/gfx/arch/GENERIC/Xsgi:irixKernInit	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-112	0x70	graphics init		sent	ng1_setmon	1	usr/gfx/setmon:ng1_setmon	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-113	0x71	graphics init		sent	gr2ev_info;main;saXSGIvcQueryChannelGammaMap;vs2setmon	3	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1000	0x3e8	graphics manager		sent	irixKernInit;main;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1002	0x3ea	graphics manager		sent	irixKernInit;main;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1003	0x3eb	graphics manager		sent	xgsetmon	1	usr/gfx/setmon:xgsetmon	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1004	0x3ec	graphics manager		sent	rrmDisposeClip	4	usr/lib/X11/dyDDX/kona.so:rrmDisposeClip	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1006	0x3ee	graphics manager		sent	glXSwapIntervalSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXSwapIntervalSGI	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1010	0x3f2	graphics manager		sent	SGICapGLCapture..HAE;rrmInvalidate	5	usr/gfx/arch/GENERIC/Xsgi:SGICapGLCapture..HAE	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1011	0x3f3	graphics manager		sent	konValidateClip	4	usr/lib/X11/dyDDX/kona.so:konValidateClip	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1012	0x3f4	graphics manager		sent	konValidateSwapbuf	4	usr/lib/X11/dyDDX/kona.so:konValidateSwapbuf	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1013	0x3f5	graphics manager		sent	glxBindSwapBarrierSGIX;glxJoinSwapGroupSGIX	1	usr/lib/X11/dyDDX/glx.so:glxBindSwapBarrierSGIX	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1017	0x3f9	graphics manager		sent	konLoadDisplayMode	4	usr/lib/X11/dyDDX/kona.so:konLoadDisplayMode	documented	docs/opengl.md#ioctls	Ioctls
-1019	0x3fb	graphics manager		sent	glxBindSwapBarrierSGIX	1	usr/lib/X11/dyDDX/glx.so:glxBindSwapBarrierSGIX	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1020	0x3fc	graphics manager		sent	rrmMGRSwapBuf	4	usr/lib/X11/dyDDX/kona.so:rrmMGRSwapBuf	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1022	0x3fe	graphics manager		sent	glXGetVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXGetVideoSyncSGI	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-1023	0x3ff	graphics manager		sent	glXWaitVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXWaitVideoSyncSGI	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-10000	0x2710	kona private	curproc_abi	sent,table	konReadFBBlock;konReadImage;kon_loadGC	6	usr/lib/X11/dyDDX/kona.so:konReadFBBlock	documented	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
-10001	0x2711	kona private	curproc_abi	sent,table	konDrawImage;konWriteFBSubBlock	6	usr/lib/X11/dyDDX/kona.so:konDrawImage	documented	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
-10002	0x2712	kona private	curproc_abi	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	documented	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
-10003	0x2713	kona private	kona_finish_selectfeed	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread	Pipe to host: select feedback, `kona_dmaread`
-10005	0x2715	kona private	copyin	sent,table	cfb16DoBitbltXor;konCursorOn;konDisplayCursor	6	usr/lib/X11/dyDDX/kona.so:cfb16DoBitbltXor	documented	docs/kernel.md#private-ioctls	Private ioctls
-10006	0x2716	kona private	copyin	sent,table	kona_getconfig	3	usr/gfx/gfxinfo:kona_getconfig	documented	docs/kernel.md#private-ioctls	Private ioctls
-10008	0x2718	kona private		table		2		documented	docs/kernel.md#private-ioctls	Private ioctls
-10009	0x2719	kona private	copyin	sent,table	konaSetStereoMode;nfbUnrealizeCursor	6	usr/lib/X11/dyDDX/kona.so:konaSetStereoMode	documented	docs/kernel.md#private-ioctls	Private ioctls
-10010	0x271a	kona private	copyin	table		2		documented	docs/kernel.md#private-ioctls	Private ioctls
-10011	0x271b	kona private	copyin	table		2		documented	docs/kernel.md#private-ioctls	Private ioctls
-10012	0x271c	kona private	copyin	sent,table	cfb32FillRectSolidGeneral;saXSGIvcSetChannelGammaMap	7	usr/gfx/setmon:saXSGIvcSetChannelGammaMap	documented	docs/kernel.md#private-ioctls	Private ioctls
-10014	0x271e	kona private	copyin	sent,table	venice_calcframebuffer	3	usr/gfx/gfxinfo:venice_calcframebuffer	documented	docs/kernel.md#private-ioctls	Private ioctls
-10015	0x271f	kona private	copyin	table		2		documented	docs/kernel.md#private-ioctls	Private ioctls
-10016	0x2720	kona private	copyout	sent,table	kona_diagnose	3	usr/gfx/gfxinfo:kona_diagnose	documented	docs/kernel.md#private-ioctls	Private ioctls
-10017	0x2721	kona private	kona_checkpipe	sent,table	KonWaitRData;__glkona_wait_rdata;konReadFBBlock;konReadImage;+4 more	11	usr/gfx/arch/IP27KONA32/libGLcore.so:__glkona_wait_rdata	documented	docs/ge.md#engine-events	Engine events
-10018	0x2722	kona private	curproc_abi	table		2		documented	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
-10019	0x2723	kona private	copyout	sent,table	konQueryHyperpipeNetwork	6	usr/lib/X11/dyDDX/kona.so:konQueryHyperpipeNetwork	documented	docs/kernel.md#private-ioctls	Private ioctls
-10020	0x2724	kona private	kmem_alloc	sent,table	konHyperpipeConfig;venice_calcframebuffer	7	usr/gfx/gfxinfo:venice_calcframebuffer	documented	docs/kernel.md#flow-control-layer	Flow-control layer
-10021	0x2725	kona private	kmem_alloc	sent,table	konQueryHyperpipeConfig	6	usr/lib/X11/dyDDX/kona.so:konQueryHyperpipeConfig	documented	docs/kernel.md#flow-control-layer	Flow-control layer
-10022	0x2726	kona private	copyin	sent,table	__glkon_BindHyperpipe;venice_calcframebuffer;venice_loadsection_dg2_body;venice_loadsection_dg2_top;+1 more	9	usr/gfx/arch/IP27KONA/libGLcore.so:__glkon_BindHyperpipe	documented	docs/kernel.md#private-ioctls	Private ioctls
-10023	0x2727	kona private	copyin	sent,table	__glkon_UnbindHyperpipe;venice_loadsection_dg2_body	9	usr/gfx/arch/IP27KONA/libGLcore.so:__glkon_UnbindHyperpipe	documented	docs/kernel.md#private-ioctls	Private ioctls
-10024	0x2728	kona private	copyin	sent,table	konDestroyHyperpipeConfig;venice_set_dg2_eeprom	8	usr/gfx/gfxinfo:venice_set_dg2_eeprom	documented	docs/kernel.md#private-ioctls	Private ioctls
-10025	0x2729	kona private		sent	read_encoder_reg;venice_loadsection_dg2_body	1	usr/gfx/gfxinfo:read_encoder_reg	documented	docs/kernel.md#private-ioctls	Private ioctls
-10026	0x272a	kona private		sent	venice_get_dg2_eeprom	2	usr/gfx/gfxinfo:venice_get_dg2_eeprom	documented	docs/kernel.md#private-ioctls	Private ioctls
-10030	0x272e	kona private		sent	venice_loadsection_vs2_top;vs2SetShadow	2	usr/gfx/gfxinfo:venice_loadsection_vs2_top	documented	docs/kernel.md#private-ioctls	Private ioctls
-10031	0x272f	kona private		sent	venice_loadsection_vs2_top;vs2GetShadow;vs2_set_MasterGenlock	2	usr/gfx/gfxinfo:venice_loadsection_vs2_top	documented	docs/kernel.md#private-ioctls	Private ioctls
-10100	0x2774	kona private	curproc_abi	sent,table	kona_getconfig;main;saXSGIvcQueryChannelGammaMap;setup_ucode	5	usr/gfx/KONA/bin/ireeprom:main	documented	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
-10101	0x2775	kona private	RRM_CheckValidFault	table		2		documented	docs/kernel.md#multi-vector-writes-kona_dmawrite	Multi-vector writes (`KONA_DMAWRITE`)
-10102	0x2776	kona private	RRM_CheckValidFault	table		2		documented	docs/kernel.md#multi-vector-writes-kona_dmawrite	Multi-vector writes (`KONA_DMAWRITE`)
+101	0x65	graphics init		sent	__glXOpenGraphicsDevice;__glx_GetString;__iglooGetGraphicsType;ddxFindAvailableBoards..CGC;+7 more	18	usr/gfx/KONA/bin/ireeprom:main	named-only	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+102	0x66	graphics init		sent	__glx_GetString;__iglooGetGraphicsType;crm_setmon;ddxFindAvailableBoards..CGC;+13 more	15	usr/gfx/KONA/bin/ireeprom:main	named-only	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+103	0x67	graphics init		sent	crm_setmon;gr2ev_info;irixKernInit;main;+4 more	4	usr/gfx/KONA/bin/ireeprom:main	named-only	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+104	0x68	graphics init		sent	gr2ev_info;main;ng1_setmon;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
+105	0x69	graphics init		sent	main	1	usr/gfx/KONA/bin/ireeprom:main	named-only	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+106	0x6a	graphics init		sent	main;mgras_init;setup_ucode	2	usr/gfx/KONA/bin/ireeprom:setup_ucode	named-only	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+107	0x6b	graphics init		sent	main	1	usr/gfx/gfxinfo:main	named-only	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+108	0x6c	graphics init		sent	gr2_init;loadfile;mgras_init;odsy_init	1	usr/gfx/gfxinfo:gr2_init	understood	docs/hip.md#xg-errors-kona_xg_intr_handler	XG errors: `kona_xg_intr_handler`
+110	0x6e	graphics init		sent	gr2ev_info;main;ng1_setmon;saXSGIvcQueryChannelGammaMap;+2 more	3	usr/gfx/KONA/bin/ireeprom:main	named-only	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+111	0x6f	graphics init		sent	irixKernInit	1	usr/gfx/arch/GENERIC/Xsgi:irixKernInit	named-only	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+112	0x70	graphics init		sent	ng1_setmon	1	usr/gfx/setmon:ng1_setmon	named-only	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+113	0x71	graphics init		sent	gr2ev_info;main;saXSGIvcQueryChannelGammaMap;vs2setmon	3	usr/gfx/KONA/bin/ireeprom:main	named-only	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
+1000	0x3e8	graphics manager		sent	irixKernInit;main;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	undocumented		
+1002	0x3ea	graphics manager		sent	irixKernInit;main;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	undocumented		
+1003	0x3eb	graphics manager		sent	xgsetmon	1	usr/gfx/setmon:xgsetmon	undocumented		
+1004	0x3ec	graphics manager		sent	rrmDisposeClip	4	usr/lib/X11/dyDDX/kona.so:rrmDisposeClip	undocumented		
+1006	0x3ee	graphics manager		sent	glXSwapIntervalSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXSwapIntervalSGI	undocumented		
+1010	0x3f2	graphics manager		sent	SGICapGLCapture..HAE;rrmInvalidate	5	usr/gfx/arch/GENERIC/Xsgi:SGICapGLCapture..HAE	undocumented		
+1011	0x3f3	graphics manager		sent	konValidateClip	4	usr/lib/X11/dyDDX/kona.so:konValidateClip	undocumented		
+1012	0x3f4	graphics manager		sent	konValidateSwapbuf	4	usr/lib/X11/dyDDX/kona.so:konValidateSwapbuf	undocumented		
+1013	0x3f5	graphics manager		sent	glxBindSwapBarrierSGIX;glxJoinSwapGroupSGIX	1	usr/lib/X11/dyDDX/glx.so:glxBindSwapBarrierSGIX	undocumented		
+1017	0x3f9	graphics manager		sent	konLoadDisplayMode	4	usr/lib/X11/dyDDX/kona.so:konLoadDisplayMode	undocumented		
+1019	0x3fb	graphics manager		sent	glxBindSwapBarrierSGIX	1	usr/lib/X11/dyDDX/glx.so:glxBindSwapBarrierSGIX	undocumented		
+1020	0x3fc	graphics manager		sent	rrmMGRSwapBuf	4	usr/lib/X11/dyDDX/kona.so:rrmMGRSwapBuf	undocumented		
+1022	0x3fe	graphics manager		sent	glXGetVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXGetVideoSyncSGI	undocumented		
+1023	0x3ff	graphics manager		sent	glXWaitVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXWaitVideoSyncSGI	undocumented		
+10000	0x2710	kona private	curproc_abi	sent,table	konReadFBBlock;konReadImage;kon_loadGC	6	usr/lib/X11/dyDDX/kona.so:konReadFBBlock	named-only	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
+10001	0x2711	kona private	curproc_abi	sent,table	konDrawImage;konWriteFBSubBlock	6	usr/lib/X11/dyDDX/kona.so:konDrawImage	named-only	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
+10002	0x2712	kona private	curproc_abi	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	named-only	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
+10003	0x2713	kona private	kona_finish_selectfeed	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	named-only	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread	Pipe to host: select feedback, `kona_dmaread`
+10005	0x2715	kona private	copyin	sent,table	cfb16DoBitbltXor;konCursorOn;konDisplayCursor	6	usr/lib/X11/dyDDX/kona.so:cfb16DoBitbltXor	named-only	docs/kernel.md#private-ioctls	Private ioctls
+10006	0x2716	kona private	copyin	sent,table	kona_getconfig	3	usr/gfx/gfxinfo:kona_getconfig	named-only	docs/kernel.md#private-ioctls	Private ioctls
+10008	0x2718	kona private		table		2		undocumented		
+10009	0x2719	kona private	copyin	sent,table	konaSetStereoMode;nfbUnrealizeCursor	6	usr/lib/X11/dyDDX/kona.so:konaSetStereoMode	named-only	docs/kernel.md#private-ioctls	Private ioctls
+10010	0x271a	kona private	copyin	table		2		named-only	docs/kernel.md#private-ioctls	Private ioctls
+10011	0x271b	kona private	copyin	table		2		named-only	docs/kernel.md#private-ioctls	Private ioctls
+10012	0x271c	kona private	copyin	sent,table	cfb32FillRectSolidGeneral;saXSGIvcSetChannelGammaMap	7	usr/gfx/setmon:saXSGIvcSetChannelGammaMap	named-only	docs/kernel.md#private-ioctls	Private ioctls
+10014	0x271e	kona private	copyin	sent,table	venice_calcframebuffer	3	usr/gfx/gfxinfo:venice_calcframebuffer	named-only	docs/kernel.md#private-ioctls	Private ioctls
+10015	0x271f	kona private	copyin	table		2		named-only	docs/kernel.md#private-ioctls	Private ioctls
+10016	0x2720	kona private	copyout	sent,table	kona_diagnose	3	usr/gfx/gfxinfo:kona_diagnose	named-only	docs/kernel.md#private-ioctls	Private ioctls
+10017	0x2721	kona private	kona_checkpipe	sent,table	KonWaitRData;__glkona_wait_rdata;konReadFBBlock;konReadImage;+4 more	11	usr/gfx/arch/IP27KONA32/libGLcore.so:__glkona_wait_rdata	understood	kona_kernel/include/kona_kern.h:40	
+10018	0x2722	kona private	curproc_abi	table		2		named-only	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
+10019	0x2723	kona private	copyout	sent,table	konQueryHyperpipeNetwork	6	usr/lib/X11/dyDDX/kona.so:konQueryHyperpipeNetwork	named-only	docs/kernel.md#private-ioctls	Private ioctls
+10020	0x2724	kona private	kmem_alloc	sent,table	konHyperpipeConfig;venice_calcframebuffer	7	usr/gfx/gfxinfo:venice_calcframebuffer	named-only	docs/kernel.md#flow-control-layer	Flow-control layer
+10021	0x2725	kona private	kmem_alloc	sent,table	konQueryHyperpipeConfig	6	usr/lib/X11/dyDDX/kona.so:konQueryHyperpipeConfig	named-only	docs/kernel.md#flow-control-layer	Flow-control layer
+10022	0x2726	kona private	copyin	sent,table	__glkon_BindHyperpipe;venice_calcframebuffer;venice_loadsection_dg2_body;venice_loadsection_dg2_top;+1 more	9	usr/gfx/arch/IP27KONA/libGLcore.so:__glkon_BindHyperpipe	named-only	docs/kernel.md#private-ioctls	Private ioctls
+10023	0x2727	kona private	copyin	sent,table	__glkon_UnbindHyperpipe;venice_loadsection_dg2_body	9	usr/gfx/arch/IP27KONA/libGLcore.so:__glkon_UnbindHyperpipe	named-only	docs/kernel.md#private-ioctls	Private ioctls
+10024	0x2728	kona private	copyin	sent,table	konDestroyHyperpipeConfig;venice_set_dg2_eeprom	8	usr/gfx/gfxinfo:venice_set_dg2_eeprom	named-only	docs/kernel.md#private-ioctls	Private ioctls
+10025	0x2729	kona private		sent	read_encoder_reg;venice_loadsection_dg2_body	1	usr/gfx/gfxinfo:read_encoder_reg	undocumented		
+10026	0x272a	kona private		sent	venice_get_dg2_eeprom	2	usr/gfx/gfxinfo:venice_get_dg2_eeprom	undocumented		
+10030	0x272e	kona private		sent	venice_loadsection_vs2_top;vs2SetShadow	2	usr/gfx/gfxinfo:venice_loadsection_vs2_top	undocumented		
+10031	0x272f	kona private		sent	venice_loadsection_vs2_top;vs2GetShadow;vs2_set_MasterGenlock	2	usr/gfx/gfxinfo:venice_loadsection_vs2_top	undocumented		
+10100	0x2774	kona private	curproc_abi	sent,table	kona_getconfig;main;saXSGIvcQueryChannelGammaMap;setup_ucode	5	usr/gfx/KONA/bin/ireeprom:main	named-only	docs/kernel.md#32-bit-argument-converters-irix5_to_gfx_getboardinfo_args-irix5_to_gfx_download_args-irix5_to_gfx_attach_board_args	32-bit argument converters: `irix5_to_gfx_getboardinfo_args`, `irix5_to_gfx_download_args`, `irix5_to_gfx_attach_board_args`
+10101	0x2775	kona private	RRM_CheckValidFault	table		2		understood	kona_kernel/include/kona_kern.h:330	
+10102	0x2776	kona private	RRM_CheckValidFault	table		2		understood	kona_kernel/include/kona_kern.h:330	

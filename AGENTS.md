@@ -151,13 +151,18 @@ the owning chip header or chapter and delete the entry.
 ## 7. When work is finished
 
 A coverage row is done when every inventory entry in its area
-(`docs/inventory/`) is documented and every remaining unknown is labelled
+(`docs/inventory/`) is `understood` or `no-software-dependency`. `understood`
+means the entry for that item carries a label (established or inferred), a role
+and hardware effect, and a derivation citation (release, binary or path,
+offset, callee or source path) in the same entry. Naming an item, or listing it
+with others, is not enough. `no-software-dependency` is the section 6 label
 "unknown: no shipped software or published source depends on it", with the
-routes tried. Anything less is partial. The repository is finished when every
-inventory table reaches that state, not when the rows look full.
+routes tried. `located` (identity, address or size, and callers or sites cited,
+behaviour labelled unknown) and `named-only` are partial. The repository is
+finished when every inventory table reaches done, not when the rows look full.
 
-When you finish a task, regenerate the inventory, then pick the next
-undocumented entries and carry on. Hand off only when your assigned area meets
+When you finish a task, regenerate the inventory, then pick the next entries
+below `understood` and carry on. Hand off only when your assigned area meets
 the definition above, or when the session ends. In that case, say in
 `docs/open-questions.md` where you stopped and what comes next.
 
@@ -169,10 +174,10 @@ Workflow: populate `root/` (IRIX_FILES.md), run `scripts/populate-root`, run the
 
 Roles:
 
-- **Readers** pick work from the `undocumented` rows of the tables in `docs/inventory/`, which are measured from the binaries and so list what is really missing. Take a cluster of related rows (one function family, one register block, one token group, one ioctl) and explain it. **Opus readers** start with the Priority list in `docs/coverage.md` and use the inventory to find the rows behind each item; **Sonnet readers** work through `undocumented` and `named-only` rows by block.
+- **Readers** pick work from the rows below `understood` in the tables in `docs/inventory/`, which are measured from the binaries and so list what is really missing. Take a cluster of related rows (one function family, one register block, one token group, one ioctl) and take each row to `understood`: a role and hardware effect, a label, and a derivation in the same entry. **Opus readers** start with the Priority list in `docs/coverage.md` and use the inventory to find the rows behind each item; **Sonnet readers** work through `undocumented`, then `named-only` and `located` rows by block.
 - The areas table in `docs/coverage.md` stays as the by-hand view of each block. Keep its rows true when you change them.
 
-Regenerate the inventory in the same commit as any doc or header change that explains an item (`scripts/inventory.py`, then commit `docs/inventory/` and the totals in `docs/coverage.md` with it). A row only becomes `documented` when a line that explains the item names it, in a markdown page or a header comment; [docs/inventory/README.md](docs/inventory/README.md) gives the exact rule. Write the name exactly as the binary spells it, and put the explanation under a heading, so the row cites the right section. If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `scripts/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
+Regenerate the inventory in the same commit as any doc or header change that explains an item (`scripts/inventory.py`, then commit `docs/inventory/` and the totals in `docs/coverage.md` with it). A row only becomes `understood` when an entry (a table row, list item, paragraph or header comment) that names the item also carries a label, a role and hardware effect, and a derivation citation, with no more than three items named on a line; [docs/inventory/README.md](docs/inventory/README.md) gives the exact rule. Write the name exactly as the binary spells it, and put the explanation under a heading, so the row cites the right section. If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `scripts/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
 
 Output rules:
 
