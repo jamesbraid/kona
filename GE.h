@@ -112,11 +112,11 @@
  *     word0 = c0 << 24 | (c1 & 0xff) << 16 | token,
  *     word1 = c2 << 24 | (c3 & 0xff) << 16  (bits 0-15 zero).
  *   Indexs 0x75 is the exception: token alone, then i << 16.
- * Signed components keep their sign in the top bits of their slot; the
- * low bits of a slot below a signed short are masked off.
- * INFERRED: the geometry engine reads a packed word as two 16-bit slots
- * (the low slot of word0 being the token), and bytes occupy the top byte
- * of each slot.
+ * A signed component placed below another is masked to its width so its
+ * sign bits cannot spill into the slot above.
+ * INFERRED: the geometry engine reads a packed word as two 16-bit slots,
+ * the low slot of word0 being the token; shorts fill whole slots and
+ * bytes go two to the upper slot, leaving the lower slot zero.
  *
  * INFERRED: variable-length commands carry their own counts in the
  * payload, since the token word has no room for one. Their grammars are
