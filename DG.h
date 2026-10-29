@@ -16,8 +16,9 @@
  * driver never touches a display register directly. Every display access is
  * an address write to HH_VC_ADDRESS (HIP.h, 0x3c0) followed by one or more
  * data writes to HH_VC_DATA (0x3d0), both 32-bit at register-window offset
- * 0x800000 + register. The names below are ours; the hardware names are
- * UNKNOWN. docs/dg.md has the narrative.
+ * 0x800000 + register. The names below are ours except where a comment
+ * cites kpm, irsaudit, the firmware's symbols or the .vof field list.
+ * docs/dg.md has the narrative.
  */
 #ifndef KONA_DG_H
 #define KONA_DG_H
@@ -115,22 +116,19 @@
 #define KONA_DG_CURPOS_BIAS           32
 
 /*
- * Frame-swap strobe, ESTABLISHED as written: 2 to address 0x80, from
- * kona_swap_complete (once per matching buffer) and from kona_video_intr
- * when no buffer is pending and the global channel word is -1. Role
- * UNKNOWN; the timing (after a retrace sequence completes, or at a video
- * interrupt with nothing queued) suggests an acknowledge or "swap done"
- * pulse.
- */
-/*
  * KONA_DG_SWAP_STROBE: Frame-manager register 0x80, the swap strobe.
  * Established: kona_video.o writes 2 here from `kona_swap_complete` (at
- * 0x26c) and from `kona_video_intr` (at 0x1bf4); arm1.u `DoDGRqstFetal` (at
- * 0x0c00942c and 0x0c009458) reads it back and rewrites it with bit 0
- * cleared and bit 1 set. Inferred: bit 1 pulses a swap-done acknowledge to
- * the frame manager when a buffer swap finishes or a video interrupt finds
- * nothing queued. The pulse's hardware consequence beyond that is not read
- * anywhere. */
+ * 0x26c, once per matching buffer) and from `kona_video_intr` (at 0x1bf4,
+ * when no buffer is pending and the global channel word is -1); arm1.u
+ * `DoDGRqstFetal` (at 0x0c00942c and 0x0c009458) reads it back and rewrites
+ * it with bit 0 cleared and bit 1 set. Inferred: bit 1 pulses a swap-done
+ * acknowledge to the frame manager when a buffer swap finishes or a video
+ * interrupt finds nothing queued, and bit 0 is held clear from start-up.
+ * What the frame manager does on the pulse, beyond the kernel moving on to
+ * its next queued swap, is unknown: no shipped software or published source
+ * depends on it. Routes tried: both kernel writers, and the ARM listing,
+ * where the start-up defaults are the only load or store at display-bus
+ * word 0x80 (ARM 0x600200) with a fixed offset. */
 #define KONA_DG_SWAP_STROBE           0x080
 #define KONA_DG_SWAP_STROBE_VALUE     2
 
@@ -258,15 +256,28 @@
  * master's frame boundary. */
 #define KONA_VOC_STATUS_FRAME         (1u << 7)
 
-/* Other addresses seen once, role UNKNOWN. */
+/* The board-set probe, read once at attach. */
 /*
  * KONA_DG_ATTACH_PROBE: Display-bus address 0x8800, probed once at attach.
- * Established: `kona_attach` in kona_edtinit_hip2.o writes the address
- * (before 0x1138), reads the data port, and uses the low two bits of the
- * result: 1 stores board type 5 and 2 stores 6 at pipe-state offset 244
- * (branch targets 0x1354 and 0x1368). Inferred: it reports which display-
- * generator variant is fitted. The other bits of the word are not examined
- * by the driver. */
+ * Established: `kona_attach` in IP27boot kona_edtinit_hip2.o writes 0x8800
+ * to HH_VC_ADDRESS and reads HH_VC_DATA (before 0x1138), then writes 0xb00
+ * (the first video DAC) and reads again. If bit 10 of the DAC word is set
+ * it stores 2 in the configuration record's board-set word (pipe state
+ * +244) and 19 as the inventory type (+2188, used by `kona_inventory_board`).
+ * Otherwise the low two bits of the 0x8800 word decide: 1 stores board set
+ * 5 with type 22, 2 stores board set 6 with type 23 (branch targets 0x1354
+ * and 0x1368); other values leave both words alone. The 6.5.5 headers
+ * `sys/kona_if.h` and `sys/invent.h` name board set 2 as the IP27 "lite"
+ * set and type 19 as Onyx2 Reality graphics, and stop at board set 4 and
+ * type 20. Established in arm1.u: 0x8800 is also the data word of the I2C
+ * controller that `DoDGRqstQueryMonitorName` hands to `i2c_init` (at
+ * 0x0c00d68c; `i2c_init` writes its control word, 0x8801, at 0x0c00d738)
+ * after selecting a channel through bus address 0x8400. Inferred: the probe
+ * tells apart the two later board sets of 6.5.30m, which the 6.5.5 headers
+ * predate, by what answers at that address. Why the word reads 1 or 2 in
+ * its low bits, and bits 2-31: unknown: no shipped software or published
+ * source depends on them beyond this test. Routes tried: `kona_attach`, the
+ * firmware's monitor-name and I2C routines, and the 6.5.5 headers. */
 #define KONA_DG_ATTACH_PROBE          0x8800
 
 /*
@@ -503,9 +514,9 @@ enum kona_vfo_signal {
  *    when one is destroyed) through arm_x_loadxmap_config. Meaning UNKNOWN:
  *    no shipped software or published source depends on it beyond those
  *    three values (routes: both programs, the X module, the pin list).
- * 0xa: no reader or writer in the firmware, the kernel, the X module or
- *    irsaudit; UNKNOWN: no shipped software or published source depends on
- *    it.
+ * 0xa: unknown: no shipped software or published source depends on it.
+ *    Routes tried: the firmware, the kernel, the X module and irsaudit, none
+ *    of which reads or writes it.
  * 0x10: ESTABLISHED written 0 at start-up by both programs and never
  *    otherwise; meaning UNKNOWN: no shipped software or published source
  *    depends on it (same routes).
@@ -583,8 +594,10 @@ enum kona_vfo_signal {
  *   0x1f written with 0 after a colour-map or cursor load (irsaudit, once;
  *        the firmware three times, then 0x1e, then three more) and three
  *        times before a new address. INFERRED: 0x1f carries no data and
- *        pushes earlier list entries through; 0x1e ends a load. UNKNOWN
+ *        pushes earlier list entries through; 0x1e ends a load. Unknown
  *        beyond that: no shipped software or published source depends on it.
+ *        Routes tried: irsaudit's colour-map, cursor and gamma loaders, the
+ *        firmware's loaders.
  */
 /*
  * KONA_XMAP_FL_ADDR: XMAP indirect-memory address register 0x18, bus address
@@ -1149,7 +1162,10 @@ enum kona_vfo_signal {
  *        fills only 0x49; a wider one is a START request, a MIDDLE request
  *        repeated, and an END request.
  *   0x4a [VDRC_PAN] bits 5-0 = (x mod 160) / 4, the first groupxel inside the
- *        first tile; bits 7-6 a second value taken mod 4 (role UNKNOWN).
+ *        first tile; bits 7-6 = x mod 4, the same window x (0x0c00e45c
+ *        reloads it after the divide by 160 at 0x0c00e440, the word goes
+ *        out at 0x0c00e4a4). INFERRED: the first pixel inside that
+ *        groupxel, so together the two fields pan to any pixel.
  *   0x50 + f and 0x58 + f, f = field: one word written to both: bits 6-0 =
  *        (y - o) mod 80, bits 19-7 = the field's first tile address, (y - o)
  *        / 8 times the tiles per row plus x / 160, bits 23-20 = a field-layout

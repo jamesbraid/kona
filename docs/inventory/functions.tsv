@@ -808,7 +808,7 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0xd2c	64	KON
 usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0xd6c	664	KONAsetdisplaymode	dwarf+symtab	83611bc635f8	understood	docs/kernel-functions.md#video-swap-and-retrace-kona_videoo	Video, swap and retrace: `kona_video.o`
 usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x1004	308	kona_mswap_complete	dwarf+symtab	70cf3a14fb42	understood	docs/kernel-functions.md#video-swap-and-retrace-kona_videoo	Video, swap and retrace: `kona_video.o`
 usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x1138	816	KONAschedmgrswapbuf	dwarf+symtab	497b249f0b1b	understood	docs/kernel-functions.md#video-swap-and-retrace-kona_videoo	Video, swap and retrace: `kona_video.o`
-usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x1468	112	kona_video_tick	dwarf+symtab	c8f6f0412bdc	named-only	docs/dg.md#retrace-sequence	Retrace sequence
+usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x1468	112	kona_video_tick	dwarf+symtab	c8f6f0412bdc	understood	docs/dg.md#retrace-sequence	Retrace sequence
 usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x14d8	444	kona_determine_cursor_channel	dwarf+symtab	31254fe7189f	understood	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
 usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x1694	292	kona_enable_dac_cursor	dwarf+symtab	8ca6d9ec08d6	understood	docs/dg.md#cursor	Cursor
 usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x17b8	1172	kona_video_intr	dwarf+symtab	deeb035e9eba	understood	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
@@ -1245,7 +1245,7 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0xd2c	64	KON
 usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0xd6c	664	KONAsetdisplaymode	dwarf+symtab	83611bc635f8	understood	docs/kernel-functions.md#video-swap-and-retrace-kona_videoo	Video, swap and retrace: `kona_video.o`
 usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x1004	308	kona_mswap_complete	dwarf+symtab	70cf3a14fb42	understood	docs/kernel-functions.md#video-swap-and-retrace-kona_videoo	Video, swap and retrace: `kona_video.o`
 usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x1138	816	KONAschedmgrswapbuf	dwarf+symtab	497b249f0b1b	understood	docs/kernel-functions.md#video-swap-and-retrace-kona_videoo	Video, swap and retrace: `kona_video.o`
-usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x1468	112	kona_video_tick	dwarf+symtab	c8f6f0412bdc	named-only	docs/dg.md#retrace-sequence	Retrace sequence
+usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x1468	112	kona_video_tick	dwarf+symtab	c8f6f0412bdc	understood	docs/dg.md#retrace-sequence	Retrace sequence
 usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x14d8	444	kona_determine_cursor_channel	dwarf+symtab	31254fe7189f	understood	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
 usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x1694	292	kona_enable_dac_cursor	dwarf+symtab	8ca6d9ec08d6	understood	docs/dg.md#cursor	Cursor
 usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x17b8	1172	kona_video_intr	dwarf+symtab	deeb035e9eba	understood	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
@@ -1744,7 +1744,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10094934	884	vc_test	dynsym	9c
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10094ca8	184	vc_stop	dynsym	a423b41abe0e	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10094d60	1340	TEST_vcconn	dynsym	416c60e4af7c	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009529c	440	TEST_vcbus	dynsym	536dc7c6ce9e	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100957a0	376	TEST_dacreg	dynsym	2b24182923c7	named-only	DG.h:371	check); the container layout is in ucode/dg.md. Roles marked INFERRED
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100957a0	376	TEST_dacreg	dynsym	2b24182923c7	named-only	DG.h:382	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10095ff8	376	TEST_optdacreg	dynsym	d0f3e51223aa	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100969b4	484	dgRestoreDefaultPllValues	dynsym	192889b82ff5	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10096b98	348	dgoptResetDefaultPllValues	dynsym	8e2e2268f2a3	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
@@ -1800,7 +1800,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100acd50	420	TEST_xmapchid	dyn
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ad210	460	TEST_xmapdid	dynsym	3c589e25b46a	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ad714	420	TEST_xmapovdid	dynsym	4f68e4b8871b	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100adbfc	520	TEST_xmapmem	dynsym	075df1e06e07	named-only	docs/dg.md#xmap-registers-memories-and-the-fast-list	XMAP registers, memories and the fast list
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b0094	364	TEST_xmapreg	dynsym	34f1be3f82fb	named-only	DG.h:371	check); the container layout is in ucode/dg.md. Roles marked INFERRED
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b0094	364	TEST_xmapreg	dynsym	34f1be3f82fb	named-only	DG.h:382	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b04ec	1732	TEST_tbusdata	dynsym	8a944c813f32	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b0e70	820	TEST_idmabug	dynsym	7c6a95f0ce2e	named-only	docs/ge.md#dma	DMA
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b11a4	548	black_hole_ged	dynsym	636c2853c800	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
@@ -2210,7 +2210,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013aab8	284	xmap_dump_crc_to_
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013abd4	544	xmap_jtag_status	dynsym	62a06d9d2ff3	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013adf4	216	xmap_crc_start	dynsym	829afc5cf49a	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013aecc	280	xmap_crc_stop	dynsym	ba260d0882ce	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013afe4	272	substitute_xmap_data	dynsym	876e2761fd71	named-only	DG.h:417	check); the container layout is in ucode/dg.md. Roles marked INFERRED
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013afe4	272	substitute_xmap_data	dynsym	876e2761fd71	named-only	DG.h:428	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b0f4	84	turn_off_substitute_xmap_data	dynsym	8bec21f79572	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b1f8	556	load_cmap	dynsym	36732ba47da2	named-only	docs/dg.md#xmap-registers-memories-and-the-fast-list	XMAP registers, memories and the fast list
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b424	340	load_full_cmap	dynsym	a41c4833d8ad	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
