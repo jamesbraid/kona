@@ -96,7 +96,7 @@ Sources: `arm1.u` (IRIX 6.5.30m, [ucode/arm1.s](../ucode/arm1.s)), the IR diagno
 | 0x460-0x464 | `HH_ODMA2_PNUM`, `_POFF`, `_LEN`, `_TOTAL`, `_OVER` | the read-back setup loads address, length and total, and the second channel has exactly these five registers |
 | 0x476, 0x477 | **unknown** (0x476 is the port the reply words are written to, 0x477 is cleared first) | `start_rdata`, `arm_getconfig` |
 
-The bus numbering is not the host offset divided by 8 (`HH_ODMA_PNUM` is at host offset 0x260). The order within each group follows the host order. So the first three shadow words are pack mode, output line length and output stride, which a context switch must keep for a pixel read in progress. **Open question** ([open-questions.md](open-questions.md)). Reading 0x441, 0x455 and 0x456 back on a live pipe after a `glReadPixels` with a non-default pack alignment and row length would confirm the three names.
+The bus numbering is not the host offset divided by 8 (`HH_ODMA_PNUM` is at host offset 0x260). The order within each group follows the host order. So the first three shadow words are pack mode, output line length and output stride, which a context switch must keep for a pixel read in progress. **Established** since: kpm names shadow words 0-2 `HT_PACK_MODE`, `HT_ODMA_LLEN` and `HT_ODMA_STRIDE` ([Shadow word names](#shadow-word-names)).
 
 ### Names for the unnamed indexes
 
@@ -125,7 +125,7 @@ Facts are labelled **established** (read from `arm1.u`, IRIX 6.5.30m, by [script
 
 | Words | Registers mirrored |
 |---|---|
-| 0-2 | 0x441, 0x455, 0x456: host-interface pack mode, output-DMA line length and stride (**inferred**, [below](#host-interface-registers-on-the-raster-bus)) |
+| 0-2 | 0x441, 0x455, 0x456: host-interface pack mode, output-DMA line length and stride (kpm names, [below](#shadow-word-names)) |
 | 3-20 | 0x3fc2-0x3fd3, the combined pixel-generator and texture-generator range (`PGTG_SCIS` and `_1`, `PGTG_ZRECT` and `_1`-`_7`, `PGTG_DRECT` and `_1`-`_2`, `PGTG_SIZE` and `_1`-`_3`, `PGTG_ENABLES`; suffix names from the diagnostic, [below](#names-for-the-unnamed-indexes)) |
 | 21-22 | 0x3be0, 0x3be1 (`PGTFPIMP_MSLOC`, `PGTFPIMP_MSLOC_1`) |
 | 23-35 | `PG_GENERAL`, `PG_PSPEC`, `PG_BLOAT`, `PG_Z_OFF`, `PG_MSK`, `PG_WIN_OFFSET_X/Y`, `PG_SMASK`, `PG_STIPPLE`, `PG_STIPPLE_1`-`_3` (0x80b-0x80d), `PG_PRU` |
@@ -134,6 +134,102 @@ Facts are labelled **established** (read from `arm1.u`, IRIX 6.5.30m, by [script
 | 48-53 | `TGTML_TEXLD_*` and `TML_TEXLD_GLOBALOFFSET`, stored with bit 30 set (0x40007fc1-0x40007fc5, 0x40005001) |
 | 54-74 | texture-memory draw registers (`TM_*`), `TGTM_*`, `TG_*` and `TFT_*` |
 | 75-88 | `TFP_*`: alpha function, texture, texture environment, fog, pixel and colour format, alpha mask |
+
+### Shadow word names
+
+**Established** (kpm, IRIX 6.5.30m, `usr/gfx/KONA/bin/kpm`). kpm's command-name table (vaddr 0x100ba838, [diags/kpm/hp_commands.tsv](../diags/kpm/hp_commands.tsv)) runs past the 512 tokens. Its rows 0x210-0x268 name the shadow words: row 0x210 + i is the register `befsh_addrs[i]` holds. All 89 rows agree with the ARM table. 79 names carry exactly that raster index, the seven `PGTG_ZRECT_1` to `_7` rows are the base register plus one to seven, and rows 0x210-0x212 name the three host-interface registers of words 0-2. Those three names (`HT_PACK_MODE`, `HT_ODMA_LLEN`, `HT_ODMA_STRIDE`) settle the reading of bus indexes 0x441, 0x455 and 0x456 [above](#host-interface-registers-on-the-raster-bus). Row 0x210 + i is also 0x100 plus the address-word high half 0x110 + i. **Inferred:** kpm indexes this table by that high half plus 0x100, so its rows 0x200-0x20f name shadow slots 0x100-0x10f; it names only slot 0x10f, as `PIXELS_STARTGEID`, the slot the `PG_NOP` address constant 0x010f087f uses.
+
+| Shadow word | Address-word high half | kpm row | Name in kpm | Raster index | Start-up value |
+|---:|---|---|---|---|---|
+| 0 | 0x110 | 0x210 | `HT_PACK_MODE` | 0x0441 | 0x0 |
+| 1 | 0x111 | 0x211 | `HT_ODMA_LLEN` | 0x0455 | 0x0 |
+| 2 | 0x112 | 0x212 | `HT_ODMA_STRIDE` | 0x0456 | 0x0 |
+| 3 | 0x113 | 0x213 | `PGTG_SCIS` | 0x3fc2 | 0x3fff8000 |
+| 4 | 0x114 | 0x214 | `PGTG_SCIS_1` | 0x3fc3 | 0x3fff8000 |
+| 5 | 0x115 | 0x215 | `PGTG_ZRECT` | 0x3fc4 | 0x0 |
+| 6 | 0x116 | 0x216 | `PGTG_ZRECT_1` | 0x3fc5 | 0x0 |
+| 7 | 0x117 | 0x217 | `PGTG_ZRECT_2` | 0x3fc6 | 0x0 |
+| 8 | 0x118 | 0x218 | `PGTG_ZRECT_3` | 0x3fc7 | 0x0 |
+| 9 | 0x119 | 0x219 | `PGTG_ZRECT_4` | 0x3fc8 | 0x0 |
+| 10 | 0x11a | 0x21a | `PGTG_ZRECT_5` | 0x3fc9 | 0x0 |
+| 11 | 0x11b | 0x21b | `PGTG_ZRECT_6` | 0x3fca | 0x100000 |
+| 12 | 0x11c | 0x21c | `PGTG_ZRECT_7` | 0x3fcb | 0x100000 |
+| 13 | 0x11d | 0x21d | `PGTG_DRECT` | 0x3fcc | 0xc010010 |
+| 14 | 0x11e | 0x21e | `PGTG_DRECT_1` | 0x3fcd | 0x10 |
+| 15 | 0x11f | 0x21f | `PGTG_DRECT_2` | 0x3fce | 0x0 |
+| 16 | 0x120 | 0x220 | `PGTG_SIZE` | 0x3fcf | 0x10 |
+| 17 | 0x121 | 0x221 | `PGTG_SIZE_1` | 0x3fd0 | 0x10 |
+| 18 | 0x122 | 0x222 | `PGTG_SIZE_2` | 0x3fd1 | 0xf |
+| 19 | 0x123 | 0x223 | `PGTG_SIZE_3` | 0x3fd2 | 0xf00f |
+| 20 | 0x124 | 0x224 | `PGTG_ENABLES` | 0x3fd3 | 0xf |
+| 21 | 0x125 | 0x225 | `PGTFPIMP_MSLOC` | 0x3be0 | 0xc8b640 |
+| 22 | 0x126 | 0x226 | `PGTFPIMP_MSLOC_1` | 0x3be1 | 0x916f6f |
+| 23 | 0x127 | 0x227 | `PG_GENERAL` | 0x0800 | 0x0 |
+| 24 | 0x128 | 0x228 | `PG_PSPEC` | 0x080f | 0x100100 |
+| 25 | 0x129 | 0x229 | `PG_BLOAT` | 0x0804 | 0x0 |
+| 26 | 0x12a | 0x22a | `PG_Z_OFF` | 0x0805 | 0x0 |
+| 27 | 0x12b | 0x22b | `PG_MSK` | 0x0806 | 0x55 |
+| 28 | 0x12c | 0x22c | `PG_WIN_OFFSET_X` | 0x0807 | 0x0 |
+| 29 | 0x12d | 0x22d | `PG_WIN_OFFSET_Y` | 0x0808 | 0x0 |
+| 30 | 0x12e | 0x22e | `PG_SMASK` | 0x0809 | 0xffffffff |
+| 31 | 0x12f | 0x22f | `PG_STIPPLE` | 0x080a | 0x0 |
+| 32 | 0x130 | 0x230 | `PG_STIPPLE_1` | 0x080b | 0x55 |
+| 33 | 0x131 | 0x231 | `PG_STIPPLE_2` | 0x080c | 0x55 |
+| 34 | 0x132 | 0x232 | `PG_STIPPLE_3` | 0x080d | 0xff |
+| 35 | 0x133 | 0x233 | `PG_PRU` | 0x0810 | 0x0 |
+| 36 | 0x134 | 0x234 | `IMP_CONFIG` | 0x1c00 | 0x3c2 |
+| 37 | 0x135 | 0x235 | `IMP_OP` | 0x1c02 | 0x1 |
+| 38 | 0x136 | 0x236 | `IMP_MS` | 0x1c03 | 0x17f8 |
+| 39 | 0x137 | 0x237 | `IMP_CLIP` | 0x1c06 | 0x0 |
+| 40 | 0x138 | 0x238 | `IMP_SZ0` | 0x1c07 | 0x0 |
+| 41 | 0x139 | 0x239 | `IMP_SZ1` | 0x1c08 | 0x0 |
+| 42 | 0x13a | 0x23a | `IMP_DEPTH_CLEAR` | 0x1c09 | 0x0 |
+| 43 | 0x13b | 0x23b | `IMP_ADDR` | 0x1c0b | 0x32212301 |
+| 44 | 0x13c | 0x23c | `IMP_BL` | 0x1c0d | 0x11012 |
+| 45 | 0x13d | 0x23d | `IMP_WMASK_BIT` | 0x1c14 | 0x0 |
+| 46 | 0x13e | 0x23e | `IMP_WMASK_BIT_1` | 0x1c15 | 0x0 |
+| 47 | 0x13f | 0x23f | `COMMON_IFMT` | 0x3ff8 | 0x0 |
+| 48 | 0x140 | 0x240 | `TGTML_TEXLD_MISC` | 0x7fc5 | 0x0 |
+| 49 | 0x141 | 0x241 | `TGTML_TEXLD_S1ST_RSTART` | 0x7fc3 | 0x0 |
+| 50 | 0x142 | 0x242 | `TGTML_TEXLD_STSTART` | 0x7fc2 | 0x0 |
+| 51 | 0x143 | 0x243 | `TGTML_TEXLD_SIZE` | 0x7fc1 | 0x0 |
+| 52 | 0x144 | 0x244 | `TGTML_TEXLD_STEND` | 0x7fc4 | 0x0 |
+| 53 | 0x145 | 0x245 | `TML_TEXLD_GLOBALOFFSET` | 0x5001 | 0x0 |
+| 54 | 0x146 | 0x246 | `TM_DRAW_GLOBALOFFSET` | 0x101a | 0x0 |
+| 55 | 0x147 | 0x247 | `TM_MEMCONF` | 0x1000 | 0x0 |
+| 56 | 0x148 | 0x248 | `TGTM_TEX_SIZE` | 0x3fd5 | 0x0 |
+| 57 | 0x149 | 0x249 | `TGTMTFT` | 0x3fd4 | 0x30 |
+| 58 | 0x14a | 0x24a | `TG_MAP_LEVEL` | 0x0c04 | 0x0 |
+| 59 | 0x14b | 0x24b | `TG_LOD_SCALEST` | 0x0c05 | 0x0 |
+| 60 | 0x14c | 0x24c | `TG_LOD_SCALER` | 0x0c06 | 0x0 |
+| 61 | 0x14d | 0x24d | `TGTM_DCTEX_SIZE` | 0x3fd6 | 0x0 |
+| 62 | 0x14e | 0x24e | `TM_DRAW_DETAILMAP` | 0x1019 | 0x0 |
+| 63 | 0x14f | 0x24f | `TM_TEX_SIZE` | 0x13d5 | 0x0 |
+| 64 | 0x150 | 0x250 | `TM_DRAW_CLIP_OFFSET` | 0x1020 | 0x0 |
+| 65 | 0x151 | 0x251 | `TM_DRAW_CLIP_BKPT` | 0x1021 | 0x0 |
+| 66 | 0x152 | 0x252 | `TGTM_TEX_SCENTER` | 0x3fd7 | 0x0 |
+| 67 | 0x153 | 0x253 | `TGTM_TEX_TCENTER` | 0x3fd8 | 0x0 |
+| 68 | 0x154 | 0x254 | `TFT_SBIAS_EN` | 0x1850 | 0x0 |
+| 69 | 0x155 | 0x255 | `TFT_SCALE` | 0x1851 | 0x0 |
+| 70 | 0x156 | 0x256 | `TFT_BIAS` | 0x1852 | 0x0 |
+| 71 | 0x157 | 0x257 | `TFT_TLUT` | 0x1853 | 0x0 |
+| 72 | 0x158 | 0x258 | `TM_DRAW_SHA_AMBIENT` | 0x101e | 0x0 |
+| 73 | 0x159 | 0x259 | `TM_DRAW_REDUNDANCY` | 0x101f | 0x0 |
+| 74 | 0x15a | 0x25a | `TG_MISC` | 0x0c02 | 0x0 |
+| 75 | 0x15b | 0x25b | `TFP_AFUNC` | 0x1407 | 0x7000 |
+| 76 | 0x15c | 0x25c | `TFP_TEX` | 0x1500 | 0x0 |
+| 77 | 0x15d | 0x25d | `TFP_TEV` | 0x1401 | 0x22 |
+| 78 | 0x15e | 0x25e | `TFP_TEV_CC` | 0x1402 | 0x0 |
+| 79 | 0x15f | 0x25f | `TFP_TEV_CC1` | 0x1413 | 0x0 |
+| 80 | 0x160 | 0x260 | `TFP_AC` | 0x140e | 0x8000 |
+| 81 | 0x161 | 0x261 | `TFP_FADE_MASK_LUT` | 0x140b | 0x0 |
+| 82 | 0x162 | 0x262 | `TFP_FOG` | 0x1403 | 0x80000 |
+| 83 | 0x163 | 0x263 | `TFP_FOG_CC` | 0x1404 | 0x0 |
+| 84 | 0x164 | 0x264 | `TFP_FOG_CC1` | 0x1414 | 0x0 |
+| 85 | 0x165 | 0x265 | `TFP_FOG_OFFSET` | 0x1406 | 0x0 |
+| 86 | 0x166 | 0x266 | `TFP_PIX_FMT` | 0x1410 | 0x0 |
+| 87 | 0x167 | 0x267 | `TFP_COLOR_FMT` | 0x140f | 0x0 |
+| 88 | 0x168 | 0x268 | `TFP_AMASK` | 0x1408 | 0x0 |
 
 **Established** (start-up values, `befsh_init`). Non-zero for words 3-4 (0x3fff8000), 11-14, 16-22, 24, 27, 30, 32-34, 36-38, 43-44, 57, 75, 77, 80 and 82; all others are zero. Examples: `PG_SMASK` 0xffffffff, `IMP_ADDR` 0x32212301, `TFP_AFUNC` 0x7000, `TFP_FOG` 0x80000. **Inferred:** a context with no saved shadow keeps these values, because `init_befshadow` runs once in `init_bef` and the load handler (tag 0x20) replaces the same 89 words.
 

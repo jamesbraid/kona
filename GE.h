@@ -701,14 +701,19 @@ enum kona_kpm_spare_token {
 /*
  * kpm's table continues past the token set with 89 more names, at
  * indices 0x210-0x268 (the same vaddr arithmetic). They name raster and
- * host-interface registers rather than commands. ESTABLISHED: 68 of them are
- * register names in kpm's raster register table (RM.h); 18 more are the
- * same names with a _1.._7 suffix (PGTG_ZRECT_1..7 after PGTG_ZRECT, whose
- * table entry has eight full-word fields), which INFERS that a suffix names
- * an extra word of a multi-word register. Three (HT_PACK_MODE, HT_ODMA_LLEN,
- * HT_ODMA_STRIDE) are in neither table. Why the list sits after the
- * command tokens (perhaps as register shadow slots the geometry engine
- * keeps for context save) is UNKNOWN.
+ * host-interface registers rather than commands. ESTABLISHED: entry 0x210 + i
+ * names the raster register that word i of the geometry board's 89-word
+ * register shadow mirrors (befsh_addrs[i] in arm1.u, ucode/befshadow.tsv).
+ * All 89 agree: 79 names carry exactly the kpm raster index the shadow word
+ * holds, the seven PGTG_ZRECT_1.._7 entries are the base register plus one to
+ * seven (the suffix rule of docs/rm.md), and the three host-interface names
+ * HT_PACK_MODE, HT_ODMA_LLEN and HT_ODMA_STRIDE sit on shadow words 0-2, the
+ * raster-bus indexes 0x441, 0x455 and 0x456. So 0x210 + i is 0x100 plus the
+ * address word's high half 0x110 + i that the ARM sends for that shadow word
+ * (docs/rm.md, "The register-write word"). INFERRED: kpm's printing table is
+ * indexed by that high half plus 0x100, which also makes the sixteen spare
+ * rows above the names of shadow slots 0x100-0x10f; kpm names only slot 0x10f
+ * (PIXELS_STARTGEID). The full table is in docs/rm.md ("Shadow word names").
  *
  *   HT_PACK_MODE=0x210 HT_ODMA_LLEN=0x211 HT_ODMA_STRIDE=0x212 PGTG_SCIS=0x213
  *   PGTG_SCIS_1=0x214 PGTG_ZRECT=0x215 PGTG_ZRECT_1=0x216 PGTG_ZRECT_2=0x217

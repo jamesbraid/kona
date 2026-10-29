@@ -18675,7 +18675,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6eb7c	12	glPixelMapuiv
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6eb88	12	glPixelMapusv	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6eb94	12	glReadBuffer	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6eba0	12	glCopyPixels	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebac	12	glReadPixels	dynsym+mdebug	documented	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebac	12	glReadPixels	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebb8	12	glDrawPixels	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebc4	12	glGetBooleanv	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebd0	12	glGetClipPlane	dynsym+mdebug	undocumented		
@@ -24209,7 +24209,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a3c	12	glPixelMapu
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a48	12	glPixelMapusv	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a54	12	glReadBuffer	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a60	12	glCopyPixels	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a6c	12	glReadPixels	dwarf+dynsym	documented	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a6c	12	glReadPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a78	12	glDrawPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a84	12	glGetBooleanv	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a90	12	glGetClipPlane	dwarf+dynsym	undocumented		
@@ -29789,7 +29789,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede01c	12	glPixelMapu
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede028	12	glPixelMapusv	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede034	12	glReadBuffer	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede040	12	glCopyPixels	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede04c	12	glReadPixels	dwarf+dynsym	documented	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede04c	12	glReadPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede058	12	glDrawPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede064	12	glGetBooleanv	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede070	12	glGetClipPlane	dwarf+dynsym	undocumented		
@@ -35374,7 +35374,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6eb7c	12	glPixelMapuiv
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6eb88	12	glPixelMapusv	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6eb94	12	glReadBuffer	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6eba0	12	glCopyPixels	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebac	12	glReadPixels	dynsym+mdebug	documented	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebac	12	glReadPixels	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebb8	12	glDrawPixels	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebc4	12	glGetBooleanv	dynsym+mdebug	undocumented		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebd0	12	glGetClipPlane	dynsym+mdebug	undocumented		
@@ -40908,7 +40908,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a3c	12	glPixelMapu
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a48	12	glPixelMapusv	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a54	12	glReadBuffer	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a60	12	glCopyPixels	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a6c	12	glReadPixels	dwarf+dynsym	documented	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a6c	12	glReadPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a78	12	glDrawPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a84	12	glGetBooleanv	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a90	12	glGetClipPlane	dwarf+dynsym	undocumented		
@@ -46488,7 +46488,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be01c	12	glPixelMapu
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be028	12	glPixelMapusv	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be034	12	glReadBuffer	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be040	12	glCopyPixels	dwarf+dynsym	undocumented		
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be04c	12	glReadPixels	dwarf+dynsym	documented	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be04c	12	glReadPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be058	12	glDrawPixels	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be064	12	glGetBooleanv	dwarf+dynsym	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be070	12	glGetClipPlane	dwarf+dynsym	undocumented		
