@@ -792,7 +792,7 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x2b4	156	
 usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x350	160	kona_itimeout_func	dwarf+symtab	documented	docs/kernel.md#timeouts-and-the-pipe-watchdog-kona_timeout_init-kona_timeout_alloc-kona_timeout_free-kona_timein-kona_sched_tick-kona_untimeout-kona_timeouto	Timeouts and the pipe watchdog: `kona_timeout_init`, `kona_timeout_alloc`, `kona_timeout_free`, `kona_timein`, `kona_sched_tick`, `kona_untimeout` (`kona_timeout.o`)
 usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x3f0	400	kona_timeout	dwarf+symtab	documented	docs/dg.md#retrace-sequence	Retrace sequence
 usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x580	300	kona_untimeout	dwarf+symtab	documented	docs/kernel.md#hh_tbus_status	`HH_TBUS_STATUS`
-usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x6ac	344	kona_gfifo_spin	dwarf+symtab	named-only	kona_kernel/include/kona_kern.h:374	
+usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x6ac	344	kona_gfifo_spin	dwarf+symtab	documented	docs/kernel.md#timeouts-and-the-pipe-watchdog-kona_timeout_init-kona_timeout_alloc-kona_timeout_free-kona_timein-kona_sched_tick-kona_untimeout-kona_timeouto	Timeouts and the pipe watchdog: `kona_timeout_init`, `kona_timeout_alloc`, `kona_timeout_free`, `kona_timein`, `kona_sched_tick`, `kona_untimeout` (`kona_timeout.o`)
 usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x0	116	kona_select_cursor	dwarf+symtab	documented	docs/dg.md#cursor	Cursor
 usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x74	92	KONApositioncursor	dwarf+symtab	documented	docs/dg.md#cursor	Cursor
 usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	board-kernel	n64	.text	0xd0	168	kona_video_rundown	dwarf+symtab	documented	docs/kernel.md#share-groups-multi-pipe-and-video-cleanup-kona_unshare-kona_nclops_cleanup-kona_nclops_query_config-kona_video_cleanup-kona_video_rundown-konaunschedswapbuf	Share groups, multi-pipe and video cleanup: `kona_unshare`, `kona_nclops_cleanup`, `kona_nclops_query_config`, `kona_video_cleanup`, `kona_video_rundown`, `KONAunschedswapbuf`
@@ -849,7 +849,7 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x0	8	
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x8	192	kona_mapram_init	dwarf+symtab	documented	docs/hip.md#address-path	Address path
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0xc8	328	kona_mapram_map	dwarf+symtab	documented	docs/hip.md#address-path	Address path
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x210	8	kona_mapram_unmap	dwarf+symtab	documented	docs/hip.md#address-path	Address path
-usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x218	8	kona_mapram_select_id_mask	dwarf+symtab	named-only	docs/kernel.md#small-operations-konapcxswitch-konadownload-konafrsinstall-konafrsuninstall-konainvaltlb-kona_debug_init-kona_mapram_select_id_mask-gfx_pio_read_64-gfx_pio_write_64-kona_flow_cleanup	Small operations: `KONApcxswitch`, `KONAdownload`, `KONAfrsinstall`, `KONAfrsuninstall`, `KONAinvaltlb`, `kona_debug_init`, `kona_mapram_select_id_mask`, `gfx_pio_read_64`, `gfx_pio_write_64`, `kona_flow_cleanup`
+usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x218	8	kona_mapram_select_id_mask	dwarf+symtab	documented	docs/kernel.md#small-operations-konapcxswitch-konadownload-konafrsinstall-konafrsuninstall-konainvaltlb-kona_debug_init-kona_mapram_select_id_mask-gfx_pio_read_64-gfx_pio_write_64-kona_flow_cleanup	Small operations: `KONApcxswitch`, `KONAdownload`, `KONAfrsinstall`, `KONAfrsuninstall`, `KONAinvaltlb`, `kona_debug_init`, `kona_mapram_select_id_mask`, `gfx_pio_read_64`, `gfx_pio_write_64`, `kona_flow_cleanup`
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x0	376	pane_gc	dwarf+symtab	documented	docs/kernel.md#initialisation-rrm_init-rrm_init-init_panes-rrm_init_panes	Initialisation: `RRM_init`, `RRM_Init`, `init_panes`, `RRM_init_panes`
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x178	468	bind_pane	dwarf+symtab	documented	docs/kernel.md#binding-a-node-to-a-window-rrm_bindrntoclip-rrm_bindrntoreadandclip-rrm_unbindrnfromclip-rrm_mapcliptoswapbufid	Binding a node to a window: `RRM_BindRNToClip`, `RRM_BindRNToReadAndClip`, `RRM_UnbindRNFromClip`, `RRM_MapClipToSwapbufID`
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x34c	72	unbind_pane	dwarf+symtab	documented	docs/kernel.md#rendering-node-lifetime-rrm_openrn-rrm_closern-rrmclosern-rrm_exit-rrm_bindproctorn-rrmunbindprocfromrn-rrmunmapgfx	Rendering-node lifetime: `RRM_OpenRN`, `RRM_CloseRN`, `rrmCloseRN`, `RRM_Exit`, `RRM_BindProcToRN`, `rrmUnbindProcFromRN`, `rrmUnMapGfx`
@@ -1023,10 +1023,10 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x6b4	220	gfx
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x790	68	gfx_flow_am_i_attached	dwarf+symtab	documented	docs/kernel.md#flow-control-layer	Flow-control layer
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	shared-kernel	n64	.text	0x7d4	24	gfx_flow_flush_my_wg	dwarf+symtab	documented	docs/kernel.md#flow-control-layer	Flow-control layer
 usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x0	816	find_gfxpipe	dwarf+symtab	documented	docs/kernel.md#textport-control-and-discovery-kona_alive-receive_armdata-kona_getdesc-get_graphics_info-kona_earlyinit-find_konapipe	Textport control and discovery: `kona_alive`, `receive_armdata`, `kona_getdesc`, `get_graphics_info`, `kona_earlyinit`, `find_konapipe`
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x330	56	prom_has_vga_support	dwarf+symtab	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x368	800	find_vga_pipe	dwarf+symtab	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x688	1140	find_vga_noprom_pipe	dwarf+symtab	undocumented		
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0xafc	84	klcheck_vga	dwarf+symtab	undocumented		
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x330	56	prom_has_vga_support	dwarf+symtab	documented	docs/kernel.md#vga-pipe-discovery-ip35-klconfigo-prom_has_vga_support-find_vga_pipe-find_vga_noprom_pipe-klcheck_vga	VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x368	800	find_vga_pipe	dwarf+symtab	documented	docs/kernel.md#vga-pipe-discovery-ip35-klconfigo-prom_has_vga_support-find_vga_pipe-find_vga_noprom_pipe-klcheck_vga	VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0x688	1140	find_vga_noprom_pipe	dwarf+symtab	documented	docs/kernel.md#vga-pipe-discovery-ip35-klconfigo-prom_has_vga_support-find_vga_pipe-find_vga_noprom_pipe-klcheck_vga	VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	shared-kernel	n64	.text	0xafc	84	klcheck_vga	dwarf+symtab	documented	docs/kernel.md#vga-pipe-discovery-ip35-klconfigo-prom_has_vga_support-find_vga_pipe-find_vga_noprom_pipe-klcheck_vga	VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x0	68	gfxtable_readerlock	dwarf+symtab	documented	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x44	68	gfxtable_readerunlock	dwarf+symtab	documented	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x88	128	gfxtable_writerlock	dwarf+symtab	documented	docs/kernel.md#table-locks-gfxtable_readerlock-gfxtable_readerunlock-gfxtable_writerlock-gfxtable_writerunlock	Table locks: `gfxtable_readerlock`, `gfxtable_readerunlock`, `gfxtable_writerlock`, `gfxtable_writerunlock`
@@ -1229,7 +1229,7 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x2b4	156	
 usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x350	160	kona_itimeout_func	dwarf+symtab	documented	docs/kernel.md#timeouts-and-the-pipe-watchdog-kona_timeout_init-kona_timeout_alloc-kona_timeout_free-kona_timein-kona_sched_tick-kona_untimeout-kona_timeouto	Timeouts and the pipe watchdog: `kona_timeout_init`, `kona_timeout_alloc`, `kona_timeout_free`, `kona_timein`, `kona_sched_tick`, `kona_untimeout` (`kona_timeout.o`)
 usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x3f0	400	kona_timeout	dwarf+symtab	documented	docs/dg.md#retrace-sequence	Retrace sequence
 usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x580	300	kona_untimeout	dwarf+symtab	documented	docs/kernel.md#hh_tbus_status	`HH_TBUS_STATUS`
-usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x6ac	344	kona_gfifo_spin	dwarf+symtab	named-only	kona_kernel/include/kona_kern.h:374	
+usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	board-kernel	n64	.text	0x6ac	344	kona_gfifo_spin	dwarf+symtab	documented	docs/kernel.md#timeouts-and-the-pipe-watchdog-kona_timeout_init-kona_timeout_alloc-kona_timeout_free-kona_timein-kona_sched_tick-kona_untimeout-kona_timeouto	Timeouts and the pipe watchdog: `kona_timeout_init`, `kona_timeout_alloc`, `kona_timeout_free`, `kona_timein`, `kona_sched_tick`, `kona_untimeout` (`kona_timeout.o`)
 usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x0	116	kona_select_cursor	dwarf+symtab	documented	docs/dg.md#cursor	Cursor
 usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0x74	92	KONApositioncursor	dwarf+symtab	documented	docs/dg.md#cursor	Cursor
 usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	board-kernel	n64	.text	0xd0	168	kona_video_rundown	dwarf+symtab	documented	docs/kernel.md#share-groups-multi-pipe-and-video-cleanup-kona_unshare-kona_nclops_cleanup-kona_nclops_query_config-kona_video_cleanup-kona_video_rundown-konaunschedswapbuf	Share groups, multi-pipe and video cleanup: `kona_unshare`, `kona_nclops_cleanup`, `kona_nclops_query_config`, `kona_video_cleanup`, `kona_video_rundown`, `KONAunschedswapbuf`
@@ -1286,7 +1286,7 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x0	8	
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x8	192	kona_mapram_init	dwarf+symtab	documented	docs/hip.md#address-path	Address path
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0xc8	328	kona_mapram_map	dwarf+symtab	documented	docs/hip.md#address-path	Address path
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x210	8	kona_mapram_unmap	dwarf+symtab	documented	docs/hip.md#address-path	Address path
-usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x218	8	kona_mapram_select_id_mask	dwarf+symtab	named-only	docs/kernel.md#small-operations-konapcxswitch-konadownload-konafrsinstall-konafrsuninstall-konainvaltlb-kona_debug_init-kona_mapram_select_id_mask-gfx_pio_read_64-gfx_pio_write_64-kona_flow_cleanup	Small operations: `KONApcxswitch`, `KONAdownload`, `KONAfrsinstall`, `KONAfrsuninstall`, `KONAinvaltlb`, `kona_debug_init`, `kona_mapram_select_id_mask`, `gfx_pio_read_64`, `gfx_pio_write_64`, `kona_flow_cleanup`
+usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x218	8	kona_mapram_select_id_mask	dwarf+symtab	documented	docs/kernel.md#small-operations-konapcxswitch-konadownload-konafrsinstall-konafrsuninstall-konainvaltlb-kona_debug_init-kona_mapram_select_id_mask-gfx_pio_read_64-gfx_pio_write_64-kona_flow_cleanup	Small operations: `KONApcxswitch`, `KONAdownload`, `KONAfrsinstall`, `KONAfrsuninstall`, `KONAinvaltlb`, `kona_debug_init`, `kona_mapram_select_id_mask`, `gfx_pio_read_64`, `gfx_pio_write_64`, `kona_flow_cleanup`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x0	376	pane_gc	dwarf+symtab	documented	docs/kernel.md#initialisation-rrm_init-rrm_init-init_panes-rrm_init_panes	Initialisation: `RRM_init`, `RRM_Init`, `init_panes`, `RRM_init_panes`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x178	468	bind_pane	dwarf+symtab	documented	docs/kernel.md#binding-a-node-to-a-window-rrm_bindrntoclip-rrm_bindrntoreadandclip-rrm_unbindrnfromclip-rrm_mapcliptoswapbufid	Binding a node to a window: `RRM_BindRNToClip`, `RRM_BindRNToReadAndClip`, `RRM_UnbindRNFromClip`, `RRM_MapClipToSwapbufID`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x34c	72	unbind_pane	dwarf+symtab	documented	docs/kernel.md#rendering-node-lifetime-rrm_openrn-rrm_closern-rrmclosern-rrm_exit-rrm_bindproctorn-rrmunbindprocfromrn-rrmunmapgfx	Rendering-node lifetime: `RRM_OpenRN`, `RRM_CloseRN`, `rrmCloseRN`, `RRM_Exit`, `RRM_BindProcToRN`, `rrmUnbindProcFromRN`, `rrmUnMapGfx`
@@ -14783,12 +14783,12 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98aba0	244	__glkonim_Mi
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98ac94	2624	__glkonim_GetMinmaxEXT	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98b6d4	172	__glkonim_GetMinmaxParameterivEXT	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98b780	184	__glkonim_GetMinmaxParameterfvEXT	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b840	8	cfgetospeed	mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b848	8	cfsetospeed	mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b850	8	cfgetispeed	mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b858	8	cfsetispeed	mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b860	8	tcgetattr	mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b868	2824	tcsetattr	mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b840	8	cfgetospeed	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b848	8	cfsetospeed	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b850	8	cfgetispeed	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b858	8	cfsetispeed	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b860	8	tcgetattr	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98b868	2824	tcsetattr	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98b870	8	__glkon_EnableHyperpipe	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98b878	8	__glkon_DisableHyperpipe	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98b880	8	__glkon_FinishHyperpipe	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -18417,8 +18417,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6dae8	8	__glce_GetHist
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6daf0	8	__glce_GetMinmax	dynsym+mdebug	documented	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6daf8	8	__glce_GetMinmaxParameterfv	dynsym+mdebug	documented	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6db00	8	__glce_GetMinmaxParameteriv	dynsym+mdebug	documented	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6db08	256	__glce_common_not_listable	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6dc08	424	__glce_common_listable	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6db08	256	__glce_common_not_listable	dynsym+mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6dc08	424	__glce_common_listable	dynsym+mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ddc0	12	glNewList	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ddcc	12	glEndList	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ddd8	12	glCallList	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -31482,12 +31482,12 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98aba0	244	__glkonim_Mi
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98ac94	2624	__glkonim_GetMinmaxEXT	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98b6d4	172	__glkonim_GetMinmaxParameterivEXT	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98b780	184	__glkonim_GetMinmaxParameterfvEXT	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b840	8	cfgetospeed	mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b848	8	cfsetospeed	mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b850	8	cfgetispeed	mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b858	8	cfsetispeed	mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b860	8	tcgetattr	mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b868	2824	tcsetattr	mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b840	8	cfgetospeed	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b848	8	cfsetospeed	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b850	8	cfgetispeed	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b858	8	cfsetispeed	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b860	8	tcgetattr	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98b868	2824	tcsetattr	mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98b870	8	__glkon_EnableHyperpipe	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98b878	8	__glkon_DisableHyperpipe	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98b880	8	__glkon_FinishHyperpipe	dynsym+mdebug	documented	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -35116,8 +35116,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6dae8	8	__glce_GetHist
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6daf0	8	__glce_GetMinmax	dynsym+mdebug	documented	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6daf8	8	__glce_GetMinmaxParameterfv	dynsym+mdebug	documented	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6db00	8	__glce_GetMinmaxParameteriv	dynsym+mdebug	documented	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6db08	256	__glce_common_not_listable	dynsym+mdebug	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6dc08	424	__glce_common_listable	dynsym+mdebug	undocumented		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6db08	256	__glce_common_not_listable	dynsym+mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6dc08	424	__glce_common_listable	dynsym+mdebug	documented	docs/libglcore.md#entry-points-without-a-function-of-their-own	Entry points without a function of their own
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ddc0	12	glNewList	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ddcc	12	glEndList	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ddd8	12	glCallList	dynsym+mdebug	documented	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -48603,15 +48603,15 @@ usr/gfx/setmon	shared-tool	n32		0x10008e2c	12	_mcount	dynsym	documented	docs/kpm
 usr/gfx/setmon	shared-tool	n32		0x10008e38	64	Usage	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000a038	56	vTimeoutOpenDisplay	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x1000a038	56	vTimeoutOpenDisplay	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a140	184	ErrorF	dynsym	documented	docs/opengl.md#konsetcolor	`konSetColor`
 usr/gfx/setmon	shared-tool	n32		0x1000a278	280	fglrxDoFramelock	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a390	1588	fglrxsetmon	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a9c4	1244	konasetmon	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000aea0	3112	vensetmon	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000bac8	748	vs2setmon	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
-usr/gfx/setmon	shared-tool	n32		0x1000bdb4	144	pipenumToString	dynsym	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x1000bdb4	144	pipenumToString	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000bec0	704	xgsetmon	dynsym	documented	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/gfx/setmon	shared-tool	n32		0x1000ce90	252	mgGetVOFpath	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000cf8c	1360	mgsetmon	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
@@ -48811,7 +48811,7 @@ usr/gfx/setmon	shared-tool	n32		0x10026a40	80	konReloadAllGammas	dynsym	document
 usr/gfx/setmon	shared-tool	n32		0x10026a90	124	konTempBlankAllChannels	dynsym	documented	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/gfx/setmon	shared-tool	n32		0x10026b10	72	saXSGIvcQueryScreenGammaMaps	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10026b60	56	saXSGIvcQueryMonitorName	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10026e40	56	vcGetVideoRply	dynsym	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x10026e40	56	vcGetVideoRply	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10027340	384	saXSGIvcQueryOutputGain	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100278e0	264	KonWaitRData	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100279f0	248	saXSGIvcQueryGammaColors	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
@@ -48833,7 +48833,7 @@ usr/gfx/setmon	shared-tool	n32		0x10032580	140	saXSGIvcStoreGammaColors8	dynsym	
 usr/gfx/setmon	shared-tool	n32		0x10032830	96	saXSGIvcSetOutputBlanking	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10032bb0	16	saXSGIvcQueryVersion	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10032ef0	176	KonFlush	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10032fa0	56	vcVideoCmd	dynsym	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x10032fa0	56	vcVideoCmd	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10033100	84	saXSGIvcSetScreenInputSyncSource	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10033bc0	108	saXSGIvcQueryVideoScreenInfo	dynsym	documented	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10033c30	104	saXSGIvcQueryScreenInputSyncSource	dynsym	documented	docs/setup-tools.md#setmon	`setmon`

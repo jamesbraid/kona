@@ -666,6 +666,14 @@ Every sequence starts with the same word, 1, then a sub-command number, then its
   4. Walk n links from the head; take the node's NASID at component +34 and the key at +68, and return `find_lboard_modslot(first board of that node, module = key >> 8, slot = (key & 0xff) | 0x20)`.
   The routine stores into the configuration records, so calling it is not read-only. A short list (fewer than n + 1 pipes) returns 0. Same ordering as `kona_earlyinit`'s index: pipe 0 is the lowest module and slot. The meaning of the `| 0x20` on the slot is **unknown**; **inferred** a slot-number encoding the lookup expects (`brd_slot` of graphics boards is not in the 0-15 range the sort key kept).
 
+#### VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
+
+**Established** (IP35boot `gfxs.a(klconfig.o)` disassembly; the IP27 build has only `find_gfxpipe`). The Origin 350 kernel also finds a plain VGA display on a PCI bridge. These four functions sit beside `find_gfxpipe` and have nothing to do with the Kona pipe; they are listed because they are in the same object.
+
+- `prom_has_vga_support()` (0x330) compares two global PROM version values with 6 and 171 and returns 1 only when both are at least that large.
+- `find_vga_pipe(n)` (0x368) returns the n-th VGA pipe and `find_vga_noprom_pipe(n)` (0x688) does the same for a PROM that lacks VGA support: `find_vga_pipe` calls `prom_has_vga_support` and, when it returns 0, hands the request to `find_vga_noprom_pipe`. Both read the pointer in the local node's configuration directory entry 3 (the one `find_gfxpipe` uses) and return 0 unless the word it points to equals 0x58464552; then they walk a cached list (the head is a global; each entry's next pointer is at +56) to the n-th entry and, when the list does not exist yet, build it by scanning the 128 possible nodes for boards of class 112 and their first components.
+- `klcheck_vga(bridge, slot, function)` (0xafc) reads the PCI configuration dword at offset 8 of the function (address = bridge + 0x2000 + slot x 0x1000 + function x 0x100) and treats the function as a VGA display only when the class byte is 3 and the subclass byte is 0; in that case it clears the two low bits of the byte at offset 7 (part of the PCI status word) and reports success, otherwise it returns 0.
+
 #### Flow-control layer
 
 `gfx_flow_init`, `gfx_flow_alloc`, `gfx_flow_interface_alloc`, `gfx_flow_dealloc`, `gfx_flow_wg_info_get`, `gfx_flow_attach_me`, `gfx_flow_attach_me_finish`, `gfx_flow_detach_me`, the credit accessors and the interrupt prehandler (`gfx_flow.o`, in `gfxs.a`).
@@ -747,7 +755,7 @@ The pipe-side addresses that `alloc_gfx_io_space` hands out (the map-RAM pages o
 - `KONAfrsinstall(P, handle)` and `KONAfrsuninstall(P)` (`kona_frs.o`) set or clear, under the lock at `P+2576`, the frame-rate-scheduler flag `P+144` and its handle `P+152`.
 - `KONAinvaltlb(connection)` (`kona_map.o` 0x460) invalidates every TLB entry of the connection's mapping (`ddv_invaltlb(handle, 0, -1)`) and sets the current CPU's bit in the 128-bit CPU mask at connection +104.
 - `kona_debug_init` (`kona_debug.o`) sets a once-only flag and complains when called twice.
-- `kona_mapram_select_id_mask` (`kona_mapram_hip2.o` 0x218) returns 0.
+- `kona_mapram_select_id_mask` (`kona_mapram_hip2.o` 0x218) is a stub in the second-generation map-RAM code: it always returns the value 0 and has no other effect, so on that host interface no map-RAM identifier mask is applied.
 - `gfx_pio_read_64` and `gfx_pio_write_64` (`kona_flow.o` 0xa18, 0xa00) are a 64-bit load and a 64-bit store followed by `sync`. No member of `kona.a`, `gfx.o`, `rrm.o` or `gfxs.a` calls them, so the statement above that the driver makes only 32-bit accesses stands.
 - `kona_flow_cleanup(P)` (`kona_flow.o` 0x50) cancels the high-water timeout whose handle is at `P+2336`.
 
@@ -787,6 +795,7 @@ The driver keeps its own timeout list per pipe instead of using the kernel's dir
 - `kona_timeout_init(P)` (0x0) initialises the list lock (`P+5372`) and the tick lock (`P+5368`) and sets four words of an `itimeout` argument block at `P+5400`-`P+5424`.
 - `kona_sched_tick(P, microseconds)` (0x2b4) arms the kernel's `itimeout` with `kona_itimeout_func` after the given time, stores the handle at `P+5440` and the target time at `P+5448`, and returns nonzero on success.
 - `kona_itimeout_func` runs `kona_callout` under the tick lock, then, while the list is not empty, re-arms itself for 500000 us (0x7a120). If re-arming fails it kills the pipe with reason 9.
+- `kona_gfifo_spin(P)` (`kona_timeout.o` 0x6ac) is the kernel-side wait that holds a process while the graphics FIFO is full. **Established** (disassembly): it raises the "FIFO wait" flag with `gfx_waitf_on`, counts the wait (`P+5260`, `P+5472`), records the current time in microseconds (`microtime` times one million plus microseconds), cancels the pending watchdog timeout (`untimeout_wait` on the handle at `P+5440`), then loops while the pipe is alive: it calls `kona_delay_monitor_gfifo` with the time left and, when that returns zero, runs `kona_callout` and waits another 500000 us (0x7a120, the watchdog tick). When the pipe is dead it cancels the timeout it holds; otherwise it re-arms the watchdog with `kona_sched_tick` and, if that fails, kills the pipe with reason 9 (`KONA_DIE_SET_TIMEOUT_FAILED`). It drops the lock and clears the wait flag on every path.
 - `kona_callout(P)` is the watchdog. It does nothing while a kernel debugger holds the CPU. If the pipe is alive it reads `HH_TBUS_STATUS` and counts the pipe as active when `TBUS_ACTIVE` (bit 2) is set, or when the ARM interrupt handler has set `P+5464` since the last tick. A pipe with neither, and with the `kona_full_timeouts` tunable clear, gets "Pipe hung: no TBUS or ARM activity" (`cmn_err_tag` 2112). It then writes 4 to `HH_TBUS_STATUS`, clears `P+5464` and calls `kona_timein(P, hung)`.
 - `kona_timein(P, force)` (0xc8) decrements the first record's remaining ticks and fires every record that reaches zero. With `force` set, it fires every record on the list at once. To fire, it unlinks the record, calls the record's interrupt-level routine, calls the handler with (P, the three arguments), restores the level and frees the record.
 
