@@ -1134,6 +1134,94 @@ Every sequence starts with the same word, 1, then a sub-command number, then its
   Inferred: the two constants, 0xd102 and 0xd112, are the widget part numbers of the two buses of the PIC PCI bridge, as Linux's SN2 PIC header gives them.
 - `klcheck_vga(bridge, slot, function)` (IP35 `gfxs.a(klconfig.o)` offset 0xafc), established: tests one PCI function for a VGA display. It reads the configuration dword at offset 8 of the function, at bridge + 0x20000 + slot x 0x1000 + function x 0x100 (0xafc-0xb14), and accepts it only when the top byte (class) is 3 and the next byte (subclass) is 0; then it clears the two low bits of the byte at offset 7 of that function's space and returns the function's configuration address, otherwise 0. Inferred from the PCI layout: class 3 subclass 0 is a VGA-compatible display, and the byte at 7 is half of the status word.
 
+#### Generic textport driver (IP27 `tport.a`)
+
+**Established** (IRIX 6.5.30m IP27 `tport.a(tport.o)`, read with `scripts/kernel_annotate.py`). The STREAMS driver behind the console text port of a graphics head; `kona_tport.o` above supplies the KONA board's side. Its state is one record in `.bss`: +0 a state word (0 untouched, -1 lock ready, 1 board found), +4 the lock, +8 and +16 the read and write queues, +24 open, stopped and transmitting bits, +32 and +36 the transmit and receive timeout ids, +40 a 48-byte terminal settings block, +112 a 64-byte receive ring with pointers at +176 and +184, +192 the upstream buffer, +200 and +202 the window size. Board calls go through a `.data` table of 56-byte rows indexed by `.bss` +88: +16 write, +24 unblank, +32 window size, +48 graphics ioctl. The linked kernel's `tpcons_write` uses row +16 of the same table.
+
+- `tp_open()` (`tport.o` offset 0x0), established: STREAMS open routine that claims the single textport and pushes the line discipline onto the stream.
+  It returns 6 if the open-mode argument (a3) is nonzero (0x14-0x20) or the low 18 bits of the device number are nonzero (0x3c-0x54).
+  It calls tp_initlock, and returns 0 at once if .bss +24 bits 0-1 are already set (0x6c-0x84).
+  Otherwise it sets .bss +24 to 2, allocates a 64-byte buffer into .bss +192 (retrying via strwaitbuf, error 63 on failure, 0x88-0xb8), pushes the "stty_ld" module (0xd4-0xe0; on error frees the buffer and returns that error, 0x18c-0x19c), stores the queues in .bss +8/+16 and as both queue private pointers, copies 48 bytes of default termios to .bss +40, sets speed 9600 at +56, sets 0x80 in +48, clears 0x20 in +40, and sets .bss +24 to open (0xf8-0x184).
+  Inferred: the +40 block is the terminal settings.
+- `tp_close()` (`tport.o` offset 0x1a0), established: STREAMS close routine that releases the textport.
+  It takes the .bss +4 spinlock at tty priority (0x1ac-0x1c0), cancels the transmit timer id in .bss +32 and the receive timer id in .bss +36 with untimeout and clears both (0x1c4-0x1f0), and, if .bss +192 holds a buffer, resets the receive ring via tp_flushr and frees it with freemsg (0x1f8-0x210).
+  It zeroes .bss +8, +16 and the state word +24 (0x214-0x21c), unlocks, and returns 0 (0x220-0x230).
+  Inferred: the timer ids are for the delayed queue wakeups scheduled in the transmit and receive paths.
+- `tp_wput()` (`tport.o` offset 0x244), established: write-side put routine that dispatches on message type (byte at datap+30, 0x248-0x284).
+  Type 0 goes to putq then tp_start (0x5c4-0x5cc); type 12 is freed; type 134 calls sdrv_flush, then bit 2 of its first byte clears .bss +24 bit 2 and calls tp_start, and bit 1 flushes the receive ring under the lock (0x4b4-0x520).
+  Type 14 is an ioctl, switched on its command word (0x2b4-0x6c4): 21509 and 21537 ack (21537 sets 0x4000 in .bss +40); 21510 argument 0 stops, 1 starts output; 21705 reads and 21706/21707/21708 write the 48-byte block at .bss +40; 0x40087468 returns four window shorts; 0x74700001/2 call the graphics hooks.
+  Others are nacked (130); other types call sdrv_error.
+- `tp_xmit_qenable()` (`tport.o` offset 0x6c8), established: timer callback that re-enables the write queue passed in a0 after a transmit delay.
+  If .bss +32 is nonzero it clears it and calls qenable (0x6c8-0x6e4).
+  If it is zero it first reports an assertion failure (file name "../textport/tport.c" line 360, expression "tp.tp_txtimeoid") via assfail, then rereads the word and calls qenable only if it is now nonzero (0x6f4-0x718).
+  Inferred: .bss +32 holds the id of the pending transmit timeout.
+- `tp_xmit()` (`tport.o` offset 0x720), established: schedules a delayed re-run of the write queue so that output continues after a short pause.
+  It does nothing unless .bss +24 bit 3 (transmitting) is set and .bss +32 (the pending timer id) is zero (0x724-0x738).
+  Then it stores 1 in .bss +28 and calls streams_timeout with the callback tp_xmit_qenable, a delay argument of -100, and the read queue from .bss +8 as callback argument, saving the returned id in .bss +32 (0x748-0x77c).
+  No return value is used.
+  A delay of -100 is the callout layer's "due at the next pass" value (see `rrmValidateMGRSwapBuf` below), so output resumes as soon as the callout runs, outside the caller's context.
+- `tp_tx()` (`tport.o` offset 0x780), established: pushes queued console output to the board through the table-driven write hook, at most 16 bytes per call.
+  If .bss +24 bit 0 (open) is clear or bit 2 (stopped) is set it calls tp_stop and returns (0x798-0x7a8).
+  It takes one message with getq from the queue at .bss +16; none means tp_stop (0x884).
+  A nonzero type byte panics (0x7d8, 0x894).
+  Otherwise it calls tp_write with the read pointer and min(16, length), advances the read pointer, counts the characters with sysinfo_outch_add, frees a fully used block (continuing with its continuation block) or puts the rest back with putbq, and calls tp_xmit if any bytes were written (0x7e0-0x868).
+- `tp_start()` (`tport.o` offset 0x8a4), established: starts console output.
+  It raises the interrupt priority with spltty, and if .bss +24 bit 3 is already set just restores it with splx (0x8ac-0x8d8).
+  Otherwise it sets bit 3 and calls tp_tx before restoring the priority (0x8dc-0x8ec).
+  It sets no return value of its own.
+  Inferred: bit 3 means output is running, so the call is idempotent.
+- `tp_stop()` (`tport.o` offset 0x8f0), established: halts console output.
+  It raises the priority with spltty, clears .bss +24 bit 3 if it is set (0x900-0x91c), and restores the priority with splx (0x920).
+  It does not touch queues or timers and has no meaningful return value.
+  Inferred: it is the counterpart of tp_start and only clears the running bit.
+- `tp_rcv_qenable()` (`tport.o` offset 0x934), established: timer callback that re-enables the queue passed in a0 once received keyboard bytes are waiting.
+  If .bss +36 is nonzero it clears it and calls qenable (0x934-0x950).
+  If zero it reports an assertion failure (file "../textport/tport.c" line 477, expression "tp.tp_rxtimoid") via assfail, then rereads the word and calls qenable only if it is now nonzero (0x960-0x980).
+  Inferred: .bss +36 holds the pending receive timeout id.
+- `tp_rcv()` (`tport.o` offset 0x98c), established: keyboard-input handler registered with the graphics port layer; its a0 is passed on untouched.
+  It first calls tp_unblank, then kb_translate with a 16-byte stack buffer; a count of zero or less returns 1 (0x9a8-0x9bc).
+  Under the .bss +4 spinlock, if the port is open (bit 0 of .bss +24) it appends the translated bytes to the 64-byte ring at .bss +112..+176 using write pointer +176 and read pointer +184, dropping bytes when the ring is full.
+  If the ring was empty with no timer pending it schedules tp_rcv_qenable through streams_timeout (delay 0), setting .bss +28 to 1 and saving the id in +36 (0x9cc-0xaac).
+  It always returns 1.
+- `tp_rsrv()` (`tport.o` offset 0xab0), established: read-side service routine that turns ring bytes into upstream messages.
+  It calls keyboard_check and, if nonzero, re-registers the tp_rcv handler via gl_setporthandler (0xabc-0xadc).
+  If .bss +192 is empty it allocates a 64-byte buffer, or asks bufcall to retry later and returns 0 (0xae8-0xb08, 0xc08).
+  With the lock held and .bss +28 set, it feeds each ring byte to tp_rx and clears +28 (0xb20-0xb70).
+  If the buffer has data and canput succeeds it sends it with putnext and allocates a replacement (0xb80-0xbbc).
+  It then calls tp_tx under the lock and returns 0.
+- `tp_rx()` (`tport.o` offset 0xc24), established: handles one received character (a0) and adds it to the pending upstream buffer.
+  It returns at once if .bss +24 bit 0 is clear or .bss +48 bit 0x80 is clear (0xc30-0xc54).
+  Otherwise it counts it with sysinfo_rawch_add; if .bss +40 bit 0x400 is set it applies stop and start handling: matching the byte at .bss +74 sets flag bit 2 and calls tp_stop, matching the byte at +73 clears it, calls tp_start and swallows the char, and a flag at +24 bit 4 appears to mark a pending special character (0xc5c-0xd98).
+  Surviving bytes are masked to 7 bits when +40 bit 0x20 is set and the global byte at gp+0 is zero, then stored at the write pointer of .bss +192 if room remains (0xccc-0xd00).
+  Inferred: +73 and +74 are the start and stop characters of the terminal settings block that begins at +40.
+- `tp_flushr()` (`tport.o` offset 0xd9c), established: discards pending received input.
+  It sets both ring pointers, .bss +176 and +184, to the ring start at .bss +112 (0xd9c-0xdac), sets the write pointer of the buffer in .bss +192 back to its read pointer (0xda8-0xdb4), and clears .bss +28 (0xdbc).
+  It takes no arguments and returns nothing meaningful.
+  It does not take the lock; callers do.
+- `tp_guiop()` (`tport.o` offset 0xdc0), established: forwards a graphics ioctl to the board driver.
+  If .bss +0 is not 1 it returns -1 (0xdc4-0xdd4).
+  Otherwise it picks the board row, 56 bytes each, from the .data table using the number in .bss +88, loads the function pointer at row offset 48, and returns 0 if it is null (0xdd8-0xdf8).
+  If not, it calls it with a0 and a1 unchanged (the data block and ioctl block from tp_wput) and returns its result (0xe00-0xe24).
+  Inferred: .bss +0 equal to 1 means a board was found at initialisation.
+- `tp_write()` (`tport.o` offset 0xe28), established: writes character bytes to the board's text output.
+  If .bss +0 is not 1 it returns doing nothing (0xe2c-0xe40).
+  Otherwise it picks the board row, 56 bytes each, in the .data table using the number in .bss +88 and calls the function pointer at row offset 16, passing a0 and a1 through unchanged (0xe48-0xe6c). tp_tx calls it with the read pointer and a byte count and ignores any result; this routine sets none of its own.
+  The linked kernel's console write takes the same table row (+16), so console output and textport output reach the board through one hook.
+- `tp_unblank()` (`tport.o` offset 0xe78), established: asks the board driver to turn the display back on.
+  If .bss +0 is not 1 it returns doing nothing (0xe7c-0xe90).
+  Otherwise it picks the board row, 56 bytes each, in the .data table by the number in .bss +88 and calls the function pointer at row offset 24 with no arguments set here (0xe98-0xebc). tp_rcv calls it before translating each keyboard event and no caller reads a result.
+  Inferred: the hook is the screen unblank step, so a key press wakes a blanked console.
+- `tp_gwinsize()` (`tport.o` offset 0xec8), established: fills in the text window size in .bss +200 and +202.
+  It picks the board row, 56 bytes each, in the .data table using .bss +88 and, if the function pointer at row offset 32 exists, calls it with pointers to those two halfwords (0xecc-0xf0c).
+  If the pointer is null it stores the defaults 40 at +200 and 80 at +202 (0xef0-0xf18).
+  Unlike the other hooks it does not test .bss +0 first.
+  Inferred: 40 and 80 are the default text window size (rows and columns) when the board reports none.
+- `tp_initlock()` (`tport.o` offset 0x112c), established: one-time setup of the driver lock.
+  If .bss +0 is nonzero it returns at once (0x112c-0x1144).
+  If it is zero it initialises the spinlock at .bss +4 with spinlock_init, naming it "TPORT", then stores -1 in .bss +0 (0x1148-0x116c).
+  It takes no arguments and returns nothing. tp_open and tp_init call it.
+  Inferred: .bss +0 acts as a state word, 0 for untouched, -1 for lock ready, and 1 for board found, as tp_guiop tests for 1.
+
 #### Flow-control layer
 
 `gfx_flow_init`, `gfx_flow_alloc`, `gfx_flow_interface_alloc`,
