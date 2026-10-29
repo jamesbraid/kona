@@ -51,6 +51,11 @@
 #define KONA_XG_FC_CLIENT_REGS        0xc00000  /* the same registers through flow control */
 #define KONA_XG_FC_GFX                0xc10000  /* graphics FIFO through flow control */
 
+/*
+ * XG +0x4 is the generic widget identification word. Established, 6.5.30m:
+ * `kona_attach` (kona_edtinit_hip2.o) reads it and keeps bits 28-31, the widget revision,
+ * at pipe state +2196. Inferred: the revision tells the reset path how many crossbar credits to use.
+ */
 #define KONA_XG_REG_WIDGET_ID       0x04    /* generic; attach keeps bits 31-28, the widget revision */
 #define   KONA_XG_WID_REV(v)            (((v) >> 28) & 0xf)
 #define   KONA_XG_WID_PART(v)           (((v) >> 12) & 0xffff)  /* 0xc102 */
@@ -90,6 +95,12 @@
 #define   KONA_XG_XT_CTRL_FORCE_PERR_GUAVA_OUT 0x10000000
 
 #define KONA_XG_REG_REQ_TIMEOUT     0x2c    /* generic; cleared to 0 once during reset */
+/*
+ * XG +0x34 is the upper half of the interrupt destination address. Established, 6.5.30m:
+ * `kona_reset_adaptor` (kona_edtinit_hip2.o) writes the target id in bits 16-19 and address bits
+ * 32-47 there, and the lower half (+0x3c) beside it. Inferred from the generic widget layout in
+ * Linux xwidget.h: these two words are where the XG sends its interrupt packets.
+ */
 #define KONA_XG_REG_INTDEST_UPPER   0x34    /* generic; target id bits 19-16, address bits 47-32 */
 #define KONA_XG_REG_INTDEST_LOWER   0x3c    /* generic; interrupt target address bits 31-0 */
 
@@ -105,6 +116,12 @@
  * behind the DMA writes before it, which the output-DMA completion that the
  * geometry-engine handler reads needs (docs/hip.md).
  */
+/*
+ * XG +0x5c is XG_XT_INTRVEC, the three interrupt vectors. Established, 6.5.30m:
+ * `kona_reset_adaptor` (kona_edtinit_hip2.o) writes 0x20000, the barrier bit of the second vector,
+ * or-ed with the three vector numbers of its interrupt handles, so the XG error interrupt, the
+ * geometry-engine interrupt and the host-interface interrupt each reach their own handler.
+ */
 #define KONA_XG_XT_INTRVEC            0x5c
 #define   KONA_XG_XT_INTRVEC_INTR_VEC0      0x000000ff
 #define   KONA_XG_XT_INTRVEC_BARRIER_VEC0   0x00000100
@@ -115,6 +132,11 @@
 /* XG_CONFIG: read by kona_attach for the map RAM size (bits 3-5; the entry
  * count is that code << 15, 8 when zero). SUBSYSTEM and MAPRAM_TYPE are not
  * read by any shipped code found. */
+/*
+ * XG +0x64 is XG_CONFIG. Established, 6.5.30m: `kona_attach` (kona_edtinit_hip2.o) reads it,
+ * takes MAPRAM_SIZE (bits 3-5, 8 when zero) and stores that code shifted left by 15 at
+ * pipe state +2312 as the number of map RAM entries it will fill with `kona_mapram_init`.
+ */
 #define KONA_XG_CONFIG                0x64
 #define   KONA_XG_CONFIG_SUBSYSTEM        0x07
 #define   KONA_XG_CONFIG_MAPRAM_SIZE      0x38
@@ -177,6 +199,12 @@
 
  * xwidget.h. An emulator picks values and says so.
  */
+/*
+ * XG +0x74 is XG_HI_LO_WATER. Established, 6.5.30m: `kona_reset_adaptor`
+ * (kona_edtinit_hip2.o) reads it and writes back the two command-FIFO marks it found (bits 16-21
+ * and 22-27) with the output-DMA marks set to 0x3f40, so the driver chooses where output DMA
+ * stalls and resumes and leaves the command marks at the chip's own values.
+ */
 #define KONA_XG_HI_LO_WATER           0x74
 #define   KONA_XG_HI_LO_WATER_ODMA_LOWATER  0x000000ff
 #define   KONA_XG_HI_LO_WATER_ODMA_HIWATER  0x0000ff00
@@ -199,12 +227,24 @@
 #define   KONA_XG_GFX_DET_RES_TNUM        0x3e
 
 /* Credit counters (kpm only): available cache-line and doubleword credits */
+/*
+ * XG +0xc084 in the user mapping is the available cache-line credit counter at XG +0x84,
+ * established: kpm 6.5.30m `adapterInspection` (0x10012378) reads it through the I/O window
+ * that a privileged process maps from 0xc000 and stores it in its dump. Inferred from the name:
+ * it shows how many cache-line credits the pipe has left to return.
+ */
 #define KONA_XG_GFX_AVCC              0x84
 #define   KONA_XG_GFX_AVCC_CACHE_BLOCKS   0xfff
 #define KONA_XG_GFX_AVDWC             0x8c
 #define   KONA_XG_GFX_AVDWC_DW_CREDITS    0xfff
 
 /* XG_MAP_ADDR (kpm only): an 18-bit map RAM address */
+/*
+ * XG +0xc094 in the user mapping is the map RAM address register at XG +0x94, established:
+ * kpm 6.5.30m `adapterInspection` (0x10012378) reads it through the I/O window that a
+ * privileged process maps from 0xc000. Inferred from the name: it holds the 18-bit entry number
+ * that a map RAM access selects.
+ */
 #define KONA_XG_MAP_ADDR              0x94
 #define   KONA_XG_MAP_ADDR_ADDR           0x3ffff
 
@@ -232,5 +272,24 @@
 #define   KONA_XG_MAP_RAM_INVALID         0x10000000
 #define   KONA_XG_MAP_RAM_PAGESIZE        0x60000000
 #define   KONA_XG_MAP_RAM_ODD_PARITY      0x80000000
+
+/*
+ * XG +0xc014 in the user mapping is the generic widget error upper-address
+ * register at XG +0x14, established: kpm 6.5.30m `adapterInspection`
+ * (0x10012378) reads it through the I/O window that a privileged process
+ * maps from 0xc000 and stores it in its dump. Inferred from the layout in
+ * Linux xwidget.h: it holds address bits of the last failed request.
+ */
+/*
+ * XG +0xc034 in the user mapping is the interrupt destination upper-address
+ * register at XG +0x34, established: kpm 6.5.30m `adapterInspection`
+ * (0x10012378) reads back through the privileged I/O window what
+ * `kona_reset_adaptor` wrote, so the dump records where interrupts are sent.
+ */
+/*
+ * XG +0xc074 in the user mapping is the water-mark register at XG +0x74,
+ * established: kpm 6.5.30m `adapterInspection` (0x10012378) reads it through
+ * the privileged I/O window to record the output-DMA and command marks.
+ */
 
 #endif /* KONA_XG_H */
