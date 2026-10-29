@@ -989,3 +989,85 @@ live in engine external memory, which `mgeb_EramFill` clears before a transfer.
   conversion with the shift counts in the reverse order, so the top bit comes out first.
 - `epilogue_b2i_msb_first` (`bitmaptoint.s` lines 270-320, at 0x2722): **inferred**, drains the most-significant-first
   integer case and ends the command after the last stored bit.
+
+## Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+
+**Inferred**, from the words of the three modules. The colour-table code serves `glColorTable` and the colour-index maps:
+it fills ramps, packs tables for the texture filters' look-up RAM (`TFT_TLUT_DATA_*`, [RM.h](../RM.h)) and sends tables
+back to the host. The output modules are the last pixel stage, which clamps, scales to the destination's integer range
+and packs fields for the raster bus ([docs/rm.md](../docs/rm.md#pixel-and-texel-data-words)).
+
+- `mgeb_ColorTableSetup` (`colortable.S` lines 69-91, at 0x422e): **inferred**, takes the table record operands as input,
+  stores 0x8000 and the record words into control memory 0x1ec-0x1ee and calls `uEvalSaveState`, so the table builders
+  that follow reuse the evaluator state as working space.
+- `mgeb_LutRamp1` (`colortable.S` lines 373-426, at 0x4022): **inferred**, fills a one-component table with a ramp: per
+  entry it adds the step to the running value (integer adds), applies unit-1 code 0x51 (not fixed by the test) and ORs
+  the result into the packed table word, looping through the transfer at 0x4048.
+- `mgeb_LutRamp3` (`colortable.S` lines 294-351, at 0x4074): **inferred**, the three-component ramp: 192 words that step
+  three running values, apply code 0x51 to each, shift them into position and OR them into packed entries, the results
+  stored for the download.
+- `mgesi_TLutDownload` (`colortable.S` lines 582-609, at 0x3f52): **inferred**, starts a texture look-up table download:
+  it takes the table description operands as input, stores them in control memory 0x299-0x29f and writes the filter
+  register word 0x1854 to bus address 0x1f7.
+- `mmo_TLutDownloadI` (`colortable.S` lines 744-774, at 0x3ea8): **inferred**, sends an intensity table: it moves each
+  input entry to the bus with the register words 0x420c2400, 0x20c1800, 0x20c0c00 and 0x20c0000, one per filter RAM,
+  looping on `cc` 0x14 and ending in `mTLutDownloadDone`.
+- `mmo_TLutDownloadLA` (`colortable.S` lines 695-729, at 0x3edb): **inferred**, the luminance-alpha table form: it splits
+  each input entry with unit-2 code 0x0f, steps the RAM addresses at 0x295-0x298 with integer adds and writes the entries
+  with register words 0x2180000 and 0x2181800.
+- `mmo_TLutDownloadRGBA` (`colortable.S` lines 643-680, at 0x3f10): **inferred**, the four-component table form, with the
+  same address stepping as the LA form and two loops on `cc` 0x14 (0x3f22, 0x3f30) for the colour and alpha halves.
+- `mTLutDownloadDone` (`colortable.S` lines 617-628, at 0x3f49): **inferred**, ends a table download with two bitwise-not
+  stores to bus addresses 0x1f5 and 0x1f4, the closing words of the transfer; nothing is computed.
+- `mmo_LUT_I2I_16` (`colortable.S` lines 1056-1178, at 0x3aae): **inferred**, the colour-index-to-index map: it loads the
+  map size and table addresses from control memory 0xb9e-0xba6, subtracts and ANDs to keep each input index inside the
+  map, reads the mapped index through the table pointer and stores it as the result.
+- `mmo_LUT_I2C_16` (`colortable.S` lines 947-1035, at 0x3b81): **inferred**, the index-to-colour maps: the input index is
+  masked the same way and used to read four tables (red, green, blue, alpha addresses at 0xb9f-0xba9), giving four
+  colour results per index.
+- `mmo_LUT16_big` (`colortable.S` lines 809-929, at 0x3c18): **inferred**, the look-up for tables above 0x1000 entries:
+  each input is turned into an index with float adds and float-to-integer conversions, split into word and field parts
+  by shifts and ANDs, and the packed table word is read and unpacked as the result.
+- `mgesi_LutUpload` (`colortable.S` lines 1207-1252, at 0x3a6d): **inferred**, returns a colour table to the host: it
+  unpacks each stored entry with shifts and ANDs, converts the fields to float with four integer-to-float words
+  and multiplies them by a scale register, using 0xffff as the field mask, and sends the results behind the reply header 0x476.
+- `mmo_Lutout` (`colortable.S` lines 108-141, at 0x41fb): **inferred**, set-up of the colour-table output stage: it loads
+  the eight `U_uLutOutput` words from 0x161-0x168 and jumps to `umo_EvalEntry1D` to run the table entries through it.
+- `mmo_LutoutI` (`colortable.S` lines 239-252, at 0x416c): **inferred**, packs intensity entries: per input it clamps
+  with 0x7c, multiplies by the field maximum, converts to integer and shifts and ORs it into the output word.
+- `mmo_LutoutLA` (`colortable.S` lines 208-221, at 0x418e): **inferred**, packs luminance-alpha entries: two clamps,
+  multiplies and conversions per input pair, the alpha field shifted above the luminance.
+- `mmo_LutoutRGBA` (`colortable.S` lines 174-191, at 0x41b5): **inferred**, packs four-component entries with four
+  clamps, multiplies and conversions, the fields shifted and ORed into the result word.
+- `mLutoutDone` (`colortable.S` lines 151-160, at 0x41e0): **inferred**, closes the colour-table output by restoring
+  control words 0x164 and 0x165 and ending the command; nothing is computed.
+- `mgeb_PixMapOutputRGBA` (`colortable.S` lines 515-561, at 0x3f87): **inferred**, writes an RGBA pixel map: it clamps each
+  input component, multiplies by 65535 (0x477fff00), converts to integer, applies code 0x51 and shifts and ORs two
+  16-bit fields into each output word.
+- `mgeb_PixMapOutputI` (`colortable.S` lines 449-489, at 0x3fd8): **inferred**, the index pixel map: it converts each input
+  to integer, masks it to 16 bits with 0xffff and packs two per output word by a shift of 16 and an OR.
+- `ugesi_PixDrawColorEntry` (`upixelSetup.s` lines 51-70, at 0x27d5): **inferred**, the pixel-path entry for colour data:
+  it takes the raster position words at 0x16e and 0x16f as input, subtracts and adds the offsets from 0x129 and the
+  constant 0x10000, and stores the results as the start of the pixel rectangle.
+- `mgesi_PixDrawColorEntry` (`upixelSetup.s` line 51, at 0x27d5): **inferred**, the slot name on the same word, so the
+  host reaches the same subtract-and-add of the raster position through either name.
+- `umo_Pixout32_8_16` (`upixout.s` lines 60-97, at 0x27e5): **inferred**, set-up of the integer output module: it loads the
+  output record words from 0x161-0x169 (address, count, tag and the scale of the destination format) and writes the bus
+  header to 0x1f5 and 0x1f4, then clamps the first two input components with 0x7c.
+- `loop32_8_16` (`upixout.s` lines 100-144, at 0x2803): **inferred**, the output loop: per component a clamp with 0x7c
+  paired with a multiply by the destination maximum, 24 per pass, the scaled results packed and sent.
+- `uPO_2_4C` (`upixout.s` lines 170-173, at 0x2831): **inferred**, entry for two- and four-component output: four clamps
+  prime the pipeline with the first input pixel.
+- `uPO_2_4C_loop` (`upixout.s` lines 178-188, at 0x2835): **inferred**, eight clamp-and-multiply words per pass for two or
+  four components, ending on `cc` 2 when the count runs out.
+- `uPO_2_4C_LastBlck` (`upixout.s` lines 194-202, at 0x2841): **inferred**, the last block: four clamps and four
+  multiplies give the final scaled results before the command ends.
+- `uPO_8_16C` (`upixout.s` lines 209-212, at 0x284a): **inferred**, entry for 8- and 16-component blocks: four clamps on
+  the first input words.
+- `uPO_8_16C_loop` (`upixout.s` lines 216-257, at 0x284e): **inferred**, the packing loop whose stores name the converter
+  list through register 0x12 ([docs/rm.md](../docs/rm.md#pixel-and-texel-data-words)): 39 clamp-and-multiply words
+  scale each input into its field.
+- `uPostLoop` (`upixout.s` lines 259-271, at 0x2876): **inferred**, drains the packing pipeline with eight more
+  clamp-and-multiply words and four multiplies, the last results of the transfer.
+- `uPO_8_16C_LastBlck` (`upixout.s` lines 275-283, at 0x2883): **inferred**, the short last block: four clamps and four
+  clamp-and-multiply words, then `uPostLoop`.

@@ -2120,17 +2120,17 @@ ge.u	label	0x00002753	umo_FloatToInt		located	ucode/ge_handlers.md#floattoints	f
 ge.u	label	0x0000277c	mainloop_f2i		located	ucode/ge_handlers.md#floattoints	floattoint.s
 ge.u	label	0x00002799	epilogue_f2i		located	ucode/ge_handlers.md#floattoints	floattoint.s
 ge.u	label	0x000027cc	MemRegInit		located	ucode/ge_handlers.md#bootinits	bootinit.s
-ge.u	label	0x000027d5	mgesi_PixDrawColorEntry		located	ucode/ge_handlers.md#upixelsetups	upixelSetup.s
-ge.u	label	0x000027d5	ugesi_PixDrawColorEntry		located	ucode/ge_handlers.md#upixelsetups	upixelSetup.s
-ge.u	label	0x000027e5	umo_Pixout32_8_16		located	ucode/ge_handlers.md#upixouts	upixout.s
-ge.u	label	0x00002803	loop32_8_16		located	ucode/ge_handlers.md#upixouts	upixout.s
-ge.u	label	0x00002831	uPO_2_4C		located	ucode/ge_handlers.md#upixouts	upixout.s
-ge.u	label	0x00002835	uPO_2_4C_loop		located	ucode/ge_handlers.md#upixouts	upixout.s
-ge.u	label	0x00002841	uPO_2_4C_LastBlck		located	ucode/ge_handlers.md#upixouts	upixout.s
-ge.u	label	0x0000284a	uPO_8_16C		located	ucode/ge_handlers.md#upixouts	upixout.s
-ge.u	label	0x0000284e	uPO_8_16C_loop		located	ucode/ge_handlers.md#upixouts	upixout.s
-ge.u	label	0x00002876	uPostLoop		located	ucode/ge_handlers.md#upixouts	upixout.s
-ge.u	label	0x00002883	uPO_8_16C_LastBlck		located	ucode/ge_handlers.md#upixouts	upixout.s
+ge.u	label	0x000027d5	mgesi_PixDrawColorEntry		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x000027d5	ugesi_PixDrawColorEntry		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x000027e5	umo_Pixout32_8_16		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00002803	loop32_8_16		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00002831	uPO_2_4C		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00002835	uPO_2_4C_loop		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00002841	uPO_2_4C_LastBlck		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x0000284a	uPO_8_16C		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x0000284e	uPO_8_16C_loop		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00002876	uPostLoop		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00002883	uPO_8_16C_LastBlck		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
 ge.u	label	0x0000288c	mmo_DrawTri		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
 ge.u	label	0x0000288c	umo_DrawTri		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
 ge.u	label	0x00002898	uDTList		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
@@ -2240,25 +2240,25 @@ ge.u	label	0x00003a32	mgebi_NullCommand		located	ucode/ge_handlers.md#rasters	ra
 ge.u	label	0x00003a45	mges_NullCommand		located	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003a52	mgeb_DeathCommand		understood	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003a5b	mgesi_PassThrough		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003a6d	mgesi_LutUpload		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003aae	mmo_LUT_I2I_16		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003b81	mmo_LUT_I2C_16		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003c18	mmo_LUT16_big		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003ea8	mmo_TLutDownloadI		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003edb	mmo_TLutDownloadLA		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003f10	mmo_TLutDownloadRGBA		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003f49	mTLutDownloadDone		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003f52	mgesi_TLutDownload		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003f87	mgeb_PixMapOutputRGBA		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003fd8	mgeb_PixMapOutputI		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00004022	mgeb_LutRamp1		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00004074	mgeb_LutRamp3		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x0000416c	mmo_LutoutI		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x0000418e	mmo_LutoutLA		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x000041b5	mmo_LutoutRGBA		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x000041e0	mLutoutDone		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x000041fb	mmo_Lutout		located	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x0000422e	mgeb_ColorTableSetup		located	ucode/ge_handlers.md#colortables	colortable.S
+ge.u	label	0x00003a6d	mgesi_LutUpload		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00003aae	mmo_LUT_I2I_16		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00003b81	mmo_LUT_I2C_16		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00003c18	mmo_LUT16_big		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00003ea8	mmo_TLutDownloadI		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00003edb	mmo_TLutDownloadLA		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00003f10	mmo_TLutDownloadRGBA		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00003f49	mTLutDownloadDone		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00003f52	mgesi_TLutDownload		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00003f87	mgeb_PixMapOutputRGBA		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00003fd8	mgeb_PixMapOutputI		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00004022	mgeb_LutRamp1		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x00004074	mgeb_LutRamp3		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x0000416c	mmo_LutoutI		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x0000418e	mmo_LutoutLA		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x000041b5	mmo_LutoutRGBA		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x000041e0	mLutoutDone		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x000041fb	mmo_Lutout		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
+ge.u	label	0x0000422e	mgeb_ColorTableSetup		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
 ge.u	label	0x0000424e	mgebi_TextureScaleBias		located	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x00004278	mgesi_FillTMLoadFifo		located	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x00004293	mgesi_RestoreTextureAddress		located	ucode/ge_handlers.md#textures	texture.S
