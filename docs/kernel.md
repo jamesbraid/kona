@@ -1351,11 +1351,11 @@ Globals in `gfx_flow.o` `.sdata`: +0 `hub_use_transaction_credits`, +8 `gfx_flow
 ### Stubs for a kernel without graphics (`gfxstubs.a`)
 
 **Established** (`gfxstubs.o`, both the IP27 and IP35 copies). A kernel configured without a graphics board links `gfxstubs.a` instead of `gfx.o`, `rrm.o` and `gfxs.a`; every function in it is two instructions. `gfx_disp` returns 1;
-`gfx_exit`, `tp_init()` and `tp_dogui()` return 0;
+`gfx_exit`, `gfx_frs_valid_pipenum`, `tp_init()` and `tp_dogui()` return 0; `gfx_fault` returns 1;
 `gfx_earlyinit`, `tpcons_write`, `shmiq_sproc` and
-`initkbdtype` return nothing. The others share their names with the `gfx.o` and `rrm.o` hooks documented above (`gfx_fault`, `rrmSuspend`,
+`initkbdtype` return nothing. The others share their names with the `gfx.o` and `rrm.o` hooks documented above (`rrmSuspend`,
 `rrmResume`, `gfx_shcheck`, `gfx_shdup`,
-`gfx_shalloc`, `gfx_shfree`, `gfx_frs_valid_pipenum`,
+`gfx_shalloc`, `gfx_shfree`,
 `gfx_frs_install`, `gfx_frs_uninstall`) and do nothing.
 
 ### The rest of `kona.a`

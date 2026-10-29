@@ -52,5 +52,5 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 10030	0x272e	kona private		sent	venice_loadsection_vs2_top;vs2SetShadow	2	usr/gfx/gfxinfo:venice_loadsection_vs2_top	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10031	0x272f	kona private		sent	venice_loadsection_vs2_top;vs2GetShadow;vs2_set_MasterGenlock	2	usr/gfx/gfxinfo:venice_loadsection_vs2_top	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10100	0x2774	kona private	curproc_abi	sent,table	kona_getconfig;main;saXSGIvcQueryChannelGammaMap;setup_ucode	5	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
-10101	0x2775	kona private	RRM_CheckValidFault	table		2		understood	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
-10102	0x2776	kona private	RRM_CheckValidFault	table		2		understood	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+10101	0x2775	kona private	RRM_CheckValidFault	table		2		understood	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
+10102	0x2776	kona private	RRM_CheckValidFault	table		2		understood	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
