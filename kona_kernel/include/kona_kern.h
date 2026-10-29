@@ -58,12 +58,45 @@
 #define KONA_KICK_IDLE            0
 
 /*
- * Physical-address argument pair, ESTABLISHED (KONApcxswap, KONAstart): a
- * host buffer is passed as two words, (pa >> 12) and ((pa & 0xfff) | 0x9000).
- * INFERRED: 0x9000 is a flag set in the low word; its meaning is UNKNOWN.
+ * Address argument pair, ESTABLISHED (kona_context.o KONApcxswap; kona_mem.o
+ * swap-out and swap-in; kona_dma.o kona_idma, kona_dmapool_update_pipe,
+ * kona_start_selectfeed, kona_diag_map; kona_edtinit.o kona_alloc_bdata;
+ * kona_ddrn.o KONAcreateddrn): a buffer address A is passed as two 32-bit
+ * words, (A >> 12) and ((A & 0xfff) | 0x9000). Two kinds of address are
+ * passed this way.
+ *
+ * Host-physical buffers, ESTABLISHED: kona_alloc_bdata and KONAcreateddrn
+ * allocate with kvpalloc, take kvtophys, and store the pair as
+ * ((pa >> 12) | 0x10000000, (pa & 0xfff) | 0x9000) in the driver or context
+ * record. KONApcxswap sends the context-record pair (+8, +12) as the first
+ * two words of HP_RDATA_SETUP, so that pair names the return-data buffer.
+ * The high word carries bit 28 here.
+ *
+ * Pipe-space addresses, ESTABLISHED for kona_start_selectfeed and
+ * kona_diag_map: they send the value alloc_gfx_io_space returns
+ * (gfx_io_space.o), a per-pipe allocator that hands out addresses in a space
+ * the pipe sees and calls registered map routines to map host pages into it.
+ * kona_mem_swapout and kona_mem_swapin also call it. Those pairs carry no
+ * bit 28: the high word is just A >> 12. Every sender except the two
+ * kvtophys ones omits bit 28 (read in the code). The origin of the address
+ * was not traced for kona_idma, kona_dmapool_update_pipe, the swap
+ * senders' final pair and the HP_CONTEXT_LOAD save area (kona_context.o,
+ * record +24), so whether those are mapped-space addresses is UNKNOWN.
+ * INFERRED: the old name "physical address" is wrong at least for the
+ * selectfeed and diag-map pairs.
+ *
+ * 0x9000, ESTABLISHED as a constant; meaning UNKNOWN. It is set in every
+ * low word, in both kinds of address, so it is not the physical-versus-
+ * mapped distinction. INFERRED from HIP.h: on HIP2 the output-DMA page-offset
+ * register is 17 bits wide (HIP1: 12), so a field wider than a 12-bit page
+ * offset exists on this board, and 0x9000 would sit in its bits 12 and 15.
+ * Nothing read says what bits 12 and 15 select. No sender uses another
+ * value in those bits (kona_ddrn.o also or-s 0x8000 into a kvpalloc size,
+ * which is unrelated).
  */
-#define KONA_PA_HI(pa)            ((unsigned)((pa) >> 12))
-#define KONA_PA_LO(pa)            ((unsigned)(((pa) & 0xfff) | 0x9000))
+#define KONA_ADDR_HI(a)           ((unsigned)((a) >> 12))
+#define KONA_ADDR_HI_PHYS(pa)     ((unsigned)(((pa) >> 12) | 0x10000000))
+#define KONA_ADDR_LO(a)           ((unsigned)(((a) & 0xfff) | 0x9000))
 
 /*
  * Context switch, KONApcxswap (kona_context.o 0x680-0xe94), ESTABLISHED.
@@ -80,13 +113,13 @@
  *
  * Incoming context seen before (its "initialised" flag at +16 is set):
  *   HP_CONTEXT_LOAD 0x1f9, payload: the word a pointer at record +16 names,
- *   KONA_PA_HI(save area), KONA_PA_LO(save area), 0xededeDED.
+ *   KONA_ADDR_HI(save area), KONA_ADDR_LO(save area), 0xededeDED.
  *   INFERRED: the save area is where the pipe's state for this context was
  *   saved, and 0xedededed is an end marker.
  *
  * Incoming context never seen:
- *   HP_CONTEXT_INIT 0x1fd, payload: KONA_PA_HI(save area),
- *   KONA_PA_LO(save area), 0x10000;
+ *   HP_CONTEXT_INIT 0x1fd, payload: KONA_ADDR_HI(save area),
+ *   KONA_ADDR_LO(save area), 0x10000;
  *   then HP_RDATA_SETUP 0x1f2, payload: two words from the context record
  *   (+8, +12), 0x4000; then the "initialised" flag is set.
  *   INFERRED: RDATA_SETUP names where the pipe returns data to the client;

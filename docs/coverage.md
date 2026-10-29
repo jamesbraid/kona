@@ -41,7 +41,7 @@ Host interface: PIO FIFO words, DMA streams, flow control and doorbells.
 | DMA | none | `HIP.h`, `docs/hip.md` | host interface and command grammar | strided two-dimensional descriptor reported by prior work |
 | Interrupts | partial | `HIP.h`, `docs/hip.md` | host interface and command grammar | HH_INTR_INFO/ENABLE/STATUS/ACK and GINTR_INFO fields; GE and ARM event codes (6.5.5); INTR_ENABLE/STATUS bit names not in kpm |
 | Reset | none | `HIP.h`, `docs/hip.md` | host interface and command grammar |  |
-| Context save and restore | partial | `HIP.h`, `kona_kernel/include/kona_kern.h` | host interface and command grammar | kick = HH_GINTR_INFO PRIV/FORCE; physical-address word pair; the 0x9000 flag and FORCE's exact effect unknown |
+| Context save and restore | partial | `HIP.h`, `kona_kernel/include/kona_kern.h` | host interface and command grammar | kick = HH_GINTR_INFO PRIV/FORCE; physical-address word pair; the 0x9000 constant is read at every sender (low word of an address pair, hi word bit 28 on host-physical buffers only) but its meaning and FORCE's exact effect are unknown |
 
 ### GE
 
@@ -94,7 +94,7 @@ The kernel graphics driver and its resource manager: attach, ioctls, context and
 | DMA | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
 | Interrupts | none | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface |  |
 | Reset | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | pipe check and kona_die register writes named, 16 death reasons by caller with 6.5.5 names; attach-time HH_RESET sequence not read |
-| Context save and restore | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | KONApcxswap and kona_act_pcx packet order and payload word sources, flow-group attach/detach at offset 0x7c. Remaining: drawable structure field meanings, the activate token's identity, the 0x9000 address flag |
+| Context save and restore | partial | `kona_kernel/include/kona_kern.h`, `docs/kernel.md` | kernel attach and host interface | KONApcxswap and kona_act_pcx packet order and payload word sources, flow-group attach/detach at offset 0x7c. Address pair shapes written down (0x9000 meaning unknown). Remaining: drawable structure field meanings, the activate token's identity |
 
 ### OpenGL core and X modules
 
