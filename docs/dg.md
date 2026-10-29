@@ -33,7 +33,7 @@ The pending flags are consumed in `kona_video_intr`, which is the handler for th
 
 `kona_enable_dac_cursor` writes eight channel blocks: for channel n it writes address 0x0b00 + 0x100*n with data 4 then 2 (two consecutive data writes to the same address, **established**), then address 0x0b02 + 0x100*n with 5 if n is the cursor channel and the DAC flag is set, otherwise 0. If the DAC flag is set it first writes address 0x103 with 0.
 
-**Inferred.** 0x100-0x103 are the cursor registers of the display generator (channel, glyph address, position, mode), from the values each carries; the IR diagnostic's XMAP register list names registers 0-3 `XMAP_CURSOR_CHAN_ID`, `_GLYPH_BASE`, `_POS` and `_ENABLES` ([DG.h](../DG.h)), so address 0x100 + n is **inferred** to be XMAP register n. The 0xb00 blocks are per-channel registers of eight video channels, from the stride of 0x100 and the eight-iteration loop; the 5 is a "DAC cursor on" encoding (bits 0 and 2), a guess from its being 0 for all other channels. A cursor in the 0x102 form that is aligned to four pixels matches the PROM textport's cursor routines for a mask of both coordinates with `~3` for an older display-generator revision. **Unknown:** what the repeated "4 then 2" data writes do, what 0x22 is in the DAC, and the units of the glyph address.
+**Inferred.** 0x100-0x103 are the cursor registers of the display generator (channel, glyph address, position, mode), from the values each carries; the IR diagnostic's XMAP register list names registers 0-3 `XMAP_CURSOR_CHAN_ID`, `_GLYPH_BASE`, `_POS` and `_ENABLES` ([DG.h](../DG.h)), so address 0x100 + n is **inferred** to be XMAP register n. The 0xb00 blocks are per-channel registers of eight video channels, from the stride of 0x100 and the eight-iteration loop; the 5 is a "DAC cursor on" encoding (bits 0 and 2), a guess from its being 0 for all other channels. A cursor in the 0x102 form that is aligned to four pixels matches the PROM textport's cursor routines for a mask of both coordinates with `~3` for an older display-generator revision. The "4 then 2" pair is the video DAC's two-byte index 0x204, the cursor control register ([below](#the-firmwares-display-bus-window)), and the glyph address is a word address in the cursor memory, slot x 260 ([cursor memory](#cursor-memory)). **Unknown: no shipped software or published source depends on it:** what DAC address 0x22 is beyond carrying the four position bytes. Routes tried: the kernel, the firmware's DAC helpers (which use only registers 0-3 of each block) and `irsaudit`'s DAC register list.
 
 ### Choosing the cursor channel
 
@@ -59,7 +59,7 @@ When the marker is reached, `kona_swap_complete` runs. `kona_mswap_complete` is 
 - `kona_retrace_activate` arms a software timeout (`kona_timeout`, record +8 holds the handle) and sends the stream command `RETRACE_SEQID` (0x1e7) with the sequence number as its one payload word.
 - The pipe processes the packet in order with the rest of its stream. The driver then waits for a video interrupt. `kona_video_intr` reads `HH_SEQID` (0x800248, HIP.h), and for every queued record whose number is not greater than that value, cancels its timeout and calls its callback with a 0 argument. If the timeout fires first, `kona_retrace_timeout` removes the record and calls the callback with a nonzero argument, and `kona_swap_complete` logs a message (cmn_err tag 2103; `kona_gsync_complete` uses 2104).
 
-**Inferred.** The pipe writes the sequence number into `HH_SEQID` when it executes `RETRACE_SEQID` at a vertical retrace and raises the video interrupt; this is why a swap is held back to the retrace. The hardware side of the packet (when exactly the number is written, and what raises the video interrupt) is **open question** ([open-questions.md](open-questions.md)); the kernel only shows that the value compared is the one read back.
+**Established** (`arm_retrace_seqid` 0x0c013f5c, `init_dg_board` 0x0c003d3c). The firmware turns `KONA_HP_RETRACE_SEQID` into six engine display-bus writes of 1 to 6 at address 0x7f, the last slot of the display-id mode table, and then a raster-bus register write of the sequence number to index 0x420 (`tbus_regwrite()`), so the number travels behind everything drawn before it; at start-up it writes 0 to the same index. The kernel reads the number back from `HH_SEQID` in the video-interrupt handler. **Inferred:** index 0x420 is the register `HH_SEQID` reflects, and the six writes push earlier display-bus traffic ahead of it. **Unknown: no shipped software or published source depends on it:** whether `HH_SEQID` changes when the write arrives or at the next vertical retrace, and what raises the video interrupt (bit 3). Routes tried: the kernel's retrace queue and handlers, the firmware's sequence-number path and its start-up, `irsaudit`'s interrupt helpers ([interrupts](#interrupts)), and the netlists.
 
 `kona_swap_complete` finds each buffer pointer (`buffer+120`'s +160 field) among the entries listed at `P+184` (count `P+176`), and for every match writes data 2 to address 0x80 (the swap strobe, DG.h), then calls `rrmValidateBuffer`. `kona_gsync_complete` ends with `rrmValidateRetrace`; `KONAschedretraceevent` queues a bare retrace sequence with a callback taken from the driver's slot table. `kona_voc_intr` (the video-option interrupt, bit 9 of `HH_INTR_STATUS`) calls `rrmGenlockNotify(-1)`.
 
@@ -75,7 +75,7 @@ The video timing and combination handling the kernel never touches is in the ARM
 
 **Established** (`init_dg_board` 0x0c003d3c, `DoDGRqstAutoInit` 0x0c004674). At start-up the ARM configures the display-generator board through the boundary-scan chain (`init_dg_jtag`), blanks every channel (`dgTempBlankAllChannels`), runs `dgAutoInit` and refreshes its configuration record (`dgUpdateConfigInfo`). `dgAutoInit` reads a stored combination from EEPROM (`eeprom_read`) and loads it (`dgLoadCombo`); a bad magic cookie, a combination too large for the scratch memory or a failed flash image falls back to the emergency backup format, as the messages in [ucode/tport.md](../ucode/tport.md) say. Not run when simulated. The 93 requests of `arm_video_cmd` that follow are in [ucode/dg_dispatch.tsv](../ucode/dg_dispatch.tsv).
 
-**Established.** The run-time reset is the request `DoDGRqstResetRMBoards`: blank all channels, shut down the requesters on each present video output chip, wait, reset the raster boards' pixel chips ([rm.md](rm.md#reset-of-the-raster-boards)), restart the master video output chip, with the log lines "ResetRMBoards starting..." and "ResetRMBoards complete!". **open question** ([open-questions.md](open-questions.md)): the display generator's own reset register and whether a request or an interrupt reaches it from the host. The start-up and run-time paths read here write none.
+**Established.** The run-time reset is the request `DoDGRqstResetRMBoards`: blank all channels, shut down the requesters on each present video output chip, wait, reset the raster boards' pixel chips ([rm.md](rm.md#reset-of-the-raster-boards)), restart the master video output chip, with the log lines "ResetRMBoards starting..." and "ResetRMBoards complete!". **Unknown: no shipped software or published source depends on it:** a display-generator reset register. No software writes one. The board is brought to a known state by writes alone: the scan-chain configuration, `DoDGRqstFetal`'s defaults for the XMAP, every present VOC, the video and gain DACs, the encoder and the option boards (`dgMake*Fetal`), then the copy-buffer strobe. The values are in [DG.h](../DG.h). Routes tried: `init_dg_board`, `DoDGRqstResetRMBoards`, `DoDGRqstFetal`, `DoDGRqstXServerVideoInit` (its 0xc000 strobe belongs to an option board), the kernel's `HH_RESET` paths ([xg.md](xg.md)), and `irsaudit`'s `base_xmap_init`, `dg_clock_setup` and `reset_dacs`. The last is a video-DAC sequence on 0x1711, 0x8000 and 0x1900.
 
 ## The far side of the video-controller port
 
@@ -104,7 +104,7 @@ How the ARM firmware (`arm1.u`, IRIX 6.5.30m) reaches the display-generator boar
 
 The kernel's own accesses ([above](#what-the-driver-can-reach)) land in the same blocks with the same values: cursor registers 0x100-0x103, the swap strobe 0x80, and the video-DAC blocks, where the kernel's "4 then 2" on register 0 of block 0xb00 + 0x100n is the two-byte index 0x204 (the DAC's cursor control) and its 5 or 0 on register 2 is that register's value. **Inferred:** the kernel's `HH_VC_ADDRESS` value is this bus address.
 
-**Established** (`arm_dispmode` 0x0c013dd4, `arm_swap_cntrl` 0x0c013e50, `arm_dplex_swap` 0x0c013ef4, `arm_x_loadxmap_did` 0x0c03db80). Four token handlers write the display bus in step with the command stream: each stores a bus address to r9 + 0x474 and a value to r9 + 0x840 and hands the engine `gepc[251]` (`mgesi_VCbusWrite`). `DISPMODE` writes its third payload word (the X module's `hwd_mode` byte) to bus address = its second word (the display id), after `dgUpdateFMDidSwapTable` records the display id in every swap-group slot whose drawable word equals the first payload word. `SWAP_CNTRL` writes its payload to 0x80 and, when bit 0 is set, 1 to 0x1920 (or to 0x8001 on a DPLEX board). `DPLEX_SWAP` writes its payload to 0xe500. `X_LOADXMAP_DID` writes its two words to XMAP 0x118 and 0x11c and then 0 to 0x11f three times and to 0x11e four times.
+**Established** (`arm_dispmode` 0x0c013dd4, `arm_swap_cntrl` 0x0c013e50, `arm_dplex_swap` 0x0c013ef4, `arm_x_loadxmap_did` 0x0c03db80). Four token handlers write the display bus in step with the command stream: each stores a bus address to r9 + 0x474 and a value to r9 + 0x840 and hands the engine `gepc[251]` (`mgesi_VCbusWrite`). `DISPMODE` writes its third payload word (the X module's `hwd_mode` byte) to bus address = its second word (the display id), after `dgUpdateFMDidSwapTable` records the display id in every swap-group slot whose drawable word equals the first payload word. `SWAP_CNTRL` writes its payload to 0x80 and, when bit 0 is set, 1 to 0x1920 (or to 0x8001 on a DPLEX board). `DPLEX_SWAP` writes its payload to 0xe500. `X_LOADXMAP_DID` writes its two words to XMAP 0x118 and 0x11c, then 0x11f three times, 0x11e once and 0x11f three more times; the data of those seven writes is whatever register r8 holds, so only the address counts ([fast list](#xmap-registers-memories-and-the-fast-list)).
 
 ### VOC registers
 
@@ -134,7 +134,7 @@ Option-board VOCs use ids above 7: `DoDGRqstLoadFormat` loads a format into the 
 | 21, 22 | `TotalLinesPerFrame`, `TotalPixelsPerLine` | record + 0x90, + 0x94 |
 | 23, 24 | `ActiveLinesPerFrame`, `ActivePixelsPerLine` | not read by this handler |
 | 25 | `VideoClockRatioDenominator` (1, 2 or 4, else "illegal nPixelsPerClock") | record + 0x98; VOC 0x01 bits 11-9 through the table at 0x040416c4 (clamped to 4 above 9); DAC pixel mux |
-| 26, 27 | two words from the combination channel | record + 0xac; bit 0 to record flag bit 30 |
+| 26, 27 | two words from the combination channel | record + 0xac; bit 0 to record flag bit 30. `dgConfigureVideoRequester` turns word 26 (1, 2 or 3) into bits 10-8 of VOC 0x44 and flag bit 30 into its bit 7 ([requester](#the-video-requester)) |
 | 28-30 | built from `ActiveBlankingLeft` and `ActiveBlankingRight` | VOC 0x14: bit 16, bits 7-0, bits 15-8 |
 | 31 | `StateTableValidStates` | number of state words: words 33 to 33 + 31/2 go to VOC 0x09 |
 | 32 | bit n set when `SignalInitialStateValue[n]` equals `TransitionDirectionHigh` | VOC 0x07; bits 17-18 added on an old DG4 |
@@ -154,7 +154,7 @@ Option-board VOCs use ids above 7: `DoDGRqstLoadFormat` loads a format into the 
 
 **Established** (absence): the edge direction arrays (`TransitionDirection`) are read by the module but no request word carries them; the frame-detection fields (`PFDTable` packed into two words, `PFDInvert`, `PFDRegularLines`, `PFDComparatorPrecision`, `PFDClockSelect`, `PFDVOFVerticalPhase`, `PFDValidTable`) are read into the record past the request (offsets 1984-2012), so they are not part of it. **Inferred:** the hardware toggles a signal at each valid edge, so no direction is needed.
 
-**Unknown: no shipped software or published source depends on it:** the units of the clock parameter words and the meaning of words 1, 26, 27, 275-277 and 297-300 beyond the register bits they fill. Routes tried: the module's builder and the firmware's consumer above, `dgLoadVocClockParams` and the `.vfo` and `vfc/rules/*.def` files.
+**Unknown: no shipped software or published source depends on it:** the units of the clock parameter words and the meaning of words 1, 275-277 and 297-300 beyond the register bits they fill, and which requester-control field words 26 and 27 set. Routes tried: the module's builder and the firmware's consumer above, `dgLoadVocClockParams` and the `.vfo` and `vfc/rules/*.def` files.
 
 ## The Resize request (8 words)
 
@@ -301,11 +301,11 @@ Option-board VOCs use ids above 7: `DoDGRqstLoadFormat` loads a format into the 
 | `dgAdjustVPhase` | 0x0c011964 | 0x208+0x100*n r, 0xcc00 w | `DoDGRqstVBOBCommand` |  |
 | `dgResolveXMapChannelFormat` | 0x0c011c14 | - | - |  |
 | `dgGetWriteVoc` | 0x0c012190 | - | - |  |
-| `pgmclr` | 0x0c012644 | 0x2400 r/w | - |  |
-| `databit` | 0x0c0126c8 | 0x2500 w | - |  |
-| `waitclr` | 0x0c01271c | - | - |  |
-| `chkframe` | 0x0c012724 | - | - |  |
-| `chkdone` | 0x0c01272c | 0x2600 r | - |  |
+| `pgmclr()` | 0x0c012644 | 0x2400 r/w | - |  |
+| `databit()` | 0x0c0126c8 | 0x2500 w | - |  |
+| `waitclr()` | 0x0c01271c | - | - |  |
+| `chkframe()` | 0x0c012724 | - | - |  |
+| `chkdone()` | 0x0c01272c | 0x2600 r | - |  |
 | `pabSetupRegisters` | 0x0c0128c0 | 0x2300 w, 0x2301 w, 0x2302 w, 0x2303 w, 0x2304 w | - |  |
 | `eeprom_state` | 0x0c019f7c | - | - |  |
 | `eeprom_write` | 0x0c019fdc | - | `eeprom_state` |  |
@@ -327,3 +327,74 @@ Option-board VOCs use ids above 7: `DoDGRqstLoadFormat` loads a format into the 
 - `xmap8_chip_type`, `voc1_chip_type`, `KONA_DG4_2VOC_element_list`, `KONA_DG4_2VOC_chain`, `KONA_DG4_8VOC_element_list`, `KONA_DG4_8VOC_chain`, `HILO_DG5_2VOC_element_list`, `HILO_DG5_2VOC_chain`, `HILO_DG5_8VOC_element_list`, `HILO_DG5_8VOC_chain`, `dg_8voc_scan_chain` and `dg_shift` (0x0404206c-0x04045de0) are scan-chain descriptions of the display board for its 2- and 8-VOC builds and of a later DG5 board; the code reaches them through tables (only `HILO_DG5_8VOC_chain` is named by an instruction, in `init_kona_jtag_chain`). `dg_board_id` (0x0c01d2d0) reads the board's identity over the scan chain (`jt_select_chain`, `jt_send_inst_or_data`).
 - `NIC_no_sleep_delay_threshold`, `NIC_channels`, `NIC_clock_mhz`, `NIC_rm_nic`, `NIC_rm_config` and `NIC_dgopt_type` (0x04045de4-0x04045df8) are set by `init_config` and read by `extract_nic_ser_nums`.
 - `extract_nic_ser_nums` (0x0c01d464) reads the boards' serial-number chips ("Not NIC queriable from %s", "Exhausted all %s NIC probe attempts") through a one-wire layer: `nic_setup`, `nic_next`, `nic_next_scan`, `nic_presence`, `nic_rom_skip`, `nic_read_redirected_page`, `nic_read`, `nic_write`, `nic_read_byte`, `nic_write_byte`, `nic_wait_done`, `nic_crc16` and `nic_calc_crc` (0x0c01e0a0-0x0c01e5e4; page reads check two CRCs, "CRC addr mismatch" and "HW CRC mismatch"), and a bit-level layer that drives the wire through raster-board chips, `knic_setup`, `knic_pulldown`, `knic_release`, `knic_sample`, `knic_stall`, `knic_write`, `knic_read` (0x0c01e938-0x0c01fb40; their messages name the TM7, RM8 and RM10 boards). **Inferred:** the "NIC" is a Dallas-style one-wire serial-number part, from the presence, ROM-skip and CRC-16 steps.
+- `init_fm()`, `init_voc()` and `init_dac()` (0x0c0037a8, 0x0c0037a0, 0x0c0037a4) return at once; the display board's start-up is the scan-chain and request code above.
+- `fm2_chip_type`, `adv7160_chip_type` and `tmc22090_chip_type` (0x0404201c, 0x040420bc, 0x0404210c) are three more scan-chain part descriptions in the same table as `xmap8_chip_type` and `voc1_chip_type`. **Inferred:** the bridge (`fm0` in the netlists), the video DACs (ADV7160 is a public RAMDAC part number) and the video encoder (TMC22090 is a public encoder part number), matching the netlist's `dac0`, `dac1` and `encoder`.
+
+## XMAP registers, memories and the fast list
+
+The XMAP registers beyond the diagnostic's list, read from `irsaudit` (IRIX 6.5.30m, register helpers at 0x1013afe4-0x1013c5xx and `vcWrite`/`vcWriteFastlist`/`vcRead` at 0x1014071c-0x10140bac) and the firmware. Numbers are XMAP register n at bus address 0x100 + n. [DG.h](../DG.h) has the fields.
+
+**Established.** Both programs end every group of XMAP register writes by writing 1 to register 4 (`xmap_copybuffer`, `dgForceXmapCopyBuffer()`). `irsaudit` also writes 4 after moving the cursor (`load_cursor_cntrs`). Register 5 turns the substitute colour in 6 and 7 on and off. Register 8 takes the XMAP number 0-3 in the read-back sequence of `TEST_xmapmem`: the address goes to 0x11, the chip to 8, 1 to 4, then 0x12 is read. Register 9 is 0 after the firmware's start-up and 2 after `irsaudit`'s. It also takes the X module's `KONA_HP_X_LOADXMAP_CONFIG` word, 1 when a window is created and 0 when one is destroyed, which `arm_x_loadxmap_config` (0x0c03dc44) writes to bus address 0x109 through the engine. Register 0x10 is written 0 at start-up and nothing else touches it; nothing touches 0xa. **Inferred**, from the function name and the XMAP pin names in the diagnostic's pin list (`xmap_force_curs_pos`, `xmap_rd_id_match`): 4 bit 0 copies double-buffered registers into use and bit 2 forces the cursor position; 8 picks the chip that answers a read; 0x12 is read data. **Unknown: no shipped software or published source depends on it:** what 9, 0xa and 0x10 do beyond these values. Routes tried: the firmware, the kernel, the X module, `irsaudit`'s XMAP tests and its pin list.
+
+**Established** (`vcWriteFastlist`). The diagnostic reaches 0x118-0x11f, the XMAP's indirect memories, in one of two ways. It can write `HH_VC_ADDRESS` with the register number or-ed with 0x10000, then `HH_VC_DATA`. It can also send a raster-bus word: 0x041 in bits 63-52, the bus address in bits 47-32 and the data in bits 31-0 (`bloTbusWrite`). The plain `vcWrite` uses `HH_VC_ADDRESS` without bit 16. The firmware reaches the same registers through the engine (`mgesi_VCbusWrite`). **Inferred:** bit 16 of `HH_VC_ADDRESS` selects the in-band path the XMAP calls the fast list, whose chunk size is register 0xf (`DoDGRqstFastlistChunksize`).
+
+| Register | Use (established) |
+|---|---|
+| 0x118 | address for the data ports below: memory address and select bits, or a channel or display id |
+| 0x119 | colour-map and cursor data; consecutive words go to consecutive addresses (`irsaudit` `load_cmap` writes one address then n words) |
+| 0x11b | gamma data (`load_gamma_table`, `arm_x_loadgamma`) |
+| 0x11c | display-id table data (`arm_x_loadxmap_did`) |
+| 0x11d | channel set-up, channel number in 0x118 (`define_xmap_channel`): bits 3-0 gamma page, 4 external gamma, 5 no gamma, 6 alpha to blue, named by the function's debug line |
+| 0x11e | once after a gamma load (`irsaudit`, data 0) and after every firmware load |
+| 0x11f | data 0 after a colour-map or cursor load (`irsaudit`, once; the firmware three times, then 0x11e, then three more) and three times before a new address (`change_fastlist_addr`) |
+
+**Inferred:** 0x11f moves earlier list entries through without storing anything, and 0x11e ends a load. **Unknown: no shipped software or published source depends on it** beyond the order above. Routes tried: both programs' loaders, the X module and the pin list.
+
+## Colour maps and gamma tables
+
+**Established** (`irsaudit` `load_gamma_table` 0x1013bbd4, `load_full_gamma` 0x1013bf80, `make_gamma_addr_legal` 0x1013c214). A gamma load writes 0x118 with entry bits 11-0, colour bits 13-12 (0 red, 1 green, 2 blue), page bits 17-14 and a flag in bit 18. It then writes the entries to 0x11b, then 0x11e once and 0x11f three times. `load_full_gamma` fills 4 x 1024 entries per colour and page. `make_gamma_addr_legal` masks the address to 19 bits and turns colour 3 into 2. Below bit 18, it copies bits 9-8 or 11-10 into bits 1-0 (or bit 8 into bit 0), chosen by bits 11-9 and the caller's mode. **Inferred:** page and entry are the 16 address bits of each of the three gamma RAMs (`xmap_gam_ad_red`, `_green`, `_blue` in the pin list), and the low-bit copy reflects which pixel bits feed the gamma index at narrower pixel sizes.
+
+**Established** (`kona.so` `konStore24DCColors`; `arm_x_loadgamma` 0x0c03d6fc). `KONA_HP_X_LOADGAMMA` has two forms.
+
+- **XMAP form**, for each colour of each X colour cell that changes: four words. They are the address (a per-visual base + 2 x pixel index + 0x1000 x colour), the count 2, and then the 12-bit value twice, which is the top 12 bits of the 16-bit X colour. The firmware writes the address to 0x118, streams the counted words to 0x11b through the pass-through counter, then writes 0x11f three times, 0x11e once and 0x11f three times. Each colour index fills two consecutive gamma entries. The module also keeps the values in a 1536-word shadow, three blocks of 512.
+- **External form**, first word 0xdeadfeed: sent by `setmon` (the function at 0x10027da0, reached from its video-request switch) and by `kona.so` (the unnamed function at 0x498ff0). Both take a 4096-entry table of 12-bit values per colour, pick every (n / 1024)th entry, and send 0xdeadfeed, 1024 and then 1024 words packed red << 20 | green << 10 | blue, each the 12-bit value shifted right by 2. The firmware clears bits 11-8 of bus address 0xc104 and sets bits 8-7 of 0xc006. It writes the words to 0xf000 + i, the last one through the last-word port, then restores 0xc006. **Inferred:** a 1024-entry 10:10:10 table in the external gamma RAM behind the option-board window. The 6.5.5 `kona_if.h` configuration record has an `extgamma` size field, and `init_dg_board` warns "external gamma forced to internal for down rev XMAPs".
+
+`KONA_HP_X_LOADCMAP` (`arm_x_loadcmap` 0x0c03d5e8) is the XMAP form with data port 0x119 and any count. Counts above 0x200 go in 0x200-word pieces, and the same seven writes to 0x11f and 0x11e follow.
+
+## Cursor memory
+
+**Established.** The cursor image goes through 0x118/0x119 like a colour map. `irsaudit`'s `load_cursor` is its colour-map loader with 260 words, and the firmware's `arm_x_loadcursor` (0x0c03d9c4) moves 1 + 260 words. `kon_initCursorCaches` in the X module builds 39 cache entries of 16 bytes, so cursor slots 0-38 sit at slot x 260. The crosshair address 9884 equals 39 x 260 - 256. The crosshair's colour block, at address + 0x100 where `arm_x_loadcursorcolor` (0x0c03daa0) puts it, is therefore the four words 10140-10143 just past the last slot, and the 256 image words it would cover overlap slot 38's image but are never loaded for it. **Inferred:** the cursor lives in the XMAP's external colour-map RAM. That RAM's address bus (`xmap_cmap_addr`) and the cursor glyph-base register are both 17 bits wide.
+
+**Established** (block layout, from the X module's builders and `DoDGRqstDiagCursorFromImage` 0x0c0081a0). There are 64 rows of four words. Each row holds plane A as 64 bits (pixel 0 in bit 31 of the first word) and then plane B. A pixel's value is A << 1 | B. Words 256, 257, 258 and 259 are the colours of values 3, 2, 1 and 0, each 10:10:10. The diagnostic request builds the planes from bit 1 and bit 0 of each image pixel, and it writes its colours 3, 2 and 1 followed by a stack word it never sets. The X module puts the source bitmap in plane A and the mask in plane B. So 256 is the foreground (or the module's third colour), 258 the background, and 257 the foreground again, for source-without-mask pixels. **Inferred:** value 0 is transparent and word 259 is never shown, since no sender sets it. **Unknown: no shipped software or published source depends on it:** which of the four words the crosshair draws with, because the module loads the same colour into all four. Routes tried: the X module, the firmware's cursor and diagnostic handlers, `irsaudit`'s cursor helpers (`easy_xmap_cursor`, `load_cursor_cntrs`).
+
+## The video requester
+
+**Established** (`dgConfigureVideoRequester` 0x0c00e324, `dgLoadVocIwsc` 0x0c00e104; field names from the `.vof` comment list, [ucode/dg.md](../ucode/dg.md), matched by content). The VOC fetches its channel's window from the framebuffer in tiles of 160 pixels by 8 lines. Pixels are counted in groupxels of four, so a tile line is 40 groupxels. Per channel, the firmware writes:
+
+- the input window: screen width in groupxels - 1 (VOC 0x03), origin x / 4 and y (0x04), size in groupxels and lines (0x05);
+- the line requests: a request word holds tiles - 1 in bits 2-0, groupxels - 1 in bits 13-3, a valid bit 14 and a repeat count in bits 22-15. A window that fits one request of at most 8 tiles (4 on board type 2) fills only the END word (0x49) and zeroes START (0x47) and MIDDLE (0x48). A wider one is split into a START request from the window's first groupxel to its tile boundary, a MIDDLE request of whole tiles repeated, and an END request;
+- the pan, (x mod 160) / 4, in VOC 0x4a bits 5-0;
+- per field f, the first tile address (tile row x tiles per row + x / 160) in bits 19-7 of VOC 0x50 + f and 0x58 + f, and the field pattern in 0x60 + f;
+- the requester control VOC 0x44, with bits from LoadFormat words 26 and 27 ([DG.h](../DG.h)), and the tiles per framebuffer row in 0x45.
+
+`irsaudit` prints the same three-request split ("requesting START (%d,%d) (%dx%d) tileaddr %d tilecount %d groupxels %d", MIDDLE with a repeat, END) in its own requester code. **Unknown: no shipped software or published source depends on it:** which control bit is pixel size, dither, transfer size and transfer alpha, and the role of 0x4a bits 7-6. Routes tried: the firmware, the `.vof` list and `irsaudit`'s format checks ("XferSize 12 on non-RGB", "XferSize 10 && XferAlpha").
+
+**The pixel format on the video bus.** **Established:** the transfer size is 10 or 12 bits per component with an optional alpha transfer, and 12 is allowed only for RGB (`irsaudit`'s format checks). The 40 wires into each XMAP come from four IMP output lanes of 8 bits ([rm.md](rm.md#display-and-scanout-from-the-raster-boards)). **Inferred:** one 40-bit word per XMAP per clock, enough for a 10:10:10:10 or a 12:12:12 pixel. **Unknown: no shipped software or published source depends on it:** the bit order on the wires. Routes tried: the netlists, the firmware's requester code, `irsaudit`'s video tests (which compare CRC signatures, not wire values) and the `.vof` list.
+
+## Interrupts
+
+**Established** (`irsaudit` `vdEnableDgInterrupts` 0x10130c98, `vdCheckDgInterrupts` 0x10130d90; kernel `kona_video_intr`, `kona_voc_intr`). The diagnostic enables exactly bits 3 and 9 of `HH_INTR_ENABLE` (0x208, after `HH_INTR_INFO` = 0x8000 and `HH_GINTR_INFO` = 0x30000). It reports bit 3 as "got video interrupt" and bit 9 as "got voc interrupt", then writes the status back and 0 to `HH_INTR_ACK`. The kernel treats bit 3 as the per-frame video interrupt (retrace queue, cursor, swaps) and bit 9 as the genlock notifier. In the firmware, `VOC_CONTROL` interrupt bits are set only by `dgLoadChannelGenlockParams` (bits 5-4 set, bit 6 cleared). **Inferred:** from the `.vof` field order, those are the external-sync-loss and external-frame interrupt enables, which makes bit 9 the VOCs' own interrupt line, raised by genlock events. The master VOC's status bit 7 pulses once per frame (`dgSyncWithMasterVoc` waits for it to rise and fall). **Unknown: no shipped software or published source depends on it:** the exact condition behind bit 3 and its timing within the frame. Routes tried: the kernel handlers, the firmware (no code arms an interrupt on `fm0`), `irsaudit`'s video tests and the netlists.
+
+## Display tokens
+
+The tokens of the display path, by their `GE.h` names, with the section that reads each:
+
+| Token | Firmware handler | Read in |
+|---|---|---|
+| `KONA_HP_DISPMODE` 0x1e6 | `arm_dispmode` | [buffer swap](#buffer-swap-and-retrace-wait), [display-bus window](#the-firmwares-display-bus-window) |
+| `KONA_HP_RETRACE_SEQID` 0x1e7 | `arm_retrace_seqid` | [retrace sequence](#retrace-sequence) |
+| `KONA_HP_SWAP_CNTRL` 0x1db | `arm_swap_cntrl` | [display-bus window](#the-firmwares-display-bus-window) |
+| `KONA_HP_X_LOADGAMMA` 0x12f | `arm_x_loadgamma` | [gamma tables](#colour-maps-and-gamma-tables) |
+| `KONA_HP_X_LOADCURSORCOLOR` 0x131 | `arm_x_loadcursorcolor` | [cursor memory](#cursor-memory) |
+| `KONA_HP_X_LOADXMAP_DID` 0x132 | `arm_x_loadxmap_did` | [opengl.md](opengl.md#display-modes-x_loadxmap_did-and-rrm_loaddisplaymode-1017) |
+| `KONA_HP_X_LOADXMAP_CONFIG` 0x133 | `arm_x_loadxmap_config` | [XMAP registers](#xmap-registers-memories-and-the-fast-list) |

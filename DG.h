@@ -74,6 +74,21 @@
 #define KONA_DG_SWAP_STROBE_VALUE     2
 
 /*
+ * Retrace sequence number on the pipe side, ESTABLISHED (arm1.u):
+ * arm_retrace_seqid (0x0c013f5c) sends six engine display-bus writes of 1
+ * to 6 to address 0x7f, then the payload word as a raster-bus register write
+ * to index 0x420 (tbus_regwrite); init_dg_board (0x0c003d3c) ends by writing
+ * 0 to the same index. The kernel reads the number back from HH_SEQID
+ * (HIP.h). INFERRED: index 0x420 is the register behind HH_SEQID, reached in
+ * stream order behind the drawing; address 0x7f is the last entry of the
+ * display-id mode table (DISPMODE writes address = display id, 0-0x7f).
+ * When the hardware copies the number into HH_SEQID (at the write, or at the
+ * next vertical retrace) is UNKNOWN: no shipped software or published source
+ * depends on it; the kernel only reads it in its video-interrupt handler.
+ */
+#define KONA_RASTER_SEQID_INDEX       0x420
+
+/*
  * Per-channel register block, ESTABLISHED as addresses: eight blocks,
  * address 0x0b00 + 0x100 * channel + register, registers 0 and 2 written
  * by kona_enable_dac_cursor. kona_attach reads channel 0's register 0
@@ -99,6 +114,33 @@
  * from the data it carries.
  */
 #define KONA_DG_DAC_CURSOR_POS        0x22
+
+/*
+ * Video-generator interrupts in HH_INTR_STATUS, ESTABLISHED (irsaudit
+ * vdEnableDgInterrupts 0x10130c98 and vdCheckDgInterrupts 0x10130d90):
+ * the diagnostic writes HH_INTR_ENABLE = 0, clears HH_INTR_STATUS with
+ * 0x3ff, sets HH_INTR_INFO = 0x8000 and HH_GINTR_INFO = 0x30000, then enables
+ * 0x208; on an interrupt it reports bit 3 as "got video interrupt" and bit
+ * 9 as "got voc interrupt", writes the status back and writes 0 to
+ * HH_INTR_ACK. The netlists carry the two lines: fm0's int1/int2 to the host
+ * interface's vint pins, and the VOCs' voc_int_out_l through fm0's
+ * voc_intr_l. INFERRED: bit 9 is raised by an interrupt enabled in a VOC's
+ * VOC_CONTROL (KONA_VOC_CTL_*), which only the genlock code turns on
+ * (external sync loss and external frame), matching the kernel's VOC
+ * handler, which calls the genlock notifier. The hardware condition behind
+ * bit 3 (vertical retrace is the kernel's use of it) is UNKNOWN: no shipped
+ * software or published source depends on more than its arrival once per
+ * frame; routes tried: the kernel handlers, the firmware (no interrupt
+ * set-up for fm0), irsaudit's video tests and the netlists.
+ *
+ * The VOC status register (0x00) bit 7, ESTABLISHED (dgSyncWithMasterVoc
+ * 0x0c00b9a0): the firmware waits for bit 7 of the master VOC's status
+ * (bus 0x300) to go high and then low, each wait bounded by 1000000 ticks of
+ * its timer. INFERRED: a once-per-frame signal. dgGetInterruptState reads
+ * fm0 0x90, the master VOC's status and the OR of the other present VOCs'
+ * status; DoDGRqstGetDGInterruptState then writes 0 to fm0 0x8f.
+ */
+#define KONA_VOC_STATUS_FRAME         (1u << 7)
 
 /* Other addresses seen once, role UNKNOWN. */
 #define KONA_DG_ATTACH_PROBE          0x8800  /* kona_attach writes it then reads data (docs/xg.md step 4) */
@@ -207,7 +249,7 @@ enum kona_vfo_signal {
  * read back, so it bounds each register's width. INFERRED: XMAP register
  * n is the kernel's video-controller address 0x100 + n; the four cursor
  * registers above carry exactly the values these names describe.
- * Numbers 4, 5, 8-10 and 0x10 are not in the table: UNKNOWN.
+ * The numbers the table leaves out are below (KONA_XMAP_COPY_BUFFER on).
  */
 #define KONA_XMAP_CURSOR_CHAN_ID      0x00    /* mask 0x1f */
 #define KONA_XMAP_CURSOR_GLYPH_BASE   0x01    /* mask 0x1ffff */
@@ -221,6 +263,128 @@ enum kona_vfo_signal {
 #define KONA_XMAP_PIPE_DELAY          0x0e    /* mask 0x7 */
 #define KONA_XMAP_FASTLIST_CONFIG     0x0f    /* mask 0x3ff */
 #define KONA_XMAP_RD_ADDR             0x11    /* mask 0x7ffff */
+
+/*
+ * XMAP registers outside the diagnostic's list. Sources: irsaudit 6.5.30m
+ * (xmap_copybuffer 0x1013b94c, load_cursor_cntrs 0x1013b5b8,
+ * substitute_xmap_data 0x1013afe4, base_xmap_init 0x1013c3c8, the read-back
+ * loop of TEST_xmapmem 0x100adbfc) and arm1.u (dgMakeXmapFetal 0x0c0097d4,
+ * dgForceXmapCopyBuffer 0x0c010d24, arm_x_loadxmap_config 0x0c03dc44).
+ *
+ * 4: ESTABLISHED written 1 after every group of register writes by both
+ *    programs; irsaudit also writes 4 after a cursor-position change.
+ *    INFERRED: bit 0 copies the double-buffered registers into the active
+ *    set (the irsaudit function's name), bit 2 forces the new cursor
+ *    position (the XMAP pin xmap_force_curs_pos in the diagnostic's pin list).
+ * 5: ESTABLISHED 1 turns on, 0 off, the substitute colour held in 6 and 7
+ *    (DoDGRqstDiagXmapColor, irsaudit substitute_xmap_data).
+ * 8: ESTABLISHED written with the XMAP number 0-3 before a diagnostic read
+ *    (0x11 = address, 8 = chip, 4 = 1, then read 0x12); 0 at start-up.
+ *    INFERRED: selects which of the four XMAPs answers a read.
+ * 9: ESTABLISHED 0 in dgMakeXmapFetal, 2 in irsaudit's base_xmap_init, and
+ *    the X module's X_LOADXMAP_CONFIG word (1 when a window is created, 0
+ *    when one is destroyed) through arm_x_loadxmap_config. Meaning UNKNOWN:
+ *    no shipped software or published source depends on it beyond those
+ *    three values (routes: both programs, the X module, the pin list).
+ * 0xa: no reader or writer in the firmware, the kernel, the X module or
+ *    irsaudit; UNKNOWN: no shipped software or published source depends on
+ *    it.
+ * 0x10: ESTABLISHED written 0 at start-up by both programs and never
+ *    otherwise; meaning UNKNOWN: no shipped software or published source
+ *    depends on it (same routes).
+ * 0x12: ESTABLISHED read after the sequence above; INFERRED the read-data
+ *    register.
+ *
+ * Start-up values, ESTABLISHED (dgMakeXmapFetal, then copy buffer):
+ * 0x00, 0x03, 0x05, 0x06, 0x07, 0x08, 0x09, 0x10 = 0; 0x0c = 2;
+ * 0x0d = 0xa5 and 0x0e = 6 when the board-type word at 0x04067edc is 2,
+ * else 0x64 and 3; 0x0f = 0x339. irsaudit's base_xmap_init differs in
+ * 0x09 = 2 and 0x0d = 198 for board type 2.
+ */
+#define KONA_XMAP_COPY_BUFFER         0x04
+#define KONA_XMAP_SUBSTITUTE_EN       0x05
+#define KONA_XMAP_RD_SELECT           0x08
+#define KONA_XMAP_09                  0x09
+#define KONA_XMAP_RD_DATA             0x12
+
+/*
+ * Indirect memories (fast list). ESTABLISHED: irsaudit's vcWriteFastlist
+ * (0x10140868) sends XMAP register writes either as HH_VC_ADDRESS =
+ * register | 0x10000 then HH_VC_DATA, or as a raster-bus word with 0x041 in
+ * bits 63-52, the bus address in bits 47-32 and the data in bits 31-0
+ * (bloTbusWrite). The firmware reaches the same registers through the engine
+ * (mgesi_VCbusWrite). Registers, from the users in both programs:
+ *   0x18 address: memory address and select bits (below);
+ *   0x19 colour-map and cursor data, one word per address, auto-increment
+ *        (load_cmap streams n words after one address);
+ *   0x1b gamma data (load_gamma_table, arm_x_loadgamma);
+ *   0x1c display-id table data, address in 0x18 (arm_x_loadxmap_did);
+ *   0x1d channel set-up, address in 0x18 = channel (irsaudit
+ *        define_xmap_channel): bits 3-0 gamma page, bit 4 external gamma,
+ *        bit 5 no gamma, bit 6 alpha to blue, from its debug line
+ *        "for chan %d, no_gam=%d ext=%d page=%d alp to blue=%d";
+ *   0x1e written once after a gamma load (irsaudit, data 0) and after every
+ *        firmware load (data not set: a register value left over);
+ *   0x1f written with 0 after a colour-map or cursor load (irsaudit, once;
+ *        the firmware three times, then 0x1e, then three more) and three
+ *        times before a new address. INFERRED: 0x1f carries no data and
+ *        pushes earlier list entries through; 0x1e ends a load. UNKNOWN
+ *        beyond that: no shipped software or published source depends on it.
+ */
+#define KONA_XMAP_FL_ADDR             0x18
+#define KONA_XMAP_FL_CMAP_DATA        0x19
+#define KONA_XMAP_FL_GAMMA_DATA       0x1b
+#define KONA_XMAP_FL_DID_DATA         0x1c
+#define KONA_XMAP_FL_CHANNEL          0x1d
+#define KONA_XMAP_FL_END              0x1e
+#define KONA_XMAP_FL_FLUSH            0x1f
+#define KONA_DG_VC_FASTLIST           0x10000 /* or-ed into HH_VC_ADDRESS by vcWriteFastlist */
+#define KONA_XMAP_CHAN_GAMMA_PAGE     0x0f
+#define KONA_XMAP_CHAN_EXT_GAMMA      0x10
+#define KONA_XMAP_CHAN_NO_GAMMA       0x20
+#define KONA_XMAP_CHAN_ALPHA_TO_BLUE  0x40
+
+/*
+ * Gamma address in 0x18, ESTABLISHED (irsaudit load_gamma_table 0x1013bbd4,
+ * load_full_gamma 0x1013bf80, make_gamma_addr_legal 0x1013c214; kona.so
+ * konStore24DCColors): bits 11-0 entry (load_full_gamma loads 4 x 1024),
+ * bits 13-12 colour (0 red, 1 green, 2 blue; 3 is turned into 2), bits
+ * 17-14 page, bit 18 a flag the irsaudit callers pass as 0. Page and entry
+ * make 16 bits, the width of each of the XMAP's three gamma-RAM address buses
+ * (xmap_gam_ad_red/green/blue). An entry is a 12-bit value: the X module
+ * stores the top 12 bits of the 16-bit X colour, and writes each colour index
+ * to two consecutive entries (address base + 2 x index + 0x1000 x colour).
+ */
+#define KONA_XMAP_GAMMA_ENTRY         0x00000fff
+#define KONA_XMAP_GAMMA_COLOUR        0x00003000
+#define KONA_XMAP_GAMMA_PAGE          0x0003c000
+#define KONA_XMAP_GAMMA_FLAG18        0x00040000
+
+/*
+ * Cursor memory. ESTABLISHED: the cursor image is loaded through 0x18/0x19
+ * like a colour map (irsaudit load_cursor calls load_cmap with 260 words);
+ * the X module keeps 39 slots (kon_initCursorCaches: 39 cache entries of 16
+ * bytes) at slot x 260, and the crosshair address 9884 is 39 x 260 - 256, so
+ * the crosshair's colour block (address + 0x100) is the 4 words just past the
+ * last slot, 10140-10143. INFERRED: the cursor shares the XMAP's external
+ * colour-map RAM, whose address bus is 17 bits (xmap_cmap_addr), the width of
+ * KONA_XMAP_CURSOR_GLYPH_BASE's mask.
+ * Block layout, ESTABLISHED from the X module and from
+ * DoDGRqstDiagCursorFromImage (0x0c0081a0): 64 rows of 4 words, plane A
+ * (64 bits, left pixel in bit 31 of the first word) then plane B; a pixel's
+ * value is A << 1 | B; words 256-259 are the colours of pixel values 3, 2, 1
+ * and 0, each 10:10:10 (red bits 29-20). The X module puts the source bitmap
+ * in plane A and the mask in plane B, so 256 is the foreground (or the
+ * third colour), 258 the background, and 259 belongs to value 0, which the X
+ * module and the firmware never set (the firmware sends an uninitialised
+ * stack word there). INFERRED: value 0 is transparent and 259 is never
+ * shown. The crosshair loads one colour into all four words, so which word
+ * it uses is UNKNOWN: no shipped software or published source depends on it.
+ */
+#define KONA_CURSOR_SLOT_WORDS        260
+#define KONA_CURSOR_SLOTS             39
+#define KONA_CURSOR_COLOURS           0x100   /* offset of the colour words in a block */
+#define KONA_CURSOR_XHAIR_ADDR        9884
 
 #define KONA_VDAC_PIXEL_MASK          0x004   /* mask 0x3ff */
 #define KONA_VDAC_CURSOR_CTRL         0x204   /* mask 0xf */
@@ -324,11 +488,45 @@ enum kona_vfo_signal {
                                                * start and stop and the genlock code; bits 11-9 =
                                                * output pixel mux, from the pixels-per-clock word
                                                * through the table at 0x040416c4 (LoadFormat) */
+/*
+ * VOC_CONTROL low bits. ESTABLISHED as written: bits 1-0 take 1 when a
+ * channel is enabled (DoDGRqstEnableChannel, dgStartupRequesters), 2 in
+ * dgResize when channel flag bit 24 is set, 3 while genlock is shut down
+ * (dgShutdownChannelGenlockNicely) and 0 when disabled;
+ * dgLoadChannelGenlockParams sets bits 5-4 and clears bit 6; dgMakeVocFetal
+ * writes 0. INFERRED names: the .vof comment list gives the fields in the
+ * order DBL_BUF_EN, DBL_BUF_CNTRL, FIFO_OVER_INT, FIFO_UNDER_INT,
+ * EXT_SYNC_LOSS_INT, EXT_FRAME_INT, VDRC_INT, HOST_INT, and one bit each from
+ * bit 0 fits every write above: the genlock code enables the two
+ * external-sync interrupts and turns the VDRC one off. No firmware path sets
+ * bits 2, 3 or 7.
+ */
+#define KONA_VOC_CTL_DBL_BUF_EN       (1u << 0)
+#define KONA_VOC_CTL_DBL_BUF_CNTRL    (1u << 1)
+#define KONA_VOC_CTL_FIFO_OVER_INT    (1u << 2)
+#define KONA_VOC_CTL_FIFO_UNDER_INT   (1u << 3)
+#define KONA_VOC_CTL_EXT_SYNC_LOSS_INT (1u << 4)
+#define KONA_VOC_CTL_EXT_FRAME_INT    (1u << 5)
+#define KONA_VOC_CTL_VDRC_INT         (1u << 6)
+#define KONA_VOC_CTL_HOST_INT         (1u << 7)
 #define KONA_VOC_02                   0x02    /* written 0 then 1 around enabling (dgStartupRequesters,
                                                * DoDGRqstEnableChannel, dgResize) */
-#define KONA_VOC_IWSC_ORIGIN          0x03    /* [VOC_IWSC_*] dgLoadVocIwsc 0x0c00e104 */
-#define KONA_VOC_IWSC_SIZE            0x04
-#define KONA_VOC_IWSC_SCREEN          0x05
+/*
+ * Input window, ESTABLISHED (dgLoadVocIwsc 0x0c00e104). A groupxel is four
+ * pixels: the function divides x by 4 and rounds the width up to 4.
+ *   0x03 bits 4-0 = word 0 of the channel record & 0x1f, bits 14-5 = screen
+ *        width in groupxels - 1 ("Warning: setting screen X to %d
+ *        groupxels!" below 4) [VOC_IWSC_SCREEN];
+ *   0x04 bits 21-12 = x / 4, bits 11-0 = y; 0 when the VOC is its own write
+ *        VOC [VOC_IWSC_ORIGIN];
+ *   0x05 bits 21-12 = (width + 3) / 4, bits 11-0 = height [VOC_IWSC_SIZE].
+ * Bracketed names matched by content (INFERRED); the .vof list's order
+ * (origin, size, screen) is not the register order.
+ */
+#define KONA_VOC_IWSC_SCREEN          0x03
+#define KONA_VOC_IWSC_ORIGIN          0x04
+#define KONA_VOC_IWSC_SIZE            0x05
+#define KONA_GROUPXEL_PIXELS          4
 #define KONA_VOC_VOF_CONTROL          0x06    /* [VOC_VOF_CONTROL] bit 3 set then cleared before the
                                                * state table is streamed (clear state pointer); bits
                                                * 8-4 select line type 0-31 before 0x0a/0x0b and
@@ -359,6 +557,55 @@ enum kona_vfo_signal {
                                                * the start and stop code tests [VOC_VDRC_CONTROL];
                                                * 0x60 is also the field-sequential and stereo table
                                                * (dgLoadFieldSequentialAndStereo) */
+/*
+ * Video requester, ESTABLISHED as built by dgConfigureVideoRequester
+ * (0x0c00e324). Bracketed names are the .vof list's VOC_VDRC_* names, matched
+ * by field content and by the list's offsets from VDRC_CONTROL (START_LINE
+ * +3, MIDDLE_LINE +4, END_LINE +5, PAN +6) (INFERRED). The framebuffer is
+ * read in tiles of 160 pixels by 8 lines (the code divides x by 160 and the
+ * line by 8; the .vof comment says the same); a tile line is 40 groupxels.
+ * One request covers at most 8 tiles (4 when the board-type word at
+ * 0x04067edc is 2), the combination files' MaxTilesPerRequest.
+ *   0x44 [VDRC_CONTROL] read-modify-write: bits 6-5 = DGGlobalState+0x36b8
+ *        & 3, bit 7 = channel flag bit 30 (LoadFormat word 27 bit 0), bits
+ *        10-8 from LoadFormat word 26: 1 sets bits 8 and 9, 2 bit 8, 3 bit 10,
+ *        any other value none. Which of PIXEL_SIZE, DITHER, XFER_SIZE and
+ *        XFER_ALPHA each bit is: UNKNOWN: no shipped software or published
+ *        source depends on it (routes: the firmware, the .vof list, irsaudit's
+ *        messages "XferSize 12 on non-RGB" and "XferSize 10 && XferAlpha",
+ *        which name the fields but not their bits).
+ *   0x45 [VDRC_MAW] = DGGlobalState+0x36b4 (tiles per framebuffer row; the
+ *        .vof value 4 is commented "640 x 480").
+ *   0x47, 0x48, 0x49 [START_LINE, MIDDLE_LINE, END_LINE]: request words,
+ *        below. A window inside one request writes 0 to 0x47 and 0x48 and
+ *        fills only 0x49; a wider one is a START request, a MIDDLE request
+ *        repeated, and an END request.
+ *   0x4a [VDRC_PAN] bits 5-0 = (x mod 160) / 4, the first groupxel inside the
+ *        first tile; bits 7-6 a second value taken mod 4 (role UNKNOWN).
+ *   0x50 + f and 0x58 + f, f = field: one word written to both: bits 6-0 =
+ *        (y - o) mod 80, bits 19-7 = the field's first tile address, (y - o)
+ *        / 8 times the tiles per row plus x / 160, bits 23-20 = a field-layout
+ *        code; o is the field's line offset times a per-layout factor.
+ *   0x60 + f: the channel record's word at +0xe8 + 16f with bits 23-12 = the
+ *        window height and bits 27-24 = a field line offset.
+ */
+#define KONA_VDRC_CONTROL             0x44
+#define KONA_VDRC_MAW                 0x45
+#define KONA_VDRC_START_LINE          0x47
+#define KONA_VDRC_MIDDLE_LINE         0x48
+#define KONA_VDRC_END_LINE            0x49
+#define KONA_VDRC_PAN                 0x4a
+#define KONA_VDRC_FIELD_A(f)          (0x50 + (f))
+#define KONA_VDRC_FIELD_B(f)          (0x58 + (f))
+#define KONA_VDRC_REQ_PATTERN(f)      (0x60 + (f))
+#define KONA_TILE_WIDTH               160
+#define KONA_TILE_HEIGHT              8
+#define KONA_VDRC_MAX_TILES_PER_REQ   8
+/* Request word at 0x47-0x49, ESTABLISHED bit positions. */
+#define KONA_VDRC_REQ_TILES_M1        0x00000007  /* tiles in the request - 1 */
+#define KONA_VDRC_REQ_GROUPXELS_M1    0x00003ff8  /* bits 13-3: groupxels in the line - 1 */
+#define KONA_VDRC_REQ_VALID           0x00004000  /* set in START and MIDDLE, never in END */
+#define KONA_VDRC_REQ_REPEAT          0x007f8000  /* bits 22-15, MIDDLE only: repeat count */
 #define KONA_VOC_PLL_CONTROL          0x70    /* [VOC_PLL_CONTROL] polled by dgWaitForVocPllInterface,
                                                * written by dgProgramClock; 0x71 and 0x73 written
                                                * by dgLoadVocClockParams */

@@ -301,12 +301,12 @@ token	0x12a	HP_X_LOADPOS;KONA_HP_X_LOADPOS		route=hw	GE.h,firmware map,kpm	0	0		
 token	0x12b	HP_X_LOADCLIP;KONA_HP_X_LOADCLIP		route=hw	GE.h,firmware map,kpm	0	0		documented	GE.h:459	
 token	0x12c	HP_X_LOADCLIP_ARM;KONA_HP_X_LOADCLIP_ARM		handler=arm_x_loadclip_arm route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#xloads	xload.S
 token	0x12d	HP_X_LOADSCISSOR;KONA_HP_X_LOADSCISSOR		route=hw	GE.h,firmware map,kpm	0	0		documented	GE.h:461	
-token	0x12e	HP_X_LOADCMAP;KONA_HP_X_LOADCMAP		handler=arm_x_loadcmap route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#videos	video.S
-token	0x12f	HP_X_LOADGAMMA;KONA_HP_X_LOADGAMMA		handler=arm_x_loadgamma route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#videos	video.S
+token	0x12e	HP_X_LOADCMAP;KONA_HP_X_LOADCMAP		handler=arm_x_loadcmap route=arm	GE.h,firmware map,kpm	0	0		documented	docs/dg.md#colour-maps-and-gamma-tables	Colour maps and gamma tables
+token	0x12f	HP_X_LOADGAMMA;KONA_HP_X_LOADGAMMA		handler=arm_x_loadgamma route=arm	GE.h,firmware map,kpm	0	0		documented	docs/dg.md#colour-maps-and-gamma-tables	Colour maps and gamma tables
 token	0x130	HP_X_LOADCURSOR;KONA_HP_X_LOADCURSOR		handler=arm_x_loadcursor route=arm	GE.h,firmware map,kpm	0	0		documented	docs/ge.md#context-query-and-other-long-commands	Context, query and other long commands
-token	0x131	HP_X_LOADCURSORCOLOR;KONA_HP_X_LOADCURSORCOLOR		handler=arm_x_loadcursorcolor route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#videos	video.S
-token	0x132	HP_X_LOADXMAP_DID;KONA_HP_X_LOADXMAP_DID		handler=arm_x_loadxmap_did route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#videos	video.S
-token	0x133	HP_X_LOADXMAP_CONFIG;KONA_HP_X_LOADXMAP_CONFIG		handler=arm_x_loadxmap_config route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#videos	video.S
+token	0x131	HP_X_LOADCURSORCOLOR;KONA_HP_X_LOADCURSORCOLOR		handler=arm_x_loadcursorcolor route=arm	GE.h,firmware map,kpm	0	0		documented	docs/dg.md#display-tokens	Display tokens
+token	0x132	HP_X_LOADXMAP_DID;KONA_HP_X_LOADXMAP_DID		handler=arm_x_loadxmap_did route=arm	GE.h,firmware map,kpm	0	0		documented	docs/dg.md#display-tokens	Display tokens
+token	0x133	HP_X_LOADXMAP_CONFIG;KONA_HP_X_LOADXMAP_CONFIG		handler=arm_x_loadxmap_config route=arm	GE.h,firmware map,kpm	0	0		documented	docs/dg.md#display-tokens	Display tokens
 token	0x134	HP_GET_GE_TEXTURE_ATTRIB;KONA_HP_GET_GE_TEXTURE_ATTRIB		handler=arm_get_ge_texture_attrib route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#hostios	hostio.S
 token	0x135	HP_PIXEL_TRANSFORM;KONA_HP_PIXEL_TRANSFORM		handler=arm_pixel_transform route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_PixelTransformSGI	documented	GE.h:469	
 token	0x136	HP_X_PIX_SETUP;KONA_HP_X_PIX_SETUP		handler=arm_x_pix_setup route=arm	GE.h,firmware map,kpm	0	0		named-only	GE.h:470	
@@ -474,7 +474,7 @@ token	0x1d7	HP_CHANGE_POST_TEX_SCALE_BIAS;KONA_HP_CHANGE_POST_TEX_SCALE_BIAS		ha
 token	0x1d8	HP_SKIP2;KONA_HP_SKIP2		route=hw	GE.h,firmware map,kpm	0	0		documented	GE.h:632	
 token	0x1d9	HP_SKIP4;KONA_HP_SKIP4		route=hw	GE.h,firmware map,kpm	0	0		documented	GE.h:633	
 token	0x1da	HP_SKIP5;KONA_HP_SKIP5		route=hw	GE.h,firmware map,kpm	0	0		documented	GE.h:634	
-token	0x1db	HP_SWAP_CNTRL;KONA_HP_SWAP_CNTRL		handler=arm_swap_cntrl route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#videos	video.S
+token	0x1db	HP_SWAP_CNTRL;KONA_HP_SWAP_CNTRL		handler=arm_swap_cntrl route=arm	GE.h,firmware map,kpm	0	0		documented	docs/dg.md#display-tokens	Display tokens
 token	0x1dc	HP_F3_WAR;KONA_HP_F3_WAR		handler=arm_f3_war route=arm	GE.h,firmware map,kpm	0	0		documented	GE.h:636	
 token	0x1dd	HP_GE_INTR;KONA_HP_GE_INTR		handler=arm_ge_intr route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_checkpipe	documented	GE.h:637	
 token	0x1de	HP_MEM_RESUME;KONA_HP_MEM_RESUME		handler=arm_mem_resume route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_resume	documented	docs/kernel.md#commands-the-driver-sends	Commands the driver sends
@@ -485,8 +485,8 @@ token	0x1e2	HP_MEM_SWAPIN;KONA_HP_MEM_SWAPIN		handler=arm_mem_swapin route=arm	G
 token	0x1e3	HP_MEM_SWAPOUT;KONA_HP_MEM_SWAPOUT		handler=arm_mem_swapout route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_swapout_func	documented	docs/kernel.md#commands-the-driver-sends	Commands the driver sends
 token	0x1e4	HP_MEM_RESERVE;KONA_HP_MEM_RESERVE		handler=arm_mem_reserve route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_reserve_func	documented	docs/kernel.md#commands-the-driver-sends	Commands the driver sends
 token	0x1e5	HP_GEROLLCALL;KONA_HP_GEROLLCALL		handler=arm_gerollcall route=arm	GE.h,firmware map,kpm	0	0		documented	ucode/ge_handlers.md#debugs	debug.S
-token	0x1e6	HP_DISPMODE;KONA_HP_DISPMODE		handler=arm_dispmode route=arm	GE.h,firmware map,kernel command port,kpm	4	2	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):KONAschedmgrswapbuf	documented	ucode/ge_handlers.md#videos	video.S
-token	0x1e7	HP_RETRACE_SEQID;KONA_HP_RETRACE_SEQID		handler=arm_retrace_seqid route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):kona_retrace_activate	documented	ucode/ge_handlers.md#videos	video.S
+token	0x1e6	HP_DISPMODE;KONA_HP_DISPMODE		handler=arm_dispmode route=arm	GE.h,firmware map,kernel command port,kpm	4	2	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):KONAschedmgrswapbuf	documented	docs/dg.md#display-tokens	Display tokens
+token	0x1e7	HP_RETRACE_SEQID;KONA_HP_RETRACE_SEQID		handler=arm_retrace_seqid route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):kona_retrace_activate	documented	docs/dg.md#display-tokens	Display tokens
 token	0x1e8	HP_ARM_NOP;KONA_HP_ARM_NOP		handler=arm_arm_nop route=arm	GE.h,firmware map,kpm	0	0		documented	GE.h:648	
 token	0x1e9	HP_GETCONFIG;KONA_HP_GETCONFIG		handler=arm_getconfig route=arm	GE.h,firmware map,kpm	0	0		named-only	GE.h:649	
 token	0x1ea	HP_PIPE_SYNC;KONA_HP_PIPE_SYNC		handler=arm_pipe_sync route=arm	GE.h,firmware map,kpm	0	0		documented	GE.h:650	

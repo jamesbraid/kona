@@ -1443,7 +1443,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10035a70	608	jtcrc_get_crc_vec
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10035cd0	1492	bef_configuration	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100362a4	332	SetSubField	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100363f0	544	get_status	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036610	508	dg_clock_setup	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036610	508	dg_clock_setup	dynsym	no-software-dependency	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them	Start-up and reset as the ARM firmware performs them
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003680c	764	dgopt_clock_setup	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036b08	492	dg_clock_restore	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036cf4	536	dgopt_clock_restore	dynsym	undocumented		
@@ -1587,7 +1587,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10061794	596	dg4_test	dynsym	u
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100619e8	116	dg4_stop	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10061a5c	1140	TEST_dgconn	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10061ed0	128	DgVDacControlWrite	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10061f50	352	reset_dacs	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10061f50	352	reset_dacs	dynsym	no-software-dependency	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them	Start-up and reset as the ARM firmware performs them
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100620b0	676	DacReset	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10062358	320	i2c_init	dynsym	documented	docs/dg.md#display-requests	Display requests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100624e4	364	i2c_arb	dynsym	undocumented		
@@ -1744,7 +1744,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10094934	884	vc_test	dynsym	un
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10094ca8	184	vc_stop	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10094d60	1340	TEST_vcconn	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009529c	440	TEST_vcbus	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100957a0	376	TEST_dacreg	dynsym	documented	DG.h:205	check); the container layout is in ucode/dg.md. Roles marked INFERRED
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100957a0	376	TEST_dacreg	dynsym	documented	DG.h:247	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10095ff8	376	TEST_optdacreg	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100969b4	484	dgRestoreDefaultPllValues	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10096b98	348	dgoptResetDefaultPllValues	dynsym	undocumented		
@@ -1799,8 +1799,8 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100abecc	780	TEST_tvo_voccpbuf
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100acd50	420	TEST_xmapchid	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ad210	460	TEST_xmapdid	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ad714	420	TEST_xmapovdid	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100adbfc	520	TEST_xmapmem	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b0094	364	TEST_xmapreg	dynsym	documented	DG.h:205	check); the container layout is in ucode/dg.md. Roles marked INFERRED
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100adbfc	520	TEST_xmapmem	dynsym	documented	DG.h:271	check); the container layout is in ucode/dg.md. Roles marked INFERRED
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b0094	364	TEST_xmapreg	dynsym	documented	DG.h:247	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b04ec	1732	TEST_tbusdata	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b0e70	820	TEST_idmabug	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b11a4	548	black_hole_ged	dynsym	undocumented		
@@ -2145,9 +2145,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101300d0	348	ogLibOrderRand	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013022c	940	TEST_ddo3_ctrlreg	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101305d8	1072	TEST_ddo3_autoconfig_loopback	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130a08	568	TEST_wait_done	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130c98	140	vdEnableDgInterrupts	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130c98	140	vdEnableDgInterrupts	dynsym	no-software-dependency	docs/dg.md#interrupts	Interrupts
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130d24	108	vdDisableDgInterrupts	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130d90	384	vdCheckDgInterrupts	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130d90	384	vdCheckDgInterrupts	dynsym	no-software-dependency	docs/dg.md#interrupts	Interrupts
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130f10	96	fmDidLoadShifting	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10130f70	220	fmFrameBufferRead	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013104c	148	vdEnableVOCSignalTrace	dynsym	undocumented		
@@ -2210,24 +2210,24 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013aab8	284	xmap_dump_crc_to_
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013abd4	544	xmap_jtag_status	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013adf4	216	xmap_crc_start	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013aecc	280	xmap_crc_stop	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013afe4	272	substitute_xmap_data	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013afe4	272	substitute_xmap_data	dynsym	documented	DG.h:270	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b0f4	84	turn_off_substitute_xmap_data	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b1f8	556	load_cmap	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b1f8	556	load_cmap	dynsym	documented	docs/dg.md#xmap-registers-memories-and-the-fast-list	XMAP registers, memories and the fast list
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b424	340	load_full_cmap	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b578	64	load_cursor	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b5b8	120	load_cursor_cntrs	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b578	64	load_cursor	dynsym	documented	docs/dg.md#cursor-memory	Cursor memory
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b5b8	120	load_cursor_cntrs	dynsym	documented	DG.h:269	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b630	92	load_cursor_pos	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b68c	224	easy_xmap_cursor	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b76c	480	change_fastlist_addr	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b94c	64	xmap_copybuffer	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b68c	224	easy_xmap_cursor	dynsym	no-software-dependency	docs/dg.md#cursor-memory	Cursor memory
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b76c	480	change_fastlist_addr	dynsym	documented	docs/dg.md#xmap-registers-memories-and-the-fast-list	XMAP registers, memories and the fast list
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b94c	64	xmap_copybuffer	dynsym	documented	DG.h:269	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013b98c	204	set_num_rms	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013ba58	380	set_xmap_id	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013bbd4	940	load_gamma_table	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013bf80	476	load_full_gamma	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013bbd4	940	load_gamma_table	dynsym	documented	docs/dg.md#xmap-registers-memories-and-the-fast-list	XMAP registers, memories and the fast list
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013bf80	476	load_full_gamma	dynsym	documented	docs/dg.md#colour-maps-and-gamma-tables	Colour maps and gamma tables
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013c15c	184	load_direct_color	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013c214	208	make_gamma_addr_legal	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013c2e4	228	define_xmap_channel	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013c3c8	524	base_xmap_init	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013c214	208	make_gamma_addr_legal	dynsym	documented	docs/dg.md#colour-maps-and-gamma-tables	Colour maps and gamma tables
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013c2e4	228	define_xmap_channel	dynsym	documented	docs/dg.md#xmap-registers-memories-and-the-fast-list	XMAP registers, memories and the fast list
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013c3c8	524	base_xmap_init	dynsym	documented	DG.h:270	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013c5d4	180	create_fb	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013c688	108	free_fb	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013c6f4	856	pack_rgba	dynsym	undocumented		
@@ -2241,7 +2241,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d5d4	284	define_imp_did	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d6f0	232	define_imp_ov_did	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d7d8	124	send_imp_dids_partial	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d854	72	send_imp_dids	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d89c	76	bloTbusWrite	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d89c	76	bloTbusWrite	dynsym	documented	docs/dg.md#xmap-registers-memories-and-the-fast-list	XMAP registers, memories and the fast list
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d8e8	88	evPcheck	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d940	92	evSkip	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d99c	92	evCheck	dynsym	undocumented		
@@ -2308,11 +2308,11 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014022c	364	Load_GED_Ucode_Fl
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140398	72	Send_GED_Inc_GE	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101403e0	620	Load_GED_Ucode_Loop	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014064c	208	vcWriteAddr	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014071c	332	vcWrite	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140868	288	vcWriteFastlist	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014071c	332	vcWrite	dynsym	documented	docs/dg.md#xmap-registers-memories-and-the-fast-list	XMAP registers, memories and the fast list
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140868	288	vcWriteFastlist	dynsym	documented	docs/dg.md#xmap-registers-memories-and-the-fast-list	XMAP registers, memories and the fast list
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140988	280	vcWriteIncr	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140aa0	268	vcWriteSame	dynsym	undocumented		
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140bac	360	vcRead	dynsym	undocumented		
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140bac	360	vcRead	dynsym	documented	docs/dg.md#xmap-registers-memories-and-the-fast-list	XMAP registers, memories and the fast list
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140d14	356	vcReadIncr	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140e78	344	vcReadSame	dynsym	undocumented		
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140fd0	32	tbuFakeDownloadRegs	dynsym	undocumented		
@@ -7544,7 +7544,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec695e8	136	convolve	dynsym	un
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69670	136	__GLgetscrmask	dynsym+mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69670	136	getscrmask	dynsym	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec696f8	136	__GLwindow	dynsym+mdebug	undocumented		
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec696f8	136	window	dynsym	documented	docs/opengl.md#swap-buffers-rrm_validateswapbuf-1012-and-rrm_mgr_swapbuf-1020	Swap buffers: `RRM_VALIDATESWAPBUF` (1012) and `RRM_MGR_SWAPBUF` (1020)
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec696f8	136	window	dynsym	documented	docs/dg.md#display-tokens	Display tokens
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69780	64	__GListexloaded	dynsym+mdebug	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec69780	64	istexloaded	dynsym	undocumented		
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec697c0	136	__GLsmoothline	dynsym+mdebug	undocumented		
@@ -11356,7 +11356,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6afb8	180	convolve	dynsym	
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b06c	180	__GLgetscrmask	dwarf+dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b06c	180	getscrmask	dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b120	180	__GLwindow	dwarf+dynsym	undocumented		
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b120	180	window	dynsym	documented	docs/opengl.md#swap-buffers-rrm_validateswapbuf-1012-and-rrm_mgr_swapbuf-1020	Swap buffers: `RRM_VALIDATESWAPBUF` (1012) and `RRM_MGR_SWAPBUF` (1020)
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b120	180	window	dynsym	documented	docs/dg.md#display-tokens	Display tokens
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b1d4	68	__GListexloaded	dwarf+dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b1d4	68	istexloaded	dynsym	undocumented		
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6b218	180	__GLsmoothline	dwarf+dynsym	undocumented		
@@ -48807,8 +48807,8 @@ usr/gfx/setmon	shared-tool	n32		0x10025090	104	saXSGIvcListVideoFormats	dynsym	u
 usr/gfx/setmon	shared-tool	n32		0x10025290	96	saXSGIvcSetOutputPedestal	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x10026850	192	KonCmd	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x100269e0	92	saXSGIvcSetOutputSync	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x10026a40	80	konReloadAllGammas	dynsym	undocumented		
-usr/gfx/setmon	shared-tool	n32		0x10026a90	124	konTempBlankAllChannels	dynsym	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x10026a40	80	konReloadAllGammas	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
+usr/gfx/setmon	shared-tool	n32		0x10026a90	124	konTempBlankAllChannels	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/gfx/setmon	shared-tool	n32		0x10026b10	72	saXSGIvcQueryScreenGammaMaps	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x10026b60	56	saXSGIvcQueryMonitorName	dynsym	undocumented		
 usr/gfx/setmon	shared-tool	n32		0x10026e40	56	vcGetVideoRply	dynsym	undocumented		
@@ -50444,8 +50444,8 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44e0d0	212	miClearDrawable	dynsy
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44e1b0	748	konStereoPolyline	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44e4a0	1972	cfbFillRectSolidCopy	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44ee60	844	rrmUnbindRNFromClip	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44f1b0	24	konQueryMaxSwapBarrier	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44f1d0	688	konChangeDIDCmap	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44f1b0	24	konQueryMaxSwapBarrier	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44f1d0	688	konChangeDIDCmap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44f490	1416	nfbPolyFillRect	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44fa20	132	cfb32DoBitblt	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44fcf0	292	miPostChangeSaveUnder	dynsym	undocumented		
@@ -50467,7 +50467,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x456320	312	mfbGetImage	dynsym	un
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x456460	320	cfb16SegmentSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4565a0	316	cfbYRotatePixmap	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x456f10	208	nfbHWStoreColors	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x457600	1416	konInitDIDState	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x457600	1416	konInitDIDState	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x457b90	704	cfb32VertS	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x457f30	152	konStippledCFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x458400	3096	mfbLineSD	dynsym	undocumented		
@@ -50490,7 +50490,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x45eae0	2268	cfbFillBoxTile32sGen
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x45f3c0	3604	mfbLineSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4601e0	2040	konValidateMode	dynsym	documented	docs/dg.md#buffer-swap-and-retrace-wait	Buffer swap and retrace wait
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4609e0	628	FindFreeCID	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x460c60	28	konStoreFakeColors	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x460c60	28	konStoreFakeColors	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x460c80	432	nfbValidateWindowVisual	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x460f20	2576	cfb16SegmentSD	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x461930	3052	cfb32SegmentSS	dynsym	undocumented		
@@ -50500,14 +50500,14 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x462e10	148	cfbCopyPixmap	dynsym	
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x462eb0	1196	miSendExposures	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x463360	748	miUnion	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x463a10	1604	miFillSppPoly	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x464060	96	konReloadAllGammas	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x464060	96	konReloadAllGammas	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4640c0	912	konStereoPolyArc	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x464450	2876	cfb32ClippedLineGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x464fa0	1432	cfb32FillBoxTileOddCopy	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x465540	120	rrmCreateWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4655c0	104	konSetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x465630	368	konDestroyGC	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4657a0	104	konTempBlankAllChannels	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4657a0	104	konTempBlankAllChannels	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x465810	2172	konLineSS	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x466090	1284	cfb32Tile32FSGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4665a0	2628	cfb16FillPoly1RectCopy	dynsym	undocumented		
@@ -50528,7 +50528,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46dfa0	3692	konPolyGlyphBltSolid
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46ee10	24	nfbStereoRegisterWrapperOps	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46ee30	796	cfbPutImage	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x46f150	2904	konPolyGlyphBltSolidTE16	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4715c0	660	kon_drawDid	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4715c0	660	kon_drawDid	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x471860	224	kon_loadNfbGCoff	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x471940	2400	konPolyGlyphBltSolidTE32	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x472370	3344	cfb16FillPoly1RectGeneral	dynsym	undocumented		
@@ -50636,7 +50636,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49edd0	4924	konPolyFillRectTiled
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a0720	772	cfbResolveColor	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a0cd0	304	nfbPostChangeSaveUnder	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a0e00	3512	cfb16LineSS	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a25a0	20	konClearHWColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a25a0	20	konClearHWColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a25c0	468	cfb32ZeroPolyArcSSXor	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a27a0	1132	mfbGetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a2c10	228	konaSetStereoMode	dynsym	documented	docs/opengl.md#ioctls	Ioctls
@@ -50646,7 +50646,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a3070	520	mfbSolidPP	dynsym	und
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a3280	1116	mfbInvertSolidFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a36e0	508	nfbPaintWindowBorder	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a3900	3288	nfbImageGlyphBlt	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a45e0	1532	konStore24DCColors	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a45e0	1532	konStore24DCColors	dynsym	documented	docs/dg.md#colour-maps-and-gamma-tables	Colour maps and gamma tables
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a4be0	3204	mfbValidateGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a6270	640	kon_loadGC	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a71b0	336	cfb32ImageGlyphBlt8	dynsym	undocumented		
@@ -50715,9 +50715,9 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4beb40	328	nfbInstallColormap	dy
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4bf820	1320	nfbCopyPlane	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4bfd50	124	miScreenDevPrivateInit	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4c1850	1988	nfbSolidZeroSeg	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4c2230	308	kon_initCursorCaches	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4c2230	308	kon_initCursorCaches	dynsym	documented	docs/dg.md#cursor-memory	Cursor memory
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4c2370	4344	mfbDoBitbltCopyInverted	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4c3620	20	konInstallFakeColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4c3620	20	konInstallFakeColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4c3ac0	3892	konSlowSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4c4b00	132	rrmDestroyWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4c4f00	872	konStereoPutImage	dynsym	undocumented		
@@ -50781,7 +50781,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4d9a00	32	miInitSpanGroup	dynsym
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4d9d40	676	nfbOpStippledFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4d9ff0	2500	mfbUnnaturalStippleFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4da9c0	580	nfbPaintWindowBackground	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4dac10	100	konSetColor	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4dac10	100	konSetColor	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4dac80	748	konStereoPolyPoint	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4daf70	88	rrmSetResourceMask	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4dafd0	2540	konImageGlyphBltTE32	dynsym	undocumented		
@@ -50873,7 +50873,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5076b0	884	nfbStereoCopyPlane	dy
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x507a30	1220	konStereoCopyArea	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x507f00	572	kon_freeCachedStipple	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x508140	1312	cfb32PolyPoint	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x508660	168	konUninstallColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x508660	168	konUninstallColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x508720	2804	konImageGlyphBlt	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x509220	2944	mfbPixmapToRegion	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x509da0	816	cfbBresS	dynsym	undocumented		
@@ -50974,7 +50974,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5346b0	3104	nfbGenericScreenInit
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5352d0	60	miFreeSpanGroup	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x535310	164	konDestroyHyperpipeConfig	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5353c0	368	miAppendSpans	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x535530	908	konInitializeColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x535530	908	konInitializeColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5358c0	104	compareModes	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x535e60	728	cfb8LineSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x536140	6304	cfb16DoBitbltGeneral	dynsym	undocumented		
@@ -51020,7 +51020,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x54a270	1192	cfb32FillSpanTileOdd
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x54a720	228	konAttachXvc	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x54a810	636	miEllipseAngleToSlope	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x54aa90	684	rrmOGLBindRNToClip	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x54ad40	628	konRealizeCursor	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x54ad40	628	konRealizeCursor	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x54b0c0	1060	cfb16SetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x54c660	2376	cfb8LineSS1RectGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x54cfb0	468	cfbZeroPolyArcSS8Copy	dynsym	undocumented		
@@ -51058,7 +51058,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x55e270	236	mfbYRotatePixmap	dyns
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x55e3d0	452	miInsertEdgeInET	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x55e5a0	2928	cfb16ValidateGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x55f110	340	nfbDoBitBltPS	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x55f270	364	konUnrealizeCursor	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x55f270	364	konUnrealizeCursor	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x55f3e0	204	konValidateReducedGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x55f4b0	2080	cfbFillRectSolidGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x55fcd0	312	cfb16CopyRotatePixmap	dynsym	undocumented		
@@ -51086,7 +51086,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x566760	2276	nfbInitHWCmapArrays	
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x567050	728	cfb32LineSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x567330	124	miMarkUnrealizedWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x5673b0	836	nfbUninstallHWColormap	dynsym	undocumented		
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x567700	84	kon_freeCursorCaches	dynsym	undocumented		
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x567700	84	kon_freeCursorCaches	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x567a90	40	miRegionNotEmpty	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x567e00	208	miChangeSaveUnder	dynsym	undocumented		
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x568b80	1044	cfbSetSpans	dynsym	undocumented		
@@ -51239,8 +51239,8 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44dc90	212	miClearDrawable	dyns
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44dd70	748	konStereoPolyline	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44e060	1972	cfbFillRectSolidCopy	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44ea20	844	rrmUnbindRNFromClip	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44ed70	24	konQueryMaxSwapBarrier	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44ed90	696	konChangeDIDCmap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44ed70	24	konQueryMaxSwapBarrier	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44ed90	696	konChangeDIDCmap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44f060	1416	nfbPolyFillRect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44f5f0	132	cfb32DoBitblt	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44f8c0	292	miPostChangeSaveUnder	dynsym	undocumented		
@@ -51262,7 +51262,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x455fb0	312	mfbGetImage	dynsym	u
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4560f0	320	cfb16SegmentSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x456230	316	cfbYRotatePixmap	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x456ba0	208	nfbHWStoreColors	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x457290	1416	konInitDIDState	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x457290	1416	konInitDIDState	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x457820	704	cfb32VertS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x457bc0	152	konStippledCFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x458090	3096	mfbLineSD	dynsym	undocumented		
@@ -51285,7 +51285,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45e770	2268	cfbFillBoxTile32sGe
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45f050	3604	mfbLineSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45fe70	2048	konValidateMode	dynsym	documented	docs/dg.md#buffer-swap-and-retrace-wait	Buffer swap and retrace wait
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x460670	628	FindFreeCID	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4608f0	28	konStoreFakeColors	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4608f0	28	konStoreFakeColors	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x460910	432	nfbValidateWindowVisual	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x460bb0	2576	cfb16SegmentSD	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4615c0	3052	cfb32SegmentSS	dynsym	undocumented		
@@ -51295,14 +51295,14 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x462ab0	148	cfbCopyPixmap	dynsym
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x462b50	1196	miSendExposures	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x463000	748	miUnion	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4636b0	1604	miFillSppPoly	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x463d00	96	konReloadAllGammas	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x463d00	96	konReloadAllGammas	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x463d60	912	konStereoPolyArc	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4640f0	2876	cfb32ClippedLineGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x464c30	1432	cfb32FillBoxTileOddCopy	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4651d0	120	rrmCreateWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x465250	104	konSetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4652c0	368	konDestroyGC	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x465430	104	konTempBlankAllChannels	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x465430	104	konTempBlankAllChannels	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4654a0	2764	konLineSS	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x465f70	1284	cfb32Tile32FSGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x466480	2628	cfb16FillPoly1RectCopy	dynsym	undocumented		
@@ -51323,7 +51323,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46e0e0	3748	konPolyGlyphBltSoli
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46ef90	24	nfbStereoRegisterWrapperOps	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46efb0	796	cfbPutImage	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x46f2d0	2960	konPolyGlyphBltSolidTE16	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x471770	684	kon_drawDid	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x471770	684	kon_drawDid	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x471a20	232	kon_loadNfbGCoff	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x471b10	2456	konPolyGlyphBltSolidTE32	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x472580	3344	cfb16FillPoly1RectGeneral	dynsym	undocumented		
@@ -51431,7 +51431,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a6d80	5680	konPolyFillRectTile
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a89c0	772	cfbResolveColor	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a8f70	304	nfbPostChangeSaveUnder	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a90a0	3512	cfb16LineSS	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aa840	20	konClearHWColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aa840	20	konClearHWColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aa860	468	cfb32ZeroPolyArcSSXor	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aaa40	1132	mfbGetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aaeb0	228	konaSetStereoMode	dynsym	documented	docs/opengl.md#ioctls	Ioctls
@@ -51441,7 +51441,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4ab310	520	mfbSolidPP	dynsym	un
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4ab520	1116	mfbInvertSolidFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4ab980	508	nfbPaintWindowBorder	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4abb80	3288	nfbImageGlyphBlt	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4ac860	1556	konStore24DCColors	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4ac860	1556	konStore24DCColors	dynsym	documented	docs/dg.md#colour-maps-and-gamma-tables	Colour maps and gamma tables
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4ace80	3204	mfbValidateGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4ae510	656	kon_loadGC	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4af480	336	cfb32ImageGlyphBlt8	dynsym	undocumented		
@@ -51510,9 +51510,9 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4c74d0	328	nfbInstallColormap	d
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4c81b0	1320	nfbCopyPlane	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4c86e0	124	miScreenDevPrivateInit	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4ca1d0	1988	nfbSolidZeroSeg	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4cabb0	308	kon_initCursorCaches	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4cabb0	308	kon_initCursorCaches	dynsym	documented	docs/dg.md#cursor-memory	Cursor memory
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4cacf0	4344	mfbDoBitbltCopyInverted	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4cbfa0	20	konInstallFakeColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4cbfa0	20	konInstallFakeColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4cc440	3924	konSlowSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4cd4a0	132	rrmDestroyWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4cd8a0	872	konStereoPutImage	dynsym	undocumented		
@@ -51576,7 +51576,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4e28b0	32	miInitSpanGroup	dynsy
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4e2bf0	676	nfbOpStippledFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4e2ea0	2500	mfbUnnaturalStippleFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4e3870	580	nfbPaintWindowBackground	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4e3ac0	100	konSetColor	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4e3ac0	100	konSetColor	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4e3b30	748	konStereoPolyPoint	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4e3e20	88	rrmSetResourceMask	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4e3e80	2604	konImageGlyphBltTE32	dynsym	undocumented		
@@ -51668,7 +51668,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x511130	884	nfbStereoCopyPlane	d
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5114b0	1220	konStereoCopyArea	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x511980	572	kon_freeCachedStipple	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x511bc0	1312	cfb32PolyPoint	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5120e0	168	konUninstallColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5120e0	168	konUninstallColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x512190	2860	konImageGlyphBlt	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x512cc0	2944	mfbPixmapToRegion	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x513840	816	cfbBresS	dynsym	undocumented		
@@ -51769,7 +51769,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x53e820	3104	nfbGenericScreenIni
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x53f440	60	miFreeSpanGroup	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x53f480	164	konDestroyHyperpipeConfig	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x53f530	368	miAppendSpans	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x53f6a0	908	konInitializeColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x53f6a0	908	konInitializeColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x53fa30	104	compareModes	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x53ffd0	728	cfb8LineSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5402b0	6304	cfb16DoBitbltGeneral	dynsym	undocumented		
@@ -51815,7 +51815,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x555700	1192	cfb32FillSpanTileOd
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x555bb0	228	konAttachXvc	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x555ca0	636	miEllipseAngleToSlope	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x555f20	684	rrmOGLBindRNToClip	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5561d0	628	konRealizeCursor	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5561d0	628	konRealizeCursor	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x556550	1060	cfb16SetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x557af0	2376	cfb8LineSS1RectGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x558440	468	cfbZeroPolyArcSS8Copy	dynsym	undocumented		
@@ -51853,7 +51853,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x56a390	236	mfbYRotatePixmap	dyn
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x56a4f0	452	miInsertEdgeInET	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x56a6c0	2928	cfb16ValidateGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x56b230	340	nfbDoBitBltPS	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x56b390	364	konUnrealizeCursor	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x56b390	364	konUnrealizeCursor	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x56b500	204	konValidateReducedGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x56b5d0	2080	cfbFillRectSolidGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x56bdf0	312	cfb16CopyRotatePixmap	dynsym	undocumented		
@@ -51881,7 +51881,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x572b20	2276	nfbInitHWCmapArrays
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x573410	728	cfb32LineSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5736f0	124	miMarkUnrealizedWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x573770	836	nfbUninstallHWColormap	dynsym	undocumented		
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x573ac0	84	kon_freeCursorCaches	dynsym	undocumented		
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x573ac0	84	kon_freeCursorCaches	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x573e50	40	miRegionNotEmpty	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5741c0	208	miChangeSaveUnder	dynsym	undocumented		
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x574f40	1044	cfbSetSpans	dynsym	undocumented		
@@ -52034,8 +52034,8 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cdc90	212	miClearDrawable	dyn
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cdd70	748	konStereoPolyline	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ce060	1972	cfbFillRectSolidCopy	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cea20	844	rrmUnbindRNFromClip	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ced70	24	konQueryMaxSwapBarrier	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ced90	696	konChangeDIDCmap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ced70	24	konQueryMaxSwapBarrier	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ced90	696	konChangeDIDCmap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cf060	1416	nfbPolyFillRect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cf5f0	132	cfb32DoBitblt	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cf8c0	292	miPostChangeSaveUnder	dynsym	undocumented		
@@ -52057,7 +52057,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13d5fb0	312	mfbGetImage	dynsym	
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13d60f0	320	cfb16SegmentSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13d6230	316	cfbYRotatePixmap	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13d6ba0	208	nfbHWStoreColors	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13d7290	1416	konInitDIDState	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13d7290	1416	konInitDIDState	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13d7820	704	cfb32VertS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13d7bc0	152	konStippledCFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13d8090	3096	mfbLineSD	dynsym	undocumented		
@@ -52080,7 +52080,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13de770	2268	cfbFillBoxTile32sG
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13df050	3604	mfbLineSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13dfe70	2048	konValidateMode	dynsym	documented	docs/dg.md#buffer-swap-and-retrace-wait	Buffer swap and retrace wait
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e0670	628	FindFreeCID	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e08f0	28	konStoreFakeColors	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e08f0	28	konStoreFakeColors	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e0910	432	nfbValidateWindowVisual	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e0bb0	2576	cfb16SegmentSD	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e15c0	3052	cfb32SegmentSS	dynsym	undocumented		
@@ -52090,14 +52090,14 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e2ab0	148	cfbCopyPixmap	dynsy
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e2b50	1196	miSendExposures	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e3000	748	miUnion	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e36b0	1604	miFillSppPoly	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e3d00	96	konReloadAllGammas	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e3d00	96	konReloadAllGammas	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e3d60	912	konStereoPolyArc	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e40f0	2876	cfb32ClippedLineGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e4c30	1432	cfb32FillBoxTileOddCopy	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e51d0	120	rrmCreateWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e5250	104	konSetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e52c0	368	konDestroyGC	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e5430	104	konTempBlankAllChannels	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e5430	104	konTempBlankAllChannels	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e54a0	2764	konLineSS	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e5f70	1284	cfb32Tile32FSGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e6480	2628	cfb16FillPoly1RectCopy	dynsym	undocumented		
@@ -52118,7 +52118,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ee0e0	3748	konPolyGlyphBltSol
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13eef90	24	nfbStereoRegisterWrapperOps	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13eefb0	796	cfbPutImage	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ef2d0	2960	konPolyGlyphBltSolidTE16	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f1770	684	kon_drawDid	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f1770	684	kon_drawDid	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f1a20	232	kon_loadNfbGCoff	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f1b10	2456	konPolyGlyphBltSolidTE32	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13f2580	3344	cfb16FillPoly1RectGeneral	dynsym	undocumented		
@@ -52226,7 +52226,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1426d80	5680	konPolyFillRectTil
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14289c0	772	cfbResolveColor	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1428f70	304	nfbPostChangeSaveUnder	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14290a0	3512	cfb16LineSS	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142a840	20	konClearHWColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142a840	20	konClearHWColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142a860	468	cfb32ZeroPolyArcSSXor	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142aa40	1132	mfbGetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142aeb0	228	konaSetStereoMode	dynsym	documented	docs/opengl.md#ioctls	Ioctls
@@ -52236,7 +52236,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142b310	520	mfbSolidPP	dynsym	u
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142b520	1116	mfbInvertSolidFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142b980	508	nfbPaintWindowBorder	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142bb80	3288	nfbImageGlyphBlt	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142c860	1556	konStore24DCColors	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142c860	1556	konStore24DCColors	dynsym	documented	docs/dg.md#colour-maps-and-gamma-tables	Colour maps and gamma tables
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142ce80	3204	mfbValidateGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142e510	656	kon_loadGC	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142f480	336	cfb32ImageGlyphBlt8	dynsym	undocumented		
@@ -52305,9 +52305,9 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14474d0	328	nfbInstallColormap	
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14481b0	1320	nfbCopyPlane	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14486e0	124	miScreenDevPrivateInit	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x144a1d0	1988	nfbSolidZeroSeg	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x144abb0	308	kon_initCursorCaches	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x144abb0	308	kon_initCursorCaches	dynsym	documented	docs/dg.md#cursor-memory	Cursor memory
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x144acf0	4344	mfbDoBitbltCopyInverted	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x144bfa0	20	konInstallFakeColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x144bfa0	20	konInstallFakeColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x144c440	3924	konSlowSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x144d4a0	132	rrmDestroyWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x144d8a0	872	konStereoPutImage	dynsym	undocumented		
@@ -52371,7 +52371,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14628b0	32	miInitSpanGroup	dyns
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1462bf0	676	nfbOpStippledFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1462ea0	2500	mfbUnnaturalStippleFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1463870	580	nfbPaintWindowBackground	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1463ac0	100	konSetColor	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1463ac0	100	konSetColor	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1463b30	748	konStereoPolyPoint	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1463e20	88	rrmSetResourceMask	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1463e80	2604	konImageGlyphBltTE32	dynsym	undocumented		
@@ -52463,7 +52463,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1491110	884	nfbStereoCopyPlane	
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1491490	1220	konStereoCopyArea	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1491960	572	kon_freeCachedStipple	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1491ba0	1312	cfb32PolyPoint	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14920c0	168	konUninstallColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14920c0	168	konUninstallColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1492170	2860	konImageGlyphBlt	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1492cb0	2944	mfbPixmapToRegion	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1493830	816	cfbBresS	dynsym	undocumented		
@@ -52564,7 +52564,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14be820	3104	nfbGenericScreenIn
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14bf440	60	miFreeSpanGroup	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14bf480	164	konDestroyHyperpipeConfig	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14bf530	368	miAppendSpans	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14bf6a0	908	konInitializeColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14bf6a0	908	konInitializeColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14bfa30	104	compareModes	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14bffd0	728	cfb8LineSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14c02b0	6304	cfb16DoBitbltGeneral	dynsym	undocumented		
@@ -52610,7 +52610,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14d5700	1192	cfb32FillSpanTileO
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14d5bb0	228	konAttachXvc	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14d5ca0	636	miEllipseAngleToSlope	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14d5f20	684	rrmOGLBindRNToClip	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14d61d0	628	konRealizeCursor	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14d61d0	628	konRealizeCursor	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14d6550	1060	cfb16SetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14d7af0	2376	cfb8LineSS1RectGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14d8440	468	cfbZeroPolyArcSS8Copy	dynsym	undocumented		
@@ -52648,7 +52648,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ea3a0	236	mfbYRotatePixmap	dy
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ea500	452	miInsertEdgeInET	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ea6e0	2928	cfb16ValidateGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14eb250	340	nfbDoBitBltPS	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14eb3b0	364	konUnrealizeCursor	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14eb3b0	364	konUnrealizeCursor	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14eb520	204	konValidateReducedGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14eb5f0	2080	cfbFillRectSolidGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14ebe10	312	cfb16CopyRotatePixmap	dynsym	undocumented		
@@ -52676,7 +52676,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14f2b30	2276	nfbInitHWCmapArray
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14f3420	728	cfb32LineSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14f3700	124	miMarkUnrealizedWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14f3780	836	nfbUninstallHWColormap	dynsym	undocumented		
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14f3ad0	84	kon_freeCursorCaches	dynsym	undocumented		
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14f3ad0	84	kon_freeCursorCaches	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14f3e60	40	miRegionNotEmpty	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14f41d0	208	miChangeSaveUnder	dynsym	undocumented		
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14f4f50	1044	cfbSetSpans	dynsym	undocumented		
@@ -52829,8 +52829,8 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44dc90	212	miClearDrawable	dyns
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44dd70	748	konStereoPolyline	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44e060	1972	cfbFillRectSolidCopy	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44ea20	844	rrmUnbindRNFromClip	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44ed70	24	konQueryMaxSwapBarrier	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44ed90	696	konChangeDIDCmap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44ed70	24	konQueryMaxSwapBarrier	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44ed90	696	konChangeDIDCmap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44f060	1416	nfbPolyFillRect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44f5f0	132	cfb32DoBitblt	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44f8c0	292	miPostChangeSaveUnder	dynsym	undocumented		
@@ -52852,7 +52852,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x455fb0	312	mfbGetImage	dynsym	u
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4560f0	320	cfb16SegmentSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x456230	316	cfbYRotatePixmap	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x456ba0	208	nfbHWStoreColors	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x457290	1416	konInitDIDState	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x457290	1416	konInitDIDState	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x457820	704	cfb32VertS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x457bc0	152	konStippledCFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x458090	3096	mfbLineSD	dynsym	undocumented		
@@ -52875,7 +52875,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45e770	2268	cfbFillBoxTile32sGe
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45f050	3604	mfbLineSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45fe70	2048	konValidateMode	dynsym	documented	docs/dg.md#buffer-swap-and-retrace-wait	Buffer swap and retrace wait
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x460670	628	FindFreeCID	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4608f0	28	konStoreFakeColors	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4608f0	28	konStoreFakeColors	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x460910	432	nfbValidateWindowVisual	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x460bb0	2576	cfb16SegmentSD	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4615c0	3052	cfb32SegmentSS	dynsym	undocumented		
@@ -52885,14 +52885,14 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x462ab0	148	cfbCopyPixmap	dynsym
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x462b50	1196	miSendExposures	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x463000	748	miUnion	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4636b0	1604	miFillSppPoly	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x463d00	96	konReloadAllGammas	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x463d00	96	konReloadAllGammas	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x463d60	912	konStereoPolyArc	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4640f0	2876	cfb32ClippedLineGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x464c30	1432	cfb32FillBoxTileOddCopy	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4651d0	120	rrmCreateWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x465250	104	konSetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4652c0	368	konDestroyGC	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x465430	104	konTempBlankAllChannels	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x465430	104	konTempBlankAllChannels	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4654a0	2764	konLineSS	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x465f70	1284	cfb32Tile32FSGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x466480	2628	cfb16FillPoly1RectCopy	dynsym	undocumented		
@@ -52913,7 +52913,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46e0e0	3748	konPolyGlyphBltSoli
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46ef90	24	nfbStereoRegisterWrapperOps	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46efb0	796	cfbPutImage	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x46f2d0	2960	konPolyGlyphBltSolidTE16	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x471770	684	kon_drawDid	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x471770	684	kon_drawDid	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x471a20	232	kon_loadNfbGCoff	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x471b10	2456	konPolyGlyphBltSolidTE32	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x472580	3344	cfb16FillPoly1RectGeneral	dynsym	undocumented		
@@ -53021,7 +53021,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a6d80	5680	konPolyFillRectTile
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a89c0	772	cfbResolveColor	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a8f70	304	nfbPostChangeSaveUnder	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a90a0	3512	cfb16LineSS	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aa840	20	konClearHWColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aa840	20	konClearHWColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aa860	468	cfb32ZeroPolyArcSSXor	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aaa40	1132	mfbGetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aaeb0	228	konaSetStereoMode	dynsym	documented	docs/opengl.md#ioctls	Ioctls
@@ -53031,7 +53031,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4ab310	520	mfbSolidPP	dynsym	un
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4ab520	1116	mfbInvertSolidFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4ab980	508	nfbPaintWindowBorder	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4abb80	3288	nfbImageGlyphBlt	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4ac860	1556	konStore24DCColors	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4ac860	1556	konStore24DCColors	dynsym	documented	docs/dg.md#colour-maps-and-gamma-tables	Colour maps and gamma tables
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4ace80	3204	mfbValidateGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4ae510	656	kon_loadGC	dynsym	documented	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4af480	336	cfb32ImageGlyphBlt8	dynsym	undocumented		
@@ -53100,9 +53100,9 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4c74d0	328	nfbInstallColormap	d
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4c81b0	1320	nfbCopyPlane	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4c86e0	124	miScreenDevPrivateInit	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4ca1d0	1988	nfbSolidZeroSeg	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4cabb0	308	kon_initCursorCaches	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4cabb0	308	kon_initCursorCaches	dynsym	documented	docs/dg.md#cursor-memory	Cursor memory
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4cacf0	4344	mfbDoBitbltCopyInverted	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4cbfa0	20	konInstallFakeColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4cbfa0	20	konInstallFakeColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4cc440	3924	konSlowSegmentSS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4cd4a0	132	rrmDestroyWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4cd8a0	872	konStereoPutImage	dynsym	undocumented		
@@ -53166,7 +53166,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4e28b0	32	miInitSpanGroup	dynsy
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4e2bf0	676	nfbOpStippledFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4e2ea0	2500	mfbUnnaturalStippleFS	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4e3870	580	nfbPaintWindowBackground	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4e3ac0	100	konSetColor	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4e3ac0	100	konSetColor	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4e3b30	748	konStereoPolyPoint	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4e3e20	88	rrmSetResourceMask	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4e3e80	2604	konImageGlyphBltTE32	dynsym	undocumented		
@@ -53258,7 +53258,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x511110	884	nfbStereoCopyPlane	d
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x511490	1220	konStereoCopyArea	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x511960	572	kon_freeCachedStipple	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x511ba0	1312	cfb32PolyPoint	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x5120c0	168	konUninstallColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x5120c0	168	konUninstallColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x512170	2860	konImageGlyphBlt	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x512cb0	2944	mfbPixmapToRegion	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x513830	816	cfbBresS	dynsym	undocumented		
@@ -53359,7 +53359,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x53e820	3104	nfbGenericScreenIni
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x53f440	60	miFreeSpanGroup	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x53f480	164	konDestroyHyperpipeConfig	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x53f530	368	miAppendSpans	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x53f6a0	908	konInitializeColormap	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x53f6a0	908	konInitializeColormap	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x53fa30	104	compareModes	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x53ffd0	728	cfb8LineSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x5402b0	6304	cfb16DoBitbltGeneral	dynsym	undocumented		
@@ -53405,7 +53405,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x555700	1192	cfb32FillSpanTileOd
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x555bb0	228	konAttachXvc	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x555ca0	636	miEllipseAngleToSlope	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x555f20	684	rrmOGLBindRNToClip	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x5561d0	628	konRealizeCursor	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x5561d0	628	konRealizeCursor	dynsym	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x556550	1060	cfb16SetSpans	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x557af0	2376	cfb8LineSS1RectGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x558440	468	cfbZeroPolyArcSS8Copy	dynsym	undocumented		
@@ -53443,7 +53443,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x56a3a0	236	mfbYRotatePixmap	dyn
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x56a500	452	miInsertEdgeInET	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x56a6e0	2928	cfb16ValidateGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x56b250	340	nfbDoBitBltPS	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x56b3b0	364	konUnrealizeCursor	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x56b3b0	364	konUnrealizeCursor	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x56b520	204	konValidateReducedGC	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x56b5f0	2080	cfbFillRectSolidGeneral	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x56be10	312	cfb16CopyRotatePixmap	dynsym	undocumented		
@@ -53471,7 +53471,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x572b30	2276	nfbInitHWCmapArrays
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x573420	728	cfb32LineSS1Rect	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x573700	124	miMarkUnrealizedWindow	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x573780	836	nfbUninstallHWColormap	dynsym	undocumented		
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x573ad0	84	kon_freeCursorCaches	dynsym	undocumented		
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x573ad0	84	kon_freeCursorCaches	dynsym	named-only	docs/open-questions.md#display-generator-dg	Display generator (DG)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x573e60	40	miRegionNotEmpty	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x5741d0	208	miChangeSaveUnder	dynsym	undocumented		
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x574f50	1044	cfbSetSpans	dynsym	undocumented		
