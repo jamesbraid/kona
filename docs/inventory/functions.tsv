@@ -1413,7 +1413,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d2b8	116	waitRbusDone	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d32c	332	getSubField	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d478	324	setSubField	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d5bc	548	determineHostType	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d7e0	6016	init_rm_jtag	dynsym	named-only	docs/rm.md#reset-of-the-raster-boards	Reset of the raster boards
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d7e0	6016	init_rm_jtag	dynsym	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002ef60	292	TEST_rmjtaginit	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f084	132	dump_indata_as_bits	dynsym	named-only	docs/kpm.md#capture	Capture
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f108	156	dump_outdata_as_bits	dynsym	named-only	docs/kpm.md#capture	Capture
@@ -1692,8 +1692,8 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079858	572	TEST_intr	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a71c	640	TEST_mbox	dynsym	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a99c	64	TEST_dganalog	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a9dc	72	TEST_fail	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af50	72	nic_setup	dynsym	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af98	388	nic_next	dynsym	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af50	72	nic_setup	dynsym	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af98	388	nic_next	dynsym	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007b2b4	740	nic_read_one_page	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007b598	932	nic_read_mfg	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007bb74	100	nic_access_mcr32	dynsym	understood	docs/kernel-functions.md#attach-and-crosstalk-set-up-kona_edtinit_hip2o	Attach and Crosstalk set-up: `kona_edtinit_hip2.o`
@@ -1822,7 +1822,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b78bc	504	draw_triz	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b7b90	816	TEST_dquad	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bc9f4	4616	update_registers	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bdbfc	688	standard_init	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bdeac	1044	init_config	dynsym	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bdeac	1044	init_config	dynsym	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100be2c0	1284	init_op	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100be7c4	592	init_ms	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bea14	484	init_clip	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2441,7 +2441,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164e00	76	jt_new_data_bvecto
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164e50	68	jt_new_inst_vector	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164ea0	76	jt_new_inst_bvector	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164ef0	64	jt_dispose_vector	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164f30	100	jt_vector_to_int	dynsym	named-only	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164f30	100	jt_vector_to_int	dynsym	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164fa0	124	jt_int_to_vector	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165020	252	jt_find_chip	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165130	348	jt_extract_chip_register	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -2463,8 +2463,8 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10167c80	960	jt_isolate_chip	d
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168040	548	jt_powerup_chain	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168270	104	jt_set_procs	dynsym	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168530	60	jt_init	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168570	68	jt_select_chain	dynsym	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101685c0	60	jt_soft_reset	dynsym	named-only	docs/rm.md#reset-of-the-raster-boards	Reset of the raster boards
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168570	68	jt_select_chain	dynsym	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101685c0	60	jt_soft_reset	dynsym	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168600	60	jt_hard_reset	dynsym	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168640	60	jt_test_thyself	dynsym	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168680	84	jt_send_instruction	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -2687,13 +2687,13 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033460	76	jt_new_data_bvector	dynsym	na
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100334b0	68	jt_new_inst_vector	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033500	76	jt_new_inst_bvector	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033550	64	jt_dispose_vector	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033590	100	jt_vector_to_int	dynsym	named-only	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033590	100	jt_vector_to_int	dynsym	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033600	124	jt_int_to_vector	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033680	252	jt_find_chip	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033780	104	jt_set_procs	dynsym	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a40	60	jt_init	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a80	68	jt_select_chain	dynsym	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033ad0	60	jt_soft_reset	dynsym	named-only	docs/rm.md#reset-of-the-raster-boards	Reset of the raster boards
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a80	68	jt_select_chain	dynsym	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033ad0	60	jt_soft_reset	dynsym	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b10	60	jt_hard_reset	dynsym	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b50	60	jt_test_thyself	dynsym	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b90	84	jt_send_instruction	dynsym	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
