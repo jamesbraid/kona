@@ -1947,8 +1947,8 @@ ge.u	label	0x00001041	lC2E		understood	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x0000104f	mEramToCram		understood	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x0000104f	uEramToCram		understood	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x00001060	lE2C		understood	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x00001074	mClearEram		understood	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x00001074	uClearEram		understood	ucode/ge_handlers.md#umemoves	umemove.s
+ge.u	label	0x00001074	mClearEram		located	ucode/ge_handlers.md#umemoves	umemove.s
+ge.u	label	0x00001074	uClearEram		located	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x0000107c	lcE		understood	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x00001089	mCramToFifo		understood	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x00001089	uCramToFifo		understood	ucode/ge_handlers.md#umemoves	umemove.s
@@ -2252,7 +2252,7 @@ ge.u	label	0x00003f52	mgesi_TLutDownload		understood	ucode/ge_handlers.md#colort
 ge.u	label	0x00003f87	mgeb_PixMapOutputRGBA		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00003fd8	mgeb_PixMapOutputI		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00004022	mgeb_LutRamp1		understood	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00004074	mgeb_LutRamp3		understood	ucode/ge_handlers.md#colortables	colortable.S
+ge.u	label	0x00004074	mgeb_LutRamp3		located	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x0000416c	mmo_LutoutI		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x0000418e	mmo_LutoutLA		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x000041b5	mmo_LutoutRGBA		understood	ucode/ge_handlers.md#colortables	colortable.S
@@ -2264,7 +2264,7 @@ ge.u	label	0x00004278	mgesi_FillTMLoadFifo		understood	ucode/ge_handlers.md#text
 ge.u	label	0x00004293	mgesi_RestoreTextureAddress		understood	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x000042d3	mgebi_Bind2dMipmapTexture		understood	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x000043ae	mgeb_SkipNextTextureAddr		understood	ucode/ge_handlers.md#textures	texture.S
-ge.u	label	0x000043bd	mgebi_UpdateTexturing		understood	ucode/ge_handlers.md#textures	texture.S
+ge.u	label	0x000043bd	mgebi_UpdateTexturing		located	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x000043f3	mgebi_Texture		understood	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x00004414	mgesi_SubdivEntry		understood	ucode/ge_handlers.md#subdivs	subdiv.S
 ge.u	label	0x00004421	mges_SubdivTag		understood	ucode/ge_handlers.md#subdivs	subdiv.S
@@ -2280,7 +2280,7 @@ ge.u	label	0x0000479b	mgesi_GetDeformation		understood	ucode/ge_handlers.md#defo
 ge.u	label	0x00004806	mgeb_LoadIdentityDeformation		understood	ucode/ge_handlers.md#deforms	deform.S
 ge.u	label	0x0000482e	mgeb_DeformationMap3_1		understood	ucode/ge_handlers.md#deforms	deform.S
 ge.u	label	0x000048d8	mmo_DirtyDeformModule		understood	ucode/ge_handlers.md#deforms	deform.S
-ge.u	label	0x00004905	mgesi_StopInstruments		understood	ucode/ge_handlers.md#pis	pi.S
+ge.u	label	0x00004905	mgesi_StopInstruments		located	ucode/ge_handlers.md#pis	pi.S
 ge.u	label	0x0000494f	mgesi_StartInstruments		understood	ucode/ge_handlers.md#pis	pi.S
 ge.u	label	0x00004961	mgesi_PrintNum		understood	ucode/ge_handlers.md#debugs	debug.S
 ge.u	label	0x00004a8d	mmo_DebugGE		understood	ucode/ge_handlers.md#debugs	debug.S
@@ -2420,7 +2420,7 @@ ge.u	label	0x00007372	mSplineFog		understood	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x00007390	mUpdateSplineIntervals		understood	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x000073ec	mInitSplineFog		understood	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x00007404	mSplineSlopeAndOffset		understood	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00007431	mExpFog		understood	ucode/ge_handlers.md#fogs	fog.S
+ge.u	label	0x00007431	mExpFog		located	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x0000748a	mInitExpFog		understood	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x000074a8	mLinearFog		understood	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x000074be	mInitLinearFog		understood	ucode/ge_handlers.md#fogs	fog.S
@@ -3077,7 +3077,7 @@ geif.u	dispatch slot	199	mgebi_ShadeModel	handler 0x3a0a	understood	ucode/ge_han
 geif.u	dispatch slot	200	HereWeGo	handler 0x0	understood	ucode/ge_handlers.md#bootstraps	bootstrap.s
 geif.u	dispatch slot	201	mgebi_Texture	handler 0x43f3	understood	ucode/ge_handlers.md#textures	texture.S
 geif.u	dispatch slot	202	HereWeGo	handler 0x0	understood	ucode/ge_handlers.md#bootstraps	bootstrap.s
-geif.u	dispatch slot	203	mgebi_UpdateTexturing	handler 0x43bd	understood	ucode/ge_handlers.md#textures	texture.S
+geif.u	dispatch slot	203	mgebi_UpdateTexturing	handler 0x43bd	located	ucode/ge_handlers.md#textures	texture.S
 geif.u	dispatch slot	204	HereWeGo	handler 0x0	understood	ucode/ge_handlers.md#bootstraps	bootstrap.s
 geif.u	dispatch slot	205	mgesi_BshRegisterWriteN	handler 0x3972	understood	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	206	HereWeGo	handler 0x0	understood	ucode/ge_handlers.md#bootstraps	bootstrap.s
@@ -3189,7 +3189,7 @@ geif.u	dispatch slot	311	mgeb_LoadName	handler 0xc02c	understood	ucode/ge_handle
 geif.u	dispatch slot	312	HereWeGo	handler 0x0	understood	ucode/ge_handlers.md#bootstraps	bootstrap.s
 geif.u	dispatch slot	313	mgeb_LutRamp1	handler 0x4022	understood	ucode/ge_handlers.md#colortables	colortable.S
 geif.u	dispatch slot	314	HereWeGo	handler 0x0	understood	ucode/ge_handlers.md#bootstraps	bootstrap.s
-geif.u	dispatch slot	315	mgeb_LutRamp3	handler 0x4074	understood	ucode/ge_handlers.md#colortables	colortable.S
+geif.u	dispatch slot	315	mgeb_LutRamp3	handler 0x4074	located	ucode/ge_handlers.md#colortables	colortable.S
 geif.u	dispatch slot	316	HereWeGo	handler 0x0	understood	ucode/ge_handlers.md#bootstraps	bootstrap.s
 geif.u	dispatch slot	317	mgeb_Material	handler 0xde94	understood	ucode/ge_handlers.md#materials	material.S
 geif.u	dispatch slot	318	HereWeGo	handler 0x0	understood	ucode/ge_handlers.md#bootstraps	bootstrap.s

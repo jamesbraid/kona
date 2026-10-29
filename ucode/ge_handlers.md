@@ -306,7 +306,7 @@ Colour-table and pixel-map lookup stages and their upload and download. **Inferr
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (1), clamp at zero (1), float multiply (1), float-to-integer conversion (1), shift left (1); takes 1 conditional transfer.
   It jumps to `mLutoutDone`.
 - `mgeb_LutRamp3`: address 0x4074, `colortable.S` line 302 (192 words). Reached: geif slot 157 (entry 315); the ARM functions that send it are in the table below.
-  **Inferred** role: fills a three-component lookup ramp: integer adds and 16-bit field packing (mask 0xffff0000) over the table.
+  **Inferred** role: named for a three-component lookup ramp; the words pack command words with shifts, ORs and masks (constant 0xffff0000) and add integers, and the table layout and ramp arithmetic are unknown.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations OR (48), shift left (32), move (22), integer add (17), AND (16), operation 0x6d1 (16), second-unit operation 0xff (1); loads 2 constants; takes 1 conditional transfer.
   It waits on its own address under another condition group.
   Constants loaded: 0xffff0000, 0x10.
@@ -1595,7 +1595,7 @@ Fog: global table set-up, fog function, mode, enable and offset. **Inferred** fr
   It jumps to `mZclipToEye`.
   Constants loaded: 256.0 (0x43800000), 127.9984 (0x42ffff2e), 16.0 (0x41800000).
 - `mExpFog`: address 0x7431, `fog.S` line 686 (49 words). Reached: its address loaded as a constant in `mgeb_Fogf`.
-  **Inferred** role: exponential fog value: table-based exponent with multiplies, clamps and a minimum, then a return.
+  **Inferred** role: named for the exponential fog factor; the words multiply, convert a float to an integer, clamp at zero and take a minimum, then return, no engine-memory read appears in them, so a table lookup is not shown, and what the result feeds is unknown.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations float multiply (8), move (6), float-to-integer conversion (4), operation 0x6fb (4), clamp at zero (2), float subtract (2), minimum (2).
   It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mSplineSlopeAndOffset`: address 0x7404, `fog.S` line 777 (28 words). Reached: transfers in `mInitSplineFog` and 1 other label.
@@ -3842,7 +3842,7 @@ Performance instruments start and stop. **Inferred** from its labels and callers
   It ends with the end-of-command wait.
   Constants loaded: 0x50476, 0x40476, 0x60476, 0x30476.
 - `mgesi_StopInstruments`: address 0x4905, `pi.S` line 81 (70 words). Reached: geif slot 421 (entry 843); the ARM functions that send it are in the table below.
-  **Inferred** role: stops the performance instruments and reads them out: 44 raster bus words.
+  **Inferred** role: named for stopping the performance instruments; the words send 44 raster bus words built from four command words and constants such as 0x4760000 and 0x4610000, and what those writes do to the counters is unknown.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 4 command words between offsets 0 and 9; operations move (45); writes 44 words to the raster-bus output addresses; loads 18 constants.
   It jumps within its own code.
   Constants loaded: 0x817f, 0x4760000, 0x4610000, 0x4600000, 0xa, 0x4740000, 0x400, 0x4640000 and 10 more.
@@ -4526,7 +4526,7 @@ Texture environment. **Inferred** from its labels and callers.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1).
   It ends with the end-of-command wait.
 - `mgebi_TexEnv`: address 0x5879, `texenv.S` line 137 (89 words). Reached: geif slot 109 (entry 219); the ARM functions that send it are in the table below.
-  **Inferred** role: GL tex env call: compares the target and parameter names (0x2200, 0x2201) and the mode, scales the colour and validates the mode, or raises the invalid-enum error.
+  **Inferred** role: GL tex env call: compares a command word with 0x2200 and 0x2201 (the enumerants for the texture environment mode and colour parameters), checks the mode word against the five texture environment mode enumerants (0x2100, 0x2101, 0xbe2, 0x8062, 0x1e01), does four float multiplies that look like colour scaling (inferred), and validates the mode or raises the invalid-enum error.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 4; operations move (25), integer subtract or compare (10), NOT (6), float multiply (4), float-to-integer conversion (1); sets the condition flags 10 times; writes 5 words to the raster-bus output addresses; loads 17 constants; takes 5 conditional transfers.
   It jumps to `mTexEnvDone` and `mErrInvalidEnum`; jumps within its own code; conditional transfers reach `mTexEnvDone` and 1 other label.
   Constants loaded: 0x2200, 0x2201, 0x80be, 0x2100, 0x2101, 0xbe2, 0x8062, 0x1e01 and 6 more.
@@ -4685,7 +4685,7 @@ Texture binding, scale and bias, the texture-memory load FIFO and the texture ad
   It ends with the end-of-command wait.
   Constants loaded: 0x15c1500, 0x70000, 0x1, 0xf494 (code in `mmo_DirtyTextureAndScreenModule`), 0x1243fd3.
 - `mgebi_UpdateTexturing`: address 0x43bd, `texture.S` line 170 (49 words). Reached: geif slot 101 (entry 203); the ARM functions that send it are in the table below.
-  **Inferred** role: updates the texturing state from four operand words: 13 constants of raster register values and module addresses.
+  **Inferred** role: loads 13 constants (raster register values and module addresses, among them the address of mmo_DirtyTextureAndScreenModule) and shifts and masks the four command words into them; which texturing state this updates is unknown.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations move (16), shift left (4), AND (3), OR (2), NOT (1), operation 0x6d1 (1); loads 13 constants.
   It jumps within its own code.
   Constants loaded: 0x1000000, 0x70000, 0x2000, 0xf494 (code in `mmo_DirtyTextureAndScreenModule`), 0x1000, 0x4000, 0, 0x12 and 4 more.
@@ -5363,11 +5363,11 @@ Memory moves WRAM, CRAM and ERAM in each direction. **Inferred** from its labels
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (6); takes 1 conditional transfer.
   It returns to its caller or the next chained stage (an indirect transfer outside condition group 31).
 - `mClearEram`: address 0x1074, `umemove.s` line 151 (8 words). Reached: transfers in `mDebugInitialize` and 1 other label.
-  **Inferred** role: clears external memory: set-up, then its loop.
+  **Inferred** role: named for clearing the engine memory ERAM; the 8-word entry sets registers and runs on into the loop at lcE, and what the loop stores is unknown.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1).
   It has no jump of its own and runs on into `lcE`.
 - `uClearEram`: address 0x1074, `umemove.s` line 151 (8 words). Reached: second name for `mClearEram` at the same address, so the same code.
-  **Inferred** role: clears external memory: set-up, then its loop.
+  **Inferred** role: named for clearing the engine memory ERAM; the 8-word entry sets registers and runs on into the loop at lcE, and what the loop stores is unknown.
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (1).
   It has no jump of its own and runs on into `lcE`.
 - `lcE`: address 0x107c, `umemove.s` line 160 (13 words). Reached: inside `mClearEram`, reached from that routine's own code.

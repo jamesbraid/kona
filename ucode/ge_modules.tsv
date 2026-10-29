@@ -161,7 +161,7 @@ mLutoutDone	common exit of the three lookup output stages: two moves and a retur
 mmo_LutoutRGBA	RGBA lookup output: clamps and scales four components and joins the common exit
 mmo_LutoutLA	luminance-alpha lookup output: clamps and scales two components and joins the common exit
 mmo_LutoutI	intensity lookup output: clamps and scales one component and joins the common exit
-mgeb_LutRamp3	fills a three-component lookup ramp: integer adds and 16-bit field packing (mask 0xffff0000) over the table
+mgeb_LutRamp3	named for a three-component lookup ramp; the words pack command words with shifts, ORs and masks (constant 0xffff0000) and add integers, and the table layout and ramp arithmetic are unknown
 mgeb_LutRamp1	fills a one-component lookup ramp with integer adds and packing
 mgeb_PixMapOutputI	index pixel-map output stage: masks the value to 16 bits (0xffff)
 mgeb_PixMapOutputRGBA	RGBA pixel-map output stage: clamps, scales by 65535.0 and masks the components to 16 bits
@@ -347,7 +347,7 @@ mOneBigTblSpecialEntry	computes the special entry of the single large fog table 
 mInitLinearFog	set-up for linear fog: reciprocal of (end - start) by seed and Newton steps, then the eye-depth conversion
 mLinearFog	linear fog value: subtract, multiply and clamp, then a return
 mInitExpFog	set-up for exponential fog: loads 256.0 and 127.9984 and reads the density from engine memory
-mExpFog	exponential fog value: table-based exponent with multiplies, clamps and a minimum, then a return
+mExpFog	named for the exponential fog factor; the words multiply, convert a float to an integer, clamp at zero and take a minimum, then return, no engine-memory read appears in them, so a table lookup is not shown, and what the result feeds is unknown
 mSplineSlopeAndOffset	slope and offset of one fog-spline interval: differences divided by reciprocal Newton steps, then a return
 mInitSplineFog	set-up for spline fog: reads the spline from engine memory and computes the first slope
 mUpdateSplineIntervals	steps through the fog-spline intervals in a loop and recomputes the slope
@@ -702,7 +702,7 @@ mmo_UnpackVertexV3F_T2S_LGT	vertex-array unpack for float position and short tex
 mmo_UnpackVertexV3F_C4UB_T2S_LGT	vertex-array unpack for float position, byte colour and short texture coordinates with lighting
 mmo_DrawTriPrimPhong	Phong-shaded triangle drawing: 523 words with per-pixel normal interpolation and lighting; nothing in the program enters it
 mgesi_StartInstruments	starts the performance instruments: eight raster bus words to the counter registers (constants 0x30476 to 0x60476)
-mgesi_StopInstruments	stops the performance instruments and reads them out: 44 raster bus words
+mgesi_StopInstruments	named for stopping the performance instruments; the words send 44 raster bus words built from four command words and constants such as 0x4760000 and 0x4610000, and what those writes do to the counters is unknown
 mClipPntUserAndFrustum	point clipper: tests the point against the user planes and the frustum and ends the command
 mgebi_PointSize_Select	point handling in selection mode: loads the address of the selection point module
 mgebi_PointSize_Feedback	point handling in feedback mode: loads the address of the feedback point module
@@ -799,7 +799,7 @@ mges_SubdivTag	subdivision tag command: framing words only, then the end-of-comm
 mgesi_SubdivEntry	subdivision vertex entry: one raster bus word
 mValidateTexenvMode	checks the texture environment mode against the texture format: compares with GL_MODULATE (0x2100), GL_DECAL (0x2101) and the format enumerants, and writes three raster bus words
 mTexEnvDone	common end of GL tex env call: one move and the end-of-command wait
-mgebi_TexEnv	GL tex env call: compares the target and parameter names (0x2200, 0x2201) and the mode, scales the colour and validates the mode, or raises the invalid-enum error
+mgebi_TexEnv	GL tex env call: compares a command word with 0x2200 and 0x2201 (the enumerants for the texture environment mode and colour parameters), checks the mode word against the five texture environment mode enumerants (0x2100, 0x2101, 0xbe2, 0x8062, 0x1e01), does four float multiplies that look like colour scaling (inferred), and validates the mode or raises the invalid-enum error
 mgebi_TexEnvComps	sets the texture component count and revalidates the environment mode
 mTexGenResolve	resolves the texture-coordinate generation state: combines the per-coordinate mode bits and selects the transform module
 mTexGenSph	sets sphere-map generation for one coordinate
@@ -827,7 +827,7 @@ mmo_TexGenEyePoint_RQ	eye point-distance generation for r and q
 mmo_TexGenEyeLine_ST	eye line-distance generation for s and t
 mmo_TexGenEyeLine_RQ	eye line-distance generation for r and q
 mgebi_Texture	enables or disables texturing: three raster bus words and texture module re-selection
-mgebi_UpdateTexturing	updates the texturing state from four operand words: 13 constants of raster register values and module addresses
+mgebi_UpdateTexturing	loads 13 constants (raster register values and module addresses, among them the address of mmo_DirtyTextureAndScreenModule) and shifts and masks the four command words into them; which texturing state this updates is unknown
 mgeb_SkipNextTextureAddr	sets the flag (bit 24) that skips the next texture address
 mgebi_Bind2dMipmapTexture	binds a 2D mipmapped texture: 16 operand words packed into texture-manager register words (0x1471000 and others)
 mgesi_RestoreTextureAddress	restores the texture address from engine memory 0x9cd and writes two raster bus words
@@ -885,7 +885,7 @@ uWramToCram	copy from working to coefficient memory (inner loop form); nothing i
 mWramToEram	copy from working to external memory: four set-up moves, then its loop
 mCramToEram	copy from coefficient to external memory: set-up, then its loop
 mEramToCram	copy from external to coefficient memory: set-up, then its loop
-mClearEram	clears external memory: set-up, then its loop
+mClearEram	named for clearing the engine memory ERAM; the 8-word entry sets registers and runs on into the loop at lcE, and what the loop stores is unknown
 mCramToFifo	copy from coefficient memory out through the FIFO: set-up, then its loop
 mEramToFifo	copy from external memory out through the FIFO: set-up, then its loop
 mgeb_EnableUnpack	enables vertex-array unpacking
