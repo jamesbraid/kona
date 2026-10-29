@@ -697,7 +697,7 @@ enum kona_hp_token {
  * Leads not yet read (UNKNOWN until they are):
  *  - Microcode: ucode/ge.md describes the program files (one 62521-word
  *    program of 72-bit instructions in three encodings) and geif.u, a
- *    1024-entry table whose odd entries are the handlers for 453 geometry-
+ *    1024-entry table whose odd entries are the handlers for 452 geometry-
  *    engine command slots. How a host token selects a slot is UNKNOWN; 47
  *    name matches are in ucode/ge_name_matches.tsv.
  */

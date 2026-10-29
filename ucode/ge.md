@@ -53,9 +53,9 @@ The method: pair each `ge.hex` word W with the record of the same address in `ge
 **Established:** `geif.u` is 2048 bytes, 1024 big-endian 16-bit entries, and every entry is the address of a `ge_symbols` label.
 
 - Even entries are all 0, the address of the label `HereWeGo` at the start of the program.
-- Odd entries 2k+1 for k = 0..452 are handlers. For k = 453..511 they are `HereWeGo` too.
+- Odd entries 2k+1 for k = 0..452 are handlers, except k = 124, which is `HereWeGo`. For k = 453..511 they are `HereWeGo` too.
 
-So the table has 453 used slots.
+So the table has 452 handler slots, and 60 odd entries in all point at `HereWeGo`.
 
 Slots are grouped by handler class, not by host token:
 
@@ -71,7 +71,7 @@ The 47 name matches are written to [ge_name_matches.tsv](ge_name_matches.tsv) as
 
 ## ARM program
 
-**Established:** `arm1.u` and `arm1_kpm.u` are ARM machine code. Both begin with 0xe1a00000 (mov r0, r0) twice, a BL (0xeb00000c) and an SWI (0xef000011), in big-endian word order. So the block the software calls "ARM" runs a real ARM-architecture processor. Its load address and role are **unknown**. The 6.5.5 headers say the host reaches it through a mailbox register (`HIP.h`).
+**Established:** `arm1.u` and `arm1_kpm.u` are ARM machine code. In big-endian word order, both begin with 0xe1a00000 (mov r0, r0) twice and a BL (0xeb00000c); the fourth word is the data value 0x2c and the fifth an SWI (0xef000011). So the block the software calls "ARM" runs a real ARM-architecture processor. Its load address and role are **unknown**. The 6.5.5 headers say the host reaches it through a mailbox register (`HIP.h`).
 
 ## Precision
 
