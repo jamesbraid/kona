@@ -6865,3 +6865,29 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   its own `ErrorF` message when it fails, among them "probably no DG installed" for the video-control attach and a conflict
   message for the overlay flags. Against `konal.so`: 22 of 2283; immediates only; low halves: 22; first at +0x788; gp 0x24b10 and
   0x24b10.
+
+## The X module files
+
+- `konal.so` (usr/lib/X11/dyDDX/konal.so, 1759116 bytes): **established.** The X server module of the 6.5.30m install that this
+  reading treats as the one an IP27 system loads: an N32 MIPS shared object with 795 named functions and a text section of 1443044
+  bytes at address 0x13a6e30. Against `kona.so` 742 of the 795 shared names have different bytes, 74 of them with different
+  lengths because the pipe writers store each token word and then its payload at offset 0 of the command window instead of calling
+  the 14 `KonSeqData*_ip19` helpers that only `kona.so` has; one routine, `rrmProcessRequestQueue`, also calls a routine through a
+  pointer where `kona.so` calls it directly. Its function entries are in this file and in
+  [kona-so-functions.md](kona-so-functions.md).
+- `konas.so` (usr/lib/X11/dyDDX/konas.so, 1759116 bytes): **established.** The same code as `konal.so`: all 795 named functions
+  have identical bytes, so every `konal.so` entry applies to it. The 19769 bytes of the file that differ from `konal.so` are in
+  the dynamic symbol table (2146), the relocation table (6540), the data section (2088), the global offset table (2090), the debug
+  frame table (2412) and the dynamic header, that is, the link-time addresses and not the code.
+- `konad.so` (usr/lib/X11/dyDDX/konad.so, 1759116 bytes): **established.** The same functions as `konal.so`, linked at other
+  addresses: the text section is 1443044 bytes in both and 220410 of its bytes differ, which is 144 function bodies. 142 of them
+  differ only in relocated 16-bit immediates (offsets from the global pointer and halves of addresses); `konWriteFBSubBlock` and
+  `konDrawImage` also differ in length, because they switch to the DMA write path above 0x12000 bytes of image data where
+  `konal.so` switches above 0x9000. The entries for these 144 are in the section on functions whose bytes differ from `konal.so`.
+- `kona.so` (usr/lib/X11/dyDDX/kona.so, 1710244 bytes): **established.** The `kona.so` build whose functions the main entries of
+  this file describe: 809 named functions, 795 shared with `konal.so` and 14 only here (`KonSeqData3_ip19` to `KonSeqData32_ip19`,
+  the helpers that burst-copy payload words into the command window for the pipe writers). It is 48872 bytes smaller than the other
+  three, **inferred** from the 74 pipe writers that are longer there.
+- `konavis.so` (usr/lib/X11/dyDDX/konavis.so, 330796 bytes): **established.** A data module with no functions: the visual tables
+  the server module loads through `ddxMakeDynamicModulePath`, `dlopen` and `dlsym` when it initialises the screen (the symbols are
+  listed in [data-files.md](data-files.md)). It holds the small, medium and large visual sets of each image-processor revision.

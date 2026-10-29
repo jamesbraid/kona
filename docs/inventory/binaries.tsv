@@ -589,11 +589,11 @@ usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d
 usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	0	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	0	0	named-only	docs/coverage.md#dg	DG
-usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	0	0	named-only	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
-usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	0	0	named-only	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
-usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	0	0	named-only	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
-usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
 usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	0	0	named-only	docs/libfm.md#the-font-manager-library-libfmso-function-reference	The font-manager library (`libfm.so`): function reference
 var/sysgen/master.d/gfxs	kernel-config	shared-data	data	-	399	ef56620faa1e0634		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0	0	0	named-only	docs/data-files.md#diagnostic-data-format-files-and-installed-tools	Diagnostic data, format files and installed tools
