@@ -100,10 +100,13 @@ struct kona_ddx_cursor_block {
 #define KONA_DDX_DIDENT_HOLDERS       20  /* number of windows holding the id */
 #define KONA_DDX_DIDENT_PEND_HWI      24  /* mode words SetReservedID copies to +8, +12 */
 #define KONA_DDX_DIDENT_PEND_HWD      28
-#define KONA_DDX_DIDF_RESERVED        0x02  /* set by SetReservedID, cleared by UnsetReservedID */
+#define KONA_DDX_DIDF_FIXED           0x01  /* tested by the free-id, steal and share functions; no store found */
+#define KONA_DDX_DIDF_OCCUPIED        0x02  /* has a holder or is reserved (SetReservedID sets, UnsetReservedID clears) */
+#define KONA_DDX_DIDF_SHARED          0x04  /* more than one holder */
 #define KONA_DDX_DIDF_MODE_SET        0x08  /* SetDIDMode has recorded the mode words */
+#define KONA_DDX_DIDF_SWAP_PENDING    0x10  /* set by the buffer-swap start, cleared by the swap-done callback */
 #define KONA_DDX_DIDF_NO_STEAL        0x20  /* SetNoStealID */
-/* UNKNOWN: meaning of flag bits 0x01, 0x04 and 0x10. */
+/* UNKNOWN: what sets bit 0x01. */
 
 /*
  * Hardware colour-map tables behind nfbInstallHWColormap and relatives,
