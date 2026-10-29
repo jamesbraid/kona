@@ -3282,23 +3282,33 @@ enum kona_hp_token {
     KONA_HP_FINISH                       = 0x0c6,
 
     /* Read at icu_map.tsv 0x0c7; ged_banks.tsv k=2; ged_listing.txt
-     * dist.s:13; kon_modes.s __glkonim_Flush. */
+     * dist.s:13; kon_modes.s __glkonim_Flush; kon_context.s map_rtc and
+     * MakeCurrentRead; root/unix gfxdd_mmap 0xc0000000001f159c; kona_attach.o
+     * KONAattach. */
 
     /* `HP_FLUSH` (0x0c7). Inferred: Asks the pipe to flush. Routed pass token
      * (command 130, 1 word, entry 2): in the idle class entry 2 is the null
-     * loop (dist.s:13), so no engine handler is named; the visible flush
-     * effect is the host read libGLcore does immediately after sending it.
-     * That read is from user address 0x10100; with libGL attached at 0x4000
-     * (__glXGetPipeAddress) it is region offset 0xc100, which lies in the I/O
-     * window (pipe window offset 0x100) that KONAattach maps only for a
-     * privileged connection. The loaded value is discarded. Payload 1
-     * (libGLcore sends one zero word): a zero placeholder word. Established:
-     * routed by the host interface with no ARM code, arm1.u token-map entry
-     * 0x58410051: command 130, count field 1 (bits 6-10, 0 read as 32),
-     * single floats. Established: libGLcore.so `__glkonim_Flush` stores 1
-     * word after the token. Sent by libGLcore.so __glkonim_Flush
-     * (kon_modes.s): token 199, a zero word, then a load from process address
-     * 0x10100. */
+     * loop (dist.s:13), so no engine handler is named. Right after the token
+     * and its word, libGLcore loads from user address 0x10100 and discards
+     * the value. That address is the hub real-time counter, not the pipe:
+     * map_rtc (IP27KONA32 libGLcore.so 0x0d948750, called from
+     * MakeCurrentRead at 0x0d949498) asks syssgi(13) for the counter's
+     * physical address, maps that page of /dev/mmem read-only at fixed user
+     * address 0x10000, and prints an error and returns 0 unless the counter
+     * lands at 0x10100 (the hub counter sits at page offset 0x100). The load
+     * is uncached, so the processor issues it only after the FIFO stores
+     * before it, which pushes the token out of the processor (inferred). The
+     * graphics mapping itself ends at 0xffff for an ordinary client
+     * (KONAattach passes 0xbfff bytes, rounded up to three 16 KB pages by
+     * vgrowreg in the gfxdd_mmap worker at root/unix 0xc0000000001f1494), so
+     * for an ordinary client 0x10100 lies outside the pipe mapping and only
+     * the counter page answers it. Payload 1 (libGLcore sends one zero word):
+     * a zero placeholder word. Established: routed by the host interface with
+     * no ARM code, arm1.u token-map entry 0x58410051: command 130, count
+     * field 1 (bits 6-10, 0 read as 32), single floats. Established:
+     * libGLcore.so `__glkonim_Flush` stores 1 word after the token. Sent by
+     * libGLcore.so __glkonim_Flush (kon_modes.s): token 199, a zero word,
+     * then a load from the counter at 0x10100. */
     KONA_HP_FLUSH                        = 0x0c7,
 
     /* Read at arm1.u arm_popattrib 0x0c03a8dc-0x0c03ad00. */
