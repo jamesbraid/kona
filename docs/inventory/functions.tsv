@@ -13919,7 +13919,7 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826508	360	glXWaitGL	dynsym
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826670	132	glXQueryExtension	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8266f4	116	glXQueryVersion	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826768	56	glXDestroyContext	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd8267a0	1244	DestroyContext	mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd8267a0	1244	DestroyContext	mdebug	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826904	480	__glXFreeContext	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826ae4	408	glXUseXFont	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd826c7c	17708	IndexScore	mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -14210,7 +14210,7 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd840190	372	__glx_GetInstrum
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd840304	396	__glx_InstrumentsBufferSGIX	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd840490	388	__glx_PollInstrumentsSGIX	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd840614	328	__glx_FlushRasterSGIX	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946260	860	GetBoardInfo	mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946260	860	GetBoardInfo	mdebug	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9465bc	128	ChangeWindowSize	mdebug	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94663c	140	FindWindowSize	mdebug	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9466c8	56	ApplyViewport	mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14220,14 +14220,14 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9467b4	120	Channel
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94682c	100	ChannelRectSync	mdebug	understood	GE.h:7023	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946890	20	Error	mdebug	understood	GE.h:3797	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9468a4	52	PickBufferProcs	mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCurrent	mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	DestroyContext	mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCurrent	mdebug	understood	docs/opengl.md#losecurrent	`LoseCurrent`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	DestroyContext	mdebug	understood	docs/opengl.md#destroycontext	`DestroyContext`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	understood	GE.h:197	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	understood	docs/opengl.md#visualsmatch	`VisualsMatch`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947b54	428	kona_writeconfig	mdebug	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947d00	456	kona_readconfig	mdebug	understood	GE.h:243	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947ec8	116	BindHyperpipe	mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14297,8 +14297,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bc14	72	__glkon_dlist
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bc5c	60	__glkon_dlist_mem_free	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bc98	72	__glkon_texture_mem_alloc	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bce0	72	__glkon_texture_mem_realloc	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bd28	72	__glkon_unique_per_ge_mem_alloc	dynsym+mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bd70	132	__glkon_share	dynsym+mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bd28	72	__glkon_unique_per_ge_mem_alloc	dynsym+mdebug	understood	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bd70	132	__glkon_share	dynsym+mdebug	understood	docs/opengl.md#__glkon_share	`__glkon_share`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94be00	56	__glkonim_Begin	dynsym+mdebug	understood	GE.h:74	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94be38	20	__glkonim_End	dynsym+mdebug	understood	GE.h:74	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94be4c	100	__glkonim_Finish	dynsym+mdebug	understood	GE.h:3280	
@@ -14621,7 +14621,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd97570c	160	freeTex
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9757ac	3196	initProxyTextures	mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97586c	540	__glkon_InitTextureState	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd975a88	272	__glKonValidateTextureState	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd975b98	556	__glkon_FreeTextureState	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd975b98	556	__glkon_FreeTextureState	dynsym+mdebug	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd975dc4	284	__glKonFreeAllocedTexObjBank	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd975ee0	160	__glKonShareTexture	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd975f80	656	__glKonPushTextureAttrib	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
@@ -14707,7 +14707,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd981300	388	__glKonHostM
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd981484	772	__glKonCleanUp1D	mdebug	understood	GE.h:854	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd981788	11332	__glKonCleanUp2D	mdebug	understood	GE.h:881	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd981ad0	592	__glKonInitEvaluators	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd981d20	272	__glKonFreeEvaluators	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd981d20	272	__glKonFreeEvaluators	dynsym+mdebug	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd981e30	412	__glKonSetUpMap1	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd981fcc	576	__glKonSetUpMap2	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98220c	428	__glkonim_Map1d	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -15522,7 +15522,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d061c	6528	__glEn
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d0638	428	__glEarlyInitContext	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d07e4	980	__glContextSetColorScales	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d0bb8	2848	__glSoftResetContext	dynsym+mdebug	understood	HIP.h:100	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d16d8	116	__glDestroyContext	dynsym+mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d16d8	116	__glDestroyContext	dynsym+mdebug	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d174c	684	__glDestroySoftContext	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d19f8	256	__glFreePrivate	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d1af8	196	__glSetError	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -15532,7 +15532,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d1e94	12	__glChangeRea
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d1ea0	252	__glFindWindowSize	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d1f9c	7860	FillBufferInfo	mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d200c	356	__glMakeCurrentBuffers	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d2170	248	__glLoseCurrentBuffers	dynsym+mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d2170	248	__glLoseCurrentBuffers	dynsym+mdebug	understood	docs/opengl.md#losecurrent	`LoseCurrent`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d2268	212	__glFreeBufData	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d2340	1044	__glCheckConvolutionFilterArgs	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d2754	360	__glim_ConvolutionFilter1DEXT	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -19101,7 +19101,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80ed24	88	__glXPostHidden
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd80ed30	76	glXCreateContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80ed7c	780	__glXCreateDirectContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd80ed80	412	__glXFreeContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd80ef20	308	DestroyContext	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd80ef20	308	DestroyContext	dwarf+funcnames	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd80f060	56	glXDestroyContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80f088	268	__glXInitVertexArrayState	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd80f0a0	148	glXQueryVersion	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -19752,7 +19752,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd841510	364	__glx_PollInst
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd84167c	268	__glx_FlushRasterSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947be0	884	_stub	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948280	104	FindWindowSize	dwarf+funcnames	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9482f0	56	ApplyViewport	dwarf+funcnames	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -19762,14 +19762,14 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9483e0	176	Chann
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948490	76	ChannelRectSync	dwarf+funcnames	understood	GE.h:7023	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9484e0	16	Error	dwarf+funcnames	understood	GE.h:3797	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9484f0	52	PickBufferProcs	dwarf+funcnames	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	understood	docs/opengl.md#losecurrent	`LoseCurrent`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	understood	docs/opengl.md#destroycontext	`DestroyContext`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948750	368	map_rtc	dwarf+funcnames	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd949ae0	880	__glKonCreateContext	dwarf+dynsym	understood	GE.h:197	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	understood	docs/opengl.md#visualsmatch	`VisualsMatch`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd949ae0	880	__glKonCreateContext	dwarf+dynsym	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd949e50	360	kona_writeconfig	dwarf+funcnames	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd949fc0	396	kona_readconfig	dwarf+funcnames	understood	GE.h:243	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a150	128	BindHyperpipe	dwarf+funcnames	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -19839,8 +19839,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94d9b0	68	__glkon_dli
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94da00	56	__glkon_dlist_mem_free	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94da40	68	__glkon_texture_mem_alloc	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94da90	68	__glkon_texture_mem_realloc	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94db30	124	__glkon_share	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	understood	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94db30	124	__glkon_share	dwarf+dynsym	understood	docs/opengl.md#__glkon_share	`__glkon_share`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dbb0	52	__glkonim_Begin	dwarf+dynsym	understood	GE.h:74	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dbf0	20	__glkonim_End	dwarf+dynsym	understood	GE.h:74	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dc10	92	__glkonim_Finish	dwarf+dynsym	understood	GE.h:3280	
@@ -20163,7 +20163,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9747b0	160	freeT
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd974850	140	initProxyTextures	dwarf+funcnames	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9748e0	440	__glkon_InitTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd974aa0	256	__glKonValidateTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd974ba0	504	__glkon_FreeTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd974ba0	504	__glkon_FreeTextureState	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd974da0	276	__glKonFreeAllocedTexObjBank	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd974ec0	192	__glKonShareTexture	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd974f80	668	__glKonPushTextureAttrib	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
@@ -20249,7 +20249,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97de50	424	__glKonHos
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd97e000	876	__glKonCleanUp1D	dwarf+funcnames	understood	GE.h:854	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd97e370	936	__glKonCleanUp2D	dwarf+funcnames	understood	GE.h:881	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97e720	756	__glKonInitEvaluators	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97ea20	392	__glKonFreeEvaluators	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97ea20	392	__glKonFreeEvaluators	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97ebb0	320	__glKonSetUpMap1	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97ecf0	448	__glKonSetUpMap2	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97eeb0	424	__glkonim_Map1d	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -21058,7 +21058,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cc4b0	28	__glEn
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cc4d0	388	__glEarlyInitContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cc660	908	__glContextSetColorScales	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cc9f0	2980	__glSoftResetContext	dwarf+dynsym	understood	HIP.h:100	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cd5a0	112	__glDestroyContext	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cd5a0	112	__glDestroyContext	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cd610	536	__glDestroySoftContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cd830	208	__glFreePrivate	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cd900	184	__glSetError	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -21068,7 +21068,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cdc80	12	__glChangeR
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cdc90	212	__glFindWindowSize	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cdd70	80	FillBufferInfo	dwarf+funcnames	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cddc0	332	__glMakeCurrentBuffers	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cdf10	212	__glLoseCurrentBuffers	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cdf10	212	__glLoseCurrentBuffers	dwarf+dynsym	understood	docs/opengl.md#losecurrent	`LoseCurrent`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cdff0	172	__glFreeBufData	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ce0a0	2104	__glCheckConvolutionFilterArgs	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ce8e0	320	__glim_ConvolutionFilter1DEXT	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -24681,7 +24681,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2643840	76	glXCreateC
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2643850	88	__glXPostHiddenError	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2643890	412	__glXFreeContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26438a8	780	__glXCreateDirectContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2643a30	308	DestroyContext	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2643a30	308	DestroyContext	dwarf	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2643b70	56	glXDestroyContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2643bb0	148	glXQueryVersion	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2643bb4	268	__glXInitVertexArrayState	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -25332,7 +25332,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2676090	364	__glx_PollInst
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26761fc	268	__glx_FlushRasterSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2677350	60	_init	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2da9cc0	708	_stub	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2da9f90	712	GetBoardInfo	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2da9f90	712	GetBoardInfo	dwarf	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa260	88	ChangeWindowSize	dwarf	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa2c0	104	FindWindowSize	dwarf	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa330	56	ApplyViewport	dwarf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25342,14 +25342,14 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa420	176	Chann
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa4d0	76	ChannelRectSync	dwarf	understood	GE.h:7023	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa520	16	Error	dwarf	understood	GE.h:3797	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa530	52	PickBufferProcs	dwarf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa570	184	LoseCurrent	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa630	260	DestroyContext	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa740	76	initialDestroyContext	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa570	184	LoseCurrent	dwarf	understood	docs/opengl.md#losecurrent	`LoseCurrent`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa630	260	DestroyContext	dwarf	understood	docs/opengl.md#destroycontext	`DestroyContext`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa740	76	initialDestroyContext	dwarf	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa790	376	map_rtc	dwarf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa910	4060	MakeCurrentRead	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab8f0	108	MakeCurrent	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab960	136	VisualsMatch	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dab9f0	852	__glKonCreateContext	dwarf+dynsym	understood	GE.h:197	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa910	4060	MakeCurrentRead	dwarf	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab8f0	108	MakeCurrent	dwarf	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab960	136	VisualsMatch	dwarf	understood	docs/opengl.md#visualsmatch	`VisualsMatch`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dab9f0	852	__glKonCreateContext	dwarf+dynsym	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dabd50	368	kona_writeconfig	dwarf	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dabec0	396	kona_readconfig	dwarf	understood	GE.h:243	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac050	128	BindHyperpipe	dwarf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25419,8 +25419,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafab0	68	__glkon_dli
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafb00	56	__glkon_dlist_mem_free	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafb40	68	__glkon_texture_mem_alloc	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafb90	68	__glkon_texture_mem_realloc	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafbe0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafc30	124	__glkon_share	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafbe0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	understood	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafc30	124	__glkon_share	dwarf+dynsym	understood	docs/opengl.md#__glkon_share	`__glkon_share`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafcb0	52	__glkonim_Begin	dwarf+dynsym	understood	GE.h:74	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafcf0	20	__glkonim_End	dwarf+dynsym	understood	GE.h:74	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafd10	92	__glkonim_Finish	dwarf+dynsym	understood	GE.h:3280	
@@ -25743,7 +25743,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd6e70	160	freeT
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd6f10	140	initProxyTextures	dwarf	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd6fa0	452	__glkon_InitTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7170	276	__glKonValidateTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7290	516	__glkon_FreeTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7290	516	__glkon_FreeTextureState	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd74a0	276	__glKonFreeAllocedTexObjBank	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd75c0	196	__glKonShareTexture	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7690	688	__glKonPushTextureAttrib	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
@@ -25829,7 +25829,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de07b0	424	__glKonHos
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2de0960	876	__glKonCleanUp1D	dwarf	understood	GE.h:854	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2de0cd0	936	__glKonCleanUp2D	dwarf	understood	GE.h:881	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1080	740	__glKonInitEvaluators	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1370	392	__glKonFreeEvaluators	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1370	392	__glKonFreeEvaluators	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1500	316	__glKonSetUpMap1	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1640	436	__glKonSetUpMap2	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1800	424	__glkonim_Map1d	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -26638,7 +26638,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e30110	28	__glEn
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e30130	404	__glEarlyInitContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e302d0	940	__glContextSetColorScales	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e30680	3036	__glSoftResetContext	dwarf+dynsym	understood	HIP.h:100	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31260	112	__glDestroyContext	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31260	112	__glDestroyContext	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e312d0	552	__glDestroySoftContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31500	208	__glFreePrivate	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e315d0	184	__glSetError	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -26648,7 +26648,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31960	12	__glChangeR
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31970	212	__glFindWindowSize	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e31a50	80	FillBufferInfo	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31aa0	368	__glMakeCurrentBuffers	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31c10	248	__glLoseCurrentBuffers	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31c10	248	__glLoseCurrentBuffers	dwarf+dynsym	understood	docs/opengl.md#losecurrent	`LoseCurrent`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31d10	208	__glFreeBufData	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31de0	2104	__glCheckConvolutionFilterArgs	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e32620	320	__glim_ConvolutionFilter1DEXT	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -30618,7 +30618,7 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826508	360	glXWaitGL	dynsym
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826670	132	glXQueryExtension	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8266f4	116	glXQueryVersion	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826768	56	glXDestroyContext	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd8267a0	1244	DestroyContext	mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd8267a0	1244	DestroyContext	mdebug	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826904	480	__glXFreeContext	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826ae4	408	glXUseXFont	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd826c7c	17708	IndexScore	mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -30909,7 +30909,7 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd840190	372	__glx_GetInstrum
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd840304	396	__glx_InstrumentsBufferSGIX	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd840490	388	__glx_PollInstrumentsSGIX	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd840614	328	__glx_FlushRasterSGIX	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946260	860	GetBoardInfo	mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946260	860	GetBoardInfo	mdebug	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9465bc	128	ChangeWindowSize	mdebug	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94663c	140	FindWindowSize	mdebug	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9466c8	56	ApplyViewport	mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -30919,14 +30919,14 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9467b4	120	Channel
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94682c	100	ChannelRectSync	mdebug	understood	GE.h:7023	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946890	20	Error	mdebug	understood	GE.h:3797	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9468a4	52	PickBufferProcs	mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCurrent	mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	DestroyContext	mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCurrent	mdebug	understood	docs/opengl.md#losecurrent	`LoseCurrent`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	DestroyContext	mdebug	understood	docs/opengl.md#destroycontext	`DestroyContext`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	understood	GE.h:197	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	understood	docs/opengl.md#visualsmatch	`VisualsMatch`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947b54	428	kona_writeconfig	mdebug	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947d00	456	kona_readconfig	mdebug	understood	GE.h:243	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947ec8	116	BindHyperpipe	mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -30996,8 +30996,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bc14	72	__glkon_dlist
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bc5c	60	__glkon_dlist_mem_free	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bc98	72	__glkon_texture_mem_alloc	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bce0	72	__glkon_texture_mem_realloc	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bd28	72	__glkon_unique_per_ge_mem_alloc	dynsym+mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bd70	132	__glkon_share	dynsym+mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bd28	72	__glkon_unique_per_ge_mem_alloc	dynsym+mdebug	understood	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bd70	132	__glkon_share	dynsym+mdebug	understood	docs/opengl.md#__glkon_share	`__glkon_share`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94be00	56	__glkonim_Begin	dynsym+mdebug	understood	GE.h:74	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94be38	20	__glkonim_End	dynsym+mdebug	understood	GE.h:74	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94be4c	100	__glkonim_Finish	dynsym+mdebug	understood	GE.h:3280	
@@ -31320,7 +31320,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd97570c	160	freeTex
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9757ac	3196	initProxyTextures	mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97586c	540	__glkon_InitTextureState	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd975a88	272	__glKonValidateTextureState	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd975b98	556	__glkon_FreeTextureState	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd975b98	556	__glkon_FreeTextureState	dynsym+mdebug	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd975dc4	284	__glKonFreeAllocedTexObjBank	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd975ee0	160	__glKonShareTexture	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd975f80	656	__glKonPushTextureAttrib	dynsym+mdebug	named-only	docs/libglcore.md#texture-management	Texture management
@@ -31406,7 +31406,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd981300	388	__glKonHostM
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd981484	772	__glKonCleanUp1D	mdebug	understood	GE.h:854	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd981788	11332	__glKonCleanUp2D	mdebug	understood	GE.h:881	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd981ad0	592	__glKonInitEvaluators	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd981d20	272	__glKonFreeEvaluators	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd981d20	272	__glKonFreeEvaluators	dynsym+mdebug	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd981e30	412	__glKonSetUpMap1	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd981fcc	576	__glKonSetUpMap2	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98220c	428	__glkonim_Map1d	dynsym+mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -32221,7 +32221,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d061c	6528	__glEn
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d0638	428	__glEarlyInitContext	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d07e4	980	__glContextSetColorScales	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d0bb8	2848	__glSoftResetContext	dynsym+mdebug	understood	HIP.h:100	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d16d8	116	__glDestroyContext	dynsym+mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d16d8	116	__glDestroyContext	dynsym+mdebug	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d174c	684	__glDestroySoftContext	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d19f8	256	__glFreePrivate	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d1af8	196	__glSetError	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -32231,7 +32231,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d1e94	12	__glChangeRea
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d1ea0	252	__glFindWindowSize	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d1f9c	7860	FillBufferInfo	mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d200c	356	__glMakeCurrentBuffers	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d2170	248	__glLoseCurrentBuffers	dynsym+mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d2170	248	__glLoseCurrentBuffers	dynsym+mdebug	understood	docs/opengl.md#losecurrent	`LoseCurrent`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d2268	212	__glFreeBufData	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d2340	1044	__glCheckConvolutionFilterArgs	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d2754	360	__glim_ConvolutionFilter1DEXT	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -35800,7 +35800,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80ed24	88	__glXPostHidden
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd80ed30	76	glXCreateContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80ed7c	780	__glXCreateDirectContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd80ed80	412	__glXFreeContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd80ef20	308	DestroyContext	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd80ef20	308	DestroyContext	dwarf+funcnames	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd80f060	56	glXDestroyContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80f088	268	__glXInitVertexArrayState	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd80f0a0	148	glXQueryVersion	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -36451,7 +36451,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd841510	364	__glx_PollInst
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd84167c	268	__glx_FlushRasterSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947be0	884	_stub	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948280	104	FindWindowSize	dwarf+funcnames	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9482f0	56	ApplyViewport	dwarf+funcnames	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36461,14 +36461,14 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9483e0	176	Chann
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948490	76	ChannelRectSync	dwarf+funcnames	understood	GE.h:7023	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9484e0	16	Error	dwarf+funcnames	understood	GE.h:3797	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9484f0	52	PickBufferProcs	dwarf+funcnames	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	understood	docs/opengl.md#losecurrent	`LoseCurrent`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	understood	docs/opengl.md#destroycontext	`DestroyContext`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948750	368	map_rtc	dwarf+funcnames	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd949ae0	880	__glKonCreateContext	dwarf+dynsym	understood	GE.h:197	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	understood	docs/opengl.md#visualsmatch	`VisualsMatch`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd949ae0	880	__glKonCreateContext	dwarf+dynsym	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd949e50	360	kona_writeconfig	dwarf+funcnames	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd949fc0	396	kona_readconfig	dwarf+funcnames	understood	GE.h:243	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a150	128	BindHyperpipe	dwarf+funcnames	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36538,8 +36538,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94d9b0	68	__glkon_dli
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94da00	56	__glkon_dlist_mem_free	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94da40	68	__glkon_texture_mem_alloc	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94da90	68	__glkon_texture_mem_realloc	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94db30	124	__glkon_share	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	understood	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94db30	124	__glkon_share	dwarf+dynsym	understood	docs/opengl.md#__glkon_share	`__glkon_share`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dbb0	52	__glkonim_Begin	dwarf+dynsym	understood	GE.h:74	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dbf0	20	__glkonim_End	dwarf+dynsym	understood	GE.h:74	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dc10	92	__glkonim_Finish	dwarf+dynsym	understood	GE.h:3280	
@@ -36862,7 +36862,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9747b0	160	freeT
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd974850	140	initProxyTextures	dwarf+funcnames	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9748e0	440	__glkon_InitTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd974aa0	256	__glKonValidateTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd974ba0	504	__glkon_FreeTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd974ba0	504	__glkon_FreeTextureState	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd974da0	276	__glKonFreeAllocedTexObjBank	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd974ec0	192	__glKonShareTexture	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd974f80	668	__glKonPushTextureAttrib	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
@@ -36948,7 +36948,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97de50	424	__glKonHos
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd97e000	876	__glKonCleanUp1D	dwarf+funcnames	understood	GE.h:854	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd97e370	936	__glKonCleanUp2D	dwarf+funcnames	understood	GE.h:881	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97e720	756	__glKonInitEvaluators	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97ea20	392	__glKonFreeEvaluators	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97ea20	392	__glKonFreeEvaluators	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97ebb0	320	__glKonSetUpMap1	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97ecf0	448	__glKonSetUpMap2	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97eeb0	424	__glkonim_Map1d	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -37757,7 +37757,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cc4b0	28	__glEn
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cc4d0	388	__glEarlyInitContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cc660	908	__glContextSetColorScales	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cc9f0	2980	__glSoftResetContext	dwarf+dynsym	understood	HIP.h:100	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cd5a0	112	__glDestroyContext	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cd5a0	112	__glDestroyContext	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cd610	536	__glDestroySoftContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cd830	208	__glFreePrivate	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cd900	184	__glSetError	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -37767,7 +37767,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cdc80	12	__glChangeR
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cdc90	212	__glFindWindowSize	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cdd70	80	FillBufferInfo	dwarf+funcnames	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cddc0	332	__glMakeCurrentBuffers	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cdf10	212	__glLoseCurrentBuffers	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cdf10	212	__glLoseCurrentBuffers	dwarf+dynsym	understood	docs/opengl.md#losecurrent	`LoseCurrent`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cdff0	172	__glFreeBufData	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ce0a0	2104	__glCheckConvolutionFilterArgs	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ce8e0	320	__glim_ConvolutionFilter1DEXT	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -41380,7 +41380,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2143840	76	glXCreateC
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2143850	88	__glXPostHiddenError	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2143890	412	__glXFreeContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21438a8	780	__glXCreateDirectContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2143a30	308	DestroyContext	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2143a30	308	DestroyContext	dwarf	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2143b70	56	glXDestroyContext	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2143bb0	148	glXQueryVersion	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2143bb4	268	__glXInitVertexArrayState	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -42031,7 +42031,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2176090	364	__glx_PollInst
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21761fc	268	__glx_FlushRasterSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2177350	60	_init	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2189cc0	708	_stub	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2189f90	712	GetBoardInfo	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2189f90	712	GetBoardInfo	dwarf	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a260	88	ChangeWindowSize	dwarf	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a2c0	104	FindWindowSize	dwarf	named-only	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a330	56	ApplyViewport	dwarf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42041,14 +42041,14 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a420	176	Chann
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a4d0	76	ChannelRectSync	dwarf	understood	GE.h:7023	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a520	16	Error	dwarf	understood	GE.h:3797	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a530	52	PickBufferProcs	dwarf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a570	184	LoseCurrent	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a630	260	DestroyContext	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a740	76	initialDestroyContext	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a570	184	LoseCurrent	dwarf	understood	docs/opengl.md#losecurrent	`LoseCurrent`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a630	260	DestroyContext	dwarf	understood	docs/opengl.md#destroycontext	`DestroyContext`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a740	76	initialDestroyContext	dwarf	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a790	376	map_rtc	dwarf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a910	4060	MakeCurrentRead	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b8f0	108	MakeCurrent	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b960	136	VisualsMatch	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218b9f0	852	__glKonCreateContext	dwarf+dynsym	understood	GE.h:197	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a910	4060	MakeCurrentRead	dwarf	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b8f0	108	MakeCurrent	dwarf	understood	docs/opengl.md#makecurrent	`MakeCurrent`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b960	136	VisualsMatch	dwarf	understood	docs/opengl.md#visualsmatch	`VisualsMatch`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218b9f0	852	__glKonCreateContext	dwarf+dynsym	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218bd50	368	kona_writeconfig	dwarf	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218bec0	396	kona_readconfig	dwarf	understood	GE.h:243	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c050	128	BindHyperpipe	dwarf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42118,8 +42118,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fab0	68	__glkon_dli
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fb00	56	__glkon_dlist_mem_free	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fb40	68	__glkon_texture_mem_alloc	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fb90	68	__glkon_texture_mem_realloc	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fbe0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fc30	124	__glkon_share	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fbe0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	understood	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fc30	124	__glkon_share	dwarf+dynsym	understood	docs/opengl.md#__glkon_share	`__glkon_share`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fcb0	52	__glkonim_Begin	dwarf+dynsym	understood	GE.h:74	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fcf0	20	__glkonim_End	dwarf+dynsym	understood	GE.h:74	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fd10	92	__glkonim_Finish	dwarf+dynsym	understood	GE.h:3280	
@@ -42442,7 +42442,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b6e70	160	freeT
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b6f10	140	initProxyTextures	dwarf	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b6fa0	452	__glkon_InitTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7170	276	__glKonValidateTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7290	516	__glkon_FreeTextureState	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7290	516	__glkon_FreeTextureState	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b74a0	276	__glKonFreeAllocedTexObjBank	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b75c0	196	__glKonShareTexture	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7690	688	__glKonPushTextureAttrib	dwarf+dynsym	named-only	docs/libglcore.md#texture-management	Texture management
@@ -42528,7 +42528,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c07b0	424	__glKonHos
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21c0960	876	__glKonCleanUp1D	dwarf	understood	GE.h:854	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21c0cd0	936	__glKonCleanUp2D	dwarf	understood	GE.h:881	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1080	740	__glKonInitEvaluators	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1370	392	__glKonFreeEvaluators	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1370	392	__glKonFreeEvaluators	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1500	316	__glKonSetUpMap1	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1640	436	__glKonSetUpMap2	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1800	424	__glkonim_Map1d	dwarf+dynsym	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -43337,7 +43337,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2210110	28	__glEn
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2210130	404	__glEarlyInitContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22102d0	940	__glContextSetColorScales	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2210680	3036	__glSoftResetContext	dwarf+dynsym	understood	HIP.h:100	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211260	112	__glDestroyContext	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211260	112	__glDestroyContext	dwarf+dynsym	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22112d0	552	__glDestroySoftContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211500	208	__glFreePrivate	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22115d0	184	__glSetError	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -43347,7 +43347,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211960	12	__glChangeR
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211970	212	__glFindWindowSize	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2211a50	80	FillBufferInfo	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211aa0	368	__glMakeCurrentBuffers	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211c10	248	__glLoseCurrentBuffers	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211c10	248	__glLoseCurrentBuffers	dwarf+dynsym	understood	docs/opengl.md#losecurrent	`LoseCurrent`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211d10	208	__glFreeBufData	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211de0	2104	__glCheckConvolutionFilterArgs	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2212620	320	__glim_ConvolutionFilter1DEXT	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels

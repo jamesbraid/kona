@@ -29,7 +29,7 @@ Notation: `ctx` is the driver's per-context structure, offsets as the code uses 
 
 `kona_writeconfig` sends `HP_BUFFER_CONFIG` (token 1), whose ARM handler pops ten payload words ([arm1_handlers.tsv](../ucode/arm1_handlers.tsv)), in this order: `lvl`; `rsize` if `rgb` is set, else 0; 0 if `rgb` is set, else `isize`; `db`; `st`; `ms`; `zb`; `ss`; `acc`; `aux`. It then writes token 2 (`HP_PACK`) and its one payload word, 0, and calls `RRM_SETDISPLAYMODE` (1008) with a 12-byte argument (the drawable serial at ctx+31564, then two zero words). A failed ioctl calls the context's error hook with "__kona_writeconfig: setdisplaymode failed". `kona_readconfig` sends `HP_READBUFFER_CONFIG` (token 4, ten payload words, the same order built from the read-configuration fields) and, when the first word of the argument block is 3, `HP_VIDEO_SOURCE` (token 276, one payload word): 1 for a source selector (the word at +16 of the object at +28 of the argument block) of 4096, 0 for 4097, 2 for 4098, 3 for 4099 and 0 for any other value; the value -3 is stored in ctx+3460 and the payload word in ctx+35964.
 
-**Inferred:** the sixteen-bit `lvl` is the framebuffer level (overlay or normal), `rgb`/`ci` choose colour-index or RGB, `isize`/`rsize` the index and RGB sizes, `db` double buffering, `st` stereo, `zb`/`ss`/`acc`/`aux` the depth, stencil, accumulation and auxiliary buffer depths and `ms` the multisample count, from the field abbreviations; the meaning of the ten words inside the pipe is the ARM handler's (`arm_buffer_config` calls `XferMask`, `init_multisample`, `resolve_banks`, `SetFbState`, [arm1_handlers.tsv](../ucode/arm1_handlers.tsv)). The pipe receives `HP_VIDEO_SOURCE`'s word as 0-3, and `arm_video_source` (0x0c013924) passes it straight to `SetVideoFormat` (0x0c02bdfc), which keeps one format record for 0 and 1, another for 2 and another for 3 and ignores any other value; so the firmware, not the selector's name, decides what the pipe does. **Unknown: no shipped software or published source depends on it:** the host-side names of the selectors 4096-4099 and the unit of each size word beyond the field abbreviations (bits per component is the reading the names give). Routes tried: `kona_readconfig` and its callers, `arm_buffer_config` and `SetVideoFormat` in the firmware, the 6.5.5 installed headers (no video-library or GLX headers ship in that tree). A full-text search of the published SGI manuals for the selector values was not possible in this pass (the search service was down, 2026-10-29) and is the one route left.
+**Inferred:** the sixteen-bit `lvl` is the framebuffer level (overlay or normal), `rgb`/`ci` choose colour-index or RGB, `isize`/`rsize` the index and RGB sizes, `db` double buffering, `st` stereo, `zb`/`ss`/`acc`/`aux` the depth, stencil, accumulation and auxiliary buffer depths and `ms` the multisample count, from the field abbreviations; the meaning of the ten words inside the pipe is the ARM handler's (`arm_buffer_config` calls `XferMask`, `init_multisample`, `resolve_banks`, `SetFbState`, [arm1_handlers.tsv](../ucode/arm1_handlers.tsv)). The pipe receives `HP_VIDEO_SOURCE`'s word as 0-3, and `arm_video_source` (0x0c013924) passes it straight to `SetVideoFormat` (0x0c02bdfc), which keeps one format record for 0 and 1, another for 2 and another for 3 and ignores any other value; so the firmware, not the selector's name, decides what the pipe does. **Unknown: no shipped software or published source depends on it:** the host-side names of the selectors 4096-4099 and the unit of each size word beyond the field abbreviations (bits per component is the reading the names give). Routes tried: `kona_readconfig` and its callers, `arm_buffer_config` and `SetVideoFormat` in the firmware, the 6.5.5 installed headers (no video-library or GLX headers ship in that tree). **Established** (`libGL.so` IP27KONA32 6.5.30m, `glXCreateGLXVideoSourceSGIX` at 0x0d8252cc and `__glXCreateVideoSourcePrivate` at 0x0d82561c): the selector is the value the video library returns for control 7 of the source node. The GLX layer loads `libvl.so` on demand, allocates a 24-byte record at +28 of the drawable's argument block (whose first word it sets to 3), and fills it with the node kind (2 or 5) at +0, two words of control 4 at +4 and +8, control 6 at +12 and control 7 at +16, the word `kona_readconfig` maps. So the names of 4096-4099 are the video library's names for that control's values, defined in its header, which this tree does not ship. The full-text search of the published SGI manuals for those values failed twice: the Library search service refused connections on both tries (2026-10-29), so that route stays untried.
 
 ### Who calls them: the context's function table
 
@@ -40,6 +40,69 @@ Notation: `ctx` is the driver's per-context structure, offsets as the code uses 
 - `LoseCurrent`, `initialDestroyContext`, `DestroyContext` and `VisualsMatch` call neither function.
 
 So `BUFFER_CONFIG` and `PACK` go to the pipe once per context, when it is first bound, together with the `RRM_SETDISPLAYMODE` ioctl; `READBUFFER_CONFIG` goes whenever the read side changes. Rebinding a context to a new draw drawable sends no buffer configuration from the library. **Inferred:** the kernel's context switch restores the pipe's copy, since the configuration packet is part of the per-context state the ARM saves (`arm_buffer_config` keeps it in its shadow, [ucode/arm1_firmware.md](../ucode/arm1_firmware.md)).
+
+### The context functions, one entry each
+
+Each entry below is **established** from `kon_context.s` or `kon_mem.s`, `libGLcore` N32 6.5.30m, unless it says otherwise. Process address 0x1000 is the driver state page; its word at 0x1010 holds the current context pointer (`LoseCurrent` clears it, and the memory ioctls pass it to `__glKon_ioctl` as the first argument).
+
+#### `GetBoardInfo`
+
+**Established** (`kon_context.s`, 6.5.30m): `GetBoardInfo` asks the kernel for the board description and fills the context's host-side capability words.
+At 0x0d947f60 it sends `GFX_GETBOARDINFO` (ioctl 102) with a 1952-byte reply buffer, then compares the first four bytes of the reply with a fixed board-name string; on a mismatch it reports through the context's error hook (+20) and calls `exit(1)`.
+Otherwise it builds the renderer name with `strcat` and `strncat` from bytes and words of the reply (+5, +40, +80, +124, +128, +180), stores a `strdup` of it at ctx+3576 (which `DestroyContext` frees), stores reply word +124 at ctx+31568 and the product of reply words +288 and +292 at ctx+31644, and sets flag bits in ctx+31580: 0x4 and 0x8 always, 0x2 and 0x10 unless one of two environment variables is set, 0x20 when a third is set.
+The pipe sees nothing of this; it is host-side capability set-up.
+
+#### `LoseCurrent`
+
+**Established** (`kon_context.s`, 6.5.30m): `LoseCurrent` detaches the context from the thread without writing any command word to the pipe.
+At 0x0d948530 it returns 0 at once unless ctx+3204 is 7168 and the driver-page word 0x1018 is not 1.
+Otherwise it calls `__glLoseCurrentBuffers(ctx, 0)` when bit 2 of ctx+168 is set, clears the current-context word 0x1010, keeps word 0x1018 in ctx+3200, and, when ctx+4988 is non-zero, copies the driver-page words 0x1028-0x1034 into ctx+5052-5064.
+It returns 1.
+It writes no command word: losing a context sends nothing to the pipe.
+
+#### `DestroyContext`
+
+**Established** (`kon_context.s`, 6.5.30m): `DestroyContext` frees the context's host memory and sends nothing to the pipe.
+At 0x0d9485f0 it calls `__glkon_FreeTextureState` and `__glKonFreeEvaluators`; when the pointer list at ctx+41252 exists, releases each of its ctx+3776 entries and then the list itself through the context's free hook (+12); releases ctx+31600 the same way, calls the hook at ctx+48, frees the renderer string at ctx+3576, clears the drawable serial ctx+31564 and calls the shared `__glDestroyContext`.
+No command word is written.
+
+#### `initialDestroyContext`
+
+**Established** (`kon_context.s`, 6.5.30m): `initialDestroyContext` is the short destroy procedure of a context that never became current.
+At 0x0d948700 (76 bytes) it calls `__glkon_FreeTextureState` and then `__glDestroyContext`, nothing else.
+`__glKonCreateContext` installs it at ctx+88, so it is the destroy procedure of a context that never became current; it sends nothing to the pipe.
+
+#### `MakeCurrent`
+
+**Established** (`kon_context.s`, 6.5.30m): `MakeCurrent` resolves the two drawables and hands them to the read-side function.
+At 0x0d9499e0 (108 bytes) it calls the draw-drawable callback at ctx+60 and the read-drawable callback at ctx+64 and tail-calls `MakeCurrentRead(ctx, draw, read)` with their results.
+It writes no command word itself.
+
+#### `MakeCurrentRead`
+
+**Established** (`kon_context.s`, 6.5.30m): `MakeCurrentRead` is where the configuration packets leave for the pipe.
+At 0x0d9488c0, on the first make-current of a context (bits 1 and 2 of ctx+168 clear) it calls `__glSoftResetContext`, `__glkon_unique_per_ge_mem_alloc`, `__glkon_share`, then `kona_writeconfig` and, for a separate read drawable, `kona_readconfig`, then the texture, evaluator, pixel and hyperpipe initialisers; on later calls it sends only `kona_readconfig` when the read drawable differs or is a video source.
+So the configuration packets reach the pipe once per context and again per read-side change, as the section above says.
+
+#### `VisualsMatch`
+
+**Established** (`kon_context.s`, 6.5.30m): `VisualsMatch` compares a context's visual with a drawable's and touches no hardware.
+At 0x0d949a50 (136 bytes, no calls) it returns 1 when the visual id at ctx+3216 equals word 0 of the first mode record, neither mode record has word +84 set, and the two records agree on colour model (byte +4) and on the size word for that model (+40 for RGB, +36 for colour index); it returns 0 when word +72 of the first record is set and the fifth argument is 4, and 0 for any other mismatch.
+**Inferred** from the fields compared: the shared layer asks whether a drawable's visual can be used with this context.
+It sends nothing to the pipe.
+
+#### `__glkon_unique_per_ge_mem_alloc`
+
+**Established** (`kon_mem.s`, 6.5.30m): `__glkon_unique_per_ge_mem_alloc` reserves the context's pipe-memory block through the kernel's allocator.
+At 0x0d94dae0 (68 bytes) it calls `__glkon_mem_alloc(2, 9, 1, 1, 0)`, which packs its arguments into the 12-byte `KONA_MEM_ALLOC` (ioctl 10010) block as byte 0, byte 1, halfword +2, word +4 and word +8, sends it for the current context and returns 0 on success, -1 on failure.
+**Inferred** from the name and the one caller (`MakeCurrentRead`, first make-current only): each context reserves one block of pipe memory per geometry engine before its first configuration packet; the kernel side is `kona_mem_alloc` ([kernel.md](kernel.md#ioctl-entries)).
+
+#### `__glkon_share`
+
+**Established** (`kon_mem.s`, 6.5.30m): `__glkon_share` joins the context to its kernel share group for pipe memory.
+At 0x0d94db30 (124 bytes) it takes ctx, follows the pointer at ctx+0x8aac to a share record and sends `KONA_SHARE` (ioctl 10015) with that record's 64-bit word +8 as the 8-byte argument.
+On success it writes the returned word back to record +8 and returns 0; on failure it returns -1.
+**Inferred:** contexts that share display lists and textures pass the same group handle, so the kernel's `kona_share` counts them into one share group, and a zero handle asks for a new group.
 
 ## Display and scanout
 
@@ -519,6 +582,6 @@ What `kona.so` (IRIX 6.5.30m) sends for X drawing, from a scan of every store wh
 - **Word 7 is nonzero** (the callers store 1 there when bit 2 of the context word at +31580 is set, 0 otherwise: five sites in `kon_pixel.s` store it, at least four others store 0): for a texel download (bit 7 of the descriptor word at +24 set) the function ORs 4 into the descriptor's flags word at +0x84, which is header word 18, the image of `TGTML_TEXLD_MISC`; bit 2 of that register is the load-scissor enable (`LDSCISSOREN`, RM.h). When bit 5 of the global word at +1796 is also set it ORs 0x8000 (the interlaced-download bit). The header is then sent through `__glKonSendData` with its 20 words copied from the descriptor.
 - **Word 7 is zero**: the flags word is sent as `subloadLevel` built it, with only the interlaced bit added when that global bit is set. The function does not set bit 2 on this path.
 
-So bit 2 of header word 18 is **forced on whenever word 7 is nonzero on a texel download**. **Unknown:** whether bit 2 is also set when word 7 is zero (the earlier note in RM.h says the single-image path sets it; the OR of the value 4 was not found in `subloadLevel`, so that claim is **unconfirmed**), and what the hardware does with word 7 itself, which is sent as a separate header word. Because both derive from the same context bit, bit 2 of word 18 and word 7 are equal on every path read here.
+So bit 2 of header word 18 is **forced on whenever word 7 is nonzero on a texel download**, and it is off when word 7 is zero. **Established** (`kon_texture_api.s`, `subloadLevel` 0x0d96be7c onward, 6.5.30m): `subloadLevel` builds the flags word from the size code (internal-format entry +8), the bank bit pair, the tiling bits and the S and T bits of `st_bits_per_page`, and none of its paths ORs in 4, so the bit comes only from `DoDrawPixelsOrTexels`. The note in `RM.h` that the single-image path sets bit 2 does not match this code. The context bit behind word 7 is bit 2 of ctx+31580, which `GetBoardInfo` (called from `MakeCurrentRead`) sets and no store in the library clears; the pixel and texel callers still store 0 in word 7 on their non-DMA paths (`kon_pixel.s` stores at lines 1307, 2983, 3004, 7735 and 8057 of the listing), so on those paths bit 2 of word 18 is clear too. Bit 2 of word 18 and word 7 are therefore equal on every path.
 
 **Established** since, from the firmware side ([ge.md](ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap)): `arm_drawtexels` reads word 7 as the "image arrives by DMA" flag. When it is nonzero the handler ends the command at word 20 and leaves the image to the next `HP_DO_IDMA`; libGLcore's `__glKonSendData` takes the same decision from the same descriptor word (+180), sending the image inline when it is 0 and through ioctl 10001 otherwise. So the context bit at +31580 selects DMA delivery, and the load-scissor enable in word 18 rides on it. Word 10, the texel format id, is a row number into the firmware's format tables ([ge.md](ge.md#the-texel-format-id)).
