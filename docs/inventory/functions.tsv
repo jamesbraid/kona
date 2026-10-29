@@ -19750,7 +19750,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd841270	336	__glx_GetInstr
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd8413c0	336	__glx_InstrumentsBufferSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd841510	364	__glx_PollInstrumentsSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd84167c	268	__glx_FlushRasterSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf	undocumented		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947be0	884	_stub	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	named-only	docs/opengl.md#display-and-scanout	Display and scanout
@@ -25330,7 +25330,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2675df0	336	__glx_GetInstr
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2675f40	336	__glx_InstrumentsBufferSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2676090	364	__glx_PollInstrumentsSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26761fc	268	__glx_FlushRasterSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2677350	60	_init	dwarf	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2677350	60	_init	dwarf	undocumented		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2da9cc0	708	_stub	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2da9f90	712	GetBoardInfo	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa260	88	ChangeWindowSize	dwarf	named-only	docs/opengl.md#display-and-scanout	Display and scanout
@@ -36449,7 +36449,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd841270	336	__glx_GetInstr
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd8413c0	336	__glx_InstrumentsBufferSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd841510	364	__glx_PollInstrumentsSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd84167c	268	__glx_FlushRasterSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd8427a0	56	_init	dwarf	undocumented		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947be0	884	_stub	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	named-only	docs/opengl.md#display-and-scanout	Display and scanout
@@ -42029,7 +42029,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2175df0	336	__glx_GetInstr
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2175f40	336	__glx_InstrumentsBufferSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2176090	364	__glx_PollInstrumentsSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21761fc	268	__glx_FlushRasterSGIX	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2177350	60	_init	dwarf	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2177350	60	_init	dwarf	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2189cc0	708	_stub	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2189f90	712	GetBoardInfo	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a260	88	ChangeWindowSize	dwarf	named-only	docs/opengl.md#display-and-scanout	Display and scanout

@@ -32,6 +32,8 @@ Routes already tried: `arm1.u` (6.5.30m, the whole image disassembled with its 1
 
 **Where this pass stopped** (2026-10-29). Answered and moved out: handler-table indexes 19-21 (nothing writes or reads them; the commands that land there are geometry entries, [ucode/arm1.md](../ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler)), descriptors 0x44000020-0x44400020 (distributor registers 0x220-0x222) and `dgFetal` ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md#start-up)). Still open: `WG_FLUSH`.
 
+**arm1.u per-symbol slice** (2026-10-29). Every `arm1.u` row of [inventory/ucode.tsv](inventory/ucode.tsv) (1668 symbols, 14 linker regions, 93 display commands) is understood: [ucode/arm1_functions.md](../ucode/arm1_functions.md) now has one row per symbol, read from the code or data at its address. Points the rows raise that no software settles yet, for whoever takes this up next: `multisample_pop` rebuilds the coverage index with a shift of 28 where `arm_samplemask` uses 26; `arm_clearstencil` and `stencil_pop` choose the stencil shift in opposite senses of the depth width; `arm_pixelmapusv` uses descriptors 0x29801000 and 0x28801000 where the 32-bit form uses 0x59801000 and 0x58801000; what `deactivate_ged`'s descriptors with bit 20 set (0x44100020 and on) read back. Next route for each: the engine handler each one feeds, in [ge_listing](../ucode/ge_listing/).
+
 ## Raster and texture boards (RM, TM)
 
 | Question | Owner | Routes tried | Next route |
