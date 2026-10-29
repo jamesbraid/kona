@@ -2011,10 +2011,10 @@ ge.u	label	0x000015f9	ugeb_CRAMBlockLoad		located	ucode/ge_handlers.md#cramblock
 ge.u	label	0x00001613	mainloop_cbl		located	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
 ge.u	label	0x0000161c	post_loop_cbl		located	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
 ge.u	label	0x00001623	epilogue_cbl		located	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
-ge.u	label	0x00001633	mmo_Clamp		located	ucode/ge_handlers.md#clamps	clamp.s
-ge.u	label	0x00001633	umo_Clamp		located	ucode/ge_handlers.md#clamps	clamp.s
-ge.u	label	0x00001697	mainloop_clamp		located	ucode/ge_handlers.md#clamps	clamp.s
-ge.u	label	0x000016b4	epilogue_clamp		located	ucode/ge_handlers.md#clamps	clamp.s
+ge.u	label	0x00001633	mmo_Clamp		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x00001633	umo_Clamp		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x00001697	mainloop_clamp		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x000016b4	epilogue_clamp		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
 ge.u	label	0x000016e7	mgeb_ERAMBlockClear		located	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
 ge.u	label	0x000016e7	ugeb_ERAMBlockClear		located	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
 ge.u	label	0x0000170b	mainloop_ebc		located	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
@@ -2078,16 +2078,16 @@ ge.u	label	0x00001e0e	umo_LUT16LA_AlphaOnly		located	ucode/ge_handlers.md#luts	L
 ge.u	label	0x00001e97	mainloop_lut_la_alpha_only		located	ucode/ge_handlers.md#luts	LUT.s
 ge.u	label	0x00001eba	postmainloop_lut_la_alpha_only		located	ucode/ge_handlers.md#luts	LUT.s
 ge.u	label	0x00001ebe	epilogue_lut_la_alpha_only		located	ucode/ge_handlers.md#luts	LUT.s
-ge.u	label	0x00001f07	mmo_ScaleBias		located	ucode/ge_handlers.md#scalebiass	scalebias.s
-ge.u	label	0x00001f07	umo_ScaleBias		located	ucode/ge_handlers.md#scalebiass	scalebias.s
-ge.u	label	0x00001f77	umo_DepthFinalCont		located	ucode/ge_handlers.md#scalebiass	scalebias.s
-ge.u	label	0x00001f82	mainloop_sb		located	ucode/ge_handlers.md#scalebiass	scalebias.s
-ge.u	label	0x00001f9f	epilogue_sb		located	ucode/ge_handlers.md#scalebiass	scalebias.s
-ge.u	label	0x00001fd2	umo_DepthFinal		understood	ucode/ge_handlers.md#scalebiass	scalebias.s
-ge.u	label	0x0000200d	mmo_IntToFloat		located	ucode/ge_handlers.md#inttofloats	inttofloat.s
-ge.u	label	0x0000200d	umo_IntToFloat		located	ucode/ge_handlers.md#inttofloats	inttofloat.s
-ge.u	label	0x00002053	mainloop_i2f		located	ucode/ge_handlers.md#inttofloats	inttofloat.s
-ge.u	label	0x00002070	epilogue_i2f		located	ucode/ge_handlers.md#inttofloats	inttofloat.s
+ge.u	label	0x00001f07	mmo_ScaleBias		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x00001f07	umo_ScaleBias		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x00001f77	umo_DepthFinalCont		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x00001f82	mainloop_sb		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x00001f9f	epilogue_sb		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x00001fd2	umo_DepthFinal		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x0000200d	mmo_IntToFloat		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x0000200d	umo_IntToFloat		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x00002053	mainloop_i2f		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+ge.u	label	0x00002070	epilogue_i2f		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
 ge.u	label	0x000020a3	mmo_GeneralConvolve3x3_124		located	ucode/ge_handlers.md#conv3x3s	conv3x3.s
 ge.u	label	0x000020a3	umo_GeneralConvolve3x3_124		located	ucode/ge_handlers.md#conv3x3s	conv3x3.s
 ge.u	label	0x00002100	normal_path_conv3		located	ucode/ge_handlers.md#conv3x3s	conv3x3.s

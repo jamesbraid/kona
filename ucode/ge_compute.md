@@ -456,3 +456,59 @@ lives at 0x8d2c (address register 0xb), the target matrix C at the address the c
   multiplies the result by the input x (0xd334), which yields sqrt(x); it returns at 0xd337.
 - `misqrt` (`math.S` lines 13-21): **inferred**, the reciprocal-square-root subroutine, which computes 1/sqrt(x) of its input: the same seed and two Newton steps
   as `msqrt` (0xd340-0xd352) without the final multiply by the input, so it returns 1/sqrt(x) at 0xd355.
+
+## Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
+
+**Established** from the three modules' words: a pixel-path stage reads its parameter block through address register 5
+(loaded from the module's parameter address, 0x1f11 and the matching words of the others), takes its input components as
+source A = 0x10 with D = k from the stream the previous stage left, and writes each result with an `r213` = 3 store at
+E = k, two components behind the read; the loop transfer on `cc` 0x14 (0x1f96, `mainloop_*`) repeats while input remains and
+the `epilogue_*` code drains the last components. The parameter offsets below use the F encoding of the matrix section.
+
+- `mmo_ScaleBias` (`scalebias.s` lines 67-195): **inferred**, the GL pixel-transfer scale and bias stage
+  (GL_RED_SCALE, GL_RED_BIAS and the rest). Its set-up reads the 0x1d-word block `U_uScaleBias` writes (`arm1.u` +0x30fa4):
+  the header words into staging, then the four component scales and four biases, each written three times by the ARM, into
+  24 registers (0x1f3d-0x1f6b). The loop `mainloop_sb` takes the RGBA components as input and computes each output as
+  input x scale + bias for its component, with one two-unit word per component (unit-2 multiply, unit-1 add). The results
+  go to the output stream for the next stage.
+- `umo_ScaleBias`: **inferred**, the u-name at 0x1f07 (`scalebias.s` line 67) of the scale-and-bias stage: input pixel
+  components; it multiplies each by its scale and adds its bias to give the output, with the 24 parameter words copied from
+  the block of `U_uScaleBias`.
+- `mainloop_sb` (`scalebias.s` lines 217-245): **inferred**, the loop at 0x1f82 that does the arithmetic: 24 input
+  components per pass (D = 2-0x18 and 1); it multiplies each by the matching scale register and adds its bias, the results
+  stored at E = 0-0x17 (0x1f83-0x1f9e); the loop transfer is at 0x1f96.
+- `epilogue_sb` (`scalebias.s` lines 249-303): **inferred**, the drain at 0x1f9f: it multiplies the last 24 components by
+  their scales and adds the biases, interleaved with the stepping of the input counter (`r222` words with C = 2), and the group-31 transfer at
+  0x1fc9 ends the command once the results are stored.
+- `umo_DepthFinal` (`scalebias.s` lines 313-384): **inferred**, the scale-and-bias set-up for depth pixels. Besides the
+  parameter block it reads engine words 0x82 (the viewport depth scale of `mgeb_ViewPort`) and 0xc6 as input (0x1feb,
+  0x1fed), combines them with the GL depth scale and bias by an add and a subtract (0x1ff0-0x1ff1), and multiplies the
+  results into the 24 parameter registers (0x1ff4-0x2003), so the shared loop maps depth values to the window depth range
+  in one multiply-add. It continues at `umo_DepthFinalCont` through the transfer at 0x2004.
+- `umo_DepthFinalCont` (`scalebias.s` lines 198-213): **inferred**, the joint between the depth set-up and the shared loop
+  at 0x1f77: it takes the epilogue branch at once (`cc` 0x15) for a short input, otherwise loads the stream pointers and
+  multiplies the first two input components (0x1f7f, 0x1f81) before falling into `mainloop_sb`, whose results are the
+  scaled depth values.
+- `mmo_IntToFloat` (`inttofloat.s` lines 31-123): **inferred**, converts integer pixel components to float for the
+  pixel path. It reads the six-word block `U_uI2F` writes (`arm1.u` +0x30bd0) and loads its last word, the scale the ARM
+  picks by data type, into register 0 (0x203a). Each input component then goes through the unit-1 integer-to-float
+  conversion 0x73 and a unit-2 multiply by that scale, so a byte or short component becomes a float result in GL's [0, 1]
+  range when the ARM supplies the matching reciprocal.
+- `umo_IntToFloat`: **inferred**, alias at 0x200d (`inttofloat.s` line 31): input integer components, output floats; it
+  computes each as float(x) times the scale word of the `U_uI2F` block.
+- `mainloop_i2f` (`inttofloat.s` lines 127-155): **inferred**, the conversion loop at 0x2053: per pass it converts 24 input
+  components with code 0x73 and multiplies each by the scale (two-unit words 0x2054-0x206f), storing the results at E = 0
+  upward through register 0x12.
+- `epilogue_i2f` (`inttofloat.s` lines 159-213): **inferred**, the drain at 0x2070: it converts the last input components
+  and multiplies them by the scale, and the group-31 transfer near its end closes the command after the final results are stored.
+- `mmo_Clamp` (`clamp.s` lines 43-163): **inferred**, the clamp stage of the pixel path. It loads the 17-word block
+  `U_uClamp` writes (`arm1.u` +0x3124c), whose bounds default to 1.0, into registers, and its loop clamps each input component
+  with the unit-1 clamp 0x7c and follows it with a unit-2 multiply by a parameter register before the store of the result. The diagnostic
+  test fixes 0x7c only below (a negative input returns 0); whether it also limits at 1.0 is unknown, since none of its test
+  inputs exceeds one.
+- `umo_Clamp`: **inferred**, the u-name at 0x1633 (`clamp.s` line 43); it takes pixel components as input, clamps each at
+  zero with code 0x7c and multiplies by the per-component parameter, producing the clamped results for the next stage.
+- `mainloop_clamp` (`clamp.s` lines 167-195): **inferred**, the clamp loop at 0x1697: 24 input components per pass; it
+  clamps each with code 0x7c and multiplies it by parameter register 1-8 in turn (0x1698-0x16b3), results stored at E = 0 upward.
+- `epilogue_clamp` (`clamp.s` lines 199-253): **inferred**, the drain at 0x16b4 that clamps and multiplies the last
+  input components and stores the results before the command ends.
