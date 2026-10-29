@@ -130,6 +130,12 @@ The values are the 6.5.5 `KONA_ARM_*` events (HIP.h). The mailbox is read as a p
 | 0x105 | `kona_checkpipe_complete(P, 0)`: the answer to the check-pipe stream command |
 | other | "spurious GE interrupt reason" (tag 2101) plus a dump of `HH_ODMA2_PNUM/POFF/TOTAL` and `HH_ODMA_PNUM/POFF/TOTAL` |
 
+**Established** (the completion bodies, `kona_mem.o` and `kona_ddrn.o` of 6.5.30m `kona.a`). Each completion is also the timeout path: the second argument is nonzero when the driver's software timer fired instead of the event.
+
+- `kona_mem_swapout_complete(P, timedout, rec)` and `kona_mem_swapin_complete` take the lock at `P+2576` and pop the head of their request queue (swap-out: head `P+5080`, tail `P+5072`; swap-in: head `P+5096`, tail `P+5088`; next pointer at request +56). An empty queue prints a level-7 warning. On a real event they first cancel the request's timer (handle at request +88) unless the pipe is in recovery (`P+2172` set), and stop if the cancel finds the timer already gone. On a timeout outside recovery they print the record's first two bytes and word +8 and kill the pipe (reason 16 for swap-out, 15 for swap-in). The popped request gets state byte +3 = 1 (swap-out done) or 2 (swap-out timed out, or any swap-in), goes onto the finished list at `P+5104`, and its waiter is woken (`vsema` on request +72).
+- `kona_mem_suspend_complete(P, timedout, words)`: on a timeout it prints tag 2109 and kills the pipe (reason 16). Otherwise word 0 of the event arguments is a count n; when n is not negative it clears `P+5168` and copies words 0 to n into the array at `P+5112`. Either way it wakes `P+5152`. **Inferred:** the pipe's answer to `MEM_SUSPEND` is a short list the kernel keeps for the following resume.
+- `kona_mopup_complete(P, timedout)` wakes `P+5320`; on a timeout it prints tag 2121 and kills the pipe (reason 17), otherwise it cancels the timer at `P+5336`; it then clears that handle.
+
 The codes are the 6.5.5 `KONA_GE_*` events (HIP.h).
 
 ### Flow control: the FIFO interrupts
