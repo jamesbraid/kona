@@ -38,7 +38,34 @@ Notation: `P` is the driver's pipe state (offset 2376 holds the base of a 16 MB 
 
 **Inferred:** steps 4-6 set up how the pipe signals interrupts to the host. The packing shows a target number, a 48-bit target address and three 8-bit vector numbers, which matches an Xtalk interrupt destination. Step 8's read, clear, read, write-back pattern on XG+0x6c looks like an error or status register that is cleared by writing back the bits read. Step 11 clears the interrupt-status bits and both error-status words. None of this is confirmed against a register description.
 
-**open question** ([open-questions.md](open-questions.md)): the names and layouts of the chip-specific registers 0x5c-0x74 beyond what the driver writes, bits 16-31 of WIDGET_CONTROL (including bit 17), the fields of 0x74 and its 0x3f40 constant, and the effect of `xwidget_gfx_reset` on the XG.
+**Established since** (kpm's XG register table, `diags/kpm/xg_registers.tsv`, 6.5.30m; the names are kpm's and the full field list is in [XG.h](../XG.h)): 0x24 is `XG_XT_CTRL`, and the driver's constant 0x00240200 sets `SYS_END` (bit 9), `MAPRAM_ENA_PAR` (bit 18) and `GUAVA_ENA_PAR` (bit 21); the target number goes in `DMA_DEST_ID` (bits 22-25), and the bit set last in step 9 is `INTERRUPT_ENA` (bit 17). So the driver enables map RAM and host-interface-bus parity first and interrupts last. 0x5c is `XG_XT_INTRVEC`: V1 lands in `XG_INTR_VEC`, V2 in `INTR_VEC1` with `BARRIER_VEC1` (the 0x20000), V3 in `INTR_VEC0`. 0x74 is `XG_HI_LO_WATER`: step 10 keeps the command-FIFO low and high water marks (bits 16-21, 22-27) and sets the output-DMA marks to low 0x40, high 0x3f, which is the 0x3f40 constant. The step-8 register 0x2c is the generic `REQ_TIMEOUT` (kpm has no record for it). The reset values of the command water marks, which the driver keeps, remain open ([open-questions.md](open-questions.md#xg-xtalk-widget)).
+
+## The rest of the window
+
+**Established** (kpm's XG table; the 6.5.30m driver for what it uses). Beside the registers above, the XG window holds:
+
+| Offset | kpm name | Who uses it |
+|---|---|---|
+| 0x0c | `XG_XT_STAT`: pending count, link size and retry flags, transmit and receive counts | kpm only |
+| 0x64 | `XG_CONFIG`: `SUBSYSTEM` (bits 0-2), `MAPRAM_SIZE` (3-5), `MAPRAM_TYPE` (6-7) | `kona_attach` reads `MAPRAM_SIZE` |
+| 0x6c | `XG_ERR_STAT`, 31 error bits (XG.h gives each kpm name next to the driver's message) | `kona_report_errs`, `kona_reset_adaptor` |
+| 0x7c | `XG_GFX_DET`: `DETACH` (bit 0), `RES_TNUM` (bits 1-5) | every packet sender, the map and suspend paths: attach to and detach from the write-gather group |
+| 0x84, 0x8c | `XG_GFX_AVCC` (available cache-line credits), `XG_GFX_AVDWC` (available doubleword credits), 12 bits each | kpm only |
+| 0x94 | `XG_MAP_ADDR`, an 18-bit map RAM address | kpm only |
+| 0x9c | `XG_NIC`: the serial-number one-wire port (`RD_DATA`, `DONE`, `SAMPLE`, `PULSE`) | kpm; the kernel reads the board serial numbers through its NIC code |
+| 0xa4 | `XG_XT_LLP_LOG`: link sequence-number and check-bit error counts | kpm only |
+| 0x100000-0x1fffff | `XG_MAP_RAM`, 32-bit entries: `PPN` bits 0-27, `INVALID` bit 28, `PAGESIZE` bits 29-30, `ODD_PARITY` bit 31 | `kona_mapram_init` writes 0x10000000 \| index (invalid), `kona_mapram_map` writes 0x20000000 \| frame (page-size code 1, the driver's 16 KB page) |
+| 0x800000 | `XG_CLIENT_REGS`: the host-interface registers | the kernel's register accesses (HIP.h) |
+| 0xc00000 | `XG_FC_CLIENT_REGS`: the host-interface registers again | the kernel's `HH_GINTR_INFO` kick at 0xc00108 |
+| 0xc10000 | `XG_FC_GFX`: the graphics FIFO | the user command FIFO page (`KONAmapgfx`, [kernel.md](kernel.md#what-a-process-maps)) |
+
+Each register is the low 32-bit half of a 64-bit slot at 8n (offset 8n + 4); the generic Xtalk widget registers sit at 0x04, 0x24, 0x2c, 0x34 and 0x3c the same way. **Inferred:** "FC" is flow control: the kernel sends its kick through 0xc00000 and maps the user's FIFO from 0xc10000, both paths that must stay ordered behind the flow-controlled user stream, and uses 0x800000 for every other register access. Offsets the table and the driver do not name are **unknown: no shipped software or published source depends on them** (routes tried: the 6.5.30m kernel objects, kpm's table, the 6.5.5 headers, Linux `xwidget.h`).
+
+## What the software expects of the XG beyond its registers
+
+**Established as the driver's expectation** (6.5.30m). After `xwidget_gfx_reset` the driver rewrites `XG_XT_CTRL`, both interrupt destination words, `XG_XT_INTRVEC`, `REQ_TIMEOUT`, `XG_ERR_STAT` and the output-DMA water marks, so it assumes none of them survives the link reset. The recovery in `kona_flow_await_returned_credits` runs `kona_reset_adaptor` and the `HH_RESET` pulse but does not rerun `kona_mapram_init`, so it expects the map RAM and the I/O-space mappings already handed out to survive both. `KONAinitialize` does rerun it.
+
+**Unknown: no shipped software or published source depends on it** (routes tried: the 6.5.30m kernel objects including `kona_report_errs`, kpm's register table and its error strings, the IR diagnostics' strings, the 6.5.5 headers, Linux `xwidget.h`): how the XG splits host DMA into Xtalk requests (size, ordering, how many outstanding; the driver leaves `XG_XT_CTRL.MAX_TRANS` at 0), and the exact condition behind each `XG_ERR_STAT` bit beyond what kpm's field name and the driver's message say. The driver treats every bit alike: any of them raises the XG error interrupt, which prints the set bits and kills the pipe with reason 12 ([hip.md](hip.md)). An emulator may set the bit whose name fits the fault it detects.
 
 ## Pipe reset, `KONAinitialize` and the credit-wait path
 

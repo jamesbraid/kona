@@ -186,6 +186,37 @@ with open(os.path.join(out, 'hip_registers.tsv'), 'w') as fp:
         fp.write('0x%08x\t%d\t0x%03x\t%s\t0x%x\t%d\n'
                  % (o2v(o), kind, off, name, mask, shift))
 
+# XG (Xtalk widget) register table: the same 60-byte records, around the
+# record named "XG_XT_CTRL". Some names carry a leading "$"; a third kind
+# (3) appears for the window bases, whose offset is the base address.
+def xg_ok(o):
+    kind, off = struct.unpack('>II', data[o:o + 8])
+    name = data[o + 8:o + 40].split(b'\0')[0]
+    return (kind in (1, 2, 3) and len(name) > 1 and name.lstrip(b'$').startswith(b'XG_')
+            and all(32 < c < 127 for c in name))
+
+
+xh = data.find(b'XG_XT_CTRL\0') - 8
+xs = xh
+while xg_ok(xs - 60):
+    xs -= 60
+xe = xh
+while xg_ok(xe):
+    xe += 60
+with open(os.path.join(out, 'xg_registers.tsv'), 'w') as fp:
+    fp.write('# kpm XG register table, %d records from vaddr 0x%08x\n'
+             % ((xe - xs) // 60, o2v(xs)))
+    fp.write('# kind 1 = register, 2 = field, 3 = window base; offset is the'
+             ' XG window offset (for a field, of its register)\n')
+    fp.write('vaddr\tkind\toffset\tname\tmask\tshift\n')
+    for o in range(xs, xe, 60):
+        kind, off = struct.unpack('>II', data[o:o + 8])
+        name = data[o + 8:o + 40].split(b'\0')[0].decode('ascii')
+        _, _, mask, _, shift = struct.unpack('>5I', data[o + 40:o + 60])
+        fp.write('0x%08x\t%d\t0x%06x\t%s\t0x%x\t%d\n'
+                 % (o2v(o), kind, off, name, mask, shift))
+
 print('hp_commands: %d, raster records: %d, ge records: %d, specials: %d,'
-      ' hip records: %d' % (len(rows), (e - s) // 16, (ge - gs) // 24,
-                            len(specials), (he - hs) // 60))
+      ' hip records: %d, xg records: %d'
+      % (len(rows), (e - s) // 16, (ge - gs) // 24, len(specials),
+         (he - hs) // 60, (xe - xs) // 60))

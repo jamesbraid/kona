@@ -18,7 +18,7 @@ The kernel never programs a DMA engine by register. It sends a command in the pr
 - `kona_mapram_init` (run from `KONAinitialize`) writes `0x10000000 | index` into every entry and reads each back. A mismatch prints a message and kills the pipe with reason 21. The entry count is the 3-bit field in XG window+0x64 bits 3-5 (8 when zero) shifted left by 15 (`docs/xg.md`, attach step 6).
 - `free_gfx_io_space` returns the run to the free list; `kona_mapram_unmap` does nothing. If the free list is empty the allocator calls a registered grow routine; "Ran out of gfx io space!" is the message in `kona_dma.o`.
 
-**Inferred.** The 0x20000000 bit is a valid flag and the low two bits of the stored page number are the two low bits of the 4 KB frame number, which a 16 KB-aligned page leaves zero. The reading rests on the shift pair and on "Map RAM Invalid" being one of the XG error bits (below, interrupts). The meaning of 0x9000 in the low word is still **unknown** (`kona_kern.h`).
+**Established** (kpm's XG table, [xg.md](xg.md#the-rest-of-the-window)): an entry is `PPN` (bits 0-27, the 4 KB frame number), `INVALID` (bit 28), `PAGESIZE` (bits 29-30) and `ODD_PARITY` (bit 31). So the 0x20000000 the driver writes is page-size code 1, paired with its 16 KB page, not a valid flag, and the initialisation pattern 0x10000000 \| index marks every entry invalid. The low two bits of the stored frame number are zero for a 16 KB-aligned page. The meaning of 0x9000 in the low word is still **unknown** (`kona_kern.h`).
 
 ### Host to pipe: `kona_dmawrite`, `kona_idma`
 

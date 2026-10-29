@@ -24,13 +24,10 @@ The "Next route" cells below were converted from requests for measurements on a 
 
 ## XG (Xtalk widget)
 
-| Question | Owner | Next route |
-|---|---|---|
-| Names, reset values and layouts of the chip-specific registers 0x5c-0x74, of bits 16-31 of WIDGET_CONTROL (0x24; the driver always sets 0x240000, puts the interrupt target in bits 25-22 and sets bit 17 last) and of 0x74 (bits 16-27 kept, 0x3f40 or-ed in) | `XG.h`, `docs/xg.md` | Read the XG window 0x00-0x7c from a stopped kernel (or the PROM) right after power-on, then after each step of `kona_reset_adaptor`; then write each unexplained bit alone and read back. |
-| What the XG does on the crossbar link reset that `xwidget_gfx_reset` performs (which XG and host-interface state survives it) | `docs/xg.md` | Read the XG window and the host-interface registers before and after `xwidget_gfx_reset` on a pipe with a nonzero map RAM and a nonzero error status. |
-| What lies in the 16 MB window outside the offsets the driver uses (below 0x800000 apart from 0x04-0x74; the 0xc00000 alias) | `docs/xg.md`, `HIP.h` | Read a few words at stride through each unused range from a kernel debugger; note bus errors. |
-| The XG side of host DMA: how it turns a map-RAM entry into Xtalk read and write requests (request size, ordering, how many outstanding) and what raises each DMA error bit of 0x6c (bits 8, 9, 26-28) | `docs/hip.md`, `XG.h` | Trace the Xtalk link (logic analyser on the crossbar port) during a `KONA_DMAREAD` and a `KONA_DMAWRITE` of a few pages; repeat with one map-RAM entry invalidated. |
-| The hardware conditions that raise each XG error bit and each of the three interrupt vectors | `XG.h`, `docs/hip.md` | Provoke the conditions the bit names where software can (an invalid map-RAM entry, an over-full graphics FIFO with flow control off, a bad PIO command) and read 0x6c and the interrupt that arrives. |
+| Question | Owner | Routes tried | Next route |
+|---|---|---|---|
+| The reset values of the command-FIFO water marks in `XG_HI_LO_WATER` (0x74, bits 16-21 and 22-27), which `kona_reset_adaptor` keeps rather than writes | `XG.h`, `docs/xg.md` | the 6.5.30m kernel; kpm's XG table (masks, no reset values); the 6.5.5 headers | kpm's own code that reads or writes 0x74 (its register test may write defaults), and the IR diagnostics' XG tests |
+| The reset values of the other XG registers | `XG.h` | as above | none needed for the driver: it writes every other register it relies on; label "unknown: no shipped software or published source depends on it" once kpm's code is read |
 
 ## Host interface (HIP)
 

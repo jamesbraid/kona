@@ -253,13 +253,13 @@ raster-index	0x7fc2	-	1	kpm:TGTML_TEXLD_STSTART	documented	GE.h:685
 raster-index	0x7fc3	-	1	kpm:TGTML_TEXLD_S1ST_RSTART	documented	GE.h:684
 raster-index	0x7fc4	-	1	kpm:TGTML_TEXLD_STEND	documented	GE.h:685
 raster-index	0x7fc5	-	1	kpm:TGTML_TEXLD_MISC	documented	docs/opengl.md#texel-download-header-word-7-and-the-load-scissor-bit
-xg	0x4	read	2	kona.a(kona_edtinit_hip2.o):kona_attach	documented	XG.h:38
-xg	0x24	read,write	8	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	XG.h:42
-xg	0x2c	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	XG.h:49
-xg	0x34	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	XG.h:50
-xg	0x3c	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	XG.h:51
+xg	0x4	read	2	kona.a(kona_edtinit_hip2.o):kona_attach	documented	XG.h:53
+xg	0x24	read,write	8	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#unknown
+xg	0x2c	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	XG.h:91
+xg	0x34	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	XG.h:92
+xg	0x3c	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	XG.h:93
 xg	0x5c	write	2	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#delivery
-xg	0x64	read	4	kona.a(kona_edtinit_hip2.o):kona_attach	documented	XG.h:52
+xg	0x64	read	4	kona.a(kona_edtinit_hip2.o):kona_attach	documented	docs/hip.md#address-path
 xg	0x6c	read,write	8	kona.a(kona_edtinit_hip2.o):kona_report_errs;kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#xg-errors-kona_xg_intr_handler
-xg	0x74	read,write	4	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	XG.h:113
-xg	0x7c	read,write	156	kona.a(kona_context.o):KONApcxswap;kona.a(kona_context.o):KONAvalidateclip;kona.a(kona_context.o):kona_act_pcx;kona.a(kona_crash.o):kona_checkpipe;kona.a(kona_ddrn.o):KONAdestroyddrn;kona.a(kona_dma.o):kona_dmapool_update_pipe;+20 more	documented	docs/xg.md#pipe-reset-konainitialize-and-the-credit-wait-path
+xg	0x74	read,write	4	kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	documented	docs/hip.md#unknown
+xg	0x7c	read,write	156	kona.a(kona_context.o):KONApcxswap;kona.a(kona_context.o):KONAvalidateclip;kona.a(kona_context.o):kona_act_pcx;kona.a(kona_crash.o):kona_checkpipe;kona.a(kona_ddrn.o):KONAdestroyddrn;kona.a(kona_dma.o):kona_dmapool_update_pipe;+20 more	documented	docs/xg.md#the-rest-of-the-window
