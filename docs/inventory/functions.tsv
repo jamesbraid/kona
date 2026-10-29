@@ -759,7 +759,7 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1a28	376	kon
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1ba0	224	kona_mem_update_driver	dwarf+symtab	named-only	docs/kernel.md#commands-the-driver-sends	Commands the driver sends
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1c80	152	kona_mem_update	dwarf+symtab	named-only	docs/kernel.md#commands-the-driver-sends	Commands the driver sends
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1d18	296	kona_mem_validate_driver	dwarf+symtab	named-only	docs/kernel.md#memory-pools-kona_mem_reserve-kona_mem_grow-kona_mem_validate-kona_mem_validate_driver-kona_mem_suspend-kona_mem_cleanup-kona_mem_destroy-kona_memo	Memory pools: `kona_mem_reserve`, `kona_mem_grow`, `kona_mem_validate`, `kona_mem_validate_driver`, `kona_mem_suspend`, `kona_mem_cleanup`, `kona_mem_destroy` (`kona_mem.o`)
-usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1e40	276	kona_mem_validate	dwarf+symtab	named-only	docs/coverage.md#kernel-driver	Kernel driver
+usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1e40	276	kona_mem_validate	dwarf+symtab	named-only	docs/kernel.md#memory-pools-kona_mem_reserve-kona_mem_grow-kona_mem_validate-kona_mem_validate_driver-kona_mem_suspend-kona_mem_cleanup-kona_mem_destroy-kona_memo	Memory pools: `kona_mem_reserve`, `kona_mem_grow`, `kona_mem_validate`, `kona_mem_validate_driver`, `kona_mem_suspend`, `kona_mem_cleanup`, `kona_mem_destroy` (`kona_mem.o`)
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1f54	488	kona_mem_destroy	dwarf+symtab	named-only	docs/kernel.md#memory-pools-kona_mem_reserve-kona_mem_grow-kona_mem_validate-kona_mem_validate_driver-kona_mem_suspend-kona_mem_cleanup-kona_mem_destroy-kona_memo	Memory pools: `kona_mem_reserve`, `kona_mem_grow`, `kona_mem_validate`, `kona_mem_validate_driver`, `kona_mem_suspend`, `kona_mem_cleanup`, `kona_mem_destroy` (`kona_mem.o`)
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x213c	1336	kona_mem_alloc	dwarf+symtab	named-only	docs/kernel.md#private-ioctls	Private ioctls
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x2674	616	kona_mem_free	dwarf+symtab	named-only	docs/kernel.md#private-ioctls	Private ioctls
@@ -846,8 +846,8 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	board-kernel	n64	.text	0x0	112	
 usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	board-kernel	n64	.text	0x70	588	kona_intr_handler	dwarf+symtab	named-only	docs/hip.md#delivery	Delivery
 usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	board-kernel	n64	.text	0x2bc	88	kona_ge_intr_handler	dwarf+symtab	named-only	docs/hip.md#delivery	Delivery
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x0	8	kona_mapram_pagesizeshiftof	dwarf+symtab	named-only	docs/hip.md#address-path	Address path
-usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x8	192	kona_mapram_init	dwarf+symtab	understood	HIP.h:527	
-usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0xc8	328	kona_mapram_map	dwarf+symtab	understood	HIP.h:526	
+usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x8	192	kona_mapram_init	dwarf+symtab	understood	HIP.h:543	
+usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0xc8	328	kona_mapram_map	dwarf+symtab	understood	HIP.h:542	
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x210	8	kona_mapram_unmap	dwarf+symtab	named-only	docs/hip.md#address-path	Address path
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x218	8	kona_mapram_select_id_mask	dwarf+symtab	named-only	docs/kernel.md#small-operations-konapcxswitch-konadownload-konafrsinstall-konafrsuninstall-konainvaltlb-kona_debug_init-kona_mapram_select_id_mask-gfx_pio_read_64-gfx_pio_write_64-kona_flow_cleanup	Small operations: `KONApcxswitch`, `KONAdownload`, `KONAfrsinstall`, `KONAfrsuninstall`, `KONAinvaltlb`, `kona_debug_init`, `kona_mapram_select_id_mask`, `gfx_pio_read_64`, `gfx_pio_write_64`, `kona_flow_cleanup`
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x0	376	pane_gc	dwarf+symtab	named-only	docs/kernel.md#initialisation-rrm_init-rrm_init-init_panes-rrm_init_panes	Initialisation: `RRM_init`, `RRM_Init`, `init_panes`, `RRM_init_panes`
@@ -893,7 +893,7 @@ usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x2c3c	336	RRM_LoadDisplay
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x2d8c	88	RRM_GetDisplayModes	dwarf+symtab	named-only	docs/kernel.md#swap-swap-groups-and-display-mode-rrm_swapbuf-rrmswapwait-rrm_setswapinterval-rrm_swapgroup-rrm_swapungroup-rrmswapungroup-rrm_swapready-rrm_cushionbuffer-rrmvalidatemgrswapbuf-rrmvalidatemgrswapbufstream-rrmgenlocknotifystream-rrm_setdisplaymode-rrm_getdisplaymodes	Swap, swap groups and display mode: `RRM_SwapBuf`, `rrmSwapWait`, `RRM_SetSwapInterval`, `RRM_SwapGroup`, `RRM_SwapUnGroup`, `rrmSwapUnGroup`, `RRM_SwapReady`, `RRM_CushionBuffer`, `rrmValidateMGRSwapBuf`, `rrmValidateMGRSwapBufSTREAM`, `rrmGenlockNotifySTREAM`, `RRM_SetDisplayMode`, `RRM_GetDisplayModes`
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x2de4	120	rrmValidateMyRetrace	dwarf+symtab	named-only	docs/kernel.md#clip-and-buffer-validation-validate_pane_clip-validate_pane_buffer-validate_my_pane_buffer-validate_my_pane_resources-invalidate_pane-invalidate_pane_buffer-rrminvalidatern-rrm_invalidatern-rrm_validfault-rrmallocpcxid	Clip and buffer validation: `validate_pane_clip`, `validate_pane_buffer`, `validate_my_pane_buffer`, `validate_my_pane_resources`, `invalidate_pane`, `invalidate_pane_buffer`, `rrmInvalidateRN`, `RRM_InvalidateRN`, `RRM_ValidFault`, `rrmAllocPcxid`
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x2e5c	80	rrmValidateRetrace	dwarf+symtab	named-only	docs/dg.md#retrace-sequence	Retrace sequence
-usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x2eac	376	rrmAllocPcxid	dwarf+symtab	named-only	docs/coverage.md#kernel-driver	Kernel driver
+usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x2eac	376	rrmAllocPcxid	dwarf+symtab	named-only	docs/kernel.md#clip-and-buffer-validation-validate_pane_clip-validate_pane_buffer-validate_my_pane_buffer-validate_my_pane_resources-invalidate_pane-invalidate_pane_buffer-rrminvalidatern-rrm_invalidatern-rrm_validfault-rrmallocpcxid	Clip and buffer validation: `validate_pane_clip`, `validate_pane_buffer`, `validate_my_pane_buffer`, `validate_my_pane_resources`, `invalidate_pane`, `invalidate_pane_buffer`, `rrmInvalidateRN`, `RRM_InvalidateRN`, `RRM_ValidFault`, `rrmAllocPcxid`
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x3024	596	rrmValidateMyPcx	dwarf+symtab	named-only	docs/kernel.md#the-graphics-connection-gfx_gfx	The graphics connection (`gfx_gfx`)
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x3278	256	RRM_ValidateClip	dwarf+symtab	understood	kona_kernel/include/kona_kern.h:205	
 usr/cpu/sysgen/IP27boot/rrm.o	shared-kernel	n64	.text	0x3378	880	RRM_ValidFault	dwarf+symtab	understood	docs/kernel.md#scheduler-fault-exit-and-share-group-hooks-gfx_disp-gfx_fault-gfx_exit-gfx_shcheck-gfx_shdup-gfx_shalloc-gfx_shfree	Scheduler, fault, exit and share-group hooks: `gfx_disp`, `gfx_fault`, `gfx_exit`, `gfx_shcheck`, `gfx_shdup`, `gfx_shalloc`, `gfx_shfree`
@@ -1196,7 +1196,7 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1a28	376	kon
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1ba0	224	kona_mem_update_driver	dwarf+symtab	named-only	docs/kernel.md#commands-the-driver-sends	Commands the driver sends
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1c80	152	kona_mem_update	dwarf+symtab	named-only	docs/kernel.md#commands-the-driver-sends	Commands the driver sends
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1d18	296	kona_mem_validate_driver	dwarf+symtab	named-only	docs/kernel.md#memory-pools-kona_mem_reserve-kona_mem_grow-kona_mem_validate-kona_mem_validate_driver-kona_mem_suspend-kona_mem_cleanup-kona_mem_destroy-kona_memo	Memory pools: `kona_mem_reserve`, `kona_mem_grow`, `kona_mem_validate`, `kona_mem_validate_driver`, `kona_mem_suspend`, `kona_mem_cleanup`, `kona_mem_destroy` (`kona_mem.o`)
-usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1e40	276	kona_mem_validate	dwarf+symtab	named-only	docs/coverage.md#kernel-driver	Kernel driver
+usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1e40	276	kona_mem_validate	dwarf+symtab	named-only	docs/kernel.md#memory-pools-kona_mem_reserve-kona_mem_grow-kona_mem_validate-kona_mem_validate_driver-kona_mem_suspend-kona_mem_cleanup-kona_mem_destroy-kona_memo	Memory pools: `kona_mem_reserve`, `kona_mem_grow`, `kona_mem_validate`, `kona_mem_validate_driver`, `kona_mem_suspend`, `kona_mem_cleanup`, `kona_mem_destroy` (`kona_mem.o`)
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x1f54	488	kona_mem_destroy	dwarf+symtab	named-only	docs/kernel.md#memory-pools-kona_mem_reserve-kona_mem_grow-kona_mem_validate-kona_mem_validate_driver-kona_mem_suspend-kona_mem_cleanup-kona_mem_destroy-kona_memo	Memory pools: `kona_mem_reserve`, `kona_mem_grow`, `kona_mem_validate`, `kona_mem_validate_driver`, `kona_mem_suspend`, `kona_mem_cleanup`, `kona_mem_destroy` (`kona_mem.o`)
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x213c	1336	kona_mem_alloc	dwarf+symtab	named-only	docs/kernel.md#private-ioctls	Private ioctls
 usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	board-kernel	n64	.text	0x2674	616	kona_mem_free	dwarf+symtab	named-only	docs/kernel.md#private-ioctls	Private ioctls
@@ -1283,8 +1283,8 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	board-kernel	n64	.text	0x0	112	
 usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	board-kernel	n64	.text	0x70	588	kona_intr_handler	dwarf+symtab	named-only	docs/hip.md#delivery	Delivery
 usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	board-kernel	n64	.text	0x2bc	88	kona_ge_intr_handler	dwarf+symtab	named-only	docs/hip.md#delivery	Delivery
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x0	8	kona_mapram_pagesizeshiftof	dwarf+symtab	named-only	docs/hip.md#address-path	Address path
-usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x8	192	kona_mapram_init	dwarf+symtab	understood	HIP.h:527	
-usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0xc8	328	kona_mapram_map	dwarf+symtab	understood	HIP.h:526	
+usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x8	192	kona_mapram_init	dwarf+symtab	understood	HIP.h:543	
+usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0xc8	328	kona_mapram_map	dwarf+symtab	understood	HIP.h:542	
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x210	8	kona_mapram_unmap	dwarf+symtab	named-only	docs/hip.md#address-path	Address path
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	board-kernel	n64	.text	0x218	8	kona_mapram_select_id_mask	dwarf+symtab	named-only	docs/kernel.md#small-operations-konapcxswitch-konadownload-konafrsinstall-konafrsuninstall-konainvaltlb-kona_debug_init-kona_mapram_select_id_mask-gfx_pio_read_64-gfx_pio_write_64-kona_flow_cleanup	Small operations: `KONApcxswitch`, `KONAdownload`, `KONAfrsinstall`, `KONAfrsuninstall`, `KONAinvaltlb`, `kona_debug_init`, `kona_mapram_select_id_mask`, `gfx_pio_read_64`, `gfx_pio_write_64`, `kona_flow_cleanup`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x0	376	pane_gc	dwarf+symtab	named-only	docs/kernel.md#initialisation-rrm_init-rrm_init-init_panes-rrm_init_panes	Initialisation: `RRM_init`, `RRM_Init`, `init_panes`, `RRM_init_panes`
@@ -1330,7 +1330,7 @@ usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2c3c	336	RRM_LoadDisplay
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2d8c	88	RRM_GetDisplayModes	dwarf+symtab	named-only	docs/kernel.md#swap-swap-groups-and-display-mode-rrm_swapbuf-rrmswapwait-rrm_setswapinterval-rrm_swapgroup-rrm_swapungroup-rrmswapungroup-rrm_swapready-rrm_cushionbuffer-rrmvalidatemgrswapbuf-rrmvalidatemgrswapbufstream-rrmgenlocknotifystream-rrm_setdisplaymode-rrm_getdisplaymodes	Swap, swap groups and display mode: `RRM_SwapBuf`, `rrmSwapWait`, `RRM_SetSwapInterval`, `RRM_SwapGroup`, `RRM_SwapUnGroup`, `rrmSwapUnGroup`, `RRM_SwapReady`, `RRM_CushionBuffer`, `rrmValidateMGRSwapBuf`, `rrmValidateMGRSwapBufSTREAM`, `rrmGenlockNotifySTREAM`, `RRM_SetDisplayMode`, `RRM_GetDisplayModes`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2de4	120	rrmValidateMyRetrace	dwarf+symtab	named-only	docs/kernel.md#clip-and-buffer-validation-validate_pane_clip-validate_pane_buffer-validate_my_pane_buffer-validate_my_pane_resources-invalidate_pane-invalidate_pane_buffer-rrminvalidatern-rrm_invalidatern-rrm_validfault-rrmallocpcxid	Clip and buffer validation: `validate_pane_clip`, `validate_pane_buffer`, `validate_my_pane_buffer`, `validate_my_pane_resources`, `invalidate_pane`, `invalidate_pane_buffer`, `rrmInvalidateRN`, `RRM_InvalidateRN`, `RRM_ValidFault`, `rrmAllocPcxid`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2e5c	80	rrmValidateRetrace	dwarf+symtab	named-only	docs/dg.md#retrace-sequence	Retrace sequence
-usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2eac	376	rrmAllocPcxid	dwarf+symtab	named-only	docs/coverage.md#kernel-driver	Kernel driver
+usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x2eac	376	rrmAllocPcxid	dwarf+symtab	named-only	docs/kernel.md#clip-and-buffer-validation-validate_pane_clip-validate_pane_buffer-validate_my_pane_buffer-validate_my_pane_resources-invalidate_pane-invalidate_pane_buffer-rrminvalidatern-rrm_invalidatern-rrm_validfault-rrmallocpcxid	Clip and buffer validation: `validate_pane_clip`, `validate_pane_buffer`, `validate_my_pane_buffer`, `validate_my_pane_resources`, `invalidate_pane`, `invalidate_pane_buffer`, `rrmInvalidateRN`, `RRM_InvalidateRN`, `RRM_ValidFault`, `rrmAllocPcxid`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3024	596	rrmValidateMyPcx	dwarf+symtab	named-only	docs/kernel.md#the-graphics-connection-gfx_gfx	The graphics connection (`gfx_gfx`)
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3278	256	RRM_ValidateClip	dwarf+symtab	understood	kona_kernel/include/kona_kern.h:205	
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x3378	880	RRM_ValidFault	dwarf+symtab	understood	docs/kernel.md#scheduler-fault-exit-and-share-group-hooks-gfx_disp-gfx_fault-gfx_exit-gfx_shcheck-gfx_shdup-gfx_shalloc-gfx_shfree	Scheduler, fault, exit and share-group hooks: `gfx_disp`, `gfx_fault`, `gfx_exit`, `gfx_shcheck`, `gfx_shdup`, `gfx_shalloc`, `gfx_shfree`
@@ -1480,7 +1480,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038864	124	set_hip_intr_info
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100388e0	116	ResetKona	dynsym	named-only	docs/ge.md#reset-and-start-up	Reset and start-up
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038954	52	HipRevRead	dynsym	named-only	docs/hip.md#arm-side-register-names	ARM-side register names
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038988	52	f3RevRead	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100389c0	256	load_arm_mem	dynsym	named-only	HIP.h:408	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100389c0	256	load_arm_mem	dynsym	named-only	HIP.h:424	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038ac0	144	zero_arm_mem	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038b50	288	verify_arm_mem	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038c70	1184	LoadArmFile	dynsym	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
@@ -1544,7 +1544,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004c06c	180	libjtag_error_han
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004c120	156	libjtag_debug_handler	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004c1bc	400	ensure_jt_init	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004c34c	288	TEST_jtaginit	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004cd0c	628	probe_hip_clock_speed	dynsym	located	HIP.h:148	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004cd0c	628	probe_hip_clock_speed	dynsym	located	HIP.h:164	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004d0c0	412	locate_break	dynsym	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004d25c	3052	probe_ge12_chain	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004de48	2684	probe_ge14_chain	dynsym	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -1688,7 +1688,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10078ff8	588	TEST_hh_reg	dynsy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079244	800	TEST_ha_reg	dynsym	named-only	docs/ge.md#dma	DMA
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079564	556	TEST_icu_mem	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079790	200	TEST_dg_reg	dynsym	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079858	572	TEST_intr	dynsym	no-software-dependency	HIP.h:173	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079858	572	TEST_intr	dynsym	no-software-dependency	HIP.h:189	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a71c	640	TEST_mbox	dynsym	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a99c	64	TEST_dganalog	dynsym	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a9dc	72	TEST_fail	dynsym	named-only	docs/irsaudit.md#tests	Tests
@@ -2580,7 +2580,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bf28	240	dfIsSectionMarked	dynsym	nam
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000c018	104	dfGetFilePointer	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000c080	656	dfCloseDumpFile	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000d510	1604	kpm_dump	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000dc90	780	show_overview_section	dynsym	no-software-dependency	HIP.h:161	
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000dc90	780	show_overview_section	dynsym	no-software-dependency	HIP.h:177	
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e210	288	kpm_status	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e330	1300	kpm_view	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f538	8	kpm_interact	dynsym	named-only	docs/kpm.md#what-kpm-is	What `kpm` is
@@ -2602,8 +2602,8 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012068	396	locate_register	dynsym	named
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100121f4	160	assign_register	dynsym	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012294	172	extract_register	dynsym	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012340	56	armAccessEnable	dynsym	named-only	docs/kpm.md#capture	Capture
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012378	1212	adapterInspection	dynsym	named-only	docs/kpm.md#capture	Capture
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012834	5288	hipInspectionPreJtag	dynsym	no-software-dependency	HIP.h:160	
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012378	1212	adapterInspection	dynsym	understood	HIP.h:105	
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012834	5288	hipInspectionPreJtag	dynsym	no-software-dependency	HIP.h:176	
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10013cdc	5072	hipInspectionPostJtag	dynsym	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001529c	448	show_adap_registers_section	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001545c	1028	show_hip_host_registers_section	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
@@ -2616,8 +2616,8 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x100167cc	292	show_icu_map0_section	dynsym
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100168f0	796	show_arm_eeprom_section	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016c0c	408	show_arm_sram_section	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016da4	1120	show_arm_sdram_section	dynsym	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017204	368	hipReset	dynsym	no-software-dependency	HIP.h:300	
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100173b0	1152	analyze_hip	dynsym	no-software-dependency	HIP.h:163	
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017204	368	hipReset	dynsym	no-software-dependency	HIP.h:316	
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100173b0	1152	analyze_hip	dynsym	no-software-dependency	HIP.h:179	
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017830	1872	befFIFOInspection	dynsym	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100180cc	228	bef_reset	dynsym	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001890c	340	bef_set_current_ge	dynsym	named-only	docs/kpm.md#capture	Capture
@@ -13550,7 +13550,7 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd80f5dc	60	glXMakeCurrentRea
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd80f618	2324	CreateContext	mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd80ff2c	28	ColorScore	mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd80ff48	1340	AccumScore	mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd80ff60	448	__glXInitThread	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd80ff60	448	__glXInitThread	dynsym+mdebug	understood	HIP.h:98	
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd810120	192	__glXFindDisplay	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8101e0	676	__glXCreateDirectContext	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd810484	1616	SampleScore	mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -14224,7 +14224,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCur
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	DestroyContext	mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
@@ -15521,7 +15521,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d05c8	84	__glBegi
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d061c	6528	__glEndDispatchOverride	mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d0638	428	__glEarlyInitContext	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d07e4	980	__glContextSetColorScales	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d0bb8	2848	__glSoftResetContext	dynsym+mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d0bb8	2848	__glSoftResetContext	dynsym+mdebug	understood	HIP.h:100	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d16d8	116	__glDestroyContext	dynsym+mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d174c	684	__glDestroySoftContext	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d19f8	256	__glFreePrivate	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -19492,7 +19492,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd81b9c0	312	QueryVers
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd81bc80	240	GetBoardNumber	dwarf+funcnames	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd81bd70	2152	GetVisualConfigs	dwarf+funcnames	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd81c5e0	3804	GetFBConfigsSGIX	dwarf+funcnames	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81d408	404	__glXInitThread	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81d408	404	__glXInitThread	dwarf+dynsym	understood	HIP.h:98	
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.text	0xd81d4c0	3772	GetFBConfigs	dwarf+funcnames	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81d59c	808	__glXInitialize	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81d8c4	216	__glXSetupForCommand	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -19766,7 +19766,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseC
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948750	368	map_rtc	dwarf+funcnames	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd949ae0	880	__glKonCreateContext	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
@@ -21057,7 +21057,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cc330	372	__glB
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cc4b0	28	__glEndDispatchOverride	dwarf+funcnames	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cc4d0	388	__glEarlyInitContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cc660	908	__glContextSetColorScales	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cc9f0	2980	__glSoftResetContext	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cc9f0	2980	__glSoftResetContext	dwarf+dynsym	understood	HIP.h:100	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cd5a0	112	__glDestroyContext	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cd610	536	__glDestroySoftContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cd830	208	__glFreePrivate	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -25072,7 +25072,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2650590	312	QueryVers
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2650850	232	GetBoardNumber	dwarf	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2650940	2136	GetVisualConfigs	dwarf	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x26511a0	3788	GetFBConfigsSGIX	dwarf	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x265200c	404	__glXInitThread	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x265200c	404	__glXInitThread	dwarf+dynsym	understood	HIP.h:98	
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.text	0x2652070	3772	GetFBConfigs	dwarf	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26521a0	808	__glXInitialize	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26524c8	216	__glXSetupForCommand	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -25346,7 +25346,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa570	184	LoseC
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa630	260	DestroyContext	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa740	76	initialDestroyContext	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa790	376	map_rtc	dwarf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa910	4060	MakeCurrentRead	dwarf	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa910	4060	MakeCurrentRead	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab8f0	108	MakeCurrent	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab960	136	VisualsMatch	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dab9f0	852	__glKonCreateContext	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
@@ -26637,7 +26637,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e30000	260	__glB
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e30110	28	__glEndDispatchOverride	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e30130	404	__glEarlyInitContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e302d0	940	__glContextSetColorScales	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e30680	3036	__glSoftResetContext	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e30680	3036	__glSoftResetContext	dwarf+dynsym	understood	HIP.h:100	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31260	112	__glDestroyContext	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e312d0	552	__glDestroySoftContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31500	208	__glFreePrivate	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -30249,7 +30249,7 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd80f5dc	60	glXMakeCurrentRea
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd80f618	2324	CreateContext	mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd80ff2c	28	ColorScore	mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd80ff48	1340	AccumScore	mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd80ff60	448	__glXInitThread	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd80ff60	448	__glXInitThread	dynsym+mdebug	understood	HIP.h:98	
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd810120	192	__glXFindDisplay	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8101e0	676	__glXCreateDirectContext	dynsym+mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd810484	1616	SampleScore	mdebug	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -30923,7 +30923,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCur
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	DestroyContext	mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
@@ -32220,7 +32220,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d05c8	84	__glBegi
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d061c	6528	__glEndDispatchOverride	mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d0638	428	__glEarlyInitContext	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d07e4	980	__glContextSetColorScales	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d0bb8	2848	__glSoftResetContext	dynsym+mdebug	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d0bb8	2848	__glSoftResetContext	dynsym+mdebug	understood	HIP.h:100	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d16d8	116	__glDestroyContext	dynsym+mdebug	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d174c	684	__glDestroySoftContext	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d19f8	256	__glFreePrivate	dynsym+mdebug	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -36191,7 +36191,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd81b9c0	312	QueryVers
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd81bc80	240	GetBoardNumber	dwarf+funcnames	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd81bd70	2152	GetVisualConfigs	dwarf+funcnames	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd81c5e0	3804	GetFBConfigsSGIX	dwarf+funcnames	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81d408	404	__glXInitThread	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81d408	404	__glXInitThread	dwarf+dynsym	understood	HIP.h:98	
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.text	0xd81d4c0	3772	GetFBConfigs	dwarf+funcnames	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81d59c	808	__glXInitialize	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81d8c4	216	__glXSetupForCommand	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -36465,7 +36465,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseC
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948750	368	map_rtc	dwarf+funcnames	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd949ae0	880	__glKonCreateContext	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
@@ -37756,7 +37756,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cc330	372	__glB
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cc4b0	28	__glEndDispatchOverride	dwarf+funcnames	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cc4d0	388	__glEarlyInitContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cc660	908	__glContextSetColorScales	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cc9f0	2980	__glSoftResetContext	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cc9f0	2980	__glSoftResetContext	dwarf+dynsym	understood	HIP.h:100	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cd5a0	112	__glDestroyContext	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cd610	536	__glDestroySoftContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cd830	208	__glFreePrivate	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -41771,7 +41771,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2150590	312	QueryVers
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2150850	232	GetBoardNumber	dwarf	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2150940	2136	GetVisualConfigs	dwarf	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x21511a0	3788	GetFBConfigsSGIX	dwarf	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x215200c	404	__glXInitThread	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x215200c	404	__glXInitThread	dwarf+dynsym	understood	HIP.h:98	
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.text	0x2152070	3772	GetFBConfigs	dwarf	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21521a0	808	__glXInitialize	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21524c8	216	__glXSetupForCommand	dwarf+dynsym	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -42045,7 +42045,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a570	184	LoseC
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a630	260	DestroyContext	dwarf	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a740	76	initialDestroyContext	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a790	376	map_rtc	dwarf	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a910	4060	MakeCurrentRead	dwarf	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a910	4060	MakeCurrentRead	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b8f0	108	MakeCurrent	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b960	136	VisualsMatch	dwarf	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218b9f0	852	__glKonCreateContext	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
@@ -43336,7 +43336,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2210000	260	__glB
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2210110	28	__glEndDispatchOverride	dwarf	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2210130	404	__glEarlyInitContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22102d0	940	__glContextSetColorScales	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2210680	3036	__glSoftResetContext	dwarf+dynsym	named-only	docs/opengl.md#who-calls-them-the-contexts-function-table	Who calls them: the context's function table
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2210680	3036	__glSoftResetContext	dwarf+dynsym	understood	HIP.h:100	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211260	112	__glDestroyContext	dwarf+dynsym	named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22112d0	552	__glDestroySoftContext	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211500	208	__glFreePrivate	dwarf+dynsym	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -50333,7 +50333,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x427450	104	KonSeqData10_ip19	dyn
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4274b8	96	KonSeqData9_ip19	dynsym	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x427518	88	KonSeqData8_ip19	dynsym	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x427570	80	KonSeqData7_ip19	dynsym	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4275c0	72	KonSeqData6_ip19	dynsym	named-only	docs/open-questions.md#arm-firmware	ARM firmware
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4275c0	72	KonSeqData6_ip19	dynsym	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x427608	64	KonSeqData5_ip19	dynsym	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x427648	56	KonSeqData4_ip19	dynsym	named-only	docs/kona-ddx.md#identifier-allocation-and-support	Identifier allocation and support
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x427680	48	KonSeqData3_ip19	dynsym	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
@@ -50508,7 +50508,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x465540	120	rrmCreateWindow	dynsy
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4655c0	104	konSetSpans	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x465630	368	konDestroyGC	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4657a0	104	konTempBlankAllChannels	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x465810	2172	konLineSS	dynsym	named-only	docs/open-questions.md#arm-firmware	ARM firmware
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x465810	2172	konLineSS	dynsym	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x466090	1284	cfb32Tile32FSGeneral	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4665a0	2628	cfb16FillPoly1RectCopy	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x467440	724	konDestroyWindow	dynsym	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
@@ -51303,7 +51303,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4651d0	120	rrmCreateWindow	dyns
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x465250	104	konSetSpans	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4652c0	368	konDestroyGC	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x465430	104	konTempBlankAllChannels	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4654a0	2764	konLineSS	dynsym	named-only	docs/open-questions.md#arm-firmware	ARM firmware
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4654a0	2764	konLineSS	dynsym	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x465f70	1284	cfb32Tile32FSGeneral	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x466480	2628	cfb16FillPoly1RectCopy	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x467320	728	konDestroyWindow	dynsym	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
@@ -52098,7 +52098,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e51d0	120	rrmCreateWindow	dyn
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e5250	104	konSetSpans	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e52c0	368	konDestroyGC	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e5430	104	konTempBlankAllChannels	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e54a0	2764	konLineSS	dynsym	named-only	docs/open-questions.md#arm-firmware	ARM firmware
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e54a0	2764	konLineSS	dynsym	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e5f70	1284	cfb32Tile32FSGeneral	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e6480	2628	cfb16FillPoly1RectCopy	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e7320	728	konDestroyWindow	dynsym	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
@@ -52893,7 +52893,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4651d0	120	rrmCreateWindow	dyns
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x465250	104	konSetSpans	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4652c0	368	konDestroyGC	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x465430	104	konTempBlankAllChannels	dynsym	named-only	docs/kona-ddx.md#kona-specific-layer-kon-kon_	Kona-specific layer (`kon*`, `kon_*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4654a0	2764	konLineSS	dynsym	named-only	docs/open-questions.md#arm-firmware	ARM firmware
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4654a0	2764	konLineSS	dynsym	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x465f70	1284	cfb32Tile32FSGeneral	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x466480	2628	cfb16FillPoly1RectCopy	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x467320	728	konDestroyWindow	dynsym	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands

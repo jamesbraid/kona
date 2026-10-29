@@ -1,7 +1,7 @@
 kind	value	name	register	detail	sources	sites	binaries	example	status	doc	section
 token	0x000	HP_DATA;KONA_HP_DATA		handler=arm_data route=arm	GE.h,firmware map,kernel command port,kpm,user FIFO	20	8	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):kona_act_pcx	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 token	0x001	HP_BUFFER_CONFIG;KONA_HP_BUFFER_CONFIG		handler=arm_buffer_config route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonCreateContext	named-only	docs/kernel.md#textport-drawing-kona_setcolor-kona_mapcolor-kona_point-kona_box-kona_unblank-kona_movechar-kona_bitmap-kona_tportinit	Textport drawing: `kona_setcolor`, `kona_mapcolor`, `kona_point`, `kona_box`, `kona_unblank`, `kona_movechar`, `kona_bitmap`, `kona_tportinit`
-token	0x002	HP_PACK;KONA_HP_PACK		handler=arm_pack route=arm	GE.h,firmware map,kpm	0	0		named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
+token	0x002	HP_PACK;KONA_HP_PACK		handler=arm_pack route=arm	GE.h,firmware map,kpm	0	0		named-only	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig	Buffer configuration: `kona_writeconfig`, `kona_readconfig`
 token	0x003	HP_BEGIN_RECT;KONA_HP_BEGIN_RECT		route=hw	GE.h,firmware map,kpm,user FIFO	48	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_Rectd	named-only	GE.h:163	
 token	0x004	HP_READBUFFER_CONFIG;KONA_HP_READBUFFER_CONFIG		handler=arm_readbuffer_config route=arm	GE.h,firmware map,kpm	0	0		named-only	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig	Buffer configuration: `kona_writeconfig`, `kona_readconfig`
 token	0x005	HP_BITMAP_DLIST;KONA_HP_BITMAP_DLIST		handler=arm_bitmap_dlist route=arm	GE.h,firmware map,kpm,user FIFO	4	4	usr/gfx/arch/IP27KONA32/libGLcore.so:__glkonim_Bitmap	named-only	docs/ge.md#bitmaps-in-display-lists-hp_bitmap_dlist	Bitmaps in display lists: `HP_BITMAP_DLIST`
@@ -275,7 +275,7 @@ token	0x110	HP_COPYISOVERLAPPED;KONA_HP_COPYISOVERLAPPED		handler=arm_copyisover
 token	0x111	HP_PIXEL_NOMODE;KONA_HP_PIXEL_NOMODE		handler=arm_pixel_nomode route=arm	GE.h,firmware map,kpm,user FIFO	60	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonSetNoModeState	named-only	GE.h:433	
 token	0x112	HP_IRISGL_MODE;KONA_HP_IRISGL_MODE		handler=arm_irisgl_mode route=arm	GE.h,firmware map,kpm,user FIFO	4	4	usr/gfx/arch/IP27KONA32/libGLcore.so:__glkonim_IglooInterfaceSGIX	named-only	ucode/ge_handlers.md#glmodess	glmodes.S
 token	0x113	HP_LMC_COLOR;KONA_HP_LMC_COLOR		handler=arm_lmc_color route=arm	GE.h,firmware map,kpm	0	0		named-only	GE.h:435	
-token	0x114	HP_VIDEO_SOURCE;KONA_HP_VIDEO_SOURCE		handler=arm_video_source route=arm	GE.h,firmware map,kpm	0	0		named-only	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig	Buffer configuration: `kona_writeconfig`, `kona_readconfig`
+token	0x114	HP_VIDEO_SOURCE;KONA_HP_VIDEO_SOURCE		handler=arm_video_source route=arm	GE.h,firmware map,kpm	0	0		named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 token	0x115	HP_COPYCONVISOVERLAPPED;KONA_HP_COPYCONVISOVERLAPPED		handler=arm_copyconvisoverlapped route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ge_handlers.md#gets	get.S
 token	0x116	HP_RESOLVEISSINGLECOMP;KONA_HP_RESOLVEISSINGLECOMP		handler=arm_resolveissinglecomp route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:GetSingleCompFromPipe	named-only	GE.h:438	
 token	0x117	HP_SAMPLEPATTERN;KONA_HP_SAMPLEPATTERN		handler=arm_samplepattern route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_SamplePatternSGIS	named-only	ucode/ge_handlers.md#points	point.S
@@ -496,7 +496,7 @@ token	0x1ed	HP_DMAPOOL_SETUP;KONA_HP_DMAPOOL_SETUP		handler=arm_dmapool_setup ro
 token	0x1ee	HP_VALIDATE_READCLIP;KONA_HP_VALIDATE_READCLIP		handler=arm_validate_readclip route=arm	GE.h,firmware map,kpm	0	0		understood	kona_kernel/include/kona_kern.h:140	
 token	0x1ef	HP_GED_VERIF_LOAD;KONA_HP_GED_VERIF_LOAD		handler=arm_ged_verif_load route=arm	GE.h,firmware map,kpm	0	0		named-only	GE.h:655	
 token	0x1f0	HP_GED_VERIF_DUMP;KONA_HP_GED_VERIF_DUMP		handler=arm_ged_verif_dump route=arm	GE.h,firmware map,kpm	0	0		named-only	ucode/ge_handlers.md#rasters	raster.S
-token	0x1f1	HP_PIPE_SETUP;KONA_HP_PIPE_SETUP		handler=arm_pipe_setup route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_setup.o):KONAstart	understood	HIP.h:108	
+token	0x1f1	HP_PIPE_SETUP;KONA_HP_PIPE_SETUP		handler=arm_pipe_setup route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_setup.o):KONAstart	understood	HIP.h:124	
 token	0x1f2	HP_RDATA_SETUP;KONA_HP_RDATA_SETUP		handler=arm_rdata_setup route=arm	GE.h,firmware map,kpm	0	0		named-only	GE.h:658	
 token	0x1f3	HP_VALIDATE_CLIP;KONA_HP_VALIDATE_CLIP		handler=arm_validate_clip route=arm	GE.h,firmware map,kpm	0	0		understood	kona_kernel/include/kona_kern.h:136	
 token	0x1f4	HP_VALIDATE_BANK;KONA_HP_VALIDATE_BANK		handler=arm_validate_bank route=arm	GE.h,firmware map,kernel command port,kpm	4	4	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONAvalidateclip	understood	kona_kernel/include/kona_kern.h:143	

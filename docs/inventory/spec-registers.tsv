@@ -19,19 +19,19 @@ kpm register tables	host interface		hip	0x800100	HH_SWITCH	1	0	32		0	named-only	
 kpm register tables	host interface		hip	0x800108	HIP1_HH_GINTR_INFO	1	0	32		0	no-software-dependency	HIP.h:49	
 kpm register tables	host interface		hip	0x800108	HIP2_HH_GINTR_INFO	1	0	32		0	no-software-dependency	HIP.h:49	
 kpm register tables	host interface		hip	0x8001f8	HH_NOP	1	0	32		0	named-only	docs/kernel.md#what-a-process-maps	What a process maps
-kpm register tables	host interface		hip	0x800200	HH_RTC	1	0	32		0	located	HIP.h:147	
+kpm register tables	host interface		hip	0x800200	HH_RTC	1	0	32		0	located	HIP.h:163	
 kpm register tables	host interface		hip	0x800208	HIP1_HH_GFIFO_LEVEL	1	0	32		1	understood	HIP.h:34	
 kpm register tables	host interface		hip	0x800208	HIP2_HH_GFIFO_LEVEL	1	0	32		1	understood	HIP.h:34	
-kpm register tables	host interface		hip	0x800210	HH_GFIFO_HI	1	0	32		1	no-software-dependency	HIP.h:161	
-kpm register tables	host interface		hip	0x800218	HH_GFIFO_LO	1	0	32		0	no-software-dependency	HIP.h:162	
+kpm register tables	host interface		hip	0x800210	HH_GFIFO_HI	1	0	32		1	no-software-dependency	HIP.h:177	
+kpm register tables	host interface		hip	0x800218	HH_GFIFO_LO	1	0	32		0	no-software-dependency	HIP.h:178	
 kpm register tables	host interface		hip	0x800220	HIP1_HH_INTR_INFO	1	0	32		1	understood	HIP.h:35	
 kpm register tables	host interface		hip	0x800220	HIP2_HH_INTR_INFO	1	0	32		1	understood	HIP.h:35	
-kpm register tables	host interface		hip	0x800228	HH_INTR_ACK	1	0	32		1	named-only	docs/coverage.md#hip	HIP
+kpm register tables	host interface		hip	0x800228	HH_INTR_ACK	1	0	32		1	named-only	docs/dg.md#interrupts	Interrupts
 kpm register tables	host interface		hip	0x800230	HIP1_HH_INTR_ENABLE	1	0	32		1	named-only	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 kpm register tables	host interface		hip	0x800230	HIP2_HH_INTR_ENABLE	1	0	32		1	named-only	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 kpm register tables	host interface		hip	0x800238	HIP1_HH_INTR_STATUS	1	0	32		1	named-only	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 kpm register tables	host interface		hip	0x800238	HIP2_HH_INTR_STATUS	1	0	32		1	named-only	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
-kpm register tables	host interface		hip	0x800240	HH_ARM_MBOX	1	0	32		1	understood	HIP.h:109	
+kpm register tables	host interface		hip	0x800240	HH_ARM_MBOX	1	0	32		1	understood	HIP.h:125	
 kpm register tables	host interface		hip	0x800248	HH_SEQID	1	0	32		1	located	DG.h:81	
 kpm register tables	host interface		hip	0x800250	HH_ODMA_CHANNEL	1	0	32		0	named-only	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
 kpm register tables	host interface		hip	0x800258	HH_PACK_MODE	1	0	32		0	named-only	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
@@ -52,7 +52,7 @@ kpm register tables	host interface		hip	0x8002b8	HH_ODMA2_TOTAL	1	0	32		1	named-
 kpm register tables	host interface		hip	0x8002c0	HH_ODMA2_OVER	1	0	32		0	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 kpm register tables	host interface		hip	0x8002c8	HIP2_HH_PIO_HI	1	0	32		0	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800300	HH_RESET	1	0	32		1	understood	docs/xg.md#pipe-reset-konainitialize-and-the-credit-wait-path	Pipe reset, `KONAinitialize` and the credit-wait path
-kpm register tables	host interface		hip	0x800308	HH_ARM_CTRL	1	0	32		0	no-software-dependency	HIP.h:292	
+kpm register tables	host interface		hip	0x800308	HH_ARM_CTRL	1	0	32		0	no-software-dependency	HIP.h:308	
 kpm register tables	host interface		hip	0x800310	HH_ARM_STATUS	1	0	32		0	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800320	HH_ARM_STALL	1	0	32		0	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800328	HH_ARM_UNSTALL	1	0	32		0	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
@@ -70,8 +70,8 @@ kpm register tables	host interface		hip	0x800380	HIP1_HH_FCI_OVERLAP	1	0	32		0	n
 kpm register tables	host interface		hip	0x800388	HIP1_HH_FCI_LOOPBACK	1	0	32		0	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800390	HIP1_HH_FCI_ERR_STAT1	1	0	32		1	named-only	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
 kpm register tables	host interface		hip	0x800390	HIP2_HH_GV_ERR_STAT1	1	0	32		1	named-only	docs/kernel.md#registers-the-driver-touches	Registers the driver touches
-kpm register tables	host interface		hip	0x800398	HIP1_HH_FCI_ERR_STAT2	1	0	32		1	no-software-dependency	HIP.h:238	
-kpm register tables	host interface		hip	0x800398	HIP2_HH_GV_ERR_STAT2	1	0	32		1	no-software-dependency	HIP.h:238	
+kpm register tables	host interface		hip	0x800398	HIP1_HH_FCI_ERR_STAT2	1	0	32		1	no-software-dependency	HIP.h:254	
+kpm register tables	host interface		hip	0x800398	HIP2_HH_GV_ERR_STAT2	1	0	32		1	no-software-dependency	HIP.h:254	
 kpm register tables	host interface		hip	0x8003a0	HIP1_HH_FCI_PIO_STATUS	1	0	32		0	named-only	docs/hip.md#reset	Reset
 kpm register tables	host interface		hip	0x8003a0	HIP2_HH_GV_OVERLAP	1	0	32		0	named-only	docs/hip.md#reset	Reset
 kpm register tables	host interface		hip	0x8003a8	HH_TBUS_STATUS	1	0	32		1	understood	HIP.h:37	
@@ -82,8 +82,8 @@ kpm register tables	host interface		hip	0x8003c8	HH_VC_FREADY	1	0	32		0	understo
 kpm register tables	host interface		hip	0x8003d0	HH_VC_DATA	1	0	32		1	understood	docs/xg.md#attach-kona_attach	Attach, `kona_attach`
 kpm register tables	host interface		hip	0x8003d8	HH_VC_DATA_INCR	1	0	32		0	understood	DG.h:30	
 kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	named-only	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
-kpm register tables	host interface		hip	0x8003e8	HH_ARM_ADDRESS	1	0	32		0	no-software-dependency	HIP.h:294	
-kpm register tables	host interface		hip	0x8003f0	HH_ARM_DATA	1	0	32		0	no-software-dependency	HIP.h:294	
+kpm register tables	host interface		hip	0x8003e8	HH_ARM_ADDRESS	1	0	32		0	no-software-dependency	HIP.h:310	
+kpm register tables	host interface		hip	0x8003f0	HH_ARM_DATA	1	0	32		0	no-software-dependency	HIP.h:310	
 kpm register tables	host interface		hip	0x8003f8	HH_ARM_DATA_INCR	1	0	32		0	understood	HIP.h:26	
 kpm register tables	raster		raster-index	0x1	BEF_DUMP	1	0	32		0	named-only	docs/rm.md#interrupts	Interrupts
 kpm register tables	raster		raster-index	0x2	BEF_PERF_COUNTALL	1	0	32		0	no-software-dependency	RM.h:396	

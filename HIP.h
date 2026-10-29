@@ -93,6 +93,22 @@
  * 0xc000. INFERRED for 6.5.30: libGLcore's FIFO address 0x4000 is the
  * start of this region, so any store in the first 16 KB is a FIFO write.
  *
+ * Not pipe accesses, ESTABLISHED: the scan's user-pipe window runs to
+ * process address 0x20c000 and so overlaps the IRIX per-thread data area at
+ * 0x200000 (PRDA, 6.5.5 sys/prctl.h). libGL's __glXInitThread loads window
+ * offset +0x1fce00 (address 0x200e00, the start of the PRDA's system area)
+ * and libGLcore's __glSoftResetContext loads offsets +0x1fce90 and
+ * +0x1fce98 (0x200e90 and 0x200e98, in the PRDA's library area, lui 0x20 +
+ * 0xe90 at 0x0d9d0bf8 in the IP27KONA build): per-thread library state, not
+ * host-interface registers.
+ *
+ * Diagnostic XG page, ESTABLISHED (kpm adapterInspection 0x10012378): kpm
+ * reads the XG widget registers through the page at 0xc000, the low word of
+ * each 64-bit slot (offsets 0xc, 0x14, 0x1c, 0x24 ...). Register offset
+ * +0xc01c is widget offset 0x1c, which kpm's XG table does not name;
+ * INFERRED from the generic Crosstalk widget layout (Linux xwidget.h,
+ * docs/xg.md) it is the error lower-address register. kpm only prints it.
+ *
  * Return data, ESTABLISHED for 6.5.5: the 16 KB area starts with a valid
  * word and a count word, then data, and ends with an instrumentation
  * overflow word and a pad word.

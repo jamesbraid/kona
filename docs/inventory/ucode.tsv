@@ -129,7 +129,7 @@ arm1.u	symbol	0x040494d0	ge_mem_base	flags=5	named-only	ucode/arm1_functions.md#
 arm1.u	symbol	0x040494d4	tex_mem_base	flags=5	named-only	ucode/arm1_functions.md#memory-reservation-and-swap	Memory reservation and swap
 arm1.u	symbol	0x040494d8	reserve	flags=4	named-only	ucode/arm1_functions.md#memory-reservation-and-swap	Memory reservation and swap
 arm1.u	symbol	0x040494e8	swapout	flags=4	named-only	ucode/arm1_functions.md#memory-reservation-and-swap	Memory reservation and swap
-arm1.u	symbol	0x040494f8	swapin	flags=4	named-only	docs/open-questions.md#arm-firmware	ARM firmware
+arm1.u	symbol	0x040494f8	swapin	flags=4	named-only	ucode/arm1_functions.md#memory-reservation-and-swap	Memory reservation and swap
 arm1.u	symbol	0x04049508	copydown	flags=4	named-only	ucode/arm1_functions.md#memory-reservation-and-swap	Memory reservation and swap
 arm1.u	symbol	0x04049518	mem_mgr_pnum	flags=5	named-only	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
 arm1.u	symbol	0x0404951c	mem_mgr_poff	flags=5	named-only	docs/rm.md#host-interface-registers-on-the-raster-bus	Host-interface registers on the raster bus
@@ -140,8 +140,8 @@ arm1.u	symbol	0x04049644	blendTevFunc	flags=4	named-only	ucode/arm1_functions.md
 arm1.u	symbol	0x04049658	replaceTevFunc	flags=4	named-only	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x0404966c	addTevFunc	flags=4	named-only	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x04049680	addSignedTevFunc	flags=4	named-only	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x04049694	overlap	flags=5	named-only	docs/open-questions.md#arm-firmware	ARM firmware
-arm1.u	symbol	0x04049698	path	flags=4	named-only	docs/open-questions.md#arm-firmware	ARM firmware
+arm1.u	symbol	0x04049694	overlap	flags=5	named-only	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel-path parameter and format tables
+arm1.u	symbol	0x04049698	path	flags=4	named-only	ucode/arm1_functions.md#pixel-path	Pixel path
 arm1.u	symbol	0x04049760	wramBuf	flags=4	named-only	ucode/arm1_functions.md#splitting-the-data-across-engines	Splitting the data across engines
 arm1.u	symbol	0x0404977c	DefPackState	flags=4	named-only	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel-path parameter and format tables
 arm1.u	symbol	0x040497a0	GlobalTexPackState	flags=4	named-only	ucode/arm1_functions.md#texture-management	Texture management
@@ -591,7 +591,7 @@ arm1.u	symbol	0x0c0088b4	DoDGRqstLoadEncoder	flags=3	named-only	docs/dg.md#displ
 arm1.u	symbol	0x0c008c00	DoDGRqstEncoderTestPattern	flags=3	named-only	docs/dg.md#display-requests	Display requests
 arm1.u	symbol	0x0c008c44	DoDGRqstEnableEncoder	flags=3	named-only	docs/dg.md#display-requests	Display requests
 arm1.u	symbol	0x0c008cb0	DoDGRqstFetal	flags=3	named-only	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them	Start-up and reset as the ARM firmware performs them
-arm1.u	symbol	0x0c009628	dgFetal	flags=3	named-only	docs/dg.md#helper-functions	Helper functions
+arm1.u	symbol	0x0c009628	dgFetal	flags=3	named-only	docs/coverage.md#microcode-lower-priority	Microcode (lower priority)
 arm1.u	symbol	0x0c009648	DoDGRqstXServerVideoInit	flags=3	understood	ucode/tport.md#what-the-image-contains	What the image contains
 arm1.u	symbol	0x0c0097d4	dgMakeXmapFetal	flags=3	no-software-dependency	DG.h:284	check); the container layout is in ucode/dg.md. Roles marked INFERRED
 arm1.u	symbol	0x0c009b98	dgMakeChannelFetal	flags=3	named-only	docs/dg.md#helper-functions	Helper functions
@@ -712,7 +712,7 @@ arm1.u	symbol	0x0c013098	XferMask	flags=3	named-only	docs/opengl.md#buffer-confi
 arm1.u	symbol	0x0c01315c	XferMaskRpos	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
 arm1.u	symbol	0x0c0131a0	arm_buffer_config	flags=3	named-only	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig	Buffer configuration: `kona_writeconfig`, `kona_readconfig`
 arm1.u	symbol	0x0c013650	arm_readbuffer_config	flags=3	named-only	ucode/arm1_functions.md#set-up-and-state	Set-up and state
-arm1.u	symbol	0x0c013924	arm_video_source	flags=3	named-only	ucode/arm1_functions.md#video-sources	Video sources
+arm1.u	symbol	0x0c013924	arm_video_source	flags=3	named-only	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig	Buffer configuration: `kona_writeconfig`, `kona_readconfig`
 arm1.u	symbol	0x0c01392c	resolve_banks	flags=3	named-only	docs/opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig	Buffer configuration: `kona_writeconfig`, `kona_readconfig`
 arm1.u	symbol	0x0c013a60	arm_drawbuffer	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 arm1.u	symbol	0x0c013bfc	arm_readbuffer	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
@@ -999,7 +999,7 @@ arm1.u	symbol	0x0c01fe04	arm_context_init	flags=3	named-only	docs/ge.md#reset-an
 arm1.u	symbol	0x0c01ff20	activate_setcurrentge	flags=2	named-only	ucode/ge_handlers.md#rasters	raster.S
 arm1.u	symbol	0x0c020018	activate_ged	flags=2	named-only	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
 arm1.u	symbol	0x0c02081c	activate_geregs	flags=2	named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-arm1.u	symbol	0x0c020888	activate_gefifo	flags=2	named-only	docs/open-questions.md#arm-firmware	ARM firmware
+arm1.u	symbol	0x0c020888	activate_gefifo	flags=2	named-only	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines	How a handler reaches the engines
 arm1.u	symbol	0x0c020978	activate_hip	flags=2	named-only	ucode/arm1_firmware.md#control-and-status-registers	Control and status registers
 arm1.u	symbol	0x0c0209dc	arm_context_activate	flags=3	named-only	docs/ge.md#context-save-and-restore	Context save and restore
 arm1.u	symbol	0x0c020c04	load_broadcast_geEram	flags=2	named-only	docs/ge.md#dma	DMA
@@ -1247,7 +1247,7 @@ arm1.u	symbol	0x0c02b8cc	drawtexels	flags=3	named-only	docs/ge.md#the-texel-form
 arm1.u	symbol	0x0c02b9ec	arm_drawpixels	flags=3	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 arm1.u	symbol	0x0c02bb34	arm_copypixels	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 arm1.u	symbol	0x0c02bd60	videoCopyPixels	flags=2	named-only	ucode/arm1_functions.md#video-sources	Video sources
-arm1.u	symbol	0x0c02bdfc	SetVideoFormat	flags=3	named-only	ucode/arm1_functions.md#distributor-and-raster-bus-set-up	Distributor and raster-bus set-up
+arm1.u	symbol	0x0c02bdfc	SetVideoFormat	flags=3	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
 arm1.u	symbol	0x0c02bec8	e_interlace	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 arm1.u	symbol	0x0c02bef8	d_interlace	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 arm1.u	symbol	0x0c02bf28	EnableVideoCopy	flags=3	named-only	ucode/arm1_functions.md#video-sources	Video sources
@@ -1525,7 +1525,7 @@ arm1.u	symbol	0x0c038900	arm_popname	flags=3	named-only	ucode/ge_handlers.md#sel
 arm1.u	symbol	0x0c038930	arm_passthrough	flags=3	named-only	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines	How a handler reaches the engines
 arm1.u	symbol	0x0c038964	arm_rendermode	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 arm1.u	symbol	0x0c038a6c	arm_feedback_type	flags=3	named-only	GE.h:183	
-arm1.u	symbol	0x0c038a78	arm_slop	flags=3	named-only	docs/rm.md#shadow-word-names	Shadow word names
+arm1.u	symbol	0x0c038a78	arm_slop	flags=3	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 arm1.u	symbol	0x0c039194	slop_readword	flags=2	named-only	ucode/ge_handlers.md#hostios	hostio.S
 arm1.u	symbol	0x0c03949c	arm_pack	flags=3	named-only	GE.h:162	
 arm1.u	symbol	0x0c039538	pack_cmd	flags=2	named-only	ucode/arm1_functions.md#start-up-exceptions-and-the-run-time-library	Start-up, exceptions and the run-time library
@@ -1597,7 +1597,7 @@ arm1.u	symbol	0x0c03cf54	arm_read_instruments	flags=3	named-only	ucode/arm1_firm
 arm1.u	symbol	0x0c03cfc8	arm_pointparameterf	flags=3	named-only	ucode/ge_handlers.md#glmodess	glmodes.S
 arm1.u	symbol	0x0c03d020	arm_pointparameterfv	flags=3	named-only	ucode/ge_handlers.md#glmodess	glmodes.S
 arm1.u	symbol	0x0c03d0b8	x_initregs	flags=2	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c03d2c8	arm_x_init	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
+arm1.u	symbol	0x0c03d2c8	arm_x_init	flags=3	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 arm1.u	symbol	0x0c03d55c	arm_x_loadpos	flags=3	named-only	ucode/arm1_firmware.md#how-a-handler-reaches-the-engines	How a handler reaches the engines
 arm1.u	symbol	0x0c03d5b0	arm_x_loadclip_arm	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
 arm1.u	symbol	0x0c03d5e8	arm_x_loadcmap	flags=3	named-only	docs/dg.md#colour-maps-and-gamma-tables	Colour maps and gamma tables
@@ -2366,7 +2366,7 @@ ge.u	label	0x000064af	mGenerateAALineTable		named-only	ucode/ge_handlers.md#aas	
 ge.u	label	0x0000652d	mDownLoadAALineTable8		named-only	ucode/ge_handlers.md#lines	line.S
 ge.u	label	0x00006579	mDownLoadAALineTable4		named-only	ucode/ge_handlers.md#lines	line.S
 ge.u	label	0x000065db	mDownLoadAALineTable		named-only	ucode/ge.md#precision	Precision
-ge.u	label	0x00006622	mgeb_ContextDestroy		named-only	docs/open-questions.md#kernel-driver	Kernel driver
+ge.u	label	0x00006622	mgeb_ContextDestroy		named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
 ge.u	label	0x0000668a	mges_ContextLoadFifo		named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
 ge.u	label	0x00006697	mgeb_ContextLoadRegs		named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
 ge.u	label	0x000066ed	mgeb_ContextLoadFlagRegs		named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
@@ -2578,7 +2578,7 @@ ge.u	label	0x0000a8f7	mgesi_PixQueryCopyOverlap		named-only	ucode/ge_handlers.md
 ge.u	label	0x0000a990	mgesi_PixRasterPosSetup		named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000ab59	mmo_CopyFifoLine		named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 ge.u	label	0x0000ab9d	mgesi_PipeSetup		named-only	ucode/ge_handlers.md#debugs	debug.S
-ge.u	label	0x0000ad1c	mgeb_XContextInitialize		named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
+ge.u	label	0x0000ad1c	mgeb_XContextInitialize		named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 ge.u	label	0x0000ad39	mgeb_GLContextInitialize		named-only	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000ad66	mgeb_GlobalInitialize		named-only	docs/ge.md#reset-and-start-up	Reset and start-up
 ge.u	label	0x0000ad90	mDebugInitialize		named-only	ucode/ge_handlers.md#ges	ge.S
@@ -3133,7 +3133,7 @@ geif.u	dispatch slot	255	mgeb_CRAMBlockLoad	handler 0x15f9	named-only	ucode/ge_h
 geif.u	dispatch slot	256	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	257	mgeb_ColorTableSetup	handler 0x422e	named-only	ucode/ge_handlers.md#colortables	colortable.S
 geif.u	dispatch slot	258	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	259	mgeb_ContextDestroy	handler 0x6622	named-only	docs/open-questions.md#kernel-driver	Kernel driver
+geif.u	dispatch slot	259	mgeb_ContextDestroy	handler 0x6622	named-only	ucode/ge_handlers.md#ctx_loads	ctx_load.S
 geif.u	dispatch slot	260	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	261	mgeb_ContextLoadCram	handler 0x671e	named-only	docs/ge.md#dma	DMA
 geif.u	dispatch slot	262	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up

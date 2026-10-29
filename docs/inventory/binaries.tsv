@@ -590,10 +590,10 @@ usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5
 usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0	0	0	undocumented		
 usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	0	0	named-only	docs/kernel.md#generic-and-manager-ioctls-who-sends-them	Generic and manager ioctls: who sends them
 usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	0	0	understood	docs/opengl.md#display-functions-cursor-records-display-ids-colour-maps-gamma	Display functions: cursor records, display ids, colour maps, gamma
-usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	0	0	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
-usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	0	0	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
-usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	0	0	named-only	docs/coverage.md#opengl-core-and-x-modules	OpenGL core and X modules
-usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	0	0	named-only	AGENTS.md#2-project-binaries--evidence	2. Project Binaries & Evidence
+usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	0	0	named-only	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
+usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	0	0	named-only	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
+usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	0	0	named-only	docs/dg.md#the-loadformat-request-383-words	The LoadFormat request (383 words)
+usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	0	0	named-only	docs/opengl.md#x-server-module-drawing-commands	X server module: drawing commands
 usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	0	0	named-only	docs/libfm.md#the-font-manager-library-libfmso-function-reference	The font-manager library (`libfm.so`): function reference
 var/sysgen/master.d/gfxs	kernel-config	shared-data	data	-	399	ef56620faa1e0634		0	0	0	undocumented		
 var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0	0	0	undocumented		
