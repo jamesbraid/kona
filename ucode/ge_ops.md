@@ -39,6 +39,8 @@ The other decoded groups depend on the low bits: `r148` (R148-139) on W[13:0] an
 
 **`mgeb_DepthRange`.** **Established:** it runs 0x6e8 and then 0x6e6 on each of its two inputs, then 0x6e2, 0x6e0 and unit-2 multiplies against the constants 0x49000000 (2^19) and 0x49800000 (2^20). **Inferred:** with the table below this reads as GL's clamp of zNear and zFar to [0, 1] (maximum, then minimum), then (far - near) and (far + near) scaled by powers of two for the 2^20 depth range of [docs/rm.md](../docs/rm.md).
 
+**Counted loops.** **Inferred:** a form-14 word with `r219` = 1, C = 0x1e and an immediate loads a loop count into register G; a later word with C = G, G = G and F = 0x25 steps it, and a relative transfer repeats the body. The counts seen include 8 (`mgesi_FlushRM`), 0x59 (the raster-shadow length, `mges_ContextReloadFromBEF`), 0x1fa and 0xeaf (`ctx_load.S` at 0x6641 and 0x6653). The field reading and the evidence are in [ge_isa.md](ge_isa.md#fields). The 0x1fa count is not the activate token.
+
 ## The diagnostic program's instruction test
 
 The IR diagnostics ship a second geometry-engine program, `usr/diags/IR/ucode/ge.hex` and `ge.u` (IRIX 6.5.30m, built from a 1998 diagnostic tree). Its line table names its sources, among them `ge_inst.s`, `fib.S`, `mul.S`, `mul_ge.S` and `mmath.S`. [scripts/ge_disasm.py](../scripts/ge_disasm.py) runs on it unchanged when given an empty symbol file, rederiving the wiring from that program's own two encodings. The listings are not committed.
