@@ -34,7 +34,25 @@
  * INFERRED: HH_VC_ADDRESS selects a register inside the display generator
  * and HH_VC_DATA moves its value. The "VC" name comes from kpm.
  */
+/*
+ * KONA_DG_VC_ADDRESS: HH_VC_ADDRESS, the address half of the display bus's
+ * indirect port, at host window offset 0x8003c0. Established: in
+ * kona_video.o `kona_swap_complete` (at 0x26c) writes 128 here and
+ * `kona_enable_dac_cursor` (at 0x1738) writes 0xb00 + 0x100 per channel,
+ * each followed by a write to the data port; `kona_attach` in
+ * kona_edtinit_hip2.o writes 0x8800 and 0xb00 here before reading data back.
+ * Inferred: the 32-bit write latches which display-generator register the
+ * next data access reaches, as `DoDGRqstVCWrite` does for the firmware. */
 #define KONA_DG_VC_ADDRESS            0x8003c0
+/*
+ * KONA_DG_VC_DATA: HH_VC_DATA, the data half of the display bus's indirect
+ * port, at host window offset 0x8003d0. Established: every data write in
+ * kona_video.o follows an address write, and the only reads are in
+ * `kona_attach` (kona_edtinit_hip2.o, near 0x1184), which reads the data
+ * back after addresses 0x8800 and 0xb00. Established: one address can take
+ * two data writes in a row (`kona_enable_dac_cursor` writes 4 then 2 to a
+ * DAC index port). Inferred: it moves one 32-bit value to or from the
+ * register chosen in the address port. */
 #define KONA_DG_VC_DATA               0x8003d0
 
 /*
@@ -43,10 +61,44 @@
  */
 
 /* Cursor control, written from kona_video_intr / kona_enable_dac_cursor. */
-#define KONA_DG_CURSOR_CHANNEL        0x100   /* data = channel that owns the cursor (0-7) */
-#define KONA_DG_CURSOR_GLYPH_ADDR     0x101   /* data = the glyph address from KONA_SELECT_CURSOR */
-#define KONA_DG_CURSOR_POSITION       0x102   /* data = packed x,y (below); used when the cursor is not the DAC cursor */
-#define KONA_DG_CURSOR_MODE           0x103   /* data = 0 off, 1 crosshair, 2 glyph (KONA_SELECT_CURSOR mode) */
+/*
+ * KONA_DG_CURSOR_CHANNEL: XMAP register 0, the cursor channel id (irsaudit
+ * table entry at 0x101ffdc0, mask 0x1f). Established: `kona_video_intr` in
+ * kona_video.o (at 0x1b68) writes the owning channel byte kept at pipe-state
+ * offset 3556, and `DoDGRqstCursorChannel` in arm1.u (at 0x0c006610) writes
+ * the channel record's first word; `dgMakeXmapFetal` (at 0x0c00983c) and
+ * `DoDGRqstLoadTextportGlyph` (at 0x0c010b94) write 0. Inferred: it names
+ * the display channel on which the hardware cursor is drawn. */
+#define KONA_DG_CURSOR_CHANNEL        0x100
+/*
+ * KONA_DG_CURSOR_GLYPH_ADDR: XMAP register 1, the cursor image base
+ * (irsaudit table entry at 0x101ffdcc, mask 0x1ffff, 17 bits). Established:
+ * `kona_video_intr` (kona_video.o, address 257 written at 0x18e0) sends the
+ * word the driver stored at pipe-state offset 3560 when `kona_select_cursor`
+ * ran, which is word 1 of the select ioctl; `DoDGRqstLoadTextportGlyph`
+ * (arm1.u at 0x0c010b10) writes its own glyph address. Inferred: it points
+ * at the 260-word block in colour-map RAM that holds the cursor bitmap and
+ * colours. */
+#define KONA_DG_CURSOR_GLYPH_ADDR     0x101
+/*
+ * KONA_DG_CURSOR_POSITION: XMAP register 2, the cursor position (irsaudit
+ * table entry at 0x101ffdd8, mask 0x3ffffff, 26 bits). Established:
+ * `DoDGRqstCursorPosition` (arm1.u at 0x0c0066e8) stores payload word 0 in
+ * bits 0-12 and word 1 shifted left 13 in bits 13-25; `kona_video_intr`
+ * (kona_video.o at 0x1940) builds the same packing for a cursor that is not
+ * on the DAC. Inferred: the hardware places the cursor image with its top-
+ * left at this x, y. */
+#define KONA_DG_CURSOR_POSITION       0x102
+/*
+ * KONA_DG_CURSOR_MODE: XMAP register 3, the cursor enables (irsaudit table
+ * entry at 0x101ffde4, mask 0x1ff). Established: the kernel writes the mode
+ * byte at pipe-state offset 3555 (`kona_video_intr`, kona_video.o at 0x1bcc)
+ * and writes 0 from `kona_enable_dac_cursor` (just before 0x16f0);
+ * `DoDGRqstCursorType` (arm1.u at 0x0c00667c) maps request type 0 to 2, 1 to
+ * 1 and anything else to 0, and the textport glyph load writes 2
+ * (0x0c010b54). Inferred: 0 hides the cursor, 1 selects the crosshair, 2 the
+ * glyph. */
+#define KONA_DG_CURSOR_MODE           0x103
 
 /*
  * Packed position at KONA_DG_CURSOR_POSITION, ESTABLISHED (kona_video_intr
@@ -70,6 +122,15 @@
  * interrupt with nothing queued) suggests an acknowledge or "swap done"
  * pulse.
  */
+/*
+ * KONA_DG_SWAP_STROBE: Frame-manager register 0x80, the swap strobe.
+ * Established: kona_video.o writes 2 here from `kona_swap_complete` (at
+ * 0x26c) and from `kona_video_intr` (at 0x1bf4); arm1.u `DoDGRqstFetal` (at
+ * 0x0c00942c and 0x0c009458) reads it back and rewrites it with bit 0
+ * cleared and bit 1 set. Inferred: bit 1 pulses a swap-done acknowledge to
+ * the frame manager when a buffer swap finishes or a video interrupt finds
+ * nothing queued. The pulse's hardware consequence beyond that is not read
+ * anywhere. */
 #define KONA_DG_SWAP_STROBE           0x080
 #define KONA_DG_SWAP_STROBE_VALUE     2
 
@@ -86,6 +147,15 @@
  * next vertical retrace) is UNKNOWN: no shipped software or published source
  * depends on it; the kernel only reads it in its video-interrupt handler.
  */
+/*
+ * KONA_RASTER_SEQID_INDEX: Raster-bus register index 0x420, the retrace
+ * sequence number. Established: `arm_retrace_seqid` in arm1.u (at
+ * 0x0c013f5c) sends six display-bus writes of 1 to 6 to address 0x7f and
+ * then loads 0x420 as the index for the payload word at 0x0c01401c;
+ * `init_dg_board` (at 0x0c003d3c) writes 0 to the same index. Inferred: it
+ * is the register behind HH_SEQID, which the kernel reads in its video-
+ * interrupt handler. Whether the hardware copies the number at the write or
+ * at the next retrace is read by no shipped code. */
 #define KONA_RASTER_SEQID_INDEX       0x420
 
 /*
@@ -95,12 +165,41 @@
  * (docs/xg.md step 7). The kernel treats channels 0-7 as the ones with a
  * hardware cursor (kona_determine_cursor_channel, branch on channel < 8).
  */
+/*
+ * KONA_DG_CHAN_BASE: Video DAC register blocks, one per channel at 0xb00 +
+ * 0x100 n. Established: `kona_enable_dac_cursor` in kona_video.o (at 0x1738)
+ * loops over channels 0 to 7 writing the block addresses, and
+ * `dgVDacControlWrite` in arm1.u (at 0x0c00675c) reaches the same blocks as
+ * ARM address 0x602c00 + n shifted left 10. Inferred: each block is the
+ * video DAC of one output channel. */
 #define KONA_DG_CHAN_BASE             0x0b00
 #define KONA_DG_CHAN_STRIDE           0x100
 #define KONA_DG_CHAN_COUNT            8
-#define KONA_DG_CHAN_REG0             0       /* written 4 then 2 (two data writes in a row) when the cursor is set up; written 0 then 2 before a DAC position update */
-#define KONA_DG_CHAN_REG2             2       /* 5 on the channel that owns an active DAC cursor, else 0 */
-#define KONA_DG_CHAN_CURSOR_ENABLE    5       /* INFERRED role: both low bits set while the DAC cursor is on */
+/*
+ * KONA_DG_CHAN_REG0: Register 0 of a DAC block, the indirect index port.
+ * Established: `kona_enable_dac_cursor` (kona_video.o at 0x1738) writes 4
+ * then 2 after the block address, and `dgVDacControlWrite` (arm1.u at
+ * 0x0c00675c and 0x0c0067a4) writes the index low byte and then the high
+ * byte; `kona_attach` also reads the data once after addressing channel 0's
+ * block (at 0x1184). Inferred: the pair (4, 2) selects indexed register
+ * 0x204, the cursor control register. */
+#define KONA_DG_CHAN_REG0             0
+/*
+ * KONA_DG_CHAN_REG2: Register 2 of a DAC block, the indexed-register data
+ * port. Established: `kona_enable_dac_cursor` (kona_video.o, loop at 0x1704)
+ * writes 5 on the channel that owns an active DAC cursor and 0 on every
+ * other channel, and `dgVDacControlWrite` (arm1.u at 0x0c0067e8) stores its
+ * value argument here after the index. Inferred: it carries the value for
+ * whichever indexed register the index port selected. */
+#define KONA_DG_CHAN_REG2             2
+/*
+ * KONA_DG_CHAN_CURSOR_ENABLE: Value 5 written to a DAC's cursor control
+ * register 0x204 (irsaudit table entry at 0x101fffcc, mask 0xf).
+ * Established: `kona_enable_dac_cursor` (kona_video.o, loop at 0x1704) sends
+ * 5 for the owning channel and 0 for the rest. It sets bits 0 and 2 of the
+ * 4-bit register, not the two low bits as an earlier comment said. Inferred:
+ * those bits switch the DAC's cursor on; no code reads which bit does what. */
+#define KONA_DG_CHAN_CURSOR_ENABLE    5
 
 /*
  * DAC cursor position, ESTABLISHED (kona_video_intr .L000019ec): the
@@ -113,6 +212,16 @@
  * The role of address 0x22 as the DAC's cursor position port is INFERRED
  * from the data it carries.
  */
+/*
+ * KONA_DG_DAC_CURSOR_POS: DAC cursor position, written by `kona_video_intr`
+ * (kona_video.o at 0x19ec). Established: the driver does not address 0x22 as
+ * an earlier comment said. It writes block address 0xb00 + 0x100 n with data
+ * 0 then 2, which selects indexed register 0x200, then block address 0xb02 +
+ * 0x100 n followed by four data writes (x low byte, x high byte, y low byte,
+ * y high byte), re-sending the address before each. Inferred: indexed
+ * registers 0x200 to 0x203 hold the cursor position in the DAC's output
+ * pixels; `DoDGRqstLoadDacCursor` in arm1.u (at 0x0c007b84) sends ten data
+ * writes to the same data port. */
 #define KONA_DG_DAC_CURSOR_POS        0x22
 
 /*
@@ -140,10 +249,25 @@
  * fm0 0x90, the master VOC's status and the OR of the other present VOCs'
  * status; DoDGRqstGetDGInterruptState then writes 0 to fm0 0x8f.
  */
+/*
+ * KONA_VOC_STATUS_FRAME: Bit 7 of a VOC's status register at offset 0.
+ * Established: `dgSyncWithMasterVoc` in arm1.u reads the master VOC's status
+ * (at 0x0c00b9c0), waits for bit 7 to be high and then, at 0x0c00b9f8, for
+ * it to go low, each wait bounded by 1000000 timer ticks. Inferred: the bit
+ * toggles once per frame, so the firmware uses it to line itself up with the
+ * master's frame boundary. */
 #define KONA_VOC_STATUS_FRAME         (1u << 7)
 
 /* Other addresses seen once, role UNKNOWN. */
-#define KONA_DG_ATTACH_PROBE          0x8800  /* kona_attach writes it then reads data (docs/xg.md step 4) */
+/*
+ * KONA_DG_ATTACH_PROBE: Display-bus address 0x8800, probed once at attach.
+ * Established: `kona_attach` in kona_edtinit_hip2.o writes the address
+ * (before 0x1138), reads the data port, and uses the low two bits of the
+ * result: 1 stores board type 5 and 2 stores 6 at pipe-state offset 244
+ * (branch targets 0x1354 and 0x1368). Inferred: it reports which display-
+ * generator variant is fitted. The other bits of the word are not examined
+ * by the driver. */
+#define KONA_DG_ATTACH_PROBE          0x8800
 
 /*
  * The cursor-rectangle table the driver keeps per pipe, ESTABLISHED
