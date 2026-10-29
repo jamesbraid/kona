@@ -1948,3 +1948,1937 @@ Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` disassembly (callee names reso
   `miZeroClipLine` at two places and 77 word stores.
 - `cfb32ClippedLineGeneral` (kona.so, address 0x464450): **inferred.** Clipped line for 32-bit pixels with any
   raster operation, built like the 16-bit one around two `miZeroClipLine` calls.
+
+## konal.so functions matching the kona.so range from 0x4cdd80
+
+The IP27 kernel names the pipe KONAL and the server loads `konal.so` (6.5.30m, `ddx/konal.so`; inferred). Each entry below is the `konal.so` build of a function that kona.so has at 0x4cdd80 or above, read from its own disassembly (extracted with `scripts/extract_kona_ddx.py`, sections by prefix as for kona.so). konal.so is linked at a different base, so its addresses start at 0x1400000 and every function has a different byte hash from its kona.so twin. Comparing the two instruction by instruction with relocated addresses ignored shows that 293 of the 347 functions are the same code. The 54 that differ are all `kon*` pipe writers and loaders. In konal.so a command is the token number stored as a word at the FIFO pointer (screen private +0x8) at offset 0, followed by the payload words, also at offset 0; kona.so stores the first payload word at the pipe address 32 times the token above the pointer. konal.so also has no `KonSeqData*_ip19` helpers: it stores bulk words inline one by one. Where kona.so sends `HP_WG_FLUSH_1`, konal.so reads a word through the pointer at +0x10 of the screen private.
+
+- `cfbFillPoly1RectGeneral` (`konal.so` 0x1456980, 3304 bytes): **Established.** Polygon fill for
+  8-bit pixels in one clip rectangle under any raster op. It indexes the GC private array at gc
+  +0x4c, tests the coordinate range against 32767, and calls `miFillPolygon` at two sites for shapes
+  it does not scan inline; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `cfbLineSS` (`konal.so` 0x1457670, 3496 bytes): **Inferred.** Solid single-width polyline for
+  8-bit drawables. Read from the call pattern: horizontal runs go to `cfbHorzS`, vertical runs to
+  `cfbVertS`, other slopes to `cfbBresS`, and a line that leaves the clip box is trimmed by
+  `miZeroClipLine`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `mfbCreateGC` (`konal.so` 0x1458590, 184 bytes): **Established.** Fills in a new one-bit graphics
+  context: clears gc +0x38, forces the fill-related bits of the flags word at +0x10, installs the
+  module's one-bit operation vector at gc +0x44 and the matching ops at +0x48, then calls
+  `mfbReduceRop` with the context's raster op and foreground to fill its private record, whose
+  area-fill pointer is set to `mfbSolidWhiteArea`; the code is instruction for instruction the same
+  as the kona.so build once relocated addresses are ignored.
+
+- `nfbStereoPolyGlyphBlt` (`konal.so` 0x1458650, 492 bytes): **Established.** Stereo
+  PolyGlyphBlt, saved entry +0x48, called for each eye; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16CopyPlane` (`konal.so` 0x1458840, 72 bytes): **Inferred.**
+  CopyPlane for 16-bit drawables: no 16-bit plane routine exists, so it forwards all its arguments
+  through a pointer to `cfbPuntCopyPlane`; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `cfbZeroPolyArcSS8General` (`konal.so` 0x1458890, 468 bytes): **Inferred.** Zero-width arc entry
+  for 8-bit pixels and general raster ops. It walks the arc list in 12-byte records: an arc wider or
+  taller than 800 pixels goes alone to `miZeroPolyArc`; for the others it builds the bounding box
+  and, if the box passes 32767 or the screen's rectangle-test hook at +0x17c does not report it
+  wholly inside the clip, hands the arc to `miPolyArc`; a box wholly inside goes to the module's own
+  fast arc routine (reached through a pointer in a saved register); the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbTile32FSGeneral` (`konal.so` 0x1458a70, 1720 bytes): **Established.**
+  FillSpans for an 8-bit tiled GC with a 32-pixel tile and any raster op: clips the span list with
+  `miClipSpans` after `miFindMaxBand`, then merges tile words into the span using `mergeRopBits` and
+  the partial-word tables; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `konPolyFillRectSolid` (`konal.so` 0x1459130, 3828 bytes): **Established.** Solid
+  PolyFillRect in the konal.so build. It sends `HP_X_LOADPOS`, `HP_X_LOADGC`,
+  `HP_X_LOADCLIP` (with `HP_X_BDATA4` for later clip rectangles) and then `HP_X_RECT6`,
+  `HP_X_DATA2` to `HP_X_DATA10`, `HP_X_RECT` and
+  `HP_X_BOX` as the kona.so routine does, but each token is first stored as its own number at offset
+  0 of the FIFO pointer, and the rectangle words are stored one by one at offset 0 instead of
+  through `KonSeqData3_ip19` to `KonSeqData11_ip19`, which this module does not contain. The code is
+  668 bytes longer (3828 against 3160) for that reason; failures still go to `ErrorF`, at seven
+  sites.
+
+- `mfbSegmentSD` (`konal.so` 0x145aaf0, 2500 bytes): **Established.** Dashed
+  PolySegment for one-bit drawables. It reduces the raster op with `mfbReduceRop`, advances the dash
+  with `miStepDash`, draws each dash through `mfbBresD` (two sites), and clips with
+  `miZeroClipLine`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `konFreeFBBlock` (`konal.so` 0x145b4c0, 76 bytes): **Established.** Frees a block returned by
+  `konReadFBBlock`: it calls `Xfree` on the pointer at +0x8 of the block record and clears that
+  field; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `nfbStereoImageText8` (`konal.so` 0x145bc00, 472 bytes): **Established.** Stereo
+  ImageText8, saved entry +0x3c, called twice with the drawable's y moved between eyes; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16UnnaturalTileFS` (`konal.so` 0x145c100, 480 bytes): **Established.**
+  FillSpans for a 16-bit tile that is not 32 pixels wide: after `miFindMaxBand` and `miClipSpans`,
+  it picks `cfb16FillSpanTileOddCopy` or `cfb16FillSpanTile32sCopy` by the rop and tile shape, and
+  the general variants otherwise; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `kon_loadTilePlane` (`konal.so` 0x145c2e0, 1428 bytes): **Established.** Tile-plane loader in the
+  konal.so build. It calls `kon_allocCachedStipple` and `kon_loadCachedStipple` as in kona.so and
+  sends `HP_X_LOADSTIPPLE` and `HP_X_ROTATESTIPPLE` as a token word at offset 0 followed by the slot
+  and origin words; `ErrorF` at three sites. 1428 bytes against 1388.
+
+- `miRegionUninit` (`konal.so` 0x145cc50, 72 bytes): **Established.** Releases a region's rectangle
+  storage: when the data pointer at +0x8 is not the shared empty one and has a nonzero size, it
+  calls `Xfree` on it; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `konCopyWindow` (`konal.so` 0x145cca0, 2112 bytes): **Inferred.** The copy-window hook. It works
+  on the destination's clip rectangles and the window's marked list through the screen's region
+  hooks (at +0x154, +0x174 and +0x178 of the screen record, among others), and moves the covered
+  pixels by calling the local routine at 0x1408fc0 at two sites, shifted by the difference between
+  the old and new window origin. It sends no token itself; the code is instruction for instruction
+  the same as the kona.so build once relocated addresses are ignored.
+
+- `rrmCreateDefColormap` (`konal.so` 0x145d4e0, 976 bytes): **Inferred.** Creates the default
+  colormap for a screen from the visual list (36 bytes per visual record, scanned for the visual
+  whose id matches), by calling `CreateColormap`. It takes the addresses of `AllocColor` and
+  `sgiOverrideColorCompare` and refers to the tables `init4sight`, `initGL`,
+  `initPseudo` and `initEnvm` for the initial entries; `ErrorF` reports failure. The meaning of each
+  table was not read; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb32SegmentSS1Rect` (`konal.so` 0x145d8b0, 320 bytes): **Inferred.** Chooser for 32-bit
+  PolySegment in one clip rectangle. It calls the copy, xor or general routine through a pointer and
+  falls back to `cfb32ClippedLineGeneral`; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `konQueryBestSize` (`konal.so` 0x145deb0, 308 bytes): **Established.** Best-size query for the
+  module: for tile and stipple (classes 1 and 2) it rounds the requested width down to a power of
+  two, and for the cursor class it caps both sides at 64; in konal.so its address is stored at
+  0x15126a4, and the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfbTile32FSCopy` (`konal.so` 0x145dff0, 1396 bytes): **Established.**
+  FillSpans for an 8-bit tiled GC, 32-pixel tile, copy mode. It calls `miFindMaxBand` and
+  `miClipSpans` to clip the spans and copies tile words with `cfbstarttab` and `cfbendtab` edge
+  handling; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `nfbStereoPolySegment` (`konal.so` 0x145e570, 716 bytes): **Established.** Segment-drawing wrapper
+  for stereo windows that calls the saved entry at +0x1c once per eye. Because the first eye draws
+  shifted segments, it first duplicates the segment array into a block from `Xalloc`, and it
+  releases that block with `Xfree` at the end; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `cfbCopyPlane` (`konal.so` 0x145e8e0, 1240 bytes): **Established.**
+  CopyPlane for 8-bit drawables. When the source is one bit deep it takes the stipple route:
+  `cfb8SetOpaqueStipple` (two sites), then `cfbBitBlt` through `cfbCopyPlane1to8`; otherwise it
+  punts to `cfbPuntCopyPlane`, which builds a scratch GC with `GetScratchGC` and `ValidateGC`.
+  Exposures come from `miHandleExposures`; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `cfb16BitBlt` (`konal.so` 0x145f1b0, 2092 bytes): **Inferred.** The 16-bit blit driver: it
+  computes the source and destination clip boxes, makes `NotClippedByChildren` (for a window
+  source), calls the inner blit routine passed in through a pointer (fifteen indirect calls in all,
+  one per box band and direction), and finishes with `miHandleExposures` for the exposure rectangles
+  of a window source; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb16GetImage` (`konal.so` 0x145f9e0, 440 bytes): **Established.**
+  GetImage for 16-bit drawables: for ZPixmap requests it builds a scratch pixmap header with
+  `GetScratchPixmapHeader`, zeroes it with `bzero`, copies through `cfb16DoBitblt`, and frees it
+  with `FreeScratchPixmapHeader`; other formats go to `miGetImage` or `mfbGetImage`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbStereoCopyArea` (`konal.so` 0x145fba0, 844 bytes): **Established.** Stereo
+  CopyArea (saved entry +0xc): the eye offset is applied to the source drawable as well when it is a
+  window, and the call is made once per eye; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `cfb16SolidSpansXor` (`konal.so` 0x14601f0, 1036 bytes): **Established.** Solid-fill
+  FillSpans for 16-bit pixels with xor: finds the widest band with `miFindMaxBand`, clips the list
+  with `miClipSpans`, then xors the foreground across each span using the 16-bit start and end
+  tables; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `konSegmentSS` (`konal.so` 0x1460600, 556 bytes): **Established.**
+  PolySegment through the pipe, konal.so build. It still loads state with `kon_loadGC` and
+  `kon_loadClipRects`, falls back to `konSlowSegmentSS`, and sends one segment per command, but the
+  command is two stores at the FIFO pointer's offset 0: the number 345 (`HP_X_SEGMENT`) and then the
+  two point words, whereas kona.so stores the first point at the token address 0x2b20 above the
+  pointer. 8 bytes longer than kona.so.
+
+- `miMarkOverlappedWindows` (`konal.so` 0x1460830, 564 bytes): **Inferred.** Walks the sibling list
+  marking each window that the target overlaps, calling through the screen's mark-window hook (five
+  sites), and it is called from `miScreenInit`; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `nfbOpStippledFillRects` (`konal.so` 0x1460a70, 952 bytes): **Inferred.**
+  FillRects with an opaque stipple, structured like the transparent one with four indirect calls
+  into the opaque routine; in konal.so its address is stored at 0x1514368, and the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbSaveScreen` (`konal.so` 0x1460e30, 64 bytes): **Inferred.** Screen saver hook: calls the
+  function at +0xc0 of the object at +0x74 of the screen record, passing the blank flag (1 when the
+  argument is 0) and the screen; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `cfb32DoBitbltXor` (`konal.so` 0x1460e70, 2556 bytes): **Inferred.** The 32-bit rectangle copy
+  that xors source into destination; leaf code with no edge masks, and it is called from
+  `cfb32CopyArea`, `cfb32DoBitblt`; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `cfb32UnnaturalTileFS` (`konal.so` 0x1461870, 404 bytes): **Established.**
+  FillSpans for a 32-bit tile of odd shape: clips with `miClipSpans`, then routes to
+  `cfb32FillSpanTile32sCopy` or `cfb32FillSpanTile32sGeneral` depending on the raster op; the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miImageText8` (`konal.so` 0x1461a10, 136 bytes): **Established.**
+  ImageText for 8-bit fonts: calls `GetGlyphs` to look up the glyphs, then calls the GC's
+  ImageGlyphBlt through the operation table; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `mfbPolyGlyphBltWhite` (`konal.so` 0x1461b80, 2264 bytes): **Established.**
+  PolyGlyphBlt on a one-bit drawable that sets pixels where the glyph is set. It calls
+  `QueryGlyphExtents` to size the string and writes glyph rows using `starttab` and `partmasks` for
+  the ragged sides; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `nfbCreateWindow` (`konal.so` 0x1462460, 1104 bytes): **Established.** Creates the window's
+  frame-buffer record: allocates it with `Xalloc` (two sites), looks up the window's visual with
+  `LookupIDByType`, uses `FindWindowWithOptional` (six sites) to find the optional fields, and sets
+  its private index to `nfbWindowPrivateIndex`; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `miInitSpanGroup` (`konal.so` 0x14628b0, 32 bytes): **Established.** Starts a span group for the
+  wide-line code, storing the empty bounding extents (-32767 low, 32767 high); no calls, and it is
+  called from `miSetupSpanData`; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `nfbOpStippledFS` (`konal.so` 0x1462bf0, 676 bytes): **Inferred.**
+  FillSpans with an opaque stipple: three indirect calls into the opaque stipple routine of the
+  private records; in konal.so its address is stored at 0x151436c, and the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `mfbUnnaturalStippleFS` (`konal.so` 0x1462ea0, 2500 bytes): **Established.**
+  FillSpans for a one-bit stipple whose width is not 32: clips with `miClipSpans` after
+  `miFindMaxBand` and builds each row from the rotated stipple using `starttab` and `partmasks`; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `nfbPaintWindowBackground` (`konal.so` 0x1463870, 580 bytes): **Established.** Paints a window's
+  background: it reports an unrecognised background state with `ErrorF` and otherwise calls the fill
+  routine selected by the window record's background type (1 solid, 2 tile, 3 parent-relative). It
+  calls `ErrorF` for background states it does not recognise;; in konal.so its address is stored at
+  0x15126e0, and the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `konImageGlyphBltTE32` (`konal.so` 0x1463e80, 2604 bytes): **Established.** Image-text glyph blit
+  for 32-pixel terminal-emulator fonts, konal.so build. It sends `HP_X_LOADPOS`, `HP_X_LOADCLIP`,
+  `HP_X_LOADSCISSOR`, `HP_X_BOX`, `HP_X_PIX_SETUP`,
+  `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH` with each token stored as its number at offset 0 before the
+  payload, calls `kon_loadImgRectGC` and `kon_loadImgBitmapGC`, falls back to `nfbImageGlyphBlt`,
+  and reports through `ErrorF`.
+
+- `nfbTreeObscured` (`konal.so` 0x14653a0, 352 bytes): **Established.** Walks the window tree and
+  sends visibility events with `SendVisibilityNotify` for windows that became fully obscured
+  (visibility state 2) or visible, using the saved flag bits to avoid repeats; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `konImageGlyphBltTE10` (`konal.so` 0x1466aa0, 3896 bytes): **Established.** Image-text glyph blit
+  for 10-pixel terminal-emulator fonts, konal.so build. It sends `HP_X_LOADPOS`, `HP_X_LOADCLIP`,
+  `HP_X_LOADSCISSOR`, `HP_X_BOX`, `HP_X_PIX_SETUP`,
+  `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH` with each token stored as its number at offset 0 before the
+  payload, calls `kon_loadImgRectGC` and `kon_loadImgBitmapGC`, falls back to `nfbImageGlyphBlt`,
+  and reports through `ErrorF`.
+
+- `konImageGlyphBltTE16` (`konal.so` 0x14679f0, 3108 bytes): **Established.** Image-text glyph blit
+  for 16-pixel terminal-emulator fonts, konal.so build. It sends `HP_X_LOADPOS`, `HP_X_LOADCLIP`,
+  `HP_X_LOADSCISSOR`, `HP_X_BOX`, `HP_X_PIX_SETUP`,
+  `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH` with each token stored as its number at offset 0 before the
+  payload, calls `kon_loadImgRectGC` and `kon_loadImgBitmapGC`, falls back to `nfbImageGlyphBlt`,
+  and reports through `ErrorF`.
+
+- `cfbDoBitbltGeneral` (`konal.so` 0x1468620, 6288 bytes): **Inferred.** The 8-bit rectangle copy
+  that works for every raster op and plane mask. A leaf: it picks the copy direction (left to right
+  or the reverse, top to bottom or the reverse) from the source and destination boxes and shifts
+  words through the tables `cfbstarttab` and `cfbendpartial`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miCloseScreen` (`konal.so` 0x1469eb0, 52 bytes): **Inferred.** Closes a screen: it calls the hook
+  at +0xf0 of the screen record with the root pixmap pointer from screen +0x74, which releases the
+  root pixmap, and returns its result; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `cfbVertS` (`konal.so` 0x1469ef0, 700 bytes): **Established.** Leaf that draws a vertical run in
+  an 8-bit frame buffer. Its first argument is the raster-op code and the code branches on 3 and 6;
+  the body ands each destination byte with one mask and xors in a second before storing it back,
+  advancing by the row stride, and it is called from `cfbLineSS`, `cfbSegmentSS`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16FillRectSolidGeneral` (`konal.so` 0x146f5d0, 1900 bytes): **Inferred.** Solid rectangle fill
+  for 16-bit pixels, any raster op. Leaf; reads the screen private data at +0x1b4 and edge masks
+  from `cfb16startpartial` and `cfb16endpartial`; the code is instruction for instruction the same
+  as the kona.so build once relocated addresses are ignored.
+
+- `cfb16FillRectTile32Copy` (`konal.so` 0x146fdb0, 1948 bytes): **Inferred.** The 16-bit copy-mode
+  version of the 32-pixel-wide tile fill, using the 16-bit start and end tables and the screen
+  private data at +0x1b4; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb32PolyFillRect` (`konal.so` 0x1470620, 2276 bytes): **Established.**
+  PolyFillRect for 32-bit drawables. Dispatch is by fill style to `cfb32FillRectSolidGeneral`,
+  `cfb32FillRectSolidCopy`, `cfb32FillRectSolidXor`, `cfb32FillRectTile32General` or
+  `cfb32FillRectTileOdd`; `miPolyFillRect` handles anything else; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miZeroArcPts` (`konal.so` 0x1470f10, 1760 bytes): **Established.** Generates the integer points
+  of a zero-width arc by calling `miZeroArcSetup` once, then stepping its error terms into a point
+  list; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `cfbCopyRotatePixmap` (`konal.so` 0x14715f0, 312 bytes): **Established.** Makes a rotated copy of
+  an 8-bit tile or stipple pixmap: it copies with `cfbCopyPixmap`, pads it with `cfbPadPixmap`, then
+  calls `cfbXRotatePixmap` and `cfbYRotatePixmap`, and stamps the pixmap with the global serial
+  number. It also uses `memmove`; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `cfb32LineSS1RectPreviousCopy` (`konal.so` 0x1471730, 1728 bytes): **Inferred.**
+  Relative-coordinate copy-mode polyline for 32-bit pixels inside one clip rectangle. A leaf that
+  keeps the running point in registers, and it is called from `cfb32LineSS1Rect`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16PutImage` (`konal.so` 0x1471e00, 796 bytes): **Established.** Writes an image into a 16-bit
+  window or pixmap by putting it in a scratch pixmap header from `GetScratchPixmapHeader`, then
+  changes and revalidates a temporary GC state with `DoChangeGC` and `ValidateGC`, and finally calls
+  the GC's CopyArea to move the pixels; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `mfbSolidBlackArea` (`konal.so` 0x1472200, 2320 bytes): **Established.** Clears a list of boxes in
+  a one-bit frame buffer, a leaf: whole words in the interior and masks from `starttab` and `endtab`
+  for the edges; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `nfbStereoImageGlyphBlt` (`konal.so` 0x1472b10, 492 bytes): **Established.** Stereo
+  ImageGlyphBlt, saved entry +0x44, called once per eye with the shifted drawable; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32FillPoly1RectCopy` (`konal.so` 0x1473030, 2392 bytes): **Established.** Copy-mode polygon
+  fill for 32-bit pixels in one clip rectangle; it consults the screen private array at +0x1b4 and
+  falls back to `miFillPolygon` at two sites; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `nfbPolyPoint` (`konal.so` 0x1473e20, 728 bytes): **Inferred.**
+  PolyPoint for the layer: for each point inside the window's clip it calls through the window
+  record's point-fill routine (two sites); it reads the colour and rop from the private record at
+  +0x28 and +0x30; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `mfbFillPolyBlack` (`konal.so` 0x14773c0, 1964 bytes): **Established.**
+  FillPolygon with black on one-bit drawables: it scans a convex outline directly when the shape
+  allows and otherwise passes it to `miFillPolygon` (two sites); the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb8ComputeClipMasks32` (`konal.so` 0x1477b70, 1468 bytes): **Inferred.** Computes the per-row
+  clip masks for an 8-bit stipple of 32-bit width from a clip box, using the table
+  `cfb8BitLenMasks`; a leaf that returns packed masks for the first and last word; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miRectAlloc` (`konal.so` 0x1478130, 316 bytes): **Established.** Grows a region's rectangle array
+  to hold more boxes: grows by 250 boxes once there are over 500, otherwise doubles, using
+  `Xrealloc` or `Xalloc`, with `Must_have_memory` set during the call; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbShmPutImage` (`konal.so` 0x1478270, 576 bytes): **Established.**
+  PutImage from shared memory: it checks the image format and depth, reports an unsupported one with
+  `ErrorF`, and uses `PixmapWidthPaddingInfo` and `globalSerialNumber` to build a pixmap header over
+  the shared data; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `miImageGlyphBlt` (`konal.so` 0x14784b0, 456 bytes): **Established.** Default
+  ImageGlyphBlt on top of other operations: calls `QueryGlyphExtents`, then `DoChangeGC` (three
+  sites) and `ValidateGC` (two sites) to switch fill style, filling the background box and drawing
+  the glyphs; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `kon_loadNfbGC` (`konal.so` 0x1478680, 188 bytes): **Established.** Generic-path GC loader in the
+  konal.so build: sends `HP_X_LOADPOS` with zero origin and the screen's width and height (halfwords
+  at +0x8 and +0xa of the drawable's screen) framed as a token word at offset 0 and the payload,
+  then calls `kon_loadGeomGC`. 188 bytes against 180.
+
+- `nfbStereoSetSpans` (`konal.so` 0x1478eb0, 2096 bytes): **Established.**
+  SetSpans wrapper for stereo windows (saved entry +0x4). A loop unrolled four points at a time adds
+  the eye offset to the y of each point of the span array, the saved routine then runs, and the
+  shift is undone before the second eye's pass; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `nfbReplicateArea` (`konal.so` 0x1479910, 632 bytes): **Inferred.** Tiles a source box across a
+  destination box by doubling: four indirect calls into the copy routine, starting from one tile and
+  copying the grown block back into itself, and it is called from `konTileRects`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miPolyBuildPoly` (`konal.so` 0x1479b90, 2216 bytes): **Established.** Builds the outline of a
+  wide-line segment join into an edge list, calling `miPolyBuildEdge` at two sites; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miZeroDashLine` (`konal.so` 0x147a7c0, 72 bytes): **Established.** Thin wrapper for dashed
+  zero-width lines: forwards its arguments with a mode of 1 to `miWideDash`; the code is instruction
+  for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32FillBoxTile32sCopy` (`konal.so` 0x147abb0, 1328 bytes): **Inferred.** Box fill for 32-bit
+  pixels using a tile of one word per row, copy mode. It reads the screen private at +0x1b4 and no
+  edge masks are needed; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfbFillBoxTileOddGeneral` (`konal.so` 0x147b2a0, 2896 bytes): **Inferred.** Fills a box of 8-bit
+  pixels with a tile whose width is not a divisor of 32, any raster op; it merges through
+  `mergeRopBits` and steps through the tile one row at a time with ragged-edge masks; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miCreateScreenResources` (`konal.so` 0x147bef0, 280 bytes): **Inferred.** Creates the root pixmap
+  through the screen hook, stores it in the screen record, and releases a temporary block with
+  `Xfree` on two paths; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb16PolyFillRect` (`konal.so` 0x147c110, 2280 bytes): **Established.**
+  PolyFillRect for 16-bit drawables, choosing among `cfb16FillRectSolidGeneral`,
+  `cfb16FillRectSolidCopy`, `cfb16FillRectSolidXor`, and the tile forms by fill style, with
+  `miPolyFillRect` as the fallback; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `kon_loadBitmapGC` (`konal.so` 0x147ca00, 296 bytes): **Established.** Bitmap GC loader in the
+  konal.so build: sends the thirteen `HP_X_LOADGC` words from the GC private record (foreground at
+  +0x24 and +0x28, then the mask, op, address and format words) after the token number 297 stored at
+  offset 0, instead of storing the first word at the token address. It makes no calls; 296 bytes
+  against 288.
+
+- `konCreateWindow` (`konal.so` 0x147cfc0, 564 bytes): **Established.** Window creation in the
+  konal.so build. It sets up the window private as kona.so does (`FindWindowWithOptional`, then
+  `konReloadAllGammas`), and for a window needing a hardware id it sends `HP_X_LOADXMAP_CONFIG` as
+  the number 307 then the flag 1 at offset 0. It sends no `HP_WG_FLUSH_1`: afterwards it performs a
+  load through the pointer at +0x10 of the screen private, the read that stands in for the flush.
+  564 bytes against 560.
+
+- `miChangeClip` (`konal.so` 0x147d200, 296 bytes): **Established.** Replaces a GC's client clip: it
+  frees the old clip with `Xfree` and installs the new rectangle list or region; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbSolidPolyGlyphBlt` (`konal.so` 0x147d330, 2360 bytes): **Established.** Solid
+  PolyGlyphBlt in the generic layer: calls `QueryGlyphExtents` for the text box and walks glyph rows
+  to produce rectangles it fills with the solid colour; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `cfbImageGlyphBlt8` (`konal.so` 0x147dc70, 392 bytes): **Inferred.**
+  ImageGlyphBlt for 8-bit drawables: asks `QueryGlyphExtents` for the string's box (one call), fills
+  the background box with the GC's fill routine and then draws the glyphs through the GC's text
+  routine; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `mfbAllocatePrivates` (`konal.so` 0x147de00, 280 bytes): **Established.** Reserves the one-bit
+  layer's per-window and per-GC private slots once per server generation, calling
+  `AllocateWindowPrivateIndex`, `AllocateGCPrivateIndex`, `AllocateWindowPrivate`,
+  `AllocateGCPrivate` and `miRegisterGCPrivateIndex`; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `nfbPostValidateTree` (`konal.so` 0x147df20, 200 bytes): **Inferred.** After a tree validation it
+  calls the window record's hook with the argument 3, once per window passed, to finish the
+  revalidation; in konal.so its address is stored at 0x15126d8, and the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb8SetOpaqueStipple` (`konal.so` 0x147dff0, 524 bytes): **Established.** Loads the shared 8-bit
+  stipple state for an opaque fill: calls `cfbReduceRasterOp` for the foreground and for the
+  background, and stores the raster op, foreground, background, plane mask, and/xor values and mode
+  flag in `cfb8StippleAlu`, `cfb8StippleFg`, `cfb8StippleBg` and the related globals; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miPolyRectangle` (`konal.so` 0x147e4e0, 992 bytes): **Inferred.**
+  PolyRectangle built from line segments: compares coordinates against 32767 and -32768 and issues
+  the four edges of each rectangle through the GC's line routine (three sites); in konal.so its
+  address is stored at 0x15128c8, and the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `sgiReleaseCapabilityUnsupported` (`konal.so` 0x147e8c0, 28 bytes): **Established.** Stub for the
+  release-capability request of the capability extension: it returns the extension's error base plus
+  1 (`nmbxErrorBase`), the extension's "unsupported" error code, and does nothing else; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `kon_loadCachedStipple` (`konal.so` 0x147e930, 1712 bytes): **Established.** Stipple-pattern
+  download in the konal.so build. It sends `HP_X_STORESTIPPLE` as the number 317 at offset 0, then
+  the slot, the size and the pattern words, each stored inline one word at a time (the code branches
+  on a size of 32 to write 32 words in a straight run). kona.so calls `KonSeqData32_ip19` to
+  `KonSeqData3_ip19` here; konal.so has no such helpers, so it is 1712 bytes against 612 and makes
+  no calls.
+
+- `cfb32SolidSpansXor` (`konal.so` 0x147f0f0, 808 bytes): **Established.** Solid
+  FillSpans for 32-bit pixels using xor; calls `miFindMaxBand` and `miClipSpans`, then xors one word
+  per pixel; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `miZeroArcSetup` (`konal.so` 0x147f420, 5308 bytes): **Established.** Computes the starting state
+  of the zero-width arc stepper from the arc's angles and axes. Its code calls `sin` four times and
+  `cos` twice, and compares angles with 5760, 11520,
+  17280 and 23040 (the quarter-circle boundaries in 64ths of a degree); the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbMatchCommon` (`konal.so` 0x1480b70, 240 bytes): **Established.** Picks, from the GC's font and
+  fill state, one of the four 8-bit text and rectangle operation tables `cfbTEOps`, `cfbTEOps1Rect`,
+  `cfbNonTEOps` and `cfbNonTEOps1Rect`, returning null when no table fits; the code is instruction
+  for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `mfbPolyGlyphBltBlack` (`konal.so` 0x1480c60, 3144 bytes): **Established.**
+  PolyGlyphBlt on a one-bit drawable that clears pixels where the glyph is set; a
+  `QueryGlyphExtents` call, and the same table use as the white variant; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miPointInRegion` (`konal.so` 0x14818b0, 356 bytes): **Established.** Leaf that tests whether a
+  point lies in a region: it rejects on the extents first and then walks the box list at the data
+  pointer (+0x8), a binary-style scan over the boxes; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32SegmentSS1RectXor` (`konal.so` 0x1481ae0, 1764 bytes): **Inferred.** Exclusive-or
+  PolySegment on 32-bit pixels in one clip rectangle. It reads the screen private array at +0x1b4,
+  stores inline and has no callees; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `nfbStereoFillSpans` (`konal.so` 0x14821d0, 2076 bytes): **Established.** Stereo
+  FillSpans (saved entry +0x0), shifting the y of each point in the array in place for each eye in a
+  loop unrolled four at a time; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `realAllocSpan` (`konal.so` 0x14829f0, 352 bytes): **Established.** Allocates a 1540-byte block of
+  span records with `Xalloc`, chains the block onto the list head, and links the 12-byte span
+  records in the block into a free list (six at a time unrolled); it returns without allocating when
+  `Xalloc` fails; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `konWriteFBSubBlock` (`konal.so` 0x1482ed0, 3888 bytes): **Established.** Frame-buffer band write
+  in the konal.so build: `HP_X_LOADPOS`, `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and
+  `HP_X_PIX_FINISH`, with `KONA_DMAWRITE` (10001) for blocks over 4096 bytes and `perror` on
+  failure, as in kona.so, but with the token words at offset 0 and the data words stored inline
+  rather than through `KonSeqData32_ip19` to `KonSeqData3_ip19`: 3888 bytes against 2216.
+  `kon_loadImpWordGC` is called at three sites.
+
+- `miRegionEmpty` (`konal.so` 0x1486920, 104 bytes): **Established.** Resets a region to empty:
+  frees the rectangle data with `Xfree` unless it is the shared block, then stores `miEmptyData`
+  back at +0x8; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `cfb32FillBoxTileOdd` (`konal.so` 0x14874a0, 56 bytes): **Established.** Tiny wrapper: for the
+  copy and xor-compatible cases it calls `cfb32FillBoxTile32sCopy` for the box, testing the raster
+  op against 3 first; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `nfbSaveAreas` (`konal.so` 0x14874e0, 80 bytes): **Inferred.** Save-under hook: forwards to
+  `nfbDoBitBltSP` with the saved-area record to copy the covered screen area into a pixmap (the
+  arguments 3 and -1 select the copy and all planes); the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `mfbReduceRop` (`konal.so` 0x1487530, 404 bytes): **Established.** Collapses a raster op and a
+  one-bit source pixel into one of the four simple results (clear, set, invert or leave alone,
+  returned as 0, 15, 10 and
+  5): a jump table over the sixteen raster ops, with one table for source bit set and one for clear.
+  A leaf, and it is called from `cfbCopyPlane`, `mfbCopyPlane`, `mfbCreateGC`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbSegmentSS` (`konal.so` 0x14876d0, 3036 bytes): **Inferred.** The
+  PolySegment sibling of the polyline above, for 8-bit solid segments. It tests each endpoint pair
+  and hands horizontals to `cfbHorzS`, verticals to `cfbVertS`, diagonals to `cfbBresS`, and clipped
+  segments to `miZeroClipLine`; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `konCopyGC` (`konal.so` 0x14882c0, 168 bytes): **Established.** Copy-GC wrapper: it puts back the
+  original function table saved at +0xa4 of the GC private record over the context's own (gc +0x44),
+  calls the original entry at +0x8, then saves the table and reinstalls the module's table from its
+  read-only data. No token; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `nfbUnrealizeCursor` (`konal.so` 0x1488520, 204 bytes): **Established.** Releases a cursor's
+  realised copy: frees up to three blocks with `Xfree` and reports a bad cursor with `ErrorF`; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `miPolyText16` (`konal.so` 0x1489500, 556 bytes): **Established.**
+  PolyText for 16-bit fonts: calls `GetGlyphs` twice and dispatches on the item type (font change
+  versus text) to the GC's PolyGlyphBlt; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `micomputeWAET` (`konal.so` 0x1489730, 124 bytes): **Inferred.** Leaf of the polygon scan
+  converter; the name and the walk over an edge list identify it as the pass that sets the winding
+  count of each active edge for the even-odd or non-zero fill rule. It calls nothing, and works only
+  on the edge records its argument points at, and it is called from `miFillGeneralPoly`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbSegmentSD` (`konal.so` 0x1489ad0, 2560 bytes): **Inferred.** Dashed
+  PolySegment for 8-bit drawables. It reduces the raster op with `cfbReduceRasterOp` (three times,
+  once per case), steps the pattern with `miStepDash`, draws each dash by calling `cfbBresD`, and
+  trims with `miZeroClipLine`; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `cfbPolyGlyphBlt8` (`konal.so` 0x148a4d0, 1780 bytes): **Inferred.**
+  PolyGlyphBlt for 8-bit drawables: for each glyph it calls through the GC's stippled fill after
+  intersecting the glyph box with the clip box, using the `endtab` table to mask the right edge; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `miMarkWindow` (`konal.so` 0x148ad80, 108 bytes): **Established.** Allocates a 24-byte per-window
+  validation record with `XNFalloc` when the window has none; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miComputeCompositeClip` (`konal.so` 0x148adf0, 748 bytes): **Established.** Recomputes a GC's
+  composite clip from the drawable's clip and the client clip, using `NotClippedByChildren` when the
+  GC subwindow mode is clip-by-children, and storing the result in the GC's private record found
+  through `miGCPrivateIndex`; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `kon_loadPixmapGC` (`konal.so` 0x148b0e0, 3400 bytes): **Established.** Pixmap GC loader in the
+  konal.so build: sends `HP_X_LOADGC` and `HP_X_PIX_SETUP` with the token numbers stored at offset 0
+  before their payloads, uses the same `kon_pack*` and `kon_main*` shift tables, and prints format
+  errors with `ErrorF`. 3400 bytes against 3384.
+
+- `cfb8OpaqueStipple32FS` (`konal.so` 0x148be30, 4260 bytes): **Established.**
+  FillSpans for an 8-bit opaque stipple of width 32. It loads the stipple state by calling
+  `cfb8SetOpaqueStipple`, clips with `miClipSpans`, and writes four pixels per stipple nibble with
+  the foreground and background; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `cfb32DoBitbltOr` (`konal.so` 0x148cff0, 2556 bytes): **Inferred.** The 32-bit rectangle copy that
+  ors source into destination, the same size as the xor version, and it is called from
+  `cfb32CopyArea`, `cfb32DoBitblt`; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `cfb8SegmentSS1RectCopy` (`konal.so` 0x148dd10, 2236 bytes): **Inferred.** Copy-mode 8-bit
+  PolySegment in one clip rectangle. It uses the tables `cfbstarttab` and `cfbendtab` for edge
+  words, steps inline and calls nothing; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `nfbReadDisplay` (`konal.so` 0x148e700, 5260 bytes): **Established.** Reads pixels from the screen
+  for the read-display extension. It walks `WindowTable` and the window records, locates the cursor
+  with `GetSpritePosition` and `GetSpriteCursor`, assembles the reply in an `Xalloc` buffer, sends
+  it with `WriteToClient` and frees it with `Xfree`; it reports bad requests with `ErrorF`; the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miMoveWindow` (`konal.so` 0x148fea0, 696 bytes): **Established.** Implements
+  MoveWindow: updates the window size and border with `SetWinSize` and `SetBorderSize`, restacks
+  with `MoveWindowInStack`, moves the children with `ResizeChildrenWinSize` and tells the server
+  with `WindowsRestructured`; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `cfb8ClippedLineXor` (`konal.so` 0x1490160, 2712 bytes): **Established.** Exclusive-or line drawer
+  for 8-bit segments that may leave the clip box. It calls `miZeroClipLine` at two sites, once for
+  the segment and once for its end point; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `nfbStereoCopyPlane` (`konal.so` 0x1491110, 884 bytes): **Established.** Stereo
+  CopyPlane (saved entry +0x10) with the same source-and-destination shifting as the CopyArea
+  wrapper; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `kon_freeCachedStipple` (`konal.so` 0x1491960, 572 bytes): **Established.** Releases a stipple
+  slot: clears the owner's slot index (private +0x60 set to -1) and unlinks the slot from the
+  screen's list; it reports a corrupt list with `ErrorF`; the code is instruction for instruction
+  the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32PolyPoint` (`konal.so` 0x1491ba0, 1312 bytes): **Established.**
+  PolyPoint for 32-bit drawables, structured like the 16-bit routine with word stores; it calls
+  `ffs` on a mask word as well; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `konImageGlyphBlt` (`konal.so` 0x1492170, 2860 bytes): **Established.** General image-text glyph
+  blit, konal.so build: the same token sequence as the kona.so routine (`HP_X_LOADPOS`,
+  `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`, `HP_X_BOX`,
+  `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE`, `HP_X_PIX_FINISH`), each framed by a token word at offset 0.
+  It measures with `QueryGlyphExtents` and falls back to `nfbImageGlyphBlt`. 2860 bytes against
+  2804.
+
+- `mfbPixmapToRegion` (`konal.so` 0x1492cb0, 2944 bytes): **Established.** Converts a one-bit pixmap
+  into a region of rectangles, one per run of set bits, reallocating the box list with `miRectAlloc`
+  (six sites) and reporting an oversized transition list with `ErrorF`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbBresS` (`konal.so` 0x1493830, 816 bytes): **Inferred.** Bresenham stepper for solid 8-bit
+  lines. Leaf, no callees; it branches on the raster-op code (3 or 6), advances an error term and
+  moves the byte pointer a row or a pixel per step, and it is called from `cfbLineSS`,
+  `cfbSegmentSS`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `nfbReadDisplayRegisterInfo` (`konal.so` 0x1493bd0, 168 bytes): **Established.** Reserves a screen
+  private slot with `AllocateScreenPrivateIndex` and calls `ReadDisplayRegisterInfo` to fill the
+  register description for the read-display extension; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `mfbZeroPolyArcSS` (`konal.so` 0x1493c80, 476 bytes): **Inferred.** Zero-width arc entry for
+  one-bit drawables: skipped when the GC's plane word at +0x14 is zero, otherwise the same walk as
+  the colour versions, sending arcs over 800 pixels to `miZeroPolyArc`, clipped or out-of-range ones
+  to `miPolyArc` and wholly visible ones to the one-bit routine; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32BresS` (`konal.so` 0x1493e60, 868 bytes): **Inferred.** Solid Bresenham stepper for 32-bit
+  pixels; leaf code that advances the destination in whole words, and it is called from
+  `cfb32LineSS`, `cfb32SegmentSS`; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `rrmCopyWindow` (`konal.so` 0x14941d0, 120 bytes): **Inferred.** Copy-window wrapper: it calls the
+  saved copy-window hook at +0x78 of the rrm screen record with the window and the old origin passed
+  through, saving and restoring the word at screen +0xe0 around the call, and returns its result;
+  the code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `konPolyGlyphBltSolidTE3` (`konal.so` 0x1494250, 5716 bytes): **Established.** Solid poly-text
+  glyph blit for -pixel fonts, konal.so build: `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`,
+  `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`, each token stored as a word at offset 0
+  ahead of its payload (kona.so addresses the first payload word through the token). It loads the GC
+  with `kon_loadBitmapGC`, declines to `nfbSolidPolyGlyphBlt`, and prints through `ErrorF`.
+
+- `konPolyGlyphBltSolidTE6` (`konal.so` 0x14958b0, 5912 bytes): **Established.** Solid poly-text
+  glyph blit for -pixel fonts, konal.so build: `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`,
+  `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`, each token stored as a word at offset 0
+  ahead of its payload (kona.so addresses the first payload word through the token). It loads the GC
+  with `kon_loadBitmapGC`, declines to `nfbSolidPolyGlyphBlt`, and prints through `ErrorF`.
+
+- `konPolyGlyphBltSolidTE8` (`konal.so` 0x14970e0, 4756 bytes): **Established.** Solid poly-text
+  glyph blit for -pixel fonts, konal.so build: `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`,
+  `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`, each token stored as a word at offset 0
+  ahead of its payload (kona.so addresses the first payload word through the token). It loads the GC
+  with `kon_loadBitmapGC`, declines to `nfbSolidPolyGlyphBlt`, and prints through `ErrorF`.
+
+- `konPolyFillRectStippledC` (`konal.so` 0x1498380, 5752 bytes): **Established.** Stippled-C
+  PolyFillRect in the konal.so build: the same cache steps as kona.so (`kon_hitCachedStipple`,
+  `kon_allocCachedStipple` and `kon_loadCachedStipple`, the last two at two sites each), then
+  `HP_X_LOADSTIPPLE`, `HP_X_ROTATESTIPPLE`, `HP_X_LOADPOS`,
+  `HP_X_LOADGC`, `HP_X_LOADCLIP` and the `HP_X_RECT6`,
+  `HP_X_DATA2` to `HP_X_DATA10`, `HP_X_RECT`,
+  `HP_X_BOX` run. Each token is written as a word at the FIFO pointer's offset 0 before its payload,
+  and the rectangle words are stored inline, so it grows from 4996 to 5752 bytes.
+
+- `cfbBresD` (`konal.so` 0x149ad60, 1412 bytes): **Established.** Bresenham stepper for dashed 8-bit
+  lines. It reads the dash state through two pointer arguments (a byte offset through the second, a
+  remaining length through the first, at +0x0), runs the line only up to the dash edge and returns
+  so the caller can flip between foreground and background; the code is instruction for instruction
+  the same as the kona.so build once relocated addresses are ignored.
+
+- `mfbWhiteSolidFS` (`konal.so` 0x149c2a0, 932 bytes): **Established.**
+  FillSpans with solid white on a one-bit drawable: `miFindMaxBand` and `miClipSpans`, then sets
+  bits using `starttab`, `endtab` and `partmasks`; the code is instruction for instruction the same
+  as the kona.so build once relocated addresses are ignored.
+
+- `nfbCopyArea` (`konal.so` 0x149c650, 2692 bytes): **Established.**
+  CopyArea in the generic layer. It decides between a host copy and the window-to-window path: calls
+  `nfbDoBitBltSS` (three sites) for screen-to-screen, `nfbDoBitBltSP` for screen-to-pixmap,
+  `cfb16CopyArea`, `cfb32CopyArea` or `cfbCopyArea` for pixmaps,
+  `miCopyArea` as a fallback, `NotClippedByChildren` for the clip and `miHandleExposures` for the
+  exposures; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `cfb32FillRectSolidCopy` (`konal.so` 0x149d0e0, 764 bytes): **Established.** Solid copy-mode
+  rectangle fill for 32-bit pixels. The screen private record supplies the frame buffer base and
+  stride (at +0x1c and +0x20) and the loop stores one word per pixel, with no edge masks needed; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `cfb16MatchCommon` (`konal.so` 0x149d930, 216 bytes): **Established.** The 16-bit version of the
+  table chooser: selects among `cfb16TEOps`, `cfb16TEOps1Rect`, `cfb16NonTEOps` and
+  `cfb16NonTEOps1Rect`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `mfbXRotatePixmap` (`konal.so` 0x149da10, 348 bytes): **Established.** Rotates a one-bit pixmap
+  horizontally; it reports an unexpected width with `ErrorF` and uses the table `endtab` for the row
+  mask; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `cfbPushPixels8` (`konal.so` 0x149dc70, 3956 bytes): **Inferred.**
+  PushPixels for 8-bit drawables: expands a one-bit mask into pixels using `cfb8BitLenMasks`, or
+  passes the request to `mfbPushPixels` when the GC does not fit; there is one indirect call; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `cfb16PolyPoint` (`konal.so` 0x149ebf0, 1312 bytes): **Established.**
+  PolyPoint on 16-bit drawables: plots each point inside the clip as a halfword store under the
+  raster op, calling `ffs` on a mask word, in the same loop shape the 8-bit routine uses; the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16FillBoxTile32sCopy` (`konal.so` 0x149f110, 2476 bytes): **Inferred.** The same box fill for
+  16-bit pixels: the tile row is held as one word of two pixels and replicated across the box, and
+  it is called from `cfb16FillBoxTileOdd`, `cfb16FillRectTileOdd`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `kon_loadOpaqueBitmapGC` (`konal.so` 0x149fac0, 280 bytes): **Established.** Opaque-bitmap GC
+  loader in the konal.so build: the same thirteen `HP_X_LOADGC` words with the background colour in
+  the foreground slot (+0x2c and +0x30), preceded by the token word at offset 0 rather than
+  addressed through the token. No calls; 280 bytes against 272.
+
+- `cfb16FillSpanTile32sCopy` (`konal.so` 0x149fbe0, 2028 bytes): **Inferred.** Span fill with a
+  32-bit-wide tile for 16-bit pixels, copy mode. A leaf taking the tile row for each span's y and
+  writing it with the tables `cfb16starttab` and `cfb16endtab` at the ends; the code is instruction
+  for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32BresD` (`konal.so` 0x14a27f0, 1428 bytes): **Inferred.** Dashed Bresenham stepper for 32-bit
+  pixels. It is built like the 8-bit dashed stepper, keeping the dash position and length in its
+  pointer arguments, and has no callees, and it is called from `cfb32LineSD`, `cfb32SegmentSD`; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `mfbWhiteStippleFS` (`konal.so` 0x14a2f70, 1252 bytes): **Established.**
+  FillSpans with a white stipple on one-bit drawables; clipped by `miClipSpans` and merged into the
+  destination word by word; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `nfbTiledFS` (`konal.so` 0x14a3900, 332 bytes): **Inferred.**
+  FillSpans with a tile: loops over the spans, calling the tiled fill routine named in the window's
+  private record for each; in konal.so its address is stored at 0x151433c, and the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16FillSpanTileOddCopy` (`konal.so` 0x14a3aa0, 2628 bytes): **Inferred.** Span fill with an
+  odd-width tile for 16-bit pixels, copy mode; a leaf that tracks the tile column across the span
+  with partial first and last words, and it is called from `cfb16UnnaturalTileFS`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `mfbCopyArea` (`konal.so` 0x14a44f0, 2136 bytes): **Inferred.**
+  CopyArea for one-bit drawables. It selects `mfbDoBitbltCopy`, `mfbDoBitbltXor`,
+  `mfbDoBitbltOr`, `mfbDoBitbltCopyInverted` or `mfbDoBitbltGeneral` by raster op, makes its calls
+  through the chosen routine (fifteen indirect calls in all), calls `NotClippedByChildren`, and ends
+  with `miHandleExposures`; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `kon_unloadStipple` (`konal.so` 0x14a4d50, 60 bytes): **Established.** Invalidates the loaded
+  stipple in the konal.so build: stores the number 316 (`HP_X_LOADSTIPPLE`) and then -1 at offset 0
+  of the FIFO pointer taken from the screen private, and sets the GC's slot index at +0x60 to -1.
+  kona.so does it with one store to the token address. 60 bytes against 52.
+
+- `cfbPolyPoint` (`konal.so` 0x14a51d0, 1244 bytes): **Established.**
+  PolyPoint for 8-bit drawables: for each point inside the composite clip it stores the pixel under
+  the raster op, and it calls `ffs` to locate set bits in a mask word while it merges; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `kon_allocCachedStipple` (`konal.so` 0x14a5730, 204 bytes): **Established.** Takes the next slot
+  of the stipple cache from the screen record (+0x68 slot pointer, +0x6c list head), calling
+  `kon_freeCachedStipple` for the slot's old owner when it has one, and records the new owner GC in
+  the slot; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `cfbFillSpanTileOddCopy` (`konal.so` 0x14a5c10, 2612 bytes): **Inferred.** Span fill with an
+  odd-width tile for 8-bit pixels, copy mode; the 8-bit counterpart of the 16-bit routine, using
+  `cfbstartpartial` and `cfbendtab` at its edges; the code is instruction for instruction the same
+  as the kona.so build once relocated addresses are ignored.
+
+- `cfbPolyFillRect` (`konal.so` 0x14a6650, 2400 bytes): **Inferred.**
+  PolyFillRect for 8-bit drawables. It looks at the GC's fill style and rop and calls one of the
+  8-bit routines named in its table (`cfbFillRectSolidGeneral`, `cfbFillRectSolidCopy`,
+  `cfbFillRectTileOdd`, the transparent and unnatural stipple fills) through a pointer, calling
+  `miPolyFillRect` for the cases it does not handle; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `miFillWideEllipse` (`konal.so` 0x14a6fb0, 1124 bytes): **Established.** Fills a wide-line ellipse
+  by looping over rows and emitting spans, and frees its temporary span array with `Xfree`; the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbMarkUnrealizedWindow` (`konal.so` 0x14a7420, 292 bytes): **Inferred.** Marks a window when it
+  is unrealised: it makes three indirect calls into the screen's mark hooks to flag the window and
+  its parents; in konal.so its address is stored at 0x1512804, and the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miDestroyGC` (`konal.so` 0x14a7550, 160 bytes): **Inferred.** Destroys a GC: frees its client
+  clip and composite clip through the screen hooks, and calls `miDestroyGCOps` twice; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16CopyPixmap` (`konal.so` 0x14a7640, 148 bytes): **Established.** Duplicates a 16-bit pixmap:
+  allocates through a function pointer, then copies the pixel data with `memmove`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32ZeroPolyArcSSGeneral` (`konal.so` 0x14a76e0, 468 bytes): **Inferred.** Zero-width arc entry
+  for 32-bit pixels under any raster op: the arc walk of the 16-bit entry, sending big arcs to
+  `miZeroPolyArc`, clipped or out-of-range ones to `miPolyArc` and wholly visible ones to the 32-bit
+  routine; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `cfbCopyPlane1to8` (`konal.so` 0x14a78c0, 3568 bytes): **Inferred.** Expands a one-bit-deep source
+  rectangle into 8-bit pixels: each source bit selects the foreground or background value kept in
+  `cfb8StippleXor` and `cfb8StippleAnd`, merged by the rop in `cfb8StippleRRop`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miGetImage` (`konal.so` 0x14a86b0, 768 bytes): **Established.** Default
+  GetImage built on CopyArea: it gets a scratch GC with `GetScratchGC`, adjusts it with
+  `DoChangeGC`, validates with `ValidateGC`, copies into a temporary pixmap and frees the scratch GC
+  with `FreeScratchGC`. It also calls `ffs` and the local routine at 0x14318b0; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbDoBitblt` (`konal.so` 0x14a89b0, 136 bytes): **Established.** Chooser that picks the raster
+  op's blit routine for an 8-bit blit: it tests the op against 3, 6 and 7 and the plane mask against
+  255, and sends everything else to `cfbDoBitbltGeneral`; the code is instruction for instruction
+  the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb8LineSS1RectCopy` (`konal.so` 0x14a8e30, 2088 bytes): **Established.** Copy-mode 8-bit
+  polyline in one clip rectangle. It reads the zero-line screen index, takes the root pixmap pointer
+  from screen +0x74 for a window and the clip rectangle from the composite clip in the GC private
+  data, and steps every segment inline with no callees; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `miInverse` (`konal.so` 0x14a9660, 356 bytes): **Established.** Computes the inverse of a region
+  inside a bounding box: it subtracts the region from the box, frees the temporary with `Xfree` and
+  recomputes the extents using `miSetExtents`; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `nfbStereoPolyPoint` (`konal.so` 0x14a97d0, 452 bytes): **Established.** Stereo
+  PolyPoint: the saved routine is entry +0x14 of the operations vector, called once per eye with the
+  point list moved by the eye offset and moved back; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `nfbStereoPolyRectangle` (`konal.so` 0x14a99a0, 716 bytes): **Established.** Stereo
+  PolyRectangle, saved entry +0x20, with the same copied rectangle array (`Xalloc`, `Xfree`) as the
+  segment wrapper; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `mfbStippleWhiteArea` (`konal.so` 0x14aa180, 3524 bytes): **Established.** Sets bits through a
+  stipple over a list of boxes; a leaf that rotates the stipple row for each scanline and merges it
+  with the edge masks, and it is called from `mfbValidateGC`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbDoBitbltXor` (`konal.so` 0x14aaf70, 4596 bytes): **Inferred.** The 8-bit rectangle copy for
+  the xor raster op, a leaf that merges source into destination with xor; its word shifting uses
+  `cfbstartpartial` and `cfbendtab`; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `nfbPositionWindow` (`konal.so` 0x14ac170, 8 bytes): **Established.** Hook that does nothing and
+  returns 1 (TRUE); the layer needs no work when a window moves; in konal.so its address is stored
+  at 0x15126c4, and the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb32AllocatePrivates` (`konal.so` 0x14ac180, 352 bytes): **Established.** Reserves the
+  per-window and per-GC private slots for the 32-bit frame-buffer layer:
+  `AllocateScreenPrivateIndex`, `AllocateGCPrivate` and `AllocateWindowPrivate` for the 32-bit
+  indexes, and `mfbAllocatePrivates` for the monochrome layer; it also records `miCopyPlane` as the
+  CopyPlane punt routine `cfbPuntCopyPlane`; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `kon_loadClearGC` (`konal.so` 0x14ac2e0, 240 bytes): **Established.** Clear-state loader in the
+  konal.so build: sends `HP_X_LOADCLIP` as one whole-drawable rectangle and `HP_X_LOADPOS` with the
+  drawable's origin and size, each token as a word at offset 0 and then the payload, and calls
+  `kon_loadGeomGC` with the copy raster op. 240 bytes against 224.
+
+- `mfbCopyPixmap` (`konal.so` 0x14ac3d0, 148 bytes): **Inferred.** Duplicates a one-bit pixmap: it
+  calls the screen's pixmap creation hook, then copies the data with `memmove`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32GetSpans` (`konal.so` 0x14aca90, 708 bytes): **Established.**
+  GetSpans for 32-bit drawables: `FatalError` for an unexpected depth, `mfbGetSpans` for one-bit
+  drawables, and a word-by-word copy for the rest; the code is instruction for instruction the same
+  as the kona.so build once relocated addresses are ignored.
+
+- `konTilePatterns` (`konal.so` 0x14acd60, 3596 bytes): **Established.** Builds the replicated
+  pattern words for a tile: allocates the buffer with `Xalloc`, replicates rows to fill 32 words
+  when the tile height is 1, 2, 4,
+  8 or 16 by repeated `bcopy`, and reports an unsupported size with
+  `ErrorF`; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `konStoreColors` (`konal.so` 0x14adb70, 3156 bytes): **Established.** Colour-map store in the
+  konal.so build. It sends `HP_X_LOADCMAP` as a token word at offset 0 followed by the map address,
+  the count and the colour words, with every word stored inline; kona.so bulk-copies through
+  `KonSeqData32_ip19` and `KonSeqData4_ip19`, which konal.so lacks, so this is 3156 bytes against
+  2468. `ErrorF` reports failures.
+
+- `mfbImageGlyphBltBlack` (`konal.so` 0x14ae7d0, 3248 bytes): **Established.**
+  ImageGlyphBlt with black foreground on one-bit drawables: it measures with `QueryGlyphExtents`,
+  paints the background box with `mfbPolyFillRect` and then writes glyphs through
+  `mfbSolidBlackArea` or `mfbSolidWhiteArea`; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `miPolyFillRect` (`konal.so` 0x14af6a0, 2344 bytes): **Inferred.**
+  PolyFillRect on top of the GC's FillSpans: clips each rectangle to the composite clip and emits
+  one span row per scanline by an indirect call, and it is called from `cfb16PolyFillRect`,
+  `cfb16ValidateGC`, `cfb32PolyFillRect`; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `nfbReduceGC` (`konal.so` 0x14affd0, 116 bytes): **Established.** Copies the context's foreground
+  (+0x18), background (+0x1c), plane mask (+0x14), raster op byte (+0x5) and fill-style bits (+0x10)
+  twice into the private record, at +0x28 to +0x4c and again at +0x40 to +0x54 for the second path;
+  a leaf that calls nothing; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `mfbPadPixmap` (`konal.so` 0x14b0050, 536 bytes): **Established.** Replicates a one-bit tile
+  across the 32 bits of a row when the width divides 32, using `endtab` for the row masks; a leaf;
+  the code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `nfbDestroyWindow` (`konal.so` 0x14b03b0, 212 bytes): **Inferred.** Releases the window's record:
+  it calls the screen hook at +0x160 for each of the stored colour ids in a loop, then frees two
+  blocks with `Xfree`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `miWindowExposures` (`konal.so` 0x14b0490, 880 bytes): **Established.** Computes the exposed
+  region of a window and sends it as Expose events with `miSendExposures`, choosing among several
+  output paths; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `mfbTEGlyphBltBlack` (`konal.so` 0x14b08e0, 2256 bytes): **Inferred.** Terminal-emulator-font text
+  on a one-bit drawable in black: glyphs have a fixed width, so each row is assembled with shifts
+  and masks from `starttab` and `partmasks` and stored word by word. It makes one indirect call; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `cfbFillPoly1RectCopy` (`konal.so` 0x14b1360, 2580 bytes): **Established.** Polygon fill for 8-bit
+  pixels in one clip rectangle in copy mode. It uses `miFillPolygon` at two call sites for shapes
+  that need the general scan converter; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `nfbCursorLimits` (`konal.so` 0x14b1d80, 108 bytes): **Established.** Clamps the cursor's
+  confinement box: it limits the new box (argument 4) to the screen extents at +0x8 and +0xa,
+  writing the result halfwords to the output box; a leaf; the code is instruction for instruction
+  the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32ClippedLineXor` (`konal.so` 0x14b1df0, 2788 bytes): **Established.** Exclusive-or 32-bit
+  line for segments that may leave the clip box. It calls `miZeroClipLine` at two sites, then steps
+  the clipped line; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb32SetSpans` (`konal.so` 0x14b28e0, 1060 bytes): **Established.**
+  SetSpans for 32-bit drawables, with the scanline copy done inline rather than by a callee, using
+  `PixmapWidthPaddingInfo` for the stride; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `nfbStereoPolyArc` (`konal.so` 0x14b2d10, 584 bytes): **Established.** Arc-drawing wrapper for
+  stereo windows, saved entry +0x24: it copies the arc array into an `Xalloc` block and frees that
+  block with `Xfree` once both eyes are drawn; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `cfb32SolidSpansCopy` (`konal.so` 0x14b31d0, 596 bytes): **Established.** Solid
+  FillSpans for 32-bit pixels in copy mode: after `miClipSpans` each span is stored as a run of
+  words; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `cfb32SetScanline` (`konal.so` 0x14b3b20, 476 bytes): **Established.** Copies one row of source
+  pixels into a 32-bit destination scanline and merges them with the GC raster op through
+  `mergeRopBits`; a leaf; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb32FillSpanTile32sCopy` (`konal.so` 0x14b3d00, 1068 bytes): **Inferred.** Span fill with a
+  one-word tile row for 32-bit pixels, copy mode; leaf, reading the screen private data at +0x1b4;
+  the code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `nfbStereoPolyFillRect` (`konal.so` 0x14b41a0, 716 bytes): **Established.** Stereo
+  PolyFillRect, saved entry +0x2c, using a temporary rectangle copy from `Xalloc`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbRestoreAreas` (`konal.so` 0x14b4520, 292 bytes): **Inferred.** Save-under restore hook: it
+  calls `nfbDoBitBltPS` at two sites to copy the saved pixmap back to the screen, one per box; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `nfbStippledFillRects` (`konal.so` 0x14b4650, 936 bytes): **Inferred.**
+  FillRects with a stipple: four indirect calls into the stippled-area routine of the window record,
+  one per fill path; in konal.so its address is stored at 0x1514350, and the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32FillSpanTileOddCopy` (`konal.so` 0x14b4a00, 1224 bytes): **Inferred.** Span fill with an
+  odd-width tile for 32-bit pixels, copy mode, using the end mask table `cfb32endpartial`; the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `konTileRects` (`konal.so` 0x14b4ed0, 2636 bytes): **Inferred.** Tiles a list of rectangles by
+  copying one prepared tile: it reads the box lists through the screen's region hooks and calls
+  `nfbReplicateArea` to grow the tile across each rectangle by doubling; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `konValidateVisual` (`konal.so` 0x14b6d50, 4252 bytes): **Inferred.** Re-validates a window's
+  visual state after a change in clip or buffer: it works through the screen's three region slots,
+  calling the screen hooks at +0x154, +0x164, +0x168, +0x16c, +0x178, +0x188, +0x190 and +0x194 on
+  them, and calls the local routines at 0x14c9410 (ten sites) and 0x143a310 (five sites). Roles are
+  read from the call structure; neither routine was read; the code is instruction for instruction
+  the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16SolidSpansGeneral` (`konal.so` 0x14b7f20, 1304 bytes): **Established.** Solid
+  FillSpans for 16-bit pixels under any raster op; clipped with `miClipSpans` after `miFindMaxBand`,
+  each span merged through the and/xor pair from the GC's private data; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `konReadFBBlock` (`konal.so` 0x14b8580, 1924 bytes): **Established.** Frame-buffer read-back in
+  the konal.so build, and the largest behavioural difference. It sends `HP_X_LOADPOS`,
+  `HP_X_PIX_SETUP` and `HP_X_PIX_READ` as token numbers (298,
+  310 and the read token) stored at offset 0 followed by the payload, and it does not send
+  `HP_WG_FLUSH_1`: where kona.so stores 0xdeadbeef at the flush token's address after the read
+  request, this build loads a word through the pointer at +0x10 of the screen private to drain the
+  write path. Its wait loop is laid out differently from kona.so's (both call `sginap` at two sites
+  and `_sysconf` once), it still checks the pipe with `KONA_CHECK_PIPE` (10017), and it takes the
+  read-back area from +0xc of the private record where kona.so uses +0x10. It uses `KONA_DMAREAD`
+  (10000) for large blocks. 1924 bytes against 1900.
+
+- `kon_loadImgBitmapGC` (`konal.so` 0x14b8d10, 340 bytes): **Established.** Image-bitmap GC loader
+  in the konal.so build: sends the `HP_X_LOADGC` words with the config word's low five bits cleared
+  and the plane mask masked to 24 bits, now preceded by the token word at offset 0. No calls; 340
+  bytes against 332.
+
+- `miCopyGC` (`konal.so` 0x14b9360, 8 bytes): **Inferred.** Empty hook: returns at once without
+  touching either context; in konal.so its address is stored at 0x1515e30, and the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `kon_loadGeomGC` (`konal.so` 0x14b9960, 3460 bytes): **Established.** Geometry loader in the
+  konal.so build; the one function whose code is nearly identical to its kona.so counterpart (two
+  instructions longer: 3460 bytes against 3452). It sends `HP_X_LOADGC` with the token number stored
+  at offset 0 first, and prints its debug text with `ErrorF` at four sites.
+
+- `cfb32DoBitbltGeneral` (`konal.so` 0x14ba6f0, 3480 bytes): **Inferred.** The 32-bit rectangle copy
+  for any raster op, using `mergeRopBits` for the per-word merge; shorter than the 8- and 16-bit
+  versions because a pixel is a whole word; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `nfbStereoPushPixels` (`konal.so` 0x14bb490, 500 bytes): **Established.** Stereo
+  PushPixels, saved entry +0x4c, called once per eye with the drawable's y moved by the eye offset;
+  the code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `mfbImageGlyphBltWhite` (`konal.so` 0x14bb690, 2408 bytes): **Established.**
+  ImageGlyphBlt with white foreground on one-bit drawables: `QueryGlyphExtents`, a background fill
+  with `mfbPolyFillRect`, and glyph rows via `mfbSolidWhiteArea`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `mfbDoBitblt` (`konal.so` 0x14bc000, 164 bytes): **Established.** Chooser used by the one-bit
+  copy: it compares the raster op with 3, 6, 7 and
+  12 and calls `mfbDoBitbltCopy` or `mfbDoBitbltGeneral` accordingly; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbInitRootWindow` (`konal.so` 0x14bc730, 2000 bytes): **Established.** Sets up the root window:
+  it looks up background and border colours with `OsLookupColor` and `AllocColor`, makes a scratch
+  GC with `GetScratchGC`, creates the default colormap with `CreateColormap`, sets the window
+  properties with `ChangeWindowProperty` (five sites), interns atoms with `MakeAtom`, checks
+  capabilities with `nmbxLookupCapability`, and ends the server with `FatalError` or `exit` on
+  failure; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `cfb32DestroyPixmap` (`konal.so` 0x14bd4e0, 88 bytes): **Established.** The 32-bit pixmap release:
+  reference count test, then `Xfree` of the data and the record; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16ZeroPolyArcSSCopy` (`konal.so` 0x14bd540, 468 bytes): **Inferred.** Zero-width arc entry for
+  16-bit copy mode with the same walk of 12-byte arc records: over 800 pixels to `miZeroPolyArc`, an
+  out-of-range or partly clipped box to `miPolyArc`, a wholly visible box to the 16-bit copy fast
+  routine; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `miSlideAndSizeWindow` (`konal.so` 0x14bd720, 3044 bytes): **Established.** The combined move and
+  resize used by ConfigureWindow. It unmaps affected windows with `UnmapWindow` (six sites), applies
+  gravity with `GravityTranslate` (two sites), restacks with `MoveWindowInStack` and resizes
+  children by `TraverseTree`, ending with `WindowsRestructured`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbSolidFS` (`konal.so` 0x14be520, 288 bytes): **Inferred.**
+  FillSpans with a solid colour: it loops over the spans and for each calls an indirect routine with
+  the private record's solid-fill word at +0x40 and rop byte at +0x48; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbGenericScreenInit` (`konal.so` 0x14be820, 3104 bytes): **Established.** Screen initialisation
+  for the generic frame-buffer layer. It allocates the monochrome and colour layers' private slots
+  with `mfbAllocatePrivates`, `cfbAllocatePrivates`, `cfb16AllocatePrivates` and
+  `cfb32AllocatePrivates`, allocates window and GC privates, reads a configuration value with
+  `atof`, calls `nmbxScreenInit`, creates atoms with `MakeAtom`, initialises backing store with
+  `miInitializeBackingStore` and registers shared-memory functions with `ShmRegisterFuncs`; the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miFreeSpanGroup` (`konal.so` 0x14bf440, 60 bytes): **Established.** Frees a span group's span
+  array with `Xfree`. Called from `miCleanupSpanData`, and it is called from `miCleanupSpanData`;
+  the code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `konDestroyHyperpipeConfig` (`konal.so` 0x14bf480, 164 bytes): **Established.** Tears down a
+  hyperpipe configuration: it finds the screen in `screenInfo` from the screen number and sends
+  `KONA_NCLOPS_DESTROY_CONFIG` (10024) with the configuration id through the driver connection at
+  +0x64 of the screen's private record, returning 1 if the ioctl failed and 0 if it succeeded; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `miAppendSpans` (`konal.so` 0x14bf530, 368 bytes): **Established.** Appends one span group to
+  another, calling `miSubtractSpans` to drop overlap and `Xrealloc` to grow the array; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb8LineSS1Rect` (`konal.so` 0x14bffd0, 728 bytes): **Inferred.** Chooser for 8-bit polylines
+  inside one clip rectangle. It tests the raster op and calls the copy, previous-point copy,
+  exclusive-or or general routine through a pointer; the clipped variants `cfb8ClippedLineCopy` and
+  `cfb8ClippedLineXor` stand behind it; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `cfb16DoBitbltGeneral` (`konal.so` 0x14c02b0, 6304 bytes): **Inferred.** The 16-bit rectangle copy
+  for any raster op and plane mask. A leaf with direction selection and word shifting through the
+  16-bit end table, and it is called from `cfb16CopyArea`, `cfb16DoBitblt`; the code is instruction
+  for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miPolySegment` (`konal.so` 0x14c1b50, 152 bytes): **Established.**
+  PolySegment built on the GC's PolyLine routine: it calls it once per segment with two points, and
+  it is called from `cfb16ValidateGC`, `cfb32ValidateGC`, `cfbValidateGC`; the code is instruction
+  for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `kon_parseGC` (`konal.so` 0x14c1bf0, 7692 bytes): **Established.** Converts the X graphics-context
+  fields into the module's private record. It clears the record with `bzero`, then derives the
+  raster op, plane mask, fill and pixel format words (the destination packing tables
+  `kon_pack32dest`, `kon_pack16dest`, `kon_pack8dest` and the shift tables
+  `kon_mainL8shift`, `kon_mainL12shift`, `kon_mainL16shift`). It sends nothing; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `kon_GCOpsCacheReset` (`konal.so` 0x14c3a70, 184 bytes): **Established.** Frees every cached
+  operation vector: it loops over the 2048 entries of the table, calls `Xfree` on each non-null
+  entry and zeroes it; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `miRectsToRegion` (`konal.so` 0x14c3b30, 848 bytes): **Established.** Builds a region from a
+  rectangle list: creates the region with `miRegionCreate`, allocates its box array with `Xalloc`,
+  normalises it with `miRegionValidate`, and sets extents with `miSetExtents` at two sites; the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16LineSS1RectXor` (`konal.so` 0x14c3e80, 2372 bytes): **Inferred.** Exclusive-or polyline for
+  16-bit pixels in one clip rectangle. It finds the 16-bit private data through screen +0x1b4 and
+  steps inline; there are no callees; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `cfb32ReduceRasterOp` (`konal.so` 0x14c47d0, 368 bytes): **Established.** The same raster-op
+  reduction for 32-bit pixels, a leaf of 368 bytes with the same switch over 3, 6, 7 and
+  15, and it is called from `cfb32LineSD`, `cfb32SegmentSD`, `cfb32ValidateGC`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32FillBoxTile32sGeneral` (`konal.so` 0x14c4ad0, 1160 bytes): **Inferred.** Box fill for 32-bit
+  pixels with a one-word tile row, any raster op; the pixel is merged with `mergeRopBits`; the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb8SegmentSS1RectXor` (`konal.so` 0x14c4f60, 2192 bytes): **Inferred.** Exclusive-or 8-bit
+  PolySegment in one clip rectangle; same layout as the copy routine but each store merges with an
+  xor value. No callees, and it is called from `cfb8SegmentSS1Rect`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbCopyImagePlane` (`konal.so` 0x14c57f0, 56 bytes): **Established.** Wrapper for
+  CopyArea of image planes: when the plane argument is -1 it calls `cfbCopyPlane8to1` to pack 8-bit
+  pixels down to one-bit; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfbDestroyPixmap` (`konal.so` 0x14c5d30, 88 bytes): **Established.** Frees an 8-bit pixmap:
+  decrements the reference count at +0x4 of the pixmap and, when it reaches zero, calls `Xfree` on
+  the data and the pixmap record; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `nfbFixupDepths` (`konal.so` 0x14c5dd0, 532 bytes): **Established.** Counts the visuals of each
+  depth in a visual list into a 16-entry table of words on its stack, and rewrites the depth records
+  to match; a leaf. It steps through 36-byte visual records reading the halfword at +0xa of each,
+  and counts them into a 16-word table on its own stack; nothing in the module's code or data points
+  at it; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `mfbStippleBlackArea` (`konal.so` 0x14c65d0, 3548 bytes): **Established.** Clears bits through a
+  stipple over a list of boxes; a leaf with the same loop as the white one, and it is called from
+  `mfbValidateGC`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `konBresD` (`konal.so` 0x14c7430, 8160 bytes): **Established.** Point emitter for dashed Bresenham
+  lines in the konal.so build: the foreground tokens `HP_X_POINT24`, `HP_X_POINT6`, `HP_X_POINT` and
+  the background tokens `HP_X_BGPOINT24`, `HP_X_BGPOINT6`, `HP_X_BGPOINT` with the
+  `HP_X_DATA1` to `HP_X_DATA6` remainders, framed as a token word then inline points at offset 0.
+  With no `KonSeqData*_ip19` helper to call, it is 8160 bytes against 5320 and has no callees at
+  all.
+
+- `konValidateGC` (`konal.so` 0x14c9a00, 168 bytes): **Established.** Validate-GC wrapper with the
+  same save and restore as `konCopyGC`, calling the original entry at +0x0 with the original table
+  installed; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `rrmWorkProc` (`konal.so` 0x14ca3f0, 124 bytes): **Inferred.** Work procedure that spaces out a
+  deferred task: it reads the time with `GetTimeInMillis`, returns 0 if less than 50 milliseconds
+  have passed since the last run, and otherwise runs the routine at 0x13c7cc0 and records the time
+  and its result; it returns 1 when that routine reports no work left; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbHorzS` (`konal.so` 0x14ca470, 1776 bytes): **Established.** Leaf that draws a horizontal run
+  of 8-bit pixels as whole words plus partial ends. The end masks come from the table `cfbstarttab`
+  (offset by the low two bits of the start) and `cfbendpartial`; raster-op codes 3 and 6 branch to
+  separate loops; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfbCopyArea` (`konal.so` 0x14cab60, 164 bytes): **Established.**
+  CopyArea for 8-bit drawables, a thin selector. It reads the raster op from the GC byte at +0x5 and
+  the plane mask from the word at +0x14: if the mask is not all ones, or the op is not copy, xor or
+  or, it passes `cfbDoBitbltGeneral` as the inner routine; otherwise `cfbDoBitbltCopy`,
+  `cfbDoBitbltXor` or `cfbDoBitbltOr`. It then calls `cfbBitBlt` with that routine; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbValidateGC` (`konal.so` 0x14cac10, 3128 bytes): **Established.**
+  ValidateGC for the 8-bit layer. It rebuilds the composite clip with `miComputeCompositeClip`,
+  reduces the raster op with `cfbReduceRasterOp`, picks an operation table with `cfbMatchCommon`,
+  rotates or pads tile and stipple pixmaps with `cfbCopyRotatePixmap`, `mfbCopyRotatePixmap` and
+  `cfbPadPixmap`, and replaces the GC's operation vector via `miDestroyGCOps` and `miCreateGCOps`.
+  An unsupported state ends in `FatalError`; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `cfb8SegmentSS1Rect` (`konal.so` 0x14cb850, 320 bytes): **Established.** Chooser for 8-bit
+  PolySegment in one clip rectangle. It tests the GC's raster op and calls the copy, xor or general
+  routine via a pointer, with `cfb8ClippedLineGeneral` as the fallback for clipped segments; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `rrmValidateTree` (`konal.so` 0x14cba60, 180 bytes): **Inferred.** Hook for
+  ValidateTree: if the window has no rrm private record yet it calls the saved ValidateTree hook
+  (offset +0x7c of the rrm screen record) with the window and the tree, then reinstalls itself at
+  screen +0xcc. When the window already has a record it calls a local routine through the global
+  offset table instead; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb16ZeroPolyArcSSGeneral` (`konal.so` 0x14cbb20, 468 bytes): **Inferred.** Zero-width arc entry
+  for 16-bit pixels under any raster op: the same 800-pixel size test, the 32767 bound and the clip
+  test at screen +0x17c, with `miZeroPolyArc` for big arcs and `miPolyArc` for arcs that cross the
+  clip; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `cfbDoBitbltOr` (`konal.so` 0x14cbd00, 4596 bytes): **Inferred.** The 8-bit rectangle copy for the
+  or raster op, the same code shape and size as the xor copy with the merge step replaced, and it is
+  called from `cfbCopyArea`, `cfbDoBitblt`; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `cfb32FillRectTile32General` (`konal.so` 0x14ccf10, 1376 bytes): **Inferred.** Tiled fill for
+  32-bit pixels with a tile of 32 pixels in width and any raster op; a leaf using `mergeRopBits`,
+  shorter than its 8- and 16-bit siblings because it needs no edge masks; the code is instruction
+  for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `konCopyRect` (`konal.so` 0x14cd900, 736 bytes): **Established.** Rectangle copy in the konal.so
+  build: `kon_loadPixmapGC`, then `HP_X_LOADPOS`, `HP_X_LOADCLIP` and
+  `HP_X_PIX_COPY`, each sent as its token number at offset 0 followed by the payload (source and
+  destination x and y for the copy); `ErrorF` at two sites. 736 bytes against 712.
+
+- `konBresS` (`konal.so` 0x14cddd0, 3704 bytes): **Established.** Point emitter for solid Bresenham
+  lines in the konal.so build. It sends `HP_X_POINT24`, `HP_X_POINT6`, `HP_X_DATA1` to
+  `HP_X_DATA6` and `HP_X_POINT`, each as a token word at the FIFO pointer's offset 0 and then the
+  points, all stored inline: there is no call to `KonSeqData23_ip19` or its siblings, so the
+  function is 3704 bytes against 2288.
+
+- `cfb16LineSS1RectGeneral` (`konal.so` 0x14cec50, 2460 bytes): **Inferred.** Polyline for 16-bit
+  pixels with any raster op in one clip rectangle; leaf, with the GC's and/xor pair applied per
+  pixel, and it is called from `cfb16LineSS1Rect`; the code is instruction for instruction the same
+  as the kona.so build once relocated addresses are ignored.
+
+- `nfbVert` (`konal.so` 0x14cf5f0, 132 bytes): **Established.** Wrapper for a vertical one-pixel
+  run: when the two y coordinates in the box argument differ it widens the box by one row and calls
+  the fill routine passed in a register with a count of 1, and it is called from `nfbSolidZeroSeg`;
+  the code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `cfbFillBoxTileOddCopy` (`konal.so` 0x14cfc80, 2792 bytes): **Inferred.** Odd-width tile fill of a
+  box in 8-bit pixels, copy mode: no raster-op merging, tile rows copied with partial first and last
+  words from `cfbendpartial` and `cfbendtab`; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `cfb16GetSpans` (`konal.so` 0x14d0770, 1684 bytes): **Established.** Reads spans from a 16-bit
+  drawable. It ends in `FatalError` for a depth it cannot serve, hands one-bit drawables to
+  `mfbGetSpans`, and uses the 16-bit start and end tables to mask the ragged ends of each span; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `cfbUnnaturalStippleFS` (`konal.so` 0x14d0fa0, 5252 bytes): **Established.**
+  FillSpans for an 8-bit stipple whose width is not a divisor of 32. It first sets up the stipple
+  state with `cfb8SetOpaqueStipple` or `cfb8SetStipple` (the choice depends on opaque or transparent
+  fill), clips with `miClipSpans`, and reports an impossible fill style with `FatalError`; the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miGetLayerWindow` (`konal.so` 0x14d26e0, 8 bytes): **Established.** Leaf that returns the word
+  stored at +0x24 of the window record; the module has no layered windows, so the lookup is a field
+  read with no calls; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `miModifyPixmapHeader` (`konal.so` 0x14d33b0, 124 bytes): **Established.** Updates a pixmap's
+  width, height, depth, bits per pixel and data pointer fields in place and bumps
+  `globalSerialNumber`; no calls; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `cfb8LineSS1RectPreviousCopy` (`konal.so` 0x14d3880, 1660 bytes): **Inferred.** The copy-mode
+  8-bit polyline for the case where each point is relative to the one before; no callees, it adds
+  each offset to the running point before stepping, and it is called from `cfb8LineSS1Rect`; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `cfb32PolyFillArcSolidCopy` (`konal.so` 0x14d47e0, 544 bytes): **Inferred.** Solid-fill arc entry
+  for 32-bit copy mode. It walks 12-byte arc records: empty arcs, arcs over 800 pixels and boxes
+  past 32767 or not wholly inside the clip (tested with the screen hook at +0x17c) go one at a time
+  to `miPolyFillArc`; the rest are filled by the module's own routines, split on whether the end
+  angle lies within +-23040 (a half turn in 64ths of a degree); the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miloadAET` (`konal.so` 0x14d4ab0, 172 bytes): **Established.** Leaf of the polygon scan
+  converter; the name and the list splice mark it as the step that merges the edges starting on the
+  current scanline into the active-edge list, ordered by x. No calls, and it is called from
+  `miFillGeneralPoly`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb16ClippedLineXor` (`konal.so` 0x14d4c10, 2788 bytes): **Established.** Exclusive-or line for
+  16-bit pixels that may cross the clip box; it calls `miZeroClipLine` at two sites to clip the
+  segment and its closing point; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `cfb32FillSpanTileOddGeneral` (`konal.so` 0x14d5700, 1192 bytes): **Inferred.** Odd-width tiled
+  span fill for 32-bit pixels under any raster op; merges with `mergeRopBits`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `konAttachXvc` (`konal.so` 0x14d5bb0, 228 bytes): **Established.** Connects the screen to the
+  video-control extension. It reads the environment variable `XVC_DEBUG` with `getenv`, hands the
+  extension four module callbacks plus a memory interface through `SDBsetupMemoryInterface`, and
+  registers the screen with `XSGIvcScreenInit`; it returns whether that succeeded; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miEllipseAngleToSlope` (`konal.so` 0x14d5ca0, 636 bytes): **Established.** Converts an arc angle
+  in 64ths of a degree to the slope of the corresponding ellipse point: it uses `floor` and `__dcis`
+  for the compare, and handles the quarter-turn angles 5760, 11520 and 17280 as special cases; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `rrmOGLBindRNToClip` (`konal.so` 0x14d5f20, 684 bytes): **Inferred.** The same binding for an
+  OpenGL window, whose extra state is found through `glxWindowPrivateIndex`. It calls
+  `allocRRMpriv`, `incrRRMpriv`, `FindBestID`,
+  `FindFreeID`, `incrRRMFlags` (two sites) and `nfbSetDidFlags`, reports a failed allocation with
+  `ErrorF`, and frees the replaced record with `Xfree`; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16SetSpans` (`konal.so` 0x14d6550, 1060 bytes): **Established.** Writes spans into a 16-bit
+  drawable, calling `cfb16SetScanline` at two sites for each span and taking row strides from
+  `PixmapWidthPaddingInfo`; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `cfb8LineSS1RectGeneral` (`konal.so` 0x14d7af0, 2376 bytes): **Inferred.** The 8-bit polyline for
+  any raster op: leaf code applying the and/xor pair from the validated GC to every byte it touches,
+  and it is called from `cfb8LineSS1Rect`; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `cfbZeroPolyArcSS8Copy` (`konal.so` 0x14d8440, 468 bytes): **Inferred.** The same arc walk as
+  `cfbZeroPolyArcSS8General`, specialised for 8-bit copy mode: arcs over 800 pixels go to
+  `miZeroPolyArc`, a box past 32767 or not wholly inside the clip goes to `miPolyArc`, and a box
+  wholly inside takes the copy-mode fast routine; the code is instruction for instruction the same
+  as the kona.so build once relocated addresses are ignored.
+
+- `cfb16FillRectTile32General` (`konal.so` 0x14d8620, 4220 bytes): **Inferred.** Tiled fill for
+  16-bit pixels with a 32-pixel tile and any raster op; it also uses `mergeRopBits` and the 16-bit
+  partial tables; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb32LineSS1RectGeneral` (`konal.so` 0x14d96a0, 2460 bytes): **Inferred.** General-raster-op
+  32-bit polyline in one clip rectangle, taking the and/xor pair the GC validation left in its
+  private record, and it is called from `cfb32LineSS1Rect`; the code is instruction for instruction
+  the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16UnnaturalStippleFS` (`konal.so` 0x14da040, 4452 bytes): **Established.**
+  FillSpans for a 16-bit odd-width stipple; clips with `miClipSpans`, then expands stipple bits to
+  pixels using the table `cfb16QuartetBitsTable`; the code is instruction for instruction the same
+  as the kona.so build once relocated addresses are ignored.
+
+- `mfbSetScanline` (`konal.so` 0x14db1b0, 1664 bytes): **Established.** Writes one row of source
+  bits into a one-bit destination scanline, shifting to align and masking the ends with `starttab`
+  and `endtab`; a leaf; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb32HorzS` (`konal.so` 0x14db830, 1308 bytes): **Inferred.** Horizontal run for 32-bit pixels, a
+  leaf. A pixel is a whole word, so there are no start and end mask tables and the loop stores whole
+  words, and it is called from `cfb32LineSS`, `cfb32SegmentSS`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32PolyGlyphBlt8` (`konal.so` 0x14dbd50, 1816 bytes): **Inferred.**
+  PolyGlyphBlt for 32-bit drawables; same structure with three indirect calls into the fill routine,
+  reading the screen private data at +0x1b4; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `cfbXRotatePixmap` (`konal.so` 0x14dc470, 448 bytes): **Established.** Rotates an 8-bit pixmap
+  horizontally by a given number of pixels. It reports a bad depth through `ErrorF` and otherwise
+  shifts each row using the table `cfbendtab`; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `miFillConvexPoly` (`konal.so` 0x14dc630, 1964 bytes): **Established.** Fills a convex polygon
+  directly: finds the top and bottom vertices, walks both edges with integer stepping, and emits
+  spans by calling the local routine at 0x14f6a10 and a pointer, and it is called from
+  `miFillPolygon`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `konDrawPoints` (`konal.so` 0x14dcde0, 1920 bytes): **Established.**
+  PolyPoint emitter in the konal.so build. It loads state with `kon_loadNfbGCoff`, reports problems
+  with `ErrorF` (two sites) and sends `HP_X_LOADCLIP`, `HP_X_POINT24`,
+  `HP_X_POINT6`, `HP_X_DATA1` to `HP_X_DATA6` and
+  `HP_X_POINT`, each as a token word then payload at offset 0, with the points stored inline; 1920
+  bytes against 1200.
+
+- `mfbPolyFillRect` (`konal.so` 0x14dd560, 2676 bytes): **Inferred.**
+  PolyFillRect on one-bit drawables: it clips each rectangle to the composite clip and calls through
+  the GC's area-fill pointer (two sites) with the box list, and it is called from
+  `mfbImageGlyphBltBlack`, `mfbImageGlyphBltWhite`, `mfbValidateGC`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miValidateTree` (`konal.so` 0x14ddfe0, 1292 bytes): **Inferred.** Recomputes the clip lists of a
+  window subtree after a configure or map. It makes calls through the screen's clip-computation
+  hooks (thirty indirect calls in all) and one call to the local routine at 0x14168e0, and bumps
+  `globalSerialNumber` for each window it touches; the code is instruction for instruction the same
+  as the kona.so build once relocated addresses are ignored.
+
+- `konDrawImage` (`konal.so` 0x14de6c0, 3932 bytes): **Established.** Image write in the konal.so
+  build. It loads state with `kon_loadPixmapGC`, sends `HP_X_LOADCLIP`, `HP_X_LOADPOS`,
+  `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH` with token numbers stored at offset 0, and sends
+  `KONA_DMAWRITE` (ioctl 10001) for large images with `perror` on failure, at six `ErrorF` sites.
+  Pixel words are stored inline, so it is 3932 bytes against 2276.
+
+- `mfbBlackStippleFS` (`konal.so` 0x14df620, 1284 bytes): **Established.**
+  FillSpans with a black stipple on one-bit drawables; same flow as the white one, clearing instead
+  of setting, and it is called from `mfbValidateGC`; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `konValidateWindowGC` (`konal.so` 0x14dfb30, 2320 bytes): **Established.** Re-validates a window
+  GC when its state changed: it decides from the fill style whether the context uses the solid,
+  tiled, stippled or opaque-stippled operation vector (`konSolidPrivOps`, `konTiledCAccelPrivOps`,
+  `nfbTiledPrivOps`, `konStippledCPrivOps`, `nfbStippledPrivOps`,
+  `nfbOpStippledPrivOps`), expands the tile or stipple with `konExpandTile`, `konExpandStipple` and
+  `konTilePatterns`, reloads the cache with `kon_freeCachedStipple`, re-parses the context with
+  `kon_parseGC`, and ends in `FatalError` on an illegal fill style; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbStereoPolyline` (`konal.so` 0x14e0440, 452 bytes): **Established.** Line-drawing wrapper for
+  stereo windows that calls the saved entry at +0x18 once per eye; the point list itself is not
+  shifted because the eye offset is applied to the drawable's y; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32FillRectSolidXor` (`konal.so` 0x14e09a0, 1032 bytes): **Inferred.** Exclusive-or solid
+  rectangle fill for 32-bit pixels; a leaf that xors each destination word with the foreground, and
+  it is called from `cfb32PolyFillRect`; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `miOpqStipDrawable` (`konal.so` 0x14e0db0, 1368 bytes): **Established.** Draws an opaque stipple
+  into a drawable by the two-pass method: `GetScratchGC` for a work context, `dixChangeGC` (four
+  sites) and `ValidateGC` (five sites) to switch between background and foreground fills,
+  `miClearDrawable` for the background and `FreeScratchGC` when done; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbNoopDDACreateScreenResources` (`konal.so` 0x14e1310, 8 bytes): **Established.** Stub that
+  returns 1 without creating anything; in konal.so its address is stored at 0x15127c0, and the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `konTiledFillRects` (`konal.so` 0x14e1320, 92 bytes): **Established.** Stub for tiled
+  FillRects on the pipe path: it only prints a debug message with `ErrorF` and returns; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbFillSpanTile32sGeneral` (`konal.so` 0x14e1380, 1864 bytes): **Inferred.** Span fill with a
+  32-pixel tile for 8-bit pixels under any raster op, a leaf merging by `mergeRopBits` and masking
+  ends with the 8-bit tables; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `konUnbindDestroyedWindow` (`konal.so` 0x14e1f10, 696 bytes): **Inferred.** Cleans up a window
+  that is destroyed while still bound to a display-generator window id. It complains through the
+  routine at 0x145c880 when the window pointer is null ("null pWin handed to
+  konUnbindDestroyedWindow") or when the binding disagrees ("DFR binding mismatch on xwid"), looks
+  the id up through `vcScreenPrivateIndex` and `konWindowPrivateIndex`, and clears the binding with
+  the routines at 0x14be310 and 0x14887f0. Which display-generator register those two touch was not
+  read; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `nfbCreateStereoGC` (`konal.so` 0x14e22b0, 532 bytes): **Established.** Replaces a new context's
+  operations with the stereo vector: it records the stereo-free vector `nfbSolidOps` in the private
+  record, builds the stereo copy of the table (a 28-byte header) and reports allocation trouble with
+  `ErrorF`; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `konDrawMonoImage` (`konal.so` 0x14e24d0, 2568 bytes): **Established.** One-bit image draw in the
+  konal.so build: `kon_loadNfbBitmapGC`, then `HP_X_LOADCLIP`, `HP_X_LOADPOS`,
+  `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH` framed as token word then payload at offset 0, rows copied
+  with `bcopy`, and bitmap words stored inline instead of through `KonSeqData32_ip19`; 2568 bytes
+  against 1724.
+
+- `cfb32FillRectSolidGeneral` (`konal.so` 0x14e2ee0, 744 bytes): **Inferred.** General-raster-op
+  solid fill for 32-bit pixels, a leaf using the and/xor pair from the GC private record to combine
+  each word, and it is called from `cfb32PolyFillRect`; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `cfbTEGlyphBlt8` (`konal.so` 0x14e3510, 23240 bytes): **Established.** The large
+  terminal-emulator-font text routine for 8-bit drawables. A table of unrolled cases, one per glyph
+  width, writes whole words of expanded pixels; it uses `cfb8SetOpaqueStipple` to prepare the fill
+  colours and falls back to `cfbImageGlyphBlt8` for fonts it cannot handle; the code is instruction
+  for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbUnrealizeWindow` (`konal.so` 0x14e8fe0, 8 bytes): **Inferred.** Hook that returns 1
+  immediately; unmapping a window needs no frame-buffer work; in konal.so its address is stored at
+  0x15126d0, and the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb16FillBoxTile32sGeneral` (`konal.so` 0x14e8ff0, 2268 bytes): **Inferred.** Box fill with a
+  32-bit-wide tile for 16-bit pixels under any raster op; merges source and destination words with
+  the GC's and/xor masks, and it is called from `cfb16FillRectTileOdd`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miWideLine` (`konal.so` 0x14e98d0, 2180 bytes): **Established.**
+  PolyLine for lines wider than one pixel. It builds spans with `miSetupSpanData`, calls the local
+  routines at 0x142f320 (two sites), 0x14cf680 (two sites) and 0x140dea0 (four sites) to generate
+  and fill them, and releases them with `miCleanupSpanData`; the code is instruction for instruction
+  the same as the kona.so build once relocated addresses are ignored.
+
+- `sgiEnableCapabilityUnsupported` (`konal.so` 0x14ea300, 28 bytes): **Established.** Stub for the
+  enable-capability request: it returns `nmbxErrorBase` plus 1, the same unsupported error as the
+  release stub, without doing any work; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `mfbYRotatePixmap` (`konal.so` 0x14ea3a0, 236 bytes): **Established.** Rotates a one-bit pixmap
+  vertically by moving rows with `memmove`, three sites; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `miInsertEdgeInET` (`konal.so` 0x14ea500, 452 bytes): **Established.** Inserts a polygon edge into
+  the edge table bucket for its starting scanline, allocating a bucket record of 304 bytes with
+  `Xalloc` when it needs one; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `cfb16ValidateGC` (`konal.so` 0x14ea6e0, 2928 bytes): **Established.**
+  ValidateGC for the 16-bit layer: the same sequence with the 16-bit calls `cfb16ReduceRasterOp`,
+  `cfb16MatchCommon`, `cfb16CopyRotatePixmap` and `cfb16PadPixmap`, after
+  `miComputeCompositeClip`; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `nfbDoBitBltPS` (`konal.so` 0x14eb250, 340 bytes): **Inferred.** Pixmap-to-screen box copy: walks
+  the box list of the region argument (+0x8) and for each box calls through the window record to
+  write the pixmap rows to the screen; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `konValidateReducedGC` (`konal.so` 0x14eb520, 204 bytes): **Established.** Masks the colour words
+  of the generic-layer GC record with the depth mask for the drawable's depth (`kon_depthmask`,
+  indexed by the byte at +0x2 of the drawable): the foreground at private +0x34 and the plane mask
+  at +0x4c. It prints a debug message with `ErrorF` first, and it is called from
+  `konValidateWindowGC`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfbFillRectSolidGeneral` (`konal.so` 0x14eb5f0, 2080 bytes): **Inferred.** Solid rectangle fill
+  for 8-bit pixels under any raster op. A leaf reading the GC private array at +0x4c; edge words use
+  the tables `cfbstartpartial` and `cfbendtab`, and every store merges with an and/xor pair; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `cfb16CopyRotatePixmap` (`konal.so` 0x14ebe10, 312 bytes): **Established.** The 16-bit version of
+  the rotated copy: `cfb16CopyPixmap`, `cfb16PadPixmap`, `cfb16XRotatePixmap` and
+  `cfb16YRotatePixmap`, with `memmove` calls and the global serial number stamp; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbFillBoxTile32sCopy` (`konal.so` 0x14ebf50, 2460 bytes): **Inferred.** Box fill for 8-bit
+  pixels with a tile of width 32, copy mode: leaf, replicates the tile word across the row between
+  masked ends, and it is called from `cfbFillBoxTileOdd`, `cfbFillRectTileOdd`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32LineSS1RectXor` (`konal.so` 0x14ec950, 2372 bytes): **Inferred.** Exclusive-or 32-bit
+  polyline in one clip rectangle. Its size matches the 16-bit routine; the stores are word-wide, and
+  it is called from `cfb32LineSS1Rect`; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `miWideDash` (`konal.so` 0x14ed2a0, 2392 bytes): **Established.** The dashed form of the wide-line
+  routine: dash steps via `miStepDash`, span building with `miSetupSpanData` and the local routines
+  at 0x14cf680 (two sites) and 0x140dea0 (four sites), projecting caps with `miLineProjectingCap`, a
+  one-pixel fallback in `miZeroDashLine` and clean-up with `miCleanupSpanData`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbDoBitBltSP` (`konal.so` 0x14edc00, 2968 bytes): **Established.** Screen-to-pixmap box copy. It
+  allocates a buffer with `Xalloc`, reads the screen into it through the raster-op tables
+  `nfbRopFcn` and `nfbMaskRopFcn`, selected by `rop_needs_src` and
+  `rop_needs_dst`, and frees it with `Xfree`; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `nfbDoBitBltSS` (`konal.so` 0x14ee7a0, 744 bytes): **Inferred.** Screen-to-screen box copy: for
+  each box in the region it makes an indirect call (four sites) into the copy routine named in the
+  window's private record, and it is called from `nfbCopyArea`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16CopyArea` (`konal.so` 0x14eea90, 164 bytes): **Established.**
+  CopyArea for 16-bit drawables with the same shape as the 8-bit selector, comparing the plane mask
+  with 0xffff and passing one of `cfb16DoBitbltGeneral`, `cfb16DoBitbltCopy`, `cfb16DoBitbltXor` or
+  `cfb16DoBitbltOr` to `cfb16BitBlt`; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `mfbPolyGlyphBltInvert` (`konal.so` 0x14eeb40, 2264 bytes): **Established.**
+  PolyGlyphBlt on a one-bit drawable that inverts pixels under the glyph; two `QueryGlyphExtents`
+  calls, size equal to the white variant; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `nfbQueryBestSize` (`konal.so` 0x14ef420, 192 bytes): **Established.** Best-size query: for tiles
+  and stipples (class 1 and 2) it rounds the width down to a power of two and caps height at 32; for
+  cursors it caps both at 32. A leaf. It reads and writes the halfword at +0x0 of each of the two
+  size pointers it is passed, ; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `miSetShape` (`konal.so` 0x14efb30, 816 bytes): **Established.** Applies a changed window shape:
+  updates sizes with `SetWinSize` and `SetBorderSize`, resizes children with
+  `ResizeChildrenWinSize`, checks the pointer with `CheckCursorConfinement` and reports with
+  `WindowsRestructured`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `miInsertionSort` (`konal.so` 0x14eff60, 164 bytes): **Established.** Leaf insertion sort used by
+  the polygon edge code: it re-links the active-edge list (links at +0x1c and +0x20 of each edge
+  record) so the records are ordered by the key at +0x4, and returns 1 if it moved any; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbFillRectTile32Copy` (`konal.so` 0x14f0010, 1932 bytes): **Inferred.** Tiled rectangle fill for
+  8-bit pixels with a tile exactly 32 pixels wide, copy mode: the tile row is loaded as a word and
+  written across each row with partial-word end handling, and it is called from `cfbPolyFillRect`;
+  the code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `konDetachXvc` (`konal.so` 0x14f07a0, 168 bytes): **Established.** Disconnects the video-control
+  extension: when `vcScreenPrivateIndex` is valid and `XSGIvcScreens` has an entry for the screen it
+  calls the routine at 0x13cb2c0 to release it, then zeroes the screen's private slot and the
+  `XSGIvcScreens` entry; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `konInstallColormap` (`konal.so` 0x14f0850, 2432 bytes): **Established.** Colormap install in the
+  konal.so build: `HP_X_LOADCMAP` with the map address, entry count and one packed word per entry,
+  the token written as a word at offset 0 and the colour words stored inline rather than via
+  `KonSeqData32_ip19`; `ErrorF` reports failures. 2432 bytes against 1768.
+
+- `cfbFillRectSolidXor` (`konal.so` 0x14f11d0, 2984 bytes): **Inferred.** Solid rectangle fill for
+  8-bit pixels that xors the foreground into the frame buffer; a leaf using the partial-word tables
+  for ragged edges and unrolled whole-word stores in between, and it is called from
+  `cfbPolyFillRect`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `miDestroyClip` (`konal.so` 0x14f1f00, 152 bytes): **Inferred.** Releases a GC's client clip,
+  calling the screen's region destroy hook for a region clip; in konal.so its address is stored at
+  0x1515e3c, and the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `miCopyClip` (`konal.so` 0x14f1fa0, 244 bytes): **Inferred.** Copies a GC's client clip into
+  another by calling the screen's region copy hook (four sites); in konal.so its address is stored
+  at 0x1515e40, and the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `mfbPushPixels` (`konal.so` 0x14f20a0, 1412 bytes): **Inferred.**
+  PushPixels on a one-bit drawable: it makes seven indirect calls, walking the mask in 128-bit-wide
+  groups and calling the stippled area fill with `endtab` masks for the edges; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbPadPixmap` (`konal.so` 0x14f2630, 556 bytes): **Established.** Replicates an 8-bit tile
+  horizontally until its row fills 32 bits, when the tile width divides 32; the code tests the width
+  times depth against 32 and uses `endtab` for the row masks. A leaf; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16DestroyPixmap` (`konal.so` 0x14f2860, 88 bytes): **Established.** The 16-bit pixmap release:
+  a reference count test followed by `Xfree` of the pixmap's data and record; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `nfbInitHWCmapArrays` (`konal.so` 0x14f2b30, 2276 bytes): **Established.** Allocates the arrays
+  that track the hardware colormaps and their groups with `Xalloc` (two sites), fills them with
+  `memcpy` and frees the temporary list with `Xfree`; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32LineSS1Rect` (`konal.so` 0x14f3420, 728 bytes): **Inferred.** Chooser for 32-bit polylines
+  in one clip rectangle; it calls the copy, previous-point copy, xor or general version through a
+  pointer and falls back to `cfb32ClippedLineGeneral`; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `miMarkUnrealizedWindow` (`konal.so` 0x14f3700, 124 bytes): **Inferred.** Marks a window for
+  revalidation when it becomes unrealised, calling the screen's mark hook three times, and it is
+  called from `miScreenInit`; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `miRegionNotEmpty` (`konal.so` 0x14f3e60, 40 bytes): **Established.** Leaf test that reports
+  whether a region has any area, by comparing its extents halfwords at +0x0 to +0x6; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miChangeSaveUnder` (`konal.so` 0x14f41d0, 208 bytes): **Inferred.** Maintains the count of
+  viewable save-under windows: it adjusts `numSaveUndersViewable` and `deltaSaveUndersViewable` and
+  calls the screen's hook; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `cfbSetSpans` (`konal.so` 0x14f4f50, 1044 bytes): **Established.** Writes spans into an 8-bit
+  drawable: for each span inside the clip rectangles it calls `cfbSetScanline`, with row sizes from
+  `PixmapWidthPaddingInfo`; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `miRegionInit` (`konal.so` 0x14f5370, 232 bytes): **Established.** Initialises a region record:
+  copies the four halfword extents from the box argument (or from `miEmptyBox` when none is given),
+  and either points the data field at +0x8 at `miEmptyData` or allocates a rectangle array with
+  `Xalloc` for a count above one; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `cfb16XRotatePixmap` (`konal.so` 0x14f6850, 448 bytes): **Established.** Horizontal rotation of a
+  16-bit pixmap with three `ErrorF` reports for unsupported widths and `cfb16endtab` for the masks;
+  the code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `nfbMarkWindow` (`konal.so` 0x14f6af0, 180 bytes): **Inferred.** Marks a window as needing
+  revalidation: sets the flag word for its colour-map group (found through the window record at
+  +0x18 and the screen's table at +0x3c), and allocates a 24-byte block with `Xalloc` if the window
+  has none, with `Must_have_memory` set during the call; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `miFillArcSliceSetup` (`konal.so` 0x14f6bb0, 2368 bytes): **Established.** Computes the edge data
+  for a pie slice or chord fill: calls `ceil` at two sites and the local routine at 0x147b0e0 at two
+  sites, uses `__dcis` at two sites for double-precision compares, and compares angles with 5760 and
+  11520; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `cfb8SetStipple` (`konal.so` 0x14f74f0, 436 bytes): **Established.** Loads the shared 8-bit
+  stipple state for a transparent fill: one `cfbReduceRasterOp` call, then stores the foreground,
+  rop, and/xor, plane mask and mode in `cfb8StippleFg`, `cfb8StippleAlu` and the neighbouring
+  globals; no background is set; the code is instruction for instruction the same as the kona.so
+  build once relocated addresses are ignored.
+
+- `miChangeBorderWidth` (`konal.so` 0x14f76b0, 504 bytes): **Established.** Sets a window's border
+  width: calls `SetBorderSize` to propagate it and then revalidates through `WindowsRestructured`;
+  the code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `mfbStippleInvertArea` (`konal.so` 0x14f78b0, 3524 bytes): **Established.** Inverts bits through a
+  stipple over a list of boxes; a leaf with the same loop, toggling destination bits, and it is
+  called from `mfbValidateGC`; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `konHyperpipeConfig` (`konal.so` 0x14f8680, 788 bytes): **Established.** Applies a hyperpipe
+  configuration. It checks the request with the routine at 0x14796e0 against the screen's record,
+  copies three words of each 92-byte pipe record of the screen record (at +0x50, +0x54 and +0x58)
+  into a 16-byte request entry, sends one generic graphics ioctl 102 (`GFX_GETBOARDINFO`) of 40
+  bytes per pipe to look up that board, and then sends `KONA_NCLOPS_CONFIGURE` (10020). A failed
+  ioctl is reported with `perror` and the call returns -1 through its status argument; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbFillRectTile32General` (`konal.so` 0x14f8b60, 4220 bytes): **Inferred.** Tiled rectangle fill
+  for 8-bit pixels, 32-pixel tile, any raster op. It merges using the table `mergeRopBits` and
+  handles the ragged edges with the partial-word tables; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `konSlowLineSS` (`konal.so` 0x14fa0e0, 4164 bytes): **Established.** Host-side solid polyline in
+  the konal.so build, logic as in kona.so: `kon_loadGC`, clipping with `miZeroClipLine`, and pixels
+  emitted through `konBresS` (two sites). Its own stores of `HP_X_LOADPOS`, `HP_X_LOADCLIP`,
+  `HP_X_BOX` and `HP_X_POINT` use the konal.so framing, the token number as a word at offset 0
+  followed by the payload. 4164 bytes against 4124.
+
+- `konInit` (`konal.so` 0x14fb130, 9132 bytes): **Established.** Screen initialisation for the Kona
+  module, the largest function of the range. It reserves the screen, window and GC private indexes
+  (`AllocateScreenPrivateIndex`, `AllocateWindowPrivateIndex`, `AllocateGCPrivateIndex`), allocates
+  the per-screen records with `Xalloc`, and loads the visual tables from `konavis.so` with
+  `ddxMakeDynamicModulePath`, `dlopen` and `dlsym` (the symbols
+  `konVisualInfo_imp8`, `konVisualInfo_imp8c` and `konVisualInfo_imp9` among them), reporting
+  `dlerror` on failure. It then calls `nfbGenericScreenInit`, `kon_initGCCaches`,
+  `kon_initCursorCaches`, `konAttachXvc`, `konBlankScreen`,
+  `nfbHWColormapScreenInit`, `rrmInit` and `glxScreenInit`, registers the stereo wrappers with
+  `nfbStereoRegisterWrapperOps`, reads display information with `nfbReadDisplayRegisterInfo`, and
+  compares names against `HIRES_QUADBUFFER` and `HIRES_DOUBLEBUFFER` with `strcmp` (the
+  visual-selection logic around those was not read). Each step has its own `ErrorF` message when it
+  fails, among them "probably no DG installed" for the video-control attach and a conflict message
+  for the overlay flags; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb16DoBitbltCopy` (`konal.so` 0x14fe080, 4716 bytes): **Inferred.** The 16-bit rectangle copy in
+  plain copy mode, reading the screen private data at +0x1b4 for the frame-buffer stride; the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `konSlowLineSD` (`konal.so` 0x14ff520, 3252 bytes): **Established.** Host-side dashed line in the
+  konal.so build: `kon_loadGC`, `miStepDash` (three sites), `konBresD` (two sites) and
+  `miZeroClipLine` as in kona.so, with `HP_X_LOADPOS` and `HP_X_LOADCLIP` sent as a token word at
+  offset 0 then payload. 3252 bytes against 3236.
+
+- `miCreateETandAET` (`konal.so` 0x15001e0, 660 bytes): **Established.** Builds the edge table and
+  the empty active-edge list for a polygon fill, calling `miInsertEdgeInET` for every edge and
+  freeing the storage with `miFreeStorage` on failure; the code is instruction for instruction the
+  same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16DoBitblt` (`konal.so` 0x1500480, 136 bytes): **Established.** The 16-bit chooser; it tests
+  the plane mask against 0xffff and the op against 3, 6 and 7, falling back to
+  `cfb16DoBitbltGeneral`; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `cfb16ImageGlyphBlt8` (`konal.so` 0x1500510, 360 bytes): **Established.** The 16-bit
+  ImageGlyphBlt: a `QueryGlyphExtents` call to size the string, a background fill, then the glyph
+  draw; the code is instruction for instruction the same as the kona.so build once relocated
+  addresses are ignored.
+
+- `cfb16FillBoxTileOdd` (`konal.so` 0x1500680, 92 bytes): **Established.** Wrapper that sends a
+  16-bit box with an odd tile to `cfb16FillBoxTileOddCopy`, or to `cfb16FillBoxTile32sCopy` when the
+  tile width is 32, after testing the raster op against 3; the code is instruction for instruction
+  the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32UnnaturalStippleFS` (`konal.so` 0x1500b90, 2332 bytes): **Established.**
+  FillSpans for a 32-bit odd-width stipple; clips with `miClipSpans`, expands stipple bits with
+  `cfb32QuartetBitsTable` and `cfb32QuartetPixelMaskTable`; the code is instruction for instruction
+  the same as the kona.so build once relocated addresses are ignored.
+
+- `miCopyPlane` (`konal.so` 0x15014b0, 916 bytes): **Established.** Default
+  CopyPlane: clips source and destination, draws with `miOpqStipDrawable`, handles exposures with
+  `miHandleExposures`, and calls `ffs` to find the plane bit and the local routine at 0x14318b0
+  before reading the source; the code is instruction for instruction the same as the kona.so build
+  once relocated addresses are ignored.
+
+- `cfb8FillRectStippledUnnatural` (`konal.so` 0x1502530, 3012 bytes): **Established.**
+  PolyFillRect path for 8-bit stipples of odd width: depending on fill style it calls
+  `cfb8SetOpaqueStipple` or `cfb8SetStipple` once per request, then paints each rectangle through
+  the stipple tables with the partial-word masks; the code is instruction for instruction the same
+  as the kona.so build once relocated addresses are ignored.
+
+- `miHandleValidateExposures` (`konal.so` 0x1503100, 364 bytes): **Inferred.** After validation,
+  generates exposures for newly uncovered regions through the screen's hooks (six indirect calls)
+  and frees the temporary regions with `Xfree`; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `nfbPutImage` (`konal.so` 0x1503270, 1384 bytes): **Inferred.**
+  PutImage in the generic layer: it routes through the GC's operations by indirect calls, calls the
+  local routine at 0x1435430 at two sites, and uses `PixmapWidthPaddingInfo` for row sizes; the code
+  is instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb16BresS` (`konal.so` 0x15037e0, 884 bytes): **Inferred.** Solid Bresenham stepper for 16-bit
+  pixels: a leaf of 884 bytes with the same raster-op branching as the 8-bit stepper, moving
+  halfword pointers, and it is called from `cfb16LineSS`, `cfb16SegmentSS`; the code is instruction
+  for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `mfbDestroyPixmap` (`konal.so` 0x1503b60, 88 bytes): **Established.** Drops a reference on a
+  one-bit pixmap and, when none remain, releases it with `Xfree`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miRegionCopy` (`konal.so` 0x1503c20, 384 bytes): **Established.** Copies one region into another:
+  the four extents, then the rectangle array, resizing the destination with `Xalloc` or `Xfree` and
+  moving the boxes with `memmove`; the global `Must_have_memory` is set around the allocation; the
+  code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `nfbNoopDDAClearBackingStore` (`konal.so` 0x1503da0, 8 bytes): **Established.** Stub that returns
+  0, meaning no backing-store area was cleared; in konal.so its address is stored at 0x151270c, and
+  the code is instruction for instruction the same as the kona.so build once relocated addresses are
+  ignored.
+
+- `cfbGetSpans` (`konal.so` 0x1503e10, 1668 bytes): **Established.**
+  GetSpans for 8-bit drawables: reads each requested span into packed output. It reports a request
+  it cannot serve with `FatalError` and sends one-bit drawables to `mfbGetSpans`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `mfbInvertStippleFS` (`konal.so` 0x1504670, 1252 bytes): **Established.**
+  FillSpans with an inverting stipple on one-bit drawables; the same flow as the white stipple,
+  toggling destination bits, and it is called from `mfbValidateGC`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32XRotatePixmap` (`konal.so` 0x1504b60, 432 bytes): **Established.** Horizontal rotation of a
+  32-bit pixmap; `ErrorF` reports for unsupported widths and the table `cfb32endtab`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbReduceRasterOp` (`konal.so` 0x1504d10, 684 bytes): **Established.** Turns a raster op,
+  foreground and plane mask into the and/xor pair the 8-bit routines use. A leaf with a jump table
+  over the sixteen raster ops (copy, xor, and so on, tested against 3, 6, 7 and
+  15), and it is called from `cfb8SetOpaqueStipple`, `cfb8SetStipple`, `cfbLineSD`; the code is
+  instruction for instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `miZeroPolyArc` (`konal.so` 0x1504fc0, 1820 bytes): **Established.**
+  PolyArc for zero-width arcs when the fast point stepper does not apply. It saves and changes the
+  GC with `DoChangeGC` (two sites) and `ValidateGC` (two sites), steps the dash with `miStepDash`
+  and calls the local routine at 0x1419930; the address of `miPolyArc` is held for the case where it
+  re-dispatches; the code is instruction for instruction the same as the kona.so build once
+  relocated addresses are ignored.
+
+- `rrmBindRNToClip` (`konal.so` 0x1505780, 572 bytes): **Inferred.** Binds a rendering node to a
+  window's clip for an ordinary window, from its reads of `rrmWindowPrivateIndex`,
+  `nfbWindowPrivateIndex` and `rrmScreenPrivateIndex`. It allocates the window's record with
+  `allocRRMpriv`, takes a reference with `incrRRMpriv`, picks a display id with `FindBestID` (two
+  sites), sets the window's flag bits with `incrRRMFlags` and `nfbSetDidFlags`, and releases a
+  replaced record with `Xfree`. It sends no ioctl itself; the code is instruction for instruction
+  the same as the kona.so build once relocated addresses are ignored.
+
+- `cfb32DoBitbltCopy` (`konal.so` 0x15059c0, 2836 bytes): **Inferred.** The 32-bit copy-mode
+  rectangle copy, a leaf that moves whole words in the direction the overlap requires, and it is
+  called from `cfb32CopyArea`, `cfb32DoBitblt`; the code is instruction for instruction the same as
+  the kona.so build once relocated addresses are ignored.
+
+- `nfbCreatePixmap` (`konal.so` 0x1506570, 468 bytes): **Established.** Creates a pixmap: allocates
+  the record and its data with `Xalloc` (two sites), sizes rows with `PixmapWidthPaddingInfo`,
+  stamps `globalSerialNumber`, and reports an unsupported depth with `ErrorF`; in a multi-screen
+  setup it consults `panoramiXMode` and `panoramiXSharePixmap`; the code is instruction for
+  instruction the same as the kona.so build once relocated addresses are ignored.
+
+- `cfbFillRectTileOdd` (`konal.so` 0x1506750, 224 bytes): **Established.** Tile fill for 8-bit
+  pixels with an odd-sized tile: a thin wrapper that tests the raster op against 3 and calls
+  `cfbFillBoxTileOddGeneral` for each box; the code is instruction for instruction the same as the
+  kona.so build once relocated addresses are ignored.
+
+- `cfbSolidSpansXor` (`konal.so` 0x1506830, 1064 bytes): **Established.** Solid
+  FillSpans for 8-bit pixels using xor: `miFindMaxBand` and `miClipSpans`, then masked word xors
+  using the tables `cfbstarttab` and `cfbendtab`; the code is instruction for instruction the same
+  as the kona.so build once relocated addresses are ignored.
