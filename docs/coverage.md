@@ -62,13 +62,13 @@ Raster manager and texture memory: rasterisation, pixel ownership, framebuffer a
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
+| Registers and fields | partial | `RM.h`, `docs/rm.md` | raster, texture and display | full index, field and value table from kpm; block-to-ASIC mapping and bus transport unknown |
 | Command and FIFO formats | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | DMA | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | Interrupts | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | Reset | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 | Context save and restore | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
-| Texture formats and filtering (incl. precision) | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
+| Texture formats and filtering (incl. precision) | partial | `RM.h`, `docs/rm.md` | raster, texture and display | texel formats, filter modes, filter4 S1.7 weights, sharpen/detail 8+2-bit codes, LOD-bias 4.4 scale; per-pixel LOD and sub-texel precision unknown |
 | Display and scanout | none | `RM.h`, `docs/rm.md` | raster, texture and display |  |
 
 ### DG
@@ -104,7 +104,7 @@ Userspace drivers: libGLcore command emission and the X server modules (kona*.so
 |---|---|---|---|---|
 | Command and FIFO formats | partial | `GE.h`, `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar | user doorbell 0x4000, token-only header word, Begin/End/Vertex/Color/LoadMatrix/Viewport payloads in GE.h; X module emission not read |
 | Context save and restore | none | `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar |  |
-| Texture formats and filtering (incl. precision) | none | `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar |  |
+| Texture formats and filtering (incl. precision) | partial | `RM.h`, `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar | host builds TGTMTFT (texture object +64) and filter tables; DRAWTEXELS header length; header word meanings unknown |
 | Display and scanout | none | `libglcore/include/glcore_kona.h, ddx/include/kona_ddx.h`, `docs/opengl.md` | command grammar |  |
 
 ## Microcode (lower priority)
