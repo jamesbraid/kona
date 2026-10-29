@@ -12,8 +12,21 @@
  *
  * Offsets are from the 16 MB window the driver maps on the pipe. Offsets
  * below 0x800000 are the XG window; the host interface (HIP.h) is at
- * 0x800000. The hardware names of the XG registers are UNKNOWN, so they are
- * named by offset and role.
+ * 0x800000.
+ *
+ * Identity, ESTABLISHED: kona_init registers the driver with
+ * xwidget_driver_register(part 0xc102, manufacturer 0x2aa), the values
+ * Linux lists as WIDGET_KONA_PART_NUM and WIDGET_KONA_MFGR_NUM
+ * (arch/mips/include/asm/xtalk/xwidget.h, "InfiniteReality3 / Kona GFX").
+ *
+ * Offsets 0x04-0x3c, INFERRED: the generic Xtalk widget registers every
+ * widget carries at these offsets, named and laid out in the same Linux
+ * header. The driver's writes match those layouts field for field (widget
+ * number in WIDGET_CONTROL bits 3-0, crossbar credits in bits 15-12,
+ * target id and address bits 32-47 in INTDEST_UPPER, revision kept from
+ * WIDGET_ID bits 31-28), which is the evidence; no KONA document names
+ * them. Offsets from 0x5c are chip-specific and their names are UNKNOWN,
+ * so they are named by offset and role.
  */
 #ifndef KONA_XG_H
 #define KONA_XG_H
@@ -22,11 +35,20 @@
  * Registers the driver writes when it sets up how the pipe signals
  * interrupts (kona_reset_adaptor; see docs/xg.md for the order).
  */
-#define KONA_XG_REG_04                0x04    /* read at attach; bits 28-31 kept (role UNKNOWN) */
-#define KONA_XG_REG_24                0x24    /* target number, widget number, N, constant; bit 17 set last */
-#define KONA_XG_REG_2C                0x2c    /* cleared to 0 once during reset */
-#define KONA_XG_REG_34                0x34    /* interrupt target number and address bits 32-47 */
-#define KONA_XG_REG_3C                0x3c    /* interrupt target address bits 0-31 */
+#define KONA_XG_REG_WIDGET_ID       0x04    /* attach keeps bits 31-28, the widget revision */
+#define   KONA_XG_WID_REV(v)            (((v) >> 28) & 0xf)
+#define   KONA_XG_WID_PART(v)           (((v) >> 12) & 0xffff)  /* 0xc102 */
+#define   KONA_XG_WID_MFG(v)            (((v) >> 1) & 0x7ff)    /* 0x2aa */
+#define KONA_XG_REG_WIDGET_CONTROL  0x24    /* written as below; bit 17 set last */
+#define   KONA_XG_CTL_WIDGET_ID         0x0000000f  /* the pipe's widget number */
+#define   KONA_XG_CTL_SYS_END           0x00000200  /* set by the 0x240200 constant */
+#define   KONA_XG_CTL_LLP_XBAR_CRD      0x0000f000  /* N = 3 or 4 (docs/xg.md) */
+#define   KONA_XG_CTL_F_BAD_PKT         0x00010000  /* generic; the driver leaves it clear */
+#define   KONA_XG_CTL_BITS_18_21        0x00240000  /* chip-specific, always set; role UNKNOWN */
+#define   KONA_XG_CTL_TARGET            0x03c00000  /* interrupt target number; chip-specific */
+#define KONA_XG_REG_REQ_TIMEOUT     0x2c    /* cleared to 0 once during reset */
+#define KONA_XG_REG_INTDEST_UPPER   0x34    /* target id bits 19-16, address bits 47-32 */
+#define KONA_XG_REG_INTDEST_LOWER   0x3c    /* interrupt target address bits 31-0 */
 #define KONA_XG_REG_64                0x64    /* bits 3-5: map RAM size code (docs/hip.md) */
 
 /*
