@@ -1604,65 +1604,65 @@ arm1.u	symbol	0x0c03d5e8	arm_x_loadcmap	flags=3	understood	GE.h:4880
 arm1.u	symbol	0x0c03d6fc	arm_x_loadgamma	flags=3	understood	GE.h:4899	
 arm1.u	symbol	0x0c03d9c4	arm_x_loadcursor	flags=3	understood	GE.h:4916	
 arm1.u	symbol	0x0c03daa0	arm_x_loadcursorcolor	flags=3	understood	GE.h:4932	
-arm1.u	symbol	0x0c03db80	arm_x_loadxmap_did	flags=3	understood	GE.h:4946	
-arm1.u	symbol	0x0c03dc44	arm_x_loadxmap_config	flags=3	understood	GE.h:4959	
-arm1.u	symbol	0x0c03dc68	arm_mapdata1d	flags=3	understood	GE.h:819	
-arm1.u	symbol	0x0c03dca0	arm_mapdata2d	flags=3	understood	GE.h:835	
-arm1.u	symbol	0x0c03dcd4	arm_evalstrip2d	flags=3	understood	GE.h:769	
-arm1.u	symbol	0x0c03dd58	arm_evalstrip1d	flags=3	understood	GE.h:753	
-arm1.u	symbol	0x0c03ddb4	InitColortableState	flags=3	named-only	ucode/arm1_functions.md#set-up-and-state	Set-up and state
-arm1.u	symbol	0x0c03dec8	lut_index	flags=2	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
-arm1.u	symbol	0x0c03df58	pixelmap_index	flags=2	understood	GE.h:1263	
-arm1.u	symbol	0x0c03e008	internalformat_index	flags=2	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
+arm1.u	symbol	0x0c03db80	arm_x_loadxmap_did	flags=3	understood	ucode/arm1_functions.md#x-server-commands	X server commands
+arm1.u	symbol	0x0c03dc44	arm_x_loadxmap_config	flags=3	understood	ucode/arm1_functions.md#x-server-commands	X server commands
+arm1.u	symbol	0x0c03dc68	arm_mapdata1d	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c03dca0	arm_mapdata2d	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c03dcd4	arm_evalstrip2d	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c03dd58	arm_evalstrip1d	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c03ddb4	InitColortableState	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03dec8	lut_index	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03df58	pixelmap_index	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03e008	internalformat_index	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 arm1.u	symbol	0x0c03e128	arm_colortable	flags=3	understood	ucode/arm1_functions.md#engine-and-distributor-set-up	Engine and distributor set-up
 arm1.u	symbol	0x0c03e3f4	snarf_pixelmap	flags=2	understood	docs/ge.md#pixel-maps-hp_pixelmapfv-hp_pixelmapuiv-hp_pixelmapusv	Pixel maps: `HP_PIXELMAPFV`, `HP_PIXELMAPUIV`, `HP_PIXELMAPUSV`
 arm1.u	symbol	0x0c03e420	do_pixelmap	flags=2	understood	docs/ge.md#pixel-maps-hp_pixelmapfv-hp_pixelmapuiv-hp_pixelmapusv	Pixel maps: `HP_PIXELMAPFV`, `HP_PIXELMAPUIV`, `HP_PIXELMAPUSV`
-arm1.u	symbol	0x0c03e7ec	arm_pixelmapfv	flags=3	understood	GE.h:972	
-arm1.u	symbol	0x0c03e7fc	arm_pixelmapuiv	flags=3	understood	GE.h:985	
-arm1.u	symbol	0x0c03e810	arm_pixelmapusv	flags=3	understood	GE.h:997	
-arm1.u	symbol	0x0c03e824	ResolveColortablePath	flags=2	named-only	ucode/arm1_functions.md#set-up-and-state	Set-up and state
-arm1.u	symbol	0x0c03e84c	PixEndColorTable	flags=2	named-only	ucode/ge_handlers.md#colortables	colortable.S
-arm1.u	symbol	0x0c03e918	PixEndTexColorTable	flags=2	named-only	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-arm1.u	symbol	0x0c03e950	PixValidateTexColorTable	flags=3	understood	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x0c03edac	arm_colortableparameterfv	flags=3	understood	GE.h:3869	
-arm1.u	symbol	0x0c03ee70	arm_getcolortableparameterfv	flags=3	understood	GE.h:3885	
-arm1.u	symbol	0x0c03f00c	do_getcolortable	flags=2	understood	GE.h:1264	
-arm1.u	symbol	0x0c03f24c	arm_getcolortable	flags=3	understood	GE.h:3855	
-arm1.u	symbol	0x0c03f2a4	arm_getpixelmapfv	flags=3	understood	GE.h:1269	
-arm1.u	symbol	0x0c03f2dc	e_texcoltab	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03f2ec	d_texcoltab	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03f330	e_coltab	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03f34c	d_coltab	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03f368	e_convcoltab	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03f384	d_convcoltab	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03f3a0	e_colmatcoltab	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03f3bc	d_colmatcoltab	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03e7ec	arm_pixelmapfv	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03e7fc	arm_pixelmapuiv	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03e810	arm_pixelmapusv	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03e824	ResolveColortablePath	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03e84c	PixEndColorTable	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03e918	PixEndTexColorTable	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03e950	PixValidateTexColorTable	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03edac	arm_colortableparameterfv	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03ee70	arm_getcolortableparameterfv	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03f00c	do_getcolortable	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03f24c	arm_getcolortable	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03f2a4	arm_getpixelmapfv	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03f2dc	e_texcoltab	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f2ec	d_texcoltab	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f330	e_coltab	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f34c	d_coltab	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f368	e_convcoltab	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f384	d_convcoltab	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f3a0	e_colmatcoltab	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f3bc	d_colmatcoltab	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 arm1.u	symbol	0x0c03f3d8	InitFogGlobal	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
-arm1.u	symbol	0x0c03f428	e_fog	flags=3	named-only	ucode/arm1_firmware.md#the-306-arm-run-tokens-by-kind	The 306 ARM-run tokens by kind
-arm1.u	symbol	0x0c03f440	d_fog	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03f45c	e_fog_offset	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03f47c	d_fog_offset	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03f49c	fog_pop	flags=3	named-only	ucode/arm1_functions.md#state-shadow-initialisation-push-and-pop	State shadow: initialisation, push and pop
-arm1.u	symbol	0x0c03f4d8	initFogState	flags=3	named-only	ucode/arm1.md#hardware-routed-tokens-from-command-number-to-engine-handler	Hardware-routed tokens: from command number to engine handler
-arm1.u	symbol	0x0c03f618	fogRestore	flags=3	named-only	ucode/ge_handlers.md#fogs	fog.S
-arm1.u	symbol	0x0c03f628	arm_fogfunc	flags=3	understood	GE.h:4399	
+arm1.u	symbol	0x0c03f428	e_fog	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f440	d_fog	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f45c	e_fog_offset	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f47c	d_fog_offset	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f49c	fog_pop	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c03f4d8	initFogState	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+arm1.u	symbol	0x0c03f618	fogRestore	flags=3	understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
+arm1.u	symbol	0x0c03f628	arm_fogfunc	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 arm1.u	symbol	0x0c03f67c	InitHistogramState	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
-arm1.u	symbol	0x0c03f708	MinmaxRestore	flags=3	named-only	ucode/ge_handlers.md#histograms	histogram.S
-arm1.u	symbol	0x0c03f71c	real_format	flags=2	named-only	ucode/arm1_functions.md#handlers-and-helpers-named-only-in-the-token-table	Handlers and helpers named only in the token table
-arm1.u	symbol	0x0c03f818	reset_histogram	flags=2	understood	GE.h:4214	
-arm1.u	symbol	0x0c03f8c4	arm_histogram	flags=3	understood	GE.h:4216	
-arm1.u	symbol	0x0c03f9a4	arm_gethistogram	flags=3	understood	GE.h:4242	
-arm1.u	symbol	0x0c03fab0	arm_resethistogram	flags=3	understood	GE.h:4226	
-arm1.u	symbol	0x0c03fac4	arm_gethistogramparameteriv	flags=3	understood	GE.h:4255	
-arm1.u	symbol	0x0c03fbe8	reset_minmax	flags=2	understood	GE.h:4287	
-arm1.u	symbol	0x0c03fc74	arm_minmax	flags=3	understood	GE.h:4289	
-arm1.u	symbol	0x0c03fce8	arm_resetminmax	flags=3	understood	GE.h:4300	
-arm1.u	symbol	0x0c03fcfc	arm_getminmax	flags=3	understood	GE.h:4312	
-arm1.u	symbol	0x0c03fd98	arm_getminmaxparameteriv	flags=3	understood	GE.h:4323	
-arm1.u	symbol	0x0c03fe18	e_histogram	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03fe48	d_histogram	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03fe64	e_minmax	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
-arm1.u	symbol	0x0c03fe94	d_minmax	flags=3	named-only	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03f708	MinmaxRestore	flags=3	understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
+arm1.u	symbol	0x0c03f71c	real_format	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03f818	reset_histogram	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03f8c4	arm_histogram	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03f9a4	arm_gethistogram	flags=3	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
+arm1.u	symbol	0x0c03fab0	arm_resethistogram	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03fac4	arm_gethistogramparameteriv	flags=3	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
+arm1.u	symbol	0x0c03fbe8	reset_minmax	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03fc74	arm_minmax	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03fce8	arm_resetminmax	flags=3	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
+arm1.u	symbol	0x0c03fcfc	arm_getminmax	flags=3	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
+arm1.u	symbol	0x0c03fd98	arm_getminmaxparameteriv	flags=3	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
+arm1.u	symbol	0x0c03fe18	e_histogram	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03fe48	d_histogram	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03fe64	e_minmax	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+arm1.u	symbol	0x0c03fe94	d_minmax	flags=3	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 arm1.u	symbol	0x0c03feb0	x$constdata	flags=2	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 arm1.u	symbol	0x0c03fef0	arm_subdiv_patch_parameter	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 arm1.u	symbol	0x0c03ff14	arm_subdiv_patch_setup	flags=3	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
@@ -1777,24 +1777,24 @@ arm1.u	display command	92	DoDGRqstGetVBOBReply	words=1	understood	ucode/arm1_fun
 ge.u	label	0x00000000	HereWeGo		understood	docs/ge.md#reset-and-start-up	Reset and start-up
 ge.u	label	0x00000053	mgeb_EvalMapSpec1D		understood	ucode/ge_handlers.md#evalmiscs	evalmisc.s
 ge.u	label	0x00000053	ugeb_EvalMapSpec1D		understood	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x0000009c	mgeb_EvalMapData1D		understood	ucode/ge_handlers.md#evalmiscs	evalmisc.s
+ge.u	label	0x0000009c	mgeb_EvalMapData1D		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 ge.u	label	0x0000009c	ugeb_EvalMapData1D		understood	ucode/ge_handlers.md#ueval1ds	ueval1D.s
 ge.u	label	0x000000c2	levaldata1dloop		understood	ucode/ge_handlers.md#ueval1ds	ueval1D.s
 ge.u	label	0x000000d1	mgeb_EvalGrid1D		understood	ucode/ge_handlers.md#ueval1ds	ueval1D.s
 ge.u	label	0x000000d1	ugeb_EvalGrid1D		understood	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x000000e1	mgesi_EvalStrip1D		understood	ucode/ge_handlers.md#ueval1ds	ueval1D.s
+ge.u	label	0x000000e1	mgesi_EvalStrip1D		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 ge.u	label	0x000000e1	ugesi_EvalStrip1D		understood	ucode/ge_handlers.md#ueval1ds	ueval1D.s
 ge.u	label	0x00000157	lstrip1dreturn		understood	ucode/ge_handlers.md#ueval1ds	ueval1D.s
 ge.u	label	0x00000166	umo_EvalEntry1D		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x0000017c	umo_EvalDecomposeLines1D		understood	ucode/ge_handlers.md#ueval1ds	ueval1D.s
 ge.u	label	0x0000018b	mgeb_EvalMapSpec2D		understood	ucode/ge_handlers.md#evalmiscs	evalmisc.s
 ge.u	label	0x0000018b	ugeb_EvalMapSpec2D		understood	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x00000205	mgeb_EvalMapData2D		understood	ucode/ge_handlers.md#evalmiscs	evalmisc.s
+ge.u	label	0x00000205	mgeb_EvalMapData2D		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 ge.u	label	0x00000205	ugeb_EvalMapData2D		understood	ucode/ge_handlers.md#ueval2ds	ueval2D.s
 ge.u	label	0x0000022b	levaldata2dloop		understood	ucode/ge_handlers.md#ueval2ds	ueval2D.s
 ge.u	label	0x0000023a	mgeb_EvalGrid2D		understood	ucode/ge_handlers.md#ueval2ds	ueval2D.s
 ge.u	label	0x0000023a	ugeb_EvalGrid2D		understood	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x00000254	mgesi_EvalStrip2D		understood	ucode/ge_handlers.md#ueval2ds	ueval2D.s
+ge.u	label	0x00000254	mgesi_EvalStrip2D		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 ge.u	label	0x00000254	ugesi_EvalStrip2D		understood	ucode/ge_handlers.md#ueval2ds	ueval2D.s
 ge.u	label	0x000002c3	lstrip2dloop		understood	ucode/ge_handlers.md#ueval2ds	ueval2D.s
 ge.u	label	0x000002f1	lstrip2dreturn		understood	ucode/ge_handlers.md#evalmiscs	evalmisc.s
@@ -2240,7 +2240,7 @@ ge.u	label	0x00003a32	mgebi_NullCommand		understood	ucode/ge_handlers.md#rasters
 ge.u	label	0x00003a45	mges_NullCommand		understood	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003a52	mgeb_DeathCommand		understood	ucode/ge_handlers.md#rasters	raster.S
 ge.u	label	0x00003a5b	mgesi_PassThrough		understood	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003a6d	mgesi_LutUpload		understood	ucode/ge_handlers.md#colortables	colortable.S
+ge.u	label	0x00003a6d	mgesi_LutUpload		understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 ge.u	label	0x00003aae	mmo_LUT_I2I_16		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00003b81	mmo_LUT_I2C_16		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00003c18	mmo_LUT16_big		understood	ucode/ge_handlers.md#colortables	colortable.S
@@ -2248,10 +2248,10 @@ ge.u	label	0x00003ea8	mmo_TLutDownloadI		understood	ucode/ge_handlers.md#colorta
 ge.u	label	0x00003edb	mmo_TLutDownloadLA		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00003f10	mmo_TLutDownloadRGBA		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00003f49	mTLutDownloadDone		understood	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00003f52	mgesi_TLutDownload		understood	ucode/ge_handlers.md#colortables	colortable.S
+ge.u	label	0x00003f52	mgesi_TLutDownload		understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 ge.u	label	0x00003f87	mgeb_PixMapOutputRGBA		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x00003fd8	mgeb_PixMapOutputI		understood	ucode/ge_handlers.md#colortables	colortable.S
-ge.u	label	0x00004022	mgeb_LutRamp1		understood	ucode/ge_handlers.md#colortables	colortable.S
+ge.u	label	0x00004022	mgeb_LutRamp1		understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 ge.u	label	0x00004074	mgeb_LutRamp3		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x0000416c	mmo_LutoutI		understood	ucode/ge_handlers.md#colortables	colortable.S
 ge.u	label	0x0000418e	mmo_LutoutLA		understood	ucode/ge_handlers.md#colortables	colortable.S
@@ -2269,10 +2269,10 @@ ge.u	label	0x000043f3	mgebi_Texture		understood	ucode/ge_handlers.md#textures	te
 ge.u	label	0x00004414	mgesi_SubdivEntry		understood	ucode/ge_handlers.md#subdivs	subdiv.S
 ge.u	label	0x00004421	mges_SubdivTag		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 ge.u	label	0x0000442e	mgeb_Subdiv		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
-ge.u	label	0x0000443b	mgeb_EramMinmaxToCramMinmax		understood	ucode/ge_handlers.md#histograms	histogram.S
+ge.u	label	0x0000443b	mgeb_EramMinmaxToCramMinmax		understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
 ge.u	label	0x00004472	mmo_CramMinmaxToEramMinmax		understood	ucode/ge_handlers.md#histograms	histogram.S
-ge.u	label	0x0000449d	mgesi_HistogramUpload		understood	ucode/ge_handlers.md#histograms	histogram.S
-ge.u	label	0x00004503	mgeb_EramIndirectFill		understood	ucode/ge_handlers.md#histograms	histogram.S
+ge.u	label	0x0000449d	mgesi_HistogramUpload		understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
+ge.u	label	0x00004503	mgeb_EramIndirectFill		understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 ge.u	label	0x00004530	mgeb_EramFill		understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 ge.u	label	0x00004544	DoEramFill		understood	ucode/ge_handlers.md#histograms	histogram.S
 ge.u	label	0x00004786	mgesi_GetDeformationsMask		understood	ucode/ge_handlers.md#deforms	deform.S
@@ -2311,7 +2311,7 @@ ge.u	label	0x00005293	mgesi_XPoint		understood	ucode/ge_handlers.md#xentrys	xent
 ge.u	label	0x000052a3	mRelX		understood	ucode/ge_handlers.md#xentrys	xentry.S
 ge.u	label	0x000052c4	mAbsX		understood	ucode/ge_handlers.md#xclipdraws	xclipdraw.S
 ge.u	label	0x000052e8	mgesi_VCbusWriteMultiple		understood	ucode/ge_handlers.md#videos	video.S
-ge.u	label	0x00005305	mgesi_VCbusWrite		understood	ucode/ge_handlers.md#videos	video.S
+ge.u	label	0x00005305	mgesi_VCbusWrite		understood	ucode/arm1_functions.md#x-server-commands	X server commands
 ge.u	label	0x00005312	mmo_UnpackVertexV3F_C4UB_T2S_LGT		understood	ucode/ge_handlers.md#munpacks	munpack.S
 ge.u	label	0x00005368	mmo_UnpackVertexV3F_T2S_LGT		understood	ucode/ge_handlers.md#munpacks	munpack.S
 ge.u	label	0x000053a8	mmo_UnpackVertexV3F_C4UB_T2F_LGT		understood	ucode/ge_handlers.md#munpacks	munpack.S
@@ -2392,7 +2392,7 @@ ge.u	label	0x00006ab0	mgesi_LoadEram		understood	ucode/ge_handlers.md#hostios	ho
 ge.u	label	0x00006ac2	mgeb_LoadEram		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x00006ad4	mgesi_WramFifo2ODMA		understood	ucode/ge_handlers.md#hostios	hostio.S
 ge.u	label	0x00006af0	mgesi_Eram2ODMA		understood	ucode/ge_handlers.md#hostios	hostio.S
-ge.u	label	0x00006b13	mgesi_Cram2ODMA		understood	ucode/ge_handlers.md#hostios	hostio.S
+ge.u	label	0x00006b13	mgesi_Cram2ODMA		understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 ge.u	label	0x00006b2f	mmo_ReverseComp4Order		understood	ucode/ge_handlers.md#mcomporders	mcomporder.S
 ge.u	label	0x00006b9a	mmo_SumRGB2L		understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 ge.u	label	0x00006c0b	mmo_Expand32_2_4		understood	ucode/ge_handlers.md#mexpands	mexpand.S
@@ -2400,13 +2400,13 @@ ge.u	label	0x00006c55	mmo_Expand32_1_4		understood	ucode/ge_handlers.md#mexpands
 ge.u	label	0x00006c9f	mgeb_SwapInGL		understood	ucode/ge_handlers.md#m_pipecontrols	m_pipecontrol.S
 ge.u	label	0x00006cb3	mgeb_SwapOutGL		understood	ucode/ge_handlers.md#m_pipecontrols	m_pipecontrol.S
 ge.u	label	0x00006cc7	mmo_PixEndStream		understood	ucode/ge_handlers.md#m_pipecontrols	m_pipecontrol.S
-ge.u	label	0x00006cf0	mgeb_InitFogGlobal		understood	ucode/ge_handlers.md#fogs	fog.S
+ge.u	label	0x00006cf0	mgeb_InitFogGlobal		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 ge.u	label	0x00006e20	mgesi_GetFogFunc		understood	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006e4b	mgeb_FogFunc		understood	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006ebf	mgeb_FogRestore		understood	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006eea	mgebi_FogOffsetEnableDisable		understood	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006f05	mgebi_FogDisable		understood	ucode/ge_handlers.md#fogs	fog.S
-ge.u	label	0x00006f1e	mgeb_FogEnable		understood	ucode/ge_handlers.md#fogs	fog.S
+ge.u	label	0x00006e4b	mgeb_FogFunc		understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
+ge.u	label	0x00006ebf	mgeb_FogRestore		understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
+ge.u	label	0x00006eea	mgebi_FogOffsetEnableDisable		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+ge.u	label	0x00006f05	mgebi_FogDisable		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
+ge.u	label	0x00006f1e	mgeb_FogEnable		understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 ge.u	label	0x00006fa5	mgeb_Fogi		understood	ucode/ge_handlers.md#fogs	fog.S
 ge.u	label	0x00006fb2	mgeb_Fogf		understood	ucode/ge_handlers.md#errs	err.S
 ge.u	label	0x00007146	mLoadFineTable		understood	ucode/ge_handlers.md#fogs	fog.S
@@ -2901,9 +2901,9 @@ geif.u	dispatch slot	23	mgeb_Enable_Normalize	handler 0x394e	understood	ucode/ar
 geif.u	dispatch slot	24	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	25	mgeb_EnableSprite	handler 0xf2b9	understood	ucode/ge_handlers.md#glmodess	glmodes.S
 geif.u	dispatch slot	26	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	27	mgeb_EvalMapData1D	handler 0x9c	understood	ucode/ge_handlers.md#evalmiscs	evalmisc.s
+geif.u	dispatch slot	27	mgeb_EvalMapData1D	handler 0x9c	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	28	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	29	mgeb_EvalMapData2D	handler 0x205	understood	ucode/ge_handlers.md#evalmiscs	evalmisc.s
+geif.u	dispatch slot	29	mgeb_EvalMapData2D	handler 0x205	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	30	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	31	mgeb_FrontFace	handler 0xf3db	understood	ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up	Lines, points, polygons and raster set-up
 geif.u	dispatch slot	32	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3081,9 +3081,9 @@ geif.u	dispatch slot	203	mgebi_UpdateTexturing	handler 0x43bd	understood	ucode/g
 geif.u	dispatch slot	204	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	205	mgesi_BshRegisterWriteN	handler 0x3972	understood	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	206	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	207	mgesi_EvalStrip1D	handler 0xe1	understood	ucode/ge_handlers.md#ueval1ds	ueval1D.s
+geif.u	dispatch slot	207	mgesi_EvalStrip1D	handler 0xe1	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	208	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	209	mgesi_EvalStrip2D	handler 0x254	understood	ucode/ge_handlers.md#ueval2ds	ueval2D.s
+geif.u	dispatch slot	209	mgesi_EvalStrip2D	handler 0x254	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	210	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	211	mgesi_PixConv5GVEntry	handler 0xa6be	understood	ucode/arm1_functions.md#pixel-path-distributor-and-raster-bus-set-up	Pixel path: distributor and raster-bus set-up
 geif.u	dispatch slot	212	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3099,13 +3099,13 @@ geif.u	dispatch slot	221	mgebi_TexEnvComps	handler 0x5857	understood	ucode/ge_ha
 geif.u	dispatch slot	222	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	223	mgesi_TransparentBitmap	handler 0x9b4a	understood	ucode/ge_handlers.md#mpixouts	mpixout.S
 geif.u	dispatch slot	224	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	225	mgeb_FogEnable	handler 0x6f1e	understood	ucode/ge_handlers.md#fogs	fog.S
+geif.u	dispatch slot	225	mgeb_FogEnable	handler 0x6f1e	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	226	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	227	mgebi_FogDisable	handler 0x6f05	understood	ucode/ge_handlers.md#fogs	fog.S
+geif.u	dispatch slot	227	mgebi_FogDisable	handler 0x6f05	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	228	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	229	mgeb_FogFunc	handler 0x6e4b	understood	ucode/ge_handlers.md#fogs	fog.S
+geif.u	dispatch slot	229	mgeb_FogFunc	handler 0x6e4b	understood	ucode/arm1_functions.md#gl-state-handlers	GL state handlers
 geif.u	dispatch slot	230	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	231	mgebi_FogOffsetEnableDisable	handler 0x6eea	understood	ucode/ge_handlers.md#fogs	fog.S
+geif.u	dispatch slot	231	mgebi_FogOffsetEnableDisable	handler 0x6eea	understood	ucode/arm1_functions.md#enable-and-disable	Enable and disable
 geif.u	dispatch slot	232	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	233	mgesi_XPixRmSetup	handler 0x4c70	understood	ucode/arm1_functions.md#pixel-path-x-server-pixel-commands	Pixel path: X server pixel commands
 geif.u	dispatch slot	234	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3157,11 +3157,11 @@ geif.u	dispatch slot	279	mgeb_EndSelectMode	handler 0xc002	understood	ucode/ge_h
 geif.u	dispatch slot	280	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	281	mgeb_EramFill	handler 0x4530	understood	ucode/arm1_functions.md#pixel-path-output-module-records-and-conversion-lists	Pixel path: output-module records and conversion lists
 geif.u	dispatch slot	282	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	283	mgeb_EramIndirectFill	handler 0x4503	understood	ucode/ge_handlers.md#histograms	histogram.S
+geif.u	dispatch slot	283	mgeb_EramIndirectFill	handler 0x4503	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 geif.u	dispatch slot	284	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	285	mgeb_EramToEram	handler 0xa5ac	understood	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
 geif.u	dispatch slot	286	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	287	mgeb_EramMinmaxToCramMinmax	handler 0x443b	understood	ucode/ge_handlers.md#histograms	histogram.S
+geif.u	dispatch slot	287	mgeb_EramMinmaxToCramMinmax	handler 0x443b	understood	ucode/arm1_functions.md#context-switch-saved-state-and-memory	Context switch, saved state and memory
 geif.u	dispatch slot	288	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	289	mgeb_EvalGrid1D	handler 0xd1	understood	ucode/ge_handlers.md#ueval1ds	ueval1D.s
 geif.u	dispatch slot	290	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3187,7 +3187,7 @@ geif.u	dispatch slot	309	mgeb_LiReCmpPwrTable	handler 0xdd83	understood	ucode/ge
 geif.u	dispatch slot	310	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	311	mgeb_LoadName	handler 0xc02c	understood	ucode/ge_handlers.md#errs	err.S
 geif.u	dispatch slot	312	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	313	mgeb_LutRamp1	handler 0x4022	understood	ucode/ge_handlers.md#colortables	colortable.S
+geif.u	dispatch slot	313	mgeb_LutRamp1	handler 0x4022	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 geif.u	dispatch slot	314	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	315	mgeb_LutRamp3	handler 0x4074	understood	ucode/ge_handlers.md#colortables	colortable.S
 geif.u	dispatch slot	316	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3267,7 +3267,7 @@ geif.u	dispatch slot	389	mgesi_BshRegisterWrite	handler 0x3991	understood	ucode/
 geif.u	dispatch slot	390	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	391	mgesi_IMPbshRegisterWrite	handler 0x395e	understood	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	392	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	393	mgesi_Cram2ODMA	handler 0x6b13	understood	ucode/ge_handlers.md#hostios	hostio.S
+geif.u	dispatch slot	393	mgesi_Cram2ODMA	handler 0x6b13	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 geif.u	dispatch slot	394	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	395	mgesi_Eram2ODMA	handler 0x6af0	understood	ucode/ge_handlers.md#hostios	hostio.S
 geif.u	dispatch slot	396	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3277,7 +3277,7 @@ geif.u	dispatch slot	399	mgesi_LiGetMaterial	handler 0xc284	understood	ucode/ge_
 geif.u	dispatch slot	400	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	401	mgesi_GetRaster	handler 0x959a	understood	ucode/ge_handlers.md#gets	get.S
 geif.u	dispatch slot	402	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	403	mgesi_HistogramUpload	handler 0x449d	understood	ucode/ge_handlers.md#histograms	histogram.S
+geif.u	dispatch slot	403	mgesi_HistogramUpload	handler 0x449d	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 geif.u	dispatch slot	404	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	405	mgesi_LastVertex2ODMA	handler 0x6a86	understood	ucode/ge_handlers.md#hostios	hostio.S
 geif.u	dispatch slot	406	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3295,7 +3295,7 @@ geif.u	dispatch slot	417	mgesi_LineStripSaveV0	handler 0xb372	understood	ucode/g
 geif.u	dispatch slot	418	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	419	mgesi_LoadEram	handler 0x6ab0	understood	ucode/ge_handlers.md#hostios	hostio.S
 geif.u	dispatch slot	420	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	421	mgesi_LutUpload	handler 0x3a6d	understood	ucode/ge_handlers.md#colortables	colortable.S
+geif.u	dispatch slot	421	mgesi_LutUpload	handler 0x3a6d	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 geif.u	dispatch slot	422	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	423	mgesi_PassThrough	handler 0x3a5b	understood	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	424	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3327,7 +3327,7 @@ geif.u	dispatch slot	449	mgesi_SetGeId	handler 0xf435	understood	ucode/ge_handle
 geif.u	dispatch slot	450	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	451	mgesi_TBUS_1	handler 0x39ab	understood	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	452	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	453	mgesi_TLutDownload	handler 0x3f52	understood	ucode/ge_handlers.md#colortables	colortable.S
+geif.u	dispatch slot	453	mgesi_TLutDownload	handler 0x3f52	understood	ucode/arm1_functions.md#pixel-path-parameter-and-format-tables	Pixel path: parameter and format tables
 geif.u	dispatch slot	454	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	455	mges_TbusRegWriteNoIncr	handler 0x39da	understood	ucode/ge_handlers.md#rasters	raster.S
 geif.u	dispatch slot	456	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
@@ -3377,7 +3377,7 @@ geif.u	dispatch slot	499	mgesi_XLine	handler 0x5196	understood	ucode/ge_handlers
 geif.u	dispatch slot	500	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	501	mgesi_XLineRel	handler 0x5187	understood	ucode/ge_handlers.md#xentrys	xentry.S
 geif.u	dispatch slot	502	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	503	mgesi_VCbusWrite	handler 0x5305	understood	ucode/ge_handlers.md#videos	video.S
+geif.u	dispatch slot	503	mgesi_VCbusWrite	handler 0x5305	understood	ucode/arm1_functions.md#x-server-commands	X server commands
 geif.u	dispatch slot	504	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	505	mgesi_VCbusWriteMultiple	handler 0x52e8	understood	ucode/ge_handlers.md#videos	video.S
 geif.u	dispatch slot	506	HereWeGo	handler 0x0	understood	docs/ge.md#reset-and-start-up	Reset and start-up
