@@ -50676,7 +50676,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4aeaf0	556	cfb16PadPixmap	dynsym
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4aed20	788	konStereoPolyGlyphBlt	dynsym	understood	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4af2b0	2092	cfb32BitBlt	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4afae0	500	miPolyText8	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b0000	1508	konInitiateBufferSwap	dynsym	named-only	docs/opengl.md#ioctls	Ioctls
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b0000	1508	konInitiateBufferSwap	dynsym	named-only	docs/open-questions.md#where-work-stopped	Where work stopped
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b05f0	360	cmapDID	dynsym	understood	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b0a00	728	cfb16LineSS1Rect	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4b0ce0	2296	cfb32SegmentSS1RectCopy	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -51471,7 +51471,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4b7100	556	cfb16PadPixmap	dynsy
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4b7330	788	konStereoPolyGlyphBlt	dynsym	understood	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4b78c0	2092	cfb32BitBlt	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4b80f0	500	miPolyText8	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4b8610	1508	konInitiateBufferSwap	dynsym	named-only	docs/opengl.md#ioctls	Ioctls
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4b8610	1508	konInitiateBufferSwap	dynsym	named-only	docs/open-questions.md#where-work-stopped	Where work stopped
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4b8c00	360	cmapDID	dynsym	understood	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4b9020	728	cfb16LineSS1Rect	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4b9300	2296	cfb32SegmentSS1RectCopy	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -52266,7 +52266,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1437100	556	cfb16PadPixmap	dyns
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1437330	788	konStereoPolyGlyphBlt	dynsym	understood	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14378c0	2092	cfb32BitBlt	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14380f0	500	miPolyText8	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1438610	1508	konInitiateBufferSwap	dynsym	named-only	docs/opengl.md#ioctls	Ioctls
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1438610	1508	konInitiateBufferSwap	dynsym	named-only	docs/open-questions.md#where-work-stopped	Where work stopped
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1438c00	360	cmapDID	dynsym	understood	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1439020	728	cfb16LineSS1Rect	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1439300	2296	cfb32SegmentSS1RectCopy	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
@@ -53061,7 +53061,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4b7100	556	cfb16PadPixmap	dynsy
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4b7330	788	konStereoPolyGlyphBlt	dynsym	understood	docs/kona-so-functions.md#drawing-hooks-caches-cursor-and-resource-manager-client	Drawing hooks, caches, cursor and resource-manager client
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4b78c0	2092	cfb32BitBlt	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4b80f0	500	miPolyText8	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4b8610	1508	konInitiateBufferSwap	dynsym	named-only	docs/opengl.md#ioctls	Ioctls
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4b8610	1508	konInitiateBufferSwap	dynsym	named-only	docs/open-questions.md#where-work-stopped	Where work stopped
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4b8c00	360	cmapDID	dynsym	understood	docs/opengl.md#the-display-id-allocator	The display-id allocator
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4b9020	728	cfb16LineSS1Rect	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4b9300	2296	cfb32SegmentSS1RectCopy	dynsym	named-only	docs/kona-ddx.md#x11-sample-server-layers-mi-mfb-cfb	X11 sample-server layers (`mi*`, `mfb*`, `cfb*`)
