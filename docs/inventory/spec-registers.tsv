@@ -52,39 +52,39 @@ kpm register tables	host interface		hip	0x8002b8	HH_ODMA2_TOTAL	1	0	32		1	unders
 kpm register tables	host interface		hip	0x8002c0	HH_ODMA2_OVER	1	0	32		0	understood	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 kpm register tables	host interface		hip	0x8002c8	HIP2_HH_PIO_HI	1	0	32		0	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800300	HH_RESET	1	0	32		1	no-software-dependency	HIP.h:447	
-kpm register tables	host interface		hip	0x800308	HH_ARM_CTRL	1	0	32		0	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
-kpm register tables	host interface		hip	0x800310	HH_ARM_STATUS	1	0	32		0	understood	HIP.h:460	
+kpm register tables	host interface		hip	0x800308	HH_ARM_CTRL	1	0	32		0	understood	HIP.h:460	
+kpm register tables	host interface		hip	0x800310	HH_ARM_STATUS	1	0	32		0	understood	HIP.h:469	
 kpm register tables	host interface		hip	0x800320	HH_ARM_STALL	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 kpm register tables	host interface		hip	0x800328	HH_ARM_UNSTALL	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
-kpm register tables	host interface		hip	0x800330	HH_ARM_STEP	1	0	32		0	no-software-dependency	HIP.h:490	
-kpm register tables	host interface		hip	0x800338	HH_ARM_CURR_ADDR	1	0	32		0	understood	HIP.h:497	
-kpm register tables	host interface		hip	0x800340	HH_CURR_DATA_FM_ARM	1	0	32		0	no-software-dependency	HIP.h:507	
-kpm register tables	host interface		hip	0x800348	HH_CURR_DATA_TO_ARM	1	0	32		0	no-software-dependency	HIP.h:515	
+kpm register tables	host interface		hip	0x800330	HH_ARM_STEP	1	0	32		0	no-software-dependency	HIP.h:503	
+kpm register tables	host interface		hip	0x800338	HH_ARM_CURR_ADDR	1	0	32		0	understood	HIP.h:511	
+kpm register tables	host interface		hip	0x800340	HH_CURR_DATA_FM_ARM	1	0	32		0	no-software-dependency	HIP.h:521	
+kpm register tables	host interface		hip	0x800348	HH_CURR_DATA_TO_ARM	1	0	32		0	no-software-dependency	HIP.h:529	
 kpm register tables	host interface		hip	0x800350	HH_JTAG_DATA	1	0	32		0	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800358	HH_JTAG_TMS	1	0	32		0	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800360	HH_JTAG_CTRL	1	0	32		0	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800368	HH_JTAG_STATUS	1	0	32		0	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800370	HH_JTAG_ACCESS	1	0	32		0	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 kpm register tables	host interface		hip	0x800378	HH_JTAG_RESET	1	0	32		0	understood	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-kpm register tables	host interface		hip	0x800380	HIP1_HH_FCI_OVERLAP	1	0	32		0	understood	HIP.h:561	
+kpm register tables	host interface		hip	0x800380	HIP1_HH_FCI_OVERLAP	1	0	32		0	understood	HIP.h:575	
 kpm register tables	host interface		hip	0x800388	HIP1_HH_FCI_LOOPBACK	1	0	32		0	no-software-dependency	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-kpm register tables	host interface		hip	0x800390	HIP1_HH_FCI_ERR_STAT1	1	0	32		1	understood	HIP.h:580	
-kpm register tables	host interface		hip	0x800390	HIP2_HH_GV_ERR_STAT1	1	0	32		1	understood	HIP.h:580	
-kpm register tables	host interface		hip	0x800398	HIP1_HH_FCI_ERR_STAT2	1	0	32		1	understood	HIP.h:590	
-kpm register tables	host interface		hip	0x800398	HIP2_HH_GV_ERR_STAT2	1	0	32		1	understood	HIP.h:590	
-kpm register tables	host interface		hip	0x8003a0	HIP1_HH_FCI_PIO_STATUS	1	0	32		0	understood	HIP.h:610	
-kpm register tables	host interface		hip	0x8003a0	HIP2_HH_GV_OVERLAP	1	0	32		0	understood	HIP.h:610	
-kpm register tables	host interface		hip	0x8003a8	HH_TBUS_STATUS	1	0	32		1	understood	HIP.h:627	
-kpm register tables	host interface		hip	0x8003b0	HH_TFIFO_HI	1	0	32		0	understood	HIP.h:637	
-kpm register tables	host interface		hip	0x8003b8	HIP2_HH_IDMA_HI	1	0	32		0	no-software-dependency	HIP.h:733	
-kpm register tables	host interface		hip	0x8003c0	HH_VC_ADDRESS	1	0	32		1	named-only	docs/coverage.md#dg	DG
-kpm register tables	host interface		hip	0x8003c8	HH_VC_FREADY	1	0	32		0	named-only	docs/dg.md#what-the-driver-can-reach	What the driver can reach
-kpm register tables	host interface		hip	0x8003d0	HH_VC_DATA	1	0	32		1	named-only	docs/coverage.md#dg	DG
-kpm register tables	host interface		hip	0x8003d8	HH_VC_DATA_INCR	1	0	32		0	named-only	docs/dg.md#what-the-driver-can-reach	What the driver can reach
-kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	no-software-dependency	HIP.h:652	
+kpm register tables	host interface		hip	0x800390	HIP1_HH_FCI_ERR_STAT1	1	0	32		1	understood	HIP.h:594	
+kpm register tables	host interface		hip	0x800390	HIP2_HH_GV_ERR_STAT1	1	0	32		1	understood	HIP.h:594	
+kpm register tables	host interface		hip	0x800398	HIP1_HH_FCI_ERR_STAT2	1	0	32		1	understood	HIP.h:604	
+kpm register tables	host interface		hip	0x800398	HIP2_HH_GV_ERR_STAT2	1	0	32		1	understood	HIP.h:604	
+kpm register tables	host interface		hip	0x8003a0	HIP1_HH_FCI_PIO_STATUS	1	0	32		0	understood	HIP.h:624	
+kpm register tables	host interface		hip	0x8003a0	HIP2_HH_GV_OVERLAP	1	0	32		0	understood	HIP.h:624	
+kpm register tables	host interface		hip	0x8003a8	HH_TBUS_STATUS	1	0	32		1	understood	HIP.h:641	
+kpm register tables	host interface		hip	0x8003b0	HH_TFIFO_HI	1	0	32		0	understood	HIP.h:651	
+kpm register tables	host interface		hip	0x8003b8	HIP2_HH_IDMA_HI	1	0	32		0	no-software-dependency	HIP.h:789	
+kpm register tables	host interface		hip	0x8003c0	HH_VC_ADDRESS	1	0	32		1	understood	HIP.h:662	
+kpm register tables	host interface		hip	0x8003c8	HH_VC_FREADY	1	0	32		0	no-software-dependency	HIP.h:673	
+kpm register tables	host interface		hip	0x8003d0	HH_VC_DATA	1	0	32		1	understood	HIP.h:682	
+kpm register tables	host interface		hip	0x8003d8	HH_VC_DATA_INCR	1	0	32		0	understood	HIP.h:690	
+kpm register tables	host interface		hip	0x8003e0	HH_GFIFO_WAIT	1	0	32		0	no-software-dependency	HIP.h:697	
 kpm register tables	host interface		hip	0x8003e8	HH_ARM_ADDRESS	1	0	32		0	understood	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
-kpm register tables	host interface		hip	0x8003f0	HH_ARM_DATA	1	0	32		0	named-only	docs/hip.md#what-the-ir-diagnostic-shows-of-the-host-interface	What the IR diagnostic shows of the host interface
-kpm register tables	host interface		hip	0x8003f8	HH_ARM_DATA_INCR	1	0	32		0	named-only	docs/hip.md#what-the-ir-diagnostic-shows-of-the-host-interface	What the IR diagnostic shows of the host interface
+kpm register tables	host interface		hip	0x8003f0	HH_ARM_DATA	1	0	32		0	understood	HIP.h:715	
+kpm register tables	host interface		hip	0x8003f8	HH_ARM_DATA_INCR	1	0	32		0	understood	HIP.h:723	
 kpm register tables	raster		raster-index	0x1	BEF_DUMP	1	0	32		0	understood	RM.h:399	
 kpm register tables	raster		raster-index	0x2	BEF_PERF_COUNTALL	1	0	32		0	understood	RM.h:408	
 kpm register tables	raster		raster-index	0x3	BEF_PERF_COUNTDRAW	1	0	32		0	no-software-dependency	RM.h:413	

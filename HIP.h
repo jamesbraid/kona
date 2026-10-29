@@ -448,6 +448,15 @@
 #define KONA_HIP_RESET_MASK                 0x00000001  /* shift 0 */
 #define KONA_ARM_START_MASK                 0x00000002  /* shift 1 */
 
+/*
+ * HH_ARM_CTRL at 0x800308 (2 bits). Bit 0 HOST_ACCESS opens the host's path to ARM
+ * address space through HH_ARM_ADDRESS and HH_ARM_DATA. kpm `armAccessEnable` (0x10012340) sets it
+ * at 0x1001236c right after writing HH_ARM_STALL, irsaudit raises it before every ARM-memory
+ * access and drops it afterwards (`probe_hip_clock_speed` at 0x1004cd44, `TEST_hh_reg` at
+ * 0x10079098 and 0x10079158), and irsaudit's register test round-trips
+
+ * values under mask 0x3. Bit 1, kpm's HOST_ARM_CACHE_DISABLE, is never set by any shipped
+ * software, so its effect is inferred from the name only. */
 #define KONA_HH_ARM_CTRL                    0x308  /* register mask 0x3 */
 #define KONA_ARM_CTRL_HOST_ACCESS_MASK      0x00000001  /* shift 0 */
 #define KONA_HOST_ARM_CACHE_DISABLE_MASK    0x00000002  /* shift 1 */
@@ -470,30 +479,35 @@
 #define KONA_ARM_STATUS_MODE_MASK           0x0000f800  /* shift 11 */
 
 /*
- * HH_ARM_STALL at 0x800320 (mask 0, trigger). Unknown: no shipped software or published
- * source depends on it. It is named in kpm's table beside HH_ARM_UNSTALL and HH_ARM_STEP, and
- * the three are inferred from their names to halt, resume and single-step the ARM. Routes tried:
- * the kernel, kpm's dump list (it reads status, not these), irsaudit, ireeprom, the firmware
- * (which cannot see its own debug window), the 6.5.5 headers. */
+ * HH_ARM_STALL at 0x800320 (write-only trigger, no data field), established: kpm `armAccessEnable`
+ * (0x10012340, store at 0x1001235c) and `hipInspectionPreJtag` (0x10013218) write 0 to it just
+ * before enabling host access to ARM memory, while irsaudit `StallArm` (0x10038554, call at
+ * 0x1003857c) writes 1. Inferred: because both values are used, the write itself halts the ARM so
+ * the host can read its memory consistently; HH_ARM_UNSTALL undoes it. */
 #define KONA_HH_ARM_STALL                   0x320  /* register mask 0x0 */
 
 /*
- * HH_ARM_UNSTALL at 0x800328 (mask 0, trigger), 6.5.30m. Unknown: no shipped software or published
- * source depends on it. Inferred from its name only: a write lets a stalled ARM run again.
- * Routes tried: the same as HH_ARM_STALL, none of which touches it. */
+ * HH_ARM_UNSTALL at 0x800328 (write-only trigger, no data field), established: irsaudit
+ * `UnStallArm` (0x10038594, call at 0x100385bc) writes 1 to it once the host has finished its ARM-
+ * memory access; kpm never writes it. Inferred from the name and that pairing: a write lets a
+ * halted ARM run again. */
 #define KONA_HH_ARM_UNSTALL                 0x328  /* register mask 0x0 */
 
 /*
- * HH_ARM_STEP at 0x800330 (mask 0, trigger), 6.5.30m. Unknown: no shipped software or published
- * source depends on it. Inferred from its name only: a write lets a stalled ARM execute one
- * bus cycle. Routes tried: the same as HH_ARM_STALL, none of which touches it. */
+ * HH_ARM_STEP at 0x800330 (write-only trigger, no data field), inferred from its name beside
+ * HH_ARM_STALL and HH_ARM_UNSTALL: a write lets a halted ARM execute one bus cycle. Unknown: no
+ * shipped software or published source depends on it. Routes tried: kpm's code (no load or store
+ * at offset 816 anywhere in the binary), irsaudit's host accesses, the kernel access list
+ * (kona_kernel/registers.tsv), the strings of ireeprom and gfxinfo, arm1.u (which cannot see its
+ * */
 #define KONA_HH_ARM_STEP                    0x330  /* register mask 0x0 */
 
 /*
- * HH_ARM_CURR_ADDR at 0x800338 (32 bits), established: kpm 6.5.30m `hipInspectionPreJtag`
- * (0x10012834) reads it and `analyze_hip` (0x100173a0) takes it as the ARM address of the bus
- * cycle the stalled processor waits on, comparing it with the command, data and distributor
- * port addresses to say what the ARM is waiting for. */
+ * HH_ARM_CURR_ADDR at 0x800338 (32 bits), established: kpm `hipInspectionPreJtag` (0x10012834)
+ * reads it at 0x10012df4 and `analyze_hip` (0x100173b0) compares it with the ARM command port
+ * address 0x200400 (at 0x10017474) and the data and distributor port addresses to say what a
+ * stalled ARM is waiting for. Inferred: it holds the ARM address of the bus cycle the processor is
+ * currently on. */
 #define KONA_HH_ARM_CURR_ADDR               0x338  /* register mask 0xffffffff */
 
 /*
@@ -636,12 +650,43 @@
  * the name: it is the high-water mark of the raster-bus (T-bus) FIFO. */
 #define KONA_HH_TFIFO_HI                    0x3b0  /* register mask 0xf */
 
+/*
+ * HH_VC_ADDRESS at 0x8003c0 (16 bits, fully read-write: irsaudit's register test passes mask
+ * 0xffff), established: the address half of the indirect video-controller port; every display
+ * access starts with a write here and the following HH_VC_DATA access moves the value. The kernel
+ * writes 0x8800 and 0x0b00 in `kona_attach` (kona_edtinit_hip2.o, at +0x1108 and +0x1194), 0x80 in
+ * `kona_swap_complete` (kona_video.o, at +0x27c) and 0x103 in `kona_enable_dac_cursor`; irsaudit
+ * `vcWrite` (0x1014071c) and `vcRead` (0x10140bac) use it the same way, and kpm reads it back at
+ * 0x10012f88. Inferred: the value is an address in the display board's local space, as docs/dg.md
+ * decodes it. */
 #define KONA_HH_VC_ADDRESS                  0x3c0  /* register mask 0xffff */
 
+/*
+ * HH_VC_FREADY at 0x8003c8 (1 bit), a kpm table entry. Established: kpm `hipInspectionPreJtag`
+ * (0x10012834) reads it into its dump at 0x10012fac and prints the word raw; the ARM-side twin in
+ * kpm's ARM table is HA_VCBUS_FREADY at 0x2000f0. Inferred from the name: the ready flag of the
+ * video-controller bus. Unknown: no shipped software or published source depends on it. Routes
+ * tried: the kernel access list (kona_kernel/registers.tsv; the display writes never poll it),
+ * irsaudit's `vcWrite` and `vcRead` (no access to offset 968), arm1.s `DoDGRqstVCWrite` and
+ * `DoDGRqstVCRead` (0x0c012200, 0x0c012250; they store and load through 0x600000 without polling a
+ * ready bit), and the 6.5.5 headers. */
 #define KONA_HH_VC_FREADY                   0x3c8  /* register mask 0x1 */
 
+/*
+ * HH_VC_DATA at 0x8003d0 (32 bits), established: the data half of the indirect video-controller
+ * port. After a write to HH_VC_ADDRESS, one write here stores a value in that display register and
+ * one read returns it. The kernel writes it after every address write (`kona_swap_complete` stores
+ * the strobe value 2 at +0x294 in kona_video.o, `kona_video_intr` writes cursor words) and reads
+ * it only in `kona_attach` (+0x111c and +0x11a4 in kona_edtinit_hip2.o) to learn the board
+ * variant; irsaudit `vcWrite` writes it at 0x101407d4 and `vcRead` reads it at 0x10140c54. */
 #define KONA_HH_VC_DATA                     0x3d0  /* register mask 0xffffffff */
 
+/*
+ * HH_VC_DATA_INCR at 0x8003d8 (32 bits), established: irsaudit `vcWriteIncr` (0x10140988) takes
+ * only a data word and stores it here (call at 0x10140a1c), without writing HH_VC_ADDRESS first,
+ * and `vcReadIncr` (0x10140d14) reads it at 0x10140d94. Inferred by analogy with HH_ARM_DATA_INCR,
+ * whose address advance is established: each access acts like HH_VC_DATA and then steps the video-
+ * controller address to the next register. The kernel and kpm never touch it. */
 #define KONA_HH_VC_DATA_INCR                0x3d8  /* register mask 0xffffffff */
 
 /*
@@ -651,20 +696,31 @@
  * HH_GFIFO_LEVEL instead), kpm's dump list, irsaudit, the firmware and the headers. */
 #define KONA_HH_GFIFO_WAIT                  0x3e0  /* register mask 0x0 */
 
+/*
+ * HH_ARM_ADDRESS at 0x8003e8 (28 bits, word aligned: irsaudit's register test uses mask
+ * 0x0ffffffc), established: the ARM address that the next HH_ARM_DATA or HH_ARM_DATA_INCR access
+ * touches. irsaudit `PioWriteArm32` (0x10038444, write at 0x1003847c) and `load_arm_mem`
+ * (0x100389c0, write at 0x10038a38) load it first, and kpm reads it at 0x10012fd0. */
+
 #define KONA_HH_ARM_ADDRESS                 0x3e8  /* register mask 0xfffffff */
 #define KONA_ARM_ADDRESS_ZERO_MASK          0x00000003  /* shift 0 */
 #define KONA_ARM_ADDRESS_MASK               0x0ffffffc  /* shift 2 */
 
+/*
+ * HH_ARM_DATA at 0x8003f0 (32 bits), established: the data port of the host's ARM-memory window; a
+ * write stores the word at the ARM address held in HH_ARM_ADDRESS and a read returns it, with
+ * HH_ARM_CTRL bit 0 set. irsaudit `PioWriteArm32` writes it at 0x1003848c, `initialize_icu` loads
+ * the token map through it; the address does
+ * not advance after an access, which is why HH_ARM_DATA_INCR exists. */
 #define KONA_HH_ARM_DATA                    0x3f0  /* register mask 0xffffffff */
 
-#define KONA_HH_ARM_DATA_INCR               0x3f8  /* register mask 0xffffffff */
 /*
- * ARM_DATA_INCR: established (irsaudit initialize_icu, icuSanity,
- * load_arm_mem): reads and writes ARM memory at HH_ARM_ADDRESS like
- * ARM_DATA; the loops write the address once and then use only this
- * register, so (inferred) each access steps the address by 4. ARM_CTRL
- * bit 0 (HOST_ACCESS) is set around every such use.
- */
+ * HH_ARM_DATA_INCR at 0x8003f8 (32 bits), established: irsaudit `load_arm_mem` writes the ARM
+ * address once to HH_ARM_ADDRESS (at 0x10038a38) and then sends each successive word of a buffer
+ * to this register in a loop (at 0x10038a64), and `PioReadArmIncr32` (0x10038500) reads
+ * consecutive words the same way. Inferred: each access behaves like HH_ARM_DATA and then steps
+ * the ARM address by four. */
+#define KONA_HH_ARM_DATA_INCR               0x3f8  /* register mask 0xffffffff */
 
 /* HIP2_HH_ADDR: address-bit layout of a register access */
 #define KONA_HIP2_ADDR_REGCNT_ZERO_MASK     0x00000007  /* shift 0 */
@@ -746,6 +802,13 @@
 #define KONA_HIP2_GV_ERR_PIO_OV_MASK        0x00000080  /* shift 7 */
 #define KONA_HIP2_GV_ERR_IDMA_OV_MASK       0x00000100  /* shift 8 */
 
+/*
+ * HIP2_HH_GV_OVERLAP at 0x8003a0 (1 bit, OVERLAP_DISABLE), HIP2 boards only, established: kpm
+ * `hipReset` (0x10017204) reads the register, ors in bit 0 and stores it back (at 0x1001728c to
+ * 0x10017294) when it resets a second-generation pipe without boundary scan, and writes 5 to
+ * HH_TFIFO_HI beside it. Inferred from the name: setting the bit stops the host interface from
+ * overlapping crosstalk transactions. HIP1 has the corresponding bit at 0x380 and uses 0x3a0 for
+ * HH_FCI_PIO_STATUS instead. */
 #define KONA_HIP2_HH_GV_OVERLAP             0x3a0  /* register mask 0x1 */
 #define KONA_HIP2_GV_OVERLAP_DISABLE_MASK   0x00000001  /* shift 0 */
 

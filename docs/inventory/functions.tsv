@@ -1480,7 +1480,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038864	124	set_hip_intr_info
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100388e0	116	ResetKona	dynsym	e655c7ee6695	named-only	docs/ge.md#reset-and-start-up	Reset and start-up
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038954	52	HipRevRead	dynsym	3bd60b391f7b	named-only	docs/hip.md#arm-side-register-names	ARM-side register names
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038988	52	f3RevRead	dynsym	74450b796d1e	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100389c0	256	load_arm_mem	dynsym	838acd814cbd	named-only	HIP.h:663	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100389c0	256	load_arm_mem	dynsym	838acd814cbd	named-only	HIP.h:702	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038ac0	144	zero_arm_mem	dynsym	70a09944bf8d	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038b50	288	verify_arm_mem	dynsym	fdebea07db65	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038c70	1184	LoadArmFile	dynsym	a80db49caa52	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
