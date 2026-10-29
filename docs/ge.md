@@ -28,7 +28,13 @@ What the ARM firmware (`arm1.u`, IRIX 6.5.30m, [ucode/arm1_firmware.md](../ucode
 - **Host memory to the FIFO.** `arm_do_idma` and `arm_context_load` program the input-DMA registers 0x200010-0x200020 from a page number and offset and start it; the data then arrive in the FIFO and are consumed as above. A list DMA (registers 0x200030-0x200040) moves FIFO words into the ARM's own memory (`store_data`, used for the context image; the `*_ldma` handlers use the same registers). [docs/hip.md](hip.md) has the host side.
 - **Engines to host.** The engines send data back by running handlers named for the source: `mgesi_Cram2ODMA`, `mgesi_Eram2ODMA`, `mgesi_SR2ODMA` (special registers) and `mgesi_LastVertex2ODMA`, after the ARM has programmed the output-DMA address and length through the raster-board register bus (`start_rdata`). **Inferred** from the handler names and from `arm_pushattrib`, which calls `mgesi_StartRdata`, `mgesi_Eram2ODMA` and `mgesi_GetSpecial` in turn.
 
-**Established** since: the engine-side output operation is the move into output port B = 9-11 ([ucode/ge_ops.md](../ucode/ge_ops.md#input-and-output-fifo-operations)), checked against the 172 words the IR diagnostic reads back by output DMA. **open question** ([open-questions.md](open-questions.md)): the bit meanings of the DMA registers 0x200010-0x200048.
+**Established** since: the engine-side output operation is the move into output port B = 9-11 ([ucode/ge_ops.md](../ucode/ge_ops.md#input-and-output-fifo-operations)), checked against the 172 words the IR diagnostic reads back by output DMA. ### The DMA registers' bits
+
+What is read, by register, is in [arm1_firmware.md](../ucode/arm1_firmware.md#control-and-status-registers) (firmware value flow) and [hip.md](hip.md#what-the-ir-diagnostic-shows-of-the-host-interface) (the IR diagnostic's register table, masks and command-queue test). In short: input DMA takes a page number (0x200010, 29 bits), a page offset (0x200014, 12 bits on HIP1, 17 on HIP2), a byte count (0x200018) and a start write (0x20001c) into a 16-entry command queue; 0x200020 is the mode (2 in the firmware, 1 in the diagnostic, which makes the queue readable at 0x200028); 0x200024 reports queue empty (bit 0), queue full (bit 1), transfer complete (bit 2) and a queue level in bits 14-18. List DMA takes a pipe-memory address (0x200030, bits 25-3), a byte count (0x200034) and a start write (0x200038), reports completion in bit 2 of 0x200040, and 0x200048 bit 0 steers the input stream into the list-DMA writer for a write into pipe memory.
+
+**Established** since (`deact_section` 0x0c021f7c and `store_data` 0x0c020cd4). The list DMA also runs the other way, from ARM memory into the engines' input stream: `deact_section` writes 0x200030 = address, 0x200034 = bytes, 0x200038 = 0, 0x200064 = 2, then the pass-through count 0x200058 = n \| 0xc000000, and waits for bit 2 of 0x200040. `store_data` sets the pipe-memory address with bit 26 set (0x4000000 \| address), 0x200048 = 1, and the same count and pass-through words. **Inferred:** bit 26 of 0x200030 selects the write direction (stream into ARM memory) and its absence the read direction (ARM memory into the stream); the mask 0x3fffff8 the diagnostic gives the register excludes it, so the bit may be a strobe not kept in the register.
+
+The data of the start writes (0x20001c: 0, 1 or 0xbeefface; 0x200038: 0, 0xdeadbeef or a return address; 0x20004c) vary between writers, so nothing depends on them. unknown: no shipped software or published source depends on the data of the three start writes, on 0x200020 values 0 and 3, on 0x200024 bits other than 0-2 and 14-18, on 0x200040 bits other than 2, or on the width of 0x200034. Routes tried: every firmware writer and reader of 0x200010-0x20004c (`arm1.u` 6.5.30m);
 
 ## Engine events
 
@@ -66,11 +72,43 @@ CONTEXT_LOAD (token 0x1f9) has three payload words: the image length, a host add
 | 0x41 | 0x200 | engine code RAM image to all engines, `mgeb_ContextLoadCram` (slot 130). Message name "KONA_CTX_GE_CRAM" |
 | 0x42 | any | engine external RAM to all engines, `mgeb_ContextLoadEram` (slot 131) |
 | 0x80 | any | engine work RAM to all engines, `mgeb_ContextLoadWram` (slot 134) |
-| 0x40, 0x44, 0x100 | tag 0x100 requires length 0xff | copied into ARM-side save areas (`store_data`) |
-| 0x200, 0x400-0x403 | | five ARM-side regions through `load_arm`, named by the firmware's messages `KONA_CTX_ARM_FAST`, `ARM_REGS`, `HIP_REGS`, `ARM_SDRAM` and `ARM_STACK`; which tag is which is **unknown**. `load_arm` checks a leading and a trailing tag word and, for the host-interface registers, re-installs `arm_context_activate` in the token map |
-| `KONA_CTX_GED_REGS` | register count `GED_NUM_REGS` | the distributor's registers, with a message when the count disagrees; the tag value was not decoded |
+| 0x40, 0x44 | any | copied by `store_data` into the ARM-side save areas that `saved_regs_mem` + 0x8c and + 0x88 point to (0x44 with a busy flag at + 0xa8 set to -1 during the copy) |
+| 0x100 | 0xff | the distributor's 255 registers, copied by `store_data` to the area at `saved_regs_mem` + 0x84; a wrong length prints the `KONA_CTX_GED_REGS` register-count alert with `GED_NUM_REGS` = 255 (the branch at 0x0c0214e8) |
+| 0x200, 0x400-0x403 | data length + 8 | five ARM-side regions through `load_arm` ([below](#the-arm-side-sections)) |
 
-The save side is `arm_context_deactivate` (token 0x1fc, [arm1.md](../ucode/arm1.md)): it stops the host interface, distributor and engines, runs `deactivate_ged_ge`, `deactivate_ged` and `deactivate_hip`, writes the engine slot 183 (`mges_ContextDeactGED`), 185 (`mgeb_ContextDeactReconfigureFifo`) and last 182 (`mges_ContextDeactFinish`). `arm_context_activate` (0x1fa) and `arm_context_mopup` (0x1f8) bring the saved state back and clean up; `arm_context_destroy` frees it. The host side of the same tokens, the 64 KB save area and the address pairs are in [kernel.md](kernel.md). **open question** ([open-questions.md](open-questions.md)): the order and size of the engine-state records in the saved image (the engines write them out in the `mges_ContextDeact*` handlers), the third word of each record, and which of the tags 0x200 and 0x400-0x403 is which ARM-side region. A dump of one saved image settles all three.
+The save side is `arm_context_deactivate` (token 0x1fc, [arm1.md](../ucode/arm1.md)): it stops the host interface, distributor and engines, runs `deactivate_ged_ge`, `deactivate_ged` and `deactivate_hip`, writes the engine slot 183 (`mges_ContextDeactGED`), 185 (`mgeb_ContextDeactReconfigureFifo`) and last 182 (`mges_ContextDeactFinish`). `arm_context_activate` (0x1fa) and `arm_context_mopup` (0x1f8) bring the saved state back and clean up; `arm_context_destroy` frees it. The host side of the same tokens, the 64 KB save area and the address pairs are in [kernel.md](kernel.md).
+
+### The ARM-side sections
+
+**Established** (`deactivate_arm` 0x0c02209c, `deact_section` 0x0c021f7c, `load_arm` 0x0c020dd4, `arm1.u` 6.5.30m). The save and load sides use the same five tags, and each tag's load branch prints its own region name when the length disagrees:
+
+| Tag | Region (load-side message) | Data words | ARM source and destination |
+|---|---|---|---|
+| 0x200 | `KONA_CTX_HIP_REGS` | 10 | the host-interface register block `deactivate_hip` fills (the save area that `saved_regs_mem` + 0x98 points to): token-map, loop and pass-through state. On load the block is put back and `arm_context_activate` is re-installed in the token map at the entry the block names (word 6) |
+| 0x400 | `KONA_CTX_ARM_FAST` | 0x2ca | the ARM's state block at r8 + 0x1cc |
+| 0x401 | `KONA_CTX_ARM_SDRAM` | 0x44a | the block the pointer at r8 + 0xcf4 names (the texture records, [arm1_functions.md](../ucode/arm1_functions.md)) |
+| 0x403 | `KONA_CTX_ARM_REGS` | 0x11 | the saved processor registers (`saved_regs_mem` + 0x94); written only when bit 0 of the saved host-interface block's first word is set |
+| 0x402 | `KONA_CTX_ARM_STACK` | 0x400 - i | the live part of a 0x400-word stack, from word i = (saved register word 13 & 0xfe0) / 4 to the top; same condition as 0x403 |
+
+The save order is 0x200, 0x400, 0x401, then 0x403 and 0x402. Each section goes to the engines as a stream: the tag, a flag word (3 on the last chunk, 0 before it), four marker words of tag \| tag << 16 on the first chunk, the data in chunks of at most 0x1f8 words, four marker words again on the last chunk, then the engine slot 184 (`mges_ContextDeactSection`), which writes it out. Data above ARM address 0x1000 travel by list DMA (0x200030 address, 0x200034 bytes, 0x200038 start, 0x200064 = 2, pass-through count 0x200058 = n \| 0xc000000, then a wait for bit 2 of 0x200040); lower addresses are copied word by word. `load_arm` checks four leading and four trailing marker words and expects the record length to be the data length plus 8, so in the saved image a section record's length counts its eight marker words.
+
+### The engine-side records
+
+**Inferred** (`mges_ContextDeactivate`, `ge.u` 0x68da, [ctx_deact.S listing](../ucode/ge_listing/ctx_deact.S.lst), read in source-line order). The handler that saves engine state loads a (length, tag) constant pair into staging registers 0xe and 0xf once per section, at a single source line each, next to the copy loop or the jump into the copy subroutine (`mEramToFifo`, `mCramToFifo`, `mWramToFifo`) for that state:
+
+| Source line | Tag | Length | Matches the loader's check |
+|---|---|---|---|
+| 342 | 0x10 | 7 | yes (`KONA_CTX_HIP_ODMAREGS`, 7) |
+| 387 | 0x20 | 0x59 | yes (BEF shadow, 0x59) |
+| 438 | 0x40 | 0x24 | the loader takes any length |
+| 481 | 0x42 | 0xeb5 | the loader takes any length |
+| 508 | 0x41 | 0x200 | yes (code RAM, 0x200) |
+| 513 | 0x80 | from a register | the loader takes any length |
+| 550 | 0x44 | from a register | the loader takes any length |
+
+The three constants the loader checks all match, which is the basis for reading the pairs as the record descriptors. **Inferred:** the engine records come in that order, before the ARM sections, which `arm_context_deactivate` sends after `deactivate_ge` and `deactivate_ged`. The tag 0x100 record (the distributor's 255 registers) has no constant pair in this handler. **Inferred:** it is written by `mges_ContextDeactGED` (slot 183), the distributor save handler `arm_context_deactivate` sends; that handler's 21 words were not traced.
+
+**The third record word.** No constant is loaded for it next to any (length, tag) pair, and `arm_context_load` skips it. **Inferred:** a value computed at save time, such as the record's position in the image. unknown: no shipped software or published source depends on it. Routes tried: the loader `arm_context_load`, `load_arm`, `store_data` (none reads it); the save side `deactivate_arm`, `deact_section` (the ARM sends no third word); the engine constant loads in `ctx_deact.S`; the kernel, which treats the image as opaque (`KONApcxswap`, [kernel.md](kernel.md)).
 
 ## Variable-length command grammars
 

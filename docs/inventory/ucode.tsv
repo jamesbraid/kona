@@ -93,7 +93,7 @@ arm1.u	symbol	0x04045dec	NIC_dgopt_type	flags=5	documented	docs/dg.md#firmware-d
 arm1.u	symbol	0x04045df0	NIC_clock_mhz	flags=5	documented	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
 arm1.u	symbol	0x04045df4	NIC_rm_nic	flags=5	documented	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
 arm1.u	symbol	0x04045df8	NIC_rm_config	flags=5	documented	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
-arm1.u	symbol	0x04045dfc	saved_regs_mem	flags=5	documented	ucode/arm1_firmware.md#control-and-status-registers	Control and status registers
+arm1.u	symbol	0x04045dfc	saved_regs_mem	flags=5	documented	docs/ge.md#context-save-and-restore	Context save and restore
 arm1.u	symbol	0x04045e4c	saved_hipState_mem	flags=5	documented	ucode/arm1_functions.md#saved-context-and-exception-state	Saved context and exception state
 arm1.u	symbol	0x04045e80	stored_gedstate	flags=5	documented	ucode/arm1_functions.md#saved-context-and-exception-state	Saved context and exception state
 arm1.u	symbol	0x04045e84	stored_gefifo	flags=5	documented	ucode/arm1_functions.md#saved-context-and-exception-state	Saved context and exception state
@@ -1012,11 +1012,11 @@ arm1.u	symbol	0x0c02112c	arm_context_load	flags=3	documented	docs/ge.md#dma	DMA
 arm1.u	symbol	0x0c021650	arm_context_destroy	flags=3	documented	docs/ge.md#context-save-and-restore	Context save and restore
 arm1.u	symbol	0x0c021770	arm_context_fifo_sync	flags=3	documented	ucode/arm1.md#context-tokens	Context tokens
 arm1.u	symbol	0x0c0217c4	deactivate_ged_ge	flags=2	documented	docs/ge.md#context-save-and-restore	Context save and restore
-arm1.u	symbol	0x0c02184c	deactivate_ge	flags=2	documented	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
+arm1.u	symbol	0x0c02184c	deactivate_ge	flags=2	documented	docs/ge.md#the-engine-side-records	The engine-side records
 arm1.u	symbol	0x0c021864	deactivate_ged	flags=3	documented	docs/ge.md#context-save-and-restore	Context save and restore
 arm1.u	symbol	0x0c021df8	deactivate_hip	flags=2	documented	docs/ge.md#context-save-and-restore	Context save and restore
-arm1.u	symbol	0x0c021f7c	deact_section	flags=2	documented	ucode/arm1_firmware.md#control-and-status-registers	Control and status registers
-arm1.u	symbol	0x0c02209c	deactivate_arm	flags=2	documented	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
+arm1.u	symbol	0x0c021f7c	deact_section	flags=2	documented	docs/ge.md#dma	DMA
+arm1.u	symbol	0x0c02209c	deactivate_arm	flags=2	documented	docs/ge.md#the-arm-side-sections	The ARM-side sections
 arm1.u	symbol	0x0c022188	arm_context_deactivate	flags=3	documented	docs/ge.md#engine-events	Engine events
 arm1.u	symbol	0x0c02226c	arm_context_mopup	flags=3	documented	docs/ge.md#engine-events	Engine events
 arm1.u	symbol	0x0c022354	waitForDH	flags=3	documented	ucode/arm1_firmware.md#control-and-status-registers	Control and status registers
@@ -1950,10 +1950,10 @@ ge.u	label	0x00001060	lE2C		documented	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x00001074	mClearEram		documented	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x00001074	uClearEram		documented	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x0000107c	lcE		documented	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x00001089	mCramToFifo		documented	ucode/ge_handlers.md#umemoves	umemove.s
+ge.u	label	0x00001089	mCramToFifo		documented	docs/ge.md#the-engine-side-records	The engine-side records
 ge.u	label	0x00001089	uCramToFifo		documented	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x0000108f	lC2F		documented	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x0000109b	mEramToFifo		documented	ucode/ge_handlers.md#umemoves	umemove.s
+ge.u	label	0x0000109b	mEramToFifo		documented	docs/ge.md#the-engine-side-records	The engine-side records
 ge.u	label	0x0000109b	uEramToFifo		documented	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x000010a5	lE2F		documented	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x000010b8	uSecondChance		documented	ucode/ge_handlers.md#uscreen2s	uscreen2.s
@@ -2379,10 +2379,10 @@ ge.u	label	0x00006795	mges_ContextLoadODMA		documented	docs/ge.md#context-save-a
 ge.u	label	0x000067a9	mLiUpdateMtrlState		documented	ucode/ge_handlers.md#ctx_loads	ctx_load.S
 ge.u	label	0x000067d0	mges_ContextDeactFinish		documented	docs/ge.md#engine-events	Engine events
 ge.u	label	0x00006859	mges_ContextDeactStoreValue		documented	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
-ge.u	label	0x00006866	mges_ContextDeactSection		documented	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
+ge.u	label	0x00006866	mges_ContextDeactSection		documented	docs/ge.md#the-arm-side-sections	The ARM-side sections
 ge.u	label	0x00006886	mgeb_ContextDeactReconfigureFifo		documented	docs/ge.md#context-save-and-restore	Context save and restore
 ge.u	label	0x000068ba	mges_ContextDeactGED		documented	docs/ge.md#context-save-and-restore	Context save and restore
-ge.u	label	0x000068da	mges_ContextDeactivate		documented	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
+ge.u	label	0x000068da	mges_ContextDeactivate		documented	docs/ge.md#the-engine-side-records	The engine-side records
 ge.u	label	0x00006a32	mgesi_FinishRdata		documented	ucode/ge_handlers.md#hostios	hostio.S
 ge.u	label	0x00006a57	mgesi_StartRdata		documented	docs/ge.md#dma	DMA
 ge.u	label	0x00006a79	mgesi_SlopReadWord		documented	ucode/ge_handlers.md#hostios	hostio.S
@@ -2740,7 +2740,7 @@ ge.u	label	0x0000d068	mmo_TexGenEyePoint_ST		documented	ucode/ge_handlers.md#tex
 ge.u	label	0x0000d0c3	mmo_TexGenEyePoint_RQ		documented	ucode/ge_handlers.md#texgens	texgen.S
 ge.u	label	0x0000d11e	mTexGenResolve		documented	ucode/ge_handlers.md#glmodess	glmodes.S
 ge.u	label	0x0000d191	mWramToCram		documented	ucode/ge_handlers.md#mmemoves	mmemove.S
-ge.u	label	0x0000d1a9	mWramToFifo		documented	ucode/ge_handlers.md#mmemoves	mmemove.S
+ge.u	label	0x0000d1a9	mWramToFifo		documented	docs/ge.md#the-engine-side-records	The engine-side records
 ge.u	label	0x0000d23f	mSinCosAB		documented	ucode/ge_handlers.md#mmaths	mmath.S
 ge.u	label	0x0000d308	minv		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
 ge.u	label	0x0000d31e	msqrt		documented	ucode/ge_handlers.md#how-to-read-the-tables	How to read the tables
@@ -3243,11 +3243,11 @@ geif.u	dispatch slot	365	mges_ContextDeactFinish	handler 0x67d0	documented	docs/
 geif.u	dispatch slot	366	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	367	mges_ContextDeactGED	handler 0x68ba	documented	docs/ge.md#context-save-and-restore	Context save and restore
 geif.u	dispatch slot	368	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	369	mges_ContextDeactSection	handler 0x6866	documented	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
+geif.u	dispatch slot	369	mges_ContextDeactSection	handler 0x6866	documented	docs/ge.md#the-arm-side-sections	The ARM-side sections
 geif.u	dispatch slot	370	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	371	mgeb_ContextDeactReconfigureFifo	handler 0x6886	documented	docs/ge.md#context-save-and-restore	Context save and restore
 geif.u	dispatch slot	372	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
-geif.u	dispatch slot	373	mges_ContextDeactivate	handler 0x68da	documented	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
+geif.u	dispatch slot	373	mges_ContextDeactivate	handler 0x68da	documented	docs/ge.md#the-engine-side-records	The engine-side records
 geif.u	dispatch slot	374	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
 geif.u	dispatch slot	375	mges_ContextLoadBEF	handler 0x6760	documented	docs/ge.md#context-save-and-restore	Context save and restore
 geif.u	dispatch slot	376	HereWeGo	handler 0x0	documented	docs/ge.md#reset-and-start-up	Reset and start-up
