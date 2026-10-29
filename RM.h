@@ -234,6 +234,47 @@
  * (__glKonParseHostImage).
  */
 
+/*
+ * Texture load and bind commands, ESTABLISHED (libGLcore_n32.so 6.5.30m;
+ * the 64-bit libGLcore has the same four TEXLOAD_ID sites, found by the
+ * instruction pattern at file offsets 0x7e44c, 0x7e5a0, 0x7e880, 0x7e8d0).
+ *
+ * Every texture object has a pointer at +272 to a cache entry; the word at
+ * entry +4 is the entry's index. bindARMTexCache (kon_texture_api.s)
+ * obtains an entry from an allocator reached through the function pointer
+ * at +20 of the structure at +0xc03c from a global base, re-links the
+ * entry in a list, stores it in the texture at +272, and sends
+ * BIND_ARM_TEX_CACHE (0x1c4, token 452) with one payload word, the index. freeARMTexCache sends FREE_ARM_TEX_CACHE
+ * (0x1c5, token 453) with the entry's +4 word and clears +272 (the token and word were read; the clear is the zero store at +272). stealARMTableCacheCallback, when the
+ * table takes an entry back from a texture, sends three
+ * TEX_ARM_CACHE_INDEX_INVALID (0x1e0, token 480) commands in a row, each
+ * with two payload words, (0, index), (2, index), (1, index), and resets
+ * the previous owner's bindings.
+ *
+ *   TEXLOAD_ID (0x176), one payload word: the index word at the +272 entry's
+ *   +4 of the texture being loaded. Sent at every exit of subloadLevel
+ *   (kon_texture_api.s), after the DRAWTEXELS commands of that level.
+ *   TEXBIND_ID (0x178), updateTexBindID, one payload word: the same index.
+ *
+ * INFERRED: TEXLOAD_ID tells the pipe which table entry the preceding
+ * download filled, so that draws can wait on it (the TML_SYNC_IDLOAD /
+ * TM_SYNC_WAITLOAD ids above are 20 bits wide and the entry index is far
+ * smaller). That the index is a texture-memory table index follows from
+ * the names and from BIND_ARM_TEX_CACHE sending the same word. DRAWTEXELS
+ * header word 11 is the same word (desc+0x68 is loaded from ctx+0x110 +4).
+ *
+ * UNKNOWN: TEXLOAD_SETUP (0x175). No libGLcore emitter exists: no
+ * instruction loads 373 or 0x175 as the first store to the FIFO window in
+ * any of the three libGLcore ABIs, the kernel objects or the X modules (a
+ * byte-pattern search of each binary for "li/ori rt,0x175" found none in
+ * them). The only binary that loads 0x175 is IrisGL libgl.so (file offset
+ * 0x51840), which writes the token and then copies three words from an
+ * argument block into a pointer-addressed buffer, not the 0x4000 window.
+ * Its 0x176 sibling (file offset 0x518c0) copies three halfwords where
+ * libGLcore sends one word, so the IrisGL emitters do not match the
+ * libGLcore command layout and are not taken as evidence for it.
+ */
+
 /* Register table (kpm vaddr 0x10145980). Field defines are "shift, width". */
 
 #define KONA_RM_BEF_DUMP                                 0x0001
