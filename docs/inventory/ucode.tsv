@@ -1956,24 +1956,24 @@ ge.u	label	0x0000108f	lC2F		located	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x0000109b	mEramToFifo		located	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x0000109b	uEramToFifo		located	ucode/ge_handlers.md#umemoves	umemove.s
 ge.u	label	0x000010a5	lE2F		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x000010b8	uSecondChance		understood	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x000010b9	lSC2		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x000010c9	mmo_ToScreenSpace		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x000010c9	umo_ToScreenSpace		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x000010cb	uBack		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x000010d4	lSC1		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x00001100	uSecondChanceInvQ		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x00001103	lSC4		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x00001113	mmo_ToScreenSpaceInvQ		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x00001113	umo_ToScreenSpaceInvQ		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x00001115	uBackInvQ		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x00001121	lSC3		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x000011a3	uSecondChanceInvQ2DI		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x000011a6	lSC6		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x000011b6	mmo_ToScreenSpaceInvQ2DI		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x000011b6	umo_ToScreenSpaceInvQ2DI		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x000011b8	uBackInvQ2DI		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
-ge.u	label	0x000011c1	lSC5		located	ucode/ge_handlers.md#uscreen2s	uscreen2.s
+ge.u	label	0x000010b8	uSecondChance		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x000010b9	lSC2		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x000010c9	mmo_ToScreenSpace		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x000010c9	umo_ToScreenSpace		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x000010cb	uBack		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x000010d4	lSC1		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x00001100	uSecondChanceInvQ		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x00001103	lSC4		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x00001113	mmo_ToScreenSpaceInvQ		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x00001113	umo_ToScreenSpaceInvQ		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x00001115	uBackInvQ		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x00001121	lSC3		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x000011a3	uSecondChanceInvQ2DI		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x000011a6	lSC6		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x000011b6	mmo_ToScreenSpaceInvQ2DI		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x000011b6	umo_ToScreenSpaceInvQ2DI		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x000011b8	uBackInvQ2DI		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
+ge.u	label	0x000011c1	lSC5		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
 ge.u	label	0x00001218	mmo_ObjToClipSpace		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
 ge.u	label	0x00001218	umo_ObjToClipSpace		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
 ge.u	label	0x0000121f	lXF1		understood	ucode/ge_compute.md#transform-modules-uxforms	Transform modules (uxform.s)
