@@ -12,7 +12,7 @@ What `usr/gfx/ucode/KONA/arm1.u` (IRIX 6.5.30m, linked as `ucode/KONA/arm1.u`) i
 
 ## The token map (`icu_map`)
 
-**Established** (`init_hip`, 0x0c001c60). At start-up the firmware builds a 512-entry table of 32-bit words, one per host token, from a static list at `vector_end` (0x0c000328). Walking the list, a word with bit 0 set is a complete entry; an even word is followed by a second word, and the entry is (first | second << 4). Each entry is stored twice: in `icu_map` (0x04068e54, zero-initialised RAM) and at ARM address 0x00400000 + 4 x token. Tokens the list does not reach get `arm_badcmd` << 4. `init_hip` also records the index of the entry whose handler is `arm_matrixmode`.
+**Established** (`init_hip`, 0x0c001c60). At start-up the firmware builds a 512-entry table of 32-bit words, one per host token, from a static list at `vector_end` (0x0c000328). Walking the list, a word with bit 0 set is a complete entry; an even word is followed by a second word, and the entry is (first | second << 4). Each entry is stored twice: in `icu_map` (0x04068e54, zero-initialised RAM) and at ARM address 0x00400000 + 4 x token. Tokens the list does not reach get `arm_badcmd` << 4 in the hardware copy at 0x00400000 only; `icu_map` keeps zero there. `init_hip` also records the index of the entry whose handler is `arm_matrixmode`.
 
 **Inferred:** 0x00400000 is a table in the host-interface chip that the hardware consults for each incoming token. The firmware's own messages name an "ICU" (`HA_ICU_CURR_CMD`, `HA_ICU_PREV_CMD`), and the table is called `icu_map`.
 
@@ -25,7 +25,7 @@ What `usr/gfx/ucode/KONA/arm1.u` (IRIX 6.5.30m, linked as `ucode/KONA/arm1.u`) i
 | Bits | Meaning | Where |
 |---|---|---|
 | 0 | 1 = routed by the hardware, no ARM handler. 0 = ARM handler | `init_hip` keeps odd words whole and builds even ones from a handler address |
-| 1-2 | Kind. 0 for ordinary ARM handlers; 3 for tokens 0x1f0, 0x1f8, 0x1fa and 0x1fc. The function at 0x0c001958 (inside the begin/end checker) treats kinds 1 and 2 specially | `init_hip`, 0x0c001984 |
+| 1-2 | Kind: 0 for 392 tokens, 1 for the twelve begin tokens, 2 for `END`, 3 for 107 tokens (vertex data, list calls, context switches). Read as "legal between begin and end"; the begin/end error path is in [arm1_firmware.md](arm1_firmware.md) | `init_hip`, `arm_bgnend` 0x0c0018e4 |
 | 3 | Chain: more entries follow in the same list | `varray_build_command` sets it on every entry it builds and `varray_set_cmd_table` clears it on the last |
 | 4-31 (ARM entries) | Handler address bits 0-27 (the entry is the address shifted left by 4) | `init_hip` |
 | 6-8 | Payload word count for a vertex attribute (from `wordCountTable`) | `varray_build_command` |
@@ -37,7 +37,7 @@ What `usr/gfx/ucode/KONA/arm1.u` (IRIX 6.5.30m, linked as `ucode/KONA/arm1.u`) i
 **Inferred** from the values in the hardware-routed entries:
 
 - Bits 29-30 give the component type: every `...F` and `...I` token has 2 and every `...D` token has 3 (for example `HP_LOADMATRIXF` 0x58625401 and `HP_LOADMATRIXD` 0x78625001). The double forms send twice the words.
-- Bits 15-23 are a 9-bit command number. Forms of one command share it (LOADMATRIXF and LOADMATRIXD 196, ROTATEF and ROTATED 202, X_POINT, X_POINT6 and X_POINT24 170), and the X-server commands get consecutive numbers in token order (X_POINT 170 to X_BGPOINT 178, then X_LOADGC 179 to X_LOADSCISSOR 182).
+- Bits 15-23 are a 9-bit command number. Forms of one command share it (LOADMATRIXF and LOADMATRIXD 196, ROTATEF and ROTATED 202, X_POINT, X_POINT6 and X_POINT24 170), and the X-server commands get consecutive numbers in token order (X_POINT 170 to X_BGPOINT 178, then X_LOADGC 179 to X_LOADSCISSOR 182). What the number selects is under "Hardware-routed tokens" below.
 - For routed commands, bits 6-10 read as a payload word count, with 0 for 32. It matches X_DATA1 to X_DATA10 (1-10), X_POINT6 (6), X_POINT24 (24), LOADMATRIXF (16), ROTATEF (4) and LOADMATRIXD (0, 32 words for 16 doubles). The three `HP_NORMAL3*` entries do not fit (bits 6-10 = 11 for three words), so this reading has an exception that is **unknown**.
 
 **Unknown:** bits 4, 9-14 (beyond the count), 24-26 and 31 of routed entries.
@@ -60,14 +60,27 @@ The slot table `geif.u` (1024 big-endian 16-bit words, [ge.md](ge.md)) is what t
 
 This corrects an earlier reading: `ged1b.u`'s code segment is 931 32-bit words (0xe8c bytes), not 12-byte records, and its second segment (byte address 0x1000) is the 528-word table block the firmware loads after the program.
 
-**Unknown:** how a hardware-routed token's 9-bit command number becomes a geometry-engine address. Tested and ruled out:
+## Hardware-routed tokens: from command number to engine handler
 
-- It is not the `geif.u` slot: no bit range of the entry, of width 8 to 10, equals or offsets to the slot for the name-matched X-server, fog, map and texture-bind commands.
-- It is not a direct index into the distributor's 512-word table: the programs at `table[16 + n]` and `table[n]` for those commands relocate none of the expected slots.
-- No 128- or 512-entry array in `arm1.u` holds the expected slots or handler addresses at those positions, as 16- or 32-bit entries.
-- The geometry-engine program does not load the expected handler addresses as immediates anywhere (`ucode/ge_isa.md`), except one branch from `mgeb_Fogi` to `mgeb_Fogf`.
+The firmware loads three things that decide what a routed token does. All three are written through the descriptor port at r9 + 0x400 and the data port at r9 + 0x8c0 ([arm1_firmware.md](arm1_firmware.md) lists the port protocol).
 
-The geometry-engine error register names an entry lookup table (`ELUT_ADR`, `GE.h`). **Inferred:** the 9-bit number indexes such a table in the engine or the distributor, filled at run time by a path not yet found. The leads are the distributor's 16-word register block and its program at the table targets.
+**Established** (`init_ged_ucode` 0x0c001e20, `init_ged` 0x0c0024e8).
+
+1. **The distributor program** (1024 words of `ged1b.u`, descriptor 0x48200020), with the 83 slot words relocated to handler addresses ([ged_relocs.tsv](ged_relocs.tsv)).
+2. **Two tables from the second segment of `ged1b.u`:** 16 words (descriptor 0x42200020) and 512 words (descriptor 0x42600020). The 512 entries are small numbers (largest 0x3a1) that are word addresses inside the 1024-word distributor program: entry 129 is 0x254, entry 170 is 0x275, entry 196 is 0x4f.
+3. **A table of engine handler addresses.** `init_ged` writes 43 entries into indexes 0 to 63 of a table: descriptor 0x46000020 with the index as data sets the index, 0x46200020 with a `gepc` handler address writes an entry and advances the index (`arm_matrixmode` sets index 3 once and writes ten entries in a row). [ged_bound_table.tsv](ged_bound_table.tsv) lists them: 0 `mgesi_BshRegisterWrite`, 1 `mgeb_Fogf`, 2 `mgeb_Fogi`, 3-12 the ten matrix operations (load identity, load matrix, frustum, multiply, ortho, pop, push, rotate, scale, translate) in the modelview variants, 14 `mges_NullCommand`, 15 `mgesi_TBUS_1`, 16 `mgebi_ReferencePlane`, 25-28 the map-grid and map-spec evaluators, 29-31 deformation and IMP register writes, 32-33 the 2D mip-map bind and texture scale/bias, 34 `mgesi_PushAttrLights`, 42-54 the X-server commands (`XPoint`, `XPointRel`, `XRect`, `XBox`, `XSpans`, `XSegment`, `XLine`, `XLineRel`, `XBgPoint`, `XLoadGC`, `XLoadPosition`, `XLoadClip`, `XLoadScissor`) and 60-63 `EnableUnpack`, `DisableUnpack`, `RestoreColor` and `RestoreNormal`.
+
+**Established** (correlation, [hw_route.tsv](hw_route.tsv)). Take a routed token's command number n. The handler at index `n & 63` of that table has the token's own name for 48 of the 206 routed tokens (the matrix tokens, `TBUS_1`, `REFERENCE_PLANE`, the deformation tokens, `BIND_2D_MIPMAP_TEXTURE`, `FOGF`, and every X-server drawing and load token from `X_POINT` to `X_LOADSCISSOR`), and by role for six more: `MAPGRID1D` and `MAPGRID2D` (`EvalGrid1D` and `EvalGrid2D`), `X_POINT6_R`, `X_POINT24_R` and `X_LINE6_R` (the relative forms) and `LOAD_POST_TEX_SCALE_BIAS` (`TextureScaleBias`). That is 54 tokens. The X-server tokens are the best test: the drawing tokens 0x14c-0x161 take numbers 170-178 and the load tokens (0x129, 0x12a, 0x12b, 0x12d) take 179-182, which land on indexes 42-54, where `init_ged` wrote the X handlers in that order; the old name-matched slots (240, 242, 244-250, 360-363) are the ones stored there.
+
+**Established** (the number is also a separate key into the distributor program). Tokens that share a program entry call different handlers: command 170 (`X_POINT`), 174 (`X_SPANS`) and 178 (`X_BGPOINT`) all start at distributor word 0x275, yet their indexes 42, 46 and 50 hold `XPoint`, `XSpans` and `XBgPoint`; entry 0x2a1 is shared by `LOADIDENTITY` (131), `ORTHO` (135), `TBUS_1` (143), `MAPSPEC1D` (155), `X_POINT_R` (171), `X_SEGMENT` (175) and `X_LOADGC` (179). So the handler does not come from the distributor program.
+
+**Inferred**, from those three results together: the hardware takes the 9-bit command number from the token entry, starts the distributor program at table[16 + n] (the second 512-word table) and uses the low six bits as an index into the handler table, giving the engine the handler address as its command. The firmware's own sequencing supports it: the handler table is filled by the ARM from `gepc`, which is why no static array in `arm1.u` or `ged1b.u` holds a number-to-slot map (every earlier search for one failed), and why one token (`LOADMATRIXF`) can run different handlers: the ARM rebinds indexes 3-12 whenever the matrix mode changes, so the number stays fixed while the handler changes. What is not established is the hardware step itself; no firmware code reads or writes it, only the tables.
+
+**Where the rule does not hold.** For the other 152 routed tokens `n & 63` names an unrelated handler or none, so the handler table is not how they reach the engines: the vertex data tokens (colour, index, normal, texture coordinate, vertex, material, evaluator, packed vertex: numbers 1-18, 78, 129, 142-146, 159, 206, 272 and 448), the begin and end tokens (386-397), `SWAPTMESH`, the vertex-array loop tokens (all number 0), `FLUSH`, `GEPASSCMD`, `SKIP*`, `SETCOLORNORMAL`, `DEFORM` and `X_DATA1`-`X_DATA10`. **Inferred:** their programs pick the handler themselves: the begin and vertex programs contain the relocated slot words for `mgesi_Triangles`, `mgesi_TriangleStrip*`, `mgesi_QuadStrip*`, `mgesi_LineStrip` and the rest of the primitive handlers, and `X_DATA*` and `X_BDATA4` land on `BshRegisterWrite`, a register write, which fits their role. Which of the two paths a program takes, and what bits 6-8 of the number mean (groups 2 and 3 both use the handler table; group 0 holds `POPMATRIX` 8, `PUSHMATRIX` 9 and `FOGI_cont` 2), is **unknown**. So is the instruction set of the distributor program, which this page does not decode.
+
+**Unknown.** Whether the handler table sits in the distributor or in the engines. The engine error register has a bit named `ELUT_ADR` ([GE.h](../GE.h)); a table indexed by six bits that is written beside the distributor program is **inferred** to be the distributor's, but nothing in the firmware names the chip.
+
+A token the ARM runs instead is a plain handler that picks a `gepc` slot in its own code ([above](#how-a-command-reaches-a-geometry-engine-handler)).
 
 ## Context tokens
 

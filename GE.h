@@ -706,8 +706,11 @@ enum kona_hp_token {
  *    engine (CULLFACE slot 3, FRONTFACE 15, MATRIXMODE 51); 206 are routed
  *    by hardware with a 9-bit command number in bits 15-23 of the entry
  *    and, INFERRED, a payload word count in bits 6-10 and a component
- *    type in bits 29-30 (2 single, 3 double). How the 9-bit number selects
- *    a handler is UNKNOWN; 47 name matches are in ucode/ge_name_matches.tsv.
+ *    type in bits 29-30 (2 single, 3 double). For 54 of them, ESTABLISHED,
+ *    the handler is entry (number & 63) of a 64-entry handler table the ARM
+ *    loads at start-up (ucode/hw_route.tsv, ucode/ged_bound_table.tsv); for
+ *    the other 152 (vertex, primitive, begin/end) it is UNKNOWN. 47 name
+ *    matches are in ucode/ge_name_matches.tsv.
  */
 
 /*
