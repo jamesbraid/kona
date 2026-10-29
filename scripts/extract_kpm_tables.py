@@ -14,7 +14,10 @@ decode tables in its .data section:
     kind 3 a named value of the preceding field (located by searching for the
     record whose name is "BEF_DUMP").
 
-Both are written as TSV with the virtual address of each entry, so every
+It also holds a geometry-engine register table, a list of geometry-engine
+special-register names and a host-interface register table, extracted the same way.
+
+All are written as TSV with the virtual address of each entry, so every
 row can be cited back to the binary.
 """
 import os
@@ -119,4 +122,70 @@ with open(os.path.join(out, 'raster_registers.tsv'), 'w') as fp:
         fp.write('0x%08x\t%d\t%s\t0x%x\t%d\n'
                  % (o2v(o), kind, cstr(name), val, width))
 
-print('hp_commands: %d, raster records: %d' % (len(rows), (e - s) // 16))
+# Geometry-engine register table: 24-byte records {kind, address, name,
+# value, mask, shift} starting at the record named
+# "Execution Control Register". kind 1 = register, 2 = field.
+ecr = find_string('Execution Control Register')
+gs = [p for p in find_pointer(ecr) if word(p - 8) == 1][0] - 8
+ge = gs
+while word(ge) in (1, 2) and cstr(word(ge + 8), 80) is not None:
+    ge += 24
+with open(os.path.join(out, 'ge_registers.tsv'), 'w') as fp:
+    fp.write('# kpm geometry-engine register table, %d records from vaddr'
+             ' 0x%08x\n' % ((ge - gs) // 24, o2v(gs)))
+    fp.write('# kind 1 = register, 2 = field; value column meaning unknown\n')
+    fp.write('vaddr\tkind\taddress\tname\tvalue\tmask\tshift\n')
+    for o in range(gs, ge, 24):
+        kind, addr, name, val, mask, shift = struct.unpack('>6I',
+                                                           data[o:o + 24])
+        fp.write('0x%08x\t%d\t0x%05x\t%s\t0x%x\t0x%x\t%d\n'
+                 % (o2v(o), kind, addr, cstr(name, 80), val, mask, shift))
+
+# Geometry-engine special-register names: {number, name} pairs that start
+# with CHIP_ID and end at a 0xffffffff number.
+cid = find_string('CHIP_ID')
+ss = [p for p in find_pointer(cid)][0] - 4
+specials = []
+o = ss
+while word(o) != 0xffffffff and cstr(word(o + 4)) is not None:
+    specials.append((o2v(o), word(o), cstr(word(o + 4))))
+    o += 8
+with open(os.path.join(out, 'ge_special_registers.tsv'), 'w') as fp:
+    fp.write('# kpm geometry-engine special-register names, %d pairs from'
+             ' vaddr 0x%08x\n' % (len(specials), o2v(ss)))
+    fp.write('vaddr\tnumber\tname\n')
+    for va, num, name in specials:
+        fp.write('0x%08x\t0x%02x\t%s\n' % (va, num, name))
+
+# Host-interface register table: 60-byte records {kind, offset, name[32],
+# word, word, mask, word, shift} around the record named "HH_GFIFO_HI".
+# kind 1 = register, 2 = field. The two leading tail words are always zero.
+def hip_ok(o):
+    kind, off = struct.unpack('>II', data[o:o + 8])
+    name = data[o + 8:o + 40].split(b'\0')[0]
+    return kind in (1, 2) and len(name) > 1 and all(32 < c < 127 for c in name)
+
+
+hh = data.find(b'HH_GFIFO_HI\0') - 8
+hs = hh
+while hip_ok(hs - 60):
+    hs -= 60
+he = hh
+while hip_ok(he):
+    he += 60
+with open(os.path.join(out, 'hip_registers.tsv'), 'w') as fp:
+    fp.write('# kpm host-interface register table, %d records from vaddr'
+             ' 0x%08x\n' % ((he - hs) // 60, o2v(hs)))
+    fp.write('# kind 1 = register (offset 0xdead = address-bit layout, not a'
+             ' register), 2 = field\n')
+    fp.write('vaddr\tkind\toffset\tname\tmask\tshift\n')
+    for o in range(hs, he, 60):
+        kind, off = struct.unpack('>II', data[o:o + 8])
+        name = data[o + 8:o + 40].split(b'\0')[0].decode('ascii')
+        _, _, mask, _, shift = struct.unpack('>5I', data[o + 40:o + 60])
+        fp.write('0x%08x\t%d\t0x%03x\t%s\t0x%x\t%d\n'
+                 % (o2v(o), kind, off, name, mask, shift))
+
+print('hp_commands: %d, raster records: %d, ge records: %d, specials: %d,'
+      ' hip records: %d' % (len(rows), (e - s) // 16, (ge - gs) // 24,
+                            len(specials), (he - hs) // 60))

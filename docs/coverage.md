@@ -49,7 +49,7 @@ Geometry engines: transform, lighting, clipping and primitive assembly, fed by t
 
 | Area | Status | Owner | Datasheet topic | Seed |
 |---|---|---|---|---|
-| Registers and fields | none | `GE.h`, `docs/ge.md` | host and geometry |  |
+| Registers and fields | partial | `GE.h`, `docs/ge.md` | host and geometry | 15 GE11 diagnostic registers (0x40000-0x40038) and 24 special-register numbers from kpm; the host path to them and the value column unknown |
 | Command and FIFO formats | partial | `GE.h`, `docs/ge.md` | host and geometry | all 512 token names and values (kpm table); token-word framing and a few payloads from libGLcore. Most payload grammars and the microcode dispatch remain |
 | DMA | none | `GE.h`, `docs/ge.md` | host and geometry |  |
 | Interrupts | none | `GE.h`, `docs/ge.md` | host and geometry |  |

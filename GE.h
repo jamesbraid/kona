@@ -647,11 +647,136 @@ enum kona_hp_token {
  *    in ge.u / ge.hex has not been located, so no label is tied to a token.
  *  - ge.hex lines are a 16-bit address and a 72-bit (18 hex digit) word, so
  *    the geometry-engine instruction is INFERRED to be 72 bits wide.
- *  - kpm holds a geometry-engine register description table from vaddr
- *    0x100bb2a0 (records of kind, register address, name, mask, value, bit;
- *    e.g. "Execution Control Register" at 0x40000 with GE11_EXEC_GO bit 0,
- *    GE11_EXEC_SSTEP bit 1, GE11_EXEC_BPSET bit 2, GE11_EXEC_BPSTALL bit 3,
- *    GE11_EXEC_UCLAT bit 4, GE11_EXEC_INVAL bit 5) not yet extracted.
  */
+
+/*
+ * Geometry-engine (GE11) diagnostic registers.
+ *
+ * ESTABLISHED: kpm's table of 24-byte records {kind, address, name, value,
+ * mask, shift} from vaddr 0x100bb2a8 (64 records, 15 registers at
+ * 0x40000-0x40038), extracted to diags/kpm/ge_registers.tsv. The defines
+ * below give each register's address with kpm's description, and each
+ * field's mask. The record's value column equals the mask for one-bit
+ * fields and the shift for wider ones; its use is UNKNOWN.
+ *
+ * UNKNOWN: which bus the 0x40000 addresses are on (the geometry engine's
+ * own register space as reached by a diagnostic, by INFERENCE from kpm
+ * being the pipe monitor) and how the host reaches them.
+ *
+ * OFIFO0-2 A/B status registers carry 7-bit write and read pointers, so
+ * each geometry-engine output FIFO is INFERRED to hold 128 entries.
+ */
+
+#define KONA_GE11_REG_EXECUTION_CONTROL              0x40000  /* "Execution Control Register" */
+#define KONA_GE11_EXEC_GO                       0x00000001  /* bits from 0 */
+#define KONA_GE11_EXEC_SSTEP                    0x00000002  /* bits from 1 */
+#define KONA_GE11_EXEC_BPSET                    0x00000004  /* bits from 2 */
+#define KONA_GE11_EXEC_BPSTALL                  0x00000008  /* bits from 3 */
+#define KONA_GE11_EXEC_UCLAT                    0x00000010  /* bits from 4 */
+#define KONA_GE11_EXEC_INVAL                    0x00000020  /* bits from 5 */
+
+#define KONA_GE11_REG_BREAKPOINT_ADDRESS             0x40004  /* "Breakpoint Address Register" */
+
+#define KONA_GE11_REG_RAMSCAN_CONTROL                0x40008  /* "RAMscan Control Register (trashed)" */
+
+#define KONA_GE11_REG_WRITE_SYNC_FIFO                0x4000c  /* "Write/Sync FIFO Register" */
+#define KONA_GE11_SYNCFIFO_DISABLE              0x00000001  /* bits from 0 */
+#define KONA_GE11_SYNCFIFO_WM                   0x0000003e  /* bits from 1 */
+
+#define KONA_GE11_REG_DIAG_SEL                       0x40010  /* "Diag Sel Register" */
+#define KONA_GE11_DIAGSEL_OUTPUT                0x00000100  /* bits from 8 */
+
+#define KONA_GE11_REG_ENABLE_MASK                    0x40014  /* "Enable Mask Register" */
+#define KONA_GE11_ENABMSK_A                     0x00000007  /* bits from 0 */
+#define KONA_GE11_ENABMSK_B                     0x00000070  /* bits from 4 */
+
+#define KONA_GE11_REG_CM_OFIFO_TAG                   0x40018  /* "CM/Ofifo TAG Register" */
+#define KONA_GE11_CMTAG_CFG                     0x00000001  /* bits from 0 */
+#define KONA_GE11_CMTAG_WTRIM_WD                0x00000070  /* bits from 4 */
+#define KONA_GE11_CMTAG_WTRIM_DLY               0x00000380  /* bits from 7 */
+#define KONA_GE11_CMTAG_CTRIM_WD                0x00001c00  /* bits from 10 */
+#define KONA_GE11_CMTAG_CTRIM_DLY               0x0000e000  /* bits from 13 */
+#define KONA_GE11_CMTAG_PULSE_EN                0x00010000  /* bits from 16 */
+
+#define KONA_GE11_REG_UCODE_ERROR_REGISTER           0x4001c  /* "Ucode Error register" */
+#define KONA_GE11_UERROR_ECDATA_CNFL            0x00000001  /* bits from 0 */
+#define KONA_GE11_UERROR_WSC_CNFL               0x00000002  /* bits from 1 */
+#define KONA_GE11_UERROR_FPU_OP                 0x00000004  /* bits from 2 */
+#define KONA_GE11_UERROR_CRD_CNFL               0x00000008  /* bits from 3 */
+#define KONA_GE11_UERROR_CMD_TAG                0x00000010  /* bits from 4 */
+#define KONA_GE11_UERROR_FPU_OPR                0x00000020  /* bits from 5 */
+#define KONA_GE11_UERROR_RD_OFIFO               0x00000040  /* bits from 6 */
+#define KONA_GE11_UERROR_ELUT_ADR               0x00000080  /* bits from 7 */
+#define KONA_GE11_UERROR_ERAM_LUT               0x00000100  /* bits from 8 */
+#define KONA_GE11_UERROR_ERAM_HIST              0x00000200  /* bits from 9 */
+#define KONA_GE11_UERROR_ERAM_RD                0x00000400  /* bits from 10 */
+#define KONA_GE11_UERROR_ERAM_WR                0x00000800  /* bits from 11 */
+#define KONA_GE11_UERROR_ERAM_SWITCH            0x00001000  /* bits from 12 */
+#define KONA_GE11_UERROR_INVAL_ADR              0x00002000  /* bits from 13 */
+#define KONA_GE11_UERROR_WR_SPREG               0x00004000  /* bits from 14 */
+#define KONA_GE11_UERROR_RD_SPREG               0x00008000  /* bits from 15 */
+#define KONA_GE11_UERROR_MSK_OVFL               0x00010000  /* bits from 16 */
+#define KONA_GE11_UERROR_PCC_CNFL               0x00020000  /* bits from 17 */
+#define KONA_GE11_UERROR_CMD_UC_TAG             0x00040000  /* bits from 18 */
+#define KONA_GE11_UERROR_AALU_WR                0x00080000  /* bits from 19 */
+
+#define KONA_GE11_REG_OFIFO0_A_STATUS                0x40020  /* "OFIFO0 A Status Register" */
+#define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
+#define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
+
+#define KONA_GE11_REG_OFIFO0_B_STATUS                0x40024  /* "OFIFO0 B Status Register" */
+#define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
+#define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
+
+#define KONA_GE11_REG_OFIFO1_A_STATUS                0x40028  /* "OFIFO1 A Status Register" */
+#define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
+#define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
+
+#define KONA_GE11_REG_OFIFO1_B_STATUS                0x4002c  /* "OFIFO1 B Status Register" */
+#define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
+#define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
+
+#define KONA_GE11_REG_OFIFO2_A_STATUS                0x40030  /* "OFIFO2 A Status Register" */
+#define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
+#define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
+
+#define KONA_GE11_REG_OFIFO2_B_STATUS                0x40034  /* "OFIFO2 B Status Register" */
+#define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
+#define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
+
+#define KONA_GE11_REG_OFIFO_CONTROL                  0x40038  /* "OFIFO Control Register (trashed)" */
+
+/*
+ * Geometry-engine special registers, ESTABLISHED: kpm's {number, name}
+ * list at vaddr 0x100bb1e0 (diags/kpm/ge_special_registers.tsv). INFERRED:
+ * these are microcode-visible special registers (identity, the input word
+ * FIFO pointers, FPU and lookup modes, flags, cull and clip state, sort
+ * state), numbered as the microcode addresses them.
+ */
+#define KONA_GE11_SR_CHIP_ID              0x04
+#define KONA_GE11_SR_CHIP_REV             0x06
+#define KONA_GE11_SR_CORE_ID              0x40
+#define KONA_GE11_SR_WRAM_WRPTR           0x00
+#define KONA_GE11_SR_WRAM_FIFO_HI         0x01
+#define KONA_GE11_SR_WRAM_FIFO_LO         0x02
+#define KONA_GE11_SR_VERTEX_COUNTT        0x03
+#define KONA_GE11_SR_UST_ACCESS           0x05
+#define KONA_GE11_SR_DIAG_PIN             0x07
+#define KONA_GE11_SR_COMP_FORMAT          0x08
+#define KONA_GE11_SR_FPU_MODE             0x09
+#define KONA_GE11_SR_LUT_MODE             0x0a
+#define KONA_GE11_SR_FPU_COND_A           0x41
+#define KONA_GE11_SR_FPU_COND_B           0x4c
+#define KONA_GE11_SR_FLAG_GLOB_LO         0x0b
+#define KONA_GE11_SR_FLAG_GLOB_HI         0x0f
+#define KONA_GE11_SR_FLAG_THRD_A          0x42
+#define KONA_GE11_SR_FLAG_THRD_B          0x43
+#define KONA_GE11_SR_CULL                 0x0c
+#define KONA_GE11_SR_CULL_ACCUM           0x1c
+#define KONA_GE11_SR_CLIP_HOMO            0x0d
+#define KONA_GE11_SR_CLIP_USER            0x0e
+#define KONA_GE11_SR_SORT_THRD_A          0x44
+#define KONA_GE11_SR_SORT_THRD_B          0x45
+
 
 #endif /* KONA_GE_H */
