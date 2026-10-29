@@ -39,8 +39,8 @@
  * of the same letters (pg, tg, tm, imp; TFP and TFT the four tf chips),
  * backed by the firmware's init_pg/init_tf/init_imp writing their own
  * prefixes (docs/rm.md, chips on each board). Which tf chip answers TFP
- * and TFT, and which chips answer a combined index, is UNKNOWN (capture in
- * docs/captures.md).
+ * and TFT, and which chips answer a combined index, is UNKNOWN (open question in
+ * docs/open-questions.md).
  *
  * INFERRED: registers are up to 48 bits wide. Fields reach bit 47
  * (TM_TEXMAP_1_HIGH at bits 45-47, TFP_FOG_DATA_N3 at 36-47,

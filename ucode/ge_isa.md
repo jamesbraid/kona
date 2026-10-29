@@ -76,6 +76,6 @@ The record group R88-72 (`seq` in the listings) and R209-199 (`cc`) control the 
 
 - **ALU:** the operation codes of both arithmetic units, the seed unit and the output move are fixed by the IR diagnostic's instruction test and its expected results ([ge_ops.md](ge_ops.md), [ge_inst_results.tsv](ge_inst_results.tsv)). Ties the test cannot break are listed there.
 - **Branch conditions:** `cc` 0-15 are read from the same test (ge_ops.md): integer and float flag nibbles, conditions "<= 0", zero, negative and a fourth one, with bit 0 inverting. Each was observed true for one input; the false sides are **inferred**. `cc` 0x11 (the end-of-command wait) and 0x10, 0x14, 0x15 test other state and are **unknown**.
-- **FIFO input:** the special-register numbers in `GE.h` (FIFO pointers 0x00-0x02) have not been located in any field. **Unknown: needs capture** ([docs/captures.md](../docs/captures.md)).
+- **FIFO input:** the special-register numbers in `GE.h` (FIFO pointers 0x00-0x02) have not been located in any field. **Open question** ([docs/open-questions.md](../docs/open-questions.md)).
 
 A reader can extend the decode without the `ge.u` record: every field in the tables above is a plain slice of W.

@@ -140,7 +140,7 @@ Attribute tokens (colour, normal, index, texture coordinate: control bit 6 set, 
 
 This also answers which unit picks the bank, the question [arm1.md](arm1.md) left open. The distributor does, from its own r48 through table A, and the token carries no bank. The eight-bank reading of table B was a coincidence of the 64-entry spacing: points, lines, triangles and the subdivision code all sit in what looked like bank 6.
 
-**Unknown: needs capture.**
+**Open question** ([open-questions.md](open-questions.md)).**
 
 - How the hardware chooses between the state-based index and the token's own k (by k < 4, by control bit 6, or by a separate path for vertex tokens). A trace of the distributor's dispatch address per token would settle it. The scan chain names it (`ged_dispInst`, `ged_dispGeomCtrl`, `ged_geomStatus` in `irsaudit`'s boundary-scan register list). The capture is a JTAG read of those registers, one token at a time, while the pipe receives `BEGIN_TRIANGLES`, three `VERTEX3F`, `COLOR3F`, `SWAPTMESH` and `END`.
 - What transfer ops 1, 3, 5, 6 and 7 test, and what control fields x, y, r, a, b, c, z and n do. The diagnostic's sequencer test (`gedSequencer`) builds a five-word program from them and checks a CRC. The same capture over that test would show the effect of each field.

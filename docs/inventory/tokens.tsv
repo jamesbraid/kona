@@ -564,7 +564,7 @@ token	kpm_name	header_name	firmware_route	sources	status	doc
 0x232	PG_STIPPLE_3			kpm	documented	GE.h:679
 0x233	PG_PRU			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x234	IMP_CONFIG			kpm	documented	docs/rm.md#the-89-word-register-shadow
-0x235	IMP_OP			kpm	documented	docs/captures.md#raster-and-texture-boards-rm-tm
+0x235	IMP_OP			kpm	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 0x236	IMP_MS			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x237	IMP_CLIP			kpm	documented	docs/rm.md#the-89-word-register-shadow
 0x238	IMP_SZ0			kpm	documented	docs/rm.md#the-89-word-register-shadow
@@ -584,7 +584,7 @@ token	kpm_name	header_name	firmware_route	sources	status	doc
 0x246	TM_DRAW_GLOBALOFFSET			kpm	documented	GE.h:684
 0x247	TM_MEMCONF			kpm	documented	GE.h:684
 0x248	TGTM_TEX_SIZE			kpm	documented	GE.h:685
-0x249	TGTMTFT			kpm	documented	docs/captures.md#raster-and-texture-boards-rm-tm
+0x249	TGTMTFT			kpm	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 0x24a	TG_MAP_LEVEL			kpm	documented	GE.h:685
 0x24b	TG_LOD_SCALEST			kpm	documented	GE.h:685
 0x24c	TG_LOD_SCALER			kpm	documented	GE.h:686

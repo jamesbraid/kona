@@ -1,6 +1,6 @@
 side	binary	command	name	handler_or_caller	class	status	doc
-kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10000	KONA_DMAREAD	curproc_abi	kona private	documented	docs/captures.md#xg-xtalk-widget
-kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10001	KONA_DMAWRITE	curproc_abi	kona private	documented	docs/captures.md#xg-xtalk-widget
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10000	KONA_DMAREAD	curproc_abi	kona private	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma
+kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10001	KONA_DMAWRITE	curproc_abi	kona private	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10002	KONA_START_SELECTFEED	curproc_abi	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10003	KONA_FINISH_SELECTFEED	kona_finish_selectfeed	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10005	KONA_SELECT_CURSOR	copyin	kona private	documented	docs/dg.md#cursor
@@ -24,8 +24,8 @@ kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10024	KONA_NCLOPS_DESTROY_CO
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10100		curproc_abi	kona private	documented	docs/kernel.md#private-ioctls
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10101		RRM_CheckValidFault	kona private	undocumented	
 kernel	usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	10102		RRM_CheckValidFault	kona private	documented	docs/kernel.md#private-ioctls
-kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10000	KONA_DMAREAD	curproc_abi	kona private	documented	docs/captures.md#xg-xtalk-widget
-kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10001	KONA_DMAWRITE	curproc_abi	kona private	documented	docs/captures.md#xg-xtalk-widget
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10000	KONA_DMAREAD	curproc_abi	kona private	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma
+kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10001	KONA_DMAWRITE	curproc_abi	kona private	documented	docs/hip.md#host-to-pipe-kona_dmawrite-kona_idma
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10002	KONA_START_SELECTFEED	curproc_abi	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10003	KONA_FINISH_SELECTFEED	kona_finish_selectfeed	kona private	documented	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread
 kernel	usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	10005	KONA_SELECT_CURSOR	copyin	kona private	documented	docs/dg.md#cursor

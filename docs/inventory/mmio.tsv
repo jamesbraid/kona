@@ -187,7 +187,7 @@ raster-index	0x1415	-	1	kpm:TFP_TEXRB_CLR	named-only	RM.h:630
 raster-index	0x1500	-	1	kpm:TFP_TEX	documented	GE.h:690
 raster-index	0x150c	-	1	kpm:TFP_AE	named-only	RM.h:721
 raster-index	0x153e	-	1	kpm:TFP_PASSR	named-only	RM.h:621
-raster-index	0x153f	-	1	kpm:TFP_TEXRB	documented	docs/captures.md#raster-and-texture-boards-rm-tm
+raster-index	0x153f	-	1	kpm:TFP_TEXRB	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 raster-index	0x1800	-	1	kpm:TFT_EXTRAP	documented	RM.h:106
 raster-index	0x1810	-	1	kpm:TFT_DETAILTEX	documented	RM.h:107
 raster-index	0x1820	-	1	kpm:TFT_BICUBIC	documented	RM.h:91
@@ -227,7 +227,7 @@ raster-index	0x3fc4	-	1	kpm:PGTG_ZRECT	documented	docs/rm.md#names-for-the-unnam
 raster-index	0x3fcc	-	1	kpm:PGTG_DRECT	documented	docs/rm.md#names-for-the-unnamed-indexes
 raster-index	0x3fcf	-	1	kpm:PGTG_SIZE	documented	docs/rm.md#chips-on-each-board
 raster-index	0x3fd3	-	1	kpm:PGTG_ENABLES	documented	docs/rm.md#chips-on-each-board
-raster-index	0x3fd4	-	1	kpm:TGTMTFT	documented	docs/captures.md#raster-and-texture-boards-rm-tm
+raster-index	0x3fd4	-	1	kpm:TGTMTFT	documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 raster-index	0x3fd5	-	1	kpm:TGTM_TEX_SIZE	documented	GE.h:685
 raster-index	0x3fd6	-	1	kpm:TGTM_DCTEX_SIZE	documented	GE.h:686
 raster-index	0x3fd7	-	1	kpm:TGTM_TEX_SCENTER	documented	GE.h:688

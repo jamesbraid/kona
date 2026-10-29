@@ -494,20 +494,20 @@ arm1.u	symbol (flags 3)	0x0c0024e8	init_ged		documented	docs/ge.md#reset-and-sta
 arm1.u	symbol (flags 3)	0x0c002f7c	check_pipe_sync		documented	docs/ge.md#reset-and-start-up
 arm1.u	symbol (flags 3)	0x0c003164	init_ge_config		documented	docs/ge.md#reset-and-start-up
 arm1.u	symbol (flags 2)	0x0c0032d4	ungray		undocumented	
-arm1.u	symbol (flags 3)	0x0c0032e4	init_ge		documented	docs/captures.md#geometry-engine-program
+arm1.u	symbol (flags 3)	0x0c0032e4	init_ge		documented	docs/ge.md#registers-the-arms-path-to-them
 arm1.u	symbol (flags 3)	0x0c00375c	init_bef		documented	docs/rm.md#the-89-word-register-shadow
 arm1.u	symbol (flags 3)	0x0c003760	init_hip_tbus		documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
 arm1.u	symbol (flags 3)	0x0c0037a0	init_voc		undocumented	
 arm1.u	symbol (flags 3)	0x0c0037a4	init_dac		undocumented	
 arm1.u	symbol (flags 3)	0x0c0037a8	init_fm		undocumented	
-arm1.u	symbol (flags 3)	0x0c0037ac	init_pg		documented	docs/captures.md#raster-and-texture-boards-rm-tm
+arm1.u	symbol (flags 3)	0x0c0037ac	init_pg		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 arm1.u	symbol (flags 3)	0x0c00386c	init_tf		documented	docs/rm.md#chips-on-each-board
-arm1.u	symbol (flags 3)	0x0c0038e8	init_tg		documented	docs/captures.md#raster-and-texture-boards-rm-tm
+arm1.u	symbol (flags 3)	0x0c0038e8	init_tg		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 arm1.u	symbol (flags 3)	0x0c003980	init_tm		documented	docs/rm.md#how-the-arm-firmware-writes-raster-registers
-arm1.u	symbol (flags 3)	0x0c003aac	init_imp		documented	docs/captures.md#raster-and-texture-boards-rm-tm
+arm1.u	symbol (flags 3)	0x0c003aac	init_imp		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 arm1.u	symbol (flags 3)	0x0c003d0c	init_ge_board		documented	docs/ge.md#reset-and-start-up
 arm1.u	symbol (flags 3)	0x0c003d3c	init_dg_board		documented	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them
-arm1.u	symbol (flags 3)	0x0c003de8	init_rm_board		documented	docs/captures.md#raster-and-texture-boards-rm-tm
+arm1.u	symbol (flags 3)	0x0c003de8	init_rm_board		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 arm1.u	symbol (flags 3)	0x0c003eb8	init_simulator_hacks		undocumented	
 arm1.u	symbol (flags 3)	0x0c004108	init		undocumented	
 arm1.u	symbol (flags 3)	0x0c0042bc	arm_initpipe		undocumented	
@@ -943,7 +943,7 @@ arm1.u	symbol (flags 2)	0x0c01a420	jt_soft_reset		documented	docs/rm.md#reset-of
 arm1.u	symbol (flags 2)	0x0c01a4c8	jt_send_inst_or_data		undocumented	
 arm1.u	symbol (flags 2)	0x0c01a6e4	insert_bits		undocumented	
 arm1.u	symbol (flags 2)	0x0c01a738	extract_bits		undocumented	
-arm1.u	symbol (flags 3)	0x0c01a78c	jt_reg_read		documented	docs/captures.md#raster-and-texture-boards-rm-tm
+arm1.u	symbol (flags 3)	0x0c01a78c	jt_reg_read		documented	docs/open-questions.md#raster-and-texture-boards-rm-tm
 arm1.u	symbol (flags 3)	0x0c01a874	jt_reg_write		documented	docs/ge.md#reset-and-start-up
 arm1.u	symbol (flags 3)	0x0c01a954	jt_reg_init		undocumented	
 arm1.u	symbol (flags 3)	0x0c01a9d4	jt_select_chip		documented	ucode/arm1_firmware.md#control-and-status-registers
@@ -1030,8 +1030,8 @@ arm1.u	symbol (flags 3)	0x0c02255c	finish_rdata		documented	docs/rm.md#how-the-a
 arm1.u	symbol (flags 3)	0x0c022614	start_pixel_rdata		undocumented	
 arm1.u	symbol (flags 3)	0x0c0226b4	start_pixel_rdata_noincr		undocumented	
 arm1.u	symbol (flags 3)	0x0c022754	finish_pixel_rdata		undocumented	
-arm1.u	symbol (flags 3)	0x0c022800	start_kcomm		documented	docs/captures.md#geometry-engine-program
-arm1.u	symbol (flags 3)	0x0c022980	finish_kcomm		documented	docs/captures.md#geometry-engine-program
+arm1.u	symbol (flags 3)	0x0c022800	start_kcomm		documented	docs/open-questions.md#geometry-engine-program
+arm1.u	symbol (flags 3)	0x0c022980	finish_kcomm		documented	docs/open-questions.md#geometry-engine-program
 arm1.u	symbol (flags 3)	0x0c022a50	arm_start_selectfeed		documented	docs/rm.md#host-interface-registers-on-the-raster-bus
 arm1.u	symbol (flags 3)	0x0c022b8c	arm_restart_selectfeed		named-only	ucode/arm1_handlers.tsv
 arm1.u	symbol (flags 3)	0x0c022c40	arm_finish_selectfeed		named-only	ucode/arm1_handlers.tsv
