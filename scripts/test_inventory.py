@@ -221,5 +221,27 @@ class MultiUnit(unittest.TestCase):
         self.assertFalse(inv.cites_range('`EramAlloc` at 0xd981360.', 0xd981360, 0))
 
 
+class Unverified(unittest.TestCase):
+    SUBJ = frozenset(inv.unit_keys('`odsy_EdidCksum`'))
+    BODY = ('`odsy_EdidCksum` (`odsy_ddc.o`, offset 0x1c58): Computes the EDID block checksum: it adds the 128 '
+            'bytes at its argument, keeps the sum modulo 256 and returns it, so a valid block gives 0. ')
+
+    def test_the_same_entry_is_understood_when_labelled_and_located_when_unverified(self):
+        self.assertEqual(inv.classify(self.BODY + 'Inferred.', self.SUBJ), ('understood', False))
+        self.assertEqual(inv.classify(self.BODY + 'Established.', self.SUBJ), ('understood', False))
+        self.assertEqual(inv.classify(self.BODY + 'Unverified.', self.SUBJ), ('located', False))
+
+    def test_a_table_row_ending_in_the_label_is_capped_too(self):
+        row = '| `odsy_EdidCksum` | ' + self.BODY + 'Unverified. |'
+        self.assertEqual(inv.classify(row, self.SUBJ)[0], 'located')
+
+    def test_a_label_with_an_open_sub_fact_is_capped(self):
+        text = self.BODY + 'The width of the result is unknown. Unverified.'
+        self.assertEqual(inv.classify(text, self.SUBJ)[0], 'located')
+
+    def test_an_entry_below_located_stays_there(self):
+        self.assertEqual(inv.classify('`odsy_EdidCksum` checksums. Unverified.', self.SUBJ)[0], 'named-only')
+
+
 if __name__ == '__main__':
     unittest.main()
