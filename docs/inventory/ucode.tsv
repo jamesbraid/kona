@@ -2115,10 +2115,10 @@ ge.u	label	0x000026c6	epilogue_b2i_lsb_first		understood	ucode/ge_compute.md#pix
 ge.u	label	0x000026f7	b2i_msb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
 ge.u	label	0x000026ff	mainloop_b2i_msb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
 ge.u	label	0x00002722	epilogue_b2i_msb_first		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
-ge.u	label	0x00002753	mmo_FloatToInt		located	ucode/ge_handlers.md#floattoints	floattoint.s
-ge.u	label	0x00002753	umo_FloatToInt		located	ucode/ge_handlers.md#floattoints	floattoint.s
-ge.u	label	0x0000277c	mainloop_f2i		located	ucode/ge_handlers.md#floattoints	floattoint.s
-ge.u	label	0x00002799	epilogue_f2i		located	ucode/ge_handlers.md#floattoints	floattoint.s
+ge.u	label	0x00002753	mmo_FloatToInt		understood	ucode/ge_compute.md#float-to-integer-pixel-stage-floattoints	Float-to-integer pixel stage (floattoint.s)
+ge.u	label	0x00002753	umo_FloatToInt		understood	ucode/ge_compute.md#float-to-integer-pixel-stage-floattoints	Float-to-integer pixel stage (floattoint.s)
+ge.u	label	0x0000277c	mainloop_f2i		understood	ucode/ge_compute.md#float-to-integer-pixel-stage-floattoints	Float-to-integer pixel stage (floattoint.s)
+ge.u	label	0x00002799	epilogue_f2i		understood	ucode/ge_compute.md#float-to-integer-pixel-stage-floattoints	Float-to-integer pixel stage (floattoint.s)
 ge.u	label	0x000027cc	MemRegInit		understood	ucode/ge_compute.md#start-up-and-memory-set-up-bootstraps-bootinits	Start-up and memory set-up (bootstrap.s, bootinit.s)
 ge.u	label	0x000027d5	mgesi_PixDrawColorEntry		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
 ge.u	label	0x000027d5	ugesi_PixDrawColorEntry		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
@@ -2144,19 +2144,19 @@ ge.u	label	0x00002909	umo_DrawTriPrim		understood	ucode/ge_compute.md#triangle-o
 ge.u	label	0x0000290e	lDI1		understood	ucode/ge_compute.md#triangle-output-udrawtris	Triangle output (udrawtri.s)
 ge.u	label	0x0000298a	uColorMatrix		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x0000298e	clrmtrixloop		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
-ge.u	label	0x000029a2	uSepConv3_124		located	ucode/ge_handlers.md#usepconv3x3s	usepconv3x3.s
-ge.u	label	0x000029a9	RowConv3Loop		located	ucode/ge_handlers.md#usepconv3x3s	usepconv3x3.s
-ge.u	label	0x000029b9	ColumnConv3Loop		located	ucode/ge_handlers.md#usepconv3x3s	usepconv3x3.s
-ge.u	label	0x000029c6	uSepConv5_124		located	ucode/ge_handlers.md#usepconv5x5s	usepconv5x5.s
-ge.u	label	0x000029cf	RowConv5Loop		located	ucode/ge_handlers.md#usepconv5x5s	usepconv5x5.s
-ge.u	label	0x000029ec	ColumnConv5Loop		located	ucode/ge_handlers.md#usepconv5x5s	usepconv5x5.s
-ge.u	label	0x00002a01	uFastSepConv5_124		located	ucode/ge_handlers.md#usepconv5x5s	usepconv5x5.s
-ge.u	label	0x00002a30	FastRowConv5Loop		located	ucode/ge_handlers.md#usepconv5x5s	usepconv5x5.s
-ge.u	label	0x00002a48	FastRowConv5Epilog		located	ucode/ge_handlers.md#usepconv5x5s	usepconv5x5.s
-ge.u	label	0x00002a53	FastColumnConv5Loop		located	ucode/ge_handlers.md#usepconv5x5s	usepconv5x5.s
-ge.u	label	0x00002a68	uSepConv7_124		located	ucode/ge_handlers.md#usepconv7x7s	usepconv7x7.s
-ge.u	label	0x00002a73	RowConv7Loop		located	ucode/ge_handlers.md#usepconv7x7s	usepconv7x7.s
-ge.u	label	0x00002a9a	ColumnConv7Loop		located	ucode/ge_handlers.md#usepconv7x7s	usepconv7x7.s
+ge.u	label	0x000029a2	uSepConv3_124		understood	ucode/ge_compute.md#separable-3-x-3-convolution-usepconv3x3s	Separable 3 x 3 convolution (usepconv3x3.s)
+ge.u	label	0x000029a9	RowConv3Loop		understood	ucode/ge_compute.md#separable-3-x-3-convolution-usepconv3x3s	Separable 3 x 3 convolution (usepconv3x3.s)
+ge.u	label	0x000029b9	ColumnConv3Loop		understood	ucode/ge_compute.md#separable-3-x-3-convolution-usepconv3x3s	Separable 3 x 3 convolution (usepconv3x3.s)
+ge.u	label	0x000029c6	uSepConv5_124		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
+ge.u	label	0x000029cf	RowConv5Loop		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
+ge.u	label	0x000029ec	ColumnConv5Loop		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
+ge.u	label	0x00002a01	uFastSepConv5_124		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
+ge.u	label	0x00002a30	FastRowConv5Loop		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
+ge.u	label	0x00002a48	FastRowConv5Epilog		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
+ge.u	label	0x00002a53	FastColumnConv5Loop		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
+ge.u	label	0x00002a68	uSepConv7_124		understood	ucode/ge_compute.md#separable-7-x-7-convolution-usepconv7x7s	Separable 7 x 7 convolution (usepconv7x7.s)
+ge.u	label	0x00002a73	RowConv7Loop		understood	ucode/ge_compute.md#separable-7-x-7-convolution-usepconv7x7s	Separable 7 x 7 convolution (usepconv7x7.s)
+ge.u	label	0x00002a9a	ColumnConv7Loop		understood	ucode/ge_compute.md#separable-7-x-7-convolution-usepconv7x7s	Separable 7 x 7 convolution (usepconv7x7.s)
 ge.u	label	0x00002ab8	mmo_DeformCoord		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
 ge.u	label	0x00002ab8	umo_DeformCoord		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
 ge.u	label	0x00002acb	loopDC		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
@@ -2259,13 +2259,13 @@ ge.u	label	0x000041b5	mmo_LutoutRGBA		understood	ucode/ge_compute.md#colour-tabl
 ge.u	label	0x000041e0	mLutoutDone		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
 ge.u	label	0x000041fb	mmo_Lutout		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
 ge.u	label	0x0000422e	mgeb_ColorTableSetup		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
-ge.u	label	0x0000424e	mgebi_TextureScaleBias		located	ucode/ge_handlers.md#textures	texture.S
-ge.u	label	0x00004278	mgesi_FillTMLoadFifo		located	ucode/ge_handlers.md#textures	texture.S
-ge.u	label	0x00004293	mgesi_RestoreTextureAddress		located	ucode/ge_handlers.md#textures	texture.S
-ge.u	label	0x000042d3	mgebi_Bind2dMipmapTexture		located	ucode/ge_handlers.md#textures	texture.S
-ge.u	label	0x000043ae	mgeb_SkipNextTextureAddr		located	ucode/ge_handlers.md#textures	texture.S
-ge.u	label	0x000043bd	mgebi_UpdateTexturing		located	ucode/ge_handlers.md#textures	texture.S
-ge.u	label	0x000043f3	mgebi_Texture		located	ucode/ge_handlers.md#textures	texture.S
+ge.u	label	0x0000424e	mgebi_TextureScaleBias		understood	ucode/ge_compute.md#texture-state-handlers-textures	Texture state handlers (texture.S)
+ge.u	label	0x00004278	mgesi_FillTMLoadFifo		understood	ucode/ge_compute.md#texture-state-handlers-textures	Texture state handlers (texture.S)
+ge.u	label	0x00004293	mgesi_RestoreTextureAddress		understood	ucode/ge_compute.md#texture-state-handlers-textures	Texture state handlers (texture.S)
+ge.u	label	0x000042d3	mgebi_Bind2dMipmapTexture		understood	ucode/ge_compute.md#texture-state-handlers-textures	Texture state handlers (texture.S)
+ge.u	label	0x000043ae	mgeb_SkipNextTextureAddr		understood	ucode/ge_compute.md#texture-state-handlers-textures	Texture state handlers (texture.S)
+ge.u	label	0x000043bd	mgebi_UpdateTexturing		understood	ucode/ge_compute.md#texture-state-handlers-textures	Texture state handlers (texture.S)
+ge.u	label	0x000043f3	mgebi_Texture		understood	ucode/ge_compute.md#texture-state-handlers-textures	Texture state handlers (texture.S)
 ge.u	label	0x00004414	mgesi_SubdivEntry		understood	ucode/ge_compute.md#subdivision-patch-commands-subdivs	Subdivision patch commands (subdiv.S)
 ge.u	label	0x00004421	mges_SubdivTag		understood	ucode/ge_compute.md#subdivision-patch-commands-subdivs	Subdivision patch commands (subdiv.S)
 ge.u	label	0x0000442e	mgeb_Subdiv		understood	ucode/ge_compute.md#subdivision-patch-commands-subdivs	Subdivision patch commands (subdiv.S)
@@ -2393,10 +2393,10 @@ ge.u	label	0x00006ac2	mgeb_LoadEram		understood	ucode/ge_compute.md#host-read-ba
 ge.u	label	0x00006ad4	mgesi_WramFifo2ODMA		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
 ge.u	label	0x00006af0	mgesi_Eram2ODMA		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
 ge.u	label	0x00006b13	mgesi_Cram2ODMA		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
-ge.u	label	0x00006b2f	mmo_ReverseComp4Order		located	ucode/ge_handlers.md#mcomporders	mcomporder.S
-ge.u	label	0x00006b9a	mmo_SumRGB2L		located	ucode/ge_handlers.md#msums	msum.S
-ge.u	label	0x00006c0b	mmo_Expand32_2_4		located	ucode/ge_handlers.md#mexpands	mexpand.S
-ge.u	label	0x00006c55	mmo_Expand32_1_4		located	ucode/ge_handlers.md#mexpands	mexpand.S
+ge.u	label	0x00006b2f	mmo_ReverseComp4Order		understood	ucode/ge_compute.md#colour-component-order-mcomporders	Colour component order (mcomporder.S)
+ge.u	label	0x00006b9a	mmo_SumRGB2L		understood	ucode/ge_compute.md#luminance-from-rgb-msums	Luminance from RGB (msum.S)
+ge.u	label	0x00006c0b	mmo_Expand32_2_4		understood	ucode/ge_compute.md#pixel-widening-to-four-words-mexpands	Pixel widening to four words (mexpand.S)
+ge.u	label	0x00006c55	mmo_Expand32_1_4		understood	ucode/ge_compute.md#pixel-widening-to-four-words-mexpands	Pixel widening to four words (mexpand.S)
 ge.u	label	0x00006c9f	mgeb_SwapInGL		understood	ucode/ge_compute.md#pipe-control-and-pixel-stream-end-m_pipecontrols	Pipe control and pixel stream end (m_pipecontrol.S)
 ge.u	label	0x00006cb3	mgeb_SwapOutGL		understood	ucode/ge_compute.md#pipe-control-and-pixel-stream-end-m_pipecontrols	Pipe control and pixel stream end (m_pipecontrol.S)
 ge.u	label	0x00006cc7	mmo_PixEndStream		understood	ucode/ge_compute.md#pipe-control-and-pixel-stream-end-m_pipecontrols	Pipe control and pixel stream end (m_pipecontrol.S)
@@ -2465,9 +2465,9 @@ ge.u	label	0x00008a2d	mmo_DrawMSLinPrim		understood	ucode/ge_compute.md#line-dra
 ge.u	label	0x00008b08	mmo_DrawLinStipplePrim		understood	ucode/ge_compute.md#line-drawing-drawlins	Line drawing (drawlin.S)
 ge.u	label	0x00008db0	mmo_DrawLinPrim		understood	ucode/ge_compute.md#line-drawing-drawlins	Line drawing (drawlin.S)
 ge.u	label	0x00008dc0	mmo_DrawTriPrimOffset		understood	ucode/ge_compute.md#triangle-output-with-polygon-offset-drawtris	Triangle output with polygon offset (drawtri.S)
-ge.u	label	0x0000903c	AA_Response_Max		located	ucode/ge_handlers.md#aas	aa.S
-ge.u	label	0x00009045	AA_Response_Step		located	ucode/ge_handlers.md#aas	aa.S
-ge.u	label	0x00009059	AA_Response		located	ucode/ge_handlers.md#aas	aa.S
+ge.u	label	0x0000903c	AA_Response_Max		understood	ucode/ge_compute.md#antialiased-line-response-aas	Antialiased-line response (aa.S)
+ge.u	label	0x00009045	AA_Response_Step		understood	ucode/ge_compute.md#antialiased-line-response-aas	Antialiased-line response (aa.S)
+ge.u	label	0x00009059	AA_Response		understood	ucode/ge_compute.md#antialiased-line-response-aas	Antialiased-line response (aa.S)
 ge.u	label	0x000090a3	mgesi_ClearVertex		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
 ge.u	label	0x000090c4	mgesi_ClearAccumWord32		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
 ge.u	label	0x000090ea	mgesi_ClearAccumWord		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
@@ -2479,18 +2479,18 @@ ge.u	label	0x0000918f	mgesi_OverlayClearColor		understood	ucode/ge_compute.md#cl
 ge.u	label	0x000091a9	mgesi_ClearIndex		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
 ge.u	label	0x000091b6	mgesi_ClearLA16		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
 ge.u	label	0x000091ce	mgesi_ClearColor		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
-ge.u	label	0x000091e3	mmo_ExtractL12A4		located	ucode/ge_handlers.md#mextracts	mextract.S
+ge.u	label	0x000091e3	mmo_ExtractL12A4		understood	ucode/ge_compute.md#bit-field-extraction-mextracts	Bit-field extraction (mextract.S)
 ge.u	label	0x00009296	mmo_DrawTriPrimPhong		understood	ucode/ge_compute.md#phong-triangle-drawing-phongs	Phong triangle drawing (phong.S)
 ge.u	label	0x0000952c	normalize_and_light		understood	ucode/ge_compute.md#phong-triangle-drawing-phongs	Phong triangle drawing (phong.S)
 ge.u	label	0x00009562	mgesi_GetSpecial		understood	ucode/ge_compute.md#get-queries-gets	Get queries (get.S)
 ge.u	label	0x0000959a	mgesi_GetRaster		understood	ucode/ge_compute.md#get-queries-gets	Get queries (get.S)
 ge.u	label	0x000095cd	mgesi_GetCurrent		understood	ucode/ge_compute.md#get-queries-gets	Get queries (get.S)
-ge.u	label	0x000095e5	mmo_SepConvolve7x7_124		located	ucode/ge_handlers.md#msepconvs	msepconv.S
-ge.u	label	0x00009654	mmo_FastSepConvolve5x5_124		located	ucode/ge_handlers.md#msepconvs	msepconv.S
-ge.u	label	0x000096ac	mmo_SepConvolve5x5_124		located	ucode/ge_handlers.md#msepconvs	msepconv.S
-ge.u	label	0x00009710	mmo_SepConvolve3x3_124		located	ucode/ge_handlers.md#msepconvs	msepconv.S
-ge.u	label	0x00009767	mmo_ColorMatrix		located	ucode/ge_handlers.md#mcolormatrixs	mcolormatrix.S
-ge.u	label	0x00009793	mmo_DecompressZ16		located	ucode/ge_handlers.md#mdecompresss	mdecompress.S
+ge.u	label	0x000095e5	mmo_SepConvolve7x7_124		understood	ucode/ge_compute.md#separable-convolution-set-up-msepconvs	Separable convolution set-up (msepconv.S)
+ge.u	label	0x00009654	mmo_FastSepConvolve5x5_124		understood	ucode/ge_compute.md#separable-convolution-set-up-msepconvs	Separable convolution set-up (msepconv.S)
+ge.u	label	0x000096ac	mmo_SepConvolve5x5_124		understood	ucode/ge_compute.md#separable-convolution-set-up-msepconvs	Separable convolution set-up (msepconv.S)
+ge.u	label	0x00009710	mmo_SepConvolve3x3_124		understood	ucode/ge_compute.md#separable-convolution-set-up-msepconvs	Separable convolution set-up (msepconv.S)
+ge.u	label	0x00009767	mmo_ColorMatrix		understood	ucode/ge_compute.md#colour-matrix-module-mcolormatrixs	Colour matrix module (mcolormatrix.S)
+ge.u	label	0x00009793	mmo_DecompressZ16		understood	ucode/ge_compute.md#depth-decompression-mdecompresss	Depth decompression (mdecompress.S)
 ge.u	label	0x00009805	mmo_Short_Complex_To_16		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
 ge.u	label	0x00009833	mmo_Short_Complex_To_8		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
 ge.u	label	0x00009868	mmo_shortBGRApass		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)

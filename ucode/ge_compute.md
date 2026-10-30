@@ -4990,3 +4990,319 @@ lighting inner loops read from it. Read from the [lightsubroutines.S listing](ge
   0x86 the constant 1 combined by the unit-1 operation 0x51 (0xe3c8, 0xe3d1), and the successor is loaded from control
   word 0x9d (0xe3c3). Its inputs are the ambient, light and material words; it multiplies and adds them, and the
   control words are its output.
+
+## Float-to-integer pixel stage (floattoint.s)
+
+The module the ARM appends for float-to-integer pixel transfers: a set-up that copies a short parameter block, a loop
+that scales and converts 24 components per pass, and a drain for the remainder. Read from the
+[floattoint.s listing](ge_listing/floattoint.s.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_FloatToInt` (`floattoint.s` line 30, at 0x2753): **inferred**,
+  the stage that turns scaled float pixel components into 32-bit integers. It takes the control-memory words 0x1ba-0x1be
+  as input, copied to staging words 0-4 by five moves (0x2754-0x2758), and word 0x1bf, which it loads into register 0
+  (0x275c) as the multiplier; the components arrive on the input stream (A = 0x10). The staging words then go into
+  address registers 3, 0, 4, 1 and 2 (0x275d-0x2761), and the address-unit words of 0x2762-0x2774 add them into the
+  pointers the loop reads and writes through. The first multiplies by register 0 (0x2779-0x277b) lead straight into
+  `mainloop_f2i`; a short input leaves by the `cc` 0x15 transfer at 0x2771 to `epilogue_f2i`. Its output is the stream of
+  integers the loop stores.
+- `umo_FloatToInt` (`floattoint.s` line 30, at 0x2753): **inferred**,
+  the second name of the same first word, so the 41 words 0x2753-0x277b are one set-up block. They consume the six
+  parameter words of control memory 0x1ba-0x1bf, derive the loop's start addresses with integer address arithmetic, and
+  leave register 0 holding the scale that every later multiply uses. Control falls on into `mainloop_f2i` at 0x277c. The block takes the parameter words as input and its output is register 0 and the five address registers that the loop uses.
+- `mainloop_f2i` (`floattoint.s` line 94, at 0x277c): **inferred**,
+  the conversion loop, 24 components per pass. Each two-unit word (`fmul.ftoi`, M = 0x471, for instance 0x277d and
+  0x277f-0x2789) multiplies a component read from the stream (D = 1-0x18) by register 0 in unit 2, while unit 1 converts
+  the product of the word before with code 0x71, the float-to-integer conversion. The four conversion-only words (0x278c,
+  0x2792, 0x2795, 0x2797) take products that have no new multiply behind them. The results are stored with `r213` = 3 at
+  E = 0-0x17 (0x277d-0x2798), and the relative transfer at 0x2790 on `cc` 0x14 returns to 0x277c. Its input is the 24 stream components of each pass, and it multiplies each by the scale.
+- `epilogue_f2i` (`floattoint.s` line 126, at 0x2799): **inferred**,
+  the drain that converts the last components once the loop has run out of whole passes. It reads the remaining stream
+  words (D = 0-0x16 at 0x279a-0x27c7), multiplies each by register 0 and converts it, interleaving a count test (`atest`
+  with C = 2 and F stepping 0x20-0x35) between each pair. Its output is the last integers, stored at E = 0-0x16 (the
+  last at 0x27cb); the group-31 transfer at 0x27c3 ends the command after the delay-slot words 0x27c4-0x27cb. Its input is the leftover stream components, which it scales and converts.
+
+## Separable 3 x 3 convolution (usepconv3x3.s)
+
+The inner routines of the separable 3 x 3 filter, entered by a jump from `mmo_SepConvolve3x3_124`: one head block, a
+row-pass loop and a column-pass loop that returns to the caller. Four components per pixel are filtered together
+(D = 0-3, kernel words through address registers 3-6). Read from the [usepconv3x3.s listing](ge_listing/usepconv3x3.s.lst)
+(`ge.u`, IRIX 6.5.30m).
+
+- `uSepConv3_124` (`usepconv3x3.s` line 68, at 0x29a2): **inferred**,
+  the first products of the row pass. Its seven words take the first three pixel rows through address registers 8, 9
+  and 0xa (A = 8, 9, 0xa) as operands and multiply them by the registers named in `r148` (4, 5 and 6 at 0x29a2, 0x29a5,
+  0x29a8) and by the kernel word fetched from control memory at address register 3 plus 2 (0x29a4). The multiply-add at
+  0x29a7 adds an earlier product, and words 0x29a3 and 0x29a6 set address registers 0xa and 0xb to 8 and 9 plus 2. It has
+  no transfer and runs into `RowConv3Loop`. Its results are the first partial products, left for the row loop.
+- `RowConv3Loop` (`usepconv3x3.s` line 80, at 0x29a9): **inferred**,
+  the row filter, one pixel group per pass. Sixteen words of multiply and multiply-add combine the rows read through
+  address registers 8-0xb with the kernel values, storing four filtered words through registers 8, 9, 0xa and 0xb
+  (0x29ab, 0x29ae, 0x29b1, 0x29b4). The relative transfer at 0x29ac (group 4, `cc` 0x11) goes back three words to 0x29a9.
+  When it falls out, 0x29b5-0x29b8 multiply the words at address register 7 (D = 0-3) by the column kernel words read from
+  control memory (address registers 3-6 plus 3), the opening products of the column pass. It takes the pixel rows as input, multiplies and accumulates them against the kernel values, and its results are the four stored row-filtered words per pass.
+- `ColumnConv3Loop` (`usepconv3x3.s` line 108, at 0x29b9): **inferred**,
+  the column filter, which sums three filtered rows per component. Twelve multiply-add words read the row buffers
+  through address registers 0xe and 0xf (D = 0-3) and chain each product onto the forwarded sum (`r128` = 0x2c and 0x20);
+  words 0x29ba, 0x29bb, 0x29bf and 0x29c0 advance address registers 7, 2, 0xe and 0xf by 4, one pixel. The result is four
+  output words stored at E = 0-3 through address register 2 (0x29c1-0x29c4), each a final multiply-add with a kernel word
+  from control memory plus 3. The transfer at 0x29bc loops back three words on `cc` 0x11, and the return at 0x29bd leaves
+  to the caller. It takes the row-filtered words as input and accumulates the three-row sums.
+
+## Separable 5 x 5 convolution (usepconv5x5.s)
+
+The inner routines of the separable 5 x 5 filter in its ordinary and fast forms. The ordinary form works on stream words
+that are already float; the fast form converts integer input as it goes and has its own head, loop and drain. Read from
+the [usepconv5x5.s listing](ge_listing/usepconv5x5.s.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `uSepConv5_124` (`usepconv5x5.s` line 78, at 0x29c6): **inferred**,
+  the head of the ordinary row pass. Nine words multiply the first row words (A = 8 at 0x29c6-0x29ca, A = 9 at
+  0x29cb-0x29ce) by kernel values, five of which are fetched from control memory at address register 3 plus 1, 2 and 4
+  (0x29c7, 0x29c8, 0x29ca) and at register 4 plus 1 and 2 (0x29cc, 0x29cd). The multiply-adds at 0x29cb and 0x29cd start
+  the sums, and the address-unit parts of 0x29c6 and 0x29cb set address registers 9 and 0xa to 8 and 9 plus 1. It runs
+  into `RowConv5Loop`. It takes the first row words as input, multiplies them by kernel values, and its results are the opening partial sums for the row loop.
+- `RowConv5Loop` (`usepconv5x5.s` line 91, at 0x29cf): **inferred**,
+  the five-tap row filter. Each pass accumulates products across address registers 8-0xb with multiply-adds
+  (0x29cf-0x29d9 and 0x29db-0x29e2) and stores four filtered words through registers 8, 9, 0xa and 0xb (0x29d3, 0x29d8,
+  0x29dd, 0x29e2). The group-4 transfer at 0x29da repeats it 11 words back to 0x29cf. After the loop, 0x29e3-0x29e7 reload
+  address registers 8-0xb from the words at address register 1 plus 1-4 and register 0 from staging word 0x14, and
+  0x29e8-0x29eb multiply the words at register 7 by the first column kernel words (control memory at registers 3-6 plus 5). It takes the row words as input, accumulates the five-tap sums, and its results are four stored words per pass.
+- `ColumnConv5Loop` (`usepconv5x5.s` line 133, at 0x29ec): **inferred**,
+  the five-tap column filter. Multiply-adds (0x29ec-0x29fb) accumulate the five row buffers at address registers 8-0xb
+  and 7 against kernel words read from control memory at registers 3-6 plus 6 and 7 (0x29ec-0x29f3), advancing
+  the pointers 2, 7-0xb by 4 (0x29f4-0x29f6, 0x29f9-0x29fb). It stores four output words at E = 0-3 through address register 2
+  (0x29fc-0x29ff), loops back 11 words at 0x29f7 on `cc` 0x11, and returns at 0x29f8. It takes the row-filtered words as input and accumulates the five-row sums.
+- `uFastSepConv5_124` (`usepconv5x5.s` line 188, at 0x2a01): **inferred**,
+  the start of the fast form, which takes integer pixel input. It converts the first sixteen stream words (four pixels,
+  four components) to float with `itof` and the multiply-and-convert word `fmul.itof` (M = 0x473, 0x2a01-0x2a16), storing
+  them at offsets 0-0xf of the row buffer at address register 8. Words 0x2a18-0x2a2f then begin the five-tap
+  multiply-add chain while the next pixel is converted (`fmul.itof` under `cc` 0x91 at 0x2a1e, 0x2a24 and 0x2a2a), and
+  control runs into `FastRowConv5Loop`. Its results are the sixteen converted floats left in the row buffer.
+- `FastRowConv5Loop` (`usepconv5x5.s` line 243, at 0x2a30): **inferred**,
+  one pass converts the four integer components of the next pixel (the `fmul.itof` words 0x2a30, 0x2a36, 0x2a3c, 0x2a42)
+  and also runs the five-tap row multiply-adds. The converted values are stored into the row buffers by the words at
+  0x2a32, 0x2a38, 0x2a3e and 0x2a44, and the filtered words by 0x2a34, 0x2a3a, 0x2a40 and 0x2a46. The relative transfer at
+  0x2a3f goes back to 0x2a30 on `cc` 0x11. It takes four integer components per pass as input, converts them, and its results are the stored float copies and four filtered words.
+- `FastRowConv5Epilog` (`usepconv5x5.s` line 280, at 0x2a48): **inferred**,
+  the hand-over between the fast row pass and its column pass. It reloads address registers 8-0xb from the words at
+  address register 1 plus 1-4 (0x2a48-0x2a4c), register 0 and register 0x10 from staging words 0x14 and 0x10 (0x2a4d,
+  0x2a4e), and issues four multiplies of the words at register 7 by the first column kernel words (0x2a4f-0x2a52, plus 5).
+  The conditional group-31 transfer at 0x2a4a, on `cc` 0x10, leaves for `mmo_PixLineNextGE` at 0xa6ad. It takes the pointer words at address register 1 as input and its results are the reloaded address registers and the opening column products, which it multiplies.
+- `FastColumnConv5Loop` (`usepconv5x5.s` line 301, at 0x2a53): **inferred**,
+  the column filter of the fast form, the same in shape as `ColumnConv5Loop`: it accumulates five rows of the converted
+  data per output component with multiply-adds (0x2a53-0x2a62), stores four results at E = 0-3 through address register 2
+  (0x2a63-0x2a66), repeats 11 words back at 0x2a5e on `cc` 0x11 and returns at 0x2a5f. It takes the row-filtered words as input and accumulates the five-row sums.
+
+## Separable 7 x 7 convolution (usepconv7x7.s)
+
+The inner routines of the separable 7 x 7 filter: a head block that fetches the first kernel values, a row loop with seven
+taps and a column loop that returns to the caller. Read from the [usepconv7x7.s listing](ge_listing/usepconv7x7.s.lst)
+(`ge.u`, IRIX 6.5.30m).
+
+- `uSepConv7_124` (`usepconv7x7.s` line 82, at 0x2a68): **inferred**,
+  the head of the row pass. Eleven words multiply the first row words (A = 8 and 9) by kernel values, five of them fetched
+  from control memory at address register 3 plus 1, 2, 4, 5 and 6 (`r95` = 0x13 at 0x2a69, 0x2a6a, 0x2a6c, 0x2a6d, 0x2a6e) and
+  two more at register 4 plus 1 and 2 (0x2a70, 0x2a71). The multiply-adds at 0x2a6d, 0x2a6f and 0x2a71 start the sums, and
+  the word at 0x2a6b stores through the staging pointer (`r215` = 3, B = 0x18). It runs into `RowConv7Loop`. It takes the first row words as input, multiplies them by kernel values, and its results are the opening partial sums for the row loop.
+- `RowConv7Loop` (`usepconv7x7.s` line 97, at 0x2a73): **inferred**,
+  the seven-tap row filter. Each pass accumulates products across address registers 8-0xb with multiply-adds
+  (0x2a73-0x2a8e) and stores four filtered words through registers 8, 9, 0xa and 0xb (0x2a79, 0x2a80, 0x2a87, 0x2a8e). The
+  group-4 transfer at 0x2a86 goes back to 0x2a73. After the loop, 0x2a8f-0x2a94 reload address registers 8-0xd from the
+  words at register 1 plus 1-6, 0x2a95 loads register 0, and 0x2a96-0x2a99 multiply the words at register 7 by the first
+  column kernel words (control memory at registers 3-6 plus 7). It takes the row words as input, accumulates the seven-tap sums, and its results are four stored words per pass.
+- `ColumnConv7Loop` (`usepconv7x7.s` line 149, at 0x2a9a): **inferred**,
+  the seven-tap column filter. Multiply-adds read the row buffers at address registers 8-0xd against kernel words from
+  control memory (registers 3-6 plus 8, 9, 0xa and 0xb, 0x2a9a-0x2aa6) and add each product into the sums, advancing the
+  buffer pointers 7-0xd by 4 words, one pixel (0x2aa7-0x2ab1). It stores four output words at E = 0-3 through address
+  register 2 (0x2ab2-0x2ab5), loops back at 0x2aad on `cc` 0x11 and returns at 0x2aaf; the two words after the final store
+  (0x2ab6, 0x2ab7) load address registers 0x1b and 0x16 with the immediate 0x1e. It takes the row-filtered words as input and accumulates the seven-row sums.
+
+## Texture state handlers (texture.S)
+
+The handlers of `texture.S` send texture-state words to the raster boards through the bus-output addresses 0x1f4-0x1f8
+and keep engine words 3 and 0xd and external-memory words 7-9 in step. Read from the
+[texture.S listing](ge_listing/texture.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mgebi_TextureScaleBias` (`texture.S` line 790, at 0x424e): **inferred**,
+  writes three raster-board registers from three operand words. It takes the operands (A = 0x1f, D = 1-3 at 0x4264,
+  0x4268, 0x426c) and stages the constants 0x70000, 0xffffffff twice and the register address words 0x1541850, 0x1551851
+  and 0x1561852 in staging words 1-8 (0x424f-0x425d). It then sends three shadowed register writes, each the select
+  constant 0x70000, a mask, the address word and the operand, as twelve moves (0x4261-0x426c) through the bus-output
+  addresses selected at 0x425a, 0x425f and 0x426d (0x1f5, 0x1f8 and 0x1f4), and the closing word goes to 0x1f4 at 0x426e.
+  It also ANDs engine word 3 with 0x1000000 (0x4250) and writes word 3 back under `cc` 3 at 0x4260. It combines the staged select, mask and address constants with the operands into the bus words.
+- `mgesi_FillTMLoadFifo` (`texture.S` line 721, at 0x4278): **inferred**,
+  pushes a fixed run of zero words, ended by an all-ones word, to raster-board register 0x7fc0. It keeps its one operand
+  word in address register 0x1a (0x4278) and in staging word 0 (0x427b), writes the index 0x7fc0 to bus address 0x1f7
+  (0x427e), and sends the zero register (`r148` = 0x3c0) to 0x1f6 (0x4281) and to 0x1f5 in a run of thirteen moves
+  (0x4283-0x428f). The last word is the bitwise not of zero (0x4290), and staging word 0 goes to 0x1f4 at 0x4292; the
+  group-31 transfer at 0x428a ends the command. Its output is the run of bus words, with the all-ones word produced by the not; it selects register 0x1e as the zero source.
+- `mgesi_RestoreTextureAddress` (`texture.S` line 644, at 0x4293): **inferred**,
+  replays a saved texture-address table to the raster board. It reads the external-memory word 0x9cd (0x4293), keeps it in
+  staging word 1 (0x429a), points address register 0x13 at 0x9ce (0x42a9) and sets register 0x12 (0x42ab). The loop at
+  0x42ae-0x42c5 reads twelve consecutive external-memory words per pass (offsets 0-0xb, using the three read forms
+  `r95` = 0x14, 0x15 and 0x16) and forwards them as bus-output stores (0x42ba, 0x42c0, 0x42c6, 0x42cc); register 0x12
+  is stepped at 0x42c3 and the group-7 transfer at 0x42c5 repeats the pass. The group-31 transfer at 0x42ca closes the
+  command after the final 0x1f4 write at 0x42d2. Its input is the table in external memory 0x9ce onward, and it selects twelve words per pass to forward.
+- `mgebi_Bind2dMipmapTexture` (`texture.S` line 367, at 0x42d3): **inferred**,
+  builds the texture-address table of a 2-D mipmapped texture from the command's operand words (A = 0x1f, D up to 0x15)
+  and sends the matching raster writes. It stages register-address constants such as 0x1471000, 0x14b0c05, 0x14a0c04,
+  0x14f13d5, 0x15a0c02 and 0x158101e (0x42d8-0x42e4); per level it masks fields with 0xff, shifts them down (`srl`) and up
+  (`sll`), and ORs them with level tags 0x10040000-0x100b0000 (0x430b, 0x4328, 0x4343, 0x434c, 0x4367, 0x4373, 0x438c,
+  0x4395). The packed words are stored to external memory 0x9ce-0x9dd (0x4322-0x43a1) and the header word at 0x9cd (0x43a2),
+  with predicated bus stores in between. Transfers on `cc` 0x2 (0x42e1) and 0x4 (0x432d, 0x4351, 0x4379) skip ahead when
+  the level count is used up, and the closing word goes to 0x1f4 at 0x43a4. Its output is the sixteen packed table words and the header, which it combines from the operand fields.
+- `mgeb_SkipNextTextureAddr` (`texture.S` line 301, at 0x43ae): **inferred**,
+  sets a flag bit in engine word 3 and steps past the operand words that carry the next address. It takes one operand
+  word into address register 0x1a (0x43ae), steps past two more (0x43b0, 0x43b1), reads word 3 (0x43af), combines it with
+  the staged constant 0x1000000 (0x43b2) by unit-1 code 0x51 (0x43b3) and returns the result to word 3 with the store at
+  0x43bc. It sends no bus word; the group-31 transfer at 0x43b4 ends the command.
+- `mgebi_UpdateTexturing` (`texture.S` line 170, at 0x43bd): **inferred**,
+  refreshes the raster-board and engine texture state after a mode change. It stages 0x1000000, 0x70000, 0x2000, 0xf494,
+  0x1000, 0x4000 and the raster address words 0x1493fd4, 0x1483fd5 and 0x159101f in staging words 1-0xe (0x43be-0x43d4),
+  combines the operand words (A = 0x1f, D = 1-3) with masks and shifts (`and` 0x43c9, `sll` 0x43e1-0x43e4), and writes engine
+  words 0xd and 3 (0x43d7, 0x43d8) and external-memory words 7, 8 and 9 (0x43ea, 0x43ec, 0x43ef). Its raster output is a
+  run of predicated bus-output writes (0x43db-0x43e9, to 0x1f8, 0x1f5 and 0x1f4); the group-31 transfer at 0x43ea ends
+  the command.
+- `mgebi_Texture` (`texture.S` line 85, at 0x43f3): **inferred**,
+  sets the raster board's texture register and the engine's texturing flags from one operand word. It keeps the operand in
+  address register 0x1a (0x43f3) and stages 0x70000, 1, 0x15c1500, 0x1243fd3 and the engine address 0xf494 (0x43f7-0x4402).
+  Through 0x1f8 and 0x1f5 it sends a shadowed write (select 0x70000, mask 1, address word 0x15c1500 and the operand at
+  0x4401) and a second address-and-value pair (0x1243fd3 at 0x4404, then 0x4406). It reads engine word 7, ORs it with 1 and
+  applies code 0x51 (0x4407, 0x4408), stores the result back (0x4410, 0x4411), stores to engine word 0xd (0x4413), and ends
+  with a 0x1f4 write at 0x440a and the group-31 transfer at 0x440b. It combines the staged address words with the operand, and ORs word 7 with 1.
+
+## Colour component order (mcomporder.S)
+
+A pixel-path module that rewrites four-component pixels in place. Read from the
+[mcomporder.S listing](ge_listing/mcomporder.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_ReverseComp4Order` (`mcomporder.S` line 65, at 0x6b2f): **inferred**,
+  swaps the positions of the four words in each pixel (D = 3, 2, 1, 0 become E = 0, 1, 2, 3), for example RGBA to ABGR.
+  It takes the three words the ARM wrote to external memory 0xbae-0xbb0 (read at 0x6b2f, 0x6b37, 0x6b39) and keeps the last
+  two in address registers 0xf and 0xd (0x6b48, 0x6b49). The main loop 0x6b4f-0x6b6f moves 32 stream words, eight pixels,
+  per pass with `mov` words that exchange offsets (D = 0x1f, 0x1e... to E = 0x1c, 0x1d...), all stored through address
+  register 0x10 and repeating on `cc` 0x14 at 0x6b6f. A one-pixel loop (0x6b84-0x6b88) takes the remainder, and the return
+  at 0x6b91 restores register 0x10 from register 0xe in its delay slot (0x6b96). Its output is the same pixels with components exchanged; it selects each source offset by the fixed pattern of the moves.
+
+## Luminance from RGB (msum.S)
+
+A pixel-path module that collapses colour to one value. Read from the [msum.S listing](ge_listing/msum.S.lst) (`ge.u`,
+IRIX 6.5.30m).
+
+- `mmo_SumRGB2L` (`msum.S` line 78, at 0x6b9a): **inferred**,
+  adds the first three words of each four-word pixel and caps the sum at 1.0. Its input is the stream words (A = 0x10) and
+  the parameter words from external memory 0xbb1-0xbb3 (read at 0x6b9a, 0x6ba2, 0x6ba4); the constant 0x3f800000 (1.0) is
+  staged at 0x6ba6 and loaded into register 0x18. For each pixel the loop at 0x6bba adds word 0 and word 1 (0x6bbb), adds
+  word 2 to that (0x6bca onward) and takes the minimum with register 0x18 (`fmin`, M = 0x6e6, 0x6bce). The result is stored
+  over the pixel's first word at E = 0, 4, 8 and so on (0x6bce-0x6bd9, eight pixels per pass). The loop transfers on `cc`
+  0x14 at 0x6bda, a one-pixel loop (0x6bef-0x6bf9) takes the rest, and the return at 0x6c02 leaves.
+
+## Pixel widening to four words (mexpand.S)
+
+Two pixel-path modules that widen one- or two-word pixels to four. Read from the [mexpand.S listing](ge_listing/mexpand.S.lst)
+(`ge.u`, IRIX 6.5.30m).
+
+- `mmo_Expand32_2_4` (`mexpand.S` line 132, at 0x6c0b): **inferred**,
+  turns each luminance-and-alpha pair into a four-word quad (L, L, L, A). It takes the control words 0x1b0-0x1b3 (read at
+  0x6c0d-0x6c17) into staging words 1-4 and address registers 0xd, 0xe and 0xf for the counts and pointers. The loop
+  0x6c28-0x6c48 reads 16 stream words (D = 0-0xf) and stores 32: word 2k becomes E = 4k, 4k+1 and 4k+2, and word 2k+1
+  becomes E = 4k+3, all through address register 0xf. The loop transfer is at 0x6c48 on `cc` 0x14, and the group-31 transfer
+  at 0x6c4c ends the command. Its output is the 32 stored words per pass; it selects source word 2k for three slots and 2k+1 for the fourth.
+- `mmo_Expand32_1_4` (`mexpand.S` line 43, at 0x6c55): **inferred**,
+  turns each single-word pixel into a quad whose first three words repeat the value and whose fourth is a constant. It
+  consumes the control words 0x1b0-0x1b3 as above, and also 0x1b7 (0x6c67), which it stores in staging word 0 as the
+  fourth word. The loop 0x6c72-0x6c92 reads eight stream words (D = 0-7) and writes 32 words: each input word to
+  E = 4k, 4k+1 and 4k+2, with staging word 0 (A = 0x18) as E = 4k+3 (0x6c75, 0x6c79 and so on). The loop transfer is at 0x6c92
+  and the group-31 transfer at 0x6c96 ends the command. Its output is the 32 stored words per pass; it selects the input word for three slots and the staged constant for the fourth.
+
+## Antialiased-line response (aa.S)
+
+Small register-only subroutines called by the antialiased-line table generators; they take their operands in registers
+and return their results in registers 0x1b and 0x1c. Read from the [aa.S listing](ge_listing/aa.S.lst) (`ge.u`, IRIX
+6.5.30m).
+
+- `AA_Response_Max` (`aa.S` line 337, at 0x903c): **inferred**,
+  the two-word exit that returns register 0x1f in both result registers. The word in the return's delay slot (0x903d) is a
+  unit-2 move and a unit-1 move under `cc` 0x291 that copy register 0x1f into registers 0x1c and 0x1b, and the return at
+  0x903c hands them back. No other word transfers into it. Its input is register 0x1f, and it selects that value for both results.
+- `AA_Response_Step` (`aa.S` line 264, at 0x9045): **inferred**,
+  one stage of the response function. Two float subtracts (0x9045, 0x9046) take differences of registers 0x15 and 0x14 and
+  0x15 and 0x13; two adds (0x9049, 0x904a) combine the results with staging word 0 and write registers 0x1c and 0x1b; two more
+  subtracts (0x904c, 0x904d) follow. Moves under `cc` 0x111 then write the zero register 0x1e (`r198` = 0, at 0x904b and
+  0x904e) or register 0x1f (`r198` = 1, at 0x904f and 0x9051) as the result. The result is registers 0x1b and 0x1c, and the
+  return at 0x9050 leaves. Its inputs are registers 0x13-0x15 and staging word 0.
+- `AA_Response` (`aa.S` line 133, at 0x9059): **inferred**,
+  computes the filter response of an antialiased line. Its inputs are registers set by the caller: the subtracts at
+  0x9059 and 0x905c write registers 0x16 and 0x17, and the adds at 0x905e and 0x9061 write 0x18 and 0x19. It then spends
+  eighteen float subtracts, sixteen adds and sixteen multiplies in all (0x9063-0x9098), with unit-1 code 0x6a at 0x905d,
+  0x9060, 0x9084 and 0x9085, and conditional words under `cc` 0x111 (0x905f, 0x9062, 0x9083, 0x9086, 0x908f, 0x9090, 0x9094,
+  0x9096, 0x9099) that write the results. They end in registers 0x1b and 0x1c, and the return at 0x909a leaves.
+
+## Bit-field extraction (mextract.S)
+
+A pixel-path module that splits packed pixel words into separate components. Read from the
+[mextract.S listing](ge_listing/mextract.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_ExtractL12A4` (`mextract.S` line 71, at 0x91e3): **inferred**,
+  splits each packed 16-bit word, a 12-bit and a 4-bit field, into two output words. It takes the external-memory words
+  0xbc0-0xbd4 as input (reads at 0x91e3-0x920b): the last sixteen become staging words 0-0xf, the shift counts and masks,
+  and four of the words are loaded into address registers 0xc, 0xe, 0xf and 0xd (0x91f7-0x91fd). In the loop 0x921b-0x9263
+  each of eight input words is shifted right by a staged count (`srl`, M = 0x6dd) and ANDed with its mask (`and`, M = 0x6d0,
+  0x923d-0x9262), giving 16 output words stored at E = 0-0xf through address register 0xf. A one-word loop (0x9278-0x9284)
+  takes the remainder, and the group-31 transfer at 0x928d ends the command. It shifts and masks each input word into its two fields.
+
+## Separable convolution set-up (msepconv.S)
+
+The command handlers that set a separable convolution up: each reads layout words from control memory 0x112-0x11e, writes
+four per-component kernel addresses into address registers 3-6, copies kernel values into registers, and jumps to the
+inner routine of the matching size. Read from the [msepconv.S listing](ge_listing/msepconv.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_SepConvolve7x7_124` (`msepconv.S` line 1190, at 0x95e5): **inferred**,
+  the set-up of the 7 x 7 filter. It moves control words 0x112, 0x115, 0x117, 0x119 and 0x11b-0x11e into staging
+  (0x95e7-0x95ef) and combines them by integer adds (0x95ed-0x9605) into the buffer addresses and counts held in address
+  registers and staging words. Four kernel addresses are written into address registers 3-6 (0xda, 0xe8, 0xf6 and 0x104, 14
+  words apart, at 0x9639, 0x9638, 0x9635, 0x9634). The kernel values are read through control words 0x121-0x124 and address
+  registers 3-6 into registers 0-0x18 (0x963a-0x9653), a short input skips the pipelined part on `cc` 0x14 (0x95fd), and
+  the jump at 0x964b goes to `uSepConv7_124`. Its results are the address registers, staging words and kernel registers that the inner routine consumes.
+- `mmo_FastSepConvolve5x5_124` (`msepconv.S` line 769, at 0x9654): **inferred**,
+  the set-up of the 5 x 5 filter for integer input. It reads layout words 0x112, 0x115, 0x117-0x119 and 0x11c-0x11e as its
+  input and combines them by integer adds (0x965b-0x966a) into buffer addresses and counts. The kernel addresses in
+  address registers 3-6 are 0xe0, 0xea, 0xf4 and 0xfe, ten words per component (0x9655, 0x965b, 0x965d, 0x965e), and the
+  kernel values go into registers 8-0x18 (0x9684-0x96ab). A short input skips ahead on `cc` 0x14 (0x966c), and the jump at
+  0x96a3 goes to `uFastSepConv5_124`. Its results are the address registers, staging words and kernel registers that the inner routine consumes.
+- `mmo_SepConvolve5x5_124` (`msepconv.S` line 424, at 0x96ac): **inferred**,
+  the set-up of the 5 x 5 filter for float input. It reads the layout words 0x112, 0x115, 0x117, 0x119 and 0x11b-0x11e from
+  control memory (0x96ad-0x96b6), combines them by integer adds (0x96b4-0x96c1) into the address and count words, and
+  writes the four kernel addresses 0xe0, 0xea, 0xf4 and 0xfe into address registers 3-6 (0x96e1, 0x96e6, 0x96f3, 0x96f7). A
+  short input skips the pipelined part on `cc` 0x14 (0x96c2). The kernel values are copied into registers 4-0x16
+  (0x96f9-0x970f) and the jump at 0x9707 goes to `uSepConv5_124`. Its results are the address registers, staging words and kernel registers that the inner routine consumes.
+- `mmo_SepConvolve3x3_124` (`msepconv.S` line 107, at 0x9710): **inferred**,
+  the set-up of the 3 x 3 filter. It stages control words 0x112, 0x115, 0x117-0x119 and 0x11b-0x11e (0x9711-0x9721) and adds
+  them into the buffer addresses and counts (0x971c-0x972d). The four kernel addresses are 0xe0, 0xe6, 0xec and 0xf2, six
+  words per component (0x9750, 0x974c, 0x9752, 0x9738), the kernel values go into registers 4-0x18 (0x9754-0x9766), a short
+  input skips ahead on `cc` 0x14 (0x9725), and the jump at 0x975e goes to `uSepConv3_124`. Its results are the address registers, staging words and kernel registers that the inner routine consumes.
+
+## Colour matrix module (mcolormatrix.S)
+
+The colour-matrix pixel-path module that precedes the shared multiply loop. Read from the
+[mcolormatrix.S listing](ge_listing/mcolormatrix.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_ColorMatrix` (`mcolormatrix.S` line 55, at 0x9767): **inferred**,
+  loads the 4 x 4 matrix products the per-pixel loop will use. It takes control words 0x18b, 0x18e and 0x18f (read at 0x9768,
+  0x9769, 0x976f) and eight external-memory words 0xbda-0xbe1 (0x976a-0x9778) as input; the eight words go into registers
+  0xc-0x13 (0x9771-0x977f) and the control words into staging, then into address registers 3 and 4. The sixteen matrix
+  words at control 0x190-0x19f are each multiplied by one of registers 0xc-0xf (`r148` = 0x180, 0x1a0, 0x1c0, 0x1e0) in
+  four groups of four (`fmul`, 0x9780-0x9792), and the products go to registers 0-0xf. The jump at 0x978a goes to
+  `uColorMatrix` (0x298a), which runs the per-pixel loop. Its results are the sixteen products in registers 0-0xf, which it computes for the loop.
+
+## Depth decompression (mdecompress.S)
+
+A pixel-path module that expands 16-bit depth values to 32 bits. Read from the
+[mdecompress.S listing](ge_listing/mdecompress.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_DecompressZ16` (`mdecompress.S` line 68, at 0x9793): **inferred**,
+  expands compressed 16-bit depth words into 32-bit depth values. It takes the four parameter words the ARM wrote to external
+  memory 0xbf2-0xbf5 (read at 0x9793, 0x9795, 0x9797, 0x979f) and stages 0xfffff000, 0xffffe000, 0x13, 6 and 0xfff in staging
+  words 5, 4, 2, 0 and 3 (0x9798-0x979c). Each pass takes eight stream words (D = 0-7): the `and` and `srl` words 0x97b6-0x97c6
+  split a word into fields, and `sll`, `or` and `isub` words (0x97c3-0x97fa) combine them. The eight values are stored at
+  E = 0-7 through address register 0xf, some by conditional stores (`r213` = 2, for example 0x97cd). The loop repeats on
+  `cc` 0x14 at 0x97fb, and the group-31 transfer at 0x97fc ends the command. Its result is eight 32-bit depth values per pass, which it unpacks from the 16-bit inputs and combines with shifts.
