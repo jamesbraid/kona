@@ -18,3 +18,7 @@ irixhistory
 
 # Proprietary IRIX binaries (see IRIX_FILES.md)
 root/
+
+# Ghidra module build output and test dumps
+/sleigh/kona-ge/data/languages/*.sla
+/.cache/

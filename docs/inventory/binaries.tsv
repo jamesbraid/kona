@@ -566,7 +566,7 @@ usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x576_50i.vfo	microcode	board-microcode	data	
 usr/gfx/ucode/KONA/dg4/vfo/README	microcode	board-microcode	data	-	86997	bf7cb03493b3b264		0	0	0	understood	ucode/dg.md#the-listing-and-the-per-file-values-dg4vfo	The listing and the per-file values (`dg4/vfo/`)
 usr/gfx/ucode/KONA/dgo1/dgo.mcs	microcode	board-microcode	data	-	93912	ec92153b2b6da903		0	0	0	named-only	ucode/dg.md#option-board-image-dgo1dgomcs	Option-board image (`dgo1/dgo.mcs`)
 usr/gfx/ucode/KONA/ge.hex	microcode	board-microcode	data	-	1563025	6258b8ae9e67dd32		0	0	0	undocumented		
-usr/gfx/ucode/KONA/ge.u	microcode	board-microcode	data	-	2526129	89066cc1dc88d87f		0	0	0	named-only	ucode/ge.md#geu-record-layout-what-is-established	ge.u record layout, what is established
+usr/gfx/ucode/KONA/ge.u	microcode	board-microcode	data	-	2526129	89066cc1dc88d87f		0	0	0	named-only	docs/tooling.md#build-and-run	Build and run
 usr/gfx/ucode/KONA/ge11.u	microcode	board-microcode	data	-	1275741	95724af2dc9dc5be		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
 usr/gfx/ucode/KONA/ge_kpm.hex	microcode	board-microcode	data	-	4650	617b3f0afd02ae0e		0	0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
 usr/gfx/ucode/KONA/ge_symbols	microcode	board-microcode	data	-	67100	67126e0f66aea936		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
