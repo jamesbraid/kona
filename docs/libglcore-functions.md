@@ -1176,3 +1176,170 @@ The state setters, matrix operations and the other short `__glkonim_` senders ar
   **Established.** glFlushRasterSGIX sends the raster flush as token 0x1cc followed by one zero word, two stores, and does not wait for the pipe.
 - `__glkonim_ReferencePlaneSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda670b0, 44 bytes):
   **Established.** glReferencePlaneSGIX: token 0x1bd followed by the four doubles of the plane equation, in array order.
+
+## Support routines of the Kona driver
+
+Small helpers of the host-side driver: the hyperpipe stubs, the kernel memory calls, the pixel-mode wrappers around the list-execution forms, and the per-element senders of the vertex-array paths. Addresses and sizes are those of the N32 build; `__glKon_ioctl` is the driver call whose request numbers are catalogued in [kernel.md](kernel.md).
+
+- `BindHyperpipe` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94a150, 128 bytes):
+  **Established.** Binds the context to a hyperpipe. A second argument of -1 unbinds: it calls `__glkon_UnbindHyperpipe` with the number stored in the context word at +0x8c84. Any other value calls `__glkon_BindHyperpipe` and then stores the number in that same word.
+- `QueryHyperpipeBestAttrib` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94a1d0, 128 bytes):
+  **Established.** Returns 0x5c when the bound-pipe word at ctx +0x8c84 is negative or when the third argument is not 1; otherwise it calls `__glkon__QueryHyperpipeBestRect` with the remaining arguments and returns its result.
+- `HyperpipeAttrib` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94a300, 120 bytes):
+  **Established.** Returns 0x5c unless the bound-pipe word at ctx +0x8c84 is non-negative and the third argument equals 1. In that case it calls `__glkon__HyperpipeRect` with the other arguments and returns its result.
+- `__glSdramFree` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94a450, 8 bytes):
+  **Established.** Returns 1 and does nothing else, so freeing a block of the SDRAM pool has no effect.
+- `__glSdramInit` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94a5e0, 28 bytes):
+  **Established.** Initialises a pool record: the words at +0, +4 and +8 are cleared and the word at +0x10 is set to 0x400, and it returns 1.
+- `__glLockedMemoryFree` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94ad20, 64 bytes):
+  **Established.** Releases a locked-memory block by calling `munmap` with the address at +0 and the length at +0xc of the record. A negative result prints "munmap" through `perror`. It returns 1 either way.
+- `__glLockedMemoryMemmove` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94b020, 52 bytes):
+  **Established.** Jumps through a library entry to an external copy routine with its own arguments, so a locked-memory move is the system's memmove.
+- `__glKonExecuteIDMA` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94b0f0, 56 bytes):
+  **Established.** Replays a list of immediate-DMA word pairs: for the count at +0x1c of the second argument it reads two words at a time from the array at +0x14 and writes token 0x16e and the two words to the command port.
+- `__glkonSPBfree` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94bea0, 128 bytes):
+  **Established.** Frees a display-list block. It asks `__glDlistIsBlock` about the handle at +0x10 of the record that `ctx` +0x133c points to. If that accepts it, the block goes to `__glDlistTransientBlock` with the second argument; if not, the function pointer at `ctx` +0x13a0 is called with the context and the second argument.
+- `__glkonDlistOptimizer` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94c110, 8 bytes):
+  **Established.** An empty function: it returns immediately, so the Kona display-list path applies no optimisation.
+- `__glkon_DlistInit` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94c340, 92 bytes):
+  **Established.** Resets the display-list state: it clears the four process words at 0x1028 to 0x1034, writes 2 to `ctx` +0x13d4 and clears the words at +0x13cc, +0x13d0, +0x13d8 and +0x13dc, then calls `__glSPDlistSpace` with 0.
+- `__glkonle_SetBegin` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94cd00, 16 bytes):
+  **Established.** Sets the begin flag at process address 0x1018 to 1 and returns its argument unchanged.
+- `__glkonSPValidateLocalDlist` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94cf60, 48 bytes):
+  **Established.** Calls `__glKonSdramForceSwapIn` and returns 1 if that returned non-zero and 0 if it returned zero.
+- `__glkonSPValidateDlist` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94d150, 88 bytes):
+  **Established.** Calls `__glkonSPValidateOnlyDlist` and then the function pointer at offset 8 of its second argument, passing both of its own arguments through.
+- `__glkon_mem_alloc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94d820, 96 bytes):
+  **Established.** Asks the kernel driver for memory: the five arguments are packed into a 12-byte block on the stack (byte at +0, byte at +1, halfword at +2, word at +4, word at +8) and sent through `__glKon_ioctl` with request 0x271a. It returns 0 when the ioctl returns 0 and -1 otherwise.
+- `__glkon_mem_realloc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94d880, 96 bytes):
+  **Established.** The resize form of `__glkon_mem_alloc`: the same 12-byte block (byte, byte, halfword, word, word) goes to `__glKon_ioctl` with request 0x271e, and the result is mapped to 0 for success and -1 for failure.
+- `__glkon_mem_free` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94d8e0, 116 bytes):
+  **Established.** Frees driver memory. If the word at `ctx` +0x7b4c is zero it returns 0 without calling the driver. Otherwise it packs two bytes (the arguments) into a block and calls `__glKon_ioctl` with request 0x271b, returning 0 on success and -1 on failure.
+- `__glkon_dlist_mem_alloc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94d960, 68 bytes):
+  **Established.** Allocates display-list memory by calling `__glkon_mem_alloc` with the first field 1, zero for the next three fields and the caller's size in the fourth.
+- `__glkon_dlist_mem_realloc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94d9b0, 68 bytes):
+  **Established.** Resizes display-list memory through `__glkon_mem_realloc` with the first field 1, zeros in the middle and the caller's size in the fourth word.
+- `__glkon_dlist_mem_free` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94da00, 56 bytes):
+  **Established.** Frees display-list memory through `__glkon_mem_free` with the first field 1 and a zero second field.
+- `__glkon_texture_mem_alloc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94da40, 68 bytes):
+  **Established.** Allocates texture memory by calling `__glkon_mem_alloc` with the first field 3, zeros in the middle and the caller's size in the fourth word.
+- `__glkon_texture_mem_realloc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94da90, 68 bytes):
+  **Established.** Resizes texture memory through `__glkon_mem_realloc` with the first field 3 and the caller's size in the fourth word.
+- `__glkon_unique_per_ge_mem_alloc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94dae0, 68 bytes):
+  **Established.** Allocates a block per geometry engine with fixed fields: `__glkon_mem_alloc` is called with 2, 9, 1, 1 and 0, and no argument of its own is used.
+- `GetLineModeDist` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94fb70, 124 bytes):
+  **Established.** Reads the line-mode distance table from the pipe: it calls `__glkon_get_special` with token 0xee and then copies 16 words (64 bytes) from the reply to the destination array in the second argument, two words at a time.
+- `GetConvolutionFilter` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd950920, 68 bytes):
+  **Established.** Chooses a state record by target. Target 0xde0 gives the record at `ctx` +0x300, and any target other than 0, 0xde0 and 0xde1 gives the one at +0x354. Targets 0 and 0xde1 test bit 26 (0x4000000) of the word at `ctx` +0x700 and give +0x3a8 when it is clear and +0x354 when it is set. It returns the record's address.
+- `__glKonSetPixelLEModes` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9511c0, 84 bytes):
+  **Established.** Puts the pipe into the mode that the compiled-list pixel paths need. It calls `__glKonPushState` with 0xc and the caller's save area, then `__glKonDefaultState` with 0xc, and finally `__glkonim_PixelStorei` with 0xcf5 (GL_UNPACK_ALIGNMENT) and 1.
+- `__glKonUnsetLEModes` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd951220, 52 bytes):
+  **Established.** Restores the state saved by `__glKonSetPixelLEModes` by calling `__glKonPopState` with the save area it was given.
+- `ResetSubrectState` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd951300, 8 bytes):
+  **Established.** An empty function: it returns at once without touching any state.
+- `GetSingleCompFromPipe` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd951310, 92 bytes):
+  **Established.** Reads one component from the pipe. It sends token 0x116 and four argument words to the command port, waits through `__glkona_wait_rdata` and returns the word at +8 of the return-data buffer (`ctx` +0x7b64).
+- `__glkonle_DrawPixels` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd951450, 120 bytes):
+  **Established.** The list-execution glDrawPixels. It sets the pixel modes with `__glKonSetPixelLEModes`, calls `__glkonim_DrawPixels` with its arguments shifted back into place from the stack, and restores the modes with `__glKonUnsetLEModes`.
+- `CopyIsOverlapped` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd952a00, 72 bytes):
+  **Established.** Asks the pipe whether a pixel copy's source and destination overlap: token 0x110 with four argument words, then `__glkona_wait_rdata`, and the word at +8 of the return-data buffer is returned.
+- `CopyConvIsOverlapped` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd952a50, 72 bytes):
+  **Established.** The convolution form of the overlap query: token 0x115 and four argument words go to the port, the function waits through `__glkona_wait_rdata` and returns the address of the reply, the return-data pointer plus 8.
+- `CopyDrawFreeRectangle` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd952cc0, 84 bytes):
+  **Established.** Draws a rectangle of copied pixels once its source is free: it loads five fields from the record in the first argument (words 0 to 4) as arguments of `__glkonim_DrawPixels`, then continues through the function pointer at +0xc of the context's saved state.
+- `__glkonle_Bitmap` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9543b0, 116 bytes):
+  **Established.** The list-execution glBitmap. It saves and sets the pixel modes with `__glKonSetPixelLEModes`, loads the width, height, origin and move values (word at 0, word at 4, four floats at 8 to 0x14) from the record argument, calls `__glkonim_Bitmap`, and restores the modes.
+- `__glkonConvertPolygonStipple` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd954520, 88 bytes):
+  **Established.** Uploads a stored polygon stipple: it sets the pixel modes with `__glKonSetPixelLEModes`, calls `__glkonim_PolygonStipple` with the pattern at +0x200 of the record, and restores the modes.
+- `__glkonNumCompInPix` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd955e40, 36 bytes):
+  **Established.** Returns the component count of a pixel format: a word from the table at 0xda828e0 of the library's data, indexed by the format number.
+- `__glkonNumByteInType` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd955e70, 36 bytes):
+  **Established.** Returns the size in bytes of a pixel type: a word from the table at 0xda82920 of the library's data, indexed by the type number.
+- `InvalidGetFormat` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9572f0, 76 bytes):
+  **Established.** Tests a pixel format name for the readback calls. It returns 0 for 0x1903 up to 0x190a and for 0x8000; any other name calls `__glSetError` with 0x500 and returns 1.
+- `InvalidGetType` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd957340, 104 bytes):
+  **Established.** Tests a pixel type name. 0x1400 to 0x1406 and 0x8032 to 0x8036 return 0; any other value calls `__glSetError` with 0x500 and returns 1.
+- `pass_dword` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ab90, 12 bytes):
+  **Established.** Sends one 8-byte element: it loads a double at +0 of the pointer argument and stores it to the command port, two command words.
+- `pass_dword_word` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95aba0, 20 bytes):
+  **Established.** Sends an element of one 8-byte unit then one 4-byte word: a double at +0 and a word at +8 of the pointer are stored to the port in that order.
+- `pass_dword_dword` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95abc0, 20 bytes):
+  **Established.** Sends two consecutive 8-byte units from offsets 0 and 8 of the pointer to the port, four command words.
+- `pass_dword_dword_word` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95abe0, 28 bytes):
+  **Established.** Sends two 8-byte units (offsets 0 and 8) followed by a word at +0x10.
+- `pass_dword_dword_dword` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ac00, 28 bytes):
+  **Established.** Sends three 8-byte units from offsets 0, 8 and 0x10 of the pointer, six command words in all.
+- `pass_dword_dword_dword_word` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ac20, 36 bytes):
+  **Established.** Sends three 8-byte units (0, 8, 0x10) and then a word from +0x18, seven command words.
+- `pass_dword_dword_dword_dword` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ac50, 36 bytes):
+  **Established.** Sends four 8-byte units from offsets 0, 8, 0x10 and 0x18 of the pointer, eight command words.
+- `pass_word` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ac80, 12 bytes):
+  **Established.** Sends one 4-byte word from +0 of the pointer to the command port.
+- `pass_word_word` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ac90, 20 bytes):
+  **Established.** Sends the words at +0 and +4 of the pointer to the port in order.
+- `pass_word_word_word` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95acb0, 28 bytes):
+  **Established.** Sends the three words at +0, +4 and +8 of the pointer in order.
+- `pass_word_word_word_word` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95acd0, 36 bytes):
+  **Established.** Sends the four words at +0, +4, +8 and +0xc of the pointer in order, one store each.
+- `pass_hword` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ad00, 16 bytes):
+  **Established.** Sends one 16-bit element: the halfword at +0 is shifted into the upper 16 bits of a word and stored; the lower half is zero.
+- `pass_hword_hword` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ad10, 24 bytes):
+  **Established.** Packs two halfwords into one word, the one at +0 in the upper half and the one at +2 in the lower, and stores it.
+- `pass_hword_hword_hword` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ad30, 36 bytes):
+  **Established.** Sends three halfwords as two words: the first holds the halfwords at +0 (upper) and +2 (lower), the second holds the halfword at +4 in its upper half and zero below.
+- `pass_hword_hword_hword_hword` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ad60, 44 bytes):
+  **Established.** Sends four halfwords as two words, the halfwords at +0 and +2 in the first and the ones at +4 and +6 in the second, earlier element in the upper half of each.
+- `pass_byte` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ad90, 16 bytes):
+  **Established.** Sends one byte element, the byte at +0 shifted to the top eight bits of a word, with zeros below.
+- `pass_byte_byte` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ada0, 28 bytes):
+  **Established.** Sends two bytes in one word: the byte at +0 in bits 31 to 24 and the byte at +1 in bits 23 to 16.
+- `pass_byte_byte_byte` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95adc0, 40 bytes):
+  **Established.** Sends three bytes in one word, at bits 31-24 (offset 0), 23-16 (offset 1) and 15-8 (offset 2), the low byte zero.
+- `pass_byte_byte_byte_byte` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95adf0, 48 bytes):
+  **Established.** Sends four bytes (offsets 0 to 3) packed into one word with the first in the top byte, i.e. the four bytes in memory order as a big-endian word.
+- `pass_invalid` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95ae20, 8 bytes):
+  **Established.** An empty function returning at once: the entry for an element size or type that has no sender, so nothing is written.
+- `StartSelectFeed` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95cb30, 108 bytes):
+  **Established.** Starts selection or feedback with the driver. It builds a five-word request (the first argument, the second argument times 4 in two fields, and two zero words) and calls `__glKon_ioctl` with request 0x2712. A non-zero result is reported through a library message routine and gives -1; success gives 0.
+- `FinishSelectFeed` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95cba0, 96 bytes):
+  **Established.** Ends selection or feedback with the driver: it calls `__glKon_ioctl` with request 0x2713 and a request block, reports a non-zero result with a message and returns -1, and on success stores the block's second word through the pointer in the first argument and returns the first word.
+- `__glKonEvalCoord1DHost` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97cbe0, 76 bytes):
+  **Established.** Evaluates one point of a 1D map on the host. It stores the float parameter in a local record with a single row of count 1 and calls `EvalRow1D` with that record.
+- `__glKonEvalCoord2DHost` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97ce50, 84 bytes):
+  **Established.** Evaluates one point of a 2D map on the host: the u parameter (`$f12`) goes into a local record and the v parameter, moved from `$f13` to `$f12`, is passed with it, both with a count of 1, to `EvalRow2D`.
+- `__glKonSendMapSpec2D` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97dbc0, 68 bytes):
+  **Established.** Sends the specification of a 2D map to the pipe as four words. A null pointer gives four zero words. Otherwise the words are those at +8, +0xc and +4 of the map record and then the word at +0x2c multiplied by 4.
+- `__glKonInitColortableState` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd981330, 44 bytes):
+  **Established.** Points four slots of the context at records inside it. The words at ctx +0x8b38, +0x8b50, +0x8b68 and +0x8b80 (reached as 0x10000 plus a negative offset) are set to the addresses ctx +0x1538, +0x15d8, +0x1678 and +0x1718 in that order.
+- `__glkonle_ColorTableSGI` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd981cc0, 128 bytes):
+  **Established.** The list-execution glColorTableSGI. It sets the pixel modes with `__glKonSetPixelLEModes`, calls `__glkonim_ColorTableSGI` with the arguments restored from the stack, and then restores the modes.
+- `ValidateHistogramSink` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd984870, 88 bytes):
+  **Established.** Decides whether a histogram or minmax sink is active and records it in the word at `ctx` +0x8c10. It reads the word at ctx +0x700 and stores 1 when bit 28 is set and the byte at +0x500 is non-zero, or bit 29 is set and the byte at +0x560 is non-zero; otherwise it stores 0.
+- `__glkon_EnableHyperpipe` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9875a0, 8 bytes):
+  **Established.** An empty function: hyperpipe enabling is a no-op in this library.
+- `__glkon_DisableHyperpipe` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9875b0, 8 bytes):
+  **Established.** An empty function that returns at once, so disabling a hyperpipe does nothing.
+- `__glkon_FinishHyperpipe` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9875c0, 8 bytes):
+  **Established.** An empty function with no effect, returned at once.
+- `__glkon_InitHyperpipeState` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9875d0, 8 bytes):
+  **Established.** Clears the word at +4 of the state record it is given and returns.
+- `__glkon__QueryHyperpipeBestRect` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9875e0, 8 bytes):
+  **Established.** Returns 0 and does nothing else, so a best-rectangle query never reports a rectangle.
+- `__glkon__QueryHyperpipeRect` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9875f0, 8 bytes):
+  **Established.** Returns 0 and nothing else; the rectangle query reports no rectangle.
+- `__glkon__QueryHyperpipeLimit` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd987600, 8 bytes):
+  **Established.** Returns 0 and nothing else; the limit query reports 0.
+- `__glkon__HyperpipeRect` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd987610, 8 bytes):
+  **Established.** Returns 0 without effect, so setting a hyperpipe rectangle through this entry does nothing.
+- `__glkon_BindHyperpipe` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd987620, 108 bytes):
+  **Established.** Binds a hyperpipe through the driver. If the byte at ctx +0xc96 is zero it returns 1 with no call. Otherwise it passes the pipe number in a one-word block to the driver entry through the handle at `ctx` +0x7b48 with request 0x2726 and returns 1 for success, 0 for failure.
+- `__glkon_UnbindHyperpipe` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd987690, 80 bytes):
+  **Established.** Unbinds a hyperpipe by passing the pipe number in a one-word block to the driver entry through the handle at `ctx` +0x7b48 with request 0x2727; it returns 1 on success and 0 on failure.
+- `fullscreen` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9882d0, 92 bytes):
+  **Established.** Asks the driver about full-screen mode. It builds a 28-byte block holding the driver handle at `ctx` +0x7b4c twice, a field of 3, a byte of 6, a field of 2 and the two arguments, and calls `__glKon_ioctl` with request 0x3f1.
+- `__glkon_GetDeformationf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd988ca0, 56 bytes):
+  **Established.** Calls `getDeformationf` at 0xd988b80 through a rebased entry and returns its result; the function adds nothing of its own.
+- `__glkonle_Push` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda772a0, 100 bytes):
+  **Established.** Replays a recorded run of words to the command port. The record starts with a count word, and the data follows it. When the record's address has bit 2 clear it first sends one word alone so that the doubleword stores that follow are 8-byte aligned, then sends 8-byte units while at least two words remain, then a final single word if one is left. It returns the address just past the data.
+- `__glkon_datavn` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda77304, 40 bytes):
+  **Established.** Sends a counted run of words from a pointer to the command port: if the pointer has bit 2 set it sends one word alone to restore 8-byte alignment, then 8-byte units while two or more words remain, then a trailing single word. It returns the address after the data. Unlike `__glkonle_Push` the count is its own second argument.
