@@ -166,6 +166,26 @@ test ([ge_ops.md](ge_ops.md)).
 - `mgeb_MultMatrix_Texture` (at 0xbd6c): **inferred**, glMultMatrix for the texture matrix: `mMatrixMultCCW` multiplies word 0x5f's matrix by the 16-word operand and produces the new texture matrix.
 - `mgeb_MultMatrix_Projection` (at 0xbd7a): **inferred**, post-multiplies the projection at 0x3f by the operand matrix it receives as input, through `mMatrixMultCCW`, and the result is the new projection.
 - `mgeb_MultMatrix_Modelview` (at 0xbd89): **inferred**, its input is the operand matrix, which `mMatrixMultCCW` multiplies into the modelview at 0x2f; the output is that product.
+- `mgeb_LoadIdentity_Modelview` (at 0xbe57): **established**, takes no operand and produces two identity matrices by
+  conditional stores: the modelview at words 0x2f-0x3e (ones written to 0x2f, 0x34, 0x39 and 0x3e, zeros to the other
+  twelve) and the 16-word block at 0x1f-0x2e that `mMatrixInverse` writes its normal matrix into (ones at its diagonal
+  words 0x1f, 0x24, 0x29 and 0x2e). It also writes special registers 0x2b and 0x29, so loading the identity resets the
+  normal matrix directly instead of computing its inverse.
+- `mgeb_LoadMatrix_Modelview` (at 0xbdec): **established**, takes the 16 operand words of glLoadMatrix (command input,
+  D = 0 to 0xf) and copies them unchanged, in order, into the modelview words 0x2f-0x3e; the stored matrix is its
+  result, and it writes special registers 0x2b and 0x29 first.
+- `mgeb_PushMatrix_Modelview` (at 0xbb81): **inferred**, glPushMatrix. Its input is the stack pointer at word 0x7d, which it
+  compares with the limit 0x892 by integer subtract and adds 0x10 to. It copies the 16 modelview words 0x2f-0x3e to
+  the stack slot the pointer names; its results are the copied slot and the new pointer stored back to 0x7d. When the
+  pointer is at the limit it calls `mErrStackOverflow` (0xbbab) instead.
+- `mgeb_PopMatrix_Modelview` (at 0xba88): **inferred**, glPopMatrix, the inverse of the push: its input is the stack
+  pointer at word 0x7d, which it checks against 0x6a2 (calling `mErrStackUnderflow` at 0xba95 when the stack is empty)
+  and decrements by subtracting 0x10; the 16 words of the slot become the result in 0x2f-0x3e, and it writes special registers 0x2b
+  and 0x29 so that the derived matrices are rebuilt from the restored modelview.
+- `mgeb_MatrixMode` (at 0xbe80): **inferred**, glMatrixMode: it takes the mode enumerant from the command input,
+  compares it with GL_PROJECTION (0x1701) by integer subtract and stores the selection it computes to word 0x1e under
+  a predicate as its result. The ARM picks the per-matrix handlers itself through the geif slots it loads for the mode
+  ([ge_handlers.md](ge_handlers.md#matrixfuncs)), so this word is the engine's own copy of the mode.
 
 ## Perspective divide and viewport (uscreen2.s)
 
