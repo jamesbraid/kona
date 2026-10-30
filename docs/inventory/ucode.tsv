@@ -134,12 +134,12 @@ arm1.u	symbol	0x04049508	copydown	flags=4	named-only	ucode/arm1_functions.md#con
 arm1.u	symbol	0x04049518	mem_mgr_pnum	flags=5	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 arm1.u	symbol	0x0404951c	mem_mgr_poff	flags=5	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 arm1.u	symbol	0x04049520	texComps	flags=5	understood	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x0404961c	modulateTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x04049630	decalTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x04049644	blendTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x04049658	replaceTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x0404966c	addTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x04049680	addSignedTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x0404961c	modulateTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x04049630	decalTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x04049644	blendTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x04049658	replaceTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x0404966c	addTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x04049680	addSignedTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x04049694	overlap	flags=5	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
 arm1.u	symbol	0x04049698	path	flags=4	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
 arm1.u	symbol	0x04049760	wramBuf	flags=4	understood	ucode/arm1_functions.md#pixel-path-splitting-the-data-across-engines	Pixel path: splitting the data across engines
@@ -2328,10 +2328,10 @@ ge.u	label	0x0000580a	mgeb_RestoreNormal		located	ucode/ge_handlers.md#unpacks	u
 ge.u	label	0x0000581b	mgeb_RestoreColor		located	ucode/ge_handlers.md#unpacks	unpack.S
 ge.u	label	0x0000582e	mgeb_DisableUnpack		located	ucode/ge_handlers.md#unpacks	unpack.S
 ge.u	label	0x0000583e	mgeb_EnableUnpack		located	ucode/ge_handlers.md#unpacks	unpack.S
-ge.u	label	0x00005857	mgebi_TexEnvComps		located	ucode/ge_handlers.md#texenvs	texenv.S
-ge.u	label	0x00005879	mgebi_TexEnv		located	ucode/ge_handlers.md#texenvs	texenv.S
-ge.u	label	0x00005942	mTexEnvDone		located	ucode/ge_handlers.md#texenvs	texenv.S
-ge.u	label	0x0000594d	mValidateTexenvMode		located	ucode/ge_handlers.md#texenvs	texenv.S
+ge.u	label	0x00005857	mgebi_TexEnvComps		understood	ucode/ge_compute.md#texture-environment-texenvs	Texture environment (texenv.S)
+ge.u	label	0x00005879	mgebi_TexEnv		understood	ucode/ge_compute.md#texture-environment-texenvs	Texture environment (texenv.S)
+ge.u	label	0x00005942	mTexEnvDone		understood	ucode/ge_compute.md#texture-environment-texenvs	Texture environment (texenv.S)
+ge.u	label	0x0000594d	mValidateTexenvMode		understood	ucode/ge_compute.md#texture-environment-texenvs	Texture environment (texenv.S)
 ge.u	label	0x000059a2	mgebi_ReferencePlane		located	ucode/ge_handlers.md#refplanes	refplane.S
 ge.u	label	0x00005b15	mgebi_ReferencePlane_Disable		located	ucode/ge_handlers.md#refplanes	refplane.S
 ge.u	label	0x00005b2f	mgebi_ReferencePlane_Enable		located	ucode/ge_handlers.md#refplanes	refplane.S

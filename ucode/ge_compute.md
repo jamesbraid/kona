@@ -2492,3 +2492,34 @@ the [fft.S listing](ge_listing/fft.S.lst) (`ge.u`, IRIX 6.5.30m).
   eight results go back over words 0-7 in place, with no multiply and no table read, so the twiddle table that the start-up
   code loads is left to the larger sizes. It reads and steps its successor pointer like the two-point stage (0x37bc,
   0x37c7).
+
+## Texture environment (texenv.S)
+
+The GL texture-environment state lives in engine external memory: the mode at word 0x293, the environment colour at
+0x28b-0x28e, the four bias words at 0x28f-0x292 and the bound texture's format index at 0x294 (`r95` = 8 stores,
+`r95` = 0x17 reads). Read in full from the [texenv.S listing](ge_listing/texenv.S.lst) (`ge.u`, IRIX 6.5.30m). The
+per-format tables the ARM loads at 0x7387-0x73a4 are in [arm1_functions.md](arm1_functions.md#texture-management).
+
+- `mgebi_TexEnv` (`texenv.S` lines 130-228, at 0x5879): **inferred**, the glTexEnv handler. It takes the parameter
+  name and value as command operands 0 and 1 (0x5879, 0x587b) and compares the name with 0x2200, the environment
+  mode (integer subtract at 0x587d, branch to 0x58c3 when it differs). For the mode it converts the value to an integer
+  (0x5892), compares it with the six accepted modes it stages at 0x5893-0x5898 (0x2100, 0x2101, 0x0be2, 0x8062, 0x1e01
+  and 0x104), stores it to word 0x293 (0x58c1) and calls `mValidateTexenvMode`; an unmatched value goes to
+  `mErrInvalidEnum` through 0x5933. For the environment colour (0x2201, compared at 0x58c6) it stores operands 1-4 to
+  words 0x28b-0x28e (0x58e6-0x58f8) and sends the colour to the raster board through bus words 0x1f8 and 0x1f5 with
+  the register words 0x15e1402 and 0x15f1413 (`TFP_TEV_CC` and `TFP_TEV_CC1`, staged at 0x58e4-0x58e5). For 0x80be,
+  the texture-environment bias, it stores operands 1-4 to words 0x28f-0x292 (0x591a-0x5920) and re-validates.
+- `mValidateTexenvMode` (`texenv.S` lines 44-98, at 0x594d): **inferred**, selects and sends the raster texture
+  function. Its inputs are the stored mode (word 0x293), the bias words and the format index (word 0x294). It compares
+  the mode with the five base modes by integer subtracts (0x595c-0x5960) and, under the matching predicate, points
+  address register 0x13 at that mode's table (modulate 0x7387, decal 0x738c, blend 0x7391, both replace forms 0x7396,
+  0x5967-0x596b); the add tables 0x739b and 0x73a0 are chosen on the path at 0x597b-0x597c. It then reads the word at
+  table + format index (0x5995) and outputs it to the raster board as register `TFP_TEV` (register word 0x15d1401, bus
+  words 0x1f8 and 0x1f5, 0x599a-0x59a0), whose low byte holds the alpha and colour functions.
+- `mgebi_TexEnvComps` (`texenv.S` lines 236-258, at 0x5857): **inferred**, records the format of a newly bound texture.
+  It takes the format index from the input stream (C = 0x1d, 0x5857-0x585a), stores it to word 0x294 (0x5866) and calls
+  `mValidateTexenvMode` (0x5861), so binding a texture of another format re-selects the raster function for the
+  current mode; it ends with the closing bus word to 0x1f4 under its predicate (0x586e-0x586f).
+- `mTexEnvDone` (`texenv.S` lines 111-114, at 0x5942): **established**, the common exit of the handler: it sends staging
+  word 0x10 to bus address 0x1f4 under the same predicate (0x5942-0x5943) and ends the command with the group-31
+  transfer at 0x5944.
