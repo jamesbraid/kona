@@ -6,6 +6,18 @@ Each entry gives the owning file, the routes already tried and the next route to
 
 The "Next route" cells below were converted from requests for measurements on a running pipe and still describe that measurement. Each owner rewrites its section into software routes and works through them.
 
+## Published sources, route tried (2026-10-29)
+
+Papers, technical reports and patents were searched for every open entry below; [published-sources.md](published-sources.md) holds the identity and facts of each source. Result by entry, so no later reader repeats the route:
+
+- **Fan bit** (and the strip or fan choice): the first-party paper and the patent lists give no encoding. The paper confirms only that the vertex bus has both rules. Not moved; the next route stays the one in the entry (`drawlin.S`, `drawpnt.S`, `drawmstpnt.S` and the `r95` = 0x13 stores).
+- **Special-register offsets and the `r95` = 0x33 words:** the paper's "float-to-fix convert and merge" stage is the only published name for the block the `r95` = 0x33 words feed (inferred, [published-sources.md](published-sources.md#1-infinitereality-architecture-paper-siggraph-1997)). No source names the special registers.
+- **Raster set-up widths, the sub-pixel rule and slopes** ([rm.md](rm.md#set-up-arithmetic-what-the-software-fixes)): published text puts the set-up in the fragment generator and says scan conversion evaluates plane equations per pixel (paper), with 8 x 8 sub-pixel accuracy (technical reports). No source gives plane-coefficient widths or the edge rule. Still unknown: no shipped software or published source gives them; the remaining routes are the `tbusdata.Z` vectors and the IMP and TF diagnostic expected values.
+- **Microcode word width:** a 195-bit microinstruction compressed 2.7 times (Hot Chips slides) agrees with the 72-bit word in [ucode/ge_isa.md](../ucode/ge_isa.md) as the compressed form, inferred.
+- **Working memory size:** the paper gives 2560 words for the first-generation engine; the shipped listings address up to 0xc00. Open; route: the highest data-memory address `ge.u` uses outside the special-register window.
+- **Clip-map registers** (`TM_DRAW_CLIP_OFFSET`, `TM_DRAW_CLIP_BKPT` in [RM.h](../RM.h)): the clip-map patent and the paper support the readings (offset pair, stack-to-pyramid break point, 16 levels), inferred.
+- **Display-generator state tables** ([dg.md](dg.md)): the video-format patent gives the roles of line-type, line-count, line-length and signal tables (inferred).
+
 ## Geometry engine program
 
 | Question | Owner | Routes tried | Next route |
