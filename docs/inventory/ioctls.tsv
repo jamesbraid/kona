@@ -1,19 +1,19 @@
 number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
-101	0x65	graphics init		sent	__glXOpenGraphicsDevice;__glx_GetString;__iglooGetGraphicsType;ddxFindAvailableBoards..CGC;+7 more	18	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-102	0x66	graphics init		sent	__glx_GetString;__iglooGetGraphicsType;crm_setmon;ddxFindAvailableBoards..CGC;+13 more	17	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-103	0x67	graphics init		sent	crm_setmon;gr2ev_info;irixKernInit;main;+4 more	4	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-104	0x68	graphics init		sent	gr2ev_info;main;ng1_setmon;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-105	0x69	graphics init		sent	main	1	usr/gfx/KONA/bin/ireeprom:main	located	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-106	0x6a	graphics init		sent	main;mgras_init;setup_ucode	2	usr/gfx/KONA/bin/ireeprom:setup_ucode	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-107	0x6b	graphics init		sent	main	1	usr/gfx/gfxinfo:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-108	0x6c	graphics init		sent	gr2_init;loadfile;mgras_init;odsy_init	1	usr/gfx/gfxinfo:gr2_init	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-110	0x6e	graphics init		sent	gr2ev_info;main;ng1_setmon;saXSGIvcQueryChannelGammaMap;+2 more	3	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+101	0x65	graphics init		sent	__glXOpenGraphicsDevice;ddxFindAvailableBoards..CGC;getVeniceInfo;gversionIoctl;+12 more	18	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+102	0x66	graphics init		sent	crm_setmon;ddxFindAvailableBoards..CGC;getVeniceInfo;gversionIoctl;+23 more	17	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+103	0x67	graphics init		sent	crm_setmon;irixKernInit;routine@0x10001a20;routine@0x10006118;+5 more	4	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+104	0x68	graphics init		sent	ng1_setmon;routine@0x10001a20;routine@0x10006118;routine@0x10008560;+1 more	3	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+105	0x69	graphics init		sent	routine@0x10001a20	1	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	located	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+106	0x6a	graphics init		sent	mgras_init;routine@0x10006118;setup_ucode	2	usr/gfx/KONA/bin/ireeprom:setup_ucode	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+107	0x6b	graphics init		sent	routine@0x10006118	1	usr/gfx/gfxinfo:routine@0x10006118	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+108	0x6c	graphics init		sent	gr2_init;mgras_init;odsy_init;routine@0x100076d0	1	usr/gfx/gfxinfo:gr2_init	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+110	0x6e	graphics init		sent	ng1_setmon;routine@0x10001a20;routine@0x10006118;routine@0x10008560;+3 more	3	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 111	0x6f	graphics init		sent	irixKernInit	1	usr/gfx/arch/GENERIC/Xsgi:irixKernInit	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 112	0x70	graphics init		sent	ng1_setmon	1	usr/gfx/setmon:ng1_setmon	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-113	0x71	graphics init		sent	gr2ev_info;main;saXSGIvcQueryChannelGammaMap;vs2setmon	3	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-1000	0x3e8	graphics manager		sent	irixKernInit;main;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
-1002	0x3ea	graphics manager		sent	irixKernInit;main;xgsetmon	3	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
-1003	0x3eb	graphics manager		sent	xgsetmon	1	usr/gfx/setmon:xgsetmon	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
+113	0x71	graphics init		sent	routine@0x10001a20;routine@0x10006118;routine@0x10008560;routine@0x1002b580;+1 more	3	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+1000	0x3e8	graphics manager		sent	irixKernInit;routine@0x10001a20;routine@0x1000c180	3	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
+1002	0x3ea	graphics manager		sent	irixKernInit;routine@0x10001a20;routine@0x1000c180	3	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
+1003	0x3eb	graphics manager		sent	routine@0x1000c180	1	usr/gfx/setmon:routine@0x1000c180	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
 1004	0x3ec	graphics manager		sent	rrmDisposeClip	4	usr/lib/X11/dyDDX/kona.so:rrmDisposeClip	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
 1006	0x3ee	graphics manager		sent	glXSwapIntervalSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXSwapIntervalSGI	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
 1010	0x3f2	graphics manager		sent	SGICapGLCapture..HAE;rrmInvalidate	5	usr/gfx/arch/GENERIC/Xsgi:SGICapGLCapture..HAE	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
@@ -25,21 +25,21 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 1020	0x3fc	graphics manager		sent	rrmMGRSwapBuf	4	usr/lib/X11/dyDDX/kona.so:rrmMGRSwapBuf	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
 1022	0x3fe	graphics manager		sent	glXGetVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXGetVideoSyncSGI	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
 1023	0x3ff	graphics manager		sent	glXWaitVideoSyncSGI	6	usr/gfx/arch/IP27KONA/libGL.so:glXWaitVideoSyncSGI	understood	docs/kernel.md#resource-manager-ioctls	Resource manager ioctls
-10000	0x2710	kona private	curproc_abi	sent,table	konReadFBBlock;konReadImage;kon_loadGC	6	usr/lib/X11/dyDDX/kona.so:konReadFBBlock	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
+10000	0x2710	kona private	curproc_abi	sent,table	konReadFBBlock;konReadImage;routine@0x142e7a0;routine@0x4a64f0;+1 more	6	usr/lib/X11/dyDDX/kona.so:konReadFBBlock	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10001	0x2711	kona private	curproc_abi	sent,table	konDrawImage;konWriteFBSubBlock	6	usr/lib/X11/dyDDX/kona.so:konDrawImage	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
-10002	0x2712	kona private	curproc_abi	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
-10003	0x2713	kona private	kona_finish_selectfeed	sent,table	__glKonlSendPackedVertex;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonlSendPackedVertex	understood	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-10005	0x2715	kona private	copyin	sent,table	cfb16DoBitbltXor;konCursorOn;konDisplayCursor	6	usr/lib/X11/dyDDX/kona.so:cfb16DoBitbltXor	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
+10002	0x2712	kona private	curproc_abi	sent,table	StartSelectFeed;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:StartSelectFeed	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
+10003	0x2713	kona private	kona_finish_selectfeed	sent,table	FinishSelectFeed;__glkonim_InstrumentsBufferSGIX	6	usr/gfx/arch/IP27KONA32/libGLcore.so:FinishSelectFeed	understood	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+10005	0x2715	kona private	copyin	sent,table	konCursorOn;konDisplayCursor;routine@0x13c2970;routine@0x442970;+1 more	6	usr/lib/X11/dyDDX/kona.so:konCursorOn	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10006	0x2716	kona private	copyin	sent,table	kona_getconfig	3	usr/gfx/gfxinfo:kona_getconfig	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10008	0x2718	kona private		table		2		understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
-10009	0x2719	kona private	copyin	sent,table	konaSetStereoMode;nfbUnrealizeCursor	6	usr/lib/X11/dyDDX/kona.so:konaSetStereoMode	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
+10009	0x2719	kona private	copyin	sent,table	konaSetStereoMode;routine@0x14885ec;routine@0x4feb8c;routine@0x5085ec;+1 more	6	usr/lib/X11/dyDDX/kona.so:konaSetStereoMode	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10010	0x271a	kona private	copyin	table		2		understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10011	0x271b	kona private	copyin	table		2		understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
-10012	0x271c	kona private	copyin	sent,table	cfb32FillRectSolidGeneral;saXSGIvcSetChannelGammaMap	7	usr/gfx/setmon:saXSGIvcSetChannelGammaMap	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
+10012	0x271c	kona private	copyin	sent,table	routine@0x10035040;routine@0x14e31d0;routine@0x5570a0;routine@0x5631c0;+1 more	7	usr/gfx/setmon:routine@0x10035040	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10014	0x271e	kona private	copyin	sent,table	venice_calcframebuffer	3	usr/gfx/gfxinfo:venice_calcframebuffer	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10015	0x271f	kona private	copyin	table		2		understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10016	0x2720	kona private	copyout	sent,table	kona_diagnose	3	usr/gfx/gfxinfo:kona_diagnose	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
-10017	0x2721	kona private	kona_checkpipe	sent,table	KonWaitRData;__glkona_wait_rdata;konReadFBBlock;konReadImage;+4 more	11	usr/gfx/arch/IP27KONA32/libGLcore.so:__glkona_wait_rdata	understood	docs/kernel-functions.md#failure-handling-kona_crasho	Failure handling: `kona_crash.o`
+10017	0x2721	kona private	kona_checkpipe	sent,table	KonWaitRData;__glkona_wait_rdata;konReadFBBlock;konReadImage;+13 more	11	usr/gfx/arch/IP27KONA32/libGLcore.so:__glkona_wait_rdata	understood	docs/kernel-functions.md#failure-handling-kona_crasho	Failure handling: `kona_crash.o`
 10018	0x2722	kona private	curproc_abi	table		2		understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10019	0x2723	kona private	copyout	sent,table	konQueryHyperpipeNetwork	6	usr/lib/X11/dyDDX/kona.so:konQueryHyperpipeNetwork	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10020	0x2724	kona private	kmem_alloc	sent,table	konHyperpipeConfig;venice_calcframebuffer	7	usr/gfx/gfxinfo:venice_calcframebuffer	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
@@ -51,6 +51,6 @@ number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
 10026	0x272a	kona private		sent	venice_get_dg2_eeprom	2	usr/gfx/gfxinfo:venice_get_dg2_eeprom	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10030	0x272e	kona private		sent	venice_loadsection_vs2_top;vs2SetShadow	2	usr/gfx/gfxinfo:venice_loadsection_vs2_top	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10031	0x272f	kona private		sent	venice_loadsection_vs2_top;vs2GetShadow;vs2_set_MasterGenlock	2	usr/gfx/gfxinfo:venice_loadsection_vs2_top	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
-10100	0x2774	kona private	curproc_abi	sent,table	kona_getconfig;main;saXSGIvcQueryChannelGammaMap;setup_ucode	5	usr/gfx/KONA/bin/ireeprom:main	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
+10100	0x2774	kona private	curproc_abi	sent,table	kona_getconfig;routine@0x10001a20;routine@0x1002b580;setup_ucode	5	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#kona-private-ioctls	Kona private ioctls
 10101	0x2775	kona private	RRM_CheckValidFault	table		2		understood	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
 10102	0x2776	kona private	RRM_CheckValidFault	table		2		understood	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
