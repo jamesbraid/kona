@@ -186,6 +186,52 @@ test ([ge_ops.md](ge_ops.md)).
   compares it with GL_PROJECTION (0x1701) by integer subtract and stores the selection it computes to word 0x1e under
   a predicate as its result. The ARM picks the per-matrix handlers itself through the geif slots it loads for the mode
   ([ge_handlers.md](ge_handlers.md#matrixfuncs)), so this word is the engine's own copy of the mode.
+- `mgeb_LoadIdentity_Color` (at 0xbe08): **established**, takes no operand. It writes the identity into the colour matrix
+  at 0x190-0x19f by predicated stores, the diagonal words 0x190, 0x195, 0x19a and 0x19f last (0xbe1d-0xbe20) after the
+  twelve off-diagonal ones. Unlike the other three identity loads it also reads engine word 3 (0xbe0c), combines it with
+  the staged constant 0x10000 by the bitwise unit-1 code 0x54 (M = 0x6d4, 0xbe18) and stores the result back to word 3
+  (0xbe21), so loading the identity updates the colour-matrix flag bit along with the matrix.
+- `mgeb_LoadIdentity_Texture` (at 0xbe22): **established**, the texture matrix's identity: stores to 0x60-0x6e with the
+  ones at 0x5f, 0x64, 0x69 and 0x6e written last (0xbe38-0xbe3b). It does no arithmetic. Besides the matrix, it stages the
+  engine address 0xf494 (0xbe29) and stores it to word 0xd (0xbe37), the word the texture copies use to pick the full
+  texture-coordinate transform.
+- `mgeb_LoadIdentity_Projection` (at 0xbe3c): **established**, writes the identity into the projection, 0x3f-0x4e, the
+  diagonal 0x3f, 0x44, 0x49 and 0x4e last (0xbe52-0xbe55), and writes special register 0x29 (0xbe48) so the composite
+  matrix is rebuilt. A conditional transfer on `cc` 0x64 at 0xbe4d enters `mResolveFogTable`, as the projection
+  translate and scale do; no value is calculated here.
+- `mgeb_LoadMatrix_Color` (at 0xbd99): **established**, its input is glLoadMatrix's 16 operand words (command input, D = 0
+  to 0xf, read at 0xbd99-0xbdaa) and its result the colour matrix 0x190-0x19f holding them in order. It also reads word 3
+  (0xbd9d), combines it with 0x10000 through unit-1 code 0x51 (M = 0x6d1, 0xbdab), the operation the section header
+  names, and stores word 3 back at 0xbdb4.
+- `mgeb_LoadMatrix_Texture` (at 0xbdb5): **established**, copies the 16 command words into 0x5f-0x6e without arithmetic;
+  word 6 of the input passes through staging register 0x18 (0xbdc5) on its way to 0x66. Its other output is
+  word 0xd, loaded with the staged address 0xf494 (0xbdbc, store at 0xbdce).
+- `mgeb_LoadMatrix_Projection` (at 0xbdd0): **established**, moves the operand matrix into 0x3f-0x4e unchanged, writes
+  special register 0x29 (0xbdd9) and takes the `cc` 0x64 branch to `mResolveFogTable` (0xbde2), the same hook as the
+  identity load; it calculates nothing.
+- `mgeb_PushMatrix_Color` (at 0xbacd): **inferred**, glPushMatrix for the colour stack. It takes the stack pointer from
+  engine word 0x6a1 (0xbacd), compares it with the limit 0x8f2 by integer subtract (M = 0x6c2, 0xbad8), adds 0x10 to it
+  (M = 0x6c0, 0xbada) and stores the new pointer back under a predicate (0xbae3). Its results are the 16 colour-matrix
+  words 0x190-0x19f and word 3, seventeen words in all, copied through address register 0x13 to the slot (0xbadc-0xbb05);
+  at the limit it branches to `mErrStackOverflow` (0xbb00).
+- `mgeb_PushMatrix_Texture` (at 0xbb0a): **inferred**, the texture stack's push: it takes its stack pointer from word 0x6a0 as input, the
+  overflow test subtracts the limit 0x8d2 (0xbb15) and the increment adds 0x10 (0xbb17). It produces a copy of the sixteen
+  words 0x5f-0x6e in the slot (0xbb19-0xbb40) and the advanced pointer; `mErrStackOverflow` is its error exit (0xbb3b).
+- `mgeb_PushMatrix_Projection` (at 0xbb45): **inferred**, pushes the projection: it takes the pointer at word 0x69f as input, compares it
+  against 0x8b2 by subtract (0xbb50) and adds 0x10 (0xbb52); output the slot holding 0x3f-0x4e (0xbb54-0xbb7b) and the stored
+  pointer. It ends through the `cc` 0x64 branch to `mResolveFogTable` (0xbb77) after the overflow test at 0xbb76.
+- `mgeb_PopMatrix_Color` (at 0xb99d): **inferred**, glPopMatrix on the colour stack. Its input is the pointer at 0x6a1; it
+  subtracts 0x10 (M = 0x6c2, 0xb9a8) and compares it with 0x8e2 (0xb9a4), branching to `mErrStackUnderflow` on `cc` 0
+  (0xb9b0); with the push limit 0x8f2 that leaves room for one saved matrix, which meets GL's minimum depth of two for
+  this stack. The slot's sixteen words become the result in 0x190-0x19f (0xb9bb-0xb9db), and word 3 is rebuilt from the
+  saved copy with the bitwise codes 0x51 and 0x50 (0xb9c1, 0xb9c3) and stored at 0xb9e3.
+- `mgeb_PopMatrix_Texture` (at 0xb9ed): **inferred**, restores the texture matrix: it takes the pointer from 0x6a0, subtracts
+  0x10 and compares the result with 0x8c2 (0xb9f4, 0xb9f8), one slot below the push limit, and an empty stack exits to
+  `mErrStackUnderflow` (0xba00). The output is the slot copied back to 0x5f-0x6e (0xba0b-0xba29), with word 0xd set from the
+  staged 0xf494 (0xba10) as in every texture copy.
+- `mgeb_PopMatrix_Projection` (at 0xba3a): **inferred**, pops the projection: it takes pointer word 0x69f, subtracts 0x10 and compares
+  with 0x8a2 (0xba45, 0xba41), underflow exit at 0xba4d; it yields 0x3f-0x4e from the slot (0xba58-0xba76), writes special
+  register 0x29 (0xba79) so the composite is recomputed, and takes the `mResolveFogTable` branch (0xba7e).
 
 ## Perspective divide and viewport (uscreen2.s)
 

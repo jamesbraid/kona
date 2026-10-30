@@ -2628,13 +2628,13 @@ ge.u	label	0x0000b76e	mmo_FeedbackTriangle		understood	ucode/ge_compute.md#feedb
 ge.u	label	0x0000b80f	mmo_FeedbackPoint		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
 ge.u	label	0x0000b89a	mmo_FeedbackLine		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
 ge.u	label	0x0000b93f	mFeedbackVertex		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
-ge.u	label	0x0000b99d	mgeb_PopMatrix_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000b9ed	mgeb_PopMatrix_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000ba3a	mgeb_PopMatrix_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
+ge.u	label	0x0000b99d	mgeb_PopMatrix_Color		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000b9ed	mgeb_PopMatrix_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000ba3a	mgeb_PopMatrix_Projection		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
 ge.u	label	0x0000ba88	mgeb_PopMatrix_Modelview		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
-ge.u	label	0x0000bacd	mgeb_PushMatrix_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bb0a	mgeb_PushMatrix_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bb45	mgeb_PushMatrix_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
+ge.u	label	0x0000bacd	mgeb_PushMatrix_Color		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bb0a	mgeb_PushMatrix_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bb45	mgeb_PushMatrix_Projection		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
 ge.u	label	0x0000bb81	mgeb_PushMatrix_Modelview		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
 ge.u	label	0x0000bbb5	mgeb_Ortho_Color		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
 ge.u	label	0x0000bbc3	mgeb_Ortho_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
@@ -2660,13 +2660,13 @@ ge.u	label	0x0000bd5e	mgeb_MultMatrix_Color		understood	ucode/ge_compute.md#matr
 ge.u	label	0x0000bd6c	mgeb_MultMatrix_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
 ge.u	label	0x0000bd7a	mgeb_MultMatrix_Projection		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
 ge.u	label	0x0000bd89	mgeb_MultMatrix_Modelview		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
-ge.u	label	0x0000bd99	mgeb_LoadMatrix_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bdb5	mgeb_LoadMatrix_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bdd0	mgeb_LoadMatrix_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
+ge.u	label	0x0000bd99	mgeb_LoadMatrix_Color		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bdb5	mgeb_LoadMatrix_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bdd0	mgeb_LoadMatrix_Projection		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
 ge.u	label	0x0000bdec	mgeb_LoadMatrix_Modelview		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
-ge.u	label	0x0000be08	mgeb_LoadIdentity_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000be22	mgeb_LoadIdentity_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000be3c	mgeb_LoadIdentity_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
+ge.u	label	0x0000be08	mgeb_LoadIdentity_Color		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000be22	mgeb_LoadIdentity_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000be3c	mgeb_LoadIdentity_Projection		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
 ge.u	label	0x0000be57	mgeb_LoadIdentity_Modelview		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
 ge.u	label	0x0000be80	mgeb_MatrixMode		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
 ge.u	label	0x0000be8f	mRecordHit		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
