@@ -186,7 +186,7 @@ from the word the entry holds, read from [ged_listing.txt](ged_listing.txt). Reg
 register r48, the state register r49 (state n in its upper bits, the next vertex word below), the pending-class register
 r50, the current handler r62, and the handler r70 that the next release sends. The row label covers the reading of the
 target's words; the index rule itself is the inference of that section. Entries that hold the null loop (0x003 or 0x006)
-are listed after the table.
+are listed after each table, and each has a row of its own in the generated [ged_null_entries.md](ged_null_entries.md).
 
 ### Idle state and the begin tokens (class 0, entries 0x000-0x03f)
 
@@ -379,30 +379,30 @@ index no class forms (8 x A + 4n for class 2 stops at 0x19b). Each has its own r
 
 | Entry | Copy of | What the code at the target does |
 |---|---|---|
-| 0x19c | 0x05c | **Inferred**: word 0x155 (`lineloop.s` line 63), the line-loop vertex code of state 7, out of reach of the separate-lines class whose index range ends at 0x19b. |
-| 0x19d | 0x05d | **Inferred**: word 0x17e (`lineloop.s` line 137), material with loop state 7 put back; unreachable for the same reason. |
-| 0x19e | 0x05e | **Inferred**: word 0x18b (`lineloop.s` line 177), the loop end that loads `mgesi_LineStripRestoreV0`; no r48 value indexes it. |
-| 0x19f | 0x05f | **Inferred**: word 0x180 (`lineloop.s` line 150), a fetch, the spare copy of the loop's state-7 swap entry. |
-| 0x1c0 | 0x160 | **Inferred**: word 0x1f1 (`quad.s` line 22), the quad corner after a switch; table A holds no 0x38, so this copy is never selected. |
-| 0x1c1 | 0x161 | **Inferred**: word 0x20e (`quad.s` line 80), material with quad state 0 put back, in the spare copy. |
-| 0x1c2 | 0x162 | **Inferred**: word 0x205 (`quad.s` line 61), the quad reset and release, duplicated here. |
-| 0x1c3 | 0x163 | **Inferred**: word 0x218 (`quad.s` line 104), the quad fetch, duplicated. |
-| 0x1c4 | 0x164 | **Inferred**: word 0x1f4 (`quad.s` line 27), first corner after begin, in the unreachable copy. |
-| 0x1c5 | 0x165 | **Inferred**: word 0x210 (`quad.s` line 84), material between quads, second copy. |
-| 0x1c6 | 0x166 | **Inferred**: word 0x200 (`quad.s` line 47), the end test on r51 against 4, second copy. |
-| 0x1c7 | 0x167 | **Inferred**: word 0x218 again, the swap at a quad boundary in the copy. |
-| 0x1c8 | 0x168 | **Inferred**: word 0x1f7 (`quad.s` line 32), second corner, copied. |
-| 0x1c9 | 0x169 | **Inferred**: word 0x212 (`quad.s` line 88), material after one corner, copied. |
-| 0x1ca | 0x16a | **Inferred**: word 0x202 (`quad.s` line 54), the abandon-and-release path, copied. |
-| 0x1cb | 0x16b | **Inferred**: word 0x218 for a swap after one corner, in the copy. |
-| 0x1cc | 0x16c | **Inferred**: word 0x1fa (`quad.s` line 37), third corner, copied. |
-| 0x1cd | 0x16d | **Inferred**: word 0x214 (`quad.s` line 92), material after two corners, copied. |
-| 0x1ce | 0x16e | **Inferred**: word 0x202 for an end with two corners, in the copy. |
-| 0x1cf | 0x16f | **Inferred**: word 0x218 for a swap after two corners, in the copy. |
-| 0x1d0 | 0x170 | **Inferred**: word 0x1fd (`quad.s` line 42), the fourth corner with the twelve-quad batch test, copied. |
-| 0x1d1 | 0x171 | **Inferred**: word 0x216 (`quad.s` line 96), material after three corners, copied. |
-| 0x1d2 | 0x172 | **Inferred**: word 0x202 for an end with three corners, in the copy. |
-| 0x1d3 | 0x173 | **Inferred**: word 0x218, the final swap entry of the copy. |
+| 0x19c | 0x05c | **Inferred**: `ged1b.u` word 0x155 (`lineloop.s` line 63), the line-loop vertex code of state 7, out of reach of the separate-lines class whose index range ends at 0x19b. |
+| 0x19d | 0x05d | **Inferred**: `ged1b.u` word 0x17e (`lineloop.s` line 137), material with loop state 7 put back; unreachable for the same reason. |
+| 0x19e | 0x05e | **Inferred**: `ged1b.u` word 0x18b (`lineloop.s` line 177), the loop end that loads `mgesi_LineStripRestoreV0`; no r48 value indexes it. |
+| 0x19f | 0x05f | **Inferred**: `ged1b.u` word 0x180 (`lineloop.s` line 150), a fetch, the spare copy of the loop's state-7 swap entry. |
+| 0x1c0 | 0x160 | **Inferred**: `ged1b.u` word 0x1f1 (`quad.s` line 22), the quad corner after a switch; table A holds no 0x38, so this copy is never selected. |
+| 0x1c1 | 0x161 | **Inferred**: `ged1b.u` word 0x20e (`quad.s` line 80), material with quad state 0 put back, in the spare copy. |
+| 0x1c2 | 0x162 | **Inferred**: `ged1b.u` word 0x205 (`quad.s` line 61), the quad reset and release, duplicated here. |
+| 0x1c3 | 0x163 | **Inferred**: `ged1b.u` word 0x218 (`quad.s` line 104), the quad fetch, duplicated. |
+| 0x1c4 | 0x164 | **Inferred**: `ged1b.u` word 0x1f4 (`quad.s` line 27), first corner after begin, in the unreachable copy. |
+| 0x1c5 | 0x165 | **Inferred**: `ged1b.u` word 0x210 (`quad.s` line 84), material between quads, second copy. |
+| 0x1c6 | 0x166 | **Inferred**: `ged1b.u` word 0x200 (`quad.s` line 47), the end test on r51 against 4, second copy. |
+| 0x1c7 | 0x167 | **Inferred**: `ged1b.u` word 0x218 again, the swap at a quad boundary in the copy. |
+| 0x1c8 | 0x168 | **Inferred**: `ged1b.u` word 0x1f7 (`quad.s` line 32), the second-corner code that moves a quad to state 3, held in a copy no class selects. |
+| 0x1c9 | 0x169 | **Inferred**: `ged1b.u` word 0x212 (`quad.s` line 88), material after one corner, copied. |
+| 0x1ca | 0x16a | **Inferred**: `ged1b.u` word 0x202 (`quad.s` line 54), the abandon-and-release path, copied. |
+| 0x1cb | 0x16b | **Inferred**: `ged1b.u` word 0x218 for a swap after one corner, in the copy. |
+| 0x1cc | 0x16c | **Inferred**: `ged1b.u` word 0x1fa (`quad.s` line 37), the third-corner code that moves a quad to state 4, again in the spare copy. |
+| 0x1cd | 0x16d | **Inferred**: `ged1b.u` word 0x214 (`quad.s` line 92), material after two corners, copied. |
+| 0x1ce | 0x16e | **Inferred**: `ged1b.u` word 0x202 for an end with two corners, in the copy. |
+| 0x1cf | 0x16f | **Inferred**: `ged1b.u` word 0x218 for a swap after two corners, in the copy. |
+| 0x1d0 | 0x170 | **Inferred**: `ged1b.u` word 0x1fd (`quad.s` line 42), the fourth corner with the twelve-quad batch test, copied. |
+| 0x1d1 | 0x171 | **Inferred**: `ged1b.u` word 0x216 (`quad.s` line 96), material after three corners, copied. |
+| 0x1d2 | 0x172 | **Inferred**: `ged1b.u` word 0x202 for an end with three corners, in the copy. |
+| 0x1d3 | 0x173 | **Inferred**: `ged1b.u` word 0x218, the final swap entry of the copy. |
 
 ### Quad strips (class 8, entries 0x080-0x0b7)
 

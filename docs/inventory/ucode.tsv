@@ -3913,53 +3913,53 @@ ged1b.u	table B entry	11		entry=0x21a source=qstrip.s line=6	understood	ucode/ge
 ged1b.u	table B entry	12		entry=0x2b3 source=tfanpoly.s line=32	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
 ged1b.u	table B entry	13		entry=0x379 source=lines.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
 ged1b.u	table B entry	14		entry=0x01d source=trigger.s line=7	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
-ged1b.u	table B entry	15		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	16		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	17		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	18		entry=0x003 source=dist.s line=13	undocumented		
+ged1b.u	table B entry	15		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	16		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	17		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	18		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
 ged1b.u	table B entry	19		entry=0x025 source=trigger.s line=21	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
 ged1b.u	table B entry	20		entry=0x028 source=trigger.s line=26	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
 ged1b.u	table B entry	21		entry=0x02a source=trigger.s line=30	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
-ged1b.u	table B entry	22		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	23		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	24		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	25		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	26		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	27		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	28		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	29		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	30		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	31		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	32		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	33		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	34		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	35		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	36		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	37		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	38		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	39		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	40		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	41		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	42		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	43		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	44		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	45		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	46		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	47		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	48		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	49		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	50		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	51		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	52		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	53		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	54		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	55		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	56		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	57		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	58		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	59		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	60		entry=0x003 source=dist.s line=13	undocumented		
-ged1b.u	table B entry	61		entry=0x003 source=dist.s line=13	undocumented		
+ged1b.u	table B entry	22		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	23		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	24		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	25		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	26		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	27		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	28		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	29		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	30		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	31		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	32		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	33		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	34		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	35		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	36		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	37		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	38		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	39		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	40		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	41		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	42		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	43		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	44		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	45		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	46		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	47		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	48		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	49		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	50		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	51		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	52		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	53		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	54		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	55		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	56		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	57		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	58		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	59		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	60		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	61		entry=0x003 source=dist.s line=13	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
 ged1b.u	table B entry	62		entry=0x011 source=flush.s line=14	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
 ged1b.u	table B entry	63		entry=0x00d source=flush.s line=6	understood	ucode/ged.md#idle-state-and-the-begin-tokens-class-0-entries-0x000-0x03f	Idle state and the begin tokens (class 0, entries 0x000-0x03f)
 ged1b.u	table B entry	64		entry=0x13c source=lineloop.s line=22	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
@@ -3998,34 +3998,34 @@ ged1b.u	table B entry	96		entry=0x14c source=lineloop.s line=48	understood	ucode
 ged1b.u	table B entry	97		entry=0x16e source=lineloop.s line=106	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
 ged1b.u	table B entry	98		entry=0x182 source=lineloop.s line=160	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
 ged1b.u	table B entry	99		entry=0x180 source=lineloop.s line=150	understood	ucode/ged.md#line-loops-class-6-entries-0x040-0x063	Line loops (class 6, entries 0x040-0x063)
-ged1b.u	table B entry	100		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	101		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	102		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	103		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	104		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	105		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	106		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	107		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	108		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	109		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	110		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	111		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	112		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	113		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	114		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	115		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	116		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	117		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	118		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	119		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	120		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	121		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	122		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	123		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	124		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	125		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	126		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	127		entry=0x006 source=dist.s line=18	undocumented		
+ged1b.u	table B entry	100		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	101		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	102		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	103		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	104		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	105		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	106		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	107		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	108		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	109		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	110		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	111		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	112		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	113		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	114		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	115		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	116		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	117		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	118		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	119		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	120		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	121		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	122		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	123		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	124		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	125		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	126		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	127		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
 ged1b.u	table B entry	128		entry=0x226 source=qstrip.s line=22	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
 ged1b.u	table B entry	129		entry=0x254 source=qstrip.s line=98	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
 ged1b.u	table B entry	130		entry=0x289 source=qstrip.s line=202	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
@@ -4082,14 +4082,14 @@ ged1b.u	table B entry	180		entry=0x229 source=qstrip.s line=27	understood	ucode/
 ged1b.u	table B entry	181		entry=0x256 source=qstrip.s line=102	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
 ged1b.u	table B entry	182		entry=0x27a source=qstrip.s line=174	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
 ged1b.u	table B entry	183		entry=0x2a1 source=qstrip.s line=256	understood	ucode/ged.md#quad-strips-class-8-entries-0x080-0x0b7	Quad strips (class 8, entries 0x080-0x0b7)
-ged1b.u	table B entry	184		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	185		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	186		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	187		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	188		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	189		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	190		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	191		entry=0x006 source=dist.s line=18	undocumented		
+ged1b.u	table B entry	184		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	185		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	186		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	187		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	188		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	189		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	190		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	191		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
 ged1b.u	table B entry	192		entry=0x04c source=tstrip.s line=22	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
 ged1b.u	table B entry	193		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
 ged1b.u	table B entry	194		entry=0x0e8 source=tstrip.s line=314	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
@@ -4138,10 +4138,10 @@ ged1b.u	table B entry	236		entry=0x06b source=tstrip.s line=75	understood	ucode/
 ged1b.u	table B entry	237		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
 ged1b.u	table B entry	238		entry=0x0ec source=tstrip.s line=321	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
 ged1b.u	table B entry	239		entry=0x0c3 source=tstrip.s line=229	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
-ged1b.u	table B entry	240		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	241		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	242		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	243		entry=0x006 source=dist.s line=18	undocumented		
+ged1b.u	table B entry	240		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	241		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	242		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	243		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
 ged1b.u	table B entry	244		entry=0x071 source=tstrip.s line=85	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
 ged1b.u	table B entry	245		entry=0x0d9 source=tstrip.s line=282	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
 ged1b.u	table B entry	246		entry=0x0f1 source=tstrip.s line=329	understood	ucode/ged.md#triangle-strips-class-9-entries-0x0c0-0x0ff	Triangle strips (class 9, entries 0x0c0-0x0ff)
@@ -4198,26 +4198,26 @@ ged1b.u	table B entry	296		entry=0x2fe source=tfanpoly.s line=142	understood	uco
 ged1b.u	table B entry	297		entry=0x32e source=tfanpoly.s line=215	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
 ged1b.u	table B entry	298		entry=0x341 source=tfanpoly.s line=266	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
 ged1b.u	table B entry	299		entry=0x330 source=tfanpoly.s line=229	understood	ucode/ged.md#triangle-fans-and-polygons-class-10-entries-0x100-0x12b	Triangle fans and polygons (class 10, entries 0x100-0x12b)
-ged1b.u	table B entry	300		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	301		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	302		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	303		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	304		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	305		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	306		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	307		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	308		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	309		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	310		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	311		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	312		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	313		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	314		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	315		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	316		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	317		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	318		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	319		entry=0x006 source=dist.s line=18	undocumented		
+ged1b.u	table B entry	300		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	301		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	302		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	303		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	304		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	305		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	306		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	307		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	308		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	309		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	310		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	311		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	312		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	313		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	314		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	315		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	316		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	317		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	318		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	319		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
 ged1b.u	table B entry	320		entry=0x1b7 source=linestrip.s line=41	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
 ged1b.u	table B entry	321		entry=0x1d7 source=linestrip.s line=88	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
 ged1b.u	table B entry	322		entry=0x1b3 source=linestrip.s line=35	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
@@ -4238,18 +4238,18 @@ ged1b.u	table B entry	336		entry=0x1c9 source=linestrip.s line=68	understood	uco
 ged1b.u	table B entry	337		entry=0x1e0 source=linestrip.s line=105	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
 ged1b.u	table B entry	338		entry=0x1b3 source=linestrip.s line=35	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
 ged1b.u	table B entry	339		entry=0x1e3 source=linestrip.s line=114	understood	ucode/ged.md#line-strips-class-5-entries-0x140-0x153	Line strips (class 5, entries 0x140-0x153)
-ged1b.u	table B entry	340		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	341		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	342		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	343		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	344		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	345		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	346		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	347		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	348		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	349		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	350		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	351		entry=0x006 source=dist.s line=18	undocumented		
+ged1b.u	table B entry	340		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	341		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	342		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	343		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	344		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	345		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	346		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	347		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	348		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	349		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	350		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	351		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
 ged1b.u	table B entry	352		entry=0x1f1 source=quad.s line=22	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
 ged1b.u	table B entry	353		entry=0x20e source=quad.s line=80	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
 ged1b.u	table B entry	354		entry=0x205 source=quad.s line=61	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
@@ -4270,18 +4270,18 @@ ged1b.u	table B entry	368		entry=0x1fd source=quad.s line=42	understood	ucode/ge
 ged1b.u	table B entry	369		entry=0x216 source=quad.s line=96	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
 ged1b.u	table B entry	370		entry=0x202 source=quad.s line=54	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
 ged1b.u	table B entry	371		entry=0x218 source=quad.s line=104	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
-ged1b.u	table B entry	372		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	373		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	374		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	375		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	376		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	377		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	378		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	379		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	380		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	381		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	382		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	383		entry=0x006 source=dist.s line=18	undocumented		
+ged1b.u	table B entry	372		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	373		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	374		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	375		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	376		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	377		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	378		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	379		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	380		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	381		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	382		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	383		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
 ged1b.u	table B entry	384		entry=0x357 source=tri.s line=23	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
 ged1b.u	table B entry	385		entry=0x36f source=tri.s line=65	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
 ged1b.u	table B entry	386		entry=0x366 source=tri.s line=52	understood	ucode/ged.md#independent-triangles-class-4-entries-0x180-0x18f	Independent triangles (class 4, entries 0x180-0x18f)
@@ -4310,18 +4310,18 @@ ged1b.u	table B entry	408		entry=0x385 source=lines.s line=27	understood	ucode/g
 ged1b.u	table B entry	409		entry=0x3a1 source=lines.s line=85	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
 ged1b.u	table B entry	410		entry=0x38d source=lines.s line=49	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
 ged1b.u	table B entry	411		entry=0x396 source=lines.s line=66	understood	ucode/ged.md#separate-lines-class-2-entries-0x190-0x19b	Separate lines (class 2, entries 0x190-0x19b)
-ged1b.u	table B entry	412		entry=0x155 source=lineloop.s line=63	undocumented		
-ged1b.u	table B entry	413		entry=0x17e source=lineloop.s line=137	undocumented		
-ged1b.u	table B entry	414		entry=0x18b source=lineloop.s line=177	undocumented		
-ged1b.u	table B entry	415		entry=0x180 source=lineloop.s line=150	undocumented		
-ged1b.u	table B entry	416		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	417		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	418		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	419		entry=0x006 source=dist.s line=18	undocumented		
+ged1b.u	table B entry	412		entry=0x155 source=lineloop.s line=63	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	413		entry=0x17e source=lineloop.s line=137	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	414		entry=0x18b source=lineloop.s line=177	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	415		entry=0x180 source=lineloop.s line=150	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	416		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	417		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	418		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	419		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
 ged1b.u	table B entry	420		entry=0x034 source=trigger.s line=43	understood	ucode/ged.md#subdivision-patches-class-12-entries-0x1a0-0x1a7	Subdivision patches (class 12, entries 0x1a0-0x1a7)
 ged1b.u	table B entry	421		entry=0x037 source=trigger.s line=48	understood	ucode/ged.md#subdivision-patches-class-12-entries-0x1a0-0x1a7	Subdivision patches (class 12, entries 0x1a0-0x1a7)
 ged1b.u	table B entry	422		entry=0x039 source=trigger.s line=52	understood	ucode/ged.md#subdivision-patches-class-12-entries-0x1a0-0x1a7	Subdivision patches (class 12, entries 0x1a0-0x1a7)
-ged1b.u	table B entry	423		entry=0x006 source=dist.s line=18	undocumented		
+ged1b.u	table B entry	423		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
 ged1b.u	table B entry	424		entry=0x119 source=points.s line=22	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
 ged1b.u	table B entry	425		entry=0x12c source=points.s line=54	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
 ged1b.u	table B entry	426		entry=0x121 source=points.s line=36	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
@@ -4330,83 +4330,83 @@ ged1b.u	table B entry	428		entry=0x119 source=points.s line=22	understood	ucode/
 ged1b.u	table B entry	429		entry=0x12e source=points.s line=58	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
 ged1b.u	table B entry	430		entry=0x11c source=points.s line=27	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
 ged1b.u	table B entry	431		entry=0x125 source=points.s line=43	understood	ucode/ged.md#points-class-1-entries-0x1a8-0x1af	Points (class 1, entries 0x1a8-0x1af)
-ged1b.u	table B entry	432		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	433		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	434		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	435		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	436		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	437		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	438		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	439		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	440		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	441		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	442		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	443		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	444		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	445		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	446		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	447		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	448		entry=0x1f1 source=quad.s line=22	undocumented		
-ged1b.u	table B entry	449		entry=0x20e source=quad.s line=80	undocumented		
-ged1b.u	table B entry	450		entry=0x205 source=quad.s line=61	undocumented		
-ged1b.u	table B entry	451		entry=0x218 source=quad.s line=104	undocumented		
-ged1b.u	table B entry	452		entry=0x1f4 source=quad.s line=27	undocumented		
-ged1b.u	table B entry	453		entry=0x210 source=quad.s line=84	undocumented		
-ged1b.u	table B entry	454		entry=0x200 source=quad.s line=47	undocumented		
-ged1b.u	table B entry	455		entry=0x218 source=quad.s line=104	undocumented		
-ged1b.u	table B entry	456		entry=0x1f7 source=quad.s line=32	undocumented		
-ged1b.u	table B entry	457		entry=0x212 source=quad.s line=88	undocumented		
-ged1b.u	table B entry	458		entry=0x202 source=quad.s line=54	undocumented		
-ged1b.u	table B entry	459		entry=0x218 source=quad.s line=104	undocumented		
-ged1b.u	table B entry	460		entry=0x1fa source=quad.s line=37	undocumented		
-ged1b.u	table B entry	461		entry=0x214 source=quad.s line=92	undocumented		
-ged1b.u	table B entry	462		entry=0x202 source=quad.s line=54	undocumented		
-ged1b.u	table B entry	463		entry=0x218 source=quad.s line=104	undocumented		
-ged1b.u	table B entry	464		entry=0x1fd source=quad.s line=42	undocumented		
-ged1b.u	table B entry	465		entry=0x216 source=quad.s line=96	undocumented		
-ged1b.u	table B entry	466		entry=0x202 source=quad.s line=54	undocumented		
-ged1b.u	table B entry	467		entry=0x218 source=quad.s line=104	undocumented		
-ged1b.u	table B entry	468		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	469		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	470		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	471		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	472		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	473		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	474		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	475		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	476		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	477		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	478		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	479		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	480		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	481		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	482		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	483		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	484		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	485		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	486		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	487		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	488		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	489		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	490		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	491		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	492		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	493		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	494		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	495		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	496		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	497		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	498		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	499		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	500		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	501		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	502		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	503		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	504		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	505		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	506		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	507		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	508		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	509		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	510		entry=0x006 source=dist.s line=18	undocumented		
-ged1b.u	table B entry	511		entry=0x006 source=dist.s line=18	undocumented		
+ged1b.u	table B entry	432		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	433		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	434		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	435		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	436		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	437		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	438		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	439		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	440		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	441		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	442		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	443		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	444		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	445		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	446		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	447		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	448		entry=0x1f1 source=quad.s line=22	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	449		entry=0x20e source=quad.s line=80	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	450		entry=0x205 source=quad.s line=61	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	451		entry=0x218 source=quad.s line=104	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	452		entry=0x1f4 source=quad.s line=27	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	453		entry=0x210 source=quad.s line=84	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	454		entry=0x200 source=quad.s line=47	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	455		entry=0x218 source=quad.s line=104	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	456		entry=0x1f7 source=quad.s line=32	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	457		entry=0x212 source=quad.s line=88	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	458		entry=0x202 source=quad.s line=54	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	459		entry=0x218 source=quad.s line=104	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	460		entry=0x1fa source=quad.s line=37	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	461		entry=0x214 source=quad.s line=92	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	462		entry=0x202 source=quad.s line=54	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	463		entry=0x218 source=quad.s line=104	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	464		entry=0x1fd source=quad.s line=42	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	465		entry=0x216 source=quad.s line=96	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	466		entry=0x202 source=quad.s line=54	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	467		entry=0x218 source=quad.s line=104	understood	ucode/ged.md#separate-quads-class-7-entries-0x160-0x173	Separate quads (class 7, entries 0x160-0x173)
+ged1b.u	table B entry	468		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	469		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	470		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	471		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	472		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	473		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	474		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	475		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	476		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	477		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	478		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	479		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	480		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	481		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	482		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	483		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	484		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	485		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	486		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	487		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	488		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	489		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	490		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	491		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	492		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	493		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	494		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	495		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	496		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	497		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	498		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	499		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	500		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	501		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	502		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	503		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	504		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	505		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	506		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	507		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	508		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	509		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	510		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
+ged1b.u	table B entry	511		entry=0x006 source=dist.s line=18	understood	ucode/ged_null_entries.md#distributor-table-b-entries-that-hold-a-null-loop	Distributor table B entries that hold a null loop
