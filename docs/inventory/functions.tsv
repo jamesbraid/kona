@@ -21031,7 +21031,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9c91d0	268	ClipI
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9c92e0	288	ClipBIFT	dwarf+funcnames	2d002097a580		in	located	docs/sample-implementation.md#so_clipc	so_clip.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9c9400	328	ClipCFT	dwarf+funcnames	d6a1427337fe		in	located	docs/sample-implementation.md#so_clipc	so_clip.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9c9550	408	ClipBCFT	dwarf+funcnames	ccfc3ef0b062		in	located	docs/sample-implementation.md#so_clipc	so_clip.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c96f0	268	__glGenericPickParameterClipProcs	dwarf+dynsym	123968f8cb92		in	located	docs/sample-implementation.md#so_clipc	so_clip.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c96f0	268	__glGenericPickParameterClipProcs	dwarf+dynsym	123968f8cb92		in	understood	docs/sample-implementation.md#so_clipc	so_clip.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c9800	2060	__glCheckColorTableArgs	dwarf+dynsym	f30e739ffcf8		in	located	docs/sample-implementation.md#so_colortablec	so_colortable.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ca010	816	__glCheckColorSubTableArgs	dwarf+dynsym	d2c314c32f1e		in	located	docs/sample-implementation.md#so_colortablec	so_colortable.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ca340	1184	__glLoadColorTableParams	dwarf+dynsym	f982afaff58f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -37730,7 +37730,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9c91d0	268	ClipI
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9c92e0	288	ClipBIFT	dwarf+funcnames	2d002097a580		in	located	docs/sample-implementation.md#so_clipc	so_clip.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9c9400	328	ClipCFT	dwarf+funcnames	d6a1427337fe		in	located	docs/sample-implementation.md#so_clipc	so_clip.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9c9550	408	ClipBCFT	dwarf+funcnames	ccfc3ef0b062		in	located	docs/sample-implementation.md#so_clipc	so_clip.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c96f0	268	__glGenericPickParameterClipProcs	dwarf+dynsym	123968f8cb92		in	located	docs/sample-implementation.md#so_clipc	so_clip.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c96f0	268	__glGenericPickParameterClipProcs	dwarf+dynsym	123968f8cb92		in	understood	docs/sample-implementation.md#so_clipc	so_clip.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c9800	2060	__glCheckColorTableArgs	dwarf+dynsym	f30e739ffcf8		in	located	docs/sample-implementation.md#so_colortablec	so_colortable.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ca010	816	__glCheckColorSubTableArgs	dwarf+dynsym	d2c314c32f1e		in	located	docs/sample-implementation.md#so_colortablec	so_colortable.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ca340	1184	__glLoadColorTableParams	dwarf+dynsym	f982afaff58f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
