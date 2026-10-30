@@ -2764,17 +2764,19 @@ of the 128-point radix-2 pass).
 - `mmo_FFT_256` (`fft.S` line 1219, at 0x315b): **inferred**, the 256-point transform as four radix-4 passes in place on
   the record at register 0x10. The set-up at 0x315c-0x315e points registers 0xa, 0xb and 0xd at offsets 0x200, 0x400
   and 0x600, the quarters of the record (0x200 is sample 64 in the units `mmo_FFT_128` uses for its half). Pass 1
-  (loop 0x3167-0x31bd, counter 0x14 at 0x3177) takes twiddle entries 1, 2, 3 in lane 0, 2, 4, 6 in lane 1 and 3, 6, 9
+  opens with the twiddle-free butterfly 0x3167-0x317f (8 adds and 8 subtracts, no multiply), which runs once, then the
+  loop 0x3180-0x31bd (the transfer at 0x31bd goes back to 0x3180; counter 0x14 at 0x3177, 21 passes of three lanes, so
+  63 butterflies and the first makes 64). It takes twiddle entries 1, 2, 3 in lane 0, 2, 4, 6 in lane 1 and 3, 6, 9
   in lane 2 (immediates 0x73a7-0x73b7 at 0x315f-0x317f) and steps them by 6, 0xc and 0x12 words (0x3173-0x3175), so lane
-  j multiplies by W^j, W^2j and W^3j; each pass has 12 multiplies and 38 adds and subtracts. Pass 2 is a nested loop,
+  j multiplies by W^j, W^2j and W^3j; each pass has 11 single multiplies (M = 0x47f), one form-11 word with M = 0x44a
+  and 22 adds and subtracts, the same mix as the inner loop of `mmo_FFT_128`'s second pass. Pass 2 is a nested loop,
   outer counter 3 at 0x31c7 (four 64-sample groups) and inner loop 0x31ef-0x322c with counter 4 (15 butterflies in
   steps of three), after a twiddle-free butterfly of 16 adds and subtracts (0x31be-0x31ee); its twiddles are entries 4,
   8, 12 and their multiples (0x73ad-0x73ed), stepped by 0x18, 0x30 and 0x48. Pass 3 (loop 0x326a-0x32b6, counter 0xf,
   16 groups of 16) preloads fixed twiddles at 0x3240-0x3262: entries 16, 32, 48 in lane 0, 32, 64, 96 in lane 1 and 48,
   96, 144 in lane 2, the 16-point factors. Pass 4 (loop 0x32df-0x32f7, counter 0x14, 21 x 3 butterflies, plus the block
   0x32b7-0x32dd) uses 16 adds and subtracts per butterfly and no multiply. It loads its successor at 0x3300 and ends at
-  0x3306. Where pass 1's twiddle-free butterfly runs is unknown: its loop has 16 more adds and subtracts per pass than
-  one twiddled butterfly needs, and a lane-by-lane reading of its stores would settle it.
+  0x3306.
 - `mmo_FFT_128` (`fft.S` line 1155, at 0x330f): **inferred**, the 128-point transform as a radix-2 pass and three radix-4
   passes in place on the record at register 0x10. Register 0 holds 0x200 (0x330f), which pairs sample k with sample
   k + 64. The twiddle-free butterfly of samples 0 and 64 runs first (2 adds and 2 subtracts, 0x3317-0x331a); the loop

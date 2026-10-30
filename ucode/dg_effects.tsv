@@ -8,7 +8,7 @@ request	effect
 4	clears XMAP 0x105 substitute
 5	prints tracing message only
 6	loads cursor from image
-7	sets debug-print mask
+7	stores DGGlobalState+0, prints it
 8	derives frame-buffer tile layout
 9	sets register 0x8b bits 21-20
 10	reads register 0x8b bits 21-20
@@ -16,7 +16,7 @@ request	effect
 12	returns stored horizontal phase
 13	sets channel vertical phase
 14	returns stored vertical phase
-15	selects channel gamma map
+15	record 0x184 bit 25 or 0x170
 16	returns channel gamma map
 17	rebuilds board default state
 18	returns five-word board record
@@ -27,7 +27,7 @@ request	effect
 23	turns a channel on
 24	turns a channel off
 25	writes genlock parameters per VOC
-26	switches every channel's genlock
+26	genlock all channels, flag bit 31
 27	writes XMAP 0x102 cursor position
 28	writes XMAP 0x100 cursor channel
 29	writes XMAP 0x103 cursor mode
