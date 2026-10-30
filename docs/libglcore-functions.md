@@ -22,20 +22,20 @@ Read from the IP27 Kona n32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/I
   **Established.** The vector form of glNormal3b, which sends the same token 0x76 and the same two-word packing as `__glkonim_Normal3b`, but loads the three signed bytes from the pointer in `a0` itself (the second as an unsigned byte, which the shift makes equivalent).
 - `__glkonim_Normal3sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da656f0, 40 bytes):
   **Established.** The vector form of glNormal3s: it loads the three shorts from `a0` (the third zero-extended) and sends the same token 0x7a and the same two words as `__glkonim_Normal3s`.
-- `__glkonim_TexCoord1sv` (`libGLcore.so` 0x0da658f0, 24 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glTexCoord1sv: it writes the `HP_TEXCOORD1S` (token 0x07e) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path.
-- `__glkonim_TexCoord2sv` (`libGLcore.so` 0x0da65990, 32 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glTexCoord2sv: it writes the `HP_TEXCOORD2S` (token 0x082) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_TexCoord3sv` (`libGLcore.so` 0x0da65a30, 40 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glTexCoord3sv: it writes the `HP_TEXCOORD3S` (token 0x086) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_TexCoord4sv` (`libGLcore.so` 0x0da65af0, 52 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glTexCoord4sv: it writes the `HP_TEXCOORD4S` (token 0x08a) command to the pipe FIFO (process address 16384) as 3 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Vertex2sv` (`libGLcore.so` 0x0da65bb0, 32 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glVertex2sv: it writes the `HP_VERTEX2S` (token 0x08e) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Vertex3sv` (`libGLcore.so` 0x0da65c50, 40 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glVertex3sv: it writes the `HP_VERTEX3S` (token 0x092) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Vertex4sv` (`libGLcore.so` 0x0da65d10, 52 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glVertex4sv: it writes the `HP_VERTEX4S` (token 0x096) command to the pipe FIFO (process address 16384) as 3 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
+- `__glkonim_TexCoord1sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da658f0, 24 bytes):
+  **Established.** The vector form of glTexCoord1s: it loads a signed short through `a0`, stores the token 126 (0x7e) and then the short shifted into the upper half of a word, the pair `__glkonim_TexCoord1s` sends.
+- `__glkonim_TexCoord2sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65990, 32 bytes):
+  **Established.** The vector form of glTexCoord2s: it loads two signed shorts from `a0` at offsets 0 and 2 and sends the two words of `__glkonim_TexCoord2s` (the first short with the token 0x82, the second in the upper half of the next).
+- `__glkonim_TexCoord3sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65a30, 40 bytes):
+  **Established.** The vector form of glTexCoord3s: it loads the first two shorts signed and the third (at offset 4) zero-extended from `a0`, and sends the two words of `__glkonim_TexCoord3s` with the token 0x86.
+- `__glkonim_TexCoord4sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65af0, 52 bytes):
+  **Established.** The vector form of glTexCoord4s: it loads four shorts from `a0` (the third at offset 4 zero-extended) and sends the three words of `__glkonim_TexCoord4s` with the token 0x8a.
+- `__glkonim_Vertex2sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65bb0, 32 bytes):
+  **Established.** The vector form of glVertex2s: it loads two signed shorts from `a0` at offsets 0 and 2 and sends the two words of `__glkonim_Vertex2s` under the token 0x8e.
+- `__glkonim_Vertex3sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65c50, 40 bytes):
+  **Established.** The vector form of glVertex3s: it loads two signed shorts and a zero-extended third (offset 4) from `a0` and sends the two words of `__glkonim_Vertex3s` under the token 0x92.
+- `__glkonim_Vertex4sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65d10, 52 bytes):
+  **Established.** The vector form of glVertex4s: it loads four shorts from `a0` (the third at offset 4 zero-extended) and sends the three words of `__glkonim_Vertex4s` under the token 0x96.
 - `__glkonlc_Color3b` (`libGLcore.so` 0x0da670e0, 164 bytes, `kon_cdlfuncs.c`): **Established.** The display-list compile form of
   glColor3b: it records the `HP_COLOR3B` (token 0x061) command, 2 words in all, in the display-list buffer instead of sending it. The token is the low byte of the first word; its upper bytes carry the first converted argument values. It makes room first (`__glSPDlistSpace` runs when fewer than 2 words remain; the remaining count is at process address 4136), stores the words at the list pointer (process address 4144 in the driver state page), advances it by 8 bytes and adds 2 to the list's word count (4148). **Inferred:** playing the list sends the same words the immediate form
   `__glkonim_Color3b` writes to the FIFO.
@@ -717,3 +717,65 @@ Read from the IP27 Kona n32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/I
   **Established.** The immediate-mode glColor4f, five stores to the command port: the token 107 (0x6b) as a word and the floats in `f12` to `f15` as 32-bit stores. It does not clamp the components.
 - `__glkonim_Color4d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da653c0, 28 bytes):
   **Established.** The immediate-mode glColor4d, five stores to the command port: the token 106 (0x6a) as a word and the doubles in `f12` to `f15`, each as one 64-bit store.
+
+## Further immediate-mode senders
+
+- `__glkonim_TexCoord1d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da658a0, 16 bytes):
+  **Established.** The immediate-mode glTexCoord1d, two stores to the command port: the token 123 (0x7b) as a word and the double in `f12` as one 64-bit store.
+- `__glkonim_TexCoord1f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da658b0, 16 bytes):
+  **Established.** The immediate-mode glTexCoord1f, two stores to the command port: the token 124 (0x7c) and the float in `f12` as a 32-bit store.
+- `__glkonim_TexCoord1i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da658c0, 16 bytes):
+  **Established.** The immediate-mode glTexCoord1i, two word stores to the command port: the token 125 (0x7d) and the integer in `a0` unchanged.
+- `__glkonim_TexCoord1s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da658d0, 20 bytes):
+  **Established.** The immediate-mode glTexCoord1s: it stores the token 126 (0x7e) to the command port and then the short argument shifted into the upper half of a word.
+- `__glkonim_TexCoord2d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65910, 20 bytes):
+  **Established.** The immediate-mode glTexCoord2d, three stores to the command port: the token 127 (0x7f) as a word and then the doubles in `f12` and `f13`, each as one 64-bit store.
+- `__glkonim_TexCoord2f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65930, 20 bytes):
+  **Established.** The immediate-mode glTexCoord2f, three stores to the command port: the token 128 (0x80) and the floats in `f12` and `f13` as 32-bit stores.
+- `__glkonim_TexCoord2i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65950, 20 bytes):
+  **Established.** The immediate-mode glTexCoord2i, three word stores to the command port: the token 129 (0x81) and the integers in `a0` and `a1`, unchanged.
+- `__glkonim_TexCoord2s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65970, 24 bytes):
+  **Established.** The immediate-mode glTexCoord2s, two stores to the command port: the first short in the upper half with the token 0x82 in the low byte, then the second short alone in the upper half of the next word. Neither short needs masking because the lower half of the second word is empty.
+- `__glkonim_TexCoord3d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da659b0, 24 bytes):
+  **Established.** The immediate-mode glTexCoord3d, four stores to the command port: the token 131 (0x83) and the doubles in `f12`, `f13` and `f14` as 64-bit stores.
+- `__glkonim_TexCoord3f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da659d0, 24 bytes):
+  **Established.** The immediate-mode glTexCoord3f, four stores to the command port: the token 132 (0x84) and the floats in `f12`, `f13` and `f14`.
+- `__glkonim_TexCoord3i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da659f0, 24 bytes):
+  **Established.** The immediate-mode glTexCoord3i, four word stores to the command port: the token 133 (0x85) and the integers from `a0`, `a1` and `a2` unchanged.
+- `__glkonim_TexCoord3s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65a10, 32 bytes):
+  **Established.** The immediate-mode glTexCoord3s, two stores to the command port: the first short in the upper half with the token 0x86, then the second short in the upper half over the third masked to 16 bits in the lower half.
+- `__glkonim_TexCoord4d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65a60, 28 bytes):
+  **Established.** The immediate-mode glTexCoord4d, five stores to the command port: the token 135 (0x87) and the doubles in `f12` to `f15` as 64-bit stores.
+- `__glkonim_TexCoord4f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65a80, 28 bytes):
+  **Established.** The immediate-mode glTexCoord4f, five stores to the command port: the token 136 (0x88) and the floats in `f12` to `f15`.
+- `__glkonim_TexCoord4i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65aa0, 28 bytes):
+  **Established.** The immediate-mode glTexCoord4i, five word stores to the command port: the token 137 (0x89) and the integers from `a0` to `a3` unchanged.
+- `__glkonim_TexCoord4s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65ac0, 40 bytes):
+  **Established.** The immediate-mode glTexCoord4s, three stores to the command port: the first short in the upper half with the token 0x8a, then the second short in the upper half over the third masked to 16 bits, then the fourth short alone in the upper half.
+
+## Further immediate-mode senders
+
+- `__glkonim_Vertex2d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65b30, 20 bytes):
+  **Established.** The immediate-mode glVertex2d, three stores to the command port: the token 139 (0x8b) as a word and the doubles in `f12` and `f13`, each as one 64-bit store.
+- `__glkonim_Vertex2f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65b50, 20 bytes):
+  **Established.** The immediate-mode glVertex2f, three stores to the command port: the token 140 (0x8c) and the floats in `f12` and `f13` as 32-bit stores.
+- `__glkonim_Vertex2i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65b70, 20 bytes):
+  **Established.** The immediate-mode glVertex2i, three word stores to the command port: the token 141 (0x8d) and the integers in `a0` and `a1`, unchanged.
+- `__glkonim_Vertex2s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65b90, 24 bytes):
+  **Established.** The immediate-mode glVertex2s, two stores to the command port: the first short in the upper half with the token 0x8e in the low byte, then the second short alone in the upper half of the next word.
+- `__glkonim_Vertex3d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65bd0, 24 bytes):
+  **Established.** The immediate-mode glVertex3d, four stores to the command port: the token 143 (0x8f) and the doubles in `f12`, `f13` and `f14` as 64-bit stores.
+- `__glkonim_Vertex3f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65bf0, 24 bytes):
+  **Established.** The immediate-mode glVertex3f, four stores to the command port: the token 144 (0x90) and the floats in `f12`, `f13` and `f14`.
+- `__glkonim_Vertex3i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65c10, 24 bytes):
+  **Established.** The immediate-mode glVertex3i, four word stores to the command port: the token 145 (0x91) and the integers from `a0`, `a1` and `a2` unchanged.
+- `__glkonim_Vertex3s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65c30, 32 bytes):
+  **Established.** The immediate-mode glVertex3s, two stores to the command port: the first short in the upper half with the token 0x92, then the second short in the upper half over the third masked to 16 bits.
+- `__glkonim_Vertex4d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65c80, 28 bytes):
+  **Established.** The immediate-mode glVertex4d, five stores to the command port: the token 147 (0x93) and the doubles in `f12` to `f15` as 64-bit stores.
+- `__glkonim_Vertex4f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65ca0, 28 bytes):
+  **Established.** The immediate-mode glVertex4f, five stores to the command port: the token 148 (0x94) and the floats in `f12` to `f15`.
+- `__glkonim_Vertex4i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65cc0, 28 bytes):
+  **Established.** The immediate-mode glVertex4i, five word stores to the command port: the token 149 (0x95) and the integers from `a0` to `a3` unchanged.
+- `__glkonim_Vertex4s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65ce0, 40 bytes):
+  **Established.** The immediate-mode glVertex4s, three stores to the command port: the first short in the upper half with the token 0x96, then the second short over the masked third, then the fourth short alone in the upper half.
