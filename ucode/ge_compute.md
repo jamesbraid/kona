@@ -2562,6 +2562,94 @@ the [fft.S listing](ge_listing/fft.S.lst) (`ge.u`, IRIX 6.5.30m).
   code loads is left to the larger sizes. It reads and steps its successor pointer like the two-point stage (0x37bc,
   0x37c7).
 
+## Texture-coordinate generation commands and modules (texgen.S)
+
+The glTexGen command, its enables, and the distance-to-point and distance-to-line generators of SGIS_point_line_texgen.
+Each coordinate n (s = 0 to q = 3) owns a mode word at engine word 0x3df + n and parameter blocks with a stride of four,
+so word k of coordinate n's plane is at 0x3f3 + n + 4k. Read word by word from the
+[texgen.S listing](ge_listing/texgen.S.lst) (`ge.u`, IRIX 6.5.30m), with the Ghidra decompiler output of each routine
+beside it. The GL enum values the dispatcher compares against are the public OpenGL and SGIS_point_line_texgen values.
+
+- `mgeb_TexGen` (`texgen.S` line 688, at 0xcabe): **inferred**, the glTexGen command. Its inputs are command words 0-2
+  (coordinate, parameter name, value). It converts the coordinate into the index n by subtracting 0x2000, GL_S (0xcad1),
+  stages the enum constants it compares against, and subtracts them from the operands to select a handler. Parameter
+  GL_TEXTURE_GEN_MODE (0x2500) sends the value to one of seven mode handlers (0xcae7-0xcaed); any other parameter goes
+  to 0xcafa, which selects one of six plane, point or line handlers. The result is a jump with n in register 0xa.
+- `mgeb_TexGen_Disable` (`texgen.S` line 654, at 0xcb19): **inferred**, glDisable of a GL_TEXTURE_GEN coordinate. It takes
+  the enable token from command word 0, subtracts 0xc60 (GL_TEXTURE_GEN_S) to index the mode word at 0x3df + n, and
+  combines that word with the mask 0x60000000 by unit-1 code 0x51 (0xcb2c), which has no settled reading of its own;
+  clearing the two bits the enable handler sets is the one that fits. It stores the result back and jumps to the resolver.
+- `mgeb_TexGen_Enable` (`texgen.S` line 623, at 0xcb39): **inferred**, the matching glEnable. Same indexing as the
+  disable handler, but it ORs 0x60000000 into the coordinate's mode word (0xcb4c), so bits 30-29 are the enable, and its
+  output is that word stored back at 0x3df + n.
+- `mTexGenSph` (`texgen.S` line 189, at 0xcd59): **inferred**, GL_SPHERE_MAP for one coordinate. It refuses r and q
+  (condition 9 sends them straight to `mTexGenResolve`), keeps only the enable bits of the mode word (AND 0x60000000), then
+  ORs in 0xc000000 and the address 0xb85 of `umo_TexGenSphere_ST`; the combined word is its result, stored at 0x3df + n.
+- `mTexGenObjLin` (`texgen.S` line 223, at 0xcd3f): **inferred**, GL_OBJECT_LINEAR. From the mode word it keeps bits
+  30-29 and combines them with a module address: 0xc30 (`umo_TexGenObjLinear_ST`) or 0xc53 for r and q. The predicated
+  stores at 0xcd53 and 0xcd55 select which one by coordinate, producing the new mode word.
+- `mTexGenEyeLin` (`texgen.S` line 249, at 0xcd21): **inferred**, GL_EYE_LINEAR. Like the object-linear handler it masks
+  the old mode word, but it also adds the eye-space flag 0x8000000 before ORing in 0xbea for s and t or 0xc0d for r and
+  q, the two eye-linear transform modules; output the mode word at 0x3df + n.
+- `mTexGenEyePointDist` (`texgen.S` line 278, at 0xcd03): **inferred**, GL_EYE_DISTANCE_TO_POINT_SGIS (0x81f0). It takes
+  the coordinate's mode word, sets the eye flag 0x8000000, and packs in `mmo_TexGenEyePoint_ST` or its r, q twin as
+  the module this coordinate runs; result stored predicated at 0xcd1b or 0xcd1d.
+- `mTexGenObjPointDist` (`texgen.S` line 306, at 0xcce9): **inferred**, GL_OBJECT_DISTANCE_TO_POINT_SGIS (0x81f1). With no
+  eye flag, its output mode word combines the enables with 0xce98 or 0xcef3, the object point-distance modules.
+- `mTexGenEyeLineDist` (`texgen.S` line 333, at 0xcccb): **inferred**, GL_EYE_DISTANCE_TO_LINE_SGIS (0x81f2): eye flag set
+  and the line modules at 0xcf4e and 0xcfdb as candidates. It produces the mode word through the same predicated pair of
+  stores and ends by jumping to the resolver.
+- `mTexGenObjLineDist` (`texgen.S` line 361, at 0xccb1): **inferred**, GL_OBJECT_DISTANCE_TO_LINE_SGIS (0x81f3). It takes
+  the old mode word and returns it with the enable bits kept and 0xcd7e or 0xce0b, the object line modules, ORed in.
+- `mTexGenObjPlane` (`texgen.S` line 382, at 0xcc9e): **inferred**, GL_OBJECT_PLANE. Its input is the plane in command
+  words 2-5. It converts nothing: four moves copy the plane, and the stores at 0xcca7-0xccad write the result words
+  at 0x3e3 + n + 4k, where the object-linear modules read it.
+- `mTexGenEyePlane` (`texgen.S` line 402, at 0xcc6e): **inferred**, GL_EYE_PLANE. It first calls `mMatrixInverse` when
+  condition 0x76 says the inverse is stale, then multiplies the plane in command words 2-5, taken as a row vector, by the
+  inverse modelview at engine words 0x1f-0x2e: sixteen products summed in fours (0xcc77-0xcc8c). That is GL's rule
+  p' = p M^-1 at specification time. The four results go to 0x3f3 + n + 4k.
+- `mTexGenObjPoint` (`texgen.S` line 443, at 0xcc43): **inferred**, GL_OBJECT_POINT_SGIS. It takes the homogeneous point
+  in command words 2-5, computes 1/w with a reciprocal seed and one Newton step (0xcc4b-0xcc59), and multiplies x, y and
+  z by it. The three results are stored at 0x403 + n + 4k.
+- `mTexGenEyePoint` (`texgen.S` line 469, at 0xcbff): **inferred**, GL_EYE_POINT_SGIS. It transforms the point operand
+  (command words 2-5) by the modelview at engine words 0x2f-0x3e, sixteen multiply-adds, then divides the eye-space
+  x, y and z by the transformed w as the object-point handler does. Results at 0x413 + n + 4k.
+- `mTexGenObjLine` (`texgen.S` line 518, at 0xcbbe): **inferred**, GL_OBJECT_LINE_SGIS. Its operands are a point (command
+  words 2-5) and a direction (words 6-8). It divides the point by its w and normalises the direction with a reciprocal
+  square root of the sum of squares (seed at 0xcbd2, Newton step after it). It stores the six results at 0x423 + n + 4k.
+- `mTexGenEyeLine` (`texgen.S` line 556, at 0xcb59): **inferred**, GL_EYE_LINE_SGIS. It calls `mMatrixInverse` when stale,
+  transforms the point operand by the modelview (0x2f-0x3e) and the direction by the 3 x 3 block of the inverse at
+  0x1f-0x29, then divides and normalises as the object-line handler does. Six results at 0x43b + n + 4k.
+- `mmo_TexGenObjPoint_ST` (`texgen.S` line 870, at 0xce98): **inferred**, the vertex module for object distance to a
+  point, s and t. Two vertices per pass (records at address registers 0xc and 0xd); its inputs are object position
+  words 0-2 and the point saved at 0x403 and 0x404 onward. Per vertex it subtracts the point, sums the squares and
+  computes the length as x times a reciprocal square root with one Newton step. The results go to record words 0xb and
+  0xc through predicated stores; it also shifts the special-register words 0x2e and 0x2f.
+- `mmo_TexGenObjPoint_RQ` (`texgen.S` line 961, at 0xcef3): **inferred**, the same distance for r and q: it takes the
+  object position and the points of coordinates 2 and 3 (0x405 and 0x406 onward) and returns the two lengths in record
+  words 0xd and 0xe.
+- `mmo_TexGenEyePoint_ST` (`texgen.S` line 1372, at 0xd068): **inferred**, eye distance to a point for s and t. Its input
+  is the eye position, record words 0x13-0x15, against the eye-space points at 0x413 and 0x414 onward; it computes the
+  Euclidean distance per vertex, two vertices per pass, and yields s and t in words 0xb and 0xc. The loop closes at 0xd0b9.
+- `mmo_TexGenEyePoint_RQ` (`texgen.S` line 1463, at 0xd0c3): **inferred**, the r and q form of the eye point distance:
+  eye position input, points of coordinates 2 and 3, the two distances as output words 0xd and 0xe.
+- `mmo_TexGenObjLine_ST` (`texgen.S` line 1057, at 0xcd7e): **inferred**, object distance to a line for s and t. For each
+  of two vertices it takes the object position (words 0-2), subtracts the line point saved at 0x423 onward, removes the
+  component along the unit direction (the dot product times the direction) and computes the length of what is left with
+  a reciprocal square root and a Newton step. Outputs: s in word 0xb and t in word 0xc, predicated.
+- `mmo_TexGenObjLine_RQ` (`texgen.S` line 1216, at 0xce0b): **inferred**, r and q of the object line distance. Same
+  arithmetic on the lines of coordinates 2 and 3 (0x425 and 0x426 onward), with its results in record words 0xd and 0xe.
+- `mmo_TexGenEyeLine_ST` (`texgen.S` line 1559, at 0xcf4e): **inferred**, eye distance to a line, s and t. It takes the eye
+  position (record words 0x13-0x15) and the eye-space lines at 0x43b onward, projects out the direction component and
+  returns the perpendicular distance in words 0xb and 0xc.
+- `mmo_TexGenEyeLine_RQ` (`texgen.S` line 1718, at 0xcfdb): **inferred**, the r, q twin: eye position as input, lines of
+  coordinates 2 and 3 (0x43d onward), perpendicular distances produced in words 0xd and 0xe.
+- `mTexGenResolve` (`texgen.S` line 57, at 0xd11e): **inferred**, rebuilds the vertex path after any texgen change. Its
+  inputs are the four mode words 0x3df-0x3e2. It shifts each left by one into special registers 0x2c-0x2f (0xd126-0xd130),
+  tests the enables (conditions 0x7b and 0x7f) and, from them, writes the module addresses for s, t and for r, q into
+  control words 0x77 and 0x78, ORs flags into control words 4, 5 and 7, and points words 8 and 0xd at
+  `mmo_DirtyXformAndObjToClipModule` (0xf449) and the texture dirty module (0xf494). It ends the command at 0xd16c.
+
 ## Texture environment (texenv.S)
 
 The GL texture-environment state lives in engine external memory: the mode at word 0x293, the environment colour at

@@ -2714,31 +2714,31 @@ ge.u	label	0x0000ca10	mmo_DecomposeSimpleTriangles		located	ucode/ge_handlers.md
 ge.u	label	0x0000ca3a	mmo_DecomposeQuads		located	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
 ge.u	label	0x0000ca60	mmo_DecomposeQuadStrip		located	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
 ge.u	label	0x0000ca86	mmo_DecomposePolygon		located	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
-ge.u	label	0x0000cabe	mgeb_TexGen		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cb19	mgeb_TexGen_Disable		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cb39	mgeb_TexGen_Enable		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cb59	mTexGenEyeLine		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cbbe	mTexGenObjLine		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cbff	mTexGenEyePoint		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cc43	mTexGenObjPoint		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cc6e	mTexGenEyePlane		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cc9e	mTexGenObjPlane		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000ccb1	mTexGenObjLineDist		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cccb	mTexGenEyeLineDist		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cce9	mTexGenObjPointDist		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cd03	mTexGenEyePointDist		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cd21	mTexGenEyeLin		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cd3f	mTexGenObjLin		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cd59	mTexGenSph		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cd7e	mmo_TexGenObjLine_ST		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000ce0b	mmo_TexGenObjLine_RQ		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000ce98	mmo_TexGenObjPoint_ST		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cef3	mmo_TexGenObjPoint_RQ		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cf4e	mmo_TexGenEyeLine_ST		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000cfdb	mmo_TexGenEyeLine_RQ		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000d068	mmo_TexGenEyePoint_ST		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000d0c3	mmo_TexGenEyePoint_RQ		located	ucode/ge_handlers.md#texgens	texgen.S
-ge.u	label	0x0000d11e	mTexGenResolve		located	ucode/ge_handlers.md#texgens	texgen.S
+ge.u	label	0x0000cabe	mgeb_TexGen		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cb19	mgeb_TexGen_Disable		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cb39	mgeb_TexGen_Enable		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cb59	mTexGenEyeLine		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cbbe	mTexGenObjLine		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cbff	mTexGenEyePoint		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cc43	mTexGenObjPoint		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cc6e	mTexGenEyePlane		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cc9e	mTexGenObjPlane		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000ccb1	mTexGenObjLineDist		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cccb	mTexGenEyeLineDist		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cce9	mTexGenObjPointDist		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cd03	mTexGenEyePointDist		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cd21	mTexGenEyeLin		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cd3f	mTexGenObjLin		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cd59	mTexGenSph		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cd7e	mmo_TexGenObjLine_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000ce0b	mmo_TexGenObjLine_RQ		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000ce98	mmo_TexGenObjPoint_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cef3	mmo_TexGenObjPoint_RQ		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cf4e	mmo_TexGenEyeLine_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000cfdb	mmo_TexGenEyeLine_RQ		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000d068	mmo_TexGenEyePoint_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000d0c3	mmo_TexGenEyePoint_RQ		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
+ge.u	label	0x0000d11e	mTexGenResolve		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
 ge.u	label	0x0000d191	mWramToCram		located	ucode/ge_handlers.md#mmemoves	mmemove.S
 ge.u	label	0x0000d1a9	mWramToFifo		located	ucode/ge_handlers.md#mmemoves	mmemove.S
 ge.u	label	0x0000d23f	mSinCosAB		located	ucode/ge_handlers.md#mmaths	mmath.S
