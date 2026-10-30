@@ -110,15 +110,14 @@ Corrections still open, for the owners of those files:
 
 ## Engine program, raster bus and tport.bin
 
-**Open: the operand order of the engine's register-and-memory subtract** (unit-1 code 0x62 in operand-routing form
-`r110` = 0x7bd). It decides the sign of the third row `uMatrixMultCCC` builds (`ge.u` 0xe72-0xe75), so whether clip z
-runs from w to 0 or from -w to 0 between the near and far planes. Routes tried: `irsaudit` `expected_token` (its one
-float subtract, `ge_inst.s` line 3774, is the register-register form 0x43d); the diagnostic program's `mmath.S`,
-`cram.S`, `eram.S` and `fib.S` (form 0x7bd only in equality compares, where either order gives zero); `ge_mul_test`
-(integer cubes, no float subtract); `mgeb_DepthRange` and `mgeb_ViewPort` (register forms, routing unmapped); the
-fog range test and the clipper (both orders give working code). Next route: a production subtract in form 0x7bd whose
-result's sign picks between branches that only one order makes correct, such as a frustum plane constant in `clip.S`
-tested against the clip-code distances.
+Answered and moved into [ucode/ge_compute.md](../ucode/ge_compute.md#matrix-maintenance-umatrixs) (third pass): the operand
+order of the engine's register-and-memory subtract (unit-1 code 0x62 in operand-routing form `r110` = 0x7bd). **Inferred**
+from `mgeb_BitmapApplyOrig`, which subtracts `glBitmap`'s origin operands from the raster position in that form and is
+followed by `mgeb_BitmapApplyMove` adding the origin and the move back: only memory word minus register-file operand
+gives GL's bitmap placement. So `uMatrixMultCCC`'s third row is (row 3 - row 4) / 2 and its clip z runs from -w at the
+near plane to 0 at the far plane. A check that would confirm it: the frustum test in `mPerTriClipFlagsFrustum`, whose
+side distances for that z should then be w + z and -z rather than w + z and w - z; its subtracts are another routing
+form and were not read for this.
 
 **Where this slice stopped (2026-10-29, after the subject-only regrade).** The engine-program and `tport.bin` rows are done: every `ge.u` label, `geif.u` slot and program file has its own understood entry (the six templated pixel-path labels were rewritten from their own words, and [ucode/ge_isa.md](../ucode/ge_isa.md#the-program-files) has one paragraph per file), and no question is open for them. `fcTbusWrite`'s word order is corrected in [rm.md](rm.md#bus-modes-2-and-3): low half first, checked in `irsaudit`. The six RM rows (DMA, interrupts, reset, command and FIFO formats, context save and restore, texture formats and filtering) stay partial and have no open question; what holds them is the inventory. New in [rm.md](rm.md): entries for the six diagnostic data files, the four read-back and texture-memory tests, and six libGLcore texture routines checked in all three ABI builds. Next, in order: (1) the raster register entries in `RM.h` (most raster rows of `spec-registers.tsv` are named only, because their comments cite `irsaudit` addresses without "at" and repeat one sentence across the `TM_DRAW_TEXMAP_*` levels), which the register reader owns; (2) entries for `__glKonTexGetCubicSpline`, `__glKonTexEvaluateCubicSpline`, `__glKonParseInput`, `DrawSubTexels` and `__glKonDrawTexels3D` in each ABI build; (3) the `irsaudit` `tbu*` helpers that the `RM.h` register comments name. The RM "Registers and fields" row was set to done by a merge in 0441490, which took an old copy of the row; the inventory does not support it.
 

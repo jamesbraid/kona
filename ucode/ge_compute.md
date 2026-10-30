@@ -111,13 +111,13 @@ Facts are labelled **established** (read from the words at the addresses given) 
   0xe72-0xe75 (fourth element staged at E = 3, 7, 0xb, 0xf; third element read from 0x41, 0x45, 0x49, 0x4d) and the multiplies
   by the constant 0.5 loaded at 0xe71. It then multiplies that matrix by the modelview at 0x2f-0x3e (64 multiplies and
   multiply-adds, 0xe7f-0xea5) and stores the 16 results to 0x4f-0x5e, the input of every clip transform. It writes special
-  register 0x29 (store at 0xe7e) and returns through a group-5 indirect transfer at 0xea7. The operand order of the subtract
-  is unknown, so whether the rewritten clip z runs from w at the near plane to 0 at the far plane, or from -w to 0, stays open;
-  either way the clip transforms produce a z that the frustum test compares against w and 0 rather than against w and -w.
+  register 0x29 (store at 0xe7e) and returns through a group-5 indirect transfer at 0xea7.
   The four subtracts are operand-routing form `r110` = 0x7bd, a register-file operand (A = 0x18, D = 3, 7, 0xb, 0xf) with a
-  memory operand (C = 0x1b, immediate address); the diagnostic test's subtract (`ge_inst.s` line 3774, B - A) is form
-  `r110` = 0x43d, two arithmetic registers, so its order does not carry over; the routes tried are in
-  [open-questions.md](../docs/open-questions.md#engine-program-raster-bus-and-tportbin).
+  memory operand (C = 0x1b, immediate address). **Inferred** from `mgeb_BitmapApplyOrig` (below), where the same form
+  must return the memory word minus the register-file operand: each subtract yields the third element minus the fourth,
+  so the rewritten third row is (row 3 - row 4) / 2 and the clip z it produces is (z - w) / 2, which is -w at the near
+  plane and 0 at the far plane of an ordinary projection. The diagnostic test's subtract (`ge_inst.s` line 3774, B - A)
+  is form `r110` = 0x43d, two arithmetic registers, so it does not settle this form by itself.
 - `mMatrixInverse` (`umatrix.s` lines 314-426): **inferred**, the inverse of the modelview's 3 x 3 block, for transforming
   normals. It copies the modelview words 0x2f-0x3e to a scratch block at engine address 0x8d2c (words 0xeeb-0xefa), computes
   the cofactors with paired multiplies and subtracts (0xefc-0xf28), sums a row of them times the matrix to get the
@@ -1439,10 +1439,23 @@ engine takes each part of a pixel stream. Output records are the seven-word reco
   integer-to-float and subtracts 0.5 to set the last-engine counter at 0x16e.
 - `mgeb_PixDrawColorSetup` (`mpixelSetup.S` lines 1144-1183, at 0xa7aa): **inferred**, prepares a colour draw path by
   saving the evaluator state and storing the area words, as the stipple set-up does.
-- `mgeb_BitmapApplyMove` (`mpixelSetup.S` lines 1101-1113, at 0xa7cf): **inferred**, `glBitmap`'s move: four float adds
-  of the x and y move operands to the raster position words 0x31 and 0x32.
-- `mgeb_BitmapApplyOrig` (`mpixelSetup.S` lines 1070-1082, at 0xa7e8): **inferred**, `glBitmap`'s origin: two subtracts of
-  the origin from the same two words.
+- `mgeb_BitmapApplyMove` (`mpixelSetup.S` lines 1101-1113, at 0xa7cf): **inferred**, `glBitmap`'s move. It takes four
+  operands, the x and y origin and the x and y move floats that `BitmapEndStream` and `arm_bitmap` in `arm1.u` send from
+  pixel state +0x34c to +0x358 (0x0c026af4-0x0c026b10), reads the raster position words 0x31 and 0x32 and adds the
+  operands with four float adds (command operands 2, 1 and 3 at 0xa7d2, 0xa7d6 and 0xa7d7, after operand 0 is read at
+  0xa7d1), so the result written back to 0x31 and 0x32 is the position plus origin plus move.
+- `mgeb_BitmapApplyOrig` (`mpixelSetup.S` lines 1070-1082, at 0xa7e8): **inferred**, `glBitmap`'s origin. It takes
+  two operands, the x and y origin floats that `do_bitmap` in `arm1.u` sends from its pixel state +0x34c and +0x350
+  (0x0c02b3d0-0x0c02b3dc), reads the raster position words 0x31 and 0x32 (form-14 reads at 0xa7e8 and 0xa7ea), and
+  computes two float subtracts in operand-routing form `r110` = 0x7bd (0xa7ef, 0xa7f1), which the conditional stores at
+  0xa7f8 and 0xa7fa write back to 0x31 and 0x32 as the position the bitmap is drawn from. **Inferred** operand order: GL
+  draws a bitmap at the raster position minus its origin, and the reverse order would draw every bitmap at origin minus
+  position, mirrored through the window corner; `mgeb_BitmapApplyMove` then adds both the origin and the move operands
+  (the four adds at 0xa7d2-0xa7db), which returns to position plus move only if this handler subtracted the origin from
+  the position. So form 0x7bd yields the memory word minus the register-file operand, which settles the order in
+  `uMatrixMultCCC`. Its empty-bitmap path is not consistent with that alone: `arm_bitmap` sends the same four floats to
+  `mgeb_BitmapApplyMove` without this handler running first (0x0c02b570-0x0c02b588), which adds the origin to the
+  position; GL's empty bitmaps normally carry a zero origin, so the difference does not show.
 - `mgeb_FlipYConvKern` (`mpixelSetup.S` lines 980-1052, at 0xa7fe): **inferred**, flips a convolution kernel vertically:
   with integer subtracts and an arithmetic shift it pairs row r with row n-1-r and swaps them by unit-2 moves.
 - `mgeb_FlipXConvKern` (`mpixelSetup.S` lines 899-960, at 0xa864): **inferred**, the horizontal flip, pairing column c
