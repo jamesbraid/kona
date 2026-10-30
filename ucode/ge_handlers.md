@@ -2,7 +2,7 @@
 
 Every label `ge_symbols` gives for the geometry-engine program (IRIX 6.5.30m, 1100 labels at 1025 addresses) has one entry below, grouped by the source module the `ge.u` line table names. Each entry says where the label sits, what reaches it, what its instructions do in the field readings of [ge_ops.md](ge_ops.md) and [ge_isa.md](ge_isa.md), and how its code ends. [scripts/ge_catalogue.py](../scripts/ge_catalogue.py) writes the entries and the cross-reference [ge_xref.tsv](ge_xref.tsv) from `ge_symbols`, `geif.u`, `arm1.u`, the listings in [ge_listing/](ge_listing/) and the ARM tables of [arm1.md](arm1.md). The module roles and the per-label role lines are written by hand in [ge_modules.tsv](ge_modules.tsv). How a command reaches a handler is in [arm1.md](arm1.md#how-a-command-reaches-a-geometry-engine-handler).
 
-The `geif.u` dispatch slots are covered by the same entries: slot k is `geif.u` entry 2k+1, and the entry of the label at that slot's address is the slot's entry. Every even entry and the 60 unused odd entries hold address 0, the `HereWeGo` entry below.
+Slot k of `geif.u` is entry 2k+1, and the entry of the label at that slot's address says what the slot runs. Each of the 1024 entries, the even ones and the 60 unused odd ones that hold address 0 included, has its own row in [geif_entries.md](geif_entries.md): the word, its copies in the ARM, and the ARM functions and distributor words that send it.
 
 ## How to read the entries
 
@@ -306,7 +306,7 @@ Colour-table and pixel-map lookup stages and their upload and download. **Inferr
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations OR (1), clamp at zero (1), float multiply (1), float-to-integer conversion (1), shift left (1); takes 1 conditional transfer.
   It jumps to `mLutoutDone`.
 - `mgeb_LutRamp3`: address 0x4074, `colortable.S` line 302 (192 words). Reached: geif slot 157 (entry 315); the ARM functions that send it are in the table below.
-  **Inferred** role: named for a three-component lookup ramp; the words pack command words with shifts, ORs and masks (constant 0xffff0000) and add integers, and the table layout and ramp arithmetic are unknown.
+  **Inferred** role: three-component lookup ramp: steps three running values, applies unit-1 code 0x51 to each, and shifts and ORs them into packed entries (constant 0xffff0000) stored for the download (ucode/ge_compute.md).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads command words 0 to 3; operations OR (48), shift left (32), move (22), integer add (17), AND (16), operation 0x6d1 (16), second-unit operation 0xff (1); loads 2 constants; takes 1 conditional transfer.
   It waits on its own address under another condition group.
   Constants loaded: 0xffff0000, 0x10.
@@ -3842,7 +3842,7 @@ Performance instruments start and stop. **Inferred** from its labels and callers
   It ends with the end-of-command wait.
   Constants loaded: 0x50476, 0x40476, 0x60476, 0x30476.
 - `mgesi_StopInstruments`: address 0x4905, `pi.S` line 81 (70 words). Reached: geif slot 421 (entry 843); the ARM functions that send it are in the table below.
-  **Inferred** role: named for stopping the performance instruments; the words send 44 raster bus words built from four command words and constants such as 0x4760000 and 0x4610000, and what those writes do to the counters is unknown.
+  **Inferred** role: halts and reads out the performance counters: 44 raster bus words, select words to 0x1f8 alternating with data words that are one of four command words or a staged constant such as 0x4760000, and a closing word to 0x1f4 (ucode/ge_compute.md).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): reads 4 command words between offsets 0 and 9; operations move (45); writes 44 words to the raster-bus output addresses; loads 18 constants.
   It jumps within its own code.
   Constants loaded: 0x817f, 0x4760000, 0x4610000, 0x4600000, 0xa, 0x4740000, 0x400, 0x4640000 and 10 more.

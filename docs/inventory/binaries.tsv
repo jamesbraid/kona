@@ -571,7 +571,7 @@ usr/gfx/ucode/KONA/ge11.u	microcode	board-microcode	data	-	1275741	95724af2dc9dc
 usr/gfx/ucode/KONA/ge_kpm.hex	microcode	board-microcode	data	-	4650	617b3f0afd02ae0e		0		0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
 usr/gfx/ucode/KONA/ge_symbols	microcode	board-microcode	data	-	67100	67126e0f66aea936		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
 usr/gfx/ucode/KONA/ged1b.u	microcode	board-microcode	data	-	14411	41c4b5724774fe42		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
-usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0		0	0	undocumented		
+usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0		0	0	named-only	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 usr/gfx/ucode/KONA/tport.bin	microcode	board-microcode	data	-	127889	ba8efd1cc0f83068		0		0	0	understood	ucode/tport.md#what-it-is	What it is
 usr/gfx/ucode/KONA/vof/1280x1024.monitor	microcode	board-microcode	data	-	295	55c148a0d113b0eb		0		0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
 usr/gfx/ucode/KONA/vof/640x480_60.vof	microcode	board-microcode	data	-	6775	87aa18319bb63ea8		0		0	0	understood	docs/display-formats.md#output-format-sources	Output-format sources

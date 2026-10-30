@@ -161,7 +161,7 @@ mLutoutDone	common exit of the three lookup output stages: two moves and a retur
 mmo_LutoutRGBA	RGBA lookup output: clamps and scales four components and joins the common exit
 mmo_LutoutLA	luminance-alpha lookup output: clamps and scales two components and joins the common exit
 mmo_LutoutI	intensity lookup output: clamps and scales one component and joins the common exit
-mgeb_LutRamp3	named for a three-component lookup ramp; the words pack command words with shifts, ORs and masks (constant 0xffff0000) and add integers, and the table layout and ramp arithmetic are unknown
+mgeb_LutRamp3	three-component lookup ramp: steps three running values, applies unit-1 code 0x51 to each, and shifts and ORs them into packed entries (constant 0xffff0000) stored for the download (ucode/ge_compute.md)
 mgeb_LutRamp1	fills a one-component lookup ramp with integer adds and packing
 mgeb_PixMapOutputI	index pixel-map output stage: masks the value to 16 bits (0xffff)
 mgeb_PixMapOutputRGBA	RGBA pixel-map output stage: clamps, scales by 65535.0 and masks the components to 16 bits
@@ -702,7 +702,7 @@ mmo_UnpackVertexV3F_T2S_LGT	vertex-array unpack for float position and short tex
 mmo_UnpackVertexV3F_C4UB_T2S_LGT	vertex-array unpack for float position, byte colour and short texture coordinates with lighting
 mmo_DrawTriPrimPhong	Phong-shaded triangle drawing: 523 words with per-pixel normal interpolation and lighting; nothing in the program enters it
 mgesi_StartInstruments	starts the performance instruments: eight raster bus words to the counter registers (constants 0x30476 to 0x60476)
-mgesi_StopInstruments	named for stopping the performance instruments; the words send 44 raster bus words built from four command words and constants such as 0x4760000 and 0x4610000, and what those writes do to the counters is unknown
+mgesi_StopInstruments	halts and reads out the performance counters: 44 raster bus words, select words to 0x1f8 alternating with data words that are one of four command words or a staged constant such as 0x4760000, and a closing word to 0x1f4 (ucode/ge_compute.md)
 mClipPntUserAndFrustum	point clipper: tests the point against the user planes and the frustum and ends the command
 mgebi_PointSize_Select	point handling in selection mode: loads the address of the selection point module
 mgebi_PointSize_Feedback	point handling in feedback mode: loads the address of the feedback point module
