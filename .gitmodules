@@ -26,3 +26,6 @@
 [submodule "irisgldocs"]
 	path = sgi-docs
 	url = https://github.com/sgi-demos/sgi-docs.git
+[submodule "linux"]
+	path = linux
+	url = https://github.com/torvalds/linux.git

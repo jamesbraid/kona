@@ -47,6 +47,12 @@ The scope is wider than the six directories: IRIX_FILES.md also lists the Origin
 
 DWARF status is what `scripts/map_binaries.py` reported on the primary release (IRIX 6.5.30). The 6.5.30 DWARF is thin: `dwarfdump -i` finds only compilation units, subprograms with address ranges, global variables and line tables. It has no types, structure members or parameters, in the kernel objects, both libGLcore ABIs, `libGL.so`, `libgl.so` or `libfm.so`. It gives function names, source file names and source line numbers (the `# Line` comments in the assembly), so driver structures must be recovered from the code. Types need a release built with full debug info; fill in the 6.5.0 column when you have a 6.5.0 install, since 6.5.0 binaries carry debug info.
 
+
+Other public sources in this repository:
+
+- `linux/`: the IP27 platform code for the crossbar and widget side only, with no KONA driver. `arch/mips/include/asm/xtalk/xwidget.h` (widget header offsets and the widget identity table, which names part 0xc102 as KONA and has IP35 chip entries), `arch/mips/include/asm/sn/klconfig.h` (`KLTYPE_GFX_KONA`, `KLSTRUCT_GFX`, `lboard_t` and `klinfo_t` layouts), `arch/mips/include/asm/sn/addrs.h` and `arch/mips/include/asm/mach-ip27/spaces.h` (node and widget window addresses, 16 MB per widget), `arch/mips/sgi-ip27/ip27-xtalk.c` and `ip27-klconfig.c` (widget probe and configuration walk), and `arch/mips/pci/pci-xtalk-bridge.c`. Linux has no Origin 350 (IP35) platform; its IP35 names are widget identity entries only. Fetch it shallow: `git submodule update --init --depth 1 linux`.
+- No open KONA driver exists that we know of: the Linux, OpenBSD and GXemul trees checked here have no code that drives InfiniteReality beyond widget identity and board-type constants, so every register and command finding rests on the IRIX binaries and the published IRIX source.
+
 ---
 
 ## 3. Deliverables: The Hardware Headers

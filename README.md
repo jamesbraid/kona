@@ -12,5 +12,11 @@ binaries and evidence, the toolchain and the working rules;
 [docs/coverage.md](docs/coverage.md) is the map of what is covered and what is
 next.
 
+Public sources are submodules. `linux` carries the IP27 crossbar and widget
+code (no IP35 platform); no open driver for KONA is known, so the
+register and command findings rest on the IRIX binaries. Initialise only what you need, for example
+
+`git submodule update --init --depth 1 linux`.
+
 Licence: BSD-3-Clause, see [LICENSE](LICENSE). The scripts descend from gr4's
 and keep its notice in [scripts/LICENSE-gr4](scripts/LICENSE-gr4).
