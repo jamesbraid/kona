@@ -112,14 +112,25 @@ Facts are labelled **established** (read from the words at the addresses given) 
   by the constant 0.5 loaded at 0xe71. It then multiplies that matrix by the modelview at 0x2f-0x3e (36 multiply words,
   0xe7f-0xe9f, finishing eight sums of four products) and stores its results to all 16 words 0x4f-0x5e, the input of every
   clip transform. Each sum is stored twice, once with `r95` = 4 (lane 0) and once with `r95` = 5 (lane 1), nine words after
-  it is loaded into the store-data register; lane 0's multiplies give rows 0 and 2, and how lane 1 reaches rows 1 and 3 is open
-  ([Lanes](ge_isa.md#lanes)). It writes special
+  it is loaded into the store-data register; lane 0's multiplies give rows 0 and 2, and lane 1 must read one word on for rows 1 and 3, as its twin `mMatrixMultCCC`
+  sets up explicitly; how 0xe63 gives lane 1 that base is open ([Lanes](ge_isa.md#lanes)). It writes special
   register 0x29 (store at 0xe7e) and returns through a group-5 indirect transfer at 0xea7.
   The four subtracts are operand-routing form `r110` = 0x7bd, a register-file operand (A = 0x18, D = 3, 7, 0xb, 0xf) with a
   memory operand (C = 0x1b, immediate address). That form returns the loaded memory word minus the register-file operand
   ([ge_isa.md](ge_isa.md#operand-ports-and-result-forwarding), established): each subtract yields the third element minus the fourth,
   so the rewritten third row is (row 3 - row 4) / 2 and the clip z it produces is (z - w) / 2, which is -w at the near
   plane and 0 at the far plane of an ordinary projection.
+- `mMatrixMultCCC` (`mmatrix.S` lines 35-104, at 0xe8a6): **inferred**, the `m`-module twin of `uMatrixMultCCC`, called from
+  `mgebi_ReferencePlane` (0x59c4). It takes the projection (engine words 0x3f-0x4e) and the modelview (0x2f-0x3e) as inputs and
+  computes their product into the composite words 0x4f-0x5e. It sets register 0xf to the staging base 0x8d2c in every lane and
+  to 0x8d2d in lane 1 (0xe8a6, 0xe8a7), copies the projection into the staging words through lane 0's register (sixteen
+  `r95` = 0x13 reads stored at E = 0-0xf, 0xe8ab-0xe8ba), and rebuilds each column's third element as (third minus fourth)
+  times 0.5 (subtracts 0xe8c0-0xe8c4, the 0.5 staged at 0xe8c3, stores 0xe8c5-0xe8c9). Register 0xe points at the
+  modelview (0xe8c7). The multiplies (from 0xe8cc) read the staged words at D = 0, 4, 8, 0xc and 2, 6, 0xa, 0xe, so lane 0's
+  sums are rows 0 and 2 and lane 1's, one word on, rows 1 and 3; the results go out as `r95` = 4 stores to the odd words
+  and `r95` = 5 stores to the even words (0xe8f3-0xe90f), with special register 0x29 written at 0xe902, and it returns through
+  the group-5 indirect transfer at 0xe907. Its explicit lane-1 add is the witness for the open lane-1 question of
+  `uMatrixMultCCC` ([Lanes](ge_isa.md#lanes)).
 - `mMatrixInverse` (`umatrix.s` lines 314-426): **inferred**, the inverse of the modelview's 3 x 3 block, for transforming
   normals. It copies the modelview words 0x2f-0x3e to a scratch block at engine address 0x8d2c (words 0xeeb-0xefa), computes
   the cofactors with paired multiplies and subtracts (0xefc-0xf28), sums a row of them times the matrix to get the

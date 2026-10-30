@@ -2839,7 +2839,7 @@ ge.u	label	0x0000e6d4	mmo_CopyV0ToVn1		understood	ucode/ge_compute.md#vertex-sav
 ge.u	label	0x0000e6e8	mmo_AbortGeometry		located	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000e741	mDispatchCentral		located	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000e75e	mClipPntUserAndFrustum		located	ucode/ge_handlers.md#pntclips	pntclip.S
-ge.u	label	0x0000e8a6	mMatrixMultCCC		located	ucode/ge_handlers.md#mmatrixs	mmatrix.S
+ge.u	label	0x0000e8a6	mMatrixMultCCC		understood	ucode/ge_compute.md#matrix-maintenance-umatrixs	Matrix maintenance (umatrix.s)
 ge.u	label	0x0000ea1c	mClipLinUserAndFrustum		located	ucode/ge_handlers.md#linclips	linclip.S
 ge.u	label	0x0000ebbf	mClipLineToPlane		located	ucode/ge_handlers.md#linclips	linclip.S
 ge.u	label	0x0000ed2c	mClipLinFlush		located	ucode/ge_handlers.md#linclips	linclip.S
