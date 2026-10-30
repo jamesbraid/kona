@@ -6,6 +6,7 @@
 # Run from the repository root with Ghidra's support directory (sleigh,
 # analyzeHeadless) on PATH and root/ populated. It writes, under OUTDIR:
 #   prod.listing                               production ucode/KONA/ge.u
+#   diag.listing                               usr/diags/IR/ucode/ge.u
 # and sleigh/kona-ge/tests/check.py then compares them with the Python
 # disassembler and the documents.
 set -eu
@@ -40,6 +41,11 @@ headless() {
 headless -import ucode/KONA/ge.u -loader BinaryLoader \
     -processor KONA-GE:BE:32:default -preScript KonaGEImport.java \
     -postScript DumpListing.java "$OUT/prod.listing"
+
+# The diagnostic program that irsaudit's instruction test runs.
+headless -import diags/IR/ucode/ge.u -loader BinaryLoader \
+    -processor KONA-GE:BE:32:default -preScript KonaGEImport.java \
+    -postScript DumpListing.java "$OUT/diag.listing"
 
 # The same production program from its other two encodings, and the
 # diagnostic set-up program: the import must give the same words.
