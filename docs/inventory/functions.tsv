@@ -1413,7 +1413,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d2b8	116	waitRbusDone	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d32c	332	getSubField	dynsym	3f01fb234950		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d478	324	setSubField	dynsym	4bb235d2eb3a		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d5bc	548	determineHostType	dynsym	4828d4a00f73		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d7e0	6016	init_rm_jtag	dynsym	b5bd71afcfdb		in	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d7e0	6016	init_rm_jtag	dynsym	b5bd71afcfdb		in	located	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002ef60	292	TEST_rmjtaginit	dynsym	6f324346b814		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f084	132	dump_indata_as_bits	dynsym	43929a32267c		in	named-only	docs/kpm.md#capture	Capture
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f108	156	dump_outdata_as_bits	dynsym	7a2227a401d9		in	named-only	docs/kpm.md#capture	Capture
@@ -1447,9 +1447,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036610	508	dg_clock_setup	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003680c	764	dgopt_clock_setup	dynsym	4018393961ef		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036b08	492	dg_clock_restore	dynsym	24d469695aba		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036cf4	536	dgopt_clock_restore	dynsym	82e74f816987		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036f0c	64	dgVDacModeWrite	dynsym	34b151aafa0c		in	understood	ucode/arm1_functions.md#display-generator	Display generator
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036f4c	152	dgVDacControlWrite	dynsym	131e428383f6		in	understood	ucode/arm1_functions.md#display-generator	Display generator
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036fe4	372	dgMakeVDacFetal	dynsym	748907ffdbd5		in	understood	ucode/arm1_functions.md#display-generator	Display generator
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036f0c	64	dgVDacModeWrite	dynsym	34b151aafa0c		in	located	ucode/arm1_functions.md#display-generator	Display generator
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036f4c	152	dgVDacControlWrite	dynsym	131e428383f6		in	located	ucode/arm1_functions.md#display-generator	Display generator
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036fe4	372	dgMakeVDacFetal	dynsym	748907ffdbd5		in	located	ucode/arm1_functions.md#display-generator	Display generator
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037158	192	dg_make_dac_fetal	dynsym	3bf5fe7b765d		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037218	188	destroy_map_diag	dynsym	a1ffdac98534		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100372d4	156	ged_host_reg_write	dynsym	41978782f98a		in	named-only	ucode/ged.md#registers-the-host-writes	Registers the host writes
@@ -1493,7 +1493,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a09c	176	TEST_verify_ge11u
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a14c	668	load_ged_seq_ucode	dynsym	7db2861e4232		in	named-only	ucode/ged.md#the-distributor-instruction-set-registers-and-dispatch	The distributor: instruction set, registers and dispatch
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a3e8	500	load_ged_pcl_table	dynsym	65458ceb09f6		in	named-only	ucode/ged.md#the-distributor-instruction-set-registers-and-dispatch	The distributor: instruction set, registers and dispatch
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003a5dc	1072	LoadUcodeFile	dynsym	37773e89b50c		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003aa0c	5292	init_ged_regs	dynsym	9d75cd2417c6		in	understood	ucode/arm1_functions.md#engine-and-distributor-set-up	Engine and distributor set-up
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003aa0c	5292	init_ged_regs	dynsym	9d75cd2417c6		in	located	ucode/arm1_functions.md#engine-and-distributor-set-up	Engine and distributor set-up
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003beb8	316	TEST_geducode	dynsym	96ea7775d5ec		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003bff4	528	LoadArmBoot	dynsym	fe8bc934b688		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003c214	100	sort_test_list	dynsym	8dafc4c70655		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -1589,7 +1589,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10061a5c	1140	TEST_dgconn	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10061ed0	128	DgVDacControlWrite	dynsym	688e65f5116b		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10061f50	352	reset_dacs	dynsym	178d0bb68f7e		in	named-only	docs/dg.md#start-up-and-reset-as-the-arm-firmware-performs-them	Start-up and reset as the ARM firmware performs them
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100620b0	676	DacReset	dynsym	cca8419523ff		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10062358	320	i2c_init	dynsym	20741b8c8d3d		in	understood	ucode/arm1_functions.md#display-generator	Display generator
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10062358	320	i2c_init	dynsym	20741b8c8d3d		in	located	ucode/arm1_functions.md#display-generator	Display generator
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100624e4	364	i2c_arb	dynsym	3f34deb0d96d		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10062650	748	i2c_master_xmit	dynsym	a0b42cfb5e12		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006293c	748	i2c_master_recv	dynsym	4b7536efe155		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
@@ -1692,8 +1692,8 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079858	572	TEST_intr	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a71c	640	TEST_mbox	dynsym	b69a6e5d5057		in	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a99c	64	TEST_dganalog	dynsym	54a64c6f1252		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a9dc	72	TEST_fail	dynsym	6b156077eed6		in	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af50	72	nic_setup	dynsym	ec74f03d23e6		in	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af98	388	nic_next	dynsym	80aea3f12b36		in	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af50	72	nic_setup	dynsym	ec74f03d23e6		in	located	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af98	388	nic_next	dynsym	80aea3f12b36		in	located	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007b2b4	740	nic_read_one_page	dynsym	23ce041d8a97		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007b598	932	nic_read_mfg	dynsym	cd0d57599a7a		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007bb74	100	nic_access_mcr32	dynsym	8bd03490193b		in	named-only	docs/kernel-functions.md#attach-and-crosstalk-set-up-kona_edtinit_hip2o	Attach and Crosstalk set-up: `kona_edtinit_hip2.o`
@@ -1822,7 +1822,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b78bc	504	draw_triz	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b7b90	816	TEST_dquad	dynsym	487919857fe7		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bc9f4	4616	update_registers	dynsym	cec63b4f5d73		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bdbfc	688	standard_init	dynsym	1a5f58ebac76		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bdeac	1044	init_config	dynsym	4746a2c03fdb		in	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bdeac	1044	init_config	dynsym	4746a2c03fdb		in	located	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100be2c0	1284	init_op	dynsym	e43cfc3d2ff3		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100be7c4	592	init_ms	dynsym	9e2660502245		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bea14	484	init_clip	dynsym	0f74788803ba		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -1836,7 +1836,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bfe50	676	init_user_color	d
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c00f4	676	init_clear_color	dynsym	6a7a67850416		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0398	668	init_mask_color	dynsym	6d2886cb35c4		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0634	148	init_ms_loc	dynsym	028db63c126a		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c06c8	380	init_tf	dynsym	d036a751c622		in	understood	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c06c8	380	init_tf	dynsym	d036a751c622		in	located	ucode/arm1_functions.md#pixel-path-engine-pipeline-modules	Pixel path: engine pipeline modules
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c0ea4	820	TEST_rmvis	dynsym	db2722d44bc3		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c4320	1748	TEST_miniread	dynsym	c55f0a912396		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100c5d20	1512	TEST_texread	dynsym	3aa9cd7e4bbc		in	understood	docs/rm.md#moving-data-in-and-out-of-the-raster-boards	Moving data in and out of the raster boards
@@ -2441,7 +2441,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164e00	76	jt_new_data_bvecto
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164e50	68	jt_new_inst_vector	dynsym	6b8d07b66b4d		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164ea0	76	jt_new_inst_bvector	dynsym	4fcde72cf482		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164ef0	64	jt_dispose_vector	dynsym	c12380a0af92		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164f30	100	jt_vector_to_int	dynsym	ab326ca1c1ec		in	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164f30	100	jt_vector_to_int	dynsym	ab326ca1c1ec		in	located	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164fa0	124	jt_int_to_vector	dynsym	dfb1081489b6		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165020	252	jt_find_chip	dynsym	27fab07a438c		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165130	348	jt_extract_chip_register	dynsym	9ffa162c1f11		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -2687,7 +2687,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033460	76	jt_new_data_bvector	dynsym	b6
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100334b0	68	jt_new_inst_vector	dynsym	b9aba9592a92		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033500	76	jt_new_inst_bvector	dynsym	20fb625fe64c		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033550	64	jt_dispose_vector	dynsym	ab1371c5f09b		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033590	100	jt_vector_to_int	dynsym	ab326ca1c1ec		in	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033590	100	jt_vector_to_int	dynsym	ab326ca1c1ec		in	located	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033600	124	jt_int_to_vector	dynsym	dfb1081489b6		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033680	252	jt_find_chip	dynsym	273d6789416c		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033780	104	jt_set_procs	dynsym	8d5e421b8b1a		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
