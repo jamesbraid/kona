@@ -47043,7 +47043,7 @@ usr/gfx/dmconf	shared-tool	n32		0x1000ced0	1284	vfcGetNextTokenValuePair	dynsym	
 usr/gfx/dmconf	shared-tool	n32		0x1000e6e0	624	vfcGetOption	dynsym	f2451911a9d7		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x1000e950	2488	vfcParseCommand	dynsym	b6a668d130f5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x1000f310	188	usage	dynsym	ecd3cb189e73		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/gfx/dmconf	shared-tool	n32		0x1000f3d0	688	vfcDoCommandLine	dynsym	4acac7c8e301		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/dmconf	shared-tool	n32		0x1000f3d0	688	vfcDoCommandLine	dynsym	4acac7c8e301		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/dmconf	shared-tool	n32		0x1000f740	472	vfcGetDmxCombination	dynsym	5c579fd374dc		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
 usr/gfx/dmconf	shared-tool	n32		0x1000f920	1596	vfcPutDmxCombination	dynsym	e94d7f240f34		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
 usr/gfx/dmconf	shared-tool	n32		0x10010010	144	vfcInitWorkOrder	dynsym	21c2805ab3d1		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -47145,12 +47145,12 @@ usr/gfx/gfxinfo	shared-tool	n32		0x10009164	8	ng1_init	dynsym	87506497337c		in	n
 usr/gfx/gfxinfo	shared-tool	n32		0x1000916c	40	ng2_kludge_info	dynsym	943894c64a85		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10009290	2396	mgras_init	dynsym	b153192016ed		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 usr/gfx/gfxinfo	shared-tool	n32		0x10009bec	1044	_mgras_info	dynsym	5770d175438d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1000acbc	468	kona_info	dynsym	605dac4dadb2		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1000ae90	592	kona_getconfig	dynsym	aea921a41caf		in	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/gfx/gfxinfo	shared-tool	n32		0x1000acbc	468	kona_info	dynsym	605dac4dadb2		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/gfxinfo	shared-tool	n32		0x1000ae90	592	kona_getconfig	dynsym	aea921a41caf		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/gfxinfo	shared-tool	n32		0x1000b0e0	68	kona_init	dynsym	df15e4ca1e17		in	located	docs/kernel-functions.md#attach-and-crosstalk-set-up-kona_edtinit_hip2o	Attach and Crosstalk set-up: `kona_edtinit_hip2.o`
-usr/gfx/gfxinfo	shared-tool	n32		0x1000b1f8	540	kona_diagnose	dynsym	a67ac91e3773		in	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
-usr/gfx/gfxinfo	shared-tool	n32		0x1000ca5c	532	kona_loaducode	dynsym	06a8883d0d64		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1000cd5c	736	nic_report	dynsym	eed1b23c3c23		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1000b1f8	540	kona_diagnose	dynsym	a67ac91e3773		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/gfxinfo	shared-tool	n32		0x1000ca5c	532	kona_loaducode	dynsym	06a8883d0d64		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/gfxinfo	shared-tool	n32		0x1000cd5c	736	nic_report	dynsym	eed1b23c3c23		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/gfxinfo	shared-tool	n32		0x1000d03c	568	printXvcInfo	dynsym	9569cf4b28aa		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000dcfc	216	crime_monitor_info	dynsym	a48030e62b06		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000ddd4	412	crime_info	dynsym	0a40c6b700f9		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48477,7 +48477,7 @@ usr/gfx/ircombine	board-tool	n32		0x100705b0	120	snapChannelCallback__18Vkwindow
 usr/gfx/ircombine	board-tool	n32		0x10070630	140	userHardwareCallback__18VkwindowMainWindowSGP10_WidgetRecPvT2	dynsym	8b8054997903		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10070700	264	VkUnimplemented__GP10_WidgetRecPCc	dynsym	e1cbea599636		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10070880	244	usage	dynsym	253fba9165b4		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/gfx/ircombine	board-tool	n32		0x10070980	1024	vfcDoCommandLine	dynsym	52c3bce72583		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x10070980	1024	vfcDoCommandLine	dynsym	52c3bce72583		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/ircombine	board-tool	n32		0x10071090	1284	vfcGetNextTokenValuePair	dynsym	65d8572c3aec		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10078090	180	vfcGetCombinationDescription	dynsym	b72ce29ff56b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10078150	624	vfcGetOption	dynsym	b6b3827705be		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -48604,14 +48604,14 @@ usr/gfx/setmon	shared-tool	n32		0x10008e38	64	Usage	dynsym	751005097950		in	name
 usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	34b5ba5e4a50		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	78b8d8b6975b		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a038	56	vTimeoutOpenDisplay	dynsym	0b854b7056ad		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	4fb9fe7741c6		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	4fb9fe7741c6		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x1000a140	184	ErrorF	dynsym	a15c8fdf6d64		in	named-only	docs/kona-ddx.md#kona-drawing-glyph-copy-and-image-routines-kon	Kona drawing, glyph, copy and image routines (`kon*`)
 usr/gfx/setmon	shared-tool	n32		0x1000a278	280	fglrxDoFramelock	dynsym	3545cab228e9		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a390	1588	fglrxsetmon	dynsym	fa71f07d84fd		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000a9c4	1244	konasetmon	dynsym	0b8b74dabed0		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000a9c4	1244	konasetmon	dynsym	0b8b74dabed0		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x1000aea0	3112	vensetmon	dynsym	f5131d53ddd4		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000bac8	748	vs2setmon	dynsym	49dcb2459e90		in	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/setmon	shared-tool	n32		0x1000bdb4	144	pipenumToString	dynsym	ac67e0375a42		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000bdb4	144	pipenumToString	dynsym	ac67e0375a42		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x1000bec0	704	xgsetmon	dynsym	d49d2c83acc5		in	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/gfx/setmon	shared-tool	n32		0x1000ce90	252	mgGetVOFpath	dynsym	e5fa9a8d0422		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000cf8c	1360	mgsetmon	dynsym	65e4df5f6da3		in	named-only	docs/setup-tools.md#setmon	`setmon`
@@ -48800,23 +48800,23 @@ usr/gfx/setmon	shared-tool	n32		0x1002471c	104	xdr_SDBversionNumber	dynsym	9182e
 usr/gfx/setmon	shared-tool	n32		0x10024784	36	SDBsetupMemoryInterface	dynsym	b553068abdcb		in	located	docs/kona-ddx.md#symbol-database-reader-and-writer	Symbol database reader and writer
 usr/gfx/setmon	shared-tool	n32		0x100247b0	96	saXSGIvcQueryOutputSync	dynsym	d931c794292c		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10024970	172	saXSGIvcQueryGammaMap	dynsym	c16d07e8778e		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10024a20	116	saXSGIvcSetPlatformParameter	dynsym	56cdc530c373		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10024a20	116	saXSGIvcSetPlatformParameter	dynsym	56cdc530c373		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x10024c10	68	saXSGIvcSelectInput	dynsym	175678128ca8		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10024c60	136	saXSGIvcLoadVideoFormat	dynsym	3b42e5ad8dae		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10025090	104	saXSGIvcListVideoFormats	dynsym	ca923529630f		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10025290	96	saXSGIvcSetOutputPedestal	dynsym	ab52d7a4f021		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10026850	192	KonCmd	dynsym	8de63668c204		in	named-only	docs/opengl.md#how-the-module-writes-commands	How the module writes commands
+usr/gfx/setmon	shared-tool	n32		0x10026850	192	KonCmd	dynsym	8de63668c204		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x100269e0	92	saXSGIvcSetOutputSync	dynsym	2017d15693b9		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10026a40	80	konReloadAllGammas	dynsym	f25fe40f889c		in	located	docs/kona-ddx.md#kona-layer	Kona layer
 usr/gfx/setmon	shared-tool	n32		0x10026a90	124	konTempBlankAllChannels	dynsym	e977025999d9		in	located	docs/kona-ddx.md#kona-layer	Kona layer
 usr/gfx/setmon	shared-tool	n32		0x10026b10	72	saXSGIvcQueryScreenGammaMaps	dynsym	b8089b8a82cb		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10026b60	56	saXSGIvcQueryMonitorName	dynsym	4efbc0c78f64		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10026e40	56	vcGetVideoRply	dynsym	22124b5fa292		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10026e40	56	vcGetVideoRply	dynsym	22124b5fa292		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x10027340	384	saXSGIvcQueryOutputGain	dynsym	790a86d70624		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x100278e0	264	KonWaitRData	dynsym	f71e312fa9e5		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x100278e0	264	KonWaitRData	dynsym	f71e312fa9e5		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x100279f0	248	saXSGIvcQueryGammaColors	dynsym	3c81b285f74b		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x100280e0	168	KonData	dynsym	eb2f7ca0f2dd		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10028d30	156	saXSGIvcLoadVideoFormatCombination	dynsym	63463d0795c7		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x100280e0	168	KonData	dynsym	eb2f7ca0f2dd		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/setmon	shared-tool	n32		0x10028d30	156	saXSGIvcLoadVideoFormatCombination	dynsym	63463d0795c7		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x10028e20	140	saXSGIvcQueryPlatformParameter	dynsym	ec216cbf2ba8		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10028eb0	104	saXSGIvcQueryOutputBlanking	dynsym	caf6940c211d		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1002a1b0	84	saXSGIvcDisableChannel	dynsym	cec60648c594		in	named-only	docs/setup-tools.md#setmon	`setmon`
@@ -48832,8 +48832,8 @@ usr/gfx/setmon	shared-tool	n32		0x10032510	104	saXSGIvcQueryOutputPhaseSCH	dynsy
 usr/gfx/setmon	shared-tool	n32		0x10032580	140	saXSGIvcStoreGammaColors8	dynsym	e95dcb37ca27		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10032830	96	saXSGIvcSetOutputBlanking	dynsym	445b8f8ed4f1		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10032bb0	16	saXSGIvcQueryVersion	dynsym	812633f29edd		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10032ef0	176	KonFlush	dynsym	cdda7ee0a906		in	named-only	docs/open-questions.md#arm-firmware	ARM firmware
-usr/gfx/setmon	shared-tool	n32		0x10032fa0	56	vcVideoCmd	dynsym	58ebd2326951		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10032ef0	176	KonFlush	dynsym	cdda7ee0a906		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/setmon	shared-tool	n32		0x10032fa0	56	vcVideoCmd	dynsym	58ebd2326951		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x10033100	84	saXSGIvcSetScreenInputSyncSource	dynsym	f1fb1807f3bc		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10033bc0	108	saXSGIvcQueryVideoScreenInfo	dynsym	f283cc735bed		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10033c30	104	saXSGIvcQueryScreenInputSyncSource	dynsym	bc9ab0f65acf		in	named-only	docs/setup-tools.md#setmon	`setmon`
@@ -48844,8 +48844,8 @@ usr/gfx/setmon	shared-tool	n32		0x10034a60	348	saXSGIvcSetOutputGain	dynsym	72b7
 usr/gfx/setmon	shared-tool	n32		0x10034bc0	104	saXSGIvcListVideoFormatsInCombination	dynsym	2f15e379f326		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10034f10	8	konUnbindDestroyedWindow	dynsym	78aa5094d5ec		in	located	docs/kona-ddx.md#screen-set-up-hyperpipe-video-control-and-rendering-manager-client-koninit-konattachxvc-rrm	Screen set-up, hyperpipe, video control and rendering-manager client (`konInit`, `konAttachXvc`, `rrm*`)
 usr/gfx/setmon	shared-tool	n32		0x10034fe0	96	saXSGIvcSetChannelGammaMap	dynsym	4e772d5128e1		in	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
-usr/gfx/setmon	shared-tool	n32		0x10035360	84	KonData2	dynsym	f9f75d4b3d93		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x100353c0	164	KonData5	dynsym	a68a9bdd4153		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10035360	84	KonData2	dynsym	f9f75d4b3d93		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/setmon	shared-tool	n32		0x100353c0	164	KonData5	dynsym	a68a9bdd4153		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x100354fc	4	__istart	dynsym	df3f619804a9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/sgcombine	shared-tool	n32		0x1000f870	268	__start	dynsym	97e564342a80		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/sgcombine	shared-tool	n32		0x1000f97c	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
@@ -49171,7 +49171,7 @@ usr/gfx/sgcombine	shared-tool	n32		0x1001e900	480	vfcGetOption	dynsym	19ba1aceba
 usr/gfx/sgcombine	shared-tool	n32		0x1001eae0	1440	vfcParseCommand	dynsym	938e29bca82d		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1001f080	60	usage	dynsym	802e5e29509f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/sgcombine	shared-tool	n32		0x1001f0c0	68	vfcInitCmpCombination	dynsym	150f0158e4ad		in	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
-usr/gfx/sgcombine	shared-tool	n32		0x1001f110	228	vfcDoCommandLine	dynsym	a0a91a4cc5e0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/sgcombine	shared-tool	n32		0x1001f110	228	vfcDoCommandLine	dynsym	a0a91a4cc5e0		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/sgcombine	shared-tool	n32		0x1001f200	124	vfcQueryXSGIvc	dynsym	faddce359dbd		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1001f280	136	vfcQueryGLXHyper	dynsym	744eeaa0c4f7		in	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1001f310	636	vfcQueryOdysseyTarget	dynsym	2d06c0382564		in	named-only	docs/setup-tools.md#sgcombine	`sgcombine`

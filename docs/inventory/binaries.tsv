@@ -1,5 +1,5 @@
 binary	group	role	kind	abi	bytes	sha256	copies	functions	address_source	access_sites	unresolved_sites	status	doc	section
-usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	dynsym	0	0	understood	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/cpu/sysgen/IP27boot/gfx.o	kernel-shared	shared-kernel	object	n64	53816	28186f9362dcd19e		62	symtab	0	0	named-only	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	17812	70f668a5a117d389		19	symtab	0	0	named-only	docs/kernel-functions.md#hub-flow-control-gfxsagfx_flowo	Hub flow control: `gfxs.a(gfx_flow.o)`
 usr/cpu/sysgen/IP27boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	5844	d56b66fd1e680c4a		1	none	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
@@ -452,13 +452,13 @@ usr/gfx/arch/IP35KONA32/libGL.so	libraries	board-library	shared-object	n32	51650
 usr/gfx/arch/IP35KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	89303b7f78578067		4907	dynsym+dwarf	2881	0	named-only	docs/libglcore-driver-functions.md#libglcore-the-large-routines-of-the-kona-driver	libGLcore: the large routines of the Kona driver
 usr/gfx/arch/IP35KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	2f064d4d8de46085		673	dynsym (dwarf addresses stale, dropped)	1	0	undocumented		
 usr/gfx/arch/IP35KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d5889b8581d8de51		4907	dynsym+dwarf	2909	0	undocumented		
-usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	2eec8716f6ad8a43	usr/gfx/gfxinit	227	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	dynsym	0	0	understood	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	2eec8716f6ad8a43	usr/gfx/gfxinit	227	dynsym	0	0	understood	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
 usr/gfx/hyperpipeinfo	board-tools	board-tool	executable	n32	18328	a43eeddde7bbbcbf		4	dynsym	0	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/gfx/ircombine	board-tools	board-tool	executable	n32	766080	7016ad16f636dc67		1238	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dynsym	0	0	named-only	docs/coverage.md#dg	DG
-usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/ircombine	board-tools	board-tool	executable	n32	766080	7016ad16f636dc67		1238	dynsym	0	0	understood	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dynsym	0	0	understood	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	dynsym	0	0	understood	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
 usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
 usr/gfx/ucode/KONA/arm1.u	microcode	board-microcode	data	-	465452	8431a8e3184c858f		0		0	0	named-only	docs/tooling.md#arm-firmware-import	ARM firmware import
