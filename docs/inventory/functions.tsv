@@ -20833,8 +20833,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9ba1e0	1304	Accu
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9ba700	1092	Mult	dwarf+funcnames	ff2c5323fd49		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bab50	556	Add	dwarf+funcnames	91ab8b08b462		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bad80	396	Return	dwarf+funcnames	adeb65af46e1		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9baf10	812	Clear	dwarf+funcnames	bbcbdc5122ac	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bb240	8	Pick	dwarf+funcnames	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9baf10	812	Clear	dwarf+funcnames	bbcbdc5122ac	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bb240	8	Pick	dwarf+funcnames	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bb250	280	__glInitAccum64	dwarf+dynsym	f1330461d603		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bb370	400	__glim_Accum	dwarf+dynsym	d087a9e3ff72		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bb500	360	__glValidateAlphaTest	dwarf+dynsym	4bd36e575f77		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -21117,11 +21117,11 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d04f0	88	StoreN
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0550	88	StoreGEQUAL_W	dwarf+funcnames	091e4104f210		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d05b0	88	StoreGEQUAL_W_s	dwarf+funcnames	6e8e6aee4020		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0610	8	StoreALWAYS_W	dwarf+funcnames	a7e7ca11a6b8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0d70	400	Fix_zbuffer	dwarf+funcnames	daf21edda63c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0d70	400	Fix_zbuffer	dwarf+funcnames	daf21edda63c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0f30	72	Resize	dwarf+funcnames	2a74d23600e4	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1120	232	__glInitDepth24	dwarf+dynsym	45cc23c572d1		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1210	228	__glInitDepth32	dwarf+dynsym	9eb69b8494a8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1300	172	__glInitDepth	dwarf+dynsym	4ff654bb7f92		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1210	228	__glInitDepth32	dwarf+dynsym	9eb69b8494a8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1300	172	__glInitDepth	dwarf+dynsym	4ff654bb7f92		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d13b0	192	__glGenericFreeDlist	dwarf+dynsym	52e4ec0259fd		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1470	52	__glGenericExecuteDlist	dwarf+dynsym	893c66eca52d		in	understood	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d14b0	208	__glGenericAllocDlist	dwarf+dynsym	5cd2f69602ac		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
@@ -26414,7 +26414,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1e460	1092	Mult
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1e8b0	556	Add	dwarf	b5ffa13ea888		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1eae0	432	Return	dwarf	e5f2d6041df0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1ec90	820	Clear	dwarf	5f4d7b310942	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1efd0	8	Pick	dwarf	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1efd0	8	Pick	dwarf	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1efe0	288	__glInitAccum64	dwarf+dynsym	90d5e524c973		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1f100	404	__glim_Accum	dwarf+dynsym	fb5b786a6f91		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1f2a0	368	__glValidateAlphaTest	dwarf+dynsym	ed2abf5f9cb8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -37532,8 +37532,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9ba1e0	1304	Accu
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9ba700	1092	Mult	dwarf+funcnames	ff2c5323fd49		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bab50	556	Add	dwarf+funcnames	91ab8b08b462		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bad80	396	Return	dwarf+funcnames	adeb65af46e1		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9baf10	812	Clear	dwarf+funcnames	bbcbdc5122ac	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bb240	8	Pick	dwarf+funcnames	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9baf10	812	Clear	dwarf+funcnames	bbcbdc5122ac	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bb240	8	Pick	dwarf+funcnames	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bb250	280	__glInitAccum64	dwarf+dynsym	f1330461d603		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bb370	400	__glim_Accum	dwarf+dynsym	d087a9e3ff72		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bb500	360	__glValidateAlphaTest	dwarf+dynsym	4bd36e575f77		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -37816,11 +37816,11 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d04f0	88	StoreN
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0550	88	StoreGEQUAL_W	dwarf+funcnames	091e4104f210		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d05b0	88	StoreGEQUAL_W_s	dwarf+funcnames	6e8e6aee4020		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0610	8	StoreALWAYS_W	dwarf+funcnames	a7e7ca11a6b8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0d70	400	Fix_zbuffer	dwarf+funcnames	daf21edda63c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0d70	400	Fix_zbuffer	dwarf+funcnames	daf21edda63c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0f30	72	Resize	dwarf+funcnames	2a74d23600e4	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1120	232	__glInitDepth24	dwarf+dynsym	45cc23c572d1		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1210	228	__glInitDepth32	dwarf+dynsym	9eb69b8494a8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1300	172	__glInitDepth	dwarf+dynsym	4ff654bb7f92		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1210	228	__glInitDepth32	dwarf+dynsym	9eb69b8494a8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1300	172	__glInitDepth	dwarf+dynsym	4ff654bb7f92		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d13b0	192	__glGenericFreeDlist	dwarf+dynsym	52e4ec0259fd		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1470	52	__glGenericExecuteDlist	dwarf+dynsym	893c66eca52d		in	understood	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d14b0	208	__glGenericAllocDlist	dwarf+dynsym	5cd2f69602ac		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
@@ -43113,7 +43113,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fe460	1092	Mult
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fe8b0	556	Add	dwarf	b5ffa13ea888		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21feae0	432	Return	dwarf	e5f2d6041df0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fec90	820	Clear	dwarf	5f4d7b310942	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fefd0	8	Pick	dwarf	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fefd0	8	Pick	dwarf	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21fefe0	288	__glInitAccum64	dwarf+dynsym	90d5e524c973		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ff100	404	__glim_Accum	dwarf+dynsym	fb5b786a6f91		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ff2a0	368	__glValidateAlphaTest	dwarf+dynsym	ed2abf5f9cb8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
