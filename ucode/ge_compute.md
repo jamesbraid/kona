@@ -1071,3 +1071,221 @@ and packs fields for the raster bus ([docs/rm.md](../docs/rm.md#pixel-and-texel-
   clamp-and-multiply words and four multiplies, the last results of the transfer.
 - `uPO_8_16C_LastBlck` (`upixout.s` lines 275-283, at 0x2883): **inferred**, the short last block: four clamps and four
   clamp-and-multiply words, then `uPostLoop`.
+
+## Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+
+**Inferred**, from the words of the evaluator modules and the GL evaluator model (`glMap1`, `glMap2`, `glEvalCoord`,
+`glEvalMesh`). The engine converts each map's Bernstein control points to power-basis coefficients once, when the map is
+defined, and then evaluates every coordinate by Horner's rule, with a second chain for the derivative when normals are
+generated. The 1D and 2D map sets share working memory (`WRAM`); the state routines swap the inactive set out to engine
+external memory. Coefficient blocks sit at engine addresses 0x8010-0x8178, one block per map type; the order and domain
+words are at 0x1ec-0x1f3 and 0x453-0x461.
+
+- `ugeb_EvalMapSpec1D` (`ueval1D.s` lines 114-187, at 0x53): **inferred**, the `glMap1` specification handler. It takes
+  the map type, order and domain operands as input, converts the order with float-to-integer, masks and adds to form the
+  coefficient block's address (blocks at 0x8010, 0x8080, 0x80f0 and 0x8160), stores the domain words, and copies the
+  control points into the block with unit-2 moves, the result a block ready for `uEvalChangeBasis1D`.
+- `mgeb_EvalMapSpec1D` (`ueval1D.s` line 114, at 0x53): **inferred**, the slot name on the first word of
+  `ugeb_EvalMapSpec1D`, through which the host sends the 1D map specification that it converts and stores.
+- `ugeb_EvalMapData1D` (`ueval1D.s` lines 220-257, at 0x9c): **inferred**, receives a 1D map's control-point data: it
+  takes the map number operand, ANDs it to a block index, converts the count with float-to-integer and calls
+  `uEvalSwapState2D` or `uEvalLoadState1D` so the 1D set is resident before `levaldata1dloop` stores the points.
+- `mgeb_EvalMapData1D` (`ueval1D.s` line 220, at 0x9c): **inferred**, the slot name of that data handler on the same word,
+  so its input points reach the same resident block.
+- `levaldata1dloop` (`ueval1D.s` lines 259-279, at 0xc2): **inferred**, the copy loop: it moves each input word into the
+  coefficient block through the pointer at 0x1ec, repeating on the counter (transfer at 0xc2) until the count ends.
+- `ugeb_EvalGrid1D` (`ueval1D.s` lines 292-313, at 0xd1): **inferred**, `glMapGrid1`: it stores the grid count, converted
+  to float with integer-to-float, and the grid end points as input words at 0x461 and 0x1ed, the result being the grid
+  `ugesi_EvalStrip1D` steps through.
+- `mgeb_EvalGrid1D` (`ueval1D.s` line 292, at 0xd1): **inferred**, slot name of the 1D grid handler on the same word,
+  storing the same count and end points.
+- `ugesi_EvalStrip1D` (`ueval1D.s` lines 324-438, at 0xe1): **inferred**, `glEvalMesh1`: from the grid words it computes
+  each u as start plus i times the step (float adds and multiplies, the index converted with integer-to-float), maps it
+  into the map's domain by subtracting the low end and multiplying by the reciprocal width, and runs the evaluation
+  modules for each point, the results being the vertices of a line strip.
+- `mgesi_EvalStrip1D` (`ueval1D.s` line 324, at 0xe1): **inferred**, slot name of the 1D mesh handler on its first word,
+  which computes the same grid of u values.
+- `lstrip1dreturn` (`ueval1D.s` lines 443-457, at 0x157): **inferred**, the return point after each evaluated point:
+  it converts the point counter with float-to-integer, applies unit-1 code 0x51 (not fixed by the test) to it and
+  updates registers 0x19 and 0x1a, the counts the drawing modules read.
+- `umo_EvalEntry1D` (`ueval1D.s` lines 470-491, at 0x166): **inferred**, sets up the pipeline for a 1D evaluation: it
+  stores the record stride 0x28 and the vertex-pointer and count words (0x14, 0x3a8, 8, 0x1e0) as input to the modules
+  that follow, producing no arithmetic result of its own.
+- `umo_EvalDecomposeLines1D` (`ueval1D.s` lines 504-518, at 0x17c): **inferred**, turns the evaluated 1D points into line
+  primitives: it stores the decompose table addresses 0x8bb0 and 0x8bec and the primitive codes 0xc and 0x15 for the
+  line-strip output that follows.
+- `ugeb_EvalMapSpec2D` (`ueval2D.s` lines 178-300, at 0x18b): **inferred**, the `glMap2` specification handler: from the
+  u and v orders it computes the block address with integer adds and subtracts, stores the two domains, and copies the
+  control-point grid into the block with unit-2 moves and code 0x0f words.
+- `mgeb_EvalMapSpec2D` (`ueval2D.s` line 178, at 0x18b): **inferred**, slot name of the 2D specification handler on the
+  same word, which converts the orders and stores the control points.
+- `ugeb_EvalMapData2D` (`ueval2D.s` lines 334-371, at 0x205): **inferred**, receives 2D control points: it masks the map
+  number, converts the count, and calls `uEvalSwapState1D` or `uEvalLoadState2D` before `levaldata2dloop` stores them.
+- `mgeb_EvalMapData2D` (`ueval2D.s` line 334, at 0x205): **inferred**, slot name of the 2D data handler on that word.
+- `levaldata2dloop` (`ueval2D.s` lines 373-392, at 0x22b): **inferred**, copies each input word of the 2D control-point
+  data into its block through the pointer at 0x1ec until the counter runs out.
+- `ugeb_EvalGrid2D` (`ueval2D.s` lines 405-434, at 0x23a): **inferred**, `glMapGrid2`: converts the two grid counts with
+  integer-to-float and stores them with the u and v end points at 0x557 and 0x55b, the input of `ugesi_EvalStrip2D`.
+- `mgeb_EvalGrid2D` (`ueval2D.s` line 405, at 0x23a): **inferred**, slot name of the 2D grid handler on that word.
+- `ugesi_EvalStrip2D` (`ueval2D.s` lines 461-571, at 0x254): **inferred**, `glEvalMesh2`: it computes the u and v of the
+  first grid row by start plus index times step, maps both into the map domains by subtract and multiply, and enters
+  `lstrip2dloop`, the results being quad-strip rows of evaluated vertices.
+- `mgesi_EvalStrip2D` (`ueval2D.s` line 461, at 0x254): **inferred**, slot name of the 2D mesh handler on that word.
+- `lstrip2dloop` (`ueval2D.s` lines 573-618, at 0x2c3): **inferred**, steps along a mesh row: per point it adds the step,
+  subtracts the domain start and multiplies by the reciprocal width (0x2c4-0x2d0), stores the mapped coordinates into
+  the evaluation input at 0x8000 and 0x8018, and runs the evaluation modules.
+- `lstrip2dreturn` (`ueval2D.s` lines 620-684, at 0x2f1): **inferred**, the end of each mesh point: it adds to the row
+  counters, applies code 0x51 to the count, reloads the 2D state when needed (`uEvalLoadState2D`) and returns to
+  `lstrip2dloop` (`cc` 0x14) or ends the command.
+- `umo_EvalEntry2D` (`ueval2D.s` lines 697-737, at 0x317): **inferred**, the 2D pipeline set-up: stores the stride 0x28,
+  the vertex count words and the 0xda primitive code as input for the evaluation and decompose modules.
+- `umo_EvalDecomposePoints` (`ueval2D.s` lines 750-763, at 0x335): **inferred**, sets up point output from evaluated
+  vertices: the table addresses 0x8bb0 and 0x8bec, the primitive code 0x16 and two words of -24.0 (0xc1c00000) as input
+  for the point output.
+- `umo_EvalDecomposeLines2D` (`ueval2D.s` lines 777-828, at 0x344): **inferred**, sets up line output for a 2D mesh: it stores four
+  words of -24.0 and the tables 0x8bb0 and 0x8bec, with a unit-2 code 0x0f word and two ANDs, as input for the line output.
+- `umo_EvalDecomposeFill` (`ueval2D.s` lines 844-880, at 0x37b): **inferred**, sets up filled output: it stores four
+  words of -6.0 (0xc0c00000) and the tables 0x8bc4, 0x8c28 and 0x8c3c as input for the filled output.
+- `uges_EvalCoord` (`uevalcoord.s` lines 61-71, at 0x3a0): **inferred**, the `glEvalCoord` and `glEvalPoint` entry: it
+  takes the coordinate count as input, subtracts 7 (0xfffffff9) to decide between the 1D and 2D loops, and branches.
+- `mges_EvalCoord` (`uevalcoord.s` line 61, at 0x3a0): **inferred**, slot name of that entry on the same word, the
+  handler the distributor's evaluator-coordinate flush sends ([ged.md](ged.md#registers)).
+- `evalcoord2dloop` (`uevalcoord.s` lines 80-125, at 0x3ab): **inferred**, for each queued two-coordinate input it tests
+  bit 26 (AND with 0x4000000) and calls `uEvalCoord2D`, looping on `cc` 0x14.
+- `evalcoord1dloop` (`uevalcoord.s` lines 127-168, at 0x3d9): **inferred**, the one-coordinate loop: bit 25 (AND with
+  0x2000000) selects the queued 1D coordinates, each handed to `uEvalCoord1D`.
+- `uEvalCoord1D` (`uevalcoord.s` lines 195-251, at 0x406): **inferred**, maps one u into the domain of each enabled 1D map:
+  four subtracts of the low end (0x421-0x424), a multiply by the reciprocal width and unit-1 code 0x08 (not fixed by the
+  test) at 0x425-0x426, then calls `uEvalChangeBasis1D` when a map changed and stores the mapped u as the input of the
+  polynomial modules.
+- `uEvalCoord2D` (`uevalcoord.s` lines 264-332, at 0x43f): **inferred**, the 2D form: subtracts and multiplies map u and v
+  into each 2D map's domain, swaps state with `uEvalSwapState1D` when the 1D set is resident, and stores the mapped pair.
+- `uEvalChangeBasis1D` (`uevalbasis.s` lines 102-135, at 0x484): **inferred**, converts every changed 1D map from
+  Bernstein to power basis: it adds the block offsets, stores the order-indexed routine address (0x4a6, 0x4b6, 0x4c6,
+  0x4d6) and calls the order-specific `uEvalChangeBasisN` through the indirect transfer, one per map type.
+- `eval_texturechangebasis` (`uevalbasis.s` lines 137-152, at 0x4a6): **inferred**, the texture-map step of that chain:
+  it points the conversion at the texture block 0x80f0 and calls the routine stored at 0x1f3.
+- `eval_colorchangebasis` (`uevalbasis.s` lines 154-169, at 0x4b6): **inferred**, the colour-map step, converting the
+  block at 0x8160 through the routine at 0x1f3.
+- `eval_normalchangebasis` (`uevalbasis.s` lines 171-185, at 0x4c6): **inferred**, the normal-map step of the 1D chain,
+  with the same indirect call through 0x1f3.
+- `eval_changebasis1ddone` (`uevalbasis.s` lines 188-198, at 0x4d6): **inferred**, ends the 1D conversion by clearing
+  the change flag at 0x1f1, so the converted coefficients are used until the next map change.
+- `uEvalChangeBasis2D` (`uevalbasis.s` lines 239-272, at 0x4e5): **inferred**, the 2D conversion chain: it converts each
+  changed 2D map in u and then in v, storing the per-step routine addresses 0x507-0x577 and calling them in turn.
+- `eval_geomchangebasisv` (`uevalbasis.s` lines 274-289, at 0x507): **inferred**, converts the vertex map's block at
+  0x8098 in the v direction.
+- `eval_texturechangebasisu` (`uevalbasis.s` lines 291-306, at 0x517): **inferred**, converts the 2D texture block at
+  0x8108 in u, with a unit-2 code 0x0f word in its set-up.
+- `eval_texturechangebasisv` (`uevalbasis.s` lines 308-323, at 0x527): **inferred**, the v direction of the 2D texture
+  block at 0x8108.
+- `eval_colorchangebasisu` (`uevalbasis.s` lines 325-340, at 0x537): **inferred**, converts the 2D colour block at 0x8178
+  in u.
+- `eval_colorchangebasisv` (`uevalbasis.s` lines 342-357, at 0x547): **inferred**, converts the 2D colour block at 0x8178
+  in v.
+- `eval_normalchangebasisu` (`uevalbasis.s` lines 359-373, at 0x557): **inferred**, the u step for the 2D normal map.
+- `eval_normalchangebasisv` (`uevalbasis.s` lines 376-391, at 0x567): **inferred**, the v step for the 2D normal map.
+- `eval_changebasis2ddone` (`uevalbasis.s` lines 393-403, at 0x577): **inferred**, clears the 2D change flag at 0x1f2
+  after the last conversion.
+- `uEvalChangeBasis1and2` (`evalbasis.s` lines 92-98, at 0x9f5): **inferred**, the basis change for orders 1 and 2 does no
+  arithmetic: it ends the call and leaves the control points as the input of the `eval1.s` and `eval2.s` modules, whose
+  loops work on them directly.
+- `uEvalChangeBasis3` (`evalbasis.s` lines 128-133, at 0xa04): **inferred**, set-up of the order-3 conversion through the
+  routine word 0x1f3, the quadratic case.
+- `lCB3LOOP` (`evalbasis.s` lines 137-155, at 0xa0c): **inferred**, per component of an order-3 map: a multiply, an add and
+  a subtract (0xa0f-0xa14) combine three control points into power-basis coefficients (for a quadratic these are P0,
+  2(P1 - P0) and P0 - 2P1 + P2).
+- `uEvalChangeBasis4` (`evalbasis.s` lines 181-196, at 0xa22): **inferred**, set-up of the cubic conversion: two
+  subtracts and three multiplies prime the binomial factors.
+- `lCB4POLYLOOP` (`evalbasis.s` lines 198-218, at 0xa32): **inferred**, the cubic loop: adds, subtracts and multiplies
+  form the four power-basis coefficients of each component from its four control points.
+- `uEvalChangeBasis5` (`evalbasis.s` lines 243-268, at 0xa48): **inferred**, the order-5 set-up, with the differences of
+  neighbouring control points formed by subtracts before the loop.
+- `lCB5LOOP` (`evalbasis.s` lines 270-292, at 0xa62): **inferred**, combines five control points per component into five
+  coefficients with multiply-adds weighted by the binomial factors of degree 4.
+- `uEvalChangeBasis6` (`evalbasis.s` lines 318-348, at 0xa7a): **inferred**, order-6 set-up: differences and binomial
+  products for degree 5.
+- `lCB6MATRIXLOOP` (`evalbasis.s` line 350, at 0xa99): **inferred**, the one-word head of the order-6 loop, a subtract with
+  a multiply that the loop's second transfer returns to for each matrix row.
+- `lCB6LOOP` (`evalbasis.s` lines 352-378, at 0xa9a): **inferred**, the order-6 loop: multiply-adds produce six
+  coefficients per component.
+- `uEvalChangeBasis7` (`evalbasis.s` lines 405-444, at 0xab6): **inferred**, order-7 set-up, 40 words of differences and
+  binomial products for degree 6.
+- `lCB7LOOP` (`evalbasis.s` lines 446-474, at 0xade): **inferred**, the order-7 loop producing seven coefficients per
+  component.
+- `uEvalChangeBasis8` (`evalbasis.s` lines 502-552, at 0xafc): **inferred**, order-8 set-up, the largest, for degree 7.
+- `lCB8MATRIXLOOP` (`evalbasis.s` lines 554-555, at 0xb2f): **inferred**, the two-word head the order-8 loop returns to for
+  each row of the conversion matrix.
+- `lCB8LOOP` (`evalbasis.s` lines 557-586, at 0xb31): **inferred**, the order-8 loop: multiply-adds give eight
+  coefficients per component.
+- `uEvalChangeBasis4x4` (`evalbasis.s` lines 613-622, at 0xb50): **inferred**, set-up of the bicubic conversion of a 4 x 4
+  control grid, two subtracts priming the factors.
+- `lCB4X4LOOP` (`evalbasis.s` lines 624-665, at 0xb5a): **inferred**, applies the cubic conversion to the rows and columns
+  of the grid with multiply-adds and subtracts, giving sixteen power-basis coefficients.
+- `uEvalSaveState` (`evalmisc.s` lines 55-74, at 0x962): **inferred**, saves the evaluator working memory to external
+  memory with `mWramToEram`, taking the block words at 0x1ec-0x1f0 and the sizes 0x461 and 0x555 as input.
+- `uEvalSaveState1D` (`evalmisc.s` lines 92-105, at 0x977): **inferred**, saves only the 1D set: block 0x8000, size 0x461.
+- `uEvalSaveState2D` (`evalmisc.s` lines 126-139, at 0x989): **inferred**, saves only the 2D set: block 0x8000, size 0x555.
+- `uEvalLoadState1D` (`evalmisc.s` lines 160-174, at 0x99b): **inferred**, brings the 1D set back with `mEramToWram`,
+  converting its stored size with float-to-integer.
+- `uEvalLoadState2D` (`evalmisc.s` lines 194-208, at 0x9ad): **inferred**, the 2D counterpart, restoring size 0x555 from
+  external memory.
+- `umo_EvalPolyV` (`eval.s` lines 186-204, at 0x586): **inferred**, set-up of the 2D vertex evaluation without derivative:
+  it ANDs the order word, converts it with integer-to-float and subtracts to form the loop counts from the input u and v.
+- `lPOLYVUORDERLOOP` (`eval.s` lines 206-225, at 0x599): **inferred**, Horner's rule in u: multiply-adds fold each row of
+  coefficients into one value per row.
+- `lPOLYVVORDERLOOP` (`eval.s` lines 227-254, at 0x5ad): **inferred**, the v pass: multiply-adds fold the per-row values
+  into the evaluated position, the module's result.
+- `umo_EvalPolyU` (`eval.s` lines 290-326, at 0x5ca): **inferred**, the same evaluation with the passes in the other
+  order, its first u row computed in the set-up.
+- `lPOLYUUORDERLOOP` (`eval.s` lines 328-353, at 0x5ef): **inferred**, the loop of `umo_EvalPolyU`: multiply-adds over
+  the u order, followed by six adds that combine the partial sums into the result.
+- `umo_EvalPolyVdV` (`eval.s` lines 394-421, at 0x609): **inferred**, the evaluation that also gives the v derivative: it
+  takes the derivative buffer at 0x85a8 as a second output and forms the loop counts.
+- `lPOLYVDVUORDERLOOP` (`eval.s` lines 423-438, at 0x625): **inferred**, the u pass of the value-and-derivative form.
+- `lPOLYVDVVORDERLOOP` (`eval.s` lines 440-479, at 0x635): **inferred**, the v pass: multiply-adds build the value and
+  multiply-subtracts the derivative, both results stored.
+- `umo_EvalPolyUdU` (`eval.s` lines 520-541, at 0x65e): **inferred**, the u-derivative form, its derivative output at 0x8004.
+- `lPOLYUDUUSIZELOOP` (`eval.s` lines 543-558, at 0x674): **inferred**, the first pass of the u-derivative form over the
+  v size.
+- `lPOLYUDUUORDERLOOP` (`eval.s` lines 560-597, at 0x684): **inferred**, the second pass, value and u derivative.
+- `umo_EvalComputeNormals3D` (`eval.s` lines 628-709, at 0x6ad): **inferred**, the `GL_AUTO_NORMAL` normal: from the u and
+  v derivatives at 0x8004 and 0x8028 it computes the cross product with multiply-subtract words (0x6c4-0x6d0), then
+  normalises it with the reciprocal-square-root seed and Newton-Raphson steps, storing the result in the normal block.
+- `umo_EvalComputeNormals4D` (`eval.s` lines 748-857, at 0x700): **inferred**, the normal for homogeneous (four-component)
+  maps: the derivative of x/w by the quotient rule, with twelve multiply-subtract pairs, before the cross product and
+  normalisation.
+- `umo_EvalPoly1V` (`eval1.s` lines 84-103, at 0x76f): **inferred**, the one-coefficient (constant) 2D map: no arithmetic;
+  the set-up points at the coefficient.
+- `lPOLY1VLOOP` (`eval1.s` lines 104-114, at 0x783): **inferred**, copies the constant input coefficients to the output
+  with eight moves per pass, since a degree-0 map evaluates to its control point.
+- `umo_EvalPoly1U` (`eval1.s` lines 144-165, at 0x78e): **inferred**, the constant map in the u ordering: nine moves.
+- `umo_EvalPoly1VdV` (`eval1.s` lines 192-204, at 0x7a4): **inferred**, the constant map with a v derivative, whose
+  derivative output buffer at 0x85a8 receives zeros.
+- `lPOLY1VDVLOOP` (`eval1.s` lines 205-220, at 0x7b1): **inferred**, sixteen moves per pass: the value and a zero
+  derivative.
+- `umo_EvalPoly1UdU` (`eval1.s` lines 250-282, at 0x7c3): **inferred**, the constant map with a u derivative, outputs at
+  0x8004 and 0x1d4.
+- `umo_EvalPoly2V` (`eval2.s` lines 117-137, at 0x7e5): **inferred**, the linear (order-2) map: one subtract prepares the
+  input.
+- `lPOLY2VLOOP` (`eval2.s` lines 139-159, at 0x7fa): **inferred**, evaluates the linear map from its two control points
+  with eight multiplies, eight multiply-adds and four adds per pass.
+- `umo_EvalPoly2U` (`eval2.s` lines 189-223, at 0x810): **inferred**, the linear map in u ordering: twelve multiplies and
+  the adds that give each result.
+- `umo_EvalPoly2VdV` (`eval2.s` lines 253-276, at 0x833): **inferred**, linear map with v derivative, derivative output at
+  0x85a8.
+- `lPOLY2VDVLOOP` (`eval2.s` lines 278-302, at 0x84b): **inferred**, value and derivative of a linear map: multiplies and
+  adds, with unit-1 code 0x63 (not fixed by the test) on the derivative words.
+- `umo_EvalPoly2UdU` (`eval2.s` lines 333-345, at 0x865): **inferred**, the linear u-derivative set-up, two subtracts.
+- `lPOLY2UDULOOP` (`eval2.s` lines 347-362, at 0x872): **inferred**, its loop: multiply-adds for the value and code 0x63
+  with multiplies for the derivative, results at 0x1d4.
+- `umo_EvalPoly4V` (`eval4.s` lines 134-150, at 0x883): **inferred**, the cubic (order-4) map: a subtract prepares t.
+- `lPOLY4VLOOP` (`eval4.s` lines 152-191, at 0x894): **inferred**, the unrolled cubic Horner evaluation: eight multiplies
+  and 32 multiply-adds per pass.
+- `umo_EvalPoly4U` (`eval4.s` lines 220-271, at 0x8bd): **inferred**, the cubic map in u ordering, evaluated within the
+  set-up by twelve multiplies and multiply-add chains.
+- `umo_EvalPoly4VdV` (`eval4.s` lines 307-324, at 0x8f2): **inferred**, cubic map with v derivative, output buffer 0x85a8.
+- `lPOLY4VDVLOOP` (`eval4.s` lines 326-365, at 0x904): **inferred**, value and derivative of a cubic: sixteen multiplies,
+  adds, and alternating multiply-subtract and multiply-add words.
+- `umo_EvalPoly4UdU` (`eval4.s` lines 400-412, at 0x92d): **inferred**, cubic u-derivative set-up, derivative at 0x8004.
+- `lPOLY4UDULOOP` (`eval4.s` lines 414-452, at 0x93a): **inferred**, the cubic value and u derivative per pass.

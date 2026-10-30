@@ -1775,110 +1775,110 @@ arm1.u	display command	90	DoDGRqstDVPMult2Freq	words=1	named-only
 arm1.u	display command	91	DoDGRqstVBOBCommand	words=42	named-only		
 arm1.u	display command	92	DoDGRqstGetVBOBReply	words=1	named-only		
 ge.u	label	0x00000000	HereWeGo		located	ucode/ge_handlers.md#bootstraps	bootstrap.s
-ge.u	label	0x00000053	mgeb_EvalMapSpec1D		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x00000053	ugeb_EvalMapSpec1D		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x0000009c	mgeb_EvalMapData1D		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x0000009c	ugeb_EvalMapData1D		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x000000c2	levaldata1dloop		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x000000d1	mgeb_EvalGrid1D		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x000000d1	ugeb_EvalGrid1D		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x000000e1	mgesi_EvalStrip1D		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x000000e1	ugesi_EvalStrip1D		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x00000157	lstrip1dreturn		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x00000166	umo_EvalEntry1D		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x0000017c	umo_EvalDecomposeLines1D		located	ucode/ge_handlers.md#ueval1ds	ueval1D.s
-ge.u	label	0x0000018b	mgeb_EvalMapSpec2D		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x0000018b	ugeb_EvalMapSpec2D		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x00000205	mgeb_EvalMapData2D		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x00000205	ugeb_EvalMapData2D		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x0000022b	levaldata2dloop		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x0000023a	mgeb_EvalGrid2D		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x0000023a	ugeb_EvalGrid2D		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x00000254	mgesi_EvalStrip2D		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x00000254	ugesi_EvalStrip2D		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x000002c3	lstrip2dloop		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x000002f1	lstrip2dreturn		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x00000317	umo_EvalEntry2D		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x00000335	umo_EvalDecomposePoints		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x00000344	umo_EvalDecomposeLines2D		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x0000037b	umo_EvalDecomposeFill		located	ucode/ge_handlers.md#ueval2ds	ueval2D.s
-ge.u	label	0x000003a0	mges_EvalCoord		located	ucode/ge_handlers.md#uevalcoords	uevalcoord.s
-ge.u	label	0x000003a0	uges_EvalCoord		located	ucode/ge_handlers.md#uevalcoords	uevalcoord.s
-ge.u	label	0x000003ab	evalcoord2dloop		located	ucode/ge_handlers.md#uevalcoords	uevalcoord.s
-ge.u	label	0x000003d9	evalcoord1dloop		located	ucode/ge_handlers.md#uevalcoords	uevalcoord.s
-ge.u	label	0x00000406	uEvalCoord1D		located	ucode/ge_handlers.md#uevalcoords	uevalcoord.s
-ge.u	label	0x0000043f	uEvalCoord2D		located	ucode/ge_handlers.md#uevalcoords	uevalcoord.s
-ge.u	label	0x00000484	uEvalChangeBasis1D		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x000004a6	eval_texturechangebasis		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x000004b6	eval_colorchangebasis		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x000004c6	eval_normalchangebasis		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x000004d6	eval_changebasis1ddone		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x000004e5	uEvalChangeBasis2D		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x00000507	eval_geomchangebasisv		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x00000517	eval_texturechangebasisu		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x00000527	eval_texturechangebasisv		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x00000537	eval_colorchangebasisu		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x00000547	eval_colorchangebasisv		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x00000557	eval_normalchangebasisu		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x00000567	eval_normalchangebasisv		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x00000577	eval_changebasis2ddone		located	ucode/ge_handlers.md#uevalbasiss	uevalbasis.s
-ge.u	label	0x00000586	umo_EvalPolyV		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x00000599	lPOLYVUORDERLOOP		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x000005ad	lPOLYVVORDERLOOP		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x000005ca	umo_EvalPolyU		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x000005ef	lPOLYUUORDERLOOP		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x00000609	umo_EvalPolyVdV		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x00000625	lPOLYVDVUORDERLOOP		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x00000635	lPOLYVDVVORDERLOOP		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x0000065e	umo_EvalPolyUdU		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x00000674	lPOLYUDUUSIZELOOP		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x00000684	lPOLYUDUUORDERLOOP		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x000006ad	umo_EvalComputeNormals3D		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x00000700	umo_EvalComputeNormals4D		located	ucode/ge_handlers.md#evals	eval.s
-ge.u	label	0x0000076f	umo_EvalPoly1V		located	ucode/ge_handlers.md#eval1s	eval1.s
-ge.u	label	0x00000783	lPOLY1VLOOP		located	ucode/ge_handlers.md#eval1s	eval1.s
-ge.u	label	0x0000078e	umo_EvalPoly1U		located	ucode/ge_handlers.md#eval1s	eval1.s
-ge.u	label	0x000007a4	umo_EvalPoly1VdV		located	ucode/ge_handlers.md#eval1s	eval1.s
-ge.u	label	0x000007b1	lPOLY1VDVLOOP		located	ucode/ge_handlers.md#eval1s	eval1.s
-ge.u	label	0x000007c3	umo_EvalPoly1UdU		located	ucode/ge_handlers.md#eval1s	eval1.s
-ge.u	label	0x000007e5	umo_EvalPoly2V		located	ucode/ge_handlers.md#eval2s	eval2.s
-ge.u	label	0x000007fa	lPOLY2VLOOP		located	ucode/ge_handlers.md#eval2s	eval2.s
-ge.u	label	0x00000810	umo_EvalPoly2U		located	ucode/ge_handlers.md#eval2s	eval2.s
-ge.u	label	0x00000833	umo_EvalPoly2VdV		located	ucode/ge_handlers.md#eval2s	eval2.s
-ge.u	label	0x0000084b	lPOLY2VDVLOOP		located	ucode/ge_handlers.md#eval2s	eval2.s
-ge.u	label	0x00000865	umo_EvalPoly2UdU		located	ucode/ge_handlers.md#eval2s	eval2.s
-ge.u	label	0x00000872	lPOLY2UDULOOP		located	ucode/ge_handlers.md#eval2s	eval2.s
-ge.u	label	0x00000883	umo_EvalPoly4V		located	ucode/ge_handlers.md#eval4s	eval4.s
-ge.u	label	0x00000894	lPOLY4VLOOP		located	ucode/ge_handlers.md#eval4s	eval4.s
-ge.u	label	0x000008bd	umo_EvalPoly4U		located	ucode/ge_handlers.md#eval4s	eval4.s
-ge.u	label	0x000008f2	umo_EvalPoly4VdV		located	ucode/ge_handlers.md#eval4s	eval4.s
-ge.u	label	0x00000904	lPOLY4VDVLOOP		located	ucode/ge_handlers.md#eval4s	eval4.s
-ge.u	label	0x0000092d	umo_EvalPoly4UdU		located	ucode/ge_handlers.md#eval4s	eval4.s
-ge.u	label	0x0000093a	lPOLY4UDULOOP		located	ucode/ge_handlers.md#eval4s	eval4.s
-ge.u	label	0x00000962	uEvalSaveState		located	ucode/ge_handlers.md#evalmiscs	evalmisc.s
-ge.u	label	0x00000977	uEvalSaveState1D		located	ucode/ge_handlers.md#evalmiscs	evalmisc.s
-ge.u	label	0x00000989	uEvalSaveState2D		located	ucode/ge_handlers.md#evalmiscs	evalmisc.s
-ge.u	label	0x0000099b	uEvalLoadState1D		located	ucode/ge_handlers.md#evalmiscs	evalmisc.s
-ge.u	label	0x000009ad	uEvalLoadState2D		located	ucode/ge_handlers.md#evalmiscs	evalmisc.s
+ge.u	label	0x00000053	mgeb_EvalMapSpec1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000053	ugeb_EvalMapSpec1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000009c	mgeb_EvalMapData1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000009c	ugeb_EvalMapData1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000000c2	levaldata1dloop		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000000d1	mgeb_EvalGrid1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000000d1	ugeb_EvalGrid1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000000e1	mgesi_EvalStrip1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000000e1	ugesi_EvalStrip1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000157	lstrip1dreturn		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000166	umo_EvalEntry1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000017c	umo_EvalDecomposeLines1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000018b	mgeb_EvalMapSpec2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000018b	ugeb_EvalMapSpec2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000205	mgeb_EvalMapData2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000205	ugeb_EvalMapData2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000022b	levaldata2dloop		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000023a	mgeb_EvalGrid2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000023a	ugeb_EvalGrid2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000254	mgesi_EvalStrip2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000254	ugesi_EvalStrip2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000002c3	lstrip2dloop		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000002f1	lstrip2dreturn		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000317	umo_EvalEntry2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000335	umo_EvalDecomposePoints		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000344	umo_EvalDecomposeLines2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000037b	umo_EvalDecomposeFill		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000003a0	mges_EvalCoord		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000003a0	uges_EvalCoord		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000003ab	evalcoord2dloop		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000003d9	evalcoord1dloop		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000406	uEvalCoord1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000043f	uEvalCoord2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000484	uEvalChangeBasis1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000004a6	eval_texturechangebasis		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000004b6	eval_colorchangebasis		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000004c6	eval_normalchangebasis		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000004d6	eval_changebasis1ddone		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000004e5	uEvalChangeBasis2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000507	eval_geomchangebasisv		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000517	eval_texturechangebasisu		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000527	eval_texturechangebasisv		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000537	eval_colorchangebasisu		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000547	eval_colorchangebasisv		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000557	eval_normalchangebasisu		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000567	eval_normalchangebasisv		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000577	eval_changebasis2ddone		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000586	umo_EvalPolyV		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000599	lPOLYVUORDERLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000005ad	lPOLYVVORDERLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000005ca	umo_EvalPolyU		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000005ef	lPOLYUUORDERLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000609	umo_EvalPolyVdV		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000625	lPOLYVDVUORDERLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000635	lPOLYVDVVORDERLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000065e	umo_EvalPolyUdU		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000674	lPOLYUDUUSIZELOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000684	lPOLYUDUUORDERLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000006ad	umo_EvalComputeNormals3D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000700	umo_EvalComputeNormals4D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000076f	umo_EvalPoly1V		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000783	lPOLY1VLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000078e	umo_EvalPoly1U		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000007a4	umo_EvalPoly1VdV		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000007b1	lPOLY1VDVLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000007c3	umo_EvalPoly1UdU		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000007e5	umo_EvalPoly2V		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000007fa	lPOLY2VLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000810	umo_EvalPoly2U		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000833	umo_EvalPoly2VdV		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000084b	lPOLY2VDVLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000865	umo_EvalPoly2UdU		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000872	lPOLY2UDULOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000883	umo_EvalPoly4V		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000894	lPOLY4VLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000008bd	umo_EvalPoly4U		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000008f2	umo_EvalPoly4VdV		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000904	lPOLY4VDVLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000092d	umo_EvalPoly4UdU		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000093a	lPOLY4UDULOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000962	uEvalSaveState		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000977	uEvalSaveState1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000989	uEvalSaveState2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x0000099b	uEvalLoadState1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000009ad	uEvalLoadState2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
 ge.u	label	0x000009bf	uEvalSwapState1D		understood	ucode/ge_handlers.md#evalmiscs	evalmisc.s
 ge.u	label	0x000009da	uEvalSwapState2D		understood	ucode/ge_handlers.md#evalmiscs	evalmisc.s
-ge.u	label	0x000009f5	uEvalChangeBasis1and2		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000a04	uEvalChangeBasis3		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000a0c	lCB3LOOP		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000a22	uEvalChangeBasis4		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000a32	lCB4POLYLOOP		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000a48	uEvalChangeBasis5		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000a62	lCB5LOOP		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000a7a	uEvalChangeBasis6		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000a99	lCB6MATRIXLOOP		understood	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000a9a	lCB6LOOP		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000ab6	uEvalChangeBasis7		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000ade	lCB7LOOP		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000afc	uEvalChangeBasis8		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000b2f	lCB8MATRIXLOOP		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000b31	lCB8LOOP		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000b50	uEvalChangeBasis4x4		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
-ge.u	label	0x00000b5a	lCB4X4LOOP		located	ucode/ge_handlers.md#evalbasiss	evalbasis.s
+ge.u	label	0x000009f5	uEvalChangeBasis1and2		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000a04	uEvalChangeBasis3		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000a0c	lCB3LOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000a22	uEvalChangeBasis4		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000a32	lCB4POLYLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000a48	uEvalChangeBasis5		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000a62	lCB5LOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000a7a	uEvalChangeBasis6		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000a99	lCB6MATRIXLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000a9a	lCB6LOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000ab6	uEvalChangeBasis7		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000ade	lCB7LOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000afc	uEvalChangeBasis8		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000b2f	lCB8MATRIXLOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000b31	lCB8LOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000b50	uEvalChangeBasis4x4		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x00000b5a	lCB4X4LOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
 ge.u	label	0x00000b85	mmo_TexGenSphere_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
 ge.u	label	0x00000b85	umo_TexGenSphere_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
 ge.u	label	0x00000b8e	lTGLOOP2		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
