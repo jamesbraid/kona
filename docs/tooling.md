@@ -34,7 +34,7 @@ Unit 1's operand ports follow [ucode/ge_isa.md](../ucode/ge_isa.md#operand-ports
 
 Not modelled:
 
-- the second value of a store-data window: the `r95` = 5 store gets the same value as the `r95` = 4 store, though the matrix products need a different one there ([The store-data register](../ucode/ge_isa.md#the-store-data-register));
+- the three lanes: the module runs one, so the `r95` = 5 store gets lane 0's value, though `mMatrixMultCCW` needs lane 1's there ([Lanes](../ucode/ge_isa.md#lanes));
 - the stores with `r95` = 6-0xb, whose memory is unknown;
 - the fields r176, r162, r198, r217, r71, r62 and r25, and most of r95;
 - the latency of register writes.

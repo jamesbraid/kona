@@ -111,8 +111,9 @@ Facts are labelled **established** (read from the words at the addresses given) 
   0xe72-0xe75 (fourth element staged at E = 3, 7, 0xb, 0xf; third element read from 0x41, 0x45, 0x49, 0x4d) and the multiplies
   by the constant 0.5 loaded at 0xe71. It then multiplies that matrix by the modelview at 0x2f-0x3e (36 multiply words,
   0xe7f-0xe9f, finishing eight sums of four products) and stores its results to all 16 words 0x4f-0x5e, the input of every
-  clip transform. Each sum is stored twice, once with `r95` = 4 and once with `r95` = 5, nine words after it is loaded into the
-  store-data register; what the second store adds is open ([The store-data register](ge_isa.md#the-store-data-register)). It writes special
+  clip transform. Each sum is stored twice, once with `r95` = 4 (lane 0) and once with `r95` = 5 (lane 1), nine words after
+  it is loaded into the store-data register; lane 0's multiplies give rows 0 and 2, and how lane 1 reaches rows 1 and 3 is open
+  ([Lanes](ge_isa.md#lanes)). It writes special
   register 0x29 (store at 0xe7e) and returns through a group-5 indirect transfer at 0xea7.
   The four subtracts are operand-routing form `r110` = 0x7bd, a register-file operand (A = 0x18, D = 3, 7, 0xb, 0xf) with a
   memory operand (C = 0x1b, immediate address). That form returns the loaded memory word minus the register-file operand
@@ -776,10 +777,11 @@ lives at 0x8d2c (address register 0xb), the target matrix C at the address the c
 - `mMatrixMultCCW` (`umatrix.s` lines 209-264): **inferred**, post-multiplies the current matrix by the work matrix,
   C = C x W, GL's rule for glMultMatrix, glRotate, glOrtho and the rest. Its inputs are the 16 words of C through register
   0xa and W through register 0xb. Its 32 multiply words (0xeb5-0xed7) read W's words 0-7 and compute columns 0 and 1 of
-  C x W, each result the dot product of a row of C with a column of W. Sixteen stores write C back through register 0xa
-  (0xece-0xee5, the last seven in the eight-word shadow of the end of the command): `r95` = 4 stores the sums to C + 0 to
-  C + 7, and `r95` = 5 stores to C + 8 to C + 0xf, where columns 2 and 3 belong. How those columns are computed is open
-  ([The store-data register](ge_isa.md#the-store-data-register)). It writes special
+  C x W, each result the dot product of a row of C with a column of W. The same words run in lane 1, whose register 0xb
+  0xeb1 has moved on by 8 (under the lane-1 mask set at 0xeb0), so lane 1 reads W's words 8-0xf and computes columns 2 and
+  3 ([Lanes](ge_isa.md#lanes)). Sixteen stores write C back through register 0xa (0xece-0xee5, the last seven in the
+  eight-word shadow of the end of the command): `r95` = 4 stores lane 0's sums to C + 0 to C + 7, and `r95` = 5 stores
+  lane 1's to C + 8 to C + 0xf. It writes special
   register 0x2c (predicated, 0xeb4), branches on `cc` 0x78 to `mResolveFogTable` when the target is the modelview of a fogged
   context, and ends with the end-of-command wait at 0xede.
 - `uMatrixMultCCW`: **inferred**, the u-name at 0x0eb0 (`umatrix.s` line 209) of the same product: input matrices C at
@@ -790,8 +792,9 @@ lives at 0x8d2c (address register 0xb), the target matrix C at the address the c
   and up, and its adds total them in fours. Of its 32 add words, the eight at every second word from 0x8912 to 0x8920
   add register 0x1e, which reads as zero, to a finished sum and load the store-data register with it. The 16 results go
   back over C, `r95` = 4 to C + 0 to C + 7 and `r95` = 5 to C + 8 to C + 0xf, each nine words after its move; the last
-  eight stores sit in the shadow of the group-5 return at 0x8922. So it computes the same columns as `mMatrixMultCCW`
-  and leaves the same question of what the `r95` = 5 stores carry.
+  eight stores sit in the shadow of the group-5 return at 0x8922. So it computes the same product as `mMatrixMultCCW`,
+  lane 1 supplying columns 2 and 3 through the `r95` = 5 stores ([Lanes](ge_isa.md#lanes)): 0x88e9 selects lane 1 and
+  0x88ea adds 8 to its register 0xb, as 0xeb0-0xeb1 do.
 - `uMatrixInverse`: **inferred**, the u-name at 0x0ee7 (`umatrix.s` line 314) of the normal-matrix inverse: it takes the
   modelview words 0x2f-0x3e as input, computes the cofactors and the reciprocal of the determinant, and its results, the
   inverse block from engine word 0x1f, feed the normal transforms of `uxform.s`.
