@@ -521,11 +521,25 @@ modules' output stores), the distributor program (no control word in `ged1b.u` s
 record offset), the distributor's engine ports and its register 0x290 (below), and the strip handler the distributor
 releases. `mgesi_TriangleStrip` (0xb699-0xb6b3) takes three input words (C = 0x1d at 0xb699-0xb69b: registers 0x1a
 and 0x19, the count `uDTList` reads, and staging word 0x10) and stores only to special registers 0x0c-0x0e, 0x23 and
-0x24 and to the successor words; it writes no vertex record. Next route: test the premise itself. The strip loop ends
-with an all-ones store to bus address 0x1f5 (0x28c4) and a staging word to 0x1f4 (0x28c9), and an all-ones store to
-0xd7 is what sets 6 on the independent-triangle path. Read how the back-end chip's packer (`bef`, `BEF_REGSHADOW`,
-[docs/rm.md](../docs/rm.md)) combines those slots, to see whether the strip command comes from them rather than from
-bits 31-29 of the record word.
+0x24 and to the successor words; it writes no vertex record. 
+
+**Established** (the closing 0x1f5 and 0x1f4 words cannot carry it; route of the twelfth pass). In `lDI3` the 0xd5 store of
+word 0x26 (0x28a6, and 0x28a7 for the second vertex) sits inside the loop 0x289d-0x28b9, so it runs once per vertex. The
+all-ones store to 0x1f5 (0x28c4, E = 3, and 0x28c5 for the second thread) and the staging-word store to 0x1f4 (0x28c9,
+E = 2) sit after the loop, in the eight-word shadow of the group-5 R88 return at 0x28c1 ([ge_isa.md](ge_isa.md#calls-returns-and-the-end-of-a-command)):
+0x28c9 is its eighth word. They run once per batch, after every vertex has gone, so they close the batch and cannot give
+
+
+
+each later strip vertex its command. Where the packing is done is **unknown**: KONA's engine has a 64-bit output port `re_d[64]` with
+`re_dest` and `re_dtype` ([ge_isa.md](ge_isa.md#the-engines-microcode-port)), so the slot addresses 0xc9-0xd9 may name
+how 0xd5 and the all-ones slots form the command nibble is unknown. No engine word writes control
+memory 0xc9-0xd9 or 0x1f4 (every store with `r211` and `r95` = 4-0xb whose address is an immediate, or an address
+register loaded with one, was resolved; `ctx_load.S` 0x6686 writes 0x1f5 and the evaluators write 0x1f1-0x1f3). Next
+route: find what the engine's output stage takes per slot. Check whether the ARM writes a field table for the vertex slots at
+context start (`WriteCram` and `XWriteCram` callers, `CopyEramToCram`, `mgeb_LoadCram`), the way it writes the pixel
+converter lists to 0x1c4 ([arm1_pixel_tables.md](arm1_pixel_tables.md)), and read the tag tables (`ptagBig`,
+`ttagBig`), whose low bits are bus-mode codes like E.
 
 **Established** (the distributor's engine ports, the `ge14_2ge`, `ge14_4ge`, `ge14_top4ges` and `ge14_btm4ges` netlists in
 `usr/diags/IR/data/`, 6.5.30m). The distributor drives four port groups, a to d, each a 32-bit data bus `hq_data`, a 6-bit
