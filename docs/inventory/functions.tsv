@@ -21196,7 +21196,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d6aa0	88	__glFeedbac
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d6b00	88	__glFeedbackBitmap	dwarf+dynsym	a884869943dd		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d6b60	88	__glFeedbackPoint	dwarf+dynsym	fc8e646a6ba4		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d6bc0	212	__glFeedbackLine	dwarf+dynsym	54217dab4c6e		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d6ca0	1204	__glFeedbackTriangle	dwarf+dynsym	50624d503d40		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d6ca0	1204	__glFeedbackTriangle	dwarf+dynsym	50624d503d40		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d7160	88	__glim_Finish	dwarf+dynsym	3f88467004de		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d71c0	88	__glim_Flush	dwarf+dynsym	1dd2dffc8117		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d7220	180	__glFogSpan	dwarf+dynsym	f6d0deb32387		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -37895,7 +37895,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d6aa0	88	__glFeedbac
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d6b00	88	__glFeedbackBitmap	dwarf+dynsym	a884869943dd		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d6b60	88	__glFeedbackPoint	dwarf+dynsym	fc8e646a6ba4		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d6bc0	212	__glFeedbackLine	dwarf+dynsym	54217dab4c6e		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d6ca0	1204	__glFeedbackTriangle	dwarf+dynsym	50624d503d40		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d6ca0	1204	__glFeedbackTriangle	dwarf+dynsym	50624d503d40		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d7160	88	__glim_Finish	dwarf+dynsym	3f88467004de		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d71c0	88	__glim_Flush	dwarf+dynsym	1dd2dffc8117		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d7220	180	__glFogSpan	dwarf+dynsym	f6d0deb32387		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
