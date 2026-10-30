@@ -1,27 +1,27 @@
 # libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 
-Read from the IP27 Kona n32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/IP27KONA/libGLcore.so`; the other builds of the library carry functions of the same names, which were not read separately), through the annotated assembly in [libglcore/asm/kon/](../libglcore/asm/kon/). Addresses are virtual addresses in the library. Token names and numbers are those of [GE.h](../GE.h). The "process address" values are the per-thread mapping of [kernel.md](kernel.md#what-a-process-maps): 16384 (0x4000) is the command FIFO page, and the low words at 4136 to 4148 are the display-list state the library keeps in the driver state page.
+Read from the IP27 Kona n32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/IP27KONA32/libGLcore.so`; the other builds of the library carry functions of the same names, which were not read separately), through the annotated assembly in [libglcore/asm/kon/](../libglcore/asm/kon/). Addresses are virtual addresses in the library. Token names and numbers are those of [GE.h](../GE.h). The "process address" values are the per-thread mapping of [kernel.md](kernel.md#what-a-process-maps): 16384 (0x4000) is the command FIFO page, and the low words at 4136 to 4148 are the display-list state the library keeps in the driver state page.
 
-- `__glkonim_Color3bv` (`libGLcore.so` 0x0da651b0, 44 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glColor3bv: it writes the `HP_COLOR3B` (token 0x061) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Color3sv` (`libGLcore.so` 0x0da65260, 40 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glColor3sv: it writes the `HP_COLOR3S` (token 0x065) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Color3ubv` (`libGLcore.so` 0x0da652b0, 44 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glColor3ubv: it writes the `HP_COLOR3UB` (token 0x066) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Color3usv` (`libGLcore.so` 0x0da65320, 40 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glColor3usv: it writes the `HP_COLOR3US` (token 0x068) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Color4bv` (`libGLcore.so` 0x0da65380, 56 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glColor4bv: it writes the `HP_COLOR4B` (token 0x069) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Color4sv` (`libGLcore.so` 0x0da65450, 52 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glColor4sv: it writes the `HP_COLOR4S` (token 0x06d) command to the pipe FIFO (process address 16384) as 3 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Color4ubv` (`libGLcore.so` 0x0da654c0, 56 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glColor4ubv: it writes the `HP_COLOR4UB` (token 0x06e) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Color4usv` (`libGLcore.so` 0x0da65550, 52 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glColor4usv: it writes the `HP_COLOR4US` (token 0x070) command to the pipe FIFO (process address 16384) as 3 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Normal3bv` (`libGLcore.so` 0x0da65640, 44 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glNormal3bv: it writes the `HP_NORMAL3B` (token 0x076) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
-- `__glkonim_Normal3sv` (`libGLcore.so` 0x0da656f0, 40 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
-  glNormal3sv: it writes the `HP_NORMAL3S` (token 0x07a) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path. The token is the low byte of the first word, whose upper bytes carry the first packed argument values.
+- `__glkonim_Color3bv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da651b0, 44 bytes):
+  **Established.** The immediate-mode glColor3bv, two stores to the command port with no branch and no room check. The first word carries the token 0x61 in its low byte, the first component (a signed byte) in bits 31 to 24 and the second in bits 23 to 16; the second word carries the third component in its top byte and nothing else. The vector pointer arrives in `a0` and nothing is converted or scaled.
+- `__glkonim_Color3sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65260, 40 bytes):
+  **Established.** The immediate-mode glColor3sv, two stores to the command port. The first word is the first short in its upper half and the token 0x65 in its low byte; the second word packs the second short in its upper half and the third, zero-extended, in its lower half. Nothing is scaled and there is no branch.
+- `__glkonim_Color3ubv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da652b0, 44 bytes):
+  **Established.** The immediate-mode glColor3ubv, two stores to the command port with the same word layout as the signed-byte form but the token 0x66: the first component in bits 31 to 24 and the second in bits 23 to 16 of the first word, the third in the top byte of the second. The shifts discard the sign, so the packing is otherwise identical to `__glkonim_Color3bv`.
+- `__glkonim_Color3usv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65320, 40 bytes):
+  **Established.** The immediate-mode glColor3usv, two stores to the command port: the first short and the token 0x68 in the first word, the second short in the upper half and the third in the lower half of the second word. The three halfwords are loaded zero-extended, and the layout equals that of `__glkonim_Color3sv` apart from the token.
+- `__glkonim_Color4bv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65380, 56 bytes):
+  **Established.** The immediate-mode glColor4bv, two stores to the command port. The first word is the first component in bits 31 to 24, the second in bits 23 to 16 and the token 0x69 in the low byte; the second word is the third component in bits 31 to 24 and the fourth in bits 23 to 16, with the low half zero. All four values are raw signed bytes read from the vector at `a0`.
+- `__glkonim_Color4sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65450, 52 bytes):
+  **Established.** The immediate-mode glColor4sv, three stores to the command port, the longest of the colour vector senders. Word one holds the first short in its upper half and the token 0x6d in its low byte; word two the second short in its upper half and the third in its lower half; word three the fourth short in its upper half with a zero lower half.
+- `__glkonim_Color4ubv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da654c0, 56 bytes):
+  **Established.** The immediate-mode glColor4ubv, two stores to the command port with the token 0x6e: the first and second components in bits 31 to 24 and 23 to 16 of the first word beside the token, the third and fourth in the same two positions of the second word. Bytes are loaded unsigned; the packing is that of `__glkonim_Color4bv`.
+- `__glkonim_Color4usv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65550, 52 bytes):
+  **Established.** The immediate-mode glColor4usv, three stores to the command port with the token 0x70: word one is the first short and the token, word two the second short over the third, word three the fourth short in its upper half. The shorts are loaded zero-extended; the layout is that of `__glkonim_Color4sv`.
+- `__glkonim_Normal3bv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65640, 44 bytes):
+  **Established.** The vector form of glNormal3b, which sends the same token 0x76 and the same two-word packing as `__glkonim_Normal3b`, but loads the three signed bytes from the pointer in `a0` itself (the second as an unsigned byte, which the shift makes equivalent).
+- `__glkonim_Normal3sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da656f0, 40 bytes):
+  **Established.** The vector form of glNormal3s: it loads the three shorts from `a0` (the third zero-extended) and sends the same token 0x7a and the same two words as `__glkonim_Normal3s`.
 - `__glkonim_TexCoord1sv` (`libGLcore.so` 0x0da658f0, 24 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
   glTexCoord1sv: it writes the `HP_TEXCOORD1S` (token 0x07e) command to the pipe FIFO (process address 16384) as 2 word stores on its normal path.
 - `__glkonim_TexCoord2sv` (`libGLcore.so` 0x0da65990, 32 bytes, `kon_cfuncs.c`): **Established.** The immediate-mode
@@ -653,3 +653,32 @@ Read from the IP27 Kona n32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/I
 - `__glkonlc_ReferencePlaneSGIX` (`libGLcore.so` 0x0da70e80, 220 bytes, `kon_cdlfuncs.c`): **Established.** The display-list compile form of
   glReferencePlaneSGIX: it records the `HP_REFERENCE_PLANE` (token 0x1bd) command, 9 words in all, in the display-list buffer instead of sending it. It makes room first (`__glSPDlistSpace` runs when fewer than 9 words remain; the remaining count is at process address 4136), stores the words at the list pointer (process address 4144 in the driver state page), advances it by 36 bytes and adds 9 to the list's word count (4148). **Inferred:** playing the list sends the same words the immediate form
   `__glkonim_ReferencePlaneSGIX` writes to the FIFO.
+
+## Further immediate-mode senders
+
+- `__glkonim_Normal3b` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65610, 36 bytes):
+  **Established.** The immediate-mode glNormal3b, two stores to the command port from its three register arguments. Word one is the first component in bits 31 to 24, the second masked to a byte in bits 23 to 16 and the token 0x76 in the low byte; word two is the third component in the top byte.
+- `__glkonim_Normal3s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da656d0, 32 bytes):
+  **Established.** The immediate-mode glNormal3s, two stores to the command port. Word one is the first short in its upper half beside the token 0x7a; word two is the second short in its upper half and the third masked to 16 bits in its lower half.
+- `__glkonim_Normal3i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da656b0, 24 bytes):
+  **Established.** The immediate-mode glNormal3i, four word stores to the command port: the token 121 (0x79) and then its three integer arguments from `a0`, `a1` and `a2`, unchanged.
+- `__glkonim_Normal3f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65690, 24 bytes):
+  **Established.** The immediate-mode glNormal3f, four stores to the command port: the token 120 (0x78) as a word, then the three single-precision arguments from `f12`, `f13` and `f14`, each as a 32-bit float store.
+- `__glkonim_Normal3d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65670, 24 bytes):
+  **Established.** The immediate-mode glNormal3d, four stores to the command port: the token 119 (0x77) as a word, then the three double-precision arguments from `f12`, `f13` and `f14`, each as one 64-bit store.
+- `__glkonim_EdgeFlag` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65590, 16 bytes):
+  **Established.** The immediate-mode glEdgeFlag, two word stores to the command port: the token 167 (0xa7) and then the flag argument from `a0` without masking or testing it.
+- `__glkonim_Indexd` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da655a0, 16 bytes):
+  **Established.** The immediate-mode glIndexd, two stores to the command port: the token 114 (0x72) as a word and the double-precision index from `f12` as a single 64-bit store.
+- `__glkonim_Indexf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da655b0, 16 bytes):
+  **Established.** The immediate-mode glIndexf, two stores to the command port: the token 115 (0x73) and the single-precision index from `f12` as a 32-bit float.
+- `__glkonim_Indexi` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da655c0, 16 bytes):
+  **Established.** The immediate-mode glIndexi, two word stores to the command port: the token 116 (0x74) and the integer index from `a0` unchanged.
+- `__glkonim_Indexs` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da655d0, 20 bytes):
+  **Established.** The immediate-mode glIndexs: the token 117 (0x75) is stored to the command port, then the short argument moved into the upper half of a word (a left shift by 16) is stored as the payload.
+- `__glkonim_Indexsv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da655f0, 24 bytes):
+  **Established.** The vector form of glIndexs: it loads one signed short from `a0`, stores the token 117 (0x75) to the command port, then stores the short shifted into the upper half of a word, exactly the pair `__glkonim_Indexs` sends.
+- `__glkonim_Indexub` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da66e80, 20 bytes):
+  **Established.** The immediate-mode glIndexub: it stores the token 117 (0x75) to the command port, the same token the short forms use, and then the byte argument shifted left by 24 into the top byte of the payload word, where the short forms put their value in the upper 16 bits.
+- `__glkonim_Indexubv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da66ea0, 24 bytes):
+  **Established.** The vector form of glIndexub: it loads one unsigned byte from `a0`, stores the token 117 (0x75) and then the byte shifted left by 24 as the payload word, the pair `__glkonim_Indexub` sends.
