@@ -4,7 +4,7 @@ The Kona driver routines of [libglcore-driver-functions.md](libglcore-driver-fun
 
 ## Routines that match the N32 routine
 
-Each build has two tables. The first names each routine with its address and size in this build, its address and source file in the N32 build, and the role copied from the N32 entry. The second gives what was compared for the same routine: the ordered callees, the FIFO store count and up to six of the constants. Every row is **Inferred**: the comparison was made by a script over the disassembly of each build (`objdump -d`, with global-offset-table calls named from the table slot and direct calls from the target address), not by reading the routine whole. For each row the script found, in this build and in N32, the same ordered list of callees (`indirect` is a call through a pointer loaded from memory, `none` a routine that calls nothing), the same number of stores to the command FIFO page at process address 0x4000, and the same set of immediate constants of 16 or more outside the process-page words 4096 to 4200. That shows the same calls, tokens and stores modulo ABI. It does not show that every branch and every context offset is the same, so the role is only as good as that match. Offsets in the N32 role are handled per build. The 64-bit build has 8-byte pointers, so its context and process-page offsets differ: each offset the role quotes is replaced by the offset found at the same place in the two aligned instruction streams (the process-page words 4112, 4120, 4136, 4140, 4144 and 4148 are at 4128, 4144, 4168, 4176, 4184 and 4192 in every aligned access of 600 or more), and a sentence whose offsets cannot be matched is dropped with everything after it. In the O32 build the layout is that of N32, so an offset is kept only when the build's code uses the same value (the process-page words are the exception: the O32 code reaches them through a register holding 4136, so they are kept as N32 has them); dispatch-table and other offsets of that kind are not carried over. A routine whose role could not be carried over is not listed here.
+Each build has two tables. The first names each routine with its address and size in this build, its address and source file in the N32 build, and the role copied from the N32 entry. The second gives what was compared for the same routine: the ordered callees, the FIFO store count and up to six of the constants. Every row is **Inferred**: the comparison was made by a script over the disassembly of each build (`objdump -d`, with a call through a register named from the global-offset-table slot loaded into it, a direct or pc-relative call named from its target address, and a call whose register was loaded before a branch target in the same routine, for example in a delay slot of another block, listed as indirect), not by reading the routine whole. For each row the script found, in this build and in N32, the same ordered list of callees (`indirect` is a call through a pointer loaded from memory, `none` a routine that calls nothing), the same number of stores to the command FIFO page at process address 0x4000, and the same set of immediate constants of 16 or more outside the process-page words 4096 to 4200. That shows the same calls, tokens and stores modulo ABI. It does not show that every branch and every context offset is the same, so the role is only as good as that match. Offsets in the N32 role are handled per build. The 64-bit build has 8-byte pointers, so its context and process-page offsets differ: each offset the role quotes is replaced by the offset found at the same place in the two aligned instruction streams (the process-page words 4112, 4120, 4136, 4140, 4144 and 4148 are at 4128, 4144, 4168, 4176, 4184 and 4192 in every aligned access of 600 or more), and a sentence whose offsets cannot be matched is dropped with everything after it. In the O32 build the layout is that of N32, so an offset is kept only when the build's code uses the same value (the process-page words are the exception: the O32 code reaches them through a register holding 4136, so they are kept as N32 has them); dispatch-table and other offsets of that kind are not carried over. A routine whose role could not be carried over is not listed here.
 
 ### O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 
@@ -15,21 +15,19 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glKonEvalCoord2DGe11` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd980d44` | 28 | `0xd97d760` | `kon_eval.c` | The geometry-engine glEvalCoord2: it writes the token 161, the count 2 and the two float coordinates. | Inferred |
 | `__glKonEvalMesh1DGe11` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd980d60` | 204 | `0xd97d780` | `kon_eval.c` | Sends a glEvalMesh1 to the geometry engine as `HP_EVALSTRIP1D` (token 38) records. The mode (0x1b00 points or 0x1b01 lines) goes in as the mode minus 0x1b00, then the first index and a run length. Points go in chunks of 6 stepping by 6; lines in chunks of 6 stepping by 5 so successive chunks share an end vertex. | Inferred |
 | `__glKonEvalMesh2DGe11` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd980e2c` | 604 | `0xd97d870` | `kon_eval.c` | The glEvalMesh2 sender, writing `HP_EVALSTRIP2D` (token 39) records of the form mode minus 0x1b00, a flag word (0x10 to 0x13), the first u index, a u count, the first v index and a v count. It tiles the grid in u chunks of 6 (5 steps apart for lines) and v chunks of 50 (49 apart for lines). | Inferred |
-| `__glKonExecuteLDMA` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd948e2c` | 36 | `0xd94b060` | `kon_dlist.c` | Writes the token 365 and the two words at the start of the block that the second argument's word at +20 points to. | Inferred |
 | `__glKonGetTexParams` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6bb40` | 980 | `0xda76c20` | `kon_texture_attrib.c` | The inverse of `__glKonSetTexParams`: it fills the 160-byte record with the same 27 `__glKonGetTexParameter` calls, same parameter names, offsets and vector flags, reading the values back from the texture object. | Inferred |
 | `__glKonInitConvolutionState` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd9554a0` | 284 | `0xd9571d0` | `kon_convolve.c` | Sets the context's convolution defaults. | Inferred |
 | `__glKonInitializeEnables` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94c124` | 200 | `0xd94de90` | `kon_modes.c` | Builds the table that `__glkonim_xEnable` uses. It walks 186 pairs of halfwords in the library's data (0x25c8 to 0x28b0 from the data page), each a pipe code and an extended enum, and stores the pair in an 8-byte slot of the uninitialised table at index (enum & 0xff) plus (enum >> 7). | Inferred |
 | `__glKonParseHostImage` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94e848` | 564 | `0xd950700` | `kon_pixel.c` | Fills in the host-side layout of a request record from the pixel-storage settings in force. | Inferred |
-| `__glKonPushState` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94ef2c` | 212 | `0xd950d90` | `kon_pixel.c` | Saves selected parts of the context into the caller's block, chosen by the mask in the first argument and stored back at +0x58 of the block. | Inferred |
 | `__glKonSetPixelLEModes` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94f498` | 104 | `0xd9511c0` | `kon_pixel.c` | Puts the pipe into the mode that the compiled-list pixel paths need. It calls `__glKonPushState` with 0xc and the caller's save area, then `__glKonDefaultState` with 0xc, and finally `__glkonim_PixelStorei` with 0xcf5 (GL_UNPACK_ALIGNMENT) and 1. | Inferred |
-| `__glKonSetUpMap1` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd981e30` | 412 | `0xd97ebb0` | `kon_eval.c` | Validates and records a glMap1 request. The target must be one of the nine 1D map enums 0xd90 to 0xd98 or it raises 0x500. The range ends must differ, the order must be 1 to 15 and the stride must be at least the target's component count, or it raises 0x501 and returns 0. | Inferred |
 | `__glKonUnsetLEModes` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94f500` | 52 | `0xd951220` | `kon_pixel.c` | Restores the state saved by `__glKonSetPixelLEModes` by calling `__glKonPopState` with the save area it was given. | Inferred |
-| `__glKon_ioctl` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd95be10` | 56 | `0xd95d660` | `kon_kern.c` | Calls the C library `ioctl` with the device descriptor stored in the context at +31560 in place of the first argument, and the request and argument pointer it received. | Inferred |
-| `__glkonAdjustPlist` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94908c` | 136 | `0xd94b1a0` | `kon_dlist.c` | Rebases a page list. It takes the entry count from the word at +0x1c of the list record (never fewer than 1), reads a base value at offset 0x2c of the record that the pointer at `ctx` +0x133c leads to through its word at +0x10, and subtracts that base from the first word of each 8-byte entry of the array at +0x14. | Inferred |
-| `__glkonCompressPlist` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd9480f0` | 184 | `0xd94a380` | `kon_dlist.c` | Merges adjacent entries of a list record's block table. The table at record +20 has one pair of words per block (address, extent) for the count at +24 minus 1. An entry that starts exactly one 0x400-byte step after the previous run's end, and whose summed extent stays below 0x1000000, is folded into the previous pair; otherwise it begins a new pair. | Inferred |
-| `__glkonConvertPolygonStipple` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd952c98` | 104 | `0xd954520` | `kon_pixel.c` | Uploads a stored polygon stipple: it sets the pixel modes with `__glKonSetPixelLEModes`, calls `__glkonim_PolygonStipple` with the pattern at +0x200 of the record, and restores the modes. | Inferred |
+| `__glkonAdjustPlist` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94908c` | 136 | `0xd94b1a0` | `kon_dlist.c` | Rebases a page list. | Inferred |
+| `__glkonCompressPlist` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd9480f0` | 184 | `0xd94a380` | `kon_dlist.c` | Merges adjacent entries of a list record's block table. | Inferred |
 | `__glkonDlistOptimizer` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94a0f8` | 12 | `0xd94c110` | `kon_dlist.c` | An empty function: it returns immediately, so the Kona display-list path applies no optimisation. | Inferred |
+| `__glkonHostCopy` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd951c28` | 204 | `0xd953550` | `kon_pixel.c` | Copies rows from the pipe's read-back buffer into host memory. | Inferred |
 | `__glkonPadBlocks` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94a104` | 140 | `0xd94c120` | `kon_dlist.c` | Fills the unused tail of every block of a finished list that has a successor with skip tokens, so the player steps over it. | Inferred |
+| `__glkonSPBfree` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd949e28` | 132 | `0xd94bea0` | `kon_dlist.c` | Frees a display-list block. | Inferred |
+| `__glkonSPValidateDlist` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94b2b4` | 84 | `0xd94d150` | `kon_dlist.c` | Calls `__glkonSPValidateOnlyDlist` and then the function pointer at offset 8 of its second argument, passing both of its own arguments through. | Inferred |
 | `__glkonSendPackedVertexV3F` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6c380` | 76 | `0xda77330` | `kon_spvertarray.s` | Sends one vertex per pass with token 0x1ab: an 8-byte store of x and y (read as an unaligned pair) and a word store of z. | Inferred |
 | `__glkonSendPackedVertexV3F_C4UB` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6c3cc` | 104 | `0xda7737c` | `kon_spvertarray.s` | Token 0x1ac, then x and y as one 8-byte store and z joined with the colour (four unsigned bytes read as one word) in a second 8-byte store, z in the upper word. | Inferred |
 | `__glkonSendPackedVertexV3F_C4UB_N3S` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6c4b4` | 164 | `0xda77470` | `kon_spvertarray.s` | Token 0x1ae with x and y as one 8-byte store, z and the colour word as a second, and the packed normal (first normal word with its low bit replaced by the top bit of the second) as a single word. | Inferred |
@@ -42,11 +40,9 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonSendPackedVertexV3F_N3S_T2S` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6c8b8` | 160 | `0xda778a0` | `kon_spvertarray.s` | Token 0x1b5, x and y, then z with the packed normal word, then the texture word as a single trailing store. | Inferred |
 | `__glkonSendPackedVertexV3F_T2F` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6c558` | 112 | `0xda77518` | `kon_spvertarray.s` | Token 0x1af, x and y as one 8-byte store, then z in the upper word and the first texture float in the lower word of the second store, and the second float as a single word. | Inferred |
 | `__glkonSendPackedVertexV3F_T2S` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6c7c4` | 104 | `0xda7779c` | `kon_spvertarray.s` | Token 0x1b3, x and y as one 8-byte store, then z in the upper word and the texture word (the two shorts of the coordinate read as one unsigned word) in the lower word of a second store. | Inferred |
-| `__glkonSwapOutList` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd949b88` | 364 | `0xd94bbb0` | `kon_dlist.c` | Copies the chain of 0x400-byte blocks that a list is being compiled into out of locked memory. It acts only when bit 2 of the current context's word at +5076 is set and the chain pointer in `a0` is non-null. | Inferred |
-| `__glkon_BindHyperpipe` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98b8e4` | 116 | `0xd987620` | `kon_hyperpipe.c` | Binds a hyperpipe through the driver. If the byte at ctx +0xc96 is zero it returns 1 with no call. Otherwise it passes the pipe number in a one-word block to the driver entry through the handle at `ctx` +0x7b48 with request 0x2726 and returns 1 for success, 0 for failure. | Inferred |
-| `__glkon_DlistInit` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94a2d0` | 100 | `0xd94c340` | `kon_dlist.c` | Resets the display-list state: it clears the four process words at 0x1028 to 0x1034, writes 2 to `ctx` +0x13d4 and clears the words at +0x13cc, +0x13d0, +0x13d8 and +0x13dc, then calls `__glSPDlistSpace` with 0. | Inferred |
+| `__glkonSwapOutList` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd949b88` | 364 | `0xd94bbb0` | `kon_dlist.c` | Copies the chain of 0x400-byte blocks that a list is being compiled into out of locked memory. | Inferred |
+| `__glkon_BindHyperpipe` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98b8e4` | 116 | `0xd987620` | `kon_hyperpipe.c` | Binds a hyperpipe through the driver. | Inferred |
 | `__glkon_InitDlistState` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94a334` | 228 | `0xd94c3a0` | `kon_dlist.c` | Fills the display-list manager's slots in the context. | Inferred |
-| `__glkon_UnbindHyperpipe` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98b958` | 92 | `0xd987690` | `kon_hyperpipe.c` | Unbinds a hyperpipe by passing the pipe number in a one-word block to the driver entry through the handle at `ctx` +0x7b48 with request 0x2727; it returns 1 on success and 0 on failure. | Inferred |
 | `__glkon__HyperpipeRect` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98b8d0` | 20 | `0xd987610` | `kon_hyperpipe.c` | Returns 0 without effect, so setting a hyperpipe rectangle through this entry does nothing. | Inferred |
 | `__glkon__QueryHyperpipeBestRect` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98b890` | 24 | `0xd9875e0` | `kon_hyperpipe.c` | Returns 0 and does nothing else, so a best-rectangle query never reports a rectangle. | Inferred |
 | `__glkon__QueryHyperpipeLimit` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98b8bc` | 20 | `0xd987600` | `kon_hyperpipe.c` | Returns 0 and nothing else; the limit query reports 0. | Inferred |
@@ -60,7 +56,7 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkon_get_special2` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd956f10` | 80 | `0xd958a50` | `kon_get.c` | Same sequence as the one-argument query with a third word: three stores to the command port, then a call to `__glkona_wait_rdata` and a return of the reply address at the return-data pointer plus 8. The buffer pointer is loaded from `ctx` again after the wait, so the reply address is the one in force when the wait ends. | Inferred |
 | `__glkon_get_special3` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd956f60` | 84 | `0xd958aa0` | `kon_get.c` | The same request, wait and reply sequence with four words sent to the command port, and the reply address returned as the return-data pointer plus 8. The four words are its four register arguments, stored in order. | Inferred |
 | `__glkon_get_special4` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd956fb4` | 92 | `0xd958b00` | `kon_get.c` | The same request, wait and reply sequence with five words sent to the command port (the largest request any of the helpers sends), then a call to `__glkona_wait_rdata` and a return of the return-data pointer plus 8. | Inferred |
-| `__glkon_mem_free` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bb50` | 124 | `0xd94d8e0` | `kon_mem.c` | Frees driver memory. If the word at `ctx` +0x7b4c is zero it returns 0 without calling the driver. Otherwise it packs two bytes (the arguments) into a block and calls `__glKon_ioctl` with request 0x271b, returning 0 on success and -1 on failure. | Inferred |
+| `__glkon_mem_free` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bb50` | 124 | `0xd94d8e0` | `kon_mem.c` | Frees driver memory. | Inferred |
 | `__glkon_mem_realloc` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bad8` | 120 | `0xd94d880` | `kon_mem.c` | The resize form of `__glkon_mem_alloc`: the same 12-byte block (byte, byte, halfword, word, word) goes to `__glKon_ioctl` with request 0x271e, and the result is mapped to 0 for success and -1 for failure. | Inferred |
 | `__glkon_packPixelRow` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98bba0` | 1732 | `0xd987bd0` | `kon_pix_util.c` | Packs a row of pixels held as integers into one of the packed pixel types. The arguments are the source integer array, the destination, the packed type and the pixel count; a count of 0 or less, or a type other than the four below, does nothing (the 8_8_8_8 type 0x8035 is not handled). | Inferred |
 | `__glkon_texture_mem_alloc` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bc98` | 72 | `0xd94da40` | `kon_mem.c` | Allocates texture memory by calling `__glkon_mem_alloc` with the first field 3, zeros in the middle and the caller's size in the fourth word. | Inferred |
@@ -107,7 +103,6 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonim_DepthRange` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c8b0` | 20 | `0xda669a0` | `kon_cfuncs.c` | glDepthRange: token 0xcf and the near and far doubles in two 8-byte stores. | Inferred |
 | `__glkonim_DrawBuffer` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c5c0` | 16 | `0xda66690` | `kon_cfuncs.c` | glDrawBuffer: token 0xc4 and the buffer name, unchecked. | Inferred |
 | `__glkonim_End` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94be38` | 20 | `0xd94dbf0` | `kon_modes.c` | The immediate-mode glEnd: it clears the begin flag at process address 0x1018, then sends token 0x71 and a zero pad word to the command port. It checks nothing, so an End without a Begin is passed to the pipe unchanged. | Inferred |
-| `__glkonim_FeedbackBuffer` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd95b6d8` | 232 | `0xd95cf30` | `kon_select.c` | glFeedbackBuffer with size, type and buffer. A begin raises 0x502, a type outside 0x600 to 0x604 raises 0x500 and a negative size 0x501. If the context's render mode word at +3204 already equals 0x1c01 (feedback) it raises 0x502. | Inferred |
 | `__glkonim_Flush` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94beb0` | 24 | `0xd94dc70` | `kon_modes.c` | The immediate-mode glFlush. | Inferred |
 | `__glkonim_FlushRasterSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cf84` | 16 | `0xda670a0` | `kon_cfuncs.c` | glFlushRasterSGIX sends the raster flush as token 0x1cc followed by one zero word, two stores, and does not wait for the pipe. | Inferred |
 | `__glkonim_Fogi` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5be9c` | 72 | `0xda65ee0` | `kon_cfuncs.c` | glFogi. Names 0xb61 to 0xb65 are accepted (0x500 through token 0xe4 otherwise); it sends token 0xb8, the name, the integer and three zero words, and no conversion to float happens here. | Inferred |
@@ -129,14 +124,12 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonim_LightModeliv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c180` | 48 | `0xda66210` | `kon_cfuncs.c` | glLightModeliv sends token 0xa, the name and four integers from the array, with no check. | Inferred |
 | `__glkonim_Lightfv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c008` | 52 | `0xda66070` | `kon_cfuncs.c` | glLightfv sends token 7, the light name, the parameter name and four floats from the array, with no validation of the name; the pipe sees the array whatever its length. | Inferred |
 | `__glkonim_Lightiv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c088` | 52 | `0xda66100` | `kon_cfuncs.c` | glLightiv sends token 8, the light, the parameter name and four integers from the array without a range check on the name. | Inferred |
-| `__glkonim_ListParameterfSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd9492cc` | 60 | `0xd94b3b0` | `kon_dlist.c` | Wraps a single float in a one-element array and forwards to `__glkonim_ListParameterfvSGIX`. It stores the float argument (register `$f14`) at stack offset 0x20, passes that address as the third argument with the first two arguments unchanged, and returns when the call does. | Inferred |
+| `__glkonim_ListParameterfSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd9492cc` | 60 | `0xd94b3b0` | `kon_dlist.c` | Wraps a single float in a one-element array and forwards to `__glkonim_ListParameterfvSGIX`. | Inferred |
 | `__glkonim_LoadIdentity` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c8f8` | 16 | `0xda669f0` | `kon_cfuncs.c` | glLoadIdentity sends the matrix reset as token 0xd2 followed by one zero pad word, two stores, and consults no matrix state on the host. | Inferred |
 | `__glkonim_LoadIdentityDeformationMapSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98cc3c` | 20 | `0xd988aa0` | `kon_deform.c` | glLoadIdentityDeformationMapSGIX: it sends token 0x1c3 and the mask reduced to its low two bits. It never reports an error for the discarded bits. | Inferred |
 | `__glkonim_LoadMatrixd` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c994` | 140 | `0xda66a90` | `kon_cfuncs.c` | glLoadMatrixd: token 0xd4 and sixteen doubles, each in one 8-byte store, in memory order. | Inferred |
 | `__glkonim_LoadMatrixf` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c908` | 140 | `0xda66a00` | `kon_cfuncs.c` | glLoadMatrixf: token 0xd3 and the sixteen floats of the matrix, copied as they lie in memory, element 0 first. | Inferred |
 | `__glkonim_LoadName` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c580` | 16 | `0xda66650` | `kon_cfuncs.c` | glLoadName sends the selection-name replacement as token 0x10d followed by the name word, two stores with no range or begin-flag check. | Inferred |
-| `__glkonim_MapGrid1f` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd982d08` | 196 | `0xd97f9b0` | `kon_eval.c` | The float form of glMapGrid1: the same checks (0x502 in a begin, token 228 with 0x501 for a negative count), the same context block (count +1944, ends +1932 and +1936, step +1940) and the same five words after the token 40, taking the ends directly as floats instead of converting. | Inferred |
-| `__glkonim_MapGrid2f` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd982f04` | 284 | `0xd97fb90` | `kon_eval.c` | The float form of glMapGrid2, with the checks, stores and token 41 record of `__glkonim_MapGrid2d` but with float ends used as given: u count +1960, ends +1948 and +1952, step +1956, v count +1976, ends +1964 and +1968, step +1972. | Inferred |
 | `__glkonim_Materialfv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c214` | 52 | `0xda662a0` | `kon_cfuncs.c` | glMaterialfv sends token 0x97, the face, the name and four floats in array order. Unlike the scalar forms it does not check the name. | Inferred |
 | `__glkonim_Materiali` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd988020` | 112 | `0xd9844e0` | `kon_materiali.c` | glMateriali. Only the name 0x1601 (shininess) is accepted, otherwise 0x500 goes to `__glSetError`. The integer is converted to a float and sent under token 0x97 after the face and the name, followed by three zero pad words. | Inferred |
 | `__glkonim_MultMatrixd` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5caec` | 140 | `0xda66c00` | `kon_cfuncs.c` | glMultMatrixd: token 0xd6 and sixteen doubles in memory order. | Inferred |
@@ -174,7 +167,6 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonim_SamplePatternSGIS` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cd98` | 16 | `0xda66ec0` | `kon_cfuncs.c` | glSamplePatternSGIS sends the multisample pattern choice as token 0x117 followed by the pattern word, two stores with no check of the value. | Inferred |
 | `__glkonim_Scaled` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cc1c` | 28 | `0xda66d20` | `kon_cfuncs.c` | glScaled sends the scale as token 0xdc followed by the x, y and z doubles, three 8-byte stores that make six data words. | Inferred |
 | `__glkonim_Scalef` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cc38` | 32 | `0xda66d40` | `kon_cfuncs.c` | glScalef sends the scale as token 0xdd followed by the x, y and z floats, three single-word stores. | Inferred |
-| `__glkonim_SelectBuffer` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd95b5ac` | 300 | `0xd95ce20` | `kon_select.c` | glSelectBuffer with size and buffer. A begin raises 0x502, a negative size 0x501 and, when the render mode at +3204 is already 0x1c02 (select), 0x502. | Inferred |
 | `__glkonim_ShadeModel` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c300` | 16 | `0xda663a0` | `kon_cfuncs.c` | glShadeModel: token 0xc0 and the mode word, unchecked. | Inferred |
 | `__glkonim_SpriteParameterivSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd963e00` | 168 | `0xd963e20` | `kon_sprite.c` | The integer form of glSpriteParameterSGIX. It converts the integer or integers to floats on the stack, one when the name is 0x8149 (GL_SPRITE_MODE_SGIX) and three for every other name, and calls `__glkonim_SpriteParameterfvSGIX` with that array. | Inferred |
 | `__glkonim_StartInstrumentsSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cf64` | 16 | `0xda67080` | `kon_cfuncs.c` | glStartInstrumentsSGIX sends the instrument start as token 0x1b9 followed by one zero word, two stores, and ignores its arguments. | Inferred |
@@ -210,7 +202,6 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonim_Vertex4iv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6f9e8` | 24 | `0xda798a4` | `kon_sfuncs.s` | Sends a glVertex4iv vector under token 0x95: token word and two doublewords of four integers. | Inferred |
 | `__glkonim_Vertex4s` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5bcb4` | 92 | `0xda65ce0` | `kon_cfuncs.c` | The immediate-mode glVertex4s, three stores to the command port: the first short in the upper half with the token 0x96, then the second short over the masked third, then the fourth short alone in the upper half. | Inferred |
 | `__glkonlc_Accum` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda648a8` | 152 | `0xda6ea80` | `kon_cdlfuncs.c` | Display-list form of the accumulation-buffer operation call, which appends three words to the list. Word one is the token 0xc5 (HP_ACCUM), then the operation enumerant (the first argument) unchanged and the scalar value (the second argument) as raw single-precision bits. | Inferred |
-| `__glkonlc_AlphaFunc` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bf28` | 208 | `0xd94dce0` | `kon_modes.c` | Display-list form of the alpha-test call. The comparison argument is not validated and goes in unchanged. The reference value is clamped into the range 0 to 1 before it is stored: a value below zero becomes zero and a value above one becomes one. | Inferred |
 | `__glkonlc_BlendColorEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda66018` | 176 | `0xda70200` | `kon_cdlfuncs.c` | Display-list form of the blend-colour constant call, which appends five words to the list. | Inferred |
 | `__glkonlc_BlendEquationEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda660c8` | 140 | `0xda702b0` | `kon_cdlfuncs.c` | Display-list form of the blend-equation selection call, which appends two words to the list. Word one is the token 0xe7 (HP_BLENDEQUATION), then the equation enumerant (the first argument) unchanged. | Inferred |
 | `__glkonlc_Clear` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94d968` | 140 | `0xd94f890` | `kon_modes.c` | Display-list form of the buffer clear call, which appends two words to the list. Word one is the token 0x1a (HP_CLEAR), then the buffer-selection mask (the first argument) unchanged. | Inferred |
@@ -241,8 +232,10 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonlc_Lightiv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda633c0` | 192 | `0xda6d340` | `kon_cdlfuncs.c` | Display-list form of the light-source parameter call with an integer vector, which appends seven words to the list. Word one is the token 0x8 (HP_LIGHTI), then the light number (the first argument) unchanged, the parameter name (the second argument) unchanged and the four 32-bit words read from the vector (the third argument) at offsets 0 to 12. | Inferred |
 | `__glkonlc_LineStipple` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda63784` | 152 | `0xda6d700` | `kon_cdlfuncs.c` | Display-list form of the line-stipple call, which appends three words to the list. Word one is the token 0xbc (HP_LINESTIPPLE), then the repeat factor (the first argument) unchanged and the pattern (the second argument) unchanged. | Inferred |
 | `__glkonlc_LoadIdentityDeformationMapSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98cc50` | 144 | `0xd988ac0` | `kon_deform.c` | Display-list form of the deformation-map identity call, which appends two words to the list. Word one is the token 0x1c3 (HP_LOAD_IDENTITY_DEFORMATION), then the first argument masked to its low two bits. | Inferred |
+| `__glkonlc_LoadMatrixd` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda65208` | 588 | `0xda6f450` | `kon_cdlfuncs.c` | Display-list form of the matrix load call with sixteen doubles, which appends thirty-three words to the list. | Inferred |
 | `__glkonlc_Materialfv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda638e8` | 192 | `0xda6d860` | `kon_cdlfuncs.c` | Display-list form of the material parameter call with a float vector, which appends seven words to the list. Word one is the token 0x97 (HP_MATERIALF), then the face enumerant (the first argument) unchanged, the parameter name (the second argument) unchanged and the four floats read from the vector (the third argument) at offsets 0 to 12. | Inferred |
 | `__glkonlc_Materialiv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd988254` | 352 | `0xd984700` | `kon_materiali.c` | The compile-mode integer glMaterialiv, as a seven-word `HP_MATERIALF` record (token 151) of face, parameter and four value words. The parameters 0x1601 (shininess) and 0x1603 (colour indexes) copy up to three integers as floats with a zero last word; every other parameter scales four integers by the constant 2^-31 (0x30000000), mapping the integer colour range onto -1 to 1. | Inferred |
+| `__glkonlc_MultMatrixd` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda65620` | 588 | `0xda6f810` | `kon_cdlfuncs.c` | Display-list form of the matrix multiply call with sixteen doubles, which appends thirty-three words to the list. | Inferred |
 | `__glkonlc_Normal3bv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5eccc` | 172 | `0xda68e50` | `kon_cdlfuncs.c` | Display-list form of the normal call with three signed-byte components read through a vector pointer: it appends two words to the list instead of writing them to the command port. | Inferred |
 | `__glkonlc_Normal3sv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5f268` | 168 | `0xda693b0` | `kon_cdlfuncs.c` | Display-list form of the normal call with three signed-short components read through a vector pointer: it appends two words to the list instead of writing them to the command port. | Inferred |
 | `__glkonlc_Ortho` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6586c` | 300 | `0xda6fa10` | `kon_cdlfuncs.c` | Display-list form of the orthographic projection call, which appends thirteen words to the list. | Inferred |
@@ -258,7 +251,6 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonlc_ReferencePlaneSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda66b24` | 252 | `0xda70e80` | `kon_cdlfuncs.c` | Display-list form of the reference-plane call taking a four-double pointer, which appends nine words to the list. Word one is the token 0x1bd (HP_REFERENCE_PLANE), then the four doubles read from the vector (the first argument) at offsets 0 to 24, each high half then low half. | Inferred |
 | `__glkonlc_Rotated` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda65aa0` | 244 | `0xda6fca0` | `kon_cdlfuncs.c` | Display-list form of the rotation call in doubles, which appends nine words to the list. | Inferred |
 | `__glkonlc_Rotatef` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda65b94` | 176 | `0xda6fd90` | `kon_cdlfuncs.c` | Display-list form of the rotation call in floats, which appends five words to the list. Word one is the token 0xdb (HP_ROTATEF), then the angle (the first argument) as raw single-precision bits, the x axis component (the second argument) as raw single-precision bits, the y axis component (the third argument) as raw single-precision bits and the z axis component (the fourth argument) as raw single-precision bits. | Inferred |
-| `__glkonlc_SampleMaskSGIS` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94c058` | 204 | `0xd94dde0` | `kon_modes.c` | The compile-mode glSampleMaskSGIS. The mask value is clamped to the range 0.0 to 1.0, then three words are appended: `HP_SAMPLEMASK` (token 280), the clamped value and the invert flag argument unchanged. | Inferred |
 | `__glkonlc_SamplePatternSGIS` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda664c0` | 140 | `0xda70760` | `kon_cdlfuncs.c` | Display-list form of the multisample pattern selection call, which appends two words to the list. Word one is the token 0x117 (HP_SAMPLEPATTERN), then the pattern (the first argument) unchanged. | Inferred |
 | `__glkonlc_Scaled` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda65c44` | 216 | `0xda6fe40` | `kon_cdlfuncs.c` | Display-list form of the scale call in doubles, which appends seven words to the list. Word one is the token 0xdc (HP_SCALED), then the x factor (the first argument) as a double, high half then low half, the y factor (the second argument) as a double, high half then low half and the z factor (the third argument) as a double, high half then low half. | Inferred |
 | `__glkonlc_Scalef` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda65d1c` | 164 | `0xda6ff10` | `kon_cdlfuncs.c` | Display-list form of the scale call in floats, which appends four words to the list. Word one is the token 0xdd (HP_SCALEF), then the x factor (the first argument) as raw single-precision bits, the y factor (the second argument) as raw single-precision bits and the z factor (the third argument) as raw single-precision bits. | Inferred |
@@ -278,7 +270,7 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonlc_Translatef` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda65e98` | 164 | `0xda70080` | `kon_cdlfuncs.c` | Display-list form of the translation call in floats, which appends four words to the list. Word one is the token 0xdf (HP_TRANSLATEF), then the x offset (the first argument) as raw single-precision bits, the y offset (the second argument) as raw single-precision bits and the z offset (the third argument) as raw single-precision bits. | Inferred |
 | `__glkonlc_Vertex3sv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda62344` | 168 | `0xda6c320` | `kon_cdlfuncs.c` | Display-list form of the vertex position call with three signed-short components read through a vector pointer: it appends two words to the list instead of writing them to the command port. | Inferred |
 | `__glkonlc_Vertex4sv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6294c` | 180 | `0xda6c8e0` | `kon_cdlfuncs.c` | Display-list form of the vertex position call with four signed-short components read through a vector pointer: it appends three words to the list instead of writing them to the command port. | Inferred |
-| `__glkonle_Bitmap` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd952b08` | 144 | `0xd9543b0` | `kon_pixel.c` | The list-execution glBitmap. It saves and sets the pixel modes with `__glKonSetPixelLEModes`, loads the width, height, origin and move values (word at 0, word at 4, four floats at 8 to 0x14) from the record argument, calls `__glkonim_Bitmap`, and restores the modes. | Inferred |
+| `__glkonle_Bitmap` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd952b08` | 144 | `0xd9543b0` | `kon_pixel.c` | The list-execution glBitmap. | Inferred |
 | `__glkonle_ColorTableSGI` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd984b8c` | 136 | `0xd981cc0` | `kon_colortable.c` | The list-execution glColorTableSGI. It sets the pixel modes with `__glKonSetPixelLEModes`, calls `__glkonim_ColorTableSGI` with the arguments restored from the stack, and then restores the modes. | Inferred |
 | `__glkonle_Push` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6c2f0` | 100 | `0xda772a0` | `kon_sdlist.s` | Replays a recorded run of words to the command port. The record starts with a count word, and the data follows it. When the record's address has bit 2 clear it first sends one word alone so that the doubleword stores that follow are 8-byte aligned, then sends 8-byte units while at least two words remain, then a final single word if one is left. | Inferred |
 | `__glkonle_SetBegin` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94adf4` | 16 | `0xd94cd00` | `kon_dlist.c` | Sets the begin flag at process address 0x1018 to 1 and returns its argument unchanged. | Inferred |
@@ -292,21 +284,19 @@ What was compared for the O32 rows above:
 | `__glKonEvalCoord2DGe11` | `none` | 4 | `0xa1` |
 | `__glKonEvalMesh1DGe11` | `none` | 16 | `0x26`, `0x1b00` |
 | `__glKonEvalMesh2DGe11` | `none` | 56 | `0x10`, `0x11`, `0x12`, `0x13`, `0x27`, `0x32` |
-| `__glKonExecuteLDMA` | `none` | 3 | `0x16d` |
 | `__glKonGetTexParams` | `__glKonGetTexParameter` x27 | 0 | `0x2800`, `0x2801`, `0x2802`, `0x2803`, `0x8066`, `0x8072` |
 | `__glKonInitConvolutionState` | `none` | 0 | `0x1908`, `0x8010`, `0x8012`, `0x8016` |
 | `__glKonInitializeEnables` | `fprintf`, `exit` | 0 | `0xff` |
 | `__glKonParseHostImage` | `none` | 0 | `0x20`, `0x80`, `0x1f00`, `0x3ff1`, `0x8ad0` |
-| `__glKonPushState` | `none` | 0 | `none` |
 | `__glKonSetPixelLEModes` | `__glKonPushState`, `__glKonDefaultState`, `__glkonim_PixelStorei` | 0 | `0xcf5` |
-| `__glKonSetUpMap1` | `__glSetError` x3 | 0 | `0x10`, `0x500`, `0x501`, `0xcb7c` |
 | `__glKonUnsetLEModes` | `__glKonPopState` | 0 | `none` |
-| `__glKon_ioctl` | `ioctl` | 0 | `none` |
 | `__glkonAdjustPlist` | `none` | 0 | `none` |
 | `__glkonCompressPlist` | `none` | 0 | `0xff` |
-| `__glkonConvertPolygonStipple` | `__glKonSetPixelLEModes`, `__glkonim_PolygonStipple`, `__glKonUnsetLEModes` | 0 | `none` |
 | `__glkonDlistOptimizer` | `none` | 0 | `none` |
+| `__glkonHostCopy` | `bcopy` x2 | 0 | `none` |
 | `__glkonPadBlocks` | `none` | 0 | `0xfc`, `0x1d8`, `0x1d9`, `0x1da` |
+| `__glkonSPBfree` | `__glDlistIsBlock`, `__glDlistTransientBlock`, `indirect` | 0 | `none` |
+| `__glkonSPValidateDlist` | `__glkonSPValidateOnlyDlist`, `indirect` | 0 | `none` |
 | `__glkonSendPackedVertexV3F` | `none` | 3 | `0x1ab` |
 | `__glkonSendPackedVertexV3F_C4UB` | `none` | 3 | `0x1ac` |
 | `__glkonSendPackedVertexV3F_C4UB_N3S` | `none` | 4 | `0x1ae` |
@@ -319,11 +309,9 @@ What was compared for the O32 rows above:
 | `__glkonSendPackedVertexV3F_N3S_T2S` | `none` | 4 | `0x1b5` |
 | `__glkonSendPackedVertexV3F_T2F` | `none` | 4 | `0x1af` |
 | `__glkonSendPackedVertexV3F_T2S` | `none` | 3 | `0x1b3` |
-| `__glkonSwapOutList` | `indirect`, `memmove` x2 | 0 | `0x400` |
+| `__glkonSwapOutList` | `indirect`, `memmove`, `indirect` | 0 | `0x400` |
 | `__glkon_BindHyperpipe` | `ioctl` | 0 | `0x2726` |
-| `__glkon_DlistInit` | `__glSPDlistSpace` | 0 | `none` |
 | `__glkon_InitDlistState` | `getenv` | 0 | `none` |
-| `__glkon_UnbindHyperpipe` | `ioctl` | 0 | `0x2727` |
 | `__glkon__HyperpipeRect` | `none` | 0 | `none` |
 | `__glkon__QueryHyperpipeBestRect` | `none` | 0 | `none` |
 | `__glkon__QueryHyperpipeLimit` | `none` | 0 | `none` |
@@ -384,7 +372,6 @@ What was compared for the O32 rows above:
 | `__glkonim_DepthRange` | `none` | 3 | `0xcf` |
 | `__glkonim_DrawBuffer` | `none` | 2 | `0xc4` |
 | `__glkonim_End` | `none` | 2 | `0x71` |
-| `__glkonim_FeedbackBuffer` | `__glSetError` x4 | 2 | `0x17`, `0x500`, `0x501`, `0x502`, `0x600`, `0x605` |
 | `__glkonim_Flush` | `none` | 2 | `0xc7` |
 | `__glkonim_FlushRasterSGIX` | `none` | 2 | `0x1cc` |
 | `__glkonim_Fogi` | `none` | 8 | `0xb8`, `0xe4`, `0x500`, `0xb61`, `0xb66` |
@@ -412,8 +399,6 @@ What was compared for the O32 rows above:
 | `__glkonim_LoadMatrixd` | `none` | 17 | `0xd4` |
 | `__glkonim_LoadMatrixf` | `none` | 17 | `0xd3` |
 | `__glkonim_LoadName` | `none` | 2 | `0x10d` |
-| `__glkonim_MapGrid1f` | `__glSetError` | 7 | `0x28`, `0xe4`, `0x501`, `0x502` |
-| `__glkonim_MapGrid2f` | `__glSetError` | 11 | `0x29`, `0xe4`, `0x501`, `0x502` |
 | `__glkonim_Materialfv` | `none` | 7 | `0x97` |
 | `__glkonim_Materiali` | `__glSetError` | 7 | `0x97`, `0x500`, `0x1601` |
 | `__glkonim_MultMatrixd` | `none` | 17 | `0xd6` |
@@ -451,7 +436,6 @@ What was compared for the O32 rows above:
 | `__glkonim_SamplePatternSGIS` | `none` | 2 | `0x117` |
 | `__glkonim_Scaled` | `none` | 4 | `0xdc` |
 | `__glkonim_Scalef` | `none` | 4 | `0xdd` |
-| `__glkonim_SelectBuffer` | `__glSetError` x5 | 0 | `0x501`, `0x502`, `0x1c02` |
 | `__glkonim_ShadeModel` | `none` | 2 | `0xc0` |
 | `__glkonim_SpriteParameterivSGIX` | `__glkonim_SpriteParameterfvSGIX` | 0 | `0x8149` |
 | `__glkonim_StartInstrumentsSGIX` | `none` | 2 | `0x1b9` |
@@ -487,7 +471,6 @@ What was compared for the O32 rows above:
 | `__glkonim_Vertex4iv` | `none` | 3 | `0x95` |
 | `__glkonim_Vertex4s` | `none` | 3 | `0x96`, `0xffff` |
 | `__glkonlc_Accum` | `__glSPDlistSpace` | 0 | `0xc5` |
-| `__glkonlc_AlphaFunc` | `__glSPDlistSpace` | 0 | `0xca` |
 | `__glkonlc_BlendColorEXT` | `__glSPDlistSpace` | 0 | `0xe6` |
 | `__glkonlc_BlendEquationEXT` | `__glSPDlistSpace` | 0 | `0xe7` |
 | `__glkonlc_Clear` | `__glSPDlistSpace` | 0 | `0x1a` |
@@ -518,8 +501,10 @@ What was compared for the O32 rows above:
 | `__glkonlc_Lightiv` | `__glSPDlistSpace` | 0 | `none` |
 | `__glkonlc_LineStipple` | `__glSPDlistSpace` | 0 | `0xbc` |
 | `__glkonlc_LoadIdentityDeformationMapSGIX` | `__glSPDlistSpace` | 0 | `0x1c3` |
+| `__glkonlc_LoadMatrixd` | `__glSPDlistSpace` | 0 | `0x21`, `0xd4` |
 | `__glkonlc_Materialfv` | `__glSPDlistSpace` | 0 | `0x97` |
 | `__glkonlc_Materialiv` | `__glSPDlistSpace` | 0 | `0x97`, `0x1601`, `0x1603` |
+| `__glkonlc_MultMatrixd` | `__glSPDlistSpace` | 0 | `0x21`, `0xd6` |
 | `__glkonlc_Normal3bv` | `__glSPDlistSpace` | 0 | `0x76` |
 | `__glkonlc_Normal3sv` | `__glSPDlistSpace` | 0 | `0x7a` |
 | `__glkonlc_Ortho` | `__glSPDlistSpace` | 0 | `0xd7` |
@@ -535,7 +520,6 @@ What was compared for the O32 rows above:
 | `__glkonlc_ReferencePlaneSGIX` | `__glSPDlistSpace` | 0 | `0x1bd` |
 | `__glkonlc_Rotated` | `__glSPDlistSpace` | 0 | `0xda` |
 | `__glkonlc_Rotatef` | `__glSPDlistSpace` | 0 | `0xdb` |
-| `__glkonlc_SampleMaskSGIS` | `__glSPDlistSpace` | 0 | `0x118` |
 | `__glkonlc_SamplePatternSGIS` | `__glSPDlistSpace` | 0 | `0x117` |
 | `__glkonlc_Scaled` | `__glSPDlistSpace` | 0 | `0xdc` |
 | `__glkonlc_Scalef` | `__glSPDlistSpace` | 0 | `0xdd` |
@@ -582,6 +566,7 @@ What was compared for the O32 rows above:
 | `__glKonSdramForceSwapIn` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2dac980` | 332 | `0xd94aa80` | `kon_dlist.c` | Keeps trying `__glKonSdramSwapIn` until the record is resident, evicting other lists to make room. | Inferred |
 | `__glKonSendMapData1D` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2de0570` | 168 | `0xd97dc10` | `kon_eval.c` | Sends a 1D map's control points to the pipe. For a non-null record it writes `HP_MAPDATA1D` (token 42), a word count of the record's word count (word 11) plus 5, then the first word times 4, the words at record +20, +24 and +28, the word count, and finally that many control-point words from the pointer at +48, in groups of four with an early return on the last odd word. | Inferred |
 | `__glKonSendMapData2D` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2de0620` | 192 | `0xd97dcc0` | `kon_eval.c` | The 2D form, using `HP_MAPDATA2D` (token 43) and a count of the word count plus 8. After the first word times 4 it writes the six words at record +20 to +40, the word count and the control-point words from the pointer at +48 in groups of four. | Inferred |
+| `__glKonSendPackedVertex` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2dbed70` | 160 | `0xd95c960` | `kon_pvertarray.c` | Sends a packed-vertex draw as a whole. It writes token 0x1b7, the format word from its fourth argument and bits 23 to 16 of that word as a second word, calls `glBegin` with the mode, then calls the sender chosen by bits 27 to 24 of the format word from a 16-entry pointer table with the first index and the count, calls `glEnd`, and finally writes token 0x1cf and a zero word. | Inferred |
 | `__glKonSetPixelLEModes` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2db32a0` | 84 | `0xd9511c0` | `kon_pixel.c` | Puts the pipe into the mode that the compiled-list pixel paths need. It calls `__glKonPushState` with 0xc and the caller's save area, then `__glKonDefaultState` with 0xc, and finally `__glkonim_PixelStorei` with 0xcf5 (GL_UNPACK_ALIGNMENT) and 1. | Inferred |
 | `__glKonUnsetLEModes` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2db3300` | 52 | `0xd951220` | `kon_pixel.c` | Restores the state saved by `__glKonSetPixelLEModes` by calling `__glKonPopState` with the save area it was given. | Inferred |
 | `__glkonAdjustPlist` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2dad240` | 164 | `0xd94b1a0` | `kon_dlist.c` | Rebases a page list. It takes the entry count from the word at +0x34 of the list record (never fewer than 1), reads a base value at offset 0x50 of the record that the pointer at `ctx` +0x14c8 leads to through its word at +0x18, and subtracts that base from the first word of each 8-byte entry of the array at +0x28. | Inferred |
@@ -617,7 +602,10 @@ What was compared for the O32 rows above:
 | `__glkonDrawArraysTIEV` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2ed9840` | 532 | `0xda742b0` | `kon_gvertarray.c` | For each vertex it sends the texture-coordinate, then index, then edge-flag, then vertex element, one call per enabled array and in that order. | Inferred |
 | `__glkonDrawArraysTIV` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2ed77c0` | 440 | `0xda722d0` | `kon_gvertarray.c` | For each vertex it sends the texture-coordinate, then index, then vertex element, one call per enabled array and in that order. | Inferred |
 | `__glkonDrawArraysTV` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2ed69c0` | 348 | `0xda714f0` | `kon_gvertarray.c` | For each vertex it sends the texture-coordinate, then vertex element, one call per enabled array and in that order. | Inferred |
+| `__glkonSPBalloc` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2dade10` | 304 | `0xd94bd70` | `kon_dlist.c` | Gets a fresh block for the list under compilation when the current one is full. If both flag bits 1 and 2 at context +5604 are set it first calls `__glkonSwapOutList`. When bit 2 is clear it just calls the context allocator for the requested word count times 4 bytes. | Inferred |
+| `__glkonSPValidateDlist` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2daf250` | 88 | `0xd94d150` | `kon_dlist.c` | Calls `__glkonSPValidateOnlyDlist` and then the function pointer at offset 8 of its second argument, passing both of its own arguments through. | Inferred |
 | `__glkonSPValidateLocalDlist` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2daf040` | 48 | `0xd94cf60` | `kon_dlist.c` | Calls `__glKonSdramForceSwapIn` and returns 1 if that returned non-zero and 0 if it returned zero. | Inferred |
+| `__glkonSPValidateOnlyDlist` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2daf070` | 468 | `0xd94cf90` | `kon_dlist.c` | Chooses the player a list will use next. It first sets the record's execute pointer at +16 to `__glSPExecuteDlist`. Inside a begin (process word 0x1030 equal to 1), for a record with flag bit 1 set, or for one with a block count at +48 of 1 or less, it keeps that. | Inferred |
 | `__glkonSendPackedVertexV3F` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2edc910` | 76 | `0xda77330` | `kon_spvertarray.s` | Sends one vertex per pass with token 0x1ab: an 8-byte store of x and y (read as an unaligned pair) and a word store of z. | Inferred |
 | `__glkonSendPackedVertexV3F_C4UB` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2edc95c` | 112 | `0xda7737c` | `kon_spvertarray.s` | Token 0x1ac, then x and y as one 8-byte store and z joined with the colour (four unsigned bytes read as one word) in a second 8-byte store, z in the upper word. | Inferred |
 | `__glkonSendPackedVertexV3F_C4UB_N3S` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2edca50` | 168 | `0xda77470` | `kon_spvertarray.s` | Token 0x1ae with x and y as one 8-byte store, z and the colour word as a second, and the packed normal (first normal word with its low bit replaced by the top bit of the second) as a single word. | Inferred |
@@ -654,6 +642,7 @@ What was compared for the O32 rows above:
 | `__glkonim_ConvolutionParameterivEXT` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2dba4b0` | 52 | `0xd9582b0` | `kon_convolve.c` | Calls `__glkonim_PixelTransformParameterivSGI` with its own arguments untouched and returns, sharing that function's checks and sends for the array form of the convolution parameter. | Inferred |
 | `__glkonim_CopyColorTableSGI` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2de50a0` | 356 | `0xd982710` | `kon_colortable.c` | Implements glCopyColorTableSGI through the host. A begin raises 0x502 and a negative or non-power-of-two width 0x501. | Inferred |
 | `__glkonim_CopyConvolutionFilter2DEXT` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2db9dd0` | 312 | `0xd957c00` | `kon_convolve.c` | The two-dimensional copy for target 0x8011: `HP_COPYCONVOLUTIONFILTER2D` (token 243) with the format index, x, y, width and height, bracketed by `HP_PIXEL_NOMODE` records, and the filter's format, width and height saved at +1048, +1104 and +1108. | Inferred |
+| `__glkonim_CopyPixels` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2db4020` | 2800 | `0xd951f10` | `kon_pixel.c` | The Kona glCopyPixels. A begin raises 0x502 and the argument check `ParseErrorCopy` (0xd950130) can end the call. | Inferred |
 | `__glkonim_CopyTexImage1DEXT` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2dd3aa0` | 84 | `0xd971580` | `kon_texture_api.c` | glCopyTexImage1DEXT. Only target 0xde0 is accepted (anything else gives `__glSetError` 0x500); the call goes to `__glkonim_CopyTexImage` with the constant 1 loaded into one argument register that the one-dimensional signature does not supply. | Inferred |
 | `__glkonim_CopyTexSubImage1DEXT` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2dd4c80` | 108 | `0xd972720` | `kon_texture_api.c` | glCopyTexSubImage1DEXT. Target 0xde0 only, else 0x500; it calls `__glkonim_CopyTexSubImage` with zero in two argument registers and the constant 1 in a stack word. | Inferred |
 | `__glkonim_DeformSGIX` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2deb4b0` | 92 | `0xd988990` | `kon_deform.c` | glDeformSGIX. A mask with any bit set above bit 1 (mask and -4 non-zero) calls `__glSetError` with 0x501 and sends nothing; otherwise it sends token 0x1bf followed by the mask as two words. | Inferred |
@@ -815,7 +804,7 @@ What was compared for the 64-bit rows above:
 
 | Routine | Callees, in order | FIFO stores | Constants |
 |---|---|---|---|
-| `__glKonCleanUp1D` | `indirect` x2, `__glKonHostMapData1D` x14, `__glKonSendMapSpec1D` x4, `__glKonSendMapData1D` x4 | 2 | `0x2c`, `0xd1` |
+| `__glKonCleanUp1D` | `indirect` x2, `__glKonHostMapData1D`, `indirect` x2, `__glKonHostMapData1D`, `indirect` x2, `__glKonHostMapData1D`, `indirect` x2, `__glKonHostMapData1D`, `indirect` x4, `__glKonSendMapSpec1D` x4, `__glKonSendMapData1D` x4 | 2 | `0x2c`, `0xd1` |
 | `__glKonDefaultState` | `__glkonim_PixelStorei` x20 | 0 | `0xcf0`, `0xcf1`, `0xcf2`, `0xcf3`, `0xcf4`, `0xcf5` |
 | `__glKonEvalCoord1DHost` | `EvalRow1D` | 0 | `none` |
 | `__glKonEvalMesh1DHost` | `indirect`, `EvalRow1D`, `indirect` x2, `EvalRow1D`, `indirect` x2, `EvalRow1D`, `indirect` x2, `EvalRow1D`, `indirect` | 0 | `0x100`, `0x1b00`, `0x1b01` |
@@ -829,10 +818,11 @@ What was compared for the 64-bit rows above:
 | `__glKonInitEvaluators` | `indirect` x2 | 0 | `none` |
 | `__glKonInitializeEnables` | `fprintf`, `exit` | 0 | `0xff` |
 | `__glKonLockedMemoryForceSwapIn` | `__glKonLockedMemorySwapIn`, `__glDlistHeapQueryMin`, `__glKonLockedMemorySwapOut`, `__glKonLockedMemorySwapIn` | 0 | `none` |
-| `__glKonParseInput` | `__glSetError` x2 | 0 | `0x500`, `0x1400`, `0x1407`, `0x1900`, `0x190b`, `0x1a00` |
+| `__glKonParseInput` | `indirect` x2 | 0 | `0x500`, `0x1400`, `0x1407`, `0x1900`, `0x190b`, `0x1a00` |
 | `__glKonSdramForceSwapIn` | `__glKonSdramSwapIn`, `__glDlistHeapPriorityChanged`, `__glDlistHeapQueryMin`, `__glKonSdramInvalidate`, `__glDlistHeapPriorityChanged` | 0 | `0x20` |
 | `__glKonSendMapData1D` | `none` | 11 | `0x2a` |
 | `__glKonSendMapData2D` | `none` | 14 | `0x2b` |
+| `__glKonSendPackedVertex` | `glBegin`, `indirect`, `glEnd` | 5 | `0xff`, `0x1b7`, `0x1cf` |
 | `__glKonSetPixelLEModes` | `__glKonPushState`, `__glKonDefaultState`, `__glkonim_PixelStorei` | 0 | `0xcf5` |
 | `__glKonUnsetLEModes` | `__glKonPopState` | 0 | `none` |
 | `__glkonAdjustPlist` | `none` | 0 | `none` |
@@ -868,7 +858,10 @@ What was compared for the 64-bit rows above:
 | `__glkonDrawArraysTIEV` | `indirect` x8 | 5 | `0x182`, `0x1a3`, `0xbeef` |
 | `__glkonDrawArraysTIV` | `indirect` x6 | 5 | `0x182`, `0x1a1`, `0xbeef` |
 | `__glkonDrawArraysTV` | `indirect` x4 | 5 | `0x182`, `0x1a3`, `0xbeef` |
+| `__glkonSPBalloc` | `indirect`, `__glkonim_GetIntegerv`, `__glDlistFreeTransient`, `__glkonSwapOutList`, `indirect`, `__glkonSwapOutList`, `indirect` | 0 | `0x20`, `0x400`, `0xbd0` |
+| `__glkonSPValidateDlist` | `__glkonSPValidateOnlyDlist`, `indirect` | 0 | `none` |
 | `__glkonSPValidateLocalDlist` | `__glKonSdramForceSwapIn` | 0 | `none` |
+| `__glkonSPValidateOnlyDlist` | `__glkonDlistMemUsage`, `__glkonSPValidateLocalDlist`, `indirect`, `__glkonCompressPlist`, `__glkonAdjustPlist`, `__glKonLockedMemoryForceSwapIn` | 0 | `0x10`, `0x20`, `0x4c` |
 | `__glkonSendPackedVertexV3F` | `none` | 3 | `0x1ab` |
 | `__glkonSendPackedVertexV3F_C4UB` | `none` | 3 | `0x1ac` |
 | `__glkonSendPackedVertexV3F_C4UB_N3S` | `none` | 4 | `0x1ae` |
@@ -881,7 +874,7 @@ What was compared for the 64-bit rows above:
 | `__glkonSendPackedVertexV3F_N3S_T2S` | `none` | 4 | `0x1b5` |
 | `__glkonSendPackedVertexV3F_T2F` | `none` | 4 | `0x1af` |
 | `__glkonSendPackedVertexV3F_T2S` | `none` | 3 | `0x1b3` |
-| `__glkonSwapOutList` | `indirect`, `memmove` x2 | 0 | `0x400` |
+| `__glkonSwapOutList` | `indirect`, `memmove`, `indirect` | 0 | `0x400` |
 | `__glkon_DlistInit` | `__glSPDlistSpace` | 0 | `none` |
 | `__glkon_GetDeformationd` | `getDeformationf` | 0 | `none` |
 | `__glkon_GetDeformationi` | `getDeformationf` | 0 | `none` |
@@ -903,17 +896,18 @@ What was compared for the 64-bit rows above:
 | `__glkonim_ConvolutionParameterfvEXT` | `__glkonim_PixelTransformParameterfvSGI` | 0 | `none` |
 | `__glkonim_ConvolutionParameteriEXT` | `__glkonim_PixelTransformParameteriSGI` | 0 | `none` |
 | `__glkonim_ConvolutionParameterivEXT` | `__glkonim_PixelTransformParameterivSGI` | 0 | `none` |
-| `__glkonim_CopyColorTableSGI` | `__glSetError`, `__glKonPushState`, `__glKonDefaultState`, `__glkonim_ReadPixels`, `__glkonim_ColorTableSGI`, `__glKonPopState`, `__glSetError` | 6 | `0x111`, `0x501`, `0x502`, `0x1403`, `0x1908` |
+| `__glkonim_CopyColorTableSGI` | `indirect`, `__glKonPushState`, `__glKonDefaultState`, `__glkonim_ReadPixels`, `__glkonim_ColorTableSGI`, `__glKonPopState`, `__glSetError` | 6 | `0x111`, `0x501`, `0x502`, `0x1403`, `0x1908` |
 | `__glkonim_CopyConvolutionFilter2DEXT` | `__glChkConvFilterArgs`, `__glSetError` x2 | 12 | `0x10`, `0xf3`, `0x111`, `0x500`, `0x502`, `0x8011` |
+| `__glkonim_CopyPixels` | `ParseErrorCopy`, `GetConvolutionFilter`, `GetSingleCompFromPipe`, `CopyConvIsOverlapped`, `__glkon_OverlappedCopy`, `CopyIsOverlapped`, `__glkon_OverlappedCopy`, `__glSetError`, `__glkon_OverlappedCopy`, `indirect`, `__glKonSetNoModeState`, `__glkonim_ReadPixels`, `__glKonSetNoModeState`, `__glKonParseHostImage`, `DoDrawPixelsOrTexels`, `__glKonSetNoModeState`, `indirect`, `__glSetError`, `__glkonim_ReadPixels` x2, `__glKonParseHostImage`, `DoDrawPixelsOrTexels` | 64 | `0x38`, `0x41`, `0x42`, `0x100`, `0x501`, `0x502` |
 | `__glkonim_CopyTexImage1DEXT` | `__glSetError`, `__glkonim_CopyTexImage` | 0 | `0x500`, `0xde0` |
 | `__glkonim_CopyTexSubImage1DEXT` | `__glSetError`, `__glkonim_CopyTexSubImage` | 0 | `0x500`, `0xde0` |
 | `__glkonim_DeformSGIX` | `__glSetError` | 2 | `0x1bf`, `0x501` |
-| `__glkonim_DeformationMap3dSGIX` | `__glSetError`, `deformMapProlog` | 6 | `0x1c1`, `0x501` |
-| `__glkonim_DeformationMap3fSGIX` | `__glSetError`, `deformMapProlog` | 6 | `0x1c0`, `0x501` |
+| `__glkonim_DeformationMap3dSGIX` | `indirect`, `deformMapProlog` | 6 | `0x1c1`, `0x501` |
+| `__glkonim_DeformationMap3fSGIX` | `indirect`, `deformMapProlog` | 6 | `0x1c0`, `0x501` |
 | `__glkonim_DisableClientState` | `__glSetError` | 2 | `0x10`, `0x20`, `0xe4`, `0x500`, `0x502`, `0x8074` |
 | `__glkonim_DrawPixels` | `__glKonParseInput`, `__glKonParseErrorDraw`, `__glKonParseHostImage`, `DrawPixels`, `__glSetError` | 0 | `0x41`, `0x502` |
 | `__glkonim_EdgeFlagPointer` | `__glim_EdgeFlagPointerEXT`, `compute_func_ptr`, `__glSetError` | 0 | `0x10`, `0x502` |
-| `__glkonim_Enable` | `__glkon_EnableTexture` x2, `ValidateHistogramSink` x2, `__glKonEvalEnable` | 4 | `0x10`, `0x20`, `0x24`, `0x40`, `0xe4`, `0xff` |
+| `__glkonim_Enable` | `indirect` x2, `ValidateHistogramSink` x2, `__glKonEvalEnable` | 4 | `0x10`, `0x20`, `0x24`, `0x40`, `0xe4`, `0xff` |
 | `__glkonim_End` | `none` | 2 | `0x71` |
 | `__glkonim_EvalCoord1d` | `indirect` | 0 | `none` |
 | `__glkonim_EvalCoord1dv` | `indirect` | 0 | `none` |
@@ -922,18 +916,18 @@ What was compared for the 64-bit rows above:
 | `__glkonim_EvalCoord2dv` | `indirect` | 0 | `none` |
 | `__glkonim_EvalCoord2f` | `indirect` | 0 | `none` |
 | `__glkonim_EvalCoord2fv` | `indirect` | 0 | `none` |
-| `__glkonim_EvalMesh1` | `__glSetError` x3 | 0 | `0x500`, `0x502`, `0x1b00`, `0x1b02` |
-| `__glkonim_EvalMesh2` | `__glSetError` x3 | 0 | `0x500`, `0x502`, `0x1b00`, `0x1b03` |
+| `__glkonim_EvalMesh1` | `indirect` x2, `__glSetError` | 0 | `0x500`, `0x502`, `0x1b00`, `0x1b02` |
+| `__glkonim_EvalMesh2` | `indirect` x2, `__glSetError` | 0 | `0x500`, `0x502`, `0x1b00`, `0x1b03` |
 | `__glkonim_EvalPoint1` | `indirect` | 0 | `none` |
 | `__glkonim_EvalPoint2` | `indirect` | 0 | `none` |
 | `__glkonim_Finish` | `__glkona_wait_rdata`, `__glSetError` | 2 | `0xc6`, `0x502` |
-| `__glkonim_FogFuncSGIS` | `__glkon_datavn`, `__glSetError` x3 | 2 | `0x21`, `0x10f`, `0x501` |
+| `__glkonim_FogFuncSGIS` | `indirect` x4 | 2 | `0x21`, `0x10f`, `0x501` |
 | `__glkonim_GetConvolutionParameterfvEXT` | `__glkonim_GetPixelTransformParameterfvSGI` | 0 | `none` |
 | `__glkonim_GetConvolutionParameterivEXT` | `__glkonim_GetPixelTransformParameterivSGI` | 0 | `none` |
 | `__glkonim_GetHistogramParameterfvEXT` | `__glkon_get_special2`, `__glSetError` | 0 | `0x105`, `0x502` |
 | `__glkonim_GetHistogramParameterivEXT` | `__glkon_get_special2`, `__glSetError` | 0 | `0x105`, `0x502` |
-| `__glkonim_GetLightfv` | `__glkon_get_special2`, `__glSetError` x2 | 0 | `0x41`, `0x500`, `0x502`, `0x1200`, `0x120a` |
-| `__glkonim_GetListParameterfvSGIX` | `__glSetError`, `__glNamesLockData`, `__glNamesUnlockData`, `__glSetError` x2 | 0 | `0x500`, `0x501`, `0x502`, `0x8182` |
+| `__glkonim_GetLightfv` | `__glkon_get_special2`, `indirect`, `__glSetError` | 0 | `0x41`, `0x500`, `0x502`, `0x1200`, `0x120a` |
+| `__glkonim_GetListParameterfvSGIX` | `__glSetError`, `__glNamesLockData`, `__glNamesUnlockData`, `__glSetError`, `indirect` | 0 | `0x500`, `0x501`, `0x502`, `0x8182` |
 | `__glkonim_GetPixelMapuiv` | `get_pixel_map_setup`, `__glkon_get_special3`, `__glSetError` | 0 | `0x48`, `0x200`, `0x502`, `0xc70`, `0xc71` |
 | `__glkonim_GetPixelTransformParameterivSGI` | `GetPixelTransformParameterfvSGI` | 0 | `none` |
 | `__glkonim_GetTexEnvfv` | `do_gettexenv`, `__glSetError` | 0 | `0x502` |
@@ -942,7 +936,7 @@ What was compared for the 64-bit rows above:
 | `__glkonim_IsTextureEXT` | `indirect`, `__glSetError` | 0 | `0x502` |
 | `__glkonim_LineWidth` | `none` | 5 | `0xbd`, `0xe4`, `0x501` |
 | `__glkonim_ListParameterfSGIX` | `__glkonim_ListParameterfvSGIX` | 0 | `none` |
-| `__glkonim_ListParameterfvSGIX` | `__glSetError`, `__glNamesLockData`, `__glDlistHeapPriorityChanged` x2, `__glNamesUnlockData`, `__glSetError` x2 | 0 | `0x20`, `0x500`, `0x501`, `0x502`, `0x8182` |
+| `__glkonim_ListParameterfvSGIX` | `__glSetError`, `__glNamesLockData`, `__glDlistHeapPriorityChanged` x2, `indirect`, `__glSetError`, `indirect` | 0 | `0x20`, `0x500`, `0x501`, `0x502`, `0x8182` |
 | `__glkonim_MapGrid1f` | `__glSetError` | 7 | `0x28`, `0xe4`, `0x501`, `0x502` |
 | `__glkonim_MapGrid2f` | `__glSetError` | 11 | `0x29`, `0xe4`, `0x501`, `0x502` |
 | `__glkonim_Materiali` | `__glSetError` | 7 | `0x97`, `0x500`, `0x1601` |
@@ -957,9 +951,9 @@ What was compared for the 64-bit rows above:
 | `__glkonim_PixelZoom` | `__glSetError` x3 | 3 | `0x2f`, `0x501`, `0x502` |
 | `__glkonim_PointSize` | `none` | 5 | `0xbe`, `0xe4`, `0x501` |
 | `__glkonim_ReadPixels` | `__glKonParseInput`, `__glKonParseErrorRead`, `__glkonReadPixelsOrTexels`, `__glSetError` | 0 | `0x22`, `0x502` |
-| `__glkonim_RenderMode` | `__glSetError` x2, `StartSelectFeed` x2, `ResolveFeedback`, `ResolveSelect`, `__glSetError` | 2 | `0x19`, `0x500`, `0x502`, `0x1c00`, `0x1c01`, `0x1c02` |
+| `__glkonim_RenderMode` | `indirect` x2, `StartSelectFeed` x2, `ResolveFeedback`, `ResolveSelect`, `__glSetError` | 2 | `0x19`, `0x500`, `0x502`, `0x1c00`, `0x1c01`, `0x1c02` |
 | `__glkonim_SampleMaskSGIS` | `none` | 6 | `0x118` |
-| `__glkonim_SelectBuffer` | `__glSetError` x5 | 0 | `0x501`, `0x502`, `0x1c02` |
+| `__glkonim_SelectBuffer` | `indirect` x2, `__glSetError`, `indirect` x2 | 0 | `0x501`, `0x502`, `0x1c02` |
 | `__glkonim_SpriteParameterivSGIX` | `__glkonim_SpriteParameterfvSGIX` | 0 | `0x8149` |
 | `__glkonim_SubdivPatchParameteriSGIX` | `__glkonim_SubdivPatchParameterfSGIX` | 0 | `none` |
 | `__glkonim_TexSubImage1DEXT` | `__glSetError`, `__glkonim_TexSubImage` | 0 | `0x500`, `0xde0` |
@@ -970,13 +964,13 @@ What was compared for the 64-bit rows above:
 | `__glkonlSendPackedVertexV3F_T2F` | `__glSPDlistSpace` x3 | 0 | `0x1af` |
 | `__glkonlSendPackedVertexV3F_T2S` | `__glSPDlistSpace` x3 | 0 | `0x1b3` |
 | `__glkonlc_Accum` | `__glSPDlistSpace` | 0 | `0xc5` |
-| `__glkonlc_AlphaFunc` | `__glSPDlistSpace` | 0 | `0xca` |
+| `__glkonlc_AlphaFunc` | `indirect` | 0 | `0xca` |
 | `__glkonlc_Begin` | `__glSPDlistSpace` | 0 | `0x500` |
-| `__glkonlc_Bitmap` | `__glSPDlistSpace`, `bzero`, `__glFillImage`, `__glsplc_Bitmap`, `__glsplc_InvalidValue` | 0 | `0xc41`, `0x1900`, `0x1a00` |
+| `__glkonlc_Bitmap` | `__glSPDlistSpace`, `bzero`, `__glFillImage`, `__glsplc_Bitmap`, `indirect` | 0 | `0xc41`, `0x1900`, `0x1a00` |
 | `__glkonlc_BlendColorEXT` | `__glSPDlistSpace` | 0 | `0xe6` |
 | `__glkonlc_BlendEquationEXT` | `__glSPDlistSpace` | 0 | `0xe7` |
-| `__glkonlc_CallList` | `__glsplc_AddIlist` x2, `__glsplc_CallList` x2 | 0 | `none` |
-| `__glkonlc_CallLists` | `__glsplc_AddIlist` x2, `__glsplc_CallLists` x2 | 0 | `none` |
+| `__glkonlc_CallList` | `__glsplc_AddIlist` x2, `__glsplc_CallList`, `indirect` | 0 | `none` |
+| `__glkonlc_CallLists` | `__glsplc_AddIlist` x2, `__glsplc_CallLists`, `indirect` | 0 | `none` |
 | `__glkonlc_Clear` | `__glSPDlistSpace` | 0 | `0x1a` |
 | `__glkonlc_ClearAccum` | `__glSPDlistSpace`, `__glSetError` | 0 | `0x1b`, `0x502` |
 | `__glkonlc_ClearIndex` | `__glSPDlistSpace` | 0 | `0x1c` |
@@ -1003,7 +997,7 @@ What was compared for the 64-bit rows above:
 | `__glkonlc_DepthRange` | `__glSPDlistSpace` | 0 | `0xcf` |
 | `__glkonlc_EdgeFlag` | `__glSPDlistSpace` | 0 | `0xa7` |
 | `__glkonlc_EdgeFlagv` | `__glSPDlistSpace` | 0 | `0xa7` |
-| `__glkonlc_FogFuncSGIS` | `__glsplc_InvalidValue` x4 | 0 | `0x21`, `0x10f` |
+| `__glkonlc_FogFuncSGIS` | `indirect` x4 | 0 | `0x21`, `0x10f` |
 | `__glkonlc_Frustum` | `__glSPDlistSpace` | 0 | `0xd1` |
 | `__glkonlc_LightModelfv` | `__glSPDlistSpace` | 0 | `none` |
 | `__glkonlc_LightModeliv` | `__glSPDlistSpace` | 0 | `none` |
@@ -1018,7 +1012,7 @@ What was compared for the 64-bit rows above:
 | `__glkonlc_Normal3sv` | `__glSPDlistSpace` | 0 | `0x7a` |
 | `__glkonlc_Ortho` | `__glSPDlistSpace` | 0 | `0xd7` |
 | `__glkonlc_PassThrough` | `__glSPDlistSpace` | 0 | `0xc1` |
-| `__glkonlc_PointParameterfvSGIS` | `__glsplc_InvalidEnum`, `__glSPDlistSpace` x4, `__glsplc_InvalidValue` | 0 | `0x1a7`, `0x1a8`, `0x8126`, `0x8127`, `0x8128`, `0x8129` |
+| `__glkonlc_PointParameterfvSGIS` | `__glsplc_InvalidEnum`, `__glSPDlistSpace` x3, `indirect`, `__glsplc_InvalidValue` | 0 | `0x1a7`, `0x1a8`, `0x8126`, `0x8127`, `0x8128`, `0x8129` |
 | `__glkonlc_PointSize` | `__glSPDlistSpace`, `__glsplc_InvalidValue` | 0 | `0xbe` |
 | `__glkonlc_PolygonOffset` | `__glSPDlistSpace` | 0 | `0x168` |
 | `__glkonlc_PolygonOffsetEXT` | `__glSPDlistSpace` | 0 | `0x11b` |
@@ -1031,7 +1025,7 @@ What was compared for the 64-bit rows above:
 | `__glkonlc_ReferencePlaneSGIX` | `__glSPDlistSpace` | 0 | `0x1bd` |
 | `__glkonlc_Rotated` | `__glSPDlistSpace` | 0 | `0xda` |
 | `__glkonlc_Rotatef` | `__glSPDlistSpace` | 0 | `0xdb` |
-| `__glkonlc_SampleMaskSGIS` | `__glSPDlistSpace` | 0 | `0x118` |
+| `__glkonlc_SampleMaskSGIS` | `indirect` | 0 | `0x118` |
 | `__glkonlc_SamplePatternSGIS` | `__glSPDlistSpace` | 0 | `0x117` |
 | `__glkonlc_Scaled` | `__glSPDlistSpace` | 0 | `0xdc` |
 | `__glkonlc_Scalef` | `__glSPDlistSpace` | 0 | `0xdd` |
@@ -1053,11 +1047,11 @@ What was compared for the 64-bit rows above:
 | `__glkonlc_Vertex3sv` | `__glSPDlistSpace` | 0 | `0x92` |
 | `__glkonlc_Vertex4s` | `__glSPDlistSpace` | 0 | `0x96`, `0xffff` |
 | `__glkonlc_Vertex4sv` | `__glSPDlistSpace` | 0 | `0x96` |
-| `__glkonlc_Viewport` | `__glSPDlistSpace`, `__glsplc_InvalidValue` x2 | 0 | `0xe3` |
+| `__glkonlc_Viewport` | `__glSPDlistSpace`, `__glsplc_InvalidValue`, `indirect` | 0 | `0xe3` |
 | `__glkonle_Bitmap` | `__glKonSetPixelLEModes`, `__glkonim_Bitmap`, `__glKonUnsetLEModes` | 0 | `none` |
 | `__glkonle_ColorTableSGI` | `__glKonSetPixelLEModes`, `__glkonim_ColorTableSGI`, `__glKonUnsetLEModes` | 0 | `none` |
-| `__glkonle_ConvolutionFilter1DEXT` | `__glSetError` x2, `__glKonSetPixelLEModes`, `__glkonim_ConvolutionFilter1DEXT`, `__glKonUnsetLEModes` | 0 | `0x502`, `0x8010` |
-| `__glkonle_ConvolutionFilter2DEXT` | `__glSetError` x2, `__glKonSetPixelLEModes`, `__glkonim_ConvolutionFilter2DEXT`, `__glKonUnsetLEModes` | 0 | `0x502`, `0x8011` |
+| `__glkonle_ConvolutionFilter1DEXT` | `__glSetError`, `indirect`, `__glKonSetPixelLEModes`, `__glkonim_ConvolutionFilter1DEXT`, `__glKonUnsetLEModes` | 0 | `0x502`, `0x8010` |
+| `__glkonle_ConvolutionFilter2DEXT` | `__glSetError`, `indirect`, `__glKonSetPixelLEModes`, `__glkonim_ConvolutionFilter2DEXT`, `__glKonUnsetLEModes` | 0 | `0x502`, `0x8011` |
 | `__glkonle_Push` | `none` | 3 | `none` |
-| `__glkonle_SeparableFilter2DEXT` | `__glSetError` x2, `__glKonSetPixelLEModes`, `__glkonim_SeparableFilter2DEXT`, `__glKonUnsetLEModes` | 0 | `0x502`, `0x8012` |
+| `__glkonle_SeparableFilter2DEXT` | `__glSetError`, `indirect`, `__glKonSetPixelLEModes`, `__glkonim_SeparableFilter2DEXT`, `__glKonUnsetLEModes` | 0 | `0x502`, `0x8012` |
 | `__glkonle_SetBegin` | `none` | 0 | `none` |
