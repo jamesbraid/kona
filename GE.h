@@ -1144,37 +1144,35 @@ enum kona_hp_token {
     /* Read at arm1.u arm_getfloatv 0x0c0265b0 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETFLOATV` (0x03f). Established: The token map runs a
-     * one-instruction stub at 0x0c0265b0 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_getfloatv` at arm1.u 0x0c0265b0, a stub that ends in
-     * `arm_badcmd`. No sender found.
-     * __glkonim_Get{Float,Integer,Double,Boolean}v (kon_get.s) call
-     * __glkona_wait_rdata (the ioctl read-back wait); kona_get in the same
-     * file sends HP_GETV 0x4c with one word (the parameter name). The GL call
-     * answers from host state or through HP_GETV, never
-     * HP_GETFLOATV/HP_GETINTEGERV. */
+    /* `HP_GETFLOATV` (0x03f). Dead slot for the bulk float query: the map
+     * word of token 0x03f ends at a lone branch at 0x0c0265b0 into
+     * arm_badcmd. Established (read in full: the stub and arm_badcmd
+     * 0x0c0017f4-0x0c001854): a word with this number would print both token
+     * numbers and then read and print 100 words before spinning on the FIFO,
+     * so the pipe would stall. Inferred from kon_get.s: __glkonim_GetFloatv
+     * and its Double, Integer and Boolean siblings never store 0x03f; the
+     * shared helper kona_get stores token 76, HP_GETV (0x04c), and one word
+     * (the parameter name) and then waits in __glkona_wait_rdata for the
+     * read-back, and the typed getters call that wait themselves; which of
+     * them reaches kona_get was not followed. Conversion to the requested
+     * type happens on the host, so no per-type query token is needed. */
     KONA_HP_GETFLOATV                    = 0x03f,
 
     /* Read at arm1.u arm_getintegerv 0x0c0265b4 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETINTEGERV` (0x040). Established: The token map runs a
-     * one-instruction stub at 0x0c0265b4 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_getintegerv` at arm1.u 0x0c0265b4, a stub that ends in
-     * `arm_badcmd`. No sender found.
-     * __glkonim_Get{Float,Integer,Double,Boolean}v (kon_get.s) call
-     * __glkona_wait_rdata (the ioctl read-back wait); kona_get in the same
-     * file sends HP_GETV 0x4c with one word (the parameter name). The GL call
-     * answers from host state or through HP_GETV, never
-     * HP_GETFLOATV/HP_GETINTEGERV. */
+    /* `HP_GETINTEGERV` (0x040). Dead slot for the bulk integer query: token
+     * 0x040 maps to a one-word branch at 0x0c0265b4 that lands in arm_badcmd,
+     * which reports the offending and the previous token and then drains
+     * words forever. Established (read in full: the stub and arm_badcmd
+     * 0x0c0017f4-0x0c001854). Inferred from kon_get.s: glGetIntegerv is
+     * __glkonim_GetIntegerv, the longest of the four typed getters (154
+     * instructions against 144 for the float and double ones); its calls are
+     * __glkona_wait_rdata and an indirect helper, and it stores no token
+     * itself. The one query token in the library is kona_get's 76, HP_GETV
+     * (0x04c), which carries only the parameter name. Integer conversion is
+     * therefore done by the library after the read-back, not requested from
+     * the pipe. */
     KONA_HP_GETINTEGERV                  = 0x040,
 
     /* Engine handlers whose slots the code of `arm_getlightfv` loads, in
@@ -1194,58 +1192,61 @@ enum kona_hp_token {
     /* Read at arm1.u arm_getlightiv 0x0c0265b8 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETLIGHTIV` (0x042). Established: The token map runs a
-     * one-instruction stub at 0x0c0265b8 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_getlightiv` at arm1.u 0x0c0265b8, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetLightiv (kon_get.s) calls
-     * __glkon_get_special2, which calls __glkona_wait_rdata; the function
-     * stores no token constant. */
+    /* `HP_GETLIGHTIV` (0x042). Unused integer light query. Established: the
+     * map word of 0x042 points at a one-instruction branch at 0x0c0265b8 into
+     * arm_badcmd, so a word with this number would print token numbers, drain
+     * 100 payload words and hang (arm_badcmd 0x0c0017f4-0x0c001854 read in
+     * full). Inferred from kon_get.s: __glkonim_GetLightiv checks the light
+     * index against the context's light count and the name against
+     * 0x1200-0x1209, then calls __glkon_get_special2 with 65, the number of
+     * HP_GETLIGHTFV (0x041), storing token, light and name and waiting for
+     * the read-back. Colour-valued names are rescaled to the GL integer range
+     * on the host (the code multiplies by 2^32 and halves), so the pipe only
+     * ever sees the float form. */
     KONA_HP_GETLIGHTIV                   = 0x042,
 
     /* Read at arm1.u arm_getmapdv 0x0c0265bc (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETMAPDV` (0x043). Established: The token map runs a
-     * one-instruction stub at 0x0c0265bc that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_getmapdv` at arm1.u 0x0c0265bc, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetMapdv (kon_eval.s) calls
-     * __glkon_GetDeformationd and stores no FIFO token. */
+    /* `HP_GETMAPDV` (0x043). Unused evaluator-map query, double form.
+     * Established: the map word of token 0x043 resolves to a branch at
+     * 0x0c0265bc that enters arm_badcmd (stub and arm_badcmd read in full),
+     * so the pipe would stall if it ever saw one. Inferred from kon_eval.s
+     * __glkonim_GetMapdv : it accepts map targets in 3472-3511 plus the two
+     * deformation-map targets 0x8194 and 0x8195, returns coefficients, order
+     * or domain according to the query name 0x0a00-0x0a02 (2560-2562), and
+     * for the deformation targets calls __glkon_GetDeformationd. It contains
+     * no store to the command window, so the control points come from the
+     * host copy that glMap kept. */
     KONA_HP_GETMAPDV                     = 0x043,
 
     /* Read at arm1.u arm_getmapfv 0x0c0265c0 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETMAPFV` (0x044). Established: The token map runs a
-     * one-instruction stub at 0x0c0265c0 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_getmapfv` at arm1.u 0x0c0265c0, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetMapfv (kon_eval.s) calls
-     * __glkon_GetDeformationf and stores no FIFO token. */
+    /* `HP_GETMAPFV` (0x044). Unused evaluator-map query, float form.
+     * Established: token 0x044 reaches only a branch at 0x0c0265c0 into
+     * arm_badcmd (read in full), which would print the token pair and then
+     * block the FIFO. Inferred from kon_eval.s: __glkonim_GetMapfv is the
+     * float twin of the double getter, with the same map-target range
+     * 3472-3511, the same selectors 0x0a00-0x0a02 and a call to
+     * __glkon_GetDeformationf for the two deformation-map targets. It makes
+     * no write to the FIFO window and no read-back wait, so evaluator state
+     * never has to be fetched from the pipe: the host keeps the authoritative
+     * copy. */
     KONA_HP_GETMAPFV                     = 0x044,
 
     /* Read at arm1.u arm_getmapiv 0x0c0265c4 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETMAPIV` (0x045). Established: The token map runs a
-     * one-instruction stub at 0x0c0265c4 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_getmapiv` at arm1.u 0x0c0265c4, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetMapiv (kon_eval.s) calls
-     * __glkon_GetDeformationi and stores no FIFO token. */
+    /* `HP_GETMAPIV` (0x045). Unused evaluator-map query, integer form.
+     * Established: the map word of 0x045 is a branch at 0x0c0265c4 to
+     * arm_badcmd (stub and routine read in full); a token reaching it hangs
+     * the command stream after a diagnostic print. Inferred from kon_eval.s:
+     * __glkonim_GetMapiv is the longest of the map getters I measured (446
+     * instructions against 360 for the float form), as expected of a function
+     * that has to convert coefficient, order and domain values to integers
+     * from host memory, and it hands the deformation maps to
+     * __glkon_GetDeformationi. No FIFO store appears in it. */
     KONA_HP_GETMAPIV                     = 0x045,
 
     /* Engine handlers whose slots the code of `arm_getmaterialfv` loads, in
@@ -1265,16 +1266,15 @@ enum kona_hp_token {
     /* Read at arm1.u arm_getmaterialiv 0x0c0265c8 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETMATERIALIV` (0x047). Established: The token map runs a
-     * one-instruction stub at 0x0c0265c8 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_getmaterialiv` at arm1.u 0x0c0265c8, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetMaterialiv (kon_get.s)
-     * calls __glkon_get_special2, which calls __glkona_wait_rdata; the
-     * function stores no token constant. */
+    /* `HP_GETMATERIALIV` (0x047). Unused integer material query. Established:
+     * token 0x047 maps to a branch at 0x0c0265c8 that enters arm_badcmd,
+     * whose loop reads and prints 100 words and then spins (read in full).
+     * Inferred from kon_get.s: __glkonim_GetMaterialiv accepts face 1028 or
+     * 1029 (front or back) and names 0x1200-0x1209 or 0x1600-0x1603, then
+     * calls __glkon_get_special2 with 70, which is HP_GETMATERIALFV (0x046),
+     * waits for the read-back and rescales colour names to the integer range
+     * on the host (the code multiplies by 2^32 and halves). The integer
+     * variant therefore costs one float round trip, not a token of its own. */
     KONA_HP_GETMATERIALIV                = 0x047,
 
     /* Read at arm1.u arm_getpixelmapfv 0x0c03f2a4; do_getcolortable
@@ -1296,33 +1296,29 @@ enum kona_hp_token {
     /* Read at arm1.u arm_getpixelmapuiv 0x0c0265cc (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETPIXELMAPUIV` (0x049). Established: The token map runs a
-     * one-instruction stub at 0x0c0265cc that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_getpixelmapuiv` at arm1.u 0x0c0265cc, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetPixelMapuiv
-     * (kon_colortable.s) calls __glkonim_GetColorTableSGI and
-     * __glkon_get_special3 (which calls __glkona_wait_rdata); it stores no
-     * token constant. */
+    /* `HP_GETPIXELMAPUIV` (0x049). Unused unsigned-integer pixel-map query.
+     * Established: the map word of 0x049 is a branch at 0x0c0265cc that falls
+     * into arm_badcmd (read in full), which would drain 100 words and hang.
+     * Inferred from kon_colortable.s: __glkonim_GetPixelMapuiv (about 135
+     * instructions) compares against 3184 and 3185 and calls
+     * __glkonim_GetColorTableSGI for one of the two paths, and calls
+     * __glkon_get_special3 with 72, the number of HP_GETPIXELMAPFV (0x048).
+     * That helper stores four words (the token and three arguments) and waits
+     * for the read-back; narrowing to unsigned integers is done on the host. */
     KONA_HP_GETPIXELMAPUIV               = 0x049,
 
     /* Read at arm1.u arm_getpixelmapusv 0x0c0265d0 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETPIXELMAPUSV` (0x04a). Established: The token map runs a
-     * one-instruction stub at 0x0c0265d0 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_getpixelmapusv` at arm1.u 0x0c0265d0, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetPixelMapusv
-     * (kon_colortable.s) calls __glkonim_GetColorTableSGI and
-     * __glkon_get_special3 (which calls __glkona_wait_rdata); it stores no
-     * token constant. */
+    /* `HP_GETPIXELMAPUSV` (0x04a). Unused unsigned-short pixel-map query.
+     * Established: token 0x04a lands on a branch at 0x0c0265d0 into
+     * arm_badcmd (read in full), the print-and-spin diagnostic. Inferred from
+     * kon_colortable.s: __glkonim_GetPixelMapusv is the sixteen-bit sibling
+     * of the unsigned-integer getter, with the same 3184 and 3185 checks, the
+     * same __glkonim_GetColorTableSGI branch and the same
+     * __glkon_get_special3 call that stores token 72 (HP_GETPIXELMAPFV,
+     * 0x048); only the final host-side narrowing of the returned floats
+     * differs. The pipe never sees a separate token for the short form. */
     KONA_HP_GETPIXELMAPUSV               = 0x04a,
 
     /* Engine handlers whose slots the code of `arm_getpolygonstipple` loads,
@@ -1371,31 +1367,30 @@ enum kona_hp_token {
     /* Read at arm1.u arm_gettexenviv 0x0c0265d4 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETTEXENVIV` (0x04e). Established: The token map runs a
-     * one-instruction stub at 0x0c0265d4 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_gettexenviv` at arm1.u 0x0c0265d4, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetTexEnviv (kon_get.s) calls
-     * __glkonim_GetMaterialiv, which goes through __glkon_get_special2 and
-     * __glkona_wait_rdata; no token constant stored. */
+    /* `HP_GETTEXENVIV` (0x04e). Unused integer texture-environment query.
+     * Established: the map word of 0x04e points at a branch at 0x0c0265d4 to
+     * arm_badcmd (read in full). Inferred from kon_get.s:
+     * __glkonim_GetTexEnviv shares the static helper do_gettexenv
+     * (0x0d959d80) with the float getter; the helper insists on target
+     * 0x2300, calls __glkon_get_special with 77, the number of HP_GETTEXENVFV
+     * (0x04d), and the integer entry converts the floats afterwards (colour
+     * values multiplied by 2^32 and halved, the rest truncated). The
+     * disassembler labels the helper call as GetMaterialiv because the callee
+     * is reached through a base-register offset. */
     KONA_HP_GETTEXENVIV                  = 0x04e,
 
     /* Read at arm1.u arm_gettexgendv 0x0c0265d8 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETTEXGENDV` (0x04f). Established: The token map runs a
-     * one-instruction stub at 0x0c0265d8 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_gettexgendv` at arm1.u 0x0c0265d8, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetTexGendv (kon_get.s) calls
-     * __glkon_get_special2, which calls __glkona_wait_rdata; the function
-     * stores no token constant. */
+    /* `HP_GETTEXGENDV` (0x04f). Unused double-precision texgen query.
+     * Established: token 0x04f is a branch at 0x0c0265d8 into arm_badcmd
+     * (read in full). Inferred from kon_get.s: __glkonim_GetTexGendv
+     * validates the coordinate (0x2000-0x2003) and the name (0x2500-0x2502
+     * plane values and the 0x81f4-0x81f7 SGIX range), then calls
+     * __glkon_get_special2 with 80, the number of HP_GETTEXGENFV (0x050), and
+     * widens each returned float to a double with cvt.d.s. The plane
+     * equations therefore travel from the pipe as floats and are widened by
+     * the host. */
     KONA_HP_GETTEXGENDV                  = 0x04f,
 
     /* Engine handlers whose slots the code of `arm_gettexgenfv` loads, in
@@ -1415,16 +1410,15 @@ enum kona_hp_token {
     /* Read at arm1.u arm_gettexgeniv 0x0c0265dc (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETTEXGENIV` (0x051). Established: The token map runs a
-     * one-instruction stub at 0x0c0265dc that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_gettexgeniv` at arm1.u 0x0c0265dc, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetTexGeniv (kon_get.s) calls
-     * __glkon_get_special2, which calls __glkona_wait_rdata; the function
-     * stores no token constant. */
+    /* `HP_GETTEXGENIV` (0x051). Unused integer texgen query. Established:
+     * token 0x051 maps to a branch at 0x0c0265dc that lands in arm_badcmd
+     * (read in full). Inferred from kon_get.s: __glkonim_GetTexGeniv follows
+     * the same recipe as its double and float siblings, calling
+     * __glkon_get_special2 with 80 (HP_GETTEXGENFV, 0x050) after storing the
+     * coordinate and name, then narrowing the result: the plane names
+     * 0x2501-0x2502 are truncated to integers with trunc.w.s, and the mode
+     * name 0x2500 takes a separate path. Because all three getters share one
+     * float token, the pipe needs no integer texgen opcode. */
     KONA_HP_GETTEXGENIV                  = 0x051,
 
     /* Read at arm1.u arm_getteximage 0x0c02c298; getteximage 0x0c02c358. */
@@ -1444,61 +1438,53 @@ enum kona_hp_token {
     /* Read at arm1.u arm_gettexparameterfv 0x0c0265e0 (b 0x0c0017f4);
      * arm_badcmd 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETTEXPARAMETERFV` (0x053). Established: The token map runs a
-     * one-instruction stub at 0x0c0265e0 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_gettexparameterfv` at arm1.u 0x0c0265e0, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetTexParameterfv
-     * (kon_texture_api.s) answers from host texture state through
-     * __glKonGetTexParameter and stores no FIFO token. */
+    /* `HP_GETTEXPARAMETERFV` (0x053). Unused float texture-parameter query.
+     * Established: the map word of 0x053 is a branch at 0x0c0265e0 into
+     * arm_badcmd (read in full). Inferred from kon_texture_api.s:
+     * __glkonim_GetTexParameterfv has about 60 instructions, no FIFO store
+     * and one call, to __glKonGetTexParameter, a long host-side routine (464
+     * instructions) that compares the name against dozens of constants, many
+     * of them 0x80xx and 0x81xx extension names. Texture parameters live in
+     * the host texture object, so queries never leave the host. */
     KONA_HP_GETTEXPARAMETERFV            = 0x053,
 
     /* Read at arm1.u arm_gettexparameteriv 0x0c0265e4 (b 0x0c0017f4);
      * arm_badcmd 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETTEXPARAMETERIV` (0x054). Established: The token map runs a
-     * one-instruction stub at 0x0c0265e4 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_gettexparameteriv` at arm1.u 0x0c0265e4, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GetTexParameteriv
-     * (kon_texture_api.s) answers from host texture state through
-     * __glKonGetTexParameter and stores no FIFO token. */
+    /* `HP_GETTEXPARAMETERIV` (0x054). Unused integer texture-parameter query.
+     * Established: token 0x054 resolves to a branch at 0x0c0265e4 that enters
+     * arm_badcmd (read in full). Inferred from kon_texture_api.s:
+     * __glkonim_GetTexParameteriv, like its float twin, makes one call, to
+     * __glKonGetTexParameter, and has no FIFO store; it differs in how it
+     * hands the value back; both raise errors through __glSetError (6 call
+     * sites in each). The query is answered from the texture object kept in
+     * host memory. */
     KONA_HP_GETTEXPARAMETERIV            = 0x054,
 
     /* Read at arm1.u arm_gettexlevelparameterfv 0x0c0265e8 (b 0x0c0017f4);
      * arm_badcmd 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETTEXLEVELPARAMETERFV` (0x055). Established: The token map runs a
-     * one-instruction stub at 0x0c0265e8 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_gettexlevelparameterfv` at arm1.u 0x0c0265e8, a stub that
-     * ends in `arm_badcmd`. No sender found. __glkonim_GetTexLevelParameterfv
-     * (kon_texture_api.s) calls the iv form, which answers from host texture
-     * state via __glKonGetTexParameter; no FIFO token. */
+    /* `HP_GETTEXLEVELPARAMETERFV` (0x055). Unused float per-level texture
+     * query. Established: token 0x055 leads to a branch at 0x0c0265e8 into
+     * arm_badcmd (read in full). Inferred from kon_texture_api.s:
+     * __glkonim_GetTexLevelParameterfv is an 18-instruction wrapper whose
+     * only action is a call to the integer entry
+     * __glkonim_GetTexLevelParameteriv, so it adds nothing for the pipe and
+     * has no FIFO store of its own. Per-level answers therefore come from
+     * state the host keeps for each image. */
     KONA_HP_GETTEXLEVELPARAMETERFV       = 0x055,
 
     /* Read at arm1.u arm_gettexlevelparameteriv 0x0c0265ec (b 0x0c0017f4);
      * arm_badcmd 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GETTEXLEVELPARAMETERIV` (0x056). Established: The token map runs a
-     * one-instruction stub at 0x0c0265ec that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_gettexlevelparameteriv` at arm1.u 0x0c0265ec, a stub that
-     * ends in `arm_badcmd`. No sender found. __glkonim_GetTexLevelParameteriv
-     * (kon_texture_api.s) answers from host texture state through
-     * __glKonGetTexParameter and stores no FIFO token. */
+    /* `HP_GETTEXLEVELPARAMETERIV` (0x056). Unused integer per-level texture
+     * query. Established: the map word of 0x056 is a branch at 0x0c0265ec to
+     * arm_badcmd (read in full). Inferred from kon_texture_api.s:
+     * __glkonim_GetTexLevelParameteriv is a 390-instruction host function
+     * with sixteen error sites; it validates target and level, compares the
+     * name against constants that include 4096 and 0x805c-0x8064 and
+     * 0x8070-0x8071, and calls __glKonGetTexParameter from several branches.
+     * It stores nothing to the FIFO window. */
     KONA_HP_GETTEXLEVELPARAMETERIV       = 0x056,
 
     /* Read at icu_map.tsv 0x057 (kind 1, command 388); ged_banks.tsv k=4;

@@ -1,19 +1,19 @@
 spec	table	page	window	offset	name	count	stride	width	rw	reached_in_code	status	doc	section
-kpm register tables	geometry engine		ge	0x40000	Execution Control Register	1	0	32		0	understood	GE.h:9439	
-kpm register tables	geometry engine		ge	0x40004	Breakpoint Address Register	1	0	32		0	understood	GE.h:9456	
-kpm register tables	geometry engine		ge	0x40008	RAMscan Control Register (trashed)	1	0	32		0	understood	GE.h:9464	
-kpm register tables	geometry engine		ge	0x4000c	Write/Sync FIFO Register	1	0	32		0	understood	GE.h:9475	
-kpm register tables	geometry engine		ge	0x40010	Diag Sel Register	1	0	32		0	understood	GE.h:9489	
-kpm register tables	geometry engine		ge	0x40014	Enable Mask Register	1	0	32		0	no-software-dependency	GE.h:9501	
-kpm register tables	geometry engine		ge	0x40018	CM/Ofifo TAG Register	1	0	32		0	understood	GE.h:9515	
-kpm register tables	geometry engine		ge	0x4001c	Ucode Error register	1	0	32		0	understood	GE.h:9528	
-kpm register tables	geometry engine		ge	0x40020	OFIFO0 A Status Register	1	0	32		0	understood	GE.h:9555	
-kpm register tables	geometry engine		ge	0x40024	OFIFO0 B Status Register	1	0	32		0	named-only	GE.h:9560	
-kpm register tables	geometry engine		ge	0x40028	OFIFO1 A Status Register	1	0	32		0	named-only	GE.h:9571	
-kpm register tables	geometry engine		ge	0x4002c	OFIFO1 B Status Register	1	0	32		0	named-only	GE.h:9579	
-kpm register tables	geometry engine		ge	0x40030	OFIFO2 A Status Register	1	0	32		0	understood	GE.h:9593	
-kpm register tables	geometry engine		ge	0x40034	OFIFO2 B Status Register	1	0	32		0	understood	GE.h:9603	
-kpm register tables	geometry engine		ge	0x40038	OFIFO Control Register (trashed)	1	0	32		0	understood	GE.h:9619	
+kpm register tables	geometry engine		ge	0x40000	Execution Control Register	1	0	32		0	understood	GE.h:9425	
+kpm register tables	geometry engine		ge	0x40004	Breakpoint Address Register	1	0	32		0	understood	GE.h:9442	
+kpm register tables	geometry engine		ge	0x40008	RAMscan Control Register (trashed)	1	0	32		0	understood	GE.h:9450	
+kpm register tables	geometry engine		ge	0x4000c	Write/Sync FIFO Register	1	0	32		0	understood	GE.h:9461	
+kpm register tables	geometry engine		ge	0x40010	Diag Sel Register	1	0	32		0	understood	GE.h:9475	
+kpm register tables	geometry engine		ge	0x40014	Enable Mask Register	1	0	32		0	no-software-dependency	GE.h:9487	
+kpm register tables	geometry engine		ge	0x40018	CM/Ofifo TAG Register	1	0	32		0	understood	GE.h:9501	
+kpm register tables	geometry engine		ge	0x4001c	Ucode Error register	1	0	32		0	understood	GE.h:9514	
+kpm register tables	geometry engine		ge	0x40020	OFIFO0 A Status Register	1	0	32		0	understood	GE.h:9541	
+kpm register tables	geometry engine		ge	0x40024	OFIFO0 B Status Register	1	0	32		0	named-only	GE.h:9546	
+kpm register tables	geometry engine		ge	0x40028	OFIFO1 A Status Register	1	0	32		0	named-only	GE.h:9557	
+kpm register tables	geometry engine		ge	0x4002c	OFIFO1 B Status Register	1	0	32		0	named-only	GE.h:9565	
+kpm register tables	geometry engine		ge	0x40030	OFIFO2 A Status Register	1	0	32		0	understood	GE.h:9579	
+kpm register tables	geometry engine		ge	0x40034	OFIFO2 B Status Register	1	0	32		0	understood	GE.h:9589	
+kpm register tables	geometry engine		ge	0x40038	OFIFO Control Register (trashed)	1	0	32		0	understood	GE.h:9605	
 kpm register tables	host interface		hip	0x800000	HIP1_HH_GFIFO	1	0	32		0	understood	HIP.h:41	
 kpm register tables	host interface		hip	0x800100	HH_SWITCH	1	0	32		0	no-software-dependency	HIP.h:310	
 kpm register tables	host interface		hip	0x800108	HIP1_HH_GINTR_INFO	1	0	32		0	understood	HIP.h:321	
