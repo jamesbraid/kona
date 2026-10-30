@@ -2458,7 +2458,7 @@ ge.u	label	0x000086d3	mSpriteObject		located	ucode/ge_handlers.md#sprites	sprite
 ge.u	label	0x000087f7	mSpriteEye		located	ucode/ge_handlers.md#sprites	sprite.S
 ge.u	label	0x00008800	mSpriteAxial		located	ucode/ge_handlers.md#sprites	sprite.S
 ge.u	label	0x00008894	mSpriteRotateV0OntoV1		located	ucode/ge_handlers.md#sprites	sprite.S
-ge.u	label	0x000088e9	mMatrixMultCCWNoFetch		located	ucode/ge_handlers.md#sprites	sprite.S
+ge.u	label	0x000088e9	mMatrixMultCCWNoFetch		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x0000892b	mDrawLinPrim		located	ucode/ge_handlers.md#drawlins	drawlin.S
 ge.u	label	0x000089bc	mDrawLinList		located	ucode/ge_handlers.md#drawlins	drawlin.S
 ge.u	label	0x00008a2d	mmo_DrawMSLinPrim		located	ucode/ge_handlers.md#drawlins	drawlin.S

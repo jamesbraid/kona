@@ -784,6 +784,14 @@ lives at 0x8d2c (address register 0xb), the target matrix C at the address the c
   context, and ends with the end-of-command wait at 0xede.
 - `uMatrixMultCCW`: **inferred**, the u-name at 0x0eb0 (`umatrix.s` line 209) of the same product: input matrices C at
   register 0xa and W at 0xb, output C x W written over C. It multiplies with the same 32 multiply words and stores the same 16 words.
+- `mMatrixMultCCWNoFetch` (`sprite.S` lines 605-634, at 0x88e9): **inferred**, the sprite code's copy of the same
+  product, called by `mSpriteRotateMatrix` and jumped to by `mSpriteRotateV0OntoV1`. Its inputs are words 0-7 of the
+  matrix at register 0xb and the 16 words of C at register 0xa. Its 32 multiplies (0x88ee-0x8916) write registers 0x14
+  and up, and its adds total them in fours. Of its 32 add words, the eight at every second word from 0x8912 to 0x8920
+  add register 0x1e, which reads as zero, to a finished sum and load the store-data register with it. The 16 results go
+  back over C, `r95` = 4 to C + 0 to C + 7 and `r95` = 5 to C + 8 to C + 0xf, each nine words after its move; the last
+  eight stores sit in the shadow of the group-5 return at 0x8922. So it computes the same columns as `mMatrixMultCCW`
+  and leaves the same question of what the `r95` = 5 stores carry.
 - `uMatrixInverse`: **inferred**, the u-name at 0x0ee7 (`umatrix.s` line 314) of the normal-matrix inverse: it takes the
   modelview words 0x2f-0x3e as input, computes the cofactors and the reciprocal of the determinant, and its results, the
   inverse block from engine word 0x1f, feed the normal transforms of `uxform.s`.
