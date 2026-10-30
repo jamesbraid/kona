@@ -37,7 +37,8 @@ CTX = [
     ('fP', 117, 121, ''), ('fPr', 117, 121, ''), ('fQ', 122, 126, ''), ('fQr', 122, 126, ''),
     ('fvalid', 127, 127, ''),
     # word 4
-    ('f128', 128, 134, ''), ('f128p1', 129, 131, ''), ('f128p2', 132, 134, ''), ('fMk', 135, 138, ''), ('fMu', 139, 145, ''), ('f110', 146, 156, ''), ('f110s1', 147, 148, ''), ('f110s2', 149, 150, ''),
+    ('f128', 128, 134, ''), ('f128p1', 129, 131, ''), ('f128p2', 132, 134, ''), ('fMk', 135, 138, ''), ('fMu', 139, 145, ''), ('f110', 146, 156, ''), ('f110b10', 146, 146, ''), ('f110s1', 147, 148, ''), ('f110s2', 149, 150, ''),
+    ('f110u1', 151, 152, ''), ('f110u2', 153, 154, ''), ('f110sd', 155, 155, ''),
     # word 5
     ('f99h', 160, 160, ''), ('f99l', 161, 163, ''), ('f99b2', 161, 161, ''), ('f95', 164, 170, ''),
     ('fsind', 171, 171, ''), ('fsrel', 172, 172, ''), ('fsop', 173, 175, 'dec'),
@@ -165,10 +166,12 @@ def emit(out):
     w('define register offset=0x0 size=4 [ %s ];' % ' '.join('R%d' % i for i in range(32)))
     w('# Address registers (A, B, C, G); 18 bits wide on the chip, modelled as 32.')
     w('define register offset=0x100 size=4 [ %s ];' % ' '.join('AR%d' % i for i in range(32)))
-    w('# SEED: the seed unit\'s result register (ESTABLISHED: read back by r110 = 0x68d).')
+    w('# SEED: the seed result unit 2 reads through selector 0, the seed of the')
+    w('# operand two words back (ESTABLISHED, ge_isa.md "Unit-2 and seed-unit')
+    w('# operands"); SEED0 and SEED1 hold this word\'s and the last word\'s seeds.')
     w('# LR: return address the hardware keeps (INFERRED stack, modelled as one register).')
     w('# NEXTCMD: the next handler the dispatch hardware supplies (INFERRED).')
-    w('define register offset=0x200 size=4 [ SEED LR NEXTCMD PC SP ];')
+    w('define register offset=0x200 size=4 [ SEED LR NEXTCMD PC SP SEED0 SEED1 SDOP ];')
     w('# Per-word scratch: operands, unit results, address-unit result, store data.')
     w('define register offset=0x300 size=4 [ OPAV OPBV U1V U2V AUV CSRC STV LDV LDL P1V P2V ];')
     w('# U1H0..U1H7, U2H0..U2H7: each unit\'s result 0..7 words ago, the window')
@@ -283,6 +286,7 @@ def emit(out):
         for i in range(7, 0, -1):
             w('  U%dH%d = U%dH%d;' % (u, i, u, i - 1))
     w('  AZD2 = AZD1; AGTD2 = AGTD1; AZD1 = AZ; AGTD1 = AGT;')
+    w('  SEED = SEED1; SEED1 = SEED0;')
     w('}')
     w('# One nibble of the condition word from a result (ge_ops.md, "Branch')
     w('# conditions"): bit 3 <= 0, bit 2 zero, bit 1 negative, ESTABLISHED for the')
@@ -342,15 +346,33 @@ def emit(out):
     w('PT2: is f110s2=1 & FW2 { build FW2; }')
     w('PT2: is f110s2=2 { P2V = LDV; }')
     w('PT2: is f110s2=3 { P2V = LDL; }')
-    w('# Unit-2 and seed operands: their port layout is UNKNOWN. Modelled as the')
-    w('# diagnostic test shows them for register operands (r148 bits 9-5 and')
-    w('# 4-0), the A/D word when r99 bit 3 is set, and the seed result for')
-    w('# r110 = 0x68d (ESTABLISHED). Production code that forwards into unit 2')
-    w('# decompiles with the wrong operands.')
-    w('OP2A: is f110=0x68d { OPAV = SEED; }')
-    w('OP2A: is f99h=1 { OPAV = LDV; }')
-    w('OP2A: is f99h=0 & f148hr { OPAV = f148hr; }')
-    w('OPS: is LDR & CRD & PT1 & PT2 & OP2A & f148lr { build LDR; build CRD; build PT1; build PT2; build OP2A; OPBV = f148lr; }')
+    w('# Unit-2 ports (ESTABLISHED selectors 0-2, INFERRED 3; ge_isa.md "Unit-2')
+    w('# and seed-unit operands"): r110 bits 5-4 pick port 1 (OPAV), 3-2 port 2')
+    w('# (OPBV); 0 the seed result two words back, 1 a register named in r148')
+    w('# (bits 9-5, 4-0), 2 a forwarded result named in r128 (bits 5-3, 2-0) by')
+    w('# the unit-1 rule, 3 a memory word: port 1 the word read through A and D')
+    w('# (LDV, which keeps the last word read when a word reads nothing), port 2')
+    w('# the loaded word (LDL) (INFERRED, the matrix multiply-adds).')
+    for p, f128, opv in ((1, 'f128p1', 'OPAV'), (2, 'f128p2', 'OPBV')):
+        for k in range(8):
+            src = 'U1H%d' % (4 + k) if k < 4 else 'U2H%d' % k
+            w('FU%d: is %s=%d { %s = %s; }' % (p, f128, k, opv, src))
+    w('OP2A: is f110u1=0 { OPAV = SEED; }')
+    w('OP2A: is f110u1=1 & f148hr { OPAV = f148hr; }')
+    w('OP2A: is f110u1=2 & FU1 { build FU1; }')
+    w('OP2A: is f110u1=3 { OPAV = LDV; }')
+    w('OP2B: is f110u2=0 { OPBV = SEED; }')
+    w('OP2B: is f110u2=1 & f148lr { OPBV = f148lr; }')
+    w('OP2B: is f110u2=2 & FU2 { build FU2; }')
+    w('OP2B: is f110u2=3 { OPBV = LDL; }')
+    w('# Seed operand (ESTABLISHED): r110 bit 1 set takes the register in r148')
+    w('# bits 9-5, clear the forwarded result in r128 bits 5-3.')
+    for k in range(8):
+        src = 'U1H%d' % (4 + k) if k < 4 else 'U2H%d' % k
+        w('FSD: is f128p1=%d { SDOP = %s; }' % (k, src))
+    w('SDO: is f110sd=1 & f148hr { SDOP = f148hr; }')
+    w('SDO: is f110sd=0 & FSD { build FSD; }')
+    w('OPS: is LDR & CRD & PT1 & PT2 & OP2A & OP2B & SDO { build LDR; build CRD; build PT1; build PT2; build OP2A; build OP2B; build SDO; }')
     w('')
     w('U1S: is fMu=0x7f { }')
     for code, mn, pc, kind, label in U1:
@@ -365,12 +387,14 @@ def emit(out):
     w('# k = 5 (0x2f: move of B or minimum), 7 (0x3f) and the rest: UNKNOWN.')
     w('U2S: is fMk { U2V = u2_op(fMk:1, OPAV, OPBV); STV = U2V; U2H0 = U2V; }')
     w('')
-    w('# Seed unit (r110): reciprocal 0x6bf and reciprocal square root 0x2bf, each')
-    w('# within 0.4%% with 7 fraction bits, ESTABLISHED; the exact table is UNKNOWN,')
-    w('# so pcodeops. Other r110 values are operand routing (not modelled).')
-    w('SDS: is f110=0x6bf { SEED = rcp_seed(OPAV); }')
-    w('SDS: is f110=0x2bf { SEED = rsqrt_seed(OPAV); }')
-    w('SDS: is f110 { }')
+    w('# Seed unit (ESTABLISHED, ge_isa.md "Unit-2 and seed-unit operands"): it')
+    w('# runs in every word on SDOP; r110 bit 10 set gives the reciprocal seed,')
+    w('# clear the reciprocal-square-root seed, and unit 2 reads it two words')
+    w('# later. APPROXIMATION: the seeds are within 0.4%% with 7 fraction bits')
+    w('# (ESTABLISHED) but the table is UNKNOWN, so the exact 1/x and 1/sqrt(x)')
+    w('# stand in; a seed nothing reads is dead code the decompiler drops.')
+    w('SDS: is f110b10=1 { SEED0 = int2float(1:4) f/ SDOP; }')
+    w('SDS: is f110b10=0 { SEED0 = int2float(1:4) f/ sqrt(SDOP); }')
     w('')
     w('# Destinations: unit 1 writes Q, unit 2 writes P; 0x1f is the idle value')
     w('# (ESTABLISHED as the no-op value; "no register write" INFERRED: stores of a')

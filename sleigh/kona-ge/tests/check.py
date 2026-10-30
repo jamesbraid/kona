@@ -227,8 +227,13 @@ def test_d():
         src = open(p).read() if os.path.exists(p) else ''
         lines = src.count('\n')
         res = []
+        # The decompiler may hold a clamped value in a variable before the
+        # multiply; count a multiply whose operand is such a variable too.
+        clamped = set(re.findall(r'(\w+) = (?:\(float\))?clamp01\(', src))
         for what, rx, need in cs:
             got = len(re.findall(rx, src))
+            if rx.startswith(r'clamp01\([^()]*\)\s*\*') and clamped:
+                got += len(re.findall(r'\b(?:%s)\s\*\s' % '|'.join(map(re.escape, clamped)), src))
             res.append((what, got, need, got >= need))
         good = all(r[3] for r in res) and 'decompile failed' not in src and lines > 5
         ok &= good

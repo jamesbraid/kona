@@ -144,7 +144,32 @@ So a single-precision unit-1 or unit-2 result is available four words after the 
 
 The other order would break both.
 
-The `r110` values with other low bits belong to unit 2 and the seed unit. Their port layout is **unknown**: the evidence above covers unit 1 only.
+### Unit-2 and seed-unit operands
+
+`r110` is eleven bits. Bits 9-6 route unit 1 (above). Bits 5-4 and 3-2 are unit 2's two port selectors, bits 1 and 10 control the seed unit, and bit 0 is 1 in every word except 517 that no rule below needs. Sources as above: production `ge.u`, the IR diagnostic `ge.u` (IRIX 6.5.30m) and `irsaudit` `expected_token`.
+
+| Field | Unit-2 port 1 | Unit-2 port 2 | Seed unit |
+|---|---|---|---|
+| Source selector | `r110` bits 5-4 | `r110` bits 3-2 | `r110` bit 1 |
+| Register | selector 1: `r148` bits 9-5 | selector 1: `r148` bits 4-0 | bit 1 = 1: `r148` bits 9-5 |
+| Forwarded result | selector 2: `r128` bits 5-3 | selector 2: `r128` bits 2-0 | bit 1 = 0: `r128` bits 5-3 |
+| Memory operand | selector 3: the word read through A and D | selector 3: the loaded word | none |
+| Seed result | selector 0 | selector 0 | |
+
+The unit-2 codes are the unit-1 codes plus one: unit 1 uses 0 for a register, 1 for a forward, 2 for the A/D word and 3 for the loaded word. Unit 2 has one memory code, and the port decides which of the two memory words it takes.
+
+**Established** (registers, selector 1). Two diagnostic words fix the fields. At `ge_inst.s` line 4010 (0x1dee) the unit-2 move of its first operand has `r110` = 0x69d (port 1 selector 1), `r148` = 0, and returns 0x4a5a5a5a, the word in register 0. At line 4025 (0x1e08) code 0x2f, which returns its second operand, has `r110` = 0x6b5 (port 2 selector 1), `r148` = 1, and returns 0x45a5a5a5, the word in register 1. The multiply at line 3996 (0x1dd4, `r110` = 0x695, both selector 1, `r148` = 1) returns their product. In production unit-2-only words, selector 1 comes with a nonzero register field in 1,363 of 1,413 port-1 uses and 1,972 of 2,249 port-2 uses; the rest name register 0.
+
+**Established** (forwarding, selector 2). It uses unit 1's rule: `r128` code k takes unit 1's result 4 + k words back for k = 0-3, and unit 2's result 4 + (k - 4) words back for k = 4-7. The diagnostic chain at `ge_inst.s` lines 3512-3528 is the first witness. Its multiplies at 0x1a20, 0x1a25 and 0x1a2b have port-2 selector 2 (`r110` = 0x5d9) and `r128` bits 2-0 = 4, 5 and 6. The previous multiply is 4, 5 and 6 words back, and no register carries the product between them, yet `irsaudit` expects 100.0, 1000.0, 1e4 and 1e5. Production is the second: in words where unit 2 runs alone, 2,151 of the 2,163 forwarded unit-2 operands have an operation of the named unit at exactly that distance. Of the 12 misses, nine are double-precision words in `clear.S` and `matrix.S`, which take two slots. The other three are in `uunpack.s` (0x2ccd, 0x2d68, 0x2e16), where the named distance lands on a multiply that sits between two integer-to-float conversions.
+
+**Established** (the seed unit). The seed unit works on one operand: a register named in `r148` bits 9-5 when `r110` bit 1 is set, or the forwarded result named in `r128` bits 5-3 when it is clear. Bit 10 picks the function: 1 the reciprocal seed, 0 the reciprocal-square-root seed. Unit 2 reads the seed through selector 0 exactly two words later. Two independent sites agree:
+
+- The diagnostic seed test. `ge_inst.s` line 4182 (0x1f5e, `r110` = 0x6bf, bit 10 set, bit 1 set) and line 4206 (0x1f80, `r110` = 0x2bf, bit 10 clear) take register 0. Two words later the unit-2 moves at 0x1f60 and 0x1f82 (`r110` = 0x68d, port 1 selector 0) return the reciprocal and reciprocal-square-root seeds `irsaudit` expects (index 167-170).
+- The production program. Every one of the 399 production words that reads selector 0 has a word two before it whose seed operand is real. In 228 that operand is a register. In the other 171 it is a forwarded result, and in each of those an operation of the named unit sits at the distance the code gives. The Newton-Raphson sequences show the pairing directly. In `utexgen.s`, 0xbca seeds a sum forwarded from 0xbc5, and 0xbcc squares that seed (`r110` = 0x281, both ports selector 0). The step at 0xbd0 then computes (3 - x y0^2) / 2 from the square and register 2, and 0xbd4 multiplies the step by a fresh seed of register 2 taken at 0xbd2. `mMatrixInverse` (`umatrix.s` 0xf2d, `r110` = 0x6bd, `r128` = 0xd) seeds the determinant forwarded from 0xf28 for the step at 0xf2f.
+
+So the seed unit runs in every word. A word whose `r110` is the no-op value 0x6bd still seeds whatever its `r128` bits 5-3 forward, and only a read two words later makes that result matter. Words with `r110` bits 1-0 = 0 (517, all with bit 10 set) are never followed by a selector-0 read. What clearing bit 0 does is **unknown**.
+
+**Inferred** (selector 3, a memory word: the A/D word on port 1, the loaded word on port 2). In unit-2-only words, port-1 selector 3 comes with an A/D read (`r99` bit 3) in 1,635 of 1,990 uses. Port 1 must take the word read through A and D at two sites. In `uMatrixMultCCC` the multiply at 0xe76 (`r110` = 0x6b9, A = 0x18, D = 0xc) takes staging word 0xc, the 0.5 stored at 0xe71, against the subtract forwarded from 0xe72. In `lDI3` the colour multiplies at 0x28ba-0x28c0 (`r110` = 0x6b5) take the vertex colour word that A = 0xa or 0xb and D = 0x1b-0x1e name, against the scale in a register. Port 2 must take the loaded word in the matrix multiplies, whose words select 3 on both ports (`r110` low bits 0x3d) and read one factor through A and D and the other through C. `uMatrixMultCCC` 0xe7f reads the modelview word through A = 0xb and the composite word at immediate 0x2f through C = 0x1b. `mMatrixMultCCW` 0xeb5 reads one matrix through A = 0xb and the other through C = 0xa. Taking the same word on both ports would square one factor. The three `uMatrixMultCCC` multiplies at 0xe77-0xe79 name no A/D read (A = 0, D = 0) and must still multiply by 0.5. So a word that reads nothing through A and D leaves the last word read in place for selector 3. That is also **inferred**.
 
 ### How code reaches the special registers
 

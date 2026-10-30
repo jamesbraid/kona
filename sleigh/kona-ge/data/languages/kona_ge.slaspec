@@ -44,10 +44,12 @@ define space register type=register_space size=4;
 define register offset=0x0 size=4 [ R0 R1 R2 R3 R4 R5 R6 R7 R8 R9 R10 R11 R12 R13 R14 R15 R16 R17 R18 R19 R20 R21 R22 R23 R24 R25 R26 R27 R28 R29 R30 R31 ];
 # Address registers (A, B, C, G); 18 bits wide on the chip, modelled as 32.
 define register offset=0x100 size=4 [ AR0 AR1 AR2 AR3 AR4 AR5 AR6 AR7 AR8 AR9 AR10 AR11 AR12 AR13 AR14 AR15 AR16 AR17 AR18 AR19 AR20 AR21 AR22 AR23 AR24 AR25 AR26 AR27 AR28 AR29 AR30 AR31 ];
-# SEED: the seed unit's result register (ESTABLISHED: read back by r110 = 0x68d).
+# SEED: the seed result unit 2 reads through selector 0, the seed of the
+# operand two words back (ESTABLISHED, ge_isa.md "Unit-2 and seed-unit
+# operands"); SEED0 and SEED1 hold this word's and the last word's seeds.
 # LR: return address the hardware keeps (INFERRED stack, modelled as one register).
 # NEXTCMD: the next handler the dispatch hardware supplies (INFERRED).
-define register offset=0x200 size=4 [ SEED LR NEXTCMD PC SP ];
+define register offset=0x200 size=4 [ SEED LR NEXTCMD PC SP SEED0 SEED1 SDOP ];
 # Per-word scratch: operands, unit results, address-unit result, store data.
 define register offset=0x300 size=4 [ OPAV OPBV U1V U2V AUV CSRC STV LDV LDL P1V P2V ];
 # U1H0..U1H7, U2H0..U2H7: each unit's result 0..7 words ago, the window
@@ -102,8 +104,12 @@ define context contextreg
   fMk=(135,138)  noflow
   fMu=(139,145)  noflow
   f110=(146,156)  noflow
+  f110b10=(146,146)  noflow
   f110s1=(147,148)  noflow
   f110s2=(149,150)  noflow
+  f110u1=(151,152)  noflow
+  f110u2=(153,154)  noflow
+  f110sd=(155,155)  noflow
   f99h=(160,160)  noflow
   f99l=(161,163)  noflow
   f99b2=(161,161)  noflow
@@ -334,6 +340,7 @@ macro flagshift() {
   U2H2 = U2H1;
   U2H1 = U2H0;
   AZD2 = AZD1; AGTD2 = AGTD1; AZD1 = AZ; AGTD1 = AGT;
+  SEED = SEED1; SEED1 = SEED0;
 }
 # One nibble of the condition word from a result (ge_ops.md, "Branch
 # conditions"): bit 3 <= 0, bit 2 zero, bit 1 negative, ESTABLISHED for the
@@ -405,15 +412,50 @@ PT2: is f110s2=0 & f148lr { P2V = f148lr; }
 PT2: is f110s2=1 & FW2 { build FW2; }
 PT2: is f110s2=2 { P2V = LDV; }
 PT2: is f110s2=3 { P2V = LDL; }
-# Unit-2 and seed operands: their port layout is UNKNOWN. Modelled as the
-# diagnostic test shows them for register operands (r148 bits 9-5 and
-# 4-0), the A/D word when r99 bit 3 is set, and the seed result for
-# r110 = 0x68d (ESTABLISHED). Production code that forwards into unit 2
-# decompiles with the wrong operands.
-OP2A: is f110=0x68d { OPAV = SEED; }
-OP2A: is f99h=1 { OPAV = LDV; }
-OP2A: is f99h=0 & f148hr { OPAV = f148hr; }
-OPS: is LDR & CRD & PT1 & PT2 & OP2A & f148lr { build LDR; build CRD; build PT1; build PT2; build OP2A; OPBV = f148lr; }
+# Unit-2 ports (ESTABLISHED selectors 0-2, INFERRED 3; ge_isa.md "Unit-2
+# and seed-unit operands"): r110 bits 5-4 pick port 1 (OPAV), 3-2 port 2
+# (OPBV); 0 the seed result two words back, 1 a register named in r148
+# (bits 9-5, 4-0), 2 a forwarded result named in r128 (bits 5-3, 2-0) by
+# the unit-1 rule, 3 a memory word: port 1 the word read through A and D
+# (LDV, which keeps the last word read when a word reads nothing), port 2
+# the loaded word (LDL) (INFERRED, the matrix multiply-adds).
+FU1: is f128p1=0 { OPAV = U1H4; }
+FU1: is f128p1=1 { OPAV = U1H5; }
+FU1: is f128p1=2 { OPAV = U1H6; }
+FU1: is f128p1=3 { OPAV = U1H7; }
+FU1: is f128p1=4 { OPAV = U2H4; }
+FU1: is f128p1=5 { OPAV = U2H5; }
+FU1: is f128p1=6 { OPAV = U2H6; }
+FU1: is f128p1=7 { OPAV = U2H7; }
+FU2: is f128p2=0 { OPBV = U1H4; }
+FU2: is f128p2=1 { OPBV = U1H5; }
+FU2: is f128p2=2 { OPBV = U1H6; }
+FU2: is f128p2=3 { OPBV = U1H7; }
+FU2: is f128p2=4 { OPBV = U2H4; }
+FU2: is f128p2=5 { OPBV = U2H5; }
+FU2: is f128p2=6 { OPBV = U2H6; }
+FU2: is f128p2=7 { OPBV = U2H7; }
+OP2A: is f110u1=0 { OPAV = SEED; }
+OP2A: is f110u1=1 & f148hr { OPAV = f148hr; }
+OP2A: is f110u1=2 & FU1 { build FU1; }
+OP2A: is f110u1=3 { OPAV = LDV; }
+OP2B: is f110u2=0 { OPBV = SEED; }
+OP2B: is f110u2=1 & f148lr { OPBV = f148lr; }
+OP2B: is f110u2=2 & FU2 { build FU2; }
+OP2B: is f110u2=3 { OPBV = LDL; }
+# Seed operand (ESTABLISHED): r110 bit 1 set takes the register in r148
+# bits 9-5, clear the forwarded result in r128 bits 5-3.
+FSD: is f128p1=0 { SDOP = U1H4; }
+FSD: is f128p1=1 { SDOP = U1H5; }
+FSD: is f128p1=2 { SDOP = U1H6; }
+FSD: is f128p1=3 { SDOP = U1H7; }
+FSD: is f128p1=4 { SDOP = U2H4; }
+FSD: is f128p1=5 { SDOP = U2H5; }
+FSD: is f128p1=6 { SDOP = U2H6; }
+FSD: is f128p1=7 { SDOP = U2H7; }
+SDO: is f110sd=1 & f148hr { SDOP = f148hr; }
+SDO: is f110sd=0 & FSD { build FSD; }
+OPS: is LDR & CRD & PT1 & PT2 & OP2A & OP2B & SDO { build LDR; build CRD; build PT1; build PT2; build OP2A; build OP2B; build SDO; }
 
 U1S: is fMu=0x7f { }
 # 0x20 dadd: double add, ESTABLISHED (ge_inst.s 3829); the two-word pairing is not mapped, so a pcodeop
@@ -476,12 +518,14 @@ U2S: is fMk=0xa { U2V = (int2float(3:4) f- (OPAV f* OPBV)) f/ int2float(2:4); ST
 # k = 5 (0x2f: move of B or minimum), 7 (0x3f) and the rest: UNKNOWN.
 U2S: is fMk { U2V = u2_op(fMk:1, OPAV, OPBV); STV = U2V; U2H0 = U2V; }
 
-# Seed unit (r110): reciprocal 0x6bf and reciprocal square root 0x2bf, each
-# within 0.4%% with 7 fraction bits, ESTABLISHED; the exact table is UNKNOWN,
-# so pcodeops. Other r110 values are operand routing (not modelled).
-SDS: is f110=0x6bf { SEED = rcp_seed(OPAV); }
-SDS: is f110=0x2bf { SEED = rsqrt_seed(OPAV); }
-SDS: is f110 { }
+# Seed unit (ESTABLISHED, ge_isa.md "Unit-2 and seed-unit operands"): it
+# runs in every word on SDOP; r110 bit 10 set gives the reciprocal seed,
+# clear the reciprocal-square-root seed, and unit 2 reads it two words
+# later. APPROXIMATION: the seeds are within 0.4%% with 7 fraction bits
+# (ESTABLISHED) but the table is UNKNOWN, so the exact 1/x and 1/sqrt(x)
+# stand in; a seed nothing reads is dead code the decompiler drops.
+SDS: is f110b10=1 { SEED0 = int2float(1:4) f/ SDOP; }
+SDS: is f110b10=0 { SEED0 = int2float(1:4) f/ sqrt(SDOP); }
 
 # Destinations: unit 1 writes Q, unit 2 writes P; 0x1f is the idle value
 # (ESTABLISHED as the no-op value; "no register write" INFERRED: stores of a
