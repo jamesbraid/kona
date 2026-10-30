@@ -779,3 +779,30 @@ Read from the IP27 Kona n32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/I
   **Established.** The immediate-mode glVertex4i, five word stores to the command port: the token 149 (0x95) and the integers from `a0` to `a3` unchanged.
 - `__glkonim_Vertex4s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65ce0, 40 bytes):
   **Established.** The immediate-mode glVertex4s, three stores to the command port: the first short in the upper half with the token 0x96, then the second short over the masked third, then the fourth short alone in the upper half.
+
+## Further immediate-mode senders
+
+- `__glkonim_RasterPos2d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65720, 20 bytes):
+  **Established.** The immediate-mode glRasterPos2d, three stores to the command port: the token 168 (0xa8) as a word and the doubles in `f12` and `f13`, each as one 64-bit store.
+- `__glkonim_RasterPos2f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65740, 20 bytes):
+  **Established.** The immediate-mode glRasterPos2f, three stores to the command port: the token 169 (0xa9) and the floats in `f12` and `f13` as 32-bit stores.
+- `__glkonim_RasterPos2i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65760, 20 bytes):
+  **Established.** The immediate-mode glRasterPos2i, three word stores to the command port: the token 170 (0xaa) and the integers in `a0` and `a1`, unchanged.
+- `__glkonim_RasterPos2s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65780, 20 bytes):
+  **Established.** The immediate-mode glRasterPos2s, three word stores to the command port: the token 171 (0xab) and then each short argument from `a0` and `a1` as a whole word, with no packing into halves, unlike the short forms of the colour and vertex senders.
+- `__glkonim_RasterPos3d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da657a0, 24 bytes):
+  **Established.** The immediate-mode glRasterPos3d, four stores to the command port: the token 172 (0xac) and the doubles in `f12`, `f13` and `f14` as 64-bit stores.
+- `__glkonim_RasterPos3f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da657c0, 24 bytes):
+  **Established.** The immediate-mode glRasterPos3f, four stores to the command port: the token 173 (0xad) and the floats in `f12`, `f13` and `f14`.
+- `__glkonim_RasterPos3i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da657e0, 24 bytes):
+  **Established.** The immediate-mode glRasterPos3i, four word stores to the command port: the token 174 (0xae) and the integers from `a0`, `a1` and `a2` unchanged.
+- `__glkonim_RasterPos3s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65800, 24 bytes):
+  **Established.** The immediate-mode glRasterPos3s, four word stores to the command port: the token 175 (0xaf) and the three short arguments from `a0`, `a1` and `a2`, each sent as a whole word.
+- `__glkonim_RasterPos4d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65820, 28 bytes):
+  **Established.** The immediate-mode glRasterPos4d, five stores to the command port: the token 176 (0xb0) and the doubles in `f12` to `f15` as 64-bit stores.
+- `__glkonim_RasterPos4f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65840, 28 bytes):
+  **Established.** The immediate-mode glRasterPos4f, five stores to the command port: the token 177 (0xb1) and the floats in `f12` to `f15`.
+- `__glkonim_RasterPos4i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65860, 28 bytes):
+  **Established.** The immediate-mode glRasterPos4i, five word stores to the command port: the token 178 (0xb2) and the integers from `a0` to `a3` unchanged.
+- `__glkonim_RasterPos4s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65880, 28 bytes):
+  **Established.** The immediate-mode glRasterPos4s, five word stores to the command port: the token 179 (0xb3) and the four short arguments from `a0` to `a3`, each sent as a whole word.
