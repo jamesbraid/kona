@@ -14225,7 +14225,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	Destroy
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	f9aec81ca025		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	27ff1e172de2		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	736c038cb4f6		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	6ac3d04c65ec	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	6ac3d04c65ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	ac52618daf0e		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	70f5a09ad464		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947b54	428	kona_writeconfig	mdebug	e9a62bd6f416		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
@@ -15297,7 +15297,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9bf63c	1088	Accumu
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9bfa7c	928	Mult	mdebug	6e40370e3302		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9bfe1c	584	Add	mdebug	8d0aaf6996d3		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c0064	392	Return	mdebug	e65945fbf0c0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c01ec	520	Clear	mdebug	a93427c52b5f	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c01ec	520	Clear	mdebug	a93427c52b5f	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c03f4	11232	Pick	mdebug	74d2dc0dad97	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c0400	288	__glInitAccum64	dynsym+mdebug	4d07f8145fbe		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c0520	424	__glim_Accum	dynsym+mdebug	b84a38cc915e		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
@@ -15559,33 +15559,33 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d3d7c	212	__glCheckMap
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d3e50	220	FetchNon32	mdebug	189b9d669f9d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d3f2c	64	Fetch32	mdebug	430f34c2d12e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d3f6c	24	StoreNEVER	mdebug	75810d932729		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d3f84	112	StoreLESS	mdebug	ca113bbab91c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d3ff4	112	StoreLESS_s	mdebug	f5e44b567d19		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4064	108	StoreEQUAL	mdebug	c6895fac1b99		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d40d0	112	StoreLEQUAL	mdebug	a2505ab1fef7		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4140	112	StoreLEQUAL_s	mdebug	43d8b55b87ff		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d41b0	112	StoreGREATER	mdebug	07bd02f4c8e8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4220	112	StoreGREATER_s	mdebug	c8ceaf9417dd		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4290	108	StoreNOTEQUAL	mdebug	d5ce72ad5299		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d42fc	112	StoreGEQUAL	mdebug	42828e751eee		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d436c	112	StoreGEQUAL_s	mdebug	fe686566413f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d43dc	84	StoreALWAYS	mdebug	5e90b9b19ac0		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4430	88	StoreLESS_W	mdebug	eb774968511e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4488	88	StoreLESS_W_s	mdebug	dfa59a8c88c9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d44e0	92	StoreEQUAL_W	mdebug	00fc4a5b3d37		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d453c	92	StoreLEQUAL_W	mdebug	f32694357dba		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4598	92	StoreLEQUAL_W_s	mdebug	b788c5c759de		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d45f4	88	StoreGREATER_W	mdebug	f1c88602ebc0		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d464c	88	StoreGREATER_W_s	mdebug	6b456a77e23f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d46a4	92	StoreNOTEQUAL_W	mdebug	0b9bbd321b4f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4700	92	StoreGEQUAL_W	mdebug	cf78e072a3c6		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d475c	92	StoreGEQUAL_W_s	mdebug	55702a218b62		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d3f84	112	StoreLESS	mdebug	ca113bbab91c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d3ff4	112	StoreLESS_s	mdebug	f5e44b567d19		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4064	108	StoreEQUAL	mdebug	c6895fac1b99		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d40d0	112	StoreLEQUAL	mdebug	a2505ab1fef7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4140	112	StoreLEQUAL_s	mdebug	43d8b55b87ff		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d41b0	112	StoreGREATER	mdebug	07bd02f4c8e8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4220	112	StoreGREATER_s	mdebug	c8ceaf9417dd		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4290	108	StoreNOTEQUAL	mdebug	d5ce72ad5299		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d42fc	112	StoreGEQUAL	mdebug	42828e751eee		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d436c	112	StoreGEQUAL_s	mdebug	fe686566413f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d43dc	84	StoreALWAYS	mdebug	5e90b9b19ac0		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4430	88	StoreLESS_W	mdebug	eb774968511e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4488	88	StoreLESS_W_s	mdebug	dfa59a8c88c9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d44e0	92	StoreEQUAL_W	mdebug	00fc4a5b3d37		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d453c	92	StoreLEQUAL_W	mdebug	f32694357dba		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4598	92	StoreLEQUAL_W_s	mdebug	b788c5c759de		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d45f4	88	StoreGREATER_W	mdebug	f1c88602ebc0		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d464c	88	StoreGREATER_W_s	mdebug	6b456a77e23f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d46a4	92	StoreNOTEQUAL_W	mdebug	0b9bbd321b4f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4700	92	StoreGEQUAL_W	mdebug	cf78e072a3c6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d475c	92	StoreGEQUAL_W_s	mdebug	55702a218b62		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d47b8	1368	StoreALWAYS_W	mdebug	f072ea21b31b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4d10	536	Fix_zbuffer	mdebug	a16cf6602515		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4d10	536	Fix_zbuffer	mdebug	a16cf6602515		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4f28	8692	Resize	mdebug	5936f3fbb7cc	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d5104	228	__glInitDepth24	dynsym+mdebug	da8b8d6f01cd		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d5104	228	__glInitDepth24	dynsym+mdebug	da8b8d6f01cd		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d51e8	224	__glInitDepth32	dynsym+mdebug	320882f1712b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d52c8	192	__glInitDepth	dynsym+mdebug	925d0a4fdc8d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d52c8	192	__glInitDepth	dynsym+mdebug	925d0a4fdc8d		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d5390	200	__glGenericFreeDlist	dynsym+mdebug	b2b056d9f600		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d5458	60	__glGenericExecuteDlist	dynsym+mdebug	49e3e13306b5		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d5494	212	__glGenericAllocDlist	dynsym+mdebug	be1bb1bd99aa		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
@@ -21095,31 +21095,31 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cfbb0	196	__glCheckM
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cfc80	188	FetchNon32	dwarf+funcnames	90130051a159		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cfd40	64	Fetch32	dwarf+funcnames	555036df7486		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cfd80	8	StoreNEVER	dwarf+funcnames	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cfd90	104	StoreLESS	dwarf+funcnames	6cfaab55cc54		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cfe00	104	StoreLESS_s	dwarf+funcnames	8bf05dd33002		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cfe70	100	StoreEQUAL	dwarf+funcnames	aad1fbd0862f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cfee0	104	StoreLEQUAL	dwarf+funcnames	88c992be202b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cff50	104	StoreLEQUAL_s	dwarf+funcnames	5dd849c7d451		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cffc0	104	StoreGREATER	dwarf+funcnames	bb83cc750baf		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0030	104	StoreGREATER_s	dwarf+funcnames	86d4527c8c14		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d00a0	100	StoreNOTEQUAL	dwarf+funcnames	e175bb11003a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0110	104	StoreGEQUAL	dwarf+funcnames	21d42e53b6f9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0180	104	StoreGEQUAL_s	dwarf+funcnames	e0870ad0c70a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d01f0	84	StoreALWAYS	dwarf+funcnames	821d93924f55		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0250	84	StoreLESS_W	dwarf+funcnames	a0fa74973dc3		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d02b0	84	StoreLESS_W_s	dwarf+funcnames	ee2df98668de		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0310	88	StoreEQUAL_W	dwarf+funcnames	9b6ffda3fa7d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0370	88	StoreLEQUAL_W	dwarf+funcnames	2f1207c85770		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d03d0	88	StoreLEQUAL_W_s	dwarf+funcnames	2f5410f45085		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0430	84	StoreGREATER_W	dwarf+funcnames	4fb266b2a702		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0490	84	StoreGREATER_W_s	dwarf+funcnames	3f1350f0c2c5		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d04f0	88	StoreNOTEQUAL_W	dwarf+funcnames	6a0e35454cd2		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0550	88	StoreGEQUAL_W	dwarf+funcnames	091e4104f210		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d05b0	88	StoreGEQUAL_W_s	dwarf+funcnames	6e8e6aee4020		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cfd90	104	StoreLESS	dwarf+funcnames	6cfaab55cc54		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cfe00	104	StoreLESS_s	dwarf+funcnames	8bf05dd33002		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cfe70	100	StoreEQUAL	dwarf+funcnames	aad1fbd0862f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cfee0	104	StoreLEQUAL	dwarf+funcnames	88c992be202b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cff50	104	StoreLEQUAL_s	dwarf+funcnames	5dd849c7d451		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cffc0	104	StoreGREATER	dwarf+funcnames	bb83cc750baf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0030	104	StoreGREATER_s	dwarf+funcnames	86d4527c8c14		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d00a0	100	StoreNOTEQUAL	dwarf+funcnames	e175bb11003a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0110	104	StoreGEQUAL	dwarf+funcnames	21d42e53b6f9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0180	104	StoreGEQUAL_s	dwarf+funcnames	e0870ad0c70a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d01f0	84	StoreALWAYS	dwarf+funcnames	821d93924f55		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0250	84	StoreLESS_W	dwarf+funcnames	a0fa74973dc3		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d02b0	84	StoreLESS_W_s	dwarf+funcnames	ee2df98668de		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0310	88	StoreEQUAL_W	dwarf+funcnames	9b6ffda3fa7d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0370	88	StoreLEQUAL_W	dwarf+funcnames	2f1207c85770		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d03d0	88	StoreLEQUAL_W_s	dwarf+funcnames	2f5410f45085		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0430	84	StoreGREATER_W	dwarf+funcnames	4fb266b2a702		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0490	84	StoreGREATER_W_s	dwarf+funcnames	3f1350f0c2c5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d04f0	88	StoreNOTEQUAL_W	dwarf+funcnames	6a0e35454cd2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0550	88	StoreGEQUAL_W	dwarf+funcnames	091e4104f210		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d05b0	88	StoreGEQUAL_W_s	dwarf+funcnames	6e8e6aee4020		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0610	8	StoreALWAYS_W	dwarf+funcnames	a7e7ca11a6b8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0d70	400	Fix_zbuffer	dwarf+funcnames	daf21edda63c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0f30	72	Resize	dwarf+funcnames	2a74d23600e4	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1120	232	__glInitDepth24	dwarf+dynsym	45cc23c572d1		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1120	232	__glInitDepth24	dwarf+dynsym	45cc23c572d1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1210	228	__glInitDepth32	dwarf+dynsym	9eb69b8494a8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1300	172	__glInitDepth	dwarf+dynsym	4ff654bb7f92		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d13b0	192	__glGenericFreeDlist	dwarf+dynsym	52e4ec0259fd		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
@@ -25347,7 +25347,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa630	260	Destr
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa740	76	initialDestroyContext	dwarf	252b44a9b516		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa790	376	map_rtc	dwarf	c051c62aae87		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa910	4060	MakeCurrentRead	dwarf	93d9d2d8459d		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab8f0	108	MakeCurrent	dwarf	91e9de6fd992	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab8f0	108	MakeCurrent	dwarf	91e9de6fd992	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab960	136	VisualsMatch	dwarf	d930c5a1f5ba		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dab9f0	852	__glKonCreateContext	dwarf+dynsym	eb55a94ec96b		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dabd50	368	kona_writeconfig	dwarf	d6ee06d156cd		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
@@ -26413,7 +26413,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1df40	1304	Accu
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1e460	1092	Mult	dwarf	e403e0ec37b5		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1e8b0	556	Add	dwarf	b5ffa13ea888		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1eae0	432	Return	dwarf	e5f2d6041df0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1ec90	820	Clear	dwarf	5f4d7b310942	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1ec90	820	Clear	dwarf	5f4d7b310942	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1efd0	8	Pick	dwarf	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1efe0	288	__glInitAccum64	dwarf+dynsym	90d5e524c973		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1f100	404	__glim_Accum	dwarf+dynsym	fb5b786a6f91		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
@@ -26675,33 +26675,33 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e33900	196	__glCheckM
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e339d0	188	FetchNon32	dwarf	e4104841686e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33a90	64	Fetch32	dwarf	692be8b05107		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33ad0	8	StoreNEVER	dwarf	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33ae0	112	StoreLESS	dwarf	4e7083d0ec30		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33b50	112	StoreLESS_s	dwarf	aed8a8ae5639		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33bc0	108	StoreEQUAL	dwarf	78421bca4785		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33c30	112	StoreLEQUAL	dwarf	01d3d0c2b75b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33ca0	112	StoreLEQUAL_s	dwarf	84553b63fa22		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33d10	112	StoreGREATER	dwarf	51a6303b331b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33d80	112	StoreGREATER_s	dwarf	e14bcb0d4db1		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33df0	108	StoreNOTEQUAL	dwarf	1cd868b073bc		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33e60	112	StoreGEQUAL	dwarf	219c47939112		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33ed0	112	StoreGEQUAL_s	dwarf	2fe379d38b5f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33f40	92	StoreALWAYS	dwarf	d86ac9f618d9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33fa0	92	StoreLESS_W	dwarf	5da5a8d770ef		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34000	92	StoreLESS_W_s	dwarf	55c4aba1df25		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34060	96	StoreEQUAL_W	dwarf	7d0b6088cf0e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e340c0	96	StoreLEQUAL_W	dwarf	a53bd9b70abe		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34120	96	StoreLEQUAL_W_s	dwarf	3d8e6cec9024		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34180	92	StoreGREATER_W	dwarf	cb382b0d0539		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e341e0	92	StoreGREATER_W_s	dwarf	dafbbe942577		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34240	96	StoreNOTEQUAL_W	dwarf	ba6fec424d28		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e342a0	96	StoreGEQUAL_W	dwarf	2f241f6d462d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34300	96	StoreGEQUAL_W_s	dwarf	d72cfe1101a5		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33ae0	112	StoreLESS	dwarf	4e7083d0ec30		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33b50	112	StoreLESS_s	dwarf	aed8a8ae5639		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33bc0	108	StoreEQUAL	dwarf	78421bca4785		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33c30	112	StoreLEQUAL	dwarf	01d3d0c2b75b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33ca0	112	StoreLEQUAL_s	dwarf	84553b63fa22		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33d10	112	StoreGREATER	dwarf	51a6303b331b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33d80	112	StoreGREATER_s	dwarf	e14bcb0d4db1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33df0	108	StoreNOTEQUAL	dwarf	1cd868b073bc		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33e60	112	StoreGEQUAL	dwarf	219c47939112		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33ed0	112	StoreGEQUAL_s	dwarf	2fe379d38b5f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33f40	92	StoreALWAYS	dwarf	d86ac9f618d9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e33fa0	92	StoreLESS_W	dwarf	5da5a8d770ef		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34000	92	StoreLESS_W_s	dwarf	55c4aba1df25		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34060	96	StoreEQUAL_W	dwarf	7d0b6088cf0e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e340c0	96	StoreLEQUAL_W	dwarf	a53bd9b70abe		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34120	96	StoreLEQUAL_W_s	dwarf	3d8e6cec9024		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34180	92	StoreGREATER_W	dwarf	cb382b0d0539		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e341e0	92	StoreGREATER_W_s	dwarf	dafbbe942577		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34240	96	StoreNOTEQUAL_W	dwarf	ba6fec424d28		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e342a0	96	StoreGEQUAL_W	dwarf	2f241f6d462d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34300	96	StoreGEQUAL_W_s	dwarf	d72cfe1101a5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34360	8	StoreALWAYS_W	dwarf	a7e7ca11a6b8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34ad0	416	Fix_zbuffer	dwarf	27fec5f49afc		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34ad0	416	Fix_zbuffer	dwarf	27fec5f49afc		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34ca0	72	Resize	dwarf	0031c6ec0f0e	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e34e90	232	__glInitDepth24	dwarf+dynsym	5a740cc3d667		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e34e90	232	__glInitDepth24	dwarf+dynsym	5a740cc3d667		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e34f80	228	__glInitDepth32	dwarf+dynsym	763fe51975a8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e35070	172	__glInitDepth	dwarf+dynsym	3438173ee387		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e35070	172	__glInitDepth	dwarf+dynsym	3438173ee387		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e35120	192	__glGenericFreeDlist	dwarf+dynsym	87af078d27fb		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e351e0	52	__glGenericExecuteDlist	dwarf+dynsym	04c1df256cc6		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e35220	212	__glGenericAllocDlist	dwarf+dynsym	a2e1803fea97		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
@@ -30924,7 +30924,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	Destroy
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	f9aec81ca025		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	27ff1e172de2		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	736c038cb4f6		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	6ac3d04c65ec	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	6ac3d04c65ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	ac52618daf0e		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	70f5a09ad464		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947b54	428	kona_writeconfig	mdebug	e9a62bd6f416		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
@@ -31996,7 +31996,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9bf63c	1088	Accumu
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9bfa7c	928	Mult	mdebug	6e40370e3302		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9bfe1c	584	Add	mdebug	8d0aaf6996d3		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c0064	392	Return	mdebug	e65945fbf0c0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c01ec	520	Clear	mdebug	a93427c52b5f	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c01ec	520	Clear	mdebug	a93427c52b5f	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c03f4	11232	Pick	mdebug	74d2dc0dad97	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c0400	288	__glInitAccum64	dynsym+mdebug	4d07f8145fbe		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c0520	424	__glim_Accum	dynsym+mdebug	b84a38cc915e		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
@@ -32258,33 +32258,33 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d3d7c	212	__glCheckMap
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d3e50	220	FetchNon32	mdebug	189b9d669f9d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d3f2c	64	Fetch32	mdebug	430f34c2d12e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d3f6c	24	StoreNEVER	mdebug	75810d932729		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d3f84	112	StoreLESS	mdebug	ca113bbab91c		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d3ff4	112	StoreLESS_s	mdebug	f5e44b567d19		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4064	108	StoreEQUAL	mdebug	c6895fac1b99		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d40d0	112	StoreLEQUAL	mdebug	a2505ab1fef7		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4140	112	StoreLEQUAL_s	mdebug	43d8b55b87ff		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d41b0	112	StoreGREATER	mdebug	07bd02f4c8e8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4220	112	StoreGREATER_s	mdebug	c8ceaf9417dd		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4290	108	StoreNOTEQUAL	mdebug	d5ce72ad5299		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d42fc	112	StoreGEQUAL	mdebug	42828e751eee		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d436c	112	StoreGEQUAL_s	mdebug	fe686566413f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d43dc	84	StoreALWAYS	mdebug	5e90b9b19ac0		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4430	88	StoreLESS_W	mdebug	eb774968511e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4488	88	StoreLESS_W_s	mdebug	dfa59a8c88c9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d44e0	92	StoreEQUAL_W	mdebug	00fc4a5b3d37		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d453c	92	StoreLEQUAL_W	mdebug	f32694357dba		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4598	92	StoreLEQUAL_W_s	mdebug	b788c5c759de		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d45f4	88	StoreGREATER_W	mdebug	f1c88602ebc0		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d464c	88	StoreGREATER_W_s	mdebug	6b456a77e23f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d46a4	92	StoreNOTEQUAL_W	mdebug	0b9bbd321b4f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4700	92	StoreGEQUAL_W	mdebug	cf78e072a3c6		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d475c	92	StoreGEQUAL_W_s	mdebug	55702a218b62		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d3f84	112	StoreLESS	mdebug	ca113bbab91c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d3ff4	112	StoreLESS_s	mdebug	f5e44b567d19		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4064	108	StoreEQUAL	mdebug	c6895fac1b99		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d40d0	112	StoreLEQUAL	mdebug	a2505ab1fef7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4140	112	StoreLEQUAL_s	mdebug	43d8b55b87ff		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d41b0	112	StoreGREATER	mdebug	07bd02f4c8e8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4220	112	StoreGREATER_s	mdebug	c8ceaf9417dd		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4290	108	StoreNOTEQUAL	mdebug	d5ce72ad5299		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d42fc	112	StoreGEQUAL	mdebug	42828e751eee		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d436c	112	StoreGEQUAL_s	mdebug	fe686566413f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d43dc	84	StoreALWAYS	mdebug	5e90b9b19ac0		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4430	88	StoreLESS_W	mdebug	eb774968511e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4488	88	StoreLESS_W_s	mdebug	dfa59a8c88c9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d44e0	92	StoreEQUAL_W	mdebug	00fc4a5b3d37		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d453c	92	StoreLEQUAL_W	mdebug	f32694357dba		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4598	92	StoreLEQUAL_W_s	mdebug	b788c5c759de		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d45f4	88	StoreGREATER_W	mdebug	f1c88602ebc0		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d464c	88	StoreGREATER_W_s	mdebug	6b456a77e23f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d46a4	92	StoreNOTEQUAL_W	mdebug	0b9bbd321b4f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4700	92	StoreGEQUAL_W	mdebug	cf78e072a3c6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d475c	92	StoreGEQUAL_W_s	mdebug	55702a218b62		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d47b8	1368	StoreALWAYS_W	mdebug	f072ea21b31b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4d10	536	Fix_zbuffer	mdebug	a16cf6602515		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4d10	536	Fix_zbuffer	mdebug	a16cf6602515		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4f28	8692	Resize	mdebug	5936f3fbb7cc	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d5104	228	__glInitDepth24	dynsym+mdebug	da8b8d6f01cd		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d5104	228	__glInitDepth24	dynsym+mdebug	da8b8d6f01cd		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d51e8	224	__glInitDepth32	dynsym+mdebug	320882f1712b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d52c8	192	__glInitDepth	dynsym+mdebug	925d0a4fdc8d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d52c8	192	__glInitDepth	dynsym+mdebug	925d0a4fdc8d		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d5390	200	__glGenericFreeDlist	dynsym+mdebug	b2b056d9f600		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d5458	60	__glGenericExecuteDlist	dynsym+mdebug	49e3e13306b5		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d5494	212	__glGenericAllocDlist	dynsym+mdebug	be1bb1bd99aa		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
@@ -37794,31 +37794,31 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cfbb0	196	__glCheckM
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cfc80	188	FetchNon32	dwarf+funcnames	90130051a159		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cfd40	64	Fetch32	dwarf+funcnames	555036df7486		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cfd80	8	StoreNEVER	dwarf+funcnames	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cfd90	104	StoreLESS	dwarf+funcnames	6cfaab55cc54		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cfe00	104	StoreLESS_s	dwarf+funcnames	8bf05dd33002		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cfe70	100	StoreEQUAL	dwarf+funcnames	aad1fbd0862f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cfee0	104	StoreLEQUAL	dwarf+funcnames	88c992be202b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cff50	104	StoreLEQUAL_s	dwarf+funcnames	5dd849c7d451		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cffc0	104	StoreGREATER	dwarf+funcnames	bb83cc750baf		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0030	104	StoreGREATER_s	dwarf+funcnames	86d4527c8c14		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d00a0	100	StoreNOTEQUAL	dwarf+funcnames	e175bb11003a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0110	104	StoreGEQUAL	dwarf+funcnames	21d42e53b6f9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0180	104	StoreGEQUAL_s	dwarf+funcnames	e0870ad0c70a		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d01f0	84	StoreALWAYS	dwarf+funcnames	821d93924f55		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0250	84	StoreLESS_W	dwarf+funcnames	a0fa74973dc3		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d02b0	84	StoreLESS_W_s	dwarf+funcnames	ee2df98668de		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0310	88	StoreEQUAL_W	dwarf+funcnames	9b6ffda3fa7d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0370	88	StoreLEQUAL_W	dwarf+funcnames	2f1207c85770		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d03d0	88	StoreLEQUAL_W_s	dwarf+funcnames	2f5410f45085		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0430	84	StoreGREATER_W	dwarf+funcnames	4fb266b2a702		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0490	84	StoreGREATER_W_s	dwarf+funcnames	3f1350f0c2c5		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d04f0	88	StoreNOTEQUAL_W	dwarf+funcnames	6a0e35454cd2		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0550	88	StoreGEQUAL_W	dwarf+funcnames	091e4104f210		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d05b0	88	StoreGEQUAL_W_s	dwarf+funcnames	6e8e6aee4020		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cfd90	104	StoreLESS	dwarf+funcnames	6cfaab55cc54		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cfe00	104	StoreLESS_s	dwarf+funcnames	8bf05dd33002		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cfe70	100	StoreEQUAL	dwarf+funcnames	aad1fbd0862f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cfee0	104	StoreLEQUAL	dwarf+funcnames	88c992be202b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cff50	104	StoreLEQUAL_s	dwarf+funcnames	5dd849c7d451		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cffc0	104	StoreGREATER	dwarf+funcnames	bb83cc750baf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0030	104	StoreGREATER_s	dwarf+funcnames	86d4527c8c14		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d00a0	100	StoreNOTEQUAL	dwarf+funcnames	e175bb11003a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0110	104	StoreGEQUAL	dwarf+funcnames	21d42e53b6f9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0180	104	StoreGEQUAL_s	dwarf+funcnames	e0870ad0c70a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d01f0	84	StoreALWAYS	dwarf+funcnames	821d93924f55		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0250	84	StoreLESS_W	dwarf+funcnames	a0fa74973dc3		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d02b0	84	StoreLESS_W_s	dwarf+funcnames	ee2df98668de		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0310	88	StoreEQUAL_W	dwarf+funcnames	9b6ffda3fa7d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0370	88	StoreLEQUAL_W	dwarf+funcnames	2f1207c85770		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d03d0	88	StoreLEQUAL_W_s	dwarf+funcnames	2f5410f45085		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0430	84	StoreGREATER_W	dwarf+funcnames	4fb266b2a702		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0490	84	StoreGREATER_W_s	dwarf+funcnames	3f1350f0c2c5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d04f0	88	StoreNOTEQUAL_W	dwarf+funcnames	6a0e35454cd2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0550	88	StoreGEQUAL_W	dwarf+funcnames	091e4104f210		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d05b0	88	StoreGEQUAL_W_s	dwarf+funcnames	6e8e6aee4020		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0610	8	StoreALWAYS_W	dwarf+funcnames	a7e7ca11a6b8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0d70	400	Fix_zbuffer	dwarf+funcnames	daf21edda63c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0f30	72	Resize	dwarf+funcnames	2a74d23600e4	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1120	232	__glInitDepth24	dwarf+dynsym	45cc23c572d1		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1120	232	__glInitDepth24	dwarf+dynsym	45cc23c572d1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1210	228	__glInitDepth32	dwarf+dynsym	9eb69b8494a8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1300	172	__glInitDepth	dwarf+dynsym	4ff654bb7f92		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d13b0	192	__glGenericFreeDlist	dwarf+dynsym	52e4ec0259fd		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
@@ -42046,7 +42046,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a630	260	Destr
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a740	76	initialDestroyContext	dwarf	252b44a9b516		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a790	376	map_rtc	dwarf	c051c62aae87		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a910	4060	MakeCurrentRead	dwarf	93d9d2d8459d		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b8f0	108	MakeCurrent	dwarf	91e9de6fd992	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b8f0	108	MakeCurrent	dwarf	91e9de6fd992	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b960	136	VisualsMatch	dwarf	d930c5a1f5ba		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218b9f0	852	__glKonCreateContext	dwarf+dynsym	eb55a94ec96b		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218bd50	368	kona_writeconfig	dwarf	d6ee06d156cd		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
@@ -43112,7 +43112,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fdf40	1304	Accu
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fe460	1092	Mult	dwarf	e403e0ec37b5		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fe8b0	556	Add	dwarf	b5ffa13ea888		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21feae0	432	Return	dwarf	e5f2d6041df0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fec90	820	Clear	dwarf	5f4d7b310942	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fec90	820	Clear	dwarf	5f4d7b310942	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fefd0	8	Pick	dwarf	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21fefe0	288	__glInitAccum64	dwarf+dynsym	90d5e524c973		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ff100	404	__glim_Accum	dwarf+dynsym	fb5b786a6f91		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
@@ -43374,33 +43374,33 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2213900	196	__glCheckM
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22139d0	188	FetchNon32	dwarf	e4104841686e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213a90	64	Fetch32	dwarf	692be8b05107		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213ad0	8	StoreNEVER	dwarf	87506497337c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213ae0	112	StoreLESS	dwarf	4e7083d0ec30		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213b50	112	StoreLESS_s	dwarf	aed8a8ae5639		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213bc0	108	StoreEQUAL	dwarf	78421bca4785		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213c30	112	StoreLEQUAL	dwarf	01d3d0c2b75b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213ca0	112	StoreLEQUAL_s	dwarf	84553b63fa22		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213d10	112	StoreGREATER	dwarf	51a6303b331b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213d80	112	StoreGREATER_s	dwarf	e14bcb0d4db1		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213df0	108	StoreNOTEQUAL	dwarf	1cd868b073bc		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213e60	112	StoreGEQUAL	dwarf	219c47939112		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213ed0	112	StoreGEQUAL_s	dwarf	2fe379d38b5f		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213f40	92	StoreALWAYS	dwarf	d86ac9f618d9		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213fa0	92	StoreLESS_W	dwarf	5da5a8d770ef		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214000	92	StoreLESS_W_s	dwarf	55c4aba1df25		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214060	96	StoreEQUAL_W	dwarf	7d0b6088cf0e		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22140c0	96	StoreLEQUAL_W	dwarf	a53bd9b70abe		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214120	96	StoreLEQUAL_W_s	dwarf	3d8e6cec9024		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214180	92	StoreGREATER_W	dwarf	cb382b0d0539		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22141e0	92	StoreGREATER_W_s	dwarf	dafbbe942577		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214240	96	StoreNOTEQUAL_W	dwarf	ba6fec424d28		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22142a0	96	StoreGEQUAL_W	dwarf	2f241f6d462d		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214300	96	StoreGEQUAL_W_s	dwarf	d72cfe1101a5		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213ae0	112	StoreLESS	dwarf	4e7083d0ec30		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213b50	112	StoreLESS_s	dwarf	aed8a8ae5639		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213bc0	108	StoreEQUAL	dwarf	78421bca4785		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213c30	112	StoreLEQUAL	dwarf	01d3d0c2b75b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213ca0	112	StoreLEQUAL_s	dwarf	84553b63fa22		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213d10	112	StoreGREATER	dwarf	51a6303b331b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213d80	112	StoreGREATER_s	dwarf	e14bcb0d4db1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213df0	108	StoreNOTEQUAL	dwarf	1cd868b073bc		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213e60	112	StoreGEQUAL	dwarf	219c47939112		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213ed0	112	StoreGEQUAL_s	dwarf	2fe379d38b5f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213f40	92	StoreALWAYS	dwarf	d86ac9f618d9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2213fa0	92	StoreLESS_W	dwarf	5da5a8d770ef		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214000	92	StoreLESS_W_s	dwarf	55c4aba1df25		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214060	96	StoreEQUAL_W	dwarf	7d0b6088cf0e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22140c0	96	StoreLEQUAL_W	dwarf	a53bd9b70abe		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214120	96	StoreLEQUAL_W_s	dwarf	3d8e6cec9024		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214180	92	StoreGREATER_W	dwarf	cb382b0d0539		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22141e0	92	StoreGREATER_W_s	dwarf	dafbbe942577		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214240	96	StoreNOTEQUAL_W	dwarf	ba6fec424d28		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22142a0	96	StoreGEQUAL_W	dwarf	2f241f6d462d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214300	96	StoreGEQUAL_W_s	dwarf	d72cfe1101a5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214360	8	StoreALWAYS_W	dwarf	a7e7ca11a6b8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214ad0	416	Fix_zbuffer	dwarf	27fec5f49afc		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214ad0	416	Fix_zbuffer	dwarf	27fec5f49afc		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214ca0	72	Resize	dwarf	0031c6ec0f0e	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2214e90	232	__glInitDepth24	dwarf+dynsym	5a740cc3d667		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2214e90	232	__glInitDepth24	dwarf+dynsym	5a740cc3d667		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2214f80	228	__glInitDepth32	dwarf+dynsym	763fe51975a8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2215070	172	__glInitDepth	dwarf+dynsym	3438173ee387		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2215070	172	__glInitDepth	dwarf+dynsym	3438173ee387		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2215120	192	__glGenericFreeDlist	dwarf+dynsym	87af078d27fb		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22151e0	52	__glGenericExecuteDlist	dwarf+dynsym	04c1df256cc6		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2215220	212	__glGenericAllocDlist	dwarf+dynsym	a2e1803fea97		in	located	docs/sample-implementation.md#so_dlistc	so_dlist.c
