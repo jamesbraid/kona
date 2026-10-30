@@ -15,12 +15,13 @@
 # scripts/ge_disasm.py, and the display reproduces that script field for
 # field after a mnemonic.
 #
-# Semantics modelled (each with its label below): the unit-1 and unit-2
-# operations and their operand ports with result forwarding, the seeds, the
-# address unit, stores and the nine-word store-data register, the flag word
-# and its twelve-word latency, and transfers with their delay slots. Not
-# modelled, because no document maps them: r176, r162, r198, r217, r71,
-# r62, r25, most of r95, and the latency of register writes.
+# Semantics modelled (each with its label below): the three lanes and the
+# lane mask, the unit-1 and unit-2 operations and their operand ports with
+# result forwarding, the seeds, the address unit, stores and the nine-word
+# store-data register, the flag word and its twelve-word latency, and
+# transfers with their delay slots. Not modelled, because no document maps
+# them: r176, r198, r217, r71, r62, r25, R83-81, most of r95, and the
+# latency of register writes.
 
 define endian=big;
 # Alignment is in bytes and must be a multiple of the 8-byte address unit.
@@ -66,6 +67,22 @@ define register offset=0x380 size=4 [ U1H0 U1H1 U1H2 U1H3 U1H4 U1H5 U1H6 U1H7 U2
 # AZ/AGT: address-unit zero and greater-than; AZD*/AGTD*: one and two
 # words ago (address-unit conditions arrive after two words, ESTABLISHED).
 define register offset=0x400 size=1 [ FL FLD1 FLD2 FLD3 FLD4 FLD5 FLD6 FLD7 FLD8 FLD9 FLD10 FLD11 FLD12 AZ AGT AZD1 AGTD1 AZD2 AGTD2 ];
+# Lanes (INFERRED, ge_isa.md "Lanes"): the engine runs each word in three
+# lanes, each with its own registers, address registers, store-data
+# register and results; the program, the sequencer and the memories are
+# shared. The names above are lane 0's; lanes 1 and 2 add _1 and _2.
+define register offset=0x2000 size=4 [ R0_1 R1_1 R2_1 R3_1 R4_1 R5_1 R6_1 R7_1 R8_1 R9_1 R10_1 R11_1 R12_1 R13_1 R14_1 R15_1 R16_1 R17_1 R18_1 R19_1 R20_1 R21_1 R22_1 R23_1 R24_1 R25_1 R26_1 R27_1 R28_1 R29_1 R30_1 R31_1 ];
+define register offset=0x2100 size=4 [ AR0_1 AR1_1 AR2_1 AR3_1 AR4_1 AR5_1 AR6_1 AR7_1 AR8_1 AR9_1 AR10_1 AR11_1 AR12_1 AR13_1 AR14_1 AR15_1 AR16_1 AR17_1 AR18_1 AR19_1 AR20_1 AR21_1 AR22_1 AR23_1 AR24_1 AR25_1 AR26_1 AR27_1 AR28_1 AR29_1 AR30_1 AR31_1 ];
+define register offset=0x2200 size=4 [ SEED_1 SEED0_1 SEED1_1 SDOP_1 ];
+define register offset=0x2300 size=4 [ OPAV_1 OPBV_1 U1V_1 U2V_1 AUV_1 CSRC_1 STV_1 LDV_1 LDL_1 P1V_1 P2V_1 ];
+define register offset=0x2380 size=4 [ U1H0_1 U1H1_1 U1H2_1 U1H3_1 U1H4_1 U1H5_1 U1H6_1 U1H7_1 U2H0_1 U2H1_1 U2H2_1 U2H3_1 U2H4_1 U2H5_1 U2H6_1 U2H7_1 ];
+define register offset=0x2500 size=4 [ SV0_1 SV1_1 SV2_1 SV3_1 SV4_1 SV5_1 SV6_1 SV7_1 SV8_1 SV9_1 ];
+define register offset=0x4000 size=4 [ R0_2 R1_2 R2_2 R3_2 R4_2 R5_2 R6_2 R7_2 R8_2 R9_2 R10_2 R11_2 R12_2 R13_2 R14_2 R15_2 R16_2 R17_2 R18_2 R19_2 R20_2 R21_2 R22_2 R23_2 R24_2 R25_2 R26_2 R27_2 R28_2 R29_2 R30_2 R31_2 ];
+define register offset=0x4100 size=4 [ AR0_2 AR1_2 AR2_2 AR3_2 AR4_2 AR5_2 AR6_2 AR7_2 AR8_2 AR9_2 AR10_2 AR11_2 AR12_2 AR13_2 AR14_2 AR15_2 AR16_2 AR17_2 AR18_2 AR19_2 AR20_2 AR21_2 AR22_2 AR23_2 AR24_2 AR25_2 AR26_2 AR27_2 AR28_2 AR29_2 AR30_2 AR31_2 ];
+define register offset=0x4200 size=4 [ SEED_2 SEED0_2 SEED1_2 SDOP_2 ];
+define register offset=0x4300 size=4 [ OPAV_2 OPBV_2 U1V_2 U2V_2 AUV_2 CSRC_2 STV_2 LDV_2 LDL_2 P1V_2 P2V_2 ];
+define register offset=0x4380 size=4 [ U1H0_2 U1H1_2 U1H2_2 U1H3_2 U1H4_2 U1H5_2 U1H6_2 U1H7_2 U2H0_2 U2H1_2 U2H2_2 U2H3_2 U2H4_2 U2H5_2 U2H6_2 U2H7_2 ];
+define register offset=0x4500 size=4 [ SV0_2 SV1_2 SV2_2 SV3_2 SV4_2 SV5_2 SV6_2 SV7_2 SV8_2 SV9_2 ];
 define register offset=0x1000 size=36 [ contextreg ];
 define context contextreg
   fimm=(0,31)  noflow
@@ -132,11 +149,34 @@ define context contextreg
   fform=(218,221)  noflow
   f62l=(224,255)  noflow
   f25=(256,281)  noflow
+  flm0=(282,282)  noflow
+  flm1=(283,283)  noflow
+  flm2=(284,284)  noflow
+  fAr_1=(64,68)  noflow
+  fBr_1=(69,73)  noflow
+  fCr_1=(74,78)  noflow
+  fGr_1=(102,106)  noflow
+  f148hr_1=(107,111)  noflow
+  f148lr_1=(112,116)  noflow
+  fPr_1=(117,121)  noflow
+  fQr_1=(122,126)  noflow
+  fAr_2=(64,68)  noflow
+  fBr_2=(69,73)  noflow
+  fCr_2=(74,78)  noflow
+  fGr_2=(102,106)  noflow
+  f148hr_2=(107,111)  noflow
+  f148lr_2=(112,116)  noflow
+  fPr_2=(117,121)  noflow
+  fQr_2=(122,126)  noflow
 ;
 define token word(64) wlo=(0,63);
 
 attach variables [ f148hr f148lr fPr fQr ] [ R0 R1 R2 R3 R4 R5 R6 R7 R8 R9 R10 R11 R12 R13 R14 R15 R16 R17 R18 R19 R20 R21 R22 R23 R24 R25 R26 R27 R28 R29 R30 R31 ];
 attach variables [ fAr fBr fCr fGr ] [ AR0 AR1 AR2 AR3 AR4 AR5 AR6 AR7 AR8 AR9 AR10 AR11 AR12 AR13 AR14 AR15 AR16 AR17 AR18 AR19 AR20 AR21 AR22 AR23 AR24 AR25 AR26 AR27 AR28 AR29 AR30 AR31 ];
+attach variables [ f148hr_1 f148lr_1 fPr_1 fQr_1 ] [ R0_1 R1_1 R2_1 R3_1 R4_1 R5_1 R6_1 R7_1 R8_1 R9_1 R10_1 R11_1 R12_1 R13_1 R14_1 R15_1 R16_1 R17_1 R18_1 R19_1 R20_1 R21_1 R22_1 R23_1 R24_1 R25_1 R26_1 R27_1 R28_1 R29_1 R30_1 R31_1 ];
+attach variables [ fAr_1 fBr_1 fCr_1 fGr_1 ] [ AR0_1 AR1_1 AR2_1 AR3_1 AR4_1 AR5_1 AR6_1 AR7_1 AR8_1 AR9_1 AR10_1 AR11_1 AR12_1 AR13_1 AR14_1 AR15_1 AR16_1 AR17_1 AR18_1 AR19_1 AR20_1 AR21_1 AR22_1 AR23_1 AR24_1 AR25_1 AR26_1 AR27_1 AR28_1 AR29_1 AR30_1 AR31_1 ];
+attach variables [ f148hr_2 f148lr_2 fPr_2 fQr_2 ] [ R0_2 R1_2 R2_2 R3_2 R4_2 R5_2 R6_2 R7_2 R8_2 R9_2 R10_2 R11_2 R12_2 R13_2 R14_2 R15_2 R16_2 R17_2 R18_2 R19_2 R20_2 R21_2 R22_2 R23_2 R24_2 R25_2 R26_2 R27_2 R28_2 R29_2 R30_2 R31_2 ];
+attach variables [ fAr_2 fBr_2 fCr_2 fGr_2 ] [ AR0_2 AR1_2 AR2_2 AR3_2 AR4_2 AR5_2 AR6_2 AR7_2 AR8_2 AR9_2 AR10_2 AR11_2 AR12_2 AR13_2 AR14_2 AR15_2 AR16_2 AR17_2 AR18_2 AR19_2 AR20_2 AR21_2 AR22_2 AR23_2 AR24_2 AR25_2 AR26_2 AR27_2 AR28_2 AR29_2 AR30_2 AR31_2 ];
 
 define pcodeop dadd;
 define pcodeop dsub;
@@ -331,6 +371,7 @@ macro flagshift() {
   FLD3 = FLD2;
   FLD2 = FLD1;
   FLD1 = FL;
+  AZD2 = AZD1; AGTD2 = AGTD1; AZD1 = AZ; AGTD1 = AGT;
   U1H7 = U1H6;
   U1H6 = U1H5;
   U1H5 = U1H4;
@@ -345,7 +386,6 @@ macro flagshift() {
   U2H3 = U2H2;
   U2H2 = U2H1;
   U2H1 = U2H0;
-  AZD2 = AZD1; AGTD2 = AGTD1; AZD1 = AZ; AGTD1 = AGT;
   SEED = SEED1; SEED1 = SEED0;
   SV9 = SV8;
   SV8 = SV7;
@@ -356,6 +396,54 @@ macro flagshift() {
   SV3 = SV2;
   SV2 = SV1;
   SV1 = SV0;
+  U1H7_1 = U1H6_1;
+  U1H6_1 = U1H5_1;
+  U1H5_1 = U1H4_1;
+  U1H4_1 = U1H3_1;
+  U1H3_1 = U1H2_1;
+  U1H2_1 = U1H1_1;
+  U1H1_1 = U1H0_1;
+  U2H7_1 = U2H6_1;
+  U2H6_1 = U2H5_1;
+  U2H5_1 = U2H4_1;
+  U2H4_1 = U2H3_1;
+  U2H3_1 = U2H2_1;
+  U2H2_1 = U2H1_1;
+  U2H1_1 = U2H0_1;
+  SEED_1 = SEED1_1; SEED1_1 = SEED0_1;
+  SV9_1 = SV8_1;
+  SV8_1 = SV7_1;
+  SV7_1 = SV6_1;
+  SV6_1 = SV5_1;
+  SV5_1 = SV4_1;
+  SV4_1 = SV3_1;
+  SV3_1 = SV2_1;
+  SV2_1 = SV1_1;
+  SV1_1 = SV0_1;
+  U1H7_2 = U1H6_2;
+  U1H6_2 = U1H5_2;
+  U1H5_2 = U1H4_2;
+  U1H4_2 = U1H3_2;
+  U1H3_2 = U1H2_2;
+  U1H2_2 = U1H1_2;
+  U1H1_2 = U1H0_2;
+  U2H7_2 = U2H6_2;
+  U2H6_2 = U2H5_2;
+  U2H5_2 = U2H4_2;
+  U2H4_2 = U2H3_2;
+  U2H3_2 = U2H2_2;
+  U2H2_2 = U2H1_2;
+  U2H1_2 = U2H0_2;
+  SEED_2 = SEED1_2; SEED1_2 = SEED0_2;
+  SV9_2 = SV8_2;
+  SV8_2 = SV7_2;
+  SV7_2 = SV6_2;
+  SV6_2 = SV5_2;
+  SV5_2 = SV4_2;
+  SV4_2 = SV3_2;
+  SV3_2 = SV2_2;
+  SV2_2 = SV1_2;
+  SV1_2 = SV0_2;
 }
 # One nibble of the condition word from a result (ge_ops.md, "Branch
 # conditions"): bit 3 <= 0, bit 2 zero, bit 1 negative, ESTABLISHED for the
@@ -559,60 +647,402 @@ WP: is fPr { fPr = U2V; }
 # test, KONA areg.s agrees); F = 0x1f (idle value) and F = 0 pass C through
 # (INFERRED: pointer copies in uxform.s, loop-count loads, areg.s loads);
 # F = 0x20 and 0x25 step C down by one (INFERRED: GE11 eram_Databus, the
-# counted loops). Other F values are UNKNOWN.
+# counted loops). F = 0x18-0x1e add 0x1f - F to C (INFERRED: the four-word
+# stride of ERAMBlockClear.s 0x1711, the light index of lightenables.S
+# 0xdde0-0xde16). With r162 = 1, F = 0x3f still adds A and C and any other
+# F adds F itself (INFERRED: the per-lane bases of bootstrap.s 0x0011-0x0012
+# and umatrix.s 0x0ee8, mMatrixMultCCW 0xeb1). Other F values are UNKNOWN.
 CSR: is fC=0x1e & fimm { CSRC = fimm; }
 CSR: is fCr { CSRC = fCr; }
 AOP: is fF=0x3f & fAr { AUV = fAr + CSRC; }
-AOP: is fF=0x1f { AUV = CSRC; }
-AOP: is fF=0x0 { AUV = CSRC; }
-AOP: is fF=0x20 { AUV = CSRC - 1; }
-AOP: is fF=0x25 { AUV = CSRC - 1; }
+AOP: is f162=0 & fF=0x1f { AUV = CSRC; }
+AOP: is f162=0 & fF=0x0 { AUV = CSRC; }
+AOP: is f162=0 & fF=0x20 { AUV = CSRC - 1; }
+AOP: is f162=0 & fF=0x25 { AUV = CSRC - 1; }
+AOP: is f162=0 & fF=0x18 { AUV = CSRC + 7; }
+AOP: is f162=0 & fF=0x19 { AUV = CSRC + 6; }
+AOP: is f162=0 & fF=0x1a { AUV = CSRC + 5; }
+AOP: is f162=0 & fF=0x1b { AUV = CSRC + 4; }
+AOP: is f162=0 & fF=0x1c { AUV = CSRC + 3; }
+AOP: is f162=0 & fF=0x1d { AUV = CSRC + 2; }
+AOP: is f162=0 & fF=0x1e { AUV = CSRC + 1; }
+AOP: is f162=1 & fF { AUV = CSRC + fF; }
 AOP: is fF & fAr { AUV = aalu(fF:1, fAr, CSRC); }
 AUS: is f219=0 & f222=0 { }
 AUS: is CSR & AOP { build CSR; build AOP; }
 # r219 != 0 writes G (ESTABLISHED by areg.s for loads, INFERRED otherwise).
 WG: is f219=0 { }
+# r219 = 3 writes only the lanes in the mask; r219 = 1 writes every lane
+# (INFERRED, ge_isa.md "Lanes").
+WG: is f219=3 & flm0=0 { }
 WG: is fGr { fGr = AUV; }
-# r222: the address-unit result sets the address conditions (ESTABLISHED).
-FLA: is f222=0 { }
-FLA: is f222=1 { AZ = (AUV == 0); AGT = (AUV s> 0); }
 
 # Stores. r213 = 3: the unit result to B + E (ESTABLISHED for the
 # diagnostic output words), or to CRAM at the immediate when B = 0x1e and
 # r95 = 0x13 (ESTABLISHED). r213 = 2 is the predicated form (INFERRED); the
 # predicate is UNKNOWN. r215 = 3: the immediate to B + E (form 15 constant
-# loads, INFERRED from ge_inst.s). r211 = 3 with r95 = 4 or 5: the
-# store-data register as it stood nine words earlier, to CRAM through C
-# (INFERRED: load-matrix handlers, mMatrixCopyCC, uMatrixMultCCC,
-# mMatrixMultCCW); r211 = 2 is its predicated form. r95 = 6-0xb also
-# store the register, but their memory is UNKNOWN, so they are left out.
+# loads, INFERRED from ge_inst.s). Each lane in the mask stores its own
+# value through its own B.
 SADDR: a is fB=0x1e & f95=0x13 & fimm [ a = fimm & 0xffff; ] { export *[cram]:4 a; }
 SADDR: is fBr & fE { local a:4 = fBr + fE; export *[dmem]:4 a; }
 ST3: is f213=0 { }
 ST3: is f213=1 { }
+# A lane outside the mask stores nothing (INFERRED: uMatrixMultCCC selects
+# lane 0 for its staging stores, and each lane has its own staging block).
+ST3: is f213=3 & flm0=0 { }
+ST3: is f213=2 & flm0=0 { }
 ST3: is f213=3 & SADDR { SADDR = STV; }
 ST3: is f213=2 & SADDR { local p:1 = store_predicate(); if (p == 0) goto <skip>; SADDR = STV; <skip> }
 ST5: is f215=0 { }
 ST5: is f215=1 { }
+ST5: is f215=3 & flm0=0 { }
+ST5: is f215=2 & flm0=0 { }
 ST5: is f215=3 & fBr & fE & fimm { local a:4 = fBr + fE; *[dmem]:4 a = fimm:4; }
 ST5: is f215=2 & fBr & fE & fimm { local a:4 = fBr + fE; local p:1 = store_predicate(); if (p == 0) goto <skip>; *[dmem]:4 a = fimm:4; <skip> }
-ST1R: is fC=0x1e & fimm { *[cram]:4 fimm:2 = SV9; }
-ST1R: is fC=0x1b & fF=0x3f & fimm { *[cram]:4 fimm:2 = SV9; }
-ST1R: is fCr & fF { local a:4 = fCr + (0x1f - fF); *[cram]:4 a:2 = SV9; }
-ST1A: is fform=5 & fimm { *[cram]:4 fimm:2 = SV9; }
-ST1A: is ST1R { build ST1R; }
-ST1: is f211=3 & f95=4 & ST1A { build ST1A; }
-ST1: is f211=3 & f95=5 & ST1A { build ST1A; }
-ST1: is f211=2 & f95=4 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; build ST1A; <skip> }
-ST1: is f211=2 & f95=5 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; build ST1A; <skip> }
-ST1: is epsilon { }
-
 # The store-data register (INFERRED, ge_isa.md "The store-data register"):
 # r99 bit 1 loads it with the word's unit-1 result, or its unit-2 result
 # when unit 1 is idle; otherwise it keeps its value.
 MV: is f99b1=0 { SV0 = SV1; }
 MV: is f99b1=1 & fMu=0x7f { SV0 = U2V; }
 MV: is f99b1=1 { SV0 = U1V; }
+
+
+# ---- Lane 1: the tables above again, on lane 1's state.
+ADR_1: is fA=0x1f & fD { export *[wram]:4 fD; }
+ADR_1: is fAr_1 & fD { local a:4 = fAr_1 + fD; export *[dmem]:4 a; }
+LDR_1: is f99h=0 & f99b2=0 { }
+LDR_1: is f99h=1 & f99b2=0 & ADR_1 { LDV_1 = ADR_1; }
+LDR_1: is f99h=0 & f99b2=1 & ADR_1 { LDL_1 = ADR_1; }
+LDR_1: is f99h=1 & f99b2=1 & ADR_1 { LDV_1 = ADR_1; LDL_1 = LDV_1; }
+CR13R_1: is fC=0x1e & fimm { LDL_1 = *[cram]:4 fimm:2; }
+CR13R_1: is fC=0x1b & fF=0x3f & fimm { LDL_1 = *[cram]:4 fimm:2; }
+CR13R_1: is fCr_1 & fF { local a:4 = fCr_1 + (0x1f - fF); LDL_1 = *[cram]:4 a:2; }
+CR13_1: is fform=5 & fimm { LDL_1 = *[cram]:4 fimm:2; }
+CR13_1: is CR13R_1 { build CR13R_1; }
+CR17_1: is fC=0x1e & fimm { LDL_1 = *[eram]:4 fimm:4; }
+CR17_1: is fCr_1 & fF { local a:4 = fCr_1 + (0x1f - fF); LDL_1 = *[eram]:4 a; }
+CRD_1: is f95=0x13 & CR13_1 { build CR13_1; }
+CRD_1: is f95=0x17 & CR17_1 { build CR17_1; }
+CRD_1: is f95 { }
+FW1_1: is f128p1=0 { P1V_1 = U1H4_1; }
+FW1_1: is f128p1=1 { P1V_1 = U1H5_1; }
+FW1_1: is f128p1=2 { P1V_1 = U1H6_1; }
+FW1_1: is f128p1=3 { P1V_1 = U1H7_1; }
+FW1_1: is f128p1=4 { P1V_1 = U2H4_1; }
+FW1_1: is f128p1=5 { P1V_1 = U2H5_1; }
+FW1_1: is f128p1=6 { P1V_1 = U2H6_1; }
+FW1_1: is f128p1=7 { P1V_1 = U2H7_1; }
+FW2_1: is f128p2=0 { P2V_1 = U1H4_1; }
+FW2_1: is f128p2=1 { P2V_1 = U1H5_1; }
+FW2_1: is f128p2=2 { P2V_1 = U1H6_1; }
+FW2_1: is f128p2=3 { P2V_1 = U1H7_1; }
+FW2_1: is f128p2=4 { P2V_1 = U2H4_1; }
+FW2_1: is f128p2=5 { P2V_1 = U2H5_1; }
+FW2_1: is f128p2=6 { P2V_1 = U2H6_1; }
+FW2_1: is f128p2=7 { P2V_1 = U2H7_1; }
+PT1_1: is f110s1=0 & f148hr_1 { P1V_1 = f148hr_1; }
+PT1_1: is f110s1=1 & FW1_1 { build FW1_1; }
+PT1_1: is f110s1=2 { P1V_1 = LDV_1; }
+PT1_1: is f110s1=3 { P1V_1 = LDL_1; }
+PT2_1: is f110s2=0 & f148lr_1 { P2V_1 = f148lr_1; }
+PT2_1: is f110s2=1 & FW2_1 { build FW2_1; }
+PT2_1: is f110s2=2 { P2V_1 = LDV_1; }
+PT2_1: is f110s2=3 { P2V_1 = LDL_1; }
+FU1_1: is f128p1=0 { OPAV_1 = U1H4_1; }
+FU1_1: is f128p1=1 { OPAV_1 = U1H5_1; }
+FU1_1: is f128p1=2 { OPAV_1 = U1H6_1; }
+FU1_1: is f128p1=3 { OPAV_1 = U1H7_1; }
+FU1_1: is f128p1=4 { OPAV_1 = U2H4_1; }
+FU1_1: is f128p1=5 { OPAV_1 = U2H5_1; }
+FU1_1: is f128p1=6 { OPAV_1 = U2H6_1; }
+FU1_1: is f128p1=7 { OPAV_1 = U2H7_1; }
+FU2_1: is f128p2=0 { OPBV_1 = U1H4_1; }
+FU2_1: is f128p2=1 { OPBV_1 = U1H5_1; }
+FU2_1: is f128p2=2 { OPBV_1 = U1H6_1; }
+FU2_1: is f128p2=3 { OPBV_1 = U1H7_1; }
+FU2_1: is f128p2=4 { OPBV_1 = U2H4_1; }
+FU2_1: is f128p2=5 { OPBV_1 = U2H5_1; }
+FU2_1: is f128p2=6 { OPBV_1 = U2H6_1; }
+FU2_1: is f128p2=7 { OPBV_1 = U2H7_1; }
+OP2A_1: is f110u1=0 { OPAV_1 = SEED_1; }
+OP2A_1: is f110u1=1 & f148hr_1 { OPAV_1 = f148hr_1; }
+OP2A_1: is f110u1=2 & FU1_1 { build FU1_1; }
+OP2A_1: is f110u1=3 { OPAV_1 = LDV_1; }
+OP2B_1: is f110u2=0 { OPBV_1 = SEED_1; }
+OP2B_1: is f110u2=1 & f148lr_1 { OPBV_1 = f148lr_1; }
+OP2B_1: is f110u2=2 & FU2_1 { build FU2_1; }
+OP2B_1: is f110u2=3 { OPBV_1 = LDL_1; }
+FSD_1: is f128p1=0 { SDOP_1 = U1H4_1; }
+FSD_1: is f128p1=1 { SDOP_1 = U1H5_1; }
+FSD_1: is f128p1=2 { SDOP_1 = U1H6_1; }
+FSD_1: is f128p1=3 { SDOP_1 = U1H7_1; }
+FSD_1: is f128p1=4 { SDOP_1 = U2H4_1; }
+FSD_1: is f128p1=5 { SDOP_1 = U2H5_1; }
+FSD_1: is f128p1=6 { SDOP_1 = U2H6_1; }
+FSD_1: is f128p1=7 { SDOP_1 = U2H7_1; }
+SDO_1: is f110sd=1 & f148hr_1 { SDOP_1 = f148hr_1; }
+SDO_1: is f110sd=0 & FSD_1 { build FSD_1; }
+OPS_1: is LDR_1 & CRD_1 & PT1_1 & PT2_1 & OP2A_1 & OP2B_1 & SDO_1 { build LDR_1; build CRD_1; build PT1_1; build PT2_1; build OP2A_1; build OP2B_1; build SDO_1; }
+
+U1S_1: is fMu=0x7f { }
+U1S_1: is fMu=0x20 { U1V_1 = dadd(P1V_1, P2V_1); STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x22 { U1V_1 = dsub(P1V_1, P2V_1); STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x40 { U1V_1 = iadd_sat(P1V_1, P2V_1); STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x42 { U1V_1 = isub_sat(P1V_1, P2V_1); STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x4a { U1V_1 = P1V_1; STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x4b { U1V_1 = P2V_1; STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x50 { U1V_1 = P1V_1 & P2V_1; STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x54 { U1V_1 = P1V_1 | P2V_1; STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x56 { U1V_1 = P1V_1 ^ P2V_1; STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x58 { U1V_1 = ~P1V_1; STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x5b { U1V_1 = P1V_1 s>> P2V_1; STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x5d { U1V_1 = P1V_1 >> P2V_1; STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x5f { U1V_1 = P1V_1 << P2V_1; STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x60 { U1V_1 = P1V_1 f+ P2V_1; STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x62 { U1V_1 = P1V_1 f- P2V_1; STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x66 { U1V_1 = fmin(P1V_1, P2V_1); STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x68 { U1V_1 = fmax(P1V_1, P2V_1); STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x71 { U1V_1 = ftoi(P1V_1); STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x73 { U1V_1 = int2float(P1V_1); STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu=0x7c { U1V_1 = clamp01(P1V_1); STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U1S_1: is fMu { U1V_1 = u1_op(fMu:1, P1V_1, P2V_1); STV_1 = U1V_1; U1H0_1 = U1V_1; }
+U2S_1: is fMk=0xd { }
+U2S_1: is fMk=0x0 { U2V_1 = dmul(OPAV_1, OPBV_1); STV_1 = U2V_1; U2H0_1 = U2V_1; }
+U2S_1: is fMk=0x1 { U2V_1 = OPAV_1 * OPBV_1; STV_1 = U2V_1; U2H0_1 = U2V_1; }
+U2S_1: is fMk=0x4 { U2V_1 = OPAV_1; STV_1 = U2V_1; U2H0_1 = U2V_1; }
+U2S_1: is fMk=0x6 { U2V_1 = OPAV_1; STV_1 = U2V_1; U2H0_1 = U2V_1; }
+U2S_1: is fMk=0x8 { U2V_1 = OPAV_1 f* OPBV_1; STV_1 = U2V_1; U2H0_1 = U2V_1; }
+U2S_1: is fMk=0x9 { U2V_1 = int2float(2:4) f- (OPAV_1 f* OPBV_1); STV_1 = U2V_1; U2H0_1 = U2V_1; }
+U2S_1: is fMk=0xa { U2V_1 = (int2float(3:4) f- (OPAV_1 f* OPBV_1)) f/ int2float(2:4); STV_1 = U2V_1; U2H0_1 = U2V_1; }
+U2S_1: is fMk { U2V_1 = u2_op(fMk:1, OPAV_1, OPBV_1); STV_1 = U2V_1; U2H0_1 = U2V_1; }
+
+SDS_1: is f110b10=1 { SEED0_1 = int2float(1:4) f/ SDOP_1; }
+SDS_1: is f110b10=0 { SEED0_1 = int2float(1:4) f/ sqrt(SDOP_1); }
+
+WQ_1: is fQ=0x1f { }
+WQ_1: is fQr_1 { fQr_1 = U1V_1; }
+WP_1: is fP=0x1f { }
+WP_1: is fPr_1 { fPr_1 = U2V_1; }
+
+CSR_1: is fC=0x1e & fimm { CSRC_1 = fimm; }
+CSR_1: is fCr_1 { CSRC_1 = fCr_1; }
+AOP_1: is fF=0x3f & fAr_1 { AUV_1 = fAr_1 + CSRC_1; }
+AOP_1: is f162=0 & fF=0x1f { AUV_1 = CSRC_1; }
+AOP_1: is f162=0 & fF=0x0 { AUV_1 = CSRC_1; }
+AOP_1: is f162=0 & fF=0x20 { AUV_1 = CSRC_1 - 1; }
+AOP_1: is f162=0 & fF=0x25 { AUV_1 = CSRC_1 - 1; }
+AOP_1: is f162=0 & fF=0x18 { AUV_1 = CSRC_1 + 7; }
+AOP_1: is f162=0 & fF=0x19 { AUV_1 = CSRC_1 + 6; }
+AOP_1: is f162=0 & fF=0x1a { AUV_1 = CSRC_1 + 5; }
+AOP_1: is f162=0 & fF=0x1b { AUV_1 = CSRC_1 + 4; }
+AOP_1: is f162=0 & fF=0x1c { AUV_1 = CSRC_1 + 3; }
+AOP_1: is f162=0 & fF=0x1d { AUV_1 = CSRC_1 + 2; }
+AOP_1: is f162=0 & fF=0x1e { AUV_1 = CSRC_1 + 1; }
+AOP_1: is f162=1 & fF { AUV_1 = CSRC_1 + fF; }
+AOP_1: is fF & fAr_1 { AUV_1 = aalu(fF:1, fAr_1, CSRC_1); }
+AUS_1: is f219=0 & f222=0 { }
+AUS_1: is CSR_1 & AOP_1 { build CSR_1; build AOP_1; }
+WG_1: is f219=0 { }
+WG_1: is f219=3 & flm1=0 { }
+WG_1: is fGr_1 { fGr_1 = AUV_1; }
+
+SADDR_1: a is fB=0x1e & f95=0x13 & fimm [ a = fimm & 0xffff; ] { export *[cram]:4 a; }
+SADDR_1: is fBr_1 & fE { local a:4 = fBr_1 + fE; export *[dmem]:4 a; }
+ST3_1: is f213=0 { }
+ST3_1: is f213=1 { }
+ST3_1: is f213=3 & flm1=0 { }
+ST3_1: is f213=2 & flm1=0 { }
+ST3_1: is f213=3 & SADDR_1 { SADDR_1 = STV_1; }
+ST3_1: is f213=2 & SADDR_1 { local p:1 = store_predicate(); if (p == 0) goto <skip>; SADDR_1 = STV_1; <skip> }
+ST5_1: is f215=0 { }
+ST5_1: is f215=1 { }
+ST5_1: is f215=3 & flm1=0 { }
+ST5_1: is f215=2 & flm1=0 { }
+ST5_1: is f215=3 & fBr_1 & fE & fimm { local a:4 = fBr_1 + fE; *[dmem]:4 a = fimm:4; }
+ST5_1: is f215=2 & fBr_1 & fE & fimm { local a:4 = fBr_1 + fE; local p:1 = store_predicate(); if (p == 0) goto <skip>; *[dmem]:4 a = fimm:4; <skip> }
+MV_1: is f99b1=0 { SV0_1 = SV1_1; }
+MV_1: is f99b1=1 & fMu=0x7f { SV0_1 = U2V_1; }
+MV_1: is f99b1=1 { SV0_1 = U1V_1; }
+
+
+# ---- Lane 2: the tables above again, on lane 2's state.
+ADR_2: is fA=0x1f & fD { export *[wram]:4 fD; }
+ADR_2: is fAr_2 & fD { local a:4 = fAr_2 + fD; export *[dmem]:4 a; }
+LDR_2: is f99h=0 & f99b2=0 { }
+LDR_2: is f99h=1 & f99b2=0 & ADR_2 { LDV_2 = ADR_2; }
+LDR_2: is f99h=0 & f99b2=1 & ADR_2 { LDL_2 = ADR_2; }
+LDR_2: is f99h=1 & f99b2=1 & ADR_2 { LDV_2 = ADR_2; LDL_2 = LDV_2; }
+CR13R_2: is fC=0x1e & fimm { LDL_2 = *[cram]:4 fimm:2; }
+CR13R_2: is fC=0x1b & fF=0x3f & fimm { LDL_2 = *[cram]:4 fimm:2; }
+CR13R_2: is fCr_2 & fF { local a:4 = fCr_2 + (0x1f - fF); LDL_2 = *[cram]:4 a:2; }
+CR13_2: is fform=5 & fimm { LDL_2 = *[cram]:4 fimm:2; }
+CR13_2: is CR13R_2 { build CR13R_2; }
+CR17_2: is fC=0x1e & fimm { LDL_2 = *[eram]:4 fimm:4; }
+CR17_2: is fCr_2 & fF { local a:4 = fCr_2 + (0x1f - fF); LDL_2 = *[eram]:4 a; }
+CRD_2: is f95=0x13 & CR13_2 { build CR13_2; }
+CRD_2: is f95=0x17 & CR17_2 { build CR17_2; }
+CRD_2: is f95 { }
+FW1_2: is f128p1=0 { P1V_2 = U1H4_2; }
+FW1_2: is f128p1=1 { P1V_2 = U1H5_2; }
+FW1_2: is f128p1=2 { P1V_2 = U1H6_2; }
+FW1_2: is f128p1=3 { P1V_2 = U1H7_2; }
+FW1_2: is f128p1=4 { P1V_2 = U2H4_2; }
+FW1_2: is f128p1=5 { P1V_2 = U2H5_2; }
+FW1_2: is f128p1=6 { P1V_2 = U2H6_2; }
+FW1_2: is f128p1=7 { P1V_2 = U2H7_2; }
+FW2_2: is f128p2=0 { P2V_2 = U1H4_2; }
+FW2_2: is f128p2=1 { P2V_2 = U1H5_2; }
+FW2_2: is f128p2=2 { P2V_2 = U1H6_2; }
+FW2_2: is f128p2=3 { P2V_2 = U1H7_2; }
+FW2_2: is f128p2=4 { P2V_2 = U2H4_2; }
+FW2_2: is f128p2=5 { P2V_2 = U2H5_2; }
+FW2_2: is f128p2=6 { P2V_2 = U2H6_2; }
+FW2_2: is f128p2=7 { P2V_2 = U2H7_2; }
+PT1_2: is f110s1=0 & f148hr_2 { P1V_2 = f148hr_2; }
+PT1_2: is f110s1=1 & FW1_2 { build FW1_2; }
+PT1_2: is f110s1=2 { P1V_2 = LDV_2; }
+PT1_2: is f110s1=3 { P1V_2 = LDL_2; }
+PT2_2: is f110s2=0 & f148lr_2 { P2V_2 = f148lr_2; }
+PT2_2: is f110s2=1 & FW2_2 { build FW2_2; }
+PT2_2: is f110s2=2 { P2V_2 = LDV_2; }
+PT2_2: is f110s2=3 { P2V_2 = LDL_2; }
+FU1_2: is f128p1=0 { OPAV_2 = U1H4_2; }
+FU1_2: is f128p1=1 { OPAV_2 = U1H5_2; }
+FU1_2: is f128p1=2 { OPAV_2 = U1H6_2; }
+FU1_2: is f128p1=3 { OPAV_2 = U1H7_2; }
+FU1_2: is f128p1=4 { OPAV_2 = U2H4_2; }
+FU1_2: is f128p1=5 { OPAV_2 = U2H5_2; }
+FU1_2: is f128p1=6 { OPAV_2 = U2H6_2; }
+FU1_2: is f128p1=7 { OPAV_2 = U2H7_2; }
+FU2_2: is f128p2=0 { OPBV_2 = U1H4_2; }
+FU2_2: is f128p2=1 { OPBV_2 = U1H5_2; }
+FU2_2: is f128p2=2 { OPBV_2 = U1H6_2; }
+FU2_2: is f128p2=3 { OPBV_2 = U1H7_2; }
+FU2_2: is f128p2=4 { OPBV_2 = U2H4_2; }
+FU2_2: is f128p2=5 { OPBV_2 = U2H5_2; }
+FU2_2: is f128p2=6 { OPBV_2 = U2H6_2; }
+FU2_2: is f128p2=7 { OPBV_2 = U2H7_2; }
+OP2A_2: is f110u1=0 { OPAV_2 = SEED_2; }
+OP2A_2: is f110u1=1 & f148hr_2 { OPAV_2 = f148hr_2; }
+OP2A_2: is f110u1=2 & FU1_2 { build FU1_2; }
+OP2A_2: is f110u1=3 { OPAV_2 = LDV_2; }
+OP2B_2: is f110u2=0 { OPBV_2 = SEED_2; }
+OP2B_2: is f110u2=1 & f148lr_2 { OPBV_2 = f148lr_2; }
+OP2B_2: is f110u2=2 & FU2_2 { build FU2_2; }
+OP2B_2: is f110u2=3 { OPBV_2 = LDL_2; }
+FSD_2: is f128p1=0 { SDOP_2 = U1H4_2; }
+FSD_2: is f128p1=1 { SDOP_2 = U1H5_2; }
+FSD_2: is f128p1=2 { SDOP_2 = U1H6_2; }
+FSD_2: is f128p1=3 { SDOP_2 = U1H7_2; }
+FSD_2: is f128p1=4 { SDOP_2 = U2H4_2; }
+FSD_2: is f128p1=5 { SDOP_2 = U2H5_2; }
+FSD_2: is f128p1=6 { SDOP_2 = U2H6_2; }
+FSD_2: is f128p1=7 { SDOP_2 = U2H7_2; }
+SDO_2: is f110sd=1 & f148hr_2 { SDOP_2 = f148hr_2; }
+SDO_2: is f110sd=0 & FSD_2 { build FSD_2; }
+OPS_2: is LDR_2 & CRD_2 & PT1_2 & PT2_2 & OP2A_2 & OP2B_2 & SDO_2 { build LDR_2; build CRD_2; build PT1_2; build PT2_2; build OP2A_2; build OP2B_2; build SDO_2; }
+
+U1S_2: is fMu=0x7f { }
+U1S_2: is fMu=0x20 { U1V_2 = dadd(P1V_2, P2V_2); STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x22 { U1V_2 = dsub(P1V_2, P2V_2); STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x40 { U1V_2 = iadd_sat(P1V_2, P2V_2); STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x42 { U1V_2 = isub_sat(P1V_2, P2V_2); STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x4a { U1V_2 = P1V_2; STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x4b { U1V_2 = P2V_2; STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x50 { U1V_2 = P1V_2 & P2V_2; STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x54 { U1V_2 = P1V_2 | P2V_2; STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x56 { U1V_2 = P1V_2 ^ P2V_2; STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x58 { U1V_2 = ~P1V_2; STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x5b { U1V_2 = P1V_2 s>> P2V_2; STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x5d { U1V_2 = P1V_2 >> P2V_2; STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x5f { U1V_2 = P1V_2 << P2V_2; STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x60 { U1V_2 = P1V_2 f+ P2V_2; STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x62 { U1V_2 = P1V_2 f- P2V_2; STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x66 { U1V_2 = fmin(P1V_2, P2V_2); STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x68 { U1V_2 = fmax(P1V_2, P2V_2); STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x71 { U1V_2 = ftoi(P1V_2); STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x73 { U1V_2 = int2float(P1V_2); STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu=0x7c { U1V_2 = clamp01(P1V_2); STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U1S_2: is fMu { U1V_2 = u1_op(fMu:1, P1V_2, P2V_2); STV_2 = U1V_2; U1H0_2 = U1V_2; }
+U2S_2: is fMk=0xd { }
+U2S_2: is fMk=0x0 { U2V_2 = dmul(OPAV_2, OPBV_2); STV_2 = U2V_2; U2H0_2 = U2V_2; }
+U2S_2: is fMk=0x1 { U2V_2 = OPAV_2 * OPBV_2; STV_2 = U2V_2; U2H0_2 = U2V_2; }
+U2S_2: is fMk=0x4 { U2V_2 = OPAV_2; STV_2 = U2V_2; U2H0_2 = U2V_2; }
+U2S_2: is fMk=0x6 { U2V_2 = OPAV_2; STV_2 = U2V_2; U2H0_2 = U2V_2; }
+U2S_2: is fMk=0x8 { U2V_2 = OPAV_2 f* OPBV_2; STV_2 = U2V_2; U2H0_2 = U2V_2; }
+U2S_2: is fMk=0x9 { U2V_2 = int2float(2:4) f- (OPAV_2 f* OPBV_2); STV_2 = U2V_2; U2H0_2 = U2V_2; }
+U2S_2: is fMk=0xa { U2V_2 = (int2float(3:4) f- (OPAV_2 f* OPBV_2)) f/ int2float(2:4); STV_2 = U2V_2; U2H0_2 = U2V_2; }
+U2S_2: is fMk { U2V_2 = u2_op(fMk:1, OPAV_2, OPBV_2); STV_2 = U2V_2; U2H0_2 = U2V_2; }
+
+SDS_2: is f110b10=1 { SEED0_2 = int2float(1:4) f/ SDOP_2; }
+SDS_2: is f110b10=0 { SEED0_2 = int2float(1:4) f/ sqrt(SDOP_2); }
+
+WQ_2: is fQ=0x1f { }
+WQ_2: is fQr_2 { fQr_2 = U1V_2; }
+WP_2: is fP=0x1f { }
+WP_2: is fPr_2 { fPr_2 = U2V_2; }
+
+CSR_2: is fC=0x1e & fimm { CSRC_2 = fimm; }
+CSR_2: is fCr_2 { CSRC_2 = fCr_2; }
+AOP_2: is fF=0x3f & fAr_2 { AUV_2 = fAr_2 + CSRC_2; }
+AOP_2: is f162=0 & fF=0x1f { AUV_2 = CSRC_2; }
+AOP_2: is f162=0 & fF=0x0 { AUV_2 = CSRC_2; }
+AOP_2: is f162=0 & fF=0x20 { AUV_2 = CSRC_2 - 1; }
+AOP_2: is f162=0 & fF=0x25 { AUV_2 = CSRC_2 - 1; }
+AOP_2: is f162=0 & fF=0x18 { AUV_2 = CSRC_2 + 7; }
+AOP_2: is f162=0 & fF=0x19 { AUV_2 = CSRC_2 + 6; }
+AOP_2: is f162=0 & fF=0x1a { AUV_2 = CSRC_2 + 5; }
+AOP_2: is f162=0 & fF=0x1b { AUV_2 = CSRC_2 + 4; }
+AOP_2: is f162=0 & fF=0x1c { AUV_2 = CSRC_2 + 3; }
+AOP_2: is f162=0 & fF=0x1d { AUV_2 = CSRC_2 + 2; }
+AOP_2: is f162=0 & fF=0x1e { AUV_2 = CSRC_2 + 1; }
+AOP_2: is f162=1 & fF { AUV_2 = CSRC_2 + fF; }
+AOP_2: is fF & fAr_2 { AUV_2 = aalu(fF:1, fAr_2, CSRC_2); }
+AUS_2: is f219=0 & f222=0 { }
+AUS_2: is CSR_2 & AOP_2 { build CSR_2; build AOP_2; }
+WG_2: is f219=0 { }
+WG_2: is f219=3 & flm2=0 { }
+WG_2: is fGr_2 { fGr_2 = AUV_2; }
+
+SADDR_2: a is fB=0x1e & f95=0x13 & fimm [ a = fimm & 0xffff; ] { export *[cram]:4 a; }
+SADDR_2: is fBr_2 & fE { local a:4 = fBr_2 + fE; export *[dmem]:4 a; }
+ST3_2: is f213=0 { }
+ST3_2: is f213=1 { }
+ST3_2: is f213=3 & flm2=0 { }
+ST3_2: is f213=2 & flm2=0 { }
+ST3_2: is f213=3 & SADDR_2 { SADDR_2 = STV_2; }
+ST3_2: is f213=2 & SADDR_2 { local p:1 = store_predicate(); if (p == 0) goto <skip>; SADDR_2 = STV_2; <skip> }
+ST5_2: is f215=0 { }
+ST5_2: is f215=1 { }
+ST5_2: is f215=3 & flm2=0 { }
+ST5_2: is f215=2 & flm2=0 { }
+ST5_2: is f215=3 & fBr_2 & fE & fimm { local a:4 = fBr_2 + fE; *[dmem]:4 a = fimm:4; }
+ST5_2: is f215=2 & fBr_2 & fE & fimm { local a:4 = fBr_2 + fE; local p:1 = store_predicate(); if (p == 0) goto <skip>; *[dmem]:4 a = fimm:4; <skip> }
+MV_2: is f99b1=0 { SV0_2 = SV1_2; }
+MV_2: is f99b1=1 & fMu=0x7f { SV0_2 = U2V_2; }
+MV_2: is f99b1=1 { SV0_2 = U1V_2; }
+
+
+# r211 = 3 with r95 = 4, 5 or 6: lane 0, 1 or 2's store-data register as
+# it stood nine words earlier, to CRAM through C (INFERRED: load-matrix
+# handlers, mMatrixCopyCC, uMatrixMultCCC, mMatrixMultCCW, mgeb_XLoadClip;
+# ge_isa.md "Lanes"); r211 = 2 is its predicated form. One store goes out
+# per word, so its address is taken from lane 0's C (APPROXIMATION: which
+# lane's register addresses it is UNKNOWN; in the routines read so far C
+# holds the same value in every lane). r95 = 8-0xb also store the
+# register, but their memory is UNKNOWN, so they are left out.
+ST1R: is fC=0x1e & fimm { export *[cram]:4 fimm; }
+ST1R: is fC=0x1b & fF=0x3f & fimm { export *[cram]:4 fimm; }
+ST1R: is fCr & fF { local a:4 = fCr + (0x1f - fF); local b:2 = a:2; export *[cram]:4 b; }
+ST1A: is fform=5 & fimm { export *[cram]:4 fimm; }
+ST1A: is ST1R { export ST1R; }
+ST1: is f211=3 & f95=4 & ST1A { ST1A = SV9; }
+ST1: is f211=2 & f95=4 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; ST1A = SV9; <skip> }
+ST1: is f211=3 & f95=5 & ST1A { ST1A = SV9_1; }
+ST1: is f211=2 & f95=5 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; ST1A = SV9_1; <skip> }
+ST1: is f211=3 & f95=6 & ST1A { ST1A = SV9_2; }
+ST1: is f211=2 & f95=6 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; ST1A = SV9_2; <skip> }
+ST1: is epsilon { }
 
 # Flags: r220 sets the low nibble from unit 1, r221 the high nibble from
 # unit 2 (INFERRED split by unit, ge_ops.md).
@@ -644,6 +1074,9 @@ FK2: is fMk=0x8 { local n:1; fnib(n, U2V, OPBV); FL = (FL & 0x0f) | (n << 4); }
 FK2: is fMk=0x9 { local n:1; fnib(n, U2V, OPBV); FL = (FL & 0x0f) | (n << 4); }
 FK2: is fMk=0xa { local n:1; fnib(n, U2V, OPBV); FL = (FL & 0x0f) | (n << 4); }
 FK2: is fMk { local n:1 = passb(fMk:1, U2V, OPBV); FL = (FL & 0x0f) | (n << 4); }
+# r222: the address-unit result sets the address conditions (ESTABLISHED).
+FLA: is f222=0 { }
+FLA: is f222=1 { AZ = (AUV == 0); AGT = (AUV s> 0); }
 FL1: is f220=0 { }
 FL1: is f220=1 & FK1 { build FK1; }
 FL2: is f221=0 { }
@@ -651,11 +1084,20 @@ FL2: is f221=1 & FK2 { build FK2; }
 
 # A word's own work: operands are read before anything is written, so the
 # units, the address unit and the stores all see the values from before it.
-BODY: is OPS & U1S & U2S & SDS & AUS & WQ & WP & WG & FLA & ST3 & ST5 & ST1 & MV & FL1 & FL2 {
+# Every lane runs it; the flags and the address conditions the sequencer
+# tests are lane 0's (APPROXIMATION: which lane drives them is UNKNOWN).
+BODY: is OPS & OPS_1 & OPS_2 & U1S & U1S_1 & U1S_2 & U2S & U2S_1 & U2S_2 & SDS & SDS_1 & SDS_2 & AUS & AUS_1 & AUS_2 & WQ & WQ_1 & WQ_2 & WP & WP_1 & WP_2 & WG & WG_1 & WG_2 & ST3 & ST3_1 & ST3_2 & ST5 & ST5_1 & ST5_2 & MV & MV_1 & MV_2 & FLA & ST1 & FL1 & FL2 {
   flagshift();
-  build OPS; build U1S; build U2S; build SDS; build AUS;
-  build ST3; build ST5; build ST1; build MV;
-  build WQ; build WP; build WG;
+  build OPS; build OPS_1; build OPS_2;
+  build U1S; build U1S_1; build U1S_2;
+  build U2S; build U2S_1; build U2S_2;
+  build SDS; build SDS_1; build SDS_2;
+  build AUS; build AUS_1; build AUS_2;
+  build ST3; build ST3_1; build ST3_2; build ST5; build ST5_1; build ST5_2; build ST1;
+  build MV; build MV_1; build MV_2;
+  build WQ; build WQ_1; build WQ_2;
+  build WP; build WP_1; build WP_2;
+  build WG; build WG_1; build WG_2;
   build FLA; build FL1; build FL2;
 }
 

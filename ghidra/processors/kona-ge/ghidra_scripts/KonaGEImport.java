@@ -240,6 +240,43 @@ public class KonaGEImport extends GhidraScript {
 			}
 			dly.put(e.getKey(), k);
 		}
+		// The lane mask in force at each word (ucode/ge_isa.md "Lanes"): a word
+		// with R77 clear sets it to R80-78 from the next word on. The setting
+		// is carried in address order, which follows the straight-line code the
+		// lane set-ups sit in; at a routine entry (word 0, a geif.u handler, a
+		// call target) the caller's setting is not known, and all three lanes
+		// are taken.
+		Set<Integer> starts = new HashSet<>();
+		starts.add(0);
+		Path gf = sibling(recFile, "geif.u");
+		if (gf != null && recFile.getFileName().toString().equals("ge.u")) {
+			byte[] g = Files.readAllBytes(gf);
+			for (int i = 0; i + 1 < g.length; i += 2) {
+				starts.add(be16(g, i));
+			}
+		}
+		for (Map.Entry<Integer, BigInteger> e : pr.r.entrySet()) {
+			BigInteger r = e.getValue();
+			long op = field(r, 86, 84);
+			if ((op == 4 || op == 5) && field(r, 88, 88) == 0 && field(r, 76, 72) == 0) {
+				long imm = field(r, 255, 224);
+				starts.add((int) (field(r, 87, 87) == 1 ? e.getKey() + (int) imm : imm & 0xffff));
+			}
+		}
+		Map<Integer, Integer> lmask = new HashMap<>();
+		int cur = 7;
+		for (Map.Entry<Integer, BigInteger> e : pr.r.entrySet()) {
+			if (starts.contains(e.getKey())) {
+				cur = 7;
+			}
+			lmask.put(e.getKey(), cur);
+			BigInteger r = e.getValue();
+			if (!isPadding(pr.w.getOrDefault(e.getKey(), BigInteger.ZERO), r) && field(r, 77, 77) == 0) {
+				cur = (int) field(r, 80, 78);
+			}
+		}
+		Register[] flm = { currentProgram.getRegister("flm0"), currentProgram.getRegister("flm1"),
+			currentProgram.getRegister("flm2") };
 		Register fdly = currentProgram.getRegister("fdly");
 		Register valid = currentProgram.getRegister("fvalid");
 		Register wtop = currentProgram.getRegister("fwtop");
@@ -268,6 +305,9 @@ public class KonaGEImport extends GhidraScript {
 			rv = rv.assign(fdly, BigInteger.valueOf(dly.getOrDefault(a, 0)));
 			rv = rv.assign(wtop, BigInteger.valueOf(field(w, 71, 64)));
 			rv = rv.assign(form, BigInteger.valueOf(field(w, 70, 67)));
+			for (int l = 0; l < 3; l++) {
+				rv = rv.assign(flm[l], BigInteger.valueOf((lmask.get(a) >> l) & 1));
+			}
 			Address ad = code.getAddress(8L * a);
 			pc.setRegisterValue(ad, ad.add(7), rv);
 		}

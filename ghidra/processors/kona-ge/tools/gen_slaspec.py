@@ -10,6 +10,7 @@ condition code. Every meaning below comes from ucode/ge_isa.md and
 ucode/ge_ops.md; the comments in the output carry their labels.
 """
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -49,7 +50,34 @@ CTX = [
     ('f62l', 224, 255, ''),
     # word 8
     ('f25', 256, 281, ''),
+    # The lane mask in force at this word (R80-78 of the last word before it
+    # with R77 clear), one bit per lane; the loader computes it.
+    ('flm0', 282, 282, ''), ('flm1', 283, 283, ''), ('flm2', 284, 284, ''),
 ]
+# Register fields again for lanes 1 and 2, attached to those lanes' registers.
+LANE_FIELDS = [('fAr', 64, 68), ('fBr', 69, 73), ('fCr', 74, 78), ('fGr', 102, 106),
+               ('f148hr', 107, 111), ('f148lr', 112, 116), ('fPr', 117, 121), ('fQr', 122, 126)]
+for _l in (1, 2):
+    CTX += [('%s_%d' % (n, _l), s, e, '') for n, s, e in LANE_FIELDS]
+
+# Per-lane state and the subtables that use it: lane 0 keeps the plain
+# names, lanes 1 and 2 add _1 and _2 (see emit_lanes).
+LANE_REGS = (['LDV', 'LDL', 'P1V', 'P2V', 'OPAV', 'OPBV', 'U1V', 'U2V', 'AUV', 'CSRC', 'STV',
+              'SDOP', 'SEED', 'SEED0', 'SEED1'] + ['SV%d' % i for i in range(10)]
+             + ['U1H%d' % i for i in range(8)] + ['U2H%d' % i for i in range(8)]
+             + [n for n, _, _ in LANE_FIELDS])
+LANE_TABLES = ['ADR', 'LDR', 'CR13R', 'CR13', 'CR17', 'CRD', 'FW1', 'FW2', 'PT1', 'PT2', 'FU1',
+               'FU2', 'OP2A', 'OP2B', 'FSD', 'SDO', 'OPS', 'U1S', 'U2S', 'SDS', 'CSR', 'AOP',
+               'AUS', 'WQ', 'WP', 'WG', 'SADDR', 'ST3', 'ST5', 'MV']
+LANE_RX = re.compile(r'\b(%s)\b' % '|'.join(sorted(LANE_REGS + LANE_TABLES, key=len, reverse=True)))
+
+
+def lane_name(text, lane):
+    """text with every per-lane name renamed for lane (0 keeps the names)."""
+    text = text.replace('flmL', 'flm%d' % lane)
+    if lane == 0:
+        return text
+    return LANE_RX.sub(lambda m: '%s_%d' % (m.group(1), lane), text)
 
 # Display groups in scripts/ge_disasm.py order: (label, [fields], nop value,
 # value expression). A group whose fields hold the value of the canonical
@@ -137,12 +165,13 @@ def emit(out):
     w('# scripts/ge_disasm.py, and the display reproduces that script field for')
     w('# field after a mnemonic.')
     w('#')
-    w('# Semantics modelled (each with its label below): the unit-1 and unit-2')
-    w('# operations and their operand ports with result forwarding, the seeds, the')
-    w('# address unit, stores and the nine-word store-data register, the flag word')
-    w('# and its twelve-word latency, and transfers with their delay slots. Not')
-    w('# modelled, because no document maps them: r176, r162, r198, r217, r71,')
-    w('# r62, r25, most of r95, and the latency of register writes.')
+    w('# Semantics modelled (each with its label below): the three lanes and the')
+    w('# lane mask, the unit-1 and unit-2 operations and their operand ports with')
+    w('# result forwarding, the seeds, the address unit, stores and the nine-word')
+    w('# store-data register, the flag word and its twelve-word latency, and')
+    w('# transfers with their delay slots. Not modelled, because no document maps')
+    w('# them: r176, r198, r217, r71, r62, r25, R83-81, most of r95, and the')
+    w('# latency of register writes.')
     w('')
     w('define endian=big;')
     w('# Alignment is in bytes and must be a multiple of the 8-byte address unit.')
@@ -189,6 +218,22 @@ def emit(out):
     w('# AZ/AGT: address-unit zero and greater-than; AZD*/AGTD*: one and two')
     w('# words ago (address-unit conditions arrive after two words, ESTABLISHED).')
     w('define register offset=0x400 size=1 [ FL %s AZ AGT AZD1 AGTD1 AZD2 AGTD2 ];' % ' '.join('FLD%d' % i for i in range(1, 13)))
+    w('# Lanes (INFERRED, ge_isa.md "Lanes"): the engine runs each word in three')
+    w('# lanes, each with its own registers, address registers, store-data')
+    w('# register and results; the program, the sequencer and the memories are')
+    w('# shared. The names above are lane 0\'s; lanes 1 and 2 add _1 and _2.')
+    for l in (1, 2):
+        b = 0x2000 * l
+        w('define register offset=0x%x size=4 [ %s ];' % (b, ' '.join('R%d_%d' % (i, l) for i in range(32))))
+        w('define register offset=0x%x size=4 [ %s ];' % (b + 0x100, ' '.join('AR%d_%d' % (i, l) for i in range(32))))
+        w('define register offset=0x%x size=4 [ %s ];' % (b + 0x200, ' '.join(
+            '%s_%d' % (n, l) for n in ('SEED', 'SEED0', 'SEED1', 'SDOP'))))
+        w('define register offset=0x%x size=4 [ %s ];' % (b + 0x300, ' '.join(
+            '%s_%d' % (n, l) for n in ('OPAV', 'OPBV', 'U1V', 'U2V', 'AUV', 'CSRC', 'STV', 'LDV', 'LDL',
+                                        'P1V', 'P2V'))))
+        w('define register offset=0x%x size=4 [ %s ];' % (b + 0x380, ' '.join(
+            ['U1H%d_%d' % (i, l) for i in range(8)] + ['U2H%d_%d' % (i, l) for i in range(8)])))
+        w('define register offset=0x%x size=4 [ %s ];' % (b + 0x500, ' '.join('SV%d_%d' % (i, l) for i in range(10))))
     w('define register offset=0x1000 size=36 [ contextreg ];')
     w('define context contextreg')
     for name, s, e, attr in CTX:
@@ -200,6 +245,11 @@ def emit(out):
     aregs = ' '.join('AR%d' % i for i in range(32))
     w('attach variables [ f148hr f148lr fPr fQr ] [ %s ];' % regs)
     w('attach variables [ fAr fBr fCr fGr ] [ %s ];' % aregs)
+    for l in (1, 2):
+        w('attach variables [ f148hr_%d f148lr_%d fPr_%d fQr_%d ] [ %s ];' % (
+            l, l, l, l, ' '.join('R%d_%d' % (i, l) for i in range(32))))
+        w('attach variables [ fAr_%d fBr_%d fCr_%d fGr_%d ] [ %s ];' % (
+            l, l, l, l, ' '.join('AR%d_%d' % (i, l) for i in range(32))))
     w('')
     for op in ('dadd', 'dsub', 'dmul', 'iadd_sat', 'isub_sat', 'fmin', 'fmax', 'ftoi', 'clamp01',
                'u1_op', 'u2_op', 'rcp_seed', 'rsqrt_seed', 'seed_op', 'aalu', 'cond_test',
@@ -287,13 +337,14 @@ def emit(out):
     for i in range(12, 1, -1):
         w('  FLD%d = FLD%d;' % (i, i - 1))
     w('  FLD1 = FL;')
-    for u in (1, 2):
-        for i in range(7, 0, -1):
-            w('  U%dH%d = U%dH%d;' % (u, i, u, i - 1))
     w('  AZD2 = AZD1; AGTD2 = AGTD1; AZD1 = AZ; AGTD1 = AGT;')
-    w('  SEED = SEED1; SEED1 = SEED0;')
-    for i in range(9, 0, -1):
-        w('  SV%d = SV%d;' % (i, i - 1))
+    for l in (0, 1, 2):
+        for u in (1, 2):
+            for i in range(7, 0, -1):
+                w(lane_name('  U%dH%d = U%dH%d;' % (u, i, u, i - 1), l))
+        w(lane_name('  SEED = SEED1; SEED1 = SEED0;', l))
+        for i in range(9, 0, -1):
+            w(lane_name('  SV%d = SV%d;' % (i, i - 1), l))
     w('}')
     w('# One nibble of the condition word from a result (ge_ops.md, "Branch')
     w('# conditions"): bit 3 <= 0, bit 2 zero, bit 1 negative, ESTABLISHED for the')
@@ -302,6 +353,9 @@ def emit(out):
     w('macro inib(n, r, b) { n = ((r s<= 0) << 3) | ((r == 0) << 2) | ((r s< 0) << 1) | (r == b); }')
     w('macro fnib(n, r, b) { local z:4 = int2float(0:4); n = ((r f<= z) << 3) | ((r f== z) << 2) | ((r f< z) << 1) | (r == b); }')
     w('')
+    shared = w
+    lane_text = []
+    w = lane_text.append
     w('# Memory reads. Through A and D (INFERRED reading of A/D, ge_isa.md')
     w('# "Fields"): A = 0x1f is word D of the command, read where it arrived')
     w('# (INFERRED); its WRAM base is UNKNOWN, so D is used alone. r99 bit 3')
@@ -420,60 +474,79 @@ def emit(out):
     w('# test, KONA areg.s agrees); F = 0x1f (idle value) and F = 0 pass C through')
     w('# (INFERRED: pointer copies in uxform.s, loop-count loads, areg.s loads);')
     w('# F = 0x20 and 0x25 step C down by one (INFERRED: GE11 eram_Databus, the')
-    w('# counted loops). Other F values are UNKNOWN.')
+    w('# counted loops). F = 0x18-0x1e add 0x1f - F to C (INFERRED: the four-word')
+    w('# stride of ERAMBlockClear.s 0x1711, the light index of lightenables.S')
+    w('# 0xdde0-0xde16). With r162 = 1, F = 0x3f still adds A and C and any other')
+    w('# F adds F itself (INFERRED: the per-lane bases of bootstrap.s 0x0011-0x0012')
+    w('# and umatrix.s 0x0ee8, mMatrixMultCCW 0xeb1). Other F values are UNKNOWN.')
     w('CSR: is fC=0x1e & fimm { CSRC = fimm; }')
     w('CSR: is fCr { CSRC = fCr; }')
     w('AOP: is fF=0x3f & fAr { AUV = fAr + CSRC; }')
-    w('AOP: is fF=0x1f { AUV = CSRC; }')
-    w('AOP: is fF=0x0 { AUV = CSRC; }')
-    w('AOP: is fF=0x20 { AUV = CSRC - 1; }')
-    w('AOP: is fF=0x25 { AUV = CSRC - 1; }')
+    w('AOP: is f162=0 & fF=0x1f { AUV = CSRC; }')
+    w('AOP: is f162=0 & fF=0x0 { AUV = CSRC; }')
+    w('AOP: is f162=0 & fF=0x20 { AUV = CSRC - 1; }')
+    w('AOP: is f162=0 & fF=0x25 { AUV = CSRC - 1; }')
+    for v in range(0x18, 0x1f):
+        w('AOP: is f162=0 & fF=0x%x { AUV = CSRC + %d; }' % (v, 0x1f - v))
+    w('AOP: is f162=1 & fF { AUV = CSRC + fF; }')
     w('AOP: is fF & fAr { AUV = aalu(fF:1, fAr, CSRC); }')
     w('AUS: is f219=0 & f222=0 { }')
     w('AUS: is CSR & AOP { build CSR; build AOP; }')
     w('# r219 != 0 writes G (ESTABLISHED by areg.s for loads, INFERRED otherwise).')
     w('WG: is f219=0 { }')
+    w('# r219 = 3 writes only the lanes in the mask; r219 = 1 writes every lane')
+    w('# (INFERRED, ge_isa.md "Lanes").')
+    w('WG: is f219=3 & flmL=0 { }')
     w('WG: is fGr { fGr = AUV; }')
-    w('# r222: the address-unit result sets the address conditions (ESTABLISHED).')
-    w('FLA: is f222=0 { }')
-    w('FLA: is f222=1 { AZ = (AUV == 0); AGT = (AUV s> 0); }')
     w('')
     w('# Stores. r213 = 3: the unit result to B + E (ESTABLISHED for the')
     w('# diagnostic output words), or to CRAM at the immediate when B = 0x1e and')
     w('# r95 = 0x13 (ESTABLISHED). r213 = 2 is the predicated form (INFERRED); the')
     w('# predicate is UNKNOWN. r215 = 3: the immediate to B + E (form 15 constant')
-    w('# loads, INFERRED from ge_inst.s). r211 = 3 with r95 = 4 or 5: the')
-    w('# store-data register as it stood nine words earlier, to CRAM through C')
-    w('# (INFERRED: load-matrix handlers, mMatrixCopyCC, uMatrixMultCCC,')
-    w('# mMatrixMultCCW); r211 = 2 is its predicated form. r95 = 6-0xb also')
-    w('# store the register, but their memory is UNKNOWN, so they are left out.')
+    w('# loads, INFERRED from ge_inst.s). Each lane in the mask stores its own')
+    w('# value through its own B.')
     w('SADDR: a is fB=0x1e & f95=0x13 & fimm [ a = fimm & 0xffff; ] { export *[cram]:4 a; }')
     w('SADDR: is fBr & fE { local a:4 = fBr + fE; export *[dmem]:4 a; }')
     w('ST3: is f213=0 { }')
     w('ST3: is f213=1 { }')
+    w('# A lane outside the mask stores nothing (INFERRED: uMatrixMultCCC selects')
+    w('# lane 0 for its staging stores, and each lane has its own staging block).')
+    w('ST3: is f213=3 & flmL=0 { }')
+    w('ST3: is f213=2 & flmL=0 { }')
     w('ST3: is f213=3 & SADDR { SADDR = STV; }')
     w('ST3: is f213=2 & SADDR { local p:1 = store_predicate(); if (p == 0) goto <skip>; SADDR = STV; <skip> }')
     w('ST5: is f215=0 { }')
     w('ST5: is f215=1 { }')
+    w('ST5: is f215=3 & flmL=0 { }')
+    w('ST5: is f215=2 & flmL=0 { }')
     w('ST5: is f215=3 & fBr & fE & fimm { local a:4 = fBr + fE; *[dmem]:4 a = fimm:4; }')
     w('ST5: is f215=2 & fBr & fE & fimm { local a:4 = fBr + fE; local p:1 = store_predicate(); if (p == 0) goto <skip>; *[dmem]:4 a = fimm:4; <skip> }')
-    w('ST1R: is fC=0x1e & fimm { *[cram]:4 fimm:2 = SV9; }')
-    w('ST1R: is fC=0x1b & fF=0x3f & fimm { *[cram]:4 fimm:2 = SV9; }')
-    w('ST1R: is fCr & fF { local a:4 = fCr + (0x1f - fF); *[cram]:4 a:2 = SV9; }')
-    w('ST1A: is fform=5 & fimm { *[cram]:4 fimm:2 = SV9; }')
-    w('ST1A: is ST1R { build ST1R; }')
-    w('ST1: is f211=3 & f95=4 & ST1A { build ST1A; }')
-    w('ST1: is f211=3 & f95=5 & ST1A { build ST1A; }')
-    w('ST1: is f211=2 & f95=4 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; build ST1A; <skip> }')
-    w('ST1: is f211=2 & f95=5 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; build ST1A; <skip> }')
-    w('ST1: is epsilon { }')
-    w('')
     w('# The store-data register (INFERRED, ge_isa.md "The store-data register"):')
     w('# r99 bit 1 loads it with the word\'s unit-1 result, or its unit-2 result')
     w('# when unit 1 is idle; otherwise it keeps its value.')
     w('MV: is f99b1=0 { SV0 = SV1; }')
     w('MV: is f99b1=1 & fMu=0x7f { SV0 = U2V; }')
     w('MV: is f99b1=1 { SV0 = U1V; }')
+    w('')
+    w = shared
+    emit_lanes(w, lane_text)
+    w('# r211 = 3 with r95 = 4, 5 or 6: lane 0, 1 or 2\'s store-data register as')
+    w('# it stood nine words earlier, to CRAM through C (INFERRED: load-matrix')
+    w('# handlers, mMatrixCopyCC, uMatrixMultCCC, mMatrixMultCCW, mgeb_XLoadClip;')
+    w('# ge_isa.md "Lanes"); r211 = 2 is its predicated form. One store goes out')
+    w('# per word, so its address is taken from lane 0\'s C (APPROXIMATION: which')
+    w('# lane\'s register addresses it is UNKNOWN; in the routines read so far C')
+    w('# holds the same value in every lane). r95 = 8-0xb also store the')
+    w('# register, but their memory is UNKNOWN, so they are left out.')
+    w('ST1R: is fC=0x1e & fimm { export *[cram]:4 fimm; }')
+    w('ST1R: is fC=0x1b & fF=0x3f & fimm { export *[cram]:4 fimm; }')
+    w('ST1R: is fCr & fF { local a:4 = fCr + (0x1f - fF); local b:2 = a:2; export *[cram]:4 b; }')
+    w('ST1A: is fform=5 & fimm { export *[cram]:4 fimm; }')
+    w('ST1A: is ST1R { export ST1R; }')
+    for n, sv in ((4, 'SV9'), (5, 'SV9_1'), (6, 'SV9_2')):
+        w('ST1: is f211=3 & f95=%d & ST1A { ST1A = %s; }' % (n, sv))
+        w('ST1: is f211=2 & f95=%d & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; ST1A = %s; <skip> }' % (n, sv))
+    w('ST1: is epsilon { }')
     w('')
     w('# Flags: r220 sets the low nibble from unit 1, r221 the high nibble from')
     w('# unit 2 (INFERRED split by unit, ge_ops.md).')
@@ -491,6 +564,9 @@ def emit(out):
         elif kind == 'f':
             w('FK2: is fMk=0x%x { local n:1; fnib(n, U2V, OPBV); FL = (FL & 0x0f) | (n << 4); }' % k)
     w('FK2: is fMk { local n:1 = passb(fMk:1, U2V, OPBV); FL = (FL & 0x0f) | (n << 4); }')
+    w('# r222: the address-unit result sets the address conditions (ESTABLISHED).')
+    w('FLA: is f222=0 { }')
+    w('FLA: is f222=1 { AZ = (AUV == 0); AGT = (AUV s> 0); }')
     w('FL1: is f220=0 { }')
     w('FL1: is f220=1 & FK1 { build FK1; }')
     w('FL2: is f221=0 { }')
@@ -498,11 +574,21 @@ def emit(out):
     w('')
     w('# A word\'s own work: operands are read before anything is written, so the')
     w('# units, the address unit and the stores all see the values from before it.')
-    w('BODY: is OPS & U1S & U2S & SDS & AUS & WQ & WP & WG & FLA & ST3 & ST5 & ST1 & MV & FL1 & FL2 {')
+    w('# Every lane runs it; the flags and the address conditions the sequencer')
+    w('# tests are lane 0\'s (APPROXIMATION: which lane drives them is UNKNOWN).')
+    L = (0, 1, 2)
+    def each(t):
+        return [lane_name(t, l) for l in L]
+    pat = ' & '.join(sum((each(t) for t in ('OPS', 'U1S', 'U2S', 'SDS', 'AUS', 'WQ', 'WP', 'WG',
+                                             'ST3', 'ST5', 'MV')), []) + ['FLA', 'ST1', 'FL1', 'FL2'])
+    w('BODY: is %s {' % pat)
     w('  flagshift();')
-    w('  build OPS; build U1S; build U2S; build SDS; build AUS;')
-    w('  build ST3; build ST5; build ST1; build MV;')
-    w('  build WQ; build WP; build WG;')
+    for t in ('OPS', 'U1S', 'U2S', 'SDS', 'AUS'):
+        w('  ' + ' '.join('build %s;' % x for x in each(t)))
+    w('  ' + ' '.join('build %s;' % x for x in each('ST3') + each('ST5')) + ' build ST1;')
+    w('  ' + ' '.join('build %s;' % x for x in each('MV')))
+    for t in ('WQ', 'WP', 'WG'):
+        w('  ' + ' '.join('build %s;' % x for x in each(t)))
     w('  build FLA; build FL1; build FL2;')
     w('}')
     w('')
@@ -575,6 +661,22 @@ def emit(out):
             w(':%s FIELDS is %s { build BODY; %s%s %s }' % (mn, pat, pre, ds, post.replace('@K@', str(k + 1))))
     w('# Sequencer codes 0, 1, 2, 7 and code 3 with R88: UNKNOWN (rare); no flow.')
     w(':xfer FIELDS is fvalid=1 & fsop & FIELDS & BODY & wlo { build BODY; seq_unknown(fsop:1); }')
+
+
+def emit_lanes(w, text):
+    """The per-lane tables: lane 0 as written, then lanes 1 and 2 renamed.
+
+    The r95 = 0x14 read is a pcodeop with no lane meaning yet, so only lane 0
+    keeps it; comments are written once.
+    """
+    for l in (0, 1, 2):
+        if l:
+            w('# ---- Lane %d: the tables above again, on lane %d\'s state.' % (l, l))
+        for line in text:
+            if l and (line.startswith('#') or 'read_r95_14' in line):
+                continue
+            w(lane_name(line, l))
+        w('')
 
 
 def nop_constraints():
