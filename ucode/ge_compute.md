@@ -3050,3 +3050,61 @@ between component widths keeps the high bits of each source field.
 - `mmo_Short_Complex_To_8` (`mshortcircuit.S` lines 1618-1689, at 0x9833): **inferred**, takes complex input and converts it to byte output: the same
   real-part selection and register-0x1c shift, but each pass covers sixteen pairs, half through register 0x10 (0x9854-0x985c)
   and half through register 0xc, which it sets to register 0x10 plus 0x10 (0x985d-0x9866, 0x9853).
+
+## X server drawing entries (xentry.S)
+
+Read from the [xentry.S listing](ge_listing/xentry.S.lst) (`ge.u`, IRIX 6.5.30m). These are the command handlers for the X
+server's direct point, line, segment, rectangle and span requests. A command word carries two signed 16-bit window
+coordinates; the handlers mark the request type in the words at register 0x1c plus 0x2c-0x2f (moves of unit register 0x1d
+or 0x1e, `r148` = 0x3a0 or 0x3c0), point registers 0x19 and 0x1a at the operands (C = 0x1d), and hand the coordinates to
+`mAbsX` or `mRelX`, which convert them and chain to the clip-and-draw modules of
+[xclipdraw.S](ge_handlers.md). Unit-1 code 0x5f shifts left, 0x5b shifts right arithmetically, 0x40 is the integer add and
+0x73 integer-to-float ([ge_ops.md](ge_ops.md)).
+
+- `mAbsX` (`xentry.S` lines 496-534, at 0x52c4): **inferred**, converts absolute X coordinates into float vertices. It
+  takes each packed operand word (A = 0x11) and splits it by a left shift and an arithmetic right shift by the count
+  staged in unit register 0x1c (0x52cd-0x52d3), which sign-extends the two 16-bit halves; it adds the window origin read
+  from control words 7 and 8 (code 0x40, 0x52d4-0x52d7), converts the sums to float (code 0x73) and stores the results
+  into vertex words 0, 1, 6 and 7 through register 0x13 (0x52d8-0x52db). After the loop it selects `mmo_XclipDrawRects` on
+  `cc` 0x7c, `mmo_XclipDrawLines` on `cc` 0x7a and otherwise `mmo_XclipDrawPoints` (0x52dd-0x52df).
+- `mRelX` (`xentry.S` lines 549-581, at 0x52a3): **inferred**, the CoordModePrevious form: it takes the same packed
+  operands through register 0x13, unpacks them with the 0x5f and 0x5b shifts (0x52ac-0x52b0), adds the origin words 7 and
+  8 (0x52aa, 0x52ab) and each previous result, and stores the float outputs through register 0x11 (0x52b7, 0x52b8),
+  looping back to 0x52ac. Its exits are only the line drawer (`cc` 0x7a) and the point drawer.
+- `mgesi_XPoint` (`xentry.S` lines 51-64, at 0x5293): **inferred**, PolyPoint with absolute coordinates. It takes its
+  operand count in register 0x19 and copies it to 0x12 (0x529f), writes the three type words 0x2c-0x2e from
+  unit register 0x1e (0x5293-0x5295) and jumps to `mAbsX` (0x529a), which converts the points and yields
+  `mmo_XclipDrawPoints`.
+- `mgesi_XPointRel` (`xentry.S` lines 78-90, at 0x5284): **inferred**, the relative PolyPoint: only words 0x2c and 0x2d are
+  set from register 0x1e (0x5284, 0x5285), and the coordinates go to `mRelX` (0x528a), which adds each input offset to the
+  previous point, so every output point is a running sum.
+- `mgesi_XBgPoint` (`xentry.S` lines 104-117, at 0x5274): **inferred**, points drawn with the background. It takes the same operands and differs from
+  `mgesi_XPoint` in taking word 0x2c from unit register 0x1d instead of 0x1e (0x5276), then converts through `mAbsX`
+  (0x527b) to the point output.
+- `mgesi_XBgPointRel` (`xentry.S` lines 131-143, at 0x5265): **inferred**, the background point request in relative
+  coordinates: word 0x2c from register 0x1d and 0x2d from 0x1e (0x5265, 0x5266), operands that `mRelX` (0x526b) converts into point results.
+- `mgesi_XLine` (`xentry.S` lines 439-454, at 0x5196): **inferred**, PolyLine with absolute vertices. It writes 0x2f and
+  0x2d from register 0x1d and 0x2e from 0x1e (0x5196-0x5198), takes the vertex count from operand register 0x19 minus one
+  (F = 0x20 at 0x51a2, the segment count of a polyline) and transforms the points through `mAbsX`, whose `cc` 0x7a exit
+  produces lines.
+- `mgesi_XLineRel` (`xentry.S` lines 468-482, at 0x5187): **inferred**, PolyLine in CoordModePrevious. It takes relative vertex input with the same type words
+  except 0x2e (0x5187, 0x5188) and the same count minus one (0x5192), with `mRelX` as the converter (0x518d); the output is a line strip whose vertices `mRelX` computes as running sums.
+- `mgesi_XSegment` (`xentry.S` lines 370-391, at 0x51bd): **inferred**, PolySegment: each segment is two independent
+  endpoints, so it stages 1 and shifts the operand count right by it (code 0x5d, 0x51c1-0x51c3), giving the number of
+  segments as the loop count it loads into register 0x12 (0x51cc). It sets 0x2f and 0x2e from register 0x1e and 0x2d from
+  0x1d, then converts through `mAbsX` (0x51cb), whose line exit produces the segments.
+- `mgesi_XSegmentRel` (`xentry.S` lines 405-425, at 0x51a6): **inferred**, the relative-coordinate segment request. It takes the
+  halved count of `mgesi_XSegment` (0x51aa-0x51ac), type words 0x2f and 0x2d only (0x51ae, 0x51af), and `mRelX` to
+  compute the vertex results (0x51b4).
+- `mgesi_XBox` (`xentry.S` lines 252-269, at 0x520c): **inferred**, rectangle outlines: it halves the operand count as
+  the segment handlers do (0x5210-0x5212), writes only word 0x2e from register 0x1d (0x5215) and converts the corner
+  pairs with `mAbsX` (0x521a), whose `cc` 0x7c exit sends the results to the rectangle drawer.
+- `mgesi_XRect` (`xentry.S` lines 163-238, at 0x5223): **inferred**, PolyFillRectangle with its own conversion loop
+  (0x523d-0x525b). It takes x, y from one operand word and width, height from the next, splits each with the 0x5f and 0x5b
+  shifts by unit register 0x19, masks with the 0xffff it stages (0x5237; AND code 0x50 at 0x5240, 0x5247), adds the
+  origin words 7 and 8 (0x5246-0x5251) and converts to float (code 0x73), and stores four results per rectangle through
+  register 0x10 (0x524e-0x525a) before ending in `mmo_XclipDrawRects` (0x525c).
+- `mgesi_XSpans` (`xentry.S` lines 290-356, at 0x51d4): **inferred**, fill spans: each span is a packed (x, y) operand and a
+  width. The loop at 0x51ea-0x5202 unpacks the point with the shift pair, adds the origin from control words 7 and 8
+  (0x51f0, 0x51f3, 0x51f5, 0x51f6), converts point and width with code 0x73, and stores four outputs per span through
+  register 0xf (0x51f8-0x5201), so each span becomes a one-pixel-high rectangle for `mmo_XclipDrawRects` (0x5203).

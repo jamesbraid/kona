@@ -2297,19 +2297,19 @@ ge.u	label	0x00004e30	mgebi_XSetupWindow		located	ucode/ge_handlers.md#xsetups	x
 ge.u	label	0x00004ead	mmo_XclipDrawLines		located	ucode/ge_handlers.md#xclipdraws	xclipdraw.S
 ge.u	label	0x0000508b	mmo_XclipDrawRects		located	ucode/ge_handlers.md#xclipdraws	xclipdraw.S
 ge.u	label	0x00005130	mmo_XclipDrawPoints		located	ucode/ge_handlers.md#xclipdraws	xclipdraw.S
-ge.u	label	0x00005187	mgesi_XLineRel		located	ucode/ge_handlers.md#xentrys	xentry.S
-ge.u	label	0x00005196	mgesi_XLine		located	ucode/ge_handlers.md#xentrys	xentry.S
-ge.u	label	0x000051a6	mgesi_XSegmentRel		located	ucode/ge_handlers.md#xentrys	xentry.S
-ge.u	label	0x000051bd	mgesi_XSegment		located	ucode/ge_handlers.md#xentrys	xentry.S
-ge.u	label	0x000051d4	mgesi_XSpans		located	ucode/ge_handlers.md#xentrys	xentry.S
-ge.u	label	0x0000520c	mgesi_XBox		located	ucode/ge_handlers.md#xentrys	xentry.S
-ge.u	label	0x00005223	mgesi_XRect		located	ucode/ge_handlers.md#xentrys	xentry.S
-ge.u	label	0x00005265	mgesi_XBgPointRel		located	ucode/ge_handlers.md#xentrys	xentry.S
-ge.u	label	0x00005274	mgesi_XBgPoint		located	ucode/ge_handlers.md#xentrys	xentry.S
+ge.u	label	0x00005187	mgesi_XLineRel		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
+ge.u	label	0x00005196	mgesi_XLine		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
+ge.u	label	0x000051a6	mgesi_XSegmentRel		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
+ge.u	label	0x000051bd	mgesi_XSegment		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
+ge.u	label	0x000051d4	mgesi_XSpans		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
+ge.u	label	0x0000520c	mgesi_XBox		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
+ge.u	label	0x00005223	mgesi_XRect		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
+ge.u	label	0x00005265	mgesi_XBgPointRel		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
+ge.u	label	0x00005274	mgesi_XBgPoint		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x00005284	mgesi_XPointRel		located	ucode/ge_handlers.md#xentrys	xentry.S
-ge.u	label	0x00005293	mgesi_XPoint		located	ucode/ge_handlers.md#xentrys	xentry.S
-ge.u	label	0x000052a3	mRelX		located	ucode/ge_handlers.md#xentrys	xentry.S
-ge.u	label	0x000052c4	mAbsX		located	ucode/ge_handlers.md#xentrys	xentry.S
+ge.u	label	0x00005293	mgesi_XPoint		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
+ge.u	label	0x000052a3	mRelX		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
+ge.u	label	0x000052c4	mAbsX		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x000052e8	mgesi_VCbusWriteMultiple		located	ucode/ge_handlers.md#videos	video.S
 ge.u	label	0x00005305	mgesi_VCbusWrite		located	ucode/ge_handlers.md#videos	video.S
 ge.u	label	0x00005312	mmo_UnpackVertexV3F_C4UB_T2S_LGT		located	ucode/ge_handlers.md#munpacks	munpack.S
