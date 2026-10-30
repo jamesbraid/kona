@@ -66,7 +66,7 @@ LANE_REGS = (['LDV', 'LDL', 'P1V', 'P2V', 'OPAV', 'OPBV', 'U1V', 'U2V', 'AUV', '
               'SDOP', 'SEED', 'SEED0', 'SEED1'] + ['SV%d' % i for i in range(10)]
              + ['U1H%d' % i for i in range(8)] + ['U2H%d' % i for i in range(8)]
              + [n for n, _, _ in LANE_FIELDS])
-LANE_TABLES = ['ADR', 'LDR', 'CR13R', 'CR13', 'CR17', 'CRD', 'FW1', 'FW2', 'PT1', 'PT2', 'FU1',
+LANE_TABLES = ['ADR', 'LDR', 'CR13R', 'CR13', 'EA', 'CR17', 'CRD', 'FW1', 'FW2', 'PT1', 'PT2', 'FU1',
                'FU2', 'OP2A', 'OP2B', 'FSD', 'SDO', 'OPS', 'U1S', 'U2S', 'SDS', 'CSR', 'AOP',
                'AUS', 'WQ', 'WP', 'WG', 'SADDR', 'ST3', 'ST5', 'MV']
 LANE_RX = re.compile(r'\b(%s)\b' % '|'.join(sorted(LANE_REGS + LANE_TABLES, key=len, reverse=True)))
@@ -75,6 +75,7 @@ LANE_RX = re.compile(r'\b(%s)\b' % '|'.join(sorted(LANE_REGS + LANE_TABLES, key=
 def lane_name(text, lane):
     """text with every per-lane name renamed for lane (0 keeps the names)."""
     text = text.replace('flmL', 'flm%d' % lane)
+    text = text.replace('R95RD', '0x%x' % (0x14 + lane))
     if lane == 0:
         return text
     return LANE_RX.sub(lambda m: '%s_%d' % (m.group(1), lane), text)
@@ -255,7 +256,6 @@ def emit(out):
                'u1_op', 'u2_op', 'rcp_seed', 'rsqrt_seed', 'seed_op', 'aalu', 'cond_test',
                'abort_requested', 'store_predicate', 'next_command', 'seq_unknown', 'passb'):
         w('define pcodeop %s;' % op)
-    w('define pcodeop read_r95_14;')
     w('')
 
     # ---- display groups
@@ -377,21 +377,26 @@ def emit(out):
     w('# (INFERRED: 469 reads and 18 stores; uMatrixMultCCC\'s form-14 stores')
     w('# 0xea6-0xeaf finish the run 0x4f-0x5e its form-5 stores begin).')
     w('# r95 = 0x17 reads ERAM: at the immediate with C = 0x1e (INFERRED,')
-    w('# mmo_CopyFifoLine); through C with the same 0x1f - F offset (INFERRED here:')
-    w('# mmo_Clamp reads its parameter block with F = 0x1a down to 0xf through one')
-    w('# C). r95 = 0x14 with C = 0x1e is a read with no destination (0xa7e8, the')
-    w('# raster position); its memory is UNKNOWN, so a pcodeop. A read in the')
-    w('# word that consumes it is seen by that word (uMatrixMultCCC 0xe72-0xe75).')
+    w('# mmo_CopyFifoLine), at A plus the immediate when F is also 0x3f (INFERRED,')
+    w('# err.S: the error word at register 0x16 plus 4); through C with the same')
+    w('# 0x1f - F offset (INFERRED here: mmo_Clamp reads its parameter block with')
+    w('# F = 0x1a down to 0xf through one C). r95 = 0x14, 0x15 and 0x16 read the')
+    w('# same way into lane 0, 1 or 2 alone (INFERRED, ge_isa.md "Lanes":')
+    w('# mgesi_PrintNum restores the words its r95 = 8-0xa stores saved). A read')
+    w('# in the word that consumes it is seen by that word (uMatrixMultCCC')
+    w('# 0xe72-0xe75).')
     w('CR13R: is fC=0x1e & fimm { LDL = *[cram]:4 fimm:2; }')
     w('CR13R: is fC=0x1b & fF=0x3f & fimm { LDL = *[cram]:4 fimm:2; }')
     w('CR13R: is fCr & fF { local a:4 = fCr + (0x1f - fF); LDL = *[cram]:4 a:2; }')
     w('CR13: is fform=5 & fimm { LDL = *[cram]:4 fimm:2; }')
     w('CR13: is CR13R { build CR13R; }')
-    w('CR17: is fC=0x1e & fimm { LDL = *[eram]:4 fimm:4; }')
-    w('CR17: is fCr & fF { local a:4 = fCr + (0x1f - fF); LDL = *[eram]:4 a; }')
+    w('EA: is fC=0x1e & fF=0x3f & fAr & fimm { local a:4 = fAr + fimm; export *[eram]:4 a; }')
+    w('EA: is fC=0x1e & fimm { export *[eram]:4 fimm; }')
+    w('EA: is fCr & fF { local a:4 = fCr + (0x1f - fF); export *[eram]:4 a; }')
+    w('CR17: is EA { LDL = EA; }')
     w('CRD: is f95=0x13 & CR13 { build CR13; }')
     w('CRD: is f95=0x17 & CR17 { build CR17; }')
-    w('CRD: is f95=0x14 & fC=0x1e & fimm { LDL = read_r95_14(fimm:4); }')
+    w('CRD: is f95=R95RD & EA { LDL = EA; }')
     w('CRD: is f95 { }')
     w('# Forwarded results (ESTABLISHED): r128 code k = 0-3 is the unit-1 result')
     w('# 4 + k words back, 4-7 the unit-2 result 4 + (k - 4) words back.')
@@ -536,8 +541,10 @@ def emit(out):
     w('# ge_isa.md "Lanes"); r211 = 2 is its predicated form. One store goes out')
     w('# per word, so its address is taken from lane 0\'s C (APPROXIMATION: which')
     w('# lane\'s register addresses it is UNKNOWN; in the routines read so far C')
-    w('# holds the same value in every lane). r95 = 8-0xb also store the')
-    w('# register, but their memory is UNKNOWN, so they are left out.')
+    w('# holds the same value in every lane). r95 = 8, 9 and 0xa send lane 0, 1 or')
+    w('# 2\'s register to ERAM, addressed as the r95 = 0x17 reads (INFERRED: err.S')
+    w('# writes the error word it read with r95 = 0x17; mgesi_PrintNum saves the')
+    w('# three lanes at 0x17d7-0x17d9). r95 = 7 and 0xb are left out.')
     w('ST1R: is fC=0x1e & fimm { export *[cram]:4 fimm; }')
     w('ST1R: is fC=0x1b & fF=0x3f & fimm { export *[cram]:4 fimm; }')
     w('ST1R: is fCr & fF { local a:4 = fCr + (0x1f - fF); local b:2 = a:2; export *[cram]:4 b; }')
@@ -546,6 +553,9 @@ def emit(out):
     for n, sv in ((4, 'SV9'), (5, 'SV9_1'), (6, 'SV9_2')):
         w('ST1: is f211=3 & f95=%d & ST1A { ST1A = %s; }' % (n, sv))
         w('ST1: is f211=2 & f95=%d & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; ST1A = %s; <skip> }' % (n, sv))
+    for n, sv in ((8, 'SV9'), (9, 'SV9_1'), (0xa, 'SV9_2')):
+        w('ST1: is f211=3 & f95=%d & EA { EA = %s; }' % (n, sv))
+        w('ST1: is f211=2 & f95=%d & EA { local p:1 = store_predicate(); if (p == 0) goto <skip>; EA = %s; <skip> }' % (n, sv))
     w('ST1: is epsilon { }')
     w('')
     w('# Flags: r220 sets the low nibble from unit 1, r221 the high nibble from')
@@ -666,14 +676,13 @@ def emit(out):
 def emit_lanes(w, text):
     """The per-lane tables: lane 0 as written, then lanes 1 and 2 renamed.
 
-    The r95 = 0x14 read is a pcodeop with no lane meaning yet, so only lane 0
-    keeps it; comments are written once.
+    Comments are written once.
     """
     for l in (0, 1, 2):
         if l:
             w('# ---- Lane %d: the tables above again, on lane %d\'s state.' % (l, l))
         for line in text:
-            if l and (line.startswith('#') or 'read_r95_14' in line):
+            if l and line.startswith('#'):
                 continue
             w(lane_name(line, l))
         w('')

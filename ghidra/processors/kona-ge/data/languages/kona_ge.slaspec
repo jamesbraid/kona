@@ -199,7 +199,6 @@ define pcodeop store_predicate;
 define pcodeop next_command;
 define pcodeop seq_unknown;
 define pcodeop passb;
-define pcodeop read_r95_14;
 
 # ---- Display: one subtable per record group, empty at its no-op value.
 G_imm: is fimm=0x0 { }
@@ -473,21 +472,26 @@ LDR: is f99h=1 & f99b2=1 & ADR { LDV = ADR; LDL = LDV; }
 # (INFERRED: 469 reads and 18 stores; uMatrixMultCCC's form-14 stores
 # 0xea6-0xeaf finish the run 0x4f-0x5e its form-5 stores begin).
 # r95 = 0x17 reads ERAM: at the immediate with C = 0x1e (INFERRED,
-# mmo_CopyFifoLine); through C with the same 0x1f - F offset (INFERRED here:
-# mmo_Clamp reads its parameter block with F = 0x1a down to 0xf through one
-# C). r95 = 0x14 with C = 0x1e is a read with no destination (0xa7e8, the
-# raster position); its memory is UNKNOWN, so a pcodeop. A read in the
-# word that consumes it is seen by that word (uMatrixMultCCC 0xe72-0xe75).
+# mmo_CopyFifoLine), at A plus the immediate when F is also 0x3f (INFERRED,
+# err.S: the error word at register 0x16 plus 4); through C with the same
+# 0x1f - F offset (INFERRED here: mmo_Clamp reads its parameter block with
+# F = 0x1a down to 0xf through one C). r95 = 0x14, 0x15 and 0x16 read the
+# same way into lane 0, 1 or 2 alone (INFERRED, ge_isa.md "Lanes":
+# mgesi_PrintNum restores the words its r95 = 8-0xa stores saved). A read
+# in the word that consumes it is seen by that word (uMatrixMultCCC
+# 0xe72-0xe75).
 CR13R: is fC=0x1e & fimm { LDL = *[cram]:4 fimm:2; }
 CR13R: is fC=0x1b & fF=0x3f & fimm { LDL = *[cram]:4 fimm:2; }
 CR13R: is fCr & fF { local a:4 = fCr + (0x1f - fF); LDL = *[cram]:4 a:2; }
 CR13: is fform=5 & fimm { LDL = *[cram]:4 fimm:2; }
 CR13: is CR13R { build CR13R; }
-CR17: is fC=0x1e & fimm { LDL = *[eram]:4 fimm:4; }
-CR17: is fCr & fF { local a:4 = fCr + (0x1f - fF); LDL = *[eram]:4 a; }
+EA: is fC=0x1e & fF=0x3f & fAr & fimm { local a:4 = fAr + fimm; export *[eram]:4 a; }
+EA: is fC=0x1e & fimm { export *[eram]:4 fimm; }
+EA: is fCr & fF { local a:4 = fCr + (0x1f - fF); export *[eram]:4 a; }
+CR17: is EA { LDL = EA; }
 CRD: is f95=0x13 & CR13 { build CR13; }
 CRD: is f95=0x17 & CR17 { build CR17; }
-CRD: is f95=0x14 & fC=0x1e & fimm { LDL = read_r95_14(fimm:4); }
+CRD: is f95=0x14 & EA { LDL = EA; }
 CRD: is f95 { }
 # Forwarded results (ESTABLISHED): r128 code k = 0-3 is the unit-1 result
 # 4 + k words back, 4-7 the unit-2 result 4 + (k - 4) words back.
@@ -719,10 +723,13 @@ CR13R_1: is fC=0x1b & fF=0x3f & fimm { LDL_1 = *[cram]:4 fimm:2; }
 CR13R_1: is fCr_1 & fF { local a:4 = fCr_1 + (0x1f - fF); LDL_1 = *[cram]:4 a:2; }
 CR13_1: is fform=5 & fimm { LDL_1 = *[cram]:4 fimm:2; }
 CR13_1: is CR13R_1 { build CR13R_1; }
-CR17_1: is fC=0x1e & fimm { LDL_1 = *[eram]:4 fimm:4; }
-CR17_1: is fCr_1 & fF { local a:4 = fCr_1 + (0x1f - fF); LDL_1 = *[eram]:4 a; }
+EA_1: is fC=0x1e & fF=0x3f & fAr_1 & fimm { local a:4 = fAr_1 + fimm; export *[eram]:4 a; }
+EA_1: is fC=0x1e & fimm { export *[eram]:4 fimm; }
+EA_1: is fCr_1 & fF { local a:4 = fCr_1 + (0x1f - fF); export *[eram]:4 a; }
+CR17_1: is EA_1 { LDL_1 = EA_1; }
 CRD_1: is f95=0x13 & CR13_1 { build CR13_1; }
 CRD_1: is f95=0x17 & CR17_1 { build CR17_1; }
+CRD_1: is f95=0x15 & EA_1 { LDL_1 = EA_1; }
 CRD_1: is f95 { }
 FW1_1: is f128p1=0 { P1V_1 = U1H4_1; }
 FW1_1: is f128p1=1 { P1V_1 = U1H5_1; }
@@ -877,10 +884,13 @@ CR13R_2: is fC=0x1b & fF=0x3f & fimm { LDL_2 = *[cram]:4 fimm:2; }
 CR13R_2: is fCr_2 & fF { local a:4 = fCr_2 + (0x1f - fF); LDL_2 = *[cram]:4 a:2; }
 CR13_2: is fform=5 & fimm { LDL_2 = *[cram]:4 fimm:2; }
 CR13_2: is CR13R_2 { build CR13R_2; }
-CR17_2: is fC=0x1e & fimm { LDL_2 = *[eram]:4 fimm:4; }
-CR17_2: is fCr_2 & fF { local a:4 = fCr_2 + (0x1f - fF); LDL_2 = *[eram]:4 a; }
+EA_2: is fC=0x1e & fF=0x3f & fAr_2 & fimm { local a:4 = fAr_2 + fimm; export *[eram]:4 a; }
+EA_2: is fC=0x1e & fimm { export *[eram]:4 fimm; }
+EA_2: is fCr_2 & fF { local a:4 = fCr_2 + (0x1f - fF); export *[eram]:4 a; }
+CR17_2: is EA_2 { LDL_2 = EA_2; }
 CRD_2: is f95=0x13 & CR13_2 { build CR13_2; }
 CRD_2: is f95=0x17 & CR17_2 { build CR17_2; }
+CRD_2: is f95=0x16 & EA_2 { LDL_2 = EA_2; }
 CRD_2: is f95 { }
 FW1_2: is f128p1=0 { P1V_2 = U1H4_2; }
 FW1_2: is f128p1=1 { P1V_2 = U1H5_2; }
@@ -1029,8 +1039,10 @@ MV_2: is f99b1=1 { SV0_2 = U1V_2; }
 # ge_isa.md "Lanes"); r211 = 2 is its predicated form. One store goes out
 # per word, so its address is taken from lane 0's C (APPROXIMATION: which
 # lane's register addresses it is UNKNOWN; in the routines read so far C
-# holds the same value in every lane). r95 = 8-0xb also store the
-# register, but their memory is UNKNOWN, so they are left out.
+# holds the same value in every lane). r95 = 8, 9 and 0xa send lane 0, 1 or
+# 2's register to ERAM, addressed as the r95 = 0x17 reads (INFERRED: err.S
+# writes the error word it read with r95 = 0x17; mgesi_PrintNum saves the
+# three lanes at 0x17d7-0x17d9). r95 = 7 and 0xb are left out.
 ST1R: is fC=0x1e & fimm { export *[cram]:4 fimm; }
 ST1R: is fC=0x1b & fF=0x3f & fimm { export *[cram]:4 fimm; }
 ST1R: is fCr & fF { local a:4 = fCr + (0x1f - fF); local b:2 = a:2; export *[cram]:4 b; }
@@ -1042,6 +1054,12 @@ ST1: is f211=3 & f95=5 & ST1A { ST1A = SV9_1; }
 ST1: is f211=2 & f95=5 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; ST1A = SV9_1; <skip> }
 ST1: is f211=3 & f95=6 & ST1A { ST1A = SV9_2; }
 ST1: is f211=2 & f95=6 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; ST1A = SV9_2; <skip> }
+ST1: is f211=3 & f95=8 & EA { EA = SV9; }
+ST1: is f211=2 & f95=8 & EA { local p:1 = store_predicate(); if (p == 0) goto <skip>; EA = SV9; <skip> }
+ST1: is f211=3 & f95=9 & EA { EA = SV9_1; }
+ST1: is f211=2 & f95=9 & EA { local p:1 = store_predicate(); if (p == 0) goto <skip>; EA = SV9_1; <skip> }
+ST1: is f211=3 & f95=10 & EA { EA = SV9_2; }
+ST1: is f211=2 & f95=10 & EA { local p:1 = store_predicate(); if (p == 0) goto <skip>; EA = SV9_2; <skip> }
 ST1: is epsilon { }
 
 # Flags: r220 sets the low nibble from unit 1, r221 the high nibble from
