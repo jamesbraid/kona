@@ -4059,14 +4059,14 @@ enum kona_hp_token {
     /* Read at arm1.u arm_separablefilter3d 0x0c02664c (b 0x0c0017f4);
      * arm_badcmd 0x0c0017f4-0x0c001854. */
 
-    /* `HP_SEPARABLEFILTER3D` (0x0f6). Unused three-dimensional
-     * separable-filter token. Established: token 0x0f6 resolves to a branch
-     * at 0x0c02664c into arm_badcmd (read in full). Established from
-     * kon_convolve.s: the only separable loader is
-     * __glkonim_SeparableFilter2DEXT at line 723, and no routine in the file
-     * or the other libGLcore objects is named for a 3D separable filter. Like
-     * its convolution neighbour 0x0f1, the slot exists in the numbering with
-     * nothing behind it on either side of the pipe. */
+    /* `HP_SEPARABLEFILTER3D` (0x0f6). Refused three-dimensional
+     * separable-filter token. Established (read in full): slot 0x0f6 is a
+     * bare jump at 0x0c02664c into arm_badcmd, which prints the token pair,
+     * drains 100 words and then spins. Established from kon_convolve.s: the
+     * only separable-filter loader is __glkonim_SeparableFilter2DEXT at line
+     * 723, and libGLcore has no routine for a 3D separable filter, so the
+     * library cannot build the word. The 1D and 2D loads use their own
+     * tokens; the 3D slot is only a place in the numbering. */
     KONA_HP_SEPARABLEFILTER3D            = 0x0f6,
 
     /* Engine handlers whose slots the code of `arm_getseparablefilter` loads,

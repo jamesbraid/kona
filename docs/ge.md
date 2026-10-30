@@ -2,7 +2,7 @@
 
 What the ARM firmware (`arm1.u`, IRIX 6.5.30m, [ucode/arm1_firmware.md](../ucode/arm1_firmware.md)) does to start, feed and save the geometry engines. The engine program is covered in [ucode/ge.md](../ucode/ge.md), [ucode/ge_isa.md](../ucode/ge_isa.md) and [ucode/ge_ops.md](../ucode/ge_ops.md); the register list is in [GE.h](../GE.h). Facts are labelled **established** (read from the firmware at the function named), **inferred** (with the reasoning) or **unknown**.
 
-The host tokens the host interface routes without ARM code are decoded one per row in [ge-routed-tokens.md](ge-routed-tokens.md); the 89 register-shadow rows of the command-name table are in [ge-shadow-words.md](ge-shadow-words.md).
+The host tokens the host interface routes without ARM code are decoded one per row in [ge-routed-tokens.md](ge-routed-tokens.md), the ARM-run tokens in [ge-arm-tokens.md](ge-arm-tokens.md); the 89 register-shadow rows of the command-name table are in [ge-shadow-words.md](ge-shadow-words.md).
 
 ## Registers: the ARM's path to them
 

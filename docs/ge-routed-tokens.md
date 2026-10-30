@@ -171,4 +171,16 @@ The X server module stores the first payload word of each token at the FIFO poin
 | `HP_X_BGPOINT` | entry 0x58594841 | 178 | 1 | 50 | `mgesi_XBgPoint` | 0x2be0 | Draws one point in the background colour, the odd dash of a double-dashed line. | inferred |
 | `HP_X_BGPOINT6` | entry 0x58594981 | 178 | 6 | 50 | `mgesi_XBgPoint` | 0x2c00 | Draws six points in the background colour. | inferred |
 | `HP_X_BGPOINT24` | entry 0x58594e01 | 178 | 24 | 50 | `mgesi_XBgPoint` | 0x2c20 | Draws twenty-four points in the background colour. | inferred |
+## Other routed tokens
+
+Routed tokens that fit none of the families above. The map word of each is decoded in the same way; the handler slot is the engine handler table entry that the command number selects.
+
+| Token | Map word | Command | Count | Handler slot | Handler bound | Effect | Grade |
+|---|---|---|---|---|---|---|---|
+| `HP_GET_LIGHT_ATTRIBS` | entry 0x58514841 | 162 | 1 | 34 | `mgesi_PushAttrLights` | Saves the current light attributes on the engine-side attribute stack. No host routine sends it: the ARM injects the same command, with descriptor 0x58514800, while it handles a push-attributes token. | inferred |
+| `HP_GEPASSCMD` | entry 0x58474041 | 142 | 1 | 14 | `mges_NullCommand` | Consumes one command word and does nothing with it, because the slot is bound to the null-command engine routine; nothing in the shipped software sends it. | inferred |
+| `HP_WRAM2CRAM` | entry 0x5846d441 | 141 | 17 | 13 | none | Takes seventeen words through the pass form into a slot that start-up binds to no engine routine, so the words are consumed without a handler running; nothing in the shipped software sends it. | inferred |
+| `HP_BIND_2D_MIPMAP_TEXTURE` | entry 0x58505d81 | 160 | 22 | 32 | `mgebi_Bind2dMipmapTexture` | Loads a 2D mip-map texture description into the engine texture state: six words read from fixed offsets of the texture object, then sixteen words copied from the array that the object points to at offset 252; the sender first sends a linear-bind or bind token with five words. | inferred |
+| `HP_SETCOLORNORMAL` | entry 0x52600067 | 192 | 1 | 0 | `mgesi_BshRegisterWrite` | Writes its one payload word as a mode value into distributor register 0x293; the library sends it only for the igloo-interface call with selector 0x81a1, after token 446. | inferred |
+
 
