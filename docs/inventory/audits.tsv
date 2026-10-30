@@ -6,3 +6,4 @@ table	date	sample	real	shallow	wrong	note
 tokens	2026-10-29	20	19	0	1	sample of understood rows at 6bf8d9b under the v3 grader; the attribute-token effect sentence is shared across about a dozen tokens
 ucode	2026-10-29	25	15	9	1	arm1.u 9 of 9 real, ge.u 5 of 8, geif.u 1 of 8; the distributor ged1b.u was not a table then
 ioctls	2026-10-29	10	9	0	1	sample of understood rows at 6bf8d9b
+functions	2026-10-30	60	52	3	5	sample of the 341 established libGLcore entries in 1bae91f..9f44d89 read against the asm (two samples of 30 at seed 20261030 and 20261031); real/n per commit: 1bae91f 4/7, 9ae3fdf 10/10, c88f459 12/13, c1de15f 14/14, 132b4ae 8/8, 9f44d89 4/8; the five wrong are three texgen readers with one shared fault, a free-order claim and two deformation readers that return 0 not the count
