@@ -1289,3 +1289,161 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
   adds, and alternating multiply-subtract and multiply-add words.
 - `umo_EvalPoly4UdU` (`eval4.s` lines 400-412, at 0x92d): **inferred**, cubic u-derivative set-up, derivative at 0x8004.
 - `lPOLY4UDULOOP` (`eval4.s` lines 414-452, at 0x93a): **inferred**, the cubic value and u derivative per pass.
+
+## Pixel output and set-up (mpixout.S, mpixelSetup.S)
+
+**Inferred**, from the words of the two modules. These are the ends of the pixel paths: output modules that clamp, scale
+and pack pixels for the raster bus, the X server's direct pixel and stipple paths, the convolution input and output
+copies, the moves between engine memories, and the set-up handlers that place the raster position and choose which
+engine takes each part of a pixel stream. Output records are the seven-word records of
+[docs/rm.md](../docs/rm.md#pixel-and-texel-data-words), loaded from control memory 0x161-0x169.
+
+- `mmo_Pixout_8_16` (`mpixout.S` lines 228-291, at 0xa4b5): **inferred**, the clamping 8- and 16-bit output: it loads the
+  record words 0x161-0x169 as input and, by the count, runs `uPO_8_16C` or `uPO_8_16C_LastBlck`, or `mLASTGE` on the
+  last engine (`cc` 0x7e).
+- `mmo_Pixout_8_16NC` (`mpixout.S` lines 90-208, at 0xa44e): **inferred**, the same output without clamping ("NC"): each
+  input component is only multiplied by its field scale (a run of multiplies from 0xa459) before packing.
+- `mmo_Pixout_2_4` (`mpixout.S` lines 404-467, at 0xa3e8): **inferred**, the clamping two- and four-component output,
+  dispatching on the count to `uPO_2_4C`, `uPO_2_4C_LastBlck` or `mLASTGE`.
+- `mmo_Pixout_2_4NC` (`mpixout.S` lines 308-387, at 0xa407): **inferred**, the two- and four-component form without the
+  clamp: twelve multiplies scale the input fields, with its own short-count paths on `cc` 2, 3 and 0x14.
+- `mmo_Pixout_RGB_in_RGBA` (`mpixout.S` lines 507-583, at 0xa395): **inferred**, writes three-component input into
+  four-component pixels: clamp-and-multiply words scale red, green and blue, and a lone multiply supplies the alpha field.
+- `mmo_Pixout_RGB_in_RGBANC` (`mpixout.S` lines 595-671, at 0xa33f): **inferred**, the unclamped RGB-into-RGBA output,
+  twenty multiplies scaling the input fields.
+- `mmo_Pixout_32` (`mpixout.S` lines 687-797, at 0xa2d5): **inferred**, the 32-bit-component output: each input is clamped
+  with 0x7c and multiplied by the field maximum, 24 per pass, the results sent as whole words.
+- `mmo_Pixout_32NC` (`mpixout.S` lines 859-968, at 0xa276): **inferred**, the 32-bit output without the clamp, a long run
+  of multiplies that scale each input word.
+- `mmo_PixoutCI_4_8` (`mpixout.S` lines 1034-1112, at 0xa214): **inferred**, packs 4- and 8-bit colour indexes: the input
+  indexes are moved into their byte or nibble positions (77 moves) with no arithmetic beyond the packing.
+- `mmo_PixoutMerge2_4C` (`mpixout.S` lines 1128-1304, at 0xa1c2): **inferred**, merges two- and four-component output
+  with what is already in the destination: it converts the input with float-to-integer and moves fields under the
+  register words 0x2202000 and 0x22000.
+- `mmo_ArbClamp` (`mpixout.S` lines 1325-1396, at 0xa154): **inferred**, clamps each input component to an arbitrary range
+  rather than [0, 1]: a minimum against the upper bound and a maximum against the lower bound per component, four
+  components at a time.
+- `mmo_ConvEramToWram` (`mpixout.S` lines 1409-1427, at 0xa132): **inferred**, loads a convolution kernel from external
+  memory into working memory using the six descriptor words at 0xbb6-0xbbb, the input of the convolution modules.
+- `mmo_ConvolveOut` (`mpixout.S` lines 1678-1692, at 0xa002): **inferred**, the convolution output module: it reads the
+  five `U_uConvolutionOutput` words at 0x161-0x165 that name where the summed rows are and how to convert them.
+- `mmo_loadConvRGB` (`mpixout.S` lines 1899-1921, at 0x9eeb): **inferred**, copies three-component input pixels into the
+  convolution row buffer, three moves per pixel in a loop on `cc` 0x14.
+- `mmo_loadConvRGBA` (`mpixout.S` lines 1863-1885, at 0x9f19): **inferred**, the four-component load into the row buffer.
+- `mmo_loadConvI` (`mpixout.S` lines 1829-1849, at 0x9f49): **inferred**, loads intensity input, one move per pixel.
+- `mmo_loadConvLA` (`mpixout.S` lines 1794-1815, at 0x9f79): **inferred**, loads luminance-alpha input, two moves per pixel.
+- `mmo_loadConvL` (`mpixout.S` lines 1760-1780, at 0x9fa9): **inferred**, loads luminance input, one move per pixel.
+- `mmo_loadConvA` (`mpixout.S` lines 1726-1746, at 0x9fd7): **inferred**, loads alpha-only input into the row buffer.
+- `mmo_unloadConvRGB` (`mpixout.S` lines 1645-1665, at 0xa018): **inferred**, copies finished three-component convolution
+  results out of the row buffer to the next stage.
+- `mmo_unloadConvRGBA` (`mpixout.S` lines 1612-1631, at 0xa049): **inferred**, moves four summed components per output
+  pixel from the row buffer to the next stage (four moves per pass), repeating while the row has results.
+- `mmo_unloadConvI` (`mpixout.S` lines 1578-1598, at 0xa07c): **inferred**, for intensity kernels one move per output
+  pixel carries the single convolved value out of the buffer.
+- `mmo_unloadConvLA` (`mpixout.S` lines 1539-1564, at 0xa0a9): **inferred**, the luminance-alpha unload: two moves per
+  pixel pass the convolved pair on, its loop closing on `cc` 0x14 at 0xa0aa.
+- `mmo_unloadConvL` (`mpixout.S` lines 1505-1525, at 0xa0d8): **inferred**, the luminance unload, whose single move per
+  pixel hands each summed luminance to the following stage.
+- `mmo_unloadConvA` (`mpixout.S` lines 1467-1491, at 0xa105): **inferred**, for an alpha-only kernel the filtered alpha
+  leaves the buffer one word per pixel, with the colour components untouched.
+- `mmo_PolygonStippleOut` (`mpixout.S` lines 1935-1971, at 0x9eb1): **inferred**, writes a polygon stipple pattern: each
+  input row is ANDed, shifted by 0x20 and ORed into the record word at 0x162 before the bus write.
+- `mgesi_PolygonStippleDownload` (`mpixout.S` lines 2208-2221, at 0x9d56): **inferred**, `glPolygonStipple`: a bitwise-not
+  store to bus address 0x1f4, then `mDoPolygonStippleDownload` sends the pattern.
+- `mDoPolygonStippleDownload` (`mpixout.S` lines 2160-2201, at 0x9d6b): **inferred**, stores the 32 stipple rows from the
+  pattern words at 0x880-0x8e0 to the pixel generator's stipple registers (register words 0x2010200-0x2010700), with
+  integer adds stepping the row address.
+- `mDoPolygonStippleDownloadInner` (`mpixout.S` lines 2109-2140, at 0x9dae): **inferred**, the inner loop: per input row it
+  shifts right by 8 to split the 32-bit row into bytes and writes them to bus address 0x1f7.
+- `mgeb_PolygonStippleRotate` (`mpixout.S` lines 2079-2092, at 0x9ddc): **inferred**, rotates the stipple for a window
+  origin: it passes the shift counts (0x20 each way) and the pattern address 0x26b to `mDoPolygonStippleRotate`.
+- `mDoPolygonStippleRotate` (`mpixout.S` lines 1988-2063, at 0x9df3): **inferred**, rotates the 32 x 32 pattern by the x
+  and y origin: shifts left and right by the count and by 32 minus it, ORs the halves, ANDs with masks, and stores the
+  rotated rows as the result.
+- `mgesi_XPolygonStippleDownload` (`mpixout.S` lines 3006-3018, at 0x9a83): **inferred**, the X server's stipple download:
+  an integer add on the operand and a store to 0x1f4, then `mDoPolygonStippleDownload`.
+- `mgeb_XPolygonStippleRotate` (`mpixout.S` lines 2949-2998, at 0x9a98): **inferred**, the X form of the rotation: it
+  converts the origin operands with float-to-integer, reduces them modulo the pattern size through `mod`, and calls
+  `mDoPolygonStippleRotate`.
+- `mod` (`mpixout.S` lines 2905-2923, at 0x9ae9): **inferred**, a modulo by repeated subtraction: it subtracts the divisor
+  while the input stays non-negative (branches on `cc` 4 and 5 to 0x9b17 and 0x9b34) and adds it back once, returning the
+  remainder.
+- `mgesi_TransparentBitmap` (`mpixout.S` lines 2836-2887, at 0x9b4a): **inferred**, the X server's transparent bitmap: it
+  shifts the input bitmap words right to split them, and writes them with the register words 0x2010f00, 0x2011f00 and
+  0x42013f00 so only the set bits are drawn.
+- `mmo_X_DrawBitmapOpaque` (`mpixout.S` lines 2561-2652, at 0x9b8f): **inferred**, the opaque bitmap: for each input word
+  a long run of subtracts and moves produces one foreground or background pixel per bit.
+- `mmo_X_pixout_4Comp` (`mpixout.S` lines 2459-2539, at 0x9c14): **inferred**, unpacks X pixel words: the input is shifted
+  right by each field position (32 logical shifts) and the fields sent as four components.
+- `mmo_X_pixout_4` (`mpixout.S` lines 2359-2438, at 0x9c54): **inferred**, the 4-bit X pixel packing: shift right, shift
+  left and OR repeat for each input nibble, building the packed output words.
+- `mmo_X_pixout_8_16` (`mpixout.S` lines 2256-2334, at 0x9cd5): **inferred**, the 8- and 16-bit X packing with the same
+  shift, shift and OR pattern on byte or short fields.
+- `mLASTGE` (`mpixout.S` lines 2693-2814, at 0xa4d4): **inferred**, the output path of the engine that holds the last part
+  of a pixel stream: it reads the stream state words 0xbf6-0xbfb, clears bit 16 of one (AND with 0xfffeffff) and sends
+  the remaining pixels through two loops on `cc` 0x14 (0xa4f6, 0xa516).
+- `mmo_CopyFifoLine` (`mpixelSetup.S` lines 2239-2356, at 0xab59): **inferred**, copies one line of pixels between
+  engines' FIFOs for a copy operation, reading the line descriptor at 0xbfc-0xc00 and moving the words in loops on
+  `cc` 0 and 0x14.
+- `mmo_I2F_Scale_Skip` (`mpixelSetup.S` lines 2549-2614, at 0xa532): **inferred**, converts integer input to float with
+  integer-to-float and multiplies by a scale while skipping the components the descriptor at 0xbfc-0xc00 excludes.
+- `mmo_Shift_Skip` (`mpixelSetup.S` lines 2426-2491, at 0xa570): **inferred**, the shift form of that stage: logical
+  right shifts extract the input fields, skipping excluded components by the same descriptor.
+- `mgeb_EramToEram` (`mpixelSetup.S` lines 2103-2114, at 0xa5ac): **inferred**, a block copy within external memory by a
+  call to `mEramToEram` with the operand addresses and count.
+- `mgeb_EramToCram` (`mpixelSetup.S` lines 2076-2087, at 0xa5c0): **inferred**, copies a block from external memory into
+  control memory through `mEramToCram`.
+- `mgeb_CramToEram` (`mpixelSetup.S` lines 2050-2061, at 0xa5d4): **inferred**, the reverse copy through `mCramToEram`.
+- `mgeb_LoadCram` (`mpixelSetup.S` lines 2024-2035, at 0xa5e8): **inferred**, loads control memory from working memory by
+  calling `mWramToCram`, the way the ARM's parameter blocks reach the stages.
+- `mgeb_StrideEramToCram` (`mpixelSetup.S` lines 833-879, at 0xa8bb): **inferred**, a strided copy from external memory to
+  control memory: one word every stride, in a loop on the counter (0xa8d6).
+- `mmo_PixStreamNextGE` (`mpixelSetup.S` lines 1966-1980, at 0xa60b): **inferred**, hands the pixel stream to the next
+  engine: two bitwise-not stores to bus addresses 0x1f5 and 0x1f4.
+- `mmo_PixStreamBrdcastCore0ANextGE` (`mpixelSetup.S` lines 1995-2004, at 0xa5fa): **inferred**, the broadcast form: the
+  register word 0x70000 to bus address 0x1f8, then the hand-over words to 0x1f5 and 0x1f4.
+- `mmo_PixStreamNextGE_BEFWAR` (`mpixelSetup.S` lines 1915-1949, at 0xa614): **inferred**, the hand-over with a back-end
+  workaround: ten float-to-integer conversions of the pending words are written out before the hand-over stores.
+- `mmo_PixLineNextGE` (`mpixelSetup.S` lines 1567-1631, at 0xa6ad): **inferred**, hands a pixel line to the next engine,
+  writing 0x70000 to 0x1f8 and the constants 142.0 and 40.0 (0x430e0000, 0x42200000) with the hand-over words.
+- `mmo_SetupHip` (`mpixelSetup.S` lines 1673-1897, at 0xa62a): **inferred**, sets up the host-interface side of a pixel
+  transfer: it combines the transfer descriptor's fields with ANDs, shifts, adds and ORs into the host-interface
+  register words, 98 words in all.
+- `mgesi_PixRasterPosSetup` (`mpixelSetup.S` lines 73-621, at 0xa990): **inferred**, the raster position set-up for pixel
+  operations, 315 words: it converts the image size and zoom operands with integer-to-float, adds and multiplies them
+  into the start, step and end of the pixel rectangle, and stores the results for the output stages.
+- `mgesi_PixQueryCopyOverlap` (`mpixelSetup.S` lines 659-813, at 0xa8f7): **inferred**, decides the order of a
+  `glCopyPixels` whose source and destination overlap: it converts both rectangles to float, compares them with minima,
+  maxima and unit-1 code 0x64 (not fixed by the test), and returns the copy direction and start as integers.
+- `mgesi_PixConv5GVEntry` (`mpixelSetup.S` lines 1503-1552, at 0xa6be): **inferred**, the entry of the separable 5 x 5
+  convolution's vertical pass: it subtracts 2 from the raster position words 0x16a-0x16d,
+  converts and adds the offset at 0x129, and jumps to the stage.
+- `mgeb_PixEndPolygonStipple` (`mpixelSetup.S` lines 1462-1475, at 0xa6db): **inferred**, ends a polygon-stipple pixel
+  path by restoring the evaluator area pointer 0x8d2c, with no arithmetic.
+- `mgeb_PixEndRGBStream` (`mpixelSetup.S` lines 1415-1455, at 0xa6e8): **inferred**, ends an RGB pixel stream: ten
+  float-to-integer conversions of the pending words, then the register word 0x70000 and the closing stores.
+- `mgebi_PixEndTransparentBitmap` (`mpixelSetup.S` lines 1384-1397, at 0xa6ff): **inferred**, ends a transparent bitmap
+  by adding the moves at 0x31 and 0x32 back to the raster position and flushing through `DoFlushPGPCache`.
+- `mgesi_FlushPGPCache` (`mpixelSetup.S` lines 1371-1376, at 0xa715): **inferred**, the command form of the pixel
+  generator cache flush, a call to `DoFlushPGPCache`.
+- `DoFlushPGPCache` (`mpixelSetup.S` lines 1326-1364, at 0xa71e): **inferred**, writes the pixel generator's flush
+  sequence: the register words 0x1661410, 0x3ff1 and 0x1243fd3 with mode words to bus addresses 0x1f8, 0x1f5, 0x1f7 and
+  0x1f6.
+- `mgeb_TransparentBitmapSetup` (`mpixelSetup.S` lines 1299-1317, at 0xa747): **inferred**, subtracts the bitmap's origin
+  (words 0x31 and 0x32) from the raster position before a transparent bitmap.
+- `mgeb_PixPolygonStippleSetup` (`mpixelSetup.S` lines 1267-1290, at 0xa75f): **inferred**, prepares a stipple path by
+  saving the evaluator state with `uEvalSaveState` and storing the area words 0x1ec-0x1ee.
+- `mgebi_PixCurGEIDSetup` (`mpixelSetup.S` lines 1224-1257, at 0xa77f): **inferred**, tells the raster which engine is
+  current for a pixel stream: register words 0x10f087f and 0x2202000 with 40.0 and the mode word 0x70000 to the bus.
+- `mgeb_PixLastGECounterSetup` (`mpixelSetup.S` lines 1197-1211, at 0xa79b): **inferred**, converts the engine count with
+  integer-to-float and subtracts 0.5 to set the last-engine counter at 0x16e.
+- `mgeb_PixDrawColorSetup` (`mpixelSetup.S` lines 1144-1183, at 0xa7aa): **inferred**, prepares a colour draw path by
+  saving the evaluator state and storing the area words, as the stipple set-up does.
+- `mgeb_BitmapApplyMove` (`mpixelSetup.S` lines 1101-1113, at 0xa7cf): **inferred**, `glBitmap`'s move: four float adds
+  of the x and y move operands to the raster position words 0x31 and 0x32.
+- `mgeb_BitmapApplyOrig` (`mpixelSetup.S` lines 1070-1082, at 0xa7e8): **inferred**, `glBitmap`'s origin: two subtracts of
+  the origin from the same two words.
+- `mgeb_FlipYConvKern` (`mpixelSetup.S` lines 980-1052, at 0xa7fe): **inferred**, flips a convolution kernel vertically:
+  with integer subtracts and an arithmetic shift it pairs row r with row n-1-r and swaps them by unit-2 moves.
+- `mgeb_FlipXConvKern` (`mpixelSetup.S` lines 899-960, at 0xa864): **inferred**, the horizontal flip, pairing column c
+  with n-1-c the same way.

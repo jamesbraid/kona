@@ -2507,76 +2507,76 @@ ge.u	label	0x000099f5	mMerge8_16C_LastBlk		located	ucode/ge_handlers.md#mshortci
 ge.u	label	0x00009a10	mMerge8_16C		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
 ge.u	label	0x00009a3d	mMerge4_8C_LastBlk		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
 ge.u	label	0x00009a57	mMerge4_8C		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x00009a83	mgesi_XPolygonStippleDownload		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009a98	mgeb_XPolygonStippleRotate		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009ae9	mod		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009b4a	mgesi_TransparentBitmap		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009b8f	mmo_X_DrawBitmapOpaque		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009c14	mmo_X_pixout_4Comp		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009c54	mmo_X_pixout_4		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009cd5	mmo_X_pixout_8_16		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009d56	mgesi_PolygonStippleDownload		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009d6b	mDoPolygonStippleDownload		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009dae	mDoPolygonStippleDownloadInner		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009ddc	mgeb_PolygonStippleRotate		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009df3	mDoPolygonStippleRotate		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009eb1	mmo_PolygonStippleOut		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009eeb	mmo_loadConvRGB		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009f19	mmo_loadConvRGBA		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009f49	mmo_loadConvI		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009f79	mmo_loadConvLA		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009fa9	mmo_loadConvL		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x00009fd7	mmo_loadConvA		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a002	mmo_ConvolveOut		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a018	mmo_unloadConvRGB		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a049	mmo_unloadConvRGBA		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a07c	mmo_unloadConvI		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a0a9	mmo_unloadConvLA		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a0d8	mmo_unloadConvL		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a105	mmo_unloadConvA		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a132	mmo_ConvEramToWram		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a154	mmo_ArbClamp		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a1c2	mmo_PixoutMerge2_4C		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a214	mmo_PixoutCI_4_8		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a276	mmo_Pixout_32NC		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a2d5	mmo_Pixout_32		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a33f	mmo_Pixout_RGB_in_RGBANC		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a395	mmo_Pixout_RGB_in_RGBA		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a3e8	mmo_Pixout_2_4		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a407	mmo_Pixout_2_4NC		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a44e	mmo_Pixout_8_16NC		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a4b5	mmo_Pixout_8_16		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a4d4	mLASTGE		located	ucode/ge_handlers.md#mpixouts	mpixout.S
-ge.u	label	0x0000a532	mmo_I2F_Scale_Skip		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a570	mmo_Shift_Skip		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a5ac	mgeb_EramToEram		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a5c0	mgeb_EramToCram		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a5d4	mgeb_CramToEram		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a5e8	mgeb_LoadCram		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a5fa	mmo_PixStreamBrdcastCore0ANextGE		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a60b	mmo_PixStreamNextGE		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a614	mmo_PixStreamNextGE_BEFWAR		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a62a	mmo_SetupHip		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a6ad	mmo_PixLineNextGE		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a6be	mgesi_PixConv5GVEntry		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a6db	mgeb_PixEndPolygonStipple		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a6e8	mgeb_PixEndRGBStream		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a6ff	mgebi_PixEndTransparentBitmap		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a715	mgesi_FlushPGPCache		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a71e	DoFlushPGPCache		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a747	mgeb_TransparentBitmapSetup		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a75f	mgeb_PixPolygonStippleSetup		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a77f	mgebi_PixCurGEIDSetup		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a79b	mgeb_PixLastGECounterSetup		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a7aa	mgeb_PixDrawColorSetup		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a7cf	mgeb_BitmapApplyMove		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a7e8	mgeb_BitmapApplyOrig		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a7fe	mgeb_FlipYConvKern		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a864	mgeb_FlipXConvKern		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a8bb	mgeb_StrideEramToCram		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a8f7	mgesi_PixQueryCopyOverlap		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000a990	mgesi_PixRasterPosSetup		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
-ge.u	label	0x0000ab59	mmo_CopyFifoLine		located	ucode/ge_handlers.md#mpixelsetups	mpixelSetup.S
+ge.u	label	0x00009a83	mgesi_XPolygonStippleDownload		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009a98	mgeb_XPolygonStippleRotate		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009ae9	mod		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009b4a	mgesi_TransparentBitmap		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009b8f	mmo_X_DrawBitmapOpaque		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009c14	mmo_X_pixout_4Comp		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009c54	mmo_X_pixout_4		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009cd5	mmo_X_pixout_8_16		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009d56	mgesi_PolygonStippleDownload		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009d6b	mDoPolygonStippleDownload		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009dae	mDoPolygonStippleDownloadInner		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009ddc	mgeb_PolygonStippleRotate		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009df3	mDoPolygonStippleRotate		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009eb1	mmo_PolygonStippleOut		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009eeb	mmo_loadConvRGB		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009f19	mmo_loadConvRGBA		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009f49	mmo_loadConvI		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009f79	mmo_loadConvLA		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009fa9	mmo_loadConvL		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x00009fd7	mmo_loadConvA		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a002	mmo_ConvolveOut		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a018	mmo_unloadConvRGB		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a049	mmo_unloadConvRGBA		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a07c	mmo_unloadConvI		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a0a9	mmo_unloadConvLA		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a0d8	mmo_unloadConvL		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a105	mmo_unloadConvA		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a132	mmo_ConvEramToWram		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a154	mmo_ArbClamp		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a1c2	mmo_PixoutMerge2_4C		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a214	mmo_PixoutCI_4_8		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a276	mmo_Pixout_32NC		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a2d5	mmo_Pixout_32		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a33f	mmo_Pixout_RGB_in_RGBANC		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a395	mmo_Pixout_RGB_in_RGBA		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a3e8	mmo_Pixout_2_4		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a407	mmo_Pixout_2_4NC		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a44e	mmo_Pixout_8_16NC		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a4b5	mmo_Pixout_8_16		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a4d4	mLASTGE		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a532	mmo_I2F_Scale_Skip		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a570	mmo_Shift_Skip		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a5ac	mgeb_EramToEram		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a5c0	mgeb_EramToCram		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a5d4	mgeb_CramToEram		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a5e8	mgeb_LoadCram		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a5fa	mmo_PixStreamBrdcastCore0ANextGE		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a60b	mmo_PixStreamNextGE		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a614	mmo_PixStreamNextGE_BEFWAR		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a62a	mmo_SetupHip		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a6ad	mmo_PixLineNextGE		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a6be	mgesi_PixConv5GVEntry		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a6db	mgeb_PixEndPolygonStipple		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a6e8	mgeb_PixEndRGBStream		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a6ff	mgebi_PixEndTransparentBitmap		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a715	mgesi_FlushPGPCache		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a71e	DoFlushPGPCache		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a747	mgeb_TransparentBitmapSetup		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a75f	mgeb_PixPolygonStippleSetup		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a77f	mgebi_PixCurGEIDSetup		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a79b	mgeb_PixLastGECounterSetup		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a7aa	mgeb_PixDrawColorSetup		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a7cf	mgeb_BitmapApplyMove		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a7e8	mgeb_BitmapApplyOrig		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a7fe	mgeb_FlipYConvKern		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a864	mgeb_FlipXConvKern		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a8bb	mgeb_StrideEramToCram		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a8f7	mgesi_PixQueryCopyOverlap		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000a990	mgesi_PixRasterPosSetup		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
+ge.u	label	0x0000ab59	mmo_CopyFifoLine		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
 ge.u	label	0x0000ab9d	mgesi_PipeSetup		located	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000ad1c	mgeb_XContextInitialize		located	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000ad39	mgeb_GLContextInitialize		located	ucode/ge_handlers.md#ges	ge.S
