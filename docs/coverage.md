@@ -30,6 +30,8 @@ The share of understood rows that an independent audit found real when it re-der
 
 Cross-workspace role check: compared 1341 entries with the entries of crime and odsy for the same function and capped 2 at located (the role text is the sibling's, at least 90% alike, and states no offset, immediate value or callee address of its own build).
 
+Inputs (also in [summary.tsv](inventory/summary.tsv)): root manifest 6d50c95c1a1e6021, 545 files; sibling crime a42d4b0650dc; sibling odsy cf7842fb49c8.
+
 Function rows rejected as ambiguous, at most named-only: 126 whose name is defined in several compilation units, 2668 whose address another name shares (a row can be in both).
 
 Register access sites: 18380 found, 18372 resolved to an offset and 8 (0.0%) unresolved, where the base is a known register window but the offset could not be traced. Unresolved by window: pipe 8.
