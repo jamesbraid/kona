@@ -1,0 +1,1040 @@
+<BASE HREF="http://www.sgi.com/products/remarketed/onyx2/">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<TITLE>SGI - Products: Remarketed: Silicon Graphics Onyx2: Tech Specs</TITLE>
+
+<META NAME="description" content="To build Onyx2(tm) -  the world's most powerful visualization engine - SGI combined the ultimate in supercomputing and visualization technologies and then designed a way to simultaneously process 3D graphics, imaging, and video data in real time.">
+<META NAME="keywords" content="Silicon Graphics Onyx2, Onyx, Reality, InfiniteReality, Infinite Reality, InfiniteReality2, Advanced Graphics, graphics supercomuter, graphics workstation, visualization, DPLEX, High-Performance Graphics, RealityMonster, Reality Monster, virtual reality, Reality Engine,RealityEngine">
+<META NAME="owner" content="surfprod">
+<META NAME="job" content="NULL">
+
+<STYLE TYPE="text/css"><!-- #techspecs {color: #000000; text-decoration: none;} --></STYLE>
+
+<!-- Begin Header -->
+<STYLE TYPE="text/css">
+<!--
+DIV.menu	{ position: absolute; top: 79px; visibility: hidden;}
+#menu0		{ left: 156px; z-index: 101; width: 107px;}
+#menu1		{ left: 264px; z-index: 102; width: 110px;}
+#menu2		{ left: 375px; z-index: 103; width: 119px;}
+#menu3		{ left: 495px; z-index: 104; width: 167px;}
+#menu4		{ left: 663px; z-index: 106; width: 116px;}
+#menu0overs	{ left: 156px; z-index: 111; width: 107px;}
+#menu1overs	{ left: 264px; z-index: 112; width: 110px;}
+#menu2overs	{ left: 375px; z-index: 113; width: 119px;}
+#menu3overs	{ left: 495px; z-index: 114; width: 167px;}
+#menu4overs	{ left: 663px; z-index: 116; width: 116px;}
+#menu5overs	{ left: 615px; z-index: 400; top: 45px;}
+-->
+</STYLE>
+<LINK REL="stylesheet" HREF="/styles/products.css" TYPE="text/css">
+<LINK REL="stylesheet" HREF="http://www.sgi.com/styles/unix.css" TYPE="text/css">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#660099" VLINK="#7C7F87" ALINK="#9900CC" MARGINHEIGHT="0" MARGINWIDTH="0" ONLOAD="init()">
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+<TR BGCOLOR="#7C7F87">
+    <TD ROWSPAN="3" WIDTH="126"><A HREF="/"><IMG SRC="/images/common/sgi_logo_us.gif" HEIGHT="79" WIDTH="126" BORDER="0" ALT="SGI Logo"></A></TD>
+    <TD WIDTH="100%">
+	<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="654">
+	<TR>
+	    	    <TD WIDTH="209"><IMG SRC="/images/dots/dot_clear.gif" ALT="" WIDTH="209" HEIGHT="54"></TD>
+	    <TD WIDTH="285" VALIGN="top"><A HREF="/sales/"><IMG
+		SRC="/images/nav/nav_buy.gif"		HEIGHT="21" WIDTH="60" BORDER="0" ALT="How to Buy"></A><IMG
+		SRC="/images/nav/nav_top_spacer.gif"	HEIGHT="21" WIDTH="15" BORDER="0" ALT=" | "><A HREF="/resellers/"><IMG
+		SRC="/images/nav/nav_resellers.gif"	HEIGHT="21" WIDTH="61" BORDER="0" ALT="Resellers"></A><IMG
+		SRC="/images/nav/nav_top_spacer.gif"	HEIGHT="21" WIDTH="15" BORDER="0" ALT=" | "><A HREF="/company_info/"><IMG
+		SRC="/images/nav/nav_company_info.gif"	HEIGHT="21" WIDTH="73" BORDER="0" ALT="Company Info"></A><IMG
+		SRC="/images/nav/nav_top_spacer.gif"	HEIGHT="21" WIDTH="15" BORDER="0" ALT=" | "><A HREF="/employment/"><IMG
+		SRC="/images/nav/nav_careers.gif"	HEIGHT="21" WIDTH="46" BORDER="0" ALT="Careers"></A></TD><TD
+		WIDTH="160" VALIGN="top" ALIGN="right"><A HREF="/search/" ONCLICK="if(isFour){change(5,0,1);return false;}"><IMG
+		SRC="/images/nav/nav_search.gif"	HEIGHT="26" WIDTH="67" BORDER="0" ALT="Search"></A><A HREF="/"><IMG
+		SRC="/images/nav/nav_home1.gif"		HEIGHT="26" WIDTH="59" BORDER="0" ALT="Home"></A></TD>
+	</TR>
+	</TABLE></TD>
+</TR>
+<TR BGCOLOR="#7C7F87">
+	<TD WIDTH="100%"><A HREF="/" ONMOUSEOVER="clearmenus()"><IMG SRC="/images/dots/dot_clear.gif" ALT="" HEIGHT="2" WIDTH="657" BORDER="0"></A></TD>
+</TR>
+<TR BGCOLOR="#CFCFCF">
+        <TD WIDTH="100%">
+	<A	HREF="/products/" ONMOUSEOVER="clearmenus()"><IMG
+		SRC="/images/nav/nav_prod_corner1.gif"	ALT=""			WIDTH="30"	HEIGHT="23" BORDER="0" NAME="imgcrnr"></A><IMG
+		SRC="/images/nav/nav_prod1.gif"		ALT="[Products]"	WIDTH="108"	HEIGHT="23" BORDER="0" NAME="imgmenu0" USEMAP="#menu0map"><IMG
+		SRC="/images/nav/nav_ind0.gif"		ALT="[Industries]"	WIDTH="111"	HEIGHT="23" BORDER="0" NAME="imgmenu1" USEMAP="#menu1map"><IMG
+		SRC="/images/nav/nav_dev0.gif"		ALT="[Developers]"	WIDTH="120"	HEIGHT="23" BORDER="0" NAME="imgmenu2" USEMAP="#menu2map"><IMG
+		SRC="/images/nav/nav_support0.gif"	ALT="[Services and Support]"		WIDTH="168"	HEIGHT="23" BORDER="0" NAME="imgmenu3" USEMAP="#menu3map"><IMG
+		SRC="/images/nav/nav_fun0.gif"		ALT="[Serious Fun]"	WIDTH="117"	HEIGHT="23" BORDER="0" NAME="imgmenu4" USEMAP="#menu4map"><A
+		HREF="/fun/" ONMOUSEOVER="clearmenus()"><IMG SRC="/images/dots/dot_clear.gif" WIDTH="2" HEIGHT="23" BORDER="0" ALT=""></A></TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="780" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+        <TD COLSPAN="5" ALIGN="RIGHT">
+
+
+<IMG SRC="images/ban_onyx2.gif" WIDTH="515" HEIGHT="68" ALT="Silicon Graphics Onyx2">
+
+</TD></TR><TR VALIGN="TOP"><TD WIDTH="130">
+
+<DIV ID="sidenav">
+	<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="130">
+	<TR VALIGN="TOP">
+	<TD><IMG SRC="/images/common/bullets_prod_up.gif" ALT="" WIDTH="18" HEIGHT="10"></TD>
+	<TD><A HREF="/products/remarketed/">Remarketed Products</A></TD>
+	</TR>
+	<TR>
+	  <TD><IMG SRC="/images/dots/dot_clear.gif" ALT="" HEIGHT="15" WIDTH="1"></TD><TD></TD>
+	</TR>
+     <TR VALIGN="TOP">
+	<TD><IMG SRC="/images/common/bullets_prod.gif" ALT="" WIDTH="18" HEIGHT="10"></TD>
+	<TD><A HREF="/products/remarketed/onyx2/" ID="homeLink"><B>Silicon Graphics Onyx2</B></A></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD><IMG SRC="/images/dots/dot_clear.gif" ALT="" HEIGHT="8" WIDTH="1"></TD><TD></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD></TD><TD><A HREF="/products/remarketed/onyx2/overview.html" ID="overview">Product Overview</A>
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="2"><TR VALIGN="TOP">
+     	<TD><IMG SRC="/images/dots/dot_black.gif" ALT="" HEIGHT="3" WIDTH="3" VSPACE="5"></TD><TD CLASS="small">
+     	<A HREF="/products/remarketed/onyx2/sys_hardware.html" ID="configs">Configurations</A></TD></TR>
+		</TABLE>
+	
+	</TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD><IMG SRC="/images/dots/dot_clear.gif" ALT="" HEIGHT="8" WIDTH="1"></TD><TD></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD></TD><TD><A HREF="/products/remarketed/onyx2/tech_info.html" ID="techinfo">Technical Info</A>
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="2"><TR VALIGN="TOP">
+     	<TD><IMG SRC="/images/dots/dot_black.gif" ALT="" HEIGHT="3" WIDTH="3" VSPACE="5"></TD><TD CLASS="small">
+     	<A HREF="/products/remarketed/onyx2/tech_specs.html" ID="techspecs">Tech Specs</A></TD></TR></TABLE>
+	</TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD><IMG SRC="/images/dots/dot_clear.gif" ALT="" HEIGHT="8" WIDTH="1"></TD><TD></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD></TD><TD><A HREF="/products/remarketed/onyx2/datasheets.html" ID="datasheets">Datasheets</A></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD><IMG SRC="/images/dots/dot_clear.gif" ALT="" HEIGHT="8" WIDTH="1"></TD><TD></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD></TD><TD><A HREF="/products/remarketed/onyx2/developers.html" ID="developers">Onyx2 Developers</A></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD><IMG SRC="/images/dots/dot_clear.gif" ALT="" HEIGHT="8" WIDTH="1"></TD><TD></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD></TD><TD><A HREF="/products/remarketed/onyx2/partners/" ID="partners">Partner Products</A></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD><IMG SRC="/images/dots/dot_clear.gif" ALT="" HEIGHT="8" WIDTH="1"></TD><TD></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD></TD><TD><A HREF="/products/remarketed/onyx2/industry.html" ID="ind">Industry Uses</A></TD>
+	</TR>
+	<TR>
+	  <TD><IMG SRC="/images/dots/dot_clear.gif" ALT="" HEIGHT="15" WIDTH="1"></TD><TD></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD><IMG SRC="/images/common/bullets_prod.gif" ALT="" WIDTH="18" HEIGHT="10"></TD>
+	<TD><B>Related Sites</B></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD><IMG SRC="/images/dots/dot_clear.gif" ALT="" HEIGHT="8" WIDTH="1"></TD><TD></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	<TD></TD><TD><A HREF="/visualization/onyx/">SGI Onyx Family Systems</A></TD>
+	</TR>
+	
+	<TR VALIGN="TOP">
+	<TD></TD><TD><IMG SRC="/images/dots/dot_clear.gif" ALT="" HEIGHT="1" WIDTH="112"></TD>
+	</TR>
+	</TABLE>
+</DIV>
+
+
+</TD>
+<TD WIDTH="30" VALIGN="TOP"><IMG SRC="/images/dots/dot_clear.gif" WIDTH="30" HEIGHT="2" ALT=""></TD><TD>
+
+
+
+<DIV CLASS="content">
+
+
+<SPAN CLASS="header">Tech Specs</SPAN>
+<P>
+<A HREF="#performance"><LI TYPE="CIRCLE">Performance</A><BR>
+<A HREF="#platform"><LI TYPE="CIRCLE">Computer Platform</A><BR>
+<A HREF="#electrical"><LI TYPE="CIRCLE">Electrical and Power</A><BR>
+<A HREF="#io"><LI TYPE="CIRCLE">I/O, Networking, and Communication</A><BR>
+<A HREF="#media"><LI TYPE="CIRCLE">Removable Media</A><BR>
+<A HREF="#environmental"><LI TYPE="CIRCLE">Environmental</A>
+
+<P>
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="2"><TR VALIGN="TOP" TITLE="Onyx2 Technical Specs">
+<TD> </TD>
+<TD AXIS="system" ID="id_reality"><B>Onyx2 Reality</B></TD>
+<TD COLSPAN="2" AXIS="system" ID="id_deskside"><B>Onyx2 InfiniteReality2 Deskside</B></TD>
+<TD COLSPAN="2" AXIS="system" ID="id_single"><B>Onyx2 InfiniteReality2 Rack Single-Pipe</B></TD>
+<TD COLSPAN="2" AXIS="system" ID="id_multi"><B>Onyx2 InfiniteReality2 Rack with Multi-Pipe Rendering<BR>
+16-PIPE SYSTEM with RM/pipe and DPLEX Option (Preliminary Estimates)</B></TD>
+</TR><TR>
+<TD> </TD>
+<TD ALIGN="CENTER" AXIS="img_system" ID="id_img_reality"><IMG SRC="images/o2r.jpg" WIDTH="70" HEIGHT="75" ALT="Onyx2"></TD>
+<TD COLSPAN="2" ALIGN="CENTER" AXIS="img_system" ID="id_img_deskside"><IMG SRC="images/oir2d.jpg" WIDTH="75" HEIGHT="83" ALT="Onyx2"></TD>
+<TD COLSPAN="2" ALIGN="CENTER" AXIS="img_system" ID="id_img_single"><IMG SRC="images/oir2rsp.jpg" WIDTH="75" HEIGHT="84" ALT="Onyx2"></TD>
+<TD COLSPAN="2" ALIGN="CENTER" AXIS="img_system" ID="id_img_multi"><IMG SRC="images/multi_sm.jpg" WIDTH="105" HEIGHT="75" ALT="Onyx2"></TD>
+</TR>
+<TR VALIGN="TOP">
+<TD><A NAME="performance"></A> </TD>
+<TD> </TD>
+<TD AXIS="ir" ID="id_desk_ir2" HEADERS="id_img_deskside id_deskside">
+<ACRONYM TITLE="Infinite Reality2">IR2</ACRONYM></TD>
+<TD AXIS="ir" ID="id_desk_ir" HEADERS="id_img_deskside id_deskside">
+<ACRONYM TITLE="Infinite Reality">IR</ACRONYM></TD>
+<TD AXIS="ir" ID="id_single_ir2" HEADERS="id_img_single id_single">
+<ACRONYM TITLE="Infinite Reality2">IR2</ACRONYM></TD>
+<TD AXIS="ir" ID="id_single_ir" HEADERS="id_img_single id_single">
+<ACRONYM TITLE="Infinite Reality">IR</ACRONYM></TD>
+<TD AXIS="ir" ID="id_multi_ir2" HEADERS="id_img_multi id_multi">
+<ACRONYM TITLE="Infinite Reality2">IR2</ACRONYM></TD>
+<TD AXIS="ir" ID="id_multi_ir" HEADERS="id_img_multi id_multi">
+<ACRONYM TITLE="Infinite Reality">IR</ACRONYM></TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_poly">
+Polygons/sec </TD>
+<TD HEADERS="id_poly id_img_reality id_reality">
+5.5M</TD>
+<TD HEADERS="id_poly id_desk_ir2 id_img_deskside id_deskside">
+13.1</TD>
+<TD HEADERS="id_poly id_desk_ir id_img_deskside id_deskside">
+10.9</TD>
+<TD HEADERS="id_poly id_single_ir2 id_img_single id_single">
+13.1M</TD>
+<TD HEADERS="id_poly id_single_ir id_img_single id_single">
+10.9</TD>
+<TD HEADERS="id_poly id_multi_ir2 id_img_multi id_multi">
+210M</TD>
+<TD HEADERS="id_poly id_multi_ir id_img_multi id_multi">
+174M</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_pixfills">
+Pixel fill, smooth, Z</TD>
+<TD HEADERS="id_pixfills id_img_reality id_reality">
+224M to 448M </TD>
+<TD HEADERS="id_pixfills id_desk_ir2 id_img_deskside id_deskside">
+224M to 448M </TD>
+<TD HEADERS="id_pixfills id_desk_ir id_img_deskside id_deskside">
+224M to 448M</TD>
+<TD HEADERS="id_pixfills id_single_ir2 id_img_single id_single">
+224M to 896M </TD>
+<TD HEADERS="id_pixfills id_single_ir id_img_single id_single">
+224M to 896M</TD>
+<TD HEADERS="id_pixfills id_multi_ir2 id_img_multi id_multi">
+7.2B</TD>
+<TD HEADERS="id_pixfills id_multi_ir id_img_multi id_multi">
+7.2B</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_pixfill">
+Pixel fill, textured, AA, Z</TD>
+<TD HEADERS="id_pixfill id_img_reality id_reality">
+94M to 188M </TD>
+<TD HEADERS="id_pixfill id_desk_ir2 id_img_deskside id_deskside">
+192M to 384M</TD>
+<TD HEADERS="id_pixfill id_desk_ir id_img_deskside id_deskside">
+156M to 312M</TD>
+<TD HEADERS="id_pixfill id_single_ir2 id_img_single id_single">
+192M to 768M</TD>
+<TD HEADERS="id_pixfill id_single_ir id_img_single id_single">
+156M to 624M</TD>
+<TD HEADERS="id_pixfill id_multi_ir2 id_img_multi id_multi">
+6.1B</TD>
+<TD HEADERS="id_pixfill id_multi_ir id_img_multi id_multi">
+5.0B</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_aavectors">
+Anti-aliased vectors/sec</TD>
+<TD HEADERS="id_aavectors id_img_reality id_reality">
+3.6M </TD>
+<TD HEADERS="id_aavectors id_desk_ir2 id_img_deskside id_deskside">
+8.6M</TD>
+<TD HEADERS="id_aavectors id_desk_ir id_img_deskside id_deskside">
+7.1M</TD>
+<TD HEADERS="id_aavectors id_single_ir2 id_img_single id_single">
+8.6M</TD>
+<TD HEADERS="id_aavectors id_single_ir id_img_single id_single">
+7.1M</TD>
+<TD HEADERS="id_aavectors id_multi_ir2 id_img_multi id_multi">
+138M</TD>
+<TD HEADERS="id_aavectors id_multi_ir id_img_multi id_multi">
+114M</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_interpo">
+Trilinear interpolations/sec </TD>
+<TD HEADERS="id_interpo id_img_reality id_reality">
+100M to 200M </TD>
+<TD HEADERS="id_interpo id_desk_ir2 id_img_deskside id_deskside">
+200M to 400M</TD>
+<TD HEADERS="id_interpo id_desk_ir id_img_deskside id_deskside">
+200M to 400M</TD>
+<TD HEADERS="id_interpo id_single_ir2 id_img_single id_single">
+200M to 800M</TD>
+<TD HEADERS="id_interpo id_single_ir id_img_single id_single">
+200M to 800M</TD>
+<TD HEADERS="id_interpo id_multi_ir2 id_img_multi id_multi">
+6.4B</TD>
+<TD HEADERS="id_interpo id_multi_ir id_img_multi id_multi">
+6.4B</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_conv">
+Convolutions/sec (5x5 sep. RGBA)</TD>
+<TD HEADERS="id_conv id_img_reality id_reality">
+6.4M</TD>
+<TD HEADERS="id_conv id_desk_ir2 id_img_deskside id_deskside">
+15.3M</TD>
+<TD HEADERS="id_conv id_desk_ir id_img_deskside id_deskside">
+12.7M</TD>
+<TD HEADERS="id_conv id_single_ir2 id_img_single id_single">
+15.3M</TD>
+<TD HEADERS="id_conv id_single_ir id_img_single id_single">
+12.7M</TD>
+<TD HEADERS="id_conv id_multi_ir2 id_img_multi id_multi">
+245M</TD>
+<TD HEADERS="id_conv id_multi_ir id_img_multi id_multi">
+203M</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_voxels">
+Voxels/sec</TD>
+<TD HEADERS="id_voxels id_img_reality id_reality">
+100M to 200M</TD>
+<TD HEADERS="id_voxels id_desk_ir2 id_img_deskside id_deskside">
+200M to 400M</TD>
+<TD HEADERS="id_voxels id_desk_ir id_img_deskside id_deskside">
+200M to 400M</TD>
+<TD HEADERS="id_voxels id_single_ir2 id_img_single id_single">
+200M to 800M</TD>
+<TD HEADERS="id_voxels id_single_ir id_img_single id_single">
+200M to 800M</TD>
+<TD HEADERS="id_voxels id_multi_ir2 id_img_multi id_multi">
+6.4B</TD>
+<TD HEADERS="id_voxels id_multi_ir id_img_multi id_multi">
+6.4B</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_24bit">
+24-bit floating-point Z</TD>
+<TD HEADERS="id_24bit  id_img_reality id_reality">
+yes </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_24bit id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+yes </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_24bit id_single_ir2 id_single_ir id_img_single id_single">
+yes </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_24bit id_multi_ir2 id_multi_ir id_img_multi id_multi">
+yes</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_color">
+Color</TD>
+<TD HEADERS="id_color id_img_reality id_reality">
+48-bit RGBA </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_color id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+48-bit RGBA </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_color id_single_ir2 id_single_ir id_img_single id_single">
+48-bit RGBA </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_color id_multi_ir2 id_multi_ir id_img_multi id_multi">
+48-bit RGBA</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_planes">
+Overlay planes</TD>
+<TD HEADERS="id_planes id_img_reality id_reality">
+16</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_planes id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+16</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_planes id_single_ir2 id_single_ir id_img_single id_single">
+16</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_planes id_multi_ir2 id_multi_ir id_img_multi id_multi">
+16</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_alias">
+Anti-aliasing multisampling</TD>
+<TD HEADERS="id_alias id_img_reality id_reality">
+4x4</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_alias id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+8x8</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_alias id_single_ir2 id_single_ir id_img_single id_single">
+8x8</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_alias id_multi_ir2 id_multi_ir id_img_multi id_multi">
+8x8</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_bits">
+Max. bits/pixel</TD>
+<TD HEADERS="id_bits id_img_reality id_reality">
+128 to 512 </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_bits id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+256 to 2048 </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_bits id_single_ir2 id_single_ir id_img_single id_single">
+256 to 2048 </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_bits id_multi_ir2 id_multi_ir id_img_multi id_multi">
+256 to 2048</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_gpipes">
+Graphics pipelines </TD>
+<TD HEADERS="id_gpipes id_img_reality id_reality">
+1</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_gpipes id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+1</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_gpipes id_single_ir2 id_single_ir id_img_single id_single">
+1 to 16</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_gpipes id_multi_ir2 id_multi_ir id_img_multi id_multi">
+1 to 16</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_geo">
+Geometry Engine processors/pipeline</TD>
+<TD HEADERS="id_geo id_img_reality id_reality">
+2</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_geo id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+4</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_geo id_single_ir2 id_single_ir id_img_single id_single">
+4</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_geo id_multi_ir2 id_multi_ir id_img_multi id_multi">
+4</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_raster">
+Raster Managers/pipeline </TD>
+<TD HEADERS="id_raster id_img_reality id_reality">
+1 to 2 </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_raster id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+1 to 2</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_raster id_single_ir2 id_single_ir id_img_single id_single">
+1 to 4 and 1 to 2 </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_raster id_multi_ir2 id_multi_ir id_img_multi id_multi">
+1 to 4 and 1 to 2</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_texture">
+Texture memory/pipeline</TD>
+<TD HEADERS="id_texture id_img_reality id_reality">
+16MB or 64MB </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_texture id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+64MB </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_texture id_single_ir2 id_single_ir id_img_single id_single">
+64MB </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_texture id_multi_ir2 id_multi_ir id_img_multi id_multi">
+Up to 1GB combined<BR>texture memory capacity<BR>with MonsterMode software</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_buffer">
+Frame buffer size/pipeline </TD>
+<TD HEADERS="id_buffer id_img_reality id_reality">
+40MB to 80MB </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_buffer id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+80MB to 160MB</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_buffer id_single_ir2 id_single_ir id_img_single id_single">
+80MB to 320MB </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_buffer id_multi_ir2 id_multi_ir id_img_multi id_multi">
+80MB to 320MB</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_channels">
+Display channels/pipeline </TD>
+<TD HEADERS="id_channels id_img_reality id_reality">
+2 or 8 </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_channels id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+2 or 8 </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_channels id_single_ir2 id_single_ir id_img_single id_single">
+2 or 8 </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_channels id_multi_ir2 id_multi_ir id_img_multi id_multi">
+1³, 2 or 8</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_disp">
+Display capability</TD>
+<TD HEADERS="id_disp id_img_reality id_reality">
+VGA to HDTV </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_disp id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+VGA to HDTV </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_disp id_single_ir2 id_single_ir id_img_single id_single">
+VGA to HDTV </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_disp id_multi_ir2 id_multi_ir id_img_multi id_multi">
+VGA to HDTV</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_res">
+Std. monitor size resolution</TD>
+<TD HEADERS="id_res id_img_reality id_reality">
+20" 1280x1024</TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_res id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+24" 1920x1200 </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_res id_single_ir2 id_single_ir id_img_single id_single">
+24" 1920x1200 </TD>
+<TD COLSPAN="2" ALIGN="CENTER" HEADERS="id_res id_multi_ir2 id_multi_ir id_img_multi id_multi">
+24" 1920x1200</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD COLSPAN="8" AXIS="tech" ID="id_plat"><A NAME="platform"></A><BR>
+<B>COMPUTER PLATFORM</B></TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_cpu">
+CPU</TD>
+<TD HEADERS="id_cpu id_plat id_img_reality id_reality">
+MIPS R10000</TD>
+<TD COLSPAN="2" HEADERS="id_cpu id_plat id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+MIPS R10000 </TD>
+<TD COLSPAN="2" HEADERS="id_cpu id_plat id_single_ir2 id_single_ir id_img_single id_single">
+MIPS R10000 </TD>
+<TD COLSPAN="2" HEADERS="id_cpu id_plat id_multi_ir2 id_multi_ir id_img_multi id_multi">
+MIPS R10000</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_quantity">
+Quantity</TD>
+<TD HEADERS="id_quantity id_plat id_img_reality id_reality">
+1 to 4</TD>
+<TD COLSPAN="2" HEADERS="id_quantity id_plat id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+1 to 4</TD>
+<TD COLSPAN="2" HEADERS="id_quantity id_plat id_single_ir2 id_single_ir id_img_single id_single">
+2 to 128</TD>
+<TD COLSPAN="2" HEADERS="id_quantity id_plat id_multi_ir2 id_multi_ir id_img_multi id_multi">
+4 to 128</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_pcache">
+Primary caches (ins./data) </TD>
+<TD HEADERS="id_pcache id_plat id_img_reality id_reality">
+32KB/32KB </TD>
+<TD COLSPAN="2" HEADERS="id_pcache id_plat id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+32KB/32KB </TD>
+<TD COLSPAN="2" HEADERS="id_pcache id_plat id_single_ir2 id_single_ir id_img_single id_single">
+32KB/32KB </TD>
+<TD COLSPAN="2" HEADERS="id_pcache id_plat id_multi_ir2 id_multi_ir id_img_multi id_multi">
+32KB/32KB</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_scache">
+Secondary cache</TD>
+<TD HEADERS="id_scache id_plat id_img_reality id_reality">
+4MB </TD>
+<TD COLSPAN="2" HEADERS="id_scache id_plat id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+4MB </TD>
+<TD COLSPAN="2" HEADERS="id_scache id_plat id_single_ir2 id_single_ir id_img_single id_single">
+4MB </TD>
+<TD COLSPAN="2" HEADERS="id_scache id_plat id_multi_ir2 id_multi_ir id_img_multi id_multi">
+4MB</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_ram">
+RAM memory</TD>
+<TD HEADERS="id_ram id_plat id_img_reality id_reality">
+256MB to 8GB </TD>
+<TD COLSPAN="2" HEADERS="id_ram id_plat id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+256MB to 8GB </TD>
+<TD COLSPAN="2" HEADERS="id_ram id_plat id_single_ir2 id_single_ir id_img_single id_single">
+256MB to 256GB </TD>
+<TD COLSPAN="2" HEADERS="id_ram  id_plat id_multi_ir2 id_multi_ir id_img_multi id_multi">
+256MB to 256GB</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_disk">
+Disk storage (internal)</TD>
+<TD HEADERS="id_disk id_plat id_img_reality id_reality">
+1 to 5 9.1GB or<BR>18.2GB Ultra SCSI</TD>
+<TD COLSPAN="2" HEADERS="id_disk id_plat id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+1 to 5 9.1GB or<BR>18.2GB Ultra SCSI</TD>
+<TD COLSPAN="2" HEADERS="id_disk id_plat id_single_ir2 id_single_ir id_img_single id_single">
+1 to 11 9.1 GB or<BR>18.2GBUltra SCSI or<BR>10 3.5" Fibre Channel per rack</TD>
+<TD COLSPAN="2" HEADERS="id_disk id_plat id_multi_ir2 id_multi_ir id_img_multi id_multi">
+1 to 11 9.1GB or<BR>18.2GB Ultra SCSI or<BR>10 3.5" Fibre Channel per rack</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_slots">
+Expansion slots</TD>
+<TD HEADERS="id_slots id_plat id_img_reality id_reality">
+4 XIO-slots standard<BR>and 3-slot PCI optional</TD>
+<TD COLSPAN="2" HEADERS="id_slots id_plat id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+4 XIO-slots standard<BR>and 3-slot PCI optional</TD>
+<TD COLSPAN="2" HEADERS="id_slots id_plat id_single_ir2 id_single_ir id_img_single id_single">
+9 XIO-slots standard<BR>and 3-slot PCI optional per rack</TD>
+<TD COLSPAN="2" HEADERS="id_slots id_plat id_multi_ir2 id_multi_ir id_img_multi id_multi">
+9 XIO-slots standard<BR>and 3-slot PCI optional per rack</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_dim">
+Dimensions</TD>
+<TD HEADERS="id_dim id_plat id_img_reality id_reality">
+24" L, 20" W, 26.5" H </TD>
+<TD COLSPAN="2" HEADERS="id_dim id_plat id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+24" L, 20" W, 26.5" H </TD>
+<TD COLSPAN="2" HEADERS="id_dim id_plat id_single_ir2 id_single_ir id_img_single id_single">
+39" L, 29" W, 73" H </TD>
+<TD COLSPAN="2" HEADERS="id_dim id_plat id_multi_ir2 id_multi_ir id_img_multi id_multi">
+39" L, 29" W, 73" H per rack</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_mweight">
+Weight (max. configuration)</TD>
+<TD HEADERS="id_mweight id_plat id_img_reality id_reality">
+215 lbs (98 kg)</TD>
+<TD COLSPAN="2" HEADERS="id_mweight id_plat id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+215 lbs (98 kg) </TD>
+<TD COLSPAN="2" HEADERS="id_mweight id_plat id_single_ir2 id_single_ir id_img_single id_single">
+800 lbs (364 kg)</TD>
+<TD COLSPAN="2" HEADERS="id_mweight id_plat id_multi_ir2 id_multi_ir id_img_multi id_multi">
+800 lbs (364 kg) per rack</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_sweight">
+Standard monitor weight</TD>
+<TD HEADERS="id_sweight id_plat id_img_reality id_reality">
+71.6 lbs (32.5 kg)</TD>
+<TD COLSPAN="2" HEADERS="id_sweight id_plat id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+71.6 lbs (32.5kg) </TD>
+<TD COLSPAN="2" HEADERS="id_sweight id_plat id_single_ir2 id_single_ir id_img_single id_single">
+90.2 lbs (41kg) </TD>
+<TD COLSPAN="2" HEADERS="id_sweight id_plat id_multi_ir2 id_multi_ir id_img_multi id_multi">
+90.2 lbs (41 kg)</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD COLSPAN="8" AXIS="tech" ID="id_electic"><A NAME="electrical"></A><BR>
+<B>ELECTRICAL AND POWER</B></TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_volt">
+Voltage</TD>
+<TD HEADERS="id_volt id_electic id_img_reality id_reality">
+100 to 120 or 200 to 240<BR>volts AC, 1 phase<BR>(configurations limited<BR>below 200 volts*)</TD>
+<TD COLSPAN="2" HEADERS="id_volt id_electic id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+100 to 120 or 200 to 240<BR>volts AC, 1 phase<BR>(configurations limited<BR>below 200 volts*)</TD>
+<TD COLSPAN="2" HEADERS="id_volt id_electic id_single_ir2 id_single_ir id_img_single id_single">
+200 to 240 volts AC, 1 phase</TD>
+<TD COLSPAN="2" HEADERS="id_volt id_electic id_multi_ir2 id_multi_ir id_img_multi id_multi">
+200 to 240 volts AC, 1 phase</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_freq">
+Frequency</TD>
+<TD HEADERS="id_freq id_electic id_img_reality id_reality">
+47 to 63Hz </TD>
+<TD COLSPAN="2" HEADERS="id_freq id_electic id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+47 to 63Hz </TD>
+<TD COLSPAN="2" HEADERS="id_freq id_electic id_single_ir2 id_single_ir id_img_single id_single">
+47 to 63Hz  </TD>
+<TD COLSPAN="2" HEADERS="id_freq id_electic id_multi_ir2 id_multi_ir id_img_multi id_multi">
+47 to 63Hz </TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_power">
+Power</TD>
+<TD HEADERS="id_power id_electic id_img_reality id_reality">
+2,300 watts max at 208<BR>volts, 1,840 watts max at<BR>120 volts</TD>
+<TD COLSPAN="2" HEADERS="id_power id_electic id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+2,300 watts max at 208<BR>volts, 1,840 watts max at<BR>120 volts</TD>
+<TD COLSPAN="2" HEADERS="id_power id_electic id_single_ir2 id_single_ir id_img_single id_single">
+4,750 watts (compute and graphics<BR>module) or 5,050 watts (two<BR>graphics modules)</TD>
+<TD COLSPAN="2" HEADERS="id_power id_electic id_multi_ir2 id_multi_ir id_img_multi id_multi">
+4,750 watts (compute and graphics<BR>module) or 5,050 watts (two<BR>graphics modules) per rack</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_heat">
+Heat Dissipation</TD>
+<TD HEADERS="id_heat id_electic id_img_reality id_reality">
+7,843 BTU/hr (208 volts),<BR>6,274 BTU/hr (120 volts)</TD>
+<TD COLSPAN="2" HEADERS="id_heat id_electic id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+7,843 BTU/hr (208 volts),<BR>6,274 BTU/hr (120 volts)</TD>
+<TD COLSPAN="2" HEADERS="id_heat id_electic id_single_ir2 id_single_ir id_img_single id_single">
+16,198 BTU/hr (compute and graphics<BR>module) or 17,220 BTU/hr<BR>(two graphics modules)</TD>
+<TD COLSPAN="2" HEADERS="id_heat id_electic id_multi_ir2 id_multi_ir id_img_multi id_multi">
+16,198 BTU/hr (compute and graphics<BR>module) or 17,220 BTU/hr<BR>(two graphics modules) per rack</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_est">
+Electrical service type<BR></TD>
+<TD HEADERS="id_heat id_electic id_img_reality id_reality">
+NEMA 5-20 (120v) or<BR>NEMA 6-15 (208v)<BR>(US only)</TD>
+<TD COLSPAN="2" HEADERS="id_heat id_electic id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+NEMA 5-20 (120v) or<BR>NEMA 6-15 (208v)<BR>(US only)</TD>
+<TD COLSPAN="2" HEADERS="id_heat id_electic id_single_ir2 id_single_ir id_img_single id_single">
+NEMA L6-30 (US only)</TD>
+<TD COLSPAN="2" HEADERS="id_heat id_electic id_multi_ir2 id_multi_ir id_img_multi id_multi">
+NEMA L6-30 (US only)</TD>
+</TR>
+<TR VALIGN="TOP">
+<TD AXIS="specs" ID="id_noise">
+Noise</TD>
+<TD HEADERS="id_heat id_electic id_img_reality id_reality">
+50 dBa </TD>
+<TD COLSPAN="2" HEADERS="id_heat id_electic id_desk_ir2 id_desk_ir id_img_deskside id_deskside">
+50 dBa </TD>
+<TD COLSPAN="2" HEADERS="id_heat id_electic id_single_ir2 id_single_ir id_img_single id_single">
+65 to 70 dBa</TD>
+<TD COLSPAN="2" HEADERS="id_heat id_electic id_multi_ir2 id_multi_ir id_img_multi id_multi">
+65 to 70 dBa</TD>
+</TR></TABLE>
+
+<P>
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="2" TITLE="I/O, NETWORKING, AND COMMUNICATION"><TR VALIGN="TOP">
+<TD COLSPAN="2" ID="io_net"><A NAME="io"></A>
+<B>I/O, NETWORKING, AND COMMUNICATION</B></TD>
+</TR><TR VALIGN="TOP">
+<TD ID="data">Standard data</TD>
+<TD HEADERS="data io_net">40MB/sec Ultra SCSI, 10Base-T/100Base-TX Ethernet, 4 460 kbaud
+asynchronous serial ports, 2 keyboard ports, 2 mouse ports,
+parallel port
+</TD></TR><TR VALIGN="TOP">
+<TD ID="audio">Standard audio</TD>
+<TD HEADERS="audio io_net">2.75 ohm BNC AES/EBU stereo in/out, 2 optical ADAT 8-channel
+in/out, RCA phono jack stereo line-level input output, 3.5mm
+stereo analog headphone output, mono microphone input jack
+</TD></TR><TR VALIGN="TOP">
+<TD ID="optional">Optional data</TD>
+<TD HEADERS="optional io_net">XIO to PCI adapter (1 full-height, 2 double-height slots, 132MB to
+264MB/sec), XIO to VME adapter (6U, 9U), FDDI single attach, FDDI
+dual attach, UTP FDDI, Token Ring, ISDN, high-speed synchronous
+serial, 100MB/sec Fibre Channel (2 port), 40MB/sec Ultra SCSI 
+(4 port), 100Base-TX (4 port) combined with 460 kbaud 
+asynchronous serial (6 ports), ATMOC3 (4 port) and ATMOC12, DIVO
+in/out (CCIR601, SMPTE 259)</TD>
+</TR></TABLE>
+<P>
+
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="2" TITLE="Technical Data"><TR VALIGN="TOP">
+<TD COLSPAN="2" ID="id_remove" AXIS="axis_condition"><A NAME="media"></A><B>REMOVABLE MEDIA</B></TD>
+</TR><TR>
+<TD ID="id_standard">Standard</TD><TD HEADERS="id_standard id_remove">CD-ROM</TD></TR><TR>
+<TD ID="id_option">Optional</TD><TD HEADERS="id_option id_remove">DDS-2 (DAT), 8mm Exabyte, DLT tape</TD></TR><TR>
+<TD COLSPAN="2" ID="id_nonop" AXIS="axis_condition"><A NAME="environmental"></A><B>ENVIRONMENTAL (nonoperating)</B></TD>
+</TR><TR>
+<TD ID="id_nontemp">Temperature</TD><TD HEADERS="id_nontemp id_nonop">-20Þ to +60ÞC (41° to 95°F)</TD></TR><TR>
+<TD ID="id_nonhumidity">Humidity</TD><TD HEADERS="id_nonhumidity id_nonop">10% to 95% non-condensing</TD></TR><TR>
+<TD ID="id_nonaltitude">Altitude</TD><TD HEADERS="id_nonaltitude id_nonop">40,000 MSL</TD></TR><TR>
+<TD COLSPAN="2" ID="id_op" AXIS="axis_condition"><B>ENVIRONMENTAL (operating)</B></TD>
+</TR><TR>
+<TD ID="id_optemp">Temperature</TD><TD HEADERS="id_optemp id_op">+5° to +35°C altitude 5,000 MSL, +5° to +30°C altitude 10,000 MSL</TD></TR><TR>
+<TD ID="id_ophumidity">Humidity</TD><TD HEADERS="id_ophumidity id_op">10% to 90% noncondensing</TD>
+
+</TR></TABLE>
+
+
+
+</DIV>
+</TD><TD 
+WIDTH="20" VALIGN="TOP"><IMG SRC="/images/dots/dot_clear.gif" WIDTH="20" HEIGHT="1" ALT=""></TD><TD 
+WIDTH="50" VALIGN="TOP"><IMG SRC="/images/dots/dot_clear.gif" WIDTH="50" HEIGHT="1" ALT="">
+
+
+    </TD>
+</TR>
+<TR>
+    <TD COLSPAN="2"> </TD>
+    <TD COLSPAN="3" VALIGN="BOTTOM" ALIGN="MIDDLE"><BR><BR><BR>
+	<TABLE WIDTH="600" CELLPADDING="0" CELLPADDING="0" BORDER="0">
+	<TR>
+	    <TD ALIGN="RIGHT" CLASS="footer"><A HREF="/company_info/terms.html">terms of use</A> | <A HREF="/company_info/privacy.html">privacy policy</A></TD>
+	    <TD ALIGN="CENTER" CLASS="footer"> |</TD>
+	    <TD ALIGN="LEFT" CLASS="footer"><A HREF="/cgi-bin/feedback/">contact us</A></TD>
+	</TR><TR>
+	    <TD ALIGN="RIGHT" CLASS="footer">Copyright © 1993-2003 Silicon Graphics, Inc. All rights reserved.</TD>
+	    <TD ALIGN="CENTER" CLASS="footer"> |</TD>
+	    <TD ALIGN="LEFT" CLASS="footer"><A HREF="/company_info/trademarks/">trademark information</A></TD>
+	</TR>
+	</TABLE>
+    </TD>
+</TR>
+</TABLE>
+
+
+<MAP NAME="menu0map"><AREA SHAPE="RECT" COORDS="2,0 106,23" CLASS="menu" HREF="/products/" ALT="Products" ONMOUSEOVER="change(0,'nav_prd',1)" ONMOUSEOUT="if(!nn)menuhider(event)"></MAP>
+<MAP NAME="menu1map"><AREA SHAPE="RECT" COORDS="2,0 109,23" CLASS="menu" HREF="/industries/" ALT="Industries" ONMOUSEOVER="change(1,'nav_ind',1)" ONMOUSEOUT="if(!nn)menuhider(event)"></MAP>
+<MAP NAME="menu2map"><AREA SHAPE="RECT" COORDS="2,0 118,23" CLASS="menu" HREF="/developers/" ALT="Developers" ONMOUSEOVER="change(2,'nav_dev',1)" ONMOUSEOUT="if(!nn)menuhider(event)"></MAP>
+<MAP NAME="menu3map"><AREA SHAPE="RECT" COORDS="2,0 166,23" CLASS="menu" HREF="/support/" ALT="Support" ONMOUSEOVER="change(3,'nav_srv',1)" ONMOUSEOUT="if(!nn)menuhider(event)"></MAP>
+<MAP NAME="menu4map"><AREA SHAPE="RECT" COORDS="2,0 115,23" CLASS="menu" HREF="/fun/" ALT="Serious Fun" ONMOUSEOVER="change(4,'nav_fun',1)" ONMOUSEOUT="if(!nn)menuhider(event)"></MAP>
+
+
+
+<DIV ID="menu0" CLASS="menu"><IMG SRC="/images/nav/drop_prod.gif" BORDER="0" HEIGHT="111" WIDTH="107" ALT="Products Menu"></DIV>
+<DIV ID="menu0overs" CLASS="menu">
+<A HREF="/servers/"
+	ONMOUSEOVER="menuItem('servers',0,1)"
+	ONMOUSEOUT="menuItem('servers',0,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Servers"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="servers" VSPACE="0" WIDTH="107" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/visualization/"
+	ONMOUSEOVER="menuItem('vissys',0,1)"
+	ONMOUSEOUT="menuItem('vissys',0,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Visualization"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="vissys" VSPACE="0" WIDTH="107" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/workstations/"
+	ONMOUSEOVER="menuItem('workstations',0,1)"
+	ONMOUSEOUT="menuItem('workstations',0,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Workstations"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="workstations" VSPACE="0" WIDTH="107" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/products/storage/"
+	ONMOUSEOVER="menuItem('storage',0,1)"
+	ONMOUSEOUT="menuItem('storage',0,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Storage"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="storage" VSPACE="0" WIDTH="107" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/software/"
+	ONMOUSEOVER="menuItem('soft',0,1)"
+	ONMOUSEOUT="menuItem('soft',0,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Software"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="soft" VSPACE="0" WIDTH="107" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/peripherals/"
+	ONMOUSEOVER="menuItem('peripherals',0,1)"
+	ONMOUSEOUT="menuItem('peripherals',0,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Peripherals"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="peripherals" VSPACE="0" WIDTH="107" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/products/remarketed/"
+	ONMOUSEOVER="menuItem('remarketed',0,1)"
+	ONMOUSEOUT="menuItem('remarketed',0,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Remarketed"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="remarketed" VSPACE="0" WIDTH="107" CLASS="menu"><BR CLASS="menu"></A>
+</DIV>
+
+<DIV ID="menu1" CLASS="menu"><IMG SRC="/images/nav/drop_ind.gif" WIDTH="110" HEIGHT="90" BORDER="0" ALT="Industries Menu"></DIV>
+<DIV ID="menu1overs" CLASS="menu">
+<A HREF="/industries/energy/"
+	ONMOUSEOVER="menuItem('energy',1,1)"
+	ONMOUSEOUT="menuItem('energy',1,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Energy"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="energy" VSPACE="0" WIDTH="110" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/industries/manufacturing/"
+	ONMOUSEOVER="menuItem('man',1,1)"
+	ONMOUSEOUT="menuItem('man',1,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Manufacturing"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="man" VSPACE="0" WIDTH="110" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/industries/media/"
+	ONMOUSEOVER="menuItem('media',1,1)"
+	ONMOUSEOUT="menuItem('media',1,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Media"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="media" VSPACE="0" WIDTH="110" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/industries/sciences/"
+	ONMOUSEOVER="menuItem('science',1,1)"
+	ONMOUSEOUT="menuItem('science',1,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Sciences"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="science" VSPACE="0" WIDTH="110" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/industries/government/"
+	ONMOUSEOVER="menuItem('govdef',1,1)"
+	ONMOUSEOUT="menuItem('govdef',1,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Government and Defense"
+		BORDER="0" HEIGHT="26" HSPACE="0" NAME="govdef" VSPACE="0" WIDTH="110" CLASS="menu"><BR CLASS="menu"></A>
+</DIV>
+
+<DIV ID="menu2" CLASS="menu"><IMG SRC="/images/nav/drop_dev.gif" BORDER="0" WIDTH="119" HEIGHT="79" ALT="Developers Menu"></DIV>
+<DIV ID="menu2overs" CLASS="menu">
+<A HREF="/developers/program/"
+	ONMOUSEOVER="menuItem('devprog',2,1)"
+	ONMOUSEOUT="menuItem('devprog',2,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Developer Program"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="devprog" VSPACE="0" WIDTH="119" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/developers/business/"
+	ONMOUSEOVER="menuItem('busdev',2,1)"
+	ONMOUSEOUT="menuItem('busdev',2,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Business Development"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="busdev" VSPACE="0" WIDTH="119" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/developers/devtools/"
+	ONMOUSEOVER="menuItem('devtools',2,1)"
+	ONMOUSEOUT="menuItem('devtools',2,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Development Tools"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="devtools" VSPACE="0" WIDTH="119" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/developers/technology/irix/"
+	ONMOUSEOVER="menuItem('irix',2,1)"
+	ONMOUSEOUT="menuItem('irix',2,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Development on IRIX"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="irix" VSPACE="0" WIDTH="119" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/developers/oss/"
+	ONMOUSEOVER="menuItem('oss',2,1)"
+	ONMOUSEOUT="menuItem('oss',2,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Open Source Development"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="oss" VSPACE="0" WIDTH="119" CLASS="menu"><BR CLASS="menu"></A>
+</DIV>
+
+<DIV ID="menu3" CLASS="menu"><IMG SRC="/images/nav/drop_supp.gif" BORDER="0" HEIGHT="95" WIDTH="167" ALT="Services and Support Menu"></DIV>
+<DIV ID="menu3overs" CLASS="menu">
+<A HREF="/services/se/"
+	ONMOUSEOVER="menuItem('sysengr',3,1)"
+	ONMOUSEOUT="menuItem('sysengr',3,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Systems Engineering"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="sysengr" VSPACE="0" WIDTH="167" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/services/"
+	ONMOUSEOVER="menuItem('prof',3,1);"
+	ONMOUSEOUT="menuItem('prof',3,0);"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Professional Services"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="prof" VSPACE="0" WIDTH="167" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/services/managed_services/"
+	ONMOUSEOVER="menuItem('managed',3,1)"
+	ONMOUSEOUT="menuItem('managed',3,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Managed Services"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="managed" VSPACE="0" WIDTH="167" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/support/customerservice.html"
+	ONMOUSEOVER="menuItem('ort',3,1);"
+	ONMOUSEOUT="menuItem('ort',3,0);"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Support Services"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="ort" VSPACE="0" WIDTH="167" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/support/custeducation/"
+	ONMOUSEOVER="menuItem('edu',3,1);"
+	ONMOUSEOUT="menuItem('edu',3,0);"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Customer Education"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="edu" VSPACE="0" WIDTH="167" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/support/online/"
+	ONMOUSEOVER="menuItem('online',3,1);"
+	ONMOUSEOUT="menuItem('online',3,0);"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Online Support"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="online" VSPACE="0" WIDTH="167" CLASS="menu"><BR CLASS="menu"></A>
+</DIV>
+
+<DIV ID="menu4" CLASS="menu"><IMG SRC="/images/nav/drop_fun.gif" WIDTH="116" HEIGHT="95" BORDER="0" ALT="Fun Menu"></DIV>
+<DIV ID="menu4overs" CLASS="menu">
+<A HREF="/fun/freeware/games.html"
+	ONMOUSEOVER="menuItem('games',4,1);"
+	ONMOUSEOUT="menuItem('games',4,0);"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Games"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="games" VSPACE="0" WIDTH="116" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/fun/freeware/web.html"
+	ONMOUSEOVER="menuItem('webdev',4,1);"
+	ONMOUSEOUT="menuItem('webdev',4,0);"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Web Development"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="webdev" VSPACE="0" WIDTH="116" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/fun/freeware/software.html"
+	ONMOUSEOVER="menuItem('softdev',4,1);"
+	ONMOUSEOUT="menuItem('softdev',4,0);"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Software Development"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="softdev" VSPACE="0" WIDTH="116" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/fun/freeware/graphics.html"
+	ONMOUSEOVER="menuItem('graphics',4,1);"
+	ONMOUSEOUT="menuItem('graphics',4,0);"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Graphics"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="graphics" VSPACE="0" WIDTH="116" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="/fun/freeware/sysadmin.html"
+	ONMOUSEOVER="menuItem('sysadmin',4,1);"
+	ONMOUSEOUT="menuItem('sysadmin',4,0);"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="System Administration"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="sysadmin" VSPACE="0" WIDTH="116" CLASS="menu"><BR CLASS="menu"></A>
+<A HREF="http://freeware.sgi.com/"
+	ONMOUSEOVER="menuItem('freeware',4,1);"
+	ONMOUSEOUT="menuItem('freeware',4,0)"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Freeware"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="freeware" VSPACE="0" WIDTH="116" CLASS="menu"><BR CLASS="menu"></A>
+</DIV>
+
+<DIV ID="menu5" CLASS="menu"></DIV>
+<DIV ID="menu5overs" CLASS="menu">
+<TABLE BORDER="0" CELLPADDING="1" CELLSPACING="0" BGCOLOR="#0066CC"><TR><TD>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="1" WIDTH="150">
+<TR BGCOLOR="#0066CC">
+    <TD><SPAN CLASS="widget">SGI Search</SPAN></TD>
+    <TD ALIGN="right"><A HREF="javascript:change(5,0,0)"><IMG SRC="/images/common/srch_close_x.gif" WIDTH="16" HEIGHT="14" ALT="X" BORDER=0></A></TD>
+</TR>
+<TR BGCOLOR="#CFCFCF">
+    <TD COLSPAN="2" ALIGN="CENTER">
+
+
+<FORM NAME="searchForm" CLASS="srch" ACTION="http://search.sgi.com/search" METHOD="GET">
+	<INPUT type="hidden" name="site" value="sgi">
+	<INPUT type="hidden" name="client" value="sgi">
+	<INPUT type="hidden" name="output" value="xml_no_dtd">
+	<INPUT type="hidden" name="proxystylesheet" value="sgi">
+	<SELECT NAME="restrict">
+		<OPTION value="" selected>All of SGI</OPTION>
+		<OPTION value="Products">Products</OPTION>
+		<OPTION value="Industries">Industries</OPTION>
+		<OPTION value="Developers">Developers</OPTION>
+		<OPTION value="Services-Support">Services & Support</OPTION>
+		<OPTION value="Feature-Stories">Feature Stories</OPTION>
+		<OPTION value="Newsroom">Newsroom</OPTION>
+		<OPTION value="PDF">PDF Library</OPTION>
+	</SELECT>
+	<BR>
+	<INPUT TYPE="text" NAME="q" SIZE="15">
+	<BR>
+	<NOBR>
+	<INPUT TYPE="submit" VALUE=" Search "> <INPUT TYPE="button" VALUE=" Cancel " ONCLICK="change(5,0,0)">
+	</NOBR>
+</FORM>
+
+
+
+	</TD></TR></TABLE></TD></TR></TABLE>
+</DIV>
+
+</BODY>
+
+</HTML>

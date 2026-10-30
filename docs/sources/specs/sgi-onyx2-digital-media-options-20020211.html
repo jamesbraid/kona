@@ -1,0 +1,765 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head><script src="https://web-static.archive.org/_static/js/athena.js" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app221.us.archive.org';v.server_ms=489;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=3grhEDQT" charset="utf-8"></script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=o9P2E1FK" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden","showSwfDownload":true};</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("http://web.archive.org/web");
+  __wm.wombat("http://www.sgi.com:80/onyx2/digital_media.html","20020211224728","http://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1013467648");
+</script>
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3" />
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+
+<title>SGI - Silicon Graphics Onyx2: Digital Media</title>
+
+<meta name="description" content="To build Onyx2(tm) -  the world's most powerful visualization engine -
+SGI combined the ultimate in supercomputing and visualization
+technologies and then designed a way to simultaneously process 3D graphics,
+imaging, and video data in real time.">
+<meta name="keywords" content="products, Onyx2, highend graphics">
+<meta name="owner" content="stove">
+<meta name="job" content="internal">
+<style type="text/css"><!-- #digmedia {color: #000000; text-decoration: none;} --></style>
+
+
+<!-- Begin Header -->
+<script language="JavaScript" src="/web/20020211224728js_/http://www.sgi.com/js/style_sniffer.js"></script>
+
+<!-- Stylesheet section is used to initialize the menus and the highlight menus -->
+<link rel="stylesheet" href="/web/20020211224728cs_/http://www.sgi.com/styles/products.css" type="text/css">
+
+<style type="text/css">
+<!--
+#menu0	{	position: absolute; left: 156px; top: 79px; z-index: 101; visibility: hidden; width: 107px;}
+#menu0overs {	position: absolute; left: 156px; top: 79px; z-index: 111; visibility: hidden; width: 107px;}
+#menu1	{	position: absolute; left: 264px; top: 79px; z-index: 102; visibility: hidden; width: 110px;}
+#menu1overs {	position: absolute; left: 264px; top: 79px; z-index: 112; visibility: hidden; width: 110px;}
+#menu2	{	position: absolute; left: 375px; top: 79px; z-index: 103; visibility: hidden; width: 119px;}
+#menu2overs {	position: absolute; left: 375px; top: 79px; z-index: 113; visibility: hidden; width: 119px;}
+#menu3	{	position: absolute; left: 495px; top: 79px; z-index: 104; visibility: hidden; width: 167px;}
+#menu3overs {	position: absolute; left: 495px; top: 79px; z-index: 114; visibility: hidden; width: 167px;}
+#menu4	{	position: absolute; left: 663px; top: 79px; z-index: 106; visibility: hidden; width: 116px;}
+#menu4overs {	position: absolute; left: 663px; top: 79px; z-index: 116; visibility: hidden; width: 116px;}
+#menu5overs {	position: absolute; left: 615px; top: 45px; z-index: 400; visibility: hidden;}
+
+IMG.menu {border-bottom:1px white solid}
+BR.menu{margin-bottom:1px}
+
+-->
+</style>
+<script language="JavaScript">
+<!--
+
+window.onerror = null;
+window.defaultStatus = '';
+
+var initialized = 0;
+var menus = new Array();
+var menustatus = new Array();
+var menuovers = new Array();
+
+// initializes the menus into an array
+function init(){
+	if(isFour) {
+		for (var i=0;i<=5;i++) {
+			menustatus[i] = "closed";
+			if (document.layers) {
+				menuovers[i] = eval("window.document.menu"+i+"overs");
+				menus[i] = eval("window.document.menu"+i);
+				if (i < 5) menuovers[i].onmouseout = menuhider;
+			} else {
+				var tmnov = (document.all)?eval("document.all.menu"+i+"overs"):document.getElementById("menu"+i+"overs");
+				var tmn = (document.all)?eval("document.all.menu"+i):document.getElementById("menu"+i);
+				menuovers[i] = tmnov.style;
+				menus[i] = tmn.style;
+				if (i < 5) tmnov.onmouseout = menuhider;
+			}
+		}
+	}
+	initialized = true;
+}
+
+// Sets the selected menu to visible
+function change(Name,Image,No) {
+        if (initialized) {
+                document [Name].src = eval(Image + No + ".src");
+		if (Name == 'imgmenu0') document ['imgcrnr'].src = eval("nav_prod_corner" + No + ".src");
+        	var menunumber = parseInt(Name.charAt(7));
+        	if((isFour)&&(No)&&(menustatus[menunumber] == 'closed')) {
+			menuovers[menunumber].visibility = 'visible';
+			menuovers[menunumber].zIndex = '310';
+			menus[menunumber].visibility = 'visible';
+			menus[menunumber].zIndex = '300';
+			menustatus[menunumber] = 'open';
+	        }
+        }
+}
+
+// Clears all menus
+function clearmenus() {
+	if (initialized) {
+		//change('imgmenu0','nav_prd',0);
+		change('imgmenu1','nav_sol',0);
+		change('imgmenu2','nav_dev',0);
+		change('imgmenu3','nav_srv',0);
+		change('imgmenu4','nav_fun',0);
+		if(isFour) {
+			for(i=0; i<menus.length; i++) {
+				if(menustatus[i] == 'open') {
+					menuovers[i].visibility = 'hidden';
+					menuovers[i].zIndex = '110';
+					menus[i].visibility = 'hidden';
+					menus[i].zIndex = '100';
+					menustatus[i] = 'closed';
+				}
+			}
+		}
+	}
+}
+
+// Turns the highlighted part of a menu to visible
+function imagerep(imgname, divname){
+	if(isFour){
+		if (document.layers)
+			eval("window.document."+divname+".document['"+imgname+"'].src="+imgname+"over.src")
+		else
+			eval("document['"+imgname+"'].src="+imgname+"over.src");
+	}
+}
+
+// Turns off the highlighted part of a menu
+function eraseimage(imgname, divname){
+	if(isFour) {
+		if(document.layers)
+			eval("window.document."+divname+".document['"+imgname+"'].src=blank.src");
+		else
+			eval("document['" + imgname + "'].src = blank.src");
+	}
+}
+
+// Used to clear the menu after the mouse leaves it
+function menuhider(evnt) {
+	if (initialized) {
+		if (window.event) {if (window.event.toElement.className != "menu") clearmenus();}
+		else if (evnt.relatedTarget) { if (evnt.relatedTarget.className != 'menu') clearmenus();}
+		else if (document.layers) clearmenus();
+	}
+}
+
+// Caches the dropdown menus
+if (document.images) {
+
+	// Products Menu
+	var serversover=new Image();
+	serversover.src="/images/nav/drop_prod_servers.gif";
+	var workstationsover=new Image();
+	workstationsover.src="/images/nav/drop_prod_workstations.gif";
+	var swover=new Image();
+	swover.src="/images/nav/drop_prod_soft.gif";
+	var vissysover=new Image();
+	vissysover.src="/images/nav/drop_prod_vissys.gif";
+	var storageover=new Image();
+	storageover.src="/images/nav/drop_prod_storage.gif";
+	var remanover=new Image();
+	remanover.src="/images/nav/drop_prod_reman.gif";
+	var peripheralsover=new Image();
+	peripheralsover.src="/images/nav/drop_prod_peripherals.gif";
+
+	// Solutions Menu
+	var manover=new Image();
+	manover.src="/images/nav/drop_sol_man.gif";
+	var scienceover=new Image();
+	scienceover.src="/images/nav/drop_sol_science.gif";
+        var defenseover=new Image();
+        defenseover.src="/images/nav/drop_sol_defense.gif";
+	var telcoover=new Image();
+	telcoover.src="/images/nav/drop_sol_telco.gif";
+
+	// Developers Menu
+	var toolsover=new Image();
+	toolsover.src="/images/nav/drop_dev_prod.gif";
+	var programsover=new Image();
+	programsover.src="/images/nav/drop_dev_prog.gif";
+	var libraryover=new Image();
+	libraryover.src="/images/nav/drop_dev_libr.gif";
+	var opensourceover=new Image();
+	opensourceover.src="/images/nav/drop_dev_oss.gif";
+	var opsysover=new Image();
+	opsysover.src="/images/nav/drop_dev_opsys.gif";
+	var resourcesover=new Image();
+	resourcesover.src="/images/nav/drop_dev_reso.gif";
+
+	// Support Menu
+	var profover=new Image();
+	profover.src="/images/nav/drop_supp_prof.gif";
+	var prdvtyover=new Image();
+	prdvtyover.src="/images/nav/drop_supp_prdvty.gif";
+	var ortover=new Image();
+	ortover.src="/images/nav/drop_supp_ort.gif";
+	var eduover=new Image();
+	eduover.src="/images/nav/drop_supp_edu.gif";
+	var onlineover=new Image();
+	onlineover.src="/images/nav/drop_supp_online.gif";
+
+	// Fun Menu
+	var gamesover=new Image();
+	gamesover.src="/images/nav/drop_fun_games.gif";
+	var webdevover=new Image();
+	webdevover.src="/images/nav/drop_fun_webdev.gif";
+	var softdevover=new Image();
+	softdevover.src="/images/nav/drop_fun_softdev.gif";
+	var graphicsover=new Image();
+	graphicsover.src="/images/nav/drop_fun_graphics.gif";
+	var sysadminover=new Image();
+	sysadminover.src="/images/nav/drop_fun_sysadmin.gif";
+	var freewareover=new Image();
+	freewareover.src="/images/nav/drop_fun_freeware.gif";
+
+	// Clear GIF
+	var blank=new Image();
+	blank.src="/images/dots/dot_clear.gif";
+
+	// Products Rollover
+	nav_prod_corner0=new Image();
+	nav_prod_corner0.src="/images/nav/nav_prod_corner0.gif";
+	nav_prod_corner1=new Image();
+	nav_prod_corner1.src="/images/nav/nav_prod_corner1.gif";
+	nav_prd0=new Image();
+	nav_prd0.src="/images/nav/nav_prod0.gif";
+	nav_prd1=new Image();
+	nav_prd1.src="/images/nav/nav_prod1.gif";
+
+	// Solutions Rollover
+	nav_sol0=new Image();
+	nav_sol0.src="/images/nav/nav_solutions0.gif";
+	nav_sol1=new Image();
+	nav_sol1.src="/images/nav/nav_solutions1.gif";
+
+	// Developers Rollover
+	nav_dev0=new Image();
+	nav_dev0.src="/images/nav/nav_dev0.gif";
+	nav_dev1=new Image();
+	nav_dev1.src="/images/nav/nav_dev1.gif";
+
+	// Support Rollover
+	nav_srv0=new Image();
+	nav_srv0.src="/images/nav/nav_support0.gif";
+	nav_srv1=new Image();
+	nav_srv1.src="/images/nav/nav_support1.gif";
+
+	// Fun Rollover
+	nav_fun0=new Image();
+	nav_fun0.src="/images/nav/nav_fun0.gif";
+	nav_fun1=new Image();
+	nav_fun1.src="/images/nav/nav_fun1.gif";
+}
+
+// Is This Netscape 4 or up?
+var isFour = (parseInt(navigator.appVersion) > 3);
+
+// RTP PopUp window
+function RateThisPage(w,h,myurl){
+        var winl = ((screen.width - w) / (9.5));
+        var wint = (screen.height - h) / (2);
+        winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars=no,noresizable'
+        var Win1=window.open(myurl,'Window1',winprops);
+        Win1.opener=self;
+}       
+
+
+//-->
+</script>
+
+</head>
+
+<body onload="init()" text="#000000" link="#660099" alink="#9900CC" vlink="#7C7F87" bgcolor="#FFFFFF" marginheight="0" marginwidth="0" leftmargin="0" topmargin="0"><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;" toolbar-mode="auto">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;height:0;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=http%3A//web.archive.org/web/20020211224728/http%3A//www.sgi.com/onyx2/digital_media.html"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;" nav="async">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-100.png, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://www.sgi.com/onyx2/digital_media.html" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20020211224728" /><input type="submit" value="Go" />
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+                <div class="s" id="wm-nav-captures" style="flex:1;">
+                    <a class="t" href="/web/20020211224728*/http://www.sgi.com/onyx2/digital_media.html" title="See a list of every capture for this URL">33 captures</a>
+          <div class="r" title="Timespan for captures of this URL">03 Mar 2000 - 09 Aug 2007</div>
+          </div>
+        <div class="k">
+          <a href="" id="wm-graph-anchor">
+            <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+              <canvas id="wm-sparkline-canvas" width="775" height="27" border="0"></canvas>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+        <tbody>
+          <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+          <tr class="m">
+            <td class="b" nowrap="nowrap">Jan</td>
+            <td class="c" id="displayMonthEl" title="You are here: 22:47:28 Feb 11, 2002">FEB</td>
+            <td class="f" nowrap="nowrap">Mar</td>
+          </tr>
+          <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+          <tr class="d">
+            <td class="b" nowrap="nowrap"><span class="ta"></span></td>
+            <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 22:47:28 Feb 11, 2002">11</td>
+            <td class="f" nowrap="nowrap"><span class="ta"></span></td>
+          </tr>
+          <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+          <tr class="y">
+            <td class="b" nowrap="nowrap">2001</td>
+            <td class="c" id="displayYearEl" title="You are here: 22:47:28 Feb 11, 2002">2002</td>
+            <td class="f" nowrap="nowrap">2003</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+                <span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#" title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+        </span>
+                <a class="xxs" href="https://help.archive.org/help/category/the-wayback-machine/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+        <a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share" class="xxs">
+        <a href="/web/20020211224728/http://web.archive.org/screenshot/http://www.sgi.com/onyx2/digital_media.html"
+           id="wm-screenshot"
+           title="screenshot">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+        <a id="wm-share-facebook" href="#" data-url="http://web.archive.org/web/20020211224728/http://www.sgi.com:80/onyx2/digital_media.html" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+        <a id="wm-share-twitter" href="#" data-url="http://web.archive.org/web/20020211224728/http://www.sgi.com:80/onyx2/digital_media.html" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+        <a id="wm-expand" class="wm-btn wm-closed" href="#expand"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+        <div id="wm-capinfo-notice" source="api"></div>
+                <div id="wm-capinfo-collected-by" source="api" trigger="hover" token="MU4f9d2kcv4BN_3-I9sgXGtF_V6mDhU5IyHaZZiCXUhvFaYdAp0PuDY"></div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center;padding:2px 0;" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="https://web-static.archive.org/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - http://web.archive.org/web/20020211224728/http://www.sgi.com:80/onyx2/digital_media.html</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(775,27,25,2,"web","http://www.sgi.com/onyx2/digital_media.html","20020211224728",1996,"https://web-static.archive.org/_static/",["https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3","https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+ 
+
+<!-- Global Navigation Include (Products) -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr bgcolor="#7C7F87">
+    <td rowspan="3" width="126"><a href="/web/20020211224728/http://www.sgi.com/"><img src="/web/20020211224728im_/http://www.sgi.com/images/common/sgi_logo_us.gif" alt="www.sgi.com" height="79" width="126" border="0"></a></td>
+    <td>
+	<table border="0" cellpadding="0" cellspacing="0" width="657" valign="top">
+	<tr>
+	    <td width="212"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" width="1" height="54" alt=""></td>
+	    <td width="285" valign="top"><a href="/web/20020211224728/http://www.sgi.com/sales/"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_buy.gif" height="21" width="60" border="0" alt="How to Buy"></a><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_top_spacer.gif" height="21" width="15" border="0" alt=""><a href="/web/20020211224728/http://www.sgi.com/resellers/"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_resellers.gif" height="21" width="61" border="0" alt="Resellers"></a><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_top_spacer.gif" height="21" width="15" border="0" alt=""><a href="/web/20020211224728/http://www.sgi.com/company_info/"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_company_info.gif" height="21" width="73" border="0" alt="Company Info"></a><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_top_spacer.gif" height="21" width="15" border="0" alt=""><a href="/web/20020211224728/http://www.sgi.com/employment/"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_careers.gif" height="21" width="46" border="0" alt="Careers"></a></td>
+	    <td width="160" align="right" valign="top"><a href="/web/20020211224728/http://www.sgi.com/search/" onclick="if(isFour){menuovers[5].visibility='visible';return false;}"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_search.gif" height="26" width="67" border="0" alt="Search"></a><a href="/web/20020211224728/http://www.sgi.com/"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_home1.gif" height="26" width="59" border="0" alt="Home"></a></td>
+	</tr>
+	</table></td>
+</tr>
+<tr bgcolor="#7C7F87">
+    <td width="100%"><a href="javascript:void(0)" onmouseover="clearmenus()"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" height="2" width="657" border="0" alt=""></a></td>
+</tr>
+
+<!-- Nav Menus -->
+<tr bgcolor="#CFCFCF">
+    <td width="100%">
+	<a href="/web/20020211224728/http://www.sgi.com/products/" onmouseover="clearmenus()"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_prod_corner1.gif" alt="" width="30" height="23" border="0" name="imgcrnr"></a><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_prod1.gif" alt="[Products]" width="108" height="23" border="0" name="imgmenu0" usemap="#menu0map"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_solutions0.gif" alt="[Solutions]" width="111" height="23" border="0" name="imgmenu1" usemap="#menu1map"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_dev0.gif" alt="[Developers]" width="120" height="23" border="0" name="imgmenu2" usemap="#menu2map"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_support0.gif" alt="[Support]" width="168" height="23" border="0" name="imgmenu3" usemap="#menu3map"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/nav_fun0.gif" alt="[Serious Fun]" width="117" height="23" border="0" name="imgmenu4" usemap="#menu4map"><a href="javascript:void(0)" onmouseover="clearmenus()"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" width="2" height="23" border="0" alt="-"></a></td>
+</tr>
+</table>
+
+<!-- End Global Navigation -->
+<table width="780" border="0" cellpadding="0" cellspacing="0">
+<tr>
+    <!--- This is the site banner TD --->
+    <td colspan="5" align="RIGHT">
+
+<!-- End Header -->
+
+<img src="/web/20020211224728im_/http://www.sgi.com/onyx2/images/ban_onyx2.gif" width="515" height="68" alt="onyx2">
+
+</td></tr><tr valign="TOP"><td width="130">
+
+<!-- Begin Side Nav -->
+<div id="SIDENAV">
+	<table border="0" cellspacing="0" cellpadding="0" width="130">
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/common/bullets_prod.gif" alt="" width="18" height="10"></td>
+	<td><a href="/web/20020211224728/http://www.sgi.com/onyx2/" class="homeLink"><b>Silicon Graphics Onyx2</b></a></td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/onyx2/overview.html" id="overview">Product Overview</a>
+		<table border="0" cellspacing="0" cellpadding="2"><tr valign="TOP">
+     	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_black.gif" alt="" height="3" width="3" vspace="5"></td><td class="small">
+     	<a href="/web/20020211224728/http://www.sgi.com/onyx2/sys_hardware.html" class="sidenav" id="configs">Configurations</a></td></tr>
+		</table>
+	
+	</td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/onyx2/tech_info.html" id="techinfo">Technical Info</a>
+		<table border="0" cellspacing="0" cellpadding="2"><tr valign="TOP">
+     	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_black.gif" alt="" height="3" width="3" vspace="5"></td><td class="small">
+     	<a href="/web/20020211224728/http://www.sgi.com/onyx2/tech_specs.html" class="sidenav" id="techspecs">Tech Specs</a></td></tr></table>
+	</td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/onyx2/datasheets.html" id="datasheets">Datasheets</a></td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/onyx2/developers.html" id="developers">Onyx2 Developers</a></td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/onyx2/partners/" id="partners">Partner Products</a></td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/onyx2/demos/index.html" id="demos">Demos</a></td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/onyx2/industry.html" id="ind">Industry Uses</a></td>
+	</tr>
+	
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/onyx2/related_news.html" id="news">Related News</a></td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/onyx2/promotions.html" id="promotions">Promotions</a></td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/sales/contact_me.html">Contact Us</a></td>
+	</tr>
+<!-- Rate This Page -->
+	<tr>
+	  <td></td><td><a href="javascript:RateThisPage()" onclick="RateThisPage(325,300,'/rate/index.html');return false;"><img src="/web/20020211224728im_/http://www.sgi.com/rate/images/nav_rtp.gif" width="69" height="42" border="0" alt="Rate This Page"></a></td>
+	</tr>	
+	<tr>
+	  <td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="20" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/common/bullets_prod.gif" alt="" width="18" height="10"></td>
+	<td><b>Related Sites</b></td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/realitycenter/">SGI Reality Center</a></td>
+	</tr>
+	<tr valign="TOP">
+	<td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="8" width="1"></td><td></td>
+	</tr>
+	<tr valign="TOP">
+	<td></td><td><a href="/web/20020211224728/http://www.sgi.com/peripherals/digital_media/" id="digitalmedia">Digital Media</a></td>
+	</tr>
+	
+	
+	
+
+	
+	
+<!-- THIS ROW WAS INSERTED TO ENSURE THAT THE SIDENAV PUSHES OUT TO A WIDTH OF 130 -->
+	<tr valign="TOP">
+	<td></td><td><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="" height="1" width="112"></td>
+	</tr>
+	</table>
+</div>
+
+<!-- End Side Nav -->
+<!-- Begin Left Seperator -->
+<!-- Start sep_left.htmlf -->
+</td>
+<td width="30" valign="TOP"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" width="30" height="2" alt=""></td><td>
+
+
+<!-- End sep_left.htmlf -->
+
+<div class="content">
+
+<!-- End Left Seperator -->
+
+<!-- Content Starts Here -->
+
+<font class="header">Digital Media</font>
+<p>
+
+<table>
+<tr>
+<td align="LEFT" valign="TOP">
+<img src="/web/20020211224728im_/http://www.sgi.com/onyx2/images/video.jpg" alt="Video" hspace="15" vspace="10" height="240" width="215" align="RIGHT">
+Among the most demanding of computational requirements are the input, processing
+and distribution of the various digital media types. To address these requirements
+SGI offers a family of input, output, compression, and advanced
+display options for the Onyx2 product line. By taking advantage of the
+scalability, I/O bandwidth, and graphics power of Onyx2, this new family
+of options allows users to configure systems with digital media capabilities
+that far exceed those of any other computer systems on the market today.
+<p>
+
+<b>Graphics-to-Video Option (GVO)</b>
+
+
+<p>For applications requiring CCIR 601 digital video and alpha output from
+graphics in real time, GVO provides a low-latency solution. 
+
+<p>
+<b>Digital Video Option (DIVO)</b>
+
+
+<p>DIVO routes multiple video and audio streams to and from system memory
+or disk. In conjunction with the Onyx2 graphics subsystem, broadcast video
+maps directly onto any three-dimensional surface while image processing
+functions enhance the video stream in real-time. 
+
+<p>DIVO connects Onyx2 systems to industry-standard CCIR 601, SMPTE 259,
+and SMPTE 272 equipment. 
+
+<p>GVO and DIVO together are ideal for virtual sets where video is input
+to graphics and output in real time, and for content creation applications
+for simultaneous content input and output. 
+<p>
+<b>Professional Audio Sampling and Playback</b><p> 
+<img src="/web/20020211224728im_/http://www.sgi.com/onyx2/images/sound.jpg" height="239" width="220" align="RIGHT">
+All Onyx2 systems include 24-bit digital audio input and output. The
+Onyx2 audio system provides 3.5mm and RCA jack connectors for connection
+to analog audio equipment, such as the included amplified speakers. Optical
+connectors and 75 ohm BNC jacks connect Onyx2 with AES/EBU and ADAT 8-channel
+equipment for up to 10 channels of 24-bit digital audio. Built-in video
+reference input and loop-out lock Onyx2 audio to a video house sync signal.
+
+</td>
+</tr>
+</table>
+
+<p>Image Credit: <i>Twister</i> images &copy;1996 Warner
+Bros., a division of Time Warner Entertainment Company, L.P. and Universal
+City Studios, Inc. 
+
+
+<!-- Content Ends Here -->
+
+<!-- Begin Right Seperator -->
+</div>
+</td><td width="20" valign="TOP"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" width="20" height="1" alt=""></td><td width="50" valign="TOP"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" width="50" height="1" alt="">
+
+<!-- End Right Seperator -->
+
+<!-- Begin Footer -->
+<!-- Begin trademark footer -->
+    </td>
+</tr>
+<tr>
+    <td colspan="2">&nbsp;</td>
+    <td colspan="3" valign="BOTTOM" align="MIDDLE"><br><br><br>
+	<table width="600" cellpadding="0" cellpadding="0" border="0">
+	<tr>
+	    <td align="RIGHT" class="footer"><a href="/web/20020211224728/http://www.sgi.com/company_info/privacy.html">privacy policy</a>&nbsp;</td>
+	    <td align="CENTER" class="footer"> | </td>
+	    <td align="LEFT" class="footer"><a href="/web/20020211224728/http://www.sgi.com/cgi-bin/feedback/">questions/comments</a></td>
+	</tr><tr>
+	    <td align="RIGHT" class="footer"><a href="/web/20020211224728/http://www.sgi.com/company_info/copyright.html">Copyright &copy; 1993-2002 Silicon Graphics, Inc.</a> All rights reserved.</td>
+	    <td align="CENTER" class="footer"> | </td>
+	    <td align="LEFT" class="footer"><a href="/web/20020211224728/http://www.sgi.com/company_info/trademarks/">Trademark Information</a></td>
+	</tr>
+	</table>
+    </td>
+</tr>
+</table>
+
+<!-- End trademark footer -->
+
+<!-- javascript/CGI links and images so the linkscan checker finds them-->
+<a href="/web/20020211224728/http://www.sgi.com/images/common/javascript.html"></a>
+<!-- end links and images -->
+
+<map name="menu0map"><area shape="RECT" coords="2,0 106,23" href="/web/20020211224728/http://www.sgi.com/products/" onmouseover="clearmenus();change('imgmenu0','nav_prd',1)" onmouseout="if(!isFour)clearmenus()"></map>
+<map name="menu1map"><area shape="RECT" coords="2,0 109,23" href="/web/20020211224728/http://www.sgi.com/solutions/" onmouseover="clearmenus();change('imgmenu1','nav_sol',1)" onmouseout="if(!isFour)clearmenus()"></map>
+<map name="menu2map"><area shape="RECT" coords="2,0 118,23" href="/web/20020211224728/http://www.sgi.com/developers/" onmouseover="clearmenus();change('imgmenu2','nav_dev',1)" onmouseout="if(!isFour)clearmenus()"></map>
+<map name="menu3map"><area shape="RECT" coords="2,0 166,23" href="/web/20020211224728/http://www.sgi.com/support/" onmouseover="clearmenus();change('imgmenu3','nav_srv',1)" onmouseout="if(!isFour)clearmenus()"></map>
+<map name="menu4map"><area shape="RECT" coords="2,0 115,23" href="/web/20020211224728/http://www.sgi.com/fun/" onmouseover="clearmenus();change('imgmenu4','nav_fun',1)" onmouseout="if(!isFour)clearmenus()"></map>
+
+<noscript><table border="0" height="1" width="1"><tr><td></noscript>
+
+<div id="menu0"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/drop_prod.gif" border="0" height="111" hspace="0" vspace="0" width="107" alt="Products Menu"></div>
+<div id="menu0overs">
+<a href="/web/20020211224728/http://www.sgi.com/servers/" onmouseover="imagerep('servers', 'menu0overs')" onmouseout="eraseimage('servers', 'menu0overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Servers" border="0" height="15" hspace="0" name="servers" vspace="0" width="107" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/workstations/" onmouseover="imagerep('workstations', 'menu0overs')" onmouseout="eraseimage('workstations', 'menu0overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Workstations" border="0" height="15" hspace="0" name="workstations" vspace="0" width="107" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/software/" onmouseover="imagerep('sw', 'menu0overs')" onmouseout="eraseimage('sw', 'menu0overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Software" border="0" height="15" hspace="0" name="sw" vspace="0" width="107" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/visualization/" onmouseover="imagerep('vissys', 'menu0overs')" onmouseout="eraseimage('vissys', 'menu0overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Visualization" border="0" height="15" hspace="0" name="vissys" vspace="0" width="107" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/products/storage/" onmouseover="imagerep('storage', 'menu0overs')" onmouseout="eraseimage('storage', 'menu0overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Storage" border="0" height="15" hspace="0" name="storage" vspace="0" width="107" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/products/remanufactured/" onmouseover="imagerep('reman', 'menu0overs')" onmouseout="eraseimage('reman', 'menu0overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Remanufactured" border="0" height="15" hspace="0" name="reman" vspace="0" width="107" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/peripherals/" onmouseover="imagerep('peripherals', 'menu0overs')" onmouseout="eraseimage('peripherals', 'menu0overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Peripherals" border="0" height="15" hspace="0" name="peripherals" vspace="0" width="107" class="menu"><br class="menu"></a>
+</div>
+
+<div id="menu1"><a href="/web/20020211224728/http://www.sgi.com/solutions/" onmouseout="clearmenus()"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/drop_sol.gif" width="110" height="58" border="0" alt="Solutions Menu"></a></div>
+<div id="menu1overs">
+<a href="/web/20020211224728/http://www.sgi.com/manufacturing/" onmouseover="imagerep('man', 'menu1overs')" onmouseout="eraseimage('man', 'menu1overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Manufacturing" border="0" height="15" hspace="0" name="man" vspace="0" width="110" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/solutions/sciences/" onmouseover="imagerep('science', 'menu1overs')" onmouseout="eraseimage('science', 'menu1overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Sciences" border="0" height="15" hspace="0" name="science" vspace="0" width="110" class="menu"><br class="menu"></a>
+<!--A HREF="/solutions/"
+	ONMOUSEOVER="imagerep('defense', 'menu1overs')"
+	ONMOUSEOUT="eraseimage('defense', 'menu1overs')"
+	CLASS="menu"><IMG
+		SRC="/images/dots/dot_clear.gif"
+		ALT="Intelligence/Defense"
+		BORDER="0" HEIGHT="15" HSPACE="0" NAME="defense" VSPACE="0" WIDTH="110" CLASS="menu"><BR CLASS="menu"></A -->
+<a href="/web/20020211224728/http://www.sgi.com/solutions/broadband/" onmouseover="imagerep('telco', 'menu1overs')" onmouseout="eraseimage('telco', 'menu1overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Telecommunications and Media" border="0" height="26" hspace="0" name="telco" vspace="0" width="110" class="menu"><br class="menu"></a>
+</div>
+
+<div id="menu2"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/drop_dev.gif" border="0" width="119" height="95" hspace="0" vspace="0" alt="Developers Menu"></div>
+<div id="menu2overs">
+<a href="/web/20020211224728/http://www.sgi.com/developers/devtools/" onmouseover="imagerep('tools','menu2overs')" onmouseout="eraseimage('tools','menu2overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Developer Tools" border="0" height="15" hspace="0" name="tools" vspace="0" width="119" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/developers/program/" onmouseover="imagerep('programs','menu2overs')" onmouseout="eraseimage('programs','menu2overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Developer Programs" border="0" height="15" hspace="0" name="programs" vspace="0" width="119" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/developers/library/" onmouseover="imagerep('library','menu2overs')" onmouseout="eraseimage('library','menu2overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Developer Library" border="0" height="15" hspace="0" name="library" vspace="0" width="119" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/developers/marketing/" onmouseover="imagerep('resources','menu2overs')" onmouseout="eraseimage('resources','menu2overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Developer Resources" border="0" height="15" hspace="0" name="resources" vspace="0" width="119" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/developers/technology/" onmouseover="imagerep('opsys','menu2overs')" onmouseout="eraseimage('opsys','menu2overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Developer Technology" border="0" height="15" hspace="0" name="opsys" vspace="0" width="119" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/developers/oss/" onmouseover="imagerep('opensource','menu2overs')" onmouseout="eraseimage('opensource','menu2overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Open Source" border="0" height="15" width="119" name="opensource" hspace="0" vspace="0" class="menu"><br class="menu"></a>
+</div>
+
+<div id="menu3"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/drop_supp.gif" border="0" height="79" hspace="0" vspace="0" width="167" alt="Services and Support Menu"></div>
+<div id="menu3overs">
+<a href="/web/20020211224728/http://www.sgi.com/services/" onmouseover="imagerep('prof', 'menu3overs');" onmouseout="eraseimage('prof', 'menu3overs');" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Professional Services" border="0" height="15" hspace="0" name="prof" vspace="0" width="167" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/services/productivity/" onmouseover="imagerep('prdvty', 'menu3overs')" onmouseout="eraseimage('prdvty', 'menu3overs')" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Productivity Services" border="0" height="15" hspace="0" name="prdvty" vspace="0" width="167" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/support/customerservice.html" onmouseover="imagerep('ort', 'menu3overs');" onmouseout="eraseimage('ort', 'menu3overs');" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Support Services" border="0" height="15" hspace="0" name="ort" vspace="0" width="167" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/support/custeducation/" onmouseover="imagerep('edu', 'menu3overs');" onmouseout="eraseimage('edu', 'menu3overs');" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Education Services" border="0" height="15" hspace="0" name="edu" vspace="0" width="167" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/support/online/" onmouseover="imagerep('online', 'menu3overs');" onmouseout="eraseimage('online', 'menu3overs');" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Online Support" border="0" height="15" hspace="0" name="online" vspace="0" width="167" class="menu"><br class="menu"></a>
+</div>
+
+<div id="menu4"><a href="/web/20020211224728/http://www.sgi.com/fun/" onmouseout="clearmenus()"><img src="/web/20020211224728im_/http://www.sgi.com/images/nav/drop_fun.gif" width="116" height="95" border="0" alt="Fun Menu"></a></div>
+<div id="menu4overs">
+<a href="/web/20020211224728/http://www.sgi.com/fun/freeware/games.html" onmouseover="imagerep('games', 'menu4overs');" onmouseout="eraseimage('games', 'menu4overs');" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Games" border="0" height="15" hspace="0" name="games" vspace="0" width="116" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/fun/freeware/web.html" onmouseover="imagerep('webdev', 'menu4overs');" onmouseout="eraseimage('webdev', 'menu4overs');" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Web Development" border="0" height="15" hspace="0" name="webdev" vspace="0" width="116" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/fun/freeware/software.html" onmouseover="imagerep('softdev', 'menu4overs');" onmouseout="eraseimage('softdev', 'menu4overs');" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Software Development" border="0" height="15" hspace="0" name="softdev" vspace="0" width="116" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/fun/freeware/graphics.html" onmouseover="imagerep('graphics', 'menu4overs');" onmouseout="eraseimage('graphics', 'menu4overs');" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Graphics" border="0" height="15" hspace="0" name="graphics" vspace="0" width="116" class="menu"><br class="menu"></a>
+<a href="/web/20020211224728/http://www.sgi.com/fun/freeware/sysadmin.html" onmouseover="imagerep('sysadmin', 'menu4overs');" onmouseout="eraseimage('sysadmin', 'menu4overs');" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="System Administration" border="0" height="15" hspace="0" name="sysadmin" vspace="0" width="116" class="menu"><br class="menu"></a>
+<a href="http://web.archive.org/web/20020211224728/http://freeware.sgi.com/" onmouseover="imagerep('freeware', 'menu4overs');" onmouseout="eraseimage('freeware', 'menu4overs');" class="menu"><img src="/web/20020211224728im_/http://www.sgi.com/images/dots/dot_clear.gif" alt="Freeware" border="0" height="15" hspace="0" name="freeware" vspace="0" width="116" class="menu"><br class="menu"></a>
+</div>
+
+<div id="menu5overs">
+<table border="0" bgcolor="#0066CC" cellpadding="1" cellspacing="0"><tr><td>
+<table border="0" cellpadding="2" cellspacing="1" width="150">
+<tr bgcolor="#0066CC">
+    <td><font color="#FFFFFF"><b>SGI Search</b></font></td>
+    <td align="right"><a href="javascript:void(0)" onclick="menuovers[5].visibility='hidden'"><img src="/web/20020211224728im_/http://www.sgi.com/images/common/srch_close_x.gif" width="16" height="14" alt="X" border="0"></a></td>
+</tr>
+<tr bgcolor="#CFCFCF">
+    <td colspan="2" align="CENTER">
+	<form class="wwsgi" action="/web/20020211224728/http://www.sgi.com/cgi-bin/surfsrch.cgi" method="GET">
+		<input type="HIDDEN" name="cmd" value="search">
+		<input type="HIDDEN" name="coll" value="0650">
+		<select name="db">
+		    <option value="All" selected>All of SGI
+		    <option value="Hardware;Software">Products
+		    <option value="Solutions">Solutions
+		    <option value="Developer">Developers
+		    <option value="Support">Services &amp; Support
+		    <option value="Fun">Serious Fun
+		</select>
+		<br><a href="/web/20020211224728/http://www.sgi.com/search/infosearch_help.html">Quick Search Tips</a>
+		<input name="srch" size="15">
+		<br><nobr>
+		<input type="submit" value=" Search ">&nbsp;<input type="button" value=" Cancel " onclick="menuovers[5].visibility='hidden'">
+		</nobr>
+	</form>
+	</td>
+</tr>
+</table>
+</td></tr></table>
+</div>
+<div id="menu5"></div>
+
+<noscript></td></tr></noscript>
+</body>
+
+<!-- End Footer -->
+</html>
+<!--
+     FILE ARCHIVED ON 22:47:28 Feb 11, 2002 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:12:48 Oct 30, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.371
+  exclusion.robots: 0.033
+  exclusion.robots.policy: 0.026
+  esindex: 0.006
+  cdx.remote: 21.834
+  LoadShardBlock: 261.185 (3)
+  PetaboxLoader3.datanode: 226.379 (4)
+  PetaboxLoader3.resolve: 72.255 (2)
+  load_resource: 189.97
+  nav: 0.13 (6)
+-->
