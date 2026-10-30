@@ -2282,10 +2282,10 @@ ge.u	label	0x0000482e	mgeb_DeformationMap3_1		located	ucode/ge_handlers.md#defor
 ge.u	label	0x000048d8	mmo_DirtyDeformModule		located	ucode/ge_handlers.md#deforms	deform.S
 ge.u	label	0x00004905	mgesi_StopInstruments		located	ucode/ge_handlers.md#pis	pi.S
 ge.u	label	0x0000494f	mgesi_StartInstruments		located	ucode/ge_handlers.md#pis	pi.S
-ge.u	label	0x00004961	mgesi_PrintNum		located	ucode/ge_handlers.md#debugs	debug.S
-ge.u	label	0x00004a8d	mmo_DebugGE		located	ucode/ge_handlers.md#debugs	debug.S
-ge.u	label	0x00004a9c	mgeb_DebugDrain		located	ucode/ge_handlers.md#debugs	debug.S
-ge.u	label	0x00004aa9	mPrintf		located	ucode/ge_handlers.md#debugs	debug.S
+ge.u	label	0x00004961	mgesi_PrintNum		understood	ucode/ge_compute.md#debug-output-debugs	Debug output (debug.S)
+ge.u	label	0x00004a8d	mmo_DebugGE		understood	ucode/ge_compute.md#debug-output-debugs	Debug output (debug.S)
+ge.u	label	0x00004a9c	mgeb_DebugDrain		understood	ucode/ge_compute.md#debug-output-debugs	Debug output (debug.S)
+ge.u	label	0x00004aa9	mPrintf		understood	ucode/ge_compute.md#debug-output-debugs	Debug output (debug.S)
 ge.u	label	0x00004c70	mgesi_XPixRmSetup		located	ucode/ge_handlers.md#xloads	xload.S
 ge.u	label	0x00004cc0	mgeb_XLoadClip		located	ucode/ge_handlers.md#xloads	xload.S
 ge.u	label	0x00004cf4	mgebi_XLoadGC		located	ucode/ge_handlers.md#xloads	xload.S
@@ -2754,12 +2754,12 @@ ge.u	label	0x0000d410	mFrustum		located	ucode/ge_handlers.md#matrixs	matrix.S
 ge.u	label	0x0000d45d	mEramToWram		located	ucode/ge_handlers.md#memoves	memove.S
 ge.u	label	0x0000d47f	mEramToEram		located	ucode/ge_handlers.md#memoves	memove.S
 ge.u	label	0x0000d4a2	mCramToWram		located	ucode/ge_handlers.md#memoves	memove.S
-ge.u	label	0x0000d4b9	mge_ErrNoError		located	ucode/ge_handlers.md#errs	err.S
-ge.u	label	0x0000d4c8	mErrStackUnderflow		located	ucode/ge_handlers.md#errs	err.S
-ge.u	label	0x0000d4de	mErrStackOverflow		located	ucode/ge_handlers.md#errs	err.S
-ge.u	label	0x0000d4f4	mErrInvalidOperation		located	ucode/ge_handlers.md#errs	err.S
-ge.u	label	0x0000d50a	mErrInvalidValue		located	ucode/ge_handlers.md#errs	err.S
-ge.u	label	0x0000d520	mErrInvalidEnum		located	ucode/ge_handlers.md#errs	err.S
+ge.u	label	0x0000d4b9	mge_ErrNoError		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)
+ge.u	label	0x0000d4c8	mErrStackUnderflow		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)
+ge.u	label	0x0000d4de	mErrStackOverflow		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)
+ge.u	label	0x0000d4f4	mErrInvalidOperation		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)
+ge.u	label	0x0000d50a	mErrInvalidValue		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)
+ge.u	label	0x0000d520	mErrInvalidEnum		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)
 ge.u	label	0x0000d536	mLiPrimMtrlIndxFinalLi		located	ucode/ge_handlers.md#indxirislights	indxirislight.S
 ge.u	label	0x0000d54e	mLiIrisColoring		located	ucode/ge_handlers.md#indxirislights	indxirislight.S
 ge.u	label	0x0000d5a6	mLiIndexFinalLi		located	ucode/ge_handlers.md#indxirislights	indxirislight.S

@@ -2811,3 +2811,57 @@ end with the group-31 transfer.
   0x200000 (0x2c1c, store 0x2c35), which fits clearing the bit that asked for the rebuild.
 - `uDeformation3_1Inverse`: **inferred**, the second name at 0x2c08 (`udeform.s` line 453). It takes the 3 x 3 map from
   the ERAM position block and returns its inverse; it computes the three cross products in the three lanes.
+
+## GL error recording (err.S)
+
+Read in full from the [err.S listing](ge_listing/err.S.lst) (`ge.u`, IRIX 6.5.30m). The current GL error lives in
+external memory at address register 0x16 plus 4 (read with `r95` = 0x17, written with `r95` = 8). The codes are the
+public OpenGL error values.
+
+- `mge_ErrNoError` (`err.S` lines 27-40, at 0xd4b9): **inferred**, resets the error state. It takes three command
+  words into address registers 0x1a, 0x19 and 0x13 (C = 0x1d, 0xd4bc-0xd4be), stages 0 and moves it into the
+  store-data register (0xd4ba, 0xd4bb), and its `r95` = 8 store at register 0x16 plus 4 (0xd4c4) produces the result:
+  the error word becomes GL_NO_ERROR. It also compares register 0x13 with zero (address test, 0xd4c5). It then waits on the relative group-5 transfer at 0xd4bf.
+- `mErrInvalidEnum` (`err.S` lines 50-63, at 0xd520): **inferred**, records GL_INVALID_ENUM. Its input is the current
+  error word (read at 0xd520); it compares it with a staged 0 by an integer subtract that sets the flags (unit-1 code 0x42, 0xd527),
+  and moves the staged code 0x500 into the store-data register (0xd528, 0xd529). The predicated `r95` = 8 store at
+  0xd532 writes that output back only when the comparison found no earlier error, so the first error is kept.
+- `mErrInvalidValue` (`err.S` lines 73-86, at 0xd50a): **inferred**, the GL_INVALID_VALUE recorder. Input: the error
+  word at register 0x16 plus 4 (read at 0xd50a). It selects the code 0x501 (staged at 0xd512) as the new value and
+  stores it (0xd51c) under the predicate that the old word was zero; the result is the error word unchanged
+  otherwise.
+- `mErrInvalidOperation` (`err.S` lines 96-109, at 0xd4f4): **inferred**, sets GL_INVALID_OPERATION, 0x502 (0xd4fc).
+  It takes the current error word (0xd4f4), compares it with zero through the subtract at 0xd4fb, and the predicated
+  store at 0xd506 produces the new error word only if none was pending.
+- `mErrStackOverflow` (`err.S` lines 119-132, at 0xd4de): **inferred**, the GL_STACK_OVERFLOW case, code 0x503
+  staged at 0xd4e6. Its inputs and test are those of the other recorders: it compares the word read at 0xd4de with
+  zero (0xd4e5), and its output, the store at 0xd4f0, leaves an earlier error in place.
+- `mErrStackUnderflow` (`err.S` lines 142-155, at 0xd4c8): **inferred**, GL_STACK_UNDERFLOW, 0x504 (0xd4d0), the pop
+  side. The handler reads the error word as its input (0xd4c8), the flag-setting subtract (0xd4cf) compares it with
+  zero, and the result is written by the predicated store 0xd4da.
+
+## Debug output (debug.S)
+
+Read from the [debug.S listing](ge_listing/debug.S.lst) (`ge.u`, IRIX 6.5.30m). These routines keep a message buffer
+in external memory: address register 0x12 is loaded with 0x1757 (and later 0x17f4) and each message word goes out with
+an `r95` = 8 store at that base plus the index in register 0x13, which is saved at 0x17de.
+
+- `mgesi_PrintNum` (`debug.S` lines 546-559, at 0x4961): **inferred**, writes labelled numbers to the debug buffer.
+  It takes the number from the command (C = 0x1d, 0x4961-0x4964) and saves each lane's store-data register to
+  0x17d7-0x17dc with `r95` = 8, 9 and 0xa stores (0x4967-0x4971). It then appends message words, the number and
+  text constants such as "Roll", "call" and ": " (0x526f6c6c, 0x63616c6c, 0x3a200000 at 0x49d0, 0x49fd, 0x4a2a), at
+  register 0x12 plus the index, which it adds one to (0x497e-0x4981). Its result is the buffer and the stored index; the
+  saved lane values are read back with `r95` = 0x14-0x16 (0x4984-0x4988), so the caller's state survives.
+- `mmo_DebugGE` (`debug.S` lines 215-265, at 0x4a8d): **inferred**, a vertex-path stage that does no arithmetic. It
+  takes the successor word through register 0x13 (`r95` = 2, 0x4a8d), adds 2 to register 0x13 (F = 0x1d, 0x4a98) and
+  passes the batch on with the group-31 transfer at 0x4a93; its output is the batch unchanged.
+- `mgeb_DebugDrain` (`debug.S` lines 146-199, at 0x4a9c): **inferred**, a command that consumes its operands and
+  waits: it takes one command word into address register 0x1a (0x4a9c), reads two more and discards them (0x4a9d,
+  0x4a9e), and waits on the relative group-31 transfer at 0x4aa0. It returns no result and computes nothing; its
+  effect is that the engine drains before the next command.
+- `mPrintf` (`debug.S` lines 287-333, at 0x4aa9): **inferred**, the formatter behind the debug buffer; its inputs are
+  the format words at register 0xb. It saves eleven
+  words to 0x17df-0x17e9 with `r95` = 8 stores (0x4ab0-0x4b1d), then copies six words from register 0xb's address to
+  register 0xa's, one lane and thread at a time (0x4ac7-0x4afa). It reads ERAM 0x1389 and the word at 0x17f3
+  (0x4afd-0x4b05), shifts and ANDs them (0x4b04, 0x4b0c) and selects a branch on the result (0x4b18). Its output
+  starts with the staged header words 0x401, 0, 0x2103000 and 0x42200000 (0x4b41-0x4b46).
