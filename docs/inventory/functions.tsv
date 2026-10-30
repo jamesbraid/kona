@@ -1754,7 +1754,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009763c	172	TEST_video	dynsym
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100976e8	3392	run_optvideo	dynsym	6d66892b4baf		named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10098428	160	TEST_optvideo	dynsym	9aea764c2418		named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10098d2c	588	ReqVideo	dynsym	b63b5620c01b		named-only	RM.h:1539	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009b6b8	580	vdrc_en	dynsym	7b5cdbaf9ca8		named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009b6b8	580	vdrc_en	dynsym	7b5cdbaf9ca8		named-only	docs/dg.md#video-option-boards	Video option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009ba1c	2680	run_video2	dynsym	a9cf7f2faefd		named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009c494	160	TEST_video2	dynsym	abb863f150cd		named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009eca0	2040	run_video1	dynsym	ce8d87323c7f		named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards

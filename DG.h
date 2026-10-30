@@ -373,7 +373,7 @@ enum kona_vfo_signal {
 #define KONA_CMB_GLOBAL_FIELDS        20
 #define KONA_CMB_CHANNEL_FIELDS       38
 #define KONA_CMB_ENCODER_CHANNEL      8           /* ch8, used by the +NTSC combinations */
-#define KONA_CMB_TILE_W               160         /* INFERRED from allocatedSize rounding */
+#define KONA_CMB_TILE_W               160         /* INFERRED from allocatedSize rounding; the combiner manual 007-3279-003 gives 160 x 8 tiles */
 #define KONA_CMB_TILE_H               8
 
 /*
