@@ -29,13 +29,13 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_setup.o)	kernel	board-kernel	object	n64	8644
 usr/cpu/sysgen/IP27boot/kona.a(kona_share.o)	kernel	board-kernel	object	n64	5636	176343fd52fbd3d3		2	symtab	0	0	undocumented		
 usr/cpu/sysgen/IP27boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4372	96443c9eb2c62e15		1	none	0	0	undocumented		
 usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12836	592bba0c041e0d85		10	symtab	2	0	named-only	docs/kernel-functions.md#driver-timeouts-kona_timeouto	Driver timeouts: `kona_timeout.o`
-usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26916	9dba4b43c75421d3		21	symtab	98	1	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26916	9dba4b43c75421d3		21	symtab	98	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
 usr/cpu/sysgen/IP27boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24756	18136860332faa57		19	symtab	0	0	named-only	docs/kernel-functions.md#kernel-textport-kona_tporto	Kernel textport: `kona_tport.o`
 usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22228	6601b45a863a2be9		9	symtab	24	0	named-only	docs/kernel-functions.md#attach-and-crosstalk-set-up-kona_edtinit_hip2o	Attach and Crosstalk set-up: `kona_edtinit_hip2.o`
 usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8148	3b5293ce5fd89f64		3	symtab	4	0	named-only	docs/kernel-functions.md#interrupt-handlers-kona_intro-kona_intr_hip2o	Interrupt handlers: `kona_intr.o`, `kona_intr_hip2.o`
 usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7492	a1c62957a81158d7		5	symtab	2	3	undocumented		
 usr/cpu/sysgen/IP27boot/rrm.o	kernel-shared	shared-kernel	object	n64	63984	6da3783f920cc0ad		72	symtab	0	0	named-only	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
-usr/cpu/sysgen/IP27boot/tport.a(tport.o)	kernel-shared	shared-kernel	object	n64	23620	12e8b895c97f0544		22	symtab	0	0	understood	docs/kernel.md#generic-textport-driver-ip27-tporta	Generic textport driver (IP27 `tport.a`)
+usr/cpu/sysgen/IP27boot/tport.a(tport.o)	kernel-shared	shared-kernel	object	n64	23620	12e8b895c97f0544		22	symtab	0	0	located	docs/kernel.md#generic-textport-driver-ip27-tporta	Generic textport driver (IP27 `tport.a`)
 usr/cpu/sysgen/IP35boot/gfx.o	kernel-shared	shared-kernel	object	n64	53720	a42762015aa4c9ed		62	symtab	0	0	named-only	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	14836	2908dd361cfa0ac9		16	symtab	0	0	named-only	docs/kernel-functions.md#hub-flow-control-gfxsagfx_flowo	Hub flow control: `gfxs.a(gfx_flow.o)`
 usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	11492	e0766b2bbeb929c9		5	symtab	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
@@ -62,7 +62,7 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_setup.o)	kernel	board-kernel	object	n64	8564
 usr/cpu/sysgen/IP35boot/kona.a(kona_share.o)	kernel	board-kernel	object	n64	5540	85fc5556ab1a72ec		2	symtab	0	0	undocumented		
 usr/cpu/sysgen/IP35boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4276	9ddba61a71ff1d05		1	none	0	0	undocumented		
 usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12740	86d948058c5563ef		10	symtab	2	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
-usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26836	31ebede97fc0663e		21	symtab	98	1	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26836	31ebede97fc0663e		21	symtab	98	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
 usr/cpu/sysgen/IP35boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24324	10b9a948c8087221		19	symtab	0	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
 usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22036	387a5f25e1abc8f2		9	symtab	24	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
 usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8068	8af55035550b9e02		3	symtab	4	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
@@ -74,7 +74,7 @@ usr/diags/IR/bin/irsaudit	diagnostics	board-diagnostic	executable	n32	2967860	57
 usr/diags/IR/data/1280x1024_60.vfo	diagnostics	board-diagnostic	data	-	17920	fbcaab1b00af730f		0		0	0	undocumented		
 usr/diags/IR/data/160x100_5000.vfo	diagnostics	board-diagnostic	data	-	17967	8b776633a7cf9df6		0		0	0	understood	docs/display-formats.md#video-formats-the-diagnostics-load	Video formats the diagnostics load
 usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	bba183206ff10567		0		0	0	undocumented		
-usr/diags/IR/data/aaspoke.tbus	diagnostics	board-diagnostic	data	-	23268	7318d08a61358a11		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/aaspoke.tbus	diagnostics	board-diagnostic	data	-	23268	7318d08a61358a11		0		0	0	located	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/bef1.qtcbist	diagnostics	board-diagnostic	data	-	6739	67fed9ca1743f173		0		0	0	undocumented		
 usr/diags/IR/data/bef1.tcbist	diagnostics	board-diagnostic	data	-	38120	6e3912a86607444d		0		0	0	undocumented		
 usr/diags/IR/data/bef1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	9261	06a29fa0dc60f29e		0		0	0	undocumented		
@@ -374,7 +374,7 @@ usr/diags/IR/data/rm10.short	diagnostics	board-diagnostic	data	-	184896	99c04d91
 usr/diags/IR/data/rm10.short.Z	diagnostics	board-diagnostic	data	-	4165	769cd3fc9817460f		0		0	0	undocumented		
 usr/diags/IR/data/rm10.stuck	diagnostics	board-diagnostic	data	-	26471	77647577632f8ba2		0		0	0	undocumented		
 usr/diags/IR/data/rm10.stuck.Z	diagnostics	board-diagnostic	data	-	839	67755a913083556a		0		0	0	undocumented		
-usr/diags/IR/data/rm11.netmap	diagnostics	board-diagnostic	data	-	639268	a8eef3bc489233cc		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/rm11.netmap	diagnostics	board-diagnostic	data	-	639268	a8eef3bc489233cc		0		0	0	located	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/rm11.netmap.Z	diagnostics	board-diagnostic	data	-	124417	135c8f9e67567629		0		0	0	named-only	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/rm11.short	diagnostics	board-diagnostic	data	-	510117	b918b9d433dab6fb		0		0	0	undocumented		
 usr/diags/IR/data/rm11.short.Z	diagnostics	board-diagnostic	data	-	20907	b8cb06848a444f51		0		0	0	undocumented		
@@ -392,14 +392,14 @@ usr/diags/IR/data/rm8.stuck.Z	diagnostics	board-diagnostic	data	-	1902	4baa53841
 usr/diags/IR/data/rmtm7.netmap.Z	diagnostics	board-diagnostic	data	-	126335	ba39c8394a400b3a		0		0	0	undocumented		
 usr/diags/IR/data/rmtm7.short.Z	diagnostics	board-diagnostic	data	-	22972	293f29901c3494ea		0		0	0	undocumented		
 usr/diags/IR/data/rmtm7.stuck.Z	diagnostics	board-diagnostic	data	-	2374	5087baed7202287f		0		0	0	undocumented		
-usr/diags/IR/data/tbusdata.Z	diagnostics	board-diagnostic	data	-	1281374	b4b801dcc9310b9f		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/tbusdata.Z	diagnostics	board-diagnostic	data	-	1281374	b4b801dcc9310b9f		0		0	0	located	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/tf1.qtcbist	diagnostics	board-diagnostic	data	-	3905	93c33eeaee4af026		0		0	0	undocumented		
-usr/diags/IR/data/tf1.tcbist	diagnostics	board-diagnostic	data	-	14360	a6f3c8ae199e67c9		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/tf1.tcbist	diagnostics	board-diagnostic	data	-	14360	a6f3c8ae199e67c9		0		0	0	located	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/tf1c.qtcbist	diagnostics	board-diagnostic	data	-	3945	1cf764978a6c4615		0		0	0	undocumented		
 usr/diags/IR/data/tf1c.tcbist	diagnostics	board-diagnostic	data	-	14378	0d4d757c5ad6d71f		0		0	0	undocumented		
 usr/diags/IR/data/tg1.qtcbist	diagnostics	board-diagnostic	data	-	1505	007e327890b1bd1a		0		0	0	undocumented		
 usr/diags/IR/data/tg1.tcbist	diagnostics	board-diagnostic	data	-	8475	d534a5247ffd7e67		0		0	0	undocumented		
-usr/diags/IR/data/tg2.qtcbist	diagnostics	board-diagnostic	data	-	1520	fc19e8ac1a785b65		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/tg2.qtcbist	diagnostics	board-diagnostic	data	-	1520	fc19e8ac1a785b65		0		0	0	located	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/tg2.tcbist	diagnostics	board-diagnostic	data	-	8475	0e579dc1da233c28		0		0	0	named-only	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/tm1_1Mx16.sdbist	diagnostics	board-diagnostic	data	-	5681	a9c33952e414c6b1		0		0	0	undocumented		
 usr/diags/IR/data/tm1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	5333	2270d92a5af4cefe		0		0	0	named-only	docs/data-files.md#built-in-self-test-descriptions	Built-in self-test descriptions
@@ -431,7 +431,7 @@ usr/diags/IR/ucode/dgo.mcs	diagnostics	board-diagnostic	data	-	93912	518cd70fa8b
 usr/diags/IR/ucode/diag_arm_init.u	diagnostics	board-diagnostic	data	-	520	da008146e38bf9a0		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/ucode/ge.hex	diagnostics	board-diagnostic	data	-	363650	ae8bfbf6f4060058		0		0	0	named-only	ucode/ge_ops.md#the-diagnostic-programs-instruction-test	The diagnostic program's instruction test
 usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3edf		0		0	0	named-only	ucode/ge_isa.md#which-ge11-facts-konas-own-software-confirms	Which GE11 facts KONA's own software confirms
-usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
+usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0		0	0	located	ucode/ge_isa.md#the-program-files	The program files
 usr/diags/IR/ucode/ge_diag_init.u	diagnostics	board-diagnostic	data	-	12082	7e407147118cf628		0		0	0	located	ucode/ge_isa.md#the-program-files	The program files
 usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0		0	0	undocumented		
 usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	dynsym	0	0	named-only	docs/coverage.md#microcode-lower-priority	Microcode (lower priority)
@@ -568,9 +568,9 @@ usr/gfx/ucode/KONA/dgo1/dgo.mcs	microcode	board-microcode	data	-	93912	ec92153b2
 usr/gfx/ucode/KONA/ge.hex	microcode	board-microcode	data	-	1563025	6258b8ae9e67dd32		0		0	0	undocumented		
 usr/gfx/ucode/KONA/ge.u	microcode	board-microcode	data	-	2526129	89066cc1dc88d87f		0		0	0	named-only	docs/tooling.md#build-and-run	Build and run
 usr/gfx/ucode/KONA/ge11.u	microcode	board-microcode	data	-	1275741	95724af2dc9dc5be		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
-usr/gfx/ucode/KONA/ge_kpm.hex	microcode	board-microcode	data	-	4650	617b3f0afd02ae0e		0		0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
-usr/gfx/ucode/KONA/ge_symbols	microcode	board-microcode	data	-	67100	67126e0f66aea936		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
-usr/gfx/ucode/KONA/ged1b.u	microcode	board-microcode	data	-	14411	41c4b5724774fe42		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
+usr/gfx/ucode/KONA/ge_kpm.hex	microcode	board-microcode	data	-	4650	617b3f0afd02ae0e		0		0	0	located	ucode/ge.md#one-program-three-encodings	One program, three encodings
+usr/gfx/ucode/KONA/ge_symbols	microcode	board-microcode	data	-	67100	67126e0f66aea936		0		0	0	located	ucode/ge_isa.md#the-program-files	The program files
+usr/gfx/ucode/KONA/ged1b.u	microcode	board-microcode	data	-	14411	41c4b5724774fe42		0		0	0	located	ucode/ge_isa.md#the-program-files	The program files
 usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0		0	0	undocumented		
 usr/gfx/ucode/KONA/tport.bin	microcode	board-microcode	data	-	127889	ba8efd1cc0f83068		0		0	0	understood	ucode/tport.md#what-it-is	What it is
 usr/gfx/ucode/KONA/vof/1280x1024.monitor	microcode	board-microcode	data	-	295	55c148a0d113b0eb		0		0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
@@ -589,11 +589,11 @@ usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d
 usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	dynsym	0	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
-usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	dynsym	0	0	located	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	dynsym	0	0	located	docs/kona-ddx.md#the-x-module-files	The X module files
 usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
-usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
-usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	none	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	dynsym	0	0	located	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	none	0	0	located	docs/kona-ddx.md#the-x-module-files	The X module files
 usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	dynsym+dwarf	0	0	named-only	docs/libfm.md#the-font-manager-library-libfmso-function-reference	The font-manager library (`libfm.so`): function reference
 var/sysgen/master.d/gfxs	kernel-config	shared-data	data	-	399	ef56620faa1e0634		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0		0	0	named-only	docs/data-files.md#diagnostic-data-format-files-and-installed-tools	Diagnostic data, format files and installed tools
