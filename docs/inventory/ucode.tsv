@@ -2850,30 +2850,30 @@ ge.u	label	0x0000f14f	mClipTriFlushSR		located	ucode/ge_handlers.md#clips	clip.S
 ge.u	label	0x0000f182	mEyeToClipAfterUserClip		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
 ge.u	label	0x0000f1dc	mClipTriFlush		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
 ge.u	label	0x0000f20a	mSetClipVertsFree		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
-ge.u	label	0x0000f21b	mgeb_PointParameter		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f280	mgeb_Disable_Multipass		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f293	mgeb_Enable_Multipass		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f2a6	mgeb_DisableSprite		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f2b9	mgeb_EnableSprite		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f2cc	mgeb_Sprite		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f320	mgeb_ClearLMCFlag		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f32f	mgeb_SetLMCFlag		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f33e	mgeb_Disable_Cull_Face		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f352	mgeb_Enable_Cull_Face		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f366	mgeb_CullFace		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f37c	mgeb_DisableUserClipPlane		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f390	mgeb_EnableUserClipPlane		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f3a4	mgeb_UserClipPlane		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f3db	mgeb_FrontFace		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f3ea	mgeb_DepthRange		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f404	mgeb_ViewPort		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f435	mgesi_SetGeId		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f449	mmo_DirtyXformAndObjToClipModule		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f494	mmo_DirtyTextureAndScreenModule		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f4e4	mmo_DirtyPrePathModule		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f50d	mmo_DirtyLightModule		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f547	mmo_DirtyCullAndLightModule		located	ucode/ge_handlers.md#glmodess	glmodes.S
-ge.u	label	0x0000f583	mUserClipResolve		located	ucode/ge_handlers.md#glmodess	glmodes.S
+ge.u	label	0x0000f21b	mgeb_PointParameter		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f280	mgeb_Disable_Multipass		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f293	mgeb_Enable_Multipass		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f2a6	mgeb_DisableSprite		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f2b9	mgeb_EnableSprite		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f2cc	mgeb_Sprite		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f320	mgeb_ClearLMCFlag		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f32f	mgeb_SetLMCFlag		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f33e	mgeb_Disable_Cull_Face		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f352	mgeb_Enable_Cull_Face		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f366	mgeb_CullFace		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f37c	mgeb_DisableUserClipPlane		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f390	mgeb_EnableUserClipPlane		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f3a4	mgeb_UserClipPlane		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f3db	mgeb_FrontFace		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f3ea	mgeb_DepthRange		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f404	mgeb_ViewPort		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f435	mgesi_SetGeId		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f449	mmo_DirtyXformAndObjToClipModule		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f494	mmo_DirtyTextureAndScreenModule		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f4e4	mmo_DirtyPrePathModule		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f50d	mmo_DirtyLightModule		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f547	mmo_DirtyCullAndLightModule		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
+ge.u	label	0x0000f583	mUserClipResolve		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
 geif.u	dispatch entry	0	HereWeGo	handler 0x0	located		
 geif.u	dispatch entry	1	mges_TBUS_1	handler 0x399e	named-only		
 geif.u	dispatch entry	2	HereWeGo	handler 0x0	located		

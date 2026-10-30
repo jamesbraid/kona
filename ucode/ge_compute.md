@@ -2136,3 +2136,126 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
   (0x3a5c-0x3a62). Then it writes register number to 0x1f7 and value to 0x1f5: 0x452 gets 8 (0x3a64-0x3a65); 0x476
   gets 0x700 converted from integer to float (0x3a66-0x3a67) and then operand 0 (0x3a69); 0x477 gets the clear pattern
   (0x3a6a-0x3a6b). The closing word follows (0x3a6c).
+
+## GL mode handlers and the dirty modules (glmodes.S)
+
+The handlers of `glmodes.S` change no vertex data. They rewrite mode words in engine memory and the successor words of [How the vertex path is chained](#how-the-vertex-path-is-chained-successor-words), so that the next vertex batch first runs a "dirty" module, which picks the real module for the new state. Read in full from the [glmodes.S listing](ge_listing/glmodes.S.lst) (`ge.u`, IRIX 6.5.30m). Which value a `r95` = 4 store writes follows the nine-word pairing of that section, so each such reading is **inferred**. The set and clear patterns are the stores of registers 0x1d and 0x1e (`r148` = 0x3a0 and 0x3c0) described there.
+
+- `mgeb_PointParameter` (`glmodes.S` lines 1524-1618, at 0xf21b): **inferred**, `glPointParameterfEXT`. It compares
+  operand 0 with 0x8126-0x8129 (staged 0xf21c-0xf21f, flag-setting compares 0xf220-0xf223) and branches on the equal
+  flag to one case per name (0xf22c-0xf22f). For the minimum size, the maximum size and the fade threshold it
+  multiplies operand 1 by 0.5 (0x3f000000, 0xf233) and stores the product to word 0x241, 0x242 or 0x243
+  (0xf242-0xf263): a diameter becomes a radius. For the distance attenuation it copies operands 1-3 to words
+  0x23e-0x240 (0xf265-0xf27a). It tests the first against 1.0 and the other two against zero (0xf26f-0xf271), sets or
+  clears bit 2 of engine word 4 from that test (0xf272, 0xf27b-0xf27e) and points successor word 8 at
+  `mmo_DirtyXformAndObjToClipModule` (0xf273, 0xf27f). So the default (1, 0, 0) turns attenuation off.
+- `mgeb_Enable_Multipass` (`glmodes.S` lines 1403-1431, at 0xf293): **inferred**, turns on the multipass pre-path. It
+  ORs 8 into engine words 0xdf and 0x19 (0xf299-0xf29a, stores 0xf2a2-0xf2a3) and stores the set pattern to special
+  registers 0x27 and 0x2a (0xf297-0xf298). It points successor words 0xda and 0xdb at `mmo_DirtyPrePathModule`
+  (0xf294, 0xf2a4-0xf2a5).
+- `mgeb_Disable_Multipass` (`glmodes.S` lines 1445-1472, at 0xf280): **inferred**, the reverse. It ANDs 0xfffffff7
+  into words 0xdf and 0x19 (0xf282-0xf287, stores 0xf28f-0xf290) and clears special register 0x27 only under the flag
+  of the 0xdf AND (0xf283, 0xf285), so the pre-path flag drops only when no other pre-path feature is left in word
+  0xdf. It resets words 0xda and 0xdb to `mmo_DirtyPrePathModule` (0xf291-0xf292).
+- `mgeb_EnableSprite` (`glmodes.S` lines 1318-1347, at 0xf2b9): **inferred**, turns on sprites. 0x10 goes into word
+  0xdf (0xf2bb-0xf2bc) and 4 into word 0x19 (0xf2ba, 0xf2bf), both stored at 0xf2c7-0xf2c9. Special registers 0x2a and
+  0x27 get the set pattern (0xf2bd-0xf2be), and the pre-path successor words 0xda and 0xdb get
+  `mmo_DirtyPrePathModule` (0xf2c0, 0xf2ca-0xf2cb).
+- `mgeb_DisableSprite` (`glmodes.S` lines 1362-1389, at 0xf2a6): **inferred**, the reverse. It takes 0x10 out of word
+  0xdf with the mask 0xffffffef and 4 out of word 0x19 with 0xfffffffb (0xf2a8-0xf2ac). The pre-path flag in special
+  register 0x27 is cleared under the same last-feature predicate as `mgeb_Disable_Multipass` (0xf2ab), and words 0xda
+  and 0xdb are reset (0xf2ad, 0xf2b7-0xf2b8).
+- `mgeb_Sprite` (`glmodes.S` lines 1263-1304, at 0xf2cc): **inferred**, the sprite parameters. It compares operand 0
+  with the codes 4, 0 and 0x10 (0xf2cd-0xf2d2) and branches on equality (0xf2dc-0xf2de). Code 0x10 stores operand 1 at
+  offset 0x94a from address register 0x16 (0xf2e7, 0xf2f0). Code 0 copies operands 1-4 to offsets 0x93a-0x93d
+  (0xf2f4-0xf303), and code 4 copies them to offsets 0x93e-0x941 (0xf307-0xf316).
+- `mgeb_SetLMCFlag` (`glmodes.S` lines 687-704, at 0xf32f): **inferred**, sets the lighting colour-material flag. It
+  stores a unit-1 0x6c result of register selector 0x3e0 to special register 0x20, flag bit 0, which `cc` 0x60 tests
+  (0xf330). It converts the same register with 0x71 and stores the result to engine word 0xc1 (0xf334, 0xf33d).
+- `mgeb_ClearLMCFlag` (`glmodes.S` lines 714-732, at 0xf320): **inferred**, clears that flag. The clear pattern goes
+  to special register 0x20 (0xf321) and to engine word 0xc1 (0xf325, 0xf32e).
+- `mgeb_Enable_Cull_Face` (`glmodes.S` lines 594-629, at 0xf352): **inferred**, `glEnable(GL_CULL_FACE)`. It sets
+  special register 0x26 (0xf356) and ORs 0x40000000 into engine word 6 (0xf357-0xf358, store 0xf362). It points
+  successor word 0xb at `mmo_DirtyCullAndLightModule` (0xf355, 0xf35a, store 0xf363), and recomputes bit 30 of word 3
+  from the culled-face word: AND-NOT at 0xf35b, OR under the flag of 0xf359 at 0xf35c, stores at 0xf364-0xf365.
+- `mgeb_Disable_Cull_Face` (`glmodes.S` lines 643-677, at 0xf33e): **inferred**, the reverse. Word 6 loses 0x40000000
+  (0xf33f-0xf340, store 0xf34f) and word 3 loses bit 30 (0xf345, 0xf348, store 0xf351). Special register 0x26 is
+  cleared and then set again under a flag taken from engine word 0x1b (0xf341-0xf344). Successor word 0xb gets
+  `mmo_DirtyCullAndLightModule` (0xf346-0xf347, 0xf350).
+- `mgeb_CullFace` (`glmodes.S` lines 546-581, at 0xf366): **inferred**, `glCullFace`. It compares operand 0 with
+  0x405, `GL_BACK` (0xf369-0xf36a), and stores the selected pattern to engine word 0x70, the sign word `udrawtri.s`
+  XORs into its cull test ([Triangle output](#triangle-output-udrawtris)) (0xf372, 0xf375). It also stores to offset
+  0x14 from register 0x16 (0xf373, 0xf376). Bit 30 of word 3 is set only when culling is enabled: word 6 is ANDed with
+  0x40000000 and tested at 0xf370, then stored under that flag at 0xf37b.
+- `mgeb_FrontFace` (`glmodes.S` lines 291-311, at 0xf3db): **inferred**, `glFrontFace`. It compares operand 0 with
+  0x900, `GL_CW` (0xf3dd-0xf3de), and stores the set or the clear pattern to engine word 0x6f, under the comparison's
+  predicate for the second store (0xf3df-0xf3e9).
+- `mgeb_UserClipPlane` (`glmodes.S` lines 329-373, at 0xf3a4): **inferred**, `glClipPlane`. If the inverse modelview
+  is stale (`cc` 0x76) it calls `mMatrixInverse` first (0xf3a4). It takes the plane index (operand 0, address register
+  0x1a) and the four coefficients (operands 1-4) as input. It multiplies the coefficient row by the inverse matrix in
+  engine words 0x1f-0x2e with single multiplies and multiply-adds (M = 0x47f and 0x460, 0xf3ae-0xf3c6), which gives
+  the plane in eye coordinates. It points register 0x1a at the plane's slot from 0x904 and 0x90a in the block at
+  register 0x16 (0xf3b5-0xf3c5), stores the input coefficients there and then the transformed ones (0xf3c8-0xf3d7),
+  and continues in `mUserClipResolve` (0xf3d2).
+- `mgeb_EnableUserClipPlane` (`glmodes.S` lines 386-400, at 0xf390): **inferred**, `glEnable(GL_CLIP_PLANEi)`. It
+  forms the plane's flag address from operand 0 with the offsets 0xffffd000 and 0x904 (0xf390, 0xf398, 0xf39c) and
+  stores the set pattern there through register 0x16 (0xf397, 0xf3a0). Then it goes to `mUserClipResolve` (0xf39b).
+- `mgeb_DisableUserClipPlane` (`glmodes.S` lines 413-427, at 0xf37c): **inferred**, the same address arithmetic
+  (0xf37c-0xf388) with the clear pattern stored in the plane's flag (0xf383, 0xf38c), followed by `mUserClipResolve`
+  (0xf387).
+- `mUserClipResolve` (`glmodes.S` lines 441-534, at 0xf583): **inferred**, rebuilds the user clip state after any
+  plane change. Its input is the six plane slots from 0x904 and 0x90a. Its loop (0xf590-0xf5a8) copies the eye-space
+  coefficients of every enabled plane into a packed list from engine word 0xa3 (registers 0x11-0x13), and a second
+  loop does the same at 0xf5c0-0xf5cd. The count of enabled planes goes to word 0xa2 (0xf5be). It compares the count
+  with 6 and with 2 (0xf5ab, 0xf5e4) and from those tests stores the clip-code mask word 1 as 0x3f, 0xff or 0xfff
+  (staged 0xf585-0xf587, stores 0xf5e3, 0xf5f1-0xf5f2): six frustum bits plus room for two or for six user planes. It
+  also updates bits in words 3 and 4 (0xf5d8-0xf5f0) and sets successor word 8 to `mmo_DirtyXformAndObjToClipModule`
+  (0xf583, 0xf5fc), which can then pick the two-plane or six-plane transform.
+- `mgeb_DepthRange` (`glmodes.S` lines 226-279, at 0xf3ea): **inferred**, `glDepthRange`. It takes near and far
+  (operands 0 and 1) and clamps each to [0, 1] with the maximum and minimum codes 0x68 and 0x66 (0xf3ea-0xf3ef). It
+  forms their difference and sum (0xf3f3-0xf3f5) and multiplies by the staged 2^20 and 2^19 (0x49800000, 0x49000000,
+  0xf3f1-0xf3f2; multiplies 0xf3f6-0xf3f9), which gives the window-z scale and offset. Four results go to engine words
+  0xc6, 0x82, 0xc7 and 0xc8 (0xf3ff-0xf402), 0x82 being the z scale of the viewport transform and 0xc7-0xc8 the depth words the fog code reads. When fog is on
+  (`cc` 0x64) it continues in `mResolveFogTable` (0xf3fa), so the fog table follows the new range.
+- `mgeb_ViewPort` (`glmodes.S` lines 101-211, at 0xf404): **inferred**, `glViewport` with the window offsets. It
+  converts operands 0-3 (x, y, width, height) from integer to float (0x73, 0xf404-0xf410) and keeps the integers at
+  offsets 0x248-0x24b from register 0x16 (0xf40d-0xf413). With the staged 0.5 (0xf412) it multiplies to get the half
+  extents (0xf414-0xf416). It takes reciprocals with the seed and a Newton-Raphson step (`r110` = 0x6bf at 0xf415,
+  0x4ff at 0xf417), converts operands 5-0xa (0xf418-0xf421) and stages 49152.0 (0xf423). The scale and centre results
+  go to engine words 0x7e, 0x7f, 0x80, 0x81 and 0x71-0x74 (0xf41d, 0xf427, 0xf42f-0xf434), the x and y scale and offset pairs and the guard-band factors that `uscreen2.s` reads ([Perspective divide and viewport](#perspective-divide-and-viewport-uscreen2s)).
+- `mgesi_SetGeId` (`glmodes.S` lines 47-79, at 0xf435): **inferred**, gives an engine its identity at start-up
+  (`init_ge`, [docs/ge.md](../docs/ge.md)). It stores the engine number (operand 0) to engine word 0x1389 (0xf438,
+  0xf441) and tests its low four bits with an AND against 0xf that sets the flags (0xf436-0xf437). Under that
+  predicate it stores one of two staged values to word 0x138a (0xf443, 0xf445), the staged constants being 1000000.0
+  and 16.0 (0xf439, 0xf43b).
+- `mmo_DirtyXformAndObjToClipModule` (`glmodes.S` lines 1032-1118, at 0xf449): **inferred**, the transform selector
+  that runs as successor word 8 after a mode change. It tests engine word 3 against 2 and 1 and words 4 and 5
+  (flag-setting ANDs and moves at 0xf44c-0xf45f). From those tests it picks one of six transform modules:
+  `mmo_ObjToClipSpace` (0x1218), `mmo_ObjToClipSpaceN2E` (0x124c), `mmo_ObjToClipSpaceN2EN` (0x1293),
+  `mmo_ObjToEyeSpace` (0x12fe), `mmo_ObjToEyeSpaceAndTwoUserTR` (0x1325) or `mmo_ObjToEyeSpaceAndSixUserTR` (0x135c)
+  (staged 0xf44a-0xf459). It stores the choice in word 8 under predicates (0xf46a-0xf46b) and writes 4 to word 9
+  (0xf46c-0xf46d). On `cc` 0x6f it also resets the pre-path words 0xda and 0xdb (0xf479-0xf484). It then reloads word
+  8 as its successor (0xf485), so the batch continues in the module it chose.
+- `mmo_DirtyTextureAndScreenModule` (`glmodes.S` lines 1136-1250, at 0xf494): **inferred**, the screen-stage selector,
+  successor word 0xd. Its input is the texture matrix in engine words 0x5f-0x6e. It ORs the off-diagonal words
+  together (0xf49c-0xf4a5), compares the diagonal words 0x5f, 0x64, 0x69 and 0x6e with register 0x1f (0xf4a8-0xf4ad)
+  and records each result under a predicate (0xf4a2-0xf4b3), which tests whether the matrix is the identity. With bits
+  of words 3 and 7 (0xf4b0-0xf4bd) and an integer multiply (0xf4be) it chooses among `mmo_ToScreenSpace` (0x10c9),
+  `mmo_ToScreenSpaceInvQ` (0x1113) and `mmo_ToScreenSpaceInvQ2DI` (0x11b6) (staged 0xf4b4-0xf4b8). The choice goes to
+  words 0xe and 0xd (0xf4d3-0xf4d4), and the module continues through word 0xd (0xf4d5).
+- `mmo_DirtyPrePathModule` (`glmodes.S` lines 1637-1675, at 0xf4e4): **inferred**, builds the pre-path chain from the
+  feature bits in engine word 0xdf: 4 for deformation, 8 for multipass, 0x10 for sprites (flag-setting ANDs at 0xf4e6,
+  0xf4ea, 0xf4ee). For each bit set it stores the dirty module of that feature, `mmo_DirtyDeformModule` (0x48d8),
+  `mmo_DirtyMultipassModule` (0xe6a5) or `mmo_DirtySpriteModule` (0x8669), into the next chain word through register
+  0xf, which starts at word 0xda and steps under the same predicates (0xf4eb-0xf4fd). It then continues through word
+  0xdb (0xf4fe, 0xf503).
+- `mmo_DirtyLightModule` (`glmodes.S` lines 899-1013, at 0xf50d): **inferred**, the lighting selector, successor word
+  0xc. Its inputs are bit 4 of engine word 3, word 0x7e and word 0x84 (flag-setting ANDs at 0xf50e-0xf517 and 0xf51e).
+  It picks `mmo_LighterGeneral` (0xd85e), `mmo_LighterSimple` (0xd7c), `mmo_LiColorClamp` (0xd69) or `mmo_LiColorMask`
+  (0xd87e) (staged 0xf512-0xf518), converts two counts to float (0xf528-0xf529) and stores to special registers 0x2e
+  and 0x2f (0xf51c, 0xf52c). It writes the choice to word 0xc (0xf534) and branches on `cc` 0x7c, 0x7f or always to
+  `mLiUpdateShin`, `mLiDirtySimLiCRAM` or `mLiDirtyGenLiCRAM` (0xf53c-0xf53e), which reload the light tables.
+- `mmo_DirtyCullAndLightModule` (`glmodes.S` lines 754-869, at 0xf547): **inferred**, the same lighting choice as
+  `mmo_DirtyLightModule` (staged 0xf54c-0xf552, branches 0xf578-0xf57a), extended with the cull step. When culling is
+  enabled, tested on engine word 6 at 0xf562, it stores `mmo_FaceCull` (0xc76, staged 0xf561) to successor word 0xb
+  (0xf56d, 0xf570) in place of the lighting module. It also writes word 0x9d (0xf56f, 0xf57b).
