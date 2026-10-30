@@ -1774,7 +1774,7 @@ arm1.u	display command	89	DoDGRqstGetDataFormat	words=1	named-only
 arm1.u	display command	90	DoDGRqstDVPMult2Freq	words=1	named-only		
 arm1.u	display command	91	DoDGRqstVBOBCommand	words=42	named-only		
 arm1.u	display command	92	DoDGRqstGetVBOBReply	words=1	named-only		
-ge.u	label	0x00000000	HereWeGo		located	ucode/ge_handlers.md#bootstraps	bootstrap.s
+ge.u	label	0x00000000	HereWeGo		understood	ucode/ge_compute.md#start-up-and-memory-set-up-bootstraps-bootinits	Start-up and memory set-up (bootstrap.s, bootinit.s)
 ge.u	label	0x00000053	mgeb_EvalMapSpec1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
 ge.u	label	0x00000053	ugeb_EvalMapSpec1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
 ge.u	label	0x0000009c	mgeb_EvalMapData1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
@@ -1932,8 +1932,8 @@ ge.u	label	0x00000eb0	mMatrixMultCCW		understood	ucode/ge_compute.md#matrix-buil
 ge.u	label	0x00000eb0	uMatrixMultCCW		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x00000ee7	mMatrixInverse		understood	ucode/ge_compute.md#matrix-maintenance-umatrixs	Matrix maintenance (umatrix.s)
 ge.u	label	0x00000ee7	uMatrixInverse		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
-ge.u	label	0x00000f58	mMatrixAdjoint		located	ucode/ge_handlers.md#umatrixs	umatrix.s
-ge.u	label	0x00000f58	uMatrixAdjoint		located	ucode/ge_handlers.md#umatrixs	umatrix.s
+ge.u	label	0x00000f58	mMatrixAdjoint		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
+ge.u	label	0x00000f58	uMatrixAdjoint		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x00000fb0	mRotate		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x00000fb0	uRotate		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x00001013	uWramToCram		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
@@ -2119,7 +2119,7 @@ ge.u	label	0x00002753	mmo_FloatToInt		located	ucode/ge_handlers.md#floattoints	f
 ge.u	label	0x00002753	umo_FloatToInt		located	ucode/ge_handlers.md#floattoints	floattoint.s
 ge.u	label	0x0000277c	mainloop_f2i		located	ucode/ge_handlers.md#floattoints	floattoint.s
 ge.u	label	0x00002799	epilogue_f2i		located	ucode/ge_handlers.md#floattoints	floattoint.s
-ge.u	label	0x000027cc	MemRegInit		located	ucode/ge_handlers.md#bootinits	bootinit.s
+ge.u	label	0x000027cc	MemRegInit		understood	ucode/ge_compute.md#start-up-and-memory-set-up-bootstraps-bootinits	Start-up and memory set-up (bootstrap.s, bootinit.s)
 ge.u	label	0x000027d5	mgesi_PixDrawColorEntry		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
 ge.u	label	0x000027d5	ugesi_PixDrawColorEntry		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
 ge.u	label	0x000027e5	umo_Pixout32_8_16		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
@@ -2275,28 +2275,28 @@ ge.u	label	0x0000449d	mgesi_HistogramUpload		understood	ucode/ge_compute.md#pixe
 ge.u	label	0x00004503	mgeb_EramIndirectFill		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
 ge.u	label	0x00004530	mgeb_EramFill		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
 ge.u	label	0x00004544	DoEramFill		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
-ge.u	label	0x00004786	mgesi_GetDeformationsMask		located	ucode/ge_handlers.md#deforms	deform.S
-ge.u	label	0x0000479b	mgesi_GetDeformation		located	ucode/ge_handlers.md#deforms	deform.S
-ge.u	label	0x00004806	mgeb_LoadIdentityDeformation		located	ucode/ge_handlers.md#deforms	deform.S
-ge.u	label	0x0000482e	mgeb_DeformationMap3_1		located	ucode/ge_handlers.md#deforms	deform.S
-ge.u	label	0x000048d8	mmo_DirtyDeformModule		located	ucode/ge_handlers.md#deforms	deform.S
-ge.u	label	0x00004905	mgesi_StopInstruments		located	ucode/ge_handlers.md#pis	pi.S
-ge.u	label	0x0000494f	mgesi_StartInstruments		located	ucode/ge_handlers.md#pis	pi.S
+ge.u	label	0x00004786	mgesi_GetDeformationsMask		understood	ucode/ge_compute.md#deformation-commands-deforms	Deformation commands (deform.S)
+ge.u	label	0x0000479b	mgesi_GetDeformation		understood	ucode/ge_compute.md#deformation-commands-deforms	Deformation commands (deform.S)
+ge.u	label	0x00004806	mgeb_LoadIdentityDeformation		understood	ucode/ge_compute.md#deformation-commands-deforms	Deformation commands (deform.S)
+ge.u	label	0x0000482e	mgeb_DeformationMap3_1		understood	ucode/ge_compute.md#deformation-commands-deforms	Deformation commands (deform.S)
+ge.u	label	0x000048d8	mmo_DirtyDeformModule		understood	ucode/ge_compute.md#deformation-commands-deforms	Deformation commands (deform.S)
+ge.u	label	0x00004905	mgesi_StopInstruments		understood	ucode/ge_compute.md#performance-instruments-pis	Performance instruments (pi.S)
+ge.u	label	0x0000494f	mgesi_StartInstruments		understood	ucode/ge_compute.md#performance-instruments-pis	Performance instruments (pi.S)
 ge.u	label	0x00004961	mgesi_PrintNum		understood	ucode/ge_compute.md#debug-output-debugs	Debug output (debug.S)
 ge.u	label	0x00004a8d	mmo_DebugGE		understood	ucode/ge_compute.md#debug-output-debugs	Debug output (debug.S)
 ge.u	label	0x00004a9c	mgeb_DebugDrain		understood	ucode/ge_compute.md#debug-output-debugs	Debug output (debug.S)
 ge.u	label	0x00004aa9	mPrintf		understood	ucode/ge_compute.md#debug-output-debugs	Debug output (debug.S)
-ge.u	label	0x00004c70	mgesi_XPixRmSetup		located	ucode/ge_handlers.md#xloads	xload.S
-ge.u	label	0x00004cc0	mgeb_XLoadClip		located	ucode/ge_handlers.md#xloads	xload.S
-ge.u	label	0x00004cf4	mgebi_XLoadGC		located	ucode/ge_handlers.md#xloads	xload.S
-ge.u	label	0x00004d43	mgesi_XLoadScissor		located	ucode/ge_handlers.md#xloads	xload.S
-ge.u	label	0x00004d7c	mgebi_XLoadPosition		located	ucode/ge_handlers.md#xloads	xload.S
-ge.u	label	0x00004deb	mgeb_XSetupClip		located	ucode/ge_handlers.md#xsetups	xsetup.S
-ge.u	label	0x00004e22	mgeb_XSetupColors		located	ucode/ge_handlers.md#xsetups	xsetup.S
-ge.u	label	0x00004e30	mgebi_XSetupWindow		located	ucode/ge_handlers.md#xsetups	xsetup.S
-ge.u	label	0x00004ead	mmo_XclipDrawLines		located	ucode/ge_handlers.md#xclipdraws	xclipdraw.S
-ge.u	label	0x0000508b	mmo_XclipDrawRects		located	ucode/ge_handlers.md#xclipdraws	xclipdraw.S
-ge.u	label	0x00005130	mmo_XclipDrawPoints		located	ucode/ge_handlers.md#xclipdraws	xclipdraw.S
+ge.u	label	0x00004c70	mgesi_XPixRmSetup		understood	ucode/ge_compute.md#x-server-window-and-clip-loading-xloads-xsetups	X server window and clip loading (xload.S, xsetup.S)
+ge.u	label	0x00004cc0	mgeb_XLoadClip		understood	ucode/ge_compute.md#x-server-window-and-clip-loading-xloads-xsetups	X server window and clip loading (xload.S, xsetup.S)
+ge.u	label	0x00004cf4	mgebi_XLoadGC		understood	ucode/ge_compute.md#x-server-window-and-clip-loading-xloads-xsetups	X server window and clip loading (xload.S, xsetup.S)
+ge.u	label	0x00004d43	mgesi_XLoadScissor		understood	ucode/ge_compute.md#x-server-window-and-clip-loading-xloads-xsetups	X server window and clip loading (xload.S, xsetup.S)
+ge.u	label	0x00004d7c	mgebi_XLoadPosition		understood	ucode/ge_compute.md#x-server-window-and-clip-loading-xloads-xsetups	X server window and clip loading (xload.S, xsetup.S)
+ge.u	label	0x00004deb	mgeb_XSetupClip		understood	ucode/ge_compute.md#x-server-window-and-clip-loading-xloads-xsetups	X server window and clip loading (xload.S, xsetup.S)
+ge.u	label	0x00004e22	mgeb_XSetupColors		understood	ucode/ge_compute.md#x-server-window-and-clip-loading-xloads-xsetups	X server window and clip loading (xload.S, xsetup.S)
+ge.u	label	0x00004e30	mgebi_XSetupWindow		understood	ucode/ge_compute.md#x-server-window-and-clip-loading-xloads-xsetups	X server window and clip loading (xload.S, xsetup.S)
+ge.u	label	0x00004ead	mmo_XclipDrawLines		understood	ucode/ge_compute.md#x-server-clip-and-draw-xclipdraws	X server clip-and-draw (xclipdraw.S)
+ge.u	label	0x0000508b	mmo_XclipDrawRects		understood	ucode/ge_compute.md#x-server-clip-and-draw-xclipdraws	X server clip-and-draw (xclipdraw.S)
+ge.u	label	0x00005130	mmo_XclipDrawPoints		understood	ucode/ge_compute.md#x-server-clip-and-draw-xclipdraws	X server clip-and-draw (xclipdraw.S)
 ge.u	label	0x00005187	mgesi_XLineRel		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x00005196	mgesi_XLine		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x000051a6	mgesi_XSegmentRel		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
@@ -2324,18 +2324,18 @@ ge.u	label	0x000055da	mmo_UnpackVertexV3F_C4UB_N3S_T2F		understood	ucode/ge_comp
 ge.u	label	0x0000563d	mmo_UnpackVertexV3F_N3S_T2F		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
 ge.u	label	0x000056ff	mmo_UnpackVertexV3F_C4UB_N3S		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
 ge.u	label	0x00005757	mmo_UnpackVertexV3F_N3S		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
-ge.u	label	0x0000580a	mgeb_RestoreNormal		located	ucode/ge_handlers.md#unpacks	unpack.S
-ge.u	label	0x0000581b	mgeb_RestoreColor		located	ucode/ge_handlers.md#unpacks	unpack.S
-ge.u	label	0x0000582e	mgeb_DisableUnpack		located	ucode/ge_handlers.md#unpacks	unpack.S
-ge.u	label	0x0000583e	mgeb_EnableUnpack		located	ucode/ge_handlers.md#unpacks	unpack.S
+ge.u	label	0x0000580a	mgeb_RestoreNormal		understood	ucode/ge_compute.md#vertex-array-unpack-control-commands-unpacks	Vertex-array unpack control commands (unpack.S)
+ge.u	label	0x0000581b	mgeb_RestoreColor		understood	ucode/ge_compute.md#vertex-array-unpack-control-commands-unpacks	Vertex-array unpack control commands (unpack.S)
+ge.u	label	0x0000582e	mgeb_DisableUnpack		understood	ucode/ge_compute.md#vertex-array-unpack-control-commands-unpacks	Vertex-array unpack control commands (unpack.S)
+ge.u	label	0x0000583e	mgeb_EnableUnpack		understood	ucode/ge_compute.md#vertex-array-unpack-control-commands-unpacks	Vertex-array unpack control commands (unpack.S)
 ge.u	label	0x00005857	mgebi_TexEnvComps		understood	ucode/ge_compute.md#texture-environment-texenvs	Texture environment (texenv.S)
 ge.u	label	0x00005879	mgebi_TexEnv		understood	ucode/ge_compute.md#texture-environment-texenvs	Texture environment (texenv.S)
 ge.u	label	0x00005942	mTexEnvDone		understood	ucode/ge_compute.md#texture-environment-texenvs	Texture environment (texenv.S)
 ge.u	label	0x0000594d	mValidateTexenvMode		understood	ucode/ge_compute.md#texture-environment-texenvs	Texture environment (texenv.S)
-ge.u	label	0x000059a2	mgebi_ReferencePlane		located	ucode/ge_handlers.md#refplanes	refplane.S
-ge.u	label	0x00005b15	mgebi_ReferencePlane_Disable		located	ucode/ge_handlers.md#refplanes	refplane.S
-ge.u	label	0x00005b2f	mgebi_ReferencePlane_Enable		located	ucode/ge_handlers.md#refplanes	refplane.S
-ge.u	label	0x00005b4c	mRefPlane		located	ucode/ge_handlers.md#refplanes	refplane.S
+ge.u	label	0x000059a2	mgebi_ReferencePlane		understood	ucode/ge_compute.md#reference-plane-refplanes	Reference plane (refplane.S)
+ge.u	label	0x00005b15	mgebi_ReferencePlane_Disable		understood	ucode/ge_compute.md#reference-plane-refplanes	Reference plane (refplane.S)
+ge.u	label	0x00005b2f	mgebi_ReferencePlane_Enable		understood	ucode/ge_compute.md#reference-plane-refplanes	Reference plane (refplane.S)
+ge.u	label	0x00005b4c	mRefPlane		understood	ucode/ge_compute.md#reference-plane-refplanes	Reference plane (refplane.S)
 ge.u	label	0x00005b96	mgeb_SetMSPointTables		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
 ge.u	label	0x00005bab	mgeb_ComputeMSPointTables		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
 ge.u	label	0x00005c5a	MSPoint_Pack		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
@@ -2452,12 +2452,12 @@ ge.u	label	0x000082a7	mmo_DrawMSPntPrim		understood	ucode/ge_compute.md#point-dr
 ge.u	label	0x00008357	mmo_DrawDistAttPntPrim		understood	ucode/ge_compute.md#point-drawing-drawpnts	Point drawing (drawpnt.S)
 ge.u	label	0x00008465	mmo_DrawPntPrim		understood	ucode/ge_compute.md#point-drawing-drawpnts	Point drawing (drawpnt.S)
 ge.u	label	0x000084be	mmo_DrawAAPntPrim		understood	ucode/ge_compute.md#point-drawing-drawpnts	Point drawing (drawpnt.S)
-ge.u	label	0x00008669	mmo_DirtySpriteModule		located	ucode/ge_handlers.md#sprites	sprite.S
-ge.u	label	0x00008676	mSpriteRotateMatrix		located	ucode/ge_handlers.md#sprites	sprite.S
-ge.u	label	0x000086d3	mSpriteObject		located	ucode/ge_handlers.md#sprites	sprite.S
-ge.u	label	0x000087f7	mSpriteEye		located	ucode/ge_handlers.md#sprites	sprite.S
-ge.u	label	0x00008800	mSpriteAxial		located	ucode/ge_handlers.md#sprites	sprite.S
-ge.u	label	0x00008894	mSpriteRotateV0OntoV1		located	ucode/ge_handlers.md#sprites	sprite.S
+ge.u	label	0x00008669	mmo_DirtySpriteModule		understood	ucode/ge_compute.md#sprite-modes-sprites	Sprite modes (sprite.S)
+ge.u	label	0x00008676	mSpriteRotateMatrix		understood	ucode/ge_compute.md#sprite-modes-sprites	Sprite modes (sprite.S)
+ge.u	label	0x000086d3	mSpriteObject		understood	ucode/ge_compute.md#sprite-modes-sprites	Sprite modes (sprite.S)
+ge.u	label	0x000087f7	mSpriteEye		understood	ucode/ge_compute.md#sprite-modes-sprites	Sprite modes (sprite.S)
+ge.u	label	0x00008800	mSpriteAxial		understood	ucode/ge_compute.md#sprite-modes-sprites	Sprite modes (sprite.S)
+ge.u	label	0x00008894	mSpriteRotateV0OntoV1		understood	ucode/ge_compute.md#sprite-modes-sprites	Sprite modes (sprite.S)
 ge.u	label	0x000088e9	mMatrixMultCCWNoFetch		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x0000892b	mDrawLinPrim		understood	ucode/ge_compute.md#line-drawing-drawlins	Line drawing (drawlin.S)
 ge.u	label	0x000089bc	mDrawLinList		understood	ucode/ge_compute.md#line-drawing-drawlins	Line drawing (drawlin.S)
@@ -2739,21 +2739,21 @@ ge.u	label	0x0000cfdb	mmo_TexGenEyeLine_RQ		understood	ucode/ge_compute.md#textu
 ge.u	label	0x0000d068	mmo_TexGenEyePoint_ST		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
 ge.u	label	0x0000d0c3	mmo_TexGenEyePoint_RQ		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
 ge.u	label	0x0000d11e	mTexGenResolve		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
-ge.u	label	0x0000d191	mWramToCram		located	ucode/ge_handlers.md#mmemoves	mmemove.S
-ge.u	label	0x0000d1a9	mWramToFifo		located	ucode/ge_handlers.md#mmemoves	mmemove.S
-ge.u	label	0x0000d23f	mSinCosAB		located	ucode/ge_handlers.md#mmaths	mmath.S
+ge.u	label	0x0000d191	mWramToCram		understood	ucode/ge_compute.md#block-moves-between-engine-memories-mmemoves-memoves	Block moves between engine memories (mmemove.S, memove.S)
+ge.u	label	0x0000d1a9	mWramToFifo		understood	ucode/ge_compute.md#block-moves-between-engine-memories-mmemoves-memoves	Block moves between engine memories (mmemove.S, memove.S)
+ge.u	label	0x0000d23f	mSinCosAB		understood	ucode/ge_compute.md#trigonometric-subroutine-mmaths	Trigonometric subroutine (mmath.S)
 ge.u	label	0x0000d308	minv		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x0000d31e	msqrt		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x0000d340	misqrt		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x0000d35e	mMatrixCopyCC		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x0000d380	mMatrixCopyCW		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
-ge.u	label	0x0000d399	mMatrixTransposeWW		located	ucode/ge_handlers.md#matrixs	matrix.S
+ge.u	label	0x0000d399	mMatrixTransposeWW		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x0000d3ad	mOrtho		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
-ge.u	label	0x0000d3f7	mMatrixLoadIdentityC		located	ucode/ge_handlers.md#matrixs	matrix.S
-ge.u	label	0x0000d410	mFrustum		located	ucode/ge_handlers.md#matrixs	matrix.S
-ge.u	label	0x0000d45d	mEramToWram		located	ucode/ge_handlers.md#memoves	memove.S
-ge.u	label	0x0000d47f	mEramToEram		located	ucode/ge_handlers.md#memoves	memove.S
-ge.u	label	0x0000d4a2	mCramToWram		located	ucode/ge_handlers.md#memoves	memove.S
+ge.u	label	0x0000d3f7	mMatrixLoadIdentityC		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
+ge.u	label	0x0000d410	mFrustum		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
+ge.u	label	0x0000d45d	mEramToWram		understood	ucode/ge_compute.md#block-moves-between-engine-memories-mmemoves-memoves	Block moves between engine memories (mmemove.S, memove.S)
+ge.u	label	0x0000d47f	mEramToEram		understood	ucode/ge_compute.md#block-moves-between-engine-memories-mmemoves-memoves	Block moves between engine memories (mmemove.S, memove.S)
+ge.u	label	0x0000d4a2	mCramToWram		understood	ucode/ge_compute.md#block-moves-between-engine-memories-mmemoves-memoves	Block moves between engine memories (mmemove.S, memove.S)
 ge.u	label	0x0000d4b9	mge_ErrNoError		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)
 ge.u	label	0x0000d4c8	mErrStackUnderflow		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)
 ge.u	label	0x0000d4de	mErrStackOverflow		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)

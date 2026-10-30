@@ -822,10 +822,6 @@ lives at 0x8d2c (address register 0xb), the target matrix C at the address the c
   -(t + b)/(t - b), -(f + n)/(f - n) in the last column (stores at E = 0, 5, 0xa and 0xc-0xe, 0xd3e0-0xd3e7), with the
   constant 2.0 loaded at 0xd3af. A zero difference branches to `mErrInvalidValue` (0xd3e8-0xd3ea), the GL_INVALID_VALUE case;
   otherwise it jumps to `mMatrixMultCCW` (0xd3ee) to multiply W into the current matrix.
-- `mFrustum` (`matrix.S` lines 151-216): **inferred**, glFrustum: the same six operand inputs, the differences and their
-  reciprocals, the constant 2.0 (0xd412) and the double-precision products, with two more error branches to
-  `mErrInvalidValue` on `cc` 8 and `cc` 0 for a near or far plane that is not positive, before the jump that multiplies the
-  perspective result matrix into the current one.
 - `mRotate` (`umatrix.s` lines 557-656): **inferred**, glRotate. It takes the axis from operand words 1-3, computes the
   sum of their squares and normalises the axis with a reciprocal square root (seed at 0xfcc, steps at 0xfca and 0xfd9),
   reduces the angle (operand 0, in degrees) and computes its sine and cosine with the same sequence as `mSinCos` inline
@@ -852,6 +848,39 @@ lives at 0x8d2c (address register 0xb), the target matrix C at the address the c
   multiplies the result by the input x (0xd334), which yields sqrt(x); it returns at 0xd337.
 - `misqrt` (`math.S` lines 13-21): **inferred**, the reciprocal-square-root subroutine, which computes 1/sqrt(x) of its input: the same seed and two Newton steps
   as `msqrt` (0xd340-0xd352) without the final multiply by the input, so it returns 1/sqrt(x) at 0xd355.
+- `mMatrixAdjoint` (`umatrix.s` line 435, at 0x0f58): **inferred**, the cofactor matrix of a 4 x 4 matrix, which is the
+  inverse scaled by its determinant (the sprite code uses it to find the eye direction in object space). Its input is
+  the 16 words at register 0xa, which it first copies into a staging block at 0x8d2c (registers 0xd and 0xe loaded
+  from it at 0x0f58-0x0f5b; sixteen reads and stores 0x0f5c-0x0f6b, in the order 8, 10, 13, 15, 4, 6, 9, 11, 12, 14, 5, 7,
+  0, 2, 1, 3). It forms the 2 x 2 minors of the lower and upper row pairs with multiply-subtract words (0x0f6e-0x0f81),
+  multiplies each by the matching element and adds or subtracts the products into the 3 x 3 cofactors (0x0f82-0x0f9e,
+  with stores of eight words through register 0x18 at 0x0f8a-0x0f8d and 0x0f9b-0x0f9e). A predicate set at 0x0f76-0x0f91
+  marks the elements whose sign is flipped, and eight predicated subtracts from zero (0x0f9f-0x0fa6) rewrite those words
+  as their negatives. Its output is 16 words through register 0x18, eight from each of two lanes (the lane-1 copy sits
+  8 words on), with no division by the determinant; it returns at 0x0fa7.
+- `uMatrixAdjoint`: **inferred**, the u-name at 0x0f58 (`umatrix.s` line 435) of the same cofactor routine. It takes the
+  matrix at register 0xa as input, computes the cofactors with the 2 x 2 minor words at 0x0f6e-0x0f81 and the sign
+  corrections at 0x0f9f-0x0fa6, and produces the cofactor matrix at register 0x18 as its result.
+- `mMatrixTransposeWW` (`matrix.S` line 34, at 0xd399): **inferred**, transposes the work matrix in place. Its input is
+  the 16 words at register 0xb. It swaps the six off-diagonal pairs (1, 4), (2, 8), (3, 0xc), (6, 9), (7, 0xd) and
+  (0xb, 0xe) with twelve moves, each reading word D and storing it at the mirror offset E (0xd399-0xd3a4); the diagonal
+  words stay where they are, and the return at 0xd3a4 is the last move's own word. It computes no arithmetic; the result is the transposed matrix in place.
+- `mMatrixLoadIdentityC` (`matrix.S` line 54, at 0xd3f7): **inferred**, writes the identity into the current matrix. It has
+  no input words. It loads the store-data register with zero (the move of register 0x1e at 0xd3f7), stores that zero to the
+  twelve off-diagonal offsets of register 0xc (stores 0xd400-0xd407 with F = 0x1e-0x16 and 0xd408-0xd40b), reloads the store-data register
+  with one (a move of register 0x1f, 0xd403) and stores it to the diagonal offsets 0, 5, 0xa and 0xf (0xd40c-0xd40f). The
+  return at 0xd407 leaves the last stores in its shadow. Nothing in it computes anything; the result is the identity in the current matrix.
+- `mFrustum` (`matrix.S` line 151, at 0xd410): **inferred**, builds the perspective matrix of a view frustum and
+  multiplies it into the current matrix. Its inputs are the six command words left, right, bottom, top, near and far
+  (A = 0x1f, D = 0-5, reads 0xd410-0xd416). It stages 2.0 (0xd412), forms the extents r - l, t - b and f - n and the sums
+  r + l, t + b and f + n, takes reciprocals of the extents with seed and Newton steps (0xd41a-0xd422) and uses
+  double-precision multiplies and subtracts (0xd42b-0xd43c) for the entries that follow. Its outputs are the sixteen staging
+  words through register 0x18: the entries at offsets 0 and 5 are 2n/(r - l) and 2n/(t - b), offsets 8, 9 and 0xa are
+  (r + l)/(r - l), (t + b)/(t - b) and -(f + n)/(f - n), offset 0xe is -2fn/(f - n), offset 0xb is -1.0 (the subtract at
+  0xd413), and offsets 1-4, 6, 7, 0xc, 0xd and 0xf are zero (stores 0xd413-0xd44b). Five conditional branches to the
+  invalid-value handler at 0xd50a (0xd44c-0xd450, `cc` 2, 2, 2, 0 and 8) reject a zero extent or a non-positive near or
+  far plane. Otherwise register 0xb is pointed at 0x8d2c (0xd459) and the routine jumps to `mMatrixMultCCW` at 0xeb0
+  (0xd454), which multiplies the new matrix into the current one.
 
 ## Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
 
@@ -3681,3 +3710,357 @@ from the [drawlin.S listing](ge_listing/drawlin.S.lst) (`ge.u`, IRIX 6.5.30m).
   and 0xed30 (0xed31, 0xed33). It stages the continuation address 0xed41 (0xed36), adds 0x178 to register 0x14 and 0xb38 to register 0x15
   to get the pool pointers in registers 0x10 and 0xf (0xed39, 0xed3b) and ends the command at 0xed38. The continuation at 0xed41 moves the saved
   words back into the special registers (0xed42-0xed44), reloads registers 0xa-0xc (0xed47-0xed4a) and returns at 0xed49.
+
+## Start-up and memory set-up (bootstrap.s, bootinit.s)
+
+The engine's reset code: it runs once and then waits for the first command. Read from the [bootstrap.s listing](ge_listing/bootstrap.s.lst) and the [bootinit.s listing](ge_listing/bootinit.s.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `HereWeGo` (`bootstrap.s` line 20, at 0x0000): **inferred**, the reset entry that puts the engine's base registers and its
+  first four special registers into a known state. It takes no input. It calls `MemRegInit` (call at 0x0003, which only
+  returns), then loads address registers 0x1c, 0x1d and 0x1e with 0xfffe0000, 0xfffe0100 and 0xffff0000 and register 0x16
+  with 0 (0x000c-0x000f), and gives each lane its own staging register 0x18 (0x8d2c, 0x8d3d and 0x8d4e by the F = 0, 0x11
+  and 0x22 loads at 0x0010-0x0012). It stages 0x380, 0x43, 0x435 and 0x14 at offsets 0-3 (stores 0x0016, 0x0018, 0x001a and
+  0x001d) and copies them through register 0x1c to special registers 0, 1, 2 and 0xa (moves 0x0017, 0x0019, 0x001b and 0x001e).
+  Its result is that register state; it then pads with 36 address-register loads from register 0x1d (0x0024-0x0047) and ends
+  in the group-31 end-of-command transfer at 0x004a, which targets itself, so the engine waits there for the next command. Nothing in it computes a value; every store is a constant or a copy of one.
+- `MemRegInit` (`bootinit.s` line 9, at 0x27cc): **inferred**, the memory-register initialiser called from the start-up
+  code, and it is empty. Its only word is a return (0x27cc, an indirect transfer in group 4 with no operand and no store),
+  so it reads nothing, writes nothing and gives its caller `HereWeGo` the same machine state it was called with; the seven
+  words after it are no-ops. It yields no result and computes nothing.
+
+## Deformation commands (deform.S)
+
+The command side of the vertex deformation: the commands that load, clear and read back the deformation maps, and the module
+selector that points the vertex path at the matching loop in `udeform.s`. The state lives in control-memory word 3 (flag
+bits 0x80000 geometry, 0x100000 texture, 0x200000 inverse needed) and in two external-memory blocks, the position block at
+0x958 and the texture block at 0x997. Read from the [deform.S listing](ge_listing/deform.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mgesi_GetDeformationsMask` (`deform.S` line 559, at 0x4786): **inferred**, the read-back of a two-bit deformation mask.
+  Its input is command word 0, read with A = 0x1f at 0x478b. It stages 0x476 (0x4787), 1 (0x4789) and 3 (0x4793), and
+  derives the reply by shifting word 0 right by one and masking the result with 3 (the shift at 0x478b, the AND at 0x4795).
+  Its output is the header 0x476 stored to bus address 0x1f7 (0x4788), the masked value stored through register 0x1e
+  (0x4794, 0x4799), and a zero stored to bus address 0x1f4 (0x479a) to close the reply. The words after the end-of-command
+  transfer at 0x4792 are its delay shadow.
+- `mgesi_GetDeformation` (`deform.S` line 447, at 0x479b): **inferred**, the read-back of one deformation map. Its input
+  is command word 0, which it compares with the geometry-deformation enumerant 0x8194 by an XOR (0x479d-0x479e) to choose
+  between the staged flag bits 0x100000 and 0x80000 (moves 0x47a2-0x47a3). It writes the header 0x476 to bus address 0x1f7
+  (0x479f), then ANDs control-memory words 0x1f5 and 3 (0x47aa-0x47ab). A zero result takes the branch at 0x47b7 to 0x47df,
+  where 30 moves of register 0x1e (zero) or 0x1f (one) go out through register 0x1e: the identity map. A non-zero result
+  points register 0x13 at external-memory block 0x958, or 0x997 under the predicated load at 0x47b5, and sends the block's
+  words out through register 0x1e: six reads at 0x47c0-0x47ca, then a loop of reads at 0x47d2-0x47d5 that runs on register
+  0x12 (loaded with 7 at 0x47cf). It ends with the closing word to bus address 0x1f4 (0x4805) and the end-of-command
+  transfer at 0x47fd.
+- `mgeb_LoadIdentityDeformation` (`deform.S` line 344, at 0x4806): **inferred**, turns off the deformations named by a bit
+  mask. Its input is command word 0 (A = 0x1f, 0x4807), bit 0 for geometry and bit 1 for texture. It shifts the mask left
+  by 0x13 (0x4808) and ANDs it with 0x180000 (0x480c), which moves the two bits onto flag bits 0x80000 and 0x100000, and
+  clears those bits in control-memory word 3 with unit-1 code 0x51 (0x4810, stored back through the store at 0x4826).
+  It also clears the matching bit in control-memory word 0xdf (AND with 0xdf, 0x481e; store 0x482b) and, under the
+  predicates set at 0x4813-0x4816, writes the address 0xf4e4 of `mmo_DirtyPrePathModule` to control-memory words 0xda and
+  0xdb (stores 0x482c-0x482d), which makes the vertex path re-select its modules. It ends at 0x4825. Its result is the cleared flag bits and the re-selected path.
+- `mgeb_DeformationMap3_1` (`deform.S` line 129, at 0x482e): **inferred**, loads a deformation map whose control values
+  arrive in one command. It takes the command's 31 words: word 0, compared with 0x8194 by the XOR at 0x4832, says whether
+  the map is the geometry or the texture one, and words up to 0x1e are read through register 0x1f. It chooses the
+  destination block base, 0x958 for geometry or 0x997 for texture (loads 0x4843 and 0x4849), and fills it through
+  registers 0x10, 0x13 and 0x1a, one value per lane (stores with `r95` = 8, 9 and 0xa, 0x486a-0x48d4). The block holds
+  command words as given and, from the subtracts at 0x487f, 0x488a, 0x4891, 0x489c, 0x48a2, 0x48a9, 0x48b5, 0x48bb, 0x48bf,
+  0x48c1 and 0x48c7, differences between them, so the loops in `udeform.s` can evaluate the map with multiplies and adds.
+  Its other outputs are in control memory: it ORs the staged flag 0x80000 or 0x100000 into word 3 (OR 0x483e, store
+  0x4848), ORs 0x200000 into it under a predicate (OR 0x4834, store 0x483d), ORs 4 into word 0xdf (0x4846-0x4847, store
+  0x4850) and writes 0xf4e4, the address of `mmo_DirtyPrePathModule`, to words 0xda and 0xdb (stores 0x4851-0x4852), so
+  the next vertex re-selects its modules.
+- `mmo_DirtyDeformModule` (`deform.S` line 50, at 0x48d8): **inferred**, the selector that turns the deformation flag bits
+  into a vertex-path successor. It stages the test bits 0x100000 and 0x80000 at offsets 1 and 0 (0x48d8, 0x48da) and five
+  loop-entry addresses at offsets 2-6: 0x2b32 (texture only), 0x2ab8 (position), 0x2ae7 (position and texture), 0x2b61
+  (position and normal) and 0x2ba7 (position, normal and texture) (stores 0x48e0-0x48e4). It reads control-memory words 3
+  and 5 (0x48d9, 0x48dc), ANDs them with the test bits (0x48db, 0x48dd), picks one staged address by the predicated
+  address-register loads at 0x48e6-0x48e8 and the test at 0x48eb, and moves it into the store-data register (0x48ec).
+  Its output is that address, stored to control-memory word 0xda (0x48f5) and, under the predicate at 0x4904, to 0xdb,
+  and loaded as the transfer target with `r95` = 2 at 0x48f6, so the group-31 transfer at 0x48fc continues in the chosen
+  loop. Its operands are control-memory words 3 and 5, and it selects exactly one of the five addresses.
+
+## Performance instruments (pi.S)
+
+The two commands that program and read the engine's performance counters through the raster bus. Each sends pairs of bus
+words: a select word (an `0x476xxxx`-style value) to address 0x1f8 and its data word to 0x1f5, and closes with a word to
+0x1f4. Read from the [pi.S listing](ge_listing/pi.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mgesi_StopInstruments` (`pi.S` line 81, at 0x4905): **inferred**, writes the counter-control sequence that halts and
+  reads out the instruments. Its inputs are command words 0, 1, 2 and 9 (read with A = 0x1f, 0x4930-0x4943) and eighteen
+  staged constants (0x817f, 0xa, 0x3, 0x10476, 0x2, 0x1, 0x4, 0x5, 0x400, and the selects 0x4760000, 0x4610000,
+  0x4600000, 0x4740000, 0x4640000, 0x4630000, 0x4400000, 0x4770000 and 0x4620000; stores 0x4908-0x4929). It combines them
+  into 44 bus words: the select words alternate with data words, which are either a staged constant or one of the four
+  command words, and every select goes to 0x1f8 and every data word to 0x1f5 (moves 0x490a-0x4945 and the shadow words
+  0x4947-0x494d). Its output is that stream plus a closing word to 0x1f4 (0x494e); the end-of-command transfer at 0x4946
+  carries 0x1f8 as its last immediate.
+- `mgesi_StartInstruments` (`pi.S` line 37, at 0x494f): **inferred**, the matching start sequence, which arms four
+  counters. Its input is command word 0 (read at 0x4959). It stages the four selects 0x60476, 0x30476, 0x40476 and 0x50476
+  (stores 0x4950, 0x4951, 0x4953 and 0x4956) and sends them to 0x1f8 in that order (0x4955, 0x495a, 0x495c, 0x495e), each
+  followed by a data word to 0x1f5: command word 0 after the first, then zero (register 0x1e) after each of the other three
+  (0x4959, 0x495b, 0x495d, 0x495f). It ends with a zero word to 0x1f4 (0x4960) and the end-of-command transfer at 0x4958. It produces the counter set-up as that bus stream.
+
+## X server window and clip loading (xload.S, xsetup.S)
+
+The commands that give the X server's direct-drawing path its window, clip rectangle, scissor and graphics-context state.
+The window origin and size sit in control-memory words 7-0xc; the raster back end receives register writes as pairs of bus
+words: a select to 0x1f8 and a data word to 0x1f5, with a `0x70000` select ahead of each mask word, and a closing word to
+0x1f4. Read from the [xload.S listing](ge_listing/xload.S.lst) and the [xsetup.S listing](ge_listing/xsetup.S.lst)
+(`ge.u`, IRIX 6.5.30m).
+
+- `mgesi_XPixRmSetup` (`xload.S` line 554, at 0x4c70): **inferred**, builds the raster-module set-up for an X pixel
+  transfer. It takes command words 0-6 (A = 0x1f, D = 0-6, moves 0x4c73-0x4c7e) and stages thirteen constants: register
+  selects such as 0x2103000, 0x806, 0x11b00, 0x2011a00, 0x2021800, 0x20c0c00 and 0x20c0000 (stores 0x4c71-0x4c88), and the
+  float 40.0 (0x42200000, 0x4c85). It converts that float to an integer with `ftoi` (0x4c87, 0x4c9b, 0x4c9d), forms sums and
+  differences of the command words (adds 0x4c8e, 0x4cb9 and 0x4cbe, subtracts 0x4cae, 0x4caf and 0x4cbd) and sends the
+  staged selects and the results out through register 0x1e (moves 0x4c76-0x4cba). Its bus output is a select to 0x1f8
+  (0x4c9e), a word to 0x1f7 (0x4c9f), data to 0x1f5 (0x4ca9) and the closing word to 0x1f4 (0x4cbf); the 0.5 staged at 0x4ca1
+  is added to control-memory words 0xb and 0xc (0x4ca2, 0x4ca3) before they are converted.
+- `mgeb_XLoadClip` (`xload.S` line 447, at 0x4cc0): **inferred**, converts a list of integer clip words into floats in
+  control memory. It takes the count in command word 0 (stored to control-memory word 0x16, 0x4ccb) and the integers from
+  the command at register 0x10. One pass of the loop at 0x4ccc-0x4ce7 reads eight integers (offsets 0-3 and 0xc-0xf from
+  the pointer), converts each with the integer-to-float code 0x73 (0x4ccc-0x4ce2) and stores the three lanes' floats to
+  control-memory words from 0x17 (stores with `r95` = 4, 5 and 6, 0x4cd5-0x4ceb). The pointer steps by 0x18 (0x4ce7), the
+  count falls on register 0x13 (0x4cd4), and the branch at 0x4ce7 repeats until the count is spent; the last two floats
+  are stored after the loop (0x4ce8-0x4ced). Its results are the floats in control memory.
+- `mgebi_XLoadGC` (`xload.S` line 307, at 0x4cf4): **inferred**, loads an X graphics context into the engine and the raster
+  back end. It takes command words 0-0xc. Words 0-3 go to control-memory words 0-3 (stores 0x4d0c-0x4d0e and 0x4d00) and
+  word 4 to special register 0x23 (0x4d0a). It stages nine register selects (0x13d1c14, 0x13e1c15, 0x1341c00,
+  0x1351c02, 0x13b1c0b, 0x13c1c0d, 0x13f3ff8, 0x167140f and 0x1661410, stores 0x4cf7-0x4cff) and the masks 0xffffff, 0x383c,
+  0xffc00f, 0x3f, 0x1e and 0x1f. A zero in command word 2 branches over the bus part (0x4d06). Otherwise it sends nine
+  writes: for each, a `0x70000` select and its mask (0x4d0f-0x4d2c), then the register select to 0x1f8 and the next of
+  command words 4-0xc to 0x1f5 (0x4d11-0x4d35). It closes with command word 1 to 0x1f8 and 0x1f5 around a 0x803 word at
+  0x1f7 (0x4d36-0x4d38) and a zero to 0x1f4 (0x4d39). Its output is the nine register writes plus the stored state.
+- `mgesi_XLoadScissor` (`xload.S` line 195, at 0x4d43): **inferred**, converts a scissor rectangle into the raster
+  back end's window coordinates. It takes command words 0-3 (the rectangle's origin and extent, moves 0x4d44-0x4d47) and
+  control-memory words 5, 6, 0xb and 0xc (reads 0x4d4a, 0x4d50, 0x4d52, 0x4d54, 0x4d57, 0x4d5b). It combines them with
+  saturating integer adds and subtracts (0x4d4b, 0x4d4c, 0x4d4f, 0x4d54, 0x4d59, 0x4d5d), converts window values with `ftoi`
+  (0x4d51, 0x4d55) and shifts each edge left by the staged 3 or 0x12 (0x4d63, 0x4d6b, 0x4d75, 0x4d7a). Its output is four
+  masked raster writes, a `0x70000` select and a mask (0x7fff or 0x3fff8000) before each register select 0x1133fc2 or
+  0x1143fc3 (stores 0x4d4e, 0x4d6d), sent to 0x1f8 and 0x1f5 (0x4d5e-0x4d79), and a closing zero to 0x1f4 (0x4d7b).
+- `mgebi_XLoadPosition` (`xload.S` line 62, at 0x4d7c): **inferred**, records a window's position and size and sends the
+  raster back end the matching offset and clip registers. It takes command words 0-3 (x, y, width, height; moves 0x4d7c,
+  0x4d7d, 0x4d88 and the store at 0x4d85) and stores them to control-memory words 7, 8, 9 and 0xa (stores 0x4d8f, 0x4d85,
+  0x4db5 and 0x4d8d). It computes edges with saturating subtracts against control-memory words 5 and 6 (0x4d81, 0x4d82,
+  0x4d8e, 0x4d90), subtracts them from 0x803 and 0x80f after a right shift (0x4d9a, 0x4d9d), rounds the results to a multiple of
+  8 and 32 with the masks 0xfffffff8 and 0xffffffe0 (ANDs 0x4da2, 0x4da9), converts the rounded values with integer-to-float
+  (0x4dad, 0x4dae) and stores them to control-memory words 0xb and 0xc (0x4db6, 0x4db7). The bus output is six
+  `0x70000`-prefixed register writes with the selects 0x1133fc2, 0x1143fc3, 0x12c0807 and 0x12d0808 (stores 0x4dba, 0x4dcc,
+  0x4ddd, 0x4de0; sends 0x4dbd-0x4de9) and a closing zero to 0x1f4 (0x4dea). A pending abort ends the command early (0x4daf).
+- `mgeb_XSetupClip` (`xsetup.S` line 231, at 0x4deb): **inferred**, unpacks packed 16-bit clip rectangles into floats. Its
+  input is the command's packed words, read through register 0x13 (offsets 0, 1, 6 and 7 per pass) with the count in
+  command word 0 (store 0x4df6). One pass of the loop at 0x4df7-0x4e15 splits each word into its high half (a right shift
+  by the staged 0, 0x4df7, 0x4dfd, 0x4e00) and low half (an AND with the staged 0xffff, 0x4dfa, 0x4dff, 0x4e03), converts the
+  halves to floats with code 0x73 (0x4dfb, 0x4dfe, 0x4e01, 0x4e04) and stores them in all three lanes to control-memory words
+  from 0x17 (`r95` = 4, 5 and 6, 0x4e04-0x4e18). The pointer steps by 0xc per pass (0x4e02), the count on register 0x10
+  (0x4e03), and the branch at 0x4e15 repeats; the end-of-command transfer is at 0x4e19. Its output is the float list in control memory.
+- `mgeb_XSetupColors` (`xsetup.S` line 199, at 0x4e22): **inferred**, a four-word copy that stores the command's colour
+  words in control memory. It reads command words 0-3 (A = 0x1f, D = 0-3, moves 0x4e22-0x4e26) and stores them to
+  control-memory words 0, 1, 2 and 3 (stores 0x4e2b, 0x4e2d, 0x4e2e and 0x4e2f, in the shadow of the end-of-command transfer
+  at 0x4e27). It converts nothing and sends nothing to the raster back end. Its input is four command words and its output the same four words in control memory.
+- `mgebi_XSetupWindow` (`xsetup.S` line 40, at 0x4e30): **inferred**, the per-window set-up: it unpacks a window's
+  geometry from two packed command words, stores origin and size in control memory and sends the raster registers that
+  place and clip the window. Its inputs are command words 0 and 1, each holding two signed 16-bit fields that it separates
+  with a left shift and an arithmetic right shift (0x4e36-0x4e3c), and control-memory words 5 and 6 (reads 0x4e40, 0x4e4d,
+  0x4e50, 0x4e6a). Its outputs are control-memory words 7-0xa (the unpacked origin and size, stores 0x4e42-0x4e44 and 0x4e79),
+  words 0xb and 0xc (stores 0x4e7a-0x4e7b; the values come from the integer-to-float conversions at 0x4e6d-0x4e6e plus the 0.5
+  staged at 0x4e70, after a rounding to multiples of 8 and 32 with the masks 0xfffffff8 and 0xffffffe0, ANDs 0x4e66 and
+  0x4e69) and the same `0x70000`-prefixed raster writes as `mgebi_XLoadPosition`: masks 0x7fff, 0x3fff8000, 3, 0x12 and
+  0x7ff with the selects 0x1133fc2, 0x1143fc3, 0x12c0807 and 0x12d0808 (stores 0x4e7d, 0x4e8e, 0x4e9f, 0x4ea2) sent to 0x1f8
+  and 0x1f5 (0x4e7f-0x4ea9), closed by a zero to 0x1f4 (0x4eac). A pending abort ends the command early (0x4e73).
+
+## X server clip-and-draw (xclipdraw.S)
+
+The three loops that finish an X drawing request: each takes the float vertices that `mAbsX` or `mRelX` left in the
+vertex record (record words 0, 1, 6 and 7 for two primitives per pass, one per thread) and tests them against the clip
+rectangles that `mgeb_XSetupClip` or `mgeb_XLoadClip` stored as floats from control-memory word 0x17 (four edges per
+rectangle, read through register 0xf). Survivors leave through register 0x1e and the raster bus (select to 0x1f8, data
+to 0x1f5, closing word to 0x1f4 after a `0x70000` select). Read from the [xclipdraw.S listing](ge_listing/xclipdraw.S.lst)
+(`ge.u`, IRIX 6.5.30m).
+
+- `mmo_XclipDrawLines` (`xclipdraw.S` line 327, at 0x4ead): **inferred**, clips X line segments to the clip rectangle list
+  and emits each piece as a raster line. It takes the endpoint floats at register 0x13 (record words 0-3 and 6-9) and
+  control-memory words 0xb, 0xc, 1, 2 and 0x17 onward. For each rectangle it subtracts the endpoint coordinates from the
+  four edges (0x4ec6-0x4ee8), ORs the sign bits into an outside code per endpoint (0x4ec9-0x4eef) and branches on the codes:
+  `cc` 3 at 0x4f03 skips to 0x5070 (next rectangle) and `cc` 2 at 0x4f19 jumps to the emit code at 0x5020 for a segment
+  that needs no clipping. A segment that crosses an edge is shortened by four edge blocks (0x4f2f-0x4f7b, 0x4f80-0x4fb9,
+  0x4fbe-0x4ff7 and 0x4ffc-0x5017): each takes a reciprocal of the segment's extent along the crossing axis (reciprocal
+  seed and step, 0x4ef1-0x4f02), multiplies the other extent by it (0x4f36-0x4f39) and adds the product to the endpoint
+  (0x4f3a-0x4f3d). The emit code multiplies the extents by themselves, sums them (0x5020-0x5027) and takes a
+  reciprocal square root (0x5031, 0x5032, 0x503d), which scales the direction before the endpoint adds and subtracts at
+  0x5045-0x5064; the results go out through register 0x1e (E = 3, 4 and 6) with bus words to 0x1f8 and 0x1f5 (0x503f,
+  0x5042, 0x5058, 0x5068) and an end word to 0x1f5 (0x506e). The loops at 0x5072 (over rectangles) and 0x507d (over
+  segments) close with the return at 0x5082.
+- `mmo_XclipDrawRects` (`xclipdraw.S` line 170, at 0x508b): **inferred**, intersects X fill rectangles with the clip
+  rectangle list and emits the non-empty pieces. It stages the selects 0x70000, 0x40 and 0x12f080a (0x508c-0x508e) and
+  reads control-memory words 0xb, 0xc, 0, 1 and 2 (0x5090-0x5094, 0x511d) for the window offset and clip count. For each
+  clip rectangle the loop at 0x50a6-0x50fd takes the rectangle's four floats (record words 0-3, 0xc and 0xe) and clamps
+  them against the rectangle's edges: larger of the two lower edges (`fmax`, 0x50ad-0x50b0) and smaller of the two upper
+  edges (`fmin`, 0x50c5, 0x50ca, 0x50d3, 0x50d8), then subtracts to get the extents (0x50b3-0x50c0). It sends each result
+  through register 0x1e with predicated stores to offsets 4, 6, 7 and 3 (0x50c6, 0x50cb, 0x50f9, 0x50fb) and bus words
+  to 0x1f8 and 0x1f5 (0x50c8, 0x50ca, 0x50e6, 0x50f6). The outer loop at 0x5108 steps to the next rectangle and the
+  branch at 0x5109 leaves through the return at 0x5127; a pending 0x70000/0x1f8/0x1f5/0x1f4 closing sequence runs in
+  the return's shadow (0x512b-0x512f).
+- `mmo_XclipDrawPoints` (`xclipdraw.S` line 70, at 0x5130): **inferred**, keeps the X points that lie inside the clip
+  rectangle list and sends them on. It takes the point floats at register 0x13 (record words 0, 1, 6 and 7), adds the
+  offset words it reads from control memory (0xb, 0xc, 1; `fadd` 0x513f-0x5142), and then, for each rectangle at register
+  0xf, subtracts the point from the four edges (0x5147-0x514e) and ORs the sign bits (0x514f-0x5156). A point that passes
+  is marked by the predicated stores to offsets 0x23 and 0x2b of register 0x1d (0x5157, 0x5158), and the loop at 0x515d
+  repeats for the next rectangle. The output pass (0x5167-0x5178) sends the surviving position through register 0x1e
+  as `fadd` of control-memory word 0xf and `fsub` of word 0x10 (0x516b-0x516e), with bus words to 0x1f8 and 0x1f5
+  (0x5172, 0x5174); the loop branch at 0x5179 steps to the next point pair and the return is at 0x517e, with the
+  closing zero to 0x1f4 at 0x5186.
+
+## Vertex-array unpack control commands (unpack.S)
+
+Four small commands around the vertex-array unpack modules: two restore the current normal and colour that the unpack
+loops start from, two attach or detach the unpack module in the vertex path's successor words. Read from the
+[unpack.S listing](ge_listing/unpack.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mgeb_RestoreNormal` (`unpack.S` line 133, at 0x580a): **inferred**, re-establishes the current normal after a context
+  restore. It takes command words 8, 9 and 0xa (A = 0x1f, D = 8-0xa, moves 0x580a, 0x580c and 0x580e) and copies them
+  unchanged into external-memory words 0x13ab, 0x13ac and 0x13ad (stores with `r95` = 8 at 0x5813, 0x5815 and 0x5817, in
+  the shadow of the end-of-command transfer at 0x5812), where the unpack set-up reads the normal it starts from. It transforms nothing: the result is the three command words as sent.
+- `mgeb_RestoreColor` (`unpack.S` line 105, at 0x581b): **inferred**, the colour counterpart: it takes command words 4-7
+  (moves 0x581b, 0x581d, 0x581f, 0x5821) and stores them to external-memory words 0x13a7-0x13aa (stores 0x5824, 0x5826,
+  0x5828, 0x582a), the four-component current colour that `mmo_UnpackVertexV3F` and its relatives load. It scales nothing; the result is the four command words unchanged.
+- `mgeb_DisableUnpack` (`unpack.S` line 80, at 0x582e): **inferred**, detaches the unpack module. It reads control-memory
+  word 0xdf (0x582e, setting the flags) and, under that predicate, writes zero to special register 0x27 (0x5830). It then
+  reads control-memory word 0xdb (0x5834) and stores it into word 0xda (0x583d), so the vertex path's successor reverts to
+  the pre-path module held in 0xdb; the transfer at 0x5835 ends the command. Its input is word 0xdf; it selects the saved module and its result is the reverted successor.
+- `mgeb_EnableUnpack` (`unpack.S` line 42, at 0x583e): **inferred**, attaches an unpack module chosen by the command. Its
+  input is command word 0 (loaded into address register 0x1a at 0x583e). It reads the external-memory table at 0x138a
+  indexed by that register (0x5846, `r95` = 0x14), which gives the address of the module, stores that address into
+  control-memory word 0xda (0x5856) as the successor, and stores register 0x1d to special register 0x27 (0x5849) to mark
+  unpacking as active; the transfer at 0x584e ends the command. It selects the module by table lookup, and its result is the new successor word.
+
+## Reference plane (refplane.S)
+
+The depth reference plane the raster back end uses for polygon offset-style depth interpolation: one command sets the
+plane, a second pair switches it on and off, and one routine turns the stored plane into raster terms. The plane's
+working state sits in external-memory words 0x94b-0x957, and its enable flag is bit 0x4000000 of control-memory word 3.
+Read from the [refplane.S listing](ge_listing/refplane.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mgebi_ReferencePlane` (`refplane.S` line 127, at 0x59a2): **inferred**, defines the reference plane from four command
+  numbers and fills the working block. It first writes the identity-like initial values (zero, zero, zero, one, repeated, then
+  a final zero: moves of register 0x1e or 0x1f, 0x59a2-0x59ba) to external-memory words 0x94b-0x957 (stores `r95` = 8,
+  0x59ab-0x59c3). It then calls `mMatrixMultCCC` on `cc` 0x72 (0x59c4) to refresh the composite matrix and calls
+  `mMatrixAdjoint` (0x59cd) on the composite at 0x4f (0x59d2), and multiplies the command's four words (A = 0x1f, D = 0-2
+  at 0x59d6-0x59e0, and the fourth) by the adjoint's staged words (0x59da-0x59f5), summing the products in pairs
+  (0x59e5-0x59f0). It forms a reciprocal of the normalising term (0x59f6-0x5a00), scales the sums by it (0x59fa-0x5a04),
+  loads the guard constants 100.0 (0x42c80000, 0x5a05) and 1e-6 (0x358637bd, 0x5a06), and builds a twelve-word block of
+  differences and products (0x5a0b-0x5a4e) that the loops at 0x5a58-0x5a78 and 0x5a85-0x5a99 test with sign comparisons
+  (branches 0x5a66-0x5a6b, 0x5aae, 0x5abe, all to 0x5aea). Its outputs are the plane terms stored to words 0x94b-0x957
+  again (0x5ad0-0x5ae8), the enable bit 0x4000000 in control-memory word 3 (0x5af5-0x5af6) and a call to `mRefPlane`
+  (0x5b02, `cc` 3) to send the raster registers, with the closing word to 0x1f4 (0x5b0b). Its operands are those four command words.
+- `mgebi_ReferencePlane_Disable` (`refplane.S` line 75, at 0x5b15): **inferred**, turns the reference plane off. It clears
+  bit 0x4000000 of control-memory word 3 by ANDing with 0xfbffffff (0x5b19, 0x5b21, store 0x5b2e) and sends two raster
+  writes, each preceded by the `0x70000` select (0x5b1c): the select 0x1243fd3 to 0x1f8 with the data 6 to 0x1f5
+  (0x5b1d-0x5b23), then a closing zero to 0x1f4 (0x5b24-0x5b25). Both data stores are predicated (0x5b1f, 0x5b23) on the
+  state tested at 0x5b27. It takes no command words; it combines the flag clear with the two bus writes, and its result is the plane switched off.
+- `mgebi_ReferencePlane_Enable` (`refplane.S` line 41, at 0x5b2f): **inferred**, turns the reference plane on. It ORs
+  0x4000000 into control-memory word 3 (stage 0x5b35, OR 0x5b37, store 0x5b40) and tests register 0x13 (0x5b36); when it is
+  non-zero it calls `mRefPlane` (0x5b38) to send the stored plane to the raster back end. The closing zero goes to 0x1f4
+  (0x5b41-0x5b42), and the end-of-command transfer is at 0x5b43. It takes no operand beyond the register test; it combines the flag set with the call, and its output is the enabled plane plus the closing word.
+- `mRefPlane` (`refplane.S` line 464, at 0x5b4c): **inferred**, converts the stored reference plane into raster terms. It
+  takes external-memory words 0x94b-0x953 (reads 0x5b4c-0x5b6a) and the viewport scale and offset words of control memory
+  (0x7e-0x83), plus control-memory words 0xc4-0xc6 and 0xd5. It multiplies the plane terms by the scales (0x5b53-0x5b5d, 0x5b62,
+  0x5b68, 0x5b6b, 0x5b71), adds the offsets (0x5b6d, 0x5b6e, 0x5b70, 0x5b73), clamps with `fmin` (0x5b6f, 0x5b75, 0x5b88)
+  and packs the results with unit-1 code 0x7e (0x5b76, 0x5b78, 0x5b7f, 0x5b81, 0x5b8c). It stores words 0xc9, 0xcd, 0xce,
+  0xd5 and 0xd7 of control memory (0x5b72, 0x5b74, 0x5b7a-0x5b85) and sends eight bus words, a `0x70000` select and a data word
+  to 0x1f8 and 0x1f5 around the select 0x1243fd3 (0x5b65-0x5b69, 0x5b92-0x5b95). It returns through the indirect
+  transfer at 0x5b8d.
+
+## Sprite modes (sprite.S)
+
+The sprite code turns a point sprite into a billboard by rotating the modelview matrix so a chosen axis faces the eye. The
+three mode entries, `mSpriteObject`, `mSpriteEye` and `mSpriteAxial`, each end in `mSpriteRotateMatrix`, which builds a
+rotation about the chosen axis in the staging words at register 0x18 and multiplies it into the modelview at 0x2f with
+`mMatrixMultCCWNoFetch`. The sprite parameters sit in external memory (0x93a-0x940 and the mode word 0x94a, read through
+register 0x16). Read from the [sprite.S listing](ge_listing/sprite.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_DirtySpriteModule` (`sprite.S` line 109, at 0x8669): **inferred**, the hook that refreshes the sprite code's copy
+  of the modelview after the matrix changes. It reads the mode word at 0x94a (0x8669) and loads the three copy
+  registers: register 0 with 0x2f, the first modelview word (0x8670), register 1 with the external-memory target 0x14d5
+  (0x8671) and register 2 with the count 0x10 (0x8672). It then jumps to `mCramToEram` at 0x103a (0x866d), which moves
+  those sixteen words from control to external memory; the copy is its only result. Its input is the modelview words at 0x2f-0x3e, which it moves unchanged to 0x14d5 onward; it computes nothing.
+- `mSpriteRotateMatrix` (`sprite.S` line 466, at 0x8676): **inferred**, builds the axis-angle rotation matrix for the
+  sprite and applies it to the modelview. Its inputs are the rotation axis and the cosine and sine terms that the three
+  mode entries leave in registers 0xe-0x13 (the multiplies at 0x867a-0x8681 and the adds at 0x8684-0x8685 form the cosine
+  and sine terms from them). When both terms are zero the branch at 0x8695 skips the rotation (to 0x86be). Otherwise it
+  writes zeros to staging words 3, 7, 0xb, 0xc, 0xd and 0xe (0x8697-0x869c) and 1.0 to word 0xf (0x869d), computes the nine
+  rotation terms from products of the axis components with each other, with the sine and with one minus the cosine
+  (0x869e-0x86b4, stores E = 0-0xa) and calls `mMatrixMultCCWNoFetch` (0x86b5) with register 0xb at 0x8d2c and register
+  0xa at 0x2f (0x86b9, 0x86ba). Afterwards it stores register 0x1d to special registers 0x2b, 0x29 and 0x2a (0x86c2,
+  0x86c3, 0x86c5) and loads its successor from control-memory word 0xda indexed by register 9 (0x86c4), ending at 0x86ca. Its output is the rotated modelview matrix.
+- `mSpriteObject` (`sprite.S` line 235, at 0x86d3): **inferred**, the object-aligned sprite mode: it turns the sprite
+  about a fixed object-space axis so its face points at the eye. It reads the sprite's object-space point and axis from
+  external memory 0x93a-0x93c and 0x93e-0x940 (0x86d3, 0x86d6, 0x86e0, 0x870c-0x8710), combines the point with the
+  modelview rows at control memory 0x30-0x3a, and writes the translated fourth row back to control-memory words
+  0x3b-0x3e (stores 0x86fc-0x86ff). It calls `mMatrixAdjoint` on the modelview (0x86f7), normalises the eye direction
+  that gives with a reciprocal square root (steps 0x874d-0x87e4), calls `mSpriteRotateV0OntoV1` (0x87a7) to turn the sprite
+  axis onto that direction, and jumps to `mSpriteRotateMatrix` (0x87ee) for the final roll about the eye direction. Its inputs are the sprite point and axis; its output is the updated modelview rows 0x3b-0x3e and the rotated matrix.
+- `mSpriteEye` (`sprite.S` line 365, at 0x87f7): **inferred**, the eye-aligned sprite mode, a one-word dispatcher. Its
+  only word is the unconditional transfer at 0x87f7 to `mSpriteObject` at 0x86d3; it reads, computes and stores nothing
+  itself, so eye-aligned sprites take the object-mode path unchanged. It takes no operand and returns whatever `mSpriteObject` produces.
+- `mSpriteAxial` (`sprite.S` line 167, at 0x8800): **inferred**, the axis-aligned sprite mode: the sprite rotates about
+  the axis stored with it so its face turns toward the eye as far as that axis allows. It reads the axis from external
+  memory 0x93a-0x93c and the point from 0x93e-0x940 (0x8800-0x8819) and control-memory word 0x30 (0x8814), forms the
+  squared length of the axis and its reciprocal square root (0x8822 seed, steps from 0x8836 on), calls
+  `mSpriteRotateV0OntoV1` (0x8836), stores the translated modelview row to control-memory words 0x3b-0x3e (0x8839-0x883e),
+  calls `mMatrixAdjoint` (0x883f), projects the eye direction off the axis and normalises the remainder (0x886f, 0x8877)
+  and finishes by jumping to `mSpriteRotateMatrix` (0x888b). Its inputs are the stored axis and point; its output is the rotated modelview.
+- `mSpriteRotateV0OntoV1` (`sprite.S` line 390, at 0x8894): **inferred**, builds the rotation matrix that carries one unit
+  vector onto another. Its inputs are the two vectors in registers 0xe-0x10 and 0x16, 0x1a and 0x1b. It computes their
+  cross product, squares and sums it and takes a reciprocal square root to normalise the axis (0x88ac-0x88b4 and the
+  Newton steps after them), forms the cosine as their dot product, and writes the rotation into staging words 0-2, 4-6 and
+  8-0xa with zeros at 3, 7, 0xb and 0xc-0xe and 1.0 at 0xf (store 0x88e8). It sets register 0xb to 0x8d2c and register 0xa to
+  0x2f (0x88e4, 0x88e5) and jumps to `mMatrixMultCCWNoFetch` at 0x88e9 (0x88e0), so the result is the modelview already
+  multiplied by that rotation.
+
+## Block moves between engine memories (mmemove.S, memove.S)
+
+The `m`-module versions of the block copies (compare [Memory copies (umemove.s)](ge_compute.md#memory-copies-umemoves)).
+They share one convention: register 0 is the source address, register 1 the destination (or the output window register
+for the FIFO form), register 2 the count. A pass moves six words, two per lane, so the source and destination registers
+step by 6 (`r162` = 1 or F = 0x19 words) and the count falls by one on the address-unit decrement (F = 0x25), looping on
+`cc` 0x11 in group 7. Each routine returns through the group-5 transfer. Read from the
+[mmemove.S listing](ge_listing/mmemove.S.lst) and the [memove.S listing](ge_listing/memove.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mWramToCram` (`mmemove.S` line 33, at 0xd191): **inferred**, copies a block from working memory to control memory.
+  Its input is the block at register 0 (read with A/D offsets 0-5, moves 0xd194-0xd19c). One pass of the loop at
+  0xd194-0xd19f stores those six words through register 1 with `r95` = 4, 5 and 6 (stores 0xd19d-0xd1a2, 0xd1a5, 0xd1a6),
+  two per lane, steps register 0 and register 1 on by 6 (0xd1a3, 0xd1a4) and counts down register 2 (0xd191, 0xd19c). The
+  branch at 0xd19f repeats the pass, and the return is at 0xd1a0. It transforms nothing; its output is the block copied word for word.
+- `mWramToFifo` (`mmemove.S` line 271, at 0xd1a9): **inferred**, sends a block of working memory out through the output
+  window. It takes the source at register 0 (lane offsets 1 and 2 added at 0xd1aa and 0xd1ae) and the count in register 2
+  (0xd1ac, 0xd1b0). The loop at 0xd1b0-0xd1b2 steps register 2 and moves each word through register 0x1e at offset 1
+  (moves 0xd1b8, 0xd1b9, with the second thread taking D = 3); register 0 steps by 6 at 0xd1b7. When the count is spent it
+  sends an all-ones word (a NOT of register 0x1e, 0xd1bb, 0xd1bc) to window offset 3 and bus address 0x1f5 as the end
+  marker, and returns at 0xd1b5. It converts nothing but adds the end marker.
+- `mCramToWram` (`memove.S` line 32, at 0xd4a2): **inferred**, copies a block from control memory to working memory. It
+  gives lanes 1 and 2 their own register-1 offsets (adds of 1 and 2 at 0xd4a3 and 0xd4a7) and reads the source
+  through register 0 with `r95` = 0x10, 0x11 and 0x12 (CRAM reads into lanes 0, 1 and 2, 0xd4a9-0xd4ad). Each pass of the
+  loop at 0xd4a8-0xd4af stores the loaded words through register 1 (B = 1, 0xd4ab, 0xd4ae), steps registers 0 and 1 by 6
+  (0xd4b3, 0xd4b4) and counts down register 2 (0xd4a4, 0xd4a8); the return is at 0xd4b0. Its input is the block at register 0 and its output the same words in working memory.
+- `mEramToWram` (`memove.S` line 68, at 0xd45d): **inferred**, copies a block from external memory to working memory.
+  After the lane offsets (0xd45e, 0xd462) it reads six source words per pass with `r95` = 0x14, 0x15 and 0x16, which load
+  one external-memory word into lane 0, 1 or 2 (0xd463-0xd46d), and stores them through register 1 with the plain
+  store of 0xd46f and 0xd474. The loop at 0xd463-0xd475 steps both registers by 6 (0xd479, 0xd47a) and register 2 down
+  (0xd460, 0xd473); the return is at 0xd476. It transforms nothing; the input block reappears unchanged in working memory as the output.
+- `mEramToEram` (`memove.S` line 108, at 0xd47f): **inferred**, copies a block within external memory. A pass reads six
+  words through register 0 with `r95` = 0x17 (0xd482-0xd48c), moves them to the store-data register (0xd489-0xd493) and
+  stores them through register 1 with `r95` = 8, 9 and 0xa (0xd492-0xd49c), the external-memory write forms. The loop
+  0xd482-0xd498 steps registers 0 and 1 by 6 (0xd49b, 0xd49d), counts register 2 down (0xd47f, 0xd495) and returns at 0xd499. Its input is the source block; it transforms nothing and its output is the copy at register 1.
+
+## Trigonometric subroutine (mmath.S)
+
+Read from the [mmath.S listing](ge_listing/mmath.S.lst) (`ge.u`, IRIX 6.5.30m). The routine reads the same constant table
+that `mSinCos` uses (external memory 0x14c9-0x14d3, written by the start-up code).
+
+- `mSinCosAB` (`mmath.S` line 115, at 0xd23f): **inferred**, evaluates the sine and cosine of two angles in one pass.
+  Its inputs are two angles in degrees, held in registers 0 and 1, and the table read through register 0x13 =
+  0x14c9 (reads 0xd243, 0xd247, 0xd24d, 0xd251, 0xd260, 0xd271-0xd285). It multiplies each angle by the 1/360 at 0x14cf
+  (0xd24a, 0xd24b), removes whole turns with the add-and-subtract of the rounding constant at 0x14cd (0xd24e-0xd253),
+  scales the fraction back by 2 pi with the double-precision subtracts at 0xd25c-0xd25f and applies the odd polynomial of
+  coefficients 0x14d0-0x14d3 with alternating multiplies and subtracts (0xd27c-0xd29e). A quadrant fix-up with
+  conditional subtracts (0xd267-0xd27b) picks the signs. Its results are four values left in registers 0-3 by the
+  multiplies at 0xd29d-0xd2a0, and it returns at 0xd29f.
