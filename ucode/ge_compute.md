@@ -107,17 +107,16 @@ Facts are labelled **established** (read from the words at the addresses given) 
 
 - `uMatrixMultCCC` (`umatrix.s` lines 39-116): **inferred**, rebuilds the composite matrix the clip transforms use. It
   takes the projection (engine words 0x3f-0x4e) and copies it into the staging words, replacing the third row: each column's
-  third element becomes the difference of its fourth and third elements times 0.5, computed by the float subtracts at
+  third element becomes its third element minus its fourth, times 0.5, computed by the float subtracts at
   0xe72-0xe75 (fourth element staged at E = 3, 7, 0xb, 0xf; third element read from 0x41, 0x45, 0x49, 0x4d) and the multiplies
   by the constant 0.5 loaded at 0xe71. It then multiplies that matrix by the modelview at 0x2f-0x3e (64 multiplies and
   multiply-adds, 0xe7f-0xea5) and stores the 16 results to 0x4f-0x5e, the input of every clip transform. It writes special
   register 0x29 (store at 0xe7e) and returns through a group-5 indirect transfer at 0xea7.
   The four subtracts are operand-routing form `r110` = 0x7bd, a register-file operand (A = 0x18, D = 3, 7, 0xb, 0xf) with a
-  memory operand (C = 0x1b, immediate address). **Inferred** from `mgeb_BitmapApplyOrig` (below), where the same form
-  must return the memory word minus the register-file operand: each subtract yields the third element minus the fourth,
+  memory operand (C = 0x1b, immediate address). That form returns the loaded memory word minus the register-file operand
+  ([ge_isa.md](ge_isa.md#operand-ports-and-result-forwarding), established): each subtract yields the third element minus the fourth,
   so the rewritten third row is (row 3 - row 4) / 2 and the clip z it produces is (z - w) / 2, which is -w at the near
-  plane and 0 at the far plane of an ordinary projection. The diagnostic test's subtract (`ge_inst.s` line 3774, B - A)
-  is form `r110` = 0x43d, two arithmetic registers, so it does not settle this form by itself.
+  plane and 0 at the far plane of an ordinary projection.
 - `mMatrixInverse` (`umatrix.s` lines 314-426): **inferred**, the inverse of the modelview's 3 x 3 block, for transforming
   normals. It copies the modelview words 0x2f-0x3e to a scratch block at engine address 0x8d2c (words 0xeeb-0xefa), computes
   the cofactors with paired multiplies and subtracts (0xefc-0xf28), sums a row of them times the matrix to get the
@@ -659,8 +658,8 @@ group-31 transfer to the successor. In every form the output record gets x, y an
   result is a clipped polygon that it sends on with `mClipTriFlush`, and the clip-vertex pool is reset by
   `mSetClipVertsFree`.
 - `mEyeToClipAfterUserClip` (`clip.S` lines 712-837): **inferred**, projects vertices created in eye space by user-plane
-  clipping. It rebuilds the projection's third row as `uMatrixMultCCC` does, the difference of the fourth and third
-  elements of each column (projection words 0x42 and 0x41, 0x46 and 0x45, 0x4a and 0x49, 0x4e and 0x4d) times the constant 0.5
+  clipping. It rebuilds the projection's third row as `uMatrixMultCCC` does, the third element minus the fourth
+  of each column (projection words 0x42 and 0x41, 0x46 and 0x45, 0x4a and 0x49, 0x4e and 0x4d) times the constant 0.5
   loaded at 0xf183. It then multiplies each new vertex's eye-position input (record words 0x13-0x16, through registers 7 and
   0xf) by the projection words 0x3f-0x4e and stores the clip-space result to words 0x17-0x1a (0xf1b0, 0xf1b5). It returns
   through a group-5 indirect transfer.
