@@ -2491,22 +2491,22 @@ ge.u	label	0x000096ac	mmo_SepConvolve5x5_124		located	ucode/ge_handlers.md#msepc
 ge.u	label	0x00009710	mmo_SepConvolve3x3_124		located	ucode/ge_handlers.md#msepconvs	msepconv.S
 ge.u	label	0x00009767	mmo_ColorMatrix		located	ucode/ge_handlers.md#mcolormatrixs	mcolormatrix.S
 ge.u	label	0x00009793	mmo_DecompressZ16		located	ucode/ge_handlers.md#mdecompresss	mdecompress.S
-ge.u	label	0x00009805	mmo_Short_Complex_To_16		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x00009833	mmo_Short_Complex_To_8		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x00009868	mmo_shortBGRApass		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x0000988b	mmo_short16toRGB5A1		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x000098b0	mmo_short8toRGB5A1		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x000098d5	mmo_shortLA16toL12A4		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x000098fa	mmo_shortLA8toL12A4		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x0000991e	mmo_short16to8		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x00009943	mmo_short16to4		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x00009968	mmo_short8to4		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x0000998d	mmo_short8to16		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x000099b0	mmo_shortpass8W		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x000099f5	mMerge8_16C_LastBlk		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x00009a10	mMerge8_16C		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x00009a3d	mMerge4_8C_LastBlk		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
-ge.u	label	0x00009a57	mMerge4_8C		located	ucode/ge_handlers.md#mshortcircuits	mshortcircuit.S
+ge.u	label	0x00009805	mmo_Short_Complex_To_16		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x00009833	mmo_Short_Complex_To_8		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x00009868	mmo_shortBGRApass		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x0000988b	mmo_short16toRGB5A1		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x000098b0	mmo_short8toRGB5A1		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x000098d5	mmo_shortLA16toL12A4		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x000098fa	mmo_shortLA8toL12A4		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x0000991e	mmo_short16to8		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x00009943	mmo_short16to4		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x00009968	mmo_short8to4		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x0000998d	mmo_short8to16		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x000099b0	mmo_shortpass8W		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x000099f5	mMerge8_16C_LastBlk		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x00009a10	mMerge8_16C		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x00009a3d	mMerge4_8C_LastBlk		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
+ge.u	label	0x00009a57	mMerge4_8C		understood	ucode/ge_compute.md#short-circuit-pixel-conversions-mshortcircuits	Short-circuit pixel conversions (mshortcircuit.S)
 ge.u	label	0x00009a83	mgesi_XPolygonStippleDownload		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
 ge.u	label	0x00009a98	mgeb_XPolygonStippleRotate		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
 ge.u	label	0x00009ae9	mod		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)

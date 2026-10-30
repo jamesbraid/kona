@@ -2988,3 +2988,65 @@ values.
   words 0xcd and 0xce (code 0x73, 0x90b5, 0x90b6). It writes control word 0xd5 from the 0x800 it stages (0x90b2) and
   multiplies the colour by register 0x1c (`r95` = 0x33 stores to 0xc9-0xcc, 0x90be-0x90c2), so the result is a
   vertex in the control words the triangle path reads.
+
+## Short-circuit pixel conversions (mshortcircuit.S)
+
+Read from the [mshortcircuit.S listing](ge_listing/mshortcircuit.S.lst) (`ge.u`, IRIX 6.5.30m). The twelve `mmo_short*`
+modules are the pixel-path stages the ARM chains in through `geif.u` slots 318-327, 436 and 437 when a pixel transfer needs
+no float stage. Each copies the output record words 0x161-0x169 into the staging words with `r95` = 0x13 reads, loads its
+address registers from them with `r217` = 1, puts four field shift counts in unit registers 2-5, and then picks one of three
+exits: `mLASTGE` when `cc` 0x7e holds (the engine that carries the last piece), a full-block merge when `cc` 3 holds, and
+otherwise the last-block merge. Unit-1 code 0x5d is a logical shift right ([ge_ops.md](ge_ops.md)), so a conversion
+between component widths keeps the high bits of each source field.
+
+- `mMerge8_16C` (`mshortcircuit.S` lines 1352-1479, at 0x9a10): **inferred**, the full-block shift loop. Each pass takes 32
+  input words through address register 0x10 (D = 0-0x1f) and produces 32 results, each its input shifted right (code 0x5d)
+  by unit register 2, 3, 4 or 5 in turn (`r148` = 2-5, 0x9a16-0x9a3a), stored with `r213` = 3. It counts address
+  register 5 down (0x9a15), adds 0x20 to register 0x10 (0x9a37), loops on `cc` 0x14 and goes on to `mMerge8_16C_LastBlk`
+  on `cc` 3 (0x9a33).
+- `mMerge8_16C_LastBlk` (`mshortcircuit.S` lines 1491-1553, at 0x99f5): **inferred**, shifts the closing block the same way:
+  16 input words per pass (D = 0-0xf, 0x99fb-0x9a0e), each output word the input moved right by the register-2-to-5 count
+  for its column, with address register 6 as the pass count (0x99fa) and register 0x10 advanced by 0x10 (0x9a0b).
+- `mMerge4_8C` (`mshortcircuit.S` lines 494-604, at 0x9a57): **inferred**, the widening loop, which shifts each input twice. A word that reads input (form
+  9, A = 0x10) alternates with one that does not (form 10), so each input word yields two outputs: word k is shifted right by
+  registers 2 and 3 when k is even and by 4 and 5 when k is odd (0x9a5d-0x9a80). Sixteen inputs give 32 results per pass;
+  register 5 counts passes (0x9a5c), register 0x10 steps by 0x10 (0x9a7d) and `cc` 3 sends the rest to
+  `mMerge4_8C_LastBlk`.
+- `mMerge4_8C_LastBlk` (`mshortcircuit.S` lines 616-676, at 0x9a3d): **inferred**, the closing pass of the widening loop:
+  eight input words (D = 0-7) give sixteen results by the same two-shifts-per-input pattern (0x9a43-0x9a55), counted by
+  address register 6 (0x9a42), with register 0x10 moved on by 8 (0x9a52).
+- `mmo_short16toRGB5A1` (`mshortcircuit.S` lines 1177-1240, at 0x988b): **inferred**, converts 16-bit components into the
+  RGB5A1 fields. It takes the record and stages 0xb at staging offset 0xf and 0xf at 0xe (0x98a1, 0x98a4) and moves them into the shift
+  registers (0x98a3, 0x98a8), so the merge outputs keep the top five bits of red, green and blue (16 - 11) and the top bit
+  of alpha (16 - 15).
+- `mmo_short8toRGB5A1` (`mshortcircuit.S` lines 1081-1145, at 0x98b0): **inferred**, converts 8-bit input to the same
+  packing. Its staged counts are 3 and 7 (0x98c6, 0x98c9), so each output keeps five bits of a colour byte and one bit of alpha.
+- `mmo_short16to8` (`mshortcircuit.S` lines 891-951, at 0x991e): **inferred**, converts 16-bit components to bytes: the one
+  count it stages is 8 (0x9934), copied into the shift registers at 0x9936-0x993c, and `mMerge8_16C` then shifts each input to its byte result.
+- `mmo_short16to4` (`mshortcircuit.S` lines 798-858, at 0x9943): **inferred**, takes 16-bit components and converts each to
+  a four-bit result, with the shift of 0xc staged at 0x9959.
+- `mmo_short8to4` (`mshortcircuit.S` lines 705-765, at 0x9968): **inferred**, converts byte input to nibble outputs: 4 is the
+  shift count it writes to staging offset 0xf (0x997e).
+- `mmo_shortLA16toL12A4` (`mshortcircuit.S` lines 984-1048, at 0x98d5): **inferred**, takes 16-bit luminance-alpha input and
+  converts it into the L12A4 texel output. Luminance is shifted right by 4 (staged at 0x98eb) to leave twelve bits and alpha by
+  0xc (0x98ee) to leave four.
+- `mmo_shortLA8toL12A4` (`mshortcircuit.S` lines 409-469, at 0x98fa): **inferred**, converts byte input to L12A4. It
+  sets one count register from the staged 4 (0x9911, 0x9912) and the others by moves (0x9916, 0x9917), and exits to the
+  widening merge `mMerge4_8C`, so each input word gives two output fields.
+- `mmo_short8to16` (`mshortcircuit.S` lines 318-376, at 0x998d): **inferred**, converts byte components into 16-bit fields.
+  It stages no count: all four shift registers are loaded by moves from one register (`r148` = 0x3c0, 0x999f-0x99a9), and
+  it hands the words to `mMerge4_8C` (0x99a6), which writes two outputs per input.
+- `mmo_shortBGRApass` (`mshortcircuit.S` lines 1269-1328, at 0x9868): **inferred**, the BGRA pass, which shifts by zero: it loads the shift
+  registers by the same register moves as `mmo_short8to16` (0x987a-0x9884), copies eight record words (0x161-0x169) and
+  uses `mMerge8_16C`, one output per input.
+- `mmo_shortpass8W` (`mshortcircuit.S` lines 172-287, at 0x99b0): **inferred**, copies words through unchanged, so each output equals its input and nothing converts. Its loop
+  at 0x99d3-0x99e0 moves eight input words per pass (code 0x4a, D = 0-7) to the output, with address register 0xf counting
+  passes and register 0x10 stepping by 8; the remainder runs four words at a time from 0x99e3, counted by register 0xe.
+  No shift or merge stage is involved.
+- `mmo_Short_Complex_To_16` (`mshortcircuit.S` lines 1734-1783, at 0x9805): **inferred**, converts complex (real, imaginary)
+  pairs from the FFT stages into 16-bit pixels. It reads control word 0x165 into unit register 0x1c (0x9809), and its loop
+  (0x9825-0x9831) takes the even input words only (D = 0, 2, ... 0xe), which are the real parts, shifting each right by
+  that count. Eight results per pass, address register 0xf counting down, register 0x10 advanced by 0x10.
+- `mmo_Short_Complex_To_8` (`mshortcircuit.S` lines 1618-1689, at 0x9833): **inferred**, takes complex input and converts it to byte output: the same
+  real-part selection and register-0x1c shift, but each pass covers sixteen pairs, half through register 0x10 (0x9854-0x985c)
+  and half through register 0xc, which it sets to register 0x10 plus 0x10 (0x985d-0x9866, 0x9853).
