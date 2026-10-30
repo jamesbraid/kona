@@ -484,9 +484,43 @@ is the second witness, from the engine program, that command 7 is the fan rule. 
 the bus as strips and fans on the independent-triangle path. The decomposers ([below](#decomposers-udecomposes)) turn them
 into a table of triangles, and `lDI1` sends each as 0, 0, 6. The strip loop `lDI3` and the quad loop `lDI4` instead send
 record word 0x26 to 0xd5, moved or shifted left by register 8 (0x28a6, 0x28e7), and `mmo_DrawTriPrimOffset` does the same
-at 0x8fb7. Which strip or fan command those top bits give is **unknown**: no converter description for 0xd5 is in any
-shipped program. Routes tried: the drawing modules, the decomposers' flag words (`mmo_DecomposeTriangleStripWithSwapOdd`
-tests bit 28 of word 0x26), `mgesi_TfanPolyRestoreEdge`'s OR of 0xe0000000 into saved fan records, the program's own stores (none
+at 0x8fb7.
+
+**Established** (what the engine itself does to word 0x26 before those stores). Counted over every store with offset
+0x26 in the listings: none creates the word of an input vertex. Each is a read-modify-write of the same word
+(`udrawtri.s` 0x289a, `mdrawtri.S` 0x8faa, `mdecompose2.S` 0xca5c-0xca7b), a copy from another record or a register in
+the save and restore modules of `fluff.S` (0xe633-0xe680), the patch evaluator (`ueval2D.s` 0x0304-0x0307) and
+`entry.S` 0xb46f, or is built from special register 0x2c for the vertices a clipper makes (`clip.S` 0xf0a2,
+`linclip.S` 0xea81-0xeac9). The stores with B = 0x1c and offset 0x26 (`glmodes.S`, `line.S`, `polygon.S` and others)
+write special register 0x26, not a record. So the word arrives with the vertex. Each module that sends it raw to 0xd5
+first ORs 0xe0000000 into the word of the batch's first record. `mmo_DrawTri` stages 0xe0000000 as staging word 1
+(0x2897), and `uDTList` ORs it into the word of the record at register 0x10 (0x289a, unit-1 0x54 with the staged word on
+port 2). `mmo_DrawTriPrimOffset` does the same (0x8fa3, 0x8faa), and the line path stages the constant at 0x8dba. The
+start-up code writes the constants the decomposers combine with the word: engine word 0x1d = 0xc1c00000 (staged at
+`ge.S` 0xb208, moved at 0xb209, stored at 0xb212), and words 0xbe, 0xbf and 0xc0 = 0x00400000, 0x00800000 and
+0x01000000 (moved at 0xb221, 0xb227 and 0xb21c, stored at 0xb22a, 0xb230 and 0xb225), each the value its store's
+nine-word rule names. The strip decomposer XORs the word with 0xc1c00000 (0xcce-0xccf). The triangle decomposer masks
+one of bits 22, 23 and 24 per vertex, and the swap decomposers test bit 28 (0xc98e, 0xc9b9).
+
+**Inferred** (the layout of word 0x26). Bits 22-24 carry the GL edge flag, one bit per triangle edge after the mask.
+The edge-flag command sends all ones or zero (`arm_edgeflag`, [arm1_functions.md](arm1_functions.md)), and the
+triangle decomposer picks a different bit of it for each corner. Bits 31-28 are the vertex's raster command, since the
+strip loop sends them unchanged. Setting bits 31-29 on a batch's first vertex gives command 14 or 15. That can only mark
+the vertex that starts the run again, because a batch that continues a strip resends its two carried vertices first
+([ged.md](ged.md#vertex-history-fields-x-and-z)). The fan-restore handler ORs the same constant into the saved records
+it brings back. Bit 28 is the swap: the decomposers test it to choose the swapped triangle order, and the diagnostic
+adds it to command 6 to make the fan rule 7 ([docs/rm.md](../docs/rm.md#primitive-set-up-happens-in-the-pixel-generator)).
+
+Which value bits 31-29 hold on the later vertices of a strip is **unknown**. For the run to be drawn they must name the
+triangle command: 6 with bit 28 clear for the strip rule, 7 with it set. No engine word puts it there, so the distributor
+or the host interface must supply it as the record is written. Routes tried: the drawing modules, the decomposers' flag
+words, `mgesi_TfanPolyRestoreEdge`, every store with offset 0x26 and every write of 0xc9-0xd9 (none outside the drawing
+modules' output stores), the distributor program (no control word in `ged1b.u` sets the 6-bit r field, so none names a
+
+commands). Next route: the distributor's netlist ports `hq_op[3]` and `hq_st[2]`
+([diags/netmap_chips.tsv](../diags/netmap_chips.tsv)) and distributor register 0x290, which the edge-flag command writes
+(descriptor 0x52000020, register number in bits 21-30). They may show how the distributor fills word 0x26 as it delivers
+a vertex.
 
 - `mmo_DrawTri` (`udrawtri.s` lines 42-53): **inferred**, the entry of the triangle-strip output. It reads the cull and clip
   state (special register 0x0c through register 0x1c, 0x288c), and branches on `cc` 0x66 to `mmo_DrawTriPrim`, the
