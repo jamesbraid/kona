@@ -20966,9 +20966,9 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c6980	368	__glBlendS
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c6af0	340	__glBlendSpan_SA_ZERO	dwarf+dynsym	3ee73660ef0c		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c6c50	408	__glBlendSpan_SA_ONE	dwarf+dynsym	d7d949826814		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c6df0	292	__glBlendStippledSpan	dwarf+dynsym	a096d470b825		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c6f20	52	__glInitBuffer	dwarf+dynsym	a7dc455aa6b2		in	understood	docs/sample-implementation.md#so_buffersc	so_buffers.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c6f20	52	__glInitBuffer	dwarf+dynsym	a7dc455aa6b2		in	located	docs/sample-implementation.md#so_buffersc	so_buffers.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c6f60	60	__glMakeCurrentBuffer	dwarf+dynsym	2aa34bb12da0		in	understood	docs/sample-implementation.md#so_buffersc	so_buffers.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c6fa0	60	__glLoseCurrentBuffer	dwarf+dynsym	5ffb619c732f		in	understood	docs/sample-implementation.md#so_buffersc	so_buffers.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c6fa0	60	__glLoseCurrentBuffer	dwarf+dynsym	5ffb619c732f		in	located	docs/sample-implementation.md#so_buffersc	so_buffers.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c6fe0	252	__glResizeBuffer	dwarf+dynsym	55a2f86187a5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c70e0	12	__glMoveBuffer	dwarf+dynsym	8688c1290edb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9c70f0	72	__glFreeBuffer	dwarf+dynsym	a3130978de29		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -37665,9 +37665,9 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c6980	368	__glBlendS
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c6af0	340	__glBlendSpan_SA_ZERO	dwarf+dynsym	3ee73660ef0c		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c6c50	408	__glBlendSpan_SA_ONE	dwarf+dynsym	d7d949826814		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c6df0	292	__glBlendStippledSpan	dwarf+dynsym	a096d470b825		in	located	docs/sample-implementation.md#so_blendc	so_blend.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c6f20	52	__glInitBuffer	dwarf+dynsym	a7dc455aa6b2		in	understood	docs/sample-implementation.md#so_buffersc	so_buffers.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c6f20	52	__glInitBuffer	dwarf+dynsym	a7dc455aa6b2		in	located	docs/sample-implementation.md#so_buffersc	so_buffers.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c6f60	60	__glMakeCurrentBuffer	dwarf+dynsym	2aa34bb12da0		in	understood	docs/sample-implementation.md#so_buffersc	so_buffers.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c6fa0	60	__glLoseCurrentBuffer	dwarf+dynsym	5ffb619c732f		in	understood	docs/sample-implementation.md#so_buffersc	so_buffers.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c6fa0	60	__glLoseCurrentBuffer	dwarf+dynsym	5ffb619c732f		in	located	docs/sample-implementation.md#so_buffersc	so_buffers.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c6fe0	252	__glResizeBuffer	dwarf+dynsym	55a2f86187a5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c70e0	12	__glMoveBuffer	dwarf+dynsym	8688c1290edb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9c70f0	72	__glFreeBuffer	dwarf+dynsym	a3130978de29		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
