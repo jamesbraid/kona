@@ -2733,3 +2733,81 @@ triangle list the decomposers build, two triangles per pass, and tests each tria
   at 0xcb4.
 - `lCU2` (`ucull.s` line 104, at 0xcbd): **established**, the abort exit of the cull loop: one group-31 transfer to
   `mmo_AbortGeometry`, reached from the loop when `cc` 0x78 is set at 0xc91.
+
+## Vertex deformation (udeform.s)
+
+Read word by word from the [udeform.s listing](ge_listing/udeform.s.lst) (`ge.u`, IRIX 6.5.30m). The Ghidra
+decompiler output of these loops is not usable yet: the loops overlap their own delay slots and the module does not
+model register-write latency, so the readings below come from the listing. Two parameter blocks sit in external
+memory (ERAM, read with `r95` = 0x17): the position map at 0x95e-0x969 (address register 8, read at register 8
+plus 0x1f - F) and the texture map at 0x99d-0x9a8 (address register 7, the same layout). The set-up keeps three of a
+block's words in registers and the loop multiplies by the other nine, so a block is an affine map of three
+coordinates: three offsets and a 3 x 3 matrix. Which ERAM word lands in which register depends on the load latency,
+which is not settled, so the entries name blocks, not single words. The loops take two vertex records per pass, one per thread (the W71 words take record 2), count passes in
+register 0 from register 0x19 less one, read their successor from engine word 0xda plus register 9 (`r95` = 2), and
+end with the group-31 transfer.
+
+- `mmo_DeformCoord` (`udeform.s` lines 51-69, at 0x2ab8): **inferred**, set-up of the position deformation. It reads
+  the first words of the position block (ERAM 0x95e onwards) and keeps three in registers 2-4 (0x2ab8-0x2ac4), stages the bit 0x40000 as
+  staging word 0 and copies it to register 0 (0x2abb, 0x2abd), and points registers 1 and 2 at the two input records
+  (0x2abf, 0x2ac1). Its output is that state for `loopDC`, and it already multiplies the first input x by the
+  block's coefficients (0x2ac7-0x2aca).
+- `umo_DeformCoord`: **inferred**, the second name at 0x2ab8 (`udeform.s` line 51) of the position set-up; it takes
+  the ERAM block at 0x95e as input, selects the two records the loop transforms, and leaves registers 0-4 and
+  address registers 1, 2 and 8 as its result.
+- `loopDC` (`udeform.s` lines 71-91, at 0x2acb): **inferred**, the position loop. Its inputs are two vertex records per pass. Per record it ANDs record word 0x26
+  with register 0 (unit-1 code 0x50, 0x2acb) to test bit 0x40000, then multiplies x, y and z (record words 0-2) by
+  nine coefficients of the block read through register 8 and adds the products to the offsets in registers 2-4 (unit-2 multiply with
+  unit-1 add, M = 0x460, 0x2acd-0x2ad8). The three sums are its output, stored back over words 0-2 of both records
+  (0x2ada-0x2adf), so each vertex position is replaced by its image under the affine map.
+- `mmo_DeformCoordTexture` (`udeform.s` lines 107-132, at 0x2ae7): **inferred**, set-up of the module that deforms
+  both position and texture coordinates. It keeps three words of the texture block (ERAM 0x99d onwards) in registers
+  5-7 and three of the position block in registers 2-4 (through register 8, 0x2af0-0x2af9), and stages two
+  test bits, 0x20000 in register 1 and 0x40000 in register 0 (0x2aea, 0x2af1). Those blocks are its inputs; the
+  result is the register state that lets `loopDCT` transform both coordinate sets.
+- `umo_DeformCoordTexture`: **inferred**, alias at 0x2ae7 (`udeform.s` line 107). Inputs: the two ERAM blocks. It
+  combines them into one result: six offsets in registers 2-7 and two test bits in registers 0 and 1 for `loopDCT`.
+- `loopDCT` (`udeform.s` lines 134-176, at 0x2b01): **inferred**, the combined loop. It takes two records per pass and first maps the position words
+  0-2 as `loopDC` does (products against register 8's block, 0x2b01-0x2b15), then tests bit 0x20000 of record word
+  0x26 (0x2b16) and multiplies texture words 0xb-0xd by the texture block's coefficients (register 7, 0x2b18-0x2b23),
+  adding offsets 5-7. The results replace words 0-2 and 0xb-0xd of both records (0x2b10-0x2b15, 0x2b25-0x2b2a).
+- `mmo_DeformTexture` (`udeform.s` lines 193-211, at 0x2b32): **inferred**, set-up of texture-only deformation. It reads
+  ERAM 0x99d-0x9a2 by immediate and keeps three of them in registers 5-7 (0x2b32-0x2b3e), stages the test bit 0x20000 in register 1 (0x2b35,
+  0x2b37) and computes the first products of texture word 0xb (0x2b41-0x2b44). Its input is the texture block and
+  its output the state `loopDT` starts from.
+- `umo_DeformTexture`: **inferred**, alias at 0x2b32 (`udeform.s` line 193): the texture block at 0x99d is its input,
+  and it converts it into its output, the staged offsets and the test bit.
+- `loopDT` (`udeform.s` lines 213-233, at 0x2b45): **inferred**, the texture loop. It takes two records per pass, ANDs word 0x26 with 0x20000
+  (0x2b45), multiplies s, t and r (record words 0xb-0xd) by the texture block's coefficients through register 7 and adds the offsets (M = 0x460,
+  0x2b47-0x2b52); its output is the mapped texture coordinate written back to words 0xb-0xd (0x2b54-0x2b59).
+- `mmo_DeformCoordNormal` (`udeform.s` lines 252-275, at 0x2b61): **inferred**, set-up for position and normal. It
+  reads control word 3 and ANDs it with 0x200000 (0x2b62-0x2b64); when that bit is set it calls
+  `mDeformation3_1Inverse` (0x2b72) to rebuild the inverse of the position map. It points register 0xa at the block
+  at 0x98e, where the inverse lives, and register 8 at the position block, and keeps three position-block words in
+  registers 2-4. Inputs: control word 3 and the two blocks; output: that state, with the first products of x already formed: it multiplies x by the block (0x2b75-0x2b78).
+- `umo_DeformCoordNormal`: **inferred**, alias at 0x2b61 (`udeform.s` line 252); its input is the position map and
+  control word 3, and its result is a current inverse at 0x98e plus the loop state, which it derives by calling the
+  inverse routine only when the map has changed.
+- `loopDCN` (`udeform.s` lines 277-316, at 0x2b79): **inferred**, the position-and-normal loop over two input records per pass. Positions are mapped as
+  in `loopDC` (0x2b7b-0x2b89); the normal, words 8-0xa, is multiplied by the inverse block through register 0xa
+  (0x2b83-0x2b99) with no offset added, the transform a normal needs under an affine map. Output: mapped position
+  in words 0-2 and transformed normal in words 8-0xa (0x2b88-0x2b9f).
+- `mmo_DeformCoordNormalTexture` (`udeform.s` lines 334-363, at 0x2ba7): **inferred**, set-up that combines the three:
+  it tests control word 3 against 0x200000 and calls `mDeformation3_1Inverse` (0x2bbe), keeps three words of the
+  texture block in registers 5-7 and three of the position block in registers 2-4, and stages both record test bits.
+  Its inputs are control word 3 and the three blocks, and its result is the state `loopDCNT` uses.
+- `umo_DeformCoordNormalTexture`: **inferred**, alias at 0x2ba7 (`udeform.s` line 334). It consumes the position,
+  inverse and texture blocks, selects whether the inverse is rebuilt, and produces the register state `loopDCNT` uses.
+- `loopDCNT` (`udeform.s` lines 365-430, at 0x2bc5): **inferred**, the loop that takes two records per pass and
+  transforms position (0x2bc7-0x2bd5), normal through the inverse (0x2bd6-0x2be5) and texture coordinates
+  (0x2bec-0x2c00) of each; its results go back to words 0-2, 8-0xa and 0xb-0xd.
+- `mDeformation3_1Inverse` (`udeform.s` lines 453-519, at 0x2c08): **inferred**, the inverse of the position map's
+  3 x 3 part, whose input is the ERAM position block. It copies the map's nine coefficients from ERAM through register 8 into nine words at register
+  0xe (0x2c09-0x2c19), which the callers set to the staging base plus 4 (0x2b61). The three lanes then load registers 0xb-0xd with
+  that block plus 0, 3 and 6 in rotated order (0x2c08-0x2c18), so each lane multiplies a different pair of rows: each
+  lane computes one cross product, which is one row of the adjugate. The determinant, its reciprocal (seed at 0x2c3c,
+  Newton step code 0x4f at 0x2c3a) and the scaled adjugate follow; its output is the inverse, sent by the `r95` = 4
+  and 7 stores from 0x2c37 on. It also rewrites control word 3 with unit-1 code 0x52 applied to it and the staged
+  0x200000 (0x2c1c, store 0x2c35), which fits clearing the bit that asked for the rebuild.
+- `uDeformation3_1Inverse`: **inferred**, the second name at 0x2c08 (`udeform.s` line 453). It takes the 3 x 3 map from
+  the ERAM position block and returns its inverse; it computes the three cross products in the three lanes.

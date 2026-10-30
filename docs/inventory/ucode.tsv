@@ -2157,6 +2157,7 @@ ge.u	label	0x00002a53	FastColumnConv5Loop		located	ucode/ge_handlers.md#usepconv
 ge.u	label	0x00002a68	uSepConv7_124		located	ucode/ge_handlers.md#usepconv7x7s	usepconv7x7.s
 ge.u	label	0x00002a73	RowConv7Loop		located	ucode/ge_handlers.md#usepconv7x7s	usepconv7x7.s
 ge.u	label	0x00002a9a	ColumnConv7Loop		located	ucode/ge_handlers.md#usepconv7x7s	usepconv7x7.s
+<<<<<<< Updated upstream
 ge.u	label	0x00002ab8	mmo_DeformCoord		located	ucode/ge_handlers.md#udeforms	udeform.s
 ge.u	label	0x00002ab8	umo_DeformCoord		located	ucode/ge_handlers.md#udeforms	udeform.s
 ge.u	label	0x00002acb	loopDC		located	ucode/ge_handlers.md#udeforms	udeform.s
@@ -2177,6 +2178,28 @@ ge.u	label	0x00002c08	uDeformation3_1Inverse		located	ucode/ge_handlers.md#udefo
 ge.u	label	0x00002c6b	mmo_UnpackVertexV3F		located	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
 ge.u	label	0x00002c6b	umo_UnpackVertexV3F		located	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
 ge.u	label	0x00002c78	V3Floop		located	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+=======
+ge.u	label	0x00002ab8	mmo_DeformCoord		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002ab8	umo_DeformCoord		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002acb	loopDC		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002ae7	mmo_DeformCoordTexture		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002ae7	umo_DeformCoordTexture		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002b01	loopDCT		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002b32	mmo_DeformTexture		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002b32	umo_DeformTexture		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002b45	loopDT		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002b61	mmo_DeformCoordNormal		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002b61	umo_DeformCoordNormal		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002b79	loopDCN		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002ba7	mmo_DeformCoordNormalTexture		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002ba7	umo_DeformCoordNormalTexture		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002bc5	loopDCNT		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002c08	mDeformation3_1Inverse		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002c08	uDeformation3_1Inverse		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
+ge.u	label	0x00002c6b	mmo_UnpackVertexV3F		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002c6b	umo_UnpackVertexV3F		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002c78	V3Floop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+>>>>>>> Stashed changes
 ge.u	label	0x00002c83	mmo_UnpackVertexV3F_C4UB		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
 ge.u	label	0x00002c83	umo_UnpackVertexV3F_C4UB		located	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
 ge.u	label	0x00002c94	V3F_C4UBloop		located	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
