@@ -21610,7 +21610,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04560	136	__glLightf
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda045f0	52	__glLightiv_size	dwarf+dynsym	796782998f1e		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04630	80	__glLightModelfv_size	dwarf+dynsym	d743de29d247		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04680	52	__glLightModeliv_size	dwarf+dynsym	81eaafc3f581		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda046c0	176	__glMaterialfv_size	dwarf+dynsym	b6846ca55cc7		in	located	docs/sample-implementation.md#so_sizec	so_size.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda046c0	176	__glMaterialfv_size	dwarf+dynsym	b6846ca55cc7		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04770	52	__glMaterialiv_size	dwarf+dynsym	d7e88e6e64fb		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda047b0	36	__glColorTableParameterfvSGI_size	dwarf+dynsym	f5d2aec7ca3e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda047e0	52	__glColorTableParameterivSGI_size	dwarf+dynsym	e0ff91af74d8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -27190,7 +27190,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e689c0	144	__glLightf
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68a50	52	__glLightiv_size	dwarf+dynsym	e488a979f41f		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68a90	80	__glLightModelfv_size	dwarf+dynsym	d743de29d247		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68ae0	52	__glLightModeliv_size	dwarf+dynsym	230284b77ce7		in	located	docs/sample-implementation.md#so_sizec	so_size.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68b20	176	__glMaterialfv_size	dwarf+dynsym	b6846ca55cc7		in	located	docs/sample-implementation.md#so_sizec	so_size.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68b20	176	__glMaterialfv_size	dwarf+dynsym	b6846ca55cc7		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68bd0	52	__glMaterialiv_size	dwarf+dynsym	3fe03e1453c9		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68c10	36	__glColorTableParameterfvSGI_size	dwarf+dynsym	f5d2aec7ca3e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68c40	52	__glColorTableParameterivSGI_size	dwarf+dynsym	73cfff4ded51		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -38309,7 +38309,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04560	136	__glLightf
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda045f0	52	__glLightiv_size	dwarf+dynsym	796782998f1e		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04630	80	__glLightModelfv_size	dwarf+dynsym	d743de29d247		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04680	52	__glLightModeliv_size	dwarf+dynsym	81eaafc3f581		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda046c0	176	__glMaterialfv_size	dwarf+dynsym	b6846ca55cc7		in	located	docs/sample-implementation.md#so_sizec	so_size.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda046c0	176	__glMaterialfv_size	dwarf+dynsym	b6846ca55cc7		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04770	52	__glMaterialiv_size	dwarf+dynsym	d7e88e6e64fb		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda047b0	36	__glColorTableParameterfvSGI_size	dwarf+dynsym	f5d2aec7ca3e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda047e0	52	__glColorTableParameterivSGI_size	dwarf+dynsym	e0ff91af74d8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -43889,7 +43889,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22489c0	144	__glLightf
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248a50	52	__glLightiv_size	dwarf+dynsym	e488a979f41f		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248a90	80	__glLightModelfv_size	dwarf+dynsym	d743de29d247		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248ae0	52	__glLightModeliv_size	dwarf+dynsym	230284b77ce7		in	located	docs/sample-implementation.md#so_sizec	so_size.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248b20	176	__glMaterialfv_size	dwarf+dynsym	b6846ca55cc7		in	located	docs/sample-implementation.md#so_sizec	so_size.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248b20	176	__glMaterialfv_size	dwarf+dynsym	b6846ca55cc7		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248bd0	52	__glMaterialiv_size	dwarf+dynsym	3fe03e1453c9		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248c10	36	__glColorTableParameterfvSGI_size	dwarf+dynsym	f5d2aec7ca3e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248c40	52	__glColorTableParameterivSGI_size	dwarf+dynsym	73cfff4ded51		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
