@@ -2577,17 +2577,17 @@ ge.u	label	0x0000a8bb	mgeb_StrideEramToCram		understood	ucode/ge_compute.md#pixe
 ge.u	label	0x0000a8f7	mgesi_PixQueryCopyOverlap		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
 ge.u	label	0x0000a990	mgesi_PixRasterPosSetup		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
 ge.u	label	0x0000ab59	mmo_CopyFifoLine		understood	ucode/ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups	Pixel output and set-up (mpixout.S, mpixelSetup.S)
-ge.u	label	0x0000ab9d	mgesi_PipeSetup		located	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000ad1c	mgeb_XContextInitialize		located	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000ad39	mgeb_GLContextInitialize		located	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000ad66	mgeb_GlobalInitialize		located	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000ad90	mDebugInitialize		located	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000adaf	mX_CM_Initialize		located	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000ade8	mX_REGS_Initialize		located	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000ae09	mGL_EX_Initialize		located	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000b0f4	mGL_EM_Initialize		located	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000b1ac	mGL_CM_Initialize		located	ucode/ge_handlers.md#ges	ge.S
-ge.u	label	0x0000b25a	mGL_REGS_Initialize		located	ucode/ge_handlers.md#ges	ge.S
+ge.u	label	0x0000ab9d	mgesi_PipeSetup		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
+ge.u	label	0x0000ad1c	mgeb_XContextInitialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
+ge.u	label	0x0000ad39	mgeb_GLContextInitialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
+ge.u	label	0x0000ad66	mgeb_GlobalInitialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
+ge.u	label	0x0000ad90	mDebugInitialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
+ge.u	label	0x0000adaf	mX_CM_Initialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
+ge.u	label	0x0000ade8	mX_REGS_Initialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
+ge.u	label	0x0000ae09	mGL_EX_Initialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
+ge.u	label	0x0000b0f4	mGL_EM_Initialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
+ge.u	label	0x0000b1ac	mGL_CM_Initialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
+ge.u	label	0x0000b25a	mGL_REGS_Initialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
 ge.u	label	0x0000b27b	mgeb_Disable_EnablePolyOffsetExt		located	ucode/ge_handlers.md#glexts	glExt.S
 ge.u	label	0x0000b2ab	mgeb_PolygonOffset		located	ucode/ge_handlers.md#glexts	glExt.S
 ge.u	label	0x0000b2c3	mgeb_PolygonOffsetExt		located	ucode/ge_handlers.md#glexts	glExt.S
