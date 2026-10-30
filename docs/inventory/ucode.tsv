@@ -2816,26 +2816,26 @@ ge.u	label	0x0000e184	mGL_CtxLightInitialize		located	ucode/ge_handlers.md#light
 ge.u	label	0x0000e27a	mLiUpdateShin		located	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
 ge.u	label	0x0000e334	mLiDirtySimLiCRAM		located	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
 ge.u	label	0x0000e391	mLiDirtyGenLiCRAM		located	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
-ge.u	label	0x0000e3d2	mmo_Punt		located	ucode/ge_handlers.md#fluffs	fluff.S
+ge.u	label	0x0000e3d2	mmo_Punt		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e3e1	mmo_MultipassModule		located	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000e450	mdc_finish		located	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000e462	mdc_evaluator		located	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000e471	mdc_multipass		located	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000e4b6	mdc_sprite		located	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000e4d0	mdc_polymode_or_clip		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e4de	mmo_Vn2ToSave		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e4fd	mmo_V0ToSaveAndIgnore		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e519	mmo_V0ToSave_SaveExtra		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e544	mmo_V0ToSave		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e560	mmo_SaveToVn1		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e57e	mmo_SaveToV0AndVn2ToSave		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e5a9	mmo_SaveToV0_SaveExtra		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e5d7	mmo_SaveToV0_RestoreExtra		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e605	mmo_SaveToV0		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e623	mmo_SaveRasterPos		located	ucode/ge_handlers.md#fluffs	fluff.S
+ge.u	label	0x0000e4de	mmo_Vn2ToSave		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e4fd	mmo_V0ToSaveAndIgnore		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e519	mmo_V0ToSave_SaveExtra		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e544	mmo_V0ToSave		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e560	mmo_SaveToVn1		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e57e	mmo_SaveToV0AndVn2ToSave		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e5a9	mmo_SaveToV0_SaveExtra		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e5d7	mmo_SaveToV0_RestoreExtra		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e605	mmo_SaveToV0		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e623	mmo_SaveRasterPos		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e6a5	mmo_DirtyMultipassModule		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e6c0	mmo_CopyV0ToVn1AndIgnore		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e6d4	mmo_CopyV0ToVn1		located	ucode/ge_handlers.md#fluffs	fluff.S
+ge.u	label	0x0000e6c0	mmo_CopyV0ToVn1AndIgnore		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e6d4	mmo_CopyV0ToVn1		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e6e8	mmo_AbortGeometry		located	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000e741	mDispatchCentral		located	ucode/ge_handlers.md#fluffs	fluff.S
 ge.u	label	0x0000e75e	mClipPntUserAndFrustum		located	ucode/ge_handlers.md#pntclips	pntclip.S

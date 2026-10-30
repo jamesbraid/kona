@@ -1765,3 +1765,58 @@ on `cc` 0x68 does is not traced.
   the engine saved earlier: `mmo_SaveToV0` (0xe605) is inserted at word 0xd (0xb3a5-0xb3b2) before the `cc` 0x40 branch,
   and the two paths then output 0xd25 or 0xca86 to the decomposer words, as the same input selects in
   `mgesi_TfanPolyEnd` (branch at 0xb3aa).
+
+## Vertex save and copy modules (fluff.S)
+
+The save-vertex entry handlers splice one of these modules into the chain at successor word 0xd and park the displaced
+successor in word 0x18 ([Primitive entry handlers](#primitive-entry-handlers-entrys)). **Established** for every module
+below (each read in full in `ge_listing/fluff.S.lst`): it reads word 0x18 twice, once as a move whose value its store to
+word 0xd receives (the nine-word pairing of [the successor section](#how-the-vertex-path-is-chained-successor-words)) and
+once with `r95` = 2 before its group-31 transfer, so it unhooks itself and continues to the stage it displaced. The vertex
+data they move is record words 0x1b-0x22: the colour words 0x1b-0x1e and the four after them, which
+`mmo_SaveRasterPos` fills with the transformed texture coordinates. The save area is reached through address register
+0x16 at offsets 0x35-0x3c (`r95` = 0x17 reads, `r95` = 8 stores). Two fixed records serve as the strip's history: one at
+engine address 0x10c8 and one at 0x1164, each reached through register 0 loaded with that immediate.
+
+- `mmo_Punt` (`fluff.S` lines 996-1003, at 0xe3d2): **established**, the empty stage: it restores word 0xd from word 0x18
+  (0xe3d7, 0xe3e0) and jumps on through word 0x18 (0xe3d2), moving no vertex data.
+- `mmo_V0ToSave` (`fluff.S` lines 721-744, at 0xe544): **established**, copies record words 0x1b-0x22 of the batch's first
+  vertex (address register 0x1f, moves at 0xe545-0xe553) into the save area, offsets 0x35-0x3c (stores 0xe54e-0xe55c),
+  for the line loop's closing segment or the fan's centre.
+- `mmo_V0ToSaveAndIgnore` (`fluff.S` lines 822-839, at 0xe4fd): **established**, the same eight-word copy from the first
+  vertex to the save area (0xe4fe-0xe515), plus three register updates in its delay words (0xe510-0xe514: registers 0x19,
+  0x10 and 0x11 rewritten from themselves) that by its name drop the saved vertex from the batch's drawing.
+- `mmo_Vn2ToSave` (`fluff.S` lines 619-637, at 0xe4de): **established**, saves the older history vertex for the next
+  batch: register 0 is set to 0x10c8 (0xe4de) and its words 0x1b-0x22 go to save-area offsets 0x35-0x3c (0xe4e2-0xe4f9).
+- `mmo_V0ToSave_SaveExtra` (`fluff.S` lines 892-913, at 0xe519): **established**, the polygon form of `mmo_V0ToSave`: after
+  the eight-word copy (0xe51a-0xe531) it calls `mWramToEram` (0xe52c) with source 0x102c, destination register 0x16 and
+  count 0x27, keeping 39 more words, the polygon state, in external memory.
+- `mmo_SaveToV0` (`fluff.S` lines 650-663, at 0xe605): **established**, the restore: it reads save-area offsets 0x35-0x3c
+  (0xe605-0xe613) and writes them over record words 0x1b-0x22 of the batch's first vertex (stores through register 0x1f,
+  0xe60c-0xe61a), so a strip or fan continues from the vertex the previous batch kept.
+- `mmo_SaveToVn1` (`fluff.S` lines 758-773, at 0xe560): **established**, moves the saved eight words (0xe560-0xe56e) into
+  the history record at 0x1164 (register 0 loaded at 0xe563, stores 0xe567-0xe575): the line loop's first vertex becomes
+  the endpoint before the closing segment.
+- `mmo_SaveToV0AndVn2ToSave` (`fluff.S` lines 681-705, at 0xe57e): **established**, both directions in one stage: the save
+  area's eight words replace record words 0x1b-0x22 of the first vertex (0xe57e-0xe595), and the record at 0x10c8 then
+  refills the save area (0xe58a-0xe5a5).
+- `mmo_SaveToV0_SaveExtra` (`fluff.S` lines 926-947, at 0xe5a9): **established**, restores the first vertex's eight words
+  from the save area (0xe5a9-0xe5be) and then calls `mWramToEram` (0xe5bf) with source 0x102c, destination register 0x16
+  plus 0x3d and count 0x27 to keep the polygon state.
+- `mmo_SaveToV0_RestoreExtra` (`fluff.S` lines 959-981, at 0xe5d7): **established**, restores record words 0x1b-0x22 from
+  save-area offsets 0x35-0x3c (0xe5d7-0xe5ec) and eight more words from offsets 0x58-0x5f into the record through form-5
+  stores with the immediates 0x108-0x124 (0xe5e7-0xe5fc), the extra state the save forms kept.
+- `mmo_CopyV0ToVn1` (`fluff.S` lines 790-805, at 0xe6d4): **established**, copies record words 0x1b-0x22 of the first
+  vertex straight into the history record at 0x1164 (0xe6d8-0xe6df), without the save area: the vertex is already in the
+  batch, so the loop can close from it.
+- `mmo_CopyV0ToVn1AndIgnore` (`fluff.S` lines 857-876, at 0xe6c0): **established**, the same direct copy into the record at
+  0x1164 (0xe6c4-0xe6ca), followed by the three register rewrites (0xe6ce-0xe6d0) that `mmo_V0ToSaveAndIgnore` also ends
+  with.
+- `mmo_SaveRasterPos` (`fluff.S` lines 459-605, at 0xe623): **inferred**, the last stage of glRasterPos, which
+  `mgeb_RasterPos` installs in word 0xf. It tests bit 2 of the vertex's flag word 0x26 (AND with 4 at 0xe626, branch on
+  `cc` 3 at 0xe632). On the saving path it takes the texture coordinates in record words 0xb-0xe as input and multiplies
+  them by the texture matrix at engine words 0x5f-0x6e (unit-2 multiplies and multiply-adds, 0xe651-0xe660), storing the
+  four results to record words 0x1f-0x22 (0xe661-0xe664); it subtracts staged values from record words 0xf-0x11 and
+  0x23-0x25 (0xe67a-0xe67f) and copies 0x27 words of the record to external memory with `mWramToEram` (0xe681), the saved
+  raster position. It leaves through word 0x1a (0xe692), or to `mmo_SelectRasterPos` on `cc` 3 (0xe697). The other path
+  branches to `mmo_ToScreenSpaceInvQ` on `cc` 2 (0xe647).
