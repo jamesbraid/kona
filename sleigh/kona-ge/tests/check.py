@@ -8,6 +8,8 @@ Usage: check.py [OUTDIR]   (default .cache/kona-ge; run-ghidra.sh writes it)
   (b) irsaudit's 172-word instruction test (ucode/ge_inst_results.tsv):
       each output word decodes as the output store, and each operation the
       operation table of ucode/ge_ops.md fixes decodes as that operation;
+  (c) every routine ucode/ge_compute.md gives an entry to is a function
+      entry Ghidra found;
 
 Prints one line per test and the failures; exits non-zero if any test fails.
 """
@@ -145,6 +147,58 @@ def test_b():
     return ok
 
 
+def compute_routines():
+    """Routine entries among the bullet subjects of ge_compute.md.
+
+    A subject is a routine entry when ucode/ge_xref.tsv says something
+    outside its own code reaches it (a geif.u slot, an ARM load, the
+    distributor table, its address stored as a constant) or a call word
+    (group-0 transfer in ucode/ge_listing/) names it, or when it shares its
+    address with such a label. Loop heads and branch targets inside a
+    routine (lXF1, mainloop_clamp, ...) are not routine entries.
+    """
+    syms = {}
+    for line in open('ucode/KONA/ge_symbols'):
+        n, a = line.split()
+        syms[n] = int(a, 16)
+    reached = set()
+    for line in open('ucode/ge_xref.tsv'):
+        f = line.rstrip('\n').split('\t')
+        if line.startswith(('#', 'address')) or len(f) < 11:
+            continue
+        slots, arm, _, ged, _, consts = f[5:11]
+        if slots or arm or ged or consts:
+            reached.add(int(f[0], 16))
+    for p in glob.glob('ucode/ge_listing/*.lst'):
+        for line in open(p):
+            m = re.search(r' xfer[45] c0 cc=[0-9a-f]+ -> ([0-9a-f]{4})', line)
+            if m:
+                reached.add(int(m.group(1), 16))
+    names, other = [], []
+    for line in open('ucode/ge_compute.md'):
+        m = re.match(r'^- `([A-Za-z_][A-Za-z0-9_]*)`', line)
+        if m and m.group(1) in syms:
+            (names if syms[m.group(1)] in reached else other).append((m.group(1), syms[m.group(1)], line))
+    return names, other
+
+
+def test_c():
+    funcs = {}
+    for line in open(os.path.join(OUT, 'prod.functions')):
+        a, n = line.split('\t')
+        funcs[int(a, 16)] = n.strip()
+    routines, other = compute_routines()
+    miss = [(n, a) for n, a, _ in routines if a not in funcs]
+    ok = not miss
+    print('(c) %s: %d of %d routine entries in ge_compute.md are functions (%d functions found; '
+          '%d other subjects are loop heads or branch targets, %d of them function entries)' % (
+              'PASS' if ok else 'FAIL', len(routines) - len(miss), len(routines), len(funcs),
+              len(other), sum(1 for _, a, _ in other if a in funcs)))
+    for n, a in miss[:40]:
+        print('  missing %04x %s' % (a, n))
+    return ok
+
+
 def test_imports():
     """ge11.u and ge.hex import to the same words as ge.u; ge_diag_init too."""
     ok = True
@@ -162,7 +216,7 @@ def test_imports():
 
 
 def main():
-    results = [test_a(), test_b(), test_imports()]
+    results = [test_a(), test_b(), test_c(), test_imports()]
     sys.exit(0 if all(results) else 1)
 
 

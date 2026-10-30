@@ -5,7 +5,7 @@
 #
 # Run from the repository root with Ghidra's support directory (sleigh,
 # analyzeHeadless) on PATH and root/ populated. It writes, under OUTDIR:
-#   prod.listing                               production ucode/KONA/ge.u
+#   prod.functions, prod.listing                production ucode/KONA/ge.u
 #   diag.listing                               usr/diags/IR/ucode/ge.u
 # and sleigh/kona-ge/tests/check.py then compares them with the Python
 # disassembler and the documents.
@@ -37,9 +37,10 @@ headless() {
     analyzeHeadless "$proj" p -scriptPath "$MOD/ghidra_scripts;$MOD/tests" "$@" -deleteProject
 }
 
-# Production program: every word.
+# Production program: functions first, then every word.
 headless -import ucode/KONA/ge.u -loader BinaryLoader \
     -processor KONA-GE:BE:32:default -preScript KonaGEImport.java \
+    -postScript DumpFunctions.java "$OUT/prod.functions" \
     -postScript DumpListing.java "$OUT/prod.listing"
 
 # The diagnostic program that irsaudit's instruction test runs.

@@ -208,4 +208,5 @@ From `check.py` against IRIX 6.5.30m `usr/gfx/ucode/KONA/` and `usr/diags/IR/uco
 
 - **(a) passes.** All 47211 listed words of `ge.u` match `scripts/ge_disasm.py` field for field. Each instruction prints a mnemonic, then the transfer and every record group that differs from the no-op record, as that script does. r62 is printed as `high:low`.
 - **(b) passes.** All 172 output words of `irsaudit`'s instruction test decode as the output store. The 41 rows of the operation table each decode to the documented operation, found by walking back from the output word to the word that wrote its register.
+- **(c) passes.** All 452 routine entries among the `ge_compute.md` subjects are function entries; 729 functions are found in all. A routine entry here is a label reached by a slot, an ARM load, the distributor table, an address constant or a call word. The 228 loop heads and branch targets among the subjects are left out.
 - **Imports pass.** `ge11.u` and `ge.hex` import to the same listing as `ge.u`, and `ge_diag_init.hex` decodes all 283 words.
