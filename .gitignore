@@ -21,4 +21,5 @@ root/
 
 # Ghidra module build output and test dumps
 /sleigh/kona-ge/data/languages/*.sla
+/sleigh/kona-ged/data/languages/*.sla
 /.cache/

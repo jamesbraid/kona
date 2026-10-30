@@ -257,3 +257,48 @@ Results against IRIX 6.5.30m:
 - `arm1_kpm.u`, `arm1_nic.u`, the diagnostic `arm1.u` and `diag_arm_init.u` import with their host-interface references resolved; they have no listing to compare names against.
 
 Limits: the diagnostic images' functions that match nothing in `arm1.u` stay `fn_<address>`, and `tport.bin`'s own token map (built at +0x3b0 with 8-byte entries) is not typed.
+
+## Ghidra processor module for the distributor program
+
+`sleigh/kona-ged/` is a Ghidra extension for the distributor program `ged1b.u` (`usr/gfx/ucode/KONA/`), the 931-word program the ARM loads into the distributor at start-up. The word format is the one the IR diagnostic packs ([ucode/ged.md](../ucode/ged.md#word-format)): bits 31-30 pick control, transfer, load or the unused type 3, and the module decodes every field of each. Built and tested with Ghidra 12.1.3.
+
+| Path | What it is |
+|---|---|
+| `data/languages/kona_ged.slaspec` | The SLEIGH spec |
+| `data/languages/kona_ged.{ldefs,pspec,cspec}` | Language `KONA-GED:BE:32:default` |
+| `ghidra_scripts/KonaGEDImport.java` | The import recipe, run as a pre-script on a raw import |
+| `tests/run-ghidra.sh`, `tests/DumpListing.java` | Compiles the spec, imports `ged1b.u` and dumps the listing and functions |
+| `tests/check.py` | Compares the listing with `scripts/ged_disasm.py` |
+
+Mnemonics and operands follow `scripts/ged_disasm.py`: `ctl` with each nonzero field (`x`, `y`, `r`, `a`, `b`, `c`, `z`, `n`, `release`, `sub`), `nop` for the zero word, `xfer0`-`xfer7` with `p`, `q`, the register (one-hot for ops 5 and 7, shown as r53-r60), `v` for ops 1-3 and the target, `load0`-`load7` with `x`, `y`, register and immediate, `move` for load op 2, and `+fetch` on any word with bit 26 set. They are labels for the word types, not hardware names. Ghidra prints the numbers in hex and the target as a byte address.
+
+Addresses are bytes: program word i is at 4 x i, and the table block is at 0x1000 (word 0x400), where the ARM's loader puts it. Registers `r0`-`r255` are the distributor registers by number.
+
+Semantics carry only what [ucode/ged.md](../ucode/ged.md#what-each-type-does) reads from the program:
+
+- a transfer jumps to its target after one delay slot (inferred); op 0 is unconditional (inferred), and the condition of ops 1-7 is the opaque `ged_cond(word, register, value)`, since its kind is unknown;
+- load op 0 sets the register to the immediate and `move` copies the register the immediate names (inferred); other load ops are the opaque `ged_load`;
+- fetch and release are the opaque `ged_fetch` and `ged_release`, and the control fields go to the opaque `ged_control(word)`.
+
+A transfer whose next word is also a transfer is decoded without a delay slot, because Ghidra cannot decode a transfer inside one. The import sets this per word through the context bit `nodly`; 29 transfers have it. What the hardware does there is not known.
+
+Import recipe (the argument is the repository root, for `ucode/ged_relocs.tsv`):
+
+```sh
+analyzeHeadless PROJDIR PROJ -import ucode/KONA/ged1b.u -loader BinaryLoader \
+  -processor KONA-GED:BE:32:default \
+  -scriptPath sleigh/kona-ged/ghidra_scripts -preScript KonaGEDImport.java "$(pwd)"
+```
+
+The script maps the program and the table block, puts the line table in end-of-line comments as `file:line` with the relocated engine handler of each slot word ([ucode/ged_relocs.tsv](../ucode/ged_relocs.tsv)), and decodes every word on its own. It types table A (16 words, `table_A`, each nonzero entry commented with the table B base 8 x A[class]) and table B (512 words, `table_B`) as data, adds a reference from every table B entry to its program word, and labels each word a table B entry starts (`B_<first index>`, with every index in a comment) as an entry point and function.
+
+Test, from the repository root:
+
+```sh
+sleigh/kona-ged/tests/run-ghidra.sh .cache/kona-ged       # needs Ghidra
+python3 sleigh/kona-ged/tests/check.py .cache/kona-ged    # needs Python 3 only
+```
+
+Result against IRIX 6.5.30m: all 931 words match `scripts/ged_disasm.py` in mnemonic and operands (210 control, 248 transfer, 473 load), and all 206 words a table B entry starts are function entries.
+
+The 24-bit control word that a routed token-map entry or an ARM descriptor carries (geometry, pass and register/pixel forms, [ucode/ged.md](../ucode/ged.md#the-token-map-entry-is-the-distributors-control-word)) is not a program word, so the module does not decode it.
