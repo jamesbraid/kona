@@ -1,0 +1,93 @@
+# Installed programs, scripts and configuration files
+
+One entry per file the graphics packages install beside the InfiniteReality driver (IRIX 6.5.30m, N32 programs unless noted). Each says what the file is for, how it reaches the pipe (a device node and its ioctls, a mapped window, a library call, or not at all) and where its key entry points are. **Established** means the whole routine or file named was read; **inferred** says what the reading rested on. Function-level groupings of the large programs are in [kpm.md](kpm.md), [irsaudit.md](irsaudit.md) and [setup-tools.md](setup-tools.md); the ioctl numbers are those of [kernel.md](kernel.md). Addresses are virtual addresses in the program's own image.
+
+## Scripts and kernel configuration
+
+- `usr/gfx/startgfx`: **established.**
+  A 1477-byte Bourne script that starts the window system, shared by every graphics family, so it names no pipe.
+  Line 28 runs `chkconfig windowsystem on` and leaves with status 1 when the flag is off.
+  Lines 34 to 46 look for a login on the `tport` line; when one is present they rewrite the `tp:` entry of `/etc/inittab` from `respawn` to `off` through a temporary copy and run `telinit q`, which frees the textport driver's hold on the board.
+  Lines 50 to 60 read `sysconf MAC`; on a system that is not label-based they send SIGHUP to a running `xdm` or exec `/usr/bin/X11/xdm`.
+  It never opens `/dev/opengl`: the pipe is reached later, by the X server's Kona module.
+- `usr/gfx/stopgfx`: **established.**
+  The 1654-byte inverse of the start script.
+  Line 26 insists that `/etc/inittab` is writable by the caller, line 34 repeats the `chkconfig` test, and lines 40 to 55 turn the `tp:` entry back from `off` to `respawn` so the textport reclaims the head.
+  Line 57 sets `windowsystem` to off, and lines 59 to 63 kill `XFree86` when that server exists and `Xsgi` otherwise.
+  The pipe is released by the server's exit, since the script holds no device handle.
+- `usr/gfx/gfxtopology`: **established.**
+  A 6294-byte Perl script that reports which graphics pipe sits behind which brick and port and which keyboard and mouse belong to which pipe, for Origin and Onyx systems.
+  It runs `hinv -mv` (line 11) and keeps the location line of a `kona` or `xtalk` entry and the part-number line of a `KTOWN`, `GE` or `ODY` entry in the tables `%ktown` and `%ginfo` (lines 24 to 43).
+  Without `/hw/gfx` (line 52) it lists `/hw/module/<node>/CGbrick/xtalk/*/agp/*/1a/fglrx` and files the pipe as `SN1` (lines 74 to 103).
+  With `/hw/gfx` it splits each link target and classes it `SN1` for `IXbrick`, `Ibrick`, `Xbrick` or `Nbrick` (line 119) and `SN0` for a `slot` path (line 130), reading `.master` to find the owning node.
+  Lines 155 to 195 place input devices from `/etc/ioconfig.conf`.
+  It reads only the hardware graph and `hinv` output, never the board.
+- `usr/gfx/KONA/bin/postmortem`: **established.**
+  A shell wrapper named `pm.sh` in its header: a 1545-byte script that runs `kpm` against one pipe and files the result.
+  It refuses to run unless the uid is 0 (line 14), takes the pipe number from its first argument (default 0), and keeps only the four newest `kpm_*.dump` files in `/usr/adm/crash/diags/gfx/IR` by deleting older dump, `.rslt` and `.sum` triples (lines 38 to 47).
+  The capture is `kpm -dump -pipe N -field -force -f <stamp>.dump -summary <stamp>.sum -result <stamp>.rslt` (line 50), after which it hands the summary and result to the availability agent `amdiag` or, failing that, mails both through `amsend` (lines 55 to 60).
+  The pipe is reached only by the program it launches.
+- `usr/diags/IR/bin/availmon`: **established.**
+  A 1140-byte shell script named `availmon.sh` that does the same housekeeping and mailing for `irsaudit`: it takes a name, a summary file and a result file (line 21, exit status 2 and a usage line otherwise), keeps the newest five `.rslt` files in `/usr/adm/crash/diags/gfx/IR` (lines 30 to 40) and passes the pair to `amdiag` or `amsend`.
+  It touches no device and runs nothing graphical.
+- `var/sysgen/system/gfx.sm`: **established.**
+  The 878-byte system file the autoconfiguration step reads for the graphics drivers.
+  It includes the input drivers (`shmiq`, `idev`, `mouse`, `keyboard`; line 31) and lists `USE: kona` at line 43 and `USE: mgras` at line 47, so the Kona driver and the Origin 350 and Octane raster driver share one file.
+  Textport drivers `tport`, `tportpckbd` and `htport` follow, and `USE: gfxs rrm xconn` then `USE: gfx` come last (lines 61 and 62), a placement its comment gives as the reason the kernel calls the generic layer first.
+- `var/sysgen/master.d/gfxs`: **established.**
+  The 399-byte master entry of the graphics streams device.
+  Line 6 declares the flags `sofp`, prefix `gfxs`, soft number 56 and the dependencies `gfx` and `clone`.
+  The C part sets `GfxBoardLimit` to 128 when `IP27` or `IP35` is defined and 8 otherwise (lines 11 to 16) and sizes the `GfxBoards` pointer array to match (line 17), the table `gfx.o` fills with one record per head.
+- `var/sysgen/mtune/gfx`: **established.**
+  The 2848-byte tunable table for the generic layer.
+  Line 39 sets `gfxlockablemem` to a default of 20 percent of memory that graphics may lock (range 0 to 100) and line 40 `gfxlockablemem_gt64` to 50 for larger machines.
+  Line 41 gives `gfxdmasleepthreshold` default 0 with minimum 0, and line 42 `gfxupdatedmousehandling` 1 (range 0 to 1) to turn the mouse-event synchronisation handling on.
+  Line 71 marks the `compositor` group as run-time settable, `compositorforceswapready` (line 72, 0 to 3) chooses when the driver fires the swap-ready line after a configuration change, and `compositordisablefastupdate` (line 82, 0 or 1) selects the synchronised tile update; the compositor belongs to the multi-pipe combiner, not to the pipe tested here.
+
+## X resource files
+
+- `usr/lib/X11/app-defaults/Dmconf`: **established.**
+  The 3525-byte resource file of the `dmconf` window, generated by RapidApp 1.2 (line 5).
+  Lines 11 to 20 turn on the SGI schemes, SGI mode, the enhanced file selector and explicit keyboard focus; 35 label strings follow.
+  Thirteen are the `denaliFormat` buttons (lines 28 to 40: 1920x1080 and 1280x720 and the two standard-definition rates) for the digital-media option, and the `odyFormatLabel` ("VPro Format:", line 73) and `odyPropertiesButton` entries name the Octane2 board, so the file serves several families and holds nothing specific to this one.
+- `usr/lib/X11/app-defaults/Ircombine`: **established.**
+  The 26754-byte resource file of the `ircombine` window, with 444 label strings.
+  Lines 215 to 218 label the four graphics choices of its first form: `gfxOnyx2IR` "Onyx2/Onyx3000 InfiniteReality(2,2E,3)", `gfxOnyx2IR4` "InfiniteReality4", `gfxOnyx2R` "Onyx2 Reality" and `gfxOnyxIR` "Onyx Infinite Reality".
+  The prefixes `dvp_` (20 resources), `gvo_` (20), `hdgvo` (18) and `enc_` name the option boards the combiner edits: the digital video projector, the graphics video output, its high-definition form and the encoder.
+  Entries such as `rmMenu` ("Number of RMs:", line 413) and `managedLabel` ("Managed Area:", line 313) correspond to fields the program writes into a combination.
+- `usr/lib/X11/app-defaults/XSetmon`: **established.**
+  The 25223-byte resource file of the `xsetmon` window, with 128 label strings.
+  Its fallback message (line 88) tells the user that a server without the video-control extension cannot change formats from the window and points to the command-line `setmon`.
+  Labels at lines 74 to 155 (`label16` "Origin:", `labelFrameRateAnnounce`, `labelHBPAnnounce` and others) are the readouts of the timing form, and the `gammaMapEditor` resources (line 301) belong to the colour-map page.
+
+## Programs that reach the pipe
+
+- `usr/gfx/KONA/bin/ireeprom`: **established** for the paths named, **inferred** for what the sub-commands mean.
+  A 150304-byte program that reads, writes, erases and verifies the pipe's boot EEPROM; entry `__start` at 0x10001540, `main` at 0x1000165c.
+  The option string at 0x100042b0 is `wrveiFp:f:hcd:s` (write, read, verify, erase, info, force, pipe, file, help, erase-combination), and the code at 0x100016c8 refuses a caller that is not the super-user.
+  The helper at 0x10001a20 opens `/dev/opengl` with flags 0x802 and counts boards with ioctl 101; the per-pipe routine at 0x10001abc fetches the board record with ioctl 102 and compares its name field against `KONA`, `KONAT`, `KONAS`, `KONAL` and `KONAD` (strings at 0x10024080 to 0x100240a0), asks 105 whether a window system manages the board, then attaches with 103 followed by 1000 and 1002 when it does or sends 113 when it does not.
+  `setup_ucode` at 0x1000228c sends the private ioctl 10100 with function 10 and then 9, with generic ioctl 106 between them, to hand the write window to the program.
+  Everything after that goes through `KonWGWrite` at 0x10002a4c, which waits up to 1000 one-tick sleeps for the FIFO-fill field (word 0x4208 of the mapped window, mask 0xffe) to fall to 1500 or less and then stores one word at window offset 12 when the CPU board class is the first of four and at offset 0 otherwise; the routine at 0x10002960 reads that class from `getinvent` and maps inventory types 11, 15, 19 and 22 to the classes the warning string calls IP19, IP25, IP27 and IP35 (**inferred** for the pairing of number and name).
+  Every operation starts with the token word 492 (0x1ec): `erase_eeprom` at 0x10003274 follows it with 1 and 4096 data words, `erase_combo` at 0x10003430 with 6, `write_eeprom` at 0x10002bdc with 1 and the image, and `setup_ucode` with 3 or 4 around its handshake.
+  Results come back through `get_rdata` at 0x100026cc, which polls the first word of the read-back area with `sginap(2)` and returns the second.
+  The sub-command words 1, 3, 4 and 6 are named only by the string each operation prints, so their meaning at the hardware is **inferred**.
+- `usr/gfx/hyperpipeinfo`: **established.**
+  An 18328-byte program that prints the hyperpipe network of one display; `main` at 0x10000ff0.
+  It parses `-d <displayname>` with `getopt` (option character 100 at 0x10001050), opens that display or the default one with `XOpenDisplay`, and requires `GLX_SGIX_hyperpipe` in `glXQueryExtensionsString` of the screen (strstr at 0x10001244).
+  It then calls `glXQueryHyperpipeNetworkSGIX` (0x10001294) and prints one `pipe %s network id %d` line per record, reading the name at offset 0 and the id at offset 80 of 84-byte records (0x10001300 to 0x10001344).
+  It has no device handle of its own; the library reaches the board through `/dev/opengl`.
+- `usr/diags/IR/bin/hyper`: **established.**
+  A 38544-byte test program that builds a hyperpipe ring across the pipes and draws on all of them; `main` at 0x100027b0, `usage` at 0x10003f00.
+  The option string at the `getopt` call is `:de:h:l:n:p:r:s:tvw:x:y:z` (debug, exit count, window height, ring size, pipe count and a comma-separated pipe list, slow, scribble and Z modes).
+  `main` queries `glXQueryHyperpipeNetworkSGIX`, builds the configuration with `glXHyperpipeConfigSGIX`, forks one process per pipe with `sproc`, and `perPipeMainProc` at 0x100040d0 creates a window with `XCreateWindow`, binds with `glXBindHyperpipeSGIX` and loops over `perPipeGfxDraw` at 0x10005770 and `perPipeGfxScribble` at 0x10006610.
+  It reports "more than one pipe not genlocked" when `XSGIvcQueryScreenInputSyncSource` (called from `getScreenFromDisplay` at 0x10005300) shows several free-running pipes.
+  The board is reached only through libGL and the video-control library.
+- `usr/gfx/ucode/vfc/sdbutil`: **established** for its role and structure, **inferred** for the parser grammar.
+  A 70452-byte C++ program (libC.so.2) that creates or prints a symbol database in the `.vfo` format; `_main` at 0x10003f30, program `main` at 0x10004b60.
+  Its usage text is `sdbutil ([-c <sdbfile> [<txtfile>]] | <sdbfile>)...`: `createFile` at 0x10005720 parses a text description with the generated scanner `yylex` (0x100058ac) and parser `yyparse` (0x1000652c) and writes a new database through `SDBopenNewDatabase` (0x1000a684), `SDBaddNewScalarSymbol` and `SDBaddNewArraySymbol` (0x1000a4b0 and 0x1000a478) and `SDBcloseNewDatabase` (0x1000a4f0); `readExistingFile` at 0x100052b8 opens a database with `SDBreadOpenDatabase` (0x1000ac5c) and prints each symbol with the `binToAsc_*` converters.
+  Its imports are only libC and libc, with no graphics library and no device, so it never touches a pipe; the video-format compiler uses its output as an input file ([ucode/dg.md](../ucode/dg.md)).
+- `usr/gfx/KONA/bin/kpm`: **established** for its modes and entry points, **inferred** for the capture groupings in [kpm.md](kpm.md).
+  A 1388788-byte post-mortem and inspection program with symbols, linked against `libcurses` for its viewer; `main` at 0x1000a6cc.
+  `main` turns the options of its usage string (`-help`, `-view`, `-dump`, `-sim`, `-hw`, `-fake`, `-ged`, `-rm`, `-dg`, `-f`, `-pipe`, `-debug`, and the `+geeram +beffifo +rm +dg +sram +sdram +eeprom` modifiers) into one of four modes and calls `init_report`, `kpm_dump` (0x1000d510) and `close_report` for a dump, `kpm_view` (0x1000e330) for the viewer, `kpm_status` (0x1000e210) for the read-only status and `kpm_interact` (0x1000f538, an 8-byte stub) for the interactive mode.
+  It opens `/dev/opengl` and checks `GFX_IS_MANAGED` (ioctl 105, strings "Unexpected error doing GFX_IS_MANAGED ioctl"), then reaches the pipe's registers through its own boundary-scan helpers, such as `hipReset` at 0x10017204, `setup_dma` at 0x1001f76c and `jtagInspection` at 0x1002207c, rather than through the drawing window.
+  `dfCreateDumpFile` at 0x1000afdc writes the dump header; `read_chains` at 0x100216dc loads the scan-chain description files of [data-files.md](data-files.md).

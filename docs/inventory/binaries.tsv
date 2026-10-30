@@ -68,8 +68,8 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n
 usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8068	8af55035550b9e02		3	symtab	4	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
 usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7412	d3526393bde60851		5	symtab	2	3	named-only	docs/kernel-functions.md#map-ram-kona_mapram_hip2o	Map RAM: `kona_mapram_hip2.o`
 usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	symtab	0	0	named-only	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
-usr/diags/IR/bin/availmon	diagnostics	board-diagnostic	data	-	1140	0830da204c6694ce		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/bin/hyper	diagnostics	board-diagnostic	executable	n32	38544	c9c31f17ce8a9831		11	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/diags/IR/bin/availmon	diagnostics	board-diagnostic	data	-	1140	0830da204c6694ce		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
+usr/diags/IR/bin/hyper	diagnostics	board-diagnostic	executable	n32	38544	c9c31f17ce8a9831		11	dynsym	0	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/irsaudit	diagnostics	board-diagnostic	executable	n32	2967860	57830d1caab0efac		1170	dynsym	0	0	understood	docs/hip.md#what-the-ir-diagnostic-shows-of-the-host-interface	What the IR diagnostic shows of the host interface
 usr/diags/IR/data/1280x1024_60.vfo	diagnostics	board-diagnostic	data	-	17920	fbcaab1b00af730f		0		0	0	undocumented		
 usr/diags/IR/data/160x100_5000.vfo	diagnostics	board-diagnostic	data	-	17967	8b776633a7cf9df6		0		0	0	understood	docs/display-formats.md#video-formats-the-diagnostics-load	Video formats the diagnostics load
@@ -434,9 +434,9 @@ usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3
 usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
 usr/diags/IR/ucode/ge_diag_init.u	diagnostics	board-diagnostic	data	-	12082	7e407147118cf628		0		0	0	located	ucode/ge_isa.md#the-program-files	The program files
 usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0		0	0	undocumented		
-usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	dynsym	0	0	named-only	docs/coverage.md#microcode-lower-priority	Microcode (lower priority)
-usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	dynsym	14	0	located	docs/kpm.md#diagnostic-tools-kpm-and-the-boundary-scan-library	Diagnostic tools: `kpm` and the boundary-scan library
-usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	dynsym	0	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	dynsym	14	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
 usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	45a61c37ce61cf80		2936	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	dynsym+mdebug	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-libraries	shared-library	shared-object	n32	1833076	dff2b0d82deac998		3811	dynsym (dwarf addresses stale, dropped)	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
@@ -454,13 +454,13 @@ usr/gfx/arch/IP35KONA64/libGL.so	libraries	board-library	shared-object	n64	56742
 usr/gfx/arch/IP35KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d5889b8581d8de51		4907	dynsym+dwarf	2909	0	undocumented		
 usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	2eec8716f6ad8a43	usr/gfx/gfxinit	227	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/hyperpipeinfo	board-tools	board-tool	executable	n32	18328	a43eeddde7bbbcbf		4	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
+usr/gfx/hyperpipeinfo	board-tools	board-tool	executable	n32	18328	a43eeddde7bbbcbf		4	dynsym	0	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ircombine	board-tools	board-tool	executable	n32	766080	7016ad16f636dc67		1238	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dynsym	0	0	named-only	docs/coverage.md#dg	DG
 usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
+usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
 usr/gfx/ucode/KONA/arm1.u	microcode	board-microcode	data	-	465452	8431a8e3184c858f		0		0	0	named-only	docs/tooling.md#arm-firmware-import	ARM firmware import
 usr/gfx/ucode/KONA/arm1_kpm.u	microcode	board-microcode	data	-	7176	0938c672c1bf6b5a		0		0	0	named-only	docs/open-questions.md#arm-firmware	ARM firmware
 usr/gfx/ucode/KONA/dg4/cmb/1024x768_60.cmb	microcode	board-microcode	data	-	2272	c15312d32bbb3f58		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
@@ -584,10 +584,10 @@ usr/gfx/ucode/vfc/rules/dg4.def	video-formats	board-data	data	-	10708	aac372e63b
 usr/gfx/ucode/vfc/rules/dg4_ddo_gvo.def	video-formats	board-data	data	-	12208	d73fb0145682bdbc		0		0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
 usr/gfx/ucode/vfc/rules/dplex.def	video-formats	board-data	data	-	10663	dcd806610ebc3c41		0		0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
 usr/gfx/ucode/vfc/rules/voc1.def	video-formats	board-data	data	-	1980	125832d2727b529f		0		0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
-usr/gfx/ucode/vfc/sdbutil	board-tools	board-tool	executable	n32	70452	3fa52d6c92f4026b		93	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d7eec8		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/ucode/vfc/sdbutil	board-tools	board-tool	executable	n32	70452	3fa52d6c92f4026b		93	dynsym	0	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d7eec8		0		0	0	understood	docs/install-tools.md#x-resource-files	X resource files
+usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0		0	0	understood	docs/install-tools.md#x-resource-files	X resource files
+usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0		0	0	understood	docs/install-tools.md#x-resource-files	X resource files
 usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	dynsym	0	0	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
 usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
@@ -595,6 +595,6 @@ usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c
 usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
 usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	none	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
 usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	dynsym+dwarf	0	0	named-only	docs/libfm.md#the-font-manager-library-libfmso-function-reference	The font-manager library (`libfm.so`): function reference
-var/sysgen/master.d/gfxs	kernel-config	shared-data	data	-	399	ef56620faa1e0634		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0		0	0	named-only	docs/data-files.md#diagnostic-data-format-files-and-installed-tools	Diagnostic data, format files and installed tools
-var/sysgen/system/gfx.sm	kernel-config	shared-data	data	-	878	47fa105a54a80d26		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+var/sysgen/master.d/gfxs	kernel-config	shared-data	data	-	399	ef56620faa1e0634		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
+var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
+var/sysgen/system/gfx.sm	kernel-config	shared-data	data	-	878	47fa105a54a80d26		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration

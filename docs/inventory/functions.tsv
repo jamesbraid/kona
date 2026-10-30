@@ -1,7 +1,7 @@
 binary	role	abi	elf_section	address	size	name	source	code_sha	rejected	scope	status	doc	section
-usr/bin/X11/xsetmon	shared-tool	n32		0x1001e5a0	268	__start	dynsym	11eaa1b2c622		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/bin/X11/xsetmon	shared-tool	n32		0x1001e5a0	268	__start	dynsym	11eaa1b2c622		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/bin/X11/xsetmon	shared-tool	n32		0x1001e6ac	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/bin/X11/xsetmon	shared-tool	n32		0x1001e6c0	180	_main	dynsym	e6dd324d7437		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/bin/X11/xsetmon	shared-tool	n32		0x1001e6c0	180	_main	dynsym	e6dd324d7437		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/bin/X11/xsetmon	shared-tool	n32		0x1001e780	84	_fini	dynsym	3b2bab124135		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/bin/X11/xsetmon	shared-tool	n32		0x1001e7e0	128	__process_needed_destructions__Gv	dynsym	2a1a1c2f9a7b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/bin/X11/xsetmon	shared-tool	n32		0x1001e860	40	__record_needed_destruction	dynsym	48725fe80b51		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -406,7 +406,7 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x1003bb20	1328	create__21GammaMapEditorCla
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003c050	88	__ct__21SetmonMasterFormClassGPCc	dynsym	0cd13729af63		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003c0b0	116	doOptionSyncSourceInternal__19ServerInfoFormClassGP10_WidgetRecPv	dynsym	68b45a655e30		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003ca00	108	__dt__21SetmonMasterFormClassGv	dynsym	2182f436e004		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
-usr/bin/X11/xsetmon	shared-tool	n32		0x1003ca70	296	main	dynsym	32439f2a6712		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/bin/X11/xsetmon	shared-tool	n32		0x1003ca70	296	main	dynsym	32439f2a6712		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003cba0	24	RegisterStatisticsFormClassInterface__19StatisticsFormClassSGv	dynsym	9e47a2ac7a00		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003cbc0	8	doArmScalarDrag__21GammaMapEditorClassUIGP10_WidgetRecP7_XEvent	dynsym	78aa5094d5ec		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003cbd0	116	__ct__19SyncSelectorFrameUIGPCcP10_WidgetRec	dynsym	43b56cd8de74		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
@@ -1359,18 +1359,18 @@ usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x45f8	120	RRM_MapClipToSw
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4670	1148	RRM_Dispatch	dwarf+symtab	54a4272e17c6		in	understood	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4aec	208	irix5_to_RRM_ValidateClip	dwarf+symtab	5e5f7d961908		in	understood	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4bbc	120	irix5_to_RRM_GetDisplayModes	dwarf+symtab	6d876a5b9bb8		in	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10002680	268	__start	dynsym	d497b08c45b9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10002680	268	__start	dynsym	d497b08c45b9		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000278c	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100027b0	5968	main	dynsym	e5fcddfe0571		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10003f00	460	usage	dynsym	e28538f95d8f		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100040d0	4644	perPipeMainProc	dynsym	a34198cc4633		in	named-only	docs/setup-tools.md#hyper	`hyper`
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005300	228	getScreenFromDisplay	dynsym	5b3082f21c1f		in	named-only	docs/setup-tools.md#hyper	`hyper`
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100027b0	5968	main	dynsym	e5fcddfe0571		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10003f00	460	usage	dynsym	e28538f95d8f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100040d0	4644	perPipeMainProc	dynsym	a34198cc4633		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005300	228	getScreenFromDisplay	dynsym	5b3082f21c1f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100053f0	104	waitForMapNotify	dynsym	33b0bfd92df6		in	named-only	docs/setup-tools.md#hyper	`hyper`
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005460	784	perPipeGfxInit	dynsym	623f9a6b3848		in	named-only	docs/setup-tools.md#hyper	`hyper`
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005770	3744	perPipeGfxDraw	dynsym	83f83edfaedd		in	named-only	docs/setup-tools.md#hyper	`hyper`
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10006610	280	perPipeGfxScribble	dynsym	85863b09beb8		in	named-only	docs/setup-tools.md#hyper	`hyper`
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005770	3744	perPipeGfxDraw	dynsym	83f83edfaedd		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10006610	280	perPipeGfxScribble	dynsym	85863b09beb8		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000673c	4	__istart	dynsym	df3f619804a9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015380	268	__start	dynsym	512f417857fb		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015380	268	__start	dynsym	512f417857fb		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001548c	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015498	88	output_revision_info	dynsym	45f06f834366		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100154f0	2304	jt_load_internal_bist	dynsym	b7b1330792af		in	named-only	docs/data-files.md#built-in-self-test-descriptions	Built-in self-test descriptions
@@ -1507,7 +1507,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e3e4	176	post_fatal_error	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e494	128	maybe_print_meta_results	dynsym	d53a7d543255		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e514	1192	run_tests	dynsym	e7545ea30bc6		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e9bc	436	output_command_line	dynsym	ef8678360c6e		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003eb70	2224	main	dynsym	3518492947ec		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003eb70	2224	main	dynsym	3518492947ec		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10041b24	68	cmp_nic_sn	dynsym	19c331307f4f		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10042548	4684	TEST_nicprobe	dynsym	5e7e134de7d9		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10044798	152	kt_init_time	dynsym	3ba984def90e		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -2540,22 +2540,22 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101706d8	8	isetcolormap	dynsym
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101706e0	564	iclose	dynsym	b68ebb2f9998		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10170914	152	iflush	dynsym	c5fcdd4dcf60		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101709bc	4	__istart	dynsym	df3f619804a9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10001540	268	__start	dynsym	3c04e7ed614a		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10001540	268	__start	dynsym	3c04e7ed614a		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000164c	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000165c	964	main	dynsym	dfc728a880ff		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000228c	900	setup_ucode	dynsym	4bc61b9d003b		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000165c	964	main	dynsym	dfc728a880ff		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000228c	900	setup_ucode	dynsym	4bc61b9d003b		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10002610	188	debug_enable	dynsym	6c72dbc333c4		in	named-only	docs/setup-tools.md#ireeprom	`ireeprom`
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x100026cc	172	get_rdata	dynsym	262aa3c6906e		in	named-only	docs/setup-tools.md#ireeprom	`ireeprom`
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x100026cc	172	get_rdata	dynsym	262aa3c6906e		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10002778	28	set_rdata	dynsym	63116594b7c2		in	named-only	docs/setup-tools.md#ireeprom	`ireeprom`
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10002a4c	400	KonWGWrite	dynsym	e4ee7ad0787e		in	named-only	docs/setup-tools.md#ireeprom	`ireeprom`
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10002bdc	1688	write_eeprom	dynsym	b7ad3707217a		in	named-only	docs/setup-tools.md#ireeprom	`ireeprom`
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003274	444	erase_eeprom	dynsym	e1a23e7fc00a		in	named-only	docs/setup-tools.md#ireeprom	`ireeprom`
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003430	84	erase_combo	dynsym	249aab25d647		in	named-only	docs/setup-tools.md#ireeprom	`ireeprom`
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10002a4c	400	KonWGWrite	dynsym	e4ee7ad0787e		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10002bdc	1688	write_eeprom	dynsym	b7ad3707217a		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003274	444	erase_eeprom	dynsym	e1a23e7fc00a		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003430	84	erase_combo	dynsym	249aab25d647		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003484	296	info_eeprom	dynsym	44eaf4e024e8		in	named-only	docs/setup-tools.md#ireeprom	`ireeprom`
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x100035ac	628	read_eeprom	dynsym	7c08742cdef0		in	named-only	ucode/tport.md#what-it-is	What it is
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003820	804	verify_eeprom	dynsym	e2bb100efeb2		in	named-only	docs/setup-tools.md#ireeprom	`ireeprom`
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003eec	4	__istart	dynsym	df3f619804a9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10009ef0	268	__start	dynsym	d3b9c712cbc2		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10009ef0	268	__start	dynsym	d3b9c712cbc2		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10009ffc	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a008	88	V_inspect	dynsym	2a34ee0c73ea		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a060	444	V_list	dynsym	7de5feefd271		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
@@ -2563,8 +2563,8 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a21c	152	V_mark	dynsym	2ffcf9c9129b		
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a2b4	496	V_show	dynsym	15c3a8e90ea0		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a4a4	152	V_unmark	dynsym	4582f9e5f841		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a5c0	268	show_general_section	dynsym	66a521209dcc		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a6cc	2172	main	dynsym	c31c0da7628c		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000afdc	452	dfCreateDumpFile	dynsym	92823da1fee0		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a6cc	2172	main	dynsym	c31c0da7628c		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000afdc	452	dfCreateDumpFile	dynsym	92823da1fee0		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b1a0	296	dfNewSection	dynsym	4dc4efcc3788		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b2c8	228	dfWriteSection	dynsym	d9f4dcf7ab67		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b3ac	392	dfWriteNewSectionFromPipe	dynsym	1dc970151401		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
@@ -2579,11 +2579,11 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000be38	240	dfUnmarkSection	dynsym	71ab1
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000bf28	240	dfIsSectionMarked	dynsym	adc27bca6a1d		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000c018	104	dfGetFilePointer	dynsym	e3b45383514c		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000c080	656	dfCloseDumpFile	dynsym	c371e473b899		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000d510	1604	kpm_dump	dynsym	6a29d164f372		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000d510	1604	kpm_dump	dynsym	6a29d164f372		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000dc90	780	show_overview_section	dynsym	182c82a22789		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e210	288	kpm_status	dynsym	7182e2ba2d6c		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e330	1300	kpm_view	dynsym	7e450367847f		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f538	8	kpm_interact	dynsym	78aa5094d5ec		in	named-only	docs/kpm.md#what-kpm-is	What `kpm` is
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e210	288	kpm_status	dynsym	7182e2ba2d6c		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e330	1300	kpm_view	dynsym	7e450367847f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f538	8	kpm_interact	dynsym	78aa5094d5ec		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f540	596	kerror	dynsym	55fe4a284bc9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f794	504	klog	dynsym	82ead94e5a04		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f98c	84	get_time	dynsym	0a967dc0c132		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
@@ -2654,8 +2654,8 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f534	568	set_transfer_address	dynsym	
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f76c	84	setup_dma	dynsym	6ae68f24bb89		in	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f7c0	216	wait_for_dma_completion	dynsym	989e7b6e7ae8		in	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f898	352	cleanup_dma	dynsym	d24722b147b1		in	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100216dc	2464	read_chains	dynsym	cd33d09328ca		in	named-only	docs/kpm.md#capture	Capture
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002207c	568	jtagInspection	dynsym	2ea1ed767f46		in	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100216dc	2464	read_chains	dynsym	cd33d09328ca		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002207c	568	jtagInspection	dynsym	2ea1ed767f46		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10022410	400	read_jtag_vector	dynsym	47e9247e1c7e		in	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100225a0	612	show_jtag_register	dynsym	3e186f028685		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10022804	1164	show_ge12_jtag_section	dynsym	1956b12c3e2c		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
@@ -2671,8 +2671,8 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003001c	884	Vpseudo_jtag	dynsym	998bacf9
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10030a48	900	nicInspection	dynsym	20925044b325		in	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10030dcc	372	show_nic_section	dynsym	52c796756969		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003141c	1924	disassemble_tbus	dynsym	bd51aaefd4ee		in	named-only	docs/kpm.md#capture	Capture
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003206c	920	init_report	dynsym	9cd533529666		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032404	428	close_report	dynsym	503624663902		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003206c	920	init_report	dynsym	9cd533529666		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032404	428	close_report	dynsym	503624663902		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100325b0	1256	read_arm_symbols	dynsym	dc5b6fc02ab9		in	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032a98	116	free_arm_symbols	dynsym	5d94db98661b		in	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032b0c	132	asym_address	dynsym	4faa967b1ddf		in	named-only	docs/kpm.md#capture	Capture
@@ -2981,7 +2981,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x100619d0	192	xrealloc	dynsym	8d62db836ca9
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10061ec0	752	tilde_expand	dynsym	04133f490c3a		in	named-only	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100621b0	1380	tilde_expand_word	dynsym	16503230d1de		in	named-only	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1006272c	4	__istart	dynsym	df3f619804a9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f6a0	268	__start	dynsym	f54c3ce6c601		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f6a0	268	__start	dynsym	f54c3ce6c601		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f7ac	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f7c0	640	XkbInitNames..FBF	dynsym	617a89de8b36		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005fa40	364	ProcXineramaDestroyWindow	dynsym	8ead7bd7c1db		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -4990,7 +4990,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101d9650	1852	SProcXineramaPoly
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101d9d90	1520	SProcDbeGetVisualInfo..MIC	dynsym	07bf9c262f2d		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101da380	76	AccessNullProc..OGD	dynsym	f487da432c86		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101da3d0	212	sXETrapGetLastInpTime	dynsym	44f4e0c80fe5		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101da4b0	2968	yyparse	dynsym	4d38af9aab32		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101da4b0	2968	yyparse	dynsym	4d38af9aab32		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101db050	464	ProcSGIvcQueryPlatformParameter	dynsym	5e0f272f9330		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101db220	6504	ReadXkmSymbols..CLF	dynsym	e2ee49d65c35		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101dcb90	156	LbxCheckAndLbxSetForBlock	dynsym	1f115220b15d		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -5301,7 +5301,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10217b10	444	XkbRF_ClearVarDesc
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10217cd0	376	AccessAllocColorCells	dynsym	b1c91cb221a4		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10217e60	552	SProcXineramaSGICapDispatch..DAE	dynsym	5ada37d3ddfe		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10218090	468	SProcSGIDispatch..PBD	dynsym	be42464dc8d2		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10218270	5600	main	dynsym	89ee22ffad44		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10218270	5600	main	dynsym	89ee22ffad44		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10219850	484	DbeResetProc..HJC	dynsym	7cc69224a467		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10219a40	332	ProcSGIQueryStereoMode..NLD	dynsym	19b481e1e0f3		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10219b90	332	ProcXkbUseExtension	dynsym	a326df8ddc15		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -5335,7 +5335,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10220010	144	ProcScreenSaverDis
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102200a0	2300	SProcCreateWindow	dynsym	b5aa8c982155		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102209a0	336	FontFileAddScaledInstance	dynsym	fa4819ab55d8		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10220af0	144	lazyCIDOpenScalable..OO	dynsym	c45b2f88ed9b		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10220b80	2028	yylex	dynsym	929b5d2b57a1		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10220b80	2028	yylex	dynsym	929b5d2b57a1		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10221370	108	SQueryColorsReply	dynsym	508e447c2827		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102213e0	344	sgiDbeAllocBackBufferName..KJC	dynsym	da64d873ce11		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10221540	252	FontFileMatchRenderer	dynsym	11f5032f1198		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -14136,11 +14136,11 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83a060	512	glXChannelRectSG
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83a260	312	glXQueryChannelRectSGIX	dynsym+mdebug	dc2174f23fe4		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83a398	160	glXChannelRectSyncSGIX	dynsym+mdebug	39525acbec07		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83a438	76	glXAssociateDMPbufferSGIX	dynsym+mdebug	70181b43de3c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83a484	724	glXQueryHyperpipeNetworkSGIX	dynsym+mdebug	272048be0e8e		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83a758	744	glXHyperpipeConfigSGIX	dynsym+mdebug	9f943e1fbd3c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83a484	724	glXQueryHyperpipeNetworkSGIX	dynsym+mdebug	272048be0e8e		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83a758	744	glXHyperpipeConfigSGIX	dynsym+mdebug	9f943e1fbd3c		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83aa40	416	glXDestroyHyperpipeConfigSGIX	dynsym+mdebug	ae48b350ea79		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83abe0	700	glXQueryHyperpipeConfigSGIX	dynsym+mdebug	2738e5d801da		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83ae9c	184	glXBindHyperpipeSGIX	dynsym+mdebug	721bb9874c35		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83ae9c	184	glXBindHyperpipeSGIX	dynsym+mdebug	721bb9874c35		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83af54	152	glXQueryHyperpipeBestAttribSGIX	dynsym+mdebug	c43d035f4411		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83afec	144	glXQueryHyperpipeAttribSGIX	dynsym+mdebug	2be4be696869		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd83b07c	144	glXHyperpipeAttribSGIX	dynsym+mdebug	a4fcfc6e36b8		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -19684,11 +19684,11 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83c7e4	540	glXChannelRect
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83ca00	372	glXQueryChannelRectSGIX	dynsym	ff5a712912be		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83cb74	164	glXChannelRectSyncSGIX	dynsym	ac00b6a3fb2d		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83cc18	64	glXAssociateDMPbufferSGIX	dynsym	017f815bd32c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83cc58	628	glXQueryHyperpipeNetworkSGIX	dynsym	9a6c4073ecc4		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83cecc	704	glXHyperpipeConfigSGIX	dynsym	31e152a1d218		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83cc58	628	glXQueryHyperpipeNetworkSGIX	dynsym	9a6c4073ecc4		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83cecc	704	glXHyperpipeConfigSGIX	dynsym	31e152a1d218		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83d18c	372	glXDestroyHyperpipeConfigSGIX	dynsym	85c5f578d791		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83d300	616	glXQueryHyperpipeConfigSGIX	dynsym	f068907b9b7b		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83d568	200	glXBindHyperpipeSGIX	dynsym	bc9e6053188a		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83d568	200	glXBindHyperpipeSGIX	dynsym	bc9e6053188a		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83d630	120	glXQueryHyperpipeBestAttribSGIX	dynsym	1d88de92e9da		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83d6a8	120	glXQueryHyperpipeAttribSGIX	dynsym	e2ea44131b12		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83d720	120	glXHyperpipeAttribSGIX	dynsym	ffcba68e63cc		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -25264,11 +25264,11 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2671434	540	glXChannelRect
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2671650	328	glXQueryChannelRectSGIX	dynsym	a8d79d153155		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2671798	164	glXChannelRectSyncSGIX	dynsym	d4e3496f9fa2		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x267183c	64	glXAssociateDMPbufferSGIX	dynsym	e17453e3649d		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x267187c	628	glXQueryHyperpipeNetworkSGIX	dynsym	3a575cc19213		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2671af0	708	glXHyperpipeConfigSGIX	dynsym	37a8c6ba2783		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x267187c	628	glXQueryHyperpipeNetworkSGIX	dynsym	3a575cc19213		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2671af0	708	glXHyperpipeConfigSGIX	dynsym	37a8c6ba2783		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2671db4	372	glXDestroyHyperpipeConfigSGIX	dynsym	a408603b2e54		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2671f28	616	glXQueryHyperpipeConfigSGIX	dynsym	dbc51202335f		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2672190	200	glXBindHyperpipeSGIX	dynsym	2f3c3f441640		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2672190	200	glXBindHyperpipeSGIX	dynsym	2f3c3f441640		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2672258	120	glXQueryHyperpipeBestAttribSGIX	dynsym	779cc8b8366e		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26722d0	120	glXQueryHyperpipeAttribSGIX	dynsym	b6dfeb1bbb83		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2672348	120	glXHyperpipeAttribSGIX	dynsym	bc78ca8fe3b9		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -30835,11 +30835,11 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83a060	512	glXChannelRectSG
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83a260	312	glXQueryChannelRectSGIX	dynsym+mdebug	dc2174f23fe4		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83a398	160	glXChannelRectSyncSGIX	dynsym+mdebug	39525acbec07		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83a438	76	glXAssociateDMPbufferSGIX	dynsym+mdebug	70181b43de3c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83a484	724	glXQueryHyperpipeNetworkSGIX	dynsym+mdebug	272048be0e8e		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83a758	744	glXHyperpipeConfigSGIX	dynsym+mdebug	9f943e1fbd3c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83a484	724	glXQueryHyperpipeNetworkSGIX	dynsym+mdebug	272048be0e8e		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83a758	744	glXHyperpipeConfigSGIX	dynsym+mdebug	9f943e1fbd3c		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83aa40	416	glXDestroyHyperpipeConfigSGIX	dynsym+mdebug	ae48b350ea79		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83abe0	700	glXQueryHyperpipeConfigSGIX	dynsym+mdebug	2738e5d801da		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83ae9c	184	glXBindHyperpipeSGIX	dynsym+mdebug	721bb9874c35		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83ae9c	184	glXBindHyperpipeSGIX	dynsym+mdebug	721bb9874c35		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83af54	152	glXQueryHyperpipeBestAttribSGIX	dynsym+mdebug	c43d035f4411		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83afec	144	glXQueryHyperpipeAttribSGIX	dynsym+mdebug	2be4be696869		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd83b07c	144	glXHyperpipeAttribSGIX	dynsym+mdebug	a4fcfc6e36b8		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -36383,11 +36383,11 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83c7e4	540	glXChannelRect
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83ca00	372	glXQueryChannelRectSGIX	dynsym	ff5a712912be		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83cb74	164	glXChannelRectSyncSGIX	dynsym	ac00b6a3fb2d		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83cc18	64	glXAssociateDMPbufferSGIX	dynsym	017f815bd32c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83cc58	628	glXQueryHyperpipeNetworkSGIX	dynsym	9a6c4073ecc4		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83cecc	704	glXHyperpipeConfigSGIX	dynsym	31e152a1d218		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83cc58	628	glXQueryHyperpipeNetworkSGIX	dynsym	9a6c4073ecc4		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83cecc	704	glXHyperpipeConfigSGIX	dynsym	31e152a1d218		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83d18c	372	glXDestroyHyperpipeConfigSGIX	dynsym	85c5f578d791		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83d300	616	glXQueryHyperpipeConfigSGIX	dynsym	f068907b9b7b		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83d568	200	glXBindHyperpipeSGIX	dynsym	bc9e6053188a		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83d568	200	glXBindHyperpipeSGIX	dynsym	bc9e6053188a		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83d630	120	glXQueryHyperpipeBestAttribSGIX	dynsym	1d88de92e9da		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83d6a8	120	glXQueryHyperpipeAttribSGIX	dynsym	e2ea44131b12		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83d720	120	glXHyperpipeAttribSGIX	dynsym	ffcba68e63cc		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -41963,11 +41963,11 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2171434	540	glXChannelRect
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2171650	328	glXQueryChannelRectSGIX	dynsym	a8d79d153155		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2171798	164	glXChannelRectSyncSGIX	dynsym	d4e3496f9fa2		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x217183c	64	glXAssociateDMPbufferSGIX	dynsym	e17453e3649d		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x217187c	628	glXQueryHyperpipeNetworkSGIX	dynsym	3a575cc19213		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2171af0	708	glXHyperpipeConfigSGIX	dynsym	37a8c6ba2783		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x217187c	628	glXQueryHyperpipeNetworkSGIX	dynsym	3a575cc19213		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2171af0	708	glXHyperpipeConfigSGIX	dynsym	37a8c6ba2783		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2171db4	372	glXDestroyHyperpipeConfigSGIX	dynsym	a408603b2e54		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2171f28	616	glXQueryHyperpipeConfigSGIX	dynsym	dbc51202335f		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2172190	200	glXBindHyperpipeSGIX	dynsym	2f3c3f441640		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2172190	200	glXBindHyperpipeSGIX	dynsym	2f3c3f441640		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2172258	120	glXQueryHyperpipeBestAttribSGIX	dynsym	779cc8b8366e		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21722d0	120	glXQueryHyperpipeAttribSGIX	dynsym	b6dfeb1bbb83		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2172348	120	glXHyperpipeAttribSGIX	dynsym	bc78ca8fe3b9		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -46937,14 +46937,14 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c33dc	148	__glMipsXF
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c3470	192	__glMipsXForm4_W	dwarf+dynsym	34ecf8340617		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c3530	240	__glMipsXForm4	dwarf+dynsym	3b3119fa2db2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c3620	204	__glMipsMultMatrix	dwarf+dynsym	abe240f89e87		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/dmconf	shared-tool	n32		0x10008520	268	__start	dynsym	2658d604ca89		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/dmconf	shared-tool	n32		0x10008520	268	__start	dynsym	2658d604ca89		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/dmconf	shared-tool	n32		0x1000862c	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/dmconf	shared-tool	n32		0x10008640	180	_main	dynsym	b635cb301187		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/dmconf	shared-tool	n32		0x10008640	180	_main	dynsym	b635cb301187		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/dmconf	shared-tool	n32		0x10008700	84	_fini	dynsym	261573285f1e		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x10008760	128	__process_needed_destructions__Gv	dynsym	16cbce07afe6		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x100087e0	40	__record_needed_destruction	dynsym	431726becd52		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x10008810	60	__std__needed_destruction_list	dynsym	dbd26a89106d		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/dmconf	shared-tool	n32		0x10008850	484	main	dynsym	8b3c169bfe0a		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/gfx/dmconf	shared-tool	n32		0x10008850	484	main	dynsym	8b3c169bfe0a		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/dmconf	shared-tool	n32		0x10008a80	604	__ct__20DmconfMainFrameClassGPCcP10_WidgetRec	dynsym	c1b6fc1a9ac0		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
 usr/gfx/dmconf	shared-tool	n32		0x10008ce0	108	__ct__20DmconfMainFrameClassGPCc	dynsym	43f3c1f3244c		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
 usr/gfx/dmconf	shared-tool	n32		0x10008d50	148	__dt__20DmconfMainFrameClassGv	dynsym	1a6945b8b078		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
@@ -47042,7 +47042,7 @@ usr/gfx/dmconf	shared-tool	n32		0x1000cc30	264	VkUnimplemented__GP10_WidgetRecPC
 usr/gfx/dmconf	shared-tool	n32		0x1000ced0	1284	vfcGetNextTokenValuePair	dynsym	dd439b3da2fd		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x1000e6e0	624	vfcGetOption	dynsym	f2451911a9d7		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x1000e950	2488	vfcParseCommand	dynsym	b6a668d130f5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/dmconf	shared-tool	n32		0x1000f310	188	usage	dynsym	ecd3cb189e73		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/dmconf	shared-tool	n32		0x1000f310	188	usage	dynsym	ecd3cb189e73		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/dmconf	shared-tool	n32		0x1000f3d0	688	vfcDoCommandLine	dynsym	4acac7c8e301		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x1000f740	472	vfcGetDmxCombination	dynsym	5c579fd374dc		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
 usr/gfx/dmconf	shared-tool	n32		0x1000f920	1596	vfcPutDmxCombination	dynsym	e94d7f240f34		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
@@ -47129,9 +47129,9 @@ usr/gfx/dmconf	shared-tool	n32		0x1001c9cc	80	GLwCreateMDrawingArea	dynsym	1b916
 usr/gfx/dmconf	shared-tool	n32		0x1001ca1c	104	GLwDrawingAreaMakeCurrent	dynsym	92d56d43122f		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x1001ca84	100	GLwDrawingAreaSwapBuffers	dynsym	a0f6246f8ed0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x1001cafc	4	__istart	dynsym	df3f619804a9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/gfxinfo	shared-tool	n32		0x10005770	268	__start	dynsym	354bd274e9c2		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/gfxinfo	shared-tool	n32		0x10005770	268	__start	dynsym	354bd274e9c2		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/gfxinfo	shared-tool	n32		0x1000587c	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/gfxinfo	shared-tool	n32		0x10005888	2192	main	dynsym	2d27950426ee		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/gfx/gfxinfo	shared-tool	n32		0x10005888	2192	main	dynsym	2d27950426ee		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/gfxinfo	shared-tool	n32		0x1000693c	848	lg1_info	dynsym	a882b266a68a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10006c8c	2628	loadfile	dynsym	0ad174b7798e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10007a18	8	ev1_init	dynsym	87506497337c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47356,18 +47356,18 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1001dd84	212	dump_xilinx_config	dynsym	617fa5
 usr/gfx/gfxinfo	shared-tool	n32		0x1001de58	156	get_config_size	dynsym	d590354cf85e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001e298	152	read_xilinx_file	dynsym	d71e0008c56e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001e33c	4	__istart	dynsym	df3f619804a9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ed0	268	__start	dynsym	4b92a32d4cd4		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ed0	268	__start	dynsym	4b92a32d4cd4		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/hyperpipeinfo	board-tool	n32		0x10000fdc	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ff0	956	main	dynsym	08fd127fb19f		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ff0	956	main	dynsym	08fd127fb19f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/hyperpipeinfo	board-tool	n32		0x100013bc	4	__istart	dynsym	df3f619804a9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/ircombine	board-tool	n32		0x1001fd10	268	__start	dynsym	eb47e85d0c4b		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/ircombine	board-tool	n32		0x1001fd10	268	__start	dynsym	eb47e85d0c4b		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ircombine	board-tool	n32		0x1001fe1c	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/ircombine	board-tool	n32		0x1001fe30	180	_main	dynsym	4dc663f30330		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x1001fe30	180	_main	dynsym	4dc663f30330		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ircombine	board-tool	n32		0x1001fef0	84	_fini	dynsym	172c89e05e3c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x1001ff50	128	__process_needed_destructions__Gv	dynsym	985bd51cbf47		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x1001ffd0	40	__record_needed_destruction	dynsym	df23200ac5ab		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020000	60	__std__needed_destruction_list	dynsym	095ae85b9d96		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10020040	940	main	dynsym	f21ea7964f99		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/gfx/ircombine	board-tool	n32		0x10020040	940	main	dynsym	f21ea7964f99		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ircombine	board-tool	n32		0x100203f0	292	ErrorF	dynsym	0b35be0475bb		in	named-only	docs/kona-ddx.md#kona-drawing-glyph-copy-and-image-routines-kon	Kona drawing, glyph, copy and image routines (`kon*`)
 usr/gfx/ircombine	board-tool	n32		0x10020520	520	iGUIReadFormatFile__GPCcP11konFormat_t	dynsym	12338278bfb0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020b00	484	__ct__18ChannelWindowClassGPCcP3ArgUii	dynsym	602601180c81		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -48476,7 +48476,7 @@ usr/gfx/ircombine	board-tool	n32		0x10070530	120	saveasCallback__18VkwindowMainW
 usr/gfx/ircombine	board-tool	n32		0x100705b0	120	snapChannelCallback__18VkwindowMainWindowSGP10_WidgetRecPvT2	dynsym	be4b2b14a613		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10070630	140	userHardwareCallback__18VkwindowMainWindowSGP10_WidgetRecPvT2	dynsym	8b8054997903		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10070700	264	VkUnimplemented__GP10_WidgetRecPCc	dynsym	e1cbea599636		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10070880	244	usage	dynsym	253fba9165b4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x10070880	244	usage	dynsym	253fba9165b4		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ircombine	board-tool	n32		0x10070980	1024	vfcDoCommandLine	dynsym	52c3bce72583		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10071090	1284	vfcGetNextTokenValuePair	dynsym	65d8572c3aec		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10078090	180	vfcGetCombinationDescription	dynsym	b72ce29ff56b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -48598,10 +48598,10 @@ usr/gfx/ircombine	board-tool	n32		0x10092478	80	GLwCreateMDrawingArea	dynsym	025
 usr/gfx/ircombine	board-tool	n32		0x100924c8	104	GLwDrawingAreaMakeCurrent	dynsym	fa71db4d966c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10092530	100	GLwDrawingAreaSwapBuffers	dynsym	a778a32690fe		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x100925ac	4	__istart	dynsym	df3f619804a9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/setmon	shared-tool	n32		0x10008d20	268	__start	dynsym	2c0ec17aee41		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/setmon	shared-tool	n32		0x10008d20	268	__start	dynsym	2c0ec17aee41		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/setmon	shared-tool	n32		0x10008e2c	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/setmon	shared-tool	n32		0x10008e38	64	Usage	dynsym	751005097950		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	34b5ba5e4a50		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	34b5ba5e4a50		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	78b8d8b6975b		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a038	56	vTimeoutOpenDisplay	dynsym	0b854b7056ad		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	4fb9fe7741c6		in	named-only	docs/setup-tools.md#setmon	`setmon`
@@ -48847,14 +48847,14 @@ usr/gfx/setmon	shared-tool	n32		0x10034fe0	96	saXSGIvcSetChannelGammaMap	dynsym	
 usr/gfx/setmon	shared-tool	n32		0x10035360	84	KonData2	dynsym	f9f75d4b3d93		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100353c0	164	KonData5	dynsym	a68a9bdd4153		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100354fc	4	__istart	dynsym	df3f619804a9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/sgcombine	shared-tool	n32		0x1000f870	268	__start	dynsym	97e564342a80		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/sgcombine	shared-tool	n32		0x1000f870	268	__start	dynsym	97e564342a80		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/sgcombine	shared-tool	n32		0x1000f97c	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/sgcombine	shared-tool	n32		0x1000f990	180	_main	dynsym	978e7e7fde74		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/sgcombine	shared-tool	n32		0x1000f990	180	_main	dynsym	978e7e7fde74		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/sgcombine	shared-tool	n32		0x1000fa50	84	_fini	dynsym	1fce8159ad1f		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1000fab0	128	__process_needed_destructions__Gv	dynsym	60633bdd6555		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1000fb30	40	__record_needed_destruction	dynsym	f6dcabe2aeaf		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1000fb60	60	__std__needed_destruction_list	dynsym	c7e485ac20ba		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/sgcombine	shared-tool	n32		0x1000fba0	404	main	dynsym	f7c71e7a4161		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/gfx/sgcombine	shared-tool	n32		0x1000fba0	404	main	dynsym	f7c71e7a4161		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/sgcombine	shared-tool	n32		0x1000fd40	412	iGUIReadFormatFile__GPCcP11cmpFormat_t	dynsym	c26ceae1c60a		in	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1000fee0	580	iGUIReadOdsyFormatFile__GPCcP11cmpFormat_t	dynsym	4d868c6c2fd1		in	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
 usr/gfx/sgcombine	shared-tool	n32		0x10010150	132	__ct__22SmallFormatFileBrowserGPCc	dynsym	784741060283		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -49169,7 +49169,7 @@ usr/gfx/sgcombine	shared-tool	n32		0x1001e1d0	208	VkUnimplemented__GP10_WidgetRe
 usr/gfx/sgcombine	shared-tool	n32		0x1001e4d0	868	vfcGetNextTokenValuePair	dynsym	5b8911ad49b0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1001e900	480	vfcGetOption	dynsym	19ba1acebaa3		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1001eae0	1440	vfcParseCommand	dynsym	938e29bca82d		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/sgcombine	shared-tool	n32		0x1001f080	60	usage	dynsym	802e5e29509f		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/sgcombine	shared-tool	n32		0x1001f080	60	usage	dynsym	802e5e29509f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/sgcombine	shared-tool	n32		0x1001f0c0	68	vfcInitCmpCombination	dynsym	150f0158e4ad		in	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1001f110	228	vfcDoCommandLine	dynsym	a0a91a4cc5e0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1001f200	124	vfcQueryXSGIvc	dynsym	faddce359dbd		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -49249,9 +49249,9 @@ usr/gfx/sgcombine	shared-tool	n32		0x1002a8d8	80	GLwCreateMDrawingArea	dynsym	70
 usr/gfx/sgcombine	shared-tool	n32		0x1002a928	104	GLwDrawingAreaMakeCurrent	dynsym	b8404ae284b4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1002a990	100	GLwDrawingAreaSwapBuffers	dynsym	a23a273d684f		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1002aa0c	4	__istart	dynsym	df3f619804a9		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003e10	268	__start	dynsym	e6d2e8753717		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003e10	268	__start	dynsym	e6d2e8753717		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003f1c	12	_mcount	dynsym	1c53f0b255e3		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003f30	180	_main	dynsym	c40426049dd0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003f30	180	_main	dynsym	c40426049dd0		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003ff0	84	_fini	dynsym	db8337558f32		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004050	128	__process_needed_destructions__Gv	dynsym	8adf1154c059		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100040d0	40	__record_needed_destruction	dynsym	516f37adce40		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -49282,7 +49282,7 @@ usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100047a0	68	binToAsc_float__GPcT1	dy
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100047e4	92	binToAsc_double__GPcT1	dynsym	875747339fba		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004890	120	checkKeywords__GPc	dynsym	f7f31fe4b9b7		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004908	116	keywordFromToken__Gi	dynsym	6f6b844037bd		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004b60	424	main	dynsym	37c61b5ae33c		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004b60	424	main	dynsym	37c61b5ae33c		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004d08	8	bpt__Gv	dynsym	78aa5094d5ec		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004fbc	248	yyerror__GPc	dynsym	4531dc3ba6c6		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100050b4	108	yymark__Gv	dynsym	a5b7e8dfd57e		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
@@ -49292,7 +49292,7 @@ usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100051ac	168	get__14SimpleListBaseGv
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10005254	8	numberOfElements__14SimpleListBaseGv	dynsym	f300cc2a20ca		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100052b8	1128	readExistingFile__GPc	dynsym	8818e2afe50a		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10005720	388	createFile__GPcT1	dynsym	fd8507223e49		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100058ac	512	yylex	dynsym	2d3ca701b80f		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100058ac	512	yylex	dynsym	2d3ca701b80f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10005aac	2112	yylook	dynsym	dbbea7e704fd		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100062ec	68	yyback	dynsym	befb60151257		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10006330	260	yyinput	dynsym	5149d655dc0a		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
