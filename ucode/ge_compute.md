@@ -2921,3 +2921,59 @@ the shadow read port.
   address and count as operands (0x6b13, 0x6b1a), sends 0x476 (0x6b1c, 0x6b1d), and its loop reads CRAM words with
   `r95` = 0x10, 0x11 and 0x12, one per lane, at register 0x13 plus 0-3 (0x6b22-0x6b25), and selects each lane's word
   in turn, producing the block on the output window.
+
+## Clears (clear.S)
+
+Read from the [clear.S listing](ge_listing/clear.S.lst) (`ge.u`, IRIX 6.5.30m). Each clear handler converts the clear
+value from the command into the raster format and writes it as raster-bus registers: the register number goes on
+bus address 0x1f7 (or 0x1f8 for a high half), the value on 0x1f6 or 0x1f5, or through `r95` = 0x20 stores, which
+take a unit result into the engine's conversion-and-merge block. Register numbers from [RM.h](../RM.h):
+0x1c09 `IMP_DEPTH_CLEAR`, 0x1c12 `IMP_CLEAR_COLOR` and 0x1c13 its second word. Float constants are written as their
+values.
+
+- `mgesi_ClearColor` (`clear.S` lines 45-71, at 0x91cf): **inferred**, the RGBA clear colour. It takes the four
+  components from command words 0-3 (A = 0x1f), multiplies each by the scale it reads from control word 0xc5 into
+  register 0x1c (0x91d2; multiplies 0x91d8-0x91e1), and sends the products through `r95` = 0x20 stores after
+  0x1c12 and 0x1c13 on 0x1f7 (0x91d4, 0x91dc). The output is the two clear-colour words, red and green in the first
+  and blue and alpha in the second.
+- `mgesi_ClearLA16` (`clear.S` lines 99-138, at 0x91b7): **inferred**, the luminance-alpha clear for 16-bit
+  luminance-alpha visuals. Its inputs are the command's luminance and alpha; it multiplies the first by the 0xc5
+  scale (0x91bf) and by the staged 16.0, 4096.0 and 15.999999 (0x91b8, 0x91bc, 0x91be), so the result is a value
+  spread over the fields of both 0x1c12 and 0x1c13 (0x91c0, 0x91ba, sends 0x91c3-0x91cc).
+- `mgesi_ClearIndex` (`clear.S` lines 166-190, at 0x91a9): **inferred**, the colour-index clear. It takes the index
+  from command word 1, converts it to float (unit-1 code 0x73, 0x91af) and multiplies it in the word at 0x91b4,
+  next to the staged 0x400c0000 (0x91ae). Its output is the product, sent as the 0x1c12 value (0x91b0-0x91b4).
+- `mgesi_OverlayClearColor` (`clear.S` lines 212-248, at 0x9190): **inferred**, the clear colour of an overlay
+  visual. It takes the four command components and multiplies them by the staged scales 1.9999999, 7.9999995 and
+  31.999998 (0x9194-0x9198; products 0x9199-0x919f) and combines the results with the staged field words 0x11000, 0x51100, 0x50700, 0x30400 and
+  0x40021600 (0x9190-0x9195) in five 0x1c12 data stores (0x91a3-0x91a7).
+- `mgesi_OverlayClearIndex` (`clear.S` lines 277-341, at 0x9157): **inferred**, the overlay colour-index clear. It
+  compares command word 2 with a staged 8 (subtract with flags, 0x9170) and selects one of two paths (0x9165): one
+  scales the index operand by 1/256 (0x3b800000, 0x9171) with field words 0x40080400 and 0x81000, the other by
+  1/16 (0x3d800000, 0x9181) with 0x40000 and 0x41400. Either result is written as 0x1c12.
+- `mgesi_ClearDepth32` (`clear.S` lines 363-396, at 0x9138): **inferred**, the 32-bit depth clear. It takes the depth
+  from command word 0 and multiplies it in double precision (unit-2 code 0x07, 0x9144) by 4294967295.99, the staged
+  pair 0x41efffff, 0xffffffff (0x9142, 0x9143), which converts a [0, 1] depth to a 32-bit integer. The result goes
+  out with 0x70000 on 0x1f8 (0x9140, 0x9146) as the value of `IMP_DEPTH_CLEAR` (address word 0x013a1c09, 0x9139),
+  with `TFP_AMASK` 0x1408 (0x913a) and a second pair at 0x9150-0x9154.
+- `mgesi_ClearAccum` (`clear.S` lines 424-465, at 0x911b): **inferred**, the accumulation-buffer clear. It takes the
+  clear value from command word 0, multiplies it by 16777215.0 (0x4b7fffff, 0x911e; 0x9120) and converts the product
+  to an integer (code 0x71, 0x9124). It then masks the result with 0xfff, 0xf000, 0xf0000 and 0x1f00000 and shifts
+  by 0xc and 4 (0x9128-0x9130), which packs the 24-bit value into fields of the two clear-colour words 0x1c12 and
+  0x1c13 (sends 0x9131-0x9136).
+- `mgesi_ClearAccum32` (`clear.S` lines 487-530, at 0x90f8): **inferred**, the same accumulation clear for 32-bit
+  components. It takes command word 0 (0x90fb) and adds a double-precision multiply by the staged pair 0x41dfffff, 0xff800000, about 2^31 (0x90fd,
+  0x90fe; code 0x07 at 0x90ff, 0x9100), and its packing (0x9109-0x9113) produces the 0x1c12 and 0x1c13 values.
+- `mgesi_ClearAccumWord` (`clear.S` lines 551-581, at 0x90ea): **inferred**, a one-word clear of the accumulation
+  buffer through `IMP_DEPTH_CLEAR`: it stages 0x1c09 (0x90f0) and 0x40200000 (0x90ed), multiplies its operand by
+  16777215.0 (0x90f1, 0x90f2), and sends the result to 0x1f6 (0x90f5, 0x90f6).
+- `mgesi_ClearAccumWord32` (`clear.S` lines 603-641, at 0x90c4): **inferred**, the 32-bit form of the one-word
+  accumulation clear. It takes command word 0 and applies unit-1 code 0x75 to it (0x90c4; the code has no reading
+  of its own yet), multiplies in double precision by
+  the 2^31 pair (0x90c6-0x90c9), shifts by 0x10 (0x90d1-0x90d3) and writes the result as `IMP_DEPTH_CLEAR` (0x90dc,
+  0x90dd).
+- `mgesi_ClearVertex` (`clear.S` lines 658-708, at 0x90a3): **inferred**, the set-up for a clear drawn as geometry. It
+  takes command words 3 and 4 (0x90a5, 0x90a6) and words 1 and 2, which it converts to float and stores to control
+  words 0xcd and 0xce (code 0x73, 0x90b5, 0x90b6). It writes control word 0xd5 from the 0x800 it stages (0x90b2) and
+  multiplies the colour by register 0x1c (`r95` = 0x33 stores to 0xc9-0xcc, 0x90be-0x90c2), so the result is a
+  vertex in the control words the triangle path reads.

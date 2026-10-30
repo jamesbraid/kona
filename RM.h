@@ -1696,7 +1696,8 @@
  * blue and alpha in the next word. Established: irsaudit `init_clear_color` (0x100c02d8) ORs the
  * components together and writes the word, `tbuRegReset` zeroes it at 0x1015719c, and the vector
  * files carry two mode-1 words for it. No arm1.u routine loads a clear colour with a literal
- * address word, and ge.u carries no write. */
+ * address word. ge.u writes it from the engine: the clear.S handlers stage 0x1c12 and send it to
+ * bus address 0x1f7 before the value (mgesi_ClearColor 0x91d3-0x91d4, mgesi_ClearAccum 0x911c). */
 #define KONA_RM_IMP_CLEAR_COLOR                          0x1c12
 #define KONA_RM_IMP_CLEAR_COLOR_RED                       0, 12  /* shift, width */
 #define KONA_RM_IMP_CLEAR_COLOR_GREEN                    12, 12  /* shift, width */

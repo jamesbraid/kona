@@ -2468,17 +2468,17 @@ ge.u	label	0x00008dc0	mmo_DrawTriPrimOffset		located	ucode/ge_handlers.md#drawtr
 ge.u	label	0x0000903c	AA_Response_Max		located	ucode/ge_handlers.md#aas	aa.S
 ge.u	label	0x00009045	AA_Response_Step		located	ucode/ge_handlers.md#aas	aa.S
 ge.u	label	0x00009059	AA_Response		located	ucode/ge_handlers.md#aas	aa.S
-ge.u	label	0x000090a3	mgesi_ClearVertex		located	ucode/ge_handlers.md#clears	clear.S
-ge.u	label	0x000090c4	mgesi_ClearAccumWord32		located	ucode/ge_handlers.md#clears	clear.S
-ge.u	label	0x000090ea	mgesi_ClearAccumWord		located	ucode/ge_handlers.md#clears	clear.S
-ge.u	label	0x000090f8	mgesi_ClearAccum32		located	ucode/ge_handlers.md#clears	clear.S
-ge.u	label	0x0000911b	mgesi_ClearAccum		located	ucode/ge_handlers.md#clears	clear.S
-ge.u	label	0x00009138	mgesi_ClearDepth32		located	ucode/ge_handlers.md#clears	clear.S
-ge.u	label	0x00009156	mgesi_OverlayClearIndex		located	ucode/ge_handlers.md#clears	clear.S
-ge.u	label	0x0000918f	mgesi_OverlayClearColor		located	ucode/ge_handlers.md#clears	clear.S
-ge.u	label	0x000091a9	mgesi_ClearIndex		located	ucode/ge_handlers.md#clears	clear.S
-ge.u	label	0x000091b6	mgesi_ClearLA16		located	ucode/ge_handlers.md#clears	clear.S
-ge.u	label	0x000091ce	mgesi_ClearColor		located	ucode/ge_handlers.md#clears	clear.S
+ge.u	label	0x000090a3	mgesi_ClearVertex		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
+ge.u	label	0x000090c4	mgesi_ClearAccumWord32		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
+ge.u	label	0x000090ea	mgesi_ClearAccumWord		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
+ge.u	label	0x000090f8	mgesi_ClearAccum32		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
+ge.u	label	0x0000911b	mgesi_ClearAccum		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
+ge.u	label	0x00009138	mgesi_ClearDepth32		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
+ge.u	label	0x00009156	mgesi_OverlayClearIndex		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
+ge.u	label	0x0000918f	mgesi_OverlayClearColor		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
+ge.u	label	0x000091a9	mgesi_ClearIndex		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
+ge.u	label	0x000091b6	mgesi_ClearLA16		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
+ge.u	label	0x000091ce	mgesi_ClearColor		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
 ge.u	label	0x000091e3	mmo_ExtractL12A4		located	ucode/ge_handlers.md#mextracts	mextract.S
 ge.u	label	0x00009296	mmo_DrawTriPrimPhong		located	ucode/ge_handlers.md#phongs	phong.S
 ge.u	label	0x0000952c	normalize_and_light		located	ucode/ge_handlers.md#phongs	phong.S

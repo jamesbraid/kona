@@ -1867,7 +1867,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d0fe4	1112	TEST_rmcrctex	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d143c	1116	TEST_rmcrctex1	dynsym	6bdb2eea08fe		named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d1bd0	4504	draw_random_thing	dynsym	2ab7b444ff3a		named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d3f38	2204	crc_tex1_draw	dynsym	c73f794b0e43		named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d47d4	7684	crc_pgtest	dynsym	3dfe6f16ce45		named-only	RM.h:1768	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d47d4	7684	crc_pgtest	dynsym	3dfe6f16ce45		named-only	RM.h:1769	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d65d8	3740	crc_pgtest1	dynsym	0f9ec1c7e6ea		named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d8b78	7700	crc_imptest1	dynsym	1c37b5df2902		named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100de250	280	crc_tex1_load	dynsym	afddf061e6ba		undocumented		
