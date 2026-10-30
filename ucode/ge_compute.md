@@ -3281,3 +3281,50 @@ from engine words 0x13a7-0x13aa (colour) or 0x13ab-0x13ad (normal) with `r95` = 
   short normal and short texture coordinates. It stages 1/255, 1/32767 and the shift counts, decodes the colour with
   right shifts and the 1/255 multiply, decodes and normalises the normal, and converts the two texture shorts, writing the results
   to words 3-0xe of both records per pass.
+
+## Engine and context initialisation (ge.S)
+
+Read from the [ge.S listing](ge_listing/ge.S.lst) (`ge.u`, IRIX 6.5.30m). These handlers fill engine state with
+constants rather than compute from operands; the entries say what each one writes, which is what an emulator needs to
+reproduce a freshly initialised engine.
+
+- `mgeb_GlobalInitialize` (`ge.S` lines 49-75, at 0xad66): **inferred**, the one-time engine set-up. It calls
+  `mGL_REGS_Initialize`, `mGL_EM_Initialize` and `mGL_LightInitialize` (0xad66, 0xad6f, 0xad78), then stages five raster
+  words and sends them to the bus-output addresses 0x1f4-0x1f8 (0x430e0000, 0x42200000, 0x2102000, 0x2103000 and
+  0x2202000, staged at 0xad81-0xad85, stored at 0xad8b-0xad8f), and ends the command.
+- `mgeb_GLContextInitialize` (`ge.S` lines 85-99, at 0xad39): **inferred**, the set-up of a new OpenGL context: four calls,
+  to `mGL_REGS_Initialize`, `mGL_CM_Initialize`, `mGL_EX_Initialize` and `mGL_CtxLightInitialize` (0xad39-0xad54), with
+  nothing of its own between them.
+- `mgeb_XContextInitialize` (`ge.S` lines 109-121, at 0xad1c): **inferred**, the X-server context set-up. It calls
+  `mX_REGS_Initialize` and `mX_CM_Initialize` and copies its two command operands (A = 0x1f, D = 0 and 1) to control
+  words 5 and 6 (0xad2e, 0xad2f, stores 0xad37, 0xad38).
+- `mGL_REGS_Initialize` (`ge.S` lines 200-260, at 0xb25a): **inferred**, resets the address registers for an OpenGL
+  context. Per lane it sets register 0x18 to the staging bases 0x8d2c, 0x8d3d and 0x8d4e (0xb25d-0xb261), and registers
+  0x14 and 0x15 to 0 and 0, 0x9c and 0x14, and 0x138 and 0x28 in lanes 0, 1 and 2 (0xb25b-0xb264); register 0x17, the stack pointer of the link saves, starts at 0x1e4
+  (0xb275), and 0x16, 0x19 and 0x1b at zero. It converts the staged 1.0, 0x80000000 and 0x14 with code 0x71 and stores the
+  results at register 0x1d plus 2 and 3 and register 0x1c plus 0xb and 0xf (0xb26a-0xb26d).
+- `mX_REGS_Initialize` (`ge.S` lines 132-189, at 0xade8): **inferred**, the X-context form of the register reset: the
+  same 1.0 and 0x80000000 constants converted with code 0x71 (four uses) into words 2 and 3 of register 0x1d and 0xb and
+  0xf of register 0x1c, without the stack and staging bases.
+- `mX_CM_Initialize` (`ge.S` lines 277-316, at 0xadaf): **inferred**, fills the X context's control memory with eighteen
+  staged constants: masks (0xfffff, 0xffffffff, 0xff, 0xff001fff), the counts 0x4ff and 0x3ff, raster field words
+  (0x142808, 0x141408, 0x50140000, 0x3043c00 and three more) and the five raster words `mgeb_GlobalInitialize` sends.
+- `mGL_CM_Initialize` (`ge.S` lines 330-456, at 0xb1ac): **inferred**, fills an OpenGL context's control memory. Among its
+  64 staged words are the default vertex-module chain (`mmo_ObjToClipSpace` 0x1218, `mmo_LiColorClamp` 0xd69, 0x10c9,
+  0x28ca, 0x8465, 0xe741, 0x288c, 0x8db0), the error-handler address 0xf4e4, and float constants such as 1.0, -24.0
+  (0xc1c00000), 2^19 and 2^20 (0x49000000, 0x49800000) and 0x457ffff8.
+- `mGL_EM_Initialize` (`ge.S` lines 496-606, at 0xb0f4): **inferred**, writes the external-memory constant tables. It
+  stages trigonometry constants: -pi, pi, pi/2 and 2 pi (0xc0490fdb, 0x40490fdb,
+  0x3fc90fdb, 0x40c90fdb), pi/180 (0x3c8efa35), the series coefficients near 1/6 and 1/120 (0x3e2aa7c9, 0x3c082eab) and
+  the rounding constant 0x4b400000, and then the vertex-array unpack table: the addresses of every `uunpack.s` and
+  `munpack.S` module (0x2c6b, 0x2c83, 0x5757, 0x56ff and onward), one per array format.
+- `mGL_EX_Initialize` (`ge.S` lines 640-973, at 0xae09): **inferred**, the largest initialiser (747 words, 257 moves). It
+  stages mostly 1.0 (0x3f800000), plus 0.5, 32.0 (0x42000000), the words
+  0x1b02 (twice), 0x8a2, 0x8c2, 0x8e2, 0xbea and 0xc0d, and the masks 0xffffff00 and 0xffff.
+- `mDebugInitialize` (`ge.S` lines 985-1001, at 0xad90): **inferred**, clears the debug-print state: it zeroes external
+  words 0x1755 and 0x1756, saves the transfer-target register at the stack (0xad9b), calls `mClearEram` on 0x80 words
+  from 0x16d5 (0xad97-0xad99), stages the marker 0xdeadbeef (0xad9d) and restores the saved target before returning.
+- `mgesi_PipeSetup` (`ge.S` lines 1016-1048, at 0xab9d): **inferred**, the pipe set-up command. It takes four command
+  operands and stores them to external words 0x17f5 and 0x1385-0x1387 (0xab9d-0xabac), saves the three lanes' values
+  at 0x17d7-0x17db, and prints a greeting through `mPrintf`: the staged words 0x57656c63, 0x6f6d6520, 0x746f2047,
+  0x454c616e and 0x64210000 are the text "Welcome to GELand!".
