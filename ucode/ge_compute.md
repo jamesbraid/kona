@@ -428,15 +428,15 @@ and every store below sits exactly there. Read in full from the [lightsource.S l
   block, at offsets 5-7 (0xc61e-0xc622) and 0x14-0x16 (0xc616-0xc61a), with a further store at offset 0x22 (0xc61c),
   and the command ends at 0xc61d. Its operands are command words 1-3; the unit vector it produces is the stored result,
   derived from the inverse-matrix products.
-- `mgeb_LightSpotExp` (`lightsource.S` line 450, at 0xc626): **inferred**, installs a spotlight exponent and refreshes
-  the exponent power table. Its operands are the light (command word 0, into register 3 at 0xc64d), the exponent (word
-  1, converted to an integer at 0xc62a) and the table slot index (word 2, into address register 4 at 0xc62d). The
-  exponent is compared with the limit 128.0 (0x43000000, staged at 0xc644 and subtracted at 0xc648); the branches at
-  0xc653 and 0xc654 send an out-of-range value to 0xc689, which jumps to `mErrInvalidValue` (0xd50a). Otherwise it
-  writes the result into the light block and the table slot at 0x1bff plus the index (stores 0xc667, 0xc669 and 0xc66b)
-  and calls `mLiPwrTable` (0xdc9) on `cc` 0x7e at 0xc655; the constants 0x3d042108 (one thirty-first), 0x41f7fff0 (just
-  under 31.0), 32.0 and 262144.0 (0x48800000) are staged at 0xc650, 0xc661, 0xc66e and 0xc66c for that rebuild. It
-  converts the exponent operand to an integer and compares it with the limit; the stored result is the table slot.
+- `mgeb_LightSpotExp` (`lightsource.S` line 450, at 0xc626): **inferred**, installs a spotlight exponent and calls the
+  routine that rebuilds the exponent power table. Its operands are the light (command word 0, into register 3 at 0xc64d),
+  the exponent (word 1, converted to an integer at 0xc62a) and the table slot index (word 2, into address register 4 at
+  0xc62d). The exponent is compared with the limit 128.0 (0x43000000, staged at 0xc644 and subtracted at 0xc648); the
+  branches at 0xc653 and 0xc654 send an out-of-range value to 0xc689, which jumps to `mErrInvalidValue` (0xd50a). Otherwise
+  it writes the result into the light block and the table slot at 0x1bff plus the index (stores 0xc667, 0xc669 and 0xc66b)
+  and calls `mLiPwrTable` (0xdc9) on `cc` 0x7e at 0xc655. After the call, 0xc656-0xc685 run multiplies, adds and ERAM stores
+  with the constants 0x3d042108 (one thirty-first), 0x41f7fff0 (just under 31.0), 32.0 and 262144.0 (0x48800000), staged at
+  0xc650, 0xc661, 0xc66e and 0xc66c; what they compute is not derived here.
 - `mgeb_LightSpotCutAng` (`lightsource.S` line 350, at 0xc697): **inferred**, installs a spotlight cut-off angle after
   range-checking it. The light address (command word 0, 0xc697) and the angle in degrees (word 1) are the operands, and
   the angle has the staged limits subtracted from it 180.0 and 90.0 (0x43340000 at 0xc69a, 0x42b40000 at 0xc699;
@@ -2202,10 +2202,11 @@ engine address 0x10c8 and one at 0x1164, each reached through register 0 loaded 
   stages `mmo_SaveRasterPos` (0xe623, 0xe455) and subtracts it from control word 0xf (0xe456); the delay words of the command end
   at 0xe459 send 0x70000 to bus address 0x1f8 (0xe45d) and, when the draw stage differs, zero to 0x1f5 and staging word 0x10 to
   0x1f4 (0xe45f, 0xe461). It takes control word 0x19 and register 0x10 as inputs and produces special registers 0x2a and 0xb and the end-of-batch bus words.
-- `mdc_evaluator` (`fluff.S` line 239, at 0xe462):
-  **inferred**, the end stage for the evaluator path. It loads the transfer target through register 0x17 (0xe462), writes
-  register 0x10 to special register 0xb (0xe463), ends the command (0xe468) and, in its delay word, takes register 0x17 down by
-  one (0xe46d), so the next stage comes from the top of the stack that register 0x17 indexes. It takes register 0x10 as input and yields special register 0xb and the stack pointer lowered by one; it selects the next stage from the stack.
+- `mdc_evaluator` (`fluff.S` line 239, at 0xe462): **inferred**, the end stage for the evaluator path. It loads the transfer
+  target through register 0x17 (0xe462), writes register 0x10 to special register 0xb (0xe463), ends the command (0xe468)
+  and, in its delay word, takes register 0x17 down by one (0xe46d), so the next stage comes from the top of the stack that
+  register 0x17 indexes. Special register 0xb receives register 0x10 as it is and the stack pointer drops by one; the next
+  stage address comes from the stack.
 - `mdc_multipass` (`fluff.S` line 169, at 0xe471):
   **inferred**, the end stage for the multipass path, taken from `mDispatchCentral` or `mdc_sprite`. On the fall-through path
   it ANDs register 0x10 with the staged 0xfffffff7 into special register 0xb (0xe47a-0xe47b), copies control words 0-2 to the cull
@@ -2213,20 +2214,20 @@ engine address 0x10c8 and one at 0x1164, each reached through register 0 loaded 
   to word 0xa under cc 2, when that word is empty (0xe48e, 0xe49a), before ending the command at 0xe492. The branch at 0xe471
   on cc 0x6e goes to 0xe49b, which clears bit 0x80 of control word 0x19 by code 0x51 (0xe49c), calls `mEramToCram` (0xe49d) with
   source 0x1505, destination 0x2f and count 0x20, and then jumps to `mdc_finish` (0xe4ad) or `mdc_evaluator` (0xe4ac, cc 0x68). It takes registers and control words 0-2 as inputs, produces the restored special registers and word 0xa, and selects the end path by comparing flag bit tests.
-- `mdc_sprite` (`fluff.S` line 140, at 0xe4b6):
-  **inferred**, the end stage for the sprite path. It calls `mEramToCram` (0x104f, 0xe4b6) with a source taken from the
-  immediate 0x14d5 (0xe4b9), destination 0x2f and count 0x10, restoring the saved matrix, and sets special registers 0x2b and
-  0x29 (0xe4bf-0xe4c0). It then selects the next stage: `mdc_multipass` on cc 0x66 (0xe4c5), `mdc_evaluator` on cc 0x68
-  (0xe4c6), otherwise `mdc_finish` (0xe4c7). It takes the saved matrix words at 0x14d5 as input, produces them in 0x2f-0x3e and selects the next stage by testing flag bits.
+- `mdc_sprite` (`fluff.S` line 140, at 0xe4b6): **inferred**, the end stage for the sprite path. It calls `mEramToCram`
+  (0x104f, 0xe4b6) with a source taken from the immediate 0x14d5 (0xe4b9), destination 0x2f and count 0x10, restoring the
+  saved matrix, and sets special registers 0x2b and 0x29 (0xe4bf-0xe4c0). It then selects the next stage: `mdc_multipass` on
+  cc 0x66 (0xe4c5), `mdc_evaluator` on cc 0x68 (0xe4c6), otherwise `mdc_finish` (0xe4c7). The saved matrix words at 0x14d5
+  are copied into 0x2f-0x3e unchanged; the flag tests at 0xe4c5-0xe4c7 pick the next stage.
 - `mdc_polymode_or_clip` (`fluff.S` line 121, at 0xe4d0):
   **inferred**, the shortest end stage, for the polygon-mode and clip states. It writes register 0x10 to special register 0xb
   (0xe4d0), ends the command (0xe4d5) and in the delay word takes register 0x17 down by one (0xe4da), the same stack step
   `mdc_evaluator` makes. It takes register 0x10 as input, produces special register 0xb and lowers register 0x17.
-- `mmo_DirtyMultipassModule` (`fluff.S` line 1016, at 0xe6a5):
-  **inferred**, the dirty-state stage that puts `mmo_MultipassModule` into the pre-path chain. It stages 0xe3e1 (0xe6a6), moves
-  it to store-data (0xe6a7), stores it at word 0xda plus register 9 (0xe6b0), loads that word as the transfer target (0xe6b1) and
-  writes word 0xdb under cc 0x15 after a test on register 9 (0xe6bd, 0xe6bf). The command then continues through the word it
-  just wrote (0xe6b7). It takes the staged address 0xe3e1 as input, produces it in the pre-path word and selects that word as the successor.
+- `mmo_DirtyMultipassModule` (`fluff.S` line 1016, at 0xe6a5): **inferred**, the dirty-state stage that puts
+  `mmo_MultipassModule` into the pre-path chain. It stages 0xe3e1 (0xe6a6), moves it to store-data (0xe6a7), stores it at
+  word 0xda plus register 9 (0xe6b0), loads that word as the transfer target (0xe6b1) and writes word 0xdb under cc 0x15
+  after a test on register 9 (0xe6bd, 0xe6bf). The command then continues through the word it just wrote (0xe6b7). The
+  staged address 0xe3e1 is stored unchanged into the pre-path word, and that word is the successor.
 - `mmo_AbortGeometry` (`fluff.S` line 264, at 0xe6e8):
   **inferred**, the stage the decomposers branch to when a batch must be dropped. It tests control word 3 against the staged
   0x10 (0xe6e9-0xe6ea) and control word 0xd against register 0x1d (0xe6eb); on a nonzero result it jumps to 0xe716, which clears
@@ -2235,11 +2236,12 @@ engine address 0x10c8 and one at 0x1164, each reached through register 0 loaded 
   0xe72f) and ends the command through word 0xc (0xe727); when the chain reaches 0xe730 it reloads the parked word and goes back
   to 0xe700. Otherwise, at 0xe700, it reads word 0x1a as the successor, compares `mmo_SaveRasterPos` (0xe623, 0xe702) with word 0xf
   and sends 0x70000 to bus address 0x1f8, then, when they differ, zero to 0x1f5 and staging word 0x10 to 0x1f4 (0xe70f-0xe715). Its inputs are control words 3 and 0xd and register 0x1d, which it compares against masks; its outputs are the cleared special registers and the bus words.
-- `mDispatchCentral` (`fluff.S` line 53, at 0xe741):
-  **inferred**, the end-of-chain dispatcher that selects what the finished batch does next. It copies control word 0x19 to special
-  register 0xb (0xe742), clears special register 9 (0xe74f) and branches on the flag bits of word 0x19 in order: cc 0x60 and 0x62
-  to `mdc_polymode_or_clip` (0xe4d0, 0xe750-0xe751), cc 0x64 to `mdc_sprite` (0xe4b6), cc 0x66 to `mdc_multipass` (0xe471), cc 0x68
-  to `mdc_evaluator` (0xe462), and the jump at 0xe755 to `mdc_finish` when no bit is set. It takes control word 0x19 as input, produces the copy in special register 0xb and selects the next stage by comparing flag bits.
+- `mDispatchCentral` (`fluff.S` line 53, at 0xe741): **inferred**, the end-of-chain dispatcher that selects what the
+  finished batch does next. It copies control word 0x19 to special register 0xb (0xe742), clears special register 9 (0xe74f)
+  and branches on the flag bits of word 0x19 in order: cc 0x60 and 0x62 to `mdc_polymode_or_clip` (0xe4d0, 0xe750-0xe751),
+  cc 0x64 to `mdc_sprite` (0xe4b6), cc 0x66 to `mdc_multipass` (0xe471), cc 0x68 to `mdc_evaluator` (0xe462), and the jump
+  at 0xe755 to `mdc_finish` when no bit is set. Control word 0x19 is copied unchanged to special register 0xb; the flag
+  tests listed pick the next stage.
 
 ## Decomposers (udecompose.s)
 
@@ -2695,13 +2697,14 @@ the [fft.S listing](ge_listing/fft.S.lst) (`ge.u`, IRIX 6.5.30m).
   eight results go back over words 0-7 in place, with no multiply and no table read, so the twiddle table that the start-up
   code loads is left to the larger sizes. It reads and steps its successor pointer like the two-point stage (0x37bc,
   0x37c7).
-- `mgeb_PixDrawColorSetup_FFT` (`fft.S` line 2191, at 0x3000): **inferred**, the command that opens an FFT pixel
-  transfer. It takes CRAM word 0x1ec (read at 0x3000) and the first two command words as inputs. When the CRAM word is
-  nonzero a conditional call (`cc` 3, 0x300c) runs `uEvalSaveState` (0x962) first. It then stores command word 0 and
-  command word 1 through address register 0x1c at offsets 8 and 9 (0x3018, 0x301d), the COMP_FORMAT and FPU_MODE special
-  registers, discards two further input words (0x3013-0x3014), re-bases the per-lane staging register 0x18 on 0x8000
-  with a 0x11-word stride per lane (0x3015-0x3017) and stores the zero register to CRAM words 0x1ed and 0x1ee (0x3024,
-  0x3025). It ends the command at 0x301d. Its outputs are the two special-register writes and the cleared CRAM words; it selects the staging base per lane.
+- `mgeb_PixDrawColorSetup_FFT` (`fft.S` line 2191, at 0x3000): **inferred**, the command that opens an FFT pixel transfer.
+  It takes CRAM word 0x1ec (read at 0x3000) and the first two command words as inputs. When the CRAM word is nonzero a
+  conditional call (`cc` 3, 0x300c) runs `uEvalSaveState` (0x962) first. It then stores command word 0 and command word 1
+  through address register 0x1c at offsets 8 and 9 (0x3018, 0x301d), the COMP_FORMAT and FPU_MODE special registers,
+  discards two further input words (0x3013-0x3014), re-bases the per-lane staging register 0x18 on 0x8000 with a 0x11-word
+  stride per lane (0x3015-0x3017) and stores the zero register to CRAM words 0x1ed and 0x1ee (0x3024, 0x3025). It ends the
+  command at 0x301d. Two special registers are written and the CRAM words listed are cleared; the staging base is set once
+  per lane.
 - `mmo_Transpose` (`fft.S` line 2050, at 0x3026): **inferred**, a stage of the FFT path that rebuilds the raster-side
   set-up for the next pass and advances one CRAM accumulator. Its inputs are ERAM words 0x31, 0x32, 5, 6 and 0x1389 and
   CRAM words 0x1a0 and 0x1a2 (reads at 0x3026-0x3030, 0x3035, 0x3042). It shifts CRAM 0x1a2 right by 8 and masks it with
@@ -2739,12 +2742,15 @@ the [fft.S listing](ge_listing/fft.S.lst) (`ge.u`, IRIX 6.5.30m).
   0x31bd. The second pass is a nested loop (outer 0x31cb-0x3237, inner 0x31ef-0x322c), the third preloads twiddle words
   0x73c5-0x7466 (0x3240-0x3264) before its loop 0x326a-0x32b6, and the fourth (loop 0x32df-0x32f7) uses adds and
   subtracts only. It loads its successor at 0x3300 and ends at 0x3306. The inputs are the sample words and ERAM twiddle words, and the result is the transformed record in place.
-- `mmo_FFT_128` (`fft.S` line 1155, at 0x330f): **inferred**, the 128-point transform, one radix-2 pass followed by three
-  radix-4 passes on the record at register 0x10. The radix-2 pass (loop 0x3322-0x333e) reads per-lane twiddle words from
-  ERAM (0x3322-0x332a) and combines sample pairs with 4 multiplies, 3 adds and 1 subtract per pass (0x3336-0x3343).
-  The radix-4 passes are a nested loop (0x334c-0x33bd with the inner loop 0x3370-0x33ad), a second nested loop
-  (0x33eb-0x3437) and a final loop (0x3446-0x345e) plus a straight-line block (0x346d-0x347e) with no multiplies. The
-  successor is read through register 0x13 at 0x3479 and the command ends at 0x347f. Its inputs are the sample words and ERAM twiddle words, and it produces the transformed record in place, with the successor as a further output.
+- `mmo_FFT_128` (`fft.S` line 1155, at 0x330f): **inferred**, the 128-point transform on the record at register 0x10, in
+  four loop nests. The first (loop 0x3322-0x333e, counter 0x14 set at 0x3320, run in each of three lanes) reads per-lane
+  twiddle words from ERAM (0x3322-0x332a), adds and subtracts a sample pair (0x3317-0x331a, 0x3332-0x3334) and forms the
+  complex twiddle product from 4 multiplies (0x3336-0x3339, M = 0x47f) with 3 adds and 1 subtract (0x333a-0x333d). The
+  decompile of the later nests shows four-input butterflies of adds and subtracts, with twiddle multiplies in the first two:
+  a nested loop (0x334c-0x33bd, inner loop 0x3370-0x33ad), a second (0x33eb-0x3437), a final loop (0x3446-0x345e) and a
+  straight-line block (0x346d-0x347e), the last two with no multiplies. Four nests fit 128 = 2 x 4 x 4 x 4, which is the
+  radix-2 then radix-4 reading (inferred). The successor is read through register 0x13 at 0x3479 and the command ends at
+  0x347f. The twiddle indexing and the arithmetic of the later passes are not derived word by word.
 - `mmo_FFT_64` (`fft.S` line 1090, at 0x3488): **inferred**, the 64-point transform as three radix-4 passes on the record
   at register 0x10. Address registers 0xb and 0xd start 0x100 and 0x180 words past the base (0x3489, 0x348a) and
   registers 0xc, 0xe and 0xf point at ERAM twiddle words 0x73ad, 0x73b5 and 0x73bd (0x348b-0x3492). The first loop
@@ -3727,16 +3733,14 @@ them bracket their work with a save and restore of a block of working memory. Re
   subtracts, and produces the same outputs, the vertex slots 0xd1-0xd4, 0xd9 and 0xcf together with the raster words 0x806, 0x3fd3,
   0x1243fd3 and 0x12b0806 (0x7ffa-0x8067). The record pointer advances by 0x78 (0x80da), the restore call is at 0x80ef and the end
   is the flush through 0x1f4 (0x810a).
-- `RestoreClipState` (`drawmstpnt.S` line 285, at 0x810b): **inferred**,
-  brings the 0x4b-word block of working memory at 0x8528 back from external memory. It takes no command operands and selects the source 0x7c53 for
-  register 0, the destination 0x8528 for register 1 and the count 0x4b for register 2 (0x810c-0x810e) and calls
-  `mEramToWram` (0xd45d, call at 0x810b); the successor is saved at 0x810f and reloaded at 0x8114 and the routine
-  returns at 0x811a.
-- `SaveClipState` (`drawmstpnt.S` line 269, at 0x8123): **inferred**,
-  the mirror image: it copies the 0x4b words of working memory at 0x8528 out to external memory at 0x7c53. It takes no command operands and selects the
-  source 0x8528 for register 0, the destination 0x7c53 for register 1 and the count 0x4b for register 2
-  (0x8124-0x8126) and calls `mWramToEram` (0x1025, call at 0x8123). The successor is saved at 0x8127 and reloaded at
-  0x812c, and the routine returns at 0x8132.
+- `RestoreClipState` (`drawmstpnt.S` line 285, at 0x810b): **inferred**, brings the 0x4b-word block of working memory at
+  0x8528 back from external memory. It reads no command words: it loads the source 0x7c53 into register 0, the destination
+  0x8528 into register 1 and the count 0x4b into register 2 (0x810c-0x810e) and calls `mEramToWram` (0xd45d, call at
+  0x810b); the successor is saved at 0x810f and reloaded at 0x8114 and the routine returns at 0x811a.
+- `SaveClipState` (`drawmstpnt.S` line 269, at 0x8123): **inferred**, the mirror image: it copies the 0x4b words of working
+  memory at 0x8528 out to external memory at 0x7c53. It reads no command words: it loads the source 0x8528 into register 0,
+  the destination 0x7c53 into register 1 and the count 0x4b into register 2 (0x8124-0x8126) and calls `mWramToEram` (0x1025,
+  call at 0x8123). The successor is saved at 0x8127 and reloaded at 0x812c, and the routine returns at 0x8132.
 
 ## Point drawing (drawpnt.S)
 
@@ -3938,10 +3942,10 @@ bits 0x80000 geometry, 0x100000 texture, 0x200000 inverse needed) and in two ext
   loop-entry addresses at offsets 2-6: 0x2b32 (texture only), 0x2ab8 (position), 0x2ae7 (position and texture), 0x2b61
   (position and normal) and 0x2ba7 (position, normal and texture) (stores 0x48e0-0x48e4). It reads control-memory words 3
   and 5 (0x48d9, 0x48dc), ANDs them with the test bits (0x48db, 0x48dd), picks one staged address by the predicated
-  address-register loads at 0x48e6-0x48e8 and the test at 0x48eb, and moves it into the store-data register (0x48ec).
-  Its output is that address, stored to control-memory word 0xda (0x48f5) and, under the predicate at 0x4904, to 0xdb,
-  and loaded as the transfer target with `r95` = 2 at 0x48f6, so the group-31 transfer at 0x48fc continues in the chosen
-  loop. Its operands are control-memory words 3 and 5, and it selects exactly one of the five addresses.
+  address-register loads at 0x48e6-0x48e8 and the test at 0x48eb, and moves it into the store-data register (0x48ec). Its
+  output is that address, stored to control-memory word 0xda (0x48f5) and, under the predicate at 0x4904, to 0xdb, and
+  loaded as the transfer target with `r95` = 2 at 0x48f6, so the group-31 transfer at 0x48fc continues in the chosen loop.
+  It reads control-memory words 3 and 5 and picks exactly one of the five addresses.
 
 ## Performance instruments (pi.S)
 
@@ -3951,17 +3955,17 @@ words: a select word (an `0x476xxxx`-style value) to address 0x1f8 and its data 
 
 - `mgesi_StopInstruments` (`pi.S` line 81, at 0x4905): **inferred**, writes the counter-control sequence that halts and
   reads out the instruments. Its inputs are command words 0, 1, 2 and 9 (read with A = 0x1f, 0x4930-0x4943) and eighteen
-  staged constants (0x817f, 0xa, 0x3, 0x10476, 0x2, 0x1, 0x4, 0x5, 0x400, and the selects 0x4760000, 0x4610000,
-  0x4600000, 0x4740000, 0x4640000, 0x4630000, 0x4400000, 0x4770000 and 0x4620000; stores 0x4908-0x4929). It combines them
-  into 44 bus words: the select words alternate with data words, which are either a staged constant or one of the four
-  command words, and every select goes to 0x1f8 and every data word to 0x1f5 (moves 0x490a-0x4945 and the shadow words
-  0x4947-0x494d). Its output is that stream plus a closing word to 0x1f4 (0x494e); the end-of-command transfer at 0x4946
-  carries 0x1f8 as its last immediate.
-- `mgesi_StartInstruments` (`pi.S` line 37, at 0x494f): **inferred**, the matching start sequence, which arms four
-  counters. Its input is command word 0 (read at 0x4959). It stages the four selects 0x60476, 0x30476, 0x40476 and 0x50476
-  (stores 0x4950, 0x4951, 0x4953 and 0x4956) and sends them to 0x1f8 in that order (0x4955, 0x495a, 0x495c, 0x495e), each
-  followed by a data word to 0x1f5: command word 0 after the first, then zero (register 0x1e) after each of the other three
-  (0x4959, 0x495b, 0x495d, 0x495f). It ends with a zero word to 0x1f4 (0x4960) and the end-of-command transfer at 0x4958. It produces the counter set-up as that bus stream.
+  staged constants (0x817f, 0xa, 0x3, 0x10476, 0x2, 0x1, 0x4, 0x5, 0x400, and the selects 0x4760000, 0x4610000, 0x4600000,
+  0x4740000, 0x4640000, 0x4630000, 0x4400000, 0x4770000 and 0x4620000; stores 0x4908-0x4929). It combines them into 44 bus
+  words: the select words alternate with data words, which are either a staged constant or one of the four command words,
+  and every select goes to 0x1f8 and every data word to 0x1f5 (moves 0x490a-0x4945 and the shadow words 0x4947-0x494d). A
+  closing word goes to 0x1f4 (0x494e), and the end-of-command transfer at 0x4946 carries 0x1f8 as its last immediate.
+- `mgesi_StartInstruments` (`pi.S` line 37, at 0x494f): **inferred**, the matching start sequence, which arms four counters.
+  Its input is command word 0 (read at 0x4959). It stages the four selects 0x60476, 0x30476, 0x40476 and 0x50476 (stores
+  0x4950, 0x4951, 0x4953 and 0x4956) and sends them to 0x1f8 in that order (0x4955, 0x495a, 0x495c, 0x495e), each followed
+  by a data word to 0x1f5: command word 0 after the first, then zero (register 0x1e) after each of the other three (0x4959,
+  0x495b, 0x495d, 0x495f). It ends with a zero word to 0x1f4 (0x4960) and the end-of-command transfer at 0x4958. The counter
+  set-up is that bus stream.
 
 ## X server window and clip loading (xload.S, xsetup.S)
 
@@ -4090,12 +4094,14 @@ loops start from, two attach or detach the unpack module in the vertex path's su
 - `mgeb_DisableUnpack` (`unpack.S` line 80, at 0x582e): **inferred**, detaches the unpack module. It reads control-memory
   word 0xdf (0x582e, setting the flags) and, under that predicate, writes zero to special register 0x27 (0x5830). It then
   reads control-memory word 0xdb (0x5834) and stores it into word 0xda (0x583d), so the vertex path's successor reverts to
-  the pre-path module held in 0xdb; the transfer at 0x5835 ends the command. Its input is word 0xdf; it selects the saved module and its result is the reverted successor.
+  the pre-path module held in 0xdb; the transfer at 0x5835 ends the command. The saved module (word 0xdb) becomes the
+  successor again.
 - `mgeb_EnableUnpack` (`unpack.S` line 42, at 0x583e): **inferred**, attaches an unpack module chosen by the command. Its
   input is command word 0 (loaded into address register 0x1a at 0x583e). It reads the external-memory table at 0x138a
   indexed by that register (0x5846, `r95` = 0x14), which gives the address of the module, stores that address into
   control-memory word 0xda (0x5856) as the successor, and stores register 0x1d to special register 0x27 (0x5849) to mark
-  unpacking as active; the transfer at 0x584e ends the command. It selects the module by table lookup, and its result is the new successor word.
+  unpacking as active; the transfer at 0x584e ends the command. The module address comes from the table lookup and becomes
+  the new successor word.
 
 ## Reference plane (refplane.S)
 
@@ -4121,10 +4127,13 @@ Read from the [refplane.S listing](ge_listing/refplane.S.lst) (`ge.u`, IRIX 6.5.
   writes, each preceded by the `0x70000` select (0x5b1c): the select 0x1243fd3 to 0x1f8 with the data 6 to 0x1f5
   (0x5b1d-0x5b23), then a closing zero to 0x1f4 (0x5b24-0x5b25). Both data stores are predicated (0x5b1f, 0x5b23) on the
   state tested at 0x5b27. It takes no command words; it combines the flag clear with the two bus writes, and its result is the plane switched off.
-- `mgebi_ReferencePlane_Enable` (`refplane.S` line 41, at 0x5b2f): **inferred**, turns the reference plane on. It ORs
-  0x4000000 into control-memory word 3 (stage 0x5b35, OR 0x5b37, store 0x5b40) and tests register 0x13 (0x5b36); when it is
-  non-zero it calls `mRefPlane` (0x5b38) to send the stored plane to the raster back end. The closing zero goes to 0x1f4
-  (0x5b41-0x5b42), and the end-of-command transfer is at 0x5b43. It takes no operand beyond the register test; it combines the flag set with the call, and its output is the enabled plane plus the closing word.
+- `mgebi_ReferencePlane_Enable` (`refplane.S` line 41, at 0x5b2f): **inferred**, turns the reference plane on. The first
+  command word goes to address register 0x1a (0x5b2f), the second is discarded (0x5b30) and the third goes to register 0x13
+  and staging word 0x10 (0x5b32); 0x5b36 sets the flags from register 0x13. It ORs 0x4000000 into control-memory word 3
+  (stage 0x5b35, OR 0x5b37, store 0x5b40) and calls `mRefPlane` (0x5b38) to send the stored plane to the raster back end.
+  The call word carries `cc` 0x11, the same value as the unconditional jump that ends `mDispatchCentral` (0xe755) and the
+  calls elsewhere that nothing gates (for example 0x8123), so the call is not conditional on the flags set at 0x5b36
+  (inferred). The closing zero goes to 0x1f4 (0x5b41-0x5b42), and the end-of-command transfer is at 0x5b43.
 - `mRefPlane` (`refplane.S` line 464, at 0x5b4c): **inferred**, converts the stored reference plane into raster terms. It
   takes external-memory words 0x94b-0x953 (reads 0x5b4c-0x5b6a) and the viewport scale and offset words of control memory
   (0x7e-0x83), plus control-memory words 0xc4-0xc6 and 0xd5. It multiplies the plane terms by the scales (0x5b53-0x5b5d, 0x5b62,
@@ -4235,28 +4244,31 @@ that `mSinCos` uses (external memory 0x14c9-0x14d3, written by the start-up code
 The attribute commands of `push_attrib.S` move blocks between the command stream and engine memory with the shared copy
 routine `mWramToEram`. Read from the [push_attrib listing](ge_listing/push_attrib.S.lst) (`ge.u`, IRIX 6.5.30m).
 - `mgeb_InitFFTFactors` (`push_attrib.S` line 36, at 0x37de): **inferred**, a double block copy from the command payload
-  into external memory. It takes the payload as input: the first call (0x37de) points register 0 at command word 0,
-  register 1 at ERAM 0x90a and register 2 at the count 0x30 (0x37e1-0x37e3), and the second call (0x37e7) points register
-  0 at word 0x30, register 1 at ERAM 0x94b and register 2 at 0xd (0x37ea-0x37ec). Both go through `mWramToEram` (0x1025),
-  so the command writes 0x30 + 0xd = 61 words into engine memory, then ends at 0x37f0. It takes the payload words as input and produces unchanged copies in ERAM; it only selects source, destination and count for each copy.
+  into external memory. It takes the payload as input: the first call (0x37de) points register 0 at command word 0, register
+  1 at ERAM 0x90a and register 2 at the count 0x30 (0x37e1-0x37e3), and the second call (0x37e7) points register 0 at word
+  0x30, register 1 at ERAM 0x94b and register 2 at 0xd (0x37ea-0x37ec). Both go through `mWramToEram` (0x1025), so the
+  command writes 0x30 + 0xd = 61 words into engine memory, then ends at 0x37f0. The payload words are copied unchanged; the
+  source, destination and count of each copy are the constants listed above.
 - `mgeb_RestoreXformAttribs` (`push_attrib.S` line 36, at 0x37de): **inferred**, a second name for the same words as
   `mgeb_InitFFTFactors`, so the same 61-word payload copy into ERAM 0x90a and 0x94b through `mWramToEram` (calls at 0x37de
-  and 0x37e7). As a restore command it returns the saved block to the same two ERAM ranges. It takes the same payload as input and produces the same ERAM copies unchanged, and selects source, destination and count as the first name does.
+  and 0x37e7). As a restore command it returns the saved block to the same two ERAM ranges. The same copies run unchanged,
+  with the same source, destination and count constants.
 
 ## Video controller bus writes (video.S)
 
 The two handlers of `video.S` here forward command words to the video-controller bus using the bus-output addresses
 0x1f4-0x1f7 that the raster handlers use. Read from the [video listing](ge_listing/video.S.lst) (`ge.u`, IRIX 6.5.30m).
 - `mgesi_VCbusWriteMultiple` (`video.S` line 67, at 0x52e8): **inferred**, a burst write of several words to one
-  video-controller register. Command word 0 (register) and command word 1 (count) become registers 0x1a and 0x19
-  (0x52e8, 0x52e9). It sends the staged selector 0x411 (0x52eb) through the window and command word 0 to bus address 0x1f6
-  (0x52ef), then walks the following command words with register 0xf (0x52f0, 0x52f2, 0x52f3) and forwards them through
-  the window and a 0x1f5 store (0x52f4). A decrement loop on register 0xe (0x52f5-0x52f7) repeats the walk, and the return
-  at 0x52fc has delay slots that push words at offsets 0 and 3 of register 0xf (0x52fd, 0x52fe) and send the closing
-  word 0x1f4 (0x5304). It takes the two command words and the following data words as input and produces bus writes on 0x1f4-0x1f7 unchanged; it only selects which words go out.
-- `mgesi_VCbusWrite` (`video.S` line 35, at 0x5305): **inferred**, a single write to a video-controller register. It
-  takes two command words as inputs. It stages 0x411 (0x530c), sends it to bus address 0x1f7 (0x530d), sends command
-  word 0 to 0x1f6 (0x530f) and command word 1 to 0x1f5 (0x5310), and ends with the closing word to 0x1f4 (0x5311). Its outputs are the four bus writes, which carry the command words unchanged; it only selects the register selector 0x411.
+  video-controller register. Command word 0 (register) and command word 1 (count) become registers 0x1a and 0x19 (0x52e8,
+  0x52e9). It sends the staged selector 0x411 (0x52eb) through the window and command word 0 to bus address 0x1f6 (0x52ef),
+  then walks the following command words with register 0xf (0x52f0, 0x52f2, 0x52f3) and forwards them through the window and
+  a 0x1f5 store (0x52f4). A decrement loop on register 0xe (0x52f5-0x52f7) repeats the walk, and the return at 0x52fc has
+  delay slots that push words at offsets 0 and 3 of register 0xf (0x52fd, 0x52fe) and send the closing word 0x1f4 (0x5304).
+  The data words go out unchanged; nothing is calculated on them.
+- `mgesi_VCbusWrite` (`video.S` line 35, at 0x5305): **inferred**, a single write to a video-controller register. It takes
+  two command words as inputs. It stages 0x411 (0x530c), sends it to bus address 0x1f7 (0x530d), sends command word 0 to
+  0x1f6 (0x530f) and command word 1 to 0x1f5 (0x5310), and ends with the closing word to 0x1f4 (0x5311). The command words
+  go out unchanged; the register selector 0x411 is the only constant of its own.
 
 ## Context load and destroy (ctx_load.S)
 
@@ -4272,42 +4284,47 @@ the 0x1f4-0x1f8 bus addresses. Read from the [ctx_load listing](ge_listing/ctx_l
 - `mges_ContextLoadFifo` (`ctx_load.S` line 564, at 0x668a): **inferred**, a command that consumes its operands without
   acting on them. It discards three input words (0x668a-0x668c) and ends the command at 0x668e, with the lane select
   word at 0x6695 in the delay slot, so no register or memory word changes. It takes three input words and discards them.
-- `mgeb_ContextLoadRegs` (`ctx_load.S` line 484, at 0x6697): **inferred**, restores the engine's special registers from
-  a saved context. Nine command words are the inputs: word 6 goes to special register 0xb (0x6698), words 3, 4 and 5 to
+- `mgeb_ContextLoadRegs` (`ctx_load.S` line 484, at 0x6697): **inferred**, restores the engine's special registers from a
+  saved context. Nine command words are the inputs: word 6 goes to special register 0xb (0x6698), words 3, 4 and 5 to
   special registers 9, 0xa and 0xf (0x669c-0x669e), words 7 and 8 to flag words 0x42 and 0x43 through register 0x1d (0x669f,
   0x66a0), and words 0-2 become registers 0-2 that are written to special registers 1, 2 and 8 (0x66af-0x66b1). It loads
   address registers 0x10-0x18 from the staged words at register 0x18 (0x66a7-0x66af) and, when the next input word is zero
-  (0x66b3, 0x66b5), calls `mLiUpdateMtrlState` (0x67a9) on `cc` 0x68. It discards 36 further input words (0x66bf-0x66e2)
-  and ends at 0x66e4. It takes the command words as operands and produces the restored special registers, flag words and address registers unchanged; it selects each target by word position.
+  (0x66b3, 0x66b5), calls `mLiUpdateMtrlState` (0x67a9) on `cc` 0x68. It discards 36 further input words (0x66bf-0x66e2) and
+  ends at 0x66e4. Each word goes to the target its position fixes, unchanged.
 - `mgeb_ContextLoadFlagRegs` (`ctx_load.S` line 457, at 0x66ed): **inferred**, restores the four mode-flag words. Command
   words 0 and 1 go to special registers 0xf and 0xb through register 0x1c (0x66ee, 0x66ef) and words 2 and 3 to flag words
-  0x42 and 0x43 through register 0x1d (0x66f0, 0x66f1). Two more input words are discarded (0x66f3, 0x66f4) and the
-  command ends at 0x66f6. It takes four command words as operands and produces the four restored flag registers unchanged; it selects each target by word position.
+  0x42 and 0x43 through register 0x1d (0x66f0, 0x66f1). Two more input words are discarded (0x66f3, 0x66f4) and the command
+  ends at 0x66f6. Each word goes to the target its position fixes, unchanged.
 - `mgeb_ContextLoadWram` (`ctx_load.S` line 437, at 0x66ff): **inferred**, a command that takes three operand words and
   stores none of them. Command word 0 becomes register 0x1a (0x66ff), two further words are discarded (0x6700, 0x6701),
   and the command ends at 0x6703 with the lane select at 0x670a, so working memory is left as it was. It takes three words as input and discards them.
-- `mgeb_ContextLoadEram` (`ctx_load.S` line 419, at 0x670c): **inferred**, loads a block of external memory from the
-  command payload. Command word 0 is the ERAM destination in register 1 (0x670d), the next word less one is the count in
-  register 2 (0x670f) and register 0 points one word into the payload (0x6710). The copy is the call to `mWramToEram` at
-  0x670c, and one more input word is discarded at 0x6713 before the command ends at 0x6715. It takes the payload as input and produces unchanged ERAM words; it derives the count by subtracting one from the count word.
+- `mgeb_ContextLoadEram` (`ctx_load.S` line 419, at 0x670c): **inferred**, loads a block of external memory from the command
+  payload. Command word 0 is the ERAM destination in register 1 (0x670d), the next word less one is the count in register 2
+  (0x670f) and register 0 points one word into the payload (0x6710). The copy is the call to `mWramToEram` at 0x670c, and
+  one more input word is discarded at 0x6713 before the command ends at 0x6715. The payload goes into ERAM unchanged; the
+  only arithmetic is the subtraction of one that gives the count.
 - `mgeb_ContextLoadCram` (`ctx_load.S` line 387, at 0x671e): **inferred**, loads engine control memory from the command
   payload. It takes command word 0 as the count in register 2 (0x6721), points register 0 at the payload (0x6722) and
-  register 1 at CRAM address 0 (0x6723). `mWramToCram` (0xd191, called at 0x671e) does the copy and the command ends
-  at 0x6727. It takes the payload as input and produces unchanged control-memory words; the count word selects how many are copied.
+  register 1 at CRAM address 0 (0x6723). `mWramToCram` (0xd191, called at 0x671e) does the copy and the command ends at
+  0x6727. The payload goes into control memory unchanged; the count word fixes how many words are copied.
 - `mges_ContextReloadFromBEF` (`ctx_load.S` line 297, at 0x6730): **inferred**, replays the 0x59-word raster shadow from
   engine memory to the raster board. It first sends the selector 0x70000 and the 0x1408 mask write (0x6735-0x673b) and
   loads the loop count 0x59 and an ERAM base 0x1233 (0x673c, 0x6740). Each pass of the loop 0x6744-0x6753 reads six
   ERAM words (0x6744-0x674e), adds a staged base to the shadow index (0x6742, 0x6752, 0x6754) and steps the pointer by
   six (0x6757). The words go out through 0x1f8 and 0x1f5 (0x6758-0x675e) as shadowed register writes. Its inputs are the ERAM shadow words and the staged base, and its outputs are the shadowed writes on 0x1f8 and 0x1f5; it adds the staged base to each index.
-- `mges_ContextLoadBEF` (`ctx_load.S` line 208, at 0x6760): **inferred**, loads the 89-word raster shadow from the
-  command stream. It takes a count in register 0x19 (0x6766, 0x6772) and the shadow data from the command window
-  (0x6773, 0x6787). It sends the 0x1408 mask write to bus addresses 0x1f7, 0x1f6 and 0x1f5 (0x6764-0x6769), stages the
-  selectors 0x30000, 0x60000, 0x3100000, 0x3110000 and 0x3120000 (0x676a-0x6770) and loops over ERAM base 0x1233 in
-  steps of six (0x6775-0x6788, step at 0x678b). It sends each word through 0x1f8 and 0x1f5 (0x678c-0x678e). It takes the count and shadow words as input and produces the shadowed writes on 0x1f8 and 0x1f5; it adds a staged base to each index.
-- `mges_ContextLoadODMA` (`ctx_load.S` line 145, at 0x6795): **inferred**, programs the output-DMA registers 0x450-0x454
-  on the raster side from five command words. The five register indices are staged at 0x6798-0x679b and 0x679f; each
-  goes to bus address 0x1f7 (0x679c, 0x679e, 0x67a1, 0x67a3, 0x67a6) and is followed by one command word on 0x1f5 (0x679d,
-  0x67a0, 0x67a2, 0x67a4, 0x67a8). The command ends at 0x67a0, with the last stores in its delay slots. It takes five command words as input and produces five register writes on 0x1f7 and 0x1f5, and selects each index from the staged constants.
+- `mges_ContextLoadBEF` (`ctx_load.S` line 208, at 0x6760): **inferred**, replays the raster shadow held in engine external
+  memory to the raster board, as `mges_ContextReloadFromBEF` does, with the word count taken from the command stream instead
+  of the fixed 0x59. Two command words become registers 0x1a and 0x19 (0x6760, 0x6766), and register 0x19 gives the loop
+  count (0x6772). It sends the 0x1408 mask write to bus addresses 0x1f7, 0x1f6 and 0x1f5 (0x6764-0x6769), stages the
+  selectors 0x30000, 0x60000, 0x3100000, 0x3110000 and 0x3120000 (0x676a-0x6770) and loops over ERAM base 0x1233 in steps of
+  six: six per-lane ERAM reads (`r95` = 0x14-0x16, 0x6775-0x6781) and adds of a staged base to the shadow index (0x6773,
+  0x6787) per pass, the loop transfer at 0x6788 and the base step at 0x678b. The words go out through 0x1f8 and 0x1f5
+  (0x678c-0x678e).
+- `mges_ContextLoadODMA` (`ctx_load.S` line 145, at 0x6795): **inferred**, programs the output-DMA registers 0x450-0x454 on
+  the raster side from five command words. The five register indices are staged at 0x6798-0x679b and 0x679f; each goes to
+  bus address 0x1f7 (0x679c, 0x679e, 0x67a1, 0x67a3, 0x67a6) and is followed by one command word on 0x1f5 (0x679d, 0x67a0,
+  0x67a2, 0x67a4, 0x67a8). The command ends at 0x67a0, with the last stores in its delay slots. Five register writes go out
+  on 0x1f7 and 0x1f5: the indices are the staged constants and the values are the command words, unchanged.
 - `mLiUpdateMtrlState` (`ctx_load.S` line 670, at 0x67a9): **inferred**, the call that `mgeb_ContextLoadRegs` makes to
   refresh lighting state after a context restore. It tests the staged mask 0x80 against CRAM word 0x84 (0x67aa, 0x67ab),
   zeroes special registers 0xd, 0xe and 0xc (0x67b1-0x67b3) and reads CRAM word 0xd (0x67b4). When the test fails it jumps
@@ -4321,10 +4338,11 @@ The `ctx_deact.S` handlers save engine state back to the host and clear the rast
 the [ctx_deact listing](ge_listing/ctx_deact.S.lst) (`ge.u`, IRIX 6.5.30m).
 - `mges_ContextDeactFinish` (`ctx_deact.S` line 784, at 0x67d0): **inferred**, the closing command of a context save. It
   reads ERAM words 0xeae, 0xeaf, 0x1335-0x133a, 0x133c, 0x1385 and 0x1386 (0x67d1, 0x67da, 0x67ec-0x67fa, 0x6817, 0x6822)
-  and sends raster selectors 0x476, 0x477, 0x460-0x463, 0x401, 0x400 and 0x440 with staged data to bus addresses 0x1f5-0x1f7.
-  A loop (count 0x18 at 0x67d9, 0x6802-0x680c) copies ERAM from 0x133d in groups of three words to the output window,
-  stepping the pointer by 3 at 0x6811. A run of 0x1f7, 0x1f6 and 0x1f5 stores (0x6840-0x6858) resets raster registers
-  0x460, 0x461, 0x440 and 0x470, and the command ends at 0x6850. Its inputs are the ERAM words listed, and its outputs are the bus writes and the output-window copy; it selects which of those words go out, without changing them.
+  and sends raster selectors 0x476, 0x477, 0x460-0x463, 0x401, 0x400 and 0x440 with staged data to bus addresses
+  0x1f5-0x1f7. A loop (count 0x18 at 0x67d9, 0x6802-0x680c) copies ERAM from 0x133d in groups of three words to the output
+  window, stepping the pointer by 3 at 0x6811. A run of 0x1f7, 0x1f6 and 0x1f5 stores (0x6840-0x6858) resets raster
+  registers 0x460, 0x461, 0x440 and 0x470, and the command ends at 0x6850. The listed ERAM words go out unchanged on the bus
+  and to the output window.
 - `mges_ContextDeactStoreValue` (`ctx_deact.S` line 752, at 0x6859): **inferred**, writes one command word into saved
   context memory. It reads command word 0 as the value (0x6859) and command word 1 as the offset in register 0x19
   (0x685a), discards a word (0x685b) and stores the value to ERAM at register 0x19 plus 0x1333 (0x6862). The command ends
@@ -4335,15 +4353,17 @@ the [ctx_deact listing](ge_listing/ctx_deact.S.lst) (`ge.u`, IRIX 6.5.30m).
   (0x686f), pushes one input word to the window (0x6870), stores command word 0 into staging (0x6876), loads command word 1
   into register 2 (0x6877) and adds a staged value (0x6878). Two ERAM stores with `r95` = 8 (0x687f, 0x6881) update
   registers 0xe and 0xf, and the command ends at 0x687d. Its results are the payload copy to the host and the two ERAM stores; it adds a staged value to the word it loads at 0x6878.
-- `mgeb_ContextDeactReconfigureFifo` (`ctx_deact.S` line 633, at 0x6886): **inferred**, resets the input FIFO pointers
-  after a context switch. It stages 0x43 and 0x435 through register 0x1b (0x6889, 0x688a) and stores them to special
-  registers 1 and 2 (0x688b, 0x688c). It discards 36 input words (0x688d-0x68af), re-bases staging register 0x18 on 0x8d2c
-  per lane (0x68b3-0x68b5) and ends the command at 0x68b1. It takes one command word and 36 discarded words as input and produces the two special-register values 0x43 and 0x435; it selects them from staging.
+- `mgeb_ContextDeactReconfigureFifo` (`ctx_deact.S` line 633, at 0x6886): **inferred**, resets the input FIFO pointers after
+  a context switch. It stages 0x43 and 0x435 through register 0x1b (0x6889, 0x688a) and stores them to special registers 1
+  and 2 (0x688b, 0x688c). It discards 36 input words (0x688d-0x68af), re-bases staging register 0x18 on 0x8d2c per lane
+  (0x68b3-0x68b5) and ends the command at 0x68b1. The special-register values 0x43 and 0x435 come from staging; the 36 input
+  words are discarded.
 - `mges_ContextDeactGED` (`ctx_deact.S` line 585, at 0x68ba): **inferred**, the distributor-side variant of the section
-  save. Command words become registers 0x1a and 0x19 (0x68ba, 0x68bb) and the payload goes to the host through
-  `mWramToFifo` (0xd1a9, called at 0x68bc). It sends the selector 0x476 (0x68c0, 0x68c2), pushes one input word (0x68c4),
-  stages 0x100 (0x68c9) and stores the count word into staging at register 0x19 (0x68cb). Two ERAM stores with `r95` = 8
-  (0x68d3, 0x68d5) update registers 0xe and 0xf, and the command ends at 0x68d1. Its outputs are the payload copy, the 0x476 selector and the ERAM stores; it takes the command words as inputs and selects the staged 0x100.
+  save. Command words become registers 0x1a and 0x19 (0x68ba, 0x68bb) and the payload goes to the host through `mWramToFifo`
+  (0xd1a9, called at 0x68bc). It sends the selector 0x476 (0x68c0, 0x68c2), pushes one input word (0x68c4), stages 0x100
+  (0x68c9) and stores the count word into staging at register 0x19 (0x68cb). Two ERAM stores with `r95` = 8 (0x68d3, 0x68d5)
+  update registers 0xe and 0xf, and the command ends at 0x68d1. The payload is copied out unchanged, the selector 0x476 is
+  sent, and the count word and the staged 0x100 are stored to ERAM.
 - `mges_ContextDeactivate` (`ctx_deact.S` line 217, at 0x68da): **inferred**, the full context save. It reads COMP_FORMAT
   (0x68de), sets it to 4 (0x68df, 0x68e0), clears an ERAM range through `mClearEram` (0x1074, called at 0x68ed) and
   sends raster selectors 0x477, 0x460-0x464, 0x400, 0x440, 0x470-0x474 and the data words with them on bus addresses
@@ -4356,12 +4376,14 @@ the [ctx_deact listing](ge_listing/ctx_deact.S.lst) (`ge.u`, IRIX 6.5.30m).
 
 These handlers swap engine memory blocks and close a pixel stream. Read from the
 [m_pipecontrol listing](ge_listing/m_pipecontrol.S.lst) (`ge.u`, IRIX 6.5.30m).
-- `mgeb_SwapInGL` (`m_pipecontrol.S` line 119, at 0x6c9f): **inferred**, brings a saved block of external memory back
-  into control memory. Its three command words are the inputs, loaded into registers 0, 1 and 2 (0x6c9f, 0x6ca0, 0x6ca2),
-  and `mEramToCram` (0x104f, called at 0x6ca1) does the copy. It clears staging word 0x10 (0x6ca9) and ends at 0x6caa. It takes three command words as inputs and produces control-memory words copied unchanged; it selects the range from them.
+- `mgeb_SwapInGL` (`m_pipecontrol.S` line 119, at 0x6c9f): **inferred**, brings a saved block of external memory back into
+  control memory. Its three command words are the inputs, loaded into registers 0, 1 and 2 (0x6c9f, 0x6ca0, 0x6ca2), and
+  `mEramToCram` (0x104f, called at 0x6ca1) does the copy. It clears staging word 0x10 (0x6ca9) and ends at 0x6caa. The
+  control-memory words are copied unchanged over the range the three command words give.
 - `mgeb_SwapOutGL` (`m_pipecontrol.S` line 97, at 0x6cb3): **inferred**, the mirror of `mgeb_SwapInGL`: it saves control
-  memory to external memory. It loads command words 0-2 into registers 0-2 (0x6cb3, 0x6cb4, 0x6cb6), calls
-  `mCramToEram` (0x103a, at 0x6cb5), clears staging word 0x10 (0x6cbd) and ends at 0x6cbe. It takes three command words as inputs and produces ERAM words copied unchanged from control memory; it selects the range from them.
+  memory to external memory. It loads command words 0-2 into registers 0-2 (0x6cb3, 0x6cb4, 0x6cb6), calls `mCramToEram`
+  (0x103a, at 0x6cb5), clears staging word 0x10 (0x6cbd) and ends at 0x6cbe. The ERAM words are copied unchanged from
+  control memory over the range the three command words give.
 - `mmo_PixEndStream` (`m_pipecontrol.S` line 51, at 0x6cc7): **inferred**, the module that closes a pixel stream and
   decides whether to flip a CRAM flag. It reads CRAM word 0x1c3 into staging word 1 (0x6cc7), stages 1 in word 0
   (0x6cce) and loads the CRAM value into register 0xf (0x6cd0). A positive test of that register (0x6cd8, then `loop`
@@ -4387,9 +4409,9 @@ The `get.S` handlers answer state queries by pushing words to the output window.
   lane flags, two further products use staged 0x35800000 (0x959c, 0x95c7), the mask of 3 comes from staging at 0x95a0 and
   0x476 goes to 0x1f7 (0x95a5, 0x95a6). The command ends at 0x95c4, with the closing 0x1f4 write at 0x95cc. Its inputs are the ERAM words listed, and it produces the scaled and unscaled words pushed to the window; it multiplies ERAM 0x34 by the staged constant.
 - `mgesi_GetCurrent` (`get.S` line 39, at 0x95cd): **inferred**, a query that echoes the current-attribute words back out.
-  It sends 0x476 to bus address 0x1f7 (0x95ce, 0x95cf), masks a command word (0x95d2) and then pushes command words 4 to
-  0xe (0x95d3-0x95df) to the output window. Two predicated stores at 0x95e2 and 0x95e3 add lane-dependent words, and the
-  closing 0x1f4 write (0x95e4) ends the reply. It takes command words 4-0xe as input and produces them unchanged on the output window; it only masks one word and selects the lane-dependent ones.
+  It sends 0x476 to bus address 0x1f7 (0x95ce, 0x95cf), masks a command word (0x95d2) and then pushes command words 4 to 0xe
+  (0x95d3-0x95df) to the output window. Two predicated stores at 0x95e2 and 0x95e3 add lane-dependent words, and the closing
+  0x1f4 write (0x95e4) ends the reply. Command words 4-0xe reach the output window unchanged.
 
 ## Polygon offset extensions (glExt.S)
 
@@ -4407,8 +4429,9 @@ CRAM and ERAM flag words. Read from the [glExt listing](ge_listing/glExt.S.lst) 
   by the ERAM word 0xa46 read at 0xb2ab (the multiply at 0xb2b2) and stores the product to ERAM 0xa44 (0xb2bf). Two
   input words are discarded (0xb2b7, 0xb2b8) and the command ends at 0xb2ba. Its outputs are the three ERAM words 0xa43-0xa45, where 0xa44 is the product of command word 1 and ERAM 0xa46.
 - `mgeb_PolygonOffsetExt` (`glExt.S` line 64, at 0xb2c3): **inferred**, the extension form that stores both operands
-  unscaled. Command word 0 goes to ERAM 0xa43 (0xb2cc) and command word 1 goes to ERAM 0xa44 (0xb2ce), with no multiply
-  and no read of ERAM 0xa46. Two input words are discarded (0xb2c6, 0xb2c7) and the command ends at 0xb2c9. It takes two command words as operands and produces them unchanged in ERAM 0xa43 and 0xa44, and selects the target by word position.
+  unscaled. Command word 0 goes to ERAM 0xa43 (0xb2cc) and command word 1 goes to ERAM 0xa44 (0xb2ce), with no multiply and
+  no read of ERAM 0xa46. Two input words are discarded (0xb2c6, 0xb2c7) and the command ends at 0xb2c9. Both command words
+  are stored unchanged, to ERAM 0xa43 and 0xa44.
 
 ## Decomposers, second set (udecompose2.s)
 
@@ -4416,12 +4439,12 @@ The routines of `udecompose2.s` build the triangle table at engine address 0x8bb
 stage, and stage `mClipTriUserAndFrustum` (0xed52) as the successor of the screen stage. Read from the
 [udecompose2.s listing](ge_listing/udecompose2.s.lst) (`ge.u`, IRIX 6.5.30m).
 
-- `umo_DummyDecompose` (`udecompose2.s` line 13, at 0xd3b):
-  **inferred**, the stand-in decomposer that produces no triangle table. It takes no operands: the word at 0xd3b loads the
-  transfer target from engine word 0xb, 0xed52 is staged as staging word 0 (0xd3d) and moved to the store-data register
-  (0xd3e), and a move of register 0x1e, which reads as zero, loads it again (0xd3f). The two stores in the delay words of the
-  group-31 transfer at 0xd41 send the first value to word 0x17 (0xd47) and the zero to word 0xa (0xd48), so the screen stage
-  reaches the triangle clipper and the decomposer slot empties itself; the command then continues through word 0xb. It selects the clipper address as the result for word 0x17.
+- `umo_DummyDecompose` (`udecompose2.s` line 13, at 0xd3b): **inferred**, the stand-in decomposer that produces no triangle
+  table. It takes no operands: the word at 0xd3b loads the transfer target from engine word 0xb, 0xed52 is staged as staging
+  word 0 (0xd3d) and moved to the store-data register (0xd3e), and a move of register 0x1e, which reads as zero, loads it
+  again (0xd3f). The two stores in the delay words of the group-31 transfer at 0xd41 send the first value to word 0x17
+  (0xd47) and the zero to word 0xa (0xd48), so the screen stage reaches the triangle clipper and the decomposer slot empties
+  itself; the command then continues through word 0xb. The clipper address 0xed52 is stored unchanged as word 0x17.
 - `umo_DecomposeSimpleTriangleStrip` (`udecompose2.s` line 41, at 0xd4a):
   **inferred**, the strip decomposer for the path without edge-flag masking. It takes the batch's vertex-record pointers
   (registers 1, 2 and 8) and the count in register 0x19 (reduced by the F = 0x21 step at 0xd4f), reads the mask word 0x1c
@@ -4442,19 +4465,20 @@ The three handlers of `subdiv.S` take the three-word commands that the ARM sends
 first word in registers; none of them touches the vertex records. Read from the [subdiv.S listing](ge_listing/subdiv.S.lst)
 (`ge.u`, IRIX 6.5.30m).
 
-- `mgesi_SubdivEntry` (`subdiv.S` line 82, at 0x4414):
-  **inferred**, the variant that forwards its last operand to the raster bus. It consumes the next three words of the command
-  stream: the first two go to address registers 0x1a and 0x19 (0x4415-0x4416) and the third is staged as word 0x10 of the
-  staging file (0x4417). The delay word at 0x4420 moves that staged word to bus-output address 0x1f4, offset 2, and the
-  word at 0x441d copies register 0x1a into register 0; the command ends at the transfer at 0x4418. It takes three command operands, selects the third as the one it forwards, and produces one raster-bus word.
-- `mges_SubdivTag` (`subdiv.S` line 59, at 0x4421):
-  **inferred**, the variant that keeps one operand and drops two. The first stream word becomes register 0x1a (0x4421) and the
-  next two are read and discarded (0x4422-0x4423); the delay word at 0x442a copies register 0x1a into register 0 and the
-  transfer at 0x4425 ends the command. It produces no store and no bus word. It takes three command operands, selects the first as its result in register 0x1a and consumes the rest.
-- `mgeb_Subdiv` (`subdiv.S` line 36, at 0x442e):
-  **inferred**, the command that `arm_subdiv_patch_parameter` sends. Its words match `mges_SubdivTag`'s: the first
-  operand goes into register 0x1a (0x442e), two stream words are consumed and dropped (0x442f-0x4430), register 0 is loaded from
-  register 0x1a in the delay word at 0x4437 and the command ends at 0x4432. The result is register 0x1a holding the first command operand; it selects that word and consumes the other two.
+- `mgesi_SubdivEntry` (`subdiv.S` line 82, at 0x4414): **inferred**, the variant that forwards its last operand to the
+  raster bus. It consumes the next three words of the command stream: the first two go to address registers 0x1a and 0x19
+  (0x4415-0x4416) and the third is staged as word 0x10 of the staging file (0x4417). The delay word at 0x4420 moves that
+  staged word to bus-output address 0x1f4, offset 2, and the word at 0x441d copies register 0x1a into register 0; the
+  command ends at the transfer at 0x4418. Three command words are consumed and only the third is forwarded, as one
+  raster-bus word.
+- `mges_SubdivTag` (`subdiv.S` line 59, at 0x4421): **inferred**, the variant that keeps one operand and drops two. The
+  first stream word becomes register 0x1a (0x4421) and the next two are read and discarded (0x4422-0x4423); the delay word
+  at 0x442a copies register 0x1a into register 0 and the transfer at 0x4425 ends the command. It produces no store and no
+  bus word. Three command words are consumed and only the first is kept, in register 0x1a.
+- `mgeb_Subdiv` (`subdiv.S` line 36, at 0x442e): **inferred**, the command that `arm_subdiv_patch_parameter` sends. Its
+  words match `mges_SubdivTag`'s: the first operand goes into register 0x1a (0x442e), two stream words are consumed and
+  dropped (0x442f-0x4430), register 0 is loaded from register 0x1a in the delay word at 0x4437 and the command ends at
+  0x4432. Register 0x1a ends up holding the first command word; the other two are dropped.
 
 ## Render-mode and polygon-mode setup (polygon.S)
 
@@ -4463,16 +4487,16 @@ Three entry handlers, one each for feedback, selection and normal rendering, cho
 the stores take their address as 0x1f minus the field F, so F = 0xb, 0xc and 0xe write words 0x14, 0x13 and 0x11. Read from
 the [polygon.S listing](ge_listing/polygon.S.lst) (`ge.u`, IRIX 6.5.30m).
 
-- `mgeb_PolygonSetup_Feedback` (`polygon.S` line 115, at 0x61fa):
-  **inferred**, the entry that routes triangles to the feedback recorder. It stages `mmo_FeedbackTriangle` (0xb76e, 0x61fb)
-  into the store-data register (0x61fc), consumes three operand words of the command (the first into register 0x1a, 0x6202,
-  the other two at 0x6203-0x6204) and stores the address to words 0x14, 0x13 and 0x11 (0x6205-0x6207). The jump at 0x61ff
-  continues in `mPolymodeSetup`. Its result is the feedback module address in the three slots; it selects that module and takes the operands on to the shared tail.
-- `mgeb_PolygonSetup_Select` (`polygon.S` line 84, at 0x6208):
-  **inferred**, the same entry for selection mode. Its staged output module is the one at 0xbecc (0x6209), moved to
-  store-data at 0x620a and written to words 0x14, 0x13 and 0x11 by the three delay stores at 0x6213-0x6215, after the
-  three operand words are consumed (0x6210-0x6212). A move of register 0x1e to B = 0x1f at 0x620c and the jump at 0x620d to
-  `mPolymodeSetup` finish the entry. It selects the module at 0xbecc as its output for the three slots and takes the same operands as the other entries.
+- `mgeb_PolygonSetup_Feedback` (`polygon.S` line 115, at 0x61fa): **inferred**, the entry that routes triangles to the
+  feedback recorder. It stages `mmo_FeedbackTriangle` (0xb76e, 0x61fb) into the store-data register (0x61fc), consumes three
+  operand words of the command (the first into register 0x1a, 0x6202, the other two at 0x6203-0x6204) and stores the address
+  to words 0x14, 0x13 and 0x11 (0x6205-0x6207). The jump at 0x61ff continues in `mPolymodeSetup`. The feedback module
+  address goes unchanged into the three slots and the operand words pass on to the shared tail.
+- `mgeb_PolygonSetup_Select` (`polygon.S` line 84, at 0x6208): **inferred**, the same entry for selection mode. Its staged
+  output module is the one at 0xbecc (0x6209), moved to store-data at 0x620a and written to words 0x14, 0x13 and 0x11 by the
+  three delay stores at 0x6213-0x6215, after the three operand words are consumed (0x6210-0x6212). A move of register 0x1e
+  to B = 0x1f at 0x620c and the jump at 0x620d to `mPolymodeSetup` finish the entry. The module address 0xbecc goes
+  unchanged into the three slots and the operand words pass on to the shared tail, as in the other entries.
 - `mgeb_PolygonSetup_Render` (`polygon.S` line 37, at 0x6216):
   **inferred**, the entry for normal drawing. It reads operand words 3 and 4 itself and leaves words 0-2 to `mPolymodeSetup`.
   Word 3 is tested for zero (0x6217) and decides whether bit 0x40 is ORed into, or removed by unit-1 code 0x51 from, control
@@ -4534,15 +4558,17 @@ registers 5 and 6 point at the front and back material blocks of the two vertice
 vertex records, register 3 at the light parameters in external memory. Each returns through a jump word of control memory
 0x9c-0x9e. Read from the [generallight2.S listing](ge_listing/generallight2.S.lst) (`ge.u`, IRIX 6.5.30m).
 
-- `mLiLocalLight` (`generallight2.S` line 1097, at 0xc321):
-  **inferred**, one positional light's contribution to two vertices, including attenuation and spot falloff. It takes words
-  0x32-0x34 of both material blocks (adds at 0xc321-0xc326) and the light's position, spot and attenuation parameters, which it
-  reads from external memory through register 3 (0xc330-0xc33e, 0xc364, 0xc367, 0xc3a1-0xc3a7) as operands. It computes the
-  squared distance with a multiply-add chain (0xc327-0xc32e), then its reciprocal square root (seed 0xc33f, steps 0xc33c,
-  0xc33d, 0xc348, 0xc349 and again 0xc3b9, 0xc3c4, 0xc3c5), reciprocals for attenuation (0xc395-0xc3a0) and maxima against zero for
-  the dot products (0xc36d, 0xc379, 0xc3a5, 0xc3a7). The constant 1e-05 (0x3727c5ac) is staged at 0xc35a. Results are written into
-  the material blocks at offsets 0x1a-0x22 and 0x2c-0x2e (0xc3a8-0xc3ce); it returns at 0xc3d2 through the word 0x9c read at
-  0xc3ca.
+- `mLiLocalLight` (`generallight2.S` line 1097, at 0xc321): **inferred**, one positional light's contribution to two
+  vertices, with distance attenuation (the spot falloff is not derived: see the end). It takes words 0x32-0x34 of both
+  material blocks (adds at 0xc321-0xc326) and the light's position, spot and attenuation parameters, which it reads from
+  external memory through register 3 (0xc330-0xc33e, 0xc367, 0xc3a1-0xc3a7; 0xc364 reads through register 0x16) as operands.
+  It computes the squared distance with a multiply-add chain (0xc327-0xc32e), then its reciprocal square root (seed 0xc33f,
+  steps 0xc33c, 0xc33d, 0xc348, 0xc349 and again 0xc3b9, 0xc3c4, 0xc3c5), reciprocals for attenuation (0xc395-0xc3a0) and
+  maxima against zero for the dot products (0xc36d, 0xc379, 0xc3a5, 0xc3a7; the maximum reading is inferred, since the
+  operation code ties with a move). The constant 1e-05 (0x3727c5ac) is staged at 0xc35a. Results are written into the
+  material blocks at offsets 0x1a-0x22 and 0x2c-0x2e (0xc3a8-0xc3ce); it returns at 0xc3d2 through the word 0x9c read at
+  0xc3ca. The words 0xc373-0xc394 (stores of lane data to control words 0x9d and 0x9e and reads with `r95` = 0x1c-0x1e and
+  the immediate 0x1100) are not read here; they are the part that could hold the spot term.
 - `mLiInfVInfLi` (`generallight2.S` line 91, at 0xc3db):
   **inferred**, the diffuse and specular accumulation for a directional light with a distant viewer. It takes the eye normals
   of both vertices (record words 0xf-0x11 through registers 8 and 9) and multiplies them by the light direction held in unit
@@ -4590,10 +4616,11 @@ stage (store to word 0x17) and tests cc 0x10 or 0x15 for an abort to `mmo_AbortG
   record pointers (0xc9ef-0xc9f5), and under cc 5 adds the staged constant 0x6800 to two record words of each of the vertices at
   registers 0xe and 0xf, offsets 0 and 0x27 (adds 0xc9fb-0xc9ff). The clipper address 0xed52 goes to word 0x17 (0xc9f6) and zero to
   word 0xa (0xc9fa); a test on cc 0x10 branches to the abort at 0xc9f7. Its inputs are the count and the two record pointers; its outputs are the adjusted record words, the clipper address and the cleared word 0xa.
-- `mmo_DummyDecompose` (`mdecompose2.S` line 37, at 0xca01):
-  **inferred**, the same stand-in as `umo_DummyDecompose` for the lit vertex path: it stages 0xed52 (0xca04), loads word 0xb as
-  the transfer target (0xca01) and stores the clipper to word 0x17 (0xca0e) and zero to word 0xa (0xca0f), so the decomposer
-  slot clears and the command continues through word 0xb (the transfer at 0xca07). It takes no operand beyond word 0xb, produces the clipper address in word 0x17 and a zero in word 0xa, and selects word 0xb as the successor.
+- `mmo_DummyDecompose` (`mdecompose2.S` line 37, at 0xca01): **inferred**, the same stand-in as `umo_DummyDecompose` for the
+  lit vertex path: it stages 0xed52 (0xca04), loads word 0xb as the transfer target (0xca01) and stores the clipper to word
+  0x17 (0xca0e) and zero to word 0xa (0xca0f), so the decomposer slot clears and the command continues through word 0xb (the
+  transfer at 0xca07). It reads no word beyond word 0xb; the clipper address goes to word 0x17 and a zero to word 0xa, and
+  word 0xb is the successor.
 - `mmo_DecomposeSimpleTriangles` (`mdecompose2.S` line 350, at 0xca10):
   **inferred**, independent triangles for the lit path. It takes the batch base from register 0x1f and derives the six record
   pointers from register 0x12 plus the strides 0x138, 0x57c, 0x618 and 0x6b4 (0xca10-0xca1e). It converts the vertex count to a
@@ -5034,19 +5061,20 @@ row-pass loop and a column-pass loop that returns to the caller. Four components
   0x29a8) and by the kernel word fetched from control memory at address register 3 plus 2 (0x29a4). The multiply-add at
   0x29a7 adds an earlier product, and words 0x29a3 and 0x29a6 set address registers 0xa and 0xb to 8 and 9 plus 2. It has
   no transfer and runs into `RowConv3Loop`. Its results are the first partial products, left for the row loop.
-- `RowConv3Loop` (`usepconv3x3.s` line 80, at 0x29a9): **inferred**,
-  the row filter, one pixel group per pass. Sixteen words of multiply and multiply-add combine the rows read through
-  address registers 8-0xb with the kernel values, storing four filtered words through registers 8, 9, 0xa and 0xb
-  (0x29ab, 0x29ae, 0x29b1, 0x29b4). The relative transfer at 0x29ac (group 4, `cc` 0x11) goes back three words to 0x29a9.
-  When it falls out, 0x29b5-0x29b8 multiply the words at address register 7 (D = 0-3) by the column kernel words read from
-  control memory (address registers 3-6 plus 3), the opening products of the column pass. It takes the pixel rows as input, multiplies and accumulates them against the kernel values, and its results are the four stored row-filtered words per pass.
-- `ColumnConv3Loop` (`usepconv3x3.s` line 108, at 0x29b9): **inferred**,
-  the column filter, which sums three filtered rows per component. Twelve multiply-add words read the row buffers
-  through address registers 0xe and 0xf (D = 0-3) and chain each product onto the forwarded sum (`r128` = 0x2c and 0x20);
-  words 0x29ba, 0x29bb, 0x29bf and 0x29c0 advance address registers 7, 2, 0xe and 0xf by 4, one pixel. The result is four
-  output words stored at E = 0-3 through address register 2 (0x29c1-0x29c4), each a final multiply-add with a kernel word
-  from control memory plus 3. The transfer at 0x29bc loops back three words on `cc` 0x11, and the return at 0x29bd leaves
-  to the caller. It takes the row-filtered words as input and accumulates the three-row sums.
+- `RowConv3Loop` (`usepconv3x3.s` line 80, at 0x29a9): **inferred**, the row pass of the separable 3 x 3 convolution, one
+  pixel group per pass. Four of the twelve words 0x29a9-0x29b4 are unit-2 multiplies (M = 0x47f at 0x29a9, 0x29ac, 0x29af,
+  0x29b2) and eight carry M = 0x460; they read the row buffers through address registers 8-0xb, and four words store through
+  registers 8, 9, 0xa and 0xb (0x29ab, 0x29ae, 0x29b1, 0x29b4). The relative transfer at 0x29ac (group 4, `cc` 0x11) targets
+  0x29a9. After it, 0x29b5-0x29b8 multiply the words at address register 7 (D = 0-3) by the column kernel words read from
+  control memory (address registers 3-6 plus 3), the opening products of the column pass. Which products each store sums,
+  how many taps a pass covers and how the transfer's delay words split the loop from its exit are not derived here.
+- `ColumnConv3Loop` (`usepconv3x3.s` line 108, at 0x29b9): **inferred**, the column filter, which sums three filtered rows
+  per component. Twelve multiply-add words read the row buffers through address registers 0xe and 0xf (D = 0-3) and chain
+  each product onto the forwarded sum (`r128` = 0x2c and 0x20); words 0x29ba, 0x29bb, 0x29bf and 0x29c0 advance address
+  registers 7, 2, 0xe and 0xf by 4, one pixel. The result is four output words stored at E = 0-3 through address register 2
+  (0x29c1-0x29c4), each a final multiply-add with a kernel word from control memory plus 3. The transfer at 0x29bc loops
+  back three words on `cc` 0x11, and the return at 0x29bd leaves to the caller. What each output word sums is not derived
+  here.
 
 ## Separable 5 x 5 convolution (usepconv5x5.s)
 
@@ -5060,17 +5088,20 @@ the [usepconv5x5.s listing](ge_listing/usepconv5x5.s.lst) (`ge.u`, IRIX 6.5.30m)
   (0x29c7, 0x29c8, 0x29ca) and at register 4 plus 1 and 2 (0x29cc, 0x29cd). The multiply-adds at 0x29cb and 0x29cd start
   the sums, and the address-unit parts of 0x29c6 and 0x29cb set address registers 9 and 0xa to 8 and 9 plus 1. It runs
   into `RowConv5Loop`. It takes the first row words as input, multiplies them by kernel values, and its results are the opening partial sums for the row loop.
-- `RowConv5Loop` (`usepconv5x5.s` line 91, at 0x29cf): **inferred**,
-  the five-tap row filter. Each pass accumulates products across address registers 8-0xb with multiply-adds
-  (0x29cf-0x29d9 and 0x29db-0x29e2) and stores four filtered words through registers 8, 9, 0xa and 0xb (0x29d3, 0x29d8,
-  0x29dd, 0x29e2). The group-4 transfer at 0x29da repeats it 11 words back to 0x29cf. After the loop, 0x29e3-0x29e7 reload
-  address registers 8-0xb from the words at address register 1 plus 1-4 and register 0 from staging word 0x14, and
-  0x29e8-0x29eb multiply the words at register 7 by the first column kernel words (control memory at registers 3-6 plus 5). It takes the row words as input, accumulates the five-tap sums, and its results are four stored words per pass.
-- `ColumnConv5Loop` (`usepconv5x5.s` line 133, at 0x29ec): **inferred**,
-  the five-tap column filter. Multiply-adds (0x29ec-0x29fb) accumulate the five row buffers at address registers 8-0xb
-  and 7 against kernel words read from control memory at registers 3-6 plus 6 and 7 (0x29ec-0x29f3), advancing
-  the pointers 2, 7-0xb by 4 (0x29f4-0x29f6, 0x29f9-0x29fb). It stores four output words at E = 0-3 through address register 2
-  (0x29fc-0x29ff), loops back 11 words at 0x29f7 on `cc` 0x11, and returns at 0x29f8. It takes the row-filtered words as input and accumulates the five-row sums.
+- `RowConv5Loop` (`usepconv5x5.s` line 91, at 0x29cf): **inferred**, the row pass of the separable 5 x 5 convolution. The
+  twenty words 0x29cf-0x29e2 hold four unit-2 multiplies (M = 0x47f at 0x29d1, 0x29d6, 0x29db, 0x29e0) and sixteen words
+  with M = 0x460; they read through address registers 8-0xb and store four words through registers 8, 9, 0xa and 0xb
+  (0x29d3, 0x29d8, 0x29dd, 0x29e2). The group-4 transfer at 0x29da (`cc` 0x11) targets 0x29cf, 11 words back. After the
+  loop, 0x29e3-0x29e6 reload address registers 8-0xb from the words at address register 1 plus 1-4, 0x29e7 loads register 0
+  from staging word 0x14, and 0x29e8-0x29eb multiply the words at register 7 by the first column kernel words (control
+  memory at registers 3-6 plus 5). The tap count, which products each store sums and how the delay words of the transfer
+  split the loop from its exit are not derived here.
+- `ColumnConv5Loop` (`usepconv5x5.s` line 133, at 0x29ec): **inferred**, the column pass of the separable 5 x 5 convolution.
+  The sixteen words 0x29ec-0x29fb all carry M = 0x460 (no plain multiply word); they read the row buffers at address
+  registers 8-0xb and 7 and kernel words from control memory at registers 3-6 plus 6 and 7 (0x29ec-0x29f3), and
+  0x29f4-0x29f6 and 0x29f9-0x29fb advance registers 2 and 7-0xb by 4. The transfer at 0x29f7 (`cc` 0x11) targets 0x29ec, 11
+  words back, and the end-of-command transfer at 0x29f8 sits in its delay words. Four stores at E = 0-3 through address
+  register 2 (0x29fc-0x29ff) follow. What each output word sums is not derived here.
 - `uFastSepConv5_124` (`usepconv5x5.s` line 188, at 0x2a01): **inferred**,
   the start of the fast form, which takes integer pixel input. It converts the first sixteen stream words (four pixels,
   four components) to float with `itof` and the multiply-and-convert word `fmul.itof` (M = 0x473, 0x2a01-0x2a16), storing
@@ -5087,10 +5118,10 @@ the [usepconv5x5.s listing](ge_listing/usepconv5x5.s.lst) (`ge.u`, IRIX 6.5.30m)
   address register 1 plus 1-4 (0x2a48-0x2a4c), register 0 and register 0x10 from staging words 0x14 and 0x10 (0x2a4d,
   0x2a4e), and issues four multiplies of the words at register 7 by the first column kernel words (0x2a4f-0x2a52, plus 5).
   The conditional group-31 transfer at 0x2a4a, on `cc` 0x10, leaves for `mmo_PixLineNextGE` at 0xa6ad. It takes the pointer words at address register 1 as input and its results are the reloaded address registers and the opening column products, which it multiplies.
-- `FastColumnConv5Loop` (`usepconv5x5.s` line 301, at 0x2a53): **inferred**,
-  the column filter of the fast form, the same in shape as `ColumnConv5Loop`: it accumulates five rows of the converted
-  data per output component with multiply-adds (0x2a53-0x2a62), stores four results at E = 0-3 through address register 2
-  (0x2a63-0x2a66), repeats 11 words back at 0x2a5e on `cc` 0x11 and returns at 0x2a5f. It takes the row-filtered words as input and accumulates the five-row sums.
+- `FastColumnConv5Loop` (`usepconv5x5.s` line 301, at 0x2a53): **inferred**, the column filter of the fast form, the same in
+  shape as `ColumnConv5Loop`: it accumulates five rows of the converted data per output component with multiply-adds
+  (0x2a53-0x2a62), stores four results at E = 0-3 through address register 2 (0x2a63-0x2a66), repeats 11 words back at
+  0x2a5e on `cc` 0x11 and returns at 0x2a5f. What each output word sums is not derived here.
 
 ## Separable 7 x 7 convolution (usepconv7x7.s)
 
@@ -5103,18 +5134,20 @@ taps and a column loop that returns to the caller. Read from the [usepconv7x7.s 
   from control memory at address register 3 plus 1, 2, 4, 5 and 6 (`r95` = 0x13 at 0x2a69, 0x2a6a, 0x2a6c, 0x2a6d, 0x2a6e) and
   two more at register 4 plus 1 and 2 (0x2a70, 0x2a71). The multiply-adds at 0x2a6d, 0x2a6f and 0x2a71 start the sums, and
   the word at 0x2a6b stores through the staging pointer (`r215` = 3, B = 0x18). It runs into `RowConv7Loop`. It takes the first row words as input, multiplies them by kernel values, and its results are the opening partial sums for the row loop.
-- `RowConv7Loop` (`usepconv7x7.s` line 97, at 0x2a73): **inferred**,
-  the seven-tap row filter. Each pass accumulates products across address registers 8-0xb with multiply-adds
-  (0x2a73-0x2a8e) and stores four filtered words through registers 8, 9, 0xa and 0xb (0x2a79, 0x2a80, 0x2a87, 0x2a8e). The
-  group-4 transfer at 0x2a86 goes back to 0x2a73. After the loop, 0x2a8f-0x2a94 reload address registers 8-0xd from the
-  words at register 1 plus 1-6, 0x2a95 loads register 0, and 0x2a96-0x2a99 multiply the words at register 7 by the first
-  column kernel words (control memory at registers 3-6 plus 7). It takes the row words as input, accumulates the seven-tap sums, and its results are four stored words per pass.
-- `ColumnConv7Loop` (`usepconv7x7.s` line 149, at 0x2a9a): **inferred**,
-  the seven-tap column filter. Multiply-adds read the row buffers at address registers 8-0xd against kernel words from
-  control memory (registers 3-6 plus 8, 9, 0xa and 0xb, 0x2a9a-0x2aa6) and add each product into the sums, advancing the
-  buffer pointers 7-0xd by 4 words, one pixel (0x2aa7-0x2ab1). It stores four output words at E = 0-3 through address
-  register 2 (0x2ab2-0x2ab5), loops back at 0x2aad on `cc` 0x11 and returns at 0x2aaf; the two words after the final store
-  (0x2ab6, 0x2ab7) load address registers 0x1b and 0x16 with the immediate 0x1e. It takes the row-filtered words as input and accumulates the seven-row sums.
+- `RowConv7Loop` (`usepconv7x7.s` line 97, at 0x2a73): **inferred**, the row pass of the separable 7 x 7 convolution. The
+  twenty-eight words 0x2a73-0x2a8e hold four unit-2 multiplies (M = 0x47f at 0x2a77, 0x2a7e, 0x2a85, 0x2a8c) and twenty-four
+  words with M = 0x460; they read through address registers 8-0xb and store four words through registers 8, 9, 0xa and 0xb
+  (0x2a79, 0x2a80, 0x2a87, 0x2a8e). The group-4 transfer at 0x2a86 (`cc` 0x11) targets 0x2a73. After the loop, 0x2a8f-0x2a94
+  reload address registers 8-0xd from the words at register 1 plus 1-6, 0x2a95 loads register 0 from staging word 0, and
+  0x2a96-0x2a99 multiply the words at register 7 by the first column kernel words (control memory at registers 3-6 plus 7).
+  The tap count, which products each store sums and how the delay words of the transfer split the loop from its exit are not
+  derived here.
+- `ColumnConv7Loop` (`usepconv7x7.s` line 149, at 0x2a9a): **inferred**, the seven-tap column filter. Multiply-adds read the
+  row buffers at address registers 8-0xd against kernel words from control memory (registers 3-6 plus 8, 9, 0xa and 0xb,
+  0x2a9a-0x2aa6) and add each product into the sums, advancing the buffer pointers 7-0xd by 4 words, one pixel
+  (0x2aa7-0x2ab1). It stores four output words at E = 0-3 through address register 2 (0x2ab2-0x2ab5), loops back at 0x2aad
+  on `cc` 0x11 and returns at 0x2aaf; the two words after the final store (0x2ab6, 0x2ab7) load address registers 0x1b and
+  0x16 with the immediate 0x1e. What each output word sums is not derived here.
 
 ## Texture state handlers (texture.S)
 
@@ -5129,19 +5162,19 @@ and keep engine words 3 and 0xd and external-memory words 7-9 in step. Read from
   constant 0x70000, a mask, the address word and the operand, as twelve moves (0x4261-0x426c) through the bus-output
   addresses selected at 0x425a, 0x425f and 0x426d (0x1f5, 0x1f8 and 0x1f4), and the closing word goes to 0x1f4 at 0x426e.
   It also ANDs engine word 3 with 0x1000000 (0x4250) and writes word 3 back under `cc` 3 at 0x4260. It combines the staged select, mask and address constants with the operands into the bus words.
-- `mgesi_FillTMLoadFifo` (`texture.S` line 721, at 0x4278): **inferred**,
-  pushes a fixed run of zero words, ended by an all-ones word, to raster-board register 0x7fc0. It keeps its one operand
-  word in address register 0x1a (0x4278) and in staging word 0 (0x427b), writes the index 0x7fc0 to bus address 0x1f7
-  (0x427e), and sends the zero register (`r148` = 0x3c0) to 0x1f6 (0x4281) and to 0x1f5 in a run of thirteen moves
-  (0x4283-0x428f). The last word is the bitwise not of zero (0x4290), and staging word 0 goes to 0x1f4 at 0x4292; the
-  group-31 transfer at 0x428a ends the command. Its output is the run of bus words, with the all-ones word produced by the not; it selects register 0x1e as the zero source.
-- `mgesi_RestoreTextureAddress` (`texture.S` line 644, at 0x4293): **inferred**,
-  replays a saved texture-address table to the raster board. It reads the external-memory word 0x9cd (0x4293), keeps it in
-  staging word 1 (0x429a), points address register 0x13 at 0x9ce (0x42a9) and sets register 0x12 (0x42ab). The loop at
-  0x42ae-0x42c5 reads twelve consecutive external-memory words per pass (offsets 0-0xb, using the three read forms
-  `r95` = 0x14, 0x15 and 0x16) and forwards them as bus-output stores (0x42ba, 0x42c0, 0x42c6, 0x42cc); register 0x12
-  is stepped at 0x42c3 and the group-7 transfer at 0x42c5 repeats the pass. The group-31 transfer at 0x42ca closes the
-  command after the final 0x1f4 write at 0x42d2. Its input is the table in external memory 0x9ce onward, and it selects twelve words per pass to forward.
+- `mgesi_FillTMLoadFifo` (`texture.S` line 721, at 0x4278): **inferred**, pushes a fixed run of zero words, ended by an
+  all-ones word, to raster-board register 0x7fc0. It keeps its one operand word in address register 0x1a (0x4278) and in
+  staging word 0 (0x427b), writes the index 0x7fc0 to bus address 0x1f7 (0x427e), and sends the zero register (`r148` =
+  0x3c0) to 0x1f6 (0x4281) and to 0x1f5 in a run of thirteen moves (0x4283-0x428f). The last word is the bitwise not of zero
+  (0x4290), and staging word 0 goes to 0x1f4 at 0x4292; the group-31 transfer at 0x428a ends the command. The bus words are
+  zeros from register 0x1e and, last, an all-ones word made by the NOT.
+- `mgesi_RestoreTextureAddress` (`texture.S` line 644, at 0x4293): **inferred**, replays a saved texture-address table to
+  the raster board. It reads the external-memory word 0x9cd (0x4293), keeps it in staging word 1 (0x429a), points address
+  register 0x13 at 0x9ce (0x42a9) and sets register 0x12 (0x42ab). The loop at 0x42ae-0x42c5 reads twelve consecutive
+  external-memory words per pass (offsets 0-0xb, using the three read forms `r95` = 0x14, 0x15 and 0x16) and forwards them
+  as bus-output stores (0x42ba, 0x42c0, 0x42c6, 0x42cc); register 0x12 is stepped at 0x42c3 and the group-7 transfer at
+  0x42c5 repeats the pass. The group-31 transfer at 0x42ca closes the command after the final 0x1f4 write at 0x42d2. The
+  table starts at external memory 0x9ce and twelve of its words are forwarded per pass.
 - `mgebi_Bind2dMipmapTexture` (`texture.S` line 367, at 0x42d3): **inferred**,
   builds the texture-address table of a 2-D mipmapped texture from the command's operand words (A = 0x1f, D up to 0x15)
   and sends the matching raster writes. It stages register-address constants such as 0x1471000, 0x14b0c05, 0x14a0c04,
@@ -5175,13 +5208,14 @@ and keep engine words 3 and 0xd and external-memory words 7-9 in step. Read from
 A pixel-path module that rewrites four-component pixels in place. Read from the
 [mcomporder.S listing](ge_listing/mcomporder.S.lst) (`ge.u`, IRIX 6.5.30m).
 
-- `mmo_ReverseComp4Order` (`mcomporder.S` line 65, at 0x6b2f): **inferred**,
-  swaps the positions of the four words in each pixel (D = 3, 2, 1, 0 become E = 0, 1, 2, 3), for example RGBA to ABGR.
-  It takes the three words the ARM wrote to external memory 0xbae-0xbb0 (read at 0x6b2f, 0x6b37, 0x6b39) and keeps the last
-  two in address registers 0xf and 0xd (0x6b48, 0x6b49). The main loop 0x6b4f-0x6b6f moves 32 stream words, eight pixels,
-  per pass with `mov` words that exchange offsets (D = 0x1f, 0x1e... to E = 0x1c, 0x1d...), all stored through address
-  register 0x10 and repeating on `cc` 0x14 at 0x6b6f. A one-pixel loop (0x6b84-0x6b88) takes the remainder, and the return
-  at 0x6b91 restores register 0x10 from register 0xe in its delay slot (0x6b96). Its output is the same pixels with components exchanged; it selects each source offset by the fixed pattern of the moves.
+- `mmo_ReverseComp4Order` (`mcomporder.S` line 65, at 0x6b2f): **inferred**, swaps the positions of the four words in each
+  pixel (D = 3, 2, 1, 0 become E = 0, 1, 2, 3), for example RGBA to ABGR. It takes the three words the ARM wrote to external
+  memory 0xbae-0xbb0 (read at 0x6b2f, 0x6b37, 0x6b39) and keeps the last two in address registers 0xf and 0xd (0x6b48,
+  0x6b49). The main loop 0x6b4f-0x6b6f moves 32 stream words, eight pixels, per pass with `mov` words that exchange offsets
+  (D = 0x1f, 0x1e... to E = 0x1c, 0x1d...), all stored through address register 0x10 and repeating on `cc` 0x14 at 0x6b6f. A
+  one-pixel loop (0x6b84-0x6b88) takes the remainder, and the return at 0x6b91 restores register 0x10 from register 0xe in
+  its delay slot (0x6b96). The words are moved unchanged; only their order in each pixel differs, by the fixed pattern of
+  the moves.
 
 ## Luminance from RGB (msum.S)
 
@@ -5201,18 +5235,18 @@ IRIX 6.5.30m).
 Two pixel-path modules that widen one- or two-word pixels to four. Read from the [mexpand.S listing](ge_listing/mexpand.S.lst)
 (`ge.u`, IRIX 6.5.30m).
 
-- `mmo_Expand32_2_4` (`mexpand.S` line 132, at 0x6c0b): **inferred**,
-  turns each luminance-and-alpha pair into a four-word quad (L, L, L, A). It takes the control words 0x1b0-0x1b3 (read at
-  0x6c0d-0x6c17) into staging words 1-4 and address registers 0xd, 0xe and 0xf for the counts and pointers. The loop
-  0x6c28-0x6c48 reads 16 stream words (D = 0-0xf) and stores 32: word 2k becomes E = 4k, 4k+1 and 4k+2, and word 2k+1
-  becomes E = 4k+3, all through address register 0xf. The loop transfer is at 0x6c48 on `cc` 0x14, and the group-31 transfer
-  at 0x6c4c ends the command. Its output is the 32 stored words per pass; it selects source word 2k for three slots and 2k+1 for the fourth.
-- `mmo_Expand32_1_4` (`mexpand.S` line 43, at 0x6c55): **inferred**,
-  turns each single-word pixel into a quad whose first three words repeat the value and whose fourth is a constant. It
-  consumes the control words 0x1b0-0x1b3 as above, and also 0x1b7 (0x6c67), which it stores in staging word 0 as the
-  fourth word. The loop 0x6c72-0x6c92 reads eight stream words (D = 0-7) and writes 32 words: each input word to
-  E = 4k, 4k+1 and 4k+2, with staging word 0 (A = 0x18) as E = 4k+3 (0x6c75, 0x6c79 and so on). The loop transfer is at 0x6c92
-  and the group-31 transfer at 0x6c96 ends the command. Its output is the 32 stored words per pass; it selects the input word for three slots and the staged constant for the fourth.
+- `mmo_Expand32_2_4` (`mexpand.S` line 132, at 0x6c0b): **inferred**, turns each luminance-and-alpha pair into a four-word
+  quad (L, L, L, A). It takes the control words 0x1b0-0x1b3 (read at 0x6c0d-0x6c17) into staging words 1-4 and address
+  registers 0xd, 0xe and 0xf for the counts and pointers. The loop 0x6c28-0x6c48 reads 16 stream words (D = 0-0xf) and
+  stores 32: word 2k becomes E = 4k, 4k+1 and 4k+2, and word 2k+1 becomes E = 4k+3, all through address register 0xf. The
+  loop transfer is at 0x6c48 on `cc` 0x14, and the group-31 transfer at 0x6c4c ends the command. Each pass stores 32 words:
+  source word 2k fills three slots and word 2k+1 the fourth, unchanged.
+- `mmo_Expand32_1_4` (`mexpand.S` line 43, at 0x6c55): **inferred**, turns each single-word pixel into a quad whose first
+  three words repeat the value and whose fourth is a constant. It consumes the control words 0x1b0-0x1b3 as above, and also
+  0x1b7 (0x6c67), which it stores in staging word 0 as the fourth word. The loop 0x6c72-0x6c92 reads eight stream words (D =
+  0-7) and writes 32 words: each input word to E = 4k, 4k+1 and 4k+2, with staging word 0 (A = 0x18) as E = 4k+3 (0x6c75,
+  0x6c79 and so on). The loop transfer is at 0x6c92 and the group-31 transfer at 0x6c96 ends the command. Each pass stores
+  32 words: the input word fills three slots and the staged constant the fourth, unchanged.
 
 ## Antialiased-line response (aa.S)
 
@@ -5220,10 +5254,10 @@ Small register-only subroutines called by the antialiased-line table generators;
 and return their results in registers 0x1b and 0x1c. Read from the [aa.S listing](ge_listing/aa.S.lst) (`ge.u`, IRIX
 6.5.30m).
 
-- `AA_Response_Max` (`aa.S` line 337, at 0x903c): **inferred**,
-  the two-word exit that returns register 0x1f in both result registers. The word in the return's delay slot (0x903d) is a
-  unit-2 move and a unit-1 move under `cc` 0x291 that copy register 0x1f into registers 0x1c and 0x1b, and the return at
-  0x903c hands them back. No other word transfers into it. Its input is register 0x1f, and it selects that value for both results.
+- `AA_Response_Max` (`aa.S` line 337, at 0x903c): **inferred**, the two-word exit that returns register 0x1f in both result
+  registers. The word in the return's delay slot (0x903d) is a unit-2 move and a unit-1 move under `cc` 0x291 that copy
+  register 0x1f into registers 0x1c and 0x1b, and the return at 0x903c hands them back. No other word transfers into it.
+  Register 0x1f is copied unchanged into both result registers.
 - `AA_Response_Step` (`aa.S` line 264, at 0x9045): **inferred**,
   one stage of the response function. Two float subtracts (0x9045, 0x9046) take differences of registers 0x15 and 0x14 and
   0x15 and 0x13; two adds (0x9049, 0x904a) combine the results with staging word 0 and write registers 0x1c and 0x1b; two more
