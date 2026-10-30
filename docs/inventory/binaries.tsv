@@ -430,7 +430,7 @@ usr/diags/IR/ucode/arm1_nic.u	diagnostics	board-diagnostic	data	-	13400	872331fc
 usr/diags/IR/ucode/dgo.mcs	diagnostics	board-diagnostic	data	-	93912	518cd70fa8b71474		0	0	0	undocumented		
 usr/diags/IR/ucode/diag_arm_init.u	diagnostics	board-diagnostic	data	-	520	da008146e38bf9a0		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/ucode/ge.hex	diagnostics	board-diagnostic	data	-	363650	ae8bfbf6f4060058		0	0	0	named-only	ucode/ge_ops.md#the-diagnostic-programs-instruction-test	The diagnostic program's instruction test
-usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3edf		0	0	0	named-only	ucode/ge_ops.md#input-and-output-fifo-operations	Input and output FIFO operations
+usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3edf		0	0	0	named-only	ucode/ge_isa.md#which-ge11-facts-konas-own-software-confirms	Which GE11 facts KONA's own software confirms
 usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
 usr/diags/IR/ucode/ge_diag_init.u	diagnostics	board-diagnostic	data	-	12082	7e407147118cf628		0	0	0	located	ucode/ge_isa.md#the-program-files	The program files
 usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0	0	0	undocumented		
