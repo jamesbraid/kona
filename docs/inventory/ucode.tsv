@@ -2591,36 +2591,36 @@ ge.u	label	0x0000b25a	mGL_REGS_Initialize		located	ucode/ge_handlers.md#ges	ge.S
 ge.u	label	0x0000b27b	mgeb_Disable_EnablePolyOffsetExt		located	ucode/ge_handlers.md#glexts	glExt.S
 ge.u	label	0x0000b2ab	mgeb_PolygonOffset		located	ucode/ge_handlers.md#glexts	glExt.S
 ge.u	label	0x0000b2c3	mgeb_PolygonOffsetExt		located	ucode/ge_handlers.md#glexts	glExt.S
-ge.u	label	0x0000b2d2	mgeb_RasterPos		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b2fe	mgesi_Points		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b312	mgesi_LineStripRestoreV0		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b32a	mgesi_LineStripCopyAndIgnoreV0		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b342	mgesi_LineStripCopyV0		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b35a	mgesi_LineStripSaveAndIgnoreV0		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b372	mgesi_LineStripSaveV0		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b38a	mgesi_LineStrip		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b39e	mgesi_TfanPolyRestoreEnd		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b3cf	mgesi_TfanPolyEnd		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b3fc	mgesi_TfanPolyRestoreSave		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b430	mgesi_TfanPolyRestoreEdge		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b48b	mgesi_TfanPolyRestore		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b4bd	mgesi_TfanPolySave		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b4f1	mgesi_TfanPoly		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b51f	mgeb_SetTfanPolyMode		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b531	mgesi_Quads		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b545	mgesi_QuadStripRestoreSave		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b560	mgesi_QuadStripRestore		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b57b	mgesi_QuadStripSave		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b596	mgesi_QuadStrip		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b5ae	mgesi_Triangles		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b5c6	mgesi_TriangleStripRestoreSaveWithSwapOdd		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b5de	mgesi_TriangleStripRestoreWithSwapOdd		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b5f6	mgesi_TriangleStripSaveWithSwapOdd		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b60e	mgesi_TriangleStripWithSwapOdd		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b627	mgesi_TriangleStripRestoreSave		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b64d	mgesi_TriangleStripRestore		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b673	mgesi_TriangleStripSave		located	ucode/ge_handlers.md#entrys	entry.S
-ge.u	label	0x0000b699	mgesi_TriangleStrip		located	ucode/ge_handlers.md#entrys	entry.S
+ge.u	label	0x0000b2d2	mgeb_RasterPos		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b2fe	mgesi_Points		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b312	mgesi_LineStripRestoreV0		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b32a	mgesi_LineStripCopyAndIgnoreV0		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b342	mgesi_LineStripCopyV0		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b35a	mgesi_LineStripSaveAndIgnoreV0		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b372	mgesi_LineStripSaveV0		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b38a	mgesi_LineStrip		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b39e	mgesi_TfanPolyRestoreEnd		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b3cf	mgesi_TfanPolyEnd		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b3fc	mgesi_TfanPolyRestoreSave		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b430	mgesi_TfanPolyRestoreEdge		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b48b	mgesi_TfanPolyRestore		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b4bd	mgesi_TfanPolySave		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b4f1	mgesi_TfanPoly		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b51f	mgeb_SetTfanPolyMode		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b531	mgesi_Quads		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b545	mgesi_QuadStripRestoreSave		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b560	mgesi_QuadStripRestore		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b57b	mgesi_QuadStripSave		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b596	mgesi_QuadStrip		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b5ae	mgesi_Triangles		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b5c6	mgesi_TriangleStripRestoreSaveWithSwapOdd		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b5de	mgesi_TriangleStripRestoreWithSwapOdd		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b5f6	mgesi_TriangleStripSaveWithSwapOdd		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b60e	mgesi_TriangleStripWithSwapOdd		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b627	mgesi_TriangleStripRestoreSave		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b64d	mgesi_TriangleStripRestore		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b673	mgesi_TriangleStripSave		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
+ge.u	label	0x0000b699	mgesi_TriangleStrip		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
 ge.u	label	0x0000b6bc	mgesi_FeedbackPixel		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
 ge.u	label	0x0000b720	mgeb_EndFeedbackMode		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
 ge.u	label	0x0000b72f	mgeb_BgnFeedbackMode		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)

@@ -1568,3 +1568,200 @@ engine takes each part of a pixel stream. Output records are the seven-word reco
   with integer subtracts and an arithmetic shift it pairs row r with row n-1-r and swaps them by unit-2 moves.
 - `mgeb_FlipXConvKern` (`mpixelSetup.S` lines 899-960, at 0xa864): **inferred**, the horizontal flip, pairing column c
   with n-1-c the same way.
+
+## How the vertex path is chained (successor words)
+
+**Inferred: a word with `r95` = 2 loads the target of the next indirect transfer.** Such a word reads one engine word,
+named by an immediate (C = 0x1e) or by an address register (C). Of the 356 such words in the production listings, 351 are
+followed within 400 words by an indirect transfer (R88) in condition group 4, 5 or 31, and every read word whose start-up
+value is known holds a code address. So each module ends by reading a fixed engine word and jumping through it, and a
+handler reroutes the vertex path by rewriting those words. It follows that a group-31 transfer goes where the last such
+read pointed: to the next module while a vertex batch is in flight, and to `mDispatchCentral` at the end of the chain. That
+narrows the reading in [ge_isa.md](ge_isa.md#calls-returns-and-the-end-of-a-command), which took every group-31 target as
+the next command's handler. In every primitive entry handler below, the eight words after the group-31 transfer still
+execute (the last successor-word store sits in the eighth).
+
+**Inferred: a store with `r95` = 4 writes the value a move delivered nine words earlier.** A move with `r99` = 0xa (from a
+staging word) or `r99` = 2 (from a memory operand) feeds the store data. Over the 1427 production stores with `r95` = 4, the
+most recent such move nine or more words before the store has the store's own source line in 423, against 211 at eight
+words and 107 at ten. Applied to `mGL_CM_Initialize` (`ge.S` lines 350-367, 0xb1bf-0xb1fb) the pairing gives word 0 = 2,
+word 1 = 0x3f, word 2 = 0xfff, word 8 = 0x1218 and 1.0 on the diagonals of the five matrices (0x1f, 0x2f, 0x3f, 0x4f,
+0x5f), each from a move on the store's own line.
+
+**Inferred: special register 0x20 + k is bit k of a flag word that `cc` 0x60 + 2k tests (`cc` 0x61 + 2k for the bit
+clear).** Three pairs fix the spacing: the matrix handlers write 0x29 and 0x2b and the transform modules branch on `cc`
+0x72 and 0x76 ([Engine memory the transform code shares](#engine-memory-the-transform-code-shares)); `mgeb_Enable_Multipass`,
+`mgeb_EnableSprite` and `mgeb_EnableUnpack` store the set pattern (`r148` = 0x3a0) to 0x27 and their `Disable` partners the
+clear pattern (0x3c0), and the entry handlers test `cc` 0x6e to pick the pre-path module; `mDispatchCentral` copies engine
+word 0x19 into FLAG_GLOB_LO (special register 0x0b, 0xe742) just before branching on `cc` 0x60, 0x62, 0x64, 0x66 and 0x68.
+Writes through register 0x1d at offsets 0x20 and up (private registers 0x60 and up) pair with `cc` 0x40 + 2k the same way:
+`mgeb_SetTfanPolyMode` writes offset 0x20 and the fan entries branch on `cc` 0x40. The value written is a store of register
+0x1e or 0x1d (`r148` = 0x3c0 or 0x3a0), or the sum of register 0x1e with itself (`r148` = 0x3de, M = 0x6e0), which
+`mRotate` also stores to the zero entries of its rotation matrix (0x0fd0, 0x0fd6, 0x0ff2, 0x0ff5): register 0x1e reads as
+zero there.
+
+Successor words, with the value `mGL_CM_Initialize` writes and the modules that read each as their successor (by the
+`r95` = 2 words of the listings):
+
+| Word | Start-up value | Read as successor by | Written later by |
+|---|---|---|---|
+| 8 | 0x1218 `mmo_ObjToClipSpace` | `mmo_DirtyXformAndObjToClipModule` (0xf485); the primitive entry handlers, through a register | lighting, texture-generation and mode handlers (`glmodes.S`, `lightenables.S`, `texgen.S`) |
+| 9 | 0x1218 | `umo_ObjToEyeSpace` and its user-plane variants (0x1303, 0x132a, 0x1361) | |
+| 0xa | (none) | the clip-space transform loops `lXF1`, `lXF2`, `lXF3` (0x1222, 0x125d, 0x129e) | every primitive entry handler; `mmo_DummyDecompose` |
+| 0xb | 0xd69 `mmo_LiColorClamp` | the decomposers of `mdecompose2.S`; `mmo_DirtyCullAndLightModule` | lighting and cull state handlers |
+| 0xc | 0xd69 | `umo_FaceCull`, `umo_DecomposeLineStrip`, `umo_DecomposePoints` | |
+| 0xd | 0x10c9 `mmo_ToScreenSpace` | `umo_LiColorClamp` (0x0d6d), `umo_LighterSimple`, `mmo_LiColorMask` | the save-vertex entry handlers; the texture-matrix handlers, with 0xf494 `mmo_DirtyTextureAndScreenModule` |
+| 0xf | (none) | the screen-space loops `lSC1`, `lSC3`, `lSC5` (0x10df, 0x1182, 0x11f7) | every primitive entry handler |
+| 0x10 | (none) | `mClipTriUserAndFrustum` (0xed98) | the triangle, quad and fan entry handlers |
+| 0x11, 0x14, 0x15, 0x16 | 0x28ca `mmo_DrawQuad`, 0x288c `mmo_DrawTri`, 0x8db0 `mmo_DrawLinPrim`, 0x8465 `mmo_DrawPntPrim` | copied into word 0xf by the entry handlers | `polygon.S` (feedback and select copies such as 0xb76e and 0xbecc), `line.S`, `point.S` |
+| 0x17 | (none) | the screen-space loops (0x10de, 0x1175, 0x11f6) | the decomposers (0xed52, `mClipTriUserAndFrustum`) |
+| 0x18 | (none) | the vertex-save modules of `fluff.S` (`mmo_Vn2ToSave`, `mmo_V0ToSave`, `mmo_SaveToVn1` and the rest) | the save-vertex entry handlers |
+| 0x1a | 0xe741 `mDispatchCentral` | the draw modules (`mmo_DrawLinPrim` 0x8db9 and others) | |
+| 0xda, 0xdb | 0xf4e4 `mmo_DirtyPrePathModule` | deform and multipass modules (0xda); unpack modules and `mmo_DirtyPrePathModule` (0xdb) | `mgeb_DeformationMap3_1` |
+
+## Primitive entry handlers (entry.S)
+
+The distributor releases each batch of vertices to an engine with one of these handlers
+([ged.md](ged.md) names the release for each state). **Inferred** for all of them, from the words cited in each entry and
+the three readings above, and **established** where an entry says so: every handler copies engine word 0 into CULL
+(0x0c), word 2 into CLIP_HOMO (0x0d) and word 1 into CLIP_USER (0x0e), each a move whose memory operand is read through
+address register 0x1b at offset 0, 2 or 1 (in the handlers without a restore stage the copy into 0x0e uses the operand
+read one word earlier); `mGL_CM_Initialize`
+starts those words at 2, 0xfff and 0x3f, `mgeb_ViewPort` rewrites word 2 (0xf42d) and `mUserClipResolve` word 1. It
+clears flag bits 3 and 4 (special registers 0x23 and 0x24). It points an address register at engine word 8, and at word
+0xda instead when flag bit 7 (special register 0x27) is set, and reads its successor through that register, so the batch
+runs `mmo_ObjToClipSpace`, or `mmo_DirtyPrePathModule` when multipass, sprite, unpack or deformation is on. It loads
+register 0x10 from register 0x1f with register 0x14, sets register 0x11 to register 0x10 plus 0x1d4 and register 0x13 to
+0x3a8, the stride of the two-vertex transform loop ([Vertex records and the transform loop](#vertex-records-and-the-transform-loop)):
+vertex records 0x1d4 words apart, taken two at a time. What the conditional update of register 0x19 from register 0x12
+on `cc` 0x68 does is not traced.
+
+- `mgeb_RasterPos` (`entry.S` lines 1044-1099, at 0xb2d2): **inferred**, glRasterPos sent down the point path. It takes
+  the four position operands (command words 0-3) as input and multiplies them by the modelview matrix at engine words
+  0x2f-0x3e: twelve unit-2 multiplies (M = 0x47f, 0xb2d4-0xb2e1, command word 0, 1 or 2 times one column word each) and
+  four multiply-adds for the w column (M = 0x460, 0xb2ee-0xb2f1); the four results, modelview times (x, y, z, w), go out
+  through address register 0x1f at offsets 0x13-0x16 (0xb2f2-0xb2f5), the eye-space words of a vertex record. It then writes successor word 0xf with
+  `mmo_SaveRasterPos` (0xe623, staged at 0xb2d3, stored at 0xb2eb) and word 0xa with the point decomposer 0xd10 (0xb2ec),
+  so the position is transformed and clipped like a point and its last stage records it instead of drawing a pixel.
+  Two reads of form `r95` = 0x17 (0x138a at 0xb2dd, 0x34 at 0xb2df) and the store to engine word 0x12 at 0xb2ed were not
+  traced.
+- `mgesi_Points` (`entry.S` line 1019, at 0xb2fe): **inferred**, starts a batch of independent points. Its outputs are
+  successor word 0xf, which takes the point draw module held in word 0x16 (move at 0xb307, store 0xb310), and word 0xa,
+  which takes `umo_DecomposePoints` (0xd10, staged at 0xb306, stored at 0xb311 in the last delay word); the start module is
+  read through register 0x1a (0xb2fe-0xb303) before the group-31 transfer at 0xb309.
+- `mgesi_LineStrip` (`entry.S` line 865, at 0xb38a): **inferred**, the plain line-strip batch, also used for line loops
+  whose closing segment needs no saved vertex. It selects the line draw module from word 0x15 for successor word 0xf
+  (0xb393, 0xb39c) and hands the transformed vertices to `mmo_DecomposeLineStrip` (0xcfa) through word 0xa (0xb39d).
+- `mgesi_LineStripSaveV0` (`entry.S` line 888, at 0xb372): **inferred**, a line-strip batch whose first vertex must be
+  kept for the loop's closing segment. Besides the line set-up (word 0xf from word 0x15, word 0xa = 0xcfa), it splices
+  `mmo_V0ToSave` (0xe544) into the chain: word 0x18 takes the old contents of word 0xd (read at 0xb37f, stored at 0xb388)
+  and word 0xd takes the module's address (0xb380, 0xb389), so the save runs where the lighting successor ran before and
+  then continues to it.
+- `mgesi_LineStripSaveAndIgnoreV0` (`entry.S` line 914, at 0xb35a): **inferred**, the same splice with
+  `mmo_V0ToSaveAndIgnore` (0xe4fd) as the inserted stage: word 0xd's previous successor moves to word 0x18 (0xb367,
+  0xb370) and 0xe4fd replaces it (0xb371). By its name the module keeps the first vertex without drawing a segment from it.
+- `mgesi_LineStripCopyV0` (`entry.S` line 939, at 0xb342): **inferred**, the batch that closes a line loop from the
+  engine's saved copy, which the distributor releases after resending the first vertex. Its inserted stage is
+  `mmo_CopyV0ToVn1` (0xe6d4, ORed in at 0xb350 and stored to word 0xd at 0xb359), with the displaced successor kept in
+  word 0x18 (0xb358).
+- `mgesi_LineStripCopyAndIgnoreV0` (`entry.S` line 965, at 0xb32a): **inferred**, closes a loop with
+  `mmo_CopyV0ToVn1AndIgnore` (0xe6c0) as the extra stage: the handler moves word 0xd into word 0x18 (0xb337, 0xb340), puts
+  0xe6c0 in word 0xd (0xb341), and otherwise sets up the line path as `mgesi_LineStrip` does.
+- `mgesi_LineStripRestoreV0` (`entry.S` line 990, at 0xb312): **inferred**, the loop end that brings back the first vertex
+  saved by an earlier batch. The stage it inserts ahead of word 0xd's successor is `mmo_SaveToVn1` (0xe560, stored at
+  0xb329), the displaced address going to word 0x18 (0xb328); word 0xa gets the strip decomposer 0xcfa (0xb327).
+- `mgesi_Quads` (`entry.S` line 419, at 0xb531): **inferred**, independent quads. Its inputs are state words 0-2 and the
+  quad draw module in word 0x11 (read at 0xb53a), which it writes to successor word 0xf (0xb543); word 0xa receives
+  `mmo_DecomposeQuads` (0xca3a, 0xb539, stored 0xb544), with no dummy and no flag test.
+- `mgesi_QuadStrip` (`entry.S` line 304, at 0xb596): **inferred**, a quad-strip batch. Word 0xf takes the quad draw module
+  from word 0x11 (0xb5a1, 0xb5aa); word 0xa takes `mmo_DummyDecomposeQuadStrip` (0xc9e1, staged on line 306, stored at
+  0xb5ab on line 308) and, when flag bit 6 (`cc` 0x6c, special register 0x26) is set, `mmo_DecomposeQuadStrip` (0xca60,
+  line 311, conditional store at 0xb5ac on line 312); word 0x10, the successor of the triangle clipper, takes 0xca60
+  (0xb5ad, line 313). The source lines pair each staged address with its store. Flag bit 6 is the one input that differs between the two stores, so it selects the successor this handler outputs.
+- `mgesi_QuadStripSave` (`entry.S` line 330, at 0xb57b): **inferred**, the quad-strip batch that keeps its last edge for
+  the next batch: the quad-strip set-up of `mgesi_QuadStrip` (0xb588-0xb593) plus `mmo_Vn2ToSave` (0xe4de) spliced in at
+  word 0xd, whose former successor it parks in word 0x18 (0xb58b, 0xb594, 0xb595). Flag bit 6 is again the input that
+  selects which quad-strip decomposer word 0xa holds as the result (0xb591-0xb592).
+- `mgesi_QuadStripRestore` (`entry.S` line 358, at 0xb560): **inferred**, releases a quad strip whose first edge was saved
+  by the previous batch. It splices `mmo_SaveToV0` (0xe605) in front of word 0xd's successor (stores 0xb579, 0xb57a) and
+  reads its start module through register 0x11 (0xb567-0xb56c) rather than 0x13. Its other output, word 0xa, holds the
+  dummy or the real quad-strip decomposer as the flag-bit-6 input selects (0xb576-0xb577).
+- `mgesi_QuadStripRestoreSave` (`entry.S` line 387, at 0xb545): **inferred**, a middle batch of a long quad strip that
+  both brings back the saved edge and saves its own: the inserted stage is `mmo_SaveToV0AndVn2ToSave` (0xe57e, staged at
+  0xb549, stored to word 0xd at 0xb55f) and word 0x18 takes the old word 0xd (0xb55e). As in the other quad-strip
+  handlers, the flag-bit-6 input selects the decomposer it produces in word 0xa (0xb55b-0xb55c).
+- `mgesi_Triangles` (`entry.S` line 281, at 0xb5ae): **inferred**, independent triangles. It copies the triangle draw
+  module from word 0x14 into successor word 0xf (0xb5b9, 0xb5c2) and writes word 0xa with `mmo_DummyDecompose` (0xca01,
+  0xb5c3), replaced by `mmo_DecomposeSimpleTriangles` (0xca10) when flag bit 6 is set (0xb5c4); word 0x10 receives 0xca10
+  (0xb5c5). So the handler selects the transform's successor from one input bit: without flag bit 6 the transform output goes on in batch order, and with it the decomposer runs before lighting.
+- `mgesi_TriangleStrip` (`entry.S` line 81, at 0xb699): **inferred**, a triangle-strip batch that starts on an even
+  triangle; it takes flag bits 0 and 6 as inputs and selects from them the decomposer it outputs to word 0xa. Word 0xf gets the draw module of word 0x14 (0xb6a4, 0xb6ad); word 0xa the dummy decomposer (0xb6ae) or, under
+  flag bit 6, `mmo_DecomposeTriangleStrip` (0xcc6, 0xb6af); word 0x10 gets 0xcc6 (0xb6b0). It ends at 0xb6a8 unless flag
+  bit 0 (special register 0x20, `cc` 0x61 for the bit clear) is set; then it falls through, writes word 0xa with
+  `mmo_DecomposeTriangleStripWithSwapEven` (0xc9b2, lines 88-90, store at 0xb6bb) and ends at 0xb6b3.
+  `mgeb_SetLMCFlag` sets that bit and `mgeb_ClearLMCFlag` clears it.
+- `mgesi_TriangleStripSave` (`entry.S` line 105, at 0xb673): **inferred**, an even-start strip batch that keeps its last
+  two vertices for the next batch. It adds `mmo_Vn2ToSave` (0xe4de) to the chain at word 0xd (0xb684, 0xb68d), moving the
+  old successor to word 0x18 (0xb68c), on top of the strip decomposer it selects from the flag-bit inputs 6 and 0, the result landing in word 0xa (0xb689-0xb68b,
+  swap path 0xb68e-0xb698).
+- `mgesi_TriangleStripRestore` (`entry.S` line 131, at 0xb64d): **inferred**, an even-start strip batch that continues a
+  strip from vertices the previous batch saved: the stage spliced at word 0xd is `mmo_SaveToV0` (0xe605, 0xb667) and the
+  displaced successor goes to word 0x18 (0xb666); the start module is read through register 0x11, and the decomposer in
+  word 0xa is the result of the same flag tests as in `mgesi_TriangleStrip`, where input bits 6 and 0 select it
+  (0xb663-0xb672).
+- `mgesi_TriangleStripRestoreSave` (`entry.S` line 158, at 0xb627): **inferred**, a middle strip batch that restores the
+  previous batch's vertices and saves its own: `mmo_SaveToV0AndVn2ToSave` (0xe57e) becomes word 0xd's stage (0xb641) and
+  word 0x18 takes what word 0xd held (0xb640); the decomposer words and the swap path are those of `mgesi_TriangleStrip`,
+  so the same two flag-bit inputs select its word-0xa output (0xb63d-0xb64c).
+- `mgesi_TriangleStripWithSwapOdd` (`entry.S` line 184, at 0xb60e): **inferred**, the strip batch that starts on an odd
+  triangle, which every odd-winding distributor state releases. It stages the dummy decomposer and
+  `mmo_DecomposeTriangleStrip` (0xb611-0xb612) for words 0xa and 0x10 as the even handler does (0xb622-0xb625), then
+  overwrites word 0xa with `mmo_DecomposeTriangleStripWithSwapOdd` (0xc989, lines 188-190, store at 0xb626) without a flag
+  test, so the odd decomposer runs after the transform whatever the state.
+- `mgesi_TriangleStripSaveWithSwapOdd` (`entry.S` line 207, at 0xb5f6): **inferred**, an odd-start batch that saves:
+  word 0xa is written only once, with `mmo_DecomposeTriangleStripWithSwapOdd` (0xc989, 0xb60b), and `mmo_Vn2ToSave`
+  (0xe4de) is spliced in at word 0xd (0xb60d) with the old successor in word 0x18 (0xb60c).
+- `mgesi_TriangleStripRestoreWithSwapOdd` (`entry.S` line 230, at 0xb5de): **inferred**, the odd-start counterpart of
+  `mgesi_TriangleStripRestore`: decomposer 0xc989 in word 0xa (0xb5f3), restore stage `mmo_SaveToV0` (0xe605) in word 0xd
+  (0xb5f5), previous word 0xd in word 0x18 (0xb5f4).
+- `mgesi_TriangleStripRestoreSaveWithSwapOdd` (`entry.S` line 254, at 0xb5c6): **inferred**, odd start with both restore
+  and save: it outputs 0xc989 to word 0xa (0xb5db) and `mmo_SaveToV0AndVn2ToSave` (0xe57e) to word 0xd (0xb5dd), and keeps
+  word 0xd's old value in word 0x18 (0xb5dc).
+- `mgeb_SetTfanPolyMode` (`entry.S` lines 445-461, at 0xb51f): **inferred**, sets the fan-or-polygon mode the fan entry
+  handlers branch on. It clears private flag registers 0x60 and 0x68 (stores through register 0x1d at offsets 0x20 and
+  0x28, 0xb520-0xb521) and sets both again under condition 0x11 (0xb522-0xb523), then ends with the relative wait at
+  0xb528. By the bank reading above, `cc` 0x40 in the fan handlers tests register 0x60. What condition 0x11 tests here is
+  not traced.
+- `mgesi_TfanPoly` (`entry.S` lines 476-504, at 0xb4f1): **inferred**, a triangle-fan or polygon batch. After the shared
+  set-up it takes the fan-or-polygon bit as input and branches on it (`cc` 0x40, 0xb4f9), which selects the decomposer it outputs. Fan path: word 0xf takes the triangle draw module of word 0x14 (0xb4f8,
+  0xb501), word 0xa the dummy decomposer or, under flag bit 6, `mmo_DecomposeTriangleFan` (0xd25, 0xb50c-0xb50d), word
+  0x10 0xd25 (0xb50e). Polygon path (0xb50f-0xb51e): flag bit 3 takes engine word 3 (0xb511), the decomposer is
+  `mmo_DecomposePolygon` (0xca86) in word 0x10 and, under flag bit 6 or 3, in word 0xa, and engine word 0x11fc is ANDed
+  with 0xfe3fffff (0xb516), clearing its bits 22-24.
+- `mgesi_TfanPolySave` (`entry.S` lines 526-557, at 0xb4bd): **inferred**, the fan or polygon batch that saves its
+  vertices for the next batch. Both paths of `mgesi_TfanPoly` are here, each with a save stage spliced at word 0xd and the
+  old successor moved to word 0x18: `mmo_V0ToSave` (0xe544, 0xb4d9-0xb4da) on the fan path and `mmo_V0ToSave_SaveExtra`
+  (0xe519, 0xb4eb-0xb4ec) on the polygon path, whose extra state is the polygon's edge word. The `cc` 0x40 input
+  (0xb4c5) selects the path and with it the decomposer output to words 0xa and 0x10.
+- `mgesi_TfanPolyRestore` (`entry.S` lines 581-611, at 0xb48b): **inferred**, a fan or polygon batch that brings back the
+  centre vertex saved earlier. It inserts `mmo_SaveToV0` (0xe605) at word 0xd before branching (0xb492-0xb49f, both paths),
+  then takes the fan-or-polygon bit as input (0xb497) and selects as its result the fan decomposer (0xb4aa-0xb4ac) or the
+  polygon decomposer with the 0x11fc mask (0xb4ad-0xb4bc).
+- `mgesi_TfanPolyRestoreEdge` (`entry.S` lines 635-706, at 0xb430): **inferred**, restores the centre vertex and the edge
+  state of a fan or polygon split across batches. Fan path: it ORs 0xe0000000 into three words addressed from register 0x1f
+  (0xb444-0xb44a, offsets set from F = 0x26, +0x134 and +0x1d0), setting their top three bits. Polygon path: it splices
+  `mmo_SaveToV0_RestoreExtra` (0xe5d7) at word 0xd (0xb45d-0xb45e), copies record words 0-0xf and 0x26 to the record 0x138
+  words on (0xb45f-0xb46f), calls `mEramToWram` (0xb470) to copy 0x27 words back from external memory into the record,
+  takes flag bit 3 from engine word 3 (0xb47c) and clears bits 22-24 of two record words with 0xfe3fffff (0xb481-0xb482).
+  The branch on `cc` 0x40 (0xb438) is the input that selects between the two paths and so the decomposer output.
+- `mgesi_TfanPolyRestoreSave` (`entry.S` lines 728-759, at 0xb3fc): **inferred**, a middle fan or polygon batch that
+  restores the saved centre and saves for the next: `mmo_SaveToV0` (0xe605) is the fan path's spliced stage
+  (0xb418-0xb419) and `mmo_SaveToV0_SaveExtra` (0xe5a9) the polygon path's (0xb42a-0xb42b); the `cc` 0x40 input at 0xb404
+  selects which pair, and which decomposer, is the output.
+- `mgesi_TfanPolyEnd` (`entry.S` lines 778-803, at 0xb3cf): **inferred**, the last batch of a fan or polygon, which the
+  distributor releases at glEnd. It takes no save stage: after the shared set-up its only output is the decomposer,
+  which the `cc` 0x40 input (0xb3d7) selects: the fan one (0xd25, 0xb3ea-0xb3ec) or the polygon one (0xca86, 0xb3f8-0xb3fb).
+- `mgesi_TfanPolyRestoreEnd` (`entry.S` lines 820-847, at 0xb39e): **inferred**, the closing batch of a fan whose centre
+  the engine saved earlier: `mmo_SaveToV0` (0xe605) is inserted at word 0xd (0xb3a5-0xb3b2) before the `cc` 0x40 branch,
+  and the two paths then output 0xd25 or 0xca86 to the decomposer words, as the same input selects in
+  `mgesi_TfanPolyEnd` (branch at 0xb3aa).
