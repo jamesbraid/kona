@@ -806,3 +806,104 @@ Read from the IP27 Kona n32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/I
   **Established.** The immediate-mode glRasterPos4i, five word stores to the command port: the token 178 (0xb2) and the integers from `a0` to `a3` unchanged.
 - `__glkonim_RasterPos4s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65880, 28 bytes):
   **Established.** The immediate-mode glRasterPos4s, five word stores to the command port: the token 179 (0xb3) and the four short arguments from `a0` to `a3`, each sent as a whole word.
+
+## Vector senders and their entry stubs
+
+The vector forms of the colour, index, normal, texture-coordinate, vertex and raster-position senders are not self-contained. Each has an exported entry stub of the same GL name (for `__glkonim_Color3dv`, the stub `glColor3dv` at 0xda77d18, 20 bytes) that loads the vector from its pointer argument into registers and jumps through a word of the dispatch page at process address 0x1078 to 0x1784, so the sender body shows stores of registers it never loaded. What fills each slot is not read here, so pairing a stub with the `__glkonim_` sender of the same name and token is inferred; every instruction of both is read. Stores to process address 0x4000 are stores to the command port.
+
+- `__glkonim_Color3dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda794a8, 24 bytes):
+  **Established.** Sends the three doubles of a glColor3dv vector as token 0x62 followed by three 8-byte stores, each of which writes one double (two command words) to the port. The caller's stub `glColor3dv` has already loaded the doubles at offsets 0, 8 and 16 into `$f1`, `$f0` and `$f3`, and the stub reaches this function through the word at process address 0x15e4. No conversion is done and the fourth register `$f2` is not used.
+- `__glkonim_Color3fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda794c0, 20 bytes):
+  **Established.** Sends the three floats of a glColor3fv vector with token 0x63: one word for the token, one 8-byte store of the first two floats and one word for the third. The stub `glColor3fv` (dispatch word at process address 0x15ec) loads the first eight bytes with an unaligned load pair into `$v0` and the third float, zero-extended, into `$v1`; the sender only stores them, so the floats reach the port unconverted.
+- `__glkonim_Color3iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda794d4, 20 bytes):
+  **Established.** Sends a glColor3iv vector, three signed integers, under token 0x64. The stub `glColor3iv` (dispatch word 0x15f4) loads the first two integers as one doubleword and the third as a zero-extended word; this function stores the token, the doubleword and the last word in that order. The integers are not scaled to the colour range here, so any scaling is left to the pipe.
+- `__glkonim_Color3uiv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda794e8, 20 bytes):
+  **Established.** Sends a glColor3uiv vector (three unsigned integers) under token 0x67, as a token word, a doubleword holding the first two values and a word holding the third. Its stub `glColor3uiv` (dispatch word 0x160c) does the same two loads as the signed-integer stub; the two forms differ only in the token, so the pipe is what tells signed from unsigned.
+- `__glkonim_Color4dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda794fc, 32 bytes):
+  **Established.** Sends the four doubles of a glColor4dv vector under token 0x6a. The stub `glColor4dv` (dispatch word 0x1624) loads the doubles at offsets 0, 8 and 16 into `$f1`, `$f0` and `$f3`, and this function itself loads the fourth, at offset 24, into `$f2`. It stores `$f1`, `$f0`, `$f3` and then `$f2`, four 8-byte stores that make eight command words after the token.
+- `__glkonim_Color4fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda7951c, 24 bytes):
+  **Established.** Sends a glColor4fv vector (four floats) under token 0x6b as the token word and two doubleword stores. The stub `glColor4fv` (dispatch word 0x162c) loads the first eight bytes into `$v0` with an unaligned pair and starts the load of the second eight bytes into `$v1` with the left half; this function finishes that load with the right half of the pair at offset 15, so it, not the stub, completes the vector.
+- `__glkonim_Color4iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79534, 24 bytes):
+  **Established.** Sends a glColor4iv vector, four signed integers, under token 0x6c. Like the float form it takes the first eight bytes from the stub `glColor4iv` (dispatch word 0x1634) in `$v0`, completes the second doubleword with the right half of an unaligned load at offset 15, and writes the token and the two doublewords to the port. The values are passed as stored.
+- `__glkonim_Color4uiv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda7954c, 24 bytes):
+  **Established.** Sends a glColor4uiv vector under token 0x6f: the token word followed by two doublewords, the first filled by the stub `glColor4uiv` (dispatch word 0x164c) and the second completed here by an unaligned load at offset 15. The code is the same as the signed-integer sender; only the token word differs.
+- `__glkonim_EdgeFlagv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79564, 16 bytes):
+  **Established.** Sends the glEdgeFlagv flag with token 0xa7 and one word. The stub `glEdgeFlagv` (dispatch word 0x1078) loads the single byte the argument points at, zero-extended, into `$v0`, and this function writes the token and then that word, so the pipe receives 0 or the byte's own value (not normalised to 1).
+- `__glkonim_Indexdv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79574, 16 bytes):
+  **Established.** Sends one double for glIndexdv with token 0x72: the token word and one 8-byte store. The stub `glIndexdv` (dispatch word 0x165c) loads the double from the vector into `$f1`. Nothing narrows it to a float, so the pipe takes the index as a double.
+- `__glkonim_Indexfv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79584, 16 bytes):
+  **Established.** Sends the single float of a glIndexfv vector under token 0x73. The stub `glIndexfv` (dispatch word 0x1664) loads the word, zero-extended, into `$v0`, and this function stores the token and then that word: two single-word stores and nothing else.
+- `__glkonim_Indexiv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79594, 16 bytes):
+  **Established.** Sends the single integer of a glIndexiv vector under token 0x74, a token word and one data word. The stub `glIndexiv` (dispatch word 0x166c) zero-extends the integer into `$v0` before the jump. The index is not converted to a float on the host side.
+- `__glkonim_Normal3dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda795a4, 24 bytes):
+  **Established.** Sends the three doubles of a glNormal3dv vector under token 0x77, with the same register use as the colour doubles: the stub `glNormal3dv` (dispatch word 0x168c) fills `$f1`, `$f0` and `$f3` from offsets 0, 8 and 16, and this function stores the token and then those three registers as three 8-byte stores. The normal is not normalised on the host.
+- `__glkonim_Normal3fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda795bc, 20 bytes):
+  **Established.** Sends the three floats of a glNormal3fv vector under token 0x78: the token word, a doubleword that the stub `glNormal3fv` (dispatch word 0x1694) loaded from the first eight bytes, and a word holding the third float. There is no scaling or normalisation before the stores.
+- `__glkonim_Normal3iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda795d0, 20 bytes):
+  **Established.** Sends a glNormal3iv vector under token 0x79. The stub `glNormal3iv` (dispatch word 0x169c) loads two integers as a doubleword and the third as a word, and this function writes the token, the doubleword and the word. Mapping the integers onto the unit range is not done on the host.
+- `__glkonim_RasterPos2dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda795e4, 20 bytes):
+  **Established.** Sends the two doubles of a glRasterPos2dv vector under token 0xa8. The stub `glRasterPos2dv` (dispatch word 0x172c) loads them into `$f1` and `$f0`, and this function stores the token, `$f1` and `$f0`: one word and two 8-byte stores.
+- `__glkonim_RasterPos2fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda795f8, 16 bytes):
+  **Established.** Sends the two floats of a glRasterPos2fv vector under token 0xa9. The stub `glRasterPos2fv` (dispatch word 0x1734) loads both floats as one doubleword into `$v0`, and this function stores the token word and then that doubleword.
+- `__glkonim_RasterPos2iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79608, 16 bytes):
+  **Established.** Sends the two integers of a glRasterPos2iv vector under token 0xaa, a token word and one doubleword that the stub `glRasterPos2iv` (dispatch word 0x173c) loaded; nothing is converted on the host.
+- `__glkonim_RasterPos2sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79618, 24 bytes):
+  **Established.** Sends the two shorts of a glRasterPos2sv vector under token 0xab. The stub `glRasterPos2sv` (dispatch word 0x1744) loads each short zero-extended, into `$v0` and `$v1`; this function joins them into one doubleword with the first short as the upper word and the second as the lower, then stores the token and the doubleword. Each word therefore holds a 16-bit value in its low half and a negative short arrives without sign extension.
+- `__glkonim_RasterPos3dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79630, 24 bytes):
+  **Established.** Sends the three doubles of a glRasterPos3dv vector under token 0xac, the stub `glRasterPos3dv` (dispatch word 0x174c) having placed them in `$f1`, `$f0` and `$f3`. This function stores the token and then the three doubles in that register order, six data words in all.
+- `__glkonim_RasterPos3fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79648, 20 bytes):
+  **Established.** Sends a glRasterPos3fv vector under token 0xad as the token, a doubleword of the first two floats and a word for the third. The stub `glRasterPos3fv` (dispatch word 0x1754) supplies them in `$v0` and `$v1`.
+- `__glkonim_RasterPos3iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda7965c, 20 bytes):
+  **Established.** Sends a glRasterPos3iv vector under token 0xae in three stores: the token word, a doubleword with the first two integers and a word for the third. The stub `glRasterPos3iv` (dispatch word 0x175c) prepares the two data registers, and the integers go to the pipe unchanged.
+- `__glkonim_RasterPos3sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79670, 28 bytes):
+  **Established.** Sends the three shorts of a glRasterPos3sv vector under token 0xaf. The stub `glRasterPos3sv` (dispatch word 0x1764) loads the shorts zero-extended into `$v0`, `$v1` and `$t4`; this function packs the first two into a doubleword (first in the upper word) and stores it, then stores the third as a single word, after the token.
+- `__glkonim_RasterPos4dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda7968c, 32 bytes):
+  **Established.** Sends the four doubles of a glRasterPos4dv vector under token 0xb0. The stub `glRasterPos4dv` (dispatch word 0x176c) loads offsets 0, 8 and 16 into `$f1`, `$f0` and `$f3`; this function loads offset 24 into `$f2` itself, then stores `$f1`, `$f0`, `$f3` and `$f2` after the token.
+- `__glkonim_RasterPos4fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda796ac, 24 bytes):
+  **Established.** Sends the four floats of a glRasterPos4fv vector under token 0xb1: the token word and two doublewords, where the second doubleword is completed here by the right half of an unaligned load at offset 15 after the stub `glRasterPos4fv` (dispatch word 0x1774) did the left half and the first doubleword.
+- `__glkonim_RasterPos4iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda796c4, 24 bytes):
+  **Established.** Sends a glRasterPos4iv vector (four integers) under token 0xb2. It stores the token and two doublewords: the first loaded by the stub `glRasterPos4iv` (dispatch word 0x177c) and the second finished here by an unaligned load at offset 15. No conversion applies.
+- `__glkonim_RasterPos4sv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda796dc, 40 bytes):
+  **Established.** Sends the four shorts of a glRasterPos4sv vector under token 0xb3. The stub `glRasterPos4sv` (dispatch word 0x1784) loads the first three shorts zero-extended into `$v0`, `$v1` and `$t4`, and this function loads the fourth into `$t5`. It packs the first pair and the second pair into two doublewords, each with its earlier short as the upper word, and stores the token and both doublewords.
+- `__glkonim_TexCoord1dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79704, 16 bytes):
+  **Established.** Sends the one double of a glTexCoord1dv vector under token 0x7b. The stub `glTexCoord1dv` (dispatch word 0x16ac) loads it into `$f1`, and this function stores the token and then `$f1` with one 8-byte store.
+- `__glkonim_TexCoord1fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79714, 16 bytes):
+  **Established.** Sends the one float of a glTexCoord1fv vector under token 0x7c. The stub `glTexCoord1fv` (dispatch word 0x16b4) loads the word into `$v0`, zero-extended, and this function writes the token word and that word.
+- `__glkonim_TexCoord1iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79724, 16 bytes):
+  **Established.** Sends the one integer of a glTexCoord1iv vector under token 0x7d: a token word, then a data word that the stub `glTexCoord1iv` (dispatch word 0x16bc) loaded zero-extended. The integer is not converted.
+- `__glkonim_TexCoord2dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79734, 20 bytes):
+  **Established.** Sends the two doubles of a glTexCoord2dv vector under token 0x7f, stored from `$f1` and `$f0` after the token. The stub `glTexCoord2dv` (dispatch word 0x16cc) loaded the doubles from offsets 0 and 8.
+- `__glkonim_TexCoord2fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79748, 16 bytes):
+  **Established.** Sends the two floats of a glTexCoord2fv vector under token 0x80, using one doubleword that the stub `glTexCoord2fv` (dispatch word 0x16d4) loaded from the vector with an unaligned pair; this function stores the token and then that doubleword.
+- `__glkonim_TexCoord2iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79758, 16 bytes):
+  **Established.** Sends the two integers of a glTexCoord2iv vector under token 0x81. The stub `glTexCoord2iv` (dispatch word 0x16dc) loads them as a single unaligned doubleword, and the function writes the token word and that doubleword with no scaling.
+- `__glkonim_TexCoord3dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79768, 24 bytes):
+  **Established.** Sends the three doubles of a glTexCoord3dv vector under token 0x83. The stub `glTexCoord3dv` (dispatch word 0x16ec) loads offsets 0, 8 and 16 into `$f1`, `$f0` and `$f3`, and this function stores the token followed by the three registers in that order.
+- `__glkonim_TexCoord3fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79780, 20 bytes):
+  **Established.** Sends a glTexCoord3fv vector under token 0x84: a doubleword of the first two floats and a word for the third follow the token word. The stub `glTexCoord3fv` (dispatch word 0x16f4) loaded those two registers.
+- `__glkonim_TexCoord3iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79794, 20 bytes):
+  **Established.** Sends a glTexCoord3iv vector under token 0x85 as the token word, one doubleword and one word, taken from the two registers the stub `glTexCoord3iv` (dispatch word 0x16fc) loaded. The integers pass through unscaled.
+- `__glkonim_TexCoord4dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda797a8, 32 bytes):
+  **Established.** Sends the four doubles of a glTexCoord4dv vector under token 0x87. The stub `glTexCoord4dv` (dispatch word 0x170c) loads offsets 0, 8 and 16; the function loads offset 24 into `$f2` and stores `$f1`, `$f0`, `$f3` and `$f2` after the token.
+- `__glkonim_TexCoord4fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda797c8, 24 bytes):
+  **Established.** Sends the four floats of a glTexCoord4fv vector under token 0x88 in two doublewords. The stub `glTexCoord4fv` (dispatch word 0x1714) loads the first doubleword and the left half of the second; the right half comes from an unaligned load at offset 15 in this function.
+- `__glkonim_TexCoord4iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda797e0, 24 bytes):
+  **Established.** Sends a glTexCoord4iv vector under token 0x89: the token word and two doublewords, the second of which this function completes with an unaligned load at offset 15 after the stub `glTexCoord4iv` (dispatch word 0x171c) loaded the rest.
+- `__glkonim_Vertex2dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda797f8, 20 bytes):
+  **Established.** Sends the two doubles of a glVertex2dv vector under token 0x8b. The stub `glVertex2dv` (dispatch word 0x157c) loads them into `$f1` and `$f0`, and the function stores the token word and then `$f1` and `$f0`.
+- `__glkonim_Vertex2fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda7980c, 16 bytes):
+  **Established.** Sends the two floats of a glVertex2fv vector under token 0x8c as the token word and one doubleword, which the stub `glVertex2fv` (dispatch word 0x1584) loaded from the vector. It is the smallest vertex sender.
+- `__glkonim_Vertex2iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda7981c, 16 bytes):
+  **Established.** Sends the two integers of a glVertex2iv vector under token 0x8d: the token word, then the doubleword loaded by the stub `glVertex2iv` (dispatch word 0x158c). The integers go to the pipe as stored.
+- `__glkonim_Vertex3dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda7982c, 24 bytes):
+  **Established.** Sends the three doubles of a glVertex3dv vector under token 0x8f. The stub `glVertex3dv` (dispatch word 0x159c) fills `$f1`, `$f0` and `$f3`, and this function stores them after the token in that order, as three 8-byte stores.
+- `__glkonim_Vertex3fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79844, 20 bytes):
+  **Established.** Sends a glVertex3fv vector under token 0x90: token word, a doubleword of the first two floats and a word for the third, from the registers the stub `glVertex3fv` (dispatch word 0x15a4) prepared.
+- `__glkonim_Vertex3iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79858, 20 bytes):
+  **Established.** Sends a glVertex3iv vector under token 0x91 in three stores, the third being a single word for the last integer. The stub `glVertex3iv` (dispatch word 0x15ac) loaded the first two integers as a doubleword and the third zero-extended.
+- `__glkonim_Vertex4dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda7986c, 32 bytes):
+  **Established.** Sends the four doubles of a glVertex4dv vector under token 0x93, loading the fourth (offset 24) into `$f2` itself while the stub `glVertex4dv` (dispatch word 0x15bc) supplied offsets 0, 8 and 16 in `$f1`, `$f0` and `$f3`. The store order after the token is `$f1`, `$f0`, `$f3`, `$f2`.
+- `__glkonim_Vertex4fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda7988c, 24 bytes):
+  **Established.** Sends a glVertex4fv vector under token 0x94 as the token word and two doublewords. The second doubleword is completed in this function by an unaligned load at offset 15, which pairs with the left-half load in the stub `glVertex4fv` (dispatch word 0x15c4).
+- `__glkonim_Vertex4iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda798a4, 24 bytes):
+  **Established.** Sends a glVertex4iv vector under token 0x95: token word and two doublewords of four integers. The function's own unaligned load at offset 15 finishes the second doubleword that the stub `glVertex4iv` (dispatch word 0x15cc) began.
