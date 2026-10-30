@@ -209,4 +209,8 @@ From `check.py` against IRIX 6.5.30m `usr/gfx/ucode/KONA/` and `usr/diags/IR/uco
 - **(a) passes.** All 47211 listed words of `ge.u` match `scripts/ge_disasm.py` field for field. Each instruction prints a mnemonic, then the transfer and every record group that differs from the no-op record, as that script does. r62 is printed as `high:low`.
 - **(b) passes.** All 172 output words of `irsaudit`'s instruction test decode as the output store. The 41 rows of the operation table each decode to the documented operation, found by walking back from the output word to the word that wrote its register.
 - **(c) passes.** All 452 routine entries among the `ge_compute.md` subjects are function entries; 729 functions are found in all. A routine entry here is a label reached by a slot, an ARM load, the distributor table, an address constant or a call word. The 228 loop heads and branch targets among the subjects are left out.
+- **(d) fails.** The decompiler output is readable C with typed memory references, but the documented chains are broken where unit 2 takes a forwarded or loaded operand:
+  - `mmo_Clamp`: the parameter block is loaded into scale variables, and the 24-input loop clamps every input and multiplies by those scales. The multiply takes the unclamped input, though.
+  - `uMatrixMultCCC`: it reads the projection and stores the 0.5 constant, but the four subtracts feed unit-2 multiplies and drop out.
+  - `mMatrixMultCCW`: only 7 of its 64 multiplies and 7 of its adds survive.
 - **Imports pass.** `ge11.u` and `ge.hex` import to the same listing as `ge.u`, and `ge_diag_init.hex` decodes all 283 words.

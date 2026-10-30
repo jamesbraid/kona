@@ -10,6 +10,8 @@ Usage: check.py [OUTDIR]   (default .cache/kona-ge; run-ghidra.sh writes it)
       operation table of ucode/ge_ops.md fixes decodes as that operation;
   (c) every routine ucode/ge_compute.md gives an entry to is a function
       entry Ghidra found;
+  (d) the decompiled mmo_Clamp, uMatrixMultCCC and mMatrixMultCCW show the
+      arithmetic ucode/ge_compute.md documents.
 
 Prints one line per test and the failures; exits non-zero if any test fails.
 """
@@ -199,6 +201,42 @@ def test_c():
     return ok
 
 
+def test_d():
+    ok = True
+    checks = {
+        # mmo_Clamp: the loop clamps 24 inputs per pass with 0x7c, multiplies
+        # each by a scale, stores the products (ge_compute.md, clamp.s).
+        '1633': [('clamp of each loop input', r'clamp01\(', 24),
+                 ('float multiply', r'\*\s*\w+', 24),
+                 ('clamped value multiplied by its scale', r'clamp01\([^()]*\)\s*\*', 24),
+                 ('counted loop', r'\bwhile\b', 1)],
+        # uMatrixMultCCC: reads the projection 0x3f-0x4e, the 0.5 constant,
+        # four subtracts of the fourth and third elements, multiplies by the
+        # modelview, stores 0x4f-0x5e.
+        '0e62': [('projection words read', r'DAT_cram_00(3f|4[0-9a-e])\b', 12),
+                 ('the 0.5 constant', r'\b0\.5\b', 1),
+                 ('third elements 0x41/45/49/4d read', r'DAT_cram_00(41|45|49|4d)\b', 4),
+                 ('float subtracts', r'\s-\s', 4),
+                 ('results stored to 0x4f-0x5e', r'DAT_cram_00(4f|5[0-9a-e])\s*=', 16)],
+        # mMatrixMultCCW: 64 multiply-adds over C (AR10) and W (AR11).
+        '0eb0': [('float multiplies', r'[\w\]\)]\s\*\s[\w\(]', 64),
+                 ('float adds', r'\s\+\s', 48)],
+    }
+    for k, cs in checks.items():
+        p = os.path.join(OUT, 'decomp', k + '.c')
+        src = open(p).read() if os.path.exists(p) else ''
+        lines = src.count('\n')
+        res = []
+        for what, rx, need in cs:
+            got = len(re.findall(rx, src))
+            res.append((what, got, need, got >= need))
+        good = all(r[3] for r in res) and 'decompile failed' not in src and lines > 5
+        ok &= good
+        print('(d) %s %s (%d lines): %s' % ('PASS' if good else 'FAIL', k, lines, '; '.join(
+            '%s %d/%d%s' % (w, g, n, '' if f else ' MISSING') for w, g, n, f in res)))
+    return ok
+
+
 def test_imports():
     """ge11.u and ge.hex import to the same words as ge.u; ge_diag_init too."""
     ok = True
@@ -216,7 +254,7 @@ def test_imports():
 
 
 def main():
-    results = [test_a(), test_b(), test_c(), test_imports()]
+    results = [test_a(), test_b(), test_c(), test_d(), test_imports()]
     sys.exit(0 if all(results) else 1)
 
 
