@@ -907,3 +907,272 @@ The vector forms of the colour, index, normal, texture-coordinate, vertex and ra
   **Established.** Sends a glVertex4fv vector under token 0x94 as the token word and two doublewords. The second doubleword is completed in this function by an unaligned load at offset 15, which pairs with the left-half load in the stub `glVertex4fv` (dispatch word 0x15c4).
 - `__glkonim_Vertex4iv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda798a4, 24 bytes):
   **Established.** Sends a glVertex4iv vector under token 0x95: token word and two doublewords of four integers. The function's own unaligned load at offset 15 finishes the second doubleword that the stub `glVertex4iv` (dispatch word 0x15cc) began.
+
+## State setters and small senders
+
+The state setters, matrix operations and the other short `__glkonim_` senders are mostly straight-line stores to the command port at process address 0x4000. A range check that fails never reaches `__glSetError` in these: it sends token 0xe4 with the error code as the next word, so the pipe, not the host, records the error. `ctx` is the pointer at process address 0x1010 and `__glkona_wait_rdata` is the reply wait of [libglcore-get-functions.md](libglcore-get-functions.md).
+
+- `__glkonim_ListParameterfSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94b3b0, 56 bytes):
+  **Established.** Wraps a single float in a one-element array and forwards to `__glkonim_ListParameterfvSGIX`. It stores the float argument (register `$f14`) at stack offset 0x20, passes that address as the third argument with the first two arguments unchanged, and returns when the call does.
+- `__glkonim_ListParameteriSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94b540, 56 bytes):
+  **Established.** The integer twin of the float wrapper: it keeps the third argument in a stack word at offset 0x24 and calls `__glkonim_ListParameterivSGIX` with the address of that word as the array argument, the first two arguments unchanged.
+- `__glkonim_Begin` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94dbb0, 52 bytes):
+  **Established.** The immediate-mode glBegin. A mode below 10 stores a token word of 0x57 plus the mode (so 0x57 for GL_POINTS up to 0x60 for GL_POLYGON) and a zero pad word to the command port, and sets the begin flag at process address 0x1018 to 1 in the delay slot of the return. A larger mode sends token 0xe4 with the code 0x500 (invalid enumeration) and leaves the flag alone.
+- `__glkonim_End` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94dbf0, 20 bytes):
+  **Established.** The immediate-mode glEnd: it clears the begin flag at process address 0x1018, then sends token 0x71 and a zero pad word to the command port. It checks nothing, so an End without a Begin is passed to the pipe unchanged.
+- `__glkonim_Finish` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94dc10, 92 bytes):
+  **Established.** The immediate-mode glFinish. If the begin flag at process address 0x1018 is 1 it calls `__glSetError` with 0x502 (invalid operation). Otherwise it sends token 0xc6 and the word 1 to the command port and calls `__glkona_wait_rdata`, so it returns only after the pipe has written its reply word.
+- `__glkonim_Flush` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94dc70, 24 bytes):
+  **Established.** The immediate-mode glFlush. It sends token 0xc7 and a zero word to the command port, then does one load from process address 0x10100 and discards it. That load is the function's only effect beyond the two stores.
+- `__glkonim_AlphaFunc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94dc90, 80 bytes):
+  **Established.** The immediate-mode glAlphaFunc. The function name goes through unchecked, and the reference value (a float in `$f13`) is clamped to the range 0 to 1.0 before it is sent: the token is 0xca, followed by the function name and the clamped float. A negative reference is sent as 0.0 and one above 1.0 as 1.0.
+- `__glkonim_SampleMaskSGIS` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94dd90, 80 bytes):
+  **Established.** The immediate-mode glSampleMaskSGIS. The mask value (a float in `$f12`) is clamped to 0 through 1.0 and sent under token 0x118 together with the invert flag from the second argument; a negative value becomes 0.0 and a value over 1.0 becomes 1.0.
+- `__glkonim_Clear` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94f880, 16 bytes):
+  **Established.** The immediate-mode glClear: a token word of 0x1a followed by the buffer mask unchanged. The function checks nothing, so an invalid mask is the pipe's concern.
+- `__glkonim_LineWidth` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94f950, 76 bytes):
+  **Established.** The immediate-mode glLineWidth. A width of zero or less sends token 0xe4 with the code 0x501 (invalid value). Otherwise it sends token 0xbd and the width, limited to at most 32.0 (the constant in the library's pool), so a wider request is sent as 32.0.
+- `__glkonim_PointSize` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94f9a0, 76 bytes):
+  **Established.** The immediate-mode glPointSize. A size of zero or less sends token 0xe4 with the code 0x501 (invalid value); otherwise it sends token 0xbe and the size, capped at 22.0 (a constant in the pool), so the largest point the pipe is asked for is 22 pixels wide.
+- `__glkonim_PixelTransferi` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd957190, 56 bytes):
+  **Established.** The integer form of glPixelTransfer: it converts the integer value to a float and calls `__glkonim_PixelTransferf` with the parameter name unchanged and the float in `$f13`.
+- `__glkonim_ConvolutionParameteriEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd958270, 52 bytes):
+  **Established.** Not a separate routine: it calls `__glkonim_PixelTransformParameteriSGI` through a library entry and returns. In this build the convolution-parameter entry shares its body with the pixel-transform parameter setter of the same argument shape.
+- `__glkonim_ConvolutionParameterivEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9582b0, 52 bytes):
+  **Established.** Calls `__glkonim_PixelTransformParameterivSGI` with its own arguments untouched and returns, sharing that function's checks and sends for the array form of the convolution parameter.
+- `__glkonim_ConvolutionParameterfEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9582f0, 52 bytes):
+  **Established.** Forwards to `__glkonim_PixelTransformParameterfSGI` and returns, so the single-float convolution parameter takes the pixel-transform path.
+- `__glkonim_ConvolutionParameterfvEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd958330, 52 bytes):
+  **Established.** Forwards to `__glkonim_PixelTransformParameterfvSGI`; the float-array convolution parameter is handled there.
+- `__glkonim_GetConvolutionParameterivEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd958370, 52 bytes):
+  **Established.** Forwards to `__glkonim_GetPixelTransformParameterivSGI`, so reading an integer convolution parameter is the pixel-transform query.
+- `__glkonim_GetConvolutionParameterfvEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9583b0, 52 bytes):
+  **Established.** Forwards to `__glkonim_GetPixelTransformParameterfvSGI`, so the float convolution-parameter query is answered by the pixel-transform one.
+- `__glkonim_ClearDepth` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95d830, 124 bytes):
+  **Established.** The immediate-mode glClearDepth. When the begin flag at process address 0x1018 is 1 it calls `__glSetError` with 0x502. Otherwise it clamps the double argument to the range 0 up to a float held in `ctx` at +3544, widened to a double, and sends token 0x1f and the clamped double in one 8-byte store.
+- `__glkonim_SpriteParameterivSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd963e20, 136 bytes):
+  **Established.** The integer form of glSpriteParameterSGIX. It converts the integer or integers to floats on the stack, one when the name is 0x8149 (GL_SPRITE_MODE_SGIX) and three for every other name, and calls `__glkonim_SpriteParameterfvSGIX` with that array.
+- `__glkonim_TexImage3DEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd971400, 104 bytes):
+  **Established.** The three-dimensional glTexImage3DEXT. It accepts only the targets 0x806f and 0x8070 (the 3D texture and its proxy) and otherwise calls `__glSetError` with 0x500. It then copies two arguments that arrive on the caller's stack (at 0x64 and 0x6c) into the outgoing stack words 4 and 0xc and calls the shared `__glkonim_TexImage`.
+- `__glkonim_TexImage1D` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd971500, 124 bytes):
+  **Established.** The one-dimensional glTexImage1D. It accepts the targets 0xde0 and 0x8063 (the 1D texture and its proxy), otherwise `__glSetError` gets 0x500. It calls `__glkonim_TexImage` with the constant 1 loaded into two argument registers that the one-dimensional signature does not supply, and the trailing arguments moved into new places on the stack.
+- `__glkonim_CopyTexImage1DEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd971580, 84 bytes):
+  **Established.** glCopyTexImage1DEXT. Only target 0xde0 is accepted (anything else gives `__glSetError` 0x500); the call goes to `__glkonim_CopyTexImage` with the constant 1 loaded into one argument register that the one-dimensional signature does not supply.
+- `__glkonim_CopyTexImage2DEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9715e0, 92 bytes):
+  **Established.** glCopyTexImage2DEXT. It accepts targets 0xde1 and 0x8095 (the 2D texture and the detail-texture target of the SGIS extension), raises 0x500 for anything else, and calls `__glkonim_CopyTexImage` with the arguments unchanged.
+- `__glkonim_TexSubImage3DEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9725a0, 100 bytes):
+  **Established.** glTexSubImage3DEXT. The only target accepted is 0x806f, otherwise 0x500 goes to `__glSetError`. The function moves three stack arguments (offsets 0x74, 0x7c and 0x84) down to words 4, 0xc and 0x14 and calls `__glkonim_TexSubImage`.
+- `__glkonim_TexSubImage2DEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd972610, 132 bytes):
+  **Established.** glTexSubImage2DEXT. Targets 0xde1 and 0x8095 pass, others raise 0x500. It calls `__glkonim_TexSubImage` with a zero in one argument register, the constant 1 in another, and the remaining arguments rearranged on the stack.
+- `__glkonim_TexSubImage1DEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9726a0, 124 bytes):
+  **Established.** glTexSubImage1DEXT. Target 0xde0 only (0x500 otherwise). It loads zero into two argument registers and the constant 1 into two others, and calls `__glkonim_TexSubImage`.
+- `__glkonim_CopyTexSubImage1DEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd972720, 108 bytes):
+  **Established.** glCopyTexSubImage1DEXT. Target 0xde0 only, else 0x500; it calls `__glkonim_CopyTexSubImage` with zero in two argument registers and the constant 1 in a stack word.
+- `__glkonim_CopyTexSubImage2DEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd972790, 120 bytes):
+  **Established.** glCopyTexSubImage2DEXT. It accepts targets 0xde1 and 0x8095, raises 0x500 otherwise, loads a zero into one argument register and calls `__glkonim_CopyTexSubImage`.
+- `__glkonim_GetTexLevelParameterfv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd974510, 76 bytes):
+  **Established.** glGetTexLevelParameterfv. It calls `__glkonim_GetTexLevelParameteriv` with its own arguments, keeps the output pointer in a saved register, and afterwards converts the integer that call stored into a float in the same place.
+- `__glkonim_EvalCoord1d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97f640, 80 bytes):
+  **Established.** glEvalCoord1d. It reads a word at ctx +0x8c8c and returns without sending anything when that word is zero. Otherwise it narrows the double to a float and calls the function whose pointer is at ctx +0x909c.
+- `__glkonim_EvalCoord1dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97f690, 80 bytes):
+  **Established.** glEvalCoord1dv. The same guard as the scalar form (the word at ctx +0x8c8c must be non-zero): it loads the double from the vector, narrows it to a float and calls the function at ctx +0x909c.
+- `__glkonim_EvalCoord1f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97f6e0, 76 bytes):
+  **Established.** glEvalCoord1f. It tests the word at ctx +0x8c8c and, when it is non-zero, calls the pointer at ctx +0x909c with the float unchanged; when it is zero it returns at once.
+- `__glkonim_EvalCoord1fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97f730, 76 bytes):
+  **Established.** glEvalCoord1fv: if the word at ctx +0x8c8c is non-zero it loads the float from the vector as the call argument and calls the pointer at ctx +0x909c, otherwise it returns doing nothing.
+- `__glkonim_EvalCoord2d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97f780, 88 bytes):
+  **Established.** glEvalCoord2d. A zero word at ctx +0x8e94 ends the call; otherwise both doubles are narrowed to floats and the function at ctx +0x90a0 is called with them.
+- `__glkonim_EvalCoord2dv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97f7e0, 88 bytes):
+  **Established.** glEvalCoord2dv. With the word at ctx +0x8e94 non-zero it loads the two doubles from the vector, narrows them to floats and calls the pointer at ctx +0x90a0; with it zero nothing happens.
+- `__glkonim_EvalCoord2f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97f840, 76 bytes):
+  **Established.** glEvalCoord2f. The word at ctx +0x8e94 gates it; when set, the two floats go unchanged to the function at ctx +0x90a0.
+- `__glkonim_EvalCoord2fv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97f890, 80 bytes):
+  **Established.** glEvalCoord2fv. Gated by the word at ctx +0x8e94, it loads two floats from the vector and calls the pointer at ctx +0x90a0.
+- `__glkonim_EvalPoint1` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97fd40, 104 bytes):
+  **Established.** glEvalPoint1. It returns when the word at ctx +0x8c8c is zero. Otherwise it computes the parameter as the grid's first value (ctx +0x78c) plus the index times the step (ctx +0x794), except that an index equal to the segment count at ctx +0x798 uses the stored end value at ctx +0x790 exactly, and calls the function at ctx +0x909c with the result.
+- `__glkonim_EvalPoint2` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97fe50, 140 bytes):
+  **Established.** glEvalPoint2. The word at ctx +0x8e94 must be non-zero. Each of the two parameters is the grid start plus index times step, with the end value used exactly when the index equals the segment count: the first from ctx +0x79c, +0x7a0, +0x7a4 and the count at +0x7a8, the second from +0x7ac, +0x7b0, +0x7b4 and the count at +0x7b8. The pair goes to the function at ctx +0x90a0.
+- `__glkonim_PixelMapfv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd982650, 56 bytes):
+  **Established.** glPixelMapfv: it calls the shared pixel-map routine `do_pixelmap` with the element type 0x1406 (GL_FLOAT) in the fourth argument.
+- `__glkonim_PixelMapuiv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd982690, 56 bytes):
+  **Established.** glPixelMapuiv: it calls `do_pixelmap` with the element type 0x1405 (GL_UNSIGNED_INT) as the fourth argument and the rest unchanged.
+- `__glkonim_PixelMapusv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9826d0, 56 bytes):
+  **Established.** glPixelMapusv: it calls `do_pixelmap` with the element type 0x1403 (GL_UNSIGNED_SHORT).
+- `__glkonim_Materiali` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9844e0, 116 bytes):
+  **Established.** glMateriali. Only the name 0x1601 (shininess) is accepted, otherwise 0x500 goes to `__glSetError`. The integer is converted to a float and sent under token 0x97 after the face and the name, followed by three zero pad words.
+- `__glkonim_DeformSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd988990, 92 bytes):
+  **Established.** glDeformSGIX. A mask with a bit set above bit 1 sends token 0xe4 with the code 0x501; otherwise it sends token 0x1bf and the mask.
+- `__glkonim_LoadIdentityDeformationMapSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd988aa0, 20 bytes):
+  **Established.** glLoadIdentityDeformationMapSGIX: it sends token 0x1c3 and the mask reduced to its low two bits. It never reports an error for the discarded bits.
+- `__glkonim_SubdivPatchParameteriSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd988fb0, 56 bytes):
+  **Established.** The integer form: it converts the integer value to a float and calls `__glkonim_SubdivPatchParameterfSGIX` with the name unchanged.
+- `__glkonim_PixelTransformSGI` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd98cdb0, 104 bytes):
+  **Established.** glPixelTransformSGI. The target must be 0x81c5 or 0x81c6, else `__glSetError` gets 0x500. It sends token 0x135 and the target, and also records the target in `ctx` at +1380 (0x564).
+- `__glkonim_PixelTransformParameteriSGI` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd98d100, 56 bytes):
+  **Established.** Converts the integer parameter to a float and calls `__glkonim_PixelTransformParameterfSGI`, with the target and name unchanged.
+- `__glkonim_GetPixelTransformParameterfvSGI` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd98d510, 56 bytes):
+  **Established.** Calls the library's own `GetPixelTransformParameterfvSGI` at 0xd98d280, reached through a rebased entry, and returns; it adds nothing to that function's arguments or results.
+- `__glkonim_ClipPlane` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda65d50, 88 bytes):
+  **Established.** glClipPlane. The plane name must be 0x3000 to 0x3005, else token 0xe4 with the code 0x500. Otherwise it sends token 0xb4, the plane name and the four doubles of the equation in the order they sit in the array.
+- `__glkonim_ColorMaterial` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda65db0, 20 bytes):
+  **Established.** glColorMaterial: token 0xb5, then the face and the mode as two words, with no check on either value.
+- `__glkonim_CullFace` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda65dd0, 68 bytes):
+  **Established.** glCullFace. Modes 0x404 (front), 0x405 (back) and 0x408 (front and back) go out under token 0xb6; any other mode sends token 0xe4 with the code 0x500.
+- `__glkonim_Fogf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda65e20, 72 bytes):
+  **Established.** glFogf. The name must be 0xb61 to 0xb65 (index, density, start, end, mode), otherwise token 0xe4 and 0x500. A valid name sends token 0xb7, the name, the float and three zero words.
+- `__glkonim_Fogfv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda65e70, 100 bytes):
+  **Established.** glFogfv. Accepts 0xb61 to 0xb66 (the five scalar names and the colour) and 0x8199, otherwise token 0xe4 and 0x500. It sends token 0xb7, the name and four floats read from the array in order, whatever the name needs.
+- `__glkonim_Fogi` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda65ee0, 72 bytes):
+  **Established.** glFogi. Names 0xb61 to 0xb65 are accepted (0x500 through token 0xe4 otherwise); it sends token 0xb8, the name, the integer and three zero words, and no conversion to float happens here.
+- `__glkonim_Fogiv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda65f30, 100 bytes):
+  **Established.** glFogiv. The same names as the float array form (0xb61 to 0xb66 and 0x8199) pass, anything else sends token 0xe4 and 0x500. Token 0xb8 carries the name and four integers read from the array.
+- `__glkonim_FrontFace` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda65fa0, 56 bytes):
+  **Established.** glFrontFace. Only 0x900 and 0x901 are valid; they go out under token 0xba, and any other value sends token 0xe4 and the code 0x500.
+- `__glkonim_Hint` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda65fe0, 60 bytes):
+  **Established.** glHint. The mode must be 0x1100 to 0x1102 (don't care, fastest, nicest) or token 0xe4 and 0x500 are sent; the target is not checked. A valid pair goes out under token 0xbb.
+- `__glkonim_Lightf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66020, 76 bytes):
+  **Established.** glLightf. The parameter must be 0x1205 to 0x1209 (spot exponent, spot cutoff and the three attenuation terms), otherwise token 0xe4 and 0x500. Valid calls send token 7, the light name, the parameter name, the float and three zero words.
+- `__glkonim_Lightfv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66070, 52 bytes):
+  **Established.** glLightfv sends token 7, the light name, the parameter name and four floats from the array, with no validation of the name; the pipe sees the array whatever its length.
+- `__glkonim_Lighti` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda660b0, 76 bytes):
+  **Established.** glLighti. The parameter range check is the same as for the float form (0x1205 to 0x1209, else token 0xe4 and 0x500). It sends token 8 with the light, the name, the integer and three zero words.
+- `__glkonim_Lightiv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66100, 52 bytes):
+  **Established.** glLightiv sends token 8, the light, the parameter name and four integers from the array without a range check on the name.
+- `__glkonim_LightModelf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66140, 72 bytes):
+  **Established.** glLightModelf. Only 0xb51 and 0xb52 (local viewer and two-sided) are accepted, else token 0xe4 and 0x500. It sends token 9, the name, the float and three zero words.
+- `__glkonim_LightModelfv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66190, 48 bytes):
+  **Established.** glLightModelfv sends token 9, the name and four floats from the array. The name is not checked here.
+- `__glkonim_LightModeli` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda661c0, 72 bytes):
+  **Established.** glLightModeli. The name must be 0xb51 or 0xb52 (otherwise token 0xe4 and 0x500), and the integer goes out under token 0xa after the name, followed by three zero words.
+- `__glkonim_LightModeliv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66210, 48 bytes):
+  **Established.** glLightModeliv sends token 0xa, the name and four integers from the array, with no check.
+- `__glkonim_LineStipple` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66240, 20 bytes):
+  **Established.** glLineStipple: token 0xbc followed by the repeat factor and the 16-bit pattern as two words, unchecked.
+- `__glkonim_Materialf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66260, 64 bytes):
+  **Established.** glMaterialf. Only name 0x1601 (shininess) is accepted; any other name sends token 0xe4 and 0x500. It sends token 0x97, the face, the name, the float and three zero words.
+- `__glkonim_Materialfv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda662a0, 52 bytes):
+  **Established.** glMaterialfv sends token 0x97, the face, the name and four floats in array order. Unlike the scalar forms it does not check the name.
+- `__glkonim_PolygonMode` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda662e0, 108 bytes):
+  **Established.** glPolygonMode. The face must be 0x404, 0x405 or 0x408 and the mode 0x1b00 to 0x1b02 (point, line, fill); a bad face sends token 0xe4 and 0x500, and a bad mode with a good face also ends in 0x500 through the same token. A valid pair goes out under token 0xbf.
+- `__glkonim_Scissor` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66350, 80 bytes):
+  **Established.** glScissor. A negative width or height sends token 0xe4 and 0x501 (invalid value). Otherwise token 0xc is followed by x, y, width and height as four words.
+- `__glkonim_ShadeModel` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda663a0, 16 bytes):
+  **Established.** glShadeModel: token 0xc0 and the mode word, unchecked.
+- `__glkonim_TexEnvf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda663b0, 88 bytes):
+  **Established.** glTexEnvf. The target must be 0x2300 and the name 0x2200 (mode); anything else sends token 0xe4 and 0x500. A valid call sends token 0x11, the name, the float and three zero words.
+- `__glkonim_TexEnvfv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66410, 132 bytes):
+  **Established.** glTexEnvfv. The target must be 0x2300 and the name 0x2200, 0x2201 (colour) or 0x80be; otherwise token 0xe4 and 0x500. It sends token 0x11, the name and four floats from the array.
+- `__glkonim_TexEnvi` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda664a0, 88 bytes):
+  **Established.** glTexEnvi. Target 0x2300 and name 0x2200 are required (token 0xe4 and 0x500 otherwise). The integer goes out under token 0x12, one word after the name, then three zero words.
+- `__glkonim_TexEnviv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66500, 132 bytes):
+  **Established.** glTexEnviv. Target 0x2300 is required and the name must be 0x2200, 0x2201 or 0x80be, else token 0xe4 and 0x500; it sends token 0x12, the name and four integers from the array.
+- `__glkonim_TexGend` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66590, 52 bytes):
+  **Established.** glTexGend. It sends token 0x14, the coordinate, the name and the double truncated to a 32-bit integer, followed by five zero words. The coordinate and name are not checked here, and a plane-equation value would lose its fraction.
+- `__glkonim_TexGenf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda665d0, 52 bytes):
+  **Established.** glTexGenf: token 0x14, the coordinate, the name and the float truncated to an integer, then five zero words, with no checking.
+- `__glkonim_TexGeni` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66610, 48 bytes):
+  **Established.** glTexGeni: token 0x14, the coordinate, the name and the integer unchanged, then five zero words.
+- `__glkonim_InitNames` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66640, 16 bytes):
+  **Established.** glInitNames sends the name-stack reset as token 0x10c followed by one zero word, two stores in all, and reads none of its argument registers.
+- `__glkonim_LoadName` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66650, 16 bytes):
+  **Established.** glLoadName sends the selection-name replacement as token 0x10d followed by the name word, two stores with no range or begin-flag check.
+- `__glkonim_PassThrough` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66660, 16 bytes):
+  **Established.** glPassThrough: token 0xc1 and the marker value as a float word, unconverted.
+- `__glkonim_PopName` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66670, 16 bytes):
+  **Established.** glPopName sends the selection-name pop as token 0xc2 followed by one zero word, two stores and nothing read from the caller.
+- `__glkonim_PushName` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66680, 16 bytes):
+  **Established.** glPushName sends the selection-name push as token 0xc3 followed by the name word, two stores with no check of the value.
+- `__glkonim_DrawBuffer` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66690, 16 bytes):
+  **Established.** glDrawBuffer: token 0xc4 and the buffer name, unchecked.
+- `__glkonim_ClearIndex` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda666a0, 16 bytes):
+  **Established.** glClearIndex: token 0x1c and the index as a float word.
+- `__glkonim_ClearStencil` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda666b0, 16 bytes):
+  **Established.** glClearStencil sends the stencil clear value as token 0x1e followed by the integer, two stores, with no masking to the stencil depth on the host.
+- `__glkonim_StencilMask` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda666c0, 16 bytes):
+  **Established.** glStencilMask sends the write mask as token 0x20 followed by the mask word, two stores, and does not reduce it to the stencil bit count.
+- `__glkonim_ColorMask` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda666d0, 28 bytes):
+  **Established.** glColorMask: token 0x21 followed by the four flags (red, green, blue, alpha) as four words, unmodified.
+- `__glkonim_DepthMask` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda666f0, 16 bytes):
+  **Established.** glDepthMask: token 0x22 and the flag word.
+- `__glkonim_IndexMask` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66700, 16 bytes):
+  **Established.** glIndexMask sends the colour-index write mask as token 0x23 followed by the mask word, two stores, with no narrowing on the host.
+- `__glkonim_Accum` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66710, 20 bytes):
+  **Established.** glAccum: token 0xc5, the operation name and the value as a float word.
+- `__glkonim_LogicOp` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66810, 56 bytes):
+  **Established.** glLogicOp. An opcode below 0x1500 or at or above 0x1510 sends token 0xe4 and 0x500. Otherwise token 0x2e carries the opcode.
+- `__glkonim_StencilFunc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66850, 64 bytes):
+  **Established.** glStencilFunc. The function must be 0x200 to 0x207, else token 0xe4 and 0x500. Valid calls send token 0xcc, the function, the reference and the mask.
+- `__glkonim_DepthFunc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66950, 56 bytes):
+  **Established.** glDepthFunc. A function outside 0x200 to 0x207 sends token 0xe4 and 0x500; otherwise token 0xce and the function.
+- `__glkonim_ReadBuffer` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66990, 16 bytes):
+  **Established.** glReadBuffer: token 0x37 and the buffer name, unchecked.
+- `__glkonim_DepthRange` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda669a0, 20 bytes):
+  **Established.** glDepthRange: token 0xcf and the near and far doubles in two 8-byte stores.
+- `__glkonim_Frustum` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda669c0, 36 bytes):
+  **Established.** glFrustum: token 0xd1 followed by six doubles (left, right, bottom, top, near, far) in six 8-byte stores, with no check on their values.
+- `__glkonim_LoadIdentity` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda669f0, 16 bytes):
+  **Established.** glLoadIdentity sends the matrix reset as token 0xd2 followed by one zero pad word, two stores, and consults no matrix state on the host.
+- `__glkonim_LoadMatrixf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66a00, 140 bytes):
+  **Established.** glLoadMatrixf: token 0xd3 and the sixteen floats of the matrix, copied as they lie in memory, element 0 first.
+- `__glkonim_LoadMatrixd` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66a90, 140 bytes):
+  **Established.** glLoadMatrixd: token 0xd4 and sixteen doubles, each in one 8-byte store, in memory order.
+- `__glkonim_MatrixMode` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66b20, 68 bytes):
+  **Established.** glMatrixMode. The mode must be 0x1700 to 0x1702 or 0x1800 (modelview, projection, texture and colour); otherwise token 0xe4 and 0x500. The mode goes out under token 0xd0.
+- `__glkonim_MultMatrixf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66b70, 140 bytes):
+  **Established.** glMultMatrixf: token 0xd5 and sixteen floats in memory order.
+- `__glkonim_MultMatrixd` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66c00, 140 bytes):
+  **Established.** glMultMatrixd: token 0xd6 and sixteen doubles in memory order.
+- `__glkonim_Ortho` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66c90, 36 bytes):
+  **Established.** glOrtho: token 0xd7 and six doubles (left, right, bottom, top, near, far).
+- `__glkonim_PopMatrix` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66cc0, 16 bytes):
+  **Established.** glPopMatrix sends the stack pop as token 0xd8 followed by one zero pad word, two stores, and keeps no stack depth on the host.
+- `__glkonim_PushMatrix` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66cd0, 16 bytes):
+  **Established.** glPushMatrix sends the stack push as token 0xd9 followed by one zero pad word, two stores, with no overflow test on the host.
+- `__glkonim_Rotated` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66ce0, 28 bytes):
+  **Established.** glRotated: token 0xda followed by four doubles (angle, then the axis x, y and z).
+- `__glkonim_Rotatef` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66d00, 28 bytes):
+  **Established.** glRotatef: token 0xdb and four floats (angle, axis x, y, z).
+- `__glkonim_Scaled` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66d20, 24 bytes):
+  **Established.** glScaled sends the scale as token 0xdc followed by the x, y and z doubles, three 8-byte stores that make six data words.
+- `__glkonim_Scalef` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66d40, 24 bytes):
+  **Established.** glScalef sends the scale as token 0xdd followed by the x, y and z floats, three single-word stores.
+- `__glkonim_Translated` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66d60, 24 bytes):
+  **Established.** glTranslated sends the translation as token 0xde followed by the x, y and z doubles, three 8-byte stores that make six data words.
+- `__glkonim_Translatef` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66d80, 24 bytes):
+  **Established.** glTranslatef sends the translation as token 0xdf followed by the x, y and z floats, three single-word stores.
+- `__glkonim_Viewport` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66da0, 80 bytes):
+  **Established.** glViewport. A negative width or height sends token 0xe4 and 0x501. Otherwise token 0xe3 and x, y, width and height go out as four words.
+- `__glkonim_BlendColorEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66df0, 28 bytes):
+  **Established.** glBlendColorEXT: token 0xe6 and the four floats red, green, blue, alpha, unclamped on the host.
+- `__glkonim_BlendEquationEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66e10, 16 bytes):
+  **Established.** glBlendEquationEXT: token 0xe7 and the mode word.
+- `__glkonim_PolygonOffsetEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66e20, 20 bytes):
+  **Established.** glPolygonOffsetEXT: token 0x11b and two floats, the factor and the bias.
+- `__glkonim_ResetHistogramEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66e40, 16 bytes):
+  **Established.** glResetHistogramEXT: token 0x103 and the target word.
+- `__glkonim_ResetMinmaxEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66e50, 16 bytes):
+  **Established.** glResetMinmaxEXT: token 0x108 and the target word.
+- `__glkonim_PolygonOffset` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66e60, 20 bytes):
+  **Established.** glPolygonOffset: token 0x168 and two floats, the factor and the units.
+- `__glkonim_SamplePatternSGIS` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66ec0, 16 bytes):
+  **Established.** glSamplePatternSGIS sends the multisample pattern choice as token 0x117 followed by the pattern word, two stores with no check of the value.
+- `__glkonim_TagSampleBufferSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66ed0, 8 bytes):
+  **Established.** glTagSampleBufferSGIX: returns at once. It sends nothing to the pipe and touches no state, so the call has no effect in this build.
+- `__glkonim_ColorTableParameterfvSGI` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66ee0, 52 bytes):
+  **Established.** glColorTableParameterfvSGI sends token 0xeb, the target, the name and four floats from the array in order.
+- `__glkonim_ColorTableParameterivSGI` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66f20, 84 bytes):
+  **Established.** glColorTableParameterivSGI converts all four integers of the array to floats and sends them under token 0xeb after the target and the name.
+- `__glkonim_SpriteParameterfSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66f80, 128 bytes):
+  **Established.** glSpriteParameterfSGIX. The name must be 0x8149 and the value must equal 33100.0, 33101.0 or 33102.0 (0x814c to 0x814e); anything else sends token 0xe4 and 0x500. A valid call sends token 0x1a4, the name and the value truncated to an integer.
+- `__glkonim_SpriteParameteriSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda67000, 104 bytes):
+  **Established.** glSpriteParameteriSGIX. The name must be 0x8149 and the value 0x814c, 0x814d or 0x814e, else token 0xe4 and 0x500; valid calls send token 0x1a4, the name and the value.
+- `__glkonim_ReadInstrumentsSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda67070, 16 bytes):
+  **Established.** glReadInstrumentsSGIX: token 0x1cd and the argument word.
+- `__glkonim_StartInstrumentsSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda67080, 16 bytes):
+  **Established.** glStartInstrumentsSGIX sends the instrument start as token 0x1b9 followed by one zero word, two stores, and ignores its arguments.
+- `__glkonim_StopInstrumentsSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda67090, 16 bytes):
+  **Established.** glStopInstrumentsSGIX: token 0x1ba and the argument word.
+- `__glkonim_FlushRasterSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda670a0, 16 bytes):
+  **Established.** glFlushRasterSGIX sends the raster flush as token 0x1cc followed by one zero word, two stores, and does not wait for the pipe.
+- `__glkonim_ReferencePlaneSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda670b0, 44 bytes):
+  **Established.** glReferencePlaneSGIX: token 0x1bd followed by the four doubles of the plane equation, in array order.
