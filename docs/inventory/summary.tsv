@@ -1,7 +1,7 @@
 table	rows	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes
 binaries	599	129	0	38	0	1	84	385	0	21.5	21.7	35.7	21.5						
-functions	54309	4394	0	1885	1332	2108	47793	6	8	8.1	12.0	100.0	8.1						
-functions (distinct names)	19170	1333	0	1333	222	232	17599	3	3	7.0	8.2	100.0	7.0						
+functions	54309	4398	0	1889	1332	2108	47789	6	8	8.1	12.0	100.0	8.1						
+functions (distinct names)	19170	1337	0	1337	222	232	17595	3	3	7.0	8.2	100.0	7.0						
 mmio	53	49	0	47	0	0	0	0	4	92.5	100.0	100.0	100.0	10					
 tokens	617	325	0	321	276	291	0	0	1	52.7	100.0	100.0	52.8			95.0	20	2026-10-29	
 ioctls	55	54	0	53	0	1	0	0	0	98.2	100.0	100.0	98.2			90.0	10	2026-10-29	
@@ -76,7 +76,7 @@ functions in usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	3	3	0	3	0	0	0	0	0	
 functions in usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	5	5	0	5	0	0	0	0	0	100.0	100.0	100.0	100.0						
 functions in usr/cpu/sysgen/IP35boot/rrm.o	72	69	0	69	0	1	0	0	2	95.8	100.0	100.0	98.6						
 functions in usr/diags/IR/bin/hyper	11	0	0	0	0	0	11	0	0	0.0	0.0	100.0	0.0						
-functions in usr/diags/IR/bin/irsaudit	1170	18	0	18	0	21	1130	1	0	1.5	3.3	99.9	1.5						
+functions in usr/diags/IR/bin/irsaudit	1170	22	0	22	0	21	1126	1	0	1.9	3.7	99.9	1.9						
 functions in usr/gfx/KONA/bin/ireeprom	15	0	0	0	0	0	15	0	0	0.0	0.0	100.0	0.0						
 functions in usr/gfx/KONA/bin/kpm	426	1	0	1	0	2	423	0	0	0.2	0.7	100.0	0.2						
 functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	0	0	0	0	2936	0	0	0.0	0.0	100.0	0.0						

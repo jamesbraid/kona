@@ -2396,10 +2396,10 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154cb4	18096	tbuRegReset	dyn
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10159364	3692	tbuInit	dynsym	8120917b9cd3	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015a1d0	84	tbuInitKonaJtag	dynsym	3faf6823c27f	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015a8cc	892	tbuWaitDone	dynsym	7c6e4c092df5	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015ac48	1848	tbuLineStyle	dynsym	7aaf31d34e34	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015b380	248	tbuLineWidth	dynsym	074ef54e9f2b	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015b478	284	tbuLineEdgePos	dynsym	12e3453c5be5	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015bed8	1964	tbuRoundPoint	dynsym	d7049ea1a565	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015ac48	1848	tbuLineStyle	dynsym	7aaf31d34e34	understood	docs/rm.md#set-up-arithmetic-what-the-software-fixes	Set-up arithmetic: what the software fixes
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015b380	248	tbuLineWidth	dynsym	074ef54e9f2b	understood	docs/rm.md#set-up-arithmetic-what-the-software-fixes	Set-up arithmetic: what the software fixes
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015b478	284	tbuLineEdgePos	dynsym	12e3453c5be5	understood	docs/rm.md#set-up-arithmetic-what-the-software-fixes	Set-up arithmetic: what the software fixes
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015bed8	1964	tbuRoundPoint	dynsym	d7049ea1a565	understood	docs/rm.md#set-up-arithmetic-what-the-software-fixes	Set-up arithmetic: what the software fixes
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015c684	684	tbuSetScissorRect	dynsym	ef14bcdc6ac2	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015c930	140	tbuDestroyTexture	dynsym	4c3b54718f41	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015ca4c	136	crc_zclose	dynsym	a028b026fb5e	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options

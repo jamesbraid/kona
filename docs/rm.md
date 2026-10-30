@@ -381,14 +381,100 @@ complete one, 6 the vertex that completes a triangle, and 14 and 4 the line form
 (0xe70ccd7395200000 then 0xe700007395200000), between the vertices of a line; they are not vertex packets in the layout
 above, since their second word starts with the command nibble again.
 
-What the pixel generator computes from the vertices (edge equations, slopes of colour, depth and texture coordinates,
-their precision and the rounding of the start point) is **unknown: no shipped software or published source depends on
-it**. No program computes a slope for it to check: the engine output modules, the diagnostic drawers above and the vector
-files all carry vertices, and the tests judge the result by CRC signatures (`run_crc_testlist`, [Precision bounds](#precision-bounds)).
-Routes tried: `udrawtri.s`, `drawtri.S`, `drawlin.S` and `drawpnt.S` in `ge.u`; `tbVertex`, `tbTextureCoord`,
-`draw_tri` and the command values of every `tbVertex` caller in `irsaudit`; the six tests in `tbusdata.Z` and
-`aaspoke.tbus`; the `pg` pins and the BIST RAM list of `pg2.tcbist`. The next route is the `PG_` register comments of
-[RM.h](../RM.h), for a register that selects a set-up mode, and the meaning of the command-14 packets in `linesRus.tbus`.
+### Set-up arithmetic: what the software fixes
+
+No program on any release computes an edge equation or a slope for the pixel generator, so its set-up arithmetic can
+only be bounded from what the drivers and the diagnostic send and from what they say they expect. The facts below are
+that bound; each is labelled. Sources: `irsaudit` and `tport.bin` (IRIX 6.5.30m), `arm1.u` (6.5.30m) and the kernel
+
+**The command nibble and bit 28.** **Established:** `tbVertex` ORs its flag into bit 28, which is bit 0 of the 4-bit
+command field, so the flagged forms are the odd commands: 6 with the flag set is command 7. **Established** (the three
+drawers that send more than one triangle): `tp_draw_box` in `tport.bin` (+0xf0dc) sends the corners top-left,
+top-right, bottom-left, bottom-right with commands 0, 0, 6 and 7; `tbuRoundPoint` (below, fan loop at 0x1015c43c-0x1015c4d0) sends the centre and the
+first rim point with command 0 and every later rim point with command 7; `draw_tri` sends 0, 0, 6. **Inferred** from
+requiring each drawing to cover its shape: the pixel generator keeps the two previous vertices, every 6 or 7 draws the
+triangle of those two and the new vertex, command 6 then drops the older of the two (a strip) and command 7 drops the
+newer (a fan). The box is covered only if its second triangle is top-right, bottom-left, bottom-right, which needs the
+strip rule at the third vertex; the disc is covered only if every rim triangle keeps the centre, which needs the fan
+rule at each 7. No other single rule draws both.
+
+**Sub-pixel position.** **Established:** a vertex's x and y reach the bus as unsigned 12.8 fixed point (`draw_tri`,
+`tp_draw_primitive` at `tport.bin` +0xef8c, which shifts integer coordinates left by 8). The multisample location
+register `PGTFPIMP_MSLOC` gives each sample a 3-bit x and y ([RM.h](../RM.h)); `init_pg` in `arm1.u` loads 0x007f6280,
+samples at (0, 0), (2, 1), (6, 6) and (7, 3), and `irsaudit` `init_ms_loc` loads 0xc8b640, samples at (0, 0), (1, 3),
+(3, 1) and (2, 6). **Inferred:** sample positions lie on an eighth-of-a-pixel grid inside the pixel, so coverage is
+decided at a finer step than the vertex's 1/256 only through the edge arithmetic, which no software shows.
+
+**The fill rule for rectangles.** **Established** (`kona_box` in `kona_tport.c`): the PROM driver decrements
+decrements the left x and the bottom y of every filled rectangle, clamped at 0, before it sends the box to the textport.
+Why it does so is **inferred**: its callers pass both corners as inclusive, which fits drawing on the pipe that leaves out
+the left column and the bottom row. **Established** (`tport.bin` +0xeb70 and +0xf0dc): the textport only orders the two x and two y
+values and sends the four corners unchanged, with zero fraction bits. So a strip of two triangles whose corners sit on
+whole pixel coordinates x1 < x2, y1 < y2 lights columns x1 + 1 to x2 and rows y1 + 1 to y2. **Inferred:** a pixel whose
+sample point lies exactly on a left or bottom edge is not drawn and one on a right or top edge is, with the sample point
+at the pixel's integer coordinate; an equivalent reading puts the sample half a pixel lower and to the left with no
+point ever on an edge, and the integer boxes the kernel draws cannot tell the two apart. The rounding of a start point
+with nonzero fraction bits, and the rule for sloped edges, are **unknown: no shipped software or published source
+depends on them**.
+
+**What the diagnostic expects of lines.** Three `irsaudit` routines compute line set-up on the host. None has a call
+site in this build: their addresses appear only in the symbol tables, not in the global offset table, the data or any
+`jal`. They still state what the diagnostic's authors expected the pixel generator to need.
+
+- `tbuLineWidth` (`irsaudit` at 0x1015b380, read in full): **established**, takes a float line width w and writes the 12-bit
+  `PGTG_LBSIZE` field of index 0x3fd0 (the second word of `PGTG_SIZE`) as trunc(8 x (w + 2) + 1), keeping the word's
+  other bits, and saves w for `tbuLineEdgePos`. The constants 2.0, 8.0 and 1.0 are read from the data at 0x101c3a20,
+  0x101c3a24 and 0x101c17d0. **Inferred:** the field counts eighths of a pixel, which agrees with the sample grid above.
+  The firmware never derives it from a line width: `init_tg`, `prim_init` and `x_initregs` in `arm1.u` store the
+  constant 0x10 there, so whether the field is a width in eighths or a buffer size, as the `SIZE` name suggests, is
+  inferred only.
+- `tbuLineEdgePos` (`irsaudit` at 0x1015b478, read in full to 0x1015b590): **established**, takes a line's two end points and two
+  result pointers, the end points written (x0, y0) and (x1, y1) here, and returns the point at the line's outer edge
+  beside (x1, y1), using the width `tbuLineWidth` saved and the
+  line mode `tbuLineStyle` saved. In mode 1 it computes the perpendicular offset: with length L = sqrt(dx² + dy²) it
+  returns x1 - trunc(dy x 128w / L) and y1 + trunc(dx x 128w / L). In the other modes it offsets along the minor axis
+  only: an x-major line (dy² < dx²) returns (x1, trunc(y1 + 128w)), a y-major line (trunc(x1 + 128w), y1). **Inferred:**
+  since coordinates are in 1/256 pixel, 128w is half the width, so mode 1 is a line drawn as a true rectangle and the
+  others are lines widened along their minor axis.
+- `tbuLineStyle` (`irsaudit` at 0x1015ac48): **inferred** from its register writes and the value each debug print
+  reports, checked against the masks and ORs of the `SLMASK`, `LSAMPLE` and `PRU` writes at 0x1015afd0-0x1015b07c but
+  not instruction by instruction; it takes a style 0, 1 or 2 and writes the line fields of `PG_MSK`
+  (0x806) and `PG_PRU` (0x810), printing each value as it goes. Style 2: line rules 105, `LMASK` 2, `SLMASK` 1,
+  `LSAMPLE` 0, `PRU` 0, mode 2. Style 1: line rules 78, `LMASK` 1, `SLMASK` 0, `LSAMPLE` 2 (alpha), `PRU` 1 (line),
+  mode 1, and on its first use it fills four 32-entry tables at indexes 0x880, 0x8a0, 0x8c0 and 0x8e0 with the
+  same ramp, entry i = trunc((i + 0.5) x 256 / 32), 4 to 252 in steps of 8. Style 0: line rules 78, `LMASK` 2, `SLMASK`
+  1, `LSAMPLE` 0, `PRU` 0, mode 0. **Inferred:** style 1 is the antialiased line, which samples coverage into alpha and
+  reads the four ramps, so the `PG_PRAM` range also holds coverage tables; the line-rule codes 78 and 105 are the
+  pixel generator's choice of which line ends and sides to draw, which no software spells out.
+- `tbuRoundPoint` (`irsaudit` at 0x1015bed8): **inferred** from the small-point path (0x1015bf54-0x1015c130) and
+  the fan loop (0x1015c2fc-0x1015c540), which were read; the colour and scissor writes between them were not. It takes a centre, a colour, an optional texture coordinate
+  and a size s. For s up to 3.5 it clears `PGTG_TG_ENABLE` and `PGTG_SCAN_ENABLE` in `PGTG_ENABLES` (0x3fd3) and
+  `PG_MSK_TMASK`, sends one command-2 vertex and restores both registers, so with the scan converter off one vertex
+  writes one pixel. Above 3.5 it draws a disc of radius r = s / 2 as a fan: the centre and the rim point
+  (x + trunc(256r), y) with command 0, then rim points at angle steps of 2π / trunc(s + 3.5), each at
+  (x + trunc(256r cos a), y + trunc(256r sin a)) with command 7, ending with the first rim point again. The radius is
+  scaled by 256, the same 1/256 unit as the vertex fields.
+
+**Why the arithmetic stays bounded, not derived.** The only expected outputs the diagnostic carries for drawing are
+the gold files `irsaudit.*.gold` (6.5.30m). Each line there is a test name and the chips' running CRC signatures
+(for example `r1P00` for the pixel generator, `r1I00` to `r1I0n` for the image processors), compared after a drawing by
+`run_crc_testlist`. A signature can confirm a candidate rasteriser only if the signature register's polynomial, width
+and the bits it samples are known; `irsaudit` reads the values through the scan chain (`collectCRC` at 0x1001eef8) and
+never computes one itself, so none of them is. The per-edge slope, its fixed-point width and its rounding, and the
+depth and colour slope formats are therefore **unknown: no shipped software or published source depends on them**.
+Routes tried: the engine output modules `udrawtri.s`, `drawtri.S`, `drawlin.S` and `drawpnt.S` in `ge.u`; `tbVertex`,
+`tbTextureCoord`, `draw_tri` and every `tbVertex` caller in `irsaudit`; the line and point helpers above; the six tests
+in `tbusdata.Z` and `aaspoke.tbus`; the gold files; the `pg` pins and `pg2.tcbist`; the `PG_` and `PGTG_` register
+comments of [RM.h](../RM.h); the firmware's `init_pg`, `init_tg`, `prim_init` and `x_initregs`; the 6.5.5 installed headers
+
+(`kona_init.c`, `kona_tport.c`, `kona_logo.c` and `ktport.h`, read in full; the driver sends textport commands and
+
+only the `sys/kona.h`, `sys/kona_if.h` and `sys/kona_diag.h` headers, which carry no raster set-up; and a Library
+search of the TechPubs and mirror roots for InfiniteReality sub-pixel and multisample text, which found the OpenGL
+programming guide 007-1680 but whose text could not be extracted on this host (no PDF text tool, and the file server
+needs a login). The next route is the image-processor CRC: a
+signature of a clear (the gold file's `clearfb` lines), whose input is one known colour repeated, may fix the
+register's polynomial, after which a one-triangle test's signature would discriminate between candidate edge rules.
 
 ## Moving data in and out of the raster boards
 
