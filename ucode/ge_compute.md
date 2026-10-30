@@ -1073,13 +1073,13 @@ live in engine external memory, which `mgeb_EramFill` clears before a transfer.
   sums of the last pixels and stores them.
 - `umo_BitmapToFloat` (`bitmaptofloat.s` lines 56-146, at 0x25a0): **inferred**, set-up of the bitmap-to-colour stage: it
   loads the seven layout words from 0x1ba-0x1c0 as input and builds the bit masks 4, 0x10, 0x20, 0x40 and 0x80, then
-  tests the first input word bit by bit with AND words paired with unit-2 code 0x0f, which the diagnostic test does not
-  fix; it falls into the least-significant-first loop or branches to `b2f_msb_first`.
+  tests the first input word bit by bit with AND words paired with unit-2 code 0x0f, the integer multiply
+  ([ge_ops.md](ge_ops.md#how-one-m-names-two-operations), inferred from the cube test); it falls into the least-significant-first loop or branches to `b2f_msb_first`.
 - `mainloop_b2f_lsb_first` (`bitmaptofloat.s` lines 150-169, at 0x25e5): **inferred**, per input bitmap word it isolates
   each bit with an AND or shift (0x25e6 onward), least significant first, and stores one output per bit through
-  register 0x12, the value chosen by the paired code 0x0f; the loop repeats on `cc` 0x14.
+  register 0x12, the value the paired integer multiply produces; the loop repeats on `cc` 0x14.
 - `epilogue_b2f_lsb_first` (`bitmaptofloat.s` lines 173-215, at 0x25f9): **inferred**, the drain for the last bits of the
-  least-significant-first order, with the same AND and code-0x0f pairs.
+  least-significant-first order, with the same AND and integer-multiply pairs.
 - `b2f_msb_first` (`bitmaptofloat.s` lines 219-236, at 0x2620): **inferred**, the entry for `GL_UNPACK_LSB_FIRST` false:
   four ANDs prepare the masks for the most-significant-first order before its loop.
 - `mainloop_b2f_msb_first` (`bitmaptofloat.s` lines 240-260, at 0x262d): **inferred**, the most-significant-first loop:
@@ -1120,8 +1120,8 @@ and packs fields for the raster bus ([docs/rm.md](../docs/rm.md#pixel-and-texel-
 - `mmo_TLutDownloadI` (`colortable.S` lines 744-774, at 0x3ea8): **inferred**, sends an intensity table: it moves each
   input entry to the bus with the register words 0x420c2400, 0x20c1800, 0x20c0c00 and 0x20c0000, one per filter RAM,
   looping on `cc` 0x14 and ending in `mTLutDownloadDone`.
-- `mmo_TLutDownloadLA` (`colortable.S` lines 695-729, at 0x3edb): **inferred**, the luminance-alpha table form: it splits
-  each input entry with unit-2 code 0x0f, steps the RAM addresses at 0x295-0x298 with integer adds and writes the entries
+- `mmo_TLutDownloadLA` (`colortable.S` lines 695-729, at 0x3edb): **inferred**, the luminance-alpha table form: it passes
+  each input entry through the integer multiply (unit-2 code 0x0f, 0x3ee5), steps the RAM addresses at 0x295-0x298 with integer adds and writes the entries
   with register words 0x2180000 and 0x2181800.
 - `mmo_TLutDownloadRGBA` (`colortable.S` lines 643-680, at 0x3f10): **inferred**, the four-component table form, with the
   same address stepping as the LA form and two loops on `cc` 0x14 (0x3f22, 0x3f30) for the colour and alpha halves.
@@ -1223,8 +1223,9 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
   primitives: it stores the decompose table addresses 0x8bb0 and 0x8bec and the primitive codes 0xc and 0x15 for the
   line-strip output that follows.
 - `ugeb_EvalMapSpec2D` (`ueval2D.s` lines 178-300, at 0x18b): **inferred**, the `glMap2` specification handler: from the
-  u and v orders it computes the block address with integer adds and subtracts, stores the two domains, and copies the
-  control-point grid into the block with unit-2 moves and code 0x0f words.
+  u and v orders it computes the block address with integer adds, subtracts and integer multiplies (unit-2 code 0x0f, 0x1bb-0x1c9, the
+  order products a 2D block needs), stores the two domains, and copies the control-point grid into the block with
+  unit-2 moves.
 - `mgeb_EvalMapSpec2D` (`ueval2D.s` line 178, at 0x18b): **inferred**, slot name of the 2D specification handler on the
   same word, which converts the orders and stores the control points.
 - `ugeb_EvalMapData2D` (`ueval2D.s` lines 334-371, at 0x205): **inferred**, receives 2D control points: it masks the map
@@ -1251,7 +1252,7 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
   vertices: the table addresses 0x8bb0 and 0x8bec, the primitive code 0x16 and two words of -24.0 (0xc1c00000) as input
   for the point output.
 - `umo_EvalDecomposeLines2D` (`ueval2D.s` lines 777-828, at 0x344): **inferred**, sets up line output for a 2D mesh: it stores four
-  words of -24.0 and the tables 0x8bb0 and 0x8bec, with a unit-2 code 0x0f word and two ANDs, as input for the line output.
+  words of -24.0 and the tables 0x8bb0 and 0x8bec, with an integer multiply (unit-2 code 0x0f) and two ANDs, as input for the line output.
 - `umo_EvalDecomposeFill` (`ueval2D.s` lines 844-880, at 0x37b): **inferred**, sets up filled output: it stores four
   words of -6.0 (0xc0c00000) and the tables 0x8bc4, 0x8c28 and 0x8c3c as input for the filled output.
 - `uges_EvalCoord` (`uevalcoord.s` lines 61-71, at 0x3a0): **inferred**, the `glEvalCoord` and `glEvalPoint` entry: it
@@ -1284,7 +1285,7 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
 - `eval_geomchangebasisv` (`uevalbasis.s` lines 274-289, at 0x507): **inferred**, converts the vertex map's block at
   0x8098 in the v direction.
 - `eval_texturechangebasisu` (`uevalbasis.s` lines 291-306, at 0x517): **inferred**, converts the 2D texture block at
-  0x8108 in u, with a unit-2 code 0x0f word in its set-up.
+  0x8108 in u, with an integer multiply (unit-2 code 0x0f, 0x0520) in its set-up.
 - `eval_texturechangebasisv` (`uevalbasis.s` lines 308-323, at 0x527): **inferred**, the v direction of the 2D texture
   block at 0x8108.
 - `eval_colorchangebasisu` (`uevalbasis.s` lines 325-340, at 0x537): **inferred**, converts the 2D colour block at 0x8178
