@@ -2684,19 +2684,44 @@ The handlers of `glmodes.S` change no vertex data. They rewrite mode words in en
 ## Fast Fourier transform stages (fft.S)
 
 The FFT pixel path (path 9, built by `SetupGE_FFT` in [arm1_functions.md](arm1_functions.md)) runs these modules on
-complex samples stored as (real, imaginary) word pairs in the input record at address register 0x10. Read in full from
-the [fft.S listing](ge_listing/fft.S.lst) (`ge.u`, IRIX 6.5.30m).
+complex samples stored as (real, imaginary) word pairs in the input record at address register 0x10. Read from the
+[fft.S listing](ge_listing/fft.S.lst) and the kona-ge decompile (`ge.u`, IRIX 6.5.30m), with the ARM side read from
+`arm1.u`.
+
+**Established** (`SetupGE_FFT`, `arm1.u` 0x0c02cf70-0x0c02d2d8, and `InitFFTGlobal`). The ARM picks the transform by
+width: 2, 4, 8, 0x10, 0x20, 0x40, 0x80 and 0x100 load `gepc` offsets 0x6e0-0x6fc, slots 440-447, which hold
+`mmo_FFT_2` up to `mmo_FFT_256`; any other width prints the unsupported-width message. The chain it writes to control
+memory 0x129 is an optional `mmo_Transpose` (slot 450, when context word +0x560 is set), the transform, then
+`mmo_Complex_Out` (slot 448) or `mmo_Complex_Sort_Out` (slot 449) by context word +0x55c, then one of the two
+stream-advance modules (slots 303 and 304). Before it the ARM writes 0x1a0 to port 0x478, then half the width and
+0x75a3 + width to the data port 0x840, and starts `mgeb_LoadCram` (slot 41, the low half of packed word r8 + 0x98);
+0x75a3 + width is the engine-memory address of that width's sort table (`FFT_Sort_2` at 0x75a5 up to `FFT_Sort_256` at
+0x76a3). With the transpose it uses port 0x474 and adds a third word per engine from the float table at 0x0404cee0
+(6.0, 0.0, 2.0, 4.0). **Inferred:** those words land in CRAM 0x1a0, 0x1a1 and 0x1a2, the words the output and
+transpose stages read. The twiddle table `FFT_Factors` sits at ERAM 0x73a5:
+entry t is cos(2 pi t / 256) at 0x73a5 + 2t and -sin(2 pi t / 256) one word above, so W^t = exp(-2 pi i t / 256) and the
+transform is the forward one.
+
+**Inferred** (the pass plan). Every size from 8 up is a decimation-in-frequency transform: a radix-2 first pass for 8,
+32 and 128 (sizes 2 x 4^m), then radix-4 passes, the last with no multiplies, which leaves the samples in digit-reversed
+order. The sort tables match that order exactly: `FFT_Sort_8` reads positions 0, 4, 1, 5, 2, 6, 3, 7 (the even outputs
+sit in the first half after the radix-2 split), `FFT_Sort_16` reads 0, 4, 8, 0xc, 1, ... (base-4 digit reversal), and
+`FFT_Sort_4` is the identity, as one radix-4 pass needs. In each twiddled pass lane j (0-2) takes butterfly j + 1 of
+three: the immediates give lane 0, 1 and 2 the twiddle pointers t, 2t and 3t for t = 1, 2 and 3 times the pass's stride,
+and the pointer steps are three butterflies' worth. A loop whose counter is loaded with c runs c + 1 times: every count
+below closes only that way (for example 21 passes of three lanes plus one twiddle-free butterfly give the 64 butterflies
+of the 128-point radix-2 pass).
 
 - `mmo_FFT_2` (`fft.S` lines 758-766, at 0x37cb): **inferred**, the two-point butterfly. It loads record words 0-3, two
   complex samples a and b. Float adds from 0x37d1 store the sums of the real and imaginary parts over a, and float
   subtracts from 0x37d2 store the differences over b: a + b replaces a and a - b replaces b, in place. It reads its successor through address register 0x13 (0x37cf), steps that register in the delay
   slot (0x37da) and ends with the group-31 transfer at 0x37d5.
 - `mmo_FFT_4` (`fft.S` lines 804-812, at 0x37aa): **inferred**, the four-point transform done in one pass. It loads
-  record words 0-7, four complex samples, and computes eight results with float adds and subtracts only (0x37b2-0x37c1),
-  which is what a radix-4 butterfly needs, since its twiddle factors 1, -1, i and -i only swap and negate parts. The
-  eight results go back over words 0-7 in place, with no multiply and no table read, so the twiddle table that the start-up
-  code loads is left to the larger sizes. It reads and steps its successor pointer like the two-point stage (0x37bc,
-  0x37c7).
+  record words 0-7, four complex samples, and computes eight results with 16 float adds and subtracts only
+  (0x37b2-0x37c1), which is what a radix-4 butterfly needs, since its twiddle factors 1, -1, i and -i only swap and
+  negate parts. The eight results go back over words 0-7 in place (the stores at 0x37ba-0x37c1), with no multiply and no
+  table read; its sort table is the identity. It reads and steps its successor pointer like the two-point stage
+  (0x37bc, 0x37c7).
 - `mgeb_PixDrawColorSetup_FFT` (`fft.S` line 2191, at 0x3000): **inferred**, the command that opens an FFT pixel transfer.
   It takes CRAM word 0x1ec (read at 0x3000) and the first two command words as inputs. When the CRAM word is nonzero a
   conditional call (`cc` 3, 0x300c) runs `uEvalSaveState` (0x962) first. It then stores command word 0 and command word 1
@@ -2704,7 +2729,8 @@ the [fft.S listing](ge_listing/fft.S.lst) (`ge.u`, IRIX 6.5.30m).
   discards two further input words (0x3013-0x3014), re-bases the per-lane staging register 0x18 on 0x8000 with a 0x11-word
   stride per lane (0x3015-0x3017) and stores the zero register to CRAM words 0x1ed and 0x1ee (0x3024, 0x3025). It ends the
   command at 0x301d. Two special registers are written and the CRAM words listed are cleared; the staging base is set once
-  per lane.
+  per lane. `SetupGE_FFT` sends it last but one, through slot 451, with the format word from `compFormatTable` in port
+  0x478.
 - `mmo_Transpose` (`fft.S` line 2050, at 0x3026): **inferred**, a stage of the FFT path that rebuilds the raster-side
   set-up for the next pass and advances one CRAM accumulator. Its inputs are ERAM words 0x31, 0x32, 5, 6 and 0x1389 and
   CRAM words 0x1a0 and 0x1a2 (reads at 0x3026-0x3030, 0x3035, 0x3042). It shifts CRAM 0x1a2 right by 8 and masks it with
@@ -2721,57 +2747,75 @@ the [fft.S listing](ge_listing/fft.S.lst) (`ge.u`, IRIX 6.5.30m).
   sends them as 0x1f7 and 0x1f5 pairs (0x307c-0x307e, 0x30ab-0x30b7, 0x30bf-0x30c8) with two shadowed writes through
   0x1f8 whose data comes from float-to-integer conversions (0x30a7, 0x30aa). A return at 0x30cb leaves the handler.
 - `mmo_Complex_Sort_Out` (`fft.S` line 1489, at 0x30d4): **inferred**, the output stage that emits the transformed
-  samples in sorted order. Inputs are CRAM words 0x1a0 and 0x1a1 (0x30d5, 0x30d6), which become the loop count and a
-  step in registers 0xf and 0xe (0x30de, 0x30df), and a table of record offsets that three lanes read from ERAM with
+  samples in natural order through the sort table. Inputs are CRAM words 0x1a0 and 0x1a1 (0x30d5, 0x30d6), which
+  `SetupGE_FFT` fills with half the width and the address of the width's `FFT_Sort_*` table; they become the loop count
+  and a step in registers 0xf and 0xe (0x30de, 0x30df), and three lanes read the table's byte offsets from ERAM with
   `r95` = 0x14-0x16 (0x30e7-0x30e9, 0x30f8-0x3102). Each pass of the loop 0x30f8-0x3129 derives two sample addresses
   from the table words (0x30f0, 0x3116, 0x311b), reads the real and imaginary words at them (0x311f-0x3122) and
   pushes both to the output window (0x311d-0x3126). It produces two closing window words at 0x3130-0x3131, takes
   the successor from address register 0x13 (0x30f3) and ends at 0x312a.
 - `mmo_Complex_Out` (`fft.S` line 1385, at 0x3133): **inferred**, the output stage that emits the transformed samples in
-  record order with no sort table. CRAM word 0x1a0 (0x3134) gives the count for the loop 0x3148-0x3151; address
-  registers 0xd and 0xe are set 0x10-word-relative bases at 0x313e-0x3140. Each pass reads four words at offsets 0-3 of
-  both bases (0x3148-0x314b, 0x3150) and pushes them to the output window (0x314c-0x314f), stepping both bases by 0x18
-  (0x3151, 0x3152). It also sends a 0x1f8 and 0x1f5 prefix (0x3143, 0x3146), reads the successor through register 0x13
-  (0x3142, 0x3147) and ends the command at 0x3152. It takes the record words as input, and its results are the window pushes; it derives each pass's source addresses from two base registers.
-- `mmo_FFT_256` (`fft.S` line 1219, at 0x315b): **inferred**, the 256-point transform on the record at register 0x10,
-  built as four radix-4 passes (source lines 1219-1222) that work in place. Set-up at 0x315c-0x315e makes registers
-  0xa, 0xb and 0xd point 0x200, 0x400 and 0x600 words past the record base, and 0x315f, 0x3164, 0x3166 point registers
-  0xc, 0xe and 0xf into the ERAM twiddle table at 0x73a7, 0x73a9 and 0x73ab. The first pass (0x3167-0x31bd) combines
-  four samples with float adds and subtracts, reads twiddle words from ERAM per lane (0x3180-0x318c) and multiplies the
-  results with 11 multiplies (0x31ab-0x31b6); a counter set to 0x14 at 0x3177 and stepped at 0x31bb closes the loop at
-  0x31bd. The second pass is a nested loop (outer 0x31cb-0x3237, inner 0x31ef-0x322c), the third preloads twiddle words
-  0x73c5-0x7466 (0x3240-0x3264) before its loop 0x326a-0x32b6, and the fourth (loop 0x32df-0x32f7) uses adds and
-  subtracts only. It loads its successor at 0x3300 and ends at 0x3306. The inputs are the sample words and ERAM twiddle words, and the result is the transformed record in place.
-- `mmo_FFT_128` (`fft.S` line 1155, at 0x330f): **inferred**, the 128-point transform on the record at register 0x10, in
-  four loop nests. The first (loop 0x3322-0x333e, counter 0x14 set at 0x3320, run in each of three lanes) reads per-lane
-  twiddle words from ERAM (0x3322-0x332a), adds and subtracts a sample pair (0x3317-0x331a, 0x3332-0x3334) and forms the
-  complex twiddle product from 4 multiplies (0x3336-0x3339, M = 0x47f) with 3 adds and 1 subtract (0x333a-0x333d). The
-  decompile of the later nests shows four-input butterflies of adds and subtracts, with twiddle multiplies in the first two:
-  a nested loop (0x334c-0x33bd, inner loop 0x3370-0x33ad), a second (0x33eb-0x3437), a final loop (0x3446-0x345e) and a
-  straight-line block (0x346d-0x347e), the last two with no multiplies. Four nests fit 128 = 2 x 4 x 4 x 4, which is the
-  radix-2 then radix-4 reading (inferred). The successor is read through register 0x13 at 0x3479 and the command ends at
-  0x347f. The twiddle indexing and the arithmetic of the later passes are not derived word by word.
-- `mmo_FFT_64` (`fft.S` line 1090, at 0x3488): **inferred**, the 64-point transform as three radix-4 passes on the record
-  at register 0x10. Address registers 0xb and 0xd start 0x100 and 0x180 words past the base (0x3489, 0x348a) and
-  registers 0xc, 0xe and 0xf point at ERAM twiddle words 0x73ad, 0x73b5 and 0x73bd (0x348b-0x3492). The first loop
-  (0x34ac-0x34e9) runs four times, counter loaded at 0x34a3, and multiplies by twiddle words with 11 multiplies (0x34c5
-  onward). The second loop (0x351c-0x3568, 12 multiplies) and the third (0x3591-0x35a9, adds and subtracts only) follow.
-  The successor is loaded at 0x35b2 and the command ends at 0x35b8. Its inputs are the sample words and ERAM twiddle words, and it produces the transformed record in place.
+  record order with no sort table, the one `SetupGE_FFT` picks when context word +0x55c is zero. CRAM word 0x1a0, half
+  the width (0x3134), gives the count for the loop 0x3148-0x3151; address registers 0xd and 0xe are set
+  0x10-word-relative bases at 0x313e-0x3140. Each pass reads four words at offsets 0-3 of both bases (0x3148-0x314b,
+  0x3150), two samples, and pushes them to the output window (0x314c-0x314f), stepping both bases by 0x18 (0x3151,
+  0x3152). It also sends a 0x1f8 and 0x1f5 prefix (0x3143, 0x3146), reads the successor through register 0x13 (0x3142,
+  0x3147) and ends the command at 0x3152.
+- `mmo_FFT_256` (`fft.S` line 1219, at 0x315b): **inferred**, the 256-point transform as four radix-4 passes in place on
+  the record at register 0x10. The set-up at 0x315c-0x315e points registers 0xa, 0xb and 0xd at offsets 0x200, 0x400
+  and 0x600, the quarters of the record (0x200 is sample 64 in the units `mmo_FFT_128` uses for its half). Pass 1
+  (loop 0x3167-0x31bd, counter 0x14 at 0x3177) takes twiddle entries 1, 2, 3 in lane 0, 2, 4, 6 in lane 1 and 3, 6, 9
+  in lane 2 (immediates 0x73a7-0x73b7 at 0x315f-0x317f) and steps them by 6, 0xc and 0x12 words (0x3173-0x3175), so lane
+  j multiplies by W^j, W^2j and W^3j; each pass has 12 multiplies and 38 adds and subtracts. Pass 2 is a nested loop,
+  outer counter 3 at 0x31c7 (four 64-sample groups) and inner loop 0x31ef-0x322c with counter 4 (15 butterflies in
+  steps of three), after a twiddle-free butterfly of 16 adds and subtracts (0x31be-0x31ee); its twiddles are entries 4,
+  8, 12 and their multiples (0x73ad-0x73ed), stepped by 0x18, 0x30 and 0x48. Pass 3 (loop 0x326a-0x32b6, counter 0xf,
+  16 groups of 16) preloads fixed twiddles at 0x3240-0x3262: entries 16, 32, 48 in lane 0, 32, 64, 96 in lane 1 and 48,
+  96, 144 in lane 2, the 16-point factors. Pass 4 (loop 0x32df-0x32f7, counter 0x14, 21 x 3 butterflies, plus the block
+  0x32b7-0x32dd) uses 16 adds and subtracts per butterfly and no multiply. It loads its successor at 0x3300 and ends at
+  0x3306. Where pass 1's twiddle-free butterfly runs is unknown: its loop has 16 more adds and subtracts per pass than
+  one twiddled butterfly needs, and a lane-by-lane reading of its stores would settle it.
+- `mmo_FFT_128` (`fft.S` line 1155, at 0x330f): **inferred**, the 128-point transform as a radix-2 pass and three radix-4
+  passes in place on the record at register 0x10. Register 0 holds 0x200 (0x330f), which pairs sample k with sample
+  k + 64. The twiddle-free butterfly of samples 0 and 64 runs first (2 adds and 2 subtracts, 0x3317-0x331a); the loop
+  0x3322-0x333e (counter 0x14 at 0x3320, 21 passes) does the other 63, lane j starting at twiddle entry 2, 4 or 6
+  (0x73a9, 0x73ad, 0x73b1) and stepping 0xc words, which is W_128^k = W^2k. Each lane replaces a with a + b and b with
+  (a - b) times the twiddle, a complex product of 4 multiplies (0x3336-0x3339) with one add and one subtract. Pass 2 is
+  a nested loop over the two 64-sample halves (outer counter 1 at 0x3348, loop to 0x334c), each half a twiddle-free
+  butterfly (0x334c-0x336f, 16 adds and subtracts) and the inner loop 0x3370-0x33ad (counter 4) with offsets 0x100 and
+  0x180, twiddle entries 4, 8 and 12 and their multiples (0x73ad-0x73ed) and per butterfly 12 multiplies and 22 adds
+  and subtracts, a radix-4 butterfly with three complex products. Pass 3 (loop 0x33eb-0x3437, counter 7, eight groups
+  of 16) uses the fixed 16-point twiddles loaded at 0x33c1-0x33e3. Pass 4 is twiddle-free: the loop 0x3446-0x345e
+  (counter 9, ten passes of three) and the block 0x346d-0x347e, 16 adds and subtracts each, cover the 32 butterflies.
+  The successor is read through register 0x13 at 0x3479 and the command ends at 0x347f.
+- `mmo_FFT_64` (`fft.S` line 1090, at 0x3488): **inferred**, the 64-point transform as three radix-4 passes in place on
+  the record at register 0x10. Address registers 0xb and 0xd start at offsets 0x100 and 0x180 (0x3489, 0x348a) and
+  registers 0xc, 0xe and 0xf point at twiddle entries 4, 8 and 12 (0x73ad, 0x73b5, 0x73bd, 0x348b-0x3492), with lanes 1
+  and 2 at the doubled and tripled entries (0x34a5-0x34ab) and steps 0x18, 0x30 and 0x48 (0x349f-0x34a1). Pass 1 is the
+  twiddle-free butterfly 0x3488-0x34ab and the loop 0x34ac-0x34e9 (counter 4 at 0x34a3, five passes of three: 15
+  butterflies) with 12 multiplies and 22 adds and subtracts each. Pass 2 (loop 0x351c-0x3568, counter 3, four groups of
+  16) uses the fixed 16-point twiddles loaded at 0x34f2-0x3514, and pass 3 (block 0x3569-0x3590 and loop 0x3591-0x35a9,
+  counter 4) has adds and subtracts only. The successor is loaded at 0x35b2 and the command ends at 0x35b8.
 - `mmo_FFT_32` (`fft.S` line 1027, at 0x35c1): **inferred**, the 32-point transform, a radix-2 pass then two radix-4
-  passes on the record at register 0x10. The radix-2 loop (0x35d4-0x35f0) takes twiddle words from ERAM per lane
-  (0x35da-0x35dc) and combines pairs with 4 multiplies, 3 adds and 1 subtract (0x35e8-0x35f5). The next loop (0x3623-0x366f)
-  multiplies by twiddles with 12 multiplies, and the last loop (0x367e-0x3696) plus the straight block (0x36a5-0x36b6)
-  uses adds and subtracts only. The successor is read at 0x36b1 and the command ends at 0x36b7. Its result is the transformed record, written in place.
-- `mmo_FFT_16` (`fft.S` line 941, at 0x36c0): **inferred**, the 16-point transform written without loops. Twiddle words
-  come from fixed ERAM addresses 0x73c5-0x74c6 (0x36c0-0x36fa) in three lanes. A first block of adds and subtracts
-  (0x36dd-0x36ec) is followed by a second block (0x36fd-0x370c), 11 multiplies by the twiddles (0x370d-0x371e), a third
-  block (0x3727-0x3736) and a last block (0x3745-0x3754). Register 0xf steps the sample offsets by 2, 4 and 6 (0x36ed,
-  0x36ee, 0x36ef) and by 8, 0x10 and 0x18 (0x3737-0x3739). The successor is read at 0x374f and the command ends at 0x3755. It takes the sample words and ERAM twiddle words as inputs and produces the transformed record in place.
-- `mmo_FFT_8` (`fft.S` line 858, at 0x375e): **inferred**, the eight-point transform on the record at register 0x10, with no
-  loops. A first block adds and subtracts the pairs eight words apart (0x3766-0x3769). Per-lane twiddle words at ERAM
-  0x73e5, 0x7425, 0x7465 and 0x73e6, 0x7426, 0x7466 (0x3760-0x3771) feed 4 multiplies and a 3-add, 1-subtract block
-  (0x377c-0x3783), and a final block (0x3791-0x37a0) of adds and subtracts reads eight words and writes eight back.
-  The successor is loaded at 0x379b and the command ends at 0x37a1. It takes the sample words and ERAM twiddle words as inputs and produces the transformed record in place.
+  passes on the record at register 0x10. The twiddle-free pair comes first (2 adds and 2 subtracts, 0x35c1-0x35d3); the
+  radix-2 loop 0x35d4-0x35f0 (counter 4) starts lanes at twiddle entries 8, 16 and 24 (0x73b5, 0x73c5, 0x73d5, which are
+  W_32^1-3) with a step of 0x30 words and does one complex product per lane, 4 multiplies, 3 adds and 3 subtracts. The
+  next loop (0x3623-0x366f, counter 1, two groups of 16) uses the fixed 16-point twiddles loaded at 0x35f9-0x361b, with 12
+  multiplies, and the last loop (0x367e-0x3696, counter 1) plus the block 0x3697-0x36b6 use adds and subtracts only. The
+  successor is read at 0x36b1 and the command ends at 0x36b7.
+- `mmo_FFT_16` (`fft.S` line 941, at 0x36c0): **inferred**, the 16-point transform written without loops: two radix-4
+  passes. The fixed twiddles come from entries 16, 32, 48 (lane 0), 32, 64, 96 (lane 1) and 48, 96, 144 (lane 2),
+  read at 0x36c0-0x36fa, W_16^j, W_16^2j and W_16^3j. A twiddle-free butterfly (0x36dd-0x36ec) and a second block of
+  adds and subtracts (0x36fd-0x370c) are followed by 12 multiplies and 6 adds and subtracts (0x370d-0x3726), the three
+  complex products; two more blocks of 16 (0x3727-0x3736, 0x3745-0x3754) are the twiddle-free second pass. Register 0xf
+  steps the sample offsets by 2, 4 and 6 (0x36ed, 0x36ee, 0x36ef) and by 8, 0x10 and 0x18 (0x3737-0x3739). The successor
+  is read at 0x374f and the command ends at 0x3755.
+- `mmo_FFT_8` (`fft.S` line 858, at 0x375e): **inferred**, the eight-point transform on the record at register 0x10, a
+  radix-2 pass and one radix-4 pass with no loops. The first block (0x3766-0x3769) adds and subtracts samples four apart.
+  Lanes 0-2 read twiddle entries 32, 64 and 96 (ERAM 0x73e5, 0x7425, 0x7465 and the words above them, 0x3760-0x3771),
+  W_8^1, W_8^2 and W_8^3, and each forms one complex product of a difference with 4 multiplies, 3 adds and 3 subtracts
+  (0x376d-0x3790). The final block (0x3791-0x37a0), 16 adds and subtracts, is the radix-4 pass on each half, which
+  leaves the order that `FFT_Sort_8` undoes. The successor is loaded at 0x379b and the command ends at 0x37a1.
 
 ## Line and point state handlers (line.S, point.S)
 

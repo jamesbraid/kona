@@ -2204,7 +2204,7 @@ ge.u	label	0x00003051	mgesi_PixRasterPosSetup_FFT		understood	ucode/ge_compute.m
 ge.u	label	0x000030d4	mmo_Complex_Sort_Out		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
 ge.u	label	0x00003133	mmo_Complex_Out		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
 ge.u	label	0x0000315b	mmo_FFT_256		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
-ge.u	label	0x0000330f	mmo_FFT_128		located	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x0000330f	mmo_FFT_128		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
 ge.u	label	0x00003488	mmo_FFT_64		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
 ge.u	label	0x000035c1	mmo_FFT_32		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
 ge.u	label	0x000036c0	mmo_FFT_16		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
