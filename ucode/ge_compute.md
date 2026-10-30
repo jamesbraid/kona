@@ -1820,3 +1820,59 @@ engine address 0x10c8 and one at 0x1164, each reached through register 0 loaded 
   0x23-0x25 (0xe67a-0xe67f) and copies 0x27 words of the record to external memory with `mWramToEram` (0xe681), the saved
   raster position. It leaves through word 0x1a (0xe692), or to `mmo_SelectRasterPos` on `cc` 3 (0xe697). The other path
   branches to `mmo_ToScreenSpaceInvQ` on `cc` 2 (0xe647).
+
+## Decomposers (udecompose.s)
+
+Each decomposer turns the batch's run of vertex records into a primitive list at engine address 0x8bb0 (the decompose
+table the evaluator set-up also names), written through address register 7 at offsets 1-4: the record addresses of the
+primitive's vertices and a flag word built from their edge-flag words (record word 0x26). **Inferred** from the words
+cited per entry; the `mmo_` and `umo_` names share each address. Every one loads its count from register 0x19, which the
+entry handler set up, tests `cc` 0x10 or 0x15 with a branch to `mmo_AbortGeometry`, reads its successor from word 0xb
+(triangles) or 0xc (lines, points), and stages the clipper the screen-space stage hands to next, stored to successor word
+0x17 through register 0x1b at offset 8.
+
+- `mmo_DecomposeTriangleStrip` (`udecompose.s` lines 20-42, at 0xcc6): **inferred**, takes the strip's vertex records
+  (register 1 from register 0x1f, register 8 at +0x1d0) and the count in register 0x19 as input and produces one table entry
+  per triangle; it combines by XOR (unit-1 0x56, 0xccf) the record flag words with engine word 0x1d before the loop, and its output
+  successor for the screen stage is `mClipTriUserAndFrustum` (0xed52, staged 0xcc6, stored 0xcda).
+- `umo_DecomposeTriangleStrip`: **inferred**, second name of the strip decomposer at 0xcc6 (`udecompose.s` line 20): it
+  consumes the strip records and produces the triangle table at 0x8bb0, continuing through successor word 0xb (0xcc9).
+- `lDE2` (`udecompose.s` lines 32-40, at 0xcd1): **inferred**, the strip loop: a one-word relative transfer on `cc` 0x11
+  steps register 1 by one record (F = 0x27) and repeats, while its delay words store three record addresses (offsets 1-3,
+  0xcd3-0xcd6) and the combined flag word (offset 4, OR at 0xcd8) of the current triangle and advance register 7 under
+  condition 5 (0xcd7).
+- `mmo_DecomposeTriangles` (`udecompose.s` lines 49-81, at 0xcdb): **inferred**, independent triangles: its input is the
+  batch in groups of three records, its output one table entry per group, and it combines the flag words, ANDed with the edge masks at
+  engine words 0xbe-0xc0 (0xce5-0xceb) and the constant 0xc0000000 staged at 0xce3; successor word 0x17 again gets
+  `mClipTriUserAndFrustum` (0xcdd, 0xcf9).
+- `umo_DecomposeTriangles`: **inferred**, alias at 0xcdb (`udecompose.s` line 49) of the independent-triangle
+  decomposer, which reads the records three at a time and produces the 0x8bb0 table.
+- `lDE9` (`udecompose.s` lines 60-71, at 0xce5): **inferred**, its loop: per triangle it ANDs the three edge-flag words with
+  the masks at 0xbe and 0xbf and ORs in 0xc0 (0xce5-0xceb), selects the next record address by condition 4 or 5 (0xce7-0xcea,
+  +0x1d4 for the next record) and repeats through the relative transfer at 0xcf0 (immediate -0xb).
+- `mmo_DecomposeLineStrip` (`udecompose.s` lines 90-113, at 0xcfa): **inferred**, takes the line-strip records and the
+  count (register 0x19 at 0xcfb) as input and produces a table entry per segment, whose flag word combines the endpoints' edge flags (0xd0d); it stages 0x20000000 (0xcfa) as a flag bit
+  and `mClipLinUserAndFrustum` (0xea1c, 0xd01), the line clipper that becomes successor word 0x17, and continues through word
+  0xc (0xcfd).
+- `umo_DecomposeLineStrip`: **inferred**, second name at 0xcfa (`udecompose.s` line 90) for the segment decomposer; its
+  output is the segment table at 0x8bb0 and its successor word 0xc.
+- `lDE3` (`udecompose.s` lines 102-111, at 0xd05): **inferred**, the segment loop: per pass it clears offset 2 of the entry
+  (0xd05), stores the two endpoint records and the combined flag word (0xd08-0xd0d) and steps register 1 by one record under
+  the relative transfer at 0xd06.
+- `mmo_DecomposePoints` (`udecompose.s` lines 120-143, at 0xd10): **inferred**, takes the point records (register 1 from
+  register 0x10) and the count as input; it copies the count into register 0x12 (0xd11), selects two records per pass, and produces one table entry per
+  point, staging `mClipPntUserAndFrustum` (0xe75e) for successor word 0x17 (0xd24) and continuing through word 0xc (0xd14).
+- `umo_DecomposePoints`: **inferred**, the point decomposer under its second name (0xd10, `udecompose.s` line 120): one
+  table entry per input record, then the point clipper as the screen stage's successor.
+- `lDE6` (`udecompose.s` lines 131-141, at 0xd19): **inferred**, the point loop, two points per pass: it clears offsets 2
+  and 0x11 of the entries (0xd19-0xd1a), stores both record addresses (0xd1d-0xd1f), advances register 1 by 0x3a8 (two
+  records, 0xd1c) and repeats through the relative transfer at 0xd1b.
+- `mmo_DecomposeTriangleFan` (`udecompose.s` lines 150-173, at 0xd25): **inferred**, the fan: its inputs are the centre
+  record (register 8, 0xd25) and the following records, and it produces a triangle entry for each pair of consecutive outer
+  vertices together with the centre, the flag word that combines the centre's edge-flag word by OR (0xd29-0xd2b); its successor is word
+  0xb and the screen stage's is `mClipTriUserAndFrustum` (0xd27).
+- `umo_DecomposeTriangleFan`: **inferred**, alias at 0xd25 (`udecompose.s` line 150): it takes the centre and outer
+  records and produces centre-anchored entries in the 0x8bb0 table.
+- `lDE7` (`udecompose.s` lines 162-170, at 0xd30): **inferred**, the fan loop: each pass stores the centre (register 8) and
+  the current outer record into the entry (0xd30, 0xd33-0xd34), ORs the edge flags (0xd35), selects the next entry and
+  record by condition 4 or 5 (0xd36-0xd38) and repeats through the relative transfer at 0xd31.

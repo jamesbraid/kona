@@ -1898,21 +1898,21 @@ ge.u	label	0x00000c76	mmo_FaceCull		located	ucode/ge_handlers.md#uculls	ucull.s
 ge.u	label	0x00000c76	umo_FaceCull		located	ucode/ge_handlers.md#uculls	ucull.s
 ge.u	label	0x00000c87	lCU1		located	ucode/ge_handlers.md#uculls	ucull.s
 ge.u	label	0x00000cbd	lCU2		located	ucode/ge_handlers.md#uculls	ucull.s
-ge.u	label	0x00000cc6	mmo_DecomposeTriangleStrip		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000cc6	umo_DecomposeTriangleStrip		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000cd1	lDE2		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000cdb	mmo_DecomposeTriangles		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000cdb	umo_DecomposeTriangles		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000ce5	lDE9		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000cfa	mmo_DecomposeLineStrip		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000cfa	umo_DecomposeLineStrip		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000d05	lDE3		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000d10	mmo_DecomposePoints		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000d10	umo_DecomposePoints		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000d19	lDE6		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000d25	mmo_DecomposeTriangleFan		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000d25	umo_DecomposeTriangleFan		located	ucode/ge_handlers.md#udecomposes	udecompose.s
-ge.u	label	0x00000d30	lDE7		located	ucode/ge_handlers.md#udecomposes	udecompose.s
+ge.u	label	0x00000cc6	mmo_DecomposeTriangleStrip		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000cc6	umo_DecomposeTriangleStrip		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000cd1	lDE2		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000cdb	mmo_DecomposeTriangles		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000cdb	umo_DecomposeTriangles		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000ce5	lDE9		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000cfa	mmo_DecomposeLineStrip		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000cfa	umo_DecomposeLineStrip		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000d05	lDE3		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000d10	mmo_DecomposePoints		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000d10	umo_DecomposePoints		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000d19	lDE6		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000d25	mmo_DecomposeTriangleFan		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000d25	umo_DecomposeTriangleFan		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
+ge.u	label	0x00000d30	lDE7		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
 ge.u	label	0x00000d3b	umo_DummyDecompose		located	ucode/ge_handlers.md#udecompose2s	udecompose2.s
 ge.u	label	0x00000d4a	umo_DecomposeSimpleTriangleStrip		located	ucode/ge_handlers.md#udecompose2s	udecompose2.s
 ge.u	label	0x00000d57	lDE4		located	ucode/ge_handlers.md#udecompose2s	udecompose2.s
