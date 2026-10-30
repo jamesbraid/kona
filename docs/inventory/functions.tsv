@@ -16519,8 +16519,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda39cc4	100	__glim_Norma
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda39d28	104	__glim_TexCoordPointer	dynsym+mdebug	2856a0a3e132		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda39d90	104	__glim_VertexPointer	dynsym+mdebug	0fba4e748e73		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda39df8	140	__glim_InterleavedTextureCoordSetsSGIS	dynsym+mdebug	ac6c408cc3a4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda39e90	72	__glClipCheckAll2	dynsym+mdebug	004adb81b004		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda39ed8	64	__glClipCheckAll3	dynsym+mdebug	8d5f3b220ac3		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda39e90	72	__glClipCheckAll2	dynsym+mdebug	004adb81b004		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda39ed8	64	__glClipCheckAll3	dynsym+mdebug	8d5f3b220ac3		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda39f18	464	__glClipCheckAll	dynsym+mdebug	0ad299fd9c17		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3a0e8	624	__glGenericPickVertexProcs	dynsym+mdebug	22dfe773fee9		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3a360	276	__glPickMatrixType	dynsym+mdebug	707e280ebabd		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -22055,8 +22055,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda342f0	88	__glim_Norm
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda34350	88	__glim_TexCoordPointer	dwarf+dynsym	1d31e8f7fdd9		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda343b0	88	__glim_VertexPointer	dwarf+dynsym	c31c940202d7		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda34410	136	__glim_InterleavedTextureCoordSetsSGIS	dwarf+dynsym	bb78081a2393		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda344a0	72	__glClipCheckAll2	dwarf+dynsym	4b6e094f0d35		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda344f0	64	__glClipCheckAll3	dwarf+dynsym	a1271e9f7bf2		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda344a0	72	__glClipCheckAll2	dwarf+dynsym	4b6e094f0d35		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda344f0	64	__glClipCheckAll3	dwarf+dynsym	a1271e9f7bf2		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda34530	380	__glClipCheckAll	dwarf+dynsym	e39d4e15d872		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda346b0	572	__glGenericPickVertexProcs	dwarf+dynsym	6e4ac42e02cf		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda348f0	276	__glPickMatrixType	dwarf+dynsym	67bc290426ea		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -27635,8 +27635,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99370	88	__glim_Norm
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e993d0	88	__glim_TexCoordPointer	dwarf+dynsym	d17e67716573		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99430	88	__glim_VertexPointer	dwarf+dynsym	93d9721c3157		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99490	136	__glim_InterleavedTextureCoordSetsSGIS	dwarf+dynsym	41b783b9beb0		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99520	72	__glClipCheckAll2	dwarf+dynsym	e7c7b8790723		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99570	64	__glClipCheckAll3	dwarf+dynsym	50a01c9d7059		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99520	72	__glClipCheckAll2	dwarf+dynsym	e7c7b8790723		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99570	64	__glClipCheckAll3	dwarf+dynsym	50a01c9d7059		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e995b0	380	__glClipCheckAll	dwarf+dynsym	4abff33a8719		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99730	584	__glGenericPickVertexProcs	dwarf+dynsym	da1be3709fa3		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99980	276	__glPickMatrixType	dwarf+dynsym	67bc290426ea		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -33218,8 +33218,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda39cc4	100	__glim_Norma
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda39d28	104	__glim_TexCoordPointer	dynsym+mdebug	2856a0a3e132		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda39d90	104	__glim_VertexPointer	dynsym+mdebug	0fba4e748e73		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda39df8	140	__glim_InterleavedTextureCoordSetsSGIS	dynsym+mdebug	ac6c408cc3a4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda39e90	72	__glClipCheckAll2	dynsym+mdebug	004adb81b004		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda39ed8	64	__glClipCheckAll3	dynsym+mdebug	8d5f3b220ac3		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda39e90	72	__glClipCheckAll2	dynsym+mdebug	004adb81b004		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda39ed8	64	__glClipCheckAll3	dynsym+mdebug	8d5f3b220ac3		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda39f18	464	__glClipCheckAll	dynsym+mdebug	0ad299fd9c17		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3a0e8	624	__glGenericPickVertexProcs	dynsym+mdebug	22dfe773fee9		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3a360	276	__glPickMatrixType	dynsym+mdebug	707e280ebabd		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -38754,8 +38754,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda342f0	88	__glim_Norm
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda34350	88	__glim_TexCoordPointer	dwarf+dynsym	1d31e8f7fdd9		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda343b0	88	__glim_VertexPointer	dwarf+dynsym	c31c940202d7		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda34410	136	__glim_InterleavedTextureCoordSetsSGIS	dwarf+dynsym	bb78081a2393		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda344a0	72	__glClipCheckAll2	dwarf+dynsym	4b6e094f0d35		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda344f0	64	__glClipCheckAll3	dwarf+dynsym	a1271e9f7bf2		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda344a0	72	__glClipCheckAll2	dwarf+dynsym	4b6e094f0d35		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda344f0	64	__glClipCheckAll3	dwarf+dynsym	a1271e9f7bf2		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda34530	380	__glClipCheckAll	dwarf+dynsym	e39d4e15d872		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda346b0	572	__glGenericPickVertexProcs	dwarf+dynsym	6e4ac42e02cf		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda348f0	276	__glPickMatrixType	dwarf+dynsym	67bc290426ea		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -44334,8 +44334,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279370	88	__glim_Norm
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22793d0	88	__glim_TexCoordPointer	dwarf+dynsym	d17e67716573		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279430	88	__glim_VertexPointer	dwarf+dynsym	93d9721c3157		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279490	136	__glim_InterleavedTextureCoordSetsSGIS	dwarf+dynsym	41b783b9beb0		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279520	72	__glClipCheckAll2	dwarf+dynsym	e7c7b8790723		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279570	64	__glClipCheckAll3	dwarf+dynsym	50a01c9d7059		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279520	72	__glClipCheckAll2	dwarf+dynsym	e7c7b8790723		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279570	64	__glClipCheckAll3	dwarf+dynsym	50a01c9d7059		in	understood	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22795b0	380	__glClipCheckAll	dwarf+dynsym	4abff33a8719		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279730	584	__glGenericPickVertexProcs	dwarf+dynsym	da1be3709fa3		in	located	docs/sample-implementation.md#so_vertexc	so_vertex.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279980	276	__glPickMatrixType	dwarf+dynsym	67bc290426ea		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
