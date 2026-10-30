@@ -199,7 +199,9 @@ def emit(out):
     w('# SEED: the seed result unit 2 reads through selector 0, the seed of the')
     w('# operand two words back (ESTABLISHED, ge_isa.md "Unit-2 and seed-unit')
     w('# operands"); SEED0 and SEED1 hold this word\'s and the last word\'s seeds.')
-    w('# LR: return address the hardware keeps (INFERRED stack, modelled as one register).')
+    w('# LR: the transfer-target register a call writes and a return reads. Nested')
+    w('# calls keep it in a software stack in CRAM (r95 = 7 saves it, r95 = 2')
+    w('# reloads it; INFERRED, ge_isa.md "Calls, returns and the end of a command").')
     w('# NEXTCMD: the next handler the dispatch hardware supplies (INFERRED).')
     w('define register offset=0x200 size=4 [ SEED LR NEXTCMD PC SP SEED0 SEED1 SDOP ];')
     w('# Per-word scratch: operands, unit results, address-unit result, store data.')
@@ -547,7 +549,11 @@ def emit(out):
     w('# holds the same value in every lane). r95 = 8, 9 and 0xa send lane 0, 1 or')
     w('# 2\'s register to ERAM, addressed as the r95 = 0x17 reads (INFERRED: err.S')
     w('# writes the error word it read with r95 = 0x17; mgesi_PrintNum saves the')
-    w('# three lanes at 0x17d7-0x17d9). r95 = 7 and 0xb are left out.')
+    w('# three lanes at 0x17d7-0x17d9). r95 = 7 sends the transfer-target register')
+    w('# LR to CRAM the same way (INFERRED: all 32 production stores address')
+    w('# register 0x17 plus 1, the link stack mGL_REGS_Initialize starts at 0x1e4;')
+    w('# ge_isa.md "Calls, returns and the end of a command"). r95 = 0xb occurs in')
+    w('# no shipped word and is left out.')
     w('ST1R: is fC=0x1e & fimm { export *[cram]:4 fimm; }')
     w('ST1R: is fC=0x1b & fF=0x3f & fimm { export *[cram]:4 fimm; }')
     w('ST1R: is fCr & fF { local a:4 = fCr + (0x1f - fF); local b:2 = a:2; export *[cram]:4 b; }')
@@ -559,7 +565,15 @@ def emit(out):
     for n, sv in ((8, 'SV9'), (9, 'SV9_1'), (0xa, 'SV9_2')):
         w('ST1: is f211=3 & f95=%d & EA { EA = %s; }' % (n, sv))
         w('ST1: is f211=2 & f95=%d & EA { local p:1 = store_predicate(); if (p == 0) goto <skip>; EA = %s; <skip> }' % (n, sv))
+    w('ST1: is f211=3 & f95=7 & ST1A { ST1A = LR; }')
+    w('ST1: is f211=2 & f95=7 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; ST1A = LR; <skip> }')
     w('ST1: is epsilon { }')
+    w('# r95 = 2 reloads LR from CRAM, addressed as the stores above (INFERRED: 27')
+    w('# of the 32 link saves are read back with r95 = 2 at register 0x17 before')
+    w('# the return, and the vertex path reads its successor word with it,')
+    w('# ge_compute.md "How the vertex path is chained").')
+    w('LRD: is f95=2 & ST1A { LR = ST1A; }')
+    w('LRD: is epsilon { }')
     w('')
     w('# Flags: r220 sets the low nibble from unit 1, r221 the high nibble from')
     w('# unit 2 (INFERRED split by unit, ge_ops.md).')
@@ -593,7 +607,7 @@ def emit(out):
     def each(t):
         return [lane_name(t, l) for l in L]
     pat = ' & '.join(sum((each(t) for t in ('OPS', 'U1S', 'U2S', 'SDS', 'AUS', 'WQ', 'WP', 'WG',
-                                             'ST3', 'ST5', 'MV')), []) + ['FLA', 'ST1', 'FL1', 'FL2'])
+                                             'ST3', 'ST5', 'MV')), []) + ['FLA', 'ST1', 'LRD', 'FL1', 'FL2'])
     w('BODY: is %s {' % pat)
     w('  flagshift();')
     for t in ('OPS', 'U1S', 'U2S', 'SDS', 'AUS'):
@@ -602,6 +616,7 @@ def emit(out):
     w('  ' + ' '.join('build %s;' % x for x in each('MV')))
     for t in ('WQ', 'WP', 'WG'):
         w('  ' + ' '.join('build %s;' % x for x in each(t)))
+    w('  build LRD;')
     w('  build FLA; build FL1; build FL2;')
     w('}')
     w('')

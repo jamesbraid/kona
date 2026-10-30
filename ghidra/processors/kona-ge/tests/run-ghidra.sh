@@ -41,7 +41,7 @@ headless() {
 headless -import ucode/KONA/ge.u -loader BinaryLoader \
     -processor KONA-GE:BE:32:default -preScript KonaGEImport.java \
     -postScript DumpFunctions.java "$OUT/prod.functions" \
-    -postScript DecompileAt.java "$OUT/decomp" 0x1633 0x0e62 0x0eb0 \
+    -postScript DecompileAt.java "$OUT/decomp" 0x1633 0x0e62 0x0eb0 0xf1dc \
     -postScript DumpListing.java "$OUT/prod.listing"
 
 # The diagnostic program that irsaudit's instruction test runs.

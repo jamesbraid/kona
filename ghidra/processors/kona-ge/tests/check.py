@@ -226,6 +226,12 @@ def test_d():
         '0eb0': [('float multiplies', r'[\w\]\)]\s\*\s[\w\(*]', 64),
                  ('float adds', r'\s\+\s', 24),
                  ('stores to C + 0 to 0xf', r'(?:\*in_AR10|in_AR10\[(?:0x[0-9a-f]+|\d+)\])\s=\s', 16)],
+        # mClipTriFlush: 0xf1e4 loads the transfer-target register from
+        # control word 0xe (r95 = 2) and 0xf1e6 pushes it on the link stack,
+        # the word above register 0x17 (r95 = 7; ge_isa.md, "Calls, returns
+        # and the end of a command").
+        'f1dc': [('successor word pushed at register 0x17 plus 1',
+                  r'\(in_AR23 \+ 1\) = DAT_cram_000e;', 1)],
     }
     for k, cs in checks.items():
         p = os.path.join(OUT, 'decomp', k + '.c')
