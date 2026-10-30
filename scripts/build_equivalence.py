@@ -169,7 +169,11 @@ def fingerprint(insns, got, byaddr, addr, size, step):
             if kind and kind[0] == 'got':
                 callees.append(got.get(kind[1], 'indirect'))
             elif kind and kind[0] == 'gotlo':
-                callees.append('indirect')
+                # a local routine: the slot holds a page address, the addiu adds the rest
+                page = got.get(kind[1], '')
+                m = re.match(r'^sub_([0-9a-f]+)$', page)
+                t = int(m.group(1), 16) + kind[2] if m else None
+                callees.append(byaddr.get(t) or ('sub_%x' % t if t else 'indirect'))
             else:
                 callees.append('indirect')
     return callees, stores, sorted(consts)
