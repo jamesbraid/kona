@@ -16100,16 +16100,16 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda08224	200	__glFreeLUTC
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda082ec	948	findEntry	mdebug	3bd892df1c8a		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda08384	712	__glCreateSpecLUT	dynsym+mdebug	2c30eac0bf66		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda0864c	84	__glFreeSpecLUT	dynsym+mdebug	f237c57d6710		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda086a0	52	Fetch	mdebug	f776e0737c2f		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda086d4	76	Store	mdebug	0b320376c277		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda08720	72	TestFunc	mdebug	a2eccdb7bd74		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda08768	68	FailOp	mdebug	e0def6782714		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda087ac	68	PassDepthFailOp	mdebug	0c0416ff8214		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda087f0	572	DepthPassOp	mdebug	c48af8651309		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda086a0	52	Fetch	mdebug	f776e0737c2f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda086d4	76	Store	mdebug	0b320376c277		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda08720	72	TestFunc	mdebug	a2eccdb7bd74		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda08768	68	FailOp	mdebug	e0def6782714		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda087ac	68	PassDepthFailOp	mdebug	0c0416ff8214		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda087f0	572	DepthPassOp	mdebug	c48af8651309		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda08a2c	328	buildOpTable	mdebug	dec140e12616		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda08b74	18132	FreeStencilBuf	mdebug	a4eea1ad786b		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda08c10	720	__glValidateStencil	dynsym+mdebug	96b90ff1f699		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda08f28	176	__glInitStencil8	dynsym+mdebug	afdd813c8411		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda08f28	176	__glInitStencil8	dynsym+mdebug	afdd813c8411		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda08fe0	368	__glDoStore_ASD	dynsym+mdebug	150e19cf1079		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda09150	304	__glDoStore_AS	dynsym+mdebug	8087a01f39f0		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda09280	244	__glDoStore_AD	dynsym+mdebug	cac5d68a0721		in	located	docs/sample-implementation.md#so_storec	so_store.c
@@ -21636,16 +21636,16 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda05110	316	__glFreeLU
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05250	140	findEntry	dwarf+funcnames	a2426a14ab02		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda052e0	744	__glCreateSpecLUT	dwarf+dynsym	f132baa76629		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda055d0	80	__glFreeSpecLUT	dwarf+dynsym	f63f9bb5e7ce		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05620	52	Fetch	dwarf+funcnames	01f08e9dbc32		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05660	76	Store	dwarf+funcnames	77d493fdc792		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda056b0	72	TestFunc	dwarf+funcnames	65c6cd0aca35		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05700	68	FailOp	dwarf+funcnames	924d2eace67d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05750	68	PassDepthFailOp	dwarf+funcnames	db2fd0714dd6		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda057a0	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05620	52	Fetch	dwarf+funcnames	01f08e9dbc32		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05660	76	Store	dwarf+funcnames	77d493fdc792		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda056b0	72	TestFunc	dwarf+funcnames	65c6cd0aca35		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05700	68	FailOp	dwarf+funcnames	924d2eace67d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05750	68	PassDepthFailOp	dwarf+funcnames	db2fd0714dd6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda057a0	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05bc0	260	buildOpTable	dwarf+funcnames	299507cdb36d		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05cd0	144	FreeStencilBuf	dwarf+funcnames	abc7307fcef7		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda05d60	656	__glValidateStencil	dwarf+dynsym	861f97478bdb		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda06030	180	__glInitStencil8	dwarf+dynsym	3e3686d6f12f		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda06030	180	__glInitStencil8	dwarf+dynsym	3e3686d6f12f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda060f0	336	__glDoStore_ASD	dwarf+dynsym	c814b478c246		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda06240	272	__glDoStore_AS	dwarf+dynsym	c802d1dc2b27		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda06350	208	__glDoStore_AD	dwarf+dynsym	74341ace322a		in	located	docs/sample-implementation.md#so_storec	so_store.c
@@ -27216,16 +27216,16 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e69580	332	__glFreeLU
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e696d0	140	findEntry	dwarf	36ef1284aebe		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e69760	764	__glCreateSpecLUT	dwarf+dynsym	9e514c4e8413		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e69a60	80	__glFreeSpecLUT	dwarf+dynsym	d2f604ae3355		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69ab0	52	Fetch	dwarf	d8e802136a67		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69af0	76	Store	dwarf	71debcc76647		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69b40	72	TestFunc	dwarf	1031f713758e		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69b90	68	FailOp	dwarf	9c4d3cabe4e1		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69be0	68	PassDepthFailOp	dwarf	eb62147c5e5f		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69c30	68	DepthPassOp	dwarf	78816bb37fa5		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69ab0	52	Fetch	dwarf	d8e802136a67		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69af0	76	Store	dwarf	71debcc76647		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69b40	72	TestFunc	dwarf	1031f713758e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69b90	68	FailOp	dwarf	9c4d3cabe4e1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69be0	68	PassDepthFailOp	dwarf	eb62147c5e5f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e69c30	68	DepthPassOp	dwarf	78816bb37fa5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e6a050	260	buildOpTable	dwarf	8e8c38f09399		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e6a160	144	FreeStencilBuf	dwarf	39cdfb0afcea		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e6a1f0	660	__glValidateStencil	dwarf+dynsym	998024a35e7f		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e6a4d0	180	__glInitStencil8	dwarf+dynsym	46f2e675a629		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e6a4d0	180	__glInitStencil8	dwarf+dynsym	46f2e675a629		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e6a590	364	__glDoStore_ASD	dwarf+dynsym	e241a2ea6083		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e6a700	292	__glDoStore_AS	dwarf+dynsym	59e030a5724c		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e6a830	224	__glDoStore_AD	dwarf+dynsym	ad01b68ca709		in	located	docs/sample-implementation.md#so_storec	so_store.c
@@ -32799,16 +32799,16 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda08224	200	__glFreeLUTC
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda082ec	948	findEntry	mdebug	3bd892df1c8a		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda08384	712	__glCreateSpecLUT	dynsym+mdebug	2c30eac0bf66		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda0864c	84	__glFreeSpecLUT	dynsym+mdebug	f237c57d6710		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda086a0	52	Fetch	mdebug	f776e0737c2f		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda086d4	76	Store	mdebug	0b320376c277		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda08720	72	TestFunc	mdebug	a2eccdb7bd74		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda08768	68	FailOp	mdebug	e0def6782714		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda087ac	68	PassDepthFailOp	mdebug	0c0416ff8214		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda087f0	572	DepthPassOp	mdebug	c48af8651309		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda086a0	52	Fetch	mdebug	f776e0737c2f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda086d4	76	Store	mdebug	0b320376c277		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda08720	72	TestFunc	mdebug	a2eccdb7bd74		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda08768	68	FailOp	mdebug	e0def6782714		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda087ac	68	PassDepthFailOp	mdebug	0c0416ff8214		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda087f0	572	DepthPassOp	mdebug	c48af8651309		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda08a2c	328	buildOpTable	mdebug	dec140e12616		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda08b74	18132	FreeStencilBuf	mdebug	a4eea1ad786b		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda08c10	720	__glValidateStencil	dynsym+mdebug	96b90ff1f699		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda08f28	176	__glInitStencil8	dynsym+mdebug	afdd813c8411		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda08f28	176	__glInitStencil8	dynsym+mdebug	afdd813c8411		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda08fe0	368	__glDoStore_ASD	dynsym+mdebug	150e19cf1079		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda09150	304	__glDoStore_AS	dynsym+mdebug	8087a01f39f0		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda09280	244	__glDoStore_AD	dynsym+mdebug	cac5d68a0721		in	located	docs/sample-implementation.md#so_storec	so_store.c
@@ -38335,16 +38335,16 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda05110	316	__glFreeLU
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05250	140	findEntry	dwarf+funcnames	a2426a14ab02		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda052e0	744	__glCreateSpecLUT	dwarf+dynsym	f132baa76629		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda055d0	80	__glFreeSpecLUT	dwarf+dynsym	f63f9bb5e7ce		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05620	52	Fetch	dwarf+funcnames	01f08e9dbc32		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05660	76	Store	dwarf+funcnames	77d493fdc792		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda056b0	72	TestFunc	dwarf+funcnames	65c6cd0aca35		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05700	68	FailOp	dwarf+funcnames	924d2eace67d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05750	68	PassDepthFailOp	dwarf+funcnames	db2fd0714dd6		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda057a0	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05620	52	Fetch	dwarf+funcnames	01f08e9dbc32		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05660	76	Store	dwarf+funcnames	77d493fdc792		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda056b0	72	TestFunc	dwarf+funcnames	65c6cd0aca35		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05700	68	FailOp	dwarf+funcnames	924d2eace67d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05750	68	PassDepthFailOp	dwarf+funcnames	db2fd0714dd6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda057a0	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05bc0	260	buildOpTable	dwarf+funcnames	299507cdb36d		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05cd0	144	FreeStencilBuf	dwarf+funcnames	abc7307fcef7		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda05d60	656	__glValidateStencil	dwarf+dynsym	861f97478bdb		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda06030	180	__glInitStencil8	dwarf+dynsym	3e3686d6f12f		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda06030	180	__glInitStencil8	dwarf+dynsym	3e3686d6f12f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda060f0	336	__glDoStore_ASD	dwarf+dynsym	c814b478c246		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda06240	272	__glDoStore_AS	dwarf+dynsym	c802d1dc2b27		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda06350	208	__glDoStore_AD	dwarf+dynsym	74341ace322a		in	located	docs/sample-implementation.md#so_storec	so_store.c
@@ -43915,16 +43915,16 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2249580	332	__glFreeLU
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22496d0	140	findEntry	dwarf	36ef1284aebe		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2249760	764	__glCreateSpecLUT	dwarf+dynsym	9e514c4e8413		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2249a60	80	__glFreeSpecLUT	dwarf+dynsym	d2f604ae3355		in	located	docs/sample-implementation.md#so_speccachec	so_speccache.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249ab0	52	Fetch	dwarf	d8e802136a67		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249af0	76	Store	dwarf	71debcc76647		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249b40	72	TestFunc	dwarf	1031f713758e		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249b90	68	FailOp	dwarf	9c4d3cabe4e1		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249be0	68	PassDepthFailOp	dwarf	eb62147c5e5f		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249c30	68	DepthPassOp	dwarf	78816bb37fa5		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249ab0	52	Fetch	dwarf	d8e802136a67		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249af0	76	Store	dwarf	71debcc76647		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249b40	72	TestFunc	dwarf	1031f713758e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249b90	68	FailOp	dwarf	9c4d3cabe4e1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249be0	68	PassDepthFailOp	dwarf	eb62147c5e5f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2249c30	68	DepthPassOp	dwarf	78816bb37fa5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x224a050	260	buildOpTable	dwarf	8e8c38f09399		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x224a160	144	FreeStencilBuf	dwarf	39cdfb0afcea		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x224a1f0	660	__glValidateStencil	dwarf+dynsym	998024a35e7f		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x224a4d0	180	__glInitStencil8	dwarf+dynsym	46f2e675a629		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x224a4d0	180	__glInitStencil8	dwarf+dynsym	46f2e675a629		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x224a590	364	__glDoStore_ASD	dwarf+dynsym	e241a2ea6083		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x224a700	292	__glDoStore_AS	dwarf+dynsym	59e030a5724c		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x224a830	224	__glDoStore_AD	dwarf+dynsym	ad01b68ca709		in	located	docs/sample-implementation.md#so_storec	so_store.c
