@@ -1,79 +1,79 @@
 binary	group	role	kind	abi	bytes	sha256	copies	functions	access_sites	unresolved_sites	status	doc	section
 usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/cpu/sysgen/IP27boot/gfx.o	kernel-shared	shared-kernel	object	n64	53816	28186f9362dcd19e		62	0	0	understood	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	17812	70f668a5a117d389		19	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	5844	d56b66fd1e680c4a		1	0	0	understood	docs/kernel.md#vga-pipe-discovery-ip35-klconfigo-prom_has_vga_support-find_vga_pipe-find_vga_noprom_pipe-klcheck_vga	VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53828	690a5f9776008c1e		62	0	0	understood	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx_debug.o)	kernel-shared	shared-kernel	object	n64	1220	5db884a0a151483d	usr/cpu/sysgen/IP35boot/gfxs.a(gfx_debug.o)	0	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	8948	b7b1cb0860460856		18	0	0	understood	docs/kernel.md#stubs-for-a-kernel-without-graphics-gfxstubsa	Stubs for a kernel without graphics (`gfxstubs.a`)
+usr/cpu/sysgen/IP27boot/gfx.o	kernel-shared	shared-kernel	object	n64	53816	28186f9362dcd19e		62	0	0	named-only	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	17812	70f668a5a117d389		19	0	0	named-only	docs/kernel-functions.md#hub-flow-control-gfxsagfx_flowo	Hub flow control: `gfxs.a(gfx_flow.o)`
+usr/cpu/sysgen/IP27boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	5844	d56b66fd1e680c4a		1	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53828	690a5f9776008c1e		62	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx_debug.o)	kernel-shared	shared-kernel	object	n64	1220	5db884a0a151483d	usr/cpu/sysgen/IP35boot/gfxs.a(gfx_debug.o)	0	0	0	named-only	docs/kernel.md#function-reference	Function reference
+usr/cpu/sysgen/IP27boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	8948	b7b1cb0860460856		18	0	0	named-only	docs/kernel-functions.md#stubs-for-a-kernel-without-graphics-gfxstubsagfxstubso	Stubs for a kernel without graphics: `gfxstubs.a(gfxstubs.o)`
 usr/cpu/sysgen/IP27boot/kona.a(gfx_io_space.o)	kernel	board-kernel	object	n64	9460	314b148a33451dbe	usr/cpu/sysgen/IP35boot/kona.a(gfx_io_space.o)	7	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_attach.o)	kernel	board-kernel	object	n64	7524	cf619b725721e6e5		3	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	kernel	board-kernel	object	n64	19828	4239f938c0f114fa		7	93	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o)	kernel	board-kernel	object	n64	9844	4428f5c5598b9552		3	16	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_ddrn.o)	kernel	board-kernel	object	n64	10724	95ced6ae7fc81631		3	10	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_debug.o)	kernel	board-kernel	object	n64	5508	e4bbcdd5c75df378		1	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26372	b0ab66a0d3a156dc		23	51	0	named-only	docs/coverage.md#hip	HIP
-usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit.o)	kernel	board-kernel	object	n64	12468	4fc1b6ff52659563		6	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	kernel	board-kernel	object	n64	15412	0704a4d34a99aa6d		14	26	1	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_frs.o)	kernel	board-kernel	object	n64	5028	cd4ba938d0088211		2	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_genlock.o)	kernel	board-kernel	object	n64	4596	f499a53a375b8f70		1	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_geprint.o)	kernel	board-kernel	object	n64	9156	7afaa08bdce4644c	usr/cpu/sysgen/IP35boot/kona.a(kona_geprint.o)	1	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_info.o)	kernel	board-kernel	object	n64	4596	3e106b8c81a9151e		1	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o)	kernel	board-kernel	object	n64	9268	fee9fb4ddac8a8ab		2	10	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	kernel	board-kernel	object	n64	14452	2376f1621c9b3847		1	0	0	understood	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
-usr/cpu/sysgen/IP27boot/kona.a(kona_map.o)	kernel	board-kernel	object	n64	9044	b100da141877221b		3	4	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	kernel	board-kernel	object	n64	32148	5993b8175eccfe31		23	70	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	kernel	board-kernel	object	n64	24468	9128bbfda564e180		13	58	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_sched.o)	kernel	board-kernel	object	n64	6692	4f35241bb7b9a26b		2	5	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_setup.o)	kernel	board-kernel	object	n64	8644	e167dfe000ec976d		2	20	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_share.o)	kernel	board-kernel	object	n64	5636	176343fd52fbd3d3		2	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4372	96443c9eb2c62e15		1	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12836	592bba0c041e0d85		10	2	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26916	9dba4b43c75421d3		21	98	1	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24756	18136860332faa57		19	0	0	understood	docs/kernel.md#textport-flow-control-and-pipe-discovery-kona_tporto-gfx_flowo-klconfigo	Textport, flow control and pipe discovery (`kona_tport.o`, `gfx_flow.o`, `klconfig.o`)
-usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22228	6601b45a863a2be9		9	24	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8148	3b5293ce5fd89f64		3	4	0	named-only	docs/coverage.md#hip	HIP
-usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7492	a1c62957a81158d7		5	2	3	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/rrm.o	kernel-shared	shared-kernel	object	n64	63984	6da3783f920cc0ad		72	0	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/cpu/sysgen/IP27boot/kona.a(kona_attach.o)	kernel	board-kernel	object	n64	7524	cf619b725721e6e5		3	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	kernel	board-kernel	object	n64	19828	4239f938c0f114fa		7	93	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o)	kernel	board-kernel	object	n64	9844	4428f5c5598b9552		3	16	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_ddrn.o)	kernel	board-kernel	object	n64	10724	95ced6ae7fc81631		3	10	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_debug.o)	kernel	board-kernel	object	n64	5508	e4bbcdd5c75df378		1	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26372	b0ab66a0d3a156dc		23	51	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit.o)	kernel	board-kernel	object	n64	12468	4fc1b6ff52659563		6	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	kernel	board-kernel	object	n64	15412	0704a4d34a99aa6d		14	26	1	named-only	docs/kernel-functions.md#flow-control-kona_flowo	Flow control: `kona_flow.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_frs.o)	kernel	board-kernel	object	n64	5028	cd4ba938d0088211		2	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_genlock.o)	kernel	board-kernel	object	n64	4596	f499a53a375b8f70		1	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_geprint.o)	kernel	board-kernel	object	n64	9156	7afaa08bdce4644c	usr/cpu/sysgen/IP35boot/kona.a(kona_geprint.o)	1	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_info.o)	kernel	board-kernel	object	n64	4596	3e106b8c81a9151e		1	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o)	kernel	board-kernel	object	n64	9268	fee9fb4ddac8a8ab		2	10	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	kernel	board-kernel	object	n64	14452	2376f1621c9b3847		1	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_map.o)	kernel	board-kernel	object	n64	9044	b100da141877221b		3	4	0	named-only	docs/kernel-functions.md#attach-detach-and-mapping-kona_attacho-kona_mapo	Attach, detach and mapping: `kona_attach.o`, `kona_map.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	kernel	board-kernel	object	n64	32148	5993b8175eccfe31		23	70	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	kernel	board-kernel	object	n64	24468	9128bbfda564e180		13	58	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_sched.o)	kernel	board-kernel	object	n64	6692	4f35241bb7b9a26b		2	5	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_setup.o)	kernel	board-kernel	object	n64	8644	e167dfe000ec976d		2	20	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_share.o)	kernel	board-kernel	object	n64	5636	176343fd52fbd3d3		2	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4372	96443c9eb2c62e15		1	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12836	592bba0c041e0d85		10	2	0	named-only	docs/kernel-functions.md#driver-timeouts-kona_timeouto	Driver timeouts: `kona_timeout.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26916	9dba4b43c75421d3		21	98	1	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24756	18136860332faa57		19	0	0	named-only	docs/kernel-functions.md#kernel-textport-kona_tporto	Kernel textport: `kona_tport.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22228	6601b45a863a2be9		9	24	0	named-only	docs/kernel-functions.md#attach-and-crosstalk-set-up-kona_edtinit_hip2o	Attach and Crosstalk set-up: `kona_edtinit_hip2.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8148	3b5293ce5fd89f64		3	4	0	named-only	docs/kernel-functions.md#interrupt-handlers-kona_intro-kona_intr_hip2o	Interrupt handlers: `kona_intr.o`, `kona_intr_hip2.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7492	a1c62957a81158d7		5	2	3	undocumented		
+usr/cpu/sysgen/IP27boot/rrm.o	kernel-shared	shared-kernel	object	n64	63984	6da3783f920cc0ad		72	0	0	named-only	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
 usr/cpu/sysgen/IP27boot/tport.a(tport.o)	kernel-shared	shared-kernel	object	n64	23620	12e8b895c97f0544		22	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/cpu/sysgen/IP35boot/gfx.o	kernel-shared	shared-kernel	object	n64	53720	a42762015aa4c9ed		62	0	0	understood	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	14836	2908dd361cfa0ac9		16	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	11492	e0766b2bbeb929c9		5	0	0	understood	docs/kernel.md#vga-pipe-discovery-ip35-klconfigo-prom_has_vga_support-find_vga_pipe-find_vga_noprom_pipe-klcheck_vga	VGA pipe discovery (IP35 `klconfig.o`: `prom_has_vga_support`, `find_vga_pipe`, `find_vga_noprom_pipe`, `klcheck_vga`)
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53732	4d6ae8238fd650db		62	0	0	understood	docs/kernel.md#generic-graphics-layer-gfxo	Generic graphics layer (`gfx.o`)
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	7300	92a8e73ac592455b		18	0	0	understood	docs/kernel.md#stubs-for-a-kernel-without-graphics-gfxstubsa	Stubs for a kernel without graphics (`gfxstubs.a`)
-usr/cpu/sysgen/IP35boot/kona.a(kona_attach.o)	kernel	board-kernel	object	n64	7428	a08cbc38e11d09fc		3	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	kernel	board-kernel	object	n64	19748	04d720ca35795bd9		7	93	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_crash.o)	kernel	board-kernel	object	n64	9748	10c23be452454e34		3	16	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_ddrn.o)	kernel	board-kernel	object	n64	10628	7298d0d2ec69302e		3	10	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_debug.o)	kernel	board-kernel	object	n64	5428	ee62d6eb1a79a4a0		1	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26292	fcab4bccda4dc88a		23	51	0	named-only	docs/coverage.md#hip	HIP
-usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit.o)	kernel	board-kernel	object	n64	12372	d61fec345d55d978		6	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	kernel	board-kernel	object	n64	15332	959b0fe1f7bd132c		14	26	1	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_frs.o)	kernel	board-kernel	object	n64	4948	476ce6628c34c6e1		2	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_genlock.o)	kernel	board-kernel	object	n64	4500	a59612f6e83edbfe		1	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_info.o)	kernel	board-kernel	object	n64	4516	7cf3d3cf01b26a54		1	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_intr.o)	kernel	board-kernel	object	n64	9188	4eca3ce7bd15998e		2	10	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	kernel	board-kernel	object	n64	14372	01bde5ab11a9aca7		1	0	0	understood	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
-usr/cpu/sysgen/IP35boot/kona.a(kona_map.o)	kernel	board-kernel	object	n64	8964	e4925b40b9116f9c		3	4	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	kernel	board-kernel	object	n64	32068	1069e8c114248172		23	70	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	kernel	board-kernel	object	n64	24372	9fd465a37c1fff7b		13	58	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_sched.o)	kernel	board-kernel	object	n64	6612	7a40f54311a18f08		2	5	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_setup.o)	kernel	board-kernel	object	n64	8564	b74e02764644bb5e		2	20	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_share.o)	kernel	board-kernel	object	n64	5540	85fc5556ab1a72ec		2	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4276	9ddba61a71ff1d05		1	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12740	86d948058c5563ef		10	2	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26836	31ebede97fc0663e		21	98	1	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24324	10b9a948c8087221		19	0	0	understood	docs/kernel.md#textport-flow-control-and-pipe-discovery-kona_tporto-gfx_flowo-klconfigo	Textport, flow control and pipe discovery (`kona_tport.o`, `gfx_flow.o`, `klconfig.o`)
-usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22036	387a5f25e1abc8f2		9	24	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8068	8af55035550b9e02		3	4	0	named-only	docs/coverage.md#hip	HIP
-usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7412	d3526393bde60851		5	2	3	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	0	0	understood	docs/kernel.md#rendering-manager-ioctls-rrmo	Rendering manager ioctls (`rrm.o`)
+usr/cpu/sysgen/IP35boot/gfx.o	kernel-shared	shared-kernel	object	n64	53720	a42762015aa4c9ed		62	0	0	named-only	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	14836	2908dd361cfa0ac9		16	0	0	named-only	docs/kernel-functions.md#hub-flow-control-gfxsagfx_flowo	Hub flow control: `gfxs.a(gfx_flow.o)`
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	11492	e0766b2bbeb929c9		5	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53732	4d6ae8238fd650db		62	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	7300	92a8e73ac592455b		18	0	0	named-only	docs/kernel-functions.md#stubs-for-a-kernel-without-graphics-gfxstubsagfxstubso	Stubs for a kernel without graphics: `gfxstubs.a(gfxstubs.o)`
+usr/cpu/sysgen/IP35boot/kona.a(kona_attach.o)	kernel	board-kernel	object	n64	7428	a08cbc38e11d09fc		3	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	kernel	board-kernel	object	n64	19748	04d720ca35795bd9		7	93	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP35boot/kona.a(kona_crash.o)	kernel	board-kernel	object	n64	9748	10c23be452454e34		3	16	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_ddrn.o)	kernel	board-kernel	object	n64	10628	7298d0d2ec69302e		3	10	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_debug.o)	kernel	board-kernel	object	n64	5428	ee62d6eb1a79a4a0		1	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26292	fcab4bccda4dc88a		23	51	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit.o)	kernel	board-kernel	object	n64	12372	d61fec345d55d978		6	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	kernel	board-kernel	object	n64	15332	959b0fe1f7bd132c		14	26	1	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_frs.o)	kernel	board-kernel	object	n64	4948	476ce6628c34c6e1		2	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_genlock.o)	kernel	board-kernel	object	n64	4500	a59612f6e83edbfe		1	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_info.o)	kernel	board-kernel	object	n64	4516	7cf3d3cf01b26a54		1	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_intr.o)	kernel	board-kernel	object	n64	9188	4eca3ce7bd15998e		2	10	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	kernel	board-kernel	object	n64	14372	01bde5ab11a9aca7		1	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_map.o)	kernel	board-kernel	object	n64	8964	e4925b40b9116f9c		3	4	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	kernel	board-kernel	object	n64	32068	1069e8c114248172		23	70	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	kernel	board-kernel	object	n64	24372	9fd465a37c1fff7b		13	58	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_sched.o)	kernel	board-kernel	object	n64	6612	7a40f54311a18f08		2	5	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_setup.o)	kernel	board-kernel	object	n64	8564	b74e02764644bb5e		2	20	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_share.o)	kernel	board-kernel	object	n64	5540	85fc5556ab1a72ec		2	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4276	9ddba61a71ff1d05		1	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12740	86d948058c5563ef		10	2	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26836	31ebede97fc0663e		21	98	1	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP35boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24324	10b9a948c8087221		19	0	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22036	387a5f25e1abc8f2		9	24	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8068	8af55035550b9e02		3	4	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7412	d3526393bde60851		5	2	3	undocumented		
+usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	0	0	named-only	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
 usr/diags/IR/bin/availmon	diagnostics	board-diagnostic	data	-	1140	0830da204c6694ce		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/bin/hyper	diagnostics	board-diagnostic	executable	n32	38544	c9c31f17ce8a9831		11	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/bin/irsaudit	diagnostics	board-diagnostic	executable	n32	2967860	57830d1caab0efac		1170	0	0	named-only	docs/coverage.md#rm-and-tm	RM and TM
-usr/diags/IR/data/1280x1024_60.vfo	diagnostics	board-diagnostic	data	-	17920	fbcaab1b00af730f		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/diags/IR/data/1280x1024_60.vfo	diagnostics	board-diagnostic	data	-	17920	fbcaab1b00af730f		0	0	0	undocumented		
 usr/diags/IR/data/160x100_5000.vfo	diagnostics	board-diagnostic	data	-	17967	8b776633a7cf9df6		0	0	0	understood	docs/display-formats.md#video-formats-the-diagnostics-load	Video formats the diagnostics load
-usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	bba183206ff10567		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	bba183206ff10567		0	0	0	undocumented		
 usr/diags/IR/data/aaspoke.tbus	diagnostics	board-diagnostic	data	-	23268	7318d08a61358a11		0	0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/bef1.qtcbist	diagnostics	board-diagnostic	data	-	6739	67fed9ca1743f173		0	0	0	undocumented		
 usr/diags/IR/data/bef1.tcbist	diagnostics	board-diagnostic	data	-	38120	6e3912a86607444d		0	0	0	undocumented		
@@ -425,33 +425,33 @@ usr/diags/IR/data/xmap8.qtcbist	diagnostics	board-diagnostic	data	-	2954	33b7137
 usr/diags/IR/data/xmap8.tcbist	diagnostics	board-diagnostic	data	-	13409	b728f4f3471a6105		0	0	0	undocumented		
 usr/diags/IR/irsaudit_disasm.txt	diagnostics	board-diagnostic	data	-	9212110	5b965641ce5136e3		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/irsaudit_dynsym_disasm.txt	diagnostics	board-diagnostic	data	-	128545	8bff24a378a29c2e		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/ucode/arm1.u	diagnostics	board-diagnostic	data	-	40072	cc20b24f7c1e4da9		0	0	0	named-only	docs/coverage.md#ge	GE
+usr/diags/IR/ucode/arm1.u	diagnostics	board-diagnostic	data	-	40072	cc20b24f7c1e4da9		0	0	0	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/diags/IR/ucode/arm1_nic.u	diagnostics	board-diagnostic	data	-	13400	872331fc9285edfa		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/ucode/dgo.mcs	diagnostics	board-diagnostic	data	-	93912	518cd70fa8b71474		0	0	0	understood	ucode/dg.md#entry-for-the-option-board-image-dgo1	Entry for the option-board image (`dgo1/`)
+usr/diags/IR/ucode/dgo.mcs	diagnostics	board-diagnostic	data	-	93912	518cd70fa8b71474		0	0	0	undocumented		
 usr/diags/IR/ucode/diag_arm_init.u	diagnostics	board-diagnostic	data	-	520	da008146e38bf9a0		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/ucode/ge.hex	diagnostics	board-diagnostic	data	-	363650	ae8bfbf6f4060058		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
-usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3edf		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
+usr/diags/IR/ucode/ge.hex	diagnostics	board-diagnostic	data	-	363650	ae8bfbf6f4060058		0	0	0	named-only	ucode/ge_ops.md#the-diagnostic-programs-instruction-test	The diagnostic program's instruction test
+usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3edf		0	0	0	named-only	ucode/ge_ops.md#input-and-output-fifo-operations	Input and output FIFO operations
 usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
 usr/diags/IR/ucode/ge_diag_init.u	diagnostics	board-diagnostic	data	-	12082	7e407147118cf628		0	0	0	located	ucode/ge_isa.md#the-program-files	The program files
-usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0	0	0	understood	ucode/ge.md#command-dispatch-table-geifu	Command dispatch table (`geif.u`)
+usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0	0	0	undocumented		
 usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	0	0	named-only	docs/coverage.md#microcode-lower-priority	Microcode (lower priority)
 usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	14	0	named-only	docs/coverage.md#xg	XG
 usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	45a61c37ce61cf80		2936	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-libraries	shared-library	shared-object	n32	1833076	dff2b0d82deac998		3811	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
-usr/gfx/arch/IP27KONA/libGL.so	libraries	board-library	shared-object	o32	486700	214ae88b8179eaef		671	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP27KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	f9b9b85f96cbf830		4868	2893	0	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
-usr/gfx/arch/IP27KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	fecccf6de7ef8a22		673	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP27KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	f22d2a199f6b8efb		4907	2881	0	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
-usr/gfx/arch/IP27KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	425727f729a8a8aa		673	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP27KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d0e932db4fa8e93f		4907	2909	0	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
-usr/gfx/arch/IP35KONA/libGL.so	libraries	board-library	shared-object	o32	486700	52f3e359d3ed9b44		671	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP35KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	d75291c990060f17		4868	2893	0	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
-usr/gfx/arch/IP35KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	432edf22a00ea581		673	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP35KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	89303b7f78578067		4907	2881	0	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
-usr/gfx/arch/IP35KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	2f064d4d8de46085		673	1	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP35KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d5889b8581d8de51		4907	2909	0	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/gfx/arch/IP27KONA/libGL.so	libraries	board-library	shared-object	o32	486700	214ae88b8179eaef		671	1	0	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	f9b9b85f96cbf830		4868	2893	0	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
+usr/gfx/arch/IP27KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	fecccf6de7ef8a22		673	1	0	undocumented		
+usr/gfx/arch/IP27KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	f22d2a199f6b8efb		4907	2881	0	named-only	docs/opengl.md#getboardinfo	`GetBoardInfo`
+usr/gfx/arch/IP27KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	425727f729a8a8aa		673	1	0	named-only	IRIX_FILES.md#4-symlinks	4. Symlinks
+usr/gfx/arch/IP27KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d0e932db4fa8e93f		4907	2909	0	named-only	IRIX_FILES.md#4-symlinks	4. Symlinks
+usr/gfx/arch/IP35KONA/libGL.so	libraries	board-library	shared-object	o32	486700	52f3e359d3ed9b44		671	1	0	undocumented		
+usr/gfx/arch/IP35KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	d75291c990060f17		4868	2893	0	undocumented		
+usr/gfx/arch/IP35KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	432edf22a00ea581		673	1	0	undocumented		
+usr/gfx/arch/IP35KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	89303b7f78578067		4907	2881	0	undocumented		
+usr/gfx/arch/IP35KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	2f064d4d8de46085		673	1	0	undocumented		
+usr/gfx/arch/IP35KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d5889b8581d8de51		4907	2909	0	undocumented		
 usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	2eec8716f6ad8a43	usr/gfx/gfxinit	227	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
@@ -461,7 +461,7 @@ usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	0	0
 usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/ucode/KONA/arm1.u	microcode	board-microcode	data	-	465452	8431a8e3184c858f		0	0	0	named-only	docs/coverage.md#ge	GE
+usr/gfx/ucode/KONA/arm1.u	microcode	board-microcode	data	-	465452	8431a8e3184c858f		0	0	0	named-only	ucode/arm1.md#arm-firmware-arm1u-and-the-host-token-map	ARM firmware (arm1.u) and the host-token map
 usr/gfx/ucode/KONA/arm1_kpm.u	microcode	board-microcode	data	-	7176	0938c672c1bf6b5a		0	0	0	named-only	docs/open-questions.md#arm-firmware	ARM firmware
 usr/gfx/ucode/KONA/dg4/cmb/1024x768_60.cmb	microcode	board-microcode	data	-	2272	c15312d32bbb3f58		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
 usr/gfx/ucode/KONA/dg4/cmb/1200x900_72.cmb	microcode	board-microcode	data	-	2272	22191e1a0dbde580		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
@@ -506,7 +506,7 @@ usr/gfx/ucode/KONA/dg4/vfo/1280x1024_25r2.vfo	microcode	board-microcode	data	-	1
 usr/gfx/ucode/KONA/dg4/vfo/1280x1024_25r3.vfo	microcode	board-microcode	data	-	18628	4e6d031bf7579d87		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/1280x1024_30r2.vfo	microcode	board-microcode	data	-	18324	dba01654e54934ab		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/1280x1024_50.vfo	microcode	board-microcode	data	-	17992	e076c61800c36ef3		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x1024_60.vfo	microcode	board-microcode	data	-	17992	94412544fc431a62		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x1024_60.vfo	microcode	board-microcode	data	-	17992	94412544fc431a62		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/vfo/1280x1024_72.vfo	microcode	board-microcode	data	-	17992	ff2cc2af6a202af5		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/1280x492_120s.vfo	microcode	board-microcode	data	-	18320	a7c1b4a57e2965ce		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/1280x720_5994p.vfo	microcode	board-microcode	data	-	18000	defdd50d4d941170		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
@@ -549,7 +549,7 @@ usr/gfx/ucode/KONA/dg4/vfo/800x600_60.vfo	microcode	board-microcode	data	-	18088
 usr/gfx/ucode/KONA/dg4/vfo/960x620_60.vfo	microcode	board-microcode	data	-	18088	26a776033189f4f0		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/960x680_60.vfo	microcode	board-microcode	data	-	18088	691d0c6e4f7c8ce4		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525.vfo	microcode	board-microcode	data	-	18388	a47ccdfe9be493aa		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo	microcode	board-microcode	data	-	17952	0fcb0981e8e15ff8		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo	microcode	board-microcode	data	-	17952	0fcb0981e8e15ff8		0	0	0	undocumented		
 usr/gfx/ucode/KONA/dg4/vfo/CCIR601_625.vfo	microcode	board-microcode	data	-	18388	148c1d55f145e83d		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/CCIR601_625_DGO.vfo	microcode	board-microcode	data	-	18388	cda7462e12f23d52		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1280x720_5994p.vfo	microcode	board-microcode	data	-	18000	c020fe7290806d8c		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
@@ -564,14 +564,14 @@ usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_60i.vfo	microcode	board-microcode	dat
 usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x486_5994i.vfo	microcode	board-microcode	data	-	18384	6d2a822a29a5f4dc		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x576_50i.vfo	microcode	board-microcode	data	-	18384	72a05060016445dd		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/README	microcode	board-microcode	data	-	86997	bf7cb03493b3b264		0	0	0	understood	ucode/dg.md#the-listing-and-the-per-file-values-dg4vfo	The listing and the per-file values (`dg4/vfo/`)
-usr/gfx/ucode/KONA/dgo1/dgo.mcs	microcode	board-microcode	data	-	93912	ec92153b2b6da903		0	0	0	understood	ucode/dg.md#entry-for-the-option-board-image-dgo1	Entry for the option-board image (`dgo1/`)
-usr/gfx/ucode/KONA/ge.hex	microcode	board-microcode	data	-	1563025	6258b8ae9e67dd32		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
-usr/gfx/ucode/KONA/ge.u	microcode	board-microcode	data	-	2526129	89066cc1dc88d87f		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
+usr/gfx/ucode/KONA/dgo1/dgo.mcs	microcode	board-microcode	data	-	93912	ec92153b2b6da903		0	0	0	named-only	ucode/dg.md#option-board-image-dgo1dgomcs	Option-board image (`dgo1/dgo.mcs`)
+usr/gfx/ucode/KONA/ge.hex	microcode	board-microcode	data	-	1563025	6258b8ae9e67dd32		0	0	0	undocumented		
+usr/gfx/ucode/KONA/ge.u	microcode	board-microcode	data	-	2526129	89066cc1dc88d87f		0	0	0	named-only	ucode/ge.md#geu-record-layout-what-is-established	ge.u record layout, what is established
 usr/gfx/ucode/KONA/ge11.u	microcode	board-microcode	data	-	1275741	95724af2dc9dc5be		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
 usr/gfx/ucode/KONA/ge_kpm.hex	microcode	board-microcode	data	-	4650	617b3f0afd02ae0e		0	0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
 usr/gfx/ucode/KONA/ge_symbols	microcode	board-microcode	data	-	67100	67126e0f66aea936		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
 usr/gfx/ucode/KONA/ged1b.u	microcode	board-microcode	data	-	14411	41c4b5724774fe42		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
-usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0	0	0	understood	ucode/ge.md#command-dispatch-table-geifu	Command dispatch table (`geif.u`)
+usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0	0	0	undocumented		
 usr/gfx/ucode/KONA/tport.bin	microcode	board-microcode	data	-	127889	ba8efd1cc0f83068		0	0	0	understood	ucode/tport.md#what-it-is	What it is
 usr/gfx/ucode/KONA/vof/1280x1024.monitor	microcode	board-microcode	data	-	295	55c148a0d113b0eb		0	0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
 usr/gfx/ucode/KONA/vof/640x480_60.vof	microcode	board-microcode	data	-	6775	87aa18319bb63ea8		0	0	0	understood	docs/display-formats.md#output-format-sources	Output-format sources

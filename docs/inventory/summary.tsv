@@ -1,5 +1,5 @@
 table	rows	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes
-binaries	599	155	0	48	0	1	106	337	0	25.9	26.0	43.7	25.9						
+binaries	599	129	0	38	0	1	84	385	0	21.5	21.7	35.7	21.5						
 functions	54309	4394	0	1885	1332	2108	47793	6	8	8.1	12.0	100.0	8.1						
 functions (distinct names)	19170	1333	0	1333	222	232	17599	3	3	7.0	8.2	100.0	7.0						
 mmio	53	49	0	47	0	0	0	0	4	92.5	100.0	100.0	100.0	10					
