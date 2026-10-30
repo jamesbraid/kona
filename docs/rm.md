@@ -396,14 +396,25 @@ requiring each drawing to cover its shape: the pixel generator keeps the two pre
 triangle of those two and the new vertex, command 6 then drops the older of the two (a strip) and command 7 drops the
 newer (a fan). The box is covered only if its second triangle is top-right, bottom-left, bottom-right, which needs the
 strip rule at the third vertex; the disc is covered only if every rim triangle keeps the centre, which needs the fan
-rule at each 7. No other single rule draws both.
+rule at each 7. No other single rule draws both. **Established** (published, independent of the drivers): the
+SIGGRAPH 97 paper *InfiniteReality: A Real-Time Graphics System* (proceedings pp. 293-302, sections 2.5 and 2.6) says
+the geometry-to-raster bus carries only screen-space vertices, that its protocol "supports the OpenGL triangle strip and
+triangle fan constructs", and that the fragment generator assembles the triangles and computes their parameter slopes
+itself. So the pixel generator has both a strip and a fan rule on one vertex stream. That backs the reading above that
+two of its triangle commands differ in which retained vertex they drop; which bit selects the fan still rests on the
+two drawings, since the paper gives no encoding.
 
 **Sub-pixel position.** **Established:** a vertex's x and y reach the bus as unsigned 12.8 fixed point (`draw_tri`,
 `tp_draw_primitive` at `tport.bin` +0xef8c, which shifts integer coordinates left by 8). The multisample location
 register `PGTFPIMP_MSLOC` gives each sample a 3-bit x and y ([RM.h](../RM.h)); `init_pg` in `arm1.u` loads 0x007f6280,
 samples at (0, 0), (2, 1), (6, 6) and (7, 3), and `irsaudit` `init_ms_loc` loads 0xc8b640, samples at (0, 0), (1, 3),
-(3, 1) and (2, 6). **Inferred:** sample positions lie on an eighth-of-a-pixel grid inside the pixel, so coverage is
-decided at a finer step than the vertex's 1/256 only through the edge arithmetic, which no software shows.
+(3, 1) and (2, 6). **Established** (published): the *InfiniteReality Technical Report* (Silicon Graphics, section 7.7,
+printed page 20) says every primitive is computed with 8 x 8 subpixel accuracy, 64 possible subpixel locations per
+pixel, and that the raster system samples each primitive at one, four or eight of them; section 5.0 (page 11) repeats
+that eight samples sit at eight of the 64 locations. That fixes the eighth-of-a-pixel grid the 3-bit `MSLOC` fields
+address. **Inferred** from the two together: the vertex's 1/256 fraction is reduced to the 1/8 grid somewhere in the
+pixel generator, since the report says primitives, not only samples, are computed at 8 x 8 accuracy; whether that step
+truncates or rounds is not stated anywhere read.
 
 **The fill rule for rectangles.** **Established** (`kona_box` in `kona_tport.c`): the PROM driver decrements
 decrements the left x and the bottom y of every filled rectangle, clamped at 0, before it sends the box to the textport.
@@ -460,8 +471,22 @@ the gold files `irsaudit.*.gold` (6.5.30m). Each line there is a test name and t
 (for example `r1P00` for the pixel generator, `r1I00` to `r1I0n` for the image processors), compared after a drawing by
 `run_crc_testlist`. A signature can confirm a candidate rasteriser only if the signature register's polynomial, width
 and the bits it samples are known; `irsaudit` reads the values through the scan chain (`collectCRC` at 0x1001eef8) and
-never computes one itself, so none of them is. The per-edge slope, its fixed-point width and its rounding, and the
-depth and colour slope formats are therefore **unknown: no shipped software or published source depends on them**.
+never computes one itself, so none of them is.
+
+**What published sources add.** **Established:** the SIGGRAPH 97 paper above (section 2.6) says scan conversion
+evaluates each parameter's plane equation directly at every pixel rather than stepping an interpolating DDA as
+RealityEngine did, producing up to four fragments, a 2 x 2 pixel block, per clock; with several raster boards each
+fragment generator owns two-pixel-wide vertical strips of the screen (section 2.8). The technical report (section
+7.6, printed pages 19-20) gives the depth buffer as 23-bit floating point or 16- and 15-bit compressed, chosen for more
+uniform resolution across depth; engineers' Usenet answers in comp.graphics.api.opengl (message ids
+`<3281E7C3.41C6@reading.sgi.com>`, November 1996, and `<5v4cp6$11ae1@fido.asd.sgi.com>`, September 1997) say the
+visuals offer 15, 16 and 23 depth bits because of that internal representation, and that a 23-bit depth read back
+reaches the host scaled to [0, 1] like any other. **Inferred:** direct plane evaluation means the set-up the pixel
+generator does per triangle is three plane equations per parameter (value and x and y gradients at a reference point),
+not per-edge DDA increments, and edge inclusion is a sign test of the edge functions at each sample point.
+
+The per-edge and per-parameter coefficient widths, their rounding, the reference point and the depth and colour
+gradient formats remain **unknown: no shipped software or published source depends on them**.
 Routes tried: the engine output modules `udrawtri.s`, `drawtri.S`, `drawlin.S` and `drawpnt.S` in `ge.u`; `tbVertex`,
 `tbTextureCoord`, `draw_tri` and every `tbVertex` caller in `irsaudit`; the line and point helpers above; the six tests
 in `tbusdata.Z` and `aaspoke.tbus`; the gold files; the `pg` pins and `pg2.tcbist`; the `PG_` and `PGTG_` register
@@ -470,9 +495,18 @@ comments of [RM.h](../RM.h); the firmware's `init_pg`, `init_tg`, `prim_init` an
 (`kona_init.c`, `kona_tport.c`, `kona_logo.c` and `ktport.h`, read in full; the driver sends textport commands and
 
 only the `sys/kona.h`, `sys/kona_if.h` and `sys/kona_diag.h` headers, which carry no raster set-up; and a Library
-search of the TechPubs and mirror roots for InfiniteReality sub-pixel and multisample text, which found the OpenGL
-programming guide 007-1680 but whose text could not be extracted on this host (no PDF text tool, and the file server
-needs a login). The next route is the image-processor CRC: a
+search of the TechPubs and mirror roots for InfiniteReality sub-pixel and multisample text; the full text of
+*OpenGL Performer Programmer's Guide* 007-1680-100 (its RealityEngine and InfiniteReality tuning notes and pfWindow
+set-up say only that "subpixel vertex positioning" is enabled), of *OpenGL on Silicon Graphics Systems* 007-2392-003
+(chapter 9 "Multisampled Lines" and "Multisampled Polygons", the InfiniteReality notes of chapter 18: lines are sampled as
+rectangles centred on the segment with the line width and the segment's exact length, and a sample is written if and
+only if it lies inside the exact polygon boundary, with no number format), of the SIGGRAPH 97 paper and of the
+*InfiniteReality Technical Report*; the comp.sys.sgi.graphics and comp.graphics.api.opengl archives, searched for
+InfiniteReality sub-pixel, rasterisation, triangle set-up, fill rule, polygon offset, depth precision, line
+rasterisation, pixel centre, vertex bus and scan converter (the hits give performance figures, depth sizes and the
+`glPolygonOffset` machine note that `GL_POLYGON_OFFSET_LINE` and `_POINT` are not implemented on InfiniteReality, and no
+set-up arithmetic); and a second search of the 6.5.5 `sys/kona*.h` headers for sub-pixel,
+slope, fraction, sample and scan terms (none). The next route is the image-processor CRC: a
 signature of a clear (the gold file's `clearfb` lines), whose input is one known colour repeated, may fix the
 register's polynomial, after which a one-triangle test's signature would discriminate between candidate edge rules.
 
