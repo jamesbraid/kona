@@ -21457,7 +21457,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f5f50	136	__glGeneri
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f5fe0	1612	__glGenericPickPixelProcs	dwarf+dynsym	b2507f403f0e		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f6630	168	__glGenericPickTransformProcs	dwarf+dynsym	708e718305bd		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f66e0	320	__glGenericPickDepthProcs	dwarf+dynsym	d8ee314a24ed		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f6820	52	__glGenericValidate	dwarf+dynsym	2fcf01aed034		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f6820	52	__glGenericValidate	dwarf+dynsym	2fcf01aed034		in	understood	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f6860	560	__glGenericModeFlags	dwarf+dynsym	3ea890579f1a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f6a90	1100	__glGenericPickAllProcs	dwarf+dynsym	a195a2c70b8c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f6ee0	64	__glBuildAntiAliasIndex	dwarf+dynsym	c0508624e01b		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
@@ -38156,7 +38156,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f5f50	136	__glGeneri
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f5fe0	1612	__glGenericPickPixelProcs	dwarf+dynsym	b2507f403f0e		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f6630	168	__glGenericPickTransformProcs	dwarf+dynsym	708e718305bd		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f66e0	320	__glGenericPickDepthProcs	dwarf+dynsym	d8ee314a24ed		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f6820	52	__glGenericValidate	dwarf+dynsym	2fcf01aed034		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f6820	52	__glGenericValidate	dwarf+dynsym	2fcf01aed034		in	understood	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f6860	560	__glGenericModeFlags	dwarf+dynsym	3ea890579f1a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f6a90	1100	__glGenericPickAllProcs	dwarf+dynsym	a195a2c70b8c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f6ee0	64	__glBuildAntiAliasIndex	dwarf+dynsym	c0508624e01b		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
