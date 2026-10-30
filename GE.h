@@ -386,71 +386,61 @@ enum kona_hp_token {
     /* Read at arm1.u arm_texparameterf 0x0c026594 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_TEXPARAMETERF` (0x00d). Established: The token map runs a
-     * one-instruction stub at 0x0c026594 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_texparameterf` at arm1.u 0x0c026594, a stub that ends in
-     * `arm_badcmd`. No sender found. glTexParameterf/i enter
-     * __glkonim_TexParameterf/i then __glKonTexParameter (kon_texture_api.s),
-     * which updates host texture-object state; its only FIFO token is
-     * HP_CHANGE_POST_TEX_SCALE_BIAS 0x1d7. Texture state reaches the pipe
-     * through the bind tokens (TEXBIND_ID 0x178, BIND_2D_MIPMAP_TEXTURE 0x179
-     * and siblings) and TEXLOAD_ID 0x176. */
+    /* `HP_TEXPARAMETERF` (0x00d). Unused texture-parameter token, float form.
+     * Established: the map word of 0x00d leads to a lone branch at 0x0c026594
+     * into arm_badcmd (read in full), so a word with this number prints both
+     * token numbers, drains 100 payload words and hangs the FIFO. Inferred
+     * from kon_texture_api.s: __glkonim_TexParameterf (206 instructions, 24
+     * error sites) compares the name against dozens of constants, all of
+     * which end in the single call to __glKonTexParameter; that routine is
+     * 1662 instructions long, makes ten direct FIFO stores and one of them is
+     * token 471, HP_CHANGE_POST_TEX_SCALE_BIAS (0x1d7). Parameters therefore
+     * update the host texture object and reach the pipe only through the bind
+     * and scale-bias tokens. */
     KONA_HP_TEXPARAMETERF                = 0x00d,
 
     /* Read at arm1.u arm_texparameteri 0x0c026598 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_TEXPARAMETERI` (0x00e). Established: The token map runs a
-     * one-instruction stub at 0x0c026598 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_texparameteri` at arm1.u 0x0c026598, a stub that ends in
-     * `arm_badcmd`. No sender found. glTexParameterf/i enter
-     * __glkonim_TexParameterf/i then __glKonTexParameter (kon_texture_api.s),
-     * which updates host texture-object state; its only FIFO token is
-     * HP_CHANGE_POST_TEX_SCALE_BIAS 0x1d7. Texture state reaches the pipe
-     * through the bind tokens (TEXBIND_ID 0x178, BIND_2D_MIPMAP_TEXTURE 0x179
-     * and siblings) and TEXLOAD_ID 0x176. */
+    /* `HP_TEXPARAMETERI` (0x00e). Unused texture-parameter token, integer
+     * form. Established: token 0x00e is one more branch at 0x0c026598 into
+     * arm_badcmd (read in full), the print-and-spin routine. Inferred from
+     * kon_texture_api.s: __glkonim_TexParameteri has 213 instructions and 23
+     * error sites and funnels every legal name into the same
+     * __glKonTexParameter as the float entry, so the two forms differ only in
+     * how the host converts the argument. The only parameter-related word the
+     * pipe sees is the scale-and-bias token 0x1d7 stored from inside that
+     * routine; this token itself is never sent. */
     KONA_HP_TEXPARAMETERI                = 0x00e,
 
     /* Read at arm1.u arm_teximage1d 0x0c02659c (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_TEXIMAGE1D` (0x00f). Established: The token map runs a
-     * one-instruction stub at 0x0c02659c that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_teximage1d` at arm1.u 0x0c02659c, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_TexImage1D/2D enter
-     * __glkonim_TexImage (kon_texture_api.s), which stores no token itself;
-     * the only TEXLOAD_ID 0x176 sender is subloadLevel, and image data go
-     * down the DRAWTEXELS 0x174 path (docs/opengl.md). Chain is from call
-     * lists, not traced end to end. */
+    /* `HP_TEXIMAGE1D` (0x00f). Unused one-dimensional image-definition token.
+     * Established: the map word of 0x00f is a branch at 0x0c02659c to
+     * arm_badcmd (read in full). Inferred from kon_texture_api.s:
+     * __glkonim_TexImage1D is 32 instructions that accept target 3552 (the 1D
+     * target) or the proxy 0x8063, then call __glkonim_TexImage (254
+     * instructions). That routine saves pixel-store state with
+     * __glKonPushState, reads the unpack row-length, skip-rows and
+     * skip-pixels names (3314-3316) through __glkonim_PixelStorei, queries
+     * texture objects and restores state, and stores no token. Texels reach
+     * the pipe in later load calls, so no image-definition word exists on the
+     * wire. */
     KONA_HP_TEXIMAGE1D                   = 0x00f,
 
     /* Read at arm1.u arm_teximage2d 0x0c0265a0 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_TEXIMAGE2D` (0x010). Established: The token map runs a
-     * one-instruction stub at 0x0c0265a0 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_teximage2d` at arm1.u 0x0c0265a0, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_TexImage1D/2D enter
-     * __glkonim_TexImage (kon_texture_api.s), which stores no token itself;
-     * the only TEXLOAD_ID 0x176 sender is subloadLevel, and image data go
-     * down the DRAWTEXELS 0x174 path (docs/opengl.md). Chain is from call
-     * lists, not traced end to end. */
+    /* `HP_TEXIMAGE2D` (0x010). Unused two-dimensional image-definition token.
+     * Established: token 0x010 resolves to a branch at 0x0c0265a0 into
+     * arm_badcmd (read in full). Inferred from kon_texture_api.s:
+     * __glkonim_TexImage2D is a 35-instruction wrapper accepting target 3553,
+     * the proxy 0x8064 and the detail-texture target 0x8095, and it too
+     * forwards to __glkonim_TexImage, whose 254 instructions manipulate host
+     * texture-object state and pixel-store settings and contain no store to
+     * the command window. The image bytes are sent separately by the
+     * texture-load path. */
     KONA_HP_TEXIMAGE2D                   = 0x010,
 
     /* Engine handlers whose slots the code of `arm_texenvf` loads, in order:
@@ -561,16 +551,17 @@ enum kona_hp_token {
     /* Read at arm1.u arm_selectbuffer 0x0c0265a4 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_SELECTBUFFER` (0x018). Established: The token map runs a
-     * one-instruction stub at 0x0c0265a4 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_selectbuffer` at arm1.u 0x0c0265a4, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_SelectBuffer (kon_select.s)
-     * stores no FIFO constant (host-side buffer pointer only); selection mode
-     * is switched by HP_RENDERMODE 0x19 from __glkonim_RenderMode. */
+    /* `HP_SELECTBUFFER` (0x018). Unused selection-buffer token. Established:
+     * the map word of 0x018 is a branch at 0x0c0265a4 into arm_badcmd (read
+     * in full), so a word with this number would drain 100 words and hang.
+     * Inferred from kon_select.s: __glkonim_SelectBuffer is 70 instructions
+     * with five error sites and no calls; it rejects a negative size with
+     * error 1281 and a call made in selection mode (7170) or inside glBegin
+     * with 1282, releases the old internal buffer and allocates a new one of
+     * (size + 256) entries through the context's memory callbacks, then keeps
+     * the size and the caller's pointer in the context. The pipe is told only
+     * about the mode change through HP_RENDERMODE (0x019), never about where
+     * the host collects hit records. */
     KONA_HP_SELECTBUFFER                 = 0x018,
 
     /* Engine handlers whose slots the code of `arm_rendermode` loads, in
@@ -937,30 +928,28 @@ enum kona_hp_token {
     /* Read at arm1.u arm_pixeltransferi 0x0c0265a8 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_PIXELTRANSFERI` (0x031). Established: The token map runs a
-     * one-instruction stub at 0x0c0265a8 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_pixeltransferi` at arm1.u 0x0c0265a8, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_PixelTransferi (kon_pixel.s)
-     * calls __glkonim_PixelTransferf, which sends HP_PIXELTRANSFERF 0x30 with
-     * the converted value. */
+    /* `HP_PIXELTRANSFERI` (0x031). Unused integer pixel-transfer token.
+     * Established: token 0x031 maps to a branch at 0x0c0265a8 into arm_badcmd
+     * (read in full). Established from kon_pixel.s (the whole routine read):
+     * __glkonim_PixelTransferi is 13 instructions that convert its integer
+     * argument with cvt.s.w and call __glkonim_PixelTransferf, which stores
+     * 0x030 (HP_PIXELTRANSFERF), the parameter name and the float in several
+     * parallel branches. The pipe receives every pixel-transfer setting as a
+     * float word whatever the GL entry point used. */
     KONA_HP_PIXELTRANSFERI               = 0x031,
 
     /* Read at arm1.u arm_pixelstoref 0x0c0265ac (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_PIXELSTOREF` (0x032). Established: The token map runs a
-     * one-instruction stub at 0x0c0265ac that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_pixelstoref` at arm1.u 0x0c0265ac, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_PixelStoref (kon_pixel.s)
-     * calls __glkonim_PixelStorei, which sends HP_PIXELSTOREI 0x33. */
+    /* `HP_PIXELSTOREF` (0x032). Unused float pixel-store token. Established:
+     * the map word of 0x032 is a branch at 0x0c0265ac to arm_badcmd (read in
+     * full). Established from kon_pixel.s (routine read in full):
+     * __glkonim_PixelStoref rejects calls made inside glBegin with error
+     * 1282, treats the four boolean names 3312, 3313, 3328 and 3329 as
+     * nonzero equals one, rounds every other value to the nearest integer by
+     * adding plus or minus one half and truncating, and calls
+     * __glkonim_PixelStorei, which stores 0x033 (HP_PIXELSTOREI), the name
+     * and the value. The pipe sees the integer form only. */
     KONA_HP_PIXELSTOREF                  = 0x032,
 
     /* Read at arm1.u arm_pixelstorei 0x0c02adb0 (r9+0, r9+0x3c; jump table
@@ -1439,8 +1428,8 @@ enum kona_hp_token {
      * arm_badcmd 0x0c0017f4-0x0c001854. */
 
     /* `HP_GETTEXPARAMETERFV` (0x053). Unused float texture-parameter query.
-     * Established: the map word of 0x053 is a branch at 0x0c0265e0 into
-     * arm_badcmd (read in full). Inferred from kon_texture_api.s:
+     * Established (read in full): the slot for 0x053 is the jump at
+     * 0x0c0265e0 into arm_badcmd. Inferred from kon_texture_api.s:
      * __glkonim_GetTexParameterfv has about 60 instructions, no FIFO store
      * and one call, to __glKonGetTexParameter, a long host-side routine (464
      * instructions) that compares the name against dozens of constants, many
@@ -3872,17 +3861,16 @@ enum kona_hp_token {
     /* Read at arm1.u arm_copycolortable 0x0c0265f0 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_COPYCOLORTABLE` (0x0e9). Established: The token map runs a
-     * one-instruction stub at 0x0c0265f0 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_copycolortable` at arm1.u 0x0c0265f0, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_CopyColorTableSGI
-     * (kon_colortable.s) reads the pixels with __glkonim_ReadPixels and
-     * re-sends them through __glkonim_ColorTableSGI (HP_COLORTABLE 0xe8), so
-     * the copy reaches the pipe as a table load. */
+    /* `HP_COPYCOLORTABLE` (0x0e9). Unused colour-table copy token.
+     * Established: token 0x0e9 maps to a branch at 0x0c0265f0 into arm_badcmd
+     * (read in full). Inferred from kon_colortable.s:
+     * __glkonim_CopyColorTableSGI (84 instructions) stores token 273,
+     * HP_PIXEL_NOMODE (0x111), with the words 8 and 0x40000000, calls
+     * __glKonPushState and __glKonDefaultState, reads the framebuffer with
+     * __glkonim_ReadPixels (type 5123, format 6408) into a host buffer,
+     * stores the same three words again and calls __glkonim_ColorTableSGI,
+     * whose own 36 FIFO stores include token 232, HP_COLORTABLE (0x0e8). The
+     * copy therefore reaches the pipe as an ordinary table load. */
     KONA_HP_COPYCOLORTABLE               = 0x0e9,
 
     /* Read at arm1.u arm_getcolortable 0x0c03f24c; do_getcolortable
@@ -3994,16 +3982,15 @@ enum kona_hp_token {
     /* Read at arm1.u arm_convolutionfilter3d 0x0c026648 (b 0x0c0017f4);
      * arm_badcmd 0x0c0017f4-0x0c001854. */
 
-    /* `HP_CONVOLUTIONFILTER3D` (0x0f1). Established: The token map runs a
-     * one-instruction stub at 0x0c026648 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_convolutionfilter3d` at arm1.u 0x0c026648, a stub that ends
-     * in `arm_badcmd`. No sender found. libGLcore has no 3D convolution
-     * filter entry point (only the 1D/2D convolution and SeparableFilter2D
-     * emitters in kon_convolve.s), so nothing can send it. */
+    /* `HP_CONVOLUTIONFILTER3D` (0x0f1). Unused three-dimensional convolution
+     * token. Established: the map word of 0x0f1 is a branch at 0x0c026648 to
+     * arm_badcmd (read in full). Established from the symbol tables of
+     * libGLcore.so: kon_convolve.s defines only
+     * __glkonim_ConvolutionFilter1DEXT, __glkonim_ConvolutionFilter2DEXT and
+     * __glkonim_SeparableFilter2DEXT among the filter loaders and no 3D entry
+     * exists, so no sender can be written; no GL version this library exports
+     * has a 3D convolution call. The slot is a reservation of the token
+     * numbering, not a feature. */
     KONA_HP_CONVOLUTIONFILTER3D          = 0x0f1,
 
     /* Read at arm1.u arm_copyconvolutionfilter1d 0x0c036ee8 (3 plain reads +
@@ -4072,16 +4059,14 @@ enum kona_hp_token {
     /* Read at arm1.u arm_separablefilter3d 0x0c02664c (b 0x0c0017f4);
      * arm_badcmd 0x0c0017f4-0x0c001854. */
 
-    /* `HP_SEPARABLEFILTER3D` (0x0f6). Established: The token map runs a
-     * one-instruction stub at 0x0c02664c that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_separablefilter3d` at arm1.u 0x0c02664c, a stub that ends in
-     * `arm_badcmd`. No sender found. libGLcore has no 3D separable filter
-     * entry point (only the 1D/2D convolution and SeparableFilter2D emitters
-     * in kon_convolve.s), so nothing can send it. */
+    /* `HP_SEPARABLEFILTER3D` (0x0f6). Unused three-dimensional
+     * separable-filter token. Established: token 0x0f6 resolves to a branch
+     * at 0x0c02664c into arm_badcmd (read in full). Established from
+     * kon_convolve.s: the only separable loader is
+     * __glkonim_SeparableFilter2DEXT at line 723, and no routine in the file
+     * or the other libGLcore objects is named for a 3D separable filter. Like
+     * its convolution neighbour 0x0f1, the slot exists in the numbering with
+     * nothing behind it on either side of the pipe. */
     KONA_HP_SEPARABLEFILTER3D            = 0x0f6,
 
     /* Engine handlers whose slots the code of `arm_getseparablefilter` loads,
@@ -4143,31 +4128,28 @@ enum kona_hp_token {
     /* Read at arm1.u arm_get_pixel_transform_parameterfv 0x0c026650 (b
      * 0x0c0017f4); arm_badcmd 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GET_PIXEL_TRANSFORM_PARAMETERFV` (0x0fb). Established: The token
-     * map runs a one-instruction stub at 0x0c026650 that branches to
-     * arm_badcmd; that prints the current and previous token numbers, reads
-     * and prints 100 payload words, then spins reading words, so the pipe
-     * would hang. Payload none read by the stub (arm_badcmd drains 100):
-     * nothing: the token is refused and no payload is defined. Established:
-     * the token map runs `arm_get_pixel_transform_parameterfv` at arm1.u
-     * 0x0c026650, a stub that ends in `arm_badcmd`. No sender found.
-     * __glkonim_GetPixelTransformParameterfvSGI (kon_pixel_transform.s) is a
-     * 24-line wrapper that calls one sibling and stores no token. */
+    /* `HP_GET_PIXEL_TRANSFORM_PARAMETERFV` (0x0fb). Unused float
+     * pixel-transform query. Established: the map word of 0x0fb is a branch
+     * at 0x0c026650, the last stub of the run, into arm_badcmd (read in
+     * full). Established from kon_pixel_transform.s:
+     * __glkonim_GetPixelTransformParameterfvSGI is 13 instructions whose only
+     * call is __glkonim_PixelTransformParameterivSGI, with no FIFO store and
+     * no error site of its own. The parameter lives in host state, so the
+     * float query is a wrapper over a host routine and never asks the pipe. */
     KONA_HP_GET_PIXEL_TRANSFORM_PARAMETERFV = 0x0fb,
 
     /* Read at arm1.u arm_copyteximage1d 0x0c0265f4 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_COPYTEXIMAGE1D` (0x0fc). Established: The token map runs a
-     * one-instruction stub at 0x0c0265f4 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_copyteximage1d` at arm1.u 0x0c0265f4, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_CopyTexImage1DEXT enter
-     * __glkonim_CopyTexImage, which reach __glKonCopyTexImage (kon_pixel.s)
-     * and send HP_COPYTEXIMAGE 0xfd. */
+    /* `HP_COPYTEXIMAGE1D` (0x0fc). Unused one-dimensional texture-copy token.
+     * Established: token 0x0fc is a branch at 0x0c0265f4 into arm_badcmd
+     * (read in full). Inferred from kon_texture_api.s and kon_pixel.s:
+     * __glkonim_CopyTexImage1DEXT (21 instructions, target 3552) calls
+     * __glkonim_CopyTexImage (141 instructions), and the library's real
+     * sender is __glKonCopyTexImage in kon_pixel.s, which makes 180 direct
+     * FIFO stores in its 686 instructions, among them token 253,
+     * HP_COPYTEXIMAGE (0x0fd). The 1D case is folded into the generic copy
+     * token rather than having its own. */
     KONA_HP_COPYTEXIMAGE1D               = 0x0fc,
 
     /* Read at arm1.u arm_copyteximage 0x0c02bf60 (16 plain reads + r9+0x3c,
@@ -4188,16 +4170,16 @@ enum kona_hp_token {
     /* Read at arm1.u arm_copytexsubimage1d 0x0c0265f8 (b 0x0c0017f4);
      * arm_badcmd 0x0c0017f4-0x0c001854. */
 
-    /* `HP_COPYTEXSUBIMAGE1D` (0x0fe). Established: The token map runs a
-     * one-instruction stub at 0x0c0265f8 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_copytexsubimage1d` at arm1.u 0x0c0265f8, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_CopyTexSubImage1DEXT enter
-     * __glkonim_CopyTexSubImage (via __glkonim_CopyTexImage2DEXT), which
-     * reach __glKonCopyTexImage (kon_pixel.s) and send HP_COPYTEXIMAGE 0xfd. */
+    /* `HP_COPYTEXSUBIMAGE1D` (0x0fe). Unused one-dimensional sub-image copy
+     * token. Established (read in full): the code at 0x0c0265f8 is one
+     * unconditional jump to arm_badcmd, so slot 0x0fe refuses its token like
+     * the other copy slots. Inferred from kon_texture_api.s:
+     * __glkonim_CopyTexSubImage1DEXT is 27 instructions for target 3552
+     * forwarding to __glkonim_CopyTexSubImage (443 instructions), which calls
+     * __glkonim_CopyTexImage2DEXT, __glKonGetTexParameter and
+     * __glKonSetNoModeState and stores no token itself. The pixel transfer is
+     * carried by the generic copy token 0x0fd that __glKonCopyTexImage
+     * stores. */
     KONA_HP_COPYTEXSUBIMAGE1D            = 0x0fe,
 
     /* Read at arm1.u arm_wg_flush_0 0x0c0265fc (b 0x0c0017f4); arm_badcmd
@@ -4238,16 +4220,14 @@ enum kona_hp_token {
     /* Read at arm1.u arm_copytexsubimage2d 0x0c026604 (b 0x0c0017f4);
      * arm_badcmd 0x0c0017f4-0x0c001854. */
 
-    /* `HP_COPYTEXSUBIMAGE2D` (0x101). Established: The token map runs a
-     * one-instruction stub at 0x0c026604 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_copytexsubimage2d` at arm1.u 0x0c026604, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_CopyTexSubImage2DEXT enter
-     * __glkonim_CopyTexSubImage (via __glkonim_CopyTexImage2DEXT), which
-     * reach __glKonCopyTexImage (kon_pixel.s) and send HP_COPYTEXIMAGE 0xfd. */
+    /* `HP_COPYTEXSUBIMAGE2D` (0x101). Unused two-dimensional sub-image copy
+     * token. Established: token 0x101 maps to a branch at 0x0c026604 into
+     * arm_badcmd (read in full). Inferred from kon_texture_api.s:
+     * __glkonim_CopyTexSubImage2DEXT (31 instructions, target 3553 and the
+     * 0x8095 detail target) forwards to the same __glkonim_CopyTexSubImage as
+     * the 1D entry, and that routine calls __glKonSetNoModeState around
+     * __glKonGetTexParameter queries before delegating the transfer; the
+     * token that actually carries it is HP_COPYTEXIMAGE (0x0fd). */
     KONA_HP_COPYTEXSUBIMAGE2D            = 0x101,
 
     /* Read at arm1.u arm_histogram 0x0c03f8c4 (4 plain reads + r9+0x3c;
@@ -4593,16 +4573,14 @@ enum kona_hp_token {
     /* Read at arm1.u arm_pixeltexgen 0x0c026610 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_PIXELTEXGEN` (0x11a). Established: The token map runs a
-     * one-instruction stub at 0x0c026610 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_pixeltexgen` at arm1.u 0x0c026610, a stub that ends in
-     * `arm_badcmd`. No sender found. libGLcore has only the dispatch stub
-     * glPixelTexGenSGIX (g_api.s) and the list compilers/executors; no
-     * __glkonim_ implementation exists, so nothing reaches the FIFO. */
+    /* `HP_PIXELTEXGEN` (0x11a). Unused pixel-texgen token. Established: the
+     * map word of 0x11a is a branch at 0x0c026610 to arm_badcmd (read in
+     * full). Established from g_api.s and the list objects of libGLcore.so:
+     * glPixelTexGenSGIX is a three-instruction jump through the dispatch slot
+     * at 5164($zero), the display-list compiler and executor have cases for
+     * it, and no __glkonim_ routine of that name exists, so nothing in the
+     * library can build the word. Whether the dispatch slot is filled was not
+     * traced. */
     KONA_HP_PIXELTEXGEN                  = 0x11a,
 
     /* Engine handlers whose slots the code of `arm_polygonoffsetext` loads,
@@ -4621,185 +4599,156 @@ enum kona_hp_token {
     /* Read at arm1.u arm_texsubimage1d 0x0c026614 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_TEXSUBIMAGE1D` (0x11c). Established: The token map runs a
-     * one-instruction stub at 0x0c026614 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_texsubimage1d` at arm1.u 0x0c026614, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_TexSubImage1DEXT
-     * (kon_texture_api.s) forwards to __glkonim_TexSubImage, which stores no
-     * token; texels go down TEXLOAD_ID 0x176 (subloadLevel) and DRAWTEXELS
-     * 0x174. Chain from call lists. */
+    /* `HP_TEXSUBIMAGE1D` (0x11c). Unused one-dimensional sub-image token.
+     * Established: token 0x11c resolves to a branch at 0x0c026614 into
+     * arm_badcmd (read in full). Inferred from kon_texture_api.s:
+     * __glkonim_TexSubImage1DEXT is 31 instructions for target 3552 that hand
+     * off to __glkonim_TexSubImage (386 instructions), a host routine that
+     * queries texture-object state and calls __glKonSetNoModeState but stores
+     * no token. Replacement texels go out through the load path, not through
+     * a sub-image token. */
     KONA_HP_TEXSUBIMAGE1D                = 0x11c,
 
     /* Read at arm1.u arm_texsubimage2d 0x0c026618 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_TEXSUBIMAGE2D` (0x11d). Established: The token map runs a
-     * one-instruction stub at 0x0c026618 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_texsubimage2d` at arm1.u 0x0c026618, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_TexSubImage2DEXT
-     * (kon_texture_api.s) forwards to __glkonim_TexSubImage, which stores no
-     * token; texels go down TEXLOAD_ID 0x176 (subloadLevel) and DRAWTEXELS
-     * 0x174. Chain from call lists. */
+    /* `HP_TEXSUBIMAGE2D` (0x11d). Unused two-dimensional sub-image token.
+     * Established (read in full): slot 0x11d, the second of the sub-image
+     * refusals, is the jump at 0x0c026618 straight into arm_badcmd. Inferred
+     * from kon_texture_api.s: __glkonim_TexSubImage2DEXT is 34 instructions
+     * (targets 3553 and 0x8095) ending in the same __glkonim_TexSubImage as
+     * the 1D and 3D entries; that routine contains no FIFO store and prints
+     * through fprintf on one internal error path, which shows it is host
+     * bookkeeping around a separate pixel send. */
     KONA_HP_TEXSUBIMAGE2D                = 0x11d,
 
     /* Read at arm1.u arm_texsubimage3d 0x0c02661c (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_TEXSUBIMAGE3D` (0x11e). Established: The token map runs a
-     * one-instruction stub at 0x0c02661c that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_texsubimage3d` at arm1.u 0x0c02661c, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_TexSubImage3DEXT
-     * (kon_texture_api.s) forwards to __glkonim_TexSubImage, which stores no
-     * token; texels go down TEXLOAD_ID 0x176 (subloadLevel) and DRAWTEXELS
-     * 0x174. Chain from call lists. */
+    /* `HP_TEXSUBIMAGE3D` (0x11e). Unused three-dimensional sub-image token.
+     * Established: token 0x11e leads to a branch at 0x0c02661c into
+     * arm_badcmd (read in full). Inferred from kon_texture_api.s:
+     * __glkonim_TexSubImage3DEXT is only 25 instructions for target 0x806f
+     * (the 3D target) and shares __glkonim_TexSubImage with the lower
+     * dimensions, so the host treats the third dimension as a depth parameter
+     * of the same routine; no store to the command window occurs anywhere on
+     * that path. */
     KONA_HP_TEXSUBIMAGE3D                = 0x11e,
 
     /* Read at arm1.u arm_teximage3d 0x0c026620 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_TEXIMAGE3D` (0x11f). Established: The token map runs a
-     * one-instruction stub at 0x0c026620 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_teximage3d` at arm1.u 0x0c026620, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_TexImage3DEXT
-     * (kon_texture_api.s) forwards to __glkonim_TexImage, which stores no
-     * token; texels go down TEXLOAD_ID 0x176 (subloadLevel) and DRAWTEXELS
-     * 0x174. Chain from call lists. */
+    /* `HP_TEXIMAGE3D` (0x11f). Unused three-dimensional image-definition
+     * token. Established (read in full): nothing executes for 0x11f except
+     * the jump at 0x0c026620 into arm_badcmd. Inferred from
+     * kon_texture_api.s: __glkonim_TexImage3DEXT is 27 instructions accepting
+     * 0x806f and the proxy 0x8070, delegating to __glkonim_TexImage (254
+     * instructions, no FIFO store). Three-dimensional textures are therefore
+     * defined on the host exactly as 1D and 2D ones are, and the pipe learns
+     * about them only when texels are loaded or the object is bound. */
     KONA_HP_TEXIMAGE3D                   = 0x11f,
 
     /* Read at arm1.u arm_teximage4d 0x0c026624 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_TEXIMAGE4D` (0x120). Established: The token map runs a
-     * one-instruction stub at 0x0c026624 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_teximage4d` at arm1.u 0x0c026624, a stub that ends in
-     * `arm_badcmd`. No sender found. libGLcore has only the dispatch stub
-     * glTexImage4DSGIS (g_api.s) and list compilers; no __glkonim_
-     * implementation exists, so 4D textures never reach the FIFO. */
+    /* `HP_TEXIMAGE4D` (0x120). Unused four-dimensional image token.
+     * Established: token 0x120 is a branch at 0x0c026624 into arm_badcmd
+     * (read in full). Established from g_api.s: glTexImage4DSGIS is a
+     * three-instruction jump through the dispatch slot at 5156($zero); the
+     * display-list objects have cases for it, but no __glkonim_ routine for
+     * it exists in any KONA object, so this build cannot form the word.
+     * Four-dimensional textures are the extension entry without a driver
+     * behind it. */
     KONA_HP_TEXIMAGE4D                   = 0x120,
 
     /* Read at arm1.u arm_texsubimage4d 0x0c026628 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_TEXSUBIMAGE4D` (0x121). Established: The token map runs a
-     * one-instruction stub at 0x0c026628 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_texsubimage4d` at arm1.u 0x0c026628, a stub that ends in
-     * `arm_badcmd`. No sender found. libGLcore has only the dispatch stub
-     * glTexSubImage4DSGIS (g_api.s) and list compilers; no __glkonim_
-     * implementation exists, so 4D textures never reach the FIFO. */
+    /* `HP_TEXSUBIMAGE4D` (0x121). Unused four-dimensional sub-image token.
+     * Established (read in full): the handler address for 0x121 holds only a
+     * jump into arm_badcmd, at 0x0c026628. Established from g_api.s and the
+     * list objects: glTexSubImage4DSGIS is the same kind of dispatch-slot
+     * jump as glTexImage4DSGIS, with list compilers but no __glkonim_ body,
+     * so no sender exists. Both 4D tokens are slots the firmware reserves but
+     * this library never fills. */
     KONA_HP_TEXSUBIMAGE4D                = 0x121,
 
     /* Read at arm1.u arm_gentextures1d 0x0c02662c (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GENTEXTURES1D` (0x122). Established: The token map runs a
-     * one-instruction stub at 0x0c02662c that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_gentextures1d` at arm1.u 0x0c02662c, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GenTexturesEXT
-     * (kon_texture_api.s) allocates texture names from a host table (bzero,
-     * __glkonim_GenTexturesEXT_Slow) and stores no FIFO token. */
+    /* `HP_GENTEXTURES1D` (0x122). Unused one-dimensional texture-name token.
+     * Established: token 0x122 maps to a branch at 0x0c02662c into arm_badcmd
+     * (read in full). Inferred from kon_texture_api.s:
+     * __glkonim_GenTexturesEXT (155 instructions, four error sites) clears a
+     * 544-byte host name table with bzero and calls
+     * __glkonim_GenTexturesEXT_Slow when the fast table is exhausted; it
+     * contains no FIFO store. Names are allocated on the host and the pipe
+     * first hears of one when it is bound. */
     KONA_HP_GENTEXTURES1D                = 0x122,
 
     /* Read at arm1.u arm_gentextures2d 0x0c026630 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GENTEXTURES2D` (0x123). Established: The token map runs a
-     * one-instruction stub at 0x0c026630 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_gentextures2d` at arm1.u 0x0c026630, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GenTexturesEXT
-     * (kon_texture_api.s) allocates texture names from a host table (bzero,
-     * __glkonim_GenTexturesEXT_Slow) and stores no FIFO token. */
+    /* `HP_GENTEXTURES2D` (0x123). Unused two-dimensional texture-name token.
+     * Established (read in full): the middle one of three adjacent generate
+     * slots, 0x123, is the same bare jump at 0x0c026630. Inferred from
+     * kon_texture_api.s: the library has one name generator,
+     * __glkonim_GenTexturesEXT, for every dimension, so there is no
+     * per-dimension path that could pick this token; the routine keeps its
+     * names in host tables and stores nothing to the command window. The 1D,
+     * 2D and 3D generate tokens are three numbers for a call the host answers
+     * alone. */
     KONA_HP_GENTEXTURES2D                = 0x123,
 
     /* Read at arm1.u arm_gentextures3d 0x0c026634 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_GENTEXTURES3D` (0x124). Established: The token map runs a
-     * one-instruction stub at 0x0c026634 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_gentextures3d` at arm1.u 0x0c026634, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_GenTexturesEXT
-     * (kon_texture_api.s) allocates texture names from a host table (bzero,
-     * __glkonim_GenTexturesEXT_Slow) and stores no FIFO token. */
+    /* `HP_GENTEXTURES3D` (0x124). Unused three-dimensional texture-name
+     * token. Established: token 0x124 resolves to a branch at 0x0c026634 into
+     * arm_badcmd (read in full). Inferred from kon_texture_api.s:
+     * __glkonim_GenTexturesEXT is shared by all three dimensions and carries
+     * no dimension argument that could select a token, and its only callees
+     * are bzero and the slow-path allocator, so the pipe is never asked to
+     * generate a name. */
     KONA_HP_GENTEXTURES3D                = 0x124,
 
     /* Read at arm1.u arm_istexture 0x0c026638 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_ISTEXTURE` (0x125). Established: The token map runs a
-     * one-instruction stub at 0x0c026638 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_istexture` at arm1.u 0x0c026638, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_IsTextureEXT
-     * (kon_texture_api.s) is a 59-line host-table lookup with no FIFO store. */
+    /* `HP_ISTEXTURE` (0x125). Unused texture-name test token. Established
+     * (read in full): the routine for 0x125 is the lone jump at 0x0c026638
+     * into arm_badcmd; the delete and bind slots after it do the same.
+     * Inferred from kon_texture_api.s: __glkonim_IsTextureEXT is a
+     * 42-instruction lookup in the host name table with two error sites and
+     * no call at all, so the answer is a pure host query and the token has no
+     * use. */
     KONA_HP_ISTEXTURE                    = 0x125,
 
     /* Read at arm1.u arm_deletetextures 0x0c02663c (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_DELETETEXTURES` (0x126). Established: The token map runs a
-     * one-instruction stub at 0x0c02663c that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_deletetextures` at arm1.u 0x0c02663c, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_DeleteTexturesEXT
-     * (kon_texture_api.s) frees host objects and calls subtractTexTableUsage,
-     * whose FIFO token is HP_TEX_ARM_CACHE_INDEX_INVALID 0x1e0. */
+    /* `HP_DELETETEXTURES` (0x126). Unused texture-delete token. Established:
+     * token 0x126 maps to a branch at 0x0c02663c into arm_badcmd (read in
+     * full). Inferred from kon_texture_api.s: __glkonim_DeleteTexturesEXT
+     * (261 instructions) walks the names, frees objects with
+     * __glKonFreeTextureObj and releases cached texture-memory use through
+     * subtractTexTableUsage, whose FIFO token is
+     * HP_TEX_ARM_CACHE_INDEX_INVALID (0x1e0). Deletion reaches the pipe as
+     * that cache invalidation, never as a delete word. */
     KONA_HP_DELETETEXTURES               = 0x126,
 
     /* Read at arm1.u arm_bindtexture 0x0c026640 (b 0x0c0017f4); arm_badcmd
      * 0x0c0017f4-0x0c001854. */
 
-    /* `HP_BINDTEXTURE` (0x127). Established: The token map runs a
-     * one-instruction stub at 0x0c026640 that branches to arm_badcmd; that
-     * prints the current and previous token numbers, reads and prints 100
-     * payload words, then spins reading words, so the pipe would hang.
-     * Payload none read by the stub (arm_badcmd drains 100): nothing: the
-     * token is refused and no payload is defined. Established: the token map
-     * runs `arm_bindtexture` at arm1.u 0x0c026640, a stub that ends in
-     * `arm_badcmd`. No sender found. __glkonim_BindTextureEXT
-     * (kon_texture_api.s) updates host binding state; the pipe sees the bind
-     * through TEXBIND_ID 0x178 (updateTexBindID), bind2DMipmapTexture 0x179,
-     * bind3DTexture 0x17c/0x1d5 and siblings. */
+    /* `HP_BINDTEXTURE` (0x127). Unused texture-bind token. Established (read
+     * in full): 0x127 ends the texture-name run with a bare jump to
+     * arm_badcmd at 0x0c026640. Inferred from kon_texture_api.s:
+     * __glkonim_BindTextureEXT (235 instructions, five error sites) switches
+     * on targets 0x8170 and 0x844d-0x844f among others, calls
+     * __glKonDeleteTextureObj on two paths and stores nothing itself; the
+     * pipe sees a bind through the texture-bind tokens (0x178, 0x179 and
+     * siblings) that other routines send (their senders are covered in their
+     * own entries). */
     KONA_HP_BINDTEXTURE                  = 0x127,
 
     /* Engine handlers whose slots the code of `arm_x_init` loads, in order:
