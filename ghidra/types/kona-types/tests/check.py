@@ -1,6 +1,6 @@
 """Check what KonaTypes.java applied.
 
-Usage: python3 ghidra/kona-types/tests/check.py [DUMPDIR]   (default .cache/kona-types)
+Usage: python3 ghidra/types/kona-types/tests/check.py [DUMPDIR]   (default .cache/kona-types)
 
 Reads the dumps and logs of tests/run-ghidra.sh and checks:
 
@@ -22,7 +22,7 @@ import re
 import sys
 
 D = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else '.cache/kona-types')
-os.chdir(os.path.dirname(os.path.abspath(__file__)) + '/../../..')
+os.chdir(os.path.dirname(os.path.abspath(__file__)) + '/../../../..')
 bad = 0
 
 

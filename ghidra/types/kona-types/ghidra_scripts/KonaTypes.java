@@ -4,15 +4,15 @@
 // Run as an analyzeHeadless -postScript (after analysis) on any import:
 //
 //   analyzeHeadless DIR PROJ -process PROGRAM -noanalysis \
-//     -scriptPath ghidra/kona-types/ghidra_scripts -postScript KonaTypes.java [REPO]
+//     -scriptPath ghidra/types/kona-types/ghidra_scripts -postScript KonaTypes.java [REPO]
 //
 // REPO is the repository root (default: the working directory). Types, all
 // under /KONA/types, built from the repository's own records:
 //
 //   kona_arm_state       the ARM firmware's state block (SRAM at r8 = 0),
-//                        from ghidra/kona-types/arm_state.tsv
+//                        from ghidra/types/kona-types/arm_state.tsv
 //   kona_vertex_record   the geometry engines' vertex record, from
-//                        ghidra/kona-types/vertex_record.tsv
+//                        ghidra/types/kona-types/vertex_record.tsv
 //   kona_entry_geom,     a routed token-map entry in its three forms, with
 //   kona_entry_pass,     the distributor control word split as ucode/ged.md
 //   kona_entry_regpix    decodes it
@@ -21,7 +21,7 @@
 //                        kernel window offset 0x800000 + register (HIP.h)
 //
 // Applied:
-//   - ARM firmware (an import by ghidra/kona-arm, with its "sram" block):
+//   - ARM firmware (an import by ghidra/import/kona-arm, with its "sram" block):
 //     kona_arm_state at SRAM 0 in the production arm1.u, whose layout the
 //     state block rows describe; each routed entry of the token list typed
 //     in its form.
@@ -61,8 +61,8 @@ public class KonaTypes extends GhidraScript {
 		String[] args = getScriptArgs();
 		repo = Paths.get(args.length > 0 ? args[0] : System.getProperty("user.dir")).toAbsolutePath();
 		dtm = currentProgram.getDataTypeManager();
-		DataType state = recordType("ghidra/kona-types/arm_state.tsv", "kona_arm_state", 1, 0x1000);
-		recordType("ghidra/kona-types/vertex_record.tsv", "kona_vertex_record", 4, 0);
+		DataType state = recordType("ghidra/types/kona-types/arm_state.tsv", "kona_arm_state", 1, 0x1000);
+		recordType("ghidra/types/kona-types/vertex_record.tsv", "kona_vertex_record", 4, 0);
 		DataType[] forms = entryTypes();
 		enumFromHeader("GE.h", "kona_ge_special", "KONA_GE11_SR_(\\w+)", null, 0, 1);
 		EnumDataType hh = enumFromHeader("HIP.h", "kona_hh_reg",

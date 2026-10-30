@@ -6,7 +6,7 @@
 //     -processor ARM:BE:32:v4 -preScript KonaArmImport.java [REPO]
 //
 // REPO is the repository root (default: the working directory); the script
-// reads ucode/*.tsv, ucode/tport.md and ghidra/kona-arm/tables.tsv from it.
+// reads ucode/*.tsv, ucode/tport.md and ghidra/import/kona-arm/tables.tsv from it.
 //
 // Accepts arm1.u, arm1_kpm.u, tport.bin and the diagnostic images
 // diags/IR/ucode/arm1.u, arm1_nic.u and diag_arm_init.u. All are big-endian
@@ -33,7 +33,7 @@
 //    token's slot in it, in icu_map and in the hardware map at 0x400000,
 //    and comments each handler with its tokens (ucode/arm1_handlers.tsv,
 //    ucode/icu_map.tsv);
-//  - lays the documented data tables of ghidra/kona-arm/tables.tsv.
+//  - lays the documented data tables of ghidra/import/kona-arm/tables.tsv.
 //
 // @category KONA
 
@@ -644,7 +644,7 @@ public class KonaArmImport extends GhidraScript {
 		return DataUtilities.createData(currentProgram, ad, dt, len, mode);
 	}
 
-	// ghidra/kona-arm/tables.tsv: image, symbol or address, type, count, source.
+	// ghidra/import/kona-arm/tables.tsv: image, symbol or address, type, count, source.
 	void tables() throws Exception {
 		DataTypeManager dtm = currentProgram.getDataTypeManager();
 		StructureDataType disp = new StructureDataType(CAT, "dg_dispatch8", 0, dtm);
@@ -662,7 +662,7 @@ public class KonaArmImport extends GhidraScript {
 		types.put("dg_request12", dtm.addDataType(req, DataTypeConflictHandler.REPLACE_HANDLER));
 		types.put("icu_entry", regTypes.getOrDefault("HA_ICU_MAP_N", UnsignedIntegerDataType.dataType));
 		int n = 0;
-		for (String[] r : tsv("ghidra/kona-arm/tables.tsv")) {
+		for (String[] r : tsv("ghidra/import/kona-arm/tables.tsv")) {
 			if (r[0].equals("image") || !(r[0].equals(image) || r[0].equals("*"))) {
 				continue;
 			}

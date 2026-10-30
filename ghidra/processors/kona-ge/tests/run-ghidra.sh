@@ -1,16 +1,16 @@
 #!/bin/sh
 # Build the KONA-GE module and run the Ghidra half of its acceptance tests.
 #
-#   sleigh/kona-ge/tests/run-ghidra.sh [OUTDIR]     (default .cache/kona-ge)
+#   ghidra/processors/kona-ge/tests/run-ghidra.sh [OUTDIR]     (default .cache/kona-ge)
 #
 # Run from the repository root with Ghidra's support directory (sleigh,
 # analyzeHeadless) on PATH and root/ populated. It writes, under OUTDIR:
 #   prod.functions, prod.listing, decomp/*.c   production ucode/KONA/ge.u
 #   diag.listing                               usr/diags/IR/ucode/ge.u
-# and sleigh/kona-ge/tests/check.py then compares them with the Python
+# and ghidra/processors/kona-ge/tests/check.py then compares them with the Python
 # disassembler and the documents.
 set -eu
-MOD=sleigh/kona-ge
+MOD=ghidra/processors/kona-ge
 OUT=${1:-.cache/kona-ge}
 mkdir -p "$OUT"
 OUT=$(cd "$OUT" && pwd)

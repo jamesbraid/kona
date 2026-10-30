@@ -1,6 +1,6 @@
 # Decompilation tooling: what each tool is for
 
-Two tools read the shipped IRIX binaries: the assembly-to-C pipeline in `scripts/` (`spimdisasm` objects and `m2c`, here "the pipeline") and Ghidra's headless analyzer with the decompiler. This chapter compares them on 20 functions whose behaviour the repository already documents, and says what to use each for. Nothing in it is specific to one graphics family: the method, the failure modes and the scripts in [scripts/ghidra/](../scripts/ghidra/) apply to any IRIX MIPS binary (o32, N32, 64-bit, relocatable kernel objects). Another workspace can copy this file and the scripts and repeat the table against its own functions.
+Two tools read the shipped IRIX binaries: the assembly-to-C pipeline in `scripts/` (`spimdisasm` objects and `m2c`, here "the pipeline") and Ghidra's headless analyzer with the decompiler. This chapter compares them on 20 functions whose behaviour the repository already documents, and says what to use each for. Nothing in it is specific to one graphics family: the method, the failure modes and the scripts in [ghidra/scripts/](../ghidra/scripts/) apply to any IRIX MIPS binary (o32, N32, 64-bit, relocatable kernel objects). Another workspace can copy this file and the scripts and repeat the table against its own functions. The index of all Ghidra tooling in this repository, with how to build and run each part, is [ghidra/README.md](../ghidra/README.md).
 
 ## Recommendation
 
@@ -116,7 +116,7 @@ Ghidra (default import):
 
 ## Scripts
 
-All in [scripts/ghidra/](../scripts/ghidra/), each with its use in the opening comment. Run inside an image that has Ghidra's `analyzeHeadless`; create the project directory first (`mkdir -p /tmp/gp`) and pass `-deleteProject` to leave nothing behind.
+All in [ghidra/scripts/](../ghidra/scripts/), each with its use in the opening comment. Run inside an image that has Ghidra's `analyzeHeadless`; create the project directory first (`mkdir -p /tmp/gp`) and pass `-deleteProject` to leave nothing behind.
 
 | Script | Run as | Does |
 |---|---|---|
@@ -139,7 +139,7 @@ Limits of the scripts, found in use:
 
 ## Ghidra processor module for the geometry-engine microcode
 
-The sections above cover the MIPS binaries. The geometry-engine microcode is not MIPS code, and no stock Ghidra processor reads it. `sleigh/kona-ge/` is a Ghidra extension that disassembles and decompiles the geometry-engine microcode: KONA's `ge.u`, `ge11.u` and `ge.hex`, the IR diagnostic programs, and the `gevers_ucode` program in the instruction set ([ucode/ge_isa.md](../ucode/ge_isa.md#engine-facts-read-from-konas-own-binaries)). Built and tested with Ghidra 12.1.3.
+The sections above cover the MIPS binaries. The geometry-engine microcode is not MIPS code, and no stock Ghidra processor reads it. `ghidra/processors/kona-ge/` is a Ghidra extension that disassembles and decompiles the geometry-engine microcode: KONA's `ge.u`, `ge11.u` and `ge.hex`, the IR diagnostic programs, and the `gevers_ucode` program in the instruction set ([ucode/ge_isa.md](../ucode/ge_isa.md#engine-facts-read-from-konas-own-binaries)). Built and tested with Ghidra 12.1.3.
 
 | Path | What it is |
 |---|---|
@@ -180,17 +180,17 @@ Code that stores a result computed several words earlier therefore decompiles wi
 From the repository root, with `root/` populated and Ghidra's `support/` directory (`sleigh`, `analyzeHeadless`) on `PATH`:
 
 ```sh
-python3 sleigh/kona-ge/tools/gen_slaspec.py      # after editing the generator
-sleigh/kona-ge/tests/run-ghidra.sh .cache/kona-ge  # needs Ghidra
-python3 sleigh/kona-ge/tests/check.py .cache/kona-ge  # needs Python 3 only
+python3 ghidra/processors/kona-ge/tools/gen_slaspec.py      # after editing the generator
+ghidra/processors/kona-ge/tests/run-ghidra.sh .cache/kona-ge  # needs Ghidra
+python3 ghidra/processors/kona-ge/tests/check.py .cache/kona-ge  # needs Python 3 only
 ```
 
-`run-ghidra.sh` installs the module as a user extension in a temporary settings directory and compiles the spec. It then imports each program. To use the module interactively, copy or link `sleigh/kona-ge` into Ghidra's `Extensions` directory, run `sleigh` on the spec, and import a program with the recipe:
+`run-ghidra.sh` installs the module as a user extension in a temporary settings directory and compiles the spec. It then imports each program. To use the module interactively, copy or link `ghidra/processors/kona-ge` into Ghidra's `Extensions` directory, run `sleigh` on the spec, and import a program with the recipe:
 
 ```sh
 analyzeHeadless PROJDIR PROJ -import ucode/KONA/ge.u -loader BinaryLoader \
   -processor KONA-GE:BE:32:default \
-  -scriptPath sleigh/kona-ge/ghidra_scripts -preScript KonaGEImport.java
+  -scriptPath ghidra/processors/kona-ge/ghidra_scripts -preScript KonaGEImport.java
 ```
 
 The script also does the following:
@@ -217,7 +217,7 @@ From `check.py` against IRIX 6.5.30m `usr/gfx/ucode/KONA/` and `usr/diags/IR/uco
 
 ## ARM firmware import
 
-The host-interface ARM runs its own firmware, a big-endian ARMv4 image in AIF layout ([ucode/arm1.md](../ucode/arm1.md)). Ghidra's stock ARM processor reads the code, but a raw import puts the AIF header at the load address, has no address map and no names. `ghidra/kona-arm/` holds an import script that fixes that for every ARM image on the media: `arm1.u`, `arm1_kpm.u` and `tport.bin` from `usr/gfx/ucode/KONA/`, and `arm1.u`, `arm1_nic.u` and `diag_arm_init.u` from `usr/diags/IR/ucode/`.
+The host-interface ARM runs its own firmware, a big-endian ARMv4 image in AIF layout ([ucode/arm1.md](../ucode/arm1.md)). Ghidra's stock ARM processor reads the code, but a raw import puts the AIF header at the load address, has no address map and no names. `ghidra/import/kona-arm/` holds an import script that fixes that for every ARM image on the media: `arm1.u`, `arm1_kpm.u` and `tport.bin` from `usr/gfx/ucode/KONA/`, and `arm1.u`, `arm1_nic.u` and `diag_arm_init.u` from `usr/diags/IR/ucode/`.
 
 | Path | What it is |
 |---|---|
@@ -226,12 +226,12 @@ The host-interface ARM runs its own firmware, a big-endian ARMv4 image in AIF la
 | `tests/run-ghidra.sh`, `tests/DumpArm.java` | Imports all six images, analyses them and dumps functions, the token list, data and references |
 | `tests/check.py` | Compares the dumps with `ucode/arm1.s`, `ucode/tport.s`, `ucode/icu_map.tsv` and `ucode/arm1_handlers.tsv` |
 
-Import recipe, from the repository root (the script's argument is the repository root; it reads `ucode/` and `ghidra/kona-arm/tables.tsv` from there):
+Import recipe, from the repository root (the script's argument is the repository root; it reads `ucode/` and `ghidra/import/kona-arm/tables.tsv` from there):
 
 ```sh
 analyzeHeadless PROJDIR PROJ -import ucode/KONA/arm1.u -loader BinaryLoader \
   -processor ARM:BE:32:v4 \
-  -scriptPath ghidra/kona-arm/ghidra_scripts -preScript KonaArmImport.java "$(pwd)"
+  -scriptPath ghidra/import/kona-arm/ghidra_scripts -preScript KonaArmImport.java "$(pwd)"
 ```
 
 The processor is `ARM:BE:32:v4`: the images use the ARMv4 halfword transfers and no Thumb or `bx`. What the script does:
@@ -246,8 +246,8 @@ The processor is `ARM:BE:32:v4`: the images use the ARMv4 halfword transfers and
 Test, from the repository root:
 
 ```sh
-ghidra/kona-arm/tests/run-ghidra.sh .cache/kona-arm      # needs Ghidra, about 80 s
-python3 ghidra/kona-arm/tests/check.py .cache/kona-arm   # needs Python 3 only
+ghidra/import/kona-arm/tests/run-ghidra.sh .cache/kona-arm      # needs Ghidra, about 80 s
+python3 ghidra/import/kona-arm/tests/check.py .cache/kona-arm   # needs Python 3 only
 ```
 
 Results against IRIX 6.5.30m:
@@ -260,7 +260,7 @@ Limits: the diagnostic images' functions that match nothing in `arm1.u` stay `fn
 
 ## Ghidra processor module for the distributor program
 
-`sleigh/kona-ged/` is a Ghidra extension for the distributor program `ged1b.u` (`usr/gfx/ucode/KONA/`), the 931-word program the ARM loads into the distributor at start-up. The word format is the one the IR diagnostic packs ([ucode/ged.md](../ucode/ged.md#word-format)): bits 31-30 pick control, transfer, load or the unused type 3, and the module decodes every field of each. Built and tested with Ghidra 12.1.3.
+`ghidra/processors/kona-ged/` is a Ghidra extension for the distributor program `ged1b.u` (`usr/gfx/ucode/KONA/`), the 931-word program the ARM loads into the distributor at start-up. The word format is the one the IR diagnostic packs ([ucode/ged.md](../ucode/ged.md#word-format)): bits 31-30 pick control, transfer, load or the unused type 3, and the module decodes every field of each. Built and tested with Ghidra 12.1.3.
 
 | Path | What it is |
 |---|---|
@@ -287,7 +287,7 @@ Import recipe (the argument is the repository root, for `ucode/ged_relocs.tsv`):
 ```sh
 analyzeHeadless PROJDIR PROJ -import ucode/KONA/ged1b.u -loader BinaryLoader \
   -processor KONA-GED:BE:32:default \
-  -scriptPath sleigh/kona-ged/ghidra_scripts -preScript KonaGEDImport.java "$(pwd)"
+  -scriptPath ghidra/processors/kona-ged/ghidra_scripts -preScript KonaGEDImport.java "$(pwd)"
 ```
 
 The script maps the program and the table block, puts the line table in end-of-line comments as `file:line` with the relocated engine handler of each slot word ([ucode/ged_relocs.tsv](../ucode/ged_relocs.tsv)), and decodes every word on its own. It types table A (16 words, `table_A`, each nonzero entry commented with the table B base 8 x A[class]) and table B (512 words, `table_B`) as data, adds a reference from every table B entry to its program word, and labels each word a table B entry starts (`B_<first index>`, with every index in a comment) as an entry point and function.
@@ -295,8 +295,8 @@ The script maps the program and the table block, puts the line table in end-of-l
 Test, from the repository root:
 
 ```sh
-sleigh/kona-ged/tests/run-ghidra.sh .cache/kona-ged       # needs Ghidra
-python3 sleigh/kona-ged/tests/check.py .cache/kona-ged    # needs Python 3 only
+ghidra/processors/kona-ged/tests/run-ghidra.sh .cache/kona-ged       # needs Ghidra
+python3 ghidra/processors/kona-ged/tests/check.py .cache/kona-ged    # needs Python 3 only
 ```
 
 Result against IRIX 6.5.30m: all 931 words match `scripts/ged_disasm.py` in mnemonic and operands (210 control, 248 transfer, 473 load), and all 206 words a table B entry starts are function entries.
@@ -305,12 +305,12 @@ The 24-bit control word that a routed token-map entry or an ARM descriptor carri
 
 ## Data types for the documented structures
 
-`ghidra/kona-types/ghidra_scripts/KonaTypes.java` adds the structures the documents establish to any program, under `/KONA/types`, and applies them where their address is fixed. Run it as a post-script after analysis; its argument is the repository root.
+`ghidra/types/kona-types/ghidra_scripts/KonaTypes.java` adds the structures the documents establish to any program, under `/KONA/types`, and applies them where their address is fixed. Run it as a post-script after analysis; its argument is the repository root.
 
 | Type | Built from |
 |---|---|
-| `kona_arm_state` | the ARM firmware's state block, SRAM at r8 = 0 ([arm_state.tsv](../ghidra/kona-types/arm_state.tsv): one row per field with its status and source page) |
-| `kona_vertex_record` | the geometry engines' vertex record in words ([vertex_record.tsv](../ghidra/kona-types/vertex_record.tsv), from [ucode/ge_compute.md](../ucode/ge_compute.md)); words 0xf-0x12 are a union of the eye-space normal and the projected texture results |
+| `kona_arm_state` | the ARM firmware's state block, SRAM at r8 = 0 ([arm_state.tsv](../ghidra/types/kona-types/arm_state.tsv): one row per field with its status and source page) |
+| `kona_vertex_record` | the geometry engines' vertex record in words ([vertex_record.tsv](../ghidra/types/kona-types/vertex_record.tsv), from [ucode/ge_compute.md](../ucode/ge_compute.md)); words 0xf-0x12 are a union of the eye-space normal and the projected texture results |
 | `kona_entry_geom`, `kona_entry_pass`, `kona_entry_regpix` | a routed token-map entry in its three forms, the host-interface bits as kpm names them and the 24-bit distributor control word split as [ucode/ged.md](../ucode/ged.md#the-token-map-entry-is-the-distributors-control-word) decodes it; each field's comment carries its status |
 | `kona_ge_special` | enum of the geometry-engine special registers, `KONA_GE11_SR_*` in [GE.h](../GE.h) |
 | `kona_hh_reg` | enum of the host-interface registers at their kernel window offset 0x800000 + register, the `KONA_*HH_*` registers of [HIP.h](../HIP.h) |
@@ -324,8 +324,8 @@ Where it applies them:
 Test, from the repository root:
 
 ```sh
-ghidra/kona-types/tests/run-ghidra.sh .cache/kona-types      # needs Ghidra, about 50 s
-python3 ghidra/kona-types/tests/check.py .cache/kona-types   # needs Python 3 only
+ghidra/types/kona-types/tests/run-ghidra.sh .cache/kona-types      # needs Ghidra, about 50 s
+python3 ghidra/types/kona-types/tests/check.py .cache/kona-types   # needs Python 3 only
 ```
 
 Results against IRIX 6.5.30m: `kona_arm_state` is laid at SRAM 0 in `arm1.u`, and all 206 routed token-list entries carry the type of their form: 121 geometry, 71 pass and 14 register/pixel, the split ged.md gives. Over the 27 `kona_*.o` kernel objects the script names 223 register accesses, 78 distinct function and register pairs. All 49 function and register pairs that the inventory's `mmio.tsv` lists for the host-interface window (from the objdump scan, which shares no code with this script) are among them.

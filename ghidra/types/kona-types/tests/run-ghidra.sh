@@ -2,7 +2,7 @@
 # Apply KonaTypes.java to the production ARM firmware and to every kernel
 # object, and dump the result for tests/check.py.
 #
-#   ghidra/kona-types/tests/run-ghidra.sh [OUTDIR]     (default .cache/kona-types)
+#   ghidra/types/kona-types/tests/run-ghidra.sh [OUTDIR]     (default .cache/kona-types)
 #
 # Run from the repository root with analyzeHeadless on PATH and root/
 # populated. Writes OUTDIR/arm1.u.dump and .log, and OUTDIR/kernel.log
@@ -13,7 +13,7 @@ mkdir -p "$OUT"
 OUT=$(cd "$OUT" && pwd)
 proj=$(mktemp -d /tmp/kona-types-proj.XXXXXX)
 trap 'rm -rf "$proj"' EXIT
-SP="ghidra/kona-arm/ghidra_scripts;ghidra/kona-types/ghidra_scripts;ghidra/kona-types/tests"
+SP="ghidra/import/kona-arm/ghidra_scripts;ghidra/types/kona-types/ghidra_scripts;ghidra/types/kona-types/tests"
 
 rm -f "$OUT/arm1.u.dump"
 analyzeHeadless "$proj" p -import ucode/KONA/arm1.u -loader BinaryLoader \

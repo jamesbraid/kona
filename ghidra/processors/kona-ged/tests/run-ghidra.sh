@@ -1,12 +1,12 @@
 #!/bin/sh
 # Build the KONA-GED module and import ged1b.u for tests/check.py.
 #
-#   sleigh/kona-ged/tests/run-ghidra.sh [OUTDIR]     (default .cache/kona-ged)
+#   ghidra/processors/kona-ged/tests/run-ghidra.sh [OUTDIR]     (default .cache/kona-ged)
 #
 # Run from the repository root with Ghidra's support directory (sleigh,
 # analyzeHeadless) on PATH and root/ populated. Writes OUTDIR/ged1b.listing.
 set -eu
-MOD=sleigh/kona-ged
+MOD=ghidra/processors/kona-ged
 OUT=${1:-.cache/kona-ged}
 mkdir -p "$OUT"
 OUT=$(cd "$OUT" && pwd)

@@ -1,6 +1,6 @@
 """Check the ARM import against the committed listings and tables.
 
-Usage: python3 ghidra/kona-arm/tests/check.py [DUMPDIR]   (default .cache/kona-arm)
+Usage: python3 ghidra/import/kona-arm/tests/check.py [DUMPDIR]   (default .cache/kona-arm)
 
 Reads the dumps tests/run-ghidra.sh writes and checks, per image:
 
@@ -193,7 +193,7 @@ def check_other():
         ports(g, name, need)
 
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)) + '/../../..')
+os.chdir(os.path.dirname(os.path.abspath(__file__)) + '/../../../..')
 check_arm1()
 check_tport()
 check_other()

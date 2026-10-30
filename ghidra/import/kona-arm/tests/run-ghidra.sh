@@ -2,12 +2,12 @@
 # Import every KONA ARM image with KonaArmImport.java, analyse it, and dump
 # what the import produced for tests/check.py.
 #
-#   ghidra/kona-arm/tests/run-ghidra.sh [OUTDIR]     (default .cache/kona-arm)
+#   ghidra/import/kona-arm/tests/run-ghidra.sh [OUTDIR]     (default .cache/kona-arm)
 #
 # Run from the repository root with analyzeHeadless on PATH and root/
 # populated. Writes OUTDIR/<image>.dump and OUTDIR/<image>.log per image.
 set -eu
-MOD=ghidra/kona-arm
+MOD=ghidra/import/kona-arm
 OUT=${1:-.cache/kona-arm}
 mkdir -p "$OUT"
 OUT=$(cd "$OUT" && pwd)

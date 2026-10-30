@@ -1,6 +1,6 @@
 """Compare the KONA-GED import of ged1b.u with scripts/ged_disasm.py.
 
-Usage: python3 sleigh/kona-ged/tests/check.py [DUMPDIR]   (default .cache/kona-ged)
+Usage: python3 ghidra/processors/kona-ged/tests/check.py [DUMPDIR]   (default .cache/kona-ged)
 
 Runs scripts/ged_disasm.py into DUMPDIR/ged_listing.txt, then checks every
 program word of DUMPDIR/ged1b.listing (tests/run-ghidra.sh) against it:
@@ -17,7 +17,7 @@ import subprocess
 import sys
 
 D = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else '.cache/kona-ged')
-os.chdir(os.path.dirname(os.path.abspath(__file__)) + '/../../..')
+os.chdir(os.path.dirname(os.path.abspath(__file__)) + '/../../../..')
 ref = os.path.join(D, 'ged_listing.txt')
 subprocess.run([sys.executable, 'scripts/ged_disasm.py', 'ucode/KONA/ged1b.u', ref], check=True)
 
