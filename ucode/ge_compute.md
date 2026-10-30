@@ -2603,6 +2603,155 @@ the context's module slots, and the line slot is 0x15 below it (F = 0xa) and the
   (command word 0) and the pattern (word 1). It converts the factor to float (code 0x73), computes its reciprocal with a
   seed and a Newton step (0x62ac-0x62b6) and stores that result at engine word 0x25e; the pattern, shifted by code 0x5d
   (0x62bc), goes to 0x24d. A loop (0x62c8-0x62cf) then converts further words to float and stores them from 0x24e on.
+- `mgeb_SetMSPointTables` (`point.S` line 1871, at 0x5b96): **inferred**,
+  the command that picks which multisample point table set later point modules use. It consumes command word 0 (read at
+  0x5b99). The integer multiply at 0x5b9a scales it by the 0x640 staged at 0x5b97, the add at 0x5b9e puts the 0x1c07
+  staged at 0x5b98 on top, and the sum is the result: the store at 0x5ba7 writes it to external-memory word 0x247,
+  which the table-driven point modules read back (0x7892, 0x7c70, 0x7eba). The command ends at 0x5ba2.
+- `mgeb_ComputeMSPointTables` (`point.S` line 1572, at 0x5bab): **inferred**,
+  the command that builds the multisample coverage tables for a run of point sizes. Its operands are command words 0-2: the routine multiplies
+  word 0 by the 0x640 staged at 0x5bac (multiply at 0x5bae), and words 1 and 2 are parked in registers 0x19 and 0x1a by
+  the moves at 0x5bce and 0x5bd0 as the two packed sample-position words. The routine writes a parameter block at 0x85d0
+  (1, 5, -2, 8 and 0x19 at 0x5bb9-0x5bbd), fills staging words 0-9 with 0, 4, 0xc, 0x10, 8, 200, 200, 7, 3 and 4
+  (0x5bbf-0x5bc8) and points the lanes at scratch regions 0xc8 words apart (0x77a3 to 0x7b8b, 0x5bb1-0x5bb6). After
+  the call to `MSPoint_Init_Samples` (0x5bcf) a loop from 0x5beb to the branch at 0x5c4b calls `MSPoint_Init`,
+  `MSPoint_Sort` and `MSPoint_Pack` as a triple three times a pass (0x5bee-0x5c36), subtracting staging word 8 (3) from
+  the running size between triples. The output is the packed tables in external memory; the command closes with
+  a raster register write of 0x1c3a to bus-output 0x1f7 and zero to 0x1f5 (0x5c52-0x5c53) and its end at 0x5c51.
+- `MSPoint_Pack` (`point.S` line 1428, at 0x5c5a): **inferred**,
+  squeezes one point size's sorted sample records into packed words. The routine takes the record list the sort leaves
+  in each lane's scratch region (external-memory loads at 0x5c69-0x5c80) and the parameter block at 0x85d0 (loop
+  count 0x19 from word 8, loaded at 0x5c60; multiplier 5 from word 2, used by the multiplies at 0x5c92-0x5ca4). Per
+  record it unpacks fields with right shifts by staging words 1 and 4 (0x5c88-0x5c94) masked by word 7, folds two of them
+  into one cell index by multiplying by 5 and adding (0x5c92, 0x5ca3), shifts the sample number up by staging word 0xc
+  (5, at 0x5c9a) and ORs four such bytes into one word at byte shifts 0, 8, 0x10 and 0x18 (staging words 0xd-0xf, the
+  `or` chain 0x5ca7-0x5cba). The packed word leaves through the lane stores at 0x5cc3-0x5cc7; the loop branch is at
+  0x5cc2 and the routine returns at 0x5cc3.
+- `MSPoint_Sort` (`point.S` line 1200, at 0x5ccc): **inferred**,
+  puts one lane's sample records in order. It takes the 200 records `MSPoint_Init` leaves as input (the count is staging
+  word 5, loaded into register 0x13 at 0x5ccc), read with external-memory loads at 0x5cd9-0x5ce3. It unpacks each
+  record with right shifts by staging words 1-4 masked by word 7 (0x5ceb-0x5cf3), compares neighbouring records with
+  unit-1 subtracts that set flags (0x5d0f, 0x5d19, 0x5d21, 0x5d2b, 0x5d32, 0x5d3d) and exchanges them with moves
+  predicated on those flags (0x5d15-0x5d44). Two nested loops repeat this (the branch at 0x5d67 back to 0x5cf4, the one
+  at 0x5d8a back to 0x5cd5). The reordered records go back out through the lane stores `r95` = 8, 9 and 0xa (0x5d50-0x5d54,
+  0x5d68-0x5d83) and the routine returns at 0x5d8b.
+- `MSPoint_Init` (`point.S` line 1056, at 0x5d94): **inferred**,
+  generates the sample records of one point size over a 5 by 5 block of pixel cells. Its inputs are the parameter
+  block at 0x85d0 (block size 5 at word 2, offset -2 at word 3, cell width 8 at word 5) and the two sample-offset tables
+  at 0x8614 and 0x8634 that `MSPoint_Init_Samples` fills (registers 0xc, 0xd and 0xe, set at 0x5d97-0x5d99). Both loop
+  counters start at 5 minus a converted size (0x5d94, 0x5d9b-0x5d9c) and run down through the branches at 0x5e94 (back to
+  0x5d9c) and 0x5e7f (back to 0x5da3). For each of a cell's eight samples it packs one record, shifting the two cell
+  indices, the two sample offsets and the sample number to bit positions 0, 4, 0xc, 0x10 and 8 and ORing them (the
+  `sll`/`or` runs from 0x5da3), and stores it through the lane stores at 0x5dcd-0x5dd2. The second half (0x5e22-0x5e73)
+  computes each sample's squared distance from the point centre: it adds the sample offsets to the cell position
+  scaled by 8 (0x5e2b, 0x5e34-0x5e38), squares both terms with integer multiplies (0x5e3c, 0x5e3e) and sums them (0x5e44,
+  0x5e49), storing the sums per lane from 0x5e4d on. It returns at 0x5e95.
+- `MSPoint_Init_Samples` (`point.S` line 927, at 0x5e9e): **inferred**,
+  unpacks a point's sixteen sample-position fields into two small offset tables. The input is the pair of packed
+  words in registers 0x19 and 0x1a (set by the caller from command words 1 and 2), each holding eight 3-bit fields. For
+  each field it stages the shift count 0, 3, 6 ... 0x15 in staging word 0xa (0x5e9e, 0x5eb0, 0x5ec2 and so on to 0x5fac),
+  shifts right (0x5e9f), adds the bias 4 from staging word 9 (0x5ea3) and masks with word 7 (0x5ea7). Even fields are
+  stored into the table at 0x8614 (register 0x12, set at 0x5ea2) and odd fields into 0x8634 (register 0x13, 0x5eb4),
+  eight entries each. It returns at 0x5fb5.
+- `MSPoint_Print_Scratch_Tables` (`point.S` line 858, at 0x5fbe): **inferred**,
+  a debugging dump of the scratch tables the multisample point code builds. Staging words 5 and 6 are its arguments
+  (registers 0x13 and 0x12, 0x5fbf and 0x5fbe) and it steps through the two regions with external-memory loads
+  (0x5fcb, 0x5fcd). Each pass saves the per-lane values to external words 0x17d7-0x17dc (stores at 0x5fd7-0x5fe1),
+  loads the pointers 0x1757 and 0x17f4 (0x5feb, 0x5fee), calls `mPrintf` (0x4aa9, call at 0x607c) and reads the saved
+  words back (0x5ff7-0x6003); three near-identical set-up blocks (0x5fd5, 0x600b, 0x6046) precede the call. The loop
+  branch at 0x608a (which evaluates the address-unit flags set at 0x5fc7) returns to 0x5fc7 and the routine returns at 0x608b.
+- `mgebi_PointSize_MS` (`point.S` line 589, at 0x6094): **inferred**,
+  glPointSize when multisampling is on. Its operands are the size (command word 0) and a hint (word 1, compared with
+  the 0x1102 staged at 0x6099 by the subtract at 0x609b). The size is multiplied by the 0.5 staged at 0x6097 (0x609e),
+  two reciprocals come from seeds and Newton steps (0x60aa-0x60b2, 0x60e2-0x60ea), `mSinCos` is called at 0x60f1 with
+  360.0 and pi staged (0x60ec, 0x60f0), and the results are stored to external words 0x237-0x23a and 0x244-0x246
+  (0x6128, 0x6111, 0x610d, 0x60f6, 0x60c3, 0x60f4, 0x6117). The attenuation bit tested at 0x60b0 steers the module slot
+  (control word 0x16): when it is set the slot gets `mmo_DrawMSDistAttPntPrim` (0x813b) or, if the hint equals 0x1102,
+  `mmo_DrawMSDistAttTablePntPrim` (0x7855). Otherwise it starts as `mmo_DrawMSPntPrim` (0x82a7) and the predicated stores at
+  0x611a and 0x611b can replace it with `mmo_DrawMSTablePntPrim1` (0x7c28) or `mmo_DrawMSTablePntPrim` (0x7e6f), on
+  compares of an integer count (pi x 8.0 x square, stored at 0x239 and converted at 0x610a) with 0x64 and 0x1e (0x610e,
+  0x6110). The command ends by writing 0x70000 to bus-output 0x1f8 and values to 0x1f5 and 0x1f4 (0x611d-0x6122).
+- `mgebi_PointSize_AlphaAA` (`point.S` line 396, at 0x612c): **inferred**,
+  glPointSize for antialiased points. Its operands are the size (command word 0) and a hint (word 1, compared with the 0x1102
+  staged at 0x6146 by the subtract at 0x614b). The routine multiplies the size by the 0.5 staged at 0x614d (0x6150) and
+  the result, the radius, is stored to external word 0x237 (0x615e); 0x80 is ORed into the mode word (0x6137); and the draw-module slot
+  (control word 0x16) is set to `mmo_DrawAAPntPrim` (0x84be, staged at 0x614c, stored at 0x6160). The mode word goes
+  back to control word 3 under predicates (0x6161, 0x6162). Raster register writes follow as pairs of 0x1f8 and 0x1f5
+  stores (0x613a-0x6155, constants 0x70000, 0xfff, 0x1203fcf, 0x128080f, 0xfff000, 0x8000) and one to 0x1f4 (0x6157)
+  before the end at 0x615a.
+- `mgebi_PointSize_Aliased` (`point.S` line 177, at 0x6163): **inferred**,
+  glPointSize for plain (non-antialiased) points. The operand is the size (command word 0, read at 0x6167). The routine
+  adds the 0.5 stored at 0x6168, applies unit-1 code 0x7b (0x616d), takes the larger of that and a register (0x6171) and
+  stores half the result to external word 0x237 (0x617e). A test of bit 3 in control word 4 (0x6166) selects the draw
+  module: with the bit set the branch at 0x6177 jumps to the bus write at 0x61b7 and `mmo_DrawDistAttPntPrim` (0x8357,
+  staged at 0x6164) stays in the slot. Otherwise `mmo_DrawPntPrim` (0x8465, staged at 0x619e) goes to control word 0x16
+  (0x61a9), the constants 0, 0xffffff00 and 0x80 (0x6184, 0x6193, 0x6195) go to external words 0x23b-0x23d (stores
+  0x619b-0x61a5), and the converted size values go to bus-output pairs 0x1f8/0x1f5 (0x618f-0x61b6). The raster write 0x70000 to
+  0x1f8 and the word to 0x1f4 close the command (0x61b7-0x61bc, end at 0x61bd).
+- `mgeb_InitAALineTables` (`line.S` line 1325, at 0x6300): **inferred**,
+  builds the antialiased-line response tables once at start-up. Its operands are command words 0 and 1: word 1 is stored
+  through address register 0x1d at offset 0x21 (0x6302) and compared with the 0x1102 staged at 0x6303 (the subtract at
+  0x6304), and the routine multiplies word 0 at 0x6306. The 0x10000000 staged at 0x6305 is moved into register 0x1c
+  under that compare's predicate (0x6308). The routine then calls `mGenerateAALineTable` (0x64af, call at 0x6307), which
+  produces the tables, and the command ends at 0x6310.
+- `mgeb_DownLoadAALineTable` (`line.S` line 1190, at 0x6319): **inferred**,
+  regenerates the antialiased-line response table and sends it to the raster side. Its operands are command words 0 and
+  1: the routine multiplies word 0 (read at 0x6319) by the 0.5 staged at 0x631a (multiply at 0x631c) and stores the result
+  to external word 0x13ae (0x632a), and word 1 goes to register 0x1c (0x631d). The size word at 0x13af (read at 0x6324) is shifted right by 8 and
+  masked with 0xff (0x6329, 0x6332), and its field is compared with 8, 4 and 1 (0x6336-0x633a) to select the
+  generator and download pair: eight samples (0x63d4 and 0x652d), four (0x6432 and 0x6579) or one (0x64af and 0x65db),
+  at the transfers 0x6342-0x6347. It finishes with the raster writes 0x70000 to 0x1f8 and values to 0x1f5 and 0x1f4
+  (0x6356-0x6359) and ends at 0x6351.
+- `mgeb_LineWidth_AlphaAA` (`line.S` line 1014, at 0x6379): **inferred**,
+  glLineWidth for antialiased lines. Its operands are command words 3, 2, 1 and 0, read in turn (0x6379, 0x638c, 0x6393, 0x6395) and
+  word 1 is compared with the 0x1102 staged at 0x6392 (0x6394). Predicated stores (0x6397-0x639e, 0x63b3, 0x63b6) update
+  the mode word at control word 3 and put the draw module in control word 0x15: `mmo_DrawLinStipplePrim` (0x8b08, staged
+  at 0x6383) or `mmo_DrawLinPrim` (0x8db0, staged at 0x638e). The filter width is computed with float multiplies and
+  adds around the constants 0.5, 8.0 and 23.0 (0x6381, 0x6382, 0x63a7; operations 0x6396-0x63a9), converted at 0x63b9 and
+  stored to external word 0x236 (0x63b4). The command then sends raster writes: 0x70000 then 0xfff, and 0x1213fd0 then
+  the converted width, through the bus-output pairs 0x1f8/0x1f5 (0x63bb-0x63c2) after reading 0x13ae and 0x13af (0x63bc,
+  0x63be). It ends at 0x63cb.
+- `mGenerateAALineTable8` (`line.S` line 854, at 0x63d4): **inferred**,
+  computes the eight-sample antialiased-line response table. It takes the engine word at 0x1389 (0x63dc), the width and
+  size words that `mgeb_DownLoadAALineTable` left and the constants it stages (0.5, 1/31 as 0x3d042108, 3.0, 0.25 and
+  0.5; 0x63dd-0x63e7). The three lane registers point at per-lane result blocks 0x13b0, 0x13d0 and 0x13f0 (0x6403-0x6405).
+  It multiplies and adds (0x63ea-0x63fa), calls `AA_Response` (0x9059, branch at 0x6408) and `AA_Response_Step` (0x9045,
+  jump at 0x6409), clamps each response (`clamp` at 0x6416, 0x641c) and stores the values through the external-memory
+  stores at 0x641f-0x6423. The conditional branch at 0x6420 hands on to `mDownLoadAALineTable8` (0x652d); otherwise the
+  routine returns at 0x6429.
+- `mGenerateAALineTable4` (`line.S` line 702, at 0x6432): **inferred**,
+  the four-sample table generator. It consumes the same staged constants (0x643b-0x6445) and engine word 0x1389 (0x643a),
+  points a lane register at the blocks 0x13b0, 0x13d0 and 0x13f0 (0x6461-0x6463) and runs the response routine twice:
+  `AA_Response` and `AA_Response_Step` at 0x6466-0x6467, then again at 0x6489-0x648a with the successor reloaded
+  (0x648a). After each pass it clamps the response (0x6474, 0x647a, 0x6497) and stores results through the lane stores
+  at 0x647d-0x6481 and 0x64a0-0x64a2. The branch at 0x649d hands on to `mDownLoadAALineTable4` (0x6579); otherwise it
+  returns at 0x64a6.
+- `mGenerateAALineTable` (`line.S` line 550, at 0x64af): **inferred**,
+  the one-sample response table generator, also reached from `mgeb_InitAALineTables` (0x6307). It takes the width as input and adds the 0.5 staged at
+  0x64bc to it (0x64be), scales by the staged 1/31 (0x64cc) and loads three lane registers with the result
+  blocks 0x13b0, 0x13d0 and 0x13f0 (0x64e3-0x64e6). It reaches `AA_Response` (0x9059, 0x64f4) or `AA_Response_Step`
+  (0x9045, 0x64f5), clamps the two results (0x6502, 0x6508) and stores them through the external-memory stores at
+  0x650b-0x650f. The branch at 0x651b hands on to `mDownLoadAALineTable` (0x65db) and the routine returns at 0x6524.
+- `mDownLoadAALineTable8` (`line.S` line 435, at 0x652d): **inferred**,
+  sends the eight-sample response table to the raster side. Its inputs are the engine word 0x1389 (0x652d), the 255.0
+  staged at 0x6542 and the base addresses 0x89f, 0x8bf, 0x8df and 0x8ff (0x653d, 0x6545-0x6547), with the three lane
+  registers loaded with 0x13b0, 0x13d0 and 0x13f0 (0x6549-0x654b). It reads the generated entries from external memory
+  (0x654f-0x6555), multiplies them by 255.0 (0x655b, 0x655c) and subtracts a register from each base address
+  (0x655d-0x655f). It produces four address/value pairs: the address goes to bus-output 0x1f7 and the entry, converted
+  from float to integer (0x6564, 0x6569, 0x656e, 0x6574), to 0x1f5 (0x6561-0x6574). It returns at 0x6570.
+- `mDownLoadAALineTable4` (`line.S` line 328, at 0x6579): **inferred**,
+  the four-sample download. It takes the engine word 0x1389 (0x6579), scales the entries by the 255.0 staged at 0x658e,
+  and subtracts a register from the base addresses 0x89f, 0x8bf, 0x8df and 0x8ff (0x6589-0x6593, 0x65ad-0x65af). Six entries per
+  lane are read from the blocks 0x13b0, 0x13d0 and 0x13f0 (0x659b-0x65a5), converted from float to integer (0x65b4,
+  0x65b9, 0x65be, 0x65c4) and sent as eight address/value pairs to bus-output 0x1f7 and 0x1f5 (0x65b1-0x65d7). It
+  returns at 0x65d2.
+- `mDownLoadAALineTable` (`line.S` line 216, at 0x65db): **inferred**,
+  the one-sample download, a loop that sends the table in blocks. Its inputs are the staged constants 0.5, 255.0, 3 and 6 and the base
+  addresses 0x89f, 0x8bf, 0x8df, 0x8ff (0x65dc, 0x65e2-0x65e8), and the lane registers get 0x13b0, 0x13d0 and 0x13f0
+  (0x65e9-0x65ed). The counter register 0xc is loaded from 0x20 (0x65f0). Each pass reads six entries per lane from
+  external memory (0x65f1-0x65fb), multiplies them by 255.0 (0x65fd, 0x6602), converts them to integers (0x6606, 0x660b,
+  0x6610) and writes four address/value pairs to bus-output 0x1f7 and 0x1f5 (0x6603-0x661d). The loop branch at 0x6617
+  returns to 0x65f1 and the routine returns at 0x6619.
 
 ## Texture-coordinate generation commands and modules (texgen.S)
 
@@ -3328,3 +3477,207 @@ reproduce a freshly initialised engine.
   operands and stores them to external words 0x17f5 and 0x1385-0x1387 (0xab9d-0xabac), saves the three lanes' values
   at 0x17d7-0x17db, and prints a greeting through `mPrintf`: the staged words 0x57656c63, 0x6f6d6520, 0x746f2047,
   0x454c616e and 0x64210000 are the text "Welcome to GELand!".
+
+## Multisample point drawing (drawmstpnt.S)
+
+These modules draw multisample points from the coverage tables that `mgeb_ComputeMSPointTables` builds, and most of
+them bracket their work with a save and restore of a block of working memory. Read from the
+[drawmstpnt.S listing](ge_listing/drawmstpnt.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_DrawMSDistAttTablePntPrim` (`drawmstpnt.S` line 4198, at 0x7855): **inferred**,
+  draws distance-attenuated multisample points from the coverage tables. It walks the point list through register
+  0xf, takes the table pointer from external word 0x247 (0x7892) and the point parameters from external words 0x237 and
+  0x23e-0x244 (reads at 0x78a1-0x7934). A test of control word 0x19 against 2 (0x7857) decides whether `SaveClipState`
+  is called (call at 0x7863). It copies a 17-word parameter block to 0x85d0 (0x7877-0x7887) and a 9-word block of raster
+  words to 0x8614 (0x7888-0x7891), computes per-point extents with float multiplies, adds and subtracts (0x78ce-0x7954,
+  with a float conversion at 0x7941 and an integer conversion at 0x7951) and ANDs record word 4 with control word 0x1c
+  (0x78ad); a zero result takes the branch at 0x78b9 to the loop tail 0x796c. Each remaining point is drawn with
+  `DrawMSTablePnt` (0x7a54, call at 0x7962) or `DrawMSTFanPnt` (0x79a3, call at 0x7963). The end at 0x7977 restores the
+  clip state (0x7985), reloads the successor from control word 0x1a (0x798e) and flushes with 0x70000 to 0x1f8 and
+  values to 0x1f5 and 0x1f4 (0x799d-0x79a2).
+- `DrawMSTFanPnt` (`drawmstpnt.S` line 4019, at 0x79a3): **inferred**,
+  draws one large multisample point as a fan: a centre vertex and a ring of rim vertices. It reads the point's colour
+  and size words (control words 0xc4-0xc6 at 0x79cd-0x79d3) and the point record through registers 0xb and 0xd. It
+  converts the radius to an integer step (0x79ab), takes a reciprocal (0x79ba-0x79c6), calls `mSinCosAB` (0xd23f, call at
+  0x79d5) and `mSinCos` (0xe13, call at 0x79ee), and derives each rim point's x and y by adding and subtracting the
+  scaled sine and cosine terms (0x79eb-0x79f6). The centre goes out first (0x79fb-0x7a1f) and a loop from 0x7a20 to the
+  branch at 0x7a4a then produces one rim vertex per pass. Each vertex's window x and y, depth (unit-1 code 0x7e), colour
+  words and texture words are stored to the vertex slots 0xcd-0xd4 and 0xcc-0xc9 (for example 0x7a09-0x7a1e and
+  0x7a2b-0x7a49). It returns at 0x7a4b with the closing stores to slots 0xcb, 0xca and 0xc9.
+- `DrawMSTablePnt` (`drawmstpnt.S` line 3079, at 0x7a54): **inferred**,
+  draws one multisample point from the sorted tables. Its input is the point record through register 0xf, plus the colour and size
+  words from control words 0xc4-0xc6 (0x7a57-0x7a5e), and the three working regions are the parameter block at 0x85d0,
+  the sample table at 0x8614 and a scratch block at 0x8528 (registers 0xb, 0xa and 0xd, set at 0x7a54-0x7a56). It zeroes six
+  scratch words (0x7a59-0x7a60), compares the size with table words using subtracts (0x7a77, 0x7a7b) and walks the table
+  rows in a loop from 0x7a9c to the branch at 0x7b26, with exits at 0x7ac5, 0x7ae4 and 0x7b03. It then writes the raster
+  words 0x806, 0x3fd3, 0x1243fd3, 0x12b0806 and 0x70000 to bus-output 0x1f7, 0x1f5 and 0x1f8 (0x7b4c-0x7b7a), runs a
+  series of compare subtracts (0x7b82-0x7c0a) with closing 0x1f8/0x1f5 writes at 0x7bb6, 0x7bc5, 0x7c1b and 0x7c1e, and
+  returns at 0x7c1f (the branch at 0x7bbe also reaches it).
+- `mmo_DrawMSTablePntPrim1` (`drawmstpnt.S` line 1382, at 0x7c28): **inferred**,
+  one of the two batch drawers for table-driven multisample points (`mgebi_PointSize_MS` stages it at 0x60f7 and its slot
+  store is 0x611a). It takes the point list through register 0xf (step 0x78, 0x7e41), the table pointer from external word
+  0x247 (0x7c70) and a count from 0x246 (0x7c62). A control word 0x19 test (0x7c29) can call `SaveClipState` (0x7c36). It
+  sends 0x70000 to 0x1f8 and a value to 0x1f5 (0x7c3f-0x7c41), copies parameter blocks into 0x85d0 (0x7c4a-0x7c59) and 0x8614
+  (0x7c5a-0x7c61) and gives the lanes the scratch blocks 0x8528, 0x8544 and 0x8560 (0x7c63-0x7c67). Each point is tested by
+  ANDing record word 4 with control word 0x1c (0x7c80; zero takes the transfer at 0x7c8d to the tail 0x7e3a); the routine
+  then zeroes seven words (0x7c97-0x7c9d), runs a row loop (0x7ced-0x7d7c) of compare subtracts and register steps, and
+  produces the vertex slots 0xd1-0xd4, 0xd9 and 0xcf and the raster words 0x806, 0x3fd3 and 0x12b0806 (0x7d85-0x7dd1). A
+  second loop (0x7dd4-0x7e31) writes pairs to 0x1f8 and 0x1f5 (0x7dbe-0x7dd1, 0x7e1b-0x7e2c). The end restores the clip
+  state (0x7e53), loads the successor (0x7e5c) and flushes through 0x1f4 (0x7e6e).
+- `mmo_DrawMSTablePntPrim` (`drawmstpnt.S` line 662, at 0x7e6f): **inferred**,
+  the other batch drawer for table-driven multisample points (`mgebi_PointSize_MS` stages it at 0x60f5 and its slot store is
+  0x611b). It consumes the same inputs as the first one: the save call at 0x7e7d on a control word 0x19 test (0x7e70), 0x70000 to 0x1f8
+  and a value to 0x1f5 (0x7e86-0x7e88), parameter blocks into 0x85d0 and 0x8614 (0x7e91-0x7ea9), lane scratch blocks 0x8528,
+  0x8544 and 0x8560 (0x7eab-0x7eb0) and the table pointer from external word 0x247 (0x7eba). Per point it ANDs record
+  word 4 with control word 0x1c (0x7eca), runs row loops at 0x7f3b-0x7fe2 and 0x8069-0x80ca that compare cell counts with
+  subtracts, and produces the same outputs, the vertex slots 0xd1-0xd4, 0xd9 and 0xcf together with the raster words 0x806, 0x3fd3,
+  0x1243fd3 and 0x12b0806 (0x7ffa-0x8067). The record pointer advances by 0x78 (0x80da), the restore call is at 0x80ef and the end
+  is the flush through 0x1f4 (0x810a).
+- `RestoreClipState` (`drawmstpnt.S` line 285, at 0x810b): **inferred**,
+  brings the 0x4b-word block of working memory at 0x8528 back from external memory. It takes no command operands and selects the source 0x7c53 for
+  register 0, the destination 0x8528 for register 1 and the count 0x4b for register 2 (0x810c-0x810e) and calls
+  `mEramToWram` (0xd45d, call at 0x810b); the successor is saved at 0x810f and reloaded at 0x8114 and the routine
+  returns at 0x811a.
+- `SaveClipState` (`drawmstpnt.S` line 269, at 0x8123): **inferred**,
+  the mirror image: it copies the 0x4b words of working memory at 0x8528 out to external memory at 0x7c53. It takes no command operands and selects the
+  source 0x8528 for register 0, the destination 0x7c53 for register 1 and the count 0x4b for register 2
+  (0x8124-0x8126) and calls `mWramToEram` (0x1025, call at 0x8123). The successor is saved at 0x8127 and reloaded at
+  0x812c, and the routine returns at 0x8132.
+
+## Point drawing (drawpnt.S)
+
+The point modules read each point's vertex record, subtract the window origin and the texture offsets, and write the
+result to the vertex slots (control words 0xc9-0xd9, see the vertex-slot table under Triangle output) that the raster
+stage collects. Read from the [drawpnt.S listing](ge_listing/drawpnt.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_DrawMSDistAttPntPrim` (`drawpnt.S` line 1474, at 0x813b): **inferred**,
+  draws distance-attenuated multisample points as fans. Its inputs are the colour and size words at control words 0xc4-0xc6
+  (0x813b-0x813e) and the point parameters in external words 0x237 and 0x23e-0x244 (0x8141-0x81c0), with the constants
+  360.0 (0x8143), 0x2043c00 (0x8144) and 7 (0x8147) staged. It evaluates reciprocal square roots with seeds and Newton
+  steps (0x816a-0x81a2) and reciprocals (0x81e2-0x81eb) to derive the per-point extents, calls `mSinCosAB` (0xd23f at 0x81f5)
+  for the ring vertices, which it produces in the loop from 0x8256 to the loop word at 0x827e. The outer per-point loop is the branch at
+  0x8289 back to 0x8149, the record pointer steps by 0x78 (0x828e), the successor is loaded from control word 0x1a
+  (0x8292) and the routine ends with a return at 0x829e and the flush 0x70000, 0x1f5, 0x1f4 (0x82a1-0x82a6).
+- `mmo_DrawMSPntPrim` (`drawpnt.S` line 1264, at 0x82a7): **inferred**,
+  draws multisample points without attenuation. Its inputs are size words from external memory 0x237-0x23a and 0x245
+  (0x82a7-0x82b5, 0x82e3) and colour words from control words 0xc4-0xc6 (0x82af-0x82b6), and it stages 0x2043c00 and 7
+  (0x82b8, 0x82bb). For each point that passes the ANDing of record word 4 with control word 0x1c (0x82bd) it adds the
+  offsets to the window x and y (0x82dd, 0x82df, 0x8302, 0x8304) and produces three vertex groups as output (0x82d2-0x8343): texture
+  words 0xd1-0xd4, the command at 0xd5, window x and y at 0xcd and 0xce, depth at 0xcf and 0xd0 and colour products at
+  0xcc-0xc9. The inner loop is at 0x831b-0x833c and the point loop at 0x82bd-0x8347; the return at 0x8348 follows with
+  the flush at 0x8351-0x8356.
+- `mmo_DrawDistAttPntPrim` (`drawpnt.S` line 362, at 0x8357): **inferred**,
+  draws plain points whose size falls off with eye distance. Control words 0xc4-0xc6 (0x8362-0x8366) and external words
+  0x237 and 0x23e-0x242 (0x8363-0x83ce) supply the colour, size and attenuation values, and the staged constants are
+  0x70000, 0xfff, 0xfff000, 0xc, 0x1203fcf, 0x128080f, 8.0 and 2.0 (0x8358-0x8361). Per point it squares and sums the
+  eye-space coordinates (0x837f-0x83b5), takes two reciprocal square roots with Newton steps (0x8394-0x83cc), converts
+  the extents to integers (0x83fe-0x8406) and writes them as register pairs to bus-output 0x1f8 and 0x1f5
+  (0x83f6-0x8425). The vertex slots are then stored as in `mmo_DrawPntPrim` (0x842b-0x845b) and the flush is at
+  0x8460-0x8464; the per-point loop branch is at 0x8455.
+- `mmo_DrawPntPrim` (`drawpnt.S` line 199, at 0x8465): **inferred**,
+  sends plain single points to the raster stage as vertex packets. It takes the colour words from control words
+  0xc4-0xc6 (0x8468-0x846e), the successor from control word 0x1a (0x846a) and the three external words 0x23b-0x23d
+  (0x8469-0x846d) as inputs. Each pass reads a point record through register 0xf (step 0x78, 0x84b3), ANDs its word 4 with control
+  word 0x1c (0x8477), adds offsets to the window x and y with integer adds (0x847f-0x8482), subtracts the texture words
+  into slots 0xd1-0xd4 (0x8488-0x8496), stores the command (0xd5, 0x8498) and an all-ones value to slot 0xd9 (0x849a), then
+  the window x, y and depth into 0xcd, 0xce, 0xcf and 0xd0 (0x849c-0x84a5) and the colour words, each multiplied by a
+  register, into 0xcc-0xc9 (0x84a9-0x84b1). The loop branch at 0x84ae returns to 0x8475 and the exit return at
+  0x84af ends the command after the flush 0x70000, 0x1f5, 0x1f4 (0x84b8-0x84bd).
+- `mmo_DrawAAPntPrim` (`drawpnt.S` line 768, at 0x84be): **inferred**,
+  sends antialiased points to the raster stage. It takes mode bits from control words 3 and 4 (0x84c5, 0x84cb) as input, reads
+  radius and attenuation words from external memory 0x237 and 0x23e-0x242 (0x84d1, 0x8559-0x8596) and stages 0.5, 3.0,
+  6.0, 0.25, 1.0 and 8 (0x84c4-0x84d4). It forms the coverage footprint with reciprocal square roots (0x8550-0x8587),
+  unit-1 code 0x77 (0x85c4-0x85c8) and float-to-integer conversions (0x85cd, 0x85d1), then evaluates the filter by
+  branching to `AA_Response` (0x9059, 0x85fb) or jumping to `AA_Response_Step` (0x9045, 0x85fc). The texture, window and
+  depth stores to slots 0xd1-0xd5, 0xcd, 0xce, 0xcf and 0xd0 (0x8617-0x8632) are followed by colour words multiplied by a
+  register before they go to 0xcc-0xc9 (0x8636-0x863e). Loops run from 0x85e7 (branch 0x863b), 0x85da (0x8646) and 0x84f7
+  (0x8651); it returns at 0x865a with the flush at 0x8663-0x8668.
+
+## Line drawing (drawlin.S)
+
+The line modules turn each segment into vertices for the raster stage by moving the endpoint records into the vertex
+slots (control words 0xc9-0xd9, see the vertex-slot table under Triangle output) with a per-endpoint width offset. Read
+from the [drawlin.S listing](ge_listing/drawlin.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mDrawLinPrim` (`drawlin.S` line 165, at 0x892b): **inferred**,
+  the per-segment worker for plain lines. Its inputs are the segment table through register 0xf (step 0x78, 0x89b2) and the line
+  width from external word 0x236 (0x8969). For each segment it ANDs record word 4 with control word 0x1c (0x892e), loads the two
+  endpoint records into registers 4-7 (0x8930-0x893b), subtracts their window x and y words (0x8944-0x8947) and scales the
+  differences by the width with float multiplies (0x895e-0x8971). Predicated adds and subtracts pick the offset signs
+  (0x8977-0x8981). Three vertices are written: the first endpoint (texture words 0xd1-0xd4, command 0xd5, window x, y,
+  depth and colour; 0x894b-0x8968), a middle vertex built from the offset points (0x8985-0x898d) and the second endpoint
+  with the all-ones store to slot 0xd8 (0x898f-0x89ac). The loop branch at 0x89ad returns to 0x892e, and the return at
+  0x89b3 follows the flush 0x70000, 0x1f8, 0x1f5 and 0x1f4 (0x89b7-0x89bb).
+- `mDrawLinList` (`drawlin.S` line 318, at 0x89bc): **inferred**,
+  the worker for connected segment lists, where each pass reuses the previous endpoint. Its inputs are registers 0x10 and 0x11, copied
+  into registers 0xc and 0xb (0x89bc, 0x89bd) and the first endpoint's vertex goes out at once (slots 0xd1-0xd5, 0xcd-0xd0
+  and 0xcc-0xc9, 0x89be-0x89cf). A loop from 0x89d0 to the branch at 0x8a1b then moves the next endpoint into registers 8
+  and 9 (0x89d0-0x89d3), subtracts window x and y (0x89d8-0x89db), multiplies by the width read from external word 0x236
+  (0x89e0, 0x89dc-0x89df), selects offset signs with predicated adds and subtracts (0x89e7-0x89f3) and stores two more
+  vertices (0x89f7-0x8a1f), the second with the all-ones slot 0xd8 (0x8a0b). Registers 0xb and 0xc advance by a stride
+  (0x8a17, 0x8a19), and the routine returns at 0x8a24 with the flush ending at 0x8a2c.
+- `mmo_DrawMSLinPrim` (`drawlin.S` line 482, at 0x8a2d): **inferred**,
+  the multisample line worker. It begins by writing the constant 0x80a to bus-output 0x1f7 and zero to 0x1f6 and 0x1f5
+  (0x8a30-0x8a33), takes control words 0xc4-0xc6 as input (0x8a34-0x8a36) and reads the width from external word 0x236 (0x8a55).
+  Each pass ANDs record word 4 with control word 0x1c (0x8a38) and emits four vertices, two with plain command words
+  (0x8a75-0x8aa9) and two with the all-ones store to slot 0xd7 (0x8abd, 0x8ade), and adds the width to window x and y
+  in each (0x8a77-0x8ae9). The loop branch at 0x8af3 returns to 0x8a38, the closing raster writes of 0x22f080a and 0x70000
+  go to 0x1f8 and 0x1f5 (0x8afc-0x8b02) and the last flush is 0x8b03-0x8b07.
+- `mmo_DrawLinStipplePrim` (`drawlin.S` line 806, at 0x8b08): **inferred**,
+  the stippled line worker, which breaks each segment into pattern pieces. It takes the stipple pattern from external
+  word 0x24d (0x8b1d), the table that starts at 0x24e (0x8ba8), the reciprocal repeat factor at 0x25e (0x8b7e), 16.0
+  (0x8b2e) and the line width at 0x236 (0x8b70). It computes the segment length with a reciprocal square root (0x8b63-0x8b6f)
+  and further reciprocals use seeds and Newton steps (0x8b8c, 0x8b94, 0x8be7-0x8bf4). The loop from 0x8bac to the branch
+  at 0x8d62 steps through the pattern table, and the output is vertex groups written at 0x8c12-0x8c26, 0x8c38-0x8c71,
+  0x8c86-0x8c98, 0x8cac-0x8cd0, 0x8d23-0x8d37 and 0x8d4b-0x8d59, with command words stored by NOT to slots 0xd6, 0xd7 and
+  control word 0x1eb (0x8c68, 0x8d2c, 0x8cdb). Exit branches are at 0x8b14, 0x8b3d, 0x8b9f and 0x8d7b.
+- `mmo_DrawLinPrim` (`drawlin.S` line 111, at 0x8db0): **inferred**,
+  the line module that the line-width handlers install; it only selects the worker. It stages 0x100 and 0xe0000000
+  (0x8db1, 0x8dba), tests control word 3 against 0x100 (0x8db2), takes control words 0xc5, 0xc4 and 0xc6 as inputs into registers 0-2
+  (0x8db3-0x8db5), sets register 0xd to 0xd1 (0x8dbb), reloads the successor from control word 0x1a (0x8db9) and
+  writes through register 0x1c at offsets 0x2c and 0x2f (0x8dbc-0x8dbe). The result is a choice: the conditional branch at 0x8db6 (condition
+  0x67) goes to `mDrawLinList` (0x89bc) and otherwise the jump at 0x8db7 goes to `mDrawLinPrim` (0x892b).
+
+## Point clipping (pntclip.S)
+
+- `mClipPntUserAndFrustum` (`pntclip.S` line 54, at 0xe75e): **inferred**,
+  the clip stage for a batch of points, run as the screen stage's successor after `mmo_DecomposePoints`. It takes the
+  point table through register 0xd (step 0x78, 0xe7cc) and the point count from register 0x12 (0xe768), and reads
+  control word 0xa2 (0xe75e, kept in register 9 at 0xe767). It stages 0x3f in staging words 0 and 1 (0xe763, 0xe764) and
+  writes it to the clip special registers 0x0d and 0x0e (0xe765, 0xe766). For each pair of points it multiplies the
+  clip-space w word (record word 0x1a) by control words 0x71-0x74 (0xe773-0xe77f), subtracts them from words 0x17 and
+  0x18 and combines the signs with `or` (0xe778-0xe794); a loop from 0xe79b to the branch at 0xe7b4 then forms four-term dot
+  products of words 0x13-0x16 with control words from 0xa3 on (0xe79b-0xe7ae). The result is a flag word merged back into
+  record word 4 by unit-1 code 0x51 (0xe7c5); the loop branch is at 0xe7c7 and the command ends at 0xe7c8.
+
+## Line clipping (linclip.S)
+
+- `mClipLinUserAndFrustum` (`linclip.S` line 695, at 0xea1c): **inferred**,
+  the line clipper, which clips each segment against the user planes and then the six frustum planes. Its inputs
+  are the segment table at 0x8bb0 and 0x8bec (registers 0xb and 0xc, 0xea58-0xea59), the two clip-vertex slots at 0xb38 and
+  0xb74 (registers 7 and 6, 0xea5c-0xea5d), the user-plane count in control word 0xa2 (0xead0) and the plane equations
+  from control word 0xa3 on (0xeae0). It calls `uEvalSaveState` (0x962, call at 0xea28) when control word 0x1ec is
+  nonzero and copies each endpoint record's words 0xb-0xe and 0x13-0x22 into working buffers (0xea6b-0xea80 and
+  0xea99-0xeaae). A user-plane loop (0xeae2-0xeaf9) calls `mClipLineToPlane` (0xebbf, call at 0xeaee) per plane and then
+  `mEyeToClipAfterUserClip` (0xf182, call at 0xeb07). It compares the frustum bits in turn (staged 0x10, 0x20, 1, 2, 4 and 8 at
+  0xeb10, 0xeb27, 0xeb3e, 0xeb55, 0xeb6c, 0xeb83) with the clip special register and calls `mClipLineToPlane` for
+  each (0xeb1e, 0xeb35, 0xeb4c, 0xeb63, 0xeb7a, 0xeb91), then `mClipLinFlush` (0xed2c, call at 0xeb9a). The segment loop
+  branch is at 0xeba5; the end reloads the successor from control word 0x1a (0xebae), stores results to control words 0x19
+  and 0xbb-0xbd (0xebbb-0xebbe) and returns at 0xebb6.
+- `mClipLineToPlane` (`linclip.S` line 89, at 0xebbf): **inferred**,
+  clips one segment against one plane. It fetches the two endpoint record pointers into registers 3, 4, 7 and 8
+  (0xebc3-0xebc8) from the two slots set at 0xebbf-0xebc0, and takes the plane coefficients from registers 0x19-0x1c,
+  which the caller filled. It computes the signed distance of each endpoint as a four-term dot product (multiplies
+  at 0xebd5-0xebe2, adds at 0xebdf-0xebf3), compares the signs with predicated moves (0xebeb-0xebf9), subtracts the two
+  distances (0xec01-0xec07) and takes the reciprocal of the difference with seed and Newton steps (0xec08-0xec18), then
+  multiplies for the crossing fraction. The result is a new endpoint: the words 0xb-0xe, 0x13-0x1a and 0x1b-0x22 are
+  stored through register 0xe (0xec2e-0xed29) from products with the fraction and adds. Words 0x1b-0x22 of one endpoint
+  are copied across by moves under the predicate at 0xecd1 (0xecd2-0xecd9), and the branch at 0xec37 (condition
+  0x78) leads to 0xece3. It returns at 0xed23, with an early conditional return at 0xecbb.
+- `mClipLinFlush` (`linclip.S` line 1028, at 0xed2c): **inferred**,
+  hands a clipped segment to the following stage and arranges to resume afterwards. It takes the clip special registers
+  0x0d, 0x0e and 0x0f as input and saves them into the save area at register 0x1b offsets 0x38-0x3a (0xed2f, 0xed32, 0xed35) and registers 0xa-0xc
+  into offsets 0x35-0x37 (0xed2d, 0xed3e, 0xed3f), then sets special registers 0x0d and 0x0e to the 0x3f staged at 0xed2e
+  and 0xed30 (0xed31, 0xed33). It stages the continuation address 0xed41 (0xed36), adds 0x178 to register 0x14 and 0xb38 to register 0x15
+  to get the pool pointers in registers 0x10 and 0xf (0xed39, 0xed3b) and ends the command at 0xed38. The continuation at 0xed41 moves the saved
+  words back into the special registers (0xed42-0xed44), reloads registers 0xa-0xc (0xed47-0xed4a) and returns at 0xed49.
