@@ -75,7 +75,7 @@ LANE_RX = re.compile(r'\b(%s)\b' % '|'.join(sorted(LANE_REGS + LANE_TABLES, key=
 def lane_name(text, lane):
     """text with every per-lane name renamed for lane (0 keeps the names)."""
     text = text.replace('flmL', 'flm%d' % lane)
-    text = text.replace('R95RD', '0x%x' % (0x14 + lane))
+    text = text.replace('R95RD', '0x%x' % (0x14 + lane)).replace('R95CR', '0x%x' % (0x10 + lane))
     if lane == 0:
         return text
     return LANE_RX.sub(lambda m: '%s_%d' % (m.group(1), lane), text)
@@ -382,7 +382,9 @@ def emit(out):
     w('# 0x1f - F offset (INFERRED here: mmo_Clamp reads its parameter block with')
     w('# F = 0x1a down to 0xf through one C). r95 = 0x14, 0x15 and 0x16 read the')
     w('# same way into lane 0, 1 or 2 alone (INFERRED, ge_isa.md "Lanes":')
-    w('# mgesi_PrintNum restores the words its r95 = 8-0xa stores saved). A read')
+    w('# mgesi_PrintNum restores the words its r95 = 8-0xa stores saved), and')
+    w('# r95 = 0x10, 0x11 and 0x12 read CRAM into one lane as 0x13 reads it into')
+    w('# all three (INFERRED: mgesi_Cram2ODMA 0x6b22-0x6b25). A read')
     w('# in the word that consumes it is seen by that word (uMatrixMultCCC')
     w('# 0xe72-0xe75).')
     w('CR13R: is fC=0x1e & fimm { LDL = *[cram]:4 fimm:2; }')
@@ -397,6 +399,7 @@ def emit(out):
     w('CRD: is f95=0x13 & CR13 { build CR13; }')
     w('CRD: is f95=0x17 & CR17 { build CR17; }')
     w('CRD: is f95=R95RD & EA { LDL = EA; }')
+    w('CRD: is f95=R95CR & CR13R { build CR13R; }')
     w('CRD: is f95 { }')
     w('# Forwarded results (ESTABLISHED): r128 code k = 0-3 is the unit-1 result')
     w('# 4 + k words back, 4-7 the unit-2 result 4 + (k - 4) words back.')
