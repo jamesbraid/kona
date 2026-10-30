@@ -38,4 +38,4 @@ installation. The Sleigh compiler output (`*.sla`) is not committed.
 | [processors/kona-ged/](processors/kona-ged/) | the distributor program processor (`KONA-GED`) and its import script |
 | [import/kona-arm/](import/kona-arm/) | importer for the host-interface ARM firmware images: memory blocks, symbols, handler tables (`tables.tsv`) |
 | [types/kona-types/](types/kona-types/) | `KonaTypes.java`: the ARM state block and vertex record structures, applied where their address is fixed |
-| [scripts/](scripts/) | the IRIX MIPS scripts: `IrixGp`, `IrixJumpTables`, `FindWindowStores`, `DumpCallEdges`, `DecompileFunctions`, `ApplyStruct`; each states its use in its opening comment |
+| [scripts/](scripts/) | the IRIX MIPS scripts: `IrixGp`, `IrixJumpTables`, `FindWindowStores`, `DumpCallEdges`, `DecompileFunctions`, `ApplyStruct`, `MarkVolatileWindows` (every store to a fixed-address command window in the decompile); each states its use in its opening comment |
