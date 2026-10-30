@@ -1953,3 +1953,44 @@ and 8-0xa for external memory. All 20 labels were read in `ge_listing/umemove.s.
 - `lE2F` (`umemove.s` lines 221-232, at 0x10a5): **inferred**, the external-to-output loop. Each pass decrements the
   count (0x10a5), reads external memory (0x10a6, 0x10a8) and stores one output word per thread (0x10a7, 0x10ad). It
   repeats through the relative transfer of -3 at 0x10a8 and returns at 0x10af.
+
+## Block loads and clears (CRAMBlockLoad.s, ERAMBlockClear.s)
+
+Two command handlers move a host-sized block in four-word passes. Each takes its operands from the command input
+(source A = 0x1f, word k as D = k) into address registers with `r217` = 1. It runs its main loop on the address-unit
+condition `cc` 0x14 (count > 0, [Address-unit conditions](ge_ops.md#address-unit-conditions)), stores the one to three
+words left over under the same condition, and ends in the end-of-command wait (a relative group-31 transfer with
+immediate 0). **Inferred** from the words cited, read in `ge_listing/CRAMBlockLoad.s.lst` and
+`ge_listing/ERAMBlockClear.s.lst` (`ge.u` 6.5.30m). The ARM reaches them through `geif.u` slots 127 (entry 255, `mgeb_CRAMBlockLoad`) and 136 (entry 273,
+`mgeb_ERAMBlockClear`) ([ge_handlers.md](ge_handlers.md#cramblockloads)).
+
+- `mgeb_CRAMBlockLoad` (`CRAMBlockLoad.s` lines 50-65, at 0x15f9): **inferred**, loads a block of command words into
+  control memory. Its operands 0-4 go to registers 3, 4, 0xc, 0xa and 0xb (0x15fa-0x15fe): register 3 is the pass
+  count, register 4 the leftover count and register 0xa the control-memory destination. Register 1 is pointed five
+  words into the command input (0x15ff), past the operands, so the data follows them. An empty count skips to
+  `epilogue_cbl` through the `cc` 0x15 branch at 0x1605.
+- `ugeb_CRAMBlockLoad` (`CRAMBlockLoad.s` line 50, at 0x15f9): **established** as the second name of that handler's
+  first word (`ge_symbols`). It reaches the same control-memory load.
+- `mainloop_cbl` (`CRAMBlockLoad.s` lines 103-111, at 0x1613): **inferred**, the four-word pass. It is a transfer to
+  itself on `cc` 0x14 whose word also steps register 3 with F = 0x20 and sets the address-unit flag. Its delay slots
+  move input words at register 1 + 0-4 into control memory through register 0xa (`r211` = 3, `r95` = 4 at 0x1614-0x161a)
+  and advance register 0xa (F = 0x1a, 0x1618) and register 1 (F = 5, 0x1619).
+- `post_loop_cbl` (`CRAMBlockLoad.s` lines 118-121, at 0x161c): **inferred**, the code after the last pass; at 0x161f it copies the saved input pointer from register
+  0xd back into register 1 (C = 0xd, G = 1). 0x161b set register 0xd from register 1 inside the loop, so the
+  leftover words are read from where the last full pass ended.
+- `epilogue_cbl` (`CRAMBlockLoad.s` lines 148-168, at 0x1623): **inferred**, stores the zero to three leftover words.
+  It tests register 4 against 1, 2 and 3 with address-unit words (F = 0x20, 0x21, 0x22 at 0x1629, 0x162b, 0x162d)
+  and makes each control-memory store at 0x162c, 0x162e, 0x1630 and 0x1632 conditional on `cc` 0x14. The relative
+  group-31 transfer at 0x162a ends the command.
+- `mgeb_ERAMBlockClear` (`ERAMBlockClear.s` lines 43-72, at 0x16e7): **inferred**, clears a block of external memory.
+  Operand 2 goes to register 0xa, 0 to register 3 and 1 to register 4 (0x16e8-0x16ea). It adds the context's
+  external-memory base in register 0x16 to register 0xa (0x16f0) and makes the fill value from an integer subtract
+  with no operand fields (0x1702), staged at 0x16fb. An empty count branches to `epilogue_ebc` on `cc` 0x15 (0x1701).
+- `ugeb_ERAMBlockClear` (`ERAMBlockClear.s` line 43, at 0x16e7): **established** to share `mgeb_ERAMBlockClear`'s
+  entry word (`ge_symbols`), so it clears the same external-memory block.
+- `mainloop_ebc` (`ERAMBlockClear.s` lines 93-100, at 0x170b): **inferred**, four external-memory stores per pass
+  through register 0xa (`r95` = 8 at 0x170c, 0x170e, 0x1710, 0x1712) under a transfer to itself on `cc` 0x14 that
+  steps register 3. It advances the destination by F = 0x1b at 0x1711.
+- `epilogue_ebc` (`ERAMBlockClear.s` lines 118-131, at 0x1714): **inferred**, writes the leftover words. It
+  compares register 4 by address-unit words (0x1714, 0x1716, 0x1717) and makes the stores at 0x1718, 0x171a and
+  0x171c conditional on `cc` 0x14. The relative group-31 transfer at 0x1715 ends the command.

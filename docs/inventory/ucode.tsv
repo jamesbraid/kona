@@ -2006,19 +2006,19 @@ ge.u	label	0x0000154e	merge1_mm		understood	ucode/ge_compute.md#pixel-path-stage
 ge.u	label	0x0000157f	merge3_mm		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x000015ad	merge4_mm		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x000015db	uge_MinmaxFill		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
-ge.u	label	0x000015f9	mgeb_CRAMBlockLoad		located	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
-ge.u	label	0x000015f9	ugeb_CRAMBlockLoad		located	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
-ge.u	label	0x00001613	mainloop_cbl		located	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
-ge.u	label	0x0000161c	post_loop_cbl		located	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
-ge.u	label	0x00001623	epilogue_cbl		located	ucode/ge_handlers.md#cramblockloads	CRAMBlockLoad.s
+ge.u	label	0x000015f9	mgeb_CRAMBlockLoad		understood	ucode/ge_compute.md#block-loads-and-clears-cramblockloads-eramblockclears	Block loads and clears (CRAMBlockLoad.s, ERAMBlockClear.s)
+ge.u	label	0x000015f9	ugeb_CRAMBlockLoad		understood	ucode/ge_compute.md#block-loads-and-clears-cramblockloads-eramblockclears	Block loads and clears (CRAMBlockLoad.s, ERAMBlockClear.s)
+ge.u	label	0x00001613	mainloop_cbl		understood	ucode/ge_compute.md#block-loads-and-clears-cramblockloads-eramblockclears	Block loads and clears (CRAMBlockLoad.s, ERAMBlockClear.s)
+ge.u	label	0x0000161c	post_loop_cbl		understood	ucode/ge_compute.md#block-loads-and-clears-cramblockloads-eramblockclears	Block loads and clears (CRAMBlockLoad.s, ERAMBlockClear.s)
+ge.u	label	0x00001623	epilogue_cbl		understood	ucode/ge_compute.md#block-loads-and-clears-cramblockloads-eramblockclears	Block loads and clears (CRAMBlockLoad.s, ERAMBlockClear.s)
 ge.u	label	0x00001633	mmo_Clamp		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
 ge.u	label	0x00001633	umo_Clamp		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
 ge.u	label	0x00001697	mainloop_clamp		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
 ge.u	label	0x000016b4	epilogue_clamp		understood	ucode/ge_compute.md#pixel-path-stages-scalebiass-inttofloats-clamps	Pixel-path stages (scalebias.s, inttofloat.s, clamp.s)
-ge.u	label	0x000016e7	mgeb_ERAMBlockClear		located	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
-ge.u	label	0x000016e7	ugeb_ERAMBlockClear		located	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
-ge.u	label	0x0000170b	mainloop_ebc		located	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
-ge.u	label	0x00001714	epilogue_ebc		located	ucode/ge_handlers.md#eramblockclears	ERAMBlockClear.s
+ge.u	label	0x000016e7	mgeb_ERAMBlockClear		understood	ucode/ge_compute.md#block-loads-and-clears-cramblockloads-eramblockclears	Block loads and clears (CRAMBlockLoad.s, ERAMBlockClear.s)
+ge.u	label	0x000016e7	ugeb_ERAMBlockClear		understood	ucode/ge_compute.md#block-loads-and-clears-cramblockloads-eramblockclears	Block loads and clears (CRAMBlockLoad.s, ERAMBlockClear.s)
+ge.u	label	0x0000170b	mainloop_ebc		understood	ucode/ge_compute.md#block-loads-and-clears-cramblockloads-eramblockclears	Block loads and clears (CRAMBlockLoad.s, ERAMBlockClear.s)
+ge.u	label	0x00001714	epilogue_ebc		understood	ucode/ge_compute.md#block-loads-and-clears-cramblockloads-eramblockclears	Block loads and clears (CRAMBlockLoad.s, ERAMBlockClear.s)
 ge.u	label	0x0000171e	mmo_Expand		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x0000171e	umo_Expand		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x00001760	expand_rgb		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
