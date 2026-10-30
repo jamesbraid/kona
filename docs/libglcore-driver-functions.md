@@ -138,3 +138,59 @@ Read from the IP27 Kona N32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/I
   **Established.** glEdgeFlagPointer with stride and pointer. It raises 0x502 in a begin, calls `__glim_EdgeFlagPointerEXT` with a count of 0, and tests the slot at +5236. A `__glNop` slot sets bit 0x10 of +35532. Otherwise `compute_func_ptr` is called with the pointer, the array word +5224 and a fixed column of 1, its result goes to +35524, bit 0x10 of +35528 is set when +5400 moved and bit 0x10 of +35532 is cleared.
 - `__glkonim_EdgeFlagPointerEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95c170, 204 bytes, `kon_vertarray.c`):
   **Established.** glEdgeFlagPointerEXT with stride, count and pointer: calls `__glim_EdgeFlagPointerEXT` and maintains the edge flag array state as `__glkonim_EdgeFlagPointer` does, with slot +5236, word +5224, column 1, result at +35524 and bit 0x10 of +35528 and +35532.
+
+## Rectangles
+
+- `__glkonim_Rectf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd983870, 176 bytes, `kon_rect.c`):
+  **Established.** Draws glRectf as a begin, four vertices and an end, all through the command port (process address 0x4000). It writes the token 3 and the word 14 to open the primitive, then calls `glVertex2f` for the corners (x1, y1), (x2, y1), (x2, y2) and (x1, y2), and closes with the token 113 and a zero word. The four float arguments are kept in callee-saved float registers across the calls.
+- `__glkonim_Rectd` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd983720, 176 bytes, `kon_rect.c`):
+  **Established.** The double-precision rectangle. The opening word after the token 3 is 22, not 14, so the pipe is told the vertices are doubles; the four calls are `glVertex2d` in the order (x1, y1), (x2, y1), (x2, y2), (x1, y2), and the primitive ends with 113 and zero.
+- `__glkonim_Recti` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9839c0, 176 bytes, `kon_rect.c`):
+  **Established.** glRecti: it opens with the token 3 and the word 14, parks the four integer arguments in saved registers, makes four `glVertex2i` calls at the corners (x1, y1), (x2, y1), (x2, y2), (x1, y2), then writes 113 and a zero word.
+- `__glkonim_Rects` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd983b10, 176 bytes, `kon_rect.c`):
+  **Established.** glRects. It writes the token 3 with the word 10, which marks short vertices, then four `glVertex2s` calls for the corners (x1, y1), (x2, y1), (x2, y2), (x1, y2) and the closing 113 and zero.
+- `__glkonim_Rectfv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd983920, 156 bytes, `kon_rect.c`):
+  **Established.** The pointer form of glRectf: both arguments point at two floats, so the corners are (first[0], first[1]), (second[0], first[1]), (second[0], second[1]) and (first[0], second[1]). The primitive opens with 3 and 14, uses `glVertex2f` and ends with 113 and zero, as `__glkonim_Rectf` does.
+- `__glkonim_Rectdv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9837d0, 156 bytes, `kon_rect.c`):
+  **Established.** glRectdv, reading two doubles from each pointer (offsets 0 and 8). It opens the primitive with 3 and 22, calls `glVertex2d` at the four corners in the order of `__glkonim_Rectd` and ends with 113 and zero.
+- `__glkonim_Rectiv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd983a70, 156 bytes, `kon_rect.c`):
+  **Established.** glRectiv: two integers at each pointer (offsets 0 and 4) go to `glVertex2i` at the corners (first, first), (second x, first y), (second, second) and (first x, second y); the primitive opens with 3 and 14 and ends with 113 and zero.
+- `__glkonim_Rectsv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd983bc0, 156 bytes, `kon_rect.c`):
+  **Established.** glRectsv: two shorts at each pointer (offsets 0 and 2, loaded signed) feed four `glVertex2s` calls in the usual corner order. The opening words are 3 and 10 and the close is 113 and zero.
+
+## Clear values, blending, stencil and pixel zoom
+
+- `__glkonim_ClearColor` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95d6a0, 196 bytes, `kon_attrib.c`):
+  **Established.** The Kona glClearColor. Inside a begin (the word at process address 0x1018 equal to 1) it raises 0x502 and returns. Otherwise it clamps the four float arguments to the range from 0 up to the float held in the context at +3544, a negative value becoming 0 and one above the ceiling becoming the ceiling, and writes the token 29 followed by the clamped red, green, blue and alpha to the command port (process address 0x4000). It keeps no host copy.
+- `__glkonim_ClearAccum` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95d770, 188 bytes, `kon_attrib.c`):
+  **Established.** glClearAccum: a begin raises 0x502. The four floats are clamped to minus 1.0 and 1.0 from constants in the read-only data, then the token 27 and the red, green, blue and alpha go to the command port. Nothing is stored in the context.
+- `__glkonim_BlendFunc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66730, 212 bytes, `kon_cfuncs.c`):
+  **Established.** glBlendFunc as a validate and forward. The source factor is accepted when it is 0, 1, 0x302 to 0x308 (0x300 and 0x301 are refused) or 0x8001 to 0x8004; the destination factor when it is 0, 1, 0x300 to 0x305 or 0x8001 to 0x8004. A refused factor writes the token 228 and the value 0x500 to the command port and returns, which leaves the error to the pipe's own record; accepted factors write the token 203, the source and the destination. It does not test for a begin and keeps no host state.
+- `__glkonim_StencilOp` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda66890, 188 bytes, `kon_cfuncs.c`):
+  **Established.** glStencilOp with the fail, depth-fail and depth-pass operations. Each is checked in turn against the accepted set: 0, 0x1e00 to 0x1e03 (the keep, replace, increment and decrement codes) and 0x150a (invert). The first refused value writes the token 228 and 0x500 and returns. When all three pass it writes the token 205 and the three values. No context state is kept.
+- `__glkonim_PixelZoom` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd955f90, 220 bytes, `kon_pixel.c`):
+  **Established.** glPixelZoom. A begin raises 0x502. A factor above a limit just over 127 (a double constant, compared after widening) raises 0x501 and is replaced by 127.0; negative factors are not checked. The two floats go to the command port after the token 47, and are stored in the host context at +744 (x) and +748 (y), the same block as the pixel-transfer scales.
+- `__glkonim_PixelStoref` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd956070, 204 bytes, `kon_pixel.c`):
+  **Established.** The float form of glPixelStorei: it raises 0x502 in a begin and otherwise calls `__glkonim_PixelStorei` with the name and an integer made from the float. The four boolean names (swap bytes and LSB first, pack and unpack: 0xcf0, 0xcf1, 0xd00, 0xd01) pass 0 for a zero value and 1 otherwise; every other name passes the value rounded half away from zero (0.5 added to a value that is not negative, taken from a negative one, then truncated).
+
+## Polygon stipple
+
+- `__glkonim_PolygonStipple` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd954430, 232 bytes, `kon_pixel.c`):
+  **Established.** The Kona glPolygonStipple. A begin raises 0x502. It builds a transfer record on the stack, 32 by 32 pixels, format 0x1900 and type 0x1a00 (a one-bit-per-pixel bitmap), with the caller's pointer and a count of 1, then runs `__glKonParseInput` and `__glKonParseErrorDraw` on it; a failure from either ends the call. After `__glKonParseHostImage` it writes the token 11 to the command port (process address 0x4000), the low two bits of the caller's pointer, then two words that the host-image step left in the record (at +180 and +184), and calls `__glKonSendData` with the record, the width and height of 32 and a zero flag to send the 128 bytes of pattern.
+- `__glkonim_GetPolygonStipple` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd954580, 216 bytes, `kon_pixel.c`):
+  **Established.** The Kona glGetPolygonStipple. A begin raises 0x502. Otherwise it first calls `__glkon_get_special` with 75 and 0, before reading the host copy of the pattern, which is the image the context word at +31588 points to (8 bytes in). It fills a pack record for a 32 by 32 bitmap (format 0x1900, type 0x1a00) aimed at the caller's pointer, runs `__glInitImagePack`, `__glInitPacker` and `__glInitUnpacker` on it, and finishes by calling the context's pixel-copy function at +12628 with the record and a count of 1. It sends nothing to the pipe.
+
+## Map grids and mesh evaluation
+
+- `__glkonim_MapGrid1d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97f8e0, 200 bytes, `kon_eval.c`):
+  **Established.** glMapGrid1d with the division count in `a0` and the two domain ends as doubles. Inside a begin it raises 0x502. A negative count writes the token 228 and 0x501 to the command port (process address 0x4000) and stores nothing. Otherwise it narrows the ends to floats, stores the count at context +1944, the ends at +1932 and +1936 and the step (end minus start divided by the count, or 0 for a count of 0) at +1940, and writes the token 40 followed by the count, the two ends and the step.
+- `__glkonim_MapGrid1f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97f9b0, 192 bytes, `kon_eval.c`):
+  **Established.** The float form of glMapGrid1: the same checks (0x502 in a begin, token 228 with 0x501 for a negative count), the same context block (count +1944, ends +1932 and +1936, step +1940) and the same five words after the token 40, taking the ends directly as floats instead of converting.
+- `__glkonim_MapGrid2d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97fa70, 288 bytes, `kon_eval.c`):
+  **Established.** glMapGrid2d with a count and range for each axis. A begin raises 0x502 and a negative count on either axis writes 228 and 0x501 and stores nothing. It narrows the four ends to floats and stores the u axis at context +1960 (count), +1948 and +1952 (ends) and +1956 (step), and the v axis at +1976 (count), +1964 and +1968 (ends) and +1972 (step), each step being zero for a zero count. It then writes the token 41 and nine values: the u count, ends and step, then the v count, ends and step.
+- `__glkonim_MapGrid2f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97fb90, 272 bytes, `kon_eval.c`):
+  **Established.** The float form of glMapGrid2, with the checks, stores and token 41 record of `__glkonim_MapGrid2d` but with float ends used as given: u count +1960, ends +1948 and +1952, step +1956, v count +1976, ends +1964 and +1968, step +1972.
+- `__glkonim_EvalMesh1` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97fca0, 152 bytes, `kon_eval.c`):
+  **Established.** The Kona glEvalMesh1. A begin raises 0x502 and a mode other than 0x1b00 (point) or 0x1b01 (line) raises 0x500. It then reads the context word at +35980, the active 1D evaluator record; if that is not zero it calls the function pointer at context +37028 with the unchanged mode and index arguments (an indirect call, `jalr`), and otherwise does nothing. It sends nothing itself.
+- `__glkonim_EvalMesh2` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97fdb0, 156 bytes, `kon_eval.c`):
+  **Established.** glEvalMesh2: a begin raises 0x502 and a mode outside 0x1b00 to 0x1b02 (point, line, fill) raises 0x500. If the context word at +36500 (the active 2D evaluator record) is non-zero it calls the function pointer at context +37032 with the arguments it received; otherwise it returns without effect.
