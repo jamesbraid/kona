@@ -21642,10 +21642,10 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda056b0	72	TestFu
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05700	68	FailOp	dwarf+funcnames	924d2eace67d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05750	68	PassDepthFailOp	dwarf+funcnames	db2fd0714dd6		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda057a0	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05bc0	260	buildOpTable	dwarf+funcnames	299507cdb36d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05cd0	144	FreeStencilBuf	dwarf+funcnames	abc7307fcef7		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda05d60	656	__glValidateStencil	dwarf+dynsym	861f97478bdb		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda06030	180	__glInitStencil8	dwarf+dynsym	3e3686d6f12f		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05bc0	260	buildOpTable	dwarf+funcnames	299507cdb36d		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda05cd0	144	FreeStencilBuf	dwarf+funcnames	abc7307fcef7		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda05d60	656	__glValidateStencil	dwarf+dynsym	861f97478bdb		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda06030	180	__glInitStencil8	dwarf+dynsym	3e3686d6f12f		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda060f0	336	__glDoStore_ASD	dwarf+dynsym	c814b478c246		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda06240	272	__glDoStore_AS	dwarf+dynsym	c802d1dc2b27		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda06350	208	__glDoStore_AD	dwarf+dynsym	74341ace322a		in	located	docs/sample-implementation.md#so_storec	so_store.c
@@ -38341,10 +38341,10 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda056b0	72	TestFu
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05700	68	FailOp	dwarf+funcnames	924d2eace67d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05750	68	PassDepthFailOp	dwarf+funcnames	db2fd0714dd6		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda057a0	68	DepthPassOp	dwarf+funcnames	ce3a549407ec		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05bc0	260	buildOpTable	dwarf+funcnames	299507cdb36d		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05cd0	144	FreeStencilBuf	dwarf+funcnames	abc7307fcef7		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda05d60	656	__glValidateStencil	dwarf+dynsym	861f97478bdb		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda06030	180	__glInitStencil8	dwarf+dynsym	3e3686d6f12f		in	located	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05bc0	260	buildOpTable	dwarf+funcnames	299507cdb36d		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda05cd0	144	FreeStencilBuf	dwarf+funcnames	abc7307fcef7		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda05d60	656	__glValidateStencil	dwarf+dynsym	861f97478bdb		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda06030	180	__glInitStencil8	dwarf+dynsym	3e3686d6f12f		in	understood	docs/sample-implementation.md#so_stencilopc	so_stencilop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda060f0	336	__glDoStore_ASD	dwarf+dynsym	c814b478c246		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda06240	272	__glDoStore_AS	dwarf+dynsym	c802d1dc2b27		in	located	docs/sample-implementation.md#so_storec	so_store.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda06350	208	__glDoStore_AD	dwarf+dynsym	74341ace322a		in	located	docs/sample-implementation.md#so_storec	so_store.c
