@@ -238,3 +238,63 @@ Read from the IP27 Kona N32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/I
 - `__glkonim_RenderMode` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95d460, 508 bytes, `kon_select.c`):
   **Established.** The Kona glRenderMode. A begin raises 0x502 and a mode other than 0x1c00 (render), 0x1c01 (feedback) or 0x1c02 (select) raises 0x500; both return 0. Entering feedback needs the feedback buffer pointer at context +4872 and entering select needs the select buffer pointer at +4904, otherwise it raises 0x502 and returns 0. It writes the token 25 and the new mode to the command port (process address 0x4000), then finishes the mode being left, according to the word at +3204: for feedback it calls `ResolveFeedback`, for select `ResolveSelect`, and for render it has nothing to resolve. The result of that call is the value it returns.
   The new mode is started by clearing the flag and result words (byte +4868 and word +31596 for feedback, byte +4900 and word +31604 for select) and calling `StartSelectFeed` with the host buffer and its length: the feedback copy at +31592 with the size at +4880, or the select copy at +31600 with (size at +4912 plus 256) times the word at +31568. A negative result from `StartSelectFeed` ends the call with 0 and leaves the mode unchanged; otherwise the mode word at +3204 is set to the new mode. **Inferred:** the function returns the number of records or hits the finished mode produced.
+
+## Small command senders and helpers
+
+- `updateTexBindID` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd964e90, 24 bytes, `kon_texture_api.c`):
+  **Established.** Writes the token 376 and the cache slot number to the command port (process address 0x4000). The slot is the second word of the record that the texture object's word at +272 points to; the object is the second argument.
+- `computeActiveTarget` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd965160, 88 bytes, `kon_texture_api.c`):
+  **Established.** Picks the active texture target of the shared texture state in `a0`. It tries indices 3, 2 and 1 in that order and takes the first whose bit is set in the enable word at state +0 and whose object (the pointer table at state +32) has bit 0x1000000 set in its flag word at +32; if none qualifies the index is 0. It stores the index at state +4 and writes the token 375 and the index to the command port.
+- `setClipmapRegisters` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd96a3c0, 72 bytes, `kon_texture_api.c`):
+  **Established.** Sends a texture object's clip-map set-up to the pipe: the token 426, the four integer words at object +88, +92, +96 and +100, the second argument, and the three floats at +444, +448 and +452.
+- `loadPostTextureScaleBias` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd967e50, 40 bytes, `kon_texture_api.c`):
+  **Established.** Writes the token 237, a zero word, and the three words at texture object +496, +500 and +504 to the command port.
+- `log2` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd96caa0, 56 bytes, `kon_texture_api.c`):
+  **Established.** Integer base-2 logarithm by repeated right shift: it counts how many shifts take the argument down to zero after the first, so 1 gives 0, 2 and 3 give 1 and 4 to 7 give 2. A value of 0 returns 0.
+- `ApplyViewport` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9482f0, 56 bytes, `kon_context.c`):
+  **Established.** A wrapper that calls `FindWindowSize` and returns, with its arguments unchanged. It sends nothing.
+- `ApplyScissor` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd948330, 8 bytes, `kon_context.c`):
+  **Established.** An empty function: it returns at once without touching any register or the context.
+- `Error` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9484e0, 16 bytes, `kon_context.c`):
+  **Established.** Reports an error code to the pipe: it writes the token 228 and its second argument to the command port (process address 0x4000). It records nothing in the host context.
+- `update_cmpnd_cmd` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95af20, 52 bytes, `kon_vertarray.c`):
+  **Established.** Writes the token 384 and the word formed by the context words at +5400 and +5404 ANDed together to the command port, then clears the bits of its second argument in the dirty word at +35528.
+- `__glKon_ioctl` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95d660, 52 bytes, `kon_kern.c`):
+  **Established.** Calls the C library `ioctl` with the device descriptor stored in the context at +31560 in place of the first argument, and the request and argument pointer it received.
+- `PickBufferProcs` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9484f0, 52 bytes, `kon_context.c`):
+  **Established.** Hands its arguments to the software library's `__glGenericPickBufferProcs` and returns; the Kona build adds no buffer procedures of its own.
+- `__glSdramPushIn` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94a6b0, 36 bytes, `kon_dlist.c`):
+  **Established.** Starts a transfer into display-list memory on the pipe: it writes the token 359, the first two arguments, the third argument times 4 (a byte count) and a zero word, and returns the first argument.
+- `__glSdramMemmove` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94a600, 28 bytes, `kon_dlist.c`):
+  **Established.** Asks the pipe to move memory within display-list memory: the token 367 and its three arguments go to the command port, and it returns the first argument.
+- `__glKonExecuteLDMA` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94b060, 32 bytes, `kon_dlist.c`):
+  **Established.** Writes the token 365 and the two words at the start of the block that the second argument's word at +20 points to.
+- `__glKonEvalCoord1DGe11` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97d740, 24 bytes, `kon_eval.c`):
+  **Established.** The geometry-engine glEvalCoord1: it writes the token 157, the count 1 and the float coordinate to the command port.
+- `__glKonEvalCoord2DGe11` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97d760, 28 bytes, `kon_eval.c`):
+  **Established.** The geometry-engine glEvalCoord2: it writes the token 161, the count 2 and the two float coordinates.
+- `CopyVertex` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd988ff0, 100 bytes, `kon_subdiv.c`):
+  **Established.** Copies a vertex of floats: the first argument is the float count, the second the source and the third the destination. It copies one float first if the count is odd, then the rest two at a time.
+- `__glKonExecuteLDMAn` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94b080, 108 bytes, `kon_dlist.c`):
+  **Established.** Plays a block of 8-byte words to the pipe in chunks. The second argument's record holds the word count at +28 and the data pointer at +20. Each chunk writes the token 368, a count of at most 8 and then that many pairs, the word at offset 0 before the word at offset 4; the loop runs for the count divided by 8, rounded up.
+- `__glKonExecuteIDMAn` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94b130, 108 bytes, `kon_dlist.c`):
+  **Established.** The same loop with the token 369 and chunks of at most 4 pairs, so a count of n sends n divided by 4, rounded up, chunks, from the record's pointer at +20 and count at +28.
+- `ChannelRectSync` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd948490, 76 bytes, `kon_context.c`):
+  **Established.** Sends a five-word record to the command port: the token 422, the constant 78, the first argument, a flag that is 1 when the second argument equals 1 and 0 otherwise, and a last word that is 78 plus the argument plus the flag.
+- `__glKonSendMapSpec1D` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97db70, 76 bytes, `kon_eval.c`):
+  **Established.** Sends the description of a 1D map record (first argument) to the command port. For a record, a zero second argument sends the word at +8, then both cases send the word at +4 and the word at +44 times 4; for a null record it sends two zero words, or three when the second argument is 0.
+- `MakeCurrent` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9499e0, 108 bytes, `kon_context.c`):
+  **Established.** Calls the context's function pointers at +60 and +64 in turn with the context as the argument, then jumps to `MakeCurrentRead` with the context and the two results.
+- `LoseCurrent` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd948560, 184 bytes, `kon_context.c`):
+  **Established.** Releases the context passed in as current. It returns 0 without changes when the render mode at +3204 is not 0x1c00 or the begin word at process address 0x1018 is 1. Otherwise, if bit 0x4 of the context word at +168 is set it calls `__glLoseCurrentBuffers` with a zero flag; it clears the current-context pointer at process address 0x1010, stores the begin word in the context at +3200 and, when the context word at +4988 is non-zero, copies the four process words at addresses 4136 to 4148 (the display-list space state) into the context at +5052 to +5064. It returns 1.
+- `bindARMTexCache` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd965040, 88 bytes, `kon_texture_api.c`):
+  **Established.** Gives a texture object an entry in the pipe's table cache. It calls the function at +20 of the cache record (the shared state at context +0x8aac plus 0xc03c) with the object, stores the entry it returns at object +272, and writes the token 452 and the entry's second word (its slot number) to the command port.
+
+## Client array enables
+
+- `__glkonim_EnableClientState` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94eba0, 484 bytes, `kon_modes.c`):
+  **Established.** The Kona glEnableClientState. Inside a begin (the word at process address 0x1018 equal to 1) it writes the token 228 and 0x502 to the command port (process address 0x4000) and returns. The array name must be one of 0x8074 to 0x8079 (vertex, normal, colour, index, texture coordinate, edge flag) or it raises 0x500. It sends nothing to the pipe: for the chosen array it sets that array's bit (0x20, 0x1, 0x2, 0x8, 0x4, 0x10 in that order of names) in the context word at +5416, sets the array's field of the word at +5404 to all ones (masks 0xff, 0xf00, 0xff000, 0xf0000000, 0x7f00000, 0x8000000), and sets the same bit in the dirty word at +35528.
+- `__glkonim_DisableClientState` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94ed90, 616 bytes, `kon_modes.c`):
+  **Established.** The inverse for the same six arrays: a begin writes 228 and 0x502, another name raises 0x500, and it sends nothing. It clears the array's bit in the word at +5416 and its field in the word at +5404. If the bit was set before it stores minus 1 in the dirty word at +35528, marking every array dirty; if it was already clear it only sets the array's own bit there.
+- `__glkonim_xEnable` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94df40, 312 bytes, `kon_modes.c`):
+  **Established.** Enables a capability given by an extended enum through a hash table. A value above 0xffff, or one whose entry is missing, raises 0x500. The entry is the pair of halfwords at the table's byte offset 4 times ((value & 0xff) plus (value >> 7)); the first must equal the value, and the second is the pipe's own code for it. The table sits in the library's uninitialised data (address 0xda8d7d0 in this build) and is filled at run time. It writes the token 36 and the code to the command port. When the code is one of the array codes 173 to 178 it also sets a bit in the context word at +5416: 0x20, 0x1, 0x2, 0x8, 0x4 and 0x10 for 173, 174, 175, 176, 177 and 178.
