@@ -2693,13 +2693,13 @@ ge.u	label	0x0000c500	mgeb_LightPos		located	ucode/ge_handlers.md#lightsources	l
 ge.u	label	0x0000c5cd	mgeb_LightSpotDir		located	ucode/ge_handlers.md#lightsources	lightsource.S
 ge.u	label	0x0000c626	mgeb_LightSpotExp		located	ucode/ge_handlers.md#lightsources	lightsource.S
 ge.u	label	0x0000c697	mgeb_LightSpotCutAng		located	ucode/ge_handlers.md#lightsources	lightsource.S
-ge.u	label	0x0000c6cb	mgeb_LightK2		located	ucode/ge_handlers.md#lightsources	lightsource.S
-ge.u	label	0x0000c6d8	mgeb_LightK1		located	ucode/ge_handlers.md#lightsources	lightsource.S
-ge.u	label	0x0000c6e5	mgeb_LightK0		located	ucode/ge_handlers.md#lightsources	lightsource.S
-ge.u	label	0x0000c6f2	mgeb_LightSpec		located	ucode/ge_handlers.md#lightsources	lightsource.S
-ge.u	label	0x0000c6fb	mgeb_LightDiff		located	ucode/ge_handlers.md#lightsources	lightsource.S
-ge.u	label	0x0000c704	mgeb_LightAmb		located	ucode/ge_handlers.md#lightsources	lightsource.S
-ge.u	label	0x0000c70d	mLightColor		located	ucode/ge_handlers.md#lightsources	lightsource.S
+ge.u	label	0x0000c6cb	mgeb_LightK2		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
+ge.u	label	0x0000c6d8	mgeb_LightK1		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
+ge.u	label	0x0000c6e5	mgeb_LightK0		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
+ge.u	label	0x0000c6f2	mgeb_LightSpec		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
+ge.u	label	0x0000c6fb	mgeb_LightDiff		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
+ge.u	label	0x0000c704	mgeb_LightAmb		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
+ge.u	label	0x0000c70d	mLightColor		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
 ge.u	label	0x0000c721	mgeb_LiClrMtrlFrontBack		located	ucode/ge_handlers.md#lightmodels	lightmodel.S
 ge.u	label	0x0000c75b	mgeb_LiClrMtrlBack		located	ucode/ge_handlers.md#lightmodels	lightmodel.S
 ge.u	label	0x0000c795	mgeb_LiClrMtrlFront		located	ucode/ge_handlers.md#lightmodels	lightmodel.S

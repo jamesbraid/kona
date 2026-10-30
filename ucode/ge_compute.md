@@ -358,6 +358,47 @@ The colour words of the vertex record, **established** from the stores of these 
   step value, subtracts and adds the interpolation terms, and stores two result words through the table pointer (stores with
   `r211` = 3 at 0x0dff and 0x0e01), repeating through the relative transfer at 0x0e01 (immediate -0xc).
 
+## Light-source parameters (lightsource.S)
+
+The ARM's light routines (`light_k0`, `light_spec` and the rest in [arm1_functions.md](arm1_functions.md)) send the
+light's engine-memory address as operand 0 and the values after it. These handlers put the values in the light's block
+in external memory: every store here has `r95` = 8, the external-memory store of `texenv.S`, and goes to address
+register 0x16, the external-memory base, plus a field offset plus the light address. Which value each store sends
+follows [the store-data register](ge_isa.md#the-store-data-register): it is the operand moved nine words before it,
+and every store below sits exactly there. Read in full from the [lightsource.S listing](ge_listing/lightsource.S.lst)
+(`ge.u`, IRIX 6.5.30m).
+
+- `mLightColor` (`lightsource.S` lines 68-106, at 0xc70d): **inferred**, stores one light colour and marks lighting
+  dirty. Its inputs are the four colour operands (words 1-4) and the field base in address register 4 that its caller
+  set; 0xc711 adds the light address from register 3 to it. The four moves at 0xc70e, 0xc710, 0xc712 and 0xc714 give
+  the results of the four colour stores at 0xc717, 0xc719, 0xc71b and 0xc71d, nine words after each, to register 4 + 0 to + 3. It also
+  computes control word 0x86 ORed with 1 (0xc715) and stages the module addresses 0xf50d `mmo_DirtyLightModule` and
+  0xf547 `mmo_DirtyCullAndLightModule` (0xc713, 0xc716), whose moves feed three predicated control-memory stores in the
+  end-of-command shadow: 0x86 (0xc71e), successor word 0xc (0xc71f) and successor word 0xb (0xc720). So the next vertex
+  batch runs the dirty-light module, which re-selects the lighting code. The predicate of those stores is **unknown**;
+  the only flags the routine sets come from 0xc70d, control word 0x84 ANDed with 1.
+- `mgeb_LightAmb` (`lightsource.S` lines 126-143, at 0xc704): **inferred**, the ambient-colour entry. It takes operand
+  0, the light address, into register 3 (0xc705) and derives register 4 from the external-memory base with address
+  code F = 0xf (0xc708), then jumps to `mLightColor`, which writes the four ambient components there as its result. The words after its
+  jump also stage 1 in staging word 5 and read control word 0x84, the flag test `mLightColor` begins with.
+- `mgeb_LightDiff` (`lightsource.S` lines 159-176, at 0xc6fb): **inferred**, the diffuse twin of the ambient entry. It
+  takes the same operands and runs the same eight words except the address code, F = 0x17 at 0xc6ff, which selects
+  another field of the same light block; the result is the four diffuse components stored there by `mLightColor`.
+- `mgeb_LightSpec` (`lightsource.S` lines 192-209, at 0xc6f2): **inferred**, the specular entry. Its input operands are
+  the light address and four colour words; it selects the field with F = 0x13 at 0xc6f6 and its output is the light's
+  specular colour in external memory, through the shared tail at 0xc70d.
+- `mgeb_LightK0` (`lightsource.S` lines 229-244, at 0xc6e5): **inferred**, takes the constant attenuation factor
+  (operand 1, moved at 0xc6e5) and the light address (operand 0, loaded into register 3 at 0xc6e6). In the end-of-command
+  shadow it sets register 0x13 from the external-memory base with F = 8 (0xc6e9) and stores the factor at register 0x13
+  plus register 3 (0xc6ee, F = 0x3f adds the two), nine words after the move; that stored word is its only result. There is no range test here; `light_k0`
+  rejects a negative value before sending.
+- `mgeb_LightK1` (`lightsource.S` lines 267-282, at 0xc6d8): **inferred**, takes the linear factor as its input
+  operand. The words match K0's except the address code at 0xc6dc, F = 7 against K0's 8, which selects the neighbouring
+  field for its result.
+- `mgeb_LightK2` (`lightsource.S` lines 305-320, at 0xc6cb): **inferred**, consumes the quadratic factor, operand 1,
+  and selects its field with F = 6 at 0xc6cf. With K0 and K1 it fills three fields whose address codes step down by
+  one; the output word is the operand moved at the handler's first word, stored nine words on (0xc6cb to 0xc6d4).
+
 ## Texture-coordinate generation (utexgen.s)
 
 **Established** from the stores of these modules: generated s and t go to vertex record words 0xb and 0xc, r and q to 0xd
