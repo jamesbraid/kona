@@ -682,3 +682,38 @@ Read from the IP27 Kona n32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/I
   **Established.** The immediate-mode glIndexub: it stores the token 117 (0x75) to the command port, the same token the short forms use, and then the byte argument shifted left by 24 into the top byte of the payload word, where the short forms put their value in the upper 16 bits.
 - `__glkonim_Indexubv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da66ea0, 24 bytes):
   **Established.** The vector form of glIndexub: it loads one unsigned byte from `a0`, stores the token 117 (0x75) and then the byte shifted left by 24 as the payload word, the pair `__glkonim_Indexub` sends.
+
+## Further immediate-mode senders
+
+- `__glkonim_Color3b` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65180, 36 bytes):
+  **Established.** The immediate-mode glColor3b. It builds two words from its register arguments and stores them to the command port: the first component shifted to bits 31 to 24, the second masked to a byte at bits 23 to 16 and the token 0x61 in the low byte, then the third component in the top byte. The mask on the second component keeps a negative byte from spilling into the first.
+- `__glkonim_Color3s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65240, 32 bytes):
+  **Established.** The immediate-mode glColor3s, two stores to the command port: the first short in the upper half with the token 0x65, then the second short in the upper half over the third masked to 16 bits. The mask stops a negative third value from changing the upper half.
+- `__glkonim_Color3ub` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65290, 32 bytes):
+  **Established.** The immediate-mode glColor3ub, two stores to the command port with the token 0x66. The first argument goes to bits 31 to 24 and the second to bits 23 to 16 of the first word, the third to the top byte of the second word. Unlike `__glkonim_Color3b` it does not mask the second argument, since an unsigned byte cannot extend.
+- `__glkonim_Color3us` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65300, 28 bytes):
+  **Established.** The immediate-mode glColor3us, two stores to the command port: the first argument in the upper half beside the token 0x68, then the second argument in the upper half ORed with the third, which is not masked. It is the shortest of the colour senders that pack halfwords.
+- `__glkonim_Color3i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65220, 24 bytes):
+  **Established.** The immediate-mode glColor3i, four stores to the command port: the token 100 (0x64) and the three integer arguments from `a0`, `a1` and `a2`, unchanged and in order.
+- `__glkonim_Color3ui` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da652e0, 24 bytes):
+  **Established.** The immediate-mode glColor3ui, four stores to the command port: the token 103 (0x67) and the three unsigned integer arguments, passed through unchanged. Apart from the token it is the same sequence as `__glkonim_Color3i`.
+- `__glkonim_Color3f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65200, 24 bytes):
+  **Established.** The immediate-mode glColor3f, four stores to the command port: the token 99 (0x63) as a word and then the floats in `f12`, `f13` and `f14`, one 32-bit store each, with no clamping or scaling.
+- `__glkonim_Color3d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da651e0, 24 bytes):
+  **Established.** The immediate-mode glColor3d, four stores to the command port: the token 98 (0x62) as a word and then the doubles in `f12`, `f13` and `f14`, each as one 64-bit store, with no narrowing to float.
+- `__glkonim_Color4b` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65350, 48 bytes):
+  **Established.** The immediate-mode glColor4b, two stores to the command port. Word one is the first argument at bits 31 to 24, the second masked to a byte at bits 23 to 16 and the token 0x69; word two is the third argument at bits 31 to 24 and the fourth, masked to a byte, at bits 23 to 16. The two masks are what keep the signed values from spilling upward.
+- `__glkonim_Color4s` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65420, 40 bytes):
+  **Established.** The immediate-mode glColor4s, three stores to the command port: the first short in the upper half with the token 0x6d, the second short in the upper half over the third masked to 16 bits, and the fourth short in the upper half alone.
+- `__glkonim_Color4ub` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65490, 40 bytes):
+  **Established.** The immediate-mode glColor4ub, two stores to the command port with the token 0x6e: arguments one and two at bits 31 to 24 and 23 to 16 of the first word, three and four at the same positions of the second word. None of the four is masked.
+- `__glkonim_Color4us` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65520, 36 bytes):
+  **Established.** The immediate-mode glColor4us, three stores to the command port: the first argument in the upper half with the token 0x70, the second in the upper half ORed with the unmasked third, and the fourth in the upper half of the last word.
+- `__glkonim_Color4i` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65400, 28 bytes):
+  **Established.** The immediate-mode glColor4i, five stores to the command port: the token 108 (0x6c) and the four integer arguments from `a0` to `a3` in order, unchanged.
+- `__glkonim_Color4ui` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da65500, 28 bytes):
+  **Established.** The immediate-mode glColor4ui, five stores to the command port: the token 111 (0x6f) followed by the four unsigned integer arguments unchanged, the same shape as `__glkonim_Color4i`.
+- `__glkonim_Color4f` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da653e0, 28 bytes):
+  **Established.** The immediate-mode glColor4f, five stores to the command port: the token 107 (0x6b) as a word and the floats in `f12` to `f15` as 32-bit stores. It does not clamp the components.
+- `__glkonim_Color4d` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da653c0, 28 bytes):
+  **Established.** The immediate-mode glColor4d, five stores to the command port: the token 106 (0x6a) as a word and the doubles in `f12` to `f15`, each as one 64-bit store.
