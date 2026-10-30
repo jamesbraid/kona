@@ -125,6 +125,48 @@ Facts are labelled **established** (read from the words at the addresses given) 
   cofactor by it. Address register 0xf is loaded with 0x1f at 0xf44 for the stores of the result, the block from 0x1f that
   the normal transforms read. It writes special register 0x2b (0xf32) and returns at 0xf4f.
 
+## Matrix operations per matrix (matrixfunc.S)
+
+Each GL matrix operation has four handlers in `matrixfunc.S`, one per matrix: the colour matrix at engine word 0x190,
+the texture matrix at 0x5f, the projection at 0x3f and the modelview at 0x2f, each 16 words, column by column. What the
+four copies add around the arithmetic differs by matrix and is the same for every operation, so it is stated once here.
+**Established** (every handler below, read in full in `ge_listing/matrixfunc.S.lst`): the colour copies read engine
+word 3, combine it with the staged constant 0x10000 by unit-1 code 0x51 and store it back under a predicate; the
+texture copies stage the engine address 0xf494 and store it to word 0xd under a predicate; the projection copies write
+special register 0x29 and the modelview copies 0x2b and 0x29; the glOrtho, glFrustum, glRotate and glMultMatrix copies
+of every matrix also write special register 0x2c, and the translate and scale copies do not.
+**Inferred:** word 3 bit 16 marks a colour matrix in use, word 0xd selects the texture-coordinate transform that applies
+a full matrix, and the special-register writes mark the derived matrices for rebuilding (0x29 is the register
+`uMatrixMultCCC` writes after rebuilding the composite). What unit-1 code 0x51 computes is not fixed by the diagnostic
+test ([ge_ops.md](ge_ops.md)).
+
+- `mgeb_Translate_Color` (at 0xbc2b): **established**, takes glTranslate's x, y and z operands and computes the colour matrix's new fourth column, x times column 0 plus y times column 1 plus z times column 2 plus the old column 3 (words 0x190-0x19b read), with unit-2 multiply-adds (M = 0x460) and single adds (M = 0x6e0); the result is stored to 0x19c-0x19f.
+- `mgeb_Translate_Texture` (at 0xbc4b): **established**, the same product for the texture matrix: its inputs are the three operands and words 0x5f-0x6a, it multiplies and adds them into the translation column, and its result replaces words 0x6b-0x6e.
+- `mgeb_Translate_Projection` (at 0xbc6a): **established**, multiplies the projection's first three columns (0x3f-0x4a) by the operands it takes and adds them into its last column, whose four results go back to 0x4b-0x4e, then calls `mResolveFogTable` (0xbc7f) so that the fog table follows the new projection.
+- `mgeb_Translate_Modelview` (at 0xbc89): **established**, glTranslate on the modelview: from its three operands it computes each result as x times the first column plus y times the second plus z times the third plus the old fourth (the first three columns at 0x2f-0x3a, the fourth from 0x3b up), and the four results are written back to words 0x3b-0x3e.
+- `mgeb_Scale_Color` (at 0xbca7): **established**, takes glScale's three operands and multiplies colour-matrix column 0 (0x190-0x193) by x, column 1 (0x194-0x197) by y and column 2 (0x198-0x19b) by z; each product is a result stored back in place, and column 3 is left as it was.
+- `mgeb_Scale_Texture` (at 0xbcc8): **established**, scales the texture matrix's columns 0x5f-0x62, 0x63-0x66 and
+  0x67-0x6a by the x, y and z operands with single multiplies (M = 0x47f), so its output is the matrix times
+  diag(x, y, z, 1).
+- `mgeb_Scale_Projection` (at 0xbce6): **established**, multiplies each of the projection's first three columns (0x3f-0x4a) by one operand; the three scaled columns are its results, and it then calls `mResolveFogTable` (0xbcfb) as the projection translate does.
+- `mgeb_Scale_Modelview` (at 0xbd05): **established**, consumes the three scale factors and multiplies the first three modelview columns (0x2f-0x3a, four words each) by them in order and produces the scaled modelview in place, with the translation words 0x3b-0x3e unchanged.
+- `mgeb_Ortho_Color` (at 0xbbb5): **inferred**, glOrtho on the colour matrix: it passes the six operands through to `mOrtho` (0xd3ad) with word 0x190 as the target, and the result is that matrix after the builder multiplies it by the orthographic matrix.
+- `mgeb_Ortho_Texture` (at 0xbbc3): **inferred**, routes glOrtho's six operand words to `mOrtho`, which multiplies the texture matrix (word 0x5f) by the orthographic matrix and leaves the result there.
+- `mgeb_Ortho_Projection` (at 0xbbd1): **inferred**, the common case of glOrtho: its inputs are left, right, bottom, top, near and far, and `mOrtho` builds a matrix from them and multiplies the projection at word 0x3f by it to give the result.
+- `mgeb_Ortho_Modelview` (at 0xbbe0): **inferred**, applies glOrtho to the modelview: `mOrtho` takes the six operands, computes the orthographic matrix and yields the modelview at word 0x2f times it.
+- `mgeb_Frustum_Color` (at 0xbbf0): **inferred**, its inputs are glFrustum's six bounds; `mFrustum` (0xd410) converts them into a perspective matrix and multiplies it into the colour matrix at 0x190, which holds the result.
+- `mgeb_Frustum_Texture` (at 0xbbfe): **inferred**, hands the six frustum bounds it takes to `mFrustum`, which calculates the perspective matrix so that the product, the output of the handler, lands in the texture matrix at 0x5f.
+- `mgeb_Frustum_Projection` (at 0xbc0c): **inferred**, glFrustum's usual target: from the six bound operands `mFrustum` computes the projection at 0x3f times their perspective matrix, which becomes the new projection as its result.
+- `mgeb_Frustum_Modelview` (at 0xbc1b): **inferred**, takes the bounds as arguments; the perspective matrix built from them by `mFrustum` multiplies the modelview at 0x2f, and the product is the result.
+- `mgeb_Rotate_Color` (at 0xbd23): **inferred**, consumes glRotate's angle and axis; `mRotate` (0xfb0) calculates the rotation matrix and multiplies the colour matrix at 0x190 by it, and produces the rotated colour matrix there.
+- `mgeb_Rotate_Texture` (at 0xbd31): **inferred**, rotates the texture matrix: the angle and axis operands go to `mRotate`, which converts them to a rotation matrix, and the output is word 0x5f's matrix times that rotation.
+- `mgeb_Rotate_Projection` (at 0xbd3f): **inferred**, glRotate with the projection at 0x3f as the matrix `mRotate` multiplies; its four operands give the rotation, and the result replaces the projection.
+- `mgeb_Rotate_Modelview` (at 0xbd4e): **inferred**, takes the four rotate operands and yields the modelview at 0x2f times the rotation `mRotate` computes from them.
+- `mgeb_MultMatrix_Color` (at 0xbd5e): **inferred**, takes the 16 operand words of glMultMatrix and lets `mMatrixMultCCW` (0xeb0) multiply the colour matrix at 0x190 by them from the right, the product being the result.
+- `mgeb_MultMatrix_Texture` (at 0xbd6c): **inferred**, glMultMatrix for the texture matrix: `mMatrixMultCCW` multiplies word 0x5f's matrix by the 16-word operand and produces the new texture matrix.
+- `mgeb_MultMatrix_Projection` (at 0xbd7a): **inferred**, post-multiplies the projection at 0x3f by the operand matrix it receives as input, through `mMatrixMultCCW`, and the result is the new projection.
+- `mgeb_MultMatrix_Modelview` (at 0xbd89): **inferred**, its input is the operand matrix, which `mMatrixMultCCW` multiplies into the modelview at 0x2f; the output is that product.
+
 ## Perspective divide and viewport (uscreen2.s)
 
 **Established** from the reads of `uscreen2.s` and the stores of `mgeb_ViewPort` (`glmodes.S`, 0xf41d and 0xf427): the viewport

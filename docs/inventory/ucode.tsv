@@ -2636,30 +2636,30 @@ ge.u	label	0x0000bacd	mgeb_PushMatrix_Color		located	ucode/ge_handlers.md#matrix
 ge.u	label	0x0000bb0a	mgeb_PushMatrix_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000bb45	mgeb_PushMatrix_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000bb81	mgeb_PushMatrix_Modelview		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bbb5	mgeb_Ortho_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bbc3	mgeb_Ortho_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bbd1	mgeb_Ortho_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bbe0	mgeb_Ortho_Modelview		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bbf0	mgeb_Frustum_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bbfe	mgeb_Frustum_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bc0c	mgeb_Frustum_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bc1b	mgeb_Frustum_Modelview		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bc2b	mgeb_Translate_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bc4b	mgeb_Translate_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bc6a	mgeb_Translate_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bc89	mgeb_Translate_Modelview		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bca7	mgeb_Scale_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bcc8	mgeb_Scale_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bce6	mgeb_Scale_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bd05	mgeb_Scale_Modelview		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bd23	mgeb_Rotate_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bd31	mgeb_Rotate_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bd3f	mgeb_Rotate_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bd4e	mgeb_Rotate_Modelview		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bd5e	mgeb_MultMatrix_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bd6c	mgeb_MultMatrix_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bd7a	mgeb_MultMatrix_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
-ge.u	label	0x0000bd89	mgeb_MultMatrix_Modelview		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
+ge.u	label	0x0000bbb5	mgeb_Ortho_Color		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bbc3	mgeb_Ortho_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bbd1	mgeb_Ortho_Projection		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bbe0	mgeb_Ortho_Modelview		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bbf0	mgeb_Frustum_Color		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bbfe	mgeb_Frustum_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bc0c	mgeb_Frustum_Projection		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bc1b	mgeb_Frustum_Modelview		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bc2b	mgeb_Translate_Color		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bc4b	mgeb_Translate_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bc6a	mgeb_Translate_Projection		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bc89	mgeb_Translate_Modelview		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bca7	mgeb_Scale_Color		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bcc8	mgeb_Scale_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bce6	mgeb_Scale_Projection		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bd05	mgeb_Scale_Modelview		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bd23	mgeb_Rotate_Color		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bd31	mgeb_Rotate_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bd3f	mgeb_Rotate_Projection		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bd4e	mgeb_Rotate_Modelview		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bd5e	mgeb_MultMatrix_Color		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bd6c	mgeb_MultMatrix_Texture		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bd7a	mgeb_MultMatrix_Projection		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
+ge.u	label	0x0000bd89	mgeb_MultMatrix_Modelview		understood	ucode/ge_compute.md#matrix-operations-per-matrix-matrixfuncs	Matrix operations per matrix (matrixfunc.S)
 ge.u	label	0x0000bd99	mgeb_LoadMatrix_Color		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000bdb5	mgeb_LoadMatrix_Texture		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
 ge.u	label	0x0000bdd0	mgeb_LoadMatrix_Projection		located	ucode/ge_handlers.md#matrixfuncs	matrixfunc.S
