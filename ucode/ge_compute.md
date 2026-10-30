@@ -864,7 +864,7 @@ lives at 0x8d2c (address register 0xb), the target matrix C at the address the c
 - `mMatrixTransposeWW` (`matrix.S` line 34, at 0xd399): **inferred**, transposes the work matrix in place. Its input is
   the 16 words at register 0xb. It swaps the six off-diagonal pairs (1, 4), (2, 8), (3, 0xc), (6, 9), (7, 0xd) and
   (0xb, 0xe) with twelve moves, each reading word D and storing it at the mirror offset E (0xd399-0xd3a4); the diagonal
-  words stay where they are, and the return at 0xd3a4 is the last move's own word. It computes no arithmetic; the result is the transposed matrix in place.
+  words stay where they are, and the return at 0xd3a4 is the last move's own word. The result is the transposed matrix in place, made by moves alone.
 - `mMatrixLoadIdentityC` (`matrix.S` line 54, at 0xd3f7): **inferred**, writes the identity into the current matrix. It has
   no input words. It loads the store-data register with zero (the move of register 0x1e at 0xd3f7), stores that zero to the
   twelve off-diagonal offsets of register 0xc (stores 0xd400-0xd407 with F = 0x1e-0x16 and 0xd408-0xd40b), reloads the store-data register
@@ -3046,7 +3046,7 @@ an `r95` = 8 store at that base plus the index in register 0x13, which is saved 
   passes the batch on with the group-31 transfer at 0x4a93; its output is the batch unchanged.
 - `mgeb_DebugDrain` (`debug.S` lines 146-199, at 0x4a9c): **inferred**, a command that consumes its operands and
   waits: it takes one command word into address register 0x1a (0x4a9c), reads two more and discards them (0x4a9d,
-  0x4a9e), and waits on the relative group-31 transfer at 0x4aa0. It returns no result and computes nothing; its
+  0x4a9e), and waits on the relative group-31 transfer at 0x4aa0. Its
   effect is that the engine drains before the next command.
 - `mPrintf` (`debug.S` lines 287-333, at 0x4aa9): **inferred**, the formatter behind the debug buffer; its inputs are
   the format words at register 0xb. It saves eleven
@@ -3726,7 +3726,7 @@ The engine's reset code: it runs once and then waits for the first command. Read
 - `MemRegInit` (`bootinit.s` line 9, at 0x27cc): **inferred**, the memory-register initialiser called from the start-up
   code, and it is empty. Its only word is a return (0x27cc, an indirect transfer in group 4 with no operand and no store),
   so it reads nothing, writes nothing and gives its caller `HereWeGo` the same machine state it was called with; the seven
-  words after it are no-ops. It yields no result and computes nothing.
+  words after it are no-ops.
 
 ## Deformation commands (deform.S)
 
@@ -3981,7 +3981,7 @@ register 0x16). Read from the [sprite.S listing](ge_listing/sprite.S.lst) (`ge.u
   of the modelview after the matrix changes. It reads the mode word at 0x94a (0x8669) and loads the three copy
   registers: register 0 with 0x2f, the first modelview word (0x8670), register 1 with the external-memory target 0x14d5
   (0x8671) and register 2 with the count 0x10 (0x8672). It then jumps to `mCramToEram` at 0x103a (0x866d), which moves
-  those sixteen words from control to external memory; the copy is its only result. Its input is the modelview words at 0x2f-0x3e, which it moves unchanged to 0x14d5 onward; it computes nothing.
+  those sixteen words from control to external memory; the copy is its only result. Its input is the modelview words at 0x2f-0x3e, which it moves unchanged to 0x14d5 onward.
 - `mSpriteRotateMatrix` (`sprite.S` line 466, at 0x8676): **inferred**, builds the axis-angle rotation matrix for the
   sprite and applies it to the modelview. Its inputs are the rotation axis and the cosine and sine terms that the three
   mode entries leave in registers 0xe-0x13 (the multiplies at 0x867a-0x8681 and the adds at 0x8684-0x8685 form the cosine
