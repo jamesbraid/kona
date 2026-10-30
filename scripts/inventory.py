@@ -492,15 +492,18 @@ def computes(text):
 
 # An entry that closes with this label says its facts were written quickly and not yet checked against the
 # binary or the source: whatever else it says, it earns at most "located".
-UNVERIFIED = re.compile(r'\bunverified\.\s*\|?\s*$', re.I)
+UNVERIFIED = re.compile(r'\bunverified\.(\s*\|?\s*)$', re.I)
 
 
 def classify(text, subj=frozenset(), head=None):
-    """The status of one entry (see classify_read), capped at located when it closes with the Unverified label."""
-    status, open_ = classify_read(text, subj, head)
-    if status == 'understood' and UNVERIFIED.search(bare_text(text)):
-        return 'located', False
-    return status, open_
+    """The status of one entry (see classify_read). An entry that closes with the Unverified label is graded
+    as if it closed with Inferred, so its content is read the same way and the hedge words do not read the
+    label, and then capped at located."""
+    bare = bare_text(text)
+    if not UNVERIFIED.search(bare):
+        return classify_read(text, subj, head)
+    status, _ = classify_read(UNVERIFIED.sub(r'Inferred.\1', text), subj, head)
+    return ('located' if status == 'understood' else status), False
 
 
 def classify_read(text, subj=frozenset(), head=None):

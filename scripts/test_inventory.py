@@ -7,6 +7,7 @@ Run from the repository root: python3 scripts/test_inventory.py
 """
 import importlib.util
 import os
+import re
 import unittest
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -238,6 +239,14 @@ class Unverified(unittest.TestCase):
     def test_a_label_with_an_open_sub_fact_is_capped(self):
         text = self.BODY + 'The width of the result is unknown. Unverified.'
         self.assertEqual(inv.classify(text, self.SUBJ)[0], 'located')
+
+    def test_the_cap_does_not_rest_on_the_hedge_words(self):
+        saved = inv.HEDGE
+        inv.HEDGE = re.compile(r'(?!)')
+        try:
+            self.assertEqual(inv.classify(self.BODY + 'Unverified.', self.SUBJ)[0], 'located')
+        finally:
+            inv.HEDGE = saved
 
     def test_an_entry_below_located_stays_there(self):
         self.assertEqual(inv.classify('`odsy_EdidCksum` checksums. Unverified.', self.SUBJ)[0], 'named-only')
