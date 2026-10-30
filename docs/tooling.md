@@ -214,3 +214,46 @@ From `check.py` against IRIX 6.5.30m `usr/gfx/ucode/KONA/` and `usr/diags/IR/uco
   - `uMatrixMultCCC`: it reads the projection and stores the 0.5 constant, but the four subtracts feed unit-2 multiplies and drop out.
   - `mMatrixMultCCW`: only 7 of its 64 multiplies and 7 of its adds survive.
 - **Imports pass.** `ge11.u` and `ge.hex` import to the same listing as `ge.u`, and `ge_diag_init.hex` decodes all 283 words.
+
+## ARM firmware import
+
+The host-interface ARM runs its own firmware, a big-endian ARMv4 image in AIF layout ([ucode/arm1.md](../ucode/arm1.md)). Ghidra's stock ARM processor reads the code, but a raw import puts the AIF header at the load address, has no address map and no names. `ghidra/kona-arm/` holds an import script that fixes that for every ARM image on the media: `arm1.u`, `arm1_kpm.u` and `tport.bin` from `usr/gfx/ucode/KONA/`, and `arm1.u`, `arm1_nic.u` and `diag_arm_init.u` from `usr/diags/IR/ucode/`.
+
+| Path | What it is |
+|---|---|
+| `ghidra_scripts/KonaArmImport.java` | The import recipe, run as a pre-script on a raw import |
+| `tables.tsv` | The documented data tables the script lays, per image, with the page that documents each |
+| `tests/run-ghidra.sh`, `tests/DumpArm.java` | Imports all six images, analyses them and dumps functions, the token list, data and references |
+| `tests/check.py` | Compares the dumps with `ucode/arm1.s`, `ucode/tport.s`, `ucode/icu_map.tsv` and `ucode/arm1_handlers.tsv` |
+
+Import recipe, from the repository root (the script's argument is the repository root; it reads `ucode/` and `ghidra/kona-arm/tables.tsv` from there):
+
+```sh
+analyzeHeadless PROJDIR PROJ -import ucode/KONA/arm1.u -loader BinaryLoader \
+  -processor ARM:BE:32:v4 \
+  -scriptPath ghidra/kona-arm/ghidra_scripts -preScript KonaArmImport.java "$(pwd)"
+```
+
+The processor is `ARM:BE:32:v4`: the images use the ARMv4 halfword transfers and no Thumb or `bx`. What the script does:
+
+- Memory. The read-only part goes at the image base (0x0c000000, or 0 for `diag_arm_init.u`), the read-write part at the data base and the zero-initialised part after it, all read from the AIF header; `tport.bin`'s 20-byte EEPROM file header is skipped. Around them it adds the ARM address map kpm names ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md#control-and-status-registers)): SRAM at 0 (the state block, r8 + offset; mapped to 0x1000, the stack top), the host-interface registers at 0x200000, the payload ports and next-handler fetch at 0x200200, the engine descriptor and data ports at 0x200600, the token map at 0x400000, the display bus at 0x600000, the EEPROM at 0x800000 and the cache tags at 0xa00000. The register and port blocks are volatile. The display-bus, EEPROM and SDRAM sizes are the distance to the next region, not a documented size.
+- Base registers. r8 = 0 and r9 = 0x200200 are set over the code after the start-up sequence that loads them, so every r9-relative store resolves to a named register or port.
+- Names. `arm1.u` takes its 1682 debug-table symbols; a symbol with flags 2 or 3 in the read-only part starts a function unless it is a linker mark, the area name `ucode` or one of the documented tables. An image without symbols gets names for its call targets by matching their words against `arm1.u` with branch and pc-relative offsets masked (the rule of `scripts/arm1_disasm.py --tport`), `DoDGRqst<name>` for its display-request handlers, and, for `tport.bin`, the labels of [ucode/tport.md](../ucode/tport.md#unnamed-functions).
+- Registers. Every ARM-side register of [ucode/arm1_registers.tsv](../ucode/arm1_registers.tsv) is labelled and typed as a 32-bit structure of its kpm fields; the layouts (`HA_ICU_MAP_A`, `_G`, `_N`, `HA_GED_CTRL_ADDR`) become types only. The descriptor and data ports are labelled by their decoded select and tag (`HA_GED_CTRL_T1_S12` is 0x200670).
+- Token table. In `arm1.u` the static list at `vector_end` is typed entry by entry: an ARM entry as {flags, handler pointer}, a routed entry as `HA_ICU_MAP_G` (geometry form) or `HA_ICU_MAP_N`. Each entry, its slot in `icu_map` and its slot in the hardware map at 0x400000 are labelled with the token number and kpm name, and each handler gets a plate comment listing its tokens and group.
+- Data tables. `hipwc`, `vector_start`, the `x$constdata` tables, `DGDispatchTable`, the three vertex-array tables, `gepc`, `icu_map` and `tport.bin`'s request table, as listed in `tables.tsv`.
+
+Test, from the repository root:
+
+```sh
+ghidra/kona-arm/tests/run-ghidra.sh .cache/kona-arm      # needs Ghidra, about 80 s
+python3 ghidra/kona-arm/tests/check.py .cache/kona-arm   # needs Python 3 only
+```
+
+Results against IRIX 6.5.30m:
+
+- `arm1.u`: all 1189 function symbols of `ucode/arm1.s` are Ghidra functions with an `arm1.s` name. Analysis adds one function, 0x0c040168, the shared divide loop inside `__rt_divtest` that has no symbol of its own. All 512 tokens sit in the typed list with the entry of `icu_map.tsv`, and all 306 ARM-run handlers resolve to the address and name in `arm1_handlers.tsv`. Code references reach the host-interface registers (662), the payload ports (993) and the engine ports (5111).
+- `tport.bin`: all 225 call targets that `ucode/tport.s` labels as code are functions named as `tport.s` names them, or as `tport.md` labels a `fn_` target; the two labels `tport.md` marks as strings stay data. Analysis adds 13 functions no call reaches.
+- `arm1_kpm.u`, `arm1_nic.u`, the diagnostic `arm1.u` and `diag_arm_init.u` import with their host-interface references resolved; they have no listing to compare names against.
+
+Limits: the diagnostic images' functions that match nothing in `arm1.u` stay `fn_<address>`, and `tport.bin`'s own token map (built at +0x3b0 with 8-byte entries) is not typed.
