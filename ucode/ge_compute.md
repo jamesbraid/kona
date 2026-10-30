@@ -1995,3 +1995,144 @@ immediate 0). **Inferred** from the words cited, read in `ge_listing/CRAMBlockLo
 - `epilogue_ebc` (`ERAMBlockClear.s` lines 118-131, at 0x1714): **inferred**, writes the leftover words. It
   compares register 4 by address-unit words (0x1714, 0x1716, 0x1717) and makes the stores at 0x1718, 0x171a and
   0x171c conditional on `cc` 0x14. The relative group-31 transfer at 0x1715 ends the command.
+
+## Raster-board commands (raster.S)
+
+The handlers of `raster.S` talk to the raster boards through the engine's bus-output addresses 0x1f4-0x1f8 (`r95` = 0x13 stores with the address as immediate; [docs/rm.md](../docs/rm.md#the-shadow-bit-mask)). Read in full from the [raster.S listing](ge_listing/raster.S.lst) (`ge.u`, IRIX 6.5.30m). Three habits recur. **Established:** most handlers begin by reading three input words (C = 0x1d): the first into address register 0x1a, the third into staging word 0x10. A shadowed register write is four stores: 0x00070000 to 0x1f8 and a bit mask to 0x1f5 (shadow index 7, `BEF_REGSHADOW_BMASK`), then the address word to 0x1f8 and the value to 0x1f5. A direct write to a register puts its index on 0x1f7 and its value on 0x1f5. **Inferred: in this file the `mgesi_` and `mgebi_` handlers end by sending staging word 0x10 to 0x1f4 (E = 2), and the `mges_` handlers do not.** The clearest case is a pair that differs in little else: `mgesi_TbusRegWrite` sends the closing word and `mges_TbusRegWriteNoIncr` does not. So the closing word is taken to increment a per-command count on the raster side, which the name "NoIncr" points to. `mges_TBUS_1`, `mges_NullCommand` and `mges_DiagDeactivate` also have no 0x1f4 store.
+
+- `mgesi_TbusRegWrite` (`raster.S` lines 213-228, at 0x39fd): **inferred**, the engine half of the firmware's
+  `tbus_regwrite` for the board registers 0x400-0x477
+  ([docs/rm.md](../docs/rm.md#host-interface-registers-on-the-raster-bus)). Operand 0, the register number, goes to
+  0x1f7 (0x3a05). The clear-pattern register (`r148` = 0x3c0) goes to 0x1f6 (0x3a07), operand 1, the value, to 0x1f5
+  (0x3a08), and the saved word to 0x1f4 (0x3a09).
+- `mges_TbusRegWriteNoIncr` (`raster.S` lines 280-292, at 0x39da): **inferred**, the same board-register write without
+  the closing 0x1f4 word. Operand 0 goes to 0x1f7 (0x39e4) and operand 1 with the 0x1f6 store (0x39e5), then a 0x1f5
+  store that names no source (0x39e6) ends the command.
+- `mgesi_IMPtbusRegWrite` (`raster.S` lines 242-266, at 0x39e7): **inferred**, a board-register write bracketed by
+  writes of `TFP_AMASK` (0x1408). It first writes the clear pattern to 0x1408 directly (0x1f7 at 0x39eb, 0x1f5 at
+  0x39ec), then sends operand 0 to 0x1f7 and operand 1 to 0x1f6 (0x39ee, 0x39f1). Last it sends a shadowed write whose
+  mask is the clear pattern to address word 0x01681408 (0x39f7-0x39fb), so the raster chip gets 0 while the shadow
+  keeps its value (**inferred** from the mask reading in [docs/rm.md](../docs/rm.md#the-shadow-bit-mask)).
+- `mgesi_BshRegisterWrite` (`raster.S` lines 450-469, at 0x3991): **established**, the engine half of the firmware's
+  four-store raster write. It takes three operands, mask, address word and value, and sends them as one shadowed
+  write: 0x00070000 and operand 0 (0x3998, 0x3999), then operand 1 to 0x1f8 and operand 2 to 0x1f5 (0x399b, 0x399c),
+  and the closing word (0x399d).
+- `mgesi_BshRegisterWriteN` (`raster.S` lines 485-558, at 0x3972): **inferred**, the list form of the shadowed write.
+  Address register 0x13 is loaded from operand 0 and stepped through the command (0x3975, 0x397b-0x397e), and register
+  0x12 counts the loop (0x397d, 0x3981). The loop at 0x3980-0x3983 sends 0x00070000 and the word at register 0x13, and
+  each pass then sends the next two words to 0x1f8 and 0x1f5 (0x3984, 0x3985), so the input is a list of (mask,
+  address, value) triples. The thread-B words at 0x3986-0x398a send the triple at offsets 9-0xb from register 0x13 the
+  same way. It ends with the inverted clear pattern on 0x1f5 under E = 3 (0x398c, 0x398e) and the closing word.
+  `arm_bind_2d_clipmap_texture` uses it for five clipmap registers ([GE.h](../GE.h)).
+- `mgesi_IMPbshRegisterWrite` (`raster.S` lines 574-596, at 0x395e): **inferred**, the shadowed write that the GL
+  state handlers use for `IMP_` registers ([docs/rm.md](../docs/rm.md#how-the-arm-firmware-writes-raster-registers)).
+  It brackets the write as `mgesi_IMPtbusRegWrite` does. First `TFP_AMASK` (0x1408) gets the clear pattern directly
+  (0x3960-0x3964), then the operand triple goes out as mask, address and value (0x3969-0x396c). Last comes a zero-mask
+  shadowed write to address word 0x01681408 (0x396d-0x3970).
+- `mgesi_TBUS_1` (`raster.S` lines 394-408, at 0x39ab): **inferred**, plays one raw bus word from `irsaudit`'s
+  `fcTbusWrite` (token 0xe2). Its operands are a mode code, the low half and the high half. Operand 0, the mode code,
+  goes into address register 0x13 (0x39ac). Operand 2, the high half, goes to 0x1f8 (0x39b3), and operand 1, the low
+  half, to 0x1f5 in a store that names register 0x13 (C = 0x13, `r176` = 2, E = 0x3f, 0x39b6). So the mode reaches the
+  bus with the low-half store rather than as a separate word.
+- `mges_TBUS_1` (`raster.S` lines 423-434, at 0x399e): **inferred**, the same raw bus word without the closing word:
+  mode into register 0x13 (0x39a1), high half to 0x1f8 (0x39a8), low half to 0x1f5 through the register-0x13 store
+  (0x39a9-0x39aa).
+- `mgesi_AlphaTest` (`raster.S` lines 352-377, at 0x39b8): **inferred**, `glEnable`/`glDisable` of the alpha test. It
+  takes the enable flag as operand 0, shifts it left (unit-1 0x5f, 0x39c1), and writes the result to `TFP_AFUNC`
+  (address word 0x015b1407) through the shadow with mask 0x8000 (0x39bd, 0x39c2-0x39c6). The output is bit 15 of
+  `TFP_AFUNC`, the enable bit of [RM.h](../RM.h), set or cleared.
+- `mgesi_AlphaFunc` (`raster.S` lines 307-337, at 0x39c8): **inferred**, `glAlphaFunc`. It writes `TFP_AFUNC` through
+  the shadow with mask 0x7fff, which covers the twelve-bit reference and the three-bit function (0x39cb,
+  0x39d1-0x39d3). Its inputs are the function and the reference. The reference is multiplied by engine word 0xc5 (read
+  at 0x39ca, multiply-and-convert store with `r95` = 0x20 at 0x39d5), the colour scale that `mgeb_RGBA_Mode` sets to
+  just under 4096.0. So a reference of 1.0 becomes the field's top value 0xfff.
+- `mgebi_ShadeModel` (`raster.S` lines 167-197, at 0x3a0a): **inferred**, `glShadeModel` (operand 0,
+  0x1d00 flat or 0x1d01 smooth, [GE.h](../GE.h)). It tests the operand with an AND that sets the flags (0x3a12) and,
+  under that predicate (`r198` = 0x11), writes `PG_GENERAL` (address word 0x01270800) through the shadow with mask 1,
+  its flat-shading bit (0x3a0e, 0x3a10-0x3a17). It also updates engine word 3 with an OR or the code-0x51 combine,
+  storing on either side of the test (0x3a18-0x3a24). The output is the pixel generator's shading mode and a mode bit
+  the drawing modules read.
+- `mgesi_FlushRM` (`raster.S` lines 1149-1224, at 0x380b): **inferred**, drains the raster chips. It writes the three
+  no-op registers in turn: `IMP_NOP` (0x1c3a, 0x3810-0x3812), `TFP_NOP` (0x1411, 0x3824-0x3826) and `PG_NOP` (0x87f,
+  0x3837-0x3839). After each it runs a counted wait, loading register 0xf with 8, 0xb0 and 0x56 (0x380e, 0x3823,
+  0x3836) and counting it down (0x3814-0x3816, 0x3827-0x3829, 0x383a-0x383c), and then stores the inverted clear
+  pattern with E = 3 on both threads (0x381f-0x3820 and the two later copies). Its effect is a pause long enough for
+  each stage to empty, with no register state changed.
+- `mgebi_ErrQuery` (`raster.S` lines 1041-1065, at 0x387d): **inferred**, returns a status word to the host. It reads
+  a word with an `r95` = 0x17 word on address register 0x16 (F = 0x1b, 0x387d), which an `r95` = 8 word writes back at
+  the end (0x3890), and stages board register 0x476 (0x3883), the reply port of the firmware's read-back paths
+  ([docs/rm.md](../docs/rm.md#host-interface-registers-on-the-raster-bus)). It sends the register number to 0x1f7 and
+  a value to 0x1f5 under a predicate (0x3885-0x3888).
+- `mgesi_Accum` (`raster.S` lines 901-951, at 0x38c0): **inferred**, `glAccum` for the 16-bit accumulation buffer. Its
+  inputs are the operation (operand 0, 0x100-0x104) and the float value (operand 1). It compares the operation with
+  0x102, `GL_RETURN` (staged 0x38c2, integer compare at 0x38c3), and processes the value with unit-1 code 0x6e and a
+  flag-setting subtract (0x38c4, 0x38c8). It stages the scales 1024.0 and 4096.0 (0x38ce, 0x38d0) and selects between
+  them under predicates (0x38d4-0x38d6). The output is a write of `IMP_ACCUM` (0x1c0e) on the bus (0x38d9) after
+  `TFP_AMASK` (0x1408) is cleared (0x38d7-0x38d8), followed by format words built by an OR and a multiply-and-convert
+  store (0x38de, 0x38df) and a zero-mask shadowed write of 0x01681408 (0x38e0-0x38e3). [RM.h](../RM.h) gives
+  `IMP_ACCUM` a 13-bit value field, which is where the scaled value is inferred to go.
+- `mgesi_Accum32` (`raster.S` lines 970-1027, at 0x3894): **inferred**, the 32-bit accumulation-buffer form that
+  `arm_accum` picks when the buffer depth is 0x20. Inputs, comparison with `GL_RETURN` and output register are those
+  of `mgesi_Accum`. The format words differ: 0x2060d00 and 0xd0000 (0x38b0, 0x38af) where `mgesi_Accum` stages
+  0x2040d00 and 0x400d0000. It also stages 0x40031303, 0x38 and 0x30 (0x38a1, 0x38a5, 0x38a6), which `mgesi_Accum`
+  lacks, keeps the scales 1024.0 and 4096.0 (0x38a7, 0x38a2) and predicates more of its moves on the comparison
+  (0x38a8-0x38ab). It sends `TFP_AMASK` and `IMP_ACCUM` as `mgesi_Accum` does (0x38ac, 0x38ae-0x38b4) and ends with
+  the same zero-mask shadowed write (0x38bb-0x38be).
+- `mgesi_UserColor` (`raster.S` lines 840-882, at 0x38e5): **inferred**, `glBlendColorEXT`. It takes four floats, red,
+  green, blue and alpha (operands 0-3), and multiplies each by engine word 0xc5 into registers 0x19-0x1c
+  (0x38ea-0x38ed). It then sends two shadowed writes with mask 0xffffff, to address words 0x013d1c14 and 0x013e1c15
+  (0x38ee-0x38fb). The format words 0xc0000 and 0x400c0c00 go with the converted pairs (0x38f3-0x38f5, 0x38f7, 0x38fa,
+  0x38fb). With the 4096 scale each component becomes a twelve-bit field, two per 24-bit value. kpm names those two
+  indexes `IMP_WMASK_BIT` ([RM.h](../RM.h)), so the blend colour shares slots with that name.
+- `mgeb_CI_Mode` (`raster.S` lines 754-818, at 0x38fd): **inferred**, switches the context to colour-index mode. Its
+  input is the index width (operand 0) and a second operand. From operand 0 it builds an integer with a
+  float-to-integer conversion of 16.0 (unit-1 0x71, 0x38ff), a left shift of 1 (0x5f, 0x3901), the integer multiply
+  0x0f (0x3905) and an integer subtract (0x3909), inferred to be the index range. It converts operand 1 to float
+  (0x73, 0x3911) and stores results to engine words 0xc5, 0xa41 and 0xa42 (0x3913, 0x3922, 0x3912, 0x390c), 0xc5 being
+  the colour scale the other paths multiply by. It also ORs 0x800 into engine word 3 (0x390d, stored at 0x3916) and
+  0x10 into word 0x84 (0x390e, 0x3917) and sets the lighting successor words 0xb, 0xc and 0xa1 to
+  `mmo_DirtyCullAndLightModule` (0xf547), `mmo_DirtyLightModule` (0xf50d) and `mLiIndexFinalLi` (0xd5a6) (staged
+  0x390a, 0x390b, 0x390f; stores 0x3913-0x3921). The output is colour-index lighting on the vertex path. The
+  store-to-value pairing uses the nine-word rule of [How the vertex path is
+  chained](#how-the-vertex-path-is-chained-successor-words).
+- `mgeb_RGBA_Mode` (`raster.S` lines 682-737, at 0x3923): **inferred**, the RGBA counterpart. It undoes
+  `mgeb_CI_Mode`'s flags: code 0x51 takes 0x800 out of engine word 3 (0x392f) and 0x10 out of word 0x84 (0x3925,
+  stored at 0x392e). It sets the colour scale word 0xc5 to 0x457ffff8, 4095.9998, so that a colour of 1.0 converts to
+  0xfff (0x3933, 0x393d). It points successor words 0xb and 0xc at `mmo_DirtyCullAndLightModule` and
+  `mmo_DirtyLightModule` and word 0xa1 at `mLiFinalLi` (0xda3c). Under the predicate set by ANDing word 0x84 with 8
+  (0x3930) it stores `mLiClrMtrlFinalLi` (0xd831) there instead (0x393c).
+- `mgeb_Enable_Normalize` (`raster.S` lines 612-632, at 0x394e): **inferred**, `glEnable(GL_NORMALIZE)`. It reads
+  engine word 3 (0x3950), ORs in 1 (0x3953) and stores the result back (0x395c). It also writes
+  `mmo_DirtyXformAndObjToClipModule` (0xf449) to successor word 8 (0x3954, 0x395d), so the next vertex batch
+  re-selects its transform with normalisation on.
+- `mgeb_Disable_Normalize` (`raster.S` lines 645-665, at 0x393e): **inferred**, the opposite switch. Engine word 3 is
+  combined with 1 by code 0x51 (0x3943), which turns bit 0 off if 0x51 is AND-NOT as its other uses suggest. Successor
+  word 8 again gets `mmo_DirtyXformAndObjToClipModule` (0x3944, 0x394d).
+- `mgeb_ClipmapXform` (`raster.S` lines 1238-1267, at 0x37f9): **inferred**, loads the clipmap texture transform that
+  `arm_bind_2d_clipmap_texture` sends after its five clipmap register writes. It stores the three input words to
+  engine words 0x75-0x77 (0x3804-0x3807) and ORs 0x2000000, bit 25, into engine word 3 (0x37fe-0x37ff, store 0x3808),
+  with a code-0x51 combine stored under a predicate as the alternative (0x3800, 0x3809). It sets successor word 0xd,
+  the texture-coordinate transform, to `mmo_DirtyTextureAndScreenModule` (0xf494) (0x37fd, 0x380a), as the
+  texture-matrix handlers do ([Matrix operations per matrix](#matrix-operations-per-matrix-matrixfuncs)).
+- `mgeb_SetCurrentRaster` (`raster.S` lines 1086-1132, at 0x384b): **inferred**, loads the context's raster position,
+  the fifteen floats `arm_set_current_raster` forwards ([GE.h](../GE.h)). It multiplies operand 4 by 16.0
+  (0x384e-0x384f). It tests bit 11 (0x800) of engine word 3, the colour-index flag `mgeb_CI_Mode` sets, with a
+  flag-setting AND (0x3851), moves a different value into register 0x1c under that predicate (0x3853), and subtracts
+  operand 0xe from a register (0x3854). It copies operands 1-3 and 5-0xd into engine words 0x23 and 0x28-0x34 (moves
+  0x3855-0x386c, stores 0x385e-0x3879). The result is the raster-position block that `glRasterPos` and the bitmap
+  handlers read.
+- `mgebi_NullCommand` (`raster.S` lines 117-131, at 0x3a32): **inferred**, a command that does nothing but keep the
+  raster side in step. It loads register 0x13 from the third input word (0x3a35) and sends 0x00070000 to 0x1f8
+  (0x3a37). Under a predicate set by testing register 0x13 (0x3a41) it then sends the clear pattern to 0x1f5 and the
+  closing word (0x3a38-0x3a3b). The first pair is a write to shadow index 7, the bit mask, which changes no raster
+  register.
+- `mges_NullCommand` (`raster.S` lines 96-103, at 0x3a45): **inferred**, the silent no-op: it consumes its three input
+  words (0x3a45-0x3a47), waits for the next command (0x3a49) and sends nothing to the raster bus.
+- `mges_DiagDeactivate` (`raster.S` lines 144-151, at 0x3a25): **inferred**, the same three-word consume-and-wait
+  shape as `mges_NullCommand` (0x3a25-0x3a29), sent when a diagnostic context is deactivated. It changes no engine or
+  raster state.
+- `mgesi_PassThrough` (`raster.S` lines 39-73, at 0x3a5b): **inferred**, writes one host word to the board registers
+  that the firmware's read-back paths use. It stages board registers 0x452, 0x476 and 0x477, the count 8 and 0x700
+  (0x3a5c-0x3a62). Then it writes register number to 0x1f7 and value to 0x1f5: 0x452 gets 8 (0x3a64-0x3a65); 0x476
+  gets 0x700 converted from integer to float (0x3a66-0x3a67) and then operand 0 (0x3a69); 0x477 gets the clear pattern
+  (0x3a6a-0x3a6b). The closing word follows (0x3a6c).

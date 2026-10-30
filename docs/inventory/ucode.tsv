@@ -2213,33 +2213,33 @@ ge.u	label	0x000037aa	mmo_FFT_4		located	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x000037cb	mmo_FFT_2		located	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x000037de	mgeb_InitFFTFactors		located	ucode/ge_handlers.md#push_attribs	push_attrib.S
 ge.u	label	0x000037de	mgeb_RestoreXformAttribs		located	ucode/ge_handlers.md#push_attribs	push_attrib.S
-ge.u	label	0x000037f9	mgeb_ClipmapXform		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x0000380b	mgesi_FlushRM		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x0000384b	mgeb_SetCurrentRaster		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x0000387d	mgebi_ErrQuery		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003894	mgesi_Accum32		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x000038c0	mgesi_Accum		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x000038e5	mgesi_UserColor		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x000038fd	mgeb_CI_Mode		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003923	mgeb_RGBA_Mode		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x0000393e	mgeb_Disable_Normalize		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x0000394e	mgeb_Enable_Normalize		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x0000395e	mgesi_IMPbshRegisterWrite		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003972	mgesi_BshRegisterWriteN		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003991	mgesi_BshRegisterWrite		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x0000399e	mges_TBUS_1		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x000039ab	mgesi_TBUS_1		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x000039b8	mgesi_AlphaTest		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x000039c8	mgesi_AlphaFunc		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x000039da	mges_TbusRegWriteNoIncr		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x000039e7	mgesi_IMPtbusRegWrite		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x000039fd	mgesi_TbusRegWrite		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003a0a	mgebi_ShadeModel		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003a25	mges_DiagDeactivate		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003a32	mgebi_NullCommand		located	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003a45	mges_NullCommand		located	ucode/ge_handlers.md#rasters	raster.S
+ge.u	label	0x000037f9	mgeb_ClipmapXform		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x0000380b	mgesi_FlushRM		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x0000384b	mgeb_SetCurrentRaster		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x0000387d	mgebi_ErrQuery		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x00003894	mgesi_Accum32		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x000038c0	mgesi_Accum		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x000038e5	mgesi_UserColor		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x000038fd	mgeb_CI_Mode		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x00003923	mgeb_RGBA_Mode		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x0000393e	mgeb_Disable_Normalize		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x0000394e	mgeb_Enable_Normalize		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x0000395e	mgesi_IMPbshRegisterWrite		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x00003972	mgesi_BshRegisterWriteN		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x00003991	mgesi_BshRegisterWrite		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x0000399e	mges_TBUS_1		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x000039ab	mgesi_TBUS_1		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x000039b8	mgesi_AlphaTest		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x000039c8	mgesi_AlphaFunc		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x000039da	mges_TbusRegWriteNoIncr		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x000039e7	mgesi_IMPtbusRegWrite		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x000039fd	mgesi_TbusRegWrite		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x00003a0a	mgebi_ShadeModel		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x00003a25	mges_DiagDeactivate		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x00003a32	mgebi_NullCommand		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
+ge.u	label	0x00003a45	mges_NullCommand		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
 ge.u	label	0x00003a52	mgeb_DeathCommand		understood	ucode/ge_handlers.md#rasters	raster.S
-ge.u	label	0x00003a5b	mgesi_PassThrough		located	ucode/ge_handlers.md#rasters	raster.S
+ge.u	label	0x00003a5b	mgesi_PassThrough		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
 ge.u	label	0x00003a6d	mgesi_LutUpload		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
 ge.u	label	0x00003aae	mmo_LUT_I2I_16		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
 ge.u	label	0x00003b81	mmo_LUT_I2C_16		understood	ucode/ge_compute.md#colour-tables-and-pixel-output-colortables-upixouts-upixelsetups	Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)

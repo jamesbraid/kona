@@ -167,7 +167,7 @@ kpm register tables	raster		raster-index	0x140d	TFP_AE_RANGE	1	0	32		0	understoo
 kpm register tables	raster		raster-index	0x140e	TFP_AC	1	0	32		0	understood	RM.h:1264	
 kpm register tables	raster		raster-index	0x140f	TFP_COLOR_FMT	1	0	32		0	understood	RM.h:1274	
 kpm register tables	raster		raster-index	0x1410	TFP_PIX_FMT	1	0	32		0	understood	RM.h:1283	
-kpm register tables	raster		raster-index	0x1411	TFP_NOP	1	0	32		0	named-only	RM.h:1286	
+kpm register tables	raster		raster-index	0x1411	TFP_NOP	1	0	32		0	named-only	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
 kpm register tables	raster		raster-index	0x1412	TFP_FAKE	1	0	32		0	located	RM.h:1297	
 kpm register tables	raster		raster-index	0x1413	TFP_TEV_CC1	1	0	32		0	understood	RM.h:1100	
 kpm register tables	raster		raster-index	0x1414	TFP_FOG_CC1	1	0	32		0	understood	RM.h:1136	
