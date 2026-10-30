@@ -1,7 +1,7 @@
 table	rows	out_of_scope	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes	reused	multi_unit	shared_address	input
 binaries	599	0	131	0	40	0	2	116	350	0	21.9	22.2	41.6	21.9							0			
-functions	54309	0	6729	0	2747	848	11091	36475	6	8	12.4	32.8	100.0	12.4			90.0	30	2026-10-30		0	126	2668	
-functions (distinct names)	19170	0	2214	0	2194	142	1242	15708	3	3	11.5	18.0	100.0	11.6							0			
+functions	54309	0	6785	0	2774	848	11197	36313	6	8	12.5	33.1	100.0	12.5			90.0	30	2026-10-30		0	126	2668	
+functions (distinct names)	19170	0	2241	0	2221	142	1242	15681	3	3	11.7	18.2	100.0	11.7							0			
 mmio	53	0	49	0	47	0	0	0	0	4	92.5	100.0	100.0	100.0	8						0			
 tokens	617	0	616	0	612	0	0	0	0	1	99.8	100.0	100.0	100.0			95.0	20	2026-10-29		0			
 ioctls	55	0	54	0	53	0	1	0	0	0	98.2	100.0	100.0	98.2			90.0	10	2026-10-29		0			
@@ -86,17 +86,17 @@ functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	0	0	0	0	0	2936	0	0	0.0	0.0	100.0	0
 functions in usr/gfx/arch/IGLOO/libgl.so	3811	0	0	0	0	0	0	3811	0	0	0.0	0.0	100.0	0.0							0	0	1124	
 functions in usr/gfx/arch/IGLOO32/libgl.so	3811	0	0	0	0	0	0	3811	0	0	0.0	0.0	100.0	0.0							0	0	1124	
 functions in usr/gfx/arch/IP27KONA/libGL.so	671	0	1	0	1	1	38	632	0	0	0.1	5.8	100.0	0.1							0	0	0	
-functions in usr/gfx/arch/IP27KONA/libGLcore.so	4868	0	23	0	23	141	2195	2650	0	0	0.5	45.6	100.0	0.5							0	21	70	
+functions in usr/gfx/arch/IP27KONA/libGLcore.so	4868	0	23	0	23	141	2222	2623	0	0	0.5	46.1	100.0	0.5							0	21	70	
 functions in usr/gfx/arch/IP27KONA32/libGL.so	673	0	5	0	5	1	34	633	1	0	0.7	5.8	99.9	0.7							0	0	0	
-functions in usr/gfx/arch/IP27KONA32/libGLcore.so	4907	0	1011	0	991	140	1207	2689	0	0	20.6	45.2	100.0	20.6							0	21	70	
+functions in usr/gfx/arch/IP27KONA32/libGLcore.so	4907	0	1038	0	1018	140	1207	2662	0	0	21.2	45.8	100.0	21.2							0	21	70	
 functions in usr/gfx/arch/IP27KONA64/libGL.so	673	0	0	0	0	1	39	633	1	0	0.0	5.8	99.9	0.0							0	0	0	
-functions in usr/gfx/arch/IP27KONA64/libGLcore.so	4907	0	286	0	266	140	1932	2689	0	0	5.8	45.2	100.0	5.8							0	21	70	
+functions in usr/gfx/arch/IP27KONA64/libGLcore.so	4907	0	287	0	267	140	1958	2662	0	0	5.8	45.8	100.0	5.8							0	21	70	
 functions in usr/gfx/arch/IP35KONA/libGL.so	671	0	1	0	1	1	38	632	0	0	0.1	5.8	100.0	0.1							0	0	0	
-functions in usr/gfx/arch/IP35KONA/libGLcore.so	4868	0	23	0	23	141	2195	2650	0	0	0.5	45.6	100.0	0.5							0	21	70	
+functions in usr/gfx/arch/IP35KONA/libGLcore.so	4868	0	23	0	23	141	2222	2623	0	0	0.5	46.1	100.0	0.5							0	21	70	
 functions in usr/gfx/arch/IP35KONA32/libGL.so	673	0	5	0	5	1	34	633	1	0	0.7	5.8	99.9	0.7							0	0	0	
-functions in usr/gfx/arch/IP35KONA32/libGLcore.so	4907	0	1011	0	991	140	1207	2689	0	0	20.6	45.2	100.0	20.6							0	21	70	
+functions in usr/gfx/arch/IP35KONA32/libGLcore.so	4907	0	1038	0	1018	140	1207	2662	0	0	21.2	45.8	100.0	21.2							0	21	70	
 functions in usr/gfx/arch/IP35KONA64/libGL.so	673	0	0	0	0	1	39	633	1	0	0.0	5.8	99.9	0.0							0	0	0	
-functions in usr/gfx/arch/IP35KONA64/libGLcore.so	4907	0	286	0	266	140	1932	2689	0	0	5.8	45.2	100.0	5.8							0	21	70	
+functions in usr/gfx/arch/IP35KONA64/libGLcore.so	4907	0	287	0	267	140	1958	2662	0	0	5.8	45.8	100.0	5.8							0	21	70	
 functions in usr/gfx/dmconf	192	0	1	0	1	0	32	159	0	0	0.5	17.2	100.0	0.5							0	0	0	
 functions in usr/gfx/gfxinfo	227	0	0	0	0	0	1	226	0	0	0.0	0.4	100.0	0.0							0	0	0	
 functions in usr/gfx/hyperpipeinfo	4	0	0	0	0	0	0	4	0	0	0.0	0.0	100.0	0.0							0	0	0	
