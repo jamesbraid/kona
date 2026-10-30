@@ -2209,8 +2209,8 @@ ge.u	label	0x00003488	mmo_FFT_64		located	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x000035c1	mmo_FFT_32		located	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x000036c0	mmo_FFT_16		located	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x0000375e	mmo_FFT_8		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x000037aa	mmo_FFT_4		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x000037cb	mmo_FFT_2		located	ucode/ge_handlers.md#ffts	fft.S
+ge.u	label	0x000037aa	mmo_FFT_4		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x000037cb	mmo_FFT_2		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
 ge.u	label	0x000037de	mgeb_InitFFTFactors		located	ucode/ge_handlers.md#push_attribs	push_attrib.S
 ge.u	label	0x000037de	mgeb_RestoreXformAttribs		located	ucode/ge_handlers.md#push_attribs	push_attrib.S
 ge.u	label	0x000037f9	mgeb_ClipmapXform		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)

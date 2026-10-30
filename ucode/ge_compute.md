@@ -2451,3 +2451,20 @@ The handlers of `glmodes.S` change no vertex data. They rewrite mode words in en
   `mmo_DirtyLightModule` (staged 0xf54c-0xf552, branches 0xf578-0xf57a), extended with the cull step. When culling is
   enabled, tested on engine word 6 at 0xf562, it stores `mmo_FaceCull` (0xc76, staged 0xf561) to successor word 0xb
   (0xf56d, 0xf570) in place of the lighting module. It also writes word 0x9d (0xf56f, 0xf57b).
+
+## Fast Fourier transform stages (fft.S)
+
+The FFT pixel path (path 9, built by `SetupGE_FFT` in [arm1_functions.md](arm1_functions.md)) runs these modules on
+complex samples stored as (real, imaginary) word pairs in the input record at address register 0x10. Read in full from
+the [fft.S listing](ge_listing/fft.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_FFT_2` (`fft.S` lines 758-766, at 0x37cb): **inferred**, the two-point butterfly. It loads record words 0-3, two
+  complex samples a and b. Float adds from 0x37d1 store the sums of the real and imaginary parts over a, and float
+  subtracts from 0x37d2 store the differences over b: a + b replaces a and a - b replaces b, in place. It reads its successor through address register 0x13 (0x37cf), steps that register in the delay
+  slot (0x37da) and ends with the group-31 transfer at 0x37d5.
+- `mmo_FFT_4` (`fft.S` lines 804-812, at 0x37aa): **inferred**, the four-point transform done in one pass. It loads
+  record words 0-7, four complex samples, and computes eight results with float adds and subtracts only (0x37b2-0x37c1),
+  which is what a radix-4 butterfly needs, since its twiddle factors 1, -1, i and -i only swap and negate parts. The
+  eight results go back over words 0-7 in place, with no multiply and no table read, so the twiddle table that the start-up
+  code loads is left to the larger sizes. It reads and steps its successor pointer like the two-point stage (0x37bc,
+  0x37c7).
