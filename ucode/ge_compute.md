@@ -767,13 +767,20 @@ group-31 transfer to the successor. In every form the output record gets x, y an
   copies the clip-code special registers 0x0d, 0x0e and 0x0f into the save area at register 0x1b offsets 0x3e and 0x3f
   (0xf1e1-0xf1e3), writes the staged value 0x3f to 0x0d and 0x0e, records the vertex count and pointers at offsets 0x35-0x3d,
   and on its second entry (0xf1f4-0xf1fc) moves the saved words back into 0x0d-0x0f.
-- `mClipTriFlushSR` (`clip.S` lines 1603-1674): **inferred**, the version of the clip flush used on the path that also
-  saves and restores the evaluator state: the same moves between special registers 0x0d-0x0f and the save area through
-  register 0x1b, and the same reset of the codes to 0x3f, ending in a group-31 transfer.
 - `mSetClipVertsFree` (`clip.S` lines 860-890): **inferred**, rebuilds the free list of clip vertices. It loads the list
   heads 0x8178, 0x8484 and 0x8790 with the offsets 0x94, 0xa8 and 0xbc into registers 0xe and 0xf (0xf20b-0xf210) and stores
   the slot offsets 0x9c, 0x138, 0x1d4 and 0x270, steps of 0x9c, into the list (0xf215-0xf218), so `mClipPolyToPlane` can take
   new vertices from it.
+- `mClipTriFlushSR` (`clip.S` line 1603, at 0xf14f):
+  **inferred**, the clip flush that suspends the clipper's state and comes back to restore it. It takes the clipper's working
+  registers as input: registers 0xa, 0xd, 0x12 and 0x19 go to offsets 0x36, 0x37, 0x35 and 0x3a of the save area at register 0x1b
+  (stores 0xf150-0xf153), registers 0xb and 0xc to offsets 0x38 and 0x39 (0xf165-0xf166), and special registers 0xd-0xf are copied to
+  offsets 0x3e and 0x3f (0xf156-0xf158). It resets special registers 0xd and 0xe to the staged 0x3f (0xf154-0xf15a), loads the
+  transfer target from word 0xe and saves it at offset 0x3b (0xf159, 0xf15b), records 0xf at offset 0x3c and in register 0x19
+  (0xf15c) and stores the continuation 0xf168 (staged 0xf15d) on the stack at register 0x17 (0xf15e, 0xf163, 0xf167) before the
+  group-31 transfer at 0xf15f. The continuation at 0xf168 reloads registers 0x12, 0xa, 0xd, 0xb, 0xc and 0x19 from offsets
+  0x35-0x3a (0xf169-0xf16e), writes the saved clip codes back to special registers 0xd-0xf (0xf172-0xf174), lowers register 0x17
+  (0xf17e) and returns at 0xf179. It copies the saved registers into the save area and later restores them for the clip codes.
 
 ## Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 
@@ -2146,6 +2153,58 @@ engine address 0x10c8 and one at 0x1164, each reached through register 0 loaded 
   0x23-0x25 (0xe67a-0xe67f) and copies 0x27 words of the record to external memory with `mWramToEram` (0xe681), the saved
   raster position. It leaves through word 0x1a (0xe692), or to `mmo_SelectRasterPos` on `cc` 3 (0xe697). The other path
   branches to `mmo_ToScreenSpaceInvQ` on `cc` 2 (0xe647).
+- `mmo_MultipassModule` (`fluff.S` line 1038, at 0xe3e1):
+  **inferred**, the module that keeps the matrices consistent across passes of a multipass draw. It takes bit 7 of control
+  word 0x19 (AND with the staged 0x80, 0xe3e2-0xe3e3) as its input. With the bit clear it calls `mCramToEram` (0x103a, call
+  0xe3f5) with source 0x2f, destination 0x1505 and count 0x20, saving the modelview and projection matrices, and jumps to 0xe43b;
+  with it set (branch 0xe3ef to 0xe407) it subtracts control word 0x7d and the staged 0x10 (0xe408) and calls `mEramToCram`
+  (0x104f) twice to bring 0x10 words back to 0x2f and then to 0x3f (calls 0xe414, 0xe430), then sets special registers 0x29 and
+  0x2b (0xe439-0xe43a). Both paths step register 9 (0xe43c, and again under cc 0x15 at 0xe43d) and continue through word 0xda
+  (0xe441). Its outputs are the saved or restored matrix words and register 9 stepped for the next stage.
+- `mdc_finish` (`fluff.S` line 83, at 0xe450):
+  **inferred**, the last stage of the vertex path when no mode flag is set. It tests bit 3 of control word 0x19 (0xe450-0xe451),
+  clears special register 0x2a when the bit is zero (0xe453) and writes register 0x10 to special register 0xb (0xe454). It
+  stages `mmo_SaveRasterPos` (0xe623, 0xe455) and subtracts it from control word 0xf (0xe456); the delay words of the command end
+  at 0xe459 send 0x70000 to bus address 0x1f8 (0xe45d) and, when the draw stage differs, zero to 0x1f5 and staging word 0x10 to
+  0x1f4 (0xe45f, 0xe461). It takes control word 0x19 and register 0x10 as inputs and produces special registers 0x2a and 0xb and the end-of-batch bus words.
+- `mdc_evaluator` (`fluff.S` line 239, at 0xe462):
+  **inferred**, the end stage for the evaluator path. It loads the transfer target through register 0x17 (0xe462), writes
+  register 0x10 to special register 0xb (0xe463), ends the command (0xe468) and, in its delay word, takes register 0x17 down by
+  one (0xe46d), so the next stage comes from the top of the stack that register 0x17 indexes. It takes register 0x10 as input and yields special register 0xb and the stack pointer lowered by one; it selects the next stage from the stack.
+- `mdc_multipass` (`fluff.S` line 169, at 0xe471):
+  **inferred**, the end stage for the multipass path, taken from `mDispatchCentral` or `mdc_sprite`. On the fall-through path
+  it ANDs register 0x10 with the staged 0xfffffff7 into special register 0xb (0xe47a-0xe47b), copies control words 0-2 to the cull
+  and clip special registers 0xc, 0xd and 0xe (0xe48a-0xe48d), and stages `mmo_DummyDecompose` (0xca01, 0xe490), which it writes
+  to word 0xa under cc 2, when that word is empty (0xe48e, 0xe49a), before ending the command at 0xe492. The branch at 0xe471
+  on cc 0x6e goes to 0xe49b, which clears bit 0x80 of control word 0x19 by code 0x51 (0xe49c), calls `mEramToCram` (0xe49d) with
+  source 0x1505, destination 0x2f and count 0x20, and then jumps to `mdc_finish` (0xe4ad) or `mdc_evaluator` (0xe4ac, cc 0x68). It takes registers and control words 0-2 as inputs, produces the restored special registers and word 0xa, and selects the end path by comparing flag bit tests.
+- `mdc_sprite` (`fluff.S` line 140, at 0xe4b6):
+  **inferred**, the end stage for the sprite path. It calls `mEramToCram` (0x104f, 0xe4b6) with a source taken from the
+  immediate 0x14d5 (0xe4b9), destination 0x2f and count 0x10, restoring the saved matrix, and sets special registers 0x2b and
+  0x29 (0xe4bf-0xe4c0). It then selects the next stage: `mdc_multipass` on cc 0x66 (0xe4c5), `mdc_evaluator` on cc 0x68
+  (0xe4c6), otherwise `mdc_finish` (0xe4c7). It takes the saved matrix words at 0x14d5 as input, produces them in 0x2f-0x3e and selects the next stage by testing flag bits.
+- `mdc_polymode_or_clip` (`fluff.S` line 121, at 0xe4d0):
+  **inferred**, the shortest end stage, for the polygon-mode and clip states. It writes register 0x10 to special register 0xb
+  (0xe4d0), ends the command (0xe4d5) and in the delay word takes register 0x17 down by one (0xe4da), the same stack step
+  `mdc_evaluator` makes. It takes register 0x10 as input, produces special register 0xb and lowers register 0x17.
+- `mmo_DirtyMultipassModule` (`fluff.S` line 1016, at 0xe6a5):
+  **inferred**, the dirty-state stage that puts `mmo_MultipassModule` into the pre-path chain. It stages 0xe3e1 (0xe6a6), moves
+  it to store-data (0xe6a7), stores it at word 0xda plus register 9 (0xe6b0), loads that word as the transfer target (0xe6b1) and
+  writes word 0xdb under cc 0x15 after a test on register 9 (0xe6bd, 0xe6bf). The command then continues through the word it
+  just wrote (0xe6b7). It takes the staged address 0xe3e1 as input, produces it in the pre-path word and selects that word as the successor.
+- `mmo_AbortGeometry` (`fluff.S` line 264, at 0xe6e8):
+  **inferred**, the stage the decomposers branch to when a batch must be dropped. It tests control word 3 against the staged
+  0x10 (0xe6e9-0xe6ea) and control word 0xd against register 0x1d (0xe6eb); on a nonzero result it jumps to 0xe716, which clears
+  special registers 0xd, 0xe and 0xc (0xe71c, 0xe71e, 0xe720), stages `mmo_Punt` (0xe3d2, 0xe71f) and stores it to word 0xd under
+  cc 2 (0xe722, 0xe72b), parks the old word 0x18 in external word 0x14d5 (0xe723, 0xe72c), points word 0x18 at 0xe730 (0xe725,
+  0xe72f) and ends the command through word 0xc (0xe727); when the chain reaches 0xe730 it reloads the parked word and goes back
+  to 0xe700. Otherwise, at 0xe700, it reads word 0x1a as the successor, compares `mmo_SaveRasterPos` (0xe623, 0xe702) with word 0xf
+  and sends 0x70000 to bus address 0x1f8, then, when they differ, zero to 0x1f5 and staging word 0x10 to 0x1f4 (0xe70f-0xe715). Its inputs are control words 3 and 0xd and register 0x1d, which it compares against masks; its outputs are the cleared special registers and the bus words.
+- `mDispatchCentral` (`fluff.S` line 53, at 0xe741):
+  **inferred**, the end-of-chain dispatcher that selects what the finished batch does next. It copies control word 0x19 to special
+  register 0xb (0xe742), clears special register 9 (0xe74f) and branches on the flag bits of word 0x19 in order: cc 0x60 and 0x62
+  to `mdc_polymode_or_clip` (0xe4d0, 0xe750-0xe751), cc 0x64 to `mdc_sprite` (0xe4b6), cc 0x66 to `mdc_multipass` (0xe471), cc 0x68
+  to `mdc_evaluator` (0xe462), and the jump at 0xe755 to `mdc_finish` when no bit is set. It takes control word 0x19 as input, produces the copy in special register 0xb and selects the next stage by comparing flag bits.
 
 ## Decomposers (udecompose.s)
 
@@ -4315,3 +4374,269 @@ CRAM and ERAM flag words. Read from the [glExt listing](ge_listing/glExt.S.lst) 
 - `mgeb_PolygonOffsetExt` (`glExt.S` line 64, at 0xb2c3): **inferred**, the extension form that stores both operands
   unscaled. Command word 0 goes to ERAM 0xa43 (0xb2cc) and command word 1 goes to ERAM 0xa44 (0xb2ce), with no multiply
   and no read of ERAM 0xa46. Two input words are discarded (0xb2c6, 0xb2c7) and the command ends at 0xb2c9. It takes two command words as operands and produces them unchanged in ERAM 0xa43 and 0xa44, and selects the target by word position.
+
+## Decomposers, second set (udecompose2.s)
+
+The routines of `udecompose2.s` build the triangle table at engine address 0x8bb0 for the vertex path without a lighting
+stage, and stage `mClipTriUserAndFrustum` (0xed52) as the successor of the screen stage. Read from the
+[udecompose2.s listing](ge_listing/udecompose2.s.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `umo_DummyDecompose` (`udecompose2.s` line 13, at 0xd3b):
+  **inferred**, the stand-in decomposer that produces no triangle table. It takes no operands: the word at 0xd3b loads the
+  transfer target from engine word 0xb, 0xed52 is staged as staging word 0 (0xd3d) and moved to the store-data register
+  (0xd3e), and a move of register 0x1e, which reads as zero, loads it again (0xd3f). The two stores in the delay words of the
+  group-31 transfer at 0xd41 send the first value to word 0x17 (0xd47) and the zero to word 0xa (0xd48), so the screen stage
+  reaches the triangle clipper and the decomposer slot empties itself; the command then continues through word 0xb. It selects the clipper address as the result for word 0x17.
+- `umo_DecomposeSimpleTriangleStrip` (`udecompose2.s` line 41, at 0xd4a):
+  **inferred**, the strip decomposer for the path without edge-flag masking. It takes the batch's vertex-record pointers
+  (registers 1, 2 and 8) and the count in register 0x19 (reduced by the F = 0x21 step at 0xd4f), reads the mask word 0x1c
+  from control memory (0xd4a), stages 0xed52 and the constant 0x81c00000 (0xd4b-0xd4c), xors that constant with register
+  0x1d (0xd51) and aims register 7 at 0x8bb0 (0xd54). A test on cc 0x10 sends an empty or aborted batch to `mmo_AbortGeometry`
+  (0xd55). Its outputs are the table entries that the loop `lDE4` fills, the clipper address stored to word 0x17 (0xd68) and a
+  continuation through word 0xb (0xd52). It derives the entry flag words by combining the staged constant with register 0x1d and selects register 7 as the table pointer.
+- `lDE4` (`udecompose2.s` line 55, at 0xd57):
+  **inferred**, the loop of the simple strip decomposer, two triangles per pass. Thread A stores register 1 at offset 1 of the
+  entry at register 7 and register 1 plus register 8 at offsets 2 and 3 (0xd5b, 0xd5d, 0xd61); thread B stores the matching
+  pointers at offsets 0x10-0x12 (0xd5c, 0xd5e, 0xd62). The edge-flag words, combined with unit-1 code 0x53 (0xd58, 0xd5a) and then
+  ORed or xored with register 0x1d (0xd63, 0xd66, 0xd67), go to offsets 4 and 0x13. Register 7 advances by 0x1e (0xd65) and the
+  relative transfer at 0xd5f (immediate -8) repeats the pass; the group-31 transfer at 0xd60 ends the command. Its inputs are the record pointers in registers 1, 2 and 8; its outputs are the two table entries, and it combines the edge-flag words of each triangle into the flag word.
+
+## Subdivision patch commands (subdiv.S)
+
+The three handlers of `subdiv.S` take the three-word commands that the ARM sends for a subdivision patch and keep only the
+first word in registers; none of them touches the vertex records. Read from the [subdiv.S listing](ge_listing/subdiv.S.lst)
+(`ge.u`, IRIX 6.5.30m).
+
+- `mgesi_SubdivEntry` (`subdiv.S` line 82, at 0x4414):
+  **inferred**, the variant that forwards its last operand to the raster bus. It consumes the next three words of the command
+  stream: the first two go to address registers 0x1a and 0x19 (0x4415-0x4416) and the third is staged as word 0x10 of the
+  staging file (0x4417). The delay word at 0x4420 moves that staged word to bus-output address 0x1f4, offset 2, and the
+  word at 0x441d copies register 0x1a into register 0; the command ends at the transfer at 0x4418. It takes three command operands, selects the third as the one it forwards, and produces one raster-bus word.
+- `mges_SubdivTag` (`subdiv.S` line 59, at 0x4421):
+  **inferred**, the variant that keeps one operand and drops two. The first stream word becomes register 0x1a (0x4421) and the
+  next two are read and discarded (0x4422-0x4423); the delay word at 0x442a copies register 0x1a into register 0 and the
+  transfer at 0x4425 ends the command. It produces no store and no bus word. It takes three command operands, selects the first as its result in register 0x1a and consumes the rest.
+- `mgeb_Subdiv` (`subdiv.S` line 36, at 0x442e):
+  **inferred**, the command that `arm_subdiv_patch_parameter` sends. Its words match `mges_SubdivTag`'s: the first
+  operand goes into register 0x1a (0x442e), two stream words are consumed and dropped (0x442f-0x4430), register 0 is loaded from
+  register 0x1a in the delay word at 0x4437 and the command ends at 0x4432. The result is register 0x1a holding the first command operand; it selects that word and consumes the other two.
+
+## Render-mode and polygon-mode setup (polygon.S)
+
+Three entry handlers, one each for feedback, selection and normal rendering, choose the triangle output module and then share
+`mPolymodeSetup`, which applies the polygon-mode operands. The draw-module slots are control-memory words 0x11, 0x13 and 0x14;
+the stores take their address as 0x1f minus the field F, so F = 0xb, 0xc and 0xe write words 0x14, 0x13 and 0x11. Read from
+the [polygon.S listing](ge_listing/polygon.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mgeb_PolygonSetup_Feedback` (`polygon.S` line 115, at 0x61fa):
+  **inferred**, the entry that routes triangles to the feedback recorder. It stages `mmo_FeedbackTriangle` (0xb76e, 0x61fb)
+  into the store-data register (0x61fc), consumes three operand words of the command (the first into register 0x1a, 0x6202,
+  the other two at 0x6203-0x6204) and stores the address to words 0x14, 0x13 and 0x11 (0x6205-0x6207). The jump at 0x61ff
+  continues in `mPolymodeSetup`. Its result is the feedback module address in the three slots; it selects that module and takes the operands on to the shared tail.
+- `mgeb_PolygonSetup_Select` (`polygon.S` line 84, at 0x6208):
+  **inferred**, the same entry for selection mode. Its staged output module is the one at 0xbecc (0x6209), moved to
+  store-data at 0x620a and written to words 0x14, 0x13 and 0x11 by the three delay stores at 0x6213-0x6215, after the
+  three operand words are consumed (0x6210-0x6212). A move of register 0x1e to B = 0x1f at 0x620c and the jump at 0x620d to
+  `mPolymodeSetup` finish the entry. It selects the module at 0xbecc as its output for the three slots and takes the same operands as the other entries.
+- `mgeb_PolygonSetup_Render` (`polygon.S` line 37, at 0x6216):
+  **inferred**, the entry for normal drawing. It reads operand words 3 and 4 itself and leaves words 0-2 to `mPolymodeSetup`.
+  Word 3 is tested for zero (0x6217) and decides whether bit 0x40 is ORed into, or removed by unit-1 code 0x51 from, control
+  word 3 (0x6218-0x621a, stores 0x6222 and 0x6225); word 4 does the same for bit 0x40000000 of word 0x1b (0x621b-0x621e, stores
+  0x6226-0x6227). It stages `mmo_DrawTri` (0x288c), `mmo_DrawQuad` (0x28ca) and `mmo_DrawTriPrimOffset` (0x8dc0) at 0x6224,
+  0x6228 and 0x622a, writes the first two to words 0x14, 0x13 and 0x11 (0x6231-0x6233) and, under a nonzero test of word 0x1b
+  (0x6229), overwrites them with the offset variant (0x6234-0x6236). Its outputs are the updated words 3 and 0x1b and the draw-module slots; it selects between the plain and the offset module and combines the operands with the current flag bits.
+- `mPolymodeSetup` (`polygon.S` line 156, at 0x6237):
+  **inferred**, the shared tail that switches polygon-mode drawing on or off. Operand word 0 is the switch: its zero test (0x6237)
+  selects whether bit 0 of control word 6 is set (OR, store 0x6242) or cleared (code 0x51, store 0x6243). Special register
+  0x26 is cleared (0x6241) and set again under the nonzero tests of control words 6 and 0x1b (0x6246-0x6249). Operand words 1 and
+  2 are saved to external-memory words 0xc and 0xd (reads 0x6244, 0x6245, stores 0x624d and 0x6253). It sets word 0xb to
+  `mmo_DirtyCullAndLightModule` (0xf547, staged 0x6245, store 0x6254) and, when word 0 was nonzero, installs
+  `mmo_DrawTriPolymodePrim` (0xda68, staged 0x624b) in words 0x14 and 0x11 (stores 0x6255-0x6256). Its outputs are the updated word 6, special register 0x26, external words 0xc and 0xd, and the draw-module slots.
+
+## Triangle output with polygon offset (drawtri.S)
+
+Read from the [drawtri.S listing](ge_listing/drawtri.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_DrawTriPrimOffset` (`drawtri.S` line 127, at 0x8dc0):
+  **inferred**, the independent-triangle output used when polygon offset is on. It tests bit 0x40000000 of control word 0x1b
+  (0x8dc0-0x8dc1) and calls `mDoPolygonStippleDownload` (0x9d6b, 0x8dcd) when it is set; reads external-memory words 0xa44
+  and 0xa43 through register 0x16 (0x8dd8, 0x8ddd); stages 0x4020000c, 0x805 and 0x49800000, that is 2^20 (0x8ddb-0x8dde); loads
+  the colour constants at control words 0xc4-0xc6 (0x8de0-0x8de2) and copies words 6 and 3 to special registers 0x2e and 0x2f
+  (0x8dd7, 0x8de3). Per triangle, in the loop that starts at 0x8de7, it takes three vertex pointers from the list at register 0xf
+  (0x8df1-0x8df8), subtracts the vertices' window x, y (record words 0x23, 0x24) and z (0x25) pairwise (0x8dff-0x8e15), forms
+  products and reciprocal steps (0x8e0e-0x8e31) and sends 0x805 to bus address 0x1f7 (0x8e34). The three vertices then go out
+  through register 0x1e: texture differences (slots 0xd1-0xd4), window x, y (0xcd, 0xce), depth through code 0x7e (0xcf, 0xd0),
+  colour multiplies (0xc9-0xcc) and the command word (0xd5), at 0x8e3b-0x8e8e. After the loop it writes an all-ones word to
+  bus address 0x1f5 (0x8eb1) and calls `mDownLoadAALineTable` (0x65db, on cc 3, 0x8ed7) and `mGenerateAALineTable` (0x64af, 0x8ed8).
+
+## Phong triangle drawing (phong.S)
+
+Read from the [phong.S listing](ge_listing/phong.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_DrawTriPrimPhong` (`phong.S` line 85, at 0x9296):
+  **inferred**, the independent-triangle module for per-pixel (Phong) lighting. It points register 0xd at 0x8d2c (0x9296), reads
+  control word 0xd (0x9298), points register 0xb at the scratch block 0x83a8 (0x929d) and writes the culling and clip special
+  registers 0xc, 0xd and 0xe from the staged 2, 0x3f and 0x3f (0x929e-0x92a3). Per triangle, in the loop that starts at 0x92a4,
+  it takes the three vertex pointers from the list at register 0xd (0x92b2-0x92b4), sends the packet header words 0x70000, 6,
+  0x1243fd3 and 1 to bus addresses 0x1f8 and 0x1f5 (0x92bf-0x92c2), and sends each vertex's window x and y (slots 0xcd, 0xce) and a
+  minimum for depth (0xcf, 0xd0) through register 0x1e (0x92c4-0x92d6). Edge differences of window x, y and record words 4-7 and
+  0xf (0x92db-0x9336) are multiplied and subtracted into plane coefficients stored at register 0xb offsets 0-0x22 (0x92f9-0x9427).
+  It then jumps to `normalize_and_light` (0x9428, return address staged at 0x9430; the second copy at 0x9479 and 0x9481),
+  steps the normals along the edges with adds into record words 4-0xa (0x94b6-0x94e2) and loops back to 0x9425 or 0x93f8. It ends
+  through word 0x1a (0x9519). Its outputs are the packet words on the raster bus, the coefficient block at 0x83a8 and the per-vertex window words.
+- `normalize_and_light` (`phong.S` line 727, at 0x952c):
+  **inferred**, the per-vertex step that scales an eye-space normal to unit length before lighting. It takes record words 8, 9
+  and 0xa of the vertices at registers 0x10 and 0x11 as operands, squares and sums them (0x952c-0x9538), takes the reciprocal
+  square root with a seed at 0x9542 and 0x9545 and refinement steps at 0x9540, 0x9543, 0x954c and 0x954f, and multiplies the three
+  components by it. The unit normals go to record words 0xf-0x11 of each vertex (0x9554-0x9559). It continues through word 0xc
+  (0x9553) and, in the delay word at 0x9561, writes the return address staged by the caller (0x9431 or 0x9482) to word 0xd, so the
+  lighting stage that follows comes back to the Phong drawing loop. Its results are the unit normals in record words 0xf-0x11 and the redirected word 0xd.
+
+## General lighting, per-light steps (generallight2.S)
+
+These routines belong to the same per-vertex lighting pipeline as [General lighting](#general-lighting-generallights): address
+registers 5 and 6 point at the front and back material blocks of the two vertices lit per pass, registers 8 and 9 at the
+vertex records, register 3 at the light parameters in external memory. Each returns through a jump word of control memory
+0x9c-0x9e. Read from the [generallight2.S listing](ge_listing/generallight2.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mLiLocalLight` (`generallight2.S` line 1097, at 0xc321):
+  **inferred**, one positional light's contribution to two vertices, including attenuation and spot falloff. It takes words
+  0x32-0x34 of both material blocks (adds at 0xc321-0xc326) and the light's position, spot and attenuation parameters, which it
+  reads from external memory through register 3 (0xc330-0xc33e, 0xc364, 0xc367, 0xc3a1-0xc3a7) as operands. It computes the
+  squared distance with a multiply-add chain (0xc327-0xc32e), then its reciprocal square root (seed 0xc33f, steps 0xc33c,
+  0xc33d, 0xc348, 0xc349 and again 0xc3b9, 0xc3c4, 0xc3c5), reciprocals for attenuation (0xc395-0xc3a0) and maxima against zero for
+  the dot products (0xc36d, 0xc379, 0xc3a5, 0xc3a7). The constant 1e-05 (0x3727c5ac) is staged at 0xc35a. Results are written into
+  the material blocks at offsets 0x1a-0x22 and 0x2c-0x2e (0xc3a8-0xc3ce); it returns at 0xc3d2 through the word 0x9c read at
+  0xc3ca.
+- `mLiInfVInfLi` (`generallight2.S` line 91, at 0xc3db):
+  **inferred**, the diffuse and specular accumulation for a directional light with a distant viewer. It takes the eye normals
+  of both vertices (record words 0xf-0x11 through registers 8 and 9) and multiplies them by the light direction held in unit
+  registers 3-5 (0xc3db-0xc3e5); the compare at 0xc3e8 and the clamp at 0xc3ea limit the diffuse factor. The light colour words
+  read from register 3 (0xc3e9, 0xc3eb, 0xc3ed, 0xc3ef) scale the factors, and the sums are added into the colour-sum words
+  0xe-0x10 of both material blocks (adds 0xc400-0xc405). It stores its next-step address to words 0x9d and 0x9e (0xc415, 0xc41d)
+  and returns at 0xc41d.
+- `mLiLocVInfLi` (`generallight2.S` line 403, at 0xc426):
+  **inferred**, the same light accumulation for a viewer at a finite position. It adds the view-vector words 0x2f-0x31 of the
+  two material blocks (0xc426-0xc431), multiplies them against the vertex normals (0xc43c-0xc441, 0xc453, 0xc457-0xc45f),
+  normalises the combined vector with the reciprocal square root (steps 0xc43f, 0xc44c, 0xc452, seed 0xc448), and reads the
+  light and material colour factors from register 3 (0xc450-0xc467). It updates the colour-sum words 0xe-0x10 of both blocks
+  (adds 0xc46b-0xc472, 0xc47a), applies unit-1 codes 0x6d and 0x6c to the products (0xc479, 0xc480, 0xc485, 0xc487) and returns at
+  0xc48a with the successor 0x9e stored at 0xc48c. Its inputs are the material-block words, the vertex normals and the light parameters at register 3; it accumulates the lit colour sums as its result.
+- `mLiLocVInfLiInit` (`generallight2.S` line 761, at 0xc493):
+  **inferred**, the first-light pass for that case, which also stages the next step. Its geometry matches `mLiLocVInfLi`:
+  the same view-vector adds at 0xc493-0xc4a1, normal multiplies at 0xc4ab-0xc4b5 and reciprocal square-root steps at 0xc4ac,
+  0xc4b3, 0xc4b9 and 0xc4bf. It stages `mLiLocLiFrnClrAccum` (0xd9c1) in word 7 of the front material block (0xc4cc), stores
+  the jump words 0x9c and 0x9d (0xc4d9, 0xc4ea), writes the colour sums of both blocks fresh (moves 0xc4d5-0xc4e4 to words 0xe-0x10
+  rather than adding) and returns at 0xc4f7 with word 0x9e stored in the delay words (0xc4fc). Its inputs are the same material-block words, vertex normals and light parameters as `mLiLocVInfLi` takes; its result is the fresh colour sums.
+
+## Decomposers for the lit vertex path (mdecompose2.S)
+
+These decomposers fill the table at 0x8bb0, with entries addressed through register 0xf: vertex pointers and a flag word built
+from the edge-flag word 0x26 of the vertex records. Each stages the triangle clipper 0xed52 as the successor of the screen
+stage (store to word 0x17) and tests cc 0x10 or 0x15 for an abort to `mmo_AbortGeometry` (0xe6e8). Read from the
+[mdecompose2.S listing](ge_listing/mdecompose2.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_DecomposeTriangleStripWithSwapOdd` (`mdecompose2.S` line 501, at 0xc989):
+  **inferred**, the strip decomposer for triangles that need their vertex order reversed. It takes the vertex pointers in
+  registers 0xb, 0xc and 0xe and the count from register 0x19, and derives the loop counter in register 0x12 (0xc989, 0xc993). Per
+  triangle, in the loop that starts at 0xc998, it ANDs the edge-flag word 0x26 of the record at register 0xe with register 0x1b
+  (0xc998), applies a predicated xor to the flag register (0xc99d) and exchanges registers 0xb and 0xc through register 0xa when
+  the test is nonzero (0xc9a2-0xc9a6). The entry at register 0xf receives the pointers and the flag word from register 0x1c
+  (stores 0xc9a5-0xc9ae), and register 0xf steps on at 0xc9ad until the group-31 end at 0xc9a9. Its output is the table of triangles, with vertex order swapped where the flag test selects it.
+- `mmo_DecomposeTriangleStripWithSwapEven` (`mdecompose2.S` line 410, at 0xc9b2):
+  **inferred**, the same strip decomposer started on the other parity. It first loads registers 9 and 0xc from register 0x1f
+  (0xc9b2, 0xc9b6), reads control word 0x1d (0xc9b3) and combines it by code 0x51 into register 0x1c (0xc9b5). The loop that starts
+  at 0xc9c3 ANDs the edge-flag words of the records at registers 0xc and 0xe with registers 0x1d and 0x1b (0xc9c3-0xc9c4), combines
+  them with xor and OR (0xc9ce, 0xc9d0), swaps registers 9 and 0xa under cc 3 (0xc9cf-0xc9d1) and stores the pointers and the
+  flag word to the entry (0xc9d2-0xc9d6), repeating through the transfer at 0xc9d7. Its inputs are the vertex pointers and the flag words; its output is the table of triangles, with swapped order where the test selects it.
+- `mmo_DummyDecomposeQuadStrip` (`mdecompose2.S` line 222, at 0xc9e1):
+  **inferred**, the quad-strip decomposer that draws nothing yet keeps the strip's vertex records consistent. It tests the count
+  in register 0x19 against five thresholds (address-unit tests with F = 0x22-0x2a, 0xc9e2-0xc9ee), sets up register 0x12 and the two
+  record pointers (0xc9ef-0xc9f5), and under cc 5 adds the staged constant 0x6800 to two record words of each of the vertices at
+  registers 0xe and 0xf, offsets 0 and 0x27 (adds 0xc9fb-0xc9ff). The clipper address 0xed52 goes to word 0x17 (0xc9f6) and zero to
+  word 0xa (0xc9fa); a test on cc 0x10 branches to the abort at 0xc9f7. Its inputs are the count and the two record pointers; its outputs are the adjusted record words, the clipper address and the cleared word 0xa.
+- `mmo_DummyDecompose` (`mdecompose2.S` line 37, at 0xca01):
+  **inferred**, the same stand-in as `umo_DummyDecompose` for the lit vertex path: it stages 0xed52 (0xca04), loads word 0xb as
+  the transfer target (0xca01) and stores the clipper to word 0x17 (0xca0e) and zero to word 0xa (0xca0f), so the decomposer
+  slot clears and the command continues through word 0xb (the transfer at 0xca07). It takes no operand beyond word 0xb, produces the clipper address in word 0x17 and a zero in word 0xa, and selects word 0xb as the successor.
+- `mmo_DecomposeSimpleTriangles` (`mdecompose2.S` line 350, at 0xca10):
+  **inferred**, independent triangles for the lit path. It takes the batch base from register 0x1f and derives the six record
+  pointers from register 0x12 plus the strides 0x138, 0x57c, 0x618 and 0x6b4 (0xca10-0xca1e). It converts the vertex count to a
+  triangle count: itof (0xca18), multiply by the staged 0x3eab020c, about one third (0xca16, 0xca1c), ftoi (0xca24). It ANDs the
+  edge-flag words of the three vertices with control words 0xbf and 0xc0 (0xca1d-0xca25), ORs the results into one flag word
+  (0xca26-0xca2a, 0xca2e-0xca2f) and stores pointer words at offsets 2, 3 and 0xf-0x12 of the entry at register 0xd, with flags at
+  offsets 4 and 0x13 (stores 0xca31-0xca38). The clipper address 0xed52 (staged 0xca29) goes to word 0x17 (0xca37).
+- `mmo_DecomposeQuads` (`mdecompose2.S` line 132, at 0xca3a):
+  **inferred**, one quad per run, split into two triangle entries. It takes the vertex records from register 0x1f (registers
+  0xf and 0x12, 0xca3b-0xca3c) and the count in register 0x19 (staged 0xca3d), forms a loop value through an arithmetic shift
+  (0xca3f) and stages 0xed52, 0xc0000000, 0x7800 and 0x6000 (0xca42-0xca46). The entry at register 0xd holds pointer words at
+  offsets 1-3 and 6-8 (stores 0xca4c-0xca59), flag words at offsets 4, 5 and 9 built from the edge-flag words ANDed with control
+  words 0xbe and 0xc0 (0xca4e-0xca53, 0xca55, 0xca5a, 0xca5b). It ORs flag bits back into record words 0x26 of two vertices
+  (0xca5c, 0xca5e), stores the clipper to word 0x17 (0xca5a) and ends at 0xca57 after the abort test at 0xca56. Its output is the table entries for the two triangles of the quad; it combines the edge-flag words of the vertices by AND and OR into the flag words.
+- `mmo_DecomposeQuadStrip` (`mdecompose2.S` line 281, at 0xca60):
+  **inferred**, the quad-strip decomposer for the lit path. The count in register 0x19 gives the pass count in register 0xc
+  (0xca60, 0xca64), reduced each pass at 0xca7a; the clipper goes to word 0x17 (staged 0xca63, store 0xca6e) and the staged 0x6000
+  and 0x6800 (0xca6c-0xca6d) adjust record words. Per quad, in the loop that starts at 0xca6f, it writes two five-word entries:
+  pointers at offsets 0-3 with the constant 0xc1400000 at offset 4 (0xca6f-0xca73), and pointers at offsets 5-8 with the same
+  constant at offset 9 (0xca74-0xca78, 0xca82). Under cc 5 it adds to record words 0x26 (0xca79, 0xca7b), and it steps registers
+  0xd and 0xe by 0x138 and register 0xf by 0x28 (0xca7e-0xca80); the transfer at 0xca7c repeats. Its inputs are the vertex pointers and edge-flag words; its outputs are the two entries per quad.
+- `mmo_DecomposePolygon` (`mdecompose2.S` line 53, at 0xca86):
+  **inferred**, convex-polygon decomposition into a fan around the first vertex. It reads control words 0xbe, 0xbf and 0xc0 as
+  edge masks (0xca86, 0xca89, 0xca8e), derives the triangle count from register 0x19 (0xca87, count less two) with the pass counter
+  in register 0xc (0xca8b), and sets special register 0x2f from the staged set pattern (0xca88). Per triangle, in the loop that
+  starts at 0xca96, it ANDs the edge-flag words of the vertices at registers 0xd, 0xe and 0xb with those masks (0xca96-0xca9f),
+  ORs the results into one flag (0xca9b, 0xcaa3, 0xcaaa, 0xcaab) and stores the three pointers, the first one again at offset 3,
+  and the flag word (0xcaac-0xcab3). Special register 0x2f is cleared and conditionally set again (0xcaae-0xcaaf); the clipper
+  goes to word 0x17 (0xca95) and the transfer at 0xcab4 repeats the pass. Its inputs are the vertex pointers and the masks at control words 0xbe-0xc0; it combines the masked edge flags into one result per triangle.
+
+## Colour-index and IRIS lighting (indxirislight.S)
+
+Lighting for colour-index mode and for the IRIS GL colour paths. Read from the
+[indxirislight.S listing](ge_listing/indxirislight.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mLiPrimMtrlIndxFinalLi` (`indxirislight.S` line 65, at 0xd536):
+  **inferred**, the colour-index variant of the final-lighting copy selector: it stages the three next-step addresses 0xd786,
+  0xd745 and 0xd5c4 (`mLiPrimMtrlCopyCmpn`, `mLiPrimMtrlCopyStckCmpn` and `mLiFinalLiEquIndx`) into words 6, 7 and 8 of the front
+  material block (stores 0xd536, 0xd539, 0xd53c). It takes the mask 0x3f from staging word 2, ANDs it and stores the result to
+  special register 0xf (0xd538), converts a value with ftoi (0xd53b), reads three external-memory words at 0x74-0x76 through
+  register 0x16 (0xd53e, 0xd541, 0xd543) and writes jump words 0x98 and 0x90 (0xd548, 0xd54c). On cc 2 it branches to
+  `mLiPrimMtrlCopyCmpn` (0xd544); otherwise the jump at 0xd545 goes to `mLiPrimMtrlCopyStckCmpn`.
+- `mLiIrisColoring` (`indxirislight.S` line 393, at 0xd54e):
+  **inferred**, the final colour step of the two-vertex light loop, in two forms chosen by bit 4 of control word 0x84 (AND,
+  0xd54f, branch on cc 3 at 0xd55b). In the clamping form, whose loop starts at 0xd564, it takes colour words 4-7 of the vertices at
+  registers 8 and 9, clamps each to the unit range (code 0x7c, 0xd566-0xd572) and moves the results into record words 0x1b-0x22 of
+  both vertices under cc 3 (0xd56a-0xd580); registers 8 and 9 step by 0x3a8 (0xd57b, 0xd57e) and the transfer at 0xd579 repeats.
+  The other form, whose loop starts at 0xd583, scales the colours by the staged 16.0 (0x41800000, 0xd559), converts to integer
+  (0xd589, 0xd58c), masks with register 0x1c (0xd58d, 0xd590), converts back (0xd591, 0xd594) and stores the quantised colours to
+  the same record words (0xd595-0xd59f).
+- `mLiIndexFinalLi` (`indxirislight.S` line 134, at 0xd5a6):
+  **inferred**, the light-index gather before the final colour-index step. It sets register 0xf to 1, or 2 under cc 0x62
+  (0xd5a6-0xd5a7), takes the external-memory block at register 0x16 plus 0x64 (0xd5a8) and, in a second pass, plus 0x7b (0xd5b6),
+  and copies its three words (reads 0xd5ac, 0xd5ae, 0xd5b1) to offsets 0xf-0x11 of both colour-sum blocks, registers 0 and 1
+  (stores 0xd5b3-0xd5b9). Registers 0 and 1 come from registers 5 and 6 plus 0x11 (0xd5a9-0xd5aa); registers 3 and 4 are set from
+  registers 8 and 9 plus 0x1b (0xd5ba-0xd5bb). The loop on cc 0x14 repeats at 0xd5ba and the jump at 0xd5bb continues in
+  `mLiFinalLiEquIndx`. It takes the three external words per pass as input, produces them in both colour blocks unchanged, and selects the pass base 0x64 or 0x7b.
+- `mLiFinalLiEquIndx` (`indxirislight.S` line 192, at 0xd5c4):
+  **inferred**, converts the summed light colour to a colour index. It stages 16.0 (0xd5c5), 0.3 (0x3e99999a), 0.59 (0x3f170a3d)
+  and 0.11 (0x3de147ae) (0xd5c8, 0xd5c9, 0xd5d3), the usual RGB-to-intensity weights, and multiplies words of the two colour
+  blocks by them (0xd5ca-0xd5d7); the fadds at 0xd5da-0xd5e1 add the products into an intensity, fmin at 0xd5e2, 0xd5e5, 0xd5f6
+  and 0xd5f9 limit it, and ftoi at 0xd5fe and 0xd601 produce integers. The itof stores at 0xd606-0xd60b write three words to each
+  vertex's colour words, through registers 3 and 4. The successor word 0x9f is read at 0xd5ff, the loop on cc 0x14 repeats from
+  0xd5c8 (0xd604) and the group-31 transfer at 0xd605 ends the command. Its inputs are the colour words of both blocks; its result is the colour index, which it derives by multiplying and adding the weighted components.
+
+## Polygon-mode triangle drawing (polymode.S)
+
+Read from the [polymode.S listing](ge_listing/polymode.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mmo_DrawTriPolymodePrim` (`polymode.S` line 80, at 0xda68):
+  **inferred**, the triangle draw module that `mPolymodeSetup` installs when a polygon mode other than fill is active. It takes
+  control word 6 (0xda68) and leaves to 0xdc09 on cc 0x28 or 0x26 (0xda6b, 0xda6c), the same tests `mmo_DrawTri` makes, and sets
+  special registers 0x23 and 0x2a (0xda72, 0xda80). Per triangle, in the loop that starts at 0xda82, it reads the face's mode
+  word from external memory through register 9 (0xda9f, 0xdacd), subtracts the constant 0x1b01, GL_LINE (staged 0xdaa5, 0xdad3;
+  0x1b02 at 0xdc10), and dispatches on the result to 0xdaeb, 0xdafc or 0xdb72 (0xdae0-0xdae2). The first copies the triangle's
+  five words through register 0xb (0xdaed-0xdaf1); the other two read external words 0xa43 and 0xa44, the pair
+  `mmo_DrawTriPrimOffset` reads, with the staged 2^20 (0xdafc, 0xdafe, 0xdb05, 0xdb72-0xdb7b), subtract vertex window coordinates
+  and depth pairwise (0xdb1d-0xdb33, 0xdb93-0xdba9), form reciprocal steps (0xdb30-0xdb38) and send 0x805 to bus address 0x1f7
+  (0xdb4c, 0xdbc2). The sequences at 0xdc2c and 0xdc63 save vertex pointers to external words 0x14d5-0x14d9, send 0x805 to 0x1f7 and
+  zero to 0x1f5 (0xdc46-0xdc4a, 0xdc7d-0xdc81) and jump back into the loop (0xdc5a, 0xdc93). The fill case clears bit 0 of control
+  word 0x19 by code 0x51 (0xdbfd-0xdc08) and returns at 0xdc00 after reading word 0x1a (0xdbfa).

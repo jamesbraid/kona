@@ -1913,9 +1913,9 @@ ge.u	label	0x00000d19	lDE6		understood	ucode/ge_compute.md#decomposers-udecompos
 ge.u	label	0x00000d25	mmo_DecomposeTriangleFan		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
 ge.u	label	0x00000d25	umo_DecomposeTriangleFan		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
 ge.u	label	0x00000d30	lDE7		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
-ge.u	label	0x00000d3b	umo_DummyDecompose		located	ucode/ge_handlers.md#udecompose2s	udecompose2.s
-ge.u	label	0x00000d4a	umo_DecomposeSimpleTriangleStrip		located	ucode/ge_handlers.md#udecompose2s	udecompose2.s
-ge.u	label	0x00000d57	lDE4		located	ucode/ge_handlers.md#udecompose2s	udecompose2.s
+ge.u	label	0x00000d3b	umo_DummyDecompose		understood	ucode/ge_compute.md#decomposers-second-set-udecompose2s	Decomposers, second set (udecompose2.s)
+ge.u	label	0x00000d4a	umo_DecomposeSimpleTriangleStrip		understood	ucode/ge_compute.md#decomposers-second-set-udecompose2s	Decomposers, second set (udecompose2.s)
+ge.u	label	0x00000d57	lDE4		understood	ucode/ge_compute.md#decomposers-second-set-udecompose2s	Decomposers, second set (udecompose2.s)
 ge.u	label	0x00000d69	mmo_LiColorClamp		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
 ge.u	label	0x00000d69	umo_LiColorClamp		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
 ge.u	label	0x00000d72	lLI2		understood	ucode/ge_compute.md#lighting-inner-loops-ulights	Lighting inner loops (ulight.s)
@@ -2266,9 +2266,9 @@ ge.u	label	0x000042d3	mgebi_Bind2dMipmapTexture		located	ucode/ge_handlers.md#te
 ge.u	label	0x000043ae	mgeb_SkipNextTextureAddr		located	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x000043bd	mgebi_UpdateTexturing		located	ucode/ge_handlers.md#textures	texture.S
 ge.u	label	0x000043f3	mgebi_Texture		located	ucode/ge_handlers.md#textures	texture.S
-ge.u	label	0x00004414	mgesi_SubdivEntry		located	ucode/ge_handlers.md#subdivs	subdiv.S
-ge.u	label	0x00004421	mges_SubdivTag		located	ucode/ge_handlers.md#subdivs	subdiv.S
-ge.u	label	0x0000442e	mgeb_Subdiv		located	ucode/ge_handlers.md#subdivs	subdiv.S
+ge.u	label	0x00004414	mgesi_SubdivEntry		understood	ucode/ge_compute.md#subdivision-patch-commands-subdivs	Subdivision patch commands (subdiv.S)
+ge.u	label	0x00004421	mges_SubdivTag		understood	ucode/ge_compute.md#subdivision-patch-commands-subdivs	Subdivision patch commands (subdiv.S)
+ge.u	label	0x0000442e	mgeb_Subdiv		understood	ucode/ge_compute.md#subdivision-patch-commands-subdivs	Subdivision patch commands (subdiv.S)
 ge.u	label	0x0000443b	mgeb_EramMinmaxToCramMinmax		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
 ge.u	label	0x00004472	mmo_CramMinmaxToEramMinmax		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
 ge.u	label	0x0000449d	mgesi_HistogramUpload		understood	ucode/ge_compute.md#pixel-path-stages-histogram-convolution-and-bitmaps	Pixel-path stages: histogram, convolution and bitmaps
@@ -2348,10 +2348,10 @@ ge.u	label	0x0000612c	mgebi_PointSize_AlphaAA		understood	ucode/ge_compute.md#li
 ge.u	label	0x00006163	mgebi_PointSize_Aliased		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
 ge.u	label	0x000061c6	mgebi_PointSize_Feedback		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
 ge.u	label	0x000061e0	mgebi_PointSize_Select		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
-ge.u	label	0x000061fa	mgeb_PolygonSetup_Feedback		located	ucode/ge_handlers.md#polygons	polygon.S
-ge.u	label	0x00006208	mgeb_PolygonSetup_Select		located	ucode/ge_handlers.md#polygons	polygon.S
-ge.u	label	0x00006216	mgeb_PolygonSetup_Render		located	ucode/ge_handlers.md#polygons	polygon.S
-ge.u	label	0x00006237	mPolymodeSetup		located	ucode/ge_handlers.md#polygons	polygon.S
+ge.u	label	0x000061fa	mgeb_PolygonSetup_Feedback		understood	ucode/ge_compute.md#render-mode-and-polygon-mode-setup-polygons	Render-mode and polygon-mode setup (polygon.S)
+ge.u	label	0x00006208	mgeb_PolygonSetup_Select		understood	ucode/ge_compute.md#render-mode-and-polygon-mode-setup-polygons	Render-mode and polygon-mode setup (polygon.S)
+ge.u	label	0x00006216	mgeb_PolygonSetup_Render		understood	ucode/ge_compute.md#render-mode-and-polygon-mode-setup-polygons	Render-mode and polygon-mode setup (polygon.S)
+ge.u	label	0x00006237	mPolymodeSetup		understood	ucode/ge_compute.md#render-mode-and-polygon-mode-setup-polygons	Render-mode and polygon-mode setup (polygon.S)
 ge.u	label	0x00006257	mgeb_LineWidth_Aliased		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
 ge.u	label	0x00006289	mgeb_LineWidth_Feedback		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
 ge.u	label	0x00006298	mgeb_LineWidth_Select		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
@@ -2464,7 +2464,7 @@ ge.u	label	0x000089bc	mDrawLinList		understood	ucode/ge_compute.md#line-drawing-
 ge.u	label	0x00008a2d	mmo_DrawMSLinPrim		understood	ucode/ge_compute.md#line-drawing-drawlins	Line drawing (drawlin.S)
 ge.u	label	0x00008b08	mmo_DrawLinStipplePrim		understood	ucode/ge_compute.md#line-drawing-drawlins	Line drawing (drawlin.S)
 ge.u	label	0x00008db0	mmo_DrawLinPrim		understood	ucode/ge_compute.md#line-drawing-drawlins	Line drawing (drawlin.S)
-ge.u	label	0x00008dc0	mmo_DrawTriPrimOffset		located	ucode/ge_handlers.md#drawtris	drawtri.S
+ge.u	label	0x00008dc0	mmo_DrawTriPrimOffset		understood	ucode/ge_compute.md#triangle-output-with-polygon-offset-drawtris	Triangle output with polygon offset (drawtri.S)
 ge.u	label	0x0000903c	AA_Response_Max		located	ucode/ge_handlers.md#aas	aa.S
 ge.u	label	0x00009045	AA_Response_Step		located	ucode/ge_handlers.md#aas	aa.S
 ge.u	label	0x00009059	AA_Response		located	ucode/ge_handlers.md#aas	aa.S
@@ -2480,8 +2480,8 @@ ge.u	label	0x000091a9	mgesi_ClearIndex		understood	ucode/ge_compute.md#clears-cl
 ge.u	label	0x000091b6	mgesi_ClearLA16		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
 ge.u	label	0x000091ce	mgesi_ClearColor		understood	ucode/ge_compute.md#clears-clears	Clears (clear.S)
 ge.u	label	0x000091e3	mmo_ExtractL12A4		located	ucode/ge_handlers.md#mextracts	mextract.S
-ge.u	label	0x00009296	mmo_DrawTriPrimPhong		located	ucode/ge_handlers.md#phongs	phong.S
-ge.u	label	0x0000952c	normalize_and_light		located	ucode/ge_handlers.md#phongs	phong.S
+ge.u	label	0x00009296	mmo_DrawTriPrimPhong		understood	ucode/ge_compute.md#phong-triangle-drawing-phongs	Phong triangle drawing (phong.S)
+ge.u	label	0x0000952c	normalize_and_light		understood	ucode/ge_compute.md#phong-triangle-drawing-phongs	Phong triangle drawing (phong.S)
 ge.u	label	0x00009562	mgesi_GetSpecial		understood	ucode/ge_compute.md#get-queries-gets	Get queries (get.S)
 ge.u	label	0x0000959a	mgesi_GetRaster		understood	ucode/ge_compute.md#get-queries-gets	Get queries (get.S)
 ge.u	label	0x000095cd	mgesi_GetCurrent		understood	ucode/ge_compute.md#get-queries-gets	Get queries (get.S)
@@ -2685,10 +2685,10 @@ ge.u	label	0x0000c20a	mgeb_PopAttrLights		located	ucode/ge_handlers.md#getlights
 ge.u	label	0x0000c255	mgesi_PushAttrLights		located	ucode/ge_handlers.md#getlights	getlight.S
 ge.u	label	0x0000c284	mgesi_LiGetMaterial		located	ucode/ge_handlers.md#getlights	getlight.S
 ge.u	label	0x0000c2d2	mgesi_LiGetLight		located	ucode/ge_handlers.md#getlights	getlight.S
-ge.u	label	0x0000c321	mLiLocalLight		located	ucode/ge_handlers.md#generallight2s	generallight2.S
-ge.u	label	0x0000c3db	mLiInfVInfLi		located	ucode/ge_handlers.md#generallight2s	generallight2.S
-ge.u	label	0x0000c426	mLiLocVInfLi		located	ucode/ge_handlers.md#generallight2s	generallight2.S
-ge.u	label	0x0000c493	mLiLocVInfLiInit		located	ucode/ge_handlers.md#generallight2s	generallight2.S
+ge.u	label	0x0000c321	mLiLocalLight		understood	ucode/ge_compute.md#general-lighting-per-light-steps-generallight2s	General lighting, per-light steps (generallight2.S)
+ge.u	label	0x0000c3db	mLiInfVInfLi		understood	ucode/ge_compute.md#general-lighting-per-light-steps-generallight2s	General lighting, per-light steps (generallight2.S)
+ge.u	label	0x0000c426	mLiLocVInfLi		understood	ucode/ge_compute.md#general-lighting-per-light-steps-generallight2s	General lighting, per-light steps (generallight2.S)
+ge.u	label	0x0000c493	mLiLocVInfLiInit		understood	ucode/ge_compute.md#general-lighting-per-light-steps-generallight2s	General lighting, per-light steps (generallight2.S)
 ge.u	label	0x0000c500	mgeb_LightPos		located	ucode/ge_handlers.md#lightsources	lightsource.S
 ge.u	label	0x0000c5cd	mgeb_LightSpotDir		located	ucode/ge_handlers.md#lightsources	lightsource.S
 ge.u	label	0x0000c626	mgeb_LightSpotExp		located	ucode/ge_handlers.md#lightsources	lightsource.S
@@ -2706,14 +2706,14 @@ ge.u	label	0x0000c795	mgeb_LiClrMtrlFront		located	ucode/ge_handlers.md#lightmod
 ge.u	label	0x0000c7cf	mgeb_LightModelGAmb		located	ucode/ge_handlers.md#lightmodels	lightmodel.S
 ge.u	label	0x0000c7e1	mgeb_LightModelLocV		located	ucode/ge_handlers.md#lightmodels	lightmodel.S
 ge.u	label	0x0000c7fb	mgeb_LightModel2Side		located	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c989	mmo_DecomposeTriangleStripWithSwapOdd		located	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
-ge.u	label	0x0000c9b2	mmo_DecomposeTriangleStripWithSwapEven		located	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
-ge.u	label	0x0000c9e1	mmo_DummyDecomposeQuadStrip		located	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
-ge.u	label	0x0000ca01	mmo_DummyDecompose		located	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
-ge.u	label	0x0000ca10	mmo_DecomposeSimpleTriangles		located	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
-ge.u	label	0x0000ca3a	mmo_DecomposeQuads		located	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
-ge.u	label	0x0000ca60	mmo_DecomposeQuadStrip		located	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
-ge.u	label	0x0000ca86	mmo_DecomposePolygon		located	ucode/ge_handlers.md#mdecompose2s	mdecompose2.S
+ge.u	label	0x0000c989	mmo_DecomposeTriangleStripWithSwapOdd		understood	ucode/ge_compute.md#decomposers-for-the-lit-vertex-path-mdecompose2s	Decomposers for the lit vertex path (mdecompose2.S)
+ge.u	label	0x0000c9b2	mmo_DecomposeTriangleStripWithSwapEven		understood	ucode/ge_compute.md#decomposers-for-the-lit-vertex-path-mdecompose2s	Decomposers for the lit vertex path (mdecompose2.S)
+ge.u	label	0x0000c9e1	mmo_DummyDecomposeQuadStrip		understood	ucode/ge_compute.md#decomposers-for-the-lit-vertex-path-mdecompose2s	Decomposers for the lit vertex path (mdecompose2.S)
+ge.u	label	0x0000ca01	mmo_DummyDecompose		understood	ucode/ge_compute.md#decomposers-for-the-lit-vertex-path-mdecompose2s	Decomposers for the lit vertex path (mdecompose2.S)
+ge.u	label	0x0000ca10	mmo_DecomposeSimpleTriangles		understood	ucode/ge_compute.md#decomposers-for-the-lit-vertex-path-mdecompose2s	Decomposers for the lit vertex path (mdecompose2.S)
+ge.u	label	0x0000ca3a	mmo_DecomposeQuads		understood	ucode/ge_compute.md#decomposers-for-the-lit-vertex-path-mdecompose2s	Decomposers for the lit vertex path (mdecompose2.S)
+ge.u	label	0x0000ca60	mmo_DecomposeQuadStrip		understood	ucode/ge_compute.md#decomposers-for-the-lit-vertex-path-mdecompose2s	Decomposers for the lit vertex path (mdecompose2.S)
+ge.u	label	0x0000ca86	mmo_DecomposePolygon		understood	ucode/ge_compute.md#decomposers-for-the-lit-vertex-path-mdecompose2s	Decomposers for the lit vertex path (mdecompose2.S)
 ge.u	label	0x0000cabe	mgeb_TexGen		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
 ge.u	label	0x0000cb19	mgeb_TexGen_Disable		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
 ge.u	label	0x0000cb39	mgeb_TexGen_Enable		understood	ucode/ge_compute.md#texture-coordinate-generation-commands-and-modules-texgens	Texture-coordinate generation commands and modules (texgen.S)
@@ -2760,10 +2760,10 @@ ge.u	label	0x0000d4de	mErrStackOverflow		understood	ucode/ge_compute.md#gl-error
 ge.u	label	0x0000d4f4	mErrInvalidOperation		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)
 ge.u	label	0x0000d50a	mErrInvalidValue		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)
 ge.u	label	0x0000d520	mErrInvalidEnum		understood	ucode/ge_compute.md#gl-error-recording-errs	GL error recording (err.S)
-ge.u	label	0x0000d536	mLiPrimMtrlIndxFinalLi		located	ucode/ge_handlers.md#indxirislights	indxirislight.S
-ge.u	label	0x0000d54e	mLiIrisColoring		located	ucode/ge_handlers.md#indxirislights	indxirislight.S
-ge.u	label	0x0000d5a6	mLiIndexFinalLi		located	ucode/ge_handlers.md#indxirislights	indxirislight.S
-ge.u	label	0x0000d5c4	mLiFinalLiEquIndx		located	ucode/ge_handlers.md#indxirislights	indxirislight.S
+ge.u	label	0x0000d536	mLiPrimMtrlIndxFinalLi		understood	ucode/ge_compute.md#colour-index-and-iris-lighting-indxirislights	Colour-index and IRIS lighting (indxirislight.S)
+ge.u	label	0x0000d54e	mLiIrisColoring		understood	ucode/ge_compute.md#colour-index-and-iris-lighting-indxirislights	Colour-index and IRIS lighting (indxirislight.S)
+ge.u	label	0x0000d5a6	mLiIndexFinalLi		understood	ucode/ge_compute.md#colour-index-and-iris-lighting-indxirislights	Colour-index and IRIS lighting (indxirislight.S)
+ge.u	label	0x0000d5c4	mLiFinalLiEquIndx		understood	ucode/ge_compute.md#colour-index-and-iris-lighting-indxirislights	Colour-index and IRIS lighting (indxirislight.S)
 ge.u	label	0x0000d60e	mLiPrimShinLoop		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
 ge.u	label	0x0000d667	mLiPrmMtrlBackClrAccmEnd		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
 ge.u	label	0x0000d676	mLiPrmMtrlBackClrInitAccm		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
@@ -2790,7 +2790,7 @@ ge.u	label	0x0000d9a2	mLiDirtyLocLiVwrLiSrcInit		understood	ucode/ge_compute.md#
 ge.u	label	0x0000d9c1	mLiLocLiFrnClrAccum		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
 ge.u	label	0x0000d9f7	mLiInfVInfLiInit		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
 ge.u	label	0x0000da3c	mLiFinalLi		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
-ge.u	label	0x0000da68	mmo_DrawTriPolymodePrim		located	ucode/ge_handlers.md#polymodes	polymode.S
+ge.u	label	0x0000da68	mmo_DrawTriPolymodePrim		understood	ucode/ge_compute.md#polygon-mode-triangle-drawing-polymodes	Polygon-mode triangle drawing (polymode.S)
 ge.u	label	0x0000dc9c	mgeb_LiDisableClrMtrl		located	ucode/ge_handlers.md#lightenabless	lightenables.S
 ge.u	label	0x0000dcc0	mgeb_LiDisableLightS		located	ucode/ge_handlers.md#lightenabless	lightenables.S
 ge.u	label	0x0000dd0d	mgeb_LiDisableLighting		located	ucode/ge_handlers.md#lightenabless	lightenables.S
@@ -2817,12 +2817,12 @@ ge.u	label	0x0000e27a	mLiUpdateShin		located	ucode/ge_handlers.md#lightsubroutin
 ge.u	label	0x0000e334	mLiDirtySimLiCRAM		located	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
 ge.u	label	0x0000e391	mLiDirtyGenLiCRAM		located	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
 ge.u	label	0x0000e3d2	mmo_Punt		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
-ge.u	label	0x0000e3e1	mmo_MultipassModule		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e450	mdc_finish		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e462	mdc_evaluator		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e471	mdc_multipass		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e4b6	mdc_sprite		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e4d0	mdc_polymode_or_clip		located	ucode/ge_handlers.md#fluffs	fluff.S
+ge.u	label	0x0000e3e1	mmo_MultipassModule		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e450	mdc_finish		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e462	mdc_evaluator		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e471	mdc_multipass		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e4b6	mdc_sprite		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e4d0	mdc_polymode_or_clip		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e4de	mmo_Vn2ToSave		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e4fd	mmo_V0ToSaveAndIgnore		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e519	mmo_V0ToSave_SaveExtra		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
@@ -2833,11 +2833,11 @@ ge.u	label	0x0000e5a9	mmo_SaveToV0_SaveExtra		understood	ucode/ge_compute.md#ver
 ge.u	label	0x0000e5d7	mmo_SaveToV0_RestoreExtra		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e605	mmo_SaveToV0		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e623	mmo_SaveRasterPos		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
-ge.u	label	0x0000e6a5	mmo_DirtyMultipassModule		located	ucode/ge_handlers.md#fluffs	fluff.S
+ge.u	label	0x0000e6a5	mmo_DirtyMultipassModule		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e6c0	mmo_CopyV0ToVn1AndIgnore		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e6d4	mmo_CopyV0ToVn1		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
-ge.u	label	0x0000e6e8	mmo_AbortGeometry		located	ucode/ge_handlers.md#fluffs	fluff.S
-ge.u	label	0x0000e741	mDispatchCentral		located	ucode/ge_handlers.md#fluffs	fluff.S
+ge.u	label	0x0000e6e8	mmo_AbortGeometry		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
+ge.u	label	0x0000e741	mDispatchCentral		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e75e	mClipPntUserAndFrustum		understood	ucode/ge_compute.md#point-clipping-pntclips	Point clipping (pntclip.S)
 ge.u	label	0x0000e8a6	mMatrixMultCCC		understood	ucode/ge_compute.md#matrix-maintenance-umatrixs	Matrix maintenance (umatrix.s)
 ge.u	label	0x0000ea1c	mClipLinUserAndFrustum		understood	ucode/ge_compute.md#line-clipping-linclips	Line clipping (linclip.S)
@@ -2846,7 +2846,7 @@ ge.u	label	0x0000ed2c	mClipLinFlush		understood	ucode/ge_compute.md#line-clippin
 ge.u	label	0x0000ed52	mClipTriUserAndFrustum		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
 ge.u	label	0x0000ef7e	mPerTriClipFlagsFrustum		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
 ge.u	label	0x0000efb5	mClipPolyToPlane		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
-ge.u	label	0x0000f14f	mClipTriFlushSR		located	ucode/ge_handlers.md#clips	clip.S
+ge.u	label	0x0000f14f	mClipTriFlushSR		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
 ge.u	label	0x0000f182	mEyeToClipAfterUserClip		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
 ge.u	label	0x0000f1dc	mClipTriFlush		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
 ge.u	label	0x0000f20a	mSetClipVertsFree		understood	ucode/ge_compute.md#polygon-clipping-clips	Polygon clipping (clip.S)
