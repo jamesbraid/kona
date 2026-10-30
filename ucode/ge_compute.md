@@ -659,8 +659,12 @@ group-31 transfer to the successor. In every form the output record gets x, y an
   `mSetClipVertsFree`.
 - `mEyeToClipAfterUserClip` (`clip.S` lines 712-837): **inferred**, projects vertices created in eye space by user-plane
   clipping. It rebuilds the projection's third row as `uMatrixMultCCC` does, the third element minus the fourth
-  of each column (projection words 0x42 and 0x41, 0x46 and 0x45, 0x4a and 0x49, 0x4e and 0x4d) times the constant 0.5
-  loaded at 0xf183. It then multiplies each new vertex's eye-position input (record words 0x13-0x16, through registers 7 and
+  of each column (projection words 0x41 minus 0x42, 0x45 minus 0x46, 0x49 minus 0x4a, 0x4d minus 0x4e) times the constant 0.5
+  loaded at 0xf183. Its own subtracts use a different routing from `uMatrixMultCCC`'s: moves at 0xf184-0xf187 load the
+  third elements, and the subtracts at 0xf189-0xf18c (unit-1 code 0x62, `r110` = 0x5fd) take that move's result five
+  words back on port 1 (`r128` code 1) and the fourth element on port 2 (selector 3; read at 0xf188 for the first column, by the subtract
+  word itself, immediates 0x46, 0x4a and 0x4e, for the others), so with port 1 minus port 2 ([ge_isa.md](ge_isa.md#operand-ports-and-result-forwarding)) each is
+  third minus fourth. It then multiplies each new vertex's eye-position input (record words 0x13-0x16, through registers 7 and
   0xf) by the projection words 0x3f-0x4e and stores the clip-space result to words 0x17-0x1a (0xf1b0, 0xf1b5). It returns
   through a group-5 indirect transfer.
 - `mPerTriClipFlagsFrustum` (`clip.S` lines 922-990): **inferred**, recomputes the frustum clip codes of a polygon's
