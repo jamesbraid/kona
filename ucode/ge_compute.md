@@ -3075,9 +3075,10 @@ or 0x1e, `r148` = 0x3a0 or 0x3c0), point registers 0x19 and 0x1a at the operands
   operand count in register 0x19 and copies it to 0x12 (0x529f), writes the three type words 0x2c-0x2e from
   unit register 0x1e (0x5293-0x5295) and jumps to `mAbsX` (0x529a), which converts the points and yields
   `mmo_XclipDrawPoints`.
-- `mgesi_XPointRel` (`xentry.S` lines 78-90, at 0x5284): **inferred**, the relative PolyPoint: only words 0x2c and 0x2d are
-  set from register 0x1e (0x5284, 0x5285), and the coordinates go to `mRelX` (0x528a), which adds each input offset to the
-  previous point, so every output point is a running sum.
+- `mgesi_XPointRel` (`xentry.S` lines 78-90, at 0x5284): **inferred**, PolyPoint in CoordModePrevious. It takes
+  offsets rather than positions and converts them with `mRelX` (transfer at 0x528a), which adds each offset to the
+  point before it; the outputs go to `mmo_XclipDrawPoints`. Of the type words it sets only the first two, from
+  unit register 0x1e.
 - `mgesi_XBgPoint` (`xentry.S` lines 104-117, at 0x5274): **inferred**, points drawn with the background. It takes the same operands and differs from
   `mgesi_XPoint` in taking word 0x2c from unit register 0x1d instead of 0x1e (0x5276), then converts through `mAbsX`
   (0x527b) to the point output.
@@ -3108,3 +3109,121 @@ or 0x1e, `r148` = 0x3a0 or 0x3c0), point registers 0x19 and 0x1a at the operands
   width. The loop at 0x51ea-0x5202 unpacks the point with the shift pair, adds the origin from control words 7 and 8
   (0x51f0, 0x51f3, 0x51f5, 0x51f6), converts point and width with code 0x73, and stores four outputs per span through
   register 0xf (0x51f8-0x5201), so each span becomes a one-pixel-high rectangle for `mmo_XclipDrawRects` (0x5203).
+
+## Per-primitive material lighting (primmtrllight.S)
+
+Read from the [primmtrllight.S listing](ge_listing/primmtrllight.S.lst) and the lane-modelled decompile of each label
+(`ge.u`, IRIX 6.5.30m). These labels serve `glMaterial` calls made between `glBegin` and `glEnd`: the general lighter
+reaches them through `mLiPrimMtrlInit`. Most of their work is choosing which lighting step runs next. They write code
+addresses into the lighting code's own jump words in control memory (0x91-0x9e) and into the staged-address words at
+register 5 plus 6-8, and the general lighter's accumulate and final steps ([generallight.S](#general-lighting-generallights))
+transfer through those words. The decompile reads some registers one word early, so the order of terms below comes from
+the listing.
+
+- `mLiPrimShinLoop` (`primmtrllight.S` lines 218-402, at 0xd60e): **inferred**, the per-vertex material decode. It takes
+  the change mask the vertex carries (staging word 0xc), converts it to an integer (code 0x71) and ANDs it with the staged
+  0x3f (0xd613, 0xd614), so its result selects which of the six material fields this vertex changes. It copies control
+  words 0x88 and 0x89 into the record (0xd616 onward), stores `mLiPrmMtrlFrntClrAccmEnd` as the next front-colour step
+  and records the mask in control word 0x86 under a predicate, then hands on through the jump words.
+- `mLiPrmMtrlFrntClrAccmEnd` (`primmtrllight.S` lines 430-456, at 0xd690): **inferred**, the end of the front-colour sum
+  for a material vertex. It takes the colour accumulated by the light loop and adds the material terms at register 5 plus
+  0x32-0x34 (front) and register 6 plus 0x32-0x34 (back) to it; when bit 2 of the tested word is set it returns at once,
+  leaving `mLiLocLiFrnClrAccum` as the next step (control word 0x9c).
+- `mLiPrmMtrlBackClrInitAccm` (`primmtrllight.S` lines 487-545, at 0xd676): **inferred**, starts the back-face colour
+  accumulation. It compares the input against control word 0xa0 (code 0x6a) and then selects the steps that follow: it
+  stores `mLiEndPrimShinLp` to word 0x91, `mLiPrmMtrlBackClrAccmEnd` to 0x9e and `mLiLocLiFrnClrAccum` to 0x9c, so the
+  output of this label is the next chain of the back-face pass.
+- `mLiPrmMtrlBackClrAccmEnd` (`primmtrllight.S` lines 561-582, at 0xd667): **inferred**, closes the back-colour sum by
+  rewriting two jump words, which selects the next steps: its results are `mLiBackClrAccum` in word 0x93 and `mLiPrmMtrlBackClrInitAccm` in 0x9d, which
+  it takes from the two addresses it stages at register 5 plus 6 and 7. No arithmetic is done.
+- `mLiPrimMtrlCpFrntEnd` (`primmtrllight.S` lines 1099-1154, at 0xd6a7): **inferred**, selects the material copy steps
+  for the front face. It computes record word 0x25 from word 0x24 (code 0x4c), takes the two staged addresses and writes
+  them to jump words 0x94-0x97 under predicates set by the change mask, so each changed field is routed to the copy
+  step and the rest to the plain one, and those words are its output; word 0x98 gets the entry at register 5 plus 0x35 indexed by register 0x16.
+- `mLiPrimMtrlCopyEnd` (`primmtrllight.S` lines 1174-1270, at 0xd6c4): **inferred**, the end of the material copy. It
+  takes the mask and shifts the four mask words at staging 0xc-0xf right by the staged 6 (code 0x5d), the result being the next vertex's
+  six-bit field mask, adds control word 0x85 into the material colours at register 5 and 6
+  plus 0xe-0x10, and stores `mLiPrimShinLoop` as the next step with 0x54 as its count.
+- `mLiPrimMtrlFinalLi` (`primmtrllight.S` lines 737-802, at 0xd726): **inferred**, chooses the final-lighting copy. It
+  stages `mLiPrimMtrlCopyCmpn` and `mLiPrimMtrlCopyStckCmpn`, takes the mask in staging word 4, ANDs it with 0x3f and
+  selects one or the other address for jump words 0x94 and 0x95 by predicate, after converting the input count to an
+  integer (code 0x71); its output is the copy routine each material field runs.
+- `mLiPrimMtrlCopyStckCmpn` (`primmtrllight.S` lines 831-993, at 0xd745): **inferred**, copies material components field by
+  field. Each pass of its loop takes the field mask (record word 0xf), shifts it by one (code 0x51 with a zero count
+  register), and when the bit is set copies the four colour inputs held in unit registers 5-8 to both material copies,
+  through address registers 0 and 1, then steps them by register 0xb; the result is the mask with that field consumed.
+- `mLiPrimMtrlCopyCmpn` (`primmtrllight.S` lines 1027-1052, at 0xd786): **inferred**, the single-field copy: it subtracts
+  unit register 0xa from 0xb (integer subtract) into record word 0x25, ANDs the mask with register 9 into word 0xf and
+  writes the four colour inputs (registers 5-8) to the two material blocks at address registers 0 and 1 as its output.
+- `mLiFinalLiEqu` (`primmtrllight.S` lines 1501-1638, at 0xd796): **inferred**, evaluates the final lighting equation for a
+  vertex whose material changed. It takes the material words at address register 0 plus 7, 8, 0xa, 0xb and 0xf and the
+  sums at register 5 plus 0xf and 0x10, and multiplies and adds them per colour component in its loop; the result is the lit
+  colour. It starts by copying staging words 0 and 1 to record words 0xb and 0xf.
+- `mLiEndPrimShinLp` (`primmtrllight.S` lines 604-703, at 0xd7d9): **inferred**, the end of the per-vertex material loop.
+  It takes no operands; it stores 0xd7e9 as its own continuation, clears register 5 plus 9 with code 0x46, restores the address saved in control
+  word 0x9a to register 5 plus 0xb, and returns when `cc` 0x7f holds; otherwise it selects the next step by `cc` 0x7e and
+  writes it to jump word 0x9e as its result.
+- `mLiColorMtrlCopy` (`primmtrllight.S` lines 1396-1473, at 0xd808): **inferred**, the `glColorMaterial` copy: it takes
+  the vertex colour through address register 8 (offset 7) and writes it into the tracked material fields at register 5
+  plus 0x1d and register 9 plus 0x1b, two faces in turn (count 2), and selects which fields receive it from the mask; record word 0x2a gets the output marker.
+- `mLiClrMtrlFinalLi` (`primmtrllight.S` lines 1291-1378, at 0xd831): **inferred**, the final step when colour material is
+  on. It takes record word 0xf, saves it to staging word 1, sets it to control word 0x85 and adds that ambient term to the
+  material colours at register 5 and 6 plus 0xe-0x10, then runs the two-face copy of `mLiColorMtrlCopy` so the output
+  colours include the tracked vertex colour.
+
+## General lighting (generallight.S)
+
+Read from the [generallight.S listing](ge_listing/generallight.S.lst) and the lane-modelled decompile of each label
+(`ge.u`, IRIX 6.5.30m). `mmo_LighterGeneral` is the vertex module the dirty-light module chooses for full OpenGL lighting
+([glmodes.S](#gl-mode-handlers-and-the-dirty-modules-glmodess)). Its labels are steps of one per-vertex pipeline that
+reach each other through the lighting jump words in control memory 0x9c-0xa0 and the staged addresses at register 5
+plus 6 and 7, as in [primmtrllight.S](#per-primitive-material-lighting-primmtrllights). Address registers 8 and 9 point
+at the two vertex records a pass lights, registers 5 and 6 at the front and back material blocks, and 0 and 1 at the
+front and back colour sums. Unit-1 code 0x7c clamps to [0, 1]; what code 0x6c, which these labels apply with the same operand on both ports, does is
+not read here.
+
+- `mmo_LighterGeneral` (`generallight.S` lines 129-257, at 0xd85e): **inferred**, the module entry. Unless `cc` 0x2a
+  holds, it takes the vertex flags (staging words 3 and 4), ANDs word 3 with control word 0x84, writes control word 0xa1
+  and the address of `mLiIrisColoring` into data words 0x8700-0x8703, and selects `mLiPrimMtrlInit` when the flag word
+  shares a bit with control word 3 (material changes inside the primitive). Otherwise it copies the vertex's colour
+  words (address register 7 plus 3-5) to record word 0xb and data words 0x8561-0x8562, its output for the light loop.
+- `mmo_LiColorMask` (`generallight.S` lines 35-95, at 0xd87e): **inferred**, applies the colour write mask to lit
+  colours. It stages 16.0, multiplies each input colour component of the two records by it, converts the products to
+  integers (code 0x71), ANDs them with the mask word at register 0x16 minus 0x20, and converts the results back to float
+  (code 0x73) into record words 0x1b-0x1d of both vertices; its loop runs register 0x19 minus one times.
+- `mLiVtxLoop` (`generallight.S` lines 284-354, at 0xd8a0): **inferred**, the head of the per-vertex light loop. It takes
+  the vertex colour words (register 7 plus 3-5) into record word 0xb and material words 0x39 and 0x3a, selects
+  `mLiBackClrInit` and `mLiLocLiFrnClrInit` as the next steps (jump words 0x9d and 0x9c), copies control words 0x88 and
+  0x89 into material words 0x25 and 0x24, and outputs register 5 plus 1 to jump word 0x9f.
+- `mLiDirtyLocLiVwrLiSrcInit` (`generallight.S` lines 373-431, at 0xd9a2): **inferred**, re-selects the light-source and
+  viewer cases after a state change. It takes the light's flag word and stages the addresses of `mLiInfVInfLi`, `mLiLocVInfLi`, `mLiLocalLight`,
+  `mLiLocVInfLiInit`, `mLiInfVInfLiInit` and `mLiLocalViewer` in a table at address register 0 plus 2-7, compares the
+  flag word with them (code 0x6a) and writes the chosen per-light routine to jump word 0xa0, its result.
+- `mLiNoLightSrc` (`generallight.S` lines 462-502, at 0xd901): **inferred**, the case with no light enabled, which selects a zero light term. It takes the
+  zero in unit register 0x1e and writes it to the colour-sum words 0xe-0x13 of both material blocks (registers 5 and 6),
+  so the output colour is the emissive and ambient part alone; it copies jump word 0x9e into 0x9d.
+- `mLiInfVInfLiInit` (`generallight.S` lines 566-771, at 0xd9f7): **inferred**, the first light pass for an infinite
+  light and an infinite viewer. It takes the vertex normals and computes the diffuse dot product of each vertex normal (record words 0xf and 0x10 at
+  registers 8 and 9) with the light direction (registers 3 and 4) plus the light's offset term, clamps it with code 0x7c,
+  multiplies it by the light colour as the pass's result, and selects `mLiLocLiFrnClrAccum` for the next light (register 5 plus 7).
+- `mLiLocalViewer` (`generallight.S` lines 817-907, at 0xd8bc): **inferred**, the local-viewer geometry for one light.
+  It takes the eye-space positions (record words 0x13-0x15 of each vertex) as input and computes the squared length of the view
+  vector, its reciprocal square root refined by one Newton step ((3 - x y^2) / 2), and the reciprocal of record word 0x16
+  (w) by the two-step 1/x (2 - x / x) form, and stores the normalised results in material words 0x2f, 0x30 and 0x32.
+- `mLiLocLiFrnClrInit` (`generallight.S` lines 1142-1273, at 0xd943): **inferred**, the first front-colour pass for a
+  local light. It takes the per-light terms at material word 0x2d and 0x2c, clamps each with code 0x7c, applies code 0x6c to them,
+  and initialises the front colour sums of both vertices; those sums are its result.
+- `mLiLocLiFrnClrAccum` (`generallight.S` lines 947-1100, at 0xd9c1): **inferred**, adds each further local light to the
+  front colour. Its inputs are the same clamped terms; it takes the maximum of material word 0x2c and zero for the
+  diffuse factor and adds the weighted light colour to the front sums, the result being the running front colour.
+- `mLiBackClrInit` (`generallight.S` lines 1473-1550, at 0xd91a): **inferred**, starts the back-face colour. It clamps the
+  input terms (code 0x7c), takes the larger of each dot product and zero, and multiplies the factors by
+  the light colour in unit registers 6-11 into colour-sum words 0x15-0x1a of address registers 0 and 1 as its result; it selects
+  `mLiBackClrAccum` as the next step.
+- `mLiBackClrAccum` (`generallight.S` lines 1323-1422, at 0xd973): **inferred**, accumulates each further light input into the
+  back colour: the same clamped, maximum-with-zero factors multiplied by registers 6-11, now added to the sums already in
+  words 0x15-0x1a, so the output is the running total over the lights.
+- `mLiFinalLi` (`generallight.S` lines 1583-1739, at 0xda3c): **inferred**, combines the sums into the output colour. For
+  each vertex pair it takes the material emissive and ambient words (register 5 plus 0xe-0x10, register 6 plus 0xf),
+  adds the light sums, copies the alpha word from register 0xd plus 6 into record word 0x1e of both vertices, and
+  writes the lit colour to record words 0x1b-0x1d; record word 0xb gets staging word 0.

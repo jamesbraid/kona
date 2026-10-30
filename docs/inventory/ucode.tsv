@@ -2306,7 +2306,7 @@ ge.u	label	0x0000520c	mgesi_XBox		understood	ucode/ge_compute.md#x-server-drawin
 ge.u	label	0x00005223	mgesi_XRect		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x00005265	mgesi_XBgPointRel		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x00005274	mgesi_XBgPoint		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
-ge.u	label	0x00005284	mgesi_XPointRel		located	ucode/ge_handlers.md#xentrys	xentry.S
+ge.u	label	0x00005284	mgesi_XPointRel		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x00005293	mgesi_XPoint		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x000052a3	mRelX		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x000052c4	mAbsX		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
@@ -2764,32 +2764,32 @@ ge.u	label	0x0000d536	mLiPrimMtrlIndxFinalLi		located	ucode/ge_handlers.md#indxi
 ge.u	label	0x0000d54e	mLiIrisColoring		located	ucode/ge_handlers.md#indxirislights	indxirislight.S
 ge.u	label	0x0000d5a6	mLiIndexFinalLi		located	ucode/ge_handlers.md#indxirislights	indxirislight.S
 ge.u	label	0x0000d5c4	mLiFinalLiEquIndx		located	ucode/ge_handlers.md#indxirislights	indxirislight.S
-ge.u	label	0x0000d60e	mLiPrimShinLoop		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d667	mLiPrmMtrlBackClrAccmEnd		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d676	mLiPrmMtrlBackClrInitAccm		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d690	mLiPrmMtrlFrntClrAccmEnd		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d6a7	mLiPrimMtrlCpFrntEnd		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d6c4	mLiPrimMtrlCopyEnd		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
+ge.u	label	0x0000d60e	mLiPrimShinLoop		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d667	mLiPrmMtrlBackClrAccmEnd		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d676	mLiPrmMtrlBackClrInitAccm		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d690	mLiPrmMtrlFrntClrAccmEnd		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d6a7	mLiPrimMtrlCpFrntEnd		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d6c4	mLiPrimMtrlCopyEnd		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
 ge.u	label	0x0000d6ef	mLiPrimMtrlInit		understood	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d726	mLiPrimMtrlFinalLi		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d745	mLiPrimMtrlCopyStckCmpn		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d786	mLiPrimMtrlCopyCmpn		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d796	mLiFinalLiEqu		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d7d9	mLiEndPrimShinLp		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d808	mLiColorMtrlCopy		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d831	mLiClrMtrlFinalLi		located	ucode/ge_handlers.md#primmtrllights	primmtrllight.S
-ge.u	label	0x0000d85e	mmo_LighterGeneral		located	ucode/ge_handlers.md#generallights	generallight.S
-ge.u	label	0x0000d87e	mmo_LiColorMask		located	ucode/ge_handlers.md#generallights	generallight.S
-ge.u	label	0x0000d8a0	mLiVtxLoop		located	ucode/ge_handlers.md#generallights	generallight.S
-ge.u	label	0x0000d8bc	mLiLocalViewer		located	ucode/ge_handlers.md#generallights	generallight.S
-ge.u	label	0x0000d901	mLiNoLightSrc		located	ucode/ge_handlers.md#generallights	generallight.S
-ge.u	label	0x0000d91a	mLiBackClrInit		located	ucode/ge_handlers.md#generallights	generallight.S
-ge.u	label	0x0000d943	mLiLocLiFrnClrInit		located	ucode/ge_handlers.md#generallights	generallight.S
-ge.u	label	0x0000d973	mLiBackClrAccum		located	ucode/ge_handlers.md#generallights	generallight.S
-ge.u	label	0x0000d9a2	mLiDirtyLocLiVwrLiSrcInit		located	ucode/ge_handlers.md#generallights	generallight.S
-ge.u	label	0x0000d9c1	mLiLocLiFrnClrAccum		located	ucode/ge_handlers.md#generallights	generallight.S
-ge.u	label	0x0000d9f7	mLiInfVInfLiInit		located	ucode/ge_handlers.md#generallights	generallight.S
-ge.u	label	0x0000da3c	mLiFinalLi		located	ucode/ge_handlers.md#generallights	generallight.S
+ge.u	label	0x0000d726	mLiPrimMtrlFinalLi		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d745	mLiPrimMtrlCopyStckCmpn		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d786	mLiPrimMtrlCopyCmpn		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d796	mLiFinalLiEqu		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d7d9	mLiEndPrimShinLp		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d808	mLiColorMtrlCopy		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d831	mLiClrMtrlFinalLi		understood	ucode/ge_compute.md#per-primitive-material-lighting-primmtrllights	Per-primitive material lighting (primmtrllight.S)
+ge.u	label	0x0000d85e	mmo_LighterGeneral		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
+ge.u	label	0x0000d87e	mmo_LiColorMask		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
+ge.u	label	0x0000d8a0	mLiVtxLoop		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
+ge.u	label	0x0000d8bc	mLiLocalViewer		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
+ge.u	label	0x0000d901	mLiNoLightSrc		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
+ge.u	label	0x0000d91a	mLiBackClrInit		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
+ge.u	label	0x0000d943	mLiLocLiFrnClrInit		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
+ge.u	label	0x0000d973	mLiBackClrAccum		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
+ge.u	label	0x0000d9a2	mLiDirtyLocLiVwrLiSrcInit		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
+ge.u	label	0x0000d9c1	mLiLocLiFrnClrAccum		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
+ge.u	label	0x0000d9f7	mLiInfVInfLiInit		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
+ge.u	label	0x0000da3c	mLiFinalLi		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
 ge.u	label	0x0000da68	mmo_DrawTriPolymodePrim		located	ucode/ge_handlers.md#polymodes	polymode.S
 ge.u	label	0x0000dc9c	mgeb_LiDisableClrMtrl		located	ucode/ge_handlers.md#lightenabless	lightenables.S
 ge.u	label	0x0000dcc0	mgeb_LiDisableLightS		located	ucode/ge_handlers.md#lightenabless	lightenables.S
