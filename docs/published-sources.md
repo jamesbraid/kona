@@ -34,6 +34,7 @@ Reviewed and set aside, because they do not describe this board: US 5,548,709 (t
 ## 1. InfiniteReality architecture paper (SIGGRAPH 1997)
 
 - Identity: "InfiniteReality: A Real-Time Graphics System", SIGGRAPH 97 proceedings, pages 293-302. Copy read: https://people.csail.mit.edu/ericchan/bib/pdf/p293-montrym.pdf, 10 pages, SHA-256 `877a4c9e19ff82107b496c10a91339c41635e05d0e2dfa4a9d849e2e2d8647bb` (also https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/montrym97_infinitereality.pdf).
+- Stored copy: [docs/sources/papers/montrym97-infinitereality.pdf](sources/papers/montrym97-infinitereality.pdf), SHA-256 `877a4c9e19ff82107b496c10a91339c41635e05d0e2dfa4a9d849e2e2d8647bb`, library path `graphics/onyx/p293-montrym-infinite-reality.pdf`.
 - Covers: the whole pipe: host interface processor, geometry distributor, four geometry engines, the geometry-raster FIFO, the vertex bus, the fragment generator (SC, TA, TM, TF), 80 image engines per raster board, the display generator. First generation; the board set it names is the three-board Onyx set.
 - Match: close. The block structure matches the shipped netlist names. The paper predates the Onyx2 board revisions.
 
@@ -54,6 +55,7 @@ Open questions moved: none closed. Adds routes to the raster set-up, fan-bit and
 ## 2. InfiniteReality Technical Report
 
 - Identity: SGI, "InfiniteReality Technical Report" (first-generation Onyx and i-Station). Copy read: http://www.sgidepot.co.uk/onyx/IR_techreport.pdf, 42 pages, SHA-256 `b5bdbb3f054c36768f6ef17a648543dac4aafad115d0d4f0161e693ee2bcc4b3`.
+- Stored copy: [docs/sources/reports/infinitereality-technical-report.pdf](sources/reports/infinitereality-technical-report.pdf), SHA-256 `b5bdbb3f054c36768f6ef17a648543dac4aafad115d0d4f0161e693ee2bcc4b3`, library path `graphics/onyx/sgi-infinitereality-technical-report.pdf`.
 - Covers: the Onyx-generation system with GE12, RM6 and DG4 (the block diagrams in section 1.1 name them).
 - Match: close for the pipeline model, first generation for boards.
 
@@ -70,6 +72,7 @@ Open questions moved: none closed.
 ## 3. Onyx2 Reality and InfiniteReality2 Technical Report (August 1998)
 
 - Identity: SGI, "Onyx2 Reality and Onyx2 InfiniteReality2 Technical Report", August 1998, 95 pages. Copy read: the SGI PDF as mirrored at https://techpubs.jurassic.nl and the archive sites, SHA-256 `0b2be85d655ae996d7e39bf3f22248060e3c7c493a852a2358e2e0afdc2d6305`.
+- Stored copy: [docs/sources/reports/onyx2-infinitereality2-technical-report-1998.pdf](sources/reports/onyx2-infinitereality2-technical-report-1998.pdf), SHA-256 `0b2be85d655ae996d7e39bf3f22248060e3c7c493a852a2358e2e0afdc2d6305`, library path `sgi-hw/onyx2-technical-report.pdf`.
 - Covers: the Onyx2 generation. Section 1.1 states that InfiniteReality uses GE14 and RM7 and InfiniteReality2 uses GE16 and RM9, with DG5 in both, and that everything in the report applies to both. This is the exact generation of the reference install.
 - Match: exact.
 
@@ -86,6 +89,7 @@ Open questions moved: none closed. Confirms the generation.
 ## 4. Hot Chips 8 slides (1996)
 
 - Identity: "InfiniteReality Graphics: Power Through Complexity", Hot Chips 8, 1996, 20 slides. Copy read: https://old.hotchips.org/wp-content/uploads/hc_archives/hc08/3_Tue/HC8.S9/HC8.9.3.pdf, SHA-256 `2add1b6fe141645f0df472a2c15bfa1ff93c12b802da00889b9a2c576ee3a974`.
+- Stored copy: [docs/sources/papers/hotchips8-infinitereality.pdf](sources/papers/hotchips8-infinitereality.pdf), SHA-256 `2add1b6fe141645f0df472a2c15bfa1ff93c12b802da00889b9a2c576ee3a974`, library path `papers/hotchips8-infinitereality-power-through-complexity.pdf`.
 - Covers: first-generation InfiniteReality. First architecture pass September 1993, first customer shipment March 1996 (slide 20).
 - Match: close; first generation.
 
@@ -105,6 +109,7 @@ Open questions moved: none closed. Adds the 195-to-72-bit ratio as a cross-check
 ## 5. OpenGL implementations paper (Graphics Hardware 1997)
 
 - Identity: "Realizing OpenGL: Two Implementations of One Architecture", the Eurographics/SIGGRAPH Graphics Hardware workshop, 1997. Copy read: the 11-page proceedings PDF (SHA-256 `c568a0eaabffc399c548c18f9a768a4d3156def7a6ab548cbae1cccdfffa26c3`), the copy SGI and later hosts mirror.
+- Stored copy: [docs/sources/papers/kilgard97-realizing-opengl.pdf](sources/papers/kilgard97-realizing-opengl.pdf), SHA-256 `c568a0eaabffc399c548c18f9a768a4d3156def7a6ab548cbae1cccdfffa26c3`, library path `graphics/onyx/kilgard97-realizing-opengl.pdf`.
 - Covers: Onyx2 InfiniteReality and, in the second half, O2.
 - Match: close. It uses PG, TG, TM, TF and IMP, the same chip names as the shipped netlists and firmware ([rm.md](rm.md#chips-on-each-board)).
 
@@ -120,6 +125,7 @@ Open questions moved: none closed.
 ## 6. RealityEngine Graphics (SIGGRAPH 1993)
 
 - Identity: "RealityEngine Graphics", SIGGRAPH 93 proceedings, pages 109-116. Copy read: https://cseweb.ucsd.edu/~ravir/6160-fall04/papers/p109-akeley.pdf (SHA-256 `76b3bf10b66d0e8ee4f03971a7ecfa6540bfc919c58afce8e37062e5d3b08e71`).
+- Stored copy: [docs/sources/papers/akeley93-realityengine-graphics.pdf](sources/papers/akeley93-realityengine-graphics.pdf), SHA-256 `76b3bf10b66d0e8ee4f03971a7ecfa6540bfc919c58afce8e37062e5d3b08e71`, library path `papers/akeley93-realityengine-graphics.pdf`.
 - Covers: the predecessor generation. Its geometry engines compute the per-triangle slopes; InfiniteReality moved that to the fragment generator.
 - Match: predecessor only. Everything below is **inferred** for InfiniteReality.
 
@@ -134,6 +140,7 @@ Open questions moved: none closed.
 ## 7. US 5,760,783, texture from a selected portion of a texture map
 
 - Identity: US 5,760,783, "Method and system for providing texture using a selected portion of a texture map", filed 1995-11-06, granted 1998-06-02, assigned to SGI. PCT WO 1997/017676. https://patents.google.com/patent/US5760783A/en
+- Stored copy: [docs/sources/patents/US5760783.pdf](sources/patents/US5760783.pdf), SHA-256 `ae3869ae81b87081f07fce5963a5b29c1f70a7f978b2b0cfb13488153df8f7c0`, library path `patents/US5760783-texture-selected-portion.pdf`.
 - Covers: the clip-map: a clip-map stack of fixed-size tiles centred on the eyepoint over a clip-map pyramid. The page names no product and no board. The block diagram has a texture generator, a texture memory manager and DRAM on a triangle bus, the arrangement of the first-generation board set.
 - Match: feature-level. The paper in source 1 says the feature ships, so the behaviour is a design the shipped chips implement; details such as register names are not given.
 
@@ -149,6 +156,7 @@ Bearing on the shipped board. [RM.h](../RM.h) has `TM_DRAW_CLIP_OFFSET` (index 0
 ## 8. US 5,490,240, three-dimensional textures
 
 - Identity: US 5,490,240, "System and method of generating interactive computer graphic images incorporating three dimensional textures", filed 1993-07-09, granted 1996-02-06, assigned to SGI. https://patents.google.com/patent/US5490240A/en
+- Stored copy: [docs/sources/patents/US5490240.pdf](sources/patents/US5490240.pdf), SHA-256 `5a458b3d356fdde064a1cd1a323a0b8aa1ec17be2f8986df59073bad199fa3cf`, library path `patents/US5490240-three-dimensional-textures.pdf`.
 - Covers: generic texture apparatus: level-of-detail generator, address generator, fraction generator, eight-bank texture storage, an interpolator. No product named.
 - Match: predecessor-level. Same generation as source 6.
 
@@ -163,6 +171,7 @@ Bearing: a level fraction linear in the maximum derivative is a candidate for th
 ## 9. US 5,455,627, programmable video output format generator
 
 - Identity: US 5,455,627, "Programmable video output format generator", filed 1993-06-30, granted 1995-10-03, assigned to SGI. https://patents.google.com/patent/US5455627A/en
+- Stored copy: [docs/sources/patents/US5455627.pdf](sources/patents/US5455627.pdf), SHA-256 `b07e8358745413a289c21c31d38e947bcf74b7ec53cc97402e54c1b97a89894d`, library path `patents/US5455627-programmable-video-output-format.pdf`.
 - Covers: a video format compiler reading a text description (the input file) and a reprogrammable timing state machine loaded from the compiler's tables. No product is named; the sample is a 1280 x 1024, 60 Hz format.
 - Match: design-level. The shipped `vof/` tables and the format compiler `sdbutil` follow the same two-part shape, which is the reason to read it.
 
@@ -177,6 +186,7 @@ Where it meets the shipped board: [dg.md](dg.md) reads a per-VOC state table of 
 ## 10. US 5,889,529, constant frame rate by dynamic resizing
 
 - Identity: US 5,889,529, "System and method for generating and displaying complex graphic images at a constant frame rate", filed 1996-03-22, granted 1999-03-30, assigned to SGI. https://patents.google.com/patent/US5889529A/en
+- Stored copy: [docs/sources/patents/US5889529.pdf](sources/patents/US5889529.pdf), SHA-256 `33c2e7fded5bbfefa5c5ed4baa67deaf8424a9db0bc08eb9a59f71e92f76dda9`, library path `patents/US5889529-constant-frame-rate-dynamic-resize.pdf`.
 - Covers: drawing at a reduced resolution chosen from the last frame's draw time and magnifying at output in the video output controller. The page names no product.
 - Match: design-level. The paper in source 1 and the technical reports describe the shipped feature (dynamic video resize); the shipped request is the Resize request in [dg.md](dg.md#the-resize-request-8-words).
 
@@ -191,6 +201,7 @@ Bearing: the buffered-then-latched coefficient register is the pattern to look f
 ## 11. US 6,147,695, combining multiple video streams
 
 - Identity: US 6,147,695, "System and method for combining multiple video streams", filed 1998-08-26 (priority 1996-03-22, a continuation in part of source 10), granted 2000-11-14, assigned to SGI. https://patents.google.com/patent/US6147695A/en
+- Stored copy: [docs/sources/patents/US6147695.pdf](sources/patents/US6147695.pdf), SHA-256 `2c2042bc55e35ebfcc8f3d67cc412301da89d0cc3f8804cbb22fd796bcf60ff1`, library path `patents/US6147695-combining-video-streams.pdf`.
 - Covers: overlay and base streams read out and combined after resize; the example system is the InfiniteReality pipe on an Onyx2 module with a GE14 geometry board, RM7 raster boards and DG5 display boards.
 - Match: feature-level and the right generation: it names the Onyx2 board set of this workspace.
 
@@ -205,6 +216,7 @@ Bearing: the overlay-then-base multiplex after the colour-index look-up is the o
 ## 12. US 6,329,996, synchronising graphics pipelines
 
 - Identity: US 6,329,996 B1, "Method and apparatus for synchronizing graphics pipelines", filed 1999-01-08 (granted 2001-12-11), assigned to SGI. https://patents.google.com/patent/US6329996B1/en. The page cites the Onyx2 InfiniteReality and InfiniteReality2 technical report of August 1998.
+- Stored copy: [docs/sources/patents/US6329996.pdf](sources/patents/US6329996.pdf), SHA-256 `36d8e5719f24f28cf2329c41a23cd82ae39e09d185d5888df961a96948902531`, library path `patents/US6329996-synchronizing-graphics-pipelines.pdf`.
 - Covers: several pipes in a daisy chain; no register names.
 - Match: feature-level. The same wired-AND swap-ready line is in source 1 (the paper, section 2.9).
 
@@ -213,6 +225,7 @@ Facts (**inferred**): each pipe has three state bits, current, next and ready-di
 ## 13. US 5,438,654, sharpening texture imagery
 
 - Identity: US 5,438,654, "System and method for sharpening texture imagery in computer generated interactive graphics", filed 1993-07-09, granted 1995-08-01, assigned to SGI. https://patents.google.com/patent/US5438654A/en
+- Stored copy: [docs/sources/patents/US5438654.pdf](sources/patents/US5438654.pdf), SHA-256 `49354c9e5b12d21c1407edf3a5142b6a76df929a701b33fdf89da44b5d13a511`, library path `patents/US5438654-sharpening-texture-imagery.pdf`.
 - Covers: sharpening a magnified texture by extrapolating from the two finest levels. No product is named. The report in source 3 and the paper in source 5 list sharpen texture as an InfiniteReality feature, so the arithmetic is the design the shipped filter chip implements.
 - Match: feature-level. Facts **inferred**.
 
@@ -226,6 +239,7 @@ Where it meets the shipped chip. [RM.h](../RM.h) reads the host's curve tables: 
 ## 14. US 5,471,572, adding detail to texture imagery
 
 - Identity: US 5,471,572, "System and method for adding detail to texture imagery in computer generated interactive graphics", filed 1993-07-09, granted 1995-11-28, assigned to SGI. https://patents.google.com/patent/US5471572A/en
+- Stored copy: [docs/sources/patents/US5471572.pdf](sources/patents/US5471572.pdf), SHA-256 `22ba9fcbbcc173f1ca343c12778685233b49356569dc4ee30fe04d703fb2c61f`, library path `patents/US5471572-adding-detail-texture-imagery.pdf`.
 - Covers: a detail texture, a signed high-frequency band repeated across the base, added or multiplied in as the surface is magnified. The only product it names is an earlier workstation, for making the detail texture offline.
 - Match: feature-level. Facts **inferred**.
 
