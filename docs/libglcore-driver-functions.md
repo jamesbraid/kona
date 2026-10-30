@@ -298,3 +298,21 @@ Read from the IP27 Kona N32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/I
   **Established.** The inverse for the same six arrays: a begin writes 228 and 0x502, another name raises 0x500, and it sends nothing. It clears the array's bit in the word at +5416 and its field in the word at +5404. If the bit was set before it stores minus 1 in the dirty word at +35528, marking every array dirty; if it was already clear it only sets the array's own bit there.
 - `__glkonim_xEnable` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94df40, 312 bytes, `kon_modes.c`):
   **Established.** Enables a capability given by an extended enum through a hash table. A value above 0xffff, or one whose entry is missing, raises 0x500. The entry is the pair of halfwords at the table's byte offset 4 times ((value & 0xff) plus (value >> 7)); the first must equal the value, and the second is the pipe's own code for it. The table sits in the library's uninitialised data (address 0xda8d7d0 in this build) and is filled at run time. It writes the token 36 and the code to the command port. When the code is one of the array codes 173 to 178 it also sets a bit in the context word at +5416: 0x20, 0x1, 0x2, 0x8, 0x4 and 0x10 for 173, 174, 175, 176, 177 and 178.
+
+## Texture existence, detail binding and minmax parameter queries
+
+- `__glkonim_IsTextureEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd96fed0, 156 bytes, `kon_texture_api.c`):
+  **Established.** The Kona glIsTexture. Inside a begin it raises 0x502 and returns 0. A name of 0 returns 0. Any other name is looked up through the shared texture state's find function (the state pointer at context +0x8aac, plus 40, with the function at +0x10000 less 16376), and the answer is 1 when that finds an object and 0 when it does not.
+- `bindDetailTexture` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd96a840, 144 bytes, `kon_texture_api.c`):
+  **Established.** Tells the pipe which detail texture to use. It writes the token 381 and then a slot word: the texture object's cache slot (the second word of the entry at object +272) when bit 0x20000 of the object word at +32 is set, and minus 1 when it is clear. Next it writes the object words at +332, +336, +28, +276 and +280 and finally calls `updateTexUsage` with the context word at +3868 and the object.
+- `__glkonim_GetMinmaxParameterivEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd987460, 152 bytes, `kon_histogram.c`):
+  **Established.** The Kona glGetMinmaxParameterivEXT. A begin raises 0x502 and a target other than 0x802e raises 0x500. The parameter name is not examined: for every name it calls `__glkon_get_special` with 266 and stores, as the one integer result, the word 8 bytes into the block the context word at +31588 points to.
+- `__glkonim_GetMinmaxParameterfvEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd987500, 160 bytes, `kon_histogram.c`):
+  **Established.** The float form with the same checks (0x502 in a begin, 0x500 for a target other than 0x802e, the name ignored) and the same `__glkon_get_special` request 266; the word at +8 of the block at context +31588 is converted to a float and stored.
+
+## Histogram parameter queries
+
+- `__glkonim_GetHistogramParameterivEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9869c0, 236 bytes, `kon_histogram.c`):
+  **Established.** The Kona glGetHistogramParameterivEXT. A begin raises 0x502. Otherwise it asks the pipe with `__glkon_get_special2` (request 261, with the target and the parameter name), then reads the reply block the context word at +31588 points to: the word at +4 is the number of values and the values follow from +8. It copies that many integers to the caller's output, two at a time after an odd first one, and nothing when the count is 0 or negative. It does not check the target or name itself.
+- `__glkonim_GetHistogramParameterfvEXT` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd986ab0, 336 bytes, `kon_histogram.c`):
+  **Established.** The float form: the same 0x502 test and `__glkon_get_special2` request 261, then the integers of the reply block (count at +4, values from +8) are each converted to a float and stored to the output, with the loop unrolled four at a time after the remainder.
