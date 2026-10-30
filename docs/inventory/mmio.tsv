@@ -1,5 +1,5 @@
 window	offset	name	access	sites	binaries	functions	evidence	example	status	doc	section
-command-port	0x0		w4	336	14	KONAdestroyddrn;KONApcxswap;KONAschedmgrswapbuf;KONAschedswapbuf;KONAsetdisplaymode;KONAstart;+18 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	understood	GE.h:177	
+command-port	0x0		w4	336	14	KONAdestroyddrn;KONApcxswap;KONAschedmgrswapbuf;KONAschedswapbuf;KONAsetdisplaymode;KONAstart;+18 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	understood	GE.h:185	
 hip	0x800208	HIP1_HH_GFIFO_LEVEL;HIP2_HH_GFIFO_LEVEL	r4	14	4	kona_delay_monitor_gfifo;kona_die;kona_flow_await_returned_credits;kona_hiwater_intr;kona_hiwater_timeout	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	understood	HIP.h:355	
 hip	0x800210	HH_GFIFO_HI	w4	2	2	kona_flow_init	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o):kona_flow_init	understood	HIP.h:366	
 hip	0x800220	HIP1_HH_INTR_INFO;HIP2_HH_INTR_INFO	r4,w4	6	4	KONAinitialize;kona_die	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	understood	HIP.h:389	
@@ -22,7 +22,7 @@ hip	0x8003a8	HH_TBUS_STATUS	r4,w4	10	6	kona_callout;kona_die;kona_video_intr	acc
 hip	0x8003c0	HH_VC_ADDRESS	w4	94	6	kona_attach;kona_enable_dac_cursor;kona_nclops_bind;kona_nclops_configure;kona_nclops_destroy;kona_nclops_discover;+3 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	understood	HIP.h:811	
 hip	0x8003d0	HH_VC_DATA	r4,w4	98	6	kona_attach;kona_enable_dac_cursor;kona_nclops_bind;kona_nclops_configure;kona_nclops_destroy;kona_nclops_discover;+3 more	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	understood	HIP.h:831	
 hip-alias	0xc00108		w4	138	18	KONAdestroyddrn;KONAmapgfx;KONApcxswap;KONAschedmgrswapbuf;KONAschedswapbuf;KONAsetdisplaymode;+15 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	understood	HIP.h:81	
-user-fifo	0x0		w4,w8	17348	6	GetSingleCompFromPipe;__glKonCopyTexImage;__glKonCreateContext;__glKonCreateContext-0x15e8;__glKonCreateContext-0x1a60;__glKonCreateContext-0x1b80;+335 more	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:GetSingleCompFromPipe	understood	GE.h:177	
+user-fifo	0x0		w4,w8	17348	6	GetSingleCompFromPipe;__glKonCopyTexImage;__glKonCreateContext;__glKonCreateContext-0x15e8;__glKonCreateContext-0x1a60;__glKonCreateContext-0x1b80;+335 more	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:GetSingleCompFromPipe	understood	GE.h:185	
 user-io	0xc00c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	HIP.h:125	
 user-io	0xc014		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	HIP.h:133	
 user-io	0xc01c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	HIP.h:140	

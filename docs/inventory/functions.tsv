@@ -14240,7 +14240,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9481b4	404	__glSdr
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948348	28	__glSdramInit	mdebug	f4808d1f88fb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948364	32	__glSdramMemmove	mdebug	e0fe149dc7a0	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948384	168	__glSdramCopyIn	mdebug	d8f85b033c5f	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94842c	36	__glSdramPushIn	mdebug	9ef28dd35165	named-only	GE.h:5913	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94842c	36	__glSdramPushIn	mdebug	9ef28dd35165	named-only	GE.h:5921	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948450	356	__glKonSdramInvalidate	mdebug	43d059f43cf6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9485b4	568	__glKonSdramSwapIn	mdebug	acf7c90a0c29	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9487ec	384	__glKonSdramForceSwapIn	mdebug	0b54e7fd778b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14248,7 +14248,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94896c	376	__glLoc
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948ae4	92	__glLockedMemoryFree	mdebug	b923f587e75d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948b40	692	__glLockedMemorySbrk	mdebug	9428330223be	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948df4	56	__glLockedMemoryMemmove	mdebug	125f9269b0c0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948e2c	36	__glKonExecuteLDMA	mdebug	ecc5cd82016e	named-only	GE.h:5994	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948e2c	36	__glKonExecuteLDMA	mdebug	ecc5cd82016e	named-only	GE.h:6002	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948e50	200	__glKonExecuteLDMAn	mdebug	8af2df5c16bc	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948f18	172	__glKonExecuteIDMA	mdebug	c1bbcc1a2672	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948fc4	200	__glKonExecuteIDMAn	mdebug	7e88640923b0	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -14299,10 +14299,10 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bc98	72	__glkon_textu
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bce0	72	__glkon_texture_mem_realloc	dynsym+mdebug	d54f119eecfe	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bd28	72	__glkon_unique_per_ge_mem_alloc	dynsym+mdebug	e4d978c48a2d	located	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bd70	132	__glkon_share	dynsym+mdebug	de97127aa7d1	located	docs/opengl.md#__glkon_share	`__glkon_share`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94be00	56	__glkonim_Begin	dynsym+mdebug	e4189842cc41	named-only	GE.h:50	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94be38	20	__glkonim_End	dynsym+mdebug	702e7aa79e9e	named-only	GE.h:51	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94be00	56	__glkonim_Begin	dynsym+mdebug	e4189842cc41	named-only	GE.h:58	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94be38	20	__glkonim_End	dynsym+mdebug	702e7aa79e9e	named-only	GE.h:59	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94be4c	100	__glkonim_Finish	dynsym+mdebug	0fa8f73850ce	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94beb0	24	__glkonim_Flush	dynsym+mdebug	3078de6a4947	named-only	GE.h:3285	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94beb0	24	__glkonim_Flush	dynsym+mdebug	3078de6a4947	named-only	GE.h:3293	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bec8	96	__glkonim_AlphaFunc	dynsym+mdebug	62a5e51de29b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bf28	208	__glkonlc_AlphaFunc	dynsym+mdebug	ad357958c297	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94bff8	96	__glkonim_SampleMaskSGIS	dynsym+mdebug	2b40afb2213f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14319,7 +14319,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94d320	352	__glkonim_Te
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94d480	400	__glkonlc_TexGendv	dynsym+mdebug	2d78ced79527	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94d610	360	__glkonlc_TexGenfv	dynsym+mdebug	f3c68151ac2b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94d778	480	__glkonlc_TexGeniv	dynsym+mdebug	4c875d2766e1	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94d958	16	__glkonim_Clear	dynsym+mdebug	cb06811eb525	named-only	GE.h:597	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94d958	16	__glkonim_Clear	dynsym+mdebug	cb06811eb525	named-only	GE.h:605	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94d968	140	__glkonlc_Clear	dynsym+mdebug	35770449f92e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94d9f4	108	__glkonim_LineWidth	dynsym+mdebug	0a0002f00bf8	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94da60	108	__glkonim_PointSize	dynsym+mdebug	5968b916ab32	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14334,7 +14334,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e3e4	364	__glKonParse
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e550	176	__glKonGetFormatIndex	dynsym+mdebug	277dd6e9e6b9	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e600	192	__glKonGetTypeIndex	dynsym+mdebug	6b914405d8e0	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e6c0	392	__glKonParseInput	dynsym+mdebug	f0bfc6c6519c	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e848	564	__glKonParseHostImage	dynsym+mdebug	7af232af5283	named-only	GE.h:4055	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94e848	564	__glKonParseHostImage	dynsym+mdebug	7af232af5283	named-only	GE.h:4063	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94ea7c	80	GetConvolutionFilter	dynsym+mdebug	49ed8c67da50	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94eacc	1120	__glKonSendData	dynsym+mdebug	57c4d3801d4b	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd94ef2c	212	__glKonPushState	dynsym+mdebug	eb32c36304e9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14488,7 +14488,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95e4d0	444	__glkonim_Pu
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95e68c	360	__glkonim_PopClientAttrib	dynsym+mdebug	e879e84f7735	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95e7f4	8584	__glkonCopyContext	dynsym+mdebug	0e754a1e6829	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd96097c	11156	__glkonResolveContext	dynsym+mdebug	d0187600d73b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78	named-only	GE.h:4431	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78	named-only	GE.h:4439	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9635bc	5892	ResolvePixelContext	mdebug	32276f803aa5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd963cd0	304	__glkonim_SpriteParameterfvSGIX	dynsym+mdebug	9fdd0299eaf1	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd963e00	168	__glkonim_SpriteParameterivSGIX	dynsym+mdebug	640055d43c10	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14527,7 +14527,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	change
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283	located	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966d88	2576	changeFilter	mdebug	00df2425e6bb	located	docs/opengl.md#changefilter	`changeFilter`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeClamp	mdebug	0e9d6a147fff	located	docs/opengl.md#changeclamp	`changeClamp`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967a20	40	loadPostTextureScaleBias	mdebug	f2b05be99aa6	named-only	GE.h:3939	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967a20	40	loadPostTextureScaleBias	mdebug	f2b05be99aa6	named-only	GE.h:3947	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967a48	208	setShadowRegs	mdebug	3596df9d6b2a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967b18	212	changeShadow	mdebug	9b183de19ee4	located	docs/opengl.md#changeshadow	`changeShadow`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967bec	208	lodBias2Scale	mdebug	62c1647ea4ab	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
@@ -14694,8 +14694,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd980124	80	__glKonEvalCo
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd980174	548	__glKonEvalMesh1DHost	dynsym+mdebug	4fe35aa03030	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd980398	104	__glKonEvalCoord2DHost	dynsym+mdebug	e04941541af2	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd980400	2348	__glKonEvalMesh2DHost	dynsym+mdebug	f32f2584a1a3	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd980d2c	24	__glKonEvalCoord1DGe11	dynsym+mdebug	8f58cff09f60	named-only	GE.h:2663	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd980d44	28	__glKonEvalCoord2DGe11	dynsym+mdebug	2cd0d0c74690	named-only	GE.h:2730	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd980d2c	24	__glKonEvalCoord1DGe11	dynsym+mdebug	8f58cff09f60	named-only	GE.h:2671	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd980d44	28	__glKonEvalCoord2DGe11	dynsym+mdebug	2cd0d0c74690	named-only	GE.h:2738	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd980d60	204	__glKonEvalMesh1DGe11	dynsym+mdebug	92ac111e217d	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd980e2c	604	__glKonEvalMesh2DGe11	dynsym+mdebug	cfb75457bbad	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd981088	80	__glKonSendMapSpec1D	dynsym+mdebug	91b3c9b03dda	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
@@ -14812,7 +14812,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98c9e0	160	__glkonlc_De
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98ca80	188	__glkonlc_DeformationMap3dSGIX	dynsym+mdebug	4ced2b308a87	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98cb3c	84	__glkonim_DeformSGIX	dynsym+mdebug	e7770a249626	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98cb90	172	__glkonlc_DeformSGIX	dynsym+mdebug	80d328db613d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98cc3c	20	__glkonim_LoadIdentityDeformationMapSGIX	dynsym+mdebug	ee34ed90e9a7	named-only	GE.h:7257	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98cc3c	20	__glkonim_LoadIdentityDeformationMapSGIX	dynsym+mdebug	ee34ed90e9a7	named-only	GE.h:7265	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98cc50	144	__glkonlc_LoadIdentityDeformationMapSGIX	dynsym+mdebug	e866a34c7057	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98cce0	1364	getDeformationf	mdebug	971383b0e5a9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98ce24	56	__glkon_GetDeformationf	dynsym+mdebug	b504d67e1bd9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -17535,18 +17535,18 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b5e4	32	__glkonim_Nor
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b604	24	__glkonim_Normal3i	dynsym+mdebug	7f14ce26b706	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b61c	72	__glkonim_Normal3s	dynsym+mdebug	b418fafa9989	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b664	40	__glkonim_Normal3sv	dynsym+mdebug	5c31777b9403	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b68c	20	__glkonim_RasterPos2d	dynsym+mdebug	227460c1bcf9	named-only	GE.h:2840	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6a0	20	__glkonim_RasterPos2f	dynsym+mdebug	f7fb9e30fd6f	named-only	GE.h:2855	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6b4	20	__glkonim_RasterPos2i	dynsym+mdebug	fff48c470220	named-only	GE.h:2870	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6c8	44	__glkonim_RasterPos2s	dynsym+mdebug	ad34e09fc683	named-only	GE.h:38	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6f4	28	__glkonim_RasterPos3d	dynsym+mdebug	278480323c8a	named-only	GE.h:2904	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b710	32	__glkonim_RasterPos3f	dynsym+mdebug	2f83f4ac5b49	named-only	GE.h:2919	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b730	24	__glkonim_RasterPos3i	dynsym+mdebug	0c9deb087bab	named-only	GE.h:2934	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b748	60	__glkonim_RasterPos3s	dynsym+mdebug	8997c651f12c	named-only	GE.h:2951	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b784	36	__glkonim_RasterPos4d	dynsym+mdebug	1b72601d3d41	named-only	GE.h:2968	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b7a8	44	__glkonim_RasterPos4f	dynsym+mdebug	b79b10f8782b	named-only	GE.h:2983	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b7d4	28	__glkonim_RasterPos4i	dynsym+mdebug	bb324e3146bd	named-only	GE.h:2998	
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b7f0	76	__glkonim_RasterPos4s	dynsym+mdebug	eefb109c8508	named-only	GE.h:3015	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b68c	20	__glkonim_RasterPos2d	dynsym+mdebug	227460c1bcf9	named-only	GE.h:2848	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6a0	20	__glkonim_RasterPos2f	dynsym+mdebug	f7fb9e30fd6f	named-only	GE.h:2863	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6b4	20	__glkonim_RasterPos2i	dynsym+mdebug	fff48c470220	named-only	GE.h:2878	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6c8	44	__glkonim_RasterPos2s	dynsym+mdebug	ad34e09fc683	named-only	GE.h:46	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6f4	28	__glkonim_RasterPos3d	dynsym+mdebug	278480323c8a	named-only	GE.h:2912	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b710	32	__glkonim_RasterPos3f	dynsym+mdebug	2f83f4ac5b49	named-only	GE.h:2927	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b730	24	__glkonim_RasterPos3i	dynsym+mdebug	0c9deb087bab	named-only	GE.h:2942	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b748	60	__glkonim_RasterPos3s	dynsym+mdebug	8997c651f12c	named-only	GE.h:2959	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b784	36	__glkonim_RasterPos4d	dynsym+mdebug	1b72601d3d41	named-only	GE.h:2976	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b7a8	44	__glkonim_RasterPos4f	dynsym+mdebug	b79b10f8782b	named-only	GE.h:2991	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b7d4	28	__glkonim_RasterPos4i	dynsym+mdebug	bb324e3146bd	named-only	GE.h:3006	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b7f0	76	__glkonim_RasterPos4s	dynsym+mdebug	eefb109c8508	named-only	GE.h:3023	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b83c	16	__glkonim_TexCoord1d	dynsym+mdebug	f75352c7c816	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b84c	16	__glkonim_TexCoord1f	dynsym+mdebug	b3c07d28296e	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b85c	16	__glkonim_TexCoord1i	dynsym+mdebug	fc91dc58efb0	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -19782,7 +19782,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a460	376	__glS
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a5e0	28	__glSdramInit	dwarf+funcnames	53bef9f08b45	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a600	28	__glSdramMemmove	dwarf+funcnames	30bac91e9d92	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a620	144	__glSdramCopyIn	dwarf+funcnames	16c2653544e8	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a6b0	36	__glSdramPushIn	dwarf+funcnames	3e7a5f108787	named-only	GE.h:5913	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a6b0	36	__glSdramPushIn	dwarf+funcnames	3e7a5f108787	named-only	GE.h:5921	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a6e0	304	__glKonSdramInvalidate	dwarf+funcnames	aed27b83eb15	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94a810	620	__glKonSdramSwapIn	dwarf+funcnames	77716f87c60e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94aa80	324	__glKonSdramForceSwapIn	dwarf+funcnames	8a0084bd4674	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -19790,7 +19790,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94abd0	328	__glL
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94ad20	64	__glLockedMemoryFree	dwarf+funcnames	9f55de969eda	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94ad60	700	__glLockedMemorySbrk	dwarf+funcnames	c2d40c93979b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b020	52	__glLockedMemoryMemmove	dwarf+funcnames	e997111f6eb5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b060	32	__glKonExecuteLDMA	dwarf+funcnames	af27675004be	named-only	GE.h:5994	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b060	32	__glKonExecuteLDMA	dwarf+funcnames	af27675004be	named-only	GE.h:6002	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b080	108	__glKonExecuteLDMAn	dwarf+funcnames	730e5a757689	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b0f0	56	__glKonExecuteIDMA	dwarf+funcnames	39e7411f5f51	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd94b130	108	__glKonExecuteIDMAn	dwarf+funcnames	265842084beb	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -19841,10 +19841,10 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94da40	68	__glkon_tex
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94da90	68	__glkon_texture_mem_realloc	dwarf+dynsym	9467ded09e1f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	d4283a215bff	located	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94db30	124	__glkon_share	dwarf+dynsym	75241e10246f	understood	docs/opengl.md#__glkon_share	`__glkon_share`
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dbb0	52	__glkonim_Begin	dwarf+dynsym	75f0ed6d461b	named-only	GE.h:50	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dbf0	20	__glkonim_End	dwarf+dynsym	090885fb1d49	named-only	GE.h:51	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dbb0	52	__glkonim_Begin	dwarf+dynsym	75f0ed6d461b	named-only	GE.h:58	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dbf0	20	__glkonim_End	dwarf+dynsym	090885fb1d49	named-only	GE.h:59	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dc10	92	__glkonim_Finish	dwarf+dynsym	e0c972beb607	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dc70	24	__glkonim_Flush	dwarf+dynsym	a9ae41e3aa18	named-only	GE.h:3285	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dc70	24	__glkonim_Flush	dwarf+dynsym	a9ae41e3aa18	named-only	GE.h:3293	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dc90	80	__glkonim_AlphaFunc	dwarf+dynsym	b21d70bca9e7	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dce0	176	__glkonlc_AlphaFunc	dwarf+dynsym	cc31453f1126	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94dd90	80	__glkonim_SampleMaskSGIS	dwarf+dynsym	e4b90376c410	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -19861,7 +19861,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94f1f0	308	__glkonim_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94f330	448	__glkonlc_TexGendv	dwarf+dynsym	e32bf0964ef4	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94f4f0	404	__glkonlc_TexGenfv	dwarf+dynsym	0845d09f46b6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94f690	488	__glkonlc_TexGeniv	dwarf+dynsym	42025724ab2b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94f880	16	__glkonim_Clear	dwarf+dynsym	fbfd98c66dc5	named-only	GE.h:597	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94f880	16	__glkonim_Clear	dwarf+dynsym	fbfd98c66dc5	named-only	GE.h:605	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94f890	180	__glkonlc_Clear	dwarf+dynsym	6a6004dc10c7	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94f950	76	__glkonim_LineWidth	dwarf+dynsym	e4a13c6ae116	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd94f9a0	76	__glkonim_PointSize	dwarf+dynsym	6c90d0deb14f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -19876,7 +19876,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950260	356	__glKonPar
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9503d0	168	__glKonGetFormatIndex	dwarf+dynsym	3d45b9c9e35b	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950480	212	__glKonGetTypeIndex	dwarf+dynsym	943926b8f696	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950560	404	__glKonParseInput	dwarf+dynsym	fb52bfb9c59c	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950700	536	__glKonParseHostImage	dwarf+dynsym	77f2e5a85ee4	named-only	GE.h:4055	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950700	536	__glKonParseHostImage	dwarf+dynsym	77f2e5a85ee4	named-only	GE.h:4063	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950920	68	GetConvolutionFilter	dwarf+dynsym	8c8d632ffa16	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950970	1052	__glKonSendData	dwarf+dynsym	4be9eb6b7826	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd950d90	224	__glKonPushState	dwarf+dynsym	53a37064eb8c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -20030,7 +20030,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95f5f0	692	__glkonim_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95f8b0	684	__glkonim_PopClientAttrib	dwarf+dynsym	28b117792f59	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95fb60	6876	__glkonCopyContext	dwarf+dynsym	bce0b72cea1a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd961640	8616	__glkonResolveContext	dwarf+dynsym	6ecfcb11d59f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426	named-only	GE.h:4431	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426	named-only	GE.h:4439	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd963890	1172	ResolvePixelContext	dwarf+funcnames	7dfc5374159f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd963d30	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	62c06a682e5b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd963e20	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	9255a625b5cb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -20069,7 +20069,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9663c0	1148	chan
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd966840	116	guessBaseLevel	dwarf+funcnames	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9668c0	4900	changeFilter	dwarf+funcnames	41df356a3e3b	understood	docs/opengl.md#changefilter	`changeFilter`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967bf0	604	changeClamp	dwarf+funcnames	41ff4926380e	understood	docs/opengl.md#changeclamp	`changeClamp`
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967e50	40	loadPostTextureScaleBias	dwarf+funcnames	a8f4ef6370aa	named-only	GE.h:3939	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967e50	40	loadPostTextureScaleBias	dwarf+funcnames	a8f4ef6370aa	named-only	GE.h:3947	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967e80	172	setShadowRegs	dwarf+funcnames	9b63d61356a8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967f30	164	changeShadow	dwarf+funcnames	13f362925ec5	understood	docs/opengl.md#changeshadow	`changeShadow`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd967fe0	140	lodBias2Scale	dwarf+funcnames	7636d54700d2	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
@@ -20236,8 +20236,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97cbe0	76	__glKonEval
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97cc30	540	__glKonEvalMesh1DHost	dwarf+dynsym	562abcb1332e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97ce50	84	__glKonEvalCoord2DHost	dwarf+dynsym	3aab9cac0725	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97ceb0	2188	__glKonEvalMesh2DHost	dwarf+dynsym	3e43e6ae6b0e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97d740	24	__glKonEvalCoord1DGe11	dwarf+dynsym	c0ed5f805743	named-only	GE.h:2663	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97d760	28	__glKonEvalCoord2DGe11	dwarf+dynsym	ec6c992dca7a	named-only	GE.h:2730	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97d740	24	__glKonEvalCoord1DGe11	dwarf+dynsym	c0ed5f805743	named-only	GE.h:2671	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97d760	28	__glKonEvalCoord2DGe11	dwarf+dynsym	ec6c992dca7a	named-only	GE.h:2738	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97d780	228	__glKonEvalMesh1DGe11	dwarf+dynsym	0a496fa06a7a	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97d870	760	__glKonEvalMesh2DGe11	dwarf+dynsym	cd1b652382a0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd97db70	76	__glKonSendMapSpec1D	dwarf+dynsym	de72987998a9	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
@@ -20348,7 +20348,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9888a0	108	__glkonlc_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988910	128	__glkonlc_DeformationMap3dSGIX	dwarf+dynsym	2178522c9d7b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988990	92	__glkonim_DeformSGIX	dwarf+dynsym	ea7a8c80e4e8	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9889f0	164	__glkonlc_DeformSGIX	dwarf+dynsym	8620b395a5eb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988aa0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7257	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988aa0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7265	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988ac0	188	__glkonlc_LoadIdentityDeformationMapSGIX	dwarf+dynsym	f14d87af6c28	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd988b80	284	getDeformationf	dwarf+funcnames	11d6267b0e94	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988ca0	56	__glkon_GetDeformationf	dwarf+dynsym	a65568e86b37	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -23534,18 +23534,18 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65690	24	__glkonim_N
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda656b0	24	__glkonim_Normal3i	dwarf+dynsym	eebd30810659	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda656d0	32	__glkonim_Normal3s	dwarf+dynsym	3a680ab8a62d	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda656f0	40	__glkonim_Normal3sv	dwarf+dynsym	b09a096a94fb	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65720	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138	named-only	GE.h:2840	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65740	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a	named-only	GE.h:2855	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65760	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e	named-only	GE.h:2870	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65780	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461	named-only	GE.h:38	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda657a0	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27	named-only	GE.h:2904	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda657c0	24	__glkonim_RasterPos3f	dwarf+dynsym	4c996830c4da	named-only	GE.h:2919	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda657e0	24	__glkonim_RasterPos3i	dwarf+dynsym	89c0ecd85995	named-only	GE.h:2934	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65800	24	__glkonim_RasterPos3s	dwarf+dynsym	aad2323343d0	named-only	GE.h:2951	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65820	28	__glkonim_RasterPos4d	dwarf+dynsym	161a2d2a5302	named-only	GE.h:2968	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65840	28	__glkonim_RasterPos4f	dwarf+dynsym	2b063290d259	named-only	GE.h:2983	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65860	28	__glkonim_RasterPos4i	dwarf+dynsym	43495d7bf0ae	named-only	GE.h:2998	
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65880	28	__glkonim_RasterPos4s	dwarf+dynsym	a3bf9f9f8db1	named-only	GE.h:3015	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65720	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138	named-only	GE.h:2848	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65740	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a	named-only	GE.h:2863	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65760	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e	named-only	GE.h:2878	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65780	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461	named-only	GE.h:46	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda657a0	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27	named-only	GE.h:2912	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda657c0	24	__glkonim_RasterPos3f	dwarf+dynsym	4c996830c4da	named-only	GE.h:2927	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda657e0	24	__glkonim_RasterPos3i	dwarf+dynsym	89c0ecd85995	named-only	GE.h:2942	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65800	24	__glkonim_RasterPos3s	dwarf+dynsym	aad2323343d0	named-only	GE.h:2959	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65820	28	__glkonim_RasterPos4d	dwarf+dynsym	161a2d2a5302	named-only	GE.h:2976	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65840	28	__glkonim_RasterPos4f	dwarf+dynsym	2b063290d259	named-only	GE.h:2991	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65860	28	__glkonim_RasterPos4i	dwarf+dynsym	43495d7bf0ae	named-only	GE.h:3006	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65880	28	__glkonim_RasterPos4s	dwarf+dynsym	a3bf9f9f8db1	named-only	GE.h:3023	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda658a0	16	__glkonim_TexCoord1d	dwarf+dynsym	e9d156599877	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda658b0	16	__glkonim_TexCoord1f	dwarf+dynsym	ceae2507d979	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda658c0	16	__glkonim_TexCoord1i	dwarf+dynsym	cd38ffef678b	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -25362,7 +25362,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac360	348	__glS
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac4c0	28	__glSdramInit	dwarf	34a74c5dc659	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac4e0	28	__glSdramMemmove	dwarf	30bac91e9d92	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac500	144	__glSdramCopyIn	dwarf	9b361b5ca161	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac590	36	__glSdramPushIn	dwarf	df54c5533d19	named-only	GE.h:5913	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac590	36	__glSdramPushIn	dwarf	df54c5533d19	named-only	GE.h:5921	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac5c0	312	__glKonSdramInvalidate	dwarf	9de2351c4b99	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac700	640	__glKonSdramSwapIn	dwarf	b122b4aec843	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac980	332	__glKonSdramForceSwapIn	dwarf	1105ad295e2c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25370,7 +25370,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacad0	344	__glL
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacc30	64	__glLockedMemoryFree	dwarf	247235cf702a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacc70	712	__glLockedMemorySbrk	dwarf	c2cda330a0a0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacf40	52	__glLockedMemoryMemmove	dwarf	726124434ef9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacf80	32	__glKonExecuteLDMA	dwarf	379f716d1b7c	named-only	GE.h:5994	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacf80	32	__glKonExecuteLDMA	dwarf	379f716d1b7c	named-only	GE.h:6002	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dacfa0	236	__glKonExecuteLDMAn	dwarf	2badfb33d995	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dad090	180	__glKonExecuteIDMA	dwarf	165d2ccf3ebc	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dad150	236	__glKonExecuteIDMAn	dwarf	8e7c86127868	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -25421,10 +25421,10 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafb40	68	__glkon_tex
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafb90	68	__glkon_texture_mem_realloc	dwarf+dynsym	72cd7fee2cae	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafbe0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	9fb5c6513a95	located	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafc30	124	__glkon_share	dwarf+dynsym	46a55503f9db	located	docs/opengl.md#__glkon_share	`__glkon_share`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafcb0	52	__glkonim_Begin	dwarf+dynsym	c3d708f41211	named-only	GE.h:50	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafcf0	20	__glkonim_End	dwarf+dynsym	e474e465dac7	named-only	GE.h:51	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafcb0	52	__glkonim_Begin	dwarf+dynsym	c3d708f41211	named-only	GE.h:58	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafcf0	20	__glkonim_End	dwarf+dynsym	e474e465dac7	named-only	GE.h:59	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafd10	92	__glkonim_Finish	dwarf+dynsym	02a8abc35e0d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafd70	24	__glkonim_Flush	dwarf+dynsym	a9ae41e3aa18	named-only	GE.h:3285	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafd70	24	__glkonim_Flush	dwarf+dynsym	a9ae41e3aa18	named-only	GE.h:3293	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafd90	80	__glkonim_AlphaFunc	dwarf+dynsym	11ca3974ce37	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafde0	176	__glkonlc_AlphaFunc	dwarf+dynsym	4dbf28670a6a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dafe90	80	__glkonim_SampleMaskSGIS	dwarf+dynsym	5e63dc49fabe	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25441,7 +25441,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db12f0	308	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db1430	448	__glkonlc_TexGendv	dwarf+dynsym	dcb67371963a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db15f0	404	__glkonlc_TexGenfv	dwarf+dynsym	eb7f354e917a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db1790	488	__glkonlc_TexGeniv	dwarf+dynsym	14f728d87369	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db1980	16	__glkonim_Clear	dwarf+dynsym	fbfd98c66dc5	named-only	GE.h:597	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db1980	16	__glkonim_Clear	dwarf+dynsym	fbfd98c66dc5	named-only	GE.h:605	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db1990	180	__glkonlc_Clear	dwarf+dynsym	8dc3568c7c36	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db1a50	76	__glkonim_LineWidth	dwarf+dynsym	a2acf2dfd9be	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db1aa0	76	__glkonim_PointSize	dwarf+dynsym	bb553f7e946f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25456,7 +25456,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2330	356	__glKonPar
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db24a0	168	__glKonGetFormatIndex	dwarf+dynsym	f5ed78ecf8a2	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2550	212	__glKonGetTypeIndex	dwarf+dynsym	446019d52122	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2630	404	__glKonParseInput	dwarf+dynsym	dcc98d454077	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db27d0	544	__glKonParseHostImage	dwarf+dynsym	b0beb0800792	named-only	GE.h:4055	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db27d0	544	__glKonParseHostImage	dwarf+dynsym	b0beb0800792	named-only	GE.h:4063	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db29f0	68	GetConvolutionFilter	dwarf+dynsym	84cfdebb4f0b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2a40	1068	__glKonSendData	dwarf+dynsym	545990b50402	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db2e70	224	__glKonPushState	dwarf+dynsym	e19cb9eaac93	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25610,7 +25610,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc1a70	636	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc1cf0	572	__glkonim_PopClientAttrib	dwarf+dynsym	c2fdb519a83e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc1f30	6852	__glkonCopyContext	dwarf+dynsym	a34ac8bb2878	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc3a00	8636	__glkonResolveContext	dwarf+dynsym	7131c610c187	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc5bc0	148	setCurrentRaster	dwarf	873ef05636d0	named-only	GE.h:4431	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc5bc0	148	setCurrentRaster	dwarf	873ef05636d0	named-only	GE.h:4439	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc5c60	1172	ResolvePixelContext	dwarf	702e298be9b7	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc6100	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	c1c97d1dcc53	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc61f0	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	6d4015b848a9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25649,7 +25649,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc87e0	1148	chan
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8c60	116	guessBaseLevel	dwarf	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8ce0	4916	changeFilter	dwarf	1a1a6986a431	located	docs/opengl.md#changefilter	`changeFilter`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca020	612	changeClamp	dwarf	69abaa85072a	located	docs/opengl.md#changeclamp	`changeClamp`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca290	40	loadPostTextureScaleBias	dwarf	2593b30b6fcf	named-only	GE.h:3939	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca290	40	loadPostTextureScaleBias	dwarf	2593b30b6fcf	named-only	GE.h:3947	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca2c0	172	setShadowRegs	dwarf	e5d5ccabeca6	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca370	164	changeShadow	dwarf	74396169d2aa	located	docs/opengl.md#changeshadow	`changeShadow`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca420	140	lodBias2Scale	dwarf	d099770ddcd6	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
@@ -25816,8 +25816,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddf560	76	__glKonEval
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddf5b0	540	__glKonEvalMesh1DHost	dwarf+dynsym	84adcd5ac37d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddf7d0	84	__glKonEvalCoord2DHost	dwarf+dynsym	26ebfd4e0d84	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddf830	2148	__glKonEvalMesh2DHost	dwarf+dynsym	c15980b60088	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de00a0	24	__glKonEvalCoord1DGe11	dwarf+dynsym	c0ed5f805743	named-only	GE.h:2663	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de00c0	28	__glKonEvalCoord2DGe11	dwarf+dynsym	ec6c992dca7a	named-only	GE.h:2730	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de00a0	24	__glKonEvalCoord1DGe11	dwarf+dynsym	c0ed5f805743	named-only	GE.h:2671	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de00c0	28	__glKonEvalCoord2DGe11	dwarf+dynsym	ec6c992dca7a	named-only	GE.h:2738	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de00e0	228	__glKonEvalMesh1DGe11	dwarf+dynsym	0a496fa06a7a	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de01d0	760	__glKonEvalMesh2DGe11	dwarf+dynsym	382bc1b0c2b6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de04d0	76	__glKonSendMapSpec1D	dwarf+dynsym	de72987998a9	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
@@ -25928,7 +25928,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb3c0	108	__glkonlc_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb430	128	__glkonlc_DeformationMap3dSGIX	dwarf+dynsym	bf917c0fed39	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb4b0	92	__glkonim_DeformSGIX	dwarf+dynsym	8581462927f0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb510	164	__glkonlc_DeformSGIX	dwarf+dynsym	dd62dd3000bb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb5c0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7257	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb5c0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7265	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb5e0	188	__glkonlc_LoadIdentityDeformationMapSGIX	dwarf+dynsym	329a005c42ad	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2deb6a0	284	getDeformationf	dwarf	76ec35c48d62	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb7c0	56	__glkon_GetDeformationf	dwarf+dynsym	a47ba7ec6153	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -29114,18 +29114,18 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecab60	24	__glkonim_N
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecab80	24	__glkonim_Normal3i	dwarf+dynsym	eebd30810659	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecaba0	32	__glkonim_Normal3s	dwarf+dynsym	3a680ab8a62d	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecabc0	40	__glkonim_Normal3sv	dwarf+dynsym	b09a096a94fb	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecabf0	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138	named-only	GE.h:2840	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac10	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a	named-only	GE.h:2855	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac30	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e	named-only	GE.h:2870	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac50	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461	named-only	GE.h:38	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac70	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27	named-only	GE.h:2904	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac90	24	__glkonim_RasterPos3f	dwarf+dynsym	4c996830c4da	named-only	GE.h:2919	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecacb0	24	__glkonim_RasterPos3i	dwarf+dynsym	89c0ecd85995	named-only	GE.h:2934	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecacd0	24	__glkonim_RasterPos3s	dwarf+dynsym	aad2323343d0	named-only	GE.h:2951	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecacf0	28	__glkonim_RasterPos4d	dwarf+dynsym	161a2d2a5302	named-only	GE.h:2968	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecad10	28	__glkonim_RasterPos4f	dwarf+dynsym	2b063290d259	named-only	GE.h:2983	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecad30	28	__glkonim_RasterPos4i	dwarf+dynsym	43495d7bf0ae	named-only	GE.h:2998	
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecad50	28	__glkonim_RasterPos4s	dwarf+dynsym	a3bf9f9f8db1	named-only	GE.h:3015	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecabf0	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138	named-only	GE.h:2848	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac10	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a	named-only	GE.h:2863	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac30	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e	named-only	GE.h:2878	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac50	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461	named-only	GE.h:46	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac70	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27	named-only	GE.h:2912	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac90	24	__glkonim_RasterPos3f	dwarf+dynsym	4c996830c4da	named-only	GE.h:2927	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecacb0	24	__glkonim_RasterPos3i	dwarf+dynsym	89c0ecd85995	named-only	GE.h:2942	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecacd0	24	__glkonim_RasterPos3s	dwarf+dynsym	aad2323343d0	named-only	GE.h:2959	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecacf0	28	__glkonim_RasterPos4d	dwarf+dynsym	161a2d2a5302	named-only	GE.h:2976	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecad10	28	__glkonim_RasterPos4f	dwarf+dynsym	2b063290d259	named-only	GE.h:2991	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecad30	28	__glkonim_RasterPos4i	dwarf+dynsym	43495d7bf0ae	named-only	GE.h:3006	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecad50	28	__glkonim_RasterPos4s	dwarf+dynsym	a3bf9f9f8db1	named-only	GE.h:3023	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecad70	16	__glkonim_TexCoord1d	dwarf+dynsym	e9d156599877	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecad80	16	__glkonim_TexCoord1f	dwarf+dynsym	ceae2507d979	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecad90	16	__glkonim_TexCoord1i	dwarf+dynsym	cd38ffef678b	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -30939,7 +30939,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9481b4	404	__glSdr
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948348	28	__glSdramInit	mdebug	f4808d1f88fb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948364	32	__glSdramMemmove	mdebug	e0fe149dc7a0	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948384	168	__glSdramCopyIn	mdebug	d8f85b033c5f	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94842c	36	__glSdramPushIn	mdebug	9ef28dd35165	named-only	GE.h:5913	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94842c	36	__glSdramPushIn	mdebug	9ef28dd35165	named-only	GE.h:5921	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948450	356	__glKonSdramInvalidate	mdebug	43d059f43cf6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9485b4	568	__glKonSdramSwapIn	mdebug	acf7c90a0c29	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9487ec	384	__glKonSdramForceSwapIn	mdebug	0b54e7fd778b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -30947,7 +30947,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94896c	376	__glLoc
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948ae4	92	__glLockedMemoryFree	mdebug	b923f587e75d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948b40	692	__glLockedMemorySbrk	mdebug	9428330223be	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948df4	56	__glLockedMemoryMemmove	mdebug	125f9269b0c0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948e2c	36	__glKonExecuteLDMA	mdebug	ecc5cd82016e	named-only	GE.h:5994	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948e2c	36	__glKonExecuteLDMA	mdebug	ecc5cd82016e	named-only	GE.h:6002	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948e50	200	__glKonExecuteLDMAn	mdebug	8af2df5c16bc	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948f18	172	__glKonExecuteIDMA	mdebug	c1bbcc1a2672	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948fc4	200	__glKonExecuteIDMAn	mdebug	7e88640923b0	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -30998,10 +30998,10 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bc98	72	__glkon_textu
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bce0	72	__glkon_texture_mem_realloc	dynsym+mdebug	d54f119eecfe	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bd28	72	__glkon_unique_per_ge_mem_alloc	dynsym+mdebug	e4d978c48a2d	located	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bd70	132	__glkon_share	dynsym+mdebug	de97127aa7d1	located	docs/opengl.md#__glkon_share	`__glkon_share`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94be00	56	__glkonim_Begin	dynsym+mdebug	e4189842cc41	named-only	GE.h:50	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94be38	20	__glkonim_End	dynsym+mdebug	702e7aa79e9e	named-only	GE.h:51	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94be00	56	__glkonim_Begin	dynsym+mdebug	e4189842cc41	named-only	GE.h:58	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94be38	20	__glkonim_End	dynsym+mdebug	702e7aa79e9e	named-only	GE.h:59	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94be4c	100	__glkonim_Finish	dynsym+mdebug	0fa8f73850ce	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94beb0	24	__glkonim_Flush	dynsym+mdebug	3078de6a4947	named-only	GE.h:3285	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94beb0	24	__glkonim_Flush	dynsym+mdebug	3078de6a4947	named-only	GE.h:3293	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bec8	96	__glkonim_AlphaFunc	dynsym+mdebug	62a5e51de29b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bf28	208	__glkonlc_AlphaFunc	dynsym+mdebug	ad357958c297	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94bff8	96	__glkonim_SampleMaskSGIS	dynsym+mdebug	2b40afb2213f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31018,7 +31018,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94d320	352	__glkonim_Te
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94d480	400	__glkonlc_TexGendv	dynsym+mdebug	2d78ced79527	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94d610	360	__glkonlc_TexGenfv	dynsym+mdebug	f3c68151ac2b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94d778	480	__glkonlc_TexGeniv	dynsym+mdebug	4c875d2766e1	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94d958	16	__glkonim_Clear	dynsym+mdebug	cb06811eb525	named-only	GE.h:597	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94d958	16	__glkonim_Clear	dynsym+mdebug	cb06811eb525	named-only	GE.h:605	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94d968	140	__glkonlc_Clear	dynsym+mdebug	35770449f92e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94d9f4	108	__glkonim_LineWidth	dynsym+mdebug	0a0002f00bf8	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94da60	108	__glkonim_PointSize	dynsym+mdebug	5968b916ab32	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31033,7 +31033,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e3e4	364	__glKonParse
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e550	176	__glKonGetFormatIndex	dynsym+mdebug	277dd6e9e6b9	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e600	192	__glKonGetTypeIndex	dynsym+mdebug	6b914405d8e0	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e6c0	392	__glKonParseInput	dynsym+mdebug	f0bfc6c6519c	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e848	564	__glKonParseHostImage	dynsym+mdebug	7af232af5283	named-only	GE.h:4055	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94e848	564	__glKonParseHostImage	dynsym+mdebug	7af232af5283	named-only	GE.h:4063	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94ea7c	80	GetConvolutionFilter	dynsym+mdebug	49ed8c67da50	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94eacc	1120	__glKonSendData	dynsym+mdebug	57c4d3801d4b	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd94ef2c	212	__glKonPushState	dynsym+mdebug	eb32c36304e9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31187,7 +31187,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95e4d0	444	__glkonim_Pu
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95e68c	360	__glkonim_PopClientAttrib	dynsym+mdebug	e879e84f7735	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95e7f4	8584	__glkonCopyContext	dynsym+mdebug	0e754a1e6829	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd96097c	11156	__glkonResolveContext	dynsym+mdebug	d0187600d73b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78	named-only	GE.h:4431	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78	named-only	GE.h:4439	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9635bc	5892	ResolvePixelContext	mdebug	32276f803aa5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd963cd0	304	__glkonim_SpriteParameterfvSGIX	dynsym+mdebug	9fdd0299eaf1	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd963e00	168	__glkonim_SpriteParameterivSGIX	dynsym+mdebug	640055d43c10	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31226,7 +31226,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	change
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283	located	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966d88	2576	changeFilter	mdebug	00df2425e6bb	located	docs/opengl.md#changefilter	`changeFilter`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeClamp	mdebug	0e9d6a147fff	located	docs/opengl.md#changeclamp	`changeClamp`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967a20	40	loadPostTextureScaleBias	mdebug	f2b05be99aa6	named-only	GE.h:3939	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967a20	40	loadPostTextureScaleBias	mdebug	f2b05be99aa6	named-only	GE.h:3947	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967a48	208	setShadowRegs	mdebug	3596df9d6b2a	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967b18	212	changeShadow	mdebug	9b183de19ee4	located	docs/opengl.md#changeshadow	`changeShadow`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967bec	208	lodBias2Scale	mdebug	62c1647ea4ab	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
@@ -31393,8 +31393,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd980124	80	__glKonEvalCo
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd980174	548	__glKonEvalMesh1DHost	dynsym+mdebug	4fe35aa03030	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd980398	104	__glKonEvalCoord2DHost	dynsym+mdebug	e04941541af2	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd980400	2348	__glKonEvalMesh2DHost	dynsym+mdebug	f32f2584a1a3	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd980d2c	24	__glKonEvalCoord1DGe11	dynsym+mdebug	8f58cff09f60	named-only	GE.h:2663	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd980d44	28	__glKonEvalCoord2DGe11	dynsym+mdebug	2cd0d0c74690	named-only	GE.h:2730	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd980d2c	24	__glKonEvalCoord1DGe11	dynsym+mdebug	8f58cff09f60	named-only	GE.h:2671	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd980d44	28	__glKonEvalCoord2DGe11	dynsym+mdebug	2cd0d0c74690	named-only	GE.h:2738	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd980d60	204	__glKonEvalMesh1DGe11	dynsym+mdebug	92ac111e217d	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd980e2c	604	__glKonEvalMesh2DGe11	dynsym+mdebug	cfb75457bbad	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd981088	80	__glKonSendMapSpec1D	dynsym+mdebug	91b3c9b03dda	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
@@ -31511,7 +31511,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98c9e0	160	__glkonlc_De
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98ca80	188	__glkonlc_DeformationMap3dSGIX	dynsym+mdebug	4ced2b308a87	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98cb3c	84	__glkonim_DeformSGIX	dynsym+mdebug	e7770a249626	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98cb90	172	__glkonlc_DeformSGIX	dynsym+mdebug	80d328db613d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98cc3c	20	__glkonim_LoadIdentityDeformationMapSGIX	dynsym+mdebug	ee34ed90e9a7	named-only	GE.h:7257	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98cc3c	20	__glkonim_LoadIdentityDeformationMapSGIX	dynsym+mdebug	ee34ed90e9a7	named-only	GE.h:7265	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98cc50	144	__glkonlc_LoadIdentityDeformationMapSGIX	dynsym+mdebug	e866a34c7057	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98cce0	1364	getDeformationf	mdebug	971383b0e5a9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98ce24	56	__glkon_GetDeformationf	dynsym+mdebug	b504d67e1bd9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -34234,18 +34234,18 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b5e4	32	__glkonim_Nor
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b604	24	__glkonim_Normal3i	dynsym+mdebug	7f14ce26b706	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b61c	72	__glkonim_Normal3s	dynsym+mdebug	b418fafa9989	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b664	40	__glkonim_Normal3sv	dynsym+mdebug	5c31777b9403	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b68c	20	__glkonim_RasterPos2d	dynsym+mdebug	227460c1bcf9	named-only	GE.h:2840	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6a0	20	__glkonim_RasterPos2f	dynsym+mdebug	f7fb9e30fd6f	named-only	GE.h:2855	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6b4	20	__glkonim_RasterPos2i	dynsym+mdebug	fff48c470220	named-only	GE.h:2870	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6c8	44	__glkonim_RasterPos2s	dynsym+mdebug	ad34e09fc683	named-only	GE.h:38	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6f4	28	__glkonim_RasterPos3d	dynsym+mdebug	278480323c8a	named-only	GE.h:2904	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b710	32	__glkonim_RasterPos3f	dynsym+mdebug	2f83f4ac5b49	named-only	GE.h:2919	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b730	24	__glkonim_RasterPos3i	dynsym+mdebug	0c9deb087bab	named-only	GE.h:2934	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b748	60	__glkonim_RasterPos3s	dynsym+mdebug	8997c651f12c	named-only	GE.h:2951	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b784	36	__glkonim_RasterPos4d	dynsym+mdebug	1b72601d3d41	named-only	GE.h:2968	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b7a8	44	__glkonim_RasterPos4f	dynsym+mdebug	b79b10f8782b	named-only	GE.h:2983	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b7d4	28	__glkonim_RasterPos4i	dynsym+mdebug	bb324e3146bd	named-only	GE.h:2998	
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b7f0	76	__glkonim_RasterPos4s	dynsym+mdebug	eefb109c8508	named-only	GE.h:3015	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b68c	20	__glkonim_RasterPos2d	dynsym+mdebug	227460c1bcf9	named-only	GE.h:2848	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6a0	20	__glkonim_RasterPos2f	dynsym+mdebug	f7fb9e30fd6f	named-only	GE.h:2863	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6b4	20	__glkonim_RasterPos2i	dynsym+mdebug	fff48c470220	named-only	GE.h:2878	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6c8	44	__glkonim_RasterPos2s	dynsym+mdebug	ad34e09fc683	named-only	GE.h:46	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6f4	28	__glkonim_RasterPos3d	dynsym+mdebug	278480323c8a	named-only	GE.h:2912	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b710	32	__glkonim_RasterPos3f	dynsym+mdebug	2f83f4ac5b49	named-only	GE.h:2927	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b730	24	__glkonim_RasterPos3i	dynsym+mdebug	0c9deb087bab	named-only	GE.h:2942	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b748	60	__glkonim_RasterPos3s	dynsym+mdebug	8997c651f12c	named-only	GE.h:2959	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b784	36	__glkonim_RasterPos4d	dynsym+mdebug	1b72601d3d41	named-only	GE.h:2976	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b7a8	44	__glkonim_RasterPos4f	dynsym+mdebug	b79b10f8782b	named-only	GE.h:2991	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b7d4	28	__glkonim_RasterPos4i	dynsym+mdebug	bb324e3146bd	named-only	GE.h:3006	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b7f0	76	__glkonim_RasterPos4s	dynsym+mdebug	eefb109c8508	named-only	GE.h:3023	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b83c	16	__glkonim_TexCoord1d	dynsym+mdebug	f75352c7c816	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b84c	16	__glkonim_TexCoord1f	dynsym+mdebug	b3c07d28296e	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b85c	16	__glkonim_TexCoord1i	dynsym+mdebug	fc91dc58efb0	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -36481,7 +36481,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a460	376	__glS
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a5e0	28	__glSdramInit	dwarf+funcnames	53bef9f08b45	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a600	28	__glSdramMemmove	dwarf+funcnames	30bac91e9d92	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a620	144	__glSdramCopyIn	dwarf+funcnames	16c2653544e8	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a6b0	36	__glSdramPushIn	dwarf+funcnames	3e7a5f108787	named-only	GE.h:5913	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a6b0	36	__glSdramPushIn	dwarf+funcnames	3e7a5f108787	named-only	GE.h:5921	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a6e0	304	__glKonSdramInvalidate	dwarf+funcnames	aed27b83eb15	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94a810	620	__glKonSdramSwapIn	dwarf+funcnames	77716f87c60e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94aa80	324	__glKonSdramForceSwapIn	dwarf+funcnames	8a0084bd4674	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36489,7 +36489,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94abd0	328	__glL
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94ad20	64	__glLockedMemoryFree	dwarf+funcnames	9f55de969eda	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94ad60	700	__glLockedMemorySbrk	dwarf+funcnames	c2d40c93979b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b020	52	__glLockedMemoryMemmove	dwarf+funcnames	e997111f6eb5	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b060	32	__glKonExecuteLDMA	dwarf+funcnames	af27675004be	named-only	GE.h:5994	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b060	32	__glKonExecuteLDMA	dwarf+funcnames	af27675004be	named-only	GE.h:6002	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b080	108	__glKonExecuteLDMAn	dwarf+funcnames	730e5a757689	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b0f0	56	__glKonExecuteIDMA	dwarf+funcnames	39e7411f5f51	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd94b130	108	__glKonExecuteIDMAn	dwarf+funcnames	265842084beb	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -36540,10 +36540,10 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94da40	68	__glkon_tex
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94da90	68	__glkon_texture_mem_realloc	dwarf+dynsym	9467ded09e1f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dae0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	d4283a215bff	located	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94db30	124	__glkon_share	dwarf+dynsym	75241e10246f	understood	docs/opengl.md#__glkon_share	`__glkon_share`
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dbb0	52	__glkonim_Begin	dwarf+dynsym	75f0ed6d461b	named-only	GE.h:50	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dbf0	20	__glkonim_End	dwarf+dynsym	090885fb1d49	named-only	GE.h:51	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dbb0	52	__glkonim_Begin	dwarf+dynsym	75f0ed6d461b	named-only	GE.h:58	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dbf0	20	__glkonim_End	dwarf+dynsym	090885fb1d49	named-only	GE.h:59	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dc10	92	__glkonim_Finish	dwarf+dynsym	e0c972beb607	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dc70	24	__glkonim_Flush	dwarf+dynsym	a9ae41e3aa18	named-only	GE.h:3285	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dc70	24	__glkonim_Flush	dwarf+dynsym	a9ae41e3aa18	named-only	GE.h:3293	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dc90	80	__glkonim_AlphaFunc	dwarf+dynsym	b21d70bca9e7	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dce0	176	__glkonlc_AlphaFunc	dwarf+dynsym	cc31453f1126	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94dd90	80	__glkonim_SampleMaskSGIS	dwarf+dynsym	e4b90376c410	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36560,7 +36560,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94f1f0	308	__glkonim_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94f330	448	__glkonlc_TexGendv	dwarf+dynsym	e32bf0964ef4	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94f4f0	404	__glkonlc_TexGenfv	dwarf+dynsym	0845d09f46b6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94f690	488	__glkonlc_TexGeniv	dwarf+dynsym	42025724ab2b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94f880	16	__glkonim_Clear	dwarf+dynsym	fbfd98c66dc5	named-only	GE.h:597	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94f880	16	__glkonim_Clear	dwarf+dynsym	fbfd98c66dc5	named-only	GE.h:605	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94f890	180	__glkonlc_Clear	dwarf+dynsym	6a6004dc10c7	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94f950	76	__glkonim_LineWidth	dwarf+dynsym	e4a13c6ae116	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd94f9a0	76	__glkonim_PointSize	dwarf+dynsym	6c90d0deb14f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36575,7 +36575,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950260	356	__glKonPar
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9503d0	168	__glKonGetFormatIndex	dwarf+dynsym	3d45b9c9e35b	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950480	212	__glKonGetTypeIndex	dwarf+dynsym	943926b8f696	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950560	404	__glKonParseInput	dwarf+dynsym	fb52bfb9c59c	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950700	536	__glKonParseHostImage	dwarf+dynsym	77f2e5a85ee4	named-only	GE.h:4055	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950700	536	__glKonParseHostImage	dwarf+dynsym	77f2e5a85ee4	named-only	GE.h:4063	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950920	68	GetConvolutionFilter	dwarf+dynsym	8c8d632ffa16	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950970	1052	__glKonSendData	dwarf+dynsym	4be9eb6b7826	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd950d90	224	__glKonPushState	dwarf+dynsym	53a37064eb8c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36729,7 +36729,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95f5f0	692	__glkonim_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95f8b0	684	__glkonim_PopClientAttrib	dwarf+dynsym	28b117792f59	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95fb60	6876	__glkonCopyContext	dwarf+dynsym	bce0b72cea1a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd961640	8616	__glkonResolveContext	dwarf+dynsym	6ecfcb11d59f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426	named-only	GE.h:4431	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426	named-only	GE.h:4439	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd963890	1172	ResolvePixelContext	dwarf+funcnames	7dfc5374159f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd963d30	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	62c06a682e5b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd963e20	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	9255a625b5cb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36768,7 +36768,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9663c0	1148	chan
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd966840	116	guessBaseLevel	dwarf+funcnames	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9668c0	4900	changeFilter	dwarf+funcnames	41df356a3e3b	understood	docs/opengl.md#changefilter	`changeFilter`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967bf0	604	changeClamp	dwarf+funcnames	41ff4926380e	understood	docs/opengl.md#changeclamp	`changeClamp`
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967e50	40	loadPostTextureScaleBias	dwarf+funcnames	a8f4ef6370aa	named-only	GE.h:3939	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967e50	40	loadPostTextureScaleBias	dwarf+funcnames	a8f4ef6370aa	named-only	GE.h:3947	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967e80	172	setShadowRegs	dwarf+funcnames	9b63d61356a8	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967f30	164	changeShadow	dwarf+funcnames	13f362925ec5	understood	docs/opengl.md#changeshadow	`changeShadow`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd967fe0	140	lodBias2Scale	dwarf+funcnames	7636d54700d2	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
@@ -36935,8 +36935,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97cbe0	76	__glKonEval
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97cc30	540	__glKonEvalMesh1DHost	dwarf+dynsym	562abcb1332e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97ce50	84	__glKonEvalCoord2DHost	dwarf+dynsym	3aab9cac0725	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97ceb0	2188	__glKonEvalMesh2DHost	dwarf+dynsym	3e43e6ae6b0e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97d740	24	__glKonEvalCoord1DGe11	dwarf+dynsym	c0ed5f805743	named-only	GE.h:2663	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97d760	28	__glKonEvalCoord2DGe11	dwarf+dynsym	ec6c992dca7a	named-only	GE.h:2730	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97d740	24	__glKonEvalCoord1DGe11	dwarf+dynsym	c0ed5f805743	named-only	GE.h:2671	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97d760	28	__glKonEvalCoord2DGe11	dwarf+dynsym	ec6c992dca7a	named-only	GE.h:2738	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97d780	228	__glKonEvalMesh1DGe11	dwarf+dynsym	0a496fa06a7a	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97d870	760	__glKonEvalMesh2DGe11	dwarf+dynsym	cd1b652382a0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd97db70	76	__glKonSendMapSpec1D	dwarf+dynsym	de72987998a9	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
@@ -37047,7 +37047,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9888a0	108	__glkonlc_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988910	128	__glkonlc_DeformationMap3dSGIX	dwarf+dynsym	2178522c9d7b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988990	92	__glkonim_DeformSGIX	dwarf+dynsym	ea7a8c80e4e8	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9889f0	164	__glkonlc_DeformSGIX	dwarf+dynsym	8620b395a5eb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988aa0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7257	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988aa0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7265	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988ac0	188	__glkonlc_LoadIdentityDeformationMapSGIX	dwarf+dynsym	f14d87af6c28	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd988b80	284	getDeformationf	dwarf+funcnames	11d6267b0e94	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988ca0	56	__glkon_GetDeformationf	dwarf+dynsym	a65568e86b37	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -40233,18 +40233,18 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65690	24	__glkonim_N
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda656b0	24	__glkonim_Normal3i	dwarf+dynsym	eebd30810659	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda656d0	32	__glkonim_Normal3s	dwarf+dynsym	3a680ab8a62d	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda656f0	40	__glkonim_Normal3sv	dwarf+dynsym	b09a096a94fb	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65720	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138	named-only	GE.h:2840	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65740	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a	named-only	GE.h:2855	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65760	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e	named-only	GE.h:2870	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65780	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461	named-only	GE.h:38	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda657a0	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27	named-only	GE.h:2904	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda657c0	24	__glkonim_RasterPos3f	dwarf+dynsym	4c996830c4da	named-only	GE.h:2919	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda657e0	24	__glkonim_RasterPos3i	dwarf+dynsym	89c0ecd85995	named-only	GE.h:2934	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65800	24	__glkonim_RasterPos3s	dwarf+dynsym	aad2323343d0	named-only	GE.h:2951	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65820	28	__glkonim_RasterPos4d	dwarf+dynsym	161a2d2a5302	named-only	GE.h:2968	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65840	28	__glkonim_RasterPos4f	dwarf+dynsym	2b063290d259	named-only	GE.h:2983	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65860	28	__glkonim_RasterPos4i	dwarf+dynsym	43495d7bf0ae	named-only	GE.h:2998	
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65880	28	__glkonim_RasterPos4s	dwarf+dynsym	a3bf9f9f8db1	named-only	GE.h:3015	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65720	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138	named-only	GE.h:2848	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65740	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a	named-only	GE.h:2863	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65760	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e	named-only	GE.h:2878	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65780	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461	named-only	GE.h:46	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda657a0	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27	named-only	GE.h:2912	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda657c0	24	__glkonim_RasterPos3f	dwarf+dynsym	4c996830c4da	named-only	GE.h:2927	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda657e0	24	__glkonim_RasterPos3i	dwarf+dynsym	89c0ecd85995	named-only	GE.h:2942	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65800	24	__glkonim_RasterPos3s	dwarf+dynsym	aad2323343d0	named-only	GE.h:2959	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65820	28	__glkonim_RasterPos4d	dwarf+dynsym	161a2d2a5302	named-only	GE.h:2976	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65840	28	__glkonim_RasterPos4f	dwarf+dynsym	2b063290d259	named-only	GE.h:2991	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65860	28	__glkonim_RasterPos4i	dwarf+dynsym	43495d7bf0ae	named-only	GE.h:3006	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65880	28	__glkonim_RasterPos4s	dwarf+dynsym	a3bf9f9f8db1	named-only	GE.h:3023	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda658a0	16	__glkonim_TexCoord1d	dwarf+dynsym	e9d156599877	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda658b0	16	__glkonim_TexCoord1f	dwarf+dynsym	ceae2507d979	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda658c0	16	__glkonim_TexCoord1i	dwarf+dynsym	cd38ffef678b	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -42061,7 +42061,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c360	348	__glS
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c4c0	28	__glSdramInit	dwarf	34a74c5dc659	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c4e0	28	__glSdramMemmove	dwarf	30bac91e9d92	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c500	144	__glSdramCopyIn	dwarf	9b361b5ca161	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c590	36	__glSdramPushIn	dwarf	df54c5533d19	named-only	GE.h:5913	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c590	36	__glSdramPushIn	dwarf	df54c5533d19	named-only	GE.h:5921	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c5c0	312	__glKonSdramInvalidate	dwarf	9de2351c4b99	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c700	640	__glKonSdramSwapIn	dwarf	b122b4aec843	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c980	332	__glKonSdramForceSwapIn	dwarf	1105ad295e2c	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42069,7 +42069,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cad0	344	__glL
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cc30	64	__glLockedMemoryFree	dwarf	247235cf702a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cc70	712	__glLockedMemorySbrk	dwarf	c2cda330a0a0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cf40	52	__glLockedMemoryMemmove	dwarf	726124434ef9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cf80	32	__glKonExecuteLDMA	dwarf	379f716d1b7c	named-only	GE.h:5994	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cf80	32	__glKonExecuteLDMA	dwarf	379f716d1b7c	named-only	GE.h:6002	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218cfa0	236	__glKonExecuteLDMAn	dwarf	2badfb33d995	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218d090	180	__glKonExecuteIDMA	dwarf	165d2ccf3ebc	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218d150	236	__glKonExecuteIDMAn	dwarf	8e7c86127868	named-only	docs/ge.md#display-lists-the-list-commands	Display lists: the `*LIST*` commands
@@ -42120,10 +42120,10 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fb40	68	__glkon_tex
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fb90	68	__glkon_texture_mem_realloc	dwarf+dynsym	72cd7fee2cae	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fbe0	68	__glkon_unique_per_ge_mem_alloc	dwarf+dynsym	9fb5c6513a95	located	docs/opengl.md#__glkon_unique_per_ge_mem_alloc	`__glkon_unique_per_ge_mem_alloc`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fc30	124	__glkon_share	dwarf+dynsym	46a55503f9db	located	docs/opengl.md#__glkon_share	`__glkon_share`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fcb0	52	__glkonim_Begin	dwarf+dynsym	c3d708f41211	named-only	GE.h:50	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fcf0	20	__glkonim_End	dwarf+dynsym	e474e465dac7	named-only	GE.h:51	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fcb0	52	__glkonim_Begin	dwarf+dynsym	c3d708f41211	named-only	GE.h:58	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fcf0	20	__glkonim_End	dwarf+dynsym	e474e465dac7	named-only	GE.h:59	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fd10	92	__glkonim_Finish	dwarf+dynsym	02a8abc35e0d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fd70	24	__glkonim_Flush	dwarf+dynsym	a9ae41e3aa18	named-only	GE.h:3285	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fd70	24	__glkonim_Flush	dwarf+dynsym	a9ae41e3aa18	named-only	GE.h:3293	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fd90	80	__glkonim_AlphaFunc	dwarf+dynsym	11ca3974ce37	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fde0	176	__glkonlc_AlphaFunc	dwarf+dynsym	4dbf28670a6a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218fe90	80	__glkonim_SampleMaskSGIS	dwarf+dynsym	5e63dc49fabe	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42140,7 +42140,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21912f0	308	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2191430	448	__glkonlc_TexGendv	dwarf+dynsym	dcb67371963a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21915f0	404	__glkonlc_TexGenfv	dwarf+dynsym	eb7f354e917a	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2191790	488	__glkonlc_TexGeniv	dwarf+dynsym	14f728d87369	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2191980	16	__glkonim_Clear	dwarf+dynsym	fbfd98c66dc5	named-only	GE.h:597	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2191980	16	__glkonim_Clear	dwarf+dynsym	fbfd98c66dc5	named-only	GE.h:605	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2191990	180	__glkonlc_Clear	dwarf+dynsym	8dc3568c7c36	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2191a50	76	__glkonim_LineWidth	dwarf+dynsym	a2acf2dfd9be	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2191aa0	76	__glkonim_PointSize	dwarf+dynsym	bb553f7e946f	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42155,7 +42155,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192330	356	__glKonPar
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21924a0	168	__glKonGetFormatIndex	dwarf+dynsym	f5ed78ecf8a2	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192550	212	__glKonGetTypeIndex	dwarf+dynsym	446019d52122	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192630	404	__glKonParseInput	dwarf+dynsym	dcc98d454077	named-only	docs/open-questions.md#engine-program-raster-bus-and-tportbin	Engine program, raster bus and tport.bin
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21927d0	544	__glKonParseHostImage	dwarf+dynsym	b0beb0800792	named-only	GE.h:4055	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21927d0	544	__glKonParseHostImage	dwarf+dynsym	b0beb0800792	named-only	GE.h:4063	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21929f0	68	GetConvolutionFilter	dwarf+dynsym	84cfdebb4f0b	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192a40	1068	__glKonSendData	dwarf+dynsym	545990b50402	named-only	docs/ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap	Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2192e70	224	__glKonPushState	dwarf+dynsym	e19cb9eaac93	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42309,7 +42309,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a1a70	636	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a1cf0	572	__glkonim_PopClientAttrib	dwarf+dynsym	c2fdb519a83e	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a1f30	6852	__glkonCopyContext	dwarf+dynsym	a34ac8bb2878	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a3a00	8636	__glkonResolveContext	dwarf+dynsym	7131c610c187	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a5bc0	148	setCurrentRaster	dwarf	873ef05636d0	named-only	GE.h:4431	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a5bc0	148	setCurrentRaster	dwarf	873ef05636d0	named-only	GE.h:4439	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a5c60	1172	ResolvePixelContext	dwarf	702e298be9b7	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a6100	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	c1c97d1dcc53	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a61f0	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	6d4015b848a9	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42348,7 +42348,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a87e0	1148	chan
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8c60	116	guessBaseLevel	dwarf	43f2125a21d1	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8ce0	4916	changeFilter	dwarf	1a1a6986a431	located	docs/opengl.md#changefilter	`changeFilter`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa020	612	changeClamp	dwarf	69abaa85072a	located	docs/opengl.md#changeclamp	`changeClamp`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa290	40	loadPostTextureScaleBias	dwarf	2593b30b6fcf	named-only	GE.h:3939	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa290	40	loadPostTextureScaleBias	dwarf	2593b30b6fcf	named-only	GE.h:3947	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa2c0	172	setShadowRegs	dwarf	e5d5ccabeca6	named-only	docs/libglcore.md#texture-management	Texture management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa370	164	changeShadow	dwarf	74396169d2aa	located	docs/opengl.md#changeshadow	`changeShadow`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa420	140	lodBias2Scale	dwarf	d099770ddcd6	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
@@ -42515,8 +42515,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bf560	76	__glKonEval
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bf5b0	540	__glKonEvalMesh1DHost	dwarf+dynsym	84adcd5ac37d	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bf7d0	84	__glKonEvalCoord2DHost	dwarf+dynsym	26ebfd4e0d84	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bf830	2148	__glKonEvalMesh2DHost	dwarf+dynsym	c15980b60088	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c00a0	24	__glKonEvalCoord1DGe11	dwarf+dynsym	c0ed5f805743	named-only	GE.h:2663	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c00c0	28	__glKonEvalCoord2DGe11	dwarf+dynsym	ec6c992dca7a	named-only	GE.h:2730	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c00a0	24	__glKonEvalCoord1DGe11	dwarf+dynsym	c0ed5f805743	named-only	GE.h:2671	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c00c0	28	__glKonEvalCoord2DGe11	dwarf+dynsym	ec6c992dca7a	named-only	GE.h:2738	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c00e0	228	__glKonEvalMesh1DGe11	dwarf+dynsym	0a496fa06a7a	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c01d0	760	__glKonEvalMesh2DGe11	dwarf+dynsym	382bc1b0c2b6	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c04d0	76	__glKonSendMapSpec1D	dwarf+dynsym	de72987998a9	named-only	docs/ge.md#evaluators-hp_mapdata1d-hp_mapdata2d-hp_mapspec1d-hp_mapspec2d-hp_evalstrip1d-hp_evalstrip2d	Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
@@ -42627,7 +42627,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb3c0	108	__glkonlc_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb430	128	__glkonlc_DeformationMap3dSGIX	dwarf+dynsym	bf917c0fed39	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb4b0	92	__glkonim_DeformSGIX	dwarf+dynsym	8581462927f0	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb510	164	__glkonlc_DeformSGIX	dwarf+dynsym	dd62dd3000bb	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb5c0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7257	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb5c0	20	__glkonim_LoadIdentityDeformationMapSGIX	dwarf+dynsym	66a1bd9745c9	named-only	GE.h:7265	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb5e0	188	__glkonlc_LoadIdentityDeformationMapSGIX	dwarf+dynsym	329a005c42ad	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21cb6a0	284	getDeformationf	dwarf	76ec35c48d62	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb7c0	56	__glkon_GetDeformationf	dwarf+dynsym	a47ba7ec6153	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -45813,18 +45813,18 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aab60	24	__glkonim_N
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aab80	24	__glkonim_Normal3i	dwarf+dynsym	eebd30810659	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aaba0	32	__glkonim_Normal3s	dwarf+dynsym	3a680ab8a62d	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aabc0	40	__glkonim_Normal3sv	dwarf+dynsym	b09a096a94fb	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aabf0	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138	named-only	GE.h:2840	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac10	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a	named-only	GE.h:2855	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac30	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e	named-only	GE.h:2870	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac50	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461	named-only	GE.h:38	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac70	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27	named-only	GE.h:2904	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac90	24	__glkonim_RasterPos3f	dwarf+dynsym	4c996830c4da	named-only	GE.h:2919	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aacb0	24	__glkonim_RasterPos3i	dwarf+dynsym	89c0ecd85995	named-only	GE.h:2934	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aacd0	24	__glkonim_RasterPos3s	dwarf+dynsym	aad2323343d0	named-only	GE.h:2951	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aacf0	28	__glkonim_RasterPos4d	dwarf+dynsym	161a2d2a5302	named-only	GE.h:2968	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aad10	28	__glkonim_RasterPos4f	dwarf+dynsym	2b063290d259	named-only	GE.h:2983	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aad30	28	__glkonim_RasterPos4i	dwarf+dynsym	43495d7bf0ae	named-only	GE.h:2998	
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aad50	28	__glkonim_RasterPos4s	dwarf+dynsym	a3bf9f9f8db1	named-only	GE.h:3015	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aabf0	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138	named-only	GE.h:2848	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac10	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a	named-only	GE.h:2863	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac30	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e	named-only	GE.h:2878	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac50	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461	named-only	GE.h:46	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac70	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27	named-only	GE.h:2912	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac90	24	__glkonim_RasterPos3f	dwarf+dynsym	4c996830c4da	named-only	GE.h:2927	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aacb0	24	__glkonim_RasterPos3i	dwarf+dynsym	89c0ecd85995	named-only	GE.h:2942	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aacd0	24	__glkonim_RasterPos3s	dwarf+dynsym	aad2323343d0	named-only	GE.h:2959	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aacf0	28	__glkonim_RasterPos4d	dwarf+dynsym	161a2d2a5302	named-only	GE.h:2976	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aad10	28	__glkonim_RasterPos4f	dwarf+dynsym	2b063290d259	named-only	GE.h:2991	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aad30	28	__glkonim_RasterPos4i	dwarf+dynsym	43495d7bf0ae	named-only	GE.h:3006	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aad50	28	__glkonim_RasterPos4s	dwarf+dynsym	a3bf9f9f8db1	named-only	GE.h:3023	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aad70	16	__glkonim_TexCoord1d	dwarf+dynsym	e9d156599877	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aad80	16	__glkonim_TexCoord1f	dwarf+dynsym	ceae2507d979	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aad90	16	__glkonim_TexCoord1i	dwarf+dynsym	cd38ffef678b	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)

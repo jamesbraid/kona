@@ -36,11 +36,23 @@ Each file below has its own entry; [ge.md](ge.md) has the container layouts in f
 
 `ge_diag_init.hex` is the text form of that same program. **Established:** 283 lines from address 0x0000 to 0x011a, one 72-bit word each in the layout of `ge.hex`, the first two zero and the third a nonzero form-14 word; `irsaudit` names this file in its strings at address 0x10198990.
 
+## Engine facts read from KONA's own binaries
+
+Everything in this section was read from KONA's binaries, all IRIX 6.5.30m: the pipe monitor `kpm` (`usr/gfx/KONA/bin/kpm`), the ARM firmware `arm1.u`, the diagnostic program `usr/diags/IR/ucode/ge.u` with `ge.hex`, `irsaudit`, which drives it, and the kernel `unix`. A fact is **established for KONA** only where KONA code shows it. KONA's own software calls its engine GE11: the build tree in `ge.u`'s file table is `gfx/KM/ucode/ge11/`, the ARM's engine control register is `HA_GE11_CTRL` ([arm1_firmware.md](arm1_firmware.md)), and the diagnostic program has a source named `ge11table.s`.
+
+
+
+
+
+
+
+**Inferred: the three engine memories: a 2K-word internal working memory and an external memory (`mWramToEram`, `mEramToCram` and the rest of `umemove.s`), the ARM's `WriteCram` writes control-memory addresses below 0x200 ([Control-memory addresses in immediates](ge_ops.md#control-memory-addresses-in-immediates)), and its `WriteEram` writes engine addresses such as 0xbfc ([Immediates](#immediates)). The sizes are GE11's on IMPACT; that KONA's engine has the same is inferred from the shared name, not measured.
+
 ## Forms
 
 **Established.** W bits 67-70 select one of 15 layouts (value 4 never occurs). In eight forms (2, 3, 5, 11, 12, 13, 14, 15) bit 67 is also wired into the record as an ordinary field bit, and the even and odd forms of a pair differ in layout. **Inferred:** the decoder looks at all four bits, so the form is a 4-bit field even though bit 67 also carries data in half of the forms.
 
-W bit 71 is wired to record bit 223 in every form. Its meaning is **unknown**: it is set in 2349 words, including eight of the no-ops.
+W bit 71 is wired to record bit 223 in every form. It is set in 2349 words, including eight of the no-ops. **Inferred: W71 makes the word run on the core's second thread, B.** In production, 1505 of the 2116 W71 words that carry an operation sit next to an unmarked word with the same operation code (counted over the listings), as in `udrawtri.s` `lDI3`, where 0x289d and 0x289e subtract with register 1 and then register 2, 0x28a3 and 0x28a4 move them, and so on: the same step for two vertices, one per thread. What the threads share beyond the program is **unknown**; kpm's private registers 0x40 and up have A and B copies ([GE.h](../GE.h)).
 
 ## Fields
 
@@ -120,7 +132,7 @@ This replaces the earlier reading that every code-4 transfer to address 0 is the
 ## Operations, conditions and FIFOs
 
 - **ALU:** the operation codes of both arithmetic units, the seed unit and the output move are fixed by the IR diagnostic's instruction test and its expected results ([ge_ops.md](ge_ops.md), [ge_inst_results.tsv](ge_inst_results.tsv)). Ties the test cannot break are listed there.
-- **Branch conditions:** `cc` 0-15 are read from the same test and from production use (ge_ops.md, [Conditions in production handlers](ge_ops.md#conditions-in-production-handlers)): two flag nibbles, the low one set by unit 1 and the high one by unit 2, conditions "<= 0", zero, negative and a fourth one, with bit 0 inverting. The false sides of `cc` 0-4 are **inferred** from handlers whose paths need them; the fourth condition is never used by production and stays **unknown** with its routes. `cc` 0x14/0x15 are the pixel-path loop's continue and exit, 0x10 an abort test, 0x11 the end-of-command wait or a loop counter depending on the condition-group field R76-72.
+- **Branch conditions:** `cc` 0-15 are read from the same test and from production use ([ge_ops.md](ge_ops.md#branch-conditions-and-the-flag-register)): two flag nibbles, the low one set by unit 1 and the high one by unit 2 (**inferred**); which condition each `cc` selects is **unknown** there. `cc` 0x10, 0x11, 0x14 and 0x15 test the address unit's result ([Address-unit conditions](ge_ops.md#address-unit-conditions)); in production 0x14/0x15 are the pixel-path loop's continue and exit, 0x10 an abort test, 0x11 the end-of-command wait or a loop count, depending on the condition-group field R76-72.
 - **FIFO input:** a handler reads operand word k of its command as source A = 0x1f, D = k (ge_ops.md, [Input and output FIFO operations](ge_ops.md#input-and-output-fifo-operations)); the FIFO special registers 0x00-0x02 are written at start-up and by the context code, through address register 0x1c ([How code reaches the special registers](#how-code-reaches-the-special-registers)).
 
 A reader can extend the decode without the `ge.u` record: every field in the tables above is a plain slice of W.

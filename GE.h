@@ -16,6 +16,14 @@
  *   libGLcore /usr/gfx/arch/IP27KONA32/libGLcore.so (N32), disassembled
  *            per compilation unit under libglcore/asm/.
  *   kernel   kona.a members under kona_kernel/disasm/.
+ *
+
+ * branch conditions and thread bit, restated in ucode/ge_isa.md and
+ * ucode/ge_ops.md: the IMPACT GE11 diagnostic under
+
+ * mgras_ge.hex, mgras_ge11.c, mgras_ge11_download.c,
+ * mgras_ge11_ucode_utils.c, mgras_const.h, doc/diag_docs/ge_desc,
+ * doc/ge_diagspec.fmdoc).
  */
 #ifndef KONA_GE_H
 #define KONA_GE_H
@@ -9828,15 +9836,23 @@ enum kona_kpm_shadow_row {
  * cc bits 2-1 choose the condition (0..3 = bit 3..0), cc bit 0 inverts.
  * Production branches test only the low nibble, after unit-1 integer and
  * float results alike (161 of 161 transfers with a nearby flag setter).
- * The fourth condition is UNKNOWN: no shipped software or published
- * source depends on it (no production use of cc 6, 7, 0xe, 0xf; routes in
- * ucode/ge_ops.md); signed overflow fits the two test cases.
- * cc 0x14/0x15: pixel-path loop continue/exit; 0x10: abort or error test;
- * 0x11: end-of-command wait (condition group 31) or loop counter (group 7).
+
+
+
+ * Which cc selects which condition (le/gt, eq/ne, lt/ge and the fourth
+
+
+
+ * Address unit (r222 words): cc 0x10, 0x11, 0x14 and 0x15 are the
+
+
+ * cc 0x14/0x15 continue and leave the pixel-path loops, 0x10 is the
+ * abort or error test, and 0x11 is the end-of-command wait (condition
+ * group 31) or the loop count not yet zero (group 7). ucode/ge_ops.md.
  */
 #define KONA_GE_FLAG_LE0                0x8
 #define KONA_GE_FLAG_ZERO               0x4
 #define KONA_GE_FLAG_NEG                0x2
-#define KONA_GE_FLAG_FOURTH             0x1
+#define KONA_GE_FLAG_PASSB              0x1
 
 #endif /* KONA_GE_H */

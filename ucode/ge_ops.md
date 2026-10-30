@@ -129,30 +129,49 @@ What a NaN input gives is **unknown: no shipped software or published source dep
 
 ## Branch conditions and the flag register
 
-Lines 1210-2195 test conditional transfers (sequencer code 3 with condition code `cc`, see [ge_isa.md](ge_isa.md)). Each case loads a marker into register 0, sets flags with one operation (`r220` = 1 for unit 1, `r221` = 1 for unit 2), branches with one `cc` to the output word, and on the fall-through path overwrites register 0 with 0xdeadbeef. **Established:** none of the 24 expected words (index 52-75) is 0xdeadbeef, so every branch is taken. Each case therefore shows one input for which its condition is true:
+Lines 1210-2195 test conditional transfers (sequencer code 3 with condition code `cc`, see [ge_isa.md](ge_isa.md)). Each case loads a marker into register 0, sets flags with one operation (`r220` = 1 for unit 1, `r221` = 1 for unit 2, `r222` = 1 for the address unit), branches with one `cc` to the output word, and on the fall-through path overwrites register 0 with 0xdeadbeef. **Established:** none of the 24 expected words (index 52-75) is 0xdeadbeef, so every branch is taken. Each case therefore shows one input for which its condition is true.
 
-| cc | Flags from | Result that made it true |
-|---|---|---|
-| 0 | integer add | 0 with carry out; and 0xa6000000 |
-| 1 | integer add | 0x5a64b4b4; and 0x5a000000 with carry out |
-| 2 | integer subtract | 0 |
-| 3 | integer add | 0xa64b4b4b |
-| 4 | integer add | 0xa6000000 |
-| 5 | integer add | 0 with carry out |
-| 6 | operation 0x6c8 | not known |
-| 7 | integer add | 0x5a64b4b4 |
-| 8 | float multiply | -1.0; and 0.0 |
-| 9 | float multiply | 1.0 |
-| 0xa | float multiply | 0.0 |
-| 0xb | float multiply | -1.0 (the flags here come from the last flag-setting word, as this multiply has no `r221`) |
-| 0xc | float multiply | -1.0 |
-| 0xd | float multiply | 0.0 |
-| 0xe | unit-2 operation 0x2f | not known |
-| 0xf | float multiply | 3.0 |
+The last column is the label that the IMPACT GE11 diagnostic gives the branch's target in its label table. That program is assembled from the same `ge_inst.s`: these words are identical in both builds and sit two addresses higher in KONA's ([ge_isa.md](ge_isa.md#engine-facts-read-from-konas-own-binaries)). Each row below shows one input for which its branch is taken, so the condition is **established**.
+
+| cc | Flags from | Result that made it true | Branch (KONA diag `ge.u`) | Condition |
+|---|---|---|---|---|
+| 0 | integer add | 0 with carry out; and 0xa6000000 | 0x0bf4, 0x0c4d | unit 1 result <= 0, **inferred** |
+| 1 | integer add | 0x5a64b4b4; and 0x5a000000 with carry out | 0x0cb8, 0x0d23 | unit 1 result > 0, **inferred** |
+| 2 | integer subtract | 0 | 0x0ab3 | unit 1 result zero, **inferred** |
+| 3 | integer add | 0xa64b4b4b | 0x0a48 | unit 1 result not zero, **inferred** |
+| 4 | integer add | 0xa6000000 | 0x0b89 | unit 1 result negative, **inferred** |
+| 5 | integer add | 0 with carry out | 0x0b1e | unit 1 result not negative, **inferred** |
+| 6 | operation 0x6c8 | not known | 0x0d8e | unknown (the fourth condition, [below](#the-fourth-flag-condition)) |
+| 7 | integer add | 0x5a64b4b4 | 0x0df9 | unknown (the inverse of 6) |
+| 8 | float multiply | -1.0; and 0.0 | 0x107f, 0x10ea | unit 2 result <= 0, **inferred** |
+| 9 | float multiply | 1.0 | 0x1014 | unit 2 result > 0, **inferred** |
+| 0xa | float multiply | 0.0 | 0x0ed3 | unit 2 result zero, **inferred** |
+| 0xb | float multiply | -1.0 (the flags here come from the last flag-setting word, as this multiply has no `r221`) | 0x0e68 | unit 2 result not zero, **inferred** |
+| 0xc | float multiply | -1.0 | 0x0f3e | unit 2 result negative, **inferred** |
+| 0xd | float multiply | 0.0 | 0x0fa9 | unit 2 result not negative, **inferred** |
+| 0xe | unit-2 operation 0x2f | not known | 0x1143 | unknown (the fourth condition, [below](#the-fourth-flag-condition)) |
+| 0xf | float multiply | 3.0 | 0x11ae | unknown (the inverse of 0xe) |
+
+The test sections around these rows are `alu_test` (KONA 0x1aa3), `mlu_test` (0x1da0) and `seed_test` (0x1f4c) hold exactly the unit-1, unit-2 and seed rows of the [operation table](#operation-table) (expected index 136-155, 156-166 and 167-170). So unit 1 is the arithmetic and logic unit and unit 2 the multiplier, as the operations already showed, now with the source's own names. The words of each section are identical in both builds, compared by [the alignment](ge_isa.md#engine-facts-read-from-konas-own-binaries).
+
+### Address-unit conditions
+
+**Established** (KONA diag `ge.u` 6.5.30m, lines 2088-2195). Four more cases, expected index 72-75, set the flags with a form-14 word carrying `r222` = 1 (the address unit) and branch on a `cc` above 15. None returns 0xdeadbeef. Which condition each `cc` selects is **inferred** from the one value each case produces.
+
+| cc | Flag-setting word | Value it produced | Branch | Condition |
+|---|---|---|---|---|
+| 0x10 | 0x1245, immediate 0 | 0 | 0x1249 | address-unit result zero, **inferred** |
+| 0x11 | 0x1209, operation F = 0x20 on register 2, which 0x11e7 loaded with 0xd | not zero | 0x120b | address-unit result not zero, **inferred** |
+| 0x14 | 0x1283, immediate 0xa5a5 | positive | 0x1287 | address-unit result > 0, **inferred** |
+| 0x15 | 0x12c1, immediate 0xffff5a5b | negative | 0x12c5 | address-unit result <= 0, **inferred** |
+
+All four branches are in condition group 4. Bit 0 inverts here too, but the pairs differ from the arithmetic units': bits 2-1 = 0 is equal and 2 is greater. **Inferred** from the address-unit field reading in [ge_isa.md](ge_isa.md#fields): F = 0x25 with `r222` is the decrement that steps a loop count, so the production loops that end on `cc` 0x11 in group 7 run while the stepped count is not zero, and the pixel-path loops that continue on `cc` 0x14 and leave on `cc` 0x15 test the count against zero the same way.
+
+The flag word shows the address unit too. In the flag-register test (index 4-7) the words that read 0x1cc follow an `r222` word with immediate 0x5a5a, and those that read 0xcc follow one with immediate 0xffffa5a6 (0x0360, 0x0370, 0x0380, 0x038f): **inferred**, bit 8 of the condition word is the address unit's "greater than zero".
 
 **Established** (index 8-15, the flag register read as source A = 0x1b, an address register the test points at 0xfffe0104, special register 0x41 FPU_COND_A; [ge_isa.md](ge_isa.md#how-code-reaches-the-special-registers)): after a float multiply of 2356.2 by the constant 0.0 the register reads 0xcc; after a float multiply of -2356.2 by 1.0, 0xac; after an integer add giving 0 with carry 0xac; after an integer add giving 0xfffff000 0xaa. A word without `r220` or `r221` leaves the value unchanged (index 9, 11, 13, 15). That each multiply's second operand is the constant stored just before it is **inferred** from the code order.
 
-**Inferred:** the register holds two nibbles, each with bit 3 = result <= 0, bit 2 = zero, bit 1 = negative, bit 0 = a fourth condition clear in every observed case. `cc` 0-7 test the low nibble and 8-15 the high nibble; `cc` bits 2-1 pick the condition (0 <= 0, 1 zero, 2 negative, 3 the fourth) and bit 0 inverts it. All 14 cases with a known operation agree. The low nibble is set by a unit-1 word with `r220` and the high nibble by a unit-2 word with `r221` ([below](#conditions-in-production-handlers): production code tests the low nibble after unit-1 float subtracts and moves, so the split is by unit, not by integer and float). The carry out is not a condition the test names.
+**Inferred:** the register holds two nibbles, each with bit 3 = result <= 0, bit 2 = zero, bit 1 = negative, bit 0 = the operation passed its second operand ([below](#the-fourth-flag-condition)). `cc` 0-7 test the low nibble and 8-15 the high nibble; `cc` bits 2-1 pick the condition (0 <= 0, 1 zero, 2 negative, 3 second operand passed) and bit 0 inverts it. All 14 cases with a known operation agree with this reading. The low nibble is set by a unit-1 word with `r220` and the high nibble by a unit-2 word with `r221` ([below](#conditions-in-production-handlers): production code tests the low nibble after unit-1 float subtracts and moves, so the split is by unit, not by integer and float). The carry out is not a condition the test names.
 
 ### Conditions in production handlers
 
@@ -166,7 +185,9 @@ Lines 1210-2195 test conditional transfers (sequencer code 3 with condition code
 
 **Inferred** (the conditions above 15, by their targets; the names are the `ge_symbols` labels shipped beside `ge.u`). `cc` 0x14 with the loop form (code 3) jumps back to a `mainloop*` label in 31 of the 39 such words with a named target, and `cc` 0x15 with code 3 jumps forward to an `epilogue*` label in 30 of 36: the pixel-path loops run "while not done" and leave on the inverse, so bit 0 inverts here too. Which counter or input state decides "done" is **unknown**: no shipped software or published source depends on it beyond these loops; routes tried: the listings, the pixel-path labels, and the ARM's pixel-path set-up ([arm1_firmware.md](arm1_firmware.md)), which sends counts as operands but names no engine condition. `cc` 0x10 with condition group 31 jumps to `mmo_AbortGeometry` in 11 of its 24 uses (`mdecompose2.S`), once to `mErrInvalidEnum` and once to `mmo_PixLineNextGE`: **inferred** to test an abort or error request raised outside the instruction stream. `cc` 0x11 is the condition of the end-of-command wait (relative transfer with immediate 0, condition group 31) and of the counted loops (`mgesi_FlushRM` 0x3816, `ctx_load.S` 0x6647 and 0x665b, condition group 7), so the condition-group field R76-72 changes what a `cc` above 15 tests; with group 7 it is **inferred** to be "counter not exhausted", from the loop counts of [ge_isa.md](ge_isa.md#fields).
 
-**The fourth flag condition.** True after 0x6c8 and after unit-2 0x2f in the test, false after adds and multiplies that did not overflow. Production never branches on it (`cc` 6, 7, 0xe and 0xf do not occur). What it signals is **unknown: no shipped software or published source depends on it**. Signed overflow fits the two test cases and nothing contradicts it. Routes tried: `irsaudit` `expected_token` (one true case each, no false case with a known operation), the production listings (no use), and the diagnostic program's other sources (`fib.S`, `mul.S`, `mul_ge.S`, `mmath.S`, `eram.S`, `debug.S`: no branch on `cc` 6, 7, 0xe or 0xf).
+### The fourth flag condition
+
+True after 0x6c8 and after unit-2 0x2f in the test, false after adds and multiplies; its inverse (`cc` 7 and 0xf) is true after the add and the multiply of the test. Production never branches on it (`cc` 6, 7, 0xe and 0xf do not occur). What it records is **unknown**: 0x6c8 with operands 0x00005a5a and 0x5a5a5a5a sets it, and unit-2 0x2f returns its second operand in the [operation table](#operation-table), but a move of the second operand, a compare that keeps the larger and a property of the result all fit these two cases. A read of the engine netlists for the flag logic, or of a production word whose flags are tested, would settle it.
 
 ## Settling the ties
 
@@ -175,6 +196,7 @@ The engine test leaves five pairs tied, because its operands give the same word 
 - `irsaudit` 6.5.30m exports one expected-result array, `expected_token`. The 6.5 base release (June 1998) ships a different `irsaudit` build but byte-identical `ge.hex`, `ge.u`, `ge_diag_init.*` and `geif.u` in `usr/diags/IR/ucode/`, so no older `ge_inst.s` with other operands exists on the media read.
 - The diagnostic program's other sources: 0x6d0, 0x6d4 and 0x6d6 occur only in `debug.S` and `eram.S`, and 0x6e6, 0x6e8, 0x2ff and 0x3ff only in `ge_inst.s`. `eram.S` builds each memory pattern with the same code on its write and its check pass and compares with the subtract 0x6c2, so any bitwise reading passes; `debug.S` uses 0x6d0 and 0x6d6 on status words (masks 0x2, 0x4, 0x100) with no result returned to the host. `TEST_ge_eram` only gathers the engine's mismatch records.
 - The other engine tests in `irsaudit`: `ge_hist_stress_test` and `ge_mul_test` start their program, wait for the output DMA (`wait_for_odma`) and print on failure, with no expected-result array; `ge12_multige_test` and `ge12_splitge_test` drive the engines' scan chain (`jt_select_chain`, `jt_send_data`, `jt_unpack_vector`) and run no engine instructions.
+- It does hold the IMPACT GE11 diagnostic program built from the same `ge_inst.s`, whose expected words in `ge_inst.h` equal `expected_token` and so carry the same ties; in its form-13 words, the one form whose operation field is a plain slice of the word, 0x6d0, 0x6d4, 0x6d6, 0x6e6, 0x6e8, 0x2ff and 0x3ff occur one or two times each, as in KONA's `ge_inst.s`, and its other forms were not decoded, since the decode needs KONA's record.
 - A Library mail search for published `irsaudit` output failed twice (mail service refused the connection, 2026-10-29).
 
 **0x66 minimum and 0x68 maximum: inferred, by function.** `mmo_Minmax` (minmax.s, 0x1472-0x1486, loop `mainloop_mm`) is the module the ARM adds to the pixel path for `HP_MINMAX` (`AddMinMax`, `U_uMinMax`); `HP_GETMINMAX` reads its result back. Its loop body is 36 pairs of words: for each input word (A = 0x10, D = k), 0x6e6 writes even register 2k with second operand 2k, and 0x6e8 writes odd register 2k+1 with second operand 2k+1. Each register is an accumulator updated from the same input. If 0x6e6 and 0x6e8 were the moves the test also allows (0x6e6 returning its first operand, the input; 0x6e8 its second, the accumulator), the even registers would end at the last pixel and the odd ones would never change, and `glGetMinmax` could not return a minimum or a maximum. Only minimum and maximum make the module work; the test fixes which is which (0x66 returned the smaller). `mgeb_DepthRange`'s clamp of zNear and zFar fits the same reading.
