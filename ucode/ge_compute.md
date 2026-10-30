@@ -418,10 +418,75 @@ leave the engine one vertex at a time and the raster stage forms the edges. Per 
 subtracts on record words 0x10, 0xf and 0x11 and a move of 0x12 (the texture results of the divide, with 0xf and 0x12 stored
 predicated, `r213` = 2), a move of the edge-flag word 0x26, subtracts on window x and y (words 0x23 and 0x24), the unit-1
 operation 0x7e on window z (word 0x25), and multiplies of the colour words 0x1e, 0x1d, 0x1c and 0x1b. The subtracts take
-their second operand from an origin block reached through address register 0xd, which each module points at engine word 0xc9
-(`ge_ops.md` lists 0xc9-0xce among the words the drawing paths write once per primitive). What unit-1 code 0x7e computes is
+their second operand from a register: their routing form `r110` = 0x63d selects the vertex word for port 1 and register
+`r148` bits 4-0 for port 2 ([ge_isa.md](ge_isa.md#operand-ports-and-result-forwarding)), registers 0x1a-0x1c for the
+texture words and register 1 for window x and y. An earlier reading had them subtract an origin block at 0xc9 through
+address register 0xd. That register names the vertex slot of each store instead, described below. What unit-1 code 0x7e computes is
 unknown: the diagnostic test does not exercise it, and it occurs only on the depth word of the drawing modules (`drawtri.S`,
 `mdrawtri.S`, `drawlin.S`, `drawpnt.S` and four more).
+
+**Inferred** (vertex slots). Each output store names a control-memory address besides the output window and its
+offset E. The address is the immediate of a form-5 word with `r95` = 0x13 or 0x33, or address register 0xd (loaded with
+0xc9 at 0x2899, 0x28d9 and 0x290d) with F = 0x1f - k for 0xc9 + k. A form-9 store, which has no room for it, takes the
+address from a form-14 word just before it with C = 0x1e and `r95` = 0x13 (0x895a before 0x895b). Every drawing module
+uses the same address for the same vertex word:
+
+| Address | Vertex word |
+|---|---|
+| 0xcd, 0xce | window x and y (record words 0x23, 0x24) |
+| 0xcf, 0xd0 | depth (word 0x25), in two stores |
+| 0xcc, 0xcb, 0xca, 0xc9 | colour words 0x1e, 0x1d, 0x1c, 0x1b |
+| 0xd2, 0xd3, 0xd4, 0xd1 | texture words 0x10, 0x11, 0x12, 0xf |
+| 0xd5 | the vertex's command word |
+
+`udrawtri.s`, `drawlin.S` and `drawmstpnt.S` are three examples (0x28ac, 0x8955, 0x7a09 for x). So the address names a
+field of the raster-bus vertex packet, as the converter lists at 0x1c4 name the fields of a pixel word
+([docs/rm.md](../docs/rm.md#pixel-and-texel-data-words)). The packing itself happens outside the program.
+
+**Established** (E by slot, over every store of the drawing modules in `udrawtri.s`, `drawtri.S`, `mdrawtri.S`,
+`drawlin.S`, `drawpnt.S`, `drawmstpnt.S`, `clear.S`, `refplane.S` and `phong.S`):
+
+| Slot | E | Stores |
+|---|---|---|
+| 0xcf, high depth | 4 | 38 of 39 |
+| texture word 0xf | 4 | 35 of 38 |
+| 0xc9, last colour | 6 or 7 | 46 |
+| 0x1f4 | 2 | 35 |
+| 0x1f5 | 3 or 0 | 19 and 60 |
+| every other slot | 0 | |
+
+**Inferred:** E is the bus-mode code of [docs/rm.md](../docs/rm.md#bus-modes-2-and-3) (0 mode 1, 4 mode 3, 6 mode 2,
+2 mode 0), put on the store that completes a 64-bit bus word. A vertex is then two bus words. The first, closed by the high
+depth part, holds command, x, y and depth high in mode 3, and the second, closed by the last colour, holds the rest in
+mode 2. That is the 3, 2 alternation of the vector files' vertex runs, whose mode-3 words carry the command nibble. Bit 0
+of E (7 against 6 at 0xc9, 3 at 0x1f5) is set on the last vertex of a triangle, a line, a single point and each strip
+vertex, or on a separate 0x1f5 store after the multisample points, fan points and stipple segments. It is set on neither
+in the reference-plane and clear-vertex paths, so its meaning is **unknown**.
+
+**Inferred** (where the command nibble comes from). The command field of the vertex packet gets its value from the 0xd5
+store and from all-ones stores (M = 0x6d8, NOT of register 0x1e, which reads as zero) to the slots 0xd6-0xd9. Matched
+against the commands the IR diagnostic sends ([docs/rm.md](../docs/rm.md#primitive-set-up-happens-in-the-pixel-generator)):
+
+| Primitive | 0xd5 | All-ones store | Diagnostic's command |
+|---|---|---|---|
+| Point (`mmo_DrawPntPrim`, `mmo_DrawAAPntPrim`, `mmo_DrawDistAttPntPrim`) | register 0x1e, 0 | 0xd9 (0x849a, 0x8625, 0x8441) | 2 |
+| Triangle (`lDI1`, `mmo_DrawTriPrimOffset`, `mRefPlane`, `mmo_DrawTriPrimPhong`) | 0 on all three vertices | 0xd7 on the third only (0x2964, 0x8e8d, 0x5b85, 0x92d1) | 0, 0, 6 |
+| Line (`mDrawLinPrim`) | 0, then staging word 2 on the second vertex (0x8985) | 0xd8 on the second (0x8999) | 0 then 4 or 14 |
+
+So 0xd7 sets 6 and 0xd9 sets 2. Which bits 0xd8 sets is not fixed, since the line command is 4 or 14 and staging word 2 is
+not traced.
+
+The multisample fan point `DrawMSTFanPnt` (0x79a3) writes the command value itself. Its 0xd5 store (0x7a06, and 0x7a38 in
+the rim loop 0x7a20-0x7a4a) sends staging word 8 or 9. Its caller `mmo_DrawMSDistAttTablePntPrim` stages 7 in both
+(0x7897, 0x7898) and then 0 in word 8 (0x78a6), so the centre goes with 0 and the rim loop with 7. That is the encoding
+`tbuRoundPoint` uses for its rim points ([docs/rm.md](../docs/rm.md#set-up-arithmetic-what-the-software-fixes)), and it
+is the second witness, from the engine program, that command 7 is the fan rule. GL strips and fans themselves do not reach
+the bus as strips and fans on the independent-triangle path. The decomposers ([below](#decomposers-udecomposes)) turn them
+into a table of triangles, and `lDI1` sends each as 0, 0, 6. The strip loop `lDI3` and the quad loop `lDI4` instead send
+record word 0x26 to 0xd5, moved or shifted left by register 8 (0x28a6, 0x28e7), and `mmo_DrawTriPrimOffset` does the same
+at 0x8fb7. Which strip or fan command those top bits give is **unknown**: no converter description for 0xd5 is in any
+shipped program. Routes tried: the drawing modules, the decomposers' flag words (`mmo_DecomposeTriangleStripWithSwapOdd`
+tests bit 28 of word 0x26), `mgesi_TfanPolyRestoreEdge`'s OR of 0xe0000000 into saved fan records, the program's own stores (none
 
 - `mmo_DrawTri` (`udrawtri.s` lines 42-53): **inferred**, the entry of the triangle-strip output. It reads the cull and clip
   state (special register 0x0c through register 0x1c, 0x288c), and branches on `cc` 0x66 to `mmo_DrawTriPrim`, the
