@@ -8,7 +8,7 @@ Every entry carries a label (**Established** from the disassembly cited, or **In
 
 The graphics FIFO fill level is read from the host-interface level register at window offset 0x800208 and compared against two thresholds the driver keeps in the state (+2332 and +2348, both set to 768 by `kona_flow_init`). A writer that finds the FIFO fuller than the threshold sleeps until the low-water interrupt (bit 1 of the interrupt mask) fires.
 
-- `kona_flow_init` (`kona_flow.o` +0x0, 80 bytes): **Established.** Sets the flow-control defaults of a pipe at attach time. It zeroes the in-flight spin limit (+2328), sets both thresholds to 768, and writes 1792 to the high-water register
+- `kona_flow_init` (`IP27boot/kona.a(kona_flow.o)` +0x0, 80 bytes; `IP35boot/kona.a(kona_flow.o)` holds the same code): **Established.** Sets the flow-control defaults of a pipe at attach time. It zeroes the in-flight spin limit (+2328), sets both thresholds to 768, and writes 1792 to the high-water register
   `HH_GFIFO_HI` (0x800210). It then clears the timeout handle (+2336) and the waiting flag (+2344). Calls `gfx_pio_write_32` once.
 - `kona_flow_cleanup` (`kona_flow.o` +0x50, 52 bytes): **Established.** Cancels the high-water timeout at detach. If the handle at +2336 is set it calls
   `kona_untimeout` on it and clears the handle. No register is touched.
@@ -43,7 +43,7 @@ The graphics FIFO fill level is read from the host-interface level register at w
 
 ## Start-up and suspend: `kona_setup.o`, `kona_sched.o`
 
-- `KONAinitialize` (`kona_setup.o` +0x0, 304 bytes): **Established.** The board's first initialisation step after attach: it leaves the pipe quiet with only the parity interrupt enabled. It registers the textport board
+- `KONAinitialize` (`IP27boot/kona.a(kona_setup.o)` +0x0, 304 bytes; `IP35boot/kona.a(kona_setup.o)` disassembles to the same body): **Established.** The board's first initialisation step after attach: it leaves the pipe quiet with only the parity interrupt enabled. It registers the textport board
   (`htp_register_board`), sets the interrupt-enable shadow (+2368) to 0x100, runs `kona_reset_adaptor`, then pulses `HH_RESET` (0x800300) with 1 then 0, reading it back after each write. It writes the shadow to
   `HH_INTR_ENABLE` (0x800230) and 0x8000 (the global interrupt enable, saved at +2364) to `HH_INTR_INFO` (0x800220), and sizes and tests the map RAM with `kona_mapram_init`. At raised priority it detaches the caller from flow control if attached, resets the flow object
   (`gfx_flow_reset`), runs `kona_flow_init` and clears the dead flag (+2172). Returns 0.
@@ -51,7 +51,7 @@ The graphics FIFO fill level is read from the host-interface level register at w
   `HH_INTR_STATUS` (0x800238). If the parity cause (bit 8) is already set it logs the pipe number, kills the pipe with `kona_die` reason 22, clears bit 5 of the status word, writes it back, writes the acknowledge value 0xbadc0ffe to `HH_INTR_ACK` (0x800228) and returns the status with that bit cleared. Otherwise it writes 0xf7c (3964) to
   `HH_INTR_ENABLE` (0x800230) as the running mask and attaches the caller to the write-gather group (widget register 0x7c, then credit wait) when it is not attached. It then sends the pipe-setup packet to the command port: it kicks `HH_GINTR_INFO` (0xc00108) with 0x30000, sends the token 497 (`KONA_HP_PIPE_SETUP`), kicks 0x10000, sends three payload words (state +2592, +2596,
   16384: the pipe-space address pair of the driver's scratch page and its size) and kicks 0. Returns 0.
-- `KONAsuspend` (`kona_sched.o` +0x0, 400 bytes): **Established.** The board's operation for taking a connection off the pipe when the scheduler switches it out. When the connection is the current one (state +72) and mapped (flag bits 0-1 of its word +4), it flushes the gather buffer and, if the caller is attached to flow control, waits for the returned credits when the credit count is below the bias, writes 1 to the widget register at offset 0x7c, reads it back and detaches with
+- `KONAsuspend` (`IP27boot/kona.a(kona_sched.o)` +0x0, 400 bytes; the `IP35boot/kona.a(kona_sched.o)` copy matches it instruction for instruction): **Established.** The board's operation for taking a connection off the pipe when the scheduler switches it out. When the connection is the current one (state +72) and mapped (flag bits 0-1 of its word +4), it flushes the gather buffer and, if the caller is attached to flow control, waits for the returned credits when the credit count is below the bias, writes 1 to the widget register at offset 0x7c, reads it back and detaches with
   `gfx_flow_detach_me`. Without the force argument it also clears the resume-wait flag (+120) when no sleeper is parked (+104). Returns 0.
 - `KONAresume` (`kona_sched.o` +0x190, 312 bytes): **Established.** The board's operation for putting a connection back on the pipe. Without the force argument it first clears the resume-wait flag (+120) and yields with
   `force_resched` if it was set. It then proceeds only if the pipe is alive (the death reason at +2172 is 0 or 1, or the connection is privileged), the connection is the current one and flag bits 0-1 of its word +4 are set. If the caller is not attached to flow control it attaches:
@@ -59,13 +59,13 @@ The graphics FIFO fill level is read from the host-interface level register at w
 
 ## Attach, detach and mapping: `kona_attach.o`, `kona_map.o`
 
-- `new_pipe_to_region` (`kona_attach.o` +0x0, 92 bytes): **Established.** Moves a mapping from one connection to another when
+- `new_pipe_to_region` (`IP27boot/kona.a(kona_attach.o)` +0x0, 92 bytes; `IP35boot/kona.a(kona_attach.o)` has an identical body): **Established.** Moves a mapping from one connection to another when
   `gfxdd_recycle` finds a reusable region. It calls the old connection's unmap operation (table entry +104), clears the old connection's bound node (+72), destroys its region handle (`ddv_destroy_handle`) and stores the handle in the new connection at +48. No register is touched.
 - `KONAattach` (`kona_attach.o` +0x5c, 364 bytes): **Established.** The board's attach operation: it defines the user address-space layout of a connection. It refuses a pipe whose state has no flow object (+2272 zero; logs and returns ENODEV, 19) and an address not aligned to 16 KB (EINVAL, 22). It copies a four-entry range table out of read-only data, tries
   `gfxdd_recycle`, and otherwise adds the user address to each range and calls `gfxdd_mmap` with 3 ranges (4 for a privileged connection, flag bit 2), failing with ENOMEM (12). The pages are then filled on first touch by `KONAmapgfx`. No register is touched.
 - `KONAdetach` (`kona_attach.o` +0x1c8, 84 bytes): **Established.** Undoes the attach: if the kernel textport was active it clears its mute flag and prints a console reset sequence, clears the connection's region handle (+48) with
   `gfxdd_munmap`, and runs `kona_diag_map_cleanup` on the pipe. Returns 0.
-- `KONAmapgfx` (`kona_map.o` +0x0, 860 bytes): **Established.** The first-touch fault operation: maps the pipe's pages into the user process, and attaches the process to the flow-controlled FIFO. Four
+- `KONAmapgfx` (`IP27boot/kona.a(kona_map.o)` +0x0, 860 bytes; same code in `IP35boot/kona.a(kona_map.o)`): **Established.** The first-touch fault operation: maps the pipe's pages into the user process, and attaches the process to the flow-controlled FIFO. Four
   `v_mapkvsegment` calls place the FIFO page (window +0xc10000, or the command-port page when the pipe has no flow window) at user offset 0, the host-interface page (window +0x810000, or +0x800000 when privileged) at 0x4000, for a privileged connection the 2 MB register window from window +0 at 0xc000, and the current node's return-data buffer at 0x8000. Before mapping it walks the thread's other connections and unmaps each that is mapped (`unmap` through their operation table), waiting in 10 us steps up to 1000 times if another mapping is in progress. After mapping it sets flag bit 0 of the connection (+4), attaches to flow control exactly as `KONAresume` does (widget register 0x7c, credit wait), and kicks
   `HH_GINTR_INFO` (0xc00108) with 0. Returns -1 on success and 0 when a mapping failed.
 - `KONAunmapgfx` (`IP27boot/kona.a(kona_map.o)` at +0x35c for 260 bytes): **Established.** Removes a connection's mapping. If it is the current mapped connection and attached to flow control, it flushes the gather buffer, waits for credits when the count is below the bias, writes 1 to widget register 0x7c and reads it back, and detaches. It then clears its bound-node pointers (+104, +112) and flag bit 0, invalidates the physical mappings with
@@ -75,20 +75,20 @@ The graphics FIFO fill level is read from the host-interface level register at w
 
 ## Sharing, genlock, information, scheduling hooks and stubs
 
-- `kona_share` (`kona_share.o` +0x0, 248 bytes): **Established.** Joins a rendering node to a share group (the ioctl that lets two nodes share memory pools). It checks the caller with
+- `kona_share` (`IP27boot/kona.a(kona_share.o)` +0x0, 248 bytes; `IP35boot/kona.a(kona_share.o)` is byte-for-byte the same routine): **Established.** Joins a rendering node to a share group (the ioctl that lets two nodes share memory pools). It checks the caller with
   `RRM_CheckValidFault` (EFAULT 14), takes an in-flight count on the board record (+80), looks the requested group up in the pipe's list (+4968, linked through +104) and, if none matches, allocates a zeroed 112-byte group record (`kern_malloc`) and pushes it on the list. It increments the group's use count, stores it in the node's private record (+240) and in the caller's argument, drops the in-flight count and returns 0. No register is touched.
 - `kona_unshare` (`kona_share.o` +0xf8, 172 bytes): **Established.** Leaves a share group: finds the node's group on the pipe's list, decrements the use count and clears the node's pointer. When the count reaches zero it destroys the group's memory blocks
   (`kona_mem_destroy`) and DMA pool (`kona_dmapool_destroy`), unlinks the record and frees it with `kern_free`.
-- `kona_voc_intr` (`kona_genlock.o` +0x0, 32 bytes): **Established.** Handler for the video-output-clock (genlock) interrupt: it calls the resource manager's genlock notification
+- `kona_voc_intr` (`IP27boot/kona.a(kona_genlock.o)` +0x0, 32 bytes; `IP35boot/kona.a(kona_genlock.o)` holds the same code): **Established.** Handler for the video-output-clock (genlock) interrupt: it calls the resource manager's genlock notification
   `rrmGenlockNotify` with its first argument's pointer and -1, and has no register effect.
-- `KONAinfo` (`kona_info.o` +0x0, 84 bytes): **Established.** The board-information ioctl: copies at most 1952 bytes from state +204 to the caller
+- `KONAinfo` (`IP27boot/kona.a(kona_info.o)` +0x0, 84 bytes; `IP35boot/kona.a(kona_info.o)` disassembles to the same body): **Established.** The board-information ioctl: copies at most 1952 bytes from state +204 to the caller
   (`copyout`), returns EFAULT (14) when the copy fails, and stores the byte count in the length word.
-- `KONAfrsinstall` (`kona_frs.o` +0x0, 80 bytes): **Established.** Marks the pipe as managed by the frame-rate scheduler: under the state lock (+2576) it sets flag +144 to 1 and stores the scheduler handle at +152. No register is touched.
+- `KONAfrsinstall` (`IP27boot/kona.a(kona_frs.o)` +0x0, 80 bytes; the `IP35boot/kona.a(kona_frs.o)` copy matches it instruction for instruction): **Established.** Marks the pipe as managed by the frame-rate scheduler: under the state lock (+2576) it sets flag +144 to 1 and stores the scheduler handle at +152. No register is touched.
 - `KONAfrsuninstall` (`kona_frs.o` +0x50, 68 bytes): **Established.** Undoes
   `KONAfrsinstall`: under the state lock it clears +144 and the handle at +152.
-- `kona_debug_init` (`kona_debug.o` +0x0, 44 bytes): **Established.** A once-only debug initialiser: if its done flag is already set it prints a warning with
+- `kona_debug_init` (`IP27boot/kona.a(kona_debug.o)` +0x0, 44 bytes; `IP35boot/kona.a(kona_debug.o)` has an identical body): **Established.** A once-only debug initialiser: if its done flag is already set it prints a warning with
   `qprintf`; then it sets the flag and returns 1.
-- `KONAdownload` (`kona_stubs.o` +0x0, 8 bytes): **Established.** The board's download operation. It returns 0 and does nothing, so the generic download request has no effect on this board.
+- `KONAdownload` (`IP27boot/kona.a(kona_stubs.o)` +0x0, 8 bytes; same code in `IP35boot/kona.a(kona_stubs.o)`): **Established.** The board's download operation. It returns 0 and does nothing, so the generic download request has no effect on this board.
 
 ## Interrupt handlers: `kona_intr.o`, `kona_intr_hip2.o`
 
@@ -100,7 +100,7 @@ The graphics FIFO fill level is read from the host-interface level register at w
   `HH_INTR_STATUS` (write-one-to-clear) and 0xbadc0ffe to `HH_INTR_ACK` (0x800228), then drops the lock.
 - `kona_ge_intr_handler` (`IP27boot/kona.a(kona_intr_hip2.o)` at +0x2bc for 88 bytes): **Established.** Handler for the geometry-engine interrupt: it counts the interrupt (per-CPU counter), runs
   `kona_ge_intr` to decode the event record, then writes 0x20 to `HH_INTR_STATUS` (0x800238) to clear the GE cause.
-- `kona_arm_intr` (`kona_intr.o` +0x0, 528 bytes): **Established.** Decodes the event the ARM firmware posts in its mailbox. It sets the activity flag (+5464) the watchdog looks at and reads the mailbox
+- `kona_arm_intr` (`IP27boot/kona.a(kona_intr.o)` +0x0, 528 bytes; `IP35boot/kona.a(kona_intr.o)` is byte-for-byte the same routine): **Established.** Decodes the event the ARM firmware posts in its mailbox. It sets the activity flag (+5464) the watchdog looks at and reads the mailbox
   `HH_ARM_MBOX` (0x800240). Value 0 is a text message: up to 5000 times it writes 0x10 to `HH_INTR_STATUS` to clear the ARM cause (which prompts the firmware for the next character), polls that bit for up to 5000 x 20 us, reads the mailbox again and keeps the low byte, stopping at a zero byte or 511 characters, and then prints the string. Value 0x100 (input DMA done) signals the semaphore at +5176 and cancels the timeout at +5192. Value 0x102 runs `kona_mem_swapin_complete`. Value 0x103 (context activated) signals the semaphore at +5296 and cancels the timeout at +5312, under the state lock. Any other value is logged with tag 2100. The mailbox is never written.
 - `kona_ge_intr` (`kona_intr.o` +0x210, 912 bytes): **Established.** Decodes the event record that the geometry-engine microcode leaves in the host buffer at +2584 (event code in word 0, up to three arguments after it). It replaces word 0 with the code ORed with 0xbad00000 once read. If word 1 is 256 and the code is a valid context slot it swaps words 0 and
   1 and logs the repair (**Inferred:** the microcode wrote them in the wrong order). Code 0 formats a print request with `kona_geprint` and logs it (a negative length first logs "truncating geprint"). Code 0x100 stores the select-feedback result in the context's record and wakes its waiter. Codes 0x101 and 0x102 and
@@ -109,7 +109,7 @@ The graphics FIFO fill level is read from the host-interface level register at w
 
 ## Failure handling: `kona_crash.o`
 
-- `kona_die` (`kona_crash.o` +0x0, 372 bytes): **Established.** Marks a pipe dead and quiesces it; every fatal path in the driver ends here, with a reason code in the second argument. Under the state lock (+2168) it returns at once if the pipe is already dead (+2172 nonzero). Otherwise it stores the reason at +2172, saves
+- `kona_die` (`IP27boot/kona.a(kona_crash.o)` +0x0, 372 bytes; `IP35boot/kona.a(kona_crash.o)` carries identical code): **Established.** Marks a pipe dead and quiesces it; every fatal path in the driver ends here, with a reason code in the second argument. Under the state lock (+2168) it returns at once if the pipe is already dead (+2172 nonzero). Otherwise it stores the reason at +2172, saves
   `HH_INTR_INFO` (0x800220) at +2176 and `HH_TBUS_STATUS` (0x8003a8) at +2180, then writes the saved enable word with bit 15 cleared back to `HH_INTR_INFO` (global interrupt off), 8 to `HH_TBUS_STATUS`, and 0xbadc0ffe to `HH_ODMA_FLUSH` (0x800298). It logs the pipe number and reason (tag 2114) and the FIFO level from
   `HH_GFIFO_LEVEL` (0x800208), clears the sleeper flags (+104, +108, +120), and calls `gthread_scan` with reason 9 so every thread using the pipe is signalled.
 - `kona_checkpipe_complete` (`kona_crash.o` +0x174, 100 bytes): **Established.** Completion of the check-pipe request, run from the GE event 0x105 or from its timeout. On a timeout it logs tag 2115 and kills the pipe with
@@ -124,10 +124,10 @@ The graphics FIFO fill level is read from the host-interface level register at w
 
 ## Board record and flow-control set-up: `kona_edtinit.o`
 
-- `kona_alloc_bdata` (`kona_edtinit.o` +0x0, 564 bytes): **Established.** Allocates and initialises the pipe state for the next board number. It grows the global board table to the board count if needed, then
+- `kona_alloc_bdata` (`IP27boot/kona.a(kona_edtinit.o)` +0x0, 564 bytes; `IP35boot/kona.a(kona_edtinit.o)` holds the same code): **Established.** Allocates and initialises the pipe state for the next board number. It grows the global board table to the board count if needed, then
   `kern_malloc`s 5544 bytes, zeroes it, initialises the state spinlocks (+2168, +2352, +2576, +3520) and six semaphores (+5152 to +5344), sets the dead flag (+2172) to 1 until `KONAinitialize`, registers the board (`kona_register_board`), copies in the board number (+2184), and sets sizes (+88 = 96, +96 and +184 point into the state). It allocates one 16 KB host page for GE events (+2584) and stores its pipe-space address pair (frame number with 0x10000000 at +2592, in-page offset with 0x9000 at +2596). It copies a six-byte name to +204 and sets the information length (+240) to 1952, runs
   `kona_timeout_init`, enters the pipe in the table and returns it (0 when the table has no room for a second board).
-- `kona_free_bdata` (`kona_edtinit.o` +0x234, 28 bytes): **Established.** Frees the pipe state with
+- `kona_free_bdata` (`IP27boot/kona.a(kona_edtinit.o)` +0x234, 28 bytes; `IP35boot/kona.a(kona_edtinit.o)` disassembles to the same body): **Established.** Frees the pipe state with
   `kern_free`.
 - `kona_init_flow_control` (`kona_edtinit.o` +0x250, 116 bytes): **Established.** Creates the pipe's flow-control object. It calls
   `gfx_flow_alloc` with the widget vertex (+200), the FIFO page address (state +2216 plus 0xc10000), a credit size parameter built from a global (shifted left by 3), 100000, the high-water interrupt handler (`kona_hiwater_intr`) and the state. It stores the object at +2272 and, when it exists, copies its 32-byte mapping descriptor into +2280 with `gfx_flow_wg_info_get`. That descriptor puts the kernel's mapping of the FIFO page (the command port) at +2304.
@@ -142,7 +142,7 @@ The graphics FIFO fill level is read from the host-interface level register at w
 
 The map RAM is an array of 32-bit entries at window offset 0x100000 (stride 4), one per 16 KB page of the pipe's DMA address space.
 
-- `kona_mapram_pagesizeshiftof` (`kona_mapram_hip2.o` +0x0, 8 bytes): **Established.** Returns the constant 14, the page-size shift: the map RAM pages are 16 KB.
+- `kona_mapram_pagesizeshiftof` (`IP27boot/kona.a(kona_mapram_hip2.o)` +0x0, 8 bytes; the `IP35boot/kona.a(kona_mapram_hip2.o)` copy matches it instruction for instruction): **Established.** Returns the constant 14, the page-size shift: the map RAM pages are 16 KB.
 - `kona_mapram_init` (`kona_mapram_hip2.o` +0x8, 192 bytes): **Established.** Tests that the map RAM is present and fills it with a known pattern. For each entry index k below the entry count (state +2312) it writes 0x10000000 | k to window offset 0x100000 + 4k and reads it back; the first mismatch logs tag 2111 and kills the pipe with
   `kona_die` reason 21.
 - `kona_mapram_map` (`kona_mapram_hip2.o` +0xc8, 328 bytes): **Established.** Points consecutive map RAM entries at the physical pages of a host buffer so the pipe can DMA to it. It builds the page list of the buffer with
@@ -152,10 +152,10 @@ The map RAM is an array of 32-bit entries at window offset 0x100000 (stride 4), 
 
 ## Driver timeouts: `kona_timeout.o`
 
-- `kona_timeout_init` (`kona_timeout.o` +0x0, 88 bytes): **Established.** Initialises the two timeout spinlocks (+5368 and +5372) and fills the argument block for the kernel timer (+5400 to +5424) with the handler, the delay flag 4 and a name string.
+- `kona_timeout_init` (`IP27boot/kona.a(kona_timeout.o)` +0x0, 88 bytes; `IP35boot/kona.a(kona_timeout.o)` has an identical body): **Established.** Initialises the two timeout spinlocks (+5368 and +5372) and fills the argument block for the kernel timer (+5400 to +5424) with the handler, the delay flag 4 and a name string.
 - `kona_timeout_alloc` (`kona_timeout.o` +0x58, 84 bytes): **Established.** Gets one 64-byte timeout record with
   `kmem_alloc`, retrying ten times with a 10 us delay between tries; returns 0 when all fail.
-- `kona_timeout_free` (`kona_timeout.o` +0xac, 28 bytes): **Established.** Returns a timeout record (64 bytes) with
+- `kona_timeout_free` (`IP27boot/kona.a(kona_timeout.o)` +0xac, 28 bytes; same code in `IP35boot/kona.a(kona_timeout.o)`): **Established.** Returns a timeout record (64 bytes) with
   `kmem_free`.
 - `kona_sched_tick` (`kona_timeout.o` +0x2b4, 156 bytes): **Established.** Arms the kernel timer that drives the driver's timeout list: converts the microseconds in its second argument to clock ticks with
   `drv_usectohz`, calls `itimeout` with `kona_itimeout_func`, keeps the handle (+5440) and the due time in microseconds (+5448, from
@@ -179,7 +179,7 @@ The map RAM is an array of 32-bit entries at window offset 0x100000 (stride 4), 
 
 A DMA vector (`kona_dmavec`) is a 24-byte descriptor: base pointer at +0, total length at +8, line length at +12, stride (the gap between lines) at +16.
 
-- `lock_dmavec` (`kona_dma.o` +0x0, 200 bytes): **Established.** Pins the pages of one DMA vector in memory. A zero line length means one flat run. It computes the span covered (the total for a flat vector, otherwise one line plus (line + stride) for each further line), returns EINVAL (22) for a zero span and
+- `lock_dmavec` (`IP27boot/kona.a(kona_dma.o)` +0x0, 200 bytes; `IP35boot/kona.a(kona_dma.o)` is byte-for-byte the same routine): **Established.** Pins the pages of one DMA vector in memory. A zero line length means one flat run. It computes the span covered (the total for a flat vector, otherwise one line plus (line + stride) for each further line), returns EINVAL (22) for a zero span and
   E2BIG (7) when the span in 16 KB pages would not fit in 32 bits, then calls `userdma` on the base address. Returns the span, or a negative error. No register is touched.
 - `unlock_dmavec` (`kona_dma.o` +0xc8, 104 bytes): **Established.** Releases what
   `lock_dmavec` pinned: it recomputes the same span from the vector and calls `undma` on the base address. No register is touched.
@@ -242,7 +242,7 @@ Swaps and retrace waits are not register writes: the driver puts a marker into t
 
 A rendering node's driver-private record is 256 bytes (the layout is in [kona_kern.h](../kona_kernel/include/kona_kern.h)). It holds the return-data page, the 64 KB context save area, the retrace record (+112), the lists of memory blocks, and a bind marker halfword (+248).
 
-- `KONAcreateddrn` (`kona_ddrn.o` +0x0, 224 bytes): **Established.** The board's operation for creating a rendering node. It allocates and zeroes the private record
+- `KONAcreateddrn` (`IP27boot/kona.a(kona_ddrn.o)` +0x0, 224 bytes; `IP35boot/kona.a(kona_ddrn.o)` holds the same code): **Established.** The board's operation for creating a rendering node. It allocates and zeroes the private record
   (`kern_malloc` of 256 bytes), stores it in the node (+112), sets the bind marker (+248) to -1, and initialises the semaphore at +80. It takes one 16 KB page for return data (`kvpalloc`, address at +0) and stores its pipe-space address pair (frame number with 0x10000000 at +8, in-page offset with 0x9000 at +12). It takes a 64 KB context save area (`kvpalloc` of four pages, at +16) and maps it into pipe space with `alloc_gfx_io_space` (shift 14), storing the address at +24. Returns 0. No register is touched.
 - `kona_mopup_complete` (`kona_ddrn.o` +0xe0, 120 bytes): **Established.** Completion of the context mop-up request, run from GE event 0x103 or from its timeout. It wakes the waiter on the semaphore at +5320. On a timeout it logs tag 2121 and kills the pipe with
   `kona_die` reason 17; otherwise it cancels the timeout (+5336). It then clears that handle.
@@ -337,7 +337,7 @@ Each board has an 88-byte record in a table of such records (board number x 88).
 
 The multi-pipe ("hyperpipe") code drives the display port of each pipe through `HH_VC_ADDRESS` (0x8003c0) and `HH_VC_DATA` (0x8003d0): every access is the address written to the first register and the value read or written through the second. The topology record (3336 bytes, pointer at pipe state +5480) holds 64 network records of 48 bytes: state at +0, current master pipe at +8, lock at +16, swap countdown at +20, member count at +40 and bound count at +44. Per pipe: next pipe in the ring +5488, network id +5496, configured network +5500 (-1 for none), swap counters +5504 and +5508, bind count +5516. Only pipes whose display board reports option type 5 and that the X server manages take part.
 
-- `alloc_new_network_id` (`kona_nclops.o` +0x0, 136 bytes):
+- `alloc_new_network_id` (`IP27boot/kona.a(kona_nclops.o)` +0x0, 136 bytes; `IP35boot/kona.a(kona_nclops.o)` disassembles to the same body):
   **Established.** Gives a pipe a network id by walking the ring of next-pipe links.
   It works on the two-word records `kona_nclops_discover` builds on its stack ({pipe index at +0, network id at +4}) and the table of downstream-record pointers indexed by pipe index, not on the pipe state: if the record has no id yet (+4 equals -1) it either takes the next id from the counter (when there is no downstream record or it is the origin) or recurses into the downstream record and copies its id, so every pipe in a ring ends with the same id.
   The ids reach the pipe state (+5496) only in discovery's last phase.
@@ -373,7 +373,7 @@ The multi-pipe ("hyperpipe") code drives the display port of each pipe through `
 
 The textport drawing functions form a nine-entry operation table handed to the console layer by `kona_earlyinit`. Each drawing function does the same framing, read from `kona_tport.o` +0x0 to +0xccc. It sets the in-use flag, returns without sending anything when the mute flag is set, takes the textport lock, and waits up to 100000 times 2 us for `HH_GFIFO_LEVEL` (0x800208, masked with 0x7fe) to read zero. It brackets the stores with `kona_fc_attach` and `kona_fc_detach`, and writes 32-bit words to the flow-controlled FIFO page at window offset 0xc10000. Every sequence starts with the word 1, then a sub-command number, then a fixed payload.
 
-- `kona_setcolor` (`kona_tport.o` +0x0, 340 bytes): **Established.** Sets the textport drawing colour: sends 1,
+- `kona_setcolor` (`IP27boot/kona.a(kona_tport.o)` +0x0, 340 bytes; the `IP35boot/kona.a(kona_tport.o)` copy matches it instruction for instruction): **Established.** Sets the textport drawing colour: sends 1,
   2, then the colour word.
 - `kona_mapcolor` (`kona_tport.o` +0x154, 388 bytes): **Established.** Loads one colour-map entry: sends 1,
   3, the index, and the red, green and blue components each shifted left by 2 (an 8-bit value widened to 10 bits without replicating the top bits).
@@ -422,7 +422,7 @@ The textport drawing functions form a nine-entry operation table handed to the c
 
 The Crosstalk widget registers named here are those of the pipe's XG chip ([xg.md](xg.md)): 0x24 control, 0x2c request timeout, 0x34 and 0x3c interrupt destination, 0x5c interrupt vectors, 0x6c error status, 0x74 FIFO water marks.
 
-- `kona_init` (`kona_edtinit_hip2.o` +0x0, 200 bytes): **Established.** The driver's start-up hook: it runs
+- `kona_init` (`IP27boot/kona.a(kona_edtinit_hip2.o)` +0x0, 200 bytes; `IP35boot/kona.a(kona_edtinit_hip2.o)` has an identical body): **Established.** The driver's start-up hook: it runs
   `kona_debug_init`, then under the board semaphore walks every pipe index below the board count, finds each graphics pipe with `find_konapipe`, allocates its pipe state with `kona_alloc_bdata` (logging a failure) and stores the pipe's widget number (+2208) and node number (+2210) in it. It then registers the driver with the Crosstalk layer
   (`xwidget_driver_register` with the part number 0xc102 and manufacturer 682), so `kona_attach` runs when the widget is found.
 - `kona_intr_set` (`kona_edtinit_hip2.o` +0xc8, 8 bytes): **Established.** Does nothing: it is the first slot of the handler table (the table of interrupt handlers the attach step walks), and returns immediately.
@@ -460,7 +460,7 @@ The Crosstalk widget registers named here are those of the pipe's XG chip ([xg.m
 The 6.5.30m `IP27boot/gfx.o` and `IP35boot/gfx.o` (and the copy of each inside `gfxs.a`) hold the same code for the entries in this section unless an entry says the IP35 object differs. Offsets are `.text` offsets; where the IP35 object places the same code elsewhere the entry gives that offset too. `conn` is the 128-byte connection record `gfxopen` allocates and `board data` is the board's private record; their field layout is in [kernel.md](kernel.md#generic-graphics-layer-gfxo).
 
 - `gfxtable_readerlock` (`IP27boot/gfx.o` at +0x0 for 68 bytes):
-  Also in `IP35boot/gfx.o`. **Established.** Enters a table lock as a reader. It takes the spinlock at lock +4 with `mutex_spinlock`, adds 1 to the reader count at +0 with a plain load and store, and drops the spinlock with `mutex_spinunlock`. A reader waits for nothing but that spinlock, so lookups overlap, while a writer polls the count in `gfxtable_writerlock`. Called by `gfx_group_find`, `gthread_find` and `gthread_scan`.
+  Also in `IP35boot/gfx.o`, `IP27boot/gfxs.a(gfx.o)` and `IP35boot/gfxs.a(gfx.o)`, whose copies disassemble to the same body. **Established.** Enters a table lock as a reader. It takes the spinlock at lock +4 with `mutex_spinlock`, adds 1 to the reader count at +0 with a plain load and store, and drops the spinlock with `mutex_spinunlock`. A reader waits for nothing but that spinlock, so lookups overlap, while a writer polls the count in `gfxtable_writerlock`. Called by `gfx_group_find`, `gthread_find` and `gthread_scan`.
 - `gfx_group_find` (`IP27boot/gfx.o` at +0x188 for 184 bytes):
   Also in `IP35boot/gfx.o`. **Established.** Returns the group record for a thread handle, or 0. It converts the handle to its thread-group handle with `threadhandle_to_threadgrouphandle`, hashes it (low four bits, or bits 12-15 when those are zero), holds the table as a reader (`gfxtable_readerlock`) while it walks the bucket chain comparing the record's first word, and releases it again. The record is used by the caller after the lock is dropped.
 - `gthread_find` (`IP27boot/gfx.o` at +0x800 for 220 bytes):
@@ -530,6 +530,9 @@ The 6.5.30m `IP27boot/gfx.o` and `IP35boot/gfx.o` (and the copy of each inside `
 - `gfxioctl` (`IP35boot/gfx.o` at +0x2b94 for 2004 bytes):
   **Established.** The same ioctl entry for the IP35 kernel, with the same command chain, arguments and results; the only differences are that the CPU number for the statistics record comes from 0xffffffffffffc428 instead of 0xffffffffffffc420, and that the compiler loads `GfxNumberOfBoards` earlier, which shifts the code by one instruction.
 
+- `GfxRegisterBoard` (`IP27boot/gfx.o` at +0xa64 for 228 bytes; `IP35boot/gfx.o`, `IP27boot/gfxs.a(gfx.o)` and `IP35boot/gfxs.a(gfx.o)` carry the same body, compared function by function):
+  **Established.** Adds one board driver to the generic graphics layer's board table; read in full. It compares `GfxNumberOfBoards` with `GfxBoardLimit` and, when the table is full, calls `cmn_err` at level 4 with the 25-byte text at `.rodata` +0x80 ("board limit exceeded") and returns -1. Otherwise it calls `kern_malloc` for a 72-byte record, clears it with `bzero`, stores the pointer in slot `GfxNumberOfBoards` of the `GfxBoards` pointer table, and fills three words from its arguments: +56 takes the operation table (first argument), +64 the board's private data (second argument) and +0 the information record (third argument). It stores the board number at +24 (a 32-bit store of the old count), increments the count, and calls `RRM_Init` with the private-data pointer, so the resource manager's per-board set-up runs on the same record the driver passed in. It returns 0. No hardware register is touched. KONA reaches it from `kona_register_board` (`kona_edtinit.o` +0x2c4).
+
 ## Stubs for a kernel without graphics: `gfxstubs.a(gfxstubs.o)`
 
 A kernel built without a graphics board links `gfxstubs.a` in place of `gfx.o`, `rrm.o` and `gfxs.a`. In `IP27boot/gfxstubs.a(gfxstubs.o)` and `IP35boot/gfxstubs.a(gfxstubs.o)` (identical code) every function is a `jr ra` with at most one instruction in its delay slot, 8 bytes long, so no register or table is touched. The entries give the value each one returns, which is what the rest of the kernel sees in place of the real hook.
@@ -539,7 +542,11 @@ A kernel built without a graphics board links `gfxstubs.a` in place of `gfx.o`, 
 - `gfx_fault` (`IP27boot/gfxstubs.a(gfxstubs.o)` at +0x30 for 8 bytes):
   The IP35 copy of the object has the same code. **Established.** Stands in for the graphics fault handler by returning 1 (the delay slot loads 1), the same value the real handler returns when it did not repair the fault. Earlier prose called this stub a no-op; the return value is read from the instruction at +0x34.
 - `gfx_exit` (`IP27boot/gfxstubs.a(gfxstubs.o)` at +0x0 for 8 bytes):
-  The IP35 copy of the object has the same code. **Established.** The process-exit hook for a kernel with no graphics: returns 0 and does nothing else, the value the real `gfx_exit` also returns on every path.
+  `IP35boot/gfxstubs.a(gfxstubs.o)` has the same code. **Established.** The process-exit hook for a kernel with no graphics: returns 0 and does nothing else, the value the real `gfx_exit` also returns on every path.
+- `shmiq_sproc` (`IP27boot/gfxstubs.a(gfxstubs.o)` at +0x68 for 8 bytes; `IP35boot/gfxstubs.a(gfxstubs.o)` has the same two words):
+  **Established.** The share-group creation notice to the shared-memory input queue driver, empty in a kernel with no graphics: a `jr ra` and a `nop`, so the pointer argument is never read and no value is returned.
+- `initkbdtype` (`IP27boot/gfxstubs.a(gfxstubs.o)` at +0x70 for 8 bytes; `IP35boot/gfxstubs.a(gfxstubs.o)` has the same two words):
+  **Established.** The PC-keyboard type probe hook, empty here: a `jr ra` and a `nop`, so no keyboard type is recorded; the keyboard state bytes `kbdstate` and `kbdcntrlstate` that sit in the same object's `.bss` receive no store from it.
 - `gfx_frs_valid_pipenum` (`IP27boot/gfxstubs.a(gfxstubs.o)` at +0x78 for 8 bytes):
   The IP35 copy of the object has the same code. **Established.** Reports that no pipe number is valid for the frame-rate scheduler, by returning 0 (the delay slot moves zero into the result). The real function returns 1 for numbers below the board count; this build has no boards.
 - `gfx_frs_install` (`IP27boot/gfxstubs.a(gfxstubs.o)` at +0x80 for 8 bytes):
@@ -751,7 +758,7 @@ The 6.5.30m `IP35boot/kona.a` members below differ from the same-named IP27 memb
   **Established.** Reserves a block of pipe memory for a rendering node, or with the grow flag set enlarges an existing block of the same id. The 12-byte request holds the pool (byte +0, must be below 4), a block id (byte +1), a unit count at +4 and an alignment at +8. It returns 22 for a zero size or a bad pool, 34 for size, alignment and pool-unit values that do not fit together, and 6 when the id is above the limit in the first word of the pool's type record. After `RRM_CheckValidFault` it records whether a select feedback is in flight (`kona_mem_suspend`), allocates and zeroes a 96-byte block with `kern_malloc` and `bzero`, initialises its semaphore (name "konamem"), and places it with `kona_mem_reserve` or `kona_mem_grow`, revalidating owners with `kona_mem_validate_driver` and `kona_mem_update_driver`. A swap-in that takes too long prints the "mem_swapin timeout" message. The IP35 copy in `IP35boot/kona.a(kona_mem.o)` has the same code.
 - `kona_mem_free` (`IP27boot/kona.a(kona_mem.o)` at +0x2674 for 616 bytes):
   **Established.** Releases a pipe-memory block named by pool and id. After `RRM_CheckValidFault` (14 on failure) it looks the block up by pool and id in the node's lists, returning 22 when there is none. It waits for any swap in flight on the block (`psema` on its semaphore at +72), runs `kona_mem_cleanup` to settle finished transfers, sends the pipe the reserve command for the block through `kona_mem_reserve_func` (inferred: this tells the pipe the space is free), destroys the block's semaphore (`freesema`) and frees the block with `kern_free`. The IP35 copy in `IP35boot/kona.a(kona_mem.o)` has the same code.
-- `KONAprivate` (`IP27boot/kona.a(kona_ioctl.o)` at +0x0 for 2364 bytes):
+- `KONAprivate` (`IP27boot/kona.a(kona_ioctl.o)` at +0x0 for 2364 bytes; `IP35boot/kona.a(kona_ioctl.o)` disassembles to the same body):
   **Established.** The board's handler for private ioctls above 9999: it subtracts 10000 from the command and jumps through the table at `.rodata` +0x18, and an unserved slot logs a notice and returns 22 (+0x60).
   The arguments are the connection, the node, the command and the user pointer. Slots 4, 7, 13 and 25 to 99, and any command past slot 102, take the notice, which uses `cmn_err_tag` with tag 2113. Slot 8 returns 22 silently at +0x80. A failed copy returns 14.
   What each served slot copies in and calls:
