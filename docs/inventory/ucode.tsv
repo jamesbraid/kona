@@ -1936,26 +1936,26 @@ ge.u	label	0x00000f58	mMatrixAdjoint		located	ucode/ge_handlers.md#umatrixs	umat
 ge.u	label	0x00000f58	uMatrixAdjoint		located	ucode/ge_handlers.md#umatrixs	umatrix.s
 ge.u	label	0x00000fb0	mRotate		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
 ge.u	label	0x00000fb0	uRotate		understood	ucode/ge_compute.md#matrix-building-and-scalar-subroutines-matrixs-umatrixs-maths-umaths	Matrix building and scalar subroutines (matrix.S, umatrix.s, math.S, umath.s)
-ge.u	label	0x00001013	uWramToCram		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x0000101b	lW2C		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x00001025	mWramToEram		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x00001025	uWramToEram		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x0000102d	lW2E		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x0000103a	mCramToEram		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x0000103a	uCramToEram		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x00001041	lC2E		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x0000104f	mEramToCram		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x0000104f	uEramToCram		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x00001060	lE2C		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x00001074	mClearEram		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x00001074	uClearEram		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x0000107c	lcE		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x00001089	mCramToFifo		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x00001089	uCramToFifo		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x0000108f	lC2F		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x0000109b	mEramToFifo		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x0000109b	uEramToFifo		located	ucode/ge_handlers.md#umemoves	umemove.s
-ge.u	label	0x000010a5	lE2F		located	ucode/ge_handlers.md#umemoves	umemove.s
+ge.u	label	0x00001013	uWramToCram		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x0000101b	lW2C		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x00001025	mWramToEram		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x00001025	uWramToEram		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x0000102d	lW2E		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x0000103a	mCramToEram		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x0000103a	uCramToEram		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x00001041	lC2E		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x0000104f	mEramToCram		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x0000104f	uEramToCram		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x00001060	lE2C		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x00001074	mClearEram		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x00001074	uClearEram		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x0000107c	lcE		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x00001089	mCramToFifo		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x00001089	uCramToFifo		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x0000108f	lC2F		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x0000109b	mEramToFifo		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x0000109b	uEramToFifo		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
+ge.u	label	0x000010a5	lE2F		understood	ucode/ge_compute.md#memory-copies-umemoves	Memory copies (umemove.s)
 ge.u	label	0x000010b8	uSecondChance		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
 ge.u	label	0x000010b9	lSC2		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)
 ge.u	label	0x000010c9	mmo_ToScreenSpace		understood	ucode/ge_compute.md#perspective-divide-and-viewport-uscreen2s	Perspective divide and viewport (uscreen2.s)

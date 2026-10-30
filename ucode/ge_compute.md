@@ -1876,3 +1876,80 @@ entry handler set up, tests `cc` 0x10 or 0x15 with a branch to `mmo_AbortGeometr
 - `lDE7` (`udecompose.s` lines 162-170, at 0xd30): **inferred**, the fan loop: each pass stores the centre (register 8) and
   the current outer record into the entry (0xd30, 0xd33-0xd34), ORs the edge flags (0xd35), selects the next entry and
   record by condition 4 or 5 (0xd36-0xd38) and repeats through the relative transfer at 0xd31.
+
+## Memory copies (umemove.s)
+
+The engine has three data memories, named in the copy routines ([ge_isa.md](ge_isa.md#engine-facts-read-from-konas-own-binaries)):
+:
+working memory (WRAM), which also takes the command words, control memory (CRAM), shared by the cores, and
+external memory (ERAM). **Inferred** from the callers: register 0 holds the source address, register 1 the destination
+and register 2 the word count. `mmo_V0ToSave_SaveExtra` loads 0x102c into register 0 (0xe52a) and register 0x16 + 0x3d
+into register 1 (0xe52e) around its call at 0xe52c, and `mmo_SaveToV0_SaveExtra` also loads 0x27 into register 2
+(0xe5c4). Each routine steps the count with the address-unit decrement (F = 0x25 with `r222`) and loops on `cc` 0x11 in
+condition group 7, which is "count not zero" ([Address-unit conditions](ge_ops.md#address-unit-conditions)). Its loop
+alternates plain words with W71 words, so the core's two threads move alternate words
+([ge_isa.md](ge_isa.md#forms)). It returns through a group-5 indirect transfer
+([ge_isa.md](ge_isa.md#calls-returns-and-the-end-of-a-command)). By memory, reads use `r95` = 0x13 for control memory
+and 0x15-0x17 for external memory. Stores through register 1 use `r211` = 3 with `r95` = 4-6 for the internal memories
+and 8-0xa for external memory. All 20 labels were read in `ge_listing/umemove.s.lst` (`ge.u` 6.5.30m).
+
+- `uWramToCram` (`umemove.s` lines 18-25, at 0x1013): **inferred**, the set-up of the working-to-control memory copy.
+  It decrements the count with the flag set (0x1013, again at 0x1019), applies F = 0x22 to the destination register
+  (0x1014) and F = 5 to the source register (0x1016), and preloads source words at register 0 + 2 and + 4 (0x1015,
+  0x1017) before the loop. `mmemove.S` has the `mWramToCram` that `mgeb_LoadCram` calls. This build has no caller in
+  the shipped program.
+- `lW2C` (`umemove.s` lines 27-35, at 0x101b): **inferred**, the working-to-control loop. A relative transfer to itself
+  on `cc` 0x11 (0x101b) repeats its four delay slots, which store source words through register 1 (`r211` = 3,
+  `r95` = 4, 5 and 6 at 0x101c-0x1020, then 0x1023). The stores at 0x101f, 0x1020 and 0x1023 are thread B's. The
+  group-5 transfer at 0x101c returns once the count reaches zero.
+- `mWramToEram` (`umemove.s` lines 45-52, at 0x1025): **inferred**, saves a block of working memory to external memory.
+  The vertex-save stages call it to keep 0x27 words of polygon state (0xe52c, 0xe5bf), and `uEvalSaveState` calls it for the
+  evaluator maps (0x96e). Its set-up decrements the count (0x1026), adjusts the destination with F = 0x22 (0x1028) and
+  moves the first source words from register 0 + 1, + 3 and + 2 (0x1025, 0x1029, 0x102b).
+- `uWramToEram` (`umemove.s` line 45, at 0x1025): **established** to be the second label of `mWramToEram`'s first word, 0x1025 (`ge_symbols`), so
+  the transform-path modules that use the u- names get the same external-memory save.
+- `lW2E` (`umemove.s` lines 54-65, at 0x102d): **inferred**, the working-to-external loop. Each pass decrements the
+  count (0x102d) and stores through register 1 into external memory with `r95` = 9, 8 and 0xa (0x102e, 0x1030, 0x1032,
+  0x1034, 0x1036, 0x1038), the last three in thread B. It repeats through the relative transfer of -3 at 0x1030 and
+  returns at 0x1031.
+- `mCramToEram` (`umemove.s` lines 75-81, at 0x103a): **inferred**, the control-to-external memory copy that
+  `mgeb_CramToEram` calls. Its set-up reads control-memory words through register 0 with `r95` = 0x13 (0x103a,
+  0x103c, 0x103e, 0x1040), adjusts the destination (0x103b) and decrements the count (0x103d).
+- `uCramToEram`: **established** at 0x103a, the same word as `mCramToEram` (`ge_symbols`). It has no caller of its own in
+  the shipped program and moves control memory into external memory like its twin.
+- `lC2E` (`umemove.s` lines 83-95, at 0x1041): **inferred**, the control-to-external loop. Control-memory reads
+  (`r95` = 0x13 at 0x1042, 0x1044, 0x104a, 0x104c) alternate with external stores through register 1 (`r95` = 9, 8 and
+  0xa at 0x1043, 0x1045, 0x1047, 0x1049, 0x104b, 0x104d). It loops back four words at 0x1045 and returns at 0x1046.
+- `mEramToCram` (`umemove.s` lines 106-121, at 0x104f): **inferred**, the external-to-control memory copy behind
+  `mgeb_EramToCram` and the strided pixel-path loads. Its set-up issues six external reads through register 0 with
+  `r95` = 0x17 (0x1050-0x105e), so the first words are in flight before the loop starts, and decrements the count
+  at 0x1051.
+- `uEramToCram` (`umemove.s` line 106, at 0x104f): **established** as the other name for that word (`ge_symbols`). Like `mEramToCram`, it fills control memory
+  from external memory, here for callers that use the u- names.
+- `lE2C` (`umemove.s` lines 123-135, at 0x1060): **inferred**, the external-to-control loop. It keeps reading external
+  memory (`r95` = 0x17 at 0x1061, 0x1063, 0x1065) and storing through register 1 with `r95` = 5, 4 and 6 (0x1062,
+  0x1064, 0x1066, 0x1068, 0x106a, 0x106c). It loops back four words at 0x1064 and returns at 0x106b.
+- `mClearEram` (`umemove.s` lines 151-158, at 0x1074): **inferred**, fills a block of external memory with one value,
+  zero by its name. Unlike the copies, it keeps its count in register 1 (decremented at 0x1078) and its address in
+  register 0 (F = 0x22 at 0x1076). The value comes from a register move at 0x1074 with no memory source.
+- `uClearEram`: **established** at 0x1074 beside `mClearEram` (`ge_symbols`). The two names reach one external-memory
+  clear.
+- `lcE` (`umemove.s` lines 160-171, at 0x107c): **inferred**, the clear loop. It decrements register 1 (0x107c) and
+  stores through register 0 into external memory with `r95` = 9, 8 and 0xa (0x107d, 0x107f, 0x1081, 0x1083, 0x1085,
+  0x1087), the last three in thread B. It loops back three words at 0x107f and returns at 0x1080.
+- `mCramToFifo` (`umemove.s` lines 183-201, at 0x1089): **inferred**, streams a block of control memory to the engine's
+  output. It decrements the count (0x1089, 0x108d) before `lC2F`, then ends with a bitwise-not store to bus address
+  0x1f5 (0x1098, thread B at 0x1099). That is the hand-over word `mmo_PixStreamNextGE` also sends.
+- `uCramToFifo`: **established** at 0x1089, sharing `mCramToFifo`'s first word (`ge_symbols`). It sends control memory
+  to the output by the same code.
+- `lC2F` (`umemove.s` lines 190-198, at 0x108f): **inferred**, the control-to-output loop. A transfer to itself on
+  `cc` 0x11 (0x108f) repeats reads with `r95` = 0x11 and 0x13 (0x1090, 0x1093) and output stores with `r213` = 3,
+  B = 0x1e and E = 1 (0x1091 thread A, 0x1095 thread B). The group-5 transfer at 0x1092 returns at the end.
+- `mEramToFifo` (`umemove.s` lines 211-219, at 0x109b): **inferred**, streams a block of external memory to the output.
+  Its set-up reads external memory with `r95` = 0x15, 0x16 and 0x17 (0x109c-0x10a4) and decrements the count
+  (0x109d). After the loop it sends the bitwise-not word to bus address 0x1f5 (0x10b4, 0x10b6).
+- `uEramToFifo` (`umemove.s` line 211, at 0x109b): **established** as `mEramToFifo`'s own first word under a second name (`ge_symbols`), so both
+  names send external memory to the output.
+- `lE2F` (`umemove.s` lines 221-232, at 0x10a5): **inferred**, the external-to-output loop. Each pass decrements the
+  count (0x10a5), reads external memory (0x10a6, 0x10a8) and stores one output word per thread (0x10a7, 0x10ad). It
+  repeats through the relative transfer of -3 at 0x10a8 and returns at 0x10af.
