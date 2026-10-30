@@ -19124,7 +19124,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0x0		__glx_DispatchNop	dwarf
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0x0		__glx_TexImage3D4D	dwarf+funcnames			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0x0		__glx_TexSubImage1D2DEXT	dwarf+funcnames			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0x0		__glx_TexSubImage3D4DEXT	dwarf+funcnames			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0x0		_init	dwarf			in	undocumented		
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0x0		_init	dwarf			in	named-only	docs/libraries.md#the-libgl-builds	The libGL builds
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0x0		_stub	dwarf			in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0x0		checkExtension	dwarf+funcnames			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0x0		combine_strings	dwarf+funcnames			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -24704,7 +24704,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x0		__glx_DispatchNop	dwarf
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x0		__glx_TexImage3D4D	dwarf			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x0		__glx_TexSubImage1D2DEXT	dwarf			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x0		__glx_TexSubImage3D4DEXT	dwarf			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x0		_init	dwarf			in	undocumented		
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x0		_init	dwarf			in	named-only	docs/libraries.md#the-libgl-builds	The libGL builds
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x0		_stub	dwarf			in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x0		checkExtension	dwarf			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x0		combine_strings	dwarf			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -35823,7 +35823,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0x0		__glx_DispatchNop	dwarf
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0x0		__glx_TexImage3D4D	dwarf+funcnames			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0x0		__glx_TexSubImage1D2DEXT	dwarf+funcnames			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0x0		__glx_TexSubImage3D4DEXT	dwarf+funcnames			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0x0		_init	dwarf			in	undocumented		
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0x0		_init	dwarf			in	named-only	docs/libraries.md#the-libgl-builds	The libGL builds
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0x0		_stub	dwarf			in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0x0		checkExtension	dwarf+funcnames			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0x0		combine_strings	dwarf+funcnames			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -41403,7 +41403,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x0		__glx_DispatchNop	dwarf
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x0		__glx_TexImage3D4D	dwarf			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x0		__glx_TexSubImage1D2DEXT	dwarf			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x0		__glx_TexSubImage3D4DEXT	dwarf			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x0		_init	dwarf			in	undocumented		
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x0		_init	dwarf			in	named-only	docs/libraries.md#the-libgl-builds	The libGL builds
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x0		_stub	dwarf			in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x0		checkExtension	dwarf			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x0		combine_strings	dwarf			in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
