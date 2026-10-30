@@ -14488,7 +14488,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95e4d0	444	__glkonim_Pu
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95e68c	360	__glkonim_PopClientAttrib	dynsym+mdebug	e879e84f7735		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95e7f4	8584	__glkonCopyContext	dynsym+mdebug	0e754a1e6829		in	located	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd96097c	11156	__glkonResolveContext	dynsym+mdebug	d0187600d73b		in	located	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78		in	named-only	GE.h:4409	
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78		in	named-only	GE.h:4415	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9635bc	5892	ResolvePixelContext	mdebug	32276f803aa5		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd963cd0	304	__glkonim_SpriteParameterfvSGIX	dynsym+mdebug	9fdd0299eaf1		in	located	docs/libglcore-driver-functions.md#sprites-feedback-and-selection-buffers	Sprites, feedback and selection buffers
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd963e00	168	__glkonim_SpriteParameterivSGIX	dynsym+mdebug	640055d43c10		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
@@ -20030,7 +20030,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95f5f0	692	__glkonim_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95f8b0	684	__glkonim_PopClientAttrib	dwarf+dynsym	28b117792f59		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95fb60	6876	__glkonCopyContext	dwarf+dynsym	bce0b72cea1a		in	understood	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd961640	8616	__glkonResolveContext	dwarf+dynsym	6ecfcb11d59f		in	understood	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426		in	named-only	GE.h:4409	
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426		in	named-only	GE.h:4415	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd963890	1172	ResolvePixelContext	dwarf+funcnames	7dfc5374159f		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd963d30	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	62c06a682e5b		in	understood	docs/libglcore-driver-functions.md#sprites-feedback-and-selection-buffers	Sprites, feedback and selection buffers
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd963e20	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	9255a625b5cb		in	understood	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
@@ -25610,7 +25610,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc1a70	636	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc1cf0	572	__glkonim_PopClientAttrib	dwarf+dynsym	c2fdb519a83e		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc1f30	6852	__glkonCopyContext	dwarf+dynsym	a34ac8bb2878		in	located	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc3a00	8636	__glkonResolveContext	dwarf+dynsym	7131c610c187		in	located	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc5bc0	148	setCurrentRaster	dwarf	873ef05636d0		in	named-only	GE.h:4409	
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc5bc0	148	setCurrentRaster	dwarf	873ef05636d0		in	named-only	GE.h:4415	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc5c60	1172	ResolvePixelContext	dwarf	702e298be9b7		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc6100	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	c1c97d1dcc53		in	located	docs/libglcore-driver-functions.md#sprites-feedback-and-selection-buffers	Sprites, feedback and selection buffers
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dc61f0	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	6d4015b848a9		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
@@ -31187,7 +31187,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95e4d0	444	__glkonim_Pu
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95e68c	360	__glkonim_PopClientAttrib	dynsym+mdebug	e879e84f7735		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95e7f4	8584	__glkonCopyContext	dynsym+mdebug	0e754a1e6829		in	located	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd96097c	11156	__glkonResolveContext	dynsym+mdebug	d0187600d73b		in	located	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78		in	named-only	GE.h:4409	
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd963510	172	setCurrentRaster	mdebug	8ed4c36f8c78		in	named-only	GE.h:4415	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9635bc	5892	ResolvePixelContext	mdebug	32276f803aa5		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd963cd0	304	__glkonim_SpriteParameterfvSGIX	dynsym+mdebug	9fdd0299eaf1		in	located	docs/libglcore-driver-functions.md#sprites-feedback-and-selection-buffers	Sprites, feedback and selection buffers
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd963e00	168	__glkonim_SpriteParameterivSGIX	dynsym+mdebug	640055d43c10		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
@@ -36729,7 +36729,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95f5f0	692	__glkonim_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95f8b0	684	__glkonim_PopClientAttrib	dwarf+dynsym	28b117792f59		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95fb60	6876	__glkonCopyContext	dwarf+dynsym	bce0b72cea1a		in	understood	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd961640	8616	__glkonResolveContext	dwarf+dynsym	6ecfcb11d59f		in	understood	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426		in	named-only	GE.h:4409	
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9637f0	148	setCurrentRaster	dwarf+funcnames	edb468af4426		in	named-only	GE.h:4415	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd963890	1172	ResolvePixelContext	dwarf+funcnames	7dfc5374159f		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd963d30	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	62c06a682e5b		in	understood	docs/libglcore-driver-functions.md#sprites-feedback-and-selection-buffers	Sprites, feedback and selection buffers
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd963e20	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	9255a625b5cb		in	understood	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
@@ -42309,7 +42309,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a1a70	636	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a1cf0	572	__glkonim_PopClientAttrib	dwarf+dynsym	c2fdb519a83e		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a1f30	6852	__glkonCopyContext	dwarf+dynsym	a34ac8bb2878		in	located	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a3a00	8636	__glkonResolveContext	dwarf+dynsym	7131c610c187		in	located	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a5bc0	148	setCurrentRaster	dwarf	873ef05636d0		in	named-only	GE.h:4409	
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a5bc0	148	setCurrentRaster	dwarf	873ef05636d0		in	named-only	GE.h:4415	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a5c60	1172	ResolvePixelContext	dwarf	702e298be9b7		in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a6100	232	__glkonim_SpriteParameterfvSGIX	dwarf+dynsym	c1c97d1dcc53		in	located	docs/libglcore-driver-functions.md#sprites-feedback-and-selection-buffers	Sprites, feedback and selection buffers
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21a61f0	136	__glkonim_SpriteParameterivSGIX	dwarf+dynsym	6d4015b848a9		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders

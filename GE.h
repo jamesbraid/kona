@@ -1469,7 +1469,7 @@ enum kona_hp_token {
     /* `HP_GETTEXLEVELPARAMETERIV` (0x056). Unused integer per-level texture
      * query. Established: the map word of 0x056 is a branch at 0x0c0265ec to
      * arm_badcmd (read in full). Inferred from kon_texture_api.s:
-     * __glkonim_GetTexLevelParameteriv is a 390-instruction host function
+     * __glkonim_GetTexLevelParameteriv is a 353-word (1412-byte) host function
      * with sixteen error sites; it validates target and level, compares the
      * name against constants that include 4096 and 0x805c-0x8064 and
      * 0x8070-0x8071, and calls __glKonGetTexParameter from several branches.
@@ -4131,11 +4131,17 @@ enum kona_hp_token {
     /* `HP_GET_PIXEL_TRANSFORM_PARAMETERFV` (0x0fb). Unused float
      * pixel-transform query. Established: the map word of 0x0fb is a branch
      * at 0x0c026650, the last stub of the run, into arm_badcmd (read in
-     * full). Established from kon_pixel_transform.s:
-     * __glkonim_GetPixelTransformParameterfvSGI is 13 instructions whose only
-     * call is __glkonim_PixelTransformParameterivSGI, with no FIFO store and
-     * no error site of its own. The parameter lives in host state, so the
-     * float query is a wrapper over a host routine and never asks the pipe. */
+     * full). Established from kon_pixel_transform.s (N32 build, read in
+     * full): __glkonim_GetPixelTransformParameterfvSGI is a 14-word
+     * wrapper whose one call lands at 0x0d98d280, the static routine
+     * GetPixelTransformParameterfvSGI (644 bytes); the disassembly labels
+     * that call with the name of the integer setter because the target is
+     * formed from a base register and an offset, not a table slot. That
+     * routine validates target and name, then calls __glkon_get_special2 with
+     * 250 (HP_GET_PIXEL_TRANSFORM_PARAMETERIV, 0x0fa), reads back the
+     * integer the call stored and converts it with cvt.s.w. So the float
+     * query does ask the pipe, through the integer query token; token 0x0fb
+     * itself is never sent. */
     KONA_HP_GET_PIXEL_TRANSFORM_PARAMETERFV = 0x0fb,
 
     /* Read at arm1.u arm_copyteximage1d 0x0c0265f4 (b 0x0c0017f4); arm_badcmd

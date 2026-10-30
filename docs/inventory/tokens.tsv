@@ -250,87 +250,87 @@ token	0x0f7	HP_GETSEPARABLEFILTER;KONA_HP_GETSEPARABLEFILTER		handler=arm_getsep
 token	0x0f8	HP_PIXEL_TRANSFORM_PARAMETERIV;KONA_HP_PIXEL_TRANSFORM_PARAMETERIV		handler=arm_pixel_transform_parameteriv route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_PixelTransformParameterfvSGI	understood	GE.h:4098	
 token	0x0f9	HP_PIXEL_TRANSFORM_PARAMETERFV;KONA_HP_PIXEL_TRANSFORM_PARAMETERFV		handler=arm_pixel_transform_parameterfv route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4113	
 token	0x0fa	HP_GET_PIXEL_TRANSFORM_PARAMETERIV;KONA_HP_GET_PIXEL_TRANSFORM_PARAMETERIV		handler=arm_get_pixel_transform_parameteriv route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4126	
-token	0x0fb	HP_GET_PIXEL_TRANSFORM_PARAMETERFV;KONA_HP_GET_PIXEL_TRANSFORM_PARAMETERFV		handler=arm_get_pixel_transform_parameterfv route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4139	
-token	0x0fc	HP_COPYTEXIMAGE1D;KONA_HP_COPYTEXIMAGE1D		handler=arm_copyteximage1d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4153	
-token	0x0fd	HP_COPYTEXIMAGE;KONA_HP_COPYTEXIMAGE		handler=arm_copyteximage route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonCopyTexImage	understood	GE.h:4168	
-token	0x0fe	HP_COPYTEXSUBIMAGE1D;KONA_HP_COPYTEXSUBIMAGE1D		handler=arm_copytexsubimage1d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4183	
-token	0x0ff	HP_WG_FLUSH_0;KONA_HP_WG_FLUSH_0		handler=arm_wg_flush_0 route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4200	
-token	0x100	HP_DATA_1;KONA_HP_DATA_1		handler=arm_data_1 route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4218	
-token	0x101	HP_COPYTEXSUBIMAGE2D;KONA_HP_COPYTEXSUBIMAGE2D		handler=arm_copytexsubimage2d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4231	
-token	0x102	HP_HISTOGRAM;KONA_HP_HISTOGRAM		handler=arm_histogram route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_HistogramEXT	understood	GE.h:4244	
-token	0x103	HP_RESETHISTOGRAM;KONA_HP_RESETHISTOGRAM		handler=arm_resethistogram route=arm	GE.h,firmware map,kpm,user FIFO	12	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_GetHistogramEXT	understood	GE.h:4257	
-token	0x104	HP_GETHISTOGRAM;KONA_HP_GETHISTOGRAM		handler=arm_gethistogram route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4271	
-token	0x105	HP_GETHISTOGRAMPARAMETERIV;KONA_HP_GETHISTOGRAMPARAMETERIV		handler=arm_gethistogramparameteriv route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4284	
-token	0x106	HP_BIND_LINEAR_TEXTURE;KONA_HP_BIND_LINEAR_TEXTURE		handler=arm_bind_linear_texture route=arm	GE.h,firmware map,kpm,user FIFO	2	2	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonGetTexParameter	understood	GE.h:4306	
-token	0x107	HP_MINMAX;KONA_HP_MINMAX		handler=arm_minmax route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_MinmaxEXT	understood	GE.h:4318	
+token	0x0fb	HP_GET_PIXEL_TRANSFORM_PARAMETERFV;KONA_HP_GET_PIXEL_TRANSFORM_PARAMETERFV		handler=arm_get_pixel_transform_parameterfv route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4145	
+token	0x0fc	HP_COPYTEXIMAGE1D;KONA_HP_COPYTEXIMAGE1D		handler=arm_copyteximage1d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4159	
+token	0x0fd	HP_COPYTEXIMAGE;KONA_HP_COPYTEXIMAGE		handler=arm_copyteximage route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonCopyTexImage	understood	GE.h:4174	
+token	0x0fe	HP_COPYTEXSUBIMAGE1D;KONA_HP_COPYTEXSUBIMAGE1D		handler=arm_copytexsubimage1d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4189	
+token	0x0ff	HP_WG_FLUSH_0;KONA_HP_WG_FLUSH_0		handler=arm_wg_flush_0 route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4206	
+token	0x100	HP_DATA_1;KONA_HP_DATA_1		handler=arm_data_1 route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4224	
+token	0x101	HP_COPYTEXSUBIMAGE2D;KONA_HP_COPYTEXSUBIMAGE2D		handler=arm_copytexsubimage2d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4237	
+token	0x102	HP_HISTOGRAM;KONA_HP_HISTOGRAM		handler=arm_histogram route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_HistogramEXT	understood	GE.h:4250	
+token	0x103	HP_RESETHISTOGRAM;KONA_HP_RESETHISTOGRAM		handler=arm_resethistogram route=arm	GE.h,firmware map,kpm,user FIFO	12	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_GetHistogramEXT	understood	GE.h:4263	
+token	0x104	HP_GETHISTOGRAM;KONA_HP_GETHISTOGRAM		handler=arm_gethistogram route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4277	
+token	0x105	HP_GETHISTOGRAMPARAMETERIV;KONA_HP_GETHISTOGRAMPARAMETERIV		handler=arm_gethistogramparameteriv route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4290	
+token	0x106	HP_BIND_LINEAR_TEXTURE;KONA_HP_BIND_LINEAR_TEXTURE		handler=arm_bind_linear_texture route=arm	GE.h,firmware map,kpm,user FIFO	2	2	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonGetTexParameter	understood	GE.h:4312	
+token	0x107	HP_MINMAX;KONA_HP_MINMAX		handler=arm_minmax route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_MinmaxEXT	understood	GE.h:4324	
 token	0x108	HP_RESETMINMAX;KONA_HP_RESETMINMAX		handler=arm_resetminmax route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_ResetMinmaxEXT	understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
-token	0x109	HP_GETMINMAX;KONA_HP_GETMINMAX		handler=arm_getminmax route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4341	
-token	0x10a	HP_GETMINMAXPARAMETERIV;KONA_HP_GETMINMAXPARAMETERIV		handler=arm_getminmaxparameteriv route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4352	
+token	0x109	HP_GETMINMAX;KONA_HP_GETMINMAX		handler=arm_getminmax route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4347	
+token	0x10a	HP_GETMINMAXPARAMETERIV;KONA_HP_GETMINMAXPARAMETERIV		handler=arm_getminmaxparameteriv route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4358	
 token	0x10b	HP_GET_LIGHT_ATTRIBS;KONA_HP_GET_LIGHT_ATTRIBS		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#other-routed-tokens	Other routed tokens
 token	0x10c	HP_INITNAMES;KONA_HP_INITNAMES		handler=arm_initnames route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_InitNames	understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
 token	0x10d	HP_LOADNAME;KONA_HP_LOADNAME		handler=arm_loadname route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_LoadName	understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
 token	0x10e	HP_SET_CURRENT_RASTER;KONA_HP_SET_CURRENT_RASTER		handler=arm_set_current_raster route=arm	GE.h,firmware map,kpm	0	0		understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
-token	0x10f	HP_FOGFUNC;KONA_HP_FOGFUNC		handler=arm_fogfunc route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_FogFuncSGIS	understood	GE.h:4428	
-token	0x110	HP_COPYISOVERLAPPED;KONA_HP_COPYISOVERLAPPED		handler=arm_copyisoverlapped route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4442	
-token	0x111	HP_PIXEL_NOMODE;KONA_HP_PIXEL_NOMODE		handler=arm_pixel_nomode route=arm	GE.h,firmware map,kpm,user FIFO	60	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonSetNoModeState	understood	GE.h:4460	
-token	0x112	HP_IRISGL_MODE;KONA_HP_IRISGL_MODE		handler=arm_irisgl_mode route=arm	GE.h,firmware map,kpm,user FIFO	4	4	usr/gfx/arch/IP27KONA32/libGLcore.so:__glkonim_IglooInterfaceSGIX	understood	GE.h:4475	
-token	0x113	HP_LMC_COLOR;KONA_HP_LMC_COLOR		handler=arm_lmc_color route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4484	
-token	0x114	HP_VIDEO_SOURCE;KONA_HP_VIDEO_SOURCE		handler=arm_video_source route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4498	
-token	0x115	HP_COPYCONVISOVERLAPPED;KONA_HP_COPYCONVISOVERLAPPED		handler=arm_copyconvisoverlapped route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4513	
-token	0x116	HP_RESOLVEISSINGLECOMP;KONA_HP_RESOLVEISSINGLECOMP		handler=arm_resolveissinglecomp route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:GetSingleCompFromPipe	understood	GE.h:4528	
-token	0x117	HP_SAMPLEPATTERN;KONA_HP_SAMPLEPATTERN		handler=arm_samplepattern route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_SamplePatternSGIS	understood	GE.h:4545	
-token	0x118	HP_SAMPLEMASK;KONA_HP_SAMPLEMASK		handler=arm_samplemask route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_SampleMaskSGIS	understood	GE.h:4557	
-token	0x119	HP_POPLIGHTS;KONA_HP_POPLIGHTS		handler=arm_poplights route=arm	GE.h,firmware map,kpm,user FIFO	12	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonResolveContext	understood	GE.h:4571	
-token	0x11a	HP_PIXELTEXGEN;KONA_HP_PIXELTEXGEN		handler=arm_pixeltexgen route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4584	
-token	0x11b	HP_POLYGONOFFSETEXT;KONA_HP_POLYGONOFFSETEXT		handler=arm_polygonoffsetext route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_PolygonOffsetEXT	understood	GE.h:4597	
-token	0x11c	HP_TEXSUBIMAGE1D;KONA_HP_TEXSUBIMAGE1D		handler=arm_texsubimage1d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4610	
-token	0x11d	HP_TEXSUBIMAGE2D;KONA_HP_TEXSUBIMAGE2D		handler=arm_texsubimage2d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4623	
-token	0x11e	HP_TEXSUBIMAGE3D;KONA_HP_TEXSUBIMAGE3D		handler=arm_texsubimage3d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4636	
-token	0x11f	HP_TEXIMAGE3D;KONA_HP_TEXIMAGE3D		handler=arm_teximage3d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4649	
-token	0x120	HP_TEXIMAGE4D;KONA_HP_TEXIMAGE4D		handler=arm_teximage4d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4662	
-token	0x121	HP_TEXSUBIMAGE4D;KONA_HP_TEXSUBIMAGE4D		handler=arm_texsubimage4d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4674	
-token	0x122	HP_GENTEXTURES1D;KONA_HP_GENTEXTURES1D		handler=arm_gentextures1d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4687	
-token	0x123	HP_GENTEXTURES2D;KONA_HP_GENTEXTURES2D		handler=arm_gentextures2d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4701	
-token	0x124	HP_GENTEXTURES3D;KONA_HP_GENTEXTURES3D		handler=arm_gentextures3d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4713	
-token	0x125	HP_ISTEXTURE;KONA_HP_ISTEXTURE		handler=arm_istexture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4725	
-token	0x126	HP_DELETETEXTURES;KONA_HP_DELETETEXTURES		handler=arm_deletetextures route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4738	
-token	0x127	HP_BINDTEXTURE;KONA_HP_BINDTEXTURE		handler=arm_bindtexture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4752	
-token	0x128	HP_X_INIT;KONA_HP_X_INIT		handler=arm_x_init route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4771	
+token	0x10f	HP_FOGFUNC;KONA_HP_FOGFUNC		handler=arm_fogfunc route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_FogFuncSGIS	understood	GE.h:4434	
+token	0x110	HP_COPYISOVERLAPPED;KONA_HP_COPYISOVERLAPPED		handler=arm_copyisoverlapped route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4448	
+token	0x111	HP_PIXEL_NOMODE;KONA_HP_PIXEL_NOMODE		handler=arm_pixel_nomode route=arm	GE.h,firmware map,kpm,user FIFO	60	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonSetNoModeState	understood	GE.h:4466	
+token	0x112	HP_IRISGL_MODE;KONA_HP_IRISGL_MODE		handler=arm_irisgl_mode route=arm	GE.h,firmware map,kpm,user FIFO	4	4	usr/gfx/arch/IP27KONA32/libGLcore.so:__glkonim_IglooInterfaceSGIX	understood	GE.h:4481	
+token	0x113	HP_LMC_COLOR;KONA_HP_LMC_COLOR		handler=arm_lmc_color route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4490	
+token	0x114	HP_VIDEO_SOURCE;KONA_HP_VIDEO_SOURCE		handler=arm_video_source route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4504	
+token	0x115	HP_COPYCONVISOVERLAPPED;KONA_HP_COPYCONVISOVERLAPPED		handler=arm_copyconvisoverlapped route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4519	
+token	0x116	HP_RESOLVEISSINGLECOMP;KONA_HP_RESOLVEISSINGLECOMP		handler=arm_resolveissinglecomp route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:GetSingleCompFromPipe	understood	GE.h:4534	
+token	0x117	HP_SAMPLEPATTERN;KONA_HP_SAMPLEPATTERN		handler=arm_samplepattern route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_SamplePatternSGIS	understood	GE.h:4551	
+token	0x118	HP_SAMPLEMASK;KONA_HP_SAMPLEMASK		handler=arm_samplemask route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_SampleMaskSGIS	understood	GE.h:4563	
+token	0x119	HP_POPLIGHTS;KONA_HP_POPLIGHTS		handler=arm_poplights route=arm	GE.h,firmware map,kpm,user FIFO	12	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonResolveContext	understood	GE.h:4577	
+token	0x11a	HP_PIXELTEXGEN;KONA_HP_PIXELTEXGEN		handler=arm_pixeltexgen route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4590	
+token	0x11b	HP_POLYGONOFFSETEXT;KONA_HP_POLYGONOFFSETEXT		handler=arm_polygonoffsetext route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_PolygonOffsetEXT	understood	GE.h:4603	
+token	0x11c	HP_TEXSUBIMAGE1D;KONA_HP_TEXSUBIMAGE1D		handler=arm_texsubimage1d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4616	
+token	0x11d	HP_TEXSUBIMAGE2D;KONA_HP_TEXSUBIMAGE2D		handler=arm_texsubimage2d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4629	
+token	0x11e	HP_TEXSUBIMAGE3D;KONA_HP_TEXSUBIMAGE3D		handler=arm_texsubimage3d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4642	
+token	0x11f	HP_TEXIMAGE3D;KONA_HP_TEXIMAGE3D		handler=arm_teximage3d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4655	
+token	0x120	HP_TEXIMAGE4D;KONA_HP_TEXIMAGE4D		handler=arm_teximage4d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4668	
+token	0x121	HP_TEXSUBIMAGE4D;KONA_HP_TEXSUBIMAGE4D		handler=arm_texsubimage4d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4680	
+token	0x122	HP_GENTEXTURES1D;KONA_HP_GENTEXTURES1D		handler=arm_gentextures1d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4693	
+token	0x123	HP_GENTEXTURES2D;KONA_HP_GENTEXTURES2D		handler=arm_gentextures2d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4707	
+token	0x124	HP_GENTEXTURES3D;KONA_HP_GENTEXTURES3D		handler=arm_gentextures3d route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4719	
+token	0x125	HP_ISTEXTURE;KONA_HP_ISTEXTURE		handler=arm_istexture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4731	
+token	0x126	HP_DELETETEXTURES;KONA_HP_DELETETEXTURES		handler=arm_deletetextures route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4744	
+token	0x127	HP_BINDTEXTURE;KONA_HP_BINDTEXTURE		handler=arm_bindtexture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4758	
+token	0x128	HP_X_INIT;KONA_HP_X_INIT		handler=arm_x_init route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4777	
 token	0x129	HP_X_LOADGC;KONA_HP_X_LOADGC		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x12a	HP_X_LOADPOS;KONA_HP_X_LOADPOS		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x12b	HP_X_LOADCLIP;KONA_HP_X_LOADCLIP		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:4830	
-token	0x12c	HP_X_LOADCLIP_ARM;KONA_HP_X_LOADCLIP_ARM		handler=arm_x_loadclip_arm route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4846	
+token	0x12b	HP_X_LOADCLIP;KONA_HP_X_LOADCLIP		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:4836	
+token	0x12c	HP_X_LOADCLIP_ARM;KONA_HP_X_LOADCLIP_ARM		handler=arm_x_loadclip_arm route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4852	
 token	0x12d	HP_X_LOADSCISSOR;KONA_HP_X_LOADSCISSOR		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x12e	HP_X_LOADCMAP;KONA_HP_X_LOADCMAP		handler=arm_x_loadcmap route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4879	
-token	0x12f	HP_X_LOADGAMMA;KONA_HP_X_LOADGAMMA		handler=arm_x_loadgamma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4899	
-token	0x130	HP_X_LOADCURSOR;KONA_HP_X_LOADCURSOR		handler=arm_x_loadcursor route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4916	
-token	0x131	HP_X_LOADCURSORCOLOR;KONA_HP_X_LOADCURSORCOLOR		handler=arm_x_loadcursorcolor route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4930	
+token	0x12e	HP_X_LOADCMAP;KONA_HP_X_LOADCMAP		handler=arm_x_loadcmap route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4885	
+token	0x12f	HP_X_LOADGAMMA;KONA_HP_X_LOADGAMMA		handler=arm_x_loadgamma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4905	
+token	0x130	HP_X_LOADCURSOR;KONA_HP_X_LOADCURSOR		handler=arm_x_loadcursor route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4922	
+token	0x131	HP_X_LOADCURSORCOLOR;KONA_HP_X_LOADCURSORCOLOR		handler=arm_x_loadcursorcolor route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:4936	
 token	0x132	HP_X_LOADXMAP_DID;KONA_HP_X_LOADXMAP_DID		handler=arm_x_loadxmap_did route=arm	GE.h,firmware map,kpm	0	0		understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
 token	0x133	HP_X_LOADXMAP_CONFIG;KONA_HP_X_LOADXMAP_CONFIG		handler=arm_x_loadxmap_config route=arm	GE.h,firmware map,kpm	0	0		understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
 token	0x134	HP_GET_GE_TEXTURE_ATTRIB;KONA_HP_GET_GE_TEXTURE_ATTRIB		handler=arm_get_ge_texture_attrib route=arm	GE.h,firmware map,kpm	0	0		understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
-token	0x135	HP_PIXEL_TRANSFORM;KONA_HP_PIXEL_TRANSFORM		handler=arm_pixel_transform route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_PixelTransformSGI	understood	GE.h:4986	
-token	0x136	HP_X_PIX_SETUP;KONA_HP_X_PIX_SETUP		handler=arm_x_pix_setup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5005	
+token	0x135	HP_PIXEL_TRANSFORM;KONA_HP_PIXEL_TRANSFORM		handler=arm_pixel_transform route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_PixelTransformSGI	understood	GE.h:4992	
+token	0x136	HP_X_PIX_SETUP;KONA_HP_X_PIX_SETUP		handler=arm_x_pix_setup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5011	
 token	0x137	HP_X_PIX_COPY;KONA_HP_X_PIX_COPY		handler=arm_x_pix_copy route=arm	GE.h,firmware map,kpm	0	0		understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
 token	0x138	HP_X_PIX_READ;KONA_HP_X_PIX_READ		handler=arm_x_pix_read route=arm	GE.h,firmware map,kpm	0	0		understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
-token	0x139	HP_X_PIX_WRITE;KONA_HP_X_PIX_WRITE		handler=arm_x_pix_write route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5056	
-token	0x13a	HP_X_PIX_FINISH;KONA_HP_X_PIX_FINISH		handler=arm_x_pix_finish route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5072	
-token	0x13b	HP_X_UNUSED3;KONA_HP_X_UNUSED3		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5087	
-token	0x13c	HP_X_LOADSTIPPLE;KONA_HP_X_LOADSTIPPLE		handler=arm_x_loadstipple route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5103	
+token	0x139	HP_X_PIX_WRITE;KONA_HP_X_PIX_WRITE		handler=arm_x_pix_write route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5062	
+token	0x13a	HP_X_PIX_FINISH;KONA_HP_X_PIX_FINISH		handler=arm_x_pix_finish route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5078	
+token	0x13b	HP_X_UNUSED3;KONA_HP_X_UNUSED3		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5093	
+token	0x13c	HP_X_LOADSTIPPLE;KONA_HP_X_LOADSTIPPLE		handler=arm_x_loadstipple route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5109	
 token	0x13d	HP_X_STORESTIPPLE;KONA_HP_X_STORESTIPPLE		handler=arm_x_storestipple route=arm	GE.h,firmware map,kpm	0	0		understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
 token	0x13e	HP_X_ROTATESTIPPLE;KONA_HP_X_ROTATESTIPPLE		handler=arm_x_rotatestipple route=arm	GE.h,firmware map,kpm	0	0		understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
-token	0x13f	HP_X_UNUSED4;KONA_HP_X_UNUSED4		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5146	
-token	0x140	HP_X_UNUSED5;KONA_HP_X_UNUSED5		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5161	
-token	0x141	HP_X_DATA1;KONA_HP_X_DATA1		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x142	HP_X_DATA2;KONA_HP_X_DATA2		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x143	HP_X_DATA3;KONA_HP_X_DATA3		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x144	HP_X_DATA4;KONA_HP_X_DATA4		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x145	HP_X_BDATA4;KONA_HP_X_BDATA4		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:5276	
-token	0x146	HP_X_DATA5;KONA_HP_X_DATA5		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x147	HP_X_DATA6;KONA_HP_X_DATA6		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x148	HP_X_DATA7;KONA_HP_X_DATA7		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x149	HP_X_DATA8;KONA_HP_X_DATA8		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x14a	HP_X_DATA9;KONA_HP_X_DATA9		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x14b	HP_X_DATA10;KONA_HP_X_DATA10		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x13f	HP_X_UNUSED4;KONA_HP_X_UNUSED4		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5152	
+token	0x140	HP_X_UNUSED5;KONA_HP_X_UNUSED5		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5167	
+token	0x141	HP_X_DATA1;KONA_HP_X_DATA1		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x142	HP_X_DATA2;KONA_HP_X_DATA2		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x143	HP_X_DATA3;KONA_HP_X_DATA3		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x144	HP_X_DATA4;KONA_HP_X_DATA4		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x145	HP_X_BDATA4;KONA_HP_X_BDATA4		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:5282	
+token	0x146	HP_X_DATA5;KONA_HP_X_DATA5		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x147	HP_X_DATA6;KONA_HP_X_DATA6		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x148	HP_X_DATA7;KONA_HP_X_DATA7		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x149	HP_X_DATA8;KONA_HP_X_DATA8		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x14a	HP_X_DATA9;KONA_HP_X_DATA9		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x14b	HP_X_DATA10;KONA_HP_X_DATA10		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x14c	HP_X_POINT;KONA_HP_X_POINT		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x14d	HP_X_POINT6;KONA_HP_X_POINT6		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x14e	HP_X_POINT24;KONA_HP_X_POINT24		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
@@ -345,7 +345,7 @@ token	0x156	HP_X_SPANS;KONA_HP_X_SPANS		route=hw	GE.h,firmware map,kpm	0	0		unde
 token	0x157	HP_X_SPANS2;KONA_HP_X_SPANS2		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x158	HP_X_SPANS6;KONA_HP_X_SPANS6		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x159	HP_X_SEGMENT;KONA_HP_X_SEGMENT		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x15a	HP_X_SEGMENT6;KONA_HP_X_SEGMENT6		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:5677	
+token	0x15a	HP_X_SEGMENT6;KONA_HP_X_SEGMENT6		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:5683	
 token	0x15b	HP_X_LINE;KONA_HP_X_LINE		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x15c	HP_X_LINE6;KONA_HP_X_LINE6		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x15d	HP_X_LINE_R;KONA_HP_X_LINE_R		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
@@ -353,79 +353,79 @@ token	0x15e	HP_X_LINE6_R;KONA_HP_X_LINE6_R		route=hw	GE.h,firmware map,kpm	0	0		
 token	0x15f	HP_X_BGPOINT;KONA_HP_X_BGPOINT		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x160	HP_X_BGPOINT6;KONA_HP_X_BGPOINT6		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x161	HP_X_BGPOINT24;KONA_HP_X_BGPOINT24		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x162	HP_X_UNUSED6;KONA_HP_X_UNUSED6		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5801	
-token	0x163	HP_X_UNUSED7;KONA_HP_X_UNUSED7		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5812	
-token	0x164	HP_X_UNUSED8;KONA_HP_X_UNUSED8		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5824	
-token	0x165	HP_X_UNUSED9;KONA_HP_X_UNUSED9		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5835	
-token	0x166	HP_DPLEX_SWAP;KONA_HP_DPLEX_SWAP		handler=arm_dplex_swap route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5847	
-token	0x167	HP_USERCOPYLIST_LDMA;KONA_HP_USERCOPYLIST_LDMA		handler=arm_usercopylist_ldma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5863	
+token	0x162	HP_X_UNUSED6;KONA_HP_X_UNUSED6		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5807	
+token	0x163	HP_X_UNUSED7;KONA_HP_X_UNUSED7		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5818	
+token	0x164	HP_X_UNUSED8;KONA_HP_X_UNUSED8		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5830	
+token	0x165	HP_X_UNUSED9;KONA_HP_X_UNUSED9		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5841	
+token	0x166	HP_DPLEX_SWAP;KONA_HP_DPLEX_SWAP		handler=arm_dplex_swap route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5853	
+token	0x167	HP_USERCOPYLIST_LDMA;KONA_HP_USERCOPYLIST_LDMA		handler=arm_usercopylist_ldma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5869	
 token	0x168	HP_POLYGONOFFSET;KONA_HP_POLYGONOFFSET		handler=arm_polygonoffset route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_PolygonOffset	understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
-token	0x169	HP_DIAG_DISPATCH;KONA_HP_DIAG_DISPATCH		handler=arm_diag_dispatch route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5891	
-token	0x16a	HP_DIAG_RESERVED0;KONA_HP_DIAG_RESERVED0		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:5905	
-token	0x16b	HP_DIAG_RESERVED1;KONA_HP_DIAG_RESERVED1		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:5916	
-token	0x16c	HP_COPYLIST_LDMA;KONA_HP_COPYLIST_LDMA		handler=arm_copylist_ldma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5931	
-token	0x16d	HP_EXECLIST_LDMA;KONA_HP_EXECLIST_LDMA		handler=arm_execlist_ldma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5944	
-token	0x16e	HP_EXECLIST_IDMA;KONA_HP_EXECLIST_IDMA		handler=arm_execlist_idma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5956	
-token	0x16f	HP_MOVELIST_LDMA;KONA_HP_MOVELIST_LDMA		handler=arm_movelist_ldma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5980	
-token	0x170	HP_EXECLIST_LDMA_N;KONA_HP_EXECLIST_LDMA_N		handler=arm_execlist_ldma_n route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5991	
-token	0x171	HP_EXECLIST_IDMA_N;KONA_HP_EXECLIST_IDMA_N		handler=arm_execlist_idma_n route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6002	
-token	0x172	HP_GED_NOP;KONA_HP_GED_NOP		route=hw	GE.h,firmware map,kernel command port,kpm	6	4	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_dmapool	understood	GE.h:6018	
-token	0x173	HP_TEXSETUP;KONA_HP_TEXSETUP		handler=arm_texsetup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6034	
-token	0x174	HP_DRAWTEXELS;KONA_HP_DRAWTEXELS		handler=arm_drawtexels route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonle_DrawPixels	understood	GE.h:6050	
-token	0x175	HP_TEXLOAD_SETUP;KONA_HP_TEXLOAD_SETUP		handler=arm_texload_setup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6060	
-token	0x176	HP_TEXLOAD_ID;KONA_HP_TEXLOAD_ID		handler=arm_texload_id route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6073	
-token	0x177	HP_ACTIVE_TEXTURE;KONA_HP_ACTIVE_TEXTURE		handler=arm_active_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6088	
-token	0x178	HP_TEXBIND_ID;KONA_HP_TEXBIND_ID		handler=arm_texbind_id route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonlc_PointParameterfvSGIS	understood	GE.h:6101	
+token	0x169	HP_DIAG_DISPATCH;KONA_HP_DIAG_DISPATCH		handler=arm_diag_dispatch route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5897	
+token	0x16a	HP_DIAG_RESERVED0;KONA_HP_DIAG_RESERVED0		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:5911	
+token	0x16b	HP_DIAG_RESERVED1;KONA_HP_DIAG_RESERVED1		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:5922	
+token	0x16c	HP_COPYLIST_LDMA;KONA_HP_COPYLIST_LDMA		handler=arm_copylist_ldma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5937	
+token	0x16d	HP_EXECLIST_LDMA;KONA_HP_EXECLIST_LDMA		handler=arm_execlist_ldma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5950	
+token	0x16e	HP_EXECLIST_IDMA;KONA_HP_EXECLIST_IDMA		handler=arm_execlist_idma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5962	
+token	0x16f	HP_MOVELIST_LDMA;KONA_HP_MOVELIST_LDMA		handler=arm_movelist_ldma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5986	
+token	0x170	HP_EXECLIST_LDMA_N;KONA_HP_EXECLIST_LDMA_N		handler=arm_execlist_ldma_n route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5997	
+token	0x171	HP_EXECLIST_IDMA_N;KONA_HP_EXECLIST_IDMA_N		handler=arm_execlist_idma_n route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6008	
+token	0x172	HP_GED_NOP;KONA_HP_GED_NOP		route=hw	GE.h,firmware map,kernel command port,kpm	6	4	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_dmapool	understood	GE.h:6024	
+token	0x173	HP_TEXSETUP;KONA_HP_TEXSETUP		handler=arm_texsetup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6040	
+token	0x174	HP_DRAWTEXELS;KONA_HP_DRAWTEXELS		handler=arm_drawtexels route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonle_DrawPixels	understood	GE.h:6056	
+token	0x175	HP_TEXLOAD_SETUP;KONA_HP_TEXLOAD_SETUP		handler=arm_texload_setup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6066	
+token	0x176	HP_TEXLOAD_ID;KONA_HP_TEXLOAD_ID		handler=arm_texload_id route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6079	
+token	0x177	HP_ACTIVE_TEXTURE;KONA_HP_ACTIVE_TEXTURE		handler=arm_active_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6094	
+token	0x178	HP_TEXBIND_ID;KONA_HP_TEXBIND_ID		handler=arm_texbind_id route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonlc_PointParameterfvSGIS	understood	GE.h:6107	
 token	0x179	HP_BIND_2D_MIPMAP_TEXTURE;KONA_HP_BIND_2D_MIPMAP_TEXTURE		route=hw	GE.h,firmware map,kpm,user FIFO	4	4	usr/gfx/arch/IP27KONA32/libGLcore.so:__glKonGetTexParameter	understood	docs/ge-routed-tokens.md#other-routed-tokens	Other routed tokens
-token	0x17a	HP_BIND_BICUBIC_TEXTURE;KONA_HP_BIND_BICUBIC_TEXTURE		handler=arm_bind_bicubic_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6141	
-token	0x17b	HP_BIND_3D_MIPMAP_TEXTURE;KONA_HP_BIND_3D_MIPMAP_TEXTURE		handler=arm_bind_3d_mipmap_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6160	
-token	0x17c	HP_BIND_3D_TEXTURE;KONA_HP_BIND_3D_TEXTURE		handler=arm_bind_3d_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6176	
-token	0x17d	HP_BIND_DETAIL_TEXTURE;KONA_HP_BIND_DETAIL_TEXTURE		handler=arm_bind_detail_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6195	
-token	0x17e	HP_TEX_SEND_ARM_TABLE;KONA_HP_TEX_SEND_ARM_TABLE		handler=arm_tex_send_arm_table route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:bindTexTable	understood	GE.h:6210	
-token	0x17f	HP_SLOP;KONA_HP_SLOP		handler=arm_slop route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6231	
-token	0x180	HP_VARRAY_SET_CMDS;KONA_HP_VARRAY_SET_CMDS		handler=arm_varray_set_cmds route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_GetTexGenfv	understood	GE.h:6247	
-token	0x181	HP_VARRAY_SETUP;KONA_HP_VARRAY_SETUP		handler=arm_varray_setup route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_DrawArraysEXT	understood	GE.h:6257	
-token	0x182	HP_VARRAY_BGN_LOOP;KONA_HP_VARRAY_BGN_LOOP		handler=arm_varray_bgn_loop route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonlc_ReferencePlaneSGIX	understood	GE.h:6271	
-token	0x183	HP_VARRAY_LOOP00;KONA_HP_VARRAY_LOOP00		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6289	
-token	0x184	HP_VARRAY_LOOP01;KONA_HP_VARRAY_LOOP01		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6302	
-token	0x185	HP_VARRAY_LOOP02;KONA_HP_VARRAY_LOOP02		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6313	
-token	0x186	HP_VARRAY_LOOP03;KONA_HP_VARRAY_LOOP03		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6324	
-token	0x187	HP_VARRAY_LOOP04;KONA_HP_VARRAY_LOOP04		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6335	
-token	0x188	HP_VARRAY_LOOP05;KONA_HP_VARRAY_LOOP05		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6346	
-token	0x189	HP_VARRAY_LOOP06;KONA_HP_VARRAY_LOOP06		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6356	
-token	0x18a	HP_VARRAY_LOOP07;KONA_HP_VARRAY_LOOP07		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6367	
-token	0x18b	HP_VARRAY_LOOP08;KONA_HP_VARRAY_LOOP08		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6378	
-token	0x18c	HP_VARRAY_LOOP09;KONA_HP_VARRAY_LOOP09		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6388	
-token	0x18d	HP_VARRAY_LOOP0A;KONA_HP_VARRAY_LOOP0A		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6398	
-token	0x18e	HP_VARRAY_LOOP0B;KONA_HP_VARRAY_LOOP0B		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6408	
-token	0x18f	HP_VARRAY_LOOP0C;KONA_HP_VARRAY_LOOP0C		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6418	
-token	0x190	HP_VARRAY_LOOP0D;KONA_HP_VARRAY_LOOP0D		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6427	
-token	0x191	HP_VARRAY_LOOP0E;KONA_HP_VARRAY_LOOP0E		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6436	
-token	0x192	HP_VARRAY_LOOP0F;KONA_HP_VARRAY_LOOP0F		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6446	
-token	0x193	HP_VARRAY_LOOP10;KONA_HP_VARRAY_LOOP10		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6456	
-token	0x194	HP_VARRAY_LOOP11;KONA_HP_VARRAY_LOOP11		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6465	
-token	0x195	HP_VARRAY_LOOP12;KONA_HP_VARRAY_LOOP12		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6475	
-token	0x196	HP_VARRAY_LOOP13;KONA_HP_VARRAY_LOOP13		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6485	
-token	0x197	HP_VARRAY_LOOP14;KONA_HP_VARRAY_LOOP14		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6494	
-token	0x198	HP_VARRAY_LOOP15;KONA_HP_VARRAY_LOOP15		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6503	
-token	0x199	HP_VARRAY_LOOP16;KONA_HP_VARRAY_LOOP16		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6513	
-token	0x19a	HP_VARRAY_LOOP17;KONA_HP_VARRAY_LOOP17		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6523	
-token	0x19b	HP_VARRAY_LOOP18;KONA_HP_VARRAY_LOOP18		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6533	
-token	0x19c	HP_VARRAY_LOOP19;KONA_HP_VARRAY_LOOP19		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6542	
-token	0x19d	HP_VARRAY_LOOP1A;KONA_HP_VARRAY_LOOP1A		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6551	
-token	0x19e	HP_VARRAY_LOOP1B;KONA_HP_VARRAY_LOOP1B		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6560	
-token	0x19f	HP_VARRAY_LOOP1C;KONA_HP_VARRAY_LOOP1C		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6569	
-token	0x1a0	HP_VARRAY_LOOP1D;KONA_HP_VARRAY_LOOP1D		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6581	
-token	0x1a1	HP_VARRAY_LOOP1E;KONA_HP_VARRAY_LOOP1E		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6592	
-token	0x1a2	HP_VARRAY_LOOP1F;KONA_HP_VARRAY_LOOP1F		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6606	
-token	0x1a3	HP_VARRAY_UNSETUP;KONA_HP_VARRAY_UNSETUP		handler=arm_varray_unsetup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6617	
-token	0x1a4	HP_SPRITEPARAMETERI;KONA_HP_SPRITEPARAMETERI		handler=arm_spriteparameteri route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6628	
-token	0x1a5	HP_SPRITEPARAMETERFV;KONA_HP_SPRITEPARAMETERFV		handler=arm_spriteparameterfv route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_SpriteParameterfvSGIX	understood	GE.h:6642	
-token	0x1a6	HP_VIDEO_CMD;KONA_HP_VIDEO_CMD		handler=arm_video_cmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6659	
-token	0x1a7	HP_POINTPARAMETERF;KONA_HP_POINTPARAMETERF		handler=arm_pointparameterf route=arm	GE.h,firmware map,kpm,user FIFO	12	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_PointParameterfSGIS	understood	GE.h:6674	
-token	0x1a8	HP_POINTPARAMETERFV;KONA_HP_POINTPARAMETERFV		handler=arm_pointparameterfv route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6688	
-token	0x1a9	HP_SWAPTMESH;KONA_HP_SWAPTMESH		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6706	
-token	0x1aa	HP_BIND_2D_CLIPMAP_TEXTURE;KONA_HP_BIND_2D_CLIPMAP_TEXTURE		handler=arm_bind_2d_clipmap_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6727	
+token	0x17a	HP_BIND_BICUBIC_TEXTURE;KONA_HP_BIND_BICUBIC_TEXTURE		handler=arm_bind_bicubic_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6147	
+token	0x17b	HP_BIND_3D_MIPMAP_TEXTURE;KONA_HP_BIND_3D_MIPMAP_TEXTURE		handler=arm_bind_3d_mipmap_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6166	
+token	0x17c	HP_BIND_3D_TEXTURE;KONA_HP_BIND_3D_TEXTURE		handler=arm_bind_3d_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6182	
+token	0x17d	HP_BIND_DETAIL_TEXTURE;KONA_HP_BIND_DETAIL_TEXTURE		handler=arm_bind_detail_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6201	
+token	0x17e	HP_TEX_SEND_ARM_TABLE;KONA_HP_TEX_SEND_ARM_TABLE		handler=arm_tex_send_arm_table route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:bindTexTable	understood	GE.h:6216	
+token	0x17f	HP_SLOP;KONA_HP_SLOP		handler=arm_slop route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6237	
+token	0x180	HP_VARRAY_SET_CMDS;KONA_HP_VARRAY_SET_CMDS		handler=arm_varray_set_cmds route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_GetTexGenfv	understood	GE.h:6253	
+token	0x181	HP_VARRAY_SETUP;KONA_HP_VARRAY_SETUP		handler=arm_varray_setup route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_DrawArraysEXT	understood	GE.h:6263	
+token	0x182	HP_VARRAY_BGN_LOOP;KONA_HP_VARRAY_BGN_LOOP		handler=arm_varray_bgn_loop route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonlc_ReferencePlaneSGIX	understood	GE.h:6277	
+token	0x183	HP_VARRAY_LOOP00;KONA_HP_VARRAY_LOOP00		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6295	
+token	0x184	HP_VARRAY_LOOP01;KONA_HP_VARRAY_LOOP01		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6308	
+token	0x185	HP_VARRAY_LOOP02;KONA_HP_VARRAY_LOOP02		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6319	
+token	0x186	HP_VARRAY_LOOP03;KONA_HP_VARRAY_LOOP03		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6330	
+token	0x187	HP_VARRAY_LOOP04;KONA_HP_VARRAY_LOOP04		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6341	
+token	0x188	HP_VARRAY_LOOP05;KONA_HP_VARRAY_LOOP05		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6352	
+token	0x189	HP_VARRAY_LOOP06;KONA_HP_VARRAY_LOOP06		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6362	
+token	0x18a	HP_VARRAY_LOOP07;KONA_HP_VARRAY_LOOP07		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6373	
+token	0x18b	HP_VARRAY_LOOP08;KONA_HP_VARRAY_LOOP08		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6384	
+token	0x18c	HP_VARRAY_LOOP09;KONA_HP_VARRAY_LOOP09		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6394	
+token	0x18d	HP_VARRAY_LOOP0A;KONA_HP_VARRAY_LOOP0A		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6404	
+token	0x18e	HP_VARRAY_LOOP0B;KONA_HP_VARRAY_LOOP0B		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6414	
+token	0x18f	HP_VARRAY_LOOP0C;KONA_HP_VARRAY_LOOP0C		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6424	
+token	0x190	HP_VARRAY_LOOP0D;KONA_HP_VARRAY_LOOP0D		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6433	
+token	0x191	HP_VARRAY_LOOP0E;KONA_HP_VARRAY_LOOP0E		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6442	
+token	0x192	HP_VARRAY_LOOP0F;KONA_HP_VARRAY_LOOP0F		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6452	
+token	0x193	HP_VARRAY_LOOP10;KONA_HP_VARRAY_LOOP10		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6462	
+token	0x194	HP_VARRAY_LOOP11;KONA_HP_VARRAY_LOOP11		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6471	
+token	0x195	HP_VARRAY_LOOP12;KONA_HP_VARRAY_LOOP12		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6481	
+token	0x196	HP_VARRAY_LOOP13;KONA_HP_VARRAY_LOOP13		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6491	
+token	0x197	HP_VARRAY_LOOP14;KONA_HP_VARRAY_LOOP14		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6500	
+token	0x198	HP_VARRAY_LOOP15;KONA_HP_VARRAY_LOOP15		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6509	
+token	0x199	HP_VARRAY_LOOP16;KONA_HP_VARRAY_LOOP16		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6519	
+token	0x19a	HP_VARRAY_LOOP17;KONA_HP_VARRAY_LOOP17		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6529	
+token	0x19b	HP_VARRAY_LOOP18;KONA_HP_VARRAY_LOOP18		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6539	
+token	0x19c	HP_VARRAY_LOOP19;KONA_HP_VARRAY_LOOP19		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6548	
+token	0x19d	HP_VARRAY_LOOP1A;KONA_HP_VARRAY_LOOP1A		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6557	
+token	0x19e	HP_VARRAY_LOOP1B;KONA_HP_VARRAY_LOOP1B		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6566	
+token	0x19f	HP_VARRAY_LOOP1C;KONA_HP_VARRAY_LOOP1C		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6575	
+token	0x1a0	HP_VARRAY_LOOP1D;KONA_HP_VARRAY_LOOP1D		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6587	
+token	0x1a1	HP_VARRAY_LOOP1E;KONA_HP_VARRAY_LOOP1E		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6598	
+token	0x1a2	HP_VARRAY_LOOP1F;KONA_HP_VARRAY_LOOP1F		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6612	
+token	0x1a3	HP_VARRAY_UNSETUP;KONA_HP_VARRAY_UNSETUP		handler=arm_varray_unsetup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6623	
+token	0x1a4	HP_SPRITEPARAMETERI;KONA_HP_SPRITEPARAMETERI		handler=arm_spriteparameteri route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6634	
+token	0x1a5	HP_SPRITEPARAMETERFV;KONA_HP_SPRITEPARAMETERFV		handler=arm_spriteparameterfv route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_SpriteParameterfvSGIX	understood	GE.h:6648	
+token	0x1a6	HP_VIDEO_CMD;KONA_HP_VIDEO_CMD		handler=arm_video_cmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6665	
+token	0x1a7	HP_POINTPARAMETERF;KONA_HP_POINTPARAMETERF		handler=arm_pointparameterf route=arm	GE.h,firmware map,kpm,user FIFO	12	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_PointParameterfSGIS	understood	GE.h:6680	
+token	0x1a8	HP_POINTPARAMETERFV;KONA_HP_POINTPARAMETERFV		handler=arm_pointparameterfv route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6694	
+token	0x1a9	HP_SWAPTMESH;KONA_HP_SWAPTMESH		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:6712	
+token	0x1aa	HP_BIND_2D_CLIPMAP_TEXTURE;KONA_HP_BIND_2D_CLIPMAP_TEXTURE		handler=arm_bind_2d_clipmap_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:6733	
 token	0x1ab	HP_PVERTEX_V3F;KONA_HP_PVERTEX_V3F		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonSendPackedVertexV3F	understood	docs/ge-routed-tokens.md#packed-vertex-tokens	Packed vertex tokens
 token	0x1ac	HP_PVERTEX_V3F_C4UB;KONA_HP_PVERTEX_V3F_C4UB		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonSendPackedVertexV3F_C4UB	understood	docs/ge-routed-tokens.md#packed-vertex-tokens	Packed vertex tokens
 token	0x1ad	HP_PVERTEX_V3F_N3S;KONA_HP_PVERTEX_V3F_N3S		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonSendPackedVertexV3F_N3S	understood	docs/ge-routed-tokens.md#packed-vertex-tokens	Packed vertex tokens
@@ -438,95 +438,95 @@ token	0x1b3	HP_PVERTEX_V3F_T2S;KONA_HP_PVERTEX_V3F_T2S		route=hw	GE.h,firmware m
 token	0x1b4	HP_PVERTEX_V3F_C4UB_T2S;KONA_HP_PVERTEX_V3F_C4UB_T2S		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonSendPackedVertexV3F_C4UB_T2S	understood	docs/ge-routed-tokens.md#packed-vertex-tokens	Packed vertex tokens
 token	0x1b5	HP_PVERTEX_V3F_N3S_T2S;KONA_HP_PVERTEX_V3F_N3S_T2S		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonSendPackedVertexV3F_N3S_T2S	understood	docs/ge-routed-tokens.md#packed-vertex-tokens	Packed vertex tokens
 token	0x1b6	HP_PVERTEX_V3F_C4UB_N3S_T2S;KONA_HP_PVERTEX_V3F_C4UB_N3S_T2S		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonSendPackedVertexV3F_C4UB_N3S_T2S	understood	docs/ge-routed-tokens.md#packed-vertex-tokens	Packed vertex tokens
-token	0x1b7	HP_PVERTEX_SETUP;KONA_HP_PVERTEX_SETUP		handler=arm_pvertex_setup route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonSendPackedVertex	understood	GE.h:7017	
-token	0x1b8	HP_INSTRUMENTS_BUFFER;KONA_HP_INSTRUMENTS_BUFFER		handler=arm_instruments_buffer route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7029	
-token	0x1b9	HP_START_INSTRUMENTS;KONA_HP_START_INSTRUMENTS		handler=arm_start_instruments route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_StartInstrumentsSGIX	understood	GE.h:7046	
-token	0x1ba	HP_STOP_INSTRUMENTS;KONA_HP_STOP_INSTRUMENTS		handler=arm_stop_instruments route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_StopInstrumentsSGIX	understood	GE.h:7062	
-token	0x1bb	HP_TEXELSTOREI;KONA_HP_TEXELSTOREI		handler=arm_texelstorei route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_TextureStorei	understood	GE.h:7075	
-token	0x1bc	HP_RESTART_SELECTFEED;KONA_HP_RESTART_SELECTFEED		handler=arm_restart_selectfeed route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_InstrumentsBufferSGIX	understood	GE.h:7088	
-token	0x1bd	HP_REFERENCE_PLANE;KONA_HP_REFERENCE_PLANE		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_ReferencePlaneSGIX	understood	GE.h:7107	
+token	0x1b7	HP_PVERTEX_SETUP;KONA_HP_PVERTEX_SETUP		handler=arm_pvertex_setup route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonSendPackedVertex	understood	GE.h:7023	
+token	0x1b8	HP_INSTRUMENTS_BUFFER;KONA_HP_INSTRUMENTS_BUFFER		handler=arm_instruments_buffer route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7035	
+token	0x1b9	HP_START_INSTRUMENTS;KONA_HP_START_INSTRUMENTS		handler=arm_start_instruments route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_StartInstrumentsSGIX	understood	GE.h:7052	
+token	0x1ba	HP_STOP_INSTRUMENTS;KONA_HP_STOP_INSTRUMENTS		handler=arm_stop_instruments route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_StopInstrumentsSGIX	understood	GE.h:7068	
+token	0x1bb	HP_TEXELSTOREI;KONA_HP_TEXELSTOREI		handler=arm_texelstorei route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_TextureStorei	understood	GE.h:7081	
+token	0x1bc	HP_RESTART_SELECTFEED;KONA_HP_RESTART_SELECTFEED		handler=arm_restart_selectfeed route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_InstrumentsBufferSGIX	understood	GE.h:7094	
+token	0x1bd	HP_REFERENCE_PLANE;KONA_HP_REFERENCE_PLANE		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_ReferencePlaneSGIX	understood	GE.h:7113	
 token	0x1be	HP_SETCOLORNORMAL;KONA_HP_SETCOLORNORMAL		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#other-routed-tokens	Other routed tokens
-token	0x1bf	HP_DEFORM;KONA_HP_DEFORM		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_DeformSGIX	understood	GE.h:7138	
-token	0x1c0	HP_DEFORMATION_MAP3_1F;KONA_HP_DEFORMATION_MAP3_1F		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7157	
-token	0x1c1	HP_DEFORMATION_MAP3_1D;KONA_HP_DEFORMATION_MAP3_1D		route=hw	GE.h,firmware map,kpm	0	0		no-software-dependency	GE.h:7182	
-token	0x1c2	HP_DEFORMATION_MAP3_1D_cont;KONA_HP_DEFORMATION_MAP3_1D_cont		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7200	
-token	0x1c3	HP_LOAD_IDENTITY_DEFORMATION;KONA_HP_LOAD_IDENTITY_DEFORMATION		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_LoadIdentityDeformationMapSGIX	understood	GE.h:7218	
-token	0x1c4	HP_BIND_ARM_TEX_CACHE;KONA_HP_BIND_ARM_TEX_CACHE		handler=arm_bind_arm_tex_cache route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7229	
-token	0x1c5	HP_FREE_ARM_TEX_CACHE;KONA_HP_FREE_ARM_TEX_CACHE		handler=arm_free_arm_tex_cache route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7243	
-token	0x1c6	HP_GET_DEFORMATION;KONA_HP_GET_DEFORMATION		handler=arm_get_deformation route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7255	
-token	0x1c7	HP_SHADOW_TEXTURE;KONA_HP_SHADOW_TEXTURE		handler=arm_shadow_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7270	
-token	0x1c8	HP_IDMACOPYLIST_LDMA;KONA_HP_IDMACOPYLIST_LDMA		handler=arm_idmacopylist_ldma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7283	
-token	0x1c9	HP_TMESHMODE;KONA_HP_TMESHMODE		handler=arm_tmeshmode route=arm	GE.h,firmware map,kpm,user FIFO	2	2	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_IglooInterfaceSGIX	understood	GE.h:7294	
-token	0x1ca	HP_LOAD_GE_XFORM_ATTRIB;KONA_HP_LOAD_GE_XFORM_ATTRIB		handler=arm_load_ge_xform_attrib route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7310	
-token	0x1cb	HP_GET_GE_XFORM_ATTRIB;KONA_HP_GET_GE_XFORM_ATTRIB		handler=arm_get_ge_xform_attrib route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7324	
-token	0x1cc	HP_FLUSH_RASTER;KONA_HP_FLUSH_RASTER		handler=arm_flush_raster route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_FlushRasterSGIX	understood	GE.h:7336	
-token	0x1cd	HP_READ_INSTRUMENTS;KONA_HP_READ_INSTRUMENTS		handler=arm_read_instruments route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_ReadInstrumentsSGIX	understood	GE.h:7351	
-token	0x1ce	HP_LAZYMODE;KONA_HP_LAZYMODE		handler=arm_lazymode route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonInitPixelState	understood	GE.h:7360	
-token	0x1cf	HP_PVERTEX_CLEANUP;KONA_HP_PVERTEX_CLEANUP		handler=arm_pvertex_cleanup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7371	
-token	0x1d0	HP_SUBDIV_PATCH;KONA_HP_SUBDIV_PATCH		handler=arm_subdiv_patch route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7388	
-token	0x1d1	HP_SUBDIV_PATCH_SETUP;KONA_HP_SUBDIV_PATCH_SETUP		handler=arm_subdiv_patch_setup route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_SubdivPatchSGIX	understood	GE.h:7402	
-token	0x1d2	HP_SUBDIV_PATCH_CLEANUP;KONA_HP_SUBDIV_PATCH_CLEANUP		handler=arm_subdiv_patch_cleanup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7413	
-token	0x1d3	HP_SUBDIV_PATCH_PARAMETER;KONA_HP_SUBDIV_PATCH_PARAMETER		handler=arm_subdiv_patch_parameter route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_SubdivPatchParameterfSGIX	understood	GE.h:7428	
-token	0x1d4	HP_BEGIN_SUBDIV_PATCH;KONA_HP_BEGIN_SUBDIV_PATCH		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7446	
-token	0x1d5	HP_BIND_TEXTURE;KONA_HP_BIND_TEXTURE		handler=arm_bind_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7469	
-token	0x1d6	HP_TEXGEN_POP;KONA_HP_TEXGEN_POP		handler=arm_texgen_pop route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7485	
-token	0x1d7	HP_CHANGE_POST_TEX_SCALE_BIAS;KONA_HP_CHANGE_POST_TEX_SCALE_BIAS		handler=arm_change_post_tex_scale_bias route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonTexParameter	understood	GE.h:7499	
-token	0x1d8	HP_SKIP2;KONA_HP_SKIP2		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7515	
-token	0x1d9	HP_SKIP4;KONA_HP_SKIP4		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7531	
-token	0x1da	HP_SKIP5;KONA_HP_SKIP5		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7547	
-token	0x1db	HP_SWAP_CNTRL;KONA_HP_SWAP_CNTRL		handler=arm_swap_cntrl route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7560	
-token	0x1dc	HP_F3_WAR;KONA_HP_F3_WAR		handler=arm_f3_war route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7572	
-token	0x1dd	HP_GE_INTR;KONA_HP_GE_INTR		handler=arm_ge_intr route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_checkpipe	understood	GE.h:7585	
-token	0x1de	HP_MEM_RESUME;KONA_HP_MEM_RESUME		handler=arm_mem_resume route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_resume	understood	GE.h:7600	
-token	0x1df	HP_MEM_SUSPEND;KONA_HP_MEM_SUSPEND		handler=arm_mem_suspend route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7611	
-token	0x1e0	HP_TEX_ARM_CACHE_INDEX_INVALID;KONA_HP_TEX_ARM_CACHE_INDEX_INVALID		handler=arm_tex_arm_cache_index_invalid route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:subtractTexTableUsage	understood	GE.h:7624	
-token	0x1e1	HP_MEM_COPYDOWN;KONA_HP_MEM_COPYDOWN		handler=arm_mem_copydown route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_copydown_func	understood	GE.h:7636	
-token	0x1e2	HP_MEM_SWAPIN;KONA_HP_MEM_SWAPIN		handler=arm_mem_swapin route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_swapin_func	understood	GE.h:7650	
-token	0x1e3	HP_MEM_SWAPOUT;KONA_HP_MEM_SWAPOUT		handler=arm_mem_swapout route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_swapout_func	understood	GE.h:7664	
-token	0x1e4	HP_MEM_RESERVE;KONA_HP_MEM_RESERVE		handler=arm_mem_reserve route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_reserve_func	understood	GE.h:7676	
-token	0x1e5	HP_GEROLLCALL;KONA_HP_GEROLLCALL		handler=arm_gerollcall route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7689	
-token	0x1e6	HP_DISPMODE;KONA_HP_DISPMODE		handler=arm_dispmode route=arm	GE.h,firmware map,kernel command port,kpm	4	2	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):KONAschedmgrswapbuf	understood	GE.h:7703	
-token	0x1e7	HP_RETRACE_SEQID;KONA_HP_RETRACE_SEQID		handler=arm_retrace_seqid route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):kona_retrace_activate	understood	GE.h:7717	
-token	0x1e8	HP_ARM_NOP;KONA_HP_ARM_NOP		handler=arm_arm_nop route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7729	
-token	0x1e9	HP_GETCONFIG;KONA_HP_GETCONFIG		handler=arm_getconfig route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7740	
-token	0x1ea	HP_PIPE_SYNC;KONA_HP_PIPE_SYNC		handler=arm_pipe_sync route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7751	
-token	0x1eb	HP_DO_IDMA;KONA_HP_DO_IDMA		handler=arm_do_idma route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_idma	understood	GE.h:7766	
-token	0x1ec	HP_EEPROM_OP;KONA_HP_EEPROM_OP		handler=arm_eeprom_op route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7780	
-token	0x1ed	HP_DMAPOOL_SETUP;KONA_HP_DMAPOOL_SETUP		handler=arm_dmapool_setup route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_dmapool_update_pipe	understood	GE.h:7792	
-token	0x1ee	HP_VALIDATE_READCLIP;KONA_HP_VALIDATE_READCLIP		handler=arm_validate_readclip route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7808	
-token	0x1ef	HP_GED_VERIF_LOAD;KONA_HP_GED_VERIF_LOAD		handler=arm_ged_verif_load route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7822	
-token	0x1f0	HP_GED_VERIF_DUMP;KONA_HP_GED_VERIF_DUMP		handler=arm_ged_verif_dump route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7836	
-token	0x1f1	HP_PIPE_SETUP;KONA_HP_PIPE_SETUP		handler=arm_pipe_setup route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_setup.o):KONAstart	understood	GE.h:7849	
-token	0x1f2	HP_RDATA_SETUP;KONA_HP_RDATA_SETUP		handler=arm_rdata_setup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7860	
-token	0x1f3	HP_VALIDATE_CLIP;KONA_HP_VALIDATE_CLIP		handler=arm_validate_clip route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7878	
-token	0x1f4	HP_VALIDATE_BANK;KONA_HP_VALIDATE_BANK		handler=arm_validate_bank route=arm	GE.h,firmware map,kernel command port,kpm	4	4	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONAvalidateclip	understood	GE.h:7891	
-token	0x1f5	HP_START_SELECTFEED;KONA_HP_START_SELECTFEED		handler=arm_start_selectfeed route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_start_selectfeed	understood	GE.h:7902	
-token	0x1f6	HP_FINISH_SELECTFEED;KONA_HP_FINISH_SELECTFEED		handler=arm_finish_selectfeed route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_finish_selectfeed	understood	GE.h:7913	
-token	0x1f7	HP_CONTEXT_DESTROY;KONA_HP_CONTEXT_DESTROY		handler=arm_context_destroy route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7926	
-token	0x1f8	HP_CONTEXT_MOPUP;KONA_HP_CONTEXT_MOPUP		handler=arm_context_mopup route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_ddrn.o):KONAdestroyddrn	understood	GE.h:7941	
-token	0x1f9	HP_CONTEXT_LOAD;KONA_HP_CONTEXT_LOAD		handler=arm_context_load route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	understood	GE.h:7957	
-token	0x1fa	HP_CONTEXT_ACTIVATE;KONA_HP_CONTEXT_ACTIVATE		handler=arm_context_activate route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7974	
-token	0x1fb	HP_CONTEXT_FIFO_SYNC;KONA_HP_CONTEXT_FIFO_SYNC		handler=arm_context_fifo_sync route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7984	
-token	0x1fc	HP_CONTEXT_DEACTIVATE;KONA_HP_CONTEXT_DEACTIVATE		handler=arm_context_deactivate route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7999	
-token	0x1fd	HP_CONTEXT_INIT;KONA_HP_CONTEXT_INIT		handler=arm_context_init route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:8012	
-token	0x1fe	HP_KERNEL_PRIVATE;KONA_HP_KERNEL_PRIVATE		handler=arm_kernel_private route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:8022	
-token	0x1ff	HP_WG_FLUSH_1;KONA_HP_WG_FLUSH_1		handler=arm_wg_flush_1 route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:8045	
-token	0x200	**** 0x0;KONA_HP_KPM_SPARE_0			GE.h,kpm	0	0		understood	GE.h:8067	
-token	0x201	**** 0x1;KONA_HP_KPM_SPARE_1			GE.h,kpm	0	0		understood	GE.h:8076	
-token	0x202	**** 0x2;KONA_HP_KPM_SPARE_2			GE.h,kpm	0	0		understood	GE.h:8084	
-token	0x203	**** 0x3;KONA_HP_KPM_SPARE_3			GE.h,kpm	0	0		understood	GE.h:8091	
-token	0x204	**** 0x4;KONA_HP_KPM_SPARE_4			GE.h,kpm	0	0		understood	GE.h:8098	
-token	0x205	**** 0x5;KONA_HP_KPM_SPARE_5			GE.h,kpm	0	0		understood	GE.h:8105	
-token	0x206	**** 0x6;KONA_HP_KPM_SPARE_6			GE.h,kpm	0	0		understood	GE.h:8111	
-token	0x207	**** 0x7;KONA_HP_KPM_SPARE_7			GE.h,kpm	0	0		understood	GE.h:8118	
-token	0x208	**** 0x8;KONA_HP_KPM_SPARE_8			GE.h,kpm	0	0		understood	GE.h:8124	
-token	0x209	**** 0x9;KONA_HP_KPM_SPARE_9			GE.h,kpm	0	0		understood	GE.h:8130	
-token	0x20a	**** 0xa;KONA_HP_KPM_SPARE_A			GE.h,kpm	0	0		understood	GE.h:8137	
-token	0x20b	**** 0xb;KONA_HP_KPM_SPARE_B			GE.h,kpm	0	0		understood	GE.h:8143	
-token	0x20c	**** 0xc;KONA_HP_KPM_SPARE_C			GE.h,kpm	0	0		understood	GE.h:8149	
-token	0x20d	**** 0xd;KONA_HP_KPM_SPARE_D			GE.h,kpm	0	0		understood	GE.h:8156	
-token	0x20e	**** 0xe;KONA_HP_KPM_SPARE_E			GE.h,kpm	0	0		understood	GE.h:8163	
-token	0x20f	**** PIXELS_STARTGEID;KONA_HP_KPM_PIXELS_STARTGEID			GE.h,kpm	0	0		understood	GE.h:8173	
+token	0x1bf	HP_DEFORM;KONA_HP_DEFORM		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_DeformSGIX	understood	GE.h:7144	
+token	0x1c0	HP_DEFORMATION_MAP3_1F;KONA_HP_DEFORMATION_MAP3_1F		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7163	
+token	0x1c1	HP_DEFORMATION_MAP3_1D;KONA_HP_DEFORMATION_MAP3_1D		route=hw	GE.h,firmware map,kpm	0	0		no-software-dependency	GE.h:7188	
+token	0x1c2	HP_DEFORMATION_MAP3_1D_cont;KONA_HP_DEFORMATION_MAP3_1D_cont		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7206	
+token	0x1c3	HP_LOAD_IDENTITY_DEFORMATION;KONA_HP_LOAD_IDENTITY_DEFORMATION		route=hw	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_LoadIdentityDeformationMapSGIX	understood	GE.h:7224	
+token	0x1c4	HP_BIND_ARM_TEX_CACHE;KONA_HP_BIND_ARM_TEX_CACHE		handler=arm_bind_arm_tex_cache route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7235	
+token	0x1c5	HP_FREE_ARM_TEX_CACHE;KONA_HP_FREE_ARM_TEX_CACHE		handler=arm_free_arm_tex_cache route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7249	
+token	0x1c6	HP_GET_DEFORMATION;KONA_HP_GET_DEFORMATION		handler=arm_get_deformation route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7261	
+token	0x1c7	HP_SHADOW_TEXTURE;KONA_HP_SHADOW_TEXTURE		handler=arm_shadow_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7276	
+token	0x1c8	HP_IDMACOPYLIST_LDMA;KONA_HP_IDMACOPYLIST_LDMA		handler=arm_idmacopylist_ldma route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7289	
+token	0x1c9	HP_TMESHMODE;KONA_HP_TMESHMODE		handler=arm_tmeshmode route=arm	GE.h,firmware map,kpm,user FIFO	2	2	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_IglooInterfaceSGIX	understood	GE.h:7300	
+token	0x1ca	HP_LOAD_GE_XFORM_ATTRIB;KONA_HP_LOAD_GE_XFORM_ATTRIB		handler=arm_load_ge_xform_attrib route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7316	
+token	0x1cb	HP_GET_GE_XFORM_ATTRIB;KONA_HP_GET_GE_XFORM_ATTRIB		handler=arm_get_ge_xform_attrib route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7330	
+token	0x1cc	HP_FLUSH_RASTER;KONA_HP_FLUSH_RASTER		handler=arm_flush_raster route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_FlushRasterSGIX	understood	GE.h:7342	
+token	0x1cd	HP_READ_INSTRUMENTS;KONA_HP_READ_INSTRUMENTS		handler=arm_read_instruments route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_ReadInstrumentsSGIX	understood	GE.h:7357	
+token	0x1ce	HP_LAZYMODE;KONA_HP_LAZYMODE		handler=arm_lazymode route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonInitPixelState	understood	GE.h:7366	
+token	0x1cf	HP_PVERTEX_CLEANUP;KONA_HP_PVERTEX_CLEANUP		handler=arm_pvertex_cleanup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7377	
+token	0x1d0	HP_SUBDIV_PATCH;KONA_HP_SUBDIV_PATCH		handler=arm_subdiv_patch route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7394	
+token	0x1d1	HP_SUBDIV_PATCH_SETUP;KONA_HP_SUBDIV_PATCH_SETUP		handler=arm_subdiv_patch_setup route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_SubdivPatchSGIX	understood	GE.h:7408	
+token	0x1d2	HP_SUBDIV_PATCH_CLEANUP;KONA_HP_SUBDIV_PATCH_CLEANUP		handler=arm_subdiv_patch_cleanup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7419	
+token	0x1d3	HP_SUBDIV_PATCH_PARAMETER;KONA_HP_SUBDIV_PATCH_PARAMETER		handler=arm_subdiv_patch_parameter route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glkonim_SubdivPatchParameterfSGIX	understood	GE.h:7434	
+token	0x1d4	HP_BEGIN_SUBDIV_PATCH;KONA_HP_BEGIN_SUBDIV_PATCH		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7452	
+token	0x1d5	HP_BIND_TEXTURE;KONA_HP_BIND_TEXTURE		handler=arm_bind_texture route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7475	
+token	0x1d6	HP_TEXGEN_POP;KONA_HP_TEXGEN_POP		handler=arm_texgen_pop route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7491	
+token	0x1d7	HP_CHANGE_POST_TEX_SCALE_BIAS;KONA_HP_CHANGE_POST_TEX_SCALE_BIAS		handler=arm_change_post_tex_scale_bias route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:__glKonTexParameter	understood	GE.h:7505	
+token	0x1d8	HP_SKIP2;KONA_HP_SKIP2		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7521	
+token	0x1d9	HP_SKIP4;KONA_HP_SKIP4		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7537	
+token	0x1da	HP_SKIP5;KONA_HP_SKIP5		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:7553	
+token	0x1db	HP_SWAP_CNTRL;KONA_HP_SWAP_CNTRL		handler=arm_swap_cntrl route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7566	
+token	0x1dc	HP_F3_WAR;KONA_HP_F3_WAR		handler=arm_f3_war route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7578	
+token	0x1dd	HP_GE_INTR;KONA_HP_GE_INTR		handler=arm_ge_intr route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_checkpipe	understood	GE.h:7591	
+token	0x1de	HP_MEM_RESUME;KONA_HP_MEM_RESUME		handler=arm_mem_resume route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_resume	understood	GE.h:7606	
+token	0x1df	HP_MEM_SUSPEND;KONA_HP_MEM_SUSPEND		handler=arm_mem_suspend route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7617	
+token	0x1e0	HP_TEX_ARM_CACHE_INDEX_INVALID;KONA_HP_TEX_ARM_CACHE_INDEX_INVALID		handler=arm_tex_arm_cache_index_invalid route=arm	GE.h,firmware map,kpm,user FIFO	6	6	usr/gfx/arch/IP27KONA/libGLcore.so:subtractTexTableUsage	understood	GE.h:7630	
+token	0x1e1	HP_MEM_COPYDOWN;KONA_HP_MEM_COPYDOWN		handler=arm_mem_copydown route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_copydown_func	understood	GE.h:7642	
+token	0x1e2	HP_MEM_SWAPIN;KONA_HP_MEM_SWAPIN		handler=arm_mem_swapin route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_swapin_func	understood	GE.h:7656	
+token	0x1e3	HP_MEM_SWAPOUT;KONA_HP_MEM_SWAPOUT		handler=arm_mem_swapout route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_swapout_func	understood	GE.h:7670	
+token	0x1e4	HP_MEM_RESERVE;KONA_HP_MEM_RESERVE		handler=arm_mem_reserve route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o):kona_mem_reserve_func	understood	GE.h:7682	
+token	0x1e5	HP_GEROLLCALL;KONA_HP_GEROLLCALL		handler=arm_gerollcall route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7695	
+token	0x1e6	HP_DISPMODE;KONA_HP_DISPMODE		handler=arm_dispmode route=arm	GE.h,firmware map,kernel command port,kpm	4	2	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):KONAschedmgrswapbuf	understood	GE.h:7709	
+token	0x1e7	HP_RETRACE_SEQID;KONA_HP_RETRACE_SEQID		handler=arm_retrace_seqid route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):kona_retrace_activate	understood	GE.h:7723	
+token	0x1e8	HP_ARM_NOP;KONA_HP_ARM_NOP		handler=arm_arm_nop route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7735	
+token	0x1e9	HP_GETCONFIG;KONA_HP_GETCONFIG		handler=arm_getconfig route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7746	
+token	0x1ea	HP_PIPE_SYNC;KONA_HP_PIPE_SYNC		handler=arm_pipe_sync route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7757	
+token	0x1eb	HP_DO_IDMA;KONA_HP_DO_IDMA		handler=arm_do_idma route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_idma	understood	GE.h:7772	
+token	0x1ec	HP_EEPROM_OP;KONA_HP_EEPROM_OP		handler=arm_eeprom_op route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7786	
+token	0x1ed	HP_DMAPOOL_SETUP;KONA_HP_DMAPOOL_SETUP		handler=arm_dmapool_setup route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_dmapool_update_pipe	understood	GE.h:7798	
+token	0x1ee	HP_VALIDATE_READCLIP;KONA_HP_VALIDATE_READCLIP		handler=arm_validate_readclip route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7814	
+token	0x1ef	HP_GED_VERIF_LOAD;KONA_HP_GED_VERIF_LOAD		handler=arm_ged_verif_load route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7828	
+token	0x1f0	HP_GED_VERIF_DUMP;KONA_HP_GED_VERIF_DUMP		handler=arm_ged_verif_dump route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7842	
+token	0x1f1	HP_PIPE_SETUP;KONA_HP_PIPE_SETUP		handler=arm_pipe_setup route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_setup.o):KONAstart	understood	GE.h:7855	
+token	0x1f2	HP_RDATA_SETUP;KONA_HP_RDATA_SETUP		handler=arm_rdata_setup route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7866	
+token	0x1f3	HP_VALIDATE_CLIP;KONA_HP_VALIDATE_CLIP		handler=arm_validate_clip route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7884	
+token	0x1f4	HP_VALIDATE_BANK;KONA_HP_VALIDATE_BANK		handler=arm_validate_bank route=arm	GE.h,firmware map,kernel command port,kpm	4	4	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONAvalidateclip	understood	GE.h:7897	
+token	0x1f5	HP_START_SELECTFEED;KONA_HP_START_SELECTFEED		handler=arm_start_selectfeed route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_start_selectfeed	understood	GE.h:7908	
+token	0x1f6	HP_FINISH_SELECTFEED;KONA_HP_FINISH_SELECTFEED		handler=arm_finish_selectfeed route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_finish_selectfeed	understood	GE.h:7919	
+token	0x1f7	HP_CONTEXT_DESTROY;KONA_HP_CONTEXT_DESTROY		handler=arm_context_destroy route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7932	
+token	0x1f8	HP_CONTEXT_MOPUP;KONA_HP_CONTEXT_MOPUP		handler=arm_context_mopup route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_ddrn.o):KONAdestroyddrn	understood	GE.h:7947	
+token	0x1f9	HP_CONTEXT_LOAD;KONA_HP_CONTEXT_LOAD		handler=arm_context_load route=arm	GE.h,firmware map,kernel command port,kpm	2	2	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	understood	GE.h:7963	
+token	0x1fa	HP_CONTEXT_ACTIVATE;KONA_HP_CONTEXT_ACTIVATE		handler=arm_context_activate route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7980	
+token	0x1fb	HP_CONTEXT_FIFO_SYNC;KONA_HP_CONTEXT_FIFO_SYNC		handler=arm_context_fifo_sync route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:7990	
+token	0x1fc	HP_CONTEXT_DEACTIVATE;KONA_HP_CONTEXT_DEACTIVATE		handler=arm_context_deactivate route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:8005	
+token	0x1fd	HP_CONTEXT_INIT;KONA_HP_CONTEXT_INIT		handler=arm_context_init route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:8018	
+token	0x1fe	HP_KERNEL_PRIVATE;KONA_HP_KERNEL_PRIVATE		handler=arm_kernel_private route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:8028	
+token	0x1ff	HP_WG_FLUSH_1;KONA_HP_WG_FLUSH_1		handler=arm_wg_flush_1 route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:8051	
+token	0x200	**** 0x0;KONA_HP_KPM_SPARE_0			GE.h,kpm	0	0		understood	GE.h:8073	
+token	0x201	**** 0x1;KONA_HP_KPM_SPARE_1			GE.h,kpm	0	0		understood	GE.h:8082	
+token	0x202	**** 0x2;KONA_HP_KPM_SPARE_2			GE.h,kpm	0	0		understood	GE.h:8090	
+token	0x203	**** 0x3;KONA_HP_KPM_SPARE_3			GE.h,kpm	0	0		understood	GE.h:8097	
+token	0x204	**** 0x4;KONA_HP_KPM_SPARE_4			GE.h,kpm	0	0		understood	GE.h:8104	
+token	0x205	**** 0x5;KONA_HP_KPM_SPARE_5			GE.h,kpm	0	0		understood	GE.h:8111	
+token	0x206	**** 0x6;KONA_HP_KPM_SPARE_6			GE.h,kpm	0	0		understood	GE.h:8117	
+token	0x207	**** 0x7;KONA_HP_KPM_SPARE_7			GE.h,kpm	0	0		understood	GE.h:8124	
+token	0x208	**** 0x8;KONA_HP_KPM_SPARE_8			GE.h,kpm	0	0		understood	GE.h:8130	
+token	0x209	**** 0x9;KONA_HP_KPM_SPARE_9			GE.h,kpm	0	0		understood	GE.h:8136	
+token	0x20a	**** 0xa;KONA_HP_KPM_SPARE_A			GE.h,kpm	0	0		understood	GE.h:8143	
+token	0x20b	**** 0xb;KONA_HP_KPM_SPARE_B			GE.h,kpm	0	0		understood	GE.h:8149	
+token	0x20c	**** 0xc;KONA_HP_KPM_SPARE_C			GE.h,kpm	0	0		understood	GE.h:8155	
+token	0x20d	**** 0xd;KONA_HP_KPM_SPARE_D			GE.h,kpm	0	0		understood	GE.h:8162	
+token	0x20e	**** 0xe;KONA_HP_KPM_SPARE_E			GE.h,kpm	0	0		understood	GE.h:8169	
+token	0x20f	**** PIXELS_STARTGEID;KONA_HP_KPM_PIXELS_STARTGEID			GE.h,kpm	0	0		understood	GE.h:8179	
 token	0x210	HT_PACK_MODE			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x211	HT_ODMA_LLEN			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x212	HT_ODMA_STRIDE			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
@@ -596,7 +596,7 @@ token	0x251	TM_DRAW_CLIP_BKPT			kpm	0	0		understood	docs/ge-shadow-words.md#shad
 token	0x252	TGTM_TEX_SCENTER			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x253	TGTM_TEX_TCENTER			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x254	TFT_SBIAS_EN			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
-token	0x255	TFT_SCALE			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
+token	0x255	TFT_SCALE			kpm	0	0		located	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x256	TFT_BIAS			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x257	TFT_TLUT			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x258	TM_DRAW_SHA_AMBIENT			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
