@@ -527,6 +527,85 @@ tests bit 28 of word 0x26), `mgesi_TfanPolyRestoreEdge`'s OR of 0xe0000000 into 
   triangle's flag words 4 and 0x13 against 0x1c, and for each vertex subtracts the origin from the texture and window inputs,
   converts depth with operation 0x7e, multiplies the colour words, and sends the results through register 0x1e.
 
+## Vertex-array unpacking (uunpack.s)
+
+These modules turn the packed vertex-array records the distributor delivers into full vertex records before the
+transform. **Inferred** from the words cited per entry (`ge.u` 6.5.30m). Common shape: the set-up label points registers 1
+and 2 at two records (from address registers 0x10 and 0x11), loads the pass count into register 0 from register 0x19,
+reads its successor from engine word 0xda (`r95` = 2), and the loop label handles two records per pass, one per thread
+(W71 words take record 2). It steps both pointers by register 0x13, repeats on `cc` 0x11 in group 7 and ends with a
+group-31 transfer to the successor. In every form the output record gets x, y and z in words 0-2 as delivered, word 3
+(w) from register 0x1f, and colour in words 4-7. Register 0x1f reads as 1.0 there, since it also fills q.
+
+- `mmo_UnpackVertexV3F` (`uunpack.s` lines 44-56, at 0x2c6b): **inferred**, set-up for position-only arrays. It reads the
+  current colour from engine words 0x13a7-0x13aa (form-14 loads at 0x2c6b, 0x2c6d, 0x2c6f, 0x2c71) into registers 0, 2
+  and 4 and the load latch. Each vertex then gets the current GL colour.
+- `umo_UnpackVertexV3F`: **inferred**, second name at 0x2c6b (`uunpack.s` line 44) of the position-only set-up, whose
+  input is the colour block at 0x13a7 and whose result is the four colour values staged for `V3Floop`.
+- `V3Floop` (`uunpack.s` lines 60-69, at 0x2c78): **inferred**, the position-only loop. It writes w = register 0x1f
+  (0x2c78) and the staged colour into words 4-7 of both records (0x2c7a-0x2c81), and advances both pointers by register
+  0x13 (0x2c7e, 0x2c7f).
+- `mmo_UnpackVertexV3F_C4UB` (`uunpack.s` lines 78-94, at 0x2c83): **inferred**, set-up for position plus 4-byte colour.
+  It stages the shift counts into registers 0x15-0x17 (0x2c86-0x2c8a), the mask 0xff into staging word 3 (0x2c8b) and
+  1/255 (0x3b808080) into staging word 4 (0x2c8d), and starts the first record's byte extraction with right shifts
+  (unit-1 0x5d) of record word 3 (0x2c90-0x2c93).
+- `umo_UnpackVertexV3F_C4UB`: **inferred**, alias at 0x2c83 (`uunpack.s` line 78) of the byte-colour set-up. Its input
+  is the packed colour in record word 3 and its result is the shift, mask and scale constants the loop uses.
+- `V3F_C4UBloop` (`uunpack.s` lines 97-120, at 0x2c94): **inferred**, the byte-colour loop. Per record it masks each
+  shifted byte with 0xff (unit-1 0x50), converts it to float (0x73) and multiplies by 1/255 in unit 2 (M = 0x45d and
+  0x47f, 0x2c9c-0x2c9f), storing red, green, blue and alpha to words 4-7. Word 3 gets register 0x1f. GL's unsigned-byte
+  colour is in [0, 1] as a result.
+- `umo_UnpackVertexV3F_N3S` (`uunpack.s` lines 129-146, at 0x2cad): **inferred**, set-up for position plus a
+  short-integer normal. It loads the current colour from 0x13a7-0x13aa as `mmo_UnpackVertexV3F` does (0x2caf-0x2cb5) and
+  stages 0x380000fd, about 1/32767, into staging word 4 (0x2cbb) as the normal's scale.
+- `V3F_N3Sloop` (`uunpack.s` lines 150-200, at 0x2cbf): **inferred**, the short-normal loop. It splits record word 3 into
+  signed shorts with a left shift (0x5f) and arithmetic right shifts (0x5b, 0x2cbf-0x2cc6), converts them (0x73) and scales
+  them by the staged 1/32767 into normal words 8, 9 and 0xa (0x2cc7-0x2cd7). It then normalises with the square-root seed
+  (`r110` = 0x2bd at 0x2cdc) and a Newton step (unit-2 0x57, 0x2ce2, 0x2ce4), and writes the current colour to words 4-7.
+- `mmo_UnpackVertexV3F_T2F` (`uunpack.s` lines 209-220, at 0x2cf3): **inferred**, set-up for position plus two float
+  texture coordinates. Like the position-only set-up it stages the current colour from 0x13a7-0x13aa.
+- `umo_UnpackVertexV3F_T2F`: **inferred**, second name at 0x2cf3 (`uunpack.s` line 209) of the float-texture set-up.
+  Its input is the current colour block and its result is the colour staged for `V3F_T2Floop`.
+- `V3F_T2Floop` (`uunpack.s` lines 223-240, at 0x2cff): **inferred**, the float-texture loop. It moves record words 3 and
+  4 (s and t) to texture words 0xb and 0xc (0x2cff-0x2d02) before overwriting word 3 with w (0x2d03), stores r = register
+  0x1e (zero) and q = register 0x1f (one) to words 0xd and 0xe (0x2d0d-0x2d10), and copies the colour to words 4-7.
+- `mmo_UnpackVertexV3F_C4UB_T2F` (`uunpack.s` lines 249-258, at 0x2d12): **inferred**, set-up for position, byte colour
+  and float texture coordinates. It stages three shift counts into registers 0x16-0x18 (0x2d14-0x2d19) and 1/255 into
+  staging word 0 (0x2d1b).
+- `umo_UnpackVertexV3F_C4UB_T2F`: **inferred**, alias at 0x2d12 (`uunpack.s` line 249) of that set-up. Its result is the
+  shift counts and colour scale, and its input the per-context successor word 0xda.
+- `V3F_C4UB_T2Floop` (`uunpack.s` lines 261-296, at 0x2d1c): **inferred**, the byte-colour and float-texture loop. Per
+  record it isolates each colour byte of word 3 with a left shift then a right shift by 24 (0x5f at 0x2d1c-0x2d21, 0x5d
+  at 0x2d22-0x2d2f), converts (0x73) and scales by 1/255 (M = 0x473, 0x2d34-0x2d3b) into words 4-7. It moves words 4 and
+  5 (s, t) to 0xb and 0xc (0x2d26-0x2d29) and sets r = 0 and q = 1 (0x2d3c-0x2d3f).
+- `umo_UnpackVertexV3F_N3S_T2F` (`uunpack.s` lines 306-323, at 0x2d42): **inferred**, set-up for position, short normal and
+  float texture. It stages the current colour (0x13a7-0x13aa) and the normal scale 0x380000fd, the union of the N3S and
+  T2F set-ups.
+- `V3F_N3S_T2Floop` (`uunpack.s` lines 327-383, at 0x2d54): **inferred**, the loop for that form: the N3S normal
+  extraction, scaling and normalisation into words 8-0xa, the float texture move into 0xb and 0xc with r = 0 and q = 1, and
+  the current colour into words 4-7. It is the longest of the loops, with 16 unit-2 words per pass.
+- `mmo_UnpackVertexV3F_T2S` (`uunpack.s` lines 392-405, at 0x2d8e): **inferred**, set-up for position plus two short
+  texture coordinates. It stages the shift count into register 0x17 (0x2d90, 0x2d91) and the current colour from
+  0x13a7-0x13aa.
+- `umo_UnpackVertexV3F_T2S`: **inferred**, alias at 0x2d8e (`uunpack.s` line 392) of the short-texture set-up. Its inputs
+  are the colour block and the shift count, and the loop consumes its results.
+- `V3F_T2Sloop` (`uunpack.s` lines 408-431, at 0x2d9c): **inferred**, the short-texture loop. It splits record word 3 into
+  two signed shorts (0x5f then 0x5b at 0x2d9c-0x2d9f, 0x5b again at 0x2da4), converts them (0x73) into texture words 0xb and
+  0xc (0x2dac-0x2daf) unscaled, and sets r = 0 and q = 1 (0x2db0-0x2db3). GL's short texture coordinates are not
+  normalised, which fits the missing scale.
+- `mmo_UnpackVertexV3F_C4UB_T2S` (`uunpack.s` lines 440-449, at 0x2db5): **inferred**, set-up for position, byte colour and
+  short texture coordinates: the byte shift counts and 1/255, as in the C4UB_T2F set-up.
+- `umo_UnpackVertexV3F_C4UB_T2S`: **inferred**, second name at 0x2db5 (`uunpack.s` line 440) of that set-up, which
+  produces the constants and takes the successor from word 0xda.
+- `V3F_C4UB_T2Sloop` (`uunpack.s` lines 452-493, at 0x2dbf): **inferred**, the byte-colour and short-texture loop. It
+  combines the byte unpack of `V3F_C4UB_T2Floop` (12 conversions per pass: four colour bytes and two shorts for each of
+  two records) with the short split of `V3F_T2Sloop`.
+- `umo_UnpackVertexV3F_N3S_T2S` (`uunpack.s` lines 502-519, at 0x2dea): **inferred**, set-up for position, short normal and
+  short texture. It stages the current colour and the normal scale 0x380000fd, as the N3S set-ups do.
+- `V3F_N3S_T2Sloop` (`uunpack.s` lines 523-574, at 0x2dfc): **inferred**, the loop for that form. It reads the texture pair from record word 4 (0x2dfc-0x2dff) and the normal from word 3 (0x2e08,
+  0x2e0a), two short pairs per record, the normal (scaled by 1/32767 and normalised) into words 8-0xa and the texture coordinates
+  (unscaled) into 0xb and 0xc, and writes the current colour. It repeats through the relative transfer at 0x2e32 and ends at 0x2e33.
+
 ## Polygon clipping (clip.S)
 
 - `mClipPolyToPlane` (`clip.S` lines 88-660): **inferred**, clips one polygon against one plane, the Sutherland-Hodgman

@@ -2174,30 +2174,30 @@ ge.u	label	0x00002ba7	umo_DeformCoordNormalTexture		located	ucode/ge_handlers.md
 ge.u	label	0x00002bc5	loopDCNT		located	ucode/ge_handlers.md#udeforms	udeform.s
 ge.u	label	0x00002c08	mDeformation3_1Inverse		located	ucode/ge_handlers.md#udeforms	udeform.s
 ge.u	label	0x00002c08	uDeformation3_1Inverse		located	ucode/ge_handlers.md#udeforms	udeform.s
-ge.u	label	0x00002c6b	mmo_UnpackVertexV3F		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002c6b	umo_UnpackVertexV3F		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002c78	V3Floop		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002c83	mmo_UnpackVertexV3F_C4UB		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002c83	umo_UnpackVertexV3F_C4UB		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002c94	V3F_C4UBloop		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002cad	umo_UnpackVertexV3F_N3S		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002cbf	V3F_N3Sloop		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002cf3	mmo_UnpackVertexV3F_T2F		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002cf3	umo_UnpackVertexV3F_T2F		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002cff	V3F_T2Floop		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002d12	mmo_UnpackVertexV3F_C4UB_T2F		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002d12	umo_UnpackVertexV3F_C4UB_T2F		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002d1c	V3F_C4UB_T2Floop		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002d42	umo_UnpackVertexV3F_N3S_T2F		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002d54	V3F_N3S_T2Floop		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002d8e	mmo_UnpackVertexV3F_T2S		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002d8e	umo_UnpackVertexV3F_T2S		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002d9c	V3F_T2Sloop		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002db5	mmo_UnpackVertexV3F_C4UB_T2S		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002db5	umo_UnpackVertexV3F_C4UB_T2S		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002dbf	V3F_C4UB_T2Sloop		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002dea	umo_UnpackVertexV3F_N3S_T2S		located	ucode/ge_handlers.md#uunpacks	uunpack.s
-ge.u	label	0x00002dfc	V3F_N3S_T2Sloop		located	ucode/ge_handlers.md#uunpacks	uunpack.s
+ge.u	label	0x00002c6b	mmo_UnpackVertexV3F		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002c6b	umo_UnpackVertexV3F		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002c78	V3Floop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002c83	mmo_UnpackVertexV3F_C4UB		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002c83	umo_UnpackVertexV3F_C4UB		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002c94	V3F_C4UBloop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002cad	umo_UnpackVertexV3F_N3S		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002cbf	V3F_N3Sloop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002cf3	mmo_UnpackVertexV3F_T2F		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002cf3	umo_UnpackVertexV3F_T2F		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002cff	V3F_T2Floop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002d12	mmo_UnpackVertexV3F_C4UB_T2F		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002d12	umo_UnpackVertexV3F_C4UB_T2F		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002d1c	V3F_C4UB_T2Floop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002d42	umo_UnpackVertexV3F_N3S_T2F		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002d54	V3F_N3S_T2Floop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002d8e	mmo_UnpackVertexV3F_T2S		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002d8e	umo_UnpackVertexV3F_T2S		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002d9c	V3F_T2Sloop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002db5	mmo_UnpackVertexV3F_C4UB_T2S		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002db5	umo_UnpackVertexV3F_C4UB_T2S		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002dbf	V3F_C4UB_T2Sloop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002dea	umo_UnpackVertexV3F_N3S_T2S		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
+ge.u	label	0x00002dfc	V3F_N3S_T2Sloop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
 ge.u	label	0x00003000	mgeb_PixDrawColorSetup_FFT		located	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x00003026	mmo_Transpose		located	ucode/ge_handlers.md#ffts	fft.S
 ge.u	label	0x00003051	mgesi_PixRasterPosSetup_FFT		located	ucode/ge_handlers.md#ffts	fft.S
