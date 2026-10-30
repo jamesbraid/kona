@@ -1,5 +1,6 @@
 {
   "family": "InfiniteReality (KONA)",
+  "siblings": {"odsy": "../odsy", "crime": "../crime"},
   "docs": {
     "prose": [
       "docs/*.md",

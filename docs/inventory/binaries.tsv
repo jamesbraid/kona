@@ -1,600 +1,600 @@
-binary	group	role	kind	abi	bytes	sha256	copies	functions	access_sites	unresolved_sites	status	doc	section
-usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/cpu/sysgen/IP27boot/gfx.o	kernel-shared	shared-kernel	object	n64	53816	28186f9362dcd19e		62	0	0	named-only	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	17812	70f668a5a117d389		19	0	0	named-only	docs/kernel-functions.md#hub-flow-control-gfxsagfx_flowo	Hub flow control: `gfxs.a(gfx_flow.o)`
-usr/cpu/sysgen/IP27boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	5844	d56b66fd1e680c4a		1	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53828	690a5f9776008c1e		62	0	0	undocumented		
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx_debug.o)	kernel-shared	shared-kernel	object	n64	1220	5db884a0a151483d	usr/cpu/sysgen/IP35boot/gfxs.a(gfx_debug.o)	0	0	0	named-only	docs/kernel.md#function-reference	Function reference
-usr/cpu/sysgen/IP27boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	8948	b7b1cb0860460856		18	0	0	named-only	docs/kernel-functions.md#stubs-for-a-kernel-without-graphics-gfxstubsagfxstubso	Stubs for a kernel without graphics: `gfxstubs.a(gfxstubs.o)`
-usr/cpu/sysgen/IP27boot/kona.a(gfx_io_space.o)	kernel	board-kernel	object	n64	9460	314b148a33451dbe	usr/cpu/sysgen/IP35boot/kona.a(gfx_io_space.o)	7	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
-usr/cpu/sysgen/IP27boot/kona.a(kona_attach.o)	kernel	board-kernel	object	n64	7524	cf619b725721e6e5		3	0	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	kernel	board-kernel	object	n64	19828	4239f938c0f114fa		7	93	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o)	kernel	board-kernel	object	n64	9844	4428f5c5598b9552		3	16	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_ddrn.o)	kernel	board-kernel	object	n64	10724	95ced6ae7fc81631		3	10	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_debug.o)	kernel	board-kernel	object	n64	5508	e4bbcdd5c75df378		1	0	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26372	b0ab66a0d3a156dc		23	51	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit.o)	kernel	board-kernel	object	n64	12468	4fc1b6ff52659563		6	0	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	kernel	board-kernel	object	n64	15412	0704a4d34a99aa6d		14	26	1	named-only	docs/kernel-functions.md#flow-control-kona_flowo	Flow control: `kona_flow.o`
-usr/cpu/sysgen/IP27boot/kona.a(kona_frs.o)	kernel	board-kernel	object	n64	5028	cd4ba938d0088211		2	0	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_genlock.o)	kernel	board-kernel	object	n64	4596	f499a53a375b8f70		1	0	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_geprint.o)	kernel	board-kernel	object	n64	9156	7afaa08bdce4644c	usr/cpu/sysgen/IP35boot/kona.a(kona_geprint.o)	1	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP27boot/kona.a(kona_info.o)	kernel	board-kernel	object	n64	4596	3e106b8c81a9151e		1	0	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o)	kernel	board-kernel	object	n64	9268	fee9fb4ddac8a8ab		2	10	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	kernel	board-kernel	object	n64	14452	2376f1621c9b3847		1	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP27boot/kona.a(kona_map.o)	kernel	board-kernel	object	n64	9044	b100da141877221b		3	4	0	named-only	docs/kernel-functions.md#attach-detach-and-mapping-kona_attacho-kona_mapo	Attach, detach and mapping: `kona_attach.o`, `kona_map.o`
-usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	kernel	board-kernel	object	n64	32148	5993b8175eccfe31		23	70	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	kernel	board-kernel	object	n64	24468	9128bbfda564e180		13	58	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_sched.o)	kernel	board-kernel	object	n64	6692	4f35241bb7b9a26b		2	5	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_setup.o)	kernel	board-kernel	object	n64	8644	e167dfe000ec976d		2	20	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_share.o)	kernel	board-kernel	object	n64	5636	176343fd52fbd3d3		2	0	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4372	96443c9eb2c62e15		1	0	0	undocumented		
-usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12836	592bba0c041e0d85		10	2	0	named-only	docs/kernel-functions.md#driver-timeouts-kona_timeouto	Driver timeouts: `kona_timeout.o`
-usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26916	9dba4b43c75421d3		21	98	1	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP27boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24756	18136860332faa57		19	0	0	named-only	docs/kernel-functions.md#kernel-textport-kona_tporto	Kernel textport: `kona_tport.o`
-usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22228	6601b45a863a2be9		9	24	0	named-only	docs/kernel-functions.md#attach-and-crosstalk-set-up-kona_edtinit_hip2o	Attach and Crosstalk set-up: `kona_edtinit_hip2.o`
-usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8148	3b5293ce5fd89f64		3	4	0	named-only	docs/kernel-functions.md#interrupt-handlers-kona_intro-kona_intr_hip2o	Interrupt handlers: `kona_intr.o`, `kona_intr_hip2.o`
-usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7492	a1c62957a81158d7		5	2	3	undocumented		
-usr/cpu/sysgen/IP27boot/rrm.o	kernel-shared	shared-kernel	object	n64	63984	6da3783f920cc0ad		72	0	0	named-only	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
-usr/cpu/sysgen/IP27boot/tport.a(tport.o)	kernel-shared	shared-kernel	object	n64	23620	12e8b895c97f0544		22	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/cpu/sysgen/IP35boot/gfx.o	kernel-shared	shared-kernel	object	n64	53720	a42762015aa4c9ed		62	0	0	named-only	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	14836	2908dd361cfa0ac9		16	0	0	named-only	docs/kernel-functions.md#hub-flow-control-gfxsagfx_flowo	Hub flow control: `gfxs.a(gfx_flow.o)`
-usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	11492	e0766b2bbeb929c9		5	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53732	4d6ae8238fd650db		62	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	7300	92a8e73ac592455b		18	0	0	named-only	docs/kernel-functions.md#stubs-for-a-kernel-without-graphics-gfxstubsagfxstubso	Stubs for a kernel without graphics: `gfxstubs.a(gfxstubs.o)`
-usr/cpu/sysgen/IP35boot/kona.a(kona_attach.o)	kernel	board-kernel	object	n64	7428	a08cbc38e11d09fc		3	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	kernel	board-kernel	object	n64	19748	04d720ca35795bd9		7	93	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP35boot/kona.a(kona_crash.o)	kernel	board-kernel	object	n64	9748	10c23be452454e34		3	16	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_ddrn.o)	kernel	board-kernel	object	n64	10628	7298d0d2ec69302e		3	10	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_debug.o)	kernel	board-kernel	object	n64	5428	ee62d6eb1a79a4a0		1	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26292	fcab4bccda4dc88a		23	51	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit.o)	kernel	board-kernel	object	n64	12372	d61fec345d55d978		6	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	kernel	board-kernel	object	n64	15332	959b0fe1f7bd132c		14	26	1	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
-usr/cpu/sysgen/IP35boot/kona.a(kona_frs.o)	kernel	board-kernel	object	n64	4948	476ce6628c34c6e1		2	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_genlock.o)	kernel	board-kernel	object	n64	4500	a59612f6e83edbfe		1	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_info.o)	kernel	board-kernel	object	n64	4516	7cf3d3cf01b26a54		1	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_intr.o)	kernel	board-kernel	object	n64	9188	4eca3ce7bd15998e		2	10	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	kernel	board-kernel	object	n64	14372	01bde5ab11a9aca7		1	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_map.o)	kernel	board-kernel	object	n64	8964	e4925b40b9116f9c		3	4	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
-usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	kernel	board-kernel	object	n64	32068	1069e8c114248172		23	70	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	kernel	board-kernel	object	n64	24372	9fd465a37c1fff7b		13	58	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_sched.o)	kernel	board-kernel	object	n64	6612	7a40f54311a18f08		2	5	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_setup.o)	kernel	board-kernel	object	n64	8564	b74e02764644bb5e		2	20	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_share.o)	kernel	board-kernel	object	n64	5540	85fc5556ab1a72ec		2	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4276	9ddba61a71ff1d05		1	0	0	undocumented		
-usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12740	86d948058c5563ef		10	2	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
-usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26836	31ebede97fc0663e		21	98	1	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
-usr/cpu/sysgen/IP35boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24324	10b9a948c8087221		19	0	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
-usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22036	387a5f25e1abc8f2		9	24	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
-usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8068	8af55035550b9e02		3	4	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
-usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7412	d3526393bde60851		5	2	3	undocumented		
-usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	0	0	named-only	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
-usr/diags/IR/bin/availmon	diagnostics	board-diagnostic	data	-	1140	0830da204c6694ce		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/bin/hyper	diagnostics	board-diagnostic	executable	n32	38544	c9c31f17ce8a9831		11	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/bin/irsaudit	diagnostics	board-diagnostic	executable	n32	2967860	57830d1caab0efac		1170	0	0	named-only	docs/coverage.md#rm-and-tm	RM and TM
-usr/diags/IR/data/1280x1024_60.vfo	diagnostics	board-diagnostic	data	-	17920	fbcaab1b00af730f		0	0	0	undocumented		
-usr/diags/IR/data/160x100_5000.vfo	diagnostics	board-diagnostic	data	-	17967	8b776633a7cf9df6		0	0	0	understood	docs/display-formats.md#video-formats-the-diagnostics-load	Video formats the diagnostics load
-usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	bba183206ff10567		0	0	0	undocumented		
-usr/diags/IR/data/aaspoke.tbus	diagnostics	board-diagnostic	data	-	23268	7318d08a61358a11		0	0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/bef1.qtcbist	diagnostics	board-diagnostic	data	-	6739	67fed9ca1743f173		0	0	0	undocumented		
-usr/diags/IR/data/bef1.tcbist	diagnostics	board-diagnostic	data	-	38120	6e3912a86607444d		0	0	0	undocumented		
-usr/diags/IR/data/bef1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	9261	06a29fa0dc60f29e		0	0	0	undocumented		
-usr/diags/IR/data/bpln.netmap.Z	diagnostics	board-diagnostic	data	-	110673	79d6d9087ab547e4		0	0	0	undocumented		
-usr/diags/IR/data/bpln.short.Z	diagnostics	board-diagnostic	data	-	9446	54cc798e37dc625e		0	0	0	undocumented		
-usr/diags/IR/data/bpln.stuck.Z	diagnostics	board-diagnostic	data	-	1228	b15ee592e34962af		0	0	0	undocumented		
-usr/diags/IR/data/bpln_hilo.netmap.Z	diagnostics	board-diagnostic	data	-	111365	363a4359833564c5		0	0	0	undocumented		
-usr/diags/IR/data/bpln_hilo.short.Z	diagnostics	board-diagnostic	data	-	9469	28a05ba61ac30b52		0	0	0	undocumented		
-usr/diags/IR/data/bpln_hilo.stuck.Z	diagnostics	board-diagnostic	data	-	1230	edcb9ce25283515e		0	0	0	undocumented		
-usr/diags/IR/data/bpln_hilolite.netmap.Z	diagnostics	board-diagnostic	data	-	81167	a80d201e6ca2d4c0		0	0	0	undocumented		
-usr/diags/IR/data/bpln_hilolite.short.Z	diagnostics	board-diagnostic	data	-	7274	b6c4cc1c7a2ac3a6		0	0	0	undocumented		
-usr/diags/IR/data/bpln_hilolite.stuck.Z	diagnostics	board-diagnostic	data	-	995	527a499bff0a89de		0	0	0	undocumented		
-usr/diags/IR/data/bpln_oheo.netmap	diagnostics	board-diagnostic	data	-	612334	501dc0fe607dbba2		0	0	0	undocumented		
-usr/diags/IR/data/bpln_oheo.netmap.Z	diagnostics	board-diagnostic	data	-	116785	8fdcd4d50d0f6950		0	0	0	undocumented		
-usr/diags/IR/data/bpln_oheo.short	diagnostics	board-diagnostic	data	-	514919	a2cd55909645630e		0	0	0	undocumented		
-usr/diags/IR/data/bpln_oheo.short.Z	diagnostics	board-diagnostic	data	-	10481	13da1e3545df72a3		0	0	0	undocumented		
-usr/diags/IR/data/bpln_oheo.stuck	diagnostics	board-diagnostic	data	-	51562	8fec17fccdaa688c		0	0	0	undocumented		
-usr/diags/IR/data/bpln_oheo.stuck.Z	diagnostics	board-diagnostic	data	-	1418	d00e8e2d1cb31afd		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	23726	de78341021ce8dc3		0	0	0	named-only	docs/dg.md#the-far-side-of-the-video-controller-port	The far side of the video-controller port
-usr/diags/IR/data/dg4_2voc.short.Z	diagnostics	board-diagnostic	data	-	3776	89208cca3fab3bd0		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	936	7bc0264eb76ca0f1		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dacsamp.netmap.Z	diagnostics	board-diagnostic	data	-	24302	80704e0b2e704d52		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dacsamp.short.Z	diagnostics	board-diagnostic	data	-	4880	2c70700b9630054f		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dacsamp.stuck.Z	diagnostics	board-diagnostic	data	-	1015	f0b258784031a796		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp.netmap	diagnostics	board-diagnostic	data	-	181494	ee76c51ec1b0e362		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp.netmap.Z	diagnostics	board-diagnostic	data	-	47072	30c2befc778a927f		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp.short	diagnostics	board-diagnostic	data	-	160736	c90f9abfd959cd8a		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp.short.Z	diagnostics	board-diagnostic	data	-	10194	cef389d4db195021		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp.stuck	diagnostics	board-diagnostic	data	-	35799	5bc81a2fe0409f39		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp.stuck.Z	diagnostics	board-diagnostic	data	-	2144	05ef32bdb67bacb0		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.netmap	diagnostics	board-diagnostic	data	-	184859	fa964ded30730979		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.netmap.Z	diagnostics	board-diagnostic	data	-	47930	99540240903cecbd		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short	diagnostics	board-diagnostic	data	-	160741	13306e483bed3600		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short.Z	diagnostics	board-diagnostic	data	-	10712	2c4df52eac2d3c30		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.stuck	diagnostics	board-diagnostic	data	-	35804	1fd4245a588a1808		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.stuck.Z	diagnostics	board-diagnostic	data	-	2212	d30f4269a5fa0ddb		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dvp.netmap.Z	diagnostics	board-diagnostic	data	-	30281	1fa375fb2a5a012a		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dvp.short.Z	diagnostics	board-diagnostic	data	-	4633	4e824479ac6b6112		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_dvp.stuck.Z	diagnostics	board-diagnostic	data	-	1083	d1a8c17f62e4a04a		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_hdgvo.netmap	diagnostics	board-diagnostic	data	-	115305	e425a157c01b73a9		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_hdgvo.netmap.Z	diagnostics	board-diagnostic	data	-	30748	c31e0e64b4006f18		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_hdgvo.short	diagnostics	board-diagnostic	data	-	88888	9309ac6fc3306b8e		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_hdgvo.short.Z	diagnostics	board-diagnostic	data	-	4364	54d189e7f4c7cbf9		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_hdgvo.stuck	diagnostics	board-diagnostic	data	-	22287	2ffe0f9ae687422f		0	0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_hdgvo.stuck.Z	diagnostics	board-diagnostic	data	-	1068	bde1c6c9bd931d22		0	0	0	undocumented		
-usr/diags/IR/data/dg4_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	49108	d9f016cb302b0b6b		0	0	0	undocumented		
-usr/diags/IR/data/dg4_8voc.short.Z	diagnostics	board-diagnostic	data	-	6963	258db17a8948eec0		0	0	0	undocumented		
-usr/diags/IR/data/dg4_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	3313	6fca6cf527397b59		0	0	0	undocumented		
-usr/diags/IR/data/dg4_8voc_dacsamp.netmap.Z	diagnostics	board-diagnostic	data	-	51438	ba78700ec45d4d58		0	0	0	undocumented		
-usr/diags/IR/data/dg4_8voc_dacsamp.short.Z	diagnostics	board-diagnostic	data	-	10465	85b30b429ab74ba5		0	0	0	undocumented		
-usr/diags/IR/data/dg4_8voc_dacsamp.stuck.Z	diagnostics	board-diagnostic	data	-	3581	299d4228dfc48f8e		0	0	0	undocumented		
-usr/diags/IR/data/dg4_8voc_dvp.netmap.Z	diagnostics	board-diagnostic	data	-	58825	f216bb50f04a36fc		0	0	0	undocumented		
-usr/diags/IR/data/dg4_8voc_dvp.short.Z	diagnostics	board-diagnostic	data	-	7888	3497cbf8564ae6c1		0	0	0	undocumented		
-usr/diags/IR/data/dg4_8voc_dvp.stuck.Z	diagnostics	board-diagnostic	data	-	3536	53ee4c6f2253167b		0	0	0	undocumented		
-usr/diags/IR/data/fm2.qtcbist	diagnostics	board-diagnostic	data	-	805	24180c5ea0dca631		0	0	0	undocumented		
-usr/diags/IR/data/fm2.tcbist	diagnostics	board-diagnostic	data	-	4290	fa93346ddf252603		0	0	0	undocumented		
-usr/diags/IR/data/fm2null.qtcbist	diagnostics	board-diagnostic	data	-	826	658adb67b6bc0dd1		0	0	0	undocumented		
-usr/diags/IR/data/fm2null.tcbist	diagnostics	board-diagnostic	data	-	4397	e7e59eb968264f60		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	133686	47518445ca9fe211		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc.short.Z	diagnostics	board-diagnostic	data	-	11482	c747070399c13f1a		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	1475	15efc67fe8b25ec0		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	133048	a7afcc36fb7763d6		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	10325	9cd27eaf9d39ad09		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1502	db15033aa0794e1a		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	132842	b2ce54bd7642c897		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	10337	319a72a368c9e0c5		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1523	c6dc7d2efaabf7e9		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	132330	0f6a93d8a70b1e03		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	10182	842da503a1807cf8		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1470	830c41396daf720b		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	132529	318594188fc11b47		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	10226	f1d540567d9c52c6		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1468	763aef1a0d1d8a99		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	132281	6e8723ca2e1df65c		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	10194	994c02c1b065b183		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	1476	09d855b1d7944d81		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	132633	20fc8347ec05b668		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	10165	52e5dfaadb467469		0	0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	1490	d7333fd540e28905		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	151433	bb31aad825e66bf3		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc.short.Z	diagnostics	board-diagnostic	data	-	12631	f62478a35feb7b31		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	1626	bb03467590424d28		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	151017	6be0de1277c143d6		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	11278	ac41e1a8083f39de		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1659	473bc6f1150d991d		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	151056	67bac347247a4408		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	11312	edcd48a03bdff8bc		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1670	2f2c5d2f268def2c		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	150622	e551a51a729742c7		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	11170	4b6a12280eac08de		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1600	c42df658d18ecb6a		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	150737	eaeb3944c8045984		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	11216	03f643997cd2c3ef		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1616	f7086a5157629817		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	150623	b5898488d0100109		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	11164	b06fb63d80ca9836		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	1627	e8d52534c338dd98		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	150941	1fea77b304168de2		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	11208	2ae9a3f05877d506		0	0	0	undocumented		
-usr/diags/IR/data/fpln_8voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	1627	eb66b6c703d8463b		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc.netmap	diagnostics	board-diagnostic	data	-	724618	9cde902217acfd68		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	153451	79c8a409e3ad8a76		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc.short	diagnostics	board-diagnostic	data	-	605441	0ccbc29741e94437		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc.short.Z	diagnostics	board-diagnostic	data	-	24538	e5f125601e074168		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc.stuck	diagnostics	board-diagnostic	data	-	55120	2c16214dcf75a4b1		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	2902	d2b36ef19b8ca9de		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_0.netmap	diagnostics	board-diagnostic	data	-	722638	3fae159f106dacf8		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	147438	9ecfc816900550b6		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_0.short	diagnostics	board-diagnostic	data	-	605447	8ce5bbe546e414fd		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	24379	de0aa4507687de4f		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_0.stuck	diagnostics	board-diagnostic	data	-	55126	16e13ccc3d2e343a		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	2959	18751da15d06513e		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_1.netmap	diagnostics	board-diagnostic	data	-	722708	58ea60ed697f16c4		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	147424	1e78ff4801cb7eba		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_1.short	diagnostics	board-diagnostic	data	-	605447	000f331ca2fbeaeb		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	24414	3895999587ca3ba1		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_1.stuck	diagnostics	board-diagnostic	data	-	55126	b24d5ae0cae929a1		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	2969	30e6eca240c42777		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_0.netmap	diagnostics	board-diagnostic	data	-	721683	c93f42c406e4ae05		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	147756	ff0175e1bd6dc5c1		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_0.short	diagnostics	board-diagnostic	data	-	605447	71fa9aeb2c509a2e		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	24417	9d2c2604d6f2531f		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_0.stuck	diagnostics	board-diagnostic	data	-	55126	bed85bec59bcc907		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	2917	8092fa500215fa70		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_1.netmap	diagnostics	board-diagnostic	data	-	721718	6ea0a0c16a686d98		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	147909	a9f0fc81eac6c8b4		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_1.short	diagnostics	board-diagnostic	data	-	605447	b278503f1e38d2ef		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	24482	a8c39a5df4fff975		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_1.stuck	diagnostics	board-diagnostic	data	-	55126	3212455b5f73ca67		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	2933	6acbfefc4865091e		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_2.netmap	diagnostics	board-diagnostic	data	-	721683	4403a38bdf260807		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	147810	bd08b182ab6798de		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_2.short	diagnostics	board-diagnostic	data	-	605447	8f3255dfda326556		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	24482	d19f1f758d4aa130		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_2.stuck	diagnostics	board-diagnostic	data	-	55126	ba3d2c344b8ce899		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	2936	cf0690fb8ec69ad2		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_3.netmap	diagnostics	board-diagnostic	data	-	721718	c79658aa539a36a1		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	147899	2d07dc136b8d9467		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_3.short	diagnostics	board-diagnostic	data	-	605447	811e10cde7929832		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	24415	d1dbb44f0080b5d3		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_3.stuck	diagnostics	board-diagnostic	data	-	55126	77a4f8dbd1708e25		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_2voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	2930	6cd27cc8e892f784		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc.netmap	diagnostics	board-diagnostic	data	-	804028	75f835fc7063305d		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	171755	d783d1cc094ae3f9		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc.short	diagnostics	board-diagnostic	data	-	720281	08115073d2906e13		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc.short.Z	diagnostics	board-diagnostic	data	-	25843	c53ff40d1fbcb2a8		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc.stuck	diagnostics	board-diagnostic	data	-	65560	31c1fcd7c14328b1		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	3079	8c77b60a74731b37		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_0.netmap	diagnostics	board-diagnostic	data	-	802048	9fef03fad5498f21		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	165621	afc64bf6138bdd8e		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_0.short	diagnostics	board-diagnostic	data	-	720287	ee9d3258c7ef41db		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	25752	f8204fc20959923a		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_0.stuck	diagnostics	board-diagnostic	data	-	65566	7e7a4042e6bacc90		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	3127	5002e312a8515540		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_1.netmap	diagnostics	board-diagnostic	data	-	802118	71ca27b13659b5fb		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	165585	18801876e60515ef		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_1.short	diagnostics	board-diagnostic	data	-	720287	887015ef1317573b		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	25768	2cbf57dc61304802		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_1.stuck	diagnostics	board-diagnostic	data	-	65566	e82dc8228511380e		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	3134	4f4e437b159dd5fb		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_0.netmap	diagnostics	board-diagnostic	data	-	801093	99ca4597427ac299		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	165953	f6deaecafdda9107		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_0.short	diagnostics	board-diagnostic	data	-	720287	0409e637f0aa589a		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	25831	7eaefa70f2b4308d		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_0.stuck	diagnostics	board-diagnostic	data	-	65566	6b00b5810a8261fa		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	3091	c7726978915801aa		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_1.netmap	diagnostics	board-diagnostic	data	-	801128	cf7c3059c221884c		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	166168	c167f93faaebcf83		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_1.short	diagnostics	board-diagnostic	data	-	720287	7c02f7e009a1a88c		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	25831	a54bf9d56219b459		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_1.stuck	diagnostics	board-diagnostic	data	-	65566	bc68b1ccb3b29ac2		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	3095	ccf2e6d69002ffb6		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_2.netmap	diagnostics	board-diagnostic	data	-	801093	3f20822d8463c086		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	165990	a8babb9757b7527c		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_2.short	diagnostics	board-diagnostic	data	-	720287	9943d09b3f75bb30		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	25772	5f26af4391793935		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_2.stuck	diagnostics	board-diagnostic	data	-	65566	2704003cbf3cb4f7		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	3100	79f0636c39cdc4ba		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_3.netmap	diagnostics	board-diagnostic	data	-	801128	45dac3aae0a6810b		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	166081	b791ad53be251872		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short	diagnostics	board-diagnostic	data	-	720287	c4791f3a3752e306		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	25847	67ef05f2fcb8ed81		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_3.stuck	diagnostics	board-diagnostic	data	-	65566	aa6307b53b27daf8		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	3110	b8fbc18db445e71e		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	86443	b71c111db93084da		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_2voc.short.Z	diagnostics	board-diagnostic	data	-	5564	639b03090fc0610b		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	986	a1c7cbf5cbd4290a		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_2voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	86027	afd31f91dce0d4ef		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_2voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	4877	f3f5744bd9f294a3		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_2voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	997	595b67c0c1eb2baa		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_2voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	85901	4a57e9b0640f31a4		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_2voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	4876	f6a801671b157331		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_2voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1003	09af4a80358a11e3		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	105873	a9d81844d9fb271c		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_8voc.short.Z	diagnostics	board-diagnostic	data	-	6499	dbda9bfb68ac07cb		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	1142	53c0666e5a38a71c		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_8voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	105327	e7dec72afbbca9c6		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_8voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	5637	985c93dc98b9a72f		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_8voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1142	b4b4a361305e2d1e		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_8voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	105345	82c84e982efc4cec		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_8voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	5626	678438af4894da36		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rm8_8voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1151	0b486df5e68d276b		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	149564	4bedcefadf793921		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc.short.Z	diagnostics	board-diagnostic	data	-	27579	a302902c1becce9e		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	2885	fcff2825e6e0accd		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	149721	74935c7d50f971ab		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	27092	fc66424c888950f9		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	2923	809b9b46a3c13da2		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	149755	2cac0b68b15ee0b3		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	27110	85e3f19df8ec17fe		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	2933	d097642b35ffd16c		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	149754	48e8f72aaf5cd395		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	27005	14852c38564d4297		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	2918	b247944876ecdf7a		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	149597	333f05847c800cd3		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	27062	beba33209a7b06cc		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	2875	6178e692618a1b20		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	149570	4add3da4cae12ad6		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	27033	908c9c359d5ea50e		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	2909	ff54c2079d78d848		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	149667	e8d639a13d26995f		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	27093	26536eb53a3fcaec		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	2899	ad0cb8b1bffbbd8b		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	167684	adaf0ee900251302		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc.short.Z	diagnostics	board-diagnostic	data	-	29103	ff1de8813552d712		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	3049	55f480d587201b3d		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	167828	e2d4832ec7f2958e		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	28706	8d727dc4d2ad0518		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	3097	19c97f2449ee78fd		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	167921	0661ca037afce947		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	28668	feb668d42328ddd0		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	3085	de065e7143f64f0b		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	167882	d15371726548eed4		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	28595	6ffb555ea6c6a0a6		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	3064	5ef46345d5778ff6		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	167777	90884bb538a95183		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	28635	2ad9d24f5b601250		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	3071	41b6b5fe1aeaffe6		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	167730	ac237fb941e30b9e		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	28586	310423d28bdaa83d		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	3074	7ba8f0a5eb575682		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	167663	33dbb5133a420563		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	28652	45ba7ac53659e893		0	0	0	undocumented		
-usr/diags/IR/data/fpln_rmtm7_8voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	3089	69c0eda23796a3f1		0	0	0	undocumented		
-usr/diags/IR/data/ge12_4ge.netmap.Z	diagnostics	board-diagnostic	data	-	29182	d544f481b5e5a7b9		0	0	0	undocumented		
-usr/diags/IR/data/ge12_4ge.short.Z	diagnostics	board-diagnostic	data	-	4693	c35105141ab55613		0	0	0	undocumented		
-usr/diags/IR/data/ge12_4ge.stuck.Z	diagnostics	board-diagnostic	data	-	1179	49c2bcebb669beea		0	0	0	undocumented		
-usr/diags/IR/data/ge12_btm4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40115	3ab0b5d76eb658e1		0	0	0	undocumented		
-usr/diags/IR/data/ge12_btm4ges.short.Z	diagnostics	board-diagnostic	data	-	5813	bed915c0b6e4b36d		0	0	0	undocumented		
-usr/diags/IR/data/ge12_btm4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1455	4ce22049aaf1796b		0	0	0	undocumented		
-usr/diags/IR/data/ge12_noge.netmap.Z	diagnostics	board-diagnostic	data	-	13551	de9d4ebd1c9298a9		0	0	0	undocumented		
-usr/diags/IR/data/ge12_noge.short.Z	diagnostics	board-diagnostic	data	-	1737	e3f185169656264d		0	0	0	undocumented		
-usr/diags/IR/data/ge12_noge.stuck.Z	diagnostics	board-diagnostic	data	-	359	d77ffdbcbfdd4190		0	0	0	undocumented		
-usr/diags/IR/data/ge12_top4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40089	7db96ddd9437d4ad		0	0	0	undocumented		
-usr/diags/IR/data/ge12_top4ges.short.Z	diagnostics	board-diagnostic	data	-	5800	3b333483a8318e35		0	0	0	undocumented		
-usr/diags/IR/data/ge12_top4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1451	c6a3b447edeb7868		0	0	0	undocumented		
-usr/diags/IR/data/ge14_2ge.netmap.Z	diagnostics	board-diagnostic	data	-	22067	be1da62ba1133836		0	0	0	undocumented		
-usr/diags/IR/data/ge14_2ge.short.Z	diagnostics	board-diagnostic	data	-	3301	34e67be65c252406		0	0	0	undocumented		
-usr/diags/IR/data/ge14_2ge.stuck.Z	diagnostics	board-diagnostic	data	-	845	0a100c1d22897a61		0	0	0	undocumented		
-usr/diags/IR/data/ge14_4ge.netmap.Z	diagnostics	board-diagnostic	data	-	29617	3fc12f10ab249aeb		0	0	0	named-only	ucode/ge_isa.md#the-engines-microcode-port	The engine's microcode port
-usr/diags/IR/data/ge14_4ge.short.Z	diagnostics	board-diagnostic	data	-	4642	4c7fdea7d4585236		0	0	0	undocumented		
-usr/diags/IR/data/ge14_4ge.stuck.Z	diagnostics	board-diagnostic	data	-	1186	bfc559d675927d18		0	0	0	undocumented		
-usr/diags/IR/data/ge14_btm4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40524	6802bad154e34f19		0	0	0	undocumented		
-usr/diags/IR/data/ge14_btm4ges.short.Z	diagnostics	board-diagnostic	data	-	5788	4681a14a1af195e3		0	0	0	undocumented		
-usr/diags/IR/data/ge14_btm4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1472	24777623c23332c9		0	0	0	undocumented		
-usr/diags/IR/data/ge14_noge.netmap.Z	diagnostics	board-diagnostic	data	-	13987	b60fc3b315264b72		0	0	0	undocumented		
-usr/diags/IR/data/ge14_noge.short.Z	diagnostics	board-diagnostic	data	-	1730	a0a3a6659e8e24ef		0	0	0	undocumented		
-usr/diags/IR/data/ge14_noge.stuck.Z	diagnostics	board-diagnostic	data	-	360	b8d11f41a8418747		0	0	0	undocumented		
-usr/diags/IR/data/ge14_top4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40554	f00b10e46fefe3db		0	0	0	undocumented		
-usr/diags/IR/data/ge14_top4ges.short.Z	diagnostics	board-diagnostic	data	-	5751	3a592a9275839cf8		0	0	0	undocumented		
-usr/diags/IR/data/ge14_top4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1464	0885566bbca6a8c2		0	0	0	undocumented		
-usr/diags/IR/data/ged1.qtcbist	diagnostics	board-diagnostic	data	-	5126	d1d0ab5bb9d01ea7		0	0	0	undocumented		
-usr/diags/IR/data/ged1.tcbist	diagnostics	board-diagnostic	data	-	22551	85ff87eca864cff5		0	0	0	undocumented		
-usr/diags/IR/data/ged1b.qtcbist	diagnostics	board-diagnostic	data	-	4910	b684965e09202c31		0	0	0	undocumented		
-usr/diags/IR/data/ged1b.tcbist	diagnostics	board-diagnostic	data	-	22335	2509d717b0ae69a0		0	0	0	undocumented		
-usr/diags/IR/data/hip1.qtcbist	diagnostics	board-diagnostic	data	-	2483	38a2deae9fe264fd		0	0	0	undocumented		
-usr/diags/IR/data/hip1.tcbist	diagnostics	board-diagnostic	data	-	9453	440366e7aa861a39		0	0	0	undocumented		
-usr/diags/IR/data/hip1_2Mx8.sdbist	diagnostics	board-diagnostic	data	-	4878	b0e97dfa0d5537f3	usr/diags/IR/data/hip1b_2Mx8.sdbist	0	0	0	undocumented		
-usr/diags/IR/data/hip1b.qtcbist	diagnostics	board-diagnostic	data	-	1657	a25b6217c1ba00d4		0	0	0	undocumented		
-usr/diags/IR/data/hip1b.tcbist	diagnostics	board-diagnostic	data	-	5142	1c0eed5d940408ae		0	0	0	undocumented		
-usr/diags/IR/data/imp8_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	8231	626ec0be955dc3ec		0	0	0	undocumented		
-usr/diags/IR/data/imp8d_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	17544	64ea8714e66c0d47		0	0	0	undocumented		
-usr/diags/IR/data/irsaudit.h.gold	diagnostics	board-diagnostic	data	-	10824969	a0d1678e2e216bbf		0	0	0	undocumented		
-usr/diags/IR/data/irsaudit.h.gold.Z	diagnostics	board-diagnostic	data	-	2898069	1080d9abfeb1fa16		0	0	0	undocumented		
-usr/diags/IR/data/irsaudit.hl.gold	diagnostics	board-diagnostic	data	-	1854839	10714f33d55aefce		0	0	0	undocumented		
-usr/diags/IR/data/irsaudit.hl.gold.Z	diagnostics	board-diagnostic	data	-	459771	156ef8effceb9a43		0	0	0	undocumented		
-usr/diags/IR/data/irsaudit.k.gold.Z	diagnostics	board-diagnostic	data	-	1094439	0f47e9e3e8fe9835		0	0	0	undocumented		
-usr/diags/IR/data/irsaudit.oh.gold	diagnostics	board-diagnostic	data	-	2161143	5476050582b43069		0	0	0	undocumented		
-usr/diags/IR/data/irsaudit.oh.gold.Z	diagnostics	board-diagnostic	data	-	610603	1e2e1ea223fc603d		0	0	0	undocumented		
-usr/diags/IR/data/pg2.qtcbist	diagnostics	board-diagnostic	data	-	3170	217c840af1b575c3		0	0	0	undocumented		
-usr/diags/IR/data/pg2.tcbist	diagnostics	board-diagnostic	data	-	20595	f3f3647fc265ee96		0	0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/pg2b.qtcbist	diagnostics	board-diagnostic	data	-	3206	c9065942058d594d		0	0	0	undocumented		
-usr/diags/IR/data/pg2b.tcbist	diagnostics	board-diagnostic	data	-	20595	0325cccaa1d0e4af		0	0	0	undocumented		
-usr/diags/IR/data/rm10.netmap	diagnostics	board-diagnostic	data	-	353174	78d7e0796b316383		0	0	0	undocumented		
-usr/diags/IR/data/rm10.netmap.Z	diagnostics	board-diagnostic	data	-	64125	48629c4f022067d8		0	0	0	undocumented		
-usr/diags/IR/data/rm10.short	diagnostics	board-diagnostic	data	-	184896	99c04d91418ad9f3		0	0	0	undocumented		
-usr/diags/IR/data/rm10.short.Z	diagnostics	board-diagnostic	data	-	4165	769cd3fc9817460f		0	0	0	undocumented		
-usr/diags/IR/data/rm10.stuck	diagnostics	board-diagnostic	data	-	26471	77647577632f8ba2		0	0	0	undocumented		
-usr/diags/IR/data/rm10.stuck.Z	diagnostics	board-diagnostic	data	-	839	67755a913083556a		0	0	0	undocumented		
-usr/diags/IR/data/rm11.netmap	diagnostics	board-diagnostic	data	-	639268	a8eef3bc489233cc		0	0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/rm11.netmap.Z	diagnostics	board-diagnostic	data	-	124417	135c8f9e67567629		0	0	0	named-only	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/rm11.short	diagnostics	board-diagnostic	data	-	510117	b918b9d433dab6fb		0	0	0	undocumented		
-usr/diags/IR/data/rm11.short.Z	diagnostics	board-diagnostic	data	-	20907	b8cb06848a444f51		0	0	0	undocumented		
-usr/diags/IR/data/rm11.stuck	diagnostics	board-diagnostic	data	-	46436	4fa37d4f2c974cc0		0	0	0	undocumented		
-usr/diags/IR/data/rm11.stuck.Z	diagnostics	board-diagnostic	data	-	2434	85206c3dfbe7448b		0	0	0	undocumented		
-usr/diags/IR/data/rm6.netmap.Z	diagnostics	board-diagnostic	data	-	126017	5f0b6853ecc1bd7c		0	0	0	undocumented		
-usr/diags/IR/data/rm6.short.Z	diagnostics	board-diagnostic	data	-	22714	fe24ec40b7671d21		0	0	0	undocumented		
-usr/diags/IR/data/rm6.stuck.Z	diagnostics	board-diagnostic	data	-	2360	72998c43f51d58f1		0	0	0	undocumented		
-usr/diags/IR/data/rm7.netmap.Z	diagnostics	board-diagnostic	data	-	69213	e7d47f31c7a60ecf		0	0	0	undocumented		
-usr/diags/IR/data/rm7.short.Z	diagnostics	board-diagnostic	data	-	5335	831b6f2ab8fbcc71		0	0	0	undocumented		
-usr/diags/IR/data/rm7.stuck.Z	diagnostics	board-diagnostic	data	-	814	791e173513331e71		0	0	0	undocumented		
-usr/diags/IR/data/rm8.netmap.Z	diagnostics	board-diagnostic	data	-	79181	0cee40f587aed3d5		0	0	0	undocumented		
-usr/diags/IR/data/rm8.short.Z	diagnostics	board-diagnostic	data	-	16929	75eb88774f3043ad		0	0	0	undocumented		
-usr/diags/IR/data/rm8.stuck.Z	diagnostics	board-diagnostic	data	-	1902	4baa538415327432		0	0	0	undocumented		
-usr/diags/IR/data/rmtm7.netmap.Z	diagnostics	board-diagnostic	data	-	126335	ba39c8394a400b3a		0	0	0	undocumented		
-usr/diags/IR/data/rmtm7.short.Z	diagnostics	board-diagnostic	data	-	22972	293f29901c3494ea		0	0	0	undocumented		
-usr/diags/IR/data/rmtm7.stuck.Z	diagnostics	board-diagnostic	data	-	2374	5087baed7202287f		0	0	0	undocumented		
-usr/diags/IR/data/tbusdata.Z	diagnostics	board-diagnostic	data	-	1281374	b4b801dcc9310b9f		0	0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/tf1.qtcbist	diagnostics	board-diagnostic	data	-	3905	93c33eeaee4af026		0	0	0	undocumented		
-usr/diags/IR/data/tf1.tcbist	diagnostics	board-diagnostic	data	-	14360	a6f3c8ae199e67c9		0	0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/tf1c.qtcbist	diagnostics	board-diagnostic	data	-	3945	1cf764978a6c4615		0	0	0	undocumented		
-usr/diags/IR/data/tf1c.tcbist	diagnostics	board-diagnostic	data	-	14378	0d4d757c5ad6d71f		0	0	0	undocumented		
-usr/diags/IR/data/tg1.qtcbist	diagnostics	board-diagnostic	data	-	1505	007e327890b1bd1a		0	0	0	undocumented		
-usr/diags/IR/data/tg1.tcbist	diagnostics	board-diagnostic	data	-	8475	d534a5247ffd7e67		0	0	0	undocumented		
-usr/diags/IR/data/tg2.qtcbist	diagnostics	board-diagnostic	data	-	1520	fc19e8ac1a785b65		0	0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/tg2.tcbist	diagnostics	board-diagnostic	data	-	8475	0e579dc1da233c28		0	0	0	named-only	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/tm1_1Mx16.sdbist	diagnostics	board-diagnostic	data	-	5681	a9c33952e414c6b1		0	0	0	undocumented		
-usr/diags/IR/data/tm1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	5333	2270d92a5af4cefe		0	0	0	named-only	docs/data-files.md#built-in-self-test-descriptions	Built-in self-test descriptions
-usr/diags/IR/data/tm1_2Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	8a1b63004817d4d4		0	0	0	undocumented		
-usr/diags/IR/data/tm1_4Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	2b91a2506f7c9806		0	0	0	undocumented		
-usr/diags/IR/data/tm1c.qtcbist	diagnostics	board-diagnostic	data	-	126	667e3ebae9f1bbaf	usr/diags/IR/data/tm1c.tcbist	0	0	0	undocumented		
-usr/diags/IR/data/tm1c_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	6282	ada5e8ae88f3ec79		0	0	0	undocumented		
-usr/diags/IR/data/tm7.netmap.Z	diagnostics	board-diagnostic	data	-	52305	933d83f9c8fb792b		0	0	0	undocumented		
-usr/diags/IR/data/tm7.short.Z	diagnostics	board-diagnostic	data	-	11250	0e2106d568d003c7		0	0	0	undocumented		
-usr/diags/IR/data/tm7.stuck.Z	diagnostics	board-diagnostic	data	-	1213	c68c202baee3a470		0	0	0	undocumented		
-usr/diags/IR/data/tm9.netmap	diagnostics	board-diagnostic	data	-	286094	b7fb0fdec0dfc58c		0	0	0	undocumented		
-usr/diags/IR/data/tm9.netmap.Z	diagnostics	board-diagnostic	data	-	55798	523e205d5189e442		0	0	0	undocumented		
-usr/diags/IR/data/tm9.short	diagnostics	board-diagnostic	data	-	219714	435e5dca19d05f65		0	0	0	undocumented		
-usr/diags/IR/data/tm9.short.Z	diagnostics	board-diagnostic	data	-	11395	62dfd6b4cc17737c		0	0	0	undocumented		
-usr/diags/IR/data/tm9.stuck	diagnostics	board-diagnostic	data	-	20033	2a75040397208027		0	0	0	undocumented		
-usr/diags/IR/data/tm9.stuck.Z	diagnostics	board-diagnostic	data	-	1209	f23976a9ed0f768a		0	0	0	undocumented		
-usr/diags/IR/data/tvo.vfo	diagnostics	board-diagnostic	data	-	17988	4759678be2e5a789		0	0	0	understood	docs/display-formats.md#video-formats-the-diagnostics-load	Video formats the diagnostics load
-usr/diags/IR/data/voc1.qtcbist	diagnostics	board-diagnostic	data	-	5508	87e9203d91c7f76b		0	0	0	undocumented		
-usr/diags/IR/data/voc1.tcbist	diagnostics	board-diagnostic	data	-	33388	684dfdb933dc10e1		0	0	0	undocumented		
-usr/diags/IR/data/voc1b.qtcbist	diagnostics	board-diagnostic	data	-	6832	ee41e9a4fc881cf0		0	0	0	undocumented		
-usr/diags/IR/data/voc1b.tcbist	diagnostics	board-diagnostic	data	-	37378	0b99329c83b5079c		0	0	0	undocumented		
-usr/diags/IR/data/xmap8.qtcbist	diagnostics	board-diagnostic	data	-	2954	33b7137fe9a1a956		0	0	0	undocumented		
-usr/diags/IR/data/xmap8.tcbist	diagnostics	board-diagnostic	data	-	13409	b728f4f3471a6105		0	0	0	undocumented		
-usr/diags/IR/irsaudit_disasm.txt	diagnostics	board-diagnostic	data	-	9212110	5b965641ce5136e3		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/irsaudit_dynsym_disasm.txt	diagnostics	board-diagnostic	data	-	128545	8bff24a378a29c2e		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/ucode/arm1.u	diagnostics	board-diagnostic	data	-	40072	cc20b24f7c1e4da9		0	0	0	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
-usr/diags/IR/ucode/arm1_nic.u	diagnostics	board-diagnostic	data	-	13400	872331fc9285edfa		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/ucode/dgo.mcs	diagnostics	board-diagnostic	data	-	93912	518cd70fa8b71474		0	0	0	undocumented		
-usr/diags/IR/ucode/diag_arm_init.u	diagnostics	board-diagnostic	data	-	520	da008146e38bf9a0		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/ucode/ge.hex	diagnostics	board-diagnostic	data	-	363650	ae8bfbf6f4060058		0	0	0	named-only	ucode/ge_ops.md#the-diagnostic-programs-instruction-test	The diagnostic program's instruction test
-usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3edf		0	0	0	named-only	ucode/ge_isa.md#which-ge11-facts-konas-own-software-confirms	Which GE11 facts KONA's own software confirms
-usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
-usr/diags/IR/ucode/ge_diag_init.u	diagnostics	board-diagnostic	data	-	12082	7e407147118cf628		0	0	0	located	ucode/ge_isa.md#the-program-files	The program files
-usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0	0	0	undocumented		
-usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	0	0	named-only	docs/coverage.md#microcode-lower-priority	Microcode (lower priority)
-usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	14	0	named-only	docs/coverage.md#xg	XG
-usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	45a61c37ce61cf80		2936	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
-usr/gfx/arch/IGLOO32/libgl.so	shared-libraries	shared-library	shared-object	n32	1833076	dff2b0d82deac998		3811	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
-usr/gfx/arch/IP27KONA/libGL.so	libraries	board-library	shared-object	o32	486700	214ae88b8179eaef		671	1	0	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	f9b9b85f96cbf830		4868	2893	0	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
-usr/gfx/arch/IP27KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	fecccf6de7ef8a22		673	1	0	undocumented		
-usr/gfx/arch/IP27KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	f22d2a199f6b8efb		4907	2881	0	named-only	docs/opengl.md#getboardinfo	`GetBoardInfo`
-usr/gfx/arch/IP27KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	425727f729a8a8aa		673	1	0	named-only	IRIX_FILES.md#4-symlinks	4. Symlinks
-usr/gfx/arch/IP27KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d0e932db4fa8e93f		4907	2909	0	named-only	IRIX_FILES.md#4-symlinks	4. Symlinks
-usr/gfx/arch/IP35KONA/libGL.so	libraries	board-library	shared-object	o32	486700	52f3e359d3ed9b44		671	1	0	undocumented		
-usr/gfx/arch/IP35KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	d75291c990060f17		4868	2893	0	undocumented		
-usr/gfx/arch/IP35KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	432edf22a00ea581		673	1	0	undocumented		
-usr/gfx/arch/IP35KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	89303b7f78578067		4907	2881	0	undocumented		
-usr/gfx/arch/IP35KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	2f064d4d8de46085		673	1	0	undocumented		
-usr/gfx/arch/IP35KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d5889b8581d8de51		4907	2909	0	undocumented		
-usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	2eec8716f6ad8a43	usr/gfx/gfxinit	227	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/hyperpipeinfo	board-tools	board-tool	executable	n32	18328	a43eeddde7bbbcbf		4	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/ircombine	board-tools	board-tool	executable	n32	766080	7016ad16f636dc67		1238	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	0	0	named-only	docs/coverage.md#dg	DG
-usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/ucode/KONA/arm1.u	microcode	board-microcode	data	-	465452	8431a8e3184c858f		0	0	0	named-only	ucode/arm1.md#arm-firmware-arm1u-and-the-host-token-map	ARM firmware (arm1.u) and the host-token map
-usr/gfx/ucode/KONA/arm1_kpm.u	microcode	board-microcode	data	-	7176	0938c672c1bf6b5a		0	0	0	named-only	docs/open-questions.md#arm-firmware	ARM firmware
-usr/gfx/ucode/KONA/dg4/cmb/1024x768_60.cmb	microcode	board-microcode	data	-	2272	c15312d32bbb3f58		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1200x900_72.cmb	microcode	board-microcode	data	-	2272	22191e1a0dbde580		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1280x1024+1920x1080_72.cmb	microcode	board-microcode	data	-	3688	2d0509d19ff41789		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1280x1024+4@640x480_60.cmb	microcode	board-microcode	data	-	7936	f8b0d56784397972		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1280x1024+NTSC_60.cmb	microcode	board-microcode	data	-	3688	ebbdf1423a000402		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1280x1024_60.cmb	microcode	board-microcode	data	-	2272	24f54d25c6914a97		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1280x1024_72.cmb	microcode	board-microcode	data	-	2272	09144cff263eef02		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1280x492_120s.cmb	microcode	board-microcode	data	-	2276	8af0b384f950b903		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1280x907+5@640x453_60.cmb	microcode	board-microcode	data	-	10768	883178d51b5c9b07		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1600x1024_60.cmb	microcode	board-microcode	data	-	2312	65f72a1fd94f723a		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1600x1024_60p.cmb	microcode	board-microcode	data	-	2316	945bf01bf95db751		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1600x1200_60.cmb	microcode	board-microcode	data	-	2272	53f87c0195dfaa3c		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1920x1035_30i.cmb	microcode	board-microcode	data	-	2276	697e9a4e537ce216		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1920x1080_72.cmb	microcode	board-microcode	data	-	2272	eb8f6dbde135f70c		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/1920x1200_66.cmb	microcode	board-microcode	data	-	2272	5e2d7fb8bdc1dd67		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/2048x1120_72.cmb	microcode	board-microcode	data	-	2272	5a293d8929fe3cfa		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/2@1280x1024_60.cmb	microcode	board-microcode	data	-	3688	cec70866b6b7bdc0		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/2@1280x1024_72.cmb	microcode	board-microcode	data	-	3688	de01b491d742321c		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/3@1024x768_60+1280x959_30i.cmb	microcode	board-microcode	data	-	6520	a8b67f9e3f71d49c		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/3@1280x1024_60.cmb	microcode	board-microcode	data	-	5104	f7a844aab44c3fb9		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/640x480_120s.cmb	microcode	board-microcode	data	-	2272	03d6b8e4f3e063e3		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/640x512_120s.cmb	microcode	board-microcode	data	-	2272	58ce9e0438110aa8		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/7@800x600_60+NTSC.cmb	microcode	board-microcode	data	-	12184	30e8cdb24207ac2f		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/8@640x480_60.cmb	microcode	board-microcode	data	-	12184	f09cc7e0565c6afe		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/8@800x600_60.cmb	microcode	board-microcode	data	-	12184	850856c09cbf8df6		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/cmb/960x680_60.cmb	microcode	board-microcode	data	-	2272	7d206ad3dbf6329a		0	0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
-usr/gfx/ucode/KONA/dg4/vfo/1024x768_120_20e21s.vfo	microcode	board-microcode	data	-	18304	3bcb586bd16d9c10		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1024x768_120s.vfo	microcode	board-microcode	data	-	18304	35e5a2531aa15b6c		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1024x768_50.vfo	microcode	board-microcode	data	-	18088	f03d2aec3b4be821		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1024x768_60.vfo	microcode	board-microcode	data	-	18088	8a79d262c4e134a7		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1024x768_96_20e21s.vfo	microcode	board-microcode	data	-	18300	4704b7c81fd05378		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1024x768_96s.vfo	microcode	board-microcode	data	-	18300	ce21640085c962a9		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1080x809_30i.vfo	microcode	board-microcode	data	-	18312	3453ef3dccc3ed49		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1120x840_96_20e21s.vfo	microcode	board-microcode	data	-	18300	941e1a9faa5d0103		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1120x840_96s.vfo	microcode	board-microcode	data	-	18300	b463da4d178a6e61		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1200x900_72.vfo	microcode	board-microcode	data	-	18088	71a7dc87e8eef011		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x1024_114s.vfo	microcode	board-microcode	data	-	18304	2ec4ac1960c7dfc4		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x1024_120s.vfo	microcode	board-microcode	data	-	18304	4b61cae714467d74		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x1024_180qi.vfo	microcode	board-microcode	data	-	19564	4ae4b0e22afd83e3		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x1024_25r2.vfo	microcode	board-microcode	data	-	18320	f0284fb565a36479		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x1024_25r3.vfo	microcode	board-microcode	data	-	18628	4e6d031bf7579d87		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x1024_30r2.vfo	microcode	board-microcode	data	-	18324	dba01654e54934ab		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x1024_50.vfo	microcode	board-microcode	data	-	17992	e076c61800c36ef3		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x1024_60.vfo	microcode	board-microcode	data	-	17992	94412544fc431a62		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/vfo/1280x1024_72.vfo	microcode	board-microcode	data	-	17992	ff2cc2af6a202af5		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x492_120s.vfo	microcode	board-microcode	data	-	18320	a7c1b4a57e2965ce		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x720_5994p.vfo	microcode	board-microcode	data	-	18000	defdd50d4d941170		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x720_60p.vfo	microcode	board-microcode	data	-	18000	6b4c4d3dee24debd		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x959_30i.vfo	microcode	board-microcode	data	-	18312	218a11b633e83189		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1500x1200_60.vfo	microcode	board-microcode	data	-	18092	37968509e6691c4f		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1600x1024_60.vfo	microcode	board-microcode	data	-	17996	5ed02290e5618492		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1600x1024_60p.vfo	microcode	board-microcode	data	-	17996	afd7802c4578c587		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1600x1200_60.vfo	microcode	board-microcode	data	-	17992	4677c6b3de7df17b		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1760x1100_60.vfo	microcode	board-microcode	data	-	18016	4a0f196d275f5b82		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1035_30i.vfo	microcode	board-microcode	data	-	18532	b9479bd3b5ed6ca6		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1080_2398p.vfo	microcode	board-microcode	data	-	18000	fe01bf4fb2215573		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1080_2398psf.vfo	microcode	board-microcode	data	-	18308	610c89f9a970f980		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1080_24p.vfo	microcode	board-microcode	data	-	18000	80983b3dc5853096		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1080_24psf.vfo	microcode	board-microcode	data	-	18308	8c0abee0894c9688		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1080_25i.vfo	microcode	board-microcode	data	-	18304	b931ca7656c34d7a		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1080_30i.vfo	microcode	board-microcode	data	-	18532	73d9db38584227dd		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1080_5994i_bilevel.vfo	microcode	board-microcode	data	-	18304	b3a1c411ce059843		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1080_60.vfo	microcode	board-microcode	data	-	18008	7c8e6e149cdbbec1		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1080_60i_bilevel.vfo	microcode	board-microcode	data	-	18304	9109981b6f9f4d65		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1080_72.vfo	microcode	board-microcode	data	-	18000	df1ccb5eab6fc402		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1200_2398r2.vfo	microcode	board-microcode	data	-	18324	87d56f9556f2e456		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1200_24r2.vfo	microcode	board-microcode	data	-	18324	2e987e905a30a91f		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1200_50.vfo	microcode	board-microcode	data	-	18016	8f2898749493d498		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1200_60.vfo	microcode	board-microcode	data	-	18016	6b0e0b0f6c5c6dfe		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1920x1200_66.vfo	microcode	board-microcode	data	-	18016	a6952d6f499641dc		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/2048x1120_72.vfo	microcode	board-microcode	data	-	18012	dd23ca4c42247478		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/640x480_120s.vfo	microcode	board-microcode	data	-	18300	48aa694a99e14471		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/640x480_180q.vfo	microcode	board-microcode	data	-	18628	ed8a2bfe9a745f06		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/640x480_60.vfo	microcode	board-microcode	data	-	18008	17e19916af5fab73		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/640x486_30i.vfo	microcode	board-microcode	data	-	18380	5c3d26acf16b7da2		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/640x512_120s.vfo	microcode	board-microcode	data	-	18300	6aa76446808b9325		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/640x512_180q.vfo	microcode	board-microcode	data	-	18628	0b3c4a7b2eef13c4		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/640x512_60.vfo	microcode	board-microcode	data	-	18088	8ae2fba016a47295		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/646x486_30i.vfo	microcode	board-microcode	data	-	18388	07aa1804a4a49572		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/646x486_30if.vfo	microcode	board-microcode	data	-	18404	fac47641561b6cd1		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/768x576_25i.vfo	microcode	board-microcode	data	-	18380	868f4695d268adc4		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/768x576_25if.vfo	microcode	board-microcode	data	-	18404	3107581c708fc487		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/800x600_60.vfo	microcode	board-microcode	data	-	18088	efa5d1a30dbde8b5		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/960x620_60.vfo	microcode	board-microcode	data	-	18088	26a776033189f4f0		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/960x680_60.vfo	microcode	board-microcode	data	-	18088	691d0c6e4f7c8ce4		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525.vfo	microcode	board-microcode	data	-	18388	a47ccdfe9be493aa		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo	microcode	board-microcode	data	-	17952	0fcb0981e8e15ff8		0	0	0	undocumented		
-usr/gfx/ucode/KONA/dg4/vfo/CCIR601_625.vfo	microcode	board-microcode	data	-	18388	148c1d55f145e83d		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/CCIR601_625_DGO.vfo	microcode	board-microcode	data	-	18388	cda7462e12f23d52		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1280x720_5994p.vfo	microcode	board-microcode	data	-	18000	c020fe7290806d8c		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1280x720_60p.vfo	microcode	board-microcode	data	-	18000	11c883d91239aab4		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_2398p.vfo	microcode	board-microcode	data	-	18004	a35c8d1a12c6c156		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_2398psf.vfo	microcode	board-microcode	data	-	18304	0555e3ef37546475		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_24p.vfo	microcode	board-microcode	data	-	18000	090938c415b7641a		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_24psf.vfo	microcode	board-microcode	data	-	18304	7073b7896431a873		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_50i.vfo	microcode	board-microcode	data	-	18304	25e938c2dcc516cc		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_5994i.vfo	microcode	board-microcode	data	-	18304	78899532e1e992dd		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_60i.vfo	microcode	board-microcode	data	-	18304	720623f379920d0b		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x486_5994i.vfo	microcode	board-microcode	data	-	18384	6d2a822a29a5f4dc		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x576_50i.vfo	microcode	board-microcode	data	-	18384	72a05060016445dd		0	0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/README	microcode	board-microcode	data	-	86997	bf7cb03493b3b264		0	0	0	understood	ucode/dg.md#the-listing-and-the-per-file-values-dg4vfo	The listing and the per-file values (`dg4/vfo/`)
-usr/gfx/ucode/KONA/dgo1/dgo.mcs	microcode	board-microcode	data	-	93912	ec92153b2b6da903		0	0	0	named-only	ucode/dg.md#option-board-image-dgo1dgomcs	Option-board image (`dgo1/dgo.mcs`)
-usr/gfx/ucode/KONA/ge.hex	microcode	board-microcode	data	-	1563025	6258b8ae9e67dd32		0	0	0	undocumented		
-usr/gfx/ucode/KONA/ge.u	microcode	board-microcode	data	-	2526129	89066cc1dc88d87f		0	0	0	named-only	docs/tooling.md#build-and-run	Build and run
-usr/gfx/ucode/KONA/ge11.u	microcode	board-microcode	data	-	1275741	95724af2dc9dc5be		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
-usr/gfx/ucode/KONA/ge_kpm.hex	microcode	board-microcode	data	-	4650	617b3f0afd02ae0e		0	0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
-usr/gfx/ucode/KONA/ge_symbols	microcode	board-microcode	data	-	67100	67126e0f66aea936		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
-usr/gfx/ucode/KONA/ged1b.u	microcode	board-microcode	data	-	14411	41c4b5724774fe42		0	0	0	understood	ucode/ge_isa.md#the-program-files	The program files
-usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0	0	0	undocumented		
-usr/gfx/ucode/KONA/tport.bin	microcode	board-microcode	data	-	127889	ba8efd1cc0f83068		0	0	0	understood	ucode/tport.md#what-it-is	What it is
-usr/gfx/ucode/KONA/vof/1280x1024.monitor	microcode	board-microcode	data	-	295	55c148a0d113b0eb		0	0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
-usr/gfx/ucode/KONA/vof/640x480_60.vof	microcode	board-microcode	data	-	6775	87aa18319bb63ea8		0	0	0	understood	docs/display-formats.md#output-format-sources	Output-format sources
-usr/gfx/ucode/KONA/vof/default.monitor	microcode	board-microcode	data	-	263	42159a9309bb4ea3		0	0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
-usr/gfx/ucode/KONA/vof/default.vof	microcode	board-microcode	data	-	7588	b694ac093f754866		0	0	0	understood	docs/display-formats.md#output-format-sources	Output-format sources
-usr/gfx/ucode/KONA/vof/ntsc.monitor	microcode	board-microcode	data	-	294	d36a59b944f39f21		0	0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
-usr/gfx/ucode/KONA/vof/vga.monitor	microcode	board-microcode	data	-	259	60d3cbbb46fd5f0d		0	0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
-usr/gfx/ucode/KONA/vof/vga.vof	microcode	board-microcode	data	-	7029	9b366dae30983d76		0	0	0	understood	docs/display-formats.md#output-format-sources	Output-format sources
-usr/gfx/ucode/vfc/rules/dg4.def	video-formats	board-data	data	-	10708	aac372e63b5f7a2a		0	0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
-usr/gfx/ucode/vfc/rules/dg4_ddo_gvo.def	video-formats	board-data	data	-	12208	d73fb0145682bdbc		0	0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
-usr/gfx/ucode/vfc/rules/dplex.def	video-formats	board-data	data	-	10663	dcd806610ebc3c41		0	0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
-usr/gfx/ucode/vfc/rules/voc1.def	video-formats	board-data	data	-	1980	125832d2727b529f		0	0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
-usr/gfx/ucode/vfc/sdbutil	board-tools	board-tool	executable	n32	70452	3fa52d6c92f4026b		93	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d7eec8		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	0	0	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
-usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
-usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
-usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
-usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
-usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	0	0	named-only	docs/libfm.md#the-font-manager-library-libfmso-function-reference	The font-manager library (`libfm.so`): function reference
-var/sysgen/master.d/gfxs	kernel-config	shared-data	data	-	399	ef56620faa1e0634		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0	0	0	named-only	docs/data-files.md#diagnostic-data-format-files-and-installed-tools	Diagnostic data, format files and installed tools
-var/sysgen/system/gfx.sm	kernel-config	shared-data	data	-	878	47fa105a54a80d26		0	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+binary	group	role	kind	abi	bytes	sha256	copies	functions	address_source	access_sites	unresolved_sites	status	doc	section
+usr/bin/X11/xsetmon	tools	shared-tool	executable	n32	361984	b76d2f209cf80345		501	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/cpu/sysgen/IP27boot/gfx.o	kernel-shared	shared-kernel	object	n64	53816	28186f9362dcd19e		62	symtab	0	0	named-only	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	17812	70f668a5a117d389		19	symtab	0	0	named-only	docs/kernel-functions.md#hub-flow-control-gfxsagfx_flowo	Hub flow control: `gfxs.a(gfx_flow.o)`
+usr/cpu/sysgen/IP27boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	5844	d56b66fd1e680c4a		1	none	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53828	690a5f9776008c1e		62	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx_debug.o)	kernel-shared	shared-kernel	object	n64	1220	5db884a0a151483d	usr/cpu/sysgen/IP35boot/gfxs.a(gfx_debug.o)	0	none	0	0	named-only	docs/kernel.md#function-reference	Function reference
+usr/cpu/sysgen/IP27boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	8948	b7b1cb0860460856		18	symtab	0	0	named-only	docs/kernel-functions.md#stubs-for-a-kernel-without-graphics-gfxstubsagfxstubso	Stubs for a kernel without graphics: `gfxstubs.a(gfxstubs.o)`
+usr/cpu/sysgen/IP27boot/kona.a(gfx_io_space.o)	kernel	board-kernel	object	n64	9460	314b148a33451dbe	usr/cpu/sysgen/IP35boot/kona.a(gfx_io_space.o)	7	symtab	0	0	named-only	docs/coverage.md#kernel-driver	Kernel driver
+usr/cpu/sysgen/IP27boot/kona.a(kona_attach.o)	kernel	board-kernel	object	n64	7524	cf619b725721e6e5		3	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_context.o)	kernel	board-kernel	object	n64	19828	4239f938c0f114fa		7	symtab	93	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o)	kernel	board-kernel	object	n64	9844	4428f5c5598b9552		3	symtab	16	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_ddrn.o)	kernel	board-kernel	object	n64	10724	95ced6ae7fc81631		3	symtab	10	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_debug.o)	kernel	board-kernel	object	n64	5508	e4bbcdd5c75df378		1	none	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26372	b0ab66a0d3a156dc		23	symtab	51	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit.o)	kernel	board-kernel	object	n64	12468	4fc1b6ff52659563		6	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o)	kernel	board-kernel	object	n64	15412	0704a4d34a99aa6d		14	symtab	26	1	named-only	docs/kernel-functions.md#flow-control-kona_flowo	Flow control: `kona_flow.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_frs.o)	kernel	board-kernel	object	n64	5028	cd4ba938d0088211		2	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_genlock.o)	kernel	board-kernel	object	n64	4596	f499a53a375b8f70		1	none	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_geprint.o)	kernel	board-kernel	object	n64	9156	7afaa08bdce4644c	usr/cpu/sysgen/IP35boot/kona.a(kona_geprint.o)	1	none	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_info.o)	kernel	board-kernel	object	n64	4596	3e106b8c81a9151e		1	none	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o)	kernel	board-kernel	object	n64	9268	fee9fb4ddac8a8ab		2	symtab	10	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	kernel	board-kernel	object	n64	14452	2376f1621c9b3847		1	none	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_map.o)	kernel	board-kernel	object	n64	9044	b100da141877221b		3	symtab	4	0	named-only	docs/kernel-functions.md#attach-detach-and-mapping-kona_attacho-kona_mapo	Attach, detach and mapping: `kona_attach.o`, `kona_map.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	kernel	board-kernel	object	n64	32148	5993b8175eccfe31		23	symtab	70	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	kernel	board-kernel	object	n64	24468	9128bbfda564e180		13	symtab	58	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_sched.o)	kernel	board-kernel	object	n64	6692	4f35241bb7b9a26b		2	symtab	5	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_setup.o)	kernel	board-kernel	object	n64	8644	e167dfe000ec976d		2	symtab	20	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_share.o)	kernel	board-kernel	object	n64	5636	176343fd52fbd3d3		2	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4372	96443c9eb2c62e15		1	none	0	0	undocumented		
+usr/cpu/sysgen/IP27boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12836	592bba0c041e0d85		10	symtab	2	0	named-only	docs/kernel-functions.md#driver-timeouts-kona_timeouto	Driver timeouts: `kona_timeout.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26916	9dba4b43c75421d3		21	symtab	98	1	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP27boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24756	18136860332faa57		19	symtab	0	0	named-only	docs/kernel-functions.md#kernel-textport-kona_tporto	Kernel textport: `kona_tport.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22228	6601b45a863a2be9		9	symtab	24	0	named-only	docs/kernel-functions.md#attach-and-crosstalk-set-up-kona_edtinit_hip2o	Attach and Crosstalk set-up: `kona_edtinit_hip2.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8148	3b5293ce5fd89f64		3	symtab	4	0	named-only	docs/kernel-functions.md#interrupt-handlers-kona_intro-kona_intr_hip2o	Interrupt handlers: `kona_intr.o`, `kona_intr_hip2.o`
+usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7492	a1c62957a81158d7		5	symtab	2	3	undocumented		
+usr/cpu/sysgen/IP27boot/rrm.o	kernel-shared	shared-kernel	object	n64	63984	6da3783f920cc0ad		72	symtab	0	0	named-only	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
+usr/cpu/sysgen/IP27boot/tport.a(tport.o)	kernel-shared	shared-kernel	object	n64	23620	12e8b895c97f0544		22	symtab	0	0	understood	docs/kernel.md#generic-textport-driver-ip27-tporta	Generic textport driver (IP27 `tport.a`)
+usr/cpu/sysgen/IP35boot/gfx.o	kernel-shared	shared-kernel	object	n64	53720	a42762015aa4c9ed		62	symtab	0	0	named-only	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	kernel-shared	shared-kernel	object	n64	14836	2908dd361cfa0ac9		16	symtab	0	0	named-only	docs/kernel-functions.md#hub-flow-control-gfxsagfx_flowo	Hub flow control: `gfxs.a(gfx_flow.o)`
+usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	kernel-shared	shared-kernel	object	n64	11492	e0766b2bbeb929c9		5	symtab	0	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	kernel-shared	shared-kernel	object	n64	53732	4d6ae8238fd650db		62	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/gfxstubs.a(gfxstubs.o)	kernel-shared	shared-kernel	object	n64	7300	92a8e73ac592455b		18	symtab	0	0	named-only	docs/kernel-functions.md#stubs-for-a-kernel-without-graphics-gfxstubsagfxstubso	Stubs for a kernel without graphics: `gfxstubs.a(gfxstubs.o)`
+usr/cpu/sysgen/IP35boot/kona.a(kona_attach.o)	kernel	board-kernel	object	n64	7428	a08cbc38e11d09fc		3	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_context.o)	kernel	board-kernel	object	n64	19748	04d720ca35795bd9		7	symtab	93	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP35boot/kona.a(kona_crash.o)	kernel	board-kernel	object	n64	9748	10c23be452454e34		3	symtab	16	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_ddrn.o)	kernel	board-kernel	object	n64	10628	7298d0d2ec69302e		3	symtab	10	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_debug.o)	kernel	board-kernel	object	n64	5428	ee62d6eb1a79a4a0		1	none	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_dma.o)	kernel	board-kernel	object	n64	26292	fcab4bccda4dc88a		23	symtab	51	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit.o)	kernel	board-kernel	object	n64	12372	d61fec345d55d978		6	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_flow.o)	kernel	board-kernel	object	n64	15332	959b0fe1f7bd132c		14	symtab	26	1	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_frs.o)	kernel	board-kernel	object	n64	4948	476ce6628c34c6e1		2	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_genlock.o)	kernel	board-kernel	object	n64	4500	a59612f6e83edbfe		1	none	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_info.o)	kernel	board-kernel	object	n64	4516	7cf3d3cf01b26a54		1	none	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_intr.o)	kernel	board-kernel	object	n64	9188	4eca3ce7bd15998e		2	symtab	10	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)	kernel	board-kernel	object	n64	14372	01bde5ab11a9aca7		1	none	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_map.o)	kernel	board-kernel	object	n64	8964	e4925b40b9116f9c		3	symtab	4	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_mem.o)	kernel	board-kernel	object	n64	32068	1069e8c114248172		23	symtab	70	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	kernel	board-kernel	object	n64	24372	9fd465a37c1fff7b		13	symtab	58	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_sched.o)	kernel	board-kernel	object	n64	6612	7a40f54311a18f08		2	symtab	5	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_setup.o)	kernel	board-kernel	object	n64	8564	b74e02764644bb5e		2	symtab	20	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_share.o)	kernel	board-kernel	object	n64	5540	85fc5556ab1a72ec		2	symtab	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4276	9ddba61a71ff1d05		1	none	0	0	undocumented		
+usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12740	86d948058c5563ef		10	symtab	2	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26836	31ebede97fc0663e		21	symtab	98	1	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
+usr/cpu/sysgen/IP35boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24324	10b9a948c8087221		19	symtab	0	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22036	387a5f25e1abc8f2		9	symtab	24	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8068	8af55035550b9e02		3	symtab	4	0	named-only	docs/kernel-functions.md#ip35-builds-of-the-konaa-members	IP35 builds of the `kona.a` members
+usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7412	d3526393bde60851		5	symtab	2	3	undocumented		
+usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	symtab	0	0	named-only	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
+usr/diags/IR/bin/availmon	diagnostics	board-diagnostic	data	-	1140	0830da204c6694ce		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/diags/IR/bin/hyper	diagnostics	board-diagnostic	executable	n32	38544	c9c31f17ce8a9831		11	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/diags/IR/bin/irsaudit	diagnostics	board-diagnostic	executable	n32	2967860	57830d1caab0efac		1170	dynsym	0	0	understood	docs/hip.md#what-the-ir-diagnostic-shows-of-the-host-interface	What the IR diagnostic shows of the host interface
+usr/diags/IR/data/1280x1024_60.vfo	diagnostics	board-diagnostic	data	-	17920	fbcaab1b00af730f		0		0	0	undocumented		
+usr/diags/IR/data/160x100_5000.vfo	diagnostics	board-diagnostic	data	-	17967	8b776633a7cf9df6		0		0	0	understood	docs/display-formats.md#video-formats-the-diagnostics-load	Video formats the diagnostics load
+usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	bba183206ff10567		0		0	0	undocumented		
+usr/diags/IR/data/aaspoke.tbus	diagnostics	board-diagnostic	data	-	23268	7318d08a61358a11		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/bef1.qtcbist	diagnostics	board-diagnostic	data	-	6739	67fed9ca1743f173		0		0	0	undocumented		
+usr/diags/IR/data/bef1.tcbist	diagnostics	board-diagnostic	data	-	38120	6e3912a86607444d		0		0	0	undocumented		
+usr/diags/IR/data/bef1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	9261	06a29fa0dc60f29e		0		0	0	undocumented		
+usr/diags/IR/data/bpln.netmap.Z	diagnostics	board-diagnostic	data	-	110673	79d6d9087ab547e4		0		0	0	undocumented		
+usr/diags/IR/data/bpln.short.Z	diagnostics	board-diagnostic	data	-	9446	54cc798e37dc625e		0		0	0	undocumented		
+usr/diags/IR/data/bpln.stuck.Z	diagnostics	board-diagnostic	data	-	1228	b15ee592e34962af		0		0	0	undocumented		
+usr/diags/IR/data/bpln_hilo.netmap.Z	diagnostics	board-diagnostic	data	-	111365	363a4359833564c5		0		0	0	undocumented		
+usr/diags/IR/data/bpln_hilo.short.Z	diagnostics	board-diagnostic	data	-	9469	28a05ba61ac30b52		0		0	0	undocumented		
+usr/diags/IR/data/bpln_hilo.stuck.Z	diagnostics	board-diagnostic	data	-	1230	edcb9ce25283515e		0		0	0	undocumented		
+usr/diags/IR/data/bpln_hilolite.netmap.Z	diagnostics	board-diagnostic	data	-	81167	a80d201e6ca2d4c0		0		0	0	undocumented		
+usr/diags/IR/data/bpln_hilolite.short.Z	diagnostics	board-diagnostic	data	-	7274	b6c4cc1c7a2ac3a6		0		0	0	undocumented		
+usr/diags/IR/data/bpln_hilolite.stuck.Z	diagnostics	board-diagnostic	data	-	995	527a499bff0a89de		0		0	0	undocumented		
+usr/diags/IR/data/bpln_oheo.netmap	diagnostics	board-diagnostic	data	-	612334	501dc0fe607dbba2		0		0	0	undocumented		
+usr/diags/IR/data/bpln_oheo.netmap.Z	diagnostics	board-diagnostic	data	-	116785	8fdcd4d50d0f6950		0		0	0	undocumented		
+usr/diags/IR/data/bpln_oheo.short	diagnostics	board-diagnostic	data	-	514919	a2cd55909645630e		0		0	0	undocumented		
+usr/diags/IR/data/bpln_oheo.short.Z	diagnostics	board-diagnostic	data	-	10481	13da1e3545df72a3		0		0	0	undocumented		
+usr/diags/IR/data/bpln_oheo.stuck	diagnostics	board-diagnostic	data	-	51562	8fec17fccdaa688c		0		0	0	undocumented		
+usr/diags/IR/data/bpln_oheo.stuck.Z	diagnostics	board-diagnostic	data	-	1418	d00e8e2d1cb31afd		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	23726	de78341021ce8dc3		0		0	0	named-only	docs/dg.md#the-far-side-of-the-video-controller-port	The far side of the video-controller port
+usr/diags/IR/data/dg4_2voc.short.Z	diagnostics	board-diagnostic	data	-	3776	89208cca3fab3bd0		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	936	7bc0264eb76ca0f1		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dacsamp.netmap.Z	diagnostics	board-diagnostic	data	-	24302	80704e0b2e704d52		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dacsamp.short.Z	diagnostics	board-diagnostic	data	-	4880	2c70700b9630054f		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dacsamp.stuck.Z	diagnostics	board-diagnostic	data	-	1015	f0b258784031a796		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp.netmap	diagnostics	board-diagnostic	data	-	181494	ee76c51ec1b0e362		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp.netmap.Z	diagnostics	board-diagnostic	data	-	47072	30c2befc778a927f		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp.short	diagnostics	board-diagnostic	data	-	160736	c90f9abfd959cd8a		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp.short.Z	diagnostics	board-diagnostic	data	-	10194	cef389d4db195021		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp.stuck	diagnostics	board-diagnostic	data	-	35799	5bc81a2fe0409f39		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp.stuck.Z	diagnostics	board-diagnostic	data	-	2144	05ef32bdb67bacb0		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.netmap	diagnostics	board-diagnostic	data	-	184859	fa964ded30730979		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.netmap.Z	diagnostics	board-diagnostic	data	-	47930	99540240903cecbd		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short	diagnostics	board-diagnostic	data	-	160741	13306e483bed3600		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short.Z	diagnostics	board-diagnostic	data	-	10712	2c4df52eac2d3c30		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.stuck	diagnostics	board-diagnostic	data	-	35804	1fd4245a588a1808		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.stuck.Z	diagnostics	board-diagnostic	data	-	2212	d30f4269a5fa0ddb		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dvp.netmap.Z	diagnostics	board-diagnostic	data	-	30281	1fa375fb2a5a012a		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dvp.short.Z	diagnostics	board-diagnostic	data	-	4633	4e824479ac6b6112		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_dvp.stuck.Z	diagnostics	board-diagnostic	data	-	1083	d1a8c17f62e4a04a		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_hdgvo.netmap	diagnostics	board-diagnostic	data	-	115305	e425a157c01b73a9		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_hdgvo.netmap.Z	diagnostics	board-diagnostic	data	-	30748	c31e0e64b4006f18		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_hdgvo.short	diagnostics	board-diagnostic	data	-	88888	9309ac6fc3306b8e		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_hdgvo.short.Z	diagnostics	board-diagnostic	data	-	4364	54d189e7f4c7cbf9		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_hdgvo.stuck	diagnostics	board-diagnostic	data	-	22287	2ffe0f9ae687422f		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_hdgvo.stuck.Z	diagnostics	board-diagnostic	data	-	1068	bde1c6c9bd931d22		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	49108	d9f016cb302b0b6b		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc.short.Z	diagnostics	board-diagnostic	data	-	6963	258db17a8948eec0		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	3313	6fca6cf527397b59		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc_dacsamp.netmap.Z	diagnostics	board-diagnostic	data	-	51438	ba78700ec45d4d58		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc_dacsamp.short.Z	diagnostics	board-diagnostic	data	-	10465	85b30b429ab74ba5		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc_dacsamp.stuck.Z	diagnostics	board-diagnostic	data	-	3581	299d4228dfc48f8e		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc_dvp.netmap.Z	diagnostics	board-diagnostic	data	-	58825	f216bb50f04a36fc		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc_dvp.short.Z	diagnostics	board-diagnostic	data	-	7888	3497cbf8564ae6c1		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc_dvp.stuck.Z	diagnostics	board-diagnostic	data	-	3536	53ee4c6f2253167b		0		0	0	undocumented		
+usr/diags/IR/data/fm2.qtcbist	diagnostics	board-diagnostic	data	-	805	24180c5ea0dca631		0		0	0	undocumented		
+usr/diags/IR/data/fm2.tcbist	diagnostics	board-diagnostic	data	-	4290	fa93346ddf252603		0		0	0	undocumented		
+usr/diags/IR/data/fm2null.qtcbist	diagnostics	board-diagnostic	data	-	826	658adb67b6bc0dd1		0		0	0	undocumented		
+usr/diags/IR/data/fm2null.tcbist	diagnostics	board-diagnostic	data	-	4397	e7e59eb968264f60		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	133686	47518445ca9fe211		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc.short.Z	diagnostics	board-diagnostic	data	-	11482	c747070399c13f1a		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	1475	15efc67fe8b25ec0		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	133048	a7afcc36fb7763d6		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	10325	9cd27eaf9d39ad09		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1502	db15033aa0794e1a		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	132842	b2ce54bd7642c897		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	10337	319a72a368c9e0c5		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1523	c6dc7d2efaabf7e9		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	132330	0f6a93d8a70b1e03		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	10182	842da503a1807cf8		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1470	830c41396daf720b		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	132529	318594188fc11b47		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	10226	f1d540567d9c52c6		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1468	763aef1a0d1d8a99		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	132281	6e8723ca2e1df65c		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	10194	994c02c1b065b183		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	1476	09d855b1d7944d81		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	132633	20fc8347ec05b668		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	10165	52e5dfaadb467469		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	1490	d7333fd540e28905		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	151433	bb31aad825e66bf3		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc.short.Z	diagnostics	board-diagnostic	data	-	12631	f62478a35feb7b31		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	1626	bb03467590424d28		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	151017	6be0de1277c143d6		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	11278	ac41e1a8083f39de		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1659	473bc6f1150d991d		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	151056	67bac347247a4408		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	11312	edcd48a03bdff8bc		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1670	2f2c5d2f268def2c		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	150622	e551a51a729742c7		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	11170	4b6a12280eac08de		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1600	c42df658d18ecb6a		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	150737	eaeb3944c8045984		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	11216	03f643997cd2c3ef		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1616	f7086a5157629817		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	150623	b5898488d0100109		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	11164	b06fb63d80ca9836		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	1627	e8d52534c338dd98		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	150941	1fea77b304168de2		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	11208	2ae9a3f05877d506		0		0	0	undocumented		
+usr/diags/IR/data/fpln_8voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	1627	eb66b6c703d8463b		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc.netmap	diagnostics	board-diagnostic	data	-	724618	9cde902217acfd68		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	153451	79c8a409e3ad8a76		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc.short	diagnostics	board-diagnostic	data	-	605441	0ccbc29741e94437		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc.short.Z	diagnostics	board-diagnostic	data	-	24538	e5f125601e074168		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc.stuck	diagnostics	board-diagnostic	data	-	55120	2c16214dcf75a4b1		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	2902	d2b36ef19b8ca9de		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_0.netmap	diagnostics	board-diagnostic	data	-	722638	3fae159f106dacf8		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	147438	9ecfc816900550b6		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_0.short	diagnostics	board-diagnostic	data	-	605447	8ce5bbe546e414fd		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	24379	de0aa4507687de4f		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_0.stuck	diagnostics	board-diagnostic	data	-	55126	16e13ccc3d2e343a		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	2959	18751da15d06513e		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_1.netmap	diagnostics	board-diagnostic	data	-	722708	58ea60ed697f16c4		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	147424	1e78ff4801cb7eba		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_1.short	diagnostics	board-diagnostic	data	-	605447	000f331ca2fbeaeb		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	24414	3895999587ca3ba1		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_1.stuck	diagnostics	board-diagnostic	data	-	55126	b24d5ae0cae929a1		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	2969	30e6eca240c42777		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_0.netmap	diagnostics	board-diagnostic	data	-	721683	c93f42c406e4ae05		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	147756	ff0175e1bd6dc5c1		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_0.short	diagnostics	board-diagnostic	data	-	605447	71fa9aeb2c509a2e		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	24417	9d2c2604d6f2531f		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_0.stuck	diagnostics	board-diagnostic	data	-	55126	bed85bec59bcc907		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	2917	8092fa500215fa70		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_1.netmap	diagnostics	board-diagnostic	data	-	721718	6ea0a0c16a686d98		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	147909	a9f0fc81eac6c8b4		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_1.short	diagnostics	board-diagnostic	data	-	605447	b278503f1e38d2ef		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	24482	a8c39a5df4fff975		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_1.stuck	diagnostics	board-diagnostic	data	-	55126	3212455b5f73ca67		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	2933	6acbfefc4865091e		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_2.netmap	diagnostics	board-diagnostic	data	-	721683	4403a38bdf260807		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	147810	bd08b182ab6798de		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_2.short	diagnostics	board-diagnostic	data	-	605447	8f3255dfda326556		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	24482	d19f1f758d4aa130		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_2.stuck	diagnostics	board-diagnostic	data	-	55126	ba3d2c344b8ce899		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	2936	cf0690fb8ec69ad2		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_3.netmap	diagnostics	board-diagnostic	data	-	721718	c79658aa539a36a1		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	147899	2d07dc136b8d9467		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_3.short	diagnostics	board-diagnostic	data	-	605447	811e10cde7929832		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	24415	d1dbb44f0080b5d3		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_3.stuck	diagnostics	board-diagnostic	data	-	55126	77a4f8dbd1708e25		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_2voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	2930	6cd27cc8e892f784		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc.netmap	diagnostics	board-diagnostic	data	-	804028	75f835fc7063305d		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	171755	d783d1cc094ae3f9		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc.short	diagnostics	board-diagnostic	data	-	720281	08115073d2906e13		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc.short.Z	diagnostics	board-diagnostic	data	-	25843	c53ff40d1fbcb2a8		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc.stuck	diagnostics	board-diagnostic	data	-	65560	31c1fcd7c14328b1		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	3079	8c77b60a74731b37		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_0.netmap	diagnostics	board-diagnostic	data	-	802048	9fef03fad5498f21		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	165621	afc64bf6138bdd8e		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_0.short	diagnostics	board-diagnostic	data	-	720287	ee9d3258c7ef41db		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	25752	f8204fc20959923a		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_0.stuck	diagnostics	board-diagnostic	data	-	65566	7e7a4042e6bacc90		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	3127	5002e312a8515540		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_1.netmap	diagnostics	board-diagnostic	data	-	802118	71ca27b13659b5fb		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	165585	18801876e60515ef		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_1.short	diagnostics	board-diagnostic	data	-	720287	887015ef1317573b		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	25768	2cbf57dc61304802		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_1.stuck	diagnostics	board-diagnostic	data	-	65566	e82dc8228511380e		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	3134	4f4e437b159dd5fb		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_0.netmap	diagnostics	board-diagnostic	data	-	801093	99ca4597427ac299		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	165953	f6deaecafdda9107		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_0.short	diagnostics	board-diagnostic	data	-	720287	0409e637f0aa589a		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	25831	7eaefa70f2b4308d		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_0.stuck	diagnostics	board-diagnostic	data	-	65566	6b00b5810a8261fa		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	3091	c7726978915801aa		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_1.netmap	diagnostics	board-diagnostic	data	-	801128	cf7c3059c221884c		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	166168	c167f93faaebcf83		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_1.short	diagnostics	board-diagnostic	data	-	720287	7c02f7e009a1a88c		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	25831	a54bf9d56219b459		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_1.stuck	diagnostics	board-diagnostic	data	-	65566	bc68b1ccb3b29ac2		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	3095	ccf2e6d69002ffb6		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_2.netmap	diagnostics	board-diagnostic	data	-	801093	3f20822d8463c086		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	165990	a8babb9757b7527c		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_2.short	diagnostics	board-diagnostic	data	-	720287	9943d09b3f75bb30		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	25772	5f26af4391793935		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_2.stuck	diagnostics	board-diagnostic	data	-	65566	2704003cbf3cb4f7		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	3100	79f0636c39cdc4ba		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_3.netmap	diagnostics	board-diagnostic	data	-	801128	45dac3aae0a6810b		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	166081	b791ad53be251872		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short	diagnostics	board-diagnostic	data	-	720287	c4791f3a3752e306		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	25847	67ef05f2fcb8ed81		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_3.stuck	diagnostics	board-diagnostic	data	-	65566	aa6307b53b27daf8		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	3110	b8fbc18db445e71e		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	86443	b71c111db93084da		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_2voc.short.Z	diagnostics	board-diagnostic	data	-	5564	639b03090fc0610b		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	986	a1c7cbf5cbd4290a		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_2voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	86027	afd31f91dce0d4ef		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_2voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	4877	f3f5744bd9f294a3		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_2voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	997	595b67c0c1eb2baa		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_2voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	85901	4a57e9b0640f31a4		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_2voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	4876	f6a801671b157331		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_2voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1003	09af4a80358a11e3		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	105873	a9d81844d9fb271c		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_8voc.short.Z	diagnostics	board-diagnostic	data	-	6499	dbda9bfb68ac07cb		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	1142	53c0666e5a38a71c		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_8voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	105327	e7dec72afbbca9c6		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_8voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	5637	985c93dc98b9a72f		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_8voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1142	b4b4a361305e2d1e		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_8voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	105345	82c84e982efc4cec		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_8voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	5626	678438af4894da36		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_8voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1151	0b486df5e68d276b		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	149564	4bedcefadf793921		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc.short.Z	diagnostics	board-diagnostic	data	-	27579	a302902c1becce9e		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	2885	fcff2825e6e0accd		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	149721	74935c7d50f971ab		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	27092	fc66424c888950f9		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	2923	809b9b46a3c13da2		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	149755	2cac0b68b15ee0b3		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	27110	85e3f19df8ec17fe		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	2933	d097642b35ffd16c		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	149754	48e8f72aaf5cd395		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	27005	14852c38564d4297		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	2918	b247944876ecdf7a		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	149597	333f05847c800cd3		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	27062	beba33209a7b06cc		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	2875	6178e692618a1b20		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	149570	4add3da4cae12ad6		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	27033	908c9c359d5ea50e		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	2909	ff54c2079d78d848		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	149667	e8d639a13d26995f		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	27093	26536eb53a3fcaec		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	2899	ad0cb8b1bffbbd8b		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	167684	adaf0ee900251302		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc.short.Z	diagnostics	board-diagnostic	data	-	29103	ff1de8813552d712		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	3049	55f480d587201b3d		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	167828	e2d4832ec7f2958e		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	28706	8d727dc4d2ad0518		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	3097	19c97f2449ee78fd		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	167921	0661ca037afce947		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	28668	feb668d42328ddd0		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	3085	de065e7143f64f0b		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	167882	d15371726548eed4		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	28595	6ffb555ea6c6a0a6		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	3064	5ef46345d5778ff6		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	167777	90884bb538a95183		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	28635	2ad9d24f5b601250		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	3071	41b6b5fe1aeaffe6		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	167730	ac237fb941e30b9e		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	28586	310423d28bdaa83d		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	3074	7ba8f0a5eb575682		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	167663	33dbb5133a420563		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	28652	45ba7ac53659e893		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rmtm7_8voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	3089	69c0eda23796a3f1		0		0	0	undocumented		
+usr/diags/IR/data/ge12_4ge.netmap.Z	diagnostics	board-diagnostic	data	-	29182	d544f481b5e5a7b9		0		0	0	undocumented		
+usr/diags/IR/data/ge12_4ge.short.Z	diagnostics	board-diagnostic	data	-	4693	c35105141ab55613		0		0	0	undocumented		
+usr/diags/IR/data/ge12_4ge.stuck.Z	diagnostics	board-diagnostic	data	-	1179	49c2bcebb669beea		0		0	0	undocumented		
+usr/diags/IR/data/ge12_btm4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40115	3ab0b5d76eb658e1		0		0	0	undocumented		
+usr/diags/IR/data/ge12_btm4ges.short.Z	diagnostics	board-diagnostic	data	-	5813	bed915c0b6e4b36d		0		0	0	undocumented		
+usr/diags/IR/data/ge12_btm4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1455	4ce22049aaf1796b		0		0	0	undocumented		
+usr/diags/IR/data/ge12_noge.netmap.Z	diagnostics	board-diagnostic	data	-	13551	de9d4ebd1c9298a9		0		0	0	undocumented		
+usr/diags/IR/data/ge12_noge.short.Z	diagnostics	board-diagnostic	data	-	1737	e3f185169656264d		0		0	0	undocumented		
+usr/diags/IR/data/ge12_noge.stuck.Z	diagnostics	board-diagnostic	data	-	359	d77ffdbcbfdd4190		0		0	0	undocumented		
+usr/diags/IR/data/ge12_top4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40089	7db96ddd9437d4ad		0		0	0	undocumented		
+usr/diags/IR/data/ge12_top4ges.short.Z	diagnostics	board-diagnostic	data	-	5800	3b333483a8318e35		0		0	0	undocumented		
+usr/diags/IR/data/ge12_top4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1451	c6a3b447edeb7868		0		0	0	undocumented		
+usr/diags/IR/data/ge14_2ge.netmap.Z	diagnostics	board-diagnostic	data	-	22067	be1da62ba1133836		0		0	0	undocumented		
+usr/diags/IR/data/ge14_2ge.short.Z	diagnostics	board-diagnostic	data	-	3301	34e67be65c252406		0		0	0	undocumented		
+usr/diags/IR/data/ge14_2ge.stuck.Z	diagnostics	board-diagnostic	data	-	845	0a100c1d22897a61		0		0	0	undocumented		
+usr/diags/IR/data/ge14_4ge.netmap.Z	diagnostics	board-diagnostic	data	-	29617	3fc12f10ab249aeb		0		0	0	named-only	ucode/ge_isa.md#the-engines-microcode-port	The engine's microcode port
+usr/diags/IR/data/ge14_4ge.short.Z	diagnostics	board-diagnostic	data	-	4642	4c7fdea7d4585236		0		0	0	undocumented		
+usr/diags/IR/data/ge14_4ge.stuck.Z	diagnostics	board-diagnostic	data	-	1186	bfc559d675927d18		0		0	0	undocumented		
+usr/diags/IR/data/ge14_btm4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40524	6802bad154e34f19		0		0	0	undocumented		
+usr/diags/IR/data/ge14_btm4ges.short.Z	diagnostics	board-diagnostic	data	-	5788	4681a14a1af195e3		0		0	0	undocumented		
+usr/diags/IR/data/ge14_btm4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1472	24777623c23332c9		0		0	0	undocumented		
+usr/diags/IR/data/ge14_noge.netmap.Z	diagnostics	board-diagnostic	data	-	13987	b60fc3b315264b72		0		0	0	undocumented		
+usr/diags/IR/data/ge14_noge.short.Z	diagnostics	board-diagnostic	data	-	1730	a0a3a6659e8e24ef		0		0	0	undocumented		
+usr/diags/IR/data/ge14_noge.stuck.Z	diagnostics	board-diagnostic	data	-	360	b8d11f41a8418747		0		0	0	undocumented		
+usr/diags/IR/data/ge14_top4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40554	f00b10e46fefe3db		0		0	0	undocumented		
+usr/diags/IR/data/ge14_top4ges.short.Z	diagnostics	board-diagnostic	data	-	5751	3a592a9275839cf8		0		0	0	undocumented		
+usr/diags/IR/data/ge14_top4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1464	0885566bbca6a8c2		0		0	0	undocumented		
+usr/diags/IR/data/ged1.qtcbist	diagnostics	board-diagnostic	data	-	5126	d1d0ab5bb9d01ea7		0		0	0	undocumented		
+usr/diags/IR/data/ged1.tcbist	diagnostics	board-diagnostic	data	-	22551	85ff87eca864cff5		0		0	0	undocumented		
+usr/diags/IR/data/ged1b.qtcbist	diagnostics	board-diagnostic	data	-	4910	b684965e09202c31		0		0	0	undocumented		
+usr/diags/IR/data/ged1b.tcbist	diagnostics	board-diagnostic	data	-	22335	2509d717b0ae69a0		0		0	0	undocumented		
+usr/diags/IR/data/hip1.qtcbist	diagnostics	board-diagnostic	data	-	2483	38a2deae9fe264fd		0		0	0	undocumented		
+usr/diags/IR/data/hip1.tcbist	diagnostics	board-diagnostic	data	-	9453	440366e7aa861a39		0		0	0	undocumented		
+usr/diags/IR/data/hip1_2Mx8.sdbist	diagnostics	board-diagnostic	data	-	4878	b0e97dfa0d5537f3	usr/diags/IR/data/hip1b_2Mx8.sdbist	0		0	0	undocumented		
+usr/diags/IR/data/hip1b.qtcbist	diagnostics	board-diagnostic	data	-	1657	a25b6217c1ba00d4		0		0	0	undocumented		
+usr/diags/IR/data/hip1b.tcbist	diagnostics	board-diagnostic	data	-	5142	1c0eed5d940408ae		0		0	0	undocumented		
+usr/diags/IR/data/imp8_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	8231	626ec0be955dc3ec		0		0	0	undocumented		
+usr/diags/IR/data/imp8d_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	17544	64ea8714e66c0d47		0		0	0	undocumented		
+usr/diags/IR/data/irsaudit.h.gold	diagnostics	board-diagnostic	data	-	10824969	a0d1678e2e216bbf		0		0	0	undocumented		
+usr/diags/IR/data/irsaudit.h.gold.Z	diagnostics	board-diagnostic	data	-	2898069	1080d9abfeb1fa16		0		0	0	undocumented		
+usr/diags/IR/data/irsaudit.hl.gold	diagnostics	board-diagnostic	data	-	1854839	10714f33d55aefce		0		0	0	undocumented		
+usr/diags/IR/data/irsaudit.hl.gold.Z	diagnostics	board-diagnostic	data	-	459771	156ef8effceb9a43		0		0	0	undocumented		
+usr/diags/IR/data/irsaudit.k.gold.Z	diagnostics	board-diagnostic	data	-	1094439	0f47e9e3e8fe9835		0		0	0	undocumented		
+usr/diags/IR/data/irsaudit.oh.gold	diagnostics	board-diagnostic	data	-	2161143	5476050582b43069		0		0	0	undocumented		
+usr/diags/IR/data/irsaudit.oh.gold.Z	diagnostics	board-diagnostic	data	-	610603	1e2e1ea223fc603d		0		0	0	undocumented		
+usr/diags/IR/data/pg2.qtcbist	diagnostics	board-diagnostic	data	-	3170	217c840af1b575c3		0		0	0	undocumented		
+usr/diags/IR/data/pg2.tcbist	diagnostics	board-diagnostic	data	-	20595	f3f3647fc265ee96		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/pg2b.qtcbist	diagnostics	board-diagnostic	data	-	3206	c9065942058d594d		0		0	0	undocumented		
+usr/diags/IR/data/pg2b.tcbist	diagnostics	board-diagnostic	data	-	20595	0325cccaa1d0e4af		0		0	0	undocumented		
+usr/diags/IR/data/rm10.netmap	diagnostics	board-diagnostic	data	-	353174	78d7e0796b316383		0		0	0	undocumented		
+usr/diags/IR/data/rm10.netmap.Z	diagnostics	board-diagnostic	data	-	64125	48629c4f022067d8		0		0	0	undocumented		
+usr/diags/IR/data/rm10.short	diagnostics	board-diagnostic	data	-	184896	99c04d91418ad9f3		0		0	0	undocumented		
+usr/diags/IR/data/rm10.short.Z	diagnostics	board-diagnostic	data	-	4165	769cd3fc9817460f		0		0	0	undocumented		
+usr/diags/IR/data/rm10.stuck	diagnostics	board-diagnostic	data	-	26471	77647577632f8ba2		0		0	0	undocumented		
+usr/diags/IR/data/rm10.stuck.Z	diagnostics	board-diagnostic	data	-	839	67755a913083556a		0		0	0	undocumented		
+usr/diags/IR/data/rm11.netmap	diagnostics	board-diagnostic	data	-	639268	a8eef3bc489233cc		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/rm11.netmap.Z	diagnostics	board-diagnostic	data	-	124417	135c8f9e67567629		0		0	0	named-only	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/rm11.short	diagnostics	board-diagnostic	data	-	510117	b918b9d433dab6fb		0		0	0	undocumented		
+usr/diags/IR/data/rm11.short.Z	diagnostics	board-diagnostic	data	-	20907	b8cb06848a444f51		0		0	0	undocumented		
+usr/diags/IR/data/rm11.stuck	diagnostics	board-diagnostic	data	-	46436	4fa37d4f2c974cc0		0		0	0	undocumented		
+usr/diags/IR/data/rm11.stuck.Z	diagnostics	board-diagnostic	data	-	2434	85206c3dfbe7448b		0		0	0	undocumented		
+usr/diags/IR/data/rm6.netmap.Z	diagnostics	board-diagnostic	data	-	126017	5f0b6853ecc1bd7c		0		0	0	undocumented		
+usr/diags/IR/data/rm6.short.Z	diagnostics	board-diagnostic	data	-	22714	fe24ec40b7671d21		0		0	0	undocumented		
+usr/diags/IR/data/rm6.stuck.Z	diagnostics	board-diagnostic	data	-	2360	72998c43f51d58f1		0		0	0	undocumented		
+usr/diags/IR/data/rm7.netmap.Z	diagnostics	board-diagnostic	data	-	69213	e7d47f31c7a60ecf		0		0	0	undocumented		
+usr/diags/IR/data/rm7.short.Z	diagnostics	board-diagnostic	data	-	5335	831b6f2ab8fbcc71		0		0	0	undocumented		
+usr/diags/IR/data/rm7.stuck.Z	diagnostics	board-diagnostic	data	-	814	791e173513331e71		0		0	0	undocumented		
+usr/diags/IR/data/rm8.netmap.Z	diagnostics	board-diagnostic	data	-	79181	0cee40f587aed3d5		0		0	0	undocumented		
+usr/diags/IR/data/rm8.short.Z	diagnostics	board-diagnostic	data	-	16929	75eb88774f3043ad		0		0	0	undocumented		
+usr/diags/IR/data/rm8.stuck.Z	diagnostics	board-diagnostic	data	-	1902	4baa538415327432		0		0	0	undocumented		
+usr/diags/IR/data/rmtm7.netmap.Z	diagnostics	board-diagnostic	data	-	126335	ba39c8394a400b3a		0		0	0	undocumented		
+usr/diags/IR/data/rmtm7.short.Z	diagnostics	board-diagnostic	data	-	22972	293f29901c3494ea		0		0	0	undocumented		
+usr/diags/IR/data/rmtm7.stuck.Z	diagnostics	board-diagnostic	data	-	2374	5087baed7202287f		0		0	0	undocumented		
+usr/diags/IR/data/tbusdata.Z	diagnostics	board-diagnostic	data	-	1281374	b4b801dcc9310b9f		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/tf1.qtcbist	diagnostics	board-diagnostic	data	-	3905	93c33eeaee4af026		0		0	0	undocumented		
+usr/diags/IR/data/tf1.tcbist	diagnostics	board-diagnostic	data	-	14360	a6f3c8ae199e67c9		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/tf1c.qtcbist	diagnostics	board-diagnostic	data	-	3945	1cf764978a6c4615		0		0	0	undocumented		
+usr/diags/IR/data/tf1c.tcbist	diagnostics	board-diagnostic	data	-	14378	0d4d757c5ad6d71f		0		0	0	undocumented		
+usr/diags/IR/data/tg1.qtcbist	diagnostics	board-diagnostic	data	-	1505	007e327890b1bd1a		0		0	0	undocumented		
+usr/diags/IR/data/tg1.tcbist	diagnostics	board-diagnostic	data	-	8475	d534a5247ffd7e67		0		0	0	undocumented		
+usr/diags/IR/data/tg2.qtcbist	diagnostics	board-diagnostic	data	-	1520	fc19e8ac1a785b65		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/tg2.tcbist	diagnostics	board-diagnostic	data	-	8475	0e579dc1da233c28		0		0	0	named-only	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/tm1_1Mx16.sdbist	diagnostics	board-diagnostic	data	-	5681	a9c33952e414c6b1		0		0	0	undocumented		
+usr/diags/IR/data/tm1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	5333	2270d92a5af4cefe		0		0	0	named-only	docs/data-files.md#built-in-self-test-descriptions	Built-in self-test descriptions
+usr/diags/IR/data/tm1_2Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	8a1b63004817d4d4		0		0	0	undocumented		
+usr/diags/IR/data/tm1_4Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	2b91a2506f7c9806		0		0	0	undocumented		
+usr/diags/IR/data/tm1c.qtcbist	diagnostics	board-diagnostic	data	-	126	667e3ebae9f1bbaf	usr/diags/IR/data/tm1c.tcbist	0		0	0	undocumented		
+usr/diags/IR/data/tm1c_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	6282	ada5e8ae88f3ec79		0		0	0	undocumented		
+usr/diags/IR/data/tm7.netmap.Z	diagnostics	board-diagnostic	data	-	52305	933d83f9c8fb792b		0		0	0	undocumented		
+usr/diags/IR/data/tm7.short.Z	diagnostics	board-diagnostic	data	-	11250	0e2106d568d003c7		0		0	0	undocumented		
+usr/diags/IR/data/tm7.stuck.Z	diagnostics	board-diagnostic	data	-	1213	c68c202baee3a470		0		0	0	undocumented		
+usr/diags/IR/data/tm9.netmap	diagnostics	board-diagnostic	data	-	286094	b7fb0fdec0dfc58c		0		0	0	undocumented		
+usr/diags/IR/data/tm9.netmap.Z	diagnostics	board-diagnostic	data	-	55798	523e205d5189e442		0		0	0	undocumented		
+usr/diags/IR/data/tm9.short	diagnostics	board-diagnostic	data	-	219714	435e5dca19d05f65		0		0	0	undocumented		
+usr/diags/IR/data/tm9.short.Z	diagnostics	board-diagnostic	data	-	11395	62dfd6b4cc17737c		0		0	0	undocumented		
+usr/diags/IR/data/tm9.stuck	diagnostics	board-diagnostic	data	-	20033	2a75040397208027		0		0	0	undocumented		
+usr/diags/IR/data/tm9.stuck.Z	diagnostics	board-diagnostic	data	-	1209	f23976a9ed0f768a		0		0	0	undocumented		
+usr/diags/IR/data/tvo.vfo	diagnostics	board-diagnostic	data	-	17988	4759678be2e5a789		0		0	0	understood	docs/display-formats.md#video-formats-the-diagnostics-load	Video formats the diagnostics load
+usr/diags/IR/data/voc1.qtcbist	diagnostics	board-diagnostic	data	-	5508	87e9203d91c7f76b		0		0	0	undocumented		
+usr/diags/IR/data/voc1.tcbist	diagnostics	board-diagnostic	data	-	33388	684dfdb933dc10e1		0		0	0	undocumented		
+usr/diags/IR/data/voc1b.qtcbist	diagnostics	board-diagnostic	data	-	6832	ee41e9a4fc881cf0		0		0	0	undocumented		
+usr/diags/IR/data/voc1b.tcbist	diagnostics	board-diagnostic	data	-	37378	0b99329c83b5079c		0		0	0	undocumented		
+usr/diags/IR/data/xmap8.qtcbist	diagnostics	board-diagnostic	data	-	2954	33b7137fe9a1a956		0		0	0	undocumented		
+usr/diags/IR/data/xmap8.tcbist	diagnostics	board-diagnostic	data	-	13409	b728f4f3471a6105		0		0	0	undocumented		
+usr/diags/IR/irsaudit_disasm.txt	diagnostics	board-diagnostic	data	-	9212110	5b965641ce5136e3		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/diags/IR/irsaudit_dynsym_disasm.txt	diagnostics	board-diagnostic	data	-	128545	8bff24a378a29c2e		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/diags/IR/ucode/arm1.u	diagnostics	board-diagnostic	data	-	40072	cc20b24f7c1e4da9		0		0	0	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
+usr/diags/IR/ucode/arm1_nic.u	diagnostics	board-diagnostic	data	-	13400	872331fc9285edfa		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/diags/IR/ucode/dgo.mcs	diagnostics	board-diagnostic	data	-	93912	518cd70fa8b71474		0		0	0	undocumented		
+usr/diags/IR/ucode/diag_arm_init.u	diagnostics	board-diagnostic	data	-	520	da008146e38bf9a0		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/diags/IR/ucode/ge.hex	diagnostics	board-diagnostic	data	-	363650	ae8bfbf6f4060058		0		0	0	named-only	ucode/ge_ops.md#the-diagnostic-programs-instruction-test	The diagnostic program's instruction test
+usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3edf		0		0	0	named-only	ucode/ge_isa.md#which-ge11-facts-konas-own-software-confirms	Which GE11 facts KONA's own software confirms
+usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
+usr/diags/IR/ucode/ge_diag_init.u	diagnostics	board-diagnostic	data	-	12082	7e407147118cf628		0		0	0	located	ucode/ge_isa.md#the-program-files	The program files
+usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0		0	0	undocumented		
+usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	dynsym	0	0	named-only	docs/coverage.md#microcode-lower-priority	Microcode (lower priority)
+usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	dynsym	14	0	located	docs/kpm.md#diagnostic-tools-kpm-and-the-boundary-scan-library	Diagnostic tools: `kpm` and the boundary-scan library
+usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	45a61c37ce61cf80		2936	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	dynsym+mdebug	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
+usr/gfx/arch/IGLOO32/libgl.so	shared-libraries	shared-library	shared-object	n32	1833076	dff2b0d82deac998		3811	dynsym (dwarf addresses stale, dropped)	0	0	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
+usr/gfx/arch/IP27KONA/libGL.so	libraries	board-library	shared-object	o32	486700	214ae88b8179eaef		671	dynsym+mdebug	1	0	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	f9b9b85f96cbf830		4868	dynsym+mdebug	2893	0	named-only	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
+usr/gfx/arch/IP27KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	fecccf6de7ef8a22		673	dynsym (dwarf addresses stale, dropped)	1	0	undocumented		
+usr/gfx/arch/IP27KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	f22d2a199f6b8efb		4907	dynsym+dwarf	2881	0	named-only	docs/opengl.md#getboardinfo	`GetBoardInfo`
+usr/gfx/arch/IP27KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	425727f729a8a8aa		673	dynsym (dwarf addresses stale, dropped)	1	0	named-only	IRIX_FILES.md#4-symlinks	4. Symlinks
+usr/gfx/arch/IP27KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d0e932db4fa8e93f		4907	dynsym+dwarf	2909	0	named-only	IRIX_FILES.md#4-symlinks	4. Symlinks
+usr/gfx/arch/IP35KONA/libGL.so	libraries	board-library	shared-object	o32	486700	52f3e359d3ed9b44		671	dynsym+mdebug	1	0	undocumented		
+usr/gfx/arch/IP35KONA/libGLcore.so	libraries	board-library	shared-object	o32	2892600	d75291c990060f17		4868	dynsym+mdebug	2893	0	undocumented		
+usr/gfx/arch/IP35KONA32/libGL.so	libraries	board-library	shared-object	n32	516508	432edf22a00ea581		673	dynsym (dwarf addresses stale, dropped)	1	0	undocumented		
+usr/gfx/arch/IP35KONA32/libGLcore.so	libraries	board-library	shared-object	n32	3105592	89303b7f78578067		4907	dynsym+dwarf	2881	0	undocumented		
+usr/gfx/arch/IP35KONA64/libGL.so	libraries	board-library	shared-object	n64	567424	2f064d4d8de46085		673	dynsym (dwarf addresses stale, dropped)	1	0	undocumented		
+usr/gfx/arch/IP35KONA64/libGLcore.so	libraries	board-library	shared-object	n64	3434096	d5889b8581d8de51		4907	dynsym+dwarf	2909	0	undocumented		
+usr/gfx/dmconf	tools	shared-tool	executable	n32	162976	c575ec8d95fcd01d		192	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	2eec8716f6ad8a43	usr/gfx/gfxinit	227	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/hyperpipeinfo	board-tools	board-tool	executable	n32	18328	a43eeddde7bbbcbf		4	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/ircombine	board-tools	board-tool	executable	n32	766080	7016ad16f636dc67		1238	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dynsym	0	0	named-only	docs/coverage.md#dg	DG
+usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/gfx/ucode/KONA/arm1.u	microcode	board-microcode	data	-	465452	8431a8e3184c858f		0		0	0	named-only	ucode/arm1.md#arm-firmware-arm1u-and-the-host-token-map	ARM firmware (arm1.u) and the host-token map
+usr/gfx/ucode/KONA/arm1_kpm.u	microcode	board-microcode	data	-	7176	0938c672c1bf6b5a		0		0	0	named-only	docs/open-questions.md#arm-firmware	ARM firmware
+usr/gfx/ucode/KONA/dg4/cmb/1024x768_60.cmb	microcode	board-microcode	data	-	2272	c15312d32bbb3f58		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1200x900_72.cmb	microcode	board-microcode	data	-	2272	22191e1a0dbde580		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1280x1024+1920x1080_72.cmb	microcode	board-microcode	data	-	3688	2d0509d19ff41789		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1280x1024+4@640x480_60.cmb	microcode	board-microcode	data	-	7936	f8b0d56784397972		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1280x1024+NTSC_60.cmb	microcode	board-microcode	data	-	3688	ebbdf1423a000402		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1280x1024_60.cmb	microcode	board-microcode	data	-	2272	24f54d25c6914a97		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1280x1024_72.cmb	microcode	board-microcode	data	-	2272	09144cff263eef02		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1280x492_120s.cmb	microcode	board-microcode	data	-	2276	8af0b384f950b903		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1280x907+5@640x453_60.cmb	microcode	board-microcode	data	-	10768	883178d51b5c9b07		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1600x1024_60.cmb	microcode	board-microcode	data	-	2312	65f72a1fd94f723a		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1600x1024_60p.cmb	microcode	board-microcode	data	-	2316	945bf01bf95db751		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1600x1200_60.cmb	microcode	board-microcode	data	-	2272	53f87c0195dfaa3c		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1920x1035_30i.cmb	microcode	board-microcode	data	-	2276	697e9a4e537ce216		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1920x1080_72.cmb	microcode	board-microcode	data	-	2272	eb8f6dbde135f70c		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/1920x1200_66.cmb	microcode	board-microcode	data	-	2272	5e2d7fb8bdc1dd67		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/2048x1120_72.cmb	microcode	board-microcode	data	-	2272	5a293d8929fe3cfa		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/2@1280x1024_60.cmb	microcode	board-microcode	data	-	3688	cec70866b6b7bdc0		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/2@1280x1024_72.cmb	microcode	board-microcode	data	-	3688	de01b491d742321c		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/3@1024x768_60+1280x959_30i.cmb	microcode	board-microcode	data	-	6520	a8b67f9e3f71d49c		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/3@1280x1024_60.cmb	microcode	board-microcode	data	-	5104	f7a844aab44c3fb9		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/640x480_120s.cmb	microcode	board-microcode	data	-	2272	03d6b8e4f3e063e3		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/640x512_120s.cmb	microcode	board-microcode	data	-	2272	58ce9e0438110aa8		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/7@800x600_60+NTSC.cmb	microcode	board-microcode	data	-	12184	30e8cdb24207ac2f		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/8@640x480_60.cmb	microcode	board-microcode	data	-	12184	f09cc7e0565c6afe		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/8@800x600_60.cmb	microcode	board-microcode	data	-	12184	850856c09cbf8df6		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/cmb/960x680_60.cmb	microcode	board-microcode	data	-	2272	7d206ad3dbf6329a		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
+usr/gfx/ucode/KONA/dg4/vfo/1024x768_120_20e21s.vfo	microcode	board-microcode	data	-	18304	3bcb586bd16d9c10		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1024x768_120s.vfo	microcode	board-microcode	data	-	18304	35e5a2531aa15b6c		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1024x768_50.vfo	microcode	board-microcode	data	-	18088	f03d2aec3b4be821		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1024x768_60.vfo	microcode	board-microcode	data	-	18088	8a79d262c4e134a7		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1024x768_96_20e21s.vfo	microcode	board-microcode	data	-	18300	4704b7c81fd05378		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1024x768_96s.vfo	microcode	board-microcode	data	-	18300	ce21640085c962a9		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1080x809_30i.vfo	microcode	board-microcode	data	-	18312	3453ef3dccc3ed49		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1120x840_96_20e21s.vfo	microcode	board-microcode	data	-	18300	941e1a9faa5d0103		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1120x840_96s.vfo	microcode	board-microcode	data	-	18300	b463da4d178a6e61		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1200x900_72.vfo	microcode	board-microcode	data	-	18088	71a7dc87e8eef011		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x1024_114s.vfo	microcode	board-microcode	data	-	18304	2ec4ac1960c7dfc4		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x1024_120s.vfo	microcode	board-microcode	data	-	18304	4b61cae714467d74		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x1024_180qi.vfo	microcode	board-microcode	data	-	19564	4ae4b0e22afd83e3		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x1024_25r2.vfo	microcode	board-microcode	data	-	18320	f0284fb565a36479		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x1024_25r3.vfo	microcode	board-microcode	data	-	18628	4e6d031bf7579d87		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x1024_30r2.vfo	microcode	board-microcode	data	-	18324	dba01654e54934ab		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x1024_50.vfo	microcode	board-microcode	data	-	17992	e076c61800c36ef3		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x1024_60.vfo	microcode	board-microcode	data	-	17992	94412544fc431a62		0		0	0	undocumented		
+usr/gfx/ucode/KONA/dg4/vfo/1280x1024_72.vfo	microcode	board-microcode	data	-	17992	ff2cc2af6a202af5		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x492_120s.vfo	microcode	board-microcode	data	-	18320	a7c1b4a57e2965ce		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x720_5994p.vfo	microcode	board-microcode	data	-	18000	defdd50d4d941170		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x720_60p.vfo	microcode	board-microcode	data	-	18000	6b4c4d3dee24debd		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1280x959_30i.vfo	microcode	board-microcode	data	-	18312	218a11b633e83189		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1500x1200_60.vfo	microcode	board-microcode	data	-	18092	37968509e6691c4f		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1600x1024_60.vfo	microcode	board-microcode	data	-	17996	5ed02290e5618492		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1600x1024_60p.vfo	microcode	board-microcode	data	-	17996	afd7802c4578c587		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1600x1200_60.vfo	microcode	board-microcode	data	-	17992	4677c6b3de7df17b		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1760x1100_60.vfo	microcode	board-microcode	data	-	18016	4a0f196d275f5b82		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1035_30i.vfo	microcode	board-microcode	data	-	18532	b9479bd3b5ed6ca6		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1080_2398p.vfo	microcode	board-microcode	data	-	18000	fe01bf4fb2215573		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1080_2398psf.vfo	microcode	board-microcode	data	-	18308	610c89f9a970f980		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1080_24p.vfo	microcode	board-microcode	data	-	18000	80983b3dc5853096		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1080_24psf.vfo	microcode	board-microcode	data	-	18308	8c0abee0894c9688		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1080_25i.vfo	microcode	board-microcode	data	-	18304	b931ca7656c34d7a		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1080_30i.vfo	microcode	board-microcode	data	-	18532	73d9db38584227dd		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1080_5994i_bilevel.vfo	microcode	board-microcode	data	-	18304	b3a1c411ce059843		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1080_60.vfo	microcode	board-microcode	data	-	18008	7c8e6e149cdbbec1		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1080_60i_bilevel.vfo	microcode	board-microcode	data	-	18304	9109981b6f9f4d65		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1080_72.vfo	microcode	board-microcode	data	-	18000	df1ccb5eab6fc402		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1200_2398r2.vfo	microcode	board-microcode	data	-	18324	87d56f9556f2e456		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1200_24r2.vfo	microcode	board-microcode	data	-	18324	2e987e905a30a91f		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1200_50.vfo	microcode	board-microcode	data	-	18016	8f2898749493d498		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1200_60.vfo	microcode	board-microcode	data	-	18016	6b0e0b0f6c5c6dfe		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/1920x1200_66.vfo	microcode	board-microcode	data	-	18016	a6952d6f499641dc		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/2048x1120_72.vfo	microcode	board-microcode	data	-	18012	dd23ca4c42247478		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/640x480_120s.vfo	microcode	board-microcode	data	-	18300	48aa694a99e14471		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/640x480_180q.vfo	microcode	board-microcode	data	-	18628	ed8a2bfe9a745f06		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/640x480_60.vfo	microcode	board-microcode	data	-	18008	17e19916af5fab73		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/640x486_30i.vfo	microcode	board-microcode	data	-	18380	5c3d26acf16b7da2		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/640x512_120s.vfo	microcode	board-microcode	data	-	18300	6aa76446808b9325		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/640x512_180q.vfo	microcode	board-microcode	data	-	18628	0b3c4a7b2eef13c4		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/640x512_60.vfo	microcode	board-microcode	data	-	18088	8ae2fba016a47295		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/646x486_30i.vfo	microcode	board-microcode	data	-	18388	07aa1804a4a49572		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/646x486_30if.vfo	microcode	board-microcode	data	-	18404	fac47641561b6cd1		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/768x576_25i.vfo	microcode	board-microcode	data	-	18380	868f4695d268adc4		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/768x576_25if.vfo	microcode	board-microcode	data	-	18404	3107581c708fc487		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/800x600_60.vfo	microcode	board-microcode	data	-	18088	efa5d1a30dbde8b5		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/960x620_60.vfo	microcode	board-microcode	data	-	18088	26a776033189f4f0		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/960x680_60.vfo	microcode	board-microcode	data	-	18088	691d0c6e4f7c8ce4		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525.vfo	microcode	board-microcode	data	-	18388	a47ccdfe9be493aa		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo	microcode	board-microcode	data	-	17952	0fcb0981e8e15ff8		0		0	0	undocumented		
+usr/gfx/ucode/KONA/dg4/vfo/CCIR601_625.vfo	microcode	board-microcode	data	-	18388	148c1d55f145e83d		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/CCIR601_625_DGO.vfo	microcode	board-microcode	data	-	18388	cda7462e12f23d52		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1280x720_5994p.vfo	microcode	board-microcode	data	-	18000	c020fe7290806d8c		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1280x720_60p.vfo	microcode	board-microcode	data	-	18000	11c883d91239aab4		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_2398p.vfo	microcode	board-microcode	data	-	18004	a35c8d1a12c6c156		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_2398psf.vfo	microcode	board-microcode	data	-	18304	0555e3ef37546475		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_24p.vfo	microcode	board-microcode	data	-	18000	090938c415b7641a		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_24psf.vfo	microcode	board-microcode	data	-	18304	7073b7896431a873		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_50i.vfo	microcode	board-microcode	data	-	18304	25e938c2dcc516cc		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_5994i.vfo	microcode	board-microcode	data	-	18304	78899532e1e992dd		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_60i.vfo	microcode	board-microcode	data	-	18304	720623f379920d0b		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x486_5994i.vfo	microcode	board-microcode	data	-	18384	6d2a822a29a5f4dc		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x576_50i.vfo	microcode	board-microcode	data	-	18384	72a05060016445dd		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
+usr/gfx/ucode/KONA/dg4/vfo/README	microcode	board-microcode	data	-	86997	bf7cb03493b3b264		0		0	0	understood	ucode/dg.md#the-listing-and-the-per-file-values-dg4vfo	The listing and the per-file values (`dg4/vfo/`)
+usr/gfx/ucode/KONA/dgo1/dgo.mcs	microcode	board-microcode	data	-	93912	ec92153b2b6da903		0		0	0	named-only	ucode/dg.md#option-board-image-dgo1dgomcs	Option-board image (`dgo1/dgo.mcs`)
+usr/gfx/ucode/KONA/ge.hex	microcode	board-microcode	data	-	1563025	6258b8ae9e67dd32		0		0	0	undocumented		
+usr/gfx/ucode/KONA/ge.u	microcode	board-microcode	data	-	2526129	89066cc1dc88d87f		0		0	0	named-only	docs/tooling.md#build-and-run	Build and run
+usr/gfx/ucode/KONA/ge11.u	microcode	board-microcode	data	-	1275741	95724af2dc9dc5be		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
+usr/gfx/ucode/KONA/ge_kpm.hex	microcode	board-microcode	data	-	4650	617b3f0afd02ae0e		0		0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
+usr/gfx/ucode/KONA/ge_symbols	microcode	board-microcode	data	-	67100	67126e0f66aea936		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
+usr/gfx/ucode/KONA/ged1b.u	microcode	board-microcode	data	-	14411	41c4b5724774fe42		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
+usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0		0	0	undocumented		
+usr/gfx/ucode/KONA/tport.bin	microcode	board-microcode	data	-	127889	ba8efd1cc0f83068		0		0	0	understood	ucode/tport.md#what-it-is	What it is
+usr/gfx/ucode/KONA/vof/1280x1024.monitor	microcode	board-microcode	data	-	295	55c148a0d113b0eb		0		0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
+usr/gfx/ucode/KONA/vof/640x480_60.vof	microcode	board-microcode	data	-	6775	87aa18319bb63ea8		0		0	0	understood	docs/display-formats.md#output-format-sources	Output-format sources
+usr/gfx/ucode/KONA/vof/default.monitor	microcode	board-microcode	data	-	263	42159a9309bb4ea3		0		0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
+usr/gfx/ucode/KONA/vof/default.vof	microcode	board-microcode	data	-	7588	b694ac093f754866		0		0	0	understood	docs/display-formats.md#output-format-sources	Output-format sources
+usr/gfx/ucode/KONA/vof/ntsc.monitor	microcode	board-microcode	data	-	294	d36a59b944f39f21		0		0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
+usr/gfx/ucode/KONA/vof/vga.monitor	microcode	board-microcode	data	-	259	60d3cbbb46fd5f0d		0		0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
+usr/gfx/ucode/KONA/vof/vga.vof	microcode	board-microcode	data	-	7029	9b366dae30983d76		0		0	0	understood	docs/display-formats.md#output-format-sources	Output-format sources
+usr/gfx/ucode/vfc/rules/dg4.def	video-formats	board-data	data	-	10708	aac372e63b5f7a2a		0		0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
+usr/gfx/ucode/vfc/rules/dg4_ddo_gvo.def	video-formats	board-data	data	-	12208	d73fb0145682bdbc		0		0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
+usr/gfx/ucode/vfc/rules/dplex.def	video-formats	board-data	data	-	10663	dcd806610ebc3c41		0		0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
+usr/gfx/ucode/vfc/rules/voc1.def	video-formats	board-data	data	-	1980	125832d2727b529f		0		0	0	understood	ucode/dg.md#format-compiler-rules-usrgfxucodevfcrules	Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
+usr/gfx/ucode/vfc/sdbutil	board-tools	board-tool	executable	n32	70452	3fa52d6c92f4026b		93	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d7eec8		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	dynsym	0	0	named-only	docs/kernel.md#who-sends-them	Who sends them
+usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	none	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	dynsym+dwarf	0	0	named-only	docs/libfm.md#the-font-manager-library-libfmso-function-reference	The font-manager library (`libfm.so`): function reference
+var/sysgen/master.d/gfxs	kernel-config	shared-data	data	-	399	ef56620faa1e0634		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
+var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0		0	0	named-only	docs/data-files.md#diagnostic-data-format-files-and-installed-tools	Diagnostic data, format files and installed tools
+var/sysgen/system/gfx.sm	kernel-config	shared-data	data	-	878	47fa105a54a80d26		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
