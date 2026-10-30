@@ -106,6 +106,7 @@ Scripts (`scripts/`, run from the repository root):
 - `extract_kona_ddx.py`: the same for an X server module, grouped by function-name prefix or by your own `ddx/groups.json`.
 - `inventory.py`: measure coverage from the binaries. It lists every binary, function, MMIO offset, command token, ioctl, microcode routine and listed register in scope into [docs/inventory/](docs/inventory/README.md), gives each a status (documented, no-software-dependency, named-only or undocumented, with the doc and section that explains it) and rewrites the totals at the top of `docs/coverage.md`. Run it inside the build image with this workspace mounted; it needs the MIPS binutils and `pyelftools`.
 - `analyze_fifo.py`, `extract_gl_tokens.py`: find accesses to a hardware address window in the assembly, and map the first FIFO word each decompiled GL function stores to that function. Both take the address window or FIFO address you found as arguments; none is built in.
+- `ghidra/scripts/`: Ghidra headless scripts for IRIX code (gp and jump-table recovery, register-window stores, call edges, struct typing, bulk decompile), with the rules for choosing between Ghidra and the pipeline in [ghidra/scripts/README.md](ghidra/scripts/README.md). Shared, byte for byte, with the other graphics workspaces.
 
 The scripts descend from gr4's and carry its BSD-3 notice ([scripts/LICENSE-gr4](scripts/LICENSE-gr4)).
 

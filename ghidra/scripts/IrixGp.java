@@ -21,13 +21,18 @@
 //     then fold to the callee or data address and jump-table bases fold to the
 //     table, which lets the switch analysis recover the table.
 //  3. Relocatable kernel objects (kona.a members) have no GOT or gp value at
-//     all: small data is reached by gp-relative relocations against .srdata or
-//     .sdata, and the loader rewrites the immediates for a gp it does not
-//     keep. The script recovers gp as the small-data block start minus the
-//     smallest such immediate and checks that every access falls inside the
-//     block. Because the script must read instructions it needs functions, so
-//     a relocatable object needs it run as a post-script; a shared object
-//     needs the pre-script form. Run it as both when unsure.
+//     all: small data is reached by R_MIPS_GPREL16 relocations, and the loader
+//     rewrites each gp-relative immediate for a gp it does not keep. The script
+//     recovers that gp from the relocation records. For each GPREL16 record the
+//     target is the symbol's address plus the addend held in the original
+//     instruction (a section symbol also adds the object's gp0, the gp_value of
+//     its register-info option), and the loader's immediate is target - gp, so
+//     gp = target - immediate. Every record must give the same gp, which is the
+//     check; the value is set over the executable blocks. Because it reads the
+//     relocation table it can run before or after analysis. When the object has
+//     no relocation records the script falls back to guessing from the
+//     smallest gp-relative immediate (slot 0 of the small-data block), which is
+//     right only when that access is to the first small-data word.
 //
 // Limits: one gp per object unless a prologue disagrees; a binary that sets gp
 // by other means (hand-written assembly, a non-standard prologue) keeps the
@@ -39,6 +44,7 @@ import ghidra.program.model.address.*;
 import ghidra.program.model.lang.*;
 import ghidra.program.model.listing.*;
 import ghidra.program.model.mem.*;
+import ghidra.program.model.reloc.*;
 import ghidra.program.model.symbol.*;
 import java.math.BigInteger;
 import java.util.*;
@@ -66,6 +72,7 @@ public class IrixGp extends GhidraScript {
             MemoryBlock sd = mem.getBlock(".srdata");
             if (sd == null) sd = mem.getBlock(".sdata");
             if (sd == null) { println("IrixGp: no small-data block, nothing to set"); return; }
+            if (gpFromRelocations()) return;
             // Ghidra rewrites each gp-relative immediate (relocation against the
             // small-data block) assuming some gp it does not record. Every such
             // access lands in the block, so the smallest immediate is slot 0:
@@ -133,18 +140,88 @@ public class IrixGp extends GhidraScript {
         for (MemoryBlock b : mem.getBlocks())
             if (b.isExecute())
                 ctx.setValue(gp, b.getStart(), b.getEnd(), BigInteger.valueOf(best));
-        // Functions whose prologue disagrees.
+        // Functions whose prologue disagrees. Each one's value runs to the next
+        // code symbol, so it cannot leak into a neighbour that agrees with the
+        // object value.
+        TreeSet<Address> starts = new TreeSet<>();
+        SymbolIterator si = currentProgram.getSymbolTable().getSymbolIterator(true);
+        while (si.hasNext()) {
+            Symbol s = si.next();
+            if (s.getSymbolType() != SymbolType.FUNCTION && s.getSymbolType() != SymbolType.LABEL) continue;
+            MemoryBlock b = mem.getBlock(s.getAddress());
+            if (b != null && b.isExecute()) starts.add(s.getAddress());
+        }
         int odd = 0;
         for (Map.Entry<Address, Long> e : perFunc.entrySet()) {
             if (e.getValue() == best) continue;
             Address a = e.getKey();
-            Address end = a.add(0x1000);
             MemoryBlock b = mem.getBlock(a);
-            if (end.compareTo(b.getEnd()) > 0) end = b.getEnd();
+            Address nxt = starts.higher(a);
+            Address end = (nxt == null || !b.contains(nxt)) ? b.getEnd() : nxt.subtract(1);
             ctx.setValue(gp, a, end, BigInteger.valueOf(e.getValue()));
             odd++;
         }
         println("IrixGp: " + odd + " function(s) with their own gp");
+    }
+
+    // gp0, the gp the assembler assumed: gp_value of the register-info option
+    // (.MIPS.options, 64-bit and N32 objects) or of .reginfo (32-bit objects).
+    private long gp0() throws Exception {
+        Memory mem = currentProgram.getMemory();
+        MemoryBlock ri = mem.getBlock(".reginfo");
+        if (ri != null && ri.getSize() >= 24) return mem.getInt(ri.getEnd().subtract(3)) & 0xffffffffL;
+        MemoryBlock op = mem.getBlock(".MIPS.options");
+        if (op == null) return 0;
+        Address a = op.getStart();
+        while (a.compareTo(op.getEnd()) < 0) {
+            int kind = mem.getByte(a) & 0xff, size = mem.getByte(a.add(1)) & 0xff;
+            if (size < 8) break;
+            if (kind == 1) // ODK_REGINFO: gprmask, (pad,) cprmask[4], gp_value
+                return size >= 40 ? mem.getLong(a.add(size - 8)) : (mem.getInt(a.add(size - 4)) & 0xffffffffL);
+            a = a.add(size);
+        }
+        return 0;
+    }
+
+    // Recover gp of a relocatable object from its R_MIPS_GPREL16 records.
+    // Returns false when there are none to use.
+    private boolean gpFromRelocations() throws Exception {
+        Memory mem = currentProgram.getMemory();
+        long gp0 = gp0();
+        Map<Long, Integer> votes = new HashMap<>();
+        for (Relocation r : (Iterable<Relocation>) () -> currentProgram.getRelocationTable().getRelocations()) {
+            if (r.getType() != 7 || r.getBytes() == null || r.getBytes().length < 4) continue;
+            byte[] by = r.getBytes();
+            long addend = (short) (((by[2] & 0xff) << 8) | (by[3] & 0xff));
+            long cur = mem.getShort(r.getAddress().add(2));
+            String name = r.getSymbolName();
+            long sym;
+            MemoryBlock blk = name == null ? null : mem.getBlock(name);
+            if (blk != null && name.startsWith(".")) { sym = blk.getStart().getOffset(); addend += gp0; }
+            else {
+                Long a = null;
+                if (name != null)
+                    for (Symbol s : currentProgram.getSymbolTable().getSymbols(name)) { a = s.getAddress().getOffset(); break; }
+                if (a == null) continue;
+                sym = a;
+            }
+            votes.merge(sym + addend - cur, 1, Integer::sum);
+        }
+        if (votes.isEmpty()) return false;
+        long best = 0; int bestN = 0, total = 0;
+        for (Map.Entry<Long, Integer> e : votes.entrySet()) {
+            total += e.getValue();
+            if (e.getValue() > bestN) { best = e.getKey(); bestN = e.getValue(); }
+        }
+        ProgramContext ctx = currentProgram.getProgramContext();
+        Register gp = currentProgram.getRegister("gp");
+        for (MemoryBlock b : mem.getBlocks())
+            if (b.isExecute())
+                ctx.setValue(gp, b.getStart(), b.getEnd(), BigInteger.valueOf(best));
+        println("IrixGp: relocatable object, gp = " + Long.toHexString(best) + " from " + bestN + " of "
+            + total + " gp-relative relocations (gp0 " + Long.toHexString(gp0) + ")"
+            + (bestN == total ? ", all agree" : ", " + (votes.size() - 1) + " other value(s): CHECK"));
+        return true;
     }
 
     // gp a function computes in its prologue, or null if it computes none.

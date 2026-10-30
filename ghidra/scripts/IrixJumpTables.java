@@ -132,6 +132,12 @@ public class IrixJumpTables extends GhidraScript {
         Integer bound = null;
         String idxReg = null;
         Long base = null;
+        // o32 dispatch: the entry load carries the low half of the table address
+        // as its displacement, and the entry is an offset from gp, added to gp
+        // before the jr. tableReg holds base + scaled index, loadedReg the entry.
+        String tableReg = null, loadedReg = null;
+        long disp = 0;
+        boolean gpRel = false;
         for (Instruction in : win) {
             // A delay-slot instruction's mnemonic carries a leading underscore.
             String m = in.getMnemonicString();
@@ -157,6 +163,14 @@ public class IrixJumpTables extends GhidraScript {
                 case "move": case "or": case "addu": case "daddu": {
                     if (r[0] == null) break;
                     Register a = r[1], b = r[2];
+                    if (loadedReg != null && m.equals("addu") && a != null && b != null
+                        && ((a.getName().equals(loadedReg) && b.getName().equals("gp"))
+                            || (b.getName().equals(loadedReg) && a.getName().equals("gp")))) {
+                        // entry + gp: the table holds gp-relative offsets.
+                        loadedReg = r[0].getName();
+                        gpRel = true;
+                        break;
+                    }
                     if (a == null) { val.remove(r[0].getName()); break; }
                     Long va = a == null ? null : (a.getName().equals("zero") ? Long.valueOf(0) : val.get(a.getName()));
                     Long vb = b == null ? Long.valueOf(0) : (b.getName().equals("zero") ? Long.valueOf(0) : val.get(b.getName()));
@@ -165,8 +179,9 @@ public class IrixJumpTables extends GhidraScript {
                     if ((va != null) ^ (vb != null)) {
                         // base + scaled index: the known side is the table base.
                         String unknown = va == null ? a.getName() : (b == null ? "?" : b.getName());
-                        if (r[0].getName().equals(tgtReg) || true) base = va != null ? va : vb;
+                        base = va != null ? va : vb;
                         idxReg = unknown;
+                        tableReg = r[0].getName();
                         val.remove(r[0].getName());
                         break;
                     }
@@ -187,7 +202,12 @@ public class IrixJumpTables extends GhidraScript {
                         } catch (Exception e) { val.remove(r[0].getName()); }
                     } else {
                         val.remove(r[0].getName());
-                        if (r[0].getName().equals(tgtReg)) width = m.equals("ld") ? 8 : 4;
+                        if (gpBase != null && tableReg != null && gpBase.getName().equals(tableReg)) {
+                            // the entry load: base + index, plus the displacement
+                            disp = s == null ? 0 : s.getSignedValue();
+                            width = m.equals("ld") ? 8 : 4;
+                            loadedReg = r[0].getName();
+                        } else if (r[0].getName().equals(tgtReg)) width = m.equals("ld") ? 8 : 4;
                     }
                     break; }
                 default:
@@ -204,6 +224,7 @@ public class IrixJumpTables extends GhidraScript {
                     + " but no table base the evaluator could follow (vals " + val + ")");
             return 0;
         }
+        base += disp;
         int n = bound;
         List<Address> targets = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -211,6 +232,10 @@ public class IrixJumpTables extends GhidraScript {
             long t;
             try { t = readEntry(a, width); }
             catch (Exception e) { println("IrixJumpTables: " + f.getName() + " table unreadable at " + a); return 0; }
+            if (gpRel) {
+                if (!haveGp) { println("IrixJumpTables: " + f.getName() + " gp-relative table at " + toAddr(base) + " but gp is unknown; run IrixGp.java first"); return 0; }
+                t = gpValue + (int) t;
+            }
             Address ta = toAddr(t);
             MemoryBlock b = mem.getBlock(ta);
             if (b == null || !b.isExecute()) {
@@ -227,7 +252,7 @@ public class IrixJumpTables extends GhidraScript {
         // switch rather than treating the jump as a call.
         new JumpTable(jrAddr, new ArrayList<>(targets), true, 0).writeOverride(f);
         println("IrixJumpTables: " + f.getName() + " jr at " + jrAddr + ": " + n + " entries of " + width
-            + " bytes from " + toAddr(base) + " (" + new HashSet<>(targets).size() + " distinct targets)");
+            + (gpRel ? " bytes (gp-relative) from " : " bytes from ") + toAddr(base) + " (" + new HashSet<>(targets).size() + " distinct targets)");
         return n;
     }
 }
