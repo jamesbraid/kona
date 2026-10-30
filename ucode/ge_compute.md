@@ -728,6 +728,18 @@ downloads the filter's fog table. The parameters live in engine memory from 0x9d
   multiplies the input depth bounds to get the fine step as a result, compares against 251, 253 and 0.001 (constants loaded at 0x7206, 0x7241 and 0x7220),
   calls `mStartGSS` for searched points (0x7217, 0x7255), and writes the resulting mode word to the filters through bus address 0x1f8;
   it ends the command itself on `cc` 2 or 0x11.
+  Its loop (0x71f0-0x72b6, indexed by address register 6, which 0x72a5 steps down with F = 0x20) is a best-so-far search. Before the loop it points
+  address register 8 at engine word 0x8d2c (0x71eb) and stores 4096.0 there (0x71ef). Each pass loads a candidate word
+  through register 9 (0x7281). 0x7282 subtracts the best word at register 8 from it in routing form `r110` = 0x7bd: port 1,
+  the loaded word, minus port 2 ([ge_isa.md](ge_isa.md#operand-ports-and-result-forwarding)), so d = candidate - best.
+  0x7286 takes d forwarded from four words back (`r128` = 5) and subtracts the staged 0.001 (0x7285). With the
+  [twelve-word flag delay](ge_ops.md#the-twelve-word-flag-delay), `cc` 0 at 0x7291 tests d <= 0 and goes to 0x729b, and
+  `cc` 1 at 0x7292 tests d - 0.001 > 0 and skips to the step at 0x72a5. Falling through also reaches 0x729b. 0x729b stores
+  the loaded word through register 8, making it the new best, and 0x72a4 records register 6 in staging word 0x2f. After
+  the loop 0x72bf loads that index back into register 6. **Inferred:** the result is the pass whose candidate is smallest, with
+  4096.0 as the ceiling. A later pass replaces the best when its candidate is no more than 0.001 above it, so near ties go to the
+  later pass. The established port order makes this a minimum search, and the other order would make it a maximum search
+  that starts at 4096.0.
 - `mStartGSS` (`fog.S` lines 1162-1181, at 0x783f): **inferred**, starts a golden-section search for a table break point. It stores
   the address of `mLinearApproxParamsGSS` as the routine to run (0x730b) and sets up the search state at 0xa3f, so the
   result is a search that the following commands advance.
@@ -1561,7 +1573,9 @@ engine takes each part of a pixel stream. Output records are the seven-word reco
   draws a bitmap at the raster position minus its origin, and the reverse order would draw every bitmap at origin minus
   position, mirrored through the window corner; `mgeb_BitmapApplyMove` then adds both the origin and the move operands
   (the four adds at 0xa7d2-0xa7db), which returns to position plus move only if this handler subtracted the origin from
-  the position. So form 0x7bd yields the memory word minus the register-file operand, which settles the order in
+  the position. So form 0x7bd yields the loaded word minus the word read through A and D. The port layout in
+  [ge_isa.md](ge_isa.md#operand-ports-and-result-forwarding) now establishes that order from the diagnostic's expected words, and
+  this handler and `mDefineFineMode`'s search are its two production witnesses. It settles the order in
   `uMatrixMultCCC`. Its empty-bitmap path is not consistent with that alone: `arm_bitmap` sends the same four floats to
   `mgeb_BitmapApplyMove` without this handler running first (0x0c02b570-0x0c02b588), which adds the origin to the
   position; GL's empty bitmaps normally carry a zero origin, so the difference does not show.

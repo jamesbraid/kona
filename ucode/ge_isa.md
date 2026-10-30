@@ -114,7 +114,37 @@ Smaller wired fields, all **established** in [ge_wiring.tsv](ge_wiring.tsv): R19
 
 **Inferred (field G in form 14).** In form-14 words with `r219` = 1, G names the register written and C the register read, with C = 0x1e meaning the word's own immediate. Of the 356 words that carry F = 0x25 with `r222` = 1, 168 have G = C, a read-modify-write of one register. Where such a word sits in a loop, a form-14 word with C = 0x1e loads the same G a few words earlier, and the loop's relative transfer follows. Examples: `mgesi_FlushRM` loads 8 into register 0xf at 0x380e and steps it at 0x3814 under the transfer at 0x3816. `mges_ContextReloadFromBEF` loads 0x59, the length of the 89-word raster shadow, into register 2 at 0x673c and steps it at 0x6741 and 0x6751 under the transfer at 0x6753. The word at 0x6641 in `ctx_load.S` (immediate 0x1fa, C = 0x1e, G = 2) has the same shape. It loads 0x1fa into register 2, 0x6645 steps register 2, and the transfer at 0x6647 (relative -2) repeats it. The four delay slots after it, 0x6648-0x664b, store staging registers 0x1e, 0x1d and 0x1c to engine memory through the pointer fields `r95` = 4, 5 and 6. No later word reads register 2 before 0x6653 loads it again with 0xeaf. **Inferred:** 0x1fa there is the iteration count of a copy loop and never leaves the engine. It is not the host's activate token, which has the same value. What F = 0x25 does to the count (a decrement is the reading that fits) is **unknown**.
 
-**Unknown:** what most decoded record bits do. The largest decoded groups are R148-139 (10 bits, decoded in forms 1-13), R128-122 and R110-100, and the whole of R62-26 outside form 0. These are the candidates for the arithmetic operation codes.
+**Unknown:** what most decoded record bits do. The largest decoded groups are R148-139 (10 bits, decoded in forms 1-13), R128-122 and R110-100, and the whole of R62-26 outside form 0. For unit 1 the first three now have a reading ([below](#operand-ports-and-result-forwarding)); the rest of R110-100 and R62-26 remain the candidates for further operation and routing codes.
+
+### Operand ports and result forwarding
+
+Unit 1 has two operand ports. For each port the word names a source in `r110` and, for the sources that need one, a register in `r148` or a forwarded result in `r128`. Sources: production `ge.u` and the IR diagnostic `ge.u` (IRIX 6.5.30m, `usr/gfx/ucode/KONA/` and `usr/diags/IR/ucode/`), with the expected words of `irsaudit` `expected_token`.
+
+| Field | Port 1 | Port 2 |
+|---|---|---|
+| Source selector | `r110` bits 9-8 | `r110` bits 7-6 |
+| Register, when the selector is 0 | `r148` bits 9-5 | `r148` bits 4-0 |
+| Forwarded result, when the selector is 1 | `r128` bits 5-3 | `r128` bits 2-0 |
+
+**Established** (the port fields). The diagnostic instruction test names its two registers in `r148`, first register in bits 9-5 ([ge_ops.md](ge_ops.md#the-diagnostic-programs-instruction-test)), and every two-register case there has `r110` = 0x43d, both selectors 0. Over the production words that run unit 1 alone (unit 2 idle), a selector of 1, 2 or 3 leaves the matching register field at 0 in 12,785 of 12,823 words for port 1 and 14,695 of 14,947 for port 2. A selector of 2 or 3 also leaves the matching `r128` field at its idle value 5, in all but 9 of 23,005 port uses. A selector of 1 occurs 2,730 times for port 1 and 2,035 times for port 2.
+
+**Established** (selector 1 forwards a result). Read the 3-bit `r128` field as k. Codes 0-3 take the result of the unit-1 operation 4 + k words earlier, and codes 4-7 the result of the unit-2 operation 4 + (k - 4) words earlier. Two independent sites agree:
+
+- The diagnostic chain at `ge_inst.s` lines 3512-3528 (0x1a1c, 0x1a20, 0x1a25, 0x1a2b). Four form-11 words each run an integer add and a float multiply. They write different registers each time (Q = 2, 4, 6, 0x11; P = 3, 5, 7, 0x12), so no register carries a result from one word to the next. Yet `irsaudit` expects 20, 30, 40, 50 and 100.0, 1000.0, 1e4, 1e5 (index 128-135). The three later words carry `r128` = 0x04, 0x0d and 0x16. Their unit-1 field reads 0, 1 and 2, and the previous word is 4, 5 and 6 words back. Their unit-2 field reads 4, 5 and 6, at the same distances.
+- The production program. Among the 4,765 forwarded operands in words that run unit 1 alone, 4,740 have an operation of the named unit exactly that many words earlier. Code 0 matches in 1,883 of 1,893 uses and code 4 in 840 of 852. All 25 misses involve the double-precision codes 0x22, 0x31 and 0x35 (M = 0x6a2, 0x6b1, 0x6b5) as consumer or producer, which take two words.
+
+So a single-precision unit-1 or unit-2 result is available four words after the word that computes it. The forwarding window holds the results of the words four to seven back. Code 5 is also the field's idle value, since a word that does not select forwarding leaves it there. 121 port-1 uses of code 5 are real forwards of the unit-2 result five words back.
+
+**Inferred** (selectors 2 and 3). Selector 2 takes the word the instruction itself reads through A and D: a staging word, a command operand (A = 0x1f), or engine memory through an address register. Selector 3 takes the word loaded by a preceding read that has no destination of its own. Form-14 reads such as 0x7281 (A = 9) and 0xa7e8 (immediate 0x31) are those reads, and the diagnostic's integer add at line 1096 (0x098d) adds the word read at 0x0988 to register 0. A move (unit-1 code 0x4a) has both selectors at 2 in its common routing `r110` = 0x6bd and copies port 1.
+
+**Established** (subtract order in every routing form). The single-precision subtract returns port 1 minus port 2: diagnostic line 3774 puts B in register 1 (`r148` bits 9-5) and A in register 0, and `irsaudit` expects B - A. Routing form `r110` = 0x7bd selects 3 for port 1 and 2 for port 2, so it returns the loaded word minus the word the instruction reads through A and D. Two production sites agree:
+
+- `mgeb_BitmapApplyOrig` subtracts command operand 0 (A = 0x1f, port 2) from the raster position loaded at 0xa7e8 (port 1), which is GL's bitmap placement ([ge_compute.md](ge_compute.md#pixel-output-and-set-up-mpixouts-mpixelsetups)).
+- `mDefineFineMode`'s search keeps the smaller of two error words (`fog.S` 0x7281-0x72a5, [ge_compute.md](ge_compute.md#fog-fogs)).
+
+The other order would break both.
+
+The `r110` values with other low bits belong to unit 2 and the seed unit. Their port layout is **unknown**: the evidence above covers unit 1 only.
 
 ### How code reaches the special registers
 
