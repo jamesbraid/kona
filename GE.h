@@ -8196,6 +8196,9 @@ enum kona_kpm_spare_token {
 
 /* ge_token_comments: shadow rows begin */
 
+/* The 89 enumerators below are shadow words, not host tokens; docs/ge-shadow-words.md
+ * tabulates each with its register, start-up value, writers and role. */
+
 enum kona_kpm_shadow_row {
     /* Functions that load the slot 0x110 address word: `CommonPixEnd`
      * (0x0c026824), `PixEndReadConvolve` (0x0c026bec), `__glkonSetupPacker`
