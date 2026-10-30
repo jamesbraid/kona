@@ -2312,18 +2312,18 @@ ge.u	label	0x000052a3	mRelX		understood	ucode/ge_compute.md#x-server-drawing-ent
 ge.u	label	0x000052c4	mAbsX		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x000052e8	mgesi_VCbusWriteMultiple		located	ucode/ge_handlers.md#videos	video.S
 ge.u	label	0x00005305	mgesi_VCbusWrite		located	ucode/ge_handlers.md#videos	video.S
-ge.u	label	0x00005312	mmo_UnpackVertexV3F_C4UB_T2S_LGT		located	ucode/ge_handlers.md#munpacks	munpack.S
-ge.u	label	0x00005368	mmo_UnpackVertexV3F_T2S_LGT		located	ucode/ge_handlers.md#munpacks	munpack.S
-ge.u	label	0x000053a8	mmo_UnpackVertexV3F_C4UB_T2F_LGT		located	ucode/ge_handlers.md#munpacks	munpack.S
-ge.u	label	0x000053f6	mmo_UnpackVertexV3F_T2F_LGT		located	ucode/ge_handlers.md#munpacks	munpack.S
-ge.u	label	0x0000542c	mmo_UnpackVertexV3F_C4UB_LGT		located	ucode/ge_handlers.md#munpacks	munpack.S
-ge.u	label	0x00005470	mmo_UnpackVertexV3F_LGT		located	ucode/ge_handlers.md#munpacks	munpack.S
-ge.u	label	0x0000549e	mmo_UnpackVertexV3F_C4UB_N3S_T2S		located	ucode/ge_handlers.md#munpacks	munpack.S
-ge.u	label	0x00005504	mmo_UnpackVertexV3F_N3S_T2S		located	ucode/ge_handlers.md#munpacks	munpack.S
-ge.u	label	0x000055da	mmo_UnpackVertexV3F_C4UB_N3S_T2F		located	ucode/ge_handlers.md#munpacks	munpack.S
-ge.u	label	0x0000563d	mmo_UnpackVertexV3F_N3S_T2F		located	ucode/ge_handlers.md#munpacks	munpack.S
-ge.u	label	0x000056ff	mmo_UnpackVertexV3F_C4UB_N3S		located	ucode/ge_handlers.md#munpacks	munpack.S
-ge.u	label	0x00005757	mmo_UnpackVertexV3F_N3S		located	ucode/ge_handlers.md#munpacks	munpack.S
+ge.u	label	0x00005312	mmo_UnpackVertexV3F_C4UB_T2S_LGT		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
+ge.u	label	0x00005368	mmo_UnpackVertexV3F_T2S_LGT		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
+ge.u	label	0x000053a8	mmo_UnpackVertexV3F_C4UB_T2F_LGT		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
+ge.u	label	0x000053f6	mmo_UnpackVertexV3F_T2F_LGT		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
+ge.u	label	0x0000542c	mmo_UnpackVertexV3F_C4UB_LGT		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
+ge.u	label	0x00005470	mmo_UnpackVertexV3F_LGT		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
+ge.u	label	0x0000549e	mmo_UnpackVertexV3F_C4UB_N3S_T2S		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
+ge.u	label	0x00005504	mmo_UnpackVertexV3F_N3S_T2S		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
+ge.u	label	0x000055da	mmo_UnpackVertexV3F_C4UB_N3S_T2F		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
+ge.u	label	0x0000563d	mmo_UnpackVertexV3F_N3S_T2F		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
+ge.u	label	0x000056ff	mmo_UnpackVertexV3F_C4UB_N3S		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
+ge.u	label	0x00005757	mmo_UnpackVertexV3F_N3S		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
 ge.u	label	0x0000580a	mgeb_RestoreNormal		located	ucode/ge_handlers.md#unpacks	unpack.S
 ge.u	label	0x0000581b	mgeb_RestoreColor		located	ucode/ge_handlers.md#unpacks	unpack.S
 ge.u	label	0x0000582e	mgeb_DisableUnpack		located	ucode/ge_handlers.md#unpacks	unpack.S

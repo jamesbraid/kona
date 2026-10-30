@@ -3227,3 +3227,57 @@ not read here.
   each vertex pair it takes the material emissive and ambient words (register 5 plus 0xe-0x10, register 6 plus 0xf),
   adds the light sums, copies the alpha word from register 0xd plus 6 into record word 0x1e of both vertices, and
   writes the lit colour to record words 0x1b-0x1d; record word 0xb gets staging word 0.
+
+## Vertex-array unpacking with lighting inputs (munpack.S)
+
+Read from the [munpack.S listing](ge_listing/munpack.S.lst) (`ge.u`, IRIX 6.5.30m). These are the `m`-module forms of the
+[uunpack.s](#vertex-array-unpacking-uunpacks) unpackers for vertex arrays that feed lighting, each a single label holding
+set-up and loop. They read the successor word from control word 0xdb (`r95` = 2), take the pass count from register
+0x19, point address registers 0xe and 0xf at the two records of a pass (one per thread, the W71 words writing the second)
+and step them by register 0x13. The record layout is the uunpack one: w in word 3, colour in 4-7, normal in 8-0xa,
+texture s and t in 0xb and 0xc, r and q in 0xd and 0xe. Where an array lacks a part, the module takes the current value
+from engine words 0x13a7-0x13aa (colour) or 0x13ab-0x13ad (normal) with `r95` = 0x17 reads.
+
+- `mmo_UnpackVertexV3F_LGT` (`munpack.S` lines 605-615, at 0x5470): **inferred**, positions only, for lit vertices. Its
+  inputs are the delivered x, y and z; it takes the current colour and current normal (0x5470-0x547c) and its loop
+  (0x5484-0x5493) produces each record by moves alone: w from register 0x1f, colour into words 4-7 and normal into 8-0xa
+  of both records. Nothing converts or scales a value.
+- `mmo_UnpackVertexV3F_C4UB_LGT` (`munpack.S` lines 632-644, at 0x542c): **inferred**, positions with a packed byte colour.
+  It takes the packed colour input, stages the shift counts 0x18, 8 and 0x10 and the scale 1/255 (0x3b808080), splits the colour word with left and
+  right shifts (codes 0x5f and 0x5d), converts each byte to float (0x73) and multiplies it by 1/255 into words 4-7;
+  the current normal (0x13ab-0x13ad) fills words 8-0xa of the output.
+- `mmo_UnpackVertexV3F_T2F_LGT` (`munpack.S` lines 659-671, at 0x53f6): **inferred**, positions and float texture
+  coordinates. Every one of its 31 operations is a move (code 0x4a): the s and t input words go to record words 0xb and
+  0xc, r and q get 0 and 1 in 0xd and 0xe, and the current colour and normal fill 4-0xa, so the result is a full record
+  and nothing computes.
+- `mmo_UnpackVertexV3F_C4UB_T2F_LGT` (`munpack.S` lines 689-703, at 0x53a8): **inferred**, takes float texture coordinates in addition to
+  the byte colour and converts the colour: the same 1/255 scaling of the shifted bytes (eight multiplies, code 0x47f) gives words 4-7, the
+  texture words are moved to 0xb and 0xc, and only the normal is taken from the current state for the output record.
+- `mmo_UnpackVertexV3F_T2S_LGT` (`munpack.S` lines 720-734, at 0x5368): **inferred**, short texture coordinates. It stages
+  16 (0x10) as a shift count and splits the packed s, t word into two signed halves with one left shift (0x5f) and
+  arithmetic right shifts (0x5b), converts them to float (0x73) for the results in words 0xb and 0xc, and takes colour and normal from the
+  current state.
+- `mmo_UnpackVertexV3F_C4UB_T2S_LGT` (`munpack.S` lines 752-768, at 0x5312): **inferred**, takes byte colour and short texture
+  coordinates together and converts both: four shift counts and 1/255 are staged, the colour bytes are converted and scaled (code 0x47f) to
+  words 4-7 and the two signed shorts are extended and converted to the texture output; the normal comes from 0x13ab-0x13ad.
+- `mmo_UnpackVertexV3F_N3S` (`munpack.S` lines 238-303, at 0x5757): **inferred**, positions with a short-integer normal.
+  It takes the current colour (0x5757-0x575d), stages 1/32767 (0x380000fd, 0x5762), and per record splits the packed
+  normal into signed shorts (0x5f once, 0x5b twice per word), converts and scales them, and normalises the vector with
+  the reciprocal-square-root seed and a Newton step (unit-2 code 0x57, M = 0x57f) before storing the result in words 8-0xa.
+- `mmo_UnpackVertexV3F_C4UB_N3S` (`munpack.S` lines 323-336, at 0x56ff): **inferred**, the same normal decode with the
+  colour input taken from the array: the bytes are scaled by 1/255 into words 4-7 and the shorts by 1/32767 into 8-0xa, then
+  normalised into the output; both scales are staged at entry, so no current state is read.
+- `mmo_UnpackVertexV3F_N3S_T2F` (`munpack.S` lines 350-421, at 0x563d): **inferred**, short normal plus float texture
+  coordinates: it converts and normalises the normal as `mmo_UnpackVertexV3F_N3S` does, moves s and t to words 0xb and
+  0xc, writes r = 0 and q = 1, and takes the colour from 0x13a7-0x13aa for the output record; its loop runs back to 0x564b.
+- `mmo_UnpackVertexV3F_C4UB_N3S_T2F` (`munpack.S` lines 440-455, at 0x55da): **inferred**, takes byte colour,
+  short normal and float texture input: two staged scales (1/255 and 1/32767) and the shift counts 8, 0x10 and 0x18 feed the
+  colour and normal conversions, and the texture words are copied as delivered to the output.
+- `mmo_UnpackVertexV3F_N3S_T2S` (`munpack.S` lines 471-549, at 0x5504): **inferred**, takes a short normal and short texture
+  coordinates. Both packed words are split into signed halves (16 arithmetic shifts, code 0x5b), converted (24 uses of
+  0x73), the normal scaled by 1/32767 and normalised, and the colour output taken from the current state; its loop starts at
+  0x5512.
+- `mmo_UnpackVertexV3F_C4UB_N3S_T2S` (`munpack.S` lines 573-590, at 0x549e): **inferred**, takes every part packed: byte colour,
+  short normal and short texture coordinates. It stages 1/255, 1/32767 and the shift counts, decodes the colour with
+  right shifts and the 1/255 multiply, decodes and normalises the normal, and converts the two texture shorts, writing the results
+  to words 3-0xe of both records per pass.
