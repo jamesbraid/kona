@@ -2562,6 +2562,37 @@ the [fft.S listing](ge_listing/fft.S.lst) (`ge.u`, IRIX 6.5.30m).
   code loads is left to the larger sizes. It reads and steps its successor pointer like the two-point stage (0x37bc,
   0x37c7).
 
+## Line and point state handlers (line.S, point.S)
+
+These commands choose which module draws a line or point and pass the width or size on. Address register 0x1b points at
+the context's module slots, and the line slot is 0x15 below it (F = 0xa) and the point slot 0x16 (F = 9). Read from the
+[line.S](ge_listing/line.S.lst) and [point.S](ge_listing/point.S.lst) listings (`ge.u`, IRIX 6.5.30m).
+
+- `mgeb_LineWidth_Feedback` (`line.S` line 1602, at 0x6289): **inferred**, glLineWidth while the render mode is
+  GL_FEEDBACK. It takes no operand: the only value it moves is the constant 0xb89a, and its one store (0x6297) puts that
+  address of `mmo_FeedbackLine` in the line slot, so the result is that every later line is fed back instead of drawn.
+- `mgeb_LineWidth_Select` (`line.S` line 1570, at 0x6298): **inferred**, the selection-mode twin: it selects
+  `mmo_SelectLine` (0xbfaf) as the line module, the same store at 0x62a6 producing the new slot value; the width operand is
+  left unread, since selection records no width.
+- `mgebi_PointSize_Feedback` (`point.S` line 69, at 0x61c6): **inferred**, glPointSize in feedback mode. Its output is the
+  point slot set to `mmo_FeedbackPoint` (0xb80f, store at 0x61d1); it also sends the raster register write that the bus
+  constant 0x70000 introduces, through bus-output addresses 0x1f8, 0x1f5 and 0x1f4 (0x61d2-0x61d6).
+- `mgebi_PointSize_Select` (`point.S` line 37, at 0x61e0): **inferred**, glPointSize in selection mode: same shape, with
+  `mmo_SelectPoint` (0xbf6d) as the result stored in the point slot at 0x61eb and the same three bus-output writes after it.
+- `mgeb_LineWidth_Aliased` (`line.S` line 1668, at 0x6257): **inferred**, glLineWidth for aliased lines. It takes the
+  width from command word 0 and converts it to an integer with unit-1 code 0x71 (0x625a), then compares the result with
+  the staged constants to choose between `mmo_DrawLinStipplePrim` (0x8b08) and `mmo_DrawLinPrim` (0x8db0). Predicated stores
+  (0x6271-0x6274) produce the chosen module in control word 0x15 and a mode in control word 3; the width goes to engine
+  word 0x236 (0x6276) and to the raster side through bus-output addresses 0x1f8 and 0x1f5 (0x6279-0x627f).
+- `mgeb_LineWidth_MS` (`line.S` line 1424, at 0x62dc): **inferred**, the multisample form. It reads the width operand,
+  ORs 0x400 into and masks 0xfffffeff out of the mode bits it stages, and selects `mmo_DrawMSLinPrim` (0x8a2d) or the
+  stipple module 0x8b08 as its result for control word 0x15 (predicated stores 0x62ee and 0x62f3), saving the width at
+  engine word 0x236 like the aliased handler.
+- `mgeb_LineStipple` (`line.S` line 1520, at 0x62a7): **inferred**, glLineStipple. Its operands are the repeat factor
+  (command word 0) and the pattern (word 1). It converts the factor to float (code 0x73), computes its reciprocal with a
+  seed and a Newton step (0x62ac-0x62b6) and stores that result at engine word 0x25e; the pattern, shifted by code 0x5d
+  (0x62bc), goes to 0x24d. A loop (0x62c8-0x62cf) then converts further words to float and stores them from 0x24e on.
+
 ## Texture-coordinate generation commands and modules (texgen.S)
 
 The glTexGen command, its enables, and the distance-to-point and distance-to-line generators of SGIS_point_line_texgen.
