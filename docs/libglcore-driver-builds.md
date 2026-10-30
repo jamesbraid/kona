@@ -10,6 +10,7 @@ Each build has two tables. The first names each routine with its address and siz
 
 | Routine | Binary | Address | Size | N32 address | Source file | Role (from the N32 entry) | Label |
 |---|---|---|---|---|---|---|---|
+| `__glKonDefaultState` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94f000` | 580 | `0xd950e70` | `kon_pixel.c` | Sets chosen pixel-storage parameters to their defaults with `__glkonim_PixelStorei`. | Inferred |
 | `__glKonEvalCoord1DGe11` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd980d2c` | 24 | `0xd97d740` | `kon_eval.c` | The geometry-engine glEvalCoord1: it writes the token 157, the count 1 and the float coordinate to the command port. | Inferred |
 | `__glKonEvalCoord2DGe11` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd980d44` | 28 | `0xd97d760` | `kon_eval.c` | The geometry-engine glEvalCoord2: it writes the token 161, the count 2 and the two float coordinates. | Inferred |
 | `__glKonEvalMesh1DGe11` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd980d60` | 204 | `0xd97d780` | `kon_eval.c` | Sends a glEvalMesh1 to the geometry engine as `HP_EVALSTRIP1D` (token 38) records. The mode (0x1b00 points or 0x1b01 lines) goes in as the mode minus 0x1b00, then the first index and a run length. Points go in chunks of 6 stepping by 6; lines in chunks of 6 stepping by 5 so successive chunks share an end vertex. | Inferred |
@@ -20,10 +21,13 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glKonInitializeEnables` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94c124` | 200 | `0xd94de90` | `kon_modes.c` | Builds the table that `__glkonim_xEnable` uses. It walks 186 pairs of halfwords in the library's data (0x25c8 to 0x28b0 from the data page), each a pipe code and an extended enum, and stores the pair in an 8-byte slot of the uninitialised table at index (enum & 0xff) plus (enum >> 7). | Inferred |
 | `__glKonParseHostImage` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94e848` | 564 | `0xd950700` | `kon_pixel.c` | Fills in the host-side layout of a request record from the pixel-storage settings in force. | Inferred |
 | `__glKonPushState` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94ef2c` | 212 | `0xd950d90` | `kon_pixel.c` | Saves selected parts of the context into the caller's block, chosen by the mask in the first argument and stored back at +0x58 of the block. | Inferred |
+| `__glKonSetPixelLEModes` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94f498` | 104 | `0xd9511c0` | `kon_pixel.c` | Puts the pipe into the mode that the compiled-list pixel paths need. It calls `__glKonPushState` with 0xc and the caller's save area, then `__glKonDefaultState` with 0xc, and finally `__glkonim_PixelStorei` with 0xcf5 (GL_UNPACK_ALIGNMENT) and 1. | Inferred |
 | `__glKonSetUpMap1` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd981e30` | 412 | `0xd97ebb0` | `kon_eval.c` | Validates and records a glMap1 request. The target must be one of the nine 1D map enums 0xd90 to 0xd98 or it raises 0x500. The range ends must differ, the order must be 1 to 15 and the stride must be at least the target's component count, or it raises 0x501 and returns 0. | Inferred |
+| `__glKonUnsetLEModes` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94f500` | 52 | `0xd951220` | `kon_pixel.c` | Restores the state saved by `__glKonSetPixelLEModes` by calling `__glKonPopState` with the save area it was given. | Inferred |
 | `__glKon_ioctl` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd95be10` | 56 | `0xd95d660` | `kon_kern.c` | Calls the C library `ioctl` with the device descriptor stored in the context at +31560 in place of the first argument, and the request and argument pointer it received. | Inferred |
 | `__glkonAdjustPlist` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94908c` | 136 | `0xd94b1a0` | `kon_dlist.c` | Rebases a page list. It takes the entry count from the word at +0x1c of the list record (never fewer than 1), reads a base value at offset 0x2c of the record that the pointer at `ctx` +0x133c leads to through its word at +0x10, and subtracts that base from the first word of each 8-byte entry of the array at +0x14. | Inferred |
 | `__glkonCompressPlist` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd9480f0` | 184 | `0xd94a380` | `kon_dlist.c` | Merges adjacent entries of a list record's block table. The table at record +20 has one pair of words per block (address, extent) for the count at +24 minus 1. An entry that starts exactly one 0x400-byte step after the previous run's end, and whose summed extent stays below 0x1000000, is folded into the previous pair; otherwise it begins a new pair. | Inferred |
+| `__glkonConvertPolygonStipple` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd952c98` | 104 | `0xd954520` | `kon_pixel.c` | Uploads a stored polygon stipple: it sets the pixel modes with `__glKonSetPixelLEModes`, calls `__glkonim_PolygonStipple` with the pattern at +0x200 of the record, and restores the modes. | Inferred |
 | `__glkonDlistOptimizer` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94a0f8` | 12 | `0xd94c110` | `kon_dlist.c` | An empty function: it returns immediately, so the Kona display-list path applies no optimisation. | Inferred |
 | `__glkonPadBlocks` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94a104` | 140 | `0xd94c120` | `kon_dlist.c` | Fills the unused tail of every block of a finished list that has a successor with skip tokens, so the player steps over it. | Inferred |
 | `__glkonSendPackedVertexV3F` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6c380` | 76 | `0xda77330` | `kon_spvertarray.s` | Sends one vertex per pass with token 0x1ab: an 8-byte store of x and y (read as an unaligned pair) and a word store of z. | Inferred |
@@ -49,9 +53,18 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkon__QueryHyperpipeRect` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98b8a8` | 20 | `0xd9875f0` | `kon_hyperpipe.c` | Returns 0 and nothing else; the rectangle query reports no rectangle. | Inferred |
 | `__glkon_datavn` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6c354` | 40 | `0xda77304` | `kon_sdlist.s` | Sends a counted run of words from a pointer to the command port: if the pointer has bit 2 set it sends one word alone to restore 8-byte alignment, then 8-byte units while two or more words remain, then a trailing single word. | Inferred |
 | `__glkon_dlerror` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94a8a4` | 140 | `0xd94c7f0` | `kon_dlist.c` | Records a GL error in a display list. It appends token 0xe4 and the error code to the list buffer: if the remaining-space word at process address 0x1028 is below 2 it first calls `__glSPDlistSpace` with 0, then it writes the two words at the list pointer (0x1030), advances the pointer by 8, reduces the remaining count by 2 and raises the word count at 0x1034 by 2. | Inferred |
+| `__glkon_dlist_mem_alloc` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bbcc` | 72 | `0xd94d960` | `kon_mem.c` | Allocates display-list memory by calling `__glkon_mem_alloc` with the first field 1, zero for the next three fields and the caller's size in the fourth. | Inferred |
+| `__glkon_dlist_mem_free` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bc5c` | 60 | `0xd94da00` | `kon_mem.c` | Frees display-list memory through `__glkon_mem_free` with the first field 1 and a zero second field. | Inferred |
+| `__glkon_dlist_mem_realloc` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bc14` | 72 | `0xd94d9b0` | `kon_mem.c` | Resizes display-list memory through `__glkon_mem_realloc` with the first field 1, zeros in the middle and the caller's size in the fourth word. | Inferred |
+| `__glkon_get_special` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd956ec4` | 76 | `0xd958a00` | `kon_get.c` | The one-argument query: it stores its first argument (the request token) and its second argument to the command port, calls `__glkona_wait_rdata`, and returns the reply address, the return-data pointer plus 8. | Inferred |
+| `__glkon_get_special2` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd956f10` | 80 | `0xd958a50` | `kon_get.c` | Same sequence as the one-argument query with a third word: three stores to the command port, then a call to `__glkona_wait_rdata` and a return of the reply address at the return-data pointer plus 8. The buffer pointer is loaded from `ctx` again after the wait, so the reply address is the one in force when the wait ends. | Inferred |
+| `__glkon_get_special3` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd956f60` | 84 | `0xd958aa0` | `kon_get.c` | The same request, wait and reply sequence with four words sent to the command port, and the reply address returned as the return-data pointer plus 8. The four words are its four register arguments, stored in order. | Inferred |
+| `__glkon_get_special4` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd956fb4` | 92 | `0xd958b00` | `kon_get.c` | The same request, wait and reply sequence with five words sent to the command port (the largest request any of the helpers sends), then a call to `__glkona_wait_rdata` and a return of the return-data pointer plus 8. | Inferred |
 | `__glkon_mem_free` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bb50` | 124 | `0xd94d8e0` | `kon_mem.c` | Frees driver memory. If the word at `ctx` +0x7b4c is zero it returns 0 without calling the driver. Otherwise it packs two bytes (the arguments) into a block and calls `__glKon_ioctl` with request 0x271b, returning 0 on success and -1 on failure. | Inferred |
 | `__glkon_mem_realloc` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bad8` | 120 | `0xd94d880` | `kon_mem.c` | The resize form of `__glkon_mem_alloc`: the same 12-byte block (byte, byte, halfword, word, word) goes to `__glKon_ioctl` with request 0x271e, and the result is mapped to 0 for success and -1 for failure. | Inferred |
 | `__glkon_packPixelRow` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98bba0` | 1732 | `0xd987bd0` | `kon_pix_util.c` | Packs a row of pixels held as integers into one of the packed pixel types. The arguments are the source integer array, the destination, the packed type and the pixel count; a count of 0 or less, or a type other than the four below, does nothing (the 8_8_8_8 type 0x8035 is not handled). | Inferred |
+| `__glkon_texture_mem_alloc` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bc98` | 72 | `0xd94da40` | `kon_mem.c` | Allocates texture memory by calling `__glkon_mem_alloc` with the first field 3, zeros in the middle and the caller's size in the fourth word. | Inferred |
+| `__glkon_texture_mem_realloc` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94bce0` | 72 | `0xd94da90` | `kon_mem.c` | Resizes texture memory through `__glkon_mem_realloc` with the first field 3 and the caller's size in the fourth word. | Inferred |
 | `__glkonim_Accum` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c664` | 24 | `0xda66710` | `kon_cfuncs.c` | glAccum: token 0xc5, the operation name and the value as a float word. | Inferred |
 | `__glkonim_BlendColorEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cce4` | 44 | `0xda66df0` | `kon_cfuncs.c` | glBlendColorEXT: token 0xe6 and the four floats red, green, blue, alpha, unclamped on the host. | Inferred |
 | `__glkonim_BlendEquationEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cd10` | 16 | `0xda66e10` | `kon_cfuncs.c` | glBlendEquationEXT: token 0xe7 and the mode word. | Inferred |
@@ -87,6 +100,8 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonim_ConvolutionParameterfvEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd956764` | 52 | `0xd958330` | `kon_convolve.c` | Forwards to `__glkonim_PixelTransformParameterfvSGI`; the float-array convolution parameter is handled there. | Inferred |
 | `__glkonim_ConvolutionParameteriEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd9566c0` | 52 | `0xd958270` | `kon_convolve.c` | Not a separate routine: it calls `__glkonim_PixelTransformParameteriSGI` through a library entry and returns. In this build the convolution-parameter entry shares its body with the pixel-transform parameter setter of the same argument shape. | Inferred |
 | `__glkonim_ConvolutionParameterivEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd9566f4` | 52 | `0xd9582b0` | `kon_convolve.c` | Calls `__glkonim_PixelTransformParameterivSGI` with its own arguments untouched and returns, sharing that function's checks and sends for the array form of the convolution parameter. | Inferred |
+| `__glkonim_CopyTexImage1DEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd97237c` | 116 | `0xd971580` | `kon_texture_api.c` | glCopyTexImage1DEXT. Only target 0xde0 is accepted (anything else gives `__glSetError` 0x500); the call goes to `__glkonim_CopyTexImage` with the constant 1 loaded into one argument register that the one-dimensional signature does not supply. | Inferred |
+| `__glkonim_CopyTexSubImage1DEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd973628` | 128 | `0xd972720` | `kon_texture_api.c` | glCopyTexSubImage1DEXT. Target 0xde0 only, else 0x500; it calls `__glkonim_CopyTexSubImage` with zero in two argument registers and the constant 1 in a stack word. | Inferred |
 | `__glkonim_CullFace` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5bdb0` | 64 | `0xda65dd0` | `kon_cfuncs.c` | glCullFace. Modes 0x404 (front), 0x405 (back) and 0x408 (front and back) go out under token 0xb6; any other mode sends token 0xe4 with the code 0x500. | Inferred |
 | `__glkonim_DeformSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98cb3c` | 84 | `0xd988990` | `kon_deform.c` | glDeformSGIX. A mask with any bit set above bit 1 (mask and -4 non-zero) calls `__glSetError` with 0x501 and sends nothing; otherwise it sends token 0x1bf followed by the mask as two words. | Inferred |
 | `__glkonim_DepthRange` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c8b0` | 20 | `0xda669a0` | `kon_cfuncs.c` | glDepthRange: token 0xcf and the near and far doubles in two 8-byte stores. | Inferred |
@@ -99,6 +114,7 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonim_Frustum` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c8c4` | 52 | `0xda669c0` | `kon_cfuncs.c` | glFrustum: token 0xd1 followed by six doubles (left, right, bottom, top, near, far) in six 8-byte stores, with no check on their values. | Inferred |
 | `__glkonim_GetConvolutionParameterfvEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd9567cc` | 52 | `0xd9583b0` | `kon_convolve.c` | Forwards to `__glkonim_GetPixelTransformParameterfvSGI`, so the float convolution-parameter query is answered by the pixel-transform one. | Inferred |
 | `__glkonim_GetConvolutionParameterivEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd956798` | 52 | `0xd958370` | `kon_convolve.c` | Forwards to `__glkonim_GetPixelTransformParameterivSGI`, so reading an integer convolution parameter is the pixel-transform query. | Inferred |
+| `__glkonim_GetTexLevelParameterfv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd975408` | 80 | `0xd974510` | `kon_texture_api.c` | glGetTexLevelParameterfv. It calls `__glkonim_GetTexLevelParameteriv` with its own arguments, keeps the output pointer in a saved register, and afterwards converts the integer that call stored into a float in the same place. | Inferred |
 | `__glkonim_IndexMask` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c654` | 16 | `0xda66700` | `kon_cfuncs.c` | glIndexMask sends the colour-index write mask as token 0x23 followed by the mask word, two stores, with no narrowing on the host. | Inferred |
 | `__glkonim_Indexd` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5b4ec` | 16 | `0xda655a0` | `kon_cfuncs.c` | The immediate-mode glIndexd, two stores to the command port: the token 114 (0x72) as a word and the double-precision index from `f12` as a single 64-bit store. | Inferred |
 | `__glkonim_Indexdv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6f6b4` | 16 | `0xda79574` | `kon_sfuncs.s` | Sends one double for glIndexdv with token 0x72: the token word and one 8-byte store. | Inferred |
@@ -113,6 +129,7 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonim_LightModeliv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c180` | 48 | `0xda66210` | `kon_cfuncs.c` | glLightModeliv sends token 0xa, the name and four integers from the array, with no check. | Inferred |
 | `__glkonim_Lightfv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c008` | 52 | `0xda66070` | `kon_cfuncs.c` | glLightfv sends token 7, the light name, the parameter name and four floats from the array, with no validation of the name; the pipe sees the array whatever its length. | Inferred |
 | `__glkonim_Lightiv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c088` | 52 | `0xda66100` | `kon_cfuncs.c` | glLightiv sends token 8, the light, the parameter name and four integers from the array without a range check on the name. | Inferred |
+| `__glkonim_ListParameterfSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd9492cc` | 60 | `0xd94b3b0` | `kon_dlist.c` | Wraps a single float in a one-element array and forwards to `__glkonim_ListParameterfvSGIX`. It stores the float argument (register `$f14`) at stack offset 0x20, passes that address as the third argument with the first two arguments unchanged, and returns when the call does. | Inferred |
 | `__glkonim_LoadIdentity` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c8f8` | 16 | `0xda669f0` | `kon_cfuncs.c` | glLoadIdentity sends the matrix reset as token 0xd2 followed by one zero pad word, two stores, and consults no matrix state on the host. | Inferred |
 | `__glkonim_LoadIdentityDeformationMapSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98cc3c` | 20 | `0xd988aa0` | `kon_deform.c` | glLoadIdentityDeformationMapSGIX: it sends token 0x1c3 and the mask reduced to its low two bits. It never reports an error for the discarded bits. | Inferred |
 | `__glkonim_LoadMatrixd` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c994` | 140 | `0xda66a90` | `kon_cfuncs.c` | glLoadMatrixd: token 0xd4 and sixteen doubles, each in one 8-byte store, in memory order. | Inferred |
@@ -129,6 +146,8 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonim_Normal3s` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5b61c` | 72 | `0xda656d0` | `kon_cfuncs.c` | The immediate-mode glNormal3s, two stores to the command port. Word one is the first short in its upper half beside the token 0x7a; word two is the second short in its upper half and the third masked to 16 bits in its lower half. | Inferred |
 | `__glkonim_Ortho` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cb78` | 52 | `0xda66c90` | `kon_cfuncs.c` | glOrtho: token 0xd7 and six doubles (left, right, bottom, top, near, far). | Inferred |
 | `__glkonim_PassThrough` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c590` | 16 | `0xda66660` | `kon_cfuncs.c` | glPassThrough: token 0xc1 and the marker value as a float word, unconverted. | Inferred |
+| `__glkonim_PixelTransferi` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd955448` | 72 | `0xd957190` | `kon_pixel.c` | The integer form of glPixelTransfer: it converts the integer value to a float and calls `__glkonim_PixelTransferf` with the parameter name unchanged and the float in `$f13`. | Inferred |
+| `__glkonim_PixelTransformParameteriSGI` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd9908e8` | 72 | `0xd98d100` | `kon_pixel_transform.c` | Converts the integer parameter to a float and calls `__glkonim_PixelTransformParameterfSGI`, with the target and name unchanged. | Inferred |
 | `__glkonim_PixelZoom` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd954350` | 260 | `0xd955f90` | `kon_pixel.c` | glPixelZoom. A begin raises 0x502. A factor above a limit just over 127 (a double constant, compared after widening) raises 0x501 and is replaced by 127.0; negative factors are not checked. | Inferred |
 | `__glkonim_PolygonOffset` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cd54` | 20 | `0xda66e60` | `kon_cfuncs.c` | glPolygonOffset: token 0x168 and two floats, the factor and the units. | Inferred |
 | `__glkonim_PolygonOffsetEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cd20` | 20 | `0xda66e20` | `kon_cfuncs.c` | glPolygonOffsetEXT: token 0x11b and two floats, the factor and the bias. | Inferred |
@@ -157,9 +176,11 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonim_Scalef` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cc38` | 32 | `0xda66d40` | `kon_cfuncs.c` | glScalef sends the scale as token 0xdd followed by the x, y and z floats, three single-word stores. | Inferred |
 | `__glkonim_SelectBuffer` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd95b5ac` | 300 | `0xd95ce20` | `kon_select.c` | glSelectBuffer with size and buffer. A begin raises 0x502, a negative size 0x501 and, when the render mode at +3204 is already 0x1c02 (select), 0x502. | Inferred |
 | `__glkonim_ShadeModel` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c300` | 16 | `0xda663a0` | `kon_cfuncs.c` | glShadeModel: token 0xc0 and the mode word, unchecked. | Inferred |
+| `__glkonim_SpriteParameterivSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd963e00` | 168 | `0xd963e20` | `kon_sprite.c` | The integer form of glSpriteParameterSGIX. It converts the integer or integers to floats on the stack, one when the name is 0x8149 (GL_SPRITE_MODE_SGIX) and three for every other name, and calls `__glkonim_SpriteParameterfvSGIX` with that array. | Inferred |
 | `__glkonim_StartInstrumentsSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cf64` | 16 | `0xda67080` | `kon_cfuncs.c` | glStartInstrumentsSGIX sends the instrument start as token 0x1b9 followed by one zero word, two stores, and ignores its arguments. | Inferred |
 | `__glkonim_StencilMask` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c5f0` | 16 | `0xda666c0` | `kon_cfuncs.c` | glStencilMask sends the write mask as token 0x20 followed by the mask word, two stores, and does not reduce it to the stencil bit count. | Inferred |
 | `__glkonim_StopInstrumentsSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cf74` | 16 | `0xda67090` | `kon_cfuncs.c` | glStopInstrumentsSGIX: token 0x1ba and the argument word. | Inferred |
+| `__glkonim_SubdivPatchParameteriSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd98d1ec` | 72 | `0xd988fb0` | `kon_subdiv.c` | The integer form: it converts the integer value to a float and calls `__glkonim_SubdivPatchParameterfSGIX` with the name unchanged. | Inferred |
 | `__glkonim_TexCoord1d` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5b83c` | 16 | `0xda658a0` | `kon_cfuncs.c` | The immediate-mode glTexCoord1d, two stores to the command port: the token 123 (0x7b) as a word and the double in `f12` as one 64-bit store. | Inferred |
 | `__glkonim_TexCoord1dv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6f848` | 16 | `0xda79704` | `kon_sfuncs.s` | Sends the one double of a glTexCoord1dv vector under token 0x7b. | Inferred |
 | `__glkonim_TexCoord1f` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5b84c` | 16 | `0xda658b0` | `kon_cfuncs.c` | The immediate-mode glTexCoord1f, two stores to the command port: the token 124 (0x7c) and the float in `f12` as a 32-bit store. | Inferred |
@@ -177,6 +198,8 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonim_TexGenf` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c500` | 64 | `0xda665d0` | `kon_cfuncs.c` | glTexGenf: token 0x14, the coordinate, the name and the float truncated to an integer, then five zero words, with no checking. | Inferred |
 | `__glkonim_TexGeni` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5c540` | 48 | `0xda66610` | `kon_cfuncs.c` | glTexGeni: token 0x14, the coordinate, the name and the integer unchanged, then five zero words. | Inferred |
 | `__glkonim_TexGeniv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94d320` | 352 | `0xd94f1f0` | `kon_modes.c` | The integer form, with the same ten-word record as `__glkonim_TexGenfv` and the same split of names: four values, seven values, or one. The integer parameters at offsets 0 to 12 (four-value names) or 0 to 24 (the two line names) are converted to floats before sending; the mode name sends its integer word unchanged, followed by six zero words. | Inferred |
+| `__glkonim_TexSubImage1DEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd973598` | 144 | `0xd9726a0` | `kon_texture_api.c` | glTexSubImage1DEXT. Target 0xde0 only (0x500 otherwise). It loads zero into two argument registers and the constant 1 into two others, and calls `__glkonim_TexSubImage`. | Inferred |
+| `__glkonim_TexSubImage3DEXT` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd973478` | 140 | `0xd9725a0` | `kon_texture_api.c` | glTexSubImage3DEXT. The only target accepted is 0x806f, otherwise 0x500 goes to `__glSetError`. | Inferred |
 | `__glkonim_Translated` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cc58` | 28 | `0xda66d60` | `kon_cfuncs.c` | glTranslated sends the translation as token 0xde followed by the x, y and z doubles, three 8-byte stores that make six data words. | Inferred |
 | `__glkonim_Translatef` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda5cc74` | 32 | `0xda66d80` | `kon_cfuncs.c` | glTranslatef sends the translation as token 0xdf followed by the x, y and z floats, three single-word stores. | Inferred |
 | `__glkonim_Vertex2dv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6f93c` | 20 | `0xda797f8` | `kon_sfuncs.s` | Sends the two doubles of a glVertex2dv vector under token 0x8b. | Inferred |
@@ -240,6 +263,7 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonlc_Scaled` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda65c44` | 216 | `0xda6fe40` | `kon_cdlfuncs.c` | Display-list form of the scale call in doubles, which appends seven words to the list. Word one is the token 0xdc (HP_SCALED), then the x factor (the first argument) as a double, high half then low half, the y factor (the second argument) as a double, high half then low half and the z factor (the third argument) as a double, high half then low half. | Inferred |
 | `__glkonlc_Scalef` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda65d1c` | 164 | `0xda6ff10` | `kon_cdlfuncs.c` | Display-list form of the scale call in floats, which appends four words to the list. Word one is the token 0xdd (HP_SCALEF), then the x factor (the first argument) as raw single-precision bits, the y factor (the second argument) as raw single-precision bits and the z factor (the third argument) as raw single-precision bits. | Inferred |
 | `__glkonlc_ShadeModel` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda63b74` | 140 | `0xda6db00` | `kon_cdlfuncs.c` | Display-list form of the shade-model selection call, which appends two words to the list. Word one is the token 0xc0 (HP_SHADEMODEL), then the mode (the first argument) unchanged. | Inferred |
+| `__glkonlc_SpriteParameterivSGIX` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd964094` | 168 | `0xd964050` | `kon_sprite.c` | Converts the integers to floats on the stack, one for parameter 0x8149 and three otherwise, and passes them to `__glkonlc_SpriteParameterfvSGIX` with the parameter. It checks and records nothing itself. | Inferred |
 | `__glkonlc_TexCoord3sv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda61274` | 168 | `0xda6b330` | `kon_cdlfuncs.c` | Display-list form of the texture coordinate call with three signed-short components read through a vector pointer: it appends two words to the list instead of writing them to the command port. | Inferred |
 | `__glkonlc_TexCoord4sv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6187c` | 180 | `0xda6b8f0` | `kon_cdlfuncs.c` | Display-list form of the texture coordinate call with four signed-short components read through a vector pointer: it appends three words to the list instead of writing them to the command port. | Inferred |
 | `__glkonlc_TexEnvf` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda63c00` | 228 | `0xda6dbc0` | `kon_cdlfuncs.c` | The compile-mode single-float glTexEnv. Only target 0x2300 with parameter 0x2200 (the environment mode) is accepted; any other target or parameter calls `__glsplc_InvalidEnum`. It appends six words: `HP_TEXENVF` (token 17), 0x2200, the value and three zeros. | Inferred |
@@ -254,6 +278,8 @@ Each build has two tables. The first names each routine with its address and siz
 | `__glkonlc_Translatef` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda65e98` | 164 | `0xda70080` | `kon_cdlfuncs.c` | Display-list form of the translation call in floats, which appends four words to the list. Word one is the token 0xdf (HP_TRANSLATEF), then the x offset (the first argument) as raw single-precision bits, the y offset (the second argument) as raw single-precision bits and the z offset (the third argument) as raw single-precision bits. | Inferred |
 | `__glkonlc_Vertex3sv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda62344` | 168 | `0xda6c320` | `kon_cdlfuncs.c` | Display-list form of the vertex position call with three signed-short components read through a vector pointer: it appends two words to the list instead of writing them to the command port. | Inferred |
 | `__glkonlc_Vertex4sv` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6294c` | 180 | `0xda6c8e0` | `kon_cdlfuncs.c` | Display-list form of the vertex position call with four signed-short components read through a vector pointer: it appends three words to the list instead of writing them to the command port. | Inferred |
+| `__glkonle_Bitmap` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd952b08` | 144 | `0xd9543b0` | `kon_pixel.c` | The list-execution glBitmap. It saves and sets the pixel modes with `__glKonSetPixelLEModes`, loads the width, height, origin and move values (word at 0, word at 4, four floats at 8 to 0x14) from the record argument, calls `__glkonim_Bitmap`, and restores the modes. | Inferred |
+| `__glkonle_ColorTableSGI` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd984b8c` | 136 | `0xd981cc0` | `kon_colortable.c` | The list-execution glColorTableSGI. It sets the pixel modes with `__glKonSetPixelLEModes`, calls `__glkonim_ColorTableSGI` with the arguments restored from the stack, and then restores the modes. | Inferred |
 | `__glkonle_Push` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xda6c2f0` | 100 | `0xda772a0` | `kon_sdlist.s` | Replays a recorded run of words to the command port. The record starts with a count word, and the data follows it. When the record's address has bit 2 clear it first sends one word alone so that the doubleword stores that follow are 8-byte aligned, then sends 8-byte units while at least two words remain, then a final single word if one is left. | Inferred |
 | `__glkonle_SetBegin` | `usr/gfx/arch/IP27KONA/libGLcore.so` | `0xd94adf4` | 16 | `0xd94cd00` | `kon_dlist.c` | Sets the begin flag at process address 0x1018 to 1 and returns its argument unchanged. | Inferred |
 
@@ -261,6 +287,7 @@ What was compared for the O32 rows above:
 
 | Routine | Callees, in order | FIFO stores | Constants |
 |---|---|---|---|
+| `__glKonDefaultState` | `__glkonim_PixelStorei` x20 | 0 | `0xcf0`, `0xcf1`, `0xcf2`, `0xcf3`, `0xcf4`, `0xcf5` |
 | `__glKonEvalCoord1DGe11` | `none` | 3 | `0x9d` |
 | `__glKonEvalCoord2DGe11` | `none` | 4 | `0xa1` |
 | `__glKonEvalMesh1DGe11` | `none` | 16 | `0x26`, `0x1b00` |
@@ -271,10 +298,13 @@ What was compared for the O32 rows above:
 | `__glKonInitializeEnables` | `fprintf`, `exit` | 0 | `0xff` |
 | `__glKonParseHostImage` | `none` | 0 | `0x20`, `0x80`, `0x1f00`, `0x3ff1`, `0x8ad0` |
 | `__glKonPushState` | `none` | 0 | `none` |
+| `__glKonSetPixelLEModes` | `__glKonPushState`, `__glKonDefaultState`, `__glkonim_PixelStorei` | 0 | `0xcf5` |
 | `__glKonSetUpMap1` | `__glSetError` x3 | 0 | `0x10`, `0x500`, `0x501`, `0xcb7c` |
+| `__glKonUnsetLEModes` | `__glKonPopState` | 0 | `none` |
 | `__glKon_ioctl` | `ioctl` | 0 | `none` |
 | `__glkonAdjustPlist` | `none` | 0 | `none` |
 | `__glkonCompressPlist` | `none` | 0 | `0xff` |
+| `__glkonConvertPolygonStipple` | `__glKonSetPixelLEModes`, `__glkonim_PolygonStipple`, `__glKonUnsetLEModes` | 0 | `none` |
 | `__glkonDlistOptimizer` | `none` | 0 | `none` |
 | `__glkonPadBlocks` | `none` | 0 | `0xfc`, `0x1d8`, `0x1d9`, `0x1da` |
 | `__glkonSendPackedVertexV3F` | `none` | 3 | `0x1ab` |
@@ -300,9 +330,18 @@ What was compared for the O32 rows above:
 | `__glkon__QueryHyperpipeRect` | `none` | 0 | `none` |
 | `__glkon_datavn` | `none` | 1 | `none` |
 | `__glkon_dlerror` | `__glSPDlistSpace` | 0 | `0xe4` |
+| `__glkon_dlist_mem_alloc` | `__glkon_mem_alloc` | 0 | `none` |
+| `__glkon_dlist_mem_free` | `__glkon_mem_free` | 0 | `none` |
+| `__glkon_dlist_mem_realloc` | `__glkon_mem_realloc` | 0 | `none` |
+| `__glkon_get_special` | `__glkona_wait_rdata` | 2 | `none` |
+| `__glkon_get_special2` | `__glkona_wait_rdata` | 3 | `none` |
+| `__glkon_get_special3` | `__glkona_wait_rdata` | 4 | `none` |
+| `__glkon_get_special4` | `__glkona_wait_rdata` | 5 | `none` |
 | `__glkon_mem_free` | `__glKon_ioctl` | 0 | `0x271b` |
 | `__glkon_mem_realloc` | `__glKon_ioctl` | 0 | `0x271e` |
 | `__glkon_packPixelRow` | `none` | 0 | `0x1f`, `0x3ff`, `0x8032`, `0x8033`, `0x8034`, `0x8036` |
+| `__glkon_texture_mem_alloc` | `__glkon_mem_alloc` | 0 | `none` |
+| `__glkon_texture_mem_realloc` | `__glkon_mem_realloc` | 0 | `none` |
 | `__glkonim_Accum` | `none` | 3 | `0xc5` |
 | `__glkonim_BlendColorEXT` | `none` | 5 | `0xe6` |
 | `__glkonim_BlendEquationEXT` | `none` | 2 | `0xe7` |
@@ -338,6 +377,8 @@ What was compared for the O32 rows above:
 | `__glkonim_ConvolutionParameterfvEXT` | `__glkonim_PixelTransformParameterfvSGI` | 0 | `none` |
 | `__glkonim_ConvolutionParameteriEXT` | `__glkonim_PixelTransformParameteriSGI` | 0 | `none` |
 | `__glkonim_ConvolutionParameterivEXT` | `__glkonim_PixelTransformParameterivSGI` | 0 | `none` |
+| `__glkonim_CopyTexImage1DEXT` | `__glSetError`, `__glkonim_CopyTexImage` | 0 | `0x500`, `0xde0` |
+| `__glkonim_CopyTexSubImage1DEXT` | `__glSetError`, `__glkonim_CopyTexSubImage` | 0 | `0x500`, `0xde0` |
 | `__glkonim_CullFace` | `none` | 4 | `0xb6`, `0xe4`, `0x404`, `0x405`, `0x408`, `0x500` |
 | `__glkonim_DeformSGIX` | `__glSetError` | 2 | `0x1bf`, `0x501` |
 | `__glkonim_DepthRange` | `none` | 3 | `0xcf` |
@@ -350,6 +391,7 @@ What was compared for the O32 rows above:
 | `__glkonim_Frustum` | `none` | 7 | `0xd1` |
 | `__glkonim_GetConvolutionParameterfvEXT` | `__glkonim_GetPixelTransformParameterfvSGI` | 0 | `none` |
 | `__glkonim_GetConvolutionParameterivEXT` | `__glkonim_GetPixelTransformParameterivSGI` | 0 | `none` |
+| `__glkonim_GetTexLevelParameterfv` | `__glkonim_GetTexLevelParameteriv` | 0 | `none` |
 | `__glkonim_IndexMask` | `none` | 2 | `0x23` |
 | `__glkonim_Indexd` | `none` | 2 | `0x72` |
 | `__glkonim_Indexdv` | `none` | 2 | `0x72` |
@@ -364,6 +406,7 @@ What was compared for the O32 rows above:
 | `__glkonim_LightModeliv` | `none` | 6 | `none` |
 | `__glkonim_Lightfv` | `none` | 7 | `none` |
 | `__glkonim_Lightiv` | `none` | 7 | `none` |
+| `__glkonim_ListParameterfSGIX` | `__glkonim_ListParameterfvSGIX` | 0 | `none` |
 | `__glkonim_LoadIdentity` | `none` | 2 | `0xd2` |
 | `__glkonim_LoadIdentityDeformationMapSGIX` | `none` | 2 | `0x1c3` |
 | `__glkonim_LoadMatrixd` | `none` | 17 | `0xd4` |
@@ -380,6 +423,8 @@ What was compared for the O32 rows above:
 | `__glkonim_Normal3s` | `none` | 2 | `0x7a`, `0xffff` |
 | `__glkonim_Ortho` | `none` | 7 | `0xd7` |
 | `__glkonim_PassThrough` | `none` | 2 | `0xc1` |
+| `__glkonim_PixelTransferi` | `__glkonim_PixelTransferf` | 0 | `none` |
+| `__glkonim_PixelTransformParameteriSGI` | `__glkonim_PixelTransformParameterfSGI` | 0 | `none` |
 | `__glkonim_PixelZoom` | `__glSetError` x3 | 3 | `0x2f`, `0x501`, `0x502` |
 | `__glkonim_PolygonOffset` | `none` | 3 | `0x168` |
 | `__glkonim_PolygonOffsetEXT` | `none` | 3 | `0x11b` |
@@ -408,9 +453,11 @@ What was compared for the O32 rows above:
 | `__glkonim_Scalef` | `none` | 4 | `0xdd` |
 | `__glkonim_SelectBuffer` | `__glSetError` x5 | 0 | `0x501`, `0x502`, `0x1c02` |
 | `__glkonim_ShadeModel` | `none` | 2 | `0xc0` |
+| `__glkonim_SpriteParameterivSGIX` | `__glkonim_SpriteParameterfvSGIX` | 0 | `0x8149` |
 | `__glkonim_StartInstrumentsSGIX` | `none` | 2 | `0x1b9` |
 | `__glkonim_StencilMask` | `none` | 2 | `0x20` |
 | `__glkonim_StopInstrumentsSGIX` | `none` | 2 | `0x1ba` |
+| `__glkonim_SubdivPatchParameteriSGIX` | `__glkonim_SubdivPatchParameterfSGIX` | 0 | `none` |
 | `__glkonim_TexCoord1d` | `none` | 2 | `0x7b` |
 | `__glkonim_TexCoord1dv` | `none` | 2 | `0x7b` |
 | `__glkonim_TexCoord1f` | `none` | 2 | `0x7c` |
@@ -428,6 +475,8 @@ What was compared for the O32 rows above:
 | `__glkonim_TexGenf` | `none` | 10 | `0x14` |
 | `__glkonim_TexGeni` | `none` | 10 | `0x14` |
 | `__glkonim_TexGeniv` | `none` | 24 | `0x14`, `0x2501`, `0x2502`, `0x81f4`, `0x81f5`, `0x81f6` |
+| `__glkonim_TexSubImage1DEXT` | `__glSetError`, `__glkonim_TexSubImage` | 0 | `0x500`, `0xde0` |
+| `__glkonim_TexSubImage3DEXT` | `__glSetError`, `__glkonim_TexSubImage` | 0 | `0x500`, `0x806f` |
 | `__glkonim_Translated` | `none` | 4 | `0xde` |
 | `__glkonim_Translatef` | `none` | 4 | `0xdf` |
 | `__glkonim_Vertex2dv` | `none` | 3 | `0x8b` |
@@ -491,6 +540,7 @@ What was compared for the O32 rows above:
 | `__glkonlc_Scaled` | `__glSPDlistSpace` | 0 | `0xdc` |
 | `__glkonlc_Scalef` | `__glSPDlistSpace` | 0 | `0xdd` |
 | `__glkonlc_ShadeModel` | `__glSPDlistSpace` | 0 | `0xc0` |
+| `__glkonlc_SpriteParameterivSGIX` | `__glkonlc_SpriteParameterfvSGIX` | 0 | `0x8149` |
 | `__glkonlc_TexCoord3sv` | `__glSPDlistSpace` | 0 | `0x86` |
 | `__glkonlc_TexCoord4sv` | `__glSPDlistSpace` | 0 | `0x8a` |
 | `__glkonlc_TexEnvf` | `__glsplc_InvalidEnum` x2, `__glSPDlistSpace` | 0 | `0x11`, `0x2200`, `0x2300` |
@@ -505,6 +555,8 @@ What was compared for the O32 rows above:
 | `__glkonlc_Translatef` | `__glSPDlistSpace` | 0 | `0xdf` |
 | `__glkonlc_Vertex3sv` | `__glSPDlistSpace` | 0 | `0x92` |
 | `__glkonlc_Vertex4sv` | `__glSPDlistSpace` | 0 | `0x96` |
+| `__glkonle_Bitmap` | `__glKonSetPixelLEModes`, `__glkonim_Bitmap`, `__glKonUnsetLEModes` | 0 | `none` |
+| `__glkonle_ColorTableSGI` | `__glKonSetPixelLEModes`, `__glkonim_ColorTableSGI`, `__glKonUnsetLEModes` | 0 | `none` |
 | `__glkonle_Push` | `none` | 3 | `none` |
 | `__glkonle_SetBegin` | `none` | 0 | `none` |
 
@@ -635,7 +687,6 @@ What was compared for the O32 rows above:
 | `__glkonim_GetPixelTransformParameterivSGI` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2df0920` | 200 | `0xd98d550` | `kon_pixel_transform.c` | Calls `GetPixelTransformParameterfvSGI` into a local float array and converts the returned count of floats to integers in the caller's array, four at a time after the remainder. | Inferred |
 | `__glkonim_GetTexEnvfv` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2dbc0c0` | 88 | `0xd959e60` | `kon_get.c` | The immediate-mode glGetTexEnvfv: it calls `__glSetError` with 0x502 when the word at process address 0x1030 is 1, and otherwise calls `do_gettexenv` with the caller's three arguments and discards its result. | Inferred |
 | `__glkonim_GetTexLevelParameterfv` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2dd6b90` | 76 | `0xd974510` | `kon_texture_api.c` | glGetTexLevelParameterfv. It calls `__glkonim_GetTexLevelParameteriv` with its own arguments, keeps the output pointer in a saved register, and afterwards converts the integer that call stored into a float in the same place. | Inferred |
-| `__glkonim_HistogramEXT` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2de7410` | 492 | `0xd984a10` | `kon_histogram.c` | The Kona glHistogramEXT. A begin raises 0x502; a negative or non-power-of-two width raises 0x501 and an internal format that `__glkon_formatToBaseFormat` rejects raises 0x500. | Inferred |
 | `__glkonim_IsEnabled` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2dbb830` | 100 | `0xd9595d0` | `kon_get.c` | The immediate-mode glIsEnabled. It calls `kona_get_offset` with the capability name and returns 0 for a negative index. Otherwise it calls `__glkonim_GetBooleanv` with the same name and the address of a byte on its own stack, and returns that byte. | Inferred |
 | `__glkonim_IsTextureEXT` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2dd23c0` | 156 | `0xd96fed0` | `kon_texture_api.c` | The Kona glIsTexture. Inside a begin it raises 0x502 and returns 0. A name of 0 returns 0. | Inferred |
 | `__glkonim_LineWidth` | `usr/gfx/arch/IP27KONA64/libGLcore.so` | `0x2db1a50` | 76 | `0xd94f950` | `kon_modes.c` | The immediate-mode glLineWidth. A width of zero or less sends token 0xe4 with the code 0x501 (invalid value). Otherwise it sends token 0xbd and the width, limited to at most 32.0 (the constant in the library's pool), so a wider request is sent as 32.0. | Inferred |
@@ -764,10 +815,10 @@ What was compared for the 64-bit rows above:
 
 | Routine | Callees, in order | FIFO stores | Constants |
 |---|---|---|---|
-| `__glKonCleanUp1D` | `indirect` x2, `__glKonHostMapData1D` x10 | 2 | `0x2c`, `0xd1` |
-| `__glKonDefaultState` | `none` | 0 | `0xcf0`, `0xcf1`, `0xcf2`, `0xcf3`, `0xcf4`, `0xcf5` |
-| `__glKonEvalCoord1DHost` | `none` | 0 | `none` |
-| `__glKonEvalMesh1DHost` | `indirect` x8 | 0 | `0x100`, `0x1b00`, `0x1b01` |
+| `__glKonCleanUp1D` | `indirect` x2, `__glKonHostMapData1D` x14, `__glKonSendMapSpec1D` x4, `__glKonSendMapData1D` x4 | 2 | `0x2c`, `0xd1` |
+| `__glKonDefaultState` | `__glkonim_PixelStorei` x20 | 0 | `0xcf0`, `0xcf1`, `0xcf2`, `0xcf3`, `0xcf4`, `0xcf5` |
+| `__glKonEvalCoord1DHost` | `EvalRow1D` | 0 | `none` |
+| `__glKonEvalMesh1DHost` | `indirect`, `EvalRow1D`, `indirect` x2, `EvalRow1D`, `indirect` x2, `EvalRow1D`, `indirect` x2, `EvalRow1D`, `indirect` | 0 | `0x100`, `0x1b00`, `0x1b01` |
 | `__glKonEvalMesh2DGe11` | `none` | 56 | `0x10`, `0x11`, `0x12`, `0x13`, `0x27`, `0x32` |
 | `__glKonExecuteLDMA` | `none` | 3 | `0x16d` |
 | `__glKonFreeEvaluators` | `indirect` x10 | 0 | `none` |
@@ -777,13 +828,13 @@ What was compared for the 64-bit rows above:
 | `__glKonInitConvolutionState` | `none` | 0 | `0x1908`, `0x8010`, `0x8012`, `0x8016` |
 | `__glKonInitEvaluators` | `indirect` x2 | 0 | `none` |
 | `__glKonInitializeEnables` | `fprintf`, `exit` | 0 | `0xff` |
-| `__glKonLockedMemoryForceSwapIn` | `__glDlistHeapQueryMin` | 0 | `none` |
+| `__glKonLockedMemoryForceSwapIn` | `__glKonLockedMemorySwapIn`, `__glDlistHeapQueryMin`, `__glKonLockedMemorySwapOut`, `__glKonLockedMemorySwapIn` | 0 | `none` |
 | `__glKonParseInput` | `__glSetError` x2 | 0 | `0x500`, `0x1400`, `0x1407`, `0x1900`, `0x190b`, `0x1a00` |
-| `__glKonSdramForceSwapIn` | `__glDlistHeapPriorityChanged`, `__glDlistHeapQueryMin`, `__glDlistHeapPriorityChanged` | 0 | `0x20` |
+| `__glKonSdramForceSwapIn` | `__glKonSdramSwapIn`, `__glDlistHeapPriorityChanged`, `__glDlistHeapQueryMin`, `__glKonSdramInvalidate`, `__glDlistHeapPriorityChanged` | 0 | `0x20` |
 | `__glKonSendMapData1D` | `none` | 11 | `0x2a` |
 | `__glKonSendMapData2D` | `none` | 14 | `0x2b` |
-| `__glKonSetPixelLEModes` | `none` | 0 | `0xcf5` |
-| `__glKonUnsetLEModes` | `none` | 0 | `none` |
+| `__glKonSetPixelLEModes` | `__glKonPushState`, `__glKonDefaultState`, `__glkonim_PixelStorei` | 0 | `0xcf5` |
+| `__glKonUnsetLEModes` | `__glKonPopState` | 0 | `none` |
 | `__glkonAdjustPlist` | `none` | 0 | `none` |
 | `__glkonCompressPlist` | `none` | 0 | `0xff` |
 | `__glkonDrawArraysCEV` | `indirect` x6 | 5 | `0x182`, `0x1a1`, `0xbeef` |
@@ -817,7 +868,7 @@ What was compared for the 64-bit rows above:
 | `__glkonDrawArraysTIEV` | `indirect` x8 | 5 | `0x182`, `0x1a3`, `0xbeef` |
 | `__glkonDrawArraysTIV` | `indirect` x6 | 5 | `0x182`, `0x1a1`, `0xbeef` |
 | `__glkonDrawArraysTV` | `indirect` x4 | 5 | `0x182`, `0x1a3`, `0xbeef` |
-| `__glkonSPValidateLocalDlist` | `none` | 0 | `none` |
+| `__glkonSPValidateLocalDlist` | `__glKonSdramForceSwapIn` | 0 | `none` |
 | `__glkonSendPackedVertexV3F` | `none` | 3 | `0x1ab` |
 | `__glkonSendPackedVertexV3F_C4UB` | `none` | 3 | `0x1ac` |
 | `__glkonSendPackedVertexV3F_C4UB_N3S` | `none` | 4 | `0x1ae` |
@@ -832,36 +883,36 @@ What was compared for the 64-bit rows above:
 | `__glkonSendPackedVertexV3F_T2S` | `none` | 3 | `0x1b3` |
 | `__glkonSwapOutList` | `indirect`, `memmove` x2 | 0 | `0x400` |
 | `__glkon_DlistInit` | `__glSPDlistSpace` | 0 | `none` |
-| `__glkon_GetDeformationd` | `none` | 0 | `none` |
-| `__glkon_GetDeformationi` | `none` | 0 | `none` |
+| `__glkon_GetDeformationd` | `getDeformationf` | 0 | `none` |
+| `__glkon_GetDeformationi` | `getDeformationf` | 0 | `none` |
 | `__glkon_InitDlistState` | `getenv` | 0 | `none` |
-| `__glkon_ResumeSelectfeed` | `none` | 0 | `0x1c01`, `0x1c02` |
-| `__glkon_SuspendSelectfeed` | `none` | 0 | `0x1c01`, `0x1c02` |
+| `__glkon_ResumeSelectfeed` | `StartSelectFeed` x3 | 0 | `0x1c01`, `0x1c02` |
+| `__glkon_SuspendSelectfeed` | `FinishSelectFeed` x3 | 0 | `0x1c01`, `0x1c02` |
 | `__glkon_datavn` | `none` | 1 | `none` |
 | `__glkon_dlerror` | `__glSPDlistSpace` | 0 | `0xe4` |
-| `__glkon_dlist_mem_alloc` | `none` | 0 | `none` |
-| `__glkon_dlist_mem_free` | `none` | 0 | `none` |
-| `__glkon_dlist_mem_realloc` | `none` | 0 | `none` |
+| `__glkon_dlist_mem_alloc` | `__glkon_mem_alloc` | 0 | `none` |
+| `__glkon_dlist_mem_free` | `__glkon_mem_free` | 0 | `none` |
+| `__glkon_dlist_mem_realloc` | `__glkon_mem_realloc` | 0 | `none` |
 | `__glkon_mem_realloc` | `__glKon_ioctl` | 0 | `0x271e` |
 | `__glkon_packPixelRow` | `none` | 0 | `0x1f`, `0x3ff`, `0x8032`, `0x8033`, `0x8034`, `0x8036` |
-| `__glkon_texture_mem_alloc` | `none` | 0 | `none` |
-| `__glkon_texture_mem_realloc` | `none` | 0 | `none` |
+| `__glkon_texture_mem_alloc` | `__glkon_mem_alloc` | 0 | `none` |
+| `__glkon_texture_mem_realloc` | `__glkon_mem_realloc` | 0 | `none` |
 | `__glkonim_AlphaFunc` | `none` | 6 | `0xca` |
 | `__glkonim_ClearDepth` | `__glSetError` | 2 | `0x1f`, `0x502` |
 | `__glkonim_ConvolutionParameterfEXT` | `__glkonim_PixelTransformParameterfSGI` | 0 | `none` |
 | `__glkonim_ConvolutionParameterfvEXT` | `__glkonim_PixelTransformParameterfvSGI` | 0 | `none` |
 | `__glkonim_ConvolutionParameteriEXT` | `__glkonim_PixelTransformParameteriSGI` | 0 | `none` |
 | `__glkonim_ConvolutionParameterivEXT` | `__glkonim_PixelTransformParameterivSGI` | 0 | `none` |
-| `__glkonim_CopyColorTableSGI` | `__glSetError`, `__glKonPushState`, `__glKonDefaultState`, `__glkonim_ReadPixels`, `__glKonPopState`, `__glSetError` | 6 | `0x111`, `0x501`, `0x502`, `0x1403`, `0x1908` |
-| `__glkonim_CopyConvolutionFilter2DEXT` | `__glSetError` x2 | 12 | `0x10`, `0xf3`, `0x111`, `0x500`, `0x502`, `0x8011` |
-| `__glkonim_CopyTexImage1DEXT` | `__glSetError` | 0 | `0x500`, `0xde0` |
-| `__glkonim_CopyTexSubImage1DEXT` | `__glSetError` | 0 | `0x500`, `0xde0` |
+| `__glkonim_CopyColorTableSGI` | `__glSetError`, `__glKonPushState`, `__glKonDefaultState`, `__glkonim_ReadPixels`, `__glkonim_ColorTableSGI`, `__glKonPopState`, `__glSetError` | 6 | `0x111`, `0x501`, `0x502`, `0x1403`, `0x1908` |
+| `__glkonim_CopyConvolutionFilter2DEXT` | `__glChkConvFilterArgs`, `__glSetError` x2 | 12 | `0x10`, `0xf3`, `0x111`, `0x500`, `0x502`, `0x8011` |
+| `__glkonim_CopyTexImage1DEXT` | `__glSetError`, `__glkonim_CopyTexImage` | 0 | `0x500`, `0xde0` |
+| `__glkonim_CopyTexSubImage1DEXT` | `__glSetError`, `__glkonim_CopyTexSubImage` | 0 | `0x500`, `0xde0` |
 | `__glkonim_DeformSGIX` | `__glSetError` | 2 | `0x1bf`, `0x501` |
-| `__glkonim_DeformationMap3dSGIX` | `__glSetError` | 6 | `0x1c1`, `0x501` |
-| `__glkonim_DeformationMap3fSGIX` | `__glSetError` | 6 | `0x1c0`, `0x501` |
+| `__glkonim_DeformationMap3dSGIX` | `__glSetError`, `deformMapProlog` | 6 | `0x1c1`, `0x501` |
+| `__glkonim_DeformationMap3fSGIX` | `__glSetError`, `deformMapProlog` | 6 | `0x1c0`, `0x501` |
 | `__glkonim_DisableClientState` | `__glSetError` | 2 | `0x10`, `0x20`, `0xe4`, `0x500`, `0x502`, `0x8074` |
-| `__glkonim_DrawPixels` | `__glSetError` | 0 | `0x41`, `0x502` |
-| `__glkonim_EdgeFlagPointer` | `__glim_EdgeFlagPointerEXT`, `__glSetError` | 0 | `0x10`, `0x502` |
+| `__glkonim_DrawPixels` | `__glKonParseInput`, `__glKonParseErrorDraw`, `__glKonParseHostImage`, `DrawPixels`, `__glSetError` | 0 | `0x41`, `0x502` |
+| `__glkonim_EdgeFlagPointer` | `__glim_EdgeFlagPointerEXT`, `compute_func_ptr`, `__glSetError` | 0 | `0x10`, `0x502` |
 | `__glkonim_Enable` | `__glkon_EnableTexture` x2, `ValidateHistogramSink` x2, `__glKonEvalEnable` | 4 | `0x10`, `0x20`, `0x24`, `0x40`, `0xe4`, `0xff` |
 | `__glkonim_End` | `none` | 2 | `0x71` |
 | `__glkonim_EvalCoord1d` | `indirect` | 0 | `none` |
@@ -881,39 +932,38 @@ What was compared for the 64-bit rows above:
 | `__glkonim_GetConvolutionParameterivEXT` | `__glkonim_GetPixelTransformParameterivSGI` | 0 | `none` |
 | `__glkonim_GetHistogramParameterfvEXT` | `__glkon_get_special2`, `__glSetError` | 0 | `0x105`, `0x502` |
 | `__glkonim_GetHistogramParameterivEXT` | `__glkon_get_special2`, `__glSetError` | 0 | `0x105`, `0x502` |
-| `__glkonim_GetLightfv` | `__glSetError` x2 | 0 | `0x41`, `0x500`, `0x502`, `0x1200`, `0x120a` |
+| `__glkonim_GetLightfv` | `__glkon_get_special2`, `__glSetError` x2 | 0 | `0x41`, `0x500`, `0x502`, `0x1200`, `0x120a` |
 | `__glkonim_GetListParameterfvSGIX` | `__glSetError`, `__glNamesLockData`, `__glNamesUnlockData`, `__glSetError` x2 | 0 | `0x500`, `0x501`, `0x502`, `0x8182` |
-| `__glkonim_GetPixelMapuiv` | `__glkon_get_special3`, `__glSetError` | 0 | `0x48`, `0x200`, `0x502`, `0xc70`, `0xc71` |
-| `__glkonim_GetPixelTransformParameterivSGI` | `none` | 0 | `none` |
-| `__glkonim_GetTexEnvfv` | `__glSetError` | 0 | `0x502` |
-| `__glkonim_GetTexLevelParameterfv` | `none` | 0 | `none` |
-| `__glkonim_HistogramEXT` | `__glSetError` x5 | 12 | `0x102`, `0x500`, `0x501`, `0x502`, `0x8024`, `0x8025` |
-| `__glkonim_IsEnabled` | `none` | 0 | `none` |
+| `__glkonim_GetPixelMapuiv` | `get_pixel_map_setup`, `__glkon_get_special3`, `__glSetError` | 0 | `0x48`, `0x200`, `0x502`, `0xc70`, `0xc71` |
+| `__glkonim_GetPixelTransformParameterivSGI` | `GetPixelTransformParameterfvSGI` | 0 | `none` |
+| `__glkonim_GetTexEnvfv` | `do_gettexenv`, `__glSetError` | 0 | `0x502` |
+| `__glkonim_GetTexLevelParameterfv` | `__glkonim_GetTexLevelParameteriv` | 0 | `none` |
+| `__glkonim_IsEnabled` | `kona_get_offset`, `__glkonim_GetBooleanv` | 0 | `none` |
 | `__glkonim_IsTextureEXT` | `indirect`, `__glSetError` | 0 | `0x502` |
 | `__glkonim_LineWidth` | `none` | 5 | `0xbd`, `0xe4`, `0x501` |
-| `__glkonim_ListParameterfSGIX` | `none` | 0 | `none` |
+| `__glkonim_ListParameterfSGIX` | `__glkonim_ListParameterfvSGIX` | 0 | `none` |
 | `__glkonim_ListParameterfvSGIX` | `__glSetError`, `__glNamesLockData`, `__glDlistHeapPriorityChanged` x2, `__glNamesUnlockData`, `__glSetError` x2 | 0 | `0x20`, `0x500`, `0x501`, `0x502`, `0x8182` |
 | `__glkonim_MapGrid1f` | `__glSetError` | 7 | `0x28`, `0xe4`, `0x501`, `0x502` |
 | `__glkonim_MapGrid2f` | `__glSetError` | 11 | `0x29`, `0xe4`, `0x501`, `0x502` |
 | `__glkonim_Materiali` | `__glSetError` | 7 | `0x97`, `0x500`, `0x1601` |
-| `__glkonim_PixelMapfv` | `none` | 0 | `0x1406` |
-| `__glkonim_PixelMapuiv` | `none` | 0 | `0x1405` |
-| `__glkonim_PixelMapusv` | `none` | 0 | `0x1403` |
-| `__glkonim_PixelStoref` | `__glSetError` | 0 | `0x502`, `0xcf0`, `0xcf1`, `0xd00`, `0xd01` |
-| `__glkonim_PixelTransferi` | `none` | 0 | `none` |
+| `__glkonim_PixelMapfv` | `do_pixelmap` | 0 | `0x1406` |
+| `__glkonim_PixelMapuiv` | `do_pixelmap` | 0 | `0x1405` |
+| `__glkonim_PixelMapusv` | `do_pixelmap` | 0 | `0x1403` |
+| `__glkonim_PixelStoref` | `__glkonim_PixelStorei` x2, `__glSetError` | 0 | `0x502`, `0xcf0`, `0xcf1`, `0xd00`, `0xd01` |
+| `__glkonim_PixelTransferi` | `__glkonim_PixelTransferf` | 0 | `none` |
 | `__glkonim_PixelTransformParameterfvSGI` | `__glSetError` x5 | 22 | `0xf8`, `0xf9`, `0x500`, `0x502`, `0x8010`, `0x8011` |
-| `__glkonim_PixelTransformParameteriSGI` | `none` | 0 | `none` |
-| `__glkonim_PixelTransformParameterivSGI` | `__glPixelTransformParameterfvSGI_size`, `__glSetError` x2 | 0 | `0x500`, `0x502` |
+| `__glkonim_PixelTransformParameteriSGI` | `__glkonim_PixelTransformParameterfSGI` | 0 | `none` |
+| `__glkonim_PixelTransformParameterivSGI` | `__glPixelTransformParameterfvSGI_size`, `__glkonim_PixelTransformParameterfvSGI`, `__glSetError` x2 | 0 | `0x500`, `0x502` |
 | `__glkonim_PixelZoom` | `__glSetError` x3 | 3 | `0x2f`, `0x501`, `0x502` |
 | `__glkonim_PointSize` | `none` | 5 | `0xbe`, `0xe4`, `0x501` |
-| `__glkonim_ReadPixels` | `__glSetError` | 0 | `0x22`, `0x502` |
-| `__glkonim_RenderMode` | `__glSetError` x3 | 2 | `0x19`, `0x500`, `0x502`, `0x1c00`, `0x1c01`, `0x1c02` |
+| `__glkonim_ReadPixels` | `__glKonParseInput`, `__glKonParseErrorRead`, `__glkonReadPixelsOrTexels`, `__glSetError` | 0 | `0x22`, `0x502` |
+| `__glkonim_RenderMode` | `__glSetError` x2, `StartSelectFeed` x2, `ResolveFeedback`, `ResolveSelect`, `__glSetError` | 2 | `0x19`, `0x500`, `0x502`, `0x1c00`, `0x1c01`, `0x1c02` |
 | `__glkonim_SampleMaskSGIS` | `none` | 6 | `0x118` |
 | `__glkonim_SelectBuffer` | `__glSetError` x5 | 0 | `0x501`, `0x502`, `0x1c02` |
-| `__glkonim_SpriteParameterivSGIX` | `none` | 0 | `0x8149` |
-| `__glkonim_SubdivPatchParameteriSGIX` | `none` | 0 | `none` |
-| `__glkonim_TexSubImage1DEXT` | `__glSetError` | 0 | `0x500`, `0xde0` |
-| `__glkonim_TexSubImage3DEXT` | `__glSetError` | 0 | `0x500`, `0x806f` |
+| `__glkonim_SpriteParameterivSGIX` | `__glkonim_SpriteParameterfvSGIX` | 0 | `0x8149` |
+| `__glkonim_SubdivPatchParameteriSGIX` | `__glkonim_SubdivPatchParameterfSGIX` | 0 | `none` |
+| `__glkonim_TexSubImage1DEXT` | `__glSetError`, `__glkonim_TexSubImage` | 0 | `0x500`, `0xde0` |
+| `__glkonim_TexSubImage3DEXT` | `__glSetError`, `__glkonim_TexSubImage` | 0 | `0x500`, `0x806f` |
 | `__glkonim_xEnable` | `__glSetError` | 2 | `0x10`, `0x20`, `0x24`, `0xad`, `0xae`, `0xaf` |
 | `__glkonlSendPackedVertexV3F_C4UB` | `__glSPDlistSpace` x3 | 0 | `0x1ac` |
 | `__glkonlSendPackedVertexV3F_N3S` | `__glSPDlistSpace` x3 | 0 | `0x1ad` |
@@ -947,8 +997,8 @@ What was compared for the 64-bit rows above:
 | `__glkonlc_ColorTableParameterfvSGI` | `__glSPDlistSpace` | 0 | `0xeb` |
 | `__glkonlc_ColorTableParameterivSGI` | `__glSPDlistSpace` | 0 | `0xeb` |
 | `__glkonlc_DeformSGIX` | `__glsplc_InvalidValue`, `__glSPDlistSpace` | 0 | `0x1bf` |
-| `__glkonlc_DeformationMap3dSGIX` | `none` | 0 | `none` |
-| `__glkonlc_DeformationMap3fSGIX` | `none` | 0 | `none` |
+| `__glkonlc_DeformationMap3dSGIX` | `lcDeformationMap3` | 0 | `none` |
+| `__glkonlc_DeformationMap3fSGIX` | `lcDeformationMap3` | 0 | `none` |
 | `__glkonlc_DepthMask` | `__glSPDlistSpace` | 0 | `0x22` |
 | `__glkonlc_DepthRange` | `__glSPDlistSpace` | 0 | `0xcf` |
 | `__glkonlc_EdgeFlag` | `__glSPDlistSpace` | 0 | `0xa7` |
@@ -986,7 +1036,7 @@ What was compared for the 64-bit rows above:
 | `__glkonlc_Scaled` | `__glSPDlistSpace` | 0 | `0xdc` |
 | `__glkonlc_Scalef` | `__glSPDlistSpace` | 0 | `0xdd` |
 | `__glkonlc_ShadeModel` | `__glSPDlistSpace` | 0 | `0xc0` |
-| `__glkonlc_SpriteParameterivSGIX` | `none` | 0 | `0x8149` |
+| `__glkonlc_SpriteParameterivSGIX` | `__glkonlc_SpriteParameterfvSGIX` | 0 | `0x8149` |
 | `__glkonlc_TexCoord3sv` | `__glSPDlistSpace` | 0 | `0x86` |
 | `__glkonlc_TexCoord4s` | `__glSPDlistSpace` | 0 | `0x8a`, `0xffff` |
 | `__glkonlc_TexCoord4sv` | `__glSPDlistSpace` | 0 | `0x8a` |
@@ -1004,10 +1054,10 @@ What was compared for the 64-bit rows above:
 | `__glkonlc_Vertex4s` | `__glSPDlistSpace` | 0 | `0x96`, `0xffff` |
 | `__glkonlc_Vertex4sv` | `__glSPDlistSpace` | 0 | `0x96` |
 | `__glkonlc_Viewport` | `__glSPDlistSpace`, `__glsplc_InvalidValue` x2 | 0 | `0xe3` |
-| `__glkonle_Bitmap` | `none` | 0 | `none` |
-| `__glkonle_ColorTableSGI` | `__glKonSetPixelLEModes`, `__glKonUnsetLEModes` | 0 | `none` |
-| `__glkonle_ConvolutionFilter1DEXT` | `__glSetError` x2 | 0 | `0x502`, `0x8010` |
-| `__glkonle_ConvolutionFilter2DEXT` | `__glSetError` x2 | 0 | `0x502`, `0x8011` |
+| `__glkonle_Bitmap` | `__glKonSetPixelLEModes`, `__glkonim_Bitmap`, `__glKonUnsetLEModes` | 0 | `none` |
+| `__glkonle_ColorTableSGI` | `__glKonSetPixelLEModes`, `__glkonim_ColorTableSGI`, `__glKonUnsetLEModes` | 0 | `none` |
+| `__glkonle_ConvolutionFilter1DEXT` | `__glSetError` x2, `__glKonSetPixelLEModes`, `__glkonim_ConvolutionFilter1DEXT`, `__glKonUnsetLEModes` | 0 | `0x502`, `0x8010` |
+| `__glkonle_ConvolutionFilter2DEXT` | `__glSetError` x2, `__glKonSetPixelLEModes`, `__glkonim_ConvolutionFilter2DEXT`, `__glKonUnsetLEModes` | 0 | `0x502`, `0x8011` |
 | `__glkonle_Push` | `none` | 3 | `none` |
-| `__glkonle_SeparableFilter2DEXT` | `__glSetError` x2 | 0 | `0x502`, `0x8012` |
+| `__glkonle_SeparableFilter2DEXT` | `__glSetError` x2, `__glKonSetPixelLEModes`, `__glkonim_SeparableFilter2DEXT`, `__glKonUnsetLEModes` | 0 | `0x502`, `0x8012` |
 | `__glkonle_SetBegin` | `none` | 0 | `none` |
