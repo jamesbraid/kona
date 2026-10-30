@@ -410,6 +410,41 @@ and every store below sits exactly there. Read in full from the [lightsource.S l
 - `mgeb_LightK2` (`lightsource.S` lines 305-320, at 0xc6cb): **inferred**, consumes the quadratic factor, operand 1,
   and selects its field with F = 6 at 0xc6cf. With K0 and K1 it fills three fields whose address codes step down by
   one; the output word is the operand moved at the handler's first word, stored nine words on (0xc6cb to 0xc6d4).
+- `mgeb_LightPos` (`lightsource.S` line 750, at 0xc500): **inferred**, sets a light's position or direction in eye
+  space. Its operands are the four position words (command words 1-4) and the light address (word 0, loaded at 0xc503);
+  it multiplies the position by the modelview matrix at engine words 0x2f-0x3e: sixteen products at 0xc504-0xc516, each
+  component's four terms summed by `fmul.fadd` words (0xc50c, 0xc510, 0xc514, 0xc532). It then branches on `cc` 3 at
+  0xc524 to 0xc59f, which forms a reciprocal (`rcpseed` 0xc5a1, `rcpstep` 0xc5a3, 0xc5ab) and scales the position by
+  it; the other path squares and adds the components, takes a reciprocal square root (`rsqstep` 0xc541, `rsqseed`
+  0xc543), compares the squared length with 1e-05 (0x3727c5ac, staged at 0xc550) and normalises the vector. Results go
+  to the light's block in external memory (stores at 0xc52a, 0xc56b, 0xc566, 0xc579, and 0xc597-0xc59b) and to special
+  registers 0x25, 0x2e and 0x2f; the dirty-module addresses 0xd9a2, 0xf449, 0xf50d and 0xf547 go to control words 0x9a,
+  8, 0xc and 0xb (0xc52c, 0xc55a, 0xc589, 0xc58b), and 0xc5c4 and 0xc596 end the command.
+- `mgeb_LightSpotDir` (`lightsource.S` line 626, at 0xc5cd): **inferred**, sets a spotlight's axis in eye space. It
+  first calls `mMatrixInverse` (0xee7) at 0xc5cd on `cc` 0x76, so the inverse of the modelview at engine words
+  0x1f-0x2e is current, then multiplies the three direction words (command words 1-3) by the nine words 0x1f-0x29
+  (0xc5d6-0xc5e1) and accumulates the three sums (0xc5de-0xc5ee). A reciprocal square root of the summed squares
+  (`rsqstep` 0xc5f9, 0xc605, `rsqseed` 0xc5fb) normalises the vector. The unit vector is written twice into the light's
+  block, at offsets 5-7 (0xc61e-0xc622) and 0x14-0x16 (0xc616-0xc61a), with a further store at offset 0x22 (0xc61c),
+  and the command ends at 0xc61d. Its operands are command words 1-3; the unit vector it produces is the stored result,
+  derived from the inverse-matrix products.
+- `mgeb_LightSpotExp` (`lightsource.S` line 450, at 0xc626): **inferred**, installs a spotlight exponent and refreshes
+  the exponent power table. Its operands are the light (command word 0, into register 3 at 0xc64d), the exponent (word
+  1, converted to an integer at 0xc62a) and the table slot index (word 2, into address register 4 at 0xc62d). The
+  exponent is compared with the limit 128.0 (0x43000000, staged at 0xc644 and subtracted at 0xc648); the branches at
+  0xc653 and 0xc654 send an out-of-range value to 0xc689, which jumps to `mErrInvalidValue` (0xd50a). Otherwise it
+  writes the result into the light block and the table slot at 0x1bff plus the index (stores 0xc667, 0xc669 and 0xc66b)
+  and calls `mLiPwrTable` (0xdc9) on `cc` 0x7e at 0xc655; the constants 0x3d042108 (one thirty-first), 0x41f7fff0 (just
+  under 31.0), 32.0 and 262144.0 (0x48800000) are staged at 0xc650, 0xc661, 0xc66e and 0xc66c for that rebuild. It
+  converts the exponent operand to an integer and compares it with the limit; the stored result is the table slot.
+- `mgeb_LightSpotCutAng` (`lightsource.S` line 350, at 0xc697): **inferred**, installs a spotlight cut-off angle after
+  range-checking it. The light address (command word 0, 0xc697) and the angle in degrees (word 1) are the operands, and
+  the angle has the staged limits subtracted from it 180.0 and 90.0 (0x43340000 at 0xc69a, 0x42b40000 at 0xc699;
+  subtractions 0xc69b and 0xc69d). The branches at 0xc6a8 and 0xc6a9 send an angle above the limit to
+  `mErrInvalidValue` (0xd50a); 180 degrees takes the branch at 0xc6a7 to 0xc6b3, while any other valid angle calls
+  `mSinCos` (0xe13) at 0xc6aa to produce its cosine. After the two paths merge, it clamps the result with `fmin`
+  (0xc6be) and stores three words into the light block at offsets 0x1a-0x1c (0xc6c3, 0xc6c5, 0xc6c7), ending the
+  command at 0xc6c2.
 
 ## Texture-coordinate generation (utexgen.s)
 
@@ -4640,3 +4675,318 @@ Read from the [polymode.S listing](ge_listing/polymode.S.lst) (`ge.u`, IRIX 6.5.
   (0xdb4c, 0xdbc2). The sequences at 0xdc2c and 0xdc63 save vertex pointers to external words 0x14d5-0x14d9, send 0x805 to 0x1f7 and
   zero to 0x1f5 (0xdc46-0xdc4a, 0xdc7d-0xdc81) and jump back into the loop (0xdc5a, 0xdc93). The fill case clears bit 0 of control
   word 0x19 by code 0x51 (0xdbfd-0xdc08) and returns at 0xdc00 after reading word 0x1a (0xdbfa).
+
+## Light and material queries and attribute stacks (getlight.S)
+
+The routines here move lighting state between engine memory and the back end: one restores a saved block of eight
+lights, one streams the eight light blocks out, and two answer host read-backs. Light blocks sit 0x23 words apart from
+the external-memory base plus 0x2c7. Read from the [getlight.S listing](ge_listing/getlight.S.lst) (`ge.u`, IRIX
+6.5.30m).
+
+- `mgeb_PopAttrLights` (`getlight.S` line 593, at 0xc20a): **inferred**, puts a saved set of lights back into engine
+  memory and queues the lighting modules for re-selection. Its single command word, the saved-block address, lands in
+  address register 0x1a at 0xc20d, and the saved words come in through address register 15 (reads at 0xc231-0xc247,
+  offsets 0-0xb). Register 3 is set from the external-memory base plus 0x2ab at 0xc20f (the light-model block that
+  precedes the light blocks); nine stores at offsets 4-0xc (0xc213-0xc223) rewrite that block. The words at
+  0xc226-0xc22e write control memory: 0x87, 0x9a = 0xd9a2 (`mLiDirtyLocLiVwrLiSrcInit`), 0xc = 0xf50d, 0xb = 0xf547 and
+  8 = 0xf449, and AND control word 0x84 with 0xffffff9f and word 4 with 0xffffffdf (0xc21e, 0xc222), clearing bits of
+  the lighting flags. The loop body 0xc22f-0xc24b copies twelve words per pass into the external-memory block register
+  3 addresses and repeats on `cc` 0x14 (0xc24b); in the shadow of the end-of-command wait at 0xc24c, register 15
+  advances by 0xc (0xc24f) and register 3 by 0x23 (0xc251). Its inputs are the saved words and the one operand; its
+  result is the restored blocks, with the flag words combined by AND as above and the saved block selected through register 15.
+  It combines the old flag bits with the masks to derive the new ones.
+- `mgesi_PushAttrLights` (`getlight.S` line 470, at 0xc255): **inferred**, streams the lighting attribute words out to
+  the back end. It consumes no command words; its inputs are the 0x23-word light blocks in external memory (register 3
+  is loaded from the base at 0xc25f, and the pass count 8 is staged at 0xc25d and loaded into register 0x13 at 0xc25e).
+  The header word 0x476 goes to bus-output 0x1f7 (0xc25c). The loop 0xc263-0xc27a reads words of one light block
+  (offsets 1-7, 0x14-0x16 and 0x21, reads 0xc263-0xc279) and forwards them to the output window, address register 0x1e
+  (moves 0xc26b-0xc278), repeating on `cc` 0x14 (0xc27a). The words after the wait at 0xc27b add 0x23 to register 3
+  (0xc27f), send four more words (0xc27d, 0xc27e, 0xc281, 0xc282) and write a zero to bus-output 0x1f4 (0xc283). It
+  selects and forwards stored words unchanged and adds 0x23 to the block pointer; its output is the word stream.
+- `mgesi_LiGetMaterial` (`getlight.S` line 275, at 0xc284): **inferred**, answers a material read-back by returning
+  four words of one material field. The face enumerant at command word 0x27 and the property enumerant at word 0x28
+  (0xc285, 0xc294, 0xc298) are the inputs; it compares them with the staged constants 0x404, 0x405 and 0x408 (faces)
+  and 0x1200-0x1202 and 0x1600-0x1603 (properties) with the `isub` words 0xc289-0xc29f. Address words at 0xc2ae and
+  0xc2af select the front block (external-memory base plus 0x64) or the back block (plus 0x7b), and field addresses are
+  picked by the predicated words 0xc2a6-0xc2aa. The result is four words sent to the output window (0xc2c2-0xc2c7)
+  after the header 0x476 goes to bus-output 0x1f7 (0xc2b4); on `cc` 2 the branch at 0xc2b1 takes the path at 0xc2c9,
+  which returns command words 4-7 unchanged (0xc2cc-0xc2d0). A zero to bus-output 0x1f4 (0xc2c8, 0xc2d1) closes the
+  reply.
+- `mgesi_LiGetLight` (`getlight.S` line 89, at 0xc2d2): **inferred**, answers a light read-back by returning one light
+  parameter. Command word 0 (the light, into register 3 at 0xc2db and 0xc2ff) and word 1 (the parameter enumerant) are
+  its operands; it compares the enumerant with the staged constants 0x1201-0x1209 using the `isub` chain 0xc2dc-0xc2ec;
+  the predicated address words 0xc2e6-0xc2f5 pick the matching field through register 0x1a, with reads at 0xc2e4,
+  0xc2f2 and 0xc2f4. The header 0x476 goes to bus-output 0x1f7 (0xc2dd, 0xc2f6). It returns four words: read through
+  register 0x13 on the first path (0xc301-0xc307, stores 0xc309-0xc30e), or from register 3 plus offsets 1-4 on the
+  path the branch at 0xc2f8 reaches at 0xc310 (reads 0xc312-0xc318, stores 0xc31a-0xc31f); a zero to bus-output 0x1f4
+  (0xc30f, 0xc320) closes the reply.
+
+## Light-model and colour-material handlers (lightmodel.S)
+
+The colour-material handlers share one skeleton: they compare the colour-material enumerant at command word 0x27 with
+the five material enumerants and derive per-field masks that go into special registers 0x20-0x27 (front fields
+0x20-0x23, back fields 0x24-0x27). Read from the [lightmodel.S listing](ge_listing/lightmodel.S.lst) (`ge.u`, IRIX
+6.5.30m).
+
+- `mgeb_LiClrMtrlFrontBack` (`lightmodel.S` line 543, at 0xc721): **inferred**, switches colour tracking on for both
+  faces. Inputs are the tracked-property enumerant at command word 0x27 and the current colour in operand words 4-7
+  (saved to staging words 0xd-0x10 at 0xc747-0xc74a). The enumerant is compared with 0x1200, 0x1201, 0x1202, 0x1600 and
+  0x1602 (`isub` words 0xc728-0xc72f), combines the flags with control word 0x84 (the AND at 0xc730) and XORs them into
+  eight masks written to special registers 0x20-0x27 (0xc735, 0xc73a-0xc740, 0xc73d, 0xc73e). It also writes special
+  register 0x2f (0xc743), reads the external-memory words 0x2b9 and 0x2b8 (0xc72b, 0xc745) and writes them back
+  (0xc74d, 0xc753), stores control word 0x85 (0xc759), and either waits for the end of the command on `cc` 0x7f
+  (0xc751) or jumps to `mLiUpdateMtrlColor` (0xdef0) at 0xc752. The masks it derives are its output, one per tracked
+  field.
+- `mgeb_LiClrMtrlBack` (`lightmodel.S` line 416, at 0xc75b): **inferred**, the back-face variant of colour tracking.
+  The enumerant comparisons of the front-and-back entry recur here (0xc763-0xc769) with the staged face constant 0x405,
+  and builds masks for the back fields only: four XORs write special registers 0x24-0x27 (0xc779-0xc77c) and zeros go
+  to 0x20-0x23 (0xc76e-0xc771). Special register 0x2f is written at 0xc77d, the operand colour words 4-7 are saved to
+  staging 0xd-0x10 (0xc781-0xc784), external-memory words 0x2b9 and 0x2b8 are read and rewritten (0xc764, 0xc76c,
+  0xc787, 0xc78d) and the jump at 0xc78c hands over to `mLiUpdateMtrlColor`. It compares the operand enumerant and
+  derives back-face masks as output.
+- `mgeb_LiClrMtrlFront` (`lightmodel.S` line 289, at 0xc795): **inferred**, the front-face variant of colour tracking.
+  The face constant 0x404 is staged at 0xc7b9, and the routine compares the tracked enumerant with 0x1200-0x1202,
+  0x1600 and 0x1602 (0xc79d-0xc7a3); four XORs write the masks to special registers 0x20-0x23 (0xc7b3-0xc7b6) and zeros
+  go to 0x24-0x27 (0xc7a8-0xc7ab). Special register 0x2f is written at 0xc7b7, operand words 4-7 are saved at
+  0xc7bb-0xc7be, the external-memory words 0x2b9 and 0x2b8 are read and written back (0xc79e, 0xc7a6, 0xc7c1, 0xc7c7)
+  and the jump at 0xc7c6 continues in `mLiUpdateMtrlColor` (0xdef0). The front-face masks it derives are its output.
+- `mgeb_LightModelGAmb` (`lightmodel.S` line 228, at 0xc7cf): **inferred**, records the scene-wide ambient colour used
+  by every lit vertex. Three colour operands (command words 0-2, moved at 0xc7d0, 0xc7d2 and 0xc7d4) are written as
+  three words to external-memory offsets 0x2ab, 0x2ac and 0x2ad (stores 0xc7d9, 0xc7db, 0xc7dd). It combines the staged
+  constant 1 with control word 0x86 by OR (0xc7d5, store 0xc7de) and loads the module addresses 0xf50d and 0xf547
+  (0xc7d3, 0xc7d6) into control words 0xc and 0xb (0xc7df, 0xc7e0), so the next vertex batch re-selects the lighting
+  code; the command ends at 0xc7d8. The operands pass through unchanged and the stored words are its output.
+- `mgeb_LightModelLocV` (`lightmodel.S` line 152, at 0xc7e1): **inferred**, toggles whether specular terms use the true
+  eye position. The operand is one command word (loaded into register 0x1a at 0xc7e1 and combined with the staged mask
+  0xfffffffb by the AND at 0xc7ec); the routine reads control word 0x84 (0xc7e2) and ORs in the staged constant 4
+  (0xc7e8); the same constant is ORed into control word 4 (0xc7eb). The updated words go back to control words 0x84 and
+  4 under predicates (0xc7f3-0xc7f5), and 0xd9a2, 0xf449, 0xf50d and 0xf547 are written to control words 0x9a, 8, 0xc
+  and 0xb (0xc7f6-0xc7fa). It writes special register 0x2e (0xc7ea) and waits for the next command at 0xc7f2. It
+  combines the operand with control word 0x84 by AND and OR, and the rewritten words are its output.
+- `mgeb_LightModel2Side` (`lightmodel.S` line 59, at 0xc7fb): **inferred**, toggles whether back faces get their own
+  lit colour. One command word (register 0x1a, 0xc7fb) and control words 6 and 0x84 (read at 0xc7fc and 0xc800) are the
+  inputs. The staged constant 0x80000000 (0xc7fe) is ORed into control word 6 at 0xc80d for the set case and combined
+  with it by the unit-1 operation 0x51 at 0xc7ff for the clear case; predicated stores at 0xc816 and 0xc817 write the
+  result. The constant 2 (staged at 0xc803) is ORed into control word 0x84 (0xc806, store 0xc814). Special registers
+  0x26 and 0x2e are written (0xc807-0xc80b), and 0xf547 and 0xf50d (staged at 0xc802 and 0xc80c) go to control words
+  0xb and 0xc (0xc815, 0xc818); the command ends at 0xc810. It combines the operand with control word 6 by OR or
+  AND-NOT and rewrites it as the result.
+
+## Light enable and disable handlers (lightenables.S)
+
+These handlers flip bits in a few control words and queue the modules that must be re-selected. The stages 0xf50d,
+0xf547, 0xf449 and 0xf4e4 are `mmo_DirtyLightModule`, `mmo_DirtyCullAndLightModule`, `mmo_DirtyXformAndObjToClipModule`
+and `mmo_DirtyPrePathModule`; they land in control words 0xc, 0xb, 8 and 0xda-0xdb. Read from the [lightenables.S
+listing](ge_listing/lightenables.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mgeb_LiDisableClrMtrl` (`lightenables.S` line 967, at 0xdc9c): **inferred**, disarms the per-vertex colour override
+  of material fields. The current colour in command words 4-6 (moved to staging 0xd-0xf at 0xdcaa-0xdcad), a further
+  word read at 0xdcb3 and control word 0x84 (0xdc9e) are the inputs. The routine tests the tracking bit 0x10 (staged at
+  0xdc9d), clears bit 3 of control word 0x84 with the mask 0xfffffff7 (0xdcb1, 0xdcb2, store at 0xdcbe), and under a
+  predicate restores the lighting final step 0xda3c (`mLiFinalLi`) to control word 0xa1 (0xdca9). It writes the
+  colour-material result to special register 0x2e (0xdca8), queues the dirty modules into words 0xc and 0xb (0xdcb9,
+  0xdcba), and on `cc` 0x7c branches at 0xdcb6 to `mLiUpdateMtrlColor` (0xdef0) before waiting at 0xdcb7. It combines
+  control word 0x84 with the mask by AND, and the colour operands are its inputs.
+- `mgeb_LiDisableLightS` (`lightenables.S` line 832, at 0xdcc0): **inferred**, drops one light from the enabled set.
+  Command word 1, the light's selector, goes into register 0x1a at 0xdcc0; the routine converts it to an integer
+  (0xdcc4, 0xdcd1) and combines it with control word 0x87, the enabled-light word read at 0xdcc7, by integer
+  subtraction (0xdcc8, 0xdcd7). The light's block address is the operand plus the external-memory base (0xdcc8,
+  0xdcdc); the routine reads external-memory words at 0x2ba (0xdcda) and at 0x2af plus register 10 (0xdce0). It writes
+  the new control word 0x87 (0xdcf6), 0xd9a2 into word 0x9a (0xdce8), 0xf449 into word 8 (0xdcf2), clears bit 5 of
+  control word 4 with 0xffffffdf (0xdce9, 0xdcea, 0xdcf3), ORs 1 into word 0x86 (0xdceb, 0xdcf4) and queues words 0xc
+  and 0xb; special registers 0x2e, 0x25 and 0x26 are written at 0xdcd5, 0xdce5 and 0xdcec. The rewritten control word
+  0x87 is its result.
+- `mgeb_LiDisableLighting` (`lightenables.S` line 722, at 0xdd0d): **inferred**, clears the master lighting bits spread
+  over four control words. One command word (register 0x1a, 0xdd0d) is consumed, and the masks 0xfffffffd, 0xffffffdb
+  and 0xffffff7f and the constants 0x80000000 and 8 are staged (0xdd0f-0xdd15) and ANDed into control words 5, 4 and
+  0x84 (0xdd18, 0xdd19, 0xdd1f), which clears bit 1 of word 5, bits 2 and 5 of word 4 and bit 7 of word 0x84; control
+  word 6 loses bit 31 through the unit-1 operation 0x51 at 0xdd12. The stores 0xdd20-0xdd28 write those words back,
+  special registers 0x26 and 0x2e are written (0xdd1a, 0xdd1c), the dirty modules go to words 8, 0xc and 0xb
+  (0xdd25-0xdd27), and `mmo_DirtyPrePathModule` (0xf4e4, staged at 0xdd1e) goes to control words 0xda and 0xdb (0xdd29,
+  0xdd2a); the command ends at 0xdd22. Its operand is one command word; it combines the masks with control words 5, 4
+  and 0x84 by AND, and the cleared words are its output.
+- `mgeb_LiEnableClrMtrl` (`lightenables.S` line 665, at 0xdd2b): **inferred**, arms the per-vertex colour override of
+  material fields. Reading one command word into register 0x1a (0xdd2b), it ANDs the staged 0x10 with the following
+  operand (0xdd2f) to derive the predicate for the update; under it control word 0xa1 receives 0xd831
+  (`mLiClrMtrlFinalLi`, staged at 0xdd30, stored at 0xdd3a). It ORs bit 3 (the constant 8, staged at 0xdd33) into
+  control word 0x84 (the OR at 0xdd34, store at 0xdd3d) and queues 0xf50d and 0xf547 in control words 0xc and 0xb
+  (0xdd3b, 0xdd3c), then ends at 0xdd35. It combines the operand with 0x10 by AND and ORs bit 3 into control word 0x84;
+  the rewritten word is its output.
+- `mgeb_LiEnableLightS` (`lightenables.S` line 546, at 0xdd3e): **inferred**, adds one light to the enabled set.
+  Command word 1 is the light's selector (register 0x1a, 0xdd3e); the block address is formed the block address from
+  the external-memory base plus the selector (0xdd46, 0xdd66), and the converted selector (0xdd5e) is added to control
+  word 0x87, the enabled-light word read at 0xdd4d (the `iadd` at 0xdd62, store at 0xdd6b). External-memory stores go
+  to 0x2af plus register 11 (0xdd6a) and to 0x2ba (0xdd73). It writes 0xd9a2 into control word 0x9a (0xdd60), ORs the
+  staged 0x20 into control word 4 (0xdd63, 0xdd6d) and 1 into word 0x86 (0xdd6f, 0xdd70), loads 0xf449, 0xf50d and
+  0xf547 for words 8, 0xc and 0xb (0xdd65, 0xdd58, 0xdd57) and ends at 0xdd7a. Its operand is the selector, it adds it
+  to control word 0x87, and the new word is its output.
+- `mgeb_LiReCmpPwrTable` (`lightenables.S` line 462, at 0xdd83): **inferred**, stores the exponent-table control word
+  and asks for a rebuild of the spot power table. One command word (register 0x1a, 0xdd90) is converted to an integer
+  (0xdd91) and delivered to special register 0x2f (0xdd92) and external-memory word 0x1bfe (the store at 0xdd9c). It
+  tests control word 0x84 for bit 7 (0xdd85) and writes special register 0x2e (0xdd89), sets control word 0x86 to 7
+  (staged at 0xdd93, stored at 0xdd9d) and queues 0xf50d and 0xf547 in words 0xc and 0xb (0xdd9e, 0xdd9f); on `cc` 0x7c
+  the branch at 0xdd97 goes to `mLiSwichSpotPrwTable` (0xde3f), otherwise the return at 0xdd98 leaves the routine. It
+  converts its operand to an integer and the stored words are its outputs, combined with the flags as above.
+- `mgeb_LiEnableLighting` (`lightenables.S` line 77, at 0xdda1): **inferred**, sets the master lighting bits spread
+  over four control words. External-memory word 0x1bfe (0xdda1) and one command word (register 0x1a, 0xdda2) are the
+  inputs; the operand is converted with the unit-1 operation 0x6c (0xdda3) and writes the result to special register
+  0x2f (0xdda8). It sets bit 31 of control word 6 (the OR with 0x80000000 at 0xddab), bit 1 of word 5 (0xddb0), bits 2
+  and 5 of word 4 (the constant 0x24 staged at 0xddac) and bit 7 of word 0x84 (0xddb7), the mirror image of
+  `mgeb_LiDisableLighting`. It queues 0xf50d, 0xf547 and 0xf449 for words 0xc, 0xb and 8 and 0xf4e4 for words 0xda and
+  0xdb (0xddc2, 0xddc3), writes special register 0x26 (0xddb3), and either waits at 0xddbb on `cc` 0x7f or jumps to
+  `mLiSwichSpotPrwTable` (0xde3f) at 0xddbc. It combines the bits by OR as described and converts the operand as shown.
+- `mLiSwichSpotPrwTable2` (`lightenables.S` line 319, at 0xddc5): **inferred**, dispatches over the eight lights after
+  the spot power table has been recomputed. The eight integer results the table routine leaves in registers 0-7 are the
+  inputs, and they are written through the unit-1 operation 0x4c, to special registers 0x20-0x27 (0xddc5-0xddce). Eight
+  consecutive branches on `cc` 0x60, 0x62, 0x64 ... 0x6e (0xddd3, 0xdddc, 0xdde5, 0xddee, 0xddf7, 0xde00, 0xde09,
+  0xde12) test each light; their delay words load register 1 with staging word 2-9, register 3 with the light block
+  0x2c7, 0x2ea, 0x30d ... 0x3bc (0xddd5, 0xddde, ...), register 0 with 0x1100 + 0x20n and register 2 with the table
+  slot 0x1bff + n. A taken branch goes to `mLiSwichSpotPrwTableSub` (0xde2a); with none taken the word at 0xde1b loads
+  the successor from control word 0x9e and the command ends at 0xde20. It selects which light takes the branch; the
+  special-register values and block pointers are its outputs.
+- `mLiSwichSpotPrwTableSub` (`lightenables.S` line 418, at 0xde2a): **inferred**, the per-light step that refreshes one
+  entry of the spot power table. Registers 1, 2 and 3 arrive as the earlier dispatcher left them; the routine reads the
+  light's exponent word at register 3 plus 0x1d (0xde2a) and the table word at 0x1448 plus register 1 (0xde2c). It
+  computes a difference (`fsub`, 0xde33), scales it by the constant 0x3d042108, one thirty-first (staged at 0xde35,
+  multiplied at 0xde37) and stores the product to external memory through register 2 (0xde3b), after loading registers
+  13 and 1 with 0x8584 and 0x20 (0xde39, 0xde3a). It finishes by jumping to `mLiPwrTable` (0xdc9) at 0xde36. Its inputs
+  are registers 1-3; it subtracts and scales as shown, and the stored table entry is its result.
+- `mLiSwichSpotPrwTable` (`lightenables.S` line 185, at 0xde3f): **inferred**, recomputes the eight lights' spot
+  power-table state in one unrolled pass. Address register 15 gets 0x1c00 (0xde3f); light 0's and light 1's spot words
+  at external-memory offsets 0x2e4 and 0x307 (0xde41, 0xde45) and the table word 0x1bff (0xde4b) are read, and the
+  routine then walks the lights by adding 0x23 to the block pointer (0xde49, 0xde50, 0xde55, 0xde5d, 0xde63),
+  multiplying each spot word by the table entry (`fmul` 0xde48, 0xde4c, 0xde51, 0xde54, 0xde5b, 0xde60, 0xde68, 0xde6e)
+  and subtracting neighbouring entries (`fsub` 0xde52, 0xde56, 0xde5a, 0xde5e, 0xde62, 0xde66, 0xde6c, 0xde72). The
+  eight flags it sets (0xde42-0xde47 and the moves to 0xde74) select among eight integers (`ftoi`, staging words 2-9 at
+  0xde81-0xde88), the successor is loaded from control word 0x9e (0xde80), and the branch at 0xde89 on `cc` 3 enters
+  `mLiSwichSpotPrwTable2` (0xddc5); `ret` at 0xde8b ends the routine. Its inputs are the spot words and table entries;
+  it multiplies and subtracts them, and the integers it produces feed the dispatcher.
+
+## Material handlers (material.S)
+
+The `glMaterial` handlers keep one material block per face in external memory (front at the base plus 0x64, back at
+plus 0x7b) and branch by property to small writer routines. Read from the [material.S
+listing](ge_listing/material.S.lst) (`ge.u`, IRIX 6.5.30m).
+
+- `mgeb_Material` (`material.S` line 54, at 0xde94): **inferred**, the common entry for a material change, which
+  decides which block and field the operand words belong to. Command words 0 and 1 carry the face and property
+  enumerants (loaded into registers 0x1a and 0x19 at 0xde95 and 0xde96), with the colour or exponent operands behind
+  them (0xde97, 0xded5-0xdee1). Both enumerants are compared with the staged 0x404, 0x405, 0x408 and 0x1200-0x1203,
+  0x1600-0x1602 (`isub` words 0xdea3-0xdeb7), and selects the field address, the base plus 0x64, 0x68, 0x6c, 0x70, 0x74
+  or 0x78, with predicated address words at 0xdeb9-0xdec2. It then branches on `cc` 0x10 to `mErrInvalidEnum` (0xd520),
+  `cc` 0x68 to `mLiPushMaterial` (0xe036), `cc` 0x7b to `mLiSetMAmbDiff` (0xdf4c), `cc` 0x79 to `mLiSetMShininess`
+  (0xdf27), and to `mLiPushMtrlInit` (0xdfb1) at 0xdeca; the direct path stores operand words through registers 12 and
+  4 (0xded9-0xdee8) and marks control word 0x86 (0xdee5). The selected field address and the stored operand words are
+  its results.
+- `mLiUpdateMtrlColor` (`material.S` line 406, at 0xdef0): **inferred**, applies the current vertex colour to a tracked
+  material field. Staged enumerants are compared (`isub` 0xdef1-0xdf00), control word 0x84 is ANDed (0xdefc) and the
+  routine selects the field address, the base plus 0x70, 0x68, 0x6c or 0x64 (address words 0xdefd, 0xdefe, 0xdf01,
+  0xdf04). The four colour words (staged at 0xdf02 onward) are written through registers 12 and 4 at 0xdf10-0xdf23,
+  special register 0x2d is written at 0xdef5, 0x86 is set from the constant 1 (0xdf1b, 0xdf1c) and the dirty modules
+  0xf50d and 0xf547 are queued in words 0xc and 0xb (0xdf24, 0xdf26); the branch at 0xdf03 on `cc` 0x7b skips to
+  `mLiSetMAmbDiff`. Its inputs are the staged colour words and enumerants; the stored blocks are its output.
+- `mLiSetMShininess` (`material.S` line 322, at 0xdf27): **inferred**, writes a material's shininess exponent after
+  validating it. The staged exponent (staging word 0xd) is compared with the limit 128.0 (0x43000000 at 0xdf29;
+  `u1_0x6a` at 0xdf2b, `fsub` at 0xdf2e). A larger value reaches the jump to `mErrInvalidValue` (0xd50a) at 0xdf43.
+  Valid values are converted and written to special registers 0x2c and 0x2d (0xdf27, 0xdf28, then predicated copies
+  0xdf2a-0xdf36) and to the front and back field words through registers 12 and 4 (0xdf44, 0xdf46); control word 0x86
+  gets the staged bits 2 and 4 by OR (0xdf33, 0xdf40) and the routine waits for the next command at 0xdf41 or 0xdf42.
+  Its input is the staged exponent; it compares it with 128.0 and converts it, and the special-register values are its
+  result.
+- `mLiSetMAmbDiff` (`material.S` line 268, at 0xdf4c): **inferred**, writes the ambient or diffuse colour words of a
+  material block. The three staged colour words (staging 0xe-0x10, read at 0xdf4c, 0xdf54 and 0xdf5c) and a fourth word
+  already on hand are stored twice each, once at registers 12 and 4 plus offsets 0-3 (0xdf4d-0xdf65) and once eight
+  words earlier (F = 0x27-0x24, stores 0xdf51-0xdf6e), so one command refreshes the ambient and diffuse fields
+  together. It combines the constant 1 into control word 0x86 (0xdf66, 0xdf67), queues 0xf50d and 0xf547 (0xdf6f,
+  0xdf71) and ends at 0xdf69. Its inputs are the staged colour words; the stored fields are its output.
+- `mLiPushMtrlShin` (`material.S` line 742, at 0xdf72): **inferred**, the shininess writer used by the material push
+  path. The limit 128.0 (0xdf74) and the bit constant 2 (0xdf75) are staged; the exponent is compared with the limit
+  (0xdf78, 0xdf7c) and converted into special registers 0x2c and 0x2d (0xdf72, 0xdf73, 0xdf76-0xdf82). Two predicated
+  external-memory stores write the result at offsets 0x2bf and 0x2c5 (0xdf94, 0xdf96, after the reads at 0xdf84 and
+  0xdf86), control word 0x86 gets the staged 4 (0xdf8e, 0xdf90), and an out-of-range value takes the jump to
+  `mErrInvalidValue` (0xd50a) at 0xdf93. It converts the exponent operand and compares it with the limit; the stored
+  words are its results.
+- `mLiPushMtrlInit2` (`material.S` line 946, at 0xdf9c): **inferred**, the second stage of starting a material push;
+  its address is staged by `mLiPushMtrlInit` (0xdfd1) and moved into register 0x12 at 0xdfd6. Staging words 0xc, 7, 8
+  and 4 (the colour words handed over, read at 0xdf9c-0xdf9f) feed three special registers 0x2c, 0x2d and 0x2e
+  (0xdfa1-0xdfa3), and the routine stages the face constant 0x405 (0xdfae). The word at 0xdfa8 jumps on to
+  `mLiPushMaterial` (0xe036), so its output is the three special-register values plus that transfer. Its inputs are
+  four staging words; it selects them into three special registers and returns through the jump.
+- `mLiPushMtrlInit` (`material.S` line 822, at 0xdfb1): **inferred**, opens a material push by snapshotting the current
+  material block. External-memory words 0x79, 0x90 and 0x91 are read (0xdfb3, 0xdfb5, 0xdfb7) and twelve words are
+  written at offsets 0x2bb-0x2c6 (stores 0xdfbd-0xdfd8). It stages the successor addresses 0xd85e (0xdfca), 0xdf9c
+  (0xdfd1) and 0xc76 (0xdfd7), puts the constants 0x89, 0x8c, 0x8b, 0x86, 0x9e, 0xc and 0xb into control-memory stores
+  (0xdfd9-0xdfe2), and divides control: a branch on `cc` 0xa at 0xdfda to `mLiPushMaterial` (0xe036), otherwise a jump
+  at 0xdfdb to `mLiUpdateShin` (0xe27a). Its inputs are three words read from external memory; the twelve-word snapshot
+  is its output.
+- `mLiPushMtrlDiff` (`material.S` line 689, at 0xdfe4): **inferred**, the push path's colour writer for the diffuse and
+  ambient fields. External-memory words 0x2bc and 0x2c2 are read (0xdfe5, 0xdfe8), and the routine derives the field
+  pointers in registers 5, 6, 12 and 4 from them by small offsets (address words 0xdfe6, 0xdfe7, 0xdfea, 0xdfeb,
+  0xdffd, 0xdfff) and writes the four staged colour words (staging 0xd-0x10, read at 0xdfe4-0xdff1) through registers
+  5, 6 and 12 (stores 0xdfee-0xdffa, 0xdffe). On `cc` 0x7b the branch at 0xdfff continues in `mLiPushMtrlASEI`
+  (0xe009); otherwise the command ends at 0xe000 with register 4 set to the base plus 0x7f. Its inputs are the staged
+  colour words; the stored fields are its output.
+- `mLiPushMtrlASEI` (`material.S` line 612, at 0xe009): **inferred**, the push path's writer for the remaining colour
+  fields. Staging words 0xc-0x10 (read at 0xe009, 0xe00e, 0xe012, 0xe01f, 0xe023) are compared with the staged
+  enumerants (`isub` 0xe00a-0xe00d), and takes the field addresses from external-memory offsets 0x2c0, 0x2bb, 0x2bd and
+  0x2be (predicated address words 0xe014-0xe01a). The colour words go out through registers 5, 6, 14 and 15 (stores
+  0xe017-0xe02e), after two reads at 0xe020 and 0xe022 and an address step at 0xe011 and 0xe013 (F = 0x24); the command
+  ends at 0xe02d. It compares and selects the fields, and the stored colour words are its output.
+- `mLiPushMaterial` (`material.S` line 532, at 0xe036): **inferred**, the property dispatcher of the push path. Staged
+  property and face words come in, and control word 0x84 is tested against the staged 0x10 (0xe037), forms two field
+  pointers, registers 5 and 6, from register 12 plus 0x20 and 0xf2 (address words 0xe04b, 0xe04c), and shifts and
+  compares to set the flags at 0xe04d. It then transfers on `cc` 0x7b or 0x7d to `mLiPushMtrlDiff` (0xdfe4, branches
+  0xe04e, 0xe04f), on `cc` 0x78 to `mLiPushMtrlASEI` (0xe009, 0xe050) and otherwise jumps to `mLiPushMtrlShin` (0xdf72,
+  0xe051); it also writes special register 0x2f (0xe03b, 0xe049). Its inputs are the staged property and face words; it
+  selects the target routine and the field pointers are its output.
+
+## Light state initialisation and dirty refresh (lightsubroutines.S)
+
+These routines set up the default lighting state in external memory and derive the control-memory coefficients the
+lighting inner loops read from it. Read from the [lightsubroutines.S listing](ge_listing/lightsubroutines.S.lst)
+(`ge.u`, IRIX 6.5.30m).
+
+- `mGL_LightInitialize` (`lightsubroutines.S` line 1087, at 0xe05a): **inferred**, builds the spot-exponent power table
+  in external memory. No command words are read. Among the immediates staged between 0xe05a and 0xe175 are 128
+  floating-point values equal to 0.002 raised to the power 1/n for n = 1 to 128 (0x3b03126f for n = 1, 0x3d372d5e for n
+  = 2, up to 0x3f73de1e for n = 128; checked by recomputation), together with -1.0 and 1.0 (0xe05a, 0xe05b). The table
+  values are written sixteen words per address register through registers 0x13 down (stores 0xe080-0xe15e), with
+  register 0x13 loaded with 0x1448 at 0xe064, and the scalar stores at 0xe068-0xe078 fill external-memory words 0x1bfc,
+  0x1bfd, 0x11ff and 0x1bfe-0x1c06 (the words `mLiSwichSpotPrwTable` and `mLiUpdateShin` read back). The routine
+  returns at 0xe17b. Its operands are constants alone; it combines them into the stored table, which is its result.
+- `mGL_CtxLightInitialize` (`lightsubroutines.S` line 896, at 0xe184): **inferred**, writes the default lighting state
+  for a new context. No command words are read. Register 13 is set to the external-memory base plus 0x64 (0xe184) and
+  register 12 to the base plus 0x7b (0xe18d), and the staged defaults 0.2 (0x3e4ccccd), 0.8 (0x3f4ccccd), 1.0 and 0.0
+  (moves 0xe185-0xe1de) fill the front and back material blocks (stores 0xe18f-0xe1df). A loop (0xe1e0-0xe22b) fills
+  each of eight light blocks, 0x23 words apart, with default constants such as 1.0, -1.0 (0xe225), the cut-off 180.0
+  (0x43340000, 0xe213) and 0x48800100 (0xe21f); register 3 steps by 0x23 (0xe230), the pass counter is decremented at
+  0xe227 and the branch at 0xe22b repeats on `cc` 0x14. Afterwards light 0 gets white colour defaults (0xe235-0xe23c),
+  the light-model block at the base plus 0x2ab gets 0.2 ambient (0xe23e, 0xe240) and the mode constants 0x1602 and
+  0x408 (0xe25a, 0xe25c), and control memory receives the module addresses 0xf547 and 0xf50d, 0xda3c, 0xd901 and 0xc3db
+  through register 13 = 0x84 (0xe244, 0xe26c-0xe279); it returns at 0xe271. Its operands are constants alone; it
+  combines them into the default blocks, which are its output.
+- `mLiUpdateShin` (`lightsubroutines.S` line 674, at 0xe27a): **inferred**, recomputes the shininess-derived specular
+  state after a material change. The shininess words at external-memory offsets 0x78 and 0x8f (0xe27a, 0xe27c) and the
+  table controls at 0x1bfc, 0x1bfd and 0x1448 (0xe293, 0xe296, 0xe298, 0xe29b) are the inputs. The constants 0x3f7fffef
+  (0.99999899), 0x3b808081 (1/255) and 0x47000000 (32768.0) are staged in a scratch block at 0x8584 (address register
+  13, loaded at 0xe280) by the stores 0xe28a-0xe28c. It derives a reciprocal (`rcpseed` 0xe2a8, `rcpstep` 0xe2a6,
+  0xe2a9, 0xe2ae, 0xe2b1) and scales with it (`fmul` 0xe2aa, 0xe2ad, 0xe2b2-0xe2be). Results go to external-memory
+  words 0x1bfc and 0x1bfd (0xe2b8, 0xe2bb), 0x79 and 0x7a (0xe2bf, 0xe2c9), 0x90 and 0x91 (0xe2c7, 0xe2cb) and control
+  words 0x86, 0x89, 0x88, 0x8c and 0x8b (0xe2ac, 0xe2bd, 0xe2c1, 0xe2c8, 0xe2ca, 0xe2cd); the branches at 0xe2c5 and
+  0xe2c6 continue at 0xe2e1 or call `mLiPwrTable` (0xdc9).
+- `mLiDirtySimLiCRAM` (`lightsubroutines.S` line 108, at 0xe334): **inferred**, rebuilds the control-memory lighting
+  coefficients for the simple lighting case. The light-model ambient words 0x2ab-0x2ad (0xe334, 0xe336, 0xe338) and
+  light and material fields through registers 7 and 12 (reads 0xe33a-0xe347, 0xe35d-0xe372) are the inputs; it adds and
+  multiplies them (`fadd` 0xe341-0xe345, 0xe372, 0xe384-0xe387; `fmul` 0xe349-0xe34d, 0xe374-0xe383), and then reloads
+  register 13 with the control-memory address 0x84 (0xe373) and writes the results to control words 0x84-0x99 with the
+  stores 0xe373-0xe390. Control word 0x84 receives the AND of a staged word with a material word (0xe36a), 0x86 the
+  constant 1 combined by the unit-1 operation 0x51 (0xe36c); the command ends at 0xe388.
+- `mLiDirtyGenLiCRAM` (`lightsubroutines.S` line 320, at 0xe391): **inferred**, rebuilds the control-memory lighting
+  coefficients for the general lighting case. Three ambient words at 0x2ab-0x2ad (0xe391, 0xe393, 0xe395) and light and
+  material fields through registers 12 and 0 (reads 0xe397-0xe3bd) go in; products are formed with `fmul.mov` words
+  (0xe39f, 0xe3a1, 0xe3a3, 0xe3b6, 0xe3b8, 0xe3ba) and sums with `fadd` (0xe3a4, 0xe3a6, 0xe3bc, 0xe3bd, 0xe3bf), then
+  reloads register 13 with the control-memory address 0x84 (0xe3a8) and stores the set through it (0xe3ab-0xe3d1,
+  ending with the command at 0xe3c9). Control word 0x84 gets the OR of a staged constant with a material word (0xe397),
+  0x86 the constant 1 combined by the unit-1 operation 0x51 (0xe3c8, 0xe3d1), and the successor is loaded from control
+  word 0x9d (0xe3c3). Its inputs are the ambient, light and material words; it multiplies and adds them, and the
+  control words are its output.

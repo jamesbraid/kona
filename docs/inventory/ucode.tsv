@@ -2681,18 +2681,18 @@ ge.u	label	0x0000c086	mgeb_PushName		understood	ucode/ge_compute.md#feedback-and
 ge.u	label	0x0000c0e0	mgeb_PopName		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
 ge.u	label	0x0000c12e	mgeb_InitNames		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
 ge.u	label	0x0000c159	mSelectFlush		understood	ucode/ge_compute.md#feedback-and-selection-feedbacks-selects-selectmodss	Feedback and selection (feedback.S, select.S, selectmods.S)
-ge.u	label	0x0000c20a	mgeb_PopAttrLights		located	ucode/ge_handlers.md#getlights	getlight.S
-ge.u	label	0x0000c255	mgesi_PushAttrLights		located	ucode/ge_handlers.md#getlights	getlight.S
-ge.u	label	0x0000c284	mgesi_LiGetMaterial		located	ucode/ge_handlers.md#getlights	getlight.S
-ge.u	label	0x0000c2d2	mgesi_LiGetLight		located	ucode/ge_handlers.md#getlights	getlight.S
+ge.u	label	0x0000c20a	mgeb_PopAttrLights		understood	ucode/ge_compute.md#light-and-material-queries-and-attribute-stacks-getlights	Light and material queries and attribute stacks (getlight.S)
+ge.u	label	0x0000c255	mgesi_PushAttrLights		understood	ucode/ge_compute.md#light-and-material-queries-and-attribute-stacks-getlights	Light and material queries and attribute stacks (getlight.S)
+ge.u	label	0x0000c284	mgesi_LiGetMaterial		understood	ucode/ge_compute.md#light-and-material-queries-and-attribute-stacks-getlights	Light and material queries and attribute stacks (getlight.S)
+ge.u	label	0x0000c2d2	mgesi_LiGetLight		understood	ucode/ge_compute.md#light-and-material-queries-and-attribute-stacks-getlights	Light and material queries and attribute stacks (getlight.S)
 ge.u	label	0x0000c321	mLiLocalLight		understood	ucode/ge_compute.md#general-lighting-per-light-steps-generallight2s	General lighting, per-light steps (generallight2.S)
 ge.u	label	0x0000c3db	mLiInfVInfLi		understood	ucode/ge_compute.md#general-lighting-per-light-steps-generallight2s	General lighting, per-light steps (generallight2.S)
 ge.u	label	0x0000c426	mLiLocVInfLi		understood	ucode/ge_compute.md#general-lighting-per-light-steps-generallight2s	General lighting, per-light steps (generallight2.S)
 ge.u	label	0x0000c493	mLiLocVInfLiInit		understood	ucode/ge_compute.md#general-lighting-per-light-steps-generallight2s	General lighting, per-light steps (generallight2.S)
-ge.u	label	0x0000c500	mgeb_LightPos		located	ucode/ge_handlers.md#lightsources	lightsource.S
-ge.u	label	0x0000c5cd	mgeb_LightSpotDir		located	ucode/ge_handlers.md#lightsources	lightsource.S
-ge.u	label	0x0000c626	mgeb_LightSpotExp		located	ucode/ge_handlers.md#lightsources	lightsource.S
-ge.u	label	0x0000c697	mgeb_LightSpotCutAng		located	ucode/ge_handlers.md#lightsources	lightsource.S
+ge.u	label	0x0000c500	mgeb_LightPos		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
+ge.u	label	0x0000c5cd	mgeb_LightSpotDir		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
+ge.u	label	0x0000c626	mgeb_LightSpotExp		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
+ge.u	label	0x0000c697	mgeb_LightSpotCutAng		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
 ge.u	label	0x0000c6cb	mgeb_LightK2		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
 ge.u	label	0x0000c6d8	mgeb_LightK1		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
 ge.u	label	0x0000c6e5	mgeb_LightK0		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
@@ -2700,12 +2700,12 @@ ge.u	label	0x0000c6f2	mgeb_LightSpec		understood	ucode/ge_compute.md#light-sourc
 ge.u	label	0x0000c6fb	mgeb_LightDiff		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
 ge.u	label	0x0000c704	mgeb_LightAmb		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
 ge.u	label	0x0000c70d	mLightColor		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
-ge.u	label	0x0000c721	mgeb_LiClrMtrlFrontBack		located	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c75b	mgeb_LiClrMtrlBack		located	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c795	mgeb_LiClrMtrlFront		located	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c7cf	mgeb_LightModelGAmb		located	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c7e1	mgeb_LightModelLocV		located	ucode/ge_handlers.md#lightmodels	lightmodel.S
-ge.u	label	0x0000c7fb	mgeb_LightModel2Side		located	ucode/ge_handlers.md#lightmodels	lightmodel.S
+ge.u	label	0x0000c721	mgeb_LiClrMtrlFrontBack		understood	ucode/ge_compute.md#light-model-and-colour-material-handlers-lightmodels	Light-model and colour-material handlers (lightmodel.S)
+ge.u	label	0x0000c75b	mgeb_LiClrMtrlBack		understood	ucode/ge_compute.md#light-model-and-colour-material-handlers-lightmodels	Light-model and colour-material handlers (lightmodel.S)
+ge.u	label	0x0000c795	mgeb_LiClrMtrlFront		understood	ucode/ge_compute.md#light-model-and-colour-material-handlers-lightmodels	Light-model and colour-material handlers (lightmodel.S)
+ge.u	label	0x0000c7cf	mgeb_LightModelGAmb		understood	ucode/ge_compute.md#light-model-and-colour-material-handlers-lightmodels	Light-model and colour-material handlers (lightmodel.S)
+ge.u	label	0x0000c7e1	mgeb_LightModelLocV		understood	ucode/ge_compute.md#light-model-and-colour-material-handlers-lightmodels	Light-model and colour-material handlers (lightmodel.S)
+ge.u	label	0x0000c7fb	mgeb_LightModel2Side		understood	ucode/ge_compute.md#light-model-and-colour-material-handlers-lightmodels	Light-model and colour-material handlers (lightmodel.S)
 ge.u	label	0x0000c989	mmo_DecomposeTriangleStripWithSwapOdd		understood	ucode/ge_compute.md#decomposers-for-the-lit-vertex-path-mdecompose2s	Decomposers for the lit vertex path (mdecompose2.S)
 ge.u	label	0x0000c9b2	mmo_DecomposeTriangleStripWithSwapEven		understood	ucode/ge_compute.md#decomposers-for-the-lit-vertex-path-mdecompose2s	Decomposers for the lit vertex path (mdecompose2.S)
 ge.u	label	0x0000c9e1	mmo_DummyDecomposeQuadStrip		understood	ucode/ge_compute.md#decomposers-for-the-lit-vertex-path-mdecompose2s	Decomposers for the lit vertex path (mdecompose2.S)
@@ -2791,31 +2791,31 @@ ge.u	label	0x0000d9c1	mLiLocLiFrnClrAccum		understood	ucode/ge_compute.md#genera
 ge.u	label	0x0000d9f7	mLiInfVInfLiInit		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
 ge.u	label	0x0000da3c	mLiFinalLi		understood	ucode/ge_compute.md#general-lighting-generallights	General lighting (generallight.S)
 ge.u	label	0x0000da68	mmo_DrawTriPolymodePrim		understood	ucode/ge_compute.md#polygon-mode-triangle-drawing-polymodes	Polygon-mode triangle drawing (polymode.S)
-ge.u	label	0x0000dc9c	mgeb_LiDisableClrMtrl		located	ucode/ge_handlers.md#lightenabless	lightenables.S
-ge.u	label	0x0000dcc0	mgeb_LiDisableLightS		located	ucode/ge_handlers.md#lightenabless	lightenables.S
-ge.u	label	0x0000dd0d	mgeb_LiDisableLighting		located	ucode/ge_handlers.md#lightenabless	lightenables.S
-ge.u	label	0x0000dd2b	mgeb_LiEnableClrMtrl		located	ucode/ge_handlers.md#lightenabless	lightenables.S
-ge.u	label	0x0000dd3e	mgeb_LiEnableLightS		located	ucode/ge_handlers.md#lightenabless	lightenables.S
-ge.u	label	0x0000dd83	mgeb_LiReCmpPwrTable		located	ucode/ge_handlers.md#lightenabless	lightenables.S
-ge.u	label	0x0000dda1	mgeb_LiEnableLighting		located	ucode/ge_handlers.md#lightenabless	lightenables.S
-ge.u	label	0x0000ddc5	mLiSwichSpotPrwTable2		located	ucode/ge_handlers.md#lightenabless	lightenables.S
-ge.u	label	0x0000de2a	mLiSwichSpotPrwTableSub		located	ucode/ge_handlers.md#lightenabless	lightenables.S
-ge.u	label	0x0000de3f	mLiSwichSpotPrwTable		located	ucode/ge_handlers.md#lightenabless	lightenables.S
-ge.u	label	0x0000de94	mgeb_Material		located	ucode/ge_handlers.md#materials	material.S
-ge.u	label	0x0000def0	mLiUpdateMtrlColor		located	ucode/ge_handlers.md#materials	material.S
-ge.u	label	0x0000df27	mLiSetMShininess		located	ucode/ge_handlers.md#materials	material.S
-ge.u	label	0x0000df4c	mLiSetMAmbDiff		located	ucode/ge_handlers.md#materials	material.S
-ge.u	label	0x0000df72	mLiPushMtrlShin		located	ucode/ge_handlers.md#materials	material.S
-ge.u	label	0x0000df9c	mLiPushMtrlInit2		located	ucode/ge_handlers.md#materials	material.S
-ge.u	label	0x0000dfb1	mLiPushMtrlInit		located	ucode/ge_handlers.md#materials	material.S
-ge.u	label	0x0000dfe4	mLiPushMtrlDiff		located	ucode/ge_handlers.md#materials	material.S
-ge.u	label	0x0000e009	mLiPushMtrlASEI		located	ucode/ge_handlers.md#materials	material.S
-ge.u	label	0x0000e036	mLiPushMaterial		located	ucode/ge_handlers.md#materials	material.S
-ge.u	label	0x0000e05a	mGL_LightInitialize		located	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
-ge.u	label	0x0000e184	mGL_CtxLightInitialize		located	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
-ge.u	label	0x0000e27a	mLiUpdateShin		located	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
-ge.u	label	0x0000e334	mLiDirtySimLiCRAM		located	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
-ge.u	label	0x0000e391	mLiDirtyGenLiCRAM		located	ucode/ge_handlers.md#lightsubroutiness	lightsubroutines.S
+ge.u	label	0x0000dc9c	mgeb_LiDisableClrMtrl		understood	ucode/ge_compute.md#light-enable-and-disable-handlers-lightenabless	Light enable and disable handlers (lightenables.S)
+ge.u	label	0x0000dcc0	mgeb_LiDisableLightS		understood	ucode/ge_compute.md#light-enable-and-disable-handlers-lightenabless	Light enable and disable handlers (lightenables.S)
+ge.u	label	0x0000dd0d	mgeb_LiDisableLighting		understood	ucode/ge_compute.md#light-enable-and-disable-handlers-lightenabless	Light enable and disable handlers (lightenables.S)
+ge.u	label	0x0000dd2b	mgeb_LiEnableClrMtrl		understood	ucode/ge_compute.md#light-enable-and-disable-handlers-lightenabless	Light enable and disable handlers (lightenables.S)
+ge.u	label	0x0000dd3e	mgeb_LiEnableLightS		understood	ucode/ge_compute.md#light-enable-and-disable-handlers-lightenabless	Light enable and disable handlers (lightenables.S)
+ge.u	label	0x0000dd83	mgeb_LiReCmpPwrTable		understood	ucode/ge_compute.md#light-enable-and-disable-handlers-lightenabless	Light enable and disable handlers (lightenables.S)
+ge.u	label	0x0000dda1	mgeb_LiEnableLighting		understood	ucode/ge_compute.md#light-enable-and-disable-handlers-lightenabless	Light enable and disable handlers (lightenables.S)
+ge.u	label	0x0000ddc5	mLiSwichSpotPrwTable2		understood	ucode/ge_compute.md#light-enable-and-disable-handlers-lightenabless	Light enable and disable handlers (lightenables.S)
+ge.u	label	0x0000de2a	mLiSwichSpotPrwTableSub		understood	ucode/ge_compute.md#light-enable-and-disable-handlers-lightenabless	Light enable and disable handlers (lightenables.S)
+ge.u	label	0x0000de3f	mLiSwichSpotPrwTable		understood	ucode/ge_compute.md#light-enable-and-disable-handlers-lightenabless	Light enable and disable handlers (lightenables.S)
+ge.u	label	0x0000de94	mgeb_Material		understood	ucode/ge_compute.md#material-handlers-materials	Material handlers (material.S)
+ge.u	label	0x0000def0	mLiUpdateMtrlColor		understood	ucode/ge_compute.md#material-handlers-materials	Material handlers (material.S)
+ge.u	label	0x0000df27	mLiSetMShininess		understood	ucode/ge_compute.md#material-handlers-materials	Material handlers (material.S)
+ge.u	label	0x0000df4c	mLiSetMAmbDiff		understood	ucode/ge_compute.md#material-handlers-materials	Material handlers (material.S)
+ge.u	label	0x0000df72	mLiPushMtrlShin		understood	ucode/ge_compute.md#material-handlers-materials	Material handlers (material.S)
+ge.u	label	0x0000df9c	mLiPushMtrlInit2		understood	ucode/ge_compute.md#material-handlers-materials	Material handlers (material.S)
+ge.u	label	0x0000dfb1	mLiPushMtrlInit		understood	ucode/ge_compute.md#material-handlers-materials	Material handlers (material.S)
+ge.u	label	0x0000dfe4	mLiPushMtrlDiff		understood	ucode/ge_compute.md#material-handlers-materials	Material handlers (material.S)
+ge.u	label	0x0000e009	mLiPushMtrlASEI		understood	ucode/ge_compute.md#material-handlers-materials	Material handlers (material.S)
+ge.u	label	0x0000e036	mLiPushMaterial		understood	ucode/ge_compute.md#material-handlers-materials	Material handlers (material.S)
+ge.u	label	0x0000e05a	mGL_LightInitialize		understood	ucode/ge_compute.md#light-state-initialisation-and-dirty-refresh-lightsubroutiness	Light state initialisation and dirty refresh (lightsubroutines.S)
+ge.u	label	0x0000e184	mGL_CtxLightInitialize		understood	ucode/ge_compute.md#light-state-initialisation-and-dirty-refresh-lightsubroutiness	Light state initialisation and dirty refresh (lightsubroutines.S)
+ge.u	label	0x0000e27a	mLiUpdateShin		understood	ucode/ge_compute.md#light-state-initialisation-and-dirty-refresh-lightsubroutiness	Light state initialisation and dirty refresh (lightsubroutines.S)
+ge.u	label	0x0000e334	mLiDirtySimLiCRAM		understood	ucode/ge_compute.md#light-state-initialisation-and-dirty-refresh-lightsubroutiness	Light state initialisation and dirty refresh (lightsubroutines.S)
+ge.u	label	0x0000e391	mLiDirtyGenLiCRAM		understood	ucode/ge_compute.md#light-state-initialisation-and-dirty-refresh-lightsubroutiness	Light state initialisation and dirty refresh (lightsubroutines.S)
 ge.u	label	0x0000e3d2	mmo_Punt		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e3e1	mmo_MultipassModule		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
 ge.u	label	0x0000e450	mdc_finish		understood	ucode/ge_compute.md#vertex-save-and-copy-modules-fluffs	Vertex save and copy modules (fluff.S)
