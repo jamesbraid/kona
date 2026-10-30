@@ -242,7 +242,7 @@ The firmware handler keeps the words and `dgLoadChannelGenlockParams` writes VOC
 
 ## Display requests
 
-**Established** ([ucode/dg_dispatch.tsv](../ucode/dg_dispatch.tsv), handlers in `arm1.u`; bus addresses from [ucode/dg_access.tsv](../ucode/dg_access.tsv)). What each handler touches, read from its code. "record" is the per-channel record DGGlobalState + 0x3294 + 4 x id.
+**Established** ([ucode/dg_dispatch.tsv](../ucode/dg_dispatch.tsv), handlers in `arm1.u`; bus addresses from [ucode/dg_access.tsv](../ucode/dg_access.tsv)). What each handler touches, read from its code. "record" is the per-channel record DGGlobalState + 0x3294 + 4 x id. [ucode/dg_requests.md](../ucode/dg_requests.md) has one row per request number with its table word, handler address and reply type.
 
 | # | Request | Words | What the handler does |
 |---|---|---|---|

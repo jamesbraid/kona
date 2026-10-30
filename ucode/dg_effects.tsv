@@ -1,0 +1,96 @@
+# What each display-generator request does, in five words or fewer, written by hand from the handler readings
+# in ucode/arm1_functions.md (arm1.u, IRIX 6.5.30m). scripts/dg_requests.py joins it with DGDispatchTable.
+request	effect
+0	echoes payload plus one
+1	writes any display-bus word
+2	reads any display-bus word
+3	sets XMAP substitute colour
+4	clears XMAP 0x105 substitute
+5	prints tracing message only
+6	loads cursor from image
+7	sets debug-print mask
+8	derives frame-buffer tile layout
+9	sets register 0x8b bits 21-20
+10	reads register 0x8b bits 21-20
+11	sets channel horizontal phase
+12	returns stored horizontal phase
+13	sets channel vertical phase
+14	returns stored vertical phase
+15	selects channel gamma map
+16	returns channel gamma map
+17	rebuilds board default state
+18	returns five-word board record
+19	returns 0x4c-byte channel description
+20	resizes channel and its copies
+21	returns 18-word resize state
+22	loads video format into channel
+23	turns a channel on
+24	turns a channel off
+25	writes genlock parameters per VOC
+26	switches every channel's genlock
+27	writes XMAP 0x102 cursor position
+28	writes XMAP 0x100 cursor channel
+29	writes XMAP 0x103 cursor mode
+30	stores priority, record offset 4
+31	records and applies channel blank
+32	returns channel blank bit
+33	sets gain-DAC output gain
+34	returns stored output gain
+35	sets one sync-output option
+36	returns six sync options
+37	sets video-DAC pedestal bit
+38	returns DAC register 6 bit 3
+39	writes 0x118 and 0x11c
+40	streams 260-word textport glyph
+41	packs three 10-bit components
+42	sets VOC 0x44 bit 1
+43	sets register 0x8e bit 23
+44	returns master-clock select word
+45	runs EEPROM combination at 0x20000
+46	programs encoder from scratch
+47	writes 255 minus gain, 0x1708
+48	returns stored encoder gain
+49	writes encoder registers 0x24-0x27
+50	reads encoder registers 0x24-0x25
+51	sets encoder register 1 bits
+52	stores channel X window id
+53	shifts 1328-word logic image out
+54	writes registers 0x2300-0x2303
+55	writes register 0x2304
+56	loads DAC cursor, 256 words
+57	channel 0x1e flag, then 79
+58	returns channel copy state
+59	writes 0x320 into 0x10f
+60	nests all-channel temporary blank
+61	returns 12-byte interrupt state
+62	writes 0x1900 or 0x8000
+63	returns XMAP clock select word
+64	stores record words 0x9c, 0xa0
+65	resets raster-board image processors
+66	returns enable bits 27, 28
+67	stores eight placement words
+68	sets state flag bit 30
+69	pulses 0x343 bit 0, replies
+70	sets VOC 0x8f bit 9
+71	returns record flag bit 9
+72	sets register 0x8b bit 22
+73	reads register 0x8b bit 22
+74	returns five format words
+75	records gamma-map state words
+76	returns 16-byte gamma state
+77	writes encoder control register 0
+78	sets record 0x184 bit 24
+79	records channel copy source
+80	returns 0x44-byte monitor identity
+81	single return, ignores 34 words
+82	loads option-board logic image
+83	pulses 0xc000, rebuilds option VOCs
+84	sets state flag bit 27
+85	returns state flag bit 27
+86	stores record 0x184 bit 21
+87	returns two buffer words
+88	stores format, programs option board
+89	returns data-format code, flag
+90	sets DVP register bit 7
+91	sends VBOB packet at 0xa000
+92	reads VBOB reply at 0xa000
