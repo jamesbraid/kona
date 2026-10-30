@@ -30,15 +30,14 @@ Address spaces: `wram`, `cram` and `eram` are the engine's three memories. `dmem
 
 Each operation carries its label from [ucode/ge_ops.md](../ucode/ge_ops.md) in the spec, as established or inferred. Unit-1 codes 0x20, 0x22, 0x40, 0x42, 0x4a, 0x4b, 0x50, 0x54, 0x56, 0x58, 0x5b, 0x5d, 0x5f, 0x60, 0x62, 0x66, 0x68, 0x71, 0x73 and 0x7c are covered. So are unit-2 codes 0x07, 0x0f, 0x27, 0x37, 0x47, 0x4f and 0x57, and the two seeds. Several operations are named pcodeops because a detail is unknown: saturation of the integer add and subtract, double precision (its two-word pairing is unmapped), rounding of 0x71, NaN in the clamp, and the seed table. Codes with no reading, among them unit-1 0x51 and unit-2 0x2f and 0x3f, become `u1_op(code, …)` or `u2_op(code, …)`.
 
-Unit 1's operand ports follow [ucode/ge_isa.md](../ucode/ge_isa.md#operand-ports-and-result-forwarding): register, forwarded result four to seven words back, the word read through A and D, or the loaded word. Unit 2's ports and the seed unit follow [Unit-2 and seed-unit operands](../ucode/ge_isa.md#unit-2-and-seed-unit-operands): seed result two words back, register, forwarded result, or a memory word (the A/D word on port 1, the loaded word on port 2). The seed unit runs in every word; its 7-bit table is unknown, so the spec stands in the exact 1/x and 1/sqrt(x). Transfers take effect after four delay slots, and returns after eight. Conditions read the condition word twelve words back and address conditions two words back. Ghidra cannot nest delay slots, so the import gives a transfer only the words before the next transfer as delay slots.
+Unit 1's operand ports follow [ucode/ge_isa.md](../ucode/ge_isa.md#operand-ports-and-result-forwarding): register, forwarded result four to seven words back, the word read through A and D, or the loaded word. Unit 2's ports and the seed unit follow [Unit-2 and seed-unit operands](../ucode/ge_isa.md#unit-2-and-seed-unit-operands): seed result two words back, register, forwarded result, or a memory word (the A/D word on port 1, the loaded word on port 2). The seed unit runs in every word; its 7-bit table is unknown, so the spec stands in the exact 1/x and 1/sqrt(x). A word with `r99` bit 1 loads the store-data register with its unit result, and the stores with `r211` and `r95` = 4 or 5 send the value it held nine words earlier ([The store-data register](../ucode/ge_isa.md#the-store-data-register)). Transfers take effect after four delay slots, and returns and the end of a command after eight. Conditions read the condition word twelve words back and address conditions two words back. Ghidra cannot nest delay slots, so the import gives a transfer only the words before the next transfer as delay slots.
 
 Not modelled:
 
-- which value a store sends: the spec stores the word's own unit result, but the stores with `r95` = 4 send the value moved nine words earlier ([ucode/ge_compute.md](../ucode/ge_compute.md#how-the-vertex-path-is-chained-successor-words));
+- the second value of a store-data window: the `r95` = 5 store gets the same value as the `r95` = 4 store, though the matrix products need a different one there ([The store-data register](../ucode/ge_isa.md#the-store-data-register));
+- the stores with `r95` = 6-0xb, whose memory is unknown;
 - the fields r176, r162, r198, r217, r71, r62 and r25, and most of r95;
 - the latency of register writes.
-
-Code that stores a result computed several words earlier therefore decompiles with the wrong stored values.
 
 ### Build and run
 
@@ -73,11 +72,11 @@ From `check.py` against IRIX 6.5.30m `usr/gfx/ucode/KONA/` and `usr/diags/IR/uco
 
 - **(a) passes.** All 47211 listed words of `ge.u` match `scripts/ge_disasm.py` field for field. Each instruction prints a mnemonic, then the transfer and every record group that differs from the no-op record, as that script does. r62 is printed as `high:low`.
 - **(b) passes.** All 172 output words of `irsaudit`'s instruction test decode as the output store. The 41 rows of the operation table each decode to the documented operation, found by walking back from the output word to the word that wrote its register.
-- **(c) passes.** All 452 routine entries among the `ge_compute.md` subjects are function entries; 729 functions are found in all. A routine entry here is a label reached by a slot, an ARM load, the distributor table, an address constant or a call word. The 228 loop heads and branch targets among the subjects are left out.
-- **(d) partly passes.** The decompiler output is readable C with typed memory references.
-  - `mmo_Clamp` passes: each of the 24 loop inputs is clamped, and the clamped value is multiplied by its scale. The check follows the clamped value through the variable the decompiler holds it in.
-  - `uMatrixMultCCC` fails on its stores only. It reads the projection, and the four subtracts now feed the multiplies by 0.5 that rebuild the third row. 3 of the 16 stores to 0x4f-0x5e carry a sum, because the stores take the word's own result rather than the sum computed earlier.
-  - `mMatrixMultCCW` fails: 5 of its 64 multiplies and 12 of its 48 adds survive. Its multiply-adds now take the right operands, but the sums only reach memory through the same stores, so most of them are dead code to the decompiler.
+- **(c) passes.** All 464 routine entries among the `ge_compute.md` subjects are function entries; 738 functions are found in all. A routine entry here is a label reached by a slot, an ARM load, the distributor table, an address constant or a call word. The 232 loop heads and branch targets among the subjects are left out.
+- **(d) passes.** The decompiler output is readable C with typed memory references.
+  - `mmo_Clamp`: each of the 24 loop inputs is clamped, and the clamped value is multiplied by its scale. The check follows the clamped value through the variable the decompiler holds it in.
+  - `uMatrixMultCCC`: it reads the projection, the four subtracts feed the multiplies by 0.5 that rebuild the third row, and all 16 stores to 0x4f-0x5e carry a sum of four products of the modelview and the staged matrix.
+  - `mMatrixMultCCW`: all 32 multiplies of its 32 multiply words survive in eight sums of four products, and all 16 words of C are stored. Each sum is stored twice, at C + k and C + 8 + k, which is the module's stand-in for the unknown second value.
 - **Imports pass.** `ge11.u` and `ge.hex` import to the same listing as `ge.u`, and `ge_diag_init.hex` decodes all 283 words.
 
 ## ARM firmware import
