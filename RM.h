@@ -113,8 +113,12 @@
  * Sharpen and detail functions, ESTABLISHED: the user's control points are
  * fitted with __glKonTexGetCubicSpline and evaluated at 64 points by
  * __glKonTexEvaluateCubicSpline over __glKonLogOver64. For table type 1 the
- * samples are doubled, for type 2 negated (which GL function each type is
- * is UNKNOWN). Each sample goes through getS2p7 (0x0d9650d0):
+ * samples are doubled, for type 2 negated. The types are the detail function (type 1,
+ * __glkonim_DetailTexFuncSGIS) and the sharpen function (type 2,
+ * __glkonim_SharpenTexFuncSGIS). INFERRED from the published patents on both features
+ * (docs/published-sources.md): detail applies K x (texel - 1/2), so K is twice the GL
+ * function F; sharpen applies A + K x (B - A) with K = -f, so the function is negated.
+ * Each sample goes through getS2p7 (0x0d9650d0):
  *   v = trunc(w * 512 + 2.0) >> 2         (about the nearest 1/128)
  *   v = clamp(v, -1024, 1023)
  *   e = 0; while (v > 127 || v < -128) { v >>= 1; e++; }   (e <= 3)

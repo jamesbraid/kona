@@ -1626,7 +1626,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10068b6c	504	fpln_init	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10068d64	1320	fpln_test	dynsym	b821507e60a7	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006928c	248	fpln_stop	dynsym	afe679751e0a	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100693cc	1964	TEST_fpconn	dynsym	9766caf53bea	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10069b78	1056	TEST_framebuf	dynsym	7edf7629e696	named-only	RM.h:1228	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10069b78	1056	TEST_framebuf	dynsym	7edf7629e696	named-only	RM.h:1232	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006b14c	444	ge12_init	dynsym	d5e506883745	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006b308	764	ge12_splitge_test	dynsym	c9eecd196b8f	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006b604	740	ge12_multige_test	dynsym	057588fc8d70	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
@@ -1753,7 +1753,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10096ea4	1944	run_video	dynsym
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009763c	172	TEST_video	dynsym	080725bc9f30	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100976e8	3392	run_optvideo	dynsym	6d66892b4baf	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10098428	160	TEST_optvideo	dynsym	9aea764c2418	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10098d2c	588	ReqVideo	dynsym	b63b5620c01b	named-only	RM.h:1535	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10098d2c	588	ReqVideo	dynsym	b63b5620c01b	named-only	RM.h:1539	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009b6b8	580	vdrc_en	dynsym	7b5cdbaf9ca8	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009ba1c	2680	run_video2	dynsym	a9cf7f2faefd	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1009c494	160	TEST_video2	dynsym	abb863f150cd	named-only	docs/irsaudit.md#tests	Tests
@@ -1867,7 +1867,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d0fe4	1112	TEST_rmcrctex	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d143c	1116	TEST_rmcrctex1	dynsym	6bdb2eea08fe	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d1bd0	4504	draw_random_thing	dynsym	2ab7b444ff3a	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d3f38	2204	crc_tex1_draw	dynsym	c73f794b0e43	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d47d4	7684	crc_pgtest	dynsym	3dfe6f16ce45	named-only	RM.h:1764	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d47d4	7684	crc_pgtest	dynsym	3dfe6f16ce45	named-only	RM.h:1768	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d65d8	3740	crc_pgtest1	dynsym	0f9ec1c7e6ea	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100d8b78	7700	crc_imptest1	dynsym	1c37b5df2902	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100de250	280	crc_tex1_load	dynsym	afddf061e6ba	undocumented		
@@ -2054,7 +2054,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101000d4	5824	test_prims	dynsy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101022b8	1172	TEST_aaspoke	dynsym	6a2241d9da49	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1010274c	2956	aaspoke	dynsym	f1f44e8453fe	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10103594	636	TEST_checktex	dynsym	deb701b8a51f	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10103810	1056	TestTex	dynsym	7718523643c2	named-only	RM.h:958	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10103810	1056	TestTex	dynsym	7718523643c2	named-only	RM.h:962	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10104794	884	TEST_callig	dynsym	6823a64aaa82	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10104b08	188	test_callig	dynsym	e7288675fcc4	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1010538c	448	TEST_swap	dynsym	98f46421370c	named-only	docs/irsaudit.md#tests	Tests
@@ -2123,16 +2123,16 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011e958	2908	dgo_pixel_readba
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011f4b4	900	gvo_crc_test	dynsym	174ea17c4342	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101200b0	776	gvo_low_latency_test	dynsym	fe5c78768724	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1012042c	1428	TEST_clipmap	dynsym	0eeb0ecaa37b	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10120ac8	1156	levelizeMipmap	dynsym	e51714eaa517	named-only	RM.h:911	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10120ac8	1156	levelizeMipmap	dynsym	e51714eaa517	named-only	RM.h:915	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10124060	1276	TEST_texfmt	dynsym	94926a627001	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10125d54	1508	TEST_texdetail	dynsym	2d8f2e97dd3d	named-only	RM.h:521	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10127bd8	1072	TEST_txlut	dynsym	4b15bfd5b4fb	named-only	RM.h:1373	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10125d54	1508	TEST_texdetail	dynsym	2d8f2e97dd3d	named-only	docs/published-sources.md#13-us-5438654-sharpening-texture-imagery	13. US 5,438,654, sharpening texture imagery
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10127bd8	1072	TEST_txlut	dynsym	4b15bfd5b4fb	named-only	RM.h:1377	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10128954	1728	TEST_texrndm	dynsym	870be45544bf	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101296e8	700	my_glTexParameterf	dynsym	53a88c0cc5d2	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101299a4	184	my_glTexParameterfv	dynsym	3665debed419	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10129a5c	708	my_glTexParameteri	dynsym	381f16ea8923	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10129d20	184	my_glTexParameteriv	dynsym	cbaefb22f166	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10129dd8	3528	my_glKonTexParameter	dynsym	211f6646b977	named-only	RM.h:911	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10129dd8	3528	my_glKonTexParameter	dynsym	211f6646b977	named-only	RM.h:915	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1012d828	1612	TEST_texobjdetail	dynsym	5b1894e2c45c	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1012f7f8	32	ogLibGetSeed	dynsym	8fb065ac1aa4	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1012f818	32	ogLibSetSeed	dynsym	182534545c3c	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2346,10 +2346,10 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143138	188	tbuGetNComponents
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101431f4	108	tbuGetNTexelBytes	dynsym	ae22d00786a5	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143260	300	tbuPrintFormattedTexels	dynsym	70823bacd81e	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014338c	192	tbuFormat3D	dynsym	08dc259603c2	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014344c	712	tbuStartTMReadback	dynsym	e4668c477018	named-only	RM.h:853	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143714	1476	tbuEnablePassR	dynsym	e764523d0496	named-only	RM.h:509	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143cd8	1496	tbuEnablePassRCCT	dynsym	3c70d94261f1	named-only	RM.h:1036	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101442b0	1540	tbuEnableFog	dynsym	8cba9e0ca362	named-only	RM.h:1107	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014344c	712	tbuStartTMReadback	dynsym	e4668c477018	named-only	RM.h:857	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143714	1476	tbuEnablePassR	dynsym	e764523d0496	named-only	RM.h:513	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10143cd8	1496	tbuEnablePassRCCT	dynsym	3c70d94261f1	named-only	RM.h:1040	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101442b0	1540	tbuEnableFog	dynsym	8cba9e0ca362	named-only	RM.h:1111	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101448b4	1932	tbuDoShadow	dynsym	febb8efbff1a	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10145040	2044	tbuLoadDetail	dynsym	cdc3615adb0a	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014583c	248	tbuAssignSTBits	dynsym	22413be83afe	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2365,9 +2365,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101480f0	2812	tbuLoadTexture	d
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10148bec	2792	tbuLoadMipmap3D	dynsym	fcf20233940e	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101496d4	2468	tbuLoad3D	dynsym	8d6ebfd1a440	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014a528	212	tbuEnableCubeMap	dynsym	9a3731d20041	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014a5fc	1200	tbuBindCubeMap	dynsym	f8b081ed5cd9	named-only	RM.h:802	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014aaac	7164	tbuBindTextureCCT	dynsym	07b2c18a1c2f	named-only	RM.h:547	
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014c6a8	7504	tbuBindTexture	dynsym	0cdce9c561bb	named-only	RM.h:520	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014a5fc	1200	tbuBindCubeMap	dynsym	f8b081ed5cd9	named-only	RM.h:806	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014aaac	7164	tbuBindTextureCCT	dynsym	07b2c18a1c2f	named-only	RM.h:551	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014c6a8	7504	tbuBindTexture	dynsym	0cdce9c561bb	named-only	RM.h:524	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e548	16	tbuAttachDetailMap	dynsym	38805a62c7bb	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e558	52	log2	dynsym	6b949ff65de1	named-only	docs/ge.md#vertex-arrays-hp_varray_set_cmds-hp_varray_bgn_loop-and-the-32-loop-tokens	Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e58c	260	tbuClipBorder	dynsym	9998787fab68	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2389,9 +2389,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154238	324	tbuLoadBicubicTab
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015437c	324	tbuLoadBicubicTable2	dynsym	5b87b9d5c7ad	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101544c0	340	tbuLoadSharpenTable	dynsym	b17b4493128a	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154614	340	tbuLoadDetailTable	dynsym	3088949857d7	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154768	728	tbuLoadTLut	dynsym	f3908a083a71	named-only	RM.h:1373	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154768	728	tbuLoadTLut	dynsym	f3908a083a71	named-only	RM.h:1377	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154a40	296	tbuTexEnv	dynsym	fbd1a227d12c	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154b68	332	tbuTexOnOff	dynsym	c1c1c6cb7c44	named-only	RM.h:1028	
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154b68	332	tbuTexOnOff	dynsym	c1c1c6cb7c44	named-only	RM.h:1032	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154cb4	18096	tbuRegReset	dynsym	d76afdf867bf	named-only	docs/coverage.md#rm-and-tm	RM and TM
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10159364	3692	tbuInit	dynsym	8120917b9cd3	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015a1d0	84	tbuInitKonaJtag	dynsym	3faf6823c27f	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options

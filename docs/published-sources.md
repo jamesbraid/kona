@@ -26,6 +26,8 @@ Generations used below. The first-generation Onyx board set is GE12, RM6 and DG4
 | 10 | US 5,889,529, constant frame rate by dynamic resizing | patent | generic | design-level |
 | 11 | US 6,147,695, combining multiple video streams | patent | names InfiniteReality, GE14, RM7, DG5 | feature-level |
 | 12 | US 6,329,996, synchronising graphics pipelines | patent | multi-pipe swap | feature-level |
+| 13 | US 5,438,654, sharpening texture imagery | patent | generic; the sharpen-texture feature | feature-level |
+| 14 | US 5,471,572, adding detail to texture imagery | patent | generic; the detail-texture feature | feature-level |
 
 Reviewed and set aside, because they do not describe this board: US 5,548,709 (texture memory with interpolation logic on one chip, a design for the earlier texture RAM generation), US 5,528,738 and US 5,581,680 (line antialiasing for a desktop workstation with a single sample per pixel), US 6,650,327 and its continuations (floating-point rasterisation, filed 1998; the shipped pipe works in 12-bit fixed-point components, source 3). Searches of patent databases found no SGI patent that describes the geometry engine's instruction set, the pixel generator's set-up arithmetic or the vertex-bus encoding. The designers' own papers (sources 1, 4 and 5) are the only first-party text on those blocks.
 
@@ -208,9 +210,36 @@ Bearing: the overlay-then-base multiplex after the colour-index look-up is the o
 
 Facts (**inferred**): each pipe has three state bits, current, next and ready-disable; the host names the next pipe by setting its next bit and sets ready-disable on the others so that only the chosen pipe drives the local swap-ready; the global swap-ready is the AND of every pipe's local signal; the chosen pipe waits for the global signal and then swaps at the next vertical sync; pipes without the next bit pass through. Bearing: the three bits are the model for the DG swap-ready, genlock and pass-through registers listed in [DG.h](../DG.h). Not matched to registers in this pass.
 
+## 13. US 5,438,654, sharpening texture imagery
+
+- Identity: US 5,438,654, "System and method for sharpening texture imagery in computer generated interactive graphics", filed 1993-07-09, granted 1995-08-01, assigned to SGI. https://patents.google.com/patent/US5438654A/en
+- Covers: sharpening a magnified texture by extrapolating from the two finest levels. No product is named. The report in source 3 and the paper in source 5 list sharpen texture as an InfiniteReality feature, so the arithmetic is the design the shipped filter chip implements.
+- Match: feature-level. Facts **inferred**.
+
+Facts:
+
+- A finer level is estimated as `LOD[0] + f x (LOD[0] - LOD[1])`: per pixel `V = V0 + f x (V0 - V1)`, with V0 the base-level sample and V1 the next coarser level's sample, both bilinearly interpolated (the second embodiment; point sampling is the first, bicubic allowed). The weight f is programmable per texture, may have integer and fractional parts, is ideally the number of levels below the base (N at level -N, 0 at the base), and is a look-up table indexed by the level of detail with its fraction. Example curves: linear with slope 1, a non-linear curve that peaks near 2, and a linear one clamped at a maximum "to limit the amount of ringing".
+- One datapath serves both sharpening and ordinary mip blending: a subtracter, a multiplier and an adder compute `A + K x (B - A)`. For sharpening A is the base level, B the next level and K is **negative** with the magnitude of f (the claims require scale factors "not greater than zero"). For ordinary level blending A and B are adjacent levels and K is the fraction of the level of detail.
+
+Where it meets the shipped chip. [RM.h](../RM.h) reads the host's curve tables: a curve sample is a 10-bit code (an 8-bit mantissa in 1/128 units and a 2-bit exponent, range about -8 to 8), 64 samples to a curve, sent to the sixteen `TFT_EXTRAP` registers for the sharpen kind and the sixteen `TFT_DETAILTEX` registers for the detail kind, and for the sharpen kind (table kind 2, set by `__glkonim_SharpenTexFuncSGIS`, [opengl.md](opengl.md)) the samples are **negated** before packing. That is the patent's `K = -f`: the host gives the GL function f and the hardware multiplies the difference of the two levels by K. **Inferred** match; it explains the negation, the sign of the range (the table must hold values below zero) and the register name `TFT_EXTRAP` (extrapolation). The range of -8 to 8 holds the patent's useful values of f (up to about 2 in the peaked curve, and N for N levels of magnification). A model of the filter chip's sharpen mode is then `out = A + K x (B - A)` with A the base-level filtered texel, B the next level's, and K from the curve at the pixel's level of detail. Where the product is rounded and how wide it is stay unknown: the patent gives no widths. Route: the `TEST_texdetail` and sharpen vectors in `tbusdata.Z`, if any lists a filtered texel.
+
+## 14. US 5,471,572, adding detail to texture imagery
+
+- Identity: US 5,471,572, "System and method for adding detail to texture imagery in computer generated interactive graphics", filed 1993-07-09, granted 1995-11-28, assigned to SGI. https://patents.google.com/patent/US5471572A/en
+- Covers: a detail texture, a signed high-frequency band repeated across the base, added or multiplied in as the surface is magnified. The only product it names is an earlier workstation, for making the detail texture offline.
+- Match: feature-level. Facts **inferred**.
+
+Facts:
+
+- The detail texture is the frequency band between a high-resolution source and the zoomed base, signed (a difference); a representative region, preferably 256 x 256 and a power-of-two square, is cut out and repeats across the base. At run time, additive mode: `T' = T_base + F(LOD) x detail`; multiplicative mode: `T' = T_base + F(LOD) x detail x T_base`, used for textures tagged as prone to colour shift. F is `1 - f` of the conventional weight, 0 at the base level and 1 at the source level, may exceed 1 (the second example curve peaks near 1.25), is programmable per texture and is a look-up table indexed by level of detail. Addressing: the low two bits of the integer base-texel address pick one of four sections of the detail texture, and two fraction bits each for x and y pick the texel in a section.
+- The same subtracter-multiplier-adder datapath as source 13, with a multiplexer choosing among the additive form `A + B x k`, the multiplicative form `A + A x B x K` and the interpolation form `A + (B - A) x k`.
+- The public SGIS_detail_texture specification, which the detail function in libGLcore implements, defines `T' = T_texture + F(LOD) x (2 x T_detail - 1)` and the multiplicative `T_texture x (1 + F(LOD) x (2 x T_detail - 1))`: the stored detail texel is unsigned and is mapped to [-1, 1].
+
+Where it meets the shipped chip. The detail kind (`__glkonim_DetailTexFuncSGIS`, table kind 1) **doubles** its samples before packing ([RM.h](../RM.h)). The specification's `2 x T_detail - 1` equals `2 x (T_detail - 1/2)`; a datapath that multiplies a detail texel with the bias removed by K therefore needs `K = 2F`. **Inferred:** that is why the host doubles the curve, so the hardware's detail operation is `K x (texel - 1/2)` with K from the `TFT_DETAILTEX` curve, and the detail texel is stored unsigned with 1/2 as zero. The multiplicative form multiplies by the base texel. The bias handling and rounding are unknown: no widths in the patent. This also settles the stale remark in [RM.h](../RM.h) that "which GL function each type is" was unknown: the table kinds are set by the detail and sharpen calls ([opengl.md](opengl.md)), kind 1 detail and kind 2 sharpen, and the doubling and negation are the two functions' different hardware forms.
+
 ## What these sources settle, by open question
 
 - **Raster slope and fixed-point arithmetic.** Moved a step. Source 1 puts the slope arithmetic and the strip and fan assembly in the fragment generator and says it evaluates plane equations per pixel (no DDA). Source 6 shows the previous generation computing slopes on the geometry side, which the shipped geometry code does not. Widths, rounding of the start point and the edge rule on sloped edges stay unknown: no published source gives them. Next route: the `tbusdata.Z` vectors with a sloped primitive and a stored frame, if any; the IMP and TF diagnostic expected values.
 - **Geometry engine instruction set and the fan or strip bit.** Not moved. The 195-bit and 2.7 times figures cross-check the 72-bit word (source 4). The paper's "float-to-fix convert and merge" names the block the `r95` = 0x33 words feed (source 1). No published source gives the strip or fan encoding.
-- **Texture level fraction and filter precision.** Candidate formulas only (sources 6 and 8, inferred).
+- **Texture level fraction and filter precision.** Candidate formulas only (sources 6 and 8, inferred). The sharpen and detail curves are explained in hardware terms by sources 13 and 14: the filter chip's sharpen mode is `A + K (B - A)` with K negative, its detail mode `K (texel - 1/2)` with K doubled; widths unknown.
 - **Display generator tables.** The patent in source 9 gives the roles of the line-type, line-count, line-length and signal tables that [dg.md](dg.md) reads by layout.
