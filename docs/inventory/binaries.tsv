@@ -461,7 +461,7 @@ usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dyn
 usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	dynsym	0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/gfx/ucode/KONA/arm1.u	microcode	board-microcode	data	-	465452	8431a8e3184c858f		0		0	0	named-only	ucode/arm1.md#arm-firmware-arm1u-and-the-host-token-map	ARM firmware (arm1.u) and the host-token map
+usr/gfx/ucode/KONA/arm1.u	microcode	board-microcode	data	-	465452	8431a8e3184c858f		0		0	0	named-only	docs/tooling.md#arm-firmware-import	ARM firmware import
 usr/gfx/ucode/KONA/arm1_kpm.u	microcode	board-microcode	data	-	7176	0938c672c1bf6b5a		0		0	0	named-only	docs/open-questions.md#arm-firmware	ARM firmware
 usr/gfx/ucode/KONA/dg4/cmb/1024x768_60.cmb	microcode	board-microcode	data	-	2272	c15312d32bbb3f58		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
 usr/gfx/ucode/KONA/dg4/cmb/1200x900_72.cmb	microcode	board-microcode	data	-	2272	22191e1a0dbde580		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats

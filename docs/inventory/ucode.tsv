@@ -1894,10 +1894,10 @@ ge.u	label	0x00000c3e	lXF10		understood	ucode/ge_compute.md#texture-coordinate-g
 ge.u	label	0x00000c53	mmo_TexGenObjLinear_RQ		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
 ge.u	label	0x00000c53	umo_TexGenObjLinear_RQ		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
 ge.u	label	0x00000c61	lXF11		understood	ucode/ge_compute.md#texture-coordinate-generation-utexgens	Texture-coordinate generation (utexgen.s)
-ge.u	label	0x00000c76	mmo_FaceCull		located	ucode/ge_handlers.md#uculls	ucull.s
-ge.u	label	0x00000c76	umo_FaceCull		located	ucode/ge_handlers.md#uculls	ucull.s
-ge.u	label	0x00000c87	lCU1		located	ucode/ge_handlers.md#uculls	ucull.s
-ge.u	label	0x00000cbd	lCU2		located	ucode/ge_handlers.md#uculls	ucull.s
+ge.u	label	0x00000c76	mmo_FaceCull		understood	ucode/ge_compute.md#face-culling-uculls	Face culling (ucull.s)
+ge.u	label	0x00000c76	umo_FaceCull		understood	ucode/ge_compute.md#face-culling-uculls	Face culling (ucull.s)
+ge.u	label	0x00000c87	lCU1		understood	ucode/ge_compute.md#face-culling-uculls	Face culling (ucull.s)
+ge.u	label	0x00000cbd	lCU2		understood	ucode/ge_compute.md#face-culling-uculls	Face culling (ucull.s)
 ge.u	label	0x00000cc6	mmo_DecomposeTriangleStrip		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
 ge.u	label	0x00000cc6	umo_DecomposeTriangleStrip		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)
 ge.u	label	0x00000cd1	lDE2		understood	ucode/ge_compute.md#decomposers-udecomposes	Decomposers (udecompose.s)

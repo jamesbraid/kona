@@ -2523,3 +2523,25 @@ per-format tables the ARM loads at 0x7387-0x73a4 are in [arm1_functions.md](arm1
 - `mTexEnvDone` (`texenv.S` lines 111-114, at 0x5942): **established**, the common exit of the handler: it sends staging
   word 0x10 to bus address 0x1f4 under the same predicate (0x5942-0x5943) and ends the command with the group-31
   transfer at 0x5944.
+
+## Face culling (ucull.s)
+
+Read in full from the [ucull.s listing](ge_listing/ucull.s.lst) (`ge.u`, IRIX 6.5.30m). The cull module takes the
+triangle list the decomposers build, two triangles per pass, and tests each triangle's orientation in clip space.
+
+- `mmo_FaceCull` (`ucull.s` lines 29-40, at 0xc76): **inferred**, the set-up of the cull loop. It points address
+  register 1 at the triangle list, from register 0x15 and the constant 0x8bb0 (0xc76), copies list words 0 and 1 to
+  special registers 0x2e and 0x2c (0xc7a, 0xc7b), and loads address registers 6-8 and 9-0xb with the three vertex pointers of two triangles, list words
+  0-2 and 0xf-0x11 (0xc7a-0xc7f), the same layout `lDI1` reads. Its output is those six pointers for `lCU1`.
+- `umo_FaceCull`: **inferred**, the second name at 0xc76 (`ucull.s` line 29) of the same entry: it takes the triangle
+  list as input and produces the six vertex pointers the cull loop consumes.
+- `lCU1` (`ucull.s` lines 47-91, at 0xc87): **inferred**, the cull loop, two triangles per pass. For each triangle it
+  multiplies the clip-space x, y and w of its vertices (record words 0x17, 0x18 and 0x1a) in pairs and sums and
+  subtracts the products (multiplies 0xc83-0xc9d, adds and subtracts 0xc87-0xc9c), which computes the determinant
+  of the three (x, y, w) rows: the triangle's signed area in homogeneous coordinates, positive for one winding and
+  negative for the other. It XORs each result's sign with the control word at 0x6f (0xc9e, 0xca1) and, through
+  unit-1 code 0x51 and ORs (0xca2-0xca9, 0xcaf-0xcb2), merges the outcome into special register 0x1c, the cull
+  accumulator, with two stores (0xcaa, 0xcab). It loops on `cc` 0x11 back to its start (0xcb3) and ends the command
+  at 0xcb4.
+- `lCU2` (`ucull.s` line 104, at 0xcbd): **established**, the abort exit of the cull loop: one group-31 transfer to
+  `mmo_AbortGeometry`, reached from the loop when `cc` 0x78 is set at 0xc91.
