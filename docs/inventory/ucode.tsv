@@ -2198,21 +2198,21 @@ ge.u	label	0x00002db5	umo_UnpackVertexV3F_C4UB_T2S		understood	ucode/ge_compute.
 ge.u	label	0x00002dbf	V3F_C4UB_T2Sloop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
 ge.u	label	0x00002dea	umo_UnpackVertexV3F_N3S_T2S		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
 ge.u	label	0x00002dfc	V3F_N3S_T2Sloop		understood	ucode/ge_compute.md#vertex-array-unpacking-uunpacks	Vertex-array unpacking (uunpack.s)
-ge.u	label	0x00003000	mgeb_PixDrawColorSetup_FFT		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x00003026	mmo_Transpose		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x00003051	mgesi_PixRasterPosSetup_FFT		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x000030d4	mmo_Complex_Sort_Out		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x00003133	mmo_Complex_Out		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x0000315b	mmo_FFT_256		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x0000330f	mmo_FFT_128		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x00003488	mmo_FFT_64		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x000035c1	mmo_FFT_32		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x000036c0	mmo_FFT_16		located	ucode/ge_handlers.md#ffts	fft.S
-ge.u	label	0x0000375e	mmo_FFT_8		located	ucode/ge_handlers.md#ffts	fft.S
+ge.u	label	0x00003000	mgeb_PixDrawColorSetup_FFT		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x00003026	mmo_Transpose		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x00003051	mgesi_PixRasterPosSetup_FFT		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x000030d4	mmo_Complex_Sort_Out		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x00003133	mmo_Complex_Out		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x0000315b	mmo_FFT_256		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x0000330f	mmo_FFT_128		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x00003488	mmo_FFT_64		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x000035c1	mmo_FFT_32		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x000036c0	mmo_FFT_16		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
+ge.u	label	0x0000375e	mmo_FFT_8		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
 ge.u	label	0x000037aa	mmo_FFT_4		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
 ge.u	label	0x000037cb	mmo_FFT_2		understood	ucode/ge_compute.md#fast-fourier-transform-stages-ffts	Fast Fourier transform stages (fft.S)
-ge.u	label	0x000037de	mgeb_InitFFTFactors		located	ucode/ge_handlers.md#push_attribs	push_attrib.S
-ge.u	label	0x000037de	mgeb_RestoreXformAttribs		located	ucode/ge_handlers.md#push_attribs	push_attrib.S
+ge.u	label	0x000037de	mgeb_InitFFTFactors		understood	ucode/ge_compute.md#transform-attribute-block-copies-push_attribs	Transform attribute block copies (push_attrib.S)
+ge.u	label	0x000037de	mgeb_RestoreXformAttribs		understood	ucode/ge_compute.md#transform-attribute-block-copies-push_attribs	Transform attribute block copies (push_attrib.S)
 ge.u	label	0x000037f9	mgeb_ClipmapXform		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
 ge.u	label	0x0000380b	mgesi_FlushRM		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
 ge.u	label	0x0000384b	mgeb_SetCurrentRaster		understood	ucode/ge_compute.md#raster-board-commands-rasters	Raster-board commands (raster.S)
@@ -2310,8 +2310,8 @@ ge.u	label	0x00005284	mgesi_XPointRel		understood	ucode/ge_compute.md#x-server-d
 ge.u	label	0x00005293	mgesi_XPoint		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x000052a3	mRelX		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
 ge.u	label	0x000052c4	mAbsX		understood	ucode/ge_compute.md#x-server-drawing-entries-xentrys	X server drawing entries (xentry.S)
-ge.u	label	0x000052e8	mgesi_VCbusWriteMultiple		located	ucode/ge_handlers.md#videos	video.S
-ge.u	label	0x00005305	mgesi_VCbusWrite		located	ucode/ge_handlers.md#videos	video.S
+ge.u	label	0x000052e8	mgesi_VCbusWriteMultiple		understood	ucode/ge_compute.md#video-controller-bus-writes-videos	Video controller bus writes (video.S)
+ge.u	label	0x00005305	mgesi_VCbusWrite		understood	ucode/ge_compute.md#video-controller-bus-writes-videos	Video controller bus writes (video.S)
 ge.u	label	0x00005312	mmo_UnpackVertexV3F_C4UB_T2S_LGT		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
 ge.u	label	0x00005368	mmo_UnpackVertexV3F_T2S_LGT		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
 ge.u	label	0x000053a8	mmo_UnpackVertexV3F_C4UB_T2F_LGT		understood	ucode/ge_compute.md#vertex-array-unpacking-with-lighting-inputs-munpacks	Vertex-array unpacking with lighting inputs (munpack.S)
@@ -2366,23 +2366,23 @@ ge.u	label	0x000064af	mGenerateAALineTable		understood	ucode/ge_compute.md#line-
 ge.u	label	0x0000652d	mDownLoadAALineTable8		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
 ge.u	label	0x00006579	mDownLoadAALineTable4		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
 ge.u	label	0x000065db	mDownLoadAALineTable		understood	ucode/ge_compute.md#line-and-point-state-handlers-lines-points	Line and point state handlers (line.S, point.S)
-ge.u	label	0x00006622	mgeb_ContextDestroy		located	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-ge.u	label	0x0000668a	mges_ContextLoadFifo		located	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-ge.u	label	0x00006697	mgeb_ContextLoadRegs		located	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-ge.u	label	0x000066ed	mgeb_ContextLoadFlagRegs		located	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-ge.u	label	0x000066ff	mgeb_ContextLoadWram		located	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-ge.u	label	0x0000670c	mgeb_ContextLoadEram		located	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-ge.u	label	0x0000671e	mgeb_ContextLoadCram		located	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-ge.u	label	0x00006730	mges_ContextReloadFromBEF		located	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-ge.u	label	0x00006760	mges_ContextLoadBEF		located	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-ge.u	label	0x00006795	mges_ContextLoadODMA		located	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-ge.u	label	0x000067a9	mLiUpdateMtrlState		located	ucode/ge_handlers.md#ctx_loads	ctx_load.S
-ge.u	label	0x000067d0	mges_ContextDeactFinish		located	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
-ge.u	label	0x00006859	mges_ContextDeactStoreValue		located	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
-ge.u	label	0x00006866	mges_ContextDeactSection		located	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
-ge.u	label	0x00006886	mgeb_ContextDeactReconfigureFifo		located	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
-ge.u	label	0x000068ba	mges_ContextDeactGED		located	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
-ge.u	label	0x000068da	mges_ContextDeactivate		located	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
+ge.u	label	0x00006622	mgeb_ContextDestroy		understood	ucode/ge_compute.md#context-load-and-destroy-ctx_loads	Context load and destroy (ctx_load.S)
+ge.u	label	0x0000668a	mges_ContextLoadFifo		understood	ucode/ge_compute.md#context-load-and-destroy-ctx_loads	Context load and destroy (ctx_load.S)
+ge.u	label	0x00006697	mgeb_ContextLoadRegs		understood	ucode/ge_compute.md#context-load-and-destroy-ctx_loads	Context load and destroy (ctx_load.S)
+ge.u	label	0x000066ed	mgeb_ContextLoadFlagRegs		understood	ucode/ge_compute.md#context-load-and-destroy-ctx_loads	Context load and destroy (ctx_load.S)
+ge.u	label	0x000066ff	mgeb_ContextLoadWram		understood	ucode/ge_compute.md#context-load-and-destroy-ctx_loads	Context load and destroy (ctx_load.S)
+ge.u	label	0x0000670c	mgeb_ContextLoadEram		understood	ucode/ge_compute.md#context-load-and-destroy-ctx_loads	Context load and destroy (ctx_load.S)
+ge.u	label	0x0000671e	mgeb_ContextLoadCram		understood	ucode/ge_compute.md#context-load-and-destroy-ctx_loads	Context load and destroy (ctx_load.S)
+ge.u	label	0x00006730	mges_ContextReloadFromBEF		understood	ucode/ge_compute.md#context-load-and-destroy-ctx_loads	Context load and destroy (ctx_load.S)
+ge.u	label	0x00006760	mges_ContextLoadBEF		understood	ucode/ge_compute.md#context-load-and-destroy-ctx_loads	Context load and destroy (ctx_load.S)
+ge.u	label	0x00006795	mges_ContextLoadODMA		understood	ucode/ge_compute.md#context-load-and-destroy-ctx_loads	Context load and destroy (ctx_load.S)
+ge.u	label	0x000067a9	mLiUpdateMtrlState		understood	ucode/ge_compute.md#context-load-and-destroy-ctx_loads	Context load and destroy (ctx_load.S)
+ge.u	label	0x000067d0	mges_ContextDeactFinish		understood	ucode/ge_compute.md#context-deactivate-ctx_deacts	Context deactivate (ctx_deact.S)
+ge.u	label	0x00006859	mges_ContextDeactStoreValue		understood	ucode/ge_compute.md#context-deactivate-ctx_deacts	Context deactivate (ctx_deact.S)
+ge.u	label	0x00006866	mges_ContextDeactSection		understood	ucode/ge_compute.md#context-deactivate-ctx_deacts	Context deactivate (ctx_deact.S)
+ge.u	label	0x00006886	mgeb_ContextDeactReconfigureFifo		understood	ucode/ge_compute.md#context-deactivate-ctx_deacts	Context deactivate (ctx_deact.S)
+ge.u	label	0x000068ba	mges_ContextDeactGED		understood	ucode/ge_compute.md#context-deactivate-ctx_deacts	Context deactivate (ctx_deact.S)
+ge.u	label	0x000068da	mges_ContextDeactivate		understood	ucode/ge_compute.md#context-deactivate-ctx_deacts	Context deactivate (ctx_deact.S)
 ge.u	label	0x00006a32	mgesi_FinishRdata		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
 ge.u	label	0x00006a57	mgesi_StartRdata		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
 ge.u	label	0x00006a79	mgesi_SlopReadWord		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
@@ -2397,9 +2397,9 @@ ge.u	label	0x00006b2f	mmo_ReverseComp4Order		located	ucode/ge_handlers.md#mcompo
 ge.u	label	0x00006b9a	mmo_SumRGB2L		located	ucode/ge_handlers.md#msums	msum.S
 ge.u	label	0x00006c0b	mmo_Expand32_2_4		located	ucode/ge_handlers.md#mexpands	mexpand.S
 ge.u	label	0x00006c55	mmo_Expand32_1_4		located	ucode/ge_handlers.md#mexpands	mexpand.S
-ge.u	label	0x00006c9f	mgeb_SwapInGL		located	ucode/ge_handlers.md#m_pipecontrols	m_pipecontrol.S
-ge.u	label	0x00006cb3	mgeb_SwapOutGL		located	ucode/ge_handlers.md#m_pipecontrols	m_pipecontrol.S
-ge.u	label	0x00006cc7	mmo_PixEndStream		located	ucode/ge_handlers.md#m_pipecontrols	m_pipecontrol.S
+ge.u	label	0x00006c9f	mgeb_SwapInGL		understood	ucode/ge_compute.md#pipe-control-and-pixel-stream-end-m_pipecontrols	Pipe control and pixel stream end (m_pipecontrol.S)
+ge.u	label	0x00006cb3	mgeb_SwapOutGL		understood	ucode/ge_compute.md#pipe-control-and-pixel-stream-end-m_pipecontrols	Pipe control and pixel stream end (m_pipecontrol.S)
+ge.u	label	0x00006cc7	mmo_PixEndStream		understood	ucode/ge_compute.md#pipe-control-and-pixel-stream-end-m_pipecontrols	Pipe control and pixel stream end (m_pipecontrol.S)
 ge.u	label	0x00006cf0	mgeb_InitFogGlobal		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
 ge.u	label	0x00006e20	mgesi_GetFogFunc		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
 ge.u	label	0x00006e4b	mgeb_FogFunc		understood	ucode/ge_compute.md#fog-fogs	Fog (fog.S)
@@ -2482,9 +2482,9 @@ ge.u	label	0x000091ce	mgesi_ClearColor		understood	ucode/ge_compute.md#clears-cl
 ge.u	label	0x000091e3	mmo_ExtractL12A4		located	ucode/ge_handlers.md#mextracts	mextract.S
 ge.u	label	0x00009296	mmo_DrawTriPrimPhong		located	ucode/ge_handlers.md#phongs	phong.S
 ge.u	label	0x0000952c	normalize_and_light		located	ucode/ge_handlers.md#phongs	phong.S
-ge.u	label	0x00009562	mgesi_GetSpecial		located	ucode/ge_handlers.md#gets	get.S
-ge.u	label	0x0000959a	mgesi_GetRaster		located	ucode/ge_handlers.md#gets	get.S
-ge.u	label	0x000095cd	mgesi_GetCurrent		located	ucode/ge_handlers.md#gets	get.S
+ge.u	label	0x00009562	mgesi_GetSpecial		understood	ucode/ge_compute.md#get-queries-gets	Get queries (get.S)
+ge.u	label	0x0000959a	mgesi_GetRaster		understood	ucode/ge_compute.md#get-queries-gets	Get queries (get.S)
+ge.u	label	0x000095cd	mgesi_GetCurrent		understood	ucode/ge_compute.md#get-queries-gets	Get queries (get.S)
 ge.u	label	0x000095e5	mmo_SepConvolve7x7_124		located	ucode/ge_handlers.md#msepconvs	msepconv.S
 ge.u	label	0x00009654	mmo_FastSepConvolve5x5_124		located	ucode/ge_handlers.md#msepconvs	msepconv.S
 ge.u	label	0x000096ac	mmo_SepConvolve5x5_124		located	ucode/ge_handlers.md#msepconvs	msepconv.S
@@ -2588,9 +2588,9 @@ ge.u	label	0x0000ae09	mGL_EX_Initialize		understood	ucode/ge_compute.md#engine-a
 ge.u	label	0x0000b0f4	mGL_EM_Initialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
 ge.u	label	0x0000b1ac	mGL_CM_Initialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
 ge.u	label	0x0000b25a	mGL_REGS_Initialize		understood	ucode/ge_compute.md#engine-and-context-initialisation-ges	Engine and context initialisation (ge.S)
-ge.u	label	0x0000b27b	mgeb_Disable_EnablePolyOffsetExt		located	ucode/ge_handlers.md#glexts	glExt.S
-ge.u	label	0x0000b2ab	mgeb_PolygonOffset		located	ucode/ge_handlers.md#glexts	glExt.S
-ge.u	label	0x0000b2c3	mgeb_PolygonOffsetExt		located	ucode/ge_handlers.md#glexts	glExt.S
+ge.u	label	0x0000b27b	mgeb_Disable_EnablePolyOffsetExt		understood	ucode/ge_compute.md#polygon-offset-extensions-glexts	Polygon offset extensions (glExt.S)
+ge.u	label	0x0000b2ab	mgeb_PolygonOffset		understood	ucode/ge_compute.md#polygon-offset-extensions-glexts	Polygon offset extensions (glExt.S)
+ge.u	label	0x0000b2c3	mgeb_PolygonOffsetExt		understood	ucode/ge_compute.md#polygon-offset-extensions-glexts	Polygon offset extensions (glExt.S)
 ge.u	label	0x0000b2d2	mgeb_RasterPos		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
 ge.u	label	0x0000b2fe	mgesi_Points		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
 ge.u	label	0x0000b312	mgesi_LineStripRestoreV0		understood	ucode/ge_compute.md#primitive-entry-handlers-entrys	Primitive entry handlers (entry.S)
