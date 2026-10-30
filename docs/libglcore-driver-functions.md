@@ -454,3 +454,56 @@ Read from the IP27 Kona N32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/I
   **Established.** The glEvalMesh2 sender, writing `HP_EVALSTRIP2D` (token 39) records of the form mode minus 0x1b00, a flag word (0x10 to 0x13), the first u index, a u count, the first v index and a v count. It tiles the grid in u chunks of 6 (5 steps apart for lines) and v chunks of 50 (49 apart for lines). The flag is 0x10 for a full chunk, 0x11 for the last u chunk, and the last v chunk gets 0x13, or 0x12 for lines whose u chunk is full. Nothing is sent for an empty range.
 - `__glKonEvalMesh1DHost` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd97cc30, 540 bytes, `kon_eval.c`):
   **Established.** Evaluates a glEvalMesh1 on the host. It does nothing unless the 1D enable word at context +1944 is non-zero. Points (0x1b00) are done in batches of 256: it calls the begin routine at offset 28 of the table at context +6132 with 0, runs `EvalRow1D` over the batch using the sampling record at context +1932 and a scratch buffer on the stack, then calls the end routine at offset 44. Lines (0x1b01) use the begin value 3 (a line strip) and step by 255 so batches overlap by one vertex. The last batch carries the remainder.
+
+## Display-list compilers for state calls
+
+- `__glkonlc_BlendFunc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda6eb10, 344 bytes, `kon_cdlfuncs.c`):
+  **Established.** The compile-mode glBlendFunc. The source factor must be 0, 1, 0x302 to 0x308 or 0x8001 to 0x8004, and the destination factor 0, 1, 0x300 to 0x305 or 0x8001 to 0x8004; either failure calls `__glsplc_InvalidEnum` and records nothing. A valid pair appends three words, `HP_BLENDFUNC` (token 203) and the two factors, after reserving three words with `__glSPDlistSpace` if fewer remain.
+- `__glkonlc_StencilOp` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda6edf0, 340 bytes, `kon_cdlfuncs.c`):
+  **Established.** The compile-mode glStencilOp. Each of the three operations must be 0, 0x1e00 to 0x1e03 or 0x150a, otherwise `__glsplc_InvalidEnum`. A valid call appends four words: `HP_STENCILOP` (token 205) and the three operations unchanged.
+- `__glkonlc_Viewport` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda70120, 220 bytes, `kon_cdlfuncs.c`):
+  **Established.** The compile-mode glViewport. A negative width or height calls `__glsplc_InvalidValue`; otherwise it appends five words, `HP_VIEWPORT` (token 227), x, y, width and height, making room first when fewer than five remain.
+- `__glkonlc_Scissor` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda6da20, 220 bytes, `kon_cdlfuncs.c`):
+  **Established.** The compile-mode glScissor, laid out like `__glkonlc_Viewport` with `HP_SCISSOR` (token 12): a negative width or height is an invalid value, otherwise x, y, width and height follow the token.
+- `__glkonlc_TexEnvf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda6dbc0, 216 bytes, `kon_cdlfuncs.c`):
+  **Established.** The compile-mode single-float glTexEnv. Only target 0x2300 with parameter 0x2200 (the environment mode) is accepted; any other target or parameter calls `__glsplc_InvalidEnum`. It appends six words: `HP_TEXENVF` (token 17), 0x2200, the value and three zeros.
+- `__glkonlc_TexEnvi` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda6dda0, 212 bytes, `kon_cdlfuncs.c`):
+  **Established.** The integer form, with the same target 0x2300 and parameter 0x2200 checks, appending `HP_TEXENVI` (token 18), 0x2200, the integer value and three zeros.
+- `__glkonlc_TexEnvfv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda6dca0, 252 bytes, `kon_cdlfuncs.c`):
+  **Established.** The vector float glTexEnv. Target 0x2300 accepts parameter 0x2200, 0x2201 or 0x80be (the environment mode, the environment colour and an extension parameter). It appends `HP_TEXENVF` (token 17), the parameter and the four floats read from the array, six words in all.
+- `__glkonlc_TexEnviv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda6de80, 252 bytes, `kon_cdlfuncs.c`):
+  **Established.** The integer vector form with the same target and parameter set, appending `HP_TEXENVI` (token 18), the parameter and four integer words copied unchanged.
+- `__glkonlc_SpriteParameteriSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda70ac0, 224 bytes, `kon_cdlfuncs.c`):
+  **Established.** Only parameter 0x8149 (the sprite mode) is accepted and its value must be 0x814c, 0x814d or 0x814e (axial, object-aligned or eye-aligned); anything else calls `__glsplc_InvalidEnum`. It appends three words: `HP_SPRITEPARAMETERI` (token 420), 0x8149 and the value.
+- `__glkonlc_SpriteParameterfSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda709d0, 240 bytes, `kon_cdlfuncs.c`):
+  **Established.** The float form: parameter 0x8149 with a value that equals one of the three float constants 33100.0, 33101.0 or 33102.0 (the mode enums 0x814c to 0x814e as floats). It appends `HP_SPRITEPARAMETERI` (token 420), 0x8149 and the value word; any other combination calls `__glsplc_InvalidEnum`.
+- `__glkonlc_SpriteParameterfvSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd963eb0, 416 bytes, `kon_sprite.c`):
+  **Established.** The vector form. For parameter 0x8149 the one float must equal 33100.0, 33101.0 or 33102.0, otherwise it raises error 0x500 with `__glSetError` directly; it appends `HP_SPRITEPARAMETERFV` (token 421), 0x8149 and the value in all three payload words. Parameters 0x814a and 0x814b append the token, the parameter and three floats. Any other parameter calls `__glsplc_InvalidEnum`.
+- `__glkonlc_SpriteParameterivSGIX` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd964050, 136 bytes, `kon_sprite.c`):
+  **Established.** Converts the integers to floats on the stack, one for parameter 0x8149 and three otherwise, and passes them to `__glkonlc_SpriteParameterfvSGIX` with the parameter. It checks and records nothing itself.
+- `__glkonlc_TexGenf` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda6e040, 184 bytes, `kon_cdlfuncs.c`):
+  **Established.** The compile-mode single-value glTexGen. It always appends ten words without checking the enums: `HP_TEXGENF` (token 20), the coordinate, the parameter, the value and six zeros.
+- `__glkonlc_TexGend` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda6df80, 184 bytes, `kon_cdlfuncs.c`):
+  **Established.** The double-precision twin of `__glkonlc_TexGenf`: the same ten-word `HP_TEXGENF` record with the double converted to the value word, and no argument checks.
+- `__glkonlc_TexGenfv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94f4f0, 404 bytes, `kon_modes.c`):
+  **Established.** The vector float glTexGen, as a ten-word `HP_TEXGENF` record (token 20) of the coordinate, the parameter and seven value words. For the plane parameters 0x2501, 0x2502, 0x81f4 and 0x81f5 it copies four floats and zeros the last three; for 0x81f6 and 0x81f7 it copies seven; for any other parameter (the mode) it stores the single value and zeros the rest.
+- `__glkonlc_TexGeniv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94f690, 488 bytes, `kon_modes.c`):
+  **Established.** The integer vector glTexGen with the same three parameter groups and ten-word record as `__glkonlc_TexGenfv`, converting the integers of the plane parameters to floats and storing the single mode value as an integer.
+- `__glkonlc_TexGendv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94f330, 448 bytes, `kon_modes.c`):
+  **Established.** The double vector glTexGen with the same ten-word `HP_TEXGENF` layout and parameter groups, converting each double of the plane parameters to a float.
+- `__glkonlc_PointSize` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94fab0, 184 bytes, `kon_modes.c`):
+  **Established.** The compile-mode glPointSize. A size of 0 or less calls `__glsplc_InvalidValue`. It appends three words: `HP_POINTSIZE` (token 190), the size, and the size limited to 22.0.
+- `__glkonlc_LineWidth` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94f9f0, 184 bytes, `kon_modes.c`):
+  **Established.** The compile-mode glLineWidth. A width of 0 or less is an invalid value. It appends `HP_LINEWIDTH` (token 189), the width, and the width limited to 32.0.
+- `__glkonlc_SampleMaskSGIS` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94dde0, 176 bytes, `kon_modes.c`):
+  **Established.** The compile-mode glSampleMaskSGIS. The mask value is clamped to the range 0.0 to 1.0, then three words are appended: `HP_SAMPLEMASK` (token 280), the clamped value and the invert flag argument unchanged.
+- `__glKonInitializeEnables` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94de90, 168 bytes, `kon_modes.c`):
+  **Established.** Builds the table that `__glkonim_xEnable` uses. It walks 186 pairs of halfwords in the library's data (0x25c8 to 0x28b0 from the data page), each a pipe code and an extended enum, and stores the pair in an 8-byte slot of the uninitialised table at index (enum & 0xff) plus (enum >> 7). A slot that is already used prints a message naming the occupant's enum to standard error and exits with status 1, so the table has to be collision-free.
+- `__glkonlc_FogFuncSGIS` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd983510, 524 bytes, `kon_fog.c`):
+  **Established.** The compile-mode glFogFuncSGIS. The point count must be 1 to 32 and the first pair non-negative, and each following pair must have an x not below the previous x, a y no larger than the previous y and a non-negative y; any violation calls `__glsplc_InvalidValue`. A valid call appends `HP_FOGFUNC` (token 271), the count and the 2n floats.
+- `__glkonlc_Materialiv` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd984700, 368 bytes, `kon_materiali.c`):
+  **Established.** The compile-mode integer glMaterialiv, as a seven-word `HP_MATERIALF` record (token 151) of face, parameter and four value words. The parameters 0x1601 (shininess) and 0x1603 (colour indexes) copy up to three integers as floats with a zero last word; every other parameter scales four integers by the constant 2^-31 (0x30000000), mapping the integer colour range onto -1 to 1.
+- `__glkonlc_PointParameterfSGIS` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9648e0, 388 bytes, `kon_point_parameters.c`):
+  **Established.** The compile-mode single-value glPointParameterfSGIS. Parameter 0x8127 (fade threshold size) needs a positive value and is clamped to 22.0; 0x8126 and 0x8128 (minimum and maximum size) need a value of 0 or more. A valid call appends `HP_POINTPARAMETERF` (token 423), the parameter and the value; a bad value calls `__glsplc_InvalidValue` and any other parameter, including 0x8129, `__glsplc_InvalidEnum`.
+- `__glkonlc_PointParameterfvSGIS` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd964a70, 536 bytes, `kon_point_parameters.c`):
+  **Established.** The vector form: the same three single-value parameters and range tests, appended as `HP_POINTPARAMETERF` (token 423), plus parameter 0x8129 (distance attenuation), which appends `HP_POINTPARAMETERFV` (token 424), the parameter and three floats unchecked. Other parameters call `__glsplc_InvalidEnum`.
