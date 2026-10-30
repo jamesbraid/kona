@@ -14213,19 +14213,19 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd840614	328	__glx_FlushRaste
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946260	860	GetBoardInfo	mdebug	31d094d6b3d9		in	located	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9465bc	128	ChangeWindowSize	mdebug	703a90e0ede1		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94663c	140	FindWindowSize	mdebug	7345aae2e0cb		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9466c8	56	ApplyViewport	mdebug	308873c54ad2	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946700	8	ApplyScissor	mdebug	aab9a3b4a314	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946708	172	SwapBuffers	mdebug	d92c55ac3562	multi-unit	in	named-only	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9466c8	56	ApplyViewport	mdebug	308873c54ad2	multi-unit	in	named-only		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946700	8	ApplyScissor	mdebug	aab9a3b4a314	multi-unit	in	named-only		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946708	172	SwapBuffers	mdebug	d92c55ac3562	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9467b4	120	ChannelRect	mdebug	7a371acf0fc1		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94682c	100	ChannelRectSync	mdebug	9f1dabb24071		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946890	20	Error	mdebug	9aa395a98158		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9468a4	52	PickBufferProcs	mdebug	9ca1a0b840c2		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCurrent	mdebug	7c25ed635536	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCurrent	mdebug	7c25ed635536	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	DestroyContext	mdebug	0ed3ab1f2726		in	located	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	f9aec81ca025		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	27ff1e172de2		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	736c038cb4f6		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	6ac3d04c65ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	6ac3d04c65ec	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	ac52618daf0e		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	70f5a09ad464		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947b54	428	kona_writeconfig	mdebug	e9a62bd6f416		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
@@ -14735,7 +14735,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd983630	964	__glkonim_Ge
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9839f4	996	__glkonim_GetMapdv	dynsym+mdebug	4849af915b7f		in	located	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd983dd8	1480	__glkonim_GetMapiv	dynsym+mdebug	2df4b7bbb5b1		in	located	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9843a0	44	__glKonInitColortableState	dynsym+mdebug	b18a87a6e906		in	located	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9843cc	2120	EramAlloc	mdebug	dd7a56051970	multi-unit	in	named-only	docs/libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines	Colour table, pixel map, histogram and pixel-transform routines
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9843cc	2120	EramAlloc	mdebug	dd7a56051970	multi-unit	in	located	docs/libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines	Colour table, pixel map, histogram and pixel-transform routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd984490	1788	__glkonim_ColorTableSGI	dynsym+mdebug	b98e27ac0f68		in	located	docs/libglcore-driver-functions.md#pixel-and-image-routines	Pixel and image routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd984b8c	136	__glkonle_ColorTableSGI	dynsym+mdebug	df6f5a85fe96		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd984c14	176	PixelMapHostReadback	mdebug	0c1f9a294426		in	located	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
@@ -14820,7 +14820,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98ce5c	204	__glkon_GetD
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98cf28	236	__glkon_GetDeformationi	dynsym+mdebug	d4eca8d9ddc0		in	located	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98d020	460	__glkonim_SubdivPatchParameterfSGIX	dynsym+mdebug	ef424360738d		in	located	docs/libglcore-driver-functions.md#instruments-deformation-subdivision-and-packed-vertices	Instruments, deformation, subdivision and packed vertices
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98d1ec	72	__glkonim_SubdivPatchParameteriSGIX	dynsym+mdebug	a7066f2a301d		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98d234	14548	CopyVertex	mdebug	2322f8b71516	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd98d234	14548	CopyVertex	mdebug	2322f8b71516	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98d2bc	12988	__glkonim_SubdivPatchSGIX	dynsym+mdebug	8fdcba4fdd1e		in	located	docs/libglcore-driver-functions.md#subdivision-patches	Subdivision patches
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd990580	112	__glkonim_PixelTransformSGI	dynsym+mdebug	1041b7f24369		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9905f0	196	__glkonim_PixelTransformParameterfSGI	dynsym+mdebug	9260114ad916		in	located	docs/libglcore-driver-functions.md#pixel-transform-parameters	Pixel transform parameters
@@ -15297,8 +15297,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9bf63c	1088	Accumu
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9bfa7c	928	Mult	mdebug	6e40370e3302		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9bfe1c	584	Add	mdebug	8d0aaf6996d3		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c0064	392	Return	mdebug	e65945fbf0c0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c01ec	520	Clear	mdebug	a93427c52b5f	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c03f4	11232	Pick	mdebug	74d2dc0dad97	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c01ec	520	Clear	mdebug	a93427c52b5f	multi-unit	in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c03f4	11232	Pick	mdebug	74d2dc0dad97	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c0400	288	__glInitAccum64	dynsym+mdebug	4d07f8145fbe		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c0520	424	__glim_Accum	dynsym+mdebug	b84a38cc915e		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c06d0	352	__glValidateAlphaTest	dynsym+mdebug	5fe8dd0589e9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -15582,7 +15582,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4700	92	StoreGEQ
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d475c	92	StoreGEQUAL_W_s	mdebug	55702a218b62		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d47b8	1368	StoreALWAYS_W	mdebug	f072ea21b31b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4d10	536	Fix_zbuffer	mdebug	a16cf6602515		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4f28	8692	Resize	mdebug	5936f3fbb7cc	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d4f28	8692	Resize	mdebug	5936f3fbb7cc	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d5104	228	__glInitDepth24	dynsym+mdebug	da8b8d6f01cd		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d51e8	224	__glInitDepth32	dynsym+mdebug	320882f1712b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d52c8	192	__glInitDepth	dynsym+mdebug	925d0a4fdc8d		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -15925,7 +15925,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f83e4	56	__glGenericVa
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f841c	596	__glGenericModeFlags	dynsym+mdebug	c25c90608b46		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f8670	1308	__glGenericPickAllProcs	dynsym+mdebug	09cfd3945d23		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f8b90	80	__glBuildAntiAliasIndex	dynsym+mdebug	da5e92745335		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f8be0	3984	Coverage	mdebug	834e6f3a89ae	multi-unit	in	named-only	docs/sample-implementation.md#so_pntaac	so_pntaa.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f8be0	3984	Coverage	mdebug	834e6f3a89ae	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f8ccc	924	__glRenderAntiAliasedRGBPoint	dynsym+mdebug	bdcdc2cef3f8		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f9068	812	__glRenderAntiAliasedCIPoint	dynsym+mdebug	b40e1c938647		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f93a0	440	__glRenderAliasedPoint1_NoTex	dynsym+mdebug	05f5fd7a5da2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -15940,7 +15940,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f9c64	224	FindPla
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f9d44	44	FindP	mdebug	e023fb928479		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f9d70	1608	ComputeCoverageStuff	mdebug	0e4fcb1dc353		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9fa3b8	7720	FillAASubTriangle	mdebug	0c8c65dc757d		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9fc1e0	6192	SetInitialParameters	mdebug	fb03e7889fa5	multi-unit	in	named-only	docs/sample-implementation.md#so_polyaac	so_polyaa.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9fc1e0	6192	SetInitialParameters	mdebug	fb03e7889fa5	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9fca10	4084	__glFillAntiAliasedTriangle	dynsym+mdebug	b9c4b05a1706		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9fda10	656	clipToPlane	mdebug	dbb1af613640		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9fdca0	2096	clipToPlaneEye	mdebug	3fc0f23af36f		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
@@ -16585,16 +16585,16 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3d1dc	112	Destroy
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3d24c	704	InitFnPtrs	mdebug	51cf7af481e1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3d50c	1252	InitBuffers	mdebug	eea97d4c506b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3d6bc	816	__glPixmapMakeCurrent	dynsym+mdebug	fe702e9f9961		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3d9f0	756	Store_8	mdebug	1d799b4f22b6	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3dce4	768	Store_16	mdebug	23b678104cde	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3d9f0	756	Store_8	mdebug	1d799b4f22b6	multi-unit	in	named-only		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3dce4	768	Store_16	mdebug	23b678104cde	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3dfe4	844	Store_32A	mdebug	324e2192a8b8		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3e330	692	Store_32	mdebug	7083316145f1	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3e5e4	216	Fetch_8	mdebug	a38a30062c2b	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3e6bc	228	Fetch_16	mdebug	922e373eb393	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3e330	692	Store_32	mdebug	7083316145f1	multi-unit	in	named-only		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3e5e4	216	Fetch_8	mdebug	a38a30062c2b	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3e6bc	228	Fetch_16	mdebug	922e373eb393	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3e7a0	268	Fetch_32A	mdebug	9f832dbf179c		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3e8ac	524	Fetch_32	mdebug	8279c4bc51ed	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3eab8	208	StoreSpan	mdebug	520e65a243ea	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3eb88	163992	StoreStippledSpan	mdebug	26fab3589349	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3e8ac	524	Fetch_32	mdebug	8279c4bc51ed	multi-unit	in	named-only		
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3eab8	208	StoreSpan	mdebug	520e65a243ea	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda3eb88	163992	StoreStippledSpan	mdebug	26fab3589349	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3ee60	688	__glPixInitRGB	dynsym+mdebug	6f1d1207a4e8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3fcb0	328	__glPixInitCI	dynsym+mdebug	314bb7aa4e43		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3fe00	1304	__glPixPickSpanProcs	dynsym+mdebug	47b379e30ae8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -18924,7 +18924,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6f588	12	glGetHistogra
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6f594	12	glGetMinmax	dynsym+mdebug	2420c10ce0b9		in	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6f5a0	12	glGetMinmaxParameterfv	dynsym+mdebug	53dae5d87042		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6f5ac	12	glGetMinmaxParameteriv	dynsym+mdebug	bc35d3dba2db		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda6f5c0	18720	__invalid_enum	mdebug	7b08c7947950	multi-unit	in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xda6f5c0	18720	__invalid_enum	mdebug	7b08c7947950	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6f5e8	24	__glkonim_Color3dv	dynsym+mdebug	6f41aa75c62b		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6f600	20	__glkonim_Color3fv	dynsym+mdebug	327aa50db2b9		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6f614	20	__glkonim_Color3iv	dynsym+mdebug	2a622094cc6b		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -19755,19 +19755,19 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947be0	884	_stub
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	32099000c754		in	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	1d6089bd1536		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948280	104	FindWindowSize	dwarf+funcnames	547e53b8c701		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9482f0	56	ApplyViewport	dwarf+funcnames	6fa4fb8cc682	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948330	8	ApplyScissor	dwarf+funcnames	78aa5094d5ec	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948340	152	SwapBuffers	dwarf+funcnames	803b526e656c	multi-unit	in	named-only	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9482f0	56	ApplyViewport	dwarf+funcnames	6fa4fb8cc682	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948330	8	ApplyScissor	dwarf+funcnames	78aa5094d5ec	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948340	152	SwapBuffers	dwarf+funcnames	803b526e656c	multi-unit	in	understood	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9483e0	176	ChannelRect	dwarf+funcnames	d852cea4b32b		in	understood	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948490	76	ChannelRectSync	dwarf+funcnames	7f549f3f29fc		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9484e0	16	Error	dwarf+funcnames	37635ea22bf8		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9484f0	52	PickBufferProcs	dwarf+funcnames	154c40c49c4e		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	15a17e414639	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	15a17e414639	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	1351705deb83		in	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	65f1d247b8e0		in	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948750	368	map_rtc	dwarf+funcnames	cae1181a77bb		in	understood	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	b292ae48622c		in	understood	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	f76b99488d5c	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	f76b99488d5c	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	c9e126a39194		in	understood	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd949ae0	880	__glKonCreateContext	dwarf+dynsym	33fae5a928f1		in	understood	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd949e50	360	kona_writeconfig	dwarf+funcnames	28a9315d5cf7		in	understood	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
@@ -20277,7 +20277,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9802a0	1304	__glkonim
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9807c0	1336	__glkonim_GetMapdv	dwarf+dynsym	691d531a3db8		in	understood	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd980d00	1572	__glkonim_GetMapiv	dwarf+dynsym	b4be19f09268		in	understood	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd981330	44	__glKonInitColortableState	dwarf+dynsym	14c2c15d5fc8		in	understood	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd981360	180	EramAlloc	dwarf+funcnames	e74612166922	multi-unit	in	named-only	docs/libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines	Colour table, pixel map, histogram and pixel-transform routines
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd981360	180	EramAlloc	dwarf+funcnames	e74612166922	multi-unit	in	understood	docs/libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines	Colour table, pixel map, histogram and pixel-transform routines
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd981420	2200	__glkonim_ColorTableSGI	dwarf+dynsym	050c22d5b7e9		in	understood	docs/libglcore-driver-functions.md#pixel-and-image-routines	Pixel and image routines
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd981cc0	128	__glkonle_ColorTableSGI	dwarf+dynsym	421706efabfd		in	understood	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd981d40	176	PixelMapHostReadback	dwarf+funcnames	83dbb038c1ea		in	understood	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
@@ -20356,7 +20356,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988ce0	204	__glkon_Ge
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988db0	204	__glkon_GetDeformationi	dwarf+dynsym	2eaa1f94d754		in	understood	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988e80	292	__glkonim_SubdivPatchParameterfSGIX	dwarf+dynsym	203b8dfd4756		in	understood	docs/libglcore-driver-functions.md#instruments-deformation-subdivision-and-packed-vertices	Instruments, deformation, subdivision and packed vertices
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd988fb0	56	__glkonim_SubdivPatchParameteriSGIX	dwarf+dynsym	6ceb7859079c		in	understood	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd988ff0	100	CopyVertex	dwarf+funcnames	4fc0b4e2f774	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd988ff0	100	CopyVertex	dwarf+funcnames	4fc0b4e2f774	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd989060	15692	__glkonim_SubdivPatchSGIX	dwarf+dynsym	dbdcaf86606a		in	understood	docs/libglcore-driver-functions.md#subdivision-patches	Subdivision patches
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98cdb0	104	__glkonim_PixelTransformSGI	dwarf+dynsym	91bb1372d053		in	understood	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98ce20	176	__glkonim_PixelTransformParameterfSGI	dwarf+dynsym	369d7412f965		in	understood	docs/libglcore-driver-functions.md#pixel-transform-parameters	Pixel transform parameters
@@ -20833,8 +20833,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9ba1e0	1304	Accu
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9ba700	1092	Mult	dwarf+funcnames	ff2c5323fd49		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bab50	556	Add	dwarf+funcnames	91ab8b08b462		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bad80	396	Return	dwarf+funcnames	adeb65af46e1		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9baf10	812	Clear	dwarf+funcnames	bbcbdc5122ac	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bb240	8	Pick	dwarf+funcnames	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9baf10	812	Clear	dwarf+funcnames	bbcbdc5122ac	multi-unit	in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bb240	8	Pick	dwarf+funcnames	78aa5094d5ec	multi-unit	in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bb250	280	__glInitAccum64	dwarf+dynsym	f1330461d603		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bb370	400	__glim_Accum	dwarf+dynsym	d087a9e3ff72		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bb500	360	__glValidateAlphaTest	dwarf+dynsym	4bd36e575f77		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -21118,7 +21118,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0550	88	StoreG
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d05b0	88	StoreGEQUAL_W_s	dwarf+funcnames	6e8e6aee4020		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0610	8	StoreALWAYS_W	dwarf+funcnames	a7e7ca11a6b8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0d70	400	Fix_zbuffer	dwarf+funcnames	daf21edda63c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0f30	72	Resize	dwarf+funcnames	2a74d23600e4	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d0f30	72	Resize	dwarf+funcnames	2a74d23600e4	multi-unit	in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1120	232	__glInitDepth24	dwarf+dynsym	45cc23c572d1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1210	228	__glInitDepth32	dwarf+dynsym	9eb69b8494a8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d1300	172	__glInitDepth	dwarf+dynsym	4ff654bb7f92		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -21461,7 +21461,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f6820	52	__glGeneric
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f6860	560	__glGenericModeFlags	dwarf+dynsym	3ea890579f1a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f6a90	1100	__glGenericPickAllProcs	dwarf+dynsym	a195a2c70b8c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f6ee0	64	__glBuildAntiAliasIndex	dwarf+dynsym	c0508624e01b		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9f6f20	336	Coverage	dwarf+funcnames	f70adeae25b3	multi-unit	in	named-only	docs/sample-implementation.md#so_pntaac	so_pntaa.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9f6f20	336	Coverage	dwarf+funcnames	f70adeae25b3	multi-unit	in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f7070	652	__glRenderAntiAliasedRGBPoint	dwarf+dynsym	cb2cec252f55		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f7300	564	__glRenderAntiAliasedCIPoint	dwarf+dynsym	663107e9b8e4		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f7540	176	__glRenderAliasedPoint1_NoTex	dwarf+dynsym	48001536c7d7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -21476,7 +21476,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9f7ab0	124	FindP
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9f7b30	32	FindP	dwarf+funcnames	4909d0b5e0f3		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9f7b50	92	ComputeCoverageStuff	dwarf+funcnames	1199412e5c3c		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9f7e60	5628	FillAASubTriangle	dwarf+funcnames	d6ae605691f2		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9f9460	1440	SetInitialParameters	dwarf+funcnames	86be38d75be5	multi-unit	in	named-only	docs/sample-implementation.md#so_polyaac	so_polyaa.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9f9460	1440	SetInitialParameters	dwarf+funcnames	86be38d75be5	multi-unit	in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f9a00	3140	__glFillAntiAliasedTriangle	dwarf+dynsym	b9d75fd16415		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9fa650	660	clipToPlane	dwarf+funcnames	ed67415454b1		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9fa8f0	856	clipToPlaneEye	dwarf+funcnames	41afa0530881		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
@@ -22121,16 +22121,16 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda37820	108	Destr
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda37890	692	InitFnPtrs	dwarf+funcnames	c04b967bcb64		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda37b50	344	InitBuffers	dwarf+funcnames	c3d14a85b391		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda37cb0	1912	__glPixmapMakeCurrent	dwarf+dynsym	352c537c0d49		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38430	380	Store_8	dwarf+funcnames	fe3e77ca12b6	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda385b0	392	Store_16	dwarf+funcnames	2e5eaf1d286a	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38430	380	Store_8	dwarf+funcnames	fe3e77ca12b6	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda385b0	392	Store_16	dwarf+funcnames	2e5eaf1d286a	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38740	360	Store_32A	dwarf+funcnames	70f15503b024		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda388b0	328	Store_32	dwarf+funcnames	6723d88bd0b4	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38a00	168	Fetch_8	dwarf+funcnames	582b950e7df3	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38ab0	180	Fetch_16	dwarf+funcnames	8b23b8a3937b	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda388b0	328	Store_32	dwarf+funcnames	6723d88bd0b4	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38a00	168	Fetch_8	dwarf+funcnames	582b950e7df3	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38ab0	180	Fetch_16	dwarf+funcnames	8b23b8a3937b	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38b70	208	Fetch_32A	dwarf+funcnames	e480de5effac		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38c40	180	Fetch_32	dwarf+funcnames	80ea464a1f47	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38e40	180	StoreSpan	dwarf+funcnames	b3a28432c4e6	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38f00	320	StoreStippledSpan	dwarf+funcnames	8130750cdc1a	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38c40	180	Fetch_32	dwarf+funcnames	80ea464a1f47	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38e40	180	StoreSpan	dwarf+funcnames	b3a28432c4e6	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda38f00	320	StoreStippledSpan	dwarf+funcnames	8130750cdc1a	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda391d0	740	__glPixInitRGB	dwarf+dynsym	6353c0be7a50		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda39f30	368	__glPixInitCI	dwarf+dynsym	2206855e3535		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3a0a0	1320	__glPixPickSpanProcs	dwarf+dynsym	adbb22e0889c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -24458,7 +24458,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda79448	12	glGetHistog
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda79454	12	glGetMinmax	dwarf+dynsym	2420c10ce0b9		in	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda79460	12	glGetMinmaxParameterfv	dwarf+dynsym	53dae5d87042		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda7946c	12	glGetMinmaxParameteriv	dwarf+dynsym	bc35d3dba2db		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda79480	40	__invalid_enum	dwarf+funcnames	9814c2f92be7	multi-unit	in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xda79480	40	__invalid_enum	dwarf+funcnames	9814c2f92be7	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda794a8	24	__glkonim_Color3dv	dwarf+dynsym	1a84cf99d2b7		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda794c0	20	__glkonim_Color3fv	dwarf+dynsym	1911585473c5		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda794d4	20	__glkonim_Color3iv	dwarf+dynsym	1e36716f943c		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
@@ -25335,19 +25335,19 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2da9cc0	708	_stub
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2da9f90	712	GetBoardInfo	dwarf	d8ecaf2b0c93		in	located	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa260	88	ChangeWindowSize	dwarf	e9123a7543f9		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa2c0	104	FindWindowSize	dwarf	c28b61f76bdd		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa330	56	ApplyViewport	dwarf	4ef20ea35ca9	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa370	8	ApplyScissor	dwarf	78aa5094d5ec	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa380	160	SwapBuffers	dwarf	c8abf11d9b11	multi-unit	in	named-only	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa330	56	ApplyViewport	dwarf	4ef20ea35ca9	multi-unit	in	named-only		
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa370	8	ApplyScissor	dwarf	78aa5094d5ec	multi-unit	in	named-only		
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa380	160	SwapBuffers	dwarf	c8abf11d9b11	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa420	176	ChannelRect	dwarf	e3b468726bb9		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa4d0	76	ChannelRectSync	dwarf	e65b41323efa		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa520	16	Error	dwarf	37635ea22bf8		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa530	52	PickBufferProcs	dwarf	429566e2dc9f		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa570	184	LoseCurrent	dwarf	1d6c03cf29e6	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa570	184	LoseCurrent	dwarf	1d6c03cf29e6	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa630	260	DestroyContext	dwarf	638d6fa7fe0f		in	located	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa740	76	initialDestroyContext	dwarf	252b44a9b516		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa790	376	map_rtc	dwarf	c051c62aae87		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa910	4060	MakeCurrentRead	dwarf	93d9d2d8459d		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab8f0	108	MakeCurrent	dwarf	91e9de6fd992	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab8f0	108	MakeCurrent	dwarf	91e9de6fd992	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab960	136	VisualsMatch	dwarf	d930c5a1f5ba		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dab9f0	852	__glKonCreateContext	dwarf+dynsym	eb55a94ec96b		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dabd50	368	kona_writeconfig	dwarf	d6ee06d156cd		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
@@ -25857,7 +25857,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de2bf0	1328	__glkonim
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de3120	1340	__glkonim_GetMapdv	dwarf+dynsym	c142af68ac93		in	located	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de3660	1584	__glkonim_GetMapiv	dwarf+dynsym	160790d40b40		in	located	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de3c90	44	__glKonInitColortableState	dwarf+dynsym	68fbd1338726		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2de3cc0	180	EramAlloc	dwarf	804045f1fcf6	multi-unit	in	named-only	docs/libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines	Colour table, pixel map, histogram and pixel-transform routines
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2de3cc0	180	EramAlloc	dwarf	804045f1fcf6	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de3d80	2208	__glkonim_ColorTableSGI	dwarf+dynsym	6378af3c3379		in	located	docs/libglcore-driver-functions.md#pixel-and-image-routines	Pixel and image routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de4620	128	__glkonle_ColorTableSGI	dwarf+dynsym	88d702e677f3		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2de46a0	176	PixelMapHostReadback	dwarf	7fd1b95d3f5b		in	located	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
@@ -25936,7 +25936,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb800	204	__glkon_Ge
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb8d0	204	__glkon_GetDeformationi	dwarf+dynsym	8a6335681706		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2deb9a0	292	__glkonim_SubdivPatchParameterfSGIX	dwarf+dynsym	16b3e62fed4c		in	located	docs/libglcore-driver-functions.md#instruments-deformation-subdivision-and-packed-vertices	Instruments, deformation, subdivision and packed vertices
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2debad0	56	__glkonim_SubdivPatchParameteriSGIX	dwarf+dynsym	64721c3815fb		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2debb10	100	CopyVertex	dwarf	6ec6d5300931	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2debb10	100	CopyVertex	dwarf	6ec6d5300931	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2debb80	17912	__glkonim_SubdivPatchSGIX	dwarf+dynsym	73571758ef29		in	located	docs/libglcore-driver-functions.md#subdivision-patches	Subdivision patches
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df0180	104	__glkonim_PixelTransformSGI	dwarf+dynsym	28e660ea1c0b		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df01f0	176	__glkonim_PixelTransformParameterfSGI	dwarf+dynsym	6369be2a23ab		in	located	docs/libglcore-driver-functions.md#pixel-transform-parameters	Pixel transform parameters
@@ -26413,8 +26413,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1df40	1304	Accu
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1e460	1092	Mult	dwarf	e403e0ec37b5		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1e8b0	556	Add	dwarf	b5ffa13ea888		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1eae0	432	Return	dwarf	e5f2d6041df0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1ec90	820	Clear	dwarf	5f4d7b310942	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1efd0	8	Pick	dwarf	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1ec90	820	Clear	dwarf	5f4d7b310942	multi-unit	in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e1efd0	8	Pick	dwarf	78aa5094d5ec	multi-unit	in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1efe0	288	__glInitAccum64	dwarf+dynsym	90d5e524c973		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1f100	404	__glim_Accum	dwarf+dynsym	fb5b786a6f91		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1f2a0	368	__glValidateAlphaTest	dwarf+dynsym	ed2abf5f9cb8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -26698,7 +26698,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e342a0	96	StoreG
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34300	96	StoreGEQUAL_W_s	dwarf	d72cfe1101a5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34360	8	StoreALWAYS_W	dwarf	a7e7ca11a6b8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34ad0	416	Fix_zbuffer	dwarf	27fec5f49afc		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34ca0	72	Resize	dwarf	0031c6ec0f0e	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e34ca0	72	Resize	dwarf	0031c6ec0f0e	multi-unit	in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e34e90	232	__glInitDepth24	dwarf+dynsym	5a740cc3d667		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e34f80	228	__glInitDepth32	dwarf+dynsym	763fe51975a8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e35070	172	__glInitDepth	dwarf+dynsym	3438173ee387		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -27041,7 +27041,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e5aa90	52	__glGeneric
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e5aad0	560	__glGenericModeFlags	dwarf+dynsym	9b40a377af6a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e5ad00	1132	__glGenericPickAllProcs	dwarf+dynsym	b53205a8de56		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e5b170	64	__glBuildAntiAliasIndex	dwarf+dynsym	5040cb54ddb5		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e5b1b0	336	Coverage	dwarf	f3dc99775093	multi-unit	in	named-only	docs/sample-implementation.md#so_pntaac	so_pntaa.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e5b1b0	336	Coverage	dwarf	f3dc99775093	multi-unit	in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e5b300	672	__glRenderAntiAliasedRGBPoint	dwarf+dynsym	631b73780e83		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e5b5a0	584	__glRenderAntiAliasedCIPoint	dwarf+dynsym	c2e979439af1		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e5b7f0	184	__glRenderAliasedPoint1_NoTex	dwarf+dynsym	495fc3443d9b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -27056,7 +27056,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e5bd70	124	FindP
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e5bdf0	32	FindP	dwarf	4909d0b5e0f3		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e5be10	92	ComputeCoverageStuff	dwarf	683a752d4398		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e5c120	5728	FillAASubTriangle	dwarf	25f848a989f9		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e5d780	1436	SetInitialParameters	dwarf	a2fa9e7eba1f	multi-unit	in	named-only	docs/sample-implementation.md#so_polyaac	so_polyaa.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e5d780	1436	SetInitialParameters	dwarf	a2fa9e7eba1f	multi-unit	in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e5dd20	3200	__glFillAntiAliasedTriangle	dwarf+dynsym	14a1fb52c70a		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e5e9a0	664	clipToPlane	dwarf	f47bb5325259		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e5ec40	872	clipToPlaneEye	dwarf	3ef5e7f6a323		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
@@ -27701,16 +27701,16 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9c8c0	108	Destr
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9c930	692	InitFnPtrs	dwarf	fc1731c194d8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9cbf0	380	InitBuffers	dwarf	dc3e4f2fae73		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9cd70	1660	__glPixmapMakeCurrent	dwarf+dynsym	73d094380207		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9d3f0	380	Store_8	dwarf	eae93c12e750	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9d570	392	Store_16	dwarf	041d39e15634	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9d3f0	380	Store_8	dwarf	eae93c12e750	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9d570	392	Store_16	dwarf	041d39e15634	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9d700	360	Store_32A	dwarf	0ae072e47429		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9d870	328	Store_32	dwarf	f74c3b06be69	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9d9c0	168	Fetch_8	dwarf	737cf3108b1e	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9da70	180	Fetch_16	dwarf	45110829e46e	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9d870	328	Store_32	dwarf	f74c3b06be69	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9d9c0	168	Fetch_8	dwarf	737cf3108b1e	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9da70	180	Fetch_16	dwarf	45110829e46e	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9db30	208	Fetch_32A	dwarf	3449a361e913		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9dc00	180	Fetch_32	dwarf	eb05b98b068c	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9de10	196	StoreSpan	dwarf	c0f47f772681	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9dee0	336	StoreStippledSpan	dwarf	e20f3e50af7c	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9dc00	180	Fetch_32	dwarf	eb05b98b068c	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9de10	196	StoreSpan	dwarf	c0f47f772681	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e9dee0	336	StoreStippledSpan	dwarf	e20f3e50af7c	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9e1c0	740	__glPixInitRGB	dwarf+dynsym	ec148ec8f8ce		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9ef30	368	__glPixInitCI	dwarf+dynsym	8f5834c6b8ce		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9f0a0	1328	__glPixPickSpanProcs	dwarf+dynsym	573102895a04		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -30038,7 +30038,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edea28	12	glGetHistog
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edea34	12	glGetMinmax	dwarf+dynsym	ee2da59b6530		in	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edea40	12	glGetMinmaxParameterfv	dwarf+dynsym	d9d026a75d55		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edea4c	12	glGetMinmaxParameteriv	dwarf+dynsym	0fe3620ee756		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2edea60	40	__invalid_enum	dwarf	9814c2f92be7	multi-unit	in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2edea60	40	__invalid_enum	dwarf	9814c2f92be7	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edea88	24	__glkonim_Color3dv	dwarf+dynsym	1a84cf99d2b7		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edeaa0	20	__glkonim_Color3fv	dwarf+dynsym	1911585473c5		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edeab4	20	__glkonim_Color3iv	dwarf+dynsym	1e36716f943c		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
@@ -30912,19 +30912,19 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd840614	328	__glx_FlushRaste
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946260	860	GetBoardInfo	mdebug	31d094d6b3d9		in	located	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9465bc	128	ChangeWindowSize	mdebug	703a90e0ede1		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94663c	140	FindWindowSize	mdebug	7345aae2e0cb		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9466c8	56	ApplyViewport	mdebug	308873c54ad2	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946700	8	ApplyScissor	mdebug	aab9a3b4a314	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946708	172	SwapBuffers	mdebug	d92c55ac3562	multi-unit	in	named-only	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9466c8	56	ApplyViewport	mdebug	308873c54ad2	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946700	8	ApplyScissor	mdebug	aab9a3b4a314	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946708	172	SwapBuffers	mdebug	d92c55ac3562	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9467b4	120	ChannelRect	mdebug	7a371acf0fc1		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94682c	100	ChannelRectSync	mdebug	9f1dabb24071		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946890	20	Error	mdebug	9aa395a98158		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9468a4	52	PickBufferProcs	mdebug	9ca1a0b840c2		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCurrent	mdebug	7c25ed635536	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCurrent	mdebug	7c25ed635536	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	DestroyContext	mdebug	0ed3ab1f2726		in	located	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	f9aec81ca025		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	27ff1e172de2		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	736c038cb4f6		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	6ac3d04c65ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	6ac3d04c65ec	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	ac52618daf0e		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	70f5a09ad464		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947b54	428	kona_writeconfig	mdebug	e9a62bd6f416		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
@@ -31434,7 +31434,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd983630	964	__glkonim_Ge
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9839f4	996	__glkonim_GetMapdv	dynsym+mdebug	4849af915b7f		in	located	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd983dd8	1480	__glkonim_GetMapiv	dynsym+mdebug	2df4b7bbb5b1		in	located	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9843a0	44	__glKonInitColortableState	dynsym+mdebug	b18a87a6e906		in	located	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9843cc	2120	EramAlloc	mdebug	dd7a56051970	multi-unit	in	named-only	docs/libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines	Colour table, pixel map, histogram and pixel-transform routines
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9843cc	2120	EramAlloc	mdebug	dd7a56051970	multi-unit	in	located	docs/libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines	Colour table, pixel map, histogram and pixel-transform routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd984490	1788	__glkonim_ColorTableSGI	dynsym+mdebug	b98e27ac0f68		in	located	docs/libglcore-driver-functions.md#pixel-and-image-routines	Pixel and image routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd984b8c	136	__glkonle_ColorTableSGI	dynsym+mdebug	df6f5a85fe96		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd984c14	176	PixelMapHostReadback	mdebug	0c1f9a294426		in	located	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
@@ -31519,7 +31519,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98ce5c	204	__glkon_GetD
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98cf28	236	__glkon_GetDeformationi	dynsym+mdebug	d4eca8d9ddc0		in	located	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98d020	460	__glkonim_SubdivPatchParameterfSGIX	dynsym+mdebug	ef424360738d		in	located	docs/libglcore-driver-functions.md#instruments-deformation-subdivision-and-packed-vertices	Instruments, deformation, subdivision and packed vertices
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98d1ec	72	__glkonim_SubdivPatchParameteriSGIX	dynsym+mdebug	a7066f2a301d		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98d234	14548	CopyVertex	mdebug	2322f8b71516	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd98d234	14548	CopyVertex	mdebug	2322f8b71516	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98d2bc	12988	__glkonim_SubdivPatchSGIX	dynsym+mdebug	8fdcba4fdd1e		in	located	docs/libglcore-driver-functions.md#subdivision-patches	Subdivision patches
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd990580	112	__glkonim_PixelTransformSGI	dynsym+mdebug	1041b7f24369		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9905f0	196	__glkonim_PixelTransformParameterfSGI	dynsym+mdebug	9260114ad916		in	located	docs/libglcore-driver-functions.md#pixel-transform-parameters	Pixel transform parameters
@@ -31996,8 +31996,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9bf63c	1088	Accumu
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9bfa7c	928	Mult	mdebug	6e40370e3302		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9bfe1c	584	Add	mdebug	8d0aaf6996d3		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c0064	392	Return	mdebug	e65945fbf0c0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c01ec	520	Clear	mdebug	a93427c52b5f	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c03f4	11232	Pick	mdebug	74d2dc0dad97	multi-unit	in	named-only	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c01ec	520	Clear	mdebug	a93427c52b5f	multi-unit	in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c03f4	11232	Pick	mdebug	74d2dc0dad97	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c0400	288	__glInitAccum64	dynsym+mdebug	4d07f8145fbe		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c0520	424	__glim_Accum	dynsym+mdebug	b84a38cc915e		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c06d0	352	__glValidateAlphaTest	dynsym+mdebug	5fe8dd0589e9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -32281,7 +32281,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4700	92	StoreGEQ
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d475c	92	StoreGEQUAL_W_s	mdebug	55702a218b62		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d47b8	1368	StoreALWAYS_W	mdebug	f072ea21b31b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4d10	536	Fix_zbuffer	mdebug	a16cf6602515		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4f28	8692	Resize	mdebug	5936f3fbb7cc	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d4f28	8692	Resize	mdebug	5936f3fbb7cc	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d5104	228	__glInitDepth24	dynsym+mdebug	da8b8d6f01cd		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d51e8	224	__glInitDepth32	dynsym+mdebug	320882f1712b		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d52c8	192	__glInitDepth	dynsym+mdebug	925d0a4fdc8d		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -32624,7 +32624,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f83e4	56	__glGenericVa
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f841c	596	__glGenericModeFlags	dynsym+mdebug	c25c90608b46		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f8670	1308	__glGenericPickAllProcs	dynsym+mdebug	09cfd3945d23		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f8b90	80	__glBuildAntiAliasIndex	dynsym+mdebug	da5e92745335		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f8be0	3984	Coverage	mdebug	834e6f3a89ae	multi-unit	in	named-only	docs/sample-implementation.md#so_pntaac	so_pntaa.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f8be0	3984	Coverage	mdebug	834e6f3a89ae	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f8ccc	924	__glRenderAntiAliasedRGBPoint	dynsym+mdebug	bdcdc2cef3f8		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f9068	812	__glRenderAntiAliasedCIPoint	dynsym+mdebug	b40e1c938647		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f93a0	440	__glRenderAliasedPoint1_NoTex	dynsym+mdebug	05f5fd7a5da2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -32639,7 +32639,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f9c64	224	FindPla
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f9d44	44	FindP	mdebug	e023fb928479		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f9d70	1608	ComputeCoverageStuff	mdebug	0e4fcb1dc353		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9fa3b8	7720	FillAASubTriangle	mdebug	0c8c65dc757d		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9fc1e0	6192	SetInitialParameters	mdebug	fb03e7889fa5	multi-unit	in	named-only	docs/sample-implementation.md#so_polyaac	so_polyaa.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9fc1e0	6192	SetInitialParameters	mdebug	fb03e7889fa5	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9fca10	4084	__glFillAntiAliasedTriangle	dynsym+mdebug	b9c4b05a1706		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9fda10	656	clipToPlane	mdebug	dbb1af613640		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9fdca0	2096	clipToPlaneEye	mdebug	3fc0f23af36f		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
@@ -33284,16 +33284,16 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3d1dc	112	Destroy
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3d24c	704	InitFnPtrs	mdebug	51cf7af481e1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3d50c	1252	InitBuffers	mdebug	eea97d4c506b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3d6bc	816	__glPixmapMakeCurrent	dynsym+mdebug	fe702e9f9961		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3d9f0	756	Store_8	mdebug	1d799b4f22b6	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3dce4	768	Store_16	mdebug	23b678104cde	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3d9f0	756	Store_8	mdebug	1d799b4f22b6	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3dce4	768	Store_16	mdebug	23b678104cde	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3dfe4	844	Store_32A	mdebug	324e2192a8b8		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3e330	692	Store_32	mdebug	7083316145f1	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3e5e4	216	Fetch_8	mdebug	a38a30062c2b	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3e6bc	228	Fetch_16	mdebug	922e373eb393	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3e330	692	Store_32	mdebug	7083316145f1	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3e5e4	216	Fetch_8	mdebug	a38a30062c2b	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3e6bc	228	Fetch_16	mdebug	922e373eb393	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3e7a0	268	Fetch_32A	mdebug	9f832dbf179c		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3e8ac	524	Fetch_32	mdebug	8279c4bc51ed	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3eab8	208	StoreSpan	mdebug	520e65a243ea	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3eb88	163992	StoreStippledSpan	mdebug	26fab3589349	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3e8ac	524	Fetch_32	mdebug	8279c4bc51ed	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3eab8	208	StoreSpan	mdebug	520e65a243ea	multi-unit	in	located	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda3eb88	163992	StoreStippledSpan	mdebug	26fab3589349	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3ee60	688	__glPixInitRGB	dynsym+mdebug	6f1d1207a4e8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3fcb0	328	__glPixInitCI	dynsym+mdebug	314bb7aa4e43		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3fe00	1304	__glPixPickSpanProcs	dynsym+mdebug	47b379e30ae8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -35623,7 +35623,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6f588	12	glGetHistogra
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6f594	12	glGetMinmax	dynsym+mdebug	2420c10ce0b9		in	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6f5a0	12	glGetMinmaxParameterfv	dynsym+mdebug	53dae5d87042		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6f5ac	12	glGetMinmaxParameteriv	dynsym+mdebug	bc35d3dba2db		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda6f5c0	18720	__invalid_enum	mdebug	7b08c7947950	multi-unit	in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xda6f5c0	18720	__invalid_enum	mdebug	7b08c7947950	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6f5e8	24	__glkonim_Color3dv	dynsym+mdebug	6f41aa75c62b		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6f600	20	__glkonim_Color3fv	dynsym+mdebug	327aa50db2b9		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6f614	20	__glkonim_Color3iv	dynsym+mdebug	2a622094cc6b		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -36454,19 +36454,19 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947be0	884	_stub
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	32099000c754		in	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	1d6089bd1536		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948280	104	FindWindowSize	dwarf+funcnames	547e53b8c701		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9482f0	56	ApplyViewport	dwarf+funcnames	6fa4fb8cc682	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948330	8	ApplyScissor	dwarf+funcnames	78aa5094d5ec	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948340	152	SwapBuffers	dwarf+funcnames	803b526e656c	multi-unit	in	named-only	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9482f0	56	ApplyViewport	dwarf+funcnames	6fa4fb8cc682	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948330	8	ApplyScissor	dwarf+funcnames	78aa5094d5ec	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948340	152	SwapBuffers	dwarf+funcnames	803b526e656c	multi-unit	in	understood	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9483e0	176	ChannelRect	dwarf+funcnames	d852cea4b32b		in	understood	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948490	76	ChannelRectSync	dwarf+funcnames	7f549f3f29fc		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9484e0	16	Error	dwarf+funcnames	37635ea22bf8		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9484f0	52	PickBufferProcs	dwarf+funcnames	154c40c49c4e		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	15a17e414639	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948530	184	LoseCurrent	dwarf+funcnames	15a17e414639	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9485f0	260	DestroyContext	dwarf+funcnames	1351705deb83		in	understood	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948700	76	initialDestroyContext	dwarf+funcnames	65f1d247b8e0		in	understood	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948750	368	map_rtc	dwarf+funcnames	cae1181a77bb		in	understood	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9488c0	4376	MakeCurrentRead	dwarf+funcnames	b292ae48622c		in	understood	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	f76b99488d5c	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9499e0	108	MakeCurrent	dwarf+funcnames	f76b99488d5c	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd949a50	136	VisualsMatch	dwarf+funcnames	c9e126a39194		in	understood	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd949ae0	880	__glKonCreateContext	dwarf+dynsym	33fae5a928f1		in	understood	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd949e50	360	kona_writeconfig	dwarf+funcnames	28a9315d5cf7		in	understood	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
@@ -36976,7 +36976,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9802a0	1304	__glkonim
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9807c0	1336	__glkonim_GetMapdv	dwarf+dynsym	691d531a3db8		in	understood	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd980d00	1572	__glkonim_GetMapiv	dwarf+dynsym	b4be19f09268		in	understood	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd981330	44	__glKonInitColortableState	dwarf+dynsym	14c2c15d5fc8		in	understood	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd981360	180	EramAlloc	dwarf+funcnames	e74612166922	multi-unit	in	named-only	docs/libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines	Colour table, pixel map, histogram and pixel-transform routines
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd981360	180	EramAlloc	dwarf+funcnames	e74612166922	multi-unit	in	understood	docs/libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines	Colour table, pixel map, histogram and pixel-transform routines
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd981420	2200	__glkonim_ColorTableSGI	dwarf+dynsym	050c22d5b7e9		in	understood	docs/libglcore-driver-functions.md#pixel-and-image-routines	Pixel and image routines
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd981cc0	128	__glkonle_ColorTableSGI	dwarf+dynsym	421706efabfd		in	understood	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd981d40	176	PixelMapHostReadback	dwarf+funcnames	83dbb038c1ea		in	understood	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
@@ -37055,7 +37055,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988ce0	204	__glkon_Ge
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988db0	204	__glkon_GetDeformationi	dwarf+dynsym	2eaa1f94d754		in	understood	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988e80	292	__glkonim_SubdivPatchParameterfSGIX	dwarf+dynsym	203b8dfd4756		in	understood	docs/libglcore-driver-functions.md#instruments-deformation-subdivision-and-packed-vertices	Instruments, deformation, subdivision and packed vertices
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd988fb0	56	__glkonim_SubdivPatchParameteriSGIX	dwarf+dynsym	6ceb7859079c		in	understood	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd988ff0	100	CopyVertex	dwarf+funcnames	4fc0b4e2f774	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd988ff0	100	CopyVertex	dwarf+funcnames	4fc0b4e2f774	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd989060	15692	__glkonim_SubdivPatchSGIX	dwarf+dynsym	dbdcaf86606a		in	understood	docs/libglcore-driver-functions.md#subdivision-patches	Subdivision patches
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98cdb0	104	__glkonim_PixelTransformSGI	dwarf+dynsym	91bb1372d053		in	understood	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98ce20	176	__glkonim_PixelTransformParameterfSGI	dwarf+dynsym	369d7412f965		in	understood	docs/libglcore-driver-functions.md#pixel-transform-parameters	Pixel transform parameters
@@ -37532,8 +37532,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9ba1e0	1304	Accu
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9ba700	1092	Mult	dwarf+funcnames	ff2c5323fd49		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bab50	556	Add	dwarf+funcnames	91ab8b08b462		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bad80	396	Return	dwarf+funcnames	adeb65af46e1		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9baf10	812	Clear	dwarf+funcnames	bbcbdc5122ac	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bb240	8	Pick	dwarf+funcnames	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9baf10	812	Clear	dwarf+funcnames	bbcbdc5122ac	multi-unit	in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bb240	8	Pick	dwarf+funcnames	78aa5094d5ec	multi-unit	in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bb250	280	__glInitAccum64	dwarf+dynsym	f1330461d603		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bb370	400	__glim_Accum	dwarf+dynsym	d087a9e3ff72		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bb500	360	__glValidateAlphaTest	dwarf+dynsym	4bd36e575f77		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -37817,7 +37817,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0550	88	StoreG
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d05b0	88	StoreGEQUAL_W_s	dwarf+funcnames	6e8e6aee4020		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0610	8	StoreALWAYS_W	dwarf+funcnames	a7e7ca11a6b8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0d70	400	Fix_zbuffer	dwarf+funcnames	daf21edda63c		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0f30	72	Resize	dwarf+funcnames	2a74d23600e4	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d0f30	72	Resize	dwarf+funcnames	2a74d23600e4	multi-unit	in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1120	232	__glInitDepth24	dwarf+dynsym	45cc23c572d1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1210	228	__glInitDepth32	dwarf+dynsym	9eb69b8494a8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d1300	172	__glInitDepth	dwarf+dynsym	4ff654bb7f92		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -38160,7 +38160,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f6820	52	__glGeneric
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f6860	560	__glGenericModeFlags	dwarf+dynsym	3ea890579f1a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f6a90	1100	__glGenericPickAllProcs	dwarf+dynsym	a195a2c70b8c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f6ee0	64	__glBuildAntiAliasIndex	dwarf+dynsym	c0508624e01b		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9f6f20	336	Coverage	dwarf+funcnames	f70adeae25b3	multi-unit	in	named-only	docs/sample-implementation.md#so_pntaac	so_pntaa.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9f6f20	336	Coverage	dwarf+funcnames	f70adeae25b3	multi-unit	in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f7070	652	__glRenderAntiAliasedRGBPoint	dwarf+dynsym	cb2cec252f55		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f7300	564	__glRenderAntiAliasedCIPoint	dwarf+dynsym	663107e9b8e4		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f7540	176	__glRenderAliasedPoint1_NoTex	dwarf+dynsym	48001536c7d7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -38175,7 +38175,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9f7ab0	124	FindP
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9f7b30	32	FindP	dwarf+funcnames	4909d0b5e0f3		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9f7b50	92	ComputeCoverageStuff	dwarf+funcnames	1199412e5c3c		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9f7e60	5628	FillAASubTriangle	dwarf+funcnames	d6ae605691f2		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9f9460	1440	SetInitialParameters	dwarf+funcnames	86be38d75be5	multi-unit	in	named-only	docs/sample-implementation.md#so_polyaac	so_polyaa.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9f9460	1440	SetInitialParameters	dwarf+funcnames	86be38d75be5	multi-unit	in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f9a00	3140	__glFillAntiAliasedTriangle	dwarf+dynsym	b9d75fd16415		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9fa650	660	clipToPlane	dwarf+funcnames	ed67415454b1		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9fa8f0	856	clipToPlaneEye	dwarf+funcnames	41afa0530881		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
@@ -38820,16 +38820,16 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda37820	108	Destr
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda37890	692	InitFnPtrs	dwarf+funcnames	c04b967bcb64		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda37b50	344	InitBuffers	dwarf+funcnames	c3d14a85b391		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda37cb0	1912	__glPixmapMakeCurrent	dwarf+dynsym	352c537c0d49		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38430	380	Store_8	dwarf+funcnames	fe3e77ca12b6	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda385b0	392	Store_16	dwarf+funcnames	2e5eaf1d286a	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38430	380	Store_8	dwarf+funcnames	fe3e77ca12b6	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda385b0	392	Store_16	dwarf+funcnames	2e5eaf1d286a	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38740	360	Store_32A	dwarf+funcnames	70f15503b024		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda388b0	328	Store_32	dwarf+funcnames	6723d88bd0b4	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38a00	168	Fetch_8	dwarf+funcnames	582b950e7df3	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38ab0	180	Fetch_16	dwarf+funcnames	8b23b8a3937b	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda388b0	328	Store_32	dwarf+funcnames	6723d88bd0b4	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38a00	168	Fetch_8	dwarf+funcnames	582b950e7df3	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38ab0	180	Fetch_16	dwarf+funcnames	8b23b8a3937b	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38b70	208	Fetch_32A	dwarf+funcnames	e480de5effac		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38c40	180	Fetch_32	dwarf+funcnames	80ea464a1f47	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38e40	180	StoreSpan	dwarf+funcnames	b3a28432c4e6	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38f00	320	StoreStippledSpan	dwarf+funcnames	8130750cdc1a	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38c40	180	Fetch_32	dwarf+funcnames	80ea464a1f47	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38e40	180	StoreSpan	dwarf+funcnames	b3a28432c4e6	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda38f00	320	StoreStippledSpan	dwarf+funcnames	8130750cdc1a	multi-unit	in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda391d0	740	__glPixInitRGB	dwarf+dynsym	6353c0be7a50		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda39f30	368	__glPixInitCI	dwarf+dynsym	2206855e3535		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3a0a0	1320	__glPixPickSpanProcs	dwarf+dynsym	adbb22e0889c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -41157,7 +41157,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda79448	12	glGetHistog
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda79454	12	glGetMinmax	dwarf+dynsym	2420c10ce0b9		in	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda79460	12	glGetMinmaxParameterfv	dwarf+dynsym	53dae5d87042		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda7946c	12	glGetMinmaxParameteriv	dwarf+dynsym	bc35d3dba2db		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda79480	40	__invalid_enum	dwarf+funcnames	9814c2f92be7	multi-unit	in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xda79480	40	__invalid_enum	dwarf+funcnames	9814c2f92be7	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda794a8	24	__glkonim_Color3dv	dwarf+dynsym	1a84cf99d2b7		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda794c0	20	__glkonim_Color3fv	dwarf+dynsym	1911585473c5		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda794d4	20	__glkonim_Color3iv	dwarf+dynsym	1e36716f943c		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
@@ -42034,19 +42034,19 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2189cc0	708	_stub
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2189f90	712	GetBoardInfo	dwarf	d8ecaf2b0c93		in	located	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a260	88	ChangeWindowSize	dwarf	e9123a7543f9		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a2c0	104	FindWindowSize	dwarf	c28b61f76bdd		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a330	56	ApplyViewport	dwarf	4ef20ea35ca9	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a370	8	ApplyScissor	dwarf	78aa5094d5ec	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a380	160	SwapBuffers	dwarf	c8abf11d9b11	multi-unit	in	named-only	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a330	56	ApplyViewport	dwarf	4ef20ea35ca9	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a370	8	ApplyScissor	dwarf	78aa5094d5ec	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a380	160	SwapBuffers	dwarf	c8abf11d9b11	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a420	176	ChannelRect	dwarf	e3b468726bb9		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a4d0	76	ChannelRectSync	dwarf	e65b41323efa		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a520	16	Error	dwarf	37635ea22bf8		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a530	52	PickBufferProcs	dwarf	429566e2dc9f		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a570	184	LoseCurrent	dwarf	1d6c03cf29e6	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a570	184	LoseCurrent	dwarf	1d6c03cf29e6	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a630	260	DestroyContext	dwarf	638d6fa7fe0f		in	located	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a740	76	initialDestroyContext	dwarf	252b44a9b516		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a790	376	map_rtc	dwarf	c051c62aae87		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a910	4060	MakeCurrentRead	dwarf	93d9d2d8459d		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b8f0	108	MakeCurrent	dwarf	91e9de6fd992	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b8f0	108	MakeCurrent	dwarf	91e9de6fd992	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b960	136	VisualsMatch	dwarf	d930c5a1f5ba		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218b9f0	852	__glKonCreateContext	dwarf+dynsym	eb55a94ec96b		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218bd50	368	kona_writeconfig	dwarf	d6ee06d156cd		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
@@ -42556,7 +42556,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c2bf0	1328	__glkonim
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c3120	1340	__glkonim_GetMapdv	dwarf+dynsym	c142af68ac93		in	located	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c3660	1584	__glkonim_GetMapiv	dwarf+dynsym	160790d40b40		in	located	docs/libglcore-driver-functions.md#evaluator-map-queries	Evaluator map queries
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c3c90	44	__glKonInitColortableState	dwarf+dynsym	68fbd1338726		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21c3cc0	180	EramAlloc	dwarf	804045f1fcf6	multi-unit	in	named-only	docs/libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines	Colour table, pixel map, histogram and pixel-transform routines
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21c3cc0	180	EramAlloc	dwarf	804045f1fcf6	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c3d80	2208	__glkonim_ColorTableSGI	dwarf+dynsym	6378af3c3379		in	located	docs/libglcore-driver-functions.md#pixel-and-image-routines	Pixel and image routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c4620	128	__glkonle_ColorTableSGI	dwarf+dynsym	88d702e677f3		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21c46a0	176	PixelMapHostReadback	dwarf	7fd1b95d3f5b		in	located	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
@@ -42635,7 +42635,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb800	204	__glkon_Ge
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb8d0	204	__glkon_GetDeformationi	dwarf+dynsym	8a6335681706		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cb9a0	292	__glkonim_SubdivPatchParameterfSGIX	dwarf+dynsym	16b3e62fed4c		in	located	docs/libglcore-driver-functions.md#instruments-deformation-subdivision-and-packed-vertices	Instruments, deformation, subdivision and packed vertices
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cbad0	56	__glkonim_SubdivPatchParameteriSGIX	dwarf+dynsym	64721c3815fb		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21cbb10	100	CopyVertex	dwarf	6ec6d5300931	multi-unit	in	named-only	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21cbb10	100	CopyVertex	dwarf	6ec6d5300931	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21cbb80	17912	__glkonim_SubdivPatchSGIX	dwarf+dynsym	73571758ef29		in	located	docs/libglcore-driver-functions.md#subdivision-patches	Subdivision patches
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d0180	104	__glkonim_PixelTransformSGI	dwarf+dynsym	28e660ea1c0b		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d01f0	176	__glkonim_PixelTransformParameterfSGI	dwarf+dynsym	6369be2a23ab		in	located	docs/libglcore-driver-functions.md#pixel-transform-parameters	Pixel transform parameters
@@ -43112,8 +43112,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fdf40	1304	Accu
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fe460	1092	Mult	dwarf	e403e0ec37b5		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fe8b0	556	Add	dwarf	b5ffa13ea888		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21feae0	432	Return	dwarf	e5f2d6041df0		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fec90	820	Clear	dwarf	5f4d7b310942	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fefd0	8	Pick	dwarf	78aa5094d5ec	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fec90	820	Clear	dwarf	5f4d7b310942	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21fefd0	8	Pick	dwarf	78aa5094d5ec	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21fefe0	288	__glInitAccum64	dwarf+dynsym	90d5e524c973		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ff100	404	__glim_Accum	dwarf+dynsym	fb5b786a6f91		in	located	docs/sample-implementation.md#so_accumopc	so_accumop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ff2a0	368	__glValidateAlphaTest	dwarf+dynsym	ed2abf5f9cb8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -43397,7 +43397,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22142a0	96	StoreG
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214300	96	StoreGEQUAL_W_s	dwarf	d72cfe1101a5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214360	8	StoreALWAYS_W	dwarf	a7e7ca11a6b8		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214ad0	416	Fix_zbuffer	dwarf	27fec5f49afc		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214ca0	72	Resize	dwarf	0031c6ec0f0e	multi-unit	in	named-only	docs/sample-implementation.md#so_depthopc	so_depthop.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2214ca0	72	Resize	dwarf	0031c6ec0f0e	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2214e90	232	__glInitDepth24	dwarf+dynsym	5a740cc3d667		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2214f80	228	__glInitDepth32	dwarf+dynsym	763fe51975a8		in	located	docs/sample-implementation.md#so_depthopc	so_depthop.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2215070	172	__glInitDepth	dwarf+dynsym	3438173ee387		in	understood	docs/sample-implementation.md#so_depthopc	so_depthop.c
@@ -43740,7 +43740,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x223aa90	52	__glGeneric
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x223aad0	560	__glGenericModeFlags	dwarf+dynsym	9b40a377af6a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x223ad00	1132	__glGenericPickAllProcs	dwarf+dynsym	b53205a8de56		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x223b170	64	__glBuildAntiAliasIndex	dwarf+dynsym	5040cb54ddb5		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x223b1b0	336	Coverage	dwarf	f3dc99775093	multi-unit	in	named-only	docs/sample-implementation.md#so_pntaac	so_pntaa.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x223b1b0	336	Coverage	dwarf	f3dc99775093	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x223b300	672	__glRenderAntiAliasedRGBPoint	dwarf+dynsym	631b73780e83		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x223b5a0	584	__glRenderAntiAliasedCIPoint	dwarf+dynsym	c2e979439af1		in	located	docs/sample-implementation.md#so_pntaac	so_pntaa.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x223b7f0	184	__glRenderAliasedPoint1_NoTex	dwarf+dynsym	495fc3443d9b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -43755,7 +43755,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x223bd70	124	FindP
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x223bdf0	32	FindP	dwarf	4909d0b5e0f3		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x223be10	92	ComputeCoverageStuff	dwarf	683a752d4398		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x223c120	5728	FillAASubTriangle	dwarf	25f848a989f9		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x223d780	1436	SetInitialParameters	dwarf	a2fa9e7eba1f	multi-unit	in	named-only	docs/sample-implementation.md#so_polyaac	so_polyaa.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x223d780	1436	SetInitialParameters	dwarf	a2fa9e7eba1f	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x223dd20	3200	__glFillAntiAliasedTriangle	dwarf+dynsym	14a1fb52c70a		in	located	docs/sample-implementation.md#so_polyaac	so_polyaa.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x223e9a0	664	clipToPlane	dwarf	f47bb5325259		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x223ec40	872	clipToPlaneEye	dwarf	3ef5e7f6a323		in	located	docs/sample-implementation.md#so_polyclipc	so_polyclip.c
@@ -44400,16 +44400,16 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227c8c0	108	Destr
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227c930	692	InitFnPtrs	dwarf	fc1731c194d8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227cbf0	380	InitBuffers	dwarf	dc3e4f2fae73		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227cd70	1660	__glPixmapMakeCurrent	dwarf+dynsym	73d094380207		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227d3f0	380	Store_8	dwarf	eae93c12e750	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227d570	392	Store_16	dwarf	041d39e15634	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227d3f0	380	Store_8	dwarf	eae93c12e750	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227d570	392	Store_16	dwarf	041d39e15634	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227d700	360	Store_32A	dwarf	0ae072e47429		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227d870	328	Store_32	dwarf	f74c3b06be69	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227d9c0	168	Fetch_8	dwarf	737cf3108b1e	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227da70	180	Fetch_16	dwarf	45110829e46e	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227d870	328	Store_32	dwarf	f74c3b06be69	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227d9c0	168	Fetch_8	dwarf	737cf3108b1e	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227da70	180	Fetch_16	dwarf	45110829e46e	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227db30	208	Fetch_32A	dwarf	3449a361e913		in	located	docs/sample-implementation.md#pix_rgbc	pix_rgb.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227dc00	180	Fetch_32	dwarf	eb05b98b068c	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227de10	196	StoreSpan	dwarf	c0f47f772681	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227dee0	336	StoreStippledSpan	dwarf	e20f3e50af7c	multi-unit	in	named-only	docs/sample-implementation.md#pix_cic	pix_ci.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227dc00	180	Fetch_32	dwarf	eb05b98b068c	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227de10	196	StoreSpan	dwarf	c0f47f772681	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x227dee0	336	StoreStippledSpan	dwarf	e20f3e50af7c	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227e1c0	740	__glPixInitRGB	dwarf+dynsym	ec148ec8f8ce		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227ef30	368	__glPixInitCI	dwarf+dynsym	8f5834c6b8ce		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227f0a0	1328	__glPixPickSpanProcs	dwarf+dynsym	573102895a04		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -46737,7 +46737,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bea28	12	glGetHistog
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bea34	12	glGetMinmax	dwarf+dynsym	ee2da59b6530		in	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bea40	12	glGetMinmaxParameterfv	dwarf+dynsym	d9d026a75d55		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bea4c	12	glGetMinmaxParameteriv	dwarf+dynsym	0fe3620ee756		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22bea60	40	__invalid_enum	dwarf	9814c2f92be7	multi-unit	in	named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22bea60	40	__invalid_enum	dwarf	9814c2f92be7	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bea88	24	__glkonim_Color3dv	dwarf+dynsym	1a84cf99d2b7		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22beaa0	20	__glkonim_Color3fv	dwarf+dynsym	1911585473c5		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22beab4	20	__glkonim_Color3iv	dwarf+dynsym	1e36716f943c		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
