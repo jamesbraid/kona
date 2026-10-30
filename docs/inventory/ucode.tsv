@@ -2383,16 +2383,16 @@ ge.u	label	0x00006866	mges_ContextDeactSection		located	ucode/ge_handlers.md#ctx
 ge.u	label	0x00006886	mgeb_ContextDeactReconfigureFifo		located	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
 ge.u	label	0x000068ba	mges_ContextDeactGED		located	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
 ge.u	label	0x000068da	mges_ContextDeactivate		located	ucode/ge_handlers.md#ctx_deacts	ctx_deact.S
-ge.u	label	0x00006a32	mgesi_FinishRdata		located	ucode/ge_handlers.md#hostios	hostio.S
-ge.u	label	0x00006a57	mgesi_StartRdata		located	ucode/ge_handlers.md#hostios	hostio.S
-ge.u	label	0x00006a79	mgesi_SlopReadWord		located	ucode/ge_handlers.md#hostios	hostio.S
-ge.u	label	0x00006a86	mgesi_LastVertex2ODMA		located	ucode/ge_handlers.md#hostios	hostio.S
-ge.u	label	0x00006a9e	mgesi_SR2ODMA		located	ucode/ge_handlers.md#hostios	hostio.S
-ge.u	label	0x00006ab0	mgesi_LoadEram		located	ucode/ge_handlers.md#hostios	hostio.S
-ge.u	label	0x00006ac2	mgeb_LoadEram		located	ucode/ge_handlers.md#hostios	hostio.S
-ge.u	label	0x00006ad4	mgesi_WramFifo2ODMA		located	ucode/ge_handlers.md#hostios	hostio.S
-ge.u	label	0x00006af0	mgesi_Eram2ODMA		located	ucode/ge_handlers.md#hostios	hostio.S
-ge.u	label	0x00006b13	mgesi_Cram2ODMA		located	ucode/ge_handlers.md#hostios	hostio.S
+ge.u	label	0x00006a32	mgesi_FinishRdata		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
+ge.u	label	0x00006a57	mgesi_StartRdata		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
+ge.u	label	0x00006a79	mgesi_SlopReadWord		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
+ge.u	label	0x00006a86	mgesi_LastVertex2ODMA		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
+ge.u	label	0x00006a9e	mgesi_SR2ODMA		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
+ge.u	label	0x00006ab0	mgesi_LoadEram		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
+ge.u	label	0x00006ac2	mgeb_LoadEram		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
+ge.u	label	0x00006ad4	mgesi_WramFifo2ODMA		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
+ge.u	label	0x00006af0	mgesi_Eram2ODMA		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
+ge.u	label	0x00006b13	mgesi_Cram2ODMA		understood	ucode/ge_compute.md#host-read-back-and-output-dma-hostios	Host read-back and output DMA (hostio.S)
 ge.u	label	0x00006b2f	mmo_ReverseComp4Order		located	ucode/ge_handlers.md#mcomporders	mcomporder.S
 ge.u	label	0x00006b9a	mmo_SumRGB2L		located	ucode/ge_handlers.md#msums	msum.S
 ge.u	label	0x00006c0b	mmo_Expand32_2_4		located	ucode/ge_handlers.md#mexpands	mexpand.S

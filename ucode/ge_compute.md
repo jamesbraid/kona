@@ -2865,3 +2865,59 @@ an `r95` = 8 store at that base plus the index in register 0x13, which is saved 
   register 0xa's, one lane and thread at a time (0x4ac7-0x4afa). It reads ERAM 0x1389 and the word at 0x17f3
   (0x4afd-0x4b05), shifts and ANDs them (0x4b04, 0x4b0c) and selects a branch on the result (0x4b18). Its output
   starts with the staged header words 0x401, 0, 0x2103000 and 0x42200000 (0x4b41-0x4b46).
+
+## Host read-back and output DMA (hostio.S)
+
+Read from the [hostio.S listing](ge_listing/hostio.S.lst) (`ge.u`, IRIX 6.5.30m). These handlers program the
+host-interface output DMA through raster-bus register writes, or send data to the output window, register 0x1e
+(0xffff0000 from `bootstrap.s` 0x000e). A bus write puts a register number from [RM.h](../RM.h) on bus address 0x1f7
+and the value on 0x1f5, and 0x1f4 closes the command ([rm.md](../docs/rm.md#data-path)). Board register numbers:
+0x440 `HIP_ODMA_CHANNEL`, 0x460-0x464 the second channel's page number, offset, length, total and overflow, 0x476
+the shadow read port.
+
+- `mgesi_StartRdata` (`hostio.S` lines 346-396, at 0x6a57): **inferred**, starts a pixel read-back on the second
+  output-DMA channel. It stages the register numbers 0x477, 0x440, 0x463, 0x464, 0x460, 0x461, 0x462 and 0x476 and the
+  values 1 and 0x400 (0x6a58-0x6a66), then sends index-value pairs to 0x1f7 and 0x1f5 (0x6a60-0x6a77). The values
+  are its inputs: the three command words (A = 0x1f, D = 0-2) for page number, offset and length, and channel select
+  1. It combines each register number with its value into one bus write, and the result is a programmed channel; it
+  waits at 0x6a70 and closes with 0x1f4 (0x6a78).
+- `mgesi_FinishRdata` (`hostio.S` lines 409-467, at 0x6a32): **inferred**, the matching end of a read-back. It takes
+  two command words (0x6a34, 0x6a35) and combines the same register numbers with values, 4 in place of the channel value 1
+  (staging word 8, 0x6a40), followed by three more 0x1f5 words of register 0x1e, 0x1e and 0x1e plus 1 (0x6a4f-0x6a55),
+  which produces the closing state of the channel; it ends with a group-31 transfer to 0x6c45 (0x6a4e).
+- `mgesi_SlopReadWord` (`hostio.S` lines 320-333, at 0x6a79): **inferred**, reads one word through the shadow port. It
+  takes a command word as operand, sends 0x476 on 0x1f7 and that word on 0x1f5 (0x6a81-0x6a84), which selects the
+  slot; its output is the word the raster side returns for that slot, and it closes with 0x1f4.
+- `mgesi_SR2ODMA` (`hostio.S` lines 256-273, at 0x6a9e): **inferred**, the same port read. It takes the shadow
+  register's number from the first command word into register 0x13 (0x6a9e). It adds 0x10000 to that number twice (0x6aa6,
+  0x6aaa), which selects the register field of the port word, and sends the result to 0x1f5 after 0x476 on 0x1f7
+  (0x6aab-0x6aae).
+- `mgesi_LastVertex2ODMA` (`hostio.S` lines 286-308, at 0x6a86): **inferred**, sends a stored vertex record to the
+  host. It takes a count from the command into register 0x12 (0x6a8b) and selects the record with register 0x13
+  (0x6a87, 0x6a89). After 0x476 goes on 0x1f7 (0x6a8c, 0x6a8d), a two-word loop counts register 0x12 down (F = 0x20,
+  0x6a8f-0x6a91); then each record word read through register 0x13 is moved to the output window (0x6a98, 0x6a99),
+  with register 0x13 stepped by 1 (0x6a96).
+- `mgesi_LoadEram` (`hostio.S` lines 224-241, at 0x6ab0): **inferred**, loads external memory from the command
+  stream. It derives the copy's operands from the command and calls `mWramToEram` (0x6ab0) with register 1 = the first command word (the ERAM address, 0x6ab1),
+  register 2 = the count less one (F = 0x20, 0x6ab3) and register 0 = the input pointer plus 1 (0x6ab4), so the
+  payload words are its input and the copy into ERAM its result. It then writes 0x70000 to 0x1f8 and the closing word
+  (0x6abe-0x6ac1).
+- `mgeb_LoadEram` (`hostio.S` lines 200-211, at 0x6ac2): **inferred**, the batch form: it derives the same address,
+  count and source operands (0x6ac2-0x6ac6) and the call copies the payload into ERAM, and it takes one more command word (0x6ac9) but sends no bus words; the
+  result is only the copy.
+- `mgesi_WramFifo2ODMA` (`hostio.S` lines 162-185, at 0x6ad4): **inferred**, copies command payload to the output
+  window. It loads register 0x13 with the input pointer plus 0, 1 and 2 in lanes 0, 1 and 2 (0x6ad8-0x6ada; each of those words also selects the
+  next lane), so each lane reads its own input word; it takes the count into register 0x12 (0x6ad6) and sends 0x476 (0x6add). The loop
+  counts down (0x6ae0-0x6ae2) while words read through register 0x13 at offsets 0 and 3 go to output word 1
+  (0x6ae8, 0x6ae9), register 0x13 stepping by 6 (0x6ae7). The closing words AND with register 0x1e (code 0x58,
+  0x6aeb, 0x6aed).
+- `mgesi_Eram2ODMA` (`hostio.S` lines 137-149, at 0x6af0): **inferred**, sends an ERAM block to the host. Its operands
+  are the ERAM address (register 0x13, 0x6af0, 0x6af2) and a count (register 0x12). The loop reads six words per pass
+  with `r95` = 0x14, 0x15, 0x16, 0x14, 0x15, 0x16 at register 0x13 plus 0 to 5 (0x6afc-0x6b06), two per lane, and
+  each lane's word goes to output word 1 (0x6b08, 0x6b0d). It selects the lanes in that order, so the result leaves in
+  address order; register 0x13 steps
+  by 6 (F = 0x19, 0x6b0a).
+- `mgesi_Cram2ODMA` (`hostio.S` lines 115-126, at 0x6b13): **inferred**, the control-memory twin. It takes the CRAM
+  address and count as operands (0x6b13, 0x6b1a), sends 0x476 (0x6b1c, 0x6b1d), and its loop reads CRAM words with
+  `r95` = 0x10, 0x11 and 0x12, one per lane, at register 0x13 plus 0-3 (0x6b22-0x6b25), and selects each lane's word
+  in turn, producing the block on the output window.
