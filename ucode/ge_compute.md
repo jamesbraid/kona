@@ -516,10 +516,31 @@ or the host interface must supply it as the record is written. Routes tried: the
 words, `mgesi_TfanPolyRestoreEdge`, every store with offset 0x26 and every write of 0xc9-0xd9 (none outside the drawing
 modules' output stores), the distributor program (no control word in `ged1b.u` sets the 6-bit r field, so none names a
 
-commands). Next route: the distributor's netlist ports `hq_op[3]` and `hq_st[2]`
-([diags/netmap_chips.tsv](../diags/netmap_chips.tsv)) and distributor register 0x290, which the edge-flag command writes
-(descriptor 0x52000020, register number in bits 21-30). They may show how the distributor fills word 0x26 as it delivers
-a vertex.
+record offset), the distributor's engine ports and its register 0x290 (below), and the strip handler the distributor
+releases. `mgesi_TriangleStrip` (0xb699-0xb6b3) takes three input words (C = 0x1d at 0xb699-0xb69b: registers 0x1a
+and 0x19, the count `uDTList` reads, and staging word 0x10) and stores only to special registers 0x0c-0x0e, 0x23 and
+0x24 and to the successor words; it writes no vertex record. Next route: test the premise itself. The strip loop ends
+with an all-ones store to bus address 0x1f5 (0x28c4) and a staging word to 0x1f4 (0x28c9), and an all-ones store to
+0xd7 is what sets 6 on the independent-triangle path. Read how the back-end chip's packer (`bef`, `BEF_REGSHADOW`,
+[docs/rm.md](../docs/rm.md)) combines those slots, to see whether the strip command comes from them rather than from
+bits 31-29 of the record word.
+
+**Established** (the distributor's engine ports, the `ge14_2ge`, `ge14_4ge`, `ge14_top4ges` and `ge14_btm4ges` netlists in
+`usr/diags/IR/data/`, 6.5.30m). The distributor drives four port groups, a to d, each a 32-bit data bus `hq_data`, a 6-bit
+record offset `hq_offset` and a 3-bit `hq_op`. Group k reaches engine k and engine k + 4: `hq_opd` lands on `gem3` and
+`gem7`. The valid line `hq_valid` and the 2-bit `hq_status` are one per engine (0-7). So every word reaches an engine
+with a record offset wide enough for word 0x26 and a 3-bit operation, and the engine answers with a 2-bit status. What
+the `hq_op` codes mean is **unknown**: `irsaudit` names the scan cells (`ged_hq_op0`-`3`, `ged_hq_status0`-`7`,
+`ged_hqStall0_a` and the rest) but only compares their CRCs with the gold files, and no shipped program writes or reads a
+value of them. That the op is three bits, like bits 31-29, is a coincidence the software does not tie.
+
+**Inferred** (register 0x290 is not the source). The edge-flag command loads distributor register 0x290 (descriptor
+0x52000020) with all ones for a true flag and zero for false (`arm_edgeflag`, `arm1.u` 0x0c015c7c), and
+`context_init_ged` (0x0c01fcb8) gives a new context 7. Seven is three set bits, one per edge bit 22-24, which fits the
+register feeding the edge flag. It cannot feed bits 31-29: after `glEdgeFlag(GL_FALSE)` they would be 0 and no later
+strip vertex would draw, and after a true flag they would be 7, command 14 or 15. The same context set-up loads 0x55
+into register 0x294 (descriptor 0x52800020), whose bit 0 is the IRIS GL mode (`arm_irisgl_mode`) and bit 5 the
+triangle-mesh mode (`arm_tmeshmode`); neither handler touches 0x290.
 
 - `mmo_DrawTri` (`udrawtri.s` lines 42-53): **inferred**, the entry of the triangle-strip output. It reads the cull and clip
   state (special register 0x0c through register 0x1c, 0x288c), and branches on `cc` 0x66 to `mmo_DrawTriPrim`, the
