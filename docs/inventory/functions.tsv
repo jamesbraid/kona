@@ -14401,21 +14401,21 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9567cc	52	__glkonim_Get
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956800	264	__glkonle_ConvolutionFilter1DEXT	dynsym+mdebug	9d0aae8b6171		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956908	272	__glkonle_ConvolutionFilter2DEXT	dynsym+mdebug	395df777706a		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956a18	308	__glkonle_SeparableFilter2DEXT	dynsym+mdebug	8aa73dce3090		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd956b50	804	kona_get_offset	mdebug	73a8d453c807		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956c68	524	__glkona_wait_rdata	dynsym+mdebug	2dfc5aee0fcb		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd956e74	5668	kona_get	mdebug	d9e6b4a1d710		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956ec4	76	__glkon_get_special	dynsym+mdebug	1d9e798bb74c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956f10	80	__glkon_get_special2	dynsym+mdebug	877682ee574b		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956f60	84	__glkon_get_special3	dynsym+mdebug	3cda05843484		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956fb4	92	__glkon_get_special4	dynsym+mdebug	ba58ce8050c4		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd956b50	804	kona_get_offset	mdebug	73a8d453c807		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956c68	524	__glkona_wait_rdata	dynsym+mdebug	2dfc5aee0fcb		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd956e74	5668	kona_get	mdebug	d9e6b4a1d710		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956ec4	76	__glkon_get_special	dynsym+mdebug	1d9e798bb74c		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956f10	80	__glkon_get_special2	dynsym+mdebug	877682ee574b		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956f60	84	__glkon_get_special3	dynsym+mdebug	3cda05843484		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd956fb4	92	__glkon_get_special4	dynsym+mdebug	ba58ce8050c4		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd957010	336	__glkonim_GetPointervEXT	dynsym+mdebug	db591f92d1ad		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd957160	812	__glkonim_GetBooleanv	dynsym+mdebug	247cbcc881ff		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95748c	560	__glkonim_GetDoublev	dynsym+mdebug	6caa0ff1b608		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9576bc	552	__glkonim_GetFloatv	dynsym+mdebug	8619b031a24c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9578e4	628	__glkonim_GetIntegerv	dynsym+mdebug	eaccf140e514		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd957b58	108	__glkonim_GetError	dynsym+mdebug	6fd8d184ba9a		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd957b58	108	__glkonim_GetError	dynsym+mdebug	6fd8d184ba9a		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd957bc4	100	__glkonim_IsEnabled	dynsym+mdebug	425e286a497e		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd957c28	212	__glkonim_GetClipPlane	dynsym+mdebug	18368e25a8c3		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd957c28	212	__glkonim_GetClipPlane	dynsym+mdebug	18368e25a8c3		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd957cfc	316	__glkonim_GetLightfv	dynsym+mdebug	0cda6f6f6b32		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd957e38	644	__glkonim_GetLightiv	dynsym+mdebug	267347e6f837		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9580bc	324	__glkonim_GetMaterialfv	dynsym+mdebug	1b0b335238d2		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14426,11 +14426,11 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9585f4	292	__glkonim_Ge
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd958718	508	__glkonim_GetTexGeniv	dynsym+mdebug	d909af0a2171		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd958914	452	__glkonim_GetTexGendv	dynsym+mdebug	884e88b00d3f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd958ad8	408	__glkonim_GetTexGenfv	dynsym+mdebug	7bb23beea69c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd958c70	172	kona_get_current	mdebug	d5687e73154a		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd958d1c	172	kona_get_raster	mdebug	4aab93e36918		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd958dc8	200	kona_get_evaluator	mdebug	565291aa4ea9		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd958c70	172	kona_get_current	mdebug	d5687e73154a		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd958d1c	172	kona_get_raster	mdebug	4aab93e36918		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd958dc8	200	kona_get_evaluator	mdebug	565291aa4ea9		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd958e90	496	kona_get_crud	mdebug	07f868e8ab8f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd959080	80	kona_get_variable	mdebug	9b1e7f727d82		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd959080	80	kona_get_variable	mdebug	9b1e7f727d82		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9590d0	12	pass_dword	mdebug	58dd1f4e53ff		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9590dc	20	pass_dword_word	mdebug	767becfe34b9		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9590f0	20	pass_dword_dword	mdebug	d3ba36658bfe		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -14478,7 +14478,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95b6d8	232	__glkonim_Fe
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd95b7c0	560	ResolveFeedback	mdebug	e3736745edd8		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd95b9f0	31520	ResolveSelect	mdebug	cd6f4c821e8c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95bbe8	548	__glkonim_RenderMode	dynsym+mdebug	8194badba2e0		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95be10	56	__glKon_ioctl	dynsym+mdebug	73b7743bfce5		named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95be10	56	__glKon_ioctl	dynsym+mdebug	73b7743bfce5		named-only	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95be50	308	__glkonim_ClearColor	dynsym+mdebug	de2cfb45202e		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95bf84	304	__glkonim_ClearAccum	dynsym+mdebug	9b192f8e34f0		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd95c0b4	156	__glkonim_ClearDepth	dynsym+mdebug	ff4b7f5327ea		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -18678,9 +18678,9 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6eba0	12	glCopyPixels	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebac	12	glReadPixels	dynsym+mdebug	66c04f96219a		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebb8	12	glDrawPixels	dynsym+mdebug	439fee3d4638		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebc4	12	glGetBooleanv	dynsym+mdebug	ebc4c6c2e097		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebd0	12	glGetClipPlane	dynsym+mdebug	81a85f1a2a50		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebd0	12	glGetClipPlane	dynsym+mdebug	81a85f1a2a50		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebdc	12	glGetDoublev	dynsym+mdebug	9abc440b1d75		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebe8	12	glGetError	dynsym+mdebug	87f2826b4dc0		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebe8	12	glGetError	dynsym+mdebug	87f2826b4dc0		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ebf4	12	glGetFloatv	dynsym+mdebug	90676f103554		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec00	12	glGetIntegerv	dynsym+mdebug	0c19c69b6f7f		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ec0c	12	glGetLightfv	dynsym+mdebug	80401fb0c3e7		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -19943,21 +19943,21 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9583b0	52	__glkonim_G
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9583f0	224	__glkonle_ConvolutionFilter1DEXT	dwarf+dynsym	28d982361769		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9584d0	228	__glkonle_ConvolutionFilter2DEXT	dwarf+dynsym	9972c0319f40		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9585c0	256	__glkonle_SeparableFilter2DEXT	dwarf+dynsym	786b00e70955		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9586c0	256	kona_get_offset	dwarf+funcnames	2d8a9221ecb4		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9587c0	504	__glkona_wait_rdata	dwarf+dynsym	d782c6609010		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9589c0	60	kona_get	dwarf+funcnames	306c272a9782		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd958a00	76	__glkon_get_special	dwarf+dynsym	ab182d4044f7		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd958a50	80	__glkon_get_special2	dwarf+dynsym	9982f2d22933		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd958aa0	84	__glkon_get_special3	dwarf+dynsym	a0e9a76862a1		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd958b00	88	__glkon_get_special4	dwarf+dynsym	446bf5a2c2f8		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9586c0	256	kona_get_offset	dwarf+funcnames	2d8a9221ecb4		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9587c0	504	__glkona_wait_rdata	dwarf+dynsym	d782c6609010		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9589c0	60	kona_get	dwarf+funcnames	306c272a9782		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd958a00	76	__glkon_get_special	dwarf+dynsym	ab182d4044f7		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd958a50	80	__glkon_get_special2	dwarf+dynsym	9982f2d22933		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd958aa0	84	__glkon_get_special3	dwarf+dynsym	a0e9a76862a1		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd958b00	88	__glkon_get_special4	dwarf+dynsym	446bf5a2c2f8		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd958b60	412	__glkonim_GetPointervEXT	dwarf+dynsym	71599a847da1		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd958d00	528	__glkonim_GetBooleanv	dwarf+dynsym	81869036b983		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd958f10	520	__glkonim_GetDoublev	dwarf+dynsym	2792432a6439		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd959120	520	__glkonim_GetFloatv	dwarf+dynsym	d7fb3eea580d		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd959330	556	__glkonim_GetIntegerv	dwarf+dynsym	00fb8e037769		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd959560	108	__glkonim_GetError	dwarf+dynsym	ca5d1acc2cf3		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd959560	108	__glkonim_GetError	dwarf+dynsym	ca5d1acc2cf3		understood	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9595d0	100	__glkonim_IsEnabled	dwarf+dynsym	317b41ce67bb		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd959640	196	__glkonim_GetClipPlane	dwarf+dynsym	1a5ecb4bd86f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd959640	196	__glkonim_GetClipPlane	dwarf+dynsym	1a5ecb4bd86f		understood	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd959710	260	__glkonim_GetLightfv	dwarf+dynsym	e6ff85869370		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd959820	520	__glkonim_GetLightiv	dwarf+dynsym	a3038dc48fb2		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd959a30	288	__glkonim_GetMaterialfv	dwarf+dynsym	3e1dfbfa7eda		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -19968,11 +19968,11 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd959ec0	296	__glkonim_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd959ff0	484	__glkonim_GetTexGeniv	dwarf+dynsym	928b6580a0ae		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95a1e0	496	__glkonim_GetTexGendv	dwarf+dynsym	cac8ca53e8c5		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95a3d0	452	__glkonim_GetTexGenfv	dwarf+dynsym	dbc267756d61		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95a5a0	204	kona_get_current	dwarf+funcnames	706d4612bd85		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95a670	232	kona_get_raster	dwarf+funcnames	7f2e9137b746		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95a760	168	kona_get_evaluator	dwarf+funcnames	4f31a6751382		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95a5a0	204	kona_get_current	dwarf+funcnames	706d4612bd85		understood	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95a670	232	kona_get_raster	dwarf+funcnames	7f2e9137b746		understood	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95a760	168	kona_get_evaluator	dwarf+funcnames	4f31a6751382		understood	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95a810	792	kona_get_crud	dwarf+funcnames	f7ef5afd6d44		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95ab30	84	kona_get_variable	dwarf+funcnames	469b66fd4a8c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95ab30	84	kona_get_variable	dwarf+funcnames	469b66fd4a8c		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95ab90	12	pass_dword	dwarf+funcnames	d72b77569c63		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95aba0	20	pass_dword_word	dwarf+funcnames	76a79ff00897		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95abc0	20	pass_dword_dword	dwarf+funcnames	877e645ca609		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -20020,7 +20020,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95cf30	212	__glkonim_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95d010	520	ResolveFeedback	dwarf+funcnames	8a801fb960a4		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd95d220	568	ResolveSelect	dwarf+funcnames	f9d69931324b		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95d460	508	__glkonim_RenderMode	dwarf+dynsym	b387683fb082		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95d660	52	__glKon_ioctl	dwarf+dynsym	d2dd33437d6e		named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95d660	52	__glKon_ioctl	dwarf+dynsym	d2dd33437d6e		named-only	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95d6a0	196	__glkonim_ClearColor	dwarf+dynsym	7ebecb9ff06c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95d770	188	__glkonim_ClearAccum	dwarf+dynsym	65d365219b98		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd95d830	124	__glkonim_ClearDepth	dwarf+dynsym	077d6f9848e4		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -24212,9 +24212,9 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a60	12	glCopyPixel
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a6c	12	glReadPixels	dwarf+dynsym	66c04f96219a		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a78	12	glDrawPixels	dwarf+dynsym	439fee3d4638		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a84	12	glGetBooleanv	dwarf+dynsym	ebc4c6c2e097		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a90	12	glGetClipPlane	dwarf+dynsym	81a85f1a2a50		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a90	12	glGetClipPlane	dwarf+dynsym	81a85f1a2a50		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78a9c	12	glGetDoublev	dwarf+dynsym	9abc440b1d75		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78aa8	12	glGetError	dwarf+dynsym	87f2826b4dc0		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78aa8	12	glGetError	dwarf+dynsym	87f2826b4dc0		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78ab4	12	glGetFloatv	dwarf+dynsym	90676f103554		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78ac0	12	glGetIntegerv	dwarf+dynsym	0c19c69b6f7f		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78acc	12	glGetLightfv	dwarf+dynsym	80401fb0c3e7		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -25523,21 +25523,21 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dba5b0	52	__glkonim_G
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dba5f0	224	__glkonle_ConvolutionFilter1DEXT	dwarf+dynsym	2660037b744b		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dba6d0	228	__glkonle_ConvolutionFilter2DEXT	dwarf+dynsym	adeb81b4008e		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dba7c0	256	__glkonle_SeparableFilter2DEXT	dwarf+dynsym	d4834f94b48f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dba8c0	256	kona_get_offset	dwarf	bc4dcdf350e5		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dba9c0	520	__glkona_wait_rdata	dwarf+dynsym	663d20665568		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbabd0	68	kona_get	dwarf	1bdc8a70f59b		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbac20	84	__glkon_get_special	dwarf+dynsym	bbba10d12182		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbac80	88	__glkon_get_special2	dwarf+dynsym	a62cfd0323d6		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbace0	92	__glkon_get_special3	dwarf+dynsym	27b1a91d1144		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbad40	96	__glkon_get_special4	dwarf+dynsym	a36884b889a2		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dba8c0	256	kona_get_offset	dwarf	bc4dcdf350e5		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dba9c0	520	__glkona_wait_rdata	dwarf+dynsym	663d20665568		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbabd0	68	kona_get	dwarf	1bdc8a70f59b		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbac20	84	__glkon_get_special	dwarf+dynsym	bbba10d12182		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbac80	88	__glkon_get_special2	dwarf+dynsym	a62cfd0323d6		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbace0	92	__glkon_get_special3	dwarf+dynsym	27b1a91d1144		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbad40	96	__glkon_get_special4	dwarf+dynsym	a36884b889a2		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbada0	416	__glkonim_GetPointervEXT	dwarf+dynsym	b7b422bcc7fa		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbaf40	536	__glkonim_GetBooleanv	dwarf+dynsym	910e304d7a8d		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbb160	528	__glkonim_GetDoublev	dwarf+dynsym	cf8a6a0a5a81		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbb370	528	__glkonim_GetFloatv	dwarf+dynsym	6674cd750bc1		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbb580	564	__glkonim_GetIntegerv	dwarf+dynsym	ac1bd2028847		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbb7c0	108	__glkonim_GetError	dwarf+dynsym	2f5f3c8014f1		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbb7c0	108	__glkonim_GetError	dwarf+dynsym	2f5f3c8014f1		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbb830	100	__glkonim_IsEnabled	dwarf+dynsym	05ba54c0b8d7		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbb8a0	196	__glkonim_GetClipPlane	dwarf+dynsym	1dc073b2ff21		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbb8a0	196	__glkonim_GetClipPlane	dwarf+dynsym	1dc073b2ff21		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbb970	260	__glkonim_GetLightfv	dwarf+dynsym	3a81320d22de		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbba80	520	__glkonim_GetLightiv	dwarf+dynsym	98bcc5d5f4f2		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbbc90	288	__glkonim_GetMaterialfv	dwarf+dynsym	c58833938534		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25548,11 +25548,11 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbc120	296	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbc250	624	__glkonim_GetTexGeniv	dwarf+dynsym	f92eb8bf1659		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbc4c0	636	__glkonim_GetTexGendv	dwarf+dynsym	75e20f805d97		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbc740	596	__glkonim_GetTexGenfv	dwarf+dynsym	3ce583d186c3		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbc9a0	204	kona_get_current	dwarf	6edd310ef894		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbca70	232	kona_get_raster	dwarf	38d7e3364296		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbcb60	180	kona_get_evaluator	dwarf	a19a6c564d2f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbc9a0	204	kona_get_current	dwarf	6edd310ef894		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbca70	232	kona_get_raster	dwarf	38d7e3364296		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbcb60	180	kona_get_evaluator	dwarf	a19a6c564d2f		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbcc20	792	kona_get_crud	dwarf	e2fb568d8788		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbcf40	84	kona_get_variable	dwarf	1956e9bab549		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbcf40	84	kona_get_variable	dwarf	1956e9bab549		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbcfa0	12	pass_dword	dwarf	d72b77569c63		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbcfb0	20	pass_dword_word	dwarf	76a79ff00897		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbcfd0	20	pass_dword_dword	dwarf	877e645ca609		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -25600,7 +25600,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbf370	220	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbf450	540	ResolveFeedback	dwarf	d6fd176bf6c1		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbf670	584	ResolveSelect	dwarf	15e3bfe33d05		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbf8c0	520	__glkonim_RenderMode	dwarf+dynsym	864ca6ecdb4a		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbfad0	60	__glKon_ioctl	dwarf+dynsym	588ba06e23e8		named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbfad0	60	__glKon_ioctl	dwarf+dynsym	588ba06e23e8		named-only	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbfb10	196	__glkonim_ClearColor	dwarf+dynsym	c8851e3096ff		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbfbe0	188	__glkonim_ClearAccum	dwarf+dynsym	69b477d048b5		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbfca0	124	__glkonim_ClearDepth	dwarf+dynsym	2998cd846f4f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -29792,9 +29792,9 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede040	12	glCopyPixel
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede04c	12	glReadPixels	dwarf+dynsym	8878dfa503d4		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede058	12	glDrawPixels	dwarf+dynsym	ea7949449ecf		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede064	12	glGetBooleanv	dwarf+dynsym	ef198a79851a		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede070	12	glGetClipPlane	dwarf+dynsym	2b72ab8a2db7		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede070	12	glGetClipPlane	dwarf+dynsym	2b72ab8a2db7		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede07c	12	glGetDoublev	dwarf+dynsym	11b4c3211eed		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede088	12	glGetError	dwarf+dynsym	a2ad6947c6e0		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede088	12	glGetError	dwarf+dynsym	a2ad6947c6e0		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede094	12	glGetFloatv	dwarf+dynsym	bf0455417ea7		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0a0	12	glGetIntegerv	dwarf+dynsym	3d40d4ce9bf4		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ede0ac	12	glGetLightfv	dwarf+dynsym	9e02cd25067a		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -31100,21 +31100,21 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9567cc	52	__glkonim_Get
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956800	264	__glkonle_ConvolutionFilter1DEXT	dynsym+mdebug	9d0aae8b6171		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956908	272	__glkonle_ConvolutionFilter2DEXT	dynsym+mdebug	395df777706a		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956a18	308	__glkonle_SeparableFilter2DEXT	dynsym+mdebug	8aa73dce3090		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd956b50	804	kona_get_offset	mdebug	73a8d453c807		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956c68	524	__glkona_wait_rdata	dynsym+mdebug	2dfc5aee0fcb		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd956e74	5668	kona_get	mdebug	d9e6b4a1d710		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956ec4	76	__glkon_get_special	dynsym+mdebug	1d9e798bb74c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956f10	80	__glkon_get_special2	dynsym+mdebug	877682ee574b		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956f60	84	__glkon_get_special3	dynsym+mdebug	3cda05843484		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956fb4	92	__glkon_get_special4	dynsym+mdebug	ba58ce8050c4		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd956b50	804	kona_get_offset	mdebug	73a8d453c807		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956c68	524	__glkona_wait_rdata	dynsym+mdebug	2dfc5aee0fcb		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd956e74	5668	kona_get	mdebug	d9e6b4a1d710		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956ec4	76	__glkon_get_special	dynsym+mdebug	1d9e798bb74c		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956f10	80	__glkon_get_special2	dynsym+mdebug	877682ee574b		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956f60	84	__glkon_get_special3	dynsym+mdebug	3cda05843484		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd956fb4	92	__glkon_get_special4	dynsym+mdebug	ba58ce8050c4		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd957010	336	__glkonim_GetPointervEXT	dynsym+mdebug	db591f92d1ad		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd957160	812	__glkonim_GetBooleanv	dynsym+mdebug	247cbcc881ff		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95748c	560	__glkonim_GetDoublev	dynsym+mdebug	6caa0ff1b608		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9576bc	552	__glkonim_GetFloatv	dynsym+mdebug	8619b031a24c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9578e4	628	__glkonim_GetIntegerv	dynsym+mdebug	eaccf140e514		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd957b58	108	__glkonim_GetError	dynsym+mdebug	6fd8d184ba9a		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd957b58	108	__glkonim_GetError	dynsym+mdebug	6fd8d184ba9a		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd957bc4	100	__glkonim_IsEnabled	dynsym+mdebug	425e286a497e		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd957c28	212	__glkonim_GetClipPlane	dynsym+mdebug	18368e25a8c3		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd957c28	212	__glkonim_GetClipPlane	dynsym+mdebug	18368e25a8c3		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd957cfc	316	__glkonim_GetLightfv	dynsym+mdebug	0cda6f6f6b32		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd957e38	644	__glkonim_GetLightiv	dynsym+mdebug	267347e6f837		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9580bc	324	__glkonim_GetMaterialfv	dynsym+mdebug	1b0b335238d2		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31125,11 +31125,11 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9585f4	292	__glkonim_Ge
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd958718	508	__glkonim_GetTexGeniv	dynsym+mdebug	d909af0a2171		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd958914	452	__glkonim_GetTexGendv	dynsym+mdebug	884e88b00d3f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd958ad8	408	__glkonim_GetTexGenfv	dynsym+mdebug	7bb23beea69c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd958c70	172	kona_get_current	mdebug	d5687e73154a		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd958d1c	172	kona_get_raster	mdebug	4aab93e36918		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd958dc8	200	kona_get_evaluator	mdebug	565291aa4ea9		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd958c70	172	kona_get_current	mdebug	d5687e73154a		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd958d1c	172	kona_get_raster	mdebug	4aab93e36918		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd958dc8	200	kona_get_evaluator	mdebug	565291aa4ea9		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd958e90	496	kona_get_crud	mdebug	07f868e8ab8f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd959080	80	kona_get_variable	mdebug	9b1e7f727d82		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd959080	80	kona_get_variable	mdebug	9b1e7f727d82		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9590d0	12	pass_dword	mdebug	58dd1f4e53ff		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9590dc	20	pass_dword_word	mdebug	767becfe34b9		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9590f0	20	pass_dword_dword	mdebug	d3ba36658bfe		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -31177,7 +31177,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95b6d8	232	__glkonim_Fe
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd95b7c0	560	ResolveFeedback	mdebug	e3736745edd8		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd95b9f0	31520	ResolveSelect	mdebug	cd6f4c821e8c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95bbe8	548	__glkonim_RenderMode	dynsym+mdebug	8194badba2e0		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95be10	56	__glKon_ioctl	dynsym+mdebug	73b7743bfce5		named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95be10	56	__glKon_ioctl	dynsym+mdebug	73b7743bfce5		named-only	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95be50	308	__glkonim_ClearColor	dynsym+mdebug	de2cfb45202e		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95bf84	304	__glkonim_ClearAccum	dynsym+mdebug	9b192f8e34f0		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd95c0b4	156	__glkonim_ClearDepth	dynsym+mdebug	ff4b7f5327ea		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -35377,9 +35377,9 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6eba0	12	glCopyPixels	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebac	12	glReadPixels	dynsym+mdebug	66c04f96219a		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebb8	12	glDrawPixels	dynsym+mdebug	439fee3d4638		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebc4	12	glGetBooleanv	dynsym+mdebug	ebc4c6c2e097		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebd0	12	glGetClipPlane	dynsym+mdebug	81a85f1a2a50		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebd0	12	glGetClipPlane	dynsym+mdebug	81a85f1a2a50		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebdc	12	glGetDoublev	dynsym+mdebug	9abc440b1d75		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebe8	12	glGetError	dynsym+mdebug	87f2826b4dc0		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebe8	12	glGetError	dynsym+mdebug	87f2826b4dc0		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ebf4	12	glGetFloatv	dynsym+mdebug	90676f103554		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec00	12	glGetIntegerv	dynsym+mdebug	0c19c69b6f7f		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ec0c	12	glGetLightfv	dynsym+mdebug	80401fb0c3e7		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -36642,21 +36642,21 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9583b0	52	__glkonim_G
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9583f0	224	__glkonle_ConvolutionFilter1DEXT	dwarf+dynsym	28d982361769		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9584d0	228	__glkonle_ConvolutionFilter2DEXT	dwarf+dynsym	9972c0319f40		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9585c0	256	__glkonle_SeparableFilter2DEXT	dwarf+dynsym	786b00e70955		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9586c0	256	kona_get_offset	dwarf+funcnames	2d8a9221ecb4		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9587c0	504	__glkona_wait_rdata	dwarf+dynsym	d782c6609010		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9589c0	60	kona_get	dwarf+funcnames	306c272a9782		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd958a00	76	__glkon_get_special	dwarf+dynsym	ab182d4044f7		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd958a50	80	__glkon_get_special2	dwarf+dynsym	9982f2d22933		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd958aa0	84	__glkon_get_special3	dwarf+dynsym	a0e9a76862a1		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd958b00	88	__glkon_get_special4	dwarf+dynsym	446bf5a2c2f8		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9586c0	256	kona_get_offset	dwarf+funcnames	2d8a9221ecb4		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9587c0	504	__glkona_wait_rdata	dwarf+dynsym	d782c6609010		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9589c0	60	kona_get	dwarf+funcnames	306c272a9782		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd958a00	76	__glkon_get_special	dwarf+dynsym	ab182d4044f7		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd958a50	80	__glkon_get_special2	dwarf+dynsym	9982f2d22933		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd958aa0	84	__glkon_get_special3	dwarf+dynsym	a0e9a76862a1		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd958b00	88	__glkon_get_special4	dwarf+dynsym	446bf5a2c2f8		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd958b60	412	__glkonim_GetPointervEXT	dwarf+dynsym	71599a847da1		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd958d00	528	__glkonim_GetBooleanv	dwarf+dynsym	81869036b983		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd958f10	520	__glkonim_GetDoublev	dwarf+dynsym	2792432a6439		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd959120	520	__glkonim_GetFloatv	dwarf+dynsym	d7fb3eea580d		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd959330	556	__glkonim_GetIntegerv	dwarf+dynsym	00fb8e037769		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd959560	108	__glkonim_GetError	dwarf+dynsym	ca5d1acc2cf3		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd959560	108	__glkonim_GetError	dwarf+dynsym	ca5d1acc2cf3		understood	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9595d0	100	__glkonim_IsEnabled	dwarf+dynsym	317b41ce67bb		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd959640	196	__glkonim_GetClipPlane	dwarf+dynsym	1a5ecb4bd86f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd959640	196	__glkonim_GetClipPlane	dwarf+dynsym	1a5ecb4bd86f		understood	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd959710	260	__glkonim_GetLightfv	dwarf+dynsym	e6ff85869370		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd959820	520	__glkonim_GetLightiv	dwarf+dynsym	a3038dc48fb2		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd959a30	288	__glkonim_GetMaterialfv	dwarf+dynsym	3e1dfbfa7eda		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36667,11 +36667,11 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd959ec0	296	__glkonim_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd959ff0	484	__glkonim_GetTexGeniv	dwarf+dynsym	928b6580a0ae		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95a1e0	496	__glkonim_GetTexGendv	dwarf+dynsym	cac8ca53e8c5		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95a3d0	452	__glkonim_GetTexGenfv	dwarf+dynsym	dbc267756d61		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95a5a0	204	kona_get_current	dwarf+funcnames	706d4612bd85		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95a670	232	kona_get_raster	dwarf+funcnames	7f2e9137b746		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95a760	168	kona_get_evaluator	dwarf+funcnames	4f31a6751382		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95a5a0	204	kona_get_current	dwarf+funcnames	706d4612bd85		understood	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95a670	232	kona_get_raster	dwarf+funcnames	7f2e9137b746		understood	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95a760	168	kona_get_evaluator	dwarf+funcnames	4f31a6751382		understood	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95a810	792	kona_get_crud	dwarf+funcnames	f7ef5afd6d44		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95ab30	84	kona_get_variable	dwarf+funcnames	469b66fd4a8c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95ab30	84	kona_get_variable	dwarf+funcnames	469b66fd4a8c		understood	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95ab90	12	pass_dword	dwarf+funcnames	d72b77569c63		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95aba0	20	pass_dword_word	dwarf+funcnames	76a79ff00897		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95abc0	20	pass_dword_dword	dwarf+funcnames	877e645ca609		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -36719,7 +36719,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95cf30	212	__glkonim_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95d010	520	ResolveFeedback	dwarf+funcnames	8a801fb960a4		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd95d220	568	ResolveSelect	dwarf+funcnames	f9d69931324b		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95d460	508	__glkonim_RenderMode	dwarf+dynsym	b387683fb082		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95d660	52	__glKon_ioctl	dwarf+dynsym	d2dd33437d6e		named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95d660	52	__glKon_ioctl	dwarf+dynsym	d2dd33437d6e		named-only	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95d6a0	196	__glkonim_ClearColor	dwarf+dynsym	7ebecb9ff06c		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95d770	188	__glkonim_ClearAccum	dwarf+dynsym	65d365219b98		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd95d830	124	__glkonim_ClearDepth	dwarf+dynsym	077d6f9848e4		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -40911,9 +40911,9 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a60	12	glCopyPixel
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a6c	12	glReadPixels	dwarf+dynsym	66c04f96219a		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a78	12	glDrawPixels	dwarf+dynsym	439fee3d4638		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a84	12	glGetBooleanv	dwarf+dynsym	ebc4c6c2e097		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a90	12	glGetClipPlane	dwarf+dynsym	81a85f1a2a50		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a90	12	glGetClipPlane	dwarf+dynsym	81a85f1a2a50		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78a9c	12	glGetDoublev	dwarf+dynsym	9abc440b1d75		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78aa8	12	glGetError	dwarf+dynsym	87f2826b4dc0		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78aa8	12	glGetError	dwarf+dynsym	87f2826b4dc0		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78ab4	12	glGetFloatv	dwarf+dynsym	90676f103554		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78ac0	12	glGetIntegerv	dwarf+dynsym	0c19c69b6f7f		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78acc	12	glGetLightfv	dwarf+dynsym	80401fb0c3e7		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -42222,21 +42222,21 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219a5b0	52	__glkonim_G
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219a5f0	224	__glkonle_ConvolutionFilter1DEXT	dwarf+dynsym	2660037b744b		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219a6d0	228	__glkonle_ConvolutionFilter2DEXT	dwarf+dynsym	adeb81b4008e		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219a7c0	256	__glkonle_SeparableFilter2DEXT	dwarf+dynsym	d4834f94b48f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219a8c0	256	kona_get_offset	dwarf	bc4dcdf350e5		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219a9c0	520	__glkona_wait_rdata	dwarf+dynsym	663d20665568		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219abd0	68	kona_get	dwarf	1bdc8a70f59b		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219ac20	84	__glkon_get_special	dwarf+dynsym	bbba10d12182		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219ac80	88	__glkon_get_special2	dwarf+dynsym	a62cfd0323d6		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219ace0	92	__glkon_get_special3	dwarf+dynsym	27b1a91d1144		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219ad40	96	__glkon_get_special4	dwarf+dynsym	a36884b889a2		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219a8c0	256	kona_get_offset	dwarf	bc4dcdf350e5		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219a9c0	520	__glkona_wait_rdata	dwarf+dynsym	663d20665568		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219abd0	68	kona_get	dwarf	1bdc8a70f59b		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219ac20	84	__glkon_get_special	dwarf+dynsym	bbba10d12182		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219ac80	88	__glkon_get_special2	dwarf+dynsym	a62cfd0323d6		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219ace0	92	__glkon_get_special3	dwarf+dynsym	27b1a91d1144		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219ad40	96	__glkon_get_special4	dwarf+dynsym	a36884b889a2		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219ada0	416	__glkonim_GetPointervEXT	dwarf+dynsym	b7b422bcc7fa		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219af40	536	__glkonim_GetBooleanv	dwarf+dynsym	910e304d7a8d		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219b160	528	__glkonim_GetDoublev	dwarf+dynsym	cf8a6a0a5a81		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219b370	528	__glkonim_GetFloatv	dwarf+dynsym	6674cd750bc1		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219b580	564	__glkonim_GetIntegerv	dwarf+dynsym	ac1bd2028847		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219b7c0	108	__glkonim_GetError	dwarf+dynsym	2f5f3c8014f1		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219b7c0	108	__glkonim_GetError	dwarf+dynsym	2f5f3c8014f1		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219b830	100	__glkonim_IsEnabled	dwarf+dynsym	05ba54c0b8d7		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219b8a0	196	__glkonim_GetClipPlane	dwarf+dynsym	1dc073b2ff21		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219b8a0	196	__glkonim_GetClipPlane	dwarf+dynsym	1dc073b2ff21		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219b970	260	__glkonim_GetLightfv	dwarf+dynsym	3a81320d22de		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219ba80	520	__glkonim_GetLightiv	dwarf+dynsym	98bcc5d5f4f2		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219bc90	288	__glkonim_GetMaterialfv	dwarf+dynsym	c58833938534		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42247,11 +42247,11 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219c120	296	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219c250	624	__glkonim_GetTexGeniv	dwarf+dynsym	f92eb8bf1659		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219c4c0	636	__glkonim_GetTexGendv	dwarf+dynsym	75e20f805d97		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219c740	596	__glkonim_GetTexGenfv	dwarf+dynsym	3ce583d186c3		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219c9a0	204	kona_get_current	dwarf	6edd310ef894		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219ca70	232	kona_get_raster	dwarf	38d7e3364296		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219cb60	180	kona_get_evaluator	dwarf	a19a6c564d2f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219c9a0	204	kona_get_current	dwarf	6edd310ef894		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219ca70	232	kona_get_raster	dwarf	38d7e3364296		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219cb60	180	kona_get_evaluator	dwarf	a19a6c564d2f		located	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219cc20	792	kona_get_crud	dwarf	e2fb568d8788		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219cf40	84	kona_get_variable	dwarf	1956e9bab549		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219cf40	84	kona_get_variable	dwarf	1956e9bab549		located	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219cfa0	12	pass_dword	dwarf	d72b77569c63		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219cfb0	20	pass_dword_word	dwarf	76a79ff00897		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219cfd0	20	pass_dword_dword	dwarf	877e645ca609		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -42299,7 +42299,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219f370	220	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219f450	540	ResolveFeedback	dwarf	d6fd176bf6c1		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219f670	584	ResolveSelect	dwarf	15e3bfe33d05		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219f8c0	520	__glkonim_RenderMode	dwarf+dynsym	864ca6ecdb4a		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219fad0	60	__glKon_ioctl	dwarf+dynsym	588ba06e23e8		named-only	docs/opengl.md#which-functions-call-the-kernel	Which functions call the kernel
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219fad0	60	__glKon_ioctl	dwarf+dynsym	588ba06e23e8		named-only	docs/libglcore-get-functions.md#request-wait-and-reply	Request, wait and reply
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219fb10	196	__glkonim_ClearColor	dwarf+dynsym	c8851e3096ff		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219fbe0	188	__glkonim_ClearAccum	dwarf+dynsym	69b477d048b5		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219fca0	124	__glkonim_ClearDepth	dwarf+dynsym	2998cd846f4f		named-only	docs/libglcore.md#kona-driver-host-to-pipe	Kona driver (host to pipe)
@@ -46491,9 +46491,9 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be040	12	glCopyPixel
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be04c	12	glReadPixels	dwarf+dynsym	8878dfa503d4		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be058	12	glDrawPixels	dwarf+dynsym	ea7949449ecf		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be064	12	glGetBooleanv	dwarf+dynsym	ef198a79851a		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be070	12	glGetClipPlane	dwarf+dynsym	2b72ab8a2db7		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be070	12	glGetClipPlane	dwarf+dynsym	2b72ab8a2db7		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be07c	12	glGetDoublev	dwarf+dynsym	11b4c3211eed		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be088	12	glGetError	dwarf+dynsym	a2ad6947c6e0		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be088	12	glGetError	dwarf+dynsym	a2ad6947c6e0		named-only	docs/libglcore-get-functions.md#reads-that-answer-from-host-state	Reads that answer from host state
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be094	12	glGetFloatv	dwarf+dynsym	bf0455417ea7		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0a0	12	glGetIntegerv	dwarf+dynsym	3d40d4ce9bf4		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22be0ac	12	glGetLightfv	dwarf+dynsym	9e02cd25067a		named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
