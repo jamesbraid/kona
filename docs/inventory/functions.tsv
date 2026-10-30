@@ -1692,7 +1692,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10079858	572	TEST_intr	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a71c	640	TEST_mbox	dynsym	b69a6e5d5057		in	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a99c	64	TEST_dganalog	dynsym	54a64c6f1252		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007a9dc	72	TEST_fail	dynsym	6b156077eed6		in	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af50	72	nic_setup	dynsym	ec74f03d23e6		in	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af50	72	nic_setup	dynsym	ec74f03d23e6		in	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007af98	388	nic_next	dynsym	80aea3f12b36		in	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007b2b4	740	nic_read_one_page	dynsym	23ce041d8a97		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1007b598	932	nic_read_mfg	dynsym	cd0d57599a7a		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
@@ -1822,7 +1822,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b78bc	504	draw_triz	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100b7b90	816	TEST_dquad	dynsym	487919857fe7		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bc9f4	4616	update_registers	dynsym	cec63b4f5d73		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bdbfc	688	standard_init	dynsym	1a5f58ebac76		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bdeac	1044	init_config	dynsym	4746a2c03fdb		in	named-only	docs/dg.md#firmware-data-and-board-identification	Firmware data and board identification
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bdeac	1044	init_config	dynsym	4746a2c03fdb		in	understood	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100be2c0	1284	init_op	dynsym	e43cfc3d2ff3		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100be7c4	592	init_ms	dynsym	9e2660502245		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100bea14	484	init_clip	dynsym	0f74788803ba		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
