@@ -28,11 +28,7 @@ The share of understood rows that an independent audit found real when it re-der
 | ioctls | 90.0% | 10 | 2026-10-29 |
 | ucode | 60.0% | 25 | 2026-10-29 |
 
-Cross-workspace role check: skipped.
-
-Skipped: sibling crime (no checkout with scripts/inventory-config.json at ../crime). Rows are graded without it.
-
-Skipped: sibling odsy (no checkout with scripts/inventory-config.json at ../odsy). Rows are graded without it.
+Cross-workspace role check: compared 1295 entries with the entries of crime and odsy for the same function and capped 2 at located (the role text is the sibling's, at least 90% alike, and states no offset, immediate value or callee address of its own build).
 
 Function rows rejected as ambiguous, at most named-only: 126 whose name is defined in several compilation units, 2668 whose address another name shares (a row can be in both).
 

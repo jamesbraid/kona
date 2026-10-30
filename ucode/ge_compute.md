@@ -109,8 +109,10 @@ Facts are labelled **established** (read from the words at the addresses given) 
   takes the projection (engine words 0x3f-0x4e) and copies it into the staging words, replacing the third row: each column's
   third element becomes its third element minus its fourth, times 0.5, computed by the float subtracts at
   0xe72-0xe75 (fourth element staged at E = 3, 7, 0xb, 0xf; third element read from 0x41, 0x45, 0x49, 0x4d) and the multiplies
-  by the constant 0.5 loaded at 0xe71. It then multiplies that matrix by the modelview at 0x2f-0x3e (64 multiplies and
-  multiply-adds, 0xe7f-0xea5) and stores the 16 results to 0x4f-0x5e, the input of every clip transform. It writes special
+  by the constant 0.5 loaded at 0xe71. It then multiplies that matrix by the modelview at 0x2f-0x3e (36 multiply words,
+  0xe7f-0xe9f, finishing eight sums of four products) and stores its results to all 16 words 0x4f-0x5e, the input of every
+  clip transform. Each sum is stored twice, once with `r95` = 4 and once with `r95` = 5, nine words after it is loaded into the
+  store-data register; what the second store adds is open ([The store-data register](ge_isa.md#the-store-data-register)). It writes special
   register 0x29 (store at 0xe7e) and returns through a group-5 indirect transfer at 0xea7.
   The four subtracts are operand-routing form `r110` = 0x7bd, a register-file operand (A = 0x18, D = 3, 7, 0xb, 0xf) with a
   memory operand (C = 0x1b, immediate address). That form returns the loaded memory word minus the register-file operand
@@ -718,12 +720,15 @@ lives at 0x8d2c (address register 0xb), the target matrix C at the address the c
 
 - `mMatrixMultCCW` (`umatrix.s` lines 209-264): **inferred**, post-multiplies the current matrix by the work matrix,
   C = C x W, GL's rule for glMultMatrix, glRotate, glOrtho and the rest. Its inputs are the 16 words of C through register
-  0xa and the 16 of W through register 0xb; 64 multiply-adds (0xeb3-0xedb) compute each result word as the dot product of a
-  row of C with a column of W, and the 16 results are stored back through register 0xa (0xece-0xee5). It writes special
+  0xa and W through register 0xb. Its 32 multiply words (0xeb5-0xed7) read W's words 0-7 and compute columns 0 and 1 of
+  C x W, each result the dot product of a row of C with a column of W. Sixteen stores write C back through register 0xa
+  (0xece-0xee5, the last seven in the eight-word shadow of the end of the command): `r95` = 4 stores the sums to C + 0 to
+  C + 7, and `r95` = 5 stores to C + 8 to C + 0xf, where columns 2 and 3 belong. How those columns are computed is open
+  ([The store-data register](ge_isa.md#the-store-data-register)). It writes special
   register 0x2c (predicated, 0xeb4), branches on `cc` 0x78 to `mResolveFogTable` when the target is the modelview of a fogged
   context, and ends with the end-of-command wait at 0xede.
 - `uMatrixMultCCW`: **inferred**, the u-name at 0x0eb0 (`umatrix.s` line 209) of the same product: input matrices C at
-  register 0xa and W at 0xb, output C x W written over C, computed with 64 multiply-adds.
+  register 0xa and W at 0xb, output C x W written over C. It multiplies with the same 32 multiply words and stores the same 16 words.
 - `uMatrixInverse`: **inferred**, the u-name at 0x0ee7 (`umatrix.s` line 314) of the normal-matrix inverse: it takes the
   modelview words 0x2f-0x3e as input, computes the cofactors and the reciprocal of the determinant, and its results, the
   inverse block from engine word 0x1f, feed the normal transforms of `uxform.s`.
@@ -1798,10 +1803,8 @@ narrows the reading in [ge_isa.md](ge_isa.md#calls-returns-and-the-end-of-a-comm
 the next command's handler. In every primitive entry handler below, the eight words after the group-31 transfer still
 execute (the last successor-word store sits in the eighth).
 
-**Inferred: a store with `r95` = 4 writes the value a move delivered nine words earlier.** A move with `r99` = 0xa (from a
-staging word) or `r99` = 2 (from a memory operand) feeds the store data. Over the 1427 production stores with `r95` = 4, the
-most recent such move nine or more words before the store has the store's own source line in 423, against 211 at eight
-words and 107 at ten. Applied to `mGL_CM_Initialize` (`ge.S` lines 350-367, 0xb1bf-0xb1fb) the pairing gives word 0 = 2,
+**Inferred: a store with `r95` = 4 writes the value a word with `r99` bit 1 produced nine words earlier.** The rule and its
+evidence are in [The store-data register](ge_isa.md#the-store-data-register). Applied to `mGL_CM_Initialize` (`ge.S` lines 350-367, 0xb1bf-0xb1fb) the pairing gives word 0 = 2,
 word 1 = 0x3f, word 2 = 0xfff, word 8 = 0x1218 and 1.0 on the diagonals of the five matrices (0x1f, 0x2f, 0x3f, 0x4f,
 0x5f), each from a move on the store's own line.
 

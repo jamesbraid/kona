@@ -217,7 +217,8 @@ public class KonaGEImport extends GhidraScript {
 			}
 		}
 		// Delay slots Ghidra can model: the words before the next transfer, at
-		// most four (eight after a return). See kona_ge.slaspec.
+		// most four (eight after a return or an end of command, both R88
+		// transfers). See kona_ge.slaspec.
 		Map<Integer, Integer> dly = new HashMap<>();
 		for (Map.Entry<Integer, BigInteger> e : pr.r.entrySet()) {
 			BigInteger r = e.getValue();
@@ -225,7 +226,7 @@ public class KonaGEImport extends GhidraScript {
 			if (op == 6 || isPadding(pr.w.getOrDefault(e.getKey(), BigInteger.ZERO), r)) {
 				continue;
 			}
-			boolean ret = (op == 4 || op == 5) && field(r, 88, 88) == 1 && field(r, 76, 72) != 31;
+			boolean ret = (op == 4 || op == 5) && field(r, 88, 88) == 1;
 			int k = 0;
 			for (int j = 1; j <= (ret ? 8 : 4); j++) {
 				BigInteger q = pr.r.get(e.getKey() + j);

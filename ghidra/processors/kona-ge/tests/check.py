@@ -218,9 +218,13 @@ def test_d():
                  ('third elements 0x41/45/49/4d read', r'DAT_cram_00(41|45|49|4d)\b', 4),
                  ('float subtracts', r'\s-\s', 4),
                  ('results stored to 0x4f-0x5e', r'DAT_cram_00(4f|5[0-9a-e])\s*=', 16)],
-        # mMatrixMultCCW: 64 multiply-adds over C (AR10) and W (AR11).
-        '0eb0': [('float multiplies', r'[\w\]\)]\s\*\s[\w\(]', 64),
-                 ('float adds', r'\s\+\s', 48)],
+        # mMatrixMultCCW: 32 multiply words (0xeb5-0xed7) form eight sums of
+        # four products, rows 0-1 of W (AR11) times C (AR10); each sum is
+        # stored twice, to C + k and C + 8 + k (ge_isa.md, "The store-data
+        # register"), so all 16 words of C are written.
+        '0eb0': [('float multiplies', r'[\w\]\)]\s\*\s[\w\(*]', 32),
+                 ('float adds', r'\s\+\s', 24),
+                 ('stores to C + 0 to 0xf', r'(?:\*in_AR10|in_AR10\[(?:0x[0-9a-f]+|\d+)\])\s=\s', 16)],
     }
     for k, cs in checks.items():
         p = os.path.join(OUT, 'decomp', k + '.c')

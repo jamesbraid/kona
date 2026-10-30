@@ -16,11 +16,11 @@
 # field after a mnemonic.
 #
 # Semantics modelled (each with its label below): the unit-1 and unit-2
-# operations, the seeds, the address unit, stores, the flag word and its
-# twelve-word latency, and transfers with their delay slots. Not modelled,
-# because no document maps them: r128, r176, r162, r198, r217, r71, r62,
-# r25, most of r95 and r110, and the latency of unit results (code that is
-# software-pipelined decompiles as if each result were ready at once).
+# operations and their operand ports with result forwarding, the seeds, the
+# address unit, stores and the nine-word store-data register, the flag word
+# and its twelve-word latency, and transfers with their delay slots. Not
+# modelled, because no document maps them: r176, r162, r198, r217, r71,
+# r62, r25, most of r95, and the latency of register writes.
 
 define endian=big;
 # Alignment is in bytes and must be a multiple of the 8-byte address unit.
@@ -52,6 +52,11 @@ define register offset=0x100 size=4 [ AR0 AR1 AR2 AR3 AR4 AR5 AR6 AR7 AR8 AR9 AR
 define register offset=0x200 size=4 [ SEED LR NEXTCMD PC SP SEED0 SEED1 SDOP ];
 # Per-word scratch: operands, unit results, address-unit result, store data.
 define register offset=0x300 size=4 [ OPAV OPBV U1V U2V AUV CSRC STV LDV LDL P1V P2V ];
+# SV0..SV9: the store-data register as it stood at the end of this word and
+# of the nine before it. A word with r99 bit 1 loads it with its unit
+# result; a store with r211 and r95 = 4 or 5 sends the value it held nine
+# words earlier (INFERRED, ge_isa.md "The store-data register").
+define register offset=0x500 size=4 [ SV0 SV1 SV2 SV3 SV4 SV5 SV6 SV7 SV8 SV9 ];
 # U1H0..U1H7, U2H0..U2H7: each unit's result 0..7 words ago, the window
 # result forwarding reads (ESTABLISHED, ge_isa.md "Operand ports").
 define register offset=0x380 size=4 [ U1H0 U1H1 U1H2 U1H3 U1H4 U1H5 U1H6 U1H7 U2H0 U2H1 U2H2 U2H3 U2H4 U2H5 U2H6 U2H7 ];
@@ -113,6 +118,7 @@ define context contextreg
   f99h=(160,160)  noflow
   f99l=(161,163)  noflow
   f99b2=(161,161)  noflow
+  f99b1=(162,162)  noflow
   f95=(164,170)  noflow
   fsind=(171,171)  noflow
   fsrel=(172,172)  noflow
@@ -341,6 +347,15 @@ macro flagshift() {
   U2H1 = U2H0;
   AZD2 = AZD1; AGTD2 = AGTD1; AZD1 = AZ; AGTD1 = AGT;
   SEED = SEED1; SEED1 = SEED0;
+  SV9 = SV8;
+  SV8 = SV7;
+  SV7 = SV6;
+  SV6 = SV5;
+  SV5 = SV4;
+  SV4 = SV3;
+  SV3 = SV2;
+  SV2 = SV1;
+  SV1 = SV0;
 }
 # One nibble of the condition word from a result (ge_ops.md, "Branch
 # conditions"): bit 3 <= 0, bit 2 zero, bit 1 negative, ESTABLISHED for the
@@ -365,7 +380,10 @@ LDR: is f99h=1 & f99b2=1 & ADR { LDV = ADR; LDL = LDV; }
 # Reads through C also load LDL. r95 = 0x13 reads CRAM: at the immediate
 # in form 5 and, in form 14, with C = 0x1e (ESTABLISHED, ge_ops.md
 # "Control-memory addresses in immediates"); at address register C plus
-# 0x1f - F otherwise (INFERRED from mMatrixCopyCC, ge_compute.md).
+# 0x1f - F otherwise (INFERRED from mMatrixCopyCC, ge_compute.md). C = 0x1b
+# with F = 0x3f and an immediate addresses by the immediate in every form
+# (INFERRED: 469 reads and 18 stores; uMatrixMultCCC's form-14 stores
+# 0xea6-0xeaf finish the run 0x4f-0x5e its form-5 stores begin).
 # r95 = 0x17 reads ERAM: at the immediate with C = 0x1e (INFERRED,
 # mmo_CopyFifoLine); through C with the same 0x1f - F offset (INFERRED here:
 # mmo_Clamp reads its parameter block with F = 0x1a down to 0xf through one
@@ -373,6 +391,7 @@ LDR: is f99h=1 & f99b2=1 & ADR { LDV = ADR; LDL = LDV; }
 # raster position); its memory is UNKNOWN, so a pcodeop. A read in the
 # word that consumes it is seen by that word (uMatrixMultCCC 0xe72-0xe75).
 CR13R: is fC=0x1e & fimm { LDL = *[cram]:4 fimm:2; }
+CR13R: is fC=0x1b & fF=0x3f & fimm { LDL = *[cram]:4 fimm:2; }
 CR13R: is fCr & fF { local a:4 = fCr + (0x1f - fF); LDL = *[cram]:4 a:2; }
 CR13: is fform=5 & fimm { LDL = *[cram]:4 fimm:2; }
 CR13: is CR13R { build CR13R; }
@@ -562,8 +581,11 @@ FLA: is f222=1 { AZ = (AUV == 0); AGT = (AUV s> 0); }
 # diagnostic output words), or to CRAM at the immediate when B = 0x1e and
 # r95 = 0x13 (ESTABLISHED). r213 = 2 is the predicated form (INFERRED); the
 # predicate is UNKNOWN. r215 = 3: the immediate to B + E (form 15 constant
-# loads, INFERRED from ge_inst.s). r211 = 3 with r95 = 4: the unit result to
-# CRAM through C (INFERRED, load-matrix handlers and mMatrixCopyCC).
+# loads, INFERRED from ge_inst.s). r211 = 3 with r95 = 4 or 5: the
+# store-data register as it stood nine words earlier, to CRAM through C
+# (INFERRED: load-matrix handlers, mMatrixCopyCC, uMatrixMultCCC,
+# mMatrixMultCCW); r211 = 2 is its predicated form. r95 = 6-0xb also
+# store the register, but their memory is UNKNOWN, so they are left out.
 SADDR: a is fB=0x1e & f95=0x13 & fimm [ a = fimm & 0xffff; ] { export *[cram]:4 a; }
 SADDR: is fBr & fE { local a:4 = fBr + fE; export *[dmem]:4 a; }
 ST3: is f213=0 { }
@@ -574,12 +596,23 @@ ST5: is f215=0 { }
 ST5: is f215=1 { }
 ST5: is f215=3 & fBr & fE & fimm { local a:4 = fBr + fE; *[dmem]:4 a = fimm:4; }
 ST5: is f215=2 & fBr & fE & fimm { local a:4 = fBr + fE; local p:1 = store_predicate(); if (p == 0) goto <skip>; *[dmem]:4 a = fimm:4; <skip> }
-ST1R: is fC=0x1e & fimm { *[cram]:4 fimm:2 = STV; }
-ST1R: is fCr & fF { local a:4 = fCr + (0x1f - fF); *[cram]:4 a:2 = STV; }
-ST1A: is fform=5 & fimm { *[cram]:4 fimm:2 = STV; }
+ST1R: is fC=0x1e & fimm { *[cram]:4 fimm:2 = SV9; }
+ST1R: is fC=0x1b & fF=0x3f & fimm { *[cram]:4 fimm:2 = SV9; }
+ST1R: is fCr & fF { local a:4 = fCr + (0x1f - fF); *[cram]:4 a:2 = SV9; }
+ST1A: is fform=5 & fimm { *[cram]:4 fimm:2 = SV9; }
 ST1A: is ST1R { build ST1R; }
 ST1: is f211=3 & f95=4 & ST1A { build ST1A; }
+ST1: is f211=3 & f95=5 & ST1A { build ST1A; }
+ST1: is f211=2 & f95=4 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; build ST1A; <skip> }
+ST1: is f211=2 & f95=5 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; build ST1A; <skip> }
 ST1: is epsilon { }
+
+# The store-data register (INFERRED, ge_isa.md "The store-data register"):
+# r99 bit 1 loads it with the word's unit-1 result, or its unit-2 result
+# when unit 1 is idle; otherwise it keeps its value.
+MV: is f99b1=0 { SV0 = SV1; }
+MV: is f99b1=1 & fMu=0x7f { SV0 = U2V; }
+MV: is f99b1=1 { SV0 = U1V; }
 
 # Flags: r220 sets the low nibble from unit 1, r221 the high nibble from
 # unit 2 (INFERRED split by unit, ge_ops.md).
@@ -618,10 +651,10 @@ FL2: is f221=1 & FK2 { build FK2; }
 
 # A word's own work: operands are read before anything is written, so the
 # units, the address unit and the stores all see the values from before it.
-BODY: is OPS & U1S & U2S & SDS & AUS & WQ & WP & WG & FLA & ST3 & ST5 & ST1 & FL1 & FL2 {
+BODY: is OPS & U1S & U2S & SDS & AUS & WQ & WP & WG & FLA & ST3 & ST5 & ST1 & MV & FL1 & FL2 {
   flagshift();
   build OPS; build U1S; build U2S; build SDS; build AUS;
-  build ST3; build ST5; build ST1;
+  build ST3; build ST5; build ST1; build MV;
   build WQ; build WP; build WG;
   build FLA; build FL1; build FL2;
 }
@@ -663,7 +696,9 @@ COND: is fcc { local c:1 = cond_test(fcc:2); export c; }
 :^MN FIELDS is fvalid=1 & fsop=6 & MN & FIELDS & BODY & wlo { build BODY; }
 # Delay slots: a transfer takes effect after four words (INFERRED from the
 # GE11 microcode latency four and the call sites resuming at call + 5); a
-# return after eight (ESTABLISHED for the GE11, MemRegInit writes them out).
+# return after eight (ESTABLISHED for the GE11, MemRegInit writes them out),
+# and so does the end of a command (ESTABLISHED by count: of the 499 group-31
+# R88 transfers followed by a label within nine words, 497 have it at +9).
 # Ghidra cannot nest delay slots, and dispatch chains put transfers in each
 # other's window, so the loader sets fdly to the words before the next
 # transfer (at most 4 or 8) and those are the delay slots modelled. A
@@ -707,11 +742,19 @@ COND: is fcc { local c:1 = cond_test(fcc:2); export c; }
 :endcmd FIELDS is fvalid=1 & fsop=4 & fsind=1 & fsgrp=31 & fdly=2 & FIELDS & BODY & wlo { build BODY;  delayslot(16); NEXTCMD = next_command(); return [NEXTCMD]; }
 :endcmd FIELDS is fvalid=1 & fsop=4 & fsind=1 & fsgrp=31 & fdly=3 & FIELDS & BODY & wlo { build BODY;  delayslot(24); NEXTCMD = next_command(); return [NEXTCMD]; }
 :endcmd FIELDS is fvalid=1 & fsop=4 & fsind=1 & fsgrp=31 & fdly=4 & FIELDS & BODY & wlo { build BODY;  delayslot(32); NEXTCMD = next_command(); return [NEXTCMD]; }
+:endcmd FIELDS is fvalid=1 & fsop=4 & fsind=1 & fsgrp=31 & fdly=5 & FIELDS & BODY & wlo { build BODY;  delayslot(40); NEXTCMD = next_command(); return [NEXTCMD]; }
+:endcmd FIELDS is fvalid=1 & fsop=4 & fsind=1 & fsgrp=31 & fdly=6 & FIELDS & BODY & wlo { build BODY;  delayslot(48); NEXTCMD = next_command(); return [NEXTCMD]; }
+:endcmd FIELDS is fvalid=1 & fsop=4 & fsind=1 & fsgrp=31 & fdly=7 & FIELDS & BODY & wlo { build BODY;  delayslot(56); NEXTCMD = next_command(); return [NEXTCMD]; }
+:endcmd FIELDS is fvalid=1 & fsop=4 & fsind=1 & fsgrp=31 & fdly=8 & FIELDS & BODY & wlo { build BODY;  delayslot(64); NEXTCMD = next_command(); return [NEXTCMD]; }
 :endcmdc FIELDS is fvalid=1 & fsop=5 & fsind=1 & fsgrp=31 & fdly=0 & FIELDS & BODY & COND & wlo { build BODY; build COND; local c:1 = COND; if (!c) goto <skip>; NEXTCMD = next_command(); return [NEXTCMD]; <skip> }
 :endcmdc FIELDS is fvalid=1 & fsop=5 & fsind=1 & fsgrp=31 & fdly=1 & FIELDS & BODY & COND & wlo { build BODY; build COND; local c:1 = COND; delayslot(8); if (!c) goto <skip>; NEXTCMD = next_command(); return [NEXTCMD]; <skip> }
 :endcmdc FIELDS is fvalid=1 & fsop=5 & fsind=1 & fsgrp=31 & fdly=2 & FIELDS & BODY & COND & wlo { build BODY; build COND; local c:1 = COND; delayslot(16); if (!c) goto <skip>; NEXTCMD = next_command(); return [NEXTCMD]; <skip> }
 :endcmdc FIELDS is fvalid=1 & fsop=5 & fsind=1 & fsgrp=31 & fdly=3 & FIELDS & BODY & COND & wlo { build BODY; build COND; local c:1 = COND; delayslot(24); if (!c) goto <skip>; NEXTCMD = next_command(); return [NEXTCMD]; <skip> }
 :endcmdc FIELDS is fvalid=1 & fsop=5 & fsind=1 & fsgrp=31 & fdly=4 & FIELDS & BODY & COND & wlo { build BODY; build COND; local c:1 = COND; delayslot(32); if (!c) goto <skip>; NEXTCMD = next_command(); return [NEXTCMD]; <skip> }
+:endcmdc FIELDS is fvalid=1 & fsop=5 & fsind=1 & fsgrp=31 & fdly=5 & FIELDS & BODY & COND & wlo { build BODY; build COND; local c:1 = COND; delayslot(40); if (!c) goto <skip>; NEXTCMD = next_command(); return [NEXTCMD]; <skip> }
+:endcmdc FIELDS is fvalid=1 & fsop=5 & fsind=1 & fsgrp=31 & fdly=6 & FIELDS & BODY & COND & wlo { build BODY; build COND; local c:1 = COND; delayslot(48); if (!c) goto <skip>; NEXTCMD = next_command(); return [NEXTCMD]; <skip> }
+:endcmdc FIELDS is fvalid=1 & fsop=5 & fsind=1 & fsgrp=31 & fdly=7 & FIELDS & BODY & COND & wlo { build BODY; build COND; local c:1 = COND; delayslot(56); if (!c) goto <skip>; NEXTCMD = next_command(); return [NEXTCMD]; <skip> }
+:endcmdc FIELDS is fvalid=1 & fsop=5 & fsind=1 & fsgrp=31 & fdly=8 & FIELDS & BODY & COND & wlo { build BODY; build COND; local c:1 = COND; delayslot(64); if (!c) goto <skip>; NEXTCMD = next_command(); return [NEXTCMD]; <skip> }
 :ret FIELDS is fvalid=1 & fsop=4 & fsind=1 & fdly=0 & FIELDS & BODY & wlo { build BODY;  return [LR]; }
 :ret FIELDS is fvalid=1 & fsop=4 & fsind=1 & fdly=1 & FIELDS & BODY & wlo { build BODY;  delayslot(8); return [LR]; }
 :ret FIELDS is fvalid=1 & fsop=4 & fsind=1 & fdly=2 & FIELDS & BODY & wlo { build BODY;  delayslot(16); return [LR]; }

@@ -40,7 +40,7 @@ CTX = [
     ('f128', 128, 134, ''), ('f128p1', 129, 131, ''), ('f128p2', 132, 134, ''), ('fMk', 135, 138, ''), ('fMu', 139, 145, ''), ('f110', 146, 156, ''), ('f110b10', 146, 146, ''), ('f110s1', 147, 148, ''), ('f110s2', 149, 150, ''),
     ('f110u1', 151, 152, ''), ('f110u2', 153, 154, ''), ('f110sd', 155, 155, ''),
     # word 5
-    ('f99h', 160, 160, ''), ('f99l', 161, 163, ''), ('f99b2', 161, 161, ''), ('f95', 164, 170, ''),
+    ('f99h', 160, 160, ''), ('f99l', 161, 163, ''), ('f99b2', 161, 161, ''), ('f99b1', 162, 162, ''), ('f95', 164, 170, ''),
     ('fsind', 171, 171, ''), ('fsrel', 172, 172, ''), ('fsop', 173, 175, 'dec'),
     ('fsmid', 176, 182, ''), ('fsgrp', 183, 187, 'dec'),
     # word 6
@@ -138,11 +138,11 @@ def emit(out):
     w('# field after a mnemonic.')
     w('#')
     w('# Semantics modelled (each with its label below): the unit-1 and unit-2')
-    w('# operations, the seeds, the address unit, stores, the flag word and its')
-    w('# twelve-word latency, and transfers with their delay slots. Not modelled,')
-    w('# because no document maps them: r128, r176, r162, r198, r217, r71, r62,')
-    w('# r25, most of r95 and r110, and the latency of unit results (code that is')
-    w('# software-pipelined decompiles as if each result were ready at once).')
+    w('# operations and their operand ports with result forwarding, the seeds, the')
+    w('# address unit, stores and the nine-word store-data register, the flag word')
+    w('# and its twelve-word latency, and transfers with their delay slots. Not')
+    w('# modelled, because no document maps them: r176, r162, r198, r217, r71,')
+    w('# r62, r25, most of r95, and the latency of register writes.')
     w('')
     w('define endian=big;')
     w('# Alignment is in bytes and must be a multiple of the 8-byte address unit.')
@@ -174,6 +174,11 @@ def emit(out):
     w('define register offset=0x200 size=4 [ SEED LR NEXTCMD PC SP SEED0 SEED1 SDOP ];')
     w('# Per-word scratch: operands, unit results, address-unit result, store data.')
     w('define register offset=0x300 size=4 [ OPAV OPBV U1V U2V AUV CSRC STV LDV LDL P1V P2V ];')
+    w('# SV0..SV9: the store-data register as it stood at the end of this word and')
+    w('# of the nine before it. A word with r99 bit 1 loads it with its unit')
+    w('# result; a store with r211 and r95 = 4 or 5 sends the value it held nine')
+    w('# words earlier (INFERRED, ge_isa.md "The store-data register").')
+    w('define register offset=0x500 size=4 [ %s ];' % ' '.join('SV%d' % i for i in range(10)))
     w('# U1H0..U1H7, U2H0..U2H7: each unit\'s result 0..7 words ago, the window')
     w('# result forwarding reads (ESTABLISHED, ge_isa.md "Operand ports").')
     w('define register offset=0x380 size=4 [ %s %s ];' % (' '.join('U1H%d' % i for i in range(8)),
@@ -287,6 +292,8 @@ def emit(out):
             w('  U%dH%d = U%dH%d;' % (u, i, u, i - 1))
     w('  AZD2 = AZD1; AGTD2 = AGTD1; AZD1 = AZ; AGTD1 = AGT;')
     w('  SEED = SEED1; SEED1 = SEED0;')
+    for i in range(9, 0, -1):
+        w('  SV%d = SV%d;' % (i, i - 1))
     w('}')
     w('# One nibble of the condition word from a result (ge_ops.md, "Branch')
     w('# conditions"): bit 3 <= 0, bit 2 zero, bit 1 negative, ESTABLISHED for the')
@@ -311,7 +318,10 @@ def emit(out):
     w('# Reads through C also load LDL. r95 = 0x13 reads CRAM: at the immediate')
     w('# in form 5 and, in form 14, with C = 0x1e (ESTABLISHED, ge_ops.md')
     w('# "Control-memory addresses in immediates"); at address register C plus')
-    w('# 0x1f - F otherwise (INFERRED from mMatrixCopyCC, ge_compute.md).')
+    w('# 0x1f - F otherwise (INFERRED from mMatrixCopyCC, ge_compute.md). C = 0x1b')
+    w('# with F = 0x3f and an immediate addresses by the immediate in every form')
+    w('# (INFERRED: 469 reads and 18 stores; uMatrixMultCCC\'s form-14 stores')
+    w('# 0xea6-0xeaf finish the run 0x4f-0x5e its form-5 stores begin).')
     w('# r95 = 0x17 reads ERAM: at the immediate with C = 0x1e (INFERRED,')
     w('# mmo_CopyFifoLine); through C with the same 0x1f - F offset (INFERRED here:')
     w('# mmo_Clamp reads its parameter block with F = 0x1a down to 0xf through one')
@@ -319,6 +329,7 @@ def emit(out):
     w('# raster position); its memory is UNKNOWN, so a pcodeop. A read in the')
     w('# word that consumes it is seen by that word (uMatrixMultCCC 0xe72-0xe75).')
     w('CR13R: is fC=0x1e & fimm { LDL = *[cram]:4 fimm:2; }')
+    w('CR13R: is fC=0x1b & fF=0x3f & fimm { LDL = *[cram]:4 fimm:2; }')
     w('CR13R: is fCr & fF { local a:4 = fCr + (0x1f - fF); LDL = *[cram]:4 a:2; }')
     w('CR13: is fform=5 & fimm { LDL = *[cram]:4 fimm:2; }')
     w('CR13: is CR13R { build CR13R; }')
@@ -431,8 +442,11 @@ def emit(out):
     w('# diagnostic output words), or to CRAM at the immediate when B = 0x1e and')
     w('# r95 = 0x13 (ESTABLISHED). r213 = 2 is the predicated form (INFERRED); the')
     w('# predicate is UNKNOWN. r215 = 3: the immediate to B + E (form 15 constant')
-    w('# loads, INFERRED from ge_inst.s). r211 = 3 with r95 = 4: the unit result to')
-    w('# CRAM through C (INFERRED, load-matrix handlers and mMatrixCopyCC).')
+    w('# loads, INFERRED from ge_inst.s). r211 = 3 with r95 = 4 or 5: the')
+    w('# store-data register as it stood nine words earlier, to CRAM through C')
+    w('# (INFERRED: load-matrix handlers, mMatrixCopyCC, uMatrixMultCCC,')
+    w('# mMatrixMultCCW); r211 = 2 is its predicated form. r95 = 6-0xb also')
+    w('# store the register, but their memory is UNKNOWN, so they are left out.')
     w('SADDR: a is fB=0x1e & f95=0x13 & fimm [ a = fimm & 0xffff; ] { export *[cram]:4 a; }')
     w('SADDR: is fBr & fE { local a:4 = fBr + fE; export *[dmem]:4 a; }')
     w('ST3: is f213=0 { }')
@@ -443,12 +457,23 @@ def emit(out):
     w('ST5: is f215=1 { }')
     w('ST5: is f215=3 & fBr & fE & fimm { local a:4 = fBr + fE; *[dmem]:4 a = fimm:4; }')
     w('ST5: is f215=2 & fBr & fE & fimm { local a:4 = fBr + fE; local p:1 = store_predicate(); if (p == 0) goto <skip>; *[dmem]:4 a = fimm:4; <skip> }')
-    w('ST1R: is fC=0x1e & fimm { *[cram]:4 fimm:2 = STV; }')
-    w('ST1R: is fCr & fF { local a:4 = fCr + (0x1f - fF); *[cram]:4 a:2 = STV; }')
-    w('ST1A: is fform=5 & fimm { *[cram]:4 fimm:2 = STV; }')
+    w('ST1R: is fC=0x1e & fimm { *[cram]:4 fimm:2 = SV9; }')
+    w('ST1R: is fC=0x1b & fF=0x3f & fimm { *[cram]:4 fimm:2 = SV9; }')
+    w('ST1R: is fCr & fF { local a:4 = fCr + (0x1f - fF); *[cram]:4 a:2 = SV9; }')
+    w('ST1A: is fform=5 & fimm { *[cram]:4 fimm:2 = SV9; }')
     w('ST1A: is ST1R { build ST1R; }')
     w('ST1: is f211=3 & f95=4 & ST1A { build ST1A; }')
+    w('ST1: is f211=3 & f95=5 & ST1A { build ST1A; }')
+    w('ST1: is f211=2 & f95=4 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; build ST1A; <skip> }')
+    w('ST1: is f211=2 & f95=5 & ST1A { local p:1 = store_predicate(); if (p == 0) goto <skip>; build ST1A; <skip> }')
     w('ST1: is epsilon { }')
+    w('')
+    w('# The store-data register (INFERRED, ge_isa.md "The store-data register"):')
+    w('# r99 bit 1 loads it with the word\'s unit-1 result, or its unit-2 result')
+    w('# when unit 1 is idle; otherwise it keeps its value.')
+    w('MV: is f99b1=0 { SV0 = SV1; }')
+    w('MV: is f99b1=1 & fMu=0x7f { SV0 = U2V; }')
+    w('MV: is f99b1=1 { SV0 = U1V; }')
     w('')
     w('# Flags: r220 sets the low nibble from unit 1, r221 the high nibble from')
     w('# unit 2 (INFERRED split by unit, ge_ops.md).')
@@ -473,10 +498,10 @@ def emit(out):
     w('')
     w('# A word\'s own work: operands are read before anything is written, so the')
     w('# units, the address unit and the stores all see the values from before it.')
-    w('BODY: is OPS & U1S & U2S & SDS & AUS & WQ & WP & WG & FLA & ST3 & ST5 & ST1 & FL1 & FL2 {')
+    w('BODY: is OPS & U1S & U2S & SDS & AUS & WQ & WP & WG & FLA & ST3 & ST5 & ST1 & MV & FL1 & FL2 {')
     w('  flagshift();')
     w('  build OPS; build U1S; build U2S; build SDS; build AUS;')
-    w('  build ST3; build ST5; build ST1;')
+    w('  build ST3; build ST5; build ST1; build MV;')
     w('  build WQ; build WP; build WG;')
     w('  build FLA; build FL1; build FL2;')
     w('}')
@@ -511,7 +536,9 @@ def emit(out):
     w(':^MN FIELDS is fvalid=1 & fsop=6 & MN & FIELDS & BODY & wlo { build BODY; }')
     w('# Delay slots: a transfer takes effect after four words (INFERRED from the')
     w('# GE11 microcode latency four and the call sites resuming at call + 5); a')
-    w('# return after eight (ESTABLISHED for the GE11, MemRegInit writes them out).')
+    w('# return after eight (ESTABLISHED for the GE11, MemRegInit writes them out),')
+    w('# and so does the end of a command (ESTABLISHED by count: of the 499 group-31')
+    w('# R88 transfers followed by a label within nine words, 497 have it at +9).')
     w('# Ghidra cannot nest delay slots, and dispatch chains put transfers in each')
     w('# other\'s window, so the loader sets fdly to the words before the next')
     w('# transfer (at most 4 or 8) and those are the delay slots modelled. A')
@@ -532,9 +559,9 @@ def emit(out):
         ('jmp', 'fsop=4 & fsind=0', 'XT', '', 'goto XT;', 4),
         ('bc', 'fsop=5 & fsind=0', 'XT & COND', 'build COND; local c:1 = COND;', 'if (c) goto XT;', 4),
         ('loop', 'fsop=3 & fsind=0', 'XT & COND', 'build COND; local c:1 = COND;', 'if (c) goto XT;', 4),
-        ('endcmd', 'fsop=4 & fsind=1 & fsgrp=31', '', '', 'NEXTCMD = next_command(); return [NEXTCMD];', 4),
+        ('endcmd', 'fsop=4 & fsind=1 & fsgrp=31', '', '', 'NEXTCMD = next_command(); return [NEXTCMD];', 8),
         ('endcmdc', 'fsop=5 & fsind=1 & fsgrp=31', 'COND', 'build COND; local c:1 = COND;',
-         'if (!c) goto <skip>; NEXTCMD = next_command(); return [NEXTCMD]; <skip>', 4),
+         'if (!c) goto <skip>; NEXTCMD = next_command(); return [NEXTCMD]; <skip>', 8),
         ('ret', 'fsop=4 & fsind=1', '', '', 'return [LR];', 8),
         ('retc', 'fsop=5 & fsind=1', 'COND', 'build COND; local c:1 = COND;',
          'if (!c) goto <skip>; return [LR]; <skip>', 8),

@@ -23,6 +23,7 @@ Papers, technical reports and patents were searched for every open entry below; 
 
 | Question | Owner | Routes tried | Next route |
 |---|---|---|---|
+| What a store with `r95` = 5 sends.
 | What the special-register offsets kpm does not name hold: production `ge.u` writes 0x10-0x1b and 0x20-0x2f through address register 0x1c (518 writes, 15 reads; for example `mgesi_Points` writes 0x23 and 0x24 at 0xb300 and 0xb302, `lXF7` writes 0x1a and 0x1b at 0x13b0 and 0x13b2) and 0x60-0x6b through 0x1d | `GE.h`, `ucode/ge_isa.md` | kpm's table at 0x100bb1e0 (names none of them), `show_ge_core` (prints only kpm's numbers) | read the writers of each offset in `ucode/ge_listing/` by handler, as was done for the named numbers, and check whether the ARM or the raster side reads them |
 
 **Where this section stopped (2026-10-29, fourth pass).** Answered and moved to [ucode/ge_ops.md](../ucode/ge_ops.md) and [GE.h](../GE.h): how one operation field names two operations (M[10:7] unit 2, M[6:0] unit 1, both live in form 11), the branch conditions' false sides from production handlers that need them (the low flag nibble is unit 1's, not the integer one's), the conditions 0x10, 0x11, 0x14 and 0x15 by their targets, and the input operands (word k is source A = 0x1f, D = k, matched against the host word counts). Labelled unknown with routes: unit-2 code 0x0f, the pixel-loop exit counter, and how the engine advances its input pointer. The 13 unreached module heads stay labelled unknown with routes in ucode/ge_handlers.md.

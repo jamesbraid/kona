@@ -334,7 +334,7 @@ usr/diags/IR/data/ge12_top4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1451	
 usr/diags/IR/data/ge14_2ge.netmap.Z	diagnostics	board-diagnostic	data	-	22067	be1da62ba1133836		0		0	0	undocumented		
 usr/diags/IR/data/ge14_2ge.short.Z	diagnostics	board-diagnostic	data	-	3301	34e67be65c252406		0		0	0	undocumented		
 usr/diags/IR/data/ge14_2ge.stuck.Z	diagnostics	board-diagnostic	data	-	845	0a100c1d22897a61		0		0	0	undocumented		
-usr/diags/IR/data/ge14_4ge.netmap.Z	diagnostics	board-diagnostic	data	-	29617	3fc12f10ab249aeb		0		0	0	named-only	ucode/ge_isa.md#the-engines-microcode-port	The engine's microcode port
+usr/diags/IR/data/ge14_4ge.netmap.Z	diagnostics	board-diagnostic	data	-	29617	3fc12f10ab249aeb		0		0	0	named-only	docs/open-questions.md#geometry-engine-program	Geometry engine program
 usr/diags/IR/data/ge14_4ge.short.Z	diagnostics	board-diagnostic	data	-	4642	4c7fdea7d4585236		0		0	0	undocumented		
 usr/diags/IR/data/ge14_4ge.stuck.Z	diagnostics	board-diagnostic	data	-	1186	bfc559d675927d18		0		0	0	undocumented		
 usr/diags/IR/data/ge14_btm4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40524	6802bad154e34f19		0		0	0	undocumented		
