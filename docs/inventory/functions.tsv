@@ -26982,7 +26982,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e54a00	212	__glArenaA
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e54ae0	120	__glArenaFreeAll	dwarf+dynsym	a9760f2d847a		in	located	docs/sample-implementation.md#so_memmgrc	so_memmgr.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e54b60	340	__glNamesNewArray	dwarf+dynsym	9ab1a7072dc3		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e54cc0	16	freeLeafData	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e54cd0	72	freeLeaf	dwarf	0236891f5223		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e54cd0	72	freeLeaf	dwarf	0236891f5223		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e54d20	16	freeBranch	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e54d30	360	__glNamesFreeTree	dwarf+dynsym	de995f94abbc		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e54ea0	236	__glNamesFreeArray	dwarf+dynsym	f4236d6dbf70		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -27014,7 +27014,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e577b0	72	__glNamesUn
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e57800	260	__glNamesUnlockDataList	dwarf+dynsym	7362bc07a6ae		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e57910	880	__glNamesGenRange	dwarf+dynsym	f039c2178693		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e57c80	1092	__glNamesDeleteRange	dwarf+dynsym	62f6833dff51		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e580d0	80	__glNamesIsName	dwarf+dynsym	df3b63dbee51		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e580d0	80	__glNamesIsName	dwarf+dynsym	df3b63dbee51		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58120	216	__glNamesGenNames	dwarf+dynsym	ca78758c985e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58200	312	__glNamesDeleteNames	dwarf+dynsym	b4cf320e2766		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58340	32	__glim_Normal3d	dwarf+dynsym	b59d59723518		in	located	docs/sample-implementation.md#so_napic	so_napi.c
@@ -43681,7 +43681,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2234a00	212	__glArenaA
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2234ae0	120	__glArenaFreeAll	dwarf+dynsym	a9760f2d847a		in	located	docs/sample-implementation.md#so_memmgrc	so_memmgr.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2234b60	340	__glNamesNewArray	dwarf+dynsym	9ab1a7072dc3		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2234cc0	16	freeLeafData	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2234cd0	72	freeLeaf	dwarf	0236891f5223		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2234cd0	72	freeLeaf	dwarf	0236891f5223		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2234d20	16	freeBranch	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2234d30	360	__glNamesFreeTree	dwarf+dynsym	de995f94abbc		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2234ea0	236	__glNamesFreeArray	dwarf+dynsym	f4236d6dbf70		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -43713,7 +43713,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22377b0	72	__glNamesUn
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2237800	260	__glNamesUnlockDataList	dwarf+dynsym	7362bc07a6ae		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2237910	880	__glNamesGenRange	dwarf+dynsym	f039c2178693		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2237c80	1092	__glNamesDeleteRange	dwarf+dynsym	62f6833dff51		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22380d0	80	__glNamesIsName	dwarf+dynsym	df3b63dbee51		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22380d0	80	__glNamesIsName	dwarf+dynsym	df3b63dbee51		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238120	216	__glNamesGenNames	dwarf+dynsym	ca78758c985e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238200	312	__glNamesDeleteNames	dwarf+dynsym	b4cf320e2766		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238340	32	__glim_Normal3d	dwarf+dynsym	b59d59723518		in	located	docs/sample-implementation.md#so_napic	so_napi.c
