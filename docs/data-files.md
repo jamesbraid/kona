@@ -368,3 +368,15 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.stuck` | stuck-at test vectors for the `dg4_2voc_dplex_dacsamp_lvds` chain. The compressed copy holds the same content once decompressed. | 4461 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.stuck.Z` | stuck-at test vectors for the `dg4_2voc_dplex_dacsamp_lvds` chain. The plain copy holds the same content. | 4461 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/dg4_2voc_dvp.stuck.Z` | stuck-at test vectors for the `dg4_2voc_dvp` chain. | 2774 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_hdgvo.stuck` | stuck-at test vectors for the `dg4_2voc_hdgvo` chain. The compressed copy holds the same content once decompressed. | 2774 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_hdgvo.stuck.Z` | stuck-at test vectors for the `dg4_2voc_hdgvo` chain. The plain copy holds the same content. | 2774 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_8voc.stuck.Z` | stuck-at test vectors for the `dg4_8voc` chain. | 4776 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_8voc_dacsamp.stuck.Z` | stuck-at test vectors for the `dg4_8voc_dacsamp` chain. | 4776 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_8voc_dvp.stuck.Z` | stuck-at test vectors for the `dg4_8voc_dvp` chain. | 5384 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc.stuck.Z` | stuck-at test vectors for the `fpln_2voc` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_2rm_0.stuck.Z` | stuck-at test vectors for the `fpln_2voc_2rm_0` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_2rm_1.stuck.Z` | stuck-at test vectors for the `fpln_2voc_2rm_1` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_0.stuck.Z` | stuck-at test vectors for the `fpln_2voc_4rm_0` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_1.stuck.Z` | stuck-at test vectors for the `fpln_2voc_4rm_1` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_2.stuck.Z` | stuck-at test vectors for the `fpln_2voc_4rm_2` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_3.stuck.Z` | stuck-at test vectors for the `fpln_2voc_4rm_3` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
