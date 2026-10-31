@@ -21298,8 +21298,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e4d20	144	__glValida
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e4db0	140	__glValidateLighting	dwarf+dynsym	37813be08407		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e4e40	320	__glGenericPickColorMaterialProcs	dwarf+dynsym	ced425079ba3		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e4f80	1556	__glClipLine	dwarf+dynsym	43ef13aa0898		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e55a0	180	__glFastClipSmoothLine	dwarf+dynsym	f04f90847efc		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5660	188	__glFastClipFlatLine	dwarf+dynsym	2aac304090d3		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e55a0	180	__glFastClipSmoothLine	dwarf+dynsym	f04f90847efc		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5660	188	__glFastClipFlatLine	dwarf+dynsym	2aac304090d3		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5720	1196	__glInitLineData	dwarf+dynsym	f22ebc4dadc7		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5bd0	920	__glRenderAliasLine	dwarf+dynsym	3ea6e163b495		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5f70	188	__glRenderFlatFogLine	dwarf+dynsym	60deae50b4d4		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
@@ -37997,8 +37997,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e4d20	144	__glValida
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e4db0	140	__glValidateLighting	dwarf+dynsym	37813be08407		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e4e40	320	__glGenericPickColorMaterialProcs	dwarf+dynsym	ced425079ba3		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e4f80	1556	__glClipLine	dwarf+dynsym	43ef13aa0898		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e55a0	180	__glFastClipSmoothLine	dwarf+dynsym	f04f90847efc		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5660	188	__glFastClipFlatLine	dwarf+dynsym	2aac304090d3		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e55a0	180	__glFastClipSmoothLine	dwarf+dynsym	f04f90847efc		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5660	188	__glFastClipFlatLine	dwarf+dynsym	2aac304090d3		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5720	1196	__glInitLineData	dwarf+dynsym	f22ebc4dadc7		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5bd0	920	__glRenderAliasLine	dwarf+dynsym	3ea6e163b495		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5f70	188	__glRenderFlatFogLine	dwarf+dynsym	60deae50b4d4		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
