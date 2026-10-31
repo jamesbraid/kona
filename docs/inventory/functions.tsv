@@ -16475,14 +16475,14 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda37f54	96	__glim_Vertex
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda37fb4	104	__glim_Vertex3dv	dynsym+mdebug	9978d7d3400b		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3801c	112	__glim_Vertex3i	dynsym+mdebug	3dccbac70628		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3808c	116	__glim_Vertex3iv	dynsym+mdebug	484033277445		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda38100	136	__glim_Vertex3s	dynsym+mdebug	a4f96a0729b4		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda38100	136	__glim_Vertex3s	dynsym+mdebug	a4f96a0729b4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda38188	116	__glim_Vertex3sv	dynsym+mdebug	87be7c97a232		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda381fc	100	__glim_Vertex4f	dynsym+mdebug	79675b305b4e		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda38260	108	__glim_Vertex4d	dynsym+mdebug	f6efea6b7856		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda382cc	116	__glim_Vertex4dv	dynsym+mdebug	1f092df0fee9		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda38340	124	__glim_Vertex4i	dynsym+mdebug	9d4cf572d3d1		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda383bc	132	__glim_Vertex4iv	dynsym+mdebug	d2a94060397c		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda38440	160	__glim_Vertex4s	dynsym+mdebug	e5312ca60239		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda38440	160	__glim_Vertex4s	dynsym+mdebug	e5312ca60239		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda384e0	132	__glim_Vertex4sv	dynsym+mdebug	71ece4c0f827		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda38580	136	__glInitVertexArrayState	dynsym+mdebug	f40b5b07f18e		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda38608	732	__glim_ArrayElementEXT	dynsym+mdebug	d9feafc31c1f		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
@@ -22011,14 +22011,14 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32760	88	__glim_Vert
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda327c0	100	__glim_Vertex3dv	dwarf+dynsym	9d0eed397097		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32830	100	__glim_Vertex3i	dwarf+dynsym	ea3c886d9c95		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda328a0	112	__glim_Vertex3iv	dwarf+dynsym	011023b69b69		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32910	100	__glim_Vertex3s	dwarf+dynsym	7838057b0401		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32910	100	__glim_Vertex3s	dwarf+dynsym	7838057b0401		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32980	112	__glim_Vertex3sv	dwarf+dynsym	03695bb0b8c3		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda329f0	80	__glim_Vertex4f	dwarf+dynsym	5904e357db04		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32a40	96	__glim_Vertex4d	dwarf+dynsym	126989fbad57		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32aa0	112	__glim_Vertex4dv	dwarf+dynsym	283b52216fb7		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32b10	112	__glim_Vertex4i	dwarf+dynsym	e423565a60f4		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32b80	128	__glim_Vertex4iv	dwarf+dynsym	f706511ed5ef		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32c00	112	__glim_Vertex4s	dwarf+dynsym	51996ea611aa		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32c00	112	__glim_Vertex4s	dwarf+dynsym	51996ea611aa		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32c70	128	__glim_Vertex4sv	dwarf+dynsym	1b0c9ae11885		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32cf0	136	__glInitVertexArrayState	dwarf+dynsym	64e555d5a8b7		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda32d80	612	__glim_ArrayElementEXT	dwarf+dynsym	147072a8bfc1		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
@@ -27591,14 +27591,14 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e977d0	88	__glim_Vert
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97830	100	__glim_Vertex3dv	dwarf+dynsym	64d8d4630664		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e978a0	100	__glim_Vertex3i	dwarf+dynsym	d712aaee2096		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97910	112	__glim_Vertex3iv	dwarf+dynsym	22737f81d7cf		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97980	100	__glim_Vertex3s	dwarf+dynsym	f6115b52c53c		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97980	100	__glim_Vertex3s	dwarf+dynsym	f6115b52c53c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e979f0	112	__glim_Vertex3sv	dwarf+dynsym	d8cfb101c198		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97a60	80	__glim_Vertex4f	dwarf+dynsym	63613b54624b		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97ab0	96	__glim_Vertex4d	dwarf+dynsym	44dbbc14c421		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97b10	112	__glim_Vertex4dv	dwarf+dynsym	5ce6f640a8d6		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97b80	112	__glim_Vertex4i	dwarf+dynsym	ef579d46846a		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97bf0	128	__glim_Vertex4iv	dwarf+dynsym	b1e2135554f1		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97c70	112	__glim_Vertex4s	dwarf+dynsym	c4762b8f7307		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97c70	112	__glim_Vertex4s	dwarf+dynsym	c4762b8f7307		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97ce0	128	__glim_Vertex4sv	dwarf+dynsym	c54356b16933		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97d60	136	__glInitVertexArrayState	dwarf+dynsym	418d072ddd2c		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e97df0	612	__glim_ArrayElementEXT	dwarf+dynsym	fafbfb7db1b5		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
@@ -33174,14 +33174,14 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda37f54	96	__glim_Vertex
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda37fb4	104	__glim_Vertex3dv	dynsym+mdebug	9978d7d3400b		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3801c	112	__glim_Vertex3i	dynsym+mdebug	3dccbac70628		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3808c	116	__glim_Vertex3iv	dynsym+mdebug	484033277445		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda38100	136	__glim_Vertex3s	dynsym+mdebug	a4f96a0729b4		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda38100	136	__glim_Vertex3s	dynsym+mdebug	a4f96a0729b4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda38188	116	__glim_Vertex3sv	dynsym+mdebug	87be7c97a232		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda381fc	100	__glim_Vertex4f	dynsym+mdebug	79675b305b4e		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda38260	108	__glim_Vertex4d	dynsym+mdebug	f6efea6b7856		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda382cc	116	__glim_Vertex4dv	dynsym+mdebug	1f092df0fee9		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda38340	124	__glim_Vertex4i	dynsym+mdebug	9d4cf572d3d1		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda383bc	132	__glim_Vertex4iv	dynsym+mdebug	d2a94060397c		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda38440	160	__glim_Vertex4s	dynsym+mdebug	e5312ca60239		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda38440	160	__glim_Vertex4s	dynsym+mdebug	e5312ca60239		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda384e0	132	__glim_Vertex4sv	dynsym+mdebug	71ece4c0f827		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda38580	136	__glInitVertexArrayState	dynsym+mdebug	f40b5b07f18e		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda38608	732	__glim_ArrayElementEXT	dynsym+mdebug	d9feafc31c1f		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
@@ -38710,14 +38710,14 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32760	88	__glim_Vert
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda327c0	100	__glim_Vertex3dv	dwarf+dynsym	9d0eed397097		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32830	100	__glim_Vertex3i	dwarf+dynsym	ea3c886d9c95		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda328a0	112	__glim_Vertex3iv	dwarf+dynsym	011023b69b69		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32910	100	__glim_Vertex3s	dwarf+dynsym	7838057b0401		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32910	100	__glim_Vertex3s	dwarf+dynsym	7838057b0401		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32980	112	__glim_Vertex3sv	dwarf+dynsym	03695bb0b8c3		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda329f0	80	__glim_Vertex4f	dwarf+dynsym	5904e357db04		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32a40	96	__glim_Vertex4d	dwarf+dynsym	126989fbad57		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32aa0	112	__glim_Vertex4dv	dwarf+dynsym	283b52216fb7		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32b10	112	__glim_Vertex4i	dwarf+dynsym	e423565a60f4		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32b80	128	__glim_Vertex4iv	dwarf+dynsym	f706511ed5ef		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32c00	112	__glim_Vertex4s	dwarf+dynsym	51996ea611aa		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32c00	112	__glim_Vertex4s	dwarf+dynsym	51996ea611aa		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32c70	128	__glim_Vertex4sv	dwarf+dynsym	1b0c9ae11885		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32cf0	136	__glInitVertexArrayState	dwarf+dynsym	64e555d5a8b7		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda32d80	612	__glim_ArrayElementEXT	dwarf+dynsym	147072a8bfc1		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
@@ -44290,14 +44290,14 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22777d0	88	__glim_Vert
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277830	100	__glim_Vertex3dv	dwarf+dynsym	64d8d4630664		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22778a0	100	__glim_Vertex3i	dwarf+dynsym	d712aaee2096		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277910	112	__glim_Vertex3iv	dwarf+dynsym	22737f81d7cf		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277980	100	__glim_Vertex3s	dwarf+dynsym	f6115b52c53c		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277980	100	__glim_Vertex3s	dwarf+dynsym	f6115b52c53c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22779f0	112	__glim_Vertex3sv	dwarf+dynsym	d8cfb101c198		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277a60	80	__glim_Vertex4f	dwarf+dynsym	63613b54624b		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277ab0	96	__glim_Vertex4d	dwarf+dynsym	44dbbc14c421		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277b10	112	__glim_Vertex4dv	dwarf+dynsym	5ce6f640a8d6		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277b80	112	__glim_Vertex4i	dwarf+dynsym	ef579d46846a		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277bf0	128	__glim_Vertex4iv	dwarf+dynsym	b1e2135554f1		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277c70	112	__glim_Vertex4s	dwarf+dynsym	c4762b8f7307		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277c70	112	__glim_Vertex4s	dwarf+dynsym	c4762b8f7307		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277ce0	128	__glim_Vertex4sv	dwarf+dynsym	c54356b16933		in	located	docs/sample-implementation.md#so_vapic	so_vapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277d60	136	__glInitVertexArrayState	dwarf+dynsym	418d072ddd2c		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2277df0	612	__glim_ArrayElementEXT	dwarf+dynsym	fafbfb7db1b5		in	located	docs/sample-implementation.md#so_vertarrayc	so_vertarray.c
