@@ -6187,7 +6187,7 @@ Twenty-two `konal.so` functions had only a `kona.so` entry. They are instruction
   four arguments it branches straight to the epilogue at +0x50, so the `ErrorF` call that follows (format "x = %d, y = %d" with
   the first two arguments) is never reached; the function returns without effect.
 - `konTiledFS` (konal.so, address 0x1503db0, 96 bytes): **established.** Placeholder for the tiled fill-spans operation: it stores
-  its five arguments and calls `ErrorF` with the one-line text "konTiledFS", then returns. It draws nothing and sends no pipe
+  its five arguments and returns. The `ErrorF` call with the one-line text "konTiledFS" at 0x1503dec is in code no path reaches: the unconditional branch at 0x1503ddc skips it. It draws nothing and sends no pipe
   command.
 - `konCreateGC` (konal.so, address 0x1482b50, 528 bytes): **established.** Create-context wrapper. It reads the depth byte of the
   drawable (+4 of the context argument) and indexes a 31-entry jump table in read-only data: depth 1 calls `mfbCreateGC` and
