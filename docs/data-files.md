@@ -49,7 +49,9 @@ Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucod
 | `availmon` | `usr/diags/IR/bin/`: a shell wrapper that runs `irsaudit` and manages its summary and result files in the crash directory (usage: name, summary file, result file) |
 | `irsaudit`, `hyper` | the IR diagnostic and the hyperpipe test program ([irsaudit.md](irsaudit.md)) |
 | `irsaudit_disasm.txt`, `irsaudit_dynsym_disasm.txt` | disassembly listings of the diagnostic and of its dynamic-symbol stubs; generated from the binary, not shipped |
-| `arm1_nic.u`, `diag_arm_init.u`, `ge_diag_init.u`, `ge_diag_init.hex` | the diagnostic's own microcode images in `usr/diags/IR/ucode/`: the ARM firmware variant for the network-interface (serial-number) boards, a short ARM start-up program, and the geometry-engine initialisation program (the `.hex` form is the same program as hexadecimal words); they sit beside the full firmware images of [ucode/arm1.md](../ucode/arm1.md) |
+| `usr/diags/IR/ucode/arm1_nic.u` | **Established** (file layout): a 13400-byte big-endian ARM image in AIF layout. Its word at +0x08 is a branch with link to +0x40, the entry, and the word at +0x0c is the AIF exit call (SWI 0x11). Its routines and the registers they touch were not disassembled here, so its role is **unknown**; the name suggests the firmware variant for the network-interface (serial-number) boards, which the page beside it, [ucode/arm1.md](../ucode/arm1.md), describes for the full image |
+| `usr/diags/IR/ucode/diag_arm_init.u` | **Established** (file layout): a 520-byte big-endian ARM image in AIF layout, with the same header as `arm1_nic.u` (the branch with link at +0x08 goes to the entry at +0x40). The import recipe loads it at image base 0 ([tooling.md](../tooling.md#arm-firmware-import)). Its routines were not disassembled here, so its role is **unknown**; the name suggests a short ARM start-up program |
+| `usr/diags/IR/ucode/ge_diag_init.u`, `usr/diags/IR/ucode/ge_diag_init.hex` | the diagnostic's geometry-engine initialisation program (the `.hex` form is the same program as hexadecimal words); it sits beside the full firmware images of [ucode/arm1.md](../ucode/arm1.md) |
 | `gfxinfo`, `gfxtopology`, `setmon`, `dmconf`, `ircombine`, `sgcombine`, `sdbutil`, `hyperpipeinfo`, `xsetmon` | the setup and video-configuration tools ([setup-tools.md](setup-tools.md)); `gfxtopology` is a Perl script and `hyperpipeinfo` prints the hyperpipe configuration of a display (usage `-d <displayname>`) |
 | `startgfx`, `stopgfx` | shell scripts that start and stop the window system |
 | `Xsgi` | the X server ([xserver.md](xserver.md)) |
@@ -68,8 +70,8 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 
 | File | Holds | Lines | Content | Label |
 |---|---|---|---|---|
-| `usr/diags/IR/irsaudit_disasm.txt` | objdump text listing | 358272 | objdump of `usr/diags/IR/bin/irsaudit`, sections `.MIPS.stubs`, `.text` and `.init`, 1171 labelled routines | inferred |
-| `usr/diags/IR/irsaudit_dynsym_disasm.txt` | readelf symbol table listing | 1805 | readelf dynamic symbol table of `usr/diags/IR/bin/irsaudit`, 1802 numbered entries | inferred |
+| `usr/diags/IR/irsaudit_disasm.txt` | objdump text listing | 358272 | objdump of the `irsaudit` binary: 1171 labelled routines in the stubs, text and init sections | inferred |
+| `usr/diags/IR/irsaudit_dynsym_disasm.txt` | readelf symbol table listing | 1805 | readelf dynamic symbol table of the `irsaudit` binary, 1802 numbered entries (the `.dynsym` header line) | inferred |
 
 ### Gold CRC logs
 
@@ -92,7 +94,7 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | File | Holds | Lines | RAM instances | First instance | Last instance | Read by | Label |
 |---|---|---|---|---|---|---|---|
 | `usr/diags/IR/data/bef1.qtcbist` | RAM instances in the built-in self test of the `bef1` chip | 190 | 39 | `tcbist_ram 1 core.in.idu0.ififo.dpr0` | `tcbist_ram 4 core.in.idu7.ififo.dpr3` | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/bef1.tcbist` | RAM instance list (39) of the `bef1` chip's test-control self test, then its control script: 462 `tcbist_ctrl` words, 451 `tcbist_poll1`, 36 `tcbist_sleep`, 29 `tcbist_sw_rst`, one `tcbist_hw_rst` and 54 `tcbist_comment` lines naming the pattern tests (data retention, IFA-9, zebra, March B) | 1090 | 39 | `tcbist_ram 1 core.in.idu0.ififo.dpr0` | `tcbist_ram 4 core.in.idu7.ififo.dpr3` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bef1.tcbist` | RAM instance list (39 lines) of the `bef1` chip's test-control self test, then its control script: 1051 further lines, of which 462 are control words, 451 are polls, 36 sleeps, 29 software resets, 1 a hardware reset and 54 pattern-test comments (data retention, IFA-9, modulo-3, zebra, March B and forced failure) | 1090 | 39 | `tcbist_ram 1 core.in.idu0.ififo.dpr0` | `tcbist_ram 4 core.in.idu7.ififo.dpr3` | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fm2.qtcbist` | RAM instances in the built-in self test of the `fm2` chip | 24 | 1 | `tcbist_ram 1 fm2_core1.imp_sm1.imp_ram1.impram` | `tcbist_ram 1 fm2_core1.imp_sm1.imp_ram1.impram` | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fm2.tcbist` | RAM instances in the built-in self test of the `fm2` chip | 124 | 1 | `tcbist_ram 1 fm2_core1.imp_sm1.imp_ram1.impram` | `tcbist_ram 1 fm2_core1.imp_sm1.imp_ram1.impram` | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fm2null.qtcbist` | RAM instances in the built-in self test of the `fm2null` chip | 24 | 1 | `tcbist_ram 1 fm2_core1.imp_sm1.imp_ram1.impram` | `tcbist_ram 1 fm2_core1.imp_sm1.imp_ram1.impram` | `usr/diags/IR/bin/irsaudit` | inferred |

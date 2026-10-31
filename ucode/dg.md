@@ -113,7 +113,7 @@ The directive counts, line lengths, porches and field layout of each file are on
 
 | File | What the file holds |
 |---|---|
-| `dgo.mcs` | **Established** (IRIX 6.5.30m): Intel HEX configuration image for the programmable logic of the display generator option board, 34138 bytes in 2134 data records at addresses 0 to 0x8559 (the last record, of 10 bytes, at address 0x8550) with every record checksum correct, read and checksummed by the X module in `kona.so`, which finds it in the option board image directory. |
+| `usr/gfx/ucode/KONA/dgo1/dgo.mcs` | **Established** (IRIX 6.5.30m): Intel HEX configuration image for the programmable logic of the display generator option board, 34138 bytes in 2134 data records at addresses 0 to 0x8559 (the last record, of 10 bytes, at address 0x8550) with every record checksum correct, read and checksummed by the X module in `kona.so`, which finds it in the option board image directory. |
 
 ## Format-compiler rules (`usr/gfx/ucode/vfc/rules/`)
 
