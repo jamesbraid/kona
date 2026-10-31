@@ -1484,7 +1484,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100389c0	256	load_arm_mem	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038ac0	144	zero_arm_mem	dynsym	70a09944bf8d		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038b50	288	verify_arm_mem	dynsym	fdebea07db65		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038c70	1184	LoadArmFile	dynsym	a80db49caa52		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10039110	652	LoadGeifFile	dynsym	5e260470bf36		in	named-only	ucode/arm1.md#how-a-command-reaches-a-geometry-engine-handler	How a command reaches a geometry-engine handler
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10039110	652	LoadGeifFile	dynsym	5e260470bf36		in	named-only	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003939c	900	TEST_armucode	dynsym	b7d00a4d8a0a		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10039720	756	update_ucode_struc	dynsym	5a8166183f4d		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10039a14	156	ge_host_reg_write	dynsym	ddf8f7d622b3		in	named-only	docs/coverage.md#ge	GE
@@ -1646,7 +1646,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006e278	976	ge_mul_test	dynsy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006e648	1368	TEST_ge_cram	dynsym	d99e441b6eb5		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006eba0	1364	TEST_ge_wram	dynsym	a15b44aae79e		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f0f4	876	TEST_ge_hip	dynsym	a9d601f1b6d3		in	named-only	docs/hip.md#pipe-to-host-select-feedback-kona_dmaread	Pipe to host: select feedback, `kona_dmaread`
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f460	1856	TEST_ge_instTest	dynsym	d4768d2ff7e5		in	named-only	ucode/ge_isa.md#the-program-files	The program files
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006f460	1856	TEST_ge_instTest	dynsym	d4768d2ff7e5		in	named-only	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fba0	220	hist_ecd_check	dynsym	b8eba19c901a		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fc7c	292	hist_base_check	dynsym	5ebf269fa935		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1006fda0	312	hist_ecdbase_check	dynsym	c914f35b093f		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support

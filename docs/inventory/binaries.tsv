@@ -425,15 +425,15 @@ usr/diags/IR/data/xmap8.qtcbist	diagnostics	board-diagnostic	data	-	2954	33b7137
 usr/diags/IR/data/xmap8.tcbist	diagnostics	board-diagnostic	data	-	13409	b728f4f3471a6105		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/irsaudit_disasm.txt	diagnostics	board-diagnostic	data	-	9212110	5b965641ce5136e3		0		0	0	understood	docs/data-files.md#listings-of-the-diagnostic-program	Listings of the diagnostic program
 usr/diags/IR/irsaudit_dynsym_disasm.txt	diagnostics	board-diagnostic	data	-	128545	8bff24a378a29c2e		0		0	0	understood	docs/data-files.md#listings-of-the-diagnostic-program	Listings of the diagnostic program
-usr/diags/IR/ucode/arm1.u	diagnostics	board-diagnostic	data	-	40072	cc20b24f7c1e4da9		0		0	0	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
+usr/diags/IR/ucode/arm1.u	diagnostics	board-diagnostic	data	-	40072	cc20b24f7c1e4da9		0		0	0	understood	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
 usr/diags/IR/ucode/arm1_nic.u	diagnostics	board-diagnostic	data	-	13400	872331fc9285edfa		0		0	0	located	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/ucode/dgo.mcs	diagnostics	board-diagnostic	data	-	93912	518cd70fa8b71474		0		0	0	understood	docs/data-files.md#option-board-xilinx-image	Option-board Xilinx image
 usr/diags/IR/ucode/diag_arm_init.u	diagnostics	board-diagnostic	data	-	520	da008146e38bf9a0		0		0	0	located	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/ucode/ge.hex	diagnostics	board-diagnostic	data	-	363650	ae8bfbf6f4060058		0		0	0	named-only	ucode/ge_ops.md#the-diagnostic-programs-instruction-test	The diagnostic program's instruction test
-usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3edf		0		0	0	named-only	ucode/ge_isa.md#which-ge11-facts-konas-own-software-confirms	Which GE11 facts KONA's own software confirms
+usr/diags/IR/ucode/ge.hex	diagnostics	board-diagnostic	data	-	363650	ae8bfbf6f4060058		0		0	0	understood	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
+usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3edf		0		0	0	understood	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
 usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
 usr/diags/IR/ucode/ge_diag_init.u	diagnostics	board-diagnostic	data	-	12082	7e407147118cf628		0		0	0	located	ucode/ge_isa.md#the-program-files	The program files
-usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0		0	0	undocumented		
+usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0		0	0	understood	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
 usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	dynsym	0	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	dynsym	14	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
@@ -461,8 +461,8 @@ usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dyn
 usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	dynsym	0	0	understood	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
 usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
-usr/gfx/ucode/KONA/arm1.u	microcode	board-microcode	data	-	465452	8431a8e3184c858f		0		0	0	named-only	docs/tooling.md#arm-firmware-import	ARM firmware import
-usr/gfx/ucode/KONA/arm1_kpm.u	microcode	board-microcode	data	-	7176	0938c672c1bf6b5a		0		0	0	named-only	docs/open-questions.md#arm-firmware	ARM firmware
+usr/gfx/ucode/KONA/arm1.u	microcode	board-microcode	data	-	465452	8431a8e3184c858f		0		0	0	understood	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
+usr/gfx/ucode/KONA/arm1_kpm.u	microcode	board-microcode	data	-	7176	0938c672c1bf6b5a		0		0	0	understood	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
 usr/gfx/ucode/KONA/dg4/cmb/1024x768_60.cmb	microcode	board-microcode	data	-	2272	c15312d32bbb3f58		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
 usr/gfx/ucode/KONA/dg4/cmb/1200x900_72.cmb	microcode	board-microcode	data	-	2272	22191e1a0dbde580		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
 usr/gfx/ucode/KONA/dg4/cmb/1280x1024+1920x1080_72.cmb	microcode	board-microcode	data	-	3688	2d0509d19ff41789		0		0	0	understood	docs/display-formats.md#combinations-of-formats	Combinations of formats
@@ -565,13 +565,13 @@ usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x486_5994i.vfo	microcode	board-microcode	dat
 usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x576_50i.vfo	microcode	board-microcode	data	-	18384	72a05060016445dd		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/README	microcode	board-microcode	data	-	86997	bf7cb03493b3b264		0		0	0	understood	ucode/dg.md#the-listing-and-the-per-file-values-dg4vfo	The listing and the per-file values (`dg4/vfo/`)
 usr/gfx/ucode/KONA/dgo1/dgo.mcs	microcode	board-microcode	data	-	93912	ec92153b2b6da903		0		0	0	understood	ucode/dg.md#entry-for-the-option-board-image-dgo1	Entry for the option-board image (`dgo1/`)
-usr/gfx/ucode/KONA/ge.hex	microcode	board-microcode	data	-	1563025	6258b8ae9e67dd32		0		0	0	undocumented		
-usr/gfx/ucode/KONA/ge.u	microcode	board-microcode	data	-	2526129	89066cc1dc88d87f		0		0	0	named-only	docs/tooling.md#build-and-run	Build and run
+usr/gfx/ucode/KONA/ge.hex	microcode	board-microcode	data	-	1563025	6258b8ae9e67dd32		0		0	0	understood	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
+usr/gfx/ucode/KONA/ge.u	microcode	board-microcode	data	-	2526129	89066cc1dc88d87f		0		0	0	understood	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
 usr/gfx/ucode/KONA/ge11.u	microcode	board-microcode	data	-	1275741	95724af2dc9dc5be		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
 usr/gfx/ucode/KONA/ge_kpm.hex	microcode	board-microcode	data	-	4650	617b3f0afd02ae0e		0		0	0	understood	ucode/ge.md#one-program-three-encodings	One program, three encodings
 usr/gfx/ucode/KONA/ge_symbols	microcode	board-microcode	data	-	67100	67126e0f66aea936		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
 usr/gfx/ucode/KONA/ged1b.u	microcode	board-microcode	data	-	14411	41c4b5724774fe42		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
-usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0		0	0	named-only	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+usr/gfx/ucode/KONA/geif.u	microcode	board-microcode	data	-	2048	c077a24af259d0a9		0		0	0	understood	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
 usr/gfx/ucode/KONA/tport.bin	microcode	board-microcode	data	-	127889	ba8efd1cc0f83068		0		0	0	understood	ucode/tport.md#what-it-is	What it is
 usr/gfx/ucode/KONA/vof/1280x1024.monitor	microcode	board-microcode	data	-	295	55c148a0d113b0eb		0		0	0	understood	docs/display-formats.md#monitor-sources	Monitor sources
 usr/gfx/ucode/KONA/vof/640x480_60.vof	microcode	board-microcode	data	-	6775	87aa18319bb63ea8		0		0	0	understood	docs/display-formats.md#output-format-sources	Output-format sources
