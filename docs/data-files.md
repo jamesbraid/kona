@@ -322,3 +322,15 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_4rm_1` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_4rm_2` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_4rm_3` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_2rm_0.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_2rm_0` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_2rm_1.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_2rm_1` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_0.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_4rm_0` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_1.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_4rm_1` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_2.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_4rm_2` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_3.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_4rm_3` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge12_4ge.short.Z` | shorts test vectors for the `ge12_4ge` chain. | 2795 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge12_btm4ges.short.Z` | shorts test vectors for the `ge12_btm4ges` chain. | 4355 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge12_noge.short.Z` | shorts test vectors for the `ge12_noge` chain. | 1235 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge12_top4ges.short.Z` | shorts test vectors for the `ge12_top4ges` chain. | 4355 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_2ge.short.Z` | shorts test vectors for the `ge14_2ge` chain. | 2059 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
