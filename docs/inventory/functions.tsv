@@ -15766,7 +15766,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e8208	196	__glFastClip
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e82cc	200	__glFastClipFlatLine	dynsym+mdebug	304aafdc5287		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e83a0	1424	__glInitLineData	dynsym+mdebug	abcff77dc025		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e8930	1340	__glRenderAliasLine	dynsym+mdebug	1cf0a3f0ab2b		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e8e6c	200	__glRenderFlatFogLine	dynsym+mdebug	dd81620b25e4		in	understood	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e8e6c	200	__glRenderFlatFogLine	dynsym+mdebug	dd81620b25e4		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e8f34	1436	__glInitAALineData	dynsym+mdebug	d9be9e4f8bec		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e94d0	1856	__glRenderAntiAliasLine	dynsym+mdebug	324729bb0e62		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9c10	76	__glPolygonOffsetLine	dynsym+mdebug	db29e327f45f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -21302,7 +21302,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e55a0	180	__glFastCl
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5660	188	__glFastClipFlatLine	dwarf+dynsym	2aac304090d3		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5720	1196	__glInitLineData	dwarf+dynsym	f22ebc4dadc7		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5bd0	920	__glRenderAliasLine	dwarf+dynsym	3ea6e163b495		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5f70	188	__glRenderFlatFogLine	dwarf+dynsym	60deae50b4d4		in	understood	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5f70	188	__glRenderFlatFogLine	dwarf+dynsym	60deae50b4d4		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e6030	1260	__glInitAALineData	dwarf+dynsym	951af222e692		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e6520	1816	__glRenderAntiAliasLine	dwarf+dynsym	d980fca6eef0		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e6c40	76	__glPolygonOffsetLine	dwarf+dynsym	436faf1ef388		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -26882,7 +26882,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e49520	180	__glFastCl
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e495e0	188	__glFastClipFlatLine	dwarf+dynsym	ecfaca52390e		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e496a0	1208	__glInitLineData	dwarf+dynsym	dce5d8f1d86f		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e49b60	932	__glRenderAliasLine	dwarf+dynsym	ad929ce1e964		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e49f10	188	__glRenderFlatFogLine	dwarf+dynsym	5baaa137d929		in	understood	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e49f10	188	__glRenderFlatFogLine	dwarf+dynsym	5baaa137d929		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e49fd0	1268	__glInitAALineData	dwarf+dynsym	f171363a240c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4a4d0	1848	__glRenderAntiAliasLine	dwarf+dynsym	dffbf8178b6d		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4ac10	80	__glPolygonOffsetLine	dwarf+dynsym	314f2eb5bbd6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -32465,7 +32465,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e8208	196	__glFastClip
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e82cc	200	__glFastClipFlatLine	dynsym+mdebug	304aafdc5287		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e83a0	1424	__glInitLineData	dynsym+mdebug	abcff77dc025		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e8930	1340	__glRenderAliasLine	dynsym+mdebug	1cf0a3f0ab2b		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e8e6c	200	__glRenderFlatFogLine	dynsym+mdebug	dd81620b25e4		in	understood	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e8e6c	200	__glRenderFlatFogLine	dynsym+mdebug	dd81620b25e4		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e8f34	1436	__glInitAALineData	dynsym+mdebug	d9be9e4f8bec		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e94d0	1856	__glRenderAntiAliasLine	dynsym+mdebug	324729bb0e62		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9c10	76	__glPolygonOffsetLine	dynsym+mdebug	db29e327f45f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -38001,7 +38001,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e55a0	180	__glFastCl
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5660	188	__glFastClipFlatLine	dwarf+dynsym	2aac304090d3		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5720	1196	__glInitLineData	dwarf+dynsym	f22ebc4dadc7		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5bd0	920	__glRenderAliasLine	dwarf+dynsym	3ea6e163b495		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5f70	188	__glRenderFlatFogLine	dwarf+dynsym	60deae50b4d4		in	understood	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5f70	188	__glRenderFlatFogLine	dwarf+dynsym	60deae50b4d4		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e6030	1260	__glInitAALineData	dwarf+dynsym	951af222e692		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e6520	1816	__glRenderAntiAliasLine	dwarf+dynsym	d980fca6eef0		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e6c40	76	__glPolygonOffsetLine	dwarf+dynsym	436faf1ef388		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -43581,7 +43581,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2229520	180	__glFastCl
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22295e0	188	__glFastClipFlatLine	dwarf+dynsym	ecfaca52390e		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22296a0	1208	__glInitLineData	dwarf+dynsym	dce5d8f1d86f		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2229b60	932	__glRenderAliasLine	dwarf+dynsym	ad929ce1e964		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2229f10	188	__glRenderFlatFogLine	dwarf+dynsym	5baaa137d929		in	understood	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2229f10	188	__glRenderFlatFogLine	dwarf+dynsym	5baaa137d929		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2229fd0	1268	__glInitAALineData	dwarf+dynsym	f171363a240c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222a4d0	1848	__glRenderAntiAliasLine	dwarf+dynsym	dffbf8178b6d		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222ac10	80	__glPolygonOffsetLine	dwarf+dynsym	314f2eb5bbd6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
