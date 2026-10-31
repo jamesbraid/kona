@@ -380,3 +380,15 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/fpln_2voc_4rm_1.stuck.Z` | stuck-at test vectors for the `fpln_2voc_4rm_1` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_2voc_4rm_2.stuck.Z` | stuck-at test vectors for the `fpln_2voc_4rm_2` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_2voc_4rm_3.stuck.Z` | stuck-at test vectors for the `fpln_2voc_4rm_3` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc.stuck.Z` | stuck-at test vectors for the `fpln_8voc` chain. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_2rm_0.stuck.Z` | stuck-at test vectors for the `fpln_8voc_2rm_0` chain. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_2rm_1.stuck.Z` | stuck-at test vectors for the `fpln_8voc_2rm_1` chain. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_4rm_0.stuck.Z` | stuck-at test vectors for the `fpln_8voc_4rm_0` chain. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_4rm_1.stuck.Z` | stuck-at test vectors for the `fpln_8voc_4rm_1` chain. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_4rm_2.stuck.Z` | stuck-at test vectors for the `fpln_8voc_4rm_2` chain. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_4rm_3.stuck.Z` | stuck-at test vectors for the `fpln_8voc_4rm_3` chain. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm11_2voc.stuck` | stuck-at test vectors for the `fpln_rm11_2voc` chain. The compressed copy holds the same content once decompressed. | 13757 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm11_2voc.stuck.Z` | stuck-at test vectors for the `fpln_rm11_2voc` chain. The plain copy holds the same content. | 13757 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm11_2voc_2rm_0.stuck` | stuck-at test vectors for the `fpln_rm11_2voc_2rm_0` chain. The compressed copy holds the same content once decompressed. | 13757 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm11_2voc_2rm_0.stuck.Z` | stuck-at test vectors for the `fpln_rm11_2voc_2rm_0` chain. The plain copy holds the same content. | 13757 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm11_2voc_2rm_1.stuck` | stuck-at test vectors for the `fpln_rm11_2voc_2rm_1` chain. The compressed copy holds the same content once decompressed. | 13757 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
