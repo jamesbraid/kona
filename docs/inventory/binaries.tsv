@@ -400,7 +400,7 @@ usr/diags/IR/data/tf1c.tcbist	diagnostics	board-diagnostic	data	-	14378	0d4d757c
 usr/diags/IR/data/tg1.qtcbist	diagnostics	board-diagnostic	data	-	1505	007e327890b1bd1a		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/tg1.tcbist	diagnostics	board-diagnostic	data	-	8475	d534a5247ffd7e67		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/tg2.qtcbist	diagnostics	board-diagnostic	data	-	1520	fc19e8ac1a785b65		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/tg2.tcbist	diagnostics	board-diagnostic	data	-	8475	0e579dc1da233c28		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/tg2.tcbist	diagnostics	board-diagnostic	data	-	8475	0e579dc1da233c28		0		0	0	named-only	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/tm1_1Mx16.sdbist	diagnostics	board-diagnostic	data	-	5681	a9c33952e414c6b1		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/tm1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	5333	2270d92a5af4cefe		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/tm1_2Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	8a1b63004817d4d4		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
