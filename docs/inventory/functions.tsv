@@ -15725,9 +15725,9 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e3d24	244	__glGetMinma
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e3e18	56	__glim_GetMinmaxParameterivEXT	dynsym+mdebug	f18bd862189f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e3e50	56	__glim_GetMinmaxParameterfvEXT	dynsym+mdebug	39b39af35bea		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e3e90	216	__glConvertStipple	dynsym+mdebug	6c755144c59c		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e3f68	180	__glImageSize	dynsym+mdebug	748377e959e1		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e3f68	180	__glImageSize	dynsym+mdebug	748377e959e1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e401c	80	__glImageSize3D	dynsym+mdebug	5b1b38f22199		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e406c	3104	__glFillImage3D	dynsym+mdebug	ca2b5711a5ae		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e406c	3104	__glFillImage3D	dynsym+mdebug	ca2b5711a5ae		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e4c8c	92	__glFillImage	dynsym+mdebug	0d47820a11f1		in	located	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e4ce8	1328	__glEmptyImage	dynsym+mdebug	c6dc89c519e3		in	located	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e5220	68	__glScaleColorf	dynsym+mdebug	c1fea87e72a5		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
@@ -21260,12 +21260,12 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e13f0	444	__glim_Get
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e15b0	212	__glGetMinmaxParameters	dwarf+dynsym	1a665b067e1e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e1690	52	__glim_GetMinmaxParameterivEXT	dwarf+dynsym	366bf3a5b426		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e16d0	52	__glim_GetMinmaxParameterfvEXT	dwarf+dynsym	3a0ac4edd508		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e1710	128	__glConvertStipple	dwarf+dynsym	b675fa4775b8		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e1790	220	__glImageSize	dwarf+dynsym	e52499dbdf09		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e1710	128	__glConvertStipple	dwarf+dynsym	b675fa4775b8		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e1790	220	__glImageSize	dwarf+dynsym	e52499dbdf09		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e1870	84	__glImageSize3D	dwarf+dynsym	7b592e0fcf26		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e18d0	3304	__glFillImage3D	dwarf+dynsym	9abe24d4d1fb		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e18d0	3304	__glFillImage3D	dwarf+dynsym	9abe24d4d1fb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e25c0	72	__glFillImage	dwarf+dynsym	6ab04afa391c		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e2610	1212	__glEmptyImage	dwarf+dynsym	61b86d38daec		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e2610	1212	__glEmptyImage	dwarf+dynsym	61b86d38daec		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e2ad0	68	__glScaleColorf	dwarf+dynsym	d6481967d730		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e2b20	232	__glClampAndScaleColorf	dwarf+dynsym	91e4b5164a0d		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e2c10	196	__glClampColorf	dwarf+dynsym	412f295be8c6		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
@@ -26840,11 +26840,11 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e45290	452	__glim_Get
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e45460	212	__glGetMinmaxParameters	dwarf+dynsym	a9021e931fec		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e45540	52	__glim_GetMinmaxParameterivEXT	dwarf+dynsym	86af24c5d5e3		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e45580	52	__glim_GetMinmaxParameterfvEXT	dwarf+dynsym	6db788a552d4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e455c0	144	__glConvertStipple	dwarf+dynsym	122618dba36e		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e45650	220	__glImageSize	dwarf+dynsym	e585d4b9c391		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e455c0	144	__glConvertStipple	dwarf+dynsym	122618dba36e		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e45650	220	__glImageSize	dwarf+dynsym	e585d4b9c391		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e45730	84	__glImageSize3D	dwarf+dynsym	f920eeb238e1		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e45790	3304	__glFillImage3D	dwarf+dynsym	0e9827bdc84e		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e46480	72	__glFillImage	dwarf+dynsym	8f63b7c2477e		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e45790	3304	__glFillImage3D	dwarf+dynsym	0e9827bdc84e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e46480	72	__glFillImage	dwarf+dynsym	8f63b7c2477e		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e464d0	1212	__glEmptyImage	dwarf+dynsym	5c0112936d0c		in	located	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e46990	76	__glScaleColorf	dwarf+dynsym	09b21bf22f4d		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e469e0	240	__glClampAndScaleColorf	dwarf+dynsym	76e0327ca052		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
@@ -32424,9 +32424,9 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e3d24	244	__glGetMinma
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e3e18	56	__glim_GetMinmaxParameterivEXT	dynsym+mdebug	f18bd862189f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e3e50	56	__glim_GetMinmaxParameterfvEXT	dynsym+mdebug	39b39af35bea		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e3e90	216	__glConvertStipple	dynsym+mdebug	6c755144c59c		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e3f68	180	__glImageSize	dynsym+mdebug	748377e959e1		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e3f68	180	__glImageSize	dynsym+mdebug	748377e959e1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e401c	80	__glImageSize3D	dynsym+mdebug	5b1b38f22199		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e406c	3104	__glFillImage3D	dynsym+mdebug	ca2b5711a5ae		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e406c	3104	__glFillImage3D	dynsym+mdebug	ca2b5711a5ae		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e4c8c	92	__glFillImage	dynsym+mdebug	0d47820a11f1		in	located	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e4ce8	1328	__glEmptyImage	dynsym+mdebug	c6dc89c519e3		in	located	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e5220	68	__glScaleColorf	dynsym+mdebug	c1fea87e72a5		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
@@ -37959,12 +37959,12 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e13f0	444	__glim_Get
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e15b0	212	__glGetMinmaxParameters	dwarf+dynsym	1a665b067e1e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e1690	52	__glim_GetMinmaxParameterivEXT	dwarf+dynsym	366bf3a5b426		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e16d0	52	__glim_GetMinmaxParameterfvEXT	dwarf+dynsym	3a0ac4edd508		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e1710	128	__glConvertStipple	dwarf+dynsym	b675fa4775b8		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e1790	220	__glImageSize	dwarf+dynsym	e52499dbdf09		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e1710	128	__glConvertStipple	dwarf+dynsym	b675fa4775b8		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e1790	220	__glImageSize	dwarf+dynsym	e52499dbdf09		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e1870	84	__glImageSize3D	dwarf+dynsym	7b592e0fcf26		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e18d0	3304	__glFillImage3D	dwarf+dynsym	9abe24d4d1fb		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e18d0	3304	__glFillImage3D	dwarf+dynsym	9abe24d4d1fb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e25c0	72	__glFillImage	dwarf+dynsym	6ab04afa391c		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e2610	1212	__glEmptyImage	dwarf+dynsym	61b86d38daec		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e2610	1212	__glEmptyImage	dwarf+dynsym	61b86d38daec		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e2ad0	68	__glScaleColorf	dwarf+dynsym	d6481967d730		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e2b20	232	__glClampAndScaleColorf	dwarf+dynsym	91e4b5164a0d		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e2c10	196	__glClampColorf	dwarf+dynsym	412f295be8c6		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
@@ -43539,11 +43539,11 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2225290	452	__glim_Get
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2225460	212	__glGetMinmaxParameters	dwarf+dynsym	a9021e931fec		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2225540	52	__glim_GetMinmaxParameterivEXT	dwarf+dynsym	86af24c5d5e3		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2225580	52	__glim_GetMinmaxParameterfvEXT	dwarf+dynsym	6db788a552d4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22255c0	144	__glConvertStipple	dwarf+dynsym	122618dba36e		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2225650	220	__glImageSize	dwarf+dynsym	e585d4b9c391		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22255c0	144	__glConvertStipple	dwarf+dynsym	122618dba36e		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2225650	220	__glImageSize	dwarf+dynsym	e585d4b9c391		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2225730	84	__glImageSize3D	dwarf+dynsym	f920eeb238e1		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2225790	3304	__glFillImage3D	dwarf+dynsym	0e9827bdc84e		in	located	docs/sample-implementation.md#so_imagec	so_image.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2226480	72	__glFillImage	dwarf+dynsym	8f63b7c2477e		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2225790	3304	__glFillImage3D	dwarf+dynsym	0e9827bdc84e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2226480	72	__glFillImage	dwarf+dynsym	8f63b7c2477e		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22264d0	1212	__glEmptyImage	dwarf+dynsym	5c0112936d0c		in	located	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2226990	76	__glScaleColorf	dwarf+dynsym	09b21bf22f4d		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22269e0	240	__glClampAndScaleColorf	dwarf+dynsym	76e0327ca052		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
