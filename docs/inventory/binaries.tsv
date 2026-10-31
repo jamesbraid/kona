@@ -71,10 +71,10 @@ usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d39
 usr/diags/IR/bin/availmon	diagnostics	board-diagnostic	data	-	1140	0830da204c6694ce		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
 usr/diags/IR/bin/hyper	diagnostics	board-diagnostic	executable	n32	38544	c9c31f17ce8a9831		11	dynsym	0	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/irsaudit	diagnostics	board-diagnostic	executable	n32	2967860	57830d1caab0efac		1170	dynsym	0	0	understood	docs/hip.md#what-the-ir-diagnostic-shows-of-the-host-interface	What the IR diagnostic shows of the host interface
-usr/diags/IR/data/1280x1024_60.vfo	diagnostics	board-diagnostic	data	-	17920	fbcaab1b00af730f		0		0	0	undocumented		
-usr/diags/IR/data/160x100_5000.vfo	diagnostics	board-diagnostic	data	-	17967	8b776633a7cf9df6		0		0	0	understood	docs/display-formats.md#video-formats-the-diagnostics-load	Video formats the diagnostics load
-usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	bba183206ff10567		0		0	0	undocumented		
-usr/diags/IR/data/aaspoke.tbus	diagnostics	board-diagnostic	data	-	23268	7318d08a61358a11		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/1280x1024_60.vfo	diagnostics	board-diagnostic	data	-	17920	fbcaab1b00af730f		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
+usr/diags/IR/data/160x100_5000.vfo	diagnostics	board-diagnostic	data	-	17967	8b776633a7cf9df6		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
+usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	bba183206ff10567		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
+usr/diags/IR/data/aaspoke.tbus	diagnostics	board-diagnostic	data	-	23268	7318d08a61358a11		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
 usr/diags/IR/data/bef1.qtcbist	diagnostics	board-diagnostic	data	-	6739	67fed9ca1743f173		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/bef1.tcbist	diagnostics	board-diagnostic	data	-	38120	6e3912a86607444d		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/bef1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	9261	06a29fa0dc60f29e		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
@@ -416,7 +416,7 @@ usr/diags/IR/data/tm9.short	diagnostics	board-diagnostic	data	-	219714	435e5dca1
 usr/diags/IR/data/tm9.short.Z	diagnostics	board-diagnostic	data	-	11395	62dfd6b4cc17737c		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/tm9.stuck	diagnostics	board-diagnostic	data	-	20033	2a75040397208027		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
 usr/diags/IR/data/tm9.stuck.Z	diagnostics	board-diagnostic	data	-	1209	f23976a9ed0f768a		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
-usr/diags/IR/data/tvo.vfo	diagnostics	board-diagnostic	data	-	17988	4759678be2e5a789		0		0	0	understood	docs/display-formats.md#video-formats-the-diagnostics-load	Video formats the diagnostics load
+usr/diags/IR/data/tvo.vfo	diagnostics	board-diagnostic	data	-	17988	4759678be2e5a789		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
 usr/diags/IR/data/voc1.qtcbist	diagnostics	board-diagnostic	data	-	5508	87e9203d91c7f76b		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/voc1.tcbist	diagnostics	board-diagnostic	data	-	33388	684dfdb933dc10e1		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/voc1b.qtcbist	diagnostics	board-diagnostic	data	-	6832	ee41e9a4fc881cf0		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
@@ -506,7 +506,7 @@ usr/gfx/ucode/KONA/dg4/vfo/1280x1024_25r2.vfo	microcode	board-microcode	data	-	1
 usr/gfx/ucode/KONA/dg4/vfo/1280x1024_25r3.vfo	microcode	board-microcode	data	-	18628	4e6d031bf7579d87		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/1280x1024_30r2.vfo	microcode	board-microcode	data	-	18324	dba01654e54934ab		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/1280x1024_50.vfo	microcode	board-microcode	data	-	17992	e076c61800c36ef3		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/1280x1024_60.vfo	microcode	board-microcode	data	-	17992	94412544fc431a62		0		0	0	undocumented		
+usr/gfx/ucode/KONA/dg4/vfo/1280x1024_60.vfo	microcode	board-microcode	data	-	17992	94412544fc431a62		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
 usr/gfx/ucode/KONA/dg4/vfo/1280x1024_72.vfo	microcode	board-microcode	data	-	17992	ff2cc2af6a202af5		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/1280x492_120s.vfo	microcode	board-microcode	data	-	18320	a7c1b4a57e2965ce		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/1280x720_5994p.vfo	microcode	board-microcode	data	-	18000	defdd50d4d941170		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
@@ -549,7 +549,7 @@ usr/gfx/ucode/KONA/dg4/vfo/800x600_60.vfo	microcode	board-microcode	data	-	18088
 usr/gfx/ucode/KONA/dg4/vfo/960x620_60.vfo	microcode	board-microcode	data	-	18088	26a776033189f4f0		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/960x680_60.vfo	microcode	board-microcode	data	-	18088	691d0c6e4f7c8ce4		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525.vfo	microcode	board-microcode	data	-	18388	a47ccdfe9be493aa		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
-usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo	microcode	board-microcode	data	-	17952	0fcb0981e8e15ff8		0		0	0	undocumented		
+usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo	microcode	board-microcode	data	-	17952	0fcb0981e8e15ff8		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
 usr/gfx/ucode/KONA/dg4/vfo/CCIR601_625.vfo	microcode	board-microcode	data	-	18388	148c1d55f145e83d		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/CCIR601_625_DGO.vfo	microcode	board-microcode	data	-	18388	cda7462e12f23d52		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
 usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1280x720_5994p.vfo	microcode	board-microcode	data	-	18000	c020fe7290806d8c		0		0	0	understood	docs/display-formats.md#video-formats-of-the-display-generator	Video formats of the display generator
@@ -596,5 +596,5 @@ usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	754
 usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	none	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
 usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	dynsym+dwarf	0	0	understood	docs/shared-libraries.md#shared-libraries-and-servers-that-carry-the-kona-pipe	Shared libraries and servers that carry the Kona pipe
 var/sysgen/master.d/gfxs	kernel-config	shared-data	data	-	399	ef56620faa1e0634		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
-var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
+var/sysgen/mtune/gfx	kernel-config	shared-data	data	-	2848	b8aa83ba9ac6c97b		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
 var/sysgen/system/gfx.sm	kernel-config	shared-data	data	-	878	47fa105a54a80d26		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration

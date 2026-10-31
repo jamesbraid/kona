@@ -455,3 +455,18 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/tm7.stuck.Z` | stuck-at test vectors for the `tm7` chain. | 4907 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm9.stuck` | stuck-at test vectors for the `tm9` chain. The compressed copy holds the same content once decompressed. | 4991 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm9.stuck.Z` | stuck-at test vectors for the `tm9` chain. The plain copy holds the same content. | 4991 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+
+### Test-bus and video format files
+
+**Established** (file contents). `aaspoke.tbus` and `tbusdata.Z` hold test-bus vectors: each vector line is `0 1` and a 16-digit hex word, apart from the `#` lines in `tbusdata`, which also carry `#cleartex` and `#crcmask` control lines. The `.vfo` files are compiled video formats, and each header names the `dVideoFormatCompiler` program. `irsaudit` holds the names of `1280x1024_60.vfo`, `CCIR601_525_DGO.vfo`, `tvo.vfo`, `aaspoke.tbus` and `tbusdata`. The `usr/gfx` copies of two formats differ from the data-directory copies of the same names.
+
+| File | Holds | Size (bytes) | Lines | Read by | Label |
+|---|---|---|---|---|---|
+| `usr/diags/IR/data/aaspoke.tbus` | test-bus vectors of the `aaspoke` test, one `0 1` line and a 16-digit hex word per vector | 23268 | 1108 | `usr/diags/IR/bin/irsaudit` (names `aaspoke.tbus`) | inferred |
+| `usr/diags/IR/data/tbusdata.Z` | compressed test-bus data of six tests (`tex2d_detail`, `samplemask`, `msalpha`, `linesRus`, `projtex` and `fog1`), each between `#start` and `#end` lines | 1281374 | 259381 | `usr/diags/IR/bin/irsaudit` (names `tbusdata`) | inferred |
+| `usr/diags/IR/data/160x100_5000.vfo` | video format whose description is a 5 kHz, 3:4 frame-rate test for finding the maximum frame rate of the IR | 17967 | 70 | `usr/diags/IR/bin/irsaudit` (names `160x100_5000.vfo`) | inferred |
+| `usr/diags/IR/data/1280x1024_60.vfo` | video format whose header holds `SGI Standard@N` | 17920 | 68 | `usr/diags/IR/bin/irsaudit` (names `1280x1024_60.vfo`) | inferred |
+| `usr/diags/IR/data/CCIR601_525_DGO.vfo` | video format whose header names `CCIR601_525_DGO` | 17920 | 67 | `usr/diags/IR/bin/irsaudit` (names `CCIR601_525_DGO.vfo`) | inferred |
+| `usr/diags/IR/data/tvo.vfo` | video format whose header holds `1024x768_60` | 17988 | 67 | `usr/diags/IR/bin/irsaudit` (names `tvo.vfo`) | inferred |
+| `usr/gfx/ucode/KONA/dg4/vfo/1280x1024_60.vfo` | video format whose header holds `1280x1024_60@N`, a different build from the data-directory copy | 17992 | 68 | `usr/diags/IR/bin/irsaudit` (names `1280x1024_60.vfo`) | inferred |
+| `usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo` | video format whose header only names the `dVideoFormatCompiler` program, a different build from the data-directory copy | 17952 | 65 | `usr/diags/IR/bin/irsaudit` (names `CCIR601_525_DGO.vfo`) | inferred |
