@@ -17,6 +17,7 @@ __pycache__/
 irixhistory
 
 # Proprietary IRIX binaries (see IRIX_FILES.md)
+root
 root/
 
 # Ghidra module build output and test dumps
