@@ -326,3 +326,79 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - RM self-test: the walking-ones sequence of `TEST_rm_extbist` and the `sdbist_*` registers, per TM.
 - GL_RENDERER string: decode the full composition in `GetBoardInfo` (the board-set 4 path at 0x0d9481fc is not read).
 - Not testable from software, so no route: throughput figures, GE and pixel clocks, chassis contents, the cancelled successor's design, multi-pipe composition cost, and the Onyx4 remarks.
+- GE, RM and DG per product, and the hinv and gfxinfo board names: a pipe's strings must match the product table (`KONA`, `KONAS`, `KONAL`, `KONAD`).
+- IR2 and IR2E internal names against the marketing names: a guest's hinv must print the internal name for each configured product.
+- IR3 gfxinfo report: diff a guest's gfxinfo output against the posted IR3 text, field by field.
+- Framebuffer and texture per RM for IR3 and IR4: texture allocation should fail at one RM's texture memory, not the sum.
+- Reality against IR visuals and pixel depth: check which multisample and alpha visuals findvis and ircombine -validate offer per RM revision.
+- ircombine video bandwidth: find the accept and reject boundary for channel mixes, and check it does not depend on RM count.
+- Stereo line rates: compile the shipped .vfo files and compare the line frequencies with the posted figures.
+- ireeprom: a combination written with -w must survive a guest reset, and -c must restore the default format.
+- Clip-map limits on IR: find the maximum level count and addressable size with libGL on the guest.
+- Immediate-mode and display-list throughput: use the posted rates as bounds for a timing model.
+- Display-list size: create lists beyond 15 MB and check the change in behaviour.
+- Multi-pipe compositing: read from one pipe and draw to another, and measure the share of pipe time.
+- DG5 sync and genlock: ircombine's sync source and format must round-trip into the downloaded .cmb.
+- Colour matrix on texture load and stencil visuals: a guest GL test for each internal format, and findvis stencil sizes.
+- GE fault word pairs: check whether the shipped KONA syslog strings use the same two-word format.
+- IR2 against IR1 features: diff the register and feature dumps of the GE14/GE16 and RM7/RM9 binaries.
+- Odyssey W=0 and preclip: test SGIX_vertex_preclip with near-W=0 triangles on the Odyssey model, with IR as the control.
+- Code-name claim ("Kona" as the InfiniteReality code name): check against the product names in the shipped binaries and PROM tables.
+- Processor count in the oral-history lead: check against the repo's count of per-RM pixel processors.
+- Clip-map paper: a clip-map test on the IR model, checking the 32768 per-texture limit and the toroidal sub-load.
+- RM repair thread: model the rm_extbist and irsaudit self-test sequence per TM, and check the TM-to-SDRAM bank count.
+- IR4 half-dome output: check the 8-channel DG5 limit in the video-format tools.
+- OpenGL extensions history: compare SGIS_point_parameters and SGIS_multitexture against the IR GL_EXTENSIONS strings.
+- RM9 upgrade garbage counts: boot with RM slot 0 empty or unreadable; expect the garbage-count report and death_reason 17.
+- IR2E kpm stall: flood the pipe and check the GFX FIFO watermarks (0x380, 0x180); kpm must parse a model dump.
+- Swapbuffer timeout sequence: force a swap timeout or GE stall and compare the log sequence and bad-state code.
+- Fatal-error death_reason table: grep the driver strings and inject each failure to compare the message sequence.
+- Onyx3 single RM10 gfxinfo: diff a one-RM10 GVO guest's gfxinfo against the posted text (KONAL or KONAD, Medium or Extra-Large).
+- First-generation board names and texture sizes: boot RM6, RM7 and RM9 configurations and compare the strings.
+- hinv -mvv GE14-2 record: compare the /hw path and board record with the posted listing.
+- Fchip rev 2 on Onyx IO4: flag or refuse an IR pipe; 5.3-era media must not offer IR.
+- ircombine and setmon EEPROM round trip: the .cmb must survive a gfx restart; 1920x1200 above 66 Hz must be refused.
+- ireeprom -c factory default: after a bad format, -c must restore 1280x1024 and EEPROM contents must persist across resets.
+- Video format DAC ceiling: vfc and ircombine must reject formats above about 222 MHz plus blanking.
+- Reality visuals: findvis on an RM8 guest shows no RGBA multisample or 10-bit visuals; check the 22 MB sizing.
+- Reality to IR2E mixing and DG5-8 swap: check RM-type hinv strings, reject three RMs on a pipe, decode the illegal-options word.
+- KCar fan state: the graphics-rack module must read High and not be settable.
+- IR2 texture banks: run the proxy-texture ladder and load a 2048x2048 RGBA texture; a one-byte format must use two bytes.
+- IR depth buffer readback: read GL_DEPTH_COMPONENT on a perspective gradient and check the bit layout and GL_DEPTH_BITS.
+- Pixel depth classes per RM count: run ircombine, glxinfo -t and findvis; check the 3 x 1024x768 listing and the refusals.
+- Encoder channel: only NTSC or PAL timing; vfc must not build analog composite; compare averaging and dither fields.
+- Sync jack selection: set the sync-type field in a .cmb and read the DG sync-output mux register.
+- STR_RECT stereo: build 1280x492_120s and compare the stereo visuals and the setmon X error with and without the .cmb.
+- GLKONA_NOIDMA display lists: run a many-display-list test with and without the variable.
+- Texture borders: request border=1 and GL_CLAMP with a border colour on an IR guest.
+- SGIX_shadow depth textures: query the extension strings and run the depth-to-texture shadow test.
+- glBitmap and FILTER4: draw glBitmap at fractional positions in a multisample visual; compare FILTER4 with bilinear.
+- Origin 3000 brick topology: a C-brick to G-brick link must be rejected; I, P and X to G accepted.
+- Patch 2326 and 2789 window IDs: window IDs on :0.0 and :0.1 must be distinct in a multipipe guest.
+- Multipipe X screens: xdpyinfo screen numbering on a two-pipe model and the multi-keyboard names.
+- Programmable VOF boards: run vfc with each board's rule files and check setmon accepts the output.
+- IR2 chip-ID words: compare per-ASIC ID values for GE14, RM7 and DG5 with the posted words.
+- Field-sequential 180q formats: compile each .vfo and check the 220 and 170 MHz DAC limits per channel.
+- DPLEX path: the pre-DAC path must not touch RM memory; frame N must go to pipe N mod k.
+- Swapready cabling: a two-pipe swap-group test must hang until both pipes swap; check GL_EXTENSIONS strings.
+- irsaudit test list: run the shipped irsaudit on a guest; a stuck framebuffer address bit must reproduce the impsq2 failure line.
+- glDrawPixels width above 4K: run widths 4095, 4096 and 4097 on an IR guest and check for wrap and GL errors.
+- Dynamic video resolution: set rendered size in 4-pixel steps through glXChannelRectSGIX; check the 320x320 floor.
+- Sirius source-channel rules: check the ircombine source-channel choices and the stacked option on a DG5 guest.
+- IRIXNet Onyx2 deskside hang: run irsaudit, ireeprom and the PROM graphics install on a pipe with no RM in slot 0.
+- IRIXNet no-RM Onyx2: diff nicprobe and empty-pipe gfxinfo for a modelled GE14-2, DG5-2 and RM8 pipe.
+- IRIXNet IR2E EEPROM flip: the PROM must refuse 0x2020202 while irsaudit still passes; compare ireeprom -i output.
+- IRIXNet Onyx1 IR EEPROM: feed gfxinfo an 0xFF or 0x20 EEPROM image and check the garbage forms.
+- Onyx 350 IR4 gfxinfo -vv: diff line by line; the model must not print RM11.
+- Nekonomicon topology: the G-brick and compute module must accept only the posted graphics types; no IR as built-in head.
+- SGIX_ir_instrument1 counters: COUNTALL against wall time for the 50 MHz clock; COUNTLOAD against bytes downloaded.
+- Pbuffer allocation: create pbuffers until allocation fails and compare the count with the framebuffer-per-RM sizing.
+- Visual depth on IR: RGB10 gives no 8/8/8 visuals; RGB12 changes the list.
+- Onyx2 Reality product figures: match hinv and gfxinfo for a modelled Reality (RM8, 40 MB, 16 or 64 MB texture).
+- Slashdot IR, IR2 and IR3 revisions: diff GE and RM revisions per product; only clocks and sizes may differ.
+- Slashdot 32-CPU simulator: build a 3200x3400 at 60 Hz format for a four-RM pipe and see whether it compiles.
+- Slashdot 128-channel claim: ircombine accepts 8 channels on one pipe and rejects 9.
+- Slashdot Xtown claim: read the XIO port speed and widget identity on an Onyx 3000 guest.
+- HN RAM-growth claim: check per-RM texture sizes and that IR3 and IR4 registers match IR2 except sizes and clocks.
+- HN frame scheduler: run the frame scheduler with a vertical-retrace interrupt; the period must follow the video format.
+- GLUT videoresize and shadowmap: run both demos on an IR guest; videoresize must change the scanned-out size.
