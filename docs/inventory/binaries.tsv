@@ -75,7 +75,7 @@ usr/diags/IR/data/1280x1024_60.vfo	diagnostics	board-diagnostic	data	-	17920	fbc
 usr/diags/IR/data/160x100_5000.vfo	diagnostics	board-diagnostic	data	-	17967	8b776633a7cf9df6		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
 usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	bba183206ff10567		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
 usr/diags/IR/data/aaspoke.tbus	diagnostics	board-diagnostic	data	-	23268	7318d08a61358a11		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
-usr/diags/IR/data/bef1.qtcbist	diagnostics	board-diagnostic	data	-	6739	67fed9ca1743f173		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/bef1.qtcbist	diagnostics	board-diagnostic	data	-	6739	67fed9ca1743f173		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/bef1.tcbist	diagnostics	board-diagnostic	data	-	38120	6e3912a86607444d		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/bef1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	9261	06a29fa0dc60f29e		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/bpln.netmap.Z	diagnostics	board-diagnostic	data	-	110673	79d6d9087ab547e4		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
@@ -129,10 +129,10 @@ usr/diags/IR/data/dg4_8voc_dacsamp.stuck.Z	diagnostics	board-diagnostic	data	-	3
 usr/diags/IR/data/dg4_8voc_dvp.netmap.Z	diagnostics	board-diagnostic	data	-	58825	f216bb50f04a36fc		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/dg4_8voc_dvp.short.Z	diagnostics	board-diagnostic	data	-	7888	3497cbf8564ae6c1		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/dg4_8voc_dvp.stuck.Z	diagnostics	board-diagnostic	data	-	3536	53ee4c6f2253167b		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
-usr/diags/IR/data/fm2.qtcbist	diagnostics	board-diagnostic	data	-	805	24180c5ea0dca631		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/fm2.tcbist	diagnostics	board-diagnostic	data	-	4290	fa93346ddf252603		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/fm2null.qtcbist	diagnostics	board-diagnostic	data	-	826	658adb67b6bc0dd1		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/fm2null.tcbist	diagnostics	board-diagnostic	data	-	4397	e7e59eb968264f60		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/fm2.qtcbist	diagnostics	board-diagnostic	data	-	805	24180c5ea0dca631		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/fm2.tcbist	diagnostics	board-diagnostic	data	-	4290	fa93346ddf252603		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/fm2null.qtcbist	diagnostics	board-diagnostic	data	-	826	658adb67b6bc0dd1		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/fm2null.tcbist	diagnostics	board-diagnostic	data	-	4397	e7e59eb968264f60		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/fpln_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	133686	47518445ca9fe211		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_2voc.short.Z	diagnostics	board-diagnostic	data	-	11482	c747070399c13f1a		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/fpln_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	1475	15efc67fe8b25ec0		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
@@ -346,9 +346,9 @@ usr/diags/IR/data/ge14_noge.stuck.Z	diagnostics	board-diagnostic	data	-	360	b8d1
 usr/diags/IR/data/ge14_top4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40554	f00b10e46fefe3db		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/ge14_top4ges.short.Z	diagnostics	board-diagnostic	data	-	5751	3a592a9275839cf8		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/ge14_top4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1464	0885566bbca6a8c2		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
-usr/diags/IR/data/ged1.qtcbist	diagnostics	board-diagnostic	data	-	5126	d1d0ab5bb9d01ea7		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/ged1.tcbist	diagnostics	board-diagnostic	data	-	22551	85ff87eca864cff5		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/ged1b.qtcbist	diagnostics	board-diagnostic	data	-	4910	b684965e09202c31		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/ged1.qtcbist	diagnostics	board-diagnostic	data	-	5126	d1d0ab5bb9d01ea7		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/ged1.tcbist	diagnostics	board-diagnostic	data	-	22551	85ff87eca864cff5		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/ged1b.qtcbist	diagnostics	board-diagnostic	data	-	4910	b684965e09202c31		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/ged1b.tcbist	diagnostics	board-diagnostic	data	-	22335	2509d717b0ae69a0		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/hip1.qtcbist	diagnostics	board-diagnostic	data	-	2483	38a2deae9fe264fd		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/hip1.tcbist	diagnostics	board-diagnostic	data	-	9453	440366e7aa861a39		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
