@@ -14229,7 +14229,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCur
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	ac52618daf0e		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	70f5a09ad464		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947b54	428	kona_writeconfig	mdebug	e9a62bd6f416		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947d00	456	kona_readconfig	mdebug	cd2aa47f9a28		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947d00	456	kona_readconfig	mdebug	cd2aa47f9a28		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947ec8	116	BindHyperpipe	mdebug	c2d6d7ddcd15		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947f3c	128	QueryHyperpipeBestAttrib	mdebug	8197ab404509		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947fbc	172	QueryHyperpipeAttrib	mdebug	fa4c3b132991		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -25351,7 +25351,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab8f0	108	MakeC
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab960	136	VisualsMatch	dwarf	d930c5a1f5ba		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dab9f0	852	__glKonCreateContext	dwarf+dynsym	eb55a94ec96b		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dabd50	368	kona_writeconfig	dwarf	d6ee06d156cd		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dabec0	396	kona_readconfig	dwarf	7e2691cc4577		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dabec0	396	kona_readconfig	dwarf	7e2691cc4577		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac050	128	BindHyperpipe	dwarf	1b650d439018		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac0d0	128	QueryHyperpipeBestAttrib	dwarf	6fa33bd73853		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac150	172	QueryHyperpipeAttrib	dwarf	125de1d9ce78		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -30928,7 +30928,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCur
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	ac52618daf0e		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd947848	780	__glKonCreateContext	dynsym+mdebug	70f5a09ad464		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947b54	428	kona_writeconfig	mdebug	e9a62bd6f416		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947d00	456	kona_readconfig	mdebug	cd2aa47f9a28		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947d00	456	kona_readconfig	mdebug	cd2aa47f9a28		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947ec8	116	BindHyperpipe	mdebug	c2d6d7ddcd15		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947f3c	128	QueryHyperpipeBestAttrib	mdebug	8197ab404509		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947fbc	172	QueryHyperpipeAttrib	mdebug	fa4c3b132991		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -42050,7 +42050,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b8f0	108	MakeC
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b960	136	VisualsMatch	dwarf	d930c5a1f5ba		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x218b9f0	852	__glKonCreateContext	dwarf+dynsym	eb55a94ec96b		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218bd50	368	kona_writeconfig	dwarf	d6ee06d156cd		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218bec0	396	kona_readconfig	dwarf	7e2691cc4577		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218bec0	396	kona_readconfig	dwarf	7e2691cc4577		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c050	128	BindHyperpipe	dwarf	1b650d439018		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c0d0	128	QueryHyperpipeBestAttrib	dwarf	6fa33bd73853		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c150	172	QueryHyperpipeAttrib	dwarf	125de1d9ce78		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
