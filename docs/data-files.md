@@ -349,3 +349,22 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/tm7.short.Z` | shorts test vectors for the `tm7` chain. | 4907 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm9.short` | shorts test vectors for the `tm9` chain. The compressed copy holds the same content once decompressed. | 4991 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm9.short.Z` | shorts test vectors for the `tm9` chain. The plain copy holds the same content. | 4991 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+
+### Stuck-at vectors
+
+**Established** (file contents, all 78 chains). A `*.stuck` file has the same four-line header and two-lines-per-vector layout as the `*.short` set, with the same characters. Most chains have 2 vectors; the vector count is in each row. The `irsaudit` binary names the `*.stuck` pattern beside the `*.short` pattern.
+
+| File | Holds | Chain length | Vectors | Read by | Label |
+|---|---|---|---|---|---|
+| `usr/diags/IR/data/bpln.stuck.Z` | stuck-at test vectors for the `bpln` chain. | 12682 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_hilo.stuck.Z` | stuck-at test vectors for the `bpln_hilo` chain. | 12726 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_hilolite.stuck.Z` | stuck-at test vectors for the `bpln_hilolite` chain. | 8296 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_oheo.stuck` | stuck-at test vectors for the `bpln_oheo` chain. The compressed copy holds the same content once decompressed. | 12870 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_oheo.stuck.Z` | stuck-at test vectors for the `bpln_oheo` chain. The plain copy holds the same content. | 12870 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc.stuck.Z` | stuck-at test vectors for the `dg4_2voc` chain. | 2166 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dacsamp.stuck.Z` | stuck-at test vectors for the `dg4_2voc_dacsamp` chain. | 2166 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp.stuck` | stuck-at test vectors for the `dg4_2voc_dplex_dacsamp` chain. The compressed copy holds the same content once decompressed. | 4461 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp.stuck.Z` | stuck-at test vectors for the `dg4_2voc_dplex_dacsamp` chain. The plain copy holds the same content. | 4461 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.stuck` | stuck-at test vectors for the `dg4_2voc_dplex_dacsamp_lvds` chain. The compressed copy holds the same content once decompressed. | 4461 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.stuck.Z` | stuck-at test vectors for the `dg4_2voc_dplex_dacsamp_lvds` chain. The plain copy holds the same content. | 4461 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dvp.stuck.Z` | stuck-at test vectors for the `dg4_2voc_dvp` chain. | 2774 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
