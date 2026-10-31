@@ -15313,7 +15313,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c0d50	56	__glFreeAsync
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c0d88	56	__glDisposeAsyncMarker	dynsym+mdebug	c696c6f22c10		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c0dc0	220	__glim_AlphaFunc	dynsym+mdebug	3751d8104b5a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c0e9c	440	__glim_BlendFunc	dynsym+mdebug	45484b733de9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c1054	248	__glim_BlendEquationEXT	dynsym+mdebug	e56dd5850b1e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c1054	248	__glim_BlendEquationEXT	dynsym+mdebug	e56dd5850b1e		in	named-only	docs/capability-trees.md#__glim_enable-ip27kona32	__glim_Enable (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c114c	324	__glim_ClearAccum	dynsym+mdebug	c9ad5531dbe5		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c1290	300	__glim_ClearColor	dynsym+mdebug	cf8b3beacff7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c13bc	172	__glim_ClearDepth	dynsym+mdebug	5ac381c2d8e9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -16550,7 +16550,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b744	184	__glUpdateVi
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b7fc	176	__glUpdateViewportTransform	dynsym+mdebug	ad0c5cea81c1		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b8ac	276	__glim_Viewport	dynsym+mdebug	a444524deda0		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b9c0	144	__glim_DepthRange	dynsym+mdebug	f777882649d0		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3ba50	160	__glReadjustZCounts	dynsym+mdebug	35dca912e208		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3ba50	160	__glReadjustZCounts	dynsym+mdebug	35dca912e208		in	named-only	docs/capability-trees.md#__glim_disable-ip27kona32	__glim_Disable (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3baf0	300	__glim_Scissor	dynsym+mdebug	7eb40d177067		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3bc1c	336	__glim_ClipPlane	dynsym+mdebug	0e02ad2de168		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3bd6c	176	__glPushModelViewMatrix	dynsym+mdebug	24a190401252		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -20849,7 +20849,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bbb70	52	__glFreeAsy
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bbbb0	52	__glDisposeAsyncMarker	dwarf+dynsym	d3cf8a8f7aa6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bbbf0	196	__glim_AlphaFunc	dwarf+dynsym	b33c56f18b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bbcc0	600	__glim_BlendFunc	dwarf+dynsym	98d87ba6535c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bbf20	296	__glim_BlendEquationEXT	dwarf+dynsym	3edf1edd424b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bbf20	296	__glim_BlendEquationEXT	dwarf+dynsym	3edf1edd424b		in	named-only	docs/capability-trees.md#__glim_enable-ip27kona32	__glim_Enable (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bc050	204	__glim_ClearAccum	dwarf+dynsym	3d5224f27886		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bc120	184	__glim_ClearColor	dwarf+dynsym	32c9e7cb5733		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bc1e0	132	__glim_ClearDepth	dwarf+dynsym	e96b04424117		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -22086,7 +22086,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35c70	176	__glUpdate
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35d20	172	__glUpdateViewportTransform	dwarf+dynsym	fdba2ba04a7f		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35dd0	240	__glim_Viewport	dwarf+dynsym	607e7e22fb78		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35ec0	140	__glim_DepthRange	dwarf+dynsym	a702f804a06d		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35f50	168	__glReadjustZCounts	dwarf+dynsym	d6e3b0256a87		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35f50	168	__glReadjustZCounts	dwarf+dynsym	d6e3b0256a87		in	named-only	docs/capability-trees.md#__glim_disable-ip27kona32	__glim_Disable (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda36000	276	__glim_Scissor	dwarf+dynsym	afe3c3dd21ec		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda36120	340	__glim_ClipPlane	dwarf+dynsym	6ca2fa41a786		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda36280	428	__glPushModelViewMatrix	dwarf+dynsym	c923dd68ca3f		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -26429,7 +26429,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1f910	52	__glFreeAsy
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1f950	52	__glDisposeAsyncMarker	dwarf+dynsym	b6eb045a7e88		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1f990	196	__glim_AlphaFunc	dwarf+dynsym	490a7ed2c561		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1fa60	600	__glim_BlendFunc	dwarf+dynsym	5e4d86925da4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1fcc0	296	__glim_BlendEquationEXT	dwarf+dynsym	7e417cf0c3d2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1fcc0	296	__glim_BlendEquationEXT	dwarf+dynsym	7e417cf0c3d2		in	named-only	docs/capability-trees.md#__glim_enable-ip27kona32	__glim_Enable (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1fdf0	204	__glim_ClearAccum	dwarf+dynsym	71401f48bb61		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1fec0	184	__glim_ClearColor	dwarf+dynsym	3dc41f94c04c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e1ff80	132	__glim_ClearDepth	dwarf+dynsym	3811051e54b2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -27666,7 +27666,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9ad10	176	__glUpdate
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9adc0	184	__glUpdateViewportTransform	dwarf+dynsym	79fa72c0585e		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9ae80	240	__glim_Viewport	dwarf+dynsym	4cb9e2f4224c		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9af70	136	__glim_DepthRange	dwarf+dynsym	089ca3f3cc0a		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9b000	192	__glReadjustZCounts	dwarf+dynsym	a1e09abc282e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9b000	192	__glReadjustZCounts	dwarf+dynsym	a1e09abc282e		in	named-only	docs/capability-trees.md#__glim_disable-ip27kona32	__glim_Disable (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9b0c0	276	__glim_Scissor	dwarf+dynsym	d5aba9705981		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9b1e0	328	__glim_ClipPlane	dwarf+dynsym	1c81aa0eafca		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9b330	316	__glPushModelViewMatrix	dwarf+dynsym	1dd069f70ee9		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -32012,7 +32012,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c0d50	56	__glFreeAsync
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c0d88	56	__glDisposeAsyncMarker	dynsym+mdebug	c696c6f22c10		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c0dc0	220	__glim_AlphaFunc	dynsym+mdebug	3751d8104b5a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c0e9c	440	__glim_BlendFunc	dynsym+mdebug	45484b733de9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c1054	248	__glim_BlendEquationEXT	dynsym+mdebug	e56dd5850b1e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c1054	248	__glim_BlendEquationEXT	dynsym+mdebug	e56dd5850b1e		in	named-only	docs/capability-trees.md#__glim_enable-ip27kona32	__glim_Enable (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c114c	324	__glim_ClearAccum	dynsym+mdebug	c9ad5531dbe5		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c1290	300	__glim_ClearColor	dynsym+mdebug	cf8b3beacff7		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c13bc	172	__glim_ClearDepth	dynsym+mdebug	5ac381c2d8e9		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -33249,7 +33249,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b744	184	__glUpdateVi
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b7fc	176	__glUpdateViewportTransform	dynsym+mdebug	ad0c5cea81c1		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b8ac	276	__glim_Viewport	dynsym+mdebug	a444524deda0		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b9c0	144	__glim_DepthRange	dynsym+mdebug	f777882649d0		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3ba50	160	__glReadjustZCounts	dynsym+mdebug	35dca912e208		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3ba50	160	__glReadjustZCounts	dynsym+mdebug	35dca912e208		in	named-only	docs/capability-trees.md#__glim_disable-ip27kona32	__glim_Disable (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3baf0	300	__glim_Scissor	dynsym+mdebug	7eb40d177067		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3bc1c	336	__glim_ClipPlane	dynsym+mdebug	0e02ad2de168		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3bd6c	176	__glPushModelViewMatrix	dynsym+mdebug	24a190401252		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -37548,7 +37548,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bbb70	52	__glFreeAsy
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bbbb0	52	__glDisposeAsyncMarker	dwarf+dynsym	d3cf8a8f7aa6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bbbf0	196	__glim_AlphaFunc	dwarf+dynsym	b33c56f18b1c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bbcc0	600	__glim_BlendFunc	dwarf+dynsym	98d87ba6535c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bbf20	296	__glim_BlendEquationEXT	dwarf+dynsym	3edf1edd424b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bbf20	296	__glim_BlendEquationEXT	dwarf+dynsym	3edf1edd424b		in	named-only	docs/capability-trees.md#__glim_enable-ip27kona32	__glim_Enable (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bc050	204	__glim_ClearAccum	dwarf+dynsym	3d5224f27886		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bc120	184	__glim_ClearColor	dwarf+dynsym	32c9e7cb5733		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bc1e0	132	__glim_ClearDepth	dwarf+dynsym	e96b04424117		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -38785,7 +38785,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35c70	176	__glUpdate
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35d20	172	__glUpdateViewportTransform	dwarf+dynsym	fdba2ba04a7f		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35dd0	240	__glim_Viewport	dwarf+dynsym	607e7e22fb78		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35ec0	140	__glim_DepthRange	dwarf+dynsym	a702f804a06d		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35f50	168	__glReadjustZCounts	dwarf+dynsym	d6e3b0256a87		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35f50	168	__glReadjustZCounts	dwarf+dynsym	d6e3b0256a87		in	named-only	docs/capability-trees.md#__glim_disable-ip27kona32	__glim_Disable (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda36000	276	__glim_Scissor	dwarf+dynsym	afe3c3dd21ec		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda36120	340	__glim_ClipPlane	dwarf+dynsym	6ca2fa41a786		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda36280	428	__glPushModelViewMatrix	dwarf+dynsym	c923dd68ca3f		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -43128,7 +43128,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ff910	52	__glFreeAsy
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ff950	52	__glDisposeAsyncMarker	dwarf+dynsym	b6eb045a7e88		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ff990	196	__glim_AlphaFunc	dwarf+dynsym	490a7ed2c561		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ffa60	600	__glim_BlendFunc	dwarf+dynsym	5e4d86925da4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ffcc0	296	__glim_BlendEquationEXT	dwarf+dynsym	7e417cf0c3d2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ffcc0	296	__glim_BlendEquationEXT	dwarf+dynsym	7e417cf0c3d2		in	named-only	docs/capability-trees.md#__glim_enable-ip27kona32	__glim_Enable (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ffdf0	204	__glim_ClearAccum	dwarf+dynsym	71401f48bb61		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ffec0	184	__glim_ClearColor	dwarf+dynsym	3dc41f94c04c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21fff80	132	__glim_ClearDepth	dwarf+dynsym	3811051e54b2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -44365,7 +44365,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227ad10	176	__glUpdate
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227adc0	184	__glUpdateViewportTransform	dwarf+dynsym	79fa72c0585e		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227ae80	240	__glim_Viewport	dwarf+dynsym	4cb9e2f4224c		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227af70	136	__glim_DepthRange	dwarf+dynsym	089ca3f3cc0a		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227b000	192	__glReadjustZCounts	dwarf+dynsym	a1e09abc282e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227b000	192	__glReadjustZCounts	dwarf+dynsym	a1e09abc282e		in	named-only	docs/capability-trees.md#__glim_disable-ip27kona32	__glim_Disable (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227b0c0	276	__glim_Scissor	dwarf+dynsym	d5aba9705981		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227b1e0	328	__glim_ClipPlane	dwarf+dynsym	1c81aa0eafca		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227b330	316	__glPushModelViewMatrix	dwarf+dynsym	1dd069f70ee9		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
