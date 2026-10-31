@@ -15655,10 +15655,10 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dac30	224	__glim_Feedb
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dad10	156	__glim_PassThrough	dynsym+mdebug	f950810f6574		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dadac	80	__glFeedbackTag	dynsym+mdebug	f5c2d6754429		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9dadfc	44304	feedback	mdebug	f474b4acf89b		in	named-only	docs/hip.md#where-a-failed-host-dma-is-reported	Where a failed host DMA is reported
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db27c	96	__glFeedbackCopyPixels	dynsym+mdebug	debcbee4b815		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db2dc	96	__glFeedbackDrawPixels	dynsym+mdebug	2b9bc029a5af		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db33c	96	__glFeedbackBitmap	dynsym+mdebug	59a38f7ff4ad		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db39c	96	__glFeedbackPoint	dynsym+mdebug	0783d4cf1ed0		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db27c	96	__glFeedbackCopyPixels	dynsym+mdebug	debcbee4b815		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db2dc	96	__glFeedbackDrawPixels	dynsym+mdebug	2b9bc029a5af		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db33c	96	__glFeedbackBitmap	dynsym+mdebug	59a38f7ff4ad		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db39c	96	__glFeedbackPoint	dynsym+mdebug	0783d4cf1ed0		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db3fc	228	__glFeedbackLine	dynsym+mdebug	ef1c07b6d8d4		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db4e0	1496	__glFeedbackTriangle	dynsym+mdebug	f89256191ddc		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dbac0	104	__glim_Finish	dynsym+mdebug	f089f4fdc637		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
@@ -32354,10 +32354,10 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dac30	224	__glim_Feedb
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dad10	156	__glim_PassThrough	dynsym+mdebug	f950810f6574		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dadac	80	__glFeedbackTag	dynsym+mdebug	f5c2d6754429		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9dadfc	44304	feedback	mdebug	f474b4acf89b		in	named-only	docs/hip.md#where-a-failed-host-dma-is-reported	Where a failed host DMA is reported
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db27c	96	__glFeedbackCopyPixels	dynsym+mdebug	debcbee4b815		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db2dc	96	__glFeedbackDrawPixels	dynsym+mdebug	2b9bc029a5af		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db33c	96	__glFeedbackBitmap	dynsym+mdebug	59a38f7ff4ad		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db39c	96	__glFeedbackPoint	dynsym+mdebug	0783d4cf1ed0		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db27c	96	__glFeedbackCopyPixels	dynsym+mdebug	debcbee4b815		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db2dc	96	__glFeedbackDrawPixels	dynsym+mdebug	2b9bc029a5af		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db33c	96	__glFeedbackBitmap	dynsym+mdebug	59a38f7ff4ad		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db39c	96	__glFeedbackPoint	dynsym+mdebug	0783d4cf1ed0		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db3fc	228	__glFeedbackLine	dynsym+mdebug	ef1c07b6d8d4		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db4e0	1496	__glFeedbackTriangle	dynsym+mdebug	f89256191ddc		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dbac0	104	__glim_Finish	dynsym+mdebug	f089f4fdc637		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
