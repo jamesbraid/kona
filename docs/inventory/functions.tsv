@@ -15342,8 +15342,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c2d30	116	__glim_Light
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c2da4	300	__glim_LightModeliv	dynsym+mdebug	7365c8a7b9ee		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c2ed0	116	__glim_LightModeli	dynsym+mdebug	deb49edbc83b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c2f44	144	__glim_LineStipple	dynsym+mdebug	c9e200d2ba3d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c2fd4	80	RoundWidth	mdebug	5a377c3d885a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c3024	504	ClampWidth	mdebug	ac3697c059af		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c2fd4	80	RoundWidth	mdebug	5a377c3d885a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c3024	504	ClampWidth	mdebug	ac3697c059af		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c30a0	228	__glim_LineWidth	dynsym+mdebug	01c1bf20c9b4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c3184	152	__glim_LogicOp	dynsym+mdebug	794f9bcb4def		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c321c	1112	ApplyParameterF	mdebug	d996582fc3ea		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -15353,8 +15353,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c3614	96	__glim_Materi
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c3674	1472	ApplyParameterI	mdebug	36e6a71b2ff8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c3a10	452	__glim_Materialiv	dynsym+mdebug	c08d12b612f0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c3bd4	96	__glim_Materiali	dynsym+mdebug	aa6d0aeb976d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c3c34	80	RoundSize	mdebug	bc31d60bbb20		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c3c84	26392	ClampSize	mdebug	84eea79a3a94		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c3c34	80	RoundSize	mdebug	bc31d60bbb20		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9c3c84	26392	ClampSize	mdebug	84eea79a3a94		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c3d00	228	__glim_PointSize	dynsym+mdebug	57599d98bb57		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c3de4	300	__glim_PolygonMode	dynsym+mdebug	a10cf2089e14		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9c3f10	188	__glim_PolygonStipple	dynsym+mdebug	cfa1eaddecfb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -20878,8 +20878,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bda80	108	__glim_Lig
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bdaf0	276	__glim_LightModeliv	dwarf+dynsym	9780d6638ddf		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bdc10	100	__glim_LightModeli	dwarf+dynsym	c17da89d6947		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bdc80	136	__glim_LineStipple	dwarf+dynsym	17f7518feb04		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bdd10	44	RoundWidth	dwarf+funcnames	151c5c64a9b8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bdd40	80	ClampWidth	dwarf+funcnames	994713bbd3a2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bdd10	44	RoundWidth	dwarf+funcnames	151c5c64a9b8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bdd40	80	ClampWidth	dwarf+funcnames	994713bbd3a2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bdd90	212	__glim_LineWidth	dwarf+dynsym	a6f4c81fb958		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9bde70	156	__glim_LogicOp	dwarf+dynsym	829beae8eb65		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9bdf10	388	ApplyParameterF	dwarf+funcnames	4601448a8791		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -20889,8 +20889,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9be310	84	__glim_Mate
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9be370	776	ApplyParameterI	dwarf+funcnames	16e5c657119a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9be680	392	__glim_Materialiv	dwarf+dynsym	76294377e0db		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9be810	84	__glim_Materiali	dwarf+dynsym	e99b5bc35c49		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9be870	44	RoundSize	dwarf+funcnames	151c5c64a9b8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9be8a0	80	ClampSize	dwarf+funcnames	94eea4954023		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9be870	44	RoundSize	dwarf+funcnames	151c5c64a9b8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9be8a0	80	ClampSize	dwarf+funcnames	94eea4954023		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9be8f0	212	__glim_PointSize	dwarf+dynsym	250073718926		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9be9d0	268	__glim_PolygonMode	dwarf+dynsym	42e35bcf4fbc		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9beae0	168	__glim_PolygonStipple	dwarf+dynsym	341bb024ef9b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -26458,8 +26458,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e21860	108	__glim_Lig
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e218d0	272	__glim_LightModeliv	dwarf+dynsym	d83150ce36f2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e219e0	100	__glim_LightModeli	dwarf+dynsym	2859d398473f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e21a50	136	__glim_LineStipple	dwarf+dynsym	a0fab6c31725		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e21ae0	44	RoundWidth	dwarf	bdeec0089c54		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e21b10	80	ClampWidth	dwarf	9b4498ee4050		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e21ae0	44	RoundWidth	dwarf	bdeec0089c54		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e21b10	80	ClampWidth	dwarf	9b4498ee4050		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e21b60	208	__glim_LineWidth	dwarf+dynsym	e6f5562e3380		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e21c30	156	__glim_LogicOp	dwarf+dynsym	25d5ec55c90b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e21cd0	388	ApplyParameterF	dwarf	cf3f0540c3b5		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -26469,8 +26469,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e220d0	84	__glim_Mate
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e22130	776	ApplyParameterI	dwarf	6d3674a9d886		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e22440	400	__glim_Materialiv	dwarf+dynsym	dbb1aab60eb6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e225d0	84	__glim_Materiali	dwarf+dynsym	57b352b5fbd1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e22630	44	RoundSize	dwarf	bdeec0089c54		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e22660	80	ClampSize	dwarf	ee5cffeb8eba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e22630	44	RoundSize	dwarf	bdeec0089c54		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e22660	80	ClampSize	dwarf	ee5cffeb8eba		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e226b0	208	__glim_PointSize	dwarf+dynsym	10021e0942d2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e22780	268	__glim_PolygonMode	dwarf+dynsym	67bde79cc4dc		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e22890	168	__glim_PolygonStipple	dwarf+dynsym	19a438154860		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -32041,8 +32041,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c2d30	116	__glim_Light
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c2da4	300	__glim_LightModeliv	dynsym+mdebug	7365c8a7b9ee		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c2ed0	116	__glim_LightModeli	dynsym+mdebug	deb49edbc83b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c2f44	144	__glim_LineStipple	dynsym+mdebug	c9e200d2ba3d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c2fd4	80	RoundWidth	mdebug	5a377c3d885a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c3024	504	ClampWidth	mdebug	ac3697c059af		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c2fd4	80	RoundWidth	mdebug	5a377c3d885a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c3024	504	ClampWidth	mdebug	ac3697c059af		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c30a0	228	__glim_LineWidth	dynsym+mdebug	01c1bf20c9b4		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c3184	152	__glim_LogicOp	dynsym+mdebug	794f9bcb4def		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c321c	1112	ApplyParameterF	mdebug	d996582fc3ea		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -32052,8 +32052,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c3614	96	__glim_Materi
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c3674	1472	ApplyParameterI	mdebug	36e6a71b2ff8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c3a10	452	__glim_Materialiv	dynsym+mdebug	c08d12b612f0		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c3bd4	96	__glim_Materiali	dynsym+mdebug	aa6d0aeb976d		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c3c34	80	RoundSize	mdebug	bc31d60bbb20		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c3c84	26392	ClampSize	mdebug	84eea79a3a94		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c3c34	80	RoundSize	mdebug	bc31d60bbb20		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9c3c84	26392	ClampSize	mdebug	84eea79a3a94		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c3d00	228	__glim_PointSize	dynsym+mdebug	57599d98bb57		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c3de4	300	__glim_PolygonMode	dynsym+mdebug	a10cf2089e14		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9c3f10	188	__glim_PolygonStipple	dynsym+mdebug	cfa1eaddecfb		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -37577,8 +37577,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bda80	108	__glim_Lig
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bdaf0	276	__glim_LightModeliv	dwarf+dynsym	9780d6638ddf		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bdc10	100	__glim_LightModeli	dwarf+dynsym	c17da89d6947		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bdc80	136	__glim_LineStipple	dwarf+dynsym	17f7518feb04		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bdd10	44	RoundWidth	dwarf+funcnames	151c5c64a9b8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bdd40	80	ClampWidth	dwarf+funcnames	994713bbd3a2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bdd10	44	RoundWidth	dwarf+funcnames	151c5c64a9b8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bdd40	80	ClampWidth	dwarf+funcnames	994713bbd3a2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bdd90	212	__glim_LineWidth	dwarf+dynsym	a6f4c81fb958		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9bde70	156	__glim_LogicOp	dwarf+dynsym	829beae8eb65		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9bdf10	388	ApplyParameterF	dwarf+funcnames	4601448a8791		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -37588,8 +37588,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9be310	84	__glim_Mate
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9be370	776	ApplyParameterI	dwarf+funcnames	16e5c657119a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9be680	392	__glim_Materialiv	dwarf+dynsym	76294377e0db		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9be810	84	__glim_Materiali	dwarf+dynsym	e99b5bc35c49		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9be870	44	RoundSize	dwarf+funcnames	151c5c64a9b8		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9be8a0	80	ClampSize	dwarf+funcnames	94eea4954023		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9be870	44	RoundSize	dwarf+funcnames	151c5c64a9b8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9be8a0	80	ClampSize	dwarf+funcnames	94eea4954023		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9be8f0	212	__glim_PointSize	dwarf+dynsym	250073718926		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9be9d0	268	__glim_PolygonMode	dwarf+dynsym	42e35bcf4fbc		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9beae0	168	__glim_PolygonStipple	dwarf+dynsym	341bb024ef9b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -43157,8 +43157,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2201860	108	__glim_Lig
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22018d0	272	__glim_LightModeliv	dwarf+dynsym	d83150ce36f2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22019e0	100	__glim_LightModeli	dwarf+dynsym	2859d398473f		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2201a50	136	__glim_LineStipple	dwarf+dynsym	a0fab6c31725		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2201ae0	44	RoundWidth	dwarf	bdeec0089c54		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2201b10	80	ClampWidth	dwarf	9b4498ee4050		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2201ae0	44	RoundWidth	dwarf	bdeec0089c54		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2201b10	80	ClampWidth	dwarf	9b4498ee4050		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2201b60	208	__glim_LineWidth	dwarf+dynsym	e6f5562e3380		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2201c30	156	__glim_LogicOp	dwarf+dynsym	25d5ec55c90b		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2201cd0	388	ApplyParameterF	dwarf	cf3f0540c3b5		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -43168,8 +43168,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22020d0	84	__glim_Mate
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2202130	776	ApplyParameterI	dwarf	6d3674a9d886		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2202440	400	__glim_Materialiv	dwarf+dynsym	dbb1aab60eb6		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22025d0	84	__glim_Materiali	dwarf+dynsym	57b352b5fbd1		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2202630	44	RoundSize	dwarf	bdeec0089c54		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2202660	80	ClampSize	dwarf	ee5cffeb8eba		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2202630	44	RoundSize	dwarf	bdeec0089c54		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2202660	80	ClampSize	dwarf	ee5cffeb8eba		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22026b0	208	__glim_PointSize	dwarf+dynsym	10021e0942d2		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2202780	268	__glim_PolygonMode	dwarf+dynsym	67bde79cc4dc		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2202890	168	__glim_PolygonStipple	dwarf+dynsym	19a438154860		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
