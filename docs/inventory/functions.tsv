@@ -15640,9 +15640,9 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d8b54	328	__glDoEvalCo
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d8c9c	520	__glEvalMesh1Line	dynsym+mdebug	a5db66dd9d89		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d8ea4	520	__glEvalMesh1Point	dynsym+mdebug	b42e1c29d946		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d90ac	3868	sendChange	mdebug	404a4eac82a9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d92b0	1052	__glEvalMesh2Fill	dynsym+mdebug	9a25a5dd013e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d92b0	1052	__glEvalMesh2Fill	dynsym+mdebug	9a25a5dd013e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d96cc	688	__glEvalMesh2Point	dynsym+mdebug	f4ef6a35c458		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d997c	1612	__glEvalMesh2Line	dynsym+mdebug	c373494ffb81		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d997c	1612	__glEvalMesh2Line	dynsym+mdebug	c373494ffb81		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d9fc8	320	NurbsKnots1Common	mdebug	9f654d22e1c5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9da108	3316	NurbsKnots2Common	mdebug	22a4736e2471		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9da26c	208	__glim_NurbsKnots1dSGIX	dynsym+mdebug	457ba4e88c97		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -21176,9 +21176,9 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d4900	260	__glDoEval
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d4a10	456	__glEvalMesh1Line	dwarf+dynsym	de9cc4e9c111		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d4be0	456	__glEvalMesh1Point	dwarf+dynsym	3867875a9562		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d4db0	416	sendChange	dwarf+funcnames	ce0f88e0483f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d4f50	896	__glEvalMesh2Fill	dwarf+dynsym	3050c69d9244		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d4f50	896	__glEvalMesh2Fill	dwarf+dynsym	3050c69d9244		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d52d0	632	__glEvalMesh2Point	dwarf+dynsym	c5fbef8ce81f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d5550	1464	__glEvalMesh2Line	dwarf+dynsym	e513bdd3fc03		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d5550	1464	__glEvalMesh2Line	dwarf+dynsym	e513bdd3fc03		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d5b10	228	NurbsKnots1Common	dwarf+funcnames	783a77a617e7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d5c00	264	NurbsKnots2Common	dwarf+funcnames	6cdba87a2685		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d5d10	196	__glim_NurbsKnots1dSGIX	dwarf+dynsym	cab07831abaf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -26756,9 +26756,9 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e386c0	260	__glDoEval
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e387d0	456	__glEvalMesh1Line	dwarf+dynsym	dce11b04a6b8		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e389a0	456	__glEvalMesh1Point	dwarf+dynsym	5e1c1997ec84		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e38b70	416	sendChange	dwarf	16ccb184e4a5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e38d10	896	__glEvalMesh2Fill	dwarf+dynsym	a7ce0d3b09bc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e38d10	896	__glEvalMesh2Fill	dwarf+dynsym	a7ce0d3b09bc		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e39090	632	__glEvalMesh2Point	dwarf+dynsym	95edfe473069		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e39310	1464	__glEvalMesh2Line	dwarf+dynsym	41f9db6f5507		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e39310	1464	__glEvalMesh2Line	dwarf+dynsym	41f9db6f5507		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e398d0	232	NurbsKnots1Common	dwarf	b6b78bf722d2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e399c0	284	NurbsKnots2Common	dwarf	84132cefb0f7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e39ae0	196	__glim_NurbsKnots1dSGIX	dwarf+dynsym	25b78d0cfc66		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -32339,9 +32339,9 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d8b54	328	__glDoEvalCo
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d8c9c	520	__glEvalMesh1Line	dynsym+mdebug	a5db66dd9d89		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d8ea4	520	__glEvalMesh1Point	dynsym+mdebug	b42e1c29d946		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d90ac	3868	sendChange	mdebug	404a4eac82a9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d92b0	1052	__glEvalMesh2Fill	dynsym+mdebug	9a25a5dd013e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d92b0	1052	__glEvalMesh2Fill	dynsym+mdebug	9a25a5dd013e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d96cc	688	__glEvalMesh2Point	dynsym+mdebug	f4ef6a35c458		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d997c	1612	__glEvalMesh2Line	dynsym+mdebug	c373494ffb81		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d997c	1612	__glEvalMesh2Line	dynsym+mdebug	c373494ffb81		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d9fc8	320	NurbsKnots1Common	mdebug	9f654d22e1c5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9da108	3316	NurbsKnots2Common	mdebug	22a4736e2471		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9da26c	208	__glim_NurbsKnots1dSGIX	dynsym+mdebug	457ba4e88c97		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -37875,9 +37875,9 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d4900	260	__glDoEval
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d4a10	456	__glEvalMesh1Line	dwarf+dynsym	de9cc4e9c111		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d4be0	456	__glEvalMesh1Point	dwarf+dynsym	3867875a9562		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d4db0	416	sendChange	dwarf+funcnames	ce0f88e0483f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d4f50	896	__glEvalMesh2Fill	dwarf+dynsym	3050c69d9244		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d4f50	896	__glEvalMesh2Fill	dwarf+dynsym	3050c69d9244		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d52d0	632	__glEvalMesh2Point	dwarf+dynsym	c5fbef8ce81f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d5550	1464	__glEvalMesh2Line	dwarf+dynsym	e513bdd3fc03		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d5550	1464	__glEvalMesh2Line	dwarf+dynsym	e513bdd3fc03		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d5b10	228	NurbsKnots1Common	dwarf+funcnames	783a77a617e7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d5c00	264	NurbsKnots2Common	dwarf+funcnames	6cdba87a2685		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d5d10	196	__glim_NurbsKnots1dSGIX	dwarf+dynsym	cab07831abaf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -43455,9 +43455,9 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22186c0	260	__glDoEval
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22187d0	456	__glEvalMesh1Line	dwarf+dynsym	dce11b04a6b8		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22189a0	456	__glEvalMesh1Point	dwarf+dynsym	5e1c1997ec84		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2218b70	416	sendChange	dwarf	16ccb184e4a5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2218d10	896	__glEvalMesh2Fill	dwarf+dynsym	a7ce0d3b09bc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2218d10	896	__glEvalMesh2Fill	dwarf+dynsym	a7ce0d3b09bc		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2219090	632	__glEvalMesh2Point	dwarf+dynsym	95edfe473069		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2219310	1464	__glEvalMesh2Line	dwarf+dynsym	41f9db6f5507		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2219310	1464	__glEvalMesh2Line	dwarf+dynsym	41f9db6f5507		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22198d0	232	NurbsKnots1Common	dwarf	b6b78bf722d2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22199c0	284	NurbsKnots2Common	dwarf	84132cefb0f7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2219ae0	196	__glim_NurbsKnots1dSGIX	dwarf+dynsym	25b78d0cfc66		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
