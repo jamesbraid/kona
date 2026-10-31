@@ -440,3 +440,15 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/ge12_noge.stuck.Z` | stuck-at test vectors for the `ge12_noge` chain. | 1235 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/ge12_top4ges.stuck.Z` | stuck-at test vectors for the `ge12_top4ges` chain. | 4355 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/ge14_2ge.stuck.Z` | stuck-at test vectors for the `ge14_2ge` chain. | 2059 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_4ge.stuck.Z` | stuck-at test vectors for the `ge14_4ge` chain. | 2839 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_btm4ges.stuck.Z` | stuck-at test vectors for the `ge14_btm4ges` chain. | 4399 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_noge.stuck.Z` | stuck-at test vectors for the `ge14_noge` chain. | 1279 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_top4ges.stuck.Z` | stuck-at test vectors for the `ge14_top4ges` chain. | 4399 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm10.stuck` | stuck-at test vectors for the `rm10` chain. The compressed copy holds the same content once decompressed. | 6600 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm10.stuck.Z` | stuck-at test vectors for the `rm10` chain. The plain copy holds the same content. | 6600 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm11.stuck` | stuck-at test vectors for the `rm11` chain. The compressed copy holds the same content once decompressed. | 11591 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm11.stuck.Z` | stuck-at test vectors for the `rm11` chain. The plain copy holds the same content. | 11591 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm6.stuck.Z` | stuck-at test vectors for the `rm6` chain. | 11447 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm7.stuck.Z` | stuck-at test vectors for the `rm7` chain. | 6540 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm8.stuck.Z` | stuck-at test vectors for the `rm8` chain. | 7017 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rmtm7.stuck.Z` | stuck-at test vectors for the `rmtm7` chain. | 11447 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
