@@ -23,8 +23,20 @@ Sources: `usr/gfx/gfxinit` (also installed as `gfxinfo`), `usr/gfx/setmon`, `usr
 - **Pixel depth.** 0 Small, 1 Medium, 2 Large, 3 Extra-Large; set 2 prints 3 as 'Extra-Small (Tiny)'. The single letters S, M, L and X that `GetBoardInfo` appends to the `GL_RENDERER` string index the same field (reply +180, configuration +140).
 - **Colour map and gamma.** 32K for field value 0, 128K for 1, then a computed value for others; the suffix ', 64K external gamma' prints for external-gamma field 1.
 - **Back-end FIFO.** '4MB external', '16MB external' or 'Internal', then '32bit path' or '16bit path'.
-- **Board name.** Taken from the kernel's board record (ioctl 102). The IP27 kernel object `kona_edtinit.o` holds KONAL (+0x1260) and the IP35 `kona.a` holds KONAD (+0x17ff0). The tool carries the strings KONA, KONAT, KONAS, KONAL and KONAD; no shipped kernel produces KONA, KONAT or KONAS, so the sets that report those names are **unknown**.
+- **Board name.** Taken from the kernel's board record (ioctl 102). The IP27 kernel object `kona_edtinit.o` holds KONAL (+0x1260) and the IP35 `kona.a` holds KONAD (+0x17ff0). The tool carries the strings KONA, KONAT, KONAS, KONAL and KONAD; no shipped kernel produces KONA, KONAT or KONAS. **Established** (published output, 71 `gfxinfo` dumps): `KONA` (3 dumps) and `KONAS` (18) go with RM6 and `hinv` "InfiniteReality", `KONAL` (40) with IP27 hosts and `KONAD` (10) with IP35 hosts; the pairings are in the next list. `KONAT` is in no capture, and which hosts print plain `KONA` against `KONAS` is **unknown** (the `KONAS` posts that show a CPU line show IP25).
 - **Not printed.** No GE revision and no DG revision appear for this pipe; the `brd:`, ` ge:`, `rm%d:` and ` dg:` lines of the verbose form print raw identity words whose decoding is **unknown** ([dg.md](dg.md#gfxinfo--v-sample-dplex-guide)).
+- **What published captures print** (**established**, published output; each line is evidence for the board shown, counts are dumps). The internal names `hinv` prints as "Graphics board: ..." (some posts capitalise Board), with the `gfxinfo` pair they go with:
+
+  | `hinv` name (dumps) | `gfxinfo` board name | RM name | GEs | per-slot texture seen | host line |
+  |---|---|---|---|---|---|
+  | InfiniteReality (23) | KONA, KONAS | RM6 | 4 | 16MB, 64MB | IP19 (2), IP25 (6) |
+  | Reality (6) | KONAL | RM8 | 2, occmask 0x03 | 16MB, 64MB | IP27 |
+  | InfiniteReality2 (36) | KONAL | RM7 | 4 (one pipe 2) | 64MB | IP27 |
+  | InfiniteReality2E (10) | KONAL, KONAD | RM9, RM7 once | 4 | 64MB | IP27, IP31, IP35 |
+  | InfiniteReality3 (14) | KONAL, KONAD | RM10 | 4 | 256MB | IP27, IP31, IP35 |
+  | InfiniteReality4 (4) | KONAD | RM11 | 4 | 1024MB | IP35 |
+
+  The pixel-depth word and the channel count are the loaded combination's: RM6, RM7, RM9 and RM10 pipes show Small through Large or Extra-Large, RM8 pipes show only Extra-Small (Tiny), Small and Medium, and RM11 pipes show Extra-Large in all 7 dumps. The first-generation pipe's option line is "Sirius video option detected" (10), the others show GVO (14), TVO (8), GPI (7) or DPLEX (1). The `gfxinfo -v` identity records name the boards: GE12-4 (first generation), GE14-2 (Reality), GE14-4 (InfiniteReality2, seen in `hinv -m`), GE16-4 (2E, 3 and 4); RM6-16, RM8-16, RM9, and RM10 for IR4 pipes that print RM11; TM7-64 and TM9-1024; DG5-2 on Reality, 2E and IR4. The first-generation DG record prints "WARNING: No NIC page A found." and no board name. `hinv -m` locates the pipe at `/hw/module/N/slot/ioN/kona`. An unconfigured or corrupt record prints out-of-range numbers and empty text where a lookup misses ("Display has 0 channel", "Texture Memory: -/-/-/-", and one corrupt pipe with a count in the millions).
 - **Microcode.** `kona_loaducode` (0x1000ca5c) loads `arm1.u`, `geif.u`, `ged1b.u` and `ge11.u` by name, in that order, with no board-set choice between them. **Established** by reading the four call sites.
 
 ## `setmon`
