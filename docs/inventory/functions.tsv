@@ -15896,7 +15896,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f4640	144	__glNamesLoc
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f46d0	2484	__glNamesLockDataList	dynsym+mdebug	79d0748d4f4b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5084	72	__glNamesUnlockData	dynsym+mdebug	338f3220c4d2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f50cc	140	__glNamesUnlockDataList	dynsym+mdebug	ebe9b3d1036f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5158	872	__glNamesGenRange	dynsym+mdebug	7bb5232b72f8		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5158	872	__glNamesGenRange	dynsym+mdebug	7bb5232b72f8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f54c0	1048	__glNamesDeleteRange	dynsym+mdebug	d83f47c3155f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f58d8	92	__glNamesIsName	dynsym+mdebug	c60a6ec5b678		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5934	188	__glNamesGenNames	dynsym+mdebug	5d4de713929f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -21432,7 +21432,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f2ad0	152	__glNamesL
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f2b70	2564	__glNamesLockDataList	dwarf+dynsym	54095706180f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f3580	72	__glNamesUnlockData	dwarf+dynsym	f13e038bc6da		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f35d0	260	__glNamesUnlockDataList	dwarf+dynsym	53ff714ceda2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f36e0	876	__glNamesGenRange	dwarf+dynsym	7facd67db6d0		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f36e0	876	__glNamesGenRange	dwarf+dynsym	7facd67db6d0		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f3a50	1068	__glNamesDeleteRange	dwarf+dynsym	7f8cc0fb1741		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f3e80	80	__glNamesIsName	dwarf+dynsym	70634c495755		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f3ed0	216	__glNamesGenNames	dwarf+dynsym	1255eb047a90		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -27012,7 +27012,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e56ce0	152	__glNamesL
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e56d80	2600	__glNamesLockDataList	dwarf+dynsym	aafd8c00f681		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e577b0	72	__glNamesUnlockData	dwarf+dynsym	88a3c3525080		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e57800	260	__glNamesUnlockDataList	dwarf+dynsym	7362bc07a6ae		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e57910	880	__glNamesGenRange	dwarf+dynsym	f039c2178693		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e57910	880	__glNamesGenRange	dwarf+dynsym	f039c2178693		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e57c80	1092	__glNamesDeleteRange	dwarf+dynsym	62f6833dff51		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e580d0	80	__glNamesIsName	dwarf+dynsym	df3b63dbee51		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58120	216	__glNamesGenNames	dwarf+dynsym	ca78758c985e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -32595,7 +32595,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f4640	144	__glNamesLoc
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f46d0	2484	__glNamesLockDataList	dynsym+mdebug	79d0748d4f4b		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5084	72	__glNamesUnlockData	dynsym+mdebug	338f3220c4d2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f50cc	140	__glNamesUnlockDataList	dynsym+mdebug	ebe9b3d1036f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5158	872	__glNamesGenRange	dynsym+mdebug	7bb5232b72f8		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5158	872	__glNamesGenRange	dynsym+mdebug	7bb5232b72f8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f54c0	1048	__glNamesDeleteRange	dynsym+mdebug	d83f47c3155f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f58d8	92	__glNamesIsName	dynsym+mdebug	c60a6ec5b678		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5934	188	__glNamesGenNames	dynsym+mdebug	5d4de713929f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -38131,7 +38131,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f2ad0	152	__glNamesL
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f2b70	2564	__glNamesLockDataList	dwarf+dynsym	54095706180f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f3580	72	__glNamesUnlockData	dwarf+dynsym	f13e038bc6da		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f35d0	260	__glNamesUnlockDataList	dwarf+dynsym	53ff714ceda2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f36e0	876	__glNamesGenRange	dwarf+dynsym	7facd67db6d0		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f36e0	876	__glNamesGenRange	dwarf+dynsym	7facd67db6d0		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f3a50	1068	__glNamesDeleteRange	dwarf+dynsym	7f8cc0fb1741		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f3e80	80	__glNamesIsName	dwarf+dynsym	70634c495755		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f3ed0	216	__glNamesGenNames	dwarf+dynsym	1255eb047a90		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -43711,7 +43711,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2236ce0	152	__glNamesL
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2236d80	2600	__glNamesLockDataList	dwarf+dynsym	aafd8c00f681		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22377b0	72	__glNamesUnlockData	dwarf+dynsym	88a3c3525080		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2237800	260	__glNamesUnlockDataList	dwarf+dynsym	7362bc07a6ae		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2237910	880	__glNamesGenRange	dwarf+dynsym	f039c2178693		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2237910	880	__glNamesGenRange	dwarf+dynsym	f039c2178693		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2237c80	1092	__glNamesDeleteRange	dwarf+dynsym	62f6833dff51		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22380d0	80	__glNamesIsName	dwarf+dynsym	df3b63dbee51		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238120	216	__glNamesGenNames	dwarf+dynsym	ca78758c985e		in	located	docs/sample-implementation.md#so_namesc	so_names.c
