@@ -49,8 +49,8 @@ Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucod
 | `availmon` | `usr/diags/IR/bin/`: a shell wrapper that runs `irsaudit` and manages its summary and result files in the crash directory (usage: name, summary file, result file) |
 | `irsaudit`, `hyper` | the IR diagnostic and the hyperpipe test program ([irsaudit.md](irsaudit.md)) |
 | `irsaudit_disasm.txt`, `irsaudit_dynsym_disasm.txt` | disassembly listings of the diagnostic and of its dynamic-symbol stubs; generated from the binary, not shipped |
-| `usr/diags/IR/ucode/arm1_nic.u` | **Established** (file layout): a 13400-byte big-endian ARM image in AIF layout. Its word at +0x08 is a branch with link to +0x40, the entry, and the word at +0x0c is the AIF exit call (SWI 0x11). Its routines and the registers they touch were not disassembled here, so its role is **unknown**; the name suggests the firmware variant for the network-interface (serial-number) boards, which the page beside it, [ucode/arm1.md](../ucode/arm1.md), describes for the full image |
-| `usr/diags/IR/ucode/diag_arm_init.u` | **Established** (file layout): a 520-byte big-endian ARM image in AIF layout, with the same header as `arm1_nic.u` (the branch with link at +0x08 goes to the entry at +0x40). The import recipe loads it at image base 0 ([tooling.md](../tooling.md#arm-firmware-import)). Its routines were not disassembled here, so its role is **unknown**; the name suggests a short ARM start-up program |
+| `usr/diags/IR/ucode/arm1_nic.u` | **Established** (file layout): a 13400-byte big-endian ARM image in AIF layout. Its word at +0x08 is a branch with link to +0x40, the entry, and the word at +0x10 is the AIF exit call (SWI 0x11). Its routines and the registers they touch were not disassembled here, so its role is **unknown**; the name suggests the firmware variant for the network-interface (serial-number) boards, which the page beside it, [ucode/arm1.md](../ucode/arm1.md), describes for the full image |
+| `usr/diags/IR/ucode/diag_arm_init.u` | **Established** (file bytes, all 130 words read): a 520-byte big-endian ARM image, described in the list below this table. The import recipe loads it at image base 0 ([tooling.md](../tooling.md#arm-firmware-import)). |
 | `usr/diags/IR/ucode/ge_diag_init.u`, `usr/diags/IR/ucode/ge_diag_init.hex` | the diagnostic's geometry-engine initialisation program (the `.hex` form is the same program as hexadecimal words); it sits beside the full firmware images of [ucode/arm1.md](../ucode/arm1.md) |
 | `gfxinfo`, `gfxtopology`, `setmon`, `dmconf`, `ircombine`, `sgcombine`, `sdbutil`, `hyperpipeinfo`, `xsetmon` | the setup and video-configuration tools ([setup-tools.md](setup-tools.md)); `gfxtopology` is a Perl script and `hyperpipeinfo` prints the hyperpipe configuration of a display (usage `-d <displayname>`) |
 | `startgfx`, `stopgfx` | shell scripts that start and stop the window system |
@@ -59,6 +59,15 @@ Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucod
 | `tport.o` | the kernel textport STREAMS driver, a member of `tport.a` ([setup-tools.md](setup-tools.md#kernel-textport-tporta)) |
 | `Dmconf`, `Ircombine`, `XSetmon` | the X resource files of the three graphical tools; each starts with the RapidApp generator banner and turns on the SGI look and feel schemes |
 | `gfx.sm`, `gfxs` and the tuning file `gfx` | the kernel configuration: `gfx.sm` is the system file that lists the graphics drivers autoconfig links (the Kona driver among them, "KONA graphics w/ HIP2 via Xtalk bus"), `gfxs` is the master file of the graphics streams device and sets the board limit (128 heads on IP27 and IP35, 8 elsewhere), and `gfx` holds the tunable parameters |
+
+Read word by word from the file bytes (the big-endian words of `od`):
+
+- `usr/diags/IR/ucode/diag_arm_init.u` **Established:** the word at +0x08 is a NOP (`e1a00000`), not a branch with link.
+- `usr/diags/IR/ucode/diag_arm_init.u` **Established:** the SWI 0x11 exit word is at +0x10, and the word at +0x14 is 0x188.
+- `usr/diags/IR/ucode/diag_arm_init.u` **Established:** the code at +0x40 to +0x7c is a zeroing helper that stores zero words until its count runs out.
+- `usr/diags/IR/ucode/diag_arm_init.u` **Established:** from +0x80 it stores 0xbebabeba and 0xa5a5a5a5 into words from 0x0f00 upward, and writes 0xa5a5a5a5 to 0x04000000 and reads it back.
+- `usr/diags/IR/ucode/diag_arm_init.u` **Established:** at +0x1e0 it stores 1 to 0x00200094, then loops on itself at +0x1ec.
+- `usr/diags/IR/ucode/diag_arm_init.u` **Inferred:** a start-up memory and flag check that reports to mailbox word 0x200094, the word that `usr/gfx/ucode/KONA/arm1_kpm.u` also uses.
 
 ## Per-file register of the diagnostic data
 
