@@ -15651,8 +15651,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9da420	396	__glim_Nurbs
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9da5ac	416	__glim_NurbsKnots2dSGIX	dynsym+mdebug	dea59f0a73e6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9da74c	456	__glim_NurbsKnots2fSGIX	dynsym+mdebug	94a03c660bc9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9da914	792	__glim_NurbsKnots2iSGIX	dynsym+mdebug	b9faa1093ac9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dac30	224	__glim_FeedbackBuffer	dynsym+mdebug	ff3a6889b76d		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dad10	156	__glim_PassThrough	dynsym+mdebug	f950810f6574		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dac30	224	__glim_FeedbackBuffer	dynsym+mdebug	ff3a6889b76d		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dad10	156	__glim_PassThrough	dynsym+mdebug	f950810f6574		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dadac	80	__glFeedbackTag	dynsym+mdebug	f5c2d6754429		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9dadfc	44304	feedback	mdebug	f474b4acf89b		in	named-only	docs/hip.md#where-a-failed-host-dma-is-reported	Where a failed host DMA is reported
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db27c	96	__glFeedbackCopyPixels	dynsym+mdebug	debcbee4b815		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
@@ -15761,9 +15761,9 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9e7768	10060	Compu
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e78f4	148	__glValidateMaterial	dynsym+mdebug	f6b65e9c0ae2		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e7988	156	__glValidateLighting	dynsym+mdebug	b854b5404dd2		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e7a24	328	__glGenericPickColorMaterialProcs	dynsym+mdebug	02d82cb84359		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e7b70	1688	__glClipLine	dynsym+mdebug	6dea228a96e2		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e8208	196	__glFastClipSmoothLine	dynsym+mdebug	236597f885a7		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e82cc	200	__glFastClipFlatLine	dynsym+mdebug	304aafdc5287		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e7b70	1688	__glClipLine	dynsym+mdebug	6dea228a96e2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e8208	196	__glFastClipSmoothLine	dynsym+mdebug	236597f885a7		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e82cc	200	__glFastClipFlatLine	dynsym+mdebug	304aafdc5287		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e83a0	1424	__glInitLineData	dynsym+mdebug	abcff77dc025		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e8930	1340	__glRenderAliasLine	dynsym+mdebug	1cf0a3f0ab2b		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e8e6c	200	__glRenderFlatFogLine	dynsym+mdebug	dd81620b25e4		in	understood	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
@@ -21297,7 +21297,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9e4b50	456	Compu
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e4d20	144	__glValidateMaterial	dwarf+dynsym	ab6b9a291df5		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e4db0	140	__glValidateLighting	dwarf+dynsym	37813be08407		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e4e40	320	__glGenericPickColorMaterialProcs	dwarf+dynsym	ced425079ba3		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e4f80	1556	__glClipLine	dwarf+dynsym	43ef13aa0898		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e4f80	1556	__glClipLine	dwarf+dynsym	43ef13aa0898		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e55a0	180	__glFastClipSmoothLine	dwarf+dynsym	f04f90847efc		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5660	188	__glFastClipFlatLine	dwarf+dynsym	2aac304090d3		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e5720	1196	__glInitLineData	dwarf+dynsym	f22ebc4dadc7		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
@@ -26767,15 +26767,15 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e39ca0	268	__glim_Nur
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e39db0	356	__glim_NurbsKnots2dSGIX	dwarf+dynsym	83217bd63ee9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e39f20	476	__glim_NurbsKnots2fSGIX	dwarf+dynsym	54b07b1e4085		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a100	524	__glim_NurbsKnots2iSGIX	dwarf+dynsym	eae2c552ccc6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a310	208	__glim_FeedbackBuffer	dwarf+dynsym	e392fd022dbe		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a3e0	144	__glim_PassThrough	dwarf+dynsym	e777b5d840ba		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a310	208	__glim_FeedbackBuffer	dwarf+dynsym	e392fd022dbe		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a3e0	144	__glim_PassThrough	dwarf+dynsym	e777b5d840ba		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a470	80	__glFeedbackTag	dwarf+dynsym	2be3e301378d		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e3a4c0	904	feedback	dwarf	11783a2060f0		in	named-only	docs/hip.md#where-a-failed-host-dma-is-reported	Where a failed host DMA is reported
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a850	88	__glFeedbackCopyPixels	dwarf+dynsym	b622e6fd4012		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a8b0	88	__glFeedbackDrawPixels	dwarf+dynsym	4ce7a82da2db		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a910	88	__glFeedbackBitmap	dwarf+dynsym	a988c7ba90b2		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a970	88	__glFeedbackPoint	dwarf+dynsym	b3eff50423a3		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a9d0	224	__glFeedbackLine	dwarf+dynsym	f583d89ce8ca		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a850	88	__glFeedbackCopyPixels	dwarf+dynsym	b622e6fd4012		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a8b0	88	__glFeedbackDrawPixels	dwarf+dynsym	4ce7a82da2db		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a910	88	__glFeedbackBitmap	dwarf+dynsym	a988c7ba90b2		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a970	88	__glFeedbackPoint	dwarf+dynsym	b3eff50423a3		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a9d0	224	__glFeedbackLine	dwarf+dynsym	f583d89ce8ca		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3aab0	1248	__glFeedbackTriangle	dwarf+dynsym	51443e938fb6		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3af90	88	__glim_Finish	dwarf+dynsym	95e0f8e801d7		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3aff0	88	__glim_Flush	dwarf+dynsym	48baab1e4a92		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
@@ -26877,9 +26877,9 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e48ab0	456	Compu
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e48c80	160	__glValidateMaterial	dwarf+dynsym	e93bb439438d		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e48d20	140	__glValidateLighting	dwarf+dynsym	912520a261a4		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e48db0	344	__glGenericPickColorMaterialProcs	dwarf+dynsym	7bb2f223dbb3		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e48f10	1548	__glClipLine	dwarf+dynsym	d995e7df5982		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e49520	180	__glFastClipSmoothLine	dwarf+dynsym	8c101ae0c86d		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e495e0	188	__glFastClipFlatLine	dwarf+dynsym	ecfaca52390e		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e48f10	1548	__glClipLine	dwarf+dynsym	d995e7df5982		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e49520	180	__glFastClipSmoothLine	dwarf+dynsym	8c101ae0c86d		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e495e0	188	__glFastClipFlatLine	dwarf+dynsym	ecfaca52390e		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e496a0	1208	__glInitLineData	dwarf+dynsym	dce5d8f1d86f		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e49b60	932	__glRenderAliasLine	dwarf+dynsym	ad929ce1e964		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e49f10	188	__glRenderFlatFogLine	dwarf+dynsym	5baaa137d929		in	understood	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
@@ -32350,8 +32350,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9da420	396	__glim_Nurbs
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9da5ac	416	__glim_NurbsKnots2dSGIX	dynsym+mdebug	dea59f0a73e6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9da74c	456	__glim_NurbsKnots2fSGIX	dynsym+mdebug	94a03c660bc9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9da914	792	__glim_NurbsKnots2iSGIX	dynsym+mdebug	b9faa1093ac9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dac30	224	__glim_FeedbackBuffer	dynsym+mdebug	ff3a6889b76d		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dad10	156	__glim_PassThrough	dynsym+mdebug	f950810f6574		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dac30	224	__glim_FeedbackBuffer	dynsym+mdebug	ff3a6889b76d		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dad10	156	__glim_PassThrough	dynsym+mdebug	f950810f6574		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dadac	80	__glFeedbackTag	dynsym+mdebug	f5c2d6754429		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9dadfc	44304	feedback	mdebug	f474b4acf89b		in	named-only	docs/hip.md#where-a-failed-host-dma-is-reported	Where a failed host DMA is reported
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db27c	96	__glFeedbackCopyPixels	dynsym+mdebug	debcbee4b815		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
@@ -32460,9 +32460,9 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9e7768	10060	Compu
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e78f4	148	__glValidateMaterial	dynsym+mdebug	f6b65e9c0ae2		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e7988	156	__glValidateLighting	dynsym+mdebug	b854b5404dd2		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e7a24	328	__glGenericPickColorMaterialProcs	dynsym+mdebug	02d82cb84359		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e7b70	1688	__glClipLine	dynsym+mdebug	6dea228a96e2		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e8208	196	__glFastClipSmoothLine	dynsym+mdebug	236597f885a7		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e82cc	200	__glFastClipFlatLine	dynsym+mdebug	304aafdc5287		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e7b70	1688	__glClipLine	dynsym+mdebug	6dea228a96e2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e8208	196	__glFastClipSmoothLine	dynsym+mdebug	236597f885a7		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e82cc	200	__glFastClipFlatLine	dynsym+mdebug	304aafdc5287		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e83a0	1424	__glInitLineData	dynsym+mdebug	abcff77dc025		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e8930	1340	__glRenderAliasLine	dynsym+mdebug	1cf0a3f0ab2b		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e8e6c	200	__glRenderFlatFogLine	dynsym+mdebug	dd81620b25e4		in	understood	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
@@ -37996,7 +37996,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9e4b50	456	Compu
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e4d20	144	__glValidateMaterial	dwarf+dynsym	ab6b9a291df5		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e4db0	140	__glValidateLighting	dwarf+dynsym	37813be08407		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e4e40	320	__glGenericPickColorMaterialProcs	dwarf+dynsym	ced425079ba3		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e4f80	1556	__glClipLine	dwarf+dynsym	43ef13aa0898		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e4f80	1556	__glClipLine	dwarf+dynsym	43ef13aa0898		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e55a0	180	__glFastClipSmoothLine	dwarf+dynsym	f04f90847efc		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5660	188	__glFastClipFlatLine	dwarf+dynsym	2aac304090d3		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e5720	1196	__glInitLineData	dwarf+dynsym	f22ebc4dadc7		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
@@ -43466,15 +43466,15 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2219ca0	268	__glim_Nur
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2219db0	356	__glim_NurbsKnots2dSGIX	dwarf+dynsym	83217bd63ee9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2219f20	476	__glim_NurbsKnots2fSGIX	dwarf+dynsym	54b07b1e4085		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a100	524	__glim_NurbsKnots2iSGIX	dwarf+dynsym	eae2c552ccc6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a310	208	__glim_FeedbackBuffer	dwarf+dynsym	e392fd022dbe		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a3e0	144	__glim_PassThrough	dwarf+dynsym	e777b5d840ba		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a310	208	__glim_FeedbackBuffer	dwarf+dynsym	e392fd022dbe		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a3e0	144	__glim_PassThrough	dwarf+dynsym	e777b5d840ba		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a470	80	__glFeedbackTag	dwarf+dynsym	2be3e301378d		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x221a4c0	904	feedback	dwarf	11783a2060f0		in	named-only	docs/hip.md#where-a-failed-host-dma-is-reported	Where a failed host DMA is reported
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a850	88	__glFeedbackCopyPixels	dwarf+dynsym	b622e6fd4012		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a8b0	88	__glFeedbackDrawPixels	dwarf+dynsym	4ce7a82da2db		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a910	88	__glFeedbackBitmap	dwarf+dynsym	a988c7ba90b2		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a970	88	__glFeedbackPoint	dwarf+dynsym	b3eff50423a3		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a9d0	224	__glFeedbackLine	dwarf+dynsym	f583d89ce8ca		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a850	88	__glFeedbackCopyPixels	dwarf+dynsym	b622e6fd4012		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a8b0	88	__glFeedbackDrawPixels	dwarf+dynsym	4ce7a82da2db		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a910	88	__glFeedbackBitmap	dwarf+dynsym	a988c7ba90b2		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a970	88	__glFeedbackPoint	dwarf+dynsym	b3eff50423a3		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a9d0	224	__glFeedbackLine	dwarf+dynsym	f583d89ce8ca		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221aab0	1248	__glFeedbackTriangle	dwarf+dynsym	51443e938fb6		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221af90	88	__glim_Finish	dwarf+dynsym	95e0f8e801d7		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221aff0	88	__glim_Flush	dwarf+dynsym	48baab1e4a92		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
@@ -43576,9 +43576,9 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2228ab0	456	Compu
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2228c80	160	__glValidateMaterial	dwarf+dynsym	e93bb439438d		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2228d20	140	__glValidateLighting	dwarf+dynsym	912520a261a4		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2228db0	344	__glGenericPickColorMaterialProcs	dwarf+dynsym	7bb2f223dbb3		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2228f10	1548	__glClipLine	dwarf+dynsym	d995e7df5982		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2229520	180	__glFastClipSmoothLine	dwarf+dynsym	8c101ae0c86d		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22295e0	188	__glFastClipFlatLine	dwarf+dynsym	ecfaca52390e		in	located	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2228f10	1548	__glClipLine	dwarf+dynsym	d995e7df5982		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2229520	180	__glFastClipSmoothLine	dwarf+dynsym	8c101ae0c86d		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22295e0	188	__glFastClipFlatLine	dwarf+dynsym	ecfaca52390e		in	understood	docs/sample-implementation.md#so_lineclipc	so_lineclip.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22296a0	1208	__glInitLineData	dwarf+dynsym	dce5d8f1d86f		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2229b60	932	__glRenderAliasLine	dwarf+dynsym	ad929ce1e964		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2229f10	188	__glRenderFlatFogLine	dwarf+dynsym	5baaa137d929		in	understood	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
