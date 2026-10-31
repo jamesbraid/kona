@@ -16531,7 +16531,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3a5fc	76	__glEarlyInit
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3a648	684	__glInitTransformState	dynsym+mdebug	0be6aaabf8bb		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3a8f4	108	__glInvalidateSequenceNumbers	dynsym+mdebug	293ff6231fd4		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3a960	172	__glim_MatrixMode	dynsym+mdebug	fe8467cb51bd		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3aa0c	144	__glim_LoadIdentity	dynsym+mdebug	f33de2c491de		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3aa0c	144	__glim_LoadIdentity	dynsym+mdebug	f33de2c491de		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3aa9c	240	__glim_LoadMatrixf	dynsym+mdebug	21baa7e58320		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3ab8c	304	__glim_LoadMatrixd	dynsym+mdebug	846f736068b3		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3acbc	252	__glim_MultMatrixf	dynsym+mdebug	73d2b3d2aaac		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -16542,8 +16542,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3aff8	116	__glim_Scale
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b06c	128	__glim_Scaled	dynsym+mdebug	df2edaf9b96e		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b0ec	116	__glim_Translatef	dynsym+mdebug	29b22e4585ea		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b160	128	__glim_Translated	dynsym+mdebug	ae0ed4f6d614		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b1e0	144	__glim_PushMatrix	dynsym+mdebug	1ffe4bf11480		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b270	144	__glim_PopMatrix	dynsym+mdebug	f60a18618761		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b1e0	144	__glim_PushMatrix	dynsym+mdebug	1ffe4bf11480		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b270	144	__glim_PopMatrix	dynsym+mdebug	f60a18618761		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b300	512	__glim_Frustum	dynsym+mdebug	4942300a4ca2		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b500	580	__glim_Ortho	dynsym+mdebug	49f1a6463b61		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda3b744	184	__glUpdateViewport	dynsym+mdebug	2bc16135d58a		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -22067,7 +22067,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda34b40	76	__glEarlyIn
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda34b90	600	__glInitTransformState	dwarf+dynsym	5633bf41a62c		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda34df0	416	__glInvalidateSequenceNumbers	dwarf+dynsym	f99c20a9c664		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda34f90	164	__glim_MatrixMode	dwarf+dynsym	da0b3f1655c8		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35040	124	__glim_LoadIdentity	dwarf+dynsym	eb172a217ee6		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35040	124	__glim_LoadIdentity	dwarf+dynsym	eb172a217ee6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda350c0	228	__glim_LoadMatrixf	dwarf+dynsym	02737e6c49c1		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda351b0	292	__glim_LoadMatrixd	dwarf+dynsym	75dc15336850		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda352e0	232	__glim_MultMatrixf	dwarf+dynsym	6221681d0ac5		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -22078,8 +22078,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda355e0	100	__glim_Sca
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35650	104	__glim_Scaled	dwarf+dynsym	5585c227c4a6		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda356c0	100	__glim_Translatef	dwarf+dynsym	2d575eb017a0		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35730	104	__glim_Translated	dwarf+dynsym	67ca0c5d823b		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda357a0	124	__glim_PushMatrix	dwarf+dynsym	f9b6d0f67aed		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35820	124	__glim_PopMatrix	dwarf+dynsym	e63b1653b59b		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda357a0	124	__glim_PushMatrix	dwarf+dynsym	f9b6d0f67aed		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35820	124	__glim_PopMatrix	dwarf+dynsym	e63b1653b59b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda358a0	456	__glim_Frustum	dwarf+dynsym	c976d84342b2		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35a70	512	__glim_Ortho	dwarf+dynsym	09f2484a08e4		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda35c70	176	__glUpdateViewport	dwarf+dynsym	626df4fddde1		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -27647,7 +27647,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99be0	76	__glEarlyIn
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99c30	620	__glInitTransformState	dwarf+dynsym	8334619099e8		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e99ea0	400	__glInvalidateSequenceNumbers	dwarf+dynsym	26b37cfc2991		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a030	164	__glim_MatrixMode	dwarf+dynsym	5ead8863c172		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a0e0	120	__glim_LoadIdentity	dwarf+dynsym	c4a8bf656b1e		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a0e0	120	__glim_LoadIdentity	dwarf+dynsym	c4a8bf656b1e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a160	228	__glim_LoadMatrixf	dwarf+dynsym	ae95b8aecb23		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a250	292	__glim_LoadMatrixd	dwarf+dynsym	ef02fb72e0e7		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a380	232	__glim_MultMatrixf	dwarf+dynsym	6efb7b95b215		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -27658,8 +27658,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a680	100	__glim_Sca
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a6f0	104	__glim_Scaled	dwarf+dynsym	5dc22c416b66		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a760	100	__glim_Translatef	dwarf+dynsym	897a13fd7d7b		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a7d0	104	__glim_Translated	dwarf+dynsym	d50786d29587		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a840	120	__glim_PushMatrix	dwarf+dynsym	8295c49cf690		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a8c0	120	__glim_PopMatrix	dwarf+dynsym	7a1b4a3758ce		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a840	120	__glim_PushMatrix	dwarf+dynsym	8295c49cf690		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a8c0	120	__glim_PopMatrix	dwarf+dynsym	7a1b4a3758ce		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9a940	452	__glim_Frustum	dwarf+dynsym	3bf7f88eaf7a		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9ab10	512	__glim_Ortho	dwarf+dynsym	51a5211172d5		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e9ad10	176	__glUpdateViewport	dwarf+dynsym	74ec5d64a999		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -33230,7 +33230,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3a5fc	76	__glEarlyInit
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3a648	684	__glInitTransformState	dynsym+mdebug	0be6aaabf8bb		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3a8f4	108	__glInvalidateSequenceNumbers	dynsym+mdebug	293ff6231fd4		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3a960	172	__glim_MatrixMode	dynsym+mdebug	fe8467cb51bd		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3aa0c	144	__glim_LoadIdentity	dynsym+mdebug	f33de2c491de		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3aa0c	144	__glim_LoadIdentity	dynsym+mdebug	f33de2c491de		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3aa9c	240	__glim_LoadMatrixf	dynsym+mdebug	21baa7e58320		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3ab8c	304	__glim_LoadMatrixd	dynsym+mdebug	846f736068b3		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3acbc	252	__glim_MultMatrixf	dynsym+mdebug	73d2b3d2aaac		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -33241,8 +33241,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3aff8	116	__glim_Scale
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b06c	128	__glim_Scaled	dynsym+mdebug	df2edaf9b96e		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b0ec	116	__glim_Translatef	dynsym+mdebug	29b22e4585ea		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b160	128	__glim_Translated	dynsym+mdebug	ae0ed4f6d614		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b1e0	144	__glim_PushMatrix	dynsym+mdebug	1ffe4bf11480		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b270	144	__glim_PopMatrix	dynsym+mdebug	f60a18618761		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b1e0	144	__glim_PushMatrix	dynsym+mdebug	1ffe4bf11480		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b270	144	__glim_PopMatrix	dynsym+mdebug	f60a18618761		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b300	512	__glim_Frustum	dynsym+mdebug	4942300a4ca2		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b500	580	__glim_Ortho	dynsym+mdebug	49f1a6463b61		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda3b744	184	__glUpdateViewport	dynsym+mdebug	2bc16135d58a		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -38766,7 +38766,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda34b40	76	__glEarlyIn
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda34b90	600	__glInitTransformState	dwarf+dynsym	5633bf41a62c		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda34df0	416	__glInvalidateSequenceNumbers	dwarf+dynsym	f99c20a9c664		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda34f90	164	__glim_MatrixMode	dwarf+dynsym	da0b3f1655c8		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35040	124	__glim_LoadIdentity	dwarf+dynsym	eb172a217ee6		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35040	124	__glim_LoadIdentity	dwarf+dynsym	eb172a217ee6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda350c0	228	__glim_LoadMatrixf	dwarf+dynsym	02737e6c49c1		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda351b0	292	__glim_LoadMatrixd	dwarf+dynsym	75dc15336850		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda352e0	232	__glim_MultMatrixf	dwarf+dynsym	6221681d0ac5		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -38777,8 +38777,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda355e0	100	__glim_Sca
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35650	104	__glim_Scaled	dwarf+dynsym	5585c227c4a6		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda356c0	100	__glim_Translatef	dwarf+dynsym	2d575eb017a0		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35730	104	__glim_Translated	dwarf+dynsym	67ca0c5d823b		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda357a0	124	__glim_PushMatrix	dwarf+dynsym	f9b6d0f67aed		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35820	124	__glim_PopMatrix	dwarf+dynsym	e63b1653b59b		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda357a0	124	__glim_PushMatrix	dwarf+dynsym	f9b6d0f67aed		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35820	124	__glim_PopMatrix	dwarf+dynsym	e63b1653b59b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda358a0	456	__glim_Frustum	dwarf+dynsym	c976d84342b2		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35a70	512	__glim_Ortho	dwarf+dynsym	09f2484a08e4		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda35c70	176	__glUpdateViewport	dwarf+dynsym	626df4fddde1		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -44346,7 +44346,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279be0	76	__glEarlyIn
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279c30	620	__glInitTransformState	dwarf+dynsym	8334619099e8		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2279ea0	400	__glInvalidateSequenceNumbers	dwarf+dynsym	26b37cfc2991		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a030	164	__glim_MatrixMode	dwarf+dynsym	5ead8863c172		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a0e0	120	__glim_LoadIdentity	dwarf+dynsym	c4a8bf656b1e		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a0e0	120	__glim_LoadIdentity	dwarf+dynsym	c4a8bf656b1e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a160	228	__glim_LoadMatrixf	dwarf+dynsym	ae95b8aecb23		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a250	292	__glim_LoadMatrixd	dwarf+dynsym	ef02fb72e0e7		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a380	232	__glim_MultMatrixf	dwarf+dynsym	6efb7b95b215		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
@@ -44357,8 +44357,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a680	100	__glim_Sca
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a6f0	104	__glim_Scaled	dwarf+dynsym	5dc22c416b66		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a760	100	__glim_Translatef	dwarf+dynsym	897a13fd7d7b		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a7d0	104	__glim_Translated	dwarf+dynsym	d50786d29587		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a840	120	__glim_PushMatrix	dwarf+dynsym	8295c49cf690		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a8c0	120	__glim_PopMatrix	dwarf+dynsym	7a1b4a3758ce		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a840	120	__glim_PushMatrix	dwarf+dynsym	8295c49cf690		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a8c0	120	__glim_PopMatrix	dwarf+dynsym	7a1b4a3758ce		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227a940	452	__glim_Frustum	dwarf+dynsym	3bf7f88eaf7a		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227ab10	512	__glim_Ortho	dwarf+dynsym	51a5211172d5		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x227ad10	176	__glUpdateViewport	dwarf+dynsym	74ec5d64a999		in	located	docs/sample-implementation.md#so_xformc	so_xform.c
