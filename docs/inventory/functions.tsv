@@ -15635,7 +15635,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d7ce8	180	Compute
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d7d9c	164	ComputeNormal2	mdebug	d1f16daa8500		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d7e40	560	DoDomain2	mdebug	1876564473df		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d8070	692	DoDomain2WithDerivs	mdebug	bfdd97088b96		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d8324	3464	DoEvalCoord2	mdebug	6b4d69d590bc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d8324	3464	DoEvalCoord2	mdebug	6b4d69d590bc		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d8b54	328	__glDoEvalCoord2	dynsym+mdebug	b6c1c1c9fa2a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d8c9c	520	__glEvalMesh1Line	dynsym+mdebug	a5db66dd9d89		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d8ea4	520	__glEvalMesh1Point	dynsym+mdebug	b42e1c29d946		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -21171,7 +21171,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d3aa0	156	Compu
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d3b40	100	ComputeNormal2	dwarf+funcnames	673aa399880c		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d3bb0	620	DoDomain2	dwarf+funcnames	a15fa1cc3a44		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d3e20	732	DoDomain2WithDerivs	dwarf+funcnames	12a32f9c4e3f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d4100	2044	DoEvalCoord2	dwarf+funcnames	ac8b07c47c51		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d4100	2044	DoEvalCoord2	dwarf+funcnames	ac8b07c47c51		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d4900	260	__glDoEvalCoord2	dwarf+dynsym	461a3b51fccb		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d4a10	456	__glEvalMesh1Line	dwarf+dynsym	de9cc4e9c111		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d4be0	456	__glEvalMesh1Point	dwarf+dynsym	3867875a9562		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -26751,7 +26751,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e37860	156	Compu
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e37900	100	ComputeNormal2	dwarf	62b0f2f28ffe		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e37970	620	DoDomain2	dwarf	33beafdb9d55		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e37be0	732	DoDomain2WithDerivs	dwarf	6e76428d1ae3		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e37ec0	2040	DoEvalCoord2	dwarf	97c43b5b03d9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e37ec0	2040	DoEvalCoord2	dwarf	97c43b5b03d9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e386c0	260	__glDoEvalCoord2	dwarf+dynsym	831232bd82ca		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e387d0	456	__glEvalMesh1Line	dwarf+dynsym	dce11b04a6b8		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e389a0	456	__glEvalMesh1Point	dwarf+dynsym	5e1c1997ec84		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -32334,7 +32334,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d7ce8	180	Compute
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d7d9c	164	ComputeNormal2	mdebug	d1f16daa8500		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d7e40	560	DoDomain2	mdebug	1876564473df		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d8070	692	DoDomain2WithDerivs	mdebug	bfdd97088b96		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d8324	3464	DoEvalCoord2	mdebug	6b4d69d590bc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d8324	3464	DoEvalCoord2	mdebug	6b4d69d590bc		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d8b54	328	__glDoEvalCoord2	dynsym+mdebug	b6c1c1c9fa2a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d8c9c	520	__glEvalMesh1Line	dynsym+mdebug	a5db66dd9d89		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d8ea4	520	__glEvalMesh1Point	dynsym+mdebug	b42e1c29d946		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -37870,7 +37870,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d3aa0	156	Compu
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d3b40	100	ComputeNormal2	dwarf+funcnames	673aa399880c		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d3bb0	620	DoDomain2	dwarf+funcnames	a15fa1cc3a44		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d3e20	732	DoDomain2WithDerivs	dwarf+funcnames	12a32f9c4e3f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d4100	2044	DoEvalCoord2	dwarf+funcnames	ac8b07c47c51		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d4100	2044	DoEvalCoord2	dwarf+funcnames	ac8b07c47c51		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d4900	260	__glDoEvalCoord2	dwarf+dynsym	461a3b51fccb		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d4a10	456	__glEvalMesh1Line	dwarf+dynsym	de9cc4e9c111		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d4be0	456	__glEvalMesh1Point	dwarf+dynsym	3867875a9562		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -43450,7 +43450,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2217860	156	Compu
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2217900	100	ComputeNormal2	dwarf	62b0f2f28ffe		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2217970	620	DoDomain2	dwarf	33beafdb9d55		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2217be0	732	DoDomain2WithDerivs	dwarf	6e76428d1ae3		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2217ec0	2040	DoEvalCoord2	dwarf	97c43b5b03d9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2217ec0	2040	DoEvalCoord2	dwarf	97c43b5b03d9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22186c0	260	__glDoEvalCoord2	dwarf+dynsym	831232bd82ca		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22187d0	456	__glEvalMesh1Line	dwarf+dynsym	dce11b04a6b8		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22189a0	456	__glEvalMesh1Point	dwarf+dynsym	5e1c1997ec84		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
