@@ -114,44 +114,44 @@ usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.stuck.Z	diagnostics	board-diagnost
 usr/diags/IR/data/dg4_2voc_dvp.netmap.Z	diagnostics	board-diagnostic	data	-	30281	1fa375fb2a5a012a		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/dg4_2voc_dvp.short.Z	diagnostics	board-diagnostic	data	-	4633	4e824479ac6b6112		0		0	0	undocumented		
 usr/diags/IR/data/dg4_2voc_dvp.stuck.Z	diagnostics	board-diagnostic	data	-	1083	d1a8c17f62e4a04a		0		0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_hdgvo.netmap	diagnostics	board-diagnostic	data	-	115305	e425a157c01b73a9		0		0	0	undocumented		
-usr/diags/IR/data/dg4_2voc_hdgvo.netmap.Z	diagnostics	board-diagnostic	data	-	30748	c31e0e64b4006f18		0		0	0	undocumented		
+usr/diags/IR/data/dg4_2voc_hdgvo.netmap	diagnostics	board-diagnostic	data	-	115305	e425a157c01b73a9		0		0	0	understood	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
+usr/diags/IR/data/dg4_2voc_hdgvo.netmap.Z	diagnostics	board-diagnostic	data	-	30748	c31e0e64b4006f18		0		0	0	understood	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/dg4_2voc_hdgvo.short	diagnostics	board-diagnostic	data	-	88888	9309ac6fc3306b8e		0		0	0	undocumented		
 usr/diags/IR/data/dg4_2voc_hdgvo.short.Z	diagnostics	board-diagnostic	data	-	4364	54d189e7f4c7cbf9		0		0	0	undocumented		
 usr/diags/IR/data/dg4_2voc_hdgvo.stuck	diagnostics	board-diagnostic	data	-	22287	2ffe0f9ae687422f		0		0	0	undocumented		
 usr/diags/IR/data/dg4_2voc_hdgvo.stuck.Z	diagnostics	board-diagnostic	data	-	1068	bde1c6c9bd931d22		0		0	0	undocumented		
-usr/diags/IR/data/dg4_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	49108	d9f016cb302b0b6b		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	49108	d9f016cb302b0b6b		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/dg4_8voc.short.Z	diagnostics	board-diagnostic	data	-	6963	258db17a8948eec0		0		0	0	undocumented		
 usr/diags/IR/data/dg4_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	3313	6fca6cf527397b59		0		0	0	undocumented		
-usr/diags/IR/data/dg4_8voc_dacsamp.netmap.Z	diagnostics	board-diagnostic	data	-	51438	ba78700ec45d4d58		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc_dacsamp.netmap.Z	diagnostics	board-diagnostic	data	-	51438	ba78700ec45d4d58		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/dg4_8voc_dacsamp.short.Z	diagnostics	board-diagnostic	data	-	10465	85b30b429ab74ba5		0		0	0	undocumented		
 usr/diags/IR/data/dg4_8voc_dacsamp.stuck.Z	diagnostics	board-diagnostic	data	-	3581	299d4228dfc48f8e		0		0	0	undocumented		
-usr/diags/IR/data/dg4_8voc_dvp.netmap.Z	diagnostics	board-diagnostic	data	-	58825	f216bb50f04a36fc		0		0	0	undocumented		
+usr/diags/IR/data/dg4_8voc_dvp.netmap.Z	diagnostics	board-diagnostic	data	-	58825	f216bb50f04a36fc		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/dg4_8voc_dvp.short.Z	diagnostics	board-diagnostic	data	-	7888	3497cbf8564ae6c1		0		0	0	undocumented		
 usr/diags/IR/data/dg4_8voc_dvp.stuck.Z	diagnostics	board-diagnostic	data	-	3536	53ee4c6f2253167b		0		0	0	undocumented		
 usr/diags/IR/data/fm2.qtcbist	diagnostics	board-diagnostic	data	-	805	24180c5ea0dca631		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/fm2.tcbist	diagnostics	board-diagnostic	data	-	4290	fa93346ddf252603		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/fm2null.qtcbist	diagnostics	board-diagnostic	data	-	826	658adb67b6bc0dd1		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/fm2null.tcbist	diagnostics	board-diagnostic	data	-	4397	e7e59eb968264f60		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/fpln_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	133686	47518445ca9fe211		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	133686	47518445ca9fe211		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_2voc.short.Z	diagnostics	board-diagnostic	data	-	11482	c747070399c13f1a		0		0	0	undocumented		
 usr/diags/IR/data/fpln_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	1475	15efc67fe8b25ec0		0		0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	133048	a7afcc36fb7763d6		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	133048	a7afcc36fb7763d6		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_2voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	10325	9cd27eaf9d39ad09		0		0	0	undocumented		
 usr/diags/IR/data/fpln_2voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1502	db15033aa0794e1a		0		0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	132842	b2ce54bd7642c897		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	132842	b2ce54bd7642c897		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_2voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	10337	319a72a368c9e0c5		0		0	0	undocumented		
 usr/diags/IR/data/fpln_2voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1523	c6dc7d2efaabf7e9		0		0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	132330	0f6a93d8a70b1e03		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	132330	0f6a93d8a70b1e03		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_2voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	10182	842da503a1807cf8		0		0	0	undocumented		
 usr/diags/IR/data/fpln_2voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	1470	830c41396daf720b		0		0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	132529	318594188fc11b47		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	132529	318594188fc11b47		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_2voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	10226	f1d540567d9c52c6		0		0	0	undocumented		
 usr/diags/IR/data/fpln_2voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	1468	763aef1a0d1d8a99		0		0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	132281	6e8723ca2e1df65c		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	132281	6e8723ca2e1df65c		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_2voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	10194	994c02c1b065b183		0		0	0	undocumented		
 usr/diags/IR/data/fpln_2voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	1476	09d855b1d7944d81		0		0	0	undocumented		
-usr/diags/IR/data/fpln_2voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	132633	20fc8347ec05b668		0		0	0	undocumented		
+usr/diags/IR/data/fpln_2voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	132633	20fc8347ec05b668		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_2voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	10165	52e5dfaadb467469		0		0	0	undocumented		
 usr/diags/IR/data/fpln_2voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	1490	d7333fd540e28905		0		0	0	undocumented		
 usr/diags/IR/data/fpln_8voc.netmap.Z	diagnostics	board-diagnostic	data	-	151433	bb31aad825e66bf3		0		0	0	undocumented		
